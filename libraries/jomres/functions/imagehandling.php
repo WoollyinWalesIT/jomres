@@ -25,14 +25,14 @@ function dropImage($defaultProperty = 0, $imageType = '', $itemUid = '', $redire
     $defaultProperty = getDefaultProperty();
     $saveMessage = jr_gettext('_JOMRES_FILE_DELETED', '_JOMRES_FILE_DELETED', false);
     $fileFullPath = '';
-    $returnTask = 'editProperty&propertyUid='.$defaultProperty;
+    $returnTask = 'edit_property&propertyUid='.$defaultProperty;
 
     switch ($imageType) {
         case 'property':
             $fileFullPath = JOMRES_IMAGELOCATION_ABSPATH.$defaultProperty.'_property_'.$defaultProperty.'.jpg';
             $fileFullPath_thumbnail = JOMRES_IMAGELOCATION_ABSPATH.$defaultProperty.'_property_'.$defaultProperty.'_thumbnail.jpg';
             $fileFullPath_thumbnail_medium = JOMRES_IMAGELOCATION_ABSPATH.$defaultProperty.'_property_'.$defaultProperty.'_thumbnail_med.jpg';
-            $returnTask = 'editProperty&propertyUid='.$defaultProperty;
+            $returnTask = 'edit_property&propertyUid='.$defaultProperty;
             break;
         case 'room':
             $fileFullPath = JOMRES_IMAGELOCATION_ABSPATH.$defaultProperty.'_room_'.$itemUid.'.jpg';

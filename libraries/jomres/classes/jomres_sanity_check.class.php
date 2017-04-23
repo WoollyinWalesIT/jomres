@@ -144,7 +144,7 @@ class jomres_sanity_check
 
     public function check_address()
     {
-        if (get_showtime('task') != 'editProperty') {
+        if (get_showtime('task') != 'edit_property') {
             $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
             $current_property_details->gather_data($this->property_uid);
             if (
@@ -155,7 +155,7 @@ class jomres_sanity_check
                 $current_property_details->property_tel == ''
                 ) {
                 $message = jr_gettext('_JOMRES_ADDRESS_SANITY_CHECK', '_JOMRES_ADDRESS_SANITY_CHECK', false);
-                $link = jomresURL(JOMRES_SITEPAGE_URL.'&task=editProperty');
+                $link = jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_property');
                 $button_text = jr_gettext('_JOMRES_ADDRESS_SANITY_CHECK_LINK', '_JOMRES_ADDRESS_SANITY_CHECK_LINK', false);
 
                 return $this->construct_warning(array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $button_text));

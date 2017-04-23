@@ -63,9 +63,6 @@ class j06000feature_not_available
             case 'listExtras':
                 $plugin_name = 'optional_extras';
                 break;
-            case 'deleteProperty':
-                $plugin_name = 'property_creation_plugins';
-                break;
             default:
                 $plugin_name = 'hellifiknow';
         }
