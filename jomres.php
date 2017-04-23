@@ -315,51 +315,6 @@ try {
                 }
                 break;
             //########################################################################################
-            case 'listBlackBookings':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02130');
-                } //listBlackBookings();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'newBlackBooking':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02134');
-                } //newBlackBooking();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'viewBlackBooking':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02132');
-                } //viewBlackBooking();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'saveBBooking':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02136');
-                } //saveBBooking();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'deleteBlackBooking':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02138');
-                } //deleteBlackBooking();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
             case 'publishExtra':
                 if (($thisJRUser->userIsManager && $thisJRUser->accesslevel > 50) || $jrConfig[ 'full_access_control' ] == '1') {
                     $MiniComponents->triggerEvent('02140');

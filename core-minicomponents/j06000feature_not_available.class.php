@@ -45,9 +45,6 @@ class j06000feature_not_available
     public function get_task_pluginnames($attempted_task)
     {
         switch ($attempted_task) {
-            case 'listBlackBookings':
-                $plugin_name = 'black_bookings';
-                break;
             case 'bookGuestIn':
                 $plugin_name = 'book_guest_in_out';
                 break;
