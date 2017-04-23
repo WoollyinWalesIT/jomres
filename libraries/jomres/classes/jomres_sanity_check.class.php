@@ -282,7 +282,7 @@ class jomres_sanity_check
 
         if ($current_property_details->published != 1 && $thisJRUser->userIsManager) {
             $message = jr_gettext('_JOMRES_SANITY_CHECK_NOT_PUBLISHED', '_JOMRES_SANITY_CHECK_NOT_PUBLISHED', false);
-            $link = jomresURL(JOMRES_SITEPAGE_URL.'&task=publishProperty&property_uid='.$this->property_uid);
+            $link = jomresURL(JOMRES_SITEPAGE_URL.'&task=publish_property&property_uid='.$this->property_uid);
             $button_text = jr_gettext('_JOMRES_COM_MR_VRCT_PUBLISH', '_JOMRES_COM_MR_VRCT_PUBLISH', false);
 
             return $this->construct_warning(array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $button_text));

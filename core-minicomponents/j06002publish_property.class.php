@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j03340publish_business
+class j06002publish_property
 {
     public function __construct($componentArgs)
     {

@@ -23,7 +23,7 @@ class jomres_suspensions
         $this->authorised_properties = array();                        // properties that this manager has access to
 
         $this->suspended_manager_denied_tasks = array(
-                                                        'publishProperty',
+                                                        'publish_property',
                                                         'dobooking',
                                                         'list_bookings',
                                                         'editBooking',
