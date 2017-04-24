@@ -178,9 +178,14 @@ class mcHandler
         $jomres_access_control = jomres_singleton_abstract::getInstance('jomres_access_control');
         $retVal = null;
 		$classFileSuffix = '.class.php';
-		$filename = 'j'.$eventPoint.$eventName.$classFileSuffix;
-		
         if (!empty($this->registeredClasses) && isset($this->registeredClasses[$eventPoint][$eventName])) {
+            
+            if (isset($this->registeredClasses[$eventPoint][$eventName]['full_file_name'])) {
+                $filename = $this->registeredClasses[$eventPoint][$eventName]['full_file_name'].$classFileSuffix;
+            } else {
+                $filename = 'j'.$eventPoint.$eventName.$classFileSuffix;
+            }
+
 			$ePointFilepath = $this->registeredClasses[$eventPoint][$eventName][ 'filepath' ];
 			
 			set_showtime('ePointFilepath', $this->registeredClasses[$eventPoint][$eventName][ 'filepath' ]);
@@ -198,8 +203,12 @@ class mcHandler
 					$eLiveSite = str_replace(JOMRESCONFIG_ABSOLUTE_PATH, get_showtime('live_site').'/', $ePointFilepath);
 					$eLiveSite = str_replace(JRDS, '/', $eLiveSite);
 					set_showtime('eLiveSite', $eLiveSite);
+					if (class_exists($this->registeredClasses[$eventPoint][$eventName]['full_file_name'])) {
+                        $event = $this->registeredClasses[$eventPoint][$eventName]['full_file_name']; // New style event point ( e.g. task_reception_dashboard from task_reception_dashboard.class.php )
+                    } else {
+                        $event = 'j'.$eventPoint.$eventName;
+                    }
 					
-					$event = 'j'.$eventPoint.$eventName;
 					set_showtime('current_minicomp', $event);
 					$e = new $event($eventArgs);
 					$retVal = $e->getRetVals();
