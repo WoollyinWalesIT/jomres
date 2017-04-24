@@ -89,7 +89,6 @@ class minicomponent_registry
 
         if ($jrConfig[ 'safe_mode' ] == '0') {
             $this->getMiniCorePluginsClasses();
-            $this->getMiniCoreTaskClasses();
             $this->getMiniComponentRemoteClasses();
 
             if (!defined('AUTO_UPGRADE')) {
@@ -303,77 +302,20 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
         }
     }
 
-    // Jomres 9.9 April 2017
-    public function getMiniCoreTaskClasses()
-    {
-        $jrePath = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'core-tasks'.JRDS;
-        $d = @dir($jrePath);
-        $docs = array();
-        if ($d) {
-            while (false !== ($entry = $d->read())) {
-                $filename = $entry;
-                if (substr($entry, 0, 1) != '.') {
-                    $docs[ ] = $entry;
-                }
-            }
-            $d->close();
-            if (!empty($docs)) {
-                foreach ($docs as $doc) {
-                        $this->registerComponentFile($jrePath, $doc, 'core-tasks');
-                }
-            }
-        }
-    }
-    
     public function registerComponentFile($filePath, $filename, $eventType = 'component')
     {
         $strippedName = str_replace('.', '', $filename);
         $strippedName = substr($strippedName, 0, -8);
 
         $classfileEventPoint = substr($strippedName, 1, 5);
-        $classfileEventName = substr($strippedName, 6);
-        
-        // Jomres 9.9
-        // Currently task scripts are numbered 06000 for public tasks, 06001 for reception tasks, 06002 for manager tasks and 06005 for logged in user tasks.
-        // We would like to replace these numbers with more developer readable names like task_reception_dashboard however for the forseeable future Jomres will need to be able
-        // to handle both numbered scripts and new style class name scripts. Here we will look for new style classname tasks and if they´re found we will substitute the names with the numbers
-        // this behaviour will be all but invisible to developers, allowing a transition time of months if not years.
-        $bang = explode("_" , $strippedName );
-        if (isset($bang[0]) && isset($bang[1]) && isset($bang[2]) ) {
-            // Because class names can include underscores, we now need to reattach $bang[2] and onwards back together again.
-            $cnt = count($bang);
-            $full_class_name = '';
-            for ($i=0;$i<$cnt;$i++){
-                if ($i>1) {
-                    $full_class_name.=$bang[$i]."_";
-                }
-            }
 
-            if ($bang[0] == "task") {
-                 if ($bang[1] == "public") {
-                    $classfileEventPoint = "06000";
-                }
-                 if ($bang[1] == "reception") {
-                    $classfileEventPoint = "06001";
-                }
-                 if ($bang[1] == "manager") {
-                    $classfileEventPoint = "06002";
-                }
-                 if ($bang[1] == "registered") {
-                    $classfileEventPoint = "06005";
-                }
-                 if ($bang[1] == "admin") {
-                    $classfileEventPoint = "16000";
-                }
-            $classfileEventName = substr($full_class_name, 0, -1); // Trim the trailing underscore
-            }
-        }
+        $classfileEventName = substr($strippedName, 6);
         
 		$path_parts = pathinfo($filePath.$filename);
         if (isset($path_parts[ 'extension' ])) {
             $extension = $path_parts[ 'extension' ];
         }
-
+        
 		if (
 			is_file($filePath.$filename) && 
 			!in_array(strtolower($filename), $this->unWantedFolderContents) && 
@@ -400,7 +342,7 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
 			}
 
 			$this->miniComponentDirectories[ ] = $filePath;
-			$this->registeredClasses[ $classfileEventPoint ][$classfileEventName] = array('filepath' => $filePath, 'eventtype' => $eventType , "full_file_name" => $strippedName);
+			$this->registeredClasses[ $classfileEventPoint ][$classfileEventName] = array('filepath' => $filePath, 'eventtype' => $eventType);
 		}
     }
 }
