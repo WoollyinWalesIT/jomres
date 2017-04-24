@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class task_reception_media_centre
+class task_public_media_centre
 {
     public function __construct($componentArgs)
     {
