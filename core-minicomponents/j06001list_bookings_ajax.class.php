@@ -295,7 +295,7 @@ class j06001list_bookings_ajax
                         $toolbar->addSecondaryItem('fa fa-usd', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_deposit&contractUid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE', '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE', false));
                     }
                     if ($p->booked_in == 0) {
-                        $toolbar->addSecondaryItem('fa fa-trash-o', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=cancelBooking&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', '_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', false));
+                        $toolbar->addSecondaryItem('fa fa-trash-o', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=cancel_booking&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', '_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', false));
                     }
                     if (isset($MiniComponents->registeredClasses['00005']['jomres_ical'])) {
                         $toolbar->addSecondaryItem('fa fa-calendar', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=ical_export_contract&contract_uid='.$p->contract_uid.'&property_uid='.$p->property_uid), jr_gettext('_JOMRES_ICAL_EVENT', '_JOMRES_ICAL_EVENT', false));
