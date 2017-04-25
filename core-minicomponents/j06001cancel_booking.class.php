@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j06002cancel_booking
+class j06001cancel_booking
 {
     public function __construct()
     {
