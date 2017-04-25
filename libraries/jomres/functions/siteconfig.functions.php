@@ -301,6 +301,7 @@ function showSiteConfig()
 
     if (!isset($jrConfig[ 'use_bootstrap_in_frontend' ])) {
         $jrConfig[ 'use_bootstrap_in_frontend' ] = '1';
+        }
     }
 
     $lists[ 'show_cumulative_price_overlay' ] = jomresHTML::selectList($yesno, 'cfg_show_cumulative_price_overlay', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'show_cumulative_price_overlay' ]);
