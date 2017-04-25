@@ -91,6 +91,11 @@ class j10501a_misc
             $configurationPanel->insertSetting();
         }
 
+        $configurationPanel->setleft(jr_gettext('_JOMRES_BOOTSTRAPSWITCH_FRONTEND', '_JOMRES_BOOTSTRAPSWITCH_FRONTEND', false));
+        $configurationPanel->setmiddle($lists[ 'use_bootstrap_in_frontend' ]);
+        $configurationPanel->setright(jr_gettext('_JOMRES_BOOTSTRAPSWITCH_INFO', '_JOMRES_BOOTSTRAPSWITCH_INFO', false));
+        $configurationPanel->insertSetting();
+
         $configurationPanel->setleft(jr_gettext('_JOMRES_BOOTSTRAP_VERSION', '_JOMRES_BOOTSTRAP_VERSION', false));
         $configurationPanel->setmiddle($bootstrap_ver_dropdown);
         $configurationPanel->setright(jr_gettext('_JOMRES_BOOTSTRAP_VERSION_DESC', '_JOMRES_BOOTSTRAP_VERSION_DESC', false));
