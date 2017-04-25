@@ -927,21 +927,11 @@ function using_bootstrap()
     $jrConfig = $siteConfig->get();
 
     if (!isset($jrConfig[ 'use_bootstrap_in_frontend' ])) {
-        if (this_cms_is_joomla()) {
-            $jrConfig[ 'use_bootstrap_in_frontend' ] = '1';
-        } else {
-            $jrConfig[ 'use_bootstrap_in_frontend' ] = '0';
-        }
+        $jrConfig[ 'use_bootstrap_in_frontend' ] = '1';
     }
 
     if (jomres_cmsspecific_areweinadminarea()) {
         return true;
-    } else {
-        if ($jrConfig[ 'use_bootstrap_in_frontend' ] == '1') {
-            return true;
-        } else {
-            return false;
-        }
     }
 
     return false;

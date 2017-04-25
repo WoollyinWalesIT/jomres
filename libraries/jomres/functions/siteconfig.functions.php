@@ -300,14 +300,10 @@ function showSiteConfig()
     $lists[ 'automatically_approve_new_properties' ] = jomresHTML::selectList($yesno, 'cfg_automatically_approve_new_properties', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'automatically_approve_new_properties' ]);
 
     if (!isset($jrConfig[ 'use_bootstrap_in_frontend' ])) {
-        if (this_cms_is_joomla()) {
-            $jrConfig[ 'use_bootstrap_in_frontend' ] = '1';
-        } else {
-            $jrConfig[ 'use_bootstrap_in_frontend' ] = '0';
+        $jrConfig[ 'use_bootstrap_in_frontend' ] = '1';
         }
     }
 
-    $lists[ 'use_bootstrap_in_frontend' ] = jomresHTML::selectList($yesno, 'cfg_use_bootstrap_in_frontend', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_bootstrap_in_frontend' ]);
     $lists[ 'show_cumulative_price_overlay' ] = jomresHTML::selectList($yesno, 'cfg_show_cumulative_price_overlay', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'show_cumulative_price_overlay' ]);
 
     if (!isset($jrConfig['live_scrolling_enabled'])) {
