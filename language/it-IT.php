@@ -1773,12 +1773,6 @@ jr_define('_JOMRES_REMOVEFROMSHORTLIST', 'Rimuovi dalla tua lista');
 jr_define('_JOMRES_VIEWSHORTLIST', 'Vedi la tua lista');
 
 jr_define('_JOMRES_COOKIEPOLICY_TITLE', 'Cookie Policy');
-jr_define('_JOMRES_COOKIEPOLICY_DESC', "La legislazione UE richiede che tutti i siti web che utilizzano i cookie richiesta di autorizzazione da parte dei visitatori del sito per memorizzare i cookie.
-<br/>
-Jomres utilizza cookie host del CMS per la costruzione di un proprio file della sessione in cui le informazioni sui risultati di ricerca dell'utente e di altre attività può essere salvato, per rendere visita dell'utente più piacevole. Mentre noi crediamo che la funzionalità Jomres normali è probabilmente coperto da disposizioni della legislazione definita come <i>'tale conservazione o l'accesso è strettamente necessaria a fornire un servizio della società dell'informazione richiesto dall'abbonato o dall'utente'</i> (see http://www.ico.gov.uk/for_organisations/privacy_and_electronic_communications/the_guide/cookies.aspx) abbiamo incluso questa funzione per dare la possibilità di impedire agli utenti di accedere a pagine diverse pagine di ricerca nel caso in cui l'utente non permette loro di cookie da utilizzare in questo modo. <br/>
-Se Jomres abilitati mostreranno un 'opt-in' link dove gli utenti possono scegliere di avere il cookie che viene conservato per loro usato in questo modo. Se loro non scelgono di opt-in, allora Jomres mostrerà loro solo alcune pagine di base (come le proprietà particolari, show preferiti, dei risultati delle ricerche, ecc). 
-<br/>
-Impostare questa opzione su Sì per attuare questa politica.");
 
 jr_define('_JOMRES_COOKIEPOLICY_1', 'Importante: Cookie Policy');
 jr_define('_JOMRES_COOKIEPOLICY_2', 'Usiamo i cookie per aiutare a mantenere il nostro sito in questione e facile da usare.');
@@ -1933,15 +1927,7 @@ jr_define('_JOMRES_COM_NOTAMANAGER', "Errore, l'utente che si è registrato in q
 
 jr_define('_JOMRES_COM_LAYOUTS_DEFAULT', 'Proprietà layout della lista predefinita');
 
-jr_define('_JOMRES_LASTEDITED_WARNING_72', "Jomres utilizza modelli per costruire la sua uscita. Se sei un designer questo fa cambiare l'aspetto di Jomres facile, si don \ 't bisogno di modificare qualsiasi codice, è sufficiente modificare il modello \" è markup. Questa funzione modifica modelli permette di creare le proprie versioni personalizzate di questi modelli Jomres. <br/>
-<br/>
-Quando si personalizza un modello che si ha la possibilità di fare la specifica personalizzazione per tutti i tipi di proprietà, o di un tipo di proprietà specifica. Per esempio il modulo a caso plug-NGM utilizza il modello di base del modulo output.html per costruire il layout. Di conseguenza è possibile creare diverse personalizzazioni del modello di base del modulo output.html per i diversi tipi di proprietà.  <br/>
-<br/>
-Se un modello non è stato modificato in precedenza, quindi è possibile creare una nuova personalizzazione di tale modello selezionando l'opzione Nuovo accanto ad esso.Quando si fa clic su Nuova si \ 're presi ad una nuova pagina in cui è possibile modificare tale modello. Il layout iniziale è tratto dal modello memorizzato nella directory /'.JOMRES_ROOT_DIRECTORY.'/templates/xxx/frontend, quando si fa clic su Salva quindi le vostre personalizzazioni vengono salvate nel database e quando Jomres utilizza quel modello che utilizzerà il markup memorizzato in il database, non il markup memorizzati nel modello /'.JOMRES_ROOT_DIRECTORY.'/templates/xxx/frontend. Questo assicura che le personalizzazioni non vengono sovrascritte quando si aggiorna l'installazione Jomres.<br/>
-<br/>
-Una volta che un modello è stato personalizzato si hanno più opzioni. È possibile creare una nuova copia del modello originale (come sopra), è possibile copiare una personalizzazione ad un nuovo modello di personalizzazione, così per esempio se si \ 'hai basic_module_output.html già personalizzata per alberghi, quindi è possibile copiare che la personalizzazione di un nuova personalizzazione per un nuovo tipo di proprietà, come le automobili. È possibile modificare un personalizzazione esistente, oppure è possibile eliminarla. Quando si elimina una personalizzazione, fornendo ci isn \ 't un'altra personalizzazione di tale modello, allora Jomres tornerà a utilizzare il modello su /'.JOMRES ROOT_DIRECTORY.'/templates/xxx/frontend.Questo è utile se avete modificato un modello, ma don \ 't come le modifiche che si \' hai fatto. È possibile eliminare le personalizzazioni e ricominciare di nuovo il modello originale.<br/>
-<br/>
-Jomres è in continua evoluzione e modelli di base sono spesso aggiornato / modificato. Se si utilizza la modifica del template caratteristica di questi modelli aggiornati non sovrascrivere i personalizzazioni, tuttavia questo potrebbe anche significare che le vostre personalizzazioni non possono utilizzare le nuove funzionalità in quei modelli di base. Come non abbiamo modo di analizzare le vostre personalizzazioni si può o non può beneficiare di tali modifiche. La funzione di modifica modelli esaminerà le ultime date modificate dei file nella directory /'.JOMRES_ROOT_DIRECTORY.'/templates/xxx/frontend e se rileva che l'ultima data di modifica file modello \ 's è più recente del modello avete memorizzati nel database, allora Jomres vi avviserà di questo fatto. E doesn \ 't necessariamente che è necessario aggiornare la personalizzazione modello tuttavia, che \' s fino a voi decidere se è necessario farlo '); // Informazioni aggiornate modifica del template per corrispondere con modifiche 7.2.0 ed è modifiche modifica del template relativi ai modelli Tipo di proprietà");
+
 
 jr_define('_JOMRES_STAYFORAMINIMUMOF', 'Soggiorni minimi di');
 jr_define('_JOMRES_NIGHTSFOR', ' ntti per ');

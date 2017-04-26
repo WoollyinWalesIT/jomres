@@ -1716,12 +1716,7 @@ jr_define('_JOMRES_REMOVEFROMSHORTLIST', 'お気に入りから削除');
 jr_define('_JOMRES_VIEWSHORTLIST', 'お気に入りを表示');
 
 jr_define('_JOMRES_COOKIEPOLICY_TITLE', 'クッキーの利用方針');
-jr_define('_JOMRES_COOKIEPOLICY_DESC', "EU Legislation requires that all websites that use cookies request permission from site visitors to store cookies.
-<br/>
-Jomres uses the host CMS's cookie to construct it's own session file where information about the user's search results and other activities can be saved, to make the user's visit more pleasant. Whilst we believe that normal Jomres functionality is probably covered by provisions in the legislation defined as <i>'such storage or access is strictly necessary to provide an information society service requested by the subscriber or user'</i> (see http://www.ico.gov.uk/for_organisations/privacy_and_electronic_communications/the_guide/cookies.aspx) we have included this feature to give you the ability to prevent users from accessing pages other than search pages in the event that the user does not allow their cookie to be used in this way. <br/>
-If enabled Jomres will show an 'opt-in' link where users can choose to have the cookie which is stored for them used in this way. If they do not choose to opt-in then Jomres will only show them some basic pages (like the properties details, show favourites, search results etc). 
-<br/>
-Set this option to Yes to enact this policy.");
+
 
 jr_define('_JOMRES_COOKIEPOLICY_1', '重要：クッキーの利用方針');
 jr_define('_JOMRES_COOKIEPOLICY_2', 'ユーザーにとっての関連性や利便性を向上するため、このサイトはクッキーを利用しています。');
@@ -1874,15 +1869,6 @@ jr_define('_JOMRES_COM_NOTAMANAGER', 'エラー：現在ご利用のユーザが
 
 jr_define('_JOMRES_COM_LAYOUTS_DEFAULT', 'プロパティ一覧のデフォルト表示');
 
-jr_define('_JOMRES_LASTEDITED_WARNING_72', 'Jomres がアウトプットの表示にテンプレートを利用しています。よって、表示・使い勝手等のデザインをカスタマイズしたい場合には、本機能を利用し、コアのコードを変更さず、テンプレートの構成・スタイル等を編集できます。テンプレートの編集機能は、アップデートをデータベースに保存するため、変更はJomresのアプデートでも存続されます。<br/>
-<br/>
-テンプレートをカスタマイズする際、全てのプロパティ タイプに適応するか、指定のプロパティ タイプのみに適応するかを選択できます。例えば、basic_module_output.html というテンプレートがNGM Random module というプラグインに使用されています。よって、basic_module_output.html を各プロパティ タイプに合わせて個別に作成できます。<br/>
-<br/>
-未編集のテンプレートを編集する場合、「新規テンプレート」を選択すると、編集ページへいどうされます。そこで新規テンプレート（上）と元テンプレート（下）が表示されます。/'.JOMRES_ROOT_DIRECTORY.'/templates/xxx/frontendに保存されている元テンプレートを編集し「保存」を押すと、編集内容がデータベースに保存されます。例のテンプレートがJomresに使用される際に、データベース版のテンプレートが主となり、表示されます。よって、カスタム内容がJomresのバージョンをアプデートでも存続されます。<br/>
-<br/>
-テンプレートがカスタマイズされた場合、表示される選択肢が増えます。さらに新規テンプレートを作成する場合、「カスタム版から作成」もしくは「元 テンプレートから作成」を選ぶことができます。例えば、ホテル用のbasic_module_output.html カスタム テンプレートを作成した場合、それをコピーし、それに基づいた車用のbasic_module_output.html カスタムテンプレートを作成することができます。既存のカスタム テンプレートの「変更」と「削除」も可能となります。削除する際、例の元テンプレートに他のカスタム テンプレートがなければ、元テンプレートが利用される。新規テンプレートの内容が好ましくない場合には便利です。<br/>
-<br/>
-Jomresは常に進化されていて、コアのテンプレートがよく編集・改善されます。テンプレート編集の機能を利用する場合、テンプレートのアプテートは利用されないのでカスタム テンプレートの内容はそのまま使われるが、新しい機能を含めるコア テンプレートの場合、例の機能も使われないこともあります。よって、あるカスタム テンプレートの編集日付けが元テンプレートの/'.JOMRES_ROOT_DIRECTORY.'/templates/xxx/frontend 日付と比較され、より新しい「元テンプレート」の日付があった場合に、報告が表示されます。報告があった場合、カスタム テンプレートを必ずしもアップデートする必要はなにが、アプデートが必要かどうかを確認すべきという意味で理解すればよいです。'); // Updated template editing information to correspond with changes to 7.2.0 and it's template editing changes related to property type templates
 
 jr_define('_JOMRES_STAYFORAMINIMUMOF', 'MIN宿泊数');
 jr_define('_JOMRES_NIGHTSFOR', ' 泊当たり ');

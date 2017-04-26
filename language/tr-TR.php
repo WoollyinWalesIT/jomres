@@ -1727,12 +1727,6 @@ jr_define('_JOMRES_REMOVEFROMSHORTLIST', 'Favorilerden kaldır');
 jr_define('_JOMRES_VIEWSHORTLIST', 'Favorileri gör');
 
 jr_define('_JOMRES_COOKIEPOLICY_TITLE', 'Çerez İlkesi');
-jr_define('_JOMRES_COOKIEPOLICY_DESC', "AB Mevzuatı, çerezleri kullanan tüm web sitelerinin, çerezleri saklaması için site ziyaretçilerinden izin istiyor olmasını şart koşuyor.
-<br/>
-Jomres, kullanıcıların ziyaretlerini daha keyifli hale getirmek için kullanıcının arama sonuçları ve diğer etkinlikleriyle ilgili bilgilerin kaydedilebileceği kendi oturum dosyasını oluşturmak için ana bilgisayar CMS çerezini kullanır. Normal Jomres işlevselliğinin muhtemelen <i> 'olarak tanımlanan mevzuat hükümleri tarafından kapsanacağına inanıyoruz ancak abone veya kullanıcı tarafından istenen bir bilgi toplumu hizmetini sağlamak için böyle bir saklama veya erişim kesinlikle gereklidir' (bkz. Http: / / /www.ico.gov.uk/for_organisations/privacy_and_electronic_communications/the_guide/cookies.aspx) kullanıcıların çerezlerine izin vermemesi durumunda kullanıcıların arama sayfaları dışındaki sayfalara erişmesini önleme olanağı sağlamak için bu özelliği ekledik Bu şekilde kullanılmak üzere. <br/>
-Etkinleştirilirse, Jomres, kullanıcıların kendileri için saklanan çerezin bu şekilde kullanılmasını seçebildiği bir 'opt-in' bağlantısı gösterecektir. Eğer katılmayı seçmezlerse, Jomres sadece onlara bazı temel sayfaları gösterecek (özellikler ayrıntıları, favorileri göster, arama sonuçları vb.).
-<br/>
-Bu politikayı yürürlüğe koymak için bu seçeneği Evet yapın.");
 
 jr_define('_JOMRES_COOKIEPOLICY_1', "Önemli: Çerez İlkesi");
 jr_define('_JOMRES_COOKIEPOLICY_2', "Sitemizi alakalı ve kullanımı kolay tutmak için çerezleri kullanırız.");
@@ -1884,16 +1878,6 @@ jr_define("_JOMRES_COM_NOTAMANAGER", "Hata, oturum açtığınız kullanıcı Jo
 
 jr_define('_JOMRES_COM_LAYOUTS_DEFAULT', 'Özellik listesi varsayılan düzen');
 
-jr_define('_JOMRES_LASTEDITED_WARNING_72', 'Jomres, çıktısını oluşturmak için şablonlar kullanır. Eğer tasarımcı iseniz, Jomres\'ın görünümünü ve biçimini değiştirmeyi kolaylaştırır, kodun herhangi bir bölümünü düzenlemenize gerek yoktur, sadece ihtiyacınız olan şey Şablonun biçimlendirmesini düzenlemek için.Bu Şablon Düzenleme özelliği, bu Jomres şablonlarının kendi özelleştirilmiş sürümlerini oluşturmanızı sağlar. <br/>
-<br/>
-Bir şablonu özelleştirdiğinizde, özelleştirmeyi tüm mülk tiplerine veya belirli bir mülk türüne özel hale getirme seçeneğine sahipsiniz. Örneğin, NGM Random modülü eklentisi düzeni oluşturmak için basic_module_output.html şablonunu kullanır. Sonuç olarak, farklı özellik türleri için basic_module_output.html şablonunun farklı özelleştirmelerini oluşturabilirsiniz. <br/>
-<br/>
-Daha önce bir şablon düzenlenmemişse, o şablonun yanında Yeni seçeneğini belirleyerek yeni bir özelleştirme oluşturabilirsiniz. Yeni\'yi tıkladığınızda, o şablonu düzenleyebileceğiniz yeni bir sayfaya geçersiniz. İlk düzen /'.JOMRES_ROOT_DIRECTORY.'/templates/xxx/frontend dizininde saklanan şablondan alınır, Kaydet\'i tıkladığınızda özelleştirmeleriniz veritabanına kaydedilir ve Jomres bu şablonu kullandığında depolanan işaretlemeyi kullanır. /'.JOMRES_ROOT_DIRECTORY.'/templates/xxx/frontend şablonunda saklanan işaretleme değil, veritabanı. Bu, Jomres yüklemenizi yükseltirken özelleştirmelerin üzerine yazılmamasını sağlar. <br/>
-
-<br/>
-Bir şablon özelleştirildiğinde başka seçenekleriniz olur. Orijinal şablonun yeni bir kopyasını (yukarıdaki gibi) oluşturabilir, bir özelleştirmeyi yeni bir şablon özelleştirmesine kopyalayabilirsiniz, bu nedenle, örneğin oteller için basic_module_output.html\'yi önceden özelleştirdiyseniz, bu özelleştirmeyi bir a şablonuna kopyalayabilirsiniz. Araba gibi yeni bir mülk türü için yeni özelleştirme. Mevcut bir özelleştirmeyi düzenleyebilir veya silebilirsiniz. Bir özelleştirmeyi sildiğinizde, o şablonun başka bir özelleştirilmesi yapılmadığında, Jomres /'.JOMRES_ROOT_DIRECTORY.'/templates/xxx/frontend içindeki şablonu kullanmaya geri dönecektir.Bu, bir şablonu değiştirip yaptığınız değişikliklerden memnun olmadığınızda işe yarar. Değişiklikleri silip şablonunorijinaline dönebilirsiniz.<br/>
-<br/>
-Jomres sürekli olarak gelişiyor ve çekirdek şablonlar genellikle güncelleniyor / değiştiriliyor. Şablon Düzenleme özelliğini kullanırsanız, bu güncellenmiş şablonlar özelleştirmelerinizin üzerine yazmaz, ancak bu da özelleştirmelerinizin bu temel şablonlarda yeni özellikler kullanmayabileceği anlamına gelebilir. Özelleştirmelerinizi analiz etme imkânımız olmadığından bu değişikliklerden yararlanabilir veya olmayabilirsiniz. Şablon Düzenleme özelliği, /'.JOMRES_ROOT_DIRECTORY.'template/xxx/frontend dizinindeki dosyaların son değiştirilme tarihlerine bakar ve şablon dosyasının son değiştirilme tarihinin şablontan yeni olduğunu algılarsa Veritabanında depolanırsa, Jomres bu gerçeği sizi uyaracaktır. Mutlaka şablon özelleştirmenizi güncellemeniz gerektiği anlamına gelmez, ancak bunu yapmanız gerekip gerekmediğine karar vermek size kalmış '); // Güncellenmiş şablon düzenleme bilgileri 7.2.0'daki değişikliklerle uyumlu olacak şekilde güncellendi ve şablon mülkiyet türü şablonlarıyla ilgili değişiklikleri düzenleme
 
 jr_define("_JOMRES_STAYFORAMINIMUMOF", "Minimum kalma süresi");
 jr_define("_JOMRES_NIGHTSFOR", "gece");

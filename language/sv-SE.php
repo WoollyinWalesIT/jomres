@@ -1736,12 +1736,6 @@ jr_define('_JOMRES_REMOVEFROMSHORTLIST', 'Ta bort från kortlistan');
 jr_define('_JOMRES_VIEWSHORTLIST', 'Visa din lista');
 
 jr_define('_JOMRES_COOKIEPOLICY_TITLE', 'Kakor');
-jr_define('_JOMRES_COOKIEPOLICY_DESC', 'EU: s lagstiftning kräver att alla webbplatser som använder kakor begära tillstånd från besökarna för att lagra kakor.
-<br/>
-Jomres använder värdsystemets kakor för att skapa den egna sessionsfilen där information om användarens sökresultat och andra aktiviteter kan sparas för att göra användarens besök trevligare. Då vi tror att den normala Jomres funktionaliteten troligen omfattas av bestämmelser i den lagstiftning som finns. <br/>
-Jomres visar en länk där användarna kan välja att ha en kaka som lagras för att använda på detta sätt. Om de inte väljer att ha kakor kan Jomres endast visa dem några grundläggande sidor (som verksamhetsdetaljer, visa kortlistor, sökresultat osv).
-<br/>
-Välj Ja för att anta denna policy.');
 
 jr_define('_JOMRES_COOKIEPOLICY_1', 'Viktigt: Policy för kakor');
 jr_define('_JOMRES_COOKIEPOLICY_2', 'Vi använder kakor för att hålla vår webbplats uppdaterad och användarvänlig.');
@@ -1895,15 +1889,6 @@ jr_define('_JOMRES_COM_NOTAMANAGER', 'Fel, du är inte inloggad som en super adm
 
 jr_define('_JOMRES_COM_LAYOUTS_DEFAULT', 'Standardlayout för egenskapslistan');
 
-jr_define('_JOMRES_LASTEDITED_WARNING_72', 'Jomres använder mallar för att organisera utdata. Om du är en designer gör detta det lätt att ändra utseendet och känslan av Jomres, du behöver bara redigera mallens kod, inte programkoden. Med denna Redigera Mall funktion kan du skapa dina egna anpassade versioner av Jomres mallar. <br/>
-<br/>
-När du anpassar en mall har du möjlighet att göra en anpassning specifik för alla egenskapstyper, eller en viss typ av egenskaper. Till exempel använder pluginen NGM Random basic_module_output.html för att skapa layouten. Som ett resultat kan du skapa olika anpassningar av basic_module_output.html för olika enhetstyper.<br/>
-<br/>
-Om en mall inte har redigerats tidigare, då kan du skapa en ny anpassning av mallen genom att välja alternativet Ny bredvid den. När du klickar på Nytt omdirigeras du till en ny sida där du kan redigera mallen. Den initiala layouten tas från mallen och lagras i webbplatsens mapp /'.JOMRES_ROOT_DIRECTORY.'/templates/xxx/frontend, dina anpassningar sparas till databasen när du klickar på Spara och när Jomres använder mallen kommer att använda den kod som lagrats i databasen, inte markeringen som lagrats i mappen /'.JOMRES_ROOT_DIRECTORY.'/templates/xxx/frontend. Detta säkerställer att anpassningar inte skrivs över när du uppgraderar Jomres installationen.<br/>
-<br/>
-När en mall har anpassats har du har fler val. Du kan skapa en ny kopia av den ursprungliga mallen (som ovan), du kan kopiera en anpassning till en ny mallanpassning, så till exempel om du redan har anpasste basic_module_output.html för hotell, kan du kopiera den anpassningen till en ny anpassning för en ny verksamhetstyp, som bilar. Du kan redigera en befintlig anpassning, eller så kan du ta bort den. När du tar bort en anpassning, förutsatt att det inte finns en annan anpassning av den mallen, så kommer Jomres att använda mallen i /'.JOMRES_ROOT_DIRECTORY.'/templates/xxx/frontend. Detta är användbart om du redigerat en mall men inte gillar som de ändringar som du har gjort. Du kan ta bort anpassningar och starta igen med den ursprungliga mallen.<br/>
-<br/>
-Jomres utvecklas ständigt och grundläggande mallar uppdateras eller ändras ofta. Om du använder funktionen Redigera Mall kommer dessa uppdaterade mallar inte att skriva över dina anpassningar, men detta innebär också att dina anpassningar inte använder nya funktioner i dessa centrala mallar. Eftersom vi inte har någon möjlighet att analysera dina anpassningar kan du inte kan dra nytta av dessa förändringar. Redigera Mallen funktionen kommer att titta på senaste ändrignsdatum för filerna i mappen /'.JOMRES_ROOT_DIRECTORY.'/templates/xxx/frontend och om den upptäcker en mallfil är nyare än den mall du har lagrat i databasen får du en varning av Jomres. Det behöver inte nädvändigtvis betyda att du måste uppdatera din mallanpassning, det är upp till dig att avgöra om de tär nödvändigt');
 
 jr_define('_JOMRES_STAYFORAMINIMUMOF', 'Stanna i minst');
 jr_define('_JOMRES_NIGHTSFOR', ' nätter för');

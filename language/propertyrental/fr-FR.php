@@ -1709,13 +1709,7 @@ jr_define('_JOMRES_ADDTOSHORTLIST', 'Ajouter à la liste restreinte');
 jr_define('_JOMRES_REMOVEFROMSHORTLIST', 'Retirer de la liste restreinte');
 jr_define('_JOMRES_VIEWSHORTLIST', 'Voir la liste restreinte');
 jr_define('_JOMRES_COOKIEPOLICY_TITLE', 'Politique pour les "cookie"');
-jr_define('_JOMRES_COOKIEPOLICY_DESC', "La législation européenne exige que tous les sites Web qui utilisent des cookies demandent une autorisation auprès des visiteurs du site pour stocker des cookies.
-<br/>
-Jomres utilise le cookie de l'hôte du CMS pour construire son propre fichier de session, où les informations sur les résultats de recherche de l'utilisateur et d'autres activités sont enregistrées,
-<br> pour rendre l'utilisation plus agréable.
-<br>Jomres utilise cette fonctionnalité dans les règles définies par la Loi <i>« .... l'accès est strictement nécessaire pour fournir un service de la société à la demande de l'abonné ou de l'utilisateur »</i> (voir http://www.ico.gov.uk/for_organisations/privacy_and_electronic_communications/the_guide/cookies.aspx) nous avons inclus cette fonctionnalité pour vous donner la possibilité d'empêcher les utilisateurs d'accéder à des pages autres que les pages de recherche dans le cas où l'utilisateur n'autorise pas leur cookie soit de cette façon.<br>Si activé Jomres affichera un lien « opt-in » où les utilisateurs peuvent choisir de voir le cookie qui est stocké pour eux dans ce cas. Si ils ne choisissent pas d'opt-in,  Jomres leur montrera seulement quelques pages de base (comme les propriétés avec détails, afficher la liste restreinte, recherche de résultats, etc.).
-<br/>
-Mettre à cette option sur Oui pour accepter la politique sur les cookies.");
+
 jr_define('_JOMRES_COOKIEPOLICY_1', 'Important : Politique de Cookie');
 jr_define('_JOMRES_COOKIEPOLICY_2', 'Nous utilisons des cookies pour aider à garder notre site pertinente et facile à utiliser.');
 jr_define('_JOMRES_COOKIEPOLICY_3', 'Lire la suite...');
@@ -1836,25 +1830,7 @@ jr_define('_JOMRES_COM_TRANSLATE_COUNTRIESREGIONS', 'Définition de paramètres 
 jr_define('_JOMRES_COM_TRANSLATE_LANGUAGEFILES', 'Traduire les chaînes du fichier lang');
 jr_define('_JOMRES_COM_NOTAMANAGER', "Erreur, l'utilisateur n'est pas un super manager au sein de Jomres, vous n\'êtes pas en mesure d'utiliser cette fonction jusqu'à ce que vous ayez modifier le/les profils pour être aussi bien un gestionnaire et/ou un Super gestionnaire. Il s'agit d'une fonctionnalité de sécurité.");
 jr_define('_JOMRES_COM_LAYOUTS_DEFAULT', 'Présentation de propriété: layout par par défaut');
-jr_define('_JOMRES_LASTEDITED_WARNING_72', "Jomres utilise des templates pour construire le layout. Si vous êtes un concepteur, et que vous désirez changer l'apparence de Jomres; c'est facile. Vous n'avez pas besoin de modifier le code.
-<br> Il vous suffit de modifier le balisage du template. Cette fonctionnalité de modification de template vous permet de créer vos propres versions personnalisées des templates de Jomres. <br/>
-<br/>
-Lorsque vous personnalisez un template vous avez la possibilité de faire la/les personnalisation spécifique à tous les types de propriétés ou à un type propriété spécifique. Par exemple, le plugin module Random NGM utilise le template de basic_module_output.html pour construire la mise en page. Ainsi, vous pouvez créer des personnalisations différentes du modèle basic_module_output.html pour les types de propriété.
-<br/>
-<br/>
-Si un template n'a pas été modifié avant, vous pouvez créer une nouvelle personnalisation de ce template en sélectionnant l'option nouveau à côté d'elle. Lorsque vous cliquez sur nouveau, une nouvelle page s'ouvre où vous pouvez modifier ce template. L'original du template est stocké dans le répertoire: /'.JOMRES_ROOT_DIRECTORY.'/templates/xxx/frontend . Lorsque vous cliquez sur enregistrer, votre/vos personnalisations sont enregistrées dans la base de données et lorsque Jomres utilise ce modèle, il utilisera la balise stockée dans la base de données, et pas celui du template dans le répertoire: /'.JOMRES_ROOT_DIRECTORY.'/templates/xxx/frontend .
-<br/>
-Cela garantit que les personnalisations de templates ne sont pas remplacées lorsque vous mettez à niveau votre installation Jomres.
-<br/>
-<br/>
-Une fois qu'un template a été personnalisé, vous avez plus d'options. Vous pouvez créer une nouvelle copie du template original (voir ci-dessus), vous pouvez copier une personnalisation pour une nouvelle personnalisation du template, par exemple Si vous avez déjà personnalisé basic_module_output.html de l'hôtel, vous pouvez copier cette personnalisation pour faire une nouvelle personnalisation pour un nouveau type de propriété, comme les voitures.
-<br/>
-Vous pouvez modifier une personnalisation existante, ou vous pouvez la supprimer. Lorsque vous supprimez une personnalisation; et qu'une autre personnalisation de ce template n'existe pas Jomres utilisera l'original du template qui est dans le répertoire:  /'.JOMRES_ROOT_DIRECTORY.'/templates/xxx/frontend. Ceci est utile si vous avez modifié un template, mais que les changements que vous avez faits ne vous plaisent pas. Vous pouvez supprimer les personnalisations et recommencer à partir du template original.
-<br/>
-<br/>
-Jomres est en constante évolution et les templates de base sont souvent mis à jour ou modifiés. Si vous utilisez la fonctionnalité de modification de modèle ces modèles de template mis à jour n'écrasera pas vos personnalisations, mais cela peut aussi signifier que vos personnalisations ne peuvent pas utiliser les nouvelles fonctionnalités dans les modèles de base mis à jour. Comme nous n'avons aucun moyen d'analyse de vos personnalisations, vous pouvez ou pas bénéficier de ces changements.
-<br/>
-La fonctionnalité de modification de template se basera sur les dernières dates de modification des fichiers prevenant du répertoire: /'.JOMRES_ROOT_DIRECTORY.'/templates/xxx/frontend et s'il détecte que la date de dernière modification du fichier modèle est plus récent que le modèle que vous avez enregistré dans la base de données Jomres vous avertit. Vous ne seraz pas obligé de mettre a jour vos personnalisation du template cependant, pour pouvoir bénéficier de la misa à jour vous devriez adapter votre personnalisation au template d'origine mis à jour"); // Updated template editing information to correspond with changes to 7.2.0 and it's template editing changes related to property type templates
+
 jr_define('_JOMRES_STAYFORAMINIMUMOF', 'Séjour pour un minimum de');
 jr_define('_JOMRES_NIGHTSFOR', ' nuits pour ');
 jr_define('_JOMRES_PROPERTYLIST_IMAGESASGIFS', "Liste d'imagesde la propriété, affiche la liste de images GIF de la propriété; si le diaporama est disponible.");

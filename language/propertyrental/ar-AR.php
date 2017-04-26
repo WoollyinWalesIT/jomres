@@ -1758,12 +1758,6 @@ jr_define('_JOMRES_REMOVEFROMSHORTLIST', 'Borrar de lista resumida');
 jr_define('_JOMRES_VIEWSHORTLIST', 'Vea su Lista resumida');
 
 jr_define('_JOMRES_COOKIEPOLICY_TITLE', 'Politica de Cookies');
-jr_define('_JOMRES_COOKIEPOLICY_DESC', "La legislación de Europa requiere que todas las páginas que usen cookies pidan permiso a los visitantes para almacenar dichas cookies.
-<br/>
-Jomres usa el cookie local de su CMS para construir su propio fichero de sesión donde la información sobre las búsquedas de los usuario y otras actividades puede ser guardado, para hacer más placentera la visita del usuario. Creemos que esta funcionalidad común de Jomres está probablemente cubierta por las provisiones en la legislación definidas como Whilst we believe that normal Jomres functionality is probably covered by provisions in the legislation defined as <i>'El almacenamiento o acceso es estrictamente necesario para proveer un servicio de sociedad de la información solicitado por el subscritor o usuario'</i> (vea http://www.ico.gov.uk/for_organisations/privacy_and_electronic_communications/the_guide/cookies.aspx) Hemos incluido esta característica para darle la posibilidad de prevenir que los usuarios accedan a otras páginas que no sea la de búsqueda en caso de que el usuario no permita que la cookie sea usada de esta manera. <br/>
-Si la activa, Jomres mostrará un link de opción donde el usuario puede elegir tener la cookie que se guarda para ellos para usarla de este modo. Si no eligen esta opción Jomres sólo mostrará páginas básicas (como los detalles de la propiedad, mostrar lista corta, resultados de búsqueda, etc). 
-<br/>
-Marque esta opción como Si para activar esta política.");
 
 jr_define('_JOMRES_COOKIEPOLICY_1', 'Importante: Política de Cookies');
 jr_define('_JOMRES_COOKIEPOLICY_2', 'Usamos cookies para ayudar a mantener nuestro sitio relevante y fácil de usar.');
@@ -1918,15 +1912,6 @@ jr_define('_JOMRES_COM_NOTAMANAGER', 'Error, el usuario con el que estas accedie
 
 jr_define('_JOMRES_COM_LAYOUTS_DEFAULT', 'Diseño por defecto del listado de propiedades');
 
-jr_define('_JOMRES_LASTEDITED_WARNING_72', 'Jomres usa plantillas para construir su diseño. Si usted es un diseñador esto puede cambiar como ves y sientes Jomres de forma fácil, no necesitas editar ningun código sólo debes editar la plantilla de marcad. Esta opción de editar la plantilla te permite crear tus propias versiones personalizadas de estas plantillas Jomres. <br/>
-<br/>
-Cuando personalizas una plantillas, tienes la opción de hacer la personalización especificamente para todos los tipos de propiedades o para un tipo específico de propiedad. Por ejemplo el plugin NMG aleatorio usa el archivo basic_module_output.html para construir el diseño. como resultado puedes crear diferentes personalizaciones del archivo basic_module_output.html para diferentes tipos de propiedades.<br/>
-<br/>
-Si una plantilla no ha sido editada antes, entonces podrá crear una nueva personalización de plantilla seleccionando la opción NUEVA. Cuando pulsas en Nueva se te lleva a una nueva página donde puedes editar esta plantilla. La disposición inicial se toma de la plantilla almacenada en el direcorio /'.JOMRES_ROOT_DIRECTORY.'/templates/xxx/frontend ,cuando le das a guardar entonces tus personalizaciones se guardan en la base de datos y cuando Jomres usa esta plantilla se usan los marcadores almacenados el la base de datos, no los almacenados en la plantilla  /'.JOMRES_ROOT_DIRECTORY.'/templates/xxx/frontend. Esto asegura que las personalizaciones no son borradas cuando actialices tu instalación de Jomres..<br/>
-<br/>
-Una vez que una plantilla ha sido personalizada, usted tiene mñas opciones. Puede Crear una Nueva copia de la plantilla original,como más arriba, Puede Copiar una personalización a otra plantilla personalziada, o por ejemplo si ya ha personalizado el archivo basic_module_output.html para hoteles, puede copiar esta personalización para otros tipos de propiedad como los automóviles. Puede Editar una personalización existente o la puede Borrar. Cuando borra una personalización, suponiendo que no hay otra personalizacion de esa platilla, Jomres volverá a usar la plantilla en el directorio /'.JOMRES_ROOT_DIRECTORY.'/templates/xxx/frontend. Esto es muy útil si has editado una platilla pero no te gustan los cambios que has hecho. Puedes borrar la personalización y volver a empezar de nuevo con la plantilla original.<br/>
-<br/>
-Jomres está evolucionando constantemente y las plantillas del nucleo se están continuamente actualizando/modificando. Si usa la funcionalidad de Editar Plantilla estas actualizaciones no sobreescribirán sus personalizaciones, sin embargo también supondrá que su plantilla no usará las nuevas características de la plantilla del núcleo, ya que no tenemos manera de analizar si sus personalizaciones benefician o no a estos cambios. La característica de Editar Plantillas tomará en cuenta las últimas fechas de modificación de los archivos en el directorio  /'.JOMRES_ROOT_DIRECTORY.'/templates/xxx/frontend y si detecta que la fechad e última modificaciónde un archivo es más nueva que la plantilla almacenada en la base de datos, entoces Jomres te avisará de este hecho. Esto no significa necesariamente que debas actualziar tu personalización de la plantilla, sin embargo te toca a ti decidir sin necesitas hacerlo '); // Updated template editing information to correspond with changes to 7.2.0 and it's template editing changes related to property type templates
 
 jr_define('_JOMRES_STAYFORAMINIMUMOF', 'Estancia por un mínimo de');
 jr_define('_JOMRES_NIGHTSFOR', ' Noches para ');

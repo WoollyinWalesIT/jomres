@@ -1749,9 +1749,6 @@ jr_define('_JOMRES_ADDTOSHORTLIST', 'Dodaj do ulubionych');
 jr_define('_JOMRES_REMOVEFROMSHORTLIST', 'Usuń z ulubionych');
 jr_define('_JOMRES_VIEWSHORTLIST', 'Moje ulubione');
 jr_define('_JOMRES_COOKIEPOLICY_TITLE', 'Pliki cookie');
-jr_define('_JOMRES_COOKIEPOLICY_DESC', 'Prawodawstwo UE wymaga, aby wszystkie strony internetowe, które używają plików cookie uzyskały zgodę od odwiedzających witrynę użytkowników do przechowywania plików cookies na ich komputerach/urządzeniach.
-	<br />
-	Jeśli opcja jest włączona, użytkownicy zobaczą stronę gdzie mogą zdecydować się na ciasteczko, które zostanie zapisane na ich komputerze/urządzeniu.');
 
 jr_define('_JOMRES_COOKIEPOLICY_1', 'Ważne! Pliki Cookie');
 jr_define('_JOMRES_COOKIEPOLICY_2', 'Używamy plików cookies, aby nasza strona była łatwiejsza w użyciu.');
@@ -1874,15 +1871,6 @@ jr_define('_JOMRES_COM_TRANSLATE_LANGUAGEFILES', 'Tłumaczenie ciągów plików'
 jr_define('_JOMRES_COM_NOTAMANAGER', 'Błąd! Nie jesteś zalogowany jako Super Manager. Jest to funkcja bezpieczeństwa.');
 jr_define('_JOMRES_COM_LAYOUTS_DEFAULT', 'Domyślny wygląd listy ofert');
 jr_define('_JOMRES_COM_LAYOUTS_DEFAULT', 'Domyślny układ listy');
-jr_define('_JOMRES_LASTEDITED_WARNING_72', 'Jomres korzysta z własnych szablonów. Jeśli jesteś projektantem to możesz zmienić w łatfy sposób wygląd systemu, wystarczy edytować wybrany temat graficzny. Ta funkcja edycji szablonów pozwala na tworzenie własnych wersji szablonów Jomres.
-	<br /><br />
-	Edytując szablon masz możliwość dokonania zmian specyficznych dla wszystkich typów ofert lub określonego typu oferty czy modułu. Np. szablon graficzny modułu wyświetlającego losowe oferty to basic_module_output.html . W rezultacie można tworzyć różne warianty układu graficznego.
-	<br /><br />
-	Jeśli szablon nie został jeszcze zmodyfikowany, to możesz na jego podstawie stworzyć nowy. W tym celu wybierz opcję "Nowy". Na kolejnej stronie będzie można edytować ten szablon. Bazowy układ szablonu graficznego jest pobierany z katalogu na Twoim serwerze /'.JOMRES_ROOT_DIRECTORY.'/templates/xxx/frontend Po kliknięciu w przycisk "Zapisz", zostanie on zapisany w bazie danych i z niej pobierany. Dzięki temu możesz mieć gwarancję, że wprowadzone modyfikację nie zostaną nadpisane przy okazji aktualizacji systemu.
-	<br /><br />
-	Po dostosowaniu szablonu otrzymasz więcej opcji. Można utworzyć nową kopię oryginalnego szablonu, można skopiować zmiany do nowego szablonu, przypisać go do wybranego typu oferty etc. Usuwając swój szablon wykorzystywany na powrót będzie szablon domyślny zapisany w katalogu /'.JOMRES_ROOT_DIRECTORY.'/templates/xxx/frontend .
-	<br /><br />
-	System Jomres stale ewoluuje i szablony podstawowe są często aktualizowane/modyfikowane. Jeśli korzystasz z funkcji edycji szablonów będziesz musiał po aktualizacji systemu zweryfikować swoje szablony porównując je z plikami bazowymi szablonów zapisanymi w /'.JOMRES_ROOT_DIRECTORY.'/templates/xxx/frontend . Jeśli plik szablonu w tym katalogu będzie nowszy niż ten zapisany w bazie danych otrzymasz odpowiedni komunikat. Chcąc mieć pewność, że korzystasz z wszystkich nowych funkcji i ulepszeń systemu po aktualizacji systemu przeprowadź porównanie plików szablonu pod względem zawartości w nich wszystkich funkcjonalności.');
 
 jr_define('_JOMRES_STAYFORAMINIMUMOF', 'Minimum');
 jr_define('_JOMRES_NIGHTSFOR', ' nocy ');
