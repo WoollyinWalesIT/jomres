@@ -654,7 +654,7 @@ function dobooking($selectedProperty, $thisdate, $remus)
         $output[ 'SLIDER_ENABLED' ] = 'false';
     }
 
-    if (get_showtime('task') == 'viewproperty' || get_showtime('task') == 'preview') {
+    if (get_showtime('task') == 'viewproperty' ) {
         $output[ 'SLIDER_ENABLED' ] = 'false';
     } // Slider doesn't work well when included in tabs, so we'll disable it.
 

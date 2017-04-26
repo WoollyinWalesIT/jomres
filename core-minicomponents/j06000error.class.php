@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j06000show_logfile
+class j06000error
 {
     public function __construct()
     {
@@ -26,18 +26,20 @@ class j06000show_logfile
             return;
         }
 
-        $logfile = trim(jomresGetParam($_REQUEST, 'logfile', ''));
-        if ($logfile == '') {
-            throw new Exception('Logfile name not sent');
-        }
-
-        $filename = JOMRES_SYSTEMLOG_PATH.'error_logs'.JRDS.$logfile;
-
-        if (file_exists($filename)) {
-            echo file_get_contents($filename);
-        }
+        $output = array();
+        $pageoutput[ ] = $output;
+        $tmpl = new patTemplate();
+        $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
+        $tmpl->readTemplatesFromInput('error.html');
+        $tmpl->addRows('pageoutput', $pageoutput);
+        $tmpl->displayParsedTemplate();
     }
 
+/**
+ * Must be included in every mini-component.
+ #
+ * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
+ */
     // This must be included in every Event/Mini-component
     public function getRetVals()
     {

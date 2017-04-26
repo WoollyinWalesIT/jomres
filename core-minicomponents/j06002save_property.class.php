@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j04900saveproperty
+class j06002save_property
 {
     public function __construct($componentArgs)
     {
@@ -120,7 +120,7 @@ class j04900saveproperty
         $MiniComponents->triggerEvent('04902', $componentArgs);
 
         //redirect back to edit property page
-        jomresRedirect(jomresUrl(JOMRES_SITEPAGE_URL.'&task=editProperty'));
+        jomresRedirect(jomresUrl(JOMRES_SITEPAGE_URL.'&task=edit_property'));
     }
 
     public function encode_lessgreaterthans($string)

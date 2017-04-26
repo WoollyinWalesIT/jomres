@@ -45,12 +45,6 @@ class j06000feature_not_available
     public function get_task_pluginnames($attempted_task)
     {
         switch ($attempted_task) {
-            case 'listBlackBookings':
-                $plugin_name = 'black_bookings';
-                break;
-            case 'registerProp_step1':
-                $plugin_name = 'property_creation_plugins';
-                break;
             case 'bookGuestIn':
                 $plugin_name = 'book_guest_in_out';
                 break;
@@ -65,9 +59,6 @@ class j06000feature_not_available
                 break;
             case 'listExtras':
                 $plugin_name = 'optional_extras';
-                break;
-            case 'deleteProperty':
-                $plugin_name = 'property_creation_plugins';
                 break;
             default:
                 $plugin_name = 'hellifiknow';

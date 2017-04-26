@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j04200editproperty
+class j06002edit_property
 {
     public function __construct($componentArgs)
     {
@@ -284,7 +284,7 @@ class j04200editproperty
         $jrtb = $jrtbar->startTable();
         $jrtb .= $jrtbar->toolbarItem('cancel', jomresURL(JOMRES_SITEPAGE_URL), '');
         if ($jrConfig[ 'allowHTMLeditor' ] != '2' && $jrConfig[ 'allowHTMLeditor' ] != '3') {
-            $jrtb .= $jrtbar->toolbarItem('save', '', '', true, 'saveProperty');
+            $jrtb .= $jrtbar->toolbarItem('save', '', '', true, 'save_property');
         }
         $jrtb .= $jrtbar->endTable();
         $output[ 'JOMRESTOOLBAR' ] = $jrtb;

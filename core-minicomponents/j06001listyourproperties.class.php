@@ -63,7 +63,7 @@ class j06001listyourproperties
         if ($thisJRUser->accesslevel > 50) { //higher than receptionist
             $r = array();
             $r['HNEW_PROPERTY'] = jr_gettext('_JOMRES_COM_MR_NEWPROPERTY', '_JOMRES_COM_MR_NEWPROPERTY', false);
-            $r['NEW_PROPERTY_URL'] = jomresUrl(JOMRES_SITEPAGE_URL.'&task=registerProp_step1');
+            $r['NEW_PROPERTY_URL'] = jomresUrl(JOMRES_SITEPAGE_URL.'&task=new_property');
             $rows[] = $r;
         }
 

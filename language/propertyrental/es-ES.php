@@ -1203,7 +1203,7 @@ jr_define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES5', ' paquetes de la propie
 jr_define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES6', "Para ver una lista de sus propiedades actuales, haga clic <a href='".JOMRES_SITEPAGE_URL."&task=listyourproperties'>aqui</a>. ");
 jr_define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES7', "Para ver una lista de los paquetes de suscripción disponibles actualmente, haga clic <a href='".JOMRES_SITEPAGE_URL."&task=list_subscription_packages'>aqui</a>. ");
 jr_define('_JRPORTAL_SUBSCRIPTIONS_PUBLISHERROR', 'Por desgracia, no se puede publicar esta propiedad usted ha alcanzado el número máximo de paquetes de propiedad disponibles.');
-jr_define('_JRPORTAL_SUBSCRIBERS_SUBSCRIBED', "Gracias por crear una suscripción para incluir su propiedad en nuestro servidor. Una vez que su factura esté marcada como pagada (puede haber un retraso en función de Paypal), por favor <a href='".JOMRES_SITEPAGE_URL."&task=registerProp_step1'>pulse aquí para seguir creando su propiedad/es.</a>");
+jr_define('_JRPORTAL_SUBSCRIBERS_SUBSCRIBED', "Gracias por crear una suscripción para incluir su propiedad en nuestro servidor. Una vez que su factura esté marcada como pagada (puede haber un retraso en función de Paypal), por favor <a href='".JOMRES_SITEPAGE_URL."&task=new_property'>pulse aquí para seguir creando su propiedad/es.</a>");
 jr_define('_JRPORTAL_SUBSCRIBERS_CANCED_SUBSCRIBE', 'Lamentamos que no haya elegido suscribirse a nuestro servicio. Por favor, háganos saber si hay algún modo que podamos ayudarle más');
 jr_define('_JRPORTAL_SUBSCRIPTIONS_USE', 'Utilice la funcionalidad de manejo de suscripciónes');
 jr_define('_JOMRES_COM_NEWUSER', 'Crear nuevo usuario en reserva');

@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j02150addservicetobill
+class j06001add_service_to_bill
 {
     public function __construct()
     {
@@ -44,8 +44,8 @@ class j02150addservicetobill
 
             $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
             $jrtb = $jrtbar->startTable();
-            $jrtb .= $jrtbar->toolbarItem('cancel', jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=$contract_uid"), '');
-            $jrtb .= $jrtbar->toolbarItem('save', '', '', true, 'addServiceToBill');
+            $jrtb .= $jrtbar->toolbarItem('cancel', jomresURL(JOMRES_SITEPAGE_URL."&task=edit_booking&contract_uid=$contract_uid"), '');
+            $jrtb .= $jrtbar->toolbarItem('save', '', '', true, 'add_service_to_bill');
             $jrtb .= $jrtbar->endTable();
             $output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
@@ -101,7 +101,7 @@ class j02150addservicetobill
 
                         return;
                     }
-                    jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=$contract_uid"), $saveMessage);
+                    jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL."&task=edit_booking&contract_uid=$contract_uid"), $saveMessage);
                 }
             } else {
                 echo 'Ooops, no description or value entered. ';
@@ -122,11 +122,6 @@ class j02150addservicetobill
         }
     }
 
-/**
- * Must be included in every mini-component.
- #
- * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
- */
     // This must be included in every Event/Mini-component
     public function getRetVals()
     {

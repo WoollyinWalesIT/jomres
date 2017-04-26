@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.');
 // ################################################################
 
-class j04910deleteproperty
+class j06002delete_property
 {
     public function __construct($componentArgs)
     {
@@ -113,7 +113,7 @@ class j04910deleteproperty
 				<!--
 				var answer = confirm ("<?php  echo jr_gettext('_JOMRES_AREYOUSURE', '_JOMRES_AREYOUSURE') ?>")
 				if (answer)
-					window.location="<?php  echo JOMRES_SITEPAGE_URL_NOSEF.'&task=deleteProperty&property_uid='.$property_uid.'&sure=1&no_html=1'; ?>"
+					window.location="<?php  echo JOMRES_SITEPAGE_URL_NOSEF.'&task=delete_property&property_uid='.$property_uid.'&sure=1&no_html=1'; ?>"
 				else
 					window.location="<?php  echo JOMRES_SITEPAGE_URL; ?>"
 				// -->

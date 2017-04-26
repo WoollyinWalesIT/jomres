@@ -56,7 +56,7 @@ class j06001save_guest
 		else
 			$jrportal_guests->commit_new_guest();
             
-        jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listguests"), 'Guest saved' );
+        jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=list_guests"), 'Guest saved' );
     }
 
     // This must be included in every Event/Mini-component

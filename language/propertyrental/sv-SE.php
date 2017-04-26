@@ -1186,7 +1186,7 @@ jr_define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES5', ' verksamhetsluckor.');
 jr_define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES6', 'En lista över dina aktuella verksamheter visas om du klickar <a href="'.JOMRES_SITEPAGE_URL.'&task=listyourbusinesses">här</a>.');
 jr_define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES7', 'En lista över tillgängliga, aktuella, abonnemangspaket visas om du klickar <a href="'.JOMRES_SITEPAGE_URL.'&task=list_subscription_packages">here</a>. ');
 jr_define('_JRPORTAL_SUBSCRIPTIONS_PUBLISHERROR', 'Tyvärr kan inte denna verksamhet publiceras eftersom du har fyllt alla tillgängliga verksamhetsluckor.');
-jr_define('_JRPORTAL_SUBSCRIBERS_SUBSCRIBED', 'Tack för att du tecknar en prenumeration så att du kan lista din verksamhet på vår server. När din faktura är markerad som betald (det kan ske en fördröjning på grund av Paypal), <a href="'.JOMRES_SITEPAGE_URL.'"&task=registerProp_step1>klicka här för att skapa fler verksamheter.</a>');
+jr_define('_JRPORTAL_SUBSCRIBERS_SUBSCRIBED', 'Tack för att du tecknar en prenumeration så att du kan lista din verksamhet på vår server. När din faktura är markerad som betald (det kan ske en fördröjning på grund av Paypal), <a href="'.JOMRES_SITEPAGE_URL.'"&task=new_property>klicka här för att skapa fler verksamheter.</a>');
 jr_define('_JRPORTAL_SUBSCRIBERS_CANCED_SUBSCRIBE', 'Vi är ledsna att du inte har valt att prenumerera på vår tjänst. Vänligen meddela oss om det finns något sätt som vi kan hjälpa dig');
 jr_define('_JRPORTAL_SUBSCRIPTIONS_USE', 'Hantera din prenumeration');
 jr_define('_JOMRES_COM_NEWUSER', 'Skapa ny användare för bokning');

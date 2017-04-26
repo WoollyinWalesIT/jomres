@@ -34,7 +34,7 @@ class j06001delete_guest
 		$jrportal_guests->property_uid = $defaultProperty;
 		
 		if ($jrportal_guests->delete_guest()) {
-            jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=listguests'), jr_gettext('_JOMRES_FRONT_DELETEGUEST_GUESTDELETED', '_JOMRES_FRONT_DELETEGUEST_GUESTDELETED', false));
+            jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=list_guests'), jr_gettext('_JOMRES_FRONT_DELETEGUEST_GUESTDELETED', '_JOMRES_FRONT_DELETEGUEST_GUESTDELETED', false));
         } else {
             echo jr_gettext('_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST', '_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST', false);
         }

@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j03340publish_business
+class j06002publish_property
 {
     public function __construct($componentArgs)
     {
@@ -26,6 +26,7 @@ class j03340publish_business
             return;
         }
         publishProperty();
+        jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=listyourproperties'), '');
     }
 
     // This must be included in every Event/Mini-component

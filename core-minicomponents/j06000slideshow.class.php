@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j01060slideshow
+class j06000slideshow
 {
     public function __construct($componentArgs)
     {

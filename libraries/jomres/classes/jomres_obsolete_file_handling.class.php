@@ -1369,6 +1369,9 @@ class jomres_obsolete_file_handling
 		$this->add_obs_dir($this->dir_libraries.'MobileDetect'.JRDS);
 		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'sms_clickatell_settings.html');
 		$this->add_obs_file($this->dir_minicomponents.'j10002sms_clickatell.class.php');
+
+        // Jomres 9.9
+        
 		$this->add_obs_file($this->dir_minicomponents.'j10501recaptcha.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j10501navbar.class.php');
 		$this->add_obs_file($this->dir_classes.'jrportal_sms_clickatell_message.class.php');
@@ -1377,6 +1380,35 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_minicomponents.'j16000save_languageChoiceSelection.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j16000chooseLanguages.class.php');
 		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'list_languagechoices.html');
+        $this->add_obs_file($this->dir_functions.'handlereq.php');
+        $this->add_obs_file($this->dir_minicomponents.'j01060slideshow.class.php');
+        $this->add_obs_file($this->dir_minicomponents.'j02300regprop1.class.php');
+        $this->add_obs_file($this->dir_minicomponents.'j02320regprop3.class.php');
+        $this->add_obs_file($this->dir_templates_bootstrap3_backend.'register_property1.html');
+        $this->add_obs_file($this->dir_templates_bootstrap_backend.'register_property1.html');
+        $this->add_obs_file($this->dir_templates_jqueryui_backend.JRDS.'register_property1.html');
+        $this->add_obs_file($this->dir_minicomponents.'j03310save_plugin.class.php');
+        $this->add_obs_file($this->dir_minicomponents.'j03340publish_business.class.php');
+        $this->add_obs_file($this->dir_minicomponents.'j04200editproperty.class.php');
+        $this->add_obs_file($this->dir_minicomponents.'j04900saveproperty.class.php');
+        $this->add_obs_file($this->dir_minicomponents.'j04910deleteproperty.class.php');
+        $this->add_obs_file($this->dir_functions.'build_product_tour_files.php');
+        $this->add_obs_file($this->dir_minicomponents.'j00010reception_option_04_blackbookings.class.php');
+        $this->add_obs_file($this->dir_minicomponents.'j00011manager_option_05_extrasadmin.class.php');
+        $this->add_obs_file($this->dir_minicomponents.'j02148deleteextra.class.php');
+        $this->add_obs_file($this->dir_minicomponents.'j02150addservicetobill.class.php');
+        $this->add_obs_file($this->dir_minicomponents.'j02162savecancellation.class.php');
+        $this->add_obs_file($this->dir_minicomponents.'j02160cancelbooking.class.php');
+        $this->add_obs_file($this->dir_minicomponents.'j02260editbooking.class.php');
+        $this->add_obs_file($this->dir_minicomponents.'j02220listguests.class.php');
+        $this->add_obs_file($this->dir_minicomponents.'j02200editdeposit.class.php');
+        $this->add_obs_file($this->dir_minicomponents.'j02202savedeposit.class.php');
+        $this->add_obs_file($this->dir_minicomponents.'j02270error.class.php');
+        $this->add_obs_file($this->dir_minicomponents.'j01025showtariffs.class.php');
+        $this->add_obs_file($this->dir_minicomponents.'j02272publishprop.class.php');
+        $this->add_obs_file($this->dir_minicomponents.'j00030search.class.php');
+        $this->add_obs_file($this->dir_minicomponents.'j00018MRPavailabilitycalendar.class.php');
+        $this->add_obs_file($this->dir_minicomponents.'j00017SRPavailabilitycalendar.class.php');
     }
 
     public function add_obs_file($path_and_file)

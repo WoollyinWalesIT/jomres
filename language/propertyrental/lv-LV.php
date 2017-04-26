@@ -1181,7 +1181,7 @@ jr_define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES5', ' naktsmītņu vietas. 
 jr_define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES6', "Lai redzētu Jūsu naktsmītņu sarakstu, <a href='".JOMRES_SITEPAGE_URL."&task=listyourproperties'>spiežiet šeit</a>. ");
 jr_define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES7', "Lai redzētu pašlaik pieejamās abonēšanas paketes, <a href='".JOMRES_SITEPAGE_URL."&task=list_subscription_packages'>spiežiet šeit</a>. ");
 jr_define('_JRPORTAL_SUBSCRIPTIONS_PUBLISHERROR', 'Jūs nevarat publicēt šo naktsmītni, jo esat pārsniedzis Jūsu abonementā pieļaujamo naktsmītņu skaitu.');
-jr_define('_JRPORTAL_SUBSCRIBERS_SUBSCRIBED', "Paldies, ka abonējāt naktsmītnes (-ņu) vietu uz mūsu servera. Tikko Jūsu rēķins uzrādīsies kā apmaksāts (var būt neliela aizture, kamēr informācija iziet caur PayPal), lūdzu <a href='".JOMRES_SITEPAGE_URL."&task=registerProp_step1'>spiežiet šeit, lai pievienotu Jūsu naktsmītni (-es).</a>");
+jr_define('_JRPORTAL_SUBSCRIBERS_SUBSCRIBED', "Paldies, ka abonējāt naktsmītnes (-ņu) vietu uz mūsu servera. Tikko Jūsu rēķins uzrādīsies kā apmaksāts (var būt neliela aizture, kamēr informācija iziet caur PayPal), lūdzu <a href='".JOMRES_SITEPAGE_URL."&task=new_property'>spiežiet šeit, lai pievienotu Jūsu naktsmītni (-es).</a>");
 jr_define('_JRPORTAL_SUBSCRIBERS_CANCED_SUBSCRIBE', "We are sorry that you have not chosen to subscribe to our service. Please let us know if there's any way we can help you further");
 jr_define('_JRPORTAL_SUBSCRIPTIONS_USE', 'Lietot funkciju Abonēšana?');
 jr_define('_JOMRES_COM_NEWUSER', 'Izveidot lietotāja kontu rezervējot?');

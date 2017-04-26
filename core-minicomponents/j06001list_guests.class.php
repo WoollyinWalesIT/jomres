@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j02220listguests
+class j06001list_guests
 {
     public function __construct()
     {

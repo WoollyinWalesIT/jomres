@@ -141,7 +141,7 @@ class jomres_generic_booking_email
         }
 
         //qr codes
-        $url = JOMRES_SITEPAGE_URL_NOSEF.'&task=editBooking&thisProperty='.$property_uid.'&contract_uid='.$contract_uid;
+        $url = JOMRES_SITEPAGE_URL_NOSEF.'&task=edit_booking&thisProperty='.$property_uid.'&contract_uid='.$contract_uid;
         $this->data[$contract_uid]['QR_CODE_OFFICE'] = jomres_make_qr_code($url);
 
         $url = make_gmap_url_for_property_uid($property_uid);

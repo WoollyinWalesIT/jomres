@@ -26,7 +26,7 @@
 			}
 
 		if (valid) {
-			document.regForm.action = "{JOMRES_SITEPAGE_URL_NOSEF}&task=registerProp_step3"
+			document.regForm.action = "{JOMRES_SITEPAGE_URL_NOSEF}&task=save_new_property"
 			document.regForm.submit();
 		}
 		else {
@@ -63,47 +63,52 @@
 	</li>
 </ul>
 
-<form action="{JOMRES_SITEPAGE_URL_NOSEF}&task=registerProp_step3" method="post" name="regForm" class="form-horizontal" role="form">
-	<div class="form-group">
-		<label class="col-md-2 control-label" for="new_property_country">{HCOUNTRY}</label>
-		<div class="col-md-10">
-			{COUNTRIESDROPDOWN}
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-md-2 control-label" for="region">{HREGION}</label>
-		<div class="col-md-10">
-			<div id="region_dropdown">{REGIONDROPDOWN}</div>
-		</div>
-	</div>
-	
-	<div class="form-group">
-		<label class="col-md-2 control-label" for="propertyType">{HPROPERTY_TYPE}</label>
-		<div class="col-md-10">
-			{PROPERTY_TYPE_DROPDOWN}
-		</div>
-	</div>
-	
-	<div class="form-group has-warning">
-		<label class="col-md-2 control-label" for="property_name">{HNAME}</label><div id="tour_target_registration_2_name_address"></div>
-		<div class="col-md-10">
-			<input id="property_name" name="property_name" type="text" value="{PROPERTY_NAME}" class="form-control" placeholder="{COMMON_PLACEHOLDER_PROPERTYNAME}"/>
-		</div>
-	</div>
+<form action="{JOMRES_SITEPAGE_URL_NOSEF}&task=save_new_property" method="post" name="regForm" class="form-horizontal">
+	<fieldset>
+		
+		<div class="control-group">
+			<label class="control-label" for="xyz">{HCOUNTRY}</label><div id="tour_target_registration_1_country"></div>
 
-	<div class="form-group has-warning">
-		<label class="col-md-2 control-label" for="property_email">{HEMAIL}</label>
-		<div class="col-md-10">
-			<input id="property_email" name="property_email" type="email" value="{PROPERTY_EMAIL}" class="form-control" placeholder="{COMMON_PLACEHOLDER_EMAIL}"/>
+			<div class="controls">
+				{COUNTRIESDROPDOWN}
+			</div>
 		</div>
-	</div>
+		<div class="control-group">
+			<label class="control-label" for="region">{HREGION}</label>
 
-	<div class="form-actions">
-		<div class="col-md-10 col-md-offset-2">
-			<button type="button" class="btn btn-primary" onclick="validatePropertyRegistration();"><i class="fa fa-arrow-right"></i> {COMMON_NEXT}</button>
-			<a href="{JOMRES_SITEPAGE_URL}" class="btn btn-default"><i class="fa fa-times"></i> {COMMON_CANCEL}</a>
+			<div class="controls">
+				<div id="region_dropdown">{REGIONDROPDOWN}</div>
+			</div>
 		</div>
-	</div>
-	<input type="hidden" name="task" value="registerProp_step3"/>
+		
+		<div class="control-group">
+			<label class="control-label" for="propertyType">{HPROPERTY_TYPE}</label><div id="tour_target_registration_1_property_type"></div>
+			<div class="controls">
+				{PROPERTY_TYPE_DROPDOWN}
+			</div>
+		</div>
+		
+		<div class="control-group">
+			<label class="control-label" for="property_name">{HNAME}</label>
+			<div class="controls">
+				<input id="property_name" name="property_name" type="text" value="{PROPERTY_NAME}" class="form-control" placeholder="{COMMON_PLACEHOLDER_PROPERTYNAME}"/>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label" for="property_email">{HEMAIL}</label>
+			<div class="controls">
+				<input id="property_email" name="property_email" type="email" value="{PROPERTY_EMAIL}" class="form-control" placeholder="{COMMON_PLACEHOLDER_EMAIL}"/>
+			</div>
+		</div>
+
+		<div class="form-actions">
+			<div class="">
+				<a href="{JOMRES_SITEPAGE_URL}" class="btn"><i class="icon-remove"></i> {COMMON_CANCEL}</a>
+				<button type="button" class="btn btn-primary" onclick="validatePropertyRegistration();">{COMMON_NEXT} <i class="icon-arrow-right icon-white"></i></button>
+			</div>
+		</div>
+		<input type="hidden" name="task" value="save_new_property"/>
+	</fieldset>
 </form>
 </patTemplate:tmpl>

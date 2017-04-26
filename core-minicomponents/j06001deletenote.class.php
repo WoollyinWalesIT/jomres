@@ -50,7 +50,7 @@ class j06001deletenote
             $webhook_notification->data->note_id            = $note_id;
             add_webhook_notification($webhook_notification);
             
-            jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=$contract_uid"), '');
+            jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL."&task=edit_booking&contract_uid=$contract_uid"), '');
         } else {
             echo 'Error deleting note';
         }

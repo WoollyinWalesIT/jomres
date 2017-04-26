@@ -1249,7 +1249,7 @@ jr_define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES5', 'sloty ofert.');
 jr_define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES6', "Aby zobaczyć listę bieżących ofert kliknij <a href='".JOMRES_SITEPAGE_URL."&task=listyourproperties'>tutaj</a>.");
 jr_define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES7', "Aby zobaczyć listę dostępnych pakietów abonamentowych kliknij <a href='".JOMRES_SITEPAGE_URL."&task=list_subscription_packages'>tutaj</a>.");
 jr_define('_JRPORTAL_SUBSCRIPTIONS_PUBLISHERROR', 'Niestety, nie można opublikować tej oferty, osiągnięto maksymalną liczbę dostępnych ilości ofert w Twoim abonamencie.');
-jr_define('_JRPORTAL_SUBSCRIBERS_SUBSCRIBED', "Dziękujemy za zamówienie abonamentu. <a href='".JOMRES_SITEPAGE_URL."&task=registerProp_step1'>Kliknij tutaj, aby kontynuować.</a>");
+jr_define('_JRPORTAL_SUBSCRIBERS_SUBSCRIBED', "Dziękujemy za zamówienie abonamentu. <a href='".JOMRES_SITEPAGE_URL."&task=new_property'>Kliknij tutaj, aby kontynuować.</a>");
 jr_define('_JRPORTAL_SUBSCRIBERS_CANCED_SUBSCRIBE', 'Z przykrością informujemy, że nie zdecydowałeś się zapisać w naszym serwisie. Daj nam znać, jeśli istnieje jakikolwiek sposób, w który możemy Ci pomóc.');
 
 jr_define('_JRPORTAL_SUBSCRIPTIONS_USE', 'Obsługa abonamentów');

@@ -140,9 +140,9 @@ class j06001dashboard_events_ajax
                 }
 
                 if ((int) $c->black_booking == 1) {
-                    $url = JOMRES_SITEPAGE_URL_NOSEF.'&task=viewBlackBooking&contract_uid='.$c->contract_uid.'&thisProperty='.$property_uid;
+                    $url = JOMRES_SITEPAGE_URL_NOSEF.'&task=show_black_booking&contract_uid='.$c->contract_uid.'&thisProperty='.$property_uid;
                 } else {
-                    $url = JOMRES_SITEPAGE_URL_NOSEF.'&task=editBooking&contract_uid='.$c->contract_uid.'&thisProperty='.$property_uid;
+                    $url = JOMRES_SITEPAGE_URL_NOSEF.'&task=edit_booking&contract_uid='.$c->contract_uid.'&thisProperty='.$property_uid;
                 }
 
                 $date_elements = explode('/', $today);

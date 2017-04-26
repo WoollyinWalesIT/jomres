@@ -81,7 +81,7 @@ class j06000show_property_rooms_slideshow
                 }
             }
 
-            $result = $MiniComponents->specificEvent('01060', 'slideshow', array('images' => $room_images));
+            $result = $MiniComponents->specificEvent('06000', 'slideshow', array('images' => $room_images));
             $output[ 'SLIDESHOW' ] = $result ['slideshow'];
 
             $pageoutput = array();

@@ -1257,7 +1257,7 @@ jr_define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES5', ' Objektplätze verwend
 jr_define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES6', 'Falls Sie eine Auflistung Ihrer Objekte ansehen möchten, klicken Sie <a href="'.JOMRES_SITEPAGE_URL.'&task=listyourproperties">hier</a>. ');
 jr_define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES7', 'Um eine Auflistung der möglichen Abonnemente zu erhalten, klicken Sie <a href="'.JOMRES_SITEPAGE_URL.'&task=list_subscription_packages">hier</a>. ');
 jr_define('_JRPORTAL_SUBSCRIPTIONS_PUBLISHERROR', 'Sie können leider dieses Objekt nicht mehr erfassen, weil Sie die maximale Anzahl von Objekten erreicht haben.');
-jr_define('_JRPORTAL_SUBSCRIBERS_SUBSCRIBED', 'Vielen Dank, dass Sie ein Abonnement auf unserem Server gelöst haben. Sobald die Rechnung als Bezahlt gekenntzeichnet ist (Es kann gelegentlich zu Verzögerungen bei PayPal kommen), können Sie<a href="'.JOMRES_SITEPAGE_URL.'&task=registerProp_step1">hier klicken, um mit der Erfassung Ihrer Objekte</a> fortzufahren.');
+jr_define('_JRPORTAL_SUBSCRIBERS_SUBSCRIBED', 'Vielen Dank, dass Sie ein Abonnement auf unserem Server gelöst haben. Sobald die Rechnung als Bezahlt gekenntzeichnet ist (Es kann gelegentlich zu Verzögerungen bei PayPal kommen), können Sie<a href="'.JOMRES_SITEPAGE_URL.'&task=new_property">hier klicken, um mit der Erfassung Ihrer Objekte</a> fortzufahren.');
 jr_define('_JRPORTAL_SUBSCRIBERS_CANCED_SUBSCRIBE', 'Es tut uns leid, aber Sie haben sich noch nicht bei unserem Service registriert. Bitte lassen Sie es uns wissen, wenn wir Ihnen weiterhelfen können');
 jr_define('_JRPORTAL_SUBSCRIPTIONS_USE', 'Verwenden Sie die Abonnierungs-Funktionalität');
 jr_define('_JOMRES_COM_NEWUSER', 'Erstelle bei der Buchung einen neuen Benutzer');

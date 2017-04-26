@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j02202savedeposit
+class j06001save_deposit
 {
     public function __construct()
     {
@@ -25,6 +25,8 @@ class j02202savedeposit
 
             return;
         }
+        $MiniComponents->triggerEvent('02202'); // There is a 02202 script that will update the invoice
+        
         $defaultProperty = getDefaultProperty();
         $contractUid = intval(jomresGetParam($_POST, 'contractUid', 0));
         $depositRef = getEscaped(jomresGetParam($_POST, 'depositRef', ''));
@@ -50,7 +52,7 @@ class j02202savedeposit
             $webhook_notification->data->depositref             = $depositRef;
             add_webhook_notification($webhook_notification);
             
-            jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=editBooking&contract_uid='.(int) $contractUid), $saveMessage);
+            jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_booking&contract_uid='.(int) $contractUid), $saveMessage);
         } else {
             trigger_error('Incorrect contract uid when saving deposit', E_USER_ERROR);
         }

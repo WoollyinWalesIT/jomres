@@ -79,7 +79,7 @@ class j06001dashboard
         $output['HNEW_BOOKING'] = jr_gettext('_JOMRES_HNEW_BOOKING', '_JOMRES_HNEW_BOOKING', false);
         $output['NEW_BOOKING_URL'] = get_booking_url($property_uid);
         $output['HBLACK_BOOKINGS'] = jr_gettext('_JOMRES_FRONT_BLACKBOOKING', '_JOMRES_FRONT_BLACKBOOKING', false);
-        $output['BLACK_BOOKINGS_URL'] = jomresUrl(JOMRES_SITEPAGE_URL.'&task=listBlackBookings');
+        $output['BLACK_BOOKINGS_URL'] = jomresUrl(JOMRES_SITEPAGE_URL.'&task=list_black_bookings');
 
         //legend
         $output['HLEGEND'] = jr_gettext('_JOMRES_HLEGEND', '_JOMRES_HLEGEND', false);

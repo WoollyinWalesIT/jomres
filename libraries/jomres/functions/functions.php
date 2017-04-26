@@ -1472,6 +1472,12 @@ function jr_import($class)
 	
 	//class doesn`t exist so we`ll echo a message and exit
 	echo 'Error, class '.$class." doesn't exist.";
+    $trace = '';
+        $backtrace = debug_backtrace();
+        $trace = "<br/> File ".$backtrace[1]['file']." Line ".$backtrace[1]['line']. " Function ".$backtrace[1]['function']."<br/> ";
+        $trace .= " File ".$backtrace[2]['file']." Line ".$backtrace[2]['line']. " Function ".$backtrace[2]['function']."<br/> ";
+        $trace .= " File ".$backtrace[3]['file']." Line ".$backtrace[3]['line']. " Function ".$backtrace[3]['function']."<br/> "; 
+    echo $trace;
 	exit;
 }
 
@@ -2898,7 +2904,7 @@ function insertInternetBooking($jomressession = '', $depositPaid = false, $confi
                 echo jr_gettext('_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE', '_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE').'<br />';
                 $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
                 $jrtb = $jrtbar->startTable();
-                $jrtb .= $jrtbar->toolbarItem('editbooking', jomresURL(JOMRES_SITEPAGE_URL.'&task=editDeposit&contractUid='.$MiniComponents->miniComponentData[ '03020' ][ 'insertbooking' ][ 'contract_uid' ]), '');
+                $jrtb .= $jrtbar->toolbarItem('editbooking', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_deposit&contractUid='.$MiniComponents->miniComponentData[ '03020' ][ 'insertbooking' ][ 'contract_uid' ]), '');
                 $jrtb .= $jrtbar->endTable();
                 echo $jrtb;
             }
@@ -2922,10 +2928,9 @@ function insertInternetBooking($jomressession = '', $depositPaid = false, $confi
                 $MiniComponents->triggerEvent('03030', $componentArgs); // Booking completed message
                 if ($userIsManager) {
                     echo jr_gettext('_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE', '_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE').'<br />';
-                    //echo "<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=editDeposit&contractUid=$contract_uid")."\">".jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE',_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE)."</a>";
                     $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
                     $jrtb = $jrtbar->startTable();
-                    $jrtb .= $jrtbar->toolbarItem('editbooking', jomresURL(JOMRES_SITEPAGE_URL.'&task=editDeposit&contractUid='.$MiniComponents->miniComponentData[ '03020' ][ 'insertbooking' ][ 'contract_uid' ]), '');
+                    $jrtb .= $jrtbar->toolbarItem('editbooking', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_deposit&contractUid='.$MiniComponents->miniComponentData[ '03020' ][ 'insertbooking' ][ 'contract_uid' ]), '');
                     $jrtb .= $jrtbar->endTable();
                     echo $jrtb;
                 }
@@ -3425,8 +3430,8 @@ function showLiveBookings($contractsList, $title, $arrivaldateDropdown)
         }
 
         $r[ 'STATE_IMAGE' ] = $imgToShow;
-        $r[ 'EDIT_LINK' ] = '<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&task=editBooking&contract_uid='.($row->contract_uid)).'" class="btn btn-info"><i class="icon-edit icon-white"></i> '.jr_gettext('_JOMRES_COM_MR_EDITBOOKINGTITLE', '_JOMRES_COM_MR_EDITBOOKINGTITLE', false).'</a>';
-        $r[ 'EDIT_URL' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=editBooking&contract_uid='.($row->contract_uid));
+        $r[ 'EDIT_LINK' ] = '<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_booking&contract_uid='.($row->contract_uid)).'" class="btn btn-info"><i class="icon-edit icon-white"></i> '.jr_gettext('_JOMRES_COM_MR_EDITBOOKINGTITLE', '_JOMRES_COM_MR_EDITBOOKINGTITLE', false).'</a>';
+        $r[ 'EDIT_URL' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_booking&contract_uid='.($row->contract_uid));
         $r[ 'EDIT_TEXT' ] = jr_gettext('_JOMRES_COM_MR_EDITBOOKINGTITLE', '_JOMRES_COM_MR_EDITBOOKINGTITLE', false);
 
         $r[ 'FIRSTNAME' ] = $row->firstname;
@@ -3943,7 +3948,60 @@ function returnToPropertyConfig($saveMessage = '')
 function publishProperty()
 {
     $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-    $MiniComponents->specificEvent('02272', 'publishprop');
+
+    $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+    $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+    $jrConfig = $siteConfig->get();
+    $defaultProperty = getDefaultProperty();
+
+    $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
+    $current_property_details->gather_data(get_showtime('property_uid'));
+    if (!$current_property_details->approved) {
+        jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=cannot_redirect'), '');
+    } else {
+        $jomres_messaging = jomres_singleton_abstract::getInstance('jomres_messages');
+        if (!isset($_REQUEST[ 'property_uid' ])) {
+            $defaultProperty = getDefaultProperty();
+        } else {
+            $defaultProperty = jomresGetParam($_REQUEST, 'property_uid', 0);
+        }
+
+        if (in_array($defaultProperty, $thisJRUser->authorisedProperties)) {
+            $query = 'SELECT published FROM #__jomres_propertys WHERE propertys_uid = '.(int) $defaultProperty.' LIMIT 1';
+            $published = doSelectSql($query, 1);
+            if ($published) {
+                $query = "UPDATE #__jomres_propertys SET `published`='0' WHERE propertys_uid = ".(int) $defaultProperty.' LIMIT 1';
+                if (doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY', '_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY', false))) {
+                    $MiniComponents->triggerEvent('02274'); // Optional trigger after property unpublished
+                    $jomres_messaging->set_message(jr_gettext('_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY', '_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY', false));
+                        
+                    $webhook_notification                               = new stdClass();
+                    $webhook_notification->webhook_event                = 'property_unpublished';
+                    $webhook_notification->webhook_event_description    = 'Logs when a property is unpublished.';
+                    $webhook_notification->webhook_event_plugin         = 'core';
+                    $webhook_notification->data                         = new stdClass();
+                    $webhook_notification->data->property_uid           = $defaultProperty;
+                    add_webhook_notification($webhook_notification);
+                }
+            } else {
+                $query = "UPDATE #__jomres_propertys SET `published`='1' WHERE propertys_uid = ".(int) $defaultProperty.' LIMIT 1';
+                if (doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', '_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', false))) {
+                    $MiniComponents->triggerEvent('02273'); // Optional trigger after property published
+                    $jomres_messaging->set_message(jr_gettext('_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', '_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', false));
+                        
+                    $webhook_notification                               = new stdClass();
+                    $webhook_notification->webhook_event                = 'property_published';
+                    $webhook_notification->webhook_event_description    = 'Logs when a property is published.';
+                    $webhook_notification->webhook_event_plugin         = 'core';
+                    $webhook_notification->data                         = new stdClass();
+                    $webhook_notification->data->property_uid           = $defaultProperty;
+                    add_webhook_notification($webhook_notification);
+                }
+            }
+        } else {
+            echo "You naughty little tinker, that's not your property";
+        }
+    }       
 }
 
 //-----------------------------------------------------------------
@@ -3956,14 +4014,6 @@ function editorAreaText($name, $content, $hiddenField, $width, $height, $col, $r
     return jomres_cmsspecific_getTextEditor($name, $content, $hiddenField, $width, $height, $col, $row);
 }
 
-/**
- * Triggers the search functionality, set's "$randomSearch" to true.
- */
-function jomresShowSearch()
-{
-    $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-    $MiniComponents->triggerEvent('00030'); //Search mini-comp
-}
 
 /**
  * Creates data for displaying an image. If $retString is true it will return <img etc, if false then it will return the same text in an array variable for passing to patTemplate.
@@ -4079,14 +4129,6 @@ function showSingleRoomPropAvl($property_uid)
 function showAvailability($roomUid, $requestedDate, $property_uid, $showFullYear = 12, $room_avl_enquiry = false)
 {
     $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-/* 	$componentArgs					   = array ();
-    $componentArgs[ 'roomUid' ]		  = $roomUid;
-    $componentArgs[ 'requestedDate' ]	= $requestedDate;
-    $componentArgs[ 'property_uid' ]	 = $property_uid;
-    $componentArgs[ 'showFullYear' ]	 = $showFullYear;
-    $componentArgs[ 'room_avl_enquiry' ] = $room_avl_enquiry;
-    $MiniComponents->triggerEvent( '00017', $componentArgs ); // Availability calendar */
-
     $MiniComponents->specificEvent('06000', 'srp_calendar', array('output_now' => true, 'property_uid' => $property_uid, 'months_to_show' => 24, 'show_just_month' => false, 'room_uid' => $roomUid));
 }
 
