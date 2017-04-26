@@ -1870,7 +1870,7 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_FEATURE_IMAGES', 'Фото для
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOMTYPE_IMAGES', 'Фото типів кімнат');
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY_FEATURES', 'Зображення опцій кімнат');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_ALL', 'Завантажити все');
-jr_define('END_TOUR', 'Закрити');
+
 jr_define('TOUR_ID_TOUR_TARGET_MAIN_MENU_TITLE', "Ласкаво просимо на сторінку вашого об'єкту");
 jr_define('TOUR_ID_TOUR_TARGET_MAIN_MENU_CONTENT', 'Welcome to your Dashboard. This is your Main Menu. To view your property as your guests will see it, click on Properties, then Preview.');
 jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_NAME_TITLE', "Ваш об'єкт має назву");

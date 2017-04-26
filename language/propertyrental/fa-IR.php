@@ -1834,7 +1834,7 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_FEATURE_IMAGES', 'تصاویر ا
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOMTYPE_IMAGES', 'آیکن های نوع اتاق');
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY_FEATURES', 'آیکن های امکانات ملک');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_ALL', 'ارسال همه فایل ها');
-jr_define('END_TOUR', 'بستن');
+
 jr_define('TOUR_ID_TOUR_TARGET_MAIN_MENU_TITLE', 'به ملک خود خوش آمدید');
 jr_define('TOUR_ID_TOUR_TARGET_MAIN_MENU_CONTENT', 'به داشبورد خود خوش آمدید، این منوی اصلی است..اگر میخواهید چیزی که برای مشتری نمایش داده میشود را ببنید به قسمت املاک بروید و گزینه پیش نمایش را انتخاب کنید');
 jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_NAME_TITLE', 'این نام ملک شماست');
