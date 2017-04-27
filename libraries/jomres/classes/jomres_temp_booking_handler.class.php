@@ -43,22 +43,19 @@ class jomres_temp_booking_handler
 				}
 			}
 			
-			if (!is_dir($this->session_directory.JRDS.'admin')) {
-				if (!@mkdir($this->session_directory.JRDS.'admin')) {
-					echo 'Error, unable to make folder '.$this->session_directory.JRDS.'admin'." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server";
-					exit;
-				}
-			}
-			
 			if (!is_writable($this->session_directory)) {
 				echo 'Error, '.$this->session_directory." is not writable therefore cannot store booking session data. Please ensure that it's writable by the web server";
 				exit;
 			}
-			
-			if (jomres_cmsspecific_areweinadminarea()) {
-				$this->session_directory .= 'admin'.JRDS;
-			}
 		}
+		
+		$this->ip = $_SERVER['REMOTE_ADDR'];
+		$this->user_agent = preg_replace("/[^A-Za-z0-9[:space:]]/", "", strip_tags(trim($_SERVER['HTTP_USER_AGENT'])));
+		
+		$this->info = array(
+			'ip' => $this->ip,
+			'user_agent' => $this->user_agent
+		);
 
         $this->tmpbooking = array(
 			'requestedRoom' => '',
@@ -172,11 +169,10 @@ class jomres_temp_booking_handler
 			'last_viewed_property_uid' => 0
 			);
 
-        $this->customFieldValues = array();
 		$this->cart_data = array();
-		$this->previous_searches = array();
 		
 		//we`ll store here the duplicates of the session data so we can compare with these for changes. If there are no changes, we don`t need to write the session data again
+		$this->_info = $this->info;
 		$this->_tmpbooking = $this->tmpbooking;
 		$this->_tmpguest = $this->tmpguest;
 		$this->_cart_data = $this->cart_data;
@@ -193,6 +189,24 @@ class jomres_temp_booking_handler
 
         return self::$configInstance;
     }
+	
+	//if the ip and user agent don`t match, exit here
+	private function _preventHijacking()
+	{
+		if (!isset($this->info['ip']) || !isset($this->info['user_agent'])) {
+			return true;
+		}
+		
+		if ($this->info['ip'] != $this->ip) {
+			return true;
+		}
+		
+		if ($this->info['user_agent'] != $this->user_agent) {
+			return true;
+		}
+
+		return false;
+	}
 
     public function initCustomFields($allCustomFields = array())
     {
@@ -263,6 +277,13 @@ class jomres_temp_booking_handler
 			
 			$data = unserialize($data);
 			
+			$this->info				= $data[ 'info' ];
+			
+			//session ip or user agent don`t match the visitor ip or user agent
+			if ($this->_preventHijacking()) {
+				die();
+			}
+			
 			$this->tmpbooking 		= $data[ 'tmpbooking' ];
 			$this->tmpguest 		= $data[ 'tmpguest' ];
 			$this->cart_data 		= $data[ 'cart_data' ];
@@ -271,6 +292,7 @@ class jomres_temp_booking_handler
 			$this->user_settings 	= $data[ 'user_settings' ];
 
 			//we`ll store here the duplicates of the session data so we can compare with these for changes. If there are no changes, we don`t need to write the session data again
+			$this->_info 			= $this->info;
 			$this->_tmpbooking 		= $this->tmpbooking;
 			$this->_tmpguest 		= $this->tmpguest;
 			$this->_cart_data 		= $this->cart_data;
@@ -279,6 +301,7 @@ class jomres_temp_booking_handler
 			$this->_user_settings 	= $this->user_settings;
 		} else { // session file doesn't exist, let's create it
 			$data = array(
+				'info' => $this->info,
 				'tmpbooking' => $this->tmpbooking, 
 				'cart_data' => $this->cart_data, 
 				'tmpguest' => $this->tmpguest, 
@@ -287,8 +310,12 @@ class jomres_temp_booking_handler
 				'user_settings' => $this->user_settings
 				);
 			
+			$data = serialize($data);
+			
 			if ($this->sessionfile != '') {
-				file_put_contents($this->sessionfile, serialize($data));
+				if (!file_put_contents($this->sessionfile, $data)) {
+					throw new Exception('Error: Could not save session file');
+				}
 			}
 		}
 	}
@@ -301,6 +328,13 @@ class jomres_temp_booking_handler
 		if (!empty($result)) {
 			$result = unserialize($result[0]->data);
 
+			$this->info				= $result[ 'info' ];
+			
+			//session ip or user agent don`t match the visitor ip or user agent
+			if ($this->_preventHijacking()) {
+				die();
+			}
+
 			$this->tmpbooking 		= $result[ 'tmpbooking' ];
 			$this->tmpguest 		= $result[ 'tmpguest' ];
 			$this->cart_data 		= $result[ 'cart_data' ];
@@ -309,6 +343,7 @@ class jomres_temp_booking_handler
 			$this->user_settings 	= $result[ 'user_settings' ];
 			
 			//we`ll store here the duplicates of the session data so we can compare with these for changes. If there are no changes, we don`t need to write the session data again
+			$this->_info 			= $this->info;
 			$this->_tmpbooking 		= $this->tmpbooking;
 			$this->_tmpguest 		= $this->tmpguest;
 			$this->_cart_data 		= $this->cart_data;
@@ -317,6 +352,7 @@ class jomres_temp_booking_handler
 			$this->_user_settings 	= $this->user_settings;
 		} else {
 			$data = array(
+				'info' => $this->info,
 				'tmpbooking' => $this->tmpbooking, 
 				'cart_data' => $this->cart_data, 
 				'tmpguest' => $this->tmpguest, 
@@ -325,7 +361,9 @@ class jomres_temp_booking_handler
 				'user_settings' => $this->user_settings
 				);
 			
-			$query = "INSERT INTO #__jomres_sessions (`session_id`, `data`) VALUES ('".$this->jomressession."','".serialize($data)."')";
+			$data = serialize($data);
+			
+			$query = "INSERT INTO #__jomres_sessions (`session_id`, `data`) VALUES ('".$this->jomressession."','".$data."')";
 			if (!doInsertSql($query, '')) {
 				throw new Exception('Error: Could not save session data');
 			}
@@ -335,6 +373,7 @@ class jomres_temp_booking_handler
     public function close_jomres_session()
     {
 		if (
+			$this->info != $this->_info || 
 			$this->tmpbooking != $this->_tmpbooking || 
 			$this->cart_data != $this->_cart_data || 
 			$this->tmpguest != $this->_tmpguest || 
@@ -343,6 +382,7 @@ class jomres_temp_booking_handler
 			$this->user_settings != $this->_user_settings
 			) {
 			$data = array(
+				'info' => $this->info,
 				'tmpbooking' => $this->tmpbooking, 
 				'cart_data' => $this->cart_data, 
 				'tmpguest' => $this->tmpguest, 
@@ -350,11 +390,15 @@ class jomres_temp_booking_handler
 				'tmplang' => $this->tmplang, 
 				'user_settings' => $this->user_settings
 				);
+			
+			$data = serialize($data);
 
 			if ($this->session_handler == 'file') {
-				file_put_contents($this->sessionfile, serialize($data));
+				if (!file_put_contents($this->sessionfile, $data)) {
+					throw new Exception('Error: Could not save session file');
+				}
 			} else {
-				$query = "UPDATE #__jomres_sessions SET `data` = '".serialize($data)."' WHERE `session_id` = '".$this->jomressession."'";
+				$query = "UPDATE #__jomres_sessions SET `data` = '".$data."' WHERE `session_id` = '".$this->jomressession."'";
 				if (!doInsertSql($query, '')) {
 					throw new Exception('Error: Could not update session data');
 				}
