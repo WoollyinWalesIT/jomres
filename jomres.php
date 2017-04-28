@@ -307,37 +307,6 @@ try {
                 $MiniComponents->specificEvent('00610', $plugin); //Incoming
                 break;
             //########################################################################################
-            case 'editGateway':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel > 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->specificEvent('00510', $plugin);
-                } else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'tagSearch':
-                if ($thisJRUser->userIsManager || $jrConfig[ 'full_access_control' ] == '1') {
-                    $componentArgs = array();
-                    $componentArgs[ 'tag' ] = $tag;
-                    $MiniComponents->triggerEvent('00020', $componentArgs); //tagSearch();
-                } else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'listProperties':
-                $MiniComponents->triggerEvent('01004', $componentArgs); // optional
-                $MiniComponents->triggerEvent('01005', $componentArgs); // optional
-                $MiniComponents->triggerEvent('01006', $componentArgs); // optional
-                $MiniComponents->triggerEvent('01007', $componentArgs); // optional
-                $componentArgs = array();
-                if (isset($tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ])) {
-                    $componentArgs[ 'propertys_uid' ] = $tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ];
-                }
-                $MiniComponents->triggerEvent('01010', $componentArgs); // listPropertys
-                break;
-
-            //########################################################################################
             default:
                 if ($jrConfig[ 'full_access_control' ] == '1') {
                     if ($MiniComponents->eventSpecificlyExistsCheck('06000', get_showtime('task'))) {

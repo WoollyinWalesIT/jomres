@@ -77,7 +77,7 @@ class j01010listpropertys
                 $all_layouts[ ] = $key;
                 $r = array();
                 $r[ 'TITLE' ] = $layouts[ 'title' ];
-                $r[ 'LINK' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=listProperties&propertylist_layout='.$key);
+                $r[ 'LINK' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=listproperties&propertylist_layout='.$key);
                 $layout_rows[ ] = $r;
             }
         }

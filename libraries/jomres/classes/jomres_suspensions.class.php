@@ -26,7 +26,7 @@ class jomres_suspensions
                                                         'publish_property',
                                                         'dobooking',
                                                         'list_bookings',
-                                                        'editBooking',
+                                                        'edit_booking',
                                                         );                        // blocked tasks for suspended managers
     }
 

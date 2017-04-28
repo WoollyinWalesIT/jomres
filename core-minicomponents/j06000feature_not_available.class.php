@@ -45,10 +45,10 @@ class j06000feature_not_available
     public function get_task_pluginnames($attempted_task)
     {
         switch ($attempted_task) {
-            case 'bookGuestIn':
+            case 'checkin':
                 $plugin_name = 'book_guest_in_out';
                 break;
-            case 'bookGuestOut':
+            case 'checkout':
                 $plugin_name = 'book_guest_in_out';
                 break;
             case 'listCustomerTypes':
@@ -57,7 +57,7 @@ class j06000feature_not_available
             case 'listCoupons':
                 $plugin_name = 'coupons';
                 break;
-            case 'listExtras':
+            case 'list_extras':
                 $plugin_name = 'optional_extras';
                 break;
             default:

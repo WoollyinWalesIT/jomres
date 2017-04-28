@@ -45,6 +45,8 @@ class j06001save_cancellation
             $cancellationSuccessful = $bkg->cancel_booking();
 
             if ($cancellationSuccessful === true) {
+				$MiniComponents->triggerEvent('02162', $componentArgs); //jintour cancel booking
+				
                 $query = "SELECT guest_uid,tag FROM #__jomres_contracts WHERE contract_uid = '".(int) $contract_uid."' AND property_uid = '".(int) $defaultProperty."'";
                 $contractData = doSelectSql($query);
                 foreach ($contractData as $cancellation) {

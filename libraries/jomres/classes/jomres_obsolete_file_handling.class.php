@@ -1380,7 +1380,6 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_minicomponents.'j16000chooseLanguages.class.php');
 		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'list_languagechoices.html');
         $this->add_obs_file($this->dir_functions.'handlereq.php');
-        $this->add_obs_file($this->dir_minicomponents.'j01060slideshow.class.php');
         $this->add_obs_file($this->dir_minicomponents.'j02300regprop1.class.php');
         $this->add_obs_file($this->dir_minicomponents.'j02320regprop3.class.php');
         $this->add_obs_file($this->dir_templates_bootstrap3_backend.'register_property1.html');
