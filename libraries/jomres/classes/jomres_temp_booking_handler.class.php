@@ -332,7 +332,6 @@ class jomres_temp_booking_handler
 		$result = doSelectSql($query);
 
 		if (!empty($result)) {
-			
 			$result = json_decode(stripslashes($result[0]->data), true);
 
 			$this->info				= $result[ 'info' ];
