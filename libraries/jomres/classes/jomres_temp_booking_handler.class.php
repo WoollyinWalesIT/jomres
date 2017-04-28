@@ -281,7 +281,7 @@ class jomres_temp_booking_handler
 		if (file_exists($this->sessionfile)) {
 			$data = file_get_contents($this->sessionfile);
 			
-			$data = json_decode($data, true);
+			$data = json_decode(stripslashes($data), true);
 			
 			$this->info				= $data[ 'info' ];
 			
