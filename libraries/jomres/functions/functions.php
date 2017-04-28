@@ -4704,30 +4704,6 @@ function suhosin_get_max_vars_test()
     return $response;
 }
 
-function plugin_check()
-{
-    $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-    $recommended_plugins = array();
-    $recommended_plugins[ 'advanced_micromanage_tariff_editing_modes' ] = array('eventPoint'=>'00005', 'eventName' => 'advanced_micromanage_tariff_editing_modes', 'message' => 'Offers the Advanced and Micromanage tariff editing modes, allowing property managers to construct much more detailed tariffs which mirror their real-world prices, for example different prices that cover different seasons.');
-    $recommended_plugins[ 'core_gateway_paypal' ] = array('eventPoint'=>'00605', 'eventName' => 'paypal', 'message' => 'Offers the ability for property managers to take payments online via paypal.');
-    $recommended_plugins[ 'guest_types' ] = array('eventPoint'=>'02114', 'eventName' => 'listcustomertypes', 'message' => 'If a property manager wants to charge per person per night, or if they don\'t want to charge per person per night but need to know numbers of guests, you will need this plugin to create guest types.');
-    $recommended_plugins[ 'optional_extras' ] = array('eventPoint'=>'02142', 'eventName' => 'listextras', 'message' => 'Optional extras can be added to bookings using the Optional Extras plugin. This provides the ability to create extras which can be charged using different models (e.g. per night, per booking, per guest etc).');
-    $recommended_plugins[ 'property_creation_plugins' ] = array('eventPoint'=>'02300', 'eventName' => 'regprop1', 'message' => 'If you need to create more properties then you will need the Property Creation Plugin.');
-
-    $messages = '';
-    $highlight = (using_bootstrap() ? 'alert alert-info' : 'ui-state-highlight');
-    foreach ($recommended_plugins as $k => $v) {
-        if (!isset($MiniComponents->registeredClasses[$v['eventPoint']][$v['eventName']])) {
-            $messages .= "<div class='".$highlight."'><strong> Recommended plugin </strong>: ".$k.'<strong><br/> Functionality : </strong>'.$v[ 'message' ].'</div>';
-        }
-    }
-    if ($messages != '') {
-        $messages = "<hr><p>Note, we have detected that several important plugins are not installed. These plugins are generally considered to be required if you wish to create a booking portal. You do not <i>need</i> these plugins to use the system but you may be missing functionality that you wish to use. You can use the Jomres Plugin Manager to install any plugins you need. If in doubt, check the manual link in the plugin's information panel to see more detailed information about that plugin.</p>".$messages;
-    }
-
-    return $messages;
-}
-
 function gmaps_apikey_check()
 {
     $message = '';

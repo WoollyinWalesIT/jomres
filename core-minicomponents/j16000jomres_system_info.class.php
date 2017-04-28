@@ -81,9 +81,6 @@ class j16000jomres_system_info
             $output[ 'THIS_JOMRES_VERSION' ] = $this_version;
         }
 
-        //recommended plugins not installed warning
-        //$output[ 'PLUGIN_CHECK' ] = plugin_check();
-
         //license key not entered warning
         if (trim($jrConfig['licensekey']) == '') {
             $output[ '_JOMRES_PRODUCT_INFORMATION' ] = jr_gettext('_JOMRES_PRODUCT_INFORMATION', '_JOMRES_PRODUCT_INFORMATION', false);
