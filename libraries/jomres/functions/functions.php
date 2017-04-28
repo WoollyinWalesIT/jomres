@@ -2904,7 +2904,7 @@ function insertInternetBooking($jomressession = '', $depositPaid = false, $confi
                 echo jr_gettext('_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE', '_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE').'<br />';
                 $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
                 $jrtb = $jrtbar->startTable();
-                $jrtb .= $jrtbar->toolbarItem('editbooking', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_deposit&contractUid='.$MiniComponents->miniComponentData[ '03020' ][ 'insertbooking' ][ 'contract_uid' ]), '');
+                $jrtb .= $jrtbar->toolbarItem('edit_booking', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_deposit&contractUid='.$MiniComponents->miniComponentData[ '03020' ][ 'insertbooking' ][ 'contract_uid' ]), '');
                 $jrtb .= $jrtbar->endTable();
                 echo $jrtb;
             }
@@ -2930,7 +2930,7 @@ function insertInternetBooking($jomressession = '', $depositPaid = false, $confi
                     echo jr_gettext('_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE', '_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE').'<br />';
                     $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
                     $jrtb = $jrtbar->startTable();
-                    $jrtb .= $jrtbar->toolbarItem('editbooking', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_deposit&contractUid='.$MiniComponents->miniComponentData[ '03020' ][ 'insertbooking' ][ 'contract_uid' ]), '');
+                    $jrtb .= $jrtbar->toolbarItem('edit_booking', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_deposit&contractUid='.$MiniComponents->miniComponentData[ '03020' ][ 'insertbooking' ][ 'contract_uid' ]), '');
                     $jrtb .= $jrtbar->endTable();
                     echo $jrtb;
                 }
