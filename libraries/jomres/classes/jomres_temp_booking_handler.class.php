@@ -281,7 +281,7 @@ class jomres_temp_booking_handler
 		if (file_exists($this->sessionfile)) {
 			$data = file_get_contents($this->sessionfile);
 			
-			$data = unserialize($data);
+			$data = json_decode($data, true);
 			
 			$this->info				= $data[ 'info' ];
 			
@@ -316,7 +316,7 @@ class jomres_temp_booking_handler
 				'user_settings' => $this->user_settings
 				);
 			
-			$data = serialize($data);
+			$data = json_encode($data, JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE);
 			
 			if ($this->sessionfile != '') {
 				if (!file_put_contents($this->sessionfile, $data)) {
@@ -332,7 +332,8 @@ class jomres_temp_booking_handler
 		$result = doSelectSql($query);
 
 		if (!empty($result)) {
-			$result = unserialize($result[0]->data);
+			
+			$result = json_decode(stripslashes($result[0]->data), true);
 
 			$this->info				= $result[ 'info' ];
 			
@@ -367,7 +368,7 @@ class jomres_temp_booking_handler
 				'user_settings' => $this->user_settings
 				);
 			
-			$data = serialize($data);
+			$data = json_encode($data, JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE);
 			
 			$query = "INSERT INTO #__jomres_sessions (`session_id`, `data`) VALUES ('".$this->jomressession."','".$data."')";
 			if (!doInsertSql($query, '')) {
@@ -397,7 +398,7 @@ class jomres_temp_booking_handler
 				'user_settings' => $this->user_settings
 				);
 			
-			$data = serialize($data);
+			$data = json_encode($data, JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE);
 
 			if ($this->session_handler == 'file') {
 				if (!file_put_contents($this->sessionfile, $data)) {
