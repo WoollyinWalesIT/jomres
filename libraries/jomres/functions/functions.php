@@ -68,6 +68,7 @@ function jomres_async_request($type = "GET", $url = "", $port = '', $post_data =
 
 		$out = $type." ".$parts['path'].'?'.$parts['query']." HTTP/1.1\r\n";
 		$out.= "Host: ".$parts['host']."\r\n";
+		$out .= "User-Agent: Jomres\r\n";
 		$out.= "Content-Type: application/x-www-form-urlencoded\r\n";
 		$out.= "Content-Length: ".strlen($post_string)."\r\n";
 		$out.= "Connection: Close\r\n\r\n";
