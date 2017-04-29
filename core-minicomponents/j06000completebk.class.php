@@ -14,31 +14,25 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j02280mustregister
+class j06000completebk
 {
     public function __construct()
     {
         // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
         $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
         if ($MiniComponents->template_touch) {
-            $this->template_touchable = true;
+            $this->template_touchable = false;
 
             return;
         }
 		
-        echo '<a href="'.jomres_cmsspecific_getregistrationlink().'">'.jr_gettext('_JOMRES_REGISTEREDUSERSONLYBOOK', '_JOMRES_REGISTEREDUSERSONLYBOOK', false).'</a>';
-    }
-
-    public function touch_template_language()
-    {
-        $output = array();
-
-        $output[ ] = jr_gettext('_JOMRES_REGISTEREDUSERSONLYBOOK', '_JOMRES_REGISTEREDUSERSONLYBOOK');
-
-        foreach ($output as $o) {
-            echo $o;
-            echo '<br/>';
-        }
+		$plugin = jomresGetParam($_REQUEST, 'plugin', '');
+		
+		$bookingdata = gettempBookingdata();
+		
+		$MiniComponents->triggerEvent('00609', array('bookingdata' => $bookingdata)); // Optional
+		
+		$MiniComponents->specificEvent('00610', $plugin); //Incoming
     }
 
     // This must be included in every Event/Mini-component

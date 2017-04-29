@@ -14,31 +14,35 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j02280mustregister
+class j06000dobooking
 {
     public function __construct()
     {
         // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
         $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
         if ($MiniComponents->template_touch) {
-            $this->template_touchable = true;
+            $this->template_touchable = false;
 
             return;
         }
 		
-        echo '<a href="'.jomres_cmsspecific_getregistrationlink().'">'.jr_gettext('_JOMRES_REGISTEREDUSERSONLYBOOK', '_JOMRES_REGISTEREDUSERSONLYBOOK', false).'</a>';
-    }
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+		
+		$mrConfig = getPropertySpecificSettings();
 
-    public function touch_template_language()
-    {
-        $output = array();
-
-        $output[ ] = jr_gettext('_JOMRES_REGISTEREDUSERSONLYBOOK', '_JOMRES_REGISTEREDUSERSONLYBOOK');
-
-        foreach ($output as $o) {
-            echo $o;
-            echo '<br/>';
-        }
+        if ($thisJRUser->userIsManager) {
+			$MiniComponents->triggerEvent('05020');
+		} else {
+			if (($mrConfig[ 'visitorscanbookonline' ] == '1') && (!$thisJRUser->userIsManager)) {
+				if (!$thisJRUser->userIsRegistered && $mrConfig[ 'registeredUsersOnlyCanBook' ] == '1') {
+					$MiniComponents->triggerEvent('02280');
+				} else {
+					$MiniComponents->triggerEvent('05020');
+				}
+			} else {
+				$MiniComponents->specificEvent('00600', 'contactowner');
+			} // Alternative if online bookings by guests is disabled
+		}
     }
 
     // This must be included in every Event/Mini-component

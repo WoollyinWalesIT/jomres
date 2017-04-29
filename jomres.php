@@ -107,7 +107,6 @@ try {
     set_showtime('jomressession', $jomressession);
 
     //set some showtimes we`ll need later
-    $plugin = jomresGetParam($_REQUEST, 'plugin', '');
     $popup = intval(jomresGetParam($_REQUEST, 'popup', 0));
     $no_html = (int) jomresGetParam($_REQUEST, 'no_html', 0);
     $task = str_replace('&#60;x&#62;', '', jomresGetParam($_REQUEST, 'task', ''));
@@ -267,101 +266,50 @@ try {
     }
 
     //handle tasks
-    if (get_showtime('numberOfPropertiesInSystem') > 0) {
-        switch (get_showtime('task')) {
-            //########################################################################################
-            case 'dobooking':
-                if ($thisJRUser->userIsManager) {
-                    $MiniComponents->triggerEvent('05020');
-                } else {
-                    if (($mrConfig[ 'visitorscanbookonline' ] == '1') && (!$thisJRUser->userIsManager)) {
-                        if (!$thisJRUser->userIsRegistered && $mrConfig[ 'registeredUsersOnlyCanBook' ] == '1') {
-                            $MiniComponents->triggerEvent('02280');
-                        } else {
-                            $MiniComponents->triggerEvent('05020');
-                        }
-                    } else {
-                        $MiniComponents->specificEvent('00600', 'contactowner');
-                    } // Alternative if online bookings by guests is disabled
-                }
-                break;
-            //########################################################################################
-            case 'confirmbooking':
-                if ($thisJRUser->userIsManager) {
-                    $MiniComponents->triggerEvent('02990');
-                } // Trigger the booking confirmation page
-                else {
-                    if (($mrConfig[ 'visitorscanbookonline' ] == '1') && (!$thisJRUser->userIsManager)) {
-                        if (!$thisJRUser->userIsRegistered && $mrConfig[ 'registeredUsersOnlyCanBook' ] == '1') {
-                            $MiniComponents->triggerEvent('02280');
-                        } else {
-                            $MiniComponents->triggerEvent('02990');
-                        } // Trigger the booking confirmation page
-                    }
-                }
-                break;
-            //########################################################################################
-            case 'completebk':
-                $bookingdata = gettempBookingdata();
-                $MiniComponents->triggerEvent('00609', array('bookingdata' => $bookingdata)); // Optional
-                $MiniComponents->specificEvent('00610', $plugin); //Incoming
-                break;
-            //########################################################################################
-            default:
-                if ($jrConfig[ 'full_access_control' ] == '1') {
-                    if ($MiniComponents->eventSpecificlyExistsCheck('06000', get_showtime('task'))) {
-                        $MiniComponents->specificEvent('06000', get_showtime('task'));
-                    } elseif ($MiniComponents->eventSpecificlyExistsCheck('06001', get_showtime('task'))) {
-                        if (get_showtime('task') == 'dashboard') {
-                            $MiniComponents->triggerEvent('00013'); // Show dashboard
-                            $MiniComponents->specificEvent('06001', get_showtime('task'));
-                            $MiniComponents->triggerEvent('00014'); // Optional Post dashboard
-                        } else {
-                            $MiniComponents->specificEvent('06001', get_showtime('task'));
-                        }
-                    } elseif ($MiniComponents->eventSpecificlyExistsCheck('06002', get_showtime('task'))) {
-                        $MiniComponents->specificEvent('06002', get_showtime('task'));
-                    } elseif ($MiniComponents->eventSpecificlyExistsCheck('06005', get_showtime('task'))) {
-                        $MiniComponents->specificEvent('06005', get_showtime('task'));
-                    } else {
-                        no_task_set($property_uid);
-                    }
-                } else {
-                    if ($MiniComponents->eventSpecificlyExistsCheck('06000', get_showtime('task'))) {
-                        $MiniComponents->specificEvent('06000', get_showtime('task'));
-                    } // Custom task
-                    elseif ($MiniComponents->eventSpecificlyExistsCheck('06001', get_showtime('task')) && $thisJRUser->userIsManager) { // Receptionist and manager tasks
-                        if (get_showtime('task') == 'dashboard') {
-                            $MiniComponents->triggerEvent('00013'); // Show dashboard
-                            $MiniComponents->specificEvent('06001', get_showtime('task'));
-                            $MiniComponents->triggerEvent('00014'); // Optional Post dashboard
-                        } else {
-                            $MiniComponents->specificEvent('06001', get_showtime('task'));
-                        }
-                    } elseif ($MiniComponents->eventSpecificlyExistsCheck('06002', get_showtime('task')) && $thisJRUser->userIsManager && $thisJRUser->accesslevel > 50) { // Manager only tasks (higher than receptionist)
-                        $MiniComponents->specificEvent('06002', get_showtime('task'));
-                    } // Custom task
-                    elseif ($MiniComponents->eventSpecificlyExistsCheck('06005', get_showtime('task')) && $thisJRUser->userIsRegistered) { // Registered only user tasks
-                        $MiniComponents->specificEvent('06005', get_showtime('task'));
-                    } // Custom task
-                    else {
-                        no_task_set($property_uid);
-                    }
-                }
-                break;
-            } //end switch
+	if ($jrConfig[ 'full_access_control' ] == '1') {
+		if ($MiniComponents->eventSpecificlyExistsCheck('06000', get_showtime('task'))) {
+			$MiniComponents->specificEvent('06000', get_showtime('task'));
+		} elseif ($MiniComponents->eventSpecificlyExistsCheck('06001', get_showtime('task'))) {
+			if (get_showtime('task') == 'dashboard') {
+				$MiniComponents->triggerEvent('00013'); // Show dashboard
+				$MiniComponents->specificEvent('06001', get_showtime('task'));
+				$MiniComponents->triggerEvent('00014'); // Optional Post dashboard
+			} else {
+				$MiniComponents->specificEvent('06001', get_showtime('task'));
+			}
+		} elseif ($MiniComponents->eventSpecificlyExistsCheck('06002', get_showtime('task'))) {
+			$MiniComponents->specificEvent('06002', get_showtime('task'));
+		} elseif ($MiniComponents->eventSpecificlyExistsCheck('06005', get_showtime('task'))) {
+			$MiniComponents->specificEvent('06005', get_showtime('task'));
+		} else {
+			no_task_set($property_uid);
+		}
+	} else {
+		if ($MiniComponents->eventSpecificlyExistsCheck('06000', get_showtime('task'))) {
+			$MiniComponents->specificEvent('06000', get_showtime('task'));
+		} // Custom task
+		elseif ($MiniComponents->eventSpecificlyExistsCheck('06001', get_showtime('task')) && $thisJRUser->userIsManager) { // Receptionist and manager tasks
+			if (get_showtime('task') == 'dashboard') {
+				$MiniComponents->triggerEvent('00013'); // Show dashboard
+				$MiniComponents->specificEvent('06001', get_showtime('task'));
+				$MiniComponents->triggerEvent('00014'); // Optional Post dashboard
+			} else {
+				$MiniComponents->specificEvent('06001', get_showtime('task'));
+			}
+		} elseif ($MiniComponents->eventSpecificlyExistsCheck('06002', get_showtime('task')) && $thisJRUser->userIsManager && $thisJRUser->accesslevel > 50) { // Manager only tasks (higher than receptionist)
+			$MiniComponents->specificEvent('06002', get_showtime('task'));
+		} // Custom task
+		elseif ($MiniComponents->eventSpecificlyExistsCheck('06005', get_showtime('task')) && $thisJRUser->userIsRegistered) { // Registered only user tasks
+			$MiniComponents->specificEvent('06005', get_showtime('task'));
+		} // Custom task
+		else {
+			no_task_set($property_uid);
+		}
+	}
 
-        if (!$no_html) {
-            $MiniComponents->triggerEvent('00061'); // Run out of trigger points. Illogically now, 60 triggers the top template, 61 the bottom template.
-        }
-    } else {
-        logging::log_message('Error, no properties installed', 'Core', 'EMERGENCY');
-        if ($MiniComponents->eventSpecificlyExistsCheck('06000', get_showtime('task'))) {
-            $MiniComponents->specificEvent('06000', get_showtime('task'));
-        } else {
-            echo 'Error, no properties installed. Before you can use Jomres you need to have at least 1 property installed, this is achieved by running <a href="'.get_showtime('live_site').'/install_jomres.php"></a>install_jomres.php.';
-        }
-    }
+	if (!$no_html) {
+		$MiniComponents->triggerEvent('00061'); // Run out of trigger points. Illogically now, 60 triggers the top template, 61 the bottom template.
+	}
 
     //reset language and property type
     $jomres_language_definitions = jomres_singleton_abstract::getInstance('jomres_language_definitions');
