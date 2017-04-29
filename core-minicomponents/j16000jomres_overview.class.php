@@ -71,6 +71,7 @@ class j16000jomres_overview
         //income
         $subscriptions_income = array();
         $commission_income = array();
+		$reviews_details = array();
         $this_year = date('Y');
 
         $query = "SELECT 
@@ -105,6 +106,39 @@ class j16000jomres_overview
 
             $commission_income[] = $r;
         }
+		
+		//reviews
+		if ((int) $jrConfig['use_reviews'] == 1) {
+			$r = array();
+			
+			$query = 'SELECT COUNT(`rating_id`) AS reviews_count FROM #__jomres_reviews_ratings';
+			$reviews_count = (int) doSelectSql($query, 1);
+			
+			$query = 'SELECT COUNT(`report_id`) AS report_count FROM #__jomres_reviews_reports';
+			$report_count = (int) doSelectSql($query, 1);
+
+			$query = 'SELECT COUNT(`rating_id`) AS unpublished_count FROM #__jomres_reviews_ratings WHERE `published` = 0 ';
+			$unpublished_count = (int) doSelectSql($query, 1);
+			
+			$r['TOTAL_REVIEWS'] = $reviews_count;
+            $r['TOTAL_REVIEWS_LABEL_CLASS'] = 'label-blue';
+			
+			$r['TOTAL_UNPUBLISHED_REVIEWS'] = $unpublished_count;
+			if ($unpublished_count > 0) {
+				$r['TOTAL_UNPUBLISHED_REVIEWS_LABEL_CLASS'] = 'label-orange';
+			} else {
+				$r['TOTAL_UNPUBLISHED_REVIEWS_LABEL_CLASS'] = 'label-green';
+			}
+			
+			$r['TOTAL_REVIEW_REPORTS'] = $report_count;
+			if ($report_count > 0) {
+				$r['TOTAL_REVIEW_REPORTS_LABEL_CLASS'] = 'label-orange';
+			} else {
+				$r['TOTAL_REVIEW_REPORTS_LABEL_CLASS'] = 'label-green';
+			}
+			
+			$reviews_details[] = $r;
+		}
 
         $pageoutput[ ] = $output;
         $tmpl = new patTemplate();
@@ -112,6 +146,7 @@ class j16000jomres_overview
         $tmpl->addRows('pageoutput', $pageoutput);
         $tmpl->addRows('subscriptions_income', $subscriptions_income);
         $tmpl->addRows('commission_income', $commission_income);
+		$tmpl->addRows('reviews_details', $reviews_details);
         $tmpl->readTemplatesFromInput('jomres_overview.html');
 
         if ($output_now) {

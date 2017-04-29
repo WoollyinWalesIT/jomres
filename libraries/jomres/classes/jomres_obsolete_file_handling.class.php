@@ -1409,6 +1409,7 @@ class jomres_obsolete_file_handling
         $this->add_obs_file($this->dir_minicomponents.'j00017SRPavailabilitycalendar.class.php');
 		$this->add_obs_file($this->dir_templates_bootstrap_frontend.'output_price.html');
 		$this->add_obs_file($this->dir_templates_bootstrap3_frontend.'output_price.html');
+		$this->add_obs_file($this->dir_minicomponents.'j07020list_reviews.class.php');
     }
 
     public function add_obs_file($path_and_file)
