@@ -2167,4 +2167,8 @@ jr_define('_JOMRES_BOOKING_FORM_EXTERNAL_URL_DESC', 'Here you can set an externa
 jr_define('_JOMRES_ROOM_TAGLINE', 'Tagline (short room description/subtitle)');
 jr_define('_JOMRES_ROOM_DESCRIPTION', 'Room Description');
 jr_define('_JOMRES_GUEST_BLACKLISTED', 'Guest blacklisted');
-jr_define('_JOMRES_GUEST_BLACKLISTED_DESC', 'If this guest is black listed then they will no longer be able to make bookings in this property.');
+jr_define('_JOMRES_GUEST_BLACKLISTED_DESC', 'If this guest is black listed then they will no longer be able to make bookings in this property.');jr_define('_JOMRES_SESSION_HANDLER', 'Session handler');
+jr_define('_JOMRES_SESSION_HANDLER_DESC', 'Save jomres session files to disk or to database. Recommended: database');
+jr_define('_JOMRES_MAP_HEIGHT',"Map height (px) ");
+jr_define('_JOMRES_MAP_ZOOMLEVEL',"Map zoom level ");
+jr_define('_JOMRES_MAP_MAPTYPE',"Map type ");
