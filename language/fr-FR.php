@@ -1613,7 +1613,7 @@ jr_define('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_MANAGER_REPORTS', 'reports');
 jr_define('_JOMRES_HLIST_GUESTS', 'Guests');
 jr_define('_JOMRES_HLIST_GUESTS_MENU', 'List guests');
 jr_define('_JOMRES_HLIST_INVOICES_MENU', 'List invoices');
-jr_define('_JOMRES_HLIST_PROPERTIES', 'Businesses');
+jr_define('_JOMRES_HLIST_PROPERTIES', 'Properties');
 jr_define('_JOMRES_HQUICK_BOOKING', 'Quick booking');
 jr_define('_JOMRES_HDATE_OF_BOOKING', 'Date of booking');
 jr_define('_JOMRES_HTWO_WEEKS', 'Two weeks');

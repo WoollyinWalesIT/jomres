@@ -1578,7 +1578,7 @@ jr_define('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_MANAGER_REPORTS', 'hesabatlar');
 jr_define('_JOMRES_HLIST_GUESTS', 'Qonaqlar');
 jr_define('_JOMRES_HLIST_GUESTS_MENU', 'Qonaqların siyahısı');
 jr_define('_JOMRES_HLIST_INVOICES_MENU', 'Fakturanın siyahısı');
-jr_define('_JOMRES_HLIST_PROPERTIES', 'Businesses');
+jr_define('_JOMRES_HLIST_PROPERTIES', 'Properties');
 jr_define('_JOMRES_HQUICK_BOOKING', 'Təcili bron');
 jr_define('_JOMRES_HDATE_OF_BOOKING', 'Bronun tarixi');
 jr_define('_JOMRES_HTWO_WEEKS', 'İki həftə');

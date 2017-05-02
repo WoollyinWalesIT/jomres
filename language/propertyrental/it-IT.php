@@ -1615,7 +1615,7 @@ jr_define('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_MANAGER_REPORTS', 'statistiche');
 jr_define('_JOMRES_HLIST_GUESTS', 'Ospiti');
 jr_define('_JOMRES_HLIST_GUESTS_MENU', 'Oospiti');
 jr_define('_JOMRES_HLIST_INVOICES_MENU', 'Fatture');
-jr_define('_JOMRES_HLIST_PROPERTIES', 'Businesses');
+jr_define('_JOMRES_HLIST_PROPERTIES', 'Properties');
 jr_define('_JOMRES_HQUICK_BOOKING', 'Prenotazioni rapide');
 jr_define('_JOMRES_HDATE_OF_BOOKING', 'Data di prenotazione');
 jr_define('_JOMRES_HTWO_WEEKS', 'Due settimane');
