@@ -589,7 +589,7 @@ class j16000showplugins
         $output[ 'INSTALLED_PLUGINS' ] = implode(',', $all_installed_plugins);
         $output[ 'PLUGINS_TO_UPGRADE' ] = implode(',', $plugins_needing_upgrading);
 
-        if ($this->key_valid) {
+        if ($this->key_valid && !empty($plugins_needing_upgrading)) {
             $plugins_require_upgrade[ ][ 'upgrade_text' ] = 'Upgrade all Core plugins. You must upgrade Jomres first before upgrading plugins.';
         }
 
