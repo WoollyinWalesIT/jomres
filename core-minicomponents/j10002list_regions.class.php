@@ -28,10 +28,9 @@ class j10002list_regions
         $this->cpanelButton = '';
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
-        if ($jrConfig[ 'advanced_site_config' ] == 1) {
-            $htmlFuncs = jomres_singleton_abstract::getInstance('html_functions');
-            $this->cpanelButton = $htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_regions', 'locale.png', jr_gettext('_JOMRES_COM_LISTREGIONS', '_JOMRES_COM_LISTREGIONS', false, false), '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/', jr_gettext('_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE', '_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE', false, false));
-        }
+
+		$htmlFuncs = jomres_singleton_abstract::getInstance('html_functions');
+		$this->cpanelButton = $htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_regions', 'locale.png', jr_gettext('_JOMRES_COM_LISTREGIONS', '_JOMRES_COM_LISTREGIONS', false, false), '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/', jr_gettext('_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE', '_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE', false, false));
     }
 
     // This must be included in every Event/Mini-component

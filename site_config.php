@@ -131,7 +131,6 @@ $jrConfig = array(
   'commission_autosuspend_on_overdue' => '1',
   'commission_autosuspend_on_overdue_threashold' => '60',
   'language_context' => '',
-  'advanced_site_config' => '1',
   'booking_form_lnks_as_buttons' => '1',
   'load_jquery_ui' => '1',
   'guestnumbersearch' => 'greaterthan',

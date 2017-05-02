@@ -68,11 +68,6 @@ class j10501a_misc
         }
         $configurationPanel->startPanel(jr_gettext('_JOMRES_A_TABS_MISC', '_JOMRES_A_TABS_MISC', false));
 
-        $configurationPanel->setleft(jr_gettext('_JOMRES_COM_ADVANCED_SITE_CONFIG', '_JOMRES_COM_ADVANCED_SITE_CONFIG', false));
-        $configurationPanel->setmiddle($lists[ 'advanced_site_config' ]);
-        $configurationPanel->setright(jr_gettext('_JOMRES_COM_ADVANCED_SITE_CONFIG_DESC', '_JOMRES_COM_ADVANCED_SITE_CONFIG_DESC', false));
-        $configurationPanel->insertSetting();
-
         $configurationPanel->setleft(jr_gettext('_JOMRES_SUPPORTKEY', '_JOMRES_SUPPORTKEY', false));
         $configurationPanel->setmiddle('<input type="password" class="input-xlarge" name="cfg_licensekey" value="'.$jrConfig[ 'licensekey' ].'" /><br/>'.' '.$support_key_status.' '.$support_key_owner.' '.$support_key_expires.' '.$renewal_link.' '.$support_key_is_trial_license);
         $configurationPanel->setright(jr_gettext('_JOMRES_SUPPORTKEY_DESC', '_JOMRES_SUPPORTKEY_DESC', false).' '.$support_key_message);
@@ -102,91 +97,87 @@ class j10501a_misc
         $configurationPanel->setright(jr_gettext('_JOMRES_BOOTSTRAP_VERSION_DESC', '_JOMRES_BOOTSTRAP_VERSION_DESC', false));
         $configurationPanel->insertSetting();
 
-        if ($jrConfig[ 'advanced_site_config' ] == '1') {
-            $configurationPanel->setleft( jr_gettext( '_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN', '_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN', false ) );
-            $configurationPanel->setmiddle( $lists[ 'showLangDropdown' ] );
-            $configurationPanel->setright( jr_gettext( '_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', '_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', false ) );
-            $configurationPanel->insertSetting();
-			
-			$configurationPanel->setleft(jr_gettext('_JOMRES_REGION_TRANSLATION_SWITCH_TITLE', '_JOMRES_REGION_TRANSLATION_SWITCH_TITLE', false));
-            $configurationPanel->setmiddle($lists[ 'region_names_are_translatable' ]);
-            $configurationPanel->setright(jr_gettext('_JOMRES_REGION_TRANSLATION_SWITCH_DESC', '_JOMRES_REGION_TRANSLATION_SWITCH_DESC', false));
-            $configurationPanel->insertSetting();
-			
-			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_LANGUAGE_CONTEXT', '_JOMRES_COM_LANGUAGE_CONTEXT', false));
-            $configurationPanel->setmiddle($language_context_dropdown);
-            $configurationPanel->setright(jr_gettext('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', '_JOMRES_COM_LANGUAGE_CONTEXT_DESC', false));
-            $configurationPanel->insertSetting();
+		$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN', '_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN', false ) );
+		$configurationPanel->setmiddle( $lists[ 'showLangDropdown' ] );
+		$configurationPanel->setright( jr_gettext( '_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', '_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', false ) );
+		$configurationPanel->insertSetting();
+		
+		$configurationPanel->setleft(jr_gettext('_JOMRES_REGION_TRANSLATION_SWITCH_TITLE', '_JOMRES_REGION_TRANSLATION_SWITCH_TITLE', false));
+		$configurationPanel->setmiddle($lists[ 'region_names_are_translatable' ]);
+		$configurationPanel->setright(jr_gettext('_JOMRES_REGION_TRANSLATION_SWITCH_DESC', '_JOMRES_REGION_TRANSLATION_SWITCH_DESC', false));
+		$configurationPanel->insertSetting();
+		
+		$configurationPanel->setleft(jr_gettext('_JOMRES_COM_LANGUAGE_CONTEXT', '_JOMRES_COM_LANGUAGE_CONTEXT', false));
+		$configurationPanel->setmiddle($language_context_dropdown);
+		$configurationPanel->setright(jr_gettext('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', '_JOMRES_COM_LANGUAGE_CONTEXT_DESC', false));
+		$configurationPanel->insertSetting();
 
-            $configurationPanel->setleft(jr_gettext('_JOMRES_COM_JRCONFIG_GLOBALEDITING', '_JOMRES_COM_JRCONFIG_GLOBALEDITING', false));
-            $configurationPanel->setmiddle($lists[ 'editingModeAffectsAllProperties' ]);
-            $configurationPanel->setright(jr_gettext('_JOMRES_COM_JRCONFIG_GLOBALEDITING_DESC', '_JOMRES_COM_JRCONFIG_GLOBALEDITING_DESC', false));
-            $configurationPanel->insertSetting();
+		$configurationPanel->setleft(jr_gettext('_JOMRES_COM_JRCONFIG_GLOBALEDITING', '_JOMRES_COM_JRCONFIG_GLOBALEDITING', false));
+		$configurationPanel->setmiddle($lists[ 'editingModeAffectsAllProperties' ]);
+		$configurationPanel->setright(jr_gettext('_JOMRES_COM_JRCONFIG_GLOBALEDITING_DESC', '_JOMRES_COM_JRCONFIG_GLOBALEDITING_DESC', false));
+		$configurationPanel->insertSetting();
 
-            if (!this_cms_is_wordpress()) {
-                $configurationPanel->setleft(jr_gettext('_JOMRES_COM_JRCONFIG_ISWRAPPED', '_JOMRES_COM_JRCONFIG_ISWRAPPED', false));
-                $configurationPanel->setmiddle($lists[ 'isInIframe' ]);
-                $configurationPanel->setright(jr_gettext('_JOMRES_COM_JRCONFIG_ISWRAPPED_DESC', '_JOMRES_COM_JRCONFIG_ISWRAPPED_DESC', false));
-                $configurationPanel->insertSetting();
-            }
-
-            /*$configurationPanel->setleft( jr_gettext( '_JOMRES_ACCESS_CONTROL_CONFIG_TITLE', '_JOMRES_ACCESS_CONTROL_CONFIG_TITLE', false ) );
-            $configurationPanel->setmiddle( $lists[ 'full_access_control' ] );
-            $configurationPanel->setright( jr_gettext( '_JOMRES_ACCESS_CONTROL_CONFIG_DESC', '_JOMRES_ACCESS_CONTROL_CONFIG_DESC', false ) );
-            $configurationPanel->insertSetting();*/
-
-            $configurationPanel->setleft(jr_gettext('_JOMRES_CONFIG_JQUERY', '_JOMRES_CONFIG_JQUERY', false));
-            $configurationPanel->setmiddle($lists[ 'load_jquery' ]);
-            $configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_JQUERY_DESC', '_JOMRES_CONFIG_JQUERY_DESC', false));
-            $configurationPanel->insertSetting();
-
-            $configurationPanel->setleft(jr_gettext('_JOMRES_CONFIG_JQUERY_UI', '_JOMRES_CONFIG_JQUERY_UI', false));
-            $configurationPanel->setmiddle($lists[ 'load_jquery_ui' ]);
-            $configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_JQUERY_UI_DESC', '_JOMRES_CONFIG_JQUERY_UI_DESC', false));
-            $configurationPanel->insertSetting();
-			
-			$configurationPanel->setleft(jr_gettext('_JOMRES_CONFIG_JQUERY_UI_CSS', '_JOMRES_CONFIG_JQUERY_UI_CSS', false));
-            $configurationPanel->setmiddle($lists[ 'load_jquery_ui_css' ]);
-            $configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_JQUERY_UI_CSS_DESC', '_JOMRES_CONFIG_JQUERY_UI_CSS_DESC', false));
-            $configurationPanel->insertSetting();
-			
-			$configurationPanel->setleft(jr_gettext('_JOMRES_JQUERYTHEME', '_JOMRES_JQUERYTHEME', false));
-			$configurationPanel->setmiddle($jqueryUIthemesDropdownList);
-			$configurationPanel->setright(jr_gettext('_JOMRES_JQUERYTHEME_DESC', '_JOMRES_JQUERYTHEME_DESC', false));
+		if (!this_cms_is_wordpress()) {
+			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_JRCONFIG_ISWRAPPED', '_JOMRES_COM_JRCONFIG_ISWRAPPED', false));
+			$configurationPanel->setmiddle($lists[ 'isInIframe' ]);
+			$configurationPanel->setright(jr_gettext('_JOMRES_COM_JRCONFIG_ISWRAPPED_DESC', '_JOMRES_COM_JRCONFIG_ISWRAPPED_DESC', false));
 			$configurationPanel->insertSetting();
+		}
 
-            $configurationPanel->setleft(jr_gettext('_JOMRES_COM_FONTAWESOME', '_JOMRES_COM_FONTAWESOME', false));
-            $configurationPanel->setmiddle($lists[ 'load_font_awesome' ]);
-            $configurationPanel->setright(jr_gettext('_JOMRES_COM_FONTAWESOME_DESC', '_JOMRES_COM_FONTAWESOME_DESC', false));
-            $configurationPanel->insertSetting();
-			
-			$configurationPanel->setleft(jr_gettext('_JOMRES_BOOTSTRAP_LOCATION', '_JOMRES_BOOTSTRAP_LOCATION', false));
-            $configurationPanel->setmiddle($navbar_location_dropdown);
-            $configurationPanel->setright();
-            $configurationPanel->insertSetting();
+		/*$configurationPanel->setleft( jr_gettext( '_JOMRES_ACCESS_CONTROL_CONFIG_TITLE', '_JOMRES_ACCESS_CONTROL_CONFIG_TITLE', false ) );
+		$configurationPanel->setmiddle( $lists[ 'full_access_control' ] );
+		$configurationPanel->setright( jr_gettext( '_JOMRES_ACCESS_CONTROL_CONFIG_DESC', '_JOMRES_ACCESS_CONTROL_CONFIG_DESC', false ) );
+		$configurationPanel->insertSetting();*/
 
-            $configurationPanel->setleft(jr_gettext('_JOMRES_BOOTSTRAP_LOCATION_INVERSE', '_JOMRES_BOOTSTRAP_LOCATION_INVERSE', false));
-            $configurationPanel->setmiddle($lists[ 'navbar_inverse' ]);
-            $configurationPanel->setright();
-            $configurationPanel->insertSetting();
+		$configurationPanel->setleft(jr_gettext('_JOMRES_CONFIG_JQUERY', '_JOMRES_CONFIG_JQUERY', false));
+		$configurationPanel->setmiddle($lists[ 'load_jquery' ]);
+		$configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_JQUERY_DESC', '_JOMRES_CONFIG_JQUERY_DESC', false));
+		$configurationPanel->insertSetting();
 
-            $configurationPanel->setleft(jr_gettext('_JOMRES_SHOW_POWEREDBY', '_JOMRES_SHOW_POWEREDBY', false));
-            $configurationPanel->setmiddle($lists[ 'show_powered_by' ]);
-            $configurationPanel->setright();
-            $configurationPanel->insertSetting();
-        }
+		$configurationPanel->setleft(jr_gettext('_JOMRES_CONFIG_JQUERY_UI', '_JOMRES_CONFIG_JQUERY_UI', false));
+		$configurationPanel->setmiddle($lists[ 'load_jquery_ui' ]);
+		$configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_JQUERY_UI_DESC', '_JOMRES_CONFIG_JQUERY_UI_DESC', false));
+		$configurationPanel->insertSetting();
+		
+		$configurationPanel->setleft(jr_gettext('_JOMRES_CONFIG_JQUERY_UI_CSS', '_JOMRES_CONFIG_JQUERY_UI_CSS', false));
+		$configurationPanel->setmiddle($lists[ 'load_jquery_ui_css' ]);
+		$configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_JQUERY_UI_CSS_DESC', '_JOMRES_CONFIG_JQUERY_UI_CSS_DESC', false));
+		$configurationPanel->insertSetting();
+		
+		$configurationPanel->setleft(jr_gettext('_JOMRES_JQUERYTHEME', '_JOMRES_JQUERYTHEME', false));
+		$configurationPanel->setmiddle($jqueryUIthemesDropdownList);
+		$configurationPanel->setright(jr_gettext('_JOMRES_JQUERYTHEME_DESC', '_JOMRES_JQUERYTHEME_DESC', false));
+		$configurationPanel->insertSetting();
+
+		$configurationPanel->setleft(jr_gettext('_JOMRES_COM_FONTAWESOME', '_JOMRES_COM_FONTAWESOME', false));
+		$configurationPanel->setmiddle($lists[ 'load_font_awesome' ]);
+		$configurationPanel->setright(jr_gettext('_JOMRES_COM_FONTAWESOME_DESC', '_JOMRES_COM_FONTAWESOME_DESC', false));
+		$configurationPanel->insertSetting();
+		
+		$configurationPanel->setleft(jr_gettext('_JOMRES_BOOTSTRAP_LOCATION', '_JOMRES_BOOTSTRAP_LOCATION', false));
+		$configurationPanel->setmiddle($navbar_location_dropdown);
+		$configurationPanel->setright();
+		$configurationPanel->insertSetting();
+
+		$configurationPanel->setleft(jr_gettext('_JOMRES_BOOTSTRAP_LOCATION_INVERSE', '_JOMRES_BOOTSTRAP_LOCATION_INVERSE', false));
+		$configurationPanel->setmiddle($lists[ 'navbar_inverse' ]);
+		$configurationPanel->setright();
+		$configurationPanel->insertSetting();
+
+		$configurationPanel->setleft(jr_gettext('_JOMRES_SHOW_POWEREDBY', '_JOMRES_SHOW_POWEREDBY', false));
+		$configurationPanel->setmiddle($lists[ 'show_powered_by' ]);
+		$configurationPanel->setright();
+		$configurationPanel->insertSetting();
 		
 		$configurationPanel->setleft(jr_gettext('_JOMRES_TRACKING_ENABLE', '_JOMRES_TRACKING_ENABLE', false));
         $configurationPanel->setmiddle($lists[ 'send_tracking_data' ]);
         $configurationPanel->setright(jr_gettext('_JOMRES_TRACKING_ENABLE_DESC', '_JOMRES_TRACKING_ENABLE_DESC', false));
         $configurationPanel->insertSetting();
-		
-		if ($jrConfig[ 'advanced_site_config' ] == '1') {
-			$configurationPanel->setleft(jr_gettext('_JOMRES_SESSION_HANDLER', '_JOMRES_SESSION_HANDLER', false));
-			$configurationPanel->setmiddle($lists[ 'session_handler' ]);
-			$configurationPanel->setright(jr_gettext('_JOMRES_SESSION_HANDLER_DESC', '_JOMRES_SESSION_HANDLER_DESC', false));
-			$configurationPanel->insertSetting();
-		}
+
+		$configurationPanel->setleft(jr_gettext('_JOMRES_SESSION_HANDLER', '_JOMRES_SESSION_HANDLER', false));
+		$configurationPanel->setmiddle($lists[ 'session_handler' ]);
+		$configurationPanel->setright(jr_gettext('_JOMRES_SESSION_HANDLER_DESC', '_JOMRES_SESSION_HANDLER_DESC', false));
+		$configurationPanel->insertSetting();
 
 		//plugins can add options to this tab
 		$MiniComponents->triggerEvent('10521', $componentArgs);

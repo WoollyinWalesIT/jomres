@@ -31,37 +31,33 @@ class j10501languages
 
         $configurationPanel = $componentArgs[ 'configurationPanel' ];
         $lists = $componentArgs[ 'lists' ];
+
+		$jomres_language = jomres_singleton_abstract::getInstance('jomres_language');
+		$languagesArray = $jomres_language->define_langfile_to_languages_array();
+	
+		$selected_languages = array();
+		if ($jrConfig['selected_languages'] != '') {
+			$selected_languages = explode(',',$jrConfig['selected_languages']);
+		}
 		
-		if ($jrConfig[ 'advanced_site_config' ] == '1') {
-			$jomres_language = jomres_singleton_abstract::getInstance('jomres_language');
-			$languagesArray = $jomres_language->define_langfile_to_languages_array();
+		$configurationPanel->startPanel(jr_gettext('_JOMRES_COM_CHOOSELANGUAGES', '_JOMRES_COM_CHOOSELANGUAGES', false));
 		
-			$selected_languages = array();
-			if ($jrConfig['selected_languages'] != '') {
-				$selected_languages = explode(',',$jrConfig['selected_languages']);
+		$configurationPanel->insertDescription(jr_gettext('_JOMRES_COM_CHOOSELANGUAGES_INFO', '_JOMRES_COM_CHOOSELANGUAGES_INFO', false));
+		
+		foreach ($languagesArray as $key => $val) {
+			$selected = '';
+
+			if (in_array($key, $selected_languages)) {
+				$selected = ' checked="yes" ';
 			}
-			
-			$configurationPanel->startPanel(jr_gettext('_JOMRES_COM_CHOOSELANGUAGES', '_JOMRES_COM_CHOOSELANGUAGES', false));
-			
-			$configurationPanel->insertDescription(jr_gettext('_JOMRES_COM_CHOOSELANGUAGES_INFO', '_JOMRES_COM_CHOOSELANGUAGES_INFO', false));
-			
-			foreach ($languagesArray as $key => $val) {
-				$selected = '';
 
-				if (in_array($key, $selected_languages)) {
-					$selected = ' checked="yes" ';
-				}
-
-				$configurationPanel->setleft($key);
-				$configurationPanel->setmiddle('<input type="checkbox" id="cb'.$key.'" name="cfgArr_selected_languages[]" value="'.$key.'" '.$selected.'>');
-				$configurationPanel->setright($val);
-				$configurationPanel->insertSetting();
-			}
-			
-			$configurationPanel->endPanel();
-        }
-
-        
+			$configurationPanel->setleft($key);
+			$configurationPanel->setmiddle('<input type="checkbox" id="cb'.$key.'" name="cfgArr_selected_languages[]" value="'.$key.'" '.$selected.'>');
+			$configurationPanel->setright($val);
+			$configurationPanel->insertSetting();
+		}
+		
+		$configurationPanel->endPanel();
     }
 
     // This must be included in every Event/Mini-component

@@ -30,7 +30,7 @@ class j10002invoices
 
         $this->cpanelButton = null;
 
-        if ((int) $jrConfig[ 'advanced_site_config' ] == 1 && ((int) $jrConfig[ 'useSubscriptions' ] == 1 || (int) $jrConfig[ 'use_commission' ] == 1)) {
+        if ((int) $jrConfig[ 'useSubscriptions' ] == 1 || (int) $jrConfig[ 'use_commission' ] == 1) {
             $htmlFuncs = jomres_singleton_abstract::getInstance('html_functions');
             $this->cpanelButton = $htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_invoices', 'Invoice.png', jr_gettext('_JRPORTAL_INVOICES_TITLE', '_JRPORTAL_INVOICES_TITLE', false, false), '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/', jr_gettext('_JOMRES_CUSTOMCODE_MENUCATEGORIES_INCOME_GENERATION', '_JOMRES_CUSTOMCODE_MENUCATEGORIES_INCOME_GENERATION', false, false));
         }

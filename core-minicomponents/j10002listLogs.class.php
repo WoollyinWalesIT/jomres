@@ -30,10 +30,9 @@ class j10002listLogs
 
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
-        if ($jrConfig[ 'advanced_site_config' ] == 1) {
-            $htmlFuncs = jomres_singleton_abstract::getInstance('html_functions');
-            $this->cpanelButton = $htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_error_logs', 'logs.png', jr_gettext('JOMRES_COM_A_AVAILABLELOGS', 'JOMRES_COM_A_AVAILABLELOGS', false, false), '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/', jr_gettext('_JOMRES_CUSTOMCODE_MENUCATEGORIES_DEVELOPERS', '_JOMRES_CUSTOMCODE_MENUCATEGORIES_DEVELOPERS', false, false));
-        }
+
+		$htmlFuncs = jomres_singleton_abstract::getInstance('html_functions');
+		$this->cpanelButton = $htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_error_logs', 'logs.png', jr_gettext('JOMRES_COM_A_AVAILABLELOGS', 'JOMRES_COM_A_AVAILABLELOGS', false, false), '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/', jr_gettext('_JOMRES_CUSTOMCODE_MENUCATEGORIES_DEVELOPERS', '_JOMRES_CUSTOMCODE_MENUCATEGORIES_DEVELOPERS', false, false));
     }
 
     public function touch_template_language()

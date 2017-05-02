@@ -38,14 +38,6 @@ class j16000jomres_warnings
         $output = array();
         $pageoutput = array();
 
-        //advanced site config set to no warning
-        $output['ADVANCED_SITE_CONFIG_WARNING'] = '';
-        $output['ADVANCED_SITE_CONFIG_WARNING_HIGHLIGHT'] = '';
-        if ($jrConfig['advanced_site_config'] == '0') {
-            $output['ADVANCED_SITE_CONFIG_WARNING'] = jr_gettext('_JOMRES_COM_ADVANCED_SITE_CONFIG_WARNING', '_JOMRES_COM_ADVANCED_SITE_CONFIG_WARNING', false);
-            $output['ADVANCED_SITE_CONFIG_WARNING_HIGHLIGHT'] = 'alert alert-warning';
-        }
-
         //max input vars set to 1000 warning only if micromanage is enabled
         $output[ 'MAX_INPUT_VARS_CHECK' ] = max_input_vars_test();
 
