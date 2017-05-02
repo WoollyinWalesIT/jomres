@@ -35,6 +35,9 @@ class j10001control_panel
 
         $output = array();
         $page_output = array();
+		
+		//jomres warnings
+        $output['JOMRES_WARNINGS'] = $MiniComponents->specificEvent('16000', 'jomres_warnings', array('output_now' => false));
 
         //Usage reporting setting
         $output['USAGE_REPORTING'] = $MiniComponents->specificEvent('16000', 'usage_reporting_request', array('output_now' => false, 'show_as_panel' => true));
@@ -48,11 +51,20 @@ class j10001control_panel
         //jomres system info
         $output['JOMRES_SYSTEM_INFO'] = $MiniComponents->specificEvent('16000', 'jomres_system_info', array('output_now' => false));
 
-        //jomres writability check
+        //jomres overview
         $output['JOMRES_OVERVIEW'] = $MiniComponents->specificEvent('16000', 'jomres_overview', array('output_now' => false));
+		
+		//jomres income overview
+        $output['JOMRES_INCOME_OVERVIEW'] = $MiniComponents->specificEvent('16000', 'jomres_income_overview', array('output_now' => false));
+		
+		//jomres properties overview
+        $output['JOMRES_PROPERTIES_OVERVIEW'] = $MiniComponents->specificEvent('16000', 'jomres_properties_overview', array('output_now' => false));
+		
+		//jomres reviews overview
+        $output['JOMRES_REVIEWS_OVERVIEW'] = $MiniComponents->specificEvent('16000', 'jomres_reviews_overview', array('output_now' => false));
 
         //bookings chart
-        $output['BOOKINGS_CHART'] = $MiniComponents->specificEvent('16000', 'chart_bookings', array('output_now' => false));
+        $output['BOOKINGS_CHART'] = $MiniComponents->specificEvent('16000', 'chart_bookings', array('output_now' => false, 'height'=> 400));
 
         //commissions chart
         $output['COMMISSIONS_CHART'] = '';
