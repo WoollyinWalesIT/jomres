@@ -50,9 +50,6 @@ class j10001control_panel
 
         //jomres system info
         $output['JOMRES_SYSTEM_INFO'] = $MiniComponents->specificEvent('16000', 'jomres_system_info', array('output_now' => false));
-
-        //jomres overview
-        $output['JOMRES_OVERVIEW'] = $MiniComponents->specificEvent('16000', 'jomres_overview', array('output_now' => false));
 		
 		//jomres income overview
         $output['JOMRES_INCOME_OVERVIEW'] = $MiniComponents->specificEvent('16000', 'jomres_income_overview', array('output_now' => false));
