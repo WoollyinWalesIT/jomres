@@ -257,7 +257,7 @@ class j06005list_invoices_ajax
                 $toolbar->newToolbar();
                 $toolbar->addItem('fa fa-pencil-square-o', 'btn btn-info', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=view_invoice&id='.$p->id.$thisProperty), jr_gettext('COMMON_VIEW', 'COMMON_VIEW', false));
                 if ((int) $p->contract_id != 0 && (int) $p->status != 1) {
-                    if ($thisJRUser->userIsManager || $thisJRUser->superPropertyManager) {
+                    if ($thisJRUser->userIsManager && $p->approved == 1) {
                         $toolbar->addSecondaryItem('fa fa-check', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=mark_booking_invoice_paid&id='.$p->id.$thisProperty), jr_gettext('_JOMRES_INVOICE_MARKASPAID', '_JOMRES_INVOICE_MARKASPAID', false));
                         $toolbar->addSecondaryItem('fa fa-pencil-square-o', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_booking&contract_uid='.$p->contract_id.$thisProperty), jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING', '_JOMCOMP_MYUSER_VIEWBOOKING', false));
                     }

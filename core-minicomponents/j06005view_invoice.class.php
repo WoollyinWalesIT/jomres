@@ -127,20 +127,20 @@ class j06005view_invoice
         $output[ 'HINVOICENO' ] = jr_gettext('_JOMRES_INVOICE_NUMBER', '_JOMRES_INVOICE_NUMBER');
 
         $markaspaid_link = array();
-        if ($thisJRUser->userIsManager && (int) $invoice->property_uid > 0 && (int) $invoice->status != 1) {
-            $markaspaid = jr_gettext('_JOMRES_INVOICE_MARKASPAID', '_JOMRES_INVOICE_MARKASPAID', false, false);
+        if ($thisJRUser->userIsManager && (int) $invoice->property_uid > 0 && (int) $invoice->status != 1 && $contractData['approved'] == 1) {
+            $markaspaid = jr_gettext('_JOMRES_INVOICE_MARKASPAID', '_JOMRES_INVOICE_MARKASPAID',false);
             $markaspaid_link[] = array('MARKASPAID_LINK' => JOMRES_SITEPAGE_URL_NOSEF.'&task=mark_booking_invoice_paid&no_html=1&id='.$invoice->id, 'MARKASPAID_TEXT' => $markaspaid);
         }
 
         $markaspending_link = array();
         if ($thisJRUser->userIsManager && (int) $invoice->property_uid > 0 && (int) $invoice->status == 1) {
-            $markaspending = jr_gettext('_JOMRES_INVOICE_MARKASPENDING', '_JOMRES_INVOICE_MARKASPENDING', false, false);
+            $markaspending = jr_gettext('_JOMRES_INVOICE_MARKASPENDING', '_JOMRES_INVOICE_MARKASPENDING',false);
             $markaspending_link[] = array('MARKASPENDING_LINK' => JOMRES_SITEPAGE_URL_NOSEF.'&task=mark_booking_invoice_pending&no_html=1&id='.$invoice->id, 'MARKASPENDING_TEXT' => $markaspending);
         }
 
         $viewbooking_link = array();
         if ($thisJRUser->userIsManager && (int) $invoice->contract_id > 0) {
-            $viewbooking = jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING', '_JOMCOMP_MYUSER_VIEWBOOKING', false, false);
+            $viewbooking = jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING', '_JOMCOMP_MYUSER_VIEWBOOKING',false);
             $viewbooking_link[] = array('VIEWBOOKING_LINK' => JOMRES_SITEPAGE_URL.'&task=edit_booking&contract_uid='.$invoice->contract_id, 'VIEWBOOKING_TEXT' => $viewbooking);
         }
 
