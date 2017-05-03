@@ -44,26 +44,32 @@ class j16000jomres_system_info
 
         $this_version = get_jomres_current_version();
         $latest_version = get_latest_jomres_version();
+		
+		$output[ '_JOMRES_VERSIONCHECK_THISJOMRESVERSION' ] = jr_gettext('_JOMRES_VERSIONCHECK_THISJOMRESVERSION', '_JOMRES_VERSIONCHECK_THISJOMRESVERSION', false);
+        $output[ '_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION' ] = jr_gettext('_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION', '_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION', false);
+		
+		$output[ 'THIS_JOMRES_VERSION' ] = $this_version;
+		$output[ 'JOMRES_VERSION_LABEL_CLASS' ] = 'label-green';
+		
+		$output[ 'ERROR' ] = '';
+		$output[ 'HIGHLIGHT' ] = '';
+		$output[ 'ALERT' ] = '';
 
         if (empty($latest_version)) {
-            $output[ 'LATEST_JOMRES_VERSION' ] = 'Sorry, could not get latest version of Jomres, is there a firewall preventing communication with http://updates.jomres4.net ? Alternatively, please check that CURL is enabled on this webserver<p>';
+			$output[ 'JOMRES_VERSION_LABEL_CLASS' ] = 'label-red';
+			$output[ 'LATEST_JOMRES_VERSION' ] = 'Unknown'; 
+            $output[ 'ERROR' ] = 'Sorry, could not get latest version of Jomres, is there a firewall preventing communication with http://updates.jomres4.net ? Alternatively, please check that CURL is enabled on this webserver<p>';
+			$output[ 'HIGHLIGHT' ] = (using_bootstrap() ? 'alert alert-error' : 'ui-state-error');
         } else {
             $current_version_is_uptodate = check_jomres_version();
 
-            $output[ 'HIGHLIGHT' ] = '';
-            $output[ 'ALERT' ] = '';
-			$output[ 'JOMRES_VERSION_LABEL_CLASS' ] = 'label-green';
             if (!$current_version_is_uptodate) {
                 $output[ 'HIGHLIGHT' ] = (using_bootstrap() ? 'alert alert-error' : 'ui-state-error');
                 $output[ 'ALERT' ] = '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=updates" >'.jr_gettext('_JOMRES_VERSIONCHECK_VERSIONWARNING', '_JOMRES_VERSIONCHECK_VERSIONWARNING', false).'</a>';
 				$output[ 'JOMRES_VERSION_LABEL_CLASS' ] = 'label-red';
             }
 
-            $output[ '_JOMRES_VERSIONCHECK_THISJOMRESVERSION' ] = jr_gettext('_JOMRES_VERSIONCHECK_THISJOMRESVERSION', '_JOMRES_VERSIONCHECK_THISJOMRESVERSION', false);
-            $output[ '_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION' ] = jr_gettext('_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION', '_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION', false);
-
-            $output[ 'LATEST_JOMRES_VERSION' ] = $latest_version;
-            $output[ 'THIS_JOMRES_VERSION' ] = $this_version;
+			$output[ 'LATEST_JOMRES_VERSION' ] = $latest_version;
         }
 
         $pageoutput[ ] = $output;
