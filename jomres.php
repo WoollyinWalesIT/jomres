@@ -114,7 +114,10 @@ try {
     if ($task == "savePlugin") { // 9.9 task names were changed, and savePlugin was renumbered and renamed to save_plugin. As many 3rd party gateways will use savePlugin (and it may never be updated ) we'll change the task name here so that they continue to work.
         $task = "save_plugin";
     }
-    
+    if ($task == "editGateway") { // 9.9 task names were changed, and editGateway was renumbered and renamed to editgateway. As many 3rd party gateways will use editGateway (and it may never be updated ) we'll change the task name here so that they continue to work.
+        $task = "editgateway";
+    }
+	
     set_showtime('task', $task);
     set_showtime('no_html', $no_html);
     set_showtime('popup', $popup);

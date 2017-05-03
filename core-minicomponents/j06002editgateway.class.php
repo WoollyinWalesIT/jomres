@@ -25,7 +25,7 @@ class j06002editgateway
 
             return;
         }
-		
+		$plugin = jomresGetParam($_REQUEST, 'plugin', '');
 		$MiniComponents->specificEvent('00510', $plugin);
         
     }
