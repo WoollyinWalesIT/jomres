@@ -29,6 +29,15 @@ class jomres_user_feedback
 		$this->css_classes_successs = 'success';
 		$this->css_classes_info = 'info';
     }
+	
+	public static function getInstance()
+    {
+        if (!self::$configInstance) {
+            self::$configInstance = new self();
+        }
+
+        return self::$configInstance;
+    }
 
     public function generate_messages()
     {

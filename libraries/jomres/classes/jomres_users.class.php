@@ -32,7 +32,7 @@ class jomres_users
 		{
 		if ( !self::$configInstance )
 			{
-			self::$configInstance = new jomres_users();
+			self::$configInstance = new self();
 			}
 
 		return self::$configInstance;
