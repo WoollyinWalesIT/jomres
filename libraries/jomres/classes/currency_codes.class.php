@@ -28,6 +28,7 @@ class currency_codes
 			'ALL' => 'Albanian Lek ALL ', 
 			'DZD' => 'Algerian Dinar DZD ', 
 			'AON' => 'Angolan New Kwanza AON ', 
+			'AMD' => 'Armenian Dram ', 
 			'ANG' => 'Antillian Guilder (Netherlands) ANG ', 
 			'AED' => 'Arab Emirates Dirham (United)  AED ', 
 			'ARS' => 'Argentine Peso ARS ', 
@@ -178,6 +179,7 @@ class currency_codes
 			'AL' => 'ALL', 
 			'AZ' => 'AZN', 
 			'AO' => 'AON', 
+			'AM' => 'AMD', 
 			//'ANG'=>'ANG (Netherlands) Antillian Guilder', // No info
 			'AE' => 'AED', 
 			'AR' => 'ARS', 
@@ -348,6 +350,7 @@ class currency_codes
 			'AZN' => array('pre' => '', 'post' => '&nbsp;AZN'), 
 			'DZD' => array('pre' => 'دج', 'post' => ''), 
 			'AON' => array('pre' => 'Kz', 'post' => ''), 
+			'AMD' => array('pre' => '֏', 'post' => ''), 
 			'ANG' => array('pre' => 'NAƒ', 'post' => ''), 
 			'AED' => array('pre' => 'د.إ', 'post' => ''), 
 			'ARS' => array('pre' => '$', 'post' => ''), 
