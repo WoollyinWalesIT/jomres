@@ -610,7 +610,7 @@ jr_define('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_ADDRESSINPUTERROR', 'Sorry, one o
 jr_define('_JOMRES_COM_A_BOOKINGFORM_SHOWROOMIMAGE', 'Szoba kép');
 jr_define('_JOMRES_CURRENCYFORMAT', 'Valuta formátum');
 jr_define('JOMRES_COM_A_SEARCHOPTIONSTAB', 'Search options');
-jr_define('JOMRES_COM_A_AVAILABLELOGS', 'Available Logs');
+jr_define('JOMRES_COM_A_AVAILABLELOGS', 'Log files');
 jr_define('JOMRES_COM_A_MESSAGE', 'Message');
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Jomres 2.6.3
 jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'Normál');

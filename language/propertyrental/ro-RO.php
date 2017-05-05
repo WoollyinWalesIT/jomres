@@ -615,7 +615,7 @@ jr_define('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_ADDRESSINPUTERROR', 'Ne pare rau,
 jr_define('_JOMRES_COM_A_BOOKINGFORM_SHOWROOMIMAGE', 'Imagine camera');
 jr_define('_JOMRES_CURRENCYFORMAT', 'Format suma');
 jr_define('JOMRES_COM_A_SEARCHOPTIONSTAB', 'Cauta optiuni');
-jr_define('JOMRES_COM_A_AVAILABLELOGS', 'Available Logs');
+jr_define('JOMRES_COM_A_AVAILABLELOGS', 'Log files');
 jr_define('JOMRES_COM_A_MESSAGE', 'Mesaj');
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Jomres 2.6.3
 jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'Normal');

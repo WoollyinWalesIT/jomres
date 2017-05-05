@@ -612,7 +612,7 @@ jr_define('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_ADDRESSINPUTERROR', 'Jedno ili vi
 jr_define('_JOMRES_COM_A_BOOKINGFORM_SHOWROOMIMAGE', 'Slika sobe');
 jr_define('_JOMRES_CURRENCYFORMAT', 'Oznaka valute');
 jr_define('JOMRES_COM_A_SEARCHOPTIONSTAB', 'Postavke pretraživanja');
-jr_define('JOMRES_COM_A_AVAILABLELOGS', 'Available Logs');
+jr_define('JOMRES_COM_A_AVAILABLELOGS', 'Log files');
 jr_define('JOMRES_COM_A_MESSAGE', 'Poruka');
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Jomres 2.6.3
 jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'Normal');
