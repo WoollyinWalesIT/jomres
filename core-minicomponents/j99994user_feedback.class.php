@@ -34,15 +34,18 @@ class j99994user_feedback
 		
 		$jomres_user_feedback = jomres_singleton_abstract::getInstance('jomres_user_feedback');
 
-		if (!empty($jomres_user_feedback->user_feedback_messages)) { //no need to run this if there are no feedback messages set
-			$output[ 'MESSAGES' ] = $jomres_user_feedback->generate_messages();
-			$pageoutput[ ] = $output;
-			$tmpl = new patTemplate();
-			$tmpl->addRows('pageoutput', $pageoutput);
-			$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
-			$tmpl->readTemplatesFromInput('user_feedback.html');
-			set_showtime('user_feedback', $tmpl->getParsedTemplate());
+		//no need to run this if there are no feedback messages set
+		if (empty($jomres_user_feedback->user_feedback_messages)) {
+			return;
 		}
+
+		$output[ 'MESSAGES' ] = $jomres_user_feedback->generate_messages();
+		$pageoutput[ ] = $output;
+		$tmpl = new patTemplate();
+		$tmpl->addRows('pageoutput', $pageoutput);
+		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+		$tmpl->readTemplatesFromInput('user_feedback.html');
+		set_showtime('user_feedback', $tmpl->getParsedTemplate());
     }
 
     // This must be included in every Event/Mini-component

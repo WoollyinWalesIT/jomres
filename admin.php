@@ -20,7 +20,7 @@ ob_start('removeBOMadmin');
 @ini_set('max_execution_time', '480');
 
 //TODO: remove these too
-global $thisJRUser, $htmlFuncs;
+global $thisJRUser;
 
 require_once dirname(__FILE__).'/integration.php';
 
@@ -83,9 +83,12 @@ try {
 
     require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'siteconfig.functions.php';
 
-    //add javascript to head
     if (!AJAXCALL) {
+		//add javascript to head
         init_javascript();
+		
+		//jomres admin cpanel menu items. Needs to be executed before the 00005 trigger which may contain other admin menu items from plugins
+        $MiniComponents->specificEvent('10005', 'admin_menu', array());
     }
 
     //00005 trigger point
@@ -104,14 +107,10 @@ try {
 
         $pageoutput = array();
         $output = array();
-
-        $htmlFuncs = jomres_singleton_abstract::getInstance('html_functions');
-
-        //cpanel main menu
-        $MiniComponents->triggerEvent('10002'); // 10002 scripts build the menu options
-        $MiniComponents->getAllEventPointsData('10002');
-        $MiniComponents->triggerEvent('10003'); // 10003 builds the menu arrays
-        $output[ 'CONTROL_PANEL_MENU' ] = $MiniComponents->miniComponentData[ '10004' ][ 'generate_control_panel' ]; // 10004 Builds the actual menu items
+		
+		//generate the cpanel menu
+		$MiniComponents->specificEvent('10006', 'admin_menu', array());
+		$output[ 'CONTROL_PANEL_MENU' ] = $MiniComponents->miniComponentData[ '10006' ][ 'admin_menu' ];
 
         //frequently asked questions
         $output['_JOMRES_FAQ'] = jr_gettext('_JOMRES_FAQ', '_JOMRES_FAQ', false);

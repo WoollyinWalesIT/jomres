@@ -1412,6 +1412,48 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_minicomponents.'j07020list_reviews.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j16000jomres_overview.class.php');
 		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'jomres_overview.html');
+		$this->add_obs_file($this->dir_minicomponents.'j10002AAA_controlpanel.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002AAA_getting_started.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002access_control.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002approvals.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002asamodule_report.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002booking_data_archive.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002changelog.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002charts.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002export_definitions.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002filesystem_integrity_check.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002invoices.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002list_countries.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002list_gateways.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002list_property_types.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002list_regions.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002list_tax_rules.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002list_users.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002listGlobalroomTypes.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002listLogs.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002listPfeatures.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002listPfeaturesCategories.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002manual_online.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002media_centre.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002my_account.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002partners.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002partners_choose.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002rebuildregistry.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002reviews.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002showplugins.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002site_settings.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002taxrates.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002tickets.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002touch_templates.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002translate_lang_file_strings.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002translate_locales.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002updates.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002zzz_about.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002zzz_about_shortcodes.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10003control_panel_buttons.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10004generate_control_panel.class.php');
+		$this->add_obs_file($this->dir_classes.'html_functions.class.php');
+		
     }
 
     public function add_obs_file($path_and_file)
