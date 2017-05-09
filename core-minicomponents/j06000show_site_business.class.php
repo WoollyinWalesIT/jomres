@@ -32,11 +32,6 @@ class j06000show_site_business
         }
         $this->retVals = '';
 
-        $output_now = true;
-        if (isset($componentArgs[ 'output_now' ])) {
-            $output_now = (bool) $componentArgs[ 'output_now' ];
-        }
-
         $output = array();
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
@@ -68,13 +63,7 @@ class j06000show_site_business
         $tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
         $tmpl->readTemplatesFromInput('show_business_details.html');
         $tmpl->addRows('pageoutput', $pageoutput);
-        $result = $tmpl->getParsedTemplate();
-
-        if ($output_now) {
-            echo $result;
-        } else {
-            $this->retVals = $result;
-        }
+        $this->retVals = $tmpl->getParsedTemplate();
     }
 
     // This must be included in every Event/Mini-component

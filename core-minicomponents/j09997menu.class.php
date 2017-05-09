@@ -57,8 +57,10 @@ class j09997menu
 				//menu item url
 				if ($jomres_menu->items[$task]['is_url']) {
 					$r['LINK'] = $task;
-				} else {
+				} elseif ($task != 'blank') {
 					$r['LINK'] = jomresUrl(JOMRES_SITEPAGE_URL.'&task='.$task);
+				} else {
+					$r['LINK'] = jomresUrl(JOMRES_SITEPAGE_URL.'&task=dashboard');
 				}
 				
 				//menu item icon
@@ -79,17 +81,19 @@ class j09997menu
 				
 				//menu item badges TODO: find a better way or remove this completely
 				$r[ 'BADGES' ] = '';
-					
-				$items_requiring_attention = get_number_of_items_requiring_attention_for_menu_option($task);
 				
-				if (!empty($items_requiring_attention)) {
-					foreach ($items_requiring_attention as $colour => $number) {
-						if ($number > 0) {
-							$tmpl = new patTemplate();
-							$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
-							$tmpl->readTemplatesFromInput('frontend_menu_badge_'.$colour.'.html');
-							$tmpl->addRows('items_requiring_attention', array(array('NUMBER' => $number)));
-							$r[ 'BADGES' ] = $tmpl->getParsedTemplate();
+				if (!$jomres_menu->items[$task]['is_url']) {
+					$items_requiring_attention = get_number_of_items_requiring_attention_for_menu_option($task);
+					
+					if (!empty($items_requiring_attention)) {
+						foreach ($items_requiring_attention as $colour => $number) {
+							if ($number > 0) {
+								$tmpl = new patTemplate();
+								$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+								$tmpl->readTemplatesFromInput('frontend_menu_badge_'.$colour.'.html');
+								$tmpl->addRows('items_requiring_attention', array(array('NUMBER' => $number)));
+								$r[ 'BADGES' ] = $tmpl->getParsedTemplate();
+							}
 						}
 					}
 				}

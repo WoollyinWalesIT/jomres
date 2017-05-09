@@ -25,6 +25,11 @@ class j10501integrated_search
 
             return;
         }
+		
+		if (!this_cms_is_wordpress()) {
+			return;
+		}
+
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
 

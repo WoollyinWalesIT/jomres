@@ -774,10 +774,15 @@ function genericLike($idArray, $fieldToSearch, $idArrayisInteger = true)
     return $txt;
 }
 
-function get_number_of_items_requiring_attention_for_menu_option($task)
+function get_number_of_items_requiring_attention_for_menu_option($task = '')
 {
+	if ($task == '') {
+		return array();
+	}
+
     $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-    if (jomres_cmsspecific_areweinadminarea()) {
+    
+	if (jomres_cmsspecific_areweinadminarea()) {
         if ($MiniComponents->eventSpecificlyExistsCheck('07020', $task)) {
             return $MiniComponents->specificEvent('07020', $task);
         } else {
@@ -2658,7 +2663,7 @@ function saveHotelSettings()
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
 
-    $property_uid = (int) getDefaultProperty();
+    $property_uid = (int)getDefaultProperty();
     $mrConfig = getPropertySpecificSettings($property_uid);
 
     $tariffmodeChange = false;
@@ -2749,8 +2754,8 @@ function saveHotelSettings()
         $validation->vies_check(filter_var($_POST['cfg_property_vat_number'], FILTER_SANITIZE_SPECIAL_CHARS));
         $validation->save_subject($type = 'property', array('property_uid' => $property_uid));
     }
-
-    jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL."&task=business_settings&property_uid=$property_uid"), '');
+	
+	return true;
 }
 
 function removeAllPropertyEnhanceTariffsXref($property_uid)
