@@ -1488,6 +1488,7 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_minicomponents.'j99997generate_mainmenu.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j10501reviews.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j06000feature_not_available.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00005asamodule_report_tasks.class.php');
     }
 
     public function add_obs_file($path_and_file)
