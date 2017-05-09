@@ -56,7 +56,6 @@ class j19995menu
 		
 		//users section menus
 		$jomres_menu->add_admin_item(10, jr_gettext('_JOMRES_COM_MR_SHOWPROFILES', '_JOMRES_COM_MR_SHOWPROFILES', false), 'list_users', 'fa-user');
-		$jomres_menu->add_admin_item(10, jr_gettext('_JOMRES_CUSTOMCODE_ACCESSCONTROL', '_JOMRES_CUSTOMCODE_ACCESSCONTROL', false), 'access_control', 'fa-lock');
 		
 		//invoices section menus
 		if ($jrConfig[ 'use_commission' ] == '1' || $jrConfig[ 'useSubscriptions' ] == '1') {
