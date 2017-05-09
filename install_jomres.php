@@ -609,8 +609,24 @@ function doTableUpdates()
 	drop_cronlog_table();
     add_api_tables();
 	add_jomres_sessions_table();
+	add_jomres_template_package_table();
     updateSiteSettings('update_time', time());
     
+}
+
+
+		
+function add_jomres_template_package_table()
+{
+	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_template_package_overrides (
+		`id` INT(11) auto_increment,
+        `template_name` VARCHAR(100) NOT NULL,
+		`path` VARCHAR(1000) NOT NULL,
+        PRIMARY KEY (`id`)
+        )";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to create the __jomres_template_package_overrides table', 'danger');
+    }
 }
 
 function add_jomres_sessions_table()
@@ -4068,6 +4084,15 @@ function createJomresTables()
         output_message('Error, unable to create the __jomres_sessions table', 'danger');
     }
 
+	$query = "CREATE TABLE IF NOT EXISTS #__jomres_template_package_overrides (
+		`id` INT(11) auto_increment,
+        `template_name` VARCHAR(100) NOT NULL,
+		`path` VARCHAR(1000) NOT NULL,
+        PRIMARY KEY (`id`)
+        )";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to create the __jomres_template_package_overrides table', 'danger');
+    }
     //create the configuration file and drop _site_settings
     save_configuration_file();
 }
