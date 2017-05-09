@@ -55,6 +55,7 @@ class basic_coupon_details
         $temp_array = array();
         foreach ($property_uids as $id) {
             if (!isset($this->coupons[$id])) {
+				$this->coupons[$id] = array();
                 $temp_array[] = (int)$id;
             }
         }

@@ -21,7 +21,6 @@ class basic_subscription_details
     public function __construct()
     {
         $this->subscription = array();
-		$this->subscription['id'] = 0;
 
         $this->package = array();
     }
@@ -45,6 +44,8 @@ class basic_subscription_details
         if (!empty($this->subscription)) {
             return true;
         }
+		
+		$this->subscription['id'] = 0;
 
         $query = 'SELECT 
 						a.id AS subscription_id,
