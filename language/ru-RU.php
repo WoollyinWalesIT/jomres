@@ -650,15 +650,12 @@ jr_define('_JOMCOMP_BOOKINGNOTES_VIEW', 'Посмотреть заметки о 
 jr_define('_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE', 'Запись контрольных данных');
 jr_define('_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE_EDIT', 'Редактировать запись контрольных данных');
 jr_define('_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE_DELETE', 'Запись контрольных данных удалена');
-jr_define('_JOMCOMP_MYUSER_MENUTITLE', 'Варианты меню');
 jr_define('_JOMCOMP_MYUSER_LISTBOOKINGS', 'Список заказов');
 jr_define('_JOMCOMP_MYUSER_MYBOOKINGS', 'Мои заказы');
 jr_define('_JOMCOMP_MYUSER_VIEWBOOKING', 'Посмотреть заказы');
 jr_define('_JOMCOMP_MYUSER_VIEWFAVOURITES', 'Посмотреть избранное');
 jr_define('_JOMCOMP_MYUSER_VIEWFAVOURITES_NONE', 'В избранном пока нет объектов для просмотра');
-jr_define('_JOMCOMP_MYUSER_ADDTOFAVOURITES', 'Добавить в избранное');
 jr_define('_JOMCOMP_MYUSER_PROPERTYTYPE', 'Тип объекта размещения');
-jr_define('_JOMCOMP_MYUSER_PUBLISHEDPROPERTIES', 'Опубликованные объекты размещения');
 jr_define('_JOMCOMP_WISEPRICE_TITLE', 'Разумная цена');
 jr_define('_JOMCOMP_WISEPRICE_ACTIVE', 'Режим активен');
 jr_define('_JOMCOMP_WISEPRICE_TITLE_DESC', 'Описание режима разумная цена');
@@ -1415,24 +1412,18 @@ jr_define('_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT', 'Автоматически 
 jr_define('_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT_DESC', 'Система будет пытаться автоматически определить страну гостя, если они не заходил на Ваш сайт ранее. Вы можете установить эту опцию в положение Нет, и указать страну, которая появиться в форме бронирования, в следующей опции.');
 jr_define('_JOMRES_CUSTOMCODE_SUPPORT_ABOUTJOMRES', 'О Jomres');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP', 'Справка');
-jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN', '1 основные');
 jr_define('_JOMRES_CUSTOMCODE_SUPPORT_GETTINGSTARTED', 'Приступая к работе');
-jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE', 'обслуживание системы');
 jr_define('_JOMRES_CUSTOMCODE_ACCESSCONTROL', 'Управление доступом');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_DEVELOPERS', 'инструменты разработчика');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES', 'languages');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_INCOME_GENERATION', 'Формирование доходов');
-jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_ACCOUNTING', 'бухгалтерский учет');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE', 'структура сайта');
-jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_USERMANAGEMENT', 'управление пользователями');
 jr_define('_JOMRES_CUSTOMCODE_MANUAL', 'Manual (online)');
 jr_define('_JOMRES_CUSTOMCODE_MYACCOUNTONLINE', 'Мой аккаунт (online)');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_PORTAL', 'функциональность портала');
 jr_define('_JOMRES_CUSTOMCODE_PLUGINMANAGER', 'Плагин менеджер');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_INTEGRATION', 'интеграция');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_STATS', 'отчеты/статистика');
-jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_TAXES', 'налоги');
-jr_define('_JOMRES_CUSTOMCODE_SUPPORT_TICKETS', 'Tickets (online)');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP', 'help');
 jr_define('_JOMRES_CUSTOMCODE_UPGRADES', 'Обновить');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_GATEWAYS', 'способы оплаты');
@@ -1537,7 +1528,6 @@ jr_define('_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_POST', 'осталось!');
 jr_define('_JOMRES_COM_MR_EB_HRESOURCE_FEATURE', 'Характеристика ресурса');
 jr_define('_JOMRES_COM_MR_RESOURCEFEATURE_UNABLETODELETE', 'Не удается удалить данный ресурс, с ним связан другой ресурс. Удаление объекта из другого ресурса и повторите попытку.');
 // v7.4
-
 jr_define('_JOMRES_MEDIA_CENTRE_TITLE', 'Изображения');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_ADD', 'Добавить изображения');
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM', 'Изображения номера (Номера)');
@@ -2104,4 +2094,4 @@ jr_define('_JOMRES_GUEST_BLACKLISTED_DESC', 'If this guest is black listed then 
 jr_define('_JOMRES_SESSION_HANDLER_DESC', 'Save jomres session files to disk or to database. Recommended: database');
 jr_define('_JOMRES_MAP_HEIGHT',"Map height (px) ");
 jr_define('_JOMRES_MAP_ZOOMLEVEL',"Map zoom level ");
-jr_define('_JOMRES_MAP_MAPTYPE',"Map type ");
+jr_define('_JOMRES_MAP_MAPTYPE',"Map type ");

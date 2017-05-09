@@ -682,15 +682,12 @@ jr_define('_JOMCOMP_BOOKINGNOTES_VIEW', 'Notiz anzeigen');
 jr_define('_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE', 'Notiz hinzufügen');
 jr_define('_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE_EDIT', 'Notiz bearbeiten');
 jr_define('_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE_DELETE', 'Notiz löschen');
-jr_define('_JOMCOMP_MYUSER_MENUTITLE', 'Meine Optionen');
 jr_define('_JOMCOMP_MYUSER_LISTBOOKINGS', 'Buchungsliste');
 jr_define('_JOMCOMP_MYUSER_MYBOOKINGS', 'Meine Buchungen');
 jr_define('_JOMCOMP_MYUSER_VIEWBOOKING', 'Buchung anzeigen');
 jr_define('_JOMCOMP_MYUSER_VIEWFAVOURITES', 'Favoriten anzeigen');
 jr_define('_JOMCOMP_MYUSER_VIEWFAVOURITES_NONE', 'Es sind noch keine Favoriten eingetragen.');
-jr_define('_JOMCOMP_MYUSER_ADDTOFAVOURITES', 'Zu Favoriten hinzufügen');
 jr_define('_JOMCOMP_MYUSER_PROPERTYTYPE', 'Unterkunftsart');
-jr_define('_JOMCOMP_MYUSER_PUBLISHEDPROPERTIES', 'Unterkünfte auf Seite');
 jr_define('_JOMCOMP_WISEPRICE_TITLE', 'Lastminute');
 jr_define('_JOMCOMP_WISEPRICE_ACTIVE', 'Aktiv');
 jr_define('_JOMCOMP_WISEPRICE_TITLE_DESC', 'Dieses Plugin ermöglicht den Unterkunftspreis dynamisch zu generieren.');
@@ -1246,7 +1243,6 @@ jr_define('_JOMRES_CURRENCYCONVERSION_TAB', 'Währungsumrechnung/Währungscodes'
 jr_define('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'IP Erkennung API Key');
 jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Um automatisch den Währungscode Drop-Down-Set Jomres der Lage ist, einen kostenlosen Service zu nutzen IPinfoDB rief der Besuchers Land zu erfassen, jedoch müssen Sie für einen API-Schlüssel zu registrieren unter <a href = "http://ipinfodb.com/register .php "target =" _ blank "> IPinfoDB </a> zuerst.');
 jr_define('_JOMRES_DEBUGGING_TAB', 'Fehlerbeseitigung');
-
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'Unterkunft exkl. Steuern');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'Unterkunft inkl. Steuern');
 jr_define('_JOMRES_AJAXFORM_BILLING_TAX_ACCOM', 'Zimmer Steuern:');
@@ -1451,24 +1447,18 @@ jr_define('_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT', 'Automatische Gast Länderco
 jr_define('_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT_DESC', 'Das System versucht das Land des Gastes automatisch zu erkennen, falls dieser nicht schon vorher gebucht hat. Sie können diese Option auch auf Nein stellen und das Land das sie im Buchungsformular bevorzugen in der nächsten Option angeben.');
 jr_define('_JOMRES_CUSTOMCODE_SUPPORT_ABOUTJOMRES', 'Über Jomres');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP', 'Hilfe');
-jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN', '1 main');
 jr_define('_JOMRES_CUSTOMCODE_SUPPORT_GETTINGSTARTED', 'Los gehts');
-jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE', 'System Wartung');
 jr_define('_JOMRES_CUSTOMCODE_ACCESSCONTROL', 'Zugangskontrolle');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_DEVELOPERS', 'Entwickler Tools');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES', 'Sprachen');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_INCOME_GENERATION', 'income generation');
-jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_ACCOUNTING', 'Konten');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE', 'Seiten Struktur');
-jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_USERMANAGEMENT', 'Benutzer Management');
 jr_define('_JOMRES_CUSTOMCODE_MANUAL', 'Anleitung (online)');
 jr_define('_JOMRES_CUSTOMCODE_MYACCOUNTONLINE', 'Mein Konto (online)');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_PORTAL', 'Portal Funktionen');
 jr_define('_JOMRES_CUSTOMCODE_PLUGINMANAGER', 'Plugin Manager');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_INTEGRATION', 'Integration');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_STATS', 'Report/Statistiken');
-jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_TAXES', 'Steuern');
-jr_define('_JOMRES_CUSTOMCODE_SUPPORT_TICKETS', 'Tickets (online)');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP', 'Hilfe');
 jr_define('_JOMRES_CUSTOMCODE_UPGRADES', 'Aktualisierung');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_GATEWAYS', 'Bezahlungssysteme');
@@ -1573,7 +1563,6 @@ jr_define('_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_POST', 'übrig!');
 jr_define('_JOMRES_COM_MR_EB_HRESOURCE_FEATURE', 'Ressource-Funktion');
 jr_define('_JOMRES_COM_MR_RESOURCEFEATURE_UNABLETODELETE', 'Können Sie diese Ressource-Funktion zu entfernen, es wird auf eine Ressource zugewiesen. Entfernen Sie die Funktion von dieser Ressource und versuchen Sie es erneut.');
 // v7.4
-
 jr_define('_JOMRES_MEDIA_CENTRE_TITLE', 'Bilder');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_ADD', 'Bild hinzufügen');
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM', 'Zimmer Bilder');
@@ -2140,4 +2129,4 @@ jr_define('_JOMRES_GUEST_BLACKLISTED_DESC', 'If this guest is black listed then 
 jr_define('_JOMRES_SESSION_HANDLER_DESC', 'Save jomres session files to disk or to database. Recommended: database');
 jr_define('_JOMRES_MAP_HEIGHT',"Map height (px) ");
 jr_define('_JOMRES_MAP_ZOOMLEVEL',"Map zoom level ");
-jr_define('_JOMRES_MAP_MAPTYPE',"Map type ");
+jr_define('_JOMRES_MAP_MAPTYPE',"Map type ");

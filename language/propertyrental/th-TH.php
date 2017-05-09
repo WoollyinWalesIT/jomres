@@ -634,15 +634,12 @@ jr_define( "_JOMCOMP_BOOKINGNOTES_VIEW", "ตรวจทานหมายเ�
 jr_define( "_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE", "เพิ่มหมายเหตุใหม่" );
 jr_define( "_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE_EDIT", "แก้ไขหมายเหตุ" );
 jr_define( "_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE_DELETE", "ลบหมายเหตุ" );
-jr_define( "_JOMCOMP_MYUSER_MENUTITLE", "ที่ฉันเลือก" );
 jr_define( "_JOMCOMP_MYUSER_LISTBOOKINGS", "รายการจองที่ฉันเลือก" );
 jr_define( "_JOMCOMP_MYUSER_MYBOOKINGS", "ที่ฉันจอง" );
 jr_define( "_JOMCOMP_MYUSER_VIEWBOOKING", "ตรวจทานการจองของฉัน" );
 jr_define( "_JOMCOMP_MYUSER_VIEWFAVOURITES", "ตรวจทานที่ฉันเลือกชอบ" );
 jr_define( "_JOMCOMP_MYUSER_VIEWFAVOURITES_NONE", "คุณยังไม่" );
-jr_define( "_JOMCOMP_MYUSER_ADDTOFAVOURITES", "เพิ่มไปยังที่ชื่นชอบ" );
 jr_define( "_JOMCOMP_MYUSER_PROPERTYTYPE", "ชนิดของธุรกิจ" );
-jr_define( "_JOMCOMP_MYUSER_PUBLISHEDPROPERTIES", "ธุรกิจบนเว็บไซต์" );
 jr_define( "_JOMCOMP_WISEPRICE_TITLE", "Wise price" );
 jr_define( "_JOMCOMP_WISEPRICE_ACTIVE", "ใช้งานอยู่" );
 jr_define( "_JOMCOMP_WISEPRICE_TITLE_DESC", "This plugin allows you to enable and configure your resource prices dynamically." );
@@ -1363,24 +1360,18 @@ jr_define( "_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT", "Auto-detect guest's countr
 jr_define( "_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT_DESC", "The system will try to automatically detect the guest's country, if they haven't booked before. You can set this option to No, and define the country you'd prefer to appear in the booking form, in the next option." );
 jr_define( "_JOMRES_CUSTOMCODE_SUPPORT_ABOUTJOMRES", "About Jomres" );
 jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP", "help" );
-jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN", "1 main" );
 jr_define( "_JOMRES_CUSTOMCODE_SUPPORT_GETTINGSTARTED", "Getting started" );
-jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE", "บำรุงรักษาระบบ" );
 jr_define( "_JOMRES_CUSTOMCODE_ACCESSCONTROL", "Access Control" );
 jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_DEVELOPERS", "developer tools" );
 jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES", "ภาษา" );
 jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_INCOME_GENERATION", "ระบบรายได้" );
-jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_ACCOUNTING", "การบัญชี" );
 jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE", "โครงสร้างของเว็บไซต์" );
-jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_USERMANAGEMENT", "user management" );
 jr_define( "_JOMRES_CUSTOMCODE_MANUAL", "คู่มือ (ออนไลน์)" );
 jr_define( "_JOMRES_CUSTOMCODE_MYACCOUNTONLINE", "บัญชีของฉัน (ออนไลน์)" );
 jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_PORTAL", "portal functionality" );
 jr_define( "_JOMRES_CUSTOMCODE_PLUGINMANAGER", "ตัวจัดการปลั๊กอิน" );
 jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_INTEGRATION", "รวม" );
 jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STATS", "รายงาน/สถิติ" );
-jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_TAXES", "ภาษี" );
-jr_define( "_JOMRES_CUSTOMCODE_SUPPORT_TICKETS", "ตั๋ว (ออนไลน์)" );
 jr_define( "_JOMRES_CUSTOMCODE_UPGRADES", "Upgrades" );
 jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_GATEWAYS", "วิธีการชำระเงิน" );
 jr_define( "_JOMRES_TARIFFTYPES_MISCSETTINGS_DEFAULT", "ราคาเริ่มต้น" );
@@ -1483,7 +1474,6 @@ jr_define( '_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_POST', 'left!' );
 jr_define( '_JOMRES_COM_MR_EB_HRESOURCE_FEATURE', 'Resource feature' );
 jr_define( '_JOMRES_COM_MR_RESOURCEFEATURE_UNABLETODELETE', 'Unable to remove this resource feature, it is assigned to a resource. Remove the feature from this resource and retry.' );
 // v7.4
-
 jr_define('_JOMRES_MEDIA_CENTRE_TITLE',"Media Centre");
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_ADD',"Add images");
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM',"Room images");
@@ -2050,4 +2040,4 @@ jr_define('_JOMRES_GUEST_BLACKLISTED_DESC', 'If this guest is black listed then 
 jr_define('_JOMRES_SESSION_HANDLER_DESC', 'Save jomres session files to disk or to database. Recommended: database');
 jr_define('_JOMRES_MAP_HEIGHT',"Map height (px) ");
 jr_define('_JOMRES_MAP_ZOOMLEVEL',"Map zoom level ");
-jr_define('_JOMRES_MAP_MAPTYPE',"Map type ");
+jr_define('_JOMRES_MAP_MAPTYPE',"Map type ");

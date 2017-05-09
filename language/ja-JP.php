@@ -643,15 +643,12 @@ jr_define('_JOMCOMP_BOOKINGNOTES_VIEW', '備考の表示');
 jr_define('_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE', '新規ノートが追加されました。');
 jr_define('_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE_EDIT', 'ノートが変更されました');
 jr_define('_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE_DELETE', 'ノートが削除されました');
-jr_define('_JOMCOMP_MYUSER_MENUTITLE', 'マイ・オプション');
 jr_define('_JOMCOMP_MYUSER_LISTBOOKINGS', '予約一覧');
 jr_define('_JOMCOMP_MYUSER_MYBOOKINGS', '予約の履歴');
 jr_define('_JOMCOMP_MYUSER_VIEWBOOKING', '予約を表示');
 jr_define('_JOMCOMP_MYUSER_VIEWFAVOURITES', '付箋付きホテルを表示する');
 jr_define('_JOMCOMP_MYUSER_VIEWFAVOURITES_NONE', 'お気に入りはありません');
-jr_define('_JOMCOMP_MYUSER_ADDTOFAVOURITES', '付箋を付ける');
 jr_define('_JOMCOMP_MYUSER_PROPERTYTYPE', '事業タイプ');
-jr_define('_JOMCOMP_MYUSER_PUBLISHEDPROPERTIES', '公開中のプロパティ');
 jr_define('_JOMCOMP_WISEPRICE_TITLE', 'ダイナミック価格付け');
 jr_define('_JOMCOMP_WISEPRICE_ACTIVE', '有効');
 jr_define('_JOMCOMP_WISEPRICE_TITLE_DESC', '本プラグインは、料金を需要・供給にあわせてダイナミックに変動させる機能を付け加えます。');
@@ -1058,7 +1055,6 @@ jr_define('_JOMRES_ROOMMSLIST_STYLE', '部屋一覧のスタイル');
 jr_define('_JOMRES_ROOMMSLIST_STYLE_DESC', '予約フォームのスタイルにより、顧客は「クラッシック」ビューでは個別な部屋、「リソース タイプ」ビューではリソース タイプの数（例：ダッブル部屋×２室）を選択します。');
 jr_define('_JOMRES_ROOMMSLIST_STYLE_CLASSIC', 'クラッシック');
 jr_define('_JOMRES_ROOMMSLIST_STYLE_ROOMTYPES', 'リソース タイプ');
-
 jr_define('_JOMRES_COM_CALENDAR_STARTDAY', 'カレンダー表示：週明けの曜日（日・月）');
 jr_define('_JOMRES_REVIEWS_ADMIN_GUESTSONLY', '評価を顧客に限りますか?');
 jr_define('_JOMRES_REVIEWS_ADMIN_GUESTSONLY_DESC', 'ある事業・プロパティの評価をその顧客に限る場合、「YES」に設定してください。');
@@ -1384,24 +1380,18 @@ jr_define('_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT', '顧客の国を自動的に
 jr_define('_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT_DESC', '顧客の初予約の際、国を自動的に認識します。予約フォームで固定の国を初期表示したい場合には、「NO」に設定し、次の欄で指定できます。');
 jr_define('_JOMRES_CUSTOMCODE_SUPPORT_ABOUTJOMRES', 'Jomresについて');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP', 'HELP');
-jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN', '1 メーン');
 jr_define('_JOMRES_CUSTOMCODE_SUPPORT_GETTINGSTARTED', 'はじめに');
-jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE', 'システム維持管理');
 jr_define('_JOMRES_CUSTOMCODE_ACCESSCONTROL', 'アクセス制限');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_DEVELOPERS', 'デベロッパーのツール');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES', '言語');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_INCOME_GENERATION', '収入管理');
-jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_ACCOUNTING', '計理');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE', 'サイト構成');
-jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_USERMANAGEMENT', 'ユーザー管理');
 jr_define('_JOMRES_CUSTOMCODE_MANUAL', 'マニュアル(online)');
 jr_define('_JOMRES_CUSTOMCODE_MYACCOUNTONLINE', 'マイ アカウント(online)');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_PORTAL', 'ポータル機能');
 jr_define('_JOMRES_CUSTOMCODE_PLUGINMANAGER', 'プラグイン マネジャー');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_INTEGRATION', '統合性');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_STATS', '報告書・統計');
-jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_TAXES', '税関係');
-jr_define('_JOMRES_CUSTOMCODE_SUPPORT_TICKETS', 'サッポートチケット (online)');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP', 'HELP');
 jr_define('_JOMRES_CUSTOMCODE_UPGRADES', '更新');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_GATEWAYS', '支払ゲートウエー');
@@ -1506,7 +1496,6 @@ jr_define('_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_POST', '部屋しか残ってい�
 jr_define('_JOMRES_COM_MR_EB_HRESOURCE_FEATURE', 'リソースのアメニティ');
 jr_define('_JOMRES_COM_MR_RESOURCEFEATURE_UNABLETODELETE', '指定のリソース アメニティがプロパティに適応されているため、削除できませんでした。リソースから取り外してやり直してください。');
 // v7.4
-
 jr_define('_JOMRES_MEDIA_CENTRE_TITLE', 'イメージ管理');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_ADD', 'イメージを追加');
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM', '部屋のイメージ');
@@ -2074,4 +2063,4 @@ jr_define('_JOMRES_GUEST_BLACKLISTED_DESC', 'If this guest is black listed then 
 jr_define('_JOMRES_SESSION_HANDLER_DESC', 'Save jomres session files to disk or to database. Recommended: database');
 jr_define('_JOMRES_MAP_HEIGHT',"Map height (px) ");
 jr_define('_JOMRES_MAP_ZOOMLEVEL',"Map zoom level ");
-jr_define('_JOMRES_MAP_MAPTYPE',"Map type ");
+jr_define('_JOMRES_MAP_MAPTYPE',"Map type ");
