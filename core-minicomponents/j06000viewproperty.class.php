@@ -45,11 +45,10 @@ class j06000viewproperty
 
         $mrConfig = getPropertySpecificSettings($property_uid);
         if ($mrConfig['showOnlyAvailabilityCalendar'] == '1') {
-            $componentArgs[ 'property_uid' ] = $property_uid;
-            if ($mrConfig['singleRoomProperty'] == '1') {
+             if ($mrConfig['singleRoomProperty'] == '1') {
                 echo $MiniComponents->specificEvent('06000', 'srp_calendar', array('output_now' => false, 'property_uid' => $property_uid, 'months_to_show' => 24));
             } else {
-                echo $MiniComponents->specificEvent('06000', 'mrpavailabilitycalendar' , array('property_uid' => $property_uid) );
+                echo $MiniComponents->specificEvent('06000', 'mrp_calendar' , array('output_now' => false, 'property_uid' => $property_uid) );
             }
 
             return;
