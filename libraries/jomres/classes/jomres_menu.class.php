@@ -42,10 +42,6 @@ class jomres_menu
 	
 	public function add_section($section_id = 1, $title = '')
 	{
-		if (jomres_cmsspecific_areweinadminarea() || AJAXCALL) {
-			return false;
-		}
-
 		if ($title == '') {
 			return false;
 		}
@@ -59,10 +55,6 @@ class jomres_menu
 
     public function add_admin_section($section_id = 1, $title = '')
 	{
-		if (!jomres_cmsspecific_areweinadminarea() || AJAXCALL) {
-			return false;
-		}
-
 		if ($title == '') {
 			return false;
 		}
@@ -89,10 +81,6 @@ class jomres_menu
 	*/
 	public function add_item($section_id = 70, $title = '', $task = '', $icon = 'fa-cog', $is_url = false, $external = false, $disabled = false)
 	{
-		if (jomres_cmsspecific_areweinadminarea() || AJAXCALL) {
-			return false;
-		}
-		
 		if ($title == '') {
 			return false;
 		}
@@ -162,10 +150,6 @@ class jomres_menu
 	*/
 	public function add_admin_item($section_id = 70, $title = '', $task = '', $icon = 'fa-cog', $is_url = false, $external = false, $disabled = false)
 	{
-		if (!jomres_cmsspecific_areweinadminarea() || AJAXCALL) {
-			return false;
-		}
-
 		if ($title == '') {
 			return false;
 		}
@@ -200,10 +184,6 @@ class jomres_menu
 	//generate frontend cpanel menu
 	public function generate_menu()
 	{
-		if (jomres_cmsspecific_areweinadminarea() || AJAXCALL) {
-			return false;
-		}
-
 		if (empty($this->sections) || empty($this->items)) {
 			return true;
 		}
@@ -226,10 +206,6 @@ class jomres_menu
 	//generate admin cpanel menu
 	public function generate_admin_menu()
 	{
-		if (!jomres_cmsspecific_areweinadminarea() || AJAXCALL) {
-			return false;
-		}
-
 		if (empty($this->admin_sections) || empty($this->admin_items)) {
 			return true;
 		}

@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j10005menu
+class j19995menu
 {
     public function __construct()
     {
@@ -25,6 +25,10 @@ class j10005menu
 
             return;
         }
+		
+		if (AJAXCALL) {
+			return;
+		}
 		
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();

@@ -25,18 +25,18 @@ class j00004a_init_javascript_css_files
 
             return;
         }
-
-        if (!defined('JOMRES_JSCALLED')) {
-            define('JOMRES_JSCALLED', 1);
-        } else {
-            return true;
-        }
-
-        if (AJAXCALL) {
+		
+		if (AJAXCALL) {
             return true;
         }
 
         if (defined('JOMRES_NOHTML') && JOMRES_NOHTML == 1) {
+            return true;
+        }
+		
+		if (!defined('JOMRES_JSCALLED')) {
+            define('JOMRES_JSCALLED', 1);
+        } else {
             return true;
         }
 		

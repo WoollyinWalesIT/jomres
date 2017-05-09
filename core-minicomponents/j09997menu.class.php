@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j99996menu
+class j09997menu
 {
     public function __construct()
     {

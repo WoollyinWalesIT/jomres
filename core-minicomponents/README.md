@@ -6,14 +6,8 @@ Instead they will be called by other Jomres scripts.
 00002 Boostraps the system's user information.
 00003 Currently used to boostrap the input filtering settings.
 00004 Loads javascript and css files, which are then handing off to the host CMS for loading into the head or footer as the CMS dictates.
-00005 This trigger point is used by most plugins primarily to load their own language files. At this point most of the system has been bootstrapped, internal language files loaded according to the CMS's chosen language. Various other tasks such as saving previously searched variables for such plugins are saved, and language specific javascript files are created. After this point we're starting to build the page's output.
+00005 This trigger point is used by most plugins primarily to load their own language files and frontend/admin menu items. At this point most of the system has been bootstrapped, internal language files loaded according to the CMS's chosen language. Various other tasks such as saving previously searched variables for such plugins are saved, and language specific javascript files are created. After this point we're starting to build the page's output.
 00006 Used for sanity checks.
-
-The next three trigger numbers are used to build menu options.
-
-00009 Guest level ( both logged in and not logged in )
-00010 Reception level
-00011 Manager level
 
 00012 Currently used to build pathways for the host CMS to display. Joomla only is supported, primarily used to interface with routing functionality to build SEO friendly routes
 
@@ -24,11 +18,7 @@ The next three trigger numbers are used to build menu options.
 00060 This is used to build the top template, which is at the very top of every page and used to output many different things such as logos, sanity checks etc.
 00061 This is used to build the footer template(s).
 
-The next three numbers are typically used when amending bookings or configuring other data, before the page is loaded properly.
-
-00100
-00101
-00102
+00100, 00101, 00102 These three numbers are typically used when amending bookings or configuring other data, before the page is loaded properly.
 
 00501 These trigger numbers are used for building tabs in the Property Configuration page.
 
@@ -68,8 +58,6 @@ The next trigger numbers are used when building the property list/search results
 
 05000 level scripts are generally used by the booking engine. A new booking engine is being planned and these will likely not be used in the future.
 
-As of Jomres 9.9 06000 - 06005 scripts are no longer used in Jomres Core, instead they are replaced by scripts in 7jomres7core-tasks. Many plugins, however will retain the 0600N file naming pattern for the time-being.
-
 06000 These scripts are individual tasks that can called that do not require a user to be logged in. Some scripts like the cron scripts do demand that the system pass the CMS's secret to itself, this is to prevent spiders or other web services from calling these scripts at some point and bogging the system down with scheduled jobs. On the whole, however, the bulk of these scripts are used for displaying public/guest facing output.
 06001 These tasks are for Reception level functionality. Jomres includes Access Control functionality, however we find that a more simplistic approach suits the vast majority of users.
 06002 These tasks are for Manager level functionality.
@@ -81,13 +69,11 @@ As of Jomres 9.9 06000 - 06005 scripts are no longer used in Jomres Core, instea
 07070 Used for building administrator area FAQs.
 07080 Used for building guest FAQs. Whilst the code to support these in place, currently there are no guest level FAQs.
 
+09995 Creates the core menu items
+
+09997 Builds the frontend control panel menu
+
 99994 Post run scripts are run here, for example the Channel Manager functionality has a watcher for here, and webhooks are triggered at this point.
-
-These triggers are used for creating the Jomres main menu.
-
-99995 constructs data and calls 99996
-99996 constructs data and calls 99997
-99997
 
 99999 Anything that needs to be done right at the end of a run.
 
@@ -95,12 +81,11 @@ These triggers are used for creating the Jomres main menu.
 Administrator area
 
 10001 Builds the control panel.
-10002 Administrator menu options.
-10003 Administrator control panel menu generation
-10004 Builds the control panel.
 
 10501 Site Configuration tabs.
 
-11010 Administrator area Media centre resource options.
-11020
-11040
+11010,11020,11040 Administrator area Media centre resource options.
+
+19995 creates the admin core menu items
+
+19997 builds the admin cpanel menu

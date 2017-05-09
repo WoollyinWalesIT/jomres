@@ -83,13 +83,13 @@ try {
 
     require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'siteconfig.functions.php';
 
-    if (!AJAXCALL) {
+	if (!AJAXCALL) {
 		//add javascript to head
-        $MiniComponents->triggerEvent('00004');
+		$MiniComponents->triggerEvent('00004');
 		
-		//add admin menu items
-		$MiniComponents->specificEvent('10005', 'menu', array());
-    }
+		//core menu items
+		$MiniComponents->specificEvent('19995', 'menu', array()); //core menu items
+	}
 
     //00005 trigger point
     $MiniComponents->triggerEvent('00005');
@@ -109,8 +109,8 @@ try {
         $output = array();
 		
 		//generate the cpanel menu
-		$MiniComponents->specificEvent('10006', 'menu', array());
-		$output[ 'CONTROL_PANEL_MENU' ] = $MiniComponents->miniComponentData[ '10006' ][ 'menu' ];
+		$MiniComponents->specificEvent('19997', 'menu', array());
+		$output[ 'CONTROL_PANEL_MENU' ] = $MiniComponents->miniComponentData[ '19997' ][ 'menu' ];
 
         //frequently asked questions
         $output['_JOMRES_FAQ'] = jr_gettext('_JOMRES_FAQ', '_JOMRES_FAQ', false);

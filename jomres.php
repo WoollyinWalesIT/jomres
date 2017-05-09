@@ -240,8 +240,8 @@ try {
 		//add javascript to head
         $MiniComponents->triggerEvent('00004');
 		
-		//add core frontend cpanel menu items - we`re out of unique low number triger points here. TODO: maybe move js from 00004 to 00003
-		$MiniComponents->specificEvent('99995', 'menu', array());
+		//core menu items
+		$MiniComponents->specificEvent('09995', 'menu', array()); //core menu items
     }
 
     //TODO find a better place
@@ -298,9 +298,9 @@ try {
 
     $performance_monitor->set_point('pre-menu generation');
 
+	//generate the cpanel menu
     if ($no_html == 0 && !isset($_REQUEST[ 'popup' ])) {
-        //trigger 99995 event
-        echo $MiniComponents->specificEvent('99996', 'menu', array());
+        echo $MiniComponents->specificEvent('09997', 'menu', array());
     }
 
     $performance_monitor->set_point('post-menu generation');
@@ -363,8 +363,9 @@ try {
 
     $performance_monitor->set_point('pre-menu generation');
     
-	if ($no_html == 0 && !isset($_REQUEST[ 'popup' ])) { // Generate the main menu
-        echo $MiniComponents->specificEvent('99996', 'menu', array());
+	//generate the cpanel menu
+	if ($no_html == 0 && !isset($_REQUEST[ 'popup' ])) {
+        echo $MiniComponents->specificEvent('09997', 'menu', array());
     }
     
 	$performance_monitor->set_point('post-menu generation');

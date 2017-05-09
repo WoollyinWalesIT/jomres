@@ -119,8 +119,8 @@ function load_jomres_environment()
 		//add javascript to head
         $MiniComponents->triggerEvent('00004');
 		
-		//add core frontend cpanel menu items - we`re out of unique low number triger points here. TODO: maybe move js from 00004 to 00003
-		$MiniComponents->specificEvent('99995', 'menu', array());
+		//core menu items
+		$MiniComponents->specificEvent('09995', 'menu', array()); //core menu items
     }
 
     //TODO find a better place
