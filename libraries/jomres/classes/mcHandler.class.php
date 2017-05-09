@@ -73,10 +73,10 @@ class mcHandler
 
     public function touch_templates()
     {
-        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
         $mrConfig = getPropertySpecificSettings(0);
+		
+		$mrConfig[ 'editingOn' ] = '1';
         $eventArgs = null;
-        $mrConfig[ 'editingOn' ] = '1';
         $this->template_touch = true;
 		$classFileSuffix = '.class.php';
         
@@ -97,7 +97,7 @@ class mcHandler
 						$this->log[ ] = $eventDetails[ 'filepath' ].$filename;
 					}
 					
-					$eLiveSite = str_replace(JOMRESCONFIG_ABSOLUTE_PATH, get_showtime('live_site').'/', $eClass[ 'filepath' ]);
+					$eLiveSite = str_replace(JOMRESCONFIG_ABSOLUTE_PATH, get_showtime('live_site').'/', $eventDetails[ 'filepath' ]);
 					$eLiveSite = str_replace(JRDS, '/', $eLiveSite);
 					set_showtime('eLiveSite', $eLiveSite);
 					
@@ -122,84 +122,53 @@ class mcHandler
     // Acutally calls the triggered event.
     public function triggerEvent($eventPoint, $eventArgs = null)
     {
-        $jomres_access_control = jomres_singleton_abstract::getInstance('jomres_access_control');
-
         $retVal = null;
+		$check_access = false;
 		$classFileSuffix = '.class.php';
 
+		if (!jomres_cmsspecific_areweinadminarea()) {
+			$jomres_access_control = jomres_singleton_abstract::getInstance('jomres_access_control');
+			
+			if (isset($jomres_access_control->controllable_patterns[$eventPoint])) {
+				$check_access = true;
+			}
+		}
+
         if (!empty($this->registeredClasses && isset($this->registeredClasses[$eventPoint]))) {
-            foreach ($this->registeredClasses[$eventPoint] as $eventName => $eClass) {
-                $ePointFilepath = $eClass[ 'filepath' ];
-				set_showtime('ePointFilepath', $eClass[ 'filepath' ]);
+            foreach ($this->registeredClasses[$eventPoint] as $eventName => $eventDetails) {
+                $ePointFilepath = $eventDetails[ 'filepath' ];
+				set_showtime('ePointFilepath', $eventDetails[ 'filepath' ]);
 				
 				$filename = 'j'.$eventPoint.$eventName.$classFileSuffix;
 				
-				if ($jomres_access_control->can_user_access_this_script($eventPoint.$eventName)) {
-					if (file_exists($eClass[ 'filepath' ].$filename)) {
-						include_once $eClass[ 'filepath' ].$filename;
-
-						if ($this->logging_enbled) {
-							$this->log[ ] = $eClass[ 'filepath' ].$filename;
-						}
+				if ($check_access) {
+					if (!$jomres_access_control->this_user_can($eventName)) {
+						system_log('Access control prevented system from running '.$eventPoint.$eventName);
 						
-						$this->currentEvent = $eClass[ 'filepath' ].$filename;
-						
-						$eLiveSite = str_replace(JOMRESCONFIG_ABSOLUTE_PATH, get_showtime('live_site').'/', $ePointFilepath);
-						$eLiveSite = str_replace(JRDS, '/', $eLiveSite);
-						set_showtime('eLiveSite', $eLiveSite);
-						
-						$event = 'j'.$eventPoint.$eventName;
-
-						if (!class_exists($event)) {
-							echo 'Error, class '.$event." does not exist. Most likely you've renamed a minicomponent file, but not the class in that file";
-
-							return;
-						}
-						set_showtime('current_minicomp', $event);
-						$e = new $event($eventArgs);
-						$retVal = $e->getRetVals();
-						$this->miniComponentData[ $eventPoint ][ $eventName ] = $retVal;
-						set_showtime('current_minicomp', '');
-						unset($e);
+						return null;
 					}
-				} else {
-					system_log('Access control prevented system from running '.$eventPoint.$eventName);
 				}
-            }
-        }
-        $this->currentEvent = '';
 
-        return $retVal;
-    }
+				if (file_exists($eventDetails[ 'filepath' ].$filename)) {
+					include_once $eventDetails[ 'filepath' ].$filename;
 
-    // Calls a specific event.
-    public function specificEvent($eventPoint, $eventName, $eventArgs = null)
-    {
-        $jomres_access_control = jomres_singleton_abstract::getInstance('jomres_access_control');
-        $retVal = null;
-		$classFileSuffix = '.class.php';
-		$filename = 'j'.$eventPoint.$eventName.$classFileSuffix;
-		
-        if (!empty($this->registeredClasses) && isset($this->registeredClasses[$eventPoint][$eventName])) {
-			$ePointFilepath = $this->registeredClasses[$eventPoint][$eventName][ 'filepath' ];
-			
-			set_showtime('ePointFilepath', $this->registeredClasses[$eventPoint][$eventName][ 'filepath' ]);
-			
-			if ($jomres_access_control->can_user_access_this_script($eventPoint.$eventName)) {
-				if (file_exists($this->registeredClasses[$eventPoint][$eventName][ 'filepath' ].$filename)) {
-					include_once $this->registeredClasses[$eventPoint][$eventName][ 'filepath' ].$filename;
-					
 					if ($this->logging_enbled) {
-						$this->log[ ] = $this->registeredClasses[$eventPoint][$eventName][ 'filepath' ].$filename;
+						$this->log[ ] = $eventDetails[ 'filepath' ].$filename;
 					}
 					
-					$this->currentEvent = $this->registeredClasses[$eventPoint][$eventName][ 'filepath' ].$filename;
+					$this->currentEvent = $eventDetails[ 'filepath' ].$filename;
 					
 					$eLiveSite = str_replace(JOMRESCONFIG_ABSOLUTE_PATH, get_showtime('live_site').'/', $ePointFilepath);
 					$eLiveSite = str_replace(JRDS, '/', $eLiveSite);
 					set_showtime('eLiveSite', $eLiveSite);
 					
 					$event = 'j'.$eventPoint.$eventName;
+
+					if (!class_exists($event)) {
+						echo 'Error, class '.$event." does not exist. Most likely you've renamed a minicomponent file, but not the class in that file";
+
+						return;
+					}
 					set_showtime('current_minicomp', $event);
 					$e = new $event($eventArgs);
 					$retVal = $e->getRetVals();
@@ -207,11 +176,67 @@ class mcHandler
 					set_showtime('current_minicomp', '');
 					unset($e);
 				}
-			} else {
-				system_log('Access control prevented system from running '.$eventPoint.$eventName);
+            }
+        }
+        
+		$this->currentEvent = '';
+
+        return $retVal;
+    }
+
+    // Calls a specific event.
+    public function specificEvent($eventPoint, $eventName, $eventArgs = null)
+    {
+        $retVal = null;
+		$check_access = false;
+		$classFileSuffix = '.class.php';
+		$filename = 'j'.$eventPoint.$eventName.$classFileSuffix;
+		
+		if (!jomres_cmsspecific_areweinadminarea()) {
+			$jomres_access_control = jomres_singleton_abstract::getInstance('jomres_access_control');
+        
+			if (isset($jomres_access_control->controllable_patterns[$eventPoint])) {
+				$check_access = true;
+			}
+		}
+		
+        if (!empty($this->registeredClasses) && isset($this->registeredClasses[$eventPoint][$eventName])) {
+			$ePointFilepath = $this->registeredClasses[$eventPoint][$eventName][ 'filepath' ];
+			
+			set_showtime('ePointFilepath', $this->registeredClasses[$eventPoint][$eventName][ 'filepath' ]);
+			
+			if ($check_access) {
+				if (!$jomres_access_control->this_user_can($eventName)) {
+					system_log('Access control prevented system from running '.$eventPoint.$eventName);
+					
+					return null;
+				}
+			}
+
+			if (file_exists($this->registeredClasses[$eventPoint][$eventName][ 'filepath' ].$filename)) {
+				include_once $this->registeredClasses[$eventPoint][$eventName][ 'filepath' ].$filename;
+				
+				if ($this->logging_enbled) {
+					$this->log[ ] = $this->registeredClasses[$eventPoint][$eventName][ 'filepath' ].$filename;
+				}
+				
+				$this->currentEvent = $this->registeredClasses[$eventPoint][$eventName][ 'filepath' ].$filename;
+				
+				$eLiveSite = str_replace(JOMRESCONFIG_ABSOLUTE_PATH, get_showtime('live_site').'/', $ePointFilepath);
+				$eLiveSite = str_replace(JRDS, '/', $eLiveSite);
+				set_showtime('eLiveSite', $eLiveSite);
+				
+				$event = 'j'.$eventPoint.$eventName;
+				set_showtime('current_minicomp', $event);
+				$e = new $event($eventArgs);
+				$retVal = $e->getRetVals();
+				$this->miniComponentData[ $eventPoint ][ $eventName ] = $retVal;
+				set_showtime('current_minicomp', '');
+				unset($e);
 			}
         }
-        $this->currentEvent = '';
+        
+		$this->currentEvent = '';
 
         return $retVal;
     }

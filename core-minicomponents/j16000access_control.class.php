@@ -24,51 +24,35 @@ class j16000access_control
 
             return;
         }
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
-
-        $jomres_access_control = jomres_singleton_abstract::getInstance('jomres_access_control');
-
-        $levels = array('anybody', 'registered', 'manager', 'supermanager', 'nobody');
+        
+		$jomres_access_control = jomres_singleton_abstract::getInstance('jomres_access_control');
 
         $controllable = array();
+		$output = array();
+		$rows = array();
 
-        $thisJRUser = $MiniComponents->triggerEvent('00002'); // Register user
-
-        foreach ($MiniComponents->registeredClasses as $eventPoint => $ev) {
-			foreach ($ev as $eventName => $eventDetails) {
-				if (!in_array($eventPoint.$eventName, $jomres_access_control->uncontrollable_scripts)) {
-					if ($jomres_access_control->limit_to_menus_only && in_array($eventPoint, $jomres_access_control->menu_patterns) && !in_array($eventPoint, $jomres_access_control->uncontrollable_patterns)) {
-						$controllable[ $eventPoint.$eventName ] = $eventDetails;
-					} elseif (!in_array($eventPoint, $jomres_access_control->uncontrollable_patterns) && !$jomres_access_control->limit_to_menus_only) {
-						$controllable[ $eventPoint.$eventName ] = $eventDetails;
-					}
+		foreach ($jomres_access_control->controllable_patterns as $eventPoint => $min_access_level) {
+			foreach ($MiniComponents->registeredClasses[$eventPoint] as $eventName => $eventDetails) {
+				if ($jomres_access_control->is_controllable($eventName)) {
+					$controllable[] = array('name' => $eventName, 'min_access_level' => $min_access_level);
 				}
 			}
-        }
+		}
 
-        foreach ($controllable as $k => $v) {
+        foreach ($controllable as $task) {
             $r = array();
 
             //$access_control
-            $r[ 'SCRIPTNAME' ] = $k;
-            $r[ 'DROPDOWN' ] = $jomres_access_control->generate_access_control_dropdown($k);
+            $r[ 'TASKNAME' ] = $task['name'];
+            $r[ 'DROPDOWN' ] = $jomres_access_control->generate_access_control_dropdown($task['name'], $task['min_access_level']);
 
             $rows[ ] = $r;
         }
+        
+		$output[ '_JOMRES_ACCESS_CONTROL_TITLE' ] = jr_gettext('_JOMRES_ACCESS_CONTROL_TITLE_FULL', '_JOMRES_ACCESS_CONTROL_TITLE_FULL', false);
+        $output[ '_JOMRES_ACCESS_CONTROL_DESC' ] = jr_gettext('_JOMRES_ACCESS_CONTROL_DESC_FULL', '_JOMRES_ACCESS_CONTROL_DESC_FULL', false);
 
-        $output = array();
-        $output[ 'AJAXURL' ] = JOMRES_SITEPAGE_URL_ADMIN_AJAX;
-        if ($jrConfig[ 'full_access_control' ] == '0') {
-            $output[ '_JOMRES_ACCESS_CONTROL_TITLE' ] = jr_gettext('_JOMRES_ACCESS_CONTROL_TITLE', '_JOMRES_ACCESS_CONTROL_TITLE', false);
-            $output[ '_JOMRES_ACCESS_CONTROL_DESC' ] = jr_gettext('_JOMRES_ACCESS_CONTROL_DESC', '_JOMRES_ACCESS_CONTROL_DESC', false);
-            $output[ '_JOMRES_ACCESS_CONTROL_DESC_ADDENDUM' ] = jr_gettext('_JOMRES_ACCESS_CONTROL_DESC_ADDENDUM', '_JOMRES_ACCESS_CONTROL_DESC_ADDENDUM', false);
-        } else {
-            $output[ '_JOMRES_ACCESS_CONTROL_TITLE' ] = jr_gettext('_JOMRES_ACCESS_CONTROL_TITLE_FULL', '_JOMRES_ACCESS_CONTROL_TITLE_FULL', false);
-            $output[ '_JOMRES_ACCESS_CONTROL_DESC' ] = jr_gettext('_JOMRES_ACCESS_CONTROL_DESC_FULL', '_JOMRES_ACCESS_CONTROL_DESC_FULL', false);
-        }
-
-        $pageoutput[ ] = $output;
+        $pageoutput[] = $output;
         $tmpl = new patTemplate();
         $tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
         $tmpl->readTemplatesFromInput('access_control.html');

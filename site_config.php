@@ -151,7 +151,6 @@ $jrConfig = array(
   'alternate_smtp_username' => '',
   'alternate_smtp_password' => '',
   'alternate_mainmenu' => '1',
-  'full_access_control' => '0',
   'license_server_username' => '',
   'license_server_password' => '',
   'useshoppingcart' => '1',

@@ -1453,7 +1453,41 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_minicomponents.'j10003control_panel_buttons.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j10004generate_control_panel.class.php');
 		$this->add_obs_file($this->dir_classes.'html_functions.class.php');
-		
+		$this->add_obs_file($this->dir_minicomponents.'j00009user_option_01_listbookings.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00009user_option_01_myfavourites.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00009user_option_02_addfavourite.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00009user_option_03_login.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00009user_option_03_logout.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00009user_option_03_my_account.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00009user_option_03_reglink.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00009user_option_03_search.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00009user_option_05_add_your_property.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00009user_option_05_myinvoices.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00010reception_option_01_home.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00010reception_option_01_wp_control_panel.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00010reception_option_03_dobooking.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00010reception_option_05_list_bookings.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00010reception_option_06_newguest.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00010reception_option_08_listguests.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00010reception_option_08_myproperties.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00010reception_option_09_list_invoices.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00011manager_option_01_propertydetails.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00011manager_option_01_resources.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00011manager_option_01_tariffs.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00011manager_option_03_business_settings.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00011manager_option_03_emails.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00011manager_option_04_guesttypeadmin.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00011manager_option_05_couponadmin.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00011manager_option_05_media_centre.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00011manager_option_07_charts.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00011manager_option_09_newproperty.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00011manager_option_12_deleteproperty.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00011manager_option_15_preview.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j99995jomres_mainmenu.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j99996mainmenu_buttons.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j99997generate_mainmenu.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10501reviews.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j06000feature_not_available.class.php');
     }
 
     public function add_obs_file($path_and_file)

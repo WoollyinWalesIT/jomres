@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j10005admin_menu
+class j10005menu
 {
     public function __construct()
     {
@@ -25,6 +25,9 @@ class j10005admin_menu
 
             return;
         }
+		
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+        $jrConfig = $siteConfig->get();
 		
 		$jomres_menu = jomres_singleton_abstract::getInstance('jomres_menu');
         
@@ -52,11 +55,13 @@ class j10005admin_menu
 		$jomres_menu->add_admin_item(10, jr_gettext('_JOMRES_CUSTOMCODE_ACCESSCONTROL', '_JOMRES_CUSTOMCODE_ACCESSCONTROL', false), 'access_control', 'fa-lock');
 		
 		//invoices section menus
-		$jomres_menu->add_admin_item(40, jr_gettext('_JRPORTAL_INVOICES_TITLE', '_JRPORTAL_INVOICES_TITLE', false), 'list_invoices', 'fa-file-text-o');
+		if ($jrConfig[ 'use_commission' ] == '1' || $jrConfig[ 'useSubscriptions' ] == '1') {
+			$jomres_menu->add_admin_item(40, jr_gettext('_JRPORTAL_INVOICES_TITLE', '_JRPORTAL_INVOICES_TITLE', false), 'list_invoices', 'fa-file-text-o');
+		}
 		
 		//portal section menus
-		$jomres_menu->add_admin_item(50, jr_gettext('_JOMRES_APPROVALS_MENU_NAME', '_JOMRES_APPROVALS_MENU_NAME', false), 'property_approvals', 'fa-check-circle');
 		$jomres_menu->add_admin_item(50, jr_gettext('_JOMRES_MEDIA_CENTRE_TITLE', '_JOMRES_MEDIA_CENTRE_TITLE', false), 'media_centre', 'fa-picture-o');
+		$jomres_menu->add_admin_item(50, jr_gettext('_JOMRES_APPROVALS_MENU_NAME', '_JOMRES_APPROVALS_MENU_NAME', false), 'property_approvals', 'fa-check-circle');
 		$jomres_menu->add_admin_item(50, jr_gettext('_JOMRES_REVIEWS', '_JOMRES_REVIEWS', false), 'list_reviews', 'fa-thumbs-up');
 		
 		//translations section menus
@@ -67,7 +72,7 @@ class j10005admin_menu
 		
 		//tools section menus
 		$jomres_menu->add_admin_item(70, jr_gettext('_JOMRES_SHORTCODES', '_JOMRES_SHORTCODES', false), 'asamodule_report', 'fa-code');
-		$jomres_menu->add_admin_item(70, jr_gettext('_JOMRES_DATA_ARCHIVE_TITLE', '_JOMRES_DATA_ARCHIVE_TITLE', false), 'booking_data_archive', 'fa-archive');
+		//$jomres_menu->add_admin_item(70, jr_gettext('_JOMRES_DATA_ARCHIVE_TITLE', '_JOMRES_DATA_ARCHIVE_TITLE', false), 'booking_data_archive', 'fa-archive');
 		$jomres_menu->add_admin_item(70, 'Changelog', 'changelog', 'fa-file-code-o');
 		$jomres_menu->add_admin_item(70, jr_gettext('INTEGRITY_CHECK', 'INTEGRITY_CHECK', false), 'filesystem_integrity_check', 'fa-check-square-o');
 		$jomres_menu->add_admin_item(70, jr_gettext('JOMRES_COM_A_AVAILABLELOGS', 'JOMRES_COM_A_AVAILABLELOGS', false), 'list_error_logs', 'fa-exclamation-triangle');
@@ -78,8 +83,6 @@ class j10005admin_menu
 		
 		//settings section menus
 		$jomres_menu->add_admin_item(90, jr_gettext('_JOMRES_A', '_JOMRES_A', false), 'site_settings', 'fa-cogs');
-		$jomres_menu->add_admin_item(90, jr_gettext('_JOMRES_COM_LISTCOUNTRIES', '_JOMRES_COM_LISTCOUNTRIES', false), 'list_countries', 'fa-globe');
-		$jomres_menu->add_admin_item(90, jr_gettext('_JOMRES_COM_LISTREGIONS', '_JOMRES_COM_LISTREGIONS', false), 'list_regions', 'fa-globe');
 		$jomres_menu->add_admin_item(90, jr_gettext('_JOMRES_COM_PTYPES_LIST_TITLE', '_JOMRES_COM_PTYPES_LIST_TITLE', false), 'list_property_types', 'fa-building');
 		$jomres_menu->add_admin_item(90, jr_gettext('_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK', '_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK', false), 'listGlobalroomTypes', 'fa-bed');
 		$jomres_menu->add_admin_item(90, jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK', '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK', false), 'listPfeatures', 'fa-list');
@@ -87,13 +90,15 @@ class j10005admin_menu
 		$jomres_menu->add_admin_item(90, jr_gettext('_JOMRES_COM_A_GATEWAYLIST', '_JOMRES_COM_A_GATEWAYLIST', false), 'list_gateways', 'fa-money');
 		$jomres_menu->add_admin_item(90, jr_gettext('_JRPORTAL_TAXRATES_TITLE', '_JRPORTAL_TAXRATES_TITLE', false), 'list_taxrates', 'fa-percent');
 		//$jomres_menu->add_admin_item(90, jr_gettext('_JOMRES_TAX_RULES_LIST', '_JOMRES_TAX_RULES_LIST', false), 'list_tax_rules', 'fa-cogs');
+		$jomres_menu->add_admin_item(90, jr_gettext('_JOMRES_COM_LISTCOUNTRIES', '_JOMRES_COM_LISTCOUNTRIES', false), 'list_countries', 'fa-globe');
+		$jomres_menu->add_admin_item(90, jr_gettext('_JOMRES_COM_LISTREGIONS', '_JOMRES_COM_LISTREGIONS', false), 'list_regions', 'fa-globe');
 		
 		//help section menus
 		$jomres_menu->add_admin_item(100, jr_gettext('_JOMRES_CUSTOMCODE_SUPPORT_GETTINGSTARTED', '_JOMRES_CUSTOMCODE_SUPPORT_GETTINGSTARTED', false), 'getting_started', 'fa-book');
-		$jomres_menu->add_admin_item(100, jr_gettext('_JOMRES_CUSTOMCODE_MANUAL', '_JOMRES_CUSTOMCODE_MANUAL', false), 'https://www.jomres.net/manual/', 'fa-book', true);
-		$jomres_menu->add_admin_item(100, 'Shortcodes', 'http://www.jomres.net/manual/developers-guide/305-shortcodes', 'fa-book', true);
-		$jomres_menu->add_admin_item(100, jr_gettext('_JOMRES_CUSTOMCODE_MYACCOUNTONLINE', '_JOMRES_CUSTOMCODE_MYACCOUNTONLINE', false), 'https://license-server.jomres.net/index.php', 'fa-book', true);
-		$jomres_menu->add_admin_item(100, jr_gettext('_JOMRES_CUSTOMCODE_SUPPORT_ABOUTJOMRES', '_JOMRES_CUSTOMCODE_SUPPORT_ABOUTJOMRES', false), 'http://www.jomres.net/manual/developers-guide/60-jomres-manual/intro/344-about-jomres', 'fa-book', true);
+		$jomres_menu->add_admin_item(100, jr_gettext('_JOMRES_CUSTOMCODE_MANUAL', '_JOMRES_CUSTOMCODE_MANUAL', false), 'https://www.jomres.net/manual/', 'fa-book', true, true);
+		$jomres_menu->add_admin_item(100, 'Shortcodes', 'http://www.jomres.net/manual/developers-guide/305-shortcodes', 'fa-book', true, true);
+		$jomres_menu->add_admin_item(100, jr_gettext('_JOMRES_CUSTOMCODE_MYACCOUNTONLINE', '_JOMRES_CUSTOMCODE_MYACCOUNTONLINE', false), 'https://license-server.jomres.net/index.php', 'fa-book', true, true);
+		$jomres_menu->add_admin_item(100, jr_gettext('_JOMRES_CUSTOMCODE_SUPPORT_ABOUTJOMRES', '_JOMRES_CUSTOMCODE_SUPPORT_ABOUTJOMRES', false), 'http://www.jomres.net/manual/developers-guide/60-jomres-manual/intro/344-about-jomres', 'fa-book', true, true);
 		$jomres_menu->add_admin_item(100, 'Jomres Partners', 'partners', 'fa-book');
     }
 

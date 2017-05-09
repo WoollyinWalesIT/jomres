@@ -551,3 +551,13 @@ function jomres_cmsspecific_isRtl($cms_user_id = 0) {
 	
 	return $isRtl;
 }
+
+function jomres_cmsspecific_user_is_admin() {
+	$user = JFactory::getUser();
+	
+	if ( $user->authorise('core.admin') ) {
+		return true;
+	}
+	
+	return false;
+}

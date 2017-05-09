@@ -73,35 +73,41 @@ class jomresHTML
             $attribs .= ' class="input-medium form-control" ';
 
             $output = '<select name="'.$name.'" id="'.$name.'" '.$attribs.'>';
-            for ($i = 0; $i < $n; ++$i) {
-                $k = $arr[ $i ]->$key;
-                $txt = $arr[ $i ]->$text;
-                $selected = '';
-                if ($k == $default) {
+            
+			foreach ($arr as $k => $v) {
+				$val = $v->$key;
+                $txt = $v->$text;
+                
+				$selected = '';
+                if ($val == $default) {
                     $selected .= ' selected="selected" ';
                 }
-                $output .= '<option value="'.$k.'" '.$selected.'>'.$txt.'</option>';
+                
+				$output .= '<option value="'.$val.'" '.$selected.'>'.$txt.'</option>';
             }
-            $output .= '</select>';
+            
+			$output .= '</select>';
         } else {
-            $output = '
-			<fieldset id="' .$name.'" class="radio btn-group">
-			';
-            for ($i = 0; $i < $n; ++$i) {
-                $k = $arr[ $i ]->$key;
-                $txt = $arr[ $i ]->$text;
-                //$output .= '<button type="button" value="'.$k.'" class="btn" data-toggle="button">'.$txt.'</button>';
-                $checked = '';
-                if ($k == $default) {
+            $output = '<fieldset id="' .$name.'" class="radio btn-group">';
+            
+			foreach ($arr as $k => $v) {
+                $val = $v->$key;
+                $txt = $v->$text;
+                
+				//$output .= '<button type="button" value="'.$k.'" class="btn" data-toggle="button">'.$txt.'</button>';
+                
+				$checked = '';
+                 if ($val == $default) {
                     $checked = 'checked="checked" ';
                 }
-                $output .= '
-				<input type="radio" id="' .$name.$k.'" name="'.$name.'" '.$checked.' value="'.$k.'"/>
-				<label for="' .$name.$k.'" id="'.$name.$k.'_id" >'.$txt.'</label>
+                
+				$output .= '
+				<input type="radio" id="' .$name.$val.'" name="'.$name.'" '.$checked.' value="'.$val.'"/>
+				<label for="' .$name.$val.'" id="'.$name.$val.'_id" >'.$txt.'</label>
 				';
             }
-            $output .= '</fieldset>
-			';
+            
+			$output .= '</fieldset>';
         }
 
         return $output;

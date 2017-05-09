@@ -220,8 +220,7 @@ if (!defined('AUTO_UPGRADE')) {
     $MiniComponents->triggerEvent('00001'); // Start
 }
 
-$jomres_access_control = jomres_singleton_abstract::getInstance('jomres_access_control');
-
+//jomres parse request
 jomres_parseRequest();
 
 if ($jrConfig[ 'development_production' ] == 'production') {

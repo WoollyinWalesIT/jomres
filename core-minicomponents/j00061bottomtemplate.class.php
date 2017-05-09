@@ -21,7 +21,7 @@ class j00061bottomtemplate
         // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
         $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
         if ($MiniComponents->template_touch) {
-            $this->template_touchable = true;
+            $this->template_touchable = false;
 
             return;
         }
@@ -37,7 +37,6 @@ class j00061bottomtemplate
         if (using_bootstrap()) {
             $output[ 'RADIO_BUTTON_JAVASCRIPT' ] = '
 			<!-- Joomla 3 frontend doesn\'t yet have this, and Jomres needs it for the property config (among others). Put in for now, will see if we need to remove it when Alpha 2 is released -->
-
 			<script>
 				(function($){
 					// Turn radios into btn-group
@@ -58,7 +57,6 @@ class j00061bottomtemplate
 				})(jQuery);
 			</script>';
         }
-        $output[ 'BACKTOTOP' ] = jr_gettext('BACKTOTOP', 'BACKTOTOP', false);
 
         $pageoutput[ ] = $output;
 
@@ -73,21 +71,6 @@ class j00061bottomtemplate
         $tmpl->displayParsedTemplate();
     }
 
-    public function touch_template_language()
-    {
-        $output = array();
-
-        $output[ ] = jr_gettext('BACKTOTOP', 'BACKTOTOP');
-
-        foreach ($output as $o) {
-            echo $o;
-            echo '<br/>';
-        }
-    }
-
-/**
- * Must be included in every mini-component.
- */
     // This must be included in every Event/Mini-component
     public function getRetVals()
     {

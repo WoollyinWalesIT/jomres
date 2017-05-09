@@ -80,11 +80,6 @@ try {
         $jrConfig[ 'isInIframe' ] = '1';
     }
 
-    //TODO: remove this when all jrConfig values have a default in site_settings.php
-    if (!isset($jrConfig[ 'full_access_control' ])) {
-        $jrConfig[ 'full_access_control' ] = '0';
-    }
-
     //we don`t want robots to index fullscreen mode or ajax requests
     if (isset($_REQUEST[ 'tmpl' ]) && $_REQUEST[ 'tmpl' ] == get_showtime('tmplcomponent')) {
         jomres_cmsspecific_setmetadata('robots', 'noindex,nofollow');
@@ -241,9 +236,12 @@ try {
         }
     }
 
-    //add javascript to head
     if (!AJAXCALL) {
-        init_javascript();
+		//add javascript to head
+        $MiniComponents->triggerEvent('00004');
+		
+		//add core frontend cpanel menu items - we`re out of unique low number triger points here. TODO: maybe move js from 00004 to 00003
+		$MiniComponents->specificEvent('99995', 'menu', array());
     }
 
     //TODO find a better place
@@ -269,48 +267,25 @@ try {
     }
 
     //handle tasks
-	if ($jrConfig[ 'full_access_control' ] == '1') {
-		if ($MiniComponents->eventSpecificlyExistsCheck('06000', get_showtime('task'))) {
-			$MiniComponents->specificEvent('06000', get_showtime('task'));
-		} elseif ($MiniComponents->eventSpecificlyExistsCheck('06001', get_showtime('task'))) {
-			if (get_showtime('task') == 'dashboard') {
-				$MiniComponents->triggerEvent('00013'); // Show dashboard
-				$MiniComponents->specificEvent('06001', get_showtime('task'));
-				$MiniComponents->triggerEvent('00014'); // Optional Post dashboard
-			} else {
-				$MiniComponents->specificEvent('06001', get_showtime('task'));
-			}
-		} elseif ($MiniComponents->eventSpecificlyExistsCheck('06002', get_showtime('task'))) {
-			$MiniComponents->specificEvent('06002', get_showtime('task'));
-		} elseif ($MiniComponents->eventSpecificlyExistsCheck('06005', get_showtime('task'))) {
-			$MiniComponents->specificEvent('06005', get_showtime('task'));
+	if ($MiniComponents->eventSpecificlyExistsCheck('06000', get_showtime('task'))) {
+		$MiniComponents->specificEvent('06000', get_showtime('task'));
+	} elseif ($MiniComponents->eventSpecificlyExistsCheck('06001', get_showtime('task')) && $thisJRUser->userIsManager) { // Receptionist and manager tasks
+		if (get_showtime('task') == 'dashboard') {
+			//$MiniComponents->triggerEvent('00013'); // Optional Pre dashboard
+			$MiniComponents->specificEvent('06001', get_showtime('task'));
+			$MiniComponents->triggerEvent('00014'); // Optional Post dashboard
 		} else {
-			no_task_set($property_uid);
+			$MiniComponents->specificEvent('06001', get_showtime('task'));
 		}
+	} elseif ($MiniComponents->eventSpecificlyExistsCheck('06002', get_showtime('task')) && $thisJRUser->userIsManager && $thisJRUser->accesslevel >= 70) { // Manager only tasks (higher than receptionist)
+		$MiniComponents->specificEvent('06002', get_showtime('task'));
+	} elseif ($MiniComponents->eventSpecificlyExistsCheck('06005', get_showtime('task')) && $thisJRUser->userIsRegistered) { // Registered only user tasks
+		$MiniComponents->specificEvent('06005', get_showtime('task'));
 	} else {
-		if ($MiniComponents->eventSpecificlyExistsCheck('06000', get_showtime('task'))) {
-			$MiniComponents->specificEvent('06000', get_showtime('task'));
-		} // Custom task
-		elseif ($MiniComponents->eventSpecificlyExistsCheck('06001', get_showtime('task')) && $thisJRUser->userIsManager) { // Receptionist and manager tasks
-			if (get_showtime('task') == 'dashboard') {
-				$MiniComponents->triggerEvent('00013'); // Show dashboard
-				$MiniComponents->specificEvent('06001', get_showtime('task'));
-				$MiniComponents->triggerEvent('00014'); // Optional Post dashboard
-			} else {
-				$MiniComponents->specificEvent('06001', get_showtime('task'));
-			}
-		} elseif ($MiniComponents->eventSpecificlyExistsCheck('06002', get_showtime('task')) && $thisJRUser->userIsManager && $thisJRUser->accesslevel > 50) { // Manager only tasks (higher than receptionist)
-			$MiniComponents->specificEvent('06002', get_showtime('task'));
-		} // Custom task
-		elseif ($MiniComponents->eventSpecificlyExistsCheck('06005', get_showtime('task')) && $thisJRUser->userIsRegistered) { // Registered only user tasks
-			$MiniComponents->specificEvent('06005', get_showtime('task'));
-		} // Custom task
-		else {
-			no_task_set($property_uid);
-		}
+		no_task_set($property_uid);
 	}
 
-	if (!$no_html) {
+	if ($no_html == 0) {
 		$MiniComponents->triggerEvent('00061'); // Run out of trigger points. Illogically now, 60 triggers the top template, 61 the bottom template.
 	}
 
@@ -323,9 +298,9 @@ try {
 
     $performance_monitor->set_point('pre-menu generation');
 
-    if (defined('JOMRES_NOHTML') && JOMRES_NOHTML != 1 && !isset($_REQUEST[ 'popup' ])) {
+    if ($no_html == 0 && !isset($_REQUEST[ 'popup' ])) {
         //trigger 99995 event
-        echo $MiniComponents->triggerEvent('99995');
+        echo $MiniComponents->specificEvent('99996', 'menu', array());
     }
 
     $performance_monitor->set_point('post-menu generation');
@@ -387,10 +362,12 @@ try {
     $MiniComponents->triggerEvent('99994');
 
     $performance_monitor->set_point('pre-menu generation');
-    if (!defined('JOMRES_NOHTML') && !isset($_REQUEST[ 'popup' ])) { // Generate the main menu
-        echo $MiniComponents->triggerEvent('99995');
+    
+	if ($no_html == 0 && !isset($_REQUEST[ 'popup' ])) { // Generate the main menu
+        echo $MiniComponents->specificEvent('99996', 'menu', array());
     }
-    $performance_monitor->set_point('post-menu generation');
+    
+	$performance_monitor->set_point('post-menu generation');
 
     $componentArgs = array();
     $MiniComponents->triggerEvent('99999', $componentArgs); // Optional end run scripts
@@ -411,7 +388,7 @@ function no_task_set($property_uid = 0)
         $MiniComponents->specificEvent('06000', "search");
     } else {
         if ($thisJRUser->userIsManager) {
-            $MiniComponents->triggerEvent('00013'); // Show dashboard
+            //$MiniComponents->triggerEvent('00013'); // Optional Pre dashboard
             $MiniComponents->specificEvent('06001', 'dashboard');
             $MiniComponents->triggerEvent('00014'); // Optional Post dashboard
         } elseif (get_showtime('numberOfPropertiesInSystem') == 1 && $jrConfig[ 'is_single_property_installation' ] == '0') {

@@ -948,14 +948,6 @@ function using_bootstrap()
     return false;
 }
 
-function init_javascript()
-{
-    if (!AJAXCALL) {
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        $MiniComponents->triggerEvent('00004');
-    }
-}
-
 function add_gmaps_source()
 {
     if (defined('JOMRES_NOHTML') && JOMRES_NOHTML == '1') {
@@ -967,83 +959,15 @@ function add_gmaps_source()
 
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
-        $site_lang = get_showtime('lang');
-        $lang = explode('-', $site_lang);
-        $shortcode = $lang[ 0 ];
 
-        $libraries = '';
-
-        if (!isset($jrConfig[ 'gmap_layer_weather' ])) {
-            $jrConfig[ 'gmap_layer_weather' ] = '1';
-            $jrConfig[ 'gmap_layer_panoramio' ] = '0';
-            $jrConfig[ 'gmap_layer_transit' ] = '0';
-            $jrConfig[ 'gmap_layer_traffic' ] = '0';
-            $jrConfig[ 'gmap_layer_bicycling' ] = '0';
-        }
-
-        if ($jrConfig[ 'gmap_layer_weather' ] == '1') {
-            $libraries .= 'weather,';
-        }
-        if ($jrConfig[ 'gmap_layer_panoramio' ] == '1') {
-            $libraries .= 'panoramio';
-        }
-
-        if ($libraries != '') {
-            $libraries = '&libraries='.$libraries;
-        }
+        $shortcode = get_showtime('lang_shortcode');
 
         $apikey = '';
         if ($jrConfig[ 'google_maps_api_key' ] != '') {
             $apikey = '&key='.$jrConfig[ 'google_maps_api_key' ];
         }
 
-        jomres_cmsspecific_addheaddata('javascript', 'https://maps.googleapis.com/maps/api/js?v=3&language='.$shortcode.$libraries.$apikey, '&foo=bar', $includeVersion = false, $async = true);
-    }
-}
-
-// Used by components to dynamically add elements to the new Jomres mainmenu. Process.png is a neat way to indicate that this menu option's dynamically added
-function add_menu_option($task_and_args, $image, $title, $path, $category, $external = false, $disabled = false)
-{
-    $jomres_mainmenu_category_images = get_showtime('jomres_mainmenu_category_images');
-    $jomres_mainmenu_category_images[ strtolower($category) ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/process.png';
-    set_showtime('jomres_mainmenu_category_images', $jomres_mainmenu_category_images);
-    $option = jomres_mainmenu_option($task_and_args, 'process.png', $title, $path, $category, $external, $disabled);
-    $jomres_mainmenu_thirdparty_options = get_showtime('jomres_mainmenu_thirdparty_options');
-    $jomres_mainmenu_thirdparty_options[ ][ 'OPTIONS' ] = $option;
-    set_showtime('jomres_mainmenu_thirdparty_options', $jomres_mainmenu_thirdparty_options);
-}
-
-// Builds the button link information that's later passed to the menu generator
-function jomres_mainmenu_option($link, $image, $text, $path = '/JOMRES_ROOT_DIRECTORY/images/jomresimages/small/', $category = null, $external = false, $disabled = false)
-{
-    $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-    $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-    $jrConfig = $siteConfig->get();
-    $link = jomresURL($link);
-    $link = jomresValidateUrl($link);
-
-    if ($jrConfig[ 'development_production' ] == 'production' && $category == jr_gettext('_JOMRES_SEARCH_BUTTON', '_JOMRES_SEARCH_BUTTON', false, false)) {
-        return;
-    }
-
-    if ($image == '') {
-        $image = 'Prompt.png';
-    }
-
-    if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'jomresimages'.JRDS.'small'.JRDS.$image)) {
-        $path = get_showtime('eLiveSite');
-    } else {
-        $path = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/';
-    }
-
-    if (!isset($category)) {
-        $category = 'misc';
-    }
-
-    if (!strstr($image, 'blank.png') && strlen($link) > 0 && strlen($text) > 0) {
-        return array('link' => $link, 'image' => $image, 'menu_name' => $text, 'image_path' => $path, 'category' => $category, 'external' => $external, 'disabled' => $disabled);
-    } else {
-        return;
+        jomres_cmsspecific_addheaddata('javascript', 'https://maps.googleapis.com/maps/api/js?v=3&language='.$shortcode.$apikey, '&foo=bar', $includeVersion = false, $async = true);
     }
 }
 
@@ -1387,18 +1311,14 @@ function jomres_generate_tab_anchor($string)
 function get_showtime($setting)
 {
     $showtime = jomres_singleton_abstract::getInstance('showtime');
-    //$showtime = jomres_singleton_abstract::getInstance('showtime');
-    $result = $showtime->$setting;
 
-    //var_dump ($setting." ".$result);
-    return $result;
+    return $showtime->$setting;
 }
 
 function set_showtime($setting, $value)
 {
-    //echo $setting." - ".$value."<br>";
-    $showtime = jomres_singleton_abstract::getInstance('showtime');
-    //$showtime = jomres_singleton_abstract::getInstance('showtime');
+	$showtime = jomres_singleton_abstract::getInstance('showtime');
+
     if (!$showtime->$setting = $value) {
         return false;
     }
@@ -4763,59 +4683,4 @@ function logs_path_check()
     }
 
     return $message;
-}
-
-function jomresAccessControlSanityCheck()
-{
-    $pass = false;
-    $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-    $jrConfig = $siteConfig->get();
-	
-	$jomres_access_control = jomres_singleton_abstract::getInstance('jomres_access_control');
-
-    if ($jrConfig[ 'full_access_control' ] == '1') {
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-
-        // First we'll find how many minicomponents should be controllable
-        foreach ($MiniComponents->registeredClasses as $eventPoint => $ev) {
-			foreach ($ev as $eventName => $eventDetails) {
-				if (!in_array($eventPoint.$eventName, $jomres_access_control->uncontrollable_scripts)) {
-					if ($jomres_access_control->limit_to_menus_only && in_array($eventPoint, $jomres_access_control->menu_patterns) && !in_array($eventPoint, $jomres_access_control->uncontrollable_patterns)) {
-						$controllable[ $eventPoint.$eventName ] = $eventDetails;
-					} elseif (!in_array($eventPoint, $jomres_access_control->uncontrollable_patterns) && !$jomres_access_control->limit_to_menus_only) {
-						$controllable[ $eventPoint.$eventName ] = $eventDetails;
-					}
-				}
-			}
-		}
-
-        // Next we'll find how many minicomponents actually have settings in the access control table
-        // Now, it's possible that a minicomponent has been uninstalled, therefore we must go through the $jomres_access_control->controlled array and remove those records that refer to minicomps that aren't found in the $controllable array
-        if (!empty($jomres_access_control->controlled)) {
-            $removed = false;
-            foreach ($jomres_access_control->controlled as $key => $val) {
-                if (!array_key_exists($key, $controllable)) {
-                    $jomres_access_control->remove_minicomp_from_access_control_table($key);
-                    $removed = true;
-                }
-            }
-            if ($removed) {
-                $jomres_access_control->recount_controlled_scripts();
-            }
-        } else {
-            $pass = false;
-        }
-
-        // Now that we've tidied up possible stray minicomps, we can compare the count, and if it doesn't marry up, we'll trigger a warning.
-        $jomres_access_control->recount_controlled_scripts();
-        if (count($jomres_access_control->controlled) == count($controllable)) {
-            $pass = true;
-        }
-    } else {
-        $pass = true;
-    }
-
-    // April 15 2016 This feature isn't currently used however we'll keep it available in case it becomes useful again.
-    //return array ( "result" => $pass, "message" => jr_gettext( '_JOMRES_ACCESS_CONTROL_SANITYCHECK_WARNING', '_JOMRES_ACCESS_CONTROL_SANITYCHECK_WARNING', false ) . " Controlled " . count( $jomres_access_control->controlled ) . " Controllable " . count( $controllable ) );
-    return array('result' => $pass, 'message' => '');
 }

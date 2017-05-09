@@ -32,13 +32,20 @@ class j00004a_init_javascript_css_files
             return true;
         }
 
-        if (AJAXCALL == '1') {
+        if (AJAXCALL) {
             return true;
         }
 
-        if (defined('JOMRES_NOHTML') && JOMRES_NOHTML == '1') {
+        if (defined('JOMRES_NOHTML') && JOMRES_NOHTML == 1) {
             return true;
         }
+		
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+        $jrConfig = $siteConfig->get();
+		
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+		
+		$management_view = jomresGetParam($_REQUEST, 'tmpl', false);
 
         if (!isset($jrConfig[ 'load_jquery_ui' ])) {
             $jrConfig[ 'load_jquery_ui' ] = '1';
@@ -47,12 +54,7 @@ class j00004a_init_javascript_css_files
             $jrConfig[ 'load_jquery_ui_css' ] = '1';
         }
 
-        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-        $management_view = jomresGetParam($_REQUEST, 'tmpl', false);
-
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
-        if (!isset($jrConfig[ 'jquery_ui_theme_detected' ])) {
+		if (!isset($jrConfig[ 'jquery_ui_theme_detected' ])) {
             $jrConfig[ 'jquery_ui_theme_detected' ] = 'jomres^jquery-ui.css';
         }
 
@@ -106,9 +108,7 @@ class j00004a_init_javascript_css_files
 
         $javascript_files[] = array(JOMRES_ROOT_DIRECTORY.'/javascript/', 'jomres.js');
 
-        $jomreslang = jomres_singleton_abstract::getInstance('jomres_language');
-        define('JOMRESDATEPICKERLANG', $jomreslang->datepicker_crossref[ $jomreslang->lang ]);
-        $datepicker_localisation_file = 'jquery.ui.datepicker-'.JOMRESDATEPICKERLANG.'.js';
+        $datepicker_localisation_file = 'jquery.ui.datepicker-'.get_showtime('datepicker_lang').'.js';
 
         $javascript_files[] = array(JOMRES_ROOT_DIRECTORY.'/javascript/jquery-ui-cal-localisation/', $datepicker_localisation_file);
 

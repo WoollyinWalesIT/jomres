@@ -447,3 +447,11 @@ function jomres_cmsspecific_isRtl($cms_user_id = 0) {
 	
 	return $isRtl;
 }
+
+function jomres_cmsspecific_user_is_admin() {
+	if ( current_user_can( 'manage_options' ) ) {
+		return true;
+	}
+	
+	return false;
+}

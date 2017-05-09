@@ -49,9 +49,11 @@ class jomres_language
         jomres_cmsspecific_setlanguage($jomresConfig_lang);
 
         $this->lang = $jomresConfig_lang;
+		$this->datepicker_lang = $this->datepicker_crossref[ $jomresConfig_lang ];
 
         //set lang showtime, eg: en-GB
-        set_showtime('lang', $jomresConfig_lang);
+        set_showtime('lang', $this->lang);
+		set_showtime('datepicker_lang', $this->datepicker_lang);
 
         //set lang shortcode showtime, eg: en
         $this->shortcodes = $this->get_shortcodes();

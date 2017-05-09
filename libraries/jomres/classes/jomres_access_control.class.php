@@ -22,32 +22,46 @@ class jomres_access_control
     public function __construct()
     {
         self::$internal_debugging = false;
-        if (jomres_cmsspecific_areweinadminarea()) {
-            $this->feature_enabled = false;
-        } else {
-            $this->feature_enabled = true;
-        }
 
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
+		//controlled eventPoints
+		$this->controlled = array();
+		
+		//controllable eventPoints and min access level required for each
+		$this->controllable_patterns = array(
+			'06000' => '0', //public tasks 
+			'06001' => '50', //reception tasks
+			'06002' => '70', //manager tasks
+			'06005' => '1', //registered tasks
+			'01004' => '0' //property list views
+		);
+		
+		//uncontrollable task names
+		$this->uncontrollable_tasks = array(
+			'immediatepay',
+			'editor',
+			'confirmbooking',
+			'completebk',			
+			'error',
+			'background_process'
+		);
+		
+		//uncontrollable task patterns. if task names match these patters, the tasks can`t be controlled manually by users
+		$this->uncontrollable_patterns = array(
+			'payment', 
+			'insertbooking', 
+			'handl', 
+			'cron',
+			'ajax',
+			'beds24',
+			'oauth',
+			'get_'
+		);
+		
+		//access level dropdown options
+		$this->options = false;
 
-        if (!isset($jrConfig[ 'full_access_control' ])) {
-            $jrConfig[ 'full_access_control' ] = '0';
-        }
-
-        $this->limit_to_menus_only = true;
-        if ($jrConfig[ 'full_access_control' ] == '1') {
-            $this->limit_to_menus_only = false;
-        }
-
-        // Minicomponents that should never be forbidden from running
-        $this->uncontrollable_patterns = array('00001', '00002', '00005', '01009', '01010', '00021', '16010', '16020', '99995', '99996', '99997', '99999', '10001', '10002', '10002', '10003', '10004', '16000');
-
-        $this->uncontrollable_scripts = array('00001start', '00002usermanagement', '00006sanity_checks', '00012managelogs', '00012manager_first_run', '06000cron_exchangerates', '06000cron_invoice', '06000cron_optimise', '06000cron_subscriptions', '06000cronjobs', '00060toptemplate', '00061bottomtemplate', '05000bookingobject', '03020insertbooking');
-
-        $this->menu_patterns = array('00009', '00010', '00011', '01004');
-
-        $this->init();
+		//get currently controlled tasks
+        $this->_init();
     }
 	
 	public static function getInstance()
@@ -85,160 +99,215 @@ class jomres_access_control
 
         return null;
     }
-
-    public function remove_minicomp_from_access_control_table($minicomp)
+	
+	private function _init()
     {
-        $query = "DELETE FROM #__jomres_access_control WHERE scriptname = '".(string) $minicomp."' LIMIT 1 ";
-        if (!doInsertSql($query, '')) {
-            trigger_error('Unable to delete from access control table, mysql db failure', E_USER_ERROR);
-        }
-    }
-
-    // We're not going to get too fancy with this, it's clear that it's easy to get too carried away with having insane levels of access control so we're going to keep this working
-    // more or less similar to how Jomres already works, with a sliding scale of users : unregistered -> registered -> reception -> manager -> supermanager, with a Nobody option tagged on,
-    // supermanagers > managers > registered users > reception > unregistered, as we already have it. After all, this feature's mainly designed to prevent options from showing without having to edit files,
-    // with a side benefit from ensuring that users cannot access some scripts even if they know the urls.
-
-    public function can_user_access_this_script($minicomp)
-    {
-        // some scripts simply shouldn't be controlled by access control (for example 00002 user management), therefore we'll return true
-        $pattern = substr($minicomp, 0, 5);
-        if (in_array($minicomp, $this->uncontrollable_scripts)) {
-            return true;
-        }
-        if (in_array($pattern, $this->uncontrollable_patterns)) {
-            return true;
-        }
-
-        if (defined('_JOMRES_ACCESS_CONTROL_LEVELS_DEFAULT')) {
-            $this->levels = array('default' => jr_gettext('_JOMRES_ACCESS_CONTROL_LEVELS_DEFAULT', '_JOMRES_ACCESS_CONTROL_LEVELS_DEFAULT'), 'anybody' => jr_gettext('_JOMRES_ACCESS_CONTROL_LEVELS_ANYBODY', '_JOMRES_ACCESS_CONTROL_LEVELS_ANYBODY'), 'registered' => jr_gettext('_JOMRES_ACCESS_CONTROL_LEVELS_REGISTERED', '_JOMRES_ACCESS_CONTROL_LEVELS_REGISTERED'), 'receptionist' => jr_gettext('_JOMRES_ACCESS_CONTROL_LEVELS_RECEPTIONIST', '_JOMRES_ACCESS_CONTROL_LEVELS_RECEPTIONIST'), 'manager' => jr_gettext('_JOMRES_ACCESS_CONTROL_LEVELS_MANAGER', '_JOMRES_ACCESS_CONTROL_LEVELS_MANAGER'), 'supermanager' => jr_gettext('_JOMRES_ACCESS_CONTROL_LEVELS_SUPERMANAGER', '_JOMRES_ACCESS_CONTROL_LEVELS_SUPERMANAGER'), 'nobody' => jr_gettext('_JOMRES_ACCESS_CONTROL_LEVELS_NOBODY', '_JOMRES_ACCESS_CONTROL_LEVELS_NOBODY'));
-        }
-
-        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-        if (!is_null($thisJRUser)) {
-            if (!$this->feature_enabled) {
-                return true;
-            } else {
-                $user_can_access = false;
-                $users_access_level = $this->get_this_users_access_level();
-                if (!$users_access_level) { // We cannot identify this user's level at all, should be at least "anybody" but we don't know, so we'll stop all running altogether
-                exit;
-                }
-
-                if (!empty($this->controlled)) {
-                    if (array_key_exists($minicomp, $this->controlled)) {
-                        //var_dump($minicomp." ".$this->controlled[$minicomp]['access_level']);exit;
-
-                        switch ($this->controlled[ $minicomp ][ 'access_level' ]) {
-                            case 'default':
-                                $user_can_access = true;
-                                break;
-                            case 'anybody':
-                                $user_can_access = true;
-                                break;
-                            case 'registered':
-                                if ($users_access_level == 'supermanager' || $users_access_level == 'manager' || $users_access_level == 'reception' || $users_access_level == 'registered') {
-                                    $user_can_access = true;
-                                }
-                                break;
-                            case 'reception':
-                                if ($users_access_level == 'supermanager' || $users_access_level == 'manager' || $users_access_level == 'reception') {
-                                    $user_can_access = true;
-                                }
-                                break;
-                            case 'manager':
-                                if ($users_access_level == 'supermanager' || $users_access_level == 'manager') {
-                                    $user_can_access = true;
-                                }
-                                break;
-                            case 'supermanager':
-                                if ($users_access_level == 'supermanager') {
-                                    $user_can_access = true;
-                                }
-                                break;
-                            case 'nobody':
-                            default:
-                                $user_can_access = false;
-                        }
-                    } else {
-                        $user_can_access = true;
-                    }
-                } else {
-                    $user_can_access = true;
-                }
-
-                return $user_can_access;
-            }
-        } else {
-            return false;
-        }
-    }
-
-    private function init()
-    {
-        $this->controlled = array();
-        $controlled = false;
-        
-		$query = 'SELECT id,scriptname,access_level FROM #__jomres_access_control';
-		$scripts = doSelectSql($query);
-		if (!empty($scripts)) {
-			foreach ($scripts as $script) {
-				$this->controlled[ $script->scriptname ] = array('scriptname' => $script->scriptname, 'access_level' => $script->access_level);
+		$query = 'SELECT `id`, `scriptname`, `access_level` FROM #__jomres_access_control';
+		$result = doSelectSql($query);
+		
+		if (!empty($result)) {
+			foreach ($result as $r) {
+				$this->controlled[ $r->scriptname ] = (int)$r->access_level;
 			}
 		}
     }
 
+    private function delete_controlled_task($task = '')
+    {
+		if ($task == '') {
+			return true;
+		}
+        
+		$query = "DELETE FROM #__jomres_access_control WHERE `scriptname` = '".$task."'";
+        
+		if (!doInsertSql($query, '')) {
+            trigger_error('Unable to delete from access control table, mysql db failure', E_USER_ERROR);
+        }
+		
+		unset($this->controlled[$task]);
+		
+		return true;
+    }
+	
+	public function update_task_access_level($task = '', $access_level = '-1')
+    {
+		if ($task == '') {
+			return true;
+		}
+		
+		if (isset($this->controlled[$task])) {
+			//access level changed to default, so no need to have this task in the access control table anymore
+			if ($access_level == '-1') {
+				$this->delete_controlled_task($task);
+				
+				return true;
+			} else { //update existing task access level
+				$query = "UPDATE #__jomres_access_control SET `access_level` = '".$access_level."' WHERE `scriptname` = '".$task."'";
+				
+				if (!doInsertSql($query, '')) {
+					trigger_error("Error saving new access control level $new_level for $minicomp", 'mysql db failure', E_USER_ERROR);
+				}
+				
+				$this->controlled[ $task ] = (int)$access_level;
+				
+				return true;
+			}
+		} else { //task wasn`t already controlled
+			$query = "INSERT INTO #__jomres_access_control (`scriptname`, `access_level`) VALUES ('".$task."', '".$access_level."')";
+			
+			if (!doInsertSql($query, '')) {
+				trigger_error('Unable to insert into access control table, mysql db failure', E_USER_ERROR);
+			}
+			
+			$this->controlled[ $task ] = (int)$access_level;
+			
+			return true;
+		}
+
+		return false;
+    }
+
+	//check if a user can access a specific task
+    public function this_user_can($task = '')
+    {
+        if (in_array($task, $this->uncontrollable_tasks)) {
+            return true;
+        }
+		
+		if (empty($this->controlled)) {
+			return true;
+		}
+		
+		if (!isset($this->controlled[$task])) {
+			return true;
+		}
+		
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+		
+		$user_can_access = false;
+
+		if (isset($this->controlled[$task])) {
+			switch ($this->controlled[$task]) {
+				case -1: //default
+					$user_can_access = true;
+					break;
+				case 0: //public
+					$user_can_access = true;
+					break;
+				case 1: //registered
+					if ($thisJRUser->accesslevel >= 1) {
+						$user_can_access = true;
+					}
+					break;
+				case 50: //reception
+					if ($thisJRUser->accesslevel >= 50) {
+						$user_can_access = true;
+					}
+					break;
+				case 70: //manager
+					if ($thisJRUser->accesslevel >= 70) {
+						$user_can_access = true;
+					}
+					break;
+				case 90: //super property manager
+					if ($thisJRUser->accesslevel >= 90) {
+						$user_can_access = true;
+					}
+					break;
+				case -2: //nobody
+					$user_can_access = false;
+					break;
+				default:
+					$user_can_access = true;
+			}
+		} else {
+			$user_can_access = true;
+		}
+		
+		return $user_can_access;
+    }
+
+	//not used but here is somebody wants to do this for some reason..
     public function recount_controlled_scripts()
     {
-        $this->init();
+        $this->_init();
     }
 
-    public function generate_access_control_dropdown($minicomp)
+	//access levels dropdown
+    public function generate_access_control_dropdown($task = '', $min_access_level = 0)
     {
-        $this->levels = array('default' => jr_gettext('_JOMRES_ACCESS_CONTROL_LEVELS_DEFAULT', '_JOMRES_ACCESS_CONTROL_LEVELS_DEFAULT'), 'anybody' => jr_gettext('_JOMRES_ACCESS_CONTROL_LEVELS_ANYBODY', '_JOMRES_ACCESS_CONTROL_LEVELS_ANYBODY'), 'registered' => jr_gettext('_JOMRES_ACCESS_CONTROL_LEVELS_REGISTERED', '_JOMRES_ACCESS_CONTROL_LEVELS_REGISTERED'), 'receptionist' => jr_gettext('_JOMRES_ACCESS_CONTROL_LEVELS_RECEPTIONIST', '_JOMRES_ACCESS_CONTROL_LEVELS_RECEPTIONIST'), 'manager' => jr_gettext('_JOMRES_ACCESS_CONTROL_LEVELS_MANAGER', '_JOMRES_ACCESS_CONTROL_LEVELS_MANAGER'), 'supermanager' => jr_gettext('_JOMRES_ACCESS_CONTROL_LEVELS_SUPERMANAGER', '_JOMRES_ACCESS_CONTROL_LEVELS_SUPERMANAGER'), 'nobody' => jr_gettext('_JOMRES_ACCESS_CONTROL_LEVELS_NOBODY', '_JOMRES_ACCESS_CONTROL_LEVELS_NOBODY'));
-        if (!empty($this->controlled)) {
-            if (array_key_exists($minicomp, $this->controlled)) {
-                $current_level = $this->controlled[$minicomp][ 'access_level' ];
-            } else {
-                $current_level = 'default';
-            }
-        } else {
-            $current_level = 'default';
-        } // the access control system doesn't come into play here. Instead the existing access restrictions already built into the system may still prevent a user from running a script
+		if ($task == '') {
+			return '';
+		}
 
-        $mode_options = array();
-        if ($current_level == 'default') {
-            $mode_options[ ] = jomresHTML::makeOption('default', $this->levels[ 'default' ]);
-        }
+		//check if access level dropdown options are set
+		if (!$this->options) {
+			$this->options = array();
+			$this->options['-1'] = jomresHTML::makeOption('-1', jr_gettext('_JOMRES_ACCESS_CONTROL_LEVELS_DEFAULT', '_JOMRES_ACCESS_CONTROL_LEVELS_DEFAULT'));
+			$this->options['0'] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_ACCESS_CONTROL_LEVELS_ANYBODY', '_JOMRES_ACCESS_CONTROL_LEVELS_ANYBODY'));
+			$this->options['1'] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_ACCESS_CONTROL_LEVELS_REGISTERED', '_JOMRES_ACCESS_CONTROL_LEVELS_REGISTERED'));
+			$this->options['50'] = jomresHTML::makeOption('50', jr_gettext('_JOMRES_ACCESS_CONTROL_LEVELS_RECEPTIONIST', '_JOMRES_ACCESS_CONTROL_LEVELS_RECEPTIONIST'));
+			$this->options['70'] = jomresHTML::makeOption('70', jr_gettext('_JOMRES_ACCESS_CONTROL_LEVELS_MANAGER', '_JOMRES_ACCESS_CONTROL_LEVELS_MANAGER'));
+			$this->options['90'] = jomresHTML::makeOption('90', jr_gettext('_JOMRES_ACCESS_CONTROL_LEVELS_SUPERMANAGER', '_JOMRES_ACCESS_CONTROL_LEVELS_SUPERMANAGER'));
+			$this->options['-2'] = jomresHTML::makeOption('-2', jr_gettext('_JOMRES_ACCESS_CONTROL_LEVELS_NOBODY', '_JOMRES_ACCESS_CONTROL_LEVELS_NOBODY'));
+		}
+		
+		$options = $this->options;
+		
+		//the dropdown should have only access levels valid for this task event point
+		switch ((string)$min_access_level) {
+			case '0':
+				break;
+			case '1':
+				unset($options['0']);
+				break;
+			case '50':
+				unset($options['0']);
+				unset($options['1']);
+				break;
+			case '70':
+				unset($options['0']);
+				unset($options['1']);
+				unset($options['50']);
+				break;
+			case '90':
+				unset($options['0']);
+				unset($options['1']);
+				unset($options['50']);
+				unset($options['70']);
+				break;
+			default:
+				break;
+		}
 
-        $mode_options[ ] = jomresHTML::makeOption('anybody', $this->levels[ 'anybody' ]);
-        $mode_options[ ] = jomresHTML::makeOption('registered', $this->levels[ 'registered' ]);
-        $mode_options[ ] = jomresHTML::makeOption('reception', $this->levels[ 'receptionist' ]);
-        $mode_options[ ] = jomresHTML::makeOption('manager', $this->levels[ 'manager' ]);
-        $mode_options[ ] = jomresHTML::makeOption('supermanager', $this->levels[ 'supermanager' ]);
-        $mode_options[ ] = jomresHTML::makeOption('nobody', $this->levels[ 'nobody' ]);
+		if (isset($this->controlled[$task])) {
+			$current_level = (string)$this->controlled[$task];
+		} else {
+			$current_level = '-1';
+		}
 
-        $javascript = 'onChange="change_access_level(\''.$minicomp.'\',this.value)";';
+        $javascript = 'onChange="change_access_level(\''.$task.'\',this.value)";';
 
-        return jomresHTML::selectList($mode_options, '', ' autocomplete="off" class="inputbox" size="1" '.$javascript.'', 'value', 'text', $current_level);
+        return jomresHTML::selectList($options, '', ' autocomplete="off" class="inputbox" size="1" '.$javascript.'', 'value', 'text', $current_level);
     }
-
-    private function get_this_users_access_level()
-    {
-        $access_level = false;
-        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-        if ($thisJRUser->id == 0) {
-            $access_level = 'anybody';
-        } elseif ($thisJRUser->id > 0 && !$thisJRUser->userIsManager) {
-            $access_level = 'registered';
-        } elseif ($thisJRUser->userIsManager && $thisJRUser->accesslevel == 50 && !$thisJRUser->superPropertyManager) {
-            $access_level = 'reception';
-        } elseif ($thisJRUser->userIsManager && $thisJRUser->accesslevel == 70 && !$thisJRUser->superPropertyManager) {
-            $access_level = 'manager';
-        } elseif ($thisJRUser->superPropertyManager) {
-            $access_level = 'supermanager';
-        }
-
-        return $access_level;
-    }
+	
+	//check if a task is controllable (some tasks are not controllable)
+	public function is_controllable($task = '')
+	{
+		if ($task == '') {
+			return false;
+		}
+		
+		if (in_array($task, $this->uncontrollable_tasks)) {
+			return false;
+		}
+		
+		foreach ($this->uncontrollable_patterns as $pattern) {
+			if (strpos($task, $pattern) !== false) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
 }

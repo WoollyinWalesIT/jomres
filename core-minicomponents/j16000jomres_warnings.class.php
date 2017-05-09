@@ -54,15 +54,6 @@ class j16000jomres_warnings
 			$output[ 'JOMRES_PRODUCT_INFO_HIGHLIGHT' ] = 'alert alert-info';
         }
 
-        //full access control enabled warning
-        $output[ 'ACCESS_CONTROL_HIGHLIGHT' ] = '';
-        $output[ 'ACCESS_CONTROL_ALERT' ] = '';
-        $access_control_check = jomresAccessControlSanityCheck();
-        if (!$access_control_check[ 'result' ]) {
-            $output[ 'ACCESS_CONTROL_HIGHLIGHT' ] = (using_bootstrap() ? 'alert alert-error' : 'ui-state-error');
-            $output[ 'ACCESS_CONTROL_ALERT' ] = $access_control_check[ 'message' ];
-        }
-
         //wordpress Page with [jomres:xx-XX] not created yet
         $output[ 'JOMRES_DEFAULT_SHORTCODE_HIGHLIGHT' ] = '';
         $output[ 'JOMRES_DEFAULT_SHORTCODE_ALERT' ] = '';

@@ -35,8 +35,6 @@ class jr_user
     {
         self::$internal_debugging = false;
 
-        $this->superPropertyManagersAreGods 	= true;                    //Change this to false to prevent super property managers from having rights to ALL properties
-
         //jomres user role
         $this->jomres_manager_id 				= 0;                        //user/manager id in the _jomres_managers table
         $this->id 								= 0;                        //cms user id TODO: remove duplicate from the entire codebase
@@ -86,6 +84,9 @@ class jr_user
 
         if ($this->id > 0) {
             $this->userIsRegistered = true;
+			
+			//registered user access level will be 1 (lowest after 0:not registered)
+			$this->accesslevel = 1;
 
             //get user profile details
             $this->get_user_profile();
@@ -280,7 +281,7 @@ class jr_user
      */
     private function reset_manager_to_non_manager()
     {
-        $this->accesslevel = 0;
+        $this->accesslevel = 1;
         $this->currentproperty = 0;
         $this->last_active = '1970-01-01 00:00:01';
         $this->authorisedProperties = array();
@@ -358,6 +359,16 @@ class jr_user
     public function is_receptionist()
     {
         if ($this->accesslevel == 50) {
+            return true;
+        }
+
+        return false;
+    }
+	
+	//checks if the current user is a receptionist
+    public function is_registered()
+    {
+        if ($this->accesslevel == 1) {
             return true;
         }
 

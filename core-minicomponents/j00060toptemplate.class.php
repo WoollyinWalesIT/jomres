@@ -104,9 +104,7 @@ class j00060toptemplate
 
         $output[ 'BACKLINK' ] = '<a href="javascript:history.go(-1)">'.jr_gettext('_JOMRES_COM_MR_BACK', '_JOMRES_COM_MR_BACK').'</a>';
         $output[ 'LIVESITE' ] = get_showtime('live_site');
-        if (defined('JOMRESDATEPICKERLANG')) {
-            $output[ 'DATEPICKERLANG' ] = JOMRESDATEPICKERLANG;
-        }
+        $output[ 'DATEPICKERLANG' ] = get_showtime('datepicker_lang');
 
         $lang_dropdown = array();
         if ($jrConfig[ 'showLangDropdown' ] == '1')

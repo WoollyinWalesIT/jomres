@@ -150,7 +150,14 @@ class minicomponent_registry
 
         $this->miniComponentDirectories = array_unique($this->miniComponentDirectories);
 		sort($this->miniComponentDirectories);
+		
+		//sort by eventPoint
 		ksort($this->registeredClasses);
+		
+		//sort by eventName
+		foreach ($this->registeredClasses as $k => $v) {
+			ksort($this->registeredClasses[$k]);
+		}
 
         if (!file_put_contents($this->registry_file,
 '<?php

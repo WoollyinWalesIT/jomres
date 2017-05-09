@@ -25,21 +25,23 @@ class j16000ajax_change_access_level
 
             return;
         }
-        $jomres_access_control = jomres_singleton_abstract::getInstance('jomres_access_control');
+        
+		$jomres_access_control = jomres_singleton_abstract::getInstance('jomres_access_control');
 
-        $minicomp = jomresGetParam($_GET, 'minicomp', '');
-        $new_level = jomresGetParam($_GET, 'new_level', '');
+        $task = jomresGetParam($_GET, 'minicomp', '');
+        $access_level = (int)jomresGetParam($_GET, 'new_level', -1);
 
-        if (array_key_exists($minicomp, $jomres_access_control->controlled)) {
-            $query = "UPDATE #__jomres_access_control SET `access_level` = '".(string) $new_level."' WHERE scriptname = '".$minicomp."'";
-        } else {
-            $query = "INSERT INTO #__jomres_access_control (`scriptname`,`access_level`) VALUES ('".$minicomp."','".$new_level."');";
-        }
-        if (!doInsertSql($query, '')) {
-            trigger_error("Error saving new access control level $new_level for $minicomp", 'mysql db failure', E_USER_ERROR);
-        }
+		if ($task == '') {
+			return;
+		}
 
-        $jomres_access_control->recount_controlled_scripts();
+        if ($jomres_access_control->update_task_access_level($task, $access_level)) {
+			echo json_encode(array('success'=>'1'));
+		} else {
+			echo json_encode(array('success'=>'0'));
+		}
+
+		exit();
     }
 
     // This must be included in every Event/Mini-component

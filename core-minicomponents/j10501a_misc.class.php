@@ -124,11 +124,6 @@ class j10501a_misc
 			$configurationPanel->insertSetting();
 		}
 
-		/*$configurationPanel->setleft( jr_gettext( '_JOMRES_ACCESS_CONTROL_CONFIG_TITLE', '_JOMRES_ACCESS_CONTROL_CONFIG_TITLE', false ) );
-		$configurationPanel->setmiddle( $lists[ 'full_access_control' ] );
-		$configurationPanel->setright( jr_gettext( '_JOMRES_ACCESS_CONTROL_CONFIG_DESC', '_JOMRES_ACCESS_CONTROL_CONFIG_DESC', false ) );
-		$configurationPanel->insertSetting();*/
-
 		$configurationPanel->setleft(jr_gettext('_JOMRES_CONFIG_JQUERY', '_JOMRES_CONFIG_JQUERY', false));
 		$configurationPanel->setmiddle($lists[ 'load_jquery' ]);
 		$configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_JQUERY_DESC', '_JOMRES_CONFIG_JQUERY_DESC', false));

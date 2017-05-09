@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j10006admin_menu
+class j10006menu
 {
     public function __construct()
     {
@@ -49,7 +49,7 @@ class j10006admin_menu
 				$r['MENU_NAME'] = jr_ucwords($jomres_menu->admin_items[$task]['title']);
 
 				//menu item url
-				if ($jomres_menu->admin_items[$task]['external']) {
+				if ($jomres_menu->admin_items[$task]['is_url']) {
 					$r['LINK'] = $task;
 				} else {
 					$r['LINK'] = jomresUrl(JOMRES_SITEPAGE_URL_ADMIN.'&task='.$task);

@@ -115,9 +115,12 @@ function load_jomres_environment()
         $jomres_language->get_language($current_property_details->property_type);
     }
 
-    //00004 is triggered in this function now
     if (!AJAXCALL) {
-        init_javascript();
+		//add javascript to head
+        $MiniComponents->triggerEvent('00004');
+		
+		//add core frontend cpanel menu items - we`re out of unique low number triger points here. TODO: maybe move js from 00004 to 00003
+		$MiniComponents->specificEvent('99995', 'menu', array());
     }
 
     //TODO find a better place

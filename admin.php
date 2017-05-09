@@ -85,10 +85,10 @@ try {
 
     if (!AJAXCALL) {
 		//add javascript to head
-        init_javascript();
+        $MiniComponents->triggerEvent('00004');
 		
-		//jomres admin cpanel menu items. Needs to be executed before the 00005 trigger which may contain other admin menu items from plugins
-        $MiniComponents->specificEvent('10005', 'admin_menu', array());
+		//add admin menu items
+		$MiniComponents->specificEvent('10005', 'menu', array());
     }
 
     //00005 trigger point
@@ -109,8 +109,8 @@ try {
         $output = array();
 		
 		//generate the cpanel menu
-		$MiniComponents->specificEvent('10006', 'admin_menu', array());
-		$output[ 'CONTROL_PANEL_MENU' ] = $MiniComponents->miniComponentData[ '10006' ][ 'admin_menu' ];
+		$MiniComponents->specificEvent('10006', 'menu', array());
+		$output[ 'CONTROL_PANEL_MENU' ] = $MiniComponents->miniComponentData[ '10006' ][ 'menu' ];
 
         //frequently asked questions
         $output['_JOMRES_FAQ'] = jr_gettext('_JOMRES_FAQ', '_JOMRES_FAQ', false);
@@ -136,20 +136,16 @@ try {
         //language dropdown
         $output[ 'LANGDROPDOWN' ] = $jomres_language->get_languageselection_dropdown();
 
-        $output[ 'BACKTOTOP' ] = jr_gettext('BACKTOTOP', 'BACKTOTOP', false);
-
-        if (using_bootstrap()) {
-            $output[ 'USING_BOOTSTRAP' ] = 'true';
-        } else {
-            $output[ 'USING_BOOTSTRAP' ] = 'false';
-        }
-
+		//check jomres support key
         jr_import('jomres_check_support_key');
         //if ($_REQUEST['task'] != "showplugins")
         //	{
             $key_validation = new jomres_check_support_key(JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins');
         $output['LICENSE_WARNING'] = $MiniComponents->specificEvent('16000', 'show_license_message', array('output_now' => false, 'as_modal' => false));
         //	}
+
+		//bootstrap
+		$output[ 'USING_BOOTSTRAP' ] = 'true';
 
         if ($jrConfig['use_bootstrap_in_frontend'] == '0') {
             $output['BOOTSTRAP_WARNING'] = $MiniComponents->specificEvent('16000', 'show_bootstrap_warning', array('output_now' => false));
@@ -175,7 +171,7 @@ try {
         setcookie('periodoption', $periodoption, time() + 60 * 60);
     }
 
-    // admins_first_run();
+    //admins_first_run();
 
     //task
     switch (get_showtime('task')) {

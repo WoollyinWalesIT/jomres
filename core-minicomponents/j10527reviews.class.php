@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j10501reviews
+class j10527reviews
 {
     public function __construct($componentArgs)
     {
@@ -32,7 +32,7 @@ class j10501reviews
         $configurationPanel = $componentArgs[ 'configurationPanel' ];
         $lists = $componentArgs[ 'lists' ];
 
-        $configurationPanel->startPanel(jr_gettext('_JOMRES_REVIEWS', '_JOMRES_REVIEWS', false));
+        $configurationPanel->insertHeading(jr_gettext('_JOMRES_REVIEWS', '_JOMRES_REVIEWS', false));
 
         $configurationPanel->setleft(jr_gettext('_JOMRES_REVIEWS_ADMIN_CONTROL', '_JOMRES_REVIEWS_ADMIN_CONTROL', false));
         $configurationPanel->setmiddle($lists[ 'use_reviews' ]);
@@ -53,11 +53,6 @@ class j10501reviews
         $configurationPanel->setmiddle($lists['only_guests_can_review']);
         $configurationPanel->setright(jr_gettext('_JOMRES_REVIEWS_ADMIN_GUESTSONLY_DESC', '_JOMRES_REVIEWS_ADMIN_GUESTSONLY_DESC', false));
         $configurationPanel->insertSetting();
-
-		//plugins can add options to this tab
-		$MiniComponents->triggerEvent('10528', $componentArgs);
-		
-        $configurationPanel->endPanel();
     }
 
     // This must be included in every Event/Mini-component
