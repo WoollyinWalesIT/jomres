@@ -25,7 +25,9 @@ class j01050x_geocoder
 
             return;
         }
-
+		
+		$this->retVals ='';
+		
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
 
