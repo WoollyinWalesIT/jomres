@@ -127,19 +127,6 @@ class j06002edit_property
         $MiniComponents->specificEvent('01050', 'x_geocoder', $componentArgs);
         $output[ 'MAP' ] = $MiniComponents->miniComponentData[ '01050' ][ 'x_geocoder' ];
 
-        //stars dropdown
-        for ($i = 0, $n = 7; $i <= $n; ++$i) {
-            $stars_arr[] = jomresHTML::makeOption($i, $i);
-        }
-        $output[ 'STARSDROPDOWN' ] = jomresHTML::selectList($stars_arr, 'stars', 'size="1" class="inputbox"', 'value', 'text', $current_property_details->stars);
-
-        //superior dropdown
-        $yesno = array();
-        $yesno[] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false));
-        $yesno[] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false));
-        $output[ 'SUPERIOR_DROPDOWN' ] = jomresHTML::selectList($yesno, 'superior', 'class="inputbox" size="1"', 'value', 'text', $current_property_details->superior);
-        $output[ 'HSUPERIOR' ] = jr_gettext('JOMRES_SUPERIOR', 'JOMRES_SUPERIOR');
-
         //property policies and disclaimers
         if ($current_property_details->property_policies_disclaimers == '') {
             $property_policies_disclaimers = jr_gettext('DEFAULT_TERMS_AND_CONDITIONS', 'DEFAULT_TERMS_AND_CONDITIONS', false);
@@ -253,7 +240,6 @@ class j06002edit_property
         $output[ 'HTELEPHONE' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE');
         $output[ 'HFAX' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX',false);
         $output[ 'HEMAIL' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL');
-        $output[ 'HSTARS' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STARS', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STARS');
         $output[ 'HPRICE' ] = jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE', '_JOMRES_COM_MR_EXTRA_PRICE');
         $output[ 'HFEATURES' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES');
         $output[ 'HPROPDESCRIPTION' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION');
@@ -263,7 +249,6 @@ class j06002edit_property
         $output[ 'HAIRPORTS' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AIRPORTS', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AIRPORTS');
         $output[ 'HOTHERTRANSPORT' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_OTHERTRANSPORT', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_OTHERTRANSPORT');
         $output[ 'HPOLICIESDISCLAIMERS' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS');
-        $output[ 'SAVEBEFOREUPLOADWARNING'] = jr_gettext('_JOMRES_EDITPROPERTY_SAVEBEFOREUPLOAD', '_JOMRES_EDITPROPERTY_SAVEBEFOREUPLOAD', false);
         $output[ '_JOMRES_METADESCRIPTION'] = jr_gettext('_JOMRES_METADESCRIPTION', '_JOMRES_METADESCRIPTION', false);
         $output[ '_JOMRES_METAKEYWORDS' ] = jr_gettext('_JOMRES_METAKEYWORDS', '_JOMRES_METAKEYWORDS', false);
         $output[ '_JOMRES_METATITLE' ] = jr_gettext('_JOMRES_METATITLE', '_JOMRES_METATITLE', false);
@@ -277,8 +262,27 @@ class j06002edit_property
             $change_country_warning[] = array('CHANGECOUNTRYWARNING' => jr_gettext('_JOMRES_EDITPROPERTY_SELECTCOUNTRY', '_JOMRES_EDITPROPERTY_SELECTCOUNTRY', false));
         }
 
+		$stars = array();
+		if ($mrConfig[ 'singleRoomProperty' ] != '1') {
+			$s = array();
+			
+			$s[ 'HSTARS' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STARS', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STARS');
+			//stars dropdown
+			for ($i = 0, $n = 7; $i <= $n; ++$i) {
+				$stars_arr[] = jomresHTML::makeOption($i, $i);
+			}
+			$s[ 'STARSDROPDOWN' ] = jomresHTML::selectList($stars_arr, 'stars', 'size="1" class="inputbox"', 'value', 'text', $current_property_details->stars);
 
-
+			//superior dropdown
+			$yesno = array();
+			$yesno[] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false));
+			$yesno[] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false));
+			$s[ 'SUPERIOR_DROPDOWN' ] = jomresHTML::selectList($yesno, 'superior', 'class="inputbox" size="1"', 'value', 'text', $current_property_details->superior);
+			$s[ 'HSUPERIOR' ] = jr_gettext('JOMRES_SUPERIOR', 'JOMRES_SUPERIOR');
+			
+			$stars[] = $s;
+		}
+		
         //toolbar
         $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
         $jrtb = $jrtbar->startTable();
@@ -317,7 +321,9 @@ class j06002edit_property
         if ($jrConfig[ 'useGlobalPFeatures' ] == '1') {
             $tmpl->addRows('globalPfeatures', $globalPfeatures);
         }
-
+		
+		$tmpl->addRows('stars', $stars);
+		
         $tmpl->displayParsedTemplate();
     }
 
