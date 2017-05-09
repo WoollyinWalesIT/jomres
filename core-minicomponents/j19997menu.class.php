@@ -51,8 +51,10 @@ class j19997menu
 				//menu item url
 				if ($jomres_menu->admin_items[$task]['is_url']) {
 					$r['LINK'] = $task;
-				} else {
+				} elseif ($task != 'blank') {
 					$r['LINK'] = jomresUrl(JOMRES_SITEPAGE_URL_ADMIN.'&task='.$task);
+				} else {
+					$r['LINK'] = jomresUrl(JOMRES_SITEPAGE_URL_ADMIN);
 				}
 				
 				//menu item icon
@@ -72,10 +74,10 @@ class j19997menu
                 }
 				
 				//menu item badges TODO: find a better way or remove this completely
-				if (get_showtime('task') != 'addplugin') {
-                    $r[ 'BADGES' ] = '';
-					
-                    $items_requiring_attention = get_number_of_items_requiring_attention_for_menu_option($task);
+				$r[ 'BADGES' ] = '';
+
+				if (!$jomres_menu->admin_items[$task]['is_url'] && get_showtime('task') != 'addplugin') {
+					$items_requiring_attention = get_number_of_items_requiring_attention_for_menu_option($task);
                     
 					if (!empty($items_requiring_attention)) {
                         foreach ($items_requiring_attention as $colour => $number) {
