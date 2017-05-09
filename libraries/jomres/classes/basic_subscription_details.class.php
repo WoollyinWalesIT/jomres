@@ -21,6 +21,8 @@ class basic_subscription_details
     public function __construct()
     {
         $this->subscription = array();
+		$this->subscription['id'] = 0;
+
         $this->package = array();
     }
 
