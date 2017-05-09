@@ -1513,8 +1513,7 @@ jr_define('_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_POST', 'left!');
 jr_define('_JOMRES_COM_MR_EB_HRESOURCE_FEATURE', 'Room feature');
 jr_define('_JOMRES_COM_MR_RESOURCEFEATURE_UNABLETODELETE', 'Unable to remove this resource feature, it is assigned to a resource. Remove the feature from this resource and retry.');
 // v7.4
-$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-$jrConfig = $siteConfig->get();
+
 jr_define('_JOMRES_MEDIA_CENTRE_TITLE', 'Media Centre');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_ADD', 'Şəkil yüklə');
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM', 'Otağın şəkilləri');
@@ -1523,7 +1522,6 @@ jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW', 'Slideshow images');
 jr_define('_JOMRES_MEDIA_CENTRE_CLEAR', 'Təmiz siyahı');
 jr_define('_JOMRES_MEDIA_CENTRE_DRAGNDROP', 'Drag & Drop files here');
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_INSTRUCTIONS', 'Choose the resource you want to upload images for. If you can upload images for individual rooms (e.g. rooms) you will be given a second dropdown to choose the specific resource. ');
-jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS', 'The maximum file size for uploads is '.jomres_formatBytes($jrConfig[ 'fileSize' ]).'. Only JPG and PNG images are allowed.');
 jr_define('_JOMRES_MEDIA_CENTRE_NOTES_CORE', 'If you upload multiple images as the "Main property image" only the first of those images will be used.');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_VIEW', 'Şəkilə bax');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_DELETE', 'Şəkili sil');

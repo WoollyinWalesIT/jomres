@@ -1536,8 +1536,7 @@ jr_define('_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_POST', 'quedado!');
 jr_define('_JOMRES_COM_MR_EB_HRESOURCE_FEATURE', 'función de recursos');
 jr_define('_JOMRES_COM_MR_RESOURCEFEATURE_UNABLETODELETE', 'No se puede eliminar esta función de recursos, se le asigna a un recurso. Quitar la característica de este recurso y vuelva a intentar. ');
 // v7.4
-$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-$jrConfig = $siteConfig->get();
+
 jr_define('_JOMRES_MEDIA_CENTRE_TITLE', 'Centro de Medios');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_ADD', '
 Add images
@@ -1548,7 +1547,6 @@ jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW', 'imágenes de present
 jr_define('_JOMRES_MEDIA_CENTRE_CLEAR', 'Limpiar lista');
 jr_define('_JOMRES_MEDIA_CENTRE_DRAGNDROP', 'Arrastrar y soltar archivos aquí');
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_INSTRUCTIONS', 'Seleccione el recurso que desea cargar imágenes para. Si puede subir imágenes para recursos individuales (por ejemplo, habitaciones) se le dará un segundo menú desplegable para elegir el recurso específico. ');
-jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS', 'El tamaño máximo de archivo para la carga es '.jomres_formatBytes($jrConfig [ 'fileSize']).'. Sólo se permiten imágenes JPG y PNG. ');
 jr_define('_ JOMRES_MEDIA_CENTRE_NOTES_CORE', 'Si a subir varias imágenes como el " imagen característica principal "éstos serán utilizados en las imágenes Lista de propiedades. Presentación de diapositivas se mostrará en la página de detalles de la propiedad.');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_VIEW', 'Ver su imagen');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_DELETE', 'Eliminar Imagen');

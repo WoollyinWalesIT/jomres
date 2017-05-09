@@ -1472,7 +1472,6 @@ jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW', 'تصاویر برا�
 jr_define('_JOMRES_MEDIA_CENTRE_CLEAR', 'پاک کردن لیست');
 jr_define('_JOMRES_MEDIA_CENTRE_DRAGNDROP', 'Drag & Drop files here');
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_INSTRUCTIONS', 'ملکی که میخواهید برای آن تصویر ارسال کنید را انتخاب کنید');
-jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS', 'میباشد PNG & JPG حداکثر حجم فایل 2000 کیلوبایت و فرمت های قابل ارسال ');
 jr_define('_JOMRES_MEDIA_CENTRE_NOTES_CORE', 'اگر چند تصویر را به عنوان تصویر اصلی ملک ارسال کردید، فقط تصویر اول نمایش داده خواهد شد');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_VIEW', 'نمایش تصویر');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_DELETE', 'حذف تصویر');

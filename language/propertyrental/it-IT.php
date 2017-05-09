@@ -1550,8 +1550,7 @@ jr_define('_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_POST', 'rimasta!');
 jr_define('_JOMRES_COM_MR_EB_HRESOURCE_FEATURE', 'funzione delle risorse');
 jr_define('_JOMRES_COM_MR_RESOURCEFEATURE_UNABLETODELETE', 'Impossibile rimuovere questa funzionalità risorsa, viene assegnato a una risorsa. Remove the feature from this resource and retry.');
 // v7.4
-$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-$jrConfig = $siteConfig->get();
+
 jr_define('_JOMRES_MEDIA_CENTRE_TITLE', 'Gestione Foto');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_ADD', 'Aggiungi foto');
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM', 'Foto camere');
@@ -1560,7 +1559,6 @@ jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW', 'Foto slideshow');
 jr_define('_JOMRES_MEDIA_CENTRE_CLEAR', 'Elimina lista');
 jr_define('_JOMRES_MEDIA_CENTRE_DRAGNDROP', 'Trascina qui le tue foto');
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_INSTRUCTIONS', 'Scegliere la risorsa che si desidera caricare le immagini per. Se è possibile caricare immagini per singole risorse (ad esempio camere) vi sarà data una seconda discesa per scegliere la specifica risorsa. ');
-jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS', 'La dimensione massima del file per il caricamento è '.jomres_formatBytes($jrConfig[ 'fileSize' ]).'. Solo le immagini JPG e PNG sono permessi.');
 jr_define('_JOMRES_MEDIA_CENTRE_NOTES_CORE', 'Se caricare più immagini come il "immagine proprietà principale" questi saranno utilizzati nel Property List . immagini della presentazione verranno visualizzati nella pagina i dati della struttura.');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_VIEW', 'Vedi foto');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_DELETE', 'Elimina foto');

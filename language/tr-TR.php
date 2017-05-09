@@ -1509,8 +1509,7 @@ jr_define('_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_POST', 'oda kaldı!');
 jr_define('_JOMRES_COM_MR_EB_HRESOURCE_FEATURE', 'Oda özelliği');
 jr_define('_JOMRES_COM_MR_RESOURCEFEATURE_UNABLETODELETE', 'Bu kaynak özelliği kaldırılamadı, bir kaynağa atandı.Bu özelliği bu kaynaktan kaldırın ve tekrar deneyin.');
 // v7.4
-$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-$jrConfig = $siteConfig->get();
+
 jr_define('_JOMRES_MEDIA_CENTRE_TITLE', "Media Center");
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_ADD', "Resim ekle");
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM', "Oda resimleri");
@@ -1519,7 +1518,6 @@ jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW', "Slayt görüntüleri
 jr_define('_JOMRES_MEDIA_CENTRE_CLEAR', "Listeyi temizle");
 jr_define('_JOMRES_MEDIA_CENTRE_DRAGNDROP', "Dosyaları buraya sürükleyip bırak");
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_INSTRUCTIONS', "Resim yüklemek istediğiniz kaynağı seçin.) Ayrı odalar (örn. Odalar) için resim yükleyebiliyorsanız, belirli bir kaynağı seçmek için ikinci bir açılır menü görülecektir.");
-jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS', "Yüklenenler için maksimum dosya boyutu". Jomres_formatBytes ($jrConfig['fileSize']). "Sadece JPG ve PNG resimlere izin veriliyor.");
 jr_define('_JOMRES_MEDIA_CENTRE_NOTES_CORE', "Ana mülk görüntüsü olarak birden fazla resim yüklerseniz, bunlar Mülkiyet Listesinde kullanılacaktır. Slayt gösterileri mülk ayrıntıları sayfasında gösterilecektir. ");
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_VIEW', "Resminizi görüntüleyin");
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_DELETE', "Görüntüyü sil");

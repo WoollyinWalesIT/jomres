@@ -1537,8 +1537,7 @@ jr_define('_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_POST', 'осталось!');
 jr_define('_JOMRES_COM_MR_EB_HRESOURCE_FEATURE', 'Характеристика ресурса');
 jr_define('_JOMRES_COM_MR_RESOURCEFEATURE_UNABLETODELETE', 'Не удается удалить данный ресурс, с ним связан другой ресурс. Удаление объекта из другого ресурса и повторите попытку.');
 // v7.4
-$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-$jrConfig = $siteConfig->get();
+
 jr_define('_JOMRES_MEDIA_CENTRE_TITLE', 'Изображения');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_ADD', 'Добавить изображения');
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM', 'Изображения номера (Номера)');
@@ -1547,7 +1546,6 @@ jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW', 'Слайд-шоу и
 jr_define('_JOMRES_MEDIA_CENTRE_CLEAR', 'Очистить список');
 jr_define('_JOMRES_MEDIA_CENTRE_DRAGNDROP', 'Drag & Drop файлы здесь');
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_INSTRUCTIONS', 'Выберите ресурс, для которого необходимо загрузить изображения. Вы можете загружать изображения для отдельных ресурсов (например, номера) вам выдадут второй выпадающий список, чтобы выбрать конкретный ресурс. ');
-jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS', 'Максимальный размер файла для загрузки не должен превышать '.jomres_formatBytes($jrConfig[ 'fileSize' ]).'. Только изображения JPG и PNG допускаются.');
 jr_define('_JOMRES_MEDIA_CENTRE_NOTES_CORE', 'Если вы загружаете несколько изображений в качестве "основного изображения" будет использоваться только первый из этих изображений.');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_VIEW', 'Просмотр изображения');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_DELETE', 'Удалить изображения');

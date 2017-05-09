@@ -1506,8 +1506,7 @@ jr_define('_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_POST', '部屋しか残ってい�
 jr_define('_JOMRES_COM_MR_EB_HRESOURCE_FEATURE', 'リソースのアメニティ');
 jr_define('_JOMRES_COM_MR_RESOURCEFEATURE_UNABLETODELETE', '指定のリソース アメニティがプロパティに適応されているため、削除できませんでした。リソースから取り外してやり直してください。');
 // v7.4
-$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-$jrConfig = $siteConfig->get();
+
 jr_define('_JOMRES_MEDIA_CENTRE_TITLE', 'イメージ管理');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_ADD', 'イメージを追加');
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM', '部屋のイメージ');
@@ -1516,7 +1515,6 @@ jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW', 'スライドショ�
 jr_define('_JOMRES_MEDIA_CENTRE_CLEAR', '一覧をクリア');
 jr_define('_JOMRES_MEDIA_CENTRE_DRAGNDROP', 'ファイルをここにドラッグ・アンド・ドロップしてください。');
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_INSTRUCTIONS', 'アプロードの対象部屋を指定してください。個別の部屋にアプロードできれば、対象部屋を選択できるドロップダウンが表示されます。');
-jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS', 'ファイルのMAX容量は '.jomres_formatBytes($jrConfig[ 'fileSize' ]).'です。JPGとPNGのファイル形式をご利用ください。');
 jr_define('_JOMRES_MEDIA_CENTRE_NOTES_CORE', 'プロパティの代表イメージとして複数イメージがアプロードされる場合には、最初のイメージのみが表示されます。');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_VIEW', 'イメージを表示');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_DELETE', 'イメージを削除');

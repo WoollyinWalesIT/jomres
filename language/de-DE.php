@@ -1573,8 +1573,7 @@ jr_define('_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_POST', 'übrig!');
 jr_define('_JOMRES_COM_MR_EB_HRESOURCE_FEATURE', 'Ressource-Funktion');
 jr_define('_JOMRES_COM_MR_RESOURCEFEATURE_UNABLETODELETE', 'Können Sie diese Ressource-Funktion zu entfernen, es wird auf eine Ressource zugewiesen. Entfernen Sie die Funktion von dieser Ressource und versuchen Sie es erneut.');
 // v7.4
-$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-$jrConfig = $siteConfig->get();
+
 jr_define('_JOMRES_MEDIA_CENTRE_TITLE', 'Bilder');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_ADD', 'Bild hinzufügen');
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM', 'Zimmer Bilder');
@@ -1583,7 +1582,6 @@ jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW', 'Diashow Bilder');
 jr_define('_JOMRES_MEDIA_CENTRE_CLEAR', 'Liste Löschen');
 jr_define('_JOMRES_MEDIA_CENTRE_DRAGNDROP', 'Drag & Drop Dateien hier!');
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_INSTRUCTIONS', 'Wählen Sie die Ressource wollen Sie Bilder hochladen für.Wenn Sie Bilder für einzelne Ressourcen hochladen(e.g. Zimmer) Sie werden eine zweite Dropdown gegeben werden, um die spezifische Ressource zu wählen. ');
-jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS', 'Das Bild ist zu groß, maximal '.jomres_formatBytes($jrConfig[ 'fileSize' ]).'. Nur JPG und PNG Bilder sind erlaubt.');
 jr_define('_JOMRES_MEDIA_CENTRE_NOTES_CORE', 'Hast du mehrere Bilder, wird das 1. für das Hauptbild verwendet!');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_VIEW', 'Zeige Bilder');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_DELETE', 'Lösche Bilder');

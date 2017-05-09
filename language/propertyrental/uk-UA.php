@@ -1480,7 +1480,6 @@ jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW', 'Фото для сл
 jr_define('_JOMRES_MEDIA_CENTRE_CLEAR', 'Очисити');
 jr_define('_JOMRES_MEDIA_CENTRE_DRAGNDROP', 'Drag & Drop файли сюди');
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_INSTRUCTIONS', 'Choose the resource you want to upload images for. If you can upload images for individual resources (e.g. rooms) you will be given a second dropdown to choose the specific resource.');
-jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS', 'The maximum file size for uploads is 2000 KB. Only JPG and PNG images are allowed.');
 jr_define('_JOMRES_MEDIA_CENTRE_NOTES_CORE', 'If you upload multiple images as the -Main property image- only the first of those images will be used.');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_VIEW', 'Переглянути фото');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_DELETE', 'Видалити фото');

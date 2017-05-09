@@ -1525,8 +1525,7 @@ jr_define('_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_PRE', 'Mamy dostępne');
 jr_define('_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_POST', 'zasoby tego typu!');
 jr_define('_JOMRES_COM_MR_EB_HRESOURCE_FEATURE', 'Cecha oferty');
 jr_define('_JOMRES_COM_MR_RESOURCEFEATURE_UNABLETODELETE', 'Nie można usunąć tej cechy oferty jest przypisana do zasobu. Usuń cechę z tego zasobu i spróbuj ponownie.');
-    $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-    $jrConfig = $siteConfig->get();
+
 jr_define('_JOMRES_MEDIA_CENTRE_TITLE', 'Centrum mediów');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_ADD', 'Dodaj zdjęcia');
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM', 'Zdjęcia zasobów');
@@ -1535,7 +1534,6 @@ jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW', 'Zdjęcia pokazu slaj
 jr_define('_JOMRES_MEDIA_CENTRE_CLEAR', 'Wyczyść listę');
 jr_define('_JOMRES_MEDIA_CENTRE_DRAGNDROP', 'Przeciągnij i Upuść tutaj pliki');
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_INSTRUCTIONS', 'Wybierz zasób, dla którego chcesz przesłać zdjęcia. Jeśli będziesz mógł przesłać zdjęcia dla poszczególnych zasobów (np. pokoi) zostanie wyświetlona lista rozwijana z możliwością wyboru odpowiedniego zasobu.');
-jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS', 'Maksymalny rozmiar przesyłanego pliku to '.jomres_formatBytes($jrConfig[ 'fileSize' ]).'. Akceptowane formaty plików to JPG i PNG.');
 jr_define('_JOMRES_MEDIA_CENTRE_NOTES_CORE', 'Jeśli prześlesz kilka zdjęć jako "Zdjęcie główne oferty" tylko pierwsze z tych zdjęć będzie używane.');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_VIEW', 'Zobacz zdjęcie');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_DELETE', 'Usuń zdjęcie');

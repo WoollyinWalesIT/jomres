@@ -1536,8 +1536,7 @@ jr_define('_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_POST', 'quedan!');
 jr_define('_JOMRES_COM_MR_EB_HRESOURCE_FEATURE', 'característica de la propiedad');
 jr_define('_JOMRES_COM_MR_RESOURCEFEATURE_UNABLETODELETE', 'Imposible eliminar esta carácteristica de la propiedad. Está asignada a una propiedad. Desasocie esta característica de la propiedad e intente nuevamente.');
 // v7.4
-$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-$jrConfig = $siteConfig->get();
+
 jr_define('_JOMRES_MEDIA_CENTRE_TITLE', 'Centro Multimedia');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_ADD', 'Añadir imágenes');
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM', 'Imágenes de la propiedad');
@@ -1546,7 +1545,6 @@ jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW', 'Imágenes de la gale
 jr_define('_JOMRES_MEDIA_CENTRE_CLEAR', 'Limpiar listado');
 jr_define('_JOMRES_MEDIA_CENTRE_DRAGNDROP', 'Arrastre y suelte imágenes aquí');
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_INSTRUCTIONS', 'Elija la propiedad para la que quiere subir imágenes. En caso de que existan diferentes categorías para una misma propiedad, tendrá la opción de elegir. ');
-jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS', 'El tamaño máximo de archivo es '.jomres_formatBytes($jrConfig[ 'fileSize' ]).'. Únicamente imágenes JPG y PNG están permitidas.');
 jr_define('_JOMRES_MEDIA_CENTRE_NOTES_CORE', 'Si usted sube varias imágenes como "Imágenes principales" solo la primera de ellas será usada.');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_VIEW', 'Ver sus imágenes');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_DELETE', 'Borrar imágen');
