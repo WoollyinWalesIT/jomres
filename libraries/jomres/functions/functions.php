@@ -2663,7 +2663,7 @@ function saveHotelSettings()
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
 
-    $property_uid = (int) getDefaultProperty();
+    $property_uid = (int)getDefaultProperty();
     $mrConfig = getPropertySpecificSettings($property_uid);
 
     $tariffmodeChange = false;
@@ -2754,8 +2754,8 @@ function saveHotelSettings()
         $validation->vies_check(filter_var($_POST['cfg_property_vat_number'], FILTER_SANITIZE_SPECIAL_CHARS));
         $validation->save_subject($type = 'property', array('property_uid' => $property_uid));
     }
-
-    jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL."&task=business_settings&property_uid=$property_uid"), '');
+	
+	return true;
 }
 
 function removeAllPropertyEnhanceTariffsXref($property_uid)
