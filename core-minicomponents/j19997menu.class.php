@@ -101,9 +101,6 @@ class j19997menu
                 } elseif (get_showtime('task') == '' && $task == 'blank' && !$jomres_menu->admin_items[$task]['external']) {
                     $r[ 'ACTIVE' ] = 'active';
                     $output[ 'COLLAPSE_IN' ] = 'in';
-                    $r[ 'BADGES' ] = '';
-                } else {
-                    $r[ 'BADGES' ] = '';
                 }
 				
 				$rows[] = $r;

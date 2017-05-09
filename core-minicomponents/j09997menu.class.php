@@ -105,9 +105,6 @@ class j09997menu
                     $r[ 'ACTIVE' ] = 'active';
                 } elseif (get_showtime('task') == '' && $task == 'blank' && !$jomres_menu->items[$task]['external']) {
                     $r[ 'ACTIVE' ] = 'active';
-                    $r[ 'BADGES' ] = '';
-                } else {
-                    $r[ 'BADGES' ] = '';
                 }
 				
 				$r[ 'ID_OPTION' ] = $task;
