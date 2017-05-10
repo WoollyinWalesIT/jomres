@@ -29,13 +29,11 @@ class j16000save_template_override
 		
         $template_name			= (string) jomresGetParam($_POST, 'template_name', '');
 		$template_path			= (string) jomresGetParam($_POST, 'template_path', '');
-		$property_type_id		= (int) jomresGetParam($_POST, 'property_type_id', 0);
 		
 		$template_overrides->template_overrides[$template_name]['template_name']	= $template_name;
 		$template_overrides->template_overrides[$template_name]['path']				= addslashes($template_path);
-		$template_overrides->template_overrides[$template_name]['property_type_id'] = $property_type_id;
-		
-		$template_overrides->save_template_override($template_name , $property_type_id );
+
+		$template_overrides->save_template_override($template_name);
 		
 		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_template_overrides'), '');
     }

@@ -66,8 +66,7 @@ class template_overrides
 				VALUES 
 				(
 				'".$template_name."',
-				'".$this->template_overrides[$template_name]['path']."',
-				".(int)$property_type_id."
+				'".$this->template_overrides[$template_name]['path']."'
 				)
 				";
 		} else {
