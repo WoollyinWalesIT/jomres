@@ -22,11 +22,14 @@ class patTemplate_Reader_Jomres extends patTemplate_Reader
 
 	function readTemplates( $templatename = '', $options = array() )
 		{
-		
-		// An alternative method of providing template overrides through plugins
-		$overrides_class = jomres_singleton_abstract::getInstance('template_overrides');
-		$ptype_id = (int)get_showtime('ptype_id');
+        $template_packages = get_showtime('template_packages');
 
+        if (!empty($template_packages)) { // There are some override packages installed, we can go ahead and check for overrides, which requires an extra query.
+			// An alternative method of providing template overrides through plugins
+			$overrides_class = jomres_singleton_abstract::getInstance('template_overrides');
+			$ptype_id = (int)get_showtime('ptype_id');
+		}
+		
 		if (isset($overrides_class->template_overrides[$templatename])) {
 			$content = file_get_contents( JOMRESPATH_BASE.JRDS.$overrides_class->template_overrides[$templatename]['path'] . $templatename );
 		} else {

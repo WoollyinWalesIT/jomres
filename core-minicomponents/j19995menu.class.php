@@ -80,7 +80,11 @@ class j19995menu
 		$jomres_menu->add_admin_item(70, jr_gettext('INTEGRITY_CHECK', 'INTEGRITY_CHECK', false), 'filesystem_integrity_check', 'fa-check-square-o');
 		$jomres_menu->add_admin_item(70, jr_gettext('JOMRES_COM_A_AVAILABLELOGS', 'JOMRES_COM_A_AVAILABLELOGS', false), 'list_error_logs', 'fa-exclamation-triangle');
 		$jomres_menu->add_admin_item(70, jr_gettext('_JOMRES_REGISTRYREBUILD', '_JOMRES_REGISTRYREBUILD', false), 'rebuildregistry', 'fa-refresh');
-		$jomres_menu->add_admin_item(70, jr_gettext('_JOMRES_TEMPLATE_PACKAGES', '_JOMRES_TEMPLATE_PACKAGES', false), 'list_template_overrides', 'fa-code');
+		
+        $template_packages = get_showtime('template_packages');
+        if (!empty($template_packages)) { // There are some override packages installed, we can go ahead and show the override manager menu option
+			$jomres_menu->add_admin_item(70, jr_gettext('_JOMRES_TEMPLATE_PACKAGES', '_JOMRES_TEMPLATE_PACKAGES', false), 'list_template_overrides', 'fa-code');
+		}
 		
 		//reports section menus
 		$jomres_menu->add_admin_item(80, jr_gettext('_JOMRES_CHARTS', '_JOMRES_CHARTS', false), 'charts', 'fa-line-chart');
