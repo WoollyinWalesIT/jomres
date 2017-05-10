@@ -112,7 +112,11 @@ class j19997menu
             $pageoutput[ ] = $output;
             $tmpl = new patTemplate();
             $tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
-            $tmpl->readTemplatesFromInput('control_panel_menu_options.html');
+			if (this_cms_is_joomla()) {
+				$tmpl->readTemplatesFromInput('control_panel_menu_options_vertical.html');
+			} else {
+				$tmpl->readTemplatesFromInput('control_panel_menu_options_horizontal.html');
+			}
             $tmpl->addRows('pageoutput', $pageoutput);
             $tmpl->addRows('rows', $rows);
             $menu_sections[][ 'SECTION' ] = $tmpl->getParsedTemplate();
@@ -120,7 +124,11 @@ class j19997menu
 		
 		$tmpl = new patTemplate();
         $tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
-        $tmpl->readTemplatesFromInput('control_panel_menu_wrapper.html');
+		if (this_cms_is_joomla()) {
+			$tmpl->readTemplatesFromInput('control_panel_menu_wrapper_vertical.html');
+		} else {
+			$tmpl->readTemplatesFromInput('control_panel_menu_wrapper_horizontal.html');
+		}
         $tmpl->addRows('menu_sections', $menu_sections);
         $this->ret_vals = $tmpl->getParsedTemplate();
     }

@@ -155,7 +155,11 @@ try {
         $pageoutput[ ] = $output;
         $tmpl = new patTemplate();
         $tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
-        $tmpl->readTemplatesFromInput('administrator_content_area_top.html');
+		if (this_cms_is_joomla()) {
+			$tmpl->readTemplatesFromInput('administrator_content_area_top_vertical.html');
+		} else {
+			$tmpl->readTemplatesFromInput('administrator_content_area_top.html');
+		}
         $tmpl->addRows('pageoutput', $pageoutput);
         $tmpl->displayParsedTemplate();
     }
@@ -193,7 +197,11 @@ try {
         $pageoutput[] = $output;
         $tmpl = new patTemplate();
         $tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
-        $tmpl->readTemplatesFromInput('administrator_content_area_bottom.html');
+		if (this_cms_is_joomla()) {
+			$tmpl->readTemplatesFromInput('administrator_content_area_bottom_vertical.html');
+		} else {
+			$tmpl->readTemplatesFromInput('administrator_content_area_bottom.html');
+		}
         $tmpl->addRows('pageoutput', $pageoutput);
         $tmpl->displayParsedTemplate();
     }
