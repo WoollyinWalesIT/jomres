@@ -2101,7 +2101,7 @@ jr_define('_JOMRES_MAP_ZOOMLEVEL',"Map zoom level ");
 jr_define('_JOMRES_MAP_MAPTYPE',"Map type ");
 jr_define('_JOMRES_TEMPLATE_PACKAGES',"Template Override Manager");
 jr_define('_JOMRES_TEMPLATE_PACKAGES_LEAD',"Template packages are plugins that can provide override templates for various core Jomres template files.");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_INFO',"This page lists any template files that can be overridden by a template package's template files. If you want to override a certain template file, click on the edit button for that file, on the next page you will be able to choose which version you want to override with.");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_INFO',"This page lists any template files that can be overridden by a template package's template files. If you want to override a certain template file, click on the edit button for that file, on the next page you will be able to choose which version you want to override with. Note, these overrides take priority over both Jomres Core and any Wordpress or Joomla theme/template overrides. You can disable an override by deleting it in the List Template Overrides page.");
 jr_define('_JOMRES_TEMPLATE_PACKAGE_NAME',"Template name");
 jr_define('_JOMRES_TEMPLATE_PACKAGE_PATH',"Current path");
 jr_define('_JOMRES_TEMPLATE_PACKAGE_NOT_OVERRIDDEN',"Not overridden");
