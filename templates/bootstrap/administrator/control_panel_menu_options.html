@@ -1,17 +1,14 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<div class="accordion-group">
-	<div class="accordion-heading">
-		<a class="accordion-toggle" data-toggle="collapse" data-parent="#jomres_admin_cpanel_menu" href="#{ID}">{CATEGORY}</a>
-	</div>
-	<div id="{ID}" class="accordion-body collapse {COLLAPSE_IN}">
-		<div class="accordion-inner">
-			<ul class="nav nav-pills nav-stacked">
-			<patTemplate:tmpl name="rows" unusedvars="strip">
-				<li class="{ACTIVE} {DISABLED_CLASS}"><a href="{LINK}" {TARGET}><i class="fa {ICON_CLASS}" aria-hidden="true" style="font-size:18px;"></i> {MENU_NAME} {BADGES}</a>
-				</li>
-			</patTemplate:tmpl>
-			</ul>
-		</div>
-	</div>
-</div>
+<li id="{ID}" class="dropdown">
+	<a href="#" class="dropdown-toggle" data-toggle="dropdown">{CATEGORY} <span class="caret"></span></a>
+	<ul class="dropdown-menu" role="menu">
+		<patTemplate:tmpl name="rows" unusedvars="strip">
+			<li class="{ACTIVE} {DISABLED_CLASS}">
+				<a href="{LINK}" {TARGET}>
+					<i class="fa {ICON_CLASS}" aria-hidden="true" style="font-size:18px;"></i> {MENU_NAME} {BADGES}
+				</a>
+			</li>
+		</patTemplate:tmpl>
+	</ul>
+</li>
 </patTemplate:tmpl>

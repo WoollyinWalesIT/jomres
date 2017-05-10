@@ -82,7 +82,7 @@ class j09997menu
 				//menu item badges TODO: find a better way or remove this completely
 				$r[ 'BADGES' ] = '';
 				
-				if (!$jomres_menu->items[$task]['is_url']) {
+				/* if (!$jomres_menu->items[$task]['is_url']) {
 					$items_requiring_attention = get_number_of_items_requiring_attention_for_menu_option($task);
 					
 					if (!empty($items_requiring_attention)) {
@@ -96,7 +96,7 @@ class j09997menu
 							}
 						}
 					}
-				}
+				} */
 				
 				//active menu item
 				$r[ 'ACTIVE' ] = '';
@@ -106,8 +106,6 @@ class j09997menu
                 } elseif (get_showtime('task') == '' && $task == 'blank' && !$jomres_menu->items[$task]['external']) {
                     $r[ 'ACTIVE' ] = 'active';
                 }
-				
-				$r[ 'ID_OPTION' ] = $task;
 				
 				$rows[] = $r;
 			}

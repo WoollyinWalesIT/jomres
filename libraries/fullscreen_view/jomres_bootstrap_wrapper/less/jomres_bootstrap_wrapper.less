@@ -50,7 +50,7 @@
 	
 		// Previously inside "body {"
 		margin: 0;
-		padding:20px;
+		padding:20px 20px 0px 0px;
 	
 		// From scaffolding.less
 	
@@ -59,11 +59,6 @@
 		-webkit-tap-highlight-color: rgba(0,0,0,0);
 	
 		// Previously inside "body {"
-		font-family: @baseFontFamily;
-		font-size: @baseFontSize;
-		line-height: @baseLineHeight;
-		color: @grayDark;
-		background:@white;
 	}
 	
 	// Shared size and type resets
@@ -80,8 +75,6 @@
 	}
 	
 	.radio.btn-group > label:first-of-type {
-		border-bottom-left-radius: 4px;
-		border-top-left-radius: 4px;
 		margin-left: 0;
 	}
 	
@@ -91,6 +84,21 @@
 	
 	/*Site config overrides*/
 	#tabbable h3 {margin:20px 0px 10px;}
+	
+	//panel overrides
+	.panel { 
+		.border-radius(0);
+		
+		.panel-heading {
+			.border-radius(0);
+			padding:8px 12px;
+			
+			h3 {
+				font-size:14px;
+				line-height: 1.4;
+			}
+		}
+	}
 }
 
 /*Wordpress classes overrides*/
