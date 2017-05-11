@@ -1734,45 +1734,7 @@ jr_define('_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES_DESC', 'Ustaw Tak, aby podz
 jr_define('_JOMRES_ACTION_UNDO_CHECKIN', 'Cofnij zameldowanie');
 jr_define('_JOMRES_ACTION_UNDO_CHECKOUT', 'Cofnij wymeldowanie');
 jr_define('_JOMRES_STATUS_UNISSUED', 'Zapisano');
-jr_define('DEFAULT_TERMS_AND_CONDITIONS', 'Niniejszy regulamin określa obowiązki w stosunku Oferenta do Klienta korzystającego z oferty i Klienta w stosunku do Oferenta. W przypadkach spornych niniejszy regulamin będzie stanowił podstawę do rozstrzygnięcia sporu. Proszę uważnie przeczytać regulamin przed potwierdzeniem rezerwacji.
-Zameldowanie: określa czas rezerwacji liczony od daty początku rezerwacji (zameldowania) do daty końca rezerwacji (wymeldowania).
-Akceptacja niniejszego Regulaminu zawiązuje kontrakt między dwoma następującymi stronami: Oferentem i Klientem.
-1. Klienci korzystający z oferty
-Wszystkie osoby wymienione w umowie, korzystające z oferty lub dodane później przez Klienta są związane z warunkami niniejszej umowy. Korzystanie z oferty przez Klienta jest ograniczone do osób określonych w warunkach niniejszej umowy, dodanych na etapie jej zawarcia lub dodanych w późniejszym terminie. Klient dokonujący rezerwacji, którego dane personalne zostaną podane w formularzu rezerwacji jest uważany za głównego Klienta (najemce) i przyjmuje on pełną odpowiedzialność za wszystkich członków grupy Klientów korzystających z niniejszej oferty przez cały okres korzystania z niej. Informacje dotyczące warunków korzystania z oferty powinny zostać przekazane każdej osobie z niej korzystającej i na Kliencie dokonującemu rezerwacji ciąży obowiązek poinformowania wszystkich osób korzystających z oferty o obowiązującym ich regulaminie.
-2. Płatności
-Rezerwacja zostanie potwierdzona przez Oferenta, gdy wniosek zostanie przyjęty, a pełna lub częściowa płatność uiszczona przez Klienta. W przypadku rezerwacji na tydzień lub dłużej, jeśli rezerwacja została dokonana 45 dni lub więcej przed początkowym dniem rezerwacji, pierwsza transza płatności za rezerwację w wysokości [X%] płatności za rezerwację będzie należna w momencie rezerwacji. W przypadku rezerwacji dokonanej mniej niż 45 dni przed początkowym dniem rezerwacji lub jeśli czas rezerwacji jest krótszy niż pełen tydzień, wymagana jest pełna płatność za rezerwację, którą należy w płacić w momencie rezerwacji. W przypadku gdy rezerwacja nie zostanie zaakceptowana przez Oferenta, cała wpłacona kwota zostanie zwrócona natychmiast. Każda rezerwacja w przeciągu 10 dni od rozpoczęcia okresu rezerwacji musi zostać opłacona w całości za pomocą karty kredytowej, za pośrednictwem systemu PayPal, czekiem, gotówką lub inną formą płatności akceptowalną przez Oferenta w momencie rezerwacji. Nie można rozpocząć rezerwacji bez jej opłacenia.
-Po złożeniu rezerwacji i po jej zaakceptowaniu przez Oferenta, Klient jest zobowiązany do zapłaty pozostałej kwoty rezerwacji 45 dni przed początkową datą rezerwacji. Brak płatności w terminie będzie traktowane jako rezygnacja z rezerwacji i kaucja przepadnie.
-3. Zasady anulowania & Zmiany rezerwacji
-Gdy rezerwacja została przyjęta i potwierdzona, anulowanie może być dokonane wyłącznie zgodnie z warunkami określonymi poniżej:
-- Jeżeli okres rezerwacji może być ponownie zarezerwowany, kwota zwrotu za ten okres lub jej część pomniejszona o opłatę umorzenia zostanie zwrócona.
-- Jeśli jakakolwiek część okresu rezerwacji nie może być ponownie zarezerwowana, Klient straci wszystkie kwoty zapłacone za ten okres.
-4. Obłożenie dla rezerwacji
-Niezależnie od tego, jaka liczba osób może skorzystać z rezerwacji w danej ofercie, ich ilość zawsze zostaje określona w umowie na etapie składania rezerwacji lub może zostać zmieniona na piśmie w późniejszym czasie za zgodą Oferenta. Ilość osób w rezerwacji obejmuje wszystkie osoby bez względu na wiek.
-Przekroczenie liczby osób określonych w umowie spowoduje natychmiastowe wypowiedzenie umowy przez Oferenta, a płatność nie zostanie zwrócona Klientowi lub może zostać doliczona dodatkowa kwota do kwoty rezerwacji.
-5. Stan oferty
-Oferta została sprawdzona przed jej rezerwacją i dlatego Klient zobowiązuje się do:
-- Natychmiastowego powiadomienia właściciela oferty w odniesieniu do wszelkich kwestii szkód i/lub utrzymania, które wymagają uwagi.
-- Utrzymania oferty i wszystkich jej składników takich jak: meble, urządzenia, wyposażenie etc w tym samym stanie technicznym, jak na początku rezerwacji.
-- W przypadku, gdy usługa sprzątania jest świadczona Klient powinien postępować zgodnie z instrukcjami sprzątania przekazanymi przez Oferenta.
-- W przypadku, gdy usługa sprzątania nie jest dostępna Klient powinien zakończyć czas korzystania z oferty pozostawiając ją w tym samym stanie czystości i ogólnego porządku, w którym ją zastał. Niezastosowanie się do tego w sposób zadowalający Oferenta będzie skutkowało koniecznością uiszczenia opłaty tytułem kosztów sprzątania.
-6. Korzystanie z usług telefonicznych i internetowych
-W przypadku, gdy usługi telefoniczne są dostępne w ramach oferty, Klient jest zobowiązany do uiszczenia stosownych opłat za korzystanie z usługi a w przypadku korzystania z internetu do dokonania płatności za transfer wykraczający ponad dostępny pakiet transmisji danych. Obowiązkiem Klienta jest zorientowanie się jakie są obowiązujące koszty za korzystanie z wymienionych usług i czy są one pobierane w ogóle.
-7. Zwierzęta
-Zwierzęta domowe (pies) jest dozwolony [bez żadnych ograniczeń]. Wszystkie dowody korzystania z oferty przez zwierzęta domowe muszą zostać usunięte z oferty pod koniec okresu rezerwacji. Zwierzęta domowe nie mogą korzystać z dostępnego w ofercie wyposażenia typu: łóżka, fotele czy inne meble nie przeznaczone dla zwierząt. Nie zastosowanie się do tego punktu może skutkować z koniecznością uiszczenia dodatkowej opłaty tytułem sprzątania np. usuwania sierści z mebli.
-LUB
-Zwierzęta domowe są zabronione w tej ofercie. Wszelkie dowody korzystania z oferty przez zwierzęta domowe spowoduje utratę prawa do zwrotu kaucji w całości.
-Właściciel oferty nie ponosi odpowiedzialności za jakiekolwiek reakcje alergiczne lub inne wynikające z korzystania z oferty.
-8. Palenie
-Palenie nie jest dozwolone w okolicach bezpośredniego sąsiedztwa oferty.
-9. Dostęp do oferty w czasie zimy
-Oferta jest przeznaczona do korzystania z niej w okresie zimowym i ma dostęp drogowy i korzysta z usług odśnieżania przez [wskazać komunalne przedsiębiorstwo lub przedsiębiorstwo prywatne]. Jednak Klientów informuje się, że po wszelkich bardziej istotnych opadach śniegu, operatorzy pługów śnieżnych są zakontraktowani, aby oczyścić drogi lokalne w ustalonej kolejności. W mało prawdopodobnym przypadku, jeśli Klient nie będzie, ze względu na złe warunki atmosferyczne w stanie zakończyć korzystania z oferty Oferent nie ponosi odpowiedzialności za wszelkie dodatkowe koszty korzystania z oferty przez Klienta. W przypadku jeśli ze względu na problemy z dojazdem do Oferenta, Klient nie będzie w stanie skorzystać z oferty, Oferent zobowiązuje się do zwrotu pieniędzy za każdy dzień nie korzystania z oferty przez Klienta. Uprasza się również Klientów, aby upewnili się, że oni i ich pojazdy są odpowiednio przygotowane i wyposażone do jazdy w warunkach zimowych, jakie mogą wystąpić podczas ich podróży do Oferenta.
-10. Sprzęt i urządzenia
-Sprzęt i urządzenia są w gestii Oferenta i zapewnia on że taki sprzęt jest sprawny w czasie trwania okresu korzystania z oferty przez Klienta. Klient jest zobowiązany zgłosić natychmiast wszelkie urządzenia niesprawne lub uszkodzone właścicielowi oferty.
-11. Zwroty
-Jeśli zwrot powinien wystąpić do podstawowych elementów, takich jak systemy wodne, wodno-kanalizacyjnych i instalacji elektrycznych oraz podstawowych urządzeń takich jak kuchenka czy lodówka, każdy wysiłek będzie naprawić lub wymienić, lub odpowiedni zwrot nastąpi za niedogodności spowodowane. Powyższe nie ma zastosowania do awarii systemu spowodowane przez nadużycia, takie jak zatorów kanalizacyjnych wynikłe z niewłaściwego korzystania z urządzeń sanitarnych.
-Właściciel oferty nie ponosi odpowiedzialności, ani nie zapewni zwrotu, na każdym postoju usług elektrycznych spowodowanych ekstremalnych warunków pogodowych lub innych okoliczności pozostających poza jego kontrolą. Podobnie, nie będzie refundacji dla niepogody, zmiany w poziomach wody, warunki w sąsiednich nieruchomości, uniknięcie szkód zapewnianej przez naturalnych elementów lokalizacji, takich jak owadów latających lub populacji zwierząt.
-12. Pozostałe warunki regulaminu
-Klient zobowiązuje się do przestrzegania niniejszego Regulaminu oraz wszelkich innych instrukcji zawartych w szczegółowych warunkach oferty i przyjmuje do wiadomości inne dodatkowe informacje i instrukcje, dostarczone przez Oferenta.');
+jr_define('DEFAULT_TERMS_AND_CONDITIONS', '');
 jr_define('_JOMRES_SUPPORTKEY_DESC_VALID', 'Klucz licencyjny jest ważny, można pobierać dodatkowe rozszerzenia i korzystać ze wsparcia.');
 jr_define('_JOMRES_SUPPORTKEY_DESC_INVALID', 'Klucz licencyjny nie jest ważny, nie można pobierać dodatkowych rozszerzeń ani korzystać ze wsparcia.');
 jr_define('_JOMRES_SRP_RESOURCE_TYPE', 'Typ zasobu');

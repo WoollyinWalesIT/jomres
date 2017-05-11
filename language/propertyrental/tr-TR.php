@@ -1719,53 +1719,7 @@ jr_define('_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES_DESC', 'Özellik özellikle
 jr_define('_JOMRES_ACTION_UNDO_CHECKIN', 'Geri alma iadesi');
 jr_define('_JOMRES_ACTION_UNDO_CHECKOUT', 'Ödemeyi geri al');
 jr_define('_JOMRES_STATUS_UNISSUED', 'Unissued');
-jr_define('DEFAULT_TERMS_AND_CONDITIONS', 'Bu Şartlar ve Koşullar, Sahibinin Sahibine Karşı Yükümlülüklerini, Kiraya Alma Sahibinin Sahibine Karşı Yükümlülüklerini açıkça belirtir ve anlaşmazlıklar olması halinde, herhangi bir ihtilaf durumunda, Rezervasyonunuzu onaylamadan önce lütfen onları dikkatli bir şekilde okuyun.
-Check-In: [Zaman] / Check-Out\'dan: [Zaman] (Yüksek Sezon Haftalık Kiralama)\'ya göre
-Düşük Sezon Haftasonu ve Haftalık Haftalık Kiralamalar için daha erken bir Check-In ve daha sonradan Check-out mümkün olabilir (genellikle [Saat] ve Çıkışları [Saat] ile)
-Bu Hükümler ve Koşulların kabul edilmesi, aşağıdaki iki taraf arasında bir sözleşmeyi bağlar:
-Kiracı Başvuru Sahibi (Kiracı) ve Mülk Sahibi (Sahip)
- 1. Kira sözleşmesi yapılan kişiler
-Kira Sözleşmesinde listelenen veya Kiracı tarafından daha sonra eklenen herkes, bu sözleşme şartlarına tabidir. Mülkün mülkiyeti, Sözleşmede listelenen veya daha sonra Kiracı tarafından eklenen isimlerle sınırlıdır. Kira Başvuru Sahibi Kiracı olarak kabul edilir ve kiralama süresi boyunca Kiralama Grubunun tüm üyeleri için tam sorumluluk kabul eder. Bu kiralamayla ilgili bilgi veya talimatlar, Kira Başvuru Sahibine yalnızca Kiralama Grubunun üçüncü taraf üyelerine değil, herhangi birine bildirilmeyecektir.
-2. Ödemeler
-Bir rezervasyon, başvuru onaylandıktan ve ilk ödeme veya tam ödeme işlemi tamamlandıktan sonra Sahibi tarafından onaylanacaktır. Bir hafta veya daha uzun süreli rezervasyonlarda, rezervasyonun kiralanmaya başlamasından 45 gün veya daha fazla süre önce yapılması halinde, kiralama ücretinin [X%] oranında bir ilk kira ödemesinde ödeme esnasında rezervasyon sırasında ödeme yapılması gerekecektir. Kira başlamadan en az 45 gün önce bir rezervasyon yapıldıysa veya rezervasyon tam bir haftalık sürenin altında ise, kira bedelinin tamamı rezervasyon anında ödenmelidir. Bir rezervasyonun Sahibi tarafından kabul edilmemesi durumunda, ödenen tüm ücretler derhal iade edilecektir. Kiralama döneminin başlangıcından itibaren 10 gün içinde yapılan herhangi bir rezervasyon, rezervasyon anında PayPal, onaylı çek veya havale yoluyla kredi kartıyla tam olarak ödenmelidir. Tam ödeme yapılmadan rezervasyon yapılmayabilir.
-Rezervasyon sahibi tarafından alınır ve kabul edildiğinde Kiracı, mülkün 45 gün önce kira ücretinin bakiyesinin ödenmesinden sorumludur. Ödeme tarihinden itibaren ödeme yapılmazsa iptal olarak kabul edilecek ve mevduat iptal edilecektir.
-3. İptal Politikası & Rezervasyon Değişikliği
-Bir rezervasyon onaylandıktan ve onaylandıktan sonra, iptaller yalnızca aşağıdaki şartlara uygun olarak yapılabilir:
-- Kiralama süresi tekrar tayin edilebiliyorsa, kiralanan veya onun bir kısmı için bir geri ödeme, daha az bir iptal ücreti [Tutar] verilecektir.
-- Kiralama süresinin herhangi bir kısmı yeniden rezerve edilemezse, Kiracı o dönem için ödenen paraların tamamını kaybedecektir.
- 4. Mülkün Oturması
-Bir mülkün karşılayabileceği azami kişi sayısına bakılmaksızın, Mülkiyet\'i işgal eden konukların sayısı, Kira Sözleşmesinde veya yazılıma yazılı olarak Sahibine bildirilen daha sonraki değişikliklerde belirtilenlerle sınırlıdır. Belirtilen ve üzerinde anlaşmaya varılan doluluk miktarı, yaş, gece ve gündüz misafirleri ne olursa olsun tüm kişileri kapsar.
-Belirtilen ve üzerinde anlaşmaya varılan kişilerin sayısını aşmak, geri ödeme yapılmaksızın derhal tahliye ile sonuçlanacak veya Sahibi\'nin takdirine bağlı olarak gece başı 100 ABD doları konaklama ücreti tahsil edecektir.
- 5. Mülkiyet Durumu
-Mülk işgalden önce teftiş edilecek ve bu nedenle Kiracı aşağıdakileri taahhüt eder:
-- Dikkat gerektiren herhangi bir hasar ve / veya bakım ile ilgili olarak Mülk sahibini hemen bilgilendirin.
-- Mülkiyet ve tüm mobilya, demirbaş, demirbaş, av tüfeği ve efektleri, Kiranın başlangıcında bulunan mülkte veya mülkte aynı onarım ve durum durumunda saklayın.
- 
-- Bir temizlik hizmetinin sağlandığı yerlerde; Kiracı, Sahibinin sağladığı ayrılış talimatlarını izleyecektir.
-- Bir temizlik hizmeti verilmezse; Kiracı, bulunduğu mülkü temizlik ve genel düzenli şekilde bırakacaktır. Bunu Mülk Sahibinin memnuniyetine başaramamak, bir hasar / temizlik ücretinin alınmasına neden olacaktır.
-6. Telefon ve İnternet Hizmetlerinin Kullanımı
-Kiralamanın bir parçası olarak bir telefonun verildiği durumlarda, Kiracı, aksi öngörülmedikçe, tüm uzak mesafe telefon görüşmelerini bir kredi / telefon kartına veya çağrı toplamaya yüklemelidir. İnternet servislerinin sağlandığı yerlerde indirme kısıtlamaları olabilir ve bunlar aşılırsa ücret alınabilir. Herhangi bir indirmeye başlamadan önce bir internet cihazında kısıtlamaları kontrol etmek kiracının sorumluluğundadır.
- 7. Evcil Hayvanlar
-Bir köpeğe izin verilir [herhangi bir kısıtlamayı belirtin]. Evcil hayvan işgaline ilişkin tüm kanıtlar, kiralık sürenin bitiminde mülkiyetten çıkarılmalı ve gerekçesiyle kaldırılmalıdır. Evcil hayvanların yatak dahil olmak üzere herhangi bir mobilya öğesine izin verilmemektedir ve mobilya ve yatak takımlarında evde beslenen hayvan kanıtı kanıtı ek temizleme ücreti alabilir.
-YA DA
-Evcil hayvanlar bu mülkte kesinlikle yasaklanmıştır. Evcil hayvan işgaline dair herhangi bir kanıt hasar mevduatının tamamıyla sonuçlanmasına neden olacaktır.
-Tesis, herhangi bir alerjik reaksiyon veya mülkiyetin dolaşımından kaynaklanan diğer koşullar için hiçbir sorumluluk kabul etmez. "Evcil Hayvan Yok" unvanı, bir zamanda mülkte evcil hayvan olmadığına işaret etmez.
-8. Sigara içmek
-Otelin yakın çevresinde veya yakınında sigara içilmesine izin verilmiyor.
-9. Kış Aylarında Mülk Erişimi
-Mülk kış aylarında kiralık olarak sunulmaktadır ve karaya erişimi vardır ve [belediye veya özel yükleniciyi belirtin] tarafından bir kar temizleme hizmeti alır. Bununla birlikte, kiracılara, büyük bir kar yağmasının ardından, kar temizleme sağlayıcıları önceden belirlenmiş bir düzende yerel yolları temizlemek üzere sözleşmeli olarak verilmektedir. Sonuç olarak, bir mülkün sürülmesi birkaç saat veya şiddetli fırtına koşullarında günlerce ertelenebilir. Muhtemel olmayan bir durumda Kiracı, planlanan ayrılış tarihinde bir malı terk edemezse, Kiracı herhangi bir ilave konaklama masrafından sorumlu değildir. Tersine, kar temizleme eksikliği bir Kiracının mülke ulaşmasını engellediğinde, Kiracı, mülkün erişilemediği gün (ler) için kira bedelinin geri ödenmesini alacaktır. Bununla birlikte, kar temizlemesi olmadığından zamanında bir mala ulaşamayacağımız veya zamanından önce ulaşamamanın bir sonucu olarak ortaya çıkan her türlü kayıp, ek masraf veya cezadan Owner sorumlu tutulacaktır. Kiracılara, araçlarının ve araçlarının, Mülkiyet Ziyareti sırasında karşılaşılabilecekleri kış koşullarında sürülmesi için uygun şekilde hazırlandığından ve donanımlı olduğundan emin olmak için hatırlatılır.
-10. Sağlanan Ekipman ve Tesisler
-Ekipman ve tesisler, Sahibinin takdirine bağlı olarak sağlanır ve her türlü teşebbüs, kiralanma süresinin tamamlanması için gerekli ekipmanın kullanılamaz hale getirilmesini sağlayan bir arıza veya başka bir durum ortaya çıkarsa, bu ekipmanın kiralama süresince çalışır durumda olmasını sağlamak için yapılır; Bu Ekipman veya Tesislerin kullanılmaması nedeniyle Kiracı değiştiren veya geri ödeme sorumluluğu Sahibi tarafından karşılanmaz. Bahsedilen ekipman ve tesisler, deniz taşıtları, motorlar, televizyonlar, VCR\'ler / DVD\'ler, sıcak küvetler, saunalar ve jakuziler gibi öğeleri içerir (ancak bunlarla sınırlı değildir).
- 
-Kiracı herhangi bir çalışmaz veya arızalı ekipmanı Derhal Sahibine bildirmelidir! Sahibi mümkün olan en kısa zamanda onarım yaptırmak için makul çabayı gösterecektir; Bununla birlikte, [Bölgenizdeki] sınırlı servis müteahhitleri vardır. Kiralanan sürenin başlangıcında reklamı yapılan tüm teçhizatların ve cihazların çalışır durumda olmasını sağlamak için her girişim yapılmakla birlikte, kira indirimi yapılmamaktadır; indirim; Veya klima, bulaşık makinesi, çamaşır makinesi, kurutucu, TV veya diğer cihazların mekanik arızaları nedeniyle geri ödeme yapılacaktır.
- 11. İadeler
-Su sistemleri, sıhhi tesisat ve elektrik sistemleri ve soba veya buzdolabı gibi büyük cihazlar gibi temel unsurların arızalanması halinde, onarım veya değiştirme için her türlü çaba gösterilecek veya rahatsızlıktan dolayı uygun bir geri ödeme yapılacaktır. Bu, sıhhi tesislerin uygun olmayan kullanımından kaynaklanan sıhhi tesisat tıkanmaları gibi suiistimale bağlı sistem bozulmaları için geçerli değildir.
-Aşırı hava koşullarından ya da kontrolü dışındaki diğer koşullardan kaynaklanan elektrik servislerinin herhangi bir şekilde durdurulması için, Sahibimiz sorumlu değildir ve geri ödeme yapmaz. Benzer şekilde, sert hava durumu, su seviyesindeki değişiklikler, komşu mülklerdeki koşullar veya uçan böcekler veya hayvan nüfusu gibi yerin doğal unsurları tarafından sağlanan rahatsızlıktan dolayı geri ödeme yapılmaz.
-12. Diğer Şartlar
-Kiracı, Kiralık Şartları ve Koşulları ile Bireysel Kahvalti Kılavuzundaki diğer talimatları ve Mülkte veya Sahibin sağladığı ek bilgi ve talimatlara uyacaktır.
- 
-SORUMLULUK SINIRLAMALARI: Kiracı, Sahibini, mülkünü ve tesislerini yukarıda belirtilen Şartlar ve Koşullar ile sağlanan Bilgileri uyarınca kullanacağını, temin ettiğini, onayladığını ve kabul ettiğini ve kendisine yaptığı bilgileri Kendi riskine maruz kalabileceğini ve Sahibinin sahibini, ailesini veya misafirlerini şahsen veya mülkiyetinde veya sonrasında herhangi bir kişisel yaralanma, hastalık veya ölüm, kayıp veya hasar olmaktan Doluluk zamanı. Dahası, Mülkiyet ve tekneler ve motorlar, vb. Gibi eğlence ekipmanlarının kullanımı için tam sorumluluk kabul eder ve söz konusu ekipmanın normal yıpranma ve yıpranma dışında herhangi bir zararı için ödemeyi kabul eder. Kiracı ayrıca, teknede gerekli emniyet ekipmanı bulundurulmasını ve geçerli Operatör Yetkinlik Gereksinimlerini karşılamak da dahil olmak üzere, Tekne Yürüyüşü Yönetmeliğinin tümünden emin olmaktan sorumlu olduğunu kabul eder.
-' );
+jr_define('DEFAULT_TERMS_AND_CONDITIONS', '');
 jr_define('_JOMRES_SUPPORTKEY_DESC_VALID', 'İndirme ve destek anahtarınız geçerlidir, eklentileri eklenti yöneticisi aracılığıyla indirebilirsiniz.');
 jr_define('_JOMRES_SUPPORTKEY_DESC_INVALID', 'İndirme ve destek anahtarınız geçerli DEĞİL, eklentileri eklenti yöneticisi aracılığıyla indiremeyeceksiniz.');
 jr_define('_JOMRES_SRP_RESOURCE_TYPE', 'Alt tür');
