@@ -4614,7 +4614,7 @@ function max_input_vars_test()
     $response = '';
     $max_vars = (int) ini_get('max_input_vars');
     if ($max_vars < 1001 && isset($MiniComponents->registeredClasses[ '00005']['advanced_micromanage_tariff_editing_modes' ])) { // The default is 1000 on most installations
-        $highlight = (using_bootstrap() ? 'alert' : 'ui-state-highlight');
+        $highlight = (using_bootstrap() ? 'alert alert-error alert-danger' : 'ui-state-highlight');
         $response = "<div class='".$highlight."'>Please note, your max_input_vars setting seems to be set to 1000, which is the default setting. If you're using the Micromanage tariff editing mode and wish to save prices for more than a year in advance, we recommend that you change this setting to 3000 or more. <a href=\"https://tickets.jomres.net/index.php?/Knowledgebase/Article/View/115/15/too-many-variables\" target=\"_blank\">This page </a>has  more information.</div>";
     }
 
@@ -4628,7 +4628,7 @@ function suhosin_get_max_vars_test()
     $max_vars = (int) ini_get('suhosin.get.max_value_length');
 
     if ($max_vars != 0 && $max_vars <= 512) { // The default is 512 on most installations with the suhosin patch
-        $highlight = (using_bootstrap() ? 'alert' : 'ui-state-highlight');
+        $highlight = (using_bootstrap() ? 'alert alert-error alert-danger' : 'ui-state-highlight');
         $response = "<div class='".$highlight."'>Please note that PHP setups with the suhosin patch installed will have a default limit of 512 characters for get parameters. Although bad practice, most browsers (including IE) supports URLs up to around 2000 characters, while Apache has a default of 8000. To add support for long parameters with suhosin, add suhosin.get.max_value_length = <limit> in php.ini</div>";
     }
 
