@@ -63,7 +63,6 @@ class j19995menu
 		}
 		
 		//portal section menus
-		$jomres_menu->add_admin_item(50, jr_gettext('_JOMRES_MEDIA_CENTRE_TITLE', '_JOMRES_MEDIA_CENTRE_TITLE', false), 'media_centre', 'fa-picture-o');
 		$jomres_menu->add_admin_item(50, jr_gettext('_JOMRES_APPROVALS_MENU_NAME', '_JOMRES_APPROVALS_MENU_NAME', false), 'property_approvals', 'fa-check-circle');
 		$jomres_menu->add_admin_item(50, jr_gettext('_JOMRES_REVIEWS', '_JOMRES_REVIEWS', false), 'list_reviews', 'fa-thumbs-up');
 		
@@ -100,6 +99,7 @@ class j19995menu
 		//$jomres_menu->add_admin_item(90, jr_gettext('_JOMRES_TAX_RULES_LIST', '_JOMRES_TAX_RULES_LIST', false), 'list_tax_rules', 'fa-cogs');
 		$jomres_menu->add_admin_item(90, jr_gettext('_JOMRES_COM_LISTCOUNTRIES', '_JOMRES_COM_LISTCOUNTRIES', false), 'list_countries', 'fa-globe');
 		$jomres_menu->add_admin_item(90, jr_gettext('_JOMRES_COM_LISTREGIONS', '_JOMRES_COM_LISTREGIONS', false), 'list_regions', 'fa-globe');
+		$jomres_menu->add_admin_item(90, jr_gettext('_JOMRES_MEDIA_CENTRE_TITLE', '_JOMRES_MEDIA_CENTRE_TITLE', false), 'media_centre', 'fa-picture-o');
 		
 		//help section menus
 		$jomres_menu->add_admin_item(100, jr_gettext('_JOMRES_CUSTOMCODE_SUPPORT_GETTINGSTARTED', '_JOMRES_CUSTOMCODE_SUPPORT_GETTINGSTARTED', false), 'getting_started', 'fa-book');
