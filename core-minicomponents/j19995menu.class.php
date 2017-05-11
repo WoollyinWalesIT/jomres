@@ -83,7 +83,7 @@ class j19995menu
 		
         $template_packages = get_showtime('template_packages');
         if (!empty($template_packages)) { // There are some override packages installed, we can go ahead and show the override manager menu option
-			$jomres_menu->add_admin_item(70, jr_gettext('_JOMRES_TEMPLATE_PACKAGES', '_JOMRES_TEMPLATE_PACKAGES', false), 'list_template_overrides', 'fa-code');
+			$jomres_menu->add_admin_item(70, jr_gettext('_JOMRES_TEMPLATE_PACKAGES', '_JOMRES_TEMPLATE_PACKAGES', false), 'list_template_overrides', 'fa-puzzle-piece');
 		}
 		
 		//reports section menus
