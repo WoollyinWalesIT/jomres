@@ -118,19 +118,19 @@ class j16000showplugins
             }
 
             $remote_plugins[trim(jomres_sanitise_string(@$rp->name)) ] = array(
-                    'name' => trim(jomres_sanitise_string(@$rp->name)),
-                    'version' => (float) @$rp->version,
-                    'lastupdate' => jomres_sanitise_string(@$rp->lastupdate),
-                    'description' => jomres_sanitise_string(@$rp->description),
-                    'type' => jomres_sanitise_string(@$rp->type),
-                    'min_jomres_ver' => jomres_sanitise_string(@$rp->min_jomres_ver),
-                    'price' => @$rp->price,
-                    'manual_link' => jomres_sanitise_string(@$rp->manual_link),
-                    'change_log' => jomres_sanitise_string(@$rp->change_log),
-                    'highlight' => jomres_sanitise_string(@$rp->highlight),
-                    'image' => jomres_sanitise_string(@$rp->image),
-                    'demo_url' => addslashes(@$rp->demo_url),
-                    'retired' => (bool) @$rp->retired,
+					'name' => (isset($rp->name) ? trim(jomres_sanitise_string($rp->name)) : ''),
+                    'version' => (isset($rp->version) ? (float)$rp->version : 1),
+                    'lastupdate' => (isset($rp->lastupdate) ? jomres_sanitise_string($rp->lastupdate) : ''),
+                    'description' => (isset($rp->description) ? jomres_sanitise_string($rp->description) : ''),
+                    'type' => (isset($rp->type) ? jomres_sanitise_string($rp->type) : ''),
+                    'min_jomres_ver' => (isset($rp->min_jomres_ver) ? jomres_sanitise_string($rp->min_jomres_ver) : '1'),
+                    'price' => (isset($rp->price) ? jomres_sanitise_string($rp->price) : '0'),
+                    'manual_link' => (isset($rp->manual_link) ? jomres_sanitise_string($rp->manual_link) : ''),
+                    'change_log' => (isset($rp->change_log) ? jomres_sanitise_string($rp->change_log) : ''),
+                    'highlight' => (isset($rp->highlight) ? jomres_sanitise_string($rp->highlight) : ''),
+                    'image' => (isset($rp->image) ? jomres_sanitise_string($rp->image) : ''),
+                    'demo_url' => (isset($rp->demo_url) ? addslashes($rp->demo_url) : ''),
+                    'retired' => (isset($rp->retired) ? (bool)$rp->retired : false),
                 );
         }
 

@@ -208,14 +208,16 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
                 sort($docs);
                 foreach ($docs as $doc) {
                     $listdir = $jrePath.$doc.JRDS;
-                    $dr = @dir($listdir);
-                    if ($dr) {
-                        while (false !== ($entry = $dr->read())) {
-                            $filename = $entry;
-                            $this->registerComponentFile($listdir, $filename, 'cmstemplate');
-                        }
-                        $dr->close();
-                    }
+					if (is_dir($listdir)) {
+						$dr = @dir($listdir);
+						if ($dr) {
+							while (false !== ($entry = $dr->read())) {
+								$filename = $entry;
+								$this->registerComponentFile($listdir, $filename, 'cmstemplate');
+							}
+							$dr->close();
+						}
+					}
                 }
             }
         }
