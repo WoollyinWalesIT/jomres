@@ -77,7 +77,7 @@ class j16000list_template_overrides
             $tmpl->addRows('rows', $rows);
             $tmpl->displayParsedTemplate();
         } else {
-            echo 'No gateways installed';
+            echo 'No template packages installed';
         }
     }
 
