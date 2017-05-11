@@ -44,8 +44,10 @@ class template_overrides
         }
 
         foreach ($result as $r) {
-			$this->template_overrides[$r->template_name]['template_name']		= $r->template_name;
-            $this->template_overrides[$r->template_name]['path']				= $r->path;
+			if (file_exists(JOMRESPATH_BASE.$r->path.$r->template_name) ) {
+				$this->template_overrides[$r->template_name]['template_name']		= $r->template_name;
+				$this->template_overrides[$r->template_name]['path']				= $r->path;
+			}
         }
 
         return true;
