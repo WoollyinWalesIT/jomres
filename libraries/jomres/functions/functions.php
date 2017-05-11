@@ -2664,6 +2664,11 @@ function saveHotelSettings()
     $jrConfig = $siteConfig->get();
 
     $property_uid = (int)getDefaultProperty();
+	
+	if ($property_uid == 0) {
+		return false;
+	}
+
     $mrConfig = getPropertySpecificSettings($property_uid);
 
     $tariffmodeChange = false;
