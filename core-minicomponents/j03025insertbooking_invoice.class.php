@@ -56,18 +56,26 @@ class j03025insertbooking_invoice
         $deposit_required = $tmpBookingHandler->getBookingFieldVal('deposit_required');
         $extras = $tmpBookingHandler->getBookingFieldVal('extras');
         $extrasquantities = $tmpBookingHandler->getBookingFieldVal('extrasquantities');
-        $third_party_extras = unserialize($tmpBookingHandler->getBookingFieldVal('third_party_extras'));
-        $room_total = $tmpBookingHandler->getBookingFieldVal('room_total');
+		$room_total = $tmpBookingHandler->getBookingFieldVal('room_total');
         $room_total_nodiscount = $tmpBookingHandler->getBookingFieldVal('room_total_nodiscount');
         $tax = $tmpBookingHandler->getBookingFieldVal('tax');
         $discounts = $tmpBookingHandler->getBookingFieldVal('discounts');
         $resource = $tmpBookingHandler->getBookingFieldVal('resource');
         $property_uid = $tmpBookingHandler->getBookingFieldVal('property_uid');
-        $extrasvalues_items = unserialize($tmpBookingHandler->getBookingFieldVal('extrasvalues_items'));
         $depositpaidsuccessfully = $tmpBookingHandler->getBookingFieldVal('depositpaidsuccessfully');
-        $additional_line_items = unserialize($tmpBookingHandler->getBookingFieldVal('additional_line_items'));
         $total_in_party = $tmpBookingHandler->getBookingFieldVal('total_in_party');
-        $room_allocations = unserialize($tmpBookingHandler->getBookingFieldVal('room_allocations'));
+		
+		if ($jrConfig['session_handler'] == 'database') {
+			$extrasvalues_items = $tmpBookingHandler->getBookingFieldVal('extrasvalues_items');
+			$third_party_extras = $tmpBookingHandler->getBookingFieldVal('third_party_extras');
+			$room_allocations = $tmpBookingHandler->getBookingFieldVal('room_allocations');
+			$additional_line_items = $tmpBookingHandler->getBookingFieldVal('additional_line_items');
+		} else {
+			$extrasvalues_items = unserialize($tmpBookingHandler->getBookingFieldVal('extrasvalues_items'));
+			$third_party_extras = unserialize($tmpBookingHandler->getBookingFieldVal('third_party_extras'));
+			$room_allocations = unserialize($tmpBookingHandler->getBookingFieldVal('room_allocations'));
+			$additional_line_items = unserialize($tmpBookingHandler->getBookingFieldVal('additional_line_items'));
+		}
 
         //we`ll need this if wise price is enabled and we charge per person per night
         $guests_by_room = array();

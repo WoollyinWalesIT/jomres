@@ -24,6 +24,11 @@ class j06000processpayment
 
             return;
         }
+		
+		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+		
+		$bookingdata = gettempBookingdata();
+		
         request_log();
         $tag = set_booking_number();
 

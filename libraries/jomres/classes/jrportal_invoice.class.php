@@ -140,7 +140,9 @@ class jrportal_invoice
 
         if (isset($line_item_data[ 'is_payment' ])) {
             $this->lineitem['is_payment'] = (int) $line_item_data[ 'is_payment' ];
-        }
+        } else {
+			$this->lineitem['is_payment'] = 0;
+		}
 
         $this->lineitem['inv_id'] = $this->id;
 

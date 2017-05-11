@@ -162,11 +162,23 @@ class dobooking
             $this->deposit_required = $bookingDeets[ 'deposit_required' ];
             $this->contract_total = $bookingDeets[ 'contract_total' ];
             $this->extrasvalue = $bookingDeets[ 'extrasvalue' ];
+			
+			if ($jrConfig['session_handler'] == 'database') {
+				$this->extrasvalues_items = $bookingDeets[ 'extrasvalues_items' ];
+				$this->third_party_extras = $bookingDeets[ 'third_party_extras' ];
+				$this->third_party_extras_private_data = $bookingDeets[ 'third_party_extras_private_data' ];
+				$this->room_allocations = $bookingDeets[ 'room_allocations' ];
+				$this->additional_line_items = $bookingDeets[ 'additional_line_items' ];
+				$this->room_feature_filter = $bookingDeets[ 'room_feature_filter' ];
+			} else {
+				$this->extrasvalues_items = unserialize($bookingDeets[ 'extrasvalues_items' ]);
+				$this->third_party_extras = unserialize($bookingDeets[ 'third_party_extras' ]);
+				$this->third_party_extras_private_data = unserialize($bookingDeets[ 'third_party_extras_private_data' ]);
+				$this->room_allocations = unserialize($bookingDeets[ 'room_allocations' ]);
+				$this->additional_line_items = unserialize($bookingDeets[ 'additional_line_items' ]);
+				$this->room_feature_filter = unserialize($bookingDeets[ 'room_feature_filter' ]);
+			}
 
-            $this->extrasvalues_items = unserialize($bookingDeets[ 'extrasvalues_items' ]);
-            $this->third_party_extras = unserialize($bookingDeets[ 'third_party_extras' ]);
-            $this->third_party_extras_private_data = unserialize($bookingDeets[ 'third_party_extras_private_data' ]);
-            $this->room_allocations = unserialize($bookingDeets[ 'room_allocations' ]);
             $this->room_allocations_note = $bookingDeets[ 'room_allocations_note' ];
             $this->property_currencycode = $bookingDeets[ 'property_currencycode' ];
 
@@ -199,8 +211,6 @@ class dobooking
             $this->coupon_details = $bookingDeets[ 'coupon_details' ];
             $this->coupon_discount_value = $bookingDeets[ 'coupon_discount_value' ];
             $this->booking_notes = $bookingDeets[ 'booking_notes' ];
-            $this->additional_line_items = unserialize($bookingDeets[ 'additional_line_items' ]);
-            $this->room_feature_filter = unserialize($bookingDeets[ 'room_feature_filter' ]);
             $this->override_room_total = $bookingDeets[ 'override_room_total' ];
             $this->override_deposit = $bookingDeets[ 'override_deposit' ];
             if (isset($bookingDeets[ 'thirdparty_vars' ])) {
@@ -433,6 +443,9 @@ class dobooking
      */
     public function storeBookingDetails()
     {
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
+		
         $tmpBookingHandler = jomres_getSingleton('jomres_temp_booking_handler');
         $this->writeToLogfile("<font color='grey'>".serialize($tmpBookingHandler->tmpguest).'</font>');
 
@@ -479,14 +492,26 @@ class dobooking
         $tmpBookingHandler->tmpbooking[ 'deposit_required' ] = $this->deposit_required;
         $tmpBookingHandler->tmpbooking[ 'contract_total' ] = $this->contract_total;
         $tmpBookingHandler->tmpbooking[ 'extrasvalue' ] = $this->extrasvalue;
-        $tmpBookingHandler->tmpbooking[ 'extrasvalues_items' ] = serialize($this->extrasvalues_items);
-        $tmpBookingHandler->tmpbooking[ 'extras' ] = $this->extras;
+		$tmpBookingHandler->tmpbooking[ 'extras' ] = $this->extras;
         $tmpBookingHandler->tmpbooking[ 'extrasquantities' ] = $this->extrasquantities;
-        $tmpBookingHandler->tmpbooking[ 'third_party_extras' ] = serialize($this->third_party_extras);
-        $tmpBookingHandler->tmpbooking[ 'third_party_extras_private_data' ] = serialize($this->third_party_extras_private_data);
-
-        $tmpBookingHandler->tmpbooking[ 'room_allocations' ] = serialize($this->room_allocations);
-        $tmpBookingHandler->tmpbooking[ 'room_allocations_note' ] = serialize($this->room_allocations_note);
+        
+		if ($jrConfig['session_handler'] == 'database') {
+			$tmpBookingHandler->tmpbooking[ 'extrasvalues_items' ] = $this->extrasvalues_items;
+			$tmpBookingHandler->tmpbooking[ 'third_party_extras' ] = $this->third_party_extras;
+			$tmpBookingHandler->tmpbooking[ 'third_party_extras_private_data' ] = $this->third_party_extras_private_data;
+			$tmpBookingHandler->tmpbooking[ 'room_allocations' ] = $this->room_allocations;
+			$tmpBookingHandler->tmpbooking[ 'room_allocations_note' ] = $this->room_allocations_note;
+			$tmpBookingHandler->tmpbooking[ 'additional_line_items' ] = $this->additional_line_items;
+        $tmpBookingHandler->tmpbooking[ 'room_feature_filter' ] = $this->room_feature_filter;
+		} else {
+			$tmpBookingHandler->tmpbooking[ 'extrasvalues_items' ] = serialize($this->extrasvalues_items);
+			$tmpBookingHandler->tmpbooking[ 'third_party_extras' ] = serialize($this->third_party_extras);
+			$tmpBookingHandler->tmpbooking[ 'third_party_extras_private_data' ] = serialize($this->third_party_extras_private_data);
+			$tmpBookingHandler->tmpbooking[ 'room_allocations' ] = serialize($this->room_allocations);
+			$tmpBookingHandler->tmpbooking[ 'room_allocations_note' ] = serialize($this->room_allocations_note);
+			$tmpBookingHandler->tmpbooking[ 'additional_line_items' ] = serialize($this->additional_line_items);
+			$tmpBookingHandler->tmpbooking[ 'room_feature_filter' ] = serialize($this->room_feature_filter);
+		}
 
         $tmpBookingHandler->tmpbooking[ 'total_discount' ] = $this->total_discount;
         $tmpBookingHandler->tmpbooking[ 'depositpaidsuccessfully' ] = $this->depositpaidsuccessfully;
@@ -507,8 +532,6 @@ class dobooking
         $tmpBookingHandler->tmpbooking[ 'coupon_details' ] = $this->coupon_details;
         $tmpBookingHandler->tmpbooking[ 'coupon_discount_value' ] = $this->coupon_discount_value;
         $tmpBookingHandler->tmpbooking[ 'booking_notes' ] = $this->booking_notes;
-        $tmpBookingHandler->tmpbooking[ 'additional_line_items' ] = serialize($this->additional_line_items);
-        $tmpBookingHandler->tmpbooking[ 'room_feature_filter' ] = serialize($this->room_feature_filter);
         $tmpBookingHandler->tmpbooking[ 'override_room_total' ] = $this->override_room_total;
         $tmpBookingHandler->tmpbooking[ 'override_deposit' ] = $this->override_deposit;
 
@@ -1385,7 +1408,7 @@ class dobooking
         }
         $found = false;
 		$n = count($this->variancetypes);
-        for ($i = 0; $i <= $n; ++$i) {
+        for ($i = 0; $i < $n; ++$i) {
             if (isset($this->variancetypes[ $i ])) {
                 if ($this->variancetypes[ $i ] == $type && $this->varianceuids[ $i ] == $id) {
                     //$this->setErrorLog("Setting variant with qty ".$qty." and value ".$val );
@@ -1416,14 +1439,14 @@ class dobooking
             return false;
         }
 		$n = count($this->variancetypes);
-        for ($i = 1; $i <= $n; ++$i) {
+        for ($i = 0; $i < $n; ++$i) {
             if (isset($this->variancetypes[$i])) {
                 if ($this->variancetypes[ $i ] == $type && $this->varianceuids[ $i ] == $id) {
                     $qty = $this->varianceqty[ $i ];
                     $val = $this->variancevals[ $i ];
                     $val_nodiscount = $this->variancevals_nodiscount[ $i ];
 
-                    return array('quantity' => $qty, 'value' => $val, 'value_nodiscount' => $val_nodiscount);
+                    return array('quantity' => $qty, 'value' => $val, 'val_nodiscount' => $val_nodiscount);
                 }
             }
         }
@@ -1444,7 +1467,7 @@ class dobooking
         //$this->setErrorLog("Variable variancetypes is : ".gettype($this->variancetypes) );
 
 		$n = count($this->variancetypes);
-        for ($i = 0; $i <= $n; ++$i) {
+        for ($i = 0; $i < $n; ++$i) {
             if (isset($this->variancetypes[ $i ]) && $this->variancetypes[ $i ] == $type) {
                 $id = $this->varianceuids[ $i ];
                 $qty = $this->varianceqty[ $i ];
@@ -1938,7 +1961,9 @@ class dobooking
 
     public function reset_choices_for_plugin($plugin)
     {
-        unset($this->third_party_extras[ $plugin ]);
+		if (isset($this->third_party_extras[ $plugin ])) {
+			unset($this->third_party_extras[ $plugin ]);
+		}
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

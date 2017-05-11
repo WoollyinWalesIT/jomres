@@ -25,12 +25,18 @@ class j02990showconfirmation
 
             return;
         }
-        $paypal_settings = jomres_singleton_abstract::getInstance('jrportal_paypal_settings');
-        $paypal_settings->get_paypal_settings();
+		
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+        $jrConfig = $siteConfig->get();
+		
+		$mrConfig = getPropertySpecificSettings();
 
         $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-        $mrConfig = getPropertySpecificSettings();
-        $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+        
+		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+		
+		$paypal_settings = jomres_singleton_abstract::getInstance('jrportal_paypal_settings');
+        $paypal_settings->get_paypal_settings();
 
         $secret_key_payment = false;
         if (isset($_REQUEST['sk'])) {
@@ -371,8 +377,13 @@ class j02990showconfirmation
             }
         }
 
-        $third_party_extras = unserialize($tmpBookingHandler->getBookingFieldVal('third_party_extras'));
-        if ($third_party_extras !== false && !empty($third_party_extras)) {
+		if ($jrConfig['session_handler'] == 'database') {
+			$third_party_extras = $tmpBookingHandler->getBookingFieldVal('third_party_extras');
+		} else {
+			$third_party_extras = unserialize($tmpBookingHandler->getBookingFieldVal('third_party_extras'));
+		}
+        
+		if ($third_party_extras !== false && !empty($third_party_extras)) {
             foreach ($third_party_extras as $plugin) {
                 foreach ($plugin as $tpextra) {
                     $extra_parts = array();
@@ -461,9 +472,6 @@ class j02990showconfirmation
         $booking_parts[ 'HDAYSSTAYING' ] = jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS', '_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS');
         $booking_parts[ 'BOOKINGSPECIALREQ' ] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ', '_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ');
         $booking_parts[ 'DISCLAIMER' ] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ_DISCLAIMER', '_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ_DISCLAIMER');
-
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
 
         if ($mrConfig[ 'requireApproval' ] == '1' && !$thisJRUser->userIsManager && !$secret_key_payment) {
             $booking_parts[ 'THEBUTTON' ] = jr_gettext('_JOMRES_BOOKING_ENQUIRY_CONFIRM', '_JOMRES_BOOKING_ENQUIRY_CONFIRM', false);

@@ -241,7 +241,7 @@ class j03020insertbooking
                 $webhook_notification->webhook_event_plugin         = 'core';
                 $webhook_notification->data                         = new stdClass();
                 $webhook_notification->data->property_uid           = $property_uid;
-                $webhook_notification->data->contract_uid           = $contract_uid;
+                $webhook_notification->data->contract_uid           = $amend_contractuid;
                 add_webhook_notification($webhook_notification);
                 
             } else {
