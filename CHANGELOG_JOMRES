@@ -2,15 +2,15 @@
 
 Introduced new tariffs handling class. This brings several benefits for future development, with respect to the new booking engine and API development.
 Refactored both front and backend menu systems. Plugin settings moved to Site Configuration and entire administrator area rebuilt to be more logical.
+Session handling completely refactored to store data in the database, not files. Performance improvement.
+Region name handling refactored. Performance improvement. 
 
-Added booking notes to dashboard popup.
-Session handling completely refactored to store data in the database, not files. Speed improvements.
 Added room descriptions inputs and outputs.
 Guest Blacklisting feature added.
 Considerable language file update, old definitions removed.
 Added reviews details to admin cpanel overview
 Improved the admin cpanel frontpage. Layout adjusted.
-
+Added booking notes to dashboard popup.
 
 Many minicomponents trigger numbers changed so that they are now 06000/06001/06002/06005 instead of their older numbers.
 Made the crons run using async sockets so they won`t slow down the page
@@ -49,9 +49,8 @@ Added Armenian Dram to our currency codes list.
 Language. Changed "Available logs" to "Log files" in language files.
 Completely rebuilt the admin cpanel menu items and structure. Added a new class that handles the menu and completely changed the way new menu items are added to the admin cpanel.
 Completely rebuilt the frontend menu. Changed how access control behaves: now tasks can be controlled and this will control the visible menu items too.
-Removed an obsolete asamodule report file
+Removed an obsolete asamodule report file, as this functionality is now expanded on by the Shortcodes reporting feature.
 Made access control feature a plugin
-
 
 
 Updated the Arabic jquery-ui localization file to fix day names
