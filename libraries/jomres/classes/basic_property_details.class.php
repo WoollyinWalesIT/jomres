@@ -121,9 +121,6 @@ class basic_property_details
             $diff = array();
         }
 
-		$performance_monitor = jomres_singleton_abstract::getInstance('jomres_performance_monitor');
-		$performance_monitor->set_point('pre-property name multi');
-
 		$original_property_uid = get_showtime('property_uid');
 
 		//unset property uids that already have been handled by $this->gather_data_multi() function
@@ -161,8 +158,6 @@ class basic_property_details
 
             //set back the initial property uid
             set_showtime('property_uid', $original_property_uid);
-
-            $performance_monitor->set_point('post-property name multi');
         }
 
         return $this->property_names;
@@ -402,7 +397,7 @@ class basic_property_details
                 $this->multi_query_result[ $data->propertys_uid ][ 'property_postcode' ] = $data->property_postcode;
                 if (is_numeric($data->property_region)) {
                     $jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
-                    $this->multi_query_result[ $data->propertys_uid ][ 'property_region' ] = jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$data->property_region, $jomres_regions->regions[ $data->property_region ][ 'regionname' ], $editable, false);
+                    $this->multi_query_result[ $data->propertys_uid ][ 'property_region' ] = jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$data->property_region, $jomres_regions->get_region_name($data->property_region), $editable, false);
                     $this->multi_query_result[ $data->propertys_uid ][ 'property_region_id' ] = $data->property_region;
                 } else {
                     $this->multi_query_result[ $data->propertys_uid ][ 'property_region' ] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_REGION', $data->property_region, $editable, false);

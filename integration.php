@@ -113,9 +113,6 @@ if (file_exists(JOMRES_TEMP_ABSPATH.'registry_classes.php')) {
 
 $showtime = jomres_singleton_abstract::getInstance('showtime');
 
-$performance_monitor = jomres_singleton_abstract::getInstance('jomres_performance_monitor');
-$performance_monitor->set_point('pre-inclusions');
-
 require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'site_config.php';
 require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'detect_cms.php';
 require_once _JOMRES_DETECTED_CMS_SPECIFIC_FILES.'init_config_vars.php';
@@ -148,8 +145,6 @@ if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remo
 }
 
 require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'imagehandling.php';
-
-$performance_monitor->set_point('post-inclusions');
 
 $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 $jrConfig = $siteConfig->get();
@@ -234,8 +229,6 @@ if (!defined('AUTO_UPGRADE')) {
     $jomres_geolocation = jomres_singleton_abstract::getInstance('jomres_geolocation');
     $jomres_geolocation->auto_set_user_currency_code();
 }
-
-$performance_monitor->set_point('end integration run');
 
 if (!isset($_REQUEST['modal_wrap'])) {
     $_REQUEST['modal_wrap'] = 0;

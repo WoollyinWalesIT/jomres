@@ -166,9 +166,9 @@ class basic_contract_details
             $this->contract[$contract_uid]['guestdeets']['town'] = $contract->town;
             if (is_numeric($contract->county)) {
                 $jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
-                $this->contract[$contract_uid]['guestdeets']['county'] = jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$contract->county, $jomres_regions->regions[ $contract->county ][ 'regionname' ], false, false);
+                $this->contract[$contract_uid]['guestdeets']['county'] = jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$contract->county, $jomres_regions->get_region_name($contract->county), false);
             } else {
-                $this->contract[$contract_uid]['guestdeets']['county'] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_REGION'.$contract->county, $contract->county, false, false);
+                $this->contract[$contract_uid]['guestdeets']['county'] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_REGION'.$contract->county, $contract->county, false);
             }
             $this->contract[$contract_uid]['guestdeets']['country'] = getSimpleCountry($contract->country);
             $this->contract[$contract_uid]['guestdeets']['country_code'] = $contract->country;

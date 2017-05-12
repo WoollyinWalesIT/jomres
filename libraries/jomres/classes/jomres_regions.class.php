@@ -21,8 +21,18 @@ class jomres_regions
     public function __construct()
     {
         $this->regions = false;
+		$this->country_regions = false;
+		
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
+		
+		if (!isset($jrConfig[ 'region_names_are_translatable' ])) {
+			$jrConfig[ 'region_names_are_translatable' ] = 0;
+		}
+		
+		$this->region_names_are_translatable = (bool)$jrConfig[ 'region_names_are_translatable' ];
         
-		$this->get_regions();
+		$this->get_used_property_regions();
     }
 	
 	public static function getInstance()
@@ -34,7 +44,8 @@ class jomres_regions
         return self::$configInstance;
     }
 
-    public function get_regions()
+	//get all regions used by properties, no need to get all others at this point
+    public function get_used_property_regions()
     {
         if (is_array($this->regions)) {
 			return true;
@@ -42,19 +53,35 @@ class jomres_regions
 		
 		$this->regions = array();
 
-		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-		$jrConfig = $siteConfig->get();
-		
-		if (!isset($jrConfig[ 'region_names_are_translatable' ])) {
-			$jrConfig[ 'region_names_are_translatable' ] = 0;
-		}
-
-		$query = "SELECT `id`,`countrycode`,`regionname` FROM #__jomres_regions ORDER BY `countrycode`,`regionname`";
+		$query = "SELECT `id`, `countrycode`, `regionname` FROM #__jomres_regions WHERE `id` IN (SELECT DISTINCT `property_region` FROM #__jomres_propertys) ORDER BY `countrycode`,`regionname`";
 		$result = doSelectSql($query);
 		
 		if (!empty($result)) {
 			foreach ($result as $region) {
-				if ((int)$jrConfig[ 'region_names_are_translatable' ] == 1) {
+				if ($this->region_names_are_translatable) {
+					$this->regions[ $region->id ] = array('id' => $region->id, 'countrycode' => $region->countrycode, 'regionname' => jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$region->id, $region->regionname, false, false));
+				} else {
+					$this->regions[ $region->id ] = array('id' => $region->id, 'countrycode' => $region->countrycode, 'regionname' => $region->regionname);
+				}
+			}
+		}
+		
+		unset($result);
+
+        return true;
+    }
+	
+	//get all regions, used only when we need to get all regions from db
+    public function get_all_regions()
+    {
+        $this->regions = array();
+
+		$query = "SELECT `id`, `countrycode`, `regionname` FROM #__jomres_regions ORDER BY `countrycode`,`regionname`";
+		$result = doSelectSql($query);
+		
+		if (!empty($result)) {
+			foreach ($result as $region) {
+				if ($this->region_names_are_translatable) {
 					$this->regions[ $region->id ] = array('id' => $region->id, 'countrycode' => $region->countrycode, 'regionname' => jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$region->id, $region->regionname, false, false));
 				} else {
 					$this->regions[ $region->id ] = array('id' => $region->id, 'countrycode' => $region->countrycode, 'regionname' => $region->regionname);
@@ -67,23 +94,83 @@ class jomres_regions
         return true;
     }
 
-    public function get_country_regions($countrycode)
+	//this is mostly used when generating the ajax region dropdown
+    public function get_country_regions($country_code = '')
     {
-        foreach ($this->regions as $region) {
-            if ($region[ 'countrycode' ] == $countrycode) {
-                return $region;
-            }
-        }
+		if ($country_code == '') {
+			return false;
+		}
+		
+		if (isset($this->country_regions[$country_code])) {
+			return $this->country_regions[$country_code];
+		}
+		
+		$this->country_regions[$country_code] = array();
+		
+        $query = "SELECT `id`, `regionname` FROM #__jomres_regions WHERE `countrycode` = '$country_code' ORDER BY `regionname`";
+		$result = doSelectSql($query);
+		
+		if (!empty($result)) {
+			foreach ($result as $region) {
+				if ($this->region_names_are_translatable) {
+					$this->country_regions[ $country_code ][ $region->id ] = jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$region->id, $region->regionname, false, false);
+				} else {
+					$this->country_regions[ $country_code ][ $region->id ] = $region->regionname;
+				}
+			}
+		}
+		
+		unset($result);
 
-        return false;
+        return $this->country_regions[$country_code];
     }
 
-    public function get_region_by_id($id)
+	//get region details by region id
+    public function get_region($id = 0)
     {
+		if ((int)$id == 0) {
+			throw new Exception('Tried to get region with id 0');
+		}
+
         if (isset($this->regions[ $id ])) {
             return $this->regions[ $id ];
         } else {
-            throw new Exception('Tried to get region with non-existant id');
+			$query = "SELECT `id`, `countrycode`, `regionname` FROM #__jomres_regions WHERE `id` = ".(int)$id;
+			$result = doSelectSql($query);
+			
+			if (!empty($result)) {
+				foreach ($result as $region) {
+					if ($this->region_names_are_translatable) {
+						$this->regions[ $id ] = array('countrycode' => $region->countrycode, 'regionname' => jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$region->id, $region->regionname, false, false));
+					} else {
+						$this->regions[ $id ] = array('countrycode' => $region->countrycode, 'regionname' => $region->regionname);
+					}
+				}
+			} else {
+				throw new Exception('Tried to get region with non-existant id');
+			}
+			
+			return $this->regions[ $id ];
+        }
+    }
+	
+	//get region name by region id, mostly used when we need to display a region name
+    public function get_region_name($id = 0)
+    {
+		if ((int)$id == 0) {
+			throw new Exception('Tried to get region with id 0');
+		}
+
+        if (isset($this->regions[ $id ])) {
+            return $this->regions[ $id ]['regionname'];
+        } else {
+			$region_details = $this->get_region($id);
+			
+			if (isset($region_details['regionname'])) {
+				return $region_details['regionname'];
+			} else {
+				throw new Exception('Tried to get region with non-existant id');
+			}
         }
     }
 }

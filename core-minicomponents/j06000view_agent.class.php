@@ -108,7 +108,7 @@ class j06000view_agent
                 $output[ 'REGION' ] = $data->county;
                 if (is_numeric($data->county)) {
                     $jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
-                    $output[ 'REGION' ] = jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$data->county, $jomres_regions->regions[ $data->county ][ 'regionname' ], false, false);
+                    $output[ 'REGION' ] = jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$data->county, $jomres_regions->get_region_name($data->county), false, false);
                 } else {
                     $output[ 'REGION' ] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_REGION'.$data->county, $data->county, false, false);
                 }

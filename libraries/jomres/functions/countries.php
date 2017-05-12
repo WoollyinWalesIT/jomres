@@ -126,12 +126,16 @@ function createCountriesDropdown($selectedCountry, $input_name = 'country', $inc
 function setupRegions($countryCode = 'GB', $currentRegion = 'Pembrokeshire', $firstBlank = false, $input_name = 'region')
 {
     $regionArray = array();
-    $jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
-    foreach ($jomres_regions->regions as $region) {
-        if ($region[ 'countrycode' ] == $countryCode) {
-            $regionArray[ $region[ 'id' ] ] = $region[ 'regionname' ];
-        }
-    }
+	$regionDropdown = '';
+	
+	if ($countryCode == '') {
+		$mrConfig = getPropertySpecificSettings();
+		
+		$countryCode = $mrConfig[ 'defaultcountry' ];
+	}
+    
+	$jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
+	$regionArray = $jomres_regions->get_country_regions($countryCode);
 
     if (!is_numeric($currentRegion)) { // This allows us to transition from using region names in the dropdown's value field, to region ids.
         foreach ($regionArray as $id => $r) {
@@ -143,7 +147,6 @@ function setupRegions($countryCode = 'GB', $currentRegion = 'Pembrokeshire', $fi
         $currentRegion = jomres_decode($currentRegion);
     }
 
-    $regionDropdown = '';
     if (!empty($regionArray)) {
         natcasesort($regionArray);
         if ($firstBlank) {
@@ -241,6 +244,7 @@ function import_countries()
 function import_regions()
 {
 	$jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
+	$jomres_regions->get_all_regions();
 
     if (empty($jomres_regions->regions)) {
         $query = '

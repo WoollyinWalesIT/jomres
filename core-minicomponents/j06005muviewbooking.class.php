@@ -138,7 +138,7 @@ class j06005muviewbooking
             $guest_town = $guest->town;
             if (is_numeric($guest->county)) {
                 $jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
-                $guest_region = jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$guest->county, $jomres_regions->regions[ $guest->county ][ 'regionname' ], false, false);
+                $guest_region = jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$guest->county, $jomres_regions->get_region_name($guest->county), false, false);
             } else {
                 $guest_region = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_REGION'.$guest->county, $guest->county, false, false);
             }

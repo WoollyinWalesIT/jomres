@@ -40,14 +40,6 @@ try {
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
 
-    //performace monitorning start
-    $performance_monitor = jomres_singleton_abstract::getInstance('jomres_performance_monitor');
-    if ($jrConfig[ 'errorChecking' ] == '1') {
-        $performance_monitor->switch_on();
-    } else {
-        $performance_monitor->switch_off();
-    }
-
     //get all properties in system.
     $jomres_properties = jomres_singleton_abstract::getInstance('jomres_properties');
     $jomres_properties->get_all_properties();
@@ -213,7 +205,7 @@ try {
 
         //sanity checks
         if (!$thisJRUser->userIsManager && $current_property_details->published == 0 && get_showtime('task') != '') {
-            if (!AJAXCALL) {
+            if (!AJAXCALL && $no_html == 0) {
                 jr_import('jomres_sanity_check');
                 $warning = new jomres_sanity_check(false);
                 echo $warning->construct_warning(jr_gettext('_JOMRES_PROPERTYNOTOUBLISHED', '_JOMRES_PROPERTYNOTOUBLISHED', false));
@@ -236,7 +228,7 @@ try {
         }
     }
 
-    if (!AJAXCALL) {
+    if (!AJAXCALL && $no_html == 0) {
 		//add javascript to head
         $MiniComponents->triggerEvent('00004');
 		
@@ -251,20 +243,17 @@ try {
     $MiniComponents->triggerEvent('00005');
 
     //trigger 00006 event
-    $MiniComponents->triggerEvent('00006');
+	if (!AJAXCALL && $no_html == 0) {
+		$MiniComponents->triggerEvent('00006');
 
-    //trigger 00060 event. Run out of trigger points. Illogically now, 60 triggers the top template, 61 the bottom template.
-    $MiniComponents->triggerEvent('00060', array('tz' => $tz));
+		//trigger 00060 event. Run out of trigger points. Illogically now, 60 triggers the top template, 61 the bottom template.
+		$MiniComponents->triggerEvent('00060', array('tz' => $tz));
 
-    //trigger 00012 event
-    $componentArgs = array();
-    $componentArgs[ 'property_uid' ] = $property_uid;
-    $MiniComponents->triggerEvent('00012', $componentArgs); // Optional other stuff to do before switch is done.
-
-    //TDO remove this when all jrConfig var will have default values in site_config.php
-    if (!isset($jrConfig[ 'errorChecking' ])) {
-        $jrConfig[ 'errorChecking' ] = 0;
-    }
+		//trigger 00012 event
+		$componentArgs = array();
+		$componentArgs[ 'property_uid' ] = $property_uid;
+		$MiniComponents->triggerEvent('00012', $componentArgs); // Optional other stuff to do before switch is done.
+	}
 
     //handle tasks
 	if ($MiniComponents->eventSpecificlyExistsCheck('06000', get_showtime('task'))) {
@@ -285,7 +274,7 @@ try {
 		no_task_set($property_uid);
 	}
 
-	if ($no_html == 0) {
+	if (!AJAXCALL && $no_html == 0) {
 		$MiniComponents->triggerEvent('00061'); // Run out of trigger points. Illogically now, 60 triggers the top template, 61 the bottom template.
 	}
 
@@ -294,16 +283,12 @@ try {
     $jomres_language_definitions->reset_lang_and_property_type();
 
     //trigger 99994 event
-    $MiniComponents->triggerEvent('99994');
-
-    $performance_monitor->set_point('pre-menu generation');
+	$MiniComponents->triggerEvent('99994');
 
 	//generate the cpanel menu
-    if ($no_html == 0 && !isset($_REQUEST[ 'popup' ])) {
+    if (!AJAXCALL && $no_html == 0 && !isset($_REQUEST[ 'popup' ])) {
         echo $MiniComponents->specificEvent('09997', 'menu', array());
     }
-
-    $performance_monitor->set_point('post-menu generation');
 
     //trigger 99999 event: Optional end run scripts
     $componentArgs = array();
@@ -312,12 +297,7 @@ try {
     //close/save jomres session
     $tmpBookingHandler->close_jomres_session();
 
-    $performance_monitor->set_point('end run');
-
-    //show performance monitor report
-    $performance_monitor->output_report();
-
-    if ($no_html == 0 && $jrConfig[ 'errorChecking' ] == 1) {
+    if (!AJAXCALL && $no_html == 0 && $jrConfig[ 'errorChecking' ] == '1') {
         foreach ($MiniComponents->log as $log) {
             echo 'Log :'.$log.'<br>';
         }
@@ -339,8 +319,10 @@ try {
     }
 
     //jomres usage reporting
-    jr_import('jomres_usage_reporting');
-    $tracking = new jomres_usage_reporting();
+	if (!AJAXCALL && $no_html == 0) {
+		jr_import('jomres_usage_reporting');
+		$tracking = new jomres_usage_reporting();
+	}
 
     //done
     endrun();
@@ -359,16 +341,12 @@ try {
         ob_end_flush();
     }
 } catch (Exception $e) {
-    $MiniComponents->triggerEvent('99994');
-
-    $performance_monitor->set_point('pre-menu generation');
-    
+	$MiniComponents->triggerEvent('99994');
+		
 	//generate the cpanel menu
-	if ($no_html == 0 && !isset($_REQUEST[ 'popup' ])) {
+	if (!AJAXCALL && $no_html == 0 && !isset($_REQUEST[ 'popup' ])) {
         echo $MiniComponents->specificEvent('09997', 'menu', array());
     }
-    
-	$performance_monitor->set_point('post-menu generation');
 
     $componentArgs = array();
     $MiniComponents->triggerEvent('99999', $componentArgs); // Optional end run scripts

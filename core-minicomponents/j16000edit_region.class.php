@@ -32,7 +32,7 @@ class j16000edit_region
 
         $jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
         if ($id > 0) {
-            $region = $jomres_regions->get_region_by_id($id);
+            $region = $jomres_regions->get_region($id);
             $output[ 'ID' ] = $id;
             $output[ 'COUNTRYDROPDOWN' ] = createCountriesDropdown($region[ 'countrycode' ], 'countrycode', false);
             $output[ 'REGIONNAME' ] = $region[ 'regionname' ];

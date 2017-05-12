@@ -32,14 +32,6 @@ try {
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
 
-    //performance monitor
-    $performance_monitor = jomres_singleton_abstract::getInstance('jomres_performance_monitor');
-    if ($jrConfig[ 'errorChecking' ] == '1') {
-        $performance_monitor->switch_on();
-    } else {
-        $performance_monitor->switch_off();
-    }
-
     //get all properties in system.
     $jomres_properties = jomres_singleton_abstract::getInstance('jomres_properties');
     $jomres_properties->get_all_properties();
@@ -191,9 +183,6 @@ try {
 
     //output bottom area
     if (!AJAXCALL) {
-        $performance_monitor->set_point('end run');
-        $performance_monitor->output_report();
-
         $pageoutput[] = $output;
         $tmpl = new patTemplate();
         $tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);

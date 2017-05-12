@@ -69,7 +69,7 @@ class j01009a_filterproperties
                 foreach ($regions as $r) {
                     if (is_numeric($r->property_region)) {
                         $jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
-                        $r->property_region = jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$r->property_region, $jomres_regions->regions[ $r->property_region ][ 'regionname' ], false);
+                        $r->property_region = jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$r->property_region, $jomres_regions->get_region_name($r->property_region), false);
                     } else {
                         $r->property_region = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_REGION', $r->property_region, false);
                     }

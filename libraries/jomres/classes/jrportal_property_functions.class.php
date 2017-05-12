@@ -31,7 +31,7 @@ class jrportal_property_functions // Functions supplied as a class so that they 
             foreach ($result as $r) {
                 if (is_numeric($r->property_region)) {
                     $jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
-                    $property_region = jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$r->property_region, $jomres_regions->regions[ $r->property_region ][ 'regionname' ], true, false);
+                    $property_region = jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$r->property_region, $jomres_regions->get_region_name($r->property_region), true, false);
                 } else {
                     $property_region = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_REGION'.$r->property_region, $r->property_region, false);
                 }

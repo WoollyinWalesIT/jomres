@@ -37,6 +37,7 @@ class j16000list_regions
         $output[ '_JOMRES_EDIT_COUNTRY_COUNTRYNAME' ] = jr_gettext('_JOMRES_EDIT_COUNTRY_COUNTRYNAME', '_JOMRES_EDIT_COUNTRY_COUNTRYNAME', false);
 
         $jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
+		$jomres_regions->get_all_regions();
 
         if (empty($jomres_regions->regions)) {
             import_regions();

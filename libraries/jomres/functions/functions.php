@@ -802,12 +802,8 @@ function find_region_name($region_id)
     }
 
     $jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
-
-    if (isset($jomres_regions->regions[$region_id]['regionname'])) {
-        return $jomres_regions->regions[$region_id]['regionname'];
-    }
 	
-	return false;
+	return $jomres_regions->get_region_name($region_id);
 }
 
 function find_region_id($region)
@@ -819,6 +815,8 @@ function find_region_id($region)
     }
 
     $jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
+	$jomres_regions->get_all_regions();
+
     foreach ($jomres_regions->regions as $r) {
         if (strcasecmp(jomres_cmsspecific_stringURLSafe($r[ 'regionname' ]), $region) == 0) {
             return (int) $r[ 'id' ];
