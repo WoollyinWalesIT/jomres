@@ -32,22 +32,22 @@ class j16000translate_locales
 
         $output = array();
 
-        $query = 'SELECT id,countrycode,countryname FROM #__jomres_countries ORDER BY countryname';
+        $query = 'SELECT `id`, `countrycode`, `countryname` FROM #__jomres_countries ORDER BY countryname';
         $countryList = doSelectSql($query);
         if (!empty($countryList)) {
             foreach ($countryList as $country) {
-                $output[ ] = jr_gettext('_JOMRES_CUSTOMTEXT_COUNTRIES_'.$country->id, $country->countryname);
+                $output[] = jr_gettext('_JOMRES_CUSTOMTEXT_COUNTRIES_'.$country->id, $country->countryname);
             }
         }
 
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
         if ($jrConfig[ 'region_names_are_translatable' ] == '1') {
-            $query = 'SELECT id,countrycode,regionname FROM #__jomres_regions ORDER BY countrycode,regionname';
+            $query = 'SELECT `id`, `countrycode`, `regionname` FROM #__jomres_regions ORDER BY countrycode, regionname';
             $regionList = doSelectSql($query);
             if (!empty($regionList)) {
                 foreach ($regionList as $region) {
-                    $output[ ] = jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$region->id, $region->regionname);
+                    $output[] = jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$region->id, $region->regionname);
                 }
             }
         }
