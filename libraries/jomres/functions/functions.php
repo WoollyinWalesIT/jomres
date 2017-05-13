@@ -4548,7 +4548,7 @@ function get_latest_jomres_version($outputText = true)
 
     if (empty($buffer)) {
         if ( $outputText )
-            echo 'Sorry, could not get latest version of Jomres, is there a firewall preventing communication with http://updates.jomres4.net ? Alternatively, please check that CURL is enabled on this webserver<p>';
+            echo '<div class="alert alert-error alert-danger">Sorry, could not get latest version of Jomres, is there a firewall preventing communication with http://updates.jomres4.net ? Alternatively, please check that CURL is enabled on this webserver</div>';
         else
             return false;
     } else {
