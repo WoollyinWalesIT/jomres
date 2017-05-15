@@ -51,9 +51,11 @@ class j16000listGlobalroomTypes
                 if (!empty($r['ptype_xref'])) {
                     foreach ($r['ptype_xref'] as $k) {
                         if (isset($jomres_property_types->property_types[$k])) {
-                            $selected_ptype_rows .= $jomres_property_types->property_types[$k]['ptype'].' ';
+                            $selected_ptype_rows .= $jomres_property_types->property_types[$k]['ptype'].', ';
                         }
                     }
+					
+					$selected_ptype_rows = rtrim($selected_ptype_rows, ', ');
                 }
 
                 $r[ 'CHECKBOX' ] = '<input type="checkbox" id="cb'.count($rows).'" name="idarray[]" value="'.$r['room_classes_uid'].'" onClick="jomres_isChecked(this.checked);">';
