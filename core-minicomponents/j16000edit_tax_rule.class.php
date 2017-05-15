@@ -28,6 +28,8 @@ class j16000edit_tax_rule
         $id = intval(jomresGetParam($_REQUEST, 'id', 0));
 
         $jomres_countries = jomres_singleton_abstract::getInstance('jomres_countries');
+		$jomres_countries->get_all_countries();
+
         $jrportal_taxrate = jomres_singleton_abstract::getInstance('jrportal_taxrate');
 
         $output[ 'PAGETITLE' ] = jr_gettext('_JRPORTAL_TAX_RULE_EDIT', '_JRPORTAL_TAX_RULE_EDIT', false);

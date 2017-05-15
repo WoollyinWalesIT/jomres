@@ -36,6 +36,7 @@ class j16000list_countries
         $output[ '_JOMRES_EDIT_COUNTRY_COUNTRYNAME' ] = jr_gettext('_JOMRES_EDIT_COUNTRY_COUNTRYNAME', '_JOMRES_EDIT_COUNTRY_COUNTRYNAME', false);
 
         $jomres_countries = jomres_singleton_abstract::getInstance('jomres_countries');
+		$jomres_countries->get_all_countries();
 
         if (empty($jomres_countries->countries)) {
             import_countries();
