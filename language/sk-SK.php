@@ -2066,3 +2066,6 @@ jr_define('_JOMRES_TEMPLATE_PACKAGE_PATH',"Current path");
 jr_define('_JOMRES_TEMPLATE_PACKAGE_NOT_OVERRIDDEN',"Not overridden");
 jr_define('_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO',"You can choose which template file to override the Core template files by changing the dropdown");
 
+
+jr_define('_JOMRES_OVERALL_ROOMS_BOOKED',"Percentage Rooms Booked");
+

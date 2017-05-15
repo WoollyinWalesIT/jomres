@@ -566,6 +566,8 @@ function reset_guest_details() {
 <div class="page-header jomres-dashboard">
 	<h2>{PAGETITLE}<span></span></h2>
 </div>
+{PERCENTAGES_BOOKED}
+
 <div class="well">
 	<div class="btn-group">
 		<a href="{NEW_BOOKING_URL}" class="btn btn-primary"><i class="icon-plus"></i> {HNEW_BOOKING}</a>
@@ -597,6 +599,7 @@ function reset_guest_details() {
 	</div>
 </div>
 
+
 <div>&nbsp;</div>
 <h5>{HLEGEND}</h5>
 <span class="label label-grey">{TEXT_PENDING}</span>
@@ -607,6 +610,10 @@ function reset_guest_details() {
 <span class="label label-purple">{TEXT_STILLHERE}</span>
 <span class="label label-teal">{TEXT_BOOKEDOUT}</span>
 <span class="label label-black">{HBLACKBOOKING}</span>
+
+<br/>
+<br/>
+{OVERVIEW}
 
 <form action="{JOMRES_SITEPAGE_URL_AJAX}&task=dashboard_insertbooking_ajax" method="get" id="blackBookingForm" role="form">
 <div id="blackBookingModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">

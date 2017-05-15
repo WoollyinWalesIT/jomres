@@ -211,6 +211,10 @@ class j06001dashboard
         //existing guests dropdown
         $output['HEXISTING_GUESTS_DROPDOWN'] = jr_gettext('_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST', '_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST', false);
         $output['EXISTING_GUESTS_DROPDOWN'] = $this->getExistingGuestsDropdown($property_uid);
+		
+		$output['PERCENTAGES_BOOKED'] = $MiniComponents->specificEvent('06001', 'dashboard_weekly_percentages', array('output_now' => false, 'property_uid' => $property_uid));
+		
+		$output['OVERVIEW'] = $MiniComponents->specificEvent('06001', 'overview', array('output_now' => false, 'property_uid' => $property_uid));
 
         $pageoutput[] = $output;
         $tmpl = new patTemplate();
