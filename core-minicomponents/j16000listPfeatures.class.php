@@ -51,8 +51,9 @@ class j16000listPfeatures
                 if (isset($jomres_property_types->property_types[ $ptype_id ]['ptype'])) {
                     $selected_ptype_rows .= $jomres_property_types->property_types[ $ptype_id ]['ptype'].', ';
                 }
-				
 			}
+			
+			$selected_ptype_rows = rtrim($selected_ptype_rows, ', ');
 
 			$r[ 'PROPERTYFEATUREUID' ] = $f['id'];
             $r[ 'CHECKBOX' ] = '<input type="checkbox" id="cb'.count($rows).'" name="idarray[]" value="'.$f['id'].'" onClick="jomres_isChecked(this.checked);">';

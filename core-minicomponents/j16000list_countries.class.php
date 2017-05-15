@@ -36,15 +36,19 @@ class j16000list_countries
         $output[ '_JOMRES_EDIT_COUNTRY_COUNTRYNAME' ] = jr_gettext('_JOMRES_EDIT_COUNTRY_COUNTRYNAME', '_JOMRES_EDIT_COUNTRY_COUNTRYNAME', false);
 
         $jomres_countries = jomres_singleton_abstract::getInstance('jomres_countries');
+		$jomres_countries->get_all_countries();
 
         if (empty($jomres_countries->countries)) {
             import_countries();
         }
+		
+		jomres_cmsspecific_addheaddata("css",JOMRES_ROOT_DIRECTORY.'/css/flag-icon-css/css/','flag-icon.min.css');
 
         foreach ($jomres_countries->countries as $country) {
             $r = array();
             $r[ 'COUNTRYNAME' ] = $country[ 'countryname' ];
             $r[ 'COUNTRYCODE' ] = $country[ 'countrycode' ];
+			$r[ 'FLAG' ] = '<span class="flag-icon flag-icon-'.strtolower($country[ 'countrycode' ]).'"></span>';
 
             $toolbar = jomres_singleton_abstract::getInstance('jomresItemToolbar');
 			$toolbar->newToolbar();

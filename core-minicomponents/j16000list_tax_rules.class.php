@@ -45,6 +45,7 @@ class j16000list_tax_rules
         $output[ '_JOMRES_TAX_RULE_INFO' ] = jr_gettext('_JOMRES_TAX_RULE_INFO', '_JOMRES_TAX_RULE_INFO', false);
 
         $jomres_countries = jomres_singleton_abstract::getInstance('jomres_countries');
+		$jomres_countries->get_all_countries();
 
         foreach ($all_tax_rules as $rule) {
             $r = array();

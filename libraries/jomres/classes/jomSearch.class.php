@@ -259,7 +259,6 @@ class jomSearch
         }
         // -------------------------------------------------------------------------------------------------------------------------------------------
         if (in_array('country', $this->searchOptions)) {
-            $allCountries = countryCodesArray();
             $query = "SELECT DISTINCT property_country FROM  #__jomres_propertys WHERE published = '1' ORDER BY  property_country ASC";
             $activeCountriesList = doSelectSql($query);
             $tmpCountryArray = array();
@@ -267,7 +266,7 @@ class jomSearch
 
             foreach ($activeCountriesList as $country) {
                 if (!in_array($country->property_country, $tmpCountryArray)) {
-                    $this->prep[ 'country' ][ $allCountries[ $country->property_country ] ] = array('countrycode' => $country->property_country, 'countryname' => $allCountries[ $country->property_country ]);
+                    $this->prep[ 'country' ][ getSimpleCountry($country->property_country) ] = array('countrycode' => $country->property_country, 'countryname' => getSimpleCountry($country->property_country));
                     $tmpCountryArray[ ] = $country->property_country;
                 }
             }
@@ -1009,7 +1008,6 @@ function prepGeographicSearch()
     // Prepares the geographic data required for a search
 	$lang = get_showtime('lang');
 
-	$allCountries = countryCodesArray();
 	$query = "SELECT DISTINCT (CASE WHEN (a.propertys_uid = b.property_uid 
 														AND b.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_TOWN' 
 														AND b.language = '".$lang."') 
@@ -1037,7 +1035,7 @@ function prepGeographicSearch()
 			$r[ 'region' ] = $location->property_region;
 		}
 		$r[ 'country' ] = $location->property_country;
-		$r[ 'countryname' ] = $allCountries[ $r[ 'country' ] ];
+		$r[ 'countryname' ] = getSimpleCountry($r[ 'country' ]);
 		$r[ 'property_town' ] = $location->property_town;
 		if (!empty($r[ 'property_town' ])) {
 			$allPropertyLocations[ ] = $r;

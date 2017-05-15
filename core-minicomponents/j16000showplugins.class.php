@@ -107,7 +107,7 @@ class j16000showplugins
 
         $rp_array = json_decode($remote_plugins_data);
         if (count($rp_array) == 0) {
-            echo "<p class='alert alert-warning'>Uh oh, Can't get a list of plugins from the plugin server. Is there a firewall preventing your server from talking to http://plugins.jomres4.net ?</p>";
+            echo "<div class='alert alert-error alert-danger'>Uh oh, Can't get a list of plugins from the plugin server. Is there a firewall preventing your server from talking to http://plugins.jomres4.net ?</div>";
 
             return;
         }

@@ -948,8 +948,13 @@ class jrportal_invoice
         }
 
         $query = 'SELECT SUM(init_total_inclusive) FROM #__jomresportal_lineitems WHERE inv_id = '.(int)$this->id;
+		$balance = doSelectSql($query, 1);
 
-        return doSelectSql($query, 1);
+		if ($balance) {
+			return number_format($balance, 2, '.', '');
+		}
+		
+		return false;
     }
 
     public function get_invoice_id_by_contract_uid($contract_uid = 0)
