@@ -83,19 +83,20 @@ class j06001dashboard_weekly_percentages
 			$dates[$date->format("Y/m/d")]['month_name']=$date->format("M");
 		}
 
-		$query = "SELECT room_bookings_uid,date FROM #__jomres_room_bookings WHERE ";
+		$query = "SELECT room_bookings_uid,date FROM #__jomres_room_bookings WHERE property_uid = $property_uid AND (";
 		
 		foreach ($dates as $date=>$val ) {
 			$query .= "`date` = '".$date."' OR ";
 		}
-		$query = rtrim($query, " OR ");
+		$query = rtrim($query, " OR ").")";
+		
 		$results = doSelectSql($query);
 		if (!empty($results)){
 			foreach ($results as $res) {
 				$dates[$res->date]['number_booked'] ++;
 			}
 		}
-		
+
 		foreach ($dates as $date=>$number_booked) {
 			$percentage_booked = ($number_booked['number_booked']*100)/$number_of_rooms;
 
