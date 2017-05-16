@@ -1,71 +1,70 @@
-<h3>Jomres 9.9.0 09/05/2017</h3>
+<h3>Jomres 9.9.0 16/05/2017</h3>
 
-Introduced new tariffs handling class. This brings several benefits for future development, with respect to the new booking engine and API development.
-Refactored both front and backend menu systems. Plugin settings moved to Site Configuration and entire administrator area rebuilt to be more logical.
-Session handling completely refactored to store data in the database, not files. Performance improvement.
-Region name handling refactored. Performance improvement. 
+<span class="label label-success">Feature</span> Added new tariffs handling class. This brings several benefits for future development, with respect to the new booking engine and API development.
+<span class="label label-success">Feature</span> Refactored both front and backend menu systems. Plugin settings moved to Site Configuration and entire administrator area rebuilt to be more logical.
+<span class="label label-success">Feature</span> Session handling completely refactored to store data in the database, not files. Performance improvement.
+<span class="label label-success">Feature</span> Region name handling refactored. Performance improvement. 
+<span class="label label-success">Feature</span> Added country flags as css to lower the number of requests on pages that display the country flags (eg: top destinations)
+<span class="label label-success">Feature</span> Improved countries handling so they won`t all be loaded on each page, instead they`ll be loaded all only on demand.
+<span class="label label-success">Feature</span> Added Radial percentage bars added to Dashboard to easily see this week's occupancy levels.
+<span class="label label-success">Feature</span> Added room descriptions inputs and outputs.
+<span class="label label-success">Feature</span> Added Guest Blacklisting feature.
+<span class="label label-success">Feature</span> Added reviews details to admin cpanel overview
+<span class="label label-success">Feature</span> Added booking notes to dashboard popup.
+<span class="label label-success">Feature</span> Improved the admin cpanel frontpage. Layout adjusted.
 
-Added room descriptions inputs and outputs.
-Guest Blacklisting feature added.
-Considerable language file update, old definitions removed.
-Added reviews details to admin cpanel overview
-Improved the admin cpanel frontpage. Layout adjusted.
-Added booking notes to dashboard popup.
+<span class="label label-warning">Change</span> Considerable language file update, old definitions removed.
+<span class="label label-warning">Change</span> Many minicomponents trigger numbers changed so that they are now 06000/06001/06002/06005 instead of their older numbers.
+<span class="label label-warning">Change</span> Made the crons run using async sockets so they won`t slow down the page
+<span class="label label-warning">Change</span> Moved cron job settings to site config. Updated to use logging only in development mode.
+<span class="label label-warning">Change</span> Removed mobile detect class as it`s not needed anymore
+<span class="label label-warning">Change</span> Modified how we scan for class files to greatly improve speed
+<span class="label label-warning">Change</span> Added a classes registry file
+<span class="label label-warning">Change</span> Improved languages handling so we won`t need to scan for languages on each page load
+<span class="label label-warning">Change</span> Improved how we clean up tmp js files, we were doing it twice when saving site config
+<span class="label label-warning">Change</span> Removed jomres array caching and done micro optimization to avoid unnecessary counting of arrays
+<span class="label label-warning">Change</span> Improved speed on how we call and check if a specific event exists, so we won`t go through each record in the registry, instead directly check if a specific key is set in the registry array.
+<span class="label label-warning">Change</span> Change how we handle minicomponents registry. The array key has been changed from [XXXXXminicomponent_name] to [XXXXX][minicomponent_name]. Now we can quickly find all minicomponents by trigger point instead of going through the entire minicomponent registry array all the time.
+<span class="label label-warning">Change</span> Modified functions related to checking Jomres version so that their return values have more scope.
+<span class="label label-warning">Change</span> Added coupon code classes
+<span class="label label-warning">Change</span> Removed the jomres admin dir and moved the last file in it to functions dir
+<span class="label label-warning">Change</span> Modified agent view script to change page title to their name.
+<span class="label label-warning">Change</span> Removed the unused site config cal_output setting
+<span class="label label-warning">Change</span> Moved sms clickatell classes from the core to their plugin
+<span class="label label-warning">Change</span> Renamed the Properties site config tab to Portal Functionality
+<span class="label label-warning">Change</span> Improved languages class so it won`t require scanning the languages dir anymore
+<span class="label label-warning">Change</span> Readme.md file added to minicomponents dir for developers, provides descriptions of what the different trigger numbers do.
+<span class="label label-warning">Change</span> Delete Business changed in lang files to Delete Property.
+<span class="label label-warning">Change</span> Removed product tour files from repo. tour_target divs will need to be removed from template files at a later time.
+<span class="label label-warning">Change</span> Show logfile removed as it's not used.
+<span class="label label-warning">Change</span> Cancel booking changed from manager to reception tasks.
+<span class="label label-warning">Change</span> Added some back tracing for when a class doesn't exist.
+<span class="label label-warning">Change</span> Removed the original price tooltip.
+<span class="label label-warning">Change</span> Removed the unused plugin check code
+<span class="label label-warning">Change</span> Added user agent to sockets
+<span class="label label-warning">Change</span> Modified plugin manager so that blue update button does not show if plugins do not need updating.
+<span class="label label-warning">Change</span> Modified invoices so that the mark as paid button will be available only if the booking is approved
+<span class="label label-warning">Change</span> Language. Changed Businesses to Properties in table header of control panel.
+<span class="label label-warning">Change</span> Removed the advanced site config option
+<span class="label label-warning">Change</span> Solved a layout problem when latest jomres version number can`t be obtained.
+<span class="label label-warning">Change</span> Added Armenian Dram to our currency codes list.
+<span class="label label-warning">Change</span> Language. Changed "Available logs" to "Log files" in language files.
+<span class="label label-warning">Change</span> Completely rebuilt the frontend menu. Changed how access control behaves: now tasks can be controlled and this will control the visible menu items too.
+<span class="label label-warning">Change</span> Removed an obsolete asamodule report file, as this functionality is now expanded on by the Shortcodes reporting feature.
+<span class="label label-warning">Change</span> Made access control feature a plugin
 
-Many minicomponents trigger numbers changed so that they are now 06000/06001/06002/06005 instead of their older numbers.
-Made the crons run using async sockets so they won`t slow down the page
-Moved cron job settings to site config. Updated to use logging only in development mode.
-Removed mobile detect class as it`s not needed anymore
-Modified how we scan for class files to greatly improve speed
-Added a classes registry file
-Improved languages handling so we won`t need to scan for languages on each page load
-Improved how we clean up tmp js files, we were doing it twice when saving site config
-Removed jomres array caching and done micro optimization to avoid unnecessary counting of arrays
-Improved speed on how we call and check if a specific event exists, so we won`t go through each record in the registry, instead directly check if a specific key is set in the registry array.
-Change how we handle minicomponents registry. The array key has been changed from [XXXXXminicomponent_name] to [XXXXX][minicomponent_name]. Now we can quickly find all minicomponents by trigger point instead of going through the entire minicomponent registry array all the time.
-Modified functions related to checking Jomres version so that their return values have more scope.
-Added coupon code classes
-Removed the jomres admin dir and moved the last file in it to functions dir
-Modified agent view script to change page title to their name.
-Removed the unused site config cal_output setting
-Moved sms clickatell classes from the core to their plugin
-Renamed the Properties site config tab to Portal Functionality
-Improved languages class so it won`t require scanning the languages dir anymore
-Readme.md file added to minicomponents dir for developers, provides descriptions of what the different trigger numbers do.
-Delete Business changed in lang files to Delete Property.
-Removed product tour files from repo. tour_target divs will need to be removed from template files at a later time.
-show logfile removed as it's not used.
-Cancel booking changed from manager to reception tasks.
-Added some back tracing for when a class doesn't exist.
-Removed the original price tooltip.
-Removed the unused plugin check code
-Added user agent to sockets
-Modified plugin manager so that blue update button does not show if plugins do not need updating.
-Modified invoices so that the mark as paid button will be available only if the booking is approved
-Language. Changed Businesses to Properties in table header of control panel.
-Removed the advanced site config option
-Solved a layout problem when latest jomres version number can`t be obtained.
-Added Armenian Dram to our currency codes list.
-Language. Changed "Available logs" to "Log files" in language files.
-Completely rebuilt the admin cpanel menu items and structure. Added a new class that handles the menu and completely changed the way new menu items are added to the admin cpanel.
-Completely rebuilt the frontend menu. Changed how access control behaves: now tasks can be controlled and this will control the visible menu items too.
-Removed an obsolete asamodule report file, as this functionality is now expanded on by the Shortcodes reporting feature.
-Made access control feature a plugin
+<span class="label label-important label-danger">Fix</span> Updated the Arabic jquery-ui localization file to fix day names
+<span class="label label-important label-danger">Fix</span> Solved a fullscreen view problem in joomla that prevented the editor from working correctly.
+<span class="label label-important label-danger">Fix</span> Fixed how jintour tours tax is calculated when inserting the line items on invoices
+<span class="label label-important label-danger">Fix</span> Fixed an issue of multiple records being created for same invoice at invoice payments ref table
+<span class="label label-important label-danger">Fix</span> Fixed rounding problem when adding service to bill and prices are set to gross
+<span class="label label-important label-danger">Fix</span> Solved a typo that was causing an out of memory error
+<span class="label label-important label-danger">Fix</span> Fixed a bug in save guests where guest mos/cms id would get reset to zero when guest is saved by a property manager.
+<span class="label label-important label-danger">Fix</span> Solved a problem with guest existing id not being reset on a new quick booking made from the dashboard modal
+<span class="label label-important label-danger">Fix</span> Fixed a bug where room types for some other property uids couldn`t be loaded if we`re currently on the property details page
+<span class="label label-important label-danger">Fix</span> Modified the url that the file system integrity check points to, was old svn, now points to github.
 
-
-Updated the Arabic jquery-ui localization file to fix day names
-Solved a fullscreen view problem in joomla that prevented the editor from working correctly.
-Fixed how jintour tours tax is calculated when inserting the line items on invoices
-fixed an issue of multiple records being created for same invoice at invoice payments ref table
-Fixed rounding problem when adding service to bill and prices are set to gross
-Solved a typo that was causing an out of memory error
-Fixed a bug in save guests where guest mos/cms id would get reset to zero when guest is saved by a property manager.
-Solved a problem with guest existing id not being reset on a new quick booking made from the dashboard modal
-Fixed a bug where room types for some other property uids couldn`t be loaded if we`re currently on the property details page
-Modified the url that the file system integrity check points to, was old svn, now points to github.
-
-
-Solved a problem with js running before document ready on wp, which has the jomres js files in the footer
+<span class="label label-info">Wordpress</span> Solved a problem with js running before document ready on wp, which has the jomres js files in the footer
 
 <h3>Jomres 9.8.29 29/03/2017</h3>
 
