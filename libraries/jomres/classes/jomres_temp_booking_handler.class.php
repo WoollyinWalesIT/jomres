@@ -50,6 +50,10 @@ class jomres_temp_booking_handler
 		}
 		
 		$this->ip = $_SERVER['REMOTE_ADDR'];
+		if (!isset($_SERVER['HTTP_USER_AGENT'])){
+			$_SERVER['HTTP_USER_AGENT'] ="";
+		}
+		
 		$this->user_agent = preg_replace("/[^A-Za-z0-9[:space:]]/", "", strip_tags(trim($_SERVER['HTTP_USER_AGENT'])));
 		
 		//init arrays
