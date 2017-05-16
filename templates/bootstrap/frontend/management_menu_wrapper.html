@@ -1,44 +1,38 @@
-
 <patTemplate:tmpl name="pageoutput">
-	<script type="text/javascript">
-		<!--
-		jomresJquery(function () {
-			var $content = jomresJquery('#jomres_menu_wrapper').html();
-			jomresJquery('#jomres_alternate_menu_position').html($content);
-			jomresJquery('#jomres_menu_wrapper').empty(); // making sure that the old div doesn't have the accordion applied to it.
-		});
-		var jomres_task = "{TASK}";
-		{TOUR_LABELS}
-		//-->
-	</script>
-	
-	<div id="jomres_menu_wrapper" style="display:none;">
-		<div id="tour_target_main_menu"></div>
-		<div class="navbar navbar-fixed-top">
-			<div class="navbar-inner">
-				<div class="container-fluid">
-					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</a>
-					<a class="brand" href="#"><img src="{LIVESITE}/{JOMRES_ROOT_DIRECTORY}/images/jrhouse.png" alt="Jomres logo" width="28"/></a>
-					<div class="nav-collapse">
-						<ul class="nav">
-							<patTemplate:tmpl name="button_output">
-								{DIV}
-							</patTemplate:tmpl>
-							<patTemplate:tmpl name="help" type="simpleCondition" requiredVars="product_tour_page_information">
-							<li><a id="product_tour_start" href="#" data-demo>{PRODUCT_TOUR_PAGE_INFORMATION}</a></li>
-							</patTemplate:tmpl>
-						</ul>
-						
-						<form class="navbar-search pull-right" action="{TAG_SEARCH_URL}" method="post" name="tagSearch">
-							<input type="text" name="tag" placeholder="{_JOMRES_BOOKING_NUMBER}" class="search-query input-medium" />
-						</form>
-					</div>
+<script type="text/javascript">
+<!--
+jomresJquery(function () {
+	var $content = jomresJquery('#jomres_menu_wrapper').html();
+	jomresJquery('#jomres_alternate_menu_position').html($content);
+	jomresJquery('#jomres_menu_wrapper').empty(); // making sure that the old div doesn't have the accordion applied to it.
+});
+//-->
+</script>
+
+<div id="jomres_menu_wrapper" style="display:none;">
+	<div id="tour_target_main_menu"></div>
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container-fluid">
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+				<a class="brand" href="#"><img src="{LIVESITE}/{JOMRES_ROOT_DIRECTORY}/images/jrhouse.png" alt="Jomres logo" width="28"/></a>
+				<div class="nav-collapse">
+					<ul class="nav">
+						<patTemplate:tmpl name="menu_sections">
+							{SECTION}
+						</patTemplate:tmpl>
+					</ul>
+					
+					<form class="navbar-search pull-right" action="{TAG_SEARCH_URL}" method="post" name="tagSearch">
+						<input type="text" name="tag" placeholder="{_JOMRES_BOOKING_NUMBER}" class="search-query input-medium" />
+					</form>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 </patTemplate:tmpl>

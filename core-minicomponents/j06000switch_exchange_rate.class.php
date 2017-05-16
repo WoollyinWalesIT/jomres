@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -33,18 +33,14 @@ class j06000switch_exchange_rate
         if (!isset($tmpBookingHandler->user_settings[ 'current_exchange_rate' ])) {
             $tmpBookingHandler->user_settings[ 'current_exchange_rate' ] = 'GBP';
         }
-        jr_import('jomres_currency_conversion');
-        $conversion = new jomres_currency_conversion();
-        if (!$conversion->check_currency_code_valid($tmpBookingHandler->user_settings[ 'current_exchange_rate' ])) {
+		
+		$jomres_currency_conversion = jomres_singleton_abstract::getInstance('jomres_currency_conversion');
+
+        if (!$jomres_currency_conversion->check_currency_code_valid($tmpBookingHandler->user_settings[ 'current_exchange_rate' ])) {
             $tmpBookingHandler->user_settings[ 'current_exchange_rate' ] = 'GBP';
         }
     }
 
-/**
- * Must be included in every mini-component.
- #
- * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
- */
     // This must be included in every Event/Mini-component
     public function getRetVals()
     {

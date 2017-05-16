@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -41,10 +41,10 @@ class all_api_features
             }
         }
 
-        if (count($api_feature_directories) > 0) {
+        if (!empty($api_feature_directories)) {
             foreach ($api_feature_directories as $plugin) {
                 $plugin_dir_contents = scandir($path.DIRECTORY_SEPARATOR.$plugin);
-                if (count($plugin_dir_contents) > 0) {
+                if (!empty($plugin_dir_contents)) {
                     foreach ($plugin_dir_contents as $method_dir) {
                         if ($method_dir === '.' or $method_dir === '..' or $method_dir === 'language') {
                             continue;

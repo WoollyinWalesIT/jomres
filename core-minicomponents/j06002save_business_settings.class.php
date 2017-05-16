@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -26,7 +26,13 @@ class j06002save_business_settings
 
             return;
         }
-        saveHotelSettings();
+		$property_uid = (int)getDefaultProperty();
+		
+		if ($property_uid > 0) {
+			saveHotelSettings();
+		}
+		
+		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL."&task=business_settings&property_uid=$property_uid"), '');
     }
 
     // This must be included in every Event/Mini-component

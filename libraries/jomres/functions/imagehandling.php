@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -25,14 +25,14 @@ function dropImage($defaultProperty = 0, $imageType = '', $itemUid = '', $redire
     $defaultProperty = getDefaultProperty();
     $saveMessage = jr_gettext('_JOMRES_FILE_DELETED', '_JOMRES_FILE_DELETED', false);
     $fileFullPath = '';
-    $returnTask = 'editProperty&propertyUid='.$defaultProperty;
+    $returnTask = 'edit_property&propertyUid='.$defaultProperty;
 
     switch ($imageType) {
         case 'property':
             $fileFullPath = JOMRES_IMAGELOCATION_ABSPATH.$defaultProperty.'_property_'.$defaultProperty.'.jpg';
             $fileFullPath_thumbnail = JOMRES_IMAGELOCATION_ABSPATH.$defaultProperty.'_property_'.$defaultProperty.'_thumbnail.jpg';
             $fileFullPath_thumbnail_medium = JOMRES_IMAGELOCATION_ABSPATH.$defaultProperty.'_property_'.$defaultProperty.'_thumbnail_med.jpg';
-            $returnTask = 'editProperty&propertyUid='.$defaultProperty;
+            $returnTask = 'edit_property&propertyUid='.$defaultProperty;
             break;
         case 'room':
             $fileFullPath = JOMRES_IMAGELOCATION_ABSPATH.$defaultProperty.'_room_'.$itemUid.'.jpg';

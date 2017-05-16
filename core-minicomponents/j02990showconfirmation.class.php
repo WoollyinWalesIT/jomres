@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -25,12 +25,18 @@ class j02990showconfirmation
 
             return;
         }
-        $paypal_settings = jomres_singleton_abstract::getInstance('jrportal_paypal_settings');
-        $paypal_settings->get_paypal_settings();
+		
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+        $jrConfig = $siteConfig->get();
+		
+		$mrConfig = getPropertySpecificSettings();
 
         $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-        $mrConfig = getPropertySpecificSettings();
-        $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+        
+		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+		
+		$paypal_settings = jomres_singleton_abstract::getInstance('jrportal_paypal_settings');
+        $paypal_settings->get_paypal_settings();
 
         $secret_key_payment = false;
         if (isset($_REQUEST['sk'])) {
@@ -67,90 +73,13 @@ class j02990showconfirmation
         }
         $tmpBookingHandler->updateBookingField('confirmationSeen', true);
 
-        $tmpBookingHandler->saveBookingData();
-
         $bookingDeets = gettempBookingdata();
+		
 
         $guestList = $tmpBookingHandler->getGuestData();
 
-/* 		if ( $mrConfig[ 'bookingform_requiredfields_name' ] == "1" && trim($guestList[ 'firstname' ]) =="" )
-            {
-            logging::log_message('Address string bookingform_requiredfields_name is a required field but passed data was incomplete' , "Core" , "ERROR" );
-            jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=dobooking&selectedProperty=" . $bookingDeets[ 'property_uid' ] ), '' );
-            }
-        if ( $mrConfig[ 'bookingform_requiredfields_surname' ] == "1" && trim($guestList[ 'surname' ]) =="" )
-            {
-            logging::log_message('Address string bookingform_requiredfields_surname is a required field but passed data was incomplete' , "Core" , "ERROR" );
-            jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=dobooking&selectedProperty=" . $bookingDeets[ 'property_uid' ] ), '' );
-            }
-        if ( $mrConfig[ 'bookingform_requiredfields_houseno' ] == "1" && trim($guestList[ 'house' ]) =="" )
-            {
-            logging::log_message('Address string bookingform_requiredfields_houseno is a required field but passed data was incomplete' , "Core" , "ERROR" );
-            jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=dobooking&selectedProperty=" . $bookingDeets[ 'property_uid' ] ), '' );
-            }
-        if ( $mrConfig[ 'bookingform_requiredfields_street' ] == "1" && trim($guestList[ 'street' ]) =="" )
-            {
-            logging::log_message('Address string bookingform_requiredfields_street is a required field but passed data was incomplete' , "Core" , "ERROR" );
-            jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=dobooking&selectedProperty=" . $bookingDeets[ 'property_uid' ] ), '' );
-            }
-        if ( $mrConfig[ 'bookingform_requiredfields_town' ] == "1" && trim($guestList[ 'town' ]) =="" )
-            {
-            logging::log_message('Address string bookingform_requiredfields_town is a required field but passed data was incomplete' , "Core" , "ERROR" );
-            jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=dobooking&selectedProperty=" . $bookingDeets[ 'property_uid' ] ), '' );
-            }
-        if ( $mrConfig[ 'bookingform_requiredfields_region' ] == "1" && trim($guestList[ 'region' ]) =="" )
-            {
-            logging::log_message('Address string bookingform_requiredfields_region is a required field but passed data was incomplete' , "Core" , "ERROR" );
-            jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=dobooking&selectedProperty=" . $bookingDeets[ 'property_uid' ] ), '' );
-            }
-        if ( $mrConfig[ 'bookingform_requiredfields_postcode' ] == "1" && trim($guestList[ 'postcode' ]) =="" )
-            {
-            logging::log_message('Address string bookingform_requiredfields_postcode is a required field but passed data was incomplete' , "Core" , "ERROR" );
-            jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=dobooking&selectedProperty=" . $bookingDeets[ 'property_uid' ] ), '' );
-            }
-        if ( $mrConfig[ 'bookingform_requiredfields_country' ] == "1" && trim($guestList[ 'country' ]) =="" )
-            {
-            logging::log_message('Address string bookingform_requiredfields_country is a required field but passed data was incomplete' , "Core" , "ERROR" );
-            jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=dobooking&selectedProperty=" . $bookingDeets[ 'property_uid' ] ), '' );
-            }
-        if ( $mrConfig[ 'bookingform_requiredfields_tel' ] == "1" && trim($guestList[ 'tel_landline' ]) =="" )
-            {
-            logging::log_message('Address string bookingform_requiredfields_tel is a required field but passed data was incomplete' , "Core" , "ERROR" );
-            jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=dobooking&selectedProperty=" . $bookingDeets[ 'property_uid' ] ), '' );
-            }
-        if ( $mrConfig[ 'bookingform_requiredfields_mobile' ] == "1" && trim($guestList[ 'tel_mobile' ]) =="" )
-            {
-            logging::log_message('Address string bookingform_requiredfields_mobile is a required field but passed data was incomplete' , "Core" , "ERROR" );
-            jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=dobooking&selectedProperty=" . $bookingDeets[ 'property_uid' ] ), '' );
-            }
-        if ( $mrConfig[ 'bookingform_requiredfields_email' ] == "1" && trim($guestList[ 'email' ]) =="" )
-            {
-            logging::log_message('Address string bookingform_requiredfields_email is a required field but passed data was incomplete' , "Core" , "ERROR" );
-            jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=dobooking&selectedProperty=" . $bookingDeets[ 'property_uid' ] ), '' );
-            } */
-
-        /* if ( !isset($_REQUEST['sk']))
-            {
-            $tmpBookingHandler->updateGuestField( 'firstname', jomresGetParam( $_POST, 'firstname', '' ) );
-            $tmpBookingHandler->updateGuestField( 'surname', jomresGetParam( $_POST, 'surname', '' ) );
-            $tmpBookingHandler->updateGuestField( 'house', jomresGetParam( $_POST, 'house', '' ) );
-            $tmpBookingHandler->updateGuestField( 'street', jomresGetParam( $_POST, 'street', '' ) );
-            $tmpBookingHandler->updateGuestField( 'town', jomresGetParam( $_POST, 'town', '' ) );
-            $tmpBookingHandler->updateGuestField( 'region', jomresGetParam( $_POST, 'region', '' ) );
-            $tmpBookingHandler->updateGuestField( 'country', jomresGetParam( $_POST, 'country', '' ) );
-            $tmpBookingHandler->updateGuestField( 'postcode', jomresGetParam( $_POST, 'postcode', '' ) );
-            $tmpBookingHandler->updateGuestField( 'tel_mobile', jomresGetParam( $_POST, 'tel_mobile', '' ) );
-            $tmpBookingHandler->updateGuestField( 'tel_landline', jomresGetParam( $_POST, 'tel_landline', '' ) );
-            if ( !$thisJRUser->userIsRegistered )
-                $tmpBookingHandler->updateGuestField( 'email', jomresGetParam( $_POST, 'eemail', '' ) );
-            } */
-
-        $currfmt = jomres_singleton_abstract::getInstance('jomres_currency_format');
-
         // Trigger point
         $MiniComponents->triggerEvent('03000');
-
-        $userIsManager = checkUserIsManager();
 
         $tag = $bookingDeets[ 'tag' ];
         $property_uid = (int) $bookingDeets[ 'property_uid' ];
@@ -193,7 +122,7 @@ class j02990showconfirmation
         $allCustomFields = $jomres_custom_field_handler->getAllCustomFieldsByPtypeId($ptype_id);
 
         $customFields = array();
-        if (count($allCustomFields) > 0 && !$secret_key_payment) {
+        if (!empty($allCustomFields) && !$secret_key_payment) {
             foreach ($allCustomFields as $f) {
                 $required = $f[ 'required' ];
                 $fieldname = $f[ 'fieldname' ];
@@ -211,7 +140,6 @@ class j02990showconfirmation
                 $customFields[ ] = $fielddata;
             }
         }
-        $tmpBookingHandler->saveBookingData();
 
         $booking_parts[ 'PROPERTYNAME' ] = getPropertyName($bookingDeets[ 'property_uid' ]);
 
@@ -280,7 +208,7 @@ class j02990showconfirmation
             $mrp_room_details[0][ 'PROPERTYNAME' ] = $booking_parts[ 'PROPERTYNAME' ];
             $mrp_room_details[0][ 'NUMROOMS' ] = $booking_parts[ 'NUMROOMS' ];
 
-            if (count($rmids) > 0) {
+            if (!empty($rmids)) {
                 $query = 'SELECT room_number,room_name,room_classes_uid FROM #__jomres_rooms WHERE room_uid IN ('.jomres_implode($rmids).') ORDER BY room_classes_uid';
                 $roomList = doSelectSql($query);
                 $roomNumber = '';
@@ -314,14 +242,14 @@ class j02990showconfirmation
                         $query = "SELECT room_class_full_desc FROM #__jomres_room_classes WHERE property_uid = '".(int) $property_uid."' and room_classes_uid = '".(int) $room_classes_uid."' ";
                         $roomclass = doSelectSql($query);
 
-                        if (count($roomclass) > 0) {
+                        if (!empty($roomclass)) {
                             foreach ($roomclass as $class) {
                                 $fulldesc = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int) $room_classes_uid, stripslashes($class->room_class_full_desc), false, false);
                             }
                         } else {
                             $query = "SELECT room_class_abbv FROM #__jomres_room_classes WHERE property_uid = 0 and room_classes_uid = '$room_classes_uid'";
                             $roomclass = doSelectSql($query);
-                            if (count($roomclass) > 0) {
+                            if (!empty($roomclass)) {
                                 foreach ($roomclass as $class) {
                                     $fulldesc = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.$room_classes_uid, stripslashes($class->room_class_abbv), false, false);
                                 }
@@ -449,8 +377,13 @@ class j02990showconfirmation
             }
         }
 
-        $third_party_extras = unserialize($tmpBookingHandler->getBookingFieldVal('third_party_extras'));
-        if (count($third_party_extras) > 0 && $third_party_extras !== false) {
+		if ($jrConfig['session_handler'] == 'database') {
+			$third_party_extras = $tmpBookingHandler->getBookingFieldVal('third_party_extras');
+		} else {
+			$third_party_extras = unserialize($tmpBookingHandler->getBookingFieldVal('third_party_extras'));
+		}
+        
+		if ($third_party_extras !== false && !empty($third_party_extras)) {
             foreach ($third_party_extras as $plugin) {
                 foreach ($plugin as $tpextra) {
                     $extra_parts = array();
@@ -540,9 +473,6 @@ class j02990showconfirmation
         $booking_parts[ 'BOOKINGSPECIALREQ' ] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ', '_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ');
         $booking_parts[ 'DISCLAIMER' ] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ_DISCLAIMER', '_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ_DISCLAIMER');
 
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
-
         if ($mrConfig[ 'requireApproval' ] == '1' && !$thisJRUser->userIsManager && !$secret_key_payment) {
             $booking_parts[ 'THEBUTTON' ] = jr_gettext('_JOMRES_BOOKING_ENQUIRY_CONFIRM', '_JOMRES_BOOKING_ENQUIRY_CONFIRM', false);
         } else {
@@ -576,7 +506,7 @@ class j02990showconfirmation
 		$gateways = array();
 		
         if ((int)$mrConfig['requireApproval'] == 0 || $secret_key_payment) {
-            if (!$userIsManager) {
+            if (!$thisJRUser->userIsManager) {
                 $gateway_output = array();
                 $gwo = array();
 
@@ -611,8 +541,7 @@ class j02990showconfirmation
                                 $gatewaydir = str_replace('\\', '/', $gatewaydir);
                                 $gw[ 'GWIMAGE' ] = '<img src="'.$gatewaydir.'j00510'.$gateway_name.'.gif" border="0">';
 
-                                $gw_configuration_script = '00509'.$gateway_name;
-                                if (count($MiniComponents->registeredClasses[$gw_configuration_script]) > 0) { // Let's check that the site manager hasn't uninstalled the plugin. If count == 0, then they have, we don't want to attempt to show this gateway
+                                if (isset($MiniComponents->registeredClasses['00509'][$gateway_name])) { // Let's check that the site manager hasn't uninstalled the plugin. If count == 0, then they have, we don't want to attempt to show this gateway
                                     $gateways[ ] = $gw;
                                     }
                                 ++$counter;
@@ -620,7 +549,7 @@ class j02990showconfirmation
                         }
                     }
 
-                if (count($gateways) > 0) {
+                if (!empty($gateways)) {
                     $gwo[ 'GATEWAYCHOICEINTRO' ] = jr_gettext('_JOMRES_COM_A_GATEWAY_BOOKING_CHOOSE', '_JOMRES_COM_A_GATEWAY_BOOKING_CHOOSE');
                     $gateway_output[] = $gwo;
                     }
@@ -638,9 +567,9 @@ class j02990showconfirmation
         }
 
         $cartoutput = array();
-        if (isset($MiniComponents->registeredClasses[ '06000show_cart' ])) {
+        if (isset($MiniComponents->registeredClasses[ '06000']['show_cart' ])) {
             $site_paypal_settings = get_plugin_settings('paypal', 0);
-            if ( (isset($site_paypal_settings['override']) && $site_paypal_settings['override'] == '1' && $jrConfig[ 'useshoppingcart' ] == '1') || count($gatewayDeets) == 0) {
+            if ( (isset($site_paypal_settings['override']) && $site_paypal_settings['override'] == '1' && $jrConfig[ 'useshoppingcart' ] == '1') || empty($gatewayDeets)) {
                 $booking_parts[ '_JOMRES_CART_OR' ] = jr_gettext('_JOMRES_CART_OR', '_JOMRES_CART_OR');
                 $booking_parts[ '_JOMRES_SAVEFORLATER' ] = '<input class="fg-button ui-state-default ui-corner-all" type="submit" id="send" name="send" value="'.jr_gettext('_JOMRES_CART_SAVEFORLATER', '_JOMRES_CART_SAVEFORLATER', false, false).'" class="button" onclick="return confirmation_validate(true);" />';
                 $cartoutput[ ] = array('_JOMRES_SAVEFORLATER' => jr_gettext('_JOMRES_CART_SAVEFORLATER', '_JOMRES_CART_SAVEFORLATER', false, false), '_JOMRES_CART_OR' => $booking_parts[ '_JOMRES_CART_OR' ]);
@@ -702,7 +631,7 @@ class j02990showconfirmation
         $tmpl->addRows('booking_extratext', $extrastext);
 
         $tmpl->addRows('cartoutput', $cartoutput);
-        if (count($gateways) > 0) {
+        if (!empty($gateways)) {
             $tmpl->addRows('gateway_output', $gateway_output);
             $tmpl->addRows('gateways', $gateways);
         }
@@ -777,11 +706,6 @@ class j02990showconfirmation
         }
     }
 
-/**
- * Must be included in every mini-component.
- #
- * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
- */
     // This must be included in every Event/Mini-component
     public function getRetVals()
     {

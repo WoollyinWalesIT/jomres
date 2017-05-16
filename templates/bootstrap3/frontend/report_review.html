@@ -1,7 +1,7 @@
-
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script type="text/javascript">
-	<!--
+<!--
+jomresJquery(document).ready(function () {
 	jomresJquery.validator.setDefaults({
 		highlight: function (input) {
 			jomresJquery(input).addClass("alert alert-error");
@@ -11,24 +11,23 @@
 		}
 	});
 
-	jomresJquery(document).ready(function () {
-		jomresJquery("#reviewForm").validate({
-			rules: {
-				report: "required",
-			},
-			messages: {
-				report: "{_JOMRES_REVIEWS_REPORT_REVIEW_ERROR}",
-			},
-			errorLabelContainer: "#messageBox",
-			wrapper: "li",
-			submitHandler: function (form) {
-				form.submit();
-			},
+	jomresJquery("#reviewForm").validate({
+		rules: {
+			report: "required",
+		},
+		messages: {
+			report: "{_JOMRES_REVIEWS_REPORT_REVIEW_ERROR}",
+		},
+		errorLabelContainer: "#messageBox",
+		wrapper: "li",
+		submitHandler: function (form) {
+			form.submit();
+		},
 
-		});
-		jomresJquery("#messageBox").hide();
 	});
-	//-->
+	jomresJquery("#messageBox").hide();
+});
+//-->
 </script>
 
 <h2 class="page-header">{_JOMRES_REVIEWS_REPORT_REVIEW}</h2>

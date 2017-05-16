@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -44,7 +44,7 @@ class j06002create_multiple_resources
         $basic_property_details->gather_data($defaultProperty);
 
         $output['RESOURCES_OF_TYPE'] = '';
-        if (count($basic_property_details->this_property_room_classes) > 0) {
+        if (!empty($basic_property_details->this_property_room_classes)) {
             $classOptions = array();
             foreach ($basic_property_details->this_property_room_classes as $key => $roomClass) {
                 if (!is_null($roomClass)) {

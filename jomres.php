@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -40,14 +40,6 @@ try {
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
 
-    //performace monitorning start
-    $performance_monitor = jomres_singleton_abstract::getInstance('jomres_performance_monitor');
-    if ($jrConfig[ 'errorChecking' ] == '1') {
-        $performance_monitor->switch_on();
-    } else {
-        $performance_monitor->switch_off();
-    }
-
     //get all properties in system.
     $jomres_properties = jomres_singleton_abstract::getInstance('jomres_properties');
     $jomres_properties->get_all_properties();
@@ -65,11 +57,10 @@ try {
     //user object
     $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
-    // logging::log_message('Jomres started', 'Core', 'INFO');
-
-    //TODO: here we can add a query to automatically remove the manager that has 0 properties
-    if (count($thisJRUser->authorisedProperties) == 0 && $thisJRUser->userIsManager) {
-        throw new Exception('This manager '.jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id((int) $thisJRUser->id)."  hasn't got any properties.");
+	//silently remove all access rights for this user if he is a manager/receptionist with no properties
+    if (empty($thisJRUser->authorisedProperties) && $thisJRUser->userIsManager) {
+		$jomres_users = jomres_singleton_abstract::getInstance('jomres_users');
+		$jomres_users->delete_user( $thisJRUser->id );
     }
 
     //jomres timezones - mostly unused with an exception
@@ -79,11 +70,6 @@ try {
     //set jomres in wrapped mode to be ready for iframes
     if (isset($_REQUEST[ 'is_wrapped' ]) && $_REQUEST[ 'is_wrapped' ] == '1') {
         $jrConfig[ 'isInIframe' ] = '1';
-    }
-
-    //TODO: remove this when all jrConfig values have a default in site_settings.php
-    if (!isset($jrConfig[ 'full_access_control' ])) {
-        $jrConfig[ 'full_access_control' ] = '0';
     }
 
     //we don`t want robots to index fullscreen mode or ajax requests
@@ -98,7 +84,6 @@ try {
     $cron = jomres_singleton_abstract::getInstance('jomres_cron');
     if ($cron->method == 'Minicomponent' && !AJAXCALL) {
         $cron->triggerJobs();
-        $cron->displayDebug();
     }
 
     //temp booking handler object, init jomres session
@@ -109,11 +94,17 @@ try {
     set_showtime('jomressession', $jomressession);
 
     //set some showtimes we`ll need later
-    $plugin = jomresGetParam($_REQUEST, 'plugin', '');
     $popup = intval(jomresGetParam($_REQUEST, 'popup', 0));
     $no_html = (int) jomresGetParam($_REQUEST, 'no_html', 0);
     $task = str_replace('&#60;x&#62;', '', jomresGetParam($_REQUEST, 'task', ''));
 
+    if ($task == "savePlugin") { // 9.9 task names were changed, and savePlugin was renumbered and renamed to save_plugin. As many 3rd party gateways will use savePlugin (and it may never be updated ) we'll change the task name here so that they continue to work.
+        $task = "save_plugin";
+    }
+    if ($task == "editGateway") { // 9.9 task names were changed, and editGateway was renumbered and renamed to editgateway. As many 3rd party gateways will use editGateway (and it may never be updated ) we'll change the task name here so that they continue to work.
+        $task = "editgateway";
+    }
+	
     set_showtime('task', $task);
     set_showtime('no_html', $no_html);
     set_showtime('popup', $popup);
@@ -164,7 +155,6 @@ try {
                 }
             }
         }
-        $tmpBookingHandler->saveGuestData();
     } else {
         $thisJRUser = new stdClass();
         $thisJRUser->jomres_manager_id = 0;
@@ -206,8 +196,6 @@ try {
             $tmpBookingHandler->user_settings[ 'last_viewed_property_uid' ] = $property_uid;
         }
 
-        $tmpBookingHandler->saveBookingData();
-
         //since we have a property uid, we also have a property type, so let`s set a showtime
         set_showtime('property_type', $current_property_details->property_type);
         set_showtime('ptype_id', $current_property_details->ptype_id);
@@ -217,7 +205,7 @@ try {
 
         //sanity checks
         if (!$thisJRUser->userIsManager && $current_property_details->published == 0 && get_showtime('task') != '') {
-            if (!AJAXCALL) {
+            if (!AJAXCALL && $no_html == 0) {
                 jr_import('jomres_sanity_check');
                 $warning = new jomres_sanity_check(false);
                 echo $warning->construct_warning(jr_gettext('_JOMRES_PROPERTYNOTOUBLISHED', '_JOMRES_PROPERTYNOTOUBLISHED', false));
@@ -240,9 +228,12 @@ try {
         }
     }
 
-    //add javascript to head
-    if (!AJAXCALL) {
-        init_javascript();
+    if (!AJAXCALL && $no_html == 0) {
+		//add javascript to head
+        $MiniComponents->triggerEvent('00004');
+		
+		//core menu items
+		$MiniComponents->specificEvent('09995', 'menu', array()); //core menu items
     }
 
     //TODO find a better place
@@ -252,510 +243,52 @@ try {
     $MiniComponents->triggerEvent('00005');
 
     //trigger 00006 event
-    $MiniComponents->triggerEvent('00006');
+	if (!AJAXCALL && $no_html == 0) {
+		$MiniComponents->triggerEvent('00006');
 
-    //trigger 00060 event. Run out of trigger points. Illogically now, 60 triggers the top template, 61 the bottom template.
-    $MiniComponents->triggerEvent('00060', array('tz' => $tz));
+		//trigger 00060 event. Run out of trigger points. Illogically now, 60 triggers the top template, 61 the bottom template.
+		$MiniComponents->triggerEvent('00060', array('tz' => $tz));
 
-    //trigger 00012 event
-    $componentArgs = array();
-    $componentArgs[ 'property_uid' ] = $property_uid;
-    $MiniComponents->triggerEvent('00012', $componentArgs); // Optional other stuff to do before switch is done.
-
-    //TDO remove this when all jrConfig var will have default values in site_config.php
-    if (!isset($jrConfig[ 'errorChecking' ])) {
-        $jrConfig[ 'errorChecking' ] = 0;
-    }
+		//trigger 00012 event
+		$componentArgs = array();
+		$componentArgs[ 'property_uid' ] = $property_uid;
+		$MiniComponents->triggerEvent('00012', $componentArgs); // Optional other stuff to do before switch is done.
+	}
 
     //handle tasks
-    //logging::log_message('Starting task '.get_showtime('task'), 'Core');
-    if (get_showtime('numberOfPropertiesInSystem') > 0) {
-        switch (get_showtime('task')) {
-            //########################################################################################
-            case 'handlereq':
-                $MiniComponents->triggerEvent('05010');
-                break;
-            //########################################################################################
-            case 'dobooking':
-                if ($thisJRUser->userIsManager) {
-                    $MiniComponents->triggerEvent('05020');
-                } else {
-                    if (($mrConfig[ 'visitorscanbookonline' ] == '1') && (!$thisJRUser->userIsManager)) {
-                        if (!$thisJRUser->userIsRegistered && $mrConfig[ 'registeredUsersOnlyCanBook' ] == '1') {
-                            $MiniComponents->triggerEvent('02280');
-                        } else {
-                            $MiniComponents->triggerEvent('05020');
-                        }
-                    } else {
-                        $MiniComponents->specificEvent('00600', 'contactowner');
-                    } // Alternative if online bookings by guests is disabled
-                }
-                break;
-            //########################################################################################
-            case 'confirmbooking':
-                if ($thisJRUser->userIsManager) {
-                    $MiniComponents->triggerEvent('02990');
-                } // Trigger the booking confirmation page
-                else {
-                    if (($mrConfig[ 'visitorscanbookonline' ] == '1') && (!$thisJRUser->userIsManager)) {
-                        if (!$thisJRUser->userIsRegistered && $mrConfig[ 'registeredUsersOnlyCanBook' ] == '1') {
-                            $MiniComponents->triggerEvent('02280');
-                        } else {
-                            $MiniComponents->triggerEvent('02990');
-                        } // Trigger the booking confirmation page
-                    }
-                }
-                break;
-            //########################################################################################
-            case 'completebk':
-                $bookingdata = gettempBookingdata();
-                $MiniComponents->triggerEvent('00609', array('bookingdata' => $bookingdata)); // Optional
-                $MiniComponents->specificEvent('00610', $plugin); //Incoming
-                break;
-            //########################################################################################
-            case 'processpayment':
-                request_log();
-                $tag = set_booking_number();
+	if ($MiniComponents->eventSpecificlyExistsCheck('06000', get_showtime('task'))) {
+		$MiniComponents->specificEvent('06000', get_showtime('task'));
+	} elseif ($MiniComponents->eventSpecificlyExistsCheck('06001', get_showtime('task')) && $thisJRUser->userIsManager) { // Receptionist and manager tasks
+		if (get_showtime('task') == 'dashboard') {
+			//$MiniComponents->triggerEvent('00013'); // Optional Pre dashboard
+			$MiniComponents->specificEvent('06001', get_showtime('task'));
+			$MiniComponents->triggerEvent('00014'); // Optional Post dashboard
+		} else {
+			$MiniComponents->specificEvent('06001', get_showtime('task'));
+		}
+	} elseif ($MiniComponents->eventSpecificlyExistsCheck('06002', get_showtime('task')) && $thisJRUser->userIsManager && $thisJRUser->accesslevel >= 70) { // Manager only tasks (higher than receptionist)
+		$MiniComponents->specificEvent('06002', get_showtime('task'));
+	} elseif ($MiniComponents->eventSpecificlyExistsCheck('06005', get_showtime('task')) && $thisJRUser->userIsRegistered) { // Registered only user tasks
+		$MiniComponents->specificEvent('06005', get_showtime('task'));
+	} else {
+		no_task_set($property_uid);
+	}
 
-                $plugin = jomres_validate_gateway_plugin();
-
-                $query = "SELECT id FROM #__jomres_booking_data_archive WHERE `tag` = '".$tag."'";
-                $result = doSelectSql($query);
-                if (count($result) == 0) {
-                    $tmpbooking = $tmpBookingHandler->tmpbooking;
-                    $tmpguest = $tmpBookingHandler->tmpguest;
-
-                    $data = array('tmpbooking' => $tmpbooking, 'tmpguest' => $tmpguest);
-                    $data = str_replace("'", "''", serialize($data));
-
-                    $query = "INSERT INTO #__jomres_booking_data_archive SET `data`='".$data."',`date`='".date('Y-m-d H:i:s')."', `tag` = '".$tag."'";
-                    doInsertSql($query, '');
-                }
-
-                $bookingdata = gettempBookingdata();
-                $MiniComponents->triggerEvent('00599', array('bookingdata' => $bookingdata)); // Optional
-
-                // We'll let bookings of 0 value passed the gateway plugin handling as some users offer 100% discounts via coupons
-                if ($bookingdata[ 'contract_total' ] == 0.00) {
-                    $plugin = 'NA';
-                }
-
-                //$paypal_settings = jomres_singleton_abstract::getInstance('jrportal_paypal_settings');
-                //$paypal_settings->get_paypal_settings();
-
-                if ($plugin != 'NA') {
-                    $query = 'SELECT id,plugin FROM #__jomres_pluginsettings WHERE (prid = '.(int) $property_uid." OR prid = 0)  AND `plugin` = '".(string) $plugin."' AND setting = 'active' AND value = '1'";
-                    $gatewayDeets = doSelectSql($query);
-
-                    if (count($gatewayDeets) > 0 || $paypal_settings->paypalConfigOptions[ 'override' ] == '1') {
-/*                         if ($paypal_settings->paypalConfigOptions[ 'override' ] == '1') {
-                            $plugin = 'paypal';
-                        } */
-
-                        $interrupted = intval(jomresGetParam($_POST, 'interrupted', 0));
-                        $interruptOutgoingFile = false;
-
-                        if ($MiniComponents->eventFileLocate('00600', $plugin)) {
-                            $interruptOutgoingFile = 'j00600'.$plugin.'.class.php';
-                        }
-
-                        $outgoingFile = 'j00605'.$plugin.'.class.php';
-
-                        if ($interruptOutgoingFile && $interrupted == 0) {
-                            $MiniComponents->specificEvent('00600', $plugin, array('bookingdata' => $bookingdata, 'property_uid' => $property_uid));
-                        } //Interrupt outgoing
-                        else {
-                            $MiniComponents->specificEvent('00605', $plugin, array('bookingdata' => $bookingdata, 'property_uid' => $property_uid));
-                        } //outgoing
-                    } else {
-                        insertInternetBooking(get_showtime('jomressession'), $depositPaid = false, $confirmationPageRequired = true, $customTextForConfirmationForm = '');
-                    }
-                } else {
-                    insertInternetBooking(get_showtime('jomressession'), $depositPaid = false, $confirmationPageRequired = true, $customTextForConfirmationForm = '');
-                }
-                break;
-            //########################################################################################
-            case 'slideshow':
-                $MiniComponents->triggerEvent('01060');
-                break;
-            //########################################################################################
-            case 'saveCustomerTypeOrder':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel > 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02110');
-                } else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'publishCustomerType':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel > 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02112');
-                } //publishCustomerType();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'listCustomerTypes':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel > 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02114');
-                } //listCustomerTypes();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'editCustomerType':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel > 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02116');
-                } //editCustomerType();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'saveCustomerType':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel > 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02118');
-                } //saveCustomerType();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'deleteCustomerType':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel > 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02120');
-                } //deleteCustomerType();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'registerProp_step1':
-                if ($thisJRUser->userIsRegistered || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02300');
-                } else {
-                    echo jr_gettext('_JOMRES_REGISTRATION_NOTALLOWED', '_JOMRES_REGISTRATION_NOTALLOWED', false);
-                }
-                break;
-            //########################################################################################
-            case 'registerProp_step3':
-                if ($thisJRUser->userIsRegistered || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02320');
-                }
-                break;
-            //########################################################################################
-            case 'editGateway':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel > 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->specificEvent('00510', $plugin);
-                } else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'savePlugin':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel > 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('03310');
-                } else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'publishProperty':
-            if (($thisJRUser->userIsManager && $thisJRUser->accesslevel > 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                $MiniComponents->triggerEvent('03340');
-            } else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'editProperty':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel > 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('04200');
-                } else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'deleteProperty':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel > 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('04910');
-                } else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'saveProperty':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel > 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('04900');
-                } else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'listBlackBookings':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02130');
-                } //listBlackBookings();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'newBlackBooking':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02134');
-                } //newBlackBooking();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'viewBlackBooking':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02132');
-                } //viewBlackBooking();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'saveBBooking':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02136');
-                } //saveBBooking();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'deleteBlackBooking':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02138');
-                } //deleteBlackBooking();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'publishExtra':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel > 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02140');
-                } //publishExtra();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'listExtras':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel > 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02142');
-                } //listExtras();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'editExtra':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel > 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02144');
-                } //editExtra();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'saveExtra':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel > 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02146');
-                } // saveExtra();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'deleteExtra':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel > 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02148');
-                } //deleteExtra();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                    break;
-            //########################################################################################
-            case 'addServiceToBill':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02150');
-                } //addServiceToBill();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'saveCancellation':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02162');
-                } //saveCancellation();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'cancelBooking':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02160');
-                } //cancelBooking();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'editBooking':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02260');
-                } //editBooking();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'listguests':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02220');
-                } //listGuests();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'editDeposit':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02200');
-                } //editDeposit();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'saveDeposit':
-                if (($thisJRUser->userIsManager && $thisJRUser->accesslevel >= 50) || $jrConfig[ 'full_access_control' ] == '1') {
-                    $MiniComponents->triggerEvent('02202');
-                } //saveDeposit();
-                else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'tagSearch':
-                if ($thisJRUser->userIsManager || $jrConfig[ 'full_access_control' ] == '1') {
-                    $componentArgs = array();
-                    $componentArgs[ 'tag' ] = $tag;
-                    $MiniComponents->triggerEvent('00020', $componentArgs); //tagSearch();
-                } else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'listProperties':
-                $MiniComponents->triggerEvent('01004', $componentArgs); // optional
-                $MiniComponents->triggerEvent('01005', $componentArgs); // optional
-                $MiniComponents->triggerEvent('01006', $componentArgs); // optional
-                $MiniComponents->triggerEvent('01007', $componentArgs); // optional
-                $componentArgs = array();
-                if (isset($tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ])) {
-                    $componentArgs[ 'propertys_uid' ] = $tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ];
-                }
-                $MiniComponents->triggerEvent('01010', $componentArgs); // listPropertys
-                break;
-            //########################################################################################
-            case 'preview':
-                if ($thisJRUser->userIsManager) {
-                    property_header($property_uid);
-                    $componentArgs = array();
-                    $componentArgs[ 'property_uid' ] = $property_uid;
-                    $MiniComponents->specificEvent('06000', 'view_property', array('property_uid' => $property_uid));
-                } else {
-                    userHasBeenLoggedOut();
-                }
-                break;
-            //########################################################################################
-            case 'error':
-                $componentArgs = array();
-                $MiniComponents->triggerEvent('02270', $componentArgs);
-                break;
-            //########################################################################################
-            default:
-                if ($jrConfig[ 'full_access_control' ] == '1') {
-                    if ($MiniComponents->eventSpecificlyExistsCheck('06000', get_showtime('task'))) {
-                        $MiniComponents->specificEvent('06000', get_showtime('task'));
-                    } elseif ($MiniComponents->eventSpecificlyExistsCheck('06001', get_showtime('task'))) {
-                        if (get_showtime('task') == 'dashboard') {
-                            $MiniComponents->triggerEvent('00013'); // Show dashboard
-                            $MiniComponents->specificEvent('06001', get_showtime('task'));
-                            $MiniComponents->triggerEvent('00014'); // Optional Post dashboard
-                        } else {
-                            $MiniComponents->specificEvent('06001', get_showtime('task'));
-                        }
-                    } elseif ($MiniComponents->eventSpecificlyExistsCheck('06002', get_showtime('task'))) {
-                        $MiniComponents->specificEvent('06002', get_showtime('task'));
-                    } elseif ($MiniComponents->eventSpecificlyExistsCheck('06005', get_showtime('task'))) {
-                        $MiniComponents->specificEvent('06005', get_showtime('task'));
-                    } else {
-                        no_task_set($property_uid);
-                    }
-                } else {
-                    if ($MiniComponents->eventSpecificlyExistsCheck('06000', get_showtime('task'))) {
-                        $MiniComponents->specificEvent('06000', get_showtime('task'));
-                    } // Custom task
-                    elseif ($MiniComponents->eventSpecificlyExistsCheck('06001', get_showtime('task')) && $thisJRUser->userIsManager) { // Receptionist and manager tasks
-                        if (get_showtime('task') == 'dashboard') {
-                            $MiniComponents->triggerEvent('00013'); // Show dashboard
-                            $MiniComponents->specificEvent('06001', get_showtime('task'));
-                            $MiniComponents->triggerEvent('00014'); // Optional Post dashboard
-                        } else {
-                            $MiniComponents->specificEvent('06001', get_showtime('task'));
-                        }
-                    } elseif ($MiniComponents->eventSpecificlyExistsCheck('06002', get_showtime('task')) && $thisJRUser->userIsManager && $thisJRUser->accesslevel > 50) { // Manager only tasks (higher than receptionist)
-                        $MiniComponents->specificEvent('06002', get_showtime('task'));
-                    } // Custom task
-                    elseif ($MiniComponents->eventSpecificlyExistsCheck('06005', get_showtime('task')) && $thisJRUser->userIsRegistered) { // Registered only user tasks
-                        $MiniComponents->specificEvent('06005', get_showtime('task'));
-                    } // Custom task
-                    else {
-                        no_task_set($property_uid);
-                    }
-                }
-                break;
-            } //end switch
-
-        if (!$no_html) {
-            $MiniComponents->triggerEvent('00061'); // Run out of trigger points. Illogically now, 60 triggers the top template, 61 the bottom template.
-        }
-    } else {
-        logging::log_message('Error, no properties installed', 'Core', 'EMERGENCY');
-        if ($MiniComponents->eventSpecificlyExistsCheck('06000', get_showtime('task'))) {
-            $MiniComponents->specificEvent('06000', get_showtime('task'));
-        } else {
-            echo 'Error, no properties installed. Before you can use Jomres you need to have at least 1 property installed, this is achieved by running <a href="'.get_showtime('live_site').'/install_jomres.php"></a>install_jomres.php.';
-        }
-    }
+	if (!AJAXCALL && $no_html == 0) {
+		$MiniComponents->triggerEvent('00061'); // Run out of trigger points. Illogically now, 60 triggers the top template, 61 the bottom template.
+	}
 
     //reset language and property type
     $jomres_language_definitions = jomres_singleton_abstract::getInstance('jomres_language_definitions');
     $jomres_language_definitions->reset_lang_and_property_type();
 
     //trigger 99994 event
-    $MiniComponents->triggerEvent('99994');
+	$MiniComponents->triggerEvent('99994');
 
-    $performance_monitor->set_point('pre-menu generation');
-
-    if (defined('JOMRES_NOHTML') && JOMRES_NOHTML != 1 && !isset($_REQUEST[ 'popup' ])) {
-        //trigger 99995 event
-        echo $MiniComponents->triggerEvent('99995');
+	//generate the cpanel menu
+    if (!AJAXCALL && $no_html == 0 && !isset($_REQUEST[ 'popup' ])) {
+        echo $MiniComponents->specificEvent('09997', 'menu', array());
     }
-
-    $performance_monitor->set_point('post-menu generation');
 
     //trigger 99999 event: Optional end run scripts
     $componentArgs = array();
@@ -764,12 +297,7 @@ try {
     //close/save jomres session
     $tmpBookingHandler->close_jomres_session();
 
-    $performance_monitor->set_point('end run');
-
-    //show performance monitor report
-    $performance_monitor->output_report();
-
-    if ($no_html == 0 && $jrConfig[ 'errorChecking' ] == 1) {
+    if (!AJAXCALL && $no_html == 0 && $jrConfig[ 'errorChecking' ] == '1') {
         foreach ($MiniComponents->log as $log) {
             echo 'Log :'.$log.'<br>';
         }
@@ -791,8 +319,10 @@ try {
     }
 
     //jomres usage reporting
-    jr_import('jomres_usage_reporting');
-    $tracking = new jomres_usage_reporting();
+	if (!AJAXCALL && $no_html == 0) {
+		jr_import('jomres_usage_reporting');
+		$tracking = new jomres_usage_reporting();
+	}
 
     //done
     endrun();
@@ -811,13 +341,12 @@ try {
         ob_end_flush();
     }
 } catch (Exception $e) {
-    $MiniComponents->triggerEvent('99994');
-
-    $performance_monitor->set_point('pre-menu generation');
-    if (!defined('JOMRES_NOHTML') && !isset($_REQUEST[ 'popup' ])) { // Generate the main menu
-        echo $MiniComponents->triggerEvent('99995');
+	$MiniComponents->triggerEvent('99994');
+		
+	//generate the cpanel menu
+	if (!AJAXCALL && $no_html == 0 && !isset($_REQUEST[ 'popup' ])) {
+        echo $MiniComponents->specificEvent('09997', 'menu', array());
     }
-    $performance_monitor->set_point('post-menu generation');
 
     $componentArgs = array();
     $MiniComponents->triggerEvent('99999', $componentArgs); // Optional end run scripts
@@ -835,10 +364,10 @@ function no_task_set($property_uid = 0)
     $jrConfig = $siteConfig->get();
 
     if ((isset($_REQUEST[ 'calledByModule' ]) || isset($_REQUEST[ 'plistpage' ])) && $thisJRUser->userIsManager) {
-        jomresShowSearch();
+        $MiniComponents->specificEvent('06000', "search");
     } else {
         if ($thisJRUser->userIsManager) {
-            $MiniComponents->triggerEvent('00013'); // Show dashboard
+            //$MiniComponents->triggerEvent('00013'); // Optional Pre dashboard
             $MiniComponents->specificEvent('06001', 'dashboard');
             $MiniComponents->triggerEvent('00014'); // Optional Post dashboard
         } elseif (get_showtime('numberOfPropertiesInSystem') == 1 && $jrConfig[ 'is_single_property_installation' ] == '0') {
@@ -852,7 +381,7 @@ function no_task_set($property_uid = 0)
             $MiniComponents->triggerEvent('05020');
         } else {
             set_showtime('task', '');
-            jomresShowSearch();
+            $MiniComponents->specificEvent('06000', "search");
         }
     }
 }

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -55,7 +55,7 @@ class j06000contactowner
                 require_once JOMRESPATH_BASE.'/libraries/recaptcha/recaptchalib.php';
             } elseif ($version == 'V2') {
                 require_once JOMRESPATH_BASE.'/libraries/recaptcha/autoload.php';
-                $recaptcha = new \ReCaptcha\ReCaptcha($jrConfig[ 'recaptcha_private_key' ], new \ReCaptcha\RequestMethod\CurlPost());
+                $recaptcha = new \ReCaptcha\ReCaptcha(trim($jrConfig[ 'recaptcha_private_key' ]), new \ReCaptcha\RequestMethod\CurlPost());
             }
         }
 
@@ -154,7 +154,7 @@ class j06000contactowner
             if ($challenge != '') {
                 if ($version == 'V1') {
                     $resp = recaptcha_check_answer(
-                        $jrConfig[ 'recaptcha_private_key' ],
+                        trim($jrConfig[ 'recaptcha_private_key' ]),
                         $_SERVER[ 'REMOTE_ADDR' ],
                         jomresGetParam($_POST, 'recaptcha_challenge_field', ''),
                         jomresGetParam($_POST, 'recaptcha_response_field', '')
@@ -226,10 +226,10 @@ class j06000contactowner
 
             if ($use_recaptcha) {
                 if ($version == 'V1') {
-                    $output[ 'CAPTCHA' ] = recaptcha_get_html($jrConfig[ 'recaptcha_public_key' ], null, $use_ssl);
+                    $output[ 'CAPTCHA' ] = recaptcha_get_html(trim($jrConfig[ 'recaptcha_public_key' ]), null, $use_ssl);
                 } elseif ($version == 'V2') {
                     $output[ 'CAPTCHA' ] = '
-							<div class="g-recaptcha" data-sitekey="'.$jrConfig[ 'recaptcha_public_key' ].'"></div>
+							<div class="g-recaptcha" data-sitekey="'.trim($jrConfig[ 'recaptcha_public_key' ]).'"></div>
 							<script type="text/javascript"
 								src="https://www.google.com/recaptcha/api.js?hl='.get_showtime('lang_shortcode').'">
 							</script>

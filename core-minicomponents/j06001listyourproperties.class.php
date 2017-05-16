@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -63,7 +63,7 @@ class j06001listyourproperties
         if ($thisJRUser->accesslevel > 50) { //higher than receptionist
             $r = array();
             $r['HNEW_PROPERTY'] = jr_gettext('_JOMRES_COM_MR_NEWPROPERTY', '_JOMRES_COM_MR_NEWPROPERTY', false);
-            $r['NEW_PROPERTY_URL'] = jomresUrl(JOMRES_SITEPAGE_URL.'&task=registerProp_step1');
+            $r['NEW_PROPERTY_URL'] = jomresUrl(JOMRES_SITEPAGE_URL.'&task=new_property');
             $rows[] = $r;
         }
 

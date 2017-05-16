@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -63,7 +63,7 @@ class j16000chart_bookings
 				';
         $result = doSelectSql($query);
 
-        if (count($result) > 0) { //no bookings in db, so we`ll output a demo chart
+        if (!empty($result)) { //no bookings in db, so we`ll output a demo chart
             $results = array();
 
             //now we create an array of amounts for each year/month

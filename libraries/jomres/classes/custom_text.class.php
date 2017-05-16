@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -58,7 +58,7 @@ class custom_text
 
     public function gather_data($property_uids = array())
     {
-        if (count($property_uids) == 0) {
+        if (empty($property_uids)) {
             return false;
         }
 
@@ -81,14 +81,8 @@ class custom_text
         }
         $property_uids = $tmp_array;
 
-        //language clause
-        $clause = '';
-        if ($this->lang != '') {
-            $clause = " `language` = '".$this->lang."'";
-        }
-
-        if (count($property_uids) > 0) {
-            $query = 'SELECT `constant` AS language_constant, `customtext`, `language`, `property_uid` FROM #__jomres_custom_text WHERE `property_uid` IN ('.jomres_implode($property_uids).") AND $clause ";
+        if (!empty($property_uids)) {
+            $query = 'SELECT `constant` AS language_constant, `customtext`, `property_uid` FROM #__jomres_custom_text WHERE `property_uid` IN ('.jomres_implode($property_uids).") AND `language` = '".$this->lang."'";
             $customTextList = doSelectSql($query);
 
             if ($customTextList) {

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -122,7 +122,6 @@ function jomres_cmsspecific_createNewUser()
             //$thisJRUser->userIsRegistered=true; // Disabled as this setting would be incorrect during the booking phase. We want newly created users to have their details recorded by the insertGuestDeets function in insertbookings
             $thisJRUser->id = $id;
             $tmpBookingHandler->updateGuestField('mos_userid', $id);
-            $tmpBookingHandler->saveGuestData();
 
             $subject = jr_gettext('_JRPORTAL_NEWUSER_SUBJECT', '_JRPORTAL_NEWUSER_SUBJECT', false, false);
 
@@ -252,7 +251,7 @@ function jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id($id)
     $user = array();
     $query = 'SELECT id,user_nicename,user_login,user_email FROM #__users WHERE id='.(int) $id;
     $userList = doSelectSql($query);
-    if (count($userList) > 0) {
+    if (!empty($userList)) {
         foreach ($userList as $u) {
             $user[ $id ] = array('id' => $u->id, 'name' => $u->user_nicename, 'username' => $u->user_login, 'email' => $u->user_email);
         }
@@ -267,7 +266,7 @@ function jomres_cmsspecific_getCMS_users_frontend_userdetails_by_username($usern
     $user = array();
     $query = "SELECT id,user_login FROM #__users WHERE user_login='".(string) $username."'";
     $userList = doSelectSql($query);
-    if (count($userList) > 0) {
+    if (!empty($userList)) {
         foreach ($userList as $u) {
             $user[ $id ] = array('id' => $u->id, 'username' => $u->user_login, 'email' => $u->user_email);
         }
@@ -282,7 +281,7 @@ function jomres_cmsspecific_getCMS_users_admin_userdetails_by_id($id)
     $user = array();
     $query = 'SELECT id,user_login,user_email FROM #__users WHERE id='.(int) $id;
     $userList = doSelectSql($query);
-    if (count($userList) > 0) {
+    if (!empty($userList)) {
         foreach ($userList as $u) {
             $user[ $id ] = array('id' => $u->id, 'username' => $u->user_login, 'email' => $u->user_email);
         }
@@ -297,7 +296,7 @@ function jomres_cmsspecific_getCMS_users_admin_getalladmins_ids()
     $users = array();
     $query = "SELECT a.id, a.user_login, a.user_email FROM #__users a LEFT JOIN #__usermeta b ON a.id = b.user_id WHERE b.meta_key = 'wp_user_level' AND b.meta_value >= 10 ";
     $userList = doSelectSql($query);
-    if (count($userList) > 0) {
+    if (!empty($userList)) {
         foreach ($userList as $u) {
             $users[ $u->id ] = array('id' => $u->id, 'username' => $u->user_login, 'email' => $u->user_email);
         }
@@ -341,7 +340,7 @@ function jomres_cmsspecific_getCMSUsers($cms_user_id = 0)
 
     $query = 'SELECT id,user_nicename,user_login,user_email FROM #__users '.$clause;
     $userList = doSelectSql($query);
-    if (count($userList) > 0) {
+    if (!empty($userList)) {
         foreach ($userList as $u) {
             $users[ $u->id ] = array('id' => $u->id, 'username' => $u->user_login, 'email' => $u->user_email);
         }
@@ -413,7 +412,7 @@ function jomres_cmsspecific_find_cms_users($search_term = '')
     $query = 'SELECT `id`, `user_nicename`, `user_login`, `user_email` FROM #__users '.$clause;
     $userList = doSelectSql($query);
 
-    if (count($userList) > 0) {
+    if (!empty($userList)) {
         foreach ($userList as $u) {
             $users[ $u->id ] = array('id' => $u->id, 'username' => $u->user_login, 'email' => $u->user_email);
         }
@@ -447,4 +446,12 @@ function jomres_cmsspecific_isRtl($cms_user_id = 0) {
 	$isRtl = is_rtl();
 	
 	return $isRtl;
+}
+
+function jomres_cmsspecific_user_is_admin() {
+	if ( current_user_can( 'manage_options' ) ) {
+		return true;
+	}
+	
+	return false;
 }

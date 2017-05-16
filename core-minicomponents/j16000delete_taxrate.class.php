@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -30,9 +30,6 @@ class j16000delete_taxrate
         if ($id > 0) {
             $jrportal_taxrate = jomres_singleton_abstract::getInstance('jrportal_taxrate');
             $jrportal_taxrate->deleteTaxRate($id);
-
-            $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-            $c->eraseAll();
 
             jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_taxrates'), $saveMessage);
         } else {

@@ -1,103 +1,48 @@
-
 <patTemplate:tmpl name="pageoutput">
 
 	</div> <!-- closes the jomres_content_area div -->
 
 <div id='ajax_loader' style="position: fixed; left: 50%; top: 50%; display: none; z-index:999">
     <i class="fa fa-spinner fa-spin fa-5x" aria-hidden="true"></i>
-
 </div>
 
-	<script type="text/javascript">
-		<!--
-		/* Switches the cursor to the waiting cursor whenever jquery's ajax functionality kicks in. Nice way to give the user some feedback that something's happening in a non-intrusive way */
-		jomresJquery(document).ready(function () {
-			jomresJquery("#loader").bind("ajaxSend",function () {
-				jomresJquery("#ajax_loader").show();
-				jomresJquery(this).fadeIn();
-			}).bind("ajaxStop",function () {
-						jomresJquery("#ajax_loader").fadeOut(500);
-					}).bind("ajaxError", function () {
-						jomresJquery("#ajax_loader").fadeOut(500);
-					});
-		});
-		//-->
-	</script>
+<script type="text/javascript">
+	<!--
+	/* Switches the cursor to the waiting cursor whenever jquery's ajax functionality kicks in. Nice way to give the user some feedback that something's happening in a non-intrusive way */
+	jomresJquery(document).ready(function () {
+		jomresJquery("#loader").bind("ajaxSend",function () {
+			jomresJquery("#ajax_loader").show();
+			jomresJquery(this).fadeIn();
+		}).bind("ajaxStop",function () {
+					jomresJquery("#ajax_loader").fadeOut(500);
+				}).bind("ajaxError", function () {
+					jomresJquery("#ajax_loader").fadeOut(500);
+				});
+	});
+	//-->
+</script>
 
-	<div id="loader" class="loader ui-corner-all" style="display:none;">
-		<!--<img id="img-loader" src="{JOMRES_ROOT_DIRECTORY}/images/ajax_animation/broken_circle.gif" alt="Loading"/>-->
-	</div>
+<div id="loader" class="loader ui-corner-all" style="display:none;">
+	<!--<img id="img-loader" src="{JOMRES_ROOT_DIRECTORY}/images/ajax_animation/broken_circle.gif" alt="Loading"/>-->
+</div>
 
-	<style type="text/css">
-		.loader {
-			/* background-color:white; By default the loader icon is disabled, remove the comment tags here enable it, and in the above div */
-			position: fixed;
-			top: 50%;
-			left: 100%;
-			margin-left: -100px; /* half width of the loader gif */
-			margin-top: 100px; /* half height of the loader gif */
-			text-align: center;
-			z-index: 9999;
-			overflow: auto;
-			width: 60px; /* width of the loader gif */
-			height: 60px; /*hight of the loader gif +3px to fix IE8 issue */
-			/* opacity:0.;   By default the loader icon is disabled, remove the comment tags here enable it, and in the above div */
-		}
-	</style>
+<style type="text/css">
+	.loader {
+		/* background-color:white; By default the loader icon is disabled, remove the comment tags here enable it, and in the above div */
+		position: fixed;
+		top: 50%;
+		left: 100%;
+		margin-left: -100px; /* half width of the loader gif */
+		margin-top: 100px; /* half height of the loader gif */
+		text-align: center;
+		z-index: 9999;
+		overflow: auto;
+		width: 60px; /* width of the loader gif */
+		height: 60px; /*hight of the loader gif +3px to fix IE8 issue */
+		/* opacity:0.;   By default the loader icon is disabled, remove the comment tags here enable it, and in the above div */
+	}
+</style>
 
-	<script type="text/javascript">
-		/* Shamelessly pinched from JED. Uncomment it to activate it. */
-		/*
-		 jomresJquery(document).ready(function(){
-		 jomresJquery(function ()
-		 {
-		 var scrollDiv = document.createElement('div');
-		 jomresJquery(scrollDiv).attr('id', 'toTop').html('^ {BACKTOTOP}').appendTo('body');
-		 jomresJquery(scrollDiv).addClass('alert alert-info');
-
-		 jomresJquery(window).scroll(function ()
-		 {
-		 console.log(jomresJquery(this).scrollTop());
-		 if (jomresJquery(this).scrollTop() != 0)
-		 {
-		 jomresJquery('#toTop').fadeIn();
-		 }
-		 else
-		 {
-		 jomresJquery('#toTop').fadeOut();
-		 }
-		 });
-		 jomresJquery('#toTop').click(function ()
-		 {
-		 jomresJquery('body,html').animate({
-		 scrollTop: 0
-		 },
-		 800);
-		 });
-		 });
-
-		 jomresJquery(".collapse").collapse();
-		 });
-		 */
-
-	</script>
-	<style>
-		#toTop {
-			background: none repeat scroll 0 0;
-			bottom: 0;
-			cursor: pointer;
-			display: none;
-			font-size: 0.9em;
-			padding: 5px;
-			position: fixed;
-			right: 0;
-			text-align: center;
-			text-transform: lowercase;
-			width: 100px;
-			z-index: 10;
-		}
-	</style>
-
-	{RADIO_BUTTON_JAVASCRIPT}
+{RADIO_BUTTON_JAVASCRIPT}
 
 </patTemplate:tmpl>

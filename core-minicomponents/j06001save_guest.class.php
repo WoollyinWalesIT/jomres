@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -32,7 +32,9 @@ class j06001save_guest
 		$jrportal_guests = new jrportal_guests();
 		$jrportal_guests->id = $id;
 		$jrportal_guests->property_uid = $defaultProperty;
-
+        
+        $jrportal_guests->get_guest(); // if we don't get_guest then the mos_id ( cms_id) will get reset when the guest is saved
+        
         $jrportal_guests->firstname = jomresGetParam($_REQUEST, 'firstname', '');
         $jrportal_guests->surname = jomresGetParam($_REQUEST, 'surname', '');
         $jrportal_guests->house = jomresGetParam($_REQUEST, 'house', '');
@@ -46,13 +48,15 @@ class j06001save_guest
         $jrportal_guests->email = jomresGetParam($_REQUEST, 'email', '');
         $jrportal_guests->vat_number = jomresGetParam($_REQUEST, 'vat_number', '');
         $jrportal_guests->discount = (int) jomresGetParam($_REQUEST, 'discount', 0);
+        $jrportal_guests->blacklisted = (int) jomresGetParam($_REQUEST, 'blacklisted', 0);
+        
 
         if ( $id > 0 )
 			$jrportal_guests->commit_update_guest();
 		else
 			$jrportal_guests->commit_new_guest();
             
-        jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listguests"), 'Guest saved' );
+        jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=list_guests"), 'Guest saved' );
     }
 
     // This must be included in every Event/Mini-component

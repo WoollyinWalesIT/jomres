@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -18,7 +18,7 @@ class jomres_usage_reporting
 {
     public function __construct($displayLog = false)
     {
-        // return; // This feature isn't currently in use, for now we'll just return back out and do nothing.
+        return; // This feature isn't currently in use, for now we'll just return back out and do nothing.
         if (!AJAXCALL) {
             $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
             $jrConfig = $siteConfig->get();

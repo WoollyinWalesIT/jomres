@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -86,8 +86,9 @@ class j06001list_bookings_ajax
          */
         $sWhere = '';
         if (isset($_GET['sSearch']) && $_GET['sSearch'] != '') {
+			$n = count($aColumns);
             $sWhere = 'AND (';
-            for ($i = 0; $i < count($aColumns); ++$i) {
+            for ($i = 0; $i < $n; ++$i) {
                 $sWhere .= ''.$aColumns[$i]." LIKE '%".jomresGetParam($_GET, 'sSearch', '')."%' OR ";
             }
             $sWhere = substr_replace($sWhere, '', -3);
@@ -247,9 +248,9 @@ class j06001list_bookings_ajax
             if (!using_bootstrap()) {
                 $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
                 $jrtb = $jrtbar->startTable();
-                $jrtb .= $jrtbar->toolbarItem('edit', jomresURL(JOMRES_SITEPAGE_URL.'&task=editBooking'.'&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('COMMON_EDIT', 'COMMON_EDIT', false));
+                $jrtb .= $jrtbar->toolbarItem('edit', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_booking'.'&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('COMMON_EDIT', 'COMMON_EDIT', false));
                 if ($p->cancelled == 0) {
-                    if ($p->booked_in == 0 && isset($MiniComponents->registeredClasses['06001checkin'])) {
+                    if ($p->booked_in == 0 && isset($MiniComponents->registeredClasses['06001']['checkin'])) {
                         if ($p->approved == 1 && $today >= $p->arrival) {
                             $jrtb .= $jrtbar->toolbarItem('bookGuestIn', jomresURL(JOMRES_SITEPAGE_URL.'&task=checkin'.'&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_FRONT_MR_BOOKIN_TITLE', '_JOMRES_FRONT_MR_BOOKIN_TITLE', false));
                         }
@@ -257,7 +258,7 @@ class j06001list_bookings_ajax
                         $jrtb .= $jrtbar->toolbarItem('bookGuestOut', jomresURL(JOMRES_SITEPAGE_URL.'&task=checkout'.'&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_FRONT_MR_BOOKOUT_TITLE', '_JOMRES_FRONT_MR_BOOKOUT_TITLE', false));
                     }
                 }
-                if ($p->approved == 0 && isset($MiniComponents->registeredClasses['00005booking_enquiries'])) {
+                if ($p->approved == 0 && isset($MiniComponents->registeredClasses['00005']['booking_enquiries'])) {
                     $jrtb .= $jrtbar->toolbarItem('publish', jomresURL(JOMRES_SITEPAGE_URL.'&task=approve_enquiry'.'&contractUid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_BOOKING_APPROVE_INQUIRY', '_JOMRES_BOOKING_APPROVE_INQUIRY', false));
                     $jrtb .= $jrtbar->toolbarItem('unpublish', jomresURL(JOMRES_SITEPAGE_URL.'&task=reject_enquiry'.'&contractUid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_BOOKING_REJECT_INQUIRY', '_JOMRES_BOOKING_REJECT_INQUIRY', false));
                 }
@@ -265,38 +266,38 @@ class j06001list_bookings_ajax
             } else {
                 $toolbar = jomres_singleton_abstract::getInstance('jomresItemToolbar');
                 $toolbar->newToolbar();
-                $toolbar->addSecondaryItem('fa fa-pencil-square-o', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=editBooking&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS', '_JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS', false));
+                $toolbar->addSecondaryItem('fa fa-pencil-square-o', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_booking&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS', '_JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS', false));
                 if ($p->cancelled == 0) {
-                    if ($p->booked_in == 0 && isset($MiniComponents->registeredClasses['06001checkin'])) {
+                    if ($p->booked_in == 0 && isset($MiniComponents->registeredClasses['06001']['checkin'])) {
                         if ($p->approved == 1 && $today >= $p->arrival) {
                             $toolbar->addItem('fa fa-sign-in', 'btn btn-default ', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=checkin&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_ACTION_CHECKIN', '_JOMRES_ACTION_CHECKIN', false));
                         } else {
                             $toolbar->addItem('fa fa-sign-in', 'btn btn-default disabled', '', 'javascript:void();', jr_gettext('_JOMRES_ACTION_CHECKIN', '_JOMRES_ACTION_CHECKIN', false));
                         }
-                    } elseif ($p->bookedout == 0 && isset($MiniComponents->registeredClasses['06001checkin'])) {
+                    } elseif ($p->bookedout == 0 && isset($MiniComponents->registeredClasses['06001']['checkin'])) {
                         $toolbar->addItem('fa fa-sign-out', 'btn btn-success', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=checkout&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_ACTION_CHECKOUT', '_JOMRES_ACTION_CHECKOUT', false));
                         $toolbar->addSecondaryItem('fa fa-undo', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=undo_checkin&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_ACTION_UNDO_CHECKIN', '_JOMRES_ACTION_UNDO_CHECKIN', false));
                     } elseif ($p->bookedout == 1) {
                         $toolbar->addItem('fa fa-check', 'btn  btn-default disabled', '', 'javascript:void();', jr_gettext('_JOMRES_STATUS_CHECKEDOUT', '_JOMRES_STATUS_CHECKEDOUT', false));
                         $toolbar->addSecondaryItem('fa fa-undo', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=undo_checkout&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_ACTION_UNDO_CHECKOUT', '_JOMRES_ACTION_UNDO_CHECKOUT', false));
                     } else {
-                        $toolbar->addItem('fa fa-pencil-square-o', 'btn btn-default ', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=editBooking&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS', '_JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS', false));
+                        $toolbar->addItem('fa fa-pencil-square-o', 'btn btn-default ', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_booking&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS', '_JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS', false));
                     }
                     if ($p->bookedout == 0) {
-                        if ($p->approved == 0 && isset($MiniComponents->registeredClasses['00005booking_enquiries'])) {
+                        if ($p->approved == 0 && isset($MiniComponents->registeredClasses['00005']['booking_enquiries'])) {
                             $toolbar->addSecondaryItem('fa fa-check', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=approve_enquiry&contractUid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_BOOKING_APPROVE_INQUIRY', '_JOMRES_BOOKING_APPROVE_INQUIRY', false));
                             $toolbar->addSecondaryItem('fa fa-times', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=reject_enquiry&contractUid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_BOOKING_REJECT_INQUIRY', '_JOMRES_BOOKING_REJECT_INQUIRY', false));
                         }
                         $toolbar->addSecondaryItem('fa fa-pencil-square-o', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=amendBooking&contractUid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_CONFIRMATION_AMEND', '_JOMRES_CONFIRMATION_AMEND', false));
-                        $toolbar->addSecondaryItem('fa fa-usd', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=addServiceToBill&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_COM_ADDSERVICE_TITLE', '_JOMRES_COM_ADDSERVICE_TITLE', false));
+                        $toolbar->addSecondaryItem('fa fa-usd', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=add_service_to_bill&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_COM_ADDSERVICE_TITLE', '_JOMRES_COM_ADDSERVICE_TITLE', false));
                     }
                     if ($p->deposit_paid == 0 && $p->bookedout == 0 && $p->cancelled == 0) {
-                        $toolbar->addSecondaryItem('fa fa-usd', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=editDeposit&contractUid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE', '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE', false));
+                        $toolbar->addSecondaryItem('fa fa-usd', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_deposit&contractUid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE', '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE', false));
                     }
                     if ($p->booked_in == 0) {
-                        $toolbar->addSecondaryItem('fa fa-trash-o', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=cancelBooking&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', '_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', false));
+                        $toolbar->addSecondaryItem('fa fa-trash-o', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=cancel_booking&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', '_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', false));
                     }
-                    if (isset($MiniComponents->registeredClasses['00005jomres_ical'])) {
+                    if (isset($MiniComponents->registeredClasses['00005']['jomres_ical'])) {
                         $toolbar->addSecondaryItem('fa fa-calendar', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=ical_export_contract&contract_uid='.$p->contract_uid.'&property_uid='.$p->property_uid), jr_gettext('_JOMRES_ICAL_EVENT', '_JOMRES_ICAL_EVENT', false));
                     }
                 } elseif ($p->cancelled == 1) {

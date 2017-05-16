@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -104,9 +104,7 @@ class j00060toptemplate
 
         $output[ 'BACKLINK' ] = '<a href="javascript:history.go(-1)">'.jr_gettext('_JOMRES_COM_MR_BACK', '_JOMRES_COM_MR_BACK').'</a>';
         $output[ 'LIVESITE' ] = get_showtime('live_site');
-        if (defined('JOMRESDATEPICKERLANG')) {
-            $output[ 'DATEPICKERLANG' ] = JOMRESDATEPICKERLANG;
-        }
+        $output[ 'DATEPICKERLANG' ] = get_showtime('datepicker_lang');
 
         $lang_dropdown = array();
         if ($jrConfig[ 'showLangDropdown' ] == '1')
@@ -138,14 +136,12 @@ class j00060toptemplate
         $jomres_messaging = jomres_singleton_abstract::getInstance('jomres_messages');
         $messages = $jomres_messaging->get_messages();
 
-        if (count($messages) > 0) {
+        if (!empty($messages)) {
             foreach ($messages as $mes) {
                 $m[ 'MESSAGE' ] = $mes;
                 $messaging[ ] = $m;
             }
         }
-
-        $output[ 'DEVICE_TYPE' ] = trim(get_showtime('device_type'));
 
         if (using_bootstrap()) {
             $output[ 'USING_BOOTSTRAP' ] = 'true';

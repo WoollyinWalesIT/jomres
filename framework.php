@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -87,8 +87,9 @@ function load_jomres_environment()
 
     //jomres session
     if (is_null($tmpBookingHandler->jomressession) || $tmpBookingHandler->jomressession == '') {
-        $tmpBookingHandler->initBookingSession(get_showtime('jomressession'));
-        $jomressession = $tmpBookingHandler->getJomressession();
+        $tmpBookingHandler->initBookingSession();
+        
+		$jomressession = $tmpBookingHandler->getJomressession();
         set_showtime('jomressession', $jomressession);
     }
 
@@ -114,9 +115,12 @@ function load_jomres_environment()
         $jomres_language->get_language($current_property_details->property_type);
     }
 
-    //00004 is triggered in this function now
     if (!AJAXCALL) {
-        init_javascript();
+		//add javascript to head
+        $MiniComponents->triggerEvent('00004');
+		
+		//core menu items
+		$MiniComponents->specificEvent('09995', 'menu', array()); //core menu items
     }
 
     //TODO find a better place

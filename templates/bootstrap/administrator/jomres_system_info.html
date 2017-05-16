@@ -1,4 +1,3 @@
-
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <div class="panel panel-default">
 	<div class="panel-heading">
@@ -6,27 +5,11 @@
 	</div>
 	<div class="panel-body">
 		<div class="jomres-system-info">
-			<p><strong>{_JOMRES_VERSIONCHECK_THISJOMRESVERSION} {THIS_JOMRES_VERSION}</strong><br/>
-			<strong>{_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION} {LATEST_JOMRES_VERSION}</strong></p>
+			<p>{_JOMRES_VERSIONCHECK_THISJOMRESVERSION} <span class="label label-blue pull-right">{THIS_JOMRES_VERSION}</span><p>
+			<p>{_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION} <span class="label {JOMRES_VERSION_LABEL_CLASS} pull-right">{LATEST_JOMRES_VERSION}</span></p>
 			<div id="version_check_warning">
-				<div class="{HIGHLIGHT}">{ALERT}{EFFECT}</div>
+				<div class="{HIGHLIGHT}">{ALERT}{ERROR}</div>
 			</div>
-			<p>{_JOMRES_PRODUCT_INFORMATION}</p>
-			<p>{_JOMRES_PRODUCT_INFORMATION2}</p>
-			<hr/>
-			<div class="{ADVANCED_SITE_CONFIG_WARNING_HIGHLIGHT}">{ADVANCED_SITE_CONFIG_WARNING}</div>
-			<div class="{JOMRES_DEFAULT_SHORTCODE_HIGHLIGHT}">{JOMRES_DEFAULT_SHORTCODE_ALERT}</div>
-			<div>{LOGFILE_LOCATION_WARNING}</div>
-			
-			<div>{MAX_INPUT_VARS_CHECK}</div>
-			<div>{SUHOSIN_GET_MAX_VARS_CHECK}</div>
-			<div>{GMAPS_KEY_WARNING}</div>
-			<div>{IPINFODB_KEY_WARNING}</div>
-			<div>{OPENEXCHANGERATES_KEY_WARNING}</div>
-			<div>{PROPERTY_TYPE_WARNING}</div>
-			<!--<div>{PLUGIN_CHECK}</div>-->
-			
-			<div class="{ACCESS_CONTROL_HIGHLIGHT}">{ACCESS_CONTROL_ALERT}</div>
 		</div>
 	</div>
 </div>

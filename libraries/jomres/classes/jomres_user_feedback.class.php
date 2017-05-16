@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -15,32 +15,34 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 // A class for providing feedback to all users
-
+//not currently used in any way
 class jomres_user_feedback
 {
-    public function __construct($autorun = true)
+	private static $configInstance;
+
+    public function __construct()
     {
-        if (get_showtime('no_html') == 1 || get_showtime('popup') == 1 || AJAXCALL) {
-            return '';
+        $this->user_feedback_messages = array();
+        $this->messages = '';
+		$this->css_classes_danger = 'danger';
+		$this->css_classes_warning = 'warning';
+		$this->css_classes_successs = 'success';
+		$this->css_classes_info = 'info';
+    }
+	
+	public static function getInstance()
+    {
+        if (!self::$configInstance) {
+            self::$configInstance = new self();
         }
-        if ($autorun) {
-            $this->messages = '';
-            $this->css_classes_danger = 'danger';
-            $this->css_classes_warning = 'warning';
-            $this->css_classes_successs = 'success';
-            $this->css_classes_info = 'info';
-        }
+
+        return self::$configInstance;
     }
 
     public function generate_messages()
     {
-        if (get_showtime('no_html') == 1 || get_showtime('popup') == 1 || AJAXCALL) {
-            return '';
-        }
-
-        if (count(get_showtime('user_feedback_messages')) > 0) {
-            $messages = get_showtime('user_feedback_messages');
-            foreach ($messages as $message) {
+        if (!empty($this->user_feedback_messages)) {
+            foreach ($this->user_feedback_messages as $message) {
                 $this->messages .= $this->construct_message($message);
             }
         }
@@ -94,6 +96,6 @@ class jomres_user_feedback
         $tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
         $tmpl->readTemplatesFromInput('user_feedback_pane.html');
 
-        return $tmpl->getParsedTemplate();
+        $this->user_feedback_messages[] = $tmpl->getParsedTemplate();
     }
 }

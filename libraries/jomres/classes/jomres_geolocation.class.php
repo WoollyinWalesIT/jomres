@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -94,18 +94,18 @@ class jomres_geolocation
     public function auto_set_user_currency_code()
     {
         $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
-        jr_import('currency_codes');
-        $currency_codes = new currency_codes();
-        $country_codes_to_currency_codes = $currency_codes->country_codes_to_currency_codes;
-        if (isset($country_codes_to_currency_codes[ $this->detected_country ])) {
-            $currency_code = $country_codes_to_currency_codes[ $this->detected_country ];
+        
+		$currency_codes = jomres_singleton_abstract::getInstance('currency_codes');
+        
+		if (isset($currency_codes->country_codes_to_currency_codes[ $this->detected_country ])) {
+            $currency_code = $currency_codes->country_codes_to_currency_codes[ $this->detected_country ];
         } else {
             $currency_code = 'EUR';
         }
 
-        jr_import('jomres_currency_conversion');
-        $conversion = new jomres_currency_conversion();
-        if ($conversion->this_code_can_be_converted($currency_code)) {
+        $jomres_currency_conversion = jomres_singleton_abstract::getInstance('jomres_currency_conversion');
+		
+        if ($jomres_currency_conversion->this_code_can_be_converted($currency_code)) {
             $tmpBookingHandler->user_settings[ 'current_exchange_rate' ] = $currency_code;
         } else {
             $tmpBookingHandler->user_settings[ 'current_exchange_rate' ] = 'EUR';

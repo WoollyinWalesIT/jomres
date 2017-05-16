@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -589,18 +589,106 @@ function doTableUpdates()
         doUserRolesUpdates();
     }
 
+    if (!checkRoomDescriptionColExists()) {
+        alterRoomsDescriptionCol();
+    }
+    
     change_default_date_value_for_subscriptions_table();
 
     if (!checkPtypesMarkerColExists()) {
         alterPtypesMarkerCol();
     }
 
+    if (!checkGuestsBlacklistedColExists()) {
+        alterGuestsBlacklistedCol();
+    }
+    
 	copy_default_property_type_markers();
     drop_orphan_line_items_table();
     drop_room_images_table();
+	drop_cronlog_table();
     add_api_tables();
+	add_jomres_sessions_table();
+	add_jomres_template_package_table();
     updateSiteSettings('update_time', time());
     
+}
+
+
+		
+function add_jomres_template_package_table()
+{
+	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_template_package_overrides (
+		`id` INT(11) auto_increment,
+        `template_name` VARCHAR(100) NOT NULL,
+		`path` VARCHAR(1000) NOT NULL,
+        PRIMARY KEY (`id`)
+        )";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to create the __jomres_template_package_overrides table', 'danger');
+    }
+}
+
+function add_jomres_sessions_table()
+{
+	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_sessions (
+        `session_id` VARCHAR(50) NOT NULL, 
+        `data` TEXT, 
+        `last_changed` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, 
+        PRIMARY KEY (`session_id`)
+        )";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to create the __jomres_sessions table', 'danger');
+    }
+}
+
+function alterGuestsBlacklistedCol()
+{
+    $query = 'ALTER TABLE `#__jomres_guests` ADD `blacklisted` tinyint( 1 ) default 0 NOT NULL ';
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to add __jomres_guests blacklisted', 'danger');
+    }
+}
+
+function checkGuestsBlacklistedColExists()
+{
+    $query = "SHOW COLUMNS FROM #__jomres_guests LIKE 'blacklisted'";
+    $result = doSelectSql($query);
+    if (count($result) > 0) {
+        return true;
+    }
+
+    return false;
+}
+
+function checkRoomDescriptionColExists()
+{
+    $query = "SHOW COLUMNS FROM #__jomres_rooms LIKE 'description'";
+    $result = doSelectSql($query);
+    if (count($result) > 0) {
+        return true;
+    }
+
+    return false;
+}
+
+function alterRoomsDescriptionCol()
+{
+    $query = 'ALTER TABLE #__jomres_rooms ADD `tagline` VARCHAR(255)';
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to add __jomres_rooms tagline column', 'danger');
+    }
+    $query = 'ALTER TABLE #__jomres_rooms ADD `description` TEXT';
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to add __jomres_rooms descriptions column', 'danger');
+    }
+}
+
+function drop_cronlog_table() {
+	$query = 'DROP TABLE IF EXISTS `#__jomcomp_cronlog` ';
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to drop #__jomcomp_cronlog table', 'danger');
+    }
 }
 
 function copy_default_property_type_markers() {
@@ -2902,12 +2990,6 @@ function updateMrConfig()
 
 function updatePluginSettings()
 {
-    // Pseudocron settings
-    $pluginConfig[ 'jomcompcronjobs' ][ 'method' ] = 'Minicomponent';
-    $pluginConfig[ 'jomcompcronjobs' ][ 'displaylogging' ] = '0';
-    $pluginConfig[ 'jomcompcronjobs' ][ 'logging' ] = '0';
-    $pluginConfig[ 'jomcompcronjobs' ][ 'verbose' ] = '0';
-
     // Invoices backend paypal settings
     $pluginConfig[ 'backend_paypal_settings' ][ 'usesandbox' ] = '1';
     $pluginConfig[ 'backend_paypal_settings' ][ 'currencycode' ] = 'EUR';
@@ -3302,17 +3384,6 @@ function createJomresTables()
 		PRIMARY KEY ( `id` )
 		);
 		";
-    if (!doInsertSql($query)) {
-        output_message('Failed to run query: '.$query, 'danger');
-    }
-
-    $query = '
-	CREATE TABLE IF NOT EXISTS `#__jomcomp_cronlog` (
-		`id` int NOT NULL AUTO_INCREMENT ,
-		`log_details` text null,
-		PRIMARY KEY ( `id` )
-		);
-	';
     if (!doInsertSql($query)) {
         output_message('Failed to run query: '.$query, 'danger');
     }
@@ -3712,6 +3783,7 @@ function createJomresTables()
 		`vat_number_validated` BOOL NOT NULL DEFAULT '0',
 		`vat_number_validation_response` TEXT NULL,
 		`partner_id` INT(11) NOT NULL DEFAULT 0 NOT NULL,
+        `blacklisted` tinyint( 1 ) default 0 NOT NULL,
 		PRIMARY KEY(guests_uid)
 		) ";
     if (!doInsertSql($query)) {
@@ -3755,6 +3827,8 @@ function createJomresTables()
 		`room_floor` VARCHAR(10) NULL,
 		`max_people` INTEGER NULL,
 		`singleperson_suppliment` DOUBLE DEFAULT '0',
+        `tagline` VARCHAR(255),
+        `description` TEXT,
 		PRIMARY KEY(`room_uid`)
 		) ";
     if (!doInsertSql($query)) {
@@ -3999,7 +4073,26 @@ function createJomresTables()
     if (!checkPartnerBookingsTableExists()) {
         createPartnerBookingsTable();
     }
+	
+	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_sessions (
+        `session_id` VARCHAR(50) NOT NULL, 
+        `data` TEXT, 
+        `last_changed` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, 
+        PRIMARY KEY (`session_id`)
+        )";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to create the __jomres_sessions table', 'danger');
+    }
 
+	$query = "CREATE TABLE IF NOT EXISTS #__jomres_template_package_overrides (
+		`id` INT(11) auto_increment,
+        `template_name` VARCHAR(100) NOT NULL,
+		`path` VARCHAR(1000) NOT NULL,
+        PRIMARY KEY (`id`)
+        )";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to create the __jomres_template_package_overrides table', 'danger');
+    }
     //create the configuration file and drop _site_settings
     save_configuration_file();
 }
@@ -5125,16 +5218,6 @@ function addNewTables()
         output_message('Failed to run query: '.$query, 'danger');
     }
 
-    $query = '
-	CREATE TABLE IF NOT EXISTS `#__jomcomp_cronlog` (
-		`id` int NOT NULL AUTO_INCREMENT ,
-		`log_details` text null,
-		PRIMARY KEY ( `id` )
-		);';
-    if (!doInsertSql($query)) {
-        output_message('Failed to run query: '.$query, 'danger');
-    }
-
     $query = 'CREATE TABLE IF NOT EXISTS `#__jomres_managers_propertys_xref` (
 		`id` int(11) NOT NULL auto_increment,
 		`manager_id` int(11),
@@ -5222,7 +5305,6 @@ function reinstallJomresJoomlaFiles()
     //if ( !AUTO_UPGRADE ) output_message ( "Copying Jomres v4 /components/com_jomres and /administrator/components/com_jomres files." );
     $result = copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'admin.jomres.php', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'administrator'.JRDS.'components'.JRDS.'com_jomres'.JRDS.'admin.jomres.php');
     $result = copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'jomres.xml', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'administrator'.JRDS.'components'.JRDS.'com_jomres'.JRDS.'jomres.xml');
-    $result = copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'uninstall.jomres.php', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'administrator'.JRDS.'components'.JRDS.'com_jomres'.JRDS.'uninstall.jomres.php');
     $result = copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'jomres.php', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'jomres.php');
 }
 

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -33,14 +33,6 @@ class jomres_property_types
 
         $jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
         $this->property_type['marker_image'] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/'.$jomres_media_centre_images->multi_query_images['noimage-small'];
-
-        //retrieve property types data from cache, if available
-        $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-        $property_types_data = $c->retrieve('property_types_data');
-
-        if ($property_types_data !== false) {
-            $this->property_types = $property_types_data['property_types'];
-        }
     }
 
     public static function getInstance()
@@ -67,8 +59,6 @@ class jomres_property_types
             $this->property_types = array();
         }
 
-        $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-
         $query = 'SELECT `id`, `ptype`, `ptype_desc`, `published`, `order`, `mrp_srp_flag`, `marker` FROM #__jomres_ptypes ORDER BY `order` ASC';
         $result = doSelectSql($query);
 
@@ -87,8 +77,6 @@ class jomres_property_types
            
 			$this->property_types[$r->id]['marker_image'] = get_marker_src($this->property_types[$r->id]['marker']);
         }
-
-        $c->store('property_types_data', array('property_types' => $this->property_types));
 
         return true;
     }
@@ -264,7 +252,7 @@ class jomres_property_types
         //find the properties requiring attention
         foreach ($this->property_types as $t) {
             if ($t['mrp_srp_flag'] == 0 || $t['mrp_srp_flag'] == 1) {
-                if (!array_key_exists($t['id'], $jomres_room_types->all_ptype_rtype_xrefs)) {
+                if (!isset($jomres_room_types->all_ptype_rtype_xrefs[$t['id']])) {
                     $property_types_requiring_attention[] = array('ptype_abbv' => $t['ptype'], 'process' => $t['mrp_srp_flag']);
                 }
             }

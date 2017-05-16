@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -81,8 +81,9 @@ class j06005list_invoices_ajax
          */
         $sWhere = '';
         if (isset($_GET['sSearch']) && $_GET['sSearch'] != '') {
+			$n = count($aColumns);
             $sWhere = 'AND (';
-            for ($i = 0; $i < count($aColumns); ++$i) {
+            for ($i = 0; $i < $n; ++$i) {
                 $sWhere .= ''.$aColumns[$i]." LIKE '%".jomresGetParam($_GET, 'sSearch', '')."%' OR ";
             }
             $sWhere = substr_replace($sWhere, '', -3);
@@ -256,9 +257,9 @@ class j06005list_invoices_ajax
                 $toolbar->newToolbar();
                 $toolbar->addItem('fa fa-pencil-square-o', 'btn btn-info', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=view_invoice&id='.$p->id.$thisProperty), jr_gettext('COMMON_VIEW', 'COMMON_VIEW', false));
                 if ((int) $p->contract_id != 0 && (int) $p->status != 1) {
-                    if ($thisJRUser->userIsManager || $thisJRUser->superPropertyManager) {
+                    if ($thisJRUser->userIsManager && $p->approved == 1) {
                         $toolbar->addSecondaryItem('fa fa-check', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=mark_booking_invoice_paid&id='.$p->id.$thisProperty), jr_gettext('_JOMRES_INVOICE_MARKASPAID', '_JOMRES_INVOICE_MARKASPAID', false));
-                        $toolbar->addSecondaryItem('fa fa-pencil-square-o', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=editBooking&contract_uid='.$p->contract_id.$thisProperty), jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING', '_JOMCOMP_MYUSER_VIEWBOOKING', false));
+                        $toolbar->addSecondaryItem('fa fa-pencil-square-o', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_booking&contract_uid='.$p->contract_id.$thisProperty), jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING', '_JOMCOMP_MYUSER_VIEWBOOKING', false));
                     }
                     if ($thisJRUser->userIsRegistered && !$thisJRUser->userIsManager && !$thisJRUser->superPropertyManager) {
                         $toolbar->addSecondaryItem('fa fa-file-text', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=muviewbooking&contract_uid='.$p->contract_id.$thisProperty), jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING', '_JOMCOMP_MYUSER_VIEWBOOKING', false));

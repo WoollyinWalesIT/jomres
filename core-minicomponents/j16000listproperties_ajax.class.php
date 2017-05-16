@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -76,8 +76,9 @@ class j16000listproperties_ajax
          */
         $sWhere = '';
         if (isset($_GET['sSearch']) && $_GET['sSearch'] != '') {
+			$n = count($aColumns);
             $sWhere = 'AND (';
-            for ($i = 0; $i < count($aColumns); ++$i) {
+            for ($i = 0; $i < $n; ++$i) {
                 $sWhere .= '`'.$aColumns[$i]."` LIKE '%".jomresGetParam($_GET, 'sSearch', '')."%' OR ";
             }
             $sWhere .= "`customtext` LIKE '%".jomresGetParam($_GET, 'sSearch', '')."%' ";

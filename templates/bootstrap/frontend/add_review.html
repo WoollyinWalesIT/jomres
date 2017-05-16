@@ -1,17 +1,16 @@
-
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script language="JavaScript" type="text/javascript">
 	<!--
-	jomresJquery.validator.setDefaults({
-		highlight: function (input) {
-			jomresJquery(input).addClass("ui-state-highlight");
-		},
-		unhighlight: function (input) {
-			jomresJquery(input).removeClass("ui-state-highlight");
-		}
-	});
-
 	jomresJquery(document).ready(function () {
+		jomresJquery.validator.setDefaults({
+			highlight: function (input) {
+				jomresJquery(input).addClass("ui-state-highlight");
+			},
+			unhighlight: function (input) {
+				jomresJquery(input).removeClass("ui-state-highlight");
+			}
+		});
+	
 		jomresJquery("#reviewForm").validate({
 			rules: {
 				review_title: "required",

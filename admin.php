@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -20,7 +20,7 @@ ob_start('removeBOMadmin');
 @ini_set('max_execution_time', '480');
 
 //TODO: remove these too
-global $thisJRUser, $htmlFuncs;
+global $thisJRUser;
 
 require_once dirname(__FILE__).'/integration.php';
 
@@ -31,14 +31,6 @@ try {
     //site config object
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
-
-    //performance monitor
-    $performance_monitor = jomres_singleton_abstract::getInstance('jomres_performance_monitor');
-    if ($jrConfig[ 'errorChecking' ] == '1') {
-        $performance_monitor->switch_on();
-    } else {
-        $performance_monitor->switch_off();
-    }
 
     //get all properties in system.
     $jomres_properties = jomres_singleton_abstract::getInstance('jomres_properties');
@@ -57,8 +49,6 @@ try {
     //user object
     $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
-    logging::log_message('Jomres admin started', 'Core', 'INFO');
-
     //input filtering
     $MiniComponents->triggerEvent('00003');
 
@@ -66,7 +56,6 @@ try {
     $cron = jomres_singleton_abstract::getInstance('jomres_cron');
     if ($cron->method == 'Minicomponent' && !AJAXCALL) {
         $cron->triggerJobs();
-        $cron->displayDebug();
     }
 
     //session
@@ -84,21 +73,15 @@ try {
     //currency conversion object
     $jomres_currency_exchange_rates = jomres_singleton_abstract::getInstance('jomres_currency_exchange_rates');
 
-    //clean up temp js files if we`re saving the site config
-    if ($task == 'save_site_settings') {
-        // We're going to silently delete any .js files in the temp dir. This is a basic cleanup, if a server's moved from A to B or an upgrade changes something then we'll delete .js files that might cause problems if they're wrong. Any .js files that don't exist are automatically recreated so this will ensure that the js remains fresh.
-        $javascript_files_in_temp_dir = scandir_getfiles(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS, $extension = 'js');
-        foreach ($javascript_files_in_temp_dir as $file) {
-            unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.$file);
-        }
-    }
+    require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'siteconfig.functions.php';
 
-    require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'admin'.JRDS.'functions'.JRDS.'siteconfig.functions.php';
-
-    //add javascript to head
-    if (!AJAXCALL) {
-        init_javascript();
-    }
+	if (!AJAXCALL) {
+		//add javascript to head
+		$MiniComponents->triggerEvent('00004');
+		
+		//core menu items
+		$MiniComponents->specificEvent('19995', 'menu', array()); //core menu items
+	}
 
     //00005 trigger point
     $MiniComponents->triggerEvent('00005');
@@ -116,14 +99,10 @@ try {
 
         $pageoutput = array();
         $output = array();
-
-        $htmlFuncs = jomres_singleton_abstract::getInstance('html_functions');
-
-        //cpanel main menu
-        $MiniComponents->triggerEvent('10002'); // 10002 scripts build the menu options
-        $MiniComponents->getAllEventPointsData('10002');
-        $MiniComponents->triggerEvent('10003'); // 10003 builds the menu arrays
-        $output[ 'CONTROL_PANEL_MENU' ] = $MiniComponents->miniComponentData[ '10004' ][ 'generate_control_panel' ]; // 10004 Builds the actual menu items
+		
+		//generate the cpanel menu
+		$MiniComponents->specificEvent('19997', 'menu', array());
+		$output[ 'CONTROL_PANEL_MENU' ] = $MiniComponents->miniComponentData[ '19997' ][ 'menu' ];
 
         //frequently asked questions
         $output['_JOMRES_FAQ'] = jr_gettext('_JOMRES_FAQ', '_JOMRES_FAQ', false);
@@ -149,20 +128,16 @@ try {
         //language dropdown
         $output[ 'LANGDROPDOWN' ] = $jomres_language->get_languageselection_dropdown();
 
-        $output[ 'BACKTOTOP' ] = jr_gettext('BACKTOTOP', 'BACKTOTOP', false);
-
-        if (using_bootstrap()) {
-            $output[ 'USING_BOOTSTRAP' ] = 'true';
-        } else {
-            $output[ 'USING_BOOTSTRAP' ] = 'false';
-        }
-
+		//check jomres support key
         jr_import('jomres_check_support_key');
         //if ($_REQUEST['task'] != "showplugins")
         //	{
             $key_validation = new jomres_check_support_key(JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins');
         $output['LICENSE_WARNING'] = $MiniComponents->specificEvent('16000', 'show_license_message', array('output_now' => false, 'as_modal' => false));
         //	}
+
+		//bootstrap
+		$output[ 'USING_BOOTSTRAP' ] = 'true';
 
         if ($jrConfig['use_bootstrap_in_frontend'] == '0') {
             $output['BOOTSTRAP_WARNING'] = $MiniComponents->specificEvent('16000', 'show_bootstrap_warning', array('output_now' => false));
@@ -172,7 +147,11 @@ try {
         $pageoutput[ ] = $output;
         $tmpl = new patTemplate();
         $tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
-        $tmpl->readTemplatesFromInput('administrator_content_area_top.html');
+		if (this_cms_is_joomla()) {
+			$tmpl->readTemplatesFromInput('administrator_content_area_top_vertical.html');
+		} else {
+			$tmpl->readTemplatesFromInput('administrator_content_area_top.html');
+		}
         $tmpl->addRows('pageoutput', $pageoutput);
         $tmpl->displayParsedTemplate();
     }
@@ -188,7 +167,7 @@ try {
         setcookie('periodoption', $periodoption, time() + 60 * 60);
     }
 
-    // admins_first_run();
+    //admins_first_run();
 
     //task
     switch (get_showtime('task')) {
@@ -204,19 +183,23 @@ try {
 
     //output bottom area
     if (!AJAXCALL) {
-        $performance_monitor->set_point('end run');
-        $performance_monitor->output_report();
-
         $pageoutput[] = $output;
         $tmpl = new patTemplate();
         $tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
-        $tmpl->readTemplatesFromInput('administrator_content_area_bottom.html');
+		if (this_cms_is_joomla()) {
+			$tmpl->readTemplatesFromInput('administrator_content_area_bottom_vertical.html');
+		} else {
+			$tmpl->readTemplatesFromInput('administrator_content_area_bottom.html');
+		}
         $tmpl->addRows('pageoutput', $pageoutput);
         $tmpl->displayParsedTemplate();
     }
 
     $componentArgs = array();
     $MiniComponents->triggerEvent('99999', $componentArgs);
+	
+	//close/save jomres session
+    $tmpBookingHandler->close_jomres_session();
 
     //done
     endrun();

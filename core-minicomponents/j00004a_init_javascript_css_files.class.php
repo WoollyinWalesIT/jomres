@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -25,20 +25,27 @@ class j00004a_init_javascript_css_files
 
             return;
         }
+		
+		if (AJAXCALL) {
+            return true;
+        }
 
-        if (!defined('JOMRES_JSCALLED')) {
+        if (defined('JOMRES_NOHTML') && JOMRES_NOHTML == 1) {
+            return true;
+        }
+		
+		if (!defined('JOMRES_JSCALLED')) {
             define('JOMRES_JSCALLED', 1);
         } else {
             return true;
         }
-
-        if (AJAXCALL == '1') {
-            return true;
-        }
-
-        if (defined('JOMRES_NOHTML') && JOMRES_NOHTML == '1') {
-            return true;
-        }
+		
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+        $jrConfig = $siteConfig->get();
+		
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+		
+		$management_view = jomresGetParam($_REQUEST, 'tmpl', false);
 
         if (!isset($jrConfig[ 'load_jquery_ui' ])) {
             $jrConfig[ 'load_jquery_ui' ] = '1';
@@ -47,12 +54,7 @@ class j00004a_init_javascript_css_files
             $jrConfig[ 'load_jquery_ui_css' ] = '1';
         }
 
-        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-        $management_view = jomresGetParam($_REQUEST, 'tmpl', false);
-
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
-        if (!isset($jrConfig[ 'jquery_ui_theme_detected' ])) {
+		if (!isset($jrConfig[ 'jquery_ui_theme_detected' ])) {
             $jrConfig[ 'jquery_ui_theme_detected' ] = 'jomres^jquery-ui.css';
         }
 
@@ -106,9 +108,7 @@ class j00004a_init_javascript_css_files
 
         $javascript_files[] = array(JOMRES_ROOT_DIRECTORY.'/javascript/', 'jomres.js');
 
-        $jomreslang = jomres_singleton_abstract::getInstance('jomres_language');
-        define('JOMRESDATEPICKERLANG', $jomreslang->datepicker_crossref[ $jomreslang->lang ]);
-        $datepicker_localisation_file = 'jquery.ui.datepicker-'.JOMRESDATEPICKERLANG.'.js';
+        $datepicker_localisation_file = 'jquery.ui.datepicker-'.get_showtime('datepicker_lang').'.js';
 
         $javascript_files[] = array(JOMRES_ROOT_DIRECTORY.'/javascript/jquery-ui-cal-localisation/', $datepicker_localisation_file);
 
@@ -188,11 +188,6 @@ class j00004a_init_javascript_css_files
             $ls = $IDN->decode($ls);
         }
 
-        /* jr_import('javascript_cache');
-        $cache = new javascript_cache();
-        $cache->cache_javascript($javascript_files);
-        $javascript_files = $cache->get_files(); */
-
         //now let`s add the js and css in the head
         foreach ($javascript_files as $file) {
             jomres_cmsspecific_addheaddata('javascript', $file[0], $file[1]);
@@ -203,11 +198,6 @@ class j00004a_init_javascript_css_files
         }
     }
 
-/**
- * Must be included in every mini-component.
- #
- * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
- */
     // This must be included in every Event/Mini-component
     public function getRetVals()
     {

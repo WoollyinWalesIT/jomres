@@ -3,7 +3,7 @@
  * Core file
  *
  * @author Vince Wooll <sales@jomres.net>
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  * @package Jomres
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
@@ -23,14 +23,6 @@ class jomres_property_features_categories
 
 		$this->id							= 0;					// property feature category id
 		$this->title						= '';					// property feature category title
-		
-		//retrieve property features data from cache, if available
-		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
-		
-		if ( $c->isCached('property_features_categories') )
-			{
-			$this->property_features_categories 	= $c->retrieve('property_features_categories');
-			}
 		}
 
 	public static function getInstance()
@@ -52,9 +44,7 @@ class jomres_property_features_categories
 			}
 		else
 			$this->property_features_categories = array();
-		
-		$c = jomres_singleton_abstract::getInstance( 'jomres_array_cache' );
-		
+
 		$query = "SELECT `id`,`title` FROM #__jomres_hotel_features_categories ORDER BY `title` ";
 		$result = doSelectSql( $query );
 		
@@ -69,8 +59,6 @@ class jomres_property_features_categories
 			$this->property_features_categories[(int)$r->id]['title'] 	= jr_gettext('_JOMRES_PROPERTY_FEATURES_CATEGORY'.(int)$r->id, stripslashes($r->title),false);
 			}
 
-		$c->store('property_features_categories',$this->property_features_categories);
-		
 		return true;
 		}
 	
@@ -82,7 +70,7 @@ class jomres_property_features_categories
 			return true;
 			}
 		
-		if ( is_array($this->property_features_categories) && array_key_exists( (int)$id, $this->property_features_categories ) )
+		if ( is_array($this->property_features_categories) && isset($this->property_features_categories[(int)$id]) )
 			{
 			$this->id		= $this->property_features_categories[ (int)$id ]['id'];					// property feature category id
 			$this->title	= $this->property_features_categories[ (int)$id ]['title'];					// property feature category title

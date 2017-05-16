@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -75,11 +75,15 @@ class j06000show_property_room
         $output = array();
         $pageoutput = array();
 
-        if (count($basic_room_details->room) > 0) {
+        if (!empty($basic_room_details->room)) {
+            
+            jr_import('jomres_markdown');
+            $jomres_markdown = new jomres_markdown();
+        
             //get room and room feature images
             $jomres_media_centre_images->get_images($property_uid, array('rooms', 'room_features'));
 
-            if (count($jomres_media_centre_images->images['rooms'][$room_uid]) > 0) {
+            if (!empty($jomres_media_centre_images->images['rooms'][$room_uid])) {
                 $result = $MiniComponents->specificEvent('01060', 'slideshow', array('images' => $jomres_media_centre_images->images['rooms'][$room_uid]));
                 $output[ 'SLIDESHOW' ] = $result ['slideshow'];
             } else {
@@ -95,6 +99,9 @@ class j06000show_property_room
             $output[ 'ROOMNUMBER' ] = stripslashes($basic_room_details->room['room_number']);
             $output[ 'ROOMFLOOR' ] = stripslashes($basic_room_details->room['room_floor']);
             $output[ 'MAXPEOPLE' ] = $basic_room_details->room['max_people'];
+            
+            $output[ 'TAGLINE' ] = $basic_room_details->room['tagline'];
+            $output[ 'DESCRIPTION' ] = $jomres_markdown->get_markdown($basic_room_details->room['description']);
 
             $output[ 'ROOMTYPE' ] = $current_property_details->all_room_types[ $basic_room_details->room['room_classes_uid'] ]['room_class_abbv'];
 

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -159,7 +159,7 @@ $jrConfig = ' .var_export($jrConfig, true).';
             $jomres_db = jomres_singleton_abstract::getInstance('jomres_database');
             $jomres_db->setQuery($query);
             $jomres_db->loadObjectList();
-            if (count($jomres_db->result) > 0) {
+            if (!empty($jomres_db->result)) {
                 foreach ($jomres_db->result as $setting) {
                     $akey = $setting->akey;
                     $value = $setting->value;
@@ -168,7 +168,7 @@ $jrConfig = ' .var_export($jrConfig, true).';
             }
 
             // Now we'll check to see if any new settings have been added to the jrConfig file. If they have they'll be added to the site settings table.
-            if (count($jomres_db->result) == 0) {
+            if (empty($jomres_db->result)) {
                 $jomresConfig_dbprefix = get_showtime('dbprefix');
                 $jomresConfig_db = get_showtime('db');
 
@@ -178,7 +178,7 @@ $jrConfig = ' .var_export($jrConfig, true).';
                 $jomres_db->setQuery($query);
                 $result = $jomres_db->loadObjectList();
                 $string = 'Tables_in_'.$jomresConfig_db;
-                if (count($result) > 0) {
+                if (!empty($result)) {
                     foreach ($result as $r) {
                         if (strstr($r->$string, $jomresConfig_dbprefix.'jomres_site_settings')) {
                             $tablesFound = true;

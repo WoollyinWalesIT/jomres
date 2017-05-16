@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -48,8 +48,12 @@ class j16000listPfeatures
             $selected_ptype_rows = '';
             
 			foreach ($f['ptype_xref'] as $ptype_id) {
-				$selected_ptype_rows .= $jomres_property_types->property_types[ $ptype_id ]['ptype'].', ';
+                if (isset($jomres_property_types->property_types[ $ptype_id ]['ptype'])) {
+                    $selected_ptype_rows .= $jomres_property_types->property_types[ $ptype_id ]['ptype'].', ';
+                }
 			}
+			
+			$selected_ptype_rows = rtrim($selected_ptype_rows, ', ');
 
 			$r[ 'PROPERTYFEATUREUID' ] = $f['id'];
             $r[ 'CHECKBOX' ] = '<input type="checkbox" id="cb'.count($rows).'" name="idarray[]" value="'.$f['id'].'" onClick="jomres_isChecked(this.checked);">';

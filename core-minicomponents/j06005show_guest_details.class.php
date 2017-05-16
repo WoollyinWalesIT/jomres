@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -44,13 +44,13 @@ class j06005show_guest_details
             $userid = $thisJRUser->id;
             $query = 'SELECT guests_uid FROM #__jomres_guests WHERE `mos_userid`= '.(int) $userid.'';
             $result = doSelectSql($query);
-            if (count($result) < 1) {
+            if (empty($result)) {
                 throw new Exception('Unable to view guest details, either guest id not found, or guest id tampered with.');
             }
         } elseif ($thisJRUser->is_partner) {
             $partners = jomres_singleton_abstract::getInstance('jomres_partners');
             $partner_guests = $partners->get_guest_uids_for_partner($thisJRUser->id);
-            if (count($partner_guests) < 1) {
+            if (empty($partner_guests)) {
                 throw new Exception("Unable to view guest details, this partner doesn't have sufficient rights to view this guest's details.");
             }
         }

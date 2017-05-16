@@ -1,29 +1,35 @@
-<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
 
 <h2>{PAGETITLE}</h2>
 
+<!-- works better on small screens when built as tables, than when built as css rows -->
 <form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm">
 	{JOMRESTOOLBAR}
 	<table width="100%" border="0">
-		<tr>
-			<th class="ui-state-default">{HROOMTYPE}</th>
-			<th class="ui-state-default">{HNUMBEROFROOMS}</th>
-			<th class="ui-state-default">{HROOMRATEPERDAY}</th>
-			<th class="ui-state-default">{HMAXPEOPLE_ROOM}</th>
-			<th class="ui-state-default">{HMAXPEOPLE_TARIFF}</th>
-		</tr>
-		<patTemplate:tmpl name="rows" unusedvars="nbsp">
-			<tr class="{CLASS}">
+		<thead>
+			<tr>
+				<th class="ui-state-default">{HROOMTYPE}</th>
+				<th class="ui-state-default">{HNUMBEROFROOMS}</th>
+				<th class="ui-state-default">{HROOMRATEPERDAY}</th>
+				<th class="ui-state-default">{HMAXPEOPLE_ROOM}</th>
+				<th class="ui-state-default">{HMAXPEOPLE_TARIFF}</th>
+			</tr>
+		</thead>
+		<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="room_class_abbv">
+			<tr>
 				<td>{ROOM_CLASS_ABBV}</td>
 				<td>{ROOMNUMBERDROPDOWN}</td>
 				<td>{ROOMRATEPERDAY}</td>
 				{EXISTINGROOMS}
+				{TARIFFTYPEID}
+				{RATESUID}
 				<td>{MAX_PEOPLE_ROOM}</td>
 				<td>{MAX_PEOPLE_TARIFF}</td>
 			</tr>
 		</patTemplate:tmpl>
+		</tbody>
 	</table>
-	<input type="hidden" name="no_html" value="1" />
-	<input type="hidden" name="task" value="saveTariff"/>
+	<input type="hidden" name="task" value="save_normalmode_tariffs"/>
 </form>
 </patTemplate:tmpl>

@@ -171,6 +171,7 @@
 					<span id="helpBlock" class="help-block">{_JOMRES_PERMIT_NUMBER_DESCRIPTION}</span>
 				</div>
 			</div>
+			<patTemplate:tmpl name="stars" type="simpleCondition" requiredVars="hstars">
 			<div class="form-group">
 				<label class="col-md-2 control-label" for="stars">{HSTARS}</label><div id="tour_target_registration_2_stars"></div>
 				<div class="col-md-10">
@@ -183,6 +184,7 @@
 					{SUPERIOR_DROPDOWN}
 				</div>
 			</div>
+			</patTemplate:tmpl>
 		</div>
 	</div>
 	<div class="row">
@@ -298,7 +300,7 @@
 		</div>
 	</div>
 	<input type="hidden" name="property_uid" value="{PROPERTYUID}"/>
-	<input type="hidden" name="task" value="saveProperty"/>
+	<input type="hidden" name="task" value="save_property"/>
 </form>
 
 {SIMPLEMDE_JAVASCRIPT}

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -24,21 +24,23 @@ class jrportal_rooms
     public function init_room()
     {
         $this->room_uid = 0;
-        $this->room_classes_uid = 0;        // new room id default
-        $this->propertys_uid = 0;        // resource type id
-        $this->room_features_uid = array();    // room features array
-        $this->room_name = '';        // room name
-        $this->room_number = '';        // room number
-        $this->room_floor = '';        // room floor
-        $this->max_people = '';        // room`s max guests
-        $this->singleperson_suppliment = '';        // single person suppliment
-
+        $this->room_classes_uid = 0;            // new room id default
+        $this->propertys_uid = 0;               // resource type id
+        $this->room_features_uid = array();     // room features array
+        $this->room_name = '';                  // room name
+        $this->room_number = '';                // room number
+        $this->room_floor = '';                 // room floor
+        $this->max_people = 1;                  // room`s max guests
+        $this->singleperson_suppliment = '';    // single person suppliment
+        $this->tagline = '';          // 1000 chars maximum
+        $this->description = '';                // 3000 chars maximum
+        
         //multiple rooms creation
-        $this->rooms_generator = array();    // array of data used to mass create rooms
-        $this->rooms_generator['propertys_uid'] = 0;        // property uid
-        $this->rooms_generator['number_of_rooms'] = 0;        // how many rooms to be created
-        $this->rooms_generator['room_classes_uid'] = 0;        // what room type to be used for the mass created rooms
-        $this->rooms_generator['max_people'] = 0;        // max guests per room
+        $this->rooms_generator = array();                           // array of data used to mass create rooms
+        $this->rooms_generator['propertys_uid'] = 0;                // property uid
+        $this->rooms_generator['number_of_rooms'] = 0;              // how many rooms to be created
+        $this->rooms_generator['room_classes_uid'] = 0;             // what room type to be used for the mass created rooms
+        $this->rooms_generator['max_people'] = 0;                   // max guests per room
         $this->rooms_generator['delete_existing_rooms'] = false;    // delete existing rooms before mass creating new ones
     }
 
@@ -74,7 +76,9 @@ class jrportal_rooms
 							`room_number`,
 							`room_floor`,
 							`max_people`,
-							`singleperson_suppliment`
+							`singleperson_suppliment`,
+                            `tagline`,
+                            `description`
 							)
 						VALUES 
 							(
@@ -85,10 +89,15 @@ class jrportal_rooms
 							'".$this->room_number."',
 							'".$this->room_floor."',
 							" .(int) $this->max_people.',
-							' .(float) $this->singleperson_suppliment.'
+							' .(float) $this->singleperson_suppliment.',
+                            "' .(string) $this->tagline.'",
+                            "' .(string) $this->description.'"
 							)';
         $this->room_uid = doInsertSql($query, '');
 
+        updateCustomText('_JOMRES_CUSTOMTEXT_ROOM_TAGLINE'.$this->room_uid, $this->tagline, true);
+        updateCustomText('_JOMRES_CUSTOMTEXT_ROOM_DESCRIPTION_'.$this->room_uid, $this->description, true);
+        
         if (!$this->room_uid) {
             throw new Exception('Error: New room insert failed.');
         }
@@ -134,18 +143,20 @@ class jrportal_rooms
 
         $query = 'UPDATE #__jomres_rooms 
 					SET 
-						`room_classes_uid` = '.(int) $this->room_classes_uid.",
-						`room_features_uid` = '".$room_features."',
-						`room_name` = '".$this->room_name."',
-						`room_number` = '".$this->room_number."',
-						`room_floor` = '".$this->room_floor."',
-						`max_people` = " .(int) $this->max_people.',
-						`singleperson_suppliment` = ' .(float) $this->singleperson_suppliment.' 
+						`room_classes_uid`          = '.(int) $this->room_classes_uid.",
+						`room_features_uid`         = '".$room_features."',
+						`room_name`                 = '".$this->room_name."',
+						`room_number`               = '".$this->room_number."',
+						`room_floor`                = '".$this->room_floor."',
+						`max_people`                = " .(int) $this->max_people.',
+						`singleperson_suppliment`   = ' .(float) $this->singleperson_suppliment.' ,
+                        `tagline`         			= "' .(string) $this->tagline.'",
+                        `description`               = "' .(string) $this->description.'" 
 					WHERE `room_uid` = ' .(int) $this->room_uid.' 
 						AND `propertys_uid` = ' .(int) $this->propertys_uid;
 
         if (!doInsertSql($query, jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_SAVE_UPDATE', '_JOMRES_COM_MR_VRCT_ROOM_SAVE_UPDATE', false))) {
-            throw new Exception('Error: Room update intert failed.');
+            throw new Exception('Error: Room update failed.');
         }
 
         if ($mrConfig[ 'singleRoomProperty' ] == '1') {
@@ -233,10 +244,10 @@ class jrportal_rooms
             return false;
         }
 
-        $query = 'SELECT `room_bookings_uid` FROM #__jomres_room_bookings WHERE `room_uid` = '.(int) $this->room_uid.' AND property_uid = '.(int) $this->propertys_uid." AND DATE_FORMAT(`date`, '%Y/%m/%d') >= DATE_FORMAT('".date('Y/m/d')."', '%Y/%m/%d') ";
+        $query = 'SELECT `room_bookings_uid` FROM #__jomres_room_bookings WHERE `room_uid` = '.(int)$this->room_uid.' AND property_uid = '.(int)$this->propertys_uid." AND DATE_FORMAT(`date`, '%Y/%m/%d') >= DATE_FORMAT('".date('Y/m/d')."', '%Y/%m/%d') LIMIT 1";
         $result = doSelectSql($query);
 
-        if (count($result) > 0) {
+        if (!empty($result)) {
             return false;
         }
 

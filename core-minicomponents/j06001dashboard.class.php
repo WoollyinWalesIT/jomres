@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -79,7 +79,7 @@ class j06001dashboard
         $output['HNEW_BOOKING'] = jr_gettext('_JOMRES_HNEW_BOOKING', '_JOMRES_HNEW_BOOKING', false);
         $output['NEW_BOOKING_URL'] = get_booking_url($property_uid);
         $output['HBLACK_BOOKINGS'] = jr_gettext('_JOMRES_FRONT_BLACKBOOKING', '_JOMRES_FRONT_BLACKBOOKING', false);
-        $output['BLACK_BOOKINGS_URL'] = jomresUrl(JOMRES_SITEPAGE_URL.'&task=listBlackBookings');
+        $output['BLACK_BOOKINGS_URL'] = jomresUrl(JOMRES_SITEPAGE_URL.'&task=list_black_bookings');
 
         //legend
         $output['HLEGEND'] = jr_gettext('_JOMRES_HLEGEND', '_JOMRES_HLEGEND', false);
@@ -187,8 +187,6 @@ class j06001dashboard
         $output['BOOKED_IN'] = jomresHTML::selectList($options, 'booked_in', 'class="inputbox span12" size="1"', 'value', 'text', '2');
 
         //get the currency code
-        jr_import('currency_codes');
-
         if (!isset($mrConfig[ 'property_currencycode' ])) { // for v4.5 converting the old currencyCode value to property_currencycode
             $mrConfig[ 'property_currencycode' ] = $mrConfig[ 'currencyCode' ];
         }
@@ -213,6 +211,16 @@ class j06001dashboard
         //existing guests dropdown
         $output['HEXISTING_GUESTS_DROPDOWN'] = jr_gettext('_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST', '_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST', false);
         $output['EXISTING_GUESTS_DROPDOWN'] = $this->getExistingGuestsDropdown($property_uid);
+		
+		$output['PERCENTAGES_BOOKED'] = $MiniComponents->specificEvent('06001', 'dashboard_weekly_percentages', array('output_now' => false, 'property_uid' => $property_uid));
+		
+		if (!isset($jrConfig[ 'show_overview_in_dashboard' ])) {
+			$jrConfig[ 'show_overview_in_dashboard' ] = "0";
+		}
+		
+		if ($jrConfig[ 'show_overview_in_dashboard' ] == "1" ) {
+			$output['OVERVIEW'] = $MiniComponents->specificEvent('06001', 'overview', array('output_now' => false, 'property_uid' => $property_uid));
+		}
 
         $pageoutput[] = $output;
         $tmpl = new patTemplate();
@@ -244,7 +252,7 @@ class j06001dashboard
         $existingCustomers = doSelectSql($query);
 
         $ec = array();
-        if (count($existingCustomers) > 0) {
+        if (!empty($existingCustomers)) {
             $ec[] = jomresHTML::makeOption('0', '&nbsp;');
             foreach ($existingCustomers as $customer) {
                 $ec[] = jomresHTML::makeOption($customer->guests_uid, stripslashes($customer->surname).' '.stripslashes($customer->firstname));

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -25,26 +25,29 @@ class j99994user_feedback
 
             return;
         }
-
-        if (!defined('JOMRES_NOHTML') || JOMRES_NOHTML == 0) {
-            $output = array();
-            jr_import('jomres_user_feedback');
-            $jomres_user_feedback = new jomres_user_feedback();
-            $output[ 'MESSAGES' ] = $jomres_user_feedback->generate_messages();
-            $pageoutput[ ] = $output;
-            $tmpl = new patTemplate();
-            $tmpl->addRows('pageoutput', $pageoutput);
-            $tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
-            $tmpl->readTemplatesFromInput('user_feedback.html');
-            set_showtime('user_feedback', $tmpl->getParsedTemplate());
+		
+		if (get_showtime('no_html') == 1 || get_showtime('popup') == 1 || AJAXCALL) {
+            return '';
         }
+
+		$output = array();
+		
+		$jomres_user_feedback = jomres_singleton_abstract::getInstance('jomres_user_feedback');
+
+		//no need to run this if there are no feedback messages set
+		if (empty($jomres_user_feedback->user_feedback_messages)) {
+			return;
+		}
+
+		$output[ 'MESSAGES' ] = $jomres_user_feedback->generate_messages();
+		$pageoutput[ ] = $output;
+		$tmpl = new patTemplate();
+		$tmpl->addRows('pageoutput', $pageoutput);
+		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+		$tmpl->readTemplatesFromInput('user_feedback.html');
+		set_showtime('user_feedback', $tmpl->getParsedTemplate());
     }
 
-/**
- * Must be included in every mini-component.
- #
- * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
- */
     // This must be included in every Event/Mini-component
     public function getRetVals()
     {

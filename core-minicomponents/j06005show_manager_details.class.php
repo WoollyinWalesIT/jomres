@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -25,6 +25,8 @@ class j06005show_manager_details
 
             return;
         }
+		$this->retVals = '';
+		
         $manager_profile_id = $componentArgs[ 'manager_profile_id' ];
 
         $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
@@ -57,7 +59,6 @@ class j06005show_manager_details
                 $output[ 'POSTCODE' ] = $data->postcode;
                 $output[ 'LANDLINE' ] = $data->tel_landline;
                 $output[ 'MOBILE' ] = $data->tel_mobile;
-                $output[ 'FAX' ] = $data->tel_fax;
                 $output[ 'EMAIL' ] = $data->email;
                 $vat_output[0][ 'VAT_NUMBER' ] = $data->vat_number;
             }
@@ -75,7 +76,6 @@ class j06005show_manager_details
         $output[ 'HPOSTCODE' ] = jr_gettext('_JOMRES_COM_MR_DISPGUEST_POSTCODE', '_JOMRES_COM_MR_DISPGUEST_POSTCODE');
         $output[ 'HLANDLINE' ] = jr_gettext('_JOMRES_COM_MR_DISPGUEST_LANDLINE', '_JOMRES_COM_MR_DISPGUEST_LANDLINE');
         $output[ 'HMOBILE' ] = jr_gettext('_JOMRES_COM_MR_DISPGUEST_MOBILE', '_JOMRES_COM_MR_DISPGUEST_MOBILE');
-        $output[ 'HFAX' ] = jr_gettext('_JOMRES_COM_MR_DISPGUEST_FAX', '_JOMRES_COM_MR_DISPGUEST_FAX');
         $output[ 'HEMAIL' ] = jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL');
         $vat_output[0][ '_JOMRES_COM_YOURBUSINESS_VATNO' ] = jr_gettext('_JOMRES_COM_YOURBUSINESS_VATNO', '_JOMRES_COM_YOURBUSINESS_VATNO');
 

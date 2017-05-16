@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -45,11 +45,10 @@ class j06000viewproperty
 
         $mrConfig = getPropertySpecificSettings($property_uid);
         if ($mrConfig['showOnlyAvailabilityCalendar'] == '1') {
-            $componentArgs[ 'property_uid' ] = $property_uid;
-            if ($mrConfig['singleRoomProperty'] == '1') {
+             if ($mrConfig['singleRoomProperty'] == '1') {
                 echo $MiniComponents->specificEvent('06000', 'srp_calendar', array('output_now' => false, 'property_uid' => $property_uid, 'months_to_show' => 24));
             } else {
-                echo $MiniComponents->triggerEvent('00018', $componentArgs);
+                echo $MiniComponents->specificEvent('06000', 'mrp_calendar' , array('output_now' => false, 'property_uid' => $property_uid) );
             }
 
             return;
@@ -251,7 +250,7 @@ class j06000viewproperty
         //generate the tabs
         $tmpl = new patTemplate();
 
-        if (count($MiniComponents->miniComponentData[ '00035' ]) > 0) {
+        if (!empty($MiniComponents->miniComponentData[ '00035' ])) {
             $tab_titles = array();
             $tab_contents = array();
             $tab_active = false;

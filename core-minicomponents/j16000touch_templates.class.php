@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -29,13 +29,10 @@ class j16000touch_templates
         }
         echo '<h2>'.jr_gettext('_JOMRES_TOUCHTEMPLATES', '_JOMRES_TOUCHTEMPLATES', false).'</h2>';
         echo '<br/><h3>'.get_showtime('lang').'</h3><br/>';
-        // $jomreslang = $jomreslang =jomres_singleton_abstract::getInstance('jomres_language');
-        // echo $jomreslang->get_languageselection_dropdown();
-        // echo "<hr>";
 
         $basic_subscription_package_details = jomres_singleton_abstract::getInstance('basic_subscription_package_details');
 
-        if (count($basic_subscription_package_details->allPackages) > 0) {
+        if (!empty($basic_subscription_package_details->allPackages)) {
             echo jr_gettext('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TITLE', '_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TITLE').'<br/>';
 
             foreach ($basic_subscription_package_details->allPackages as $package) {
@@ -80,7 +77,7 @@ class j16000touch_templates
         //property features categories
         $query = 'SELECT `id`,`title` FROM #__jomres_hotel_features_categories ORDER BY title ';
         $result = doSelectSql($query);
-        if (count($result) > 0) {
+        if (!empty($result)) {
             echo jr_gettext('_JOMRES_PROPERTYFEATURES_HCATEGORIES', '_JOMRES_PROPERTYFEATURES_HCATEGORIES').'<br/>';
             foreach ($result as $r) {
                 echo jr_gettext('_JOMRES_PROPERTY_FEATURES_CATEGORY'.(int) $r->id, stripslashes($r->title));

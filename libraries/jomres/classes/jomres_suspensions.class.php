@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -23,10 +23,10 @@ class jomres_suspensions
         $this->authorised_properties = array();                        // properties that this manager has access to
 
         $this->suspended_manager_denied_tasks = array(
-                                                        'publishProperty',
+                                                        'publish_property',
                                                         'dobooking',
                                                         'list_bookings',
-                                                        'editBooking',
+                                                        'edit_booking',
                                                         );                        // blocked tasks for suspended managers
     }
 
@@ -97,11 +97,6 @@ class jomres_suspensions
                 $webhook_notification->data->property_uid           = $property_uid;
                 add_webhook_notification($webhook_notification);
             }
-
-                        
-            //clear cache
-            $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-            $c->eraseAll();
         }
     }
 
@@ -126,10 +121,6 @@ class jomres_suspensions
                 $webhook_notification->data->property_uid           = $property_uid;
                 add_webhook_notification($webhook_notification);
             }
-
-            //clear cache
-            $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-            $c->eraseAll();
         }
     }
 

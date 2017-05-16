@@ -1,4 +1,3 @@
-
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <style type="text/css">
 /*Overrides*/
@@ -184,6 +183,7 @@ jomresJquery(document).ready(function() {
 			jomresJquery('#blackBookingForm')[0].reset();
 			reset_booking_modal();
 			reset_region_dropdown();
+			reset_guest_details();
 			
 			//set the new hidden values
 			jomresJquery('#blackBookingModal #start').val(startDate);
@@ -220,7 +220,6 @@ jomresJquery(document).ready(function() {
 		eventMouseout: function ( event, jsEvent, view )  {
 			jomresJquery(this).popover('hide');
 		},
-		//not used
 		eventDragStop: function ( event, jsEvent, ui, view ) {
 			var trashEl = jomresJquery('#jrCalendarTrash');
 			var ofs = trashEl.offset();
@@ -292,49 +291,42 @@ jomresJquery(document).ready(function() {
 				end = eventEnd.format('YYYY/MM/DD');
 				}
 
-			//if (jomres_device_type == "desktop") 
-				//{
-				jomresJquery('#jomres_dashboard{PROPERTY_UID}').block();
-				jomresJquery.ajax({
-					type: 'GET',
-					url: live_site_ajax + '&task=dashboard_amendbooking_ajax',
-					data: {
-						event_id: event.id,
-						room_uid: event.room_uid,
-						new_room_uid: event.resourceId,
-						contract_uid: event.contract_uid,
-						this_contract_room_uids: event.this_contract_room_uids,
-						event_start: start,
-						event_end: end
-						},
-					success: function(data)
+			jomresJquery('#jomres_dashboard{PROPERTY_UID}').block();
+			jomresJquery.ajax({
+				type: 'GET',
+				url: live_site_ajax + '&task=dashboard_amendbooking_ajax',
+				data: {
+					event_id: event.id,
+					room_uid: event.room_uid,
+					new_room_uid: event.resourceId,
+					contract_uid: event.contract_uid,
+					this_contract_room_uids: event.this_contract_room_uids,
+					event_start: start,
+					event_end: end
+					},
+				success: function(data)
+					{
+					var amend_status = JSON && JSON.parse(data) || jomresJquery.parseJSON(data);
+					if (amend_status.insertStatus == 1)
 						{
-						var amend_status = JSON && JSON.parse(data) || jomresJquery.parseJSON(data);
-						if (amend_status.insertStatus == 1)
-							{
-							event.id = amend_status.id;
-							event.start = amend_status.start;
-							event.end = amend_status.end;
-							event.room_uid = amend_status.room_uid;
-							event.contract_uid = amend_status.contract_uid;
-							event.this_contract_room_uids = amend_status.this_contract_room_uids;
-							//calendar.fullCalendar( 'updateEvent', event );
-							calendar.fullCalendar( 'refetchEvents' );
-							//alert( amend_status.insertMessage );
-							}
-						else
-							{
-							alert( amend_status.insertMessage );
-							revertFunc();
-							jomresJquery('#jomres_dashboard{PROPERTY_UID}').unblock();
-							}
+						event.id = amend_status.id;
+						event.start = amend_status.start;
+						event.end = amend_status.end;
+						event.room_uid = amend_status.room_uid;
+						event.contract_uid = amend_status.contract_uid;
+						event.this_contract_room_uids = amend_status.this_contract_room_uids;
+						//calendar.fullCalendar( 'updateEvent', event );
+						calendar.fullCalendar( 'refetchEvents' );
+						//alert( amend_status.insertMessage );
 						}
-					});
-				//}
-			//else
-				//{
-				//revertFunc();
-				//}
+					else
+						{
+						alert( amend_status.insertMessage );
+						revertFunc();
+						jomresJquery('#jomres_dashboard{PROPERTY_UID}').unblock();
+						}
+					}
+				});
 		},
 		eventResize: function ( event, delta, revertFunc, jsEvent, ui, view ) {
 			jomresJquery(this).popover('hide');
@@ -369,49 +361,42 @@ jomresJquery(document).ready(function() {
 				end = eventEnd.format('YYYY/MM/DD');
 				}
 
-			//if (jomres_device_type == "desktop") 
-				//{
-				jomresJquery('#jomres_dashboard{PROPERTY_UID}').block();
-				jomresJquery.ajax({
-					type: 'GET',
-					url: live_site_ajax + '&task=dashboard_amendbooking_ajax',
-					data: {
-						event_id: event.id,
-						room_uid: event.room_uid,
-						new_room_uid: event.resourceId,
-						contract_uid: event.contract_uid,
-						this_contract_room_uids: event.this_contract_room_uids,
-						event_start: start,
-						event_end: end
-						},
-					success: function(data)
+			jomresJquery('#jomres_dashboard{PROPERTY_UID}').block();
+			jomresJquery.ajax({
+				type: 'GET',
+				url: live_site_ajax + '&task=dashboard_amendbooking_ajax',
+				data: {
+					event_id: event.id,
+					room_uid: event.room_uid,
+					new_room_uid: event.resourceId,
+					contract_uid: event.contract_uid,
+					this_contract_room_uids: event.this_contract_room_uids,
+					event_start: start,
+					event_end: end
+					},
+				success: function(data)
+					{
+					var amend_status = JSON && JSON.parse(data) || jomresJquery.parseJSON(data);
+					if (amend_status.insertStatus == 1)
 						{
-						var amend_status = JSON && JSON.parse(data) || jomresJquery.parseJSON(data);
-						if (amend_status.insertStatus == 1)
-							{
-							event.id = amend_status.id;
-							event.start = amend_status.start;
-							event.end = amend_status.end;
-							event.room_uid = amend_status.room_uid;
-							event.contract_uid = amend_status.contract_uid;
-							event.this_contract_room_uids = amend_status.this_contract_room_uids;
-							//calendar.fullCalendar( 'updateEvent', event );
-							calendar.fullCalendar( 'refetchEvents' );
-							//alert( amend_status.insertMessage );
-							}
-						else
-							{
-							alert( amend_status.insertMessage );
-							revertFunc();
-							jomresJquery('#jomres_dashboard{PROPERTY_UID}').unblock();
-							}
+						event.id = amend_status.id;
+						event.start = amend_status.start;
+						event.end = amend_status.end;
+						event.room_uid = amend_status.room_uid;
+						event.contract_uid = amend_status.contract_uid;
+						event.this_contract_room_uids = amend_status.this_contract_room_uids;
+						//calendar.fullCalendar( 'updateEvent', event );
+						calendar.fullCalendar( 'refetchEvents' );
+						//alert( amend_status.insertMessage );
 						}
-					});
-				//}
-			//else
-				//{
-				//revertFunc();
-				//}
+					else
+						{
+						alert( amend_status.insertMessage );
+						revertFunc();
+						jomresJquery('#jomres_dashboard{PROPERTY_UID}').unblock();
+						}
+					}
+				});
 		},
 		loading: function( isLoading, view ) {
 			if (isLoading === false)
@@ -420,128 +405,128 @@ jomresJquery(document).ready(function() {
 				}
 		}
 	});
-	jomresJquery('.btn-group button[data-calendar-nav]').each(function() {
-		var $this = jomresJquery(this);
-		$this.click(function() {
-			jomresJquery("#jomres_dashboard{PROPERTY_UID}").fullCalendar($this.data('calendar-nav'));
-			var view = jomresJquery("#jomres_dashboard{PROPERTY_UID}").fullCalendar('getView');
-			jomresJquery('.jomres-dashboard h2 span').html(': ' + view.title);
+jomresJquery('.btn-group button[data-calendar-nav]').each(function() {
+	var $this = jomresJquery(this);
+	$this.click(function() {
+		jomresJquery("#jomres_dashboard{PROPERTY_UID}").fullCalendar($this.data('calendar-nav'));
+		var view = jomresJquery("#jomres_dashboard{PROPERTY_UID}").fullCalendar('getView');
+		jomresJquery('.jomres-dashboard h2 span').html(': ' + view.title);
+	});
+});
+
+jomresJquery('.btn-group button[data-calendar-view]').each(function() {
+	var $this = jomresJquery(this);
+	$this.click(function() {
+		jomresJquery("#jomres_dashboard{PROPERTY_UID}").fullCalendar('changeView',$this.data('calendar-view'));
+		jomresJquery('.btn-group button').removeClass('active');
+		jomresJquery('button[data-calendar-view="' + $this.data('calendar-view') + '"]').addClass('active');
+		var view = jomresJquery("#jomres_dashboard{PROPERTY_UID}").fullCalendar('getView');
+		jomresJquery('.jomres-dashboard h2 span').html(': ' + view.title);
+	});
+});
+/* Set the initial title */
+var view = jomresJquery("#jomres_dashboard{PROPERTY_UID}").fullCalendar('getView');
+jomresJquery('.jomres-dashboard h2 span').html(': ' + view.title);
+
+/* Set a timeout to refresh events every 5 minutes */
+setInterval(function(){jomresJquery("#jomres_dashboard{PROPERTY_UID}").fullCalendar( 'refetchEvents' )}, 60000);
+
+/* Modal submit */
+//jomresJquery("#blackBookingModal").modal('hide');
+jomresJquery("#blackBookingForm").submit(function(e) {
+	e.preventDefault();
+	jomresJquery('#blackBookingForm #ajax_animation_image').removeClass("hide");
+	jomresJquery('#blackBookingForm #modalForm').addClass("hide");
+	jomresJquery('#blackBookingForm #blackBookingSubmitButton').addClass("hide");
+	jomresJquery('#blackBookingForm #blackBookingRetryButton').addClass("hide");
+	jomresJquery('#blackBookingForm #blackBookingCloseButton').removeClass("hide").addClass("disabled");
+	jomresJquery.ajax({
+		type: 'GET',
+		url: live_site_ajax + '&task=dashboard_insertbooking_ajax',
+		data: jomresJquery('#blackBookingForm').serialize(),
+		success: function(data)
+			{
+			var new_event = JSON && JSON.parse(data) || jomresJquery.parseJSON(data);
+			if (new_event.insertStatus == 1)
+				{
+				insertMessage = '<p class="alert alert-success">' + new_event.insertMessage + '</p>';
+				jomresJquery('#blackBookingForm #ajax_animation_image').addClass("hide");
+				jomresJquery('#blackBookingForm #modalMessage').html(insertMessage).removeClass("hide");
+				jomresJquery('#blackBookingForm #blackBookingCloseButton').removeClass("disabled").html('<i class="icon-cancel"></i> {COMMON_CLOSE}');
+				/* Render the new event */
+				jomresJquery("#jomres_dashboard{PROPERTY_UID}").fullCalendar('renderEvent',
+						{
+						id: new_event.id,
+						title: new_event.title,
+						description: new_event.description,
+						start: new_event.start,
+						end: new_event.end,
+						allDay: new_event.allDay,
+						resourceId: new_event.resourceId,
+						url: new_event.url,
+						className: new_event.className,
+						contract_uid: new_event.contract_uid,
+						room_uid: new_event.room_uid,
+						this_contract_room_uids: new_event.this_contract_room_uids
+						},
+					false);
+				}
+			else
+				{
+				insertMessage = '<p class="alert alert-error">' + new_event.insertMessage + '</p>';
+				jomresJquery('#blackBookingForm #modalMessage').html(insertMessage).removeClass("hide");
+				jomresJquery('#blackBookingForm #modalForm').addClass("hide");
+				jomresJquery('#blackBookingForm #ajax_animation_image').addClass("hide");
+				jomresJquery('#blackBookingForm #blackBookingSubmitButton').addClass("hide");
+				jomresJquery('#blackBookingForm #blackBookingRetryButton').removeClass("hide");
+				jomresJquery('#blackBookingForm #blackBookingCloseButton').removeClass("disabled");
+				}
+			}
 		});
 	});
 
-	jomresJquery('.btn-group button[data-calendar-view]').each(function() {
-		var $this = jomresJquery(this);
-		$this.click(function() {
-			jomresJquery("#jomres_dashboard{PROPERTY_UID}").fullCalendar('changeView',$this.data('calendar-view'));
-			jomresJquery('.btn-group button').removeClass('active');
-			jomresJquery('button[data-calendar-view="' + $this.data('calendar-view') + '"]').addClass('active');
-			var view = jomresJquery("#jomres_dashboard{PROPERTY_UID}").fullCalendar('getView');
-			jomresJquery('.jomres-dashboard h2 span').html(': ' + view.title);
+jomresJquery("#blackBookingForm #blackBookingRetryButton").on("click",function(e) {
+	e.preventDefault();
+	reset_booking_modal();
+	});
+
+var d1 = jomresJquery.Deferred();
+
+jomresJquery(function(){
+	jomresJquery("#guest_country").change(function(){
+		var selectedValue = jomresJquery(this).find(":selected").val();
+		clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
+		d1 = jomresJquery.get(live_site_ajax + clause, function (data) {
+			populateDiv("guest_region_div",data);
+			});
 		});
 	});
-	/* Set the initial title */
-	var view = jomresJquery("#jomres_dashboard{PROPERTY_UID}").fullCalendar('getView');
-	jomresJquery('.jomres-dashboard h2 span').html(': ' + view.title);
-	
-	/* Set a timeout to refresh events every 5 minutes */
-	setInterval(function(){jomresJquery("#jomres_dashboard{PROPERTY_UID}").fullCalendar( 'refetchEvents' )}, 60000);
-	
-	/* Modal submit */
-	//jomresJquery("#blackBookingModal").modal('hide');
-	jomresJquery("#blackBookingForm").submit(function(e) {
-		e.preventDefault();
-		jomresJquery('#blackBookingForm #ajax_animation_image').removeClass("hide");
-		jomresJquery('#blackBookingForm #modalForm').addClass("hide");
-		jomresJquery('#blackBookingForm #blackBookingSubmitButton').addClass("hide");
-		jomresJquery('#blackBookingForm #blackBookingRetryButton').addClass("hide");
-		jomresJquery('#blackBookingForm #blackBookingCloseButton').removeClass("hide").addClass("disabled");
-		jomresJquery.ajax({
-			type: 'GET',
-			url: live_site_ajax + '&task=dashboard_insertbooking_ajax',
-			data: jomresJquery('#blackBookingForm').serialize(),
-			success: function(data)
-				{
-				var new_event = JSON && JSON.parse(data) || jomresJquery.parseJSON(data);
-				if (new_event.insertStatus == 1)
-					{
-					insertMessage = '<p class="alert alert-success">' + new_event.insertMessage + '</p>';
-					jomresJquery('#blackBookingForm #ajax_animation_image').addClass("hide");
-					jomresJquery('#blackBookingForm #modalMessage').html(insertMessage).removeClass("hide");
-					jomresJquery('#blackBookingForm #blackBookingCloseButton').removeClass("disabled").html('<i class="icon-cancel"></i> {COMMON_CLOSE}');
-					/* Render the new event */
-					jomresJquery("#jomres_dashboard{PROPERTY_UID}").fullCalendar('renderEvent',
-							{
-							id: new_event.id,
-							title: new_event.title,
-							description: new_event.description,
-							start: new_event.start,
-							end: new_event.end,
-							allDay: new_event.allDay,
-							resourceId: new_event.resourceId,
-							url: new_event.url,
-							className: new_event.className,
-							contract_uid: new_event.contract_uid,
-							room_uid: new_event.room_uid,
-							this_contract_room_uids: new_event.this_contract_room_uids
-							},
-						false);
-					}
-				else
-					{
-					insertMessage = '<p class="alert alert-error">' + new_event.insertMessage + '</p>';
-					jomresJquery('#blackBookingForm #modalMessage').html(insertMessage).removeClass("hide");
-					jomresJquery('#blackBookingForm #modalForm').addClass("hide");
-					jomresJquery('#blackBookingForm #ajax_animation_image').addClass("hide");
-					jomresJquery('#blackBookingForm #blackBookingSubmitButton').addClass("hide");
-					jomresJquery('#blackBookingForm #blackBookingRetryButton').removeClass("hide");
-					jomresJquery('#blackBookingForm #blackBookingCloseButton').removeClass("disabled");
-					}
-				}
+
+jomresJquery(function(){
+	jomresJquery("#existingGuests").change(function(){
+		var selectedValue = jomresJquery(this).find(":selected").val();
+		clause = "&task=dashboard_get_guest_details_ajax&existing_id="+selectedValue;
+		jomresJquery.get(live_site_ajax + clause, function (data) {
+			var guestDeets = JSON && JSON.parse(data) || jomresJquery.parseJSON(data);
+			jomresJquery('#existing_id').val(guestDeets.existing_id);
+			jomresJquery('#mos_userid').val(guestDeets.mos_userid);
+			jomresJquery('#firstname').val(guestDeets.firstname);
+			jomresJquery('#surname').val(guestDeets.surname);
+			jomresJquery('#house').val(guestDeets.house);
+			jomresJquery('#street').val(guestDeets.street);
+			jomresJquery('#guest_country').val(guestDeets.country).trigger('change');
+			jomresJquery.when(d1).done(function() {jomresJquery('#region').val(guestDeets.county)});
+			jomresJquery('#town').val(guestDeets.town);
+			jomresJquery('#postcode').val(guestDeets.postcode);
+			jomresJquery('#landline').val(guestDeets.tel_landline);
+			jomresJquery('#mobile').val(guestDeets.tel_mobile);
+			jomresJquery('#email').val(guestDeets.email);
 			});
 		});
-	
-	jomresJquery("#blackBookingForm #blackBookingRetryButton").on("click",function(e) {
-		e.preventDefault();
-		reset_booking_modal();
-		});
-	
-	var d1 = jomresJquery.Deferred();
-	
-	jomresJquery(function(){
-		jomresJquery("#guest_country").change(function(){
-			var selectedValue = jomresJquery(this).find(":selected").val();
-			clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
-			d1 = jomresJquery.get(live_site_ajax + clause, function (data) {
-				populateDiv("guest_region_div",data);
-				});
-			});
-		});
-	
-	jomresJquery(function(){
-		jomresJquery("#existingGuests").change(function(){
-			var selectedValue = jomresJquery(this).find(":selected").val();
-			clause = "&task=dashboard_get_guest_details_ajax&existing_id="+selectedValue;
-			jomresJquery.get(live_site_ajax + clause, function (data) {
-				var guestDeets = JSON && JSON.parse(data) || jomresJquery.parseJSON(data);
-				jomresJquery('#existing_id').val(guestDeets.existing_id);
-				jomresJquery('#mos_userid').val(guestDeets.mos_userid);
-				jomresJquery('#firstname').val(guestDeets.firstname);
-				jomresJquery('#surname').val(guestDeets.surname);
-				jomresJquery('#house').val(guestDeets.house);
-				jomresJquery('#street').val(guestDeets.street);
-				jomresJquery('#guest_country').val(guestDeets.country).trigger('change');
-				jomresJquery.when(d1).done(function() {jomresJquery('#region').val(guestDeets.county)});
-				jomresJquery('#town').val(guestDeets.town);
-				jomresJquery('#postcode').val(guestDeets.postcode);
-				jomresJquery('#landline').val(guestDeets.tel_landline);
-				jomresJquery('#mobile').val(guestDeets.tel_mobile);
-				jomresJquery('#email').val(guestDeets.email);
-				});
-			});
-		});
-	
-	jomresJquery("#blackBookingForm").appendTo("body");
 	});
+
+jomresJquery("#blackBookingForm").appendTo("body");
+});
 
 function reset_region_dropdown() {
 	var selectedCountry = jomresJquery('#blackBookingForm #guest_country').find(":selected").val();
@@ -560,6 +545,20 @@ function reset_booking_modal() {
 	jomresJquery('#blackBookingForm #blackBookingSubmitButton').removeClass("hide");
 	jomresJquery('#blackBookingForm #blackBookingRetryButton').addClass("hide");
 	return true;
+}
+
+function reset_guest_details() {
+	jomresJquery('#existing_id').val('');
+	jomresJquery('#mos_userid').val('');
+	jomresJquery('#firstname').val('');
+	jomresJquery('#surname').val('');
+	jomresJquery('#house').val('');
+	jomresJquery('#street').val('');
+	jomresJquery('#town').val('');
+	jomresJquery('#postcode').val('');
+	jomresJquery('#landline').val('');
+	jomresJquery('#mobile').val('');
+	jomresJquery('#email').val('');
 }
 </script>
 

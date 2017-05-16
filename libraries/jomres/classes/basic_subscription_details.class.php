@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -21,6 +21,7 @@ class basic_subscription_details
     public function __construct()
     {
         $this->subscription = array();
+
         $this->package = array();
     }
 
@@ -40,9 +41,11 @@ class basic_subscription_details
         }
 
         //check if we already have this cms user id subscription details
-        if (count($this->subscription) > 0) {
+        if (!empty($this->subscription)) {
             return true;
         }
+		
+		$this->subscription['id'] = 0;
 
         $query = 'SELECT 
 						a.id AS subscription_id,
@@ -70,7 +73,7 @@ class basic_subscription_details
 					LIMIT 1 ";
         $result = doSelectSql($query);
 
-        if (count($result) > 0) {
+        if (!empty($result)) {
             foreach ($result as $s) {
                 $this->subscription['id'] = $s->subscription_id;
                 $this->subscription['cms_user_id'] = $s->cms_user_id;

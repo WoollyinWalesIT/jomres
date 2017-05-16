@@ -548,7 +548,8 @@ class patTemplate_Dump_Html extends patTemplate_Dump
 		$pattern = '/(' . $this->_tmpl->getStartTag() . '([^a-z:]+)' . $this->_tmpl->getEndTag() . ')/U';
 		$matches = array ();
 		preg_match_all( $pattern, $template, $matches );
-		for ( $i = 0; $i < count( $matches[ 1 ] ); $i++ )
+		$n = count( $matches[ 1 ] );
+		for ( $i = 0; $i < $n; $i++ )
 			{
 			if ( isset( $vars[ $matches[ 2 ][ $i ] ] ) )
 				{

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -98,14 +98,28 @@ class j06001dashboard_events_ajax
         $query .= 'GROUP BY a.contract_uid,b.room_uid ';
 
         $contractList = doSelectSql($query);
-        if (count($contractList) > 0) {
+        if (!empty($contractList)) {
+            
+
+            $all_booking_notes = array();
+            $query = "SELECT `contract_uid` , `note` ,`timestamp` FROM #__jomcomp_notes WHERE property_uid = " .(int) $property_uid ;
+            $notesList = doSelectSql ( $query );
+            if (!empty($notesList)) {
+                foreach ($notesList as $note ) {
+                    if ( trim($note->note) != "" ) {
+                        $all_booking_notes[$note->contract_uid][] = $note;
+                    }
+                    
+                }
+            }
+
             $today = date('Y/m/d');
 
             foreach ($contractList as $contract) {
                 $guest_uids[] = $contract->guest_uid;
                 $room_uids[$contract->contract_uid][] = $contract->room_uid;
             }
-            if (count($guest_uids) > 0) {
+            if (!empty($guest_uids)) {
                 $query = 'SELECT guests_uid,firstname,surname FROM #__jomres_guests WHERE guests_uid IN ('.jomres_implode($guest_uids).') ';
                 $guestsList = doSelectSql($query);
 
@@ -126,9 +140,9 @@ class j06001dashboard_events_ajax
                 }
 
                 if ((int) $c->black_booking == 1) {
-                    $url = JOMRES_SITEPAGE_URL_NOSEF.'&task=viewBlackBooking&contract_uid='.$c->contract_uid.'&thisProperty='.$property_uid;
+                    $url = JOMRES_SITEPAGE_URL_NOSEF.'&task=show_black_booking&contract_uid='.$c->contract_uid.'&thisProperty='.$property_uid;
                 } else {
-                    $url = JOMRES_SITEPAGE_URL_NOSEF.'&task=editBooking&contract_uid='.$c->contract_uid.'&thisProperty='.$property_uid;
+                    $url = JOMRES_SITEPAGE_URL_NOSEF.'&task=edit_booking&contract_uid='.$c->contract_uid.'&thisProperty='.$property_uid;
                 }
 
                 $date_elements = explode('/', $today);
@@ -182,8 +196,15 @@ class j06001dashboard_events_ajax
                     $description .= jr_gettext('_JOMRES_BOOKING_NUMBER', '_JOMRES_BOOKING_NUMBER', false).': '.$c->tag.'<br/>';
                 }
                 $description .= jr_gettext('_JOMRES_HFROM', '_JOMRES_HFROM', false).': '.outputDate($c->arrival).'<br/>';
-                $description .= jr_gettext('_JOMRES_HTO', '_JOMRES_HTO', false).': '.outputDate($c->departure);
-
+                $description .= jr_gettext('_JOMRES_HTO', '_JOMRES_HTO', false).': '.outputDate($c->departure).'';
+                
+                if (isset($all_booking_notes[$c->contract_uid]) ) {
+                    $description .= '<hr/>';
+                    foreach ( $all_booking_notes[$c->contract_uid] as $note ) {
+                         $description .= $note->timestamp.' '.sanitiseOverlibOutput($note->note).'<br/>';
+                    }
+                }
+                
                 if ((int) $resource > 0) {
                     $contracts[] = array(
 										'id' => $id,

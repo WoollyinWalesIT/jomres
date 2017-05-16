@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -39,13 +39,14 @@ class j06000remoteavailability
             $return_calendar = (bool) $componentArgs['return_calendar'];
         }
 
-        $_REQUEST[ 'popup' ] = 0; // Normally, if a popup is set to true (1) then the j00017availabilitycalendar.class.php minicomp will show the property header. We don't want this to happen in this instance so we will reset popup to 0, now that we're not using it again.
+        $_REQUEST[ 'popup' ] = 0;
+        
         if ($property_uid > 0) {
             $mrConfig = getPropertySpecificSettings($property_uid);
             if ($mrConfig[ 'singleRoomProperty' ] == '1') {
-                $result = $MiniComponents->triggerEvent('00017', array('property_uid' => $property_uid));
+                $MiniComponents->specificEvent('06000', 'srpavailabilitycalendar' , array('property_uid' => $property_uid) );
             } else {
-                $result = $MiniComponents->triggerEvent('00018', array('property_uid' => $property_uid));
+                $MiniComponents->specificEvent('06000', 'mrpavailabilitycalendar' , array('property_uid' => $property_uid) );
             }
             if (!$return_calendar) {
                 echo $result;

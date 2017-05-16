@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -46,7 +46,7 @@ if (!defined('_JOMRES_DETECTED_CMS')) {
             }
         }
         $d->close();
-        if (count($docs) > 0) {
+        if (!empty($docs)) {
             sort($docs);
             foreach ($docs as $doc) {
                 $listdir = $jrePath.$doc.JRDS;

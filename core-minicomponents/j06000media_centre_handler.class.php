@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -103,7 +103,7 @@ class j06000media_centre_handler
 				$MiniComponents->triggerEvent('03382');
 			}
         } else {
-            if (count($_FILES) > 0) {
+            if (!empty($_FILES)) {
 				jr_import('jomres_media_centre_uploader');
                 $upload_handler = new UploadHandler(array(
                     'accept_file_types' => '/\.(jpe?g|png)$/i',

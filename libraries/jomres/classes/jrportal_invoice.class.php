@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -62,7 +62,7 @@ class jrportal_invoice
     //Create a new invoice
     public function create_new_invoice($invoice_data, $line_items = array())
     {
-        if (count($line_items) < 1) {
+        if (empty($line_items)) {
             error_logging('No line items passed for new invoice.');
 
             return false;
@@ -140,7 +140,9 @@ class jrportal_invoice
 
         if (isset($line_item_data[ 'is_payment' ])) {
             $this->lineitem['is_payment'] = (int) $line_item_data[ 'is_payment' ];
-        }
+        } else {
+			$this->lineitem['is_payment'] = 0;
+		}
 
         $this->lineitem['inv_id'] = $this->id;
 
@@ -311,7 +313,7 @@ class jrportal_invoice
 
             return true;
         } else {
-            if (count($result) == 0) {
+            if (empty($result)) {
                 error_logging('No Invoices were found with that id');
 
                 return false;
@@ -378,7 +380,7 @@ class jrportal_invoice
 
             return true;
         } else {
-            if (count($result) == 0) {
+            if (empty($result)) {
                 error_logging('No Line Items were found with that id');
 
                 return false;
@@ -946,8 +948,13 @@ class jrportal_invoice
         }
 
         $query = 'SELECT SUM(init_total_inclusive) FROM #__jomresportal_lineitems WHERE inv_id = '.(int)$this->id;
+		$balance = doSelectSql($query, 1);
 
-        return doSelectSql($query, 1);
+		if ($balance) {
+			return number_format($balance, 2, '.', '');
+		}
+		
+		return false;
     }
 
     public function get_invoice_id_by_contract_uid($contract_uid = 0)

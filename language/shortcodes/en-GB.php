@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -191,3 +191,26 @@ jr_define('_JOMRES_ROUTER_ROOMTYPES', 'Room Types');
 
 jr_define('_JOMRES_BOOKING_FORM_EXTERNAL_URL', 'External booking form URL');
 jr_define('_JOMRES_BOOKING_FORM_EXTERNAL_URL_DESC', 'Here you can set an external URL if you want to use a 3rd party website for making bookings. All jomres booking buttons will point to this URL. Leave this field blank if you want to use the Jomres booking form.');
+
+jr_define('_JOMRES_ROOM_TAGLINE', 'Tagline (short room description/subtitle)');
+jr_define('_JOMRES_ROOM_DESCRIPTION', 'Room Description');
+
+jr_define('_JOMRES_GUEST_BLACKLISTED', 'Guest blacklisted');
+jr_define('_JOMRES_GUEST_BLACKLISTED_DESC', 'If this guest is black listed then they will no longer be able to make bookings in this property.');
+jr_define('_JOMRES_SESSION_HANDLER', 'Session handler');
+jr_define('_JOMRES_SESSION_HANDLER_DESC', 'Save jomres session files to disk or to database. Recommended: database');
+jr_define('_JOMRES_MAP_HEIGHT',"Map height (px) ");
+jr_define('_JOMRES_MAP_ZOOMLEVEL',"Map zoom level ");
+jr_define('_JOMRES_MAP_MAPTYPE',"Map type ");
+
+jr_define('_JOMRES_TEMPLATE_PACKAGES',"Template Override Manager");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_LEAD',"Template packages are plugins that can provide override templates for various core Jomres template files.");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_INFO',"This page lists any template files that can be overridden by a template package's template files. If you want to override a certain template file, click on the edit button for that file, on the next page you will be able to choose which version you want to override with. Note, these overrides take priority over both Jomres Core and any Wordpress or Joomla theme/template overrides. You can disable an override by deleting it in the List Template Overrides page.");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_NAME',"Template name");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_PATH',"Current path");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_NOT_OVERRIDDEN',"Not overridden");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO',"You can choose which template file to override the Core template files by changing the dropdown");
+
+
+jr_define('_JOMRES_OVERALL_ROOMS_BOOKED',"Percentage Rooms Booked");
+

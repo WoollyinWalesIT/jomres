@@ -30,7 +30,7 @@ class patTemplate_Reader_String extends patTemplate_Reader
 	 * @param    array    options, not implemented in current versions, but future versions will allow passing of options
 	 * @return    array    templates
 	 */
-	function readTemplates( $input )
+	function readTemplates( $input, $options = array() )
 		{
 		$this->_currentInput = $input;
 

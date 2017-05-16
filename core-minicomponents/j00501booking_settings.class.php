@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -55,7 +55,7 @@ class j00501booking_settings
             $configurationPanel->setright();
             $configurationPanel->insertSetting();
 
-            if (!get_showtime('is_jintour_property') && isset($MiniComponents->registeredClasses['00005booking_enquiries'])) {
+            if (!get_showtime('is_jintour_property') && isset($MiniComponents->registeredClasses['00005']['booking_enquiries'])) {
                 $configurationPanel->setleft(jr_gettext('_JOMRES_BOOKING_INQUIRY_SETTING_TITLE', '_JOMRES_BOOKING_INQUIRY_SETTING_TITLE', false));
                 $configurationPanel->setmiddle($lists[ 'requireApproval' ]);
                 $configurationPanel->setright(jr_gettext('_JOMRES_BOOKING_INQUIRY_SETTING_DESC', '_JOMRES_BOOKING_INQUIRY_SETTING_DESC', false));

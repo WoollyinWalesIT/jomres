@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -69,7 +69,6 @@ class j06000media_centre
             $output['_JOMRES_MEDIA_CENTRE_BUTTON_ADD']                      = jr_gettext('_JOMRES_MEDIA_CENTRE_BUTTON_ADD', '_JOMRES_MEDIA_CENTRE_BUTTON_ADD', false);
             $output['TITLE']                                                = jr_gettext('_JOMRES_MEDIA_CENTRE_TITLE', '_JOMRES_MEDIA_CENTRE_TITLE', false);
             $output['_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_INSTRUCTIONS']     = jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_INSTRUCTIONS', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_INSTRUCTIONS', false);
-            $output['_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS']           = jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_LIMITS', false);
             $output['_JOMRES_MEDIA_CENTRE_CLEAR']                           = jr_gettext('_JOMRES_MEDIA_CENTRE_CLEAR', '_JOMRES_MEDIA_CENTRE_CLEAR', false);
             $output['_JOMRES_MEDIA_CENTRE_DRAGNDROP']                       = jr_gettext('_JOMRES_MEDIA_CENTRE_DRAGNDROP', '_JOMRES_MEDIA_CENTRE_DRAGNDROP', false);
             $output['_JOMRES_MEDIA_CENTRE_BUTTON_DELETE']                   = jr_gettext('_JOMRES_MEDIA_CENTRE_BUTTON_DELETE', '_JOMRES_MEDIA_CENTRE_BUTTON_DELETE', false);

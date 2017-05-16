@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -40,6 +40,8 @@ set_showtime('socket', $socket);
 
 class jomres_database
 {
+	private static $configInstance;
+
     public function __construct()
     {
         // Check if magic_quotes_runtime is active
@@ -48,10 +50,12 @@ class jomres_database
             @set_magic_quotes_runtime(false);
         }
 
+		$this->query = '';
         $this->system_tables = array();
         $this->error = null;
         $this->stmt = null;
         $this->result = null;
+		$this->last_id = false;
 
         $this->dbtype = get_showtime('dbtype');
         $this->db_prefix = get_showtime('dbprefix');
@@ -67,6 +71,15 @@ class jomres_database
         if (!this_cms_is_wordpress() || defined('AUTO_UPGRADE')) {
             $this->_init();
         }
+    }
+	
+	public static function getInstance()
+    {
+        if (!self::$configInstance) {
+            self::$configInstance = new self();
+        }
+
+        return self::$configInstance;
     }
 
     public function _init()
@@ -226,16 +239,10 @@ class jomres_database
     {
         if (this_cms_is_wordpress() && !defined('AUTO_UPGRADE')) {
             global $wpdb;
-
-            $performance_monitor = jomres_singleton_abstract::getInstance('jomres_performance_monitor');
-            $performance_monitor->set_sqlquery_log(''.whereCalled().' <br/>'.$query.'<br/>');
-
-            $q = str_replace('#__', "{$wpdb->prefix}", $query);
+			
+			$q = str_replace('#__', "{$wpdb->prefix}", $query);
             $this->query = $q;
         } else {
-            $performance_monitor = jomres_singleton_abstract::getInstance('jomres_performance_monitor');
-            $performance_monitor->set_sqlquery_log(''.whereCalled().' <br/>'.$query.'<br/>');
-
             $q = str_replace('#__', $this->db_prefix, $query);
             $this->query = $q;
         }

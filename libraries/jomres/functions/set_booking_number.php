@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -22,9 +22,9 @@ function set_booking_number()
         $keeplooking = true;
         while ($keeplooking):
             $cartnumber = mt_rand(10000000, 99999999);
-        $query = "SELECT contract_uid FROM #__jomres_contracts WHERE tag = '".$cartnumber."' LIMIT 1";
+        $query = "SELECT `contract_uid` FROM #__jomres_contracts WHERE `tag` = '".$cartnumber."' LIMIT 1";
         $bklist = doSelectSql($query);
-        if (count($bklist) == 0) {
+        if (empty($bklist)) {
             $keeplooking = false;
         }
         endwhile;

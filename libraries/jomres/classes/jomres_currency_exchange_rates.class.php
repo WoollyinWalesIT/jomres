@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -95,8 +95,7 @@ class jomres_currency_exchange_rates
 
         $this->rates = array();
 
-        jr_import('currency_codes');
-        $currency_codes = new currency_codes();
+        $currency_codes = jomres_singleton_abstract::getInstance('currency_codes');
 
         ignore_user_abort(true); // Should stop a user from visiting another page when we're getting the exchange rates. At some point, it might be wiser to encourage managers to set this as a cron job.
 

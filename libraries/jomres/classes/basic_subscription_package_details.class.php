@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -61,16 +61,7 @@ class basic_subscription_package_details
     public function getAllSubscriptionPackages()
     {
         //check if we already got them
-        if (count($this->allPackages) > 0) {
-            return true;
-        }
-
-        //check if the subscriptions packages are in cache
-        $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-
-        if ($c->isCached('subscriptionPackages')) {
-            $this->allPackages = $c->retrieve('subscriptionPackages');
-
+        if (!empty($this->allPackages)) {
             return true;
         }
 
@@ -88,7 +79,7 @@ class basic_subscription_package_details
 					FROM #__jomresportal_subscriptions_packages ';
         $result = doSelectSql($query);
 
-        if (count($result) > 0) {
+        if (!empty($result)) {
             foreach ($result as $r) {
                 $this->allPackages[ $r->id ][ 'id' ] = $r->id;
                 $this->allPackages[ $r->id ][ 'name' ] = $r->name;
@@ -101,8 +92,6 @@ class basic_subscription_package_details
                 $this->allPackages[ $r->id ][ 'renewal_price' ] = $r->renewal_price;
                 $this->allPackages[ $r->id ][ 'params' ] = unserialize($r->params);
             }
-
-            $c->store('subscriptionPackages', $this->allPackages);
 
             return true;
         }

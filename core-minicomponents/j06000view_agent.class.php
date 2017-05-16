@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -97,17 +97,18 @@ class j06000view_agent
         $query = 'SELECT firstname,surname,house,street,town,county,country,postcode,tel_landline,tel_mobile,email FROM #__jomres_guest_profile WHERE cms_user_id = '.(int) $manager_id.' LIMIT 1';
         $managerData = doSelectSql($query);
 
-        if (count($managerData) > 0) {
+        if (!empty($managerData)) {
             foreach ($managerData as $data) {
                 $output[ 'FIRSTNAME' ] = $data->firstname;
                 $output[ 'SURNAME' ] = $data->surname;
+                jomres_cmsspecific_setmetadata('title', jomres_purify_html($data->firstname." ".$data->surname));
                 $output[ 'HOUSE' ] = $data->house;
                 $output[ 'STREET' ] = $data->street;
                 $output[ 'TOWN' ] = $data->town;
                 $output[ 'REGION' ] = $data->county;
                 if (is_numeric($data->county)) {
                     $jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
-                    $output[ 'REGION' ] = jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$data->county, $jomres_regions->regions[ $data->county ][ 'regionname' ], false, false);
+                    $output[ 'REGION' ] = jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$data->county, $jomres_regions->get_region_name($data->county), false, false);
                 } else {
                     $output[ 'REGION' ] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_REGION'.$data->county, $data->county, false, false);
                 }

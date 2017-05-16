@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -35,24 +35,22 @@ class jr_user
     {
         self::$internal_debugging = false;
 
-        $this->superPropertyManagersAreGods = true;                    //Change this to false to prevent super property managers from having rights to ALL properties
-
         //jomres user role
-        $this->jomres_manager_id = 0;                        //user/manager id in the _jomres_managers table
-        $this->id = 0;                        //cms user id TODO: remove duplicate from the entire codebase
-        $this->userid = 0;                        //cms user id TODO: remove duplicate from the entire codebase
-        $this->username = '';                        //logged in user`s username
-        $this->accesslevel = 0;                        //user access level
-        $this->currentproperty = 0;                        //user`s current property
-        $this->last_active = '1970-01-01 00:00:01';    //last active
-        $this->authorisedProperties = array();                    //array of properties that this user has access to
+        $this->jomres_manager_id 				= 0;                        //user/manager id in the _jomres_managers table
+        $this->id 								= 0;                        //cms user id TODO: remove duplicate from the entire codebase
+        $this->userid 							= 0;                        //cms user id TODO: remove duplicate from the entire codebase
+        $this->username 						= '';                        //logged in user`s username
+        $this->accesslevel 						= 0;                        //user access level
+        $this->currentproperty 					= 0;                        //user`s current property
+        $this->last_active 						= '1970-01-01 00:00:01';    //last active
+        $this->authorisedProperties 			= array();                    //array of properties that this user has access to
         //$this->users_timezone					= "America/Lima";			//user timezone - not used anymore
-        $this->simple_configuration = false;                    //simple configuration true/false
-        $this->userIsSuspended = false;                    //user is suspended true/false
+        $this->simple_configuration 			= false;                    //simple configuration true/false
+        $this->userIsSuspended 					= false;                    //user is suspended true/false
 
-        $this->userIsRegistered = false;                    //user is registered true/false
-        $this->userIsManager = false;                    //user is manaager true/false TODO: separate this for receptionists to userIsReceptionist
-        $this->superPropertyManager = false;                    //user is super property manager true/false
+        $this->userIsRegistered 				= false;                    //user is registered true/false
+        $this->userIsManager 					= false;                    //user is manaager true/false TODO: separate this for receptionists to userIsReceptionist
+        $this->superPropertyManager 			= false;                    //user is super property manager true/false
         //$this->userIsReceptionist				= false;					//user is receptionist true/false
         //$this->userIsPartner					= false;					//user is partner true/false TODO: add support for partners in jr_user
         //$this->userIsAgency					= false;					//user is travel agency true/false TODO: add support for travel agencies
@@ -86,6 +84,9 @@ class jr_user
 
         if ($this->id > 0) {
             $this->userIsRegistered = true;
+			
+			//registered user access level will be 1 (lowest after 0:not registered)
+			$this->accesslevel = 1;
 
             //get user profile details
             $this->get_user_profile();
@@ -280,7 +281,7 @@ class jr_user
      */
     private function reset_manager_to_non_manager()
     {
-        $this->accesslevel = 0;
+        $this->accesslevel = 1;
         $this->currentproperty = 0;
         $this->last_active = '1970-01-01 00:00:01';
         $this->authorisedProperties = array();
@@ -290,8 +291,6 @@ class jr_user
         $this->userIsManager = false;
         $this->superPropertyManager = false;
         $this->userIsSuspended = false;
-
-        set_user_feedback_message(jr_gettext('_JOMRES_MANAGER_HAS_NO_PROPERTIES', '_JOMRES_MANAGER_HAS_NO_PROPERTIES', false, false), 'danger');
     }
 
     /**
@@ -360,6 +359,16 @@ class jr_user
     public function is_receptionist()
     {
         if ($this->accesslevel == 50) {
+            return true;
+        }
+
+        return false;
+    }
+	
+	//checks if the current user is a receptionist
+    public function is_registered()
+    {
+        if ($this->accesslevel == 1) {
             return true;
         }
 

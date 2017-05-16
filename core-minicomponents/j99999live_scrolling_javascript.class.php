@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -28,7 +28,7 @@ class j99999live_scrolling_javascript
         if (AJAXCALL) {
             $endrun_javascript_for_eval_by_live_scrolling = get_showtime('endrun_javascript_for_eval_by_live_scrolling');
 
-            if (count($endrun_javascript_for_eval_by_live_scrolling) > 0 && get_showtime('task') == 'ajax_list_properties') {
+            if (!empty($endrun_javascript_for_eval_by_live_scrolling) && get_showtime('task') == 'ajax_list_properties') {
                 $javascript = '^';
 
                 foreach ($endrun_javascript_for_eval_by_live_scrolling as $js) {

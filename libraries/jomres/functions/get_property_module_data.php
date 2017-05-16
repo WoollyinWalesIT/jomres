@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -86,11 +86,11 @@ function get_property_module_data($property_uid_array, $alt_template_path = '', 
             }
             $tmpl->addRows('pageoutput', $pageoutput);
 
-            if (isset($current_property_details->multi_query_result[ $property_uid ][ 'room_types' ]) && count($current_property_details->multi_query_result[ $property_uid ][ 'room_types' ]) > 0) {
+            if (isset($current_property_details->multi_query_result[ $property_uid ][ 'room_types' ]) && !empty($current_property_details->multi_query_result[ $property_uid ][ 'room_types' ])) {
                 $tmpl->addRows('room_types', $current_property_details->multi_query_result[ $property_uid ][ 'room_types' ]);
             }
 
-            if (isset($current_property_details->multi_query_result[ $property_uid ][ 'room_features' ]) && count($current_property_details->multi_query_result[ $property_uid ][ 'room_features' ]) > 0) {
+            if (isset($current_property_details->multi_query_result[ $property_uid ][ 'room_features' ]) && !empty($current_property_details->multi_query_result[ $property_uid ][ 'room_features' ])) {
                 $tmpl->addRows('room_features', $current_property_details->multi_query_result[ $property_uid ][ 'room_features' ]);
             }
 

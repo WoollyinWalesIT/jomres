@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -31,11 +31,6 @@ class j06000show_site_business
             return;
         }
         $this->retVals = '';
-
-        $output_now = true;
-        if (isset($componentArgs[ 'output_now' ])) {
-            $output_now = (bool) $componentArgs[ 'output_now' ];
-        }
 
         $output = array();
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -68,13 +63,7 @@ class j06000show_site_business
         $tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
         $tmpl->readTemplatesFromInput('show_business_details.html');
         $tmpl->addRows('pageoutput', $pageoutput);
-        $result = $tmpl->getParsedTemplate();
-
-        if ($output_now) {
-            echo $result;
-        } else {
-            $this->retVals = $result;
-        }
+        $this->retVals = $tmpl->getParsedTemplate();
     }
 
     // This must be included in every Event/Mini-component

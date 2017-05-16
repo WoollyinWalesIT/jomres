@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,11 +16,27 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomresItemToolbar
 {
+	private static $configInstance;
+
+    public function __construct()
+    {
+        $this->newToolbar();
+    }
+
     public function newToolbar()
     {
         $this->toolbar = '';
         $this->items = array();
         $this->secondaryItems = array();
+    }
+	
+	public static function getInstance()
+    {
+        if (!self::$configInstance) {
+            self::$configInstance = new self();
+        }
+
+        return self::$configInstance;
     }
 
     public function addItem($icon, $buttonClass, $task, $link, $title, $submitOnClick = false, $otherParams = '')
@@ -55,13 +71,13 @@ class jomresItemToolbar
     {
         $this->toolbar = '<div id="jomres-item-toolbar" class="btn-group">';
 
-        if (count($this->items) > 0) {
+        if (!empty($this->items)) {
             foreach ($this->items as $item) {
                 $this->toolbar .= $item;
             }
         }
 
-        if (count($this->secondaryItems) > 0) {
+        if (!empty($this->secondaryItems)) {
             if (jomres_bootstrap_version() == '3') {
                 $this->toolbar .= '<a class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" href="#"> <span class="caret"></span></a><ul class="dropdown-menu">';
             } else {

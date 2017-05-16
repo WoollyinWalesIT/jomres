@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -50,6 +50,12 @@ class j06001edit_guest
 			$output[ 'MOBILE' ] = $jrportal_guests->tel_mobile;
 			$output[ 'EMAIL' ] = $jrportal_guests->email;
 			$output[ 'VAT_NUMBER' ] = $jrportal_guests->vat_number;
+
+            $yesno = array();
+            $yesno[] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false));
+            $yesno[] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false));
+            $output[ 'BLACKLISTED' ] = jomresHTML::selectList($yesno, 'blacklisted', 'class="inputbox" size="1"', 'value', 'text', $jrportal_guests->blacklisted );
+
 			$output[ 'DISCOUNT' ] = jomresHTML::integerSelectList(0, 99, 1, 'discount', 'class="inputbox" size="1"', $jrportal_guests->discount);
 
 			//validation message
@@ -90,11 +96,13 @@ class j06001edit_guest
         $output[ 'HEMAIL' ] = jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL');
         $output[ 'HDISCOUNT' ] = jr_gettext('_JOMRES_AJAXFORM_BILLING_DISCOUNT', '_JOMRES_AJAXFORM_BILLING_DISCOUNT');
         $output[ '_JOMRES_COM_YOURBUSINESS_VATNO' ] = jr_gettext('_JOMRES_COM_YOURBUSINESS_VATNO', '_JOMRES_COM_YOURBUSINESS_VATNO', false);
-
+        $output[ '_JOMRES_GUEST_BLACKLISTED' ] = jr_gettext('_JOMRES_GUEST_BLACKLISTED', '_JOMRES_GUEST_BLACKLISTED', false);
+        $output[ '_JOMRES_GUEST_BLACKLISTED_DESC' ] = jr_gettext('_JOMRES_GUEST_BLACKLISTED_DESC', '_JOMRES_GUEST_BLACKLISTED_DESC', false);
+        
         $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
         $jrtb = $jrtbar->startTable();
 
-        $jrtb .= $jrtbar->toolbarItem('cancel', jomresURL(JOMRES_SITEPAGE_URL.'&task=listguests'), '');
+        $jrtb .= $jrtbar->toolbarItem('cancel', jomresURL(JOMRES_SITEPAGE_URL.'&task=list_guests'), '');
         $jrtb .= $jrtbar->toolbarItem('save', '', '', true, 'save_guest');
         if ($id != 0) {
             $jrtb .= $jrtbar->toolbarItem('delete', jomresURL(JOMRES_SITEPAGE_URL.'&task=delete_guest'."&id=$id"), '');

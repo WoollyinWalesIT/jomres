@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -64,7 +64,7 @@ class j06000show_property_features
             $componentArgs[ 'show_feature_categories' ] = true;
         }
 
-        if (count($basic_property_details->features) > 0) {
+        if (!empty($basic_property_details->features)) {
             if ((int) $mrConfig['showPfeaturesCategories'] == 0 || $componentArgs[ 'show_feature_categories' ] == false) {
                 $pFeatures = array();
 

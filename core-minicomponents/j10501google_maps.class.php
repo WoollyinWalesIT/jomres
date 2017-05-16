@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -34,16 +34,29 @@ class j10501google_maps
         $map_styles_dropdown = $componentArgs[ 'map_styles_dropdown' ];
 
         $configurationPanel->startPanel(jr_gettext('JOMRES_GOOGLE_MAPS', 'JOMRES_GOOGLE_MAPS', false));
-
-        $configurationPanel->insertDescription(jr_gettext('JOMRES_GOOGLE_MAPS_INFO', 'JOMRES_GOOGLE_MAPS_INFO', false));
-
-        $configurationPanel->setleft(jr_gettext('JOMRES_COM_A_MAPSKEY', 'JOMRES_COM_A_MAPSKEY', false));
-        $configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_google_maps_api_key" value="'.$jrConfig[ 'google_maps_api_key' ].'" />');
-        $configurationPanel->setright(jr_gettext('JOMRES_COM_A_MAPSKEY_DESC', 'JOMRES_COM_A_MAPSKEY_DESC', false));
+		
+		$configurationPanel->setleft(jr_gettext('_JOMRES_MAP_MAPTYPE', '_JOMRES_MAP_MAPTYPE', false));
+        $configurationPanel->setmiddle($lists['map_type']);
+        $configurationPanel->setright();
         $configurationPanel->insertSetting();
 
         $configurationPanel->setleft(jr_gettext('JOMRES_GOOGLE_MAP_STYLE', 'JOMRES_GOOGLE_MAP_STYLE', false));
         $configurationPanel->setmiddle($map_styles_dropdown);
+        $configurationPanel->setright();
+        $configurationPanel->insertSetting();
+		
+		$configurationPanel->setleft(jr_gettext('_JOMRES_MAP_ZOOMLEVEL', '_JOMRES_MAP_ZOOMLEVEL', false));
+        $configurationPanel->setmiddle($lists['map_zoom']);
+        $configurationPanel->setright();
+        $configurationPanel->insertSetting();
+		
+		$configurationPanel->setleft(jr_gettext('_JOMRES_DEFAULT_LAT_STARTPOINT', '_JOMRES_DEFAULT_LAT_STARTPOINT', false));
+        $configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_default_lat" value="'.$jrConfig[ 'default_lat' ].'" />');
+        $configurationPanel->setright(jr_gettext('_JOMRES_DEFAULT_LATLONGSTARTPOINT_DESC', '_JOMRES_DEFAULT_LATLONGSTARTPOINT_DESC', false));
+        $configurationPanel->insertSetting();
+
+        $configurationPanel->setleft(jr_gettext('_JOMRES_DEFAULT_LONG_STARTPOINT', '_JOMRES_DEFAULT_LONG_STARTPOINT', false));
+        $configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_default_long" value="'.$jrConfig[ 'default_long' ].'" />');
         $configurationPanel->setright();
         $configurationPanel->insertSetting();
 
@@ -56,6 +69,14 @@ class j10501google_maps
         $configurationPanel->setmiddle($lists[ 'gmap_layer_transit' ]);
         $configurationPanel->setright();
         $configurationPanel->insertSetting();
+		
+		$configurationPanel->setleft(jr_gettext('_JOMRES_MAP_HEIGHT', '_JOMRES_MAP_HEIGHT', false));
+        $configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_map_height" value="'.$jrConfig[ 'map_height' ].'" />');
+        $configurationPanel->setright();
+        $configurationPanel->insertSetting();
+		
+		//plugins can add options to this tab
+		$MiniComponents->triggerEvent('10525', $componentArgs);
 
         $configurationPanel->endPanel();
     }
