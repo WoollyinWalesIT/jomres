@@ -97,8 +97,9 @@ class j06001dashboard_weekly_percentages
 		}
 		
 		foreach ($dates as $date=>$number_booked) {
-			$percentage_booked = (int)($number_booked['number_booked']*100)/$number_of_rooms;
-			$dates[$date]['percentage'] = $percentage_booked;
+			$percentage_booked = ($number_booked['number_booked']*100)/$number_of_rooms;
+
+			$dates[$date]['percentage'] = (int)$percentage_booked;
 			$dates[$date]['friendly_date'] = outputDate( $date ) ; // This doesn't scale well responsivly so we'll use the days and month names as determined up above.
 			$dates[$date][''] = 
 			$dates[$date]['over50'] = '';
