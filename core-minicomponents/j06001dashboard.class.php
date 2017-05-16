@@ -214,7 +214,13 @@ class j06001dashboard
 		
 		$output['PERCENTAGES_BOOKED'] = $MiniComponents->specificEvent('06001', 'dashboard_weekly_percentages', array('output_now' => false, 'property_uid' => $property_uid));
 		
-		$output['OVERVIEW'] = $MiniComponents->specificEvent('06001', 'overview', array('output_now' => false, 'property_uid' => $property_uid));
+		if (!isset($jrConfig[ 'show_overview_in_dashboard' ])) {
+			$jrConfig[ 'show_overview_in_dashboard' ] = "0";
+		}
+		
+		if ($jrConfig[ 'show_overview_in_dashboard' ] == "1" ) {
+			$output['OVERVIEW'] = $MiniComponents->specificEvent('06001', 'overview', array('output_now' => false, 'property_uid' => $property_uid));
+		}
 
         $pageoutput[] = $output;
         $tmpl = new patTemplate();
