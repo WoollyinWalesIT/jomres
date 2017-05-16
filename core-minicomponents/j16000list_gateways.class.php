@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -29,13 +29,13 @@ class j16000list_gateways
 
         $MiniComponents->triggerEvent('10509', array('show_anyway' => true));
         $mcOutput = $MiniComponents->getAllEventPointsData('10509');
-        if (count($mcOutput) > 0) {
+        if (!empty($mcOutput)) {
             foreach ($mcOutput as $key => $val) {
                 $gateway_plugins[] = $val;
             }
         }
 
-        if (count($gateway_plugins) > 0) {
+        if (!empty($gateway_plugins)) {
             $output[ '_JOMRES_COM_A_GATEWAY_ENABLED' ] = jr_gettext('_JOMRES_COM_A_GATEWAY_ENABLED', '_JOMRES_COM_A_GATEWAY_ENABLED', false);
             $output[ 'TOUR_ID_TAB_GATEWAYS_TITLE' ] = jr_gettext('_JOMRES_COM_A_GATEWAYLIST', '_JOMRES_COM_A_GATEWAYLIST', false);
             $output[ 'GATEWAYS_INSTRUCTIONS' ] = jr_gettext('GATEWAYS_INSTRUCTIONS', 'GATEWAYS_INSTRUCTIONS', false);

@@ -8,6 +8,7 @@
 		</div>
 		<div class="col-md-4">
 			<h4 class=""><a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-toggle="modal">{ROOMTYPE}</a></h4>
+			<p><b>{TAGLINE}</b></p>
 			<p>
 				{HEADER_MAXPEOPLE}: {MAXPEOPLE_INROOM}<br />
 				{HTITLE}: {TITLE}<br />
@@ -40,7 +41,7 @@ jomresJquery(document).ready(function(){
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-				<h3 id="myModalLabel{ROOMUID}_{TARIFFUID}">{ROOMTYPE}</h3>
+				<h4 id="myModalLabel{ROOMUID}_{TARIFFUID}">{ROOMTYPE} - {ROOMNAME} {ROOMNUMBER}</h4>
 			</div>
 			<div class="modal-body">
 				<div class="row">
@@ -49,6 +50,7 @@ jomresJquery(document).ready(function(){
 					</div>
 					<div class="col-md-7">
 						<h4 class="page-header">{HROOM_DETAILS}</h4>
+						<p><b>{TAGLINE}</b></p>
 						<p>
 							<!--<img src="{ROOM_TYPE_IMAGE}" alt="room type image"/><br />-->
 							{HEADER_ROOMTYPE}: {ROOMTYPE}<br />
@@ -60,6 +62,7 @@ jomresJquery(document).ready(function(){
 						</p>
 					</div>
 				</div>
+		
 				<div class="row">
 					<div class="col-md-5" align="center">
 						<div class="well">
@@ -79,6 +82,8 @@ jomresJquery(document).ready(function(){
 						</p>
 					</div>
 				</div>
+				
+				<p>{DESCRIPTION}</p>
 			</div>
 			<div class="modal-footer">
 				<a class="btn btn-default" data-dismiss="modal" aria-hidden="true">{COMMON_CLOSE}</a>

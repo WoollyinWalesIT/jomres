@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -137,7 +137,6 @@ function jomres_cmsspecific_createNewUser()
             //$thisJRUser->userIsRegistered=true; // Disabled as this setting would be incorrect during the booking phase. We want newly created users to have their details recorded by the insertGuestDeets function in insertbookings
             $thisJRUser->id = $id;
             $tmpBookingHandler->updateGuestField('mos_userid', $id);
-            $tmpBookingHandler->saveGuestData();
 
             $subject = jr_gettext('_JRPORTAL_NEWUSER_SUBJECT', '_JRPORTAL_NEWUSER_SUBJECT', false, false);
 
@@ -279,7 +278,7 @@ function jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id($id)
     $user = array();
     $query = 'SELECT id,name,username,email FROM #__users WHERE id='.(int) $id;
     $userList = doSelectSql($query);
-    if (count($userList) > 0) {
+    if (!empty($userList)) {
         foreach ($userList as $u) {
             $user[ $id ] = array('id' => $u->id, 'name' => $u->name, 'username' => $u->username, 'email' => $u->email);
         }
@@ -294,7 +293,7 @@ function jomres_cmsspecific_getCMS_users_frontend_userdetails_by_username($usern
     $user = array();
     $query = "SELECT id,username FROM #__users WHERE username='".(string) $username."'";
     $userList = doSelectSql($query);
-    if (count($userList) > 0) {
+    if (!empty($userList)) {
         foreach ($userList as $u) {
             $user[ $id ] = array('id' => $u->id, 'username' => $u->username, 'email' => $u->username);
         }
@@ -309,7 +308,7 @@ function jomres_cmsspecific_getCMS_users_admin_userdetails_by_id($id)
     $user = array();
     $query = 'SELECT id,username,email FROM #__users WHERE id='.(int) $id;
     $userList = doSelectSql($query);
-    if (count($userList) > 0) {
+    if (!empty($userList)) {
         foreach ($userList as $u) {
             $user[ $id ] = array('id' => $u->id, 'username' => $u->username, 'email' => $u->email);
         }
@@ -334,7 +333,7 @@ function jomres_cmsspecific_getCMS_users_admin_getalladmins_ids()
     $ids = $db->loadObjectList();
 
     $users = array();
-    if (count($ids) > 0) {
+    if (!empty($ids)) {
         foreach ($ids as $u) {
             $users[ $u->id ] = array('id' => $u->id, 'username' => $u->username, 'email' => $u->email);
         }
@@ -354,7 +353,7 @@ function jomres_cmsspecific_getSearchModuleParameters($moduleName = '')
 
             $vals = array();
             $arr = explode(',', $p);
-            if (count($arr) > 0) {
+            if (!empty($arr)) {
                 foreach ($arr as $str) {
                     $dat = explode(':', $str);
 
@@ -391,7 +390,7 @@ function jomres_cmsspecific_getCMSUsers($cms_user_id = 0)
     $query = 'SELECT `id`,`name`,`username`,`email` FROM #__users '.$clause;
     $userList = doSelectSql($query);
 
-    if (count($userList) > 0) {
+    if (!empty($userList)) {
         foreach ($userList as $u) {
             $users[ $u->id ] = array('id' => $u->id, 'username' => $u->username, 'email' => $u->email);
         }
@@ -516,7 +515,7 @@ function jomres_cmsspecific_find_cms_users($search_term = '')
     $query = 'SELECT `id`, `name`, `username`, `email` FROM #__users '.$clause;
     $userList = doSelectSql($query);
 
-    if (count($userList) > 0) {
+    if (!empty($userList)) {
         foreach ($userList as $u) {
             $users[ $u->id ] = array('id' => $u->id, 'username' => $u->username, 'email' => $u->email);
         }
@@ -551,4 +550,14 @@ function jomres_cmsspecific_isRtl($cms_user_id = 0) {
 	$isRtl = $language->isRtl();
 	
 	return $isRtl;
+}
+
+function jomres_cmsspecific_user_is_admin() {
+	$user = JFactory::getUser();
+	
+	if ( $user->authorise('core.admin') ) {
+		return true;
+	}
+	
+	return false;
 }

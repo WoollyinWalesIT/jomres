@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -23,7 +23,7 @@ class jomres_partners
         $this->partner_guests = array();
         $query = 'SELECT id,cms_userid FROM #__jomres_partners';
         $existing = doSelectSql($query);
-        if (count($existing) > 0) {
+        if (!empty($existing)) {
             foreach ($existing as $partner) {
                 $cms_userid = $partner->cms_userid;
                 $this->partners[$cms_userid]['cms_userid'] = $cms_userid;
@@ -51,7 +51,7 @@ class jomres_partners
         if ((int) $cms_userid == 0) {
             return false;
         }
-        if (count($this->partners) == 0) {
+        if (empty($this->partners)) {
             return false;
         }
 
@@ -70,7 +70,7 @@ class jomres_partners
         }
         $query = 'SELECT guests_uid FROM #__jomres_guests WHERE partner_id = '.$cms_userid;
         $result = doSelectSql($query);
-        if (count($result) == 0) {
+        if (empty($result)) {
             return array();
         } else {
             foreach ($result as $r) {

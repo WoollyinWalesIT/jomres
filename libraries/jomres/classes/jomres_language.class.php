@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,6 +16,8 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_language
 {
+	private static $configInstance;
+	
     public function __construct()
     {
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -47,14 +49,34 @@ class jomres_language
         jomres_cmsspecific_setlanguage($jomresConfig_lang);
 
         $this->lang = $jomresConfig_lang;
+		$this->datepicker_lang = $this->datepicker_crossref[ $jomresConfig_lang ];
 
         //set lang showtime, eg: en-GB
-        set_showtime('lang', $jomresConfig_lang);
+        set_showtime('lang', $this->lang);
+		set_showtime('datepicker_lang', $this->datepicker_lang);
 
         //set lang shortcode showtime, eg: en
         $this->shortcodes = $this->get_shortcodes();
         $key = array_search($jomresConfig_lang, $this->shortcodes);
         set_showtime('lang_shortcode', $key);
+		
+		//selected languages
+		$this->selected_languages = array();
+
+		if ($jrConfig['selected_languages'] != '') {
+			$this->selected_languages = explode(',',$jrConfig['selected_languages']);
+		} else {
+			$this->selected_languages = array_keys($langfile_crossref);
+		}
+    }
+	
+	public static function getInstance()
+    {
+        if (!self::$configInstance) {
+            self::$configInstance = new self();
+        }
+
+        return self::$configInstance;
     }
 
     public function get_language($property_type = '')
@@ -106,61 +128,21 @@ class jomres_language
         return false;
     }
 
-    public function get_current_lang_files()
-    {
-        $langfiles = array();
-
-        $this->unWantedFolderContents = array('.', '..', 'cvs', '.svn', 'index.html');
-        $d = @dir(JOMRESPATH_BASE.JRDS.'language'.JRDS);
-        if ($d) {
-            while (false !== ($entry = $d->read())) {
-                $filename = $entry;
-                if (is_file(JOMRESPATH_BASE.JRDS.'language'.JRDS.$filename) && !in_array(strtolower($filename), $this->unWantedFolderContents)) {
-                    $langfiles[ ] = $filename;
-                }
-            }
-        }
-
-        $language_plugins = get_showtime('language_plugins');
-        if (count($language_plugins) > 0) {
-            foreach ($language_plugins as $code => $propertytype) {
-                $langfiles[ ] = $code;
-            }
-        }
-
-        return $langfiles;
-    }
-
     public function get_languageselection_dropdown($config_option = false, $default_lang = '')
     {
-        $task = get_showtime('task');
+		$langfile_options = array();
 
-        $langDropdownFile = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'langDropdown.php';
-        $langfile_crossref = $this->define_langfile_to_languages_array();
+        $language_names = $this->define_langfile_to_languages_array();
 
-        if (file_exists($langDropdownFile)) {
-            require_once $langDropdownFile;
-            $langfiles = getLangDropdownString();
-        } else {
-            $langfile_options = array();
-            $langfiles = $this->get_current_lang_files();
-            if (count($langfiles) == 0) {
-                return false;
-            }
-        }
-
-        $tempOptions = array();
-        foreach ($langfiles as $filename) {
-            $langfileexplode = explode('.', $filename);
-            $langshortcode = $langfileexplode[ 0 ];
-            $langlong = $langfile_crossref[ $langshortcode ];
-            $tempOptions[ $langshortcode ] = $langlong;
-        }
-
-        natsort($tempOptions);
-        foreach ($tempOptions as $key => $val) {
-            $langfile_options[ ] = jomresHTML::makeOption($key, $val);
-        }
+		if (!empty($this->selected_languages)) {
+			foreach ($this->selected_languages as $lang_code) {
+				$langfile_options[] = jomresHTML::makeOption($lang_code, $language_names[$lang_code]);
+			}
+		} else {
+			foreach ($language_names as $lang_code => $lang_name) {
+				$langfile_options[] = jomresHTML::makeOption($lang_code, $lang_name);
+			}
+		}
 
         if (!$config_option) {
             $javascript = 'onchange="this.form.submit();"';
@@ -230,34 +212,13 @@ class jomres_language
         $langs[ 'az-AZ' ] = 'Azərbaycan dili';
         $langs[ 'tr-TR' ] = 'Türkçe';
 
-        $language_plugins = get_showtime('language_plugins');
-        if (count($language_plugins) > 0) {
-            foreach ($language_plugins as $code => $propertytype) {
-                foreach ($propertytype as $language_settings) {
-                    $langs[ $code ] = $language_settings[ 'langfile_to_languages' ];
-                }
-            }
-        }
-
         return $langs;
     }
 
     public function get_shortcode_to_longcode($lang)
     {
-        $langs = $this->get_shortcodes();
-
-        $language_plugins = get_showtime('language_plugins');
-        if (count($language_plugins) > 0) {
-            foreach ($language_plugins as $code => $propertytype) {
-                foreach ($propertytype as $language_settings) {
-                    $shortcode = $language_settings[ 'shortcode_to_longcode' ];
-                    $langs[ $shortcode ] = $code;
-                }
-            }
-        }
-
-        if (array_key_exists($lang, $langs)) {
-            return $langs[ $lang ];
+        if ( isset($this->shortcodes[ $lang ] )) {
+            return $this->shortcodes[ $lang ];
         }
 
         return 'en-GB';
@@ -344,15 +305,6 @@ class jomres_language
         $langs[ 'fa-IR' ] = 'fa';
         $langs[ 'az-AZ' ] = 'az';
         $langs[ 'tr-TR' ] = 'tr';
-
-        $language_plugins = get_showtime('language_plugins');
-        if (count($language_plugins) > 0) {
-            foreach ($language_plugins as $code => $propertytype) {
-                foreach ($propertytype as $language_settings) {
-                    $langs[ $code ] = $language_settings[ 'langfile_to_datepicker' ];
-                }
-            }
-        }
 
         return $langs;
     }

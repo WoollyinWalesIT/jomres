@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -63,6 +63,9 @@ class j10501file_uploads
         $configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_fileSize" value="'.$jrConfig[ 'fileSize' ].'">');
         $configurationPanel->setright(jr_gettext('_JOMRES_COM_A_UPLOADS_FILESIZE_DESC', '_JOMRES_COM_A_UPLOADS_FILESIZE_DESC', false));
         $configurationPanel->insertSetting();
+		
+		//plugins can add options to this tab
+		$MiniComponents->triggerEvent('10524', $componentArgs);
 
         $configurationPanel->endPanel();
     }

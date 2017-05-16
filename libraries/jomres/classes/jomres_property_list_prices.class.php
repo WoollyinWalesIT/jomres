@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -21,7 +21,6 @@ class jomres_property_list_prices
 
     public function __construct()
     {
-        self::$configInstance = false;
         $this->lowest_prices = array();
         $this->stayDays = array();
         $this->today = date('Y/m/d');
@@ -72,7 +71,7 @@ class jomres_property_list_prices
         $basic_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
         $basic_property_details->gather_data_multi($property_uids);
 
-        if (count($property_uids) > 0) {
+        if (!empty($property_uids)) {
             $property_uids_to_query = array();
 
             //save the original property uid and type so we can reset this after we`re done
@@ -83,7 +82,7 @@ class jomres_property_list_prices
                 $plugin_will_provide_lowest_price = false;
                 $MiniComponents->triggerEvent('07015', array('property_uid' => $property_uid)); // Optional
                 $mcOutput = $MiniComponents->getAllEventPointsData('07015');
-                if (count($mcOutput) > 0) {
+                if (!empty($mcOutput)) {
                     foreach ($mcOutput as $key => $val) {
                         if ($val == true) {
                             $plugin_will_provide_lowest_price = true;
@@ -107,7 +106,7 @@ class jomres_property_list_prices
                 }
             }
 
-            if (count($property_uids_to_query) > 0) {
+            if (!empty($property_uids_to_query)) {
                 $pricesFromArray = array();
                 $searchDate = date('Y/m/d');
                 $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
@@ -115,7 +114,7 @@ class jomres_property_list_prices
                 //get arrival date
                 if (isset($_REQUEST[ 'arrivalDate' ]) && $_REQUEST[ 'arrivalDate' ] != '') {
                     $this->arrivalDate = JSCalConvertInputDates(jomresGetParam($_REQUEST, 'arrivalDate', ''));
-                } elseif (count($tmpBookingHandler->tmpsearch_data) > 0) {
+                } elseif (!empty($tmpBookingHandler->tmpsearch_data)) {
                     if (isset($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ]) && trim($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ]) != '') {
                         $this->arrivalDate = $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ];
                     } elseif (isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate']) && trim($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] != '')) {
@@ -126,7 +125,7 @@ class jomres_property_list_prices
                 //get departure date
                 if (isset($_REQUEST[ 'departureDate' ]) && $_REQUEST[ 'departureDate' ] != '') {
                     $this->departureDate = JSCalConvertInputDates(jomresGetParam($_REQUEST, 'departureDate', ''));
-                } elseif (count($tmpBookingHandler->tmpsearch_data) > 0) {
+                } elseif (!empty($tmpBookingHandler->tmpsearch_data)) {
                     if (isset($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ]) && trim($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ]) != '') {
                         $this->departureDate = $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ];
                     } elseif (isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate']) && trim($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'] != '')) {
@@ -177,7 +176,7 @@ class jomres_property_list_prices
                             break;
                         }
 
-                    if (count($tariffList) > 0) {
+                    if (!empty($tariffList)) {
                         foreach ($tariffList as $t) {
                             if (!isset($pricesFromArray[ $t->property_uid ])) {
                                 $pricesFromArray[ $t->property_uid ] = $t->roomrateperday;

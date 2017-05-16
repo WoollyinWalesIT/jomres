@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -107,10 +107,12 @@ class j06002list_resources
 
             //room features TODO: build a class for room features
             $roomFeaturesArray = explode(',', $room['room_features_uid']);
-
+			
+			$n = count($roomFeaturesArray);
+			
             $r[ 'ROOM_FEATURES' ] = '<ul>';
             foreach ($basic_room_details->all_room_features as $feature) {
-                for ($i = 0, $n = count($roomFeaturesArray); $i < $n; ++$i) {
+                for ($i = 0; $i < $n; ++$i) {
                     if (isset($roomFeaturesArray[ $i ]) && $roomFeaturesArray[ $i ] != '' && $roomFeaturesArray[ $i ] == $feature['room_features_uid']) {
                         $r[ 'ROOM_FEATURES' ] .= '<li>'.$feature['feature_description'].'</li>
 						';

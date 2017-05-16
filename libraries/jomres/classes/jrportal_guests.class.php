@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -41,6 +41,7 @@ class jrportal_guests
 		$this->vat_number = '';
 		$this->vat_number_validated = 0;
 		$this->vat_number_validation_response = '';
+        $this->blacklisted = 0;
 		$this->partner_id = 0;
     }
 	
@@ -74,7 +75,8 @@ class jrportal_guests
 					`vat_number`,
 					`vat_number_validated`,
 					`vat_number_validation_response`,
-					`partner_id` 
+					`partner_id`,
+                    `blacklisted`
 				FROM `#__jomres_guests` 
 				WHERE `guests_uid` = ".(int)$this->id." AND `property_uid` = ".(int)$this->property_uid;
         $result = doSelectSql($query);
@@ -103,6 +105,7 @@ class jrportal_guests
 			$this->vat_number_validated = (int) $r->vat_number_validated;
 			$this->vat_number_validation_response = $r->vat_number_validation_response;
 			$this->partner_id = (int) $r->partner_id;
+            $this->blacklisted = (int) $r->blacklisted;
         }
 
         return true;
@@ -234,7 +237,8 @@ class jrportal_guests
 						`vat_number` = '".$this->vat_number."',
 						`vat_number_validated` = ".(int)$this->vat_number_validated.",
 						`vat_number_validation_response` = '".$this->vat_number_validation_response."',
-						`partner_id` = ".(int)$this->partner_id."  
+						`partner_id` = ".(int)$this->partner_id.",
+                        `blacklisted` = ".(int)$this->blacklisted."  
 					WHERE `guests_uid` = " .(int) $this->id." 
 						AND `property_uid` = " .(int)$this->property_uid;
 
@@ -305,5 +309,20 @@ class jrportal_guests
         }
 		
 		return false;
+	}
+    
+	function get_guest_id_by_cms_id($cms_id)
+	{
+		if ($this->property_uid == 0) {
+            throw new Exception('Error: Property uid not set.');
+        }
+        
+        $cms_id = (int)$cms_id;
+
+        $query = "SELECT
+                    `guests_uid`
+				FROM `#__jomres_guests` 
+				WHERE `mos_userid` = ".(int)$cms_id." AND `property_uid` = ".(int)$this->property_uid;
+        return doSelectSql($query, 1  ) ;
 	}
 }

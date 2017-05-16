@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -44,16 +44,18 @@ class j16000listGlobalroomTypes
         $output[ 'HJOMRES_A_ICON' ] = jr_gettext('_JOMRES_A_ICON', '_JOMRES_A_ICON', false);
         $output[ 'HPTYPE_ASSIGNMENT' ] = jr_gettext('_JOMRES_PROPERTY_TYPE_ASSIGNMENT', '_JOMRES_PROPERTY_TYPE_ASSIGNMENT', false);
 
-        if (count($jomres_room_types->room_types) > 0) {
+        if (!empty($jomres_room_types->room_types)) {
             foreach ($jomres_room_types->room_types as $r) {
                 $selected_ptype_rows = '';
 
-                if (count($r['ptype_xref']) > 0) {
+                if (!empty($r['ptype_xref'])) {
                     foreach ($r['ptype_xref'] as $k) {
                         if (isset($jomres_property_types->property_types[$k])) {
-                            $selected_ptype_rows .= $jomres_property_types->property_types[$k]['ptype'].' ';
+                            $selected_ptype_rows .= $jomres_property_types->property_types[$k]['ptype'].', ';
                         }
                     }
+					
+					$selected_ptype_rows = rtrim($selected_ptype_rows, ', ');
                 }
 
                 $r[ 'CHECKBOX' ] = '<input type="checkbox" id="cb'.count($rows).'" name="idarray[]" value="'.$r['room_classes_uid'].'" onClick="jomres_isChecked(this.checked);">';

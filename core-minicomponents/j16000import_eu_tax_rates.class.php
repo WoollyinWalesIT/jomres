@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -28,9 +28,6 @@ class j16000import_eu_tax_rates
 
         $jrportal_taxrate = jomres_singleton_abstract::getInstance('jrportal_taxrate');
         $result = $jrportal_taxrate->deleteAllTaxRates();
-
-        $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-        $c->eraseAll();
 
         if ($result) {
             // http://en.wikipedia.org/wiki/European_Union_value_added_tax#EU_VAT_area

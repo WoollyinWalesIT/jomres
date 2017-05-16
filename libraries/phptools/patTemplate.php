@@ -764,7 +764,7 @@ class patTemplate
 	function addRows( $template, $rows, $prefix = '' )
 		{
 		$common = $this->add_common_jomres_strings();
-		if ( count($rows) > 0 )
+		if ( !empty($rows))
 			{
 			$new_rows = array ();
 			foreach ( $rows as $row )
@@ -2628,7 +2628,7 @@ class patTemplate
 		// find all instances of mambot and put in $matches
 		
 		preg_match_all( $regex, $result, $matches );
-		if (count($matches)>0)
+		if (!empty($matches))
 			{
 			foreach ($matches[0] as $m)
 				{

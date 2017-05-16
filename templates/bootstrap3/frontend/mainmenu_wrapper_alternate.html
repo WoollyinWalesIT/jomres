@@ -1,34 +1,28 @@
-
 <patTemplate:tmpl name="pageoutput">
 <script type="text/javascript">
-	<!--
-	// Moves the menu to the content/component area (above the Jomres output), however that will be overriden by navbar-fixed-bottom or navbar-fixed-top
-	jomresJquery(document).ready(function () {
-		var $content = jomresJquery('#jomres-menu-pinned').html();
-		jomresJquery('#{MENU_LOCATION}').html($content);
-		jomresJquery('#jomres-menu-pinned').empty(); // making sure that the old div doesn't have the accordion applied to it.
-	});
-	var jomres_task = "{TASK}";
-	//-->
+<!--
+// Moves the menu to the content/component area (above the Jomres output), however that will be overriden by navbar-fixed-bottom or navbar-fixed-top
+jomresJquery(document).ready(function () {
+	var $content = jomresJquery('#jomres-menu-pinned').html();
+	jomresJquery('#{MENU_LOCATION}').html($content);
+	jomresJquery('#jomres-menu-pinned').empty(); // making sure that the old div doesn't have the accordion applied to it.
+});
+//-->
 </script>
 
 <div id="jomres-menu-pinned" style="display:none;">
-	<div id="tour_target_main_menu"></div>
 	<nav class="navbar {NAVBAR_LOCATION} {NAVBAR_INVERSE}" role="navigation">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#jomres-mainmenu-collapse">
 				<span class="sr-only">Toggle navigation</span>
 				<i class="fa fa-bars"></i>
 			</button>
-			<!--<a class="navbar-brand" href="#"><img src="{LIVESITE}/{JOMRES_ROOT_DIRECTORY}/images/jrhouse.png" alt="Jomres logo" width="28"/></a>-->
+			<a class="navbar-brand" href="#"><img src="{LIVESITE}/{JOMRES_ROOT_DIRECTORY}/images/jrhouse.png" alt="Jomres logo" width="28"/></a>
 		</div>
 		<div class="collapse navbar-collapse" id="jomres-mainmenu-collapse">
 			<ul class="nav navbar-nav">
-				<patTemplate:tmpl name="button_output">
-					{DIV}
-				</patTemplate:tmpl>
-				<patTemplate:tmpl name="help" type="simpleCondition" requiredVars="product_tour_page_information">
-				<li><a id="product_tour_start"  href="#" data-demo>{PRODUCT_TOUR_PAGE_INFORMATION}</a></li>
+				<patTemplate:tmpl name="menu_sections">
+					{SECTION}
 				</patTemplate:tmpl>
 			</ul>
 		</div>

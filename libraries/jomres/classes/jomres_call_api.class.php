@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -58,7 +58,7 @@ class jomres_call_api
         }
 
         $MiniComponents = jomres_getSingleton('mcHandler');
-        if (isset($MiniComponents->registeredClasses['06005oauth']) && isset($client_secret) && trim($client_secret) != '' ) {
+        if (isset($MiniComponents->registeredClasses['06005']['oauth']) && isset($client_secret) && trim($client_secret) != '' ) {
             $this->server = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/api/';
             $data = array('grant_type' => 'client_credentials', 'client_id' => $client_id, 'client_secret' => $client_secret);
             $token_request = $this->query_api('POST', '/', $data);
@@ -77,7 +77,7 @@ class jomres_call_api
         $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
         $query = "SELECT client_id,scope FROM #__jomres_oauth_clients WHERE client_id = '".$thisJRUser->username."' LIMIT 1";
         $result = doSelectSql($query);
-        if (count($result) == 0) {
+        if (empty($result)) {
             $query = "INSERT INTO #__jomres_oauth_clients 
                 (`client_id`,`client_secret`,`redirect_uri`,`grant_types`,`scope`,`user_id`) 
                 VALUES 

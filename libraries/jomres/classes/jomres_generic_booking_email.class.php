@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -141,7 +141,7 @@ class jomres_generic_booking_email
         }
 
         //qr codes
-        $url = JOMRES_SITEPAGE_URL_NOSEF.'&task=editBooking&thisProperty='.$property_uid.'&contract_uid='.$contract_uid;
+        $url = JOMRES_SITEPAGE_URL_NOSEF.'&task=edit_booking&thisProperty='.$property_uid.'&contract_uid='.$contract_uid;
         $this->data[$contract_uid]['QR_CODE_OFFICE'] = jomres_make_qr_code($url);
 
         $url = make_gmap_url_for_property_uid($property_uid);
@@ -162,7 +162,7 @@ class jomres_generic_booking_email
         $jomres_custom_field_handler = jomres_singleton_abstract::getInstance('jomres_custom_field_handler');
         $allCustomFields = $jomres_custom_field_handler->getAllCustomFieldsByPtypeId($ptype_id);
 
-        if (count($allCustomFields) > 0) {
+        if (!empty($allCustomFields)) {
             $this->data[$contract_uid]['CUSTOM_FIELDS'] = '';
             foreach ($allCustomFields as $f) {
                 $formfieldname = $f[ 'fieldname' ].'_'.$f[ 'uid' ];
@@ -217,7 +217,7 @@ class jomres_generic_booking_email
 
         //get custom template
         $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if (isset($MiniComponents->registeredClasses['03150'.$email_type])) {
+        if (isset($MiniComponents->registeredClasses['03150'][$email_type])) {
             $MiniComponents->specificEvent('03150', $email_type);
         } else {
             return;

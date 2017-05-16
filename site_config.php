@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -24,7 +24,6 @@ $jrConfig = array(
   'editingModeAffectsAllProperties' => '0',
   'allowHTMLeditor' => '1',
   'selfRegistrationAllowed' => '1',
-  'cal_output' => 'jS M Y',
   'cal_input' => '%d/%m/%Y',
   'isInIframe' => '0',
   'errorChecking' => '0',
@@ -132,13 +131,11 @@ $jrConfig = array(
   'commission_autosuspend_on_overdue' => '1',
   'commission_autosuspend_on_overdue_threashold' => '60',
   'language_context' => '',
-  'advanced_site_config' => '1',
   'booking_form_lnks_as_buttons' => '1',
   'load_jquery_ui' => '1',
   'guestnumbersearch' => 'greaterthan',
   'load_jquery_ui_css' => '1',
   'use_conversion_feature' => '1',
-  'javascript_caching_enabled' => '0',
   'geolocation_api_key' => '',
   'booking_form_modal_popup' => '0',
   'booking_form_totalspanel_position' => '455',
@@ -154,14 +151,12 @@ $jrConfig = array(
   'alternate_smtp_username' => '',
   'alternate_smtp_password' => '',
   'alternate_mainmenu' => '1',
-  'full_access_control' => '0',
   'license_server_username' => '',
   'license_server_password' => '',
   'useshoppingcart' => '1',
   'default_lat' => '51.50068',
   'default_long' => '-0.14317',
   'default_from_address' => '',
-  'css_caching_enabled' => '0',
   'use_cleardate_checkbox' => '1',
   'use_cookie_policy' => '0',
   'safe_mode' => '0',
@@ -169,7 +164,7 @@ $jrConfig = array(
   'room_lock_timeout' => '3600',
   'input_filtering' => 'strong',
   'html_purifier_allowed_tags' => 'p[class],b,strong,a[href],i,em,img[src],ul,li,h1[class],table[width],table[border],tr,td,th,br',
-  'inputs_allowing_html' => 'property_description property_checkin_times property_area_activities property_driving_directions property_airports property_othertransport property_policies_disclaimers email_text description',
+  'inputs_allowing_html' => 'property_description property_checkin_times property_area_activities property_driving_directions property_airports property_othertransport property_policies_disclaimers email_text description room_description',
   'property_details_in_tabs' => '0',
   'property_list_layout_default' => 'tile',
   'automatically_approve_new_properties' => '1',
@@ -186,7 +181,6 @@ $jrConfig = array(
   'gmap_layer_bicycling' => '0',
   'gmap_layer_temperature_grad' => 'CELCIUS',
   'development_production' => 'production',
-  'useArrayCaching' => '0',
   'navbar_location' => 'component_area',
   'navbar_inverse' => '0',
   'bootstrap_version' => '',
@@ -215,5 +209,11 @@ $jrConfig = array(
   'syslog_port' => '',
   'sendErrorEmails' => '0',
   'minimum_deposit_percentage' => '',
-  'plist_images_as_slideshow' => '1'
+  'plist_images_as_slideshow' => '1',
+  'cron_method' => 'Minicomponent',
+  'session_handler' => 'database',
+  'map_type' => 'ROADMAP',
+  'map_zoom' => '10',
+  'map_height' => '300',
+  'selected_languages' => ''
 );

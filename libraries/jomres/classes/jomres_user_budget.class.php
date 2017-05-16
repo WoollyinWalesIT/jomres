@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -31,7 +31,6 @@ class jomres_user_budget
     {
         $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
         $tmpBookingHandler->user_settings[ 'budget' ] = (int) $budget;
-        //$tmpBookingHandler->close_jomres_session();
     }
 
     public function get_budget($with_currency = false)
@@ -115,6 +114,8 @@ class jomres_user_budget
 
     public function get_price_ranges()
     {
+		$prices = array();
+		
         if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'price_ranges.php')) {
             $last_modified = filemtime(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'price_ranges.php');
             $seconds_timediff = time() - $last_modified;
@@ -125,7 +126,7 @@ class jomres_user_budget
             }
         }
 
-        if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'price_ranges.php') || count($prices) == 0) {
+        if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'price_ranges.php') || empty($prices)) {
             $query = "SELECT DISTINCT roomrateperday FROM #__jomres_rates WHERE roomrateperday > '0' LIMIT 100";
             $rates = doSelectSql($query);
 
@@ -137,13 +138,13 @@ class jomres_user_budget
             }
 
             $results = array();
-            if (count($rates) > 0) {
+            if (!empty($rates)) {
                 foreach ($rates as $rate) {
                     $results[] = $rate->roomrateperday;
                 }
             }
 
-            if (count($tour_prices) > 0) {
+            if (!empty($tour_prices)) {
                 foreach ($tour_prices as $price) {
                     $results[] = $price->price;
                 }

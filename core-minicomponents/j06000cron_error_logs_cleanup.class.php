@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -30,7 +30,19 @@ class j06000cron_error_logs_cleanup
 		$maxFileSize = 1024 * 1024;
 
         if ($secret == $jomresConfig_secret) {
-            $log_path = JOMRES_SYSTEMLOG_PATH;
+			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+			$jrConfig = $siteConfig->get();
+			
+			if (!isset($jrConfig['log_path']) || $jrConfig['log_path'] == '') {
+				$jrConfig['log_path'] = JOMRES_SYSTEMLOG_PATH;
+			}
+	
+			$jrConfig['log_path'] = rtrim($jrConfig['log_path'], '/');
+			$jrConfig['log_path'] = rtrim($jrConfig['log_path'], '\\');
+			$jrConfig['log_path'] .= JRDS;
+			
+			$log_path = $jrConfig['log_path'];
+
             $files = scandir_getfiles($log_path);
 
             if (!empty($files)) {

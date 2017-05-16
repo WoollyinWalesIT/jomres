@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -15,39 +15,44 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 // Creates - adds - removes all jomres cron jobs. A pseudo cron class.
-// Nice simple schedules used: M,H,D,W
+// Nice simple schedules used: M,H,D,W,QH
 class jomres_cron
 {
-    public function __construct($displayLog = false)
+    public function __construct()
     {
-        $this->config = array();
-        $this->getcronconfig();
-        $this->displaylog = $this->config[ 'displaylogging' ];
-        $this->verboselog = $this->config[ 'verbose' ];
-        $this->method = $this->config[ 'method' ];
+        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+        $jrConfig = $siteConfig->get();
+
+        $this->method = $jrConfig[ 'cron_method' ];
         $this->now = time();
         $this->lastRan = 0;
         $this->allJobs = array();
         $this->allUnlockedJobs = array();
         $this->dueJobs = array();
         $this->debug = array();
-        if (!function_exists('curl_init')) {
-            $this->displaylog = $this->config[ 'displaylogging' ];
+		$this->displaylog = false;
+        
+		if (!function_exists('curl_init')) {
+            $this->displaylog = true;
             $this->debug[ ] = '<b>Cannot process jobs, curl function does not exist!</b>';
+			$this->displayDebug();
         }
-        $this->checkForStalledJobs(); // New for 5.1, some old jobs have been found to be locked, we need to check those and unlock any that need unlocking.
-        $this->getAllJobs();
+        
+		$this->checkForStalledJobs(); // New for 5.1, some old jobs have been found to be locked, we need to check those and unlock any that need unlocking.
+        
+		$this->getAllJobs();
     }
 
     public function checkForStalledJobs()
     {
         $lockedJobs = array();
-        $query = 'SELECT id,job,schedule,last_ran,parameters,locked FROM #__jomcomp_cron';
+        
+		$query = 'SELECT `id`, `job`, `schedule`, `last_ran`, `parameters`, `locked` FROM #__jomcomp_cron';
         $this->dbJobs = doSelectSql($query);
 
         $threashold = 60; // Assuming that no job takes longer than 60 seconds, any job that's due x + threashold must have stalled, therefore we'll unlock it.
 
-        if (count($this->dbJobs) > 0) {
+        if (!empty($this->dbJobs)) {
             foreach ($this->dbJobs as $job) {
                 $this->allJobs[ ] = array('id' => $job->id, 'job_name' => $job->job, 'schedule' => $job->schedule, 'last_ran' => (int) $job->last_ran, 'parameters' => $job->parameters);
                 if ($job->locked == '1') {
@@ -91,25 +96,8 @@ class jomres_cron
                     }
                 }
             }
-            if (count($lockedJobs > 0)) {
+            if (!empty($lockedJobs)) {
                 $this->unlockJobs($lockedJobs);
-            }
-        }
-    }
-
-    public function getcronconfig()
-    {
-        $this->config[ 'displaylogging' ] = '0';
-        $this->config[ 'logging' ] = '0';
-        $this->config[ 'verbose' ] = '0';
-        $this->config[ 'method' ] = 'Minicomponent';
-
-        $query = "SELECT setting,value FROM #__jomres_pluginsettings WHERE prid = 0 AND plugin = 'jomcompcronjobs'";
-        $settingList = doSelectSql($query);
-
-        if (count($settingList) > 0) {
-            foreach ($settingList as $s) {
-                $this->config[ $s->setting ] = $s->value;
             }
         }
     }
@@ -129,13 +117,13 @@ class jomres_cron
         $allJobs = array();
 
         if (!defined('AUTO_UPGRADE') && isset($MiniComponents->registeredClasses) && !empty($MiniComponents->registeredClasses)) {
-            foreach ($MiniComponents->registeredClasses as $key => $val) {
-                if (substr($key, 0, 10) == '06000cron_') {
+            foreach ($MiniComponents->registeredClasses['06000'] as $key => $val) {
+                if (substr($key, 0, 5) == 'cron_') {
                     $allJobs[ ] = $key;
                 }
             }
         } else { // It's an upgrade, we can't rely on the $MiniComponents class being populated
-            $query = 'SELECT id,job,schedule,last_ran,parameters,locked FROM #__jomcomp_cron';
+            $query = 'SELECT `id`, `job`, `schedule`, `last_ran`, `parameters`, `locked` FROM #__jomcomp_cron';
             $jobsList = doSelectSql($query);
 
             if (!empty($jobsList)) {
@@ -161,7 +149,8 @@ class jomres_cron
     public function findDueJobs()
     {
         $unlockedJobs = array();
-        if (count($this->allUnlockedJobs) > 0) {
+        
+		if (!empty($this->allUnlockedJobs)) {
             foreach ($this->allUnlockedJobs as $job) {
                 $jobDue = false;
                 switch (trim($job[ 'schedule' ])) {
@@ -206,28 +195,25 @@ class jomres_cron
                     $unlockedJobs[] = $job[ 'id' ];
                 }
 
-                if ($this->verboselog) {
-                    $this->debug[ ] = 'Found job name '.$job[ 'job_name' ];
-                    if ($jobDue) {
-                        $this->debug[ ] = '<b>This job is due now.</b>';
-                    }
-                }
+                $this->debug[ ] = 'Found job name '.$job[ 'job_name' ];
+				if ($jobDue) {
+					$this->debug[ ] = '<b>This job is due now.</b>';
+				}
             }
-            if (count($unlockedJobs > 0)) {
+            if (!empty($unlockedJobs)) {
                 $this->lockJobs($unlockedJobs);
             }
-        } elseif ($this->verboselog) {
+        } else {
             $this->debug[ ] = 'No jobs due';
         }
     }
 
-    public function lockJobs($jobIds)
+    public function lockJobs($jobIds = array())
     {
-        if (count($jobIds) > 0) {
-            if ($this->verboselog) {
-                $this->debug[ ] = 'Locking '.count($jobIds).' jobs';
-            }
-            $query = 'UPDATE #__jomcomp_cron SET `locked`= 1 WHERE `id` IN ('.jomres_implode($jobIds).') ';
+        if (!empty($jobIds)) {
+            $this->debug[ ] = 'Locking '.count($jobIds).' jobs';
+
+            $query = 'UPDATE #__jomcomp_cron SET `locked` = 1 WHERE `id` IN ('.jomres_implode($jobIds).') ';
             if (!doInsertSql($query, '')) {
                 $this->debug[ ] = 'Failed to lock jobs ';
 
@@ -238,13 +224,12 @@ class jomres_cron
         return true;
     }
 
-    public function unlockJobs($jobIds)
+    public function unlockJobs($jobIds = array())
     {
-        if (count($jobIds) > 0) {
-            if ($this->verboselog) {
-                $this->debug[ ] = 'Unlocking '.count($jobIds).' jobs';
-            }
-            $query = 'UPDATE #__jomcomp_cron SET `locked`= 0 WHERE `id` IN ('.jomres_implode($jobIds).') ';
+        if (!empty($jobIds)) {
+			$this->debug[ ] = 'Unlocking '.count($jobIds).' jobs';
+
+            $query = 'UPDATE #__jomcomp_cron SET `locked` = 0 WHERE `id` IN ('.jomres_implode($jobIds).') ';
             if (!doInsertSql($query, '')) {
                 $this->debug[ ] = 'Failed to unlock jobs ';
 
@@ -260,90 +245,75 @@ class jomres_cron
     public function runDueJobs()
     {
         $lockedJobs = array();
-        if (function_exists('curl_init')) {
-            $jomresConfig_secret = base64_encode(get_showtime('secret'));
-            if (count($this->dueJobs) > 0) {
-                $livesite = get_showtime('live_site');
-                if (preg_match('/[^\x20-\x7f]/', $livesite)) {
-                    require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'idna_converter'.JRDS.'idna_convert.class.php';
-                    $IDN = new jomres_idna_convert();
-                    $encoded = $IDN->encode($livesite);
-                    $new = str_replace($livesite, $encoded, JOMRES_SITEPAGE_URL_AJAX);
-                    $livesite = $new;
-                } else {
-                    $livesite = JOMRES_SITEPAGE_URL_AJAX;
-                }
 
-                //set the port depending on http/https
-                if (strpos($livesite, 'https://') !== false) {
-                    $curl_port = 443;
-                } else {
-                    $curl_port = 80;
-                }
+		$jomresConfig_secret = base64_encode(get_showtime('secret'));
+		
+		if (!empty($this->dueJobs)) {
+			$livesite = get_showtime('live_site');
+			
+			//handle domain names that contain non-latin chars
+			if (preg_match('/[^\x20-\x7f]/', $livesite)) {
+				require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'idna_converter'.JRDS.'idna_convert.class.php';
+				$IDN = new jomres_idna_convert();
+				$encoded = $IDN->encode($livesite);
+				$new = str_replace($livesite, $encoded, JOMRES_SITEPAGE_URL_AJAX);
+				$livesite = $new;
+			} else {
+				$livesite = JOMRES_SITEPAGE_URL_AJAX;
+			}
 
-                foreach ($this->dueJobs as $job) {
-                    if (this_cms_is_wordpress()) {
-                        $request = $livesite.'&task=cron_'.$job[ 'job_name' ].'&secret='.$jomresConfig_secret;
-                    } else {
-                        $request = $livesite.'&task=cron_'.$job[ 'job_name' ].'&secret='.$jomresConfig_secret;
-                    }
+			//run each job
+			foreach ($this->dueJobs as $job) {
+				if (this_cms_is_wordpress()) {
+					$url = $livesite.'&task=cron_'.$job[ 'job_name' ].'&secret='.$jomresConfig_secret;
+				} else {
+					$url = $livesite.'&task=cron_'.$job[ 'job_name' ].'&secret='.$jomresConfig_secret;
+				}
 
-                    logging::log_message('Starting curl call to '.$request, 'Curl', 'DEBUG');
-                    $logging_time_start = microtime(true);
+				jomres_async_request("GET", $url, 0, array());
 
-                    $ch = curl_init();
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                    curl_setopt($ch, CURLOPT_USERAGENT, 'Jomres');
-                    curl_setopt($ch, CURLOPT_URL, $request);
-                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'XGET');
-                    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-                    curl_setopt($ch, CURLOPT_PORT, $curl_port);
-                    curl_setopt($ch, CURLOPT_TIMEOUT, 480);
-                    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: text/html; charset=utf-8'));
-                    $curl_output = curl_exec($ch);
-                    curl_close($ch);
-
-                    $logging_time_end = microtime(true);
-                    $logging_time = $logging_time_end - $logging_time_start;
-                    logging::log_message('Curl call took '.$logging_time.' seconds ', 'Curl', 'DEBUG');
-
-                    $this->debug[ ] = 'Triggered '.(string) $job[ 'job_name' ].' at '.strftime('%H:%M %d/%m/%Y', $this->now);
-                    $lockedJobs[] = $job[ 'id' ];
-                }
-            }
+				$this->debug[ ] = 'Triggered '.(string) $job[ 'job_name' ].' at '.strftime('%H:%M %d/%m/%Y', $this->now);
+				$lockedJobs[] = $job[ 'id' ];
+			}
         }
-        if (count($lockedJobs > 0)) {
+        
+		if (!empty($lockedJobs)) {
             $this->unlockJobs($lockedJobs);
             $this->updateJob_lastrans($lockedJobs);
         }
     }
 
-    public function updateJob_lastrans($jobIds)
+    public function updateJob_lastrans($jobIds = array())
     {
-        if (count($jobIds) > 0) {
-            if ($this->verboselog) {
-                $this->debug[ ] = 'Updating jobs last rans';
-            }
+        if (!empty($jobIds)) {
+			$this->debug[ ] = 'Updating jobs last rans';
+
             $query = 'UPDATE #__jomcomp_cron SET `last_ran` = '.$this->now.' WHERE `id` IN ('.jomres_implode($jobIds).')';
             if (!doInsertSql($query, '')) {
                 $this->debug[ ] = 'Failed to update last ran times';
 
                 return false;
             }
-            if ($this->verboselog) {
-                $this->debug[ ] = 'Updated jobs last rans';
-            }
+            
+			$this->debug[ ] = 'Updated jobs last rans';
+			
+			return true;
         }
 
-        return true;
+        return false;
     }
 
-    public function jobExists($jobName)
+    public function jobExists($jobName = '')
     {
-        if (count($this->allJobs) == 0) {
+		if ($jobName == '') {
+			return true; //we`ll return true here as if the job exists
+		}
+
+        if (empty($this->allJobs)) {
             $this->getAllJobs();
         }
-        if (count($this->allJobs) > 0) {
+        
+		if (!empty($this->allJobs)) {
             foreach ($this->allJobs as $job) {
                 if ($job[ 'job_name' ] == $jobName) {
                     $this->debug[ ] = 'Warning: '.(string) $job[ 'job_name' ].' already exists ';
@@ -351,16 +321,15 @@ class jomres_cron
                     return true;
                 }
             }
-        } else {
-            return false;
         }
+		
+		return false;
     }
 
-    public function addJob($jobName, $schedule, $parameters)
+    public function addJob($jobName = '', $schedule = 'D', $parameters = '')
     {
-        if ($this->verboselog) {
-            $this->debug[ ] = 'Adding '.(string) $jobName;
-        }
+        $this->debug[ ] = 'Adding '.(string) $jobName;
+
         if (!$this->jobExists($jobName)) {
             $lastRan = 0;
             $query = "INSERT INTO #__jomcomp_cron (`job`,`schedule`,`parameters`,`last_ran`) VALUES ('".(string) $jobName."','".(string) $schedule."','".(string) $parameters."', ".(int) $lastRan.' ) ';
@@ -377,14 +346,19 @@ class jomres_cron
 
             return false;
         }
+		
+		return false;
     }
 
-    public function removeJob($jobName)
+    public function removeJob($jobName = '')
     {
+		if ($jobName == '') {
+			return false; //we`ll return false here as if the job removal failed
+		}
+
         if ($this->jobExists($jobName)) {
-            if ($this->verboselog) {
-                $this->debug[ ] = 'Removing '.(string) $jobName;
-            }
+            $this->debug[ ] = 'Removing '.(string) $jobName;
+
             $query = "DELETE FROM #__jomcomp_cron WHERE `job` = '".(string) $jobName."' ";
             if (!doInsertSql($query, '')) {
                 $this->debug[ ] = 'Failed to remove '.(string) $jobName;
@@ -399,13 +373,14 @@ class jomres_cron
 
             return false;
         }
+		
+		return false;
     }
 
     public function updateJobSchedule($jobName, $schedule)
     {
-        if ($this->verboselog) {
-            $this->debug[ ] = 'Updating schedule for '.(string) $jobName;
-        }
+        $this->debug[ ] = 'Updating schedule for '.(string) $jobName;
+
         if ($this->jobExists($jobName)) {
             $query = 'UPDATE #__jomcomp_cron SET `schedule` = '.(string) $schedule.' WHERE `job` = '.(string) $jobName.' ';
             if (!doInsertSql($query, '')) {
@@ -413,19 +388,23 @@ class jomres_cron
 
                 return false;
             }
-            $this->debug[ ] = 'Updated '.(string) $jobName.' set schedule to '.(string) $schedule;
+            
+			$this->debug[ ] = 'Updated '.(string) $jobName.' set schedule to '.(string) $schedule;
+			
+			return true;
         } else {
             $this->debug[ ] = 'Failed to update schedule '.(string) $jobName.' job does not currently exist';
 
             return false;
         }
+		
+		return false;
     }
 
     public function updateJobParameters($jobName, $parameters)
     {
-        if ($this->verboselog) {
-            $this->debug[ ] = 'Updating parameters for '.(string) $jobName;
-        }
+        $this->debug[ ] = 'Updating parameters for '.(string) $jobName;
+
         if ($this->jobExists($jobName)) {
             $query = "UPDATE #__jomcomp_cron SET `parameters` = '".(string) $parameters."' WHERE `job` = ".(string) $jobName.' ';
             if (!doInsertSql($query, '')) {
@@ -433,19 +412,22 @@ class jomres_cron
 
                 return false;
             }
-            if ($this->verboselog) {
-                $this->debug[ ] = 'Updated parameters '.(string) $jobName;
-            }
+            
+			$this->debug[ ] = 'Updated parameters '.(string) $jobName;
+			
+			return true;
         } else {
             $this->debug[ ] = 'Failed to update schedule '.(string) $jobName.' job does not currently exist';
 
             return false;
         }
+		
+		return false;
     }
 
     public function displayDebug()
     {
-        if (count($this->debug) > 0 && $this->config[ 'displaylogging' ] == '1') {
+        if (!empty($this->debug) && $this->displaylog) {
             foreach ($this->debug as $str) {
                 echo $str.'<br/>';
             }
@@ -454,13 +436,15 @@ class jomres_cron
 
     public function updateCronlog()
     {
-        if (count($this->debug) > 0 && $this->config[ 'logging' ] == '1') {
-            $data = strftime('%H:%M %d/%m/%Y', $this->now).'<br />';
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+        $jrConfig = $siteConfig->get();
+		
+        if ($jrConfig['development_production'] == 'development' && !empty($this->debug)) {
+            $data = strftime('%H:%M %d/%m/%Y', $this->now).' ~~ ';
             foreach ($this->debug as $str) {
-                $data .= $str.'<br/>';
+                $data .= $str.' ~~ ';
             }
-            $query = "INSERT INTO #__jomcomp_cronlog (`log_details`) VALUES ('".(string) $data."') ";
-            doInsertSql($query, '');
+            logging::log_message($data, 'Cron', 'DEBUG');
         }
     }
 }

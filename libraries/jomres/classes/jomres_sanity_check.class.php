@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -21,8 +21,10 @@ class jomres_sanity_check
         if (get_showtime('no_html') == 1 || get_showtime('popup') == 1 || AJAXCALL) {
             return;
         }
+		
+		$this->warnings = '';
+		
         if ($autorun) {
-            $this->warnings = '';
             $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
             $this->jrConfig = $siteConfig->get();
             $this->mrConfig = getPropertySpecificSettings();
@@ -130,7 +132,7 @@ class jomres_sanity_check
                 }
             }
 
-            if (count($future_tours) == 0) {
+            if (empty($future_tours)) {
                 $message = jr_gettext('_JOMRES_JINTOUR_SANITY_CHECK', '_JOMRES_JINTOUR_SANITY_CHECK', false);
                 $link = jomresURL(JOMRES_SITEPAGE_URL.'&task=jintour');
                 $button_text = jr_gettext('_JOMRES_JINTOUR_SANITY_CHECK_LINK', '_JOMRES_JINTOUR_SANITY_CHECK_LINK', false);
@@ -142,7 +144,7 @@ class jomres_sanity_check
 
     public function check_address()
     {
-        if (get_showtime('task') != 'editProperty') {
+        if (get_showtime('task') != 'edit_property') {
             $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
             $current_property_details->gather_data($this->property_uid);
             if (
@@ -153,7 +155,7 @@ class jomres_sanity_check
                 $current_property_details->property_tel == ''
                 ) {
                 $message = jr_gettext('_JOMRES_ADDRESS_SANITY_CHECK', '_JOMRES_ADDRESS_SANITY_CHECK', false);
-                $link = jomresURL(JOMRES_SITEPAGE_URL.'&task=editProperty');
+                $link = jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_property');
                 $button_text = jr_gettext('_JOMRES_ADDRESS_SANITY_CHECK_LINK', '_JOMRES_ADDRESS_SANITY_CHECK_LINK', false);
 
                 return $this->construct_warning(array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $button_text));
@@ -208,7 +210,7 @@ class jomres_sanity_check
             if (!in_array(get_showtime('task'), $ignore_on_tasks)) {
                 $query = 'SELECT `id` FROM `#__jomres_customertypes` where property_uid = '.(int) $this->property_uid.' AND published = 1';
                 $result = doSelectSql($query);
-                if ((int) $this->mrConfig[ 'perPersonPerNight' ] == 1 && count($result) == 0) {
+                if ((int) $this->mrConfig[ 'perPersonPerNight' ] == 1 && empty($result)) {
                     $message = jr_gettext('_JOMRES_WARNINGS_PERPERSONPERNIGHT_NOGUESTTYPES', '_JOMRES_WARNINGS_PERPERSONPERNIGHT_NOGUESTTYPES', false);
                     $link = jomresURL(JOMRES_SITEPAGE_URL.'&task=listCustomerTypes');
                     $button_text = jr_gettext('_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', '_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', false);
@@ -231,7 +233,7 @@ class jomres_sanity_check
             if (!in_array(get_showtime('task'), $ignore_on_tasks)) {
                 $query = 'SELECT `rates_uid` FROM `#__jomres_rates` where property_uid = '.(int) $this->property_uid.'';
                 $result = doSelectSql($query);
-                if (count($result) == 0) {
+                if (empty($result)) {
                     if ($this->mrConfig[ 'singleRoomProperty' ] == 0) {
                         $message = jr_gettext('_JOMRES_WARNINGS_TARIFFS_NOTARIFFS', '_JOMRES_WARNINGS_TARIFFS_NOTARIFFS', false);
                     } else {
@@ -280,7 +282,7 @@ class jomres_sanity_check
 
         if ($current_property_details->published != 1 && $thisJRUser->userIsManager) {
             $message = jr_gettext('_JOMRES_SANITY_CHECK_NOT_PUBLISHED', '_JOMRES_SANITY_CHECK_NOT_PUBLISHED', false);
-            $link = jomresURL(JOMRES_SITEPAGE_URL.'&task=publishProperty&property_uid='.$this->property_uid);
+            $link = jomresURL(JOMRES_SITEPAGE_URL.'&task=publish_property&property_uid='.$this->property_uid);
             $button_text = jr_gettext('_JOMRES_COM_MR_VRCT_PUBLISH', '_JOMRES_COM_MR_VRCT_PUBLISH', false);
 
             return $this->construct_warning(array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $button_text));
@@ -329,7 +331,7 @@ class jomres_sanity_check
             if (get_showtime('task') != 'edit_resource') {
                 $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
                 $current_property_details->gather_data($this->property_uid);
-                if (!isset($current_property_details->rooms) || count($current_property_details->rooms) == 0) {
+                if (!isset($current_property_details->rooms) || empty($current_property_details->rooms)) {
                     $message = jr_gettext('_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK', '_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK', false);
                     if ($this->mrConfig['tariffmode'] == 0) {
                         $link = jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_tariffs_normal');

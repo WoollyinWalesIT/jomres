@@ -1,176 +1,171 @@
-
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-	<script language="javascript" type="text/javascript">
-		<!--
-		
-		jomresJquery(function(){
-			jomresJquery("#guest_country").change(function(){
-				var selectedValue = jomresJquery(this).find(":selected").val();
-				clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
-				jomresJquery.get(live_site_ajax + clause, function (data) {
-					populateDiv("guest_region_div",data);
-					});
-				});
+<script language="javascript" type="text/javascript">
+<!--
+jomresJquery(document).ready(function () {
+	jomresJquery("#guest_country").change(function(){
+		var selectedValue = jomresJquery(this).find(":selected").val();
+		clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
+		jomresJquery.get(live_site_ajax + clause, function (data) {
+			populateDiv("guest_region_div",data);
 			});
-		
-			
-		jomresJquery.validator.setDefaults({
-			highlight: function (input) {
-				jomresJquery(input).addClass("ui-state-highlight");
-			},
-			unhighlight: function (input) {
-				jomresJquery(input).removeClass("ui-state-highlight");
-			}
 		});
 
-		jomresJquery(document).ready(function () {
-			jomresJquery("#reviewForm").validate({
-				rules: {
-					firstname: "required",
-					surname: "required",
-					house: "required",
-					street: "required",
-					postcode: "required",
-					town: "required",
-					region: "required",
-					email: "required",
-				},
-				messages: {
-					firstname: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_FIRSTNAME}",
-					surname: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_SURNAME}",
-					house: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_HOUSENO}",
-					street: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_STREET}",
-					postcode: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_POSTCODE}",
-					town: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_TOWN}",
-					region: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_REGION}",
-					email: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL}",
-				},
-				errorLabelContainer: "#messageBox",
-				wrapper: "p",
-				submitHandler: function (form) {
-					form.submit();
-				},
-			});
-			jomresJquery("#messageBox").hide();
-		});
-		//-->
-	</script>
+	jomresJquery.validator.setDefaults({
+		highlight: function (input) {
+			jomresJquery(input).addClass("ui-state-highlight");
+		},
+		unhighlight: function (input) {
+			jomresJquery(input).removeClass("ui-state-highlight");
+		}
+	});
 
-	<div id="messageBox" class="alert alert-error"></div>
-	<h2 class="page-header">{PAGETITLE}</h2>
+	jomresJquery("#reviewForm").validate({
+		rules: {
+			firstname: "required",
+			surname: "required",
+			house: "required",
+			street: "required",
+			postcode: "required",
+			town: "required",
+			region: "required",
+			email: "required",
+		},
+		messages: {
+			firstname: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_FIRSTNAME}",
+			surname: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_SURNAME}",
+			house: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_HOUSENO}",
+			street: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_STREET}",
+			postcode: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_POSTCODE}",
+			town: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_TOWN}",
+			region: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_REGION}",
+			email: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL}",
+		},
+		errorLabelContainer: "#messageBox",
+		wrapper: "p",
+		submitHandler: function (form) {
+			form.submit();
+		},
+	});
+	jomresJquery("#messageBox").hide();
+});
+//-->
+</script>
 
-	<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" id="reviewForm" name="adminform" class="form-horizontal"
-		  enctype="multipart/form-data">
-		<fieldset>
-			<div class="control-group">
-				<label class="control-label" for="firstname">{HFIRSTNAME}</label>
+<div id="messageBox" class="alert alert-error"></div>
+<h2 class="page-header">{PAGETITLE}</h2>
 
-				<div class="controls">
-					<input id="firstname" name="firstname" type="text" value="{FIRSTNAME}" class="required "/>
-				</div>
+<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" id="reviewForm" name="adminform" class="form-horizontal"
+	  enctype="multipart/form-data">
+	<fieldset>
+		<div class="control-group">
+			<label class="control-label" for="firstname">{HFIRSTNAME}</label>
+
+			<div class="controls">
+				<input id="firstname" name="firstname" type="text" value="{FIRSTNAME}" class="required "/>
 			</div>
-			<div class="control-group">
-				<label class="control-label" for="surname">{HSURNAME}</label>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="surname">{HSURNAME}</label>
 
-				<div class="controls">
-					<input id="surname" name="surname" type="text" value="{SURNAME}" class="required "/>
-				</div>
+			<div class="controls">
+				<input id="surname" name="surname" type="text" value="{SURNAME}" class="required "/>
 			</div>
-			<div class="control-group">
-				<label class="control-label" for="house">{HHOUSE}</label>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="house">{HHOUSE}</label>
 
-				<div class="controls">
-					<input id="house" name="house" type="text" value="{HOUSE}" class="required "/>
-				</div>
+			<div class="controls">
+				<input id="house" name="house" type="text" value="{HOUSE}" class="required "/>
 			</div>
-			<div class="control-group">
-				<label class="control-label" for="street">{HSTREET}</label>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="street">{HSTREET}</label>
 
-				<div class="controls">
-					<input id="street" name="street" type="text" value="{STREET}" class="required "/>
-				</div>
+			<div class="controls">
+				<input id="street" name="street" type="text" value="{STREET}" class="required "/>
 			</div>
-			<div class="control-group">
-				<label class="control-label" for="postcode">{HPOSTCODE}</label>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="postcode">{HPOSTCODE}</label>
 
-				<div class="controls">
-					<input id="postcode" name="postcode" type="text" value="{POSTCODE}" class="required "/>
-				</div>
+			<div class="controls">
+				<input id="postcode" name="postcode" type="text" value="{POSTCODE}" class="required "/>
 			</div>
-			<div class="control-group">
-				<label class="control-label" for="town">{HTOWN}</label>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="town">{HTOWN}</label>
 
-				<div class="controls">
-					<input id="town" name="town" type="text" value="{TOWN}" class="required "/>
-				</div>
+			<div class="controls">
+				<input id="town" name="town" type="text" value="{TOWN}" class="required "/>
 			</div>
-			<div class="control-group">
-				<label class="control-label" for="country">{HCOUNTRY}</label>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="country">{HCOUNTRY}</label>
 
-				<div class="controls">
-					{COUNTRY}
-				</div>
+			<div class="controls">
+				{COUNTRY}
 			</div>
-			<div class="control-group">
-				<label class="control-label" for="region">{HREGION}</label>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="region">{HREGION}</label>
 
-				<div class="controls">
-					<div id="guest_region_div">{REGION}</div>
-				</div>
+			<div class="controls">
+				<div id="guest_region_div">{REGION}</div>
 			</div>
-			<div class="control-group">
-				<label class="control-label" for="landline">{HLANDLINE}</label>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="landline">{HLANDLINE}</label>
 
-				<div class="controls">
-					<input id="landline" name="landline" type="text" value="{LANDLINE}" class="required "/>
-				</div>
+			<div class="controls">
+				<input id="landline" name="landline" type="text" value="{LANDLINE}" class="required "/>
 			</div>
-			<div class="control-group">
-				<label class="control-label" for="mobile">{HMOBILE}</label>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="mobile">{HMOBILE}</label>
 
-				<div class="controls">
-					<input id="mobile" name="mobile" type="text" value="{MOBILE}" class="required "/>
-				</div>
+			<div class="controls">
+				<input id="mobile" name="mobile" type="text" value="{MOBILE}" class="required "/>
 			</div>
-			<div class="control-group">
-				<label class="control-label" for="email">{HEMAIL}</label>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="email">{HEMAIL}</label>
 
-				<div class="controls">
-					<input id="email" name="email" type="text" value="{EMAIL}" class="required "/>
-				</div>
+			<div class="controls">
+				<input id="email" name="email" type="text" value="{EMAIL}" class="required "/>
 			</div>
-			
-			<div class="control-group">
-				<label class="control-label" for="vat_number">{_JOMRES_COM_YOURBUSINESS_VATNO}</label>
-				<div class="controls">
-					<input id="vat_number" name="vat_number" type="text" value="{VAT_NUMBER}"/>
-					<patTemplate:tmpl name="validation" type="simpleCondition" requiredVars="validation_class">
-					<span class="help-block">
-						<div class="alert {VALIDATION_CLASS}">
-							{VAT_NUMBER_VALIDATION_STATUS}
-						</div>
-					</span>
-					</patTemplate:tmpl>
-				</div>
+		</div>
+		
+		<div class="control-group">
+			<label class="control-label" for="vat_number">{_JOMRES_COM_YOURBUSINESS_VATNO}</label>
+			<div class="controls">
+				<input id="vat_number" name="vat_number" type="text" value="{VAT_NUMBER}"/>
+				<patTemplate:tmpl name="validation" type="simpleCondition" requiredVars="validation_class">
+				<span class="help-block">
+					<div class="alert {VALIDATION_CLASS}">
+						{VAT_NUMBER_VALIDATION_STATUS}
+					</div>
+				</span>
+				</patTemplate:tmpl>
 			</div>
+		</div>
 
-			<div class="control-group">
-				<label class="control-label" for="image">Image</label>
+		<div class="control-group">
+			<label class="control-label" for="image">Image</label>
 
-				<div class="controls">
-					<input type='file' name='image'/><span class="help-inline"><img src="{IMAGE}"/></span>
-				</div>
+			<div class="controls">
+				<input type='file' name='image'/><span class="help-inline"><img src="{IMAGE}"/></span>
 			</div>
+		</div>
 
-			<div class="form-actions">
-				<div class="">
-					<button type="submit" class="btn btn-primary"><i class="icon-ok icon-white"></i> {COMMON_SUBMIT}</button>
-					<a href="{JOMRES_SITEPAGE_URL}" class="btn"><i class="icon-remove"></i> {COMMON_CANCEL}</a>
-				</div>
+		<div class="form-actions">
+			<div class="">
+				<button type="submit" class="btn btn-primary"><i class="icon-ok icon-white"></i> {COMMON_SUBMIT}</button>
+				<a href="{JOMRES_SITEPAGE_URL}" class="btn"><i class="icon-remove"></i> {COMMON_CANCEL}</a>
 			</div>
-			<input type="hidden" name="no_html" value="1"/>
-			<input type="hidden" name="return_url" value="{RETURN_URL}"/>
-			<input type="hidden" name="task" value="save_my_account"/>
-		</fieldset>
-	</form>
+		</div>
+		<input type="hidden" name="no_html" value="1"/>
+		<input type="hidden" name="return_url" value="{RETURN_URL}"/>
+		<input type="hidden" name="task" value="save_my_account"/>
+	</fieldset>
+</form>
 </patTemplate:tmpl>

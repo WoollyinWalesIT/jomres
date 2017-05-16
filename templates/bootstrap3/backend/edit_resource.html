@@ -1,4 +1,3 @@
-
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 
 <h2 class="page-header">{PAGETITLE}</h2>
@@ -15,6 +14,12 @@
 		<label class="col-md-2 control-label" for="room_name">{HNAME}</label>
 		<div class="col-md-10">
 			<input type="text" name="room_name" value="{ROOMNAME}" class="form-control" placeholder="{HNAME}"/>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="room_name">{HROOM_TAGLINE}</label>
+		<div class="col-md-10">
+			<input type="text" name="room_tagline" value="{ROOM_TAGLINE}" class="form-control" placeholder="{HROOM_TAGLINE}"/>
 		</div>
 	</div>
 	<div class="form-group">
@@ -47,6 +52,14 @@
 			{FEATURES}
 		</div>
 	</div>
+    {MARKDOWN_BUTTON}
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="room_description">{HROOM_DESCRIPTION}</label>
+		<div class="col-md-10">
+			{ROOM_DESCRIPTION}
+		</div>
+	</div>
+
 	<div class="form-actions">
 		<div class="col-md-10 col-md-offset-2">
 			{JOMRESTOOLBAR}
@@ -55,4 +68,5 @@
 	<input type="hidden" name="roomUid" value="{ROOMUID}"/>
 	<input type="hidden" name="task" value="save_resource"/>
 </form>
+{SIMPLEMDE_JAVASCRIPT}
 </patTemplate:tmpl>

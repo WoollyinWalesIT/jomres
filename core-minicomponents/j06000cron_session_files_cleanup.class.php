@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -28,16 +28,25 @@ class j06000cron_session_files_cleanup
         $secret = base64_decode(jomresGetParam($_REQUEST, 'secret', ''));
 
         if ($secret == $jomresConfig_secret) {
-            $session_path = JOMRES_SESSION_ABSPATH;
-            $files = scandir_getfiles_recursive($session_path);
+			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+			$jrConfig = $siteConfig->get();
+		
+			if ($jrConfig['session_handler'] == 'file') {
+				$session_path = JOMRES_SESSION_ABSPATH;
+				$files = scandir_getfiles_recursive($session_path);
 
-            if (count($files) > 0) {
-                foreach ($files as $f) {
-                    if ($f != '.htaccess' && $f != 'web.config' && time() - filemtime($f) >= 24 * 60 * 60) { // 1 day
-                        unlink($f);
-                    }
-                }
-            }
+				if (!empty($files)) {
+					foreach ($files as $f) {
+						if ($f != '.htaccess' && $f != 'web.config' && time() - filemtime($f) >= 24 * 60 * 60) { // 1 day
+							unlink($f);
+						}
+					}
+				}
+			} else {
+				//we`ll cleaan up all sessions older than 1 day
+				$query = "DELETE FROM #__jomres_sessions WHERE `last_changed` <= DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 DAY)";
+				doInsertSql($query, '');
+			}
         }
     }
 

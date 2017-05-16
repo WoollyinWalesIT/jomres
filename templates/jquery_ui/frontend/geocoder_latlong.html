@@ -19,9 +19,9 @@ function init_map_{RANDOM_IDENTIFIER}()
 	latLng = new google.maps.LatLng({LAT}, {LONG});
 	var options_{RANDOM_IDENTIFIER} = {
 		center: latLng,
-		zoom: 12,
+		zoom: {ZOOMLEVEL},
 		{DISABLE_UI}
-		mapTypeId: google.maps.MapTypeId.ROADMAP{SUPPRESS_POIS}
+		mapTypeId: google.maps.MapTypeId.{MAPTYPE}{SUPPRESS_POIS}
 		};
 	
 	map = new google.maps.Map(document.getElementById("map_{RANDOM_IDENTIFIER}"),

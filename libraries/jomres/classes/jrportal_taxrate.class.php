@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -50,40 +50,32 @@ class jrportal_taxrate
 
     public function getAllTaxRates()
     {
-        if (true === is_array($this->taxrates)) {
+        if (is_array($this->taxrates)) {
             return true;
         }
 
-        $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-        $this->taxrates = $c->retrieve('all_tax_rates');
+		$this->taxrates = array();
 
-        if (true === is_array($this->taxrates)) {
-            return true;
-        } else {
-            $this->taxrates = array();
+		$query = 'SELECT `id`,`code`,`description`,`rate`,`is_eu_country` FROM #__jomresportal_taxrates';
+		$result = doSelectSql($query);
 
-            $query = 'SELECT `id`,`code`,`description`,`rate`,`is_eu_country` FROM #__jomresportal_taxrates';
-            $result = doSelectSql($query);
-
-            if (count($result) > 0) {
-                foreach ($result as $r) {
-                    $this->taxrates[ $r->id ][ 'id' ] = $r->id;
-                    $this->taxrates[ $r->id ][ 'code' ] = $r->code;
-                    $this->taxrates[ $r->id ][ 'description' ] = $r->description;
-                    $this->taxrates[ $r->id ][ 'rate' ] = $r->rate;
-                    $this->taxrates[ $r->id ][ 'is_eu_country' ] = $r->is_eu_country;
-                }
-            }
-            $c->store('all_tax_rates', $this->taxrates);
-        }
-
+		if (!empty($result)) {
+			foreach ($result as $r) {
+				$this->taxrates[ $r->id ][ 'id' ] = $r->id;
+				$this->taxrates[ $r->id ][ 'code' ] = $r->code;
+				$this->taxrates[ $r->id ][ 'description' ] = $r->description;
+				$this->taxrates[ $r->id ][ 'rate' ] = $r->rate;
+				$this->taxrates[ $r->id ][ 'is_eu_country' ] = $r->is_eu_country;
+			}
+		}
+ 
         return true;
     }
 
     public function gather_data($id = 0)
     {
         if ((int) $id > 0) {
-            if (array_key_exists($id, $this->taxrates)) {
+            if (isset($this->taxrates[$id])) {
                 $this->id = $this->taxrates[$id]['id'];
                 $this->code = $this->taxrates[$id]['code'];
                 $this->description = $this->taxrates[$id]['description'];
@@ -166,7 +158,7 @@ class jrportal_taxrate
             $result = doInsertSql($query, '');
 
             if ($result) {
-                if (array_key_exists($id, $this->taxrates)) {
+                if (isset($this->taxrates[$id])) {
                     unset($this->taxrates[$id]);
                 }
 
@@ -203,11 +195,11 @@ class jrportal_taxrate
         $ratesOptions = array();
         $ratesDropdown = '';
 
-        if (count($this->taxrates) < 1) {
+        if (empty($this->taxrates)) {
             $this->getAllTaxRates();
         }
 
-        if (count($this->taxrates > 0)) {
+        if (!empty($this->taxrates)) {
             foreach ($this->taxrates as $r) {
                 $ratesOptions[ ] = jomresHTML::makeOption($r[ 'id' ], $r[ 'code' ].' '.$r[ 'description' ]);
             }

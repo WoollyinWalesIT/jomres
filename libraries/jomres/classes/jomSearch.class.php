@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -237,31 +237,18 @@ class jomSearch
             $all_published_properties = get_showtime('published_properties_in_system');
 
             if (!$all_published_properties) {
-                $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-                if ($c->isCached('all_property_uids')) {
-                    $all_property_uids = $c->retrieve('all_property_uids');
-                }
-
-                if ($all_property_uids) {
-                    set_showtime('numberOfPropertiesInSystem', count($all_property_uids['all_propertys']));
-                    set_showtime('all_properties_in_system', $all_property_uids['all_propertys']);
-                    set_showtime('published_properties_in_system', $all_property_uids['all_published_propertys']);
-                    $all_published_properties = $all_property_uids['all_published_propertys'];
-                } else {
-                    $query = 'SELECT propertys_uid,published FROM #__jomres_propertys';
-                    $result = doSelectSql($query);
-                    $numberOfPropertiesInSystem = count($result);
-                    foreach ($result as $r) {
-                        $all_properties[ ] = $r->propertys_uid;
-                        if ($r->published == '1') {
-                            $all_published_properties[ ] = $r->propertys_uid;
-                        }
-                    }
-                    set_showtime('numberOfPropertiesInSystem', $numberOfPropertiesInSystem);
-                    set_showtime('all_properties_in_system', $all_properties);
-                    set_showtime('published_properties_in_system', $all_published_properties);
-                    $c->store('all_property_uids', array('all_propertys' => $all_properties, 'all_published_propertys' => $all_published_properties));
-                }
+                $query = 'SELECT propertys_uid,published FROM #__jomres_propertys';
+				$result = doSelectSql($query);
+				$numberOfPropertiesInSystem = count($result);
+				foreach ($result as $r) {
+					$all_properties[ ] = $r->propertys_uid;
+					if ($r->published == '1') {
+						$all_published_properties[ ] = $r->propertys_uid;
+					}
+				}
+				set_showtime('numberOfPropertiesInSystem', $numberOfPropertiesInSystem);
+				set_showtime('all_properties_in_system', $all_properties);
+				set_showtime('published_properties_in_system', $all_published_properties);
             }
 
             $basic_property_details->get_property_name_multi($all_published_properties);
@@ -272,7 +259,6 @@ class jomSearch
         }
         // -------------------------------------------------------------------------------------------------------------------------------------------
         if (in_array('country', $this->searchOptions)) {
-            $allCountries = countryCodesArray();
             $query = "SELECT DISTINCT property_country FROM  #__jomres_propertys WHERE published = '1' ORDER BY  property_country ASC";
             $activeCountriesList = doSelectSql($query);
             $tmpCountryArray = array();
@@ -280,7 +266,7 @@ class jomSearch
 
             foreach ($activeCountriesList as $country) {
                 if (!in_array($country->property_country, $tmpCountryArray)) {
-                    $this->prep[ 'country' ][ $allCountries[ $country->property_country ] ] = array('countrycode' => $country->property_country, 'countryname' => $allCountries[ $country->property_country ]);
+                    $this->prep[ 'country' ][ getSimpleCountry($country->property_country) ] = array('countrycode' => $country->property_country, 'countryname' => getSimpleCountry($country->property_country));
                     $tmpCountryArray[ ] = $country->property_country;
                 }
             }
@@ -358,7 +344,7 @@ class jomSearch
         // -------------------------------------------------------------------------------------------------------------------------------------------
         if (in_array('feature_uids', $this->searchOptions)) {
             $result = prepFeatureSearch();
-            if ($result && count($result) > 0) {
+            if ($result && !empty($result)) {
                 foreach ($result as $feature) {
                     if (!empty($feature[ 'title' ])) {
                         $this->prep[ 'features' ][ ] = array('id' => $feature[ 'id' ], 'image' => JOMRES_ROOT_DIRECTORY.'/uploadedimages/pfeatures/'.$feature[ 'image' ], 'title' => $feature[ 'title' ], 'description' => $feature[ 'description' ]);
@@ -370,7 +356,7 @@ class jomSearch
         if (in_array('room_type', $this->searchOptions)) {
             $result = prepRoomtypeSearch();
 
-            if ($result && count($result) > 0) {
+            if ($result && !empty($result)) {
                 foreach ($result as $rtype) {
                     if (!empty($rtype[ 'id' ]) && !empty($rtype[ 'title' ])) {
                         $this->prep[ 'rtypes' ][ ] = array('id' => $rtype[ 'id' ], 'image' => JOMRES_ROOT_DIRECTORY.'/uploadedimages/rmtypes/'.$rtype[ 'image' ], 'title' => $rtype[ 'title' ], 'description' => $rtype[ 'description' ]);
@@ -381,7 +367,7 @@ class jomSearch
         // -------------------------------------------------------------------------------------------------------------------------------------------
         if (in_array('ptype', $this->searchOptions)) {
             $result = prepPropertyTypeSearch();
-            if ($result && count($result) > 0) {
+            if ($result && !empty($result)) {
                 foreach ($result as $ptype) {
                     $this->prep[ 'ptypes' ][ ] = array('id' => $ptype[ 'id' ], 'ptype' => $ptype[ 'ptype' ]);
                     //if (!empty($ptype['id']) && !empty($ptype['ptype']) )
@@ -392,7 +378,7 @@ class jomSearch
 
         if (in_array('priceranges', $this->searchOptions)) {
             $result = prepPriceRangeSearch($pricerange_increments);
-            if ($result && count($result) > 0) {
+            if ($result && !empty($result)) {
                 foreach ($result as $r) {
                     $this->prep[ 'priceranges' ][ ] = $r;
                 }
@@ -401,7 +387,7 @@ class jomSearch
 
         if (in_array('guestnumber', $this->searchOptions)) {
             $result = prepGuestnumberSearch();
-            if ($result && count($result) > 0) {
+            if ($result && !empty($result)) {
                 $searchAll = jr_gettext('_JOMRES_SEARCH_ALL', '_JOMRES_SEARCH_ALL', false, false);
                 $this->prep[ 'guestnumber' ][ ] = array('id' => 0, 'guestnumber' => $searchAll);
                 foreach ($result as $guestnumber) {
@@ -428,7 +414,7 @@ class jomSearch
     {
         $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
         $tmpResultsArray = end($this->propertys_uid);
-        if (count($tmpResultsArray) > 0) {
+        if (!empty($tmpResultsArray)) {
             $componentArgs = array();
             $componentArgs[ 'propertys_uid' ] = $tmpResultsArray;
             $MiniComponents->triggerEvent('01004', $componentArgs); // optional
@@ -449,14 +435,14 @@ class jomSearch
     public function sortResult()
     {
         $tmpArray = array();
-        if (count($this->resultBucket) > 0) {
+        if (!empty($this->resultBucket)) {
             foreach ($this->resultBucket as $result) {
                 $tmpArray[ ] = $result->propertys_uid;
             }
         }
-        if (count($tmpArray) > 1) {
-            $tmpArray = array_unique($tmpArray);
-        }
+		
+		$tmpArray = array_unique($tmpArray);
+
         $this->propertys_uid[ ] = $tmpArray;
     }
 
@@ -688,7 +674,7 @@ class jomSearch
         $property_ors = $this->ors;
         if (!empty($filter) && $property_ors) {
             $ids = $filter;
-            if (!empty($ids) && count($ids) > 0) {
+            if (!empty($ids)) {
                 $st = '';
                 foreach ($ids as $id) {
                     $st .= "'%,".$id.",%' AND property_features LIKE ";
@@ -808,7 +794,7 @@ class jomSearch
 
                 if (isset($_REQUEST[ 'arrivalDate' ]) && $_REQUEST[ 'arrivalDate' ] != '') {
                     $arrivalDate = JSCalConvertInputDates(jomresGetParam($_REQUEST, 'arrivalDate', ''));
-                } elseif (count($tmpBookingHandler->tmpsearch_data) > 0) {
+                } elseif (!empty($tmpBookingHandler->tmpsearch_data)) {
                     if (isset($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ]) && trim($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ]) != '') {
                         $arrivalDate = $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ];
                     } elseif (isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate']) && trim($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] != '')) {
@@ -840,7 +826,7 @@ class jomSearch
                         $res[ ] = $resultObj;
                     }
                 }
-                if (count($result2) > 0) {
+                if (!empty($result2)) {
                     foreach ($result2 as $r) {
                         $resultObj = new stdClass();
                         $resultObj->propertys_uid = $r->propertys_uid;
@@ -904,7 +890,7 @@ class jomSearch
 
             $query = 'SELECT propertys_uid, room_uid, room_classes_uid, max_people FROM #__jomres_rooms WHERE propertys_uid IN ('.jomres_implode(end($this->propertys_uid)).') ';
             $roomsLists = doSelectSql($query);
-            if (count($roomsLists) > 0) {
+            if (!empty($roomsLists)) {
                 foreach ($roomsLists as $room) {
                     $all_property_rooms[ $room->propertys_uid ][ $room->room_uid ] = array('room_classes_uid' => $room->room_classes_uid, 'room_uid' => $room->room_uid, 'max_people' => $room->max_people);
                 }
@@ -912,7 +898,7 @@ class jomSearch
 
             $query = 'SELECT property_uid,room_uid,`date` FROM #__jomres_room_bookings WHERE property_uid IN ('.jomres_implode(end($this->propertys_uid)).') AND `date` IN ('.jomres_implode($dateRangeArray, false).') ';
             $datesList = doSelectSql($query);
-            if (count($datesList) > 0) {
+            if (!empty($datesList)) {
                 foreach ($datesList as $date) {
                     $all_property_bookings[ $date->property_uid ][ ] = $date->room_uid;
                 }
@@ -967,11 +953,9 @@ class jomSearch
                     }
                 }
             }
-            if (count($propertiesWithFreeRoomsArray) > 0) {
-                if (count($propertiesWithFreeRoomsArray) > 1) {
-                    $propertiesWithFreeRoomsArray = array_unique($propertiesWithFreeRoomsArray);
-                }
-
+            if (!empty($propertiesWithFreeRoomsArray)) {
+                $propertiesWithFreeRoomsArray = array_unique($propertiesWithFreeRoomsArray);
+                
                 $this->propertys_uid[ ] = $propertiesWithFreeRoomsArray;
             } else {
                 $this->propertys_uid[ ] = array();
@@ -1022,48 +1006,41 @@ class jomSearch
 function prepGeographicSearch()
 {
     // Prepares the geographic data required for a search
-    $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-    $allPropertyLocations = $c->retrieve('all_property_locations');
+	$lang = get_showtime('lang');
 
-    if (!$allPropertyLocations) {
-        $lang = get_showtime('lang');
-
-        $allCountries = countryCodesArray();
-        $query = "SELECT DISTINCT (CASE WHEN (a.propertys_uid = b.property_uid 
-															AND b.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_TOWN' 
-															AND b.language = '".$lang."') 
-														THEN b.customtext 
-														ELSE a.property_town 
-													END) AS property_town,
-										a.property_region,
-										a.property_country,
-										a.property_postcode 
-									FROM #__jomres_propertys a
-									LEFT JOIN #__jomres_custom_text b ON (a.propertys_uid = b.property_uid 
-																			AND b.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_TOWN' 
-																			AND b.language = '".$lang."')
-									WHERE a.published = '1' 
-									ORDER BY a.property_country,a.property_region,property_town ";
-        $propertyLocations = doSelectSql($query);
-        $allPropertyLocations = array();
-        foreach ($propertyLocations as $location) {
-            $r = array();
-            $r[ 'postcode' ] = $location->property_postcode;
-            if (is_numeric($location->property_region)) {
-                $jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
-                $r[ 'region' ] = jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$location->property_region, $jomres_regions->regions[ $location->property_region ][ 'regionname' ], false, false);
-            } else {
-                $r[ 'region' ] = $location->property_region;
-            }
-            $r[ 'country' ] = $location->property_country;
-            $r[ 'countryname' ] = $allCountries[ $r[ 'country' ] ];
-            $r[ 'property_town' ] = $location->property_town;
-            if (!empty($r[ 'property_town' ])) {
-                $allPropertyLocations[ ] = $r;
-            }
-        }
-        $c->store('all_property_locations', $allPropertyLocations);
-    }
+	$query = "SELECT DISTINCT (CASE WHEN (a.propertys_uid = b.property_uid 
+														AND b.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_TOWN' 
+														AND b.language = '".$lang."') 
+													THEN b.customtext 
+													ELSE a.property_town 
+												END) AS property_town,
+									a.property_region,
+									a.property_country,
+									a.property_postcode 
+								FROM #__jomres_propertys a
+								LEFT JOIN #__jomres_custom_text b ON (a.propertys_uid = b.property_uid 
+																		AND b.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_TOWN' 
+																		AND b.language = '".$lang."')
+								WHERE a.published = '1' 
+								ORDER BY a.property_country,a.property_region,property_town ";
+	$propertyLocations = doSelectSql($query);
+	$allPropertyLocations = array();
+	foreach ($propertyLocations as $location) {
+		$r = array();
+		$r[ 'postcode' ] = $location->property_postcode;
+		if (is_numeric($location->property_region)) {
+			$jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
+			$r[ 'region' ] = jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$location->property_region, $jomres_regions->get_region_name($location->property_region), false);
+		} else {
+			$r[ 'region' ] = $location->property_region;
+		}
+		$r[ 'country' ] = $location->property_country;
+		$r[ 'countryname' ] = getSimpleCountry($r[ 'country' ]);
+		$r[ 'property_town' ] = $location->property_town;
+		if (!empty($r[ 'property_town' ])) {
+			$allPropertyLocations[ ] = $r;
+		}
+	}
 
     $result[ 'propertyLocations' ] = $allPropertyLocations;
 
@@ -1105,50 +1082,44 @@ function prepGuestnumberSearch()
 function prepFeatureSearch()
 {
     // Prepares the Feature data required for a search
-    $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-    $result = $c->retrieve('all_used_property_features');
+	$result = array();
+	$searchAll = jr_gettext('_JOMRES_SEARCH_ALL', '_JOMRES_SEARCH_ALL', false, false);
 
-    if (!$result) {
-        $result = array();
-        $searchAll = jr_gettext('_JOMRES_SEARCH_ALL', '_JOMRES_SEARCH_ALL', false, false);
+	$basic_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
 
-        $basic_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
+	// Added to speed up listing of features. Finds all property features against published propertys and creates a unique array of the feature uids. This way we can still have our list of features but not include any that are not assigned to any properties
 
-        // Added to speed up listing of features. Finds all property features against published propertys and creates a unique array of the feature uids. This way we can still have our list of features but not include any that are not assigned to any properties
+	$uniqueFeatures = array();
+	$query = "SELECT property_features FROM #__jomres_propertys WHERE published = '1'";
+	$propertysfeatures = doSelectSql($query);
+	foreach ($propertysfeatures as $pf) {
+		$tmpArray = explode(',', $pf->property_features);
+		foreach ($tmpArray as $featureuid) {
+			if (!in_array($featureuid, $uniqueFeatures)) {
+				$uniqueFeatures[ ] = $featureuid;
+			}
+		}
+	}
 
-        $uniqueFeatures = array();
-        $query = "SELECT property_features FROM #__jomres_propertys WHERE published = '1'";
-        $propertysfeatures = doSelectSql($query);
-        foreach ($propertysfeatures as $pf) {
-            $tmpArray = explode(',', $pf->property_features);
-            foreach ($tmpArray as $featureuid) {
-                if (!in_array($featureuid, $uniqueFeatures)) {
-                    $uniqueFeatures[ ] = $featureuid;
-                }
-            }
-        }
+	$r = array();
+	$r[ 'id' ] = 0;
+	$r[ 'title' ] = $searchAll;
+	$r[ 'description' ] = $searchAll;
+	$r[ 'image' ] = '';
+	$r[ 'ptype_xref' ] = '';
+	$result[ ] = $r;
 
-        $r = array();
-        $r[ 'id' ] = 0;
-        $r[ 'title' ] = $searchAll;
-        $r[ 'description' ] = $searchAll;
-        $r[ 'image' ] = '';
-        $r[ 'ptype_xref' ] = '';
-        $result[ ] = $r;
-
-        foreach ($basic_property_details->all_property_features as $propertyFeatureId => $feature) {
-            if (in_array($propertyFeatureId, $uniqueFeatures)) {
-                $r = array();
-                $r[ 'id' ] = $propertyFeatureId;
-                $r[ 'title' ] = $feature['abbv'];
-                $r[ 'description' ] = $feature['desc'];
-                $r[ 'image' ] = $feature['image'];
-                $r[ 'ptype_xref' ] = $feature['ptype_xref'];
-                $result[ ] = $r;
-            }
-        }
-        $c->store('all_used_property_features', $result);
-    }
+	foreach ($basic_property_details->all_property_features as $propertyFeatureId => $feature) {
+		if (in_array($propertyFeatureId, $uniqueFeatures)) {
+			$r = array();
+			$r[ 'id' ] = $propertyFeatureId;
+			$r[ 'title' ] = $feature['abbv'];
+			$r[ 'description' ] = $feature['desc'];
+			$r[ 'image' ] = $feature['image'];
+			$r[ 'ptype_xref' ] = $feature['ptype_xref'];
+			$result[ ] = $r;
+		}
+	}
 
     return $result;
 }
@@ -1265,7 +1236,6 @@ function prepAvailabilitySearch()
         if ($arrivalDate != '' && $departureDate != '') {
             $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] = $arrivalDate;
             $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] = $departureDate;
-            $tmpBookingHandler->close_jomres_session();
         }
 
         return $result;
@@ -1292,7 +1262,7 @@ function prepPropertyTypeSearch()
     $jomres_property_types = jomres_singleton_abstract::getInstance('jomres_property_types');
     $jomres_property_types->get_all_property_types();
 
-    if (count($jomres_property_types->property_types) > 0) {
+    if (!empty($jomres_property_types->property_types)) {
         foreach ($jomres_property_types->property_types as $pt) {
             $r = array();
 
@@ -1316,59 +1286,52 @@ function prepPropertyTypeSearch()
 function prepPriceRangeSearch($increments = 10)
 {
     // Prepares the PropertyType data required for a search
+	$searchAll = jr_gettext('_JOMRES_SEARCH_ALL', '_JOMRES_SEARCH_ALL', false, false);
 
-    $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-    $result = $c->retrieve('price_ranges');
+	$query = 'SELECT DISTINCT roomrateperday FROM #__jomres_rates,#__jomres_propertys WHERE #__jomres_rates.property_uid = #__jomres_propertys.propertys_uid AND #__jomres_propertys.published = 1 ORDER by #__jomres_rates.roomrateperday';
+	$rateList = doSelectSql($query);
 
-    if (!$result) {
-        $searchAll = jr_gettext('_JOMRES_SEARCH_ALL', '_JOMRES_SEARCH_ALL', false, false);
+	$query = 'SELECT DISTINCT property_key FROM #__jomres_propertys WHERE published = 1 ORDER by property_key';
+	$realestateList = doSelectSql($query);
 
-        $query = 'SELECT DISTINCT roomrateperday FROM #__jomres_rates,#__jomres_propertys WHERE #__jomres_rates.property_uid = #__jomres_propertys.propertys_uid AND #__jomres_propertys.published = 1 ORDER by #__jomres_rates.roomrateperday';
-        $rateList = doSelectSql($query);
+	$result = array();
+	$result[ ] = $searchAll;
+	$allTariffs = array();
+	foreach ($rateList as $rate) {
+		$allTariffs[ ] = $rate->roomrateperday;
+	}
 
-        $query = 'SELECT DISTINCT property_key FROM #__jomres_propertys WHERE published = 1 ORDER by property_key';
-        $realestateList = doSelectSql($query);
+	foreach ($realestateList as $rate) {
+		if ((float) $rate->property_key > 0.00) {
+			$allTariffs[ ] = $rate->property_key;
+		}
+	}
 
-        $result = array();
-        $result[ ] = $searchAll;
-        $allTariffs = array();
-        foreach ($rateList as $rate) {
-            $allTariffs[ ] = $rate->roomrateperday;
-        }
+	sort($allTariffs);
+	$lowest = $allTariffs[ 0 ];
+	$count = count($allTariffs) - 1;
+	$highest = $allTariffs[ $count ];
 
-        foreach ($realestateList as $rate) {
-            if ((float) $rate->property_key > 0.00) {
-                $allTariffs[ ] = $rate->property_key;
-            }
-        }
+	// Found during testing, when one property has the price 100,000,000 and the increments is left to the default 20, you'll get an out of memory error.
+	// This is because you'll have up to half a million possible ranges. Here we'll test highest/increments. If the result is > 100 we'll have to set the increments to something a bit more sensible to stave off out of memory errors.
+	if ($highest / $increments > 10000) {
+		$increments = $increments * 1000;
+	}
 
-        sort($allTariffs);
-        $lowest = $allTariffs[ 0 ];
-        $count = count($allTariffs) - 1;
-        $highest = $allTariffs[ $count ];
-
-        // Found during testing, when one property has the price 100,000,000 and the increments is left to the default 20, you'll get an out of memory error.
-        // This is because you'll have up to half a million possible ranges. Here we'll test highest/increments. If the result is > 100 we'll have to set the increments to something a bit more sensible to stave off out of memory errors.
-        if ($highest / $increments > 10000) {
-            $increments = $increments * 1000;
-        }
-
-        $ranges = my_range(0, $highest, $increments);
-        foreach ($ranges as $range) {
-            $startRange = $range;
-            $endRange = $range + $increments;
-            $rangeHasElements = false;
-            foreach ($allTariffs as $t) {
-                if ($t > $startRange && $t <= $endRange) {
-                    $rangeHasElements = true;
-                }
-            }
-            if ($rangeHasElements) {
-                $result[ ] = $startRange.'-'.$endRange;
-            }
-        }
-        $c->store('price_ranges', $result);
-    }
+	$ranges = my_range(0, $highest, $increments);
+	foreach ($ranges as $range) {
+		$startRange = $range;
+		$endRange = $range + $increments;
+		$rangeHasElements = false;
+		foreach ($allTariffs as $t) {
+			if ($t > $startRange && $t <= $endRange) {
+				$rangeHasElements = true;
+			}
+		}
+		if ($rangeHasElements) {
+			$result[ ] = $startRange.'-'.$endRange;
+		}
+	}
 
     return $result;
 }

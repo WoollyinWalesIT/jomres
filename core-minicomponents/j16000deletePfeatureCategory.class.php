@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -32,9 +32,6 @@ class j16000deletePfeatureCategory
 
         if ($jomres_property_features_categories->id > 0) {
 			if ($jomres_property_features_categories->delete_property_features_category()) {
-				$c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-				$c->eraseAll();
-				
 				jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=listPfeaturesCategories'), 'Category deleted');
 			} else {
 				jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=listPfeaturesCategories'), 'Could not delete category, it may still be assigned to some property features');

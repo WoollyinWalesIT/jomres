@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -77,13 +77,6 @@ require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'librari
 require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'jr_gettext.php';
 require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomres_singleton_abstract.class.php';
 
-if (!class_exists('Mobile_Detect')) {
-    require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'MobileDetect'.JRDS.'Mobile_Detect.php';
-}
-
-$detect = new Mobile_Detect();
-set_showtime('device_type', ($detect->isMobile() ? ($detect->isTablet() ? 'tablet' : 'phone') : 'desktop'));
-
 //this can be removed most probably, since all servers should have this by default
 if (!function_exists('json_encode')) {
     require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'json'.JRDS.'JSON.php';
@@ -109,12 +102,16 @@ if (!function_exists('json_encode')) {
     }
 }
 
-jr_import('jomresHTML');
+//include the classes registry file and make $classes a global variable to be easily accessible, so we`ll avoid calling include() more times
+//TODO make the classes registry a class
+global $classes;
+if (file_exists(JOMRES_TEMP_ABSPATH.'registry_classes.php')) {
+	include_once JOMRES_TEMP_ABSPATH.'registry_classes.php';
+} else {
+	$classes = search_core_and_remote_dirs_for_classfiles();
+}
 
 $showtime = jomres_singleton_abstract::getInstance('showtime');
-
-$performance_monitor = jomres_singleton_abstract::getInstance('jomres_performance_monitor');
-$performance_monitor->set_point('pre-inclusions');
 
 require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'site_config.php';
 require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'detect_cms.php';
@@ -148,8 +145,6 @@ if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remo
 }
 
 require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'imagehandling.php';
-
-$performance_monitor->set_point('post-inclusions');
 
 $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 $jrConfig = $siteConfig->get();
@@ -220,8 +215,7 @@ if (!defined('AUTO_UPGRADE')) {
     $MiniComponents->triggerEvent('00001'); // Start
 }
 
-$jomres_access_control = jomres_singleton_abstract::getInstance('jomres_access_control');
-
+//jomres parse request
 jomres_parseRequest();
 
 if ($jrConfig[ 'development_production' ] == 'production') {
@@ -235,8 +229,6 @@ if (!defined('AUTO_UPGRADE')) {
     $jomres_geolocation = jomres_singleton_abstract::getInstance('jomres_geolocation');
     $jomres_geolocation->auto_set_user_currency_code();
 }
-
-$performance_monitor->set_point('end integration run');
 
 if (!isset($_REQUEST['modal_wrap'])) {
     $_REQUEST['modal_wrap'] = 0;
@@ -253,5 +245,8 @@ if (!isset($_REQUEST[ 'no_html' ])) {
 if (!isset($_REQUEST['task'])) {
     $_REQUEST['task'] = '';
 }
+
+//TODO find a better place, maybe jomres.php and framework.php
+$jomresHTML = jomres_singleton_abstract::getInstance('jomresHTML');
 
 // Stops here

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -103,7 +103,7 @@ class jomres_toolbar_bootstrap
             }
         }
 
-        if (count($first) > 0) {
+        if (!empty($first)) {
             $this->items = array_merge($first, $new_arr);
         } else {
             $this->items = $new_arr;
@@ -246,9 +246,9 @@ class jomres_toolbar_bootstrap
         $array[ 'unpublish' ] = array('image' => 'Cancel', 'label' => jr_gettext('_JOMRES_COM_MR_VRCT_PUBLISH', '_JOMRES_COM_MR_VRCT_PUBLISH', false));
         $array[ 'archive' ] = array('image' => 'ViewArchive', 'label' => jr_gettext('_JOMRES_MR_AUDIT_ARCHIVE', '_JOMRES_MR_AUDIT_ARCHIVE', false));
 
-        $array[ 'enterdeposit' ] = array('image' => 'enterDeposit', 'label' => jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE', '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE', $editable = false, $isLink = true));
-        $array[ 'editbooking' ] = array('image' => 'ContactCardEdit', 'label' => jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT', '_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT', false));
-        $array[ 'cancelbooking' ] = array('image' => 'HotelReservationStop', 'label' => jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', '_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', $editable = false, $isLink = false));
+        $array[ 'edit_deposit' ] = array('image' => 'enterDeposit', 'label' => jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE', '_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE', $editable = false, $isLink = true));
+        $array[ 'edit_booking' ] = array('image' => 'ContactCardEdit', 'label' => jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT', '_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT', false));
+        $array[ 'cancel_booking' ] = array('image' => 'HotelReservationStop', 'label' => jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', '_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', $editable = false, $isLink = false));
         $array[ 'addservice' ] = array('image' => 'addService', 'label' => jr_gettext('_JOMRES_COM_ADDSERVICE_TITLE', '_JOMRES_COM_ADDSERVICE_TITLE', $editable = false, $isLink = false));
         $array[ 'printer' ] = array('image' => 'Printer', 'label' => 'Print');
         $array[ 'emailsend' ] = array('image' => 'EmailSend', 'label' => 'Email');

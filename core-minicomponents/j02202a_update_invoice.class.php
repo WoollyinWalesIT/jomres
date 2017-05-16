@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -46,7 +46,7 @@ class j02202a_update_invoice
                 $line_items = array('tax_code_id' => 0,
                                          'name' => jr_gettext('_JOMRES_MR_AUDIT_ENTEREDDEPOSIT', '_JOMRES_MR_AUDIT_ENTEREDDEPOSIT', false, false),
                                          'description' => '('.$today.')',
-                                         'init_price' => '-'.number_format($deposit_received, 2, '.', ''),
+                                         'init_price' => 0 - $deposit_received,
                                          'init_qty' => 1,
                                          'init_discount' => 0,
                                          'is_payment' => 1,

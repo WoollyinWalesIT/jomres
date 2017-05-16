@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -15,6 +15,112 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'http_build_url.php';
+
+function jomres_getSingleton($class, $args = array())
+{
+    return jomres_singleton_abstract::getInstance($class, $args);
+}
+
+/*
+A function that makes an async POST or GET request using sockets
+*/
+
+function jomres_async_request($type = "GET", $url = "", $port = '', $post_data = array())
+{
+	$post_string = "";
+	
+	//check if url is empty
+	if ($url == "") {
+		return false;
+	}
+	
+	//if this is a POST, then we must have some post data in the array
+	if ($type == "POST" && empty($post_data)) {
+		return false;
+	}
+	
+	//generate the post string
+	if (!empty($post_data)) {
+		$post_string = http_build_query($post_data);
+	}
+	
+	//set the port depending on http/https if no specific value is passed
+	if ((int)$port == 0) {
+		if (strpos($url, 'https://') !== false) {
+			$port = 443;
+		} else {
+			$port = 80;
+		}
+	} else {
+		$port = (int)$port;
+	}
+	
+	$parts = parse_url($url);
+	
+	//get the functions disabled in php.ini
+	$disabled_functions = explode(',', @ini_get('disable_functions'));
+
+	if (function_exists('fsockopen') && !in_array('fsockopen', $disabled_functions)) { //we`ll use an async socket
+		logging::log_message('Starting socket to '.$url, 'Socket', 'DEBUG');
+        $logging_time_start = microtime(true);
+	
+		$fp = fsockopen($parts['host'], $port, $errno, $errstr, 30);
+
+		$out = $type." ".$parts['path'].'?'.$parts['query']." HTTP/1.1\r\n";
+		$out.= "Host: ".$parts['host']."\r\n";
+		$out .= "User-Agent: Jomres\r\n";
+		$out.= "Content-Type: application/x-www-form-urlencoded\r\n";
+		$out.= "Content-Length: ".strlen($post_string)."\r\n";
+		$out.= "Connection: Close\r\n\r\n";
+		if ($type == "POST" && $post_string != "") {
+			$out.= $post_string;
+		}
+
+		fwrite($fp, $out);
+		fclose($fp);
+		
+		$logging_time_end = microtime(true);
+		$logging_time = $logging_time_end - $logging_time_start;
+		logging::log_message('Socket call took '.$logging_time.' seconds ', 'Socket', 'DEBUG');
+		
+		return true;
+	} elseif (function_exists('curl_init')) { //we`ll use curl if enabled
+		//we`ll use a custom GET here so that domains with non latin chars will be handled properly
+		if ($type == "GET") {
+			$type = "XGET";
+		}
+		
+		logging::log_message('Starting curl call to '.$url, 'Curl', 'DEBUG');
+        $logging_time_start = microtime(true);
+		
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_USERAGENT, 'Jomres');
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $type);
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+		curl_setopt($ch, CURLOPT_PORT, $port);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 480);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded; charset=utf-8'));
+		
+		if ($type == "POST") {
+			curl_setopt($ch, CURLOPT_POST, 1);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $post_string);
+		}
+		$curl_output = curl_exec($ch);
+		curl_close($ch);
+		
+		$logging_time_end = microtime(true);
+		$logging_time = $logging_time_end - $logging_time_start;
+		logging::log_message('Curl call took '.$logging_time.' seconds ', 'Curl', 'DEBUG');
+		
+		return true;
+	} else {
+		return false;
+	}
+	
+	return false;
+}
 
 /*
 A simple function to get the marker rel path
@@ -97,17 +203,6 @@ function fix_path($path = '')
     $path = $path.'/';
 
     return $path;
-}
-
-function set_user_feedback_message($message = '', $css_class = 'info', $link = false, $link_message = false)
-{
-    $messages_array = get_showtime('user_feedback_messages');
-    if (!$link) {
-        $messages_array[] = array('MESSAGE' => $message, 'CSS_CLASS' => $css_class);
-    } else {
-        $messages_array[] = array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $link_message, 'CSS_CLASS' => $css_class);
-    }
-    set_showtime('user_feedback_messages', $messages_array);
 }
 
 // http://www.maurits.vdschee.nl/php_hide_email/
@@ -465,7 +560,7 @@ function import_images_to_media_centre_directories()
     $resource_types[] = array('resource_type' => 'slideshow', 'resource_id_required' => false, 'name' => jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW', false));
     $resource_types[] = array('resource_type' => 'property', 'resource_id_required' => false, 'name' => jr_gettext('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY', '_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY', false), 'notes' => jr_gettext('_JOMRES_MEDIA_CENTRE_NOTES_CORE', '_JOMRES_MEDIA_CENTRE_NOTES_CORE', false));
 
-    if (count($resource_types) > 0 && count($all_propertys) > 0) {
+    if (!empty($resource_types) && !empty($all_propertys)) {
         foreach ($all_propertys as $property_id) {
             $base_path = JOMRES_IMAGELOCATION_ABSPATH.$property_id.JRDS;
 
@@ -518,7 +613,7 @@ function import_images_to_media_centre_directories()
             // Now any slideshow images
             $slideshow_images = scandir_getfiles($base_path);
 
-            if (count($slideshow_images) > 0) {
+            if (!empty($slideshow_images)) {
                 if (!is_dir($base_path.'slideshow'.JRDS.'0')) {
                     mkdir($base_path.'slideshow'.JRDS.'0');
                 }
@@ -554,7 +649,7 @@ function import_images_to_media_centre_directories()
 
             // Finally we'll look for room images
             $room_images = scandir_getfiles(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'uploadedimages'.JRDS);
-            if (count($room_images) > 0) {
+            if (!empty($room_images)) {
                 $pattern = $property_id.'_room';
                 foreach ($room_images as $image) {
                     $pos1 = strpos($image, '_thumbnail');
@@ -661,15 +756,16 @@ function genericLike($idArray, $fieldToSearch, $idArrayisInteger = true)
         $newArr[ ] = $id;
     }
     $idArray = $newArr;
+	$n = count($idArray);
     $txt = ' ( `'.$fieldToSearch.'` LIKE ';
-    for ($i = 0, $n = count($idArray); $i < $n; ++$i) {
+    for ($i = 0; $i < $n; ++$i) {
         if ($idArrayisInteger) {
             $id = (int) $idArray[ $i ];
         } else {
             $id = $idArray[ $i ];
         }
         $txt .= " '%$id%' ";
-        if ($i < count($idArray) - 1) {
+        if ($i < $n - 1) {
             $txt .= ' OR `'.$fieldToSearch.'` LIKE ';
         }
     }
@@ -678,10 +774,15 @@ function genericLike($idArray, $fieldToSearch, $idArrayisInteger = true)
     return $txt;
 }
 
-function get_number_of_items_requiring_attention_for_menu_option($task)
+function get_number_of_items_requiring_attention_for_menu_option($task = '')
 {
+	if ($task == '') {
+		return array();
+	}
+
     $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-    if (jomres_cmsspecific_areweinadminarea()) {
+    
+	if (jomres_cmsspecific_areweinadminarea()) {
         if ($MiniComponents->eventSpecificlyExistsCheck('07020', $task)) {
             return $MiniComponents->specificEvent('07020', $task);
         } else {
@@ -701,12 +802,8 @@ function find_region_name($region_id)
     }
 
     $jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
-
-    if (isset($jomres_regions->regions[$region_id]['regionname'])) {
-        return $jomres_regions->regions[$region_id]['regionname'];
-    }
 	
-	return false;
+	return $jomres_regions->get_region_name($region_id);
 }
 
 function find_region_id($region)
@@ -718,6 +815,8 @@ function find_region_id($region)
     }
 
     $jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
+	$jomres_regions->get_all_regions();
+
     foreach ($jomres_regions->regions as $r) {
         if (strcasecmp(jomres_cmsspecific_stringURLSafe($r[ 'regionname' ]), $region) == 0) {
             return (int) $r[ 'id' ];
@@ -731,23 +830,16 @@ function build_property_manager_xref_array()
 {
     $arr = array();
 
-    $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-    $jomres_managers_propertys_xref = $c->retrieve('jomres_managers_propertys_xref');
+	$query = 'SELECT property_uid,manager_id FROM #__jomres_managers_propertys_xref';
+	$managersToPropertyList = doSelectSql($query);
+	if (!empty($managersToPropertyList)) {
+		foreach ($managersToPropertyList as $x) {
+			if (!array_key_exists($x->property_uid, $arr)) {
+				$arr[ $x->property_uid ] = $x->manager_id;
+			}
+		}
+	}
 
-    if (true === is_array($jomres_managers_propertys_xref)) {
-        $arr = $jomres_managers_propertys_xref;
-    } else {
-        $query = 'SELECT property_uid,manager_id FROM #__jomres_managers_propertys_xref';
-        $managersToPropertyList = doSelectSql($query);
-        if (count($managersToPropertyList) > 0) {
-            foreach ($managersToPropertyList as $x) {
-                if (!array_key_exists($x->property_uid, $arr)) {
-                    $arr[ $x->property_uid ] = $x->manager_id;
-                }
-            }
-        }
-        $c->store('jomres_managers_propertys_xref', $arr);
-    }
     set_showtime('property_manager_xref', $arr);
 
     return $arr;
@@ -859,14 +951,6 @@ function using_bootstrap()
     return false;
 }
 
-function init_javascript()
-{
-    if (!AJAXCALL) {
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        $MiniComponents->triggerEvent('00004');
-    }
-}
-
 function add_gmaps_source()
 {
     if (defined('JOMRES_NOHTML') && JOMRES_NOHTML == '1') {
@@ -878,83 +962,15 @@ function add_gmaps_source()
 
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
-        $site_lang = get_showtime('lang');
-        $lang = explode('-', $site_lang);
-        $shortcode = $lang[ 0 ];
 
-        $libraries = '';
-
-        if (!isset($jrConfig[ 'gmap_layer_weather' ])) {
-            $jrConfig[ 'gmap_layer_weather' ] = '1';
-            $jrConfig[ 'gmap_layer_panoramio' ] = '0';
-            $jrConfig[ 'gmap_layer_transit' ] = '0';
-            $jrConfig[ 'gmap_layer_traffic' ] = '0';
-            $jrConfig[ 'gmap_layer_bicycling' ] = '0';
-        }
-
-        if ($jrConfig[ 'gmap_layer_weather' ] == '1') {
-            $libraries .= 'weather,';
-        }
-        if ($jrConfig[ 'gmap_layer_panoramio' ] == '1') {
-            $libraries .= 'panoramio';
-        }
-
-        if ($libraries != '') {
-            $libraries = '&libraries='.$libraries;
-        }
+        $shortcode = get_showtime('lang_shortcode');
 
         $apikey = '';
         if ($jrConfig[ 'google_maps_api_key' ] != '') {
             $apikey = '&key='.$jrConfig[ 'google_maps_api_key' ];
         }
 
-        jomres_cmsspecific_addheaddata('javascript', 'https://maps.googleapis.com/maps/api/js?v=3&language='.$shortcode.$libraries.$apikey, '&foo=bar', $includeVersion = false, $async = true);
-    }
-}
-
-// Used by components to dynamically add elements to the new Jomres mainmenu. Process.png is a neat way to indicate that this menu option's dynamically added
-function add_menu_option($task_and_args, $image, $title, $path, $category, $external = false, $disabled = false)
-{
-    $jomres_mainmenu_category_images = get_showtime('jomres_mainmenu_category_images');
-    $jomres_mainmenu_category_images[ strtolower($category) ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/process.png';
-    set_showtime('jomres_mainmenu_category_images', $jomres_mainmenu_category_images);
-    $option = jomres_mainmenu_option($task_and_args, 'process.png', $title, $path, $category, $external, $disabled);
-    $jomres_mainmenu_thirdparty_options = get_showtime('jomres_mainmenu_thirdparty_options');
-    $jomres_mainmenu_thirdparty_options[ ][ 'OPTIONS' ] = $option;
-    set_showtime('jomres_mainmenu_thirdparty_options', $jomres_mainmenu_thirdparty_options);
-}
-
-// Builds the button link information that's later passed to the menu generator
-function jomres_mainmenu_option($link, $image, $text, $path = '/JOMRES_ROOT_DIRECTORY/images/jomresimages/small/', $category = null, $external = false, $disabled = false)
-{
-    $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-    $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-    $jrConfig = $siteConfig->get();
-    $link = jomresURL($link);
-    $link = jomresValidateUrl($link);
-
-    if ($jrConfig[ 'development_production' ] == 'production' && $category == jr_gettext('_JOMRES_SEARCH_BUTTON', '_JOMRES_SEARCH_BUTTON', false, false)) {
-        return;
-    }
-
-    if ($image == '') {
-        $image = 'Prompt.png';
-    }
-
-    if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'jomresimages'.JRDS.'small'.JRDS.$image)) {
-        $path = get_showtime('eLiveSite');
-    } else {
-        $path = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/';
-    }
-
-    if (!isset($category)) {
-        $category = 'misc';
-    }
-
-    if (!strstr($image, 'blank.png') && strlen($link) > 0 && strlen($text) > 0) {
-        return array('link' => $link, 'image' => $image, 'menu_name' => $text, 'image_path' => $path, 'category' => $category, 'external' => $external, 'disabled' => $disabled);
-    } else {
-        return;
+        jomres_cmsspecific_addheaddata('javascript', 'https://maps.googleapis.com/maps/api/js?v=3&language='.$shortcode.$apikey, '&foo=bar', $includeVersion = false, $async = true);
     }
 }
 
@@ -1004,15 +1020,15 @@ function admins_first_run($manual_trigger = false)
 		<div style="' .$style.'">
 		<h3 class="page-header">Introduction.</h3>
 		<p>Firstly, a basic installation of Jomres, with absolutely no plugins, is a working booking extension for Joomla and Wordpress. Whilst this is sufficient for a small site with just one property you may quickly find that you want to add more functionality and features to the system, taking it from a simple booking system to a full online booking portal where you can gain revenue from listing properties on your site, earning commission, or taking booking deposits online.</p>
-		<p>Unless you want to build the code yourself, the best source of additional functionality is usually the <a href="' .JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins" target="_blank">Jomres Plugin Manager.</a> We have over <a href="http://www.jomres.net/manual/site-managers-guide" target="_blank">100 plugins available</a> that extend the system and we\'ve worked hard to make the Plugin Manager extremely easy to use. If you have a <a href="https://www.jomres.net/pricing" target="_blank"> download and support key</a>, then you will be able to download any plugins listed in the Plugin Manager, once you have entered your license number in the Support Key field in <a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=showSiteConfig" target="_blank">Site Configuration.</a> You may also want to checkout our <a href="https://www.jomres.net/online-booking-system-reservation-software/partners" target="_blank">Partners page</a>, as they also develop plugins for Jomres and we work closely with them to this end.</p>
+		<p>Unless you want to build the code yourself, the best source of additional functionality is usually the <a href="' .JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins" target="_blank">Jomres Plugin Manager.</a> We have over <a href="http://www.jomres.net/manual/site-managers-guide" target="_blank">100 plugins available</a> that extend the system and we\'ve worked hard to make the Plugin Manager extremely easy to use. If you have a <a href="https://www.jomres.net/pricing" target="_blank"> download and support key</a>, then you will be able to download any plugins listed in the Plugin Manager, once you have entered your license number in the Support Key field in <a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=site_settings" target="_blank">Site Configuration.</a></p>
 		<h3 class="page-header">First steps.</h3>
 		<p>Now that you\'ve seen some of the extra features on offer, you are ready to start setting up your site. To begin with, we\'d like you to ignore the "administrator" area of Jomres altogether for the time being, a new installation of Jomres includes sample data that you can play around with later, but for now you should experiment with configuring your default property.
 		<ol>
-			<li>When Jomres is installed, the first thing it does is configure your "admin" user to be a Super Property Manager. Super Managers are akin to a Root user in linux, with super powers unavailable to normal Property Managers. If your administrator user is a different user you might need to add them as a Super Property Manager via the <a href="' .JOMRES_SITEPAGE_URL_ADMIN.'&task=managers_choose" target="_blank">Show Profiles</a> feature. View it now just to check that "admin" (or your chosen Joomla user\'s username) is listed and has a "ninja" icon under the Access Level column. If they haven\'t you will need to <a href="http://www.jomres.net/manual/site-managers-guide/30-control-panel/user-management/201-show-profiles" target="_blank">add them</a> before you log into the frontend of your site.</li>
+			<li>When Jomres is installed, the first thing it does is configure your "admin" user to be a Super Property Manager. Super Managers are akin to a Root user in linux, with super powers unavailable to normal Property Managers. If your administrator user is a different user you might need to add them as a Super Property Manager via the <a href="' .JOMRES_SITEPAGE_URL_ADMIN.'&task=list_users" target="_blank">Property Managers</a> page. View it now just to check that your administrator user has a purple badge. If they haven\'t you will need to edit their record to ensure that they are super managers before you log into the frontend of your site. Note : Super property managers do not need to be associated with a specific property, they have access to all properties.</li>
 			';
         if (this_cms_is_joomla()) {
             echo '<li>Next, add Jomres to your <a href="'.get_showtime('live_site').'/administrator/index.php?option=com_menus&view=items&menutype=mainmenu" target="_blank"> Main Menu</a>, as you would any other Joomla extension.</li>';
-            echo '<li>Now go to the <a href="'.get_showtime('live_site').'/index.php" target="_blank">public pages</a> of your site and log in as "admin". When you click on the <a href="'.get_showtime('live_site').'/index.php?option=com_jomres" target="_blank">Main Menu link to Jomres</a>, as you are logged in, you will see the <a href="http://www.jomres.net/manual/property-managers-guide/38-your-toolbar" target="_blank">Property Manager\'s toolbar</a>. Go to the button marked "Tariffs & Rooms" (under Settings) and click on it.</li>';
+            echo '<li>Now go to the <a href="'.get_showtime('live_site').'/index.php" target="_blank">public pages</a> of your site and log in as your admin user. When you click on the <a href="'.get_showtime('live_site').'/index.php?option=com_jomres" target="_blank">Main Menu link to Jomres</a>, as you are logged in, you will see the <a href="http://www.jomres.net/manual/property-managers-guide/38-your-toolbar" target="_blank">Property Manager\'s toolbar</a>. Go to the button marked "Tariffs & Rooms" (under Settings) and click on it.</li>';
         } elseif (this_cms_is_wordpress()) {
             echo '<li>Now you want to make sure that Jomres pages are visible to site visitors, so you will need to add the <i>[jomres:en-US]</i> shortcode to a new page to display your Jomres pages in the frontend of Wordpress, if using English, for other languages add [jomres:xx-XX] where xx-XX is the shortcode for your chosen language.</li>';
 
@@ -1132,7 +1148,8 @@ function jomres_nicetime($date)
         $tense = jr_gettext('_JOMRES_DATEPERIOD_FROMNOW', '_JOMRES_DATEPERIOD_FROMNOW', false, false);
     }
 
-    for ($j = 0; $difference >= $lengths[ $j ] && $j < count($lengths) - 1; ++$j) {
+	$n = count($lengths) - 1;
+    for ($j = 0; $difference >= $lengths[ $j ] && $j < $n; ++$j) {
         $difference /= $lengths[ $j ];
     }
 
@@ -1209,7 +1226,6 @@ function detect_property_uid()
         if (isset($_POST[ 'specialReqs' ])) {
             $specialReqs = getEscaped(jomresGetParam($_POST, 'specialReqs', ''));
             $tmpBookingHandler->updateBookingField('error_log', $specialReqs);
-            $tmpBookingHandler->saveBookingData();
         }
     }
 
@@ -1233,10 +1249,8 @@ function jomres_validate_gateway_plugin()
         }
     
     $installed_gateway_plugins = array();
-    foreach ($MiniComponents->registeredClasses as $event ) {
-        if ($event['eventPoint'] == "00509" ) {
-            $installed_gateway_plugins[] = $event['eventName'];
-        }
+    foreach ($MiniComponents->registeredClasses['00509'] as $eventName => $e ) {
+        $installed_gateway_plugins[] = $eventName;
     }
    // No gateways are installed
     if ( empty($installed_gateway_plugins) ) {
@@ -1300,18 +1314,14 @@ function jomres_generate_tab_anchor($string)
 function get_showtime($setting)
 {
     $showtime = jomres_singleton_abstract::getInstance('showtime');
-    //$showtime = jomres_singleton_abstract::getInstance('showtime');
-    $result = $showtime->$setting;
 
-    //var_dump ($setting." ".$result);
-    return $result;
+    return $showtime->$setting;
 }
 
 function set_showtime($setting, $value)
 {
-    //echo $setting." - ".$value."<br>";
-    $showtime = jomres_singleton_abstract::getInstance('showtime');
-    //$showtime = jomres_singleton_abstract::getInstance('showtime');
+	$showtime = jomres_singleton_abstract::getInstance('showtime');
+
     if (!$showtime->$setting = $value) {
         return false;
     }
@@ -1323,11 +1333,11 @@ function get_plugin_settings($plugin, $prop_id = 0)
 {
     // This function is exclusively for gateway plugins
     $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-    $gw_configuration_script = '00509'.$plugin;
-    if (!isset($MiniComponents->registeredClasses[$gw_configuration_script])) {
+    
+	if (!isset($MiniComponents->registeredClasses['00509'][$plugin])) {
         return false; // Gateway isn´t installed
     }
-    if (isset($MiniComponents->registeredClasses[$gw_configuration_script]) && count($MiniComponents->registeredClasses[$gw_configuration_script]) == 0) { // Let's check to see that the gateway hasn't been uninstalled. It's possible that the settings exist, but the gateway code itself doesn't.
+    if (isset($MiniComponents->registeredClasses['00509'][$plugin]) && count($MiniComponents->registeredClasses['00509'][$plugin]) == 0) { // Let's check to see that the gateway hasn't been uninstalled. It's possible that the settings exist, but the gateway code itself doesn't.
         return false; // Can't "throw" an error here, any failure needs to be handled by the calling function/method
     }
 
@@ -1359,98 +1369,107 @@ function get_plugin_settings($plugin, $prop_id = 0)
 
 function jr_import($class)
 {
-    if (class_exists('j00001start')) { // Wont init properly if we call this any time sooner than when j00001start has been set up
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        $plugin_directories = $MiniComponents->miniComponentDirectories;
-    } else {
-        $plugin_directories = false;
-    }
-    if (!class_exists($class)) {
-        if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS.'custom_code'.JRDS.$class.'.class.php')) {
-            $result = require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS.'custom_code'.JRDS.$class.'.class.php';
-        } else {
-            search_core_and_remote_dirs_for_classfiles();
-            $classes = get_showtime('plugin_classes_paths');
-            if (isset($classes[ $class ]) && file_exists($classes[ $class ][ 'path' ].$class.'.class.php')) {
-                $result = require_once $classes[ $class ][ 'path' ].$class.'.class.php';
-            } else {
-                if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.'.class.php')) {
-                    $result = require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.'.class.php';
-                } else {
-                    if ($plugin_directories) {
-                        foreach ($plugin_directories as $directory) {
-                            if (file_exists($directory.$class.'.class.php')) {
-                                $result = require_once $directory.$class.'.class.php';
-                            }
-                        }
-                        if (!class_exists($class)) { // We'll echo and exit here. Assuming that we're a developer we'll want to see on the page that the class doesn't exist, rather than have an error triggered. Addition of this also means that the following trigger_error will never kick in if any plugins are installed
-                            echo 'Error, class '.$class." doesn't exist.";
-                            exit;
-                        }
-                    } else {
-                        trigger_error('Error, class file '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.'.class.php'." doesn't exist");
-                    }
-                }
-            }
-        }
-    }
+	if (class_exists($class)) {
+		return true;
+	}
+
+	//first check custom code dir
+	if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS.'custom_code'.JRDS.$class.'.class.php')) {
+		require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS.'custom_code'.JRDS.$class.'.class.php';
+		
+		return true;
+	}
+	
+	global $classes;
+
+	//check core and remote plugins dirs
+	if (isset($classes[$class])) {
+		require_once $classes[$class].$class.'.class.php';
+		return true;
+	}
+	
+	//last place to check is jomres core classes dir
+	if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.'.class.php')) {
+		require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.'.class.php';
+		return true;
+	}
+	
+	//class doesn`t exist so we`ll echo a message and exit
+	echo 'Error, class '.$class." doesn't exist.";
+    $trace = '';
+        $backtrace = debug_backtrace();
+        $trace = "<br/> File ".$backtrace[1]['file']." Line ".$backtrace[1]['line']. " Function ".$backtrace[1]['function']."<br/> ";
+        $trace .= " File ".$backtrace[2]['file']." Line ".$backtrace[2]['line']. " Function ".$backtrace[2]['function']."<br/> ";
+        $trace .= " File ".$backtrace[3]['file']." Line ".$backtrace[3]['line']. " Function ".$backtrace[3]['function']."<br/> "; 
+    echo $trace;
+	exit;
 }
 
 function search_core_and_remote_dirs_for_classfiles()
 {
-    $classes = get_showtime('plugin_classes_paths');
-    if (is_null($classes)) {
-        $core_plugins_directories = array();
-        $remote_plugin_directories = array();
-        $core_plugins_directory = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'core-plugins'.JRDS;
-        $remote_plugin_directory = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS;
+	global $classes;
+	
+    $plugin_paths = array();
 
-        if (is_dir($core_plugins_directory)) {
-            $d = @dir($core_plugins_directory);
-            while (false !== ($entry = $d->read())) {
-                if (substr($entry, 0, 1) != '.') {
-                    $core_plugins_directories[ ] = $core_plugins_directory.$entry.JRDS;
-                }
-            }
-        }
+	$core_plugins_directory = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'core-plugins'.JRDS;
+	$remote_plugin_directory = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS;
+	$classes_tmp_file = JOMRES_TEMP_ABSPATH.'registry_classes.php';
 
-        if (is_dir($remote_plugin_directory)) {
-            $d = @dir($remote_plugin_directory);
-            while (false !== ($entry = $d->read())) {
-                if (substr($entry, 0, 1) != '.') {
-                    $remote_plugin_directories[ ] = $remote_plugin_directory.$entry.JRDS;
-                }
-            }
-        }
+	if (is_dir($core_plugins_directory)) {
+		$d = @dir($core_plugins_directory);
+		while (false !== ($entry = $d->read())) {
+			if (substr($entry, 0, 1) != '.') {
+				$plugin_paths[ ] = $core_plugins_directory.$entry.JRDS;
+			}
+		}
+	}
 
-        $all_directories = array_merge($core_plugins_directories, $remote_plugin_directories);
+	if (is_dir($remote_plugin_directory)) {
+		$d = @dir($remote_plugin_directory);
+		while (false !== ($entry = $d->read())) {
+			if (substr($entry, 0, 1) != '.') {
+				$plugin_paths[ ] = $remote_plugin_directory.$entry.JRDS;
+			}
+		}
+	}
+	
+	foreach ($plugin_paths as $directory) {
+		$d = @dir($directory);
+		if ($d) {
+			while (false !== ($entry = $d->read())) {
+				$filename = $entry;
+				if (substr($entry, 0, 1) != '.') {
+					if (strstr($entry, '.class.php')) {
+						if (strlen($filename) > 8) {
+							$strippedName = str_replace('.', '', $filename);
+							$strippedName = substr($strippedName, 0, -8);
+						} else {
+							$strippedName = $filename;
+						}
+						$classfileEventPoint = substr($strippedName, 1, 5);
+						if (!is_numeric($classfileEventPoint)) {
+							$classes[ $strippedName ] = $directory;
+						}
+					}
+				}
+			}
+			$d->close();
+		}
+	}
+	
+	if (!file_put_contents($classes_tmp_file,
+'<?php
+##################################################################
+defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
+##################################################################
 
-        $classes = array();
-        foreach ($all_directories as $directory) {
-            $d = @dir($directory);
-            if ($d) {
-                while (false !== ($entry = $d->read())) {
-                    $filename = $entry;
-                    if (substr($entry, 0, 1) != '.') {
-                        if (strstr($entry, '.class.php')) {
-                            if (strlen($filename) > 8) {
-                                $strippedName = str_replace('.', '', $filename);
-                                $strippedName = substr($strippedName, 0, -8);
-                            } else {
-                                $strippedName = $filename;
-                            }
-                            $classfileEventPoint = substr($strippedName, 1, 5);
-                            if (!is_numeric($classfileEventPoint)) {
-                                $classes[ $strippedName ] = array('path' => $directory, 'class' => $strippedName);
-                            }
-                        }
-                    }
-                }
-                $d->close();
-            }
-        }
-        set_showtime('plugin_classes_paths', $classes);
-    }
+$classes = ' .var_export($classes, true).';
+')) {
+		trigger_error('ERROR: '.$classes_tmp_file.' can`t be saved. Please solve the permission problem and try again.', E_USER_ERROR);
+		exit;
+	}
+	
+	return $classes;
 }
 
 function jomresValidateUrl($url)
@@ -1997,7 +2016,7 @@ function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode
 
         //$mail->AltBody		= "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
 
-        if (count($attachments) > 0) {
+        if (!empty($attachments)) {
             foreach ($attachments as $attachment) {
                 switch ($attachment[ 'type' ]) { // Use a switch as it allows us to expand this later if we wish
                     case 'image':
@@ -2077,7 +2096,7 @@ function getGuestDetailsForContract($contract_uid)
     $query = 'SELECT rate_rules FROM #__jomres_contracts WHERE contract_uid = '.(int) $contract_uid.' LIMIT 1';
     $bookingData = doSelectSql($query);
 
-    if (count($bookingData) > 0) {
+    if (!empty($bookingData)) {
         foreach ($bookingData as $booking) {
             $guesttypeOutput = array();
             $varianceArray = explode(',', $booking->rate_rules);
@@ -2095,7 +2114,7 @@ function getGuestDetailsForContract($contract_uid)
                 }
             }
         }
-        if (count($guesttypeOutput) > 0) {
+        if (!empty($guesttypeOutput)) {
             sort($guesttypeOutput);
         }
 
@@ -2130,7 +2149,7 @@ function getCurrentBookingData($jomressession = '')
     $obj->tempBookingDataList = $tempBookingDataList;
     $arr = array();
     $ob = $tempBookingDataList;
-    if (count($ob) > 0) {
+    if (!empty($ob)) {
         foreach ($ob as $k => $v) {
             $arr[ $k ] = $v;
         }
@@ -2274,7 +2293,7 @@ function error_logging($message, $emailMessage = true)
 function request_log()
 {
     $log = '';
-    if (count($_REQUEST) > 0) {
+    if (!empty($_REQUEST)) {
         $log .= '';
         foreach ($_REQUEST as $key => $value) {
             if (is_array($value)) {
@@ -2319,6 +2338,11 @@ function jomresRedirect($url, $msg = '', $code = 302)
     logging::log_message($msg, 'Core', 'INFO');
     $MiniComponents = jomres_getSingleton('mcHandler');
     $MiniComponents->triggerEvent('08000'); // Optional, post run items that *must* be run ( watchers ).
+	
+	//we have to save the session data every time we redirect
+	$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+	$tmpBookingHandler->close_jomres_session();
+	
     if (strncmp('cli', PHP_SAPI, 3) !== 0) {
         if (headers_sent() !== true) {
             if (strncmp('cgi', PHP_SAPI, 3) === 0) {
@@ -2360,8 +2384,7 @@ function hotelSettings()
 
     $componentArgs = array();
     $componentArgs[ 'mrConfig' ] = $mrConfig;
-    $MiniComponents->triggerEvent('0500', $componentArgs); // Generate configuration options. Optional
-    $gatewayNames = listGateways();
+    $MiniComponents->triggerEvent('00500', $componentArgs); // Generate configuration options. Optional
 
     // the default view
     $lists = array();
@@ -2424,7 +2447,7 @@ function hotelSettings()
     $tariffMode = array();
     $tariffMode[ ] = jomresHTML::makeOption('0', jr_gettext('JOMRES_COM_A_TARIFFMODE_NORMAL', 'JOMRES_COM_A_TARIFFMODE_NORMAL', false));
 
-    if (isset($MiniComponents->registeredClasses[ '06002edit_tariff_micromanage' ])) {
+    if (isset($MiniComponents->registeredClasses[ '06002']['edit_tariff_micromanage' ])) {
         $tariffMode[ ] = jomresHTML::makeOption('2', jr_gettext('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', false));
         $tariffMode[ ] = jomresHTML::makeOption('1', jr_gettext('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'JOMRES_COM_A_TARIFFMODE_ADVANCED', false));
     }
@@ -2559,7 +2582,6 @@ function hotelSettings()
     $componentArgs[ 'weekenddayDropdown' ] = $weekenddayDropdown;
     //$componentArgs['templateNamesDropdownList']=$templateNamesDropdownList;
     $componentArgs[ 'paymentAmounts' ] = $paymentAmounts;
-    $componentArgs[ 'gatewayNames' ] = $gatewayNames;
     $componentArgs[ 'editIconSize' ] = $editIconSize;
     $componentArgs[ 'fixedArrivalDatesRecurring' ] = $fixedArrivalDatesRecurring;
     $componentArgs[ 'tariffModelsDropdown' ] = $tariffModelsDropdown;
@@ -2608,7 +2630,7 @@ function hotelSettings()
 
     $configurationPanel->startTabs();
 
-    $MiniComponents->triggerEvent('0501', $componentArgs); // Generate configuration options tabs
+    $MiniComponents->triggerEvent('00501', $componentArgs); // Generate configuration options tabs
 
             $configurationPanel->endTabs(); ?>
 			<input type="hidden" name="no_html" value="1">
@@ -2639,7 +2661,12 @@ function saveHotelSettings()
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
 
-    $property_uid = (int) getDefaultProperty();
+    $property_uid = (int)getDefaultProperty();
+	
+	if ($property_uid == 0) {
+		return false;
+	}
+
     $mrConfig = getPropertySpecificSettings($property_uid);
 
     $tariffmodeChange = false;
@@ -2702,7 +2729,7 @@ function saveHotelSettings()
                 if ($oldSettingVal != $v) {
                     $query = "SELECT uid FROM #__jomres_settings WHERE property_uid = '".(int) $property_uid."' and akey = '".substr($k, 4)."'";
                     $result = doSelectSql($query);
-                    if (count($result) == 0) {
+                    if (empty($result)) {
                         $query = "INSERT INTO #__jomres_settings (property_uid,akey,value) VALUES ('".(int) $property_uid."','".substr($k, 4)."','".$v."')";
                     } else {
                         $query = "UPDATE #__jomres_settings SET `value`='".$v."' WHERE property_uid = '".(int) $property_uid."' and akey = '".substr($k, 4)."'";
@@ -2723,9 +2750,6 @@ function saveHotelSettings()
         $webhook_notification->data->property_uid           = $property_uid;
         add_webhook_notification($webhook_notification);
     }
-            
-    $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-    $c->eraseAll();
 
     if (trim($_POST['cfg_property_vat_number']) != '') {
         jr_import('vat_number_validation');
@@ -2733,8 +2757,8 @@ function saveHotelSettings()
         $validation->vies_check(filter_var($_POST['cfg_property_vat_number'], FILTER_SANITIZE_SPECIAL_CHARS));
         $validation->save_subject($type = 'property', array('property_uid' => $property_uid));
     }
-
-    jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL."&task=business_settings&property_uid=$property_uid"), '');
+	
+	return true;
 }
 
 function removeAllPropertyEnhanceTariffsXref($property_uid)
@@ -2809,7 +2833,7 @@ function insertInternetBooking($jomressession = '', $depositPaid = false, $confi
                 echo jr_gettext('_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE', '_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE').'<br />';
                 $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
                 $jrtb = $jrtbar->startTable();
-                $jrtb .= $jrtbar->toolbarItem('editbooking', jomresURL(JOMRES_SITEPAGE_URL.'&task=editDeposit&contractUid='.$MiniComponents->miniComponentData[ '03020' ][ 'insertbooking' ][ 'contract_uid' ]), '');
+                $jrtb .= $jrtbar->toolbarItem('edit_booking', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_deposit&contractUid='.$MiniComponents->miniComponentData[ '03020' ][ 'insertbooking' ][ 'contract_uid' ]), '');
                 $jrtb .= $jrtbar->endTable();
                 echo $jrtb;
             }
@@ -2833,10 +2857,9 @@ function insertInternetBooking($jomressession = '', $depositPaid = false, $confi
                 $MiniComponents->triggerEvent('03030', $componentArgs); // Booking completed message
                 if ($userIsManager) {
                     echo jr_gettext('_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE', '_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE').'<br />';
-                    //echo "<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=editDeposit&contractUid=$contract_uid")."\">".jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE',_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE)."</a>";
                     $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
                     $jrtb = $jrtbar->startTable();
-                    $jrtb .= $jrtbar->toolbarItem('editbooking', jomresURL(JOMRES_SITEPAGE_URL.'&task=editDeposit&contractUid='.$MiniComponents->miniComponentData[ '03020' ][ 'insertbooking' ][ 'contract_uid' ]), '');
+                    $jrtb .= $jrtbar->toolbarItem('edit_booking', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_deposit&contractUid='.$MiniComponents->miniComponentData[ '03020' ][ 'insertbooking' ][ 'contract_uid' ]), '');
                     $jrtb .= $jrtbar->endTable();
                     echo $jrtb;
                 }
@@ -2860,10 +2883,10 @@ function insertInternetBooking($jomressession = '', $depositPaid = false, $confi
  */
 function insertGuestDeets($jomressession)
 {
+
     $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
     $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
     $userIsManager = checkUserIsManager();
-
     $xCustomers = $tmpBookingHandler->getGuestData();
 
     if (isset($xCustomers[ 'guests_uid' ])) {
@@ -2883,9 +2906,10 @@ function insertGuestDeets($jomressession)
     $postcode = $xCustomers[ 'postcode' ];
     $landline = $xCustomers[ 'tel_landline' ];
     $mobile = $xCustomers[ 'tel_mobile' ];
+
     $property_uid = (int) $tmpBookingHandler->getBookingPropertyId($tmpBookingHandler);
     $defaultProperty = $property_uid;
-
+    
     if ($mos_userid == 0) {
         if (!$userIsManager && $thisJRUser->id > 0) {
             $mos_userid = $thisJRUser->id;
@@ -2901,7 +2925,7 @@ function insertGuestDeets($jomressession)
     if ($mos_userid > 0) {
         $query = "SELECT guests_uid FROM #__jomres_guests WHERE mos_userid = '".(int) $mos_userid."' AND `property_uid`= $property_uid LIMIT 1";
         $xistingGuests = doSelectSql($query);
-        if (count($xistingGuests) > 0) {
+        if (!empty($xistingGuests)) {
             foreach ($xistingGuests as $g) {
                 $guests_uid = $g->guests_uid;
             }
@@ -3118,7 +3142,7 @@ function insertSetting($property_uid, $k, $v)
 {
     $query = "SELECT value FROM #__jomres_settings WHERE property_uid = '".(int) $property_uid."' AND akey = '".$k."'";
     $settingsList = doSelectSql($query);
-    if (count($settingsList) == 0) {
+    if (empty($settingsList)) {
         $query = "INSERT INTO #__jomres_settings (property_uid,akey,value) VALUES ('".(int) $property_uid."','".$k."','".$v."')";
     } else {
         $query = "UPDATE #__jomres_settings SET `value`='".$v."' WHERE property_uid = '".(int) $property_uid."' and akey = '".$k."'";
@@ -3147,7 +3171,7 @@ function savePlugin($plugin)
     foreach ($values as $k => $v) {
         $query = "SELECT id FROM #__jomres_pluginsettings WHERE prid = '".(int) $defaultProperty."' AND plugin = '$plugin' AND setting = '$k'";
         $settingList = doSelectSql($query);
-        if (count($settingList) > 0) {
+        if (!empty($settingList)) {
             /*
             foreach ($settingList as $set)
                 {
@@ -3167,29 +3191,6 @@ function savePlugin($plugin)
     $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
     $tmpl->readTemplatesFromInput('plugin_save.html');
     $tmpl->displayParsedTemplate();
-}
-
-/**
- * depreciated.
- */
-function listGateways()
-{
-    $listdir = JOMRESCONFIG_ABSOLUTE_PATH.'/administrator/'.JOMRES_ROOT_DIRECTORY.'/plugins/gateways/';
-    $d = @dir($listdir);
-    $folders = array();
-    if ($d) {
-        $folders = array();
-        //$docs = array();
-        while (false !== ($entry = $d->read())) {
-            $gateway_folder = $entry;
-            if (is_dir($listdir.'/'.$gateway_folder) && substr($entry, 0, 1) != '.' && strtolower($entry) !== 'cvs') {
-                $folders[ ] = $gateway_folder;
-            }
-        }
-        $d->close();
-    }
-
-    return $folders;
 }
 
 //---------------------------------
@@ -3247,7 +3248,7 @@ function filterForm($selectname, $value, $format, $task = '')
     $selecthtml = "\n<form action=\"\" method=\"get\" name=\"jomresFilter".$selectname."\"><span class=\"inputbox_wrapper\"><select class=\"inputbox\" name=\"$selectname\" onchange=\"window.open(this.options[this.selectedIndex].value,'_top')\">";
     $selecthtml .= "\n<option value=\"".jomresURL(JOMRES_SITEPAGE_URL.'&task='.$task).'"></option>';
     $selecthtml .= "\n<option value=\"".jomresURL(JOMRES_SITEPAGE_URL.'&task='.$task).'">'.jr_gettext('_JOMRES_COM_A_RESET', '_JOMRES_COM_A_RESET', false).'</option>';
-    if (count($value) > 0) {
+    if (!empty($value)) {
         foreach ($value as $v) {
             $v_output = $v;
             $selected = '';
@@ -3358,8 +3359,8 @@ function showLiveBookings($contractsList, $title, $arrivaldateDropdown)
         }
 
         $r[ 'STATE_IMAGE' ] = $imgToShow;
-        $r[ 'EDIT_LINK' ] = '<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&task=editBooking&contract_uid='.($row->contract_uid)).'" class="btn btn-info"><i class="icon-edit icon-white"></i> '.jr_gettext('_JOMRES_COM_MR_EDITBOOKINGTITLE', '_JOMRES_COM_MR_EDITBOOKINGTITLE', false).'</a>';
-        $r[ 'EDIT_URL' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=editBooking&contract_uid='.($row->contract_uid));
+        $r[ 'EDIT_LINK' ] = '<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_booking&contract_uid='.($row->contract_uid)).'" class="btn btn-info"><i class="icon-edit icon-white"></i> '.jr_gettext('_JOMRES_COM_MR_EDITBOOKINGTITLE', '_JOMRES_COM_MR_EDITBOOKINGTITLE', false).'</a>';
+        $r[ 'EDIT_URL' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_booking&contract_uid='.($row->contract_uid));
         $r[ 'EDIT_TEXT' ] = jr_gettext('_JOMRES_COM_MR_EDITBOOKINGTITLE', '_JOMRES_COM_MR_EDITBOOKINGTITLE', false);
 
         $r[ 'FIRSTNAME' ] = $row->firstname;
@@ -3876,7 +3877,60 @@ function returnToPropertyConfig($saveMessage = '')
 function publishProperty()
 {
     $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-    $MiniComponents->specificEvent('02272', 'publishprop');
+
+    $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+    $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+    $jrConfig = $siteConfig->get();
+    $defaultProperty = getDefaultProperty();
+
+    $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
+    $current_property_details->gather_data(get_showtime('property_uid'));
+    if (!$current_property_details->approved) {
+        jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=cannot_redirect'), '');
+    } else {
+        $jomres_messaging = jomres_singleton_abstract::getInstance('jomres_messages');
+        if (!isset($_REQUEST[ 'property_uid' ])) {
+            $defaultProperty = getDefaultProperty();
+        } else {
+            $defaultProperty = jomresGetParam($_REQUEST, 'property_uid', 0);
+        }
+
+        if (in_array($defaultProperty, $thisJRUser->authorisedProperties)) {
+            $query = 'SELECT published FROM #__jomres_propertys WHERE propertys_uid = '.(int) $defaultProperty.' LIMIT 1';
+            $published = doSelectSql($query, 1);
+            if ($published) {
+                $query = "UPDATE #__jomres_propertys SET `published`='0' WHERE propertys_uid = ".(int) $defaultProperty.' LIMIT 1';
+                if (doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY', '_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY', false))) {
+                    $MiniComponents->triggerEvent('02274'); // Optional trigger after property unpublished
+                    $jomres_messaging->set_message(jr_gettext('_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY', '_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY', false));
+                        
+                    $webhook_notification                               = new stdClass();
+                    $webhook_notification->webhook_event                = 'property_unpublished';
+                    $webhook_notification->webhook_event_description    = 'Logs when a property is unpublished.';
+                    $webhook_notification->webhook_event_plugin         = 'core';
+                    $webhook_notification->data                         = new stdClass();
+                    $webhook_notification->data->property_uid           = $defaultProperty;
+                    add_webhook_notification($webhook_notification);
+                }
+            } else {
+                $query = "UPDATE #__jomres_propertys SET `published`='1' WHERE propertys_uid = ".(int) $defaultProperty.' LIMIT 1';
+                if (doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', '_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', false))) {
+                    $MiniComponents->triggerEvent('02273'); // Optional trigger after property published
+                    $jomres_messaging->set_message(jr_gettext('_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', '_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', false));
+                        
+                    $webhook_notification                               = new stdClass();
+                    $webhook_notification->webhook_event                = 'property_published';
+                    $webhook_notification->webhook_event_description    = 'Logs when a property is published.';
+                    $webhook_notification->webhook_event_plugin         = 'core';
+                    $webhook_notification->data                         = new stdClass();
+                    $webhook_notification->data->property_uid           = $defaultProperty;
+                    add_webhook_notification($webhook_notification);
+                }
+            }
+        } else {
+            echo "You naughty little tinker, that's not your property";
+        }
+    }       
 }
 
 //-----------------------------------------------------------------
@@ -3889,14 +3943,6 @@ function editorAreaText($name, $content, $hiddenField, $width, $height, $col, $r
     return jomres_cmsspecific_getTextEditor($name, $content, $hiddenField, $width, $height, $col, $row);
 }
 
-/**
- * Triggers the search functionality, set's "$randomSearch" to true.
- */
-function jomresShowSearch()
-{
-    $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-    $MiniComponents->triggerEvent('00030'); //Search mini-comp
-}
 
 /**
  * Creates data for displaying an image. If $retString is true it will return <img etc, if false then it will return the same text in an array variable for passing to patTemplate.
@@ -4012,14 +4058,6 @@ function showSingleRoomPropAvl($property_uid)
 function showAvailability($roomUid, $requestedDate, $property_uid, $showFullYear = 12, $room_avl_enquiry = false)
 {
     $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-/* 	$componentArgs					   = array ();
-    $componentArgs[ 'roomUid' ]		  = $roomUid;
-    $componentArgs[ 'requestedDate' ]	= $requestedDate;
-    $componentArgs[ 'property_uid' ]	 = $property_uid;
-    $componentArgs[ 'showFullYear' ]	 = $showFullYear;
-    $componentArgs[ 'room_avl_enquiry' ] = $room_avl_enquiry;
-    $MiniComponents->triggerEvent( '00017', $componentArgs ); // Availability calendar */
-
     $MiniComponents->specificEvent('06000', 'srp_calendar', array('output_now' => true, 'property_uid' => $property_uid, 'months_to_show' => 24, 'show_just_month' => false, 'room_uid' => $roomUid));
 }
 
@@ -4041,7 +4079,7 @@ function sendAdminEmail($subject, $message, $send_post = false)
     $jomresConfig_fromname = get_showtime('fromname');
 
     $m = '';
-    if (is_array($message) && count($message) > 0) {
+    if (is_array($message) && !empty($message)) {
         foreach ($message as $k => $v) {
             $m .= $k.' - '.$v.'\n';
         }
@@ -4300,7 +4338,7 @@ function updateCustomText($theConstant, $theValue, $audit = true, $property_uid 
     if (strlen($theValue) == 0) {
         $query = "DELETE FROM	#__jomres_custom_text WHERE constant = '".$theConstant."' AND property_uid = '".(int) $property_uid."' AND language = '".get_showtime('lang')."'";
     } else {
-        if (count($textList) < 1) {
+        if (empty($textList)) {
             $query = "INSERT INTO #__jomres_custom_text (`constant`,`customtext`,`property_uid`,`language`) VALUES ('".$theConstant."','".$theValue."','".(int) $property_uid."','".get_showtime('lang')."')";
         } else {
             $query = "UPDATE #__jomres_custom_text SET `customtext`='".$theValue."' WHERE constant = '".$theConstant."' AND property_uid = '".(int) $property_uid."' AND language = '".get_showtime('lang')."'";
@@ -4315,9 +4353,6 @@ function updateCustomText($theConstant, $theValue, $audit = true, $property_uid 
 
     //$query="SELECT customtext FROM #__jomres_custom_text WHERE constant = '".$theConstant."' and property_uid = '".(int)$property_uid."' AND language = '".get_showtime('lang')."'";
     //echo doSelectSql($query,1);
-
-    $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-    $c->eraseAll();
 
     return true;
 }
@@ -4343,7 +4378,8 @@ function parseConfiguration()
     $s = preg_replace('/<td[^>]*>([^<]+)<\/td>/', '<info>\\1</info>', $s);
     $vTmp = preg_split('/(<h2>[^<]+<\/h2>)/', $s, -1, PREG_SPLIT_DELIM_CAPTURE);
     $vModules = array();
-    for ($i = 1; $i < count($vTmp); ++$i) {
+	$n=count($vTmp);
+    for ($i = 1; $i < $n; ++$i) {
         if (preg_match('/<h2>([^<]+)<\/h2>/', $vTmp[ $i ], $vMat)) {
             $vName = trim($vMat[ 1 ]);
             $vTmp2 = explode("\n", $vTmp[ $i + 1 ]);
@@ -4372,7 +4408,7 @@ function createNewAPIKey()
     $plist = doSelectSql($query);
     $query = "SELECT manager_uid FROM #__jomres_managers WHERE apikey = '".$apikey."' LIMIT 1";
     $clist = doSelectSql($query);
-    if (count($plist) == 0 && count($clist) == 0) {
+    if (empty($plist) && empty($clist)) {
         $keeplooking = false;
     }
     if ($keeplooking) {
@@ -4470,7 +4506,7 @@ function get_jomres_current_version()
     return $mrConfig[ 'version' ];
 }
 
-function get_latest_jomres_version()
+function get_latest_jomres_version($outputText = true)
 {
     if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'latest_version.php')) {
         $last_modified = filemtime(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'latest_version.php');
@@ -4511,18 +4547,27 @@ function get_latest_jomres_version()
     }
 
     if (empty($buffer)) {
-        echo 'Sorry, could not get latest version of Jomres, is there a firewall preventing communication with http://updates.jomres4.net ? Alternatively, please check that CURL is enabled on this webserver<p>';
+        if ( $outputText )
+            echo '<div class="alert alert-error alert-danger">Sorry, could not get latest version of Jomres, is there a firewall preventing communication with http://updates.jomres4.net ? Alternatively, please check that CURL is enabled on this webserver</div>';
+        else
+            return false;
     } else {
         return $buffer;
     }
 }
 
-// Returns true if this version is latest, otherwise returns false
-function check_jomres_version()
+/*
+Returns true if this version is latest, otherwise returns false
+outputText flag is for use by deferred tasks that will email admin if the system has been updated.
+*/
+
+function check_jomres_version( $outputText = true )
 {
     $this_version = get_jomres_current_version();
-    $latest_version = get_latest_jomres_version();
-
+    $latest_version = get_latest_jomres_version($outputText);
+    if ($latest_version == false ) { // Comms error talking to Jomres.net server, can't do anything else so we'll return NULL because we don't want the system doing anything else.
+        return null;
+    }
     $latest_jomres_version = explode('.', $latest_version);
     $this_jomres_version = explode('.', $this_version);
 
@@ -4566,8 +4611,8 @@ function max_input_vars_test()
     $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
     $response = '';
     $max_vars = (int) ini_get('max_input_vars');
-    if ($max_vars < 1001 && isset($MiniComponents->registeredClasses[ '00005advanced_micromanage_tariff_editing_modes' ])) { // The default is 1000 on most installations
-        $highlight = (using_bootstrap() ? 'alert' : 'ui-state-highlight');
+    if ($max_vars < 1001 && isset($MiniComponents->registeredClasses[ '00005']['advanced_micromanage_tariff_editing_modes' ])) { // The default is 1000 on most installations
+        $highlight = (using_bootstrap() ? 'alert alert-error alert-danger' : 'ui-state-highlight');
         $response = "<div class='".$highlight."'>Please note, your max_input_vars setting seems to be set to 1000, which is the default setting. If you're using the Micromanage tariff editing mode and wish to save prices for more than a year in advance, we recommend that you change this setting to 3000 or more. <a href=\"https://tickets.jomres.net/index.php?/Knowledgebase/Article/View/115/15/too-many-variables\" target=\"_blank\">This page </a>has  more information.</div>";
     }
 
@@ -4581,36 +4626,11 @@ function suhosin_get_max_vars_test()
     $max_vars = (int) ini_get('suhosin.get.max_value_length');
 
     if ($max_vars != 0 && $max_vars <= 512) { // The default is 512 on most installations with the suhosin patch
-        $highlight = (using_bootstrap() ? 'alert' : 'ui-state-highlight');
+        $highlight = (using_bootstrap() ? 'alert alert-error alert-danger' : 'ui-state-highlight');
         $response = "<div class='".$highlight."'>Please note that PHP setups with the suhosin patch installed will have a default limit of 512 characters for get parameters. Although bad practice, most browsers (including IE) supports URLs up to around 2000 characters, while Apache has a default of 8000. To add support for long parameters with suhosin, add suhosin.get.max_value_length = <limit> in php.ini</div>";
     }
 
     return $response;
-}
-
-function plugin_check()
-{
-    $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-    $recommended_plugins = array();
-    $recommended_plugins[ 'advanced_micromanage_tariff_editing_modes' ] = array('minicomponent_name' => 'j00005advanced_micromanage_tariff_editing_modes', 'message' => 'Offers the Advanced and Micromanage tariff editing modes, allowing property managers to construct much more detailed tariffs which mirror their real-world prices, for example different prices that cover different seasons.');
-    $recommended_plugins[ 'core_gateway_paypal' ] = array('minicomponent_name' => 'j00605paypal', 'message' => 'Offers the ability for property managers to take payments online via paypal.');
-    $recommended_plugins[ 'guest_types' ] = array('minicomponent_name' => 'j02114listcustomertypes', 'message' => 'If a property manager wants to charge per person per night, or if they don\'t want to charge per person per night but need to know numbers of guests, you will need this plugin to create guest types.');
-    $recommended_plugins[ 'optional_extras' ] = array('minicomponent_name' => 'j02142listextras', 'message' => 'Optional extras can be added to bookings using the Optional Extras plugin. This provides the ability to create extras which can be charged using different models (e.g. per night, per booking, per guest etc).');
-    $recommended_plugins[ 'property_creation_plugins' ] = array('minicomponent_name' => 'j02300regprop1', 'message' => 'If you need to create more properties then you will need the Property Creation Plugin.');
-
-    $messages = '';
-    $highlight = (using_bootstrap() ? 'alert alert-info' : 'ui-state-highlight');
-    foreach ($recommended_plugins as $plugin_name => $plugin) {
-        $event_point = substr($plugin[ 'minicomponent_name' ], 1, strlen($plugin[ 'minicomponent_name' ]));
-        if (!array_key_exists($event_point, $MiniComponents->registeredClasses)) {
-            $messages .= "<div class='".$highlight."'><strong> Recommended plugin </strong>: ".$plugin_name.'<strong><br/> Functionality : </strong>'.$plugin[ 'message' ].'</div>';
-        }
-    }
-    if ($messages != '') {
-        $messages = "<hr><p>Note, we have detected that several important plugins are not installed. These plugins are generally considered to be required if you wish to create a booking portal. You do not <i>need</i> these plugins to use the system but you may be missing functionality that you wish to use. You can use the Jomres Plugin Manager to install any plugins you need. If in doubt, check the manual link in the plugin's information panel to see more detailed information about that plugin.</p>".$messages;
-    }
-
-    return $messages;
 }
 
 function gmaps_apikey_check()
@@ -4671,66 +4691,4 @@ function logs_path_check()
     }
 
     return $message;
-}
-
-function jomresAccessControlSanityCheck()
-{
-    $pass = false;
-    $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-    $jrConfig = $siteConfig->get();
-
-    if ($jrConfig[ 'full_access_control' ] == '1') {
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        jr_import('jomres_access_control_controlable');
-        $jomres_access_control_controlable = new jomres_access_control_controlable();
-        // Minicomponents that should never be forbidden from running
-        $uncontrollable_patterns = $jomres_access_control_controlable->uncontrollable_patterns;
-        $uncontrollable_scripts = $jomres_access_control_controlable->uncontrollable_scripts;
-        $menu_patterns = $jomres_access_control_controlable->menu_patterns;
-
-        // First we'll find how many minicomponents should be controllable
-        foreach ($MiniComponents->registeredClasses as $key => $val) {
-            if (!in_array($key, $uncontrollable_scripts)) {
-                $pattern = substr($key, 0, 5);
-
-                if ($jomres_access_control->limit_to_menus_only && in_array($pattern, $menu_patterns) && !in_array($pattern, $uncontrollable_patterns)) {
-                    $controllable[ $key ] = $val;
-                } elseif (!in_array($pattern, $uncontrollable_patterns) && !$jomres_access_control->limit_to_menus_only) {
-                    $controllable[ $key ] = $val;
-                }
-            }
-        }
-        // Next we'll find how many minicomponents actually have settings in the access control table
-        $jomres_access_control = jomres_singleton_abstract::getInstance('jomres_access_control');
-
-        // Now, it's possible that a minicomponent has been uninstalled, therefore we must go through the $jomres_access_control->controlled array and remove those records that refer to minicomps that aren't found in the $controllable array
-        if (count($jomres_access_control->controlled) > 0) {
-            $removed = false;
-            foreach ($jomres_access_control->controlled as $key => $val) {
-                if (!array_key_exists($key, $controllable)) {
-                    $jomres_access_control->remove_minicomp_from_access_control_table($key);
-                    $removed = true;
-                }
-            }
-            if ($removed) {
-                $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-                $c->eraseAll();
-                $jomres_access_control->recount_controlled_scripts();
-            }
-        } else {
-            $pass = false;
-        }
-
-        // Now that we've tidied up possible stray minicomps, we can compare the count, and if it doesn't marry up, we'll trigger a warning.
-        $jomres_access_control->recount_controlled_scripts();
-        if (count($jomres_access_control->controlled) == count($controllable)) {
-            $pass = true;
-        }
-    } else {
-        $pass = true;
-    }
-
-    // April 15 2016 This feature isn't currently used however we'll keep it available in case it becomes useful again.
-    //return array ( "result" => $pass, "message" => jr_gettext( '_JOMRES_ACCESS_CONTROL_SANITYCHECK_WARNING', '_JOMRES_ACCESS_CONTROL_SANITYCHECK_WARNING', false ) . " Controlled " . count( $jomres_access_control->controlled ) . " Controllable " . count( $controllable ) );
-    return array('result' => $pass, 'message' => '');
 }

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -101,7 +101,7 @@ class j06001dashboard_insertbooking_ajax
 
         $query = "SELECT contract_uid FROM #__jomres_room_bookings WHERE `property_uid` = '".$property_uid."' AND `room_uid`='".$room_uid."' AND `date` IN (".jomres_implode($dates_array, false).')';
         $bookingsList = doSelectSql($query);
-        if (count($bookingsList) > 0) {
+        if (!empty($bookingsList)) {
             $insertMessage = 'Error: Room already booked. Exitting.';
             echo json_encode(array('insertStatus' => 0, 'insertMessage' => $insertMessage));
 
@@ -153,7 +153,7 @@ class j06001dashboard_insertbooking_ajax
             set_showtime('new_booking_id', $contract_uid);
             $booking_number = (string) $MiniComponents->miniComponentData[ '03020' ][ 'insertbooking' ]['cartnumber'];
 
-            $url = jomresUrl(JOMRES_SITEPAGE_URL.'&task=editBooking&contract_uid='.$contract_uid);
+            $url = jomresUrl(JOMRES_SITEPAGE_URL.'&task=edit_booking&contract_uid='.$contract_uid);
             $description = jr_gettext('_JOMRES_BOOKING_NUMBER', '_JOMRES_BOOKING_NUMBER', false).': '.$booking_number.'<br/>';
             $description .= jr_gettext('_JOMRES_HFROM', '_JOMRES_HFROM', false).': '.outputDate($startDate).'<br/>';
             $description .= jr_gettext('_JOMRES_HTO', '_JOMRES_HTO', false).': '.outputDate($endDate);

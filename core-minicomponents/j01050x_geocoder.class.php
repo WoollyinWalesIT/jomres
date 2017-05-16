@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -25,7 +25,9 @@ class j01050x_geocoder
 
             return;
         }
-
+		
+		$this->retVals ='';
+		
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
 
@@ -46,6 +48,8 @@ class j01050x_geocoder
         $pageoutput = array();
 
         $output['MAP_STYLE'] = file_get_contents(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'map_styles'.JRDS.$jrConfig['map_style'].'.style');
+		$output['ZOOMLEVEL'] = (int)$jrConfig['map_zoom'];
+		$output['MAPTYPE'] = strtoupper($jrConfig['map_type']);
 
         $output[ 'DISABLE_UI' ] = '';
         if (isset($componentArgs[ 'disable_ui' ])) {
@@ -96,7 +100,7 @@ class j01050x_geocoder
             } // If we're editing it's ok to use the default data. If we're not, it isn't and it's best to simply not show the map at all
         }
 
-        if (!isset($jrConfig[ 'gmap_layer_weather' ])) {
+        if (!isset($jrConfig[ 'gmap_layer_transit' ])) {
             $jrConfig[ 'gmap_layer_transit' ] = '0';
         }
 

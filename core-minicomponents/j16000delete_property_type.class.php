@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -28,7 +28,7 @@ class j16000delete_property_type
 
         $idarray = jomresGetParam($_POST, 'idarray', array());
 
-        if (count($idarray) == 0) {
+        if (empty($idarray)) {
             return;
         }
 
@@ -40,9 +40,6 @@ class j16000delete_property_type
         } else {
             $save_message = 'Unable to delete property type. It may still be used by some properties.';
         }
-
-        $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-        $c->eraseAll();
 
         jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_property_types'), $save_message);
     }

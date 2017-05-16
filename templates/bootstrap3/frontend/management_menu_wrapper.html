@@ -1,15 +1,12 @@
-
 <patTemplate:tmpl name="pageoutput">
 <script type="text/javascript">
-	<!--
-	jomresJquery(function () {
-		var $content = jomresJquery('#jomres_menu_wrapper').html();
-		jomresJquery('#jomres_alternate_menu_position').html($content);
-		jomresJquery('#jomres_menu_wrapper').empty(); // making sure that the old div doesn't have the accordion applied to it.
-	});
-	var jomres_task = "{TASK}";
-	{TOUR_LABELS}
-	//-->
+<!--
+jomresJquery(function () {
+	var $content = jomresJquery('#jomres_menu_wrapper').html();
+	jomresJquery('#jomres_alternate_menu_position').html($content);
+	jomresJquery('#jomres_menu_wrapper').empty(); // making sure that the old div doesn't have the accordion applied to it.
+});
+//-->
 </script>
 
 <div id="jomres_menu_wrapper" style="display:none;">
@@ -24,11 +21,8 @@
 		</div>
 		<div class="collapse navbar-collapse" id="jomres-mainmenu-collapse">
 			<ul class="nav navbar-nav">
-				<patTemplate:tmpl name="button_output">
-					{DIV}
-				</patTemplate:tmpl>
-				<patTemplate:tmpl name="help" type="simpleCondition" requiredVars="product_tour_page_information">
-				<li><a id="product_tour_start"  href="#" data-demo>{PRODUCT_TOUR_PAGE_INFORMATION}</a></li>
+				<patTemplate:tmpl name="menu_sections">
+					{SECTION}
 				</patTemplate:tmpl>
 			</ul>
 			<form class="navbar-form navbar-right" role="search" action="{TAG_SEARCH_URL}" method="post" name="tagSearch">

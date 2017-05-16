@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -54,7 +54,7 @@ class jomres_generic_booking_amend
             throw new Exception('Error this_contract_room_uids is not valid');
         }
 
-        if (is_array($this->this_contract_room_uids) && count($this->this_contract_room_uids) < 1) {
+        if (is_array($this->this_contract_room_uids) && empty($this->this_contract_room_uids)) {
             throw new Exception('Error this_contract_room_uids is not valid');
         }
 
@@ -64,7 +64,7 @@ class jomres_generic_booking_amend
         $query = 'SELECT `room_bookings_uid`,`date` FROM #__jomres_room_bookings WHERE `room_uid` = '.(int) $this->room_uid.' AND `contract_uid` = '.(int) $this->contract_uid.' ORDER BY `date` ASC ';
         $result = doSelectSql($query);
 
-        if (count($result) > 0) {
+        if (!empty($result)) {
             foreach ($result as $r) {
                 $this->contract_booked_dates[] = $r->date;
             }
@@ -295,7 +295,7 @@ class jomres_generic_booking_amend
                 return true;
             }
 
-            if (count($booked_dates_diff) > 0) {
+            if (!empty($booked_dates_diff)) {
                 $clause = ' `date` IN ('.jomres_implode($booked_dates_diff, false).')';
             } else {
                 throw new Exception('Something went wrong.');
@@ -309,7 +309,7 @@ class jomres_generic_booking_amend
 
         $result = doSelectSql($query);
 
-        if (count($result) > 0) {
+        if (!empty($result)) {
             return false;
         }
 

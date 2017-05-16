@@ -1,14 +1,12 @@
-
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<li class="dropdown">
+<li id="{ID_CATEGORY}" class="dropdown">
 	<a href="#" class="dropdown-toggle" data-toggle="dropdown">{CATEGORY} <span class="caret"></span></a>
 	<ul class="dropdown-menu" role="menu">
 		<patTemplate:tmpl name="rows" unusedvars="strip">
 			<li class="{ACTIVE} {DISABLED_CLASS}">
-				<a href="{LINK}" {TARGET} >
-					<img src="{IMAGE_PATH}{IMAGE}" border="0" width="20" height="20"/> 
+				<a href="{LINK}" {TARGET}>
+					<i class="fa {ICON_CLASS}" aria-hidden="true" style="font-size:18px;"></i>
 					{MENU_NAME}
-					{BADGES}
 				</a>
 			</li>
 		</patTemplate:tmpl>

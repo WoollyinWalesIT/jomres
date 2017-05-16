@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -77,7 +77,7 @@ class j01010listpropertys
                 $all_layouts[ ] = $key;
                 $r = array();
                 $r[ 'TITLE' ] = $layouts[ 'title' ];
-                $r[ 'LINK' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=listProperties&propertylist_layout='.$key);
+                $r[ 'LINK' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=listproperties&propertylist_layout='.$key);
                 $layout_rows[ ] = $r;
             }
         }
@@ -115,7 +115,7 @@ class j01010listpropertys
             $propertys_uids = $tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ];
         }
 
-        if (count($propertys_uids) == 0) {
+        if (empty($propertys_uids)) {
             return;
         }
 
@@ -138,7 +138,7 @@ class j01010listpropertys
             if ($thisJRUser->userIsRegistered) {
                 $query = "SELECT `property_uid` FROM #__jomcomp_mufavourites WHERE `my_id` = '".(int) $thisJRUser->id."'";
                 $propys = doSelectSql($query);
-                if (count($propys) > 0) {
+                if (!empty($propys)) {
                     foreach ($propys as $p) {
                         if (!in_array($p->property_uid, $shortlist_items)) {
                             $shortlist_items[] = (int) $p->property_uid;
@@ -184,7 +184,7 @@ class j01010listpropertys
                 $budget_output[0]['BUDGET_DROPDOWN'] = $budget->get_budget_dropdown();
             }
 
-            if (count($propertys_uids) > 0) {
+            if (!empty($propertys_uids)) {
                 $header_output = array();
 
                 $header_output[ 'HARRIVALDATE' ] = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', false);
@@ -263,7 +263,7 @@ class j01010listpropertys
             $unixTodaysDate = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ]);
 
             $featured_properties = get_showtime('featured_properties');
-            if (count($featured_properties) > 0) { // only store the featured properties if their count is > 0. That's because featured properties are only set in non-ajax calls. If it's an ajax called, we don't want to set the featured properties to null
+            if (!empty($featured_properties)) { // only store the featured properties if their count is > 0. That's because featured properties are only set in non-ajax calls. If it's an ajax called, we don't want to set the featured properties to null
                 $tmpBookingHandler->tmpsearch_data[ 'featured_properties' ] = $featured_properties;
             } else {
                 $tmpBookingHandler->tmpsearch_data[ 'featured_properties' ] = array();
@@ -274,7 +274,7 @@ class j01010listpropertys
                 $guest_budget = $budget->get_budget();
             }
 
-            if (count($propertysToShow) > 0) {
+            if (!empty($propertysToShow)) {
                 $property_details = array();
 
                 //save the initial property type and property uid
@@ -297,7 +297,7 @@ class j01010listpropertys
                 $lastBookedArray = array();
                 $query = 'SELECT `property_uid`, max(`timestamp`) AS ts FROM #__jomres_contracts WHERE `property_uid` IN ('.jomres_implode($propertysToShow).') AND `timestamp` IS NOT NULL GROUP BY `property_uid` ';
                 $result = doSelectSql($query);
-                if (count($result) > 0) {
+                if (!empty($result)) {
                     foreach ($result as $r) {
                         $date = jomres_nicetime($r->ts);
                         if ($date != '') {
@@ -322,12 +322,10 @@ class j01010listpropertys
 
                     $mrConfig = getPropertySpecificSettings($propertys_uid);
 
-                    $property_deets = $MiniComponents->triggerEvent('00042', array('property_uid' => $propertys_uid));
-
                     $property_deets['GATEWAYS'] = '';
                     $payment_methods = $jomres_property_payment_methods->get_property_gateways($propertys_uid);
 
-                    if (count($payment_methods) > 0) {
+                    if (!empty($payment_methods)) {
                         $tmpl = new patTemplate();
                         $tmpl->addRows('pageoutput', $payment_methods);
 
@@ -449,7 +447,7 @@ class j01010listpropertys
 
                     $rtRows = '';
                     $rtRowsLabels = '';
-                    if (isset($current_property_details->multi_query_result[ $propertys_uid ][ 'room_types' ]) && count($current_property_details->multi_query_result[ $propertys_uid ][ 'room_types' ]) > 0) {
+                    if (isset($current_property_details->multi_query_result[ $propertys_uid ][ 'room_types' ]) && !empty($current_property_details->multi_query_result[ $propertys_uid ][ 'room_types' ])) {
                         $rTypes = $current_property_details->multi_query_result[ $propertys_uid ][ 'room_types' ];
                         foreach ($rTypes as $rtd) {
                             $rtRows .= jomres_makeTooltip($rtd['abbv'], $rtd['abbv'], $rtd['desc'],  JOMRES_ROOT_DIRECTORY.'/uploadedimages/rmtypes/'.$rtd['image'], '', 'room_type', array());
@@ -462,7 +460,7 @@ class j01010listpropertys
 
                     $propertyFeaturesArray = explode(',', ($current_property_details->multi_query_result[ $propertys_uid ]['property_features']));
 
-                    if (count($propertyFeaturesArray) > 0) {
+                    if (!empty($propertyFeaturesArray)) {
                         $featureList = '';
                         $counter = 0;
                         foreach ($propertyFeaturesArray as $f) {
@@ -491,7 +489,7 @@ class j01010listpropertys
                     $plugin_will_provide_lowest_price = false;
                     $MiniComponents->triggerEvent('07015', array('property_uid' => $propertys_uid)); // Optional
                     $mcOutput = $MiniComponents->getAllEventPointsData('07015');
-                    if (count($mcOutput) > 0) {
+                    if (!empty($mcOutput)) {
                         foreach ($mcOutput as $val) {
                             if ($val == true) {
                                 $plugin_will_provide_lowest_price = true;
@@ -687,7 +685,7 @@ class j01010listpropertys
 
                     $MiniComponents->triggerEvent('01011', array('property_uid' => $propertys_uid)); // Optional
                     $mcOutput = $MiniComponents->getAllEventPointsData('01011');
-                    if (count($mcOutput) > 0) {
+                    if (!empty($mcOutput)) {
                         foreach ($mcOutput as $key => $val) {
                             if (!is_null($val)) {
                                 $result = array_merge($property_deets, $val);
@@ -698,7 +696,7 @@ class j01010listpropertys
 
                     $MiniComponents->triggerEvent('01012', array('property_uid' => $propertys_uid)); // Optional
                     $mcOutput = $MiniComponents->getAllEventPointsData('01012');
-                    if (count($mcOutput) > 0) {
+                    if (!empty($mcOutput)) {
                         foreach ($mcOutput as $key => $val) {
                             if (!is_null($val)) {
                                 $result = array_merge($property_deets, $val);
@@ -898,7 +896,7 @@ class j01010listpropertys
         //next page
         if ($paginator->getNextUrl()) {
             $next_output[]['NEXT_URL'] = $paginator->getNextUrl();
-            $last_output[]['LAST_URL'] = jomresURL(JOMRES_SITEPAGE_URL.'&task=search&jr_page='.ceil(count($propertys_uids) / $limit).$selections);
+            $last_output[]['LAST_URL'] = jomresURL(JOMRES_SITEPAGE_URL.'&task=search&jr_page='.ceil($totalItems / $limit).$selections);
         }
 
         //pages

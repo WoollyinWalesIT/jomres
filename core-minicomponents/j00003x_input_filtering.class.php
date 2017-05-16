@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -25,20 +25,24 @@ class j00003x_input_filtering
 
             return;
         }
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+        
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
-        if (!isset($jrConfig[ 'inputs_allowing_html' ])) {
-            $jrConfig[ 'inputs_allowing_html' ] = 'property_description property_checkin_times property_area_activities property_driving_directions property_airports property_othertransport property_policies_disclaimers';
+        
+		if (!isset($jrConfig[ 'inputs_allowing_html' ])) {
+            $jrConfig[ 'inputs_allowing_html' ] = 'property_description property_checkin_times property_area_activities property_driving_directions property_airports property_othertransport property_policies_disclaimers email_text description room_description';
         }
 
         $showtime_inputs = get_showtime('inputs_allowing_html');
-        $site_config_inputs = explode(' ', $jrConfig[ 'inputs_allowing_html' ]);
-        if (count($showtime_inputs) > 0 && count($site_config_inputs) > 0) {
+        
+		$site_config_inputs = explode(' ', $jrConfig[ 'inputs_allowing_html' ]);
+        
+		if (!empty($showtime_inputs) && !empty($site_config_inputs)) {
             $inputs_allowing_html = array_merge($showtime_inputs, $site_config_inputs);
         } else {
-            if (count($site_config_inputs) > 0) {
+            if (!empty($site_config_inputs)) {
                 $inputs_allowing_html = $site_config_inputs;
-            } elseif (count($showtime_inputs) > 0) {
+            } elseif (!empty($showtime_inputs)) {
                 $inputs_allowing_html = $showtime_inputs;
             } else {
                 $inputs_allowing_html = array();
@@ -48,11 +52,6 @@ class j00003x_input_filtering
         set_showtime('inputs_allowing_html', $inputs_allowing_html);
     }
 
-/**
- * Must be included in every mini-component.
- #
- * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
- */
     // This must be included in every Event/Mini-component
     public function getRetVals()
     {

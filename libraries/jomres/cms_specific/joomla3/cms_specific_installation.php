@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -87,7 +87,7 @@ if ($folderChecksPassed) {
 // Don't need to run this again if the table's already populated
 $query = 'SELECT userid FROM #__jomres_managers LIMIT 2';
 $existing_users = doSelectSql($query);
-if (count($existing_users) > 0) {
+if (!empty($existing_users)) {
     return;
 }
 
@@ -138,7 +138,7 @@ $component_id = doInsertSql($query, '');
 if ($component_id) {
     $query = "SELECT title FROM #__menu WHERE `link` = 'index.php?option=com_jomres' LIMIT 1";
     $result = doSelectSql($query);
-    if (count($result) < 1) {
+    if (empty($result)) {
         $query = 'SELECT max(rgt) FROM #__menu';
         $highest = (int) doSelectSql($query, 1);
         $lft = $highest + 1;

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -44,17 +44,18 @@ class jomres_cart
         // $do_conversion = false;
 
         $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
-        jr_import('jomres_currency_conversion');
-        $conversion = new jomres_currency_conversion();
-        if (count($tmpBookingHandler->cart_data) > 0) {
+        
+		$jomres_currency_conversion = jomres_singleton_abstract::getInstance('jomres_currency_conversion');
+		
+        if (!empty($tmpBookingHandler->cart_data)) {
             //var_dump($tmpBookingHandler->cart_data);exit;
             foreach ($tmpBookingHandler->cart_data as $key => $data) {
                 $contract_total = (float) $data[ 'contract_total' ];
                 $deposit_required = (float) $data[ 'deposit_required' ];
                 $currencycode = $data[ 'property_currencycode' ];
-                if ($conversion->this_code_can_be_converted($currencycode) && $do_conversion) {
-                    $contract_total = $conversion->convert_sum($contract_total, $currencycode, $this->currency_code);
-                    $deposit_required = $conversion->convert_sum($deposit_required, $currencycode, $this->currency_code);
+                if ($jomres_currency_conversion->this_code_can_be_converted($currencycode) && $do_conversion) {
+                    $contract_total = $jomres_currency_conversion->convert_sum($contract_total, $currencycode, $this->currency_code);
+                    $deposit_required = $jomres_currency_conversion->convert_sum($deposit_required, $currencycode, $this->currency_code);
                 }
                 ++$this->number_of_bookings;
                 $this->items[ $key ] = array('total' => $contract_total, 'deposit' => $deposit_required);
@@ -77,9 +78,7 @@ class jomres_cart
 
         $tmpBookingHandler->resetTempBookingData();
         $tmpBookingHandler->resetTempGuestData();
-        $tmpBookingHandler->saveAllData();
-        // Have to do this here, because the redirect will exit the script from running before we get to the end of jomres.php, and the latter "close session" functionality will not be triggered
-        $tmpBookingHandler->close_jomres_session();
+
         $this->calc_totals();
     }
 
@@ -89,9 +88,7 @@ class jomres_cart
         if (isset($tmpBookingHandler->cart_data[ $identifier ])) {
             unset($tmpBookingHandler->cart_data[ $identifier ]);
         }
-        $tmpBookingHandler->saveAllData();
-        // Have to do this here, because the redirect will exit the script from running before we get to the end of jomres.php, and the latter "close session" functionality will not be triggered
-        $tmpBookingHandler->close_jomres_session();
+
         $this->calc_totals();
     }
 
@@ -106,9 +103,6 @@ class jomres_cart
         $tmpBookingHandler->updateBookingField('deposit_required', $this->deposit_required);
         $tmpBookingHandler->updateBookingField('cart_payment', true);
         $tmpBookingHandler->updateBookingField('property_currencycode', $jrConfig[ 'globalCurrencyCode' ]);
-
-        $tmpBookingHandler->saveAllData();
-        $tmpBookingHandler->close_jomres_session();
 
         return array('contract_total' => $this->contract_total, 'deposit_required' => $this->deposit_required);
     }

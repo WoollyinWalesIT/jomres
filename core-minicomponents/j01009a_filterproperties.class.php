@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -69,7 +69,7 @@ class j01009a_filterproperties
                 foreach ($regions as $r) {
                     if (is_numeric($r->property_region)) {
                         $jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
-                        $r->property_region = jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$r->property_region, $jomres_regions->regions[ $r->property_region ][ 'regionname' ], false);
+                        $r->property_region = jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$r->property_region, $jomres_regions->get_region_name($r->property_region), false);
                     } else {
                         $r->property_region = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_REGION', $r->property_region, false);
                     }

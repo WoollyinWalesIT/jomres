@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -68,7 +68,7 @@ class basic_invoice_details
         $this->amount_already_paid = 0.00;
         $this->balance = 0.00;
 
-        if (count($this->lineitems) > 0) {
+        if (!empty($this->lineitems)) {
             foreach ($this->lineitems as $li) {
                 if ($li[ 'is_payment' ] == 0) {
                     $this->grand_total_ex_tax += $li[ 'init_total' ];
@@ -114,7 +114,7 @@ class basic_invoice_details
 
         $result = doSelectSql($query);
 
-        if (count($result) < 1) {
+        if (empty($result)) {
             return false;
         }
 
@@ -159,7 +159,7 @@ class basic_invoice_details
 					WHERE `inv_id` = ' .(int) $invoice_id;
         $result = doSelectSql($query);
 
-        if (count($result) < 1) {
+        if (empty($result)) {
             return false;
         }
 

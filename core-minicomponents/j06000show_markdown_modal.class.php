@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -50,9 +50,6 @@ class j06000show_markdown_modal
         $output[ '_JOMRES_MARKDOWN_NUMBEREDLISTITEM' ] = jr_gettext('_JOMRES_MARKDOWN_NUMBEREDLISTITEM', '_JOMRES_MARKDOWN_NUMBEREDLISTITEM');
         $output[ '_JOMRES_MARKDOWN_LINKS' ] = jr_gettext('_JOMRES_MARKDOWN_LINKS', '_JOMRES_MARKDOWN_LINKS');
         $output[ '_JOMRES_MARKDOWN_LINKSTEXT' ] = jr_gettext('_JOMRES_MARKDOWN_LINKSTEXT', '_JOMRES_MARKDOWN_LINKSTEXT');
-        $output[ '_JOMRES_MARKDOWN_QUOTES' ] = jr_gettext('_JOMRES_MARKDOWN_QUOTES', '_JOMRES_MARKDOWN_QUOTES');
-        $output[ '_JOMRES_MARKDOWN_THISISAQUOTE' ] = jr_gettext('_JOMRES_MARKDOWN_THISISAQUOTE', '_JOMRES_MARKDOWN_THISISAQUOTE');
-        $output[ '_JOMRES_MARKDOWN_QUOTEMULTIPLE' ] = jr_gettext('_JOMRES_MARKDOWN_QUOTEMULTIPLE', '_JOMRES_MARKDOWN_QUOTEMULTIPLE');
         $output[ '_JOMRES_MARKDOWN_IMAGES' ] = jr_gettext('_JOMRES_MARKDOWN_IMAGES', '_JOMRES_MARKDOWN_IMAGES');
         $output[ '_JOMRES_MARKDOWN_TABLE' ] = jr_gettext('_JOMRES_MARKDOWN_TABLE', '_JOMRES_MARKDOWN_TABLE');
         $output[ '_JOMRES_MARKDOWN_COLUMN' ] = jr_gettext('_JOMRES_MARKDOWN_COLUMN', '_JOMRES_MARKDOWN_COLUMN');

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -56,18 +56,26 @@ class j03025insertbooking_invoice
         $deposit_required = $tmpBookingHandler->getBookingFieldVal('deposit_required');
         $extras = $tmpBookingHandler->getBookingFieldVal('extras');
         $extrasquantities = $tmpBookingHandler->getBookingFieldVal('extrasquantities');
-        $third_party_extras = unserialize($tmpBookingHandler->getBookingFieldVal('third_party_extras'));
-        $room_total = $tmpBookingHandler->getBookingFieldVal('room_total');
+		$room_total = $tmpBookingHandler->getBookingFieldVal('room_total');
         $room_total_nodiscount = $tmpBookingHandler->getBookingFieldVal('room_total_nodiscount');
         $tax = $tmpBookingHandler->getBookingFieldVal('tax');
         $discounts = $tmpBookingHandler->getBookingFieldVal('discounts');
         $resource = $tmpBookingHandler->getBookingFieldVal('resource');
         $property_uid = $tmpBookingHandler->getBookingFieldVal('property_uid');
-        $extrasvalues_items = unserialize($tmpBookingHandler->getBookingFieldVal('extrasvalues_items'));
         $depositpaidsuccessfully = $tmpBookingHandler->getBookingFieldVal('depositpaidsuccessfully');
-        $additional_line_items = unserialize($tmpBookingHandler->getBookingFieldVal('additional_line_items'));
         $total_in_party = $tmpBookingHandler->getBookingFieldVal('total_in_party');
-        $room_allocations = unserialize($tmpBookingHandler->getBookingFieldVal('room_allocations'));
+		
+		if ($jrConfig['session_handler'] == 'database') {
+			$extrasvalues_items = $tmpBookingHandler->getBookingFieldVal('extrasvalues_items');
+			$third_party_extras = $tmpBookingHandler->getBookingFieldVal('third_party_extras');
+			$room_allocations = $tmpBookingHandler->getBookingFieldVal('room_allocations');
+			$additional_line_items = $tmpBookingHandler->getBookingFieldVal('additional_line_items');
+		} else {
+			$extrasvalues_items = unserialize($tmpBookingHandler->getBookingFieldVal('extrasvalues_items'));
+			$third_party_extras = unserialize($tmpBookingHandler->getBookingFieldVal('third_party_extras'));
+			$room_allocations = unserialize($tmpBookingHandler->getBookingFieldVal('room_allocations'));
+			$additional_line_items = unserialize($tmpBookingHandler->getBookingFieldVal('additional_line_items'));
+		}
 
         //we`ll need this if wise price is enabled and we charge per person per night
         $guests_by_room = array();
@@ -104,7 +112,7 @@ class j03025insertbooking_invoice
             $discount_amount = 0.00;
             $totalDiscountForRoom = 0.00;
 
-            if (count($discounts) > 0) {
+            if (!empty($discounts)) {
                 foreach ($discounts as $d) {
                     $discount_amount = (float) $d[ 'discountfrom' ] - (float) $d[ 'discountto' ];
 
@@ -211,17 +219,27 @@ class j03025insertbooking_invoice
             }
 
             //3rd party extras like Jintour tours
-            if (count($third_party_extras) > 0 && $third_party_extras !== false) {
+            if (!empty($third_party_extras) && $third_party_extras !== false) {
                 foreach ($third_party_extras as $plugin) {
                     foreach ($plugin as $tpe) {
                         if (!isset($tpe[ 'tax_code_id' ])) {
                             $tpe[ 'tax_code_id' ] = 0;
                         }
+						
+						//strange array key name..we need to get the price without tax no matter what
+						$third_party_extra_price = $tpe[ 'untaxed_grand_total' ];
+						
+						if ($jrportal_taxrate->gather_data($tpe[ 'tax_code_id' ])) {
+							$rate = (float) $jrportal_taxrate->rate;
+							$divisor = ($rate / 100) + 1;
+							$nett_price = $tpe[ 'untaxed_grand_total' ] / $divisor;
+							$third_party_extra_price = $nett_price;
+						}
 
                         $line_items[] = array('tax_code_id' => $tpe[ 'tax_code_id' ],
                                                 'name' => $tpe[ 'description' ],
                                                 'description' => $tpe[ 'description' ],
-                                                'init_price' => $tpe[ 'untaxed_grand_total' ],
+                                                'init_price' => $third_party_extra_price,
                                                 'init_qty' => 1,
                                                 'init_discount' => 0,
                                                 );
@@ -230,7 +248,7 @@ class j03025insertbooking_invoice
             }
 
             //Additional line items created by other plugins
-            if (count($additional_line_items) > 0 && $additional_line_items !== false) {
+            if (!empty($additional_line_items) && $additional_line_items !== false) {
                 foreach ($additional_line_items as $plugin) {
                     foreach ($plugin as $tpe) {
                         if (!isset($tpe[ 'tax_code_id' ])) {
@@ -265,7 +283,7 @@ class j03025insertbooking_invoice
             $query = 'SELECT service_description,service_value,tax_code,service_qty FROM  #__jomres_extraservices WHERE contract_uid = '.$amend_contractuid.'';
             $extra_services = doSelectSql($query);
 
-            if (count($extra_services) > 0) {
+            if (!empty($extra_services)) {
                 foreach ($extra_services as $es) {
                     $line_items[] = array('tax_code_id' => (int) $es->tax_code,
                                             'name' => $es->service_description,

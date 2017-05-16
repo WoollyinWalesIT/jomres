@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -45,6 +45,7 @@ class j16000list_tax_rules
         $output[ '_JOMRES_TAX_RULE_INFO' ] = jr_gettext('_JOMRES_TAX_RULE_INFO', '_JOMRES_TAX_RULE_INFO', false);
 
         $jomres_countries = jomres_singleton_abstract::getInstance('jomres_countries');
+		$jomres_countries->get_all_countries();
 
         foreach ($all_tax_rules as $rule) {
             $r = array();

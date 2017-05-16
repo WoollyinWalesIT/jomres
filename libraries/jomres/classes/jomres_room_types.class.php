@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -32,16 +32,6 @@ class jomres_room_types
         $this->room_type['room_class_full_desc'] = '';        // resource type description - not used
         $this->room_type['image'] = '';        // resource type icon path
         $this->room_type['ptype_xref'] = array();    // property types that this room type is assigned to
-
-        //retrieve room types data from cache, if available
-        $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-        $room_types_data = $c->retrieve('room_types_data');
-
-        if ($room_types_data !== false) {
-            $this->room_types = $room_types_data['room_types'];
-            $this->all_rtype_ptype_xrefs = $room_types_data['all_rtype_ptype_xrefs'];
-            $this->all_ptype_rtype_xrefs = $room_types_data['all_ptype_rtype_xrefs'];
-        }
     }
 
     public static function getInstance()
@@ -62,15 +52,13 @@ class jomres_room_types
             $this->room_types = array();
         }
 
-        $c = jomres_singleton_abstract::getInstance('jomres_array_cache');
-
         //get the room type property type xrefs
         $this->get_xrefs();
 
         $query = 'SELECT `room_classes_uid`, `room_class_abbv`, `room_class_full_desc`, `image` FROM #__jomres_room_classes WHERE `property_uid` = 0 ORDER BY `room_class_abbv` ';
         $result = doSelectSql($query);
 
-        if (count($result) < 1) {
+        if (empty($result)) {
             return false;
         }
 
@@ -87,13 +75,6 @@ class jomres_room_types
             }
         }
 
-        $c->store('room_types_data', array(
-                                            'room_types' => $this->room_types,
-                                            'all_rtype_ptype_xrefs' => $this->all_rtype_ptype_xrefs,
-                                            'all_ptype_rtype_xrefs' => $this->all_ptype_rtype_xrefs,
-                                            )
-                );
-
         return true;
     }
 
@@ -104,7 +85,7 @@ class jomres_room_types
             return true;
         }
 
-        if (is_array($this->room_types) && array_key_exists($room_classes_uid, $this->room_types)) {
+        if (is_array($this->room_types) && isset($this->room_types[$room_classes_uid])) {
             $this->room_type = $this->room_types[$room_classes_uid];
 
             return true;
@@ -120,7 +101,7 @@ class jomres_room_types
         $query = 'SELECT `room_classes_uid`, `room_class_abbv`, `room_class_full_desc`, `image` FROM #__jomres_room_classes WHERE `property_uid` = 0 AND `room_classes_uid` = '.(int) $room_classes_uid;
         $result = doSelectSql($query);
 
-        if (count($result) < 1) {
+        if (empty($result)) {
             return false;
         }
 
@@ -198,7 +179,7 @@ class jomres_room_types
             throw new Exception('Error: Room type ptype xref delete failed.');
         }
 
-        if (count($ptype_xref) > 0) {
+        if (!empty($ptype_xref)) {
             foreach ($ptype_xref as $ptype) {
                 $query = 'INSERT INTO #__jomres_roomtypes_propertytypes_xref (`roomtype_id`,`propertytype_id`) VALUES ('.(int) $roomtype_id.','.(int) $ptype.')';
                 if (!doInsertSql($query, '')) {
@@ -218,7 +199,7 @@ class jomres_room_types
         foreach ($ids as $id) {
             $query = 'SELECT `room_classes_uid` FROM #__jomres_rooms WHERE room_classes_uid = '.(int) $id;
             $result = doSelectSql($query);
-            if (count($result) > 0) {
+            if (!empty($result)) {
                 $success = false;
             } else {
                 $query = "DELETE FROM #__jomres_room_classes WHERE `room_classes_uid` = '".(int) $id."'";
@@ -255,7 +236,7 @@ class jomres_room_types
         $query = "SELECT `roomtype_id`, `propertytype_id` FROM #__jomres_roomtypes_propertytypes_xref $clause ";
         $result = doSelectSql($query);
 
-        if (count($result) > 0) {
+        if (!empty($result)) {
             foreach ($result as $r) {
                 if ($id > 0) {
                     //this room type property type xrefs

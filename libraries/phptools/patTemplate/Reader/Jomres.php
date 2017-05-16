@@ -6,7 +6,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
  * Core file
  *
  * @author Vince Wooll <sales@jomres.net>
- * @version Jomres 9.8.29
+ * @version Jomres 9.9.0
  * @package Jomres
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
@@ -22,30 +22,42 @@ class patTemplate_Reader_Jomres extends patTemplate_Reader
 
 	function readTemplates( $templatename = '', $options = array() )
 		{
-		$override_template = false;
-		if ( !isset( $_REQUEST[ 'nocustomtemplate' ] ) )
-			$override_template = $this->get_cms_template_override( $templatename);
+        $template_packages = get_showtime('template_packages');
+
+        if (!empty($template_packages)) { // There are some override packages installed, we can go ahead and check for overrides, which requires an extra query.
+			// An alternative method of providing template overrides through plugins
+			$overrides_class = jomres_singleton_abstract::getInstance('template_overrides');
+			$ptype_id = (int)get_showtime('ptype_id');
+		}
 		
-		if ( !$override_template )
-			{
-			$custom_paths = get_showtime( 'custom_paths' );
+		if (isset($overrides_class->template_overrides[$templatename])) {
+			$content = file_get_contents( JOMRESPATH_BASE.JRDS.$overrides_class->template_overrides[$templatename]['path'] . $templatename );
+		} else {
+			$override_template = false;
+			if ( !isset( $_REQUEST[ 'nocustomtemplate' ] ) )
+				$override_template = $this->get_cms_template_override( $templatename);
 			
-			if ( is_array($custom_paths) && array_key_exists( $templatename, $custom_paths ) )
+			if ( !$override_template )
 				{
-				$default_root = $custom_paths[ $templatename ];
+				$custom_paths = get_showtime( 'custom_paths' );
+				
+				if ( is_array($custom_paths) && array_key_exists( $templatename, $custom_paths ) )
+					{
+					$default_root = $custom_paths[ $templatename ];
+					}
+				else
+					{
+					$default_root = $this->_options[ 'root' ][ '__default' ];
+					}
+				
+				$content = file_get_contents( $default_root . JRDS . $templatename );
 				}
 			else
 				{
-				$default_root = $this->_options[ 'root' ][ '__default' ];
+				$content = $override_template;
 				}
-			
-			$content = file_get_contents( $default_root . JRDS . $templatename );
-			}
-		else
-			{
-			$content = $override_template;
-			}
-		
+		}
+
 		$templates = $this->parseString( $content );
 
 		return $templates;
