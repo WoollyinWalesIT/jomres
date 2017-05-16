@@ -1408,7 +1408,10 @@ function jr_import($class)
 function search_core_and_remote_dirs_for_classfiles()
 {
 	global $classes;
-	
+	$scriptname = str_replace('/', '', $_SERVER[ 'PHP_SELF' ]);
+	if (strstr($scriptname, 'install_jomres.php')) {
+		return;
+	}
     $plugin_paths = array();
 
 	$core_plugins_directory = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'core-plugins'.JRDS;
