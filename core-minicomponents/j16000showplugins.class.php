@@ -201,7 +201,7 @@ class j16000showplugins
         }
         
         $encoded_on_full_license = array();
-        if  ( $key_validation->is_trial_license == false && $encoded_count > 0 ) {
+        if  ( $key_validation->is_trial_license == false && $encoded_count > 0 && $jrConfig[ 'licensekey' ] != '') {
             $encoded_on_full_license[]['ENCODING_WARNING'] = "You have a number plugins installed that are encoded, but you are using a Full license. If you do not reinstall these plugins, when your license expires you'll no longer be able to use them. Please use the 'Reinstall all installed plugins' button to ensure that the plugins installed are the unencoded versions.";
         }
         
