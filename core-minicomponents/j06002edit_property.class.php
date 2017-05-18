@@ -199,7 +199,7 @@ class j06002edit_property
 
 				$feature_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_ABBV'.(int) $k, stripslashes($v['abbv']), false, false);
 				$feature_desc = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_DESC'.(int) $k, stripslashes($v['desc']), false, false);
-				$r[ 'FEATURE' ] = jomres_makeTooltip($feature_abbv, $feature_abbv, $feature_desc, JOMRES_ROOT_DIRECTORY.'/uploadedimages/pfeatures/'.$v['image'], '', 'property_feature', array());
+				$r[ 'FEATURE' ] = jomres_makeTooltip($feature_abbv, $feature_abbv, $feature_desc, JOMRES_IMAGELOCATION_RELPATH.'pfeatures/'.$v['image'], '', 'property_feature', array());
 
 				$r[ 'BR' ] = '';
 				if ($counter == 8) {

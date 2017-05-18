@@ -202,7 +202,7 @@ class basic_room_details
                 $feature_image = $jomres_media_centre_images->multi_query_images['noimage-small'];
 
                 if ($r->image != '') {
-                    $feature_image = JOMRES_ROOT_DIRECTORY.'/uploadedimages/rmfeatures/'.stripslashes($r->image);
+                    $feature_image = JOMRES_IMAGELOCATION_RELPATH.'rmfeatures/'.stripslashes($r->image);
                 } elseif (isset($jomres_media_centre_images->images['room_features'][ $r->room_features_uid ][0]['small'])) {
 					$feature_image = $jomres_media_centre_images->images['room_features'][ $r->room_features_uid ][0]['small'];
 				}

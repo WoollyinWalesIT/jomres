@@ -58,7 +58,7 @@ class j06000media_centre_resources_ajax_existing_images
                 $image_name = $image_name_array[count($image_name_array) - 1];
 
                 $base_path = JOMRES_IMAGELOCATION_ABSPATH;
-                $image_small_path = str_replace(get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/', '', $image['small']);
+                $image_small_path = str_replace(JOMRES_IMAGELOCATION_RELPATH, '', $image['small']);
 
                 $output = array();
                 $pageoutput = array();

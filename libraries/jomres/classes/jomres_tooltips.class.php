@@ -145,7 +145,7 @@ class jomres_tooltips
                     } else {
                         $div_string .= ' class="jomres_bt_tooltip_features" >';
                     }
-                    $div_string .= '<img src="'.get_showtime('live_site').'/'.$div_content.'" /><b>'.$hover_title.'</b></div>';
+                    $div_string .= '<img src="'.$div_content.'" /><b>'.$hover_title.'</b></div>';
                 }
                 break;
             case 'property_feature':
@@ -176,7 +176,7 @@ class jomres_tooltips
                     } else {
                         $div_string .= ' class="jomres_bt_tooltip_features" >';
                     }
-                    $div_string .= '<img src="'.get_showtime('live_site').'/'.$div_content.'" /><b>'.$hover_title.'</b></div>';
+                    $div_string .= '<img src="'.$div_content.'" /><b>'.$hover_title.'</b></div>';
                 }
                 break;
             case 'dashboard_tooltip':
@@ -205,7 +205,7 @@ class jomres_tooltips
                     } else {
                         $div_string .= ' class="jomres_bt_tooltip_features" >';
                     }
-                    $div_string .= '<img src="'.get_showtime('live_site').'/'.$div_content.'" /><b>'.$hover_title.'</b></div>';
+                    $div_string .= '<img src="'.$div_content.'" /><b>'.$hover_title.'</b></div>';
                 }
                 break;
             default:

@@ -4566,7 +4566,7 @@ class dobooking
 
         $classId = $this->allPropertyRooms[ $roomuid ][ 'room_classes_uid' ];
 
-        $this->typeImage = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/rmtypes/'.$this->allRoomClasses[ $classId ][ 'image' ];
+        $this->typeImage = JOMRES_IMAGELOCATION_RELPATH.'rmtypes/'.$this->allRoomClasses[ $classId ][ 'image' ];
 
         return array('requestedRoom' => $roomTariffOutputId, 'roomandtariffinfo' => $roomTariffOutputText);
     }

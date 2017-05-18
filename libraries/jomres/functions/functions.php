@@ -591,21 +591,21 @@ function import_images_to_media_centre_directories()
             }
 
             // Let's start with the property image
-            if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'uploadedimages'.JRDS.$property_id.'_property_'.$property_id.'.jpg')) {
+            if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.$property_id.'_property_'.$property_id.'.jpg')) {
                 rename(
-                    JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'uploadedimages'.JRDS.$property_id.'_property_'.$property_id.'.jpg',
+                    JOMRES_IMAGELOCATION_ABSPATH.$property_id.'_property_'.$property_id.'.jpg',
                     $base_path.'property'.JRDS.'0'.JRDS.$property_id.'_property_'.$property_id.'.jpg'
                     );
             }
-            if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'uploadedimages'.JRDS.$property_id.'_property_'.$property_id.'_thumbnail.jpg')) {
+            if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.$property_id.'_property_'.$property_id.'_thumbnail.jpg')) {
                 rename(
-                    JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'uploadedimages'.JRDS.$property_id.'_property_'.$property_id.'_thumbnail.jpg',
+                    JOMRES_IMAGELOCATION_ABSPATH.$property_id.'_property_'.$property_id.'_thumbnail.jpg',
                     $base_path.'property'.JRDS.'0'.JRDS.'thumbnail'.JRDS.$property_id.'_property_'.$property_id.'.jpg'
                     );
             }
-            if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'uploadedimages'.JRDS.$property_id.'_property_'.$property_id.'_thumbnail_med.jpg')) {
+            if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.$property_id.'_property_'.$property_id.'_thumbnail_med.jpg')) {
                 rename(
-                    JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'uploadedimages'.JRDS.$property_id.'_property_'.$property_id.'_thumbnail_med.jpg',
+                    JOMRES_IMAGELOCATION_ABSPATH.$property_id.'_property_'.$property_id.'_thumbnail_med.jpg',
                     $base_path.'property'.JRDS.JRDS.'0'.JRDS.'medium'.JRDS.$property_id.'_property_'.$property_id.'.jpg'
                     );
             }
@@ -648,7 +648,7 @@ function import_images_to_media_centre_directories()
             }
 
             // Finally we'll look for room images
-            $room_images = scandir_getfiles(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'uploadedimages'.JRDS);
+            $room_images = scandir_getfiles(JOMRES_IMAGELOCATION_ABSPATH);
             if (!empty($room_images)) {
                 $pattern = $property_id.'_room';
                 foreach ($room_images as $image) {
@@ -673,15 +673,15 @@ function import_images_to_media_centre_directories()
                             }
 
                             rename(
-                                JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'uploadedimages'.JRDS.$image_name.'.jpg',
+                                JOMRES_IMAGELOCATION_ABSPATH.$image_name.'.jpg',
                                 $base_path.'rooms'.JRDS.$resource_id.JRDS.$image_name.'.jpg'
                                 );
                             rename(
-                                JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'uploadedimages'.JRDS.$image_name.'_thumbnail.jpg',
+                                JOMRES_IMAGELOCATION_ABSPATH.$image_name.'_thumbnail.jpg',
                                 $base_path.'rooms'.JRDS.$resource_id.JRDS.'thumbnail'.JRDS.$image_name.'.jpg'
                                 );
                             rename(
-                                JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'uploadedimages'.JRDS.$image_name.'_thumbnail_med.jpg',
+                                JOMRES_IMAGELOCATION_ABSPATH.$image_name.'_thumbnail_med.jpg',
                                 $base_path.'rooms'.JRDS.$resource_id.JRDS.'medium'.JRDS.$image_name.'.jpg'
                                 );
                         }

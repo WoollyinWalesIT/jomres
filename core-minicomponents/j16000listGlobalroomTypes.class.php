@@ -61,7 +61,7 @@ class j16000listGlobalroomTypes
                 $r[ 'CHECKBOX' ] = '<input type="checkbox" id="cb'.count($rows).'" name="idarray[]" value="'.$r['room_classes_uid'].'" onClick="jomres_isChecked(this.checked);">';
                 $r[ 'RTTITLE' ] = $r['room_class_abbv'];
                 $r[ 'RTDESCRIPTION' ] = $r['room_class_full_desc'];
-                $r[ 'IMAGE' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/rmtypes/'.$r['image'];
+                $r[ 'IMAGE' ] = JOMRES_IMAGELOCATION_RELPATH.'rmtypes/'.$r['image'];
                 $r[ 'PROPERTY_TYPES' ] = $selected_ptype_rows;
 
                 if (!using_bootstrap()) {

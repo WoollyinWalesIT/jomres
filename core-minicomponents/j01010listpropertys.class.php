@@ -450,7 +450,7 @@ class j01010listpropertys
                     if (isset($current_property_details->multi_query_result[ $propertys_uid ][ 'room_types' ]) && !empty($current_property_details->multi_query_result[ $propertys_uid ][ 'room_types' ])) {
                         $rTypes = $current_property_details->multi_query_result[ $propertys_uid ][ 'room_types' ];
                         foreach ($rTypes as $rtd) {
-                            $rtRows .= jomres_makeTooltip($rtd['abbv'], $rtd['abbv'], $rtd['desc'],  JOMRES_ROOT_DIRECTORY.'/uploadedimages/rmtypes/'.$rtd['image'], '', 'room_type', array());
+                            $rtRows .= jomres_makeTooltip($rtd['abbv'], $rtd['abbv'], $rtd['desc'],  JOMRES_IMAGELOCATION_RELPATH.'rmtypes/'.$rtd['image'], '', 'room_type', array());
                             $rtRowsLabels .= '<span class="label label-info">'.trim($rtd['abbv']).'</span> ';
                         }
                     }
@@ -470,7 +470,7 @@ class j01010listpropertys
                                 }
                                 $hotel_feature_abbv = $current_property_details->all_property_features[ $f ]['abbv'];
                                 $hotel_feature_full_desc = $current_property_details->all_property_features[ $f ]['desc'];
-                                $feature_image = JOMRES_ROOT_DIRECTORY.'/uploadedimages/pfeatures/'.$current_property_details->all_property_features[ $f ]['image'];
+                                $feature_image = JOMRES_IMAGELOCATION_RELPATH.'pfeatures/'.$current_property_details->all_property_features[ $f ]['image'];
                                 $featureList .= jomres_makeTooltip($hotel_feature_abbv, $hotel_feature_abbv, $hotel_feature_full_desc, $feature_image, '', 'property_feature', array());
                                 ++$counter;
                             }

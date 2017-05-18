@@ -74,7 +74,7 @@ class j06000show_property_room_types
                             $basic_property_details->this_property_room_classes,
                             $basic_property_details->this_property_room_classes[$key]['abbv'],
                             $basic_property_details->this_property_room_classes[$key]['desc'],
-                            JOMRES_ROOT_DIRECTORY.'/uploadedimages/rmtypes/'.$basic_property_details->this_property_room_classes[$key]['image'],
+                            JOMRES_IMAGELOCATION_RELPATH.'rmtypes/'.$basic_property_details->this_property_room_classes[$key]['image'],
                             '',
                             'room_type',
                             array(),

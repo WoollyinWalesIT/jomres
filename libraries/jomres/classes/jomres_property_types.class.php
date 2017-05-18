@@ -111,10 +111,10 @@ class jomres_property_types
             $this->property_type['marker'] = $r->marker;                // Google maps marker
 
             if (
-                is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'uploadedimages'.JRDS.'markers') &&
-                is_file(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'uploadedimages'.JRDS.'markers'.JRDS.$this->property_type['marker'])
+                is_dir(JOMRES_IMAGELOCATION_ABSPATH.'markers') &&
+                is_file(JOMRES_IMAGELOCATION_ABSPATH.'markers'.JRDS.$this->property_type['marker'])
                 ) {
-                $this->property_type['marker_image'] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/markers/'.$this->property_type['marker'];
+                $this->property_type['marker_image'] = JOMRES_IMAGELOCATION_RELPATH.'markers/'.$this->property_type['marker'];
             } elseif (JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'markers'.JRDS.$this->property_types['marker']) {
                 $this->property_type['marker_image'] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/markers/'.$this->property_type['marker'];
             }
