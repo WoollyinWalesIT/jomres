@@ -20,7 +20,7 @@ class jomres_qr_code
 
     public function __construct()
     {
-        require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'qr_code_lib'.JRDS.'qrlib.php';
+        require_once JOMRES_LIBRARIES_ABSPATH.'qr_code_lib'.JRDS.'qrlib.php';
     }
 
     public static function getInstance()

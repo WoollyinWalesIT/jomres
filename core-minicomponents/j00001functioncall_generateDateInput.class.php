@@ -25,7 +25,7 @@ class j00001functioncall_generateDateInput
 
             return;
         }
-        require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'generateDateInput.php';
+        require_once JOMRES_FUNCTIONS_ABSPATH.'generateDateInput.php';
     }
 
     public function getRetVals()

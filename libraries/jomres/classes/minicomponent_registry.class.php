@@ -256,7 +256,7 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
 
     public function getMiniComponentCMSSpecificClasses()
     {
-        $jrePath = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'cms_specific'.JRDS._JOMRES_DETECTED_CMS.JRDS;
+        $jrePath = JOMRES_CMSSPECIFIC_ABSPATH._JOMRES_DETECTED_CMS.JRDS;
         $d = @dir($jrePath);
         if ($d) {
             while (false !== ($entry = $d->read())) {

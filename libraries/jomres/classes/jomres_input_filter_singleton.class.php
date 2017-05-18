@@ -46,7 +46,7 @@ class jomres_input_filter_singleton
         }
 
         if (!class_exists('HTMLPurifier')) {
-            require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'htmlpurifier'.JRDS.'htmlpurifier-4.4.0-standalone'.JRDS.'HTMLPurifier.standalone.php';
+            require_once JOMRES_LIBRARIES_ABSPATH.'htmlpurifier'.JRDS.'htmlpurifier-4.4.0-standalone'.JRDS.'HTMLPurifier.standalone.php';
         }
 
         $config = HTMLPurifier_Config::createDefault();

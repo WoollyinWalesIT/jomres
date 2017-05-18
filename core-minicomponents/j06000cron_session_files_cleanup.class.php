@@ -32,7 +32,7 @@ class j06000cron_session_files_cleanup
 			$jrConfig = $siteConfig->get();
 		
 			if ($jrConfig['session_handler'] == 'file') {
-				$session_path = JOMRES_SESSION_ABSPATH;
+				$session_path = JOMRES_SESSIONS_ABSPATH;
 				$files = scandir_getfiles_recursive($session_path);
 
 				if (!empty($files)) {

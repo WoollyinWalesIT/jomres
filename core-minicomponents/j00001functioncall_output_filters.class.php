@@ -25,7 +25,7 @@ class j00001functioncall_output_filters
 
             return;
         }
-        require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'output_filters.php';
+        require_once JOMRES_FUNCTIONS_ABSPATH.'output_filters.php';
     }
 
     public function getRetVals()

@@ -25,7 +25,7 @@ class j00001functioncall_set_booking_number
 
             return;
         }
-        require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'set_booking_number.php';
+        require_once JOMRES_FUNCTIONS_ABSPATH.'set_booking_number.php';
     }
 
     public function getRetVals()

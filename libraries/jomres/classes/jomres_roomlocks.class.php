@@ -19,7 +19,7 @@ class jomres_roomlocks
     public function __construct()
     {
         $property_uid = get_showtime('property_uid');
-        $this->session_directory = JOMRESPATH_BASE.JRDS.'sessions'.JRDS;
+        $this->session_directory = JOMRES_SESSIONS_ABSPATH;
         $lock_filename = 'room_lock_'.(int) $property_uid.'.php';
         $this->sessionfile = $this->session_directory.$lock_filename;
         $this->clean_up_old_locks();

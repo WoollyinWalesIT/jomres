@@ -26,7 +26,7 @@ class j00001functioncall_get_property_price_for_display_in_lists
             return;
         }
 
-        require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'get_property_price_for_display_in_lists.php';
+        require_once JOMRES_FUNCTIONS_ABSPATH.'get_property_price_for_display_in_lists.php';
     }
 
     public function getRetVals()

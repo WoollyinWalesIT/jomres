@@ -25,7 +25,7 @@ class j00001functioncall_get_property_details_url
 
             return;
         }
-        require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'get_property_details_url.php';
+        require_once JOMRES_FUNCTIONS_ABSPATH.'get_property_details_url.php';
     }
 
     public function getRetVals()

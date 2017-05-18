@@ -40,7 +40,7 @@ class j00021colourscheme
             }
         }
 
-        jomres_cmsspecific_addheaddata('css', JOMRES_CSSRELPATH, $css_file);
+        jomres_cmsspecific_addheaddata('css', JOMRES_CSS_RELPATH, $css_file);
     }
 
     //Must be included in every mini-component.

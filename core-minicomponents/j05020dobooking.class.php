@@ -36,7 +36,7 @@ class j05020dobooking
             }
         }
         set_showtime('booking_form_calendar', $calendar);
-        require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'dobooking.php';
+        require_once JOMRES_FUNCTIONS_ABSPATH.'dobooking.php';
 
         if (!defined('DOBOOKING_IN_DETAILS')) {
             jomres_cmsspecific_setmetadata('robots', 'noindex,nofollow');

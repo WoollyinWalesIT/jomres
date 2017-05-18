@@ -106,9 +106,9 @@ if (!function_exists('import_countries')) {
     $functionChecksPassed = false;
 }
 
-if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'sessions'.JRDS)) {
-    if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'sessions'.JRDS)) {
-        output_message('Error, unable to make folder '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'sessions'.JRDS." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server.", 'danger');
+if (!is_dir(JOMRES_SESSIONS_ABSPATH)) {
+    if (!@mkdir(JOMRES_SESSIONS_ABSPATH)) {
+        output_message('Error, unable to make folder '.JOMRES_SESSIONS_ABSPATH." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server.", 'danger');
         $folderChecksPassed = false;
     }
 }
@@ -120,9 +120,9 @@ if (!is_dir(JOMRES_TEMP_ABSPATH)) {
     }
 }
 
-if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'cache'.JRDS)) {
-    if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'cache'.JRDS)) {
-        output_message('Error, unable to make folder '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'cache'.JRDS." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server.", 'danger');
+if (!is_dir(JOMRES_CACHE_ABSPATH)) {
+    if (!@mkdir(JOMRES_CACHE_ABSPATH)) {
+        output_message('Error, unable to make folder '.JOMRES_CACHE_ABSPATH." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server.", 'danger');
         $folderChecksPassed = false;
     }
 }
@@ -179,7 +179,7 @@ if (this_cms_is_joomla()) {
     }
 }
 
-require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'output_filters.php';
+require_once JOMRES_FUNCTIONS_ABSPATH.'output_filters.php';
 
 if ($folderChecksPassed && $functionChecksPassed) {
     $trashtables = jomresGetParam($_POST, 'trashtables', 0, 'integer');

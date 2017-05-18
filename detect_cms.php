@@ -16,7 +16,7 @@ defined('_JOMRES_INITCHECK') or die('');
 
 if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'wp-config.php')) {
     define('_JOMRES_DETECTED_CMS', 'wordpress');
-    define('_JOMRES_DETECTED_CMS_SPECIFIC_FILES', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'cms_specific'.JRDS._JOMRES_DETECTED_CMS.JRDS);
+    define('_JOMRES_DETECTED_CMS_SPECIFIC_FILES', JOMRES_CMSSPECIFIC_ABSPATH._JOMRES_DETECTED_CMS.JRDS);
 } elseif (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'libraries'.JRDS.'cms'.JRDS.'version'.JRDS.'version.php')) {
     if (!defined('JPATH_PLATFORM')) {
         define('JPATH_PLATFORM', 1);
@@ -30,7 +30,7 @@ if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'wp-config.php')) {
 
     if ($vshort_version == '3') {
         define('_JOMRES_DETECTED_CMS', 'joomla3');
-        define('_JOMRES_DETECTED_CMS_SPECIFIC_FILES', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'cms_specific'.JRDS._JOMRES_DETECTED_CMS.JRDS);
+        define('_JOMRES_DETECTED_CMS_SPECIFIC_FILES', JOMRES_CMSSPECIFIC_ABSPATH._JOMRES_DETECTED_CMS.JRDS);
     }
 }
 

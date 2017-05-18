@@ -29,7 +29,7 @@ class j06000selectcombo
         /*
         if( !function_exists('json_encode') )
             {
-            require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'json'.JRDS.'JSON.php');
+            require_once(JOMRES_LIBRARIES_ABSPATH.'json'.JRDS.'JSON.php');
             function json_encode($data)
                 {
                 $json = new Services_JSON();

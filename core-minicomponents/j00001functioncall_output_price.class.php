@@ -25,7 +25,7 @@ class j00001functioncall_output_price
 
             return;
         }
-        require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'output_price.php';
+        require_once JOMRES_FUNCTIONS_ABSPATH.'output_price.php';
     }
 
     public function getRetVals()

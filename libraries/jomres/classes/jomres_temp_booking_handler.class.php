@@ -31,7 +31,7 @@ class jomres_temp_booking_handler
         $this->jomressession = '';
         $this->sessionfile = '';
         $this->timeout = (int) $jrConfig[ 'lifetime' ];
-        $this->session_directory = JOMRES_SESSION_ABSPATH;
+        $this->session_directory = JOMRES_SESSIONS_ABSPATH;
 		$this->session_handler = $jrConfig['session_handler'];
 
 		//check and create the session dirs if necessary

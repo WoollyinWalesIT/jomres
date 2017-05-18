@@ -26,7 +26,7 @@ class j05010handlereq
             return;
         }
 
-        include JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'handlereq.php';
+        include JOMRES_FUNCTIONS_ABSPATH.'handlereq.php';
     }
 
     /**

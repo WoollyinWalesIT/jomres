@@ -517,7 +517,7 @@ function searchCSSThemesDirForCSSFiles()
 
 function get_map_styles()
 {
-    $map_style_dir = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'map_styles'.JRDS;
+    $map_style_dir = JOMRES_LIBRARIES_ABSPATH.'map_styles'.JRDS;
     $styles = array();
     foreach (new DirectoryIterator($map_style_dir) as $file) {
         if ($file->isFile()) {

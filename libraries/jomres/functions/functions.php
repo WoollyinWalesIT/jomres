@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'http_build_url.php';
+require_once JOMRES_LIBRARIES_ABSPATH.'http_build_url.php';
 
 function jomres_getSingleton($class, $args = array())
 {
@@ -1380,8 +1380,8 @@ function jr_import($class)
 	}
 	
 	//last place to check is jomres core classes dir
-	if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.'.class.php')) {
-		require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.'.class.php';
+	if (file_exists(JOMRES_CLASSES_ABSPATH.$class.'.class.php')) {
+		require_once JOMRES_CLASSES_ABSPATH.$class.'.class.php';
 		return true;
 	}
 	

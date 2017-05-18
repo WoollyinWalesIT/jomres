@@ -500,7 +500,7 @@ class j16000addplugin
             $registry = jomres_singleton_abstract::getInstance('minicomponent_registry');
             $registry->regenerate_registry();
 
-            emptyDir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'cache'.JRDS);
+            emptyDir(JOMRES_CACHE_ABSPATH);
 
             $pageoutput[ ] = $output;
             $error_messages[ ] = $error_messsage;

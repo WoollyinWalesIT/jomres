@@ -18,7 +18,7 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_markdown {
     public function __construct() {
-        require_once (JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'Parsedown'.JRDS.'Parsedown.php');
+        require_once (JOMRES_LIBRARIES_ABSPATH.'Parsedown'.JRDS.'Parsedown.php');
     }
 
     public function get_markdown($string) {

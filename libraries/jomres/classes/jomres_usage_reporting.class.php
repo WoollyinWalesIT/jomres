@@ -37,7 +37,7 @@ class jomres_usage_reporting
 
                 $task = get_showtime('task');
 
-                require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'piwik'.JRDS.'PiwikTracker.php';
+                require_once JOMRES_LIBRARIES_ABSPATH.'piwik'.JRDS.'PiwikTracker.php';
                 $tracker = new PiwikTracker($idSite = 7);
 
                 $tracker->setUserAgent('Jomres Core');

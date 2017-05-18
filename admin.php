@@ -73,7 +73,7 @@ try {
     //currency conversion object
     $jomres_currency_exchange_rates = jomres_singleton_abstract::getInstance('jomres_currency_exchange_rates');
 
-    require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'siteconfig.functions.php';
+    require_once JOMRES_FUNCTIONS_ABSPATH.'siteconfig.functions.php';
 
 	if (!AJAXCALL) {
 		//add javascript to head
@@ -94,7 +94,7 @@ try {
             if (is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'plugins')) {
                 echo '<font color="red" face="arial" size="1">Warning: directory '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'plugins still exists. Please delete it.</font><br/>';
             }
-            emptyDir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'cache'.JRDS);
+            emptyDir(JOMRES_CACHE_ABSPATH);
         }
 
         $pageoutput = array();
