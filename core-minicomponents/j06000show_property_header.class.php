@@ -278,11 +278,7 @@ class j06000show_property_header
             $url .= '&arrivalDate=2009-01-01';
             }
 
-            if ($jrConfig[ 'useSSLinBookingform' ] == '1') {
-                $url = jomresURL($url, 1);
-            } else {
-                $url = jomresURL($url);
-            }
+            $url = jomresURL($url);
 
             $link[ 'LINK' ] = $url;
 

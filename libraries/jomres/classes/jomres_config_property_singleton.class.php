@@ -85,7 +85,6 @@ class jomres_config_property_singleton
 
             $temp_config = array_merge($temp_config, $property_config);
             if ($jrConfig[ 'useGlobalCurrency' ] == '1') {
-                $temp_config[ 'currency' ] = $jrConfig[ 'globalCurrency' ];
                 $temp_config[ 'currencyCode' ] = $jrConfig[ 'globalCurrencyCode' ];
             }
             $this->property_config = $temp_config;

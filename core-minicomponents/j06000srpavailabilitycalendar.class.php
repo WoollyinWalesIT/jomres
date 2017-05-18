@@ -458,11 +458,9 @@ jomresJquery(function(){
                                         if (!$mrConfig[ 'singleRoomProperty' ]) {
                                             $link .= '&remus='.$roomUid;
                                         }
-                                        if ($jrConfig[ 'useSSLinBookingform' ] == '1') {
-                                            $link = jomresURL($link, 1);
-                                        } else {
-                                            $link = jomresURL($link);
-                                        }
+                                        
+										$link = jomresURL($link);
+                                        
                                         $link = jomresValidateUrl($link);
                                         $thelink = '<a '.$target.' href="'.$link.'" class=rescal rel="nofollow">'.date('j', $currdate).'</a>';
 

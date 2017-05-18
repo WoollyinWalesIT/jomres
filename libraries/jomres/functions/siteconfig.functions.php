@@ -99,11 +99,9 @@ function showSiteConfig()
     $lists[ 'isInIframe' ] = jomresHTML::selectList($yesno, 'cfg_isInIframe', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'isInIframe' ]);
     $lists[ 'allowHTMLeditor' ] = jomresHTML::selectList($editoryesno, 'cfg_allowHTMLeditor', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'allowHTMLeditor' ]);
     $lists[ 'dumpTemplate' ] = jomresHTML::selectList($yesno, 'cfg_dumpTemplate', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'dumpTemplate' ]);
-    $lists[ 'useSSLinBookingform' ] = jomresHTML::selectList($yesno, 'cfg_useSSLinBookingform', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useSSLinBookingform' ]);
     $lists[ 'emailErrors' ] = jomresHTML::selectList($yesno, 'cfg_emailErrors', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'emailErrors' ]);
     $lists[ 'minimalconfiguration' ] = jomresHTML::selectList($yesno, 'cfg_minimalconfiguration', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'minimalconfiguration' ]);
     $lists[ 'useJomresEmailCheck' ] = jomresHTML::selectList($yesno, 'cfg_useJomresEmailCheck', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useJomresEmailCheck' ]);
-    $lists[ 'autoDetectJSCalendarLang' ] = jomresHTML::selectList($yesno, 'cfg_autoDetectJSCalendarLang', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'autoDetectJSCalendarLang' ]);
     $lists[ 'composite_property_details' ] = jomresHTML::selectList($yesno, 'cfg_composite_property_details', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'composite_property_details' ]);
 
     $lists[ 'sef_property_url_country' ] = jomresHTML::selectList($yesno, 'cfg_sef_property_url_country', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'sef_property_url_country' ]);
@@ -233,7 +231,6 @@ function showSiteConfig()
 
     $lists[ 'showLangDropdown' ] = jomresHTML::selectList($yesno, 'cfg_showLangDropdown', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'showLangDropdown' ]);
     $lists[ 'useNewusers' ] = jomresHTML::selectList($yesno, 'cfg_useNewusers', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useNewusers' ]);
-    $lists[ 'outputHeadersInline' ] = jomresHTML::selectList($yesno, 'cfg_outputHeadersInline', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'outputHeadersInline' ]);
     $lists[ 'is_single_property_installation' ] = jomresHTML::selectList($yesno, 'cfg_is_single_property_installation', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'is_single_property_installation' ]);
     $lists[ 'use_html_purifier' ] = jomresHTML::selectList($yesno, 'cfg_use_html_purifier', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_html_purifier' ]);
     $lists[ 'limit_property_country' ] = jomresHTML::selectList($yesno, 'cfg_limit_property_country', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'limit_property_country' ]);
@@ -300,7 +297,6 @@ function showSiteConfig()
     }
 
     $lists[ 'use_bootstrap_in_frontend' ] = jomresHTML::selectList($yesno, 'cfg_use_bootstrap_in_frontend', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_bootstrap_in_frontend' ]);
-    $lists[ 'show_cumulative_price_overlay' ] = jomresHTML::selectList($yesno, 'cfg_show_cumulative_price_overlay', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'show_cumulative_price_overlay' ]);
 
     if (!isset($jrConfig['live_scrolling_enabled'])) {
         $jrConfig['live_scrolling_enabled'] = '1';
@@ -391,7 +387,6 @@ function showSiteConfig()
 	<input type="hidden" name="cfg_dynamicMinIntervalRecalculation" value="<?php echo $jrConfig[ 'dynamicMinIntervalRecalculation' ]; ?>"/>
 	<input type="hidden" name="cfg_disableAudit" value="<?php echo $jrConfig[ 'disableAudit' ]; ?>"/>
 	<input type="hidden" name="cfg_allowedTags" value="<?php echo $jrConfig[ 'allowedTags' ]; ?>"/>
-	<input type="hidden" name="cfg_utfHTMLdecode" value="<?php echo $jrConfig[ 'utfHTMLdecode' ]; ?>"/>
 	<input type="hidden" name="no_html" value="1"/>
 	<input type="hidden" name="task" value="save_site_settings"/>
 	<input type="hidden" name="option" value="com_jomres"/>

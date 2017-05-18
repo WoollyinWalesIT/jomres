@@ -66,7 +66,7 @@ if (!class_exists('JomresRouter')) {
             $route_query = $query; // We need to work within this function with the $route_query variable, not $query. It seems to be that the assignation &$query on some servers means that once the property name query further down has been run, then Joomla's $query becomes whatever the sql query was. Don't know why, and I'm not going to dig around to find out. We'll work internally on $route_query, then set $query to $route_query at the end, that seems to fix it.
 
             global $thisJRUser;
-            $jrConfig = getSiteSettings();
+
             $segments = array();
 
             $menu = JFactory::getApplication()->getMenu();
@@ -186,7 +186,7 @@ if (!class_exists('JomresRouter')) {
                 }
 
             if (isset($route_query[ 'calledByModule' ])) {
-                $segments[ ] = $jrConfig[ 'sef_task_alias_search' ];
+                $segments[ ] = 'search';
                 if (isset($route_query[ 'town' ])) {
                     $segments[ ] = jomres_cmsspecific_stringURLSafe(jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN, false));
                     $segments[ ] = jomres_cmsspecific_stringURLSafe($route_query[ 'town' ]);
@@ -226,7 +226,6 @@ if (!class_exists('JomresRouter')) {
             global $thisJRUser;
             require_once JPATH_BASE.DIRECTORY_SEPARATOR.JOMRES_ROOT_DIRECTORY.DIRECTORY_SEPARATOR.'integration.php';
             $vars = array();
-            $jrConfig = getSiteSettings();
 
             switch ($segments[ 0 ]) {
                 case 'viewproperty':
@@ -241,7 +240,7 @@ if (!class_exists('JomresRouter')) {
                         $vars[ 'selectedProperty' ] = $segments[ 2 ];
                     }
                     break;
-                case $jrConfig[ 'sef_task_alias_search' ]:
+                case 'search':
                     $searchParam = $segments[ 1 ];
                     $vars[ 'send' ] = 'Search';
                     $vars[ 'calledByModule' ] = 'mod_jomsearch_m0';

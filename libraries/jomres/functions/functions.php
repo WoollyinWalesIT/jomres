@@ -4021,10 +4021,6 @@ function makePopupLink($link, $text, $isLocalPage = true, $width = 550, $height 
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
 
-    if ($jrConfig[ 'useSSLinBookingform' ] == 1 && $_REQUEST[ 'task' ] == 'editGuest') {
-        set_showtime('live_site', str_replace('http://', 'https://', $link));
-    }
-
     $thelink = "<a href=\"javascript:void window.open('".$link.$format."', 'win2', '".$status."');\" rel=\"nofollow\" title=\"\">".$text.'</a>';
 
     $thelink = str_replace('&amp;', '&', $thelink);

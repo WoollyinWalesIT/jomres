@@ -160,11 +160,8 @@ class j06000viewproperty
             if ((($mrConfig[ 'fixedArrivalDateYesNo' ] == '1' || $mrConfig[ 'fixedPeriodBookings' ] == '1')) && !isset($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ])) { // We'll add an invalid arrival date if the fixed arrival date setting is set to Yes. This way we can force the booking engine to see the arrival date is wrong and it'll rebuild the available rooms list, which it doesn't if the date is correct when coming from the Book a room link.
             $url .= '&amp;arrivalDate=2009-01-01';
             }
-            if ($jrConfig[ 'useSSLinBookingform' ] == '1') {
-                $url = jomresURL($url, 1);
-            } else {
-                $url = jomresURL($url);
-            }
+            
+			$url = jomresURL($url);
 
             $link[ 'LINK' ] = $url;
 

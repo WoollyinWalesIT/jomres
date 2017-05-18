@@ -40,6 +40,8 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
 {
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
+	
+	$editing = false;
 
     if (!jomres_cmsspecific_areweinadminarea()) {
         $property_uid = (int) get_showtime('property_uid');
@@ -96,7 +98,6 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
         if (isset($_REQUEST[ 'task' ]) && jomres_cmsspecific_areweinadminarea()) {
             if (($_REQUEST[ 'task' ] == 'touch_templates' || $_REQUEST[ 'task' ] == 'translate_locales' || $_REQUEST[ 'task' ] == 'translate_lang_file_strings') && $thisJRUser->userIsManager) {
                 $property_uid = 0;
-                $jrConfig[ 'editinplace' ] = 1;
                 $jrConfig[ 'editingModeAffectsAllProperties' ] = '1';
                 $editing = true;
             }
@@ -123,7 +124,7 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
                     $_REQUEST[ 'no_html' ] = 0;
                 }
 
-                if ($jrConfig[ 'editinplace' ] == 1 && $_REQUEST[ 'no_html' ] != '1') {
+                if ($editing && $_REQUEST[ 'no_html' ] != '1') {
                     if (jomres_cmsspecific_areweinadminarea()) {
                         $url = JOMRES_SITEPAGE_URL_ADMIN_AJAX.'&task=editinplace&lang='.get_showtime('lang');
                     } else {
