@@ -134,15 +134,15 @@ if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'updates'
     }
 }
 
-if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS)) {
-    if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS)) {
-        output_message('Error, unable to make folder '.'remote_plugins'.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.JRDS." automatically therefore cannot install plugins. Please create the folder manually and ensure that it's writable by the web server.", 'danger');
+if (!is_dir(JOMRES_REMOTEPLUGINS_ABSPATH)) {
+    if (!@mkdir(JOMRES_REMOTEPLUGINS_ABSPATH)) {
+        output_message('Error, unable to make folder '.'remote_plugins'.JOMRES_REMOTEPLUGINS_ABSPATH." automatically therefore cannot install plugins. Please create the folder manually and ensure that it's writable by the web server.", 'danger');
     }
 }
 
-if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'core-plugins'.JRDS)) {
-    if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'core-plugins'.JRDS)) {
-        output_message('Error, unable to make folder '.'core-plugins'.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.JRDS." automatically therefore cannot install plugins. Please create the folder manually and ensure that it's writable by the web server.", 'danger');
+if (!is_dir(JOMRES_COREPLUGINS_ABSPATH)) {
+    if (!@mkdir(JOMRES_COREPLUGINS_ABSPATH)) {
+        output_message('Error, unable to make folder '.'core-plugins'.JOMRES_COREPLUGINS_ABSPATH." automatically therefore cannot install plugins. Please create the folder manually and ensure that it's writable by the web server.", 'danger');
     }
 }
 

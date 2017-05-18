@@ -44,7 +44,7 @@ class j16000showplugins
         $this_jomres_version = explode('.', $mrConfig[ 'version' ]);
 
         $installed_plugins = array();
-        $jrePath = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS;
+        $jrePath = JOMRES_REMOTEPLUGINS_ABSPATH;
         $third_party_plugins = array();
         if (!is_dir($jrePath)) {
             if (!@mkdir($jrePath)) {
@@ -54,7 +54,7 @@ class j16000showplugins
             }
         }
 
-        $jrcPath = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'core-plugins'.JRDS;
+        $jrcPath = JOMRES_COREPLUGINS_ABSPATH;
         $third_party_plugins = array();
         if (!is_dir($jrcPath)) {
             if (!@mkdir($jrcPath)) {

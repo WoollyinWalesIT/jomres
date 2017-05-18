@@ -66,7 +66,7 @@ class jomres_obsolete_file_handling
 
         $this->dir_components_administrator = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ADMINISTRATORDIRECTORY.JRDS.'components'.JRDS.'com_jomres'.JRDS;
         $this->dir_components = JOMRESCONFIG_ABSOLUTE_PATH.'components'.JRDS.'com_jomres'.JRDS;
-        $this->dir_core_plugins = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'core-plugins'.JRDS;
+        $this->dir_core_plugins = JOMRES_COREPLUGINS_ABSPATH;
         $this->dir_admin = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'admin'.JRDS;
     }
 

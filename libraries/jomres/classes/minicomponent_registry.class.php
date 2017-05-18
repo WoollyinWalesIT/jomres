@@ -226,7 +226,7 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
     // Reads in class files from the components table and inserts them into the registeredClasses array
     public function getMiniComponentRemoteClasses()
     {
-        $jrePath = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS;
+        $jrePath = JOMRES_REMOTEPLUGINS_ABSPATH;
         $d = @dir($jrePath);
         $docs = array();
         if ($d) {
@@ -283,7 +283,7 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
 
     public function getMiniCorePluginsClasses()
     {
-        $jrePath = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'core-plugins'.JRDS;
+        $jrePath = JOMRES_COREPLUGINS_ABSPATH;
         $d = @dir($jrePath);
         $docs = array();
         if ($d) {

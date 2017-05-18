@@ -30,8 +30,8 @@ class jomres_singleton_abstract
 		}
         
 		//first check custom code dir
-		if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS.'custom_code'.JRDS.$class.'.class.php')) {
-			require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS.'custom_code'.JRDS.$class.'.class.php';
+		if (file_exists(JOMRES_REMOTEPLUGINS_ABSPATH.'custom_code'.JRDS.$class.'.class.php')) {
+			require_once JOMRES_REMOTEPLUGINS_ABSPATH.'custom_code'.JRDS.$class.'.class.php';
 			
 			self::$_instances[ $class ] = new $class($arg1);
 			

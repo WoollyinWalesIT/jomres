@@ -86,7 +86,7 @@ class j07020showplugins
 			}
 
 			if (!file_exists(JOMRES_TEMP_ABSPATH.'installed_plugins_data.php')) {
-				$jrcPath = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'core-plugins'.JRDS;
+				$jrcPath = JOMRES_COREPLUGINS_ABSPATH;
 				$files = scandir_getfiles($jrcPath);
 				$d = @dir($jrcPath);
 				if ($d) {

@@ -35,7 +35,7 @@ if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'wp-config.php')) {
 }
 
 if (!defined('_JOMRES_DETECTED_CMS')) {
-    $jrePath = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS;
+    $jrePath = JOMRES_REMOTEPLUGINS_ABSPATH;
     $d = @dir($jrePath);
     $docs = array();
     if ($d) {

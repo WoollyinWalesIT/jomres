@@ -73,6 +73,8 @@ define('JOMRES_JS_ABSPATH', JOMRESPATH_BASE.'javascript'.JRDS);
 define('JOMRES_SESSIONS_ABSPATH', JOMRESPATH_BASE.'sessions'.JRDS);
 define('JOMRES_TEMP_ABSPATH', JOMRESPATH_BASE.'temp'.JRDS);
 define('JOMRES_CACHE_ABSPATH', JOMRESPATH_BASE.'cache'.JRDS);
+define('JOMRES_COREPLUGINS_ABSPATH', JOMRESPATH_BASE.'core-plugins'.JRDS);
+define('JOMRES_REMOTEPLUGINS_ABSPATH', JOMRESPATH_BASE.'remote_plugins'.JRDS);
 define('JOMRES_LIBRARIES_ABSPATH', JOMRESPATH_BASE.'libraries'.JRDS);
 define('JOMRES_CLASSES_ABSPATH', JOMRESPATH_BASE.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS);
 define('JOMRES_FUNCTIONS_ABSPATH', JOMRESPATH_BASE.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS);
@@ -143,13 +145,13 @@ require_once JOMRES_LIBRARIES_ABSPATH.JRDS.'PHPMailer-5.2.21'.JRDS.'PHPMailerAut
 PHPMailerAutoload('phpmailer');
 PHPMailerAutoload('smtp');
 
-if (file_exists(JOMRESPATH_BASE.'remote_plugins'.JRDS.'code_changes'.JRDS.'countries.php')) {
-    require_once JOMRESPATH_BASE.'remote_plugins'.JRDS.'code_changes'.JRDS.'countries.php';
+if (file_exists(JOMRES_REMOTEPLUGINS_ABSPATH.'code_changes'.JRDS.'countries.php')) {
+    require_once JOMRES_REMOTEPLUGINS_ABSPATH.'code_changes'.JRDS.'countries.php';
 } else {
-    if (file_exists(JOMRESPATH_BASE.'remote_plugins'.JRDS.'custom_code'.JRDS.'countries.php')) {
-        require_once JOMRESPATH_BASE.'remote_plugins'.JRDS.'custom_code'.JRDS.'countries.php';
+    if (file_exists(JOMRES_REMOTEPLUGINS_ABSPATH.'custom_code'.JRDS.'countries.php')) {
+        require_once JOMRES_REMOTEPLUGINS_ABSPATH.'custom_code'.JRDS.'countries.php';
     } else {
-        require_once JOMRESPATH_BASE.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'countries.php';
+        require_once JOMRES_FUNCTIONS_ABSPATH.'countries.php';
     }
 }
 

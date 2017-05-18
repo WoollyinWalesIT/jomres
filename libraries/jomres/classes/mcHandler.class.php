@@ -44,7 +44,7 @@ class mcHandler
 
         $this->currentEvent = '';
 
-        $this->remote_plugin_directory = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS;
+        $this->remote_plugin_directory = JOMRES_REMOTEPLUGINS_ABSPATH;
         if (!is_dir($this->remote_plugin_directory)) {
             if (!@mkdir($this->remote_plugin_directory)) {
                 echo 'Error, unable to make folder '.$this->remote_plugin_directory." automatically therefore cannot store minicomponent path data. Please create the folder manually and ensure that it's writable by the web server";

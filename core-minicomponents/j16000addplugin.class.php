@@ -104,9 +104,9 @@ class j16000addplugin
         }
 
         if ($thirdparty) {
-            $remote_pluginsDirPath = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS;
+            $remote_pluginsDirPath = JOMRES_REMOTEPLUGINS_ABSPATH;
         } else {
-            $remote_pluginsDirPath = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'core-plugins'.JRDS;
+            $remote_pluginsDirPath = JOMRES_COREPLUGINS_ABSPATH;
         }
 
         if (strlen($pluginName) == 0 && !$thirdparty) {
@@ -130,15 +130,15 @@ class j16000addplugin
         }
 
         if (strlen($pluginName) > 0) {
-            if (is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS.$pluginName)) {
-                emptyDir(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS.$pluginName);
-                $progress_messages[ ] = array('MESSAGE' => 'Removing '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS.$pluginName.'');
-                @rmdir(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS.$pluginName);
+            if (is_dir(JOMRES_REMOTEPLUGINS_ABSPATH.$pluginName)) {
+                emptyDir(JOMRES_REMOTEPLUGINS_ABSPATH.$pluginName);
+                $progress_messages[ ] = array('MESSAGE' => 'Removing '.JOMRES_REMOTEPLUGINS_ABSPATH.$pluginName.'');
+                @rmdir(JOMRES_REMOTEPLUGINS_ABSPATH.$pluginName);
             }
-            if (is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'core-plugins'.JRDS.$pluginName)) {
-                emptyDir(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'core-plugins'.JRDS.$pluginName);
-                $progress_messages[ ] = array('MESSAGE' => 'Removing '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'core-plugins'.JRDS.$pluginName.'');
-                @rmdir(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'core-plugins'.JRDS.$pluginName);
+            if (is_dir(JOMRES_COREPLUGINS_ABSPATH.$pluginName)) {
+                emptyDir(JOMRES_COREPLUGINS_ABSPATH.$pluginName);
+                $progress_messages[ ] = array('MESSAGE' => 'Removing '.JOMRES_COREPLUGINS_ABSPATH.$pluginName.'');
+                @rmdir(JOMRES_COREPLUGINS_ABSPATH.$pluginName);
             }
         }
 

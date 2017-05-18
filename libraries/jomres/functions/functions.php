@@ -1365,8 +1365,8 @@ function jr_import($class)
 	}
 
 	//first check custom code dir
-	if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS.'custom_code'.JRDS.$class.'.class.php')) {
-		require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS.'custom_code'.JRDS.$class.'.class.php';
+	if (file_exists(JOMRES_REMOTEPLUGINS_ABSPATH.'custom_code'.JRDS.$class.'.class.php')) {
+		require_once JOMRES_REMOTEPLUGINS_ABSPATH.'custom_code'.JRDS.$class.'.class.php';
 		
 		return true;
 	}
@@ -1405,8 +1405,8 @@ function search_core_and_remote_dirs_for_classfiles()
 	}
     $plugin_paths = array();
 
-	$core_plugins_directory = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'core-plugins'.JRDS;
-	$remote_plugin_directory = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS;
+	$core_plugins_directory = JOMRES_COREPLUGINS_ABSPATH;
+	$remote_plugin_directory = JOMRES_REMOTEPLUGINS_ABSPATH;
 	$classes_tmp_file = JOMRES_TEMP_ABSPATH.'registry_classes.php';
 
 	if (is_dir($core_plugins_directory)) {
@@ -1518,10 +1518,10 @@ function install_external_plugin($plugin_name, $plugin_type, $mambot_type = '', 
 {
     switch ($plugin_type) {
         case 'widget': // Wordpress widgets
-            if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'core-plugins'.JRDS.$plugin_name.JRDS.'plugin_info.php')) {
-                $widget_source = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'core-plugins'.JRDS.$plugin_name.JRDS;
+            if (file_exists(JOMRES_COREPLUGINS_ABSPATH.$plugin_name.JRDS.'plugin_info.php')) {
+                $widget_source = JOMRES_COREPLUGINS_ABSPATH.$plugin_name.JRDS;
             } else {
-                $widget_source = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS.$plugin_name.JRDS;
+                $widget_source = JOMRES_REMOTEPLUGINS_ABSPATH.$plugin_name.JRDS;
             }
 
             $widget_target = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'wp-content'.JRDS.'plugins'.JRDS.$plugin_name;
@@ -1550,12 +1550,12 @@ function install_external_plugin($plugin_name, $plugin_type, $mambot_type = '', 
         break;
         case 'module':
             $module_full_name = 'mod_'.$plugin_name;
-            if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'core-plugins'.JRDS.$plugin_name.JRDS.'plugin_info.php')) {
-                $module_source = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'core-plugins'.JRDS.$plugin_name.JRDS.$remote_plugin_module_folder.JRDS;
-                $module_xml_source = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'core-plugins'.JRDS.$plugin_name.JRDS.'xml'.JRDS.'1.5';
+            if (file_exists(JOMRES_COREPLUGINS_ABSPATH.$plugin_name.JRDS.'plugin_info.php')) {
+                $module_source = JOMRES_COREPLUGINS_ABSPATH.$plugin_name.JRDS.$remote_plugin_module_folder.JRDS;
+                $module_xml_source = JOMRES_COREPLUGINS_ABSPATH.$plugin_name.JRDS.'xml'.JRDS.'1.5';
             } else {
-                $module_source = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS.$plugin_name.JRDS.$remote_plugin_module_folder.JRDS;
-                $module_xml_source = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS.$plugin_name.JRDS.'xml'.JRDS.'1.5';
+                $module_source = JOMRES_REMOTEPLUGINS_ABSPATH.$plugin_name.JRDS.$remote_plugin_module_folder.JRDS;
+                $module_xml_source = JOMRES_REMOTEPLUGINS_ABSPATH.$plugin_name.JRDS.'xml'.JRDS.'1.5';
             }
 
             $module_target = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'modules'.JRDS.$module_full_name;
@@ -1579,12 +1579,12 @@ function install_external_plugin($plugin_name, $plugin_type, $mambot_type = '', 
         case 'mambot':
             //$mambot_full_name=$plugin_name;
 
-            if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'core-plugins'.JRDS.$plugin_name.JRDS.'plugin_info.php')) {
-                $mambot_source = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'core-plugins'.JRDS.$plugin_name.JRDS;
-                $mambot_xml_source = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'core-plugins'.JRDS.$plugin_name;
+            if (file_exists(JOMRES_COREPLUGINS_ABSPATH.$plugin_name.JRDS.'plugin_info.php')) {
+                $mambot_source = JOMRES_COREPLUGINS_ABSPATH.$plugin_name.JRDS;
+                $mambot_xml_source = JOMRES_COREPLUGINS_ABSPATH.$plugin_name;
             } else {
-                $mambot_source = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS.$plugin_name.JRDS.$remote_plugin_mambot_folder.JRDS;
-                $mambot_xml_source = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS.$plugin_name;
+                $mambot_source = JOMRES_REMOTEPLUGINS_ABSPATH.$plugin_name.JRDS.$remote_plugin_mambot_folder.JRDS;
+                $mambot_xml_source = JOMRES_REMOTEPLUGINS_ABSPATH.$plugin_name;
             }
 
             $mambot_target = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'plugins'.JRDS.$mambot_type.JRDS.$plugin_name;
@@ -1599,7 +1599,7 @@ function install_external_plugin($plugin_name, $plugin_type, $mambot_type = '', 
             $mambot_move_result = dirmv($mambot_source, $mambot_target, true, '/');
 
             if ($mambot_xml_move_result[ 'success' ] && $mambot_move_result[ 'success' ]) {
-                copy($mambot_target.JRDS.'plugin_info.php', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'core-plugins'.JRDS.$plugin_name.JRDS.'plugin_info.php');
+                copy($mambot_target.JRDS.'plugin_info.php', JOMRES_COREPLUGINS_ABSPATH.$plugin_name.JRDS.'plugin_info.php');
                 unlink($mambot_target.JRDS.'plugin_info.php');
                 @unlink($mambot_target.JRDS.'plugin_install.php');
 
@@ -1681,7 +1681,7 @@ Does what it says on the tin
 */
 function dropPlugin($pluginName)
 {
-    $pluginPath = JOMRESPATH_BASE.JRDS.'remote_plugins'.JRDS.$pluginName;
+    $pluginPath = JOMRES_REMOTEPLUGINS_ABSPATH.$pluginName;
     if (file_exists($pluginPath.JRDS.'plugin_uninstall.php')) {
         define('JOMRES_INSTALLER', 1);
         include $pluginPath.JRDS.'plugin_uninstall.php';
@@ -1690,7 +1690,7 @@ function dropPlugin($pluginName)
     if (rmdir($pluginPath)) {
         return true;
     } else {
-        $pluginPath = JOMRESPATH_BASE.JRDS.'core-plugins'.JRDS.$pluginName;
+        $pluginPath = JOMRES_COREPLUGINS_ABSPATH.$pluginName;
         if (file_exists($pluginPath.JRDS.'plugin_uninstall.php')) {
             define('JOMRES_INSTALLER', 1);
             include $pluginPath.JRDS.'plugin_uninstall.php';
