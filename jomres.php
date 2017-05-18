@@ -35,6 +35,9 @@ require_once dirname(__FILE__).'/integration.php';
 try {
     //minicomponents object
     $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+	
+	//trigger 00001 event
+	$MiniComponents->triggerEvent('00001');
 
     //site config object
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -117,6 +120,10 @@ try {
 
     //currency conversion object
     $jomres_currency_exchange_rates = jomres_singleton_abstract::getInstance('jomres_currency_exchange_rates');
+	
+	//set currency code to the appropriate one for the detected location
+	$jomres_geolocation = jomres_singleton_abstract::getInstance('jomres_geolocation');
+	$jomres_geolocation->auto_set_user_currency_code();
 
     //if this cms user has booked in the past and doesn`t have profile details saved yet, we`ll update his profile details aautomatically based on his guest details from one of the previous bookings he`s made
     if (get_showtime('task') != 'error') {

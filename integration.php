@@ -30,6 +30,7 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
     }
 }
 
+//find jomres root path
 if (!defined('JOMRESPATH_BASE')) {
     if (!defined('JRDS')) {
         $apacheSig = false;
@@ -81,14 +82,31 @@ define('JOMRES_FUNCTIONS_ABSPATH', JOMRESPATH_BASE.'libraries'.JRDS.'jomres'.JRD
 define('JOMRES_CMSSPECIFIC_ABSPATH', JOMRESPATH_BASE.'libraries'.JRDS.'jomres'.JRDS.'cms_specific'.JRDS);
 define('JOMRES_API_ABSPATH', JOMRESPATH_BASE.'api'.JRDS);
 
+//includes
+require_once JOMRESPATH_BASE.'detect_cms.php';
 require_once JOMRES_FUNCTIONS_ABSPATH.'database.php';
 require_once JOMRES_FUNCTIONS_ABSPATH.'input_filtering.php';
 require_once JOMRES_FUNCTIONS_ABSPATH.'functions.php';
 require_once JOMRES_FUNCTIONS_ABSPATH.'multibye_functions.php';
 require_once JOMRES_FUNCTIONS_ABSPATH.'jr_gettext.php';
+require_once JOMRES_FUNCTIONS_ABSPATH.'countries.php';
+require_once JOMRES_FUNCTIONS_ABSPATH.'imagehandling.php';
 require_once JOMRES_CLASSES_ABSPATH.'jomres_singleton_abstract.class.php';
 
-//this can be removed most probably, since all servers should have this by default
+//include the classes registry file and make $classes a global variable to be easily accessible, so we`ll avoid calling include() more times
+global $classes;
+
+if (file_exists(JOMRES_TEMP_ABSPATH.'registry_classes.php')) {
+	include_once JOMRES_TEMP_ABSPATH.'registry_classes.php';
+} else {
+	$classes = search_core_and_remote_dirs_for_classfiles();
+}
+
+//includes
+require_once _JOMRES_DETECTED_CMS_SPECIFIC_FILES.'init_config_vars.php';
+require_once _JOMRES_DETECTED_CMS_SPECIFIC_FILES.'cms_specific_functions.php';
+
+//json TODO: this can be removed most probably, since all servers should have this by default
 if (!function_exists('json_encode')) {
     require_once JOMRES_LIBRARIES_ABSPATH.'json'.JRDS.'JSON.php';
 
@@ -113,26 +131,12 @@ if (!function_exists('json_encode')) {
     }
 }
 
-//include the classes registry file and make $classes a global variable to be easily accessible, so we`ll avoid calling include() more times
-//TODO make the classes registry a class
-global $classes;
-if (file_exists(JOMRES_TEMP_ABSPATH.'registry_classes.php')) {
-	include_once JOMRES_TEMP_ABSPATH.'registry_classes.php';
-} else {
-	$classes = search_core_and_remote_dirs_for_classfiles();
-}
-
-$showtime = jomres_singleton_abstract::getInstance('showtime');
-
-require_once JOMRESPATH_BASE.'site_config.php';
-require_once JOMRESPATH_BASE.'detect_cms.php';
-require_once _JOMRES_DETECTED_CMS_SPECIFIC_FILES.'init_config_vars.php';
-require_once _JOMRES_DETECTED_CMS_SPECIFIC_FILES.'cms_specific_functions.php';
-
+//adodb time TODO: most probably can be removed
 if (!function_exists('adodb_date_test_date')) {
     require_once JOMRES_LIBRARIES_ABSPATH.'adodb'.JRDS.'adodb-time.inc.php';
 }
 
+//patTemplate
 if (!class_exists('patTemplate')) {
     require_once JOMRES_LIBRARIES_ABSPATH.'phptools'.JRDS.'patTemplate.php';
 }
@@ -141,30 +145,20 @@ if (!class_exists('patErrorManager')) {
     require_once JOMRES_LIBRARIES_ABSPATH.'phptools'.JRDS.'patErrorManager.php';
 }
 
+//PHPMailer
 require_once JOMRES_LIBRARIES_ABSPATH.JRDS.'PHPMailer-5.2.21'.JRDS.'PHPMailerAutoload.php';
 PHPMailerAutoload('phpmailer');
 PHPMailerAutoload('smtp');
 
-if (file_exists(JOMRES_REMOTEPLUGINS_ABSPATH.'code_changes'.JRDS.'countries.php')) {
-    require_once JOMRES_REMOTEPLUGINS_ABSPATH.'code_changes'.JRDS.'countries.php';
-} else {
-    if (file_exists(JOMRES_REMOTEPLUGINS_ABSPATH.'custom_code'.JRDS.'countries.php')) {
-        require_once JOMRES_REMOTEPLUGINS_ABSPATH.'custom_code'.JRDS.'countries.php';
-    } else {
-        require_once JOMRES_FUNCTIONS_ABSPATH.'countries.php';
-    }
-}
-
-require_once JOMRES_FUNCTIONS_ABSPATH.'imagehandling.php';
-
+//site config
 $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 $jrConfig = $siteConfig->get();
 
+//define jomres logs path
 if (!isset($jrConfig['log_path']) || $jrConfig['log_path'] == '') {
     $jrConfig['log_path'] = JOMRESPATH_BASE.'logs'.JRDS;
 }
 
-//define jomres logs path
 define('JOMRES_SYSTEMLOG_PATH', fix_path($jrConfig['log_path']));
 
 // We can't use the api's vendor autoloader, it breaks Joomla's autoloader. We have to manually include the files we need instead.
@@ -179,7 +173,6 @@ if (!defined('JOMRES_API_CMS_ROOT')) { // The API includes the logger class. As 
     require_once JOMRES_API_ABSPATH.'vendor'.JRDS.'monolog'.JRDS.'monolog'.JRDS.'src'.JRDS.'Monolog'.JRDS.'Handler'.JRDS.'AbstractHandler.php';
     require_once JOMRES_API_ABSPATH.'vendor'.JRDS.'monolog'.JRDS.'monolog'.JRDS.'src'.JRDS.'Monolog'.JRDS.'Handler'.JRDS.'AbstractProcessingHandler.php';
     require_once JOMRES_API_ABSPATH.'vendor'.JRDS.'monolog'.JRDS.'monolog'.JRDS.'src'.JRDS.'Monolog'.JRDS.'Handler'.JRDS.'AbstractSyslogHandler.php';
-
     require_once JOMRES_API_ABSPATH.'vendor'.JRDS.'monolog'.JRDS.'monolog'.JRDS.'src'.JRDS.'Monolog'.JRDS.'Handler'.JRDS.'SyslogUdpHandler.php';
     require_once JOMRES_API_ABSPATH.'vendor'.JRDS.'monolog'.JRDS.'monolog'.JRDS.'src'.JRDS.'Monolog'.JRDS.'Handler'.JRDS.'SyslogHandler.php';
     require_once JOMRES_API_ABSPATH.'vendor'.JRDS.'monolog'.JRDS.'monolog'.JRDS.'src'.JRDS.'Monolog'.JRDS.'Handler'.JRDS.'SyslogUdp'.JRDS.'UdpSocket.php';
@@ -189,6 +182,7 @@ if (!defined('JOMRES_API_CMS_ROOT')) { // The API includes the logger class. As 
     require_once JOMRES_API_ABSPATH.'classes'.JRDS.'logging.class.php';
 }
 
+//check if this is an ajax call or not
 if (!defined('AJAXCALL')) {
     if (isset($_REQUEST[ 'jrajax' ])) {
         if ((int) $_REQUEST[ 'jrajax' ] == 1) {
@@ -217,20 +211,17 @@ set_showtime('tmplcomponent', 'jomres');
 set_showtime('tmplcomponent_source', JOMRES_LIBRARIES_ABSPATH.'fullscreen_view'.JRDS.'jomres.php');
 
 if (!defined('AUTO_UPGRADE')) {
+	//copy fullscreen_view/jomres.php to the joomla template dir to help with fullscreen mode
     jomres_cmsspecific_patchJoomlaTemplate();
-} //copy the management_view.php renamed to jomres.php to the joomla template dir to help with fullscreen mode
-
-require_once _JOMRES_DETECTED_CMS_SPECIFIC_FILES.'cms_specific_urls.php';
-
-//minicomponents triggering starts here
-if (!defined('AUTO_UPGRADE')) {
-    $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-    $MiniComponents->triggerEvent('00001'); // Start
 }
+
+//cms specific urls
+require_once _JOMRES_DETECTED_CMS_SPECIFIC_FILES.'cms_specific_urls.php';
 
 //jomres parse request
 jomres_parseRequest();
 
+//error reporting
 if ($jrConfig[ 'development_production' ] == 'production') {
     set_error_handler('errorHandler');
 } else {
@@ -238,11 +229,7 @@ if ($jrConfig[ 'development_production' ] == 'production') {
     ini_set('display_errors', 'On');
 }
 
-if (!defined('AUTO_UPGRADE')) {
-    $jomres_geolocation = jomres_singleton_abstract::getInstance('jomres_geolocation');
-    $jomres_geolocation->auto_set_user_currency_code();
-}
-
+//modal
 if (!isset($_REQUEST['modal_wrap'])) {
     $_REQUEST['modal_wrap'] = 0;
 } elseif ($_REQUEST['modal_wrap'] == '1') {

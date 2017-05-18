@@ -57,6 +57,9 @@ function load_cms_environment()
 function load_jomres_environment()
 {
     $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+	
+	//trigger 00001 event
+	$MiniComponents->triggerEvent('00001');
 
     //site config object
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -95,6 +98,10 @@ function load_jomres_environment()
 
     //currency exchange rates
     $jomres_currency_exchange_rates = jomres_singleton_abstract::getInstance('jomres_currency_exchange_rates');
+	
+	//set currency code to the appropriate one for the detected location
+	$jomres_geolocation = jomres_singleton_abstract::getInstance('jomres_geolocation');
+	$jomres_geolocation->auto_set_user_currency_code();
 
     $property_uid = (int) detect_property_uid();
 
