@@ -32,7 +32,8 @@ class jomres_access_control
 			'06001' => '50', //reception tasks
 			'06002' => '70', //manager tasks
 			'06005' => '1', //registered tasks
-			'01004' => '0' //property list views
+			'01004' => '0', //property list views
+			'00035' => '0' //property details tabs
 		);
 		
 		//uncontrollable task names
@@ -219,6 +220,7 @@ class jomres_access_control
 					break;
 				default:
 					$user_can_access = true;
+					break;
 			}
 		} else {
 			$user_can_access = true;

@@ -124,6 +124,7 @@ class mcHandler
     {
         $retVal = null;
 		$check_access = false;
+		$can_access = true;
 		$classFileSuffix = '.class.php';
 
 		if (!jomres_cmsspecific_areweinadminarea()) {
@@ -144,12 +145,13 @@ class mcHandler
 				if ($check_access) {
 					if (!$jomres_access_control->this_user_can($eventName)) {
 						system_log('Access control prevented system from running '.$eventPoint.$eventName);
-						
-						return null;
+						$can_access = false;
+					} else {
+						$can_access = true;
 					}
 				}
 
-				if (file_exists($eventDetails[ 'filepath' ].$filename)) {
+				if ($can_access && file_exists($eventDetails[ 'filepath' ].$filename)) {
 					include_once $eventDetails[ 'filepath' ].$filename;
 
 					if ($this->logging_enbled) {
@@ -189,6 +191,7 @@ class mcHandler
     {
         $retVal = null;
 		$check_access = false;
+		$can_access = true;
 		$classFileSuffix = '.class.php';
 		$filename = 'j'.$eventPoint.$eventName.$classFileSuffix;
 		
@@ -208,12 +211,13 @@ class mcHandler
 			if ($check_access) {
 				if (!$jomres_access_control->this_user_can($eventName)) {
 					system_log('Access control prevented system from running '.$eventPoint.$eventName);
-					
-					return null;
+					$can_access = false;
+				} else {
+					$can_access = true;
 				}
 			}
 
-			if (file_exists($this->registeredClasses[$eventPoint][$eventName][ 'filepath' ].$filename)) {
+			if ($can_access && file_exists($this->registeredClasses[$eventPoint][$eventName][ 'filepath' ].$filename)) {
 				include_once $this->registeredClasses[$eventPoint][$eventName][ 'filepath' ].$filename;
 				
 				if ($this->logging_enbled) {
