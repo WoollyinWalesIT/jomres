@@ -806,24 +806,15 @@ function find_region_name($region_id)
 	return $jomres_regions->get_region_name($region_id);
 }
 
-function find_region_id($region)
+function find_region_id($region_name)
 {
-    if (is_numeric($region)) { // It's already numeric
-        return $region;
-    } else {
-        $region = jomres_cmsspecific_stringURLSafe($region);
+    if (is_numeric($region_name)) { // It's already numeric
+        return $region_name;
     }
 
     $jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
-	$jomres_regions->get_all_regions();
-
-    foreach ($jomres_regions->regions as $r) {
-        if (strcasecmp(jomres_cmsspecific_stringURLSafe($r[ 'regionname' ]), $region) == 0) {
-            return (int) $r[ 'id' ];
-        }
-    }
-
-    return null;
+	
+	return $jomres_regions->get_region_id($region_name);
 }
 
 function build_property_manager_xref_array()

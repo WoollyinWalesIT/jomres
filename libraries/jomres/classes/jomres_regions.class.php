@@ -74,6 +74,12 @@ class jomres_regions
 	//get all regions, used only when we need to get all regions from db
     public function get_all_regions()
     {
+		if (!defined('ALL_REGIONS_SET')) {
+			define('ALL_REGIONS_SET', 1);
+		} else {
+			return true;
+		}
+
         $this->regions = array();
 
 		$query = "SELECT `id`, `countrycode`, `regionname` FROM #__jomres_regions ORDER BY `countrycode`,`regionname`";
@@ -172,5 +178,23 @@ class jomres_regions
 				throw new Exception('Tried to get region with non-existant id');
 			}
         }
+    }
+	
+	//get region name by region id, mostly used when we need to display a region name
+    public function get_region_id($region_name = '')
+    {
+		$region_name = jomres_cmsspecific_stringURLSafe($region_name);
+
+		if ($region_name == '') {
+			throw new Exception('Tried to get region id for empty region name');
+		}
+
+        $jomres_regions->get_all_regions();
+
+		foreach ($jomres_regions->regions as $r) {
+			if (strcasecmp(jomres_cmsspecific_stringURLSafe($r[ 'regionname' ]), $region_name) == 0) {
+				return (int) $r[ 'id' ];
+			}
+		}
     }
 }
