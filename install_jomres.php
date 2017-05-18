@@ -83,8 +83,8 @@ if (!file_exists('integration.php')) {
 
 require_once 'integration.php';
 
-if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'registry.php')) {
-    @unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'registry.php');
+if (file_exists(JOMRES_TEMP_ABSPATH.'registry.php')) {
+    @unlink(JOMRES_TEMP_ABSPATH.'registry.php');
 }
 
 global $lkey;
@@ -113,9 +113,9 @@ if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'sessions
     }
 }
 
-if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS)) {
-    if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS)) {
-        output_message('Error, unable to make folder '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server.", 'danger');
+if (!is_dir(JOMRES_TEMP_ABSPATH)) {
+    if (!@mkdir(JOMRES_TEMP_ABSPATH)) {
+        output_message('Error, unable to make folder '.JOMRES_TEMP_ABSPATH." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server.", 'danger');
         $folderChecksPassed = false;
     }
 }
@@ -231,9 +231,9 @@ if ($folderChecksPassed && $functionChecksPassed) {
                 $registry = jomres_singleton_abstract::getInstance('minicomponent_registry');
                 $registry->regenerate_registry();
 
-                $javascript_files_in_temp_dir = scandir_getfiles(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS, $extension = 'js');
+                $javascript_files_in_temp_dir = scandir_getfiles(JOMRES_TEMP_ABSPATH, $extension = 'js');
                 foreach ($javascript_files_in_temp_dir as $file) {
-                    unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.$file);
+                    unlink(JOMRES_TEMP_ABSPATH.$file);
                 }
 
                 //output_message ( "Data already installed, no need to re-create it");

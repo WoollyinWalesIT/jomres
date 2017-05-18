@@ -734,7 +734,7 @@ function jomres_make_qr_code($string = '', $format = 'text')
 {
     $qr = jomres_singleton_abstract::getInstance('jomres_qr_code');
 
-    $dir = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'qr_codes';
+    $dir = JOMRES_TEMP_ABSPATH.'qr_codes';
     test_and_make_directory($dir);
 
     if ($string == '') {
@@ -4502,17 +4502,17 @@ function get_jomres_current_version()
 
 function get_latest_jomres_version($outputText = true)
 {
-    if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'latest_version.php')) {
-        $last_modified = filemtime(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'latest_version.php');
+    if (file_exists(JOMRES_TEMP_ABSPATH.'latest_version.php')) {
+        $last_modified = filemtime(JOMRES_TEMP_ABSPATH.'latest_version.php');
         $seconds_timediff = time() - $last_modified;
         if ($seconds_timediff > 3600) {
-            unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'latest_version.php');
+            unlink(JOMRES_TEMP_ABSPATH.'latest_version.php');
         } else {
-            $buffer = file_get_contents(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'latest_version.php');
+            $buffer = file_get_contents(JOMRES_TEMP_ABSPATH.'latest_version.php');
         }
     }
 
-    if (function_exists('curl_init') && !file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'latest_version.php')) {
+    if (function_exists('curl_init') && !file_exists(JOMRES_TEMP_ABSPATH.'latest_version.php')) {
         $url = 'http://updates.jomres4.net/versions.php';
         logging::log_message('Starting curl call to '.$url, 'Curl', 'DEBUG');
         $logging_time_start = microtime(true);
@@ -4536,7 +4536,7 @@ function get_latest_jomres_version($outputText = true)
             $latest_minor_version = $latest_jomres_version[ 1 ];
             $latest_revis_version = $latest_jomres_version[ 2 ];
             $buffer = (int) $latest_major_version.'.'.(int) $latest_minor_version.'.'.(int) $latest_revis_version;
-            file_put_contents(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'latest_version.php', $buffer);
+            file_put_contents(JOMRES_TEMP_ABSPATH.'latest_version.php', $buffer);
         }
     }
 

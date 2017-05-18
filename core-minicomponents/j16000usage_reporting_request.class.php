@@ -27,7 +27,7 @@ class j16000usage_reporting_request
         }
 
         $this->retVals = '';
-        if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'usage_reporting_request.txt')) {
+        if (file_exists(JOMRES_TEMP_ABSPATH.'usage_reporting_request.txt')) {
             return true;
         }
 

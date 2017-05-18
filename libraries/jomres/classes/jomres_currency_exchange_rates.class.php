@@ -37,7 +37,7 @@ class jomres_currency_exchange_rates
 
         $this->url = 'http://openexchangerates.org/api/latest.json?app_id='.$this->app_id;
 
-        $this->exchange_rate_classfile = JOMRESPATH_BASE.JRDS.'temp'.JRDS.'exchangerates_'.$this->base_code.'.php';
+        $this->exchange_rate_classfile = JOMRES_TEMP_ABSPATH.'exchangerates_'.$this->base_code.'.php';
 
         if (file_exists($this->exchange_rate_classfile)) {
             //this populates $this->rates with the existing exchange rates array

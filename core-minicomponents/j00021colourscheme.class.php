@@ -40,18 +40,10 @@ class j00021colourscheme
             }
         }
 
-        if (file_exists(JOMRESPATH_BASE.JRDS.'temp'.JRDS.$css_file)) {
-            jomres_cmsspecific_addheaddata('css', JOMRES_ROOT_DIRECTORY.'/temp/', $css_file);
-        } else {
-            jomres_cmsspecific_addheaddata('css', JOMRES_CSSRELPATH, $css_file);
-        }
+        jomres_cmsspecific_addheaddata('css', JOMRES_CSSRELPATH, $css_file);
     }
 
-    /**
-     * Must be included in every mini-component.
-     #
-     * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
-     */
+    //Must be included in every mini-component.
     public function getRetVals()
     {
         return null;

@@ -21,7 +21,7 @@ class shortcode_parser
     public function __construct()
     {
         $this->shortcodes = false;
-        $this->shortcodes_file = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'shortcodes.php';
+        $this->shortcodes_file = JOMRES_TEMP_ABSPATH.'shortcodes.php';
     }
 
     public static function getInstance()

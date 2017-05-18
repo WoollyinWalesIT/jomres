@@ -110,21 +110,16 @@ class j00005x_build_javascript_lang_definitions
         } else {
             $temp_file .= '_misc_url_defs.js';
         }
-        if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.$temp_file)) {
-            $result = file_put_contents(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.$temp_file, $misc_url_defs);
+        if (!file_exists(JOMRES_TEMP_ABSPATH.$temp_file)) {
+            $result = file_put_contents(JOMRES_TEMP_ABSPATH.$temp_file, $misc_url_defs);
             if (!$result) {
-                throw new Exception('Tried to write  '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.$temp_file.' but was not succcessful');
+                throw new Exception('Tried to write  '.JOMRES_TEMP_ABSPATH.$temp_file.' but was not succcessful');
             }
         }
 
         jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/temp/', $temp_file);
     }
 
-/**
- * Must be included in every mini-component.
- #
- * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
- */
     // This must be included in every Event/Mini-component
     public function getRetVals()
     {

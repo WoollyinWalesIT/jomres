@@ -67,7 +67,7 @@ class jomres_check_support_key
 
     public function remove_plugin_licenses_file()
     {
-        unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.$this->user_plugin_license_temp_file_name);
+        unlink(JOMRES_TEMP_ABSPATH.$this->user_plugin_license_temp_file_name);
     }
 
     public function remote_get_all_user_plugin_licenses()
@@ -83,17 +83,17 @@ class jomres_check_support_key
             }
         }
 
-        if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.$this->user_plugin_license_temp_file_name)) {
-            $last_modified = filemtime(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.$this->user_plugin_license_temp_file_name);
+        if (file_exists(JOMRES_TEMP_ABSPATH.$this->user_plugin_license_temp_file_name)) {
+            $last_modified = filemtime(JOMRES_TEMP_ABSPATH.$this->user_plugin_license_temp_file_name);
             $seconds_timediff = time() - $last_modified;
             if ($seconds_timediff > 60) {
-                unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.$this->user_plugin_license_temp_file_name);
+                unlink(JOMRES_TEMP_ABSPATH.$this->user_plugin_license_temp_file_name);
             } else {
-                include_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.$this->user_plugin_license_temp_file_name;
+                include_once JOMRES_TEMP_ABSPATH.$this->user_plugin_license_temp_file_name;
             }
         }
 
-        if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.$this->user_plugin_license_temp_file_name)) {
+        if (!file_exists(JOMRES_TEMP_ABSPATH.$this->user_plugin_license_temp_file_name)) {
             $str = '';
             if (!empty($current_licenses)) {
                 foreach ($current_licenses as $key => $val) {
@@ -111,13 +111,13 @@ $current_licenses = array();
 '.$str.'
 return $current_licenses;
 }';
-            file_put_contents(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'user_plugin_licenses.php', $lic_data);
+            file_put_contents(JOMRES_TEMP_ABSPATH.'user_plugin_licenses.php', $lic_data);
         }
     }
 
     public function get_user_plugin_licenses()
     {
-        include_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.$this->user_plugin_license_temp_file_name;
+        include_once JOMRES_TEMP_ABSPATH.$this->user_plugin_license_temp_file_name;
         $this->plugin_licenses = plugin_licenses();
     }
 
@@ -137,17 +137,17 @@ return $current_licenses;
         $license_data->allows_plugins = false;
         $license_data->is_trial_license = false;
 
-        if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'license_key_check_cache.php')) {
-            $last_modified = filemtime(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'license_key_check_cache.php');
+        if (file_exists(JOMRES_TEMP_ABSPATH.'license_key_check_cache.php')) {
+            $last_modified = filemtime(JOMRES_TEMP_ABSPATH.'license_key_check_cache.php');
             $seconds_timediff = time() - $last_modified;
             if ($seconds_timediff > 3600) {
-                unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'license_key_check_cache.php');
+                unlink(JOMRES_TEMP_ABSPATH.'license_key_check_cache.php');
             } else {
-                include JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'license_key_check_cache.php';
+                include JOMRES_TEMP_ABSPATH.'license_key_check_cache.php';
             }
         }
 
-        if (function_exists('curl_init') && !file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'license_key_check_cache.php') || $this->force_check) {
+        if (function_exists('curl_init') && !file_exists(JOMRES_TEMP_ABSPATH.'license_key_check_cache.php') || $this->force_check) {
             $buffer = queryUpdateServer('check_key.php', $str, 'updates');
             if ($buffer != '') {
                 $license_data = json_decode($buffer);
@@ -185,7 +185,7 @@ $license_data->allows_plugins = "'.$license_data->allows_plugins.'";
 $license_data->is_trial_license = "'.$license_data->is_trial_license.'";
 ';
 
-                file_put_contents(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'license_key_check_cache.php', $lic_data);
+                file_put_contents(JOMRES_TEMP_ABSPATH.'license_key_check_cache.php', $lic_data);
             }
         }
 

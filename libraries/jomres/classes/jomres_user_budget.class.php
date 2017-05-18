@@ -116,17 +116,17 @@ class jomres_user_budget
     {
 		$prices = array();
 		
-        if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'price_ranges.php')) {
-            $last_modified = filemtime(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'price_ranges.php');
+        if (file_exists(JOMRES_TEMP_ABSPATH.'price_ranges.php')) {
+            $last_modified = filemtime(JOMRES_TEMP_ABSPATH.'price_ranges.php');
             $seconds_timediff = time() - $last_modified;
             if ($seconds_timediff > 3600) {
-                unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'price_ranges.php');
+                unlink(JOMRES_TEMP_ABSPATH.'price_ranges.php');
             } else {
-                $prices = json_decode(file_get_contents(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'price_ranges.php'));
+                $prices = json_decode(file_get_contents(JOMRES_TEMP_ABSPATH.'price_ranges.php'));
             }
         }
 
-        if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'price_ranges.php') || empty($prices)) {
+        if (!file_exists(JOMRES_TEMP_ABSPATH.'price_ranges.php') || empty($prices)) {
             $query = "SELECT DISTINCT roomrateperday FROM #__jomres_rates WHERE roomrateperday > '0' LIMIT 100";
             $rates = doSelectSql($query);
 
@@ -160,7 +160,7 @@ class jomres_user_budget
             $prices = array_unique($prices);
             natsort($prices);
             $prices = array_values($prices); // Resetting the keys for "range"
-            file_put_contents(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'price_ranges.php', json_encode($prices));
+            file_put_contents(JOMRES_TEMP_ABSPATH.'price_ranges.php', json_encode($prices));
         }
 
         return $prices;

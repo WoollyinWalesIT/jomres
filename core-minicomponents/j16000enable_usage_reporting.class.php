@@ -30,7 +30,7 @@ class j16000enable_usage_reporting
         $enable_usage = (int) jomresGetParam($_REQUEST, 'enable_usage', '0');
         saveSiteConfig(array('send_tracking_data' => $enable_usage));
 
-        file_put_contents(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'usage_reporting_request.txt', ''); // So that we don't constantly nag for this setting
+        file_put_contents(JOMRES_TEMP_ABSPATH.'usage_reporting_request.txt', ''); // So that we don't constantly nag for this setting
 
         jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN), 'Configuration saved');
     }

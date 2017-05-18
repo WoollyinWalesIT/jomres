@@ -413,8 +413,8 @@ function saveSiteConfig($overrides = array())
 {
     ignore_user_abort(true);
 
-    if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'key.php')) {
-        unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'key.php');
+    if (file_exists(JOMRES_TEMP_ABSPATH.'key.php')) {
+        unlink(JOMRES_TEMP_ABSPATH.'key.php');
     }
 
     if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php')) {
