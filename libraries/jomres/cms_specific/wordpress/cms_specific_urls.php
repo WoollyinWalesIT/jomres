@@ -15,8 +15,8 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 $jrConfig = $siteConfig->get();
-$scriptname = str_replace('/', '', $_SERVER[ 'PHP_SELF' ]);
-if (strstr($scriptname, 'install_jomres.php')) {
+
+if (defined('AUTO_UPGRADE')) {
     set_showtime('live_site', str_replace('/jomres/', '/', get_showtime('live_site')));
 }
 
@@ -28,8 +28,7 @@ $currentBlogLang = str_replace('_', '-', get_locale());
 
 $keyword = '[jomres:'.strtolower($currentBlogLang).']';
 
-$scriptname = str_replace('/', '', $_SERVER[ 'PHP_SELF' ]);
-if (!strstr($scriptname, 'install_jomres.php')) {
+if (!defined('AUTO_UPGRADE')) {
     $jomresItemid = 0;
 
     $query = "SELECT `ID` FROM #__posts WHERE LOWER(`post_content`) LIKE '%".$keyword."%' AND `post_status` = 'publish' AND `post_type` = 'page' LIMIT 1";

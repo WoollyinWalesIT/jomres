@@ -426,8 +426,7 @@ function jomres_cmsspecific_parseByBots($str)
 
 function jomres_cmsspecific_stringURLSafe($str)
 {
-    $scriptname = str_replace('/', '', $_SERVER[ 'PHP_SELF' ]);
-    if (!strstr($scriptname, 'install_jomres.php')) {
+    if (!defined('AUTO_UPGRADE')) {
         $config = JFactory::getConfig();
         if ($config->get('unicodeslugs') == '1') {
             $str = JFilterOutput::stringURLUnicodeSlug($str);

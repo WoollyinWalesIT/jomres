@@ -14,12 +14,10 @@
 defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.');
 // ################################################################
 
-$scriptname = str_replace('/', '', $_SERVER[ 'PHP_SELF' ]);
-
 require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'configuration.php';
 $CONFIG = new JConfig();
 
-if (!strstr($scriptname, 'install_jomres.php')) {
+if (!defined('AUTO_UPGRADE')) {
     //JFactory::getConfig()->setValue('config.caching', 0);
     //JRegistry::set('config.caching', 0);
     if (class_exists('JURI')) {
@@ -67,10 +65,8 @@ if (defined('API_STARTED')) {
     $jomresConfig_live_site = str_replace('/jomres/api', '', $jomresConfig_live_site);
 }
 
-$scriptname = str_replace('/', '', $_SERVER[ 'PHP_SELF' ]);
-
 $jomresConfig_lang = 'en-GB';
-if (!strstr($scriptname, 'install_jomres.php')) {
+if (!defined('AUTO_UPGRADE')) {
     $jomresConfig_lang = JFactory::getLanguage()->getTag();
 }
 

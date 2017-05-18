@@ -1399,8 +1399,8 @@ function jr_import($class)
 function search_core_and_remote_dirs_for_classfiles()
 {
 	global $classes;
-	$scriptname = str_replace('/', '', $_SERVER[ 'PHP_SELF' ]);
-	if (strstr($scriptname, 'install_jomres.php')) {
+
+	if (defined('AUTO_UPGRADE')) {
 		return;
 	}
     $plugin_paths = array();

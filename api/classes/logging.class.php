@@ -47,8 +47,8 @@ class logging
         } else {
             $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
             $jrConfig = $siteConfig->get();
-            $scriptname = str_replace('/', '', $_SERVER[ 'PHP_SELF' ]);
-            if (!strstr($scriptname, 'install_jomres.php')) {
+
+            if (!defined('AUTO_UPGRADE')) {
                 $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
                 if ($thisJRUser->username !== false) {
                     $username = $thisJRUser->username;
