@@ -163,11 +163,6 @@ class j10501a_misc
 		$configurationPanel->setmiddle($lists[ 'show_powered_by' ]);
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
-		
-		$configurationPanel->setleft(jr_gettext('_JOMRES_TRACKING_ENABLE', '_JOMRES_TRACKING_ENABLE', false));
-        $configurationPanel->setmiddle($lists[ 'send_tracking_data' ]);
-        $configurationPanel->setright(jr_gettext('_JOMRES_TRACKING_ENABLE_DESC', '_JOMRES_TRACKING_ENABLE_DESC', false));
-        $configurationPanel->insertSetting();
 
 		$configurationPanel->setleft(jr_gettext('_JOMRES_SESSION_HANDLER', '_JOMRES_SESSION_HANDLER', false));
 		$configurationPanel->setmiddle($lists[ 'session_handler' ]);

@@ -325,12 +325,6 @@ try {
         $document->setBase(null);
     }
 
-    //jomres usage reporting
-	if (!AJAXCALL && $no_html == 0) {
-		jr_import('jomres_usage_reporting');
-		$tracking = new jomres_usage_reporting();
-	}
-
     //done
     endrun();
     if (AJAXCALL) {

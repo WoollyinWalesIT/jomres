@@ -4645,7 +4645,7 @@ function gmaps_apikey_check()
 function ipinfodb_apikey_check()
 {
     $message = '';
-    $highlight = (using_bootstrap() ? 'alert alert-warning' : 'ui-state-highlight');
+    $highlight = (using_bootstrap() ? 'alert alert-info' : 'ui-state-default');
 
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
@@ -4660,7 +4660,7 @@ function ipinfodb_apikey_check()
 function openexchangerates_apikey_check()
 {
     $message = '';
-    $highlight = (using_bootstrap() ? 'alert alert-warning' : 'ui-state-highlight');
+    $highlight = (using_bootstrap() ? 'alert alert-info' : 'ui-state-default');
 
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();

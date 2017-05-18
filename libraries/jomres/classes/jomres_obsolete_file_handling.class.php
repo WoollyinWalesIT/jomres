@@ -1486,6 +1486,11 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'control_panel_menu_wrapper.html');
 		$this->add_obs_file($this->dir_classes.'jomres_performance_monitor.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j16000delete_template.class.php');
+		
+		$this->add_obs_file($this->dir_classes.'jomres_usage_reporting.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j16000enable_usage_reporting.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j16000usage_reporting_request.class.php');
+		$this->add_obs_dir($this->dir_libraries.JRDS.'piwik'.JRDS);
     }
 
     public function add_obs_file($path_and_file)
