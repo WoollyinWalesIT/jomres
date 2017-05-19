@@ -37,10 +37,10 @@ class j06000show_hotel_details
         }
         $output = array();
 
-        if (isset($_REQUEST[ 'property_uid' ])) {
-            $property_uid = jomresGetParam($_REQUEST, 'property_uid', 0);
+        if (isset($componentArgs[ 'property_uid' ])) {
+            $property_uid = (int)$componentArgs[ 'property_uid' ];
         } else {
-            $property_uid = (int) $componentArgs[ 'property_uid' ];
+			$property_uid = (int)jomresGetParam($_REQUEST, 'property_uid', 0);
         }
 
         if ($property_uid == 0) {

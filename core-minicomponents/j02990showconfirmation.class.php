@@ -39,8 +39,10 @@ class j02990showconfirmation
         $paypal_settings->get_paypal_settings();
 
         $secret_key_payment = false;
-        if (isset($_REQUEST['sk'])) {
-            $secret_key = jomresGetParam($_REQUEST, 'sk', '');
+		
+		$secret_key = jomresGetParam($_REQUEST, 'sk', '');
+
+        if ($secret_key != '') {
             jr_import('jomres_contract_secret_key');
             $jomres_contract_secret_key = new jomres_contract_secret_key();
 

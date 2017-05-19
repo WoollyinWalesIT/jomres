@@ -28,7 +28,9 @@ class j02990add_tourist_tax
         }
 
         //if this is a secret key payment (for an approved booking enquiry) we don`t need to add the tourist tax again
-        if (isset($_REQUEST['sk'])) {
+		$sk = (int)jomresGetParam($_REQUEST, 'sk', '');
+
+        if ($sk != '') {
             return;
         }
 

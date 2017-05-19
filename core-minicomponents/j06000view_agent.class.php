@@ -56,14 +56,14 @@ class j06000view_agent
         if (is_null($property_manager_xref)) {
             $property_manager_xref = build_property_manager_xref_array();
         }
+		
+		if (isset($componentArgs[ 'property_uid' ])) {
+            $property_uid = (int)$componentArgs[ 'property_uid' ];
+        } else {
+			$property_uid = (int)jomresGetParam($_REQUEST, 'property_uid', 0);
+        }
 
-        if (isset($componentArgs['property_uid']) || isset($_REQUEST['property_uid'])) {
-            if (isset($componentArgs['property_uid'])) {
-                $property_uid = (int) $componentArgs['property_uid'];
-            } elseif (isset($_REQUEST['property_uid'])) {
-                $property_uid = (int) $_REQUEST['property_uid'];
-            }
-
+        if ($property_uid > 0) {
             if (array_key_exists($property_uid,  $property_manager_xref)) {
                 $manager_id = $property_manager_xref[ $property_uid ];
             } else {

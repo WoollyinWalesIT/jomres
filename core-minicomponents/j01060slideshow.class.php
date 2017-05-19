@@ -74,9 +74,9 @@ class j01060slideshow
             if (isset($componentArgs[ 'property_uid' ])) {
                 $property_uid = $componentArgs[ 'property_uid' ];
             } else {
-                if (isset($_REQUEST['property_uid'])) {
-                    $property_uid = (int) jomresGetParam($_REQUEST, 'property_uid', 0);
-                } else {
+				$property_uid = (int)jomresGetParam($_REQUEST, 'property_uid', 0);
+				
+                if ($property_uid == 0) {
                     $property_uid = get_showtime('property_uid');
                 }
             }

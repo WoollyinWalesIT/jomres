@@ -28,10 +28,12 @@ class j01010listpropertys
 
         $MiniComponents->triggerEvent('01008', $componentArgs); // optional
 
-        $data_only = false;
-        if (isset($_REQUEST[ 'dataonly' ])) {
-            $data_only = true;
-        }
+        $data_only 					= jomresGetParam($_REQUEST, 'dataonly', false);
+		$propertylist_layout 		= jomresGetParam($_REQUEST, 'propertylist_layout', '');
+		$jr_page 					= (int)jomresGetParam($_REQUEST, 'jr_page', 0);
+		$return_to_search_results 	= jomresGetParam($_REQUEST, 'return_to_search_results', false);
+		$arrivalDate 				= jomresGetParam($_REQUEST, 'arrivalDate', '');
+		$departureDate 				= jomresGetParam($_REQUEST, 'departureDate', '');
 
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
@@ -82,8 +84,8 @@ class j01010listpropertys
             }
         }
 
-        if (isset($_REQUEST[ 'propertylist_layout' ]) && in_array($_REQUEST[ 'propertylist_layout' ], $all_layouts)) {
-            $tmpBookingHandler->tmpsearch_data[ 'current_property_list_layout' ] = jomresGetParam($_REQUEST, 'propertylist_layout', '');
+        if ($propertylist_layout != '' && in_array($propertylist_layout, $all_layouts)) {
+            $tmpBookingHandler->tmpsearch_data[ 'current_property_list_layout' ] = $propertylist_layout;
         }
         $layout = $tmpBookingHandler->tmpsearch_data[ 'current_property_list_layout' ];
 
@@ -111,7 +113,7 @@ class j01010listpropertys
             session_start();
         }
 
-        if ((isset($_REQUEST['propertylist_layout']) || isset($_REQUEST['jr_page'])) || isset($_REQUEST['return_to_search_results'])) {
+        if ($propertylist_layout != '' || $jr_page > 0 || $return_to_search_results) {
             $propertys_uids = $tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ];
         }
 
@@ -166,8 +168,9 @@ class j01010listpropertys
 
             if ($jrConfig[ 'is_single_property_installation' ] == '1') {
                 $arrival_clause = '';
-                if (isset($_REQUEST[ 'arrivalDate' ])) {
-                    $arrival_clause = '&arrivalDate='.$_REQUEST[ 'arrivalDate' ].'&departureDate='.$_REQUEST[ 'departureDate' ]; // There's no need for these elements to be sanitised, as we're just redirecting again to a new url, these items will be sanitised at that point.
+				
+                if ($arrivalDate != '') {
+                    $arrival_clause = '&arrivalDate='.$arrivalDate.'&departureDate='.$departureDate;
                 }
                 jomresRedirect(get_booking_url($propertys_uids[ 0 ], '', $arrival_clause), '');
             }
@@ -249,14 +252,14 @@ class j01010listpropertys
 
             $templateCounter = 1;
 
-            if (!isset($_REQUEST[ 'arrivalDate' ]) || trim($_REQUEST[ 'arrivalDate' ]) == '') {
+            if ($arrivalDate == '') {
                 if (isset($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ]) && $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] != '') {
                     $arrivalDate = $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ];
                 } else {
                     $arrivalDate = date('Y/m/d');
                 }
             } else {
-                $arrivalDate = JSCalConvertInputDates(jomresGetParam($_REQUEST, 'arrivalDate', ''), $siteCal = true);
+                $arrivalDate = JSCalConvertInputDates($arrivalDate, $siteCal = true);
             }
 
             $date_elements = explode('/', $arrivalDate);
@@ -874,10 +877,10 @@ class j01010listpropertys
             }
         }
 
-        if (!isset($_REQUEST['jr_page'])) {
+        if ($jr_page == 0) {
             $current_page = 1;
         } else {
-            $current_page = (int) $_REQUEST['jr_page'];
+            $current_page = $jr_page;
         }
 
         $totalItems = count($propertys_uids);

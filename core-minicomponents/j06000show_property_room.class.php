@@ -35,12 +35,14 @@ class j06000show_property_room
 
             return;
         }
-
-        if (isset($componentArgs[ 'id' ])) {
-            $room_uid = (int) $componentArgs[ 'id' ];
-        } elseif (isset($_REQUEST['id'])) {
-            $room_uid = (int) $_REQUEST['id'];
+		
+		if (isset($componentArgs[ 'id' ])) {
+            $room_uid = (int)$componentArgs[ 'id' ];
         } else {
+			$room_uid = (int)jomresGetParam($_REQUEST, 'id', 0);
+        }
+		
+		if ($room_uid == 0) {
             return;
         }
 

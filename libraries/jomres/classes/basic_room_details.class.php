@@ -209,7 +209,6 @@ class basic_room_details
                 
 				$this->all_room_features[ $r->room_features_uid ][ 'image' ] = $feature_image;
 
-                $feature_image = str_replace(get_showtime('live_site').'/', '', $feature_image);
                 $this->all_room_features[ $r->room_features_uid ][ 'tooltip' ] = jomres_makeTooltip(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION'.(int) $r->room_features_uid, stripslashes($r->feature_description), false, false), jr_gettext('_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION'.(int) $r->room_features_uid, stripslashes($r->feature_description), false, false), '', $feature_image, '', 'property_feature', array());
             }
         }

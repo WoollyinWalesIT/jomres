@@ -137,11 +137,8 @@ try {
 
 		//check jomres support key
         jr_import('jomres_check_support_key');
-        //if ($_REQUEST['task'] != "showplugins")
-        //	{
-            $key_validation = new jomres_check_support_key(JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins');
+        $key_validation = new jomres_check_support_key(JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins');
         $output['LICENSE_WARNING'] = $MiniComponents->specificEvent('16000', 'show_license_message', array('output_now' => false, 'as_modal' => false));
-        //	}
 
 		//bootstrap
 		$output[ 'USING_BOOTSTRAP' ] = 'true';

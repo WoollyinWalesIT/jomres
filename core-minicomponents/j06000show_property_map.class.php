@@ -39,10 +39,12 @@ class j06000show_property_map
         $this->retVals = '';
 
         if (isset($componentArgs[ 'property_uid' ])) {
-            $property_uid = (int) $componentArgs[ 'property_uid' ];
-        } elseif (isset($_REQUEST['property_uid'])) {
-            $property_uid = (int) $_REQUEST['property_uid'];
+            $property_uid = (int)$componentArgs[ 'property_uid' ];
         } else {
+			$property_uid = (int)jomresGetParam($_REQUEST, 'property_uid', 0);
+        }
+		
+		if ($property_uid == 0) {
             return;
         }
 
@@ -60,7 +62,7 @@ class j06000show_property_map
 
         $mw = 300;
         $mh = 300;
-        if (isset($_REQUEST[ 'property_uid' ])) {
+        if ((int)jomresGetParam($_REQUEST, 'property_uid', 0) > 0) {
             if (isset($_REQUEST[ 'mw' ])) {
                 $mw = (int) $_REQUEST[ 'mw' ];
             }

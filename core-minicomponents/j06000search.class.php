@@ -106,7 +106,9 @@ class j06000search
         }
         if (isset($componentArgs[ 'calledByModule' ])) {
             $calledByModule = $componentArgs[ 'calledByModule' ];
-        }
+        } else {
+			$calledByModule = jomresGetParam($_REQUEST, 'calledByModule', '');
+		}
 
         if (!$includedInModule) {
             $doSearch = true;
@@ -114,10 +116,6 @@ class j06000search
             $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
             $tmpBookingHandler->initBookingSession();
             $showSearchOptions = true;
-        }
-
-        if ($calledByModule == '' && isset($_REQUEST[ 'calledByModule' ])) {
-            $calledByModule = jomresGetParam($_REQUEST, 'calledByModule', '');
         }
 
         if ($calledByModule == '' && !isset($_REQUEST[ 'next' ])) {
@@ -154,42 +152,51 @@ class j06000search
         $metaTitle = '';
 
         $unwanted = array('%', "'", '"');
-        if (!empty($_REQUEST[ 'propertyname' ])) {
-            if ($_REQUEST[ 'propertyname' ] == $searchAll) {
+		
+		$propertyname = jomresGetParam($_REQUEST, 'propertyname', '');
+		
+        if ($propertyname != '') {
+            if ($propertyname == $searchAll) {
                 $sch->filter[ 'propertyname' ] = '%';
             } else {
-                $sch->filter[ 'propertyname' ] = jomresGetParam($_REQUEST, 'propertyname', '');
+                $sch->filter[ 'propertyname' ] = $propertyname;
                 $sch->filter[ 'propertyname' ] = str_replace($unwanted, '', $sch->filter[ 'propertyname' ]);
                 $metaTitle .= ' '.htmlspecialchars_decode($sch->filter[ 'propertyname' ], ENT_QUOTES);
             }
         }
+		
+		$country = jomresGetParam($_REQUEST, 'country', '');
 
-        if (!empty($_REQUEST[ 'country' ])) {
-            if ($_REQUEST[ 'country' ] == $searchAll) {
+        if ($country != '') {
+            if ($country == $searchAll) {
                 $sch->filter[ 'country' ] = '%';
             } else {
-                $sch->filter[ 'country' ] = jomresGetParam($_REQUEST, 'country', '');
+                $sch->filter[ 'country' ] = $country;
                 $sch->filter[ 'country' ] = str_replace($unwanted, '', $sch->filter[ 'country' ]);
                 $metaTitle .= ' '.getSimpleCountry($sch->filter[ 'country' ]);
             }
         }
+		
+		$region = jomresGetParam($_REQUEST, 'region', '');
 
-        if (!empty($_REQUEST[ 'region' ])) {
-            if ($_REQUEST[ 'region' ] == $searchAll) {
+        if ($region != '') {
+            if ($region == $searchAll) {
                 $sch->filter[ 'region' ] = '%';
             } else {
-                $sch->filter[ 'region' ] = jomresGetParam($_REQUEST, 'region', '');
+                $sch->filter[ 'region' ] = $region;
                 $sch->filter[ 'region' ] = str_replace($unwanted, '', $sch->filter[ 'region' ]);
                 $region_name = find_region_name($sch->filter[ 'region' ]);
                 $metaTitle .= ' '.htmlspecialchars_decode($region_name, ENT_QUOTES);
             }
         }
+		
+		$town = jomresGetParam($_REQUEST, 'town', '');
 
-        if (!empty($_REQUEST[ 'town' ])) {
-            if ($_REQUEST[ 'town' ] == $searchAll) {
+        if ($town != '') {
+            if ($town == $searchAll) {
                 $sch->filter[ 'town' ] = '%';
             } else {
-                $sch->filter[ 'town' ] = jomresGetParam($_REQUEST, 'town', '');
+                $sch->filter[ 'town' ] = $town;
                 $sch->filter[ 'town' ] = str_replace($unwanted, '', $sch->filter[ 'town' ]);
                 $metaTitle .= ' '.htmlspecialchars_decode($sch->filter[ 'town' ], ENT_QUOTES);
             }
@@ -252,7 +259,7 @@ class j06000search
             }
         }
 
-        if ($option == 'com_jomres' && (!empty($_REQUEST[ 'propertyname' ]) || !empty($_REQUEST[ 'country' ]) || !empty($_REQUEST[ 'region' ]) || !empty($_REQUEST[ 'town' ]))) {
+        if ($option == 'com_jomres' && ($propertyname != '' || $country != '' || $region != '' || $town != '')) {
             jomres_cmsspecific_setmetadata('title', $metaTitle);
         }
 
@@ -714,7 +721,7 @@ class j06000search
 
         if ($doSearch) {
             $numberOfPropertiesInSystem = get_showtime('numberOfPropertiesInSystem');
-            if ($numberOfPropertiesInSystem > 1 && !$includedInModule && !isset($_REQUEST[ 'calledByModule' ]) && !isset($_REQUEST[ 'next' ]) && get_showtime('task') == '') {
+            if ($numberOfPropertiesInSystem > 1 && !$includedInModule && $calledByModule == '' && !isset($_REQUEST[ 'next' ]) && get_showtime('task') == '') {
                 $sch->jomSearch_random();
             } else {
                 if (in_array('propertyname', $searchOptions) && !empty($sch->filter[ 'propertyname' ])) {
