@@ -23,7 +23,12 @@ function jomres_cmsspecific_getsessionid()
 {
     $session = JFactory::getSession();
 
-    return $session_id = $session->getId();
+    $session_id = $session->getId();
+	
+	//TODO: find a better way for sessions in PHP 7.1 which have 256 max length
+	$session_id = substr($session_id, 0, 50);
+	
+	return $session_id;
 }
 
 // Date is sent in format YYYY/mm/dd, e.g. 2013/
