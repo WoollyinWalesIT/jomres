@@ -613,8 +613,6 @@ function doTableUpdates()
     updateSiteSettings('update_time', time());
     
 }
-
-
 		
 function add_jomres_template_package_table()
 {
@@ -4451,6 +4449,15 @@ function createExtraIndexs()
             output_message('Failed to run query: '.$query, 'danger');
         }
     }
+
+	$query = "SHOW INDEX FROM `#__jomres_contracts` WHERE Key_name = 'guest_uid' ";
+	$indexExists = doSelectSql($query);
+	if (count($indexExists) < 1) {
+		$query = 'ALTER TABLE `#__jomres_contracts` ADD INDEX guest_uid ( guest_uid ) ';
+		if (!doInsertSql($query)) {
+			output_message('Failed to run query: '.$query, 'danger');
+		}
+	}
 
     $query = "SHOW INDEX FROM `#__jomcomp_notes` WHERE Key_name = 'property_uid' ";
     $indexExists = doSelectSql($query);
