@@ -80,88 +80,90 @@ function make_datatable(table_id, pagetitle, livesite, ajaxurl, showTools) {
 		
 		}
 	var oTable = jomresJquery('#' + table_id).dataTable({
-		"bProcessing": bProcessing,
-		"bServerSide": bServerSide,
-		"sAjaxSource": ajaxurl,
-		"bJQueryUI": false,
-		"bStateSave": true,
-		"bAutoWidth": false,
-		"sDom": sDomm,
+		"processing": bProcessing,
+		"serverSide": bServerSide,
+		"ajax": ajaxurl,
+		"jQueryUI": false,
+		"stateSave": true,
+		"autoWidth": false,
+		"dom": sDomm,
 		"order": [[ 0, "desc" ]],
 		"searchDelay": 1000,
-		"oLanguage": {
-				"sEmptyTable":     dataTables_sEmptyTable,
-				"sInfo":           dataTables_sInfo,
-				"sInfoEmpty":      dataTables_sInfoEmpty,
-				"sInfoFiltered":   dataTables_sInfoFiltered,
-				"sInfoPostFix":    dataTables_sInfoPostFix,
-				"sInfoThousands":  dataTables_sInfoThousands,
-				"sLengthMenu":     dataTables_sLengthMenu,
-				"sLoadingRecords": dataTables_sLoadingRecords,
-				"sProcessing":     dataTables_sProcessing,
-				"sSearch":         dataTables_sSearch,
-				"sZeroRecords":    dataTables_sZeroRecords,
-				"oPaginate": {
-					"sFirst":    dataTables_sFirst,
-					"sLast":     dataTables_sLast,
-					"sNext":     dataTables_sNext,
-					"sPrevious": dataTables_sPrevious
-				},
-				"oAria": {
-					"sSortAscending":  dataTables_sSortAscending,
-					"sSortDescending": dataTables_sSortDescending
-				}
+		"deferRender": true,
+		"language": {
+			"decimal":			'',
+			"emptyTable":		dataTables_sEmptyTable,
+			"info":				dataTables_sInfo,
+			"infoEmpty":		dataTables_sInfoEmpty,
+			"infoFiltered":		dataTables_sInfoFiltered,
+			"infoPostFix":		dataTables_sInfoPostFix,
+			"thousands": 		dataTables_sInfoThousands,
+			"lengthMenu":		dataTables_sLengthMenu,
+			"loadingRecords":	dataTables_sLoadingRecords,
+			"processing":		dataTables_sProcessing,
+			"search":			dataTables_sSearch,
+			"zeroRecords":		dataTables_sZeroRecords,
+			"paginate": {
+				"first":	dataTables_sFirst,
+				"last":		dataTables_sLast,
+				"next":     dataTables_sNext,
+				"previous": dataTables_sPrevious
 			},
+			"aria": {
+				"sortAscending":  dataTables_sSortAscending,
+				"sortDescending": dataTables_sSortDescending
+			}
+		},
 		"responsive": {
 			"details": {
 				"type": "inline"
 			}
 		},
 		"buttons": [
-				{
-					"extend": "copy",
-					"exportOptions": {
-						"columns": ':visible'
-					}
-				},
-				{
-					"extend": "csv",
-					"charset": "utf8",
-					"exportOptions": {
-						"columns": ':visible'
-					}
-				},
-				{
-					"extend": "excel",
-					"title": pagetitle,
-					"charset": "utf16le",
-					"exportOptions": {
-						"columns": ':visible'
-					}
-				},
-				{
-					"extend": "pdf",
-					"charset": "utf8",
-					"orientation": "landscape",
-					"title": pagetitle,
-					"exportOptions": {
-						"columns": ':visible'
-					}
-				},
-				{
-					"extend": "print",
-					"title": pagetitle,
-					"autoPrint": false,
-					"exportOptions": {
-						"columns": ':visible',
-					}
-				},
-				{
-					"extend": "colvis",
-					//"columns": ":gt(0)"
+			{
+				"extend": "copy",
+				"exportOptions": {
+					"columns": ':visible'
 				}
-			]
-		});
+			},
+			{
+				"extend": "csv",
+				"charset": "utf8",
+				"exportOptions": {
+					"columns": ':visible'
+				}
+			},
+			{
+				"extend": "excel",
+				"title": pagetitle,
+				"charset": "utf16le",
+				"exportOptions": {
+					"columns": ':visible'
+				}
+			},
+			{
+				"extend": "pdf",
+				"charset": "utf8",
+				"orientation": "landscape",
+				"title": pagetitle,
+				"exportOptions": {
+					"columns": ':visible'
+				}
+			},
+			{
+				"extend": "print",
+				"title": pagetitle,
+				"autoPrint": false,
+				"exportOptions": {
+					"columns": ':visible',
+				}
+			},
+			{
+				"extend": "colvis",
+				//"columns": ":gt(0)"
+			}
+		]
+	});
 }
 
 function dataTableSetHiddenColumns(table_id, column_ids)

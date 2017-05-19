@@ -46,31 +46,34 @@ class j06005list_invoices_ajax
         //set the table coulmns, in the exact orcer in which they`re displayed in the table
         $aColumns = array('a.id', 'a.id', 'd.tag', 'a.property_uid', 'c.firstname', 'c.surname', 'b.name', 'a.raised_date', 'a.due_date', 'a.paid', 'b.init_total_inclusive', 'a.init_total', 'a.status');
 
+        //set columns count
+		$n = count($aColumns);
+
         /*
          * Paging
          */
         $sLimit = '';
-        if (isset($_GET['iDisplayStart']) && $_GET['iDisplayLength'] != '-1') {
-            $sLimit = 'LIMIT '.intval($_GET['iDisplayStart']).', '.intval($_GET['iDisplayLength']);
+        if (isset($_GET['start']) && $_GET['start'] != '-1') {
+            $sLimit = 'LIMIT '.(int)$_GET['start'].', '.(int)$_GET['length'];
         }
 
         /*
          * Ordering
          */
         $sOrder = '';
-        if (isset($_GET['iSortCol_0'])) {
-            $sOrder = 'ORDER BY  ';
-            for ($i = 0; $i < intval($_GET['iSortingCols']); ++$i) {
-                if ($_GET[ 'bSortable_'.intval($_GET['iSortCol_'.$i]) ] == 'true') {
-                    $sOrder .= ''.$aColumns[ intval($_GET['iSortCol_'.$i]) ].' '.
-                        ($_GET['sSortDir_'.$i] === 'asc' ? 'asc' : 'desc').', ';
-                }
-            }
-
-            $sOrder = substr_replace($sOrder, '', -2);
-            if ($sOrder == 'ORDER BY') {
-                $sOrder = '';
-            }
+        if (isset($_GET['order'])) {
+            $sOrder = 'ORDER BY ';
+			for ($i = 0; $i < $n; ++$i) {
+				if (isset($_GET['order'][$i]['column'])) {
+					$column_id = (int)$_GET['order'][$i]['column'];
+					$sOrder .= ''.$aColumns[$column_id].' '.($_GET['order'][$i]['dir'] === 'asc' ? 'ASC' : 'DESC').', ';
+				}
+			}
+			if ($sOrder == 'ORDER BY ') {
+				$sOrder = '';
+			} else {
+				$sOrder = rtrim($sOrder, ', ');
+			}
         }
 
         /*
@@ -80,13 +83,13 @@ class j06005list_invoices_ajax
          * on very large tables, and MySQL's regex functionality is very limited
          */
         $sWhere = '';
-        if (isset($_GET['sSearch']) && $_GET['sSearch'] != '') {
-			$n = count($aColumns);
+		$search = jomresGetParam($_GET, 'search', array());
+        if (isset($search['value']) && $search['value'] != '') {
             $sWhere = 'AND (';
             for ($i = 0; $i < $n; ++$i) {
-                $sWhere .= ''.$aColumns[$i]." LIKE '%".jomresGetParam($_GET, 'sSearch', '')."%' OR ";
+                $sWhere .= ''.$aColumns[$i]." LIKE '%".$search['value']."%' OR ";
             }
-            $sWhere = substr_replace($sWhere, '', -3);
+			$sWhere = rtrim($sWhere, ' OR ');
             $sWhere .= ')';
         }
 
@@ -203,10 +206,10 @@ class j06005list_invoices_ajax
         $mp = (int) doSelectSql($query, 1);
         if ($mp == 0) {
             $output = array(
-                'sEcho' => intval($_GET['sEcho']),
-                'iTotalRecords' => 0,
-                'iTotalDisplayRecords' => 0,
-                'aaData' => array(),
+                'draw' => (int)$_GET['draw'],
+                'recordsTotal' => 0,
+                'recordsFiltered' => 0,
+                'data' => array(),
                 );
             echo json_encode($output);
             exit;
@@ -216,11 +219,12 @@ class j06005list_invoices_ajax
          * Start building the output array. The columns data should be built in the exact order in which they`ll be displayed in the table.
          */
         $output = array(
-            'sEcho' => intval($_GET['sEcho']),
-            'iTotalRecords' => $mp,
-            'iTotalDisplayRecords' => $mp,
-            'aaData' => array(),
+            'draw' => (int)$_GET['draw'],
+            'recordsTotal' => $mp,
+            'recordsFiltered' => $mp,
+            'data' => array(),
         );
+
         foreach ($jomresInvoicesList as $p) {
             $r = array();
 
@@ -336,7 +340,7 @@ class j06005list_invoices_ajax
                 $r[] = '';
             }
 
-            $output['aaData'][] = $r;
+            $output['data'][] = $r;
         }
 
         /*

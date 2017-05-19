@@ -40,32 +40,35 @@ class j16000listproperties_ajax
 
         //set the table coulmns, in the exact order in which they`re displayed in the table
         $aColumns = array('propertys_uid', 'propertys_uid', 'property_name', 'property_street', 'property_town', 'property_region', 'property_postcode', 'property_country', 'property_tel', 'property_fax', 'property_email', 'stars', 'superior', 'lat', 'long', 'approved', 'last_changed', 'crate_id');
+		
+		//set columns count
+		$n = count($aColumns);
 
         /*
          * Paging
          */
         $sLimit = '';
-        if (isset($_GET['iDisplayStart']) && $_GET['iDisplayLength'] != '-1') {
-            $sLimit = 'LIMIT '.intval($_GET['iDisplayStart']).', '.intval($_GET['iDisplayLength']);
+        if (isset($_GET['start']) && $_GET['start'] != '-1') {
+            $sLimit = 'LIMIT '.(int)$_GET['start'].', '.(int)$_GET['length'];
         }
 
         /*
          * Ordering
          */
         $sOrder = '';
-        if (isset($_GET['iSortCol_0'])) {
-            $sOrder = 'ORDER BY  ';
-            for ($i = 0; $i < intval($_GET['iSortingCols']); ++$i) {
-                if ($_GET[ 'bSortable_'.intval($_GET['iSortCol_'.$i]) ] == 'true') {
-                    $sOrder .= '`'.$aColumns[ intval($_GET['iSortCol_'.$i]) ].'` '.
-                        ($_GET['sSortDir_'.$i] === 'asc' ? 'asc' : 'desc').', ';
-                }
-            }
-
-            $sOrder = substr_replace($sOrder, '', -2);
-            if ($sOrder == 'ORDER BY') {
-                $sOrder = '';
-            }
+        if (isset($_GET['order'])) {
+            $sOrder = 'ORDER BY ';
+			for ($i = 0; $i < $n; ++$i) {
+				if (isset($_GET['order'][$i]['column'])) {
+					$column_id = (int)$_GET['order'][$i]['column'];
+					$sOrder .= '`'.$aColumns[$column_id].'` ' . ($_GET['order'][$i]['dir'] === 'asc' ? 'ASC' : 'DESC') . ', ';
+				}
+			}
+			if ($sOrder == 'ORDER BY ') {
+				$sOrder = '';
+			} else {
+				$sOrder = rtrim($sOrder, ', ');
+			}
         }
 
         /*
@@ -75,13 +78,13 @@ class j16000listproperties_ajax
          * on very large tables, and MySQL's regex functionality is very limited
          */
         $sWhere = '';
-        if (isset($_GET['sSearch']) && $_GET['sSearch'] != '') {
-			$n = count($aColumns);
+		$search = jomresGetParam($_GET, 'search', array());
+        if (isset($search['value']) && $search['value'] != '') {
             $sWhere = 'AND (';
             for ($i = 0; $i < $n; ++$i) {
-                $sWhere .= '`'.$aColumns[$i]."` LIKE '%".jomresGetParam($_GET, 'sSearch', '')."%' OR ";
+                $sWhere .= '`'.$aColumns[$i]."` LIKE '%".$search['value']."%' OR ";
             }
-            $sWhere .= "`customtext` LIKE '%".jomresGetParam($_GET, 'sSearch', '')."%' ";
+            $sWhere .= "b.customtext LIKE '%".$search['value']."%' ";
             $sWhere .= ')';
         }
 
@@ -160,10 +163,10 @@ class j16000listproperties_ajax
         $mp = (int) doSelectSql($query, 1);
         if ($mp == 0) {
             $output = array(
-                'sEcho' => intval($_GET['sEcho']),
-                'iTotalRecords' => 0,
-                'iTotalDisplayRecords' => 0,
-                'aaData' => array(),
+                'draw' => (int)$_GET['draw'],
+                'recordsTotal' => 0,
+                'recordsFiltered' => 0,
+                'data' => array(),
                 );
             echo json_encode($output);
             exit;
@@ -173,10 +176,10 @@ class j16000listproperties_ajax
          * Start building the output array. The columns data should be built in the exact order in which they`ll be displayed in the table.
          */
         $output = array(
-            'sEcho' => intval($_GET['sEcho']),
-            'iTotalRecords' => $mp,
-            'iTotalDisplayRecords' => $mp,
-            'aaData' => array(),
+            'draw' => (int)$_GET['draw'],
+            'recordsTotal' => $mp,
+            'recordsFiltered' => $mp,
+            'data' => array(),
         );
 
         jr_import('jrportal_commissions');
@@ -244,7 +247,7 @@ class j16000listproperties_ajax
                 $r[] = $p->title;
             }
 
-            $output['aaData'][] = $r;
+            $output['data'][] = $r;
         }
 
         /*
