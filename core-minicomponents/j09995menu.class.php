@@ -40,9 +40,7 @@ class j09995menu
 		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 		
 		$jomres_menu = jomres_singleton_abstract::getInstance('jomres_menu');
-		
-		$login_url = get_showtime('live_site').'/'.jomres_cmsspecific_getlogin_task();
-		$registration_url = jomres_cmsspecific_getregistrationlink();
+
 		$property_details_url = get_property_details_url($property_uid);
         
 		//define the core sections
@@ -82,8 +80,8 @@ class j09995menu
 		}
 		
 		if ($thisJRUser->accesslevel == 0) {
-			$jomres_menu->add_item(10, 'Register', $registration_url, 'fa-user-plus', true);
-			$jomres_menu->add_item(10, jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN', '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN', false), $login_url, 'fa-sign-in', true);
+			$jomres_menu->add_item(10, 'Register', 'cms_user_register', 'fa-user-plus');
+			$jomres_menu->add_item(10, jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN', '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN', false), 'cms_user_login', 'fa-sign-in');
 		}
 		
 		if ($thisJRUser->accesslevel >= 1) {

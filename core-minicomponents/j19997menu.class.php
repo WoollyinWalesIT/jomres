@@ -31,6 +31,10 @@ class j19997menu
 		
 		$jomres_menu = jomres_singleton_abstract::getInstance('jomres_menu');
 		$jomres_menu->generate_admin_menu();
+		
+		if (empty($jomres_menu->admin_menu)) {
+			return;
+		}
 
 		//section params are in $jomres_menu->admin_sections[section_id]
 		//menu items params are in $jomres_menu->admin_items[task]
