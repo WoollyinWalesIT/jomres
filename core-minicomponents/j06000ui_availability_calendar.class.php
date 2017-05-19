@@ -53,12 +53,14 @@ class j06000ui_availability_calendar
         }
 
         if (isset($componentArgs[ 'property_uid' ])) {
-            $property_uid = (int) $componentArgs[ 'property_uid' ];
-        } elseif (isset($_REQUEST['property_uid'])) {
-            $property_uid = (int) $_REQUEST['property_uid'];
+            $property_uid = (int)$componentArgs[ 'property_uid' ];
         } else {
-            $property_uid = (int) get_showtime('property_uid');
+			$property_uid = (int)jomresGetParam($_REQUEST, 'property_uid', 0);
         }
+		
+		if ($property_uid == 0) {
+			$property_uid = (int)get_showtime('property_uid');
+		}
 
         if ($property_uid == 0) {
             return;

@@ -363,8 +363,10 @@ function no_task_set($property_uid = 0)
     $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
+	
+	$calledByModule = jomresGetParam($_REQUEST, 'calledByModule', '');
 
-    if ((isset($_REQUEST[ 'calledByModule' ]) || isset($_REQUEST[ 'plistpage' ])) && $thisJRUser->userIsManager) {
+    if (($calledByModule != '' || isset($_REQUEST[ 'plistpage' ])) && $thisJRUser->userIsManager) {
         $MiniComponents->specificEvent('06000', "search");
     } else {
         if ($thisJRUser->userIsManager) {

@@ -94,9 +94,11 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
 	
 	$theText = jomres_decode($theText);
 
-    if (isset($thisJRUser->userIsManager) && $thisJRUser->userIsManager) {
-        if (isset($_REQUEST[ 'task' ]) && jomres_cmsspecific_areweinadminarea()) {
-            if (($_REQUEST[ 'task' ] == 'touch_templates' || $_REQUEST[ 'task' ] == 'translate_locales' || $_REQUEST[ 'task' ] == 'translate_lang_file_strings') && $thisJRUser->userIsManager) {
+    if ($thisJRUser->userIsManager) {
+		$task = jomresGetParam($_REQUEST, 'task', '');
+
+        if ($task != '' && jomres_cmsspecific_areweinadminarea()) {
+            if (($task == 'touch_templates' || $task == 'translate_locales' || $task == 'translate_lang_file_strings') && $thisJRUser->userIsManager) {
                 $property_uid = 0;
                 $jrConfig[ 'editingModeAffectsAllProperties' ] = '1';
                 $editing = true;
@@ -109,7 +111,7 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
             $theText = jomres_remove_HTML($theText);
         } */
 
-        if ($thisJRUser->userIsManager && ($editing || ($jrConfig[ 'editingModeAffectsAllProperties' ] == '1' && $thisJRUser->superPropertyManager)) && $okToEdit && ($thisJRUser->accesslevel > 50)) {
+        if ($thisJRUser->userIsManager && ($editing || ($jrConfig[ 'editingModeAffectsAllProperties' ] == '1' && $thisJRUser->superPropertyManager)) && $okToEdit && $thisJRUser->accesslevel > 50) {
             if (strlen(trim($theText)) == 0 || strtolower(trim($theText)) == '<span></span>' || strtolower(trim($theText)) == '<span> </span>' || strtolower(trim($theText)) == '<span>  </span>') {
                 $theText = '';
             }

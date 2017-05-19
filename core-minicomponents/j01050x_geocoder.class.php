@@ -58,8 +58,11 @@ class j01050x_geocoder
 
         $output[ 'LATLONG_DESC' ] = jr_gettext('_JOMRES_LATLONG_DESC', '_JOMRES_LATLONG_DESC', false);
 
-        if (isset($_REQUEST['map-identifier'])) {
-            $output[ 'RANDOM_IDENTIFIER' ] = filter_var($_REQUEST['map_identifier'], FILTER_SANITIZE_SPECIAL_CHARS);
+		$task = jomresGetParam($_REQUEST, 'task', '');
+		$map_identifier = jomresGetParam($_REQUEST, 'map-identifier', '');
+
+        if ($map_identifier != '') {
+            $output[ 'RANDOM_IDENTIFIER' ] = $map_identifier;
         } else {
             $output[ 'RANDOM_IDENTIFIER' ] = generateJomresRandomString(10);
         }
@@ -173,7 +176,8 @@ class j01050x_geocoder
 
         // IE was playing silly boys and wouldn't load without using (window).load, however if we use that then the map will not run in module popups, so we need to change the loading trigger depending on the "task".
         $output['LOAD_TRIGGER'] = 'jomresJquery(window).load(function(){';
-        if ($_REQUEST['task'] == 'module_popup' || $_REQUEST['task'] == 'ajax_list_properties' || $_REQUEST['task'] == 'ajax_search_filter') {
+        
+		if ($task == 'module_popup' || $task == 'ajax_list_properties' || $task == 'ajax_search_filter') {
             $output['LOAD_TRIGGER'] = 'jomresJquery(document).ready(function(){';
         }
 

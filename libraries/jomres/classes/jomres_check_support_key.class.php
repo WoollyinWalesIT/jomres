@@ -26,11 +26,9 @@ class jomres_check_support_key
             $this->save_key($task);
         }
 
-        if (!isset($_REQUEST['task'])) {
-            $_REQUEST['task'] = '';
-        }
+        $task = jomresGetParam($_REQUEST, 'task', '');
 
-        if ($_REQUEST['task'] == 'site_settings' || $_REQUEST['task'] == 'showplugins' || $_REQUEST['task'] == 'addplugin') {
+        if ($task == 'site_settings' || $task == 'showplugins' || $task == 'addplugin') {
             $this->force_check = true;
         }
 

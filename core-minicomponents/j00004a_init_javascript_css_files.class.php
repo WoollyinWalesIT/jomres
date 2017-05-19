@@ -164,7 +164,7 @@ class j00004a_init_javascript_css_files
             }
         }
 
-        if (get_showtime('task') == 'media_centre' || $_REQUEST['task'] == 'media_centre') {
+        if (get_showtime('task') == 'media_centre' || jomresGetParam($_REQUEST, 'task', '') == 'media_centre') {
             $css_files[] = array(JOMRES_ROOT_DIRECTORY.'/css/',  'jquery.fileupload-ui.css');
             $javascript_files[] = array(JOMRES_ROOT_DIRECTORY.'/javascript/media_centre/', 'load-image.min.js');
             $javascript_files[] = array(JOMRES_ROOT_DIRECTORY.'/javascript/media_centre/', 'canvas-to-blob.min.js');

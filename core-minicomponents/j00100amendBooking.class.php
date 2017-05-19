@@ -31,8 +31,10 @@ class j00100amendBooking
             return;
         }
 
-        if (isset($_REQUEST[ 'selectedProperty' ]) && in_array(intval($_REQUEST[ 'selectedProperty' ]), $thisJRUser->authorisedProperties)) {
-            $selectedProperty = jomresGetParam($_REQUEST, 'selectedProperty', 0);
+		$selectedProperty = (int)jomresGetParam($_REQUEST, 'selectedProperty', 0);
+        
+		if ($selectedProperty > 0 && in_array($selectedProperty, $thisJRUser->authorisedProperties)) {
+            
             if ($selectedProperty > 0 && $thisJRUser->currentproperty != $selectedProperty) {
                 $thisJRUser->set_currentproperty($selectedProperty);
                 $qString = $_SERVER[ 'QUERY_STRING' ];
@@ -41,11 +43,7 @@ class j00100amendBooking
         }
     }
 
-    /**
-     * Must be included in every mini-component.
-     #
-     * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
-     */
+    //Must be included in every mini-component.
     public function getRetVals()
     {
         return null;

@@ -58,18 +58,21 @@ class j06000contactowner
                 $recaptcha = new \ReCaptcha\ReCaptcha(trim($jrConfig[ 'recaptcha_private_key' ]), new \ReCaptcha\RequestMethod\CurlPost());
             }
         }
+		
+		$property_uid = (int)jomresGetParam($_REQUEST, 'property_uid', 0);
+		$selectedProperty = (int)jomresGetParam($_REQUEST, 'selectedProperty', 0);
 
-        if (isset($_REQUEST['property_uid'])) {
-            $property_uid = intval(jomresGetParam($_REQUEST, 'property_uid', 0));
-        } elseif (isset($componentArgs[ 'property_uid' ])) {
-            $property_uid = intval($componentArgs[ 'property_uid' ]);
-        } else {
-            $property_uid = intval(jomresGetParam($_REQUEST, 'selectedProperty', 0));
-            jomres_cmsspecific_setmetadata('robots', 'noindex,nofollow');
-        }
+        if ($property_uid == 0) {
+			if (isset($componentArgs[ 'property_uid' ])) {
+				$property_uid = intval($componentArgs[ 'property_uid' ]);
+			} else {
+				$property_uid = $selectedProperty;
+				jomres_cmsspecific_setmetadata('robots', 'noindex,nofollow');
+			}
+		}
 
         if (isset($_POST[ 'property_uid' ])) {
-            $property_uid = intval(jomresGetParam($_REQUEST, 'property_uid', 0));
+            $property_uid = (int)jomresGetParam($_POST, 'property_uid', 0);
         }
 
         if ($property_uid > 0) {
@@ -102,16 +105,20 @@ class j06000contactowner
         $output[ 'GUEST_NAME' ] = jomresGetParam($_REQUEST, 'guest_name', '');
         $output[ 'PROPERTY_UID' ] = $property_uid;
 
-        if (isset($_REQUEST[ 'guest_email' ])) {
-            $output[ 'GUEST_EMAIL' ] = jomresGetParam($_REQUEST, 'guest_email', '');
+		$guest_email = jomresGetParam($_REQUEST, 'guest_email', '');
+		
+        if ($guest_email != '') {
+            $output[ 'GUEST_EMAIL' ] = $guest_email;
         } elseif (isset($tmpBookingHandler->tmpguest[ 'email' ])) {
             $output[ 'GUEST_EMAIL' ] = $tmpBookingHandler->tmpguest[ 'email' ];
         } else {
             $output[ 'GUEST_EMAIL' ] = '';
         }
+		
+		$guest_phone = jomresGetParam($_REQUEST, 'guest_phone', '');
 
-        if (isset($_REQUEST[ 'guest_phone' ])) {
-            $output[ 'GUEST_PHONE' ] = jomresGetParam($_REQUEST, 'guest_phone', '');
+        if ($guest_phone != '') {
+            $output[ 'GUEST_PHONE' ] = $guest_phone;
         } elseif (isset($tmpBookingHandler->tmpguest[ 'tel_mobile' ])) {
             $output[ 'GUEST_PHONE' ] = $tmpBookingHandler->tmpguest[ 'tel_mobile' ];
         } else {

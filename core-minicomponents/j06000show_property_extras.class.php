@@ -37,10 +37,12 @@ class j06000show_property_extras
         $this->retVals = null;
 
         if (isset($componentArgs[ 'property_uid' ])) {
-            $property_uid = (int) $componentArgs[ 'property_uid' ];
-        } elseif (isset($_REQUEST['property_uid'])) {
-            $property_uid = (int) $_REQUEST['property_uid'];
+            $property_uid = (int)$componentArgs[ 'property_uid' ];
         } else {
+			$property_uid = (int)jomresGetParam($_REQUEST, 'property_uid', 0);
+        }
+		
+		if ($property_uid == 0) {
             return;
         }
 

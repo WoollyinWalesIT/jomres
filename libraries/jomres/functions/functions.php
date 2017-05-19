@@ -1180,12 +1180,10 @@ function detect_property_uid()
 
     $defaultProperty = getDefaultProperty();
 
-    if (isset($_REQUEST[ 'selectedProperty' ])) {
-        $property_uid = intval(jomresGetParam($_REQUEST, 'selectedProperty', 0));
-    }
+    $property_uid = (int)jomresGetParam($_REQUEST, 'selectedProperty', 0);
 
-    if (isset($_REQUEST[ 'property_uid' ])) {
-        $property_uid = intval(jomresGetParam($_REQUEST, 'property_uid', 0));
+    if ($property_uid == 0) {
+        $property_uid = (int)jomresGetParam($_REQUEST, 'property_uid', 0);
     }
 
     // Finding the property uid
@@ -3875,19 +3873,24 @@ function publishProperty()
     $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
-    $defaultProperty = getDefaultProperty();
+	
+	$defaultProperty = jomresGetParam($_REQUEST, 'property_uid', 0);
+	
+	if ($defaultProperty == 0) {
+		$defaultProperty = getDefaultProperty();
+	}
+	
+	if ($defaultProperty == 0) {
+		return false;
+	}
 
     $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
-    $current_property_details->gather_data(get_showtime('property_uid'));
-    if (!$current_property_details->approved) {
+    $current_property_details->gather_data($defaultProperty);
+    
+	if (!$current_property_details->approved) {
         jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=cannot_redirect'), '');
     } else {
         $jomres_messaging = jomres_singleton_abstract::getInstance('jomres_messages');
-        if (!isset($_REQUEST[ 'property_uid' ])) {
-            $defaultProperty = getDefaultProperty();
-        } else {
-            $defaultProperty = jomresGetParam($_REQUEST, 'property_uid', 0);
-        }
 
         if (in_array($defaultProperty, $thisJRUser->authorisedProperties)) {
             $query = 'SELECT published FROM #__jomres_propertys WHERE propertys_uid = '.(int) $defaultProperty.' LIMIT 1';

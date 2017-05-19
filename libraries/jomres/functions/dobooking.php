@@ -17,7 +17,9 @@ defined('_JOMRES_INITCHECK') or die('');
 /**
  * Get some basic data before beginning construction of the booking form.
  */
-$property_uid = get_showtime('property_uid');
+$property_uid = (int)get_showtime('property_uid');
+
+$selectedProperty = (int)jomresGetParam($_REQUEST, 'selectedProperty', 0);
 
 $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
 $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
@@ -27,12 +29,12 @@ $MiniComponents->triggerEvent('00100'); // Pre-dobooking. Optional
 $userIsManager = checkUserIsManager();
 
 if (
-    isset($_REQUEST[ 'selectedProperty' ]) &&
+    $selectedProperty > 0 &&
     $userIsManager &&
-    in_array(intval($_REQUEST[ 'selectedProperty' ]), $thisJRUser->authorisedProperties) &&
-    (int) $_REQUEST[ 'selectedProperty' ] > 0 &&
-    $thisJRUser->currentproperty != (int) $_REQUEST[ 'selectedProperty' ]) {
-    $thisJRUser->set_currentproperty((int) $_REQUEST[ 'selectedProperty' ]);
+    in_array($selectedProperty, $thisJRUser->authorisedProperties) &&
+    $thisJRUser->currentproperty != $selectedProperty
+	) {
+    $thisJRUser->set_currentproperty($selectedProperty);
     jomresRedirect(get_booking_url($selectedProperty), '');
 }
 

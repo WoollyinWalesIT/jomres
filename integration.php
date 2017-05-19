@@ -241,11 +241,6 @@ if (!isset($_REQUEST[ 'no_html' ])) {
     $_REQUEST[ 'no_html' ] = 0;
 }
 
-//TODO may not be needed
-if (!isset($_REQUEST['task'])) {
-    $_REQUEST['task'] = '';
-}
-
 //TODO find a better place, maybe jomres.php and framework.php
 $jomresHTML = jomres_singleton_abstract::getInstance('jomresHTML');
 
