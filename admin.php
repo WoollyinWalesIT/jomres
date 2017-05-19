@@ -163,17 +163,6 @@ try {
         $tmpl->displayParsedTemplate();
     }
 
-    //set statistics cookies
-    if (isset($_REQUEST[ 'statoption' ])) {
-        $statoption = jomresGetParam($_REQUEST, 'statoption', '');
-        setcookie('statoption', $statoption, time() + 60 * 60);
-    }
-
-    if (isset($_REQUEST[ 'periodoption' ])) {
-        $periodoption = jomresGetParam($_REQUEST, 'periodoption', '');
-        setcookie('periodoption', $periodoption, time() + 60 * 60);
-    }
-
     //admins_first_run();
 
     //task
