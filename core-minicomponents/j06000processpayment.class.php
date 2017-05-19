@@ -26,7 +26,7 @@ class j06000processpayment
         }
 		
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
-		
+		$property_uid = (int)$tmpBookingHandler->tmpbooking['property_uid'];
 		$bookingdata = gettempBookingdata();
 		
         request_log();
@@ -55,7 +55,7 @@ class j06000processpayment
             $query = 'SELECT id,plugin FROM #__jomres_pluginsettings WHERE (prid = '.(int) $property_uid." OR prid = 0)  AND `plugin` = '".(string) $plugin."' AND setting = 'active' AND value = '1'";
             $gatewayDeets = doSelectSql($query);
 
-            if (!empty($gatewayDeets) || $paypal_settings->paypalConfigOptions[ 'override' ] == '1') {
+            if (!empty($gatewayDeets)) {
 
                 $interrupted = intval(jomresGetParam($_POST, 'interrupted', 0));
                 $interruptOutgoingFile = false;
