@@ -29,6 +29,7 @@ class jomres_temp_booking_handler
         
 		$this->task = get_showtime('task');
         $this->jomressession = '';
+		$this->jomressession_db = '';
         $this->sessionfile = '';
         $this->session_directory = JOMRES_SESSIONS_ABSPATH;
 		$this->session_handler = $jrConfig['session_handler'];
@@ -260,6 +261,8 @@ class jomres_temp_booking_handler
 
             $hash = sha1($this->jomressession);
             $this->sessionfile = $this->session_directory.$hash.'.txt';
+			
+			$this->jomressession_db = substr($this->jomressession, 0, 50);
 
             $jomres_custom_field_handler = jomres_singleton_abstract::getInstance('jomres_custom_field_handler');
             $jomres_custom_field_handler->get_all_custom_fields();
@@ -331,7 +334,7 @@ class jomres_temp_booking_handler
 	
 	private function _jomres_session_start_database()
 	{
-		$query = "SELECT `data` FROM #__jomres_sessions WHERE `session_id` = '".$this->jomressession."'";
+		$query = "SELECT `data` FROM #__jomres_sessions WHERE `session_id` = '".$this->jomressession_db."'";
 		$result = doSelectSql($query);
 
 		if (!empty($result)) {
@@ -372,7 +375,7 @@ class jomres_temp_booking_handler
 			
 			$data = json_encode($data, JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE);
 			
-			$query = "INSERT INTO #__jomres_sessions (`session_id`, `data`) VALUES ('".$this->jomressession."','".$data."')";
+			$query = "INSERT INTO #__jomres_sessions (`session_id`, `data`) VALUES ('".$this->jomressession_db."','".$data."')";
 			if (!doInsertSql($query, '')) {
 				throw new Exception('Error: Could not save session data');
 			}
@@ -407,7 +410,7 @@ class jomres_temp_booking_handler
 					throw new Exception('Error: Could not save session file');
 				}
 			} else {
-				$query = "UPDATE #__jomres_sessions SET `data` = '".$data."' WHERE `session_id` = '".$this->jomressession."'";
+				$query = "UPDATE #__jomres_sessions SET `data` = '".$data."' WHERE `session_id` = '".$this->jomressession_db."'";
 				if (!doInsertSql($query, '')) {
 					throw new Exception('Error: Could not update session data');
 				}

@@ -33,9 +33,6 @@ function jomres_cmsspecific_getsessionid()
         $_SESSION['jomres_wp_session']['id'] = $session_id;
     }
 
-	//TODO: find a better way for sessions in PHP 7.1 which have 256 max length
-	$session_id = substr($session_id, 0, 50);
-
     return $session_id;
 }
 
