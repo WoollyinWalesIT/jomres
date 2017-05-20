@@ -49,7 +49,7 @@ if (file_exists(dirname(__FILE__).'/../../'.JOMRES_ROOT_DIRECTORY.'/framework.ph
     ?>
 	<script src="<?php echo JOMRES_ROOT_DIRECTORY ?>/javascript/jquery-1.11.1.js"></script>
 	<script src="<?php echo JOMRES_ROOT_DIRECTORY ?>/javascript/jquery-migrate.js"></script>
-	<script src="<?php echo JOMRES_ROOT_DIRECTORY ?>/javascript/jquery-ui.js"></script>
+	<script src="<?php echo JOMRES_ROOT_DIRECTORY ?>/javascript/jquery-ui.min.js"></script>
 	<?php if ($view == 'bootstrap') : ?>
 	<script src="<?php echo JOMRES_ROOT_DIRECTORY ?>/libraries/fullscreen_view/bootstrap/js/bootstrap.min.js"></script>
 	<?php elseif ($view == 'bootstrap3') : ?>
@@ -64,11 +64,11 @@ if (file_exists(dirname(__FILE__).'/../../'.JOMRES_ROOT_DIRECTORY.'/framework.ph
 	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/libraries/fullscreen_view/bootstrap/css/fullscreen.css" type="text/css" />
 	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/css/font-awesome.min.css" type="text/css" />
 	<?php elseif ($view == 'bootstrap3') : ?>
-	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/css/jquery_ui_themes/jomres/jquery-ui.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/css/jquery_ui_themes/base/jquery-ui.min.css" type="text/css" />
 	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/libraries/fullscreen_view/bootstrap3/css/fullscreen.css" type="text/css" />
 	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/css/font-awesome.min.css" type="text/css" />
 	<?php elseif ($view == 'jquery_ui') : ?>
-	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/css/jquery_ui_themes/jomres/jquery-ui.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/css/jquery_ui_themes/base/jquery-ui.min.css" type="text/css" />
 	<?php endif; ?>
 </head>
 <body class="contentpane">

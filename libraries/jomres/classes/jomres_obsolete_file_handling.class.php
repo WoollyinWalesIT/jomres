@@ -1491,6 +1491,7 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_minicomponents.'j16000enable_usage_reporting.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j16000usage_reporting_request.class.php');
 		$this->add_obs_dir($this->dir_libraries.JRDS.'piwik'.JRDS);
+		$this->add_obs_dir($this->dir_css.'jquery_ui_themes'.JRDS.'jomres'.JRDS);
     }
 
     public function add_obs_file($path_and_file)

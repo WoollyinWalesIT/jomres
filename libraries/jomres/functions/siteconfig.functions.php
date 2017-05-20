@@ -68,14 +68,14 @@ function showSiteConfig()
     $jqueryUIthemes = array();
     $cssFiles = searchCSSThemesDirForCSSFiles();
     foreach ($cssFiles as $file) {
-        if (isset($file[ 'customPath' ])) {
-            $jqueryUIthemes[ ] = jomresHTML::makeOption($file[ 'subdir' ].'^'.$file[ 'cssfile' ].'^'.$file[ 'customPath' ], $file[ 'subdir' ]);
-        } else {
-            $jqueryUIthemes[ ] = jomresHTML::makeOption($file[ 'subdir' ].'^'.$file[ 'cssfile' ], $file[ 'subdir' ]);
-        }
+        $jqueryUIthemes[ ] = jomresHTML::makeOption($file[ 'subdir' ], $file[ 'subdir' ]);
     }
+	
+	if ($jrConfig[ 'jquery_ui_theme' ] == 'jomres') {
+		$jrConfig[ 'jquery_ui_theme' ] = 'base';
+	}
 
-    $jqueryUIthemesDropdownList = jomresHTML::selectList($jqueryUIthemes, 'cfg_jquery_ui_theme_detected', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'jquery_ui_theme_detected' ]);
+    $jqueryUIthemesDropdownList = jomresHTML::selectList($jqueryUIthemes, 'cfg_jquery_ui_theme', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'jquery_ui_theme' ]);
 
     if (!isset($jrConfig[ 'cssColourScheme' ])) {
         $jrConfig[ 'cssColourScheme' ] = 'blue';
@@ -485,7 +485,7 @@ function searchCSSThemesDirForCSSFiles()
                         $filename = $entry;
                         $tmpArr = explode('.', $filename);
                         $extension = $tmpArr[ count($tmpArr) - 1 ];
-                        if ($filename == 'jquery-ui.css') {
+                        if ($filename == 'jquery-ui.min.css') {
                             $cssFiles[ ] = array('cssfile' => $filename, 'subdir' => $doc);
                         }
                     }

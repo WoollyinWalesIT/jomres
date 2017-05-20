@@ -1870,16 +1870,9 @@ function mailer_get_css()
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
 
-    $themeArr = explode('^', $jrConfig[ 'jquery_ui_theme_detected' ]);
-    $subdir = $themeArr[ 0 ];
-    $filename = $themeArr[ 1 ];
-    if (isset($themeArr[ 2 ])) {
-        $themePath = $themeArr[ 2 ].'/';
-    } else {
-        $themePath = JOMRES_ROOT_DIRECTORY.'/css/jquery_ui_themes/'.$subdir.'/';
-    }
+    $themePath = JOMRES_ROOT_DIRECTORY.'/css/jquery_ui_themes/'.$jrConfig[ 'jquery_ui_theme' ].'/';
 
-    $jquery_ui_css_file = $themePath.JRDS.$filename;
+    $jquery_ui_css_file = $themePath.JRDS.'jquery-ui.min.css';
 
     $css_file = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'css'.JRDS.'email.css';
 

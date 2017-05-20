@@ -54,24 +54,15 @@ class j00004a_init_javascript_css_files
             $jrConfig[ 'load_jquery_ui_css' ] = '1';
         }
 
-		if (!isset($jrConfig[ 'jquery_ui_theme_detected' ])) {
-            $jrConfig[ 'jquery_ui_theme_detected' ] = 'jomres^jquery-ui.css';
+		if (!isset($jrConfig[ 'jquery_ui_theme' ])) {
+            $jrConfig[ 'jquery_ui_theme' ] = 'base';
         }
+		
+		if ($jrConfig[ 'jquery_ui_theme' ] == 'jomres') {
+			$jrConfig[ 'jquery_ui_theme' ] = 'base';
+		}
 
-        $themeArr = explode('^', $jrConfig[ 'jquery_ui_theme_detected' ]);
-        $subdir = $themeArr[ 0 ];
-        $filename = $themeArr[ 1 ];
-
-        // 7.2.7 jq ui theme update means the .css filename's been changed. We'll check the current setting, if it includes 'custom' then it's an older setting and we'll change the filename automatically to jquery-ui.css
-        if (strpos($filename, 'custom')) {
-            $filename = 'jquery-ui.css';
-        }
-
-        if (isset($themeArr[ 2 ])) {
-            $themePath = $themeArr[ 2 ].'/';
-        } else {
-            $themePath = JOMRES_ROOT_DIRECTORY.'/css/jquery_ui_themes/'.$subdir.'/';
-        }
+        $themePath = JOMRES_ROOT_DIRECTORY.'/css/jquery_ui_themes/'.$jrConfig[ 'jquery_ui_theme' ].'/';
 
         $MiniComponents->triggerEvent('00021', $componentArgs); // Get the colour scheme
 
@@ -80,7 +71,7 @@ class j00004a_init_javascript_css_files
 
         if ($jrConfig[ 'load_jquery_ui' ] == '1' && !$management_view) {
             if ($jrConfig[ 'load_jquery_ui_css' ] == '1') {
-                jomres_cmsspecific_addheaddata('css', $themePath, $filename); // Not minified due to how it's background images are stored
+                jomres_cmsspecific_addheaddata('css', $themePath, 'jquery-ui.min.css'); // Not minified due to how it's background images are stored
                 //$css_files[]= array( $themePath, $filename);
             }
         }
@@ -91,7 +82,7 @@ class j00004a_init_javascript_css_files
         }
 
         if (jomres_cmsspecific_areweinadminarea() || ($jrConfig[ 'load_jquery_ui' ] == '1' && !$management_view)) {
-            $javascript_files[] = array(JOMRES_ROOT_DIRECTORY.'/javascript/', 'jquery-ui.js');
+            $javascript_files[] = array(JOMRES_ROOT_DIRECTORY.'/javascript/', 'jquery-ui.min.js');
         }
 
         if (jomres_cmsspecific_areweinadminarea() && this_cms_is_wordpress()) {
