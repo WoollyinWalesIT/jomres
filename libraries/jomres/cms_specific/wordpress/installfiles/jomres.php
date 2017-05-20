@@ -268,13 +268,14 @@ if (!class_exists('WP_Jomres')) {
 
         public function payments_redirect_canonical($redirect_url, $requested_url)
         {
-			$task = get_query_var('task');
-
             if (
-                $task == 'completebk' ||
-				$task == 'processpayment' ||
-				$task == 'confirmbooking' ||
-				$task == 'invoice_payment_receive'
+                isset($_REQUEST['task']) &&
+                    (
+                    $_REQUEST['task'] == 'completebk' ||
+                    $_REQUEST['task'] == 'processpayment' ||
+                    $_REQUEST['task'] == 'confirmbooking' ||
+                    $_REQUEST['task'] == 'invoice_payment_receive'
+                    )
                 ) {
                 return $requested_url;
             } else {

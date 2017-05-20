@@ -71,49 +71,58 @@ class j00005set_search_selections
 
         //////////////////////////////////// COUNTRIES /////////////////////////////////////////////////////////
 
-        if (isset($_REQUEST[ 'countries' ])) {
-            $countries = jomresGetParam($_REQUEST, 'countries', array());
-		} else {
-            $countries = array(jomresGetParam($_REQUEST, 'country', ''));
-        }
+        if (isset($_REQUEST[ 'countries' ]) || isset($_REQUEST[ 'country' ])) {
+            if (isset($_REQUEST[ 'countries' ])) {
+                $countries = jomresGetParam($_REQUEST, 'countries', array());
+            } else {
+                $countries = array(jomresGetParam($_REQUEST, 'country', ''));
+            }
 
-        $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['countries'] = $countries;
+            $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['countries'] = $countries;
+        }
 
         //////////////////////////////////// REGIONS /////////////////////////////////////////////////////////
-        if (isset($_REQUEST[ 'regions' ])) {
-            $regions = jomresGetParam($_REQUEST, 'regions', array());
-        } else {
-			$regions = array(find_region_name(jomresGetParam($_REQUEST, 'region', '')));
-		}
-        
-		$tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['regions'] = $regions;
-
-        //////////////////////////////////// TOWNS /////////////////////////////////////////////////////////
-        if (isset($_REQUEST[ 'towns' ])) {
-			$towns = jomresGetParam($_REQUEST, 'towns', array());
-        } else {
-            $towns = array(jomresGetParam($_REQUEST, 'town', ''));
+        if (isset($_REQUEST[ 'regions' ]) || isset($_REQUEST[ 'region' ])) {
+            if (isset($_REQUEST[ 'regions' ])) {
+                $regions = jomresGetParam($_REQUEST, 'regions', array());
+            } else {
+                $regions = array(find_region_name(jomresGetParam($_REQUEST, 'region', '')));
+            }
+            $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['regions'] = $regions;
         }
 
-        $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['towns'] = $towns;
+        //////////////////////////////////// TOWNS /////////////////////////////////////////////////////////
+        if (isset($_REQUEST[ 'towns' ]) || isset($_REQUEST[ 'town' ])) {
+            if (isset($_REQUEST[ 'towns' ])) {
+                $towns = jomresGetParam($_REQUEST, 'towns', array());
+            } else {
+                $towns = array(jomresGetParam($_REQUEST, 'town', ''));
+            }
+
+            $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['towns'] = $towns;
+        }
 
         //////////////////////////////////// ROOM TYPES /////////////////////////////////////////////////////////
-        if (isset($_REQUEST[ 'room_type_uids' ])) {
-            $room_type_uids = jomresGetParam($_REQUEST, 'room_type_uids', array());
-		} else {
-			$room_type_uids = array(jomresGetParam($_REQUEST, 'room_type', 0));
-		}
+        if (isset($_REQUEST[ 'room_type_uids' ]) || isset($_REQUEST[ 'room_type' ])) {
+            if (isset($_REQUEST[ 'room_type_uids' ])) {
+                $room_type_uids = jomresGetParam($_REQUEST, 'room_type_uids', array());
+            } else {
+                $room_type_uids = array(jomresGetParam($_REQUEST, 'room_type', 0));
+            }
 
-        $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['room_type_uids'] = $room_type_uids;
+            $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['room_type_uids'] = $room_type_uids;
+        }
 
         //////////////////////////////////// PROPERTY TYPES /////////////////////////////////////////////////////////
-        if (isset($_REQUEST[ 'property_type_uids' ])) {
-            $property_type_uids = jomresGetParam($_REQUEST, 'property_type_uids', array());
-		} else {
-			$property_type_uids = array(jomresGetParam($_REQUEST, 'ptype', 0));
-		}
+        if (isset($_REQUEST[ 'property_type_uids' ]) || isset($_REQUEST[ 'ptype' ])) {
+            if (isset($_REQUEST[ 'room_type_uids' ])) {
+                $property_type_uids = jomresGetParam($_REQUEST, 'property_type_uids', array());
+            } else {
+                $property_type_uids = array(jomresGetParam($_REQUEST, 'ptype', 0));
+            }
 
-        $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['property_type_uids'] = $property_type_uids;
+            $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['property_type_uids'] = $property_type_uids;
+        }
 
         //////////////////////////////////// GUEST NUMBERS /////////////////////////////////////////////////////////
         if (isset($_REQUEST[ 'guestnumbers' ]) || isset($_REQUEST[ 'guestnumber' ])) {
