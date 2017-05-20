@@ -47,9 +47,19 @@ function toggle_button_class(id) {
 function make_datatable(table_id, pagetitle, livesite, ajaxurl, showTools) {
 	bProcessing = false;
 	bServerSide = false;
+	dt_ajax_options = false;
 	if (typeof ajaxurl !== 'undefined' && ajaxurl != '') {
 		bProcessing = true;
 		bServerSide = true;
+		dt_ajax_options = {
+			"url": ajaxurl,
+			"data": function (d) {
+				d.jr_search = d.search;
+				d.jr_order = d.order;
+				delete d.search;
+				delete d.order;
+				}
+			}
 		}
 	if (typeof showTools === 'undefined')
 		{
@@ -82,15 +92,7 @@ function make_datatable(table_id, pagetitle, livesite, ajaxurl, showTools) {
 	var oTable = jomresJquery('#' + table_id).dataTable({
 		"processing": bProcessing,
 		"serverSide": bServerSide,
-		"ajax": {
-			"url": ajaxurl,
-			"data": function ( d ) {
-				d.jr_search = d.search;
-				d.jr_order = d.order;
-				delete d.search;
-				delete d.order;
-			}
-		},
+		"ajax": dt_ajax_options,
 		"jQueryUI": false,
 		"stateSave": true,
 		"autoWidth": false,
