@@ -165,7 +165,7 @@ function make_datatable(table_id, pagetitle, livesite, ajaxurl, showTools) {
 				"title": pagetitle,
 				"autoPrint": false,
 				"exportOptions": {
-					"columns": ':visible',
+					"columns": ':visible'
 				}
 			},
 			{
