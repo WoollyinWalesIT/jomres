@@ -20,7 +20,7 @@ class jomres_charts
     {
         $this->chart = ''; //the generated chart/graph
 
-        $this->type = 'line'; //line, bar, radar, polar, pie, doughnut; currently just line type supported
+        $this->type = 'line'; //line, bar, radar
         $this->title = 'Example Chart'; // string chart title
         $this->title_class = 'panel-default'; // string chart title class, eg: "panel-default"
         $this->description = 'Example chart description'; // string chart description, eg: "Total sales per month"
@@ -51,7 +51,7 @@ class jomres_charts
         $this->datasets = array();
 
         //include the chart.js in the head
-        jomres_cmsspecific_addheaddata('javascript',  JOMRES_ROOT_DIRECTORY.'/javascript/', 'Chart.js');
+        jomres_cmsspecific_addheaddata('javascript',  JOMRES_ROOT_DIRECTORY.'/javascript/', 'Chart.min.js');
     }
 
     public function get_chart()
@@ -60,30 +60,8 @@ class jomres_charts
         $pageoutput = array();
         $legend_rows = array();
 
-        //build chart depending on type. Currently just 'line' type used.
-        switch ($this->type) {
-            case 'line':
-                $this->build_line_bar_radar_chart();
-                break;
-            case 'bar':
-                $this->build_line_bar_radar_chart();
-                break;
-            case 'radar':
-                $this->build_line_bar_radar_chart();
-                break;
-            case 'polar':
-                $this->build_polar_pie_doughnut_chart();
-                break;
-            case 'pie':
-                $this->build_polar_pie_doughnut_chart();
-                break;
-            case 'doughnut':
-                $this->build_polar_pie_doughnut_chart();
-                break;
-            default:
-                $this->build_line_bar_radar_chart();
-                break;
-            }
+        //build chart
+        $this->build_chart();
 
         if ($this->chart == '') {
             return false;
@@ -95,41 +73,22 @@ class jomres_charts
         $output['CHART'] = $this->chart;
         $output['URL'] = $this->url;
 
-        //Chart legend
-        //We`ll get the chart legend from the dataset label and strokeColor
-        foreach ($this->datasets as $k => $v) {
-            $r = array();
-
-            if (array_key_exists('label', $v)) {
-                $r['LABEL'] = $v['label'];
-            } else {
-                $r['LABEL'] = $this->label;
-            }
-
-            if (array_key_exists('strokeColor', $v)) {
-                $r['strokeColor'] = $v['strokeColor'];
-            } else {
-                $r['strokeColor'] = $this->strokeColor;
-            }
-
-            $legend_rows[] = $r;
-        }
-
         $pageoutput[] = $output;
         $tmpl = new patTemplate();
         $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
         $tmpl->addRows('pageoutput', $pageoutput);
-        $tmpl->addRows('legend_rows', $legend_rows);
         $tmpl->readTemplatesFromInput('show_chart.html');
 
         return $tmpl->getParsedTemplate();
     }
 
-    private function build_line_bar_radar_chart()
+    private function build_chart()
     {
         $output = array();
         $rows = array();
         $pageoutput = array();
+		
+		$output['CHART_TYPE'] = $this->type;
 
         //X-axis labels
         $output['LABELS'] = '"'.implode('", "', $this->labels).'"';
@@ -214,7 +173,7 @@ class jomres_charts
         $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
         $tmpl->addRows('pageoutput', $pageoutput);
         $tmpl->addRows('rows', $rows);
-        $tmpl->readTemplatesFromInput('chart_'.$this->type.'.html');
+        $tmpl->readTemplatesFromInput('chart.html');
 
         $this->chart = $tmpl->getParsedTemplate();
     }

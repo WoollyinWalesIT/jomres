@@ -1492,6 +1492,16 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_minicomponents.'j16000usage_reporting_request.class.php');
 		$this->add_obs_dir($this->dir_libraries.JRDS.'piwik'.JRDS);
 		$this->add_obs_dir($this->dir_css.'jquery_ui_themes'.JRDS.'jomres'.JRDS);
+		$this->add_obs_file($this->dir_templates_bootstrap_backend.'chart_bar.html');
+		$this->add_obs_file($this->dir_templates_bootstrap_backend.'chart_line.html');
+		$this->add_obs_file($this->dir_templates_bootstrap_backend.'chart_radar.html');
+		$this->add_obs_file($this->dir_templates_bootstrap3_backend.'chart_bar.html');
+		$this->add_obs_file($this->dir_templates_bootstrap3_backend.'chart_line.html');
+		$this->add_obs_file($this->dir_templates_bootstrap3_backend.'chart_radar.html');
+		$this->add_obs_file($this->dir_templates_jqueryui_backend.'chart_bar.html');
+		$this->add_obs_file($this->dir_templates_jqueryui_backend.'chart_line.html');
+		$this->add_obs_file($this->dir_templates_jqueryui_backend.'chart_radar.html');
+		$this->add_obs_file($this->dir_javascript.'Chart.js');
     }
 
     public function add_obs_file($path_and_file)
