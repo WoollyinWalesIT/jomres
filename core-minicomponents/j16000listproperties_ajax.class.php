@@ -56,12 +56,12 @@ class j16000listproperties_ajax
          * Ordering
          */
         $sOrder = '';
-        if (isset($_GET['order'])) {
+        if (isset($_GET['jr_order'])) {
             $sOrder = 'ORDER BY ';
 			for ($i = 0; $i < $n; ++$i) {
-				if (isset($_GET['order'][$i]['column'])) {
-					$column_id = (int)$_GET['order'][$i]['column'];
-					$sOrder .= '`'.$aColumns[$column_id].'` ' . ($_GET['order'][$i]['dir'] === 'asc' ? 'ASC' : 'DESC') . ', ';
+				if (isset($_GET['jr_order'][$i]['column'])) {
+					$column_id = (int)$_GET['jr_order'][$i]['column'];
+					$sOrder .= '`'.$aColumns[$column_id].'` ' . ($_GET['jr_order'][$i]['dir'] === 'asc' ? 'ASC' : 'DESC') . ', ';
 				}
 			}
 			if ($sOrder == 'ORDER BY ') {
@@ -78,7 +78,7 @@ class j16000listproperties_ajax
          * on very large tables, and MySQL's regex functionality is very limited
          */
         $sWhere = '';
-		$search = jomresGetParam($_GET, 'search', array());
+		$search = jomresGetParam($_GET, 'jr_search', array());
         if (isset($search['value']) && $search['value'] != '') {
             $sWhere = 'AND (';
             for ($i = 0; $i < $n; ++$i) {

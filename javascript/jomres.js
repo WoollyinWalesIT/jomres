@@ -82,13 +82,21 @@ function make_datatable(table_id, pagetitle, livesite, ajaxurl, showTools) {
 	var oTable = jomresJquery('#' + table_id).dataTable({
 		"processing": bProcessing,
 		"serverSide": bServerSide,
-		"ajax": ajaxurl,
+		"ajax": {
+			"url": ajaxurl,
+			"data": function ( d ) {
+				d.jr_search = d.search;
+				d.jr_order = d.order;
+				delete d.search;
+				delete d.order;
+			}
+		},
 		"jQueryUI": false,
 		"stateSave": true,
 		"autoWidth": false,
 		"dom": sDomm,
 		"order": [[ 0, "desc" ]],
-		"searchDelay": 1500,
+		"searchDelay": 2000,
 		"deferRender": true,
 		"language": {
 			"decimal":			'',
