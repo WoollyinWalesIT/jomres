@@ -88,7 +88,7 @@ function make_datatable(table_id, pagetitle, livesite, ajaxurl, showTools) {
 		"autoWidth": false,
 		"dom": sDomm,
 		"order": [[ 0, "desc" ]],
-		"searchDelay": 1000,
+		"searchDelay": 1500,
 		"deferRender": true,
 		"language": {
 			"decimal":			'',
