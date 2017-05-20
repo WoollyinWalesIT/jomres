@@ -104,17 +104,6 @@ function showSiteConfig()
     $lists[ 'useJomresEmailCheck' ] = jomresHTML::selectList($yesno, 'cfg_useJomresEmailCheck', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useJomresEmailCheck' ]);
     $lists[ 'composite_property_details' ] = jomresHTML::selectList($yesno, 'cfg_composite_property_details', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'composite_property_details' ]);
 
-    $lists[ 'sef_property_url_country' ] = jomresHTML::selectList($yesno, 'cfg_sef_property_url_country', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'sef_property_url_country' ]);
-    $lists[ 'sef_property_url_region' ] = jomresHTML::selectList($yesno, 'cfg_sef_property_url_region', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'sef_property_url_region' ]);
-    $lists[ 'sef_property_url_town' ] = jomresHTML::selectList($yesno, 'cfg_sef_property_url_town', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'sef_property_url_town' ]);
-    $lists[ 'sef_property_url_ptype' ] = jomresHTML::selectList($yesno, 'cfg_sef_property_url_ptype', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'sef_property_url_ptype' ]);
-    $lists[ 'sef_property_url_propertyname' ] = jomresHTML::selectList($yesno, 'cfg_sef_property_url_propertyname', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'sef_property_url_propertyname' ]);
-    $lists[ 'sef_property_url_property_id' ] = jomresHTML::selectList($yesno, 'cfg_sef_property_url_property_id', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'sef_property_url_property_id' ]);
-    $lists[ 'sef_search_url_country' ] = jomresHTML::selectList($yesno, 'cfg_sef_search_url_country', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'sef_search_url_country' ]);
-    $lists[ 'sef_search_url_region' ] = jomresHTML::selectList($yesno, 'cfg_sef_search_url_region', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'sef_search_url_region' ]);
-    $lists[ 'sef_search_url_town' ] = jomresHTML::selectList($yesno, 'cfg_sef_search_url_town', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'sef_search_url_town' ]);
-    $lists[ 'sef_search_url_ptype' ] = jomresHTML::selectList($yesno, 'cfg_sef_search_url_ptype', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'sef_search_url_ptype' ]);
-
     $lists[ 'show_booking_form_in_property_details' ] = jomresHTML::selectList($yesno, 'cfg_show_booking_form_in_property_details', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'show_booking_form_in_property_details' ]);
 
     $geosearchList = array();

@@ -123,7 +123,6 @@ class jomres_config_property_singleton
 				}
 			}
 			if ($jrConfig[ 'useGlobalCurrency' ] == '1') {
-				$this->default_config[ 'currency' ] = $jrConfig[ 'globalCurrency' ];
 				$this->default_config[ 'currencyCode' ] = $jrConfig[ 'globalCurrencyCode' ];
 			}
 		}

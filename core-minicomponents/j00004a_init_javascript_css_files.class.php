@@ -72,13 +72,11 @@ class j00004a_init_javascript_css_files
         if ($jrConfig[ 'load_jquery_ui' ] == '1' && !$management_view) {
             if ($jrConfig[ 'load_jquery_ui_css' ] == '1') {
                 jomres_cmsspecific_addheaddata('css', $themePath, 'jquery-ui.min.css'); // Not minified due to how it's background images are stored
-                //$css_files[]= array( $themePath, $filename);
             }
         }
 
         if (jomres_cmsspecific_areweinadminarea()) { // Regardless of the frontend setting, if we're in the admin area, we'll need the jquery UI
-            jomres_cmsspecific_addheaddata('css', $themePath, $filename);
-            //$css_files[]= array( $themePath, $filename);
+            jomres_cmsspecific_addheaddata('css', $themePath, 'jquery-ui.min.css');
         }
 
         if (jomres_cmsspecific_areweinadminarea() || ($jrConfig[ 'load_jquery_ui' ] == '1' && !$management_view)) {
