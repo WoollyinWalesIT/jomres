@@ -49,14 +49,7 @@ class j02990add_tourist_tax
 
         $mrConfig['tourist_tax'] = (float) $mrConfig['tourist_tax'];
 
-        $bkg = new booking();
-        $this->bookingObject = $bkg;
-        $bk = $this->bookingObject;
-        if (strlen($bk->error_code) > 0) {
-            $this->bookingObject = null;
-        } else {
-            unset($bk);
-        }
+        $bkg = $MiniComponents->triggerEvent('05000'); // Create the booking object
 
         $bkg->remove_third_party_extra('tourist_tax', 0);
 
@@ -84,11 +77,5 @@ class j02990add_tourist_tax
     public function getRetVals()
     {
         return null;
-    }
-}
-
-if (!class_exists('booking')) {
-    class booking extends dobooking
-    {
     }
 }
