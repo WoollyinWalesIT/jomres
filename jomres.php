@@ -182,7 +182,7 @@ try {
         $jomres_suspensions = new jomres_suspensions();
         $jomres_suspensions->set_manager_id($thisJRUser->userid);
         if ($jomres_suspensions->suspended_manager_denied_task(get_showtime('task'))) {
-            jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=dashboard'), '');
+            jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=cpanel'), '');
         }
     }
 
@@ -266,10 +266,10 @@ try {
 	if ($MiniComponents->eventSpecificlyExistsCheck('06000', get_showtime('task'))) {
 		$MiniComponents->specificEvent('06000', get_showtime('task'));
 	} elseif ($MiniComponents->eventSpecificlyExistsCheck('06001', get_showtime('task')) && $thisJRUser->userIsManager) { // Receptionist and manager tasks
-		if (get_showtime('task') == 'dashboard') {
-			//$MiniComponents->triggerEvent('00013'); // Optional Pre dashboard
+		if (get_showtime('task') == 'cpanel') {
+			//$MiniComponents->triggerEvent('00013'); // Optional Pre cpanel
 			$MiniComponents->specificEvent('06001', get_showtime('task'));
-			$MiniComponents->triggerEvent('00014'); // Optional Post dashboard
+			$MiniComponents->triggerEvent('00014'); // Optional Post cpanel
 		} else {
 			$MiniComponents->specificEvent('06001', get_showtime('task'));
 		}
@@ -370,9 +370,9 @@ function no_task_set($property_uid = 0)
         $MiniComponents->specificEvent('06000', "search");
     } else {
         if ($thisJRUser->userIsManager) {
-            //$MiniComponents->triggerEvent('00013'); // Optional Pre dashboard
-            $MiniComponents->specificEvent('06001', 'dashboard');
-            $MiniComponents->triggerEvent('00014'); // Optional Post dashboard
+            //$MiniComponents->triggerEvent('00013'); // Optional Pre cpanel
+            $MiniComponents->specificEvent('06001', 'cpanel');
+            $MiniComponents->triggerEvent('00014'); // Optional Post cpanel
         } elseif (get_showtime('numberOfPropertiesInSystem') == 1 && $jrConfig[ 'is_single_property_installation' ] == '0') {
             set_showtime('task', 'viewproperty');
             $componentArgs = array();

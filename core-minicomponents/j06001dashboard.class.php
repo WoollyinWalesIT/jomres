@@ -48,6 +48,12 @@ class j06001dashboard
             return;
         }
 
+        if (isset($componentArgs[ 'output_now' ])) {
+            $output_now = $componentArgs[ 'output_now' ];
+        } else {
+            $output_now = true;
+        }
+
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
 
@@ -213,16 +219,6 @@ class j06001dashboard
         //existing guests dropdown
         $output['HEXISTING_GUESTS_DROPDOWN'] = jr_gettext('_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST', '_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST', false);
         $output['EXISTING_GUESTS_DROPDOWN'] = $this->getExistingGuestsDropdown($property_uid);
-		
-		$output['PERCENTAGES_BOOKED'] = $MiniComponents->specificEvent('06001', 'dashboard_weekly_percentages', array('output_now' => false, 'property_uid' => $property_uid));
-		
-		if (!isset($jrConfig[ 'show_overview_in_dashboard' ])) {
-			$jrConfig[ 'show_overview_in_dashboard' ] = "0";
-		}
-		
-		if ($jrConfig[ 'show_overview_in_dashboard' ] == "1" ) {
-			$output['OVERVIEW'] = $MiniComponents->specificEvent('06001', 'overview', array('output_now' => false, 'property_uid' => $property_uid));
-		}
 
         $pageoutput[] = $output;
         $tmpl = new patTemplate();
@@ -230,7 +226,12 @@ class j06001dashboard
         $tmpl->addRows('pageoutput', $pageoutput);
         $tmpl->addRows('rows', $rows);
         $tmpl->readTemplatesFromInput('dashboard.html');
-        $tmpl->displayParsedTemplate();
+        $template = $tmpl->getParsedTemplate();
+        if ($output_now) {
+            echo $template;
+        } else {
+            $this->retVals = $template;
+        }
         
     }
 
