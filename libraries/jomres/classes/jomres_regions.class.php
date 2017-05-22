@@ -135,7 +135,7 @@ class jomres_regions
     public function get_region($id = 0)
     {
 		if ((int)$id == 0) {
-			throw new Exception('Tried to get region with id 0');
+			return '';
 		}
 
         if (isset($this->regions[ $id ])) {
@@ -164,7 +164,7 @@ class jomres_regions
     public function get_region_name($id = 0)
     {
 		if ((int)$id == 0) {
-			throw new Exception('Tried to get region with id 0');
+			return '';
 		}
 
         if (isset($this->regions[ $id ])) {

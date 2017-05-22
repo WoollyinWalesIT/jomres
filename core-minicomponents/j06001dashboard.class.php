@@ -108,11 +108,13 @@ class j06001dashboard
             $output['FIRST_DAY_OF_WEEK'] = '1';
         }
 
-        $rows = array('0' => array('VIEW' => 'timelineDay', 'ACTIVE' => '', 'VIEW_NAME' => $output['DAY']),
-                    '1' => array('VIEW' => 'timelineWeek', 'ACTIVE' => '', 'VIEW_NAME' => $output['WEEK']),
-                    '2' => array('VIEW' => 'timelineTwoWeeks', 'ACTIVE' => 'active', 'VIEW_NAME' => $output['TWOWEEKS']),
-                    '3' => array('VIEW' => 'timelineMonth', 'ACTIVE' => '', 'VIEW_NAME' => $output['MONTH']),
-                    '4' => array('VIEW' => 'timelineYear', 'ACTIVE' => '', 'VIEW_NAME' => $output['YEAR']), );
+        $rows = array(
+			'0' => array('VIEW' => 'timelineDay', 'ACTIVE' => '', 'VIEW_NAME' => $output['DAY']),
+			'1' => array('VIEW' => 'timelineWeek', 'ACTIVE' => '', 'VIEW_NAME' => $output['WEEK']),
+			'2' => array('VIEW' => 'timelineTwoWeeks', 'ACTIVE' => 'active', 'VIEW_NAME' => $output['TWOWEEKS']),
+			'3' => array('VIEW' => 'timelineMonth', 'ACTIVE' => '', 'VIEW_NAME' => $output['MONTH']),
+			'4' => array('VIEW' => 'timelineYear', 'ACTIVE' => '', 'VIEW_NAME' => $output['YEAR'])
+		);
 
         //guest modal form
         $output[ 'HQUICK_BOOKING' ] = jr_gettext('_JOMRES_HQUICK_BOOKING', '_JOMRES_HQUICK_BOOKING', false);
