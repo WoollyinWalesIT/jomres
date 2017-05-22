@@ -18,16 +18,17 @@ class jomres_suspensions
 {
     public function __construct()
     {
-        $this->cms_user_id = 0;                            // This is the userid in #__jomres_managers. It corresponds with the CMS user's id
+        $this->cms_user_id = 0;                   // This is the userid in #__jomres_managers. It corresponds with the CMS user's id
         $this->id = 0;                            // This is the manager_uid in #__jomres_managers
-        $this->authorised_properties = array();                        // properties that this manager has access to
+        $this->authorised_properties = array();   // properties that this manager has access to
+		$this->accesslevel = 0;					  // access level
 
         $this->suspended_manager_denied_tasks = array(
-                                                        'publish_property',
-                                                        'dobooking',
-                                                        'list_bookings',
-                                                        'edit_booking',
-                                                        );                        // blocked tasks for suspended managers
+													'publish_property',
+													'dobooking',
+													'list_bookings',
+													'edit_booking',
+													);  // blocked tasks for suspended managers
     }
 
     //gets the userid(cms user id) and sets the id (manager_uid)
@@ -44,6 +45,7 @@ class jomres_suspensions
         if ($jomres_users->get_user($this->cms_user_id)) {
             $this->id = $jomres_users->id;
             $this->authorised_properties = $jomres_users->authorised_properties;
+			$this->accesslevel = $jomres_users->accesslevel;
         }
     }
 
@@ -83,6 +85,10 @@ class jomres_suspensions
         if ($this->id == 0) {
             return false;
         }
+		
+		if ($this->accesslevel < 50 || $this->accesslevel >= 90) {
+			return false;
+		}
 
         if (!empty($this->authorised_properties)) {
             $query = 'UPDATE #__jomres_propertys SET `published` = 0 WHERE `propertys_uid` IN ('.jomres_implode($this->authorised_properties).') AND `published` = 1 ';
@@ -107,6 +113,10 @@ class jomres_suspensions
         if ($this->id == 0) {
             return false;
         }
+		
+		if ($this->accesslevel < 50 || $this->accesslevel >= 90) {
+			return false;
+		}
 
         if (!empty($this->authorised_properties)) {
             $query = 'UPDATE #__jomres_propertys SET `published` = 1 WHERE `propertys_uid` IN ('.jomres_implode($this->authorised_properties).') AND `published` = 0 ';
