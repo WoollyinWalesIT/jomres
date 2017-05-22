@@ -103,7 +103,7 @@ class j16000chart_bookings
                 $chart->datasets[$k] = array(
                                              'label' => $k,
                                              'data' => $data,
-                                             'fillColor' => 'rgba('.$a.','.$b.','.$c.',0.2)',
+                                             'fillColor' => 'rgba('.$a.','.$b.','.$c.',0.5)',
                                              'strokeColor' => 'rgba('.$a.','.$b.','.$c.',1)',
                                              'pointColor' => 'rgba('.$a.','.$b.','.$c.',1)',
                                              'pointStrokeColor' => '#fff',

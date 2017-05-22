@@ -27,8 +27,7 @@ class j16000translate_lang_file_strings
         if (!translation_user_check()) {
             return;
         }
-        echo '<h2>'.jr_gettext('_JOMRES_TOUCHTEMPLATES', '_JOMRES_TOUCHTEMPLATES', false).'</h2>';
-        echo '<br/><h3>'.get_showtime('lang').'</h3><br/>';
+        echo '<h2>'.jr_gettext('_JOMRES_TOUCHTEMPLATES', '_JOMRES_TOUCHTEMPLATES', false).' - '.get_showtime('lang').'</h2><br/>';
 
         $output = array();
 

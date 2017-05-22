@@ -29,7 +29,7 @@ class jomres_charts
 
         $this->label = 'Example data set'; // name of the data set
         $this->data = array(rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100)); //data array for the Y axis
-        $this->fillColor = 'rgba(220,220,220,0.2)';
+        $this->fillColor = 'rgba(220,220,220,0.5)';
         $this->strokeColor = 'rgba(220,220,220,1)';
         $this->pointColor = 'rgba(220,220,220,1)';
         $this->pointStrokeColor = '#fff';
@@ -40,7 +40,7 @@ class jomres_charts
         $this->datasets[] = array(
                                 'label' 				= 'Sales',
                                 'data' 					= array ( rand(10,100),rand(10,100),rand(10,100),rand(10,100),rand(10,100),rand(10,100),rand(10,100) ),
-                                'fillColor' 			= "rgba(220,220,220,0.2)",
+                                'fillColor' 			= "rgba(220,220,220,0.5)",
                                 'strokeColor' 			= "rgba(220,220,220,1)",
                                 'pointColor'			= "rgba(220,220,220,1)",
                                 'pointStrokeColor' 		= "#fff",

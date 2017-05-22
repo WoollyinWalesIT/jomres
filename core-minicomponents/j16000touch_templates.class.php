@@ -27,8 +27,7 @@ class j16000touch_templates
         if (!translation_user_check()) {
             return;
         }
-        echo '<h2>'.jr_gettext('_JOMRES_TOUCHTEMPLATES', '_JOMRES_TOUCHTEMPLATES', false).'</h2>';
-        echo '<br/><h3>'.get_showtime('lang').'</h3><br/>';
+        echo '<h2>'.jr_gettext('_JOMRES_TOUCHTEMPLATES', '_JOMRES_TOUCHTEMPLATES', false).' - '.get_showtime('lang').'</h2><br/>';
 
         $basic_subscription_package_details = jomres_singleton_abstract::getInstance('basic_subscription_package_details');
 
