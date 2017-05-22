@@ -26,6 +26,7 @@ class jomres_charts
         $this->description = 'Example chart description'; // string chart description, eg: "Total sales per month"
         $this->labels = array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'); // array of X axis labels
         $this->url = ''; //url to full page chart
+		$this->height = 'auto'; //chart height
 
         $this->label = 'Example data set'; // name of the data set
         $this->data = array(rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100)); //data array for the Y axis
@@ -165,6 +166,15 @@ class jomres_charts
 
             $rows[] = $r;
         }
+		
+		//chart fixed height
+		$output['HEIGHT'] = $this->height;
+		
+		//aspect ratio if we have a fixed height
+		$output['MAINTAIN_ASPECT_RATIO'] = 'true';
+		if ($this->height != 'auto') {
+			$output['MAINTAIN_ASPECT_RATIO'] = 'false';
+		}
 
         $output['RANDOM_ID'] = generateJomresRandomString(10);
 
