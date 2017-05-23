@@ -163,15 +163,14 @@ fieldset.radio.btn-group {
 }
 
 /* Custom labels */
-.label-grey {background-color: #999999 !important;}
-.label-black {background-color: #333333 !important;}
-.label-orange {background-color: #F89406 !important;}
-.label-red {background-color: #B94A48 !important;}
-.label-green {background-color: #468847 !important;}
-.label-blue {background-color: #3A87AD !important;}
-.label-purple {background-color: #e01fb9 !important;}
-.label-teal {background-color: #0fcef1 !important;}
-
+.label-grey {background-color: #bdbdbd !important;}
+.label-black {background-color: #212121 !important;}
+.label-orange {background-color: #ffa726 !important;}
+.label-red {background-color: #ef5350 !important;}
+.label-green {background-color: #66bb6a !important;}
+.label-blue {background-color: #29b6f6 !important;}
+.label-purple {background-color: #ab47bc !important;}
+.label-teal {background-color: #26a69a !important;}
 
 .panel {
   margin-bottom: 20px;
