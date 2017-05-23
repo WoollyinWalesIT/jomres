@@ -602,6 +602,10 @@ function doTableUpdates()
     if (!checkGuestsBlacklistedColExists()) {
         alterGuestsBlacklistedCol();
     }
+	
+	if (!checkManagersParamsColExists()) {
+        alterManagersParamsCol();
+    }
     
 	copy_default_property_type_markers();
     drop_orphan_line_items_table();
@@ -612,6 +616,25 @@ function doTableUpdates()
 	add_jomres_template_package_table();
     updateSiteSettings('update_time', time());
     
+}
+
+function alterManagersParamsCol()
+{
+    $query = 'ALTER TABLE `#__jomres_managers` ADD `params` TEXT';
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to add __jomres_managers params column', 'danger');
+    }
+}
+
+function checkManagersParamsColExists()
+{
+    $query = "SHOW COLUMNS FROM #__jomres_managers LIKE 'params'";
+    $result = doSelectSql($query);
+    if (count($result) > 0) {
+        return true;
+    }
+
+    return false;
 }
 		
 function add_jomres_template_package_table()
@@ -3878,6 +3901,7 @@ function createJomresTables()
 		`simple_configuration` tinyint( 1 ) default 1,
 		`users_timezone` CHAR(100) DEFAULT 'Europe/Berlin',
 		`last_active` datetime default NULL,
+		`params` TEXT,
 		PRIMARY KEY	(`manager_uid`)
 		) ";
     if (!doInsertSql($query)) {
