@@ -674,7 +674,7 @@ jr_define('_JOMCOMP_AMEND_DEPOSITDUE', 'Депозит не сплачено');
 jr_define('_JOMCOMP_AMEND_OVERRIDE_TOTAL', 'Override Total');
 jr_define('_JOMCOMP_AMEND_OVERRIDE_DEPOSIT', 'Override Deposit');
 jr_define('_JRPORTAL_CANCEL', 'Відміна');
-jr_define('_JRPORTAL_CPANEL', 'JRPortal Control Panel');
+jr_define('_JRPORTAL_CPANEL', 'Control Panel');
 jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE', 'Комісія по замовчуванню');
 jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE_DESC', "Виберіть % комісії який утримується з об'єкта.");
 jr_define('_JRPORTAL_CPANEL_LISTCRATES', 'Список комісійних');

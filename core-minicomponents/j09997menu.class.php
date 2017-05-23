@@ -64,7 +64,7 @@ class j09997menu
 				} elseif ($task != 'blank') {
 					$r['LINK'] = jomresUrl(JOMRES_SITEPAGE_URL.'&task='.$task);
 				} else {
-					$r['LINK'] = jomresUrl(JOMRES_SITEPAGE_URL.'&task=dashboard');
+					$r['LINK'] = jomresUrl(JOMRES_SITEPAGE_URL.'&task=cpanel');
 				}
 				
 				//menu item icon

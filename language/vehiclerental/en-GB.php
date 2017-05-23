@@ -696,7 +696,7 @@ jr_define('_JOMCOMP_AMEND_OVERRIDE_TOTAL', 'Override Total');
 jr_define('_JOMCOMP_AMEND_OVERRIDE_DEPOSIT', 'Override Deposit');
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Jomres 2.7.5
 jr_define('_JRPORTAL_CANCEL', 'Cancel');
-jr_define('_JRPORTAL_CPANEL', 'JRPortal Control Panel');
+jr_define('_JRPORTAL_CPANEL', 'Control Panel');
 jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE', 'Default Commission rate');
 jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE_DESC', 'Choose the default commission rate that will be applied to a business in the event that another commission rate is not otherwise set.');
 jr_define('_JRPORTAL_CPANEL_LISTCRATES', 'List Commission Rates');

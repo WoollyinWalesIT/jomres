@@ -668,7 +668,7 @@ jr_define('JOMRES_COM_A_VERBOSETARIFFINTO_DESC', 'Nastavte na ANO, pokud chcete 
 jr_define('JOMRES_COM_A_MINIMALCONFIG', 'Minimalizovat nastavení');
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Jomres 2.7.5
 jr_define('_JRPORTAL_CANCEL', 'Zrušit');
-jr_define('_JRPORTAL_CPANEL', 'Ovládací panel JRPortal');
+jr_define('_JRPORTAL_CPANEL', 'Ovládací panel');
 jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE', 'Výchozí výše provize');
 jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE_DESC', 'Zvolte výchozí výši provize, která bude aplikována v případě, že u kapacity nebude určena její individuální výše.');
 jr_define('_JRPORTAL_CPANEL_LISTCRATES', 'Seznam provizních sazeb');

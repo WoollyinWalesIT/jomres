@@ -695,7 +695,7 @@ jr_define('_JOMCOMP_AMEND_OVERRIDE_TOTAL', 'Modifier le total');
 jr_define('_JOMCOMP_AMEND_OVERRIDE_DEPOSIT', 'Modifier l\'acompte');
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Jomres 2.7.5
 jr_define('_JRPORTAL_CANCEL', 'Annuler');
-jr_define('_JRPORTAL_CPANEL', 'Tableau de contrôle JRPortal');
+jr_define('_JRPORTAL_CPANEL', 'Tableau de contrôle');
 jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE', 'Taux de commission par défaut');
 jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE_DESC', 'Choisir le taux de commission qui sera appliqué par défaut à un établissement dans l\'éventualité où un autre taux de commission n\'a pas été défini.');
 jr_define('_JRPORTAL_CPANEL_LISTCRATES', 'Liste Taux de commissions');

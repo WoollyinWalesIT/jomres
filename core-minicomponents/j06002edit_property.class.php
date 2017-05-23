@@ -293,7 +293,7 @@ class j06002edit_property
         $jrtb .= $jrtbar->endTable();
         $output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
-        $output[ 'CANCEL_URL' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=dashboard');
+        $output[ 'CANCEL_URL' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=cpanel');
 
         //approval warning
         $approval_warning[] = array('APPROVALWARNING' => jr_gettext('_JOMRES_EDITPROPERTY_APPROVAL_WARNING', '_JOMRES_EDITPROPERTY_APPROVAL_WARNING', false));

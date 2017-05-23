@@ -675,7 +675,7 @@ jr_define('_JOMCOMP_AMEND_OVERRIDE_TOTAL', 'Sobrepor ao total');
 jr_define('_JOMCOMP_AMEND_OVERRIDE_DEPOSIT', 'Sobrepor ao depósito');
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Jomres 2.7.5
 jr_define('_JRPORTAL_CANCEL', 'Cancelar');
-jr_define('_JRPORTAL_CPANEL', 'Painel de controlo do JRPortal');
+jr_define('_JRPORTAL_CPANEL', 'Painel de controlo do');
 jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE', 'Comissão por defeito');
 jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE_DESC', 'Escolha a comissão por defeito que serrá aplicada a uma propriedade, na eventualidade de não ser definida de outro modo qualquer comissão.');
 jr_define('_JRPORTAL_CPANEL_LISTCRATES', 'Listar comissões');

@@ -13,7 +13,9 @@
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
 
-jr_define('_JOMRES_SHORTCODES_06001DASHBOARD', 'This is the property dashboard script which displays the users bookings.');
+jr_define('_JOMRES_SHORTCODES_06001CPANEL', 'This is the property cpanel frontpage.');
+
+jr_define('_JOMRES_SHORTCODES_06001TAPECHART', 'This is the property tape chart which which provides an overview of real-time bookings, availability and occupancy at a glance.');
 
 jr_define('_JOMRES_SHORTCODES_06000COMPARE', 'This script allows the user to compare several properties against each other, up to a maximum of 3 properties.');
 jr_define('_JOMRES_SHORTCODES_06000COMPARE_ARG_PROPERTY_UIDS', 'A comma separated list of property uids, eg. 12,8,7');

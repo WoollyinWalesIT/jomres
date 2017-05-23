@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j06001dashboard_weekly_percentages
+class j06001weekly_occupancy_percentages
 {
     public function __construct($componentArgs)
     {
@@ -115,7 +115,7 @@ class j06001dashboard_weekly_percentages
         $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
 		$tmpl->addRows('pageoutput', $pageoutput);
         $tmpl->addRows('rows', $dates);
-        $tmpl->readTemplatesFromInput('dashboard_weekly_percentages.html');
+        $tmpl->readTemplatesFromInput('weekly_occupancy_percentages.html');
         $template = $tmpl->getParsedTemplate();
         if ($output_now) {
             echo $template;

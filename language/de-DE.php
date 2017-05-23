@@ -728,7 +728,7 @@ jr_define('_JOMCOMP_AMEND_OVERRIDE_TOTAL', 'Korrigiert Total');
 jr_define('_JOMCOMP_AMEND_OVERRIDE_DEPOSIT', 'Korrigiert Anzahlung');
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Jomres 2.7.5
 jr_define('_JRPORTAL_CANCEL', 'Abbrechen');
-jr_define('_JRPORTAL_CPANEL', 'JRPortal Konfiguration');
+jr_define('_JRPORTAL_CPANEL', 'Konfiguration');
 jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE', 'Standard Provision');
 jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE_DESC', 'Die Standard Provision wählen, die für den Fall angewendet wird, dass an keiner anderer Stelle eine Provision eingegeben wurde.');
 jr_define('_JRPORTAL_CPANEL_LISTCRATES', 'Liste der Provisionen');

@@ -38,7 +38,7 @@ class j04901email_property_welcome_message
         $output['_JOMRES_NEW_PROPERTY_WELCOME_1'] = jr_gettext('_JOMRES_NEW_PROPERTY_WELCOME_1', '_JOMRES_NEW_PROPERTY_WELCOME_1', false, false).' '.get_showtime('sitename');
         $output['_JOMRES_NEW_PROPERTY_WELCOME_2'] = jr_gettext('_JOMRES_NEW_PROPERTY_WELCOME_2', '_JOMRES_NEW_PROPERTY_WELCOME_2', false, false);
         $output['_JOMRES_NEW_PROPERTY_WELCOME_3'] = jr_gettext('_JOMRES_NEW_PROPERTY_WELCOME_3', '_JOMRES_NEW_PROPERTY_WELCOME_3', false, false);
-        $output['_JOMRES_NEW_PROPERTY_WELCOME_3_LINK'] = jomresURL(JOMRES_SITEPAGE_URL_NOSEF.'&task=dashboard&thisProperty='.$property_uid);
+        $output['_JOMRES_NEW_PROPERTY_WELCOME_3_LINK'] = jomresURL(JOMRES_SITEPAGE_URL_NOSEF.'&task=cpanel&thisProperty='.$property_uid);
         $output['_JOMRES_NEW_PROPERTY_WELCOME_3_LINKTEXT'] = jr_gettext('_JOMRES_NEW_PROPERTY_WELCOME_3_LINKTEXT', '_JOMRES_NEW_PROPERTY_WELCOME_3_LINKTEXT', false, false);
         $output['_JOMRES_NEW_PROPERTY_WELCOME_4'] = jr_gettext('_JOMRES_NEW_PROPERTY_WELCOME_4', '_JOMRES_NEW_PROPERTY_WELCOME_4', false, false);
         $output['_JOMRES_NEW_PROPERTY_WELCOME_4_LINK'] = get_property_details_url($property_uid,'nosef');

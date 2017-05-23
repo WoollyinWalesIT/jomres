@@ -706,7 +706,7 @@ jr_define('_JOMCOMP_AMEND_OVERRIDE_TOTAL', 'Aanpassen Totaal');
 jr_define('_JOMCOMP_AMEND_OVERRIDE_DEPOSIT', 'Aanpassen aanbetaling');
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Jomres 2.7.5
 jr_define('_JRPORTAL_CANCEL', 'Annuleer');
-jr_define('_JRPORTAL_CPANEL', 'JRPortal Configuratioe scherm');
+jr_define('_JRPORTAL_CPANEL', 'Configuratioe scherm');
 jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE', 'Standaard commissie');
 jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE_DESC', 'Kies de standaard commissie dat wordt toegepast voor het geval dat er nog geen speciefieke commissie is aangemaakt voor het verhuurobject.');
 jr_define('_JRPORTAL_CPANEL_LISTCRATES', 'Overzicht commissies');

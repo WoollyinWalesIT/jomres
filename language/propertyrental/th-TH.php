@@ -679,7 +679,7 @@ jr_define( "_JOMCOMP_AMEND_DEPOSITDUE", "ไม่มีชำระเงิน
 jr_define( "_JOMCOMP_AMEND_OVERRIDE_TOTAL", "แทนผลรวม" );
 jr_define( "_JOMCOMP_AMEND_OVERRIDE_DEPOSIT", "แทนที่การเงินมัดจำ" );
 jr_define( "_JRPORTAL_CANCEL", "ยกเลิก" );
-jr_define( "_JRPORTAL_CPANEL", "JRPortal Control Panel" );
+jr_define( "_JRPORTAL_CPANEL", "Control Panel" );
 jr_define( "_JRPORTAL_CONFIG_DEFAULT_CRATE", "อัตราค่าคอมมิชชั่นเริ่มต้น" );
 jr_define( "_JRPORTAL_CONFIG_DEFAULT_CRATE_DESC", "Choose the default commission rate that will be applied to a business in the event that another commission rate is not otherwise set." );
 jr_define( "_JRPORTAL_CPANEL_LISTCRATES", "อัตราค่ารายการคอมมิชชั่น" );

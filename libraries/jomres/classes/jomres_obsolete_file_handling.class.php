@@ -1502,6 +1502,9 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_templates_jqueryui_backend.'chart_line.html');
 		$this->add_obs_file($this->dir_templates_jqueryui_backend.'chart_radar.html');
 		$this->add_obs_file($this->dir_javascript.'Chart.js');
+		$this->add_obs_file($this->dir_minicomponents.'j06001dashboard_weekly_percentages.class.php');
+		$this->add_obs_file($this->dir_templates_bootstrap_backend.'dashboard_weekly_percentages.html');
+		$this->add_obs_file($this->dir_templates_bootstrap3_backend.'dashboard_weekly_percentages.html');
     }
 
     public function add_obs_file($path_and_file)

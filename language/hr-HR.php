@@ -694,7 +694,7 @@ jr_define('_JOMCOMP_AMEND_OVERRIDE_TOTAL', 'Override ukupno');
 jr_define('_JOMCOMP_AMEND_OVERRIDE_DEPOSIT', 'Override polog');
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Jomres 2.7.5
 jr_define('_JRPORTAL_CANCEL', 'Poništi');
-jr_define('_JRPORTAL_CPANEL', 'JRPortal Control Panel');
+jr_define('_JRPORTAL_CPANEL', 'Control Panel');
 jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE', 'Zadana vrijednost provizije');
 jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE_DESC', 'Odaberite zadanu proviziju koja će se primijeniti za objekte u slučaju da nije postavljena nikakva druga provizija.');
 jr_define('_JRPORTAL_CPANEL_LISTCRATES', 'Prikaži provizije');

@@ -22,9 +22,9 @@ class j06001cpanel
         if ($MiniComponents->template_touch) {
             $this->template_touchable = false;
             $this->shortcode_data = array(
-                    'task' => 'dashboard',
+                    'task' => 'cpanel',
                     'arguments' => array(),
-                    'info' => '_JOMRES_SHORTCODES_06001DASHBOARD',
+                    'info' => '_JOMRES_SHORTCODES_06001CPANEL',
                 );
 
             return;

@@ -683,7 +683,7 @@ jr_define('_JOMCOMP_AMEND_OVERRIDE_TOTAL', 'الإجمالي');
 jr_define('_JOMCOMP_AMEND_OVERRIDE_DEPOSIT', 'إجمالي الدفعه المطلوبة');
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Jomres 2.7.5
 jr_define('_JRPORTAL_CANCEL', 'الغاء');
-jr_define('_JRPORTAL_CPANEL', 'JRPortal لوحة التحكم');
+jr_define('_JRPORTAL_CPANEL', 'لوحة التحكم');
 jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE', 'قيمة العمولة الإفتراضيه');
 jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE_DESC', 'اختيار سعر العمولة الافتراضية التي سيتم تطبيقها على فنادق في حالة عدم تعيين آخر سعر العمولة غير ذلك.');
 jr_define('_JRPORTAL_CPANEL_LISTCRATES', 'قائمة قيمة العمولات');

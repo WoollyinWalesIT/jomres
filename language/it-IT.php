@@ -708,7 +708,7 @@ jr_define('_JOMCOMP_AMEND_OVERRIDE_TOTAL', 'Correggi Totale');
 jr_define('_JOMCOMP_AMEND_OVERRIDE_DEPOSIT', 'Correggi Deposito');
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Jomres 2.7.5
 jr_define('_JRPORTAL_CANCEL', 'Annulla');
-jr_define('_JRPORTAL_CPANEL', 'Pannello di controllo JRPortal');
+jr_define('_JRPORTAL_CPANEL', 'Pannello di controllo');
 jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE', 'Commissione standard');
 jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE_DESC', 'Scegli la commissione standard che verra applicata su una struttura nel caso in cui nessun altra commissione sia stata configurata.');
 jr_define('_JRPORTAL_CPANEL_LISTCRATES', 'Lista commissioni prezzi');
