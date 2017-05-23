@@ -432,7 +432,7 @@ class jomres_properties
         }
     }
 
-    private function delete_rooms_tariffs_settings($delete_rooms = true, $delete_tariffs = true, $delete_settings = true)
+    public function delete_rooms_tariffs_settings($delete_rooms = true, $delete_tariffs = true, $delete_settings = true)
     {
         if ($this->propertys_uid == 0) {
             throw new Exception('Error: Property uid not set.');
