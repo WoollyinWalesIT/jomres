@@ -62,6 +62,8 @@ class j09995menu
 			$jomres_menu->add_item(1, jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_HOME', '_JOMRES_FRONT_MR_MENU_ADMIN_HOME', false), 'dashboard', 'fa-calendar');
 		}
 		
+		
+		
 		//my account section menus
 		if ($thisJRUser->accesslevel >= 1) {
 			$jomres_menu->add_item(10, jr_gettext('_JOMRES_MY_ACCOUNT_EDIT', '_JOMRES_MY_ACCOUNT_EDIT', false), 'edit_my_account', 'fa-user');
@@ -126,6 +128,7 @@ class j09995menu
 		//reports section menus
 		if ($thisJRUser->accesslevel > 50 && $mrConfig[ 'is_real_estate_listing' ] != '1') {
 			$jomres_menu->add_item(60, jr_gettext('_JOMRES_CHARTS', '_JOMRES_CHARTS', false), 'charts', 'fa-line-chart');
+			$jomres_menu->add_item(60, jr_gettext('_JOMRES_OVERALL_ROOMS_BOOKED', '_JOMRES_OVERALL_ROOMS_BOOKED', false), 'weekly_occupancy_percentages', 'fa-percent');
 		}
 
 		//misc section menus
