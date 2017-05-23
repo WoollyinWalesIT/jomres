@@ -1,12 +1,15 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <style type="text/css">
 /*Overrides*/
+.fc-toolbar {
+	display:none;
+}
 .fc-main-col {
 	background:#f5f5f5;
 }
 .fc-no-overlap .fc-body .fc-resource-area .fc-cell-content {
-    padding-bottom: 2px;
-    padding-top: 2px;
+    padding-bottom: 5px;
+    padding-top: 5px;
 }
 .fc-timeline-event {
 	font-size:inherit !important;
@@ -17,7 +20,7 @@
 	margin-bottom:1px !important;
 }
 .fc-event {
-	font-size:0.9em !important;
+	font-size:13px !important;
 }
 .fc-event .fc-bg {
 	background:transparent;
@@ -26,7 +29,7 @@
 	padding-bottom:0;
 }
 .fc-timeline-event .fc-content {
-	padding:2px;
+	padding:5px;
 }
 a.fc-event:hover {
    text-decoration:none;
@@ -35,20 +38,19 @@ a.fc-event, .fc-event-draggable {
     border: 0 none !important;
 }
 .fc-widget-header {
-	font-size:0.9em;
+	font-size:12pxem;
 	color:#999;
 	font-weight:normal;
 	font-style:italic;
 	background:#f5f5f5;
 }
-#jrCalendarTrash .jr-calendar-trash {
+#jrCalendarTrash.jr-calendar-trash {
 	box-shadow: 0 8px 6px -6px grey;
 	background: rgba(218, 49, 75, 0.55);
 	border: 1px dashed #e0e0e1;
 	color: #fafafa;
 	height: 50px;
 	text-align: center;
-	margin-top: 25px;
 	margin-right: 20px;
 	font-size: 36px;
 	width: 22%;
@@ -57,7 +59,7 @@ a.fc-event, .fc-event-draggable {
 	line-height: 1;
 	float: right;
 }
-#jrCalendarTrash .jr-calendar-trash span {
+#jrCalendarTrash.jr-calendar-trash span {
 	font-size:13px;
 	vertical-align:middle;
 	text-align:center;
