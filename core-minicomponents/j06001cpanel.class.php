@@ -31,12 +31,30 @@ class j06001cpanel
         }
 
         $output = array();
+		
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+		if (isset($thisJRUser->params->settings->cpanel_plugins)) {
+			$dashboard_plugins = $thisJRUser->params->settings->cpanel_plugins;
+		} else {
+			$dashboard_plugins = $thisJRUser->params->settings->cpanel_plugins_defaults;
+		}
+		
+		$rows = array();
+		if (!empty($dashboard_plugins)) {
+			foreach ($dashboard_plugins as $plugin ) {
+				$r = array();
+				$r['PLUGIN_SHORTCODE'] = "{jomres_shortcode ".$plugin."}";
+				$rows[] = $r;
+			}
+		}
+		
         $pageoutput = array();
 
         $pageoutput[] = $output;
         $tmpl = new patTemplate();
         $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
         $tmpl->addRows('pageoutput', $pageoutput);
+		$tmpl->addRows('rows', $rows);
         $tmpl->readTemplatesFromInput('cpanel.html');
         $tmpl->displayParsedTemplate();
         

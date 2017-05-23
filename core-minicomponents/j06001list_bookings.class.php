@@ -141,6 +141,21 @@ class j06001list_bookings
 
         $output['AJAX_URL'] = JOMRES_SITEPAGE_URL_AJAX.'&task=list_bookings_ajax&startDate='.$startDate.'&endDate='.$endDate.'&deposit_status='.$deposit_status.'&resident_status='.$resident_status.'&booking_status='.$booking_status.'&show_all='.$show_all.'&tag='.$tag;
 
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+		
+		$plugin = "list_bookings";
+		if (!$thisJRUser->is_cpanel_plugin($plugin) ) {
+			$template_file = "cpanel_removed.html";
+		} else {
+			$template_file = "cpanel_added.html";
+		}
+        $tmpl = new patTemplate();
+        $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
+        $tmpl->readTemplatesFromInput($template_file);
+        $output['CPANEL_ICON'] = $tmpl->getParsedTemplate();
+		$output['PLUGIN'] = $plugin;
+		
+		
         $pageoutput[ ] = $output;
         $tmpl = new patTemplate();
         $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);

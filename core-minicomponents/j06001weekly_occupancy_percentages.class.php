@@ -109,6 +109,19 @@ class j06001weekly_occupancy_percentages
 			}
 		}
 
+		// Allows the plugin to be added to the dashboard, as the manager requires.
+		$plugin = "weekly_occupancy_percentages";
+		if (!$thisJRUser->is_cpanel_plugin($plugin) ) {
+			$template_file = "cpanel_removed.html";
+		} else {
+			$template_file = "cpanel_added.html";
+		}
+        $tmpl = new patTemplate();
+        $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
+        $tmpl->readTemplatesFromInput($template_file);
+        $tmpl->addRows('pageoutput', $pageoutput);
+        $output['CPANEL_ICON'] = $tmpl->getParsedTemplate();
+		$output['PLUGIN'] = $plugin;
 
         $pageoutput[] = $output;
         $tmpl = new patTemplate();

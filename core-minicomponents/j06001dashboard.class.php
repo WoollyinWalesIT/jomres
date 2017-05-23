@@ -220,6 +220,18 @@ class j06001dashboard
         $output['HEXISTING_GUESTS_DROPDOWN'] = jr_gettext('_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST', '_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST', false);
         $output['EXISTING_GUESTS_DROPDOWN'] = $this->getExistingGuestsDropdown($property_uid);
 
+		$plugin = "dashboard";
+		if (!$thisJRUser->is_cpanel_plugin($plugin) ) {
+			$template_file = "cpanel_removed.html";
+		} else {
+			$template_file = "cpanel_added.html";
+		}
+        $tmpl = new patTemplate();
+        $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
+        $tmpl->readTemplatesFromInput($template_file);
+        $output['CPANEL_ICON'] = $tmpl->getParsedTemplate();
+		$output['PLUGIN'] = $plugin;
+		
         $pageoutput[] = $output;
         $tmpl = new patTemplate();
         $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);

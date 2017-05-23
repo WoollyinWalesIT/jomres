@@ -208,7 +208,8 @@ class jr_user
 						`suspended`,
 						`users_timezone`,
 						`simple_configuration`,
-						`last_active` 
+						`last_active`,
+						`params`
 					FROM #__jomres_managers 
 					WHERE `userid` = ' .(int) $this->id.' 
 					LIMIT 1 ';
@@ -231,6 +232,17 @@ class jr_user
                     $this->last_active = $r->last_active;
                 }
 
+				$this->params = json_decode($r->params);
+				if ( is_null($this->params) || !is_object($this->params) ) {
+					$settings = file_get_contents(JOMRESPATH_BASE."defaults".JRDS."manager_default_params.json");
+					$this->params = json_decode($settings);
+					$query = "UPDATE #__jomres_managers SET `params`='".json_encode($this->params)."' WHERE `userid` = ".(int) $this->id;
+
+					if (!doInsertSql($query, false)) {
+						trigger_error('Unable to set current property, mysql db failure', E_USER_ERROR);
+					}
+				}
+				
                 /* if ( isset( $r->users_timezone ) )
                     {
                     $this->users_timezone 				= $r->users_timezone;
@@ -276,6 +288,28 @@ class jr_user
         return true;
     }
 
+	public function save_manager_settings() {
+		$query = "UPDATE #__jomres_managers SET `params`='".json_encode($this->params)."' WHERE `userid` = ".(int) $this->id;
+		if (!doInsertSql($query, false)) {
+			trigger_error('Unable to set current property, mysql db failure', E_USER_ERROR);
+		}
+	}
+	
+	
+	public function is_cpanel_plugin($plugin) {
+		if (!isset($this->params->settings->cpanel_plugins)) {
+			$this->params->settings->cpanel_plugins = $this->params->settings->cpanel_plugins_defaults;
+		}
+		
+		if (in_array( $plugin , $this->params->settings->cpanel_plugins ) ) {
+			return true;
+		} else {
+			return false;
+		}
+		
+		
+	}
+	
     /**
      * Reset manager to non manager.
      */
