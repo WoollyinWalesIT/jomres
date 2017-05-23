@@ -94,7 +94,7 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
 	
 	$theText = jomres_decode($theText);
 
-    if ($thisJRUser->userIsManager) {
+    if (get_showtime('jr_user_ready') && $thisJRUser->userIsManager) {
 		$task = jomresGetParam($_REQUEST, 'task', '');
 
         if ($task != '' && jomres_cmsspecific_areweinadminarea()) {
