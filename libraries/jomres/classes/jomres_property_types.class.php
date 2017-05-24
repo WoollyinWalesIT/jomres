@@ -305,15 +305,17 @@ class jomres_property_types
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
 		$jomres_media_centre_images->get_site_images('markers');
 		
-		foreach ($jomres_media_centre_images->site_images['markers'] as $image) 
-			{
-			$r = array();
-			
-			$r[ 'IMAGE_FILENAME' ] = substr($image['large'], strrpos($image['large'], '/') + 1);
-			$r[ 'IMAGE_SRC' ]  = $image['large'];
-			
-			$images[] = $r;
+		if (isset($jomres_media_centre_images->site_images['markers'])) {
+			foreach ($jomres_media_centre_images->site_images['markers'] as $image) {
+				$r = array();
+				
+				$r[ 'IMAGE_FILENAME' ] = substr($image['large'], strrpos($image['large'], '/') + 1);
+				$r[ 'IMAGE_SRC' ]  = $image['large'];
+				
+				$images[] = $r;
 			}
+		}
+		
 
 		return $images;
 	}
