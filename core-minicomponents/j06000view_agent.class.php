@@ -101,7 +101,10 @@ class j06000view_agent
             foreach ($managerData as $data) {
                 $output[ 'FIRSTNAME' ] = $data->firstname;
                 $output[ 'SURNAME' ] = $data->surname;
-                jomres_cmsspecific_setmetadata('title', jomres_purify_html($data->firstname." ".$data->surname));
+				if (get_showtime("task") == "view_agent") {
+					jomres_cmsspecific_setmetadata('title', jomres_purify_html($data->firstname." ".$data->surname));
+				}
+                
                 $output[ 'HOUSE' ] = $data->house;
                 $output[ 'STREET' ] = $data->street;
                 $output[ 'TOWN' ] = $data->town;
