@@ -31,7 +31,7 @@ ob_start('removeBOM');
 header('X-Clacks-Overhead: GNU Terry Pratchett');
 
 require_once dirname(__FILE__).'/integration.php';
-	
+
 try {
     //minicomponents object
     $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
@@ -43,10 +43,6 @@ try {
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
 
-	if ($jrConfig['development_production'] == 'development') {
-			request_log();
-		}
-	
     //get all properties in system.
     $jomres_properties = jomres_singleton_abstract::getInstance('jomres_properties');
     $jomres_properties->get_all_properties();
