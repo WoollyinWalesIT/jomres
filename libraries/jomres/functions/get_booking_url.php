@@ -22,6 +22,11 @@ defined('_JOMRES_INITCHECK') or die('');
 // ajax: ajax safe url
 
 function get_booking_url($property_uid = 0, $type = 'sef', $params = '') {
+	$jomres_access_control = jomres_singleton_abstract::getInstance('jomres_access_control');
+	
+	if (!$jomres_access_control->this_user_can('dobooking')) {
+		return false;
+	}
 
 	$mrConfig = getPropertySpecificSettings($property_uid);
 	

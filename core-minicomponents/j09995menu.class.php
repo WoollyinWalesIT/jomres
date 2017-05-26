@@ -41,7 +41,8 @@ class j09995menu
 		
 		$jomres_menu = jomres_singleton_abstract::getInstance('jomres_menu');
 
-		$property_details_url = get_property_details_url($property_uid);
+		$viewproperty_url = get_property_details_url($property_uid);
+		$dobooking_url = get_booking_url($property_uid);
         
 		//define the core sections
 		$jomres_menu->add_section(1, jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME', '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME', false));
@@ -101,7 +102,9 @@ class j09995menu
 		}
 
 		if ($thisJRUser->accesslevel >= 50) {
-			$jomres_menu->add_item(20, jr_gettext('_JOMRES_FRONT_PREVIEW', '_JOMRES_FRONT_PREVIEW', false), $property_details_url, 'fa-eye', true);
+			if ($viewproperty_url) {
+				$jomres_menu->add_item(20, jr_gettext('_JOMRES_FRONT_PREVIEW', '_JOMRES_FRONT_PREVIEW', false), $viewproperty_url, 'fa-eye', true);
+			}
 		}
 		
 		if ($thisJRUser->accesslevel > 50) {
@@ -111,7 +114,10 @@ class j09995menu
 		//booking section menus
 		if ($thisJRUser->accesslevel >= 50 && $mrConfig[ 'is_real_estate_listing' ] != '1') {
 			$jomres_menu->add_item(30, jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_LISTBOOKINGS', '_JOMRES_FRONT_MR_MENU_ADMIN_LISTBOOKINGS', false), 'list_bookings', 'fa-list');
-			$jomres_menu->add_item(30, jr_gettext('_JOMRES_HNEW_BOOKING', '_JOMRES_HNEW_BOOKING', false), get_booking_url($property_uid), 'fa-plus', true);
+			
+			if ($dobooking_url) {
+				$jomres_menu->add_item(30, jr_gettext('_JOMRES_HNEW_BOOKING', '_JOMRES_HNEW_BOOKING', false), $dobooking_url, 'fa-plus', true);
+			}
 		}
 		
 		//guests section menus
