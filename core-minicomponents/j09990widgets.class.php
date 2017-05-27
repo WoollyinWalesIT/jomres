@@ -53,7 +53,9 @@ class j09990widgets
 		}
 		
 		if ($thisJRUser->accesslevel >= 70) {
-			$jomres_widgets->register_widget('06002', 'chart_bookings', jr_gettext('_JOMRES_CHART_BOOKINGS_DESC', '_JOMRES_CHART_BOOKINGS_DESC', false), true);
+			if ($mrConfig[ 'is_real_estate_listing' ] != '1') {
+				$jomres_widgets->register_widget('06002', 'chart_bookings', jr_gettext('_JOMRES_CHART_BOOKINGS_DESC', '_JOMRES_CHART_BOOKINGS_DESC', false), true);
+			}
 		}
     }
 
