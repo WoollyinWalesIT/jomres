@@ -35,6 +35,12 @@ class j06002chart_bookings
         } else {
             $output_now = true;
         }
+		
+		if (isset($componentArgs[ 'is_widget' ])) {
+            $is_widget = $componentArgs[ 'is_widget' ];
+        } else {
+            $is_widget = false;
+        }
 
         $chart_type = jomresGetParam($_POST, 'jr_chart_type', 'line');
 
@@ -43,12 +49,13 @@ class j06002chart_bookings
         $chart = new jomres_charts();
 
         //set new chart data
-        $chart->type = $chart_type;
-        $chart->title = jr_gettext('_JOMRES_STATUS_BOOKINGS', '_JOMRES_STATUS_BOOKINGS', false, false);
-        $chart->url = jomresUrl(JOMRES_SITEPAGE_URL_NOSEF.'&task=charts&jr_chart=chart_bookings');
+        $chart->type 		= $chart_type;
+        $chart->title 		= jr_gettext('_JOMRES_STATUS_BOOKINGS', '_JOMRES_STATUS_BOOKINGS', false, false);
+        $chart->url 		= jomresUrl(JOMRES_SITEPAGE_URL_NOSEF.'&task=charts&jr_chart=chart_bookings');
         $chart->title_class = 'panel-default';
         $chart->description = jr_gettext('_JOMRES_CHART_BOOKINGS_DESC', '_JOMRES_CHART_BOOKINGS_DESC', false, false);
-        $chart->labels = array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec');
+        $chart->labels 		= array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec');
+		$chart->is_widget 	= $is_widget;
 
         //query db for relevant rows for this chart
         $query = 'SELECT 

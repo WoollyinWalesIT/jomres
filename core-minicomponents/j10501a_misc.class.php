@@ -168,6 +168,13 @@ class j10501a_misc
 		$configurationPanel->setmiddle($lists[ 'session_handler' ]);
 		$configurationPanel->setright(jr_gettext('_JOMRES_SESSION_HANDLER_DESC', '_JOMRES_SESSION_HANDLER_DESC', false));
 		$configurationPanel->insertSetting();
+		
+		$configurationPanel->insertHeading('Frontend Control Panel');
+		
+		$configurationPanel->setleft(jr_gettext('_JOMRES_CPANEL_GRID', '_JOMRES_CPANEL_GRID', false));
+		$configurationPanel->setmiddle($lists[ 'front_cpanel_home_grid' ]);
+		$configurationPanel->setright(jr_gettext('_JOMRES_CPANEL_GRID_DESC', '_JOMRES_CPANEL_GRID_DESC', false));
+		$configurationPanel->insertSetting();
 
 		//plugins can add options to this tab
 		$MiniComponents->triggerEvent('10521', $componentArgs);

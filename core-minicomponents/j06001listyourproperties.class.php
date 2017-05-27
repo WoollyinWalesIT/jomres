@@ -98,19 +98,6 @@ class j06001listyourproperties
 
         $output['AJAX_URL'] = JOMRES_SITEPAGE_URL_AJAX.'&task=listyourproperties_ajax&published='.$published.'&approved='.$approved.'&ptype='.$ptype_id;
 
-		$plugin = "listyourproperties";
-		if (!$thisJRUser->is_cpanel_plugin($plugin) ) {
-			$template_file = "cpanel_removed.html";
-		} else {
-			$template_file = "cpanel_added.html";
-		}
-        $tmpl = new patTemplate();
-        $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
-        $tmpl->readTemplatesFromInput($template_file);
-        $output['CPANEL_ICON'] = $tmpl->getParsedTemplate();
-		$output['PLUGIN'] = $plugin;
-		
-		
         $pageoutput[ ] = $output;
         $subsoutput[ ] = $subs;
         $tmpl = new patTemplate();

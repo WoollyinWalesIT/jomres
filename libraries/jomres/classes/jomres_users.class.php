@@ -49,7 +49,6 @@ class jomres_users
 		$this->suspended				= 0;						//(int) suspended 0/1
 		$this->simple_configuration		= 0;						//(int) simple/extended configuration 0/1
 		$this->last_active				= '1970-01-01 00:00:01';	//(datetime) Y-m-d H:i:s
-		$this->params					= array();					//(array) user settings
 		
 		$this->authorised_properties	= array();					//(array) property uids that this user has access to
 		
@@ -76,7 +75,7 @@ class jomres_users
 			$this->all_cms_users = jomres_cmsspecific_getCMSUsers();
 			}
 		
-		$query	= "SELECT `manager_uid`, `userid`, `access_level`, `currentproperty`, `apikey`, `suspended`, `simple_configuration`, `last_active`, `params` FROM #__jomres_managers";
+		$query	= "SELECT `manager_uid`, `userid`, `access_level`, `currentproperty`, `apikey`, `suspended`, `simple_configuration`, `last_active` FROM #__jomres_managers";
 		$result = doSelectSql( $query );
 		
 		if ( $result )
@@ -91,12 +90,6 @@ class jomres_users
 				$this->users[(int)$r->userid]['suspended'] 				= (int)$r->suspended;
 				$this->users[(int)$r->userid]['simple_configuration'] 	= (int)$r->simple_configuration;
 				$this->users[(int)$r->userid]['last_active'] 			= $r->last_active;
-				
-				if (!empty($r->params)) {
-					$this->users[(int)$r->userid]['params'] 				= unserialize($r->params);
-				} else {
-					$this->users[(int)$r->userid]['params'] 				= array();
-				}
 
 				if (isset($this->all_cms_users[ $r->userid ][ 'username' ]))
 					$this->users[(int)$r->userid]['username'] 			= $this->all_cms_users[ $r->userid ][ 'username' ];
@@ -146,7 +139,7 @@ class jomres_users
 				$this->all_cms_users = jomres_cmsspecific_getCMSUsers();
 				}
 			
-			$query	= "SELECT `manager_uid`, `userid`, `access_level`, `currentproperty`, `apikey`, `suspended`, `simple_configuration`, `last_active`, `params` FROM #__jomres_managers WHERE `userid` = " . (int)$cms_user_id;
+			$query	= "SELECT `manager_uid`, `userid`, `access_level`, `currentproperty`, `apikey`, `suspended`, `simple_configuration`, `last_active` FROM #__jomres_managers WHERE `userid` = " . (int)$cms_user_id;
 			$result = doSelectSql( $query );
 			
 			if ( $result )
@@ -161,12 +154,6 @@ class jomres_users
 					$this->suspended				= (int)$r->suspended;
 					$this->simple_configuration 	= (int)$r->simple_configuration;
 					$this->last_active				= $r->last_active;
-					
-					if (!empty($r->params)) {
-						$this->params 				= unserialize($r->params);
-					} else {
-						$this->params 				= array();
-					}
 
 					if (isset($this->all_cms_users[ $r->userid ][ 'username' ]))
 						$this->username 			= $this->all_cms_users[ $r->userid ][ 'username' ];
@@ -204,7 +191,6 @@ class jomres_users
 			$this->suspended				= $this->users[$cms_user_id]['suspended'];
 			$this->simple_configuration		= $this->users[$cms_user_id]['simple_configuration'];
 			$this->last_active				= $this->users[$cms_user_id]['last_active'];
-			$this->params					= $this->users[$cms_user_id]['params'];
 			$this->username					= $this->users[$cms_user_id]['username'];
 			$this->authorised_properties	= $this->users[$cms_user_id]['authorised_properties'];
 			

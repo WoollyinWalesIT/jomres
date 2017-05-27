@@ -55,6 +55,12 @@ class j06001weekly_occupancy_percentages
             $output_now = true;
         }
 		
+		if (isset($componentArgs[ 'is_widget' ])) {
+            $is_widget = $componentArgs[ 'is_widget' ];
+        } else {
+            $is_widget = false;
+        }
+		
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
 
@@ -73,7 +79,12 @@ class j06001weekly_occupancy_percentages
 		$start   = new DateTime();
 		$end     = new DateTime();
 		$start   = $start->modify( '0 days' ); 
-		$end     = $end->modify( '+7 days' ); // Date Period doesn't include the end date
+		
+		if ($is_widget) {
+			$end     = $end->modify( '+3 days' ); // Date Period doesn't include the end date
+		} else {
+			$end     = $end->modify( '+7 days' ); // Date Period doesn't include the end date
+		}
 		$interval = new DateInterval('P1D');
 		$daterange = new DatePeriod($start, $interval ,$end);
 		$dates = array();
@@ -109,31 +120,22 @@ class j06001weekly_occupancy_percentages
 			}
 		}
 
-		// Allows the plugin to be added to the dashboard, as the manager requires.
-		$plugin = "weekly_occupancy_percentages";
-		if (!$thisJRUser->is_cpanel_plugin($plugin) ) {
-			$template_file = "cpanel_removed.html";
-		} else {
-			$template_file = "cpanel_added.html";
-		}
-        $tmpl = new patTemplate();
-        $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
-        $tmpl->readTemplatesFromInput($template_file);
-        $tmpl->addRows('pageoutput', $pageoutput);
-        $output['CPANEL_ICON'] = $tmpl->getParsedTemplate();
-		$output['PLUGIN'] = $plugin;
-
         $pageoutput[] = $output;
         $tmpl = new patTemplate();
         $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
 		$tmpl->addRows('pageoutput', $pageoutput);
         $tmpl->addRows('rows', $dates);
-        $tmpl->readTemplatesFromInput('weekly_occupancy_percentages.html');
-        $template = $tmpl->getParsedTemplate();
+        
+		if ($is_widget) {
+			$tmpl->readTemplatesFromInput('widget_weekly_occupancy_percentages.html');
+		} else {
+			$tmpl->readTemplatesFromInput('weekly_occupancy_percentages.html');
+		}
+
         if ($output_now) {
-            echo $template;
+            $tmpl->displayParsedTemplate();
         } else {
-            $this->retVals = $template;
+            $this->retVals = $tmpl->getParsedTemplate();
         }
     }
 

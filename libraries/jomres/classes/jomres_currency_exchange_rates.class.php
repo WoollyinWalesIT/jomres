@@ -55,8 +55,9 @@ class jomres_currency_exchange_rates
         }
 
         if ($this->update_now) {
-            $this->update_exchange_rates();
-            $this->save_rates();
+            if  ($this->update_exchange_rates()) {
+				$this->save_rates();
+			}
         }
     }
 
@@ -125,6 +126,8 @@ class jomres_currency_exchange_rates
         $this->rates[ $this->base_code ][ $this->base_code ] = 1;
 
         ignore_user_abort(false);
+		
+		return true;
     }
 
     //save exchange rates to file

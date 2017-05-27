@@ -749,3 +749,4 @@ a.label:hover, a.label:focus, a.badge:hover, a.badge:focus {
 
 .jomres_property_list_propertywrapper .galleria-stage {top:0 !important; left:0 !important; right:0 !important; bottom:0 !important;}
 .jomres_property_list_propertywrapper .galleria-thumbnails-container {margin:0 !important; padding:0 !important; display:none !important;}
+#jr_widgets_wrapper {margin-top:20px;}

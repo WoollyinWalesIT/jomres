@@ -29,35 +29,85 @@ class j06001cpanel
 
             return;
         }
+		
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+        $jrConfig = $siteConfig->get();
 
-        $output = array();
+        $property_uid = getDefaultProperty();
 		
-		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-		if (isset($thisJRUser->params->settings->cpanel_plugins)) {
-			$dashboard_plugins = $thisJRUser->params->settings->cpanel_plugins;
-		} else {
-			$dashboard_plugins = $thisJRUser->params->settings->cpanel_plugins_defaults;
+		$jomres_widgets = jomres_singleton_abstract::getInstance('jomres_widgets');
+		$jomres_widgets->get_widgets($property_uid);
+
+		//widgets js
+		jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/javascript/', 'jomres-widgets.js');
+
+		$output = array();
+		
+		$grid_layout = explode(' ', $jrConfig['front_cpanel_home_grid']);
+		
+		foreach ($grid_layout as $k => $v) {
+			$numbers = explode('/', $v);
+			$grid_layout[$k] = (int)$numbers[0] / (int)$numbers[1];
 		}
+
+		$number_of_columns = count($grid_layout);
 		
-		$rows = array();
-		if (!empty($dashboard_plugins)) {
-			foreach ($dashboard_plugins as $plugin ) {
-				$r = array();
-				$r['PLUGIN_SHORTCODE'] = "{jomres_shortcode ".$plugin."}";
-				$rows[] = $r;
+		$componentArgs = array(
+			'output_now' => false,
+			'is_widget' => true
+		);
+	
+		if (!empty($jomres_widgets->this_page_widgets)) {
+			foreach ($jomres_widgets->this_page_widgets as $widget => $w ) {
+				if (isset($w['column']) && $w['column'] <= $number_of_columns) {
+					$c = (int)$w['column'];
+				} else {
+					$c = 1;
+				}
+				
+				$widget_output = array();
+				
+				$widget_output['JR_WIDGET_TASK'] = $widget;
+
+				//$widget_output['WIDGET_SHORTCODE'] = '{jomres_shortcode '.$widget.'}';
+				$widget_output['WIDGET_SHORTCODE'] = $MiniComponents->specificEvent($jomres_widgets->widgets[$widget]['eventPoint'], $widget, $componentArgs);
+				
+				$widget_output['WIDGET_TITLE'] = $jomres_widgets->widgets[$widget]['title'];
+				
+				$pageoutput = array();
+				$pageoutput[] = $widget_output;
+				$tmpl = new patTemplate();
+				$tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
+				$tmpl->addRows('pageoutput', $pageoutput);
+				$tmpl->readTemplatesFromInput('widget.html');
+				
+				if (isset(${'output'.$c}['WIDGETS'])) {
+					${'output'.$c}['WIDGETS'] .= $tmpl->getParsedTemplate();
+				} else {
+					${'output'.$c}['WIDGETS'] = $tmpl->getParsedTemplate();
+				}
+
+				${'output'.$c}['COLUMN_SIZE'] = 12 * $grid_layout[$c-1]; //array keys in $grid_layout start from 0, column ids start from 1
 			}
 		}
 		
-        $pageoutput = array();
-
+		$pageoutput = array();
         $pageoutput[] = $output;
         $tmpl = new patTemplate();
         $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
         $tmpl->addRows('pageoutput', $pageoutput);
-		$tmpl->addRows('rows', $rows);
+
+		for ($i = 1; $i <= $number_of_columns; ++$i) {
+			if (!isset(${'output'.$i})) {
+				${'output'.$i}['WIDGETS'] = '';
+				${'output'.$i}['COLUMN_SIZE'] = 12 * $grid_layout[$i-1]; //array keys in $grid_layout start from 0, column ids start from 1
+			}
+			
+			$tmpl->addRows('columns'.$i, array(${'output'.$i}));
+		}
+
         $tmpl->readTemplatesFromInput('cpanel.html');
         $tmpl->displayParsedTemplate();
-        
     }
 
 

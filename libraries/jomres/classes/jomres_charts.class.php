@@ -27,6 +27,7 @@ class jomres_charts
         $this->labels = array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'); // array of X axis labels
         $this->url = ''; //url to full page chart
 		$this->height = 'auto'; //chart height
+		$this->is_widget = false; //set this to true to use the widget optimized templates
 
         $this->label = 'Example data set'; // name of the data set
         $this->data = array(rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100)); //data array for the Y axis
@@ -78,7 +79,12 @@ class jomres_charts
         $tmpl = new patTemplate();
         $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
         $tmpl->addRows('pageoutput', $pageoutput);
-        $tmpl->readTemplatesFromInput('show_chart.html');
+        
+		if (!$this->is_widget) {
+			$tmpl->readTemplatesFromInput('show_chart.html');
+		} else {
+			$tmpl->readTemplatesFromInput('widget_show_chart.html');
+		}
 
         return $tmpl->getParsedTemplate();
     }

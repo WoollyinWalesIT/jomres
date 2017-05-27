@@ -328,6 +328,14 @@ function showSiteConfig()
 	$options[] = jomresHTML::makeOption( 'TERRAIN', 'Terrain' );
 	$lists[ 'map_type' ] = jomresHTML::selectList($options, 'cfg_map_type', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'map_type' ]);
 	
+	//frontend cpanel home page grid options
+	$options = array();
+	$options[ ] = jomresHTML::makeOption('2/3 1/3', '2/3 | 1/3');
+	$options[ ] = jomresHTML::makeOption('1/3 2/3', '1/3 | 2/3');
+	$options[ ] = jomresHTML::makeOption('1/3 1/3 1/3', '1/3 | 1/3 | 1/3');
+	$options[ ] = jomresHTML::makeOption('1/4 1/4 1/4 1/4', '1/4 | 1/4 | 1/4 | 1/4');
+	$lists[ 'front_cpanel_home_grid' ] = jomresHTML::selectList($options, 'cfg_front_cpanel_home_grid', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'front_cpanel_home_grid' ]);
+	
 	$options = array();
 	for ($i=1;$i<=23;$i++)
 		{

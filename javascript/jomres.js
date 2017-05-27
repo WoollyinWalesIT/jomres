@@ -1079,20 +1079,6 @@ function shortlist(property_uid, show_label) {
 	});
 }
 
-function toggle_cpanel_plugin(plugin, show_label) {
-	if (typeof show_label !== 'undefined' && show_label != '') {
-		a = parseInt(show_label);
-		}
-	else {
-		a = 0;
-		}
-	jomresJquery.get(live_site_ajax + "&task=toggle_cpanel_plugin&plugin=" + plugin + "&show_label=" + a, function (data) {
-		jomresJquery('#plugin_cpanel_' + plugin).html(data);
-	});
-}
-
-
-
 function set_budget(budget_price , reload , formname ) {
 	jomresJquery.get(live_site_ajax + "&task=ajax_budget&budget_figure="+budget_price, function (data) {
 		if (reload){

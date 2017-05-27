@@ -42,6 +42,11 @@ try {
     //site config object
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
+	
+	//request log
+	if ($jrConfig['development_production'] == 'development') {
+		request_log();
+	}
 
     //get all properties in system.
     $jomres_properties = jomres_singleton_abstract::getInstance('jomres_properties');
@@ -245,6 +250,11 @@ try {
 
     //TODO find a better place
     set_showtime('include_room_booking_functionality', true);
+	
+	//register jomres frontend widgets
+	if ($thisJRUser->userIsManager) {
+		$MiniComponents->triggerEvent('09990');
+	}
 
     //trigger 00005 event
     $MiniComponents->triggerEvent('00005');
@@ -267,9 +277,7 @@ try {
 		$MiniComponents->specificEvent('06000', get_showtime('task'));
 	} elseif ($MiniComponents->eventSpecificlyExistsCheck('06001', get_showtime('task')) && $thisJRUser->userIsManager) { // Receptionist and manager tasks
 		if (get_showtime('task') == 'cpanel') {
-			//$MiniComponents->triggerEvent('00013'); // Optional Pre cpanel
 			$MiniComponents->specificEvent('06001', get_showtime('task'));
-			$MiniComponents->triggerEvent('00014'); // Optional Post cpanel
 		} else {
 			$MiniComponents->specificEvent('06001', get_showtime('task'));
 		}
@@ -370,9 +378,7 @@ function no_task_set($property_uid = 0)
         $MiniComponents->specificEvent('06000', "search");
     } else {
         if ($thisJRUser->userIsManager) {
-            //$MiniComponents->triggerEvent('00013'); // Optional Pre cpanel
             $MiniComponents->specificEvent('06001', 'cpanel');
-            $MiniComponents->triggerEvent('00014'); // Optional Post cpanel
         } elseif (get_showtime('numberOfPropertiesInSystem') == 1 && $jrConfig[ 'is_single_property_installation' ] == '0') {
             set_showtime('task', 'viewproperty');
             $componentArgs = array();

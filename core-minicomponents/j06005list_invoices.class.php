@@ -24,6 +24,8 @@ class j06005list_invoices
 
             return;
         }
+		
+		$this->retVals = '';
 
         $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
@@ -54,6 +56,12 @@ class j06005list_invoices
         $invoice_type = (int) jomresGetParam($_POST, 'invoice_type', '0');
         $guest_id = (int) jomresGetParam($_REQUEST, 'guest_id', '0');
         $show_all = (int) jomresGetParam($_POST, 'show_all', '0');
+		
+		if (isset($componentArgs[ 'output_now' ])) {
+            $output_now = $componentArgs[ 'output_now' ];
+        } else {
+            $output_now = true;
+        }
 
         $output = array();
         $pageoutput = array();
@@ -133,12 +141,16 @@ class j06005list_invoices
         $tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
         $tmpl->readTemplatesFromInput('frontend_list_invoices.html');
         $tmpl->addRows('pageoutput', $pageoutput);
-        $tmpl->displayParsedTemplate();
+        if ($output_now) {
+			$tmpl->displayParsedTemplate();
+		} else {
+			$this->retVals = $tmpl->getParsedTemplate();
+		}
     }
 
     // This must be included in every Event/Mini-component
     public function getRetVals()
     {
-        return null;
+        return $this->retVals;
     }
 }

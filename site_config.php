@@ -176,5 +176,6 @@ $jrConfig = array(
   'map_type' => 'ROADMAP',
   'map_zoom' => '10',
   'map_height' => '300',
-  'selected_languages' => ''
+  'selected_languages' => '',
+  'front_cpanel_home_grid' => '2/3 1/3'
 );

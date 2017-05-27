@@ -60,7 +60,7 @@ class j09995menu
 		//dashboard section menus
 		if ($thisJRUser->accesslevel >= 50) {
 			$jomres_menu->add_item(1, jr_gettext('_JRPORTAL_CPANEL', '_JRPORTAL_CPANEL', false), 'cpanel', 'fa-dashboard');
-			$jomres_menu->add_item(1, jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_HOME', '_JOMRES_FRONT_MR_MENU_ADMIN_HOME', false), 'dashboard', 'fa-calendar');
+			$jomres_menu->add_item(1, jr_gettext('_JOMRES_TIMELINE', '_JOMRES_TIMELINE', false), 'dashboard', 'fa-calendar');
 		}
 		
 		

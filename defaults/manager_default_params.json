@@ -1,8 +1,0 @@
-{
-  "settings": {
-    "cpanel_plugins_defaults": [
-      "weekly_occupancy_percentages",
-      "dashboard"
-    ]
-  }
-}

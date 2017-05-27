@@ -1,7 +1,25 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<style type="text/css">
+.jr-widget-empty, .jr-widget-placeholder {
+	border: 5px dashed #ccc;
+	margin-bottom:20px;
+	min-height:200px;
+}
+</style>
 
-<patTemplate:tmpl name="rows" unusedvars="strip">
-{PLUGIN_SHORTCODE}
-</patTemplate:tmpl>
+<div class="row-fluid" id="jr_widgets_wrapper">
+	<patTemplate:tmpl name="columns1" unusedvars="strip" type="simpleCondition" requiredVars="column_size">
+	<div class="jr-widget-column jr-widget-col1 span{COLUMN_SIZE}" data-id="1">{WIDGETS}</div>
+	</patTemplate:tmpl>
+	<patTemplate:tmpl name="columns2" unusedvars="strip" type="simpleCondition" requiredVars="column_size">
+	<div class="jr-widget-column jr-widget-col2 span{COLUMN_SIZE}" data-id="2">{WIDGETS}</div>
+	</patTemplate:tmpl>
+	<patTemplate:tmpl name="columns3" unusedvars="strip" type="simpleCondition" requiredVars="column_size">
+	<div class="jr-widget-column jr-widget-col3 span{COLUMN_SIZE}" data-id="3">{WIDGETS}</div>
+	</patTemplate:tmpl>
+	<patTemplate:tmpl name="columns4" unusedvars="strip" type="simpleCondition" requiredVars="column_size">
+	<div class="jr-widget-column jr-widget-col4 span{COLUMN_SIZE}" data-id="4">{WIDGETS}</div>
+	</patTemplate:tmpl>
+</div>
 
 </patTemplate:tmpl>

@@ -29,6 +29,8 @@ class j06001dashboard
 
             return;
         }
+		
+		$this->retVals = '';
 
         $ePointFilepath = get_showtime('ePointFilepath');
 
@@ -36,6 +38,12 @@ class j06001dashboard
             $property_uid = $componentArgs[ 'property_uid' ];
         } else {
             $property_uid = getDefaultProperty();
+        }
+		
+		if (isset($componentArgs[ 'output_now' ])) {
+            $output_now = $componentArgs[ 'output_now' ];
+        } else {
+            $output_now = true;
         }
 
         $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
@@ -46,12 +54,6 @@ class j06001dashboard
         $mrConfig = getPropertySpecificSettings($property_uid);
         if ($mrConfig[ 'is_real_estate_listing' ] == 1 || get_showtime('is_jintour_property')) {
             return;
-        }
-
-        if (isset($componentArgs[ 'output_now' ])) {
-            $output_now = $componentArgs[ 'output_now' ];
-        } else {
-            $output_now = true;
         }
 
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -69,7 +71,7 @@ class j06001dashboard
         jomres_cmsspecific_addheaddata('css', JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/', 'scheduler.min.css');
         //jomres_cmsspecific_addheaddata("css",JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/','fullcalendar.print.css');
 
-        $output['PAGETITLE'] = jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_HOME', '_JOMRES_FRONT_MR_MENU_ADMIN_HOME', false);
+        $output['PAGETITLE'] = jr_gettext('_JOMRES_INTERVAL', '_JOMRES_INTERVAL', false);
         $output['HROOMS'] = jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOM', '_JOMRES_COM_MR_VRCT_TAB_ROOM', false);
         $output['HDRAG_TRASH'] = jr_gettext('_JOMRES_DASHBOARD_DRAG_TRASH', '_JOMRES_DASHBOARD_DRAG_TRASH', false);
 
@@ -220,31 +222,17 @@ class j06001dashboard
         $output['HEXISTING_GUESTS_DROPDOWN'] = jr_gettext('_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST', '_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST', false);
         $output['EXISTING_GUESTS_DROPDOWN'] = $this->getExistingGuestsDropdown($property_uid);
 
-		$plugin = "dashboard";
-		if (!$thisJRUser->is_cpanel_plugin($plugin) ) {
-			$template_file = "cpanel_removed.html";
-		} else {
-			$template_file = "cpanel_added.html";
-		}
-        $tmpl = new patTemplate();
-        $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
-        $tmpl->readTemplatesFromInput($template_file);
-        $output['CPANEL_ICON'] = $tmpl->getParsedTemplate();
-		$output['PLUGIN'] = $plugin;
-		
         $pageoutput[] = $output;
         $tmpl = new patTemplate();
         $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
         $tmpl->addRows('pageoutput', $pageoutput);
         $tmpl->addRows('rows', $rows);
         $tmpl->readTemplatesFromInput('dashboard.html');
-        $template = $tmpl->getParsedTemplate();
         if ($output_now) {
-            echo $template;
-        } else {
-            $this->retVals = $template;
-        }
-        
+			$tmpl->displayParsedTemplate();
+		} else {
+			$this->retVals = $tmpl->getParsedTemplate();
+		}
     }
 
     public function getExistingGuestsDropdown($property_uid = 0)
@@ -281,6 +269,6 @@ class j06001dashboard
     // This must be included in every Event/Mini-component
     public function getRetVals()
     {
-        return null;
+        return $this->retVals;
     }
 }

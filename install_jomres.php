@@ -603,8 +603,8 @@ function doTableUpdates()
         alterGuestsBlacklistedCol();
     }
 	
-	if (!checkManagersParamsColExists()) {
-        alterManagersParamsCol();
+	if (!checkGuestsProfileParamsColExists()) {
+        alterGuestsProfileParamsCol();
     }
     
 	copy_default_property_type_markers();
@@ -618,17 +618,17 @@ function doTableUpdates()
     
 }
 
-function alterManagersParamsCol()
+function alterGuestsProfileParamsCol()
 {
-    $query = 'ALTER TABLE `#__jomres_managers` ADD `params` TEXT';
+    $query = 'ALTER TABLE `#__jomres_guest_profile` ADD `params` TEXT';
     if (!doInsertSql($query, '')) {
-        output_message('Error, unable to add __jomres_managers params column', 'danger');
+        output_message('Error, unable to add __jomres_guest_profile params column', 'danger');
     }
 }
 
-function checkManagersParamsColExists()
+function checkGuestsProfileParamsColExists()
 {
-    $query = "SHOW COLUMNS FROM #__jomres_managers LIKE 'params'";
+    $query = "SHOW COLUMNS FROM #__jomres_guest_profile LIKE 'params'";
     $result = doSelectSql($query);
     if (count($result) > 0) {
         return true;
@@ -3901,7 +3901,6 @@ function createJomresTables()
 		`simple_configuration` tinyint( 1 ) default 1,
 		`users_timezone` CHAR(100) DEFAULT 'Europe/Berlin',
 		`last_active` datetime default NULL,
-		`params` TEXT,
 		PRIMARY KEY	(`manager_uid`)
 		) ";
     if (!doInsertSql($query)) {

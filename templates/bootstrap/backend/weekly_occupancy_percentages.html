@@ -1,18 +1,14 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <style>
 @media (min-width: 768px){
-  .seven-cols .col-md-1,
-  .seven-cols .col-sm-1,
-  .seven-cols .col-lg-1  {
+  .seven-cols .span1 {
     width: 100%;
     *width: 100%;
   }
 }
 
 @media (min-width: 992px) {
-  .seven-cols .col-md-1,
-  .seven-cols .col-sm-1,
-  .seven-cols .col-lg-1 {
+  .seven-cols .span1 {
     width: 14.285714285714285714285714285714%;
     *width: 14.285714285714285714285714285714%;
   }
@@ -23,21 +19,19 @@
  *  Only to demonstrate the usage of @media for large screens
  */    
 @media (min-width: 1200px) {
-  .seven-cols .col-md-1,
-  .seven-cols .col-sm-1,
-  .seven-cols .col-lg-1 {
+  .seven-cols .span1 {
     width: 14.285714285714285714285714285714%;
     *width: 14.285714285714285714285714285714%;
   }
 }
 </style>
 
-<h3 class="page-header text-center">{_JOMRES_OVERALL_ROOMS_BOOKED}</h3>
+<h2 class="page-header">{_JOMRES_OVERALL_ROOMS_BOOKED}</h2>
 
 <div class="container-fluid">
-	<div class="row seven-cols">
+	<div class="row-fluid seven-cols">
 		<patTemplate:tmpl name="rows" unusedvars="strip">
-		<div class="col-md-1">
+		<div class="span1">
 			<h5 class="text-center">{DATE_OF_MONTH} {MONTH_NAME}</h5>
 			<div class="progress-circle {OVER50} p{PERCENTAGE}">
 				<span>{PERCENTAGE}%</span>
