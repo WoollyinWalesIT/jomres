@@ -36,7 +36,7 @@ jomresJquery(document).ready(function() {
 
 	jomresJquery( '.jr-widget-toggle' ).on( "click", function() {
 		var icon = jomresJquery( this );
-		icon.toggleClass( 'fa-caret-up fa-caret-down' );
+		icon.toggleClass( 'fa-toggle-off fa-toggle-on' );
 		icon.closest( '.jr-widget-panel' ).find( '.jr-widget-content' ).toggle();
 	});
 	
