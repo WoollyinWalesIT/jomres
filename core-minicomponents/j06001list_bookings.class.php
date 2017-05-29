@@ -16,7 +16,7 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j06001list_bookings
 {
-    public function __construct()
+    public function __construct($componentArgs)
     {
         // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
         $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');

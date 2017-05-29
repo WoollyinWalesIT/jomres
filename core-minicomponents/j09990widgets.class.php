@@ -40,16 +40,18 @@ class j09990widgets
 
 		//register core widgets
 		if ($thisJRUser->accesslevel >= 50) {
-			$jomres_widgets->register_widget('06001', 'dashboard', jr_gettext('_JOMRES_TIMELINE', '_JOMRES_TIMELINE', false), true);
-
 			if ($mrConfig[ 'is_real_estate_listing' ] != '1' && !get_showtime('is_jintour_property')) {
+				$jomres_widgets->register_widget('06001', 'dashboard', jr_gettext('_JOMRES_TIMELINE', '_JOMRES_TIMELINE', false), true);
 				$jomres_widgets->register_widget('06001', 'weekly_occupancy_percentages', jr_gettext('_JOMRES_OVERALL_ROOMS_BOOKED', '_JOMRES_OVERALL_ROOMS_BOOKED', false), true);
 			}
 
-			/* $jomres_widgets->register_widget('06001', 'listyourproperties', jr_gettext('_JRPORTAL_CPANEL_LISTPROPERTIES', '_JRPORTAL_CPANEL_LISTPROPERTIES', false));
-			$jomres_widgets->register_widget('06001', 'list_bookings', jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_LISTBOOKINGS', '_JOMRES_FRONT_MR_MENU_ADMIN_LISTBOOKINGS', false));
-			$jomres_widgets->register_widget('06001', 'list_guests', jr_gettext('_JOMRES_HLIST_GUESTS_MENU', '_JOMRES_HLIST_GUESTS_MENU', false));
-			$jomres_widgets->register_widget('06001', 'list_invoices', jr_gettext('_JOMRES_HLIST_INVOICES_MENU', '_JOMRES_HLIST_INVOICES_MENU', false)); */
+			$jomres_widgets->register_widget('06001', 'listyourproperties', jr_gettext('_JRPORTAL_CPANEL_LISTPROPERTIES', '_JRPORTAL_CPANEL_LISTPROPERTIES', false));
+			
+			if ($mrConfig[ 'is_real_estate_listing' ] != '1') {
+				$jomres_widgets->register_widget('06001', 'list_bookings', jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_LISTBOOKINGS', '_JOMRES_FRONT_MR_MENU_ADMIN_LISTBOOKINGS', false));
+				$jomres_widgets->register_widget('06001', 'list_guests', jr_gettext('_JOMRES_HLIST_GUESTS_MENU', '_JOMRES_HLIST_GUESTS_MENU', false));
+				$jomres_widgets->register_widget('06005', 'list_invoices', jr_gettext('_JOMRES_HLIST_INVOICES_MENU', '_JOMRES_HLIST_INVOICES_MENU', false));
+			}
 		}
 		
 		if ($thisJRUser->accesslevel >= 70) {

@@ -932,3 +932,15 @@ div.star-rating {
 .calendar{ width:100%;}
 
 #jr_widgets_wrapper {margin-top:20px;}
+
+.jr-widget-empty, .jr-widget-placeholder {
+	border: 5px dashed #ccc;
+	margin-bottom:20px;
+	min-height:200px;
+}
+.jr-widget-heading {
+	cursor: move;
+}
+.jr-widget-toggle {
+	cursor: pointer;
+}

@@ -144,7 +144,7 @@ class jomres_widgets
 
 		$widgets_dropdown = '
 		<div class="button-group">
-			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog"></span> Select Widgets <span class="caret"></span></button>
+			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog"></span> '.jr_gettext('_JOMRES_SELECT_WIDGETS', '_JOMRES_SELECT_WIDGETS', false).' <span class="caret"></span></button>
 			<ul id="jr_widgets_dropdown" class="dropdown-menu">
 			';
 		

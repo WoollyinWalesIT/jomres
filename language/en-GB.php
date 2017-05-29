@@ -1974,6 +1974,7 @@ jr_define('_JOMRES_TEMPLATE_PACKAGE_NOT_OVERRIDDEN',"Not overridden");
 jr_define('_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO',"You can choose which template file to override the Core template files by changing the dropdown");
 
 jr_define('_JOMRES_OVERALL_ROOMS_BOOKED',"Percentage Rooms Booked");
+jr_define('_JOMRES_SELECT_WIDGETS',"Select widgets");
 jr_define('_JOMRES_INTERVAL',"Interval");
 jr_define('_JOMRES_TIMELINE',"Timeline");
 jr_define('_JOMRES_CPANEL_GRID',"Control panel home layout");
