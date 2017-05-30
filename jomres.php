@@ -69,6 +69,7 @@ try {
     if (empty($thisJRUser->authorisedProperties) && $thisJRUser->userIsManager) {
 		$jomres_users = jomres_singleton_abstract::getInstance('jomres_users');
 		$jomres_users->delete_user( $thisJRUser->id );
+		$thisJRUser->reset_manager_to_non_manager();
     }
 
     //jomres timezones - mostly unused with an exception
