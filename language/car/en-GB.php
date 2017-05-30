@@ -415,7 +415,7 @@ jr_define('_JOMRES_A_GLOBAL_SEARCHOPTION', 'Select the search plugin that you wa
 jr_define('_JOMRES_FRONT_NORESULTS', '<b>Sorry, your search did not return any results. Please modify your search and try again.</b>');
 jr_define('_JOMRES_AREYOUSURE', 'Are you sure you wish to do this?');
 jr_define('_JOMRES_FRONT_MR_MENU_BOOKAROOM', 'Rent a car');
-jr_define('_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY', 'Rent now');
+jr_define('_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY', 'Book now!');
 jr_define('_JOMRES_COM_A_TARIFFS_SHOWTARIFFSINLINE', 'Show tariffs inline?');
 jr_define('_JOMRES_COM_A_BASICTEMPLATE_SHOWADDRESS', 'Address');
 jr_define('_JOMRES_COM_A_BASICTEMPLATE_SHOWDETAILS', 'Detailed information');
