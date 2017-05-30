@@ -364,25 +364,30 @@ class j06002edit_booking
             $rows = array();
             foreach ($current_contract_details->contract[$contract_uid]['roomdeets'] as $rd) {
                 $r = array();
+				
+				$r[ '_JOMRES_COM_MR_EB_ROOM_NAME' ] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_NAME', '_JOMRES_COM_MR_EB_ROOM_NAME');
+				$r[ 'RINFO_NAME' ] = $rd[ 'room_name' ];
+				$r[ '_JOMRES_COM_MR_LISTTARIFF_RATETITLE' ] = jr_gettext('_JOMRES_COM_MR_LISTTARIFF_RATETITLE', '_JOMRES_COM_MR_LISTTARIFF_RATETITLE');
+				$r[ 'RINFO_TARIFF' ] = $rd[ 'rate_title' ];
 
-                $type = $current_property_details->all_room_types[$rd['room_classes_uid']]['room_class_abbv'];
+				$r[ '_JOMRES_COM_MR_EB_ROOM_NUMBER' ] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_NUMBER', '_JOMRES_COM_MR_EB_ROOM_NUMBER');
+				$r[ 'RINFO_NUMBER' ] = $rd[ 'room_number' ];
+				$r[ '_JOMRES_COM_MR_EB_ROOM_FLOOR' ] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_FLOOR', '_JOMRES_COM_MR_EB_ROOM_FLOOR');
+				$r[ 'RINFO_ROOM_FLOOR' ] = $rd[ 'room_floor' ];
 
-                $r[ '_JOMRES_COM_MR_EB_ROOM_NAME' ] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_NAME', '_JOMRES_COM_MR_EB_ROOM_NAME');
-                $r[ 'RINFO_NAME' ] = $rd[ 'room_name' ];
-                $r[ '_JOMRES_COM_MR_LISTTARIFF_RATETITLE' ] = jr_gettext('_JOMRES_COM_MR_LISTTARIFF_RATETITLE', '_JOMRES_COM_MR_LISTTARIFF_RATETITLE');
-                $r[ 'RINFO_TARIFF' ] = $rd[ 'rate_title' ];
-
-                $r[ '_JOMRES_COM_MR_EB_ROOM_NUMBER' ] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_NUMBER', '_JOMRES_COM_MR_EB_ROOM_NUMBER');
-                $r[ 'RINFO_NUMBER' ] = $rd[ 'room_number' ];
-                $r[ '_JOMRES_COM_MR_EB_ROOM_FLOOR' ] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_FLOOR', '_JOMRES_COM_MR_EB_ROOM_FLOOR');
-                $r[ 'RINFO_ROOM_FLOOR' ] = $rd[ 'room_floor' ];
-
-                $r[ '_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE' ] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE', '_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE');
-                $r[ 'RINFO_MAX_PEOPLE' ] = $rd[ 'max_people' ];
-
-                $r[ '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV' ] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV', '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV');
-                $r[ 'TYPE' ] = $type;
-                $rows[ ] = $r;
+				$r[ '_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE' ] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE', '_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE');
+				$r[ 'RINFO_MAX_PEOPLE' ] = $rd[ 'max_people' ];
+				
+				$r[ '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV' ] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV', '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV');
+				
+				if (isset($current_property_details->all_room_types[$rd['room_classes_uid']]['room_class_abbv'])) {
+					$type = $current_property_details->all_room_types[$rd['room_classes_uid']]['room_class_abbv'];
+					$r[ 'TYPE' ] = $type;
+					
+				} else { // If a room has been removed ( or the property type changed ) then we don't know anything about the old room.
+					$r[ 'TYPE' ] = "Unknown";
+				}
+            $rows[ ] = $r;
             }
 
             $pageoutput[ ] = $output;
