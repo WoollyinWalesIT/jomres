@@ -173,7 +173,7 @@ class jomres_widgets
 	}
 	
 	//toggle widget
-	public function toggle_widget($widget = '', $enabled = 0, $column = 1, $position = 0)
+	public function toggle_widget($widget = '', $enabled = 0, $column = 1, $order = array() )
 	{
 		if ($widget == '') {
 			return false;
@@ -191,12 +191,25 @@ class jomres_widgets
 				unset($thisJRUser->params['widgets'][$widget]);
 			}
 		} else {
+			$position = 0;
+			foreach ($thisJRUser->params['widgets'] as $key=>$current_widget ) {
+				if ($current_widget['column'] == $column) {
+					$new_pos = array_search("jr_widget_".$key, $order);
+					$thisJRUser->params['widgets'][$key]['position'] = $new_pos;
+					$thisJRUser->params['widgets'][$key]['column'] = $column;
+					if ($widget == $key ) {
+						$position = $new_pos;
+					}
+				}
+			}
+			
 			$thisJRUser->params['widgets'][$widget] = array(
 				'column' => $column,
 				'position' => $position
 			);
+			
 		}
-		
+
 		//save user profile params
 		$thisJRUser->update_params();
 		

@@ -56,6 +56,12 @@ function add_placeholders() {
 }
 
 function toggle_jomres_widget(jr_w, jr_w_enabled, jr_w_col, jr_w_pos) {
+
+	parent_div = '.jr-widget-col'+jr_w_col+' > div';
+	jomresJquery(parent_div).map(function() {
+		divs  = divs + this.id+",";
+	});
+
 	jomresJquery.ajax({
 		type: 'GET',
 		dataType: 'html',
@@ -65,6 +71,7 @@ function toggle_jomres_widget(jr_w, jr_w_enabled, jr_w_col, jr_w_pos) {
 			jr_widget_enabled: jr_w_enabled,
 			jr_widget_column: jr_w_col,
 			jr_widget_position: jr_w_pos,
+			jr_widget_order: divs,
 		},
 		success: function(data) {
 			var jr_widget_response = JSON && JSON.parse(data) || jomresJquery.parseJSON(data);

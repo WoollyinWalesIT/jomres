@@ -41,6 +41,17 @@ class j06001toggle_jomres_widget_ajax
 		$jr_widget_column = (int)jomresGetParam($_GET, 'jr_widget_column', 1);
 		$jr_widget_position = (int)jomresGetParam($_GET, 'jr_widget_position', 0);
 
+		$order = array();
+		$jr_widget_order = jomresGetParam($_GET, 'jr_widget_order', '');
+		$bang = explode (",",$jr_widget_order);
+		if (!empty($bang)) {
+			for ($i=0;$i<=count($bang);$i++) {
+				if (isset($bang[$i]) && trim($bang[$i]) != '' ) {
+					$order[] = jomresGetParam($bang, $i, '');
+				}
+			}
+		}
+
         $jomres_widgets = jomres_singleton_abstract::getInstance('jomres_widgets');
 		$jomres_widgets->property_uid = $property_uid; //we need to set this so we`ll be sure we`ll get/set just the enabled widgets for this property uid. Other properties may have other widgets enabled
 
@@ -54,10 +65,10 @@ class j06001toggle_jomres_widget_ajax
 		}
 		
 		//save user widgets params
-		if (!$jomres_widgets->toggle_widget($jr_widget, $jr_widget_enabled, $jr_widget_column, $jr_widget_position)) {
+		if (!$jomres_widgets->toggle_widget($jr_widget, $jr_widget_enabled, $jr_widget_column, $order )) {
 			return;
 		}
-		
+
 		$componentArgs = array(
 			'output_now' => false,
 			'is_widget' => true
