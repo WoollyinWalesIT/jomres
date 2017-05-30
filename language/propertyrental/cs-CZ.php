@@ -2035,3 +2035,10 @@ jr_define('_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO',"You can choose which template f
 
 jr_define('_JOMRES_OVERALL_ROOMS_BOOKED',"Percentage Rooms Booked");
 
+
+jr_define('_JOMRES_OVERALL_ROOMS_BOOKED',"Percentage Rooms Booked");
+jr_define('_JOMRES_SELECT_WIDGETS',"Select widgets");
+jr_define('_JOMRES_INTERVAL',"Interval");
+jr_define('_JOMRES_TIMELINE',"Timeline");
+jr_define('_JOMRES_CPANEL_GRID',"Control panel home layout");
+jr_define('_JOMRES_CPANEL_GRID_DESC',"Select the grid layout of your frontend property management control panel home page.");

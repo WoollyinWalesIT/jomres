@@ -1978,4 +1978,4 @@ jr_define('_JOMRES_SELECT_WIDGETS',"Select widgets");
 jr_define('_JOMRES_INTERVAL',"Interval");
 jr_define('_JOMRES_TIMELINE',"Timeline");
 jr_define('_JOMRES_CPANEL_GRID',"Control panel home layout");
-jr_define('_JOMRES_CPANEL_GRID_DESC',"Select the grid layout of your frontend property management control panel home page. A full width page has 12 columns.");
+jr_define('_JOMRES_CPANEL_GRID_DESC',"Select the grid layout of your frontend property management control panel home page.");
