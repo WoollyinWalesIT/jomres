@@ -189,9 +189,9 @@ class jomres_regions
 			throw new Exception('Tried to get region id for empty region name');
 		}
 
-        $jomres_regions->get_all_regions();
+        $this->get_all_regions();
 
-		foreach ($jomres_regions->regions as $r) {
+		foreach ($this->regions as $r) {
 			if (strcasecmp(jomres_cmsspecific_stringURLSafe($r[ 'regionname' ]), $region_name) == 0) {
 				return (int) $r[ 'id' ];
 			}
