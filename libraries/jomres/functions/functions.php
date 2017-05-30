@@ -3185,7 +3185,7 @@ function savePlugin($plugin)
 /**
  * Shows the dropdown for selecting the property type in the edit property function.
  */
-function getPropertyTypeDropdown($propertyType = '', $extended = false)
+function getPropertyTypeDropdown($propertyType = '', $extended = false, $is_disabled = false)
 {
     $jomres_property_types = jomres_singleton_abstract::getInstance('jomres_property_types');
     $jomres_property_types->get_all_property_types();
@@ -3218,8 +3218,14 @@ function getPropertyTypeDropdown($propertyType = '', $extended = false)
             $ptypeOptions[] = jomresHTML::makeOption($p['id'], $ptype);
         }
     }
+	
+	if ($is_disabled) {
+		$disabled = ' disabled';
+	} else {
+		$disabled = '';
+	}
 
-    $ptypeDropDownList = jomresHTML::selectList($ptypeOptions, 'propertyType', 'class="inputbox" size="1"', 'value', 'text', $propertyType);
+    $ptypeDropDownList = jomresHTML::selectList($ptypeOptions, 'propertyType', 'class="inputbox" size="1"'.$disabled, 'value', 'text', $propertyType);
 
     return $ptypeDropDownList;
 }
