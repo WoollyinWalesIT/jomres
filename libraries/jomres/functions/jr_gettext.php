@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -40,6 +40,8 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
 {
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
+	
+	$editing = false;
 
     if (!jomres_cmsspecific_areweinadminarea()) {
         $property_uid = (int) get_showtime('property_uid');
@@ -92,11 +94,12 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
 	
 	$theText = jomres_decode($theText);
 
-    if (isset($thisJRUser->userIsManager) && $thisJRUser->userIsManager) {
-        if (isset($_REQUEST[ 'task' ]) && jomres_cmsspecific_areweinadminarea()) {
-            if (($_REQUEST[ 'task' ] == 'touch_templates' || $_REQUEST[ 'task' ] == 'translate_locales' || $_REQUEST[ 'task' ] == 'translate_lang_file_strings') && $thisJRUser->userIsManager) {
+    if (get_showtime('jr_user_ready') && $thisJRUser->userIsManager) {
+		$task = jomresGetParam($_REQUEST, 'task', '');
+
+        if ($task != '' && jomres_cmsspecific_areweinadminarea()) {
+            if (($task == 'touch_templates' || $task == 'translate_locales' || $task == 'translate_lang_file_strings') && $thisJRUser->userIsManager) {
                 $property_uid = 0;
-                $jrConfig[ 'editinplace' ] = 1;
                 $jrConfig[ 'editingModeAffectsAllProperties' ] = '1';
                 $editing = true;
             }
@@ -108,7 +111,7 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
             $theText = jomres_remove_HTML($theText);
         } */
 
-        if ($thisJRUser->userIsManager && ($editing || ($jrConfig[ 'editingModeAffectsAllProperties' ] == '1' && $thisJRUser->superPropertyManager)) && $okToEdit && ($thisJRUser->accesslevel > 50)) {
+        if ($thisJRUser->userIsManager && ($editing || ($jrConfig[ 'editingModeAffectsAllProperties' ] == '1' && $thisJRUser->superPropertyManager)) && $okToEdit && $thisJRUser->accesslevel > 50) {
             if (strlen(trim($theText)) == 0 || strtolower(trim($theText)) == '<span></span>' || strtolower(trim($theText)) == '<span> </span>' || strtolower(trim($theText)) == '<span>  </span>') {
                 $theText = '';
             }
@@ -123,7 +126,7 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
                     $_REQUEST[ 'no_html' ] = 0;
                 }
 
-                if ($jrConfig[ 'editinplace' ] == 1 && $_REQUEST[ 'no_html' ] != '1') {
+                if ($editing && $_REQUEST[ 'no_html' ] != '1') {
                     if (jomres_cmsspecific_areweinadminarea()) {
                         $url = JOMRES_SITEPAGE_URL_ADMIN_AJAX.'&task=editinplace&lang='.get_showtime('lang');
                     } else {

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -68,14 +68,14 @@ function showSiteConfig()
     $jqueryUIthemes = array();
     $cssFiles = searchCSSThemesDirForCSSFiles();
     foreach ($cssFiles as $file) {
-        if (isset($file[ 'customPath' ])) {
-            $jqueryUIthemes[ ] = jomresHTML::makeOption($file[ 'subdir' ].'^'.$file[ 'cssfile' ].'^'.$file[ 'customPath' ], $file[ 'subdir' ]);
-        } else {
-            $jqueryUIthemes[ ] = jomresHTML::makeOption($file[ 'subdir' ].'^'.$file[ 'cssfile' ], $file[ 'subdir' ]);
-        }
+        $jqueryUIthemes[ ] = jomresHTML::makeOption($file[ 'subdir' ], $file[ 'subdir' ]);
     }
+	
+	if ($jrConfig[ 'jquery_ui_theme' ] == 'jomres') {
+		$jrConfig[ 'jquery_ui_theme' ] = 'base';
+	}
 
-    $jqueryUIthemesDropdownList = jomresHTML::selectList($jqueryUIthemes, 'cfg_jquery_ui_theme_detected', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'jquery_ui_theme_detected' ]);
+    $jqueryUIthemesDropdownList = jomresHTML::selectList($jqueryUIthemes, 'cfg_jquery_ui_theme', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'jquery_ui_theme' ]);
 
     if (!isset($jrConfig[ 'cssColourScheme' ])) {
         $jrConfig[ 'cssColourScheme' ] = 'blue';
@@ -99,23 +99,10 @@ function showSiteConfig()
     $lists[ 'isInIframe' ] = jomresHTML::selectList($yesno, 'cfg_isInIframe', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'isInIframe' ]);
     $lists[ 'allowHTMLeditor' ] = jomresHTML::selectList($editoryesno, 'cfg_allowHTMLeditor', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'allowHTMLeditor' ]);
     $lists[ 'dumpTemplate' ] = jomresHTML::selectList($yesno, 'cfg_dumpTemplate', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'dumpTemplate' ]);
-    $lists[ 'useSSLinBookingform' ] = jomresHTML::selectList($yesno, 'cfg_useSSLinBookingform', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useSSLinBookingform' ]);
     $lists[ 'emailErrors' ] = jomresHTML::selectList($yesno, 'cfg_emailErrors', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'emailErrors' ]);
     $lists[ 'minimalconfiguration' ] = jomresHTML::selectList($yesno, 'cfg_minimalconfiguration', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'minimalconfiguration' ]);
     $lists[ 'useJomresEmailCheck' ] = jomresHTML::selectList($yesno, 'cfg_useJomresEmailCheck', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useJomresEmailCheck' ]);
-    $lists[ 'autoDetectJSCalendarLang' ] = jomresHTML::selectList($yesno, 'cfg_autoDetectJSCalendarLang', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'autoDetectJSCalendarLang' ]);
     $lists[ 'composite_property_details' ] = jomresHTML::selectList($yesno, 'cfg_composite_property_details', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'composite_property_details' ]);
-
-    $lists[ 'sef_property_url_country' ] = jomresHTML::selectList($yesno, 'cfg_sef_property_url_country', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'sef_property_url_country' ]);
-    $lists[ 'sef_property_url_region' ] = jomresHTML::selectList($yesno, 'cfg_sef_property_url_region', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'sef_property_url_region' ]);
-    $lists[ 'sef_property_url_town' ] = jomresHTML::selectList($yesno, 'cfg_sef_property_url_town', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'sef_property_url_town' ]);
-    $lists[ 'sef_property_url_ptype' ] = jomresHTML::selectList($yesno, 'cfg_sef_property_url_ptype', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'sef_property_url_ptype' ]);
-    $lists[ 'sef_property_url_propertyname' ] = jomresHTML::selectList($yesno, 'cfg_sef_property_url_propertyname', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'sef_property_url_propertyname' ]);
-    $lists[ 'sef_property_url_property_id' ] = jomresHTML::selectList($yesno, 'cfg_sef_property_url_property_id', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'sef_property_url_property_id' ]);
-    $lists[ 'sef_search_url_country' ] = jomresHTML::selectList($yesno, 'cfg_sef_search_url_country', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'sef_search_url_country' ]);
-    $lists[ 'sef_search_url_region' ] = jomresHTML::selectList($yesno, 'cfg_sef_search_url_region', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'sef_search_url_region' ]);
-    $lists[ 'sef_search_url_town' ] = jomresHTML::selectList($yesno, 'cfg_sef_search_url_town', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'sef_search_url_town' ]);
-    $lists[ 'sef_search_url_ptype' ] = jomresHTML::selectList($yesno, 'cfg_sef_search_url_ptype', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'sef_search_url_ptype' ]);
 
     $lists[ 'show_booking_form_in_property_details' ] = jomresHTML::selectList($yesno, 'cfg_show_booking_form_in_property_details', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'show_booking_form_in_property_details' ]);
 
@@ -233,7 +220,6 @@ function showSiteConfig()
 
     $lists[ 'showLangDropdown' ] = jomresHTML::selectList($yesno, 'cfg_showLangDropdown', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'showLangDropdown' ]);
     $lists[ 'useNewusers' ] = jomresHTML::selectList($yesno, 'cfg_useNewusers', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useNewusers' ]);
-    $lists[ 'outputHeadersInline' ] = jomresHTML::selectList($yesno, 'cfg_outputHeadersInline', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'outputHeadersInline' ]);
     $lists[ 'is_single_property_installation' ] = jomresHTML::selectList($yesno, 'cfg_is_single_property_installation', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'is_single_property_installation' ]);
     $lists[ 'use_html_purifier' ] = jomresHTML::selectList($yesno, 'cfg_use_html_purifier', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_html_purifier' ]);
     $lists[ 'limit_property_country' ] = jomresHTML::selectList($yesno, 'cfg_limit_property_country', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'limit_property_country' ]);
@@ -270,12 +256,6 @@ function showSiteConfig()
     $lists[ 'gmap_layer_bicycling' ] = jomresHTML::selectList($yesno, 'cfg_gmap_layer_bicycling', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'gmap_layer_bicycling' ]);
     $lists[ 'gmap_pois' ] = jomresHTML::selectList($yesno, 'cfg_gmap_pois', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'gmap_pois' ]);
 
-    if (!isset($jrConfig[ 'send_tracking_data' ])) {
-        $jrConfig[ 'send_tracking_data' ] = '0';
-    }
-
-    $lists[ 'send_tracking_data' ] = jomresHTML::selectList($yesno, 'cfg_send_tracking_data', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'send_tracking_data' ]);
-
     if (!isset($jrConfig['show_powered_by'])) {
         $jrConfig['show_powered_by'] = '0';
     }
@@ -306,7 +286,6 @@ function showSiteConfig()
     }
 
     $lists[ 'use_bootstrap_in_frontend' ] = jomresHTML::selectList($yesno, 'cfg_use_bootstrap_in_frontend', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_bootstrap_in_frontend' ]);
-    $lists[ 'show_cumulative_price_overlay' ] = jomresHTML::selectList($yesno, 'cfg_show_cumulative_price_overlay', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'show_cumulative_price_overlay' ]);
 
     if (!isset($jrConfig['live_scrolling_enabled'])) {
         $jrConfig['live_scrolling_enabled'] = '1';
@@ -348,6 +327,14 @@ function showSiteConfig()
 	$options[] = jomresHTML::makeOption( 'HYBRID', 'Hybrid' );
 	$options[] = jomresHTML::makeOption( 'TERRAIN', 'Terrain' );
 	$lists[ 'map_type' ] = jomresHTML::selectList($options, 'cfg_map_type', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'map_type' ]);
+	
+	//frontend cpanel home page grid options
+	$options = array();
+	$options[ ] = jomresHTML::makeOption('2/3 1/3', '2/3 | 1/3');
+	$options[ ] = jomresHTML::makeOption('1/3 2/3', '1/3 | 2/3');
+	$options[ ] = jomresHTML::makeOption('1/3 1/3 1/3', '1/3 | 1/3 | 1/3');
+	$options[ ] = jomresHTML::makeOption('1/4 1/4 1/4 1/4', '1/4 | 1/4 | 1/4 | 1/4');
+	$lists[ 'front_cpanel_home_grid' ] = jomresHTML::selectList($options, 'cfg_front_cpanel_home_grid', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'front_cpanel_home_grid' ]);
 	
 	$options = array();
 	for ($i=1;$i<=23;$i++)
@@ -397,7 +384,6 @@ function showSiteConfig()
 	<input type="hidden" name="cfg_dynamicMinIntervalRecalculation" value="<?php echo $jrConfig[ 'dynamicMinIntervalRecalculation' ]; ?>"/>
 	<input type="hidden" name="cfg_disableAudit" value="<?php echo $jrConfig[ 'disableAudit' ]; ?>"/>
 	<input type="hidden" name="cfg_allowedTags" value="<?php echo $jrConfig[ 'allowedTags' ]; ?>"/>
-	<input type="hidden" name="cfg_utfHTMLdecode" value="<?php echo $jrConfig[ 'utfHTMLdecode' ]; ?>"/>
 	<input type="hidden" name="no_html" value="1"/>
 	<input type="hidden" name="task" value="save_site_settings"/>
 	<input type="hidden" name="option" value="com_jomres"/>
@@ -413,8 +399,8 @@ function saveSiteConfig($overrides = array())
 {
     ignore_user_abort(true);
 
-    if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'key.php')) {
-        unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'key.php');
+    if (file_exists(JOMRES_TEMP_ABSPATH.'key.php')) {
+        unlink(JOMRES_TEMP_ABSPATH.'key.php');
     }
 
     if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php')) {
@@ -496,7 +482,7 @@ function searchCSSThemesDirForCSSFiles()
                         $filename = $entry;
                         $tmpArr = explode('.', $filename);
                         $extension = $tmpArr[ count($tmpArr) - 1 ];
-                        if ($filename == 'jquery-ui.css') {
+                        if ($filename == 'jquery-ui.min.css') {
                             $cssFiles[ ] = array('cssfile' => $filename, 'subdir' => $doc);
                         }
                     }
@@ -517,7 +503,7 @@ function searchCSSThemesDirForCSSFiles()
 
 function get_map_styles()
 {
-    $map_style_dir = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'map_styles'.JRDS;
+    $map_style_dir = JOMRES_LIBRARIES_ABSPATH.'map_styles'.JRDS;
     $styles = array();
     foreach (new DirectoryIterator($map_style_dir) as $file) {
         if ($file->isFile()) {

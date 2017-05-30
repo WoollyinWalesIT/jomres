@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -27,6 +27,9 @@ require_once dirname(__FILE__).'/integration.php';
 try {
     //minicomponents object
     $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+	
+	//trigger 00001 event
+	$MiniComponents->triggerEvent('00001');
 
     //site config object
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -72,15 +75,22 @@ try {
 
     //currency conversion object
     $jomres_currency_exchange_rates = jomres_singleton_abstract::getInstance('jomres_currency_exchange_rates');
+	
+	//set currency code to the appropriate one for the detected location
+	$jomres_geolocation = jomres_singleton_abstract::getInstance('jomres_geolocation');
+	$jomres_geolocation->auto_set_user_currency_code();
 
-    require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'siteconfig.functions.php';
+    require_once JOMRES_FUNCTIONS_ABSPATH.'siteconfig.functions.php';
 
 	if (!AJAXCALL) {
 		//add javascript to head
 		$MiniComponents->triggerEvent('00004');
 		
-		//core menu items
-		$MiniComponents->specificEvent('19995', 'menu', array()); //core menu items
+		//core frontend menu items
+		$MiniComponents->specificEvent('09995', 'menu', array()); //Rod really needs them
+		
+		//core admin menu items
+		$MiniComponents->specificEvent('19995', 'menu', array());
 	}
 
     //00005 trigger point
@@ -94,7 +104,7 @@ try {
             if (is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'plugins')) {
                 echo '<font color="red" face="arial" size="1">Warning: directory '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'plugins still exists. Please delete it.</font><br/>';
             }
-            emptyDir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'cache'.JRDS);
+            emptyDir(JOMRES_CACHE_ABSPATH);
         }
 
         $pageoutput = array();
@@ -130,11 +140,8 @@ try {
 
 		//check jomres support key
         jr_import('jomres_check_support_key');
-        //if ($_REQUEST['task'] != "showplugins")
-        //	{
-            $key_validation = new jomres_check_support_key(JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins');
+        $key_validation = new jomres_check_support_key(JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins');
         $output['LICENSE_WARNING'] = $MiniComponents->specificEvent('16000', 'show_license_message', array('output_now' => false, 'as_modal' => false));
-        //	}
 
 		//bootstrap
 		$output[ 'USING_BOOTSTRAP' ] = 'true';
@@ -154,17 +161,6 @@ try {
 		}
         $tmpl->addRows('pageoutput', $pageoutput);
         $tmpl->displayParsedTemplate();
-    }
-
-    //set statistics cookies
-    if (isset($_REQUEST[ 'statoption' ])) {
-        $statoption = jomresGetParam($_REQUEST, 'statoption', '');
-        setcookie('statoption', $statoption, time() + 60 * 60);
-    }
-
-    if (isset($_REQUEST[ 'periodoption' ])) {
-        $periodoption = jomresGetParam($_REQUEST, 'periodoption', '');
-        setcookie('periodoption', $periodoption, time() + 60 * 60);
     }
 
     //admins_first_run();

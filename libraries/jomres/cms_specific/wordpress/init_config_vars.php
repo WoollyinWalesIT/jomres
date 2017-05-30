@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,8 +13,6 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.');
 // ################################################################
-
-$scriptname = str_replace('/', '', $_SERVER[ 'PHP_SELF' ]);
 
 if (!defined('WPINC')) {
 	require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'wp-config.php';
@@ -31,10 +29,8 @@ if (defined('API_STARTED')) {
     $jomresConfig_live_site = str_replace('/jomres/api', '', $jomresConfig_live_site);
 }
 
-$scriptname = str_replace('/', '', $_SERVER['PHP_SELF']);
-
 $jomresConfig_lang = 'en-GB';
-if (!strstr($scriptname, 'install_jomres.php')) {
+if (!defined('AUTO_UPGRADE')) {
     $jomresConfig_lang = str_replace('_', '-', get_locale());
 }
 

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -39,17 +39,17 @@ class j16000jomres_news
         $news_rows = array();
         $pageoutput = array();
 
-        if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'news.php')) {
-            $last_modified = filemtime(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'news.php');
+        if (file_exists(JOMRES_TEMP_ABSPATH.'news.php')) {
+            $last_modified = filemtime(JOMRES_TEMP_ABSPATH.'news.php');
             $seconds_timediff = time() - $last_modified;
             if ($seconds_timediff > 3600) {
-                unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'news.php');
+                unlink(JOMRES_TEMP_ABSPATH.'news.php');
             } else {
-                $buffer = file_get_contents(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'news.php');
+                $buffer = file_get_contents(JOMRES_TEMP_ABSPATH.'news.php');
             }
         }
 
-        if (function_exists('curl_init') && !file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'news.php')) {
+        if (function_exists('curl_init') && !file_exists(JOMRES_TEMP_ABSPATH.'news.php')) {
             $url = 'http://updates.jomres4.net/news.php';
             logging::log_message('Starting curl call to '.$url, 'Curl', 'DEBUG');
             $logging_time_start = microtime(true);
@@ -68,7 +68,7 @@ class j16000jomres_news
             logging::log_message('Curl call took '.$logging_time.' seconds ', 'Curl', 'DEBUG');
 
             if ($buffer != '') {
-                file_put_contents(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'temp'.JRDS.'news.php', $buffer);
+                file_put_contents(JOMRES_TEMP_ABSPATH.'news.php', $buffer);
             }
         }
 

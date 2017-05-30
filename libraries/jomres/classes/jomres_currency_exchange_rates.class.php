@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -37,7 +37,7 @@ class jomres_currency_exchange_rates
 
         $this->url = 'http://openexchangerates.org/api/latest.json?app_id='.$this->app_id;
 
-        $this->exchange_rate_classfile = JOMRESPATH_BASE.JRDS.'temp'.JRDS.'exchangerates_'.$this->base_code.'.php';
+        $this->exchange_rate_classfile = JOMRES_TEMP_ABSPATH.'exchangerates_'.$this->base_code.'.php';
 
         if (file_exists($this->exchange_rate_classfile)) {
             //this populates $this->rates with the existing exchange rates array
@@ -55,8 +55,9 @@ class jomres_currency_exchange_rates
         }
 
         if ($this->update_now) {
-            $this->update_exchange_rates();
-            $this->save_rates();
+            if  ($this->update_exchange_rates()) {
+				$this->save_rates();
+			}
         }
     }
 
@@ -125,6 +126,8 @@ class jomres_currency_exchange_rates
         $this->rates[ $this->base_code ][ $this->base_code ] = 1;
 
         ignore_user_abort(false);
+		
+		return true;
     }
 
     //save exchange rates to file

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -47,8 +47,8 @@ class logging
         } else {
             $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
             $jrConfig = $siteConfig->get();
-            $scriptname = str_replace('/', '', $_SERVER[ 'PHP_SELF' ]);
-            if (!strstr($scriptname, 'install_jomres.php')) {
+
+            if (!defined('AUTO_UPGRADE')) {
                 $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
                 if ($thisJRUser->username !== false) {
                     $username = $thisJRUser->username;

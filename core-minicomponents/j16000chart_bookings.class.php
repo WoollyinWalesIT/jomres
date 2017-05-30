@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -103,7 +103,7 @@ class j16000chart_bookings
                 $chart->datasets[$k] = array(
                                              'label' => $k,
                                              'data' => $data,
-                                             'fillColor' => 'rgba('.$a.','.$b.','.$c.',0.2)',
+                                             'fillColor' => 'rgba('.$a.','.$b.','.$c.',0.5)',
                                              'strokeColor' => 'rgba('.$a.','.$b.','.$c.',1)',
                                              'pointColor' => 'rgba('.$a.','.$b.','.$c.',1)',
                                              'pointStrokeColor' => '#fff',

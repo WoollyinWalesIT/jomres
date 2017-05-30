@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -86,7 +86,7 @@ class j07020showplugins
 			}
 
 			if (!file_exists(JOMRES_TEMP_ABSPATH.'installed_plugins_data.php')) {
-				$jrcPath = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'core-plugins'.JRDS;
+				$jrcPath = JOMRES_COREPLUGINS_ABSPATH;
 				$files = scandir_getfiles($jrcPath);
 				$d = @dir($jrcPath);
 				if ($d) {

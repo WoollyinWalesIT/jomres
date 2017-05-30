@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -31,6 +31,10 @@ class j19997menu
 		
 		$jomres_menu = jomres_singleton_abstract::getInstance('jomres_menu');
 		$jomres_menu->generate_admin_menu();
+		
+		if (empty($jomres_menu->admin_menu)) {
+			return;
+		}
 
 		//section params are in $jomres_menu->admin_sections[section_id]
 		//menu items params are in $jomres_menu->admin_items[task]

@@ -62,9 +62,6 @@ if (!class_exists('JomresRouter')) {
 
             require_once dirname(dirname(dirname(__FILE__))).DIRECTORY_SEPARATOR.JOMRES_ROOT_DIRECTORY.DIRECTORY_SEPARATOR.'framework.php';
 
-            $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-            $jrConfig = $siteConfig->get();
-
             $segments = array();
 
             $menu = JFactory::getApplication()->getMenu();
@@ -177,7 +174,7 @@ if (!class_exists('JomresRouter')) {
 
 			//search urls
             if (isset($route_query[ 'calledByModule' ])) {
-                $segments[ ] = $jrConfig[ 'sef_task_alias_search' ];
+                $segments[ ] = 'search';
                 if (isset($route_query[ 'town' ])) {
                     $segments[ ] = jomres_cmsspecific_stringURLSafe(jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', false));
                     $segments[ ] = jomres_cmsspecific_stringURLSafe($route_query[ 'town' ]);
@@ -230,9 +227,6 @@ if (!class_exists('JomresRouter')) {
             $vars = array();
 
             require_once dirname(dirname(dirname(__FILE__))).DIRECTORY_SEPARATOR.JOMRES_ROOT_DIRECTORY.DIRECTORY_SEPARATOR.'framework.php';
-
-            $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-            $jrConfig = $siteConfig->get();
 
             switch ($segments[ 1 ]) {
                 case jomres_cmsspecific_stringURLSafe(jr_gettext('COMMON_VIEW', 'COMMON_VIEW', false)):

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -39,8 +39,10 @@ class j02990showconfirmation
         $paypal_settings->get_paypal_settings();
 
         $secret_key_payment = false;
-        if (isset($_REQUEST['sk'])) {
-            $secret_key = jomresGetParam($_REQUEST, 'sk', '');
+		
+		$secret_key = jomresGetParam($_REQUEST, 'sk', '');
+
+        if ($secret_key != '') {
             jr_import('jomres_contract_secret_key');
             $jomres_contract_secret_key = new jomres_contract_secret_key();
 

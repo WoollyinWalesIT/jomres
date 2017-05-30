@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -96,8 +96,13 @@ class j06001edit_guest
         $output[ 'HEMAIL' ] = jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL');
         $output[ 'HDISCOUNT' ] = jr_gettext('_JOMRES_AJAXFORM_BILLING_DISCOUNT', '_JOMRES_AJAXFORM_BILLING_DISCOUNT');
         $output[ '_JOMRES_COM_YOURBUSINESS_VATNO' ] = jr_gettext('_JOMRES_COM_YOURBUSINESS_VATNO', '_JOMRES_COM_YOURBUSINESS_VATNO', false);
-        $output[ '_JOMRES_GUEST_BLACKLISTED' ] = jr_gettext('_JOMRES_GUEST_BLACKLISTED', '_JOMRES_GUEST_BLACKLISTED', false);
-        $output[ '_JOMRES_GUEST_BLACKLISTED_DESC' ] = jr_gettext('_JOMRES_GUEST_BLACKLISTED_DESC', '_JOMRES_GUEST_BLACKLISTED_DESC', false);
+		$output[ '_JOMRES_GUEST_BLACKLISTED' ] = jr_gettext('_JOMRES_GUEST_BLACKLISTED', '_JOMRES_GUEST_BLACKLISTED', false);
+		$output[ '_JOMRES_GUEST_BLACKLISTED_DESC' ] = jr_gettext('_JOMRES_GUEST_BLACKLISTED_DESC', '_JOMRES_GUEST_BLACKLISTED_DESC', false);
+		
+		if ($id == 0) {
+			$output[ '_JOMRES_GUEST_BLACKLISTED' ] = '';
+			$output[ '_JOMRES_GUEST_BLACKLISTED_DESC' ] = '';
+		}
         
         $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
         $jrtb = $jrtbar->startTable();

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,7 +17,9 @@ defined('_JOMRES_INITCHECK') or die('');
 /**
  * Get some basic data before beginning construction of the booking form.
  */
-$property_uid = get_showtime('property_uid');
+$property_uid = (int)get_showtime('property_uid');
+
+$selectedProperty = (int)jomresGetParam($_REQUEST, 'selectedProperty', 0);
 
 $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
 $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
@@ -27,12 +29,12 @@ $MiniComponents->triggerEvent('00100'); // Pre-dobooking. Optional
 $userIsManager = checkUserIsManager();
 
 if (
-    isset($_REQUEST[ 'selectedProperty' ]) &&
+    $selectedProperty > 0 &&
     $userIsManager &&
-    in_array(intval($_REQUEST[ 'selectedProperty' ]), $thisJRUser->authorisedProperties) &&
-    (int) $_REQUEST[ 'selectedProperty' ] > 0 &&
-    $thisJRUser->currentproperty != (int) $_REQUEST[ 'selectedProperty' ]) {
-    $thisJRUser->set_currentproperty((int) $_REQUEST[ 'selectedProperty' ]);
+    in_array($selectedProperty, $thisJRUser->authorisedProperties) &&
+    $thisJRUser->currentproperty != $selectedProperty
+	) {
+    $thisJRUser->set_currentproperty($selectedProperty);
     jomresRedirect(get_booking_url($selectedProperty), '');
 }
 
@@ -546,11 +548,6 @@ function dobooking($selectedProperty, $thisdate, $remus)
         }
         $booked_dates_output .= '];';
         //var bookedDays = ["2010-6-10","2010-6-12","2010-6-14"];
-    }
-
-    $output[ 'TOTALS_PANEL_BG_PATH' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/';
-    if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'uploadedimages'.JRDS.'totals_panel_bg.jpg')) {
-        $output[ 'TOTALS_PANEL_BG_PATH' ] = JOMRES_ROOT_DIRECTORY.'/uploadedimages/';
     }
 
     $output[ 'PROPERTYNAME' ] = $current_property_details->property_name;

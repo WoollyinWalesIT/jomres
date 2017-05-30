@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -54,24 +54,15 @@ class j00004a_init_javascript_css_files
             $jrConfig[ 'load_jquery_ui_css' ] = '1';
         }
 
-		if (!isset($jrConfig[ 'jquery_ui_theme_detected' ])) {
-            $jrConfig[ 'jquery_ui_theme_detected' ] = 'jomres^jquery-ui.css';
+		if (!isset($jrConfig[ 'jquery_ui_theme' ])) {
+            $jrConfig[ 'jquery_ui_theme' ] = 'base';
         }
+		
+		if ($jrConfig[ 'jquery_ui_theme' ] == 'jomres') {
+			$jrConfig[ 'jquery_ui_theme' ] = 'base';
+		}
 
-        $themeArr = explode('^', $jrConfig[ 'jquery_ui_theme_detected' ]);
-        $subdir = $themeArr[ 0 ];
-        $filename = $themeArr[ 1 ];
-
-        // 7.2.7 jq ui theme update means the .css filename's been changed. We'll check the current setting, if it includes 'custom' then it's an older setting and we'll change the filename automatically to jquery-ui.css
-        if (strpos($filename, 'custom')) {
-            $filename = 'jquery-ui.css';
-        }
-
-        if (isset($themeArr[ 2 ])) {
-            $themePath = $themeArr[ 2 ].'/';
-        } else {
-            $themePath = JOMRES_ROOT_DIRECTORY.'/css/jquery_ui_themes/'.$subdir.'/';
-        }
+        $themePath = JOMRES_ROOT_DIRECTORY.'/css/jquery_ui_themes/'.$jrConfig[ 'jquery_ui_theme' ].'/';
 
         $MiniComponents->triggerEvent('00021', $componentArgs); // Get the colour scheme
 
@@ -80,18 +71,16 @@ class j00004a_init_javascript_css_files
 
         if ($jrConfig[ 'load_jquery_ui' ] == '1' && !$management_view) {
             if ($jrConfig[ 'load_jquery_ui_css' ] == '1') {
-                jomres_cmsspecific_addheaddata('css', $themePath, $filename); // Not minified due to how it's background images are stored
-                //$css_files[]= array( $themePath, $filename);
+                jomres_cmsspecific_addheaddata('css', $themePath, 'jquery-ui.min.css'); // Not minified due to how it's background images are stored
             }
         }
 
         if (jomres_cmsspecific_areweinadminarea()) { // Regardless of the frontend setting, if we're in the admin area, we'll need the jquery UI
-            jomres_cmsspecific_addheaddata('css', $themePath, $filename);
-            //$css_files[]= array( $themePath, $filename);
+            jomres_cmsspecific_addheaddata('css', $themePath, 'jquery-ui.min.css');
         }
 
         if (jomres_cmsspecific_areweinadminarea() || ($jrConfig[ 'load_jquery_ui' ] == '1' && !$management_view)) {
-            $javascript_files[] = array(JOMRES_ROOT_DIRECTORY.'/javascript/', 'jquery-ui.js');
+            $javascript_files[] = array(JOMRES_ROOT_DIRECTORY.'/javascript/', 'jquery-ui.min.js');
         }
 
         if (jomres_cmsspecific_areweinadminarea() && this_cms_is_wordpress()) {
@@ -164,7 +153,7 @@ class j00004a_init_javascript_css_files
             }
         }
 
-        if (get_showtime('task') == 'media_centre' || $_REQUEST['task'] == 'media_centre') {
+        if (get_showtime('task') == 'media_centre' || jomresGetParam($_REQUEST, 'task', '') == 'media_centre') {
             $css_files[] = array(JOMRES_ROOT_DIRECTORY.'/css/',  'jquery.fileupload-ui.css');
             $javascript_files[] = array(JOMRES_ROOT_DIRECTORY.'/javascript/media_centre/', 'load-image.min.js');
             $javascript_files[] = array(JOMRES_ROOT_DIRECTORY.'/javascript/media_centre/', 'canvas-to-blob.min.js');
@@ -183,7 +172,7 @@ class j00004a_init_javascript_css_files
 
         $ls = jomresGetDomain();
         if (stristr($ls, '.xn--', $ls) && !jomres_cmsspecific_areweinadminarea()) { // We check to see if we're in the admin area because our one and only client with an umlat in the domain name has found that the redirect function doesn't work in the administrator area if the domain's been converted.
-            require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'idna_converter'.JRDS.'idna_convert.class.php';
+            require_once JOMRES_LIBRARIES_ABSPATH.'idna_converter'.JRDS.'idna_convert.class.php';
             $IDN = new jomres_idna_convert();
             $ls = $IDN->decode($ls);
         }

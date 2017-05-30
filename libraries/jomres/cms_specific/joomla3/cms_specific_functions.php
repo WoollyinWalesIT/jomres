@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -22,8 +22,8 @@ function jomres_cmsspecific_error_logging_cms_files_to_not_backtrace()
 function jomres_cmsspecific_getsessionid()
 {
     $session = JFactory::getSession();
-
-    return $session_id = $session->getId();
+	
+	return $session->getId();
 }
 
 // Date is sent in format YYYY/mm/dd, e.g. 2013/
@@ -426,8 +426,7 @@ function jomres_cmsspecific_parseByBots($str)
 
 function jomres_cmsspecific_stringURLSafe($str)
 {
-    $scriptname = str_replace('/', '', $_SERVER[ 'PHP_SELF' ]);
-    if (!strstr($scriptname, 'install_jomres.php')) {
+    if (!defined('AUTO_UPGRADE')) {
         $config = JFactory::getConfig();
         if ($config->get('unicodeslugs') == '1') {
             $str = JFilterOutput::stringURLUnicodeSlug($str);

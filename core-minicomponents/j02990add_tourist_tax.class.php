@@ -4,7 +4,7 @@
 *
 * @author Woollyinwales IT <sales@jomres.net>
 *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
 * @copyright	2005-2015 Woollyinwales IT
 * Jomres (tm) PHP files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project
@@ -28,7 +28,9 @@ class j02990add_tourist_tax
         }
 
         //if this is a secret key payment (for an approved booking enquiry) we don`t need to add the tourist tax again
-        if (isset($_REQUEST['sk'])) {
+		$sk = (int)jomresGetParam($_REQUEST, 'sk', '');
+
+        if ($sk != '') {
             return;
         }
 
@@ -47,14 +49,7 @@ class j02990add_tourist_tax
 
         $mrConfig['tourist_tax'] = (float) $mrConfig['tourist_tax'];
 
-        $bkg = new booking();
-        $this->bookingObject = $bkg;
-        $bk = $this->bookingObject;
-        if (strlen($bk->error_code) > 0) {
-            $this->bookingObject = null;
-        } else {
-            unset($bk);
-        }
+        $bkg = $MiniComponents->triggerEvent('05000'); // Create the booking object
 
         $bkg->remove_third_party_extra('tourist_tax', 0);
 
@@ -82,11 +77,5 @@ class j02990add_tourist_tax
     public function getRetVals()
     {
         return null;
-    }
-}
-
-if (!class_exists('booking')) {
-    class booking extends dobooking
-    {
     }
 }

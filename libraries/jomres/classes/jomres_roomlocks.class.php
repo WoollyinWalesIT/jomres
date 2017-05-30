@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -19,7 +19,7 @@ class jomres_roomlocks
     public function __construct()
     {
         $property_uid = get_showtime('property_uid');
-        $this->session_directory = JOMRESPATH_BASE.JRDS.'sessions'.JRDS;
+        $this->session_directory = JOMRES_SESSIONS_ABSPATH;
         $lock_filename = 'room_lock_'.(int) $property_uid.'.php';
         $this->sessionfile = $this->session_directory.$lock_filename;
         $this->clean_up_old_locks();

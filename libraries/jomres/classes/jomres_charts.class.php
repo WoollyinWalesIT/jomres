@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -20,16 +20,18 @@ class jomres_charts
     {
         $this->chart = ''; //the generated chart/graph
 
-        $this->type = 'line'; //line, bar, radar, polar, pie, doughnut; currently just line type supported
+        $this->type = 'line'; //line, bar, radar
         $this->title = 'Example Chart'; // string chart title
         $this->title_class = 'panel-default'; // string chart title class, eg: "panel-default"
         $this->description = 'Example chart description'; // string chart description, eg: "Total sales per month"
         $this->labels = array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'); // array of X axis labels
         $this->url = ''; //url to full page chart
+		$this->height = 'auto'; //chart height
+		$this->is_widget = false; //set this to true to use the widget optimized templates
 
         $this->label = 'Example data set'; // name of the data set
         $this->data = array(rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100), rand(10, 100)); //data array for the Y axis
-        $this->fillColor = 'rgba(220,220,220,0.2)';
+        $this->fillColor = 'rgba(220,220,220,0.5)';
         $this->strokeColor = 'rgba(220,220,220,1)';
         $this->pointColor = 'rgba(220,220,220,1)';
         $this->pointStrokeColor = '#fff';
@@ -40,7 +42,7 @@ class jomres_charts
         $this->datasets[] = array(
                                 'label' 				= 'Sales',
                                 'data' 					= array ( rand(10,100),rand(10,100),rand(10,100),rand(10,100),rand(10,100),rand(10,100),rand(10,100) ),
-                                'fillColor' 			= "rgba(220,220,220,0.2)",
+                                'fillColor' 			= "rgba(220,220,220,0.5)",
                                 'strokeColor' 			= "rgba(220,220,220,1)",
                                 'pointColor'			= "rgba(220,220,220,1)",
                                 'pointStrokeColor' 		= "#fff",
@@ -51,7 +53,7 @@ class jomres_charts
         $this->datasets = array();
 
         //include the chart.js in the head
-        jomres_cmsspecific_addheaddata('javascript',  JOMRES_ROOT_DIRECTORY.'/javascript/', 'Chart.js');
+        jomres_cmsspecific_addheaddata('javascript',  JOMRES_ROOT_DIRECTORY.'/javascript/', 'Chart.min.js');
     }
 
     public function get_chart()
@@ -60,30 +62,8 @@ class jomres_charts
         $pageoutput = array();
         $legend_rows = array();
 
-        //build chart depending on type. Currently just 'line' type used.
-        switch ($this->type) {
-            case 'line':
-                $this->build_line_bar_radar_chart();
-                break;
-            case 'bar':
-                $this->build_line_bar_radar_chart();
-                break;
-            case 'radar':
-                $this->build_line_bar_radar_chart();
-                break;
-            case 'polar':
-                $this->build_polar_pie_doughnut_chart();
-                break;
-            case 'pie':
-                $this->build_polar_pie_doughnut_chart();
-                break;
-            case 'doughnut':
-                $this->build_polar_pie_doughnut_chart();
-                break;
-            default:
-                $this->build_line_bar_radar_chart();
-                break;
-            }
+        //build chart
+        $this->build_chart();
 
         if ($this->chart == '') {
             return false;
@@ -95,41 +75,27 @@ class jomres_charts
         $output['CHART'] = $this->chart;
         $output['URL'] = $this->url;
 
-        //Chart legend
-        //We`ll get the chart legend from the dataset label and strokeColor
-        foreach ($this->datasets as $k => $v) {
-            $r = array();
-
-            if (array_key_exists('label', $v)) {
-                $r['LABEL'] = $v['label'];
-            } else {
-                $r['LABEL'] = $this->label;
-            }
-
-            if (array_key_exists('strokeColor', $v)) {
-                $r['strokeColor'] = $v['strokeColor'];
-            } else {
-                $r['strokeColor'] = $this->strokeColor;
-            }
-
-            $legend_rows[] = $r;
-        }
-
         $pageoutput[] = $output;
         $tmpl = new patTemplate();
         $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
         $tmpl->addRows('pageoutput', $pageoutput);
-        $tmpl->addRows('legend_rows', $legend_rows);
-        $tmpl->readTemplatesFromInput('show_chart.html');
+        
+		if (!$this->is_widget) {
+			$tmpl->readTemplatesFromInput('show_chart.html');
+		} else {
+			$tmpl->readTemplatesFromInput('widget_show_chart.html');
+		}
 
         return $tmpl->getParsedTemplate();
     }
 
-    private function build_line_bar_radar_chart()
+    private function build_chart()
     {
         $output = array();
         $rows = array();
         $pageoutput = array();
+		
+		$output['CHART_TYPE'] = $this->type;
 
         //X-axis labels
         $output['LABELS'] = '"'.implode('", "', $this->labels).'"';
@@ -206,6 +172,15 @@ class jomres_charts
 
             $rows[] = $r;
         }
+		
+		//chart fixed height
+		$output['HEIGHT'] = $this->height;
+		
+		//aspect ratio if we have a fixed height
+		$output['MAINTAIN_ASPECT_RATIO'] = 'true';
+		if ($this->height != 'auto') {
+			$output['MAINTAIN_ASPECT_RATIO'] = 'false';
+		}
 
         $output['RANDOM_ID'] = generateJomresRandomString(10);
 
@@ -214,7 +189,7 @@ class jomres_charts
         $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
         $tmpl->addRows('pageoutput', $pageoutput);
         $tmpl->addRows('rows', $rows);
-        $tmpl->readTemplatesFromInput('chart_'.$this->type.'.html');
+        $tmpl->readTemplatesFromInput('chart.html');
 
         $this->chart = $tmpl->getParsedTemplate();
     }

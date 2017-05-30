@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -15,8 +15,8 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 $jrConfig = $siteConfig->get();
-$scriptname = str_replace('/', '', $_SERVER[ 'PHP_SELF' ]);
-if (strstr($scriptname, 'install_jomres.php')) {
+
+if (defined('AUTO_UPGRADE')) {
     set_showtime('live_site', str_replace('/jomres/', '/', get_showtime('live_site')));
 }
 
@@ -28,8 +28,7 @@ $currentBlogLang = str_replace('_', '-', get_locale());
 
 $keyword = '[jomres:'.strtolower($currentBlogLang).']';
 
-$scriptname = str_replace('/', '', $_SERVER[ 'PHP_SELF' ]);
-if (!strstr($scriptname, 'install_jomres.php')) {
+if (!defined('AUTO_UPGRADE')) {
     $jomresItemid = 0;
 
     $query = "SELECT `ID` FROM #__posts WHERE LOWER(`post_content`) LIKE '%".$keyword."%' AND `post_status` = 'publish' AND `post_type` = 'page' LIMIT 1";

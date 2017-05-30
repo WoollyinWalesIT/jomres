@@ -2641,7 +2641,7 @@ class patTemplate
 				$our_task = $bang[1];
 				if (!isset($bang[2]))
 					$bang[2] = "";
-				
+
 				$arguments = $bang[2];
 
 				if ($arguments!='')
@@ -2673,6 +2673,15 @@ class patTemplate
 					set_showtime('task',$our_task);
 					$MiniComponents->specificEvent('06000',$our_task);
 					$contents = ob_get_contents();
+					if ($contents == "" ) {
+						$MiniComponents->specificEvent('06001',$our_task);
+						$contents = ob_get_contents();
+					}
+					if ($contents == "" ) {
+						$MiniComponents->specificEvent('06002',$our_task);
+						$contents = ob_get_contents();
+					}
+
 					set_showtime('task',$original_task);
 					$_REQUEST = $original_request;
 					$result = str_replace($m,$contents,$result);

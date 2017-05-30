@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,7 +16,7 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j06001listyourproperties
 {
-    public function __construct()
+    public function __construct($componentArgs)
     {
         // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
         $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
@@ -25,6 +25,8 @@ class j06001listyourproperties
 
             return;
         }
+		
+		$this->retVals = '';
 
         $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -33,6 +35,12 @@ class j06001listyourproperties
         $published = (int) jomresGetParam($_POST, 'published', '2');
         $approved = (int) jomresGetParam($_POST, 'approved', '2');
         $ptype_id = (int) jomresGetParam($_POST, 'ptype', '0');
+		
+		if (isset($componentArgs[ 'output_now' ])) {
+            $output_now = $componentArgs[ 'output_now' ];
+        } else {
+            $output_now = true;
+        }
 
         $output = array();
         $subsoutput = array();
@@ -106,12 +114,16 @@ class j06001listyourproperties
         $tmpl->addRows('pageoutput', $pageoutput);
         $tmpl->addRows('rows', $rows);
         $tmpl->addRows('subs', $subsoutput);
-        $tmpl->displayParsedTemplate();
+        if ($output_now) {
+			$tmpl->displayParsedTemplate();
+		} else {
+			$this->retVals = $tmpl->getParsedTemplate();
+		}
     }
 
     // This must be included in every Event/Mini-component
     public function getRetVals()
     {
-        return null;
+        return $this->retVals;
     }
 }

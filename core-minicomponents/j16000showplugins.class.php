@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -44,7 +44,7 @@ class j16000showplugins
         $this_jomres_version = explode('.', $mrConfig[ 'version' ]);
 
         $installed_plugins = array();
-        $jrePath = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS;
+        $jrePath = JOMRES_REMOTEPLUGINS_ABSPATH;
         $third_party_plugins = array();
         if (!is_dir($jrePath)) {
             if (!@mkdir($jrePath)) {
@@ -54,7 +54,7 @@ class j16000showplugins
             }
         }
 
-        $jrcPath = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'core-plugins'.JRDS;
+        $jrcPath = JOMRES_COREPLUGINS_ABSPATH;
         $third_party_plugins = array();
         if (!is_dir($jrcPath)) {
             if (!@mkdir($jrcPath)) {
@@ -201,7 +201,7 @@ class j16000showplugins
         }
         
         $encoded_on_full_license = array();
-        if  ( $key_validation->is_trial_license == false && $encoded_count > 0 ) {
+        if  ( $key_validation->is_trial_license == false && $encoded_count > 0 && $jrConfig[ 'licensekey' ] != '') {
             $encoded_on_full_license[]['ENCODING_WARNING'] = "You have a number plugins installed that are encoded, but you are using a Full license. If you do not reinstall these plugins, when your license expires you'll no longer be able to use them. Please use the 'Reinstall all installed plugins' button to ensure that the plugins installed are the unencoded versions.";
         }
         

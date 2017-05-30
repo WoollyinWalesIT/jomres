@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -695,7 +695,7 @@ jr_define('_JOMCOMP_AMEND_OVERRIDE_TOTAL', 'Anulació Total');
 jr_define('_JOMCOMP_AMEND_OVERRIDE_DEPOSIT', 'Anulació de Dipòsit');
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Jomres 2.7.5
 jr_define('_JRPORTAL_CANCEL', 'Cance·llar');
-jr_define('_JRPORTAL_CPANEL', 'JRPortal Panell de Control');
+jr_define('_JRPORTAL_CPANEL', 'Panell de Control');
 jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE', 'Tipus de Comissió predeterminada');
 jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE_DESC', 'Esculli la comissió predeterminada que serà aplicada a la propietat en cas de que no sigui seleccionada una altra.');
 jr_define('_JRPORTAL_CPANEL_LISTCRATES', 'Llista de tips de comissió');

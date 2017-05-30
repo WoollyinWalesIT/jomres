@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -74,6 +74,12 @@ class jomres_regions
 	//get all regions, used only when we need to get all regions from db
     public function get_all_regions()
     {
+		if (!defined('ALL_REGIONS_SET')) {
+			define('ALL_REGIONS_SET', 1);
+		} else {
+			return true;
+		}
+
         $this->regions = array();
 
 		$query = "SELECT `id`, `countrycode`, `regionname` FROM #__jomres_regions ORDER BY `countrycode`,`regionname`";
@@ -129,7 +135,7 @@ class jomres_regions
     public function get_region($id = 0)
     {
 		if ((int)$id == 0) {
-			throw new Exception('Tried to get region with id 0');
+			return '';
 		}
 
         if (isset($this->regions[ $id ])) {
@@ -158,7 +164,7 @@ class jomres_regions
     public function get_region_name($id = 0)
     {
 		if ((int)$id == 0) {
-			throw new Exception('Tried to get region with id 0');
+			return '';
 		}
 
         if (isset($this->regions[ $id ])) {
@@ -172,5 +178,23 @@ class jomres_regions
 				throw new Exception('Tried to get region with non-existant id');
 			}
         }
+    }
+	
+	//get region name by region id, mostly used when we need to display a region name
+    public function get_region_id($region_name = '')
+    {
+		$region_name = jomres_cmsspecific_stringURLSafe($region_name);
+
+		if ($region_name == '') {
+			throw new Exception('Tried to get region id for empty region name');
+		}
+
+        $jomres_regions->get_all_regions();
+
+		foreach ($jomres_regions->regions as $r) {
+			if (strcasecmp(jomres_cmsspecific_stringURLSafe($r[ 'regionname' ]), $region_name) == 0) {
+				return (int) $r[ 'id' ];
+			}
+		}
     }
 }

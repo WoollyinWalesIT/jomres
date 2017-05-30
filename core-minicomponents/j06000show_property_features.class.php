@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -37,10 +37,12 @@ class j06000show_property_features
         $this->retVals = '';
 
         if (isset($componentArgs[ 'property_uid' ])) {
-            $property_uid = (int) $componentArgs[ 'property_uid' ];
-        } elseif (isset($_REQUEST['property_uid'])) {
-            $property_uid = (int) $_REQUEST['property_uid'];
+            $property_uid = (int)$componentArgs[ 'property_uid' ];
         } else {
+			$property_uid = (int)jomresGetParam($_REQUEST, 'property_uid', 0);
+        }
+		
+		if ($property_uid == 0) {
             return;
         }
 
@@ -72,7 +74,7 @@ class j06000show_property_features
 
                 foreach ($basic_property_details->features as $feature_id=>$f) {
                     $url = jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&feature_uids='.$feature_id);
-                    $pFeature[ 'FEATURE' ] = jomres_makeTooltip($f[ 'abbv' ], $f[ 'abbv' ], $f[ 'desc' ], JOMRES_ROOT_DIRECTORY.'/uploadedimages/pfeatures/'.$f[ 'image' ], '', 'property_feature', array() , $url);
+                    $pFeature[ 'FEATURE' ] = jomres_makeTooltip($f[ 'abbv' ], $f[ 'abbv' ], $f[ 'desc' ], JOMRES_IMAGELOCATION_RELPATH.'pfeatures/'.$f[ 'image' ], '', 'property_feature', array() , $url);
                     $pFeatures[] = $pFeature;
                 }
 
@@ -112,7 +114,7 @@ class j06000show_property_features
 
                     foreach ($v as $f) {
                         $url = jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&feature_uids='.$f['feature_uid']);
-                        $pFeature[ 'FEATURE' ] = jomres_makeTooltip($f[ 'abbv' ], $f[ 'abbv' ], $f[ 'desc' ], JOMRES_ROOT_DIRECTORY.'/uploadedimages/pfeatures/'.$f[ 'image' ], '', 'property_feature', array() , $url);
+                        $pFeature[ 'FEATURE' ] = jomres_makeTooltip($f[ 'abbv' ], $f[ 'abbv' ], $f[ 'desc' ], JOMRES_IMAGELOCATION_RELPATH.'pfeatures/'.$f[ 'image' ], '', 'property_feature', array() , $url);
                         $pFeatures[] = $pFeature;
                     }
 

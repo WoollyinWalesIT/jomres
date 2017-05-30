@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -101,8 +101,8 @@ class j00501tariffs
             $configurationPanel->insertSetting();
         }
 
-        if ($mrConfig[ 'is_real_estate_listing' ] == 0) {
-            if (isset($MiniComponents->registeredClasses['00011']['manager_option_04_guesttypeadmin' ])) {
+        if ($mrConfig[ 'is_real_estate_listing' ] == '0') {
+            if (isset($MiniComponents->registeredClasses['00005']['guest_types' ])) {
                 if ($mrConfig[ 'wholeday_booking' ] == '1') {
                     $configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_TARIFFS_PER_WHOLEDAY', '_JOMRES_COM_A_TARIFFS_PER_WHOLEDAY', false));
                     $configurationPanel->setmiddle($lists[ 'perPersonPerNight' ]);

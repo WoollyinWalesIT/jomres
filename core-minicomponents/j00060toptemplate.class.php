@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -50,6 +50,7 @@ class j00060toptemplate
         $output[ 'TIMEZONE_DROPDOWN' ] = '';
         $output[ 'TIMEZONEBLURB' ] = '';
         $output[ 'PROPERTY_SELECTOR_DROPDOWN' ] = '';
+		$output[ 'WIDGETS_SELECTOR_DROPDOWN' ] = '';
         $output[ 'CURRENT_PROPERTY_STYLE' ] = '';
         $output['FB_LOCALISE'] = str_replace('-', '_', get_showtime('lang'));
 
@@ -128,9 +129,19 @@ class j00060toptemplate
         } else {
             $output[ 'CURRENT_PROPERTY_STYLE' ] = 'display:none;';
         }
-
+		
+		//widgets selection dropdown
+		$widgets_dropdown = array();
+		if ($thisJRUser->userIsManager && get_showtime('task') == 'cpanel' || get_showtime('task') == '') {
+			$jomres_widgets = jomres_singleton_abstract::getInstance('jomres_widgets');
+			
+			$widgets_dropdown[]['WIDGETS_DROPDOWN'] = $jomres_widgets->get_widgets_dropdown();
+		}
+		
+		//jomres FAQ
         $output['_JOMRES_FAQ'] = jr_gettext('_JOMRES_FAQ', '_JOMRES_FAQ', false);
 
+		//messages
         $messaging = array();
 
         $jomres_messaging = jomres_singleton_abstract::getInstance('jomres_messages');
@@ -161,6 +172,7 @@ class j00060toptemplate
         $tmpl->addRows('messages', $messaging);
         //$tmpl->addRows( 'timezone_dropdown', $timezone_dropdown );
         $tmpl->addRows( 'lang_dropdown', $lang_dropdown );
+		$tmpl->addRows( 'widgets_dropdown', $widgets_dropdown );
         if ($result) {
             $tmpl->addRows('editing_dropdown', $editing_dropdown);
         }

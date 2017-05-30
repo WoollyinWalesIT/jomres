@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -35,10 +35,18 @@ require_once dirname(__FILE__).'/integration.php';
 try {
     //minicomponents object
     $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+	
+	//trigger 00001 event
+	$MiniComponents->triggerEvent('00001');
 
     //site config object
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
+	
+	//request log
+	if ($jrConfig['development_production'] == 'development') {
+		request_log();
+	}
 
     //get all properties in system.
     $jomres_properties = jomres_singleton_abstract::getInstance('jomres_properties');
@@ -61,6 +69,7 @@ try {
     if (empty($thisJRUser->authorisedProperties) && $thisJRUser->userIsManager) {
 		$jomres_users = jomres_singleton_abstract::getInstance('jomres_users');
 		$jomres_users->delete_user( $thisJRUser->id );
+		$thisJRUser->reset_manager_to_non_manager();
     }
 
     //jomres timezones - mostly unused with an exception
@@ -117,6 +126,10 @@ try {
 
     //currency conversion object
     $jomres_currency_exchange_rates = jomres_singleton_abstract::getInstance('jomres_currency_exchange_rates');
+	
+	//set currency code to the appropriate one for the detected location
+	$jomres_geolocation = jomres_singleton_abstract::getInstance('jomres_geolocation');
+	$jomres_geolocation->auto_set_user_currency_code();
 
     //if this cms user has booked in the past and doesn`t have profile details saved yet, we`ll update his profile details aautomatically based on his guest details from one of the previous bookings he`s made
     if (get_showtime('task') != 'error') {
@@ -175,7 +188,7 @@ try {
         $jomres_suspensions = new jomres_suspensions();
         $jomres_suspensions->set_manager_id($thisJRUser->userid);
         if ($jomres_suspensions->suspended_manager_denied_task(get_showtime('task'))) {
-            jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=dashboard'), '');
+            jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=cpanel'), '');
         }
     }
 
@@ -238,6 +251,11 @@ try {
 
     //TODO find a better place
     set_showtime('include_room_booking_functionality', true);
+	
+	//register jomres frontend widgets
+	if ($thisJRUser->userIsManager) {
+		$MiniComponents->triggerEvent('09990');
+	}
 
     //trigger 00005 event
     $MiniComponents->triggerEvent('00005');
@@ -259,10 +277,8 @@ try {
 	if ($MiniComponents->eventSpecificlyExistsCheck('06000', get_showtime('task'))) {
 		$MiniComponents->specificEvent('06000', get_showtime('task'));
 	} elseif ($MiniComponents->eventSpecificlyExistsCheck('06001', get_showtime('task')) && $thisJRUser->userIsManager) { // Receptionist and manager tasks
-		if (get_showtime('task') == 'dashboard') {
-			//$MiniComponents->triggerEvent('00013'); // Optional Pre dashboard
+		if (get_showtime('task') == 'cpanel') {
 			$MiniComponents->specificEvent('06001', get_showtime('task'));
-			$MiniComponents->triggerEvent('00014'); // Optional Post dashboard
 		} else {
 			$MiniComponents->specificEvent('06001', get_showtime('task'));
 		}
@@ -318,12 +334,6 @@ try {
         $document->setBase(null);
     }
 
-    //jomres usage reporting
-	if (!AJAXCALL && $no_html == 0) {
-		jr_import('jomres_usage_reporting');
-		$tracking = new jomres_usage_reporting();
-	}
-
     //done
     endrun();
     if (AJAXCALL) {
@@ -362,14 +372,14 @@ function no_task_set($property_uid = 0)
     $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
+	
+	$calledByModule = jomresGetParam($_REQUEST, 'calledByModule', '');
 
-    if ((isset($_REQUEST[ 'calledByModule' ]) || isset($_REQUEST[ 'plistpage' ])) && $thisJRUser->userIsManager) {
+    if (($calledByModule != '' || isset($_REQUEST[ 'plistpage' ])) && $thisJRUser->userIsManager) {
         $MiniComponents->specificEvent('06000', "search");
     } else {
         if ($thisJRUser->userIsManager) {
-            //$MiniComponents->triggerEvent('00013'); // Optional Pre dashboard
-            $MiniComponents->specificEvent('06001', 'dashboard');
-            $MiniComponents->triggerEvent('00014'); // Optional Post dashboard
+            $MiniComponents->specificEvent('06001', 'cpanel');
         } elseif (get_showtime('numberOfPropertiesInSystem') == 1 && $jrConfig[ 'is_single_property_installation' ] == '0') {
             set_showtime('task', 'viewproperty');
             $componentArgs = array();

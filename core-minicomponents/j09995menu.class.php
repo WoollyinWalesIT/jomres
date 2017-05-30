@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -40,10 +40,9 @@ class j09995menu
 		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 		
 		$jomres_menu = jomres_singleton_abstract::getInstance('jomres_menu');
-		
-		$login_url = get_showtime('live_site').'/'.jomres_cmsspecific_getlogin_task();
-		$registration_url = jomres_cmsspecific_getregistrationlink();
-		$property_details_url = get_property_details_url($property_uid);
+
+		$viewproperty_url = get_property_details_url($property_uid);
+		$dobooking_url = get_booking_url($property_uid);
         
 		//define the core sections
 		$jomres_menu->add_section(1, jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME', '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME', false));
@@ -60,8 +59,11 @@ class j09995menu
 		//define the core  menu items
 		//dashboard section menus
 		if ($thisJRUser->accesslevel >= 50) {
-			$jomres_menu->add_item(1, jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_HOME', '_JOMRES_FRONT_MR_MENU_ADMIN_HOME', false), 'dashboard', 'fa-calendar');
+			$jomres_menu->add_item(1, jr_gettext('_JRPORTAL_CPANEL', '_JRPORTAL_CPANEL', false), 'cpanel', 'fa-dashboard');
+			$jomres_menu->add_item(1, jr_gettext('_JOMRES_TIMELINE', '_JOMRES_TIMELINE', false), 'dashboard', 'fa-calendar');
 		}
+		
+		
 		
 		//my account section menus
 		if ($thisJRUser->accesslevel >= 1) {
@@ -82,8 +84,8 @@ class j09995menu
 		}
 		
 		if ($thisJRUser->accesslevel == 0) {
-			$jomres_menu->add_item(10, 'Register', $registration_url, 'fa-user-plus', true);
-			$jomres_menu->add_item(10, jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN', '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN', false), $login_url, 'fa-sign-in', true);
+			$jomres_menu->add_item(10, 'Register', 'cms_user_register', 'fa-user-plus');
+			$jomres_menu->add_item(10, jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN', '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN', false), 'cms_user_login', 'fa-sign-in');
 		}
 		
 		if ($thisJRUser->accesslevel >= 1) {
@@ -100,7 +102,9 @@ class j09995menu
 		}
 
 		if ($thisJRUser->accesslevel >= 50) {
-			$jomres_menu->add_item(20, jr_gettext('_JOMRES_FRONT_PREVIEW', '_JOMRES_FRONT_PREVIEW', false), $property_details_url, 'fa-eye', true);
+			if ($viewproperty_url) {
+				$jomres_menu->add_item(20, jr_gettext('_JOMRES_FRONT_PREVIEW', '_JOMRES_FRONT_PREVIEW', false), $viewproperty_url, 'fa-eye', true);
+			}
 		}
 		
 		if ($thisJRUser->accesslevel > 50) {
@@ -110,7 +114,10 @@ class j09995menu
 		//booking section menus
 		if ($thisJRUser->accesslevel >= 50 && $mrConfig[ 'is_real_estate_listing' ] != '1') {
 			$jomres_menu->add_item(30, jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_LISTBOOKINGS', '_JOMRES_FRONT_MR_MENU_ADMIN_LISTBOOKINGS', false), 'list_bookings', 'fa-list');
-			$jomres_menu->add_item(30, jr_gettext('_JOMRES_HNEW_BOOKING', '_JOMRES_HNEW_BOOKING', false), get_booking_url($property_uid), 'fa-plus', true);
+			
+			if ($dobooking_url) {
+				$jomres_menu->add_item(30, jr_gettext('_JOMRES_HNEW_BOOKING', '_JOMRES_HNEW_BOOKING', false), $dobooking_url, 'fa-plus', true);
+			}
 		}
 		
 		//guests section menus
@@ -127,6 +134,7 @@ class j09995menu
 		//reports section menus
 		if ($thisJRUser->accesslevel > 50 && $mrConfig[ 'is_real_estate_listing' ] != '1') {
 			$jomres_menu->add_item(60, jr_gettext('_JOMRES_CHARTS', '_JOMRES_CHARTS', false), 'charts', 'fa-line-chart');
+			$jomres_menu->add_item(60, jr_gettext('_JOMRES_OVERALL_ROOMS_BOOKED', '_JOMRES_OVERALL_ROOMS_BOOKED', false), 'weekly_occupancy_percentages', 'fa-percent');
 		}
 
 		//misc section menus

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -15,8 +15,8 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 $jrConfig = $siteConfig->get();
-$scriptname = str_replace('/', '', $_SERVER[ 'PHP_SELF' ]);
-if (strstr($scriptname, 'install_jomres.php')) {
+
+if (defined('AUTO_UPGRADE')) {
     set_showtime('live_site', str_replace('/jomres', '', get_showtime('live_site')));
 }
 
@@ -26,7 +26,7 @@ define('JOMRES_ADMINISTRATORDIRECTORY', 'administrator');
 //detect jomres itemId
 $jomresItemid = 0;
 
-if (!strstr($scriptname, 'install_jomres.php')) {
+if (!defined('AUTO_UPGRADE')) {
 	$app = JFactory::getApplication(); 
 	$menu = $app->getMenu();
 	$menuItem = $menu->getItems( 'link', 'index.php?option=com_jomres&view=default', $firstonly = true );

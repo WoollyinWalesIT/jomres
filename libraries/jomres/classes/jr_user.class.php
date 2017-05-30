@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -39,11 +39,11 @@ class jr_user
         $this->jomres_manager_id 				= 0;                        //user/manager id in the _jomres_managers table
         $this->id 								= 0;                        //cms user id TODO: remove duplicate from the entire codebase
         $this->userid 							= 0;                        //cms user id TODO: remove duplicate from the entire codebase
-        $this->username 						= '';                        //logged in user`s username
+        $this->username 						= '';                       //logged in user`s username
         $this->accesslevel 						= 0;                        //user access level
         $this->currentproperty 					= 0;                        //user`s current property
         $this->last_active 						= '1970-01-01 00:00:01';    //last active
-        $this->authorisedProperties 			= array();                    //array of properties that this user has access to
+        $this->authorisedProperties 			= array();                  //array of properties that this user has access to
         //$this->users_timezone					= "America/Lima";			//user timezone - not used anymore
         $this->simple_configuration 			= false;                    //simple configuration true/false
         $this->userIsSuspended 					= false;                    //user is suspended true/false
@@ -75,6 +75,7 @@ class jr_user
         $this->vat_number = '';
         $this->vat_number_validated = '';
         $this->vat_number_validation_response = '';
+		$this->params = array(); //user settings
 
         if (class_exists('Flight')) {
             $this->id = Flight::get('user_id');
@@ -160,7 +161,8 @@ class jr_user
 						`email`,
 						`vat_number`,
 						`vat_number_validated`,
-						`vat_number_validation_response` 
+						`vat_number_validation_response`,
+						`params`
 					FROM #__jomres_guest_profile 
 					WHERE `cms_user_id` = ' .(int) $this->id.' 
 					LIMIT 1 ';
@@ -185,6 +187,10 @@ class jr_user
                 $this->vat_number = $r->vat_number;
                 $this->vat_number_validated = $r->vat_number_validated;
                 $this->vat_number_validation_response = $r->vat_number_validation_response;
+				
+				if (!empty($r->params)) {
+					$this->params = json_decode($r->params, true);
+				}
             }
         }
 
@@ -208,7 +214,7 @@ class jr_user
 						`suspended`,
 						`users_timezone`,
 						`simple_configuration`,
-						`last_active` 
+						`last_active`
 					FROM #__jomres_managers 
 					WHERE `userid` = ' .(int) $this->id.' 
 					LIMIT 1 ';
@@ -230,7 +236,7 @@ class jr_user
                 if (isset($r->last_active)) {
                     $this->last_active = $r->last_active;
                 }
-
+				
                 /* if ( isset( $r->users_timezone ) )
                     {
                     $this->users_timezone 				= $r->users_timezone;
@@ -275,7 +281,24 @@ class jr_user
 
         return true;
     }
+	
+	//update user profile params
+	public function update_params()
+	{
+		if ( $this->id == 0 ) {
+			throw new Exception( "Error: Cms user id not set");
+		}
 
+		//update user params
+		$query = "UPDATE #__jomres_guest_profile SET `params` = '".json_encode($this->params)."' WHERE `cms_user_id` = " . (int)$this->id;
+		
+		if ( !doInsertSql( $query, '' ) ) {
+			throw new Exception( "Error: User params update failed");
+		}
+		
+		return true;
+	}
+	
     /**
      * Reset manager to non manager.
      */

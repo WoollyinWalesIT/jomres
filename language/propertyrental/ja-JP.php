@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -688,7 +688,7 @@ jr_define('_JOMCOMP_AMEND_DEPOSITDUE', '予約金（未払い）');
 jr_define('_JOMCOMP_AMEND_OVERRIDE_TOTAL', '合計の指定');
 jr_define('_JOMCOMP_AMEND_OVERRIDE_DEPOSIT', '予約金の指定');
 jr_define('_JRPORTAL_CANCEL', 'キャンセル');
-jr_define('_JRPORTAL_CPANEL', 'JRPortalコントロール・パネル');
+jr_define('_JRPORTAL_CPANEL', 'コントロール・パネル');
 jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE', 'デフォールトのコミッション率');
 jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE_DESC', '事業・プロパティにコミッション率の設定が忘れた場合、自動的に適応されるコミッションの率を指定してください。');
 jr_define('_JRPORTAL_CPANEL_LISTCRATES', 'コミッション率一覧');

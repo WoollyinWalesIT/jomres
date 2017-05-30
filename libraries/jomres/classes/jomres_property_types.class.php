@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -111,10 +111,10 @@ class jomres_property_types
             $this->property_type['marker'] = $r->marker;                // Google maps marker
 
             if (
-                is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'uploadedimages'.JRDS.'markers') &&
-                is_file(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'uploadedimages'.JRDS.'markers'.JRDS.$this->property_type['marker'])
+                is_dir(JOMRES_IMAGELOCATION_ABSPATH.'markers') &&
+                is_file(JOMRES_IMAGELOCATION_ABSPATH.'markers'.JRDS.$this->property_type['marker'])
                 ) {
-                $this->property_type['marker_image'] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/markers/'.$this->property_type['marker'];
+                $this->property_type['marker_image'] = JOMRES_IMAGELOCATION_RELPATH.'markers/'.$this->property_type['marker'];
             } elseif (JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'markers'.JRDS.$this->property_types['marker']) {
                 $this->property_type['marker_image'] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/markers/'.$this->property_type['marker'];
             }
@@ -305,15 +305,17 @@ class jomres_property_types
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
 		$jomres_media_centre_images->get_site_images('markers');
 		
-		foreach ($jomres_media_centre_images->site_images['markers'] as $image) 
-			{
-			$r = array();
-			
-			$r[ 'IMAGE_FILENAME' ] = substr($image['large'], strrpos($image['large'], '/') + 1);
-			$r[ 'IMAGE_SRC' ]  = $image['large'];
-			
-			$images[] = $r;
+		if (isset($jomres_media_centre_images->site_images['markers'])) {
+			foreach ($jomres_media_centre_images->site_images['markers'] as $image) {
+				$r = array();
+				
+				$r[ 'IMAGE_FILENAME' ] = substr($image['large'], strrpos($image['large'], '/') + 1);
+				$r[ 'IMAGE_SRC' ]  = $image['large'];
+				
+				$images[] = $r;
 			}
+		}
+		
 
 		return $images;
 	}

@@ -1,3 +1,49 @@
+<h3>Jomres 9.9.1 30/05/2017</h3>
+
+<span class="label label-success">Feature</span> Added jomres frontend control panel widgets. The Jomres Dashboard ( now renamed to frontend Control Panel ) is now dynamic, meaning you can add/remove widgets to the Property Manager's control panel as well as use Drag and Drop to move them around.
+<span class="label label-success">Feature</span> Disabled option to change property type after a property has been created. 
+
+<span class="label label-warning">Change</span> Changed datatables scripts so they won`t interfere with mod security rules
+<span class="label label-warning">Change</span> tweaked the reinstall all plugins message when no license key set
+<span class="label label-warning">Change</span> Improved how and when we get all regions from db
+<span class="label label-warning">Change</span> Added region to property details sanity check and removed postcode and tel as they`re not used by everybody or on all properties
+<span class="label label-warning">Change</span> Replaced hardcoded /jomres/uploadedimages path with it`s defined constant
+<span class="label label-warning">Change</span> Replaced hardcoded /jomres/temp path with it`s defined constant
+<span class="label label-warning">Change</span> Removed usage reporting and tweaked the api keys warning colours in admin cpanel
+<span class="label label-warning">Change</span> Removed unused site config settings
+<span class="label label-warning">Change</span> Made the cms user register/login separate tasks that redirect to the cms registration/login form. This allows us to control the menu register/login jomres menu items access levels too
+<span class="label label-warning">Change</span> Added guest_uid index to contracts table
+<span class="label label-warning">Change</span> Improved jomres sessions handling
+<span class="label label-warning">Change</span> Tweaked edit guests page so that the blacklist option and text will show up only when editing existing guests.
+<span class="label label-warning">Change</span> Updated jquery ui
+<span class="label label-warning">Change</span> Slightly increased the delay value when searching in datatables
+<span class="label label-warning">Change</span> Updated chart js
+<span class="label label-warning">Change</span> Slovenian regions added to countries.php so that new installations will have regions installed.
+<span class="label label-warning">Change</span> Made the bookings chart the default chart selected on reports
+<span class="label label-warning">Change</span> Added chart fixed height support to be used later
+<span class="label label-warning">Change</span> Changed regions class so that when region id is 0 or blank, we`ll return an empty string instead of throwing an error.
+<span class="label label-warning">Change</span> Made sure that properties can be published/unpublished on user suspension only if the user has a manager/receptionist user role.
+<span class="label label-warning">Change</span> Modified frontend functionality so that dashboard ( to be renamed timeline ) is part of a subset of cpanel templates.
+<span class="label label-warning">Change</span> Menu option added to put weekly percentage view into reports menu option.
+<span class="label label-warning">Change</span> Creating the object using j05000 script to allow dobooking method override.
+<span class="label label-warning">Change</span> Added request_log call to jomres.php to be triggered if in development mode.
+<span class="label label-warning">Change</span> Changed a language definition for book now because SEF urls with different strings for the book now text wont work on different property types.
+<span class="label label-warning">Change</span> Tweak to make sure we also reset the logged in manager to non manager when it doesn`t have any properties assigned
+<span class="label label-warning">Change</span> Added some code that will remove orphan rooms for properties that have had their property types changed, and an extra sanity check. These will remain commented out as in 9.9.1 we are removing the ability to change property types, however the change will remain in case we reverse this decision.
+
+<span class="label label-important label-danger">Fix</span> Fixed a bug in access control and added the 00035 property details tabs/blocks to access control. This allows us to set property details blocks/tabs specific access levels.
+<span class="label label-important label-danger">Fix</span> Temp fix for php 7.1 session ids which have max 256 chars. Jomres sessions only allow 50 chars, so we`ll substr the first 50 chars of session id
+<span class="label label-important label-danger">Fix</span> Resolved an issue where wire transfer couldn't trigger 00605 to send emails.
+<span class="label label-important label-danger">Fix</span> Fixed a bug in DT ajax options
+<span class="label label-important label-danger">Fix</span> Made public a function that is called in j06002edit_tariffs_normal.class.php
+<span class="label label-important label-danger">Fix</span> Fixed a notice on jomres install related to jr user not being ready.
+<span class="label label-important label-danger">Fix</span> Fixed notices for when markers are not created for a property type.
+<span class="label label-important label-danger">Fix</span> Tweaked view agent to only show agent name in browser title if task is set to view_agent.
+<span class="label label-important label-danger">Fix</span> Fixed a bug in the normal tariff editing mode that tries to address an edge case created by switching property types.
+<span class="label label-important label-danger">Fix</span> Solved access control problem for viewproperty and dobooking menus and tasks.
+
+<span class="label label-info">Wordpress</span> Changed some variable names in datatables ajax request so they won`t conflict with WP public query vars
+
 <h3>Jomres 9.9.0 16/05/2017</h3>
 
 <span class="label label-success">Feature</span> Added new tariffs handling class. This brings several benefits for future development, with respect to the new booking engine and API development.

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -148,11 +148,10 @@ class jomres_sanity_check
             $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
             $current_property_details->gather_data($this->property_uid);
             if (
-                $current_property_details->property_street == '' ||
-                $current_property_details->property_town == '' ||
-                $current_property_details->property_postcode == '' ||
-                $current_property_details->property_country_code == '' ||
-                $current_property_details->property_tel == ''
+                $current_property_details->property_street == '' || 
+                $current_property_details->property_town == '' || 
+				$current_property_details->property_region == '' || 
+                $current_property_details->property_country_code == ''
                 ) {
                 $message = jr_gettext('_JOMRES_ADDRESS_SANITY_CHECK', '_JOMRES_ADDRESS_SANITY_CHECK', false);
                 $link = jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_property');
@@ -321,6 +320,27 @@ class jomres_sanity_check
                         return $this->construct_warning(array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $button_text));
                     }
                 }
+			
+				// Todo
+				// This seems to work but as of 30 May 2017 We're removing the ability to change property types through the frontend so for now I'm going to leave this commented out in case it results in some unforseen side-effects that ( so far ) haven't appeared.
+			
+				/* $query = "SELECT DISTINCT `room_classes_uid` FROM #__jomres_rooms WHERE `propertys_uid` = ".(int)$this->property_uid." AND `room_classes_uid` IN (".jomres_implode(array_keys($current_property_details->this_property_room_classes)).") ";
+				$result = doSelectSql($query);
+				if (empty($result)) {
+					
+						// This is designed to clean up existing rooms that this property might have had their property type changed from one SRP type to another. We need to clean up any orphan rooms.
+						$query = "DELETE FROM #__jomres_rooms WHERE `propertys_uid` = ".(int)$this->property_uid;
+						doInsertSql($query);
+
+					    $message = jr_gettext('_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK', '_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK', false);
+                        $link = jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_resource');
+                        $button_text = jr_gettext('_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK_LINK', '_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK_LINK', false);
+
+                        return $this->construct_warning(array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $button_text));
+				} */
+
+				
+			
             }
         }
     }

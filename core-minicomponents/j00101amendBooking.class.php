@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -31,7 +31,9 @@ class j00101amendBooking
         $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
         $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
-        if (!$thisJRUser->userIsManager || (isset($_REQUEST[ 'selectedProperty' ]) && !in_array(intval($_REQUEST[ 'selectedProperty' ]), $thisJRUser->authorisedProperties))) {
+		$selectedProperty = (int)jomresGetParam($_REQUEST, 'selectedProperty', 0);
+
+        if (!$thisJRUser->userIsManager || ($selectedProperty > 0 && !in_array($selectedProperty, $thisJRUser->authorisedProperties))) {
             return;
         }
 

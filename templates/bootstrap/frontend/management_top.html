@@ -51,8 +51,13 @@ jomresJquery(document).ready(function(){
 <div class="management-header">
 	<div class="container-fluid">
 		<div class="row-fluid">
-			<div class="span8">
+			<div class="span6">
 				<h1 class="page-title" id="tour_target_property_name">{HACTIVE_PROPERTY}{PROPERTYNAME}{PROPERTY_SELECTOR_DROPDOWN}</h1>
+			</div>
+			<div class="span2 hidden-phone hidden-tablet" align="right">
+				<patTemplate:tmpl name="widgets_dropdown" type="simpleCondition" requiredVars="widgets_dropdown">
+				<div id="tour_target_widgets_dropdown">{WIDGETS_DROPDOWN}</div>
+				</patTemplate:tmpl>
 			</div>
 			<div class="span2" align="right">	
 				<patTemplate:tmpl name="lang_dropdown" type="simpleCondition" requiredVars="langdropdown">
@@ -75,7 +80,7 @@ jomresJquery(document).ready(function(){
 	</div>
 </div>
 <div id="jomres_status" class="navbar navbar-fixed-bottom hidden-phone">
-	<p class="pull-right">Copyright: &copy; 2005 - 2014 Vince Wooll</p>
+	<p class="pull-right">Copyright: &copy; 2005 - 2017 Vince Wooll</p>
 	{MANAGEMENT_VIEW_DROPDOWN} &bull; <a href="#FAQModal" ajax_task="faq" data-toggle="modal" faq-modal-title="{_JOMRES_FAQ}" random_identifier="FAQModal" class="hidden-phone hidden-tablet">{_JOMRES_FAQ}</a>
 </div>
 {SANITY_CHECKS}

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,7 +16,7 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j06001list_guests
 {
-    public function __construct()
+    public function __construct($componentArgs)
     {
         // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
         $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
@@ -24,6 +24,14 @@ class j06001list_guests
             $this->template_touchable = true;
 
             return;
+        }
+		
+		$this->retVals = '';
+
+		if (isset($componentArgs[ 'output_now' ])) {
+            $output_now = $componentArgs[ 'output_now' ];
+        } else {
+            $output_now = true;
         }
 
         $historic = (int) jomresGetParam($_POST, 'historic', '2');
@@ -87,7 +95,11 @@ class j06001list_guests
         $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
         $tmpl->readTemplatesFromInput('list_guests.html');
         $tmpl->addRows('pageoutput', $pageoutput);
-        $tmpl->displayParsedTemplate();
+        if ($output_now) {
+			$tmpl->displayParsedTemplate();
+		} else {
+			$this->retVals = $tmpl->getParsedTemplate();
+		}
     }
 
     public function touch_template_language()
@@ -109,14 +121,9 @@ class j06001list_guests
         }
     }
 
-/**
- * Must be included in every mini-component.
- #
- * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
- */
     // This must be included in every Event/Mini-component
     public function getRetVals()
     {
-        return null;
+        return $this->retVals;
     }
 }

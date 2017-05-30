@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -37,12 +37,12 @@ class jomres_obsolete_file_handling
         $this->dir_root = JOMRESCONFIG_ABSOLUTE_PATH;
         $this->dir_jomres = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS;
         $this->dir_minicomponents = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'core-minicomponents'.JRDS;
-        $this->dir_classes = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS;
-        $this->dir_functions = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS;
-        $this->dir_libraries = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS;
+        $this->dir_classes = JOMRES_CLASSES_ABSPATH;
+        $this->dir_functions = JOMRES_FUNCTIONS_ABSPATH;
+        $this->dir_libraries = JOMRES_LIBRARIES_ABSPATH;
 
-        $this->dir_css = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'css'.JRDS;
-        $this->dir_javascript = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'javascript'.JRDS;
+        $this->dir_css = JOMRES_CSS_ABSPATH;
+        $this->dir_javascript = JOMRES_JS_ABSPATH;
 
         $this->dir_templates_frontend = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'templates'.JRDS.'jomres'.JRDS.'frontend'.JRDS;
         $this->dir_templates_backend = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'templates'.JRDS.'jomres'.JRDS.'backend'.JRDS;
@@ -66,9 +66,8 @@ class jomres_obsolete_file_handling
 
         $this->dir_components_administrator = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ADMINISTRATORDIRECTORY.JRDS.'components'.JRDS.'com_jomres'.JRDS;
         $this->dir_components = JOMRESCONFIG_ABSOLUTE_PATH.'components'.JRDS.'com_jomres'.JRDS;
-        $this->dir_core_plugins = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'core-plugins'.JRDS;
+        $this->dir_core_plugins = JOMRES_COREPLUGINS_ABSPATH;
         $this->dir_admin = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'admin'.JRDS;
-        $this->dir_admin_functions = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'admin'.JRDS.'functions'.JRDS;
     }
 
     public function ready_to_go()
@@ -1050,8 +1049,6 @@ class jomres_obsolete_file_handling
         $this->add_obs_file($this->dir_classes.'jrportal_subscribers.class.php');
         $this->add_obs_file($this->dir_classes.'jrportal_subscriptions_packages.class.php');
 
-        $this->add_obs_file($this->dir_admin.'admin.jomres.bootstrap-html.php');
-        $this->add_obs_file($this->dir_admin.'admin.jomres.html.php');
         $this->add_obs_file($this->dir_minicomponents.'j10002showSiteConfig.class.php');
 
         $this->add_obs_file($this->dir_javascript.'jquery-ui-1.9.2.custom.js');
@@ -1250,8 +1247,6 @@ class jomres_obsolete_file_handling
         $this->add_obs_file($this->dir_minicomponents.'j10002listPropertyTypes.class.php');
         $this->add_obs_file($this->dir_minicomponents.'j16000editGlobalroomTypes_management_process.class.php');
         $this->add_obs_file($this->dir_templates_bootstrap_administrator.'management_process.html');
-        $this->add_obs_file($this->dir_admin_functions.'propertytypes.functions.php');
-        $this->add_obs_file($this->dir_admin_functions.'roomtypes.functions.php');
         $this->add_obs_file($this->dir_minicomponents.'j02299regprop1_realestate.class.php');
         $this->add_obs_file($this->dir_minicomponents.'j02299regprop1_a_roombookings.class.php');
         $this->add_obs_file($this->dir_minicomponents.'j06000cron_invoice.class.php');
@@ -1261,12 +1256,9 @@ class jomres_obsolete_file_handling
         $this->add_obs_dir($this->dir_javascript.'codemirror-2.34'.JRDS);
         $this->add_obs_file($this->dir_minicomponents.'j02110savecustomertypeorder.class.php');
         $this->add_obs_file($this->dir_minicomponents.'j02112publishcustomertype.class.php');
-        $this->add_obs_file($this->dir_admin_functions.'propertyfeatures.functions.php');
         $this->add_obs_file($this->dir_minicomponents.'j06000cron_optimise.class.php');
 
         $this->add_obs_dir($this->dir_libraries.'jomres'.JRDS.'cms_specific'.JRDS.'wordpress3'.JRDS);
-
-        $this->add_obs_file($this->dir_admin_functions.'jomresxml.functions.php');
 
         $this->add_obs_file($this->dir_minicomponents.'j10501caching.class.php');
 
@@ -1301,7 +1293,6 @@ class jomres_obsolete_file_handling
         $this->add_obs_file($this->dir_minicomponents.'j16000new_manager_api_key.class.php');
         $this->add_obs_file($this->dir_minicomponents.'j16000edit_manager.class.php');
         $this->add_obs_file($this->dir_minicomponents.'j10002listMosUsers.class.php');
-        $this->add_obs_file($this->dir_admin_functions.'profiles.functions.php');
         $this->add_obs_file($this->dir_templates_bootstrap_administrator.'managers_choose.html');
         $this->add_obs_file($this->dir_templates_bootstrap_administrator.'edit_profile.html');
 		
@@ -1494,6 +1485,26 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'control_panel_menu_options.html');
 		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'control_panel_menu_wrapper.html');
 		$this->add_obs_file($this->dir_classes.'jomres_performance_monitor.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j16000delete_template.class.php');
+		
+		$this->add_obs_file($this->dir_classes.'jomres_usage_reporting.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j16000enable_usage_reporting.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j16000usage_reporting_request.class.php');
+		$this->add_obs_dir($this->dir_libraries.JRDS.'piwik'.JRDS);
+		$this->add_obs_dir($this->dir_css.'jquery_ui_themes'.JRDS.'jomres'.JRDS);
+		$this->add_obs_file($this->dir_templates_bootstrap_backend.'chart_bar.html');
+		$this->add_obs_file($this->dir_templates_bootstrap_backend.'chart_line.html');
+		$this->add_obs_file($this->dir_templates_bootstrap_backend.'chart_radar.html');
+		$this->add_obs_file($this->dir_templates_bootstrap3_backend.'chart_bar.html');
+		$this->add_obs_file($this->dir_templates_bootstrap3_backend.'chart_line.html');
+		$this->add_obs_file($this->dir_templates_bootstrap3_backend.'chart_radar.html');
+		$this->add_obs_file($this->dir_templates_jqueryui_backend.'chart_bar.html');
+		$this->add_obs_file($this->dir_templates_jqueryui_backend.'chart_line.html');
+		$this->add_obs_file($this->dir_templates_jqueryui_backend.'chart_radar.html');
+		$this->add_obs_file($this->dir_javascript.'Chart.js');
+		$this->add_obs_file($this->dir_minicomponents.'j06001dashboard_weekly_percentages.class.php');
+		$this->add_obs_file($this->dir_templates_bootstrap_backend.'dashboard_weekly_percentages.html');
+		$this->add_obs_file($this->dir_templates_bootstrap3_backend.'dashboard_weekly_percentages.html');
     }
 
     public function add_obs_file($path_and_file)

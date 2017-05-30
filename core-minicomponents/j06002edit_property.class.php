@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -180,7 +180,7 @@ class j06002edit_property
 
         //property type dropdown (extended version, with explanation about what will guests book in this property)
         $output[ 'HPROPERTY_TYPE' ] = jr_gettext('_JOMRES_FRONT_PTYPE', '_JOMRES_FRONT_PTYPE');
-        $output[ 'PROPERTY_TYPE_DROPDOWN' ] = getPropertyTypeDropdown($current_property_details->ptype_id, true);
+        $output[ 'PROPERTY_TYPE_DROPDOWN' ] = getPropertyTypeDropdown($current_property_details->ptype_id, true, true);
 
         //property features
         $propertyFeaturesArray = explode(',', $current_property_details->property_features);
@@ -199,7 +199,7 @@ class j06002edit_property
 
 				$feature_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_ABBV'.(int) $k, stripslashes($v['abbv']), false, false);
 				$feature_desc = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_DESC'.(int) $k, stripslashes($v['desc']), false, false);
-				$r[ 'FEATURE' ] = jomres_makeTooltip($feature_abbv, $feature_abbv, $feature_desc, JOMRES_ROOT_DIRECTORY.'/uploadedimages/pfeatures/'.$v['image'], '', 'property_feature', array());
+				$r[ 'FEATURE' ] = jomres_makeTooltip($feature_abbv, $feature_abbv, $feature_desc, JOMRES_IMAGELOCATION_RELPATH.'pfeatures/'.$v['image'], '', 'property_feature', array());
 
 				$r[ 'BR' ] = '';
 				if ($counter == 8) {
@@ -293,7 +293,7 @@ class j06002edit_property
         $jrtb .= $jrtbar->endTable();
         $output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
-        $output[ 'CANCEL_URL' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=dashboard');
+        $output[ 'CANCEL_URL' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=cpanel');
 
         //approval warning
         $approval_warning[] = array('APPROVALWARNING' => jr_gettext('_JOMRES_EDITPROPERTY_APPROVAL_WARNING', '_JOMRES_EDITPROPERTY_APPROVAL_WARNING', false));

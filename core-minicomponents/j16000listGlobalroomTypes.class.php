@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -61,7 +61,7 @@ class j16000listGlobalroomTypes
                 $r[ 'CHECKBOX' ] = '<input type="checkbox" id="cb'.count($rows).'" name="idarray[]" value="'.$r['room_classes_uid'].'" onClick="jomres_isChecked(this.checked);">';
                 $r[ 'RTTITLE' ] = $r['room_class_abbv'];
                 $r[ 'RTDESCRIPTION' ] = $r['room_class_full_desc'];
-                $r[ 'IMAGE' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/rmtypes/'.$r['image'];
+                $r[ 'IMAGE' ] = JOMRES_IMAGELOCATION_RELPATH.'rmtypes/'.$r['image'];
                 $r[ 'PROPERTY_TYPES' ] = $selected_ptype_rows;
 
                 if (!using_bootstrap()) {

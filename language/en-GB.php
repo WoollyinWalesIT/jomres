@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -679,7 +679,7 @@ jr_define('_JOMCOMP_AMEND_OVERRIDE_TOTAL', 'Override Total');
 jr_define('_JOMCOMP_AMEND_OVERRIDE_DEPOSIT', 'Override Deposit');
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Jomres 2.7.5
 jr_define('_JRPORTAL_CANCEL', 'Cancel');
-jr_define('_JRPORTAL_CPANEL', 'JRPortal Control Panel');
+jr_define('_JRPORTAL_CPANEL', 'Control Panel');
 jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE', 'Default Commission rate');
 jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE_DESC', 'Choose the default commission rate that will be applied to a property in the event that another commission rate is not otherwise set.');
 jr_define('_JRPORTAL_CPANEL_LISTCRATES', 'List Commission Rates');
@@ -1974,4 +1974,8 @@ jr_define('_JOMRES_TEMPLATE_PACKAGE_NOT_OVERRIDDEN',"Not overridden");
 jr_define('_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO',"You can choose which template file to override the Core template files by changing the dropdown");
 
 jr_define('_JOMRES_OVERALL_ROOMS_BOOKED',"Percentage Rooms Booked");
-
+jr_define('_JOMRES_SELECT_WIDGETS',"Select widgets");
+jr_define('_JOMRES_INTERVAL',"Interval");
+jr_define('_JOMRES_TIMELINE',"Timeline");
+jr_define('_JOMRES_CPANEL_GRID',"Control panel home layout");
+jr_define('_JOMRES_CPANEL_GRID_DESC',"Select the grid layout of your frontend property management control panel home page. A full width page has 12 columns.");

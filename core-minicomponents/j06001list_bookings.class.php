@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,7 +16,7 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j06001list_bookings
 {
-    public function __construct()
+    public function __construct($componentArgs)
     {
         // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
         $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
@@ -25,6 +25,8 @@ class j06001list_bookings
 
             return;
         }
+		
+		$this->retVals = '';
 
         $mrConfig = getPropertySpecificSettings();
         $defaultProperty = getDefaultProperty();
@@ -40,6 +42,12 @@ class j06001list_bookings
             $endDate = date('Y/m/d', strtotime('+2 years'));
         } else {
             $endDate = JSCalConvertInputDates($endDate);
+        }
+		
+		if (isset($componentArgs[ 'output_now' ])) {
+            $output_now = $componentArgs[ 'output_now' ];
+        } else {
+            $output_now = true;
         }
 
         $deposit_status = (int) jomresGetParam($_POST, 'deposit_status', '2');
@@ -141,12 +149,18 @@ class j06001list_bookings
 
         $output['AJAX_URL'] = JOMRES_SITEPAGE_URL_AJAX.'&task=list_bookings_ajax&startDate='.$startDate.'&endDate='.$endDate.'&deposit_status='.$deposit_status.'&resident_status='.$resident_status.'&booking_status='.$booking_status.'&show_all='.$show_all.'&tag='.$tag;
 
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+
         $pageoutput[ ] = $output;
         $tmpl = new patTemplate();
         $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
         $tmpl->readTemplatesFromInput('list_property_bookings.html');
         $tmpl->addRows('pageoutput', $pageoutput);
-        $tmpl->displayParsedTemplate();
+        if ($output_now) {
+			$tmpl->displayParsedTemplate();
+		} else {
+			$this->retVals = $tmpl->getParsedTemplate();
+		}
     }
 
     public function touch_template_language()
@@ -161,14 +175,9 @@ class j06001list_bookings
         }
     }
 
-/**
- * Must be included in every mini-component.
- #
- * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
- */
     // This must be included in every Event/Mini-component
     public function getRetVals()
     {
-        return null;
+        return $this->retVals;
     }
 }

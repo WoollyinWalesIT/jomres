@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -103,7 +103,9 @@ class minicomponent_registry
         $this->new_filesize = filesize($this->registry_file);
 
         //delete js files in /jomres/temp dir
-        if (isset($_REQUEST['task']) && ($_REQUEST['task'] == 'rebuildregistry' || $_REQUEST['task'] == 'save_site_settings')) {
+		$task = jomresGetParam($_REQUEST, 'task', '');
+
+        if ($task == 'rebuildregistry' || $task == 'save_site_settings') {
             $javascript_files_in_temp_dir = scandir_getfiles(JOMRES_TEMP_ABSPATH, $extension = 'js');
             foreach ($javascript_files_in_temp_dir as $file) {
                 unlink(JOMRES_TEMP_ABSPATH.$file);
@@ -226,7 +228,7 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
     // Reads in class files from the components table and inserts them into the registeredClasses array
     public function getMiniComponentRemoteClasses()
     {
-        $jrePath = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS;
+        $jrePath = JOMRES_REMOTEPLUGINS_ABSPATH;
         $d = @dir($jrePath);
         $docs = array();
         if ($d) {
@@ -256,7 +258,7 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
 
     public function getMiniComponentCMSSpecificClasses()
     {
-        $jrePath = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'jomres'.JRDS.'cms_specific'.JRDS._JOMRES_DETECTED_CMS.JRDS;
+        $jrePath = JOMRES_CMSSPECIFIC_ABSPATH._JOMRES_DETECTED_CMS.JRDS;
         $d = @dir($jrePath);
         if ($d) {
             while (false !== ($entry = $d->read())) {
@@ -283,7 +285,7 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
 
     public function getMiniCorePluginsClasses()
     {
-        $jrePath = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'core-plugins'.JRDS;
+        $jrePath = JOMRES_COREPLUGINS_ABSPATH;
         $d = @dir($jrePath);
         $docs = array();
         if ($d) {

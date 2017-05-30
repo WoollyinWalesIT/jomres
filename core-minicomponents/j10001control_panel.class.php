@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -61,18 +61,18 @@ class j10001control_panel
         $output['JOMRES_REVIEWS_OVERVIEW'] = $MiniComponents->specificEvent('16000', 'jomres_reviews_overview', array('output_now' => false));
 
         //bookings chart
-        $output['BOOKINGS_CHART'] = $MiniComponents->specificEvent('16000', 'chart_bookings', array('output_now' => false, 'height'=> 400));
+        $output['BOOKINGS_CHART'] = $MiniComponents->specificEvent('16000', 'chart_bookings', array('output_now' => false, 'height'=> 300));
 
         //commissions chart
         $output['COMMISSIONS_CHART'] = '';
         if (isset($MiniComponents->registeredClasses['16000']['chart_commission']) && (int) $jrConfig['use_commission'] == 1) {
-            $output['COMMISSIONS_CHART'] = $MiniComponents->specificEvent('16000', 'chart_commission', array('output_now' => false));
+            $output['COMMISSIONS_CHART'] = $MiniComponents->specificEvent('16000', 'chart_commission', array('output_now' => false, 'height'=> 300));
         }
 
         //subscriptions chart
         $output['SUBSCRIPTIONS_CHART'] = '';
         if (isset($MiniComponents->registeredClasses['16000']['chart_subscriptions']) && (int) $jrConfig['useSubscriptions'] == 1) {
-            $output['SUBSCRIPTIONS_CHART'] = $MiniComponents->specificEvent('16000', 'chart_subscriptions', array('output_now' => false));
+            $output['SUBSCRIPTIONS_CHART'] = $MiniComponents->specificEvent('16000', 'chart_subscriptions', array('output_now' => false, 'height'=> 300));
         }
 
         $pageoutput[ ] = $output;

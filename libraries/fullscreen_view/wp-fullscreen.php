@@ -28,7 +28,7 @@ defined('_JOMRES_INITCHECK') or die;
 
     wp_enqueue_script('jquery');
 
-    wp_register_script('jquery-ui-1.9.2.custom.min.js', '/'.JOMRES_ROOT_DIRECTORY.'/javascript/jquery-ui.js', 'jquery');
+    wp_register_script('jquery-ui-1.9.2.custom.min.js', '/'.JOMRES_ROOT_DIRECTORY.'/javascript/jquery-ui.min.js', 'jquery');
     wp_enqueue_script('jquery-ui-1.9.2.custom.min.js');
 
     /*if ($view == "bootstrap")
@@ -48,13 +48,13 @@ defined('_JOMRES_INITCHECK') or die;
         wp_register_style('fullscreen.css', '/'.JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/bootstrap/css/fullscreen.css');
         wp_enqueue_style('fullscreen.css');
     elseif ($view == 'bootstrap3') :
-        wp_register_style('jquery-ui.css', '/'.JOMRES_ROOT_DIRECTORY.'/css/jquery_ui_themes/jomres/jquery-ui.css');
-        wp_enqueue_style('jquery-ui.css');
+        wp_register_style('jquery-ui.min.css', '/'.JOMRES_ROOT_DIRECTORY.'/css/jquery_ui_themes/base/jquery-ui.min.css');
+        wp_enqueue_style('jquery-ui.min.css');
         wp_register_style('fullscreen.css', '/'.JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/bootstrap3/css/fullscreen.css');
         wp_enqueue_style('fullscreen.css');
     elseif ($view == 'jquery_ui') :
-        wp_register_style('jquery-ui.css', '/'.JOMRES_ROOT_DIRECTORY.'/css/jquery_ui_themes/jomres/jquery-ui.css');
-        wp_enqueue_style('jquery-ui.css');
+        wp_register_style('jquery-ui.min.css', '/'.JOMRES_ROOT_DIRECTORY.'/css/jquery_ui_themes/base/jquery-ui.min.css');
+        wp_enqueue_style('jquery-ui.min.css');
     endif; ?>
 	<style type="text/css" media="screen">
 	.modal-backdrop {z-index:1030 !important;}

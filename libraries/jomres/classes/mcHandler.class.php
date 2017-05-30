@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -44,7 +44,7 @@ class mcHandler
 
         $this->currentEvent = '';
 
-        $this->remote_plugin_directory = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'remote_plugins'.JRDS;
+        $this->remote_plugin_directory = JOMRES_REMOTEPLUGINS_ABSPATH;
         if (!is_dir($this->remote_plugin_directory)) {
             if (!@mkdir($this->remote_plugin_directory)) {
                 echo 'Error, unable to make folder '.$this->remote_plugin_directory." automatically therefore cannot store minicomponent path data. Please create the folder manually and ensure that it's writable by the web server";
@@ -124,6 +124,7 @@ class mcHandler
     {
         $retVal = null;
 		$check_access = false;
+		$can_access = true;
 		$classFileSuffix = '.class.php';
 
 		if (!jomres_cmsspecific_areweinadminarea()) {
@@ -144,12 +145,13 @@ class mcHandler
 				if ($check_access) {
 					if (!$jomres_access_control->this_user_can($eventName)) {
 						system_log('Access control prevented system from running '.$eventPoint.$eventName);
-						
-						return null;
+						$can_access = false;
+					} else {
+						$can_access = true;
 					}
 				}
 
-				if (file_exists($eventDetails[ 'filepath' ].$filename)) {
+				if ($can_access && file_exists($eventDetails[ 'filepath' ].$filename)) {
 					include_once $eventDetails[ 'filepath' ].$filename;
 
 					if ($this->logging_enbled) {
@@ -189,6 +191,7 @@ class mcHandler
     {
         $retVal = null;
 		$check_access = false;
+		$can_access = true;
 		$classFileSuffix = '.class.php';
 		$filename = 'j'.$eventPoint.$eventName.$classFileSuffix;
 		
@@ -208,12 +211,13 @@ class mcHandler
 			if ($check_access) {
 				if (!$jomres_access_control->this_user_can($eventName)) {
 					system_log('Access control prevented system from running '.$eventPoint.$eventName);
-					
-					return null;
+					$can_access = false;
+				} else {
+					$can_access = true;
 				}
 			}
 
-			if (file_exists($this->registeredClasses[$eventPoint][$eventName][ 'filepath' ].$filename)) {
+			if ($can_access && file_exists($this->registeredClasses[$eventPoint][$eventName][ 'filepath' ].$filename)) {
 				include_once $this->registeredClasses[$eventPoint][$eventName][ 'filepath' ].$filename;
 				
 				if ($this->logging_enbled) {

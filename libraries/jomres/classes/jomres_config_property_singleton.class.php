@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -85,7 +85,6 @@ class jomres_config_property_singleton
 
             $temp_config = array_merge($temp_config, $property_config);
             if ($jrConfig[ 'useGlobalCurrency' ] == '1') {
-                $temp_config[ 'currency' ] = $jrConfig[ 'globalCurrency' ];
                 $temp_config[ 'currencyCode' ] = $jrConfig[ 'globalCurrencyCode' ];
             }
             $this->property_config = $temp_config;
@@ -124,7 +123,6 @@ class jomres_config_property_singleton
 				}
 			}
 			if ($jrConfig[ 'useGlobalCurrency' ] == '1') {
-				$this->default_config[ 'currency' ] = $jrConfig[ 'globalCurrency' ];
 				$this->default_config[ 'currencyCode' ] = $jrConfig[ 'globalCurrencyCode' ];
 			}
 		}

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -74,7 +74,7 @@ class jomres_tooltips
                 $pageoutput = array();
 
                 $output[ 'TITLE' ] = $hover_content;
-                $output[ 'IMAGE' ] = '/'.JOMRES_ROOT_DIRECTORY.'/images/SymbolInformation.png';
+                $output[ 'IMAGE' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/SymbolInformation.png';
 
                 $pageoutput[ ] = $output;
                 $tmpl = new patTemplate();
@@ -145,7 +145,7 @@ class jomres_tooltips
                     } else {
                         $div_string .= ' class="jomres_bt_tooltip_features" >';
                     }
-                    $div_string .= '<img src="'.get_showtime('live_site').'/'.$div_content.'" /><b>'.$hover_title.'</b></div>';
+                    $div_string .= '<img src="'.$div_content.'" /><b>'.$hover_title.'</b></div>';
                 }
                 break;
             case 'property_feature':
@@ -176,7 +176,7 @@ class jomres_tooltips
                     } else {
                         $div_string .= ' class="jomres_bt_tooltip_features" >';
                     }
-                    $div_string .= '<img src="'.get_showtime('live_site').'/'.$div_content.'" /><b>'.$hover_title.'</b></div>';
+                    $div_string .= '<img src="'.$div_content.'" /><b>'.$hover_title.'</b></div>';
                 }
                 break;
             case 'dashboard_tooltip':
@@ -205,7 +205,7 @@ class jomres_tooltips
                     } else {
                         $div_string .= ' class="jomres_bt_tooltip_features" >';
                     }
-                    $div_string .= '<img src="'.get_showtime('live_site').'/'.$div_content.'" /><b>'.$hover_title.'</b></div>';
+                    $div_string .= '<img src="'.$div_content.'" /><b>'.$hover_title.'</b></div>';
                 }
                 break;
             default:

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0stable
+ * @version Jomres 9.9.1stable
  *
  * @copyright	2005-2017 Vince Wooll
  * Translated to fr-FR by Mario Oliveira, Camara de Lobos, Madeira Island, Portugal, 14Oct2010 - www.marioliveira.net. Updated 21-Jun2011 for version 5 stable
@@ -695,7 +695,7 @@ jr_define('_JOMCOMP_AMEND_OVERRIDE_TOTAL', 'Modifier le total');
 jr_define('_JOMCOMP_AMEND_OVERRIDE_DEPOSIT', 'Modifier l\'acompte');
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Jomres 2.7.5
 jr_define('_JRPORTAL_CANCEL', 'Annuler');
-jr_define('_JRPORTAL_CPANEL', 'Tableau de contrôle JRPortal');
+jr_define('_JRPORTAL_CPANEL', 'Tableau de contrôle');
 jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE', 'Taux de commission par défaut');
 jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE_DESC', 'Choisir le taux de commission qui sera appliqué par défaut à un établissement dans l\'éventualité où un autre taux de commission n\'a pas été défini.');
 jr_define('_JRPORTAL_CPANEL_LISTCRATES', 'Liste Taux de commissions');

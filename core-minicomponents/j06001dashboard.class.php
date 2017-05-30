@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -29,6 +29,8 @@ class j06001dashboard
 
             return;
         }
+		
+		$this->retVals = '';
 
         $ePointFilepath = get_showtime('ePointFilepath');
 
@@ -36,6 +38,12 @@ class j06001dashboard
             $property_uid = $componentArgs[ 'property_uid' ];
         } else {
             $property_uid = getDefaultProperty();
+        }
+		
+		if (isset($componentArgs[ 'output_now' ])) {
+            $output_now = $componentArgs[ 'output_now' ];
+        } else {
+            $output_now = true;
         }
 
         $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
@@ -63,7 +71,7 @@ class j06001dashboard
         jomres_cmsspecific_addheaddata('css', JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/', 'scheduler.min.css');
         //jomres_cmsspecific_addheaddata("css",JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/','fullcalendar.print.css');
 
-        $output['PAGETITLE'] = jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_HOME', '_JOMRES_FRONT_MR_MENU_ADMIN_HOME', false);
+        $output['PAGETITLE'] = jr_gettext('_JOMRES_INTERVAL', '_JOMRES_INTERVAL', false);
         $output['HROOMS'] = jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOM', '_JOMRES_COM_MR_VRCT_TAB_ROOM', false);
         $output['HDRAG_TRASH'] = jr_gettext('_JOMRES_DASHBOARD_DRAG_TRASH', '_JOMRES_DASHBOARD_DRAG_TRASH', false);
 
@@ -108,11 +116,13 @@ class j06001dashboard
             $output['FIRST_DAY_OF_WEEK'] = '1';
         }
 
-        $rows = array('0' => array('VIEW' => 'timelineDay', 'ACTIVE' => '', 'VIEW_NAME' => $output['DAY']),
-                    '1' => array('VIEW' => 'timelineWeek', 'ACTIVE' => '', 'VIEW_NAME' => $output['WEEK']),
-                    '2' => array('VIEW' => 'timelineTwoWeeks', 'ACTIVE' => 'active', 'VIEW_NAME' => $output['TWOWEEKS']),
-                    '3' => array('VIEW' => 'timelineMonth', 'ACTIVE' => '', 'VIEW_NAME' => $output['MONTH']),
-                    '4' => array('VIEW' => 'timelineYear', 'ACTIVE' => '', 'VIEW_NAME' => $output['YEAR']), );
+        $rows = array(
+			'0' => array('VIEW' => 'timelineDay', 'ACTIVE' => '', 'VIEW_NAME' => $output['DAY']),
+			'1' => array('VIEW' => 'timelineWeek', 'ACTIVE' => '', 'VIEW_NAME' => $output['WEEK']),
+			'2' => array('VIEW' => 'timelineTwoWeeks', 'ACTIVE' => 'active', 'VIEW_NAME' => $output['TWOWEEKS']),
+			'3' => array('VIEW' => 'timelineMonth', 'ACTIVE' => '', 'VIEW_NAME' => $output['MONTH']),
+			'4' => array('VIEW' => 'timelineYear', 'ACTIVE' => '', 'VIEW_NAME' => $output['YEAR'])
+		);
 
         //guest modal form
         $output[ 'HQUICK_BOOKING' ] = jr_gettext('_JOMRES_HQUICK_BOOKING', '_JOMRES_HQUICK_BOOKING', false);
@@ -211,16 +221,6 @@ class j06001dashboard
         //existing guests dropdown
         $output['HEXISTING_GUESTS_DROPDOWN'] = jr_gettext('_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST', '_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST', false);
         $output['EXISTING_GUESTS_DROPDOWN'] = $this->getExistingGuestsDropdown($property_uid);
-		
-		$output['PERCENTAGES_BOOKED'] = $MiniComponents->specificEvent('06001', 'dashboard_weekly_percentages', array('output_now' => false, 'property_uid' => $property_uid));
-		
-		if (!isset($jrConfig[ 'show_overview_in_dashboard' ])) {
-			$jrConfig[ 'show_overview_in_dashboard' ] = "0";
-		}
-		
-		if ($jrConfig[ 'show_overview_in_dashboard' ] == "1" ) {
-			$output['OVERVIEW'] = $MiniComponents->specificEvent('06001', 'overview', array('output_now' => false, 'property_uid' => $property_uid));
-		}
 
         $pageoutput[] = $output;
         $tmpl = new patTemplate();
@@ -228,8 +228,11 @@ class j06001dashboard
         $tmpl->addRows('pageoutput', $pageoutput);
         $tmpl->addRows('rows', $rows);
         $tmpl->readTemplatesFromInput('dashboard.html');
-        $tmpl->displayParsedTemplate();
-        
+        if ($output_now) {
+			$tmpl->displayParsedTemplate();
+		} else {
+			$this->retVals = $tmpl->getParsedTemplate();
+		}
     }
 
     public function getExistingGuestsDropdown($property_uid = 0)
@@ -266,6 +269,6 @@ class j06001dashboard
     // This must be included in every Event/Mini-component
     public function getRetVals()
     {
-        return null;
+        return $this->retVals;
     }
 }

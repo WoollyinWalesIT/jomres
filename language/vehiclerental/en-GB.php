@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -420,7 +420,7 @@ jr_define('_JOMRES_A_GLOBAL_SEARCHOPTION', 'Select the search plugin that you wa
 jr_define('_JOMRES_FRONT_NORESULTS', '<b>Sorry, your search did not return any results. Please modify your search and try again.</b>');
 jr_define('_JOMRES_AREYOUSURE', 'Are you sure you wish to do this?');
 jr_define('_JOMRES_FRONT_MR_MENU_BOOKAROOM', 'Book a vehicle');
-jr_define('_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY', 'Book this business');
+jr_define('_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY', 'Book now!');
 //v1.4c
 jr_define('_JOMRES_COM_A_TARIFFS_SHOWTARIFFSINLINE', 'Show tariffs inline?');
 jr_define('_JOMRES_COM_A_BASICTEMPLATE_SHOWADDRESS', 'Address');
@@ -696,7 +696,7 @@ jr_define('_JOMCOMP_AMEND_OVERRIDE_TOTAL', 'Override Total');
 jr_define('_JOMCOMP_AMEND_OVERRIDE_DEPOSIT', 'Override Deposit');
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Jomres 2.7.5
 jr_define('_JRPORTAL_CANCEL', 'Cancel');
-jr_define('_JRPORTAL_CPANEL', 'JRPortal Control Panel');
+jr_define('_JRPORTAL_CPANEL', 'Control Panel');
 jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE', 'Default Commission rate');
 jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE_DESC', 'Choose the default commission rate that will be applied to a business in the event that another commission rate is not otherwise set.');
 jr_define('_JRPORTAL_CPANEL_LISTCRATES', 'List Commission Rates');

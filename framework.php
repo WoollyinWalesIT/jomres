@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -57,6 +57,9 @@ function load_cms_environment()
 function load_jomres_environment()
 {
     $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+	
+	//trigger 00001 event
+	$MiniComponents->triggerEvent('00001');
 
     //site config object
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -95,6 +98,10 @@ function load_jomres_environment()
 
     //currency exchange rates
     $jomres_currency_exchange_rates = jomres_singleton_abstract::getInstance('jomres_currency_exchange_rates');
+	
+	//set currency code to the appropriate one for the detected location
+	$jomres_geolocation = jomres_singleton_abstract::getInstance('jomres_geolocation');
+	$jomres_geolocation->auto_set_user_currency_code();
 
     $property_uid = (int) detect_property_uid();
 

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -347,7 +347,7 @@ class jomSearch
             if ($result && !empty($result)) {
                 foreach ($result as $feature) {
                     if (!empty($feature[ 'title' ])) {
-                        $this->prep[ 'features' ][ ] = array('id' => $feature[ 'id' ], 'image' => JOMRES_ROOT_DIRECTORY.'/uploadedimages/pfeatures/'.$feature[ 'image' ], 'title' => $feature[ 'title' ], 'description' => $feature[ 'description' ]);
+                        $this->prep[ 'features' ][ ] = array('id' => $feature[ 'id' ], 'image' => JOMRES_IMAGELOCATION_RELPATH.'pfeatures/'.$feature[ 'image' ], 'title' => $feature[ 'title' ], 'description' => $feature[ 'description' ]);
                     }
                 }
             }
@@ -359,7 +359,7 @@ class jomSearch
             if ($result && !empty($result)) {
                 foreach ($result as $rtype) {
                     if (!empty($rtype[ 'id' ]) && !empty($rtype[ 'title' ])) {
-                        $this->prep[ 'rtypes' ][ ] = array('id' => $rtype[ 'id' ], 'image' => JOMRES_ROOT_DIRECTORY.'/uploadedimages/rmtypes/'.$rtype[ 'image' ], 'title' => $rtype[ 'title' ], 'description' => $rtype[ 'description' ]);
+                        $this->prep[ 'rtypes' ][ ] = array('id' => $rtype[ 'id' ], 'image' => JOMRES_IMAGELOCATION_RELPATH.'rmtypes/'.$rtype[ 'image' ], 'title' => $rtype[ 'title' ], 'description' => $rtype[ 'description' ]);
                     }
                 }
             }

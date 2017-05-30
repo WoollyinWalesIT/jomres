@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.0
+ * @version Jomres 9.9.1
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -694,7 +694,7 @@ jr_define('_JOMCOMP_AMEND_OVERRIDE_TOTAL', 'Override ukupno');
 jr_define('_JOMCOMP_AMEND_OVERRIDE_DEPOSIT', 'Override polog');
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Jomres 2.7.5
 jr_define('_JRPORTAL_CANCEL', 'Poništi');
-jr_define('_JRPORTAL_CPANEL', 'JRPortal Control Panel');
+jr_define('_JRPORTAL_CPANEL', 'Control Panel');
 jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE', 'Zadana vrijednost provizije');
 jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE_DESC', 'Odaberite zadanu proviziju koja će se primijeniti za objekte u slučaju da nije postavljena nikakva druga provizija.');
 jr_define('_JRPORTAL_CPANEL_LISTCRATES', 'Prikaži provizije');
