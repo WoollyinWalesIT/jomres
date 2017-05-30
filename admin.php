@@ -86,8 +86,11 @@ try {
 		//add javascript to head
 		$MiniComponents->triggerEvent('00004');
 		
-		//core menu items
-		$MiniComponents->specificEvent('19995', 'menu', array()); //core menu items
+		//core frontend menu items
+		$MiniComponents->specificEvent('09995', 'menu', array()); //Rod really needs them
+		
+		//core admin menu items
+		$MiniComponents->specificEvent('19995', 'menu', array());
 	}
 
     //00005 trigger point
