@@ -56,7 +56,7 @@ function add_placeholders() {
 }
 
 function toggle_jomres_widget(jr_w, jr_w_enabled, jr_w_col, jr_w_pos) {
-
+	divs = '';
 	parent_div = '.jr-widget-col'+jr_w_col+' > div';
 	jomresJquery(parent_div).map(function() {
 		divs  = divs + this.id+",";
