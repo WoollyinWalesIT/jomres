@@ -66,10 +66,11 @@ class j06002save_property
         $jomres_properties->permit_number = jomresGetParam($_POST, 'permit_number', '');
         $jomres_properties->property_features = jomresGetParam($_POST, 'pid', array());
 
-		if ($jomres_properties->ptype_id == 0 ) { // After 9.9.1 the disabled option means that the property type is no longer sent ( technically, this means the browser's doing it right, but it was unexpected behaviour from the browser, it didn't used to do that ). As a result, an error is always triggered on saving properties. We need to find the property's original property type id and set it here instead.
+		// After 9.9.1 the disabled option means that the property type is no longer sent ( technically, this means the browser's doing it right, but it was unexpected behaviour from the browser, it didn't used to do that ). As a result, an error is always triggered on saving properties. We need to find the property's original property type id and set it here instead.
+		if ($jomres_properties->ptype_id == 0) {
 			$basic_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
 			$basic_property_details->gather_data($property_uid);
-			$jomres_properties->ptype_id = $basic_property_details->multi_query_result[$property_uid]["ptype_id"];
+			$jomres_properties->ptype_id = $basic_property_details->ptype_id;
 		}
 
         //property country
