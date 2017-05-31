@@ -30,7 +30,7 @@ class j01010listpropertys
 
         $data_only 					= jomresGetParam($_REQUEST, 'dataonly', false);
 		$propertylist_layout 		= jomresGetParam($_REQUEST, 'propertylist_layout', '');
-		$jr_page 					= (int)jomresGetParam($_REQUEST, 'jr_page', 0);
+		$this->jr_page 					= (int)jomresGetParam($_REQUEST, 'jr_page', 0);
 		$return_to_search_results 	= jomresGetParam($_REQUEST, 'return_to_search_results', false);
 		$arrivalDate 				= jomresGetParam($_REQUEST, 'arrivalDate', '');
 		$departureDate 				= jomresGetParam($_REQUEST, 'departureDate', '');
@@ -113,7 +113,7 @@ class j01010listpropertys
             session_start();
         }
 
-        if ($propertylist_layout != '' || $jr_page > 0 || $return_to_search_results) {
+        if ($propertylist_layout != '' || $this->jr_page > 0 || $return_to_search_results) {
             $propertys_uids = $tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ];
         }
 
@@ -877,10 +877,10 @@ class j01010listpropertys
             }
         }
 
-        if ($jr_page == 0) {
+        if ($this->jr_page == 0) {
             $current_page = 1;
         } else {
-            $current_page = $jr_page;
+            $current_page = $this->jr_page;
         }
 
         $totalItems = count($propertys_uids);
