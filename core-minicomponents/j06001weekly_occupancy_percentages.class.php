@@ -74,7 +74,12 @@ class j06001weekly_occupancy_percentages
         $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
         $current_property_details->gather_data($property_uid);
 
-		$number_of_rooms = count($current_property_details->multi_query_result[$property_uid]['rooms']);
+		if (isset($current_property_details->multi_query_result[$property_uid]['rooms'])) {
+			$number_of_rooms = count($current_property_details->multi_query_result[$property_uid]['rooms']);
+		} else {
+			return; // Nothing we can do, no rooms = no bookings
+		}
+		
 		
 		$start   = new DateTime();
 		$end     = new DateTime();
