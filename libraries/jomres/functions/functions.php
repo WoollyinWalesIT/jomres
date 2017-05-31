@@ -2321,12 +2321,15 @@ function jomres_audit($query, $op = '')
 function jomresRedirect($url, $msg = '', $code = 302)
 {
     logging::log_message($msg, 'Core', 'INFO');
-    $MiniComponents = jomres_getSingleton('mcHandler');
-    $MiniComponents->triggerEvent('08000'); // Optional, post run items that *must* be run ( watchers ).
-	
-	//we have to save the session data every time we redirect
-	$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
-	$tmpBookingHandler->close_jomres_session();
+    
+	if (!defined('AUTO_UPGRADE')) {
+		$MiniComponents = jomres_getSingleton('mcHandler');
+		$MiniComponents->triggerEvent('08000'); // Optional, post run items that *must* be run ( watchers ).
+
+		//we have to save the session data every time we redirect
+		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+		$tmpBookingHandler->close_jomres_session();
+	}
 	
     if (strncmp('cli', PHP_SAPI, 3) !== 0) {
         if (headers_sent() !== true) {
@@ -4648,7 +4651,7 @@ function ipinfodb_apikey_check()
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
 
-    if (!isset($jrConfig['geolocation_api_key']) || $jrConfig['geolocation_api_key'] == '') {
+    if ($jrConfig['use_conversion_feature'] && (!isset($jrConfig['geolocation_api_key']) || $jrConfig['geolocation_api_key'] == '')) {
         $message = '<div class="'.$highlight.'">'.jr_gettext('_JOMRES_CONFIG_IPINFODB_KEY_WARNING', '_JOMRES_CONFIG_IPINFODB_KEY_WARNING', false).'</div>';
     }
 
@@ -4663,7 +4666,7 @@ function openexchangerates_apikey_check()
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
 
-    if (!isset($jrConfig['openexchangerates_api_key']) || $jrConfig['openexchangerates_api_key'] == '') {
+    if ($jrConfig['use_conversion_feature'] && (!isset($jrConfig['openexchangerates_api_key']) || $jrConfig['openexchangerates_api_key'] == '')) {
         $message = '<div class="'.$highlight.'">'.jr_gettext('_JOMRES_CONFIG_OPENEXCHANGERATES_KEY_WARNING', '_JOMRES_CONFIG_OPENEXCHANGERATES_KEY_WARNING', false).'</div>';
     }
 

@@ -194,7 +194,7 @@ class jomres_widgets
 			$position = 0;
 			foreach ($thisJRUser->params['widgets'] as $key=>$current_widget ) {
 				if ($current_widget['column'] == $column) {
-					$new_pos = array_search("jr_widget_".$key, $order);
+					$new_pos = (int)array_search("jr_widget_".$key, $order);
 					$thisJRUser->params['widgets'][$key]['position'] = $new_pos;
 					$thisJRUser->params['widgets'][$key]['column'] = $column;
 					if ($widget == $key ) {

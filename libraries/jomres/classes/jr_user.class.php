@@ -289,6 +289,15 @@ class jr_user
 			throw new Exception( "Error: Cms user id not set");
 		}
 
+		$query = "SELECT `id` FROM #__jomres_guest_profile WHERE `cms_user_id` = " . (int)$this->id;
+		$result = doSelectSql($query);
+		if (empty($result) ) {
+            $query = "INSERT INTO #__jomres_guest_profile (`cms_user_id`,`firstname`,`surname`,`house`,`street`,`town`,`county`,`country`,`postcode`,`tel_landline`,`tel_mobile`,`tel_fax`,`email`,`vat_number`,`vat_number_validated`) VALUES ('".(int) $this->id."','','','','','','','','','','','','','',0)";
+            if (!doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_INSERT_GUEST', '_JOMRES_MR_AUDIT_INSERT_GUEST', false))) {
+                trigger_error('Unable to insert profile details, mysql db failure', E_USER_ERROR);
+            }
+		}
+		
 		//update user params
 		$query = "UPDATE #__jomres_guest_profile SET `params` = '".json_encode($this->params)."' WHERE `cms_user_id` = " . (int)$this->id;
 		
