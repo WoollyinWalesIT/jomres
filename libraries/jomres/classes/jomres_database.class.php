@@ -67,6 +67,10 @@ class jomres_database
         if (defined('AUTO_UPGRADE')) {
             $this->dbtype = 'mysqli';
         }
+		
+		// We will check to see if dbtype is set to mysql. If it's not we will silently switch to mysqli. Joomla seems to be doing the same thing in J3.7
+		if ($this->dbtype == 'mysql' && !function_exists('mysql_connect'))
+			$this->dbtype = 'mysqli';
 
         if (!this_cms_is_wordpress() || defined('AUTO_UPGRADE')) {
             $this->_init();

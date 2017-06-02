@@ -73,11 +73,6 @@ if (!defined('AUTO_UPGRADE')) {
 $showtime = jomres_singleton_abstract::getInstance('showtime');
 
 $showtime->error_reporting = $CONFIG->error_reporting;
-
-// We will check to see if dbtype is set to mysql. If it's not we will silently switch to mysqli. Joomla seems to be doing the same thing in J3.7
-if ($CONFIG->dbtype == "mysql" && !function_exists('mysql_connect'))
-	$CONFIG->dbtype = "mysqli";
-	
 $showtime->dbtype = $CONFIG->dbtype;
 $showtime->lang = $jomresConfig_lang;
 $showtime->live_site = $jomresConfig_live_site;
