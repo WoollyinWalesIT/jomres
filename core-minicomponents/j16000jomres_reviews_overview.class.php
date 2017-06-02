@@ -25,6 +25,8 @@ class j16000jomres_reviews_overview
 
             return;
         }
+		
+		$this->retVals = '';
 
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
