@@ -255,7 +255,7 @@ class j06002edit_booking
             $output[ 'NUM_NIGHTS' ] = count(explode(',', $current_contract_details->contract[$contract_uid]['contractdeets']['date_range_string']));
         }
 
-        if (isset($current_contract_details->contract[$contract_uid]['roomdeets'])) {
+        if (isset($current_contract_details->contract[$contract_uid]['roomdeets']) && (int)$current_contract_details->contract[$contract_uid]['contractdeets']['approved'] == 1) {
             foreach ($current_contract_details->contract[$contract_uid]['roomdeets'] as $rd) {
                 $roomBooking_black_booking = $rd['black_booking'];
                 $roomBooking_reception_booking = $rd['reception_booking'];
@@ -361,43 +361,49 @@ class j06002edit_booking
         $rooms_tab_replacement = get_showtime('rooms_tab_replacement');
 
         if (is_null($rooms_tab_replacement)) {
-            $rows = array();
-            foreach ($current_contract_details->contract[$contract_uid]['roomdeets'] as $rd) {
-                $r = array();
-				
-				$r[ '_JOMRES_COM_MR_EB_ROOM_NAME' ] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_NAME', '_JOMRES_COM_MR_EB_ROOM_NAME');
-				$r[ 'RINFO_NAME' ] = $rd[ 'room_name' ];
-				$r[ '_JOMRES_COM_MR_LISTTARIFF_RATETITLE' ] = jr_gettext('_JOMRES_COM_MR_LISTTARIFF_RATETITLE', '_JOMRES_COM_MR_LISTTARIFF_RATETITLE');
-				$r[ 'RINFO_TARIFF' ] = $rd[ 'rate_title' ];
+			$room_tab_name = '';
+			$room_template = '';
 
-				$r[ '_JOMRES_COM_MR_EB_ROOM_NUMBER' ] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_NUMBER', '_JOMRES_COM_MR_EB_ROOM_NUMBER');
-				$r[ 'RINFO_NUMBER' ] = $rd[ 'room_number' ];
-				$r[ '_JOMRES_COM_MR_EB_ROOM_FLOOR' ] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_FLOOR', '_JOMRES_COM_MR_EB_ROOM_FLOOR');
-				$r[ 'RINFO_ROOM_FLOOR' ] = $rd[ 'room_floor' ];
-
-				$r[ '_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE' ] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE', '_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE');
-				$r[ 'RINFO_MAX_PEOPLE' ] = $rd[ 'max_people' ];
-				
-				$r[ '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV' ] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV', '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV');
-				
-				if (isset($current_property_details->all_room_types[$rd['room_classes_uid']]['room_class_abbv'])) {
-					$type = $current_property_details->all_room_types[$rd['room_classes_uid']]['room_class_abbv'];
-					$r[ 'TYPE' ] = $type;
+			//only display the rooms tab if the booking is approved
+			if ((int)$current_contract_details->contract[$contract_uid]['contractdeets']['approved'] == 1) {
+				$rows = array();
+				foreach ($current_contract_details->contract[$contract_uid]['roomdeets'] as $rd) {
+					$r = array();
 					
-				} else { // If a room has been removed ( or the property type changed ) then we don't know anything about the old room.
-					$r[ 'TYPE' ] = "Unknown";
-				}
-            $rows[ ] = $r;
-            }
+					$r[ '_JOMRES_COM_MR_EB_ROOM_NAME' ] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_NAME', '_JOMRES_COM_MR_EB_ROOM_NAME');
+					$r[ 'RINFO_NAME' ] = $rd[ 'room_name' ];
+					$r[ '_JOMRES_COM_MR_LISTTARIFF_RATETITLE' ] = jr_gettext('_JOMRES_COM_MR_LISTTARIFF_RATETITLE', '_JOMRES_COM_MR_LISTTARIFF_RATETITLE');
+					$r[ 'RINFO_TARIFF' ] = $rd[ 'rate_title' ];
 
-            $pageoutput[ ] = $output;
-            $tmpl = new patTemplate();
-            $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
-            $tmpl->readTemplatesFromInput('edit_booking_tabcontents_room.html');
-            $tmpl->addRows('pageoutput', $pageoutput);
-            $tmpl->addRows('rows', $rows);
-            $room_template = $tmpl->getParsedTemplate();
-            $room_tab_name = jr_gettext('_JOMRES_COM_MR_EDITBOOKING_TAB_ROOM', '_JOMRES_COM_MR_EDITBOOKING_TAB_ROOM', false);
+					$r[ '_JOMRES_COM_MR_EB_ROOM_NUMBER' ] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_NUMBER', '_JOMRES_COM_MR_EB_ROOM_NUMBER');
+					$r[ 'RINFO_NUMBER' ] = $rd[ 'room_number' ];
+					$r[ '_JOMRES_COM_MR_EB_ROOM_FLOOR' ] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_FLOOR', '_JOMRES_COM_MR_EB_ROOM_FLOOR');
+					$r[ 'RINFO_ROOM_FLOOR' ] = $rd[ 'room_floor' ];
+
+					$r[ '_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE' ] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE', '_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE');
+					$r[ 'RINFO_MAX_PEOPLE' ] = $rd[ 'max_people' ];
+					
+					$r[ '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV' ] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV', '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV');
+					
+					if (isset($current_property_details->all_room_types[$rd['room_classes_uid']]['room_class_abbv'])) {
+						$type = $current_property_details->all_room_types[$rd['room_classes_uid']]['room_class_abbv'];
+						$r[ 'TYPE' ] = $type;
+						
+					} else { // If a room has been removed ( or the property type changed ) then we don't know anything about the old room.
+						$r[ 'TYPE' ] = "Unknown";
+					}
+				$rows[ ] = $r;
+				}
+
+				$pageoutput[ ] = $output;
+				$tmpl = new patTemplate();
+				$tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
+				$tmpl->readTemplatesFromInput('edit_booking_tabcontents_room.html');
+				$tmpl->addRows('pageoutput', $pageoutput);
+				$tmpl->addRows('rows', $rows);
+				$room_template = $tmpl->getParsedTemplate();
+				$room_tab_name = jr_gettext('_JOMRES_COM_MR_EDITBOOKING_TAB_ROOM', '_JOMRES_COM_MR_EDITBOOKING_TAB_ROOM', false);
+			}
         } else {
             $room_tab_name = jr_gettext('_JINTOUR_REGPROP_MANAGEMENTPROCESS_TOURS', '_JINTOUR_REGPROP_MANAGEMENTPROCESS_TOURS', false);
             $room_template = $rooms_tab_replacement;
@@ -552,10 +558,12 @@ class j06002edit_booking
         $contentPanel->insertContent();
         $contentPanel->endPanel();
 
-        $contentPanel->startPanel($room_tab_name);
-        $contentPanel->setcontent($room_template);
-        $contentPanel->insertContent();
-        $contentPanel->endPanel();
+		if ($room_tab_name != '') {
+			$contentPanel->startPanel($room_tab_name);
+			$contentPanel->setcontent($room_template);
+			$contentPanel->insertContent();
+			$contentPanel->endPanel();
+		}
 
         $contentPanel->startPanel(jr_gettext('_JOMRES_COM_MR_EDITBOOKING_TAB_PAYMENT', '_JOMRES_COM_MR_EDITBOOKING_TAB_PAYMENT', false, false));
         $contentPanel->setcontent($payment_template);
