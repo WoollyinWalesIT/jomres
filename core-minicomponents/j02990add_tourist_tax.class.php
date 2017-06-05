@@ -14,8 +14,6 @@
 defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.');
 // ################################################################
 
-jr_import('dobooking');
-
 class j02990add_tourist_tax
 {
     public function __construct()
