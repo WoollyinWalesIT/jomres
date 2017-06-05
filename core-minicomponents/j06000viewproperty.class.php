@@ -47,6 +47,16 @@ class j06000viewproperty
 
         $mrConfig = getPropertySpecificSettings($property_uid);
         if ($mrConfig['showOnlyAvailabilityCalendar'] == '1') {
+			
+			if (isset($mrConfig[ 'CalendarMonthsToShow' ])) {
+				$_REQUEST['months_to_show'] = (int)$mrConfig[ 'CalendarMonthsToShow' ];
+			}
+
+			$_REQUEST['start_month'] = 1;
+			if (isset($mrConfig[ 'calstartfrombeginningofyear' ]) && !(bool)$mrConfig[ 'calstartfrombeginningofyear' ] ) {
+				$_REQUEST['start_month'] = date("m");
+			}
+			
              if ($mrConfig['singleRoomProperty'] == '1') {
                 echo $MiniComponents->specificEvent('06000', 'srp_calendar', array('output_now' => false, 'property_uid' => $property_uid, 'months_to_show' => 24));
             } else {
