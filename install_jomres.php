@@ -192,11 +192,11 @@ if ($folderChecksPassed && $functionChecksPassed) {
             define('ACTION', 'Upgrade');
         }
     } else {
-        $_POST[ 'go' ] = 'GO >>';
+        $_POST[ 'go' ] = 'GO';
         define('ACTION', 'Upgrade');
     }
 
-    if ((!isset($_POST[ 'go' ]) || $_POST[ 'go' ] != 'GO >>') && $trashtables < 1) {
+    if ((!isset($_POST[ 'go' ]) || $_POST[ 'go' ] != 'GO') && $trashtables < 1) {
         if (!AUTO_UPGRADE) {
             proceed();
         }
@@ -6492,7 +6492,7 @@ function proceed()
 		
 		<form action="" method="post" name="adminForm">
 			<p>Press the GO button when you are ready to proceed with installation/upgrade</p>
-			<input type="submit" name="go" value="GO >>" class="btn btn-success btn-lg" />
+			<input type="submit" name="go" value="GO" class="btn btn-success btn-lg" />
 		</form>
 
 		<h3 class="page-header">Remove Jomres tables</h3>
