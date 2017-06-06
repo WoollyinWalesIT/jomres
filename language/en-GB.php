@@ -1979,3 +1979,6 @@ jr_define('_JOMRES_INTERVAL',"Interval");
 jr_define('_JOMRES_TIMELINE',"Timeline");
 jr_define('_JOMRES_CPANEL_GRID',"Control panel home layout");
 jr_define('_JOMRES_CPANEL_GRID_DESC',"Select the grid layout of your frontend property management control panel home page.");
+
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_MARKER_IMAGES',"Google Map Markers");
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_TOWN_IMAGES',"Town images");

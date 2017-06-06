@@ -55,32 +55,15 @@ class j16000edit_property_type
 		$images = $jomres_property_types->get_all_property_type_images();
 		
 		$markers = array();
-		if (!empty($images)) {
-			foreach ($images as $i) {
-				$i[ 'ISCHECKED' ] = '';
-				
-				if ( $i[ 'IMAGE_FILENAME' ] == $jomres_property_types->property_type['marker'] ) {
-					$i[ 'ISCHECKED' ] = 'checked';
-				}
-				
-				$markers[] = $i;
+		
+		foreach ($images as $i) {
+			$i[ 'ISCHECKED' ] = '';
+			
+			if ( $i[ 'IMAGE_FILENAME' ] == $jomres_property_types->property_type['marker'] ) {
+				$i[ 'ISCHECKED' ] = 'checked';
 			}
-		} else {
-			$default_markers = scandir_getfiles( JOMRESCONFIG_ABSOLUTE_PATH . JRDS . JOMRES_ROOT_DIRECTORY . JRDS . 'images' . JRDS . 'markers' );
-
-			$markers = array();
-			$count = count($default_markers);
-			for ( $i=0;$i<$count;$i++ ) {
-				$r = array();
-				if (isset($default_markers[$i]) && strpos($default_markers[$i] , "png" ) ) {
-					$r['IMAGE_FILENAME'] = $default_markers[$i];
-					$r['IMAGE_SRC'] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/markers/'.$default_markers[$i];
-					$r['ISCHECKED'] = '';
-					if (empty($markers))
-						$r['ISCHECKED'] = 'checked';
-					$markers[]=$r;
-				}
-			}
+			
+			$markers[] = $i;
 		}
 
         $output[ 'PTYPE' ] = $jomres_property_types->property_type['ptype'];
