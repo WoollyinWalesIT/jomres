@@ -302,13 +302,13 @@ class jomres_properties
 
         if ($this->ptype_id != $current_property_details->ptype_id) {
             // we`ll use function params here because this way we can reuse both functions from other code too if needed
-            if (!$this->check_mrp_srp_flags_match($this->ptype_id, $current_property_details->ptype_id)) {
+            //if (!$this->check_mrp_srp_flags_match($this->ptype_id, $current_property_details->ptype_id)) {
                 //delete rooms, tariffs and property settings
                 $this->delete_rooms_tariffs_settings();
 
                 //update property settings table, the singleRoomProperty and is_real_estate_listing settings
                 $this->update_property_settings();
-            }
+            //}
         }
 
         //check if the property has an api key

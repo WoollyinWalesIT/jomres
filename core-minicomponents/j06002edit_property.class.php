@@ -257,6 +257,7 @@ class j06002edit_property
         $output[ 'HLONG' ] = jr_gettext('_JOMRES_LONG', '_JOMRES_LONG', false);
         $output[ '_JOMRES_PERMIT_NUMBER_TITLE' ] = jr_gettext('_JOMRES_PERMIT_NUMBER_TITLE', '_JOMRES_PERMIT_NUMBER_TITLE', false);
         $output[ '_JOMRES_PERMIT_NUMBER_DESCRIPTION' ] = jr_gettext('_JOMRES_PERMIT_NUMBER_DESCRIPTION', '_JOMRES_PERMIT_NUMBER_DESCRIPTION', false);
+		$output[ 'PROPERTY_TYPE_DROPDOWN_WARNING' ] = jr_gettext('_JOMRES_PTYPE_CHANGE_WARNING', '_JOMRES_PTYPE_CHANGE_WARNING', false);
 
         if ($jrConfig[ 'limit_property_country' ] == '0') {
             $change_country_warning[] = array('CHANGECOUNTRYWARNING' => jr_gettext('_JOMRES_EDITPROPERTY_SELECTCOUNTRY', '_JOMRES_EDITPROPERTY_SELECTCOUNTRY', false));
