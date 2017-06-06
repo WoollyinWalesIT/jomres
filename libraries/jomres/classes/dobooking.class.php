@@ -5098,7 +5098,7 @@ class dobooking
             }
         }
 
-        $this->setPopupMessage('');
+        //$this->setPopupMessage('');
 
         if ($this->getMonitoringNumberOfMessages() == 0) {
             $this->ok_to_book = true;
@@ -5989,7 +5989,7 @@ class dobooking
                 if ($this->cfg_bookingform_roomlist_showroomname == '1') {
                     $room_name = $this->allPropertyRooms[ $rm_id ][ 'room_name' ];
                 }
-                $this->setPopupMessage();
+                //$this->setPopupMessage();
                 $output .= '<tr><td>'.$text_room.' : '.$room_number.' '.$room_name.'</td><td>X</td><td>'.$number_of_guests.' '.$text_guests.' '.$price.'</td></tr>';
             }
         }
