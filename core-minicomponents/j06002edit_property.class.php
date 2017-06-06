@@ -180,7 +180,7 @@ class j06002edit_property
 
         //property type dropdown (extended version, with explanation about what will guests book in this property)
         $output[ 'HPROPERTY_TYPE' ] = jr_gettext('_JOMRES_FRONT_PTYPE', '_JOMRES_FRONT_PTYPE');
-        $output[ 'PROPERTY_TYPE_DROPDOWN' ] = getPropertyTypeDropdown($current_property_details->ptype_id, true, true);
+        $output[ 'PROPERTY_TYPE_DROPDOWN' ] = getPropertyTypeDropdown($current_property_details->ptype_id, true);
 
         //property features
         $propertyFeaturesArray = explode(',', $current_property_details->property_features);

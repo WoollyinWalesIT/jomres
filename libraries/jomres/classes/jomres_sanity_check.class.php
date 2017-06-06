@@ -320,27 +320,6 @@ class jomres_sanity_check
                         return $this->construct_warning(array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $button_text));
                     }
                 }
-			
-				// Todo
-				// This seems to work but as of 30 May 2017 We're removing the ability to change property types through the frontend so for now I'm going to leave this commented out in case it results in some unforseen side-effects that ( so far ) haven't appeared.
-			
-				/* $query = "SELECT DISTINCT `room_classes_uid` FROM #__jomres_rooms WHERE `propertys_uid` = ".(int)$this->property_uid." AND `room_classes_uid` IN (".jomres_implode(array_keys($current_property_details->this_property_room_classes)).") ";
-				$result = doSelectSql($query);
-				if (empty($result)) {
-					
-						// This is designed to clean up existing rooms that this property might have had their property type changed from one SRP type to another. We need to clean up any orphan rooms.
-						$query = "DELETE FROM #__jomres_rooms WHERE `propertys_uid` = ".(int)$this->property_uid;
-						doInsertSql($query);
-
-					    $message = jr_gettext('_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK', '_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK', false);
-                        $link = jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_resource');
-                        $button_text = jr_gettext('_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK_LINK', '_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK_LINK', false);
-
-                        return $this->construct_warning(array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $button_text));
-				} */
-
-				
-			
             }
         }
     }

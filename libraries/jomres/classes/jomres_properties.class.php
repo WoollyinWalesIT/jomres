@@ -402,11 +402,11 @@ class jomres_properties
     private function check_mrp_srp_flags_match($ptype_id1 = 0, $ptype_id2 = 0)
     {
         if ($ptype_id1 == 0) {
-            throw new Exception('Error: Property type id 1 not set.');
+            return false;
         }
 
         if ($ptype_id2 == 0) {
-            throw new Exception('Error: Property type id 2 not set.');
+            return false;
         }
 
         //get all property type details
