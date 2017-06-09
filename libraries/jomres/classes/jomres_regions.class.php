@@ -153,7 +153,8 @@ class jomres_regions
 					}
 				}
 			} else {
-				throw new Exception('Tried to get region with non-existant id');
+				return null;
+				// throw new Exception('Tried to get region with non-existant id');
 			}
 			
 			return $this->regions[ $id ];
@@ -175,7 +176,9 @@ class jomres_regions
 			if (isset($region_details['regionname'])) {
 				return $region_details['regionname'];
 			} else {
-				throw new Exception('Tried to get region with non-existant id');
+				// Can't throw an error here, users with existing properties with incorrect regions ( often because site admin has deleted regions ) will cause a fatal error. Instead we'll return null and give the calling script the option to unpublish the property instead.
+				return null;
+				// throw new Exception('Tried to get region with non-existant id');
 			}
         }
     }
