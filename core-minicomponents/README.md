@@ -86,6 +86,8 @@ Administrator area
 
 11010,11020,11040 Administrator area Media centre resource options.
 
+13100 Allows plugins to add warnings to the control panel
+
 19995 creates the admin core menu items
 
 19997 builds the admin cpanel menu
