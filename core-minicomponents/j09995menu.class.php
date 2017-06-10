@@ -60,7 +60,10 @@ class j09995menu
 		//dashboard section menus
 		if ($thisJRUser->accesslevel >= 50) {
 			$jomres_menu->add_item(1, jr_gettext('_JRPORTAL_CPANEL', '_JRPORTAL_CPANEL', false), 'cpanel', 'fa-dashboard');
-			$jomres_menu->add_item(1, jr_gettext('_JOMRES_TIMELINE', '_JOMRES_TIMELINE', false), 'dashboard', 'fa-calendar');
+			
+			if ($mrConfig[ 'is_real_estate_listing' ] != '1') {
+				$jomres_menu->add_item(1, jr_gettext('_JOMRES_TIMELINE', '_JOMRES_TIMELINE', false), 'dashboard', 'fa-calendar');
+			}
 		}
 		
 		
