@@ -399,16 +399,19 @@ class basic_property_details
                 $this->multi_query_result[ $data->propertys_uid ][ 'property_postcode' ] = $data->property_postcode;
                 if (is_numeric($data->property_region)) {
                     $jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
+					
+					//check if region id exists
 					if ( $jomres_regions->get_region_name($data->property_region) == null ) {
 						$this->multi_query_result[ $data->propertys_uid ][ 'published' ] = 0;
 						if ((int) $data->published == 1 ) {
-							$query = "UPDATE #__jomres_propertys SET `published`='0' WHERE propertys_uid = ".(int) $data->propertys_uid.' LIMIT 1';
+							$query = "UPDATE #__jomres_propertys SET `published` = 0 WHERE `propertys_uid` = ".(int)$data->propertys_uid.' LIMIT 1';
 							doInsertSql($query, "System automatically unpublished property with incorrect region id");
 						}
 					}
-                    $this->multi_query_result[ $data->propertys_uid ][ 'property_region' ] = jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$data->property_region, $jomres_regions->get_region_name($data->property_region), $editable, false);
+                    
+					$this->multi_query_result[ $data->propertys_uid ][ 'property_region' ] = jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$data->property_region, $jomres_regions->get_region_name($data->property_region), $editable, false);
                     $this->multi_query_result[ $data->propertys_uid ][ 'property_region_id' ] = $data->property_region;
-                } else { // This is a fallback for older properties that used to use property names instead of property region ids
+                } else { // This is a fallback for older properties that used to use region names instead of region ids
                     $this->multi_query_result[ $data->propertys_uid ][ 'property_region' ] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_REGION', $data->property_region, $editable, false);
                     $this->multi_query_result[ $data->propertys_uid ][ 'property_region_id' ] = 0;
                 }

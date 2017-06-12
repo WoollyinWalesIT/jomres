@@ -46,7 +46,6 @@ class j03020insertbooking
             $usejomressessionasCartid = false;
         }
         $usejomressessionasCartid = false;
-        $userIsManager = checkUserIsManager();
         $jomresProccessingBookingObject = getCurrentBookingData(get_showtime('jomressession'));
         $guestDetails = $jomresProccessingBookingObject->guestDetails;
         $tempBookingDataList = $jomresProccessingBookingObject->tempBookingDataList;
@@ -82,7 +81,7 @@ class j03020insertbooking
                 $amend_contractuid = 0;
             }
 
-            if ($amend_contract && $amend_contractuid != 0 && $userIsManager) {
+            if ($amend_contract && $amend_contractuid != 0 && $thisJRUser->userIsManager) {
 
                 //Booking amendment code
                 system_log('j03020insertbooking :: Amending contract. '.$amend_contractuid.' for '.get_showtime('jomressession'));
@@ -434,7 +433,7 @@ class j03020insertbooking
                             $dateRangeArray = explode(',', $dateRangeString);
                             for ($i = 0, $n = count($dateRangeArray); $i < $n; ++$i) {
                                 $roomBookedDate = $dateRangeArray[ $i ];
-                                if ($userIsManager) {
+                                if ($thisJRUser->userIsManager) {
                                     $internetBooking = 0;
                                     $receptionBooking = 1;
                                 } else {

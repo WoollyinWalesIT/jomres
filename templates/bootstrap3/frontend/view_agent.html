@@ -1,98 +1,20 @@
-
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<h2 class="page-header">{_JOMRES_AGENT_DETAILS}</h2>
 
-<div class="well">
-	<div class="row">
-		<div class="col-md-4">
-			{HFIRSTNAME}
+<div class="panel panel-default">
+	<div class="panel-body">
+		<div class="col-sm-8">
+			<h3>{FIRSTNAME} {SURNAME}</h3>
+			<p>{HOUSE} {STREET}, {TOWN}, {POSTCODE}, {REGION}, {COUNTRY}</p>
+			<p>{HLANDLINE} {LANDLINE}</p>
+			<p>{HMOBILE} {MOBILE}</p>
+			<p>{HEMAIL} {EMAIL}</p>
 		</div>
-		<div class="col-md-8">
-			{FIRSTNAME}
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-4">
-			{HSURNAME}
-		</div>
-		<div class="col-md-8">
-			{SURNAME}
+		<div class="col-sm-4 hidden-xs">
+			<img src="{IMAGE}" class="img-responsive" width="100%"/>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-md-4">
-			{HHOUSE}
-		</div>
-		<div class="col-md-8">
-			{HOUSE}
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-4">
-			{HSTREET}
-		</div>
-		<div class="col-md-8">
-			{STREET}
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-4">
-			{HTOWN}
-		</div>
-		<div class="col-md-8">
-			{TOWN}
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-4">
-			{HREGION}
-		</div>
-		<div class="col-md-8">
-			{REGION}
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-4">
-			{HCOUNTRY}
-		</div>
-		<div class="col-md-8">
-			{COUNTRY}
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-4">
-			{HPOSTCODE}
-		</div>
-		<div class="col-md-8">
-			{POSTCODE}
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-4">
-			{HLANDLINE}
-		</div>
-		<div class="col-md-8">
-			{LANDLINE}
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-4">
-			{HMOBILE}
-		</div>
-		<div class="col-md-8">
-			{MOBILE}
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-4">
-			{HEMAIL}
-		</div>
-		<div class="col-md-8">
-			{EMAIL}
-		</div>
-	</div>
-	<img src="{IMAGE}" class="thumbnail responsive" />
 </div>
 
 <h2 class="page-header">{_JOMRES_AGENT_LISTINGS}</h2>
+
 </patTemplate:tmpl>

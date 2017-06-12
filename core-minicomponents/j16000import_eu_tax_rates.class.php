@@ -58,7 +58,7 @@ class j16000import_eu_tax_rates
             $new_tax_rates[] = array('rate' => 23, 'code' => 'IVA', 'description' => 'Imposto sobre o Valor Acrescentado (Portugal)');
             $new_tax_rates[] = array('rate' => 23, 'code' => 'IVA', 'description' => 'Imposto sobre o Valor Acrescentado (Madeira)');
             $new_tax_rates[] = array('rate' => 23, 'code' => 'IV', 'description' => 'A Imposto sobre o Valor Acrescentado (Azores)');
-            $new_tax_rates[] = array('rate' => 24, 'code' => 'TVA', 'description' => 'Taxa pe valoarea adăugată (Romania)');
+            $new_tax_rates[] = array('rate' => 19, 'code' => 'TVA', 'description' => 'Taxa pe valoarea adăugată (Romania)');
             $new_tax_rates[] = array('rate' => 20, 'code' => 'DPH', 'description' => 'Daň z pridanej hodnoty (Slovakia)');
             $new_tax_rates[] = array('rate' => 22, 'code' => 'DDV', 'description' => 'Davek na dodano vrednost (Slovenia)');
             $new_tax_rates[] = array('rate' => 21, 'code' => 'IVA', 'description' => 'Impuesto sobre el valor añadido (Spain)');

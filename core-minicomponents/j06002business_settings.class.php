@@ -25,7 +25,7 @@ class j06002business_settings
 
             return;
         }
-        hotelSettings();
+        propertyConfiguration();
     }
 
     // This must be included in every Event/Mini-component

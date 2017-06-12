@@ -224,10 +224,11 @@ jomresJquery(function(){
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
 
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+		
         $mrConfig = getPropertySpecificSettings();
         $tar = jomresGetParam($_REQUEST, 'tar', 0);
         $show_links = jomresGetParam($_REQUEST, 'sl', 1);
-        $userIsManager = checkUserIsManager();
 
         $showOutMonthDates = false;
 
@@ -493,7 +494,7 @@ jomresJquery(function(){
                             }
                         }
                     } else {
-                        if ($userIsManager) {
+                        if ($thisJRUser->userIsManager) {
                             if ($contract_uid != '') {
                                 $link = "<a $target href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=edit_booking&amp;contract_uid=$contract_uid").'" class=rescal >'.(date('j', $currdate)).'</a>';
                                 $this->retVals .= $link;

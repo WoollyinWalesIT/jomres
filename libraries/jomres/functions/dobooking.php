@@ -26,11 +26,10 @@ $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking
 $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
 $MiniComponents->triggerEvent('00100'); // Pre-dobooking. Optional
-$userIsManager = checkUserIsManager();
 
 if (
     $selectedProperty > 0 &&
-    $userIsManager &&
+    $thisJRUser->userIsManager &&
     in_array($selectedProperty, $thisJRUser->authorisedProperties) &&
     $thisJRUser->currentproperty != $selectedProperty
 	) {

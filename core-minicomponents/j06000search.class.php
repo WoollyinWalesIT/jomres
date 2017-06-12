@@ -146,7 +146,6 @@ class j06000search
         $output[ 'HIDDEN' ] = $h;
         $jomresSearchFormname = $sch->formname;
         $searchOutput = $sch->searchOutput;
-        //$overlibLables=$sch->overlibLables;
         $featurecols = $sch->featurecols;
 
         $metaTitle = '';
@@ -297,24 +296,13 @@ class j06000search
             $output[ 'HARRIVALDATE' ] = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', false);
             $output[ 'HDEPARTUREDATE' ] = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', false);
         }
-        if (!isset($overlibLables)) {
-            $overlibLables = 0;
-        }
 
         if (in_array('ptype', $searchOptions) && $showSearchOptions) {
-            if ($overlibLables == '1') {
-                $output[ 'JOMRES_SEARCH_PTYPES' ] = makeFeatureImages($infoIcon, _JOMRES_SEARCH_BUTTON, jr_gettext('_JOMRES_SEARCH_PTYPES', '_JOMRES_SEARCH_PTYPES', false), $retString = true);
-            } else {
-                $output[ 'JOMRES_SEARCH_PTYPES' ] = jr_gettext('_JOMRES_SEARCH_PTYPES', '_JOMRES_SEARCH_PTYPES', false);
-            }
+            $output[ 'JOMRES_SEARCH_PTYPES' ] = jr_gettext('_JOMRES_SEARCH_PTYPES', '_JOMRES_SEARCH_PTYPES', false);
         }
 
         if (in_array('priceranges', $searchOptions) && $showSearchOptions) {
-            if ($overlibLables == '1') {
-                $output[ 'JOMRES_SEARCH_PRICERANGES' ] = makeFeatureImages($infoIcon, _JOMRES_SEARCH_BUTTON, jr_gettext('_JOMRES_SEARCH_PRICERANGES', '_JOMRES_SEARCH_PRICERANGES', false), $retString = true);
-            } else {
-                $output[ 'JOMRES_SEARCH_PRICERANGES' ] = jr_gettext('_JOMRES_SEARCH_PRICERANGES', '_JOMRES_SEARCH_PRICERANGES', false);
-            }
+            $output[ 'JOMRES_SEARCH_PRICERANGES' ] = jr_gettext('_JOMRES_SEARCH_PRICERANGES', '_JOMRES_SEARCH_PRICERANGES', false);
         }
 
         if (in_array('guestnumber', $searchOptions) && $showSearchOptions && get_showtime('task') != 'bookaroom') {

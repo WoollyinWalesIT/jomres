@@ -180,7 +180,6 @@ class j06000mrpavailabilitycalendar
         $mrConfig = getPropertySpecificSettings();
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
-        $userIsManager = checkUserIsManager();
 
         $showOutMonthDates = false;
         $task = get_showtime('task');
@@ -431,11 +430,6 @@ class j06000mrpavailabilitycalendar
         $this->retVals .= "</table>\n";
     }
 
-/**
- * Must be included in every mini-component.
- #
- * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
- */
     // This must be included in every Event/Mini-component
     public function getRetVals()
     {

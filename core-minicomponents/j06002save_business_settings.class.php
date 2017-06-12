@@ -29,7 +29,7 @@ class j06002save_business_settings
 		$property_uid = (int)getDefaultProperty();
 		
 		if ($property_uid > 0) {
-			saveHotelSettings();
+			savePropertyConfiguration();
 		}
 		
 		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL."&task=business_settings&property_uid=$property_uid"), '');
