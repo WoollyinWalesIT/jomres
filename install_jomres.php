@@ -2963,7 +2963,7 @@ function installCronjobs()
     //output_message ( "Installing cron jobs<br/>";
     jr_import('jomres_cron');
     $cron = new jomres_cron();
-    $cron->addJob('error_logs_cleanup', 'D', '');
+    $cron->addJob('error_logs_cleanup', 'H', '');
 }
 
 function trashTables()
