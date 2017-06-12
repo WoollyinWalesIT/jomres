@@ -508,18 +508,24 @@
 					<tr>
 						<th>Name</th>
 						<th>Your Version</th>
+						<th>Current version</th>
+						<th>Released</th>
 						<th>Description</th>
 						<th>Author</th>
 						<th>Author email</th>
+						<th>Website</th>
 						<th>Remove plugin</th>
 					</tr>
 					<patTemplate:tmpl name="thirdpartyplugins" unusedvars="nbsp" type="simpleCondition" requiredVars="name">
 						<tr>
 							<td>{NAME}</td>
 							<td>{LOCALVERSION}</td>
+							<td>{THIRD_PARTY_PLUGIN_LATEST_AVAILABLE_VERSION}</td>
+							<td>{LATEST_RELEASE}</td>
 							<td>{DESCRIPTION}</td>
 							<td>{AUTHOR}</td>
 							<td><a href="mailto:{AUTHOREMAIL}?subject={NAME}">{AUTHOREMAIL}</a></td>
+							<td>{DEVELOPER_PAGE}</td>
 							<td><a href="{UNINSTALLLINK}" class="btn btn-danger">{UNINSTALL}</a></td>
 						</tr>
 					</patTemplate:tmpl>
