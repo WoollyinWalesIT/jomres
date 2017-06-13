@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.3
+ * @version Jomres 9.9.4
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -118,7 +118,7 @@ class jrportal_guest_types
 							".(int) $this->maximum.",
 							".(int) $this->is_percentage.",
 							".(int) $this->posneg.",
-							".(int) $this->variance.",
+							".(float) $this->variance.",
 							".(int) $this->published.", 
 							".(int) $this->property_uid.",
 							".(int) $this->order.",
@@ -160,7 +160,7 @@ class jrportal_guest_types
 						`maximum` = ".(int)$this->maximum.",
 						`is_percentage` = ".(int)$this->is_percentage.",
 						`posneg` = ".(int)$this->posneg.",
-						`variance` = ".(int)$this->variance.",
+						`variance` = ".(float)$this->variance.",
 						`is_child` = ".(int)$this->is_child." 
 					WHERE `id` = ".(int)$this->id." 
 						AND `property_uid` = ".(int)$this->property_uid;

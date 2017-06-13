@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.3
+ * @version Jomres 9.9.4
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -302,13 +302,13 @@ class jomres_properties
 
         if ($this->ptype_id != $current_property_details->ptype_id) {
             // we`ll use function params here because this way we can reuse both functions from other code too if needed
-            if (!$this->check_mrp_srp_flags_match($this->ptype_id, $current_property_details->ptype_id)) {
+            //if (!$this->check_mrp_srp_flags_match($this->ptype_id, $current_property_details->ptype_id)) {
                 //delete rooms, tariffs and property settings
                 $this->delete_rooms_tariffs_settings();
 
                 //update property settings table, the singleRoomProperty and is_real_estate_listing settings
                 $this->update_property_settings();
-            }
+            //}
         }
 
         //check if the property has an api key
@@ -402,11 +402,11 @@ class jomres_properties
     private function check_mrp_srp_flags_match($ptype_id1 = 0, $ptype_id2 = 0)
     {
         if ($ptype_id1 == 0) {
-            throw new Exception('Error: Property type id 1 not set.');
+            return false;
         }
 
         if ($ptype_id2 == 0) {
-            throw new Exception('Error: Property type id 2 not set.');
+            return false;
         }
 
         //get all property type details

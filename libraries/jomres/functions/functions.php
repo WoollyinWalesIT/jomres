@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.3
+ * @version Jomres 9.9.4
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -692,31 +692,6 @@ function import_images_to_media_centre_directories()
     }
 }
 
-function jomres_formatBytes($bytes, $precision = 2)
-{
-    $units = array('B', 'KB', 'MB', 'GB', 'TB');
-
-    $bytes = max($bytes, 0);
-    $pow = floor(($bytes ? log($bytes) : 0) / log(1024));
-    $pow = min($pow, count($units) - 1);
-
-    return round($bytes, $precision).' '.$units[$pow];
-}
-
-function echo_backtrace()
-{
-    $trace = debug_backtrace();
-    foreach ($trace as $t) {
-        $file_arr = explode(JRDS, $t[ 'file' ]);
-        $file = $file_arr[ count($file_arr) - 1 ];
-        if ($file == 'helper.php') {
-            break;
-        }
-        $line = $t[ 'line' ];
-        echo 'Line : '.$line.' for file '.$file.' </br>';
-    }
-}
-
 function make_gmap_url_for_property_uid($property_uid)
 {
     if ($property_uid < 1) {
@@ -821,7 +796,7 @@ function build_property_manager_xref_array()
 {
     $arr = array();
 
-	$query = 'SELECT property_uid,manager_id FROM #__jomres_managers_propertys_xref';
+	$query = 'SELECT `property_uid`, `manager_id` FROM #__jomres_managers_propertys_xref';
 	$managersToPropertyList = doSelectSql($query);
 	if (!empty($managersToPropertyList)) {
 		foreach ($managersToPropertyList as $x) {
@@ -870,10 +845,6 @@ function make_agent_link($property_id = 0)
     $tmpl->readTemplatesFromInput('agent_link.html');
 
     return $tmpl->getParsedTemplate();
-}
-
-function make_agent_info($manager_id)
-{
 }
 
 function translation_user_check()
@@ -1155,8 +1126,8 @@ function jomres_nicetime($date)
 
 function get_remote_ip_number()
 {
-    $dirty_ip = $_SERVER[ 'REMOTE_ADDR' ];
-    $bang = explode('.', $dirty_ip);
+    $ip = jomres_get_client_ip();
+    $bang = explode('.', $ip);
     if (count($bang) != 4) {
         return '0.0.0.0';
     }
@@ -1865,20 +1836,6 @@ function dirmv($source, $dest, $overwrite = true, $funcloc = JRDS)
     //echo "Finished upgrade <br/>";
 } // end of dirmv()
 
-function mailer_get_css()
-{
-    $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-    $jrConfig = $siteConfig->get();
-
-    $themePath = JOMRES_ROOT_DIRECTORY.'/css/jquery_ui_themes/'.$jrConfig[ 'jquery_ui_theme' ].'/';
-
-    $jquery_ui_css_file = $themePath.JRDS.'jquery-ui.min.css';
-
-    $css_file = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'css'.JRDS.'email.css';
-
-    return '<style> '.file_get_contents($css_file).file_get_contents($jquery_ui_css_file).'</style>';
-}
-
 /*
 Allows us to work independantly of Joomla or Mambo's emailers
 */
@@ -2362,7 +2319,7 @@ function sanitiseOverlibOutput($data)
 /**
  * Constructs the standard configuration settings for display in the config panel, then triggers events to show same configuration panels.
  */
-function hotelSettings()
+function propertyConfiguration()
 {
     $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
 
@@ -2641,7 +2598,7 @@ function hotelSettings()
 /**
  * Takes settings from the configuration and saves (most of them) to the jomres_settings table.
  */
-function saveHotelSettings()
+function savePropertyConfiguration()
 {
     $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
     $MiniComponents->triggerEvent('00502', array()); // This trigger allows plugins to check saves, for example to prevent future changes to a setting once it's been made.
@@ -2791,6 +2748,7 @@ function insertInternetBooking($jomressession = '', $depositPaid = false, $confi
     $jomressession = get_showtime('jomressession');
     $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
     $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+	$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
     gateway_log('insertInternetBooking: Attempting to insert booking jsid: '.get_showtime('jomressession'));
     if ($tmpBookingHandler->getBookingFieldVal('cart_payment')) { // I'm probably being lazy, creating this condition like this, but I'd rather keep things clear in my own mind atm, it can be tidied up later
@@ -2816,8 +2774,7 @@ function insertInternetBooking($jomressession = '', $depositPaid = false, $confi
             $componentArgs = array('property_uid' => $property_uid);
             $componentArgs = array('customText' => $customTextForConfirmationForm);
             $MiniComponents->triggerEvent('03030', $componentArgs); // Booking completed message
-            $userIsManager = checkUserIsManager();
-            if ($userIsManager) {
+            if ($thisJRUser->userIsManager) {
                 echo jr_gettext('_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE', '_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE').'<br />';
                 $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
                 $jrtb = $jrtbar->startTable();
@@ -2831,7 +2788,6 @@ function insertInternetBooking($jomressession = '', $depositPaid = false, $confi
 
         return $MiniComponents->miniComponentData[ '03020' ][ 'insertbooking' ][ 'insertSuccessful' ];
     } else {
-        $userIsManager = checkUserIsManager();
         $componentArgs = array('jomressession' => get_showtime('jomressession'), 'depositPaid' => $depositPaid, 'usejomressessionasCartid' => $usejomressessionasCartid);
         $result = $MiniComponents->triggerEvent('03020', $componentArgs); // Trigger the insert booking mini-comp
         gateway_log('insertInternetBooking: '.serialize($MiniComponents->miniComponentData[ '03020' ]));
@@ -2843,7 +2799,7 @@ function insertInternetBooking($jomressession = '', $depositPaid = false, $confi
                 $componentArgs = array('property_uid' => $property_uid);
                 $componentArgs = array('customText' => $customTextForConfirmationForm);
                 $MiniComponents->triggerEvent('03030', $componentArgs); // Booking completed message
-                if ($userIsManager) {
+                if ($thisJRUser->userIsManager) {
                     echo jr_gettext('_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE', '_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE').'<br />';
                     $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
                     $jrtb = $jrtbar->startTable();
@@ -2874,7 +2830,6 @@ function insertGuestDeets($jomressession)
 
     $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
     $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
-    $userIsManager = checkUserIsManager();
     $xCustomers = $tmpBookingHandler->getGuestData();
 
     if (isset($xCustomers[ 'guests_uid' ])) {
@@ -2899,9 +2854,9 @@ function insertGuestDeets($jomressession)
     $defaultProperty = $property_uid;
     
     if ($mos_userid == 0) {
-        if (!$userIsManager && $thisJRUser->id > 0) {
+        if (!$thisJRUser->userIsManager && $thisJRUser->id > 0) {
             $mos_userid = $thisJRUser->id;
-        } elseif (!$userIsManager && $thisJRUser->id == 0) {
+        } elseif (!$thisJRUser->userIsManager && $thisJRUser->id == 0) {
             $mos_userid = 0;
         }
     }
@@ -3234,260 +3189,6 @@ function getPropertyTypeDropdown($propertyType = '', $extended = false, $is_disa
 }
 
 /**
- * Creates a filter dropdown.
- */
-function filterForm($selectname, $value, $format, $task = '')
-{
-    $task = get_showtime('task');
-    $selecthtml = "\n<form action=\"\" method=\"get\" name=\"jomresFilter".$selectname."\"><span class=\"inputbox_wrapper\"><select class=\"inputbox\" name=\"$selectname\" onchange=\"window.open(this.options[this.selectedIndex].value,'_top')\">";
-    $selecthtml .= "\n<option value=\"".jomresURL(JOMRES_SITEPAGE_URL.'&task='.$task).'"></option>';
-    $selecthtml .= "\n<option value=\"".jomresURL(JOMRES_SITEPAGE_URL.'&task='.$task).'">'.jr_gettext('_JOMRES_COM_A_RESET', '_JOMRES_COM_A_RESET', false).'</option>';
-    if (!empty($value)) {
-        foreach ($value as $v) {
-            $v_output = $v;
-            $selected = '';
-            if ($format == 'date') {
-                $v_output = outputDate($v_output);
-            }
-            if ($v == $defaultValue) {
-                $selected = 'selected';
-            }
-            $selecthtml .= "\n<option value=\"".jomresURL(JOMRES_SITEPAGE_URL.'&task='.$task).'&'.$selectname.'='.urlencode($v).'" '.$selected.'>'.$v_output.'</option>';
-        }
-    }
-    $selecthtml .= "\n</select></span>
-	</form>";
-
-    return $selecthtml;
-}
-
-/**
- * Receives a list of contract uids and generates a list of bookings based on those uids.
- */
-function showLiveBookings($contractsList, $title, $arrivaldateDropdown)
-{
-    $defaultProperty = getDefaultProperty();
-    $mrConfig = getPropertySpecificSettings();
-    if ($defaultProperty == '0') {
-        $defaultProperty = '%';
-    }
-    $today = date('Y/m/d');
-    $pathToImages = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images';
-    $img_pending = $pathToImages.'/pending.gif';
-    $img_arrivetoday = $pathToImages.'/arrivetoday.gif';
-    $img_resident = $pathToImages.'/resident.gif';
-    $img_departtoday = $pathToImages.'/departtoday.gif';
-    $img_stillhere = $pathToImages.'/stillhere.gif';
-    $img_late = $pathToImages.'/late.gif';
-
-    $contract_ids = array();
-
-    foreach ($contractsList as $c) {
-        $contract_ids[ ] = $c->contract_uid;
-    }
-
-    $query = "SELECT * FROM #__jomres_contracts WHERE property_uid = '".(int) $defaultProperty."' AND contract_uid IN (".jomres_implode($contract_ids).') ';
-    $booking_data = doSelectSql($query);
-
-    $output = array();
-    $output[ 'PAGETITLE' ] = $title;
-    $output[ 'IMG_PENDING' ] = $img_pending;
-    $output[ 'IMG_ARRIVETODAY' ] = $img_arrivetoday;
-    $output[ 'IMG_RESIDENT' ] = $img_resident;
-    $output[ 'IMG_LATE' ] = $img_late;
-    $output[ 'IMG_DEPARTTODAY' ] = $img_departtoday;
-    $output[ 'IMG_STILLHERE' ] = $img_stillhere;
-
-    $output[ 'TEXT_PENDING' ] = $mrConfig[ 'wholeday_booking' ] == '1' ? jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_PENDING_WHOLEDAY', '_JOMRES_COM_MR_VIEWBOOKINGS_PENDING_WHOLEDAY') : jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_PENDING', '_JOMRES_COM_MR_VIEWBOOKINGS_PENDING');
-    $output[ 'TEXT_ARRIVETODAY' ] = $mrConfig[ 'wholeday_booking' ] == '1' ? jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY_WHOLEDAY', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY_WHOLEDAY') : jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY');
-    $output[ 'TEXT_RESIDENT' ] = $mrConfig[ 'wholeday_booking' ] == '1' ? jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT_WHOLEDAY', '_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT_WHOLEDAY') : jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT', '_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT');
-    $output[ 'TEXT_LATE' ] = $mrConfig[ 'wholeday_booking' ] == '1' ? jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_LATE_WHOLEDAY', '_JOMRES_COM_MR_VIEWBOOKINGS_LATE_WHOLEDAY') : jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_LATE', '_JOMRES_COM_MR_VIEWBOOKINGS_LATE');
-    $output[ 'TEXT_DEPARTTODAY' ] = $mrConfig[ 'wholeday_booking' ] == '1' ? jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY_WHOLEDAY', '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY_WHOLEDAY') : jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY', '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY');
-    $output[ 'TEXT_STILLHERE' ] = $mrConfig[ 'wholeday_booking' ] == '1' ? jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE_WHOLEDAY', '_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE_WHOLEDAY') : jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE', '_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE');
-
-    $output[ '_JOMRES_COM_MR_VIEWBOOKINGS_STATUS' ] = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_STATUS', '_JOMRES_COM_MR_VIEWBOOKINGS_STATUS');
-    $output[ '_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME' ] = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME', '_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME');
-    $output[ '_JOMRES_COM_MR_EDITBOOKINGTITLE' ] = jr_gettext('_JOMRES_COM_MR_EDITBOOKINGTITLE', '_JOMRES_COM_MR_EDITBOOKINGTITLE');
-    $output[ '_JOMRES_BOOKING_NUMBER' ] = jr_gettext('_JOMRES_BOOKING_NUMBER', '_JOMRES_BOOKING_NUMBER', true, false);
-    if ($mrConfig[ 'wholeday_booking' ] == '1') {
-        $output[ 'ARRIVAL' ] = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY');
-        $output[ 'DEPARTURE' ] = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE_WHOLEDAY', '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE_WHOLEDAY');
-    } else {
-        $output[ 'ARRIVAL' ] = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL');
-        if ($mrConfig[ 'showdepartureinput' ] == '1') {
-            $output[ 'DEPARTURE' ] = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE');
-        } else {
-            $output[ 'DEPARTURE' ] = '&nbsp;';
-        }
-    }
-
-    $rows = array();
-    for ($i = 0, $n = count($contractsList); $i < $n; ++$i) {
-        $r = array();
-        $imgToShow = $img_pending;
-        $row = $contractsList[ $i ];
-        $arrival = $row->arrival;
-        $departure = $row->departure;
-        $bookedIn = $row->booked_in;
-
-        $date_elements = explode('/', $today);
-        $unixToday = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ]);
-        $date_elements = explode('/', $arrival);
-        $unixArrival = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ]);
-        $date_elements = explode('/', $departure);
-        $unixDeparture = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ]);
-        if ($unixArrival == $unixToday && $bookedIn != '1') {
-            $imgToShow = $img_arrivetoday;
-        }
-        if ($unixDeparture == $unixToday && $bookedIn == '1') {
-            $imgToShow = $img_departtoday;
-        }
-        if ($unixArrival < $unixToday && $bookedIn != '1') {
-            $imgToShow = $img_late;
-        }
-        if ($unixDeparture > $unixToday && $bookedIn == '1') {
-            $imgToShow = $img_resident;
-        }
-        if ($unixDeparture < $unixToday && $bookedIn == '1') {
-            $imgToShow = $img_stillhere;
-        }
-
-        $r[ 'STATE_IMAGE' ] = $imgToShow;
-        $r[ 'EDIT_LINK' ] = '<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_booking&contract_uid='.($row->contract_uid)).'" class="btn btn-info"><i class="icon-edit icon-white"></i> '.jr_gettext('_JOMRES_COM_MR_EDITBOOKINGTITLE', '_JOMRES_COM_MR_EDITBOOKINGTITLE', false).'</a>';
-        $r[ 'EDIT_URL' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_booking&contract_uid='.($row->contract_uid));
-        $r[ 'EDIT_TEXT' ] = jr_gettext('_JOMRES_COM_MR_EDITBOOKINGTITLE', '_JOMRES_COM_MR_EDITBOOKINGTITLE', false);
-
-        $r[ 'FIRSTNAME' ] = $row->firstname;
-        $r[ 'SURNAME' ] = $row->surname;
-
-        $r[ 'BOOKING_NO' ] = $row->tag;
-        $r[ 'ARRIVALDATE' ] = outputDate($row->arrival);
-        if ($mrConfig[ 'showdepartureinput' ] == '1') {
-            $r[ 'DEPARTURE' ] = outputDate($row->departure);
-        } else {
-            $r[ 'DEPARTURE' ] = '&nbsp;';
-        }
-        $rows[ ] = $r;
-    }
-
-    if (get_showtime('task') == 'list_bookings') {
-        $output[ 'TOUR_DIV_ID' ] = 'tour_target_listall_bookings';
-    }
-
-    $pageoutput[ ] = $output;
-
-    $tmpl = new patTemplate();
-    $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
-    $tmpl->readTemplatesFromInput('list_property_bookings.html');
-    $tmpl->addRows('pageoutput', $pageoutput);
-    $tmpl->addRows('rows', $rows);
-    $tmpl->displayParsedTemplate();
-}
-
-//end function showLiveBookings
-
-/**
- * Receives a property uid, returns an array of data for that property.
- */
-function getPropertyAddressForPrint($propertyUid)
-{
-    $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
-    $current_property_details->gather_data($propertyUid);
-
-    $obj = new stdClass(); // For use by queries that used to call mysql for this information, we'll just dress the data up as it used to come out of a query
-    $obj->property_name = $current_property_details->property_name;
-    $obj->property_street = $current_property_details->property_street;
-    $obj->property_town = $current_property_details->property_town;
-    $obj->property_postcode = $current_property_details->property_postcode;
-    $obj->property_region = $current_property_details->property_region;
-    $obj->property_country = $current_property_details->property_country;
-    $obj->property_tel = $current_property_details->property_tel;
-    $obj->property_features = $current_property_details->property_features;
-
-    $obj->property_description = $current_property_details->property_description;
-    $obj->property_checkin_times = $current_property_details->property_checkin_times;
-    $obj->property_area_activities = $current_property_details->property_area_activities;
-    $obj->property_driving_directions = $current_property_details->property_driving_directions;
-    $obj->property_airports = $current_property_details->property_airports;
-    $obj->property_othertransport = $current_property_details->property_othertransport;
-    $obj->property_policies_disclaimers = $current_property_details->property_policies_disclaimers;
-
-    $obj->property_email = $current_property_details->property_email;
-    $obj->published = (int) $current_property_details->published;
-    $obj->ptype_id = (int) $current_property_details->ptype_id;
-    $obj->stars = (int) $current_property_details->stars;
-    $obj->propertys_uid = (int) $propertyUid;
-
-    $indexedPropertyDetails = array('property_name' => $current_property_details->property_name,
-                                     'property_street' => $current_property_details->property_street,
-                                     'property_town' => $current_property_details->property_town,
-                                     'property_postcode' => $current_property_details->property_postcode,
-                                     'property_region' => $current_property_details->property_region,
-                                     'property_country' => $current_property_details->property_country,
-                                     'property_tel' => $current_property_details->property_tel,
-                                     'property_features' => $current_property_details->property_features,
-                                     'property_email' => $current_property_details->property_email,
-                                     'published' => (int) $current_property_details->published,
-                                     'ptype_id' => (int) $current_property_details->ptype_id,
-                                     'stars' => (int) $current_property_details->stars,
-                                     'property_description' => $current_property_details->property_description,
-                                     'property_checkin_times' => $current_property_details->property_checkin_times,
-                                     'property_area_activities' => $current_property_details->property_area_activities,
-                                     'property_driving_directions' => $current_property_details->property_driving_directions,
-                                     'property_airports' => $current_property_details->property_airports,
-                                     'property_othertransport' => $current_property_details->property_othertransport,
-                                     'property_policies_disclaimers' => $current_property_details->property_policies_disclaimers,
-                                     'lat' => $current_property_details->lat,
-                                     'long' => $current_property_details->long,
-                                     'metatitle' => $current_property_details->metatitle,
-                                     'metadescription' => $current_property_details->metadescription,
-                                     'propertys_uid' => (int) $propertyUid,
-                                     'obj' => array($obj), );
-
-    $propertyAddress = array($current_property_details->property_name,
-                                $current_property_details->property_street,
-                                $current_property_details->property_town,
-                                $current_property_details->property_postcode,
-                                $current_property_details->property_region,
-                                $current_property_details->property_country_code, );
-
-    $propertyContact = array($current_property_details->property_tel,
-                                $current_property_details->property_fax,
-                                $current_property_details->property_email,
-                                get_showtime('live_site'), );
-
-    $propertyDataArray = array($current_property_details->property_name,
-                                $propertyAddress,
-                                $propertyContact,
-                                $indexedPropertyDetails, );
-
-    return $propertyDataArray;
-}
-
-/**
- * Receives a guest's uid, returns an array of guest data.
- */
-function getGuestForPrint($guestUid)
-{
-    $query = "SELECT firstname,surname,house,street,town,postcode,county,country,email FROM #__jomres_guests WHERE guests_uid = '".(int) $guestUid."'";
-    $guestData = doSelectSql($query);
-    foreach ($guestData as $data) {
-        $firstname = $data->firstname;
-        $surname = $data->surname;
-        $house = $data->house;
-        $street = $data->street;
-        $town = $data->town;
-        $postcode = $data->postcode;
-        $region = $data->county;
-        $country = $data->country;
-        $email = $data->email;
-    }
-    $guestAddress = array($firstname, $surname, $house, $street, $town, $postcode, $region, $country, $email);
-
-    return $guestAddress;
-}
-
-/**
  * Returns the property's name when passed a property uid.
  */
 function getPropertyName($property_uid)
@@ -3498,29 +3199,6 @@ function getPropertyName($property_uid)
     }
 
     return $current_property_details->get_property_name($property_uid);
-}
-
-/**
- * Takes a url, indexed array and a postage method. For use by gateways to post data to payment services.
- */
-function gatewayPostage($outgoingURL, $postage, $method = 'post')
-{
-    ?>
-		<script>
-			toloadindex = toload.length + 1;
-			toload[1] = "document.form.submit()";
-		</script>
-	<?php
-    echo "<html>\n";
-    echo '<head><title>'.jr_gettext('JOMRES_PHRASE_PROCESSING', 'JOMRES_PHRASE_PROCESSING', false)."</title></head>\n";
-    echo "<body onLoad=\"document.form.submit();\">\n";
-    echo '<center><h3>'.jr_gettext('JOMRES_PHRASE_PROCESSING', 'JOMRES_PHRASE_PROCESSING', false)."</h3></center>\n";
-    echo '<form method="'.$method.'" name="form" action="'.$outgoingURL."\">\n";
-    foreach ($postage as $name => $value) {
-        echo "<input type=\"hidden\" name=\"$name\" value=\"$value\">";
-    }
-    echo "</form>\n";
-    echo "</body></html>\n";
 }
 
 /**
@@ -3583,46 +3261,6 @@ function getImageForProperty($imageType, $property_uid, $itemUid)
     return $fileLocation;
 }
 
-function getThumbnailForImage($imagefullrelpath, $medium = false)
-{
-    $filedata = explode('/', $imagefullrelpath);
-    $count = count($filedata);
-    $image_name = $filedata[ $count - 1 ];
-    $filename = explode('.', $image_name);
-
-    $filename = $filename[ 0 ];
-    if (!$medium) {
-        $thumbnail_image_name = $filename.'_thumbnail.jpg';
-    } else {
-        $thumbnail_image_name = $filename.'_thumbnail_med.jpg';
-    }
-
-    // Now we need to recombine the image path again. We already know parts of it.
-    $path = str_replace(JOMRES_IMAGELOCATION_RELPATH, '', $imagefullrelpath);
-    $pathdata = explode('/', $path);
-    $thumbnail_image_abspath = JOMRES_IMAGELOCATION_ABSPATH;
-    $thumbnail_image_relpath = JOMRES_IMAGELOCATION_RELPATH;
-    if (count($pathdata) > 1) {
-        foreach ($pathdata as $val) {
-            if ($val != $image_name) {
-                $thumbnail_image_abspath .= $val.JRDS;
-                $thumbnail_image_relpath .= $val.'/';
-            }
-        }
-        $thumbnail_image_abspath .= $thumbnail_image_name;
-        $thumbnail_image_relpath .= $thumbnail_image_name;
-    } else {
-        $thumbnail_image_abspath = JOMRES_IMAGELOCATION_ABSPATH.$thumbnail_image_name;
-        $thumbnail_image_relpath = JOMRES_IMAGELOCATION_RELPATH.$thumbnail_image_name;
-    }
-    // We'll now test to see if the thumbnail image exists. If it doesn't, we'll simply pass back false. The calling script then decide to show the original image or the thumbnail
-    if (file_exists($thumbnail_image_abspath)) {
-        return $thumbnail_image_relpath;
-    } else {
-        return false;
-    }
-}
-
 /**
  * Constructs the mrConfig data when passed a property uid.
  */
@@ -3651,183 +3289,6 @@ function getPropertySpecificSettings($property_uid = null)
 }
 
 /**
- * Creates an array of country codes, countries and currency names.
- */
-function currencyCodesArray()
-{
-    $codes[ 'AED' ] = array('country' => 'United Arab Emirates', 'currencyname' => 'Dirhams');
-    $codes[ 'AFN' ] = array('country' => 'Afghanistan', 'currencyname' => 'Afghanis');
-    $codes[ 'ALL' ] = array('country' => 'Albania', 'currencyname' => 'Leke');
-    $codes[ 'AMD' ] = array('country' => 'Armenia', 'currencyname' => 'Drams');
-    $codes[ 'ANG' ] = array('country' => 'Netherlands Antilles', 'currencyname' => 'Guilders/Florins');
-    $codes[ 'AOA' ] = array('country' => 'Angola', 'currencyname' => 'Kwanza');
-    $codes[ 'ARS' ] = array('country' => 'Argentina', 'currencyname' => 'Pesos');
-    $codes[ 'AUD' ] = array('country' => 'Australia', 'currencyname' => 'Dollars');
-    $codes[ 'AWG' ] = array('country' => 'Aruba', 'currencyname' => 'Guilders');
-    $codes[ 'AZN' ] = array('country' => 'Azerbaijan', 'currencyname' => 'New Manats');
-    $codes[ 'BAM' ] = array('country' => 'Bosnia and Herzegovina', 'currencyname' => 'Convertible Marka');
-    $codes[ 'BBD' ] = array('country' => 'Barbados', 'currencyname' => 'Dollars');
-    $codes[ 'BDT' ] = array('country' => 'Bangladesh', 'currencyname' => 'Taka');
-    $codes[ 'BGN' ] = array('country' => 'Bulgaria', 'currencyname' => 'Leva');
-    $codes[ 'BHD' ] = array('country' => 'Bahrain', 'currencyname' => 'Dinars');
-    $codes[ 'BIF' ] = array('country' => 'Burundi', 'currencyname' => 'Francs');
-    $codes[ 'BMD' ] = array('country' => 'Bermuda', 'currencyname' => 'Dollars');
-    $codes[ 'BND' ] = array('country' => 'Brunei Darussalam', 'currencyname' => 'Dollars');
-    $codes[ 'BOB' ] = array('country' => 'Bolivia', 'currencyname' => 'Bolivianos');
-    $codes[ 'BRL' ] = array('country' => 'Brazil', 'currencyname' => 'Brazil Real');
-    $codes[ 'BSD' ] = array('country' => 'Bahamas', 'currencyname' => 'Dollars');
-    $codes[ 'BTN' ] = array('country' => 'Bhutan', 'currencyname' => 'Ngultrum');
-    $codes[ 'BWP' ] = array('country' => 'Botswana', 'currencyname' => 'Pulas');
-    $codes[ 'BYR' ] = array('country' => 'Belarus', 'currencyname' => 'Rubles');
-    $codes[ 'BZD' ] = array('country' => 'Belize', 'currencyname' => 'Dollars');
-    $codes[ 'CAD' ] = array('country' => 'Canada', 'currencyname' => 'Dollars');
-    $codes[ 'CDF' ] = array('country' => 'Congo/Kinshasa', 'currencyname' => 'Congolese Francs');
-    $codes[ 'CHF' ] = array('country' => 'Switzerland', 'currencyname' => 'Francs');
-    $codes[ 'CLP' ] = array('country' => 'Chile', 'currencyname' => 'Pesos');
-    $codes[ 'CNY' ] = array('country' => 'China', 'currencyname' => 'Yuan Renminbi');
-    $codes[ 'COP' ] = array('country' => 'Colombia', 'currencyname' => 'Pesos');
-    $codes[ 'CRC' ] = array('country' => 'Costa Rica', 'currencyname' => 'Colones');
-    $codes[ 'CSD' ] = array('country' => 'Serbia', 'currencyname' => 'Dinars');
-    $codes[ 'CUP' ] = array('country' => 'Cuba', 'currencyname' => 'Pesos');
-    $codes[ 'CVE' ] = array('country' => 'Cape Verde', 'currencyname' => 'Escudos');
-    $codes[ 'CYP' ] = array('country' => 'Cyprus', 'currencyname' => 'Pounds');
-    $codes[ 'CZK' ] = array('country' => 'Czech Republic', 'currencyname' => 'Koruny');
-    $codes[ 'DJF' ] = array('country' => 'Djibouti', 'currencyname' => 'Francs');
-    $codes[ 'DKK' ] = array('country' => 'Denmark', 'currencyname' => 'Kroner');
-    $codes[ 'DOP' ] = array('country' => 'Dominican Republic', 'currencyname' => 'Pesos');
-    $codes[ 'DZD' ] = array('country' => 'Algeria', 'currencyname' => 'Algeria Dinars');
-    $codes[ 'EEK' ] = array('country' => 'Estonia', 'currencyname' => 'Krooni');
-    $codes[ 'EGP' ] = array('country' => 'Egypt', 'currencyname' => 'Pounds');
-    $codes[ 'ERN' ] = array('country' => 'Eritrea', 'currencyname' => 'Nakfa');
-    $codes[ 'ETB' ] = array('country' => 'Ethiopia', 'currencyname' => 'Birr');
-    $codes[ 'EUR' ] = array('country' => 'Euro Member Countries', 'currencyname' => 'Euro');
-    $codes[ 'FJD' ] = array('country' => 'Fiji', 'currencyname' => 'Dollars');
-    $codes[ 'FKP' ] = array('country' => 'Falkland Islands (Malvinas)', 'currencyname' => 'Pounds');
-    $codes[ 'GBP' ] = array('country' => 'United Kingdom', 'currencyname' => 'Pounds');
-    $codes[ 'GEL' ] = array('country' => 'Georgia', 'currencyname' => 'Lari');
-    $codes[ 'GGP' ] = array('country' => 'Guernsey', 'currencyname' => 'Pounds');
-    $codes[ 'GHC' ] = array('country' => 'Ghana', 'currencyname' => 'Cedis');
-    $codes[ 'GIP' ] = array('country' => 'Gibraltar', 'currencyname' => 'Pounds');
-    $codes[ 'GMD' ] = array('country' => 'Gambia', 'currencyname' => 'Dalasi');
-    $codes[ 'GNF' ] = array('country' => 'Guinea', 'currencyname' => 'Francs');
-    $codes[ 'GTQ' ] = array('country' => 'Guatemala', 'currencyname' => 'Quetzales');
-    $codes[ 'GYD' ] = array('country' => 'Guyana', 'currencyname' => 'Dollars');
-    $codes[ 'HKD' ] = array('country' => 'Hong Kong', 'currencyname' => 'Dollars');
-    $codes[ 'HNL' ] = array('country' => 'Honduras', 'currencyname' => 'Lempiras');
-    $codes[ 'HRK' ] = array('country' => 'Croatia', 'currencyname' => 'Kuna');
-    $codes[ 'HTG' ] = array('country' => 'Haiti', 'currencyname' => 'Gourdes');
-    $codes[ 'HUF' ] = array('country' => 'Hungary', 'currencyname' => 'Forint');
-    $codes[ 'IDR' ] = array('country' => 'Indonesia', 'currencyname' => 'Rupiahs');
-    $codes[ 'ILS' ] = array('country' => 'Israel', 'currencyname' => 'New Shekels');
-    $codes[ 'IMP' ] = array('country' => 'Isle of Man', 'currencyname' => 'Pounds');
-    $codes[ 'INR' ] = array('country' => 'India', 'currencyname' => 'Rupees');
-    $codes[ 'IQD' ] = array('country' => 'Iraq', 'currencyname' => 'Dinars');
-    $codes[ 'IRR' ] = array('country' => 'Iran', 'currencyname' => 'Rials');
-    $codes[ 'ISK' ] = array('country' => 'Iceland', 'currencyname' => 'Kronur');
-    $codes[ 'JEP' ] = array('country' => 'Jersey', 'currencyname' => 'Pounds');
-    $codes[ 'JMD' ] = array('country' => 'Jamaica', 'currencyname' => 'Dollars');
-    $codes[ 'JOD' ] = array('country' => 'Jordan', 'currencyname' => 'Dinars');
-    $codes[ 'JPY' ] = array('country' => 'Japan', 'currencyname' => 'Yen');
-    $codes[ 'KES' ] = array('country' => 'Kenya', 'currencyname' => 'Shillings');
-    $codes[ 'KGS' ] = array('country' => 'Kyrgyzstan', 'currencyname' => 'Soms');
-    $codes[ 'KHR' ] = array('country' => 'Cambodia', 'currencyname' => 'Riels');
-    $codes[ 'KMF' ] = array('country' => 'Comoros', 'currencyname' => 'Francs');
-    $codes[ 'KPW' ] = array('country' => 'Korea (North)', 'currencyname' => 'Won');
-    $codes[ 'KRW' ] = array('country' => 'Korea (South)', 'currencyname' => 'Won');
-    $codes[ 'KWD' ] = array('country' => 'Kuwait', 'currencyname' => 'Dinars');
-    $codes[ 'KYD' ] = array('country' => 'Cayman Islands', 'currencyname' => 'Dollars');
-    $codes[ 'KZT' ] = array('country' => 'Kazakhstan', 'currencyname' => 'Tenge');
-    $codes[ 'LAK' ] = array('country' => 'Laos', 'currencyname' => 'Kips');
-    $codes[ 'LBP' ] = array('country' => 'Lebanon', 'currencyname' => 'Pounds');
-    $codes[ 'LKR' ] = array('country' => 'Sri Lanka', 'currencyname' => 'Rupees');
-    $codes[ 'LRD' ] = array('country' => 'Liberia', 'currencyname' => 'Dollars');
-    $codes[ 'LSL' ] = array('country' => 'Lesotho', 'currencyname' => 'Maloti');
-    $codes[ 'LTL' ] = array('country' => 'Lithuania', 'currencyname' => 'Litai');
-    $codes[ 'LVL' ] = array('country' => 'Latvia', 'currencyname' => 'Lati');
-    $codes[ 'LYD' ] = array('country' => 'Libya', 'currencyname' => 'Dinars');
-    $codes[ 'MAD' ] = array('country' => 'Morocco', 'currencyname' => 'Dirhams');
-    $codes[ 'MDL' ] = array('country' => 'Moldova', 'currencyname' => 'Lei');
-    $codes[ 'MGA' ] = array('country' => 'Madagascar', 'currencyname' => 'Ariary');
-    $codes[ 'MKD' ] = array('country' => 'Macedonia', 'currencyname' => 'Denars');
-    $codes[ 'MMK' ] = array('country' => 'Myanmar (Burma)', 'currencyname' => 'Kyats');
-    $codes[ 'MNT' ] = array('country' => 'Mongolia', 'currencyname' => 'Tugriks');
-    $codes[ 'MOP' ] = array('country' => 'Macau', 'currencyname' => 'Patacas');
-    $codes[ 'MRO' ] = array('country' => 'Mauritania', 'currencyname' => 'Ouguiyas');
-    $codes[ 'MTL' ] = array('country' => 'Malta', 'currencyname' => 'Liri');
-    $codes[ 'MUR' ] = array('country' => 'Mauritius', 'currencyname' => 'Rupees');
-    $codes[ 'MVR' ] = array('country' => 'Maldives (Maldive Islands)', 'currencyname' => 'Rufiyaa');
-    $codes[ 'MWK' ] = array('country' => 'Malawi', 'currencyname' => 'Kwachas');
-    $codes[ 'MXN' ] = array('country' => 'Mexico', 'currencyname' => 'Pesos');
-    $codes[ 'MYR' ] = array('country' => 'Malaysia', 'currencyname' => 'Ringgits');
-    $codes[ 'MZM' ] = array('country' => 'Mozambique', 'currencyname' => 'Meticais');
-    $codes[ 'NAD' ] = array('country' => 'Namibia', 'currencyname' => 'Dollars');
-    $codes[ 'NGN' ] = array('country' => 'Nigeria', 'currencyname' => 'Nairas');
-    $codes[ 'NIO' ] = array('country' => 'Nicaragua', 'currencyname' => 'Cordobas');
-    $codes[ 'NOK' ] = array('country' => 'Norway', 'currencyname' => 'Krone');
-    $codes[ 'NPR' ] = array('country' => 'Nepal', 'currencyname' => 'Nepal Rupees');
-    $codes[ 'NZD' ] = array('country' => 'New Zealand', 'currencyname' => 'Dollars');
-    $codes[ 'OMR' ] = array('country' => 'Oman', 'currencyname' => 'Rials');
-    $codes[ 'PAB' ] = array('country' => 'Panama', 'currencyname' => 'Balboa');
-    $codes[ 'PEN' ] = array('country' => 'Peru', 'currencyname' => 'Nuevos Soles');
-    $codes[ 'PGK' ] = array('country' => 'Papua New Guinea', 'currencyname' => 'Kina');
-    $codes[ 'PHP' ] = array('country' => 'Philippines', 'currencyname' => 'Pesos');
-    $codes[ 'PKR' ] = array('country' => 'Pakistan', 'currencyname' => 'Rupees');
-    $codes[ 'PLN' ] = array('country' => 'Poland', 'currencyname' => 'Zlotych');
-    $codes[ 'PYG' ] = array('country' => 'Paraguay', 'currencyname' => 'Guarani');
-    $codes[ 'QAR' ] = array('country' => 'Qatar', 'currencyname' => 'Rials');
-    $codes[ 'ROL' ] = array('country' => 'Romania', 'currencyname' => 'Lei');
-    $codes[ 'RON' ] = array('country' => 'Romania', 'currencyname' => 'New Lei');
-    $codes[ 'RUB' ] = array('country' => 'Russia', 'currencyname' => 'Rubles');
-    $codes[ 'RWF' ] = array('country' => 'Rwanda', 'currencyname' => 'Rwanda Francs');
-    $codes[ 'SAR' ] = array('country' => 'Saudi Arabia', 'currencyname' => 'Riyals');
-    $codes[ 'SBD' ] = array('country' => 'Solomon Islands', 'currencyname' => 'Dollars');
-    $codes[ 'SCR' ] = array('country' => 'Seychelles', 'currencyname' => 'Rupees');
-    $codes[ 'SDD' ] = array('country' => 'Sudan', 'currencyname' => 'Dinars');
-    $codes[ 'SEK' ] = array('country' => 'Sweden', 'currencyname' => 'Kronor');
-    $codes[ 'SGD' ] = array('country' => 'Singapore', 'currencyname' => 'Dollars');
-    $codes[ 'SHP' ] = array('country' => 'Saint Helena', 'currencyname' => 'Pounds');
-    $codes[ 'SIT' ] = array('country' => 'Slovenia', 'currencyname' => 'Tolars');
-    $codes[ 'SKK' ] = array('country' => 'Slovakia', 'currencyname' => 'Koruny');
-    $codes[ 'SLL' ] = array('country' => 'Sierra Leone', 'currencyname' => 'Leones');
-    $codes[ 'SOS' ] = array('country' => 'Somalia', 'currencyname' => 'Shillings');
-    $codes[ 'SPL' ] = array('country' => 'Seborga', 'currencyname' => 'Luigini');
-    $codes[ 'SRD' ] = array('country' => 'Suriname', 'currencyname' => 'Dollars');
-    $codes[ 'STD' ] = array('country' => 'São Tome and Principe', 'currencyname' => 'Dobras');
-    $codes[ 'SVC' ] = array('country' => 'El Salvador', 'currencyname' => 'Colones');
-    $codes[ 'SYP' ] = array('country' => 'Syria', 'currencyname' => 'Pounds');
-    $codes[ 'SZL' ] = array('country' => 'Swaziland', 'currencyname' => 'Emalangeni');
-    $codes[ 'THB' ] = array('country' => 'Thailand', 'currencyname' => 'Baht');
-    $codes[ 'TJS' ] = array('country' => 'Tajikistan', 'currencyname' => 'Somoni');
-    $codes[ 'TMM' ] = array('country' => 'Turkmenistan', 'currencyname' => 'Manats');
-    $codes[ 'TND' ] = array('country' => 'Tunisia', 'currencyname' => 'Dinars');
-    $codes[ 'TOP' ] = array('country' => 'Tonga', 'currencyname' => "Pa'anga");
-    $codes[ 'TRY' ] = array('country' => 'Turkey', 'currencyname' => 'New Lira');
-    $codes[ 'TTD' ] = array('country' => 'Trinidad and Tobago', 'currencyname' => 'Dollars');
-    $codes[ 'TVD' ] = array('country' => 'Tuvalu', 'currencyname' => 'Tuvalu Dollars');
-    $codes[ 'TWD' ] = array('country' => 'Taiwan', 'currencyname' => 'New Dollars');
-    $codes[ 'TZS' ] = array('country' => 'Tanzania', 'currencyname' => 'Shillings');
-    $codes[ 'UAH' ] = array('country' => 'Ukraine', 'currencyname' => 'Hryvnia');
-    $codes[ 'UGX' ] = array('country' => 'Uganda', 'currencyname' => 'Shillings');
-    $codes[ 'USD' ] = array('country' => 'United States of America', 'currencyname' => 'Dollars');
-    $codes[ 'UYU' ] = array('country' => 'Uruguay', 'currencyname' => 'Pesos');
-    $codes[ 'UZS' ] = array('country' => 'Uzbekistan', 'currencyname' => 'Sums');
-    $codes[ 'VEB' ] = array('country' => 'Venezuela', 'currencyname' => 'Bolivares');
-    $codes[ 'VND' ] = array('country' => 'Viet Nam', 'currencyname' => 'Dong');
-    $codes[ 'VUV' ] = array('country' => 'Vanuatu', 'currencyname' => 'Vatu');
-    $codes[ 'WST' ] = array('country' => 'Samoa', 'currencyname' => 'Tala');
-    $codes[ 'XAF' ] = array('country' => 'Communauté Financière Africaine BEAC', 'currencyname' => 'Francs');
-    $codes[ 'XCD' ] = array('country' => 'East Caribbean', 'currencyname' => 'Dollars');
-    $codes[ 'XOF' ] = array('country' => 'Communauté Financière Africaine BCEAO', 'currencyname' => 'Francs');
-    $codes[ 'XPF' ] = array('country' => 'Comptoirs Français du Pacifique', 'currencyname' => 'Francs');
-    $codes[ 'YER' ] = array('country' => 'Yemen', 'currencyname' => 'Rials');
-    $codes[ 'ZAR' ] = array('country' => 'South Africa', 'currencyname' => 'Rand');
-    $codes[ 'ZMK' ] = array('country' => 'Zambia', 'currencyname' => 'Kwacha');
-    $codes[ 'ZWD' ] = array('country' => 'Zimbabwe', 'currencyname' => 'Zimbabwe Dollars');
-
-    return $codes;
-}
-
-/**
  * Generic or creation function. Pass a number of ids and the field you're searching on, will return ( `xyx`='1' OR `xyx`='2' OR`xyx`='3' ) etc.
  */
 function genericOr($idArray, $fieldToSearch, $idArrayisInteger = true)
@@ -3852,17 +3313,6 @@ function genericOr($idArray, $fieldToSearch, $idArrayisInteger = true)
     $txt .= ' ) ';
 
     return $txt;
-}
-
-/**
- * Returns the browser to the propertyadmin page after a save action.
- */
-function returnToPropertyConfig($saveMessage = '')
-{
-    $mrConfig = getPropertySpecificSettings();
-    if ($mrConfig[ 'errorCheckingShowSQL' ] == '0') {
-        jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL), $saveMessage);
-    }
 }
 
 /**
@@ -3942,57 +3392,6 @@ function editorAreaText($name, $content, $hiddenField, $width, $height, $col, $r
     return jomres_cmsspecific_getTextEditor($name, $content, $hiddenField, $width, $height, $col, $row);
 }
 
-
-/**
- * Creates data for displaying an image. If $retString is true it will return <img etc, if false then it will return the same text in an array variable for passing to patTemplate.
- */
-function makeFeatureImages($image, $title, $description, $retString = false, $altLivesite = '')
-{
-    $mrConfig = getPropertySpecificSettings();
-    $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-    if (!empty($altLivesite)) {
-        set_showtime('live_site', $altLivesite);
-    }
-    $title = addslashes($title);
-    $description = addslashes($description);
-    $defaultImage = 'images/blank.png';
-    if (!isset($image) || empty($image)) {
-        $image = $defaultImage;
-    }
-    if (!isset($title) || empty($title)) {
-        $title = 'Empty';
-    }
-    if (!isset($description) || empty($description)) {
-        $description = '';
-    }
-    $title = htmlentities($title);
-    $description = htmlentities($description);
-
-    $captionpopup = '';
-    $descriptonpopup = '';
-
-    $title = jr_gettext('_JOMRES_CUSTOMTEXT_FEATUREBLURB_CAPTION'.strtoupper($image), stripslashes($title), false, false);
-    $description = jr_gettext('_JOMRES_CUSTOMTEXT_FEATUREBLURB_DESCRIPTION'.strtoupper($image), stripslashes($description), false, false);
-
-    $title = str_replace('&#39;', "\&#39;", $title);
-    $title = str_replace("'", "\'", $title);
-    $description = str_replace('&#39;', "\&#39;", $description);
-    $description = str_replace("'", "\'", $description);
-
-    if ($retString) {
-        $r = '<img src="'.get_showtime('live_site').'/'.$image.'" alt="" border="0" onmouseover="return overlib(\''.$description.'\', CAPTION, \''.$title.'\', BELOW, RIGHT);" onmouseout="return nd();" />';
-    } else {
-        $r = array();
-        $space = '';
-        if ($captionpopup != '') {
-            $space = '<br>';
-        }
-        $r[ 'FEATURE' ] = $space.'<img src="'.get_showtime('live_site').'/'.$image.'" alt="" border="0" onmouseover="return overlib(\''.$description.'\', CAPTION, \''.$title.'\', BELOW, RIGHT);" onmouseout="return nd();" />'.$captionpopup.' '.$descriptonpopup;
-    }
-
-    return $r;
-}
-
 /**
  * Increments the pcounter table when a property clicked and sets a cookie to say that this user has clicked this property.
  */
@@ -4003,7 +3402,7 @@ function propertyClicked($p_uid)
     $alreadyClicked = jomresGetParam($_COOKIE, $cookiename, '0');
     if (!$alreadyClicked) {
         setcookie($cookiename, '1', time() + 60 * 60 * 24 * 30);
-        $query = "INSERT INTO #__jomres_pcounter (count,p_uid) VALUES ('1', '".(int) $p_uid."') ON DUPLICATE KEY UPDATE count = count+1 ";
+        $query = "INSERT INTO #__jomres_pcounter (`count`, `p_uid`) VALUES (1, ".(int)$p_uid.") ON DUPLICATE KEY UPDATE `count` = `count` + 1";
 
         if (!doInsertSql($query, '')) {
             echo 'Mysql went byebyes';
@@ -4032,28 +3431,6 @@ function makePopupLink($link, $text, $isLocalPage = true, $width = 550, $height 
     $thelink = str_replace('&', '&amp;', $thelink);
 
     return $thelink;
-}
-
-/**
- * Calls the show availability function, which in turn triggers the show availability event trigger. Exists for historical reasons.
- */
-function showSingleRoomPropAvl($property_uid)
-{
-    $query = "SELECT room_uid FROM #__jomres_rooms WHERE propertys_uid = '".(int) $property_uid."' LIMIT 1";
-    $roomList = doSelectSql($query);
-    foreach ($roomList as $room) {
-        $roomUid = $room->room_uid;
-    }
-    showAvailability($roomUid, '', $property_uid, 12);
-}
-
-/**
- * Called by showSingleRoomPropAvl. Shows property availability calendars.
- */
-function showAvailability($roomUid, $requestedDate, $property_uid, $showFullYear = 12, $room_avl_enquiry = false)
-{
-    $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-    $MiniComponents->specificEvent('06000', 'srp_calendar', array('output_now' => true, 'property_uid' => $property_uid, 'months_to_show' => 24, 'show_just_month' => false, 'room_uid' => $roomUid));
 }
 
 /**
@@ -4111,24 +3488,6 @@ function makeImageValid($imageName = '')
     $image = str_replace('%2F', '/', $image);
 
     return $image;
-}
-
-function invoices_makeInvoiceStatusDropdown($selected = '0')
-{
-    $statusOptions = array();
-    $statusDropdown = '';
-    $statuses = array();
-    $statuses[ 0 ] = jr_gettext('_JRPORTAL_INVOICES_STATUS_UNPAID', '_JRPORTAL_INVOICES_STATUS_UNPAID');
-    $statuses[ 1 ] = jr_gettext('_JRPORTAL_INVOICES_STATUS_PAID', '_JRPORTAL_INVOICES_STATUS_PAID');
-    $statuses[ 2 ] = jr_gettext('_JRPORTAL_INVOICES_STATUS_CANCELLED', '_JRPORTAL_INVOICES_STATUS_CANCELLED');
-    $statuses[ 3 ] = jr_gettext('_JRPORTAL_INVOICES_STATUS_PENDING', '_JRPORTAL_INVOICES_STATUS_PENDING');
-
-    foreach ($statuses as $key => $val) {
-        $statusOptions[ ] = jomresHTML::makeOption($key, $val);
-    }
-    $statusDropdown = jomresHTML::selectList($statusOptions, 'status', 'class="inputbox" size="1"', 'value', 'text', $selected);
-
-    return $statusDropdown;
 }
 
 function parseFloat($ptString)
@@ -4362,38 +3721,6 @@ function jomresGetDomain()
     return strtolower($dmn);
 }
 
-function parseConfiguration()
-{
-    ob_start();
-    phpinfo(INFO_CONFIGURATION);
-    $s = ob_get_contents();
-    ob_end_clean();
-    $s = strip_tags($s, '<h2><th><td>');
-    $s = preg_replace('/<th[^>]*>([^<]+)<\/th>/', '<info>\\1</info>', $s);
-    $s = preg_replace('/<td[^>]*>([^<]+)<\/td>/', '<info>\\1</info>', $s);
-    $vTmp = preg_split('/(<h2>[^<]+<\/h2>)/', $s, -1, PREG_SPLIT_DELIM_CAPTURE);
-    $vModules = array();
-	$n=count($vTmp);
-    for ($i = 1; $i < $n; ++$i) {
-        if (preg_match('/<h2>([^<]+)<\/h2>/', $vTmp[ $i ], $vMat)) {
-            $vName = trim($vMat[ 1 ]);
-            $vTmp2 = explode("\n", $vTmp[ $i + 1 ]);
-            foreach ($vTmp2 as $vOne) {
-                $vPat = '<info>([^<]+)<\/info>';
-                $vPat3 = "/$vPat\s*$vPat\s*$vPat/";
-                $vPat2 = "/$vPat\s*$vPat/";
-                if (preg_match($vPat3, $vOne, $vMat)) { // 3cols
-                    $vModules[ $vName ][ trim($vMat[ 1 ]) ] = array(trim($vMat[ 2 ]), trim($vMat[ 3 ]));
-                } elseif (preg_match($vPat2, $vOne, $vMat)) { // 2cols
-                    $vModules[ $vName ][ trim($vMat[ 1 ]) ] = trim($vMat[ 2 ]);
-                }
-            }
-        }
-    }
-
-    return $vModules;
-}
-
 function createNewAPIKey()
 {
     $apikey = generateJomresRandomString();
@@ -4433,28 +3760,6 @@ function generateJomresRandomString($length = 50)
     return $str;
 }
 
-/**
- * Constructs the mrConfig data when passed a property uid. $mrConfig is read in first to set up mrConfig in the event that property settings haven't been configured previously (eg during an import).
- */
-function getSiteSettings()
-{
-    $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-    $jrConfig = $siteConfig->get();
-
-    return $jrConfig;
-}
-
-/**
- * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.
- */
-function checkUserIsManager()
-{
-    $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-    $userIsManager = $thisJRUser->userIsManager;
-
-    return $userIsManager;
-}
-
 function getDefaultProperty()
 {
     $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
@@ -4473,14 +3778,6 @@ function jomresURL($link, $ssl = 2)
     $link = str_replace('&amp;', '&', $link);
 
     return $link;
-}
-
-class dummy_params_class
-{
-    public function get()
-    {
-        $a = 0;
-    }
 }
 
 /**

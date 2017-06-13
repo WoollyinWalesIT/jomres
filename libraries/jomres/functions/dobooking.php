@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.3
+ * @version Jomres 9.9.4
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -26,11 +26,10 @@ $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking
 $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
 $MiniComponents->triggerEvent('00100'); // Pre-dobooking. Optional
-$userIsManager = checkUserIsManager();
 
 if (
     $selectedProperty > 0 &&
-    $userIsManager &&
+    $thisJRUser->userIsManager &&
     in_array($selectedProperty, $thisJRUser->authorisedProperties) &&
     $thisJRUser->currentproperty != $selectedProperty
 	) {

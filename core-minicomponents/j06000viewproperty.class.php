@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.3
+ * @version Jomres 9.9.4
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -47,6 +47,16 @@ class j06000viewproperty
 
         $mrConfig = getPropertySpecificSettings($property_uid);
         if ($mrConfig['showOnlyAvailabilityCalendar'] == '1') {
+			
+			if (isset($mrConfig[ 'CalendarMonthsToShow' ])) {
+				$_REQUEST['months_to_show'] = (int)$mrConfig[ 'CalendarMonthsToShow' ];
+			}
+
+			$_REQUEST['start_month'] = 1;
+			if (isset($mrConfig[ 'calstartfrombeginningofyear' ]) && !(bool)$mrConfig[ 'calstartfrombeginningofyear' ] ) {
+				$_REQUEST['start_month'] = date("m");
+			}
+			
              if ($mrConfig['singleRoomProperty'] == '1') {
                 echo $MiniComponents->specificEvent('06000', 'srp_calendar', array('output_now' => false, 'property_uid' => $property_uid, 'months_to_show' => 24));
             } else {

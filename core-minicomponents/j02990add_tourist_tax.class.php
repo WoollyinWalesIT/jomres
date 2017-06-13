@@ -4,7 +4,7 @@
 *
 * @author Woollyinwales IT <sales@jomres.net>
 *
- * @version Jomres 9.9.3
+ * @version Jomres 9.9.4
  *
 * @copyright	2005-2015 Woollyinwales IT
 * Jomres (tm) PHP files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project
@@ -13,8 +13,6 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.');
 // ################################################################
-
-jr_import('dobooking');
 
 class j02990add_tourist_tax
 {

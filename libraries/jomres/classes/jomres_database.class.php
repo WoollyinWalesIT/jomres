@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.3
+ * @version Jomres 9.9.4
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -67,6 +67,10 @@ class jomres_database
         if (defined('AUTO_UPGRADE')) {
             $this->dbtype = 'mysqli';
         }
+		
+		// We will check to see if dbtype is set to mysql. If it's not we will silently switch to mysqli. Joomla seems to be doing the same thing in J3.7
+		if ($this->dbtype == 'mysql' && !function_exists('mysql_connect'))
+			$this->dbtype = 'mysqli';
 
         if (!this_cms_is_wordpress() || defined('AUTO_UPGRADE')) {
             $this->_init();

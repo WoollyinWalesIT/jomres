@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.3
+ * @version Jomres 9.9.4
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -36,8 +36,6 @@ class j06000terms
         }
         $property_uid = intval(jomresGetParam($_REQUEST, 'property_uid', 0));
         $this->retVals = '';
-
-        $userIsManager = checkUserIsManager();
 
         $query = "SELECT property_policies_disclaimers FROM #__jomres_propertys WHERE propertys_uid = '".$property_uid."' LIMIT 1";
         $property_policiesdisclaimers = doSelectSql($query, 1);

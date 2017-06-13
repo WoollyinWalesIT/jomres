@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.3
+ * @version Jomres 9.9.4
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -146,7 +146,6 @@ class j06000search
         $output[ 'HIDDEN' ] = $h;
         $jomresSearchFormname = $sch->formname;
         $searchOutput = $sch->searchOutput;
-        //$overlibLables=$sch->overlibLables;
         $featurecols = $sch->featurecols;
 
         $metaTitle = '';
@@ -297,24 +296,13 @@ class j06000search
             $output[ 'HARRIVALDATE' ] = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', false);
             $output[ 'HDEPARTUREDATE' ] = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', false);
         }
-        if (!isset($overlibLables)) {
-            $overlibLables = 0;
-        }
 
         if (in_array('ptype', $searchOptions) && $showSearchOptions) {
-            if ($overlibLables == '1') {
-                $output[ 'JOMRES_SEARCH_PTYPES' ] = makeFeatureImages($infoIcon, _JOMRES_SEARCH_BUTTON, jr_gettext('_JOMRES_SEARCH_PTYPES', '_JOMRES_SEARCH_PTYPES', false), $retString = true);
-            } else {
-                $output[ 'JOMRES_SEARCH_PTYPES' ] = jr_gettext('_JOMRES_SEARCH_PTYPES', '_JOMRES_SEARCH_PTYPES', false);
-            }
+            $output[ 'JOMRES_SEARCH_PTYPES' ] = jr_gettext('_JOMRES_SEARCH_PTYPES', '_JOMRES_SEARCH_PTYPES', false);
         }
 
         if (in_array('priceranges', $searchOptions) && $showSearchOptions) {
-            if ($overlibLables == '1') {
-                $output[ 'JOMRES_SEARCH_PRICERANGES' ] = makeFeatureImages($infoIcon, _JOMRES_SEARCH_BUTTON, jr_gettext('_JOMRES_SEARCH_PRICERANGES', '_JOMRES_SEARCH_PRICERANGES', false), $retString = true);
-            } else {
-                $output[ 'JOMRES_SEARCH_PRICERANGES' ] = jr_gettext('_JOMRES_SEARCH_PRICERANGES', '_JOMRES_SEARCH_PRICERANGES', false);
-            }
+            $output[ 'JOMRES_SEARCH_PRICERANGES' ] = jr_gettext('_JOMRES_SEARCH_PRICERANGES', '_JOMRES_SEARCH_PRICERANGES', false);
         }
 
         if (in_array('guestnumber', $searchOptions) && $showSearchOptions && get_showtime('task') != 'bookaroom') {
@@ -564,12 +552,11 @@ class j06000search
                                 $ischecked = 'checked';
                             }
                         }
-                        $image = '/'.$feature[ 'image' ];
 
                         $feature_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_ABBV'.(int) $feature[ 'id' ], jomres_decode($feature[ 'title' ]), false, false);
                         $feature_desc = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_DESC'.(int) $feature[ 'id' ], jomres_decode($feature[ 'description' ]), false, false);
 
-                        $tmp = jomres_makeTooltip($feature_abbv, $feature_abbv, $feature_desc, $image, '', 'property_feature', array());
+                        $tmp = jomres_makeTooltip($feature_abbv, $feature_abbv, $feature_desc, $feature[ 'image' ] , '', 'property_feature', array());
 
                         $rows[ ] = $r;
                         $r .= '<div style="float : left;" >'.$tmp.'<input type="checkbox" name="feature_uids[]" value="'.$pid.'" '.$ischecked.' /></div>';

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.3
+ * @version Jomres 9.9.4
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -180,7 +180,7 @@ class j06002edit_property
 
         //property type dropdown (extended version, with explanation about what will guests book in this property)
         $output[ 'HPROPERTY_TYPE' ] = jr_gettext('_JOMRES_FRONT_PTYPE', '_JOMRES_FRONT_PTYPE');
-        $output[ 'PROPERTY_TYPE_DROPDOWN' ] = getPropertyTypeDropdown($current_property_details->ptype_id, true, true);
+        $output[ 'PROPERTY_TYPE_DROPDOWN' ] = getPropertyTypeDropdown($current_property_details->ptype_id, true);
 
         //property features
         $propertyFeaturesArray = explode(',', $current_property_details->property_features);
@@ -257,6 +257,7 @@ class j06002edit_property
         $output[ 'HLONG' ] = jr_gettext('_JOMRES_LONG', '_JOMRES_LONG', false);
         $output[ '_JOMRES_PERMIT_NUMBER_TITLE' ] = jr_gettext('_JOMRES_PERMIT_NUMBER_TITLE', '_JOMRES_PERMIT_NUMBER_TITLE', false);
         $output[ '_JOMRES_PERMIT_NUMBER_DESCRIPTION' ] = jr_gettext('_JOMRES_PERMIT_NUMBER_DESCRIPTION', '_JOMRES_PERMIT_NUMBER_DESCRIPTION', false);
+		$output[ 'PROPERTY_TYPE_DROPDOWN_WARNING' ] = jr_gettext('_JOMRES_PTYPE_CHANGE_WARNING', '_JOMRES_PTYPE_CHANGE_WARNING', false);
 
         if ($jrConfig[ 'limit_property_country' ] == '0') {
             $change_country_warning[] = array('CHANGECOUNTRYWARNING' => jr_gettext('_JOMRES_EDITPROPERTY_SELECTCOUNTRY', '_JOMRES_EDITPROPERTY_SELECTCOUNTRY', false));

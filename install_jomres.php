@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.3
+ * @version Jomres 9.9.4
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -192,11 +192,11 @@ if ($folderChecksPassed && $functionChecksPassed) {
             define('ACTION', 'Upgrade');
         }
     } else {
-        $_POST[ 'go' ] = 'GO >>';
+        $_POST[ 'go' ] = 'GO';
         define('ACTION', 'Upgrade');
     }
 
-    if ((!isset($_POST[ 'go' ]) || $_POST[ 'go' ] != 'GO >>') && $trashtables < 1) {
+    if ((!isset($_POST[ 'go' ]) || $_POST[ 'go' ] != 'GO') && $trashtables < 1) {
         if (!AUTO_UPGRADE) {
             proceed();
         }
@@ -2963,7 +2963,7 @@ function installCronjobs()
     //output_message ( "Installing cron jobs<br/>";
     jr_import('jomres_cron');
     $cron = new jomres_cron();
-    $cron->addJob('error_logs_cleanup', 'D', '');
+    $cron->addJob('error_logs_cleanup', 'H', '');
 }
 
 function trashTables()
@@ -6492,7 +6492,7 @@ function proceed()
 		
 		<form action="" method="post" name="adminForm">
 			<p>Press the GO button when you are ready to proceed with installation/upgrade</p>
-			<input type="submit" name="go" value="GO >>" class="btn btn-success btn-lg" />
+			<input type="submit" name="go" value="GO" class="btn btn-success btn-lg" />
 		</form>
 
 		<h3 class="page-header">Remove Jomres tables</h3>

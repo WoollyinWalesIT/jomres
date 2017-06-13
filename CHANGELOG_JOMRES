@@ -1,3 +1,43 @@
+<h3>Jomres 9.9.4 13/06/2017</h3>
+
+<span class="label label-warning">Change</span> Improved viewproperty so that if Show Only Availability calendar setting is used, then we properly use settings from Property Details configuration options.
+<span class="label label-warning">Change</span> Improved edit property type script so that fallback markers are properly found and displayed.
+<span class="label label-warning">Change</span> Installer modified because one of our client's firewalls 403'd when it saw >> in the POST data.
+<span class="label label-warning">Change</span> Moved the town and marker uploaders to the core to simplify things
+<span class="label label-warning">Change</span> Re-enabled the property type dropdown on the edit property page, folks seem to need it.
+<span class="label label-warning">Change</span> Whenever the property type is changed, we`ll delete all rooms, tariffs and property settings. This also resets availability.
+<span class="label label-warning">Change</span> Modified region related functionality so that if a property has an incorrect region id then the property is not returned in the search results, and it is unpublished. This is better than throwing a fatal error, and being unpublished highlights to the manager that it's not currently available. 
+<span class="label label-warning">Change</span> Added a new trigger to allow plugins to add their own warnings to the Jomres Control Panel.
+<span class="label label-warning">Change</span> Changed log cleanup frequency to hourly.
+<span class="label label-warning">Change</span> Added functionality to allow 3rd party developers to offer links to documents that provide current version information. ( Plugin manager )
+<span class="label label-warning">Change</span> Removed some very old unused functions
+<span class="label label-warning">Change</span> Romanian VAT updated
+<span class="label label-warning">Change</span> Improved agent details layout
+<span class="label label-warning">Change</span> Timeline menu hidden for real estate properties
+<span class="label label-warning">Change</span> We'll silently switch from mysql to mysqli if function doesn't exist instead of faithfully following Joomla's configuration.php file. It looks like that's what J is doing as of 3.7.x and it makes sense.
+<span class="label label-warning">Change</span> Removed plugin images from plugin manager as they can point to http sites, resulting in mixed content warnings.
+
+<span class="label label-important label-danger">Fix</span> Tweaked the initial set timeout function to be a little more friendly for shared hosting packages.
+<span class="label label-important label-danger">Fix</span> Notice fixes
+<span class="label label-important label-danger">Fix</span> Removed some redundant code which caused an error when paying for approved bookings
+<span class="label label-important label-danger">Fix</span> Removed a slash which was breaking property feature tooltip images in basic search modules.
+<span class="label label-important label-danger">Fix</span> Solved a booking form error by removing some redundant code.
+<span class="label label-important label-danger">Fix</span> Guest types class updated to allow float values in the Variance field ( used to, new class was incorrect ).
+
+<h3>Jomres 9.9.3 01/06/2017</h3>
+
+<span class="label label-important label-danger">Fix</span> We disabled the dropdown to choose property types in the previous version. In the past, regardless of whether or not the dropdown was disabled, the value of the dropdown would still be sent by the browser. It would appear that current versions of browsers no longer send the content of that dropdown, which triggers an error when saving any property.
+<span class="label label-important label-danger">Fix</span> Fixed notices in weekly occupancy percentages script.
+<span class="label label-important label-danger">Fix</span> Fixed an issue when manually creating new guests.
+
+<h3>Jomres 9.9.2 01/06/2017</h3>
+
+<span class="label label-important label-danger">Fix</span> Solved a redirect problem when installing jomres
+<span class="label label-important label-danger">Fix</span> Fixed an issue with property list paging.
+<span class="label label-important label-danger">Fix</span> Fixed an issue where dashboard settings wouldn't be saved when a guest profile hasn't been created for a manager yet.
+<span class="label label-important label-danger">Fix</span> Warn about the ipinfodb and openexchangerates api keys only if "use currency conversion" is enabled in site config.
+<span class="label label-important label-danger">Fix</span> Removed a query that`s not needed.
+
 <h3>Jomres 9.9.1 30/05/2017</h3>
 
 <span class="label label-success">Feature</span> Added jomres frontend control panel widgets. The Jomres Dashboard ( now renamed to frontend Control Panel ) is now dynamic, meaning you can add/remove widgets to the Property Manager's control panel as well as use Drag and Drop to move them around.

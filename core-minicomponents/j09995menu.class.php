@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.3
+ * @version Jomres 9.9.4
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -60,7 +60,10 @@ class j09995menu
 		//dashboard section menus
 		if ($thisJRUser->accesslevel >= 50) {
 			$jomres_menu->add_item(1, jr_gettext('_JRPORTAL_CPANEL', '_JRPORTAL_CPANEL', false), 'cpanel', 'fa-dashboard');
-			$jomres_menu->add_item(1, jr_gettext('_JOMRES_TIMELINE', '_JOMRES_TIMELINE', false), 'dashboard', 'fa-calendar');
+			
+			if ($mrConfig[ 'is_real_estate_listing' ] != '1') {
+				$jomres_menu->add_item(1, jr_gettext('_JOMRES_TIMELINE', '_JOMRES_TIMELINE', false), 'dashboard', 'fa-calendar');
+			}
 		}
 		
 		

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.3
+ * @version Jomres 9.9.4
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -58,7 +58,7 @@ class j16000import_eu_tax_rates
             $new_tax_rates[] = array('rate' => 23, 'code' => 'IVA', 'description' => 'Imposto sobre o Valor Acrescentado (Portugal)');
             $new_tax_rates[] = array('rate' => 23, 'code' => 'IVA', 'description' => 'Imposto sobre o Valor Acrescentado (Madeira)');
             $new_tax_rates[] = array('rate' => 23, 'code' => 'IV', 'description' => 'A Imposto sobre o Valor Acrescentado (Azores)');
-            $new_tax_rates[] = array('rate' => 24, 'code' => 'TVA', 'description' => 'Taxa pe valoarea adăugată (Romania)');
+            $new_tax_rates[] = array('rate' => 19, 'code' => 'TVA', 'description' => 'Taxa pe valoarea adăugată (Romania)');
             $new_tax_rates[] = array('rate' => 20, 'code' => 'DPH', 'description' => 'Daň z pridanej hodnoty (Slovakia)');
             $new_tax_rates[] = array('rate' => 22, 'code' => 'DDV', 'description' => 'Davek na dodano vrednost (Slovenia)');
             $new_tax_rates[] = array('rate' => 21, 'code' => 'IVA', 'description' => 'Impuesto sobre el valor añadido (Spain)');

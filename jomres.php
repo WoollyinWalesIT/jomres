@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.3
+ * @version Jomres 9.9.4
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -14,8 +14,10 @@
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
 
-ignore_user_abort(true);
-set_time_limit(0);
+@ignore_user_abort(true);
+$currTimeLimit = ini_get('max_execution_time');
+set_time_limit($currTimeLimit); // This setting is absolutely required for systems that will use channel management functionality as deferred notifications to Beds24 can take quite a while. Ideally we'd set this to 0 however some installations, particularly Wordpress installations that may be on "budget" and or shared hosting packages might throw at minimum a warning about setting the limit to 0. We'll try instead to set it to the max execution time and hope that that's enough. It will be in 99% of cases.
+
 
 if (isset($_REQUEST['task']) && isset($_REQUEST['field'])) { // Booking engine heartbeat is used to keep the session alive, but doesn't do anything else. We'll kill it dead right off the bat.
     if ($_REQUEST['task'] == 'handlereq' && $_REQUEST['field'] == 'heartbeat') {
@@ -24,8 +26,6 @@ if (isset($_REQUEST['task']) && isset($_REQUEST['field'])) { // Booking engine h
 }
 
 ob_start('removeBOM');
-
-@ini_set('max_execution_time', '480');
 
 // Added X-Clacks Overhead. If you're a fan of Sir Terry, leave it in. If you're not, take it out
 header('X-Clacks-Overhead: GNU Terry Pratchett');

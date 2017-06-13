@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.3
+ * @version Jomres 9.9.4
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -390,6 +390,8 @@ class basic_property_details
 
                 $countryname = getSimpleCountry($data->property_country);
 
+				$this->multi_query_result[ $data->propertys_uid ][ 'published' ] = (int) $data->published;
+				
                 $this->multi_query_result[ $data->propertys_uid ][ 'propertys_uid' ] = $data->propertys_uid;
                 $this->multi_query_result[ $data->propertys_uid ][ 'property_name' ] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME', $data->property_name, $editable, false);
                 $this->multi_query_result[ $data->propertys_uid ][ 'property_street' ] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_STREET', $data->property_street, $editable, false);
@@ -397,9 +399,19 @@ class basic_property_details
                 $this->multi_query_result[ $data->propertys_uid ][ 'property_postcode' ] = $data->property_postcode;
                 if (is_numeric($data->property_region)) {
                     $jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
-                    $this->multi_query_result[ $data->propertys_uid ][ 'property_region' ] = jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$data->property_region, $jomres_regions->get_region_name($data->property_region), $editable, false);
+					
+					//check if region id exists
+					if ( $jomres_regions->get_region_name($data->property_region) == null ) {
+						$this->multi_query_result[ $data->propertys_uid ][ 'published' ] = 0;
+						if ((int) $data->published == 1 ) {
+							$query = "UPDATE #__jomres_propertys SET `published` = 0 WHERE `propertys_uid` = ".(int)$data->propertys_uid.' LIMIT 1';
+							doInsertSql($query, "System automatically unpublished property with incorrect region id");
+						}
+					}
+                    
+					$this->multi_query_result[ $data->propertys_uid ][ 'property_region' ] = jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$data->property_region, $jomres_regions->get_region_name($data->property_region), $editable, false);
                     $this->multi_query_result[ $data->propertys_uid ][ 'property_region_id' ] = $data->property_region;
-                } else {
+                } else { // This is a fallback for older properties that used to use region names instead of region ids
                     $this->multi_query_result[ $data->propertys_uid ][ 'property_region' ] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_REGION', $data->property_region, $editable, false);
                     $this->multi_query_result[ $data->propertys_uid ][ 'property_region_id' ] = 0;
                 }
@@ -410,7 +422,7 @@ class basic_property_details
                 $this->multi_query_result[ $data->propertys_uid ][ 'property_tel' ] = $data->property_tel;
                 $this->multi_query_result[ $data->propertys_uid ][ 'property_fax' ] = $data->property_fax;
                 $this->multi_query_result[ $data->propertys_uid ][ 'property_email' ] = $data->property_email;
-                $this->multi_query_result[ $data->propertys_uid ][ 'published' ] = (int) $data->published;
+                
                 
                     $this->multi_query_result[ $data->propertys_uid ][ 'ptype_id' ] = (int) $data->ptype_id;
                 if ( isset($this->all_property_types[ (int) $data->ptype_id ])) {

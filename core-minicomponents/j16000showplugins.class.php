@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.3
+ * @version Jomres 9.9.4
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -285,6 +285,36 @@ class j16000showplugins
             $r[ 'AUTHOREMAIL' ] = stripslashes($tpp[ 'authoremail' ]);
             $r[ 'UNINSTALLLINK' ] = $uninstallLink;
 
+			$r[ 'THIRD_PARTY_PLUGIN_LATEST_AVAILABLE_VERSION' ] = "Unknown";
+			$r[ 'DEVELOPER_PAGE' ] = "";
+			$r[ 'LATEST_RELEASE' ] = "";
+			
+			if (isset( $tpp[ 'third_party_plugin_latest_available_version' ] )){
+				$file_headers = @get_headers($tpp[ 'third_party_plugin_latest_available_version' ]);
+				if($file_headers[0] != 'HTTP/1.0 404 Not Found'){
+					$r[ 'MIN_JOMRES_VER' ] = (float)$tpp[ 'min_jomres_ver' ];
+					
+					$ctx = stream_context_create(array('http'=>
+							array(
+								'timeout' => 1,  //1 Second
+							)
+						));
+
+					$remote_plugin_data = json_decode(file_get_contents($tpp[ 'third_party_plugin_latest_available_version' ], false, $ctx));
+					$r[ 'THIRD_PARTY_PLUGIN_LATEST_AVAILABLE_VERSION' ] = (float) $remote_plugin_data->version;
+					$r[ 'LATEST_RELEASE' ] = $remote_plugin_data->releaseDate;
+			
+				}
+			}
+			
+			
+			if (isset( $tpp[ 'developer_page' ] )){
+				$r[ 'DEVELOPER_PAGE' ] = '<a href="'.$tpp[ 'developer_page' ].'" target="_blank">Website</a>';
+			}
+			
+			
+
+			
             $thirdpartyplugins[ ] = $r;
         }
 
