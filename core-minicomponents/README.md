@@ -56,8 +56,10 @@ The next trigger numbers are used when building the property list/search results
 
 05000 level scripts are generally used by the booking engine. A new booking engine is being planned and these will likely not be used in the future.
 
+Jomres includes Access Control functionality, however we find that a more simplistic approach suits the vast majority of users.  
+ 
 06000 These scripts are individual tasks that can called that do not require a user to be logged in. Some scripts like the cron scripts do demand that the system pass the CMS's secret to itself, this is to prevent spiders or other web services from calling these scripts at some point and bogging the system down with scheduled jobs. On the whole, however, the bulk of these scripts are used for displaying public/guest facing output.  
-06001 These tasks are for Reception level functionality. Jomres includes Access Control functionality, however we find that a more simplistic approach suits the vast majority of users.  
+06001 These tasks are for Reception level functionality.
 06002 These tasks are for Manager level functionality.  
 06005 These tasks/scripts are for pages that can be viewed by any registered and logged in user.
 
@@ -74,14 +76,15 @@ The next trigger numbers are used when building the property list/search results
 
 99999 Anything that needs to be done right at the end of a run.
 
-
 Administrator area
 
 10001 Builds the control panel.  
 10501 Site Configuration tabs.  
 11010,11020,11040 Administrator area Media centre resource options.
 
-13100 Allows plugins to add warnings to the control panel
+13100 Allows plugins to add warnings to the control panel.
+
+16000 Administrator area tasks/pages.
 
 19995 creates the admin core menu items  
 19997 builds the admin cpanel menu
