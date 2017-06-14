@@ -2,28 +2,20 @@ The scripts in this file are not called directly, instead they are called by oth
 
 
 00001 Set into place various functions that can be overriden, or for other bootstrapping purposes.
-
 00002 Boostraps the system's user information.
-
 00003 Currently used to boostrap the input filtering settings.
-
 00004 Loads javascript and css files, which are then handing off to the host CMS for loading into the head or footer as the CMS dictates.
-
 00005 This trigger point is used by most plugins primarily to load their own language files and frontend/admin menu items. At this point most of the system has been bootstrapped, internal language files loaded according to the CMS's chosen language. Various other tasks such as saving previously searched variables for such plugins are saved, and language specific javascript files are created. After this point we're starting to build the page's output.
-
 00006 Used for sanity checks.
 
 
 00012 Currently used to build pathways for the host CMS to display. Joomla only is supported, primarily used to interface with routing functionality to build SEO friendly routes
-
-
 00021 Used to insert Jomres specific css files into the system.
-
 
 00035 These scripts are used to build tab contents in the property details pages.
 
-00060 This is used to build the top template, which is at the very top of every page and used to output many different things such as logos, sanity checks etc.
-00061 This is used to build the footer template(s).
+* 00060 This is used to build the top template, which is at the very top of every page and used to output many different things such as logos, sanity checks etc.
+* 00061 This is used to build the footer template(s).
 
 00100, 00101, 00102 These three numbers are typically used when amending bookings or configuring other data, before the page is loaded properly.
 
@@ -98,3 +90,31 @@ Administrator area
 19995 creates the admin core menu items
 
 19997 builds the admin cpanel menu
+
+
+Menu sections (Frontend)
+
+* 1 : Home
+* 10 : My account
+* 20 : Properties
+* 30 : Bookings
+* 40 : Guests
+* 50 : Invoices
+* 60 : Reports
+* 70 : Misc
+* 80 : Settings
+* 90 : Help
+
+Menu sections (Administrator)
+
+* 1 :Dashboard
+* 10 : 10, 'Users
+* 20 : Commission
+* 30 : Subscriptions
+* 40 : Invoices
+* 50 : Portal
+* 60 : Translations
+* 70 : Tools
+* 80 : Reports
+* 90 : Settings
+* 100 : Help
