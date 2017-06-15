@@ -692,6 +692,31 @@ function import_images_to_media_centre_directories()
     }
 }
 
+function jomres_formatBytes($bytes, $precision = 2)
+{
+    $units = array('B', 'KB', 'MB', 'GB', 'TB');
+
+    $bytes = max($bytes, 0);
+    $pow = floor(($bytes ? log($bytes) : 0) / log(1024));
+    $pow = min($pow, count($units) - 1);
+
+    return round($bytes, $precision).' '.$units[$pow];
+}
+
+function echo_backtrace()
+{
+    $trace = debug_backtrace();
+    foreach ($trace as $t) {
+        $file_arr = explode(JRDS, $t[ 'file' ]);
+        $file = $file_arr[ count($file_arr) - 1 ];
+        if ($file == 'helper.php') {
+            break;
+        }
+        $line = $t[ 'line' ];
+        echo 'Line : '.$line.' for file '.$file.' </br>';
+    }
+}
+
 function make_gmap_url_for_property_uid($property_uid)
 {
     if ($property_uid < 1) {
