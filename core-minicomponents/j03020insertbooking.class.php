@@ -347,7 +347,9 @@ class j03020insertbooking
                                     $result = doSelectSql($query);
                                     if (!empty($result)) {
                                         system_log('j03020insertbooking :: Failed to insert booking looks like the room has been double booked ');
-                                        trigger_error('Failed to insert booking looks like the room has been double booked ', E_USER_ERROR);
+										if (get_showtime("task" == 'processpayment') ) { // We don't want to trigger errors if this script is being called by other sources such as channel manager import scripts.
+											trigger_error('Failed to insert booking looks like the room has been double booked ', E_USER_ERROR);
+										}
                                         $this->insertSuccessful = false;
 
                                         return false;
