@@ -1,3 +1,12 @@
+<h3>Jomres 9.9.5 19/06/2017</h3>
+
+<span class="label label-warning">Change</span> Huge update to Norwegian language file. Thanks Edvin.
+<span class="label label-warning">Change</span> Modified an error trigger so that double booking exceptions can only be triggered by the processpayment task.
+<span class="label label-warning">Change</span> Added shortcode information about the new property task. ( Jomres ASAModule mambot has also been updated to support this ).
+
+<span class="label label-important label-danger">Fix</span> Re-added the (previously obsoleted) jomres_formatBytes function as some older automatically generated language files need it. Without it they'll throw a fatal error when users upgrade from 9.9.3 to 9.9.4
+
+
 <h3>Jomres 9.9.4 13/06/2017</h3>
 
 <span class="label label-warning">Change</span> Improved viewproperty so that if Show Only Availability calendar setting is used, then we properly use settings from Property Details configuration options.
