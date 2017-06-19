@@ -216,3 +216,4 @@ jr_define('_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO',"You can choose which template f
 
 jr_define('_JOMRES_OVERALL_ROOMS_BOOKED',"Percentage Rooms Booked");
 
+jr_define('_JOMRES_SHORTCODES_06005NEW_PROPERTY', 'Displays the create new property form.');

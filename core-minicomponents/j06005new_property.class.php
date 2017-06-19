@@ -22,7 +22,11 @@ class j06005new_property
         $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
         if ($MiniComponents->template_touch) {
             $this->template_touchable = false;
-
+            $this->shortcode_data = array(
+                'task' => 'new_property',
+                'info' => '_JOMRES_SHORTCODES_06005NEW_PROPERTY',
+                'arguments' => array()
+                );
             return;
         }
 
