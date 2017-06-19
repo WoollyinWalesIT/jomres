@@ -300,10 +300,11 @@ class j16000showplugins
 							)
 						));
 
-					$remote_plugin_data = json_decode(file_get_contents($tpp[ 'third_party_plugin_latest_available_version' ], false, $ctx));
-					$r[ 'THIRD_PARTY_PLUGIN_LATEST_AVAILABLE_VERSION' ] = (float) $remote_plugin_data->version;
-					$r[ 'LATEST_RELEASE' ] = $remote_plugin_data->releaseDate;
-			
+					$remote_plugin_data = json_decode(@file_get_contents($tpp[ 'third_party_plugin_latest_available_version' ], false, $ctx));
+					if ( isset($remote_plugin_data->version)) {
+						$r[ 'THIRD_PARTY_PLUGIN_LATEST_AVAILABLE_VERSION' ] = (float) $remote_plugin_data->version;
+						$r[ 'LATEST_RELEASE' ] = $remote_plugin_data->releaseDate;
+					}
 				}
 			}
 			
