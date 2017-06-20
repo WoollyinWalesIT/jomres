@@ -355,7 +355,12 @@ class j02990showconfirmation
 
                     $price = $calc;
                     $tax_rate_id = (int) $thisPrice[ 'tax_rate' ];
-                    $rate = (float) $jrportal_taxrate->taxrates[ $tax_rate_id ][ 'rate' ];
+					if (isset($jrportal_taxrate->taxrates[ $tax_rate_id ][ 'rate' ])) {
+						$rate = (float) $jrportal_taxrate->taxrates[ $tax_rate_id ][ 'rate' ];
+					} else { // An older tax rate may have been deleted
+						$rate = 0;
+					}
+
                     if ($mrConfig[ 'prices_inclusive' ] == 1) {
                         $divisor = ($rate / 100) + 1;
                         $nett_price = $price / $divisor;

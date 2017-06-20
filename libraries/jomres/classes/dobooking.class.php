@@ -1036,7 +1036,12 @@ class dobooking
                             break;
                         }
 
-                    $rate = (float) $this->taxrates[ $ex->tax_rate ][ 'rate' ];
+					if (isset($this->taxrates[ $ex->tax_rate ][ 'rate' ])) {
+						$rate = (float) $this->taxrates[ $ex->tax_rate ][ 'rate' ];
+					} else { // An older tax rate may have been deleted
+						$rate = 0;
+					}
+                    
                     if ($model[ 'model' ] != '100') { // Model 10 is commission, so it's a percentage.
                         $price = $ex->price;
 
