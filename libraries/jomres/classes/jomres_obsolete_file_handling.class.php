@@ -1505,6 +1505,7 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_minicomponents.'j06001dashboard_weekly_percentages.class.php');
 		$this->add_obs_file($this->dir_templates_bootstrap_backend.'dashboard_weekly_percentages.html');
 		$this->add_obs_file($this->dir_templates_bootstrap3_backend.'dashboard_weekly_percentages.html');
+		$this->add_obs_file($this->dir_minicomponents.'j06002edit_booking.class.php');
     }
 
     public function add_obs_file($path_and_file)
