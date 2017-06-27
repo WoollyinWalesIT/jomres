@@ -162,6 +162,11 @@ class jomres_properties
         if ((int) $jrConfig['automatically_approve_new_properties'] == 1) {
             $this->approved = 1;
         }
+		
+
+		$jomres_room_types = jomres_singleton_abstract::getInstance('jomres_room_types');
+		$jomres_room_types->get_xrefs();
+		$default_room_type = (int)$jomres_room_types->all_ptype_rtype_xrefs[$this->ptype_id][0];
 
         //insert new property details
         $query = "INSERT INTO #__jomres_propertys 
@@ -214,7 +219,7 @@ class jomres_properties
 									)
 								VALUES 
 									(
-									0,
+									'.$default_room_type.',
 									'.(int) $this->propertys_uid.',
 									10
 									)';
