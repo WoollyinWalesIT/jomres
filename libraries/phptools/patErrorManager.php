@@ -114,6 +114,7 @@ class patErrorManager
 	 */
 	function &raiseError( $code, $msg, $info = null )
 		{
+		output_fatal_error('Error triggered in patTemplate '.$msg);
 		return patErrorManager::raise( E_ERROR, $code, $msg, $info );
 		}
 
