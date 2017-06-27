@@ -59,7 +59,7 @@ class jomres_property_types
             $this->property_types = array();
         }
 
-        $query = 'SELECT `id`, `ptype`, `ptype_desc`, `published`, `order`, `mrp_srp_flag`, `marker` FROM #__jomres_ptypes ORDER BY `order` ASC';
+        $query = 'SELECT `id`, `ptype`, `ptype_desc`, `published`, `order`, `mrp_srp_flag`, `marker` FROM #__jomres_ptypes ORDER BY `ptype` ASC';
         $result = doSelectSql($query);
 
         if (empty($result)) {
