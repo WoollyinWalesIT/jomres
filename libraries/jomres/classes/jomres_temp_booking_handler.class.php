@@ -412,7 +412,7 @@ class jomres_temp_booking_handler
 			} else {
 				$query = "UPDATE #__jomres_sessions SET `data` = '".$data."' WHERE `session_id` = '".$this->jomressession_db."'";
 				if (!doInsertSql($query, '')) {
-					throw new Exception('Error: Could not update session data');
+					throw new Exception('Error: Could not update session data to database');
 				}
 			}
 		}
