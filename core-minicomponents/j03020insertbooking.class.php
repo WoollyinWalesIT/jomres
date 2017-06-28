@@ -562,6 +562,12 @@ class j03020insertbooking
                 }
             }
 
+			if (isset($tmpBookingHandler->tmpbooking[ 'gateway' ])) {
+				$query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('" . (int) $contract_uid . "','" . jr_gettext('_JOMRES_PAYMENT_METHOD_USED', '_JOMRES_PAYMENT_METHOD_USED', false)." ". $tmpBookingHandler->tmpbooking[ 'gateway' ] . "','".date( "Y-m-d H-i-s" )."','" . (int) $property_uid . "')";
+				doInsertSql( $query, "" );
+			}
+			
+
             //add rooms booked notes for guest bookings that require approvals
             if ((int) $mrConfig['requireApproval'] == 1 && !$thisJRUser->userIsManager && !$secret_key_payment) {
                 $requestedRoom = $tempBookingData->requestedRoom;
