@@ -101,7 +101,14 @@ OAuth2\Autoloader::register();
 $storage = new OAuth2\Storage\Pdo(array('dsn' => $dsn, 'username' => $username, 'password' => $password), $tables);
 
 // Pass a storage object or array of storage objects to the OAuth2 server class
-$server = new OAuth2\Server($storage);
+$server = new OAuth2\Server($storage , 
+	array(
+		'access_lifetime' => 60*60*24*14, // 14 days
+		'refresh_token_lifetime' => 2700000,
+		'allow_implicit' => true,
+		'enforce_state' => false
+		)
+	);
 
 // Add the "Client Credentials" grant type (it is the simplest of the grant types)
 $server->addGrantType(new OAuth2\GrantType\ClientCredentials($storage));
