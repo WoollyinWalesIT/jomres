@@ -3,11 +3,10 @@
 namespace OAuth2\OpenID\Storage;
 
 use OAuth2\Storage\AuthorizationCodeInterface as BaseAuthorizationCodeInterface;
-
 /**
  * Implement this interface to specify where the OAuth2 Server
  * should get/save authorization codes for the "Authorization Code"
- * grant type.
+ * grant type
  *
  * @author Brent Shaffer <bshafs at gmail dot com>
  */
@@ -24,13 +23,13 @@ interface AuthorizationCodeInterface extends BaseAuthorizationCodeInterface
      *
      * Required for OAuth2::GRANT_TYPE_AUTH_CODE.
      *
-     * @param $code                authorization code to be stored
-     * @param $client_id           client identifier to be stored
-     * @param $user_id             user identifier to be stored
-     * @param string $redirect_uri redirect URI(s) to be stored in a space-separated string
-     * @param int    $expires      expiration to be stored as a Unix timestamp
-     * @param string $scope        OPTIONAL scopes to be stored in space-separated string
-     * @param string $id_token     OPTIONAL the OpenID Connect id_token
+     * @param string $code         - authorization code to be stored.
+     * @param mixed $client_id     - client identifier to be stored.
+     * @param mixed $user_id       - user identifier to be stored.
+     * @param string $redirect_uri - redirect URI(s) to be stored in a space-separated string.
+     * @param int    $expires      - expiration to be stored as a Unix timestamp.
+     * @param string $scope        - OPTIONAL scopes to be stored in space-separated string.
+     * @param string $id_token     - OPTIONAL the OpenID Connect id_token.
      *
      * @ingroup oauth2_section_4
      */

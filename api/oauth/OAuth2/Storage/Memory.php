@@ -6,15 +6,14 @@ use OAuth2\OpenID\Storage\UserClaimsInterface;
 use OAuth2\OpenID\Storage\AuthorizationCodeInterface as OpenIDAuthorizationCodeInterface;
 
 /**
- * Simple in-memory storage for all storage types.
+ * Simple in-memory storage for all storage types
  *
  * NOTE: This class should never be used in production, and is
  * a stub class for example use only
  *
  * @author Brent Shaffer <bshafs at gmail dot com>
  */
-class Memory implements
-AuthorizationCodeInterface,
+class Memory implements AuthorizationCodeInterface,
     UserCredentialsInterface,
     UserClaimsInterface,
     AccessTokenInterface,
@@ -103,9 +102,9 @@ AuthorizationCodeInterface,
     public function setUser($username, $password, $firstName = null, $lastName = null)
     {
         $this->userCredentials[$username] = array(
-            'password' => $password,
+            'password'   => $password,
             'first_name' => $firstName,
-            'last_name' => $lastName,
+            'last_name'  => $lastName,
         );
 
         return true;
@@ -118,10 +117,10 @@ AuthorizationCodeInterface,
         }
 
         return array_merge(array(
-            'user_id' => $username,
-            'password' => null,
+            'user_id'    => $username,
+            'password'   => null,
             'first_name' => null,
-            'last_name' => null,
+            'last_name'  => null,
         ), $this->userCredentials[$username]);
     }
 
@@ -143,7 +142,7 @@ AuthorizationCodeInterface,
                     // address is an object with subfields
                     $userClaims['address'] = $this->getUserClaim($validClaim, $userDetails['address'] ?: $userDetails);
                 } else {
-                    $userClaims = array_merge($this->getUserClaim($validClaim, $userDetails));
+                    $userClaims = array_merge($userClaims, $this->getUserClaim($validClaim, $userDetails));
                 }
             }
         }
@@ -187,10 +186,10 @@ AuthorizationCodeInterface,
         }
 
         $clientDetails = array_merge(array(
-            'client_id' => $client_id,
+            'client_id'     => $client_id,
             'client_secret' => null,
-            'redirect_uri' => null,
-            'scope' => null,
+            'redirect_uri'  => null,
+            'scope'         => null,
         ), $this->clientCredentials[$client_id]);
 
         return $clientDetails;
@@ -211,12 +210,12 @@ AuthorizationCodeInterface,
     public function setClientDetails($client_id, $client_secret = null, $redirect_uri = null, $grant_types = null, $scope = null, $user_id = null)
     {
         $this->clientCredentials[$client_id] = array(
-            'client_id' => $client_id,
+            'client_id'     => $client_id,
             'client_secret' => $client_secret,
-            'redirect_uri' => $redirect_uri,
-            'grant_types' => $grant_types,
-            'scope' => $scope,
-            'user_id' => $user_id,
+            'redirect_uri'  => $redirect_uri,
+            'grant_types'   => $grant_types,
+            'scope'         => $scope,
+            'user_id'       => $user_id,
         );
 
         return true;
@@ -237,7 +236,13 @@ AuthorizationCodeInterface,
 
     public function unsetRefreshToken($refresh_token)
     {
-        unset($this->refreshTokens[$refresh_token]);
+        if (isset($this->refreshTokens[$refresh_token])) {
+            unset($this->refreshTokens[$refresh_token]);
+
+            return true;
+        }
+
+        return false;
     }
 
     public function setRefreshTokens($refresh_tokens)
@@ -260,14 +265,20 @@ AuthorizationCodeInterface,
 
     public function unsetAccessToken($access_token)
     {
-        unset($this->accessTokens[$access_token]);
+        if (isset($this->accessTokens[$access_token])) {
+            unset($this->accessTokens[$access_token]);
+
+            return true;
+        }
+
+        return false;
     }
 
     public function scopeExists($scope)
     {
         $scope = explode(' ', trim($scope));
 
-        return count(array_diff($scope, $this->supportedScopes)) == 0;
+        return (count(array_diff($scope, $this->supportedScopes)) == 0);
     }
 
     public function getDefaultScope($client_id = null)
@@ -281,8 +292,8 @@ AuthorizationCodeInterface,
         if (isset($this->jwt[$client_id])) {
             $jwt = $this->jwt[$client_id];
             if ($jwt) {
-                if ($jwt['subject'] == $subject) {
-                    return $jwt['key'];
+                if ($jwt["subject"] == $subject) {
+                    return $jwt["key"];
                 }
             }
         }
@@ -312,7 +323,7 @@ AuthorizationCodeInterface,
                     'subject' => $storedJti['subject'],
                     'audience' => $storedJti['audience'],
                     'expires' => $storedJti['expires'],
-                    'jti' => $storedJti['jti'],
+                    'jti' => $storedJti['jti']
                 );
             }
         }

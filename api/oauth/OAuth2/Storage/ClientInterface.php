@@ -4,7 +4,7 @@ namespace OAuth2\Storage;
 
 /**
  * Implement this interface to specify where the OAuth2 Server
- * should retrieve client information.
+ * should retrieve client information
  *
  * @author Brent Shaffer <bshafs at gmail dot com>
  */
@@ -17,7 +17,7 @@ interface ClientInterface
      * Implement this function to grab the stored URI for a given client id.
      *
      * @param $client_id
-     * Client identifier to be check with
+     * Client identifier to be check with.
      *
      * @return array
      *               Client details. The only mandatory key in the array is "redirect_uri".
@@ -38,7 +38,7 @@ interface ClientInterface
     public function getClientDetails($client_id);
 
     /**
-     * Get the scope associated with this client.
+     * Get the scope associated with this client
      *
      * @return
      * STRING the space-delineated scope list for the specified client_id
@@ -52,13 +52,13 @@ interface ClientInterface
      * function.
      *
      * @param $client_id
-     * Client identifier to be check with
+     * Client identifier to be check with.
      * @param $grant_type
      * Grant type to be check with
      *
      * @return
      * TRUE if the grant type is supported by this client identifier, and
-     * FALSE if it isn't
+     * FALSE if it isn't.
      *
      * @ingroup oauth2_section_4
      */
