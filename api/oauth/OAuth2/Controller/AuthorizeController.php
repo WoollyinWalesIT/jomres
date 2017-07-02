@@ -231,7 +231,7 @@ class AuthorizeController implements AuthorizeControllerInterface
 
             // validate against the registered redirect uri(s) if available
             if ($registered_redirect_uri && !$this->validateRedirectUri($supplied_redirect_uri, $registered_redirect_uri)) {
-                $response->setError(400, 'redirect_uri_mismatch', 'The redirect URI provided is missing or does not match', '#section-3.1.2');
+                $response->setError(400, 'redirect_uri_mismatch', 'The redirect URI ('.$supplied_redirect_uri.') provided is missing or does not match '.$registered_redirect_uri, '#section-3.1.2');
 
                 return false;
             }
