@@ -21,6 +21,7 @@ class all_api_features
     public function __construct()
     {
         $this->api_feature_files = array();
+		$this->authentication_free_routes = array();
         $this->get_all_api_features(JOMRES_API_JOMRES_ROOT.DIRECTORY_SEPARATOR.'core-plugins'.DIRECTORY_SEPARATOR);
         $this->get_all_api_features(JOMRES_API_JOMRES_ROOT.DIRECTORY_SEPARATOR.'remote_plugins'.DIRECTORY_SEPARATOR);
     }
@@ -30,6 +31,10 @@ class all_api_features
         return $this->api_feature_files;
     }
 
+	public function get_authfree_routes() {
+		return $this->authentication_free_routes;
+	}
+	
     private function get_all_api_features($path)
     {
         $core_plugins_dir_contents = scandir($path);
@@ -43,6 +48,13 @@ class all_api_features
 
         if (!empty($api_feature_directories)) {
             foreach ($api_feature_directories as $plugin) {
+				if (file_exists($path.$plugin.DIRECTORY_SEPARATOR.'auth_free.json') ) {
+					$json = json_decode(file_get_contents($path.$plugin.DIRECTORY_SEPARATOR.'auth_free.json'));
+					if($json->auth_free === true ) {
+						$this->authentication_free_routes[] = str_replace("api_feature_" , "" , $plugin);
+					}
+				}
+				
                 $plugin_dir_contents = scandir($path.DIRECTORY_SEPARATOR.$plugin);
                 if (!empty($plugin_dir_contents)) {
                     foreach ($plugin_dir_contents as $method_dir) {
