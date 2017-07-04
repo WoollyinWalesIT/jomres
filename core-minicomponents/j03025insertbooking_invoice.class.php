@@ -238,7 +238,7 @@ class j03025insertbooking_invoice
 
                         $line_items[] = array('tax_code_id' => $tpe[ 'tax_code_id' ],
                                                 'name' => $tpe[ 'description' ],
-                                                'description' => $tpe[ 'description' ],
+                                                'description' => '',
                                                 'init_price' => $third_party_extra_price,
                                                 'init_qty' => 1,
                                                 'init_discount' => 0,
@@ -257,7 +257,7 @@ class j03025insertbooking_invoice
 
                         $line_items[] = array('tax_code_id' => $tpe[ 'tax_code_id' ],
                                                 'name' => $tpe[ 'description' ],
-                                                'description' => $tpe[ 'description' ],
+                                                'description' => '',
                                                 'init_price' => $tpe[ 'untaxed_grand_total' ],
                                                 'init_qty' => 1,
                                                 'init_discount' => 0,
