@@ -54,7 +54,7 @@ class j06000compare
 
         $output = array();
         $output[ '_JOMRES_RETURN_TO_RESULTS' ] = jr_gettext('_JOMRES_RETURN_TO_RESULTS', '_JOMRES_RETURN_TO_RESULTS', false, false);
-        $output[ 'RETURN_TO_RESULTS_LINK' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=compare');
+        $output[ 'RETURN_TO_RESULTS_LINK' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=search');
 
         $output[ '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', false, false);
         $output[ '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', false, false);
