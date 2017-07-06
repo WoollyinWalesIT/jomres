@@ -49,6 +49,9 @@ class j01050x_geocoder
 
         $output['MAP_STYLE'] = file_get_contents(JOMRES_LIBRARIES_ABSPATH.'map_styles'.JRDS.$jrConfig['map_style'].'.style');
 		$output['ZOOMLEVEL'] = (int)$jrConfig['map_zoom'];
+		if ( isset( $_REQUEST['map_zoom'] )) {
+			$output['ZOOMLEVEL'] = (int) $_REQUEST['map_zoom'];
+		}
 		$output['MAPTYPE'] = strtoupper($jrConfig['map_type']);
 
         $output[ 'DISABLE_UI' ] = '';
