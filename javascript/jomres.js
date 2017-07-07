@@ -1136,7 +1136,7 @@ jomresJquery(document).ready(function () {
 
 function trigger_comparison(form) {
 	var values = new Array();
-	jomresJquery(":checkbox:checked").each(
+	jomresJquery("input[type=checkbox][name=compare]:checked").each(
 		function () {
 			values.push(jomresJquery(this).val());
 		}
