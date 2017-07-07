@@ -38,12 +38,14 @@ class j16000list_error_logs
         $error_log_files = array();
         if (is_dir($jrConfig['log_path'])) {
             $files = scandir_getfiles($jrConfig['log_path']);
+
             foreach ($files as $file) {
                 if ($file != '.' && $file != '..') {
                     $bang = explode('.', $file);
+
                     $mtime = filemtime($jrConfig['log_path'].$file);
                     if (isset($bang[2]) && $bang[2] == 'log' && !isset($bang[3])) {
-                        $system_log_files[$mtime] = array('filename' => $file, 'mtime' => $mtime);
+                        $system_log_files[$mtime.$file] = array('filename' => $file, 'mtime' => $mtime);
                     } elseif (isset($bang[1]) && $bang[1] == 'html') {
                         $interval = strtotime('-2 weeks');
                         if ($mtime <= $interval) {
@@ -58,7 +60,6 @@ class j16000list_error_logs
         }
 
         ksort($error_log_files);
-
         $output = array();
         $pageoutput = array();
         $error_rows = array();
