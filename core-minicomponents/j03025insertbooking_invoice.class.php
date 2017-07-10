@@ -110,33 +110,50 @@ class j03025insertbooking_invoice
 
             //Get the initial discount (wiseprice, lastminute, personal, partner, coupon discounts)
             $discount_amount = 0.00;
-            $totalDiscountForRoom = 0.00;
+            
+			//discount amounts
+			$lastminute_discount = 0.00;
+			$wiseprice_discount = 0.00;
+			$coupon_discount = 0.00;
+			$partner_discount = 0.00;
 
             if (!empty($discounts)) {
                 foreach ($discounts as $d) {
                     $discount_amount = (float) $d[ 'discountfrom' ] - (float) $d[ 'discountto' ];
 
-                    if ($d['type'] == 'MRP') { //wiseprice
-                        if ($mrConfig['perPersonPerNight'] == '1') {
-                            if ((int) $guests_by_room[$guests_by_room_array_index] > 0) {
-                                $discount_amount = $discount_amount * (int) $guests_by_room[$guests_by_room_array_index];
-                                ++$guests_by_room_array_index;
-                            }
-                        }
+					switch ($d['type']) {
+						case 'MRP': //wiseprice
+							if ($mrConfig['perPersonPerNight'] == '1') {
+								if ((int) $guests_by_room[$guests_by_room_array_index] > 0) {
+									$discount_amount = $discount_amount * (int) $guests_by_room[$guests_by_room_array_index];
+									++$guests_by_room_array_index;
+								}
+							}
 
-                        $discount_amount = $discount_amount * $stayDays;
-                    }
-
-                    $totalDiscountForRoom += $discount_amount;
+							$wiseprice_discount += $discount_amount * $stayDays;
+							break;
+						case 'SRP':
+							$lastminute_discount += $discount_amount;
+							break;
+						case 'Coupon':
+							$coupon_discount += $discount_amount;
+							break;
+						case 'Partner':
+							$partner_discount += $discount_amount;
+							break;
+						default:
+							break;
+					}
                 }
             }
+
             if (get_showtime('include_room_booking_functionality')) {
                 $line_items[] = array('tax_code_id' => (int) $mrConfig[ 'accommodation_tax_code' ],
                                         'name' => '_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL',
                                         'description' => '('.outputDate($arrivalDate).' - '.outputDate($departureDate).')',
                                         'init_price' => $room_total_nodiscount,
                                         'init_qty' => 1,
-                                        'init_discount' => 0 - $totalDiscountForRoom,
+                                        'init_discount' => 0 - $wiseprice_discount - $lastminute_discount - $coupon_discount - $partner_discount,
                                         );
             }
 
@@ -228,12 +245,16 @@ class j03025insertbooking_invoice
 						
 						//strange array key name..we need to get the price without tax no matter what
 						$third_party_extra_price = $tpe[ 'untaxed_grand_total' ];
+						$coupon_discount_nett = $coupon_discount;
 						
 						if ($jrportal_taxrate->gather_data($tpe[ 'tax_code_id' ])) {
 							$rate = (float) $jrportal_taxrate->rate;
 							$divisor = ($rate / 100) + 1;
 							$nett_price = $tpe[ 'untaxed_grand_total' ] / $divisor;
 							$third_party_extra_price = $nett_price;
+							
+							//find the nett coupon discount
+							$coupon_discount_nett = $coupon_discount / $divisor;
 						}
 
                         $line_items[] = array('tax_code_id' => $tpe[ 'tax_code_id' ],
@@ -241,7 +262,7 @@ class j03025insertbooking_invoice
                                                 'description' => '',
                                                 'init_price' => $third_party_extra_price,
                                                 'init_qty' => 1,
-                                                'init_discount' => 0,
+                                                'init_discount' => 0 - $coupon_discount_nett,
                                                 );
                     }
                 }
