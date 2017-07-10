@@ -88,8 +88,8 @@ class minicomponent_registry
         $this->getMiniComponentCMSSpecificClasses();
 
         if ($jrConfig[ 'safe_mode' ] == '0') {
-            $this->getMiniCorePluginsClasses();
-            $this->getMiniComponentRemoteClasses();
+/*             $this->getMiniCorePluginsClasses();
+            $this->getMiniComponentRemoteClasses(); */
 
             if (!defined('AUTO_UPGRADE')) {
                 $this->getMiniComponentCmsTemplateClasses();
@@ -226,7 +226,7 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
     }
 
     // Reads in class files from the components table and inserts them into the registeredClasses array
-    public function getMiniComponentRemoteClasses()
+/*     public function getMiniComponentRemoteClasses()
     {
         $jrePath = JOMRES_REMOTEPLUGINS_ABSPATH;
         $d = @dir($jrePath);
@@ -254,7 +254,7 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
                 }
             }
         }
-    }
+    } */
 
     public function getMiniComponentCMSSpecificClasses()
     {
@@ -283,7 +283,7 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
         }
     }
 
-    public function getMiniCorePluginsClasses()
+/*     public function getMiniCorePluginsClasses()
     {
         $jrePath = JOMRES_COREPLUGINS_ABSPATH;
         $d = @dir($jrePath);
@@ -311,7 +311,7 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
                 }
             }
         }
-    }
+    } */
 
     public function registerComponentFile($filePath, $filename, $eventType = 'component')
     {

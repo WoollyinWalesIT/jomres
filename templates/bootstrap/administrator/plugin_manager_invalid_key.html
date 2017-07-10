@@ -1,0 +1,45 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<style type="text/css">
+.jomres-membership {background-color: white;}
+.jomres-membership-highlight {-webkit-box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.75);-moz-box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.75);box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.75);}
+.membership-name {padding:10px 0;font-size:24px;color:#fff;background:#1780c3;}
+.membership-price {padding:20px 0; font-size:42px;background:#1bacef;color:#fff;line-height:1.2;}
+span.membership-price-sub {display:block;font-size:18px;}
+.membership-item {padding:10px 0;background:#f1f1f1;margin-bottom:2px;}
+.membership-action {padding:15px 0;}
+.membership-name-trial {padding:10px 0;font-size:24px;color:#333;background:#ccc;}
+.membership-price-trial {padding:20px 0; font-size:42px;background:#f5f5f5;color:#333;line-height:1.2;}
+.jomres-membership-background {background-image: url("{LIVESITE}/jomres/images/plugin_manager.png");background-repeat: no-repeat;background-size:cover;}
+span.os {display:block;font-size:10px;}
+ 
+ 
+</style>
+
+<div class="center">
+	<p class="alert alert-danger">Your license key isn't valid or  you haven't saved it in Site Configuration, you cannot install any plugins. First enter a valid key in Site Configuration before visiting this page.</p>
+	<a href="{JOMRES_SITEPAGE_URL_ADMIN}&task=site_settings" class="btn btn-danger">Go to Site Configuration</a>
+</div>
+<p>&nbsp;</p>
+<hr/>
+<p>&nbsp;</p>
+<div class="center">
+	<h1>Don't have a license key yet?</h1>
+</div>
+
+
+{TRIAL}
+
+<hr/>
+<div class="center">
+	<h1>Are you ready to take your business to the next level?</h1>
+</div>
+
+	{SUBSCRIPTION_LICENSES}
+	
+	{FULL_LICENSES}
+
+
+<p class="alert alert-warning">Please do <em>not</em> purchase any "Jomres Zero" license if you're not prepared to read the manual, or simply because it's the cheapest possible option. Jomres Zero licenses are intended for experienced web site developers who are on a tight budget. Jomres is a powerful system and if you purchase a Zero license you <em>will</em> need to be prepared to use the forum, the manual or your own ingenuity to answer your questions. We will <em>not</em> provide you with support when you realise you need hand-holding after installing it.</p>
+<p class="alert alert-info">We offer more "Pre-purchase/pre-commitment" options than any of our competitors, because <em>we want you to be sure</em> that Jomres is right for you. Before committing to a purchase you have the option to install Jomres Core for free into any  existing installation of Joomla or Wordpress. Additionally, if you request a (free) trial license key you are able to install one of the 4 Quickstarts to experiment with. By the time you're ready to purchase you should know if you are going to need support or not.<br/> <strong>If you think you will need support, please purchase a license that includes support.</strong></p>
+
+</patTemplate:tmpl>

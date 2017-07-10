@@ -14,9 +14,9 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j16000removeplugin
+class j16000plugin_manager_check
 {
-    public function __construct()
+    public function __construct($componentArgs)
     {
         // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
         $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
@@ -25,27 +25,38 @@ class j16000removeplugin
 
             return;
         }
-        $debugging = false;
-        $pluginName = jomresGetParam($_REQUEST, 'plugin', '');
-        if ($pluginName == 'subsc<x>riptions') {
-            $pluginName = 'subscriptions';
-        }
-        if (!dropPlugin($pluginName)) {
-            echo 'Plugin could not be removed';
-        }
 
-        $registry = jomres_singleton_abstract::getInstance('minicomponent_registry');
-		unlink ( $registry->registry_file );
-		unlink ( JOMRES_TEMP_ABSPATH.'registry_classes.php' );
+		$this->retVals = '';
+        if ( !file_exists(JOMRES_COREPLUGINS_ABSPATH.'plugin_manager'.JRDS.'plugin_info.php') ) {
+			if (isset($componentArgs[ 'output_now' ])) {
+				$output_now = $componentArgs[ 'output_now' ];
+			} else {
+				$output_now = true;
+			}
+			$output = array();
+			$pageoutput = array();
+			$output['MESSAGE'] = 'The Plugin Manager is not installed, you must install it through the Plugin Manager page to use Jomres Core plugins or install third party plugins.';
 
-        if (!$debugging) {
-            jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins#'.$pluginName));
-        }
+			$pageoutput[ ] = $output;
+			$tmpl = new patTemplate();
+			$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
+			$tmpl->addRows('pageoutput', $pageoutput);
+			$tmpl->readTemplatesFromInput('plugin_manager_warning.html');
+
+			if ($output_now) {
+				$tmpl->displayParsedTemplate();
+			} else {
+				$this->retVals = $tmpl->getParsedTemplate();
+			}
+		
+		}
+
+
     }
 
     // This must be included in every Event/Mini-component
     public function getRetVals()
     {
-        return null;
+        return $this->retVals;
     }
 }

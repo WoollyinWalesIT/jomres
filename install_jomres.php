@@ -778,15 +778,7 @@ function add_api_tables() {
     $query = "CREATE TABLE IF NOT EXISTS  #__jomres_oauth_refresh_tokens (refresh_token VARCHAR(40) NOT NULL, client_id VARCHAR(80) NOT NULL, user_id VARCHAR(255), expires TIMESTAMP NOT NULL, scope VARCHAR(2000), CONSTRAINT refresh_token_pk PRIMARY KEY (refresh_token))";
     doInsertSql($query,"");
 
-
-    $query = "CREATE TABLE IF NOT EXISTS  #__jomres_oauth_users (username VARCHAR(255) NOT NULL, password VARCHAR(2000), first_name VARCHAR(255), last_name VARCHAR(255), CONSTRAINT username_pk PRIMARY KEY (username))";
-    doInsertSql($query,"");
-
-
     $query = "CREATE TABLE IF NOT EXISTS  #__jomres_oauth_scopes (scope TEXT, is_default BOOLEAN)";
-    doInsertSql($query,"");
-
-    $query = "CREATE TABLE IF NOT EXISTS  #__jomres_oauth_jwt (client_id VARCHAR(80) NOT NULL, subject VARCHAR(80), public_key VARCHAR(2000), CONSTRAINT jwt_client_id_pk PRIMARY KEY (client_id))";
     doInsertSql($query,"");
 
     // We need to see if there's a "system" user in the database, if there's not we'll create them. This is a once only action
