@@ -1401,7 +1401,7 @@ jr_define('_JOMRES_CUSTOMCODE_PLUGINMANAGER', 'Plugin manager');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_INTEGRATION', 'integration');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_STATS', 'reports/statistics');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP', 'kömək');
-jr_define('_JOMRES_CUSTOMCODE_UPGRADES', 'Upgrades');
+jr_define('_JOMRES_CUSTOMCODE_UPGRADES', 'Updates');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_GATEWAYS', 'Ödəmə üsulları');
 jr_define('_JOMRES_TARIFFTYPES_MISCSETTINGS_DEFAULT', 'Tariff default');
 jr_define('_JOMRES_TARIFFTYPES_MISCSETTINGS_DEFAULT_DESC', 'This only applies to new tariffs');
@@ -1993,3 +1993,5 @@ jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_UPDATEINFO', 'Please note, after 
 jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_UPDATEINFO_KEYVALID', 'Please note, after updating you must update any Jomres Plugins that are already installed, through the Jomres plugin manager.');
 jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_RENEWALS', "If you would like to update Jomres and it's plugins you will need a renewal license. Please visit <a href='https://www.jomres.net/pricing' target='_blank'>our site</a> for more information. In most cases these licenses are 50% of the price of a full license. Please ensure that you have logged into our shop before attempting to purchase a renewal.");
 jr_define('_JOMRES_PAYMENT_METHOD_USED',"Payment method : ");
+
+jr_define('_JOMRES_PRICES',"Buy Jomres");

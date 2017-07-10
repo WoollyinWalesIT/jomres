@@ -1356,7 +1356,7 @@ jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_PORTAL', 'portal functionality');
 jr_define('_JOMRES_CUSTOMCODE_PLUGINMANAGER', 'Plugin manager');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_INTEGRATION', 'integration');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_STATS', 'گزارشات');
-jr_define('_JOMRES_CUSTOMCODE_UPGRADES', 'Upgrades');
+jr_define('_JOMRES_CUSTOMCODE_UPGRADES', 'Updates');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_GATEWAYS', 'روش های پرداخت');
 jr_define('_JOMRES_TARIFFTYPES_MISCSETTINGS_DEFAULT', 'تعرفه پیش فرض');
 jr_define('_JOMRES_TARIFFTYPES_MISCSETTINGS_DEFAULT_DESC', 'این فقط شامل تعرفه های جدید میشود');

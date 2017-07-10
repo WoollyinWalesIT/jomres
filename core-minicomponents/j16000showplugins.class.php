@@ -144,7 +144,7 @@ class j16000showplugins
 				
 				$output = array();
 				
-				$output['SUBSCRIPTION_LICENSES'] = '';
+				$output['SUBSCRIPTION_LICENSES'] = '<p class="center alert alert-info">Ioncube loaders are not installed on this server, therefore we can\'t show you the subscription plans available :(</p>';
 				if ($loaders_available) { // show the subscriptions available
 					$pageoutput = array();
 					$tmpl = new patTemplate();
@@ -163,12 +163,15 @@ class j16000showplugins
 					$output['FULL_LICENSES'] = $tmpl->getParsedTemplate();
 				//}
 				
-				$pageoutput = array();
-				$tmpl = new patTemplate();
-				$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
-				$tmpl->addRows('pageoutput', $pageoutput);
-				$tmpl->readTemplatesFromInput('plugin_manager_licenses_trial.html');
-				$output['TRIAL'] = $tmpl->getParsedTemplate();
+				$output['TRIAL'] = '<p class="center alert alert-info">Ioncube loaders are not installed on this server, therefore we can\'t show you the trial license plan :(</p>';
+				if ($loaders_available) { // show the trial offer
+					$pageoutput = array();
+					$tmpl = new patTemplate();
+					$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
+					$tmpl->addRows('pageoutput', $pageoutput);
+					$tmpl->readTemplatesFromInput('plugin_manager_licenses_trial.html');
+					$output['TRIAL'] = $tmpl->getParsedTemplate();
+				}
 				
 				$pageoutput = array();
 				$pageoutput[ ] = $output;
