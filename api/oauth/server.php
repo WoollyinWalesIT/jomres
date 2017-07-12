@@ -43,7 +43,7 @@ $storage = new OAuth2\Storage\Pdo(array('dsn' => $dsn, 'username' => JOMRES_API_
 // Pass a storage object or array of storage objects to the OAuth2 server class
 $server = new OAuth2\Server($storage , 
 	array(
-		'access_lifetime' => 60*60*24*14, // 14 days
+		'access_lifetime' => 60*60*24*365, // 365 days
 		'refresh_token_lifetime' => 2700000,
 		'allow_implicit' => true,
 		'enforce_state' => false
