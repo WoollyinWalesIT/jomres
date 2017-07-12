@@ -32,34 +32,24 @@ class j16000prices
 		
 		$output = array();
 		
-		$output['SUBSCRIPTION_LICENSES'] = '<p class="center alert alert-info">Ioncube loaders are not installed on this server, therefore we can\'t show you the subscription plans available :(</p>';
-		if ($loaders_available) { // show the subscriptions available
-			$pageoutput = array();
-			$tmpl = new patTemplate();
-			$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
-			$tmpl->addRows('pageoutput', $pageoutput);
-			$tmpl->readTemplatesFromInput('plugin_manager_licenses_subscriptions.html');
-			$output['SUBSCRIPTION_LICENSES'] = $tmpl->getParsedTemplate();
-		} 
-				
-		//if ($output['SUBSCRIPTION_LICENSES'] == '') {
-			$pageoutput = array();
-			$tmpl = new patTemplate();
-			$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
-			$tmpl->addRows('pageoutput', $pageoutput);
-			$tmpl->readTemplatesFromInput('plugin_manager_licenses_full.html');
-			$output['FULL_LICENSES'] = $tmpl->getParsedTemplate();
-		//}
-				
-		$output['TRIAL'] = '<p class="center alert alert-info">Ioncube loaders are not installed on this server, therefore we can\'t show you the trial license plan :(</p>';
-		if ($loaders_available) { // show the trial offer
-			$pageoutput = array();
-			$tmpl = new patTemplate();
-			$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
-			$tmpl->addRows('pageoutput', $pageoutput);
-			$tmpl->readTemplatesFromInput('plugin_manager_licenses_trial.html');
-			$output['TRIAL'] = $tmpl->getParsedTemplate();
+		$output['IONCUBE_WARNING'] = '';
+		if (!$loaders_available) { // show the subscriptions available
+			$output['IONCUBE_WARNING'] = '<p class="center alert alert-info">Ioncube loaders are not installed on this server, &#9785; you will need to install the Ioncube Loaders first</p>';
 		}
+		
+		$pageoutput = array();
+		$tmpl = new patTemplate();
+		$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
+		$tmpl->addRows('pageoutput', $pageoutput);
+		$tmpl->readTemplatesFromInput('plugin_manager_licenses_subscriptions.html');
+		$output['SUBSCRIPTION_LICENSES'] = $tmpl->getParsedTemplate();
+		
+		$pageoutput = array();
+		$tmpl = new patTemplate();
+		$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
+		$tmpl->addRows('pageoutput', $pageoutput);
+		$tmpl->readTemplatesFromInput('plugin_manager_licenses_full.html');
+		$output['FULL_LICENSES'] = $tmpl->getParsedTemplate();
 		
 		$pageoutput = array();
 		$pageoutput[ ] = $output;
