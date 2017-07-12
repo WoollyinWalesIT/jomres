@@ -217,3 +217,5 @@ jr_define('_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO',"You can choose which template f
 jr_define('_JOMRES_OVERALL_ROOMS_BOOKED',"Percentage Rooms Booked");
 
 jr_define('_JOMRES_SHORTCODES_06005NEW_PROPERTY', 'Displays the create new property form.');
+
+jr_define('_JOMRES_SHORTCODES_06005PROPERTY_MAP_ZOOM', 'Map zoom, 1: World 5: Landmass/continent 10: City 15: Streets 20: Buildings ');

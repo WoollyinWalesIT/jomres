@@ -30,6 +30,11 @@ class j06000show_property_map
                         'arg_info' => '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_MAP_ARG_PROPERTY_UID',
                         'arg_example' => '1',
                         ),
+						1 => array(
+                        'argument' => 'map_zoom',
+                        'arg_info' => '_JOMRES_SHORTCODES_06005PROPERTY_MAP_ZOOM',
+                        'arg_example' => '10',
+                        ),
                     ),
                 );
 
