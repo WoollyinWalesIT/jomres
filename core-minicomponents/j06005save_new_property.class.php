@@ -71,7 +71,7 @@ class j06005save_new_property
 
         //send admin email if the new property requires approval. TODO: move to 04901 trigger point too
         if ($jomres_properties->approved == 0) {
-            $link = JOMRES_SITEPAGE_URL_ADMIN.'&task=list_properties_awaiting_approval';
+            $link = JOMRES_SITEPAGE_URL_ADMIN.'&task=property_approvals';
             $subject = jr_gettext('_JOMRES_APPROVALS_ADMIN_EMAIL_SUBJECT', '_JOMRES_APPROVALS_ADMIN_EMAIL_SUBJECT', false);
             $message = jr_gettext('_JOMRES_APPROVALS_ADMIN_EMAIL_CONTENT', '_JOMRES_APPROVALS_ADMIN_EMAIL_CONTENT', false).$link;
             sendAdminEmail($subject, $message);
