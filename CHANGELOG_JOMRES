@@ -1,3 +1,40 @@
+<h3>Jomres 9.9.6 12/07/2017</h3>
+
+<span class="label label-warning">Change</span> Our implementation of OAuth2 scripts updated to extend the lifetime of the tokens, and allow implicit token issuing.
+<span class="label label-warning">Change</span> Changed property type class so that property types are retrieved in alphabetical order.
+<span class="label label-warning">Change</span> Modified patErrorManager to record an error in the event of problems because it will provide us with backtracing information.
+<span class="label label-warning">Change</span> Modified jomres_properties class so that new properties default room will get a basic room type, meaning that Micromanage editing mode can be used right off the bat.
+<span class="label label-warning">Change</span> Tweaked an error message to clarify it's source.
+<span class="label label-warning">Change</span> Added payment method as booking note.
+<span class="label label-warning">Change</span> Monolog and OAuth2 libs updated.
+<span class="label label-warning">Change</span> Tweaked rest api authorize controller so that if it returns an error about return urls, it tells you which url it's expecting, versus what was sent.
+<span class="label label-warning">Change</span> Added support for auth free access to the REST API functionality. This feature allows us to offer additional REST API functionality that doesn't demand client id & secret keypairs, so that there are fewer barriers between your clients and your API.
+<span class="label label-warning">Change</span> Made the search misc menu item visible to receptionists or above. No need for this menu to be visible to guests.
+<span class="label label-warning">Change</span> Cancellation threashold now available for tour property bookings too.
+<span class="label label-warning">Change</span> Removed Read More javascript functionality as it's not an elegant solution.
+<span class="label label-warning">Change</span> Added Jomres price plans to main menu
+<span class="label label-warning">Change</span> Renamed Upgrades to Updates. Upgrades has always been the wrong word to use in this context.
+<span class="label label-warning">Change</span> Added license name to output content of Site Config license data.
+<span class="label label-warning">Change</span> Exchange rates : Added a check for $json to see if it's false ( connection errors can cause this ).
+<span class="label label-warning">Change</span> Updated a task in approval urls with the next task name
+<span class="label label-warning">Change</span> Added a unique css class to each property that can be used to customize css for each property uid individually
+<span class="label label-warning">Change</span> Updated show property map shortcode data to include map_zoom
+
+<span class="label label-important label-danger">Fix</span> Fixed a notice in Show Plugins referring to third party plugins.
+<span class="label label-important label-danger">Fix</span> Fixed notices that may appear in booking form and confirmation if an older tax rate has been deleted when building extras info.
+<span class="label label-important label-danger">Fix</span> Fixed some bugs in new Norwegian language file.
+<span class="label label-important label-danger">Fix</span> Solved a problem related to receptionists not being able to see the booking details
+<span class="label label-important label-danger">Fix</span> Cart/booking number was being incorrectly reset to 0, so changed how it could be detected. Thanks Juan Antonio
+<span class="label label-important label-danger">Fix</span> Small tweak to solve duplicate tour name in invoices
+<span class="label label-important label-danger">Fix</span> Solved a problem when getting the gateways for commission and subscription invoices
+<span class="label label-important label-danger">Fix</span> Solved a problem on booking page related to empty strings being handled as arrays
+<span class="label label-important label-danger">Fix</span> Fixed an issue where log files might not appear in log list.
+<span class="label label-important label-danger">Fix</span> Solved a property comparison problem which caused all checkboxes on the page to be checked if checked
+<span class="label label-important label-danger">Fix</span> Solved a problem related to how coupon discounts are added to invoices
+<span class="label label-important label-danger">Fix</span> Solved a geocoding related problem where country was always reset to DE
+
+<span class="label label-info">Wordpress</span> Added ability for editinplace admin script to pass language to the updateCustomText function as get_showtime("lang") was reporting the wrong language.
+
 <h3>Jomres 9.9.5 19/06/2017</h3>
 
 <span class="label label-warning">Change</span> Huge update to Norwegian language file. Thanks Edvin.
