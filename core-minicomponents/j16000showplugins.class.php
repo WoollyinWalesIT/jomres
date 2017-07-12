@@ -163,16 +163,6 @@ class j16000showplugins
 					$output['FULL_LICENSES'] = $tmpl->getParsedTemplate();
 				//}
 				
-				$output['TRIAL'] = '<p class="center alert alert-info">Ioncube loaders are not installed on this server, therefore we can\'t show you the trial license plan :(</p>';
-				if ($loaders_available) { // show the trial offer
-					$pageoutput = array();
-					$tmpl = new patTemplate();
-					$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
-					$tmpl->addRows('pageoutput', $pageoutput);
-					$tmpl->readTemplatesFromInput('plugin_manager_licenses_trial.html');
-					$output['TRIAL'] = $tmpl->getParsedTemplate();
-				}
-				
 				$pageoutput = array();
 				$pageoutput[ ] = $output;
 				$tmpl = new patTemplate();

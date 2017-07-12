@@ -46,34 +46,6 @@ class j00060toptemplate
 
 		$output = array();
 		
-		jr_import('jomres_check_support_key');
-		$key_validation = new jomres_check_support_key(JOMRES_SITEPAGE_URL_ADMIN.'&task='.get_Showtime('task') );
-		$output[ 'LICENSE_MESSAGE' ] = '';
-
-		if ( trim($key_validation->key_hash) == '' ||  $key_validation->key_status == "Unknown" ) {
-			$output[ 'LICENSE_MESSAGE' ] = "You have not saved a license key. If you do not intend to purchase a license please consider donating to our favourite charity Dog's trust UK. ";
-			$o = array();
-			$po = array();
-			$o['WARNING'] = "You haven't saved a license key in Site Configuration yet.";
-			
-			$o['MESSAGE'] = "If you do not intend to get a license for Jomres, please consider making a donation to our favourite charity, Dog's Trust UK.";
-			$o['DONATION_URL'] = 'https://www.dogstrust.org.uk/donation/';
-			$o['URL_TEXT'] = "Donate to Dog's Trust now!";
-			$o['CHARITY_LOGO'] = get_showtime('live_site')."/jomres/images/Dogs-Trust-Logo.png";
-
-			$po[ ] = $o;
-			$tmpl = new patTemplate();
-			$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
-			$tmpl->addRows('pageoutput', $po);
-			$tmpl->readTemplatesFromInput('key_saved_check.html');
-			$output[ 'LICENSE_MESSAGE' ] = $tmpl->getParsedTemplate();
-		}
-
-		if ( $key_validation->key_status == "Expired"   ) {
-			$output[ 'LICENSE_MESSAGE' ] = '<p class="alert alert-warning">Your Jomres license key has expired, please visit jomres.net to get an up-to-date license key.</p>	';
-		}
-		
-		
         $output[ 'PROPERTYNAME' ] = '';
         $output[ 'HACTIVE_PROPERTY' ] = '';
         $output[ 'MANAGEMENT_VIEW_DROPDOWN' ] = '';
