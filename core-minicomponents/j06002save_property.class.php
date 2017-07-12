@@ -109,7 +109,7 @@ class j06002save_property
 
         //send approval email to site admin
         if ((int) $jrConfig['automatically_approve_new_properties'] == 0 && !$thisJRUser->superPropertyManager) {
-            $link = JOMRES_SITEPAGE_URL_ADMIN.'&task=list_properties_awaiting_approval';
+            $link = JOMRES_SITEPAGE_URL_ADMIN.'&task=property_approvals';
             $subject = jr_gettext('_JOMRES_APPROVALS_ADMIN_EMAIL_SUBJECT', '_JOMRES_APPROVALS_ADMIN_EMAIL_SUBJECT', false).' ('.$jomres_properties->property_name.') ';
             $message = jr_gettext('_JOMRES_APPROVALS_ADMIN_EMAIL_CONTENT', '_JOMRES_APPROVALS_ADMIN_EMAIL_CONTENT', false).$link;
             sendAdminEmail($subject, $message);
