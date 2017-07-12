@@ -44,7 +44,7 @@ class j16000showplugins
                 }
             }
         }
-	
+
 		if ( !file_exists(JOMRES_COREPLUGINS_ABSPATH.'plugin_manager'.JRDS.'plugin_info.php') && $this->key_valid ) { // The plugin manager plugin is not installed, we will need to install the plugin manager plugin force a registry rebuild, then redirect to this page again.
 			if (!isset($_REQUEST['install']) ) {
 				
