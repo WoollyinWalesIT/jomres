@@ -5,7 +5,7 @@ namespace OAuth2\Storage;
 /**
  * Implement this interface to specify where the OAuth2 Server
  * should retrieve user credentials for the
- * "Resource Owner Password Credentials" grant type.
+ * "Resource Owner Password Credentials" grant type
  *
  * @author Brent Shaffer <bshafs at gmail dot com>
  */
@@ -22,9 +22,9 @@ interface UserCredentialsInterface
      * Required for OAuth2::GRANT_TYPE_USER_CREDENTIALS.
      *
      * @param $username
-     * Username to be check with
+     * Username to be check with.
      * @param $password
-     * Password to be check with
+     * Password to be check with.
      *
      * @return
      * TRUE if the username and password are valid, and FALSE if it isn't.
@@ -37,15 +37,15 @@ interface UserCredentialsInterface
     public function checkUserCredentials($username, $password);
 
     /**
-     * @return
-     * ARRAY the associated "user_id" and optional "scope" values
-     * This function MUST return FALSE if the requested user does not exist or is
-     * invalid. "scope" is a space-separated list of restricted scopes
+     * @param string $username - username to get details for
+     * @return array|false     - the associated "user_id" and optional "scope" values
+     *                           This function MUST return FALSE if the requested user does not exist or is
+     *                           invalid. "scope" is a space-separated list of restricted scopes.
      * @code
-     * return array(
-     *     "user_id"  => USER_ID,    // REQUIRED user_id to be stored with the authorization code or access token
-     *     "scope"    => SCOPE       // OPTIONAL space-separated list of restricted scopes
-     * );
+     *     return array(
+     *         "user_id"  => USER_ID,    // REQUIRED user_id to be stored with the authorization code or access token
+     *         "scope"    => SCOPE       // OPTIONAL space-separated list of restricted scopes
+     *     );
      * @endcode
      */
     public function getUserDetails($username);

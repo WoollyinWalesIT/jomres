@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.6
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -102,7 +102,7 @@ class jomres_currency_exchange_rates
 
         $json = $this->get_openexchangerates_rates();
 
-        if (is_null($json)) {
+        if (is_null($json) || !$json ) {
             $message = "After reading exchange rate file, the json variable is found to be NULL. The most likely cause is either CURL not working/firewalled, or the API isn't set/is wrong.";
 
             logging::log_message($message, 'Core', 'ERROR');

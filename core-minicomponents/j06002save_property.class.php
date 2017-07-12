@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.6
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -109,7 +109,7 @@ class j06002save_property
 
         //send approval email to site admin
         if ((int) $jrConfig['automatically_approve_new_properties'] == 0 && !$thisJRUser->superPropertyManager) {
-            $link = JOMRES_SITEPAGE_URL_ADMIN.'&task=list_properties_awaiting_approval';
+            $link = JOMRES_SITEPAGE_URL_ADMIN.'&task=property_approvals';
             $subject = jr_gettext('_JOMRES_APPROVALS_ADMIN_EMAIL_SUBJECT', '_JOMRES_APPROVALS_ADMIN_EMAIL_SUBJECT', false).' ('.$jomres_properties->property_name.') ';
             $message = jr_gettext('_JOMRES_APPROVALS_ADMIN_EMAIL_CONTENT', '_JOMRES_APPROVALS_ADMIN_EMAIL_CONTENT', false).$link;
             sendAdminEmail($subject, $message);

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.6
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1505,6 +1505,7 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_minicomponents.'j06001dashboard_weekly_percentages.class.php');
 		$this->add_obs_file($this->dir_templates_bootstrap_backend.'dashboard_weekly_percentages.html');
 		$this->add_obs_file($this->dir_templates_bootstrap3_backend.'dashboard_weekly_percentages.html');
+		$this->add_obs_file($this->dir_minicomponents.'j06002edit_booking.class.php');
     }
 
     public function add_obs_file($path_and_file)

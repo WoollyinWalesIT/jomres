@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.6
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -54,7 +54,7 @@ class j06000compare
 
         $output = array();
         $output[ '_JOMRES_RETURN_TO_RESULTS' ] = jr_gettext('_JOMRES_RETURN_TO_RESULTS', '_JOMRES_RETURN_TO_RESULTS', false, false);
-        $output[ 'RETURN_TO_RESULTS_LINK' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=compare');
+        $output[ 'RETURN_TO_RESULTS_LINK' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=search');
 
         $output[ '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', false, false);
         $output[ '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', false, false);

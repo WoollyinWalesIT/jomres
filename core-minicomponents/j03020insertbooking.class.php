@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.6
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -253,8 +253,9 @@ class j03020insertbooking
                 $guests_uid = insertGuestDeets(get_showtime('jomressession'));
 
                 $cartnumber = get_booking_number();
-                if ($cartnumber == 0) {
-					$cartnumber = (int)jomresGetParam($_REQUEST, 'booking_number', 0);
+
+                if ( trim($cartnumber) == '') {
+					$cartnumber = jomresGetParam($_REQUEST, 'booking_number', '');
                 }
 
                 if ((int) $mrConfig['requireApproval'] == 1) {
@@ -407,7 +408,8 @@ class j03020insertbooking
 						'".(int) $depositPaid."','".(float) $deposit_required."',
 						'$dateRangeString','".(int) $booked_in."','0',
 						'" .(int) $property_uid."','".(float) $single_person_suppliment."','$extras','".(string) $extrasquantities."','".(float) $extrasValue."','".(float) $tax."','$cartnumber','$datetime','".(float) $room_total."','".(float) $discount."','$ccode','".$discount_details."','".$bookersUsername."',".(int) $coupon_id.','.$approved." , '".$booking_data_archive_id."' , '".$secret_key."' , '".get_showtime('lang')."' , '".$tmpBookingHandler->tmpbooking[ 'referrer' ]."') ";
-                    $contract_uid = doInsertSql($query, '');
+
+					$contract_uid = doInsertSql($query, '');
                     system_log('Insert query '.$query);
                     if ($booking_data_archive_id > 0) { // Quick bookings will log a mysql error, but quick bookings don't use the booking data archive.
                         $query = 'UPDATE #__jomres_booking_data_archive SET contract_uid = '.$contract_uid.' WHERE id = '.$booking_data_archive_id;
@@ -561,6 +563,12 @@ class j03020insertbooking
                     doInsertSql($query, '');
                 }
             }
+
+			if (isset($tmpBookingHandler->tmpbooking[ 'gateway' ])) {
+				$query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('" . (int) $contract_uid . "','" . jr_gettext('_JOMRES_PAYMENT_METHOD_USED', '_JOMRES_PAYMENT_METHOD_USED', false)." ". $tmpBookingHandler->tmpbooking[ 'gateway' ] . "','".date( "Y-m-d H-i-s" )."','" . (int) $property_uid . "')";
+				doInsertSql( $query, "" );
+			}
+			
 
             //add rooms booked notes for guest bookings that require approvals
             if ((int) $mrConfig['requireApproval'] == 1 && !$thisJRUser->userIsManager && !$secret_key_payment) {

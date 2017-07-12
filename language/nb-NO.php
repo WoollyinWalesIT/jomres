@@ -1267,10 +1267,7 @@ jr_define('_JOMRES_ACCESS_CONTROL_LEVELS_SUPERMANAGER',"Superbruker");
 jr_define('_JOMRES_ACCESS_CONTROL_LEVELS_NOBODY',"Ingen");
 jr_define('_JOMRES_ACCESS_CONTROL_TITLE',"Meny tilgangskontroll");
 jr_define('_JOMRES_ACCESS_CONTROL_DESC',"Denne funksjonen gjør at du kan kontrollere hvem som kan se en plugin i hovedmenyen. Typisk vil brukeropsjon 00009 synlig for enten/eller uregistrerte besøkende, 00010-opsjoner refererer normalt til resepsjonsaktiviteter som brukes dag for dag, mens 00011-opsjonener blir brukt for å sette opp og konfigurere et utleiested (men brukes ganske sjelden).");
-jr_define('_JOMRES_ACCESS_CONTROL_LEVELS_RECEPTIONIST',"Resepsjonist");
-	Denne funksjonen gjør at du kan kontrollere hvem som har tilgang til forskjellige minikomponenter (med noen unntak som er kodet inn i systemet). Hvis tilgangsnivået ved siden av et script er satt til Standard så vil, hvis Full tilgangskontroll er satt til Ja, <strong>alle</strong> ha til gang til script som de ikke skulle hatt tilgang til. Dermed må du, hvis du ønsker å bruke denne funksjonen, sette tilgangskontroll for <strong>alle</strong> systemets minikomponenter som er listet her. Hvis du ikke vet hva disse minikomponentene gjør, anbefaler vi sterkt at du ikke bruker denne funksjonen i det hele tatt.<br/>
-	I systemet følger tilgangsnivåene en pyramide, slik at Superbrukere er høyere enn Utleiere. Kort forklart Superbruker > Utleier > Resepsjonist > Registrert > Uregistrert. Dermed, hvis en Registrert bruker har tilgang til en minikomponent, så har også Resepsjonist, Utleier og Superbruker det samme.<br/>
-	Merk at du ikke kan kontrollere minikomponenter for administratorområdet. Alle i administratorområdet regnes som en tiltrodd bruker som ikke skal utestenges fra noe script (og spesielt ikke dette).");
+
 jr_define('_JOMRES_SHOWPROFILES_USERSWITHACCESS',"Brukere med admin-rettigheter til dette utleiestedet");
 jr_define('_JOMRES_DEBUGGING_YOUREMAIL','Din epost-adresse');
 jr_define('_JOMRES_EXTRAS_MODELS_MODEL','Modell');
@@ -1300,11 +1297,6 @@ jr_define('_JOMRES_RETURN_TO_RESULTS',"Tilbake til søkeresultater");
 jr_define('_JOMRES_ADDTOSHORTLIST',"Legg til i favoritter");
 jr_define('_JOMRES_REMOVEFROMSHORTLIST',"Fjern fra favoritter");
 jr_define('_JOMRES_VIEWSHORTLIST',"Vis dine favoritter");
-<br/>
-Systemet bruker verts-CMSens cookie for å konstruere sin egen sesjonsfil der informasjon om brukerens søkeresultater og andre aktiviteter kan lagres, for å gjøre brukerens besøk enklere. Selvom vi mener at normal systemfunksjonalitet sannsynligvis er dekket under bestemmelser i regelverket definert som <i>'such storage or access is strictly necessary to provide an information society service requested by the subscriber or user'</i> (se http://www.ico.gov.uk/for_organisations/privacy_and_electronic_communications/the_guide/cookies.aspx), så har vi inkludert denne funksjonen for å gi mulighet til å hindre brukere fra å få tilgang til andre sider enn søkesidene hvis de ikke tillater bruk av cookie på denne måten. <br/>
-Hvis aktivert vil systemet vise en 'opt-in' link der brukere kan velge å ha cookie som lagres for dem og brukes som dette. Hvis de ikke ønsker dette vil systemet kun vise dem basissidene (som utleiedetaljene, vise favoritter, søkeresultater etc). 
-<br/>
-Sett denne til Ja for å sette denne bestemmelsen.");
 jr_define('_JOMRES_COOKIEPOLICY_1',"Viktig: Cookie Policy");
 jr_define('_JOMRES_COOKIEPOLICY_2',"Vi bruker cookies for å bidra til å holde siden vår relevant og enkel å bruke.");
 jr_define('_JOMRES_COOKIEPOLICY_3',"Les mere...");
@@ -1402,14 +1394,6 @@ jr_define( "_JOMRES_COM_TRANSLATE_COUNTRIESREGIONS" , "Oversett stedsnavn");
 jr_define( "_JOMRES_COM_TRANSLATE_LANGUAGEFILES" , "Oversett språktekster");
 jr_define( "_JOMRES_COM_NOTAMANAGER" , "Feil, brukeren er ikke logget inn som Superbruker i systemet, og du vil ikke kunne bruke denne funksjonen før du har brukt Vis Profiler for å gjøre deg selv til BÅDE Utleier og Superbruker. Dette er en sikkerhetsfunksjon.");
 jr_define( "_JOMRES_COM_LAYOUTS_DEFAULT" , "Standard layout på utleielisten");
-<br/>
-Når du endrer en mal har du muligheten til å gjøre endringen gjeldende for alle utleietypene, eller en bestemt utleietype. For eksempel bruker NGM Random module plugin basic_module_output.html-malen for å konstruere layout. Som en resultat kan du lage forskjellige tilpasninger av basic_module_output.html-malen for forskjellige utleietyper.  <br/>
-<br/>
-Hvis en mal ikke har blitt endret før kan du lage en ny tilpasning ved å velge Ny ved siden av den. Når du klikker på Ny blir du videresendt til en ny side der du kan endre malen. Utgangspunktet tas fra malen lagret i mappen /jomres/templates/xxx/frontend, og når du klikker på Lagre vil tilpasningene lagres i databasen, og systemet bruker den endrede fra databasen neste gang. Dette gjør at tilpasninger ikke overskrives når du oppgraderer systemet.<br/>
-<br/>
-Når en mal har blitt tilpasset har du flere opsjoner. Du kan lage en Ny copy av den originale malen (som vist ovenfor), du kan Kopiere en tilpasning til en ny mal-tilpasning, slik at hvis du eksempelvis allerede har tilpasset basic_module_output.html for hoteller, så kan du kopiere den tilpasningen til en ny tilpasning for en ny utleietype, som bil. Du kan Endre en eksisterende tilpasning, eller du kan Slette den. Når du sletter en tilpasning vil, forutsatt at det ikke finnes flere tilpasninger av samme, systemet gå tilbake til å bruke malen i /jomres/templates/xxx/frontend. Dette er nyttig hvis du har endret en mal, men ikke liker endringene du har gjort. Du kan slette tilpasningene og begynne fra begynnelsen med originalmalen.<br/>
-<br/>
-Jomres endres hele tiden, og grunnmaler blir ofte modifisert/oppdatert. Hvis du bruker Maleditering så vil oppdateringene ikke overskrive dine endringer, men det betyr også at dine tilpasninger muligens ikke inneholder alle nye funksjoner i grunnmalene. Siden vi ikke har mulighet til å analysere dine tilpasninger kan vi ikke si om endringene vil ha innvirkning på dine maler. Maleditering vil se på datoen for siste endring av filer i mappen /jomres/templates/xxx/frontend, og hvis den finner en mal som er endret mer nylig enn malen du har lagret, så vil systemet advare deg om dette. Det betyr ikke nødvendigvis at du på oppdatere malen – det er opp til deg å bestemme.'); // Updated template editing information to correspond with changes to 7.2.0 and it's template editing changes related to property type templates
 jr_define( "_JOMRES_STAYFORAMINIMUMOF" , "Overnatt miniumum");
 jr_define( "_JOMRES_NIGHTSFOR" , " netter for ");
 jr_define( "_JOMRES_AGENT" , "Agent");
@@ -2023,3 +2007,6 @@ jr_define('_JOMRES_PTYPE_CHANGE_WARNING',"Changing the property type will delete
 jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_UPDATEINFO', 'Please note, after updating you must update any Jomres Plugins that are already installed, through the Jomres plugin manager. If you have Core plugins installed, but do not have a valid Jomres license then we <em>do not</em> recommend that you update Jomres as older plugins often may not work with newer versions of Jomres. ');
 jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_UPDATEINFO_KEYVALID', 'Please note, after updating you must update any Jomres Plugins that are already installed, through the Jomres plugin manager.');
 jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_RENEWALS', "If you would like to update Jomres and it's plugins you will need a renewal license. Please visit <a href='https://www.jomres.net/pricing' target='_blank'>our site</a> for more information. In most cases these licenses are 50% of the price of a full license. Please ensure that you have logged into our shop before attempting to purchase a renewal.");
+jr_define('_JOMRES_PAYMENT_METHOD_USED',"Payment method : ");
+
+jr_define('_JOMRES_PRICES',"Buy Jomres");

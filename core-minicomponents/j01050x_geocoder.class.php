@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.6
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -49,6 +49,9 @@ class j01050x_geocoder
 
         $output['MAP_STYLE'] = file_get_contents(JOMRES_LIBRARIES_ABSPATH.'map_styles'.JRDS.$jrConfig['map_style'].'.style');
 		$output['ZOOMLEVEL'] = (int)$jrConfig['map_zoom'];
+		if ( isset( $_REQUEST['map_zoom'] )) {
+			$output['ZOOMLEVEL'] = (int) $_REQUEST['map_zoom'];
+		}
 		$output['MAPTYPE'] = strtoupper($jrConfig['map_type']);
 
         $output[ 'DISABLE_UI' ] = '';

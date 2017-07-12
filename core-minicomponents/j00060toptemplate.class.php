@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.6
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -37,12 +37,15 @@ class j00060toptemplate
         $popup = intval(jomresGetParam($_REQUEST, 'popup', 0));
         //$tz         	   	= $componentArgs[ 'tz' ];
         $jomreslang 		= jomres_singleton_abstract::getInstance( 'jomres_language' );
+		
+		$defaultProperty 	= getDefaultProperty();
 
         if (AJAXCALL || $popup == 1) {
             return;
         }
 
-        $output = array();
+		$output = array();
+		
         $output[ 'PROPERTYNAME' ] = '';
         $output[ 'HACTIVE_PROPERTY' ] = '';
         $output[ 'MANAGEMENT_VIEW_DROPDOWN' ] = '';
@@ -106,6 +109,7 @@ class j00060toptemplate
         $output[ 'BACKLINK' ] = '<a href="javascript:history.go(-1)">'.jr_gettext('_JOMRES_COM_MR_BACK', '_JOMRES_COM_MR_BACK').'</a>';
         $output[ 'LIVESITE' ] = get_showtime('live_site');
         $output[ 'DATEPICKERLANG' ] = get_showtime('datepicker_lang');
+		$output[ 'PROPERTY_UID' ] = $defaultProperty;
 
         $lang_dropdown = array();
         if ($jrConfig[ 'showLangDropdown' ] == '1')
@@ -121,7 +125,6 @@ class j00060toptemplate
                 $output['PROPERTY_SELECTOR_DROPDOWN'] = $jomres_property_selector_dropdown->get_dropdown();
                 set_showtime('property_selector_dropdown', $output['PROPERTY_SELECTOR_DROPDOWN']);
             } else {
-                $defaultProperty = getDefaultProperty();
                 $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
                 $current_property_details->gather_data($defaultProperty);
                 $output[ 'PROPERTYNAME' ] = $current_property_details->property_name;

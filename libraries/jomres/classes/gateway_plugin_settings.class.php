@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.6
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -25,7 +25,7 @@ class gateway_plugin_settings
 
     }
 
-    public function get_settings_for_property_uid($property_uid = 0 )
+    public function get_settings_for_property_uid($property_uid = 0)
     {
 
         $property_gateway_settings = array();
@@ -79,25 +79,34 @@ class gateway_plugin_settings
                 foreach ($installed_gateways as $gateway ) {
                     $balance_payments_supported = false;
 
-                    if ( isset (
-                        $global_gateway_settings[$gateway] ) && 
-                            ( 
-                            isset($global_gateway_settings[$gateway]['override']) && 
-                            $global_gateway_settings[$gateway]['override'] =="1"
-                            )
-                        ) {               
-                        $this->gateway_settings[$gateway] = $global_gateway_settings[$gateway];
-                        }
-                    elseif ( isset ($property_gateway_settings[$gateway] ) ) {
-                        if (!isset( $property_gateway_settings[$gateway]['active']) ) {
-                            $property_gateway_settings[$gateway]['active'] = "0";
-                            }
-                            
-                        $this->gateway_settings[$gateway] = $property_gateway_settings[$gateway];
-                        }
-                    else {
-                        $this->gateway_settings[$gateway] = array("active" => 0 , "override" => 0 );
-                        }
+					if ($property_uid > 0) { //we need the gateways for booking invoices
+						if ( isset ($global_gateway_settings[$gateway] ) && 
+								( 
+								isset($global_gateway_settings[$gateway]['override']) && 
+								$global_gateway_settings[$gateway]['override'] =="1"
+								)
+							) {               
+							$this->gateway_settings[$gateway] = $global_gateway_settings[$gateway];
+							}
+						elseif ( isset ($property_gateway_settings[$gateway] ) ) {
+							if (!isset( $property_gateway_settings[$gateway]['active']) ) {
+								$property_gateway_settings[$gateway]['active'] = "0";
+								}
+								
+							$this->gateway_settings[$gateway] = $property_gateway_settings[$gateway];
+							}
+						else {
+							$this->gateway_settings[$gateway] = array("active" => 0 , "override" => 0 );
+							}
+						}
+					else { //we need the gateways for commission and subscription invoices
+						if ( isset($global_gateway_settings[$gateway]) ) {
+							$this->gateway_settings[$gateway] = $global_gateway_settings[$gateway];
+							}
+						else {
+							$this->gateway_settings[$gateway] = array("active" => 0 , "override" => 0 );
+							}
+						}
                     
                     if (isset($gateway_array[$gateway]['balance_payments_supported']) && $gateway_array[$gateway]['balance_payments_supported'] == "1") {
                         $balance_payments_supported = true;

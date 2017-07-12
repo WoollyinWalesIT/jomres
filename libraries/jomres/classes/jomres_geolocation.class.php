@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.6
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -65,35 +65,37 @@ class jomres_geolocation
     {
         $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
         
-		if (!isset($tmpBookingHandler->user_settings[ 'geolocated_country' ]) && $this->api_key != '') {
-            $ip = get_remote_ip_number();
-            $hash = md5($ip);
-            
-			if (file_exists($this->temp_dir_abs.$hash)) {
-                $this->detected_country = file_get_contents($this->temp_dir_abs.$hash);
-                $tmpBookingHandler->user_settings[ 'geolocated_country' ] = $this->detected_country;
-            } else {
-                if ($ip != '127.0.0.1' && $ip != '0.0.0.0') {
-                    jr_import('jomres_ip2locationlite');
-                    $ipLite = new jomres_ip2location_lite();
-                    $ipLite->setKey($this->api_key);
-                    $locations = $ipLite->getCountry($ip);
-                    
-					if ($locations[ 'statusCode' ] == 'OK') {
-                        $this->detected_country = $locations[ 'countryCode' ];
-                    }
-                    
-					if ($this->detected_country == 'UK') {
-                        $this->detected_country = 'GB';
-                    } // Iso standards say that the UK code is GB, but ip2location returns UK, so we'll convert this to GB here. It's likely that other countries might need the same treatement. http://www.iso.org/iso/home/standards/country_codes/country_names_and_code_elements.htm
-                    
+		if ($this->api_key != '') {
+			if (!isset($tmpBookingHandler->user_settings[ 'geolocated_country' ])) {
+				$ip = get_remote_ip_number();
+				$hash = md5($ip);
+				
+				if (file_exists($this->temp_dir_abs.$hash)) {
+					$this->detected_country = file_get_contents($this->temp_dir_abs.$hash);
 					$tmpBookingHandler->user_settings[ 'geolocated_country' ] = $this->detected_country;
-                } else {
-                    $tmpBookingHandler->user_settings[ 'geolocated_country' ] = $this->detected_country;
-                }
-                
-				file_put_contents($this->temp_dir_abs.$hash, $tmpBookingHandler->user_settings[ 'geolocated_country' ], LOCK_EX);
-            }
+				} else {
+					if ($ip != '127.0.0.1' && $ip != '0.0.0.0') {
+						jr_import('jomres_ip2locationlite');
+						$ipLite = new jomres_ip2location_lite();
+						$ipLite->setKey($this->api_key);
+						$locations = $ipLite->getCountry($ip);
+						
+						if ($locations[ 'statusCode' ] == 'OK') {
+							$this->detected_country = $locations[ 'countryCode' ];
+						}
+						
+						if ($this->detected_country == 'UK') {
+							$this->detected_country = 'GB';
+						} // Iso standards say that the UK code is GB, but ip2location returns UK, so we'll convert this to GB here. It's likely that other countries might need the same treatement. http://www.iso.org/iso/home/standards/country_codes/country_names_and_code_elements.htm
+						
+						$tmpBookingHandler->user_settings[ 'geolocated_country' ] = $this->detected_country;
+					} else {
+						$tmpBookingHandler->user_settings[ 'geolocated_country' ] = $this->detected_country;
+					}
+					
+					file_put_contents($this->temp_dir_abs.$hash, $tmpBookingHandler->user_settings[ 'geolocated_country' ], LOCK_EX);
+				}
+			}
         } else {
             $tmpBookingHandler->user_settings[ 'geolocated_country' ] = $this->detected_country;
         }

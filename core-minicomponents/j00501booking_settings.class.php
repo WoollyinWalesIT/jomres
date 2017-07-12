@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.6
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -129,15 +129,17 @@ class j00501booking_settings
                 $configurationPanel->setmiddle($weekenddayDropdown);
                 $configurationPanel->setright(jr_gettext('_JOMRES_COM_WEEKENDDAYS_DESC', '_JOMRES_COM_WEEKENDDAYS_DESC', false));
                 $configurationPanel->insertSetting();
-				
-				$threashold_dropdown = jomresHTML::integerSelectList(0, 100, 1, 'cfg_cancellation_threashold', 'class="inputbox" size="1"', (int) $mrConfig[ 'cancellation_threashold' ]);
-
-				$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_ODDS_CANCELLATION_THREASHOLD', '_JOMRES_COM_A_ODDS_CANCELLATION_THREASHOLD', false));
-				$configurationPanel->setmiddle($threashold_dropdown);
-				$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_ODDS_CANCELLATION_THREASHOLD_DESC', '_JOMRES_COM_A_ODDS_CANCELLATION_THREASHOLD_DESC', false));
-				$configurationPanel->insertSetting();
             }
+		}
+		
+		$threashold_dropdown = jomresHTML::integerSelectList(0, 100, 1, 'cfg_cancellation_threashold', 'class="inputbox" size="1"', (int) $mrConfig[ 'cancellation_threashold' ]);
 
+		$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_ODDS_CANCELLATION_THREASHOLD', '_JOMRES_COM_A_ODDS_CANCELLATION_THREASHOLD', false));
+		$configurationPanel->setmiddle($threashold_dropdown);
+		$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_ODDS_CANCELLATION_THREASHOLD_DESC', '_JOMRES_COM_A_ODDS_CANCELLATION_THREASHOLD_DESC', false));
+		$configurationPanel->insertSetting();
+		
+		if (!get_showtime('is_jintour_property')) {
             $configurationPanel->insertHeading(jr_gettext('_JOMRES_HFIXED_PERIODS', '_JOMRES_HFIXED_PERIODS', false));
 
             if ($mrConfig[ 'wholeday_booking' ] == '1') {

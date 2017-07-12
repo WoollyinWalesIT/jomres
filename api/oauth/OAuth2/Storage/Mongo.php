@@ -5,7 +5,7 @@ namespace OAuth2\Storage;
 use OAuth2\OpenID\Storage\AuthorizationCodeInterface as OpenIDAuthorizationCodeInterface;
 
 /**
- * Simple MongoDB storage for all storage types.
+ * Simple MongoDB storage for all storage types
  *
  * NOTE: This class is meant to get users started
  * quickly. If your application requires further
@@ -16,13 +16,13 @@ use OAuth2\OpenID\Storage\AuthorizationCodeInterface as OpenIDAuthorizationCodeI
  *
  * @author Julien Chaumond <chaumond@gmail.com>
  */
-class Mongo implements
-AuthorizationCodeInterface,
+class Mongo implements AuthorizationCodeInterface,
     AccessTokenInterface,
     ClientCredentialsInterface,
     UserCredentialsInterface,
     RefreshTokenInterface,
     JwtBearerInterface,
+    PublicKeyInterface,
     OpenIDAuthorizationCodeInterface
 {
     protected $db;
@@ -47,6 +47,7 @@ AuthorizationCodeInterface,
             'refresh_token_table' => 'oauth_refresh_tokens',
             'code_table' => 'oauth_authorization_codes',
             'user_table' => 'oauth_users',
+            'key_table' => 'oauth_keys',
             'jwt_table' => 'oauth_jwt',
         ), $config);
     }
@@ -91,20 +92,20 @@ AuthorizationCodeInterface,
                 array('client_id' => $client_id),
                 array('$set' => array(
                     'client_secret' => $client_secret,
-                    'redirect_uri' => $redirect_uri,
-                    'grant_types' => $grant_types,
-                    'scope' => $scope,
-                    'user_id' => $user_id,
+                    'redirect_uri'  => $redirect_uri,
+                    'grant_types'   => $grant_types,
+                    'scope'         => $scope,
+                    'user_id'       => $user_id,
                 ))
             );
         } else {
             $client = array(
-                'client_id' => $client_id,
+                'client_id'     => $client_id,
                 'client_secret' => $client_secret,
-                'redirect_uri' => $redirect_uri,
-                'grant_types' => $grant_types,
-                'scope' => $scope,
-                'user_id' => $user_id,
+                'redirect_uri'  => $redirect_uri,
+                'grant_types'   => $grant_types,
+                'scope'         => $scope,
+                'user_id'       => $user_id,
             );
             $this->collection('client_table')->insert($client);
         }
@@ -143,7 +144,7 @@ AuthorizationCodeInterface,
                     'client_id' => $client_id,
                     'expires' => $expires,
                     'user_id' => $user_id,
-                    'scope' => $scope,
+                    'scope' => $scope
                 ))
             );
         } else {
@@ -152,7 +153,7 @@ AuthorizationCodeInterface,
                 'client_id' => $client_id,
                 'expires' => $expires,
                 'user_id' => $user_id,
-                'scope' => $scope,
+                'scope' => $scope
             );
             $this->collection('access_token_table')->insert($token);
         }
@@ -162,8 +163,13 @@ AuthorizationCodeInterface,
 
     public function unsetAccessToken($access_token)
     {
-        $this->collection('access_token_table')->remove(array('access_token' => $access_token));
+        $result = $this->collection('access_token_table')->remove(array(
+            'access_token' => $access_token
+        ), array('w' => 1));
+
+        return $result['n'] > 0;
     }
+
 
     /* AuthorizationCodeInterface */
     public function getAuthorizationCode($code)
@@ -245,7 +251,7 @@ AuthorizationCodeInterface,
             'client_id' => $client_id,
             'user_id' => $user_id,
             'expires' => $expires,
-            'scope' => $scope,
+            'scope' => $scope
         );
         $this->collection('refresh_token_table')->insert($token);
 
@@ -254,9 +260,11 @@ AuthorizationCodeInterface,
 
     public function unsetRefreshToken($refresh_token)
     {
-        $this->collection('refresh_token_table')->remove(array('refresh_token' => $refresh_token));
+        $result = $this->collection('refresh_token_table')->remove(array(
+            'refresh_token' => $refresh_token
+        ), array('w' => 1));
 
-        return true;
+        return $result['n'] > 0;
     }
 
     // plaintext passwords are bad!  Override this for your application
@@ -280,7 +288,7 @@ AuthorizationCodeInterface,
                 array('$set' => array(
                     'password' => $password,
                     'first_name' => $firstName,
-                    'last_name' => $lastName,
+                    'last_name' => $lastName
                 ))
             );
         } else {
@@ -288,7 +296,7 @@ AuthorizationCodeInterface,
                 'username' => $username,
                 'password' => $password,
                 'first_name' => $firstName,
-                'last_name' => $lastName,
+                'last_name' => $lastName
             );
             $this->collection('user_table')->insert($user);
         }
@@ -300,7 +308,7 @@ AuthorizationCodeInterface,
     {
         $result = $this->collection('jwt_table')->findOne(array(
             'client_id' => $client_id,
-            'subject' => $subject,
+            'subject' => $subject
         ));
 
         return is_null($result) ? false : $result['key'];
@@ -329,5 +337,56 @@ AuthorizationCodeInterface,
     {
         //TODO: Needs mongodb implementation.
         throw new \Exception('setJti() for the MongoDB driver is currently unimplemented.');
+    }
+
+    public function getPublicKey($client_id = null)
+    {
+        if ($client_id) {
+            $result = $this->collection('key_table')->findOne(array(
+                'client_id' => $client_id
+            ));
+            if ($result) {
+                return $result['public_key'];
+            }
+        }
+
+        $result = $this->collection('key_table')->findOne(array(
+            'client_id' => null
+        ));
+        return is_null($result) ? false : $result['public_key'];
+    }
+
+    public function getPrivateKey($client_id = null)
+    {
+        if ($client_id) {
+            $result = $this->collection('key_table')->findOne(array(
+                'client_id' => $client_id
+            ));
+            if ($result) {
+                return $result['private_key'];
+            }
+        }
+
+        $result = $this->collection('key_table')->findOne(array(
+            'client_id' => null
+        ));
+        return is_null($result) ? false : $result['private_key'];
+    }
+
+    public function getEncryptionAlgorithm($client_id = null)
+    {
+        if ($client_id) {
+            $result = $this->collection('key_table')->findOne(array(
+                'client_id' => $client_id
+            ));
+            if ($result) {
+                return $result['encryption_algorithm'];
+            }
+        }
+
+        $result = $this->collection('key_table')->findOne(array(
+            'client_id' => null
+        ));
+        return is_null($result) ? 'RS256' : $result['encryption_algorithm'];
     }
 }

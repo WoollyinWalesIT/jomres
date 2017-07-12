@@ -5,7 +5,7 @@ namespace OAuth2\Storage;
 /**
  * Implement this interface to specify where the OAuth2 Server
  * should get/save authorization codes for the "Authorization Code"
- * grant type.
+ * grant type
  *
  * @author Brent Shaffer <bshafs at gmail dot com>
  */
@@ -15,11 +15,10 @@ interface AuthorizationCodeInterface
      * The Authorization Code grant type supports a response type of "code".
      *
      * @var string
-     *
      * @see http://tools.ietf.org/html/rfc6749#section-1.4.1
      * @see http://tools.ietf.org/html/rfc6749#section-4.2
      */
-    const RESPONSE_TYPE_CODE = 'code';
+    const RESPONSE_TYPE_CODE = "code";
 
     /**
      * Fetch authorization code data (probably the most common grant type).
@@ -29,7 +28,7 @@ interface AuthorizationCodeInterface
      * Required for OAuth2::GRANT_TYPE_AUTH_CODE.
      *
      * @param $code
-     * Authorization code to be check with
+     * Authorization code to be check with.
      *
      * @return
      * An associative array as below, and NULL if the code is invalid
@@ -60,19 +59,19 @@ interface AuthorizationCodeInterface
      *
      * Required for OAuth2::GRANT_TYPE_AUTH_CODE.
      *
-     * @param string $code         Authorization code to be stored
-     * @param mixed  $client_id    Client identifier to be stored
-     * @param mixed  $user_id      User identifier to be stored
-     * @param string $redirect_uri Redirect URI(s) to be stored in a space-separated string
-     * @param int    $expires      Expiration to be stored as a Unix timestamp
-     * @param string $scope        OPTIONAL Scopes to be stored in space-separated string
+     * @param string $code         - Authorization code to be stored.
+     * @param mixed  $client_id    - Client identifier to be stored.
+     * @param mixed  $user_id      - User identifier to be stored.
+     * @param string $redirect_uri - Redirect URI(s) to be stored in a space-separated string.
+     * @param int    $expires      - Expiration to be stored as a Unix timestamp.
+     * @param string $scope        - OPTIONAL Scopes to be stored in space-separated string.
      *
      * @ingroup oauth2_section_4
      */
     public function setAuthorizationCode($code, $client_id, $user_id, $redirect_uri, $expires, $scope = null);
 
     /**
-     * once an Authorization Code is used, it must be exipired.
+     * once an Authorization Code is used, it must be exipired
      *
      * @see http://tools.ietf.org/html/rfc6749#section-4.1.2
      *
@@ -81,6 +80,7 @@ interface AuthorizationCodeInterface
      *    once, the authorization server MUST deny the request and SHOULD
      *    revoke (when possible) all tokens previously issued based on
      *    that authorization code
+     *
      */
     public function expireAuthorizationCode($code);
 }

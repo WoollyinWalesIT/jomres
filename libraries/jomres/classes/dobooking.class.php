@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.6
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -164,12 +164,35 @@ class dobooking
             $this->extrasvalue = $bookingDeets[ 'extrasvalue' ];
 			
 			if ($jrConfig['session_handler'] == 'database') {
-				$this->extrasvalues_items = $bookingDeets[ 'extrasvalues_items' ];
-				$this->third_party_extras = $bookingDeets[ 'third_party_extras' ];
-				$this->third_party_extras_private_data = $bookingDeets[ 'third_party_extras_private_data' ];
-				$this->room_allocations = $bookingDeets[ 'room_allocations' ];
-				$this->additional_line_items = $bookingDeets[ 'additional_line_items' ];
-				$this->room_feature_filter = $bookingDeets[ 'room_feature_filter' ];
+				if (is_array($bookingDeets[ 'extrasvalues_items' ]))
+					$this->extrasvalues_items = $bookingDeets[ 'extrasvalues_items' ];
+				else
+					$this->extrasvalues_items = array();
+				
+				if (is_array($bookingDeets[ 'third_party_extras' ]))
+					$this->third_party_extras = $bookingDeets[ 'third_party_extras' ];
+				else
+					$this->third_party_extras = array();
+				
+				if (is_array($bookingDeets[ 'third_party_extras_private_data' ]))
+					$this->third_party_extras_private_data = $bookingDeets[ 'third_party_extras_private_data' ];
+				else
+					$this->third_party_extras_private_data = array();
+				
+				if (is_array($bookingDeets[ 'room_allocations' ]))
+					$this->room_allocations = $bookingDeets[ 'room_allocations' ];
+				else
+					$this->room_allocations = array();
+				
+				if (is_array($bookingDeets[ 'additional_line_items' ]))
+					$this->additional_line_items = $bookingDeets[ 'additional_line_items' ];
+				else
+					$this->additional_line_items = array();
+				
+				if (is_array($bookingDeets[ 'room_feature_filter' ]))
+					$this->room_feature_filter = $bookingDeets[ 'room_feature_filter' ];
+				else
+					$this->room_feature_filter = array();
 			} else {
 				$this->extrasvalues_items = unserialize($bookingDeets[ 'extrasvalues_items' ]);
 				$this->third_party_extras = unserialize($bookingDeets[ 'third_party_extras' ]);
@@ -1036,7 +1059,12 @@ class dobooking
                             break;
                         }
 
-                    $rate = (float) $this->taxrates[ $ex->tax_rate ][ 'rate' ];
+					if (isset($this->taxrates[ $ex->tax_rate ][ 'rate' ])) {
+						$rate = (float) $this->taxrates[ $ex->tax_rate ][ 'rate' ];
+					} else { // An older tax rate may have been deleted
+						$rate = 0;
+					}
+                    
                     if ($model[ 'model' ] != '100') { // Model 10 is commission, so it's a percentage.
                         $price = $ex->price;
 

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.6
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -217,3 +217,5 @@ jr_define('_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO',"You can choose which template f
 jr_define('_JOMRES_OVERALL_ROOMS_BOOKED',"Percentage Rooms Booked");
 
 jr_define('_JOMRES_SHORTCODES_06005NEW_PROPERTY', 'Displays the create new property form.');
+
+jr_define('_JOMRES_SHORTCODES_06005PROPERTY_MAP_ZOOM', 'Map zoom, 1: World 5: Landmass/continent 10: City 15: Streets 20: Buildings ');

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.6
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -59,7 +59,7 @@ class jomres_property_types
             $this->property_types = array();
         }
 
-        $query = 'SELECT `id`, `ptype`, `ptype_desc`, `published`, `order`, `mrp_srp_flag`, `marker` FROM #__jomres_ptypes ORDER BY `order` ASC';
+        $query = 'SELECT `id`, `ptype`, `ptype_desc`, `published`, `order`, `mrp_srp_flag`, `marker` FROM #__jomres_ptypes ORDER BY `ptype` ASC';
         $result = doSelectSql($query);
 
         if (empty($result)) {

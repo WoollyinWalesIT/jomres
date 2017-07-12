@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.6
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -3680,8 +3680,12 @@ function this_cms_is_joomla()
 //-T E X T	M O D I F I C A T I O N	 ----
 //----------------------------------------
 
-function updateCustomText($theConstant, $theValue, $audit = true, $property_uid = null)
+function updateCustomText($theConstant, $theValue, $audit = true, $property_uid = null , $language = null )
 {
+	if ( !isset($language) || is_null($language) ) {
+		$language = get_showtime('lang');
+	}
+	
     $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 
@@ -3711,19 +3715,20 @@ function updateCustomText($theConstant, $theValue, $audit = true, $property_uid 
             $property_uid = (int) getDefaultProperty();
         }
     }
+
     //$theValue=htmlentities($theValue);
-    $query = "SELECT customtext FROM #__jomres_custom_text WHERE constant = '".$theConstant."' and property_uid = '".(int) $property_uid."' AND language = '".get_showtime('lang')."'";
+    $query = "SELECT customtext FROM #__jomres_custom_text WHERE constant = '".$theConstant."' and property_uid = '".(int) $property_uid."' AND language = '".$language."'";
     $textList = doSelectSql($query);
     if (strlen($theValue) == 0) {
-        $query = "DELETE FROM	#__jomres_custom_text WHERE constant = '".$theConstant."' AND property_uid = '".(int) $property_uid."' AND language = '".get_showtime('lang')."'";
+        $query = "DELETE FROM	#__jomres_custom_text WHERE constant = '".$theConstant."' AND property_uid = '".(int) $property_uid."' AND language = '".$language."'";
     } else {
         if (empty($textList)) {
-            $query = "INSERT INTO #__jomres_custom_text (`constant`,`customtext`,`property_uid`,`language`) VALUES ('".$theConstant."','".$theValue."','".(int) $property_uid."','".get_showtime('lang')."')";
+            $query = "INSERT INTO #__jomres_custom_text (`constant`,`customtext`,`property_uid`,`language`) VALUES ('".$theConstant."','".$theValue."','".(int) $property_uid."','".$language."')";
         } else {
-            $query = "UPDATE #__jomres_custom_text SET `customtext`='".$theValue."' WHERE constant = '".$theConstant."' AND property_uid = '".(int) $property_uid."' AND language = '".get_showtime('lang')."'";
+            $query = "UPDATE #__jomres_custom_text SET `customtext`='".$theValue."' WHERE constant = '".$theConstant."' AND property_uid = '".(int) $property_uid."' AND language = '".$language."'";
         }
     }
-    //echo $query;
+
     if ($audit) {
         $audit = jr_gettext('_JOMRES_MR_AUDIT_UPDATECUSTOMTEXT', '_JOMRES_MR_AUDIT_UPDATECUSTOMTEXT');
     }

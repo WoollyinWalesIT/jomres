@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.6
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -33,20 +33,6 @@ class jomres_check_support_key
         }
 
         if (function_exists('curl_init')) {
-            /*
-            $this->get_shop_status();
-
-            $siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-            $jrConfig   = $siteConfig->get();
-            $this->license_server_username = $jrConfig[ 'license_server_username' ];
-            $this->license_server_password = $jrConfig[ 'license_server_password' ];
-
-            if ( trim($this->license_server_username) != "" && trim($this->license_server_password) != "")
-                {
-                $this->user_plugin_license_temp_file_name = "user_plugin_licenses.php";
-                $this->remote_get_all_user_plugin_licenses();
-                $this->get_user_plugin_licenses();
-                } */
             $this->shop_status = 'CLOSED';
             $this->check_license_key();
         }
@@ -68,51 +54,6 @@ class jomres_check_support_key
         unlink(JOMRES_TEMP_ABSPATH.$this->user_plugin_license_temp_file_name);
     }
 
-    public function remote_get_all_user_plugin_licenses()
-    {
-        $current_licenses = array();
-
-        $request = 'request=get_license_numbers_for_user&username='.$this->license_server_username.'&password='.$this->license_server_password;
-        $response = query_shop($request);
-
-        if (!is_null($response) && $response->success) {
-            foreach ($response->licenses as $license) {
-                $current_licenses[ $license->name ] = array('key' => $license->license_key, 'status' => $license->status);
-            }
-        }
-
-        if (file_exists(JOMRES_TEMP_ABSPATH.$this->user_plugin_license_temp_file_name)) {
-            $last_modified = filemtime(JOMRES_TEMP_ABSPATH.$this->user_plugin_license_temp_file_name);
-            $seconds_timediff = time() - $last_modified;
-            if ($seconds_timediff > 60) {
-                unlink(JOMRES_TEMP_ABSPATH.$this->user_plugin_license_temp_file_name);
-            } else {
-                include_once JOMRES_TEMP_ABSPATH.$this->user_plugin_license_temp_file_name;
-            }
-        }
-
-        if (!file_exists(JOMRES_TEMP_ABSPATH.$this->user_plugin_license_temp_file_name)) {
-            $str = '';
-            if (!empty($current_licenses)) {
-                foreach ($current_licenses as $key => $val) {
-                    $str .= '$current_licenses["'.$key.'"] = array ( "key" => "'.$val['key'].'" , "status" => "'.$val['status'].'" );
-';
-                }
-            } else {
-                $str = ' // No current licenses
-					';
-            }
-            $lic_data = '<?php
-defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
-function plugin_licenses () {
-$current_licenses = array();
-'.$str.'
-return $current_licenses;
-}';
-            file_put_contents(JOMRES_TEMP_ABSPATH.'user_plugin_licenses.php', $lic_data);
-        }
-    }
-
     public function get_user_plugin_licenses()
     {
         include_once JOMRES_TEMP_ABSPATH.$this->user_plugin_license_temp_file_name;
@@ -128,6 +69,8 @@ return $current_licenses;
         $this->key_hash = $jrConfig['licensekey'];
 
         $license_data = new stdClass();
+		
+		$license_data->license_name = 'Unknown';
         $license_data->expires = 'Unknown';
         $license_data->key_status = 'Unknown';
         $license_data->owner = 'Unknown';
@@ -175,6 +118,7 @@ return $current_licenses;
                 $lic_data = '<?php
 defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
 $license_data	= new stdClass;
+$license_data->license_name = "'.$license_data->license_name.'";
 $license_data->expires = "'.$license_data->expires.'";
 $license_data->key_status = "'.$license_data->key_status.'";
 $license_data->owner = "'.$license_data->owner.'";
@@ -191,6 +135,7 @@ $license_data->is_trial_license = "'.$license_data->is_trial_license.'";
             $this->expires = $license_data->expires;
             $this->key_status = $license_data->key_status;
             $this->owner = $license_data->owner;
+			$this->license_name = $license_data->license_name;
             if ($license_data->license_valid == true) {
                 $this->key_valid = true;
             }
@@ -198,6 +143,7 @@ $license_data->is_trial_license = "'.$license_data->is_trial_license.'";
             if ($license_data->is_trial_license == 'Unknown') {
                 $license_data->is_trial_license = false;
             }
+
             $this->is_trial_license = (bool) $license_data->is_trial_license;
         }
     }

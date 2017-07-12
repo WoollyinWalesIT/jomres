@@ -5,7 +5,7 @@ namespace OAuth2\Storage;
 use OAuth2\OpenID\Storage\AuthorizationCodeInterface as OpenIDAuthorizationCodeInterface;
 
 /**
- * redis storage for all storage types.
+ * redis storage for all storage types
  *
  * To use, install "predis/predis" via composer
  *
@@ -15,8 +15,7 @@ use OAuth2\OpenID\Storage\AuthorizationCodeInterface as OpenIDAuthorizationCodeI
  *  $storage->setClientDetails($client_id, $client_secret, $redirect_uri);
  * </code>
  */
-class Redis implements
-AuthorizationCodeInterface,
+class Redis implements AuthorizationCodeInterface,
     AccessTokenInterface,
     ClientCredentialsInterface,
     UserCredentialsInterface,
@@ -25,6 +24,7 @@ AuthorizationCodeInterface,
     ScopeInterface,
     OpenIDAuthorizationCodeInterface
 {
+
     private $cache;
 
     /* The redis client */
@@ -39,7 +39,7 @@ AuthorizationCodeInterface,
      * @param \Predis\Client $redis
      * @param array          $config
      */
-    public function __construct($redis, $config = array())
+    public function __construct($redis, $config=array())
     {
         $this->redis = $redis;
         $this->config = array_merge(array(
@@ -55,18 +55,18 @@ AuthorizationCodeInterface,
 
     protected function getValue($key)
     {
-        if (isset($this->cache[$key])) {
+        if ( isset($this->cache[$key]) ) {
             return $this->cache[$key];
         }
         $value = $this->redis->get($key);
-        if (isset($value)) {
+        if ( isset($value) ) {
             return json_decode($value, true);
         } else {
             return false;
         }
     }
 
-    protected function setValue($key, $value, $expire = 0)
+    protected function setValue($key, $value, $expire=0)
     {
         $this->cache[$key] = $value;
         $str = json_encode($value);
@@ -92,13 +92,13 @@ AuthorizationCodeInterface,
     /* AuthorizationCodeInterface */
     public function getAuthorizationCode($code)
     {
-        return $this->getValue($this->config['code_key'].$code);
+        return $this->getValue($this->config['code_key'] . $code);
     }
 
     public function setAuthorizationCode($authorization_code, $client_id, $user_id, $redirect_uri, $expires, $scope = null, $id_token = null)
     {
         return $this->setValue(
-            $this->config['code_key'].$authorization_code,
+            $this->config['code_key'] . $authorization_code,
             compact('authorization_code', 'client_id', 'user_id', 'redirect_uri', 'expires', 'scope', 'id_token'),
             $expires
         );
@@ -106,7 +106,7 @@ AuthorizationCodeInterface,
 
     public function expireAuthorizationCode($code)
     {
-        $key = $this->config['code_key'].$code;
+        $key = $this->config['code_key'] . $code;
         unset($this->cache[$key]);
 
         return $this->expireValue($key);
@@ -127,7 +127,7 @@ AuthorizationCodeInterface,
 
     public function getUser($username)
     {
-        if (!$userInfo = $this->getValue($this->config['user_key'].$username)) {
+        if (!$userInfo = $this->getValue($this->config['user_key'] . $username)) {
             return false;
         }
 
@@ -140,7 +140,7 @@ AuthorizationCodeInterface,
     public function setUser($username, $password, $first_name = null, $last_name = null)
     {
         return $this->setValue(
-            $this->config['user_key'].$username,
+            $this->config['user_key'] . $username,
             compact('username', 'password', 'first_name', 'last_name')
         );
     }
@@ -168,13 +168,13 @@ AuthorizationCodeInterface,
     /* ClientInterface */
     public function getClientDetails($client_id)
     {
-        return $this->getValue($this->config['client_key'].$client_id);
+        return $this->getValue($this->config['client_key'] . $client_id);
     }
 
     public function setClientDetails($client_id, $client_secret = null, $redirect_uri = null, $grant_types = null, $scope = null, $user_id = null)
     {
         return $this->setValue(
-            $this->config['client_key'].$client_id,
+            $this->config['client_key'] . $client_id,
             compact('client_id', 'client_secret', 'redirect_uri', 'grant_types', 'scope', 'user_id')
         );
     }
@@ -195,13 +195,13 @@ AuthorizationCodeInterface,
     /* RefreshTokenInterface */
     public function getRefreshToken($refresh_token)
     {
-        return $this->getValue($this->config['refresh_token_key'].$refresh_token);
+        return $this->getValue($this->config['refresh_token_key'] . $refresh_token);
     }
 
     public function setRefreshToken($refresh_token, $client_id, $user_id, $expires, $scope = null)
     {
         return $this->setValue(
-            $this->config['refresh_token_key'].$refresh_token,
+            $this->config['refresh_token_key'] . $refresh_token,
             compact('refresh_token', 'client_id', 'user_id', 'expires', 'scope'),
             $expires
         );
@@ -209,7 +209,9 @@ AuthorizationCodeInterface,
 
     public function unsetRefreshToken($refresh_token)
     {
-        return $this->expireValue($this->config['refresh_token_key'].$refresh_token);
+        $result = $this->expireValue($this->config['refresh_token_key'] . $refresh_token);
+
+        return $result > 0;
     }
 
     /* AccessTokenInterface */
@@ -229,7 +231,9 @@ AuthorizationCodeInterface,
 
     public function unsetAccessToken($access_token)
     {
-        return $this->expireValue($this->config['access_token_key'].$access_token);
+        $result = $this->expireValue($this->config['access_token_key'] . $access_token);
+
+        return $result > 0;
     }
 
     /* ScopeInterface */
@@ -241,7 +245,7 @@ AuthorizationCodeInterface,
 
         $supportedScope = explode(' ', (string) $result);
 
-        return count(array_diff($scope, $supportedScope)) == 0;
+        return (count(array_diff($scope, $supportedScope)) == 0);
     }
 
     public function getDefaultScope($client_id = null)
@@ -271,7 +275,7 @@ AuthorizationCodeInterface,
     /*JWTBearerInterface */
     public function getClientKey($client_id, $subject)
     {
-        if (!$jwt = $this->getValue($this->config['jwt_key'].$client_id)) {
+        if (!$jwt = $this->getValue($this->config['jwt_key'] . $client_id)) {
             return false;
         }
 
@@ -284,9 +288,9 @@ AuthorizationCodeInterface,
 
     public function setClientKey($client_id, $key, $subject = null)
     {
-        return $this->setValue($this->config['jwt_key'].$client_id, array(
+        return $this->setValue($this->config['jwt_key'] . $client_id, array(
             'key' => $key,
-            'subject' => $subject,
+            'subject' => $subject
         ));
     }
 

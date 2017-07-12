@@ -3,7 +3,7 @@
  * Core file
  *
  * @author Vince Wooll <sales@jomres.net>
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.6
  * @package Jomres
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
@@ -1239,7 +1239,7 @@ jr_define( "_JOMRES_VERSIONCHECK_THISJOMRESVERSION", "This Jomres version : " );
 jr_define( "_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION", "Latest Jomres version" );
 jr_define( "_JOMRES_VERSIONCHECK_VERSIONWARNING", "Alert : There is a new version of Jomres available, you are advised to upgrade at your earliest convenience." );
 jr_define( "_JOMRES_PRODUCT_INFORMATION", "Welcome to Jomres, we hope you enjoy using Joomla's favourite booking system. If you would like to purchase a Jomres Starter, Business or Enterprise license, <a href=\"http://www.jomres.net/prices\" target=\"_blank\"> please visit our site</a> for information on how you can upgrade." );
-jr_define( "_JOMRES_PRODUCT_INFORMATION2", "This system is ideal for any scenario, be it a simple booking form for a single property, right up to a site that has multiple users, in multiple languages, with multiple properties. Please see the \"Help\" section to the left, including the \"Getting Started\" page which will guide you through your first steps." );
+jr_define( "_JOMRES_PRODUCT_INFORMATION2", "This system is ideal for any scenario, be it a simple booking form for a single property, right up to a site that has multiple users, in multiple languages, with multiple properties. Please see the \"Help\" section in the menu, including the \"Getting Started\" page which will guide you through your first steps." );
 jr_define( "_JOMRES_ROBBED_PORTALUI_CURRENT_PROPERTY", "Active property" );
 jr_define( "_JOMRES_CONFIG_ALTERNATE_SMTP_TITLE", "Alternate SMTP Settings" );
 jr_define( "_JOMRES_CONFIG_ALTERNATE_SMTP_DESC", "Set this option to Yes to use these Alternate SMTP settings. An increasing number of web hosts appear to be blocking PHP mail functionality, so you can choose to over-ride the mail settings that Jomres adopts from your host CMS (typically Joomla) and use settings of your own choice here." );
@@ -2023,3 +2023,6 @@ jr_define('_JOMRES_PTYPE_CHANGE_WARNING',"Changing the property type will delete
 jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_UPDATEINFO', 'Please note, after updating you must update any Jomres Plugins that are already installed, through the Jomres plugin manager. If you have Core plugins installed, but do not have a valid Jomres license then we <em>do not</em> recommend that you update Jomres as older plugins often may not work with newer versions of Jomres. ');
 jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_UPDATEINFO_KEYVALID', 'Please note, after updating you must update any Jomres Plugins that are already installed, through the Jomres plugin manager.');
 jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_RENEWALS', "If you would like to update Jomres and it's plugins you will need a renewal license. Please visit <a href='https://www.jomres.net/pricing' target='_blank'>our site</a> for more information. In most cases these licenses are 50% of the price of a full license. Please ensure that you have logged into our shop before attempting to purchase a renewal.");
+jr_define('_JOMRES_PAYMENT_METHOD_USED',"Payment method : ");
+
+jr_define('_JOMRES_PRICES',"Buy Jomres");
