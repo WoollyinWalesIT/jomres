@@ -38,6 +38,12 @@ class j10501a_misc
         $support_key_is_trial_license = '';
         $renewal_link = '';
 
+		if ( function_exists("get_property_license_limit") ) {
+			$max_properties = get_property_license_limit();
+		} else {
+			$max_properties = "Unlimited";
+		}
+
         if (trim($jrConfig['licensekey']) != '') {
             jr_import('jomres_check_support_key');
             $jomres_check_support_key = new jomres_check_support_key('site_settings');
@@ -53,10 +59,13 @@ class j10501a_misc
                 $support_key_message = '<p class="alert alert-danger">'.jr_gettext('_JOMRES_SUPPORTKEY_DESC_INVALID', '_JOMRES_SUPPORTKEY_DESC_INVALID', false, false).'</p>';
                 $renewal_link = '<a href="https://license-server.jomres.net/order.php?cmd=products/licenses/list&product_id=13" target="_blank">Renew now</a>';
             }
+
             $support_key_status = '<span class="badge">Status</span> '.$jomres_check_support_key->key_status.'';
             $support_key_owner = '<span class="badge">Owner</span> '.$jomres_check_support_key->owner.'<br/>';
             $support_key_expires = '<span class="badge">Expires</span> '.$jomres_check_support_key->expires.'';
-
+			$support_key_license_name = '<span class="badge">License name</span> '.$jomres_check_support_key->license_name.'';
+			$support_key_property_limit = '<span class="badge">Property limit</span> '.$max_properties.'';
+			
             if ($jomres_check_support_key->is_trial_license == '1') {
                 $support_key_is_trial_license = '<span class="badge badge-warning">Trial license</span> ';
             }
@@ -65,11 +74,13 @@ class j10501a_misc
             $support_key_owner = '';
             $support_key_message = '';
             $support_key_expires = '';
+			$support_key_license_name = '';
+			$support_key_property_limit = '';
         }
         $configurationPanel->startPanel(jr_gettext('_JOMRES_A_TABS_MISC', '_JOMRES_A_TABS_MISC', false));
 
         $configurationPanel->setleft(jr_gettext('_JOMRES_SUPPORTKEY', '_JOMRES_SUPPORTKEY', false));
-        $configurationPanel->setmiddle('<input type="password" class="input-xlarge" name="cfg_licensekey" value="'.$jrConfig[ 'licensekey' ].'" /><br/>'.' '.$support_key_status.' '.$support_key_owner.' '.$support_key_expires.' '.$renewal_link.' '.$support_key_is_trial_license);
+        $configurationPanel->setmiddle('<input type="password" class="input-xlarge" name="cfg_licensekey" value="'.$jrConfig[ 'licensekey' ].'" /><br/>'.' '.$support_key_status.' '.$support_key_owner.' '.$support_key_expires.' '.$renewal_link.' '.$support_key_is_trial_license.' '.$support_key_license_name.' '.$support_key_property_limit);
         $configurationPanel->setright(jr_gettext('_JOMRES_SUPPORTKEY_DESC', '_JOMRES_SUPPORTKEY_DESC', false).' '.$support_key_message);
         $configurationPanel->insertSetting();
 
