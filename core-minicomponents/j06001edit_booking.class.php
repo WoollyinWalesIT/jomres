@@ -94,7 +94,7 @@ class j06001edit_booking
         //display a message if the booking is cancelled
         if ((int) $current_contract_details->contract[$contract_uid]['contractdeets']['cancelled'] == 1) {
             if (using_bootstrap()) {
-                $approval_msg['CLASS'] = 'alert alert-error';
+                $approval_msg['CLASS'] = 'alert alert-error alert-danger';
             } else {
                 $approval_msg['CLASS'] = 'ui-state-error';
             }
