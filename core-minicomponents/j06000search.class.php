@@ -43,7 +43,7 @@ class j06000search
                     array(
                         'argument' => 'feature_uids',
                         'arg_info' => '_JOMRES_SHORTCODES_06000SEARCH_ARG_FEATURE_UIDS',
-                        'arg_example' => '[32,3,5]',
+                        'arg_example' => '32', 
                         ),
                     array(
                         'argument' => 'room_type',
