@@ -63,7 +63,9 @@ class shortcode_parser
 						if ($eventPoint == '06000' || $eventPoint == '06001' || $eventPoint == '06002' || $eventPoint == '06005') {
 							$event = 'j'.$eventPoint.$eventName;
 
-							include_once $eventDetails[ 'filepath' ].$filename;
+							if (!class_exists($event)) {
+								include_once $eventDetails[ 'filepath' ].$filename;
+							}
 
 							$e = new $event($eventArgs);
 
