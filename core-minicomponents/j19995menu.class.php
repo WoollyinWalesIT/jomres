@@ -57,9 +57,9 @@ class j19995menu
 		$jomres_menu->add_admin_item(1, jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_HOME', '_JOMRES_FRONT_MR_MENU_ADMIN_HOME', false), '', 'fa-tachometer');
 		$jomres_menu->add_admin_item(1, jr_gettext('_JOMRES_CUSTOMCODE_PLUGINMANAGER', '_JOMRES_CUSTOMCODE_PLUGINMANAGER', false), 'showplugins', 'fa-cloud-download');
 		$jomres_menu->add_admin_item(1, jr_gettext('_JOMRES_CUSTOMCODE_UPGRADES', '_JOMRES_CUSTOMCODE_UPGRADES', false), 'updates', 'fa-cloud-download');
-		if (!$this->key_valid || $key_validation->is_trial_license == true ){
+		//if (!$this->key_valid || $key_validation->is_trial_license == true ){
 			$jomres_menu->add_admin_item(1, jr_gettext('_JOMRES_PRICES', '_JOMRES_PRICES', false), 'prices', 'fa-money');
-		}
+		//}
 		
 		
 		//users section menus
