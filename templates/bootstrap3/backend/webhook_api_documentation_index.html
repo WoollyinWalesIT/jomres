@@ -1,0 +1,29 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+<script>
+	jomresJquery(document).ready(function () {
+		jomresJquery('body').scrollspy({ target: '#my-nav' });
+	});
+</script>
+<style>
+table {
+    table-layout: fixed;
+}
+
+td:first-child {
+    width: 30%;
+}
+td:last-child {
+    width: 70%;
+}
+</style>
+	
+<div class="row">
+	<div class="col-md-9"> 
+		{CONTENTS}
+	</div> 
+	<div class="col-md-3">
+		{SIDEBAR}
+	</div>
+</div>
+</patTemplate:tmpl>
