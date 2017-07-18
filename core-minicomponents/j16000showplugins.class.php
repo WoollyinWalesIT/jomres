@@ -110,7 +110,11 @@ class j16000showplugins
 
 				$newFile = $updateDirPath.'plugin_manager.vnw';
 				
-				file_put_contents($newFile, file_get_contents($queryServer, false, stream_context_create($arrContextOptions)));
+				$result = file_put_contents($newFile, file_get_contents($queryServer, false, stream_context_create($arrContextOptions)));
+				if ( filesize($newFile) == 0 ) {
+					echo "Error, the download file size is set to zero, therefore it cannot be unpacked or used. Has this hosting account run out of disk space?" ;
+					return;
+				}
 				
 				$zip = new ZipArchive();
 				$res = $zip->open($newFile);
