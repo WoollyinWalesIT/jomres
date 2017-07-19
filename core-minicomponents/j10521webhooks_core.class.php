@@ -31,6 +31,9 @@ class j10521webhooks_core
 
 		$configurationPanel 			= $componentArgs[ 'configurationPanel' ];
 
+		if (!isset($jrConfig[ 'webhooks_core_show' ]))
+			$jrConfig[ 'webhooks_core_show' ] =1;
+		
 		// make a standard yes/no list
 		$yesno    = array ();
 		$yesno[ ] = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false ) );
