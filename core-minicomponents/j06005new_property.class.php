@@ -38,7 +38,16 @@ class j06005new_property
         if ($jrConfig['selfRegistrationAllowed'] == '0' && !$thisJRUser->superPropertyManager) {
             return;
         }
+		
+		// You can, by all means, remove this section of code but it's only here to ensure you don't lock yourself out of your own system accidentally
+		if (function_exists("get_number_of_allowed_properties") ) {
+			if (get_showtime('numberOfPropertiesInSystem') >= get_number_of_allowed_properties() ) {
+				echo '<p class="alert alert-danger">Error, your license does not allow you to add more properties</p>';
+				return;
+			}
+		}
 
+			
         //get selected country
         $selectedCountry = jomresGetParam($_REQUEST, 'new_property_country', '');
         if ($selectedCountry == '') {
