@@ -101,16 +101,26 @@ class j16000showplugins
 				include JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'jomres_config.php';
 				$queryServer = 'http://plugins.jomres4.net/index.php?r=gp&cms='._JOMRES_DETECTED_CMS.'&vnw=1&plugin=plugin_manager&jomresver='. $mrConfig[ 'version' ].'&key='.$key_validation->key_hash;
 
-				$arrContextOptions=array(
-					"ssl"=>array(
-						"verify_peer"=>false,
-						"verify_peer_name"=>false,
-					),
-				);
-
 				$newFile = $updateDirPath.'plugin_manager.vnw';
+
+                $curl_handle = curl_init($queryServer);
+                $file_handle = fopen($newFile, 'wb');
+                if ($file_handle == false) {
+                    $error_messsage[ 'ERROR' ] = "Couldn't create new file $newFile. Possible file permission problem?";
+                    if ($autoupgrade) {
+                        return false;
+                    }
+                }
+
+                curl_setopt($curl_handle, CURLOPT_FILE, $file_handle);
+                curl_setopt($curl_handle, CURLOPT_HEADER, 0);
+                curl_setopt($curl_handle, CURLOPT_USERAGENT, 'Jomres');
+                $result = curl_exec($curl_handle);
+                $content_type = curl_getinfo($curl_handle, CURLINFO_CONTENT_TYPE);
+                curl_close($curl_handle);
 				
-				$result = file_put_contents($newFile, file_get_contents($queryServer, false, stream_context_create($arrContextOptions)));
+				// $result = file_put_contents($newFile, file_get_contents($queryServer, false, stream_context_create($arrContextOptions)));
+				
 				if ( filesize($newFile) == 0 ) {
 					echo "Error, the download file size is set to zero, therefore it cannot be unpacked or used. Has this hosting account run out of disk space?" ;
 					return;
