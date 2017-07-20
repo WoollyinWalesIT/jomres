@@ -53,6 +53,16 @@ class j10527reviews
         $configurationPanel->setmiddle($lists['only_guests_can_review']);
         $configurationPanel->setright(jr_gettext('_JOMRES_REVIEWS_ADMIN_GUESTSONLY_DESC', '_JOMRES_REVIEWS_ADMIN_GUESTSONLY_DESC', false));
         $configurationPanel->insertSetting();
+		
+		if (!isset($jrConfig[ 'reviews_limit' ])) {
+			$jrConfig[ 'reviews_limit' ] = 2;
+		}
+		
+        $configurationPanel->setleft(jr_gettext('PORTAL_REVIEWS_LIMIT', 'PORTAL_REVIEWS_LIMIT', false));
+        $configurationPanel->setmiddle('<input type="number" class="input-large" name="cfg_reviews_limit" value="'.$jrConfig[ 'reviews_limit' ].'" />');
+        $configurationPanel->setright(jr_gettext('PORTAL_REVIEWS_LIMIT_DESC', 'PORTAL_REVIEWS_LIMIT_DESC', false));
+        $configurationPanel->insertSetting();
+		
     }
 
     // This must be included in every Event/Mini-component
