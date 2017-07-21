@@ -1,3 +1,15 @@
+<h3>Jomres 9.9.7 20/07/2017</h3>
+
+<span class="label label-success">Feature</span> Webhooks Core and API Core moved into main application. There are a lot of ways that we can use this functionality, however having these particular two features as plugins is more of a hinderance than a help, therefore they've been moved into the core.
+
+
+<span class="label label-warning">Change</span> Modified the shortcode parser so that if a class exists, don't include the file. This doesn't address any bugs in Jomres, instead it addresses the possibility of triggering an error if a developer or designer should create a fatal error by copying a minicomponent, e.g. to create a backup of a file.
+<span class="label label-warning">Change</span> Updated shortcodes instructions to make sure that feature uids information is correct.
+<span class="label label-warning">Change</span> Updated how Jomres Pricing information is retrieved.
+<span class="label label-warning">Change</span> Added a check for filesize being zero when installing the plugin manager.
+<span class="label label-warning">Change</span> Tweaked menus to not show some options if upcoming property limitations are applied.
+
+
 <h3>Jomres 9.9.6 12/07/2017</h3>
 
 <span class="label label-warning">Change</span> Our implementation of OAuth2 scripts updated to extend the lifetime of the tokens, and allow implicit token issuing.
