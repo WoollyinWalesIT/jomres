@@ -1,0 +1,48 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript"> 
+
+function get_auth_form(authmethod) {
+		jomresJquery.ajax({ url:'{JOMRES_SITEPAGE_URL_AJAX}&task=ajax_webhooks_build_auth_form&auth_method='+authmethod+'&integration_id='+{INTEGRATION_ID},success: function(data)
+				{
+				populateDiv("auth_method_form_fields",data);
+				}, async: true
+			});
+		}
+</script>
+    
+<h2 class="page-header">{PAGETITLE}</h2>
+
+<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm" class="form-horizontal" role="form">
+	<fieldset>
+		<div class="control-group">
+			<label class="control-label" for="url">{WEBHOOKS_INTEGRATION_URL}</label>
+			<div class="controls">
+				<input type="text" name="url" value="{URL}" class="input-large"/>
+			</div>
+		</div>
+	</fieldset>
+    
+	<fieldset>
+		<div class="control-group">
+			<label class="control-label" for="url">{WEBHOOKS_AUTH_METHOD_SELECT}</label>
+			<div class="controls">
+				{AUTHMETHODSDROPDOWN}
+			</div>
+		</div>
+	</fieldset>
+    
+<div id="auth_method_form_fields">
+{AUTH_FORM}
+</div>
+{NOTES}
+	<div class="form-actions">
+		<div class="col-md-10 col-md-offset-2">
+			{JOMRESTOOLBAR}
+		</div>
+	</div>
+	
+<input type="hidden" name="task" value="save_integration" />
+<input type="hidden" name="nohtml" value="1" />
+<input type="hidden" name="integration_id" value="{INTEGRATION_ID}" />
+</form>
+</patTemplate:tmpl>

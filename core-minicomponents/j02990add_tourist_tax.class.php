@@ -4,7 +4,7 @@
 *
 * @author Woollyinwales IT <sales@jomres.net>
 *
- * @version Jomres 9.9.6
+ * @version Jomres 9.9.7
  *
 * @copyright	2005-2015 Woollyinwales IT
 * Jomres (tm) PHP files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project
@@ -26,7 +26,7 @@ class j02990add_tourist_tax
         }
 
         //if this is a secret key payment (for an approved booking enquiry) we don`t need to add the tourist tax again
-		$sk = (int)jomresGetParam($_REQUEST, 'sk', '');
+		$sk = jomresGetParam($_REQUEST, 'sk', '');
 
         if ($sk != '') {
             return;

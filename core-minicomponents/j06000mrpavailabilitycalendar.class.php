@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.6
+ * @version Jomres 9.9.7
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -296,7 +296,6 @@ class j06000mrpavailabilitycalendar
         foreach ($roomList as $cont) {
             $date = $cont->date;
 
-            $bgcolor = $inbgcolor;
             $contract_uid = $cont->contract_uid;
             if (!array_key_exists($date, $tmpdatesArray)) {
                 $tmpdatesArray[ $date ] = 1;

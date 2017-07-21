@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.6
+ * @version Jomres 9.9.7
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -94,7 +94,7 @@ class j06001edit_booking
         //display a message if the booking is cancelled
         if ((int) $current_contract_details->contract[$contract_uid]['contractdeets']['cancelled'] == 1) {
             if (using_bootstrap()) {
-                $approval_msg['CLASS'] = 'alert alert-error';
+                $approval_msg['CLASS'] = 'alert alert-error alert-danger';
             } else {
                 $approval_msg['CLASS'] = 'ui-state-error';
             }

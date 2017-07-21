@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.6
+ * @version Jomres 9.9.7
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -53,6 +53,12 @@ class j10527reviews
         $configurationPanel->setmiddle($lists['only_guests_can_review']);
         $configurationPanel->setright(jr_gettext('_JOMRES_REVIEWS_ADMIN_GUESTSONLY_DESC', '_JOMRES_REVIEWS_ADMIN_GUESTSONLY_DESC', false));
         $configurationPanel->insertSetting();
+		
+        $configurationPanel->setleft(jr_gettext('PORTAL_REVIEWS_LIMIT', 'PORTAL_REVIEWS_LIMIT', false));
+        $configurationPanel->setmiddle('<input type="number" class="input-large" name="cfg_reviews_limit" value="'.$jrConfig[ 'reviews_limit' ].'" />');
+        $configurationPanel->setright(jr_gettext('PORTAL_REVIEWS_LIMIT_DESC', 'PORTAL_REVIEWS_LIMIT_DESC', false));
+        $configurationPanel->insertSetting();
+		
     }
 
     // This must be included in every Event/Mini-component

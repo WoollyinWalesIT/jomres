@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.6
+ * @version Jomres 9.9.7
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -177,5 +177,6 @@ $jrConfig = array(
   'map_zoom' => '10',
   'map_height' => '300',
   'selected_languages' => '',
-  'front_cpanel_home_grid' => '2/3 1/3'
+  'front_cpanel_home_grid' => '2/3 1/3',
+  'reviews_limit' => '2'
 );

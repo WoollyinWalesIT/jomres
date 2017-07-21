@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.6
+ * @version Jomres 9.9.7
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -211,7 +211,6 @@ if ($folderChecksPassed && $functionChecksPassed) {
             if (ACTION == 'Install') { // Installing
                 //output_message ( "Creating Jomres tables if they don't already exist.");
                 createJomresTables();
-                add_api_tables();
                 //output_message ( "Inserting sample data");
                 insertSampleData();
                 //output_message ( "Importing configuration settings to database");
@@ -224,7 +223,7 @@ if ($folderChecksPassed && $functionChecksPassed) {
                 import_countries();
                 import_regions();
                 insert_pfeature_categories();
-                
+                addApiAndWebhooksTables();
                 require_once _JOMRES_DETECTED_CMS_SPECIFIC_FILES.'cms_specific_installation.php';
                 showCompletedText();
             } elseif (ACTION == 'Upgrade') { // Upgrading
@@ -252,7 +251,8 @@ if ($folderChecksPassed && $functionChecksPassed) {
                 import_regions();
 
                 import_images_to_media_centre_directories();
-
+				addApiAndWebhooksTables();
+				
                 require_once _JOMRES_DETECTED_CMS_SPECIFIC_FILES.'cms_specific_upgrade.php';
                 showCompletedText();
             }
@@ -611,7 +611,6 @@ function doTableUpdates()
     drop_orphan_line_items_table();
     drop_room_images_table();
 	drop_cronlog_table();
-    add_api_tables();
 	add_jomres_sessions_table();
 	add_jomres_template_package_table();
     updateSiteSettings('update_time', time());
@@ -754,44 +753,6 @@ function copy_default_property_type_markers() {
 			output_message("Error, unable to copy marker image", 'danger');
 		}
 	}
-}
-
-function add_api_tables() {
-    $query = "CREATE TABLE IF NOT EXISTS  #__jomres_oauth_clients (
-        client_id VARCHAR(80) NOT NULL, 
-        client_secret VARCHAR(80), 
-        redirect_uri VARCHAR(2000) NOT NULL, 
-        grant_types VARCHAR(80), 
-        scope VARCHAR(1000), 
-        user_id VARCHAR(80), 
-        CONSTRAINT clients_client_id_pk 
-        PRIMARY KEY (client_id)
-        )";
-    doInsertSql($query,"");
-
-    $query = "CREATE TABLE IF NOT EXISTS  #__jomres_oauth_access_tokens (access_token VARCHAR(40) NOT NULL, client_id VARCHAR(80) NOT NULL, user_id VARCHAR(255), expires TIMESTAMP NOT NULL, scope VARCHAR(2000), CONSTRAINT access_token_pk PRIMARY KEY (access_token))";
-    doInsertSql($query,"");
-
-    $query = "CREATE TABLE IF NOT EXISTS  #__jomres_oauth_authorization_codes (authorization_code VARCHAR(40) NOT NULL, client_id VARCHAR(80) NOT NULL, user_id VARCHAR(255), redirect_uri VARCHAR(2000), expires TIMESTAMP NOT NULL, scope VARCHAR(2000), CONSTRAINT auth_code_pk PRIMARY KEY (authorization_code))";
-    doInsertSql($query,"");
-
-    $query = "CREATE TABLE IF NOT EXISTS  #__jomres_oauth_refresh_tokens (refresh_token VARCHAR(40) NOT NULL, client_id VARCHAR(80) NOT NULL, user_id VARCHAR(255), expires TIMESTAMP NOT NULL, scope VARCHAR(2000), CONSTRAINT refresh_token_pk PRIMARY KEY (refresh_token))";
-    doInsertSql($query,"");
-
-    $query = "CREATE TABLE IF NOT EXISTS  #__jomres_oauth_scopes (scope TEXT, is_default BOOLEAN)";
-    doInsertSql($query,"");
-
-    // We need to see if there's a "system" user in the database, if there's not we'll create them. This is a once only action
-    $query = "SELECT client_id,scope FROM #__jomres_oauth_clients WHERE client_id = 'system' LIMIT 1";
-    $result = doSelectSql($query);
-    if (count($result)==0) {
-        $query = "INSERT INTO #__jomres_oauth_clients 
-        (`client_id`,`client_secret`,`redirect_uri`,`grant_types`,`scope`,`user_id`) 
-        VALUES 
-        ('system','".createNewAPIKey()."','',null,'*',99999999999999999999)";
-        if ( !doInsertSql( $query, jr_gettext( '_OAUTH_CREATED', '_OAUTH_CREATED', false ) ) )
-            throw new Exception("Unable to update oauth client details, mysql db failure");
-    }
 }
 
 function checkManagersUsernameColExists()
@@ -6569,3 +6530,97 @@ function showfooter()
 		</center>';
     }
 }
+
+function addApiAndWebhooksTables() {
+
+	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_oauth_clients (
+		`client_id` VARCHAR(80) NOT NULL, 
+		`client_secret` VARCHAR(80), 
+		`redirect_uri` VARCHAR(2000) NOT NULL, 
+		`grant_types` VARCHAR(80), 
+		`scope` VARCHAR(1000), 
+		`user_id` VARCHAR(80), 
+		`identifier` VARCHAR(255),
+		CONSTRAINT clients_client_id_pk 
+		PRIMARY KEY (client_id)
+		)";
+	doInsertSql($query,"");
+
+	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_oauth_access_tokens (access_token VARCHAR(40) NOT NULL, client_id VARCHAR(80) NOT NULL, user_id VARCHAR(255), expires TIMESTAMP NOT NULL, scope VARCHAR(2000), CONSTRAINT access_token_pk PRIMARY KEY (access_token))";
+	doInsertSql($query,"");
+
+	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_oauth_authorization_codes (authorization_code VARCHAR(40) NOT NULL, client_id VARCHAR(80) NOT NULL, user_id VARCHAR(255), redirect_uri VARCHAR(2000), expires TIMESTAMP NOT NULL, scope VARCHAR(2000), CONSTRAINT auth_code_pk PRIMARY KEY (authorization_code))";
+	doInsertSql($query,"");
+
+	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_oauth_refresh_tokens (refresh_token VARCHAR(40) NOT NULL, client_id VARCHAR(80) NOT NULL, user_id VARCHAR(255), expires TIMESTAMP NOT NULL, scope VARCHAR(2000), CONSTRAINT refresh_token_pk PRIMARY KEY (refresh_token))";
+	doInsertSql($query,"");
+
+
+	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_oauth_scopes (scope TEXT, is_default BOOLEAN)";
+	doInsertSql($query,"");
+
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+	$jrConfig = $siteConfig->get();
+
+	if (!isset($jrConfig[ 'api_core_show' ])) {
+		$siteConfig->insert_new_setting('api_core_show', '0');
+	}
+
+	$query = "SHOW COLUMNS FROM #__jomres_oauth_clients LIKE 'identifier'";
+	$colExists = doSelectSql( $query );
+	if (count($colExists) < 1)
+		{
+		$query = "ALTER TABLE `#__jomres_oauth_clients` ADD `identifier` VARCHAR(255) ";
+		doInsertSql($query,"");
+		}
+
+	$cron =jomres_getSingleton('jomres_cron');
+	$cron->addJob("api_tokens_cleanup","D","");
+    
+
+	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_webhooks_integrations (
+		`id` INT(11) auto_increment, 
+		`manager_id` int(11),
+		`settings`  text null, 
+		`enabled` BOOL NOT NULL DEFAULT '1',
+		PRIMARY KEY	(`id`)
+		)";
+	doInsertSql($query,"");
+
+	if ( !checkIntegrationsEnabledColExists() ) alterIntegrationsEnabledCol();
+
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+	$jrConfig = $siteConfig->get();
+
+	if (!isset($jrConfig[ 'webhooks_core_show' ])) {
+		$siteConfig->insert_new_setting('webhooks_core_show', '0');
+	}
+	
+	// We need to see if there's a "system" user in the database, if there's not we'll create them. This is a once only action
+    $query = "SELECT client_id,scope FROM #__jomres_oauth_clients WHERE client_id = 'system' LIMIT 1";
+    $result = doSelectSql($query);
+    if (count($result)==0) {
+        $query = "INSERT INTO #__jomres_oauth_clients 
+        (`client_id`,`client_secret`,`redirect_uri`,`grant_types`,`scope`,`user_id`) 
+        VALUES 
+        ('system','".createNewAPIKey()."','',null,'*',99999999999999999999)";
+        if ( !doInsertSql( $query, jr_gettext( '_OAUTH_CREATED', '_OAUTH_CREATED', false ) ) )
+            throw new Exception("Unable to update oauth client details, mysql db failure");
+    }
+	
+}
+
+function checkIntegrationsEnabledColExists()
+	{
+	$query  = "SHOW COLUMNS FROM #__jomres_webhooks_integrations LIKE 'enabled'";
+	$result = doSelectSql( $query );
+	if ( !empty( $result ))
+		return true;
+	return false;
+	}
+
+function alterIntegrationsEnabledCol()
+	{
+	$query = "ALTER TABLE `#__jomres_webhooks_integrations` ADD `enabled` BOOLEAN NOT NULL DEFAULT TRUE AFTER `settings` ";
+	doInsertSql( $query, '' );
+	}
