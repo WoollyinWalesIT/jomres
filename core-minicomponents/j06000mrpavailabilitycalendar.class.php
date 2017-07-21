@@ -296,7 +296,6 @@ class j06000mrpavailabilitycalendar
         foreach ($roomList as $cont) {
             $date = $cont->date;
 
-            $bgcolor = $inbgcolor;
             $contract_uid = $cont->contract_uid;
             if (!array_key_exists($date, $tmpdatesArray)) {
                 $tmpdatesArray[ $date ] = 1;
