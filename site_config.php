@@ -177,5 +177,6 @@ $jrConfig = array(
   'map_zoom' => '10',
   'map_height' => '300',
   'selected_languages' => '',
-  'front_cpanel_home_grid' => '2/3 1/3'
+  'front_cpanel_home_grid' => '2/3 1/3',
+  'reviews_limit' => '2'
 );
