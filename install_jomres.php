@@ -607,6 +607,10 @@ function doTableUpdates()
         alterGuestsProfileParamsCol();
     }
     
+	if (!checkPropertysCompletedColExists()) {
+        alterPropertysCompletedCol();
+    }
+ 
 	copy_default_property_type_markers();
     drop_orphan_line_items_table();
     drop_room_images_table();
@@ -616,6 +620,26 @@ function doTableUpdates()
     updateSiteSettings('update_time', time());
     
 }
+
+function alterPropertysCompletedCol()
+{
+    //output_message ( "Editing __jomres_propertys table adding permit_number column");
+    $query = "ALTER TABLE `#__jomres_propertys` ADD `completed`  BOOL NOT NULL DEFAULT '0' ";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to add __jomres_propertys completed', 'danger');
+    }
+}
+
+function checkPropertysCompletedColExists()
+{
+    $query = "SHOW COLUMNS FROM #__jomres_propertys LIKE 'completed'";
+    $result = doSelectSql($query);
+    if (count($result) > 0) {
+        return true;
+    }
+    return false;
+}
+
 
 function alterGuestsProfileParamsCol()
 {
@@ -3896,6 +3920,7 @@ function createJomresTables()
 		`property_site_id` VARCHAR( 255 ) NULL,
 		`last_changed` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 		`permit_number` varchar( 255 ) DEFAULT '',
+		`completed`  BOOL NOT NULL DEFAULT '0',
 		PRIMARY KEY(`propertys_uid`)
 		) ";
     if (!doInsertSql($query)) {

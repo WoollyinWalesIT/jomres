@@ -66,6 +66,7 @@ class jomres_sanity_check
             $this->warnings .= $this->check_main_image();
 
             if (trim($this->warnings) == '') {
+				$this->check_completed(); // Add a flat that will show site managers when a property is ready to be reviewed after creation and when it is waiting approval
                 $this->warnings .= $this->check_published();
             }
 
@@ -118,6 +119,32 @@ class jomres_sanity_check
         }
     }
 
+    public function check_completed() {
+		// This is only triggered if a property doesn't have any warnings fired (address, images etc)
+		
+		// If property is marked as approved, we know it has been completed, so to save performance we'll trot right along to the next check.
+		// Check to see if the property has already been marked as completed. If yes, then move on. If no, set the Completed flag to yes.
+		// If the property is already published, we will automatically mark it as completed
+		// If it is not, we will check to see if the Completed flag is set to 0. If it is, we'll set it to 
+		
+		
+		// TODO 
+		
+        /* $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
+        $current_property_details->gather_data($this->property_uid);
+		if (!$current_property_details->approved) {
+			if ($current_property_details->published == "1") {
+				$query = "UPDATE #__jomres_propertys SET completed = 1 WHERE propertys_uid = ".(int)$this->property_uid." LIMIT 1";
+				doInsertSql($query);
+			}
+			
+			
+			
+		} */
+		
+		
+    }
+	
     public function check_tours_exist()
     {
         if (get_showtime('task') != 'jintour') {
