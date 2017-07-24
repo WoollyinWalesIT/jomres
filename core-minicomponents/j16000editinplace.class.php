@@ -27,11 +27,10 @@ class j16000editinplace
         }
 
         $customText = jomresGetParam($_POST, 'value', '', 'string');
-		$language = jomresGetParam($_GET, 'lang', '');
 		
         $theConstant = filter_var($_POST[ 'pk' ], FILTER_SANITIZE_SPECIAL_CHARS);
 
-        $result = updateCustomText($theConstant, $customText, true, 0 , $language );
+        $result = updateCustomText($theConstant, $customText, true, 0);
 
         if ($result) {
             header('Status: 200');

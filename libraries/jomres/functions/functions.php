@@ -3680,13 +3680,9 @@ function this_cms_is_joomla()
 //-T E X T	M O D I F I C A T I O N	 ----
 //----------------------------------------
 
-function updateCustomText($theConstant, $theValue, $audit = true, $property_uid = null , $language = null )
+function updateCustomText($theConstant, $theValue, $audit = true, $property_uid = null)
 {
-	if ( !isset($language) || is_null($language) ) {
-		$language = get_showtime('lang');
-	}
-	
-    $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+	$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 
     $jrConfig = $siteConfig->get();
@@ -3717,15 +3713,15 @@ function updateCustomText($theConstant, $theValue, $audit = true, $property_uid 
     }
 
     //$theValue=htmlentities($theValue);
-    $query = "SELECT customtext FROM #__jomres_custom_text WHERE constant = '".$theConstant."' and property_uid = '".(int) $property_uid."' AND language = '".$language."'";
+    $query = "SELECT customtext FROM #__jomres_custom_text WHERE constant = '".$theConstant."' and property_uid = '".(int) $property_uid."' AND language = '".get_showtime('lang')."'";
     $textList = doSelectSql($query);
     if (strlen($theValue) == 0) {
-        $query = "DELETE FROM	#__jomres_custom_text WHERE constant = '".$theConstant."' AND property_uid = '".(int) $property_uid."' AND language = '".$language."'";
+        $query = "DELETE FROM	#__jomres_custom_text WHERE constant = '".$theConstant."' AND property_uid = '".(int) $property_uid."' AND language = '".get_showtime('lang')."'";
     } else {
         if (empty($textList)) {
-            $query = "INSERT INTO #__jomres_custom_text (`constant`,`customtext`,`property_uid`,`language`) VALUES ('".$theConstant."','".$theValue."','".(int) $property_uid."','".$language."')";
+            $query = "INSERT INTO #__jomres_custom_text (`constant`,`customtext`,`property_uid`,`language`) VALUES ('".$theConstant."','".$theValue."','".(int) $property_uid."','".get_showtime('lang')."')";
         } else {
-            $query = "UPDATE #__jomres_custom_text SET `customtext`='".$theValue."' WHERE constant = '".$theConstant."' AND property_uid = '".(int) $property_uid."' AND language = '".$language."'";
+            $query = "UPDATE #__jomres_custom_text SET `customtext`='".$theValue."' WHERE constant = '".$theConstant."' AND property_uid = '".(int) $property_uid."' AND language = '".get_showtime('lang')."'";
         }
     }
 
