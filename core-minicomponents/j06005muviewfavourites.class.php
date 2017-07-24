@@ -50,7 +50,7 @@ class j06005muviewfavourites
             $MiniComponents->triggerEvent('01006', $componentArgs); // optional
             $MiniComponents->triggerEvent('01007', $componentArgs); // optional
             $componentArgs[ 'propertys_uid' ] = $shortlist_items;
-            $componentArgs[ 'live_scrolling_enabled' ] = true;
+            $componentArgs[ 'live_scrolling_enabled' ] = false;
             $MiniComponents->triggerEvent('01010', $componentArgs); // listPropertys
         } else {
             echo jr_gettext('_JOMCOMP_MYUSER_VIEWFAVOURITES_NONE', '_JOMCOMP_MYUSER_VIEWFAVOURITES_NONE', $editable = false, $isLink = false);

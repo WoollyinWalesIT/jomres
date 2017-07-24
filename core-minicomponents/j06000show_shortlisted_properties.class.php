@@ -56,7 +56,7 @@ class j06000show_shortlisted_properties
             $MiniComponents->triggerEvent('01006', $componentArgs); // optional
             $MiniComponents->triggerEvent('01007', $componentArgs); // optional
             $componentArgs[ 'propertys_uid' ] = $shortlist_items;
-            $componentArgs[ 'live_scrolling_enabled' ] = true;
+            $componentArgs[ 'live_scrolling_enabled' ] = false;
             $MiniComponents->triggerEvent('01010', $componentArgs); // listPropertys
             //$tmpBookingHandler->tmpsearch_data['ajax_list_search_results'] = $original_search_results;
         } else {
