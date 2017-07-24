@@ -42,7 +42,7 @@ class jomres_sanity_check
         $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
         if ($thisJRUser->userIsManager) {
             $this->warnings .= $this->check_editing_mode();
-            $this->warnings .= $this->check_approved();
+            
             $this->warnings .= $this->check_suspended();
             if (get_showtime('include_room_booking_functionality')) {
                 if ($this->mrConfig[ 'singleRoomProperty' ] == 1) {
@@ -67,7 +67,10 @@ class jomres_sanity_check
 
             if (trim($this->warnings) == '') {
 				$this->check_completed(); // Add a flat that will show site managers when a property is ready to be reviewed after creation and when it is waiting approval
-                $this->warnings .= $this->check_published();
+				$this->warnings .= $this->check_approved();
+				if (trim($this->warnings) == '') {
+					$this->warnings .= $this->check_published();
+				}
             }
 
             return $this->warnings;
@@ -123,26 +126,26 @@ class jomres_sanity_check
 		// This is only triggered if a property doesn't have any warnings fired (address, images etc)
 		
 		// If property is marked as approved, we know it has been completed, so to save performance we'll trot right along to the next check.
+		// If the property is already published, we will automatically mark it as completed. This prevents previously approved properties from needing to be checked
+		
 		// Check to see if the property has already been marked as completed. If yes, then move on. If no, set the Completed flag to yes.
-		// If the property is already published, we will automatically mark it as completed
+		
 		// If it is not, we will check to see if the Completed flag is set to 0. If it is, we'll set it to 
 		
 		
 		// TODO 
 		
-        /* $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
+        $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
         $current_property_details->gather_data($this->property_uid);
+		
+		if ($current_property_details->completed) { 
+			return true;
+		}
+		
 		if (!$current_property_details->approved) {
-			if ($current_property_details->published == "1") {
-				$query = "UPDATE #__jomres_propertys SET completed = 1 WHERE propertys_uid = ".(int)$this->property_uid." LIMIT 1";
-				doInsertSql($query);
-			}
-			
-			
-			
-		} */
-		
-		
+			$query = "UPDATE #__jomres_propertys SET completed = 1 WHERE propertys_uid = ".(int)$this->property_uid." LIMIT 1";
+			doInsertSql($query);
+		}
     }
 	
     public function check_tours_exist()

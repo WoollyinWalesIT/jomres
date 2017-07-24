@@ -216,6 +216,8 @@ class basic_property_details
             $this->apikey = $this->multi_query_result[ $this->property_uid ][ 'apikey' ];
             $this->approved = $this->multi_query_result[ $this->property_uid ][ 'approved' ];
             $this->permit_number = $this->multi_query_result[ $this->property_uid ][ 'permit_number' ];
+			$this->completed  = $this->multi_query_result[ $this->property_uid ][ 'completed' ];
+			
 
             $this->accommodation_tax_rate = $this->multi_query_result[ $this->property_uid ][ 'accommodation_tax_rate' ];
 
@@ -371,7 +373,8 @@ class basic_property_details
 							`property_policies_disclaimers`,
 							`apikey`,
 							`approved`,
-							`permit_number`
+							`permit_number`,
+							`completed`
 						FROM #__jomres_propertys 
 						WHERE propertys_uid IN (' .jomres_implode($property_uids).') ';
             $propertyData = doSelectSql($query);
@@ -452,7 +455,7 @@ class basic_property_details
                 $this->multi_query_result[ $data->propertys_uid ][ 'apikey' ] = $data->apikey;
                 $this->multi_query_result[ $data->propertys_uid ][ 'approved' ] = (bool) $data->approved;
                 $this->multi_query_result[ $data->propertys_uid ][ 'permit_number' ] = (string) $data->permit_number;
-
+				$this->multi_query_result[ $data->propertys_uid ][ 'completed' ] = (bool) $data->completed;
                 $this->property_names[$data->propertys_uid] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME', $data->property_name, $editable, false);
             }
 
