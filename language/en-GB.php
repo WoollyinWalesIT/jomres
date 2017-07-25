@@ -2050,3 +2050,6 @@ jr_define( 'PORTAL_REVIEWS_LIMIT', 'Reviews limit' );
 jr_define( 'PORTAL_REVIEWS_LIMIT_DESC', 'Use this setting to limit the number of reviews shown in the property details page.' );
 jr_define( 'PORTAL_REVIEWS_SHOW_ALL_REVIEWS', 'Show all reviews' );
 
+jr_define( 'JOMRES_INCOMPLETE', 'Incomplete' );
+jr_define( 'JOMRES_WATING_APPROVAL', 'Pending approval' );
+

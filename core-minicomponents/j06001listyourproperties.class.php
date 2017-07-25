@@ -67,6 +67,8 @@ class j06001listyourproperties
         $output[ 'HACTIVE' ] = jr_gettext('_JOMRES_HSTATUS_CURRENT', '_JOMRES_HSTATUS_CURRENT', false);
         $output[ 'HLASTCHANGED' ] = jr_gettext('_JOMRES_HLASTCHANGED', '_JOMRES_HLASTCHANGED', false);
         $output[ 'HLEGEND' ] = jr_gettext('_JOMRES_HLEGEND', '_JOMRES_HLEGEND', false);
+		$output[ 'HNOTCOMPLETED' ] = jr_gettext('JOMRES_INCOMPLETE', 'JOMRES_INCOMPLETE');
+		$output[ 'HWAITINGAPPROVAL' ] = jr_gettext('JOMRES_WATING_APPROVAL', 'JOMRES_WATING_APPROVAL');
 
         if ($thisJRUser->accesslevel > 50) { //higher than receptionist
             $r = array();

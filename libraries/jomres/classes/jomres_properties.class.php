@@ -162,7 +162,6 @@ class jomres_properties
         if ((int) $jrConfig['automatically_approve_new_properties'] == 1) {
             $this->approved = 1;
         }
-		
 
 		$jomres_room_types = jomres_singleton_abstract::getInstance('jomres_room_types');
 		$jomres_room_types->get_xrefs();
@@ -263,8 +262,8 @@ class jomres_properties
             }
             
         $webhook_notification                               = new stdClass();
-        $webhook_notification->webhook_event                = 'property_added';
-        $webhook_notification->webhook_event_description    = 'Logs when a property is added.';
+        $webhook_notification->webhook_event                = 'property_created';
+        $webhook_notification->webhook_event_description    = 'Logs when a new property is created.';
         $webhook_notification->webhook_event_plugin         = 'core';
         $webhook_notification->data                         = new stdClass();
         $webhook_notification->data->property_uid           = $this->propertys_uid;
@@ -298,8 +297,8 @@ class jomres_properties
 
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
-
-        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+		
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
         //check if the new property type allows booking rooms in the property, the property itself or neither (tour/real estate), so we can delete all rooms and tariffs
         $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
@@ -325,13 +324,6 @@ class jomres_properties
         if (trim($apikey) == '') {
             $this->apikey = createNewAPIKey();
             $apiclause = " `apikey` = '".$this->apikey."', ";
-        }
-
-        //approval and published status
-        $this->approved = 1;
-
-        if ((int) $jrConfig['automatically_approve_new_properties'] == 0 && !$thisJRUser->superPropertyManager) {
-            $this->approved = 0;
         }
 
         if (!empty($this->property_features)) {
@@ -366,11 +358,10 @@ class jomres_properties
 						`metatitle` = '".$this->metatitle."',
 						`metadescription` = '".$this->metadescription."',
 						`metakeywords` = '".$this->metakeywords."',
-						`approved` = ".(int) $this->approved.',
-						`stars` = '.(int) $this->stars.',
-						`superior` = '.(int) $this->superior.',
-						' .$apiclause.'
-						`ptype_id` = '.(int) $this->ptype_id.",
+						`stars` = ".(int) $this->stars.",
+						`superior` = ".(int) $this->superior.",
+						".$apiclause."
+						`ptype_id` = ".(int) $this->ptype_id.",
 						`property_site_id` = '".$this->property_site_id."',
 						`permit_number` = '".$this->permit_number."'
 					WHERE `propertys_uid` = " .(int) $this->propertys_uid;
@@ -393,12 +384,23 @@ class jomres_properties
         updateCustomText('_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE', $this->metatitle, true);
         updateCustomText('_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION', $this->metadescription, true);
         updateCustomText('_JOMRES_CUSTOMTEXT_PROPERTY_METAKEYWORDS', $this->metakeywords, true);
+		
+		//change the approval and published status if the property is edited by a manager (not super manager) and properties require approval
+        if ((int) $jrConfig['automatically_approve_new_properties'] == 0 && !$thisJRUser->superPropertyManager) {
+			if ($this->approved == 1) {
+				$this->setApproved(0);
+			}
+			
+			if ($this->published == 1) {
+				$this->setPublished(0);
+			}
+        }
 
-        $webhook_notification                           = new stdClass();
-        $webhook_notification->webhook_event                     = 'property_saved';
-        $webhook_notification->webhook_event_description         = 'Logs when a property is updated.';
-        $webhook_notification->data                     = new stdClass();
-        $webhook_notification->data->property_uid       = $this->propertys_uid;
+        $webhook_notification                           	= new stdClass();
+        $webhook_notification->webhook_event                = 'property_updated';
+        $webhook_notification->webhook_event_description	= 'Logs when a property is updated.';
+        $webhook_notification->data                     	= new stdClass();
+        $webhook_notification->data->property_uid       	= $this->propertys_uid;
         add_webhook_notification($webhook_notification);
         
         return true;
@@ -544,4 +546,187 @@ class jomres_properties
 
         return true;
     }
+	
+	public function setApproved($approved = 0)
+	{
+		if ($this->propertys_uid == 0) {
+            throw new Exception('Error: Property uid not set.');
+        }
+		
+		if ($approved == 1) {
+			$this->approve_property();
+		} else {
+			$this->unapprove_property();
+		}
+		
+		return true;
+	}
+	
+	private function approve_property() 
+	{
+		if ($this->propertys_uid == 0) {
+            throw new Exception('Error: Property uid not set.');
+        }
+		
+		$query = "UPDATE #__jomres_propertys SET `approved` = 1 WHERE `propertys_uid` = ".(int)$this->propertys_uid;
+        
+		if (!doInsertSql($query, '')) {
+            throw new Exception('Error: Cound not approve property.');
+        }
+		
+		$webhook_notification                               = new stdClass();
+		$webhook_notification->webhook_event                = 'property_approved';
+		$webhook_notification->webhook_event_description    = 'Logs when a property is approved.';
+		$webhook_notification->webhook_event_plugin         = 'core';
+		$webhook_notification->data                         = new stdClass();
+		$webhook_notification->data->property_uid           = $this->propertys_uid;
+		add_webhook_notification($webhook_notification);
+				
+		return true;
+	}
+	
+	private function unapprove_property() 
+	{
+		if ($this->propertys_uid == 0) {
+            throw new Exception('Error: Property uid not set.');
+        }
+		
+		$query = "UPDATE #__jomres_propertys SET `approved` = 0 WHERE `propertys_uid` = ".(int)$this->propertys_uid;
+        
+		if (!doInsertSql($query, '')) {
+            throw new Exception('Error: Cound not unapprove property.');
+        }
+		
+		$webhook_notification                               = new stdClass();
+		$webhook_notification->webhook_event                = 'property_unapproved';
+		$webhook_notification->webhook_event_description    = 'Logs when a property is unapproved.';
+		$webhook_notification->webhook_event_plugin         = 'core';
+		$webhook_notification->data                         = new stdClass();
+		$webhook_notification->data->property_uid           = $this->propertys_uid;
+		add_webhook_notification($webhook_notification);
+		
+		return true;
+	}
+	
+	public function setPublished($published = 0)
+	{
+		if ($this->propertys_uid == 0) {
+            throw new Exception('Error: Property uid not set.');
+        }
+		
+		if ($approved == 1) {
+			$this->publish_property();
+		} else {
+			$this->unpublish_property();
+		}
+		
+		return true;
+	}
+	
+	private function publish_property() 
+	{
+		if ($this->propertys_uid == 0) {
+            throw new Exception('Error: Property uid not set.');
+        }
+		
+		$query = "UPDATE #__jomres_propertys SET `published` = 1 WHERE `propertys_uid` = ".(int)$this->propertys_uid;
+        
+		if (!doInsertSql($query, '')) {
+            throw new Exception('Error: Cound not publish property.');
+        }
+		
+		$webhook_notification                               = new stdClass();
+		$webhook_notification->webhook_event                = 'property_published';
+		$webhook_notification->webhook_event_description    = 'Logs when a property is published.';
+		$webhook_notification->webhook_event_plugin         = 'core';
+		$webhook_notification->data                         = new stdClass();
+		$webhook_notification->data->property_uid           = (int)$this->propertys_uid;
+		add_webhook_notification($webhook_notification);
+				
+		return true;
+	}
+	
+	private function unpublish_property() 
+	{
+		if ($this->propertys_uid == 0) {
+            throw new Exception('Error: Property uid not set.');
+        }
+		
+		$query = "UPDATE #__jomres_propertys SET `published` = 0 WHERE `propertys_uid` = ".(int)$this->propertys_uid;
+        
+		if (!doInsertSql($query, '')) {
+            throw new Exception('Error: Cound not unpublish property.');
+        }
+		
+		$webhook_notification                               = new stdClass();
+		$webhook_notification->webhook_event                = 'property_unpublished';
+		$webhook_notification->webhook_event_description    = 'Logs when a property is unpublished.';
+		$webhook_notification->webhook_event_plugin         = 'core';
+		$webhook_notification->data                         = new stdClass();
+		$webhook_notification->data->property_uid           = (int)$this->propertys_uid;
+		add_webhook_notification($webhook_notification);
+		
+		return true;
+	}
+	
+	public function setCompleted($completed = 0)
+	{
+		if ($this->propertys_uid == 0) {
+            throw new Exception('Error: Property uid not set.');
+        }
+		
+		if ($completed == 1) {
+			$this->complete_property();
+		} else {
+			$this->incomplete_property();
+		}
+		
+		return true;
+	}
+	
+	private function complete_property() 
+	{
+		if ($this->propertys_uid == 0) {
+            throw new Exception('Error: Property uid not set.');
+        }
+		
+		$query = "UPDATE #__jomres_propertys SET `completed` = 1 WHERE `propertys_uid` = ".(int)$this->propertys_uid;
+        
+		if (!doInsertSql($query, '')) {
+            throw new Exception('Error: Cound not mark property as complete.');
+        }
+		
+		$webhook_notification                               = new stdClass();
+		$webhook_notification->webhook_event                = 'property_completed';
+		$webhook_notification->webhook_event_description    = 'Logs when a property is marked as complete.';
+		$webhook_notification->webhook_event_plugin         = 'core';
+		$webhook_notification->data                         = new stdClass();
+		$webhook_notification->data->property_uid           = (int)$this->propertys_uid;
+		add_webhook_notification($webhook_notification);
+				
+		return true;
+	}
+	
+	private function incomplete_property()
+	{
+		if ($this->propertys_uid == 0) {
+            throw new Exception('Error: Property uid not set.');
+        }
+		
+		$query = "UPDATE #__jomres_propertys SET `completed` = 0 WHERE `propertys_uid` = ".(int)$this->propertys_uid;
+        
+		if (!doInsertSql($query, '')) {
+            throw new Exception('Error: Cound not mark property as incomplete.');
+        }
+		
+		$webhook_notification                               = new stdClass();
+		$webhook_notification->webhook_event                = 'property_incompleted';
+		$webhook_notification->webhook_event_description    = 'Logs when a property is marked as incomplete.';
+		$webhook_notification->webhook_event_plugin         = 'core';
+		$webhook_notification->data                         = new stdClass();
+		$webhook_notification->data->property_uid           = (int)$this->propertys_uid;
+		add_webhook_notification($webhook_notification);
+		
+		return true;
+	}
 }

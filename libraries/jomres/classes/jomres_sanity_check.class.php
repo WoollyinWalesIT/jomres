@@ -66,12 +66,17 @@ class jomres_sanity_check
             $this->warnings .= $this->check_main_image();
 
             if (trim($this->warnings) == '') {
-				$this->check_completed(); // Add a flat that will show site managers when a property is ready to be reviewed after creation and when it is waiting approval
+				
+				$this->mark_as_complete(); // Add a flat that will show site managers when a property is ready to be reviewed after creation and when it is waiting approval
+				
 				$this->warnings .= $this->check_approved();
+				
 				if (trim($this->warnings) == '') {
 					$this->warnings .= $this->check_published();
 				}
-            }
+            } else {
+				$this->mark_as_incomplete();
+			}
 
             return $this->warnings;
         }
@@ -122,7 +127,7 @@ class jomres_sanity_check
         }
     }
 
-    public function check_completed() {
+    public function mark_as_complete() {
 		// This is only triggered if a property doesn't have any warnings fired (address, images etc)
 		
 		// If property is marked as approved, we know it has been completed, so to save performance we'll trot right along to the next check.
@@ -130,10 +135,7 @@ class jomres_sanity_check
 		
 		// Check to see if the property has already been marked as completed. If yes, then move on. If no, set the Completed flag to yes.
 		
-		// If it is not, we will check to see if the Completed flag is set to 0. If it is, we'll set it to 
-		
-		
-		// TODO 
+		// If it is not, we will check to see if the Completed flag is set to 0. If it is, we'll set it to
 		
         $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
         $current_property_details->gather_data($this->property_uid);
@@ -142,10 +144,41 @@ class jomres_sanity_check
 			return true;
 		}
 		
-		if (!$current_property_details->approved) {
-			$query = "UPDATE #__jomres_propertys SET completed = 1 WHERE propertys_uid = ".(int)$this->property_uid." LIMIT 1";
-			doInsertSql($query);
+		$jomres_properties = jomres_singleton_abstract::getInstance('jomres_properties');
+		$jomres_properties->propertys_uid = $this->property_uid;
+		$jomres_properties->setCompleted(1);
+		
+		return true;
+    }
+	
+	public function mark_as_incomplete() {
+		// This is only triggered if a property has warnings fired (address, images etc)
+		// sets the completed flag to 0, makes the property require a new approval and also unpublishes the property
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
+	
+        $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
+        $current_property_details->gather_data($this->property_uid);
+		
+		if (!$current_property_details->completed) { 
+			return true;
 		}
+		
+		$jomres_properties = jomres_singleton_abstract::getInstance('jomres_properties');
+		$jomres_properties->propertys_uid = $this->property_uid;
+		$jomres_properties->setCompleted(0);
+		
+		if ($jrConfig['automatically_approve_new_properties'] == '0') {
+			if ($current_property_details->approved == 1) {
+				$jomres_properties->setApproved(0);
+			}
+			
+			if ($current_property_details->published == 1) {
+				$jomres_properties->setPublished(0);
+			}
+		}
+		
+		return true;
     }
 	
     public function check_tours_exist()

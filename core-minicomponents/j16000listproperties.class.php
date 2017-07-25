@@ -67,6 +67,8 @@ class j16000listproperties
         $output[ 'HLASTCHANGED' ] = jr_gettext('_JOMRES_HLASTCHANGED', '_JOMRES_HLASTCHANGED', false);
         $output[ 'HCRATE' ] = jr_gettext('_JRPORTAL_PROPERTIES_COMMISSIONRATE', '_JRPORTAL_PROPERTIES_COMMISSIONRATE', false);
         $output[ 'HLEGEND' ] = jr_gettext('_JOMRES_HLEGEND', '_JOMRES_HLEGEND');
+		$output[ 'HNOTCOMPLETED' ] = jr_gettext('JOMRES_INCOMPLETE', 'JOMRES_INCOMPLETE');
+		$output[ 'HWAITINGAPPROVAL' ] = jr_gettext('JOMRES_WATING_APPROVAL', 'JOMRES_WATING_APPROVAL');
 
         //filters output
         $output['HFILTER'] = jr_gettext('_JOMRES_HFILTER', '_JOMRES_HFILTER', false);

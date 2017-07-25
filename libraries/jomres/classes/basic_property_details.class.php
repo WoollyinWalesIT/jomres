@@ -453,9 +453,9 @@ class basic_property_details
                 $this->multi_query_result[ $data->propertys_uid ][ 'property_othertransport' ] = jomres_decode(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT', $data->property_othertransport, $editable, false));
                 $this->multi_query_result[ $data->propertys_uid ][ 'property_policies_disclaimers' ] = jomres_decode(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS', $data->property_policies_disclaimers, $editable, false));
                 $this->multi_query_result[ $data->propertys_uid ][ 'apikey' ] = $data->apikey;
-                $this->multi_query_result[ $data->propertys_uid ][ 'approved' ] = (bool) $data->approved;
+                $this->multi_query_result[ $data->propertys_uid ][ 'approved' ] = (int)$data->approved;
                 $this->multi_query_result[ $data->propertys_uid ][ 'permit_number' ] = (string) $data->permit_number;
-				$this->multi_query_result[ $data->propertys_uid ][ 'completed' ] = (bool) $data->completed;
+				$this->multi_query_result[ $data->propertys_uid ][ 'completed' ] = (int)$data->completed;
                 $this->property_names[$data->propertys_uid] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME', $data->property_name, $editable, false);
             }
 
