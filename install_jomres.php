@@ -628,6 +628,11 @@ function alterPropertysCompletedCol()
     if (!doInsertSql($query, '')) {
         output_message('Error, unable to add __jomres_propertys completed', 'danger');
     }
+	
+	$query = "UPDATE `#__jomres_propertys` SET `completed` = 1 WHERE `published` = 1 ";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to set completed flag to published properties', 'danger');
+    }
 }
 
 function checkPropertysCompletedColExists()
