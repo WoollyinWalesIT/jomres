@@ -183,7 +183,7 @@ class jomres_sanity_check
 	
     public function check_tours_exist()
     {
-        if (get_showtime('task') != 'jintour') {
+        //if (get_showtime('task') != 'jintour') {
             $tours = jintour_get_all_tours($this->property_uid);
             $future_tours = array();
             $today = date('Y/m/d');
@@ -202,12 +202,12 @@ class jomres_sanity_check
 
                 return $this->construct_warning(array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $button_text));
             }
-        }
+        //}
     }
 
     public function check_address()
     {
-        if (get_showtime('task') != 'edit_property') {
+        //if (get_showtime('task') != 'edit_property') {
             $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
             $current_property_details->gather_data($this->property_uid);
             if (
@@ -222,12 +222,12 @@ class jomres_sanity_check
 
                 return $this->construct_warning(array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $button_text));
             }
-        }
+        //}
     }
 
     public function check_main_image()
     {
-        if (get_showtime('task') != 'media_centre') {
+        //if (get_showtime('task') != 'media_centre') {
             $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
             $current_property_details->gather_data($this->property_uid);
             $jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
@@ -240,7 +240,7 @@ class jomres_sanity_check
 
                 return $this->construct_warning(array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $button_text));
             }
-        }
+        //}
     }
 
     public function check_approved()
@@ -269,7 +269,7 @@ class jomres_sanity_check
     {
         if ($this->mrConfig[ 'is_real_estate_listing' ] == '0') {
             $ignore_on_tasks = array('listCustomerTypes', 'editCustomerType', 'saveCustomerType', 'deleteCustomerType', 'saveCustomerTypeOrder');
-            if (!in_array(get_showtime('task'), $ignore_on_tasks)) {
+            //if (!in_array(get_showtime('task'), $ignore_on_tasks)) {
                 $query = 'SELECT `id` FROM `#__jomres_customertypes` where property_uid = '.(int) $this->property_uid.' AND published = 1';
                 $result = doSelectSql($query);
                 if ((int) $this->mrConfig[ 'perPersonPerNight' ] == 1 && empty($result)) {
@@ -279,7 +279,7 @@ class jomres_sanity_check
 
                     return $this->construct_warning(array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $button_text));
                 }
-            }
+            //}
         }
 
         return '';
@@ -292,7 +292,7 @@ class jomres_sanity_check
                 return '';
             }
             $ignore_on_tasks = array('propertyadmin', 'editTariff', 'saveTariff', 'edit_tariff_micromanage', 'list_tariffs_micromanage', 'list_tariffs_advanced', 'edit_tariff_advanced', 'edit_tariffs_normal');
-            if (!in_array(get_showtime('task'), $ignore_on_tasks)) {
+            //if (!in_array(get_showtime('task'), $ignore_on_tasks)) {
                 $query = 'SELECT `rates_uid` FROM `#__jomres_rates` where property_uid = '.(int) $this->property_uid.'';
                 $result = doSelectSql($query);
                 if (empty($result)) {
@@ -317,7 +317,7 @@ class jomres_sanity_check
 
                     return $this->construct_warning(array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $button_text));
                 }
-            }
+            //}
         }
 
         return '';
@@ -354,7 +354,7 @@ class jomres_sanity_check
     public function check_srp_room_exists()
     {
         if ($this->mrConfig[ 'is_real_estate_listing' ] == '0' && $this->mrConfig[ 'tariffmode' ] != '0') {
-            if (get_showtime('task') != 'edit_resource') {
+            //if (get_showtime('task') != 'edit_resource') {
                 $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
                 $current_property_details->gather_data($this->property_uid);
                 if (!isset($current_property_details->rooms)) {
@@ -364,14 +364,14 @@ class jomres_sanity_check
 
                     return $this->construct_warning(array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $button_text));
                 }
-            }
+            //}
         }
     }
 
     public function check_srp_room_type_set()
     {
         if ($this->mrConfig[ 'is_real_estate_listing' ] == '0' && $this->mrConfig[ 'tariffmode' ] != '0') {
-            if (get_showtime('task') != 'edit_resource') {
+            //if (get_showtime('task') != 'edit_resource') {
                 $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
                 $current_property_details->gather_data($this->property_uid);
                 foreach ($current_property_details->room_types as $rt) {
@@ -383,14 +383,14 @@ class jomres_sanity_check
                         return $this->construct_warning(array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $button_text));
                     }
                 }
-            }
+            //}
         }
     }
 
     public function check_mrp_rooms_exists()
     {
         if ($this->mrConfig[ 'is_real_estate_listing' ] == '0') {
-            if (get_showtime('task') != 'edit_resource') {
+            //if (get_showtime('task') != 'edit_resource') {
                 $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
                 $current_property_details->gather_data($this->property_uid);
                 if (!isset($current_property_details->rooms) || empty($current_property_details->rooms)) {
@@ -404,7 +404,7 @@ class jomres_sanity_check
 
                     return $this->construct_warning(array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $button_text));
                 }
-            }
+            //}
         }
     }
 }
