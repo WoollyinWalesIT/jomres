@@ -57,9 +57,6 @@ class j10001control_panel
 		//jomres warnings
         $output['JOMRES_WARNINGS'] = $MiniComponents->specificEvent('16000', 'jomres_warnings', array('output_now' => false));
 
-        //Usage reporting setting
-        $output['USAGE_REPORTING'] = $MiniComponents->specificEvent('16000', 'usage_reporting_request', array('output_now' => false, 'show_as_panel' => true));
-
         //list properties
         $output['PROPERTIES_TABLE'] = $MiniComponents->specificEvent('16000', 'listproperties', array('output_now' => false, 'show_as_panel' => true));
 

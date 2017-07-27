@@ -25,6 +25,8 @@ class j16000jomres_warnings
 
             return;
         }
+		
+		$this->retVals = '';
 
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
@@ -45,14 +47,14 @@ class j16000jomres_warnings
         $output[ 'SUHOSIN_GET_MAX_VARS_CHECK' ] = suhosin_get_max_vars_test();
 
         //license key not entered warning
-		$output[ 'JOMRES_PRODUCT_INFORMATION' ] = '';
+		/* $output[ 'JOMRES_PRODUCT_INFORMATION' ] = '';
 		$output[ 'JOMRES_PRODUCT_INFORMATION2' ] = '';
 		$output[ 'JOMRES_PRODUCT_INFO_HIGHLIGHT' ] = '';
         if (trim($jrConfig['licensekey']) == '') {
             $output[ 'JOMRES_PRODUCT_INFORMATION' ] = jr_gettext('_JOMRES_PRODUCT_INFORMATION', '_JOMRES_PRODUCT_INFORMATION', false);
             $output[ 'JOMRES_PRODUCT_INFORMATION2' ] = jr_gettext('_JOMRES_PRODUCT_INFORMATION2', '_JOMRES_PRODUCT_INFORMATION2', false);
 			$output[ 'JOMRES_PRODUCT_INFO_HIGHLIGHT' ] = 'alert alert-info';
-        }
+        } */
 
         //wordpress Page with [jomres:xx-XX] not created yet
         $output[ 'JOMRES_DEFAULT_SHORTCODE_HIGHLIGHT' ] = '';
@@ -65,12 +67,14 @@ class j16000jomres_warnings
         // Google maps api key warning
         $output['GMAPS_KEY_WARNING'] = gmaps_apikey_check();
 
-        $output['IPINFODB_KEY_WARNING'] = ipinfodb_apikey_check();
+		//ipinfodb api key
+        //$output['IPINFODB_KEY_WARNING'] = ipinfodb_apikey_check();
 
-        $output['OPENEXCHANGERATES_KEY_WARNING'] = openexchangerates_apikey_check();
+		//open exchange rates api key
+        //$output['OPENEXCHANGERATES_KEY_WARNING'] = openexchangerates_apikey_check();
 
         // Logfile location warning
-        $output['LOGFILE_LOCATION_WARNING'] = logs_path_check();
+        //$output['LOGFILE_LOCATION_WARNING'] = logs_path_check();
 		
 		//review text
         /* if (this_cms_is_wordpress()) {
