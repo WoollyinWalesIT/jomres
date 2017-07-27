@@ -614,7 +614,7 @@ class jomres_properties
             throw new Exception('Error: Property uid not set.');
         }
 		
-		if ($approved == 1) {
+		if ($published == 1) {
 			$this->publish_property();
 		} else {
 			$this->unpublish_property();
