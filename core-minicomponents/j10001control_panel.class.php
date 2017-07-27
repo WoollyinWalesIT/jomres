@@ -52,8 +52,6 @@ class j10001control_panel
 		// Plugin manager not installed
 		$output['PLUGIN_MANAGER_CHECK'] = $MiniComponents->specificEvent('16000', 'plugin_manager_check', array('output_now' => false));
 		
-		$output['KEY_SAVED_CHECK'] = $MiniComponents->specificEvent('16000', 'key_saved_check', array('output_now' => false));
-		
 		//jomres warnings
         $output['JOMRES_WARNINGS'] = $MiniComponents->specificEvent('16000', 'jomres_warnings', array('output_now' => false));
 

@@ -81,7 +81,7 @@ class jomres_check_support_key
         if (file_exists(JOMRES_TEMP_ABSPATH.'license_key_check_cache.php')) {
             $last_modified = filemtime(JOMRES_TEMP_ABSPATH.'license_key_check_cache.php');
             $seconds_timediff = time() - $last_modified;
-            if ($seconds_timediff > 3600) {
+            if ($seconds_timediff > 86400) {
                 unlink(JOMRES_TEMP_ABSPATH.'license_key_check_cache.php');
             } else {
                 include JOMRES_TEMP_ABSPATH.'license_key_check_cache.php';

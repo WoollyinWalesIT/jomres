@@ -139,8 +139,6 @@ try {
         $output[ 'LANGDROPDOWN' ] = $jomres_language->get_languageselection_dropdown();
 
 		//check jomres support key
-        jr_import('jomres_check_support_key');
-        $key_validation = new jomres_check_support_key(JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins');
         $output['LICENSE_WARNING'] = $MiniComponents->specificEvent('16000', 'show_license_message', array('output_now' => false, 'as_modal' => false));
 
 		//bootstrap

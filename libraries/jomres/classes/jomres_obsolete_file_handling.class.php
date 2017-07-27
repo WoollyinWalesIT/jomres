@@ -1509,6 +1509,8 @@ class jomres_obsolete_file_handling
 		
 		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'plugin_manager_licenses_subscriptions.html');
 		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'plugin_manager_licenses_full.html');
+		$this->add_obs_file($this->dir_minicomponents.'j16000key_saved_check.class.php');
+		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'key_saved_check.html');
     }
 
     public function add_obs_file($path_and_file)
