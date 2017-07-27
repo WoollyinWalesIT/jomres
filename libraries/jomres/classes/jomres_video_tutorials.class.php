@@ -171,7 +171,7 @@ class jomres_video_tutorials
 		
 		// $arr = array ("title" => "_JOMRES_TUTORIAL_MEDIA_CENTRE_MRP" , "description" => "_JOMRES_TUTORIAL_MEDIA_CENTRE_MRP_DESC" , "video_id" => "oX_YKZbHKxw" );
 		// $videos_array['MRP']['media_centre'][] = $arr;
-		
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
 		set_showtime("videos_array" , $videos_array );
 		$MiniComponents->triggerEvent('07150');
 		$videos_array = get_showtime("videos_array");
