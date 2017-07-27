@@ -1,25 +1,25 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script type="text/javascript">
-$(document).ready(function(){
+jomresJquery(document).ready(function(){
     /* Get iframe src attribute value i.e. YouTube video url
     and store it in a variable */
 	<patTemplate:tmpl name="rows2" unusedvars="strip">
-    var url_{VIDEO_ID} = $("#{VIDEO_ID}").attr('src');
+    var url_{VIDEO_ID} = jomresJquery("#{VIDEO_ID}").attr('src');
     </patTemplate:tmpl>
 	
     /* Assign empty url value to the iframe src attribute when
     modal hide, which stop the video playing */
-    $("#helpModal").on('hide.bs.modal', function(){
+    jomresJquery("#helpModal").on('hide.bs.modal', function(){
 		<patTemplate:tmpl name="rows3" unusedvars="strip">
-        $("#{VIDEO_ID}").attr('src', '');
+        jomresJquery("#{VIDEO_ID}").attr('src', '');
 		</patTemplate:tmpl>
     });
     
     /* Assign the initially stored url back to the iframe src
     attribute when modal is displayed again */
-    $("#helpModal").on('show.bs.modal', function(){
+    jomresJquery("#helpModal").on('show.bs.modal', function(){
 		<patTemplate:tmpl name="rows4" unusedvars="strip">
-        $("#{{VIDEO_ID}").attr('src', url_{VIDEO_ID});
+        jomresJquery("#{VIDEO_ID}").attr('src', url_{VIDEO_ID});
 		</patTemplate:tmpl>
     });
 });
@@ -36,9 +36,9 @@ $(document).ready(function(){
 			</div>
 			<div class="modal-body">
 				<patTemplate:tmpl name="rows1" unusedvars="strip">
-				<h4>{TITLE}</h4>
+				<h3 class="page-header">{TITLE}</h3>
 				<p>{DESCRIPTION}</p>
-				<iframe id="{{VIDEO_ID}}" width="560" height="315" src="//www.youtube.com/embed/{VIDEO_ID}" frameborder="0" allowfullscreen></iframe>
+				<iframe id="{VIDEO_ID}" width="100%" height="315" src="//www.youtube.com/embed/{VIDEO_ID}" frameborder="0" allowfullscreen></iframe>
 				</patTemplate:tmpl>
 			</div> <!-- modal-body -->
 		</div> <!-- modal-content -->

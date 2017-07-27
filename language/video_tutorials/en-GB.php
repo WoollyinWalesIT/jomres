@@ -13,7 +13,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
 
-jr_define('VIDEO_TUTORALS_TITLE', 'Videos for this page');
+jr_define('VIDEO_TUTORALS_TITLE', 'Video Tutorials');
 
 jr_define('_JOMRES_TUTORIAL_CPANEL', 'Control Panel');
 jr_define('_JOMRES_TUTORIAL_CPANEL_DESC', 'This tutorial shows you how to use the Property Management control panel.');
