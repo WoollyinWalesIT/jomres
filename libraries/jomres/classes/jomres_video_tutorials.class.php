@@ -125,9 +125,9 @@ class jomres_video_tutorials
 		$videos_array['SRP']['cpanel'][] = $arr; 
 		$videos_array['MRP']['cpanel'][] = $arr;
 		
-		$arr = array ("title" => "_JOMRES_TUTORIAL_TIMELINE" , "description" => "_JOMRES_TUTORIAL_TIMELINE_DESC" , "video_id" => "pIlliA6uJrU" );
-		$videos_array['SRP']['cpanel'][] = $arr; 
-		$videos_array['MRP']['cpanel'][] = $arr;
+		$arr = array ("title" => "_JOMRES_TUTORIAL_TIMELINE" , "description" => "_JOMRES_TUTORIAL_TIMELINE_DESC" , "video_id" => "0RuJCedh0CQ" );
+		$videos_array['SRP']['dashboard'][] = $arr; 
+		$videos_array['MRP']['dashboard'][] = $arr;
 		
 		$arr = array ("title" => "_JOMRES_TUTORIAL_LISTPROPERTIES" , "description" => "_JOMRES_TUTORIAL_LISTPROPERTIES_DESC" , "video_id" => "6VL-iSS2go0" );
 		$videos_array['SRP']['listyourproperties'][] = $arr; 
