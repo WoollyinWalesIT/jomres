@@ -233,7 +233,6 @@ function showSiteConfig()
     $lists[ 'load_jquery_ui_css' ] = jomresHTML::selectList($yesno, 'cfg_load_jquery_ui_css', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'load_jquery_ui_css' ]);
     $lists[ 'use_conversion_feature' ] = jomresHTML::selectList($yesno, 'cfg_use_conversion_feature', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_conversion_feature' ]);
     $lists[ 'booking_form_modal_popup' ] = jomresHTML::selectList($yesno, 'cfg_booking_form_modal_popup', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'booking_form_modal_popup' ]);
-    $lists[ 'booking_form_totals_panel_as_slider' ] = jomresHTML::selectList($yesno, 'cfg_booking_form_totals_panel_as_slider', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'booking_form_totals_panel_as_slider' ]);
     $lists[ 'useNewusers_sendemail' ] = jomresHTML::selectList($yesno, 'cfg_useNewusers_sendemail', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useNewusers_sendemail' ]);
     $lists[ 'show_tax_in_totals_summary' ] = jomresHTML::selectList($yesno, 'cfg_show_tax_in_totals_summary', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'show_tax_in_totals_summary' ]);
     $lists[ 'alternate_smtp_use_settings' ] = jomresHTML::selectList($yesno, 'cfg_alternate_smtp_use_settings', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'alternate_smtp_use_settings' ]);

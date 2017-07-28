@@ -104,7 +104,6 @@ $jrConfig = array(
   'booking_form_modal_popup' => '0',
   'booking_form_totalspanel_position' => '455',
   'booking_form_width' => '450',
-  'booking_form_totals_panel_as_slider' => '0',
   'useNewusers_sendemail' => '1',
   'show_tax_in_totals_summary' => '1',
   'alternate_smtp_use_settings' => '0',

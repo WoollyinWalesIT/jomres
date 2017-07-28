@@ -37,7 +37,8 @@ class jomres_singleton_abstract
 			
 			return self::$_instances[ $class ];
 		}
-		
+
+		//classes registry
 		global $classes;
 		
 		//check core and remote plugins dirs

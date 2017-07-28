@@ -640,20 +640,6 @@ function dobooking($selectedProperty, $thisdate, $remus)
         }
     }
 
-    if (get_showtime('mobile_browser')) {
-        $jrConfig[ 'booking_form_totals_panel_as_slider' ] = '0';
-    }
-
-    if ($jrConfig[ 'booking_form_totals_panel_as_slider' ] == '1') {
-        $output[ 'SLIDER_ENABLED' ] = 'true';
-    } else {
-        $output[ 'SLIDER_ENABLED' ] = 'false';
-    }
-
-    if (get_showtime('task') == 'viewproperty' ) {
-        $output[ 'SLIDER_ENABLED' ] = 'false';
-    } // Slider doesn't work well when included in tabs, so we'll disable it.
-
     $manager_pricing = array();
     if ($thisJRUser->userIsManager) {
         $manager_pricing[ ] = array('_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL' => jr_gettext('_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL', '_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL', false, false), '_JOMCOMP_AMEND_OVERRIDE_DEPOSIT' => jr_gettext('_JOMCOMP_AMEND_OVERRIDE_DEPOSIT', '_JOMCOMP_AMEND_OVERRIDE_DEPOSIT', false, false), '_JOMCOMP_AMEND_OVERRIDE_SAVE' => jr_gettext('_JOMCOMP_AMEND_OVERRIDE_SAVE', '_JOMCOMP_AMEND_OVERRIDE_SAVE', false, false));
