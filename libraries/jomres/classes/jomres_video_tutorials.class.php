@@ -128,6 +128,8 @@ class jomres_video_tutorials
 		$arr = array ("title" => "_JOMRES_TUTORIAL_TIMELINE" , "description" => "_JOMRES_TUTORIAL_TIMELINE_DESC" , "video_id" => "0RuJCedh0CQ" );
 		$videos_array['SRP']['dashboard'][] = $arr; 
 		$videos_array['MRP']['dashboard'][] = $arr;
+		$videos_array['SRP']['cpanel'][] = $arr; 
+		$videos_array['MRP']['cpanel'][] = $arr;
 		
 		$arr = array ("title" => "_JOMRES_TUTORIAL_LISTPROPERTIES" , "description" => "_JOMRES_TUTORIAL_LISTPROPERTIES_DESC" , "video_id" => "6VL-iSS2go0" );
 		$videos_array['SRP']['listyourproperties'][] = $arr; 
@@ -144,8 +146,6 @@ class jomres_video_tutorials
 		$arr = array ("title" => "_JOMRES_TUTORIAL_CHANGE_TARIFF_EDITING_MODE" , "description" => "_JOMRES_TUTORIAL_CHANGE_TARIFF_EDITING_MODE_DESC" , "video_id" => "FQ3ARmrtz2g" );
 		$videos_array['SRP']['business_settings'][] = $arr; 
 		$videos_array['MRP']['business_settings'][] = $arr;
-		
-		//TODO need a Jintour video
 		
 		$arr = array ("title" => "_JOMRES_TUTORIAL_NORMAL_TARIFF_EDITING_MODE_MRP" , "description" => "_JOMRES_TUTORIAL_NORMAL_TARIFF_EDITING_MODE_MRP_DESC" , "video_id" => "l2WlWJ6CkWo" );
 		$videos_array['MRP']['edit_tariffs_normal'][] = $arr;
