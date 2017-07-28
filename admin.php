@@ -19,9 +19,6 @@ ob_start('removeBOMadmin');
 
 @ini_set('max_execution_time', '480');
 
-//TODO: remove these too
-global $thisJRUser;
-
 require_once dirname(__FILE__).'/integration.php';
 
 try {
