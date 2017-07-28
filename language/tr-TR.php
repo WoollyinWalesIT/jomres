@@ -1777,7 +1777,7 @@ jr_define("_JOMRES_JINTOUR_SANITY_CHECK_LINK", "Bazı turlar oluşturalım!");
 jr_define('_JOMRES_COM_A_TARIFFS_SWAP', 'Para birimi sembolü yerini değiştir');
 jr_define('_JOMRES_COM_A_TARIFFS_SWAP_DESC', 'Para birimi simgesinin arkasından fiyat figürünün önüne veya tam tersine taşımak için bu seçeneği kullanın.');
 jr_define('_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK', 'Facebook');
-jr_define('_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK_DESC', 'Facebook sayfanızın kimlik numarasını girin, örneğin "Jomres" .Bunu boş bırakın, https://www.facebooking.com veya başka bir şey girmeyin.');
+jr_define('_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK_DESC', 'Facebook sayfanızın kimlik numarasını girin, örneğin "Jomres" .Bunu boş bırakın, https://www.facebook.com veya başka bir şey girmeyin.');
 jr_define('COMMON_DOWNLOAD', 'İndir');
 jr_define('_JOMRES_WARNINGS_TARIFFS_NOTARIFFS_SRP', 'Sonra bazı tarife eklemeniz gerekecek, bunlar sizin temel fiyatlarınız.');
 jr_define('_JOMRES_BOOTSTRAP_OFF_WARNING_TITLE', 'Önyükleme etkin değil!');

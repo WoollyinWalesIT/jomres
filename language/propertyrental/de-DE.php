@@ -1841,7 +1841,7 @@ jr_define('_JOMRES_JINTOUR_SANITY_CHECK_LINK', 'Lassen Sie uns einige Touren ers
 jr_define('_JOMRES_COM_A_TARIFFS_SWAP', 'Swap-Währungssymbol Standort');
 jr_define('_JOMRES_COM_A_TARIFFS_SWAP_DESC', 'Verwenden Sie diese Option, um das Währungssymbol bewegen von hinten von, an vor dem Preis Figur oder umgekehrt.');
 jr_define('_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK', 'Facebook');
-jr_define('_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK_DESC', 'Geben Sie Ihre Facebook -Seite-ID, zum Beispiel "jomres".Lassen Sie dieses Feld leer, nichts zu zeigen. Kein Zutritt https://www.facebooking.com oder etwas anderes.');
+jr_define('_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK_DESC', 'Geben Sie Ihre Facebook -Seite-ID, zum Beispiel "jomres".Lassen Sie dieses Feld leer, nichts zu zeigen. Kein Zutritt https://www.facebook.com oder etwas anderes.');
 jr_define('COMMON_DOWNLOAD', 'Herunterladen');
 jr_define('_JOMRES_WARNINGS_TARIFFS_NOTARIFFS_SRP', 'Als nächstes müssen Sie einige Tarife hinzufügen. Dies sind Ihre Grundpreise.');
 jr_define('_JOMRES_BOOTSTRAP_OFF_WARNING_TITLE', 'Bootstrap ist nicht aktiviert!');
