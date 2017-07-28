@@ -111,13 +111,20 @@ class jomres_geolocation
 			) {
 			return true;
 		}
+		
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+        $jrConfig = $siteConfig->get();
 
 		$currency_codes = jomres_singleton_abstract::getInstance('currency_codes');
         
 		if (isset($currency_codes->country_codes_to_currency_codes[ $this->detected_country ])) {
-            $currency_code = $currency_codes->country_codes_to_currency_codes[ $this->detected_country ];
+			if ($this->api_key != '') {
+				$currency_code = $currency_codes->country_codes_to_currency_codes[ $this->detected_country ];
+			} else {
+				$currency_code = $jrConfig['globalCurrencyCode'];
+			}
         } else {
-            $currency_code = 'EUR';
+			$currency_code = 'EUR';
         }
 
         $jomres_currency_conversion = jomres_singleton_abstract::getInstance('jomres_currency_conversion');
