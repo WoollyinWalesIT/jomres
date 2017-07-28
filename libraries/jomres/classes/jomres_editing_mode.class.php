@@ -38,12 +38,7 @@ class jomres_editing_mode
             $tmpBookingHandler->user_settings[ 'editing_on' ] = false;
         }
         
-		if ($thisJRUser->userIsManager && $thisJRUser->accesslevel <= 50) { //receptionist or lower
-            $this->editing_allowed = false;
-            $tmpBookingHandler->user_settings[ 'editing_on' ] = false;
-        }
-        
-		if ($jrConfig[ 'minimalconfiguration' ] == '1' && !$thisJRUser->superPropertyManager) {
+		if ($thisJRUser->userIsManager && $thisJRUser->accesslevel < 70) { //lower than manager
             $this->editing_allowed = false;
             $tmpBookingHandler->user_settings[ 'editing_on' ] = false;
         }

@@ -73,22 +73,18 @@ class j00501tariffs
             $configurationPanel->insertSetting();
         }
 
-        if (!$thisJRUser->simple_configuration) {
-            $configurationPanel->setleft(jr_gettext('_JOMRES_CURRENCYFORMAT', '_JOMRES_CURRENCYFORMAT', false));
-            $configurationPanel->setmiddle($cformatdropdown);
-            $configurationPanel->setright();
-            $configurationPanel->insertSetting();
-        }
+		$configurationPanel->setleft(jr_gettext('_JOMRES_CURRENCYFORMAT', '_JOMRES_CURRENCYFORMAT', false));
+		$configurationPanel->setmiddle($cformatdropdown);
+		$configurationPanel->setright();
+		$configurationPanel->insertSetting();
 
         if ($mrConfig[ 'is_real_estate_listing' ] == 0) {
-            if (!$thisJRUser->simple_configuration) {
-                if (!get_showtime('is_jintour_property')) {
-                    $configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_TARIFFS_MODEL', '_JOMRES_COM_A_TARIFFS_MODEL', false));
-                    $configurationPanel->setmiddle($tariffModelsDropdown);
-                    $configurationPanel->setright(jr_gettext('_JOMRES_COM_A_TARIFFS_MODEL_DESC', '_JOMRES_COM_A_TARIFFS_MODEL_DESC', false));
-                    $configurationPanel->insertSetting();
-                }
-            }
+            if (!get_showtime('is_jintour_property')) {
+				$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_TARIFFS_MODEL', '_JOMRES_COM_A_TARIFFS_MODEL', false));
+				$configurationPanel->setmiddle($tariffModelsDropdown);
+				$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_TARIFFS_MODEL_DESC', '_JOMRES_COM_A_TARIFFS_MODEL_DESC', false));
+				$configurationPanel->insertSetting();
+			}
 
             $configurationPanel->setleft(jr_gettext('_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE', '_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE', false));
             $configurationPanel->setmiddle($jrportal_taxrate->makeTaxratesDropdown($mrConfig[ 'accommodation_tax_code' ], 'cfg_accommodation_tax_code'));
@@ -188,16 +184,9 @@ class j00501tariffs
 
     }
 
-/**
- * Must be included in every mini-component.
- #
- * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
- */
     // This must be included in every Event/Mini-component
     public function getRetVals()
     {
         return null;
     }
 }
-
-?>

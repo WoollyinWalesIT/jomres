@@ -17,7 +17,6 @@ $jrConfig = array(
   'useGlobalCurrency' => '1',
   'globalCurrencyCode' => 'EUR',
   'google_maps_api_key' => '',
-  'minimalconfiguration' => '0',
   'editingModeAffectsAllProperties' => '0',
   'allowHTMLeditor' => '1',
   'selfRegistrationAllowed' => '1',

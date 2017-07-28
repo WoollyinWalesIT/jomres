@@ -58,11 +58,6 @@ class j10501properties
 		$configurationPanel->setmiddle(limitCountriesDropdown());
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
-		
-		$configurationPanel->setleft(jr_gettext('JOMRES_COM_A_MINIMALCONFIG', 'JOMRES_COM_A_MINIMALCONFIG', false));
-		$configurationPanel->setmiddle($lists[ 'minimalconfiguration' ]);
-		$configurationPanel->setright(jr_gettext('JOMRES_COM_A_MINIMALCONFIG_DESC', 'JOMRES_COM_A_MINIMALCONFIG_DESC', false));
-		$configurationPanel->insertSetting();
 
 		$configurationPanel->setleft(jr_gettext('_JOMRES_PROPERTYDETAILS_INTABS_TITLE', '_JOMRES_PROPERTYDETAILS_INTABS_TITLE', false));
         $configurationPanel->setmiddle($lists[ 'property_details_in_tabs' ]);

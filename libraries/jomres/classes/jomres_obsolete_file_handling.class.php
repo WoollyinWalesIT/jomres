@@ -1511,6 +1511,11 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'plugin_manager_licenses_full.html');
 		$this->add_obs_file($this->dir_minicomponents.'j16000key_saved_check.class.php');
 		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'key_saved_check.html');
+		$this->add_obs_file($this->dir_classes.'jomres_frontend_configuration_level.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j06001set_config_level.class.php');
+		$this->add_obs_file($this->dir_templates_bootstrap_backend.'frontend_configuration_level_snippet.html');
+		$this->add_obs_file($this->dir_templates_bootstrap3_backend.'frontend_configuration_level_snippet.html');
+		$this->add_obs_file($this->dir_templates_jqueryui_backend.'frontend_configuration_level_snippet.html');
     }
 
     public function add_obs_file($path_and_file)

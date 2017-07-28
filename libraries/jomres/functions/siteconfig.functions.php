@@ -100,7 +100,6 @@ function showSiteConfig()
     $lists[ 'allowHTMLeditor' ] = jomresHTML::selectList($editoryesno, 'cfg_allowHTMLeditor', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'allowHTMLeditor' ]);
     $lists[ 'dumpTemplate' ] = jomresHTML::selectList($yesno, 'cfg_dumpTemplate', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'dumpTemplate' ]);
     $lists[ 'emailErrors' ] = jomresHTML::selectList($yesno, 'cfg_emailErrors', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'emailErrors' ]);
-    $lists[ 'minimalconfiguration' ] = jomresHTML::selectList($yesno, 'cfg_minimalconfiguration', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'minimalconfiguration' ]);
     $lists[ 'useJomresEmailCheck' ] = jomresHTML::selectList($yesno, 'cfg_useJomresEmailCheck', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useJomresEmailCheck' ]);
     $lists[ 'composite_property_details' ] = jomresHTML::selectList($yesno, 'cfg_composite_property_details', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'composite_property_details' ]);
 
@@ -111,11 +110,6 @@ function showSiteConfig()
     $geosearchList[ ] = jomresHTML::makeOption('town', jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', false));
     $geosearchList[ ] = jomresHTML::makeOption('region', jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', false));
     $geosearchDropdownList = jomresHTML::selectList($geosearchList, 'cfg_integratedSearch_geosearchtype', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_geosearchtype' ]);
-
-    $mapWeatherTempGrad = array();
-    $mapWeatherTempGrad[ ] = jomresHTML::makeOption('CELCIUS', jr_gettext('JOMRES_GOOGLE_MAP_OPTION_WEATHER_CELCIUS', 'JOMRES_GOOGLE_MAP_OPTION_WEATHER_CELCIUS', false));
-    $mapWeatherTempGrad[ ] = jomresHTML::makeOption('FAHRENHEIT', jr_gettext('JOMRES_GOOGLE_MAP_OPTION_WEATHER_FARENHEIT', 'JOMRES_GOOGLE_MAP_OPTION_WEATHER_FARENHEIT', false));
-    $mapWeatherTempGradDropdownList = jomresHTML::selectList($mapWeatherTempGrad, 'cfg_gmap_layer_temperature_grad', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'gmap_layer_temperature_grad' ]);
 
     $calendarStartDays = array();
     $calendarStartDays[ ] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_COM_MR_WEEKDAYS_SUNDAY', '_JOMRES_COM_MR_WEEKDAYS_SUNDAY', false));
@@ -356,7 +350,6 @@ function showSiteConfig()
     $componentArgs[ 'guestnumbersearchDropdownList' ] = $guestnumbersearchDropdownList;
     $componentArgs[ 'filtering_level_dropdown' ] = $filtering_level_dropdown;
     $componentArgs[ 'layouts' ] = $layouts;
-    $componentArgs[ 'mapWeatherTempGradDropdownList' ] = $mapWeatherTempGradDropdownList;
     $componentArgs[ 'production_development_dropdown' ] = $production_development_dropdown;
     $componentArgs[ 'navbar_location_dropdown' ] = $navbar_location_dropdown;
     $componentArgs[ 'bootstrap_ver_dropdown' ] = $bootstrap_ver_dropdown;

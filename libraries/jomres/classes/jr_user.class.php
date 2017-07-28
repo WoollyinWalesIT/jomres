@@ -45,7 +45,6 @@ class jr_user
         $this->last_active 						= '1970-01-01 00:00:01';    //last active
         $this->authorisedProperties 			= array();                  //array of properties that this user has access to
         //$this->users_timezone					= "America/Lima";			//user timezone - not used anymore
-        $this->simple_configuration 			= false;                    //simple configuration true/false
         $this->userIsSuspended 					= false;                    //user is suspended true/false
 
         $this->userIsRegistered 				= false;                    //user is registered true/false
@@ -213,7 +212,6 @@ class jr_user
 						`currentproperty`,
 						`suspended`,
 						`users_timezone`,
-						`simple_configuration`,
 						`last_active`
 					FROM #__jomres_managers 
 					WHERE `userid` = ' .(int) $this->id.' 
@@ -231,7 +229,6 @@ class jr_user
                 $this->currentproperty = $r->currentproperty;
                 $this->username = jomres_cmsspecific_getcurrentusers_username();
                 $this->userIsSuspended = (bool) $r->suspended;
-                $this->simple_configuration = (bool) $r->simple_configuration;
 
                 if (isset($r->last_active)) {
                     $this->last_active = $r->last_active;
@@ -316,7 +313,6 @@ class jr_user
         $this->last_active = '1970-01-01 00:00:01';
         $this->authorisedProperties = array();
         $this->jomres_manager_id = 0;
-        $this->simple_configuration = false;
 
         $this->userIsManager = false;
         $this->superPropertyManager = false;

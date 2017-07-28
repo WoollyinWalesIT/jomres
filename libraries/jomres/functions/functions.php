@@ -2576,14 +2576,9 @@ function propertyConfiguration()
     $jrtb .= $jrtbar->toolbarItem('save', '', '', true, 'save_business_settings');
     $jrtb .= $jrtbar->endTable();
 
-    jr_import('jomres_frontend_configuration_level');
-    $jomres_frontend_configuration_level = new jomres_frontend_configuration_level();
-
-    $output[ 'JOMRESTOOLBAR_CONFIGURATION_LEVEL_BUTTONS' ] = $jomres_frontend_configuration_level->get_buttons();
-
     $output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
-    echo '<div class="well clearfix"><div class="pull-left">'.$output[ 'JOMRESTOOLBAR' ].'</div><div class="pull-right">'.$output[ 'JOMRESTOOLBAR_CONFIGURATION_LEVEL_BUTTONS' ].'</div></div>';
+    echo '<div class="well clearfix"><div class="pull-left">'.$output[ 'JOMRESTOOLBAR' ].'</div></div>';
 
     if (!using_bootstrap()) {
         $configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel');
