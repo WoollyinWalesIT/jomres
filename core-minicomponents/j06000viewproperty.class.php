@@ -111,7 +111,7 @@ class j06000viewproperty
         //property inline availability calendar
         $output['INLINE_CALENDAR'] = '';
 		
-        if ($mrConfig[ 'is_real_estate_listing' ] == 0 && $mrConfig['showOnlyAvailabilityCalendar'] == "1" ) {
+        if ($mrConfig[ 'is_real_estate_listing' ] == 0) {
             if ($mrConfig[ 'showAvailabilityCalendar' ] == 1) {
                 $output['INLINE_CALENDAR'] = $MiniComponents->specificEvent('06000', 'ui_availability_calendar', array('output_now' => false, 'property_uid' => $property_uid));
             }
@@ -244,7 +244,7 @@ class j06000viewproperty
         $componentArgs[ 'property_uid' ] = $property_uid;
         $MiniComponents->triggerEvent('00035', $componentArgs);
 		
-		if ($mrConfig['showOnlyAvailabilityCalendar'] == "0") {
+		if ($mrConfig[ 'showAvailabilityCalendar' ] == 0) {
 			unset($MiniComponents->miniComponentData[ '00035' ] ['tabcontent_04_availability_calendar']);
 		}
  
