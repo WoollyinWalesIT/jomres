@@ -16,12 +16,12 @@ defined('_JOMRES_INITCHECK') or die('');
 
 // This script is mainly used for bootstrapping Jomres. It's old code, but it checks out.
 
-define('_COMPONENT_JOMRES_INTEGRATIONCALLED', '1');
-
-if (!defined('TRANSACTION_ID')) { // TRANSACTION_ID is used by the logger class to allow us to track single calls through the system
+// TRANSACTION_ID is used by the logger class to allow us to track single calls through the system
+if (!defined('TRANSACTION_ID')) {
     define('TRANSACTION_ID', time());
 }
 
+//jomres root directory name
 if (!defined('JOMRES_ROOT_DIRECTORY')) {
     if (file_exists(dirname(__FILE__).'/../jomres_root.php')) {
         require_once dirname(__FILE__).'/../jomres_root.php';
@@ -195,7 +195,7 @@ if (!defined('AJAXCALL')) {
     }
 }
 
-// set language to en-GB by default
+// set language to en-GB by default TODO: may not be needed anymore
 if (get_showtime('lang') && get_showtime('lang') == '') {
     set_showtime('lang', 'en-GB');
 }
