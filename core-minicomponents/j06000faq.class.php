@@ -40,14 +40,12 @@ class j06000faq
         if ($thisJRUser->userIsManager) {
             if ($output_now) {
                 echo $kb->get_manager_faq();
-                exit;
             } else {
                 $this->retVals = $kb->get_manager_faq();
             }
         } else {
             if ($output_now) {
                 echo $kb->get_guest_faq();
-                exit;
             } else {
                 $this->retVals = $kb->get_guest_faq();
             }
