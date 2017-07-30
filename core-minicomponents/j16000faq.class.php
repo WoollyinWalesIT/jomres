@@ -37,7 +37,6 @@ class j16000faq
 
         if ($output_now) {
             echo $kb->get_admin_faq();
-            exit;
         } else {
             $this->retVals = $kb->get_admin_faq();
         }
