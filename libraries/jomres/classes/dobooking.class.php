@@ -5385,6 +5385,7 @@ class dobooking
                 $this->setErrorLog('makeNightlyRoomCharges::Property is configured to charge Per Person Per Night. One or more rooms are not set to Ignore PPN. All rooms will be calculated as per person per night as it is impossible for Jomres to ascertain how many people will be in each room.');
             }
         }
+		$total_nodiscount = 0;
         if (!empty($result)) {
             foreach ($result as $r) {
                 if ($this->cfg_perPersonPerNight == '1') {
