@@ -191,7 +191,24 @@ class jomres_video_tutorials
 			$videos_array['ADMIN']['cpanel'][] = $arr;
 			$videos_array['ADMIN']['list_users'][] = $arr;
 			
+			$arr = array ("title" => "_JOMRES_TUTORIAL_ADMIN_ACCESS_CONTROL" , "description" => "_JOMRES_TUTORIAL_ADMIN_ACCESS_CONTROL_DESC" , "video_id" => "kQRA4tJSZfM" );
+			$videos_array['ADMIN']['cpanel'][] = $arr;
+			$videos_array['ADMIN']['access_control'][] = $arr;
 			
+			$arr = array ("title" => "_JOMRES_TUTORIAL_PROPERTY_TYPES" , "description" => "_JOMRES_TUTORIAL_PROPERTY_TYPES_DESC" , "video_id" => "LGsEuy4FD2k" );
+			$videos_array['ADMIN']['cpanel'][] = $arr;
+			$videos_array['ADMIN']['list_property_types'][] = $arr;
+			$videos_array['ADMIN']['edit_property_type'][] = $arr;
+			$videos_array['ADMIN']['listGlobalroomTypes'][] = $arr;
+			$videos_array['ADMIN']['editGlobalroomTypes'][] = $arr;
+			
+			$arr = array ("title" => "_JOMRES_TUTORIAL_UPLOADING_MAP_MARKERS" , "description" => "_JOMRES_TUTORIAL_UPLOADING_MAP_MARKERS_DESC" , "video_id" => "x2EFJoNG0hA" );
+			$videos_array['ADMIN']['cpanel'][] = $arr;
+			$videos_array['ADMIN']['media_centre'][] = $arr;
+			$videos_array['ADMIN']['list_property_types'][] = $arr;
+			$videos_array['ADMIN']['edit_property_type'][] = $arr;
+			
+
 			
 		}
 

@@ -59,3 +59,16 @@ jr_define('_JOMRES_TUTORIAL_ADMIN_PLUGIN_MANAGER_DESC', 'This video shows you ho
 jr_define('_JOMRES_TUTORIAL_ADMIN_PROPERTY_MANAGERS', 'Property managers');
 jr_define('_JOMRES_TUTORIAL_ADMIN_PROPERTY_MANAGERS_DESC', 'Property managers are added in one of two ways. Either they create properties themselves (can be disabled in Site Configuration) or the site administrator can assign an existing manager to certain properties. Managers can only access properties they have created, or have been assigned to.');
 
+jr_define('_JOMRES_TUTORIAL_ADMIN_ACCESS_CONTROL', 'Access Control');
+jr_define('_JOMRES_TUTORIAL_ADMIN_ACCESS_CONTROL_DESC', 'You can use the Access Control feature to disable menu options, making them only visible to certain classes of users, or even making them disappear altogether. If the menu bar does not have any menu options to show then it will disappear completely, so if you do not want site visitors to see any options then you can just set all options to be visible to logged in users, for example.');
+
+jr_define('_JOMRES_TUTORIAL_PROPERTY_TYPES', 'Property and Room Types');
+jr_define('_JOMRES_TUTORIAL_PROPERTY_TYPES_DESC', 'In this video you will see two important concepts. The first is creation of property types, and associated room types. You will also see a registered user who is not yet a manager create their own property and become a manager (but only able to configure the property they have created). Property and room types are linked, once you have created a property type, you must add a room type otherwise property managers will see red error messages when trying to configure their properties.');
+
+
+
+jr_define('_JOMRES_TUTORIAL_UPLOADING_MAP_MARKERS', 'Uploading Map Markers');
+jr_define('_JOMRES_TUTORIAL_UPLOADING_MAP_MARKERS_DESC', 'You use the Media Centre to upload map markers. <a href="https://mapicons.mapsmarker.com/" target="_blank"> A great source of markers can be found here.</a> The procedure for uploading property features, room features, room types and others is the same.');
+
+jr_define('_JOMRES_TUTORIAL_PROPERTY_FEATURES', 'Property Features');
+jr_define('_JOMRES_TUTORIAL_PROPERTY_FEATURES_DESC', 'In this video we will show you how to create property features, and upload images for them.');
