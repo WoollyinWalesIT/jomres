@@ -31,7 +31,7 @@ class jomres_management_view
 		if (isset($_REQUEST[ 'tmpl' ])) {
 			$response = ' <a href="'.$this->remove_querystring_var('tmpl').'">'.jr_gettext('_JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW', '_JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW', false).'</a>';
 		} else {
-			$response = '<a href="'.$curPageUrl.$connector.'tmpl='.get_showtime('tmplcomponent').'" class="btn btn-default">'.jr_gettext('_JOMRES_COM_MANAGEMENTVIEW_MANAGMENT', '_JOMRES_COM_MANAGEMENTVIEW_MANAGMENT', false).'</a>';
+			$response = '<a href="'.$curPageUrl.$connector.'tmpl='.get_showtime('tmplcomponent').'" class="btn btn-default"><i class="fa fa-arrows-alt"></i> '.jr_gettext('_JOMRES_COM_MANAGEMENTVIEW_MANAGMENT', '_JOMRES_COM_MANAGEMENTVIEW_MANAGMENT', false).'</a>';
 		}
 
         return $response;

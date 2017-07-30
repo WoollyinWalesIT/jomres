@@ -58,10 +58,11 @@ width: auto;
 				{LANGDROPDOWN}
 			</div>
 		</patTemplate:tmpl>
-		<div class="col-md-6">
-			{MANAGEMENT_VIEW_DROPDOWN}
-			<a href="#FAQModal" ajax_task="faq" data-toggle="modal" faq-modal-title="{_JOMRES_FAQ}" random_identifier="FAQModal" class="btn btn-primary hidden-xs hidden-sm"><i class="fa fa-question-circle"></i> {_JOMRES_FAQ}</a>
-			{VIDEO_TUTORIALS}
+		<div class="col-md-6 pull-right">
+			<div class="pull-right">
+				{MANAGEMENT_VIEW_DROPDOWN}
+				{VIDEO_TUTORIALS}
+			</div>
 		</div>
 	</div>
 
@@ -72,6 +73,4 @@ width: auto;
 	</patTemplate:tmpl>
 
 	<div id="tour_target_content"></div>
-	
-	<div class="modal fade" id="FAQModal"></div>
 </patTemplate:tmpl>

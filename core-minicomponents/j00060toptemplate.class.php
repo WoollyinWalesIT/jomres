@@ -149,9 +149,6 @@ class j00060toptemplate
 			
 			$widgets_dropdown[]['WIDGETS_DROPDOWN'] = $jomres_widgets->get_widgets_dropdown();
 		}
-		
-		//jomres FAQ
-        $output['_JOMRES_FAQ'] = jr_gettext('_JOMRES_FAQ', '_JOMRES_FAQ', false);
 
 		//messages
         $messaging = array();
