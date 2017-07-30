@@ -224,6 +224,11 @@ class jomres_video_tutorials
 			$videos_array['ADMIN']['view_log_file'][] = $arr;
 
 			
+			$arr = array ("title" => "_JOMRES_TUTORIAL_TRANSLATIONS" , "description" => "_JOMRES_TUTORIAL_TRANSLATIONS_DESC" , "video_id" => "no5PSDuzBzo" );
+			$videos_array['ADMIN']['cpanel'][] = $arr;
+			$videos_array['ADMIN']['translate_lang_file_strings'][] = $arr;
+			$videos_array['ADMIN']['touch_templates'][] = $arr;
+			$videos_array['ADMIN']['translate_locales'][] = $arr;
 		}
 
 		// $arr = array ("title" => "_JOMRES_TUTORIAL_MEDIA_CENTRE_MRP" , "description" => "_JOMRES_TUTORIAL_MEDIA_CENTRE_MRP_DESC" , "video_id" => "oX_YKZbHKxw" );
