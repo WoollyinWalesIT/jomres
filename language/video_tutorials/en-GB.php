@@ -48,3 +48,11 @@ jr_define('_JOMRES_TUTORIAL_MICROMANAGE_GUEST_TYPES_DESC', 'To charge per person
 
 jr_define('_JOMRES_TUTORIAL_MEDIA_CENTRE_MRP', 'Media centre - Image uploading');
 jr_define('_JOMRES_TUTORIAL_MEDIA_CENTRE_MRP_DESC', 'All images are uploaded through the media centre.');
+
+
+jr_define('_JOMRES_TUTORIAL_ADMIN_CPANEL', 'Administrator Control Panel');
+jr_define('_JOMRES_TUTORIAL_ADMIN_CPANEL_DESC', 'This is your default landing page in the administrator area. You can see a summary of various site statistics and see which properties exist in the system, which are complete and which have been completed and are awaiting review before approval. Once a property has been approved, then it can be published by the property manager.');
+
+jr_define('_JOMRES_TUTORIAL_ADMIN_PLUGIN_MANAGER', 'Plugin Manager, installation and using');
+jr_define('_JOMRES_TUTORIAL_ADMIN_PLUGIN_MANAGER_DESC', 'This video shows you how to use the Plugin Manager, including installation of the plugin manager and then installation and uninstallation of a plugin. If you do not have a license key you will be prompted to save on in Site Configuration before you can install the manager. If you have not used the plugin manager before then this list will initially be empty, in this example I already have a variety of plugins installed.');
+

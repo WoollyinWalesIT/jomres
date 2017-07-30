@@ -175,8 +175,17 @@ class jomres_video_tutorials
 		$videos_array['MRP']['listcustomertypes'][] = $arr;
 		
 		if (jomres_cmsspecific_areweinadminarea() ) {
-			$arr = array ("title" => "_JOMRES_TUTORIAL_MICROMANAGE_GUEST_TYPES" , "description" => "_JOMRES_TUTORIAL_MICROMANAGE_GUEST_TYPES_DESC" , "video_id" => "ty61n8l2qVI" );
+			$arr = array ("title" => "_JOMRES_TUTORIAL_ADMIN_CPANEL" , "description" => "_JOMRES_TUTORIAL_ADMIN_CPANEL_DESC" , "video_id" => "19_Nx_xSVl0" );
 			$videos_array['ADMIN']['cpanel'][] = $arr;
+			
+			$arr = array ("title" => "_JOMRES_TUTORIAL_ADMIN_PLUGIN_MANAGER" , "description" => "_JOMRES_TUTORIAL_ADMIN_PLUGIN_MANAGER_DESC" , "video_id" => "Ld3X4Swx4c4" );
+			$videos_array['ADMIN']['cpanel'][] = $arr;
+			$videos_array['ADMIN']['showplugins'][] = $arr;
+			
+			
+			
+			
+			
 		}
 		
 		// $arr = array ("title" => "_JOMRES_TUTORIAL_MEDIA_CENTRE_MRP" , "description" => "_JOMRES_TUTORIAL_MEDIA_CENTRE_MRP_DESC" , "video_id" => "oX_YKZbHKxw" );
