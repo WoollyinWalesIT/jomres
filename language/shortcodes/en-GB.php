@@ -222,3 +222,4 @@ jr_define('_JOMRES_SHORTCODES_06005PROPERTY_MAP_ZOOM', 'Map zoom, 1: World 5: La
 
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_REVIEWS_LIMIT', 'Number of reviews to show');
 
+jr_define('_JOMRES_SHORTCODES_06000SHORTLIST', 'Displays the users shortlisted properties. If the user is registered these are their favourites, if not logged in then just those items added through the Favourite icon during the visit.');

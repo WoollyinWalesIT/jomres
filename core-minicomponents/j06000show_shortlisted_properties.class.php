@@ -21,7 +21,11 @@ class j06000show_shortlisted_properties
         $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
         if ($MiniComponents->template_touch) {
             $this->template_touchable = true;
-
+            $this->shortcode_data = array(
+                'task' => 'show_shortlisted_properties',
+                'info' => '_JOMRES_SHORTCODES_06000SHORTLIST',
+                'arguments' => array()
+                    );
             return;
         }
         $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
