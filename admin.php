@@ -66,7 +66,7 @@ try {
     set_showtime('jomressession', $jomressession);
 
     //set task showtime
-    $task = jomresGetParam($_REQUEST, 'task', '');
+    $task = jomresGetParam($_REQUEST, 'task', 'cpanel');
     $task = str_replace('&#60;x&#62;', '', $task);
     set_showtime('task', $task);
 
@@ -114,6 +114,9 @@ try {
         //frequently asked questions
         $output['_JOMRES_FAQ'] = jr_gettext('_JOMRES_FAQ', '_JOMRES_FAQ', false);
 
+		$jomres_video_tutorials = jomres_singleton_abstract::getInstance('jomres_video_tutorials');
+		$jomres_video_tutorials->property_uid = 0;
+		$output[ 'VIDEO_TUTORIALS' ] = $jomres_video_tutorials->build_modal();
         //manage properties button
         $output['HMANAGE_PROPERTIES'] = jr_gettext('_JOMRES_MANAGE_PROPERTIES', '_JOMRES_MANAGE_PROPERTIES', false);
 

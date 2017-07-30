@@ -61,8 +61,14 @@ class jomres_video_tutorials
 			$pageoutput[ ] = $output;
 
 			$tmpl = new patTemplate();
-			$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
-			$tmpl->readTemplatesFromInput('video_tutorials.html');
+			if (!jomres_cmsspecific_areweinadminarea() ) {
+				$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+				$tmpl->readTemplatesFromInput('video_tutorials.html');
+			} else {
+				$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
+				$tmpl->readTemplatesFromInput('video_tutorials.html');
+			}
+
 			$tmpl->addRows('pageoutput', $pageoutput);
 			$tmpl->addRows('rows1', $rows);
 			$tmpl->addRows('rows2', $rows);
@@ -77,14 +83,13 @@ class jomres_video_tutorials
 	//Get room details
 	public function get_video_urls()
 	{
-		if ($this->property_uid == 0 ) {
-			return null;
-		}
 		$mrConfig = getPropertySpecificSettings($this->property_uid);
 		
 		$videos_array = $this->get_videos_array();
-
-		if ($mrConfig[ 'is_real_estate_listing' ] == '1') {
+		
+		if ( jomres_cmsspecific_areweinadminarea() ) {
+			$videos = $videos_array['ADMIN'];
+		} elseif ($mrConfig[ 'is_real_estate_listing' ] == '1') {
 			$videos = $videos_array['REALESTATE'];
 		} elseif ($mrConfig[ 'singleRoomProperty' ] == '1') {
 			$videos = $videos_array['SRP'];
@@ -117,7 +122,8 @@ class jomres_video_tutorials
 			'SRP' => array(),
 			'MRP' => array(),
 			'TOUR' => array(),
-			'REALESTATE' => array()
+			'REALESTATE' => array(),
+			'ADMIN'
 			);
 		
 		// We will allow multiple items in the array for each task because tasks like tariff editing will require multiple videos for each editing  mode.
@@ -168,6 +174,10 @@ class jomres_video_tutorials
 		$videos_array['MRP']['business_settings'][] = $arr;
 		$videos_array['MRP']['listcustomertypes'][] = $arr;
 		
+		if (jomres_cmsspecific_areweinadminarea() ) {
+			$arr = array ("title" => "_JOMRES_TUTORIAL_MICROMANAGE_GUEST_TYPES" , "description" => "_JOMRES_TUTORIAL_MICROMANAGE_GUEST_TYPES_DESC" , "video_id" => "ty61n8l2qVI" );
+			$videos_array['ADMIN']['cpanel'][] = $arr;
+		}
 		
 		// $arr = array ("title" => "_JOMRES_TUTORIAL_MEDIA_CENTRE_MRP" , "description" => "_JOMRES_TUTORIAL_MEDIA_CENTRE_MRP_DESC" , "video_id" => "oX_YKZbHKxw" );
 		// $videos_array['MRP']['media_centre'][] = $arr;
