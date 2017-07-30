@@ -20,6 +20,9 @@ class jomres_knowledgebase
 
     public function __construct()
     {
+		$jomres_language = jomres_singleton_abstract::getInstance('jomres_language');
+		$jomres_language->get_language('faq');
+
         $this->admin_faq = false;
         $this->manager_faq = false;
         $this->guest_faq = false;
