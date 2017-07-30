@@ -115,9 +115,12 @@ class j06000compare
                 $MiniComponents->specificEvent('01050', 'x_geocoder', $Args);
                 $r[ 'MAP' ] = $MiniComponents->miniComponentData[ '01050' ][ 'x_geocoder' ];
 
-                $r[ 'PRICE_PRE_TEXT' ] = $jomres_property_list_prices->lowest_prices[$property_uid][ 'PRE_TEXT' ];
-                $r[ 'PRICE_PRICE' ] = $jomres_property_list_prices->lowest_prices[$property_uid][ 'PRICE' ];
-                $r[ 'PRICE_POST_TEXT' ] = $jomres_property_list_prices->lowest_prices[$property_uid][ 'POST_TEXT' ];
+				if (isset($jomres_property_list_prices->lowest_prices[$property_uid])) {
+					$r[ 'PRICE_PRE_TEXT' ] = $jomres_property_list_prices->lowest_prices[$property_uid][ 'PRE_TEXT' ];
+					$r[ 'PRICE_PRICE' ] = $jomres_property_list_prices->lowest_prices[$property_uid][ 'PRICE' ];
+					$r[ 'PRICE_POST_TEXT' ] = $jomres_property_list_prices->lowest_prices[$property_uid][ 'POST_TEXT' ];
+				}
+
 
                 $property_image = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/noimage.gif';
                 if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.$property_uid.'_property_'.$property_uid.'.jpg')) {
