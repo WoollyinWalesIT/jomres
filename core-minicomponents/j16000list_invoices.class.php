@@ -28,12 +28,12 @@ class j16000list_invoices
         $startDate = jomresGetParam($_POST, 'startDate', '');
         $endDate = jomresGetParam($_POST, 'endDate', '');
         if ($startDate == '%' || $startDate == '') {
-            $startDate = date('Y/m/d', strtotime('-3 months'));
+            $startDate = date('Y/m/d', strtotime('-5 years'));
         } else {
             $startDate = JSCalConvertInputDates($startDate);
         }
         if ($endDate == '%' || $endDate == '') {
-            $endDate = date('Y/m/d', strtotime('+2 years'));
+            $endDate = date('Y/m/d', strtotime('+5 years'));
         } else {
             $endDate = JSCalConvertInputDates($endDate);
         }

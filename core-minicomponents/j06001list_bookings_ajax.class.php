@@ -36,6 +36,7 @@ class j06001list_bookings_ajax
         $booking_status = (int) jomresGetParam($_GET, 'booking_status', '2');
         $show_all = (int) jomresGetParam($_GET, 'show_all', '0');
         $tag = (int) jomresGetParam($_GET, 'tag', '0');
+		$guest_uid = (int) jomresGetParam($_GET, 'guest_uid', '0');
 
         $img_pending = 'label label-grey';
         $img_arrivetoday = 'label label-orange';
@@ -138,6 +139,10 @@ class j06001list_bookings_ajax
 
         if ($tag != 0) {
             $clause .= "AND a.tag LIKE '%".$tag."%' ";
+        }
+		
+		if ($guest_uid != 0) {
+            $clause .= "AND a.guest_uid = ".$guest_uid." ";
         }
 
         /*
