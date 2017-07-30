@@ -19,7 +19,7 @@ jr_define('_JOMRES_TUTORIAL_CPANEL', 'Control Panel');
 jr_define('_JOMRES_TUTORIAL_CPANEL_DESC', 'This tutorial shows you how to use the Property Management control panel.');
 
 jr_define('_JOMRES_TUTORIAL_TIMELINE', 'Timeline');
-jr_define('_JOMRES_TUTORIAL_TIMELINE_DESC', 'How to use the timeline calendar');
+jr_define('_JOMRES_TUTORIAL_TIMELINE_DESC', 'How to use the timeline calendar. In this video we create a new guest by entering their details in the popup, existing guests can be re-used by selecting their name from the dropdown in the popup.');
 
 jr_define('_JOMRES_TUTORIAL_LISTPROPERTIES', 'List Properties');
 jr_define('_JOMRES_TUTORIAL_LISTPROPERTIES_DESC', 'How to use the List Properties page to view extra information, change columns, and search for specific properties.');
