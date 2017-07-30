@@ -187,7 +187,9 @@ class jomres_video_tutorials
 			$videos_array['ADMIN']['cpanel'][] = $arr;
 			$videos_array['ADMIN']['showplugins'][] = $arr;
 			
-			
+			$arr = array ("title" => "_JOMRES_TUTORIAL_ADMIN_PROPERTY_MANAGERS" , "description" => "_JOMRES_TUTORIAL_ADMIN_PROPERTY_MANAGERS_DESC" , "video_id" => "v3Ilb7xD78k" );
+			$videos_array['ADMIN']['cpanel'][] = $arr;
+			$videos_array['ADMIN']['list_users'][] = $arr;
 			
 			
 			

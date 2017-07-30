@@ -56,3 +56,6 @@ jr_define('_JOMRES_TUTORIAL_ADMIN_CPANEL_DESC', 'This is your default landing pa
 jr_define('_JOMRES_TUTORIAL_ADMIN_PLUGIN_MANAGER', 'Plugin Manager, installation and using');
 jr_define('_JOMRES_TUTORIAL_ADMIN_PLUGIN_MANAGER_DESC', 'This video shows you how to use the Plugin Manager, including installation of the plugin manager and then installation and uninstallation of a plugin. If you do not have a license key you will be prompted to save on in Site Configuration before you can install the manager. If you have not used the plugin manager before then this list will initially be empty, in this example I already have a variety of plugins installed.');
 
+jr_define('_JOMRES_TUTORIAL_ADMIN_PROPERTY_MANAGERS', 'Property managers');
+jr_define('_JOMRES_TUTORIAL_ADMIN_PROPERTY_MANAGERS_DESC', 'Property managers are added in one of two ways. Either they create properties themselves (can be disabled in Site Configuration) or the site administrator can assign an existing manager to certain properties. Managers can only access properties they have created, or have been assigned to.');
+
