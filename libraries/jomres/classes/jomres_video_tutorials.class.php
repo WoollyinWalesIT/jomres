@@ -197,6 +197,17 @@ class jomres_video_tutorials
 			$videos_array['MRP']['list_tariffs_micromanage'][] = $arr;
 			$videos_array['MRP']['business_settings'][] = $arr;
 			$videos_array['MRP']['listcustomertypes'][] = $arr;
+			
+			$arr = array ("title" => "_JOMRES_TUTORIAL_MEDIA_CENTRE_MRP" , "description" => "_JOMRES_TUTORIAL_MEDIA_CENTRE_MRP_DESC" , "video_id" => "azlhJ28mrdU" );
+			$videos_array['MRP']['dashboard'][] = $arr;
+			$videos_array['MRP']['cpanel'][] = $arr;
+			$videos_array['MRP']['show_property_room'][] = $arr;
+			$videos_array['MRP']['media_centre'][] = $arr; 
+			$videos_array['MRP']['list_resources'][] = $arr; 
+			$videos_array['MRP']['edit_resource'][] = $arr; 
+			$videos_array['MRP']['viewproperty'][] = $arr; 
+			
+			
 			}
 				
 		if (jomres_cmsspecific_areweinadminarea() ) {

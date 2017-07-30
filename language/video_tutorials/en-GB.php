@@ -47,7 +47,7 @@ jr_define('_JOMRES_TUTORIAL_MICROMANAGE_GUEST_TYPES', 'Per person per night - Gu
 jr_define('_JOMRES_TUTORIAL_MICROMANAGE_GUEST_TYPES_DESC', 'To charge per person per night you will need to create guest types. Different guest types can have variances off the base price of a room, so children of different ages can have varying discounts based on their ages. You do not need to charge per person per night to use Guest Types, you can also use them if you charge a flat rate but still want to capture the number of guests, or because you want to limit the number of guests in a booking.');
 
 jr_define('_JOMRES_TUTORIAL_MEDIA_CENTRE_MRP', 'Media centre - Image uploading');
-jr_define('_JOMRES_TUTORIAL_MEDIA_CENTRE_MRP_DESC', 'All images are uploaded through the media centre.');
+jr_define('_JOMRES_TUTORIAL_MEDIA_CENTRE_MRP_DESC', 'All images are uploaded through the media centre. In this video we will upload the Main property image, some slideshow images, a small selection of images to be shown in the search results page, and images for one of the rooms.');
 
 
 jr_define('_JOMRES_TUTORIAL_ADMIN_CPANEL', 'Administrator Control Panel');
