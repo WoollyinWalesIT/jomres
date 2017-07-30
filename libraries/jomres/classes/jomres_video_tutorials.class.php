@@ -22,6 +22,7 @@ class jomres_video_tutorials
 	{
 		$this->task = '';
 		$this->property_uid = 0;
+		$this->show_all = false;
 		
 		$jomres_language = jomres_singleton_abstract::getInstance('jomres_language');
 		$jomres_language->get_language('video_tutorials');
@@ -61,7 +62,16 @@ class jomres_video_tutorials
 			$pageoutput[ ] = $output;
 
 			$tmpl = new patTemplate();
-			if (!jomres_cmsspecific_areweinadminarea() ) {
+			if ($this->show_all) {
+				if (!jomres_cmsspecific_areweinadminarea() ) {
+				$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+				$tmpl->readTemplatesFromInput('all_video_tutorials.html');
+				} else {
+				$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
+				$tmpl->readTemplatesFromInput('all_video_tutorials.html');
+				}
+			}
+			elseif (!jomres_cmsspecific_areweinadminarea() ) {
 				$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
 				$tmpl->readTemplatesFromInput('video_tutorials.html');
 			} else {
@@ -98,12 +108,22 @@ class jomres_video_tutorials
 		} else {
 			$videos = $videos_array['MRP'];
 		}
-	
+
 	if ($this->task == '' ) {
 		$this->task = 'cpanel';
 	}
 	
-	if (isset($videos[$this->task])) {
+	if ($this->show_all) {
+		$all_videos = array();
+		// There will be duplicates because videos can be shown on more than one page, so we'll put them into an array using the title as the key, which will give us a unique array
+		foreach ($videos as $video_arr) {
+			foreach ($video_arr as $video) {
+				$title = $video['title'];
+				$all_videos[$title] = $video;
+			}
+		}
+		return $all_videos;
+	} elseif (isset($videos[$this->task])) {
 		return $videos[$this->task];
 	} else {
 		return '';

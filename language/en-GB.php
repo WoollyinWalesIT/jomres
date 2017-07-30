@@ -1923,3 +1923,5 @@ jr_define( 'PORTAL_REVIEWS_SHOW_ALL_REVIEWS', 'Show all reviews' );
 jr_define( 'JOMRES_INCOMPLETE', 'Incomplete' );
 jr_define( 'JOMRES_WATING_APPROVAL', 'Pending approval' );
 jr_define( 'JOMRES_GOOGLE_MAPS_PDETAILS', 'Property details map' );
+
+jr_define( 'VIDEO_TUTORIALS', 'Video Tutorials' );
