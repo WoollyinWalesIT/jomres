@@ -54,7 +54,7 @@ class jomres_video_tutorials
 				$r['TITLE'] = jr_gettext($title, $title , false );
 				$r['DESCRIPTION'] = jr_gettext($description, $description , false );
 				$r['VIDEO_ID'] = $video['video_id'];
-				
+				$r['VIDEO_ID_SANITISED'] = str_replace("-","", $video['video_id']);
 				
 				$rows[]=$r;
 			}
