@@ -208,6 +208,20 @@ class jomres_video_tutorials
 			$videos_array['ADMIN']['list_property_types'][] = $arr;
 			$videos_array['ADMIN']['edit_property_type'][] = $arr;
 			
+			$arr = array ("title" => "_JOMRES_TUTORIAL_PROPERTY_FEATURES" , "description" => "_JOMRES_TUTORIAL_PROPERTY_FEATURES_DESC" , "video_id" => "_tUzSU3BeWE" );
+			$videos_array['ADMIN']['cpanel'][] = $arr;
+			$videos_array['ADMIN']['listPfeatures'][] = $arr;
+			$videos_array['ADMIN']['editPfeature'][] = $arr;
+			
+			$arr = array ("title" => "_JOMRES_TUTORIAL_SHORTCODES" , "description" => "_JOMRES_TUTORIAL_SHORTCODES_DESC" , "video_id" => "JwEwmxrG4c8" );
+			$videos_array['ADMIN']['cpanel'][] = $arr;
+			$videos_array['ADMIN']['asamodule_report'][] = $arr;
+
+			
+			$arr = array ("title" => "_JOMRES_TUTORIAL_LOGFILES" , "description" => "_JOMRES_TUTORIAL_LOGFILES_DESC" , "video_id" => "lvImwRgJ6k0" );
+			$videos_array['ADMIN']['cpanel'][] = $arr;
+			$videos_array['ADMIN']['list_error_logs'][] = $arr;
+			$videos_array['ADMIN']['view_log_file'][] = $arr;
 
 			
 		}

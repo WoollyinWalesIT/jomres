@@ -72,3 +72,10 @@ jr_define('_JOMRES_TUTORIAL_UPLOADING_MAP_MARKERS_DESC', 'You use the Media Cent
 
 jr_define('_JOMRES_TUTORIAL_PROPERTY_FEATURES', 'Property Features');
 jr_define('_JOMRES_TUTORIAL_PROPERTY_FEATURES_DESC', 'In this video we will show you how to create property features, and upload images for them.');
+
+jr_define('_JOMRES_TUTORIAL_SHORTCODES', 'Shortcodes');
+jr_define('_JOMRES_TUTORIAL_SHORTCODES_DESC', 'Shortcodes are an exceptionally powerful feature of Jomres. The principle is the same for both Joomla and Wordpress. In this video we will show you where to view the short codes ( this list will change depending on which plugins are installed) and how to use them. You can use the codes in articles or modules.');
+
+jr_define('_JOMRES_TUTORIAL_LOGFILES', 'Log files');
+jr_define('_JOMRES_TUTORIAL_LOGFILES_DESC', 'This video will show you how to view log files. Extensive logging occurs when the system is run. When in Production mode (Site Config > Debugging) less logs are generated so if you are testing a new feature then you should set your site to Development. If you would like to add your own logging to your Jomres scripts, take a look at <a "http://www.jomres.net/manual/developers-guide/56-other-discussions/339-logging-in-jomres" target="_blank">our manual page on how to do it.</a> Here we will throw a fake error, then view the log file. Because the site is set to Development there is a lot of information, normally you would just see a message saying that there was an error and it has been reported.');
+
