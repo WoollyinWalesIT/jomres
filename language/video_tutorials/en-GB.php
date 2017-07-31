@@ -40,6 +40,9 @@ jr_define('_JOMRES_TUTORIAL_NORMAL_TARIFF_EDITING_MODE_SRP_DESC', 'Normal tariff
 jr_define('_JOMRES_TUTORIAL_MICROMANAGE_TARIFF_EDITING_MODE_MRP', 'Micromanage tariff editing mode (recommended)');
 jr_define('_JOMRES_TUTORIAL_MICROMANAGE_TARIFF_EDITING_MODE_MRP_DESC', 'Micromanage tariff editing mode allows you to configure both the price, and the minimum number of days that a stay can be valid for, for every day of the year. It is a powerful tool that gives you complete control over pricing. In this example we will show you how to create multiple price sets for the same room type, set different prices for different periods and different prices for specific days of the week within a period. ');
 
+jr_define('_JOMRES_TUTORIAL_MICROMANAGE_TARIFF_EDITING_MODE_SRP', 'Micromanage tariff editing mode for villas/apartments (recommended)');
+jr_define('_JOMRES_TUTORIAL_MICROMANAGE_TARIFF_EDITING_MODE_SRP_DESC', 'Micromanage tariff editing mode allows you to configure both the price, and the minimum number of days that a stay can be valid for, for every day of the year. It is a powerful tool that gives you complete control over pricing. In this example we will show you how to create multiple price sets. We will set different prices for different periods and different prices for specific days of the week within a period. Once that is done we will create multiple tariffs for the same property, but with different guest numbers allowing us to precisely control prices for every scenario.');
+
 jr_define('_JOMRES_TUTORIAL_MICROMANAGE_TARIFF_EDITING_MODE_MORE_GUESTS_MRP', 'Different tariffs for different guest numbers');
 jr_define('_JOMRES_TUTORIAL_MICROMANAGE_TARIFF_EDITING_MODE_MORE_GUESTS_MRP_DESC', 'You can create multiple tariffs for the same room type, so if you want different prices for different numbers of guests, you can do that.');
 
@@ -49,6 +52,8 @@ jr_define('_JOMRES_TUTORIAL_MICROMANAGE_GUEST_TYPES_DESC', 'To charge per person
 jr_define('_JOMRES_TUTORIAL_MEDIA_CENTRE_MRP', 'Media centre - Image uploading');
 jr_define('_JOMRES_TUTORIAL_MEDIA_CENTRE_MRP_DESC', 'All images are uploaded through the media centre. In this video we will upload the Main property image, some slideshow images, a small selection of images to be shown in the search results page, and images for one of the rooms.');
 
+jr_define('_JOMRES_TUTORIAL_MEDIA_CENTRE_SRP', 'Media centre - Image uploading');
+jr_define('_JOMRES_TUTORIAL_MEDIA_CENTRE_SRP_DESC', 'All images are uploaded through the media centre. In this video we will upload the Main property image, a small selection of images to be shown in the search results page, and some slideshow images.');
 
 jr_define('_JOMRES_TUTORIAL_ADMIN_CPANEL', 'Administrator Control Panel');
 jr_define('_JOMRES_TUTORIAL_ADMIN_CPANEL_DESC', 'This is your default landing page in the administrator area. You can see a summary of various site statistics and see which properties exist in the system, which are complete and which have been completed and are awaiting review before approval. Once a property has been approved, then it can be published by the property manager.');

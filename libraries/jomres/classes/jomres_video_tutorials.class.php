@@ -189,6 +189,10 @@ class jomres_video_tutorials
 			$videos_array['MRP']['list_tariffs_micromanage'][] = $arr;
 			$videos_array['MRP']['business_settings'][] = $arr;
 			
+			$arr = array ("title" => "_JOMRES_TUTORIAL_MICROMANAGE_TARIFF_EDITING_MODE_SRP" , "description" => "_JOMRES_TUTORIAL_MICROMANAGE_TARIFF_EDITING_MODE_SRP_DESC" , "video_id" => "yOzfwV6ncr4" );
+			$videos_array['SRP']['list_tariffs_micromanage'][] = $arr;
+			$videos_array['SRP']['business_settings'][] = $arr;
+			
 			$arr = array ("title" => "_JOMRES_TUTORIAL_MICROMANAGE_TARIFF_EDITING_MODE_MORE_GUESTS_MRP" , "description" => "_JOMRES_TUTORIAL_MICROMANAGE_TARIFF_EDITING_MODE_MORE_GUESTS_MRP_DESC" , "video_id" => "oX_YKZbHKxw" );
 			$videos_array['MRP']['list_tariffs_micromanage'][] = $arr;
 			$videos_array['MRP']['business_settings'][] = $arr;
@@ -197,9 +201,12 @@ class jomres_video_tutorials
 			$videos_array['MRP']['list_tariffs_micromanage'][] = $arr;
 			$videos_array['MRP']['business_settings'][] = $arr;
 			$videos_array['MRP']['listcustomertypes'][] = $arr;
+			$videos_array['SRP']['list_tariffs_micromanage'][] = $arr;
+			$videos_array['SRP']['business_settings'][] = $arr;
+			$videos_array['SRP']['listcustomertypes'][] = $arr;
+			
 			
 			$arr = array ("title" => "_JOMRES_TUTORIAL_MEDIA_CENTRE_MRP" , "description" => "_JOMRES_TUTORIAL_MEDIA_CENTRE_MRP_DESC" , "video_id" => "azlhJ28mrdU" );
-			$videos_array['MRP']['dashboard'][] = $arr;
 			$videos_array['MRP']['cpanel'][] = $arr;
 			$videos_array['MRP']['show_property_room'][] = $arr;
 			$videos_array['MRP']['media_centre'][] = $arr; 
@@ -207,9 +214,12 @@ class jomres_video_tutorials
 			$videos_array['MRP']['edit_resource'][] = $arr; 
 			$videos_array['MRP']['viewproperty'][] = $arr; 
 			
-			
+			$arr = array ("title" => "_JOMRES_TUTORIAL_MEDIA_CENTRE_SRP" , "description" => "_JOMRES_TUTORIAL_MEDIA_CENTRE_SRP_DESC" , "video_id" => "pNnPCxQT3YM" );
+			$videos_array['MRP']['cpanel'][] = $arr;
+			$videos_array['MRP']['media_centre'][] = $arr; 
+			$videos_array['MRP']['viewproperty'][] = $arr; 
 			}
-				
+		
 		if (jomres_cmsspecific_areweinadminarea() ) {
 			$arr = array ("title" => "_JOMRES_TUTORIAL_ADMIN_CPANEL" , "description" => "_JOMRES_TUTORIAL_ADMIN_CPANEL_DESC" , "video_id" => "19_Nx_xSVl0" );
 			$videos_array['ADMIN']['cpanel'][] = $arr;
@@ -262,8 +272,6 @@ class jomres_video_tutorials
 			$videos_array['ADMIN']['translate_locales'][] = $arr;
 		}
 
-		// $arr = array ("title" => "_JOMRES_TUTORIAL_MEDIA_CENTRE_MRP" , "description" => "_JOMRES_TUTORIAL_MEDIA_CENTRE_MRP_DESC" , "video_id" => "oX_YKZbHKxw" );
-		// $videos_array['MRP']['media_centre'][] = $arr;
 		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
 		set_showtime("videos_array" , $videos_array );
 		$MiniComponents->triggerEvent('07150');
