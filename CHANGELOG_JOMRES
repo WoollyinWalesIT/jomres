@@ -1,23 +1,22 @@
+<h3>Jomres 9.9.8 31/07/2017</h3>
 
 <span class="label label-success">Feature</span> Property Completion highlighting. Properties that have been completed ( IE prices updated, images uploaded etc ) are now highlighted to site administrations that they're now ready for approval ( if the feature is enabled ). Similar highlighting added to frontend property lists so that property managers can see those properties that are still awaiting completion.
 <span class="label label-success">Feature</span> Context sensitive video tutorials added to system, both administrator area and frontend. Videos are done without voice-overs or text so that they are largely language agnostic, language file can be copied and edited by site admins if required for other languages.
 
+<span class="label label-warning">Change</span> Repurposed an old setting to use it to disable avl calendars in property details
+<span class="label label-warning">Change</span> Made property list default to paging instead of live scrolling
+<span class="label label-warning">Change</span> Undone a previous change which makes label translations save the xx language shortcode instead of xx-XX language code, causing translated text not to be pulled from db when selecting by xx-XX language code.
+<span class="label label-warning">Change</span> Sanity check messages will be displayed on all pages, without excepted tasks
+<span class="label label-warning">Change</span> Removed some unimportant warnings from administrator area.
+<span class="label label-warning">Change</span> Cleanup up some unneeded notices, clarified the license status messages and added action buttons
+<span class="label label-warning">Change</span> If IPInfoDB api key is not set, we`ll not default to EUR anymore, instead we`ll default to the currency set in site configuration.
+<span class="label label-warning">Change</span> Removed the simple/advanced config toggle, not very popular as folks seem to miss the advanced settings in property configuration. 
+<span class="label label-warning">Change</span> Combined all map related settings in site config to one google map tab only.
+<span class="label label-warning">Change</span> Made the fullscreen view available on small screens too and removed an unused setting
+<span class="label label-warning">Change</span> Added shortlist/favourites shortcode.
+<span class="label label-warning">Change</span> Made the FAQ a menu item in the jomres control panel help section and removed the button.
 
-Repurposed an old setting to use it to disable avl calendars in property details
-Made property list default to paging instead of live scrolling
-Undone a previous change which makes label translations save the xx language shortcode instead of xx-XX language code, causing translated text not to be pulled from db when selecting by xx-XX language code.
-Sanity check messages will be displayed on all pages, without excepted tasks
-Removed some unimportant warnings from administrator area.
-Cleanup up some unneeded notices, clarified the license status messages and added action buttons
-If IPInfoDB api key is not set, we`ll not default to EUR anymore, instead we`ll default to the currency set in site configuration.
-Removed the simple/advanced config toggle, not very popular as folks seem to miss the advanced settings in property configuration. 
-Combined all map related settings in site config to one google map tab only.
-Made the fullscreen view available on small screens too and removed an unused setting
-Added shortlist/favourites shortcode.
-Made the FAQ a menu item in the jomres control panel help section and removed the button.
-
-
-Fixed a bug in how we prepare the rates and mindays arrays before creating the tariffs
+<span class="label label-important label-danger">Fix</span> Fixed a bug in how we prepare the rates and mindays arrays before creating the tariffs
 
 <h3>Jomres 9.9.7 20/07/2017</h3>
 
