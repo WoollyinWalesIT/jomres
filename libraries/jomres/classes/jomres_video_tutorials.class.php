@@ -215,9 +215,9 @@ class jomres_video_tutorials
 			$videos_array['MRP']['viewproperty'][] = $arr; 
 			
 			$arr = array ("title" => "_JOMRES_TUTORIAL_MEDIA_CENTRE_SRP" , "description" => "_JOMRES_TUTORIAL_MEDIA_CENTRE_SRP_DESC" , "video_id" => "pNnPCxQT3YM" );
-			$videos_array['MRP']['cpanel'][] = $arr;
-			$videos_array['MRP']['media_centre'][] = $arr; 
-			$videos_array['MRP']['viewproperty'][] = $arr; 
+			$videos_array['SRP']['cpanel'][] = $arr;
+			$videos_array['SRP']['media_centre'][] = $arr; 
+			$videos_array['SRP']['viewproperty'][] = $arr; 
 			}
 		
 		if (jomres_cmsspecific_areweinadminarea() ) {
