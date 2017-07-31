@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.7
+ * @version Jomres 9.9.8
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,7 +17,6 @@ $jrConfig = array(
   'useGlobalCurrency' => '1',
   'globalCurrencyCode' => 'EUR',
   'google_maps_api_key' => '',
-  'minimalconfiguration' => '0',
   'editingModeAffectsAllProperties' => '0',
   'allowHTMLeditor' => '1',
   'selfRegistrationAllowed' => '1',
@@ -105,7 +104,6 @@ $jrConfig = array(
   'booking_form_modal_popup' => '0',
   'booking_form_totalspanel_position' => '455',
   'booking_form_width' => '450',
-  'booking_form_totals_panel_as_slider' => '0',
   'useNewusers_sendemail' => '1',
   'show_tax_in_totals_summary' => '1',
   'alternate_smtp_use_settings' => '0',
@@ -150,7 +148,7 @@ $jrConfig = array(
   'show_powered_by' => '1',
   'use_budget_feature' => '1',
   'update_time' => '',
-  'live_scrolling_enabled' => '1',
+  'live_scrolling_enabled' => '0',
   'load_font_awesome' => '0',
   'licensekey' => '',
   'openexchangerates_api_key' => '',

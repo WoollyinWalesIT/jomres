@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.7
+ * @version Jomres 9.9.8
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -47,7 +47,6 @@ class jomres_users
 		$this->currentproperty			= 0;						//(int) current property
 		$this->apikey					= '';						//(string) manager api key
 		$this->suspended				= 0;						//(int) suspended 0/1
-		$this->simple_configuration		= 0;						//(int) simple/extended configuration 0/1
 		$this->last_active				= '1970-01-01 00:00:01';	//(datetime) Y-m-d H:i:s
 		
 		$this->authorised_properties	= array();					//(array) property uids that this user has access to
@@ -75,7 +74,7 @@ class jomres_users
 			$this->all_cms_users = jomres_cmsspecific_getCMSUsers();
 			}
 		
-		$query	= "SELECT `manager_uid`, `userid`, `access_level`, `currentproperty`, `apikey`, `suspended`, `simple_configuration`, `last_active` FROM #__jomres_managers";
+		$query	= "SELECT `manager_uid`, `userid`, `access_level`, `currentproperty`, `apikey`, `suspended`, `last_active` FROM #__jomres_managers";
 		$result = doSelectSql( $query );
 		
 		if ( $result )
@@ -88,7 +87,6 @@ class jomres_users
 				$this->users[(int)$r->userid]['currentproperty'] 		= (int)$r->currentproperty;
 				$this->users[(int)$r->userid]['apikey'] 				= $r->apikey;
 				$this->users[(int)$r->userid]['suspended'] 				= (int)$r->suspended;
-				$this->users[(int)$r->userid]['simple_configuration'] 	= (int)$r->simple_configuration;
 				$this->users[(int)$r->userid]['last_active'] 			= $r->last_active;
 
 				if (isset($this->all_cms_users[ $r->userid ][ 'username' ]))
@@ -139,7 +137,7 @@ class jomres_users
 				$this->all_cms_users = jomres_cmsspecific_getCMSUsers();
 				}
 			
-			$query	= "SELECT `manager_uid`, `userid`, `access_level`, `currentproperty`, `apikey`, `suspended`, `simple_configuration`, `last_active` FROM #__jomres_managers WHERE `userid` = " . (int)$cms_user_id;
+			$query	= "SELECT `manager_uid`, `userid`, `access_level`, `currentproperty`, `apikey`, `suspended`, `last_active` FROM #__jomres_managers WHERE `userid` = " . (int)$cms_user_id;
 			$result = doSelectSql( $query );
 			
 			if ( $result )
@@ -152,7 +150,6 @@ class jomres_users
 					$this->currentproperty 			= (int)$r->currentproperty;
 					$this->apikey 					= $r->apikey;
 					$this->suspended				= (int)$r->suspended;
-					$this->simple_configuration 	= (int)$r->simple_configuration;
 					$this->last_active				= $r->last_active;
 
 					if (isset($this->all_cms_users[ $r->userid ][ 'username' ]))
@@ -189,7 +186,6 @@ class jomres_users
 			$this->currentproperty 			= $this->users[$cms_user_id]['currentproperty'];
 			$this->apikey					= $this->users[$cms_user_id]['apikey'];
 			$this->suspended				= $this->users[$cms_user_id]['suspended'];
-			$this->simple_configuration		= $this->users[$cms_user_id]['simple_configuration'];
 			$this->last_active				= $this->users[$cms_user_id]['last_active'];
 			$this->username					= $this->users[$cms_user_id]['username'];
 			$this->authorised_properties	= $this->users[$cms_user_id]['authorised_properties'];

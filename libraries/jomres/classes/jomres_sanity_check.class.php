@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.7
+ * @version Jomres 9.9.8
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -42,7 +42,7 @@ class jomres_sanity_check
         $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
         if ($thisJRUser->userIsManager) {
             $this->warnings .= $this->check_editing_mode();
-            $this->warnings .= $this->check_approved();
+            
             $this->warnings .= $this->check_suspended();
             if (get_showtime('include_room_booking_functionality')) {
                 if ($this->mrConfig[ 'singleRoomProperty' ] == 1) {
@@ -66,8 +66,17 @@ class jomres_sanity_check
             $this->warnings .= $this->check_main_image();
 
             if (trim($this->warnings) == '') {
-                $this->warnings .= $this->check_published();
-            }
+				
+				$this->mark_as_complete(); // Add a flat that will show site managers when a property is ready to be reviewed after creation and when it is waiting approval
+				
+				$this->warnings .= $this->check_approved();
+				
+				if (trim($this->warnings) == '') {
+					$this->warnings .= $this->check_published();
+				}
+            } else {
+				$this->mark_as_incomplete();
+			}
 
             return $this->warnings;
         }
@@ -118,9 +127,63 @@ class jomres_sanity_check
         }
     }
 
+    public function mark_as_complete() {
+		// This is only triggered if a property doesn't have any warnings fired (address, images etc)
+		
+		// If property is marked as approved, we know it has been completed, so to save performance we'll trot right along to the next check.
+		// If the property is already published, we will automatically mark it as completed. This prevents previously approved properties from needing to be checked
+		
+		// Check to see if the property has already been marked as completed. If yes, then move on. If no, set the Completed flag to yes.
+		
+		// If it is not, we will check to see if the Completed flag is set to 0. If it is, we'll set it to
+		
+        $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
+        $current_property_details->gather_data($this->property_uid);
+		
+		if ($current_property_details->completed) { 
+			return true;
+		}
+		
+		$jomres_properties = jomres_singleton_abstract::getInstance('jomres_properties');
+		$jomres_properties->propertys_uid = $this->property_uid;
+		$jomres_properties->setCompleted(1);
+		
+		return true;
+    }
+	
+	public function mark_as_incomplete() {
+		// This is only triggered if a property has warnings fired (address, images etc)
+		// sets the completed flag to 0, makes the property require a new approval and also unpublishes the property
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
+	
+        $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
+        $current_property_details->gather_data($this->property_uid);
+		
+		if (!$current_property_details->completed) { 
+			return true;
+		}
+		
+		$jomres_properties = jomres_singleton_abstract::getInstance('jomres_properties');
+		$jomres_properties->propertys_uid = $this->property_uid;
+		$jomres_properties->setCompleted(0);
+		
+		if ($jrConfig['automatically_approve_new_properties'] == '0') {
+			if ($current_property_details->approved == 1) {
+				$jomres_properties->setApproved(0);
+			}
+			
+			if ($current_property_details->published == 1) {
+				$jomres_properties->setPublished(0);
+			}
+		}
+		
+		return true;
+    }
+	
     public function check_tours_exist()
     {
-        if (get_showtime('task') != 'jintour') {
+        //if (get_showtime('task') != 'jintour') {
             $tours = jintour_get_all_tours($this->property_uid);
             $future_tours = array();
             $today = date('Y/m/d');
@@ -139,12 +202,12 @@ class jomres_sanity_check
 
                 return $this->construct_warning(array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $button_text));
             }
-        }
+        //}
     }
 
     public function check_address()
     {
-        if (get_showtime('task') != 'edit_property') {
+        //if (get_showtime('task') != 'edit_property') {
             $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
             $current_property_details->gather_data($this->property_uid);
             if (
@@ -159,12 +222,12 @@ class jomres_sanity_check
 
                 return $this->construct_warning(array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $button_text));
             }
-        }
+        //}
     }
 
     public function check_main_image()
     {
-        if (get_showtime('task') != 'media_centre') {
+        //if (get_showtime('task') != 'media_centre') {
             $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
             $current_property_details->gather_data($this->property_uid);
             $jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
@@ -177,7 +240,7 @@ class jomres_sanity_check
 
                 return $this->construct_warning(array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $button_text));
             }
-        }
+        //}
     }
 
     public function check_approved()
@@ -206,7 +269,7 @@ class jomres_sanity_check
     {
         if ($this->mrConfig[ 'is_real_estate_listing' ] == '0') {
             $ignore_on_tasks = array('listCustomerTypes', 'editCustomerType', 'saveCustomerType', 'deleteCustomerType', 'saveCustomerTypeOrder');
-            if (!in_array(get_showtime('task'), $ignore_on_tasks)) {
+            //if (!in_array(get_showtime('task'), $ignore_on_tasks)) {
                 $query = 'SELECT `id` FROM `#__jomres_customertypes` where property_uid = '.(int) $this->property_uid.' AND published = 1';
                 $result = doSelectSql($query);
                 if ((int) $this->mrConfig[ 'perPersonPerNight' ] == 1 && empty($result)) {
@@ -216,7 +279,7 @@ class jomres_sanity_check
 
                     return $this->construct_warning(array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $button_text));
                 }
-            }
+            //}
         }
 
         return '';
@@ -229,7 +292,7 @@ class jomres_sanity_check
                 return '';
             }
             $ignore_on_tasks = array('propertyadmin', 'editTariff', 'saveTariff', 'edit_tariff_micromanage', 'list_tariffs_micromanage', 'list_tariffs_advanced', 'edit_tariff_advanced', 'edit_tariffs_normal');
-            if (!in_array(get_showtime('task'), $ignore_on_tasks)) {
+            //if (!in_array(get_showtime('task'), $ignore_on_tasks)) {
                 $query = 'SELECT `rates_uid` FROM `#__jomres_rates` where property_uid = '.(int) $this->property_uid.'';
                 $result = doSelectSql($query);
                 if (empty($result)) {
@@ -254,7 +317,7 @@ class jomres_sanity_check
 
                     return $this->construct_warning(array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $button_text));
                 }
-            }
+            //}
         }
 
         return '';
@@ -291,7 +354,7 @@ class jomres_sanity_check
     public function check_srp_room_exists()
     {
         if ($this->mrConfig[ 'is_real_estate_listing' ] == '0' && $this->mrConfig[ 'tariffmode' ] != '0') {
-            if (get_showtime('task') != 'edit_resource') {
+            //if (get_showtime('task') != 'edit_resource') {
                 $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
                 $current_property_details->gather_data($this->property_uid);
                 if (!isset($current_property_details->rooms)) {
@@ -301,14 +364,14 @@ class jomres_sanity_check
 
                     return $this->construct_warning(array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $button_text));
                 }
-            }
+            //}
         }
     }
 
     public function check_srp_room_type_set()
     {
         if ($this->mrConfig[ 'is_real_estate_listing' ] == '0' && $this->mrConfig[ 'tariffmode' ] != '0') {
-            if (get_showtime('task') != 'edit_resource') {
+            //if (get_showtime('task') != 'edit_resource') {
                 $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
                 $current_property_details->gather_data($this->property_uid);
                 foreach ($current_property_details->room_types as $rt) {
@@ -320,14 +383,14 @@ class jomres_sanity_check
                         return $this->construct_warning(array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $button_text));
                     }
                 }
-            }
+            //}
         }
     }
 
     public function check_mrp_rooms_exists()
     {
         if ($this->mrConfig[ 'is_real_estate_listing' ] == '0') {
-            if (get_showtime('task') != 'edit_resource') {
+            //if (get_showtime('task') != 'edit_resource') {
                 $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
                 $current_property_details->gather_data($this->property_uid);
                 if (!isset($current_property_details->rooms) || empty($current_property_details->rooms)) {
@@ -341,7 +404,7 @@ class jomres_sanity_check
 
                     return $this->construct_warning(array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $button_text));
                 }
-            }
+            //}
         }
     }
 }

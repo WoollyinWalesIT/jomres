@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.7
+ * @version Jomres 9.9.8
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -639,20 +639,6 @@ function dobooking($selectedProperty, $thisdate, $remus)
             $roomfeatures[ ] = $rf;
         }
     }
-
-    if (get_showtime('mobile_browser')) {
-        $jrConfig[ 'booking_form_totals_panel_as_slider' ] = '0';
-    }
-
-    if ($jrConfig[ 'booking_form_totals_panel_as_slider' ] == '1') {
-        $output[ 'SLIDER_ENABLED' ] = 'true';
-    } else {
-        $output[ 'SLIDER_ENABLED' ] = 'false';
-    }
-
-    if (get_showtime('task') == 'viewproperty' ) {
-        $output[ 'SLIDER_ENABLED' ] = 'false';
-    } // Slider doesn't work well when included in tabs, so we'll disable it.
 
     $manager_pricing = array();
     if ($thisJRUser->userIsManager) {

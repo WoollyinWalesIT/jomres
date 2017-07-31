@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.7
+ * @version Jomres 9.9.8
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -222,3 +222,4 @@ jr_define('_JOMRES_SHORTCODES_06005PROPERTY_MAP_ZOOM', 'Map zoom, 1: World 5: La
 
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_REVIEWS_LIMIT', 'Number of reviews to show');
 
+jr_define('_JOMRES_SHORTCODES_06000SHORTLIST', 'Displays the users shortlisted properties. If the user is registered these are their favourites, if not logged in then just those items added through the Favourite icon during the visit.');

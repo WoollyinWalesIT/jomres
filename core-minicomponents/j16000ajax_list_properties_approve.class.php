@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.7
+ * @version Jomres 9.9.8
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -28,14 +28,14 @@ class j16000ajax_list_properties_approve
 
         $property_uid = (int) jomresGetParam($_REQUEST, 'property_uid', 0);
         $approved = (int) jomresGetParam($_REQUEST, 'approved', 0);
-        $unpublish = '';
+		
+		$jomres_properties = jomres_singleton_abstract::getInstance('jomres_properties');
+        $jomres_properties->propertys_uid = $property_uid;
+		$jomres_properties->setApproved($approved);
 
         if ($approved == 0) {
-            $unpublish = ', `published` = 0';
+            $jomres_properties->setPublished(0);
         }
-
-        $query = 'UPDATE #__jomres_propertys SET `approved`= '.$approved.' '.$unpublish.' WHERE `propertys_uid` = '.(int) $property_uid;
-        $result = doInsertSql($query);
 
         $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
         $current_property_details->gather_data($property_uid);

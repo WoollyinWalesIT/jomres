@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.7
+ * @version Jomres 9.9.8
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -136,6 +136,7 @@ class j16000listproperties_ajax
 						a.published, 
 						a.approved,
 						a.last_changed,
+						a.completed,
 						(CASE WHEN (a.propertys_uid = b.property_uid 
 									AND b.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_NAME' 
 									AND b.language = '".$lang."') 
@@ -208,8 +209,18 @@ class j16000listproperties_ajax
             //end properties toolbar
 
             $r[] = $p->propertys_uid;
-            $r[] = jomres_decode($p->property_name);
-            $r[] = jomres_decode($p->property_street);
+            
+			if ($p->completed == 1) {
+				if ($p->approved == 1) {
+					$r[] = jomres_decode($p->property_name);
+				} else {
+					$r[] = '<span class="label label-orange">'.jomres_decode($p->property_name).'</span>';
+				}
+			} else {
+				$r[] = '<span class="label label-red">'.jomres_decode($p->property_name).'</span>';
+			}
+            
+			$r[] = jomres_decode($p->property_street);
             $r[] = jomres_decode($p->property_town);
             $r[] = jomres_decode(find_region_name($p->property_region));
             $r[] = $p->property_postcode;

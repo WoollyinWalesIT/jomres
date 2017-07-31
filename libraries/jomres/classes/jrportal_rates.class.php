@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.7
+ * @version Jomres 9.9.8
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -18,7 +18,7 @@ class jrportal_rates
 {
     public function __construct()
     {
-        $this->init_rate();
+		$this->init_rate();
     }
 
     public function init_rate()
@@ -277,6 +277,9 @@ class jrportal_rates
             throw new Exception('Error: Dates-midays array not set.');
         }
 		
+		//sort the dates_rates array by unix time ascending
+		ksort($this->dates_rates);
+		
 		//Setting the pointer to the first element in the dates_rates array to find the key, and thereby the first date in the tariffs
 		reset($this->dates_rates);
 		
@@ -284,19 +287,18 @@ class jrportal_rates
 		$v = key($this->dates_rates);
 		$lastvalue = convert_entered_price_into_safe_float($this->dates_rates[$v]);
 		$lastmindays = (int)$this->dates_mindays[$v];
-		$counter = 0;
+		$counter = 1;
 
 		$dates_rates_count = count($this->dates_rates);
 		
 		// Let's construct an array that'll contain the important parts of our new tariffs
 		foreach ($this->dates_rates as $epoch => $value) {
 			$value = convert_entered_price_into_safe_float($value);
-			
-			$counter++;
-			
+
 			$epoch = (int)$epoch;
 			
 			$date = date("Y/m/d",$epoch);
+			
 			$daybefore = date("Y/m/d",strtotime("-1 day", $epoch));
 			
 			$mindays_value = (int)$this->dates_mindays[$epoch];
@@ -305,19 +307,20 @@ class jrportal_rates
 				$this->new_rates[] = array('start'=>$lastdate, 'end'=>$daybefore, 'value'=>$lastvalue, 'mindays'=>$lastmindays);
 				
 				$lastdate = $date;
+				$lastvalue = $value;
+				$lastmindays = (int)$this->dates_mindays[$epoch];
 				
 				if ($counter == $dates_rates_count) {
-					$start_date = $date;
-					$end_date = date("Y/m/d",strtotime("+1 day", $epoch));
-					$this->new_rates[] = array('start'=>$start_date, 'end'=>$end_date, 'value'=>end($this->dates_rates), 'mindays'=>$lastmindays);
+					$this->new_rates[] = array('start'=>$lastdate, 'end'=>$date, 'value'=>$lastvalue, 'mindays'=>$lastmindays);
 				}
 			} elseif ($counter == $dates_rates_count) {
 				$this->new_rates[] = array('start'=>$lastdate, 'end'=>$date, 'value'=>$lastvalue, 'mindays'=>$lastmindays);
 				$lastdate = $date;
+				$lastvalue = $value;
+				$lastmindays = (int)$this->dates_mindays[$epoch];
 			}
-				
-			$lastvalue = $value;
-			$lastmindays = (int)$this->dates_mindays[$epoch];
+
+			$counter++;
 		}
 	
 	if (empty($this->new_rates))

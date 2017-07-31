@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.7
+ * @version Jomres 9.9.8
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -52,13 +52,8 @@ class j10001control_panel
 		// Plugin manager not installed
 		$output['PLUGIN_MANAGER_CHECK'] = $MiniComponents->specificEvent('16000', 'plugin_manager_check', array('output_now' => false));
 		
-		$output['KEY_SAVED_CHECK'] = $MiniComponents->specificEvent('16000', 'key_saved_check', array('output_now' => false));
-		
 		//jomres warnings
         $output['JOMRES_WARNINGS'] = $MiniComponents->specificEvent('16000', 'jomres_warnings', array('output_now' => false));
-
-        //Usage reporting setting
-        $output['USAGE_REPORTING'] = $MiniComponents->specificEvent('16000', 'usage_reporting_request', array('output_now' => false, 'show_as_panel' => true));
 
         //list properties
         $output['PROPERTIES_TABLE'] = $MiniComponents->specificEvent('16000', 'listproperties', array('output_now' => false, 'show_as_panel' => true));

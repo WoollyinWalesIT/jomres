@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.7
+ * @version Jomres 9.9.8
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -18,9 +18,6 @@ defined('_JOMRES_INITCHECK_ADMIN') or die('');
 ob_start('removeBOMadmin');
 
 @ini_set('max_execution_time', '480');
-
-//TODO: remove these too
-global $thisJRUser;
 
 require_once dirname(__FILE__).'/integration.php';
 
@@ -69,7 +66,7 @@ try {
     set_showtime('jomressession', $jomressession);
 
     //set task showtime
-    $task = jomresGetParam($_REQUEST, 'task', '');
+    $task = jomresGetParam($_REQUEST, 'task', 'cpanel');
     $task = str_replace('&#60;x&#62;', '', $task);
     set_showtime('task', $task);
 
@@ -117,6 +114,9 @@ try {
         //frequently asked questions
         $output['_JOMRES_FAQ'] = jr_gettext('_JOMRES_FAQ', '_JOMRES_FAQ', false);
 
+		$jomres_video_tutorials = jomres_singleton_abstract::getInstance('jomres_video_tutorials');
+		$jomres_video_tutorials->property_uid = 0;
+		$output[ 'VIDEO_TUTORIALS' ] = $jomres_video_tutorials->build_modal();
         //manage properties button
         $output['HMANAGE_PROPERTIES'] = jr_gettext('_JOMRES_MANAGE_PROPERTIES', '_JOMRES_MANAGE_PROPERTIES', false);
 
@@ -139,8 +139,6 @@ try {
         $output[ 'LANGDROPDOWN' ] = $jomres_language->get_languageselection_dropdown();
 
 		//check jomres support key
-        jr_import('jomres_check_support_key');
-        $key_validation = new jomres_check_support_key(JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins');
         $output['LICENSE_WARNING'] = $MiniComponents->specificEvent('16000', 'show_license_message', array('output_now' => false, 'as_modal' => false));
 
 		//bootstrap

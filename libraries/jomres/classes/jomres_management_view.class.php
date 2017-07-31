@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.7
+ * @version Jomres 9.9.8
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -18,11 +18,6 @@ class jomres_management_view
 {
     public function get_dropdown()
     {
-        jr_import('browser_detect');
-        $b = new browser_detect();
-        $is_mobile = $b->isMobile();
-        set_showtime('mobile_browser', $is_mobile);
-
         $response = '';
         $curPageUrl = $this->curPageUrl();
 
@@ -33,13 +28,11 @@ class jomres_management_view
             $connector = '?';
         }
 
-        if (!$is_mobile) {
-            if (isset($_REQUEST[ 'tmpl' ])) {
-                $response = ' <a href="'.$this->remove_querystring_var('tmpl').'">'.jr_gettext('_JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW', '_JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW', false).'</a>';
-            } else {
-                $response = '<a href="'.$curPageUrl.$connector.'tmpl='.get_showtime('tmplcomponent').'" class="btn btn-default">'.jr_gettext('_JOMRES_COM_MANAGEMENTVIEW_MANAGMENT', '_JOMRES_COM_MANAGEMENTVIEW_MANAGMENT', false).'</a>';
-            }
-        }
+		if (isset($_REQUEST[ 'tmpl' ])) {
+			$response = ' <a href="'.$this->remove_querystring_var('tmpl').'">'.jr_gettext('_JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW', '_JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW', false).'</a>';
+		} else {
+			$response = '<a href="'.$curPageUrl.$connector.'tmpl='.get_showtime('tmplcomponent').'" class="btn btn-default"><i class="fa fa-arrows-alt"></i> '.jr_gettext('_JOMRES_COM_MANAGEMENTVIEW_MANAGMENT', '_JOMRES_COM_MANAGEMENTVIEW_MANAGMENT', false).'</a>';
+		}
 
         return $response;
     }

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.7
+ * @version Jomres 9.9.8
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -5385,6 +5385,7 @@ class dobooking
                 $this->setErrorLog('makeNightlyRoomCharges::Property is configured to charge Per Person Per Night. One or more rooms are not set to Ignore PPN. All rooms will be calculated as per person per night as it is impossible for Jomres to ascertain how many people will be in each room.');
             }
         }
+		$total_nodiscount = 0;
         if (!empty($result)) {
             foreach ($result as $r) {
                 if ($this->cfg_perPersonPerNight == '1') {

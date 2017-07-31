@@ -34,35 +34,36 @@ width: auto;
 		</blockquote>
 	</noscript>
 
-	<h2 id="tour_target_property_name" style="{CURRENT_PROPERTY_STYLE}">
-		{HACTIVE_PROPERTY}{PROPERTYNAME}
-		<span class="small pull-right">
-			{MANAGEMENT_VIEW_DROPDOWN}
-			<a href="#FAQModal" ajax_task="faq" data-toggle="modal" faq-modal-title="{_JOMRES_FAQ}" random_identifier="FAQModal" class="btn btn-primary hidden-xs hidden-sm"><i class="fa fa-question-circle"></i> {_JOMRES_FAQ}</a>
-		</span>
-	</h2>
+	<h2 id="tour_target_property_name" style="{CURRENT_PROPERTY_STYLE}">{HACTIVE_PROPERTY}{PROPERTYNAME}</h2>
+
 	<div class="row">
+		<patTemplate:tmpl name="widgets_dropdown" type="simpleCondition" requiredVars="widgets_dropdown">
+			<div class="col-md-2">
+				{WIDGETS_DROPDOWN}
+			</div>
+		</patTemplate:tmpl>
 		<patTemplate:tmpl name="editing_dropdown" type="simpleCondition" requiredVars="editing_mode_dropdown">
-			<div class="col-md-4" id="tour_target_editing_mode_dropdown">
+			<div class="col-md-2" id="tour_target_editing_mode_dropdown">
 				{EDITING_MODE_DROPDOWN}
 			</div>
 		</patTemplate:tmpl>
 		<!--<patTemplate:tmpl name="timezone_dropdown" type="simpleCondition" requiredVars="timezoneblurb">
-			<div class="col-md-4" id="tour_target_timezone_dropdown">
+			<div class="col-md-2" id="tour_target_timezone_dropdown">
 				{TIMEZONEBLURB}
 				{TIMEZONE_DROPDOWN}
 			</div>
 		</patTemplate:tmpl>-->
 		<patTemplate:tmpl name="lang_dropdown" type="simpleCondition" requiredVars="langdropdown">
-			<div class="col-md-4" id="tour_target_lang_dropdown">
+			<div class="col-md-2" id="tour_target_lang_dropdown">
 				{LANGDROPDOWN}
 			</div>
 		</patTemplate:tmpl>
-		<patTemplate:tmpl name="widgets_dropdown" type="simpleCondition" requiredVars="widgets_dropdown">
-			<div class="col-md-4">
-				{WIDGETS_DROPDOWN}
+		<div class="col-md-6 pull-right">
+			<div class="pull-right">
+				{MANAGEMENT_VIEW_DROPDOWN}
+				{VIDEO_TUTORIALS}
 			</div>
-		</patTemplate:tmpl>
+		</div>
 	</div>
 
 	<div class="clearfix"></div>
@@ -72,6 +73,4 @@ width: auto;
 	</patTemplate:tmpl>
 
 	<div id="tour_target_content"></div>
-	
-	<div class="modal fade" id="FAQModal"></div>
 </patTemplate:tmpl>

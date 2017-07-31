@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.7
+ * @version Jomres 9.9.8
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1509,6 +1509,13 @@ class jomres_obsolete_file_handling
 		
 		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'plugin_manager_licenses_subscriptions.html');
 		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'plugin_manager_licenses_full.html');
+		$this->add_obs_file($this->dir_minicomponents.'j16000key_saved_check.class.php');
+		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'key_saved_check.html');
+		$this->add_obs_file($this->dir_classes.'jomres_frontend_configuration_level.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j06001set_config_level.class.php');
+		$this->add_obs_file($this->dir_templates_bootstrap_backend.'frontend_configuration_level_snippet.html');
+		$this->add_obs_file($this->dir_templates_bootstrap3_backend.'frontend_configuration_level_snippet.html');
+		$this->add_obs_file($this->dir_templates_jqueryui_backend.'frontend_configuration_level_snippet.html');
     }
 
     public function add_obs_file($path_and_file)

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.7
+ * @version Jomres 9.9.8
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -67,6 +67,8 @@ class j06001listyourproperties
         $output[ 'HACTIVE' ] = jr_gettext('_JOMRES_HSTATUS_CURRENT', '_JOMRES_HSTATUS_CURRENT', false);
         $output[ 'HLASTCHANGED' ] = jr_gettext('_JOMRES_HLASTCHANGED', '_JOMRES_HLASTCHANGED', false);
         $output[ 'HLEGEND' ] = jr_gettext('_JOMRES_HLEGEND', '_JOMRES_HLEGEND', false);
+		$output[ 'HNOTCOMPLETED' ] = jr_gettext('JOMRES_INCOMPLETE', 'JOMRES_INCOMPLETE');
+		$output[ 'HWAITINGAPPROVAL' ] = jr_gettext('JOMRES_WATING_APPROVAL', 'JOMRES_WATING_APPROVAL');
 
         if ($thisJRUser->accesslevel > 50) { //higher than receptionist
             $r = array();

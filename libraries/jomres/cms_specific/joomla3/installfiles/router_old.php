@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.7
+ * @version Jomres 9.9.8
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -65,7 +65,7 @@ if (!class_exists('JomresRouter')) {
             static $items;
             $route_query = $query; // We need to work within this function with the $route_query variable, not $query. It seems to be that the assignation &$query on some servers means that once the property name query further down has been run, then Joomla's $query becomes whatever the sql query was. Don't know why, and I'm not going to dig around to find out. We'll work internally on $route_query, then set $query to $route_query at the end, that seems to fix it.
 
-            global $thisJRUser;
+            $thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 
             $segments = array();
 
@@ -223,7 +223,7 @@ if (!class_exists('JomresRouter')) {
             if (!defined('_JOMRES_INITCHECK')) {
                 define('_JOMRES_INITCHECK', 1);
             }
-            global $thisJRUser;
+            $thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
             require_once JPATH_BASE.DIRECTORY_SEPARATOR.JOMRES_ROOT_DIRECTORY.DIRECTORY_SEPARATOR.'integration.php';
             $vars = array();
 

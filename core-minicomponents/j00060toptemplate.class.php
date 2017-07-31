@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.7
+ * @version Jomres 9.9.8
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -29,6 +29,7 @@ class j00060toptemplate
             return;
         }
 
+		
         $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
@@ -46,6 +47,11 @@ class j00060toptemplate
 
 		$output = array();
 		
+
+		$jomres_video_tutorials = jomres_singleton_abstract::getInstance('jomres_video_tutorials');
+		$jomres_video_tutorials->property_uid = $defaultProperty;
+		$output[ 'VIDEO_TUTORIALS' ] = $jomres_video_tutorials->build_modal();
+
         $output[ 'PROPERTYNAME' ] = '';
         $output[ 'HACTIVE_PROPERTY' ] = '';
         $output[ 'MANAGEMENT_VIEW_DROPDOWN' ] = '';
@@ -140,9 +146,6 @@ class j00060toptemplate
 			
 			$widgets_dropdown[]['WIDGETS_DROPDOWN'] = $jomres_widgets->get_widgets_dropdown();
 		}
-		
-		//jomres FAQ
-        $output['_JOMRES_FAQ'] = jr_gettext('_JOMRES_FAQ', '_JOMRES_FAQ', false);
 
 		//messages
         $messaging = array();

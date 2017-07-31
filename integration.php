@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.7
+ * @version Jomres 9.9.8
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,12 +16,12 @@ defined('_JOMRES_INITCHECK') or die('');
 
 // This script is mainly used for bootstrapping Jomres. It's old code, but it checks out.
 
-define('_COMPONENT_JOMRES_INTEGRATIONCALLED', '1');
-
-if (!defined('TRANSACTION_ID')) { // TRANSACTION_ID is used by the logger class to allow us to track single calls through the system
+// TRANSACTION_ID is used by the logger class to allow us to track single calls through the system
+if (!defined('TRANSACTION_ID')) {
     define('TRANSACTION_ID', time());
 }
 
+//jomres root directory name
 if (!defined('JOMRES_ROOT_DIRECTORY')) {
     if (file_exists(dirname(__FILE__).'/../jomres_root.php')) {
         require_once dirname(__FILE__).'/../jomres_root.php';
@@ -162,7 +162,7 @@ if (!isset($jrConfig['log_path']) || $jrConfig['log_path'] == '') {
 define('JOMRES_SYSTEMLOG_PATH', fix_path($jrConfig['log_path']));
 
 // We can't use the api's vendor autoloader, it breaks Joomla's autoloader. We have to manually include the files we need instead.
-if (!defined('JOMRES_API_CMS_ROOT')) { // The API includes the logger class. As the API doesn't always include the framework ( for performance ) to use the logger within Jomres itself, we'll need to make the distinction here
+if (!defined('JOMRES_API_CMS_ROOT') && !class_exists('LoggerInterface')) { // The API includes the logger class. As the API doesn't always include the framework ( for performance ) to use the logger within Jomres itself, we'll need to make the distinction here
     require_once JOMRES_API_ABSPATH.'vendor'.JRDS.'psr'.JRDS.'log'.JRDS.'Psr'.JRDS.'Log'.JRDS.'LoggerInterface.php';
     require_once JOMRES_API_ABSPATH.'vendor'.JRDS.'monolog'.JRDS.'monolog'.JRDS.'src'.JRDS.'Monolog'.JRDS.'Logger.php';
     require_once JOMRES_API_ABSPATH.'vendor'.JRDS.'monolog'.JRDS.'monolog'.JRDS.'src'.JRDS.'Monolog'.JRDS.'Processor'.JRDS.'WebProcessor.php';
@@ -195,7 +195,7 @@ if (!defined('AJAXCALL')) {
     }
 }
 
-// set language to en-GB by default
+// set language to en-GB by default TODO: may not be needed anymore
 if (get_showtime('lang') && get_showtime('lang') == '') {
     set_showtime('lang', 'en-GB');
 }

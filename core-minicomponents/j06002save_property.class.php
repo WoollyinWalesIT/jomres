@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.7
+ * @version Jomres 9.9.8
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -40,9 +40,21 @@ class j06002save_property
         if ($jrConfig[ 'selfRegistrationAllowed' ] == '0' && $property_uid == 0) {
             $property_uid = getDefaultProperty();
         }
-
-        //jomres properties object
+		
+		$published = 0;
+		$approved = 0;
+		
+		//jomres properties object
         $jomres_properties = jomres_singleton_abstract::getInstance('jomres_properties');
+		
+		//get property details
+		if ($property_uid > 0) {
+			$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
+			$current_property_details->gather_data($property_uid);
+			
+			$published = $current_property_details->published;
+			$approved = $current_property_details->approved;
+		}
 
         $jomres_properties->propertys_uid = $property_uid;
         $jomres_properties->property_name = trim(jomresGetParam($_POST, 'property_name', ''));
@@ -65,6 +77,8 @@ class j06002save_property
         $jomres_properties->superior = jomresGetParam($_POST, 'superior', 0);
         $jomres_properties->permit_number = jomresGetParam($_POST, 'permit_number', '');
         $jomres_properties->property_features = jomresGetParam($_POST, 'pid', array());
+		$jomres_properties->published = $published;
+		$jomres_properties->approved = $approved;
 
         //property country
         if ($jrConfig[ 'limit_property_country' ] == '0') {

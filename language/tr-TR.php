@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.7
+ * @version Jomres 9.9.8
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1777,7 +1777,7 @@ jr_define("_JOMRES_JINTOUR_SANITY_CHECK_LINK", "Bazı turlar oluşturalım!");
 jr_define('_JOMRES_COM_A_TARIFFS_SWAP', 'Para birimi sembolü yerini değiştir');
 jr_define('_JOMRES_COM_A_TARIFFS_SWAP_DESC', 'Para birimi simgesinin arkasından fiyat figürünün önüne veya tam tersine taşımak için bu seçeneği kullanın.');
 jr_define('_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK', 'Facebook');
-jr_define('_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK_DESC', 'Facebook sayfanızın kimlik numarasını girin, örneğin "Jomres" .Bunu boş bırakın, https://www.facebooking.com veya başka bir şey girmeyin.');
+jr_define('_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK_DESC', 'Facebook sayfanızın kimlik numarasını girin, örneğin "Jomres" .Bunu boş bırakın, https://www.facebook.com veya başka bir şey girmeyin.');
 jr_define('COMMON_DOWNLOAD', 'İndir');
 jr_define('_JOMRES_WARNINGS_TARIFFS_NOTARIFFS_SRP', 'Sonra bazı tarife eklemeniz gerekecek, bunlar sizin temel fiyatlarınız.');
 jr_define('_JOMRES_BOOTSTRAP_OFF_WARNING_TITLE', 'Önyükleme etkin değil!');
@@ -2114,3 +2114,5 @@ jr_define( 'WEBHOOKS_MANAGER_PROPERTIES_ASSIGNED_DESC', 'Any webhooks you create
 jr_define( 'PORTAL_REVIEWS_LIMIT', 'Reviews limit' );
 jr_define( 'PORTAL_REVIEWS_LIMIT_DESC', 'Use this setting to limit the number of reviews shown in the property details page.' );
 jr_define( 'PORTAL_REVIEWS_SHOW_ALL_REVIEWS', 'Show all reviews' );
+
+jr_define( 'VIDEO_TUTORIALS', 'Video Tutorials' );

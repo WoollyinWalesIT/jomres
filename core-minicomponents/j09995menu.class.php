@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.7
+ * @version Jomres 9.9.8
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -66,8 +66,6 @@ class j09995menu
 			}
 		}
 		
-		
-		
 		//my account section menus
 		if ($thisJRUser->accesslevel >= 1) {
 			$jomres_menu->add_item(10, jr_gettext('_JOMRES_MY_ACCOUNT_EDIT', '_JOMRES_MY_ACCOUNT_EDIT', false), 'edit_my_account', 'fa-user');
@@ -110,7 +108,6 @@ class j09995menu
 			$jomres_menu->add_item(10, jr_gettext('WEBHOOKS_CORE', 'WEBHOOKS_CORE', false), 'webhooks_core', 'fa-key');
 			$jomres_menu->add_item(10, jr_gettext('WEBHOOKS_DOCUMENTATION_TITLE', 'WEBHOOKS_DOCUMENTATION_TITLE', false), 'webhooks_core_documentation', 'fa-book');
 		}
-		
 		
 		//properties section menus
 		if ($thisJRUser->accesslevel >= 50) {
@@ -187,6 +184,12 @@ class j09995menu
 			if ($mrConfig[ 'is_real_estate_listing' ] != '1') {
 				$jomres_menu->add_item(80, jr_gettext('_JOMRES_EMAIL_TEMPLATES_TITLE', '_JOMRES_EMAIL_TEMPLATES_TITLE', false), 'list_emails', 'fa-envelope-o');
 			}
+		}
+		
+		//help section menus
+		if ($thisJRUser->accesslevel >= 50) { //FAQ works for guests too, but since it doesn`t have any content by default, we`ll just hide the menu for guests
+			$jomres_menu->add_item(90, jr_gettext('_JOMRES_FAQ', '_JOMRES_FAQ', false), 'faq', 'fa-question');
+			$jomres_menu->add_item(90, jr_gettext('VIDEO_TUTORIALS', 'VIDEO_TUTORIALS', false), 'videos', 'fa-youtube-play');
 		}
     }
 

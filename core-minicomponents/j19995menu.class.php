@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.7
+ * @version Jomres 9.9.8
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -29,10 +29,6 @@ class j19995menu
 		if (AJAXCALL) {
 			return;
 		}
-		
-		jr_import('jomres_check_support_key');
-        $key_validation = new jomres_check_support_key(JOMRES_SITEPAGE_URL_ADMIN.'&task=cpanel');
-        $this->key_valid = $key_validation->key_valid;
 
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
@@ -57,10 +53,6 @@ class j19995menu
 		$jomres_menu->add_admin_item(1, jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_HOME', '_JOMRES_FRONT_MR_MENU_ADMIN_HOME', false), '', 'fa-tachometer');
 		$jomres_menu->add_admin_item(1, jr_gettext('_JOMRES_CUSTOMCODE_PLUGINMANAGER', '_JOMRES_CUSTOMCODE_PLUGINMANAGER', false), 'showplugins', 'fa-cloud-download');
 		$jomres_menu->add_admin_item(1, jr_gettext('_JOMRES_CUSTOMCODE_UPGRADES', '_JOMRES_CUSTOMCODE_UPGRADES', false), 'updates', 'fa-cloud-download');
-		//if (!$this->key_valid || $key_validation->is_trial_license == true ){
-			$jomres_menu->add_admin_item(1, jr_gettext('_JOMRES_PRICES', '_JOMRES_PRICES', false), 'prices', 'fa-money');
-		//}
-		
 		
 		//users section menus
 		$jomres_menu->add_admin_item(10, jr_gettext('_JOMRES_COM_MR_SHOWPROFILES', '_JOMRES_COM_MR_SHOWPROFILES', false), 'list_users', 'fa-user');
@@ -110,13 +102,16 @@ class j19995menu
 		$jomres_menu->add_admin_item(90, jr_gettext('_JOMRES_MEDIA_CENTRE_TITLE', '_JOMRES_MEDIA_CENTRE_TITLE', false), 'media_centre', 'fa-picture-o');
 		
 		//help section menus
+		$jomres_menu->add_admin_item(100, jr_gettext('_JOMRES_PRICES', '_JOMRES_PRICES', false), 'prices', 'fa-id-card');
 		$jomres_menu->add_admin_item(100, jr_gettext('_JOMRES_CUSTOMCODE_SUPPORT_GETTINGSTARTED', '_JOMRES_CUSTOMCODE_SUPPORT_GETTINGSTARTED', false), 'getting_started', 'fa-book');
+		$jomres_menu->add_admin_item(100, jr_gettext('_JOMRES_FAQ', '_JOMRES_FAQ', false), 'faq', 'fa-question');
 		$jomres_menu->add_admin_item(100, jr_gettext('_JOMRES_CUSTOMCODE_MANUAL', '_JOMRES_CUSTOMCODE_MANUAL', false), 'https://www.jomres.net/manual/', 'fa-book', true, true);
 		$jomres_menu->add_admin_item(100, 'Shortcodes', 'http://www.jomres.net/manual/developers-guide/305-shortcodes', 'fa-book', true, true);
 		$jomres_menu->add_admin_item(100, jr_gettext('_JOMRES_CUSTOMCODE_MYACCOUNTONLINE', '_JOMRES_CUSTOMCODE_MYACCOUNTONLINE', false), 'https://license-server.jomres.net/index.php', 'fa-book', true, true);
 		$jomres_menu->add_admin_item(100, jr_gettext('_JOMRES_CUSTOMCODE_SUPPORT_ABOUTJOMRES', '_JOMRES_CUSTOMCODE_SUPPORT_ABOUTJOMRES', false), 'http://www.jomres.net/manual/developers-guide/60-jomres-manual/intro/344-about-jomres', 'fa-book', true, true);
 		$jomres_menu->add_admin_item(100, 'Jomres Partners', 'partners', 'fa-book');
 		$jomres_menu->add_admin_item(100, jr_gettext('API_METHODS_TITLE', 'API_METHODS_TITLE', false), 'https://api.jomres.net/', 'fa-book', true, true);
+		$jomres_menu->add_admin_item(100, jr_gettext('VIDEO_TUTORIALS', 'VIDEO_TUTORIALS', false), 'videos', 'fa-youtube-play');
     }
 
     // This must be included in every Event/Mini-component

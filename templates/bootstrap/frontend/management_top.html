@@ -79,9 +79,9 @@ jomresJquery(document).ready(function(){
 		</div>
 	</div>
 </div>
-<div id="jomres_status" class="navbar navbar-fixed-bottom hidden-phone">
-	<p class="pull-right">Copyright: &copy; 2005 - 2017 Vince Wooll</p>
-	{MANAGEMENT_VIEW_DROPDOWN} &bull; <a href="#FAQModal" ajax_task="faq" data-toggle="modal" faq-modal-title="{_JOMRES_FAQ}" random_identifier="FAQModal" class="hidden-phone hidden-tablet">{_JOMRES_FAQ}</a>
+<div id="jomres_status" class="navbar navbar-fixed-bottom">
+	<p class="pull-right hidden-phone hidden-tablet">Copyright: &copy; 2005 - 2017 Vince Wooll</p>
+	{MANAGEMENT_VIEW_DROPDOWN}
 </div>
 {SANITY_CHECKS}
 <div class="container-fluid management-wrapper">
@@ -100,6 +100,4 @@ jomresJquery(document).ready(function(){
 					<div class="alert alert-warning">{MESSAGE}</div>
 				</patTemplate:tmpl>
 				<div id="tour_target_content"></div>
-				
-				<div class="modal hide fade" id="FAQModal"></div>
 </patTemplate:tmpl>

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.7
+ * @version Jomres 9.9.8
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1841,7 +1841,7 @@ jr_define('_JOMRES_JINTOUR_SANITY_CHECK_LINK', 'Lassen Sie uns einige Touren ers
 jr_define('_JOMRES_COM_A_TARIFFS_SWAP', 'Swap-Währungssymbol Standort');
 jr_define('_JOMRES_COM_A_TARIFFS_SWAP_DESC', 'Verwenden Sie diese Option, um das Währungssymbol bewegen von hinten von, an vor dem Preis Figur oder umgekehrt.');
 jr_define('_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK', 'Facebook');
-jr_define('_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK_DESC', 'Geben Sie Ihre Facebook -Seite-ID, zum Beispiel "jomres".Lassen Sie dieses Feld leer, nichts zu zeigen. Kein Zutritt https://www.facebooking.com oder etwas anderes.');
+jr_define('_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK_DESC', 'Geben Sie Ihre Facebook -Seite-ID, zum Beispiel "jomres".Lassen Sie dieses Feld leer, nichts zu zeigen. Kein Zutritt https://www.facebook.com oder etwas anderes.');
 jr_define('COMMON_DOWNLOAD', 'Herunterladen');
 jr_define('_JOMRES_WARNINGS_TARIFFS_NOTARIFFS_SRP', 'Als nächstes müssen Sie einige Tarife hinzufügen. Dies sind Ihre Grundpreise.');
 jr_define('_JOMRES_BOOTSTRAP_OFF_WARNING_TITLE', 'Bootstrap ist nicht aktiviert!');
@@ -2175,3 +2175,5 @@ jr_define( 'WEBHOOKS_MANAGER_PROPERTIES_ASSIGNED_DESC', 'Any webhooks you create
 jr_define( 'PORTAL_REVIEWS_LIMIT', 'Reviews limit' );
 jr_define( 'PORTAL_REVIEWS_LIMIT_DESC', 'Use this setting to limit the number of reviews shown in the property details page.' );
 jr_define( 'PORTAL_REVIEWS_SHOW_ALL_REVIEWS', 'Show all reviews' );
+
+jr_define( 'VIDEO_TUTORIALS', 'Video Tutorials' );
