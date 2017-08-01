@@ -29,7 +29,8 @@ class j06005view_invoice
         $invoice_id = intval(jomresGetParam($_REQUEST, 'id', 0));
         $popup = intval(jomresGetParam($_REQUEST, 'popup', 0));
         $bypass_security_check = false;
-        $return_template = false;
+        $output_now = false;
+		$line_items_only = false;
         $output = array();
         $pageoutput = array();
         $rows = array();
@@ -39,13 +40,17 @@ class j06005view_invoice
         if (isset($componentArgs[ 'internal_call' ]) && $componentArgs[ 'internal_call' ] == true) { // This plugin is being called by another script, typically the emailer functionality, therefore we'll bypass the access checking further down
             $bypass_security_check = true;
             $invoice_id = $componentArgs[ 'invoice_id' ];
-            $return_template = true;
+            $output_now = true;
             $popup = 1;
         }
 
         if ($invoice_id == 0) { //no invoice id passed, so nothing to display
             return;
         }
+		
+		if (isset($componentArgs['line_items_only'])) {
+			$line_items_only = $componentArgs['line_items_only'];
+		}
 
         $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
@@ -264,9 +269,11 @@ class j06005view_invoice
 
         if ($popup == 1) {
             $tmpl->readTemplatesFromInput('printable_invoice.html');
+        } elseif($line_items_only) {
+            $tmpl->readTemplatesFromInput('frontend_view_invoice_lineitems.html');
         } else {
-            $tmpl->readTemplatesFromInput('frontend_view_invoice.html');
-        }
+			$tmpl->readTemplatesFromInput('frontend_view_invoice.html');
+		}
 
         $tmpl->addRows('pageoutput', $pageoutput);
         $tmpl->addRows('rows', $rows);
@@ -279,7 +286,7 @@ class j06005view_invoice
             $tmpl->addRows('immediate_pay', $immediate_pay);
         }
 
-        if (!$return_template) {
+        if (!$output_now) {
             $tmpl->displayParsedTemplate();
         } else {
             $this->retVals = $tmpl->getParsedTemplate();
