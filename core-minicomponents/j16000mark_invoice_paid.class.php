@@ -41,14 +41,14 @@ class j16000mark_invoice_paid
             jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=view_invoice&id='.$invoice_id), 'You can`t mark an unissued invoice as paid.');
         }
 
-        if ($invoice->subscription) {
-            jr_import('jrportal_subscriptions');
-            $subscription = new jrportal_subscriptions();
-            $subscription->id = $invoice->subscription_id;
-            $subscription->getSubscription();
-            $subscription->status = 1;
-            $subscription->commitUpdateSubscription();
-        }
+        if ($invoice->subscription == '1') {
+			jr_import('jrportal_subscriptions');
+			$subscription = new jrportal_subscriptions();
+			$subscription->subscription['id'] = $invoice->subscription_id;
+			$subscription->getSubscription();
+			$subscription->subscription['status'] = 1;
+			$subscription->commitUpdateSubscription();
+		}
 
         $invoice->mark_invoice_paid();
 
