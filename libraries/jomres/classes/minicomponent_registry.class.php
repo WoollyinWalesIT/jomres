@@ -225,7 +225,7 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
 
     public function getMiniComponentCMSSpecificClasses()
     {
-        $jrePath = JOMRES_CMSSPECIFIC_ABSPATH._JOMRES_DETECTED_CMS.JRDS;
+        $jrePath = _JOMRES_DETECTED_CMS_SPECIFIC_FILES;
         $d = @dir($jrePath);
         if ($d) {
             while (false !== ($entry = $d->read())) {
@@ -239,7 +239,7 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
     // Reads in class files from the events folder and inserts them into the registeredClasses array
     public function getMiniComponentCoreClasses()
     {
-        $listdir = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'core-minicomponents'.JRDS;
+        $listdir = JOMRES_APP_ABSPATH;
         $d = @dir($listdir);
         if ($d) {
             while (false !== ($entry = $d->read())) {

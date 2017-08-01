@@ -68,6 +68,7 @@ if (!defined('JOMRESPATH_BASE')) {
 
 //define jomres paths
 define('JOMRESCONFIG_ABSOLUTE_PATH', substr(JOMRESPATH_BASE, 0, strlen(JOMRESPATH_BASE) - strlen(JOMRES_ROOT_DIRECTORY.JRDS)));
+define('JOMRES_APP_ABSPATH', JOMRESPATH_BASE.'core-minicomponents'.JRDS);
 define('JOMRES_CSS_RELPATH', JOMRES_ROOT_DIRECTORY.'/css/');
 define('JOMRES_CSS_ABSPATH', JOMRESPATH_BASE.'css'.JRDS);
 define('JOMRES_JS_ABSPATH', JOMRESPATH_BASE.'javascript'.JRDS);

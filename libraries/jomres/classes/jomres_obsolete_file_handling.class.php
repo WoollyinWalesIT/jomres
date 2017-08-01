@@ -36,7 +36,7 @@ class jomres_obsolete_file_handling
         }
         $this->dir_root = JOMRESCONFIG_ABSOLUTE_PATH;
         $this->dir_jomres = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS;
-        $this->dir_minicomponents = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'core-minicomponents'.JRDS;
+        $this->dir_minicomponents = JOMRES_APP_ABSPATH;
         $this->dir_classes = JOMRES_CLASSES_ABSPATH;
         $this->dir_functions = JOMRES_FUNCTIONS_ABSPATH;
         $this->dir_libraries = JOMRES_LIBRARIES_ABSPATH;
