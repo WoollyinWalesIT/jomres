@@ -131,7 +131,7 @@ class j09995menu
 			}
 		}
 		
-		if ($thisJRUser->accesslevel > 50 && get_showtime('numberOfPropertiesInSystem') > 1 ) {
+		if ($thisJRUser->accesslevel > 50 && get_showtime('numberOfPropertiesInSystem') > 1 && count($thisJRUser->authorisedProperties) > 1 ) {
 			$jomres_menu->add_item(20, jr_gettext('_JOMRES_COM_MR_PROPERTY_DELETE', '_JOMRES_COM_MR_PROPERTY_DELETE', false), 'delete_property', 'fa-trash-o');
 		}
 		
