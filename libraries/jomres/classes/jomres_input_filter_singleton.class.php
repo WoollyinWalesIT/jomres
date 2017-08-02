@@ -20,6 +20,9 @@ class jomres_input_filter_singleton
 
     public function __construct()
     {
+		$this->purifier_no_html = false;
+		$this->purifier_allow_html = false;
+		
         $this->init();
     }
 
@@ -41,7 +44,8 @@ class jomres_input_filter_singleton
     {
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
-        if (!isset($jrConfig[ 'html_purifier_allowed_tags' ])) {
+        
+		if (!isset($jrConfig[ 'html_purifier_allowed_tags' ])) {
             $jrConfig[ 'html_purifier_allowed_tags' ] = 'p,b,strong,a[href],i';
         }
 
@@ -53,9 +57,10 @@ class jomres_input_filter_singleton
         $config->set('HTML.Allowed', $jrConfig[ 'html_purifier_allowed_tags' ]);
         $this->purifier_allow_html = new HTMLPurifier($config);
 
-        unset($config);
-        $config = HTMLPurifier_Config::createDefault();
+        $config->set('HTML.Allowed', '');
         $this->purifier_no_html = new HTMLPurifier($config);
+		
+		unset($config);
     }
 
     public function purify($dirty, $allow_html = false)
