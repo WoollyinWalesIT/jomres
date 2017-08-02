@@ -78,12 +78,14 @@ define('JOMRES_CACHE_ABSPATH', JOMRESPATH_BASE.'cache'.JRDS);
 define('JOMRES_COREPLUGINS_ABSPATH', JOMRESPATH_BASE.'core-plugins'.JRDS);
 define('JOMRES_REMOTEPLUGINS_ABSPATH', JOMRESPATH_BASE.'remote_plugins'.JRDS);
 define('JOMRES_LIBRARIES_ABSPATH', JOMRESPATH_BASE.'libraries'.JRDS);
+define('JOMRES_VENDOR_ABSPATH', JOMRESPATH_BASE.'vendor'.JRDS);
 define('JOMRES_CLASSES_ABSPATH', JOMRESPATH_BASE.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS);
 define('JOMRES_FUNCTIONS_ABSPATH', JOMRESPATH_BASE.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS);
 define('JOMRES_CMSSPECIFIC_ABSPATH', JOMRESPATH_BASE.'libraries'.JRDS.'jomres'.JRDS.'cms_specific'.JRDS);
 define('JOMRES_API_ABSPATH', JOMRESPATH_BASE.'api'.JRDS);
 
 //includes
+require_once JOMRES_VENDOR_ABSPATH.'autoload.php';
 require_once JOMRESPATH_BASE.'detect_cms.php';
 require_once JOMRES_FUNCTIONS_ABSPATH.'database.php';
 require_once JOMRES_FUNCTIONS_ABSPATH.'input_filtering.php';
@@ -107,31 +109,6 @@ if (file_exists(JOMRES_TEMP_ABSPATH.'registry_classes.php')) {
 require_once _JOMRES_DETECTED_CMS_SPECIFIC_FILES.'init_config_vars.php';
 require_once _JOMRES_DETECTED_CMS_SPECIFIC_FILES.'cms_specific_functions.php';
 
-//json TODO: this can be removed most probably, since all servers should have this by default
-if (!function_exists('json_encode')) {
-    require_once JOMRES_LIBRARIES_ABSPATH.'json'.JRDS.'JSON.php';
-
-    function json_encode($arg)
-    {
-        global $services_json;
-        if (!isset($services_json)) {
-            $services_json = new Services_JSON();
-        }
-
-        return $services_json->encode($arg);
-    }
-
-    function json_decode($arg)
-    {
-        global $services_json;
-        if (!isset($services_json)) {
-            $services_json = new Services_JSON();
-        }
-
-        return $services_json->decode($arg);
-    }
-}
-
 //adodb time TODO: most probably can be removed
 if (!function_exists('adodb_date_test_date')) {
     require_once JOMRES_LIBRARIES_ABSPATH.'adodb'.JRDS.'adodb-time.inc.php';
@@ -147,9 +124,9 @@ if (!class_exists('patErrorManager')) {
 }
 
 //PHPMailer
-require_once JOMRES_LIBRARIES_ABSPATH.JRDS.'PHPMailer-5.2.21'.JRDS.'PHPMailerAutoload.php';
+/* require_once JOMRES_LIBRARIES_ABSPATH.JRDS.'PHPMailer-5.2.21'.JRDS.'PHPMailerAutoload.php';
 PHPMailerAutoload('phpmailer');
-PHPMailerAutoload('smtp');
+PHPMailerAutoload('smtp'); */
 
 //site config
 $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');

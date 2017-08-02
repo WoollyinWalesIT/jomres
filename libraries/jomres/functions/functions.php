@@ -732,7 +732,7 @@ function make_gmap_url_for_property_uid($property_uid)
 
 function jomres_make_qr_code($string = '', $format = 'text')
 {
-    $qr = jomres_singleton_abstract::getInstance('jomres_qr_code');
+    //$qr = jomres_singleton_abstract::getInstance('jomres_qr_code');
 
     $dir = JOMRES_TEMP_ABSPATH.'qr_codes';
     test_and_make_directory($dir);
@@ -743,7 +743,7 @@ function jomres_make_qr_code($string = '', $format = 'text')
 
     $filename = md5($string);
     if (!file_exists($dir.JRDS.'qr_code_'.$filename.'.png')) {
-        QRcode::png($string, $dir.JRDS.'qr_code_'.$filename.'.png', 'L', 4, 2);
+        \PHPQRCode\QRcode::png($string, $dir.JRDS.'qr_code_'.$filename.'.png', 'L', 4, 2);
     }
 
     return array('relative_path' => get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/temp/qr_codes/'.'qr_code_'.$filename.'.png', 'absolute_path' => $dir.JRDS.'qr_code_'.$filename.'.png');
@@ -1917,7 +1917,8 @@ function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode
         }
     }
     
-	$mail = new jomresPHPMailer(true);
+	//$mail = new jomresPHPMailer(true);
+	$mail = new PHPMailer(true);
     
 	try {
         if (!isset($GLOBALS['debug'])) {

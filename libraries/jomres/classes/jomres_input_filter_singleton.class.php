@@ -45,9 +45,9 @@ class jomres_input_filter_singleton
             $jrConfig[ 'html_purifier_allowed_tags' ] = 'p,b,strong,a[href],i';
         }
 
-        if (!class_exists('HTMLPurifier')) {
+        /* if (!class_exists('HTMLPurifier')) {
             require_once JOMRES_LIBRARIES_ABSPATH.'htmlpurifier'.JRDS.'htmlpurifier-4.4.0-standalone'.JRDS.'HTMLPurifier.standalone.php';
-        }
+        } */
 
         $config = HTMLPurifier_Config::createDefault();
         $config->set('HTML.Allowed', $jrConfig[ 'html_purifier_allowed_tags' ]);
