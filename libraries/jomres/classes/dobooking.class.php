@@ -2669,7 +2669,7 @@ class dobooking
     {
         // Assumes the date $theDate comes from the system in the format yyyy/mm/dd
         $date_elements = explode('/', $thedate);
-        $unixDate = adodb_mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ]);
+        $unixDate = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ]);
         if ($this->cfg_dateFormatStyle == '1') {
             $formattedDate = date($this->cfg_cal_output, $unixDate);
         } else {
@@ -2685,28 +2685,28 @@ class dobooking
     public function JSCalmakeInputDates($inputDate)
     {
         $date_elements = explode('/', $inputDate);
-        $unixDate = adodb_mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ]);
+        $unixDate = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ]);
         switch ($this->cfg_cal_input) {
             case '%d/%m/%Y':
-                $theDate = adodb_date('d/m/Y', $unixDate);
+                $theDate = date('d/m/Y', $unixDate);
                 break;
             case '%Y/%m/%d':
-                $theDate = adodb_date('Y/m/d', $unixDate);
+                $theDate = date('Y/m/d', $unixDate);
                 break;
             case '%m/%d/%Y':
-                $theDate = adodb_date('m/d/Y', $unixDate);
+                $theDate = date('m/d/Y', $unixDate);
                 break;
             case '%d-%m-%Y':
-                $theDate = adodb_date('d-m-Y', $unixDate);
+                $theDate = date('d-m-Y', $unixDate);
                 break;
             case '%Y-%m-%d':
-                $theDate = adodb_date('Y-m-d', $unixDate);
+                $theDate = date('Y-m-d', $unixDate);
                 break;
             case '%m-%d-%Y':
-                $theDate = adodb_date('m-d-Y', $unixDate);
+                $theDate = date('m-d-Y', $unixDate);
                 break;
             case '%d.%m.%Y':
-                $theDate = adodb_date('d.m.Y', $unixDate);
+                $theDate = date('d.m.Y', $unixDate);
                 break;
             default:
                 echo 'Error in date format. Cannot continue. If you have just installed Jomres you should log into the frontend as a property manager. This will set up sufficient data so that you can proceed.';
@@ -2726,38 +2726,38 @@ class dobooking
         switch ($inputFormat) {
             case '%d/%m/%Y':
                 $date_elements = explode('/', $inputDate);
-                $unixDate = @adodb_mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 0 ], $date_elements[ 2 ]);
+                $unixDate = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 0 ], $date_elements[ 2 ]);
                 break;
             case '%Y/%m/%d':
                 $date_elements = explode('/', $inputDate);
-                $unixDate = adodb_mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ]);
+                $unixDate = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ]);
                 break;
             case '%m/%d/%Y':
                 $date_elements = explode('/', $inputDate);
-                $unixDate = adodb_mktime(0, 0, 0, $date_elements[ 0 ], $date_elements[ 1 ], $date_elements[ 2 ]);
+                $unixDate = mktime(0, 0, 0, $date_elements[ 0 ], $date_elements[ 1 ], $date_elements[ 2 ]);
                 break;
             case '%d-%m-%Y':
                 $date_elements = explode('-', $inputDate);
-                $unixDate = adodb_mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 0 ], $date_elements[ 2 ]);
+                $unixDate = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 0 ], $date_elements[ 2 ]);
                 break;
             case '%Y-%m-%d':
                 $date_elements = explode('-', $inputDate);
-                $unixDate = adodb_mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ]);
+                $unixDate = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ]);
                 break;
             case '%m-%d-%Y':
                 $date_elements = explode('-', $inputDate);
-                $unixDate = adodb_mktime(0, 0, 0, $date_elements[ 0 ], $date_elements[ 1 ], $date_elements[ 2 ]);
+                $unixDate = mktime(0, 0, 0, $date_elements[ 0 ], $date_elements[ 1 ], $date_elements[ 2 ]);
                 break;
             case '%d.%m.%Y':
                 $date_elements = explode('.', $inputDate);
-                $unixDate = adodb_mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 0 ], $date_elements[ 2 ]);
+                $unixDate = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 0 ], $date_elements[ 2 ]);
                 break;
             default:
                 echo 'Error in date format. Cannot continue.';
                 exit;
                 break;
         }
-        $theDate = adodb_date('Y/m/d', $unixDate);
+        $theDate = date('Y/m/d', $unixDate);
 
         return $theDate;
     }

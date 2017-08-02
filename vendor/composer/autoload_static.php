@@ -15,9 +15,14 @@ class ComposerStaticInitd51e5601f3e1cc65adbb78dfe5f4e36d
         array (
             'ReCaptcha\\' => 10,
         ),
+        'P' => 
+        array (
+            'Psr\\Log\\' => 8,
+        ),
         'M' => 
         array (
             'Mso\\IdnaConvert\\' => 16,
+            'Monolog\\' => 8,
         ),
     );
 
@@ -26,9 +31,17 @@ class ComposerStaticInitd51e5601f3e1cc65adbb78dfe5f4e36d
         array (
             0 => __DIR__ . '/..' . '/google/recaptcha/src/ReCaptcha',
         ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
         'Mso\\IdnaConvert\\' => 
         array (
             0 => __DIR__ . '/..' . '/mso/idna-convert/src',
+        ),
+        'Monolog\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
     );
 

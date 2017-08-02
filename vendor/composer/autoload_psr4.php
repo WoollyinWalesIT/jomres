@@ -7,5 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'ReCaptcha\\' => array($vendorDir . '/google/recaptcha/src/ReCaptcha'),
+    'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
     'Mso\\IdnaConvert\\' => array($vendorDir . '/mso/idna-convert/src'),
+    'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
 );

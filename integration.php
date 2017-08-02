@@ -109,11 +109,6 @@ if (file_exists(JOMRES_TEMP_ABSPATH.'registry_classes.php')) {
 require_once _JOMRES_DETECTED_CMS_SPECIFIC_FILES.'init_config_vars.php';
 require_once _JOMRES_DETECTED_CMS_SPECIFIC_FILES.'cms_specific_functions.php';
 
-//adodb time TODO: most probably can be removed
-if (!function_exists('adodb_date_test_date')) {
-    require_once JOMRES_LIBRARIES_ABSPATH.'adodb'.JRDS.'adodb-time.inc.php';
-}
-
 //patTemplate
 if (!class_exists('patTemplate')) {
     require_once JOMRES_LIBRARIES_ABSPATH.'phptools'.JRDS.'patTemplate.php';
@@ -140,23 +135,7 @@ if (!isset($jrConfig['log_path']) || $jrConfig['log_path'] == '') {
 define('JOMRES_SYSTEMLOG_PATH', fix_path($jrConfig['log_path']));
 
 // We can't use the api's vendor autoloader, it breaks Joomla's autoloader. We have to manually include the files we need instead.
-if (!defined('JOMRES_API_CMS_ROOT') && !class_exists('LoggerInterface')) { // The API includes the logger class. As the API doesn't always include the framework ( for performance ) to use the logger within Jomres itself, we'll need to make the distinction here
-    require_once JOMRES_API_ABSPATH.'vendor'.JRDS.'psr'.JRDS.'log'.JRDS.'Psr'.JRDS.'Log'.JRDS.'LoggerInterface.php';
-    require_once JOMRES_API_ABSPATH.'vendor'.JRDS.'monolog'.JRDS.'monolog'.JRDS.'src'.JRDS.'Monolog'.JRDS.'Logger.php';
-    require_once JOMRES_API_ABSPATH.'vendor'.JRDS.'monolog'.JRDS.'monolog'.JRDS.'src'.JRDS.'Monolog'.JRDS.'Processor'.JRDS.'WebProcessor.php';
-    require_once JOMRES_API_ABSPATH.'vendor'.JRDS.'monolog'.JRDS.'monolog'.JRDS.'src'.JRDS.'Monolog'.JRDS.'Formatter'.JRDS.'FormatterInterface.php';
-    require_once JOMRES_API_ABSPATH.'vendor'.JRDS.'monolog'.JRDS.'monolog'.JRDS.'src'.JRDS.'Monolog'.JRDS.'Formatter'.JRDS.'NormalizerFormatter.php';
-    require_once JOMRES_API_ABSPATH.'vendor'.JRDS.'monolog'.JRDS.'monolog'.JRDS.'src'.JRDS.'Monolog'.JRDS.'Formatter'.JRDS.'LineFormatter.php';
-    require_once JOMRES_API_ABSPATH.'vendor'.JRDS.'monolog'.JRDS.'monolog'.JRDS.'src'.JRDS.'Monolog'.JRDS.'Handler'.JRDS.'HandlerInterface.php';
-    require_once JOMRES_API_ABSPATH.'vendor'.JRDS.'monolog'.JRDS.'monolog'.JRDS.'src'.JRDS.'Monolog'.JRDS.'Handler'.JRDS.'AbstractHandler.php';
-    require_once JOMRES_API_ABSPATH.'vendor'.JRDS.'monolog'.JRDS.'monolog'.JRDS.'src'.JRDS.'Monolog'.JRDS.'Handler'.JRDS.'AbstractProcessingHandler.php';
-    require_once JOMRES_API_ABSPATH.'vendor'.JRDS.'monolog'.JRDS.'monolog'.JRDS.'src'.JRDS.'Monolog'.JRDS.'Handler'.JRDS.'AbstractSyslogHandler.php';
-    require_once JOMRES_API_ABSPATH.'vendor'.JRDS.'monolog'.JRDS.'monolog'.JRDS.'src'.JRDS.'Monolog'.JRDS.'Handler'.JRDS.'SyslogUdpHandler.php';
-    require_once JOMRES_API_ABSPATH.'vendor'.JRDS.'monolog'.JRDS.'monolog'.JRDS.'src'.JRDS.'Monolog'.JRDS.'Handler'.JRDS.'SyslogHandler.php';
-    require_once JOMRES_API_ABSPATH.'vendor'.JRDS.'monolog'.JRDS.'monolog'.JRDS.'src'.JRDS.'Monolog'.JRDS.'Handler'.JRDS.'SyslogUdp'.JRDS.'UdpSocket.php';
-    require_once JOMRES_API_ABSPATH.'vendor'.JRDS.'monolog'.JRDS.'monolog'.JRDS.'src'.JRDS.'Monolog'.JRDS.'Handler'.JRDS.'AbstractProcessingHandler.php';
-    require_once JOMRES_API_ABSPATH.'vendor'.JRDS.'monolog'.JRDS.'monolog'.JRDS.'src'.JRDS.'Monolog'.JRDS.'Handler'.JRDS.'StreamHandler.php';
-
+if (!defined('JOMRES_API_CMS_ROOT')) { // The API includes the logger class. As the API doesn't always include the framework ( for performance ) to use the logger within Jomres itself, we'll need to make the distinction here
     require_once JOMRES_API_ABSPATH.'classes'.JRDS.'logging.class.php';
 }
 
