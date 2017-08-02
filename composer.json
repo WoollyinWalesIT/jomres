@@ -1,0 +1,22 @@
+{
+    "name": "woollyinwales/jomres",
+    "description": "Property management and online booking system",
+    "type": "project",
+    "license": "GPLv3",
+    "authors": [
+        {
+            "name": "Vince Wooll",
+            "email": "support@jomres.net"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "ezyang/htmlpurifier": "^4.9",
+        "mso/idna-convert": "^1.1",
+        "erusev/parsedown": "^1.6",
+        "phpmailer/phpmailer": "^5.2",
+        "google/recaptcha": "^1.1",
+        "fergusean/nusoap": "^0.9.5",
+        "aferrandini/phpqrcode": "^1.0"
+    }
+}
