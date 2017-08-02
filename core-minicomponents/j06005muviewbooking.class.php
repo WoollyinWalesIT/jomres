@@ -229,7 +229,7 @@ class j06005muviewbooking
         if (!$bookedin && dateDiff('d', date('Y/m/d'), $booking_arrival) > (int) $mrConfig[ 'cancellation_threashold' ] && (int) $booking_cancelled == 0) {
             $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
             $jrtb = $jrtbar->startTable();
-            $jrtb .= $jrtbar->toolbarItem('cancelbooking', jomresURL(JOMRES_SITEPAGE_URL."&task=cancelGuestBooking&contract_uid=$booking_contract_uid"), '');
+            $jrtb .= $jrtbar->toolbarItem('cancel_booking', jomresURL(JOMRES_SITEPAGE_URL."&task=cancelGuestBooking&contract_uid=$booking_contract_uid"), '');
             $jrtb .= $jrtbar->endTable();
             echo $jrtb;
         }
