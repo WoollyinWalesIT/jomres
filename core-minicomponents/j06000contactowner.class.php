@@ -54,7 +54,7 @@ class j06000contactowner
             if ($version == 'V1') {
                 require_once JOMRESPATH_BASE.'/libraries/recaptcha/recaptchalib.php';
             } elseif ($version == 'V2') {
-                require_once JOMRESPATH_BASE.'/libraries/recaptcha/autoload.php';
+                //require_once JOMRESPATH_BASE.'/libraries/recaptcha/autoload.php';
                 $recaptcha = new \ReCaptcha\ReCaptcha(trim($jrConfig[ 'recaptcha_private_key' ]), new \ReCaptcha\RequestMethod\CurlPost());
             }
         }

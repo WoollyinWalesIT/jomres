@@ -17,14 +17,15 @@ defined('_JOMRES_INITCHECK') or die('');
 // A wrapper class for parsing data through a markdown class
 
 class jomres_markdown {
+
     public function __construct() {
-        require_once (JOMRES_LIBRARIES_ABSPATH.'Parsedown'.JRDS.'Parsedown.php');
+        //require_once (JOMRES_LIBRARIES_ABSPATH.'Parsedown'.JRDS.'Parsedown.php');
+		$this->Parsedown = new Parsedown();
+        $this->Parsedown->setBreaksEnabled(true);
     }
 
     public function get_markdown($string) {
-        $Parsedown = new Parsedown();
-        $Parsedown->setBreaksEnabled(true);
-        return $Parsedown->text($string);
+        return $this->Parsedown->text($string);
     }
 
 }

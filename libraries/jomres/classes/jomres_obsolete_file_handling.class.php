@@ -1516,6 +1516,16 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_templates_bootstrap_backend.'frontend_configuration_level_snippet.html');
 		$this->add_obs_file($this->dir_templates_bootstrap3_backend.'frontend_configuration_level_snippet.html');
 		$this->add_obs_file($this->dir_templates_jqueryui_backend.'frontend_configuration_level_snippet.html');
+		$this->add_obs_dir($this->dir_libraries.'json'.JRDS);
+		$this->add_obs_dir($this->dir_libraries.'htmlpurifier'.JRDS);
+		$this->add_obs_dir($this->dir_libraries.'idna_converter'.JRDS);
+		$this->add_obs_dir($this->dir_libraries.'nusoap'.JRDS);
+		$this->add_obs_dir($this->dir_libraries.'Parsedown'.JRDS);
+		$this->add_obs_dir($this->dir_libraries.'PHPMailer-5.2.21'.JRDS);
+		$this->add_obs_dir($this->dir_libraries.'qr_code_lib'.JRDS);
+		$this->add_obs_dir($this->dir_libraries.'recaptcha'.JRDS);
+		$this->add_obs_dir($this->dir_libraries.'adodb'.JRDS);
+		$this->add_obs_file($this->dir_minicomponents.'j05010handlereq.class.php');
     }
 
     public function add_obs_file($path_and_file)

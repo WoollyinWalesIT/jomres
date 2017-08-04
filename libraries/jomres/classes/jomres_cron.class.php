@@ -253,8 +253,8 @@ class jomres_cron
 			
 			//handle domain names that contain non-latin chars
 			if (preg_match('/[^\x20-\x7f]/', $livesite)) {
-				require_once JOMRES_LIBRARIES_ABSPATH.'idna_converter'.JRDS.'idna_convert.class.php';
-				$IDN = new jomres_idna_convert();
+				//require_once JOMRES_LIBRARIES_ABSPATH.'idna_converter'.JRDS.'idna_convert.class.php';
+				$IDN = new Mso\IdnaConvert\IdnaConvert();
 				$encoded = $IDN->encode($livesite);
 				$new = str_replace($livesite, $encoded, JOMRES_SITEPAGE_URL_AJAX);
 				$livesite = $new;
