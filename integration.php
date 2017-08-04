@@ -159,7 +159,7 @@ if (get_showtime('lang') && get_showtime('lang') == '') {
 
 //define uploaded images paths
 if (!defined('JOMRES_IMAGELOCATION_ABSPATH')) {
-    define('JOMRES_IMAGELOCATION_ABSPATH', JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'uploadedimages'.JRDS);
+    define('JOMRES_IMAGELOCATION_ABSPATH', JOMRESPATH_BASE.'uploadedimages'.JRDS);
     define('JOMRES_IMAGELOCATION_RELPATH', get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/');
 }
 
