@@ -451,10 +451,10 @@ class j06000handlereq
                     }
                     if ($bkg->coupon_code != '') {
                         $discount = $bkg->coupon_discount_value;
-                        if ($mrConfig[ 'prices_inclusive' ] == 1) {
+                        /* if ($mrConfig[ 'prices_inclusive' ] == 1) {
                             $divisor = ($bkg->accommodation_tax_rate / 100) + 1;
                             $discount = $divisor * $discount;
-                        }
+                        } */
                         echo '; populateDiv("coupon_discount_value","'.output_price($discount).'")';
                     }
                 } else {
