@@ -115,6 +115,7 @@ class j03025insertbooking_invoice
 			$lastminute_discount = 0.00;
 			$wiseprice_discount = 0.00;
 			$coupon_discount = 0.00;
+			$tour_coupon_discount = 0.00;
 			$partner_discount = 0.00;
 
             if (!empty($discounts)) {
@@ -137,6 +138,9 @@ class j03025insertbooking_invoice
 							break;
 						case 'Coupon':
 							$coupon_discount += $discount_amount;
+							break;
+						case 'TourCoupon':
+							$tour_coupon_discount = $discount_amount;
 							break;
 						case 'Partner':
 							$partner_discount += $discount_amount;
@@ -245,7 +249,7 @@ class j03025insertbooking_invoice
 						
 						//strange array key name..we need to get the price without tax no matter what
 						$third_party_extra_price = $tpe[ 'untaxed_grand_total' ];
-						$coupon_discount_nett = $coupon_discount;
+						$coupon_discount_nett = $tour_coupon_discount;
 						
 						if ($jrportal_taxrate->gather_data($tpe[ 'tax_code_id' ])) {
 							$rate = (float) $jrportal_taxrate->rate;
@@ -254,7 +258,7 @@ class j03025insertbooking_invoice
 							$third_party_extra_price = $nett_price;
 							
 							//find the nett coupon discount
-							$coupon_discount_nett = $coupon_discount / $divisor;
+							$coupon_discount_nett = $tour_coupon_discount / $divisor;
 						}
 
                         $line_items[] = array('tax_code_id' => $tpe[ 'tax_code_id' ],

@@ -5730,7 +5730,7 @@ class dobooking
 							}
 						}
 
-						$this->discounts[] = array('type' => 'Coupon', 'roomtypeabbr' => 'N/A', 'discountfrom' => $old_total, 'discountto' => $tmpTotal);
+						$this->discounts[] = array('type' => 'TourCoupon', 'roomtypeabbr' => 'N/A', 'discountfrom' => $old_total, 'discountto' => $tmpTotal);
 
 						$fb1 = jr_gettext('_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK', '_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK', false, false);
 						$fb2 = jr_gettext('_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK_TO', '_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK_TO', false, false);
