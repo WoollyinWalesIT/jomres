@@ -7,7 +7,7 @@ cache
 remote-plugins
 updates
 /logs/Core.application.log
-vendor/ezyang/htmlpurifier/library/HTMLPurifier/DefinitionCache/Serializer/HTML/4.9.3,039209994080c416d43e1a443a5b919d9bdafeb5,1.ser
+/vendor/ezyang/htmlpurifier/library/HTMLPurifier/DefinitionCache/Serializer/HTML/
 /remote_plugins
 desktop.ini
 /logs/.gitignore
