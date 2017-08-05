@@ -1925,3 +1925,5 @@ jr_define( 'JOMRES_WATING_APPROVAL', 'Pending approval' );
 jr_define( 'JOMRES_GOOGLE_MAPS_PDETAILS', 'Property details map' );
 
 jr_define( 'VIDEO_TUTORIALS', 'Video Tutorials' );
+jr_define( '_JOMRES_PROPERTY_HCATEGORIES', 'Property Categories' );
+jr_define( '_JOMRES_PROPERTY_HCATEGORIES_HEDIT', 'Edit Property Category' );

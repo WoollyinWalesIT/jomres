@@ -71,6 +71,7 @@ class jomres_properties
         $this->approved = 0;
         $this->property_site_id = '';
         $this->permit_number = '';
+		$this->cat_id = 0;
     }
 
     //Get all properties in the system
@@ -177,7 +178,8 @@ class jomres_properties
 							`ptype_id`,
 							`apikey`, 
 							`approved`,
-							`property_site_id`
+							`property_site_id`,
+							`cat_id` 
 							)
 						VALUES
 							(
@@ -189,7 +191,8 @@ class jomres_properties
 							".(int) $this->ptype_id.",
 							'".$this->apikey."',
 							".(int) $this->approved.",
-							'".$this->property_site_id."'
+							'".$this->property_site_id."',
+							".(int) $this->cat_id."
 							)";
 
         $this->propertys_uid = doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_INSERT_PROPERTY', '_JOMRES_MR_AUDIT_INSERT_PROPERTY', false));
@@ -362,7 +365,8 @@ class jomres_properties
 						".$apiclause."
 						`ptype_id` = ".(int) $this->ptype_id.",
 						`property_site_id` = '".$this->property_site_id."',
-						`permit_number` = '".$this->permit_number."'
+						`permit_number` = '".$this->permit_number."',
+						`cat_id` = ".(int)$this->cat_id."
 					WHERE `propertys_uid` = " .(int) $this->propertys_uid;
 
         if (!doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_UPDATE_PROPERTY', '_JOMRES_MR_AUDIT_UPDATE_PROPERTY', false))) {
