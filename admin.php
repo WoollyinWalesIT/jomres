@@ -31,6 +31,11 @@ try {
     //site config object
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
+	
+	//request log
+	if ($jrConfig['development_production'] == 'development') {
+		request_log();
+	}
 
     //get all properties in system.
     $jomres_properties = jomres_singleton_abstract::getInstance('jomres_properties');
@@ -94,16 +99,6 @@ try {
     $MiniComponents->triggerEvent('00005');
 
     if (!AJAXCALL) {
-        // Dates back to Jomres v4. Could be removed, but we'll leave it in for those users upgrading from v4, as v4 spanned two years
-        if (is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'plugins')) {
-            emptyDir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'plugins');
-            rmdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'plugins');
-            if (is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'plugins')) {
-                echo '<font color="red" face="arial" size="1">Warning: directory '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'plugins still exists. Please delete it.</font><br/>';
-            }
-            emptyDir(JOMRES_CACHE_ABSPATH);
-        }
-
         $pageoutput = array();
         $output = array();
 		
@@ -114,10 +109,12 @@ try {
         //frequently asked questions
         $output['_JOMRES_FAQ'] = jr_gettext('_JOMRES_FAQ', '_JOMRES_FAQ', false);
 
+		//video tutorials
 		$jomres_video_tutorials = jomres_singleton_abstract::getInstance('jomres_video_tutorials');
 		$jomres_video_tutorials->property_uid = 0;
 		$output[ 'VIDEO_TUTORIALS' ] = $jomres_video_tutorials->build_modal();
-        //manage properties button
+        
+		//manage properties button
         $output['HMANAGE_PROPERTIES'] = jr_gettext('_JOMRES_MANAGE_PROPERTIES', '_JOMRES_MANAGE_PROPERTIES', false);
 
         //obsolete files warnings
@@ -164,16 +161,11 @@ try {
     //admins_first_run();
 
     //task
-    switch (get_showtime('task')) {
-        case 'cpanel':
-        default:
-            if ($MiniComponents->eventSpecificlyExistsCheck('16000', get_showtime('task'))) {
-                $MiniComponents->specificEvent('16000', get_showtime('task')); // task exists, execute it
-            } else {
-                $MiniComponents->triggerEvent('10001'); //task doesn`t exist, go to cpanel frontpage
-            }
-            break;
-        }
+    if ($MiniComponents->eventSpecificlyExistsCheck('16000', get_showtime('task'))) {
+		$MiniComponents->specificEvent('16000', get_showtime('task')); // task exists, execute it
+	} else {
+		$MiniComponents->triggerEvent('10001'); //task doesn`t exist, go to cpanel frontpage
+	}
 
     //output bottom area
     if (!AJAXCALL) {

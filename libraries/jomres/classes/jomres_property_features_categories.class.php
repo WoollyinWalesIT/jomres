@@ -29,7 +29,7 @@ class jomres_property_features_categories
 		{
 		if ( !self::$configInstance )
 			{
-			self::$configInstance = new property_features_categories();
+			self::$configInstance = new self();
 			}
 
 		return self::$configInstance;
