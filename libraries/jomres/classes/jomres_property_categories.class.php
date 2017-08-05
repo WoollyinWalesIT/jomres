@@ -158,7 +158,7 @@ class jomres_property_categories
 			}
 		
 		//first we check if the category is not used by existing property features
-		$query = "SELECT `property_uid` FROM #__jomres_propertys WHERE `cat_id` = " . (int)$this->id;
+		$query = "SELECT `propertys_uid` FROM #__jomres_propertys WHERE `cat_id` = " . (int)$this->id;
 		$result = doSelectSql( $query );
 		
 		if ( !empty($result) )
