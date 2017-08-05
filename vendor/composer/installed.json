@@ -482,5 +482,65 @@
             "logging",
             "psr-3"
         ]
+    },
+    {
+        "name": "johngrogg/ics-parser",
+        "version": "v2.0.6",
+        "version_normalized": "2.0.6.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/u01jmg3/ics-parser.git",
+            "reference": "2c9882b6d9408d1adaa7015f8ac88da2d42e2802"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/u01jmg3/ics-parser/zipball/2c9882b6d9408d1adaa7015f8ac88da2d42e2802",
+            "reference": "2c9882b6d9408d1adaa7015f8ac88da2d42e2802",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "require-dev": {
+            "squizlabs/php_codesniffer": "^2.5"
+        },
+        "time": "2017-06-12T17:48:27+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "ICal": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Martin Thoma",
+                "email": "info@martin-thoma.de",
+                "role": "Original Developer"
+            },
+            {
+                "name": "John Grogg",
+                "email": "john.grogg@gmail.com",
+                "role": "Developer/Prior Owner"
+            },
+            {
+                "name": "Jonathan Goode",
+                "role": "Developer/Owner"
+            }
+        ],
+        "description": "ICS Parser",
+        "homepage": "https://github.com/u01jmg3/ics-parser",
+        "keywords": [
+            "iCalendar",
+            "ical",
+            "ical-parser",
+            "ics",
+            "ics-parser",
+            "ifb"
+        ]
     }
 ]

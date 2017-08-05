@@ -57,6 +57,13 @@ class ComposerStaticInitd51e5601f3e1cc65adbb78dfe5f4e36d
                 0 => __DIR__ . '/..' . '/aferrandini/phpqrcode/lib',
             ),
         ),
+        'I' => 
+        array (
+            'ICal' => 
+            array (
+                0 => __DIR__ . '/..' . '/johngrogg/ics-parser/src',
+            ),
+        ),
         'H' => 
         array (
             'HTMLPurifier' => 

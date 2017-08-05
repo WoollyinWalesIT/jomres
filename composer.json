@@ -19,6 +19,7 @@
         "fergusean/nusoap": "^0.9.5",
         "aferrandini/phpqrcode": "^1.0",
         "monolog/monolog": "^1.23",
-        "psr/log": "^1.0"
+        "psr/log": "^1.0",
+        "johngrogg/ics-parser": "^2.0"
     }
 }
