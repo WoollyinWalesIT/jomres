@@ -1526,6 +1526,7 @@ class jomres_obsolete_file_handling
 		$this->add_obs_dir($this->dir_libraries.'recaptcha'.JRDS);
 		$this->add_obs_dir($this->dir_libraries.'adodb'.JRDS);
 		$this->add_obs_file($this->dir_minicomponents.'j05010handlereq.class.php');
+		$this->add_obs_dir($this->dir_libraries.'phptools'.JRDS.'Parsedown'.JRDS);
     }
 
     public function add_obs_file($path_and_file)
