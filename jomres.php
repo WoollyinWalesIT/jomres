@@ -76,11 +76,6 @@ try {
     jr_import('jomres_timezones');
     $tz = new jomres_timezones();
 
-    //set jomres in wrapped mode to be ready for iframes
-    if (isset($_REQUEST[ 'is_wrapped' ]) && $_REQUEST[ 'is_wrapped' ] == '1') {
-        $jrConfig[ 'isInIframe' ] = '1';
-    }
-
     //we don`t want robots to index fullscreen mode or ajax requests
     if (isset($_REQUEST[ 'tmpl' ]) && $_REQUEST[ 'tmpl' ] == get_showtime('tmplcomponent')) {
         jomres_cmsspecific_setmetadata('robots', 'noindex,nofollow');
@@ -276,15 +271,11 @@ try {
     //handle tasks
 	if ($MiniComponents->eventSpecificlyExistsCheck('06000', get_showtime('task'))) {
 		$MiniComponents->specificEvent('06000', get_showtime('task'));
-	} elseif ($MiniComponents->eventSpecificlyExistsCheck('06001', get_showtime('task')) && $thisJRUser->userIsManager) { // Receptionist and manager tasks
-		if (get_showtime('task') == 'cpanel') {
-			$MiniComponents->specificEvent('06001', get_showtime('task'));
-		} else {
-			$MiniComponents->specificEvent('06001', get_showtime('task'));
-		}
-	} elseif ($MiniComponents->eventSpecificlyExistsCheck('06002', get_showtime('task')) && $thisJRUser->userIsManager && $thisJRUser->accesslevel >= 70) { // Manager only tasks (higher than receptionist)
+	} elseif ($MiniComponents->eventSpecificlyExistsCheck('06001', get_showtime('task')) && $thisJRUser->accesslevel >= 50) { // Receptionist and manager tasks
+		$MiniComponents->specificEvent('06001', get_showtime('task'));
+	} elseif ($MiniComponents->eventSpecificlyExistsCheck('06002', get_showtime('task')) && $thisJRUser->accesslevel >= 70) { // Manager only tasks (higher than receptionist)
 		$MiniComponents->specificEvent('06002', get_showtime('task'));
-	} elseif ($MiniComponents->eventSpecificlyExistsCheck('06005', get_showtime('task')) && $thisJRUser->userIsRegistered) { // Registered only user tasks
+	} elseif ($MiniComponents->eventSpecificlyExistsCheck('06005', get_showtime('task')) && $thisJRUser->accesslevel >= 1) { // Registered only user tasks
 		$MiniComponents->specificEvent('06005', get_showtime('task'));
 	} else {
 		no_task_set($property_uid);

@@ -732,7 +732,7 @@ function make_gmap_url_for_property_uid($property_uid)
 
 function jomres_make_qr_code($string = '', $format = 'text')
 {
-    $qr = jomres_singleton_abstract::getInstance('jomres_qr_code');
+    //$qr = jomres_singleton_abstract::getInstance('jomres_qr_code');
 
     $dir = JOMRES_TEMP_ABSPATH.'qr_codes';
     test_and_make_directory($dir);
@@ -743,7 +743,7 @@ function jomres_make_qr_code($string = '', $format = 'text')
 
     $filename = md5($string);
     if (!file_exists($dir.JRDS.'qr_code_'.$filename.'.png')) {
-        QRcode::png($string, $dir.JRDS.'qr_code_'.$filename.'.png', 'L', 4, 2);
+        \PHPQRCode\QRcode::png($string, $dir.JRDS.'qr_code_'.$filename.'.png', 'L', 4, 2);
     }
 
     return array('relative_path' => get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/temp/qr_codes/'.'qr_code_'.$filename.'.png', 'absolute_path' => $dir.JRDS.'qr_code_'.$filename.'.png');
@@ -1917,7 +1917,8 @@ function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode
         }
     }
     
-	$mail = new jomresPHPMailer(true);
+	//$mail = new jomresPHPMailer(true);
+	$mail = new PHPMailer(true);
     
 	try {
         if (!isset($GLOBALS['debug'])) {
@@ -2956,7 +2957,7 @@ function outputDate($thedate)
     } else {
         $mrConfig = getPropertySpecificSettings();
         $date_elements = explode('/', $thedate);
-        $unixDate = adodb_mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ]);
+        $unixDate = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ]);
         if ($mrConfig[ 'dateFormatStyle' ] == '1') {
             $formattedDate = date($mrConfig[ 'cal_output' ], $unixDate);
         } else {
@@ -2979,30 +2980,30 @@ function JSCalmakeInputDates($inputDate, $siteCal = false)
     // Lets make the calendar dates for display in the js calendar. will receive a Y/m/d formatted string &	output it in the desired format
     // m d y. Probably unneccesary, but we'll do it anyway, to be on the safe side.
     $date_elements = explode('/', $inputDate);
-    $unixDate = adodb_mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ]);
+    $unixDate = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ]);
 
     $dateFormat = $jrConfig[ 'cal_input' ];
     switch ($dateFormat) {
         case '%d/%m/%Y':
-            $theDate = adodb_date('d/m/Y', $unixDate);
+            $theDate = date('d/m/Y', $unixDate);
             break;
         case '%Y/%m/%d':
-            $theDate = adodb_date('Y/m/d', $unixDate);
+            $theDate = date('Y/m/d', $unixDate);
             break;
         case '%m/%d/%Y':
-            $theDate = adodb_date('m/d/Y', $unixDate);
+            $theDate = date('m/d/Y', $unixDate);
             break;
         case '%d-%m-%Y':
-            $theDate = adodb_date('d-m-Y', $unixDate);
+            $theDate = date('d-m-Y', $unixDate);
             break;
         case '%Y-%m-%d':
-            $theDate = adodb_date('Y-m-d', $unixDate);
+            $theDate = date('Y-m-d', $unixDate);
             break;
         case '%m-%d-%Y':
-            $theDate = adodb_date('m-d-Y', $unixDate);
+            $theDate = date('m-d-Y', $unixDate);
             break;
         case '%d.%m.%Y':
-            $theDate = adodb_date('d.m.Y', $unixDate);
+            $theDate = date('d.m.Y', $unixDate);
             break;
         default:
             echo 'Error in date format. Cannot continue. If you have just installed Jomres you should log into the frontend as a property manager. This will set up sufficient data so that you can proceed.';
@@ -3030,38 +3031,38 @@ function JSCalConvertInputDates($inputDate, $siteCal = false)
     switch ($dateFormat) {
         case '%d/%m/%Y':
             $date_elements = explode('/', $inputDate);
-            $unixDate = @adodb_mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 0 ], $date_elements[ 2 ]);
+            $unixDate = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 0 ], $date_elements[ 2 ]);
             break;
         case '%Y/%m/%d':
             $date_elements = explode('/', $inputDate);
-            $unixDate = adodb_mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ]);
+            $unixDate = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ]);
             break;
         case '%m/%d/%Y':
             $date_elements = explode('/', $inputDate);
-            $unixDate = adodb_mktime(0, 0, 0, $date_elements[ 0 ], $date_elements[ 1 ], $date_elements[ 2 ]);
+            $unixDate = mktime(0, 0, 0, $date_elements[ 0 ], $date_elements[ 1 ], $date_elements[ 2 ]);
             break;
         case '%d-%m-%Y':
             $date_elements = explode('-', $inputDate);
-            $unixDate = adodb_mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 0 ], $date_elements[ 2 ]);
+            $unixDate = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 0 ], $date_elements[ 2 ]);
             break;
         case '%Y-%m-%d':
             $date_elements = explode('-', $inputDate);
-            $unixDate = adodb_mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ]);
+            $unixDate = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ]);
             break;
         case '%m-%d-%Y':
             $date_elements = explode('-', $inputDate);
-            $unixDate = adodb_mktime(0, 0, 0, $date_elements[ 0 ], $date_elements[ 1 ], $date_elements[ 2 ]);
+            $unixDate = mktime(0, 0, 0, $date_elements[ 0 ], $date_elements[ 1 ], $date_elements[ 2 ]);
             break;
         case '%d.%m.%Y':
             $date_elements = explode('.', $inputDate);
-            $unixDate = adodb_mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 0 ], $date_elements[ 2 ]);
+            $unixDate = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 0 ], $date_elements[ 2 ]);
             break;
         default:
             echo 'Error in date format. Cannot continue.';
             exit;
             break;
     }
-    $theDate = adodb_date('Y/m/d', $unixDate);
+    $theDate = date('Y/m/d', $unixDate);
 
     return $theDate;
 }

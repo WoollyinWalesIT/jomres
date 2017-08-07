@@ -175,8 +175,8 @@ class j00004a_init_javascript_css_files
 
         $ls = jomresGetDomain();
         if (stristr($ls, '.xn--', $ls) && !jomres_cmsspecific_areweinadminarea()) { // We check to see if we're in the admin area because our one and only client with an umlat in the domain name has found that the redirect function doesn't work in the administrator area if the domain's been converted.
-            require_once JOMRES_LIBRARIES_ABSPATH.'idna_converter'.JRDS.'idna_convert.class.php';
-            $IDN = new jomres_idna_convert();
+            //require_once JOMRES_LIBRARIES_ABSPATH.'idna_converter'.JRDS.'idna_convert.class.php';
+            $IDN = new Mso\IdnaConvert\IdnaConvert();
             $ls = $IDN->decode($ls);
         }
 

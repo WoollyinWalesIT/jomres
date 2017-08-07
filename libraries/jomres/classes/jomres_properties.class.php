@@ -68,7 +68,6 @@ class jomres_properties
         $this->metatitle = '';
         $this->metadescription = '';
         $this->metakeywords = '';
-        //$this->timestamp 						= date("Y/m/d H:i:s");
         $this->approved = 0;
         $this->property_site_id = '';
         $this->permit_number = '';

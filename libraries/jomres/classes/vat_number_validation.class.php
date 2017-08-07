@@ -174,7 +174,7 @@ class vat_number_validation
 
             $this->vat_number = $countryCode.$vatNumber;
 
-            require_once JOMRES_LIBRARIES_ABSPATH.'nusoap'.JRDS.'nusoap.php';
+            //require_once JOMRES_LIBRARIES_ABSPATH.'nusoap'.JRDS.'nusoap.php';
 
             $client = new nusoap_client('http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl', 'wsdl');
             $params = array('countryCode' => $countryCode, 'vatNumber' => $vatNumber);
