@@ -64,8 +64,16 @@ function jomres_async_request($type = "GET", $url = "", $port = '', $post_data =
 		logging::log_message('Starting socket to '.$url, 'Socket', 'DEBUG');
         $logging_time_start = microtime(true);
 	
-		$fp = fsockopen($parts['host'], $port, $errno, $errstr, 30);
-
+		$fp = fsockopen($parts['host'], $port, $errno, $errstr, 5);
+		
+		if (!$fp) {
+			logging::log_message('Unable to open socket to '.$url, 'Socket', 'DEBUG');
+			return false;
+		}
+		
+		stream_set_timeout($fp, 1);
+		stream_set_blocking($fp, false);
+		
 		$out = $type." ".$parts['path'].'?'.$parts['query']." HTTP/1.1\r\n";
 		$out.= "Host: ".$parts['host']."\r\n";
 		$out .= "User-Agent: Jomres\r\n";

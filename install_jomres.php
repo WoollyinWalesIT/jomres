@@ -610,6 +610,10 @@ function doTableUpdates()
 	if (!checkPropertysCompletedColExists()) {
         alterPropertysCompletedCol();
     }
+	
+	if (!checkPropertysCatIdColExists()) {
+        alterPropertysCatIdCol();
+    }
  
 	copy_default_property_type_markers();
     drop_orphan_line_items_table();
@@ -617,14 +621,34 @@ function doTableUpdates()
 	drop_cronlog_table();
 	add_jomres_sessions_table();
 	add_jomres_template_package_table();
+	add_jomres_property_categories_table();
     updateSiteSettings('update_time', time());
     
+}
+
+function alterPropertysCatIdCol()
+{
+    //output_message ( "Editing __jomres_propertys table adding permit_number column");
+    $query = "ALTER TABLE `#__jomres_propertys` ADD `cat_id` BOOL NOT NULL DEFAULT 0 ";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to add __jomres_propertys cat_id', 'danger');
+    }
+}
+
+function checkPropertysCatIdColExists()
+{
+    $query = "SHOW COLUMNS FROM #__jomres_propertys LIKE 'cat_id'";
+    $result = doSelectSql($query);
+    if (count($result) > 0) {
+        return true;
+    }
+    return false;
 }
 
 function alterPropertysCompletedCol()
 {
     //output_message ( "Editing __jomres_propertys table adding permit_number column");
-    $query = "ALTER TABLE `#__jomres_propertys` ADD `completed`  BOOL NOT NULL DEFAULT '0' ";
+    $query = "ALTER TABLE `#__jomres_propertys` ADD `completed` BOOL NOT NULL DEFAULT 0 ";
     if (!doInsertSql($query, '')) {
         output_message('Error, unable to add __jomres_propertys completed', 'danger');
     }
@@ -675,6 +699,19 @@ function add_jomres_template_package_table()
         )";
     if (!doInsertSql($query, '')) {
         output_message('Error, unable to create the __jomres_template_package_overrides table', 'danger');
+    }
+}
+
+function add_jomres_property_categories_table()
+{
+	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_property_categories (
+		`id` INT(11) auto_increment,
+        `title` VARCHAR(255),
+		`description` TEXT,
+        PRIMARY KEY (`id`)
+        )";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to create the __jomres_property_categories table', 'danger');
     }
 }
 
@@ -3867,6 +3904,16 @@ function createJomresTables()
     $query = 'CREATE TABLE IF NOT EXISTS `#__jomres_hotel_features_categories` (
 		`id` int(11) NOT NULL auto_increment,
 		`title` VARCHAR(255) NULL,
+		PRIMARY KEY(`id`)
+		) ';
+    if (!doInsertSql($query)) {
+        output_message('Failed to run query: '.$query, 'danger');
+    }
+	
+	$query = 'CREATE TABLE IF NOT EXISTS `#__jomres_property_categories` (
+		`id` int(11) NOT NULL auto_increment,
+		`title` VARCHAR(255),
+		`description` TEXT,
 		PRIMARY KEY(`id`)
 		) ';
     if (!doInsertSql($query)) {

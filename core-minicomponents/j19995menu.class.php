@@ -91,6 +91,7 @@ class j19995menu
 		//settings section menus
 		$jomres_menu->add_admin_item(90, jr_gettext('_JOMRES_A', '_JOMRES_A', false), 'site_settings', 'fa-cogs');
 		$jomres_menu->add_admin_item(90, jr_gettext('_JOMRES_COM_PTYPES_LIST_TITLE', '_JOMRES_COM_PTYPES_LIST_TITLE', false), 'list_property_types', 'fa-building');
+		$jomres_menu->add_admin_item(90, jr_gettext('_JOMRES_PROPERTY_HCATEGORIES', '_JOMRES_PROPERTY_HCATEGORIES', false), 'list_property_categories', 'fa-list');
 		$jomres_menu->add_admin_item(90, jr_gettext('_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK', '_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK', false), 'listGlobalroomTypes', 'fa-bed');
 		$jomres_menu->add_admin_item(90, jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK', '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK', false), 'listPfeatures', 'fa-list');
 		$jomres_menu->add_admin_item(90, jr_gettext('_JOMRES_PROPERTYFEATURES_HCATEGORIES', '_JOMRES_PROPERTYFEATURES_HCATEGORIES', false), 'listPfeaturesCategories', 'fa-list-ul');

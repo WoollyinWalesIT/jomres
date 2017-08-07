@@ -135,6 +135,11 @@ class j10501integrated_search
 		$configurationPanel->setmiddle($lists[ 'integratedSearch_stars' ]);
 		$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_INTEGRATEDSEARCH_BYSTARS_DESC', '_JOMRES_COM_A_INTEGRATEDSEARCH_BYSTARS_DESC', false));
 		$configurationPanel->insertSetting();
+		
+		$configurationPanel->setleft(jr_gettext('_JOMRES_HCATEGORY', '_JOMRES_HCATEGORY', false));
+		$configurationPanel->setmiddle($lists[ 'integratedSearch_category' ]);
+		$configurationPanel->setright('');
+		$configurationPanel->insertSetting();
 
 		$configurationPanel->endPanel();
     }

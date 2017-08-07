@@ -75,6 +75,7 @@ class j06002save_property
         $jomres_properties->ptype_id = jomresGetParam($_POST, 'propertyType', 0);
         $jomres_properties->stars = jomresGetParam($_POST, 'stars', 0);
         $jomres_properties->superior = jomresGetParam($_POST, 'superior', 0);
+		$jomres_properties->cat_id = jomresGetParam($_POST, 'cat_id', 0);
         $jomres_properties->permit_number = jomresGetParam($_POST, 'permit_number', '');
         $jomres_properties->property_features = jomresGetParam($_POST, 'pid', array());
 		$jomres_properties->published = $published;
