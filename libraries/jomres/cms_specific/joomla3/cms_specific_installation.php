@@ -82,7 +82,7 @@ if ($folderChecksPassed) {
         echo '<h1>Error, unable to copy '._JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'propertydetails.xml to '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'views'.JRDS.'default'.JRDS.'tmpl'.JRDS.'propertydetails.xml
 			automatically, please do this manually through FTP</h1><br/>';
     }
-	if (!copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'propertydetails.xml', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'views'.JRDS.'default'.JRDS.'tmpl'.JRDS.'propertycategories.xml')) {
+	if (!copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'propertycategories.xml', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'views'.JRDS.'default'.JRDS.'tmpl'.JRDS.'propertycategories.xml')) {
         echo '<h1>Error, unable to copy '._JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'propertydetails.xml to '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'views'.JRDS.'default'.JRDS.'tmpl'.JRDS.'propertycategories.xml
 			automatically, please do this manually through FTP</h1><br/>';
     }
