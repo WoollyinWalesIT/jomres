@@ -86,3 +86,10 @@ jr_define('_JOMRES_TUTORIAL_LOGFILES_DESC', 'This video will show you how to vie
 
 jr_define('_JOMRES_TUTORIAL_TRANSLATIONS', 'Translating labels and other strings');
 jr_define('_JOMRES_TUTORIAL_TRANSLATIONS_DESC', 'There are a number of ways to translate language strings in Jomres, you could edit language files but they might be overwritten when you upgrade. Instead we recommend you use the built-in translation tools that are unique to our software. If the string is something that has been entered into a form, such as the name of a room type, you can use the Label Editing page. If the string is from the language file then you can use the Language files edting tool. Just use the browser search tool to find the string you want to change and then click on the link to change it. These changes are saved to the database and therefore are update safe.');
+
+jr_define('_JOMRES_TUTORIAL_ADMIN_ADD_PROPERTY', 'Adding properties');
+jr_define('_JOMRES_TUTORIAL_ADMIN_ADD_PROPERTY_DESC', '<p>At this stage Jomres has been installed into the CMS and it has been added to the frontend menu ( or in Wordpress you have created a page and added the basic Jomres shortcode to it).</p>
+<p>Here you will see how a  registered user who is not yet a property manager in Jomres can create a new property, configure some basic settings and publish it.</p>
+<p>At the end you will see that the manager has been automatically set as a property manager, however they are only able to configure their own properties.</p>
+<p>Although the interface in Wordpress looks different the process is exactly the same for Joomla or Wordpress.</p>  ');
+

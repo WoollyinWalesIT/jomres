@@ -224,6 +224,9 @@ class jomres_video_tutorials
 			$arr = array ("title" => "_JOMRES_TUTORIAL_ADMIN_CPANEL" , "description" => "_JOMRES_TUTORIAL_ADMIN_CPANEL_DESC" , "video_id" => "19_Nx_xSVl0" );
 			$videos_array['ADMIN']['cpanel'][] = $arr;
 			
+			$arr = array ("title" => "_JOMRES_TUTORIAL_ADMIN_ADD_PROPERTY" , "description" => "_JOMRES_TUTORIAL_ADMIN_ADD_PROPERTY_DESC" , "video_id" => "qU9Zr2DlYm4" );
+			$videos_array['ADMIN']['cpanel'][] = $arr;
+			
 			$arr = array ("title" => "_JOMRES_TUTORIAL_ADMIN_PLUGIN_MANAGER" , "description" => "_JOMRES_TUTORIAL_ADMIN_PLUGIN_MANAGER_DESC" , "video_id" => "Ld3X4Swx4c4" );
 			$videos_array['ADMIN']['cpanel'][] = $arr;
 			$videos_array['ADMIN']['showplugins'][] = $arr;
