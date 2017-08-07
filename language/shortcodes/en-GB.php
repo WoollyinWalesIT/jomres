@@ -98,7 +98,9 @@ jr_define('_JOMRES_SHORTCODES_06000SEARCH_ARG_PTYPE', 'Search for properties of 
 jr_define('_JOMRES_SHORTCODES_06000SEARCH_ARG_PRICERANGES', 'Search for properties within a specific price range.');
 jr_define('_JOMRES_SHORTCODES_06000SEARCH_ARG_GUESTNUMBER', "Search for properties who's tariffs allow guest numbers of certain values, for example parties of 6.");
 jr_define('_JOMRES_SHORTCODES_06000SEARCH_ARG_STARS', 'Search for properties of N stars.');
-jr_define('_JOMRES_SHORTCODES_06000SEARCH_ARG_ARRIVALDATE', 'Search for properties who are available after a certain date.');
+jr_define('_JOMRES_SHORTCODES_06000SEARCH_ARG_ARRIVALDATE', 'Search by arrival date. Should be combined with the departureDate param.');
+jr_define('_JOMRES_SHORTCODES_06000SEARCH_ARG_DEPARTUREDATE', 'Search by departure date. Should be combined with the arrivalDate param.');
+jr_define('_JOMRES_SHORTCODES_06000SEARCH_ARG_CATEGORY', 'Search by property category.');
 
 jr_define('_JOMRES_SHORTCODES_06000VIEW_AGENT', "View an agent's page. You can pass EITHER a property uid, or the agent's id itself, if you know it.");
 jr_define('_JOMRES_SHORTCODES_06000VIEW_AGENT_ARG_PROPERTY_UID', "A property uid, this will show the property's agent.");

@@ -45,6 +45,7 @@ $jrConfig = array(
   'integratedSearch_geosearchtype' => '',
   'integratedSearch_geosearchtype_dropdown' => '1',
   'integratedSearch_ptype' => '1',
+  'integratedSearch_category' => '0',
   'integratedSearch_ptype_dropdown' => '1',
   'integratedSearch_room_type' => '0',
   'integratedSearch_room_type_dropdown' => '1',

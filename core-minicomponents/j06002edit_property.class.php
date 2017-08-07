@@ -181,6 +181,11 @@ class j06002edit_property
         //property type dropdown (extended version, with explanation about what will guests book in this property)
         $output[ 'HPROPERTY_TYPE' ] = jr_gettext('_JOMRES_FRONT_PTYPE', '_JOMRES_FRONT_PTYPE');
         $output[ 'PROPERTY_TYPE_DROPDOWN' ] = getPropertyTypeDropdown($current_property_details->ptype_id, true);
+		
+		//property category dropdown
+		$jomres_property_categories = jomres_singleton_abstract::getInstance('jomres_property_categories');
+        $output[ 'PROPERTY_CATEGORIES_DROPDOWN' ] = $jomres_property_categories->getPropertyCategoriesDropdown($current_property_details->cat_id);
+		$output[ 'HCATEGORY' ] = jr_gettext('_JOMRES_HCATEGORY', '_JOMRES_HCATEGORY');
 
         //property features
         $propertyFeaturesArray = explode(',', $current_property_details->property_features);
@@ -197,9 +202,7 @@ class j06002edit_property
 					$r[ 'ischecked' ] = 'checked';
 				}
 
-				$feature_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_ABBV'.(int) $k, stripslashes($v['abbv']), false, false);
-				$feature_desc = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_DESC'.(int) $k, stripslashes($v['desc']), false, false);
-				$r[ 'FEATURE' ] = jomres_makeTooltip($feature_abbv, $feature_abbv, $feature_desc, JOMRES_IMAGELOCATION_RELPATH.'pfeatures/'.$v['image'], '', 'property_feature', array());
+				$r[ 'FEATURE' ] = jomres_makeTooltip($v['abbv'], $v['abbv'], $v['desc'], JOMRES_IMAGELOCATION_RELPATH.'pfeatures/'.$v['image'], '', 'property_feature', array());
 
 				$r[ 'BR' ] = '';
 				if ($counter == 8) {

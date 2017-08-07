@@ -188,6 +188,7 @@ function showSiteConfig()
     $lists[ 'integratedSearch_propertyname' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_propertyname', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_propertyname' ]);
     $lists[ 'integratedSearch_propertyname_dropdown' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_propertyname_dropdown', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_propertyname_dropdown' ]);
     $lists[ 'integratedSearch_ptype' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_ptype', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_ptype' ]);
+	$lists[ 'integratedSearch_category' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_category', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_category' ]);
     $lists[ 'integratedSearch_ptype_dropdown' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_ptype_dropdown', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_ptype_dropdown' ]);
     $lists[ 'integratedSearch_geosearchtype_dropdown' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_geosearchtype_dropdown', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_geosearchtype_dropdown' ]);
 

@@ -75,7 +75,17 @@ class j06000search
                         'arg_info' => '_JOMRES_SHORTCODES_06000SEARCH_ARG_ARRIVALDATE',
                         'arg_example' => date('Y/m/d', strtotime(date('Y/m/d').'+1 day')),
                         ),
-                    ),
+					array(
+                        'argument' => 'departureDate',
+                        'arg_info' => '_JOMRES_SHORTCODES_06000SEARCH_ARG_DEPARTUREDATE',
+                        'arg_example' => date('Y/m/d', strtotime(date('Y/m/d').'+2 days')),
+                        ),
+					array(
+                        'argument' => 'cat_id',
+                        'arg_info' => '_JOMRES_SHORTCODES_06000SEARCH_ARG_CATEGORY',
+                        'arg_example' => '1',
+                        ),
+                    )
                 );
             return;
         }
@@ -231,6 +241,17 @@ class j06000search
                 $sch->filter[ 'ptype' ] = (int) jomresGetParam($_REQUEST, 'ptype', '');
             }
         }
+		
+		if (!empty($_REQUEST[ 'cat_id' ])) {
+			$cat_id = jomresGetParam($_REQUEST, 'cat_id', 0);
+			
+            if ($cat_id == 0) {
+                $sch->filter[ 'cat_id' ] = '%';
+            } else {
+                $sch->filter[ 'cat_id' ] = $cat_id;
+            }
+        }
+
         //	$_REQUEST['priceranges']="0-50";
         if (!empty($_REQUEST[ 'priceranges' ])) {
             if ($_REQUEST[ 'priceranges' ] == $searchAll) {
@@ -299,6 +320,10 @@ class j06000search
 
         if (in_array('ptype', $searchOptions) && $showSearchOptions) {
             $output[ 'JOMRES_SEARCH_PTYPES' ] = jr_gettext('_JOMRES_SEARCH_PTYPES', '_JOMRES_SEARCH_PTYPES', false);
+        }
+		
+		if (in_array('cat_id', $searchOptions) && $showSearchOptions) {
+            $output[ 'JOMRES_SEARCH_CATEGORY' ] = jr_gettext('_JOMRES_HCATEGORY', '_JOMRES_HCATEGORY', false);
         }
 
         if (in_array('priceranges', $searchOptions) && $showSearchOptions) {
@@ -638,6 +663,27 @@ class j06000search
                 $output[ 'ptype' ] = 'EMPTY';
             }
         }
+		
+		// -------------------------------------------------------------------------------------------------------------------------------------------
+        if (in_array('cat_id', $searchOptions) && $showSearchOptions) {
+            $categoriesArray = array();
+            if (!empty($sch->prep[ 'cat_id' ])) {
+                if (empty($sch->filter[ 'cat_id' ])) {
+                    $selectOption = $sch->prep[ 'cat_id' ][ 0 ][ 'id' ];
+                } else {
+                    $selectOption = $sch->filter[ 'cat_id' ];
+                }
+
+                foreach ($sch->prep[ 'cat_id' ] as $c) {
+                    $categoriesArray[ ] = jomresHTML::makeOption($c[ 'id' ], $c[ 'title' ]);
+                }
+                $output[ 'categories' ] = jomresHTML::selectList($categoriesArray, 'cat_id', 'size="1" ', 'value', 'text', $selectOption);
+                $showButton = true;
+            } else {
+                $output[ 'categories' ] = 'EMPTY';
+            }
+        }
+		
         // -------------------------------------------------------------------------------------------------------------------------------------------
         if (in_array('priceranges', $searchOptions) && $showSearchOptions) {
             $rangeArray = array();
@@ -736,6 +782,9 @@ class j06000search
                 }
                 if (!empty($sch->filter[ 'ptype' ])) {
                     $sch->jomSearch_ptypes();
+                }
+				if (!empty($sch->filter[ 'cat_id' ])) {
+                    $sch->jomSearch_categories();
                 }
                 if (!empty($sch->filter[ 'guestnumber' ])) {
                     $sch->jomSearch_guestnumber();

@@ -37,7 +37,7 @@ class jomres_property_categories
 		}
 	
 	//get all property categories
-	function get_all_property_categories()
+	public function get_all_property_categories()
 		{
 		if ( is_array( $this->property_categories ) )
 			{
@@ -65,7 +65,7 @@ class jomres_property_categories
 		}
 	
 	//get property category by id
-	function get_property_category( $id = 0 )
+	public function get_property_category( $id = 0 )
 		{
 		if ( (int)$id == 0 )
 			{
@@ -100,7 +100,7 @@ class jomres_property_categories
 		}
 	
 	//Save new property category
-	function commit_new_property_category()
+	public function commit_new_property_category()
 		{
 		if ( $this->id > 0 )
 			{
@@ -125,7 +125,7 @@ class jomres_property_categories
 		}
 	
 	//Update existing property category
-	function commit_update_property_category()
+	public function commit_update_property_category()
 		{
 		if ( $this->id == 0 )
 			{
@@ -150,7 +150,7 @@ class jomres_property_categories
 		}
 	
 	//Delete property category
-	function delete_property_category()
+	public function delete_property_category()
 		{
 		if ( $this->id == 0 )
 			{
@@ -177,4 +177,26 @@ class jomres_property_categories
 			throw new Exception( "Error: Property category delete failed.");
 			}
 		}
+		
+	public function getPropertyCategoriesDropdown($selected = 0)
+		{
+		$this->get_all_property_categories();
+		
+		if (empty($this->property_categories))
+			{
+			return '';
+			}
+		
+		$category_options = array();
+		$category_options[] = jomresHTML::makeOption(0, 'Uncategorized');
+
+		foreach ($this->property_categories as $c)
+			{
+			$category_options[] = jomresHTML::makeOption($c['id'], $c['title']);
+			}
+		
+		return jomresHTML::selectList($category_options, 'cat_id', 'class="inputbox" size="1"', 'value', 'text', $selected);
+		}
 	}
+	
+	
