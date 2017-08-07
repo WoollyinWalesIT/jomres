@@ -29,15 +29,6 @@ class jomres_singleton_abstract
 			return self::$_instances[ $class ];
 		}
         
-		//first check custom code dir
-		if (file_exists(JOMRES_REMOTEPLUGINS_ABSPATH.'custom_code'.JRDS.$class.'.class.php')) {
-			require_once JOMRES_REMOTEPLUGINS_ABSPATH.'custom_code'.JRDS.$class.'.class.php';
-			
-			self::$_instances[ $class ] = new $class($arg1);
-			
-			return self::$_instances[ $class ];
-		}
-
 		//classes registry
 		global $classes;
 		
