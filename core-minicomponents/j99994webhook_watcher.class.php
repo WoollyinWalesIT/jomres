@@ -50,7 +50,10 @@ class j99994webhook_watcher
 		$all_webhooks = $webhooks->get_all_webhooks();
 
         $webhook_messages = get_showtime('webhook_messages');
-		$webhook_messages = array_unique( $webhook_messages, SORT_REGULAR ); // Remove duplicate objects
+		if (is_array($webhook_messages)) {
+			$webhook_messages = array_unique( $webhook_messages, SORT_REGULAR ); // Remove duplicate objects
+		}
+		
         
 		if (!empty($all_webhooks) && !empty($webhook_messages) ) {
             logging::log_message("Preparing deferred messages " , 'Core', 'DEBUG'  );
