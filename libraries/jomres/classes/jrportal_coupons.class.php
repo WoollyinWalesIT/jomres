@@ -43,7 +43,9 @@ class jrportal_coupons
             throw new Exception('Error: Coupon id not set.');
         }
 		
-		if ($this->property_uid == 0) {
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+
+		if ($this->property_uid == 0 && !$thisJRUser->superPropertyManager) {
             throw new Exception('Error: Property uid not set.');
         }
 
@@ -91,7 +93,9 @@ class jrportal_coupons
             throw new Exception('Error: Coupon id already set. Are you sure you`re creating a new coupon?');
         }
 
-        if ($this->property_uid == 0) {
+        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+
+		if ($this->property_uid == 0 && !$thisJRUser->superPropertyManager) {
             throw new Exception('Error: Property uid not set.');
         }
 		
@@ -153,7 +157,9 @@ class jrportal_coupons
             throw new Exception('Error: Coupon id not set.');
         }
 
-        if ($this->property_uid == 0) {
+        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+
+		if ($this->property_uid == 0 && !$thisJRUser->superPropertyManager) {
             throw new Exception('Error: Property uid not set.');
         }
 		
@@ -201,7 +207,9 @@ class jrportal_coupons
             throw new Exception('Error: Coupon id not set.');
         }
 
-        if ($this->property_uid == 0) {
+        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+
+		if ($this->property_uid == 0 && !$thisJRUser->superPropertyManager) {
             throw new Exception('Error: Property uid not set.');
         }
 		

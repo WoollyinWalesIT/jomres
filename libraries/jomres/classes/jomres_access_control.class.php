@@ -43,7 +43,8 @@ class jomres_access_control
 			'confirmbooking',
 			'completebk',			
 			'error',
-			'background_process'
+			'background_process',
+			'cpanel'
 		);
 		
 		//uncontrollable task patterns. if task names match these patters, the tasks can`t be controlled manually by users
