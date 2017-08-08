@@ -195,7 +195,7 @@ jomresJquery(document).ready(function() {
 						else
 							{
 							alert( cancellation_status.insertMessage );
-							revertFunc();
+							calendar.fullCalendar( 'refetchEvents' );
 							jomresJquery('#jomres_dashboard{PROPERTY_UID}').unblock();
 							}
 						}
