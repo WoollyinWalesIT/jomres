@@ -25,21 +25,30 @@ class j16000export_definitions
 
             return;
         }
-        echo '<h2 class="page-header">Export language file definitions</h2>';
-        echo '<p>'.jr_gettext('_JOMRES_EXPORT_DEFINITIONS_INFO', '_JOMRES_EXPORT_DEFINITIONS_INFO', false, false).'</p>';
+		
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+        $jrConfig = $siteConfig->get();
+		
+		if ($jrConfig['language_context'] == '') {
+			$jrConfig['language_context'] = '0';
+		}
+		
+		$language_context = jomresGetParam($_GET, 'language_context', $jrConfig['language_context']);
+		set_showtime('property_type', $language_context);
+		
+		$jomres_property_types = jomres_singleton_abstract::getInstance('jomres_property_types');
+		
+		$jomres_language_definitions = jomres_singleton_abstract::getInstance('jomres_language_definitions');
+		
+		$javascript = 'onchange="switch_language_context(this.value);"';
+
+		echo '<h2 class="page-header">Export language file definitions - '.get_showtime('lang').'</h2>';
+        
+		echo '<p>'.jr_gettext('_JOMRES_EXPORT_DEFINITIONS_INFO', '_JOMRES_EXPORT_DEFINITIONS_INFO', false).'</p>';
+		
+		echo '<p>'.jr_gettext('_JOMRES_COM_LANGUAGE_CONTEXT', '_JOMRES_COM_LANGUAGE_CONTEXT', false) . ' ' . $jomres_property_types->getPropertyTypeDescDropdown($language_context, 'language_context', $javascript).'</p>';
 
         $definitions = array();
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
-
-        if ($jrConfig[ 'language_context' ] != '') {
-            $language_context = $jrConfig[ 'language_context' ];
-        } else {
-            $language_context = 0;
-        }
-
-        $jomres_language_definitions = jomres_singleton_abstract::getInstance('jomres_language_definitions');
-
         foreach ($jomres_language_definitions->definitions[ $language_context ] as $const => $def) {
             $definitions[ $const ] = jr_gettext($const, $def, false);
         }
