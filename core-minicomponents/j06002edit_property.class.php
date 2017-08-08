@@ -179,8 +179,9 @@ class j06002edit_property
         }
 
         //property type dropdown (extended version, with explanation about what will guests book in this property)
+		$jomres_property_types = jomres_singleton_abstract::getInstance('jomres_property_types');
         $output[ 'HPROPERTY_TYPE' ] = jr_gettext('_JOMRES_FRONT_PTYPE', '_JOMRES_FRONT_PTYPE');
-        $output[ 'PROPERTY_TYPE_DROPDOWN' ] = getPropertyTypeDropdown($current_property_details->ptype_id, true);
+        $output[ 'PROPERTY_TYPE_DROPDOWN' ] = $jomres_property_types->getPropertyTypeDropdown($current_property_details->ptype_id, true);
 		
 		//property category dropdown
 		$jomres_property_categories = jomres_singleton_abstract::getInstance('jomres_property_categories');

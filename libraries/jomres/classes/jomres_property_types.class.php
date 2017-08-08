@@ -315,8 +315,94 @@ class jomres_property_types
 				$images[] = $r;
 			}
 		}
-		
 
 		return $images;
+	}
+	
+	//get property type dropdown
+	public function getPropertyTypeDropdown($selected = '', $extended = false, $is_disabled = false, $input_name = 'propertyType')
+	{
+		if (!$this->property_types) {
+			$this->get_all_property_types();
+		}
+
+		if (empty($this->property_types)) {
+			return '';
+		}
+		
+		if ($input_name == '') {
+			$input_name = 'propertyType';
+		}
+		
+		$options = array();
+		foreach ($this->property_types as $p) {
+			if ($p['published'] == 1) {
+				$ptype = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPE'.(int) $p['id'], $p['ptype'], false);
+
+				if ($extended) {
+					switch ($p['mrp_srp_flag']) {
+						case 1:
+							$ptype .= ' - '.jr_gettext('_JOMRES_PROPERTYTYPE_FLAG_VILLA', '_JOMRES_PROPERTYTYPE_FLAG_VILLA', false);
+							break;
+						case 2:
+							$ptype .= ' - '.jr_gettext('_JOMRES_PROPERTYTYPE_FLAG_BOTH', '_JOMRES_PROPERTYTYPE_FLAG_BOTH', false);
+							break;
+						case 3:
+							$ptype .= ' - '.jr_gettext('_JOMRES_PROPERTYTYPE_FLAG_TOURS', '_JOMRES_PROPERTYTYPE_FLAG_TOURS', false);
+							break;
+						case 4:
+							$ptype .= ' - '.jr_gettext('_JOMRES_PROPERTYTYPE_FLAG_REALESTATE', '_JOMRES_PROPERTYTYPE_FLAG_REALESTATE', false);
+							break;
+						default:
+							$ptype .= ' - '.jr_gettext('_JOMRES_PROPERTYTYPE_FLAG_HOTEL', '_JOMRES_PROPERTYTYPE_FLAG_HOTEL', false);
+							break;
+					}
+				}
+
+				$options[] = jomresHTML::makeOption($p['id'], $ptype);
+			}
+		}
+		
+		if ($is_disabled) {
+			$disabled = ' disabled';
+		} else {
+			$disabled = '';
+		}
+
+		$dropdown = jomresHTML::selectList($options, $input_name, 'class="inputbox" size="1"'.$disabled, 'value', 'text', $selected);
+
+		return $dropdown;
+	}
+	
+	//get property descriptions dropdown - used for language contexts
+	public function getPropertyTypeDescDropdown($selected = '0', $input_name = 'language_context', $javascript = '')
+	{
+		if (!$this->property_types) {
+			$this->get_all_property_types();
+		}
+
+		if (empty($this->property_types)) {
+			return '';
+		}
+		
+		if ($input_name == '') {
+			$input_name = 'language_context';
+		}
+		
+		$options = array();
+		$descriptions = array();
+
+		$options[] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_SEARCH_ALL', '_JOMRES_SEARCH_ALL', false));
+		
+		foreach ($this->property_types as $p) {
+			if ($p['published'] == 1 && !in_array($p['ptype_desc'], $descriptions)) {
+				$options[] = jomresHTML::makeOption($p['ptype_desc'], $p['ptype_desc']);
+				$descriptions[] = $p['ptype_desc'];
+			}
+		}
+
+		$dropdown = jomresHTML::selectList($options, $input_name, 'class="inputbox" size="1" '.$javascript, 'value', 'text', $selected);
+
+		return $dropdown;
 	}
 }

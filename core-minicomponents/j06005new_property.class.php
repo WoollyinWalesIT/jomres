@@ -34,6 +34,8 @@ class j06005new_property
         $jrConfig = $siteConfig->get();
 
         $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+		
+		$jomres_property_types = jomres_singleton_abstract::getInstance('jomres_property_types');
 
         if ($jrConfig['selfRegistrationAllowed'] == '0' && !$thisJRUser->superPropertyManager) {
             return;
@@ -78,7 +80,7 @@ class j06005new_property
         $output['JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE2'] = jr_gettext('JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE2', 'JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE2', false);
 
         $output['HPROPERTY_TYPE'] = jr_gettext('_JOMRES_FRONT_PTYPE', '_JOMRES_FRONT_PTYPE', false);
-        $output['PROPERTY_TYPE_DROPDOWN'] = getPropertyTypeDropdown('', true);
+        $output['PROPERTY_TYPE_DROPDOWN'] = $jomres_property_types->getPropertyTypeDropdown('', true);
 
         $pageoutput[] = $output;
         $tmpl = new patTemplate();

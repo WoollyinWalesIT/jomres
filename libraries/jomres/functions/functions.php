@@ -3165,58 +3165,6 @@ function savePlugin($plugin)
     $tmpl->displayParsedTemplate();
 }
 
-//---------------------------------
-//-P R O P E R T Y T Y P E S	 ----
-//---------------------------------
-
-/**
- * Shows the dropdown for selecting the property type in the edit property function.
- */
-function getPropertyTypeDropdown($propertyType = '', $extended = false, $is_disabled = false)
-{
-    $jomres_property_types = jomres_singleton_abstract::getInstance('jomres_property_types');
-    $jomres_property_types->get_all_property_types();
-
-    $ptypeOptions = array();
-    foreach ($jomres_property_types->property_types as $p) {
-        if ($p['published'] == 1) {
-            $ptype = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPE'.(int) $p['id'], $p['ptype'], false);
-
-            if ($extended) {
-                switch ($p['mrp_srp_flag']) {
-                    case 1:
-                        $ptype .= ' - '.jr_gettext('_JOMRES_PROPERTYTYPE_FLAG_VILLA', '_JOMRES_PROPERTYTYPE_FLAG_VILLA', false);
-                        break;
-                    case 2:
-                        $ptype .= ' - '.jr_gettext('_JOMRES_PROPERTYTYPE_FLAG_BOTH', '_JOMRES_PROPERTYTYPE_FLAG_BOTH', false);
-                        break;
-                    case 3:
-                        $ptype .= ' - '.jr_gettext('_JOMRES_PROPERTYTYPE_FLAG_TOURS', '_JOMRES_PROPERTYTYPE_FLAG_TOURS', false);
-                        break;
-                    case 4:
-                        $ptype .= ' - '.jr_gettext('_JOMRES_PROPERTYTYPE_FLAG_REALESTATE', '_JOMRES_PROPERTYTYPE_FLAG_REALESTATE', false);
-                        break;
-                    default:
-                        $ptype .= ' - '.jr_gettext('_JOMRES_PROPERTYTYPE_FLAG_HOTEL', '_JOMRES_PROPERTYTYPE_FLAG_HOTEL', false);
-                        break;
-                    }
-            }
-
-            $ptypeOptions[] = jomresHTML::makeOption($p['id'], $ptype);
-        }
-    }
-	
-	if ($is_disabled) {
-		$disabled = ' disabled';
-	} else {
-		$disabled = '';
-	}
-
-    $ptypeDropDownList = jomresHTML::selectList($ptypeOptions, 'propertyType', 'class="inputbox" size="1"'.$disabled, 'value', 'text', $propertyType);
-
-    return $ptypeDropDownList;
-}
-
 /**
  * Returns the property's name when passed a property uid.
  */
@@ -3684,61 +3632,11 @@ function this_cms_is_joomla()
 //-T E X T	M O D I F I C A T I O N	 ----
 //----------------------------------------
 
-function updateCustomText($theConstant, $theValue, $audit = true, $property_uid = null)
+function updateCustomText($theConstant, $theValue, $audit = true, $property_uid = null, $language_context = '0')
 {
-	$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-    $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+	$custom_text = jomres_singleton_abstract::getInstance('custom_text');
 
-    $jrConfig = $siteConfig->get();
-    $testStr = trim(strip_tags_except($theValue));
-    $crsEtc = array("\t", "\n", "\r");
-    $testStr = str_replace($crsEtc, '', $testStr);
-    if (
-        strlen($testStr) == 0 &&
-        $theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION' &&
-        $theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES' &&
-        $theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES' &&
-        $theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS' &&
-        $theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS' &&
-        $theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT' &&
-        $theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS' &&
-        $theConstant != '_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE' &&
-        $theConstant != '_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION' &&
-        $theConstant != '_JOMRES_CUSTOMTEXT_PROPERTY_METAKEYWORDS'
-        ) {
-        return false;
-    }
-    if (!isset($property_uid)) {
-        if ($jrConfig[ 'editingModeAffectsAllProperties' ] == '1' && $thisJRUser->superPropertyManager == true) {
-            $property_uid = 0;
-        } else {
-            $property_uid = (int) getDefaultProperty();
-        }
-    }
-
-    //$theValue=htmlentities($theValue);
-    $query = "SELECT customtext FROM #__jomres_custom_text WHERE constant = '".$theConstant."' and property_uid = '".(int) $property_uid."' AND language = '".get_showtime('lang')."'";
-    $textList = doSelectSql($query);
-    if (strlen($theValue) == 0) {
-        $query = "DELETE FROM	#__jomres_custom_text WHERE constant = '".$theConstant."' AND property_uid = '".(int) $property_uid."' AND language = '".get_showtime('lang')."'";
-    } else {
-        if (empty($textList)) {
-            $query = "INSERT INTO #__jomres_custom_text (`constant`,`customtext`,`property_uid`,`language`) VALUES ('".$theConstant."','".$theValue."','".(int) $property_uid."','".get_showtime('lang')."')";
-        } else {
-            $query = "UPDATE #__jomres_custom_text SET `customtext`='".$theValue."' WHERE constant = '".$theConstant."' AND property_uid = '".(int) $property_uid."' AND language = '".get_showtime('lang')."'";
-        }
-    }
-
-    if ($audit) {
-        $audit = jr_gettext('_JOMRES_MR_AUDIT_UPDATECUSTOMTEXT', '_JOMRES_MR_AUDIT_UPDATECUSTOMTEXT');
-    }
-
-    doInsertSql($query, $audit);
-
-    //$query="SELECT customtext FROM #__jomres_custom_text WHERE constant = '".$theConstant."' and property_uid = '".(int)$property_uid."' AND language = '".get_showtime('lang')."'";
-    //echo doSelectSql($query,1);
-
-    return true;
+    return $custom_text->updateCustomText($theConstant, $theValue, $audit, $property_uid, $language_context);
 }
 
 function jomresGetDomain()
