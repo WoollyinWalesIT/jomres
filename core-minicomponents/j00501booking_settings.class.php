@@ -238,6 +238,16 @@ class j00501booking_settings
             $configurationPanel->setright($minimum_deposit_message);
             $configurationPanel->insertSetting();
 
+			if (!isset($mrConfig[ 'minimum_deposit_value' ])) {
+				$mrConfig[ 'minimum_deposit_value' ] = 0;
+			}
+			
+            $configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE', '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE', false));
+            $configurationPanel->setmiddle('<input type="number" class="inputbox form-control"  size="5" name="cfg_minimum_deposit_value" value="'.(float)$mrConfig[ 'minimum_deposit_value' ].'" />');
+            $configurationPanel->setright(jr_gettext('_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC', '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC', false));
+            $configurationPanel->insertSetting();
+			
+			
             $configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE', '_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE', false));
             $configurationPanel->setmiddle($lists[ 'use_variable_deposits' ]);
             if ($mrConfig[ 'wholeday_booking' ] == '1') {

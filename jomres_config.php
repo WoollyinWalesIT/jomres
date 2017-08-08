@@ -152,5 +152,6 @@ $mrConfig = array(
   'showSmoking' => '0',
   'useOnlinepayment' => '0',
   'minimum_deposit_percentage' => '0',
-  'externalBookingFormUrl' => ''
+  'externalBookingFormUrl' => '',
+  'minimum_deposit_value' => 0
 );

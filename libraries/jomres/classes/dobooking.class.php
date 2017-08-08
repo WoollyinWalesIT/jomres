@@ -5934,7 +5934,15 @@ class dobooking
             }
         }
         $this->deposit_required = $depositValue;
-
+		
+		if (!isset($mrConfig[ 'minimum_deposit_value' ])) {
+			$mrConfig[ 'minimum_deposit_value' ] = 0;
+		}
+		
+		if ( $this->billing_grandtotal > $this->deposit_required && (float)$mrConfig[ 'minimum_deposit_value' ] >  $this->deposit_required) { // Minimum deposit. If less than grand total, and minimum deposit is greater than the calculated deposit, replace the deposit value with this figure
+			$this->deposit_required = (float)$mrConfig[ 'minimum_deposit_value' ];
+		}
+		
         $thisJRUser = jomres_getSingleton('jr_user');
         if ($thisJRUser->userIsManager) {
             if (isset($this->override_deposit) && $this->override_deposit <= $this->billing_grandtotal) {
