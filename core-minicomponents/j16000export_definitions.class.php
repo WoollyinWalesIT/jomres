@@ -49,7 +49,7 @@ class j16000export_definitions
 		echo '<p>'.jr_gettext('_JOMRES_COM_LANGUAGE_CONTEXT', '_JOMRES_COM_LANGUAGE_CONTEXT', false) . ' ' . $jomres_property_types->getPropertyTypeDescDropdown($language_context, 'language_context', $javascript).'</p>';
 
         $definitions = array();
-        foreach ($jomres_language_definitions->definitions[ $language_context ] as $const => $def) {
+        foreach ($jomres_language_definitions->definitions[ $jrConfig['language_context'] ] as $const => $def) {
             $definitions[ $const ] = jr_gettext($const, $def, false);
         }
 
