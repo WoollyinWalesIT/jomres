@@ -50,7 +50,7 @@ class j16000translate_lang_file_strings
 
         $output = array();
 
-        foreach ($jomres_language_definitions->definitions[ $language_context ] as $const => $def) {
+        foreach ($jomres_language_definitions->definitions[$jrConfig['language_context']] as $const => $def) {
             $output[] = jr_gettext($const, $def);
         }
 
