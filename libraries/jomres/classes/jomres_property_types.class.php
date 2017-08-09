@@ -126,13 +126,6 @@ class jomres_property_types
     //Save new or existing property type
     public function save_property_type()
     {
-        if ($this->property_type['ptype_desc'] != '') {
-            if (!is_dir(JOMRESPATH_BASE.'/language/'.$this->property_type['ptype_desc']) && is_writable(JOMRESPATH_BASE.'/language/')) {
-                mkdir(JOMRESPATH_BASE.'/language/'.$this->property_type['ptype_desc']);
-                copy(JOMRESPATH_BASE.'/language/'.get_showtime('lang').'.php', JOMRESPATH_BASE.'/language/'.$this->property_type['ptype_desc'].'/'.get_showtime('lang').'.php');
-            }
-        }
-
         if ($this->property_type['id'] > 0) {
             $query = "UPDATE #__jomres_ptypes 
 						SET 
