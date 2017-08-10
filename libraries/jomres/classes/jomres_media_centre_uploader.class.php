@@ -59,13 +59,16 @@ class UploadHandler
     {
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
-        $maxwidth = $jrConfig[ 'maxwidth' ];
-        $maxheight = $jrConfig[ 'maxwidth' ];
+        
+		$maxwidth = (int)$jrConfig[ 'maxwidth' ];
+        $maxheight = (int)$jrConfig[ 'maxwidth' ];
 
+		$this->jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
+		
         $this->options = array(
             'script_url' => $this->get_full_url().'/',
-            'upload_dir' => dirname($this->get_server_var('SCRIPT_FILENAME')).'/files/',
-            'upload_url' => $this->get_full_url().'/files/',
+            'upload_dir' => JOMRES_IMAGELOCATION_ABSPATH,
+            'upload_url' => JOMRES_IMAGELOCATION_RELPATH,
             'user_dirs' => false,
             'mkdir_mode' => 0755,
             'param_name' => 'files',
@@ -111,8 +114,8 @@ class UploadHandler
             // Image resolution restrictions:
             'max_width' => $maxwidth,
             'max_height' => $maxheight,
-            'min_width' => 1,
-            'min_height' => 1,
+            'min_width' => 10,
+            'min_height' => 10,
             // Set the following option to false to enable resumable uploads:
             'discard_aborted_uploads' => true,
             // Set to false to disable rotating images based on EXIF meta data:
@@ -120,15 +123,12 @@ class UploadHandler
             'image_versions' => array(
                 // Uncomment the following version to restrict the size of
                 // uploaded images:
-                /*
-                '' => array(
-                    'max_width' => 1920,
-                    'max_height' => 1200,
-                    'jpeg_quality' => 95
+				'' => array(
+                    'max_width' => $maxwidth,
+                    'max_height' => $maxheight,
+                    'jpeg_quality' => 100
                 ),
-                */
                 // Uncomment the following to create medium sized images:
-
                 'medium' => array(
                     'max_width' => floor((int) $jrConfig[ 'thumbnail_property_header_max_width' ]),
                     'max_height' => floor((int) $jrConfig[ 'thumbnail_property_header_max_height' ]),
@@ -148,8 +148,13 @@ class UploadHandler
                     //'crop' => true,
                     'max_width' => floor((int) $jrConfig[ 'thumbnail_property_list_max_width' ]),
                     'max_height' => floor((int) $jrConfig[ 'thumbnail_property_list_max_height' ]),
+					'jpeg_quality' => 100
                 ),
             ),
+			'resource_type' => '',
+			'resource_id' => '0',
+			'resource_id_required' => true,
+			'property_uid' => 0,
         );
         if ($options) {
             $this->options = array_merge($this->options, $options);
@@ -321,6 +326,7 @@ class UploadHandler
                 $this->get_upload_path($file_name)
             );
             $file->url = $this->get_download_url($file->name);
+
             foreach ($this->options['image_versions'] as $version => $options) {
                 if (!empty($version)) {
                     if (is_file($this->get_upload_path($file_name, $version))) {
@@ -390,9 +396,6 @@ class UploadHandler
         if ($scale >= 1) {
             if ($file_path !== $new_file_path) {
                 copy($file_path, $new_file_path);
-                /* if ($type == 'png') {
-                    $this->final_image_name = $this->convert_png_to_jpg($new_file_path);
-                } */
 
                 return true;
             }
@@ -464,51 +467,12 @@ class UploadHandler
             $img_width,
             $img_height
         ) && $write_image($new_img, $new_file_path, $image_quality);
-        // Free up memory (imagedestroy does not delete files):
-
-        // Vince added to convert PNG files to jpgs. The gif creator cannot use png files when making gifs, so we'll convert the uploaded image to a jpg file
-        /* if ($type == 'png') {
-            $this->final_image_name = $this->convert_png_to_jpg($new_file_path);
-        } else { */
-            $image_name_array = explode(JRDS, $new_file_path);
-            $image_name = $image_name_array[count($image_name_array) - 1];
-            $this->final_image_name = $image_name;
-        //}
-
+        
+		// Free up memory (imagedestroy does not delete files):
         imagedestroy($src_img);
         imagedestroy($new_img);
 
         return $success;
-    }
-
-    protected function convert_png_to_jpg($newly_created_png)
-    {
-        $image = imagecreatefrompng($newly_created_png);
-        $bg = imagecreatetruecolor(imagesx($image), imagesy($image));
-        imagefill($bg, 0, 0, imagecolorallocate($bg, 255, 255, 255));
-        imagealphablending($bg, true);
-        imagecopy($bg, $image, 0, 0, 0, 0, imagesx($image), imagesy($image));
-        imagedestroy($image);
-        $quality = 100; // 0 = worst / smaller file, 100 = better / bigger file
-
-        $image_name_array = explode(JRDS, $newly_created_png);
-		$image_name_array_count = count($image_name_array);
-        $image_name = $image_name_array[$image_name_array_count - 1];
-        $image_path = '';
-        for ($i = 0; $i < $image_name_array_count - 1; ++$i) {
-            $image_path .= $image_name_array[$i].JRDS;
-        }
-
-        $bang = explode('.', $image_name);
-        unset($bang[count($bang) - 1]);
-        $image_name_no_extension = implode($bang);
-
-        imagejpeg($bg, $image_path.$image_name_no_extension.'.jpg', $quality);
-
-        unlink($newly_created_png);
-        imagedestroy($bg);
-
-        return $image_name_no_extension.'.jpg';
     }
 
     protected function get_error_message($error)
@@ -581,12 +545,6 @@ class UploadHandler
 
             return false;
         }
-
-        // It's an image, let's resize it
-/* 		if (GetimageSize($uploaded_file))
-            {
-            $uploaded_file = $this->resize_image($uploaded_file);
-            } */
 
         list($img_width, $img_height) = @getimagesize($uploaded_file);
 
@@ -817,6 +775,15 @@ class UploadHandler
                 } else {
                     $file->size = $this->get_file_size($file_path, true);
                 }
+				
+				$this->jomres_media_centre_images->save_image_details_to_db(
+					$this->options['property_uid'],
+					$this->options['resource_type'],
+					$this->options['resource_id'],
+					$file->name, 
+					$version,
+					$this->options['resource_id_required']
+					);
             } else {
                 $failed_versions[] = $version;
             }
@@ -825,12 +792,10 @@ class UploadHandler
             case 0:
                 break;
             case 1:
-                $file->error = 'Failed to create scaled version: '
-                    .$failed_versions[0];
+                $file->error = 'Failed to create scaled version: '.$failed_versions[0];
                 break;
             default:
-                $file->error = 'Failed to create scaled versions: '
-                    .implode($failed_versions, ', ');
+                $file->error = 'Failed to create scaled versions: '.implode($failed_versions, ', ');
         }
     }
 
@@ -891,11 +856,6 @@ class UploadHandler
         }
 
         // We have to put this at the end because the functionality that resizes images to create thumbnails requires the original file to do it. We can only resize the original after that's been done.
-        $type = strtolower(substr(strrchr($file_path, '.'), 1));
-        /* if ($type == 'png') {
-            $file->final_image_name = $this->convert_png_to_jpg($file_path);
-        } */
-
         return $file;
     }
 
@@ -939,25 +899,19 @@ class UploadHandler
         // Vince
         // Because we've (possibly) renamed pngs to jpgs, we'll need to str replace the response's contents with the final image name
         foreach ($content['files'] as $key => $val) {
-            $resource_type = (string) jomresGetParam($_REQUEST, 'resource_type', '');
-            $resource_id = (int) jomresGetParam($_REQUEST, 'resource_id', '0');
+            $resource_type = $this->options['resource_type'];
+            $resource_id = $this->options['resource_id'];
 
-            $content['files'][$key]->name = str_replace($this->original_file_name, $this->final_image_name, $content['files'][$key]->name);
-            $content['files'][$key]->type = 'image/jpeg';
-            $content['files'][$key]->url = str_replace($this->original_file_name, $this->final_image_name, $content['files'][$key]->url);
-            $content['files'][$key]->mediumUrl = str_replace($this->original_file_name, '/'.$this->final_image_name, $content['files'][$key]->mediumUrl);
-            $content['files'][$key]->thumbnailUrl = str_replace($this->original_file_name, '/'.$this->final_image_name, $content['files'][$key]->thumbnailUrl);
             $content['files'][$key]->random_id = generateJomresRandomString(10);
 
             if (!jomres_cmsspecific_areweinadminarea()) {
-				$content['files'][$key]->deleteUrl = JOMRES_SITEPAGE_URL_AJAX.'&task=media_centre_handler&delete=1&resource_type='.$resource_type.'&resource_id='.$resource_id.'&filename='.$this->final_image_name;
+				$content['files'][$key]->deleteUrl = JOMRES_SITEPAGE_URL_AJAX.'&task=media_centre_handler&delete=1&resource_type='.$resource_type.'&resource_id='.$resource_id.'&filename='.$content['files'][$key]->name;
 			} else {
-				$content['files'][$key]->deleteUrl = JOMRES_SITEPAGE_URL_ADMIN_AJAX.'&task=media_centre_handler&delete=1&resource_type='.$resource_type.'&resource_id='.$resource_id.'&filename='.$this->final_image_name;
+				$content['files'][$key]->deleteUrl = JOMRES_SITEPAGE_URL_ADMIN_AJAX.'&task=media_centre_handler&delete=1&resource_type='.$resource_type.'&resource_id='.$resource_id.'&filename='.$content['files'][$key]->name;
 			}
 
-/* 			$content['files'][$key]->resource_type  = $resource_type;
-            $content['files'][$key]->resource_id    = $resource_id;
-             */
+ 			$content['files'][$key]->resource_type = $resource_type;
+            $content['files'][$key]->resource_id   = $resource_id;
         }
 
         if ($print_response) {
