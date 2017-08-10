@@ -614,6 +614,10 @@ function doTableUpdates()
 	if (!checkPropertysCatIdColExists()) {
         alterPropertysCatIdCol();
     }
+	
+	if (!checkCustomtextLangContextColExists()) {
+        alterCustomtextLangContextCol();
+    }
  
 	copy_default_property_type_markers();
     drop_orphan_line_items_table();
@@ -624,6 +628,24 @@ function doTableUpdates()
 	add_jomres_property_categories_table();
     updateSiteSettings('update_time', time());
     
+}
+
+function alterCustomtextLangContextCol()
+{
+    $query = "ALTER TABLE `#__jomres_custom_text` ADD `language_context` VARCHAR(255) NOT NULL DEFAULT '0' ";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to add __jomres_custom_text language_context column', 'danger');
+    }
+}
+
+function checkCustomtextLangContextColExists()
+{
+    $query = "SHOW COLUMNS FROM #__jomres_custom_text LIKE 'language_context'";
+    $result = doSelectSql($query);
+    if (count($result) > 0) {
+        return true;
+    }
+    return false;
 }
 
 function alterPropertysCatIdCol()
@@ -3618,15 +3640,16 @@ function createJomresTables()
         output_message('Failed to run query: '.$query, 'danger');
     }
 
-    $query = 'CREATE TABLE IF NOT EXISTS `#__jomres_custom_text` (
+    $query = "CREATE TABLE IF NOT EXISTS `#__jomres_custom_text` (
 		`uid` INT( 11 ) NOT NULL AUTO_INCREMENT ,
 		`constant` VARCHAR( 255 ) ,
 		`customtext` TEXT NULL,
 		`property_uid` INT( 11 ),
 		`language` VARCHAR( 255 ),
 		`reserved` VARCHAR( 255 ),
+		`language_context` VARCHAR(255) NOT NULL DEFAULT '0'
 		PRIMARY KEY ( `uid` )
-		) ';
+		) ";
     if (!doInsertSql($query)) {
         output_message('Failed to run query: '.$query, 'danger');
     }
@@ -4471,6 +4494,15 @@ function createExtraIndexs()
     $indexExists = doSelectSql($query);
     if (count($indexExists) < 1) {
         $query = 'ALTER TABLE `#__jomres_custom_text` ADD INDEX `language` ( `language` ) ';
+        if (!doInsertSql($query)) {
+            output_message('Failed to run query: '.$query, 'danger');
+        }
+    }
+	
+	$query = "SHOW INDEX FROM `#__jomres_custom_text` WHERE Key_name = 'language_context' ";
+    $indexExists = doSelectSql($query);
+    if (count($indexExists) < 1) {
+        $query = 'ALTER TABLE `#__jomres_custom_text` ADD INDEX `language_context` ( `language_context` ) ';
         if (!doInsertSql($query)) {
             output_message('Failed to run query: '.$query, 'danger');
         }

@@ -129,20 +129,8 @@ function showSiteConfig()
     $currency_codes = jomres_singleton_abstract::getInstance('currency_codes');
     $currency_codes_dropdown = $currency_codes->makeCodesDropdown($jrConfig[ 'globalCurrencyCode' ], true);
 
-    $language_context = array();
-    $ptype_descs = array();
-    $language_context[ ] = jomresHTML::makeOption('', '');
-
-    if (!empty($basic_property_details->all_property_types)) {
-        foreach ($basic_property_details->all_property_types as $k => $v) {
-            $ptype_descs[] = $v;
-        }
-        $ptype_descs = array_unique($ptype_descs);
-        foreach ($ptype_descs as $desc) {
-            $language_context[ ] = jomresHTML::makeOption($desc, $desc);
-        }
-    }
-    $language_context_dropdown = jomresHTML::selectList($language_context, 'cfg_language_context', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'language_context' ], false);
+    $jomres_property_types = jomres_singleton_abstract::getInstance('jomres_property_types');
+    $language_context_dropdown = $jomres_property_types->getPropertyTypeDescDropdown($jrConfig[ 'language_context' ], 'cfg_language_context');
 
     $filtering_level = array();
     $filtering_level[ ] = jomresHTML::makeOption('weak', jr_gettext('_JOMRES_INPUTFILTERING_LEVEL_WEAK', '_JOMRES_INPUTFILTERING_LEVEL_WEAK', false));

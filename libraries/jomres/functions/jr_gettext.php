@@ -41,6 +41,8 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
 	
+	$jomres_language_definitions = jomres_singleton_abstract::getInstance('jomres_language_definitions');
+	
 	$editing = false;
 
     if (!jomres_cmsspecific_areweinadminarea()) {
@@ -65,7 +67,7 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
             $tmpBookingHandler->user_settings[ 'editing_on' ] = false;
         }
 
-        if ($thisJRUser->userIsManager && $thisJRUser->accesslevel <= 50) { //receptionist or lower
+        if ($thisJRUser->userIsManager && $thisJRUser->accesslevel < 70) { //lower than manager
             $tmpBookingHandler->user_settings[ 'editing_on' ] = false;
         }
 
@@ -79,9 +81,11 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
         $br = '<br />';
     }
 
-    if (isset($customTextObj->global_custom_text[$theConstant])) {
-        $theText = stripslashes($customTextObj->global_custom_text[$theConstant]);
-    } else {
+    if (isset($customTextObj->global_custom_text[$jomres_language_definitions->ptype][$theConstant])) {
+        $theText = stripslashes($customTextObj->global_custom_text[$jomres_language_definitions->ptype][$theConstant]);
+    } elseif (isset($customTextObj->global_custom_text[0][$theConstant])) {
+		$theText = stripslashes($customTextObj->global_custom_text[0][$theConstant]);
+	} else {
 		if (!isset($customTextObj->properties_custom_text[$property_uid])) {
 			$customTextObj->get_custom_text_for_property($property_uid);
 		}
@@ -128,7 +132,7 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
 
                 if ($editing && $_REQUEST[ 'no_html' ] != '1') {
                     if (jomres_cmsspecific_areweinadminarea()) {
-                        $url = JOMRES_SITEPAGE_URL_ADMIN_AJAX.'&task=editinplace&lang='.get_showtime('lang');
+                        $url = JOMRES_SITEPAGE_URL_ADMIN_AJAX.'&task=editinplace&lang='.get_showtime('lang').'&language_context='.$jomres_language_definitions->ptype;
                     } else {
                         $url = JOMRES_SITEPAGE_URL_AJAX.'&task=editinplace';
                     }

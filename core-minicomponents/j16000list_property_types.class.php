@@ -31,7 +31,7 @@ class j16000list_property_types
 
         $output[ 'PAGETITLE' ] = jr_gettext('_JOMRES_COM_PTYPES_LIST_TITLE', '_JOMRES_COM_PTYPES_LIST_TITLE', false);
         $output[ 'HPTYPE' ] = jr_gettext('_JOMRES_COM_PTYPES_PTYPE', '_JOMRES_COM_PTYPES_PTYPE', false);
-        $output[ 'HPTYPE_DESC' ] = jr_gettext('_JOMRES_PROPERTYSPECIFIC_LANGUAGESUBDIR', '_JOMRES_PROPERTYSPECIFIC_LANGUAGESUBDIR', false);
+        $output[ 'HPTYPE_DESC' ] = jr_gettext('_JOMRES_COM_LANGUAGE_CONTEXT', '_JOMRES_COM_LANGUAGE_CONTEXT', false);
         $output[ 'HPUBLISHED' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PUBLISHED', '_JOMRES_COM_MR_VRCT_PUBLISHED', false);
         $output[ '_JOMRES_ORDER' ] = jr_gettext('_JOMRES_ORDER', '_JOMRES_ORDER', false);
         $output[ '_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD' ] = jr_gettext('_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD', '_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD', false);

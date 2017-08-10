@@ -84,6 +84,18 @@ class j16000touch_templates
             }
         }
         echo '<hr/>';
+		
+		//property categories
+        $query = 'SELECT `id`,`title` FROM #__jomres_property_categories ORDER BY title ';
+        $result = doSelectSql($query);
+        if (!empty($result)) {
+            echo jr_gettext('_JOMRES_PROPERTY_HCATEGORIES', '_JOMRES_PROPERTY_HCATEGORIES').'<br/>';
+            foreach ($result as $r) {
+                echo jr_gettext('_JOMRES_PROPERTY_CATEGORY'.(int) $r->id, stripslashes($r->title));
+                echo '<br/>';
+            }
+        }
+        echo '<hr/>';
 
         $MiniComponents->touch_templates();
     }
