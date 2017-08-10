@@ -93,3 +93,6 @@ jr_define('_JOMRES_TUTORIAL_ADMIN_ADD_PROPERTY_DESC', '<p>At this stage Jomres h
 <p>At the end you will see that the manager has been automatically set as a property manager, however they are only able to configure their own properties.</p>
 <p>Although the interface in Wordpress looks different the process is exactly the same for Joomla or Wordpress.</p>  ');
 
+jr_define('_JOMRES_TUTORIAL_ADMIN_PROPERTY_CATEGORIES', 'Property categories');
+jr_define('_JOMRES_TUTORIAL_ADMIN_PROPERTY_CATEGORIES_DESC', 'Property categories is a simple feature that allows property managers to assign their properties to a certain category. Site administrators can create shortcodes that will list all properties in a category, as shown in this video.');
+
