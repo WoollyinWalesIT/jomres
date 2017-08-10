@@ -686,7 +686,7 @@ jr_define('JOMRES_COM_A_VERBOSETARIFFINTO', 'Részletes díjszabás információ
 jr_define('JOMRES_COM_A_VERBOSETARIFFINTO_DESC', 'Állítsa igenre részletesebb díjszabás információk megjelenítéséhez a szállás részletei/díjszabás felugró ablakban.');
 jr_define('JOMRES_COM_A_MINIMALCONFIG', 'Minimise configuration options');
 jr_define('_JOMCOMP_AMEND', 'Amend Booking - Property Selection');
-jr_define('_JOMCOMP_AMEND_SELECTPROPERTY', 'Select New Property');
+jr_define('_JOMCOMP_AMEND_SELECTPROPERTY', 'Select Property');
 jr_define('_JOMCOMP_AMEND_HEADER', 'Original Contract:');
 jr_define('_JOMCOMP_AMEND_DEPOSITPAID', 'Deposit Paid');
 jr_define('_JOMCOMP_AMEND_DEPOSITDUE', 'Deposit Not Paid');
