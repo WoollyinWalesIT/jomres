@@ -1,3 +1,34 @@
+<h3>Jomres 9.9.9 NN/08/2017</h3>
+
+<span class="label label-success">Feature</span> Added support for property categories. This is a simple feature that allows managers to create property categories, which can then be added as both menu options to Joomla, or added as shortcodes to articles/pages in both Joomla and Wordpress.
+<span class="label label-success">Feature</span> Added changes to allow us to have global coupon codes (created by site admins) that apply to all properties.
+<span class="label label-success">Feature</span> Added a minimum deposit value setting to property configuration. If the deposit calculated is less than N figure, then the N figure is used to define the deposit.
+<span class="label label-success">Feature</span> Added the language context feature to language file translation page in jomres admin cpanel. This way we can have property type specific language strings, without needing to have property type specific language files (which are mostly duplicate language strings, very few really different). Everything is stored in db, so it`s upgrade safe.
+ 
+<span class="label label-warning">Change</span> Invoice webhooks updated
+<span class="label label-warning">Change</span> Added support to view only invoice line items and transactions, will be used later.
+<span class="label label-warning">Change</span> Added a constant for jomres core-minicomponents dir
+<span class="label label-warning">Change</span> Don`t show delete property menu item if this manager has access only to one property
+<span class="label label-warning">Change</span> Added deposit ref to deposit line item on invoices
+<span class="label label-warning">Change</span> Added a new administrator area video showing property creation, to help new users understand that they need to log into the frontend.
+<span class="label label-warning">Change</span> Added support for composer and autoloading external libraries
+<span class="label label-warning">Change</span> Removed adodb and used php date and mktime functions. Added monolog to dependencies
+<span class="label label-warning">Change</span> Added a define for the updates path
+<span class="label label-warning">Change</span> Added a jomres class that checks availability for dates and room uids
+<span class="label label-warning">Change</span> Added a new generic black booking insert class
+<span class="label label-warning">Change</span> Added a new ical import library
+<span class="label label-warning">Change</span> Removed some unneeded cache files
+<span class="label label-warning">Change</span> Tweaked sockets timeouts because we don`t need to wait too long for a response
+<span class="label label-warning">Change</span> Removed a specific check for classes in custom_code dir, as that dir is already available in the classes registry
+<span class="label label-warning">Change</span> Added cpanel task to excluded tasks in access control, as this is the cpanel default frontpage
+
+<span class="label label-important label-danger">Fix</span> Fixed an issue where the guest's cancel booking button text would not appear.
+<span class="label label-important label-danger">Fix</span> Solved a problem that`s sometimes encountered with jintour properties and coupons
+<span class="label label-important label-danger">Fix</span> Solved some bugs that prevented subscriptions being updated properly
+<span class="label label-important label-danger">Fix</span> Fixed how coupons are displayed in price summary, tax was added on top of the discount.
+<span class="label label-important label-danger">Fix</span> Solved a js error when we drag an event to cancel it and cancellation can`t be made
+<span class="label label-important label-danger">Fix</span> Fixed an issue that prevented us from moving bookings to another property. Seems there was a bug in place in some code since before 2009 (!). Thanks Jad
+
 <h3>Jomres 9.9.8 31/07/2017</h3>
 
 <span class="label label-success">Feature</span> Property Completion highlighting. Properties that have been completed ( IE prices updated, images uploaded etc ) are now highlighted to site administrations that they're now ready for approval ( if the feature is enabled ). Similar highlighting added to frontend property lists so that property managers can see those properties that are still awaiting completion.

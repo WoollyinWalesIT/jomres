@@ -211,7 +211,8 @@ class jomres_language
         $langs[ 'fa-IR' ] = 'فارسی';
         $langs[ 'az-AZ' ] = 'Azərbaycan dili';
         $langs[ 'tr-TR' ] = 'Türkçe';
-
+		$langs[ 'hy-AM' ] = 'հայերեն';
+		
         return $langs;
     }
 
@@ -262,6 +263,8 @@ class jomres_language
         $langs[ 'fa' ] = 'fa-IR';
         $langs[ 'az' ] = 'az-AZ';
         $langs[ 'tr' ] = 'tr-TR';
+		$langs[ 'hy' ] = 'hy-AM';
+		
 
         return $langs;
     }
@@ -305,6 +308,7 @@ class jomres_language
         $langs[ 'fa-IR' ] = 'fa';
         $langs[ 'az-AZ' ] = 'az';
         $langs[ 'tr-TR' ] = 'tr';
+		$langs[ 'hy-AM' ] = 'hy';
 
         return $langs;
     }

@@ -265,6 +265,10 @@ class jomres_video_tutorials
 			$videos_array['ADMIN']['translate_lang_file_strings'][] = $arr;
 			$videos_array['ADMIN']['touch_templates'][] = $arr;
 			$videos_array['ADMIN']['translate_locales'][] = $arr;
+			
+			$arr = array ("title" => "_JOMRES_TUTORIAL_ADMIN_PROPERTY_CATEGORIES" , "description" => "_JOMRES_TUTORIAL_ADMIN_PROPERTY_CATEGORIES_DESC" , "video_id" => "Rx7cwCLJrzc" );
+			$videos_array['ADMIN']['list_property_categories'][] = $arr;
+			$videos_array['ADMIN']['edit_property_category'][] = $arr;
 		}
 
 		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');

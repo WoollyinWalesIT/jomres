@@ -195,7 +195,7 @@ class jomres_property_categories
 			$category_options[] = jomresHTML::makeOption($c['id'], $c['title']);
 			}
 		
-		return jomresHTML::selectList($category_options, 'cat_id', 'class="inputbox" size="1"', 'value', 'text', $selected);
+		return jomresHTML::selectList($category_options, 'cat_id', 'class="inputbox" size="1"', 'value', 'text', $selected , false );
 		}
 	}
 	
