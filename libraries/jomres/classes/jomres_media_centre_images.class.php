@@ -571,4 +571,27 @@ class jomres_media_centre_images
 		
 		return false;
 	}
+	
+	//delete image from disk and db
+	public function delete_all_images($property_uid = 0)
+	{
+		//first we`ll check if we have all args we need
+		if ($property_uid == 0) {
+			throw new Exception('Error: Property uid not set.');
+		}
+
+		//delete files from disk
+		emptyDir(JOMRES_IMAGELOCATION_ABSPATH.$property_uid.JRDS);
+		rmdir(JOMRES_IMAGELOCATION_ABSPATH.$property_uid.JRDS);
+        
+		if ($this->use_db) {
+			$query = "DELETE FROM #__jomres_images WHERE `property_uid` = ".(int)$property_uid;
+			
+			if (!doInsertSql($query,'')) {
+				throw new Exception('Error: Deleting all property images from db failed.');
+			}
+		}
+		
+		return true;
+	}
 }
