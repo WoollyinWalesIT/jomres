@@ -636,10 +636,10 @@ function add_jomres_images_table()
 	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_images (
 		`id` INT(11) NOT NULL auto_increment,
         `property_uid` INT(11) NOT NULL DEFAULT 0,
-		`resource_type` VARCHAR(255),
+		`resource_type` VARCHAR(100),
 		`resource_id` VARCHAR(255),
 		`filename` VARCHAR(255),
-		`version` VARCHAR(255),
+		`version` VARCHAR(20),
         PRIMARY KEY (`id`)
         )";
     if (!doInsertSql($query, '')) {
@@ -3963,10 +3963,10 @@ function createJomresTables()
 	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_images (
 		`id` INT(11) NOT NULL auto_increment,
         `property_uid` INT(11) NOT NULL DEFAULT 0,
-		`resource_type` VARCHAR(255),
+		`resource_type` VARCHAR(100),
 		`resource_id` VARCHAR(255),
 		`filename` VARCHAR(255),
-		`version` VARCHAR(255),
+		`version` VARCHAR(20),
         PRIMARY KEY (`id`)
         )";
     if (!doInsertSql($query, '')) {
@@ -4768,6 +4768,26 @@ function createExtraIndexs()
     $indexExists = doSelectSql($query);
     if (count($indexExists) < 1) {
         $query = 'ALTER TABLE `#__jomres_managers` ADD INDEX userid ( userid ) ';
+        if (!doInsertSql($query)) {
+            output_message('Failed to run query: '.$query, 'danger');
+        }
+    }
+	
+	//output_message ( "Altering table __jomres_images, creating new property_uid index if necessary");
+    $query = "SHOW INDEX FROM `#__jomres_images` WHERE Key_name = 'property_uid' ";
+    $indexExists = doSelectSql($query);
+    if (count($indexExists) < 1) {
+        $query = 'ALTER TABLE `#__jomres_images` ADD INDEX property_uid ( property_uid ) ';
+        if (!doInsertSql($query)) {
+            output_message('Failed to run query: '.$query, 'danger');
+        }
+    }
+	
+	//output_message ( "Altering table __jomres_images, creating new resource_type index if necessary");
+    $query = "SHOW INDEX FROM `#__jomres_images` WHERE Key_name = 'resource_type' ";
+    $indexExists = doSelectSql($query);
+    if (count($indexExists) < 1) {
+        $query = 'ALTER TABLE `#__jomres_images` ADD INDEX resource_type (resource_type) ';
         if (!doInsertSql($query)) {
             output_message('Failed to run query: '.$query, 'danger');
         }
