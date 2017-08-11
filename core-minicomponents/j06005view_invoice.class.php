@@ -29,7 +29,7 @@ class j06005view_invoice
         $invoice_id = intval(jomresGetParam($_REQUEST, 'id', 0));
         $popup = intval(jomresGetParam($_REQUEST, 'popup', 0));
         $bypass_security_check = false;
-        $output_now = false;
+        $output_now = true;
 		$line_items_only = false;
         $output = array();
         $pageoutput = array();
@@ -40,7 +40,7 @@ class j06005view_invoice
         if (isset($componentArgs[ 'internal_call' ]) && $componentArgs[ 'internal_call' ] == true) { // This plugin is being called by another script, typically the emailer functionality, therefore we'll bypass the access checking further down
             $bypass_security_check = true;
             $invoice_id = $componentArgs[ 'invoice_id' ];
-            $output_now = true;
+            $output_now = false;
             $popup = 1;
         }
 
@@ -286,7 +286,7 @@ class j06005view_invoice
             $tmpl->addRows('immediate_pay', $immediate_pay);
         }
 
-        if (!$output_now) {
+        if ($output_now) {
             $tmpl->displayParsedTemplate();
         } else {
             $this->retVals = $tmpl->getParsedTemplate();
