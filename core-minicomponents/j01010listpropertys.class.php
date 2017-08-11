@@ -108,10 +108,10 @@ class j01010listpropertys
             $propertys_uids = array();
         }
 
-        if (!@session_start()) {
+        /* if (!@session_start()) {
             @ini_set('session.save_handler', 'files');
             session_start();
-        }
+        } */
 
         if ($propertylist_layout != '' || $this->jr_page > 0 || $return_to_search_results) {
             $propertys_uids = $tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ];

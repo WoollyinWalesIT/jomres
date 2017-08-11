@@ -3912,3 +3912,24 @@ function logs_path_check()
 
     return $message;
 }
+
+function db_images_import_check()
+{
+    $message = '';
+    $highlight = (using_bootstrap() ? 'alert alert-warning' : 'ui-state-highlight');
+
+    $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+    $jrConfig = $siteConfig->get();
+
+    if ($jrConfig['images_imported_to_db'] == '0') {
+        $message = '
+<div class="'.$highlight.'">
+	<p>'.jr_gettext('_JOMRES_MEDIA_CENTRE_DBIMPORT_WARNING','_JOMRES_MEDIA_CENTRE_DBIMPORT_WARNING', false).'</p>
+	<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=media_centre_dbimport" class="btn btn-warning">'.jr_gettext('_JOMRES_MEDIA_CENTRE_DBIMPORT_ACTION','_JOMRES_MEDIA_CENTRE_DBIMPORT_ACTION', false).'</a>
+</div>';
+    } else {
+		return '';
+	}
+
+    return $message;
+}
