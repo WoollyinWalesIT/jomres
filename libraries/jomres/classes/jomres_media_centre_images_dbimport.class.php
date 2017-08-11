@@ -31,7 +31,7 @@ class jomres_media_centre_images_dbimport
 		
 		$this->import_site_images = $import_site_images; //import site images true/false
 		
-		$this->batch_size = 1; //10 properties at a time
+		$this->batch_size = 10; //10 properties at a time
 		
 		$this->jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
     }
