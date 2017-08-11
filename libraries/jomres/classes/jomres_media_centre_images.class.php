@@ -455,7 +455,8 @@ class jomres_media_centre_images
 												`resource_type`, 
 												`resource_id`, 
 												`filename`, 
-												`version`) 
+												`version`
+												) 
 										VALUES (
 												".(int)$property_uid.",
 												'".$resource_type."',
