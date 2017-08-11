@@ -21,7 +21,14 @@ class jomres_media_centre_images
 
     public function __construct()
     {
-        $this->use_db = false; //set this to false to scandir for images, otherwise we`ll get them from db
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+        $jrConfig = $siteConfig->get();
+		
+		if ($jrConfig['images_imported_to_db'] == '0') {
+			$this->use_db = false; //we`ll scandir for images
+		} else {
+			$this->use_db = true; //images are already imported to db
+		}
 		
 		$this->images = array();
 		$this->site_images = array();
@@ -248,12 +255,12 @@ class jomres_media_centre_images
 
 		foreach ($result as $r) {
 			if (isset($resource_types[$r->resource_type])) {
-				if (empty($r->version)) {
+				if ($r->version == 'large') {
 					$this->multi_query_images [ $r->property_uid ] [ $r->resource_type ] [ $r->resource_id ] [$r->filename] ['large'] = 
 						JOMRES_IMAGELOCATION_RELPATH.$r->property_uid.'/'.$r->resource_type.'/'.$r->resource_id.'/'.$r->filename;
-				} elseif ($r->version == 'thumbnail') {
+				} elseif ($r->version == 'small') {
 					$this->multi_query_images [ $r->property_uid ] [ $r->resource_type ] [ $r->resource_id ] [$r->filename] ['small'] = 
-						JOMRES_IMAGELOCATION_RELPATH.$r->property_uid.'/'.$r->resource_type.'/'.$r->resource_id.'/'.$r->version.'/'.$r->filename;
+						JOMRES_IMAGELOCATION_RELPATH.$r->property_uid.'/'.$r->resource_type.'/'.$r->resource_id.'/thumbnail/'.$r->filename;
 				} else {
 					$this->multi_query_images [ $r->property_uid ] [ $r->resource_type ] [ $r->resource_id ] [$r->filename] ['medium'] = 
 						JOMRES_IMAGELOCATION_RELPATH.$r->property_uid.'/'.$r->resource_type.'/'.$r->resource_id.'/'.$r->version.'/'.$r->filename;
@@ -394,30 +401,30 @@ class jomres_media_centre_images
 
 		foreach ($result as $r) {
 			if ($resource_types[$type]['resource_id_required']) {
-				if (empty($r->version)) {
+				if ($r->version == 'large') {
 					$this->site_images [ $type ] [ $r->resource_id ] [$r->filename] ['large'] = 
 						$rel_path.$r->resource_id.'/'.$r->filename;
-				} elseif ($r->version == 'thumbnail') {
+				} elseif ($r->version == 'small') {
 					$this->site_images [ $type ] [ $r->resource_id ] [$r->filename] ['small'] = 
-						$rel_path.$r->resource_id.'/'.$r->version.'/'.$r->filename;
+						$rel_path.$r->resource_id.'/thumbnail/'.$r->filename;
 				} else {
 					$this->site_images [ $type ] [ $r->resource_id ] [$r->filename] ['medium'] = 
 						$rel_path.$r->resource_id.'/'.$r->version.'/'.$r->filename;
 				}
 			} else {
-				if (empty($r->version)) {
+				if ($r->version == 'large') {
 					$this->site_images [ $type ] [$r->filename] ['large'] = 
 						$rel_path.'/'.$r->filename;
-				} elseif ($r->version == 'thumbnail') {
+				} elseif ($r->version == 'small') {
 					$this->site_images [ $type ] [$r->filename] ['small'] = 
-						$rel_path.$r->version.'/'.$r->filename;
+						$rel_path.'thumbnail/'.$r->filename;
 				} else {
 					$this->site_images [ $type ] [$r->filename] ['medium'] = 
 						$rel_path.$r->version.'/'.$r->filename;
 				}
 			}
 		}
-		
+
 		//we have to reset the key file names in the array, because other code uses 0 as key for first image
 		//ugly solution, but has to be done to avoid changing the code in lots of places
 		if ($resource_types[$type]['resource_id_required']) {
@@ -448,6 +455,14 @@ class jomres_media_centre_images
 		
 		if ($file_name == '') {
 			throw new Exception('Error: File name empty.');
+		}
+		
+		if ($version == '') {
+			$version = 'large';
+		}
+		
+		if ($version == 'thumbnail') {
+			$version = 'small';
 		}
 
 		$query = "INSERT INTO #__jomres_images (

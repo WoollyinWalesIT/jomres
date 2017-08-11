@@ -25,13 +25,11 @@ class jomres_media_centre_images_dbimport
 
     public function __construct($propertys_uids = array(), $import_site_images = false)
     {
-		$this->use_db = true; //set this to false to scandir for images, otherwise we`ll get them from db
-		
 		$this->propertys_uids = $propertys_uids;
 		
 		$this->import_site_images = $import_site_images; //import site images true/false
 		
-		$this->batch_size = 10; //10 properties at a time
+		$this->batch_size = 25; //50 properties at a time. You can increase/decrease this depending on what you server can handle
 		
 		$this->jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
     }
@@ -39,10 +37,6 @@ class jomres_media_centre_images_dbimport
 	//run importer
     public function run()
 	{
-		if (!$this->use_db) {
-			return true;
-		}
-		
 		//import site images
 		if ($this->import_site_images) {
 			$this->get_site_images();
