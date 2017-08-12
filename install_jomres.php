@@ -626,8 +626,25 @@ function doTableUpdates()
 	add_jomres_sessions_table();
 	add_jomres_template_package_table();
 	add_jomres_property_categories_table();
+	add_jomres_images_table();
     updateSiteSettings('update_time', time());
     
+}
+
+function add_jomres_images_table()
+{
+	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_images (
+		`id` INT(11) NOT NULL auto_increment,
+        `property_uid` INT(11) NOT NULL DEFAULT 0,
+		`resource_type` VARCHAR(100),
+		`resource_id` VARCHAR(255),
+		`filename` VARCHAR(255),
+		`version` VARCHAR(20),
+        PRIMARY KEY (`id`)
+        )";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to create the __jomres_images table', 'danger');
+    }
 }
 
 function alterCustomtextLangContextCol()
@@ -727,7 +744,7 @@ function add_jomres_template_package_table()
 function add_jomres_property_categories_table()
 {
 	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_property_categories (
-		`id` INT(11) auto_increment,
+		`id` INT(11) NOT NULL auto_increment,
         `title` VARCHAR(255),
 		`description` TEXT,
         PRIMARY KEY (`id`)
@@ -3942,6 +3959,19 @@ function createJomresTables()
     if (!doInsertSql($query)) {
         output_message('Failed to run query: '.$query, 'danger');
     }
+	
+	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_images (
+		`id` INT(11) NOT NULL auto_increment,
+        `property_uid` INT(11) NOT NULL DEFAULT 0,
+		`resource_type` VARCHAR(100),
+		`resource_id` VARCHAR(255),
+		`filename` VARCHAR(255),
+		`version` VARCHAR(20),
+        PRIMARY KEY (`id`)
+        )";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to create the __jomres_property_categories table', 'danger');
+    }
 
     $query = "CREATE TABLE IF NOT EXISTS `#__jomres_managers` (
 		`manager_uid` int(11) NOT NULL auto_increment,
@@ -4738,6 +4768,26 @@ function createExtraIndexs()
     $indexExists = doSelectSql($query);
     if (count($indexExists) < 1) {
         $query = 'ALTER TABLE `#__jomres_managers` ADD INDEX userid ( userid ) ';
+        if (!doInsertSql($query)) {
+            output_message('Failed to run query: '.$query, 'danger');
+        }
+    }
+	
+	//output_message ( "Altering table __jomres_images, creating new property_uid index if necessary");
+    $query = "SHOW INDEX FROM `#__jomres_images` WHERE Key_name = 'property_uid' ";
+    $indexExists = doSelectSql($query);
+    if (count($indexExists) < 1) {
+        $query = 'ALTER TABLE `#__jomres_images` ADD INDEX property_uid ( property_uid ) ';
+        if (!doInsertSql($query)) {
+            output_message('Failed to run query: '.$query, 'danger');
+        }
+    }
+	
+	//output_message ( "Altering table __jomres_images, creating new resource_type index if necessary");
+    $query = "SHOW INDEX FROM `#__jomres_images` WHERE Key_name = 'resource_type' ";
+    $indexExists = doSelectSql($query);
+    if (count($indexExists) < 1) {
+        $query = 'ALTER TABLE `#__jomres_images` ADD INDEX resource_type (resource_type) ';
         if (!doInsertSql($query)) {
             output_message('Failed to run query: '.$query, 'danger');
         }

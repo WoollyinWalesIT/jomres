@@ -917,6 +917,8 @@ class jomres_obsolete_file_handling
 
         $this->add_obs_file($this->dir_javascript.'bootstrap-tour.min.js');
         $this->add_obs_file($this->dir_javascript.'bootstrap-tour-standalone.min.js');
+		$this->add_obs_file($this->dir_javascript.'bootstrap-tour.js');
+        $this->add_obs_file($this->dir_javascript.'bootstrap-tour-standalone.js');
         $this->add_obs_file($this->dir_javascript.'ColVis.js');
         $this->add_obs_file($this->dir_javascript.'jomres.min.js');
         $this->add_obs_file($this->dir_javascript.'jomres_consolidated_files.js');
