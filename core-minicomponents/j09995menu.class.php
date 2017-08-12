@@ -170,8 +170,7 @@ class j09995menu
 		if ($thisJRUser->accesslevel > 50) {
 			$jomres_menu->add_item(80, jr_gettext('_JOMRES_PATHWAY_PROPERTYDETAILS', '_JOMRES_PATHWAY_PROPERTYDETAILS', false), 'edit_property', 'fa-pencil-square-o');
 			$jomres_menu->add_item(80, jr_gettext('_JOMRES_COM_MR_GENERALCONFIGDESC', '_JOMRES_COM_MR_GENERALCONFIGDESC', false), 'business_settings', 'fa-cogs');
-			$jomres_menu->add_item(80, jr_gettext('_JOMRES_COM_A_GATEWAYLIST', '_JOMRES_COM_A_GATEWAYLIST', false), 'list_gateways', 'fa-credit-card');
-			
+
 			if ($mrConfig[ 'is_real_estate_listing' ] != '1' && $mrConfig['tariffmode'] != '0' && !get_showtime('is_jintour_property')) {
 				$jomres_menu->add_item(80, jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOM', '_JOMRES_COM_MR_VRCT_TAB_ROOM', false), 'list_resources', 'fa-bed');
 			}
