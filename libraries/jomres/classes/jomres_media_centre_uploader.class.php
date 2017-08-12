@@ -53,6 +53,7 @@ class UploadHandler
         'min_width' => 'Image requires a minimum width',
         'max_height' => 'Image exceeds maximum height',
         'min_height' => 'Image requires a minimum height',
+		'filename_max_length' => 'File name too long'
     );
 
     public function __construct($options = null, $initialize = true, $error_messages = null)
@@ -151,6 +152,7 @@ class UploadHandler
 					'jpeg_quality' => 100
                 ),
             ),
+			'filename_max_length' => 100,
 			'resource_type' => '',
 			'resource_id' => '0',
 			'resource_id_required' => true,
@@ -545,6 +547,13 @@ class UploadHandler
 
             return false;
         }
+		
+		//check filename length
+		if (strlen($file->name) > $this->options['filename_max_length']) {
+			$file->error = $this->get_error_message('filename_max_length');
+			
+			return false;
+		}
 
         list($img_width, $img_height) = @getimagesize($uploaded_file);
 
