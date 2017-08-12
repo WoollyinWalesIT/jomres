@@ -548,6 +548,13 @@ class UploadHandler
 
         list($img_width, $img_height) = @getimagesize($uploaded_file);
 
+		//this is not an image (could be anything else, renamed to .jpg or .png), or the upload is incomplete
+		if ((int)$img_width == 0 || (int)$img_height == 0) {
+			$file->error = $this->get_error_message('min_width');
+			
+			return false;
+		}
+
         if (is_int($img_width)) {
             if ($this->options['max_width'] && $img_width > $this->options['max_width']) {
                 $file->error = $this->get_error_message('max_width').' Image width '.$img_width.' -- Max width '.$this->options['max_width'];
