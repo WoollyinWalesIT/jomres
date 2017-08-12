@@ -319,7 +319,7 @@ jr_define('_JOMRES_COM_A_FIXEDPERIODBOOKINGSSHORT', 'Os períodos fixados para r
 jr_define('_JOMRES_COM_A_FIXEDPERIOD_SHORTBREAK_DAYS', 'Extensão do período mais curto');
 // Translate from here
 // V1.4
-jr_define('_JOMRES_COM_A_GATEWAYLIST', 'Gateways');
+jr_define('_JOMRES_COM_A_GATEWAYLIST', 'Payment Gateways');
 jr_define('_JOMRES_COM_A_CANCEL', 'Cancelar');
 jr_define('_JOMRES_FRONT_BLACKBOOKING_DESC', 'P.f. escolha o(s) quarto(s) que pretende retirar de serviço, e as datas respectivas dates. <br>Se um quarto não tiver uma marca de verificação, não pode ser incluído nas indisponibilidades até que todas as reservas relativas tenham sido completadas/canceladas.<br/>Quando tiver seleccionado as datas apropriadas, clique no botão azul "Aplicar" para reverificar a disponibilidade do quarto. ');
 jr_define('_JOMRES_JR_NOTLOGGEDIN', '<center><b>Parece que o Joomla pôs termo ao seu login por inactividade</b><br />Por favor faça login e tente de novo.');

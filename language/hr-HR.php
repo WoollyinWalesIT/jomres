@@ -389,7 +389,7 @@ jr_define('_JOMRES_COM_CHARGING_CONFIG_DESC', 'Uredite ovdje postavke naplate ti
 jr_define('_JOMRES_COM_MONTHSTOSHOW', 'Mjeseci za prikaz');
 jr_define('_JOMRES_COM_MONTHSTOSHOW_DESC', 'Koliko će se mjeseci prikazivati na kalendaru s obzirom na dostupnost sobe?');
 // V1.4
-jr_define('_JOMRES_COM_A_GATEWAYLIST', 'Gateways');
+jr_define('_JOMRES_COM_A_GATEWAYLIST', 'Payment Gateways');
 jr_define('_JOMRES_COM_A_CANCEL', 'Poništi');
 jr_define('_JOMRES_FRONT_BLACKBOOKING_DESC', 'Molimo Vas odaberite sobu/e koje ne želite da se koriste, i potrebne datume. <br>Ukoliko soba nema oznaku, ne može biti korištena za crne rezervacije dok neka od rezervacija ne bude otkazana ili završena.<br/> Kada odaberete tražene datume, kliknite na plavo dugme "apply" da provjerite dostupnost sobe. ');
 jr_define('_JOMRES_JR_NOTLOGGEDIN', '<center><b>Odjavljeni ste zbog neaktivnosti</b> Molimo vas, prijavite se ponovo.');

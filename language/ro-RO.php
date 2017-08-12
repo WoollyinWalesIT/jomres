@@ -389,7 +389,7 @@ jr_define('_JOMRES_COM_CHARGING_CONFIG_DESC', 'Folositi aceasta optiune pentru a
 jr_define('_JOMRES_COM_MONTHSTOSHOW', 'Cal months to show');
 jr_define('_JOMRES_COM_MONTHSTOSHOW_DESC', 'In the room availability, How many months of the calendar should be shown?');
 // V1.4
-jr_define('_JOMRES_COM_A_GATEWAYLIST', 'Gateways');
+jr_define('_JOMRES_COM_A_GATEWAYLIST', 'Payment Gateways');
 jr_define('_JOMRES_COM_A_CANCEL', 'Anuleaza');
 jr_define('_JOMRES_FRONT_BLACKBOOKING_DESC', 'Please choose the room(s) you wish to take out of service, and the relevant dates. <br>If a room does not have a check mark against it, it cannot be included in the black booking until any outstanding bookings have been completed/cancelled.<br/> When you have selected the appropriate dates, click the blue "apply" button to re-check room availability. ');
 jr_define('_JOMRES_JR_NOTLOGGEDIN', '<center><b>It looks like Joomla has logged you out for inactivity</b> Please log in and try again.');

@@ -390,7 +390,7 @@ jr_define('_JOMRES_COM_CHARGING_CONFIG_DESC', 'Brug denne indstilling til at afg
 jr_define('_JOMRES_COM_MONTHSTOSHOW', 'Kalendermåneder der skal vises');
 jr_define('_JOMRES_COM_MONTHSTOSHOW_DESC', 'Hvor mange måneder skal vises for værelsestilgængelighed?');
 // V1.4
-jr_define('_JOMRES_COM_A_GATEWAYLIST', 'Gateways');
+jr_define('_JOMRES_COM_A_GATEWAYLIST', 'Payment Gateways');
 jr_define('_JOMRES_COM_A_CANCEL', 'Annuller');
 jr_define('_JOMRES_FRONT_BLACKBOOKING_DESC', 'Vælg venligst værelset(erne) som du vil fjerne som service, og de relevante datoer. <br>Hvis et værelse ikke har en markering, kan det ikke blive inkluderet i den blokerede bookning indtil udestående bookninger er blevet gennemført/annulleret.<br/> Når du har valgt de passende datoer, så klik på den blå knap "anvend" for at gen-kontrollere tilgængelighed. ');
 jr_define('_JOMRES_JR_NOTLOGGEDIN', '<center><b>Du er blevet logget af på grund af inaktivitet</b> Log venligst på og prøv igen.');

@@ -402,10 +402,10 @@ jr_define('_JOMRES_COM_CHARGING_CONFIG', 'Total cobrado no ato da reserva');
 jr_define('_JOMRES_COM_CHARGING_CONFIG_DESC', 'Use esta opçăo para decidir o que deverá ser cobrado no ato de reserva. Escolha entre deposito e/ou total.');
 jr_define('_JOMRES_COM_MONTHSTOSHOW', 'Calendário mostra meses');
 jr_define('_JOMRES_COM_MONTHSTOSHOW_DESC', 'Havendo vagas, quantos meses o Calendário deve mostrar?');
-jr_define('_JOMRES_COM_A_GATEWAYLIST', 'Gateways');
+jr_define('_JOMRES_COM_A_GATEWAYLIST', 'Payment Gateways');
 jr_define('_JOMRES_COM_A_CANCEL', 'Cancelar');
 // V1.4
-jr_define('_JOMRES_COM_A_GATEWAYLIST', 'Gateways');
+jr_define('_JOMRES_COM_A_GATEWAYLIST', 'Payment Gateways');
 jr_define('_JOMRES_COM_A_CANCEL', 'Cancelar');
 jr_define('_JOMRES_FRONT_BLACKBOOKING_DESC', 'Por favor escolha as UH que vocę deseja retirar do serviço, e as datas referentes. <br>If a room does not have a check mark against it, it cannot be included in the black booking until any outstanding bookings have been completed/cancelled.<br/> When you have selected the appropriate dates, click the blue "apply" button to re-check room availability. ');
 jr_define('_JOMRES_JR_NOTLOGGEDIN', '<center><b>Parece que o sistema desconectou por inatividade</b> Por favor faça o login novamente.');

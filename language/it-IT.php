@@ -391,7 +391,7 @@ jr_define('_JOMRES_COM_CHARGING_CONFIG_DESC', ' Sceglie deposito se deve essere 
 jr_define('_JOMRES_COM_MONTHSTOSHOW', 'Mesi del calendario da mostrare');
 jr_define('_JOMRES_COM_MONTHSTOSHOW_DESC', 'Nella disponibità della camera, quanti mesi del calendario devono essere mostrati');
 // V1.4
-jr_define('_JOMRES_COM_A_GATEWAYLIST', 'Gateways');
+jr_define('_JOMRES_COM_A_GATEWAYLIST', 'Payment Gateways');
 jr_define('_JOMRES_COM_A_CANCEL', 'Cancella');
 jr_define('_JOMRES_FRONT_BLACKBOOKING_DESC', 'Seleziona la camera che desideri tenere fuori servizio, e le date. Se la camera non ha il ceck selezionato, non potr&agrave; essere inclusa nelle indisponibili fino a che la prenotazione non sar&agrave; cancellata.<br/> Quando hai selezionato le date appropriate, clicca il bottune blu applicare ricontrolla la disponibilit&agrave;. ');
 jr_define('_JOMRES_JR_NOTLOGGEDIN', '<center><b>Sembra che sei stato scollegato per inattivit&agrave;.Perfavore, esegui nuovamente il login.</b> Please log in and try again.');

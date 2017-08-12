@@ -389,7 +389,7 @@ jr_define('_JOMRES_COM_CHARGING_CONFIG_DESC', 'Utilisez cette option pour décid
 jr_define('_JOMRES_COM_MONTHSTOSHOW', 'Mois du calendrier à afficher');
 jr_define('_JOMRES_COM_MONTHSTOSHOW_DESC', 'Dans la mise à disposition des chambres, combien de mois le calendrier doit-il afficher ?');
 // V1.4
-jr_define('_JOMRES_COM_A_GATEWAYLIST', 'Gateways');
+jr_define('_JOMRES_COM_A_GATEWAYLIST', 'Payment Gateways');
 jr_define('_JOMRES_COM_A_CANCEL', 'Annulé');
 jr_define('_JOMRES_FRONT_BLACKBOOKING_DESC', 'Veuillez choisir la/les chambre(s) que vous voulez prendre, et les dates appropriées. <br>si une chambre n\'a pas de marque \"vérifiée\", celle-ci ne pourra pas être insérée dans la Liste d\'Indisponibles avant la fin ou l\'annulation de la réservation.<br/> Lorsque vous avez choisi les dates appropriées, cliquez sur le bouton bleu \"appliqué\" pour revérifier la disponibilité de la chambre. ');
 jr_define('_JOMRES_JR_NOTLOGGEDIN', '<center><b>Il semblerait que Joomla vous a déconnecté par inactivité</b> Veuillez vous reconnecter et réessayer.');
