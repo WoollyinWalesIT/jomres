@@ -119,7 +119,7 @@ class UploadHandler
             // Set the following option to false to enable resumable uploads:
             'discard_aborted_uploads' => true,
             // Set to false to disable rotating images based on EXIF meta data:
-            'orient_image' => true,
+            'orient_image' => false,
             'image_versions' => array(
                 // Uncomment the following version to restrict the size of
                 // uploaded images:
