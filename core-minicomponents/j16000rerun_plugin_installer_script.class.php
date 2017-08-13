@@ -46,7 +46,7 @@ class j16000rerun_plugin_installer_script
 			
 		} */
 
-        jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_countries'), '');
+        jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins'), '');
     }
 
     // This must be included in every Event/Mini-component
