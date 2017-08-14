@@ -102,11 +102,14 @@ class jomres_media_centre_images_dbimport
 		$MiniComponents->triggerEvent('11010');
 		$resource_types = $MiniComponents->miniComponentData['11010'];
 		
-		if (empty($resource_types))
+		if (empty($resource_types)) {
 			return false;
+		}
+		
+		$at_least_one_image_exists = false;
 		
 		foreach ($resource_types as $k => $v) {
-			if (isset($this->jomres_media_centre_images->site_images[$k])) {
+			if (isset($this->jomres_media_centre_images->site_images[$k]) && !empty($this->jomres_media_centre_images->site_images[$k])) {
 				$query = "INSERT INTO #__jomres_images (
 												`property_uid`, 
 												`resource_type`, 
@@ -127,6 +130,11 @@ class jomres_media_centre_images_dbimport
 											'".basename($path)."',
 											'".$version."'
 											),";
+								
+								//we`ll use a flag to know if we can run the query or not, to make sure we don`t run emopty queries when dirs exist but they`re empty
+								if (!$at_least_one_image_exists) {
+									$at_least_one_image_exists = true;
+								}
 							}
 						}
 					}
@@ -140,14 +148,21 @@ class jomres_media_centre_images_dbimport
 										'".basename($path)."',
 										'".$version."'
 										),";
+							
+							//we`ll use a flag to know if we can run the query or not, to make sure we don`t run emopty queries when dirs exist but they`re empty
+							if (!$at_least_one_image_exists) {
+								$at_least_one_image_exists = true;
+							}
 						}
 					}
 				}
 				
 				$query = rtrim($query, ',');
 
-				if (!doInsertSql($query,'')) {
-					throw new Exception('Could not insert site images for resource type '.$k);
+				if ($at_least_one_image_exists) {
+					if (!doInsertSql($query,'')) {
+						throw new Exception('Could not insert site images for resource type '.$k);
+					}
 				}
 				
 				//clear memory
@@ -163,6 +178,8 @@ class jomres_media_centre_images_dbimport
 		if (empty($property_uids)) {
 			return false;
 		}
+		
+		$at_least_one_image_exists = false;
 
 		$query = "INSERT INTO #__jomres_images (
 												`property_uid`, 
@@ -186,6 +203,11 @@ class jomres_media_centre_images_dbimport
 											'".basename($path)."',
 											'".$version."'
 											),";
+								
+								//we`ll use a flag to know if we can run the query or not, to make sure we don`t run emopty queries when dirs exist but they`re empty
+								if (!$at_least_one_image_exists) {
+									$at_least_one_image_exists = true;
+								}
 							}
 						}
 					}
@@ -198,8 +220,10 @@ class jomres_media_centre_images_dbimport
 		
 		$query = rtrim($query, ',');
 
-		if (!doInsertSql($query,'')) {
-			throw new Exception('Could not insert site images for resource type '.$k);
+		if ($at_least_one_image_exists) {
+			if (!doInsertSql($query,'')) {
+				throw new Exception('Could not insert site images for resource type '.$k);
+			}
 		}
 		
 		return true;
