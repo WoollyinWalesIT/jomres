@@ -83,7 +83,7 @@ class j16000media_centre_dbimport
                 echo '
 				<div class="alert alert-success">
 					<h4 class="alert-heading">Congratulations!</h4>
-					<p>Images imported successfully to database.</p>
+					<p>Image details imported successfully to database.</p>
 				</div>
 				';
             }
