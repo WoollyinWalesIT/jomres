@@ -72,15 +72,6 @@ class j06000media_centre_resources_ajax_existing_images
                     $output['IMAGE_REL_SMALL'] = $image['small'];
                 }
 
-                $sizes = getimagesize($output['IMAGE_REL_SMALL']);
-                if ($sizes[0] > 60) {
-                    $output['WIDTH'] = '60';
-                    $output['HEIGHT'] = '40';
-                } else {
-                    $output['WIDTH'] = $sizes[0];
-                    $output['HEIGHT'] = $sizes[1];
-                }
-
                 $output['IMAGE_REL_LARGE'] = $image['large'];
                 $output['_JOMRES_MEDIA_CENTRE_BUTTON_DELETE'] = jr_gettext('_JOMRES_MEDIA_CENTRE_BUTTON_DELETE', '_JOMRES_MEDIA_CENTRE_BUTTON_DELETE', false);
                 $output['_JOMRES_MEDIA_CENTRE_BUTTON_VIEW'] = jr_gettext('_JOMRES_MEDIA_CENTRE_BUTTON_VIEW', '_JOMRES_MEDIA_CENTRE_BUTTON_VIEW', false);

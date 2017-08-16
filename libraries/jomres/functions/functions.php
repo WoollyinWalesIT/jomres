@@ -3695,14 +3695,13 @@ function getDefaultProperty()
     return (int) $thisJRUser->currentproperty;
 }
 
-function jomresURL($link, $ssl = 2)
+function jomresURL($link)
 {
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
 
-    if (!$jrConfig[ 'isInIframe' ]) {
-        $link = jomres_cmsspecific_makeSEF_URL($link);
-    }
+    $link = jomres_cmsspecific_makeSEF_URL($link);
+
     $link = str_replace('&amp;', '&', $link);
 
     return $link;

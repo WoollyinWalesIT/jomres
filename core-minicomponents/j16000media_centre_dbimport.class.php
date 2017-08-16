@@ -32,7 +32,7 @@ class j16000media_centre_dbimport
 		$force = (int)jomresGetParam($_REQUEST, 'force', 0);
 		
 		if ($jrConfig['images_imported_to_db'] != '0' && !$force) {
-			return true;
+			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN), '');
 		}
 		
 		if ($force) {
@@ -83,7 +83,7 @@ class j16000media_centre_dbimport
                 echo '
 				<div class="alert alert-success">
 					<h4 class="alert-heading">Congratulations!</h4>
-					<p>Images imported successfully to database.</p>
+					<p>Image details imported successfully to database.</p>
 				</div>
 				';
             }
