@@ -13,6 +13,7 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+
 $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 $jrConfig = $siteConfig->get();
 
@@ -20,10 +21,9 @@ if (defined('AUTO_UPGRADE')) {
     set_showtime('live_site', str_replace('/jomres', '', get_showtime('live_site')));
 }
 
-$ssllink = str_replace('https://', 'http://', get_showtime('live_site'));
 define('JOMRES_ADMINISTRATORDIRECTORY', 'administrator');
 
-//detect jomres itemId
+//find jomres itemId
 $jomresItemid = 0;
 
 if (!defined('AUTO_UPGRADE')) {
@@ -35,35 +35,25 @@ if (!defined('AUTO_UPGRADE')) {
 	}
 }
 
+//set jomres itemid
 set_showtime('jomresItemid', $jomresItemid);
 
-$index = 'index.php';
-$tmpl = '';
-if (!isset($_GET[ 'tmpl' ])) {
-    $_GET[ 'tmpl' ] = false;
-}
+//tmpl
+$tmpl = jomresGetParam($_GET, 'tmpl', '');
 
-if (!isset($jrConfig[ 'isInIframe' ])) {
-    $jrConfig[ 'isInIframe' ] = '0';
-}
-
-if (($jrConfig[ 'isInIframe' ] == '1' || $_GET[ 'tmpl' ] == get_showtime('tmplcomponent')) && !isset($_REQUEST[ 'nofollowtmpl' ]) && !jomres_cmsspecific_areweinadminarea()) {
+//component wrapped enabled, or &tmpl=jomres present in the url
+if ($tmpl == get_showtime('tmplcomponent') && !isset($_REQUEST[ 'nofollowtmpl' ]) && !jomres_cmsspecific_areweinadminarea()) {
     $tmpl = '&tmpl='.get_showtime('tmplcomponent');
-    define('JOMRES_WRAPPED', 1);
-    if (!isset($_REQUEST['tmpl'])) {
-        $url = (isset($_SERVER['HTTPS']) ? 'https' : 'http')."://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]".'&tmpl=jomres';
-        jomresRedirect($url);
-    }
-} else {
-    define('JOMRES_WRAPPED', 0);
 }
 
+//is_wrapped
 if (isset($_REQUEST[ 'is_wrapped' ])) {
     if ($_REQUEST[ 'is_wrapped' ] == '1') {
         $tmpl .= '&is_wrapped=1';
     }
 }
 
+//menuoff
 if (isset($_REQUEST[ 'menuoff' ])) {
     if ($_REQUEST[ 'menuoff' ] == '1') {
         $tmpl .= '&menuoff=1';
@@ -74,6 +64,7 @@ if (isset($_REQUEST[ 'menuoff' ])) {
     }
 }
 
+//topoff
 if (isset($_REQUEST[ 'topoff' ])) {
     if ($_REQUEST[ 'topoff' ] == '1') {
         $tmpl .= '&topoff=1';
@@ -84,17 +75,20 @@ if (isset($_REQUEST[ 'topoff' ])) {
     }
 }
 
+//cms lang
 $lang = substr(get_showtime('lang'), 0, 2);
+
 //Jomres specific lang switching
 $lang_param = '';
 if (isset($_REQUEST[ 'jomreslang' ])) {
 	$jomreslang = jomresGetParam($_REQUEST, 'jomreslang', '');
     $jomres_language = jomres_singleton_abstract::getInstance('jomres_language');
-    if ($jomreslang != '' && array_key_exists($jomreslang, $jomres_language->datepicker_crossref)) {
+    if ($jomreslang != '' && isset($jomres_language->datepicker_crossref[$jomreslang])) {
         $lang_param = '&jomreslang='.$jomreslang;
     }
 }
 
+//jomres specific urls
 define('JOMRES_SITEPAGE_URL_NOSEF', get_showtime('live_site').'/index.php?option=com_jomres&Itemid='.$jomresItemid.'&lang='.$lang.$tmpl.$lang_param);
 define('JOMRES_SITEPAGE_URL_AJAX', get_showtime('live_site').'/'.'index.php?option=com_jomres&no_html=1&jrajax=1&Itemid='.$jomresItemid.'&lang='.$lang.$tmpl.$lang_param);
 define('JOMRES_SITEPAGE_URL_ADMIN', get_showtime('live_site').'/'.JOMRES_ADMINISTRATORDIRECTORY.'/index.php?option=com_jomres'.$tmpl.$lang_param);
@@ -103,10 +97,10 @@ define('JOMRES_SITEPAGE_URL_ADMIN_AJAX', get_showtime('live_site').'/'.JOMRES_AD
 if (class_exists('JFactory')) {
     $config = JFactory::getConfig();
     if ($config->get('sef') == '1') {
-        define('JOMRES_SITEPAGE_URL', $index.'?option=com_jomres&Itemid='.$jomresItemid.$tmpl.'&lang='.$lang.$lang_param);
+        define('JOMRES_SITEPAGE_URL', 'index.php?option=com_jomres&Itemid='.$jomresItemid.$tmpl.'&lang='.$lang.$lang_param);
     } else {
-        define('JOMRES_SITEPAGE_URL', get_showtime('live_site').'/'.$index.'?option=com_jomres&Itemid='.$jomresItemid.$tmpl.'&lang='.$lang.$lang_param);
+        define('JOMRES_SITEPAGE_URL', get_showtime('live_site').'/index.php?option=com_jomres&Itemid='.$jomresItemid.$tmpl.'&lang='.$lang.$lang_param);
     }
 } else {
-    define('JOMRES_SITEPAGE_URL', get_showtime('live_site').'/'.$index.'?option=com_jomres&Itemid='.$jomresItemid.$tmpl.'&lang='.$lang.$lang_param);
+    define('JOMRES_SITEPAGE_URL', get_showtime('live_site').'/index.php?option=com_jomres&Itemid='.$jomresItemid.$tmpl.'&lang='.$lang.$lang_param);
 }
