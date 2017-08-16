@@ -32,7 +32,7 @@ class j16000media_centre_dbimport
 		$force = (int)jomresGetParam($_REQUEST, 'force', 0);
 		
 		if ($jrConfig['images_imported_to_db'] != '0' && !$force) {
-			return true;
+			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN), '');
 		}
 		
 		if ($force) {
