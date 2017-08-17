@@ -158,14 +158,13 @@ class j00004a_init_javascript_css_files
 
         if (get_showtime('task') == 'media_centre' || jomresGetParam($_REQUEST, 'task', '') == 'media_centre') {
             $css_files[] = array(JOMRES_ROOT_DIRECTORY.'/css/',  'jquery.fileupload-ui.css');
-            $javascript_files[] = array(JOMRES_ROOT_DIRECTORY.'/javascript/media_centre/', 'load-image.min.js');
+            $javascript_files[] = array(JOMRES_ROOT_DIRECTORY.'/javascript/media_centre/', 'load-image.all.min.js');
             $javascript_files[] = array(JOMRES_ROOT_DIRECTORY.'/javascript/media_centre/', 'canvas-to-blob.min.js');
             $javascript_files[] = array(JOMRES_ROOT_DIRECTORY.'/javascript/media_centre/', 'jquery.iframe-transport.js');
             $javascript_files[] = array(JOMRES_ROOT_DIRECTORY.'/javascript/media_centre/', 'jquery.fileupload.js');
             $javascript_files[] = array(JOMRES_ROOT_DIRECTORY.'/javascript/media_centre/', 'jquery.fileupload-process.js');
             $javascript_files[] = array(JOMRES_ROOT_DIRECTORY.'/javascript/media_centre/', 'jquery.fileupload-image.js');
             $javascript_files[] = array(JOMRES_ROOT_DIRECTORY.'/javascript/media_centre/', 'jquery.fileupload-validate.js');
-            $javascript_files[] = array(JOMRES_ROOT_DIRECTORY.'/javascript/media_centre/', 'tmpl.min.js');
         }
 
         //galleria js and css files TODO: find a better solution
