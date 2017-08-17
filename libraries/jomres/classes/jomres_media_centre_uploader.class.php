@@ -525,6 +525,15 @@ class UploadHandler
         // into different directories or replacing hidden system files.
         // Also remove control characters and spaces (\x00..\x20) around the filename:
         $name = trim($this->basename(stripslashes($name)), ".\x00..\x20");
+		
+		//jomres specific
+		if ($name) {
+			$extension = pathinfo($name, PATHINFO_EXTENSION);
+			$filename = rtrim($name, $extension);
+			$name = $filename.str_replace('.', '', microtime(true)).'.'.$extension;
+		}
+		//end jomres specific
+
         // Use a timestamp for empty filenames:
         if (!$name) {
             $name = str_replace('.', '-', microtime(true));
