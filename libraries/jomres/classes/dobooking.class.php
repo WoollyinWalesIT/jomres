@@ -5431,6 +5431,8 @@ class dobooking
 		$tmpBookingHandler = jomres_getSingleton('jomres_temp_booking_handler');
 
 		//Coupon discount
+		$this->room_total_discounted = 0;
+		
 		if ($this->coupon_code != '') {
 			$dateRangeArray = explode(',', $this->dateRangeString);
 			$canonical_date_range_array = array();
@@ -5460,14 +5462,14 @@ class dobooking
 			if ($number_of_times_coupon_is_valid_for_booking_date_range > 0) {
 				if ($this->coupon_details[ 'is_percentage' ] == '1') {
 					$this->coupon_discount_value = ($discountable_room_total / 100) * (float) $this->coupon_details[ 'amount' ];
-					$this->room_total = ($discountable_room_total - $this->coupon_discount_value) + $non_discountable_room_total;
+					$this->room_total_discounted = ($discountable_room_total - $this->coupon_discount_value) + $non_discountable_room_total;
 				} else {
 					$this->coupon_discount_value = (float) $this->coupon_details[ 'amount' ];
-					$this->room_total = ($discountable_room_total - $this->coupon_discount_value) + $non_discountable_room_total;
+					$this->room_total_discounted = ($discountable_room_total - $this->coupon_discount_value) + $non_discountable_room_total;
 				}
 			}
 
-			$this->discounts[] = array('type' => 'Coupon', 'roomtypeabbr' => 'N/A', 'discountfrom' => $old_room_total, 'discountto' => $this->room_total);
+			$this->discounts[] = array('type' => 'Coupon', 'roomtypeabbr' => 'N/A', 'discountfrom' => $old_room_total, 'discountto' => $this->room_total_discounted);
 
 			$fb1 = jr_gettext('_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK', '_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK', false, false);
 			$fb2 = jr_gettext('_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK_TO', '_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK_TO', false, false);
@@ -5488,7 +5490,7 @@ class dobooking
 			$this->setErrorLog('makeNightlyRoomCharges:: Original room price value '.$this->room_total);
 			$old_room_total = $this->room_total;
 			$percentage_to_remove = ($this->room_total / 100) * (int) $this->guest_specific_discount;
-			$this->room_total = $this->room_total - $percentage_to_remove;
+			$this->room_total_discounted = $this->room_total - $percentage_to_remove;
 			$this->setErrorLog('makeNightlyRoomCharges:: Percentage to remove '.$percentage_to_remove);
 			$this->setErrorLog('makeNightlyRoomCharges:: New room value '.$this->room_total);
 			$this->echo_populate_div($this->sanitiseOutput('; populateDiv("personal_discount","'.output_price($percentage_to_remove).'")'));
@@ -5515,7 +5517,7 @@ class dobooking
 			foreach ($result as $res) {
 				$old_room_total = $this->room_total;
 				$percentage_to_remove = ($this->room_total / 100) * (int) $res->discount;
-				$this->room_total = $this->room_total - $percentage_to_remove;
+				$this->room_total_discounted = $this->room_total - $percentage_to_remove;
 				$note = jr_gettext('_JOMRES_PARTNER_DISCOUNT', '_JOMRES_PARTNER_DISCOUNT', false, false).' '.output_price($percentage_to_remove);
 				$this->addBookingNote(jr_gettext('_JOMRES_PARTNER_DISCOUNT', '_JOMRES_PARTNER_DISCOUNT', false), $note);
 				$this->setGuestPopupMessage($note);
@@ -5567,6 +5569,9 @@ class dobooking
 
 	public function calcTotals()
 	{
+		if ($this->room_total_discounted > 0 ) {
+			$this->room_total = $this->room_total_discounted;
+		}
 		$this->setErrorLog('calcTotals:: Started');
 		$this->setErrorLog('calcTotals:: room total '.$this->room_total);
 		$this->setErrorLog('calcTotals:: tax '.$this->tax);
@@ -5767,7 +5772,11 @@ class dobooking
 	{
 		$this->setErrorLog('calcTax:: Started');
 		$totalTax = 0.00;
-		$totalBooking = $this->getRoomtotal();
+		if ($this->room_total_discounted > 0 ) {
+			$this->room_total = $this->room_total_discounted;
+		}
+		
+		$totalBooking = $this->room_total;
 
 		$totalBooking = $totalBooking + $this->single_person_suppliment;
 
@@ -5786,7 +5795,7 @@ class dobooking
 	 */
 	public function calcSinglePersonSuppliment()
 	{
-		$totalBooking = $this->getRoomtotal();
+		$totalBooking = $this->room_total;
 		$guests = $this->getVariantsOfType('guesttype');
 		$totalNumberOfGuests = 0;
 
