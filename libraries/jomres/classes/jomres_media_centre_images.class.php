@@ -414,7 +414,7 @@ class jomres_media_centre_images
 			} else {
 				if ($r->version == 'large') {
 					$this->site_images [ $type ] [$r->filename] ['large'] = 
-						$rel_path.'/'.$r->filename;
+						$rel_path.$r->filename;
 				} elseif ($r->version == 'small') {
 					$this->site_images [ $type ] [$r->filename] ['small'] = 
 						$rel_path.'thumbnail/'.$r->filename;

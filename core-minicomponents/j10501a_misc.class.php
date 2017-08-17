@@ -121,13 +121,6 @@ class j10501a_misc
 		$configurationPanel->setright(jr_gettext('_JOMRES_COM_JRCONFIG_GLOBALEDITING_DESC', '_JOMRES_COM_JRCONFIG_GLOBALEDITING_DESC', false));
 		$configurationPanel->insertSetting();
 
-		if (!this_cms_is_wordpress()) {
-			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_JRCONFIG_ISWRAPPED', '_JOMRES_COM_JRCONFIG_ISWRAPPED', false));
-			$configurationPanel->setmiddle($lists[ 'isInIframe' ]);
-			$configurationPanel->setright(jr_gettext('_JOMRES_COM_JRCONFIG_ISWRAPPED_DESC', '_JOMRES_COM_JRCONFIG_ISWRAPPED_DESC', false));
-			$configurationPanel->insertSetting();
-		}
-
 		$configurationPanel->setleft(jr_gettext('_JOMRES_CONFIG_JQUERY', '_JOMRES_CONFIG_JQUERY', false));
 		$configurationPanel->setmiddle($lists[ 'load_jquery' ]);
 		$configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_JQUERY_DESC', '_JOMRES_CONFIG_JQUERY_DESC', false));

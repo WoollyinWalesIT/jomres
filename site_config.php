@@ -21,7 +21,6 @@ $jrConfig = array(
   'allowHTMLeditor' => '1',
   'selfRegistrationAllowed' => '1',
   'cal_input' => '%d/%m/%Y',
-  'isInIframe' => '0',
   'errorChecking' => '0',
   'dumpTemplate' => '0',
   'maxwidth' => '900',
