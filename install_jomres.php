@@ -4026,6 +4026,7 @@ function createJomresTables()
 		`last_changed` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 		`permit_number` varchar( 255 ) DEFAULT '',
 		`completed`  BOOL NOT NULL DEFAULT '0',
+		`cat_id` BOOL NOT NULL DEFAULT 0,
 		PRIMARY KEY(`propertys_uid`)
 		) ";
     if (!doInsertSql($query)) {
@@ -6643,7 +6644,7 @@ function showCompletedText()
 		setTimeout(function() {
 		parent.jQuery('#jomres-installation-modal').modal('hide');
 		parent.window.location.href = "<?php echo $administrator_url ?>";
-		}, 5000);
+		}, 50);
 		</script>
 		<?php
 
