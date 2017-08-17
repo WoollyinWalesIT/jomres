@@ -654,3 +654,30 @@ div.star-rating {
 .jr-widget-toggle {
 	cursor: pointer;
 }
+
+.btn-videos {
+	color: #004D15;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	background-color: #10BA00;
+	*background-color: #10BA00;
+	background-image: -moz-linear-gradient(top, #2AFA00, #10BA00);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#2AFA00), to(#10BA00));
+	background-image: -webkit-linear-gradient(top, #2AFA00, #10BA00);
+	background-image: -o-linear-gradient(top, #2AFA00, #10BA00);
+	background-image: linear-gradient(to bottom, #2AFA00, #10BA00);
+	background-repeat: repeat-x;
+	border-color: #10BA00;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2AFA00', endColorstr='#10BA00', GradientType=0);
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+.btn-videos:hover,
+.btn-videos:focus,
+.btn-videos:active,
+.btn-videos.active,
+.btn-videos.disabled,
+.btn-videos[disabled] {
+	color: #FFFFFF;
+	background-color: #10BA00;
+	*background-color: #003bb3;
+}
