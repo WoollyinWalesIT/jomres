@@ -1,6 +1,5 @@
-
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<style>
+<style type="text/css">
 #dropzone {
 	border-width:5px;
 	border-style:dashed;
@@ -28,8 +27,8 @@
     opacity: 1;
 }
 </style>
+
 <h2 class="page-header">{TITLE}</h2>
-<div id="tour_target_mediacentre_introduction"></div>
 
 <patTemplate:tmpl name="notes" unusedvars="strip" type="simpleCondition" requiredVars="note">
 <div class="alert">
@@ -39,17 +38,13 @@
 
 <div class="row-fluid">
 	<div class="span7">
-		<div id="tour_target_mediacentre_resourcepicker"></div>
 		<p>{RESOURCE_TYPE_OPTIONS} <span id="resource_id_dropdown"><input type="hidden" id="resource_id" value="" /></span></p>
-		<div id="tour_target_mediacentre_existingimages"></div>
 		<div id="existing_images"></div>
 	</div>
 	<div class="span5">
 		<div class="well well-small">
-			<div id="tour_target_mediacentre_uploadcontrols"></div>
-			<div id="tour_target_mediacentre_selectedimages"></div>
-
 			<div class="page-header"><h3>Upload form</h3></div>
+			
 			<!-- The fileinput-button span is used to style the file input field as button -->
 			<span class="btn btn-success fileinput-button">
 				<i class="icon-plus"></i>
@@ -57,34 +52,41 @@
 				<!-- The file input field used as target for the file upload widget -->
 				<input id="fileupload" type="file" name="files[]" multiple>
 			</span>
+			
 			<div class="btn" id="clearbutton">
 				<i class="icon-minus"></i>
 				{_JOMRES_MEDIA_CENTRE_CLEAR}
 			</div>
+			
 			<span class="btn btn-primary" id="upload_all">
 				<i class="icon-upload"></i>
 				Upload all
 			</span>
+			
 			<!--<button type="button" class="btn btn-danger delete">
 				<i class="icon-trash"></i>
 				<span>Delete</span>
 			</button>
 			<input type="checkbox" class="toggle">-->
+			
 			<div class="clearfix">&nbsp;</div>
+			
 			<!-- The global progress bar -->
 			<div id="progress" class="progress">
 				<div class="bar"></div>
 			</div>
+			
+			<!-- The dropzone -->
 			<div id="dropzone" class="fade">{_JOMRES_MEDIA_CENTRE_DRAGNDROP}</div>
+			
 			<!-- The container for the uploaded files -->
 			<!--<table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>-->
-			
 			<div id="files" class="files"></div>
 		</div>
 	</div>
 </div>
 
-<script>
+<script type="text/javascript">
 var ajax_url = "{AJAX_URL}";
 
 jomresJquery(function () {
@@ -182,17 +184,15 @@ jomresJquery(function () {
 			jomresJquery('#'+file.random_id).parent().addClass('uploaded');
 			jomresJquery('#'+file.random_id).addClass('alert alert-success');
 			jomresJquery('#progress .bar').css( 'width', '0%' );
-			if (file.hasOwnProperty ('error'))
-				{
+			
+			if (file.hasOwnProperty ('error')) {
 				jomresJquery.each(data.files, function (index, file) {
-				var error = '<div class="alert alert-error">' + file.error + '</div>';
+				var error = '<div class="alert alert-error alert-danger">' + file.error + '</div>';
 				jomresJquery(data.context.children()[index])
 					.append('<br>')
 					.append(error);
 					});
-				}
-			else
-				{
+			} else {
 				var delete_link = '<a href="javascript:void(0);" class="btn btn-danger" onclick="delete_file(\''+file.deleteUrl+'\' , \''+file.random_id+'\')">{_JOMRES_MEDIA_CENTRE_BUTTON_DELETE}</a>';
 				var view_link = '<a href="'+file.url+'" target="_blank" class="btn btn-primary">{_JOMRES_MEDIA_CENTRE_BUTTON_VIEW}</a>';
 
@@ -202,20 +202,18 @@ jomresJquery(function () {
 					.append(links);
 				
 				get_existing_images();
-				}
-			//
-			});
+			}
+		});
 		
-    }).on('fileuploadfail', function (e, data) { // This doesn't seem to work, moved to up a few lines
-        jomresJquery.each(data.files, function (index, file) {
-            var error = jomresJquery('<span/>').text(file.error);
+    }).on('fileuploadfail', function (e, data) {
+        jomresJquery.each(data.files, function (index) {
+            var error = $('<span class="text-danger"/>').text('File upload failed.');
             jomresJquery(data.context.children()[index])
                 .append('<br>')
                 .append(error);
         });
     }).prop('disabled', !jomresJquery.support.fileInput)
         .parent().addClass(jomresJquery.support.fileInput ? undefined : 'disabled');
-	
 });
 
 function get_resource_ids_for_resource_type(resource_type)
@@ -235,11 +233,6 @@ function get_resource_ids_for_resource_type(resource_type)
 		get_existing_images();
 		});
 	}
-	
-jomresJquery( "#clearbutton" ).click(function() {
-	jomresJquery("#files").slideUp();
-	jomresJquery('#files').html('');
-	});
 
 function hide_uploaded()
 	{
@@ -253,7 +246,7 @@ function hide_uploaded()
 		});
 	}
 	
-function delete_file(url , id )
+function delete_file(url, id)
 	{
 	jomresJquery.get(url,function (data) 
 		{
@@ -265,12 +258,6 @@ function delete_file(url , id )
 			}
 		});
 	}
-
-jomresJquery('#upload_all').click(function () {
-	jomresJquery('.start').each(function () {
-		jomresJquery(this).click();
-		})
-	});
 	
 function get_existing_images()
 	{
@@ -289,86 +276,18 @@ function get_existing_images()
 	
 jomresJquery(document).ready(function () {
 	get_resource_ids_for_resource_type(jomresJquery('#resource_types').val());
+	
+	jomresJquery('#upload_all').click(function () {
+		jomresJquery('.start').each(function () {
+			jomresJquery(this).click();
+		})
 	});
+	
+	jomresJquery( "#clearbutton" ).click(function() {
+		jomresJquery("#files").slideUp();
+		jomresJquery('#files').html('');
+	});
+});
 </script>
 
-<!-- The template to display files available for upload -->
-<script id="template-upload" type="text/x-tmpl">
-{% for (var i=0, file; file=o.files[i]; i++) { %}
-    <tr class="template-upload fade">
-        <td>
-            <span class="preview"></span>
-        </td>
-        <td>
-            <p class="name">{%=file.name%}</p>
-            {% if (file.error) { %}
-                <div><span class="label label-danger">Error</span> {%=file.error%}</div>
-            {% } %}
-        </td>
-        <td>
-            <p class="size">{%=o.formatFileSize(file.size)%}</p>
-            {% if (!o.files.error) { %}
-                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar progress-bar-success" style="width:0%;"></div></div>
-            {% } %}
-        </td>
-        <td>
-            {% if (!o.files.error && !i && !o.options.autoUpload) { %}
-                <button class="btn btn-primary start">
-                    <i class="glyphicon glyphicon-upload"></i>
-                    <span>Start</span>
-                </button>
-            {% } %}
-            {% if (!i) { %}
-                <button class="btn btn-warning cancel">
-                    <i class="glyphicon glyphicon-ban-circle"></i>
-                    <span>Cancel</span>
-                </button>
-            {% } %}
-        </td>
-    </tr>
-{% } %}
-</script>
-<!-- The template to display files available for download -->
-<script id="template-download" type="text/x-tmpl">
-{% for (var i=0, file; file=o.files[i]; i++) { %}
-    <tr class="template-download fade">
-        <td>
-            <span class="preview">
-                {% if (file.thumbnailUrl) { %}
-                    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnailUrl%}"></a>
-                {% } %}
-            </span>
-        </td>
-        <td>
-            <p class="name">
-                {% if (file.url) { %}
-                    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
-                {% } else { %}
-                    <span>{%=file.name%}</span>
-                {% } %}
-            </p>
-            {% if (file.error) { %}
-                <div><span class="label label-danger">Error</span> {%=file.error%}</div>
-            {% } %}
-        </td>
-        <td>
-            <span class="size">{%=o.formatFileSize(file.size)%}</span>
-        </td>
-        <td>
-            {% if (file.deleteUrl) { %}
-                <button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
-                    <i class="glyphicon glyphicon-trash"></i>
-                    <span>Delete</span>
-                </button>
-                <input type="checkbox" name="delete" value="1" class="toggle">
-            {% } else { %}
-                <button class="btn btn-warning cancel">
-                    <i class="glyphicon glyphicon-ban-circle"></i>
-                    <span>Cancel</span>
-                </button>
-            {% } %}
-        </td>
-    </tr>
-{% } %}
-</script>
 </patTemplate:tmpl>

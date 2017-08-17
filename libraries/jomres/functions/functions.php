@@ -3932,3 +3932,32 @@ function db_images_import_check()
 
     return $message;
 }
+
+function s3_images_import_check()
+{
+    $message = '';
+    $highlight = (using_bootstrap() ? 'alert alert-danger alert-error' : 'ui-state-error');
+
+    $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+    $jrConfig = $siteConfig->get();
+
+    if (
+		$jrConfig['images_imported_to_db'] == '1' && 
+		$jrConfig['images_imported_to_s3'] == '0' && 
+		$jrConfig['amazon_s3_active'] == '1' && 
+		$jrConfig['amazon_s3_bucket'] != '' &&  
+		$jrConfig['amazon_s3_key'] != '' && 
+		$jrConfig['amazon_s3_secret'] != ''
+		) {
+        $message = '
+<div class="'.$highlight.'">
+	<p>'.jr_gettext('_JOMRES_MEDIA_CENTRE_S3IMPORT_WARNING', '_JOMRES_MEDIA_CENTRE_S3IMPORT_WARNING', false).'</p>
+	<p><strong>'.strtoupper(jr_gettext('_JOMRES_MEDIA_CENTRE_S3IMPORT_WARNING2', '_JOMRES_MEDIA_CENTRE_S3IMPORT_WARNING2', false)).'</strong></p>
+	<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=media_centre_s3import" class="btn btn-danger btn-error">'.jr_gettext('_JOMRES_MEDIA_CENTRE_S3IMPORT_ACTION', '_JOMRES_MEDIA_CENTRE_S3IMPORT_ACTION', false).'</a>
+</div>';
+    } else {
+		return '';
+	}
+
+    return $message;
+}

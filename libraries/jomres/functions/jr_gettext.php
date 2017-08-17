@@ -126,11 +126,7 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
             if ($isLink) {
                 //do nothing
             } else {
-                if (!isset($_REQUEST[ 'no_html' ])) {
-                    $_REQUEST[ 'no_html' ] = 0;
-                }
-
-                if ($editing && $_REQUEST[ 'no_html' ] != '1') {
+                if ($editing && (int)jomresGetParam($_REQUEST, 'no_html', 0) == 0) {
                     if (jomres_cmsspecific_areweinadminarea()) {
                         $url = JOMRES_SITEPAGE_URL_ADMIN_AJAX.'&task=editinplace&lang='.get_showtime('lang').'&language_context='.$jomres_language_definitions->ptype;
                     } else {

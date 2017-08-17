@@ -177,5 +177,14 @@ $jrConfig = array(
   'selected_languages' => '',
   'front_cpanel_home_grid' => '2/3 1/3',
   'reviews_limit' => '2',
-  'images_imported_to_db' => '0'
+  'images_imported_to_db' => '0',
+  'images_imported_to_s3' => '0',
+  'amazon_s3_active' => '0',
+  'amazon_s3_key' => '0',
+  'amazon_s3_secret' => '0',
+  'amazon_s3_region' => '0',
+  'amazon_s3_bucket' => '0',
+  'amazon_cloudfront_domain' => '0',
+  'amazon_s3_remove_local_copies' => '0',
+  'amazon_s3_use_tls' => '0'
 );

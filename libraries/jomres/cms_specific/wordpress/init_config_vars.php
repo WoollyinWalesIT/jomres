@@ -18,12 +18,6 @@ if (!defined('WPINC')) {
 	require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'wp-config.php';
 }
 
-if (isset($_REQUEST[ 'no_html' ])) {
-    $no_html = (int) $_REQUEST[ 'no_html' ];
-} else {
-    $no_html = 0;
-}
-
 $jomresConfig_live_site = get_option('siteurl');
 if (defined('API_STARTED')) {
     $jomresConfig_live_site = str_replace('/jomres/api', '', $jomresConfig_live_site);

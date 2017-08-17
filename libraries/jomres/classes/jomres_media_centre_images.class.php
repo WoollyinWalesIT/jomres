@@ -16,54 +16,38 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_media_centre_images
 {
-    // Store the single instance of Database
-    private static $configInstance;
+	protected $jrConfig;
 
     public function __construct()
     {
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
+        $this->jrConfig = $siteConfig->get();
 		
-		if ($jrConfig['images_imported_to_db'] == '0') {
+		if ($this->jrConfig['images_imported_to_db'] == '0') {
 			$this->use_db = false; //we`ll scandir for images
 		} else {
 			$this->use_db = true; //images are already imported to db
 		}
+
+		//if images details are stored in db, we may want to use Amazon S3
+		if (
+			$this->use_db && 
+			$this->jrConfig['amazon_s3_active'] == '1' && 
+			$this->jrConfig['amazon_s3_bucket'] != '' && 
+			$this->jrConfig['amazon_s3_key'] != '' &&
+			$this->jrConfig['amazon_s3_secret'] != ''
+			) {
+			$this->use_s3 = true;
+		} else {
+			$this->use_s3 = false;
+		}
 		
 		$this->images = array();
 		$this->site_images = array();
-		
-        $this->multi_query_images = array();
-
+		$this->multi_query_images = array();
         $this->multi_query_images [ 'noimage-large' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/noimage.gif';
         $this->multi_query_images [ 'noimage-medium' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/noimage.gif';
         $this->multi_query_images [ 'noimage-small' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/noimage_small.gif';
-    }
-
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
-    }
-
-    public function __clone()
-    {
-        trigger_error('Cloning not allowed on a singleton object', E_USER_ERROR);
-    }
-
-    public function __set($setting, $value)
-    {
-        $this->$setting = $value;
-
-        return true;
-    }
-
-    public function __get($setting)
-    {
-        return $this->$setting;
     }
 
 	//get all property images
@@ -438,8 +422,8 @@ class jomres_media_centre_images
 		return true;
 	}
 	
-	//save image details to db
-	public function save_image_details_to_db($property_uid = 0, $resource_type = '', $resource_id = '', $file_name = '', $version = '', $resource_id_required = true)
+	//do jomres specific stuff for the newly uploaded image
+	public function handle_uploaded_image($property_uid = 0, $resource_type = '', $resource_id = '', $file_name = '', $version = '', $resource_id_required = true)
 	{
 		if (!$this->use_db) {
 			return true;
@@ -457,6 +441,22 @@ class jomres_media_centre_images
 			throw new Exception('Error: File name empty.');
 		}
 		
+		//save image details to db
+		$this->save_image_details_to_db($property_uid, $resource_type, $resource_id, $file_name, $version, $resource_id_required);
+		
+		//copy image to amazon s3 if enabled
+		if ($this->use_s3) {
+			//build image path from the available data
+			$image = $this->build_image_path($property_uid, $resource_type, $resource_id, $file_name, $version, $resource_id_required);
+			
+			//copy image to s3
+			$this->copy_image_to_s3($image);
+		}
+	}
+	
+	//save image details to db
+	private function save_image_details_to_db($property_uid = 0, $resource_type = '', $resource_id = '', $file_name = '', $version = '', $resource_id_required = true)
+	{
 		if ($version == '') {
 			$version = 'large';
 		}
@@ -529,28 +529,6 @@ class jomres_media_centre_images
             }
         }
 
-		//BC gifs TODO: can probably be removed
-        if (file_exists($abs_path.'gif'.JRDS.'small_thumb.gif')) {
-            if (!unlink($abs_path.'gif'.JRDS.'small_thumb.gif')) {
-                error_logging("Error, media centre couldn't delete ".$abs_path.'gif'.JRDS.'small_thumb.gif');
-                $passed = false;
-            }
-        }
-
-        if (file_exists($abs_path.'gif'.JRDS.'medium_thumb.gif')) {
-            if (!unlink($abs_path.'gif'.JRDS.'medium_thumb.gif')) {
-                error_logging("Error, media centre couldn't delete ".$abs_path.'gif'.JRDS.'medium_thumb.gif');
-                $passed = false;
-            }
-        }
-
-        if (file_exists($abs_path.'gif'.JRDS.'slideshow_lib.php')) {
-            if (!unlink($abs_path.'gif'.JRDS.'slideshow_lib.php')) {
-                error_logging("Error, media centre couldn't delete ".$abs_path.'gif'.JRDS.'slideshow_lib.php');
-                $passed = false;
-            }
-        }
-
         if ($passed) {
 			if ($this->use_db) {
 				$query = "DELETE FROM #__jomres_images 
@@ -562,6 +540,19 @@ class jomres_media_centre_images
 				if (!doInsertSql($query,'')) {
 					throw new Exception('Error: Delete image from db failed.');
 				}
+			}
+			
+			//delete image from amazon s3
+			if ($this->use_s3) {
+				//build image path from the available data
+				$image_large = $this->build_image_path($property_uid, $resource_type, $resource_id, $file_name, '', $resource_id_required);
+				$image_medium = $this->build_image_path($property_uid, $resource_type, $resource_id, $file_name, 'medium', $resource_id_required);
+				$image_small = $this->build_image_path($property_uid, $resource_type, $resource_id, $file_name, 'thumbnail', $resource_id_required);
+				
+				//delete image from s3
+				$this->delete_image_from_s3($image_large);
+				$this->delete_image_from_s3($image_medium);
+				$this->delete_image_from_s3($image_small);
 			}
 			
 			return true;
@@ -579,11 +570,8 @@ class jomres_media_centre_images
 		if ($property_uid == 0) {
 			throw new Exception('Error: Property uid not set.');
 		}
-
-		//delete files from disk
-		emptyDir(JOMRES_IMAGELOCATION_ABSPATH.$property_uid.JRDS);
-		rmdir(JOMRES_IMAGELOCATION_ABSPATH.$property_uid.JRDS);
         
+		//delete image from db
 		if ($this->use_db) {
 			$query = "DELETE FROM #__jomres_images WHERE `property_uid` = ".(int)$property_uid;
 			
@@ -592,6 +580,82 @@ class jomres_media_centre_images
 			}
 		}
 		
+		//mount jomres filesystem
+		$filesystem = jomres_singleton_abstract::getInstance('jomres_filesystem')->getFilesystem();
+
+		//delete images from disk
+		$filesystem->deleteDir('local://uploadedimages/'.$property_uid);
+		
+		if ($this->use_s3) {
+			$filesystem->deleteDir('s3://uploadedimages/'.$property_uid);
+		}
+		
 		return true;
+	}
+	
+	private function copy_image_to_s3($image = '')
+	{
+		if ($image == '') {
+			return false;
+		}
+
+		//mount jomres filesystem
+		$filesystem = jomres_singleton_abstract::getInstance('jomres_filesystem')->getFilesystem();
+		
+		//check if image already exists
+		if ($filesystem->has('s3://uploadedimages/'.$image)) {
+			$filesystem->delete('s3://uploadedimages/'.$image);
+		}
+		
+		//copy image
+		$filesystem->copy('local://uploadedimages/'.$image, 's3://uploadedimages/'.$image);
+		
+		/* if ($this->jrConfig['amazon_s3_remove_local_copies'] == '1') {
+			$filesystem->delete('local://uploadedimages/'.$image);
+		} */
+		
+		return true;
+	}
+	
+	private function delete_image_from_s3($image = '')
+	{
+		if ($image == '') {
+			return false;
+		}
+
+		//mount jomres filesystem
+		$filesystem = jomres_singleton_abstract::getInstance('jomres_filesystem')->getFilesystem();
+		
+		//delete image
+		$filesystem->delete('s3://uploadedimages/'.$image);
+		
+		return true;
+	}
+	
+	private function build_image_path($property_uid = 0, $resource_type = '', $resource_id = '', $file_name = '', $version = '', $resource_id_required = true) 
+	{
+		$image = '';
+		
+		if ($property_uid != 0) {
+			$image .= $property_uid.'/';
+		}
+		
+		if ($resource_type != '') {
+			$image .= $resource_type.'/';
+		}
+		
+		if ($resource_id != '' && $resource_id_required) {
+			$image .= $resource_id.'/';
+		}
+		
+		if ($version != '') {
+			$image .= $version.'/';
+		}
+		
+		if ($file_name != '') {
+			$image .= $file_name;
+		}
+		
+		return $image;
 	}
 }

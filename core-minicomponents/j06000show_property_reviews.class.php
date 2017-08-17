@@ -49,6 +49,7 @@ class j06000show_property_reviews
         $data_only = false;
 
         $task = jomresGetParam($_REQUEST, 'task', '');
+		$modal_wrap = (int)jomresGetParam($_REQUEST, 'modal_wrap', 0);
 
         $just_added = 0;
         if (isset($_GET[ 'ja' ])) {
@@ -97,10 +98,8 @@ class j06000show_property_reviews
         $output[ '_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW' ] = jr_gettext('_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW', '_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW', false, false);
         $output[ '_JOMRES_REVIEWS_THANKS_FOR_CONFIRM' ] = jr_gettext('_JOMRES_REVIEWS_THANKS_FOR_CONFIRM', '_JOMRES_REVIEWS_THANKS_FOR_CONFIRM', false, false);
         $output[ '_JOMRES_REVIEWS_ALREADY_CONFIRMED' ] = jr_gettext('_JOMRES_REVIEWS_ALREADY_CONFIRMED', '_JOMRES_REVIEWS_ALREADY_CONFIRMED', false, false);
-
-        if ($_REQUEST['modal_wrap'] == '0') {
-            $output[ 'PROPERTY_NAME' ] = $current_property_details->property_name;
-        }
+		
+		$output[ 'PROPERTY_NAME' ] = $current_property_details->property_name;
 
         $output[ '_JOMRES_REVIEWS_THANKS_FOR_REVIEW' ] = '';
         $output[ 'SHOW_THANKS' ] = 'false';
