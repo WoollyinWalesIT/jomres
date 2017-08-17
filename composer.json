@@ -20,6 +20,8 @@
         "aferrandini/phpqrcode": "^1.0",
         "monolog/monolog": "^1.23",
         "psr/log": "^1.0",
-        "johngrogg/ics-parser": "^2.0"
+        "johngrogg/ics-parser": "^2.0",
+        "league/flysystem": "^1.0",
+        "league/flysystem-aws-s3-v3": "^1.0"
     }
 }
