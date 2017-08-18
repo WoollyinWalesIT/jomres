@@ -33,6 +33,11 @@ class j16000showplugins
             jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN.'&task=loader_wizard');
         }
 
+		if ($key_validation->is_trial_license == '1' && ioncube_loader_version() < 6 ) {
+			echo "Error, your Ioncube Loader version is too low. You have ".ioncube_loader_version()." installed and you need at least version 6";
+			return;
+		}
+		
         if ($key_validation->is_trial_license == '1') {
             if (function_exists('ioncube_loader_version')) {
                 $ioncubeVersion = ioncube_loader_version();
