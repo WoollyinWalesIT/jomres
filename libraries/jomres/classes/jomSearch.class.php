@@ -1377,30 +1377,35 @@ function prepPriceRangeSearch($increments = 10)
 	}
 
 	sort($allTariffs);
-	$lowest = $allTariffs[ 0 ];
-	$count = count($allTariffs) - 1;
-	$highest = $allTariffs[ $count ];
+	
+	if ( isset($allTariffs[ 0 ])) {
+		$lowest = $allTariffs[ 0 ];
+		// Found during testing, when one property has the price 100,000,000 and the increments is left to the default 20, you'll get an out of memory error.
+		// This is because you'll have up to half a million possible ranges. Here we'll test highest/increments. If the result is > 100 we'll have to set the increments to something a bit more sensible to stave off out of memory errors.
+		if ($highest / $increments > 10000) {
+			$increments = $increments * 1000;
+		}
 
-	// Found during testing, when one property has the price 100,000,000 and the increments is left to the default 20, you'll get an out of memory error.
-	// This is because you'll have up to half a million possible ranges. Here we'll test highest/increments. If the result is > 100 we'll have to set the increments to something a bit more sensible to stave off out of memory errors.
-	if ($highest / $increments > 10000) {
-		$increments = $increments * 1000;
-	}
-
-	$ranges = my_range(0, $highest, $increments);
-	foreach ($ranges as $range) {
-		$startRange = $range;
-		$endRange = $range + $increments;
-		$rangeHasElements = false;
-		foreach ($allTariffs as $t) {
-			if ($t > $startRange && $t <= $endRange) {
-				$rangeHasElements = true;
+		$ranges = my_range(0, $highest, $increments);
+		foreach ($ranges as $range) {
+			$startRange = $range;
+			$endRange = $range + $increments;
+			$rangeHasElements = false;
+			foreach ($allTariffs as $t) {
+				if ($t > $startRange && $t <= $endRange) {
+					$rangeHasElements = true;
+				}
+			}
+			if ($rangeHasElements) {
+				$result[ ] = $startRange.'-'.$endRange;
 			}
 		}
-		if ($rangeHasElements) {
-			$result[ ] = $startRange.'-'.$endRange;
-		}
+		$count = count($allTariffs) - 1;
+		$highest = $allTariffs[ $count ];		
 	}
+
+
+
 
     return $result;
 }
