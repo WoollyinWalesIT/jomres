@@ -29,6 +29,7 @@ class j07020showplugins
         $this->retVals = array();
 
         $remote_plugins = array();
+		$remote_plugins_data = false;
 		$installed_plugins = array();
 
         if (file_exists(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php')) {
