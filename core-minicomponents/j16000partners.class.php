@@ -47,59 +47,52 @@ class j16000partners
             );
 
         $partner_data = array();
+		
+		$client = new GuzzleHttp\Client();
 
-        if (function_exists('curl_init')) {
-            foreach ($partners as $key => $p) {
-                $url = $p['plugin_list_url'];
-                logging::log_message('Starting curl call to '.$url, 'Curl', 'DEBUG');
-                $logging_time_start = microtime(true);
+        foreach ($partners as $key => $p) {
+			$url = $p['plugin_list_url'];
 
-                $curl_handle = curl_init();
-                curl_setopt($curl_handle, CURLOPT_URL, $url);
-                curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
-                curl_setopt($curl_handle, CURLOPT_USERAGENT, 'Jomres');
-                curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
-                $response = curl_exec($curl_handle);
-                curl_close($curl_handle);
+			logging::log_message('Starting guzzle call to '.$url, 'Guzzle', 'DEBUG');
+			
+			try {
+				$response = $client->request('GET', $url)->getBody()->getContents();
+			}
+			catch (Exception $e){
+				//do nothing, move on
+			}
 
-                $logging_time_end = microtime(true);
-                $logging_time = $logging_time_end - $logging_time_start;
-                logging::log_message('Curl call took '.$logging_time.' seconds ', 'Curl', 'DEBUG');
+			$partner_plugins = json_decode($response, true);
 
-                $partner_plugins = json_decode($response, true);
+			if (!empty($partner_plugins)) {
+				$partner_data[$key] = $p;
+				$partner_data[$key]['id'] = $key;
+				foreach ($partner_plugins as $plugin) {
+					$partner_data[$key]['plugins'][] = array(
+						'name' => jomres_sanitise_string($plugin['name']),
+						'image' => jomres_sanitise_string($plugin['image']),
+						'description' => nl2br(jomres_sanitise_string($plugin['description'])),
+						'purchase_url' => jomres_sanitise_string($plugin['purchase_url']),
+						'demo' => jomres_sanitise_string($plugin['demo']),
+						);
+				}
 
-                if (!empty($partner_plugins)) {
-                    $partner_data[$key] = $p;
-                    $partner_data[$key]['id'] = $key;
-                    foreach ($partner_plugins as $plugin) {
-                        $partner_data[$key]['plugins'][] = array(
-                            'name' => jomres_sanitise_string($plugin['name']),
-                            'image' => jomres_sanitise_string($plugin['image']),
-                            'description' => nl2br(jomres_sanitise_string($plugin['description'])),
-                            'purchase_url' => jomres_sanitise_string($plugin['purchase_url']),
-                            'demo' => jomres_sanitise_string($plugin['demo']),
-                            );
-                    }
+				$tmpl = new patTemplate();
+				$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
+				$tmpl->readTemplatesFromInput('jomres_partners_plugins.html');
+				$tmpl->addRows('sub_pageoutput', $partner_data[$key]['plugins']);
+				$partner_data[$key]['plugins'] = $tmpl->getParsedTemplate();
+			}
+		}
 
-                    $tmpl = new patTemplate();
-                    $tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
-                    $tmpl->readTemplatesFromInput('jomres_partners_plugins.html');
-                    $tmpl->addRows('sub_pageoutput', $partner_data[$key]['plugins']);
-                    $partner_data[$key]['plugins'] = $tmpl->getParsedTemplate();
-                }
-            }
-
-            $pageoutput = array();
-            $pageoutput[] = $output;
-            $tmpl = new patTemplate();
-            $tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
-            $tmpl->readTemplatesFromInput('jomres_partners.html');
-            $tmpl->addRows('pageoutput', $pageoutput);
-            $tmpl->addRows('rows', $partner_data);
-            $tmpl->displayParsedTemplate();
-        } else {
-            throw new Exception('Unable to run Partners script, curl not available.');
-        }
+		$pageoutput = array();
+		$pageoutput[] = $output;
+		$tmpl = new patTemplate();
+		$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
+		$tmpl->readTemplatesFromInput('jomres_partners.html');
+		$tmpl->addRows('pageoutput', $pageoutput);
+		$tmpl->addRows('rows', $partner_data);
+		$tmpl->displayParsedTemplate();
     }
 
     // This must be included in every Event/Mini-component

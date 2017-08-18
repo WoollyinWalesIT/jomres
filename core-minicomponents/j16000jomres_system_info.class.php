@@ -66,8 +66,8 @@ class j16000jomres_system_info
 
             if (!$current_version_is_uptodate) {
 				
-				jr_import('jomres_check_support_key');
-				$key_validation = new jomres_check_support_key(JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins');
+				$key_validation = jomres_singleton_abstract::getInstance('jomres_check_support_key');
+				
 				$this->key_valid = $key_validation->key_valid;
 
                 $output[ 'HIGHLIGHT' ] = (using_bootstrap() ? 'alert alert-error' : 'ui-state-error');

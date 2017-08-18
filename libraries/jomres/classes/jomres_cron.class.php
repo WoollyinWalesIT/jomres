@@ -32,12 +32,6 @@ class jomres_cron
         $this->debug = array();
 		$this->displaylog = false;
         
-		if (!function_exists('curl_init')) {
-            $this->displaylog = true;
-            $this->debug[ ] = '<b>Cannot process jobs, curl function does not exist!</b>';
-			$this->displayDebug();
-        }
-        
 		$this->checkForStalledJobs(); // New for 5.1, some old jobs have been found to be locked, we need to check those and unlock any that need unlocking.
         
 		$this->getAllJobs();

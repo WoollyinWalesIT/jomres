@@ -33,11 +33,6 @@ class j16000show_bootstrap_warning
             $output_now = true;
         }
 
-        jr_import('jomres_check_support_key');
-        $key_validation = new jomres_check_support_key(JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins');
-
-        $this->key_valid = $key_validation->key_valid;
-
         $output = array();
         $pageouput = array();
 

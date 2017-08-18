@@ -37,12 +37,11 @@ class j10501a_misc
 		$navbar_location_dropdown = $componentArgs[ 'navbar_location_dropdown' ];
         $support_key_is_trial_license = '';
         $renewal_link = '';
+		
+		$jomres_check_support_key = jomres_singleton_abstract::getInstance('jomres_check_support_key');
+		$jomres_check_support_key->check_license_key(true);
 
         if (trim($jrConfig['licensekey']) != '') {
-            jr_import('jomres_check_support_key');
-            $jomres_check_support_key = new jomres_check_support_key('site_settings');
-            $jomres_check_support_key->check_license_key();
-
             if ($jomres_check_support_key->key_valid) {
                 if ($jomres_check_support_key->allows_plugins == '1') {
                     $support_key_message = '<p class="alert alert-success">'.jr_gettext('_JOMRES_SUPPORTKEY_DESC_VALID', '_JOMRES_SUPPORTKEY_DESC_VALID', false, false).'</p>';
@@ -77,9 +76,7 @@ class j10501a_misc
         $configurationPanel->setright(jr_gettext('_JOMRES_SUPPORTKEY_DESC', '_JOMRES_SUPPORTKEY_DESC', false).' '.$support_key_message);
         $configurationPanel->insertSetting();
 
-        jr_import('jomres_check_support_key');
-        $key_validation = new jomres_check_support_key(JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins');
-        if ($key_validation->shop_status == 'OPEN') {
+        if ($jomres_check_support_key->shop_status == 'OPEN') {
             $configurationPanel->setleft(jr_gettext('_JOMRES_LICENSESERVER_USERNAME', '_JOMRES_LICENSESERVER_USERNAME', false));
             $configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_license_server_username" value="'.$jrConfig[ 'license_server_username' ].'" />');
             $configurationPanel->setright(jr_gettext('_JOMRES_LICENSESERVER_USERNAME_DESC', '_JOMRES_LICENSESERVER_USERNAME_DESC', false));

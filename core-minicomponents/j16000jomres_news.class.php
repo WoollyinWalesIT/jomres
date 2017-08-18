@@ -49,25 +49,19 @@ class j16000jomres_news
             }
         }
 
-        if (function_exists('curl_init') && !file_exists(JOMRES_TEMP_ABSPATH.'news.php')) {
-            $url = 'http://updates.jomres4.net/news.php';
-            logging::log_message('Starting curl call to '.$url, 'Curl', 'DEBUG');
-            $logging_time_start = microtime(true);
+        if (!file_exists(JOMRES_TEMP_ABSPATH.'news.php')) {
+			$base_uri = 'http://updates.jomres4.net/';
+			$query_string = 'news.php';
 
-            $curl_handle = curl_init();
-            curl_setopt($curl_handle, CURLOPT_URL, $url);
-            curl_setopt($curl_handle, CURLOPT_USERAGENT, 'Jomres');
-            curl_setopt($curl_handle, CURLOPT_TIMEOUT, 8);
-            curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
-            curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
-            $buffer = curl_exec($curl_handle);
-            curl_close($curl_handle);
+			$client = new GuzzleHttp\Client([
+				'base_uri' => $base_uri
+			]);
 
-            $logging_time_end = microtime(true);
-            $logging_time = $logging_time_end - $logging_time_start;
-            logging::log_message('Curl call took '.$logging_time.' seconds ', 'Curl', 'DEBUG');
+            logging::log_message('Starting guzzle call to '.$base_uri.$query_string, 'Guzzle', 'DEBUG');
 
-            if ($buffer != '') {
+			$buffer = $client->request('GET', $query_string)->getBody()->getContents();
+            
+			if ($buffer != '') {
                 file_put_contents(JOMRES_TEMP_ABSPATH.'news.php', $buffer);
             }
         }

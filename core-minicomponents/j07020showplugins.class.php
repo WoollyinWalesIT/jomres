@@ -42,27 +42,20 @@ class j07020showplugins
             }
         }
 
-        if (function_exists('curl_init') && !file_exists(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php')) {
+        if (!file_exists(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php')) {
             include JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'jomres_config.php';
             $current_version = $mrConfig[ 'version' ];
+			
+			$base_uri = 'http://plugins.jomres4.net/';
+			$query_string = 'index.php?r=dp&format=json&cms='._JOMRES_DETECTED_CMS.'&jomresver='.$current_version;
 
-            $query_string = 'http://plugins.jomres4.net/index.php?r=dp&format=json&cms='._JOMRES_DETECTED_CMS.'&jomresver='.$current_version;
+			$client = new GuzzleHttp\Client([
+				'base_uri' => $base_uri
+			]);
 
-            logging::log_message('Starting curl call to '.$query_string, 'Curl', 'DEBUG');
-            $logging_time_start = microtime(true);
-
-            $curl_handle = curl_init();
-            curl_setopt($curl_handle, CURLOPT_URL, $query_string);
-            curl_setopt($curl_handle, CURLOPT_USERAGENT, 'Jomres');
-            curl_setopt($curl_handle, CURLOPT_TIMEOUT, 8);
-            curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 8);
-            curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
-            $remote_plugins_data = curl_exec($curl_handle);
-            curl_close($curl_handle);
-
-            $logging_time_end = microtime(true);
-            $logging_time = $logging_time_end - $logging_time_start;
-            logging::log_message('Curl call took '.$logging_time.' seconds ', 'Curl', 'DEBUG');
+            logging::log_message('Starting guzzle call to '.$base_uri.$query_string, 'Guzzle', 'DEBUG');
+			
+			$remote_plugins_data = $client->request('GET', $query_string)->getBody()->getContents();
 
             // Uncomment this to show all updates, including beta plugins.
             //$remote_plugins_data = queryUpdateServer( "", "r=dp&format=json&cms=" . _JOMRES_DETECTED_CMS  );

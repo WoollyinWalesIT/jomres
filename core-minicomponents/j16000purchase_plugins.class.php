@@ -26,8 +26,8 @@ class j16000purchase_plugins
             return;
         }
 
-        jr_import('jomres_check_support_key');
-        $key_validation = new jomres_check_support_key(JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins');
+        $key_validation = jomres_singleton_abstract::getInstance('jomres_check_support_key');
+		$key_validation->check_license_key(true); //only needed if we want to force a recheck
         $key_validation->remove_plugin_licenses_file();
 
         $items = jomresGetParam($_REQUEST, 'items', '');

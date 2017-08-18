@@ -46,9 +46,9 @@ class j16000updates
             return;
         }
         // This is just to improve the user's experience. Users can remove this and attempt to upgrade, but then their Quickstart Only installation's plugins may not work with the newer version of Jomres.
-        jr_import('jomres_check_support_key');
-        $key_validation = new jomres_check_support_key(JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins');
-        $this->key_valid = $key_validation->key_valid;
+        $key_validation = jomres_singleton_abstract::getInstance('jomres_check_support_key');
+        
+		$this->key_valid = $key_validation->key_valid;
 
         $current_version_is_uptodate = check_jomres_version();
 
