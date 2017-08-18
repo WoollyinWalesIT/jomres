@@ -72,10 +72,8 @@ class jomres_property_payment_methods
 
             //some properties don`t have gateways enabled, so we`ll set $this->multi_query_result to '' for them, otherwise the mysql query will be executed again
             foreach ($property_uids as $uid) {
-                $arrayKeys = array_keys($this->multi_query_result);
-
-                if (!in_array($uid, $arrayKeys)) {
-                    $this->multi_query_result[ $uid ]['XXX'] = '';
+                if (!isset($this->multi_query_result[$uid])) {
+                    $this->multi_query_result[ $uid ]['XXX'] = array();
                     $this->multi_query_result[ $uid ]['XXX']['gateway'] = '';
                     $this->multi_query_result[ $uid ]['XXX']['gateway_name'] = '';
                     $this->multi_query_result[ $uid ]['XXX']['gateway_image'] = '';
