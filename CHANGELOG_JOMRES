@@ -4,6 +4,8 @@
 <span class="label label-success">Feature</span> Added changes to allow us to have global coupon codes (created by site admins) that apply to all properties.
 <span class="label label-success">Feature</span> Added a minimum deposit value setting to property configuration. If the deposit calculated is less than N figure, then the N figure is used to define the deposit.
 <span class="label label-success">Feature</span> Added the language context feature to language file translation page in jomres admin cpanel. This way we can have property type specific language strings, without needing to have property type specific language files (which are mostly duplicate language strings, very few really different). Everything is stored in db, so it`s upgrade safe.
+<span class="label label-success">Feature</span> Added support to save media centre image details in db to avoid scanning dirs each time a page loads to find all images.
+<span class="label label-success">Feature</span> Added Amazon S3 and CloudFront integration for images.
  
 <span class="label label-warning">Change</span> Invoice webhooks updated
 <span class="label label-warning">Change</span> Added support to view only invoice line items and transactions, will be used later.
@@ -21,6 +23,16 @@
 <span class="label label-warning">Change</span> Tweaked sockets timeouts because we don`t need to wait too long for a response
 <span class="label label-warning">Change</span> Removed a specific check for classes in custom_code dir, as that dir is already available in the classes registry
 <span class="label label-warning">Change</span> Added cpanel task to excluded tasks in access control, as this is the cpanel default frontpage
+<span class="label label-warning">Change</span> Removed property type specific language files. Now we can have property type specific language strings saved in db, so no need to duplicate an entire file for each property type.
+<span class="label label-warning">Change</span> Added property categories tutorial video
+<span class="label label-warning">Change</span> Added Armenian language file to system. Thanks Hamlet.
+<span class="label label-warning">Change</span> Removed the unused bootstrap-tour js files
+<span class="label label-warning">Change</span> Disabled image rotation based on exif meta data
+<span class="label label-warning">Change</span> Added feature to allow devs to rerun the plugin installer script without needing to reinstall a plugin. Useful when creating plugins and you want to recreate database tables.
+<span class="label label-warning">Change</span> Removed some unused options (component wrapped) and cleaned up code
+<span class="label label-warning">Change</span> Added video tutorials to BS2 top.html.
+<span class="label label-warning">Change</span> Updated css so that the video tutorials button would stand out more as even some of our more regular users had failed to see that it exists.
+<span class="label label-warning">Change</span> Added an ioncube version test to plugin manager installer.
 
 <span class="label label-important label-danger">Fix</span> Fixed an issue where the guest's cancel booking button text would not appear.
 <span class="label label-important label-danger">Fix</span> Solved a problem that`s sometimes encountered with jintour properties and coupons
