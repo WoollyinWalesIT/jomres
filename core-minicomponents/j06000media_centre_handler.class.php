@@ -48,6 +48,9 @@ class j06000media_centre_handler
             return;
         }
 		
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+        $jrConfig = $siteConfig->get();
+		
 		//resource_type_gathering_trigger
 		if (jomres_cmsspecific_areweinadminarea()) {
 			$result = $MiniComponents->triggerEvent('11010');
@@ -99,7 +102,7 @@ class j06000media_centre_handler
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
 
         if (isset($_GET['delete']) && $_GET['delete'] == '1') {
-            $file_name = (string) jomresGetParam($_REQUEST, 'filename', '');
+            $file_name = (string) jomresGetParam($_REQUEST, 'file', '');
             if ($file_name == '') {
                 return;
             }
@@ -119,14 +122,39 @@ class j06000media_centre_handler
 			}
 			
 			echo json_encode($response);
-			
+			return;
         } else {
             if (!empty($_FILES)) {
 				jr_import('jomres_media_centre_uploader');
+
+				if (!jomres_cmsspecific_areweinadminarea()) {
+					$script_url = JOMRES_SITEPAGE_URL_AJAX.'&task=media_centre_handler&delete=1&resource_type='.$resource_type.'&resource_id='.$resource_id;
+				} else {
+					$script_url = JOMRES_SITEPAGE_URL_ADMIN_AJAX.'&task=media_centre_handler&delete=1&resource_type='.$resource_type.'&resource_id='.$resource_id;
+				}
+
                 $upload_handler = new UploadHandler(array(
-                    'accept_file_types' => '/\.(jpe?g|png)$/i',
+                    //class params
+					'accept_file_types' => '/\.(jpe?g|png)$/i',
+					'script_url' => $script_url,
                     'upload_dir' => $abs_path,
                     'upload_url' => $rel_path,
+					'image_versions' => array(
+						// The empty image version key defines options for the original/large image:
+						'' => array(
+							'max_width' => (int)$jrConfig[ 'maxwidth' ],
+							'max_height' => (int)$jrConfig[ 'maxwidth' ]
+						),
+						'medium' => array(
+							'max_width' => (int)$jrConfig[ 'thumbnail_property_header_max_width' ],
+							'max_height' => (int)$jrConfig[ 'thumbnail_property_header_max_height' ]
+						),
+						'thumbnail' => array(
+							'max_width' => (int)$jrConfig[ 'thumbnail_property_list_max_width' ],
+							'max_height' => (int)$jrConfig[ 'thumbnail_property_list_max_height' ]
+						)
+					),
+					//jomres specific params, required for post upload processing
 					'property_uid' => $property_uid,
 					'resource_type' => $resource_type,
 					'resource_id' => $resource_id,

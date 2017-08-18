@@ -119,11 +119,6 @@ if (!class_exists('patErrorManager')) {
     require_once JOMRES_LIBRARIES_ABSPATH.'phptools'.JRDS.'patErrorManager.php';
 }
 
-//PHPMailer
-/* require_once JOMRES_LIBRARIES_ABSPATH.JRDS.'PHPMailer-5.2.21'.JRDS.'PHPMailerAutoload.php';
-PHPMailerAutoload('phpmailer');
-PHPMailerAutoload('smtp'); */
-
 //site config
 $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 $jrConfig = $siteConfig->get();
@@ -135,8 +130,8 @@ if (!isset($jrConfig['log_path']) || $jrConfig['log_path'] == '') {
 
 define('JOMRES_SYSTEMLOG_PATH', fix_path($jrConfig['log_path']));
 
-// We can't use the api's vendor autoloader, it breaks Joomla's autoloader. We have to manually include the files we need instead.
-if (!defined('JOMRES_API_CMS_ROOT')) { // The API includes the logger class. As the API doesn't always include the framework ( for performance ) to use the logger within Jomres itself, we'll need to make the distinction here
+// The API includes the logger class. As the API doesn't always include the framework ( for performance ) to use the logger within Jomres itself, we'll need to make the distinction here
+if (!defined('JOMRES_API_CMS_ROOT')) {
     require_once JOMRES_API_ABSPATH.'classes'.JRDS.'logging.class.php';
 }
 
@@ -160,16 +155,27 @@ if (get_showtime('lang') && get_showtime('lang') == '') {
 
 //define uploaded images paths
 if (!defined('JOMRES_IMAGELOCATION_ABSPATH')) {
-    define('JOMRES_IMAGELOCATION_ABSPATH', JOMRESPATH_BASE.'uploadedimages'.JRDS);
-    define('JOMRES_IMAGELOCATION_RELPATH', get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/');
+	define('JOMRES_IMAGELOCATION_ABSPATH', JOMRESPATH_BASE.'uploadedimages'.JRDS);
+	
+	if ($jrConfig['amazon_s3_active'] != '1' || $jrConfig['amazon_s3_bucket'] == '') {
+		define('JOMRES_IMAGELOCATION_RELPATH', get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/');
+	} else {
+		if ($jrConfig['amazon_cloudfront_domain'] != '') {
+			$amazon_url = 'https://'.$jrConfig['amazon_cloudfront_domain'];
+		} else {
+			$amazon_url = 'https://'.$jrConfig['amazon_s3_bucket'].'.s3.amazonaws.com';
+		}
+		
+		define('JOMRES_IMAGELOCATION_RELPATH', $amazon_url.'/uploadedimages/');
+	}
 }
 
 //fullscreen view setup
 set_showtime('tmplcomponent', 'jomres');
 set_showtime('tmplcomponent_source', JOMRES_LIBRARIES_ABSPATH.'fullscreen_view'.JRDS.'jomres.php');
 
+//copy fullscreen_view/jomres.php to the joomla template dir to help with fullscreen mode
 if (!defined('AUTO_UPGRADE')) {
-	//copy fullscreen_view/jomres.php to the joomla template dir to help with fullscreen mode
     jomres_cmsspecific_patchJoomlaTemplate();
 }
 
@@ -185,18 +191,6 @@ if ($jrConfig[ 'development_production' ] == 'production') {
 } else {
     error_reporting(-1);
     ini_set('display_errors', 'On');
-}
-
-//modal
-if (!isset($_REQUEST['modal_wrap'])) {
-    $_REQUEST['modal_wrap'] = 0;
-} elseif ($_REQUEST['modal_wrap'] == '1') {
-    echo simple_template_output(JOMRES_TEMPLATEPATH_FRONTEND, 'modal_wrap_start.html', urldecode(jomresGetParam($_REQUEST, 'modal_title', '')));
-}
-
-//TODO may not be needed
-if (!isset($_REQUEST[ 'no_html' ])) {
-    $_REQUEST[ 'no_html' ] = 0;
 }
 
 //TODO find a better place, maybe jomres.php and framework.php

@@ -96,6 +96,8 @@ class j16000jomres_warnings
         $output['PROPERTY_TYPE_WARNING'] = $jomres_property_types->get_property_types_with_no_room_types_assigned($show_link_to_room_types = true);
 		
 		$output['MEDIA_CENTRE_DB_IMAGES_IMPORT_WARNING'] = db_images_import_check();
+		
+		$output['MEDIA_CENTRE_S3_IMAGES_IMPORT_WARNING'] = s3_images_import_check();
 
         $pageoutput[ ] = $output;
         $tmpl = new patTemplate();

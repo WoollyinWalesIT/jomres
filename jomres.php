@@ -98,8 +98,8 @@ try {
     set_showtime('jomressession', $jomressession);
 
     //set some showtimes we`ll need later
-    $popup = intval(jomresGetParam($_REQUEST, 'popup', 0));
-    $no_html = (int) jomresGetParam($_REQUEST, 'no_html', 0);
+    $popup = (int)jomresGetParam($_REQUEST, 'popup', 0);
+    $no_html = (int)jomresGetParam($_REQUEST, 'no_html', 0);
     $task = str_replace('&#60;x&#62;', '', jomresGetParam($_REQUEST, 'task', ''));
 
     if ($task == "savePlugin") { // 9.9 task names were changed, and savePlugin was renumbered and renamed to save_plugin. As many 3rd party gateways will use savePlugin (and it may never be updated ) we'll change the task name here so that they continue to work.
@@ -308,11 +308,6 @@ try {
         foreach ($MiniComponents->log as $log) {
             echo 'Log :'.$log.'<br>';
         }
-    }
-
-    //close modal wrapper TODO: maybe find something better?
-    if ($_REQUEST['modal_wrap'] == '1') {
-        echo simple_template_output(JOMRES_TEMPLATEPATH_FRONTEND, 'modal_wrap_end.html');
     }
 
     // After updating jquery ui to 1.9.3 we started seeing a problem where the entire site would be reloaded into the jquery tabs.
