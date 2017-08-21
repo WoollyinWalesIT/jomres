@@ -1743,7 +1743,6 @@ function queryUpdateServer($script, $queryString, $serverType = 'plugin')
 	catch (Exception $e) {
 		$jomres_user_feedback = jomres_singleton_abstract::getInstance('jomres_user_feedback');
 		$jomres_user_feedback->construct_message(array('message'=>'Could not query the updates server', 'css_class'=>'alert-danger alert-error'));
-		return;
 	}
 
     return $response;
