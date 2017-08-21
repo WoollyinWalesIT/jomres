@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.8
+ * @version Jomres 9.9.9
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,6 +13,7 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+
 $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 $jrConfig = $siteConfig->get();
 
@@ -20,13 +21,15 @@ if (defined('AUTO_UPGRADE')) {
     set_showtime('live_site', str_replace('/jomres/', '/', get_showtime('live_site')));
 }
 
-$ssllink = str_replace('https://', 'http://', get_showtime('live_site'));
 define('JOMRES_ADMINISTRATORDIRECTORY', 'wp-admin');
 
 //let`s find if we have some language set
 $currentBlogLang = str_replace('_', '-', get_locale());
 
 $keyword = '[jomres:'.strtolower($currentBlogLang).']';
+
+//find jomres itemid
+$jomresItemid = 0;
 
 if (!defined('AUTO_UPGRADE')) {
     $jomresItemid = 0;
@@ -40,55 +43,26 @@ if (!defined('AUTO_UPGRADE')) {
         $itemIdFound = true;
         $jomresItemid = $itemQueryRes;
     }
-
-    if (!$itemIdFound) {
-        if (isset($jrConfig[ 'jomresItemid' ])) {
-            $jomresItemid = $jrConfig[ 'jomresItemid' ];
-        } else {
-            $jomresItemid = 0;
-        }
-    }
-} else {
-    $jomresItemid = 0; //should only kick in on install
 }
 
+//set jomres itemid
 set_showtime('jomresItemid', $jomresItemid);
 
-$disable_cache = false;
+//tmpl
+$tmpl = jomresGetParam($_GET, 'tmpl', '');
 
-if (isset($_REQUEST[ 'task' ])) {
-    if ($_REQUEST[ 'task' ] == 'handlereq') {
-        $disable_cache = true;
-    }
-}
-
-$tmpl = '';
-
-if (!isset($_GET[ 'tmpl' ])) {
-    $_GET[ 'tmpl' ] = false;
-}
-
-if (!isset($jrConfig[ 'isInIframe' ])) {
-    $jrConfig[ 'isInIframe' ] = '0';
-}
-
-if (($jrConfig[ 'isInIframe' ] == (bool) '1' || $_GET[ 'tmpl' ] == get_showtime('tmplcomponent')) && !isset($_REQUEST[ 'nofollowtmpl' ]) && !jomres_cmsspecific_areweinadminarea()) {
+if ($tmpl == get_showtime('tmplcomponent') && !isset($_REQUEST[ 'nofollowtmpl' ]) && !jomres_cmsspecific_areweinadminarea()) {
     $tmpl = '&tmpl='.get_showtime('tmplcomponent');
-    define('JOMRES_WRAPPED', 1);
-    if (!isset($_REQUEST['tmpl'])) {
-        $url = (isset($_SERVER['HTTPS']) ? 'https' : 'http')."://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]".'&tmpl=jomres';
-        jomresRedirect($url);
-    }
-} else {
-    define('JOMRES_WRAPPED', 0);
 }
 
+//is_wrapped
 if (isset($_REQUEST[ 'is_wrapped' ])) {
     if ($_REQUEST[ 'is_wrapped' ] == '1') {
         $tmpl .= '&is_wrapped=1';
     }
 }
 
+//menuoff
 if (isset($_REQUEST[ 'menuoff' ])) {
     if ($_REQUEST[ 'menuoff' ] == '1') {
         $tmpl .= '&menuoff=1';
@@ -99,6 +73,7 @@ if (isset($_REQUEST[ 'menuoff' ])) {
     }
 }
 
+//topoff
 if (isset($_REQUEST[ 'topoff' ])) {
     if ($_REQUEST[ 'topoff' ] == '1') {
         $tmpl .= '&topoff=1';
@@ -109,7 +84,7 @@ if (isset($_REQUEST[ 'topoff' ])) {
     }
 }
 
-//site lang
+//cms lang
 $lang = jomresGetParam($_GET, 'lang', '');
 if ($lang != '') {
     $lang = '&lang='.substr($lang, 0, 2);
@@ -120,11 +95,12 @@ $lang_param = '';
 if (isset($_REQUEST[ 'jomreslang' ])) {
 	$jomreslang = jomresGetParam($_REQUEST, 'jomreslang', '');
     $jomres_language = jomres_singleton_abstract::getInstance('jomres_language');
-    if ($jomreslang != '' && array_key_exists($jomreslang, $jomres_language->datepicker_crossref)) {
+    if ($jomreslang != '' && isset($jomres_language->datepicker_crossref[$jomreslang])) {
         $lang_param = '&jomreslang='.$jomreslang;
     }
 }
 
+//jomres specific urls
 define('JOMRES_SITEPAGE_URL_NOSEF', get_showtime('live_site').'/index.php?option=com_jomres&page_id='.$jomresItemid.$tmpl.$lang.$lang_param);
 define('JOMRES_SITEPAGE_URL_AJAX', get_showtime('live_site').'/index.php?action=jomres/trigger.php&no_html=1&jrajax=1&jr_wp_source=frontend&option=com_jomres&page_id='.$jomresItemid.$tmpl.$lang.$lang_param);
 

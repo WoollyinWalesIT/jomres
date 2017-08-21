@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.8
+ * @version Jomres 9.9.9
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -158,14 +158,13 @@ class j00004a_init_javascript_css_files
 
         if (get_showtime('task') == 'media_centre' || jomresGetParam($_REQUEST, 'task', '') == 'media_centre') {
             $css_files[] = array(JOMRES_ROOT_DIRECTORY.'/css/',  'jquery.fileupload-ui.css');
-            $javascript_files[] = array(JOMRES_ROOT_DIRECTORY.'/javascript/media_centre/', 'load-image.min.js');
+            $javascript_files[] = array(JOMRES_ROOT_DIRECTORY.'/javascript/media_centre/', 'load-image.all.min.js');
             $javascript_files[] = array(JOMRES_ROOT_DIRECTORY.'/javascript/media_centre/', 'canvas-to-blob.min.js');
             $javascript_files[] = array(JOMRES_ROOT_DIRECTORY.'/javascript/media_centre/', 'jquery.iframe-transport.js');
             $javascript_files[] = array(JOMRES_ROOT_DIRECTORY.'/javascript/media_centre/', 'jquery.fileupload.js');
             $javascript_files[] = array(JOMRES_ROOT_DIRECTORY.'/javascript/media_centre/', 'jquery.fileupload-process.js');
             $javascript_files[] = array(JOMRES_ROOT_DIRECTORY.'/javascript/media_centre/', 'jquery.fileupload-image.js');
             $javascript_files[] = array(JOMRES_ROOT_DIRECTORY.'/javascript/media_centre/', 'jquery.fileupload-validate.js');
-            $javascript_files[] = array(JOMRES_ROOT_DIRECTORY.'/javascript/media_centre/', 'tmpl.min.js');
         }
 
         //galleria js and css files TODO: find a better solution
@@ -175,8 +174,8 @@ class j00004a_init_javascript_css_files
 
         $ls = jomresGetDomain();
         if (stristr($ls, '.xn--', $ls) && !jomres_cmsspecific_areweinadminarea()) { // We check to see if we're in the admin area because our one and only client with an umlat in the domain name has found that the redirect function doesn't work in the administrator area if the domain's been converted.
-            require_once JOMRES_LIBRARIES_ABSPATH.'idna_converter'.JRDS.'idna_convert.class.php';
-            $IDN = new jomres_idna_convert();
+            //require_once JOMRES_LIBRARIES_ABSPATH.'idna_converter'.JRDS.'idna_convert.class.php';
+            $IDN = new Mso\IdnaConvert\IdnaConvert();
             $ls = $IDN->decode($ls);
         }
 

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.8
+ * @version Jomres 9.9.9
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -35,7 +35,8 @@ class jomres_currency_exchange_rates
 
         $this->rates = array();
 
-        $this->url = 'http://openexchangerates.org/api/latest.json?app_id='.$this->app_id;
+        $this->base_uri = 'http://openexchangerates.org/api/';
+		$this->query_string = 'latest.json?app_id='.$this->app_id;
 
         $this->exchange_rate_classfile = JOMRES_TEMP_ABSPATH.'exchangerates_'.$this->base_code.'.php';
 
@@ -160,24 +161,22 @@ $this->rates = ' .var_export($this->rates, true).';
         if (!$this->feature_enabled) {
             return false;
         }
+		
+		$json = '';
+		
+		try {
+			$client = new GuzzleHttp\Client([
+				'base_uri' => $this->base_uri
+			]);
 
-        logging::log_message('Starting curl call to '.$this->url, 'Curl', 'DEBUG');
+			logging::log_message('Starting guzzle call to '.$this->base_uri.$this->query_string, 'Guzzle', 'DEBUG');
 
-        $logging_time_start = microtime(true);
-
-        $c = curl_init($this->url);
-        curl_setopt($c, CURLOPT_HEADER, 0);
-        curl_setopt($c, CURLOPT_USERAGENT, 'Jomres');
-        curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($c, CURLOPT_TIMEOUT, 2000);
-        $json = curl_exec($c);
-        curl_close($c);
-
-        $logging_time_end = microtime(true);
-        $logging_time = $logging_time_end - $logging_time_start;
-
-        logging::log_message('Curl call took '.$logging_time.' seconds ', 'Curl', 'DEBUG');
-        logging::log_message('Exchange rate request received '.$json, 'Core', 'INFO');
+			$json = $client->request('GET', $this->query_string)->getBody()->getContents();
+		}
+		catch (Exception $e) {
+			$jomres_user_feedback = jomres_singleton_abstract::getInstance('jomres_user_feedback');
+			$jomres_user_feedback->construct_message(array('message'=>'Could not get currency exchange rates', 'css_class'=>'alert-danger alert-error'));
+		}
 
         $result = json_decode($json);
 

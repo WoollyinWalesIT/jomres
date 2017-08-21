@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.8
+ * @version Jomres 9.9.9
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -451,10 +451,10 @@ class j06000handlereq
                     }
                     if ($bkg->coupon_code != '') {
                         $discount = $bkg->coupon_discount_value;
-                        if ($mrConfig[ 'prices_inclusive' ] == 1) {
+                        /* if ($mrConfig[ 'prices_inclusive' ] == 1) {
                             $divisor = ($bkg->accommodation_tax_rate / 100) + 1;
                             $discount = $divisor * $discount;
-                        }
+                        } */
                         echo '; populateDiv("coupon_discount_value","'.output_price($discount).'")';
                     }
                 } else {

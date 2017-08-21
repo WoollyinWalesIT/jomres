@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.8
+ * @version Jomres 9.9.9
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -76,11 +76,6 @@ try {
     jr_import('jomres_timezones');
     $tz = new jomres_timezones();
 
-    //set jomres in wrapped mode to be ready for iframes
-    if (isset($_REQUEST[ 'is_wrapped' ]) && $_REQUEST[ 'is_wrapped' ] == '1') {
-        $jrConfig[ 'isInIframe' ] = '1';
-    }
-
     //we don`t want robots to index fullscreen mode or ajax requests
     if (isset($_REQUEST[ 'tmpl' ]) && $_REQUEST[ 'tmpl' ] == get_showtime('tmplcomponent')) {
         jomres_cmsspecific_setmetadata('robots', 'noindex,nofollow');
@@ -103,8 +98,8 @@ try {
     set_showtime('jomressession', $jomressession);
 
     //set some showtimes we`ll need later
-    $popup = intval(jomresGetParam($_REQUEST, 'popup', 0));
-    $no_html = (int) jomresGetParam($_REQUEST, 'no_html', 0);
+    $popup = (int)jomresGetParam($_REQUEST, 'popup', 0);
+    $no_html = (int)jomresGetParam($_REQUEST, 'no_html', 0);
     $task = str_replace('&#60;x&#62;', '', jomresGetParam($_REQUEST, 'task', ''));
 
     if ($task == "savePlugin") { // 9.9 task names were changed, and savePlugin was renumbered and renamed to save_plugin. As many 3rd party gateways will use savePlugin (and it may never be updated ) we'll change the task name here so that they continue to work.
@@ -276,15 +271,11 @@ try {
     //handle tasks
 	if ($MiniComponents->eventSpecificlyExistsCheck('06000', get_showtime('task'))) {
 		$MiniComponents->specificEvent('06000', get_showtime('task'));
-	} elseif ($MiniComponents->eventSpecificlyExistsCheck('06001', get_showtime('task')) && $thisJRUser->userIsManager) { // Receptionist and manager tasks
-		if (get_showtime('task') == 'cpanel') {
-			$MiniComponents->specificEvent('06001', get_showtime('task'));
-		} else {
-			$MiniComponents->specificEvent('06001', get_showtime('task'));
-		}
-	} elseif ($MiniComponents->eventSpecificlyExistsCheck('06002', get_showtime('task')) && $thisJRUser->userIsManager && $thisJRUser->accesslevel >= 70) { // Manager only tasks (higher than receptionist)
+	} elseif ($MiniComponents->eventSpecificlyExistsCheck('06001', get_showtime('task')) && $thisJRUser->accesslevel >= 50) { // Receptionist and manager tasks
+		$MiniComponents->specificEvent('06001', get_showtime('task'));
+	} elseif ($MiniComponents->eventSpecificlyExistsCheck('06002', get_showtime('task')) && $thisJRUser->accesslevel >= 70) { // Manager only tasks (higher than receptionist)
 		$MiniComponents->specificEvent('06002', get_showtime('task'));
-	} elseif ($MiniComponents->eventSpecificlyExistsCheck('06005', get_showtime('task')) && $thisJRUser->userIsRegistered) { // Registered only user tasks
+	} elseif ($MiniComponents->eventSpecificlyExistsCheck('06005', get_showtime('task')) && $thisJRUser->accesslevel >= 1) { // Registered only user tasks
 		$MiniComponents->specificEvent('06005', get_showtime('task'));
 	} else {
 		no_task_set($property_uid);
@@ -305,6 +296,11 @@ try {
     if (!AJAXCALL && $no_html == 0 && !isset($_REQUEST[ 'popup' ])) {
         echo $MiniComponents->specificEvent('09997', 'menu', array());
     }
+	
+	//trigger 99998 event - jomres feedback messages
+	if (!AJAXCALL && $no_html == 0) {
+		$MiniComponents->triggerEvent('99998');
+	}
 
     //trigger 99999 event: Optional end run scripts
     $componentArgs = array();
@@ -317,11 +313,6 @@ try {
         foreach ($MiniComponents->log as $log) {
             echo 'Log :'.$log.'<br>';
         }
-    }
-
-    //close modal wrapper TODO: maybe find something better?
-    if ($_REQUEST['modal_wrap'] == '1') {
-        echo simple_template_output(JOMRES_TEMPLATEPATH_FRONTEND, 'modal_wrap_end.html');
     }
 
     // After updating jquery ui to 1.9.3 we started seeing a problem where the entire site would be reloaded into the jquery tabs.

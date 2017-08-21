@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.8
+ * @version Jomres 9.9.9
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -98,7 +98,9 @@ jr_define('_JOMRES_SHORTCODES_06000SEARCH_ARG_PTYPE', 'Search for properties of 
 jr_define('_JOMRES_SHORTCODES_06000SEARCH_ARG_PRICERANGES', 'Search for properties within a specific price range.');
 jr_define('_JOMRES_SHORTCODES_06000SEARCH_ARG_GUESTNUMBER', "Search for properties who's tariffs allow guest numbers of certain values, for example parties of 6.");
 jr_define('_JOMRES_SHORTCODES_06000SEARCH_ARG_STARS', 'Search for properties of N stars.');
-jr_define('_JOMRES_SHORTCODES_06000SEARCH_ARG_ARRIVALDATE', 'Search for properties who are available after a certain date.');
+jr_define('_JOMRES_SHORTCODES_06000SEARCH_ARG_ARRIVALDATE', 'Search by arrival date. Should be combined with the departureDate param.');
+jr_define('_JOMRES_SHORTCODES_06000SEARCH_ARG_DEPARTUREDATE', 'Search by departure date. Should be combined with the arrivalDate param.');
+jr_define('_JOMRES_SHORTCODES_06000SEARCH_ARG_CATEGORY', 'Search by property category.');
 
 jr_define('_JOMRES_SHORTCODES_06000VIEW_AGENT', "View an agent's page. You can pass EITHER a property uid, or the agent's id itself, if you know it.");
 jr_define('_JOMRES_SHORTCODES_06000VIEW_AGENT_ARG_PROPERTY_UID', "A property uid, this will show the property's agent.");
@@ -223,3 +225,6 @@ jr_define('_JOMRES_SHORTCODES_06005PROPERTY_MAP_ZOOM', 'Map zoom, 1: World 5: La
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_REVIEWS_LIMIT', 'Number of reviews to show');
 
 jr_define('_JOMRES_SHORTCODES_06000SHORTLIST', 'Displays the users shortlisted properties. If the user is registered these are their favourites, if not logged in then just those items added through the Favourite icon during the visit.');
+
+jr_define( '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE', 'Minimum deposit value' );
+jr_define( '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC', "If the calculated deposit is less than this figure, then set deposit to this value instead. This figure might itself be over-ridden if it does not satisfy the site's minimum deposit setting. Leave it set to 0 to not use the setting." );

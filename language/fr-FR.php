@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.8stable
+ * @version Jomres 9.9.9stable
  *
  * @copyright	2005-2017 Vince Wooll
  * Translated to fr-FR by Mario Oliveira, Camara de Lobos, Madeira Island, Portugal, 14Oct2010 - www.marioliveira.net. Updated 21-Jun2011 for version 5 stable
@@ -389,7 +389,7 @@ jr_define('_JOMRES_COM_CHARGING_CONFIG_DESC', 'Utilisez cette option pour décid
 jr_define('_JOMRES_COM_MONTHSTOSHOW', 'Mois du calendrier à afficher');
 jr_define('_JOMRES_COM_MONTHSTOSHOW_DESC', 'Dans la mise à disposition des chambres, combien de mois le calendrier doit-il afficher ?');
 // V1.4
-jr_define('_JOMRES_COM_A_GATEWAYLIST', 'Gateways');
+jr_define('_JOMRES_COM_A_GATEWAYLIST', 'Payment Gateways');
 jr_define('_JOMRES_COM_A_CANCEL', 'Annulé');
 jr_define('_JOMRES_FRONT_BLACKBOOKING_DESC', 'Veuillez choisir la/les chambre(s) que vous voulez prendre, et les dates appropriées. <br>si une chambre n\'a pas de marque \"vérifiée\", celle-ci ne pourra pas être insérée dans la Liste d\'Indisponibles avant la fin ou l\'annulation de la réservation.<br/> Lorsque vous avez choisi les dates appropriées, cliquez sur le bouton bleu \"appliqué\" pour revérifier la disponibilité de la chambre. ');
 jr_define('_JOMRES_JR_NOTLOGGEDIN', '<center><b>Il semblerait que Joomla vous a déconnecté par inactivité</b> Veuillez vous reconnecter et réessayer.');
@@ -2153,3 +2153,18 @@ jr_define( 'PORTAL_REVIEWS_LIMIT_DESC', 'Use this setting to limit the number of
 jr_define( 'PORTAL_REVIEWS_SHOW_ALL_REVIEWS', 'Show all reviews' );
 
 jr_define( 'VIDEO_TUTORIALS', 'Video Tutorials' );
+
+jr_define( '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE', 'Minimum deposit value' );
+jr_define( '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC', "If the calculated deposit is less than this figure, then set deposit to this value instead. This figure might itself be over-ridden if it does not satisfy the site's minimum deposit setting. Leave it set to 0 to not use the setting." );
+
+jr_define( '_JOMRES_MEDIA_CENTRE_DBIMPORT_WARNING', 'To increase your site speed, we recommend importing details of the existing site and properties images to database.');
+jr_define( '_JOMRES_MEDIA_CENTRE_DBIMPORT_ACTION', 'Import existing images details to database');
+
+jr_define( '_JOMRES_S3_ACTIVE_DESC', 'Experimental feature. If enabled, images uploaded using the media centre feature will also be copied to your Amazon S3 bucket and served from your Amazon S3 bucket url. When enabling this the first time, you`ll also be promted to import existing images to your S3 bucket.');
+jr_define( '_JOMRES_CLOUDFRONT_DMAIN', 'CloudFront domain');
+jr_define( '_JOMRES_CLOUDFRONT_DMAIN_DESC', 'Replace your default Amazon S3 domain with your CloudFront domain');
+jr_define( '_JOMRES_S3_SSLTLS_DESC', 'Recommended to be enabled. For Windows and Mac OSX only, if libcurl wasn`t built with Schannel or Secure Transport support (the native SSL libraries included in Windows and Mac OS X), you should set this to No.');
+jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_WARNING', 'You`ve enabled the Amazon S3 integration, so you`ll have to copy all existing images to your S3 bucket. Images are now served to your site visitors from your Amazon S3 url, so you`ll need to copy them first to your S3 bucket, otherwise they won`t be visible to your site visitors.');
+jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_WARNING2', 'Once you click this button, please do not interrupt the process and wait for a success or error message. Depending on server speed, this may take a while to complete.');
+jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_ACTION', 'Copy existing images to Amazon S3 bucket');
+

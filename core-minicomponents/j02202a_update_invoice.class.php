@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.8
+ * @version Jomres 9.9.9
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -27,6 +27,7 @@ class j02202a_update_invoice
         }
         $defaultProperty = getDefaultProperty();
         $contractUid = intval(jomresGetParam($_POST, 'contractUid', 0));
+		$depositRef = getEscaped(jomresGetParam($_POST, 'depositRef', ''));
 
         if ($contractUid > 0) {
             // This is a security check because we don't have a property uid associated with invoices
@@ -45,7 +46,7 @@ class j02202a_update_invoice
 
                 $line_items = array('tax_code_id' => 0,
                                          'name' => jr_gettext('_JOMRES_MR_AUDIT_ENTEREDDEPOSIT', '_JOMRES_MR_AUDIT_ENTEREDDEPOSIT', false, false),
-                                         'description' => '('.$today.')',
+                                         'description' => '('.$today.' - Ref: '.$depositRef.')',
                                          'init_price' => 0 - $deposit_received,
                                          'init_qty' => 1,
                                          'init_discount' => 0,

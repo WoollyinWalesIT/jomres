@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.8
+ * @version Jomres 9.9.9
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -96,7 +96,6 @@ function showSiteConfig()
     $lists[ 'useGlobalPFeatures' ] = jomresHTML::selectList($yesno, 'cfg_useGlobalPFeatures', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useGlobalPFeatures' ]);
     $lists[ 'useGlobalRoomTypes' ] = jomresHTML::selectList($yesno, 'cfg_useGlobalRoomTypes', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useGlobalRoomTypes' ]);
     $lists[ 'selfRegistrationAllowed' ] = jomresHTML::selectList($yesno, 'cfg_selfRegistrationAllowed', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'selfRegistrationAllowed' ]);
-    $lists[ 'isInIframe' ] = jomresHTML::selectList($yesno, 'cfg_isInIframe', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'isInIframe' ]);
     $lists[ 'allowHTMLeditor' ] = jomresHTML::selectList($editoryesno, 'cfg_allowHTMLeditor', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'allowHTMLeditor' ]);
     $lists[ 'dumpTemplate' ] = jomresHTML::selectList($yesno, 'cfg_dumpTemplate', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'dumpTemplate' ]);
     $lists[ 'emailErrors' ] = jomresHTML::selectList($yesno, 'cfg_emailErrors', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'emailErrors' ]);
@@ -129,20 +128,8 @@ function showSiteConfig()
     $currency_codes = jomres_singleton_abstract::getInstance('currency_codes');
     $currency_codes_dropdown = $currency_codes->makeCodesDropdown($jrConfig[ 'globalCurrencyCode' ], true);
 
-    $language_context = array();
-    $ptype_descs = array();
-    $language_context[ ] = jomresHTML::makeOption('', '');
-
-    if (!empty($basic_property_details->all_property_types)) {
-        foreach ($basic_property_details->all_property_types as $k => $v) {
-            $ptype_descs[] = $v;
-        }
-        $ptype_descs = array_unique($ptype_descs);
-        foreach ($ptype_descs as $desc) {
-            $language_context[ ] = jomresHTML::makeOption($desc, $desc);
-        }
-    }
-    $language_context_dropdown = jomresHTML::selectList($language_context, 'cfg_language_context', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'language_context' ], false);
+    $jomres_property_types = jomres_singleton_abstract::getInstance('jomres_property_types');
+    $language_context_dropdown = $jomres_property_types->getPropertyTypeDescDropdown($jrConfig[ 'language_context' ], 'cfg_language_context');
 
     $filtering_level = array();
     $filtering_level[ ] = jomresHTML::makeOption('weak', jr_gettext('_JOMRES_INPUTFILTERING_LEVEL_WEAK', '_JOMRES_INPUTFILTERING_LEVEL_WEAK', false));
@@ -188,6 +175,7 @@ function showSiteConfig()
     $lists[ 'integratedSearch_propertyname' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_propertyname', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_propertyname' ]);
     $lists[ 'integratedSearch_propertyname_dropdown' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_propertyname_dropdown', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_propertyname_dropdown' ]);
     $lists[ 'integratedSearch_ptype' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_ptype', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_ptype' ]);
+	$lists[ 'integratedSearch_category' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_category', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_category' ]);
     $lists[ 'integratedSearch_ptype_dropdown' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_ptype_dropdown', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_ptype_dropdown' ]);
     $lists[ 'integratedSearch_geosearchtype_dropdown' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_geosearchtype_dropdown', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_geosearchtype_dropdown' ]);
 

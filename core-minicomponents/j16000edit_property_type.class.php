@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.8
+ * @version Jomres 9.9.9
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -35,7 +35,7 @@ class j16000edit_property_type
 
         $output[ 'PAGETITLE' ] = jr_gettext('_JOMRES_COM_PTYPES_LIST_TITLE_EDIT', '_JOMRES_COM_PTYPES_LIST_TITLE_EDIT', false);
         $output[ 'HPTYPE' ] = jr_gettext('_JOMRES_COM_PTYPES_PTYPE', '_JOMRES_COM_PTYPES_PTYPE', false);
-        $output[ 'HPTYPE_DESC' ] = jr_gettext('_JOMRES_PROPERTYSPECIFIC_LANGUAGESUBDIR', '_JOMRES_PROPERTYSPECIFIC_LANGUAGESUBDIR', false);
+        $output[ 'HPTYPE_DESC' ] = jr_gettext('_JOMRES_COM_LANGUAGE_CONTEXT', '_JOMRES_COM_LANGUAGE_CONTEXT', false);
         $output[ 'HPUBLISHED' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PUBLISHED', '_JOMRES_COM_MR_VRCT_PUBLISHED', false);
         $output[ 'FURTHER' ] = jr_gettext('_JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER', '_JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER', false);
         $output[ 'JOMRES_SITEPAGE_URL_ADMIN' ] = jr_gettext('JOMRES_SITEPAGE_URL_ADMIN', 'JOMRES_SITEPAGE_URL_ADMIN', false);

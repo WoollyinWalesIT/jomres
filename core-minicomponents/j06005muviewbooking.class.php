@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.8
+ * @version Jomres 9.9.9
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -229,7 +229,7 @@ class j06005muviewbooking
         if (!$bookedin && dateDiff('d', date('Y/m/d'), $booking_arrival) > (int) $mrConfig[ 'cancellation_threashold' ] && (int) $booking_cancelled == 0) {
             $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
             $jrtb = $jrtbar->startTable();
-            $jrtb .= $jrtbar->toolbarItem('cancelbooking', jomresURL(JOMRES_SITEPAGE_URL."&task=cancelGuestBooking&contract_uid=$booking_contract_uid"), '');
+            $jrtb .= $jrtbar->toolbarItem('cancel_booking', jomresURL(JOMRES_SITEPAGE_URL."&task=cancelGuestBooking&contract_uid=$booking_contract_uid"), '');
             $jrtb .= $jrtbar->endTable();
             echo $jrtb;
         }

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.8
+ * @version Jomres 9.9.9
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,31 +16,37 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_sanity_check
 {
-    public function __construct($autorun = true)
+    public function __construct($autorun = true , $property_uid = 0 )
     {
         if (get_showtime('no_html') == 1 || get_showtime('popup') == 1 || AJAXCALL) {
             return;
         }
 		
 		$this->warnings = '';
-		
+		if ($property_uid > 0 )
+			$this->property_uid = $property_uid;
         if ($autorun) {
             $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
             $this->jrConfig = $siteConfig->get();
             $this->mrConfig = getPropertySpecificSettings();
-            $this->property_uid = getDefaultProperty();
+			$this->property_uid = getDefaultProperty();
+
             $this->warning_counter = 0;
         }
     }
 
-    public function do_sanity_checks()
+	/*
+	Blind flag is for automatically created properties that need to be checked
+	*/
+	
+    public function do_sanity_checks( $blind = false )
     {
         if (get_showtime('no_html') == 1 || get_showtime('popup') == 1 || AJAXCALL) {
             return;
         }
 
         $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-        if ($thisJRUser->userIsManager) {
+        if ($thisJRUser->userIsManager || $blind == true ) {
             $this->warnings .= $this->check_editing_mode();
             
             $this->warnings .= $this->check_suspended();
@@ -67,7 +73,7 @@ class jomres_sanity_check
 
             if (trim($this->warnings) == '') {
 				
-				$this->mark_as_complete(); // Add a flat that will show site managers when a property is ready to be reviewed after creation and when it is waiting approval
+				$this->mark_as_complete(); // Add a flag that will show site managers when a property is ready to be reviewed after creation and when it is waiting approval
 				
 				$this->warnings .= $this->check_approved();
 				

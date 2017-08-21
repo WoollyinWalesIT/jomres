@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.8
+ * @version Jomres 9.9.9
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -224,6 +224,14 @@ class jomres_video_tutorials
 			$arr = array ("title" => "_JOMRES_TUTORIAL_ADMIN_CPANEL" , "description" => "_JOMRES_TUTORIAL_ADMIN_CPANEL_DESC" , "video_id" => "19_Nx_xSVl0" );
 			$videos_array['ADMIN']['cpanel'][] = $arr;
 			
+			$arr = array ("title" => "_JOMRES_TUTORIAL_ADMIN_ADD_PROPERTY" , "description" => "_JOMRES_TUTORIAL_ADMIN_ADD_PROPERTY_DESC" , "video_id" => "qU9Zr2DlYm4" );
+			$videos_array['ADMIN']['cpanel'][] = $arr;
+			
+			$arr = array ("title" => "_JOMRES_TUTORIAL_ADMIN_COMPLETING_PROPERTY" , "description" => "_JOMRES_TUTORIAL_ADMIN_COMPLETING_PROPERTY_DESC" , "video_id" => "pvK-qaF77eo" );
+			$videos_array['ADMIN']['cpanel'][] = $arr;
+			$videos_array['ADMIN']['property_approvals'][] = $arr;
+			
+			
 			$arr = array ("title" => "_JOMRES_TUTORIAL_ADMIN_PLUGIN_MANAGER" , "description" => "_JOMRES_TUTORIAL_ADMIN_PLUGIN_MANAGER_DESC" , "video_id" => "Ld3X4Swx4c4" );
 			$videos_array['ADMIN']['cpanel'][] = $arr;
 			$videos_array['ADMIN']['showplugins'][] = $arr;
@@ -262,6 +270,10 @@ class jomres_video_tutorials
 			$videos_array['ADMIN']['translate_lang_file_strings'][] = $arr;
 			$videos_array['ADMIN']['touch_templates'][] = $arr;
 			$videos_array['ADMIN']['translate_locales'][] = $arr;
+			
+			$arr = array ("title" => "_JOMRES_TUTORIAL_ADMIN_PROPERTY_CATEGORIES" , "description" => "_JOMRES_TUTORIAL_ADMIN_PROPERTY_CATEGORIES_DESC" , "video_id" => "Rx7cwCLJrzc" );
+			$videos_array['ADMIN']['list_property_categories'][] = $arr;
+			$videos_array['ADMIN']['edit_property_category'][] = $arr;
 		}
 
 		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');

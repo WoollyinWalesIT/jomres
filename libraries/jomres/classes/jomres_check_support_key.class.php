@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.8
+ * @version Jomres 9.9.9
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,11 +16,10 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_check_support_key
 {
-    public function __construct($task, $force_check = false)
+    public function __construct($task)
     {
         $this->task = $task;
         $this->key_valid = false;
-        $this->force_check = $force_check;
 
         if (isset($_REQUEST[ 'support_key' ]) && strlen($_REQUEST[ 'support_key' ]) > 0) {
             $this->save_key($task);
@@ -28,14 +27,8 @@ class jomres_check_support_key
 
         $task = jomresGetParam($_REQUEST, 'task', '');
 
-        if ($task == 'site_settings' || $task == 'showplugins' || $task == 'addplugin') {
-            $this->force_check = true;
-        }
-
-        if (function_exists('curl_init')) {
-            $this->shop_status = 'CLOSED';
-            $this->check_license_key();
-        }
+        $this->shop_status = 'CLOSED';
+        $this->check_license_key();
     }
 
     public function get_shop_status()
@@ -60,7 +53,7 @@ class jomres_check_support_key
         $this->plugin_licenses = plugin_licenses();
     }
 
-    public function check_license_key()
+    public function check_license_key($force = false)
     {
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
@@ -88,7 +81,7 @@ class jomres_check_support_key
             }
         }
 
-        if (function_exists('curl_init') && !file_exists(JOMRES_TEMP_ABSPATH.'license_key_check_cache.php') || $this->force_check) {
+        if (!file_exists(JOMRES_TEMP_ABSPATH.'license_key_check_cache.php') || $force) {
             $buffer = queryUpdateServer('check_key.php', $str, 'updates');
             if ($buffer != '') {
                 $license_data = json_decode($buffer);

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.8
+ * @version Jomres 9.9.9
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -610,6 +610,14 @@ function doTableUpdates()
 	if (!checkPropertysCompletedColExists()) {
         alterPropertysCompletedCol();
     }
+	
+	if (!checkPropertysCatIdColExists()) {
+        alterPropertysCatIdCol();
+    }
+	
+	if (!checkCustomtextLangContextColExists()) {
+        alterCustomtextLangContextCol();
+    }
  
 	copy_default_property_type_markers();
     drop_orphan_line_items_table();
@@ -617,14 +625,69 @@ function doTableUpdates()
 	drop_cronlog_table();
 	add_jomres_sessions_table();
 	add_jomres_template_package_table();
+	add_jomres_property_categories_table();
+	add_jomres_images_table();
     updateSiteSettings('update_time', time());
     
+}
+
+function add_jomres_images_table()
+{
+	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_images (
+		`id` INT(11) NOT NULL auto_increment,
+        `property_uid` INT(11) NOT NULL DEFAULT 0,
+		`resource_type` VARCHAR(100),
+		`resource_id` VARCHAR(255),
+		`filename` VARCHAR(255),
+		`version` VARCHAR(20),
+        PRIMARY KEY (`id`)
+        )";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to create the __jomres_images table', 'danger');
+    }
+}
+
+function alterCustomtextLangContextCol()
+{
+    $query = "ALTER TABLE `#__jomres_custom_text` ADD `language_context` VARCHAR(255) NOT NULL DEFAULT '' ";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to add __jomres_custom_text language_context column', 'danger');
+    }
+}
+
+function checkCustomtextLangContextColExists()
+{
+    $query = "SHOW COLUMNS FROM #__jomres_custom_text LIKE 'language_context'";
+    $result = doSelectSql($query);
+    if (count($result) > 0) {
+        return true;
+    }
+    return false;
+}
+
+function alterPropertysCatIdCol()
+{
+    //output_message ( "Editing __jomres_propertys table adding permit_number column");
+    $query = "ALTER TABLE `#__jomres_propertys` ADD `cat_id` BOOL NOT NULL DEFAULT 0 ";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to add __jomres_propertys cat_id', 'danger');
+    }
+}
+
+function checkPropertysCatIdColExists()
+{
+    $query = "SHOW COLUMNS FROM #__jomres_propertys LIKE 'cat_id'";
+    $result = doSelectSql($query);
+    if (count($result) > 0) {
+        return true;
+    }
+    return false;
 }
 
 function alterPropertysCompletedCol()
 {
     //output_message ( "Editing __jomres_propertys table adding permit_number column");
-    $query = "ALTER TABLE `#__jomres_propertys` ADD `completed`  BOOL NOT NULL DEFAULT '0' ";
+    $query = "ALTER TABLE `#__jomres_propertys` ADD `completed` BOOL NOT NULL DEFAULT 0 ";
     if (!doInsertSql($query, '')) {
         output_message('Error, unable to add __jomres_propertys completed', 'danger');
     }
@@ -675,6 +738,19 @@ function add_jomres_template_package_table()
         )";
     if (!doInsertSql($query, '')) {
         output_message('Error, unable to create the __jomres_template_package_overrides table', 'danger');
+    }
+}
+
+function add_jomres_property_categories_table()
+{
+	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_property_categories (
+		`id` INT(11) NOT NULL auto_increment,
+        `title` VARCHAR(255),
+		`description` TEXT,
+        PRIMARY KEY (`id`)
+        )";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to create the __jomres_property_categories table', 'danger');
     }
 }
 
@@ -3581,15 +3657,16 @@ function createJomresTables()
         output_message('Failed to run query: '.$query, 'danger');
     }
 
-    $query = 'CREATE TABLE IF NOT EXISTS `#__jomres_custom_text` (
+    $query = "CREATE TABLE IF NOT EXISTS `#__jomres_custom_text` (
 		`uid` INT( 11 ) NOT NULL AUTO_INCREMENT ,
 		`constant` VARCHAR( 255 ) ,
 		`customtext` TEXT NULL,
 		`property_uid` INT( 11 ),
 		`language` VARCHAR( 255 ),
 		`reserved` VARCHAR( 255 ),
+		`language_context` VARCHAR(255) NOT NULL DEFAULT '',
 		PRIMARY KEY ( `uid` )
-		) ';
+		) ";
     if (!doInsertSql($query)) {
         output_message('Failed to run query: '.$query, 'danger');
     }
@@ -3872,6 +3949,29 @@ function createJomresTables()
     if (!doInsertSql($query)) {
         output_message('Failed to run query: '.$query, 'danger');
     }
+	
+	$query = 'CREATE TABLE IF NOT EXISTS `#__jomres_property_categories` (
+		`id` int(11) NOT NULL auto_increment,
+		`title` VARCHAR(255),
+		`description` TEXT,
+		PRIMARY KEY(`id`)
+		) ';
+    if (!doInsertSql($query)) {
+        output_message('Failed to run query: '.$query, 'danger');
+    }
+	
+	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_images (
+		`id` INT(11) NOT NULL auto_increment,
+        `property_uid` INT(11) NOT NULL DEFAULT 0,
+		`resource_type` VARCHAR(100),
+		`resource_id` VARCHAR(255),
+		`filename` VARCHAR(255),
+		`version` VARCHAR(20),
+        PRIMARY KEY (`id`)
+        )";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to create the __jomres_property_categories table', 'danger');
+    }
 
     $query = "CREATE TABLE IF NOT EXISTS `#__jomres_managers` (
 		`manager_uid` int(11) NOT NULL auto_increment,
@@ -3926,6 +4026,7 @@ function createJomresTables()
 		`last_changed` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 		`permit_number` varchar( 255 ) DEFAULT '',
 		`completed`  BOOL NOT NULL DEFAULT '0',
+		`cat_id` BOOL NOT NULL DEFAULT 0,
 		PRIMARY KEY(`propertys_uid`)
 		) ";
     if (!doInsertSql($query)) {
@@ -4428,6 +4529,15 @@ function createExtraIndexs()
             output_message('Failed to run query: '.$query, 'danger');
         }
     }
+	
+	$query = "SHOW INDEX FROM `#__jomres_custom_text` WHERE Key_name = 'language_context' ";
+    $indexExists = doSelectSql($query);
+    if (count($indexExists) < 1) {
+        $query = 'ALTER TABLE `#__jomres_custom_text` ADD INDEX `language_context` ( `language_context` ) ';
+        if (!doInsertSql($query)) {
+            output_message('Failed to run query: '.$query, 'danger');
+        }
+    }
 
     $query = "SHOW INDEX FROM `#__jomresportal_invoices` WHERE Key_name = 'property_uid' ";
     $indexExists = doSelectSql($query);
@@ -4659,6 +4769,26 @@ function createExtraIndexs()
     $indexExists = doSelectSql($query);
     if (count($indexExists) < 1) {
         $query = 'ALTER TABLE `#__jomres_managers` ADD INDEX userid ( userid ) ';
+        if (!doInsertSql($query)) {
+            output_message('Failed to run query: '.$query, 'danger');
+        }
+    }
+	
+	//output_message ( "Altering table __jomres_images, creating new property_uid index if necessary");
+    $query = "SHOW INDEX FROM `#__jomres_images` WHERE Key_name = 'property_uid' ";
+    $indexExists = doSelectSql($query);
+    if (count($indexExists) < 1) {
+        $query = 'ALTER TABLE `#__jomres_images` ADD INDEX property_uid ( property_uid ) ';
+        if (!doInsertSql($query)) {
+            output_message('Failed to run query: '.$query, 'danger');
+        }
+    }
+	
+	//output_message ( "Altering table __jomres_images, creating new resource_type index if necessary");
+    $query = "SHOW INDEX FROM `#__jomres_images` WHERE Key_name = 'resource_type' ";
+    $indexExists = doSelectSql($query);
+    if (count($indexExists) < 1) {
+        $query = 'ALTER TABLE `#__jomres_images` ADD INDEX resource_type (resource_type) ';
         if (!doInsertSql($query)) {
             output_message('Failed to run query: '.$query, 'danger');
         }
@@ -6514,7 +6644,7 @@ function showCompletedText()
 		setTimeout(function() {
 		parent.jQuery('#jomres-installation-modal').modal('hide');
 		parent.window.location.href = "<?php echo $administrator_url ?>";
-		}, 5000);
+		}, 50);
 		</script>
 		<?php
 

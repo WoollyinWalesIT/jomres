@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.8
+ * @version Jomres 9.9.9
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -20,12 +20,14 @@ $arr [ 'resource_type_gathering_trigger'] = '11010';
 $arr [ 'resource_id_gathering_trigger'] = '11020';
 $arr [ 'post_upload_processing_trigger'] = '11030';
 $arr [ 'get_existing_images_trigger'] = '11040';
+$arr [ 'post_delete_processing_trigger'] = '11050';
 $arr [ 'allowed_file_types'] = '(jpe?g|png)';	
 frontend trigger points
 $arr [ 'resource_type_gathering_trigger'] = '03379';
 $arr [ 'resource_id_gathering_trigger'] = '03381';
 $arr [ 'post_upload_processing_trigger'] = '03382';
 $arr [ 'get_existing_images_trigger'] = '03383';
+$arr [ 'post_delete_processing_trigger'] = '03384';
 $arr [ 'allowed_file_types'] = '(jpe?g|png)'; 
 */
 
@@ -45,6 +47,9 @@ class j06000media_centre_handler
         if (!$thisJRUser->userIsManager) {
             return;
         }
+		
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+        $jrConfig = $siteConfig->get();
 		
 		//resource_type_gathering_trigger
 		if (jomres_cmsspecific_areweinadminarea()) {
@@ -76,39 +81,84 @@ class j06000media_centre_handler
             return;
         }
 		
-		$id_required = $resource_types [$resource_type] [ 'resource_id_required' ];
+		//set property uid
+		if (jomres_cmsspecific_areweinadminarea()) {
+			$property_uid = 0;
+		} else {
+			$property_uid = getDefaultProperty();
+		}
+		
+		$resource_id_required = $resource_types [$resource_type] [ 'resource_id_required' ];
 		
 		//set image upload paths
-		if ($id_required) {
-			$this->abs_path = $resource_types [$resource_type] ['upload_root_abs_path'].$resource_type.JRDS.$resource_id.JRDS;
-			$this->rel_path = $resource_types [$resource_type] ['upload_root_rel_path'].$resource_type.'/'.$resource_id.'/';
+		if ($resource_id_required) {
+			$abs_path = $resource_types [$resource_type] ['upload_root_abs_path'].$resource_type.JRDS.$resource_id.JRDS;
+			$rel_path = $resource_types [$resource_type] ['upload_root_rel_path'].$resource_type.'/'.$resource_id.'/';
 		} else {
-			$this->abs_path = $resource_types [$resource_type] ['upload_root_abs_path'].$resource_type.JRDS;
-			$this->rel_path = $resource_types [$resource_type] ['upload_root_rel_path'].$resource_type.'/';
+			$abs_path = $resource_types [$resource_type] ['upload_root_abs_path'].$resource_type.JRDS;
+			$rel_path = $resource_types [$resource_type] ['upload_root_rel_path'].$resource_type.'/';
 		}
+		
+		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
 
         if (isset($_GET['delete']) && $_GET['delete'] == '1') {
-            $file_name = (string) jomresGetParam($_REQUEST, 'filename', '');
+            $file_name = (string) jomresGetParam($_REQUEST, 'file', '');
             if ($file_name == '') {
                 return;
             }
-            $response = $this->delete_images($file_name);
-
-            echo json_encode($response);
-			
-			//post_upload_processing_trigger, optional for post processing
-			if (jomres_cmsspecific_areweinadminarea()) {
-				$MiniComponents->triggerEvent('11030');
+            
+			//delete image from disk and db
+			if (!$jomres_media_centre_images->delete_image($property_uid, $resource_type, $resource_id, $file_name, $abs_path, $resource_id_required)) {
+				$response = array('message' => "Boo, we couldn't delete it. I'm going to have a little cry in the corner now.", 'success' => '0');
 			} else {
-				$MiniComponents->triggerEvent('03382');
+				$response = array('message' => "Yay, we'll deleted this sukka", 'success' => '1');
 			}
+			
+			//post_delete_processing_trigger, optional for post deletion
+			if (jomres_cmsspecific_areweinadminarea()) {
+				$MiniComponents->triggerEvent('11050');
+			} else {
+				$MiniComponents->triggerEvent('03384');
+			}
+			
+			echo json_encode($response);
+			return;
         } else {
             if (!empty($_FILES)) {
 				jr_import('jomres_media_centre_uploader');
+
+				if (!jomres_cmsspecific_areweinadminarea()) {
+					$script_url = JOMRES_SITEPAGE_URL_AJAX.'&task=media_centre_handler&delete=1&resource_type='.$resource_type.'&resource_id='.$resource_id;
+				} else {
+					$script_url = JOMRES_SITEPAGE_URL_ADMIN_AJAX.'&task=media_centre_handler&delete=1&resource_type='.$resource_type.'&resource_id='.$resource_id;
+				}
+
                 $upload_handler = new UploadHandler(array(
-                    'accept_file_types' => '/\.(jpe?g|png)$/i',
-                    'upload_dir' => $this->abs_path,
-                    'upload_url' => $this->rel_path,
+                    //class params
+					'accept_file_types' => '/\.(jpe?g|png)$/i',
+					'script_url' => $script_url,
+                    'upload_dir' => $abs_path,
+                    'upload_url' => $rel_path,
+					'image_versions' => array(
+						// The empty image version key defines options for the original/large image:
+						'' => array(
+							'max_width' => (int)$jrConfig[ 'maxwidth' ],
+							'max_height' => (int)$jrConfig[ 'maxwidth' ]
+						),
+						'medium' => array(
+							'max_width' => (int)$jrConfig[ 'thumbnail_property_header_max_width' ],
+							'max_height' => (int)$jrConfig[ 'thumbnail_property_header_max_height' ]
+						),
+						'thumbnail' => array(
+							'max_width' => (int)$jrConfig[ 'thumbnail_property_list_max_width' ],
+							'max_height' => (int)$jrConfig[ 'thumbnail_property_list_max_height' ]
+						)
+					),
+					//jomres specific params, required for post upload processing
+					'property_uid' => $property_uid,
+					'resource_type' => $resource_type,
+					'resource_id' => $resource_id,
+					'resource_id_required' => $resource_id_required
                     ));
                 
 				//post_upload_processing_trigger, optional for post processing
@@ -119,58 +169,6 @@ class j06000media_centre_handler
 				}
             }
         }
-    }
-
-    public function delete_images($file_name)
-    {
-        $passed = true;
-        if (file_exists($this->abs_path.$file_name)) {
-            if (!unlink($this->abs_path.$file_name)) {
-                error_logging("Error, media centre couldn't delete ".$this->abs_path.$file_name);
-                $passed = false;
-            }
-        }
-        if (file_exists($this->abs_path.'medium'.JRDS.$file_name)) {
-            if (!unlink($this->abs_path.'medium'.JRDS.$file_name)) {
-                error_logging("Error, media centre couldn't delete ".$this->abs_path.'medium'.JRDS.$file_name);
-                $passed = false;
-            }
-        }
-        if (file_exists($this->abs_path.'thumbnail'.JRDS.$file_name)) {
-            if (!unlink($this->abs_path.'thumbnail'.JRDS.$file_name)) {
-                error_logging("Error, media centre couldn't delete ".$this->abs_path.'thumbnail'.JRDS.$file_name);
-                $passed = false;
-            }
-        }
-
-        if (file_exists($this->abs_path.'gif'.JRDS.'small_thumb.gif')) {
-            if (!unlink($this->abs_path.'gif'.JRDS.'small_thumb.gif')) {
-                error_logging("Error, media centre couldn't delete ".$this->abs_path.'gif'.JRDS.'small_thumb.gif');
-                $passed = false;
-            }
-        }
-
-        if (file_exists($this->abs_path.'gif'.JRDS.'medium_thumb.gif')) {
-            if (!unlink($this->abs_path.'gif'.JRDS.'medium_thumb.gif')) {
-                error_logging("Error, media centre couldn't delete ".$this->abs_path.'gif'.JRDS.'medium_thumb.gif');
-                $passed = false;
-            }
-        }
-
-        if (file_exists($this->abs_path.'gif'.JRDS.'slideshow_lib.php')) {
-            if (!unlink($this->abs_path.'gif'.JRDS.'slideshow_lib.php')) {
-                error_logging("Error, media centre couldn't delete ".$this->abs_path.'gif'.JRDS.'slideshow_lib.php');
-                $passed = false;
-            }
-        }
-
-        if ($passed) {
-            $response = array('message' => "Yay, we'll deleted this sukka", 'success' => '1');
-        } else {
-            $response = array('message' => "Boo, we couldn't delete it. I'm going to have a little cry in the corner now.", 'success' => '0');
-        }
-
-        return $response;
     }
 
     // This must be included in every Event/Mini-component

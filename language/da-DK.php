@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.8
+ * @version Jomres 9.9.9
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -390,7 +390,7 @@ jr_define('_JOMRES_COM_CHARGING_CONFIG_DESC', 'Brug denne indstilling til at afg
 jr_define('_JOMRES_COM_MONTHSTOSHOW', 'Kalendermåneder der skal vises');
 jr_define('_JOMRES_COM_MONTHSTOSHOW_DESC', 'Hvor mange måneder skal vises for værelsestilgængelighed?');
 // V1.4
-jr_define('_JOMRES_COM_A_GATEWAYLIST', 'Gateways');
+jr_define('_JOMRES_COM_A_GATEWAYLIST', 'Payment Gateways');
 jr_define('_JOMRES_COM_A_CANCEL', 'Annuller');
 jr_define('_JOMRES_FRONT_BLACKBOOKING_DESC', 'Vælg venligst værelset(erne) som du vil fjerne som service, og de relevante datoer. <br>Hvis et værelse ikke har en markering, kan det ikke blive inkluderet i den blokerede bookning indtil udestående bookninger er blevet gennemført/annulleret.<br/> Når du har valgt de passende datoer, så klik på den blå knap "anvend" for at gen-kontrollere tilgængelighed. ');
 jr_define('_JOMRES_JR_NOTLOGGEDIN', '<center><b>Du er blevet logget af på grund af inaktivitet</b> Log venligst på og prøv igen.');
@@ -690,7 +690,7 @@ jr_define('JOMRES_COM_A_VERBOSETARIFFINTO', 'Verbose tariff info');
 jr_define('JOMRES_COM_A_VERBOSETARIFFINTO_DESC', 'Set this to Yes to show more detailed tariff information in the property details/tariff popup');
 jr_define('JOMRES_COM_A_MINIMALCONFIG', 'Minimise configuration options');
 jr_define('_JOMCOMP_AMEND', 'Amend Booking - Property Selection');
-jr_define('_JOMCOMP_AMEND_SELECTPROPERTY', 'Select New Property');
+jr_define('_JOMCOMP_AMEND_SELECTPROPERTY', 'Select Property');
 jr_define('_JOMCOMP_AMEND_HEADER', 'Original Contract:');
 jr_define('_JOMCOMP_AMEND_DEPOSITPAID', 'Deposit Paid');
 jr_define('_JOMCOMP_AMEND_DEPOSITDUE', 'Deposit Not Paid');
@@ -2144,3 +2144,18 @@ jr_define( 'PORTAL_REVIEWS_LIMIT_DESC', 'Use this setting to limit the number of
 jr_define( 'PORTAL_REVIEWS_SHOW_ALL_REVIEWS', 'Show all reviews' );
 
 jr_define( 'VIDEO_TUTORIALS', 'Video Tutorials' );
+
+jr_define( '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE', 'Minimum deposit value' );
+jr_define( '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC', "If the calculated deposit is less than this figure, then set deposit to this value instead. This figure might itself be over-ridden if it does not satisfy the site's minimum deposit setting. Leave it set to 0 to not use the setting." );
+
+jr_define( '_JOMRES_MEDIA_CENTRE_DBIMPORT_WARNING', 'To increase your site speed, we recommend importing details of the existing site and properties images to database.');
+jr_define( '_JOMRES_MEDIA_CENTRE_DBIMPORT_ACTION', 'Import existing images details to database');
+
+jr_define( '_JOMRES_S3_ACTIVE_DESC', 'Experimental feature. If enabled, images uploaded using the media centre feature will also be copied to your Amazon S3 bucket and served from your Amazon S3 bucket url. When enabling this the first time, you`ll also be promted to import existing images to your S3 bucket.');
+jr_define( '_JOMRES_CLOUDFRONT_DMAIN', 'CloudFront domain');
+jr_define( '_JOMRES_CLOUDFRONT_DMAIN_DESC', 'Replace your default Amazon S3 domain with your CloudFront domain');
+jr_define( '_JOMRES_S3_SSLTLS_DESC', 'Recommended to be enabled. For Windows and Mac OSX only, if libcurl wasn`t built with Schannel or Secure Transport support (the native SSL libraries included in Windows and Mac OS X), you should set this to No.');
+jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_WARNING', 'You`ve enabled the Amazon S3 integration, so you`ll have to copy all existing images to your S3 bucket. Images are now served to your site visitors from your Amazon S3 url, so you`ll need to copy them first to your S3 bucket, otherwise they won`t be visible to your site visitors.');
+jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_WARNING2', 'Once you click this button, please do not interrupt the process and wait for a success or error message. Depending on server speed, this may take a while to complete.');
+jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_ACTION', 'Copy existing images to Amazon S3 bucket');
+

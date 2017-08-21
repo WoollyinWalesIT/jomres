@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.8
+ * @version Jomres 9.9.9
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -82,7 +82,7 @@ class custom_text
         $property_uids = $tmp_array;
 
         if (!empty($property_uids)) {
-            $query = 'SELECT `constant` AS language_constant, `customtext`, `property_uid` FROM #__jomres_custom_text WHERE `property_uid` IN ('.jomres_implode($property_uids).") AND `language` = '".$this->lang."'";
+            $query = 'SELECT `constant` AS language_constant, `customtext`, `property_uid`, `language_context` FROM #__jomres_custom_text WHERE `property_uid` IN ('.jomres_implode($property_uids).") AND `language` = '".$this->lang."'";
             $customTextList = doSelectSql($query);
 
             if ($customTextList) {
@@ -90,7 +90,7 @@ class custom_text
                     $theConstant = str_replace('sc<x>ript', 'script', $text->language_constant);
 
                     if ($text->property_uid == 0) { //it`s a global custom text
-                        $this->global_custom_text[ $theConstant ] = stripslashes($text->customtext);
+                        $this->global_custom_text[$text->language_context][ $theConstant ] = stripslashes($text->customtext);
                     } else { //it`s a property specific custom text
                         $this->properties_custom_text[ $text->property_uid ][ $theConstant ] = stripslashes($text->customtext);
                     }
@@ -114,4 +114,92 @@ class custom_text
 		
         return true;
     }
+	
+	//update custom text
+	function updateCustomText($theConstant, $theValue, $audit = true, $property_uid = null, $language_context = '0')
+	{
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+		
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
+		
+		$testStr = trim(strip_tags_except($theValue));
+		$crsEtc = array("\t", "\n", "\r");
+		$testStr = str_replace($crsEtc, '', $testStr);
+		
+		if (
+			strlen($testStr) == 0 &&
+			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION' &&
+			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES' &&
+			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES' &&
+			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS' &&
+			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS' &&
+			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT' &&
+			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS' &&
+			$theConstant != '_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE' &&
+			$theConstant != '_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION' &&
+			$theConstant != '_JOMRES_CUSTOMTEXT_PROPERTY_METAKEYWORDS'
+			) {
+			return false;
+		}
+		
+		if (!isset($property_uid)) {
+			if ($jrConfig[ 'editingModeAffectsAllProperties' ] == '1' && $thisJRUser->superPropertyManager == true) {
+				$property_uid = 0;
+			} else {
+				$property_uid = (int)getDefaultProperty();
+			}
+		}
+
+		$query = "SELECT `customtext` FROM #__jomres_custom_text 
+						WHERE `constant` = '".$theConstant."' 
+						AND `property_uid` = ".(int) $property_uid." 
+						AND `language` = '".get_showtime('lang')."' 
+						AND `language_context` = '".$language_context."'";
+		$result = doSelectSql($query);
+		
+		if (strlen($theValue) == 0) {
+			$query = "DELETE FROM #__jomres_custom_text 
+							WHERE `constant` = '".$theConstant."' 
+							AND `property_uid` = ".(int) $property_uid." 
+							AND `language` = '".get_showtime('lang')."' 
+							AND `language_context` = '".$language_context."'";
+		} else {
+			if (empty($result)) {
+				$query = "INSERT INTO #__jomres_custom_text 
+									(
+									`constant`,
+									`customtext`,
+									`property_uid`,
+									`language`,
+									`language_context`
+									) 
+								VALUES (
+									'".$theConstant."',
+									'".$theValue."',
+									".(int)$property_uid.",
+									'".get_showtime('lang')."', 
+									'".$language_context."'
+									)";
+			} else {
+				$query = "UPDATE #__jomres_custom_text 
+								SET `customtext`='".$theValue."' 
+								WHERE `constant` = '".$theConstant."' 
+								AND `property_uid` = ".(int)$property_uid." 
+								AND `language` = '".get_showtime('lang')."' 
+								AND `language_context` = '".$language_context."'";
+			}
+		}
+
+		$audit_msg = '';
+		if ($audit) {
+			$audit_msg = jr_gettext('_JOMRES_MR_AUDIT_UPDATECUSTOMTEXT', '_JOMRES_MR_AUDIT_UPDATECUSTOMTEXT', false);
+		}
+
+		if (!doInsertSql($query, $audit_msg)) {
+			throw new Exception('Error: Custom text insert failed.');
+		}
+
+		return true;
+	}
 }

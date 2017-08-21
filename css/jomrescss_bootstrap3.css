@@ -467,3 +467,50 @@ div.star-rating {
 .jr-widget-toggle {
 	cursor: pointer;
 }
+
+
+.btn-videos { 
+  color: #004D15; 
+  background-color: #2AFA00; 
+  border-color: #10BA00; 
+} 
+ 
+.btn-videos:hover, 
+.btn-videos:focus, 
+.btn-videos:active, 
+.btn-videos.active, 
+.open .dropdown-toggle.btn-videos { 
+  color: #004D15; 
+  background-color: #10BA00; 
+  border-color: #10BA00; 
+} 
+ 
+.btn-videos:active, 
+.btn-videos.active, 
+.open .dropdown-toggle.btn-videos { 
+  background-image: none; 
+} 
+ 
+.btn-videos.disabled, 
+.btn-videos[disabled], 
+fieldset[disabled] .btn-videos, 
+.btn-videos.disabled:hover, 
+.btn-videos[disabled]:hover, 
+fieldset[disabled] .btn-videos:hover, 
+.btn-videos.disabled:focus, 
+.btn-videos[disabled]:focus, 
+fieldset[disabled] .btn-videos:focus, 
+.btn-videos.disabled:active, 
+.btn-videos[disabled]:active, 
+fieldset[disabled] .btn-videos:active, 
+.btn-videos.disabled.active, 
+.btn-videos[disabled].active, 
+fieldset[disabled] .btn-videos.active { 
+  background-color: #2AFA00; 
+  border-color: #10BA00; 
+} 
+ 
+.btn-videos .badge { 
+  color: #2AFA00; 
+  background-color: #004D15; 
+}

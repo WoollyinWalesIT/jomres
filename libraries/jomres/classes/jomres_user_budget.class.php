@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.8
+ * @version Jomres 9.9.9
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -55,11 +55,14 @@ class jomres_user_budget
 
         $output = array();
         $pageoutput = array();
-
+		$rows = array();
+		
         $output['BUDGET'] = jr_gettext('GUEST_BUDGET', 'GUEST_BUDGET', false, false);
         $output['FIGURE'] = $this->get_budget(true);
 
         $prices = $this->get_price_ranges();
+		if (!empty($prices)) {
+			
 
         $highest_price = max($prices);
         $range = $highest_price / 10;
@@ -72,7 +75,7 @@ class jomres_user_budget
             $onclick = true;
         }
 
-        $rows = array();
+       
         if (((defined('JOMRES_NOHTML') && JOMRES_NOHTML == 0) || get_showtime('task') == 'ajax_search_filter')) {
             if ($this->get_budget(true) != '') {
                 $r = array();
@@ -110,6 +113,11 @@ class jomres_user_budget
         $tmpl->readTemplatesFromInput('list_properties_budget_dropdown.html');
 
         return $tmpl->getParsedTemplate();
+		} 
+		else 
+		{
+			return '';
+		}
     }
 
     public function get_price_ranges()

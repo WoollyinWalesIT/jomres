@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.8
+ * @version Jomres 9.9.9
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -85,4 +85,16 @@ jr_define('_JOMRES_TUTORIAL_LOGFILES', 'Log files');
 jr_define('_JOMRES_TUTORIAL_LOGFILES_DESC', 'This video will show you how to view log files. Extensive logging occurs when the system is run. When in Production mode (Site Config > Debugging) less logs are generated so if you are testing a new feature then you should set your site to Development. If you would like to add your own logging to your Jomres scripts, take a look at <a "http://www.jomres.net/manual/developers-guide/56-other-discussions/339-logging-in-jomres" target="_blank">our manual page on how to do it.</a> Here we will throw a fake error, then view the log file. Because the site is set to Development there is a lot of information, normally you would just see a message saying that there was an error and it has been reported.');
 
 jr_define('_JOMRES_TUTORIAL_TRANSLATIONS', 'Translating labels and other strings');
-jr_define('_JOMRES_TUTORIAL_TRANSLATIONS_DESC', 'There are a number of ways to translate language strings in Jomres, you could edit language files but they might be overwritten when you upgrade. Instead we recommend you use the built-in translation tools that are unique to our software. If the string is something that has been entered into a form, such as the name of a room type, you can use the Label Editing page. If the string is from the language file then you can use the Language files edting tool. Just use the browser search tool to find the string you want to change and then click on the link to change it. These changes are saved to the database and therefore are update safe.');
+jr_define('_JOMRES_TUTORIAL_TRANSLATIONS_DESC', 'There are a number of ways to translate language strings in Jomres, you could edit language files but they might be overwritten when you upgrade. Instead we recommend you use the built-in translation tools that are unique to our software. If the string is something that has been entered into a form, such as the name of a room type, you can use the Label Editing page. If the string is from the language file then you can use the Language files edting tool. Just use the browser search tool to find the string you want to change and then click on the link to change it. These changes are saved to the database and therefore are update safe. You can have different labels for different property types, so you can change New Property to New Campsite, for example, by changing the Language Context dropdown at the top of the page before changing the label.');
+
+jr_define('_JOMRES_TUTORIAL_ADMIN_ADD_PROPERTY', 'Adding properties');
+jr_define('_JOMRES_TUTORIAL_ADMIN_ADD_PROPERTY_DESC', '<p>At this stage Jomres has been installed into the CMS and it has been added to the frontend menu ( or in Wordpress you have created a page and added the basic Jomres shortcode to it).</p>
+<p>Here you will see how a  registered user who is not yet a property manager in Jomres can create a new property, configure some basic settings and publish it.</p>
+<p>At the end you will see that the manager has been automatically set as a property manager, however they are only able to configure their own properties.</p>
+<p>Although the interface in Wordpress looks different the process is exactly the same for Joomla or Wordpress.</p>  ');
+
+jr_define('_JOMRES_TUTORIAL_ADMIN_PROPERTY_CATEGORIES', 'Property categories');
+jr_define('_JOMRES_TUTORIAL_ADMIN_PROPERTY_CATEGORIES_DESC', 'Property categories is a simple feature that allows property managers to assign their properties to a certain category. Site administrators can create shortcodes that will list all properties in a category, as shown in this video.');
+
+jr_define('_JOMRES_TUTORIAL_ADMIN_COMPLETING_PROPERTY', 'Site administrator viewing properties');
+jr_define('_JOMRES_TUTORIAL_ADMIN_COMPLETING_PROPERTY_DESC', '<p>You do not manage properties from here, you can only manage properties from the frontend, however in this list you can see properties that are pending approval ( if the feature is enabled ) and any that are incomplete ( e.g. still need to upload images, set prices etc). Click on the property name to be taken to the dashboard for that property. You will then be able to use the guide sections at the top of the page to see the steps that you need to take to complete and publish a property.</p>  ');

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.8
+ * @version Jomres 9.9.9
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -68,10 +68,10 @@ class jomres_properties
         $this->metatitle = '';
         $this->metadescription = '';
         $this->metakeywords = '';
-        //$this->timestamp 						= date("Y/m/d H:i:s");
         $this->approved = 0;
         $this->property_site_id = '';
         $this->permit_number = '';
+		$this->cat_id = 0;
     }
 
     //Get all properties in the system
@@ -178,7 +178,8 @@ class jomres_properties
 							`ptype_id`,
 							`apikey`, 
 							`approved`,
-							`property_site_id`
+							`property_site_id`,
+							`cat_id` 
 							)
 						VALUES
 							(
@@ -190,7 +191,8 @@ class jomres_properties
 							".(int) $this->ptype_id.",
 							'".$this->apikey."',
 							".(int) $this->approved.",
-							'".$this->property_site_id."'
+							'".$this->property_site_id."',
+							".(int) $this->cat_id."
 							)";
 
         $this->propertys_uid = doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_INSERT_PROPERTY', '_JOMRES_MR_AUDIT_INSERT_PROPERTY', false));
@@ -363,7 +365,8 @@ class jomres_properties
 						".$apiclause."
 						`ptype_id` = ".(int) $this->ptype_id.",
 						`property_site_id` = '".$this->property_site_id."',
-						`permit_number` = '".$this->permit_number."'
+						`permit_number` = '".$this->permit_number."',
+						`cat_id` = ".(int)$this->cat_id."
 					WHERE `propertys_uid` = " .(int) $this->propertys_uid;
 
         if (!doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_UPDATE_PROPERTY', '_JOMRES_MR_AUDIT_UPDATE_PROPERTY', false))) {

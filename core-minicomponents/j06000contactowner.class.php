@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.8
+ * @version Jomres 9.9.9
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -54,7 +54,7 @@ class j06000contactowner
             if ($version == 'V1') {
                 require_once JOMRESPATH_BASE.'/libraries/recaptcha/recaptchalib.php';
             } elseif ($version == 'V2') {
-                require_once JOMRESPATH_BASE.'/libraries/recaptcha/autoload.php';
+                //require_once JOMRESPATH_BASE.'/libraries/recaptcha/autoload.php';
                 $recaptcha = new \ReCaptcha\ReCaptcha(trim($jrConfig[ 'recaptcha_private_key' ]), new \ReCaptcha\RequestMethod\CurlPost());
             }
         }

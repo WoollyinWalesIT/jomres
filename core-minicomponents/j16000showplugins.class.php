@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.8
+ * @version Jomres 9.9.9
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -26,13 +26,20 @@ class j16000showplugins
 			return;
 		}
 
-        jr_import('jomres_check_support_key');
-        $key_validation = new jomres_check_support_key(JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins');
+        $key_validation = jomres_singleton_abstract::getInstance('jomres_check_support_key');
+		$key_validation->check_license_key(true); //only needed if we want to force a recheck
+		
         $this->key_valid = $key_validation->key_valid;
-        if ($key_validation->is_trial_license == '1' && !extension_loaded('IonCube Loader') && trim($key_validation->key_hash) != '' && $this->key_valid ) {
+        
+		if ($key_validation->is_trial_license == '1' && !extension_loaded('IonCube Loader') && trim($key_validation->key_hash) != '' && $this->key_valid ) {
             jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN.'&task=loader_wizard');
         }
 
+		if ($key_validation->is_trial_license == '1' && ioncube_loader_version() < 6 ) {
+			echo "Error, your Ioncube Loader version is too low. You have ".ioncube_loader_version()." installed and you need at least version 6";
+			return;
+		}
+		
         if ($key_validation->is_trial_license == '1') {
             if (function_exists('ioncube_loader_version')) {
                 $ioncubeVersion = ioncube_loader_version();

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.8
+ * @version Jomres 9.9.9
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -379,7 +379,7 @@ jr_define('_JOMRES_COM_CHARGING_CONFIG', 'Amount charged at booking time');
 jr_define('_JOMRES_COM_CHARGING_CONFIG_DESC', 'Use this option to decide what should be charged at booking time. Choose deposit if the deposit should be charged, or Full amount if the full amount should be charged.');
 jr_define('_JOMRES_COM_MONTHSTOSHOW', 'Cal months to show');
 jr_define('_JOMRES_COM_MONTHSTOSHOW_DESC', 'In the room availability, How many months of the calendar should be shown?');
-jr_define('_JOMRES_COM_A_GATEWAYLIST', 'Gateways');
+jr_define('_JOMRES_COM_A_GATEWAYLIST', 'Payment Gateways');
 jr_define('_JOMRES_COM_A_CANCEL', 'Cancel');
 jr_define('_JOMRES_FRONT_BLACKBOOKING_DESC', 'Select the dates that you want to apply the black bookings for. When you have selected the appropriate dates, click the "apply" button to re-check availability. <br/> 
 <br/> 
@@ -671,7 +671,7 @@ jr_define('JOMRES_COM_A_VERBOSETARIFFINTO', 'Verbose tariff info');
 jr_define('JOMRES_COM_A_VERBOSETARIFFINTO_DESC', 'Set this to Yes to show more detailed tariff information in the property details/tariff popup');
 jr_define('JOMRES_COM_A_MINIMALCONFIG', 'Minimise configuration options');
 jr_define('_JOMCOMP_AMEND', 'Amend Booking - Property Selection');
-jr_define('_JOMCOMP_AMEND_SELECTPROPERTY', 'Select New Property');
+jr_define('_JOMCOMP_AMEND_SELECTPROPERTY', 'Select Property');
 jr_define('_JOMCOMP_AMEND_HEADER', 'Original Contract:');
 jr_define('_JOMCOMP_AMEND_DEPOSITPAID', 'Deposit Paid');
 jr_define('_JOMCOMP_AMEND_DEPOSITDUE', 'Deposit Not Paid');
@@ -1117,14 +1117,6 @@ jr_define('_JOMRES_PAYPAL_REDIRECTMESSAGE', 'Please wait, your order is being pr
 jr_define('_JOMRES_PAYPAL_REDIRECTMESSAGE_IFNOTREDIRECTED', 'If you are not automatically redirected to Paypal within 5 seconds...');
 jr_define('_JOMRES_PAYPAL_REDIRECTMESSAGE_CLICKHERE', 'Click Here');
 // 4.7.8
-jr_define('_JRPORTAL_COUPONS_BOOKING_VALIDFROM', 'Booking valid from');
-jr_define('_JRPORTAL_COUPONS_BOOKING_VALIDTO', 'Booking valid to');
-jr_define('_JRPORTAL_COUPONS_GUESTNAME', 'Guest name');
-jr_define('_JRPORTAL_COUPONS_DESC_478', "Discount codes can be generated and passed onto guests as an incentive to make bookings.<br/>
-Valid from and to dates refer to the dates that a booking can be made on, whereas the Booking valid from/to dates refer to the dates that the booking must cover for the coupon to be valid. If a booking falls outside of that period then normal rates will apply to the days outside of that period.<br/>
-If you want the booking to be available to one specific guest, choose that guest's name in the dropdown to limit the coupon to that guest only.");
-jr_define('_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK', 'With your coupon, this booking has been discounted from ');
-jr_define('_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK_TO', ' to ');
 jr_define('_JOMRES_CONFIG_JQUERY_UI_DESC', 'Set this to No to disable loading of both the Jquery UI javascript and CSS files.');
 jr_define('_JOMRES_CONFIG_JQUERY_UI_CSS', 'Load Jomres jQuery UI CSS library?');
 jr_define('_JOMRES_CONFIG_JQUERY_UI_CSS_DESC', 'Set this to No to disable only the jquery UI CSS file.');
@@ -1925,3 +1917,20 @@ jr_define( 'JOMRES_WATING_APPROVAL', 'Pending approval' );
 jr_define( 'JOMRES_GOOGLE_MAPS_PDETAILS', 'Property details map' );
 
 jr_define( 'VIDEO_TUTORIALS', 'Video Tutorials' );
+jr_define( '_JOMRES_PROPERTY_HCATEGORIES', 'Property Categories' );
+jr_define( '_JOMRES_PROPERTY_HCATEGORIES_HEDIT', 'Edit Property Category' );
+
+jr_define( '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE', 'Minimum deposit value' );
+jr_define( '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC', "If the calculated deposit is less than this figure, then set deposit to this value instead. This figure might itself be over-ridden if it does not satisfy the site's minimum deposit setting. Leave it set to 0 to not use the setting." );
+
+jr_define( '_JOMRES_MEDIA_CENTRE_DBIMPORT_WARNING', 'To increase your site speed, we recommend importing details of the existing site and properties images to database.');
+jr_define( '_JOMRES_MEDIA_CENTRE_DBIMPORT_ACTION', 'Import existing images details to database');
+
+jr_define( '_JOMRES_S3_ACTIVE_DESC', 'Experimental feature. If enabled, images uploaded using the media centre feature will also be copied to your Amazon S3 bucket and served from your Amazon S3 bucket url. When enabling this the first time, you`ll also be promted to import existing images to your S3 bucket.');
+jr_define( '_JOMRES_CLOUDFRONT_DMAIN', 'CloudFront domain');
+jr_define( '_JOMRES_CLOUDFRONT_DMAIN_DESC', 'Replace your default Amazon S3 domain with your CloudFront domain');
+jr_define( '_JOMRES_S3_SSLTLS_DESC', 'Recommended to be enabled. For Windows and Mac OSX only, if libcurl wasn`t built with Schannel or Secure Transport support (the native SSL libraries included in Windows and Mac OS X), you should set this to No.');
+jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_WARNING', 'You`ve enabled the Amazon S3 integration, so you`ll have to copy all existing images to your S3 bucket. Images are now served to your site visitors from your Amazon S3 url, so you`ll need to copy them first to your S3 bucket, otherwise they won`t be visible to your site visitors.');
+jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_WARNING2', 'Once you click this button, please do not interrupt the process and wait for a success or error message. Depending on server speed, this may take a while to complete.');
+jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_ACTION', 'Copy existing images to Amazon S3 bucket');
+

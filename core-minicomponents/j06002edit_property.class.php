@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.8
+ * @version Jomres 9.9.9
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -98,25 +98,28 @@ class j06002edit_property
         //if the lat/long are still empty, let's ask Auntie Google what the lat long should be.
         //TODO: is this still needed?
         if ($output[ 'LAT' ] == '') {
-            $url = 'https://maps-api-ssl.google.com/maps/api/geocode/json?address='.urlencode($current_property_details->property_name).','.urlencode($current_property_details->property_street).','.urlencode($current_property_details->property_town).','.urlencode($current_property_details->property_region).','.urlencode($selectedCountry);
+            $base_uri = 'https://maps-api-ssl.google.com/';
+			$query_string = 'maps/api/geocode/json?address='.urlencode($current_property_details->property_name).','.urlencode($current_property_details->property_street).','.urlencode($current_property_details->property_town).','.urlencode($current_property_details->property_region).','.urlencode($selectedCountry);
+			
+			$response = '';
+			
+			try {
+				$client = new GuzzleHttp\Client([
+					'base_uri' => $base_uri
+				]);
 
-            logging::log_message('Starting curl call to '.$url, 'Curl', 'DEBUG');
-            $logging_time_start = microtime(true);
-
-            $curl_handle = curl_init();
-            curl_setopt($curl_handle, CURLOPT_URL, $url);
-            curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
-            curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($curl_handle, CURLOPT_USERAGENT, 'Jomres');
-            $response = trim(curl_exec($curl_handle));
-            curl_close($curl_handle);
-
-            $logging_time_end = microtime(true);
-            $logging_time = $logging_time_end - $logging_time_start;
-            logging::log_message('Curl call took '.$logging_time.' seconds ', 'Curl', 'DEBUG');
-
-            $decoded = json_decode($response);
-            if (isset($decoded->results[ 0 ]->geometry->location->lat)) {
+				logging::log_message('Starting guzzle call to '.$base_uri.$query_string, 'Guzzle', 'DEBUG');
+				
+				$response = $client->request('GET', $query_string)->getBody()->getContents();
+			}
+			catch (Exception $e) {
+				$jomres_user_feedback = jomres_singleton_abstract::getInstance('jomres_user_feedback');
+				$jomres_user_feedback->construct_message(array('message'=>'Could not get map coordinates', 'css_class'=>'alert-danger alert-error'));
+			}
+			
+			$decoded = json_decode($response);
+            
+			if (isset($decoded->results[ 0 ]->geometry->location->lat)) {
                 $output[ 'LAT' ] = $decoded->results[ 0 ]->geometry->location->lat;
                 $output[ 'LONG' ] = $decoded->results[ 0 ]->geometry->location->lng;
             }
@@ -179,8 +182,14 @@ class j06002edit_property
         }
 
         //property type dropdown (extended version, with explanation about what will guests book in this property)
+		$jomres_property_types = jomres_singleton_abstract::getInstance('jomres_property_types');
         $output[ 'HPROPERTY_TYPE' ] = jr_gettext('_JOMRES_FRONT_PTYPE', '_JOMRES_FRONT_PTYPE');
-        $output[ 'PROPERTY_TYPE_DROPDOWN' ] = getPropertyTypeDropdown($current_property_details->ptype_id, true);
+        $output[ 'PROPERTY_TYPE_DROPDOWN' ] = $jomres_property_types->getPropertyTypeDropdown($current_property_details->ptype_id, true);
+		
+		//property category dropdown
+		$jomres_property_categories = jomres_singleton_abstract::getInstance('jomres_property_categories');
+        $output[ 'PROPERTY_CATEGORIES_DROPDOWN' ] = $jomres_property_categories->getPropertyCategoriesDropdown($current_property_details->cat_id);
+		$output[ 'HCATEGORY' ] = jr_gettext('_JOMRES_HCATEGORY', '_JOMRES_HCATEGORY');
 
         //property features
         $propertyFeaturesArray = explode(',', $current_property_details->property_features);
@@ -197,9 +206,7 @@ class j06002edit_property
 					$r[ 'ischecked' ] = 'checked';
 				}
 
-				$feature_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_ABBV'.(int) $k, stripslashes($v['abbv']), false, false);
-				$feature_desc = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_DESC'.(int) $k, stripslashes($v['desc']), false, false);
-				$r[ 'FEATURE' ] = jomres_makeTooltip($feature_abbv, $feature_abbv, $feature_desc, JOMRES_IMAGELOCATION_RELPATH.'pfeatures/'.$v['image'], '', 'property_feature', array());
+				$r[ 'FEATURE' ] = jomres_makeTooltip($v['abbv'], $v['abbv'], $v['desc'], JOMRES_IMAGELOCATION_RELPATH.'pfeatures/'.$v['image'], '', 'property_feature', array());
 
 				$r[ 'BR' ] = '';
 				if ($counter == 8) {
