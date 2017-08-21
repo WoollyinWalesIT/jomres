@@ -298,7 +298,7 @@ try {
     }
 	
 	//trigger 99998 event - jomres feedback messages
-	if (!AJAXCALL) {
+	if (!AJAXCALL && $no_html == 0) {
 		$MiniComponents->triggerEvent('99998');
 	}
 
