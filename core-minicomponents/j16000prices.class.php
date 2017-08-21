@@ -40,13 +40,19 @@ class j16000prices
 		$base_uri = 'http://updates.jomres4.net/';
 		$query_string = 'remote_templates/plugin_manager_licenses_subscriptions.html';
 		
-		$client = new GuzzleHttp\Client([
-			'base_uri' => $base_uri
-		]);
+		try {
+			$client = new GuzzleHttp\Client([
+				'base_uri' => $base_uri
+			]);
 
-		logging::log_message('Starting guzzle call to '.$base_uri.$query_string, 'Guzzle', 'DEBUG');
-		
-		$output['SUBSCRIPTION_LICENSES'] = $client->request('GET', $query_string)->getBody()->getContents();
+			logging::log_message('Starting guzzle call to '.$base_uri.$query_string, 'Guzzle', 'DEBUG');
+			
+			$output['SUBSCRIPTION_LICENSES'] = $client->request('GET', $query_string)->getBody()->getContents();
+		}
+		catch (Exception $e) {
+			$jomres_user_feedback = jomres_singleton_abstract::getInstance('jomres_user_feedback');
+			$jomres_user_feedback->construct_message(array('message'=>'Could not get Jomres prices, please see https://www.jomres.net/prices', 'css_class'=>'alert-danger alert-error'));
+		}
 
 /* 		$pageoutput = array();
 		$tmpl = new patTemplate();

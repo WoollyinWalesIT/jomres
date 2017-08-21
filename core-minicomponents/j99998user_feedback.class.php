@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j99994user_feedback
+class j99998user_feedback
 {
     public function __construct($componentArgs)
     {
@@ -39,13 +39,14 @@ class j99994user_feedback
 			return;
 		}
 
-		$output[ 'MESSAGES' ] = $jomres_user_feedback->generate_messages();
+		$output[ 'MESSAGES' ] = $jomres_user_feedback->get_messages();
+
 		$pageoutput[ ] = $output;
 		$tmpl = new patTemplate();
 		$tmpl->addRows('pageoutput', $pageoutput);
 		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
 		$tmpl->readTemplatesFromInput('user_feedback.html');
-		set_showtime('user_feedback', $tmpl->getParsedTemplate());
+		$tmpl->displayParsedTemplate();
     }
 
     // This must be included in every Event/Mini-component

@@ -15,7 +15,6 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 // A class for providing feedback to all users
-//not currently used in any way
 class jomres_user_feedback
 {
 	private static $configInstance;
@@ -23,11 +22,7 @@ class jomres_user_feedback
     public function __construct()
     {
         $this->user_feedback_messages = array();
-        $this->messages = '';
-		$this->css_classes_danger = 'danger';
-		$this->css_classes_warning = 'warning';
-		$this->css_classes_successs = 'success';
-		$this->css_classes_info = 'info';
+		$this->messages = '';
     }
 	
 	public static function getInstance()
@@ -39,26 +34,34 @@ class jomres_user_feedback
         return self::$configInstance;
     }
 
-    public function generate_messages()
+    public function get_messages()
     {
         if (!empty($this->user_feedback_messages)) {
-            foreach ($this->user_feedback_messages as $message) {
-                $this->messages .= $this->construct_message($message);
-            }
+			foreach ($this->user_feedback_messages as $message) {
+				$this->messages .= $message;
+			}
+
+            return $this->messages;
         }
 
-        return $this->messages;
+        return false;
     }
 
-    public function construct_message($message_array)
+    public function construct_message($message_array = array())
     {
+		if (empty($message_array)) {
+			return false;
+		}
+
         $button = '';
-        if (isset($message_array['LINK'])) {
+        if (isset($message_array['link'])) {
             $pageoutput = array();
             $output = array();
-            $output['LINK'] = $message_array['LINK'];
-            $output['BUTTON_TEXT'] = $message_array['BUTTON_TEXT'];
-            $pageoutput[ ] = $output;
+            
+			$output['LINK'] = $message_array['link'];
+            $output['BUTTON_TEXT'] = $message_array['button_text'];
+            
+			$pageoutput[ ] = $output;
             $tmpl = new patTemplate();
             $tmpl->addRows('pageoutput', $pageoutput);
             $tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
@@ -69,27 +72,17 @@ class jomres_user_feedback
         $pageoutput = array();
         $output = array();
 
-        $output['MESSAGE'] = $message_array['MESSAGE'];
+		if (isset($message_array['message'])) {
+			$output['MESSAGE'] = $message_array['message'];
+		}
+		
+		if (isset($message_array['css_class'])) {
+			$output['CSS_CLASS'] = $message_array['css_class'];
+		}
+		
         $output['ACTION_LINK'] = $button;
-        switch ($message_array['CSS_CLASS']) {
-            case 'danger':
-                $output['CSS_CLASS'] = $this->css_classes_danger;
-                break;
-            case 'warning':
-                $output['CSS_CLASS'] = $this->css_classes_warning;
-                break;
-            case 'success':
-                $output['CSS_CLASS'] = $this->css_classes_successs;
-                break;
-            case 'info':
-            default:
-                $output['CSS_CLASS'] = $this->css_classes_info;
-                break;
-            }
 
-        $output['CSS_CLASS'] = $message_array['CSS_CLASS'];
-
-        $pageoutput[ ] = $output;
+        $pageoutput[] = $output;
 
         $tmpl = new patTemplate();
         $tmpl->addRows('pageoutput', $pageoutput);
@@ -97,5 +90,7 @@ class jomres_user_feedback
         $tmpl->readTemplatesFromInput('user_feedback_pane.html');
 
         $this->user_feedback_messages[] = $tmpl->getParsedTemplate();
+		
+		return true;
     }
 }

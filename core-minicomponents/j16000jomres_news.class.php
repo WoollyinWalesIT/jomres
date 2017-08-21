@@ -52,14 +52,22 @@ class j16000jomres_news
         if (!file_exists(JOMRES_TEMP_ABSPATH.'news.php')) {
 			$base_uri = 'http://updates.jomres4.net/';
 			$query_string = 'news.php';
+			
+			$buffer = '';
 
-			$client = new GuzzleHttp\Client([
-				'base_uri' => $base_uri
-			]);
+			try {
+				$client = new GuzzleHttp\Client([
+					'base_uri' => $base_uri
+				]);
 
-            logging::log_message('Starting guzzle call to '.$base_uri.$query_string, 'Guzzle', 'DEBUG');
+				logging::log_message('Starting guzzle call to '.$base_uri.$query_string, 'Guzzle', 'DEBUG');
 
-			$buffer = $client->request('GET', $query_string)->getBody()->getContents();
+				$buffer = $client->request('GET', $query_string)->getBody()->getContents();
+			}
+			catch (Exception $e) {
+				$jomres_user_feedback = jomres_singleton_abstract::getInstance('jomres_user_feedback');
+				$jomres_user_feedback->construct_message(array('message'=>'Could not get jomres news', 'css_class'=>'alert-danger alert-error'));
+			}
             
 			if ($buffer != '') {
                 file_put_contents(JOMRES_TEMP_ABSPATH.'news.php', $buffer);

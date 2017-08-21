@@ -45,17 +45,24 @@ class j07020showplugins
         if (!file_exists(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php')) {
             include JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'jomres_config.php';
             $current_version = $mrConfig[ 'version' ];
+			$remote_plugins_data = '';
 			
 			$base_uri = 'http://plugins.jomres4.net/';
 			$query_string = 'index.php?r=dp&format=json&cms='._JOMRES_DETECTED_CMS.'&jomresver='.$current_version;
 
-			$client = new GuzzleHttp\Client([
-				'base_uri' => $base_uri
-			]);
+			try {
+				$client = new GuzzleHttp\Client([
+					'base_uri' => $base_uri
+				]);
 
-            logging::log_message('Starting guzzle call to '.$base_uri.$query_string, 'Guzzle', 'DEBUG');
-			
-			$remote_plugins_data = $client->request('GET', $query_string)->getBody()->getContents();
+				logging::log_message('Starting guzzle call to '.$base_uri.$query_string, 'Guzzle', 'DEBUG');
+				
+				$remote_plugins_data = $client->request('GET', $query_string)->getBody()->getContents();
+			}
+			catch (Exception $e) {
+				$jomres_user_feedback = jomres_singleton_abstract::getInstance('jomres_user_feedback');
+				$jomres_user_feedback->construct_message(array('message'=>'Could not get plugins data', 'css_class'=>'alert-danger alert-error'));
+			}
 
             // Uncomment this to show all updates, including beta plugins.
             //$remote_plugins_data = queryUpdateServer( "", "r=dp&format=json&cms=" . _JOMRES_DETECTED_CMS  );

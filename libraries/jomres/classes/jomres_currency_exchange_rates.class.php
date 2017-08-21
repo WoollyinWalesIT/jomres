@@ -162,13 +162,21 @@ $this->rates = ' .var_export($this->rates, true).';
             return false;
         }
 		
-		$client = new GuzzleHttp\Client([
-			'base_uri' => $this->base_uri
-		]);
+		$json = '';
+		
+		try {
+			$client = new GuzzleHttp\Client([
+				'base_uri' => $this->base_uri
+			]);
 
-        logging::log_message('Starting guzzle call to '.$this->base_uri.$this->query_string, 'Guzzle', 'DEBUG');
+			logging::log_message('Starting guzzle call to '.$this->base_uri.$this->query_string, 'Guzzle', 'DEBUG');
 
-		$json = $client->request('GET', $this->query_string)->getBody()->getContents();
+			$json = $client->request('GET', $this->query_string)->getBody()->getContents();
+		}
+		catch (Exception $e) {
+			$jomres_user_feedback = jomres_singleton_abstract::getInstance('jomres_user_feedback');
+			$jomres_user_feedback->construct_message(array('message'=>'Could not get currency exchange rates', 'css_class'=>'alert-danger alert-error'));
+		}
 
         $result = json_decode($json);
 

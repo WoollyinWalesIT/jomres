@@ -74,6 +74,7 @@ Jomres includes Access Control functionality, however we find that a more simpli
 
 99994 Post run scripts are run here, for example the Channel Manager functionality has a watcher for here, and webhooks are triggered at this point.
 
+99998 jomres feedback messages
 99999 Anything that needs to be done right at the end of a run.
 
 Administrator area
@@ -100,6 +101,7 @@ Administrator area
 19995 creates the admin core menu items  
 19997 builds the admin cpanel menu
 
+99998 jomres feedback messages
 
 Menu sections (Frontend)
 

@@ -101,15 +101,23 @@ class j06002edit_property
             $base_uri = 'https://maps-api-ssl.google.com/';
 			$query_string = 'maps/api/geocode/json?address='.urlencode($current_property_details->property_name).','.urlencode($current_property_details->property_street).','.urlencode($current_property_details->property_town).','.urlencode($current_property_details->property_region).','.urlencode($selectedCountry);
 			
-			$client = new GuzzleHttp\Client([
-				'base_uri' => $base_uri
-			]);
-
-            logging::log_message('Starting guzzle call to '.$base_uri.$query_string, 'Guzzle', 'DEBUG');
+			$response = '';
 			
-			$response = $client->request('GET', $query_string)->getBody()->getContents();
+			try {
+				$client = new GuzzleHttp\Client([
+					'base_uri' => $base_uri
+				]);
 
-            $decoded = json_decode($response);
+				logging::log_message('Starting guzzle call to '.$base_uri.$query_string, 'Guzzle', 'DEBUG');
+				
+				$response = $client->request('GET', $query_string)->getBody()->getContents();
+			}
+			catch (Exception $e) {
+				$jomres_user_feedback = jomres_singleton_abstract::getInstance('jomres_user_feedback');
+				$jomres_user_feedback->construct_message(array('message'=>'Could not get map coordinates', 'css_class'=>'alert-danger alert-error'));
+			}
+			
+			$decoded = json_decode($response);
             
 			if (isset($decoded->results[ 0 ]->geometry->location->lat)) {
                 $output[ 'LAT' ] = $decoded->results[ 0 ]->geometry->location->lat;

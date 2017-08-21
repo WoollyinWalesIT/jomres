@@ -296,6 +296,9 @@ try {
     if (!AJAXCALL && $no_html == 0 && !isset($_REQUEST[ 'popup' ])) {
         echo $MiniComponents->specificEvent('09997', 'menu', array());
     }
+	
+	//trigger 99998 event - jomres feedback messages
+	$MiniComponents->triggerEvent('99998');
 
     //trigger 99999 event: Optional end run scripts
     $componentArgs = array();

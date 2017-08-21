@@ -1726,16 +1726,25 @@ function queryUpdateServer($script, $queryString, $serverType = 'plugin')
     if (strlen($script) == 0) {
         $script = 'index.php';
     }
+	
+	$response = '';
 
 	$query_string = $script.'?'.$queryString.'&jomresver='.$current_version.'&hostname='.get_showtime('live_site');
 
-	$client = new GuzzleHttp\Client([
-		'base_uri' => $updateServer
-	]);
+	try {
+		$client = new GuzzleHttp\Client([
+			'base_uri' => $updateServer
+		]);
 
-	logging::log_message('Starting guzzle call to '.$updateServer.'/'.$query_string, 'Guzzle', 'DEBUG');
-	
-	$response = $client->request('GET', $query_string)->getBody()->getContents();
+		logging::log_message('Starting guzzle call to '.$updateServer.'/'.$query_string, 'Guzzle', 'DEBUG');
+		
+		$response = $client->request('GET', $query_string)->getBody()->getContents();
+	}
+	catch (Exception $e) {
+		$jomres_user_feedback = jomres_singleton_abstract::getInstance('jomres_user_feedback');
+		$jomres_user_feedback->construct_message(array('message'=>'Could not query the updates server', 'css_class'=>'alert-danger alert-error'));
+		return;
+	}
 
     return $response;
 }
@@ -3733,14 +3742,21 @@ function get_latest_jomres_version($outputText = true)
     if (!file_exists(JOMRES_TEMP_ABSPATH.'latest_version.php')) {
 		$base_uri = 'http://updates.jomres4.net/';
 		$query_string = 'versions.php';
+		$buffer = '';
 
-		$client = new GuzzleHttp\Client([
-			'base_uri' => $base_uri
-		]);
+		try {
+			$client = new GuzzleHttp\Client([
+				'base_uri' => $base_uri
+			]);
 
-		logging::log_message('Starting guzzle call to '.$base_uri.$query_string, 'Guzzle', 'DEBUG');
-		
-		$buffer = $client->request('GET', $query_string)->getBody()->getContents();
+			logging::log_message('Starting guzzle call to '.$base_uri.$query_string, 'Guzzle', 'DEBUG');
+			
+			$buffer = $client->request('GET', $query_string)->getBody()->getContents();
+		}
+		catch (Exception $e) {
+			$jomres_user_feedback = jomres_singleton_abstract::getInstance('jomres_user_feedback');
+			$jomres_user_feedback->construct_message(array('message'=>'Could not get latest Jomres version', 'css_class'=>'alert-danger alert-error'));
+		}
 
         if ($buffer != '') {
             $latest_jomres_version = explode('.', $buffer);
