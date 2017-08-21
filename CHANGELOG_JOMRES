@@ -1,4 +1,4 @@
-<h3>Jomres 9.9.9 NN/08/2017</h3>
+<h3>Jomres 9.9.9 21/08/2017</h3>
 
 <span class="label label-success">Feature</span> Added support for property categories. This is a simple feature that allows managers to create property categories, which can then be added as both menu options to Joomla, or added as shortcodes to articles/pages in both Joomla and Wordpress.
 <span class="label label-success">Feature</span> Added changes to allow us to have global coupon codes (created by site admins) that apply to all properties.

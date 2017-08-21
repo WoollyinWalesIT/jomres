@@ -96,3 +96,5 @@ jr_define('_JOMRES_TUTORIAL_ADMIN_ADD_PROPERTY_DESC', '<p>At this stage Jomres h
 jr_define('_JOMRES_TUTORIAL_ADMIN_PROPERTY_CATEGORIES', 'Property categories');
 jr_define('_JOMRES_TUTORIAL_ADMIN_PROPERTY_CATEGORIES_DESC', 'Property categories is a simple feature that allows property managers to assign their properties to a certain category. Site administrators can create shortcodes that will list all properties in a category, as shown in this video.');
 
+jr_define('_JOMRES_TUTORIAL_ADMIN_COMPLETING_PROPERTY', 'Site administrator viewing properties');
+jr_define('_JOMRES_TUTORIAL_ADMIN_COMPLETING_PROPERTY_DESC', '<p>You do not manage properties from here, you can only manage properties from the frontend, however in this list you can see properties that are pending approval ( if the feature is enabled ) and any that are incomplete ( e.g. still need to upload images, set prices etc). Click on the property name to be taken to the dashboard for that property. You will then be able to use the guide sections at the top of the page to see the steps that you need to take to complete and publish a property.</p>  ');
