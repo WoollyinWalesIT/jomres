@@ -180,11 +180,11 @@ $jrConfig = array(
   'images_imported_to_db' => '0',
   'images_imported_to_s3' => '0',
   'amazon_s3_active' => '0',
-  'amazon_s3_key' => '0',
-  'amazon_s3_secret' => '0',
-  'amazon_s3_region' => '0',
-  'amazon_s3_bucket' => '0',
-  'amazon_cloudfront_domain' => '0',
+  'amazon_s3_key' => '',
+  'amazon_s3_secret' => '',
+  'amazon_s3_region' => 'us-east-1',
+  'amazon_s3_bucket' => '',
+  'amazon_cloudfront_domain' => '',
   'amazon_s3_remove_local_copies' => '0',
   'amazon_s3_use_tls' => '0'
 );
