@@ -298,7 +298,9 @@ try {
     }
 	
 	//trigger 99998 event - jomres feedback messages
-	$MiniComponents->triggerEvent('99998');
+	if (!AJAXCALL) {
+		$MiniComponents->triggerEvent('99998');
+	}
 
     //trigger 99999 event: Optional end run scripts
     $componentArgs = array();

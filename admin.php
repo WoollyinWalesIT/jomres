@@ -182,7 +182,9 @@ try {
     }
 	
 	//trigger 99998 event - jomres feedback messages
-	$MiniComponents->triggerEvent('99998');
+	if (!AJAXCALL) {
+		$MiniComponents->triggerEvent('99998');
+	}
 
     $componentArgs = array();
     $MiniComponents->triggerEvent('99999', $componentArgs);
