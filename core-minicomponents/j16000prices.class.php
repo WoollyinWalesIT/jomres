@@ -25,7 +25,7 @@ class j16000prices
 
             return;
         }
-		$this->retVals
+		$this->retVals = '';
 		
 		$output_now = true;
 		if (isset($componentArgs['output_now'])) {
@@ -41,7 +41,7 @@ class j16000prices
 		
 		$output['IONCUBE_WARNING'] = '';
 		if (!$loaders_available) { // show the subscriptions available
-			$output['IONCUBE_WARNING'] = '<p class="center alert alert-info">Ioncube loaders are not installed on this server, &#9785; you will need to install the Ioncube Loaders first</p>';
+			$output['IONCUBE_WARNING'] = '<p class="center alert alert-warning">Ioncube loaders are not installed on this server, &#9785; you will need to install the Ioncube Loaders first</p>';
 		}
 		
 		$base_uri = 'http://updates.jomres4.net/';
