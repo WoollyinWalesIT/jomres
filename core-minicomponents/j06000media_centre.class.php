@@ -52,6 +52,9 @@ class j06000media_centre
             $resource_type_options = array();
 
             foreach ($resource_types as $type) {
+				if (isset($type['hidden']) && $type['hidden']) {
+					continue;
+				}
                 if (isset($type['name']) && $type['name'] != '') {
                     $resource_type_options[ ] = jomresHTML::makeOption($type['resource_type'], $type['name']);
                     if (isset($type['notes'])) {
