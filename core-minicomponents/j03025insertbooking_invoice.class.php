@@ -137,7 +137,7 @@ class j03025insertbooking_invoice
 							$lastminute_discount += $discount_amount;
 							break;
 						case 'Coupon':
-							$coupon_discount += $discount_amount;
+							$coupon_discount = $discount_amount;
 							break;
 						case 'TourCoupon':
 							$tour_coupon_discount = $discount_amount;
