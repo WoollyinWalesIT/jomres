@@ -2314,6 +2314,11 @@ function jomresRedirect($url, $msg = '', $code = 302)
 {
     logging::log_message($msg, 'Core', 'INFO');
     
+	if ($msg != '' ) {
+		$jomres_messaging = jomres_singleton_abstract::getInstance('jomres_messages');
+		$jomres_messaging->set_message($msg);
+	}
+
 	if (!defined('AUTO_UPGRADE')) {
 		$MiniComponents = jomres_getSingleton('mcHandler');
 		$MiniComponents->triggerEvent('08000'); // Optional, post run items that *must* be run ( watchers ).

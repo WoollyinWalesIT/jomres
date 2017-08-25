@@ -32,8 +32,17 @@ class j99998user_feedback
 
 		$output = array();
 		
+        $jomres_messaging = jomres_singleton_abstract::getInstance('jomres_messages');
+        $messages = $jomres_messaging->get_messages();
+		
 		$jomres_user_feedback = jomres_singleton_abstract::getInstance('jomres_user_feedback');
 
+		if (!empty($messages)) {
+			foreach ($messages as $message ) {
+				$jomres_user_feedback->construct_message(array('message'=>$message, 'css_class'=>'alert-warning alert-error'));
+			}
+			
+		}
 		//no need to run this if there are no feedback messages set
 		if (empty($jomres_user_feedback->user_feedback_messages)) {
 			return;
