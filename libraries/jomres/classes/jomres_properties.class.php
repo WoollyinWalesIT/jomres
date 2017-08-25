@@ -165,7 +165,11 @@ class jomres_properties
 
 		$jomres_room_types = jomres_singleton_abstract::getInstance('jomres_room_types');
 		$jomres_room_types->get_xrefs();
-		$default_room_type = (int)$jomres_room_types->all_ptype_rtype_xrefs[$this->ptype_id][0];
+		
+		$default_room_type = 0;
+		if (isset($jomres_room_types->all_ptype_rtype_xrefs[$this->ptype_id][0])) {
+			$default_room_type = (int)$jomres_room_types->all_ptype_rtype_xrefs[$this->ptype_id][0];
+		}
 
         //insert new property details
         $query = "INSERT INTO #__jomres_propertys 
@@ -212,22 +216,24 @@ class jomres_properties
                 $singleRoomProperty = '1';
 
                 //create a default single room property room that can be edited later
-                $query = 'INSERT INTO #__jomres_rooms 
-									(
-									`room_classes_uid`,
-									`propertys_uid`,
-									`max_people`
-									)
-								VALUES 
-									(
-									'.$default_room_type.',
-									'.(int) $this->propertys_uid.',
-									10
-									)';
+				if ($default_room_type > 0) {
+					$query = 'INSERT INTO #__jomres_rooms 
+										(
+										`room_classes_uid`,
+										`propertys_uid`,
+										`max_people`
+										)
+									VALUES 
+										(
+										'.$default_room_type.',
+										'.(int) $this->propertys_uid.',
+										10
+										)';
 
-                if (!doInsertSql($query)) {
-                    throw new Exception('Error: New srp default room insert failed.');
-                }
+					if (!doInsertSql($query)) {
+						throw new Exception('Error: New srp default room insert failed.');
+					}
+				}
             }
             $query = 'INSERT INTO #__jomres_settings 
 								(
