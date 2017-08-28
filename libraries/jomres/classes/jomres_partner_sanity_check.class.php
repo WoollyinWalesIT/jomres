@@ -18,7 +18,7 @@ class jomres_partner_sanity_check
 {
     public function __construct($autorun = true)
     {
-        if (get_showtime('no_html', $no_html) == 1 || get_showtime('popup', $popup) == 1) {
+        if (get_showtime('no_html') == 1 || get_showtime('popup') == 1 || AJAXCALL) {
             return;
         }
         

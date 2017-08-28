@@ -121,9 +121,12 @@ class j06000view_agent
                 $output[ 'MOBILE' ] = $data->tel_mobile;
                 $output[ 'EMAIL' ] = jomres_hide_email($data->email);
 
-                if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.'userimages'.JRDS.'userimage_'.$manager_id.'.jpg')) {
-                    $output[ 'IMAGE' ] = JOMRES_IMAGELOCATION_RELPATH.'userimages/userimage_'.$manager_id.'_thumbnail.jpg';
-                }
+                $jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
+				$jomres_media_centre_images->get_site_images('userimages');
+				
+				if (isset($jomres_media_centre_images->site_images['userimages'][$manager_id][0]['small'])) {
+					$output[ 'IMAGE' ] = $jomres_media_centre_images->site_images['userimages'][$manager_id][0]['small'];
+				}
             }
         }
 /* 		else

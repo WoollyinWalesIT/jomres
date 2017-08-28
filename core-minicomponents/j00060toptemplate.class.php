@@ -141,7 +141,14 @@ class j00060toptemplate
 		
 		//widgets selection dropdown
 		$widgets_dropdown = array();
-		if ($thisJRUser->userIsManager && get_showtime('task') == 'cpanel' || get_showtime('task') == '') {
+		if (
+			$thisJRUser->userIsManager && 
+			!isset($_REQUEST['calledByModule']) && 
+				(
+				get_showtime('task') == 'cpanel' || 
+				get_showtime('task') == ''
+				) 
+			) {
 			$jomres_widgets = jomres_singleton_abstract::getInstance('jomres_widgets');
 			
 			$widgets_dropdown[]['WIDGETS_DROPDOWN'] = $jomres_widgets->get_widgets_dropdown();

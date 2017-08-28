@@ -25,6 +25,13 @@ class j16000prices
 
             return;
         }
+		$this->retVals = '';
+		
+		$output_now = true;
+		if (isset($componentArgs['output_now'])) {
+			$output_now = $componentArgs['output_now'];
+		}
+		
 		$loaders_available = false;
 		if (function_exists('ioncube_loader_version')) {
 			$loaders_available = true;
@@ -34,7 +41,7 @@ class j16000prices
 		
 		$output['IONCUBE_WARNING'] = '';
 		if (!$loaders_available) { // show the subscriptions available
-			$output['IONCUBE_WARNING'] = '<p class="center alert alert-info">Ioncube loaders are not installed on this server, &#9785; you will need to install the Ioncube Loaders first</p>';
+			$output['IONCUBE_WARNING'] = '<p class="center alert alert-warning">Ioncube loaders are not installed on this server, &#9785; you will need to install the Ioncube Loaders first</p>';
 		}
 		
 		$base_uri = 'http://updates.jomres4.net/';
@@ -54,28 +61,24 @@ class j16000prices
 			$jomres_user_feedback->construct_message(array('message'=>'Could not get Jomres prices, please see https://www.jomres.net/prices', 'css_class'=>'alert-danger alert-error'));
 		}
 
-/* 		$pageoutput = array();
-		$tmpl = new patTemplate();
-		$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
-		$tmpl->addRows('pageoutput', $pageoutput);
-		$tmpl->readTemplatesFromInput('plugin_manager_licenses_subscriptions.html');
-		$output['SUBSCRIPTION_LICENSES'] = $tmpl->getParsedTemplate(); */
-		
-		
 		$pageoutput = array();
 		$pageoutput[ ] = $output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
 		$tmpl->addRows('pageoutput', $pageoutput);
 		$tmpl->readTemplatesFromInput('prices.html');
-		$tmpl->displayParsedTemplate();
-		return;
+		
+		if ($output_now) {
+			$tmpl->displayParsedTemplate();
+		} else {
+			$this->retVals = $tmpl->getParsedTemplate();
+		}
     }
 
 
     // This must be included in every Event/Mini-component
     public function getRetVals()
     {
-        return null;
+        return $this->retVals;
     }
 }
