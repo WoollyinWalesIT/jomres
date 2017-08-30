@@ -201,7 +201,7 @@ class jomres_properties
 
         $this->propertys_uid = doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_INSERT_PROPERTY', '_JOMRES_MR_AUDIT_INSERT_PROPERTY', false));
 
-        if (!$this->propertys_uid) {
+        if (!$this->propertys_uid || $this->propertys_uid == 0 ) {
             throw new Exception('Error: New property insert failed.');
         }
 
@@ -380,19 +380,19 @@ class jomres_properties
         }
 
         //update custom text
-        updateCustomText('_JOMRES_CUSTOMTEXT_PROPERTY_NAME', $this->property_name, true);
-        updateCustomText('_JOMRES_CUSTOMTEXT_PROPERTY_STREET', $this->property_street, true);
-        updateCustomText('_JOMRES_CUSTOMTEXT_PROPERTY_TOWN', $this->property_town, true);
-        updateCustomText('_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION', $this->property_description, true);
-        updateCustomText('_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES', $this->property_checkin_times, true);
-        updateCustomText('_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES', $this->property_area_activities, true);
-        updateCustomText('_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS', $this->property_driving_directions, true);
-        updateCustomText('_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS', $this->property_airports, true);
-        updateCustomText('_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT', $this->property_othertransport, true);
-        updateCustomText('_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS', $this->property_policies_disclaimers, true);
-        updateCustomText('_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE', $this->metatitle, true);
-        updateCustomText('_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION', $this->metadescription, true);
-        updateCustomText('_JOMRES_CUSTOMTEXT_PROPERTY_METAKEYWORDS', $this->metakeywords, true);
+        updateCustomText('_JOMRES_CUSTOMTEXT_PROPERTY_NAME', $this->property_name, true, $this->propertys_uid);
+        updateCustomText('_JOMRES_CUSTOMTEXT_PROPERTY_STREET', $this->property_street, true, $this->propertys_uid);
+        updateCustomText('_JOMRES_CUSTOMTEXT_PROPERTY_TOWN', $this->property_town, true, $this->propertys_uid);
+        updateCustomText('_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION', $this->property_description, true, $this->propertys_uid);
+        updateCustomText('_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES', $this->property_checkin_times, true, $this->propertys_uid);
+        updateCustomText('_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES', $this->property_area_activities, true, $this->propertys_uid);
+        updateCustomText('_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS', $this->property_driving_directions, true, $this->propertys_uid);
+        updateCustomText('_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS', $this->property_airports, true, $this->propertys_uid);
+        updateCustomText('_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT', $this->property_othertransport, true, $this->propertys_uid);
+        updateCustomText('_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS', $this->property_policies_disclaimers, true, $this->propertys_uid);
+        updateCustomText('_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE', $this->metatitle, true, $this->propertys_uid);
+        updateCustomText('_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION', $this->metadescription, true, $this->propertys_uid);
+        updateCustomText('_JOMRES_CUSTOMTEXT_PROPERTY_METAKEYWORDS', $this->metakeywords, true, $this->propertys_uid);
 		
 		//change the approval and published status if the property is edited by a manager (not super manager) and properties require approval
         if ((int) $jrConfig['automatically_approve_new_properties'] == 0 && !$thisJRUser->superPropertyManager) {
