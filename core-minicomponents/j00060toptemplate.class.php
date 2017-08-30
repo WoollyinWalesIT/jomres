@@ -25,19 +25,23 @@ class j00060toptemplate
 
             return;
         }
+
         if (get_showtime('topoff')) {
             return;
         }
-
 		
         $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+        
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
-        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-        $management_view = jomresGetParam($_REQUEST, 'tmpl', false);
+        
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+        
+		$management_view = jomresGetParam($_REQUEST, 'tmpl', false);
         $popup = intval(jomresGetParam($_REQUEST, 'popup', 0));
         //$tz         	   	= $componentArgs[ 'tz' ];
-        $jomreslang 		= jomres_singleton_abstract::getInstance( 'jomres_language' );
+        
+		$jomreslang 		= jomres_singleton_abstract::getInstance( 'jomres_language' );
 		
 		$defaultProperty 	= getDefaultProperty();
 
@@ -46,7 +50,6 @@ class j00060toptemplate
         }
 
 		$output = array();
-		
 
 		$jomres_video_tutorials = jomres_singleton_abstract::getInstance('jomres_video_tutorials');
 		$jomres_video_tutorials->property_uid = $defaultProperty;
@@ -154,19 +157,6 @@ class j00060toptemplate
 			$widgets_dropdown[]['WIDGETS_DROPDOWN'] = $jomres_widgets->get_widgets_dropdown();
 		}
 
-		//messages
-        $messaging = array();
-
-        $jomres_messaging = jomres_singleton_abstract::getInstance('jomres_messages');
-        $messages = $jomres_messaging->get_messages();
-
-        if (!empty($messages)) {
-            foreach ($messages as $mes) {
-                $m[ 'MESSAGE' ] = $mes;
-                $messaging[ ] = $m;
-            }
-        }
-
         if (using_bootstrap()) {
             $output[ 'USING_BOOTSTRAP' ] = 'true';
         } else {
@@ -182,7 +172,6 @@ class j00060toptemplate
             $tmpl->readTemplatesFromInput('top.html');
         }
         $tmpl->addRows('pageoutput', $pageoutput);
-        $tmpl->addRows('messages', $messaging);
         //$tmpl->addRows( 'timezone_dropdown', $timezone_dropdown );
         $tmpl->addRows( 'lang_dropdown', $lang_dropdown );
 		$tmpl->addRows( 'widgets_dropdown', $widgets_dropdown );
@@ -207,9 +196,6 @@ class j00060toptemplate
         }
     }
 
-/**
- * Must be included in every mini-component.
- */
     // This must be included in every Event/Mini-component
     public function getRetVals()
     {

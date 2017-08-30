@@ -617,7 +617,9 @@ function doTableUpdates()
 	
 	if (!checkCustomtextLangContextColExists()) {
         alterCustomtextLangContextCol();
-    }
+    } else {
+		alterCustomtextLangContextColChangeDefaultVal();
+	}
  
 	copy_default_property_type_markers();
     drop_orphan_line_items_table();
@@ -647,9 +649,17 @@ function add_jomres_images_table()
     }
 }
 
+function alterCustomtextLangContextColChangeDefaultVal()
+{
+    $query = "ALTER TABLE `#__jomres_custom_text` MODIFY COLUMN `language_context` VARCHAR(255) NOT NULL DEFAULT '0' ";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to modify __jomres_custom_text language_context column default value', 'danger');
+    }
+}
+
 function alterCustomtextLangContextCol()
 {
-    $query = "ALTER TABLE `#__jomres_custom_text` ADD `language_context` VARCHAR(255) NOT NULL DEFAULT '' ";
+    $query = "ALTER TABLE `#__jomres_custom_text` ADD `language_context` VARCHAR(255) NOT NULL DEFAULT '0' ";
     if (!doInsertSql($query, '')) {
         output_message('Error, unable to add __jomres_custom_text language_context column', 'danger');
     }
@@ -3664,7 +3674,7 @@ function createJomresTables()
 		`property_uid` INT( 11 ),
 		`language` VARCHAR( 255 ),
 		`reserved` VARCHAR( 255 ),
-		`language_context` VARCHAR(255) NOT NULL DEFAULT '',
+		`language_context` VARCHAR(255) NOT NULL DEFAULT '0',
 		PRIMARY KEY ( `uid` )
 		) ";
     if (!doInsertSql($query)) {

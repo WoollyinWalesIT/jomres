@@ -2310,13 +2310,13 @@ function jomres_audit($query, $op = '')
 /**
  * Redirects to $url.
  */
-function jomresRedirect($url, $msg = '', $code = 302)
+function jomresRedirect($url, $msg = '', $class = 'alert-info', $code = 302)
 {
     logging::log_message($msg, 'Core', 'INFO');
     
 	if ($msg != '' ) {
-		$jomres_messaging = jomres_singleton_abstract::getInstance('jomres_messages');
-		$jomres_messaging->set_message($msg);
+		$jomres_messages = jomres_singleton_abstract::getInstance('jomres_messages');
+		$jomres_messages->set_message($msg, $class);
 	}
 
 	if (!defined('AUTO_UPGRADE')) {
