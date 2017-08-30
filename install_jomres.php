@@ -617,7 +617,9 @@ function doTableUpdates()
 	
 	if (!checkCustomtextLangContextColExists()) {
         alterCustomtextLangContextCol();
-    }
+    } else {
+		alterCustomtextLangContextColChangeDefaultVal();
+	}
  
 	copy_default_property_type_markers();
     drop_orphan_line_items_table();
@@ -644,6 +646,14 @@ function add_jomres_images_table()
         )";
     if (!doInsertSql($query, '')) {
         output_message('Error, unable to create the __jomres_images table', 'danger');
+    }
+}
+
+function alterCustomtextLangContextColChangeDefaultVal()
+{
+    $query = "ALTER TABLE `#__jomres_custom_text` MODIFY COLUMN `language_context` VARCHAR(255) NOT NULL DEFAULT '0' ";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to modify __jomres_custom_text language_context column default value', 'danger');
     }
 }
 
