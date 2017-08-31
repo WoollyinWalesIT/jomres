@@ -655,6 +655,11 @@ function alterCustomtextLangContextColChangeDefaultVal()
     if (!doInsertSql($query, '')) {
         output_message('Error, unable to modify __jomres_custom_text language_context column default value', 'danger');
     }
+	
+	$query = "UPDATE #__jomres_custom_text SET `language_context` = '0' WHERE `language_context` = '' ";
+	if (!doInsertSql($query, '')) {
+        output_message('Error, unable to update __jomres_custom_text language_context to 0 where language context is blank', 'danger');
+    }
 }
 
 function alterCustomtextLangContextCol()
