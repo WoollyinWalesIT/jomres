@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.9
+ * @version Jomres 9.9.8
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -35,7 +35,12 @@ class jr_user
     {
         self::$internal_debugging = false;
 
-        //jomres user role
+        $this->init_user();
+    }
+
+	public function init_user( $id = 0 )
+	{
+		//jomres user role
         $this->jomres_manager_id 				= 0;                        //user/manager id in the _jomres_managers table
         $this->id 								= 0;                        //cms user id TODO: remove duplicate from the entire codebase
         $this->userid 							= 0;                        //cms user id TODO: remove duplicate from the entire codebase
@@ -76,11 +81,16 @@ class jr_user
         $this->vat_number_validation_response = '';
 		$this->params = array(); //user settings
 
-        if (class_exists('Flight')) {
+		if ( $id == 0 ) {
+			if (class_exists('Flight')) {
             $this->id = Flight::get('user_id');
-        } else {
-            $this->id = jomres_cmsspecific_getcurrentusers_id();
-        }
+			} else {
+				$this->id = jomres_cmsspecific_getcurrentusers_id();
+			}
+		} else {
+			$this->id = $id;
+		}
+        
 
         if ($this->id > 0) {
             $this->userIsRegistered = true;
@@ -94,8 +104,8 @@ class jr_user
             //get user role details
             $this->get_user_role();
         }
-    }
-
+	}
+	
     public static function getInstance()
     {
         if (!self::$configInstance) {
