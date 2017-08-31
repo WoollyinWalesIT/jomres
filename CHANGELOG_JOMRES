@@ -6,7 +6,7 @@ Changed position of the user feedback div in admin area
 Broke user initialisation into own method as we need a way to re-initialise a user programatically sometimes.
 Modified 99994 trigger so that all  99994 triggers are called after redirection not just one specific webhook trigger.
 Improved the jomres_properties class to ensure that created properties custom text always uses the newly created property uid.
-
+Fixed a bug in new category searching functionality
 
 Solved a problem related to duplicate coupon discount on invoices
 Solved a problem related to widget selector showing up on search results pages
