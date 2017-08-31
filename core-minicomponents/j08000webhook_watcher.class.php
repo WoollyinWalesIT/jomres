@@ -23,7 +23,7 @@ class j08000webhook_watcher
 			$this->template_touchable=false; return;
 			}
 
-		$MiniComponents->specificEvent('99994',"webhook_watcher");
+		$MiniComponents->triggerEvent('99994');
 		}
 
 
