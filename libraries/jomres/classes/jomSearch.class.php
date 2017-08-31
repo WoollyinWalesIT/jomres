@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.9
+ * @version Jomres 9.9.10
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1333,8 +1333,8 @@ function prepPropertyCategoriesSearch()
     $jomres_property_categories = jomres_singleton_abstract::getInstance('jomres_property_categories');
     $jomres_property_categories->get_all_property_categories();
 
-    if (!empty($jomres_property_types->property_categories)) {
-        foreach ($jomres_property_types->property_types as $c) {
+    if (!empty($jomres_property_categories->property_categories)) {
+        foreach ($jomres_property_categories->property_categories as $c) {
             $r = array();
 
 			$r[ 'id' ] = $c['id'];

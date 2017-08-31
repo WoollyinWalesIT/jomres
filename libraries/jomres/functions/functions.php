@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.9
+ * @version Jomres 9.9.10
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1743,7 +1743,6 @@ function queryUpdateServer($script, $queryString, $serverType = 'plugin')
 	catch (Exception $e) {
 		$jomres_user_feedback = jomres_singleton_abstract::getInstance('jomres_user_feedback');
 		$jomres_user_feedback->construct_message(array('message'=>'Could not query the updates server', 'css_class'=>'alert-danger alert-error'));
-		return;
 	}
 
     return $response;
@@ -2311,10 +2310,15 @@ function jomres_audit($query, $op = '')
 /**
  * Redirects to $url.
  */
-function jomresRedirect($url, $msg = '', $code = 302)
+function jomresRedirect($url, $msg = '', $class = 'alert-info', $code = 302)
 {
     logging::log_message($msg, 'Core', 'INFO');
     
+	if ($msg != '' ) {
+		$jomres_messages = jomres_singleton_abstract::getInstance('jomres_messages');
+		$jomres_messages->set_message($msg, $class);
+	}
+
 	if (!defined('AUTO_UPGRADE')) {
 		$MiniComponents = jomres_getSingleton('mcHandler');
 		$MiniComponents->triggerEvent('08000'); // Optional, post run items that *must* be run ( watchers ).

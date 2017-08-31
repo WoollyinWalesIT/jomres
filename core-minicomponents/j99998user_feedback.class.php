@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.9
+ * @version Jomres 9.9.10
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -32,7 +32,16 @@ class j99998user_feedback
 
 		$output = array();
 		
+        $jomres_messaging = jomres_singleton_abstract::getInstance('jomres_messages');
+        $messages = $jomres_messaging->get_messages();
+		
 		$jomres_user_feedback = jomres_singleton_abstract::getInstance('jomres_user_feedback');
+
+		if (!empty($messages)) {
+			foreach ($messages as $msg ) {
+				$jomres_user_feedback->construct_message(array('message'=>$msg['message'], 'css_class'=>$msg['class']));
+			}
+		}
 
 		//no need to run this if there are no feedback messages set
 		if (empty($jomres_user_feedback->user_feedback_messages)) {

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.9
+ * @version Jomres 9.9.10
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -232,23 +232,12 @@ class j16000addplugin
                         }
                     }
                 }
-                $progress_messages[ ] = array('MESSAGE' => 'Attempting download of '.$pluginName.'');
-                $newfilename = $updateDirPath.$pluginName.'.vnw';
-
-                $p = '';
-                if (isset($_REQUEST[ 'plugin' ])) {
-                    $p = '&plugin='.$pluginName;
-                }
-
-                $queryServer = 'http://plugins.jomres4.net/index.php?r=gp&cms='._JOMRES_DETECTED_CMS.'&vnw=1&key='.$key_to_send.$p.'&jomresver='.$mrConfig[ 'version' ].'&hostname='.get_showtime('live_site').'&php_version='.$php_version;
-
-                logging::log_message('Starting curl call to '.$queryServer, 'Curl', 'DEBUG');
-                $logging_time_start = microtime(true);
-
-                $progress_messages[ ] = array('MESSAGE' => $queryServer);
-
-                $curl_handle = curl_init($queryServer);
-                $file_handle = fopen($newfilename, 'wb');
+                
+				$progress_messages[ ] = array('MESSAGE' => 'Attempting download of '.$pluginName.'');
+                
+				$newfilename = $updateDirPath.$pluginName.'.vnw';
+				
+				$file_handle = fopen($newfilename, 'wb');
                 if ($file_handle == false) {
                     $error_messsage[ 'ERROR' ] = "Couldn't create new file $newfilename. Possible file permission problem?";
                     if ($autoupgrade) {
@@ -256,16 +245,32 @@ class j16000addplugin
                     }
                 }
 
-                curl_setopt($curl_handle, CURLOPT_FILE, $file_handle);
-                curl_setopt($curl_handle, CURLOPT_HEADER, 0);
-                curl_setopt($curl_handle, CURLOPT_USERAGENT, 'Jomres');
-                $result = curl_exec($curl_handle);
-                $content_type = curl_getinfo($curl_handle, CURLINFO_CONTENT_TYPE);
-                curl_close($curl_handle);
+                $p = '';
+                if (isset($_REQUEST[ 'plugin' ])) {
+                    $p = '&plugin='.$pluginName;
+                }
 
-                $logging_time_end = microtime(true);
-                $logging_time = $logging_time_end - $logging_time_start;
-                logging::log_message('Curl call took '.$logging_time.' seconds ', 'Curl', 'DEBUG');
+                $base_uri = 'http://plugins.jomres4.net/';
+				$query_string = 'index.php?r=gp&cms='._JOMRES_DETECTED_CMS.'&vnw=1&key='.$key_to_send.$p.'&jomresver='.$mrConfig[ 'version' ].'&hostname='.get_showtime('live_site').'&php_version='.$php_version;
+
+                $progress_messages[ ] = array('MESSAGE' => $base_uri.$query_string);
+				
+				$content_type = '';
+
+				try {
+					$client = new GuzzleHttp\Client([
+						'base_uri' => $base_uri
+					]);
+
+					logging::log_message('Starting guzzle call to '.$base_uri.$query_string, 'Guzzle', 'DEBUG');
+					
+					$response = $client->request('GET', $query_string, ['sink' => $file_handle]);
+					$content_type = $response->getHeader('Content-Type');
+				}
+				catch (Exception $e) {
+					$jomres_user_feedback = jomres_singleton_abstract::getInstance('jomres_user_feedback');
+					$jomres_user_feedback->construct_message(array('message'=>"Could not download plugin $pluginName", 'css_class'=>'alert-danger alert-error'));
+				}
 
                 if ($content_type == 'text/html') {
                     $output2 = array();
@@ -288,7 +293,9 @@ class j16000addplugin
 
                     return;
                 }
-                fclose($file_handle);
+				if (is_resource($file_handle)) {
+					fclose($file_handle);
+				}
             } else {
                 echo "Oops, that key isn't valid";
 

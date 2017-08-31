@@ -1,3 +1,19 @@
+<h3>Jomres 9.9.10 31/08/2017</h3>
+
+<span class="label label-warning">Change</span> Changed how we upload user profile images to make it consistent with media centre uploads, so we can use db image details, s3 and cloudfront integrations. Existing user images need to be reuploaded. Added support for adding hidden media centre resources that can be used internally and don`t show up in media centre dropdowns. First use for this is user images.
+<span class="label label-warning">Change</span> Modified feedback message handling so that it also uses redirect messages.
+<span class="label label-warning">Change</span> Changed position of the user feedback div in admin area
+<span class="label label-warning">Change</span> Broke user initialisation into own method as we need a way to re-initialise a user programatically sometimes.
+<span class="label label-warning">Change</span> Modified 99994 trigger so that all  99994 triggers are called after redirection not just one specific webhook trigger.
+<span class="label label-warning">Change</span> Improved the jomres_properties class to ensure that created properties custom text always uses the newly created property uid.
+<span class="label label-warning">Change</span> Fixed a bug in new category searching functionality
+
+<span class="label label-important label-danger">Fix</span> Solved a problem related to duplicate coupon discount on invoices
+<span class="label label-important label-danger">Fix</span> Solved a problem related to widget selector showing up on search results pages
+<span class="label label-important label-danger">Fix</span> Fixed a typo that was preventing some deferred tasks from running
+<span class="label label-important label-danger">Fix</span> Added missing property categories output in bootstrap 2 and jquery ui templates
+<span class="label label-important label-danger">Fix</span> Solved a problem in the installer related to language context default value
+
 <h3>Jomres 9.9.9 21/08/2017</h3>
 
 <span class="label label-success">Feature</span> Added support for property categories. This is a simple feature that allows managers to create property categories, which can then be added as both menu options to Joomla, or added as shortcodes to articles/pages in both Joomla and Wordpress.

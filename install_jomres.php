@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.9
+ * @version Jomres 9.9.10
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -617,7 +617,9 @@ function doTableUpdates()
 	
 	if (!checkCustomtextLangContextColExists()) {
         alterCustomtextLangContextCol();
-    }
+    } else {
+		alterCustomtextLangContextColChangeDefaultVal();
+	}
  
 	copy_default_property_type_markers();
     drop_orphan_line_items_table();
@@ -647,9 +649,22 @@ function add_jomres_images_table()
     }
 }
 
+function alterCustomtextLangContextColChangeDefaultVal()
+{
+    $query = "ALTER TABLE `#__jomres_custom_text` MODIFY COLUMN `language_context` VARCHAR(255) NOT NULL DEFAULT '0' ";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to modify __jomres_custom_text language_context column default value', 'danger');
+    }
+	
+	$query = "UPDATE #__jomres_custom_text SET `language_context` = '0' WHERE `language_context` = '' ";
+	if (!doInsertSql($query, '')) {
+        output_message('Error, unable to update __jomres_custom_text language_context to 0 where language context is blank', 'danger');
+    }
+}
+
 function alterCustomtextLangContextCol()
 {
-    $query = "ALTER TABLE `#__jomres_custom_text` ADD `language_context` VARCHAR(255) NOT NULL DEFAULT '' ";
+    $query = "ALTER TABLE `#__jomres_custom_text` ADD `language_context` VARCHAR(255) NOT NULL DEFAULT '0' ";
     if (!doInsertSql($query, '')) {
         output_message('Error, unable to add __jomres_custom_text language_context column', 'danger');
     }
@@ -3664,7 +3679,7 @@ function createJomresTables()
 		`property_uid` INT( 11 ),
 		`language` VARCHAR( 255 ),
 		`reserved` VARCHAR( 255 ),
-		`language_context` VARCHAR(255) NOT NULL DEFAULT '',
+		`language_context` VARCHAR(255) NOT NULL DEFAULT '0',
 		PRIMARY KEY ( `uid` )
 		) ";
     if (!doInsertSql($query)) {

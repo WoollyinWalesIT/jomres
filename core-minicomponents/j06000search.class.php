@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.9
+ * @version Jomres 9.9.10
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -667,14 +667,14 @@ class j06000search
 		// -------------------------------------------------------------------------------------------------------------------------------------------
         if (in_array('cat_id', $searchOptions) && $showSearchOptions) {
             $categoriesArray = array();
-            if (!empty($sch->prep[ 'cat_id' ])) {
-                if (empty($sch->filter[ 'cat_id' ])) {
-                    $selectOption = $sch->prep[ 'cat_id' ][ 0 ][ 'id' ];
+            if (!empty($sch->prep[ 'categories' ])) {
+                if (empty($sch->filter[ 'categories' ])) {
+                    $selectOption = $sch->prep[ 'categories' ][ 0 ][ 'id' ];
                 } else {
-                    $selectOption = $sch->filter[ 'cat_id' ];
+                    $selectOption = $sch->filter[ 'categories' ];
                 }
 
-                foreach ($sch->prep[ 'cat_id' ] as $c) {
+                foreach ($sch->prep[ 'categories' ] as $c) {
                     $categoriesArray[ ] = jomresHTML::makeOption($c[ 'id' ], $c[ 'title' ]);
                 }
                 $output[ 'categories' ] = jomresHTML::selectList($categoriesArray, 'cat_id', 'size="1" ', 'value', 'text', $selectOption);

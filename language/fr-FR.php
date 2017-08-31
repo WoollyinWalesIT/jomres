@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.9stable
+ * @version Jomres 9.9.10stable
  *
  * @copyright	2005-2017 Vince Wooll
  * Translated to fr-FR by Mario Oliveira, Camara de Lobos, Madeira Island, Portugal, 14Oct2010 - www.marioliveira.net. Updated 21-Jun2011 for version 5 stable
@@ -2168,3 +2168,7 @@ jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_WARNING', 'You`ve enabled the Amazon S
 jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_WARNING2', 'Once you click this button, please do not interrupt the process and wait for a success or error message. Depending on server speed, this may take a while to complete.');
 jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_ACTION', 'Copy existing images to Amazon S3 bucket');
 
+
+jr_define( 'JOMRES_INCOMPLETE', 'Incomplete' );
+jr_define( 'JOMRES_WATING_APPROVAL', 'Pending approval' );
+jr_define( 'JOMRES_GOOGLE_MAPS_PDETAILS', 'Property details map' );

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.9
+ * @version Jomres 9.9.10
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -94,7 +94,6 @@ require_once JOMRES_FUNCTIONS_ABSPATH.'functions.php';
 require_once JOMRES_FUNCTIONS_ABSPATH.'multibye_functions.php';
 require_once JOMRES_FUNCTIONS_ABSPATH.'jr_gettext.php';
 require_once JOMRES_FUNCTIONS_ABSPATH.'countries.php';
-require_once JOMRES_FUNCTIONS_ABSPATH.'imagehandling.php';
 require_once JOMRES_CLASSES_ABSPATH.'jomres_singleton_abstract.class.php';
 
 //include the classes registry file and make $classes a global variable to be easily accessible, so we`ll avoid calling include() more times

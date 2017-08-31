@@ -14,36 +14,33 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j16000get_region_dropdown_for_country_code
+class j11010userimages
 {
-    public function __construct()
+    public function __construct($componentArgs)
     {
+        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
         $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
         if ($MiniComponents->template_touch) {
             $this->template_touchable = false;
 
             return;
         }
-        $countryCode = jomresGetParam($_REQUEST, 'country', '');
-        $currentRegion = jomresGetParam($_REQUEST, 'region', '');
-        $input_name = jomresGetParam($_REQUEST, 'input_name', '');
-
-        if ($input_name == '') {
-            $input_name = 'region';
-        }
-        $dropdown = setupRegions($countryCode, $currentRegion, false, $input_name);
-
-        // Might need this for required fields, not sure yet. Will leave it in but commented for now (15/07/2013)
-/* 		if ($dropdown == '');
-            {
-            $dropdown = '<input type="hidden" id="'.$input_name.'" name="'.$input_name.'" value="">';
-            } */
-        echo $dropdown;
+        
+		$this->ret_vals = array(
+								'resource_type' => 'userimages', 
+								'resource_id_required' => true, 
+								'name' => 'User profile images',
+								'upload_root_abs_path' => JOMRES_IMAGELOCATION_ABSPATH,
+								'upload_root_rel_path' => JOMRES_IMAGELOCATION_RELPATH,
+								'notes' => '',
+								'preview_link'=>'',
+								'hidden' => true //won`t be displayed in media centre
+								);
     }
 
     // This must be included in every Event/Mini-component
     public function getRetVals()
     {
-        return null;
+        return $this->ret_vals;
     }
 }

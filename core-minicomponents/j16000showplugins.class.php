@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.9
+ * @version Jomres 9.9.10
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -105,28 +105,37 @@ class j16000showplugins
 					mkdir($destinationPath, 0755, true); 
 				}
 				
-				include JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'jomres_config.php';
-				$queryServer = 'http://plugins.jomres4.net/index.php?r=gp&cms='._JOMRES_DETECTED_CMS.'&vnw=1&plugin=plugin_manager&jomresver='. $mrConfig[ 'version' ].'&key='.$key_validation->key_hash;
-
 				$newFile = $updateDirPath.'plugin_manager.vnw';
-
-                $curl_handle = curl_init($queryServer);
-                $file_handle = fopen($newFile, 'wb');
+				
+				$file_handle = fopen($newFile, 'wb');
                 if ($file_handle == false) {
                     $error_messsage[ 'ERROR' ] = "Couldn't create new file $newFile. Possible file permission problem?";
                     if ($autoupgrade) {
                         return false;
                     }
                 }
-
-                curl_setopt($curl_handle, CURLOPT_FILE, $file_handle);
-                curl_setopt($curl_handle, CURLOPT_HEADER, 0);
-                curl_setopt($curl_handle, CURLOPT_USERAGENT, 'Jomres');
-                $result = curl_exec($curl_handle);
-                $content_type = curl_getinfo($curl_handle, CURLINFO_CONTENT_TYPE);
-                curl_close($curl_handle);
 				
-				// $result = file_put_contents($newFile, file_get_contents($queryServer, false, stream_context_create($arrContextOptions)));
+				include JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'jomres_config.php';
+				$base_uri = 'http://plugins.jomres4.net/';
+				$query_string = 'index.php?r=gp&cms='._JOMRES_DETECTED_CMS.'&vnw=1&plugin=plugin_manager&jomresver='. $mrConfig[ 'version' ].'&key='.$key_validation->key_hash;
+
+                try {
+					$client = new GuzzleHttp\Client([
+						'base_uri' => $base_uri
+					]);
+
+					logging::log_message('Starting guzzle call to '.$base_uri.$query_string, 'Guzzle', 'DEBUG');
+					
+					$response = $client->request('GET', $query_string, ['sink' => $file_handle]);
+				}
+				catch (Exception $e) {
+					$jomres_user_feedback = jomres_singleton_abstract::getInstance('jomres_user_feedback');
+					$jomres_user_feedback->construct_message(array('message'=>"Could not download plugin manager", 'css_class'=>'alert-danger alert-error'));
+				}
+
+				if (is_resource($file_handle)) {
+					fclose($file_handle);
+				}
 				
 				if ( filesize($newFile) == 0 ) {
 					echo "Error, the download file size is set to zero, therefore it cannot be unpacked or used. Has this hosting account run out of disk space?" ;
@@ -145,60 +154,30 @@ class j16000showplugins
 					$result = dirmv($updateDirPath.'unpacked', JOMRES_COREPLUGINS_ABSPATH.'plugin_manager', true, $funcloc = JRDS);
 					}
 				$zip->close();
-					
+
 				$this->empty_dir($updateDirPath);
 				
 				$registry = jomres_singleton_abstract::getInstance('minicomponent_registry');
 				unlink ( $registry->registry_file );
 				unlink ( JOMRES_TEMP_ABSPATH.'registry_classes.php' );
-				
-
+			
 				emptyDir(JOMRES_CACHE_ABSPATH);
 				
 				jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins');
 			}
 		} else { // Key not valid
-				$loaders_available = false;
-				if (function_exists('ioncube_loader_version')) {
-					$loaders_available = true;
-				}
-				
-				$output = array();
-				
-		if (!$loaders_available) { // show the subscriptions available
-			$output['IONCUBE_WARNING'] = '<p class="center alert alert-info">Ioncube loaders are not installed on this server, &#9785; you will need to install the Ioncube Loaders first</p>';
-		}
-		
-				if (function_exists('curl_init')) { //we`ll use curl if enabled
-						$url = "http://updates.jomres4.net/remote_templates/plugin_manager_licenses_subscriptions.html";
-					logging::log_message('Starting curl call to '.$url, 'Curl', 'DEBUG');
-					$logging_time_start = microtime(true);
-					
-					$ch = curl_init();
-					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-					curl_setopt($ch, CURLOPT_USERAGENT, 'Jomres');
-					curl_setopt($ch, CURLOPT_URL, $url);
-					curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-					curl_setopt($ch, CURLOPT_PORT, "80");
-					curl_setopt($ch, CURLOPT_TIMEOUT, 480);
-					curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded; charset=utf-8'));
-					$output['SUBSCRIPTION_LICENSES'] =  curl_exec($ch);
-					curl_close($ch);
-					
-					$logging_time_end = microtime(true);
-					$logging_time = $logging_time_end - $logging_time_start;
-					logging::log_message('Curl call took '.$logging_time.' seconds ', 'Curl', 'DEBUG');
-					
-					}
-				
-				$pageoutput = array();
-				$pageoutput[ ] = $output;
-				$tmpl = new patTemplate();
-				$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
-				$tmpl->addRows('pageoutput', $pageoutput);
-				$tmpl->readTemplatesFromInput('plugin_manager_invalid_key.html');
-				$tmpl->displayParsedTemplate();
-				return;
+			$output = array();
+			
+			$output['SUBSCRIPTION_LICENSES'] =  $MiniComponents->specificEvent('16000', 'prices', array('output_now'=>false));
+			
+			$pageoutput = array();
+			$pageoutput[ ] = $output;
+			$tmpl = new patTemplate();
+			$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
+			$tmpl->addRows('pageoutput', $pageoutput);
+			$tmpl->readTemplatesFromInput('plugin_manager_invalid_key.html');
+			$tmpl->displayParsedTemplate();
+			return;
 		}
 	}
 
