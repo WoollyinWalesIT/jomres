@@ -667,14 +667,14 @@ class j06000search
 		// -------------------------------------------------------------------------------------------------------------------------------------------
         if (in_array('cat_id', $searchOptions) && $showSearchOptions) {
             $categoriesArray = array();
-            if (!empty($sch->prep[ 'cat_id' ])) {
-                if (empty($sch->filter[ 'cat_id' ])) {
-                    $selectOption = $sch->prep[ 'cat_id' ][ 0 ][ 'id' ];
+            if (!empty($sch->prep[ 'categories' ])) {
+                if (empty($sch->filter[ 'categories' ])) {
+                    $selectOption = $sch->prep[ 'categories' ][ 0 ][ 'id' ];
                 } else {
-                    $selectOption = $sch->filter[ 'cat_id' ];
+                    $selectOption = $sch->filter[ 'categories' ];
                 }
 
-                foreach ($sch->prep[ 'cat_id' ] as $c) {
+                foreach ($sch->prep[ 'categories' ] as $c) {
                     $categoriesArray[ ] = jomresHTML::makeOption($c[ 'id' ], $c[ 'title' ]);
                 }
                 $output[ 'categories' ] = jomresHTML::selectList($categoriesArray, 'cat_id', 'size="1" ', 'value', 'text', $selectOption);

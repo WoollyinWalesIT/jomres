@@ -1333,8 +1333,8 @@ function prepPropertyCategoriesSearch()
     $jomres_property_categories = jomres_singleton_abstract::getInstance('jomres_property_categories');
     $jomres_property_categories->get_all_property_categories();
 
-    if (!empty($jomres_property_types->property_categories)) {
-        foreach ($jomres_property_types->property_types as $c) {
+    if (!empty($jomres_property_categories->property_categories)) {
+        foreach ($jomres_property_categories->property_categories as $c) {
             $r = array();
 
 			$r[ 'id' ] = $c['id'];
