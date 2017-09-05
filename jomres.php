@@ -35,9 +35,6 @@ require_once dirname(__FILE__).'/integration.php';
 try {
     //minicomponents object
     $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-	
-	//trigger 00001 event
-	$MiniComponents->triggerEvent('00001');
 
     //site config object
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -58,6 +55,9 @@ try {
 
     //custom text object - load all custom text
     $customTextObj = jomres_singleton_abstract::getInstance('custom_text');
+	
+	//trigger 00001 event
+	$MiniComponents->triggerEvent('00001');
 
     //trigger 00002 event
     $MiniComponents->triggerEvent('00002');
