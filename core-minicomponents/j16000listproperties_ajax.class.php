@@ -153,6 +153,7 @@ class j16000listproperties_ajax
 						LEFT JOIN #__jomresportal_c_rates d ON c.crate_id = d.id "
                     .$clause
                     .' '.$sWhere
+					.' GROUP BY a.propertys_uid '
                     .' '.$sOrder
                     .' '.$sLimit;
         $jomresPropertyList = doSelectSql($query);

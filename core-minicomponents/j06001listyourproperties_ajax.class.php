@@ -150,6 +150,7 @@ class j06001listyourproperties_ajax
 																AND b.language = '".$lang."') "
                     .$clause
                     .' '.$sWhere
+					.' GROUP BY a.propertys_uid '
                     .' '.$sOrder
                     .' '.$sLimit;
         $jomresPropertyList = doSelectSql($query);
