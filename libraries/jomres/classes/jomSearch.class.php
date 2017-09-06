@@ -778,12 +778,13 @@ class jomSearch
         $filter = (int) $this->filter[ 'guestnumber' ];
         $this->makeOrs('property_uid');
         $property_ors = $this->ors;
+		$res = array();
         if (!empty($filter) && $property_ors) {
             $query = 'SELECT property_uid FROM #__jomres_rates WHERE maxpeople '.$clause.' '.$filter.' '.$property_ors;
             $result = doSelectSql($query);
             // We need to create a new result array with classes called propertys_uid in, cos that's what resultBucket needs. Annoying fiddly stuff because we've not consistently named the property uids column in various tables, but there you have it. It's not going to change now.
             foreach ($result as $r) {
-                $resultObj = new stdClass();
+				$resultObj = new stdClass();
                 $resultObj->propertys_uid = $r->property_uid;
                 if (!in_array($resultObj, $res)) {
                     $res[ ] = $resultObj;
@@ -980,7 +981,9 @@ class jomSearch
 
                     if (!isset($this->filter[ 'guestnumber' ]) || (isset($this->filter[ 'guestnumber' ]) && (int) $this->filter[ 'guestnumber' ] == 0)) {
                         $total_in_party = 1;
-                    }
+                    } else {
+						$total_in_party = (int)$this->filter[ 'guestnumber' ];
+					}
 
                     if ($total_in_party <= $max_capacity) {
                         $propertiesWithFreeRoomsArray[ ] = $property;
