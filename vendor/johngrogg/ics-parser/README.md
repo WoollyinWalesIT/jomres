@@ -1,9 +1,11 @@
 # PHP ICS Parser
 
-[![Latest Stable Version](https://poser.pugx.org/johngrogg/ics-parser/v/stable.png "Latest Stable Version")](https://packagist.org/packages/johngrogg/ics-parser)
+[![Latest Stable Release](https://poser.pugx.org/johngrogg/ics-parser/v/stable.png "Latest Stable Release")](https://packagist.org/packages/johngrogg/ics-parser)
 [![Total Downloads](https://poser.pugx.org/johngrogg/ics-parser/downloads.png "Total Downloads")](https://packagist.org/packages/johngrogg/ics-parser)
 [![Reference Status](https://www.versioneye.com/php/johngrogg:ics-parser/reference_badge.svg?style=flat "Reference Status")](https://www.versioneye.com/php/johngrogg:ics-parser/references)
 [![Dependency Status](https://www.versioneye.com/php/johngrogg:ics-parser/badge.svg "Dependency Status")](https://www.versioneye.com/php/johngrogg:ics-parser)
+[![Issue Closure Rate](https://img.shields.io/badge/issue%20closure-4%20days-brightgreen.svg "Issue Closure Rate")](https://github.com/u01jmg3/ics-parser/issues)
+[![Pull Request Closure Rate](https://img.shields.io/badge/pull%20closure-1%20day-brightgreen.svg "Pull Request Closure Rate")](https://github.com/u01jmg3/ics-parser/pulls)
 
 ---
 
@@ -36,7 +38,7 @@
 
 #### What will the parser return?
 
- - Each key/value pair from the iCal file will be parsed creating an associate array for both the calendar and every event it contains.
+ - Each key/value pair from the iCal file will be parsed creating an associative array for both the calendar and every event it contains.
  - Also injected will be content under `dtstart_tz` and `dtend_tz` for accessing start and end dates with time zone data applied.
  - Where possible [`DateTime`](https://secure.php.net/manual/en/class.datetime.php) objects are used and returned.
 
@@ -112,6 +114,7 @@ var_dump($event->dtstart_array);
 | `isFileOrUrl`                         | `$filename`                                                | `protected` | Checks if a filename exists as a file or URL                                                          |
 | `isValidTimeZoneId`                   | `$timeZone`                                                | `protected` | Checks if a time zone is valid                                                                        |
 | `keyValueFromString`                  | `$text`                                                    | `protected` | Gets the key value pair from an iCal string                                                           |
+| `mb_chr`                              | `$code`                                                    | `protected` | Provides a polyfill for PHP 7.2's `mb_chr()`, which is a multibyte safe version of `chr()`            |
 | `mb_str_replace`                      | `$search`, `$replace`, `$subject`, `$count = 0`            | `protected` | Replaces all occurrences of a search string with a given replacement string                           |
 | `numberOfDays`                        | `$days`, `$start`, `$end`                                  | `protected` | Gets the number of days between a start and end date                                                  |
 | `parseDuration`                       | `$date`, `$duration`, `$format = 'U'`                      | `protected` | Parses a duration and applies it to a date                                                            |
@@ -120,6 +123,7 @@ var_dump($event->dtstart_array);
 | `processEvents`                       | -                                                          | `protected` | Performs admin tasks on all events as read from the iCal file                                         |
 | `processRecurrences`                  | -                                                          | `protected` | Processes recurrence rules                                                                            |
 | `removeUnprintableChars`              | `$data`                                                    | `protected` | Removes unprintable ASCII and UTF-8 characters                                                        |
+| `trimToRecurrenceCount`               | `$rrules`, `$recurrenceEvents`                             | `protected` | Ensures the recurrence count is enforced against generated recurrence events                          |
 | `unfold`                              | `$lines`                                                   | `protected` | Unfolds an iCal file in preparation for parsing                                                       |
 | `calendarDescription`                 | -                                                          | `public`    | Returns the calendar description                                                                      |
 | `calendarName`                        | -                                                          | `public`    | Returns the calendar name                                                                             |

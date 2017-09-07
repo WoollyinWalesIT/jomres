@@ -326,7 +326,7 @@ class ICal
                                 $this->todoCount++;
                             }
                             $component = 'VTODO';
-                            break;
+                        break;
 
                         // http://www.kanzaki.com/docs/ical/vevent.html
                         case 'BEGIN:VEVENT':
@@ -334,7 +334,7 @@ class ICal
                                 $this->eventCount++;
                             }
                             $component = 'VEVENT';
-                            break;
+                        break;
 
                         // http://www.kanzaki.com/docs/ical/vfreebusy.html
                         case 'BEGIN:VFREEBUSY':
@@ -342,7 +342,7 @@ class ICal
                                 $this->freeBusyIndex++;
                             }
                             $component = 'VFREEBUSY';
-                            break;
+                        break;
 
                         case 'BEGIN:DAYLIGHT':
                         case 'BEGIN:STANDARD':
@@ -350,7 +350,7 @@ class ICal
                         case 'BEGIN:VCALENDAR':
                         case 'BEGIN:VTIMEZONE':
                             $component = $value;
-                            break;
+                        break;
 
                         case 'END:DAYLIGHT':
                         case 'END:STANDARD':
@@ -361,11 +361,11 @@ class ICal
                         case 'END:VTIMEZONE':
                         case 'END:VTODO':
                             $component = 'VCALENDAR';
-                            break;
+                        break;
 
                         default:
                             $this->addCalendarComponentWithKeyAndValue($component, $keyword, $value);
-                            break;
+                        break;
                     }
                 }
             }
@@ -413,7 +413,7 @@ class ICal
         switch ($component) {
             case 'VTODO':
                 $this->cal[$component][$this->todoCount - 1][$keyword] = $value;
-                break;
+            break;
 
             case 'VEVENT':
                 if (!isset($this->cal[$component][$this->eventCount - 1][$keyword . '_array'])) {
@@ -449,7 +449,7 @@ class ICal
                         $this->cal[$component][$this->eventCount - 1][$keyword] .= ',' . $value;
                     }
                 }
-                break;
+            break;
 
             case 'VFREEBUSY':
                 if ($keyword === 'FREEBUSY') {
@@ -467,11 +467,11 @@ class ICal
                 } else {
                     $this->cal[$component][$this->freeBusyIndex - 1][$keyword][] = $value;
                 }
-                break;
+            break;
 
             default:
                 $this->cal[$component][$keyword] = $value;
-                break;
+            break;
         }
 
         $this->lastKeyword = $keyword;
@@ -683,12 +683,17 @@ class ICal
             $duration = end($dateArray);
             $dateTime = $this->parseDuration($event['DTSTART'], $duration, null);
         } else {
-            $dateTime = $this->iCalDateToDateTime($dateArray[3], false, true);
+            $dateTime = new \DateTime($dateArray[1], new \DateTimeZone('UTC'));
+            $dateTime->setTimezone(new \DateTimeZone($this->calendarTimeZone()));
         }
 
         // Force time zone
         if (isset($dateArray[0]['TZID'])) {
-            $dateTime->setTimezone(new \DateTimeZone($dateArray[0]['TZID']));
+            if ($this->isValidTimeZoneId($dateArray[0]['TZID'])) {
+                $dateTime->setTimezone(new \DateTimeZone($dateArray[0]['TZID']));
+            } else {
+                $dateTime->setTimezone(new \DateTimeZone($this->defaultTimeZone));
+            }
         }
 
         if (is_null($format)) {
@@ -754,6 +759,9 @@ class ICal
     protected function processRecurrences()
     {
         $events = (isset($this->cal['VEVENT'])) ? $this->cal['VEVENT'] : array();
+
+        $recurrenceEvents    = array();
+        $allRecurrenceEvents = array();
 
         if (empty($events)) {
             return false;
@@ -831,7 +839,7 @@ class ICal
                     // Get Until
                     $until = strtotime($rrules['UNTIL']);
                 } elseif (isset($rrules['COUNT'])) {
-                    $countOrig  = (is_numeric($rrules['COUNT']) && $rrules['COUNT'] > 1) ? $rrules['COUNT'] : 0;
+                    $countOrig = (is_numeric($rrules['COUNT']) && $rrules['COUNT'] > 1) ? $rrules['COUNT'] : 0;
 
                     // Increment count by the number of excluded dates
                     $countOrig += sizeof($exdates);
@@ -928,8 +936,8 @@ class ICal
                             }
 
                             if (!$isExcluded) {
-                                $anEvent  = $this->processEventIcalDateTime($anEvent);
-                                $events[] = $anEvent;
+                                $anEvent            = $this->processEventIcalDateTime($anEvent);
+                                $recurrenceEvents[] = $anEvent;
                                 $this->eventCount++;
 
                                 // If RRULE[COUNT] is reached then break
@@ -945,7 +953,12 @@ class ICal
                             // Move forwards
                             $recurringTimestamp = strtotime($offset, $recurringTimestamp);
                         }
-                        break;
+
+                        $recurrenceEvents    = $this->trimToRecurrenceCount($rrules, $recurrenceEvents);
+                        $allRecurrenceEvents = array_merge($allRecurrenceEvents, $recurrenceEvents);
+                        $recurrenceEvents    = array(); // Reset
+
+                    break;
 
                     case 'WEEKLY':
                         // Create offset
@@ -1022,8 +1035,8 @@ class ICal
                                     }
 
                                     if (!$isExcluded) {
-                                        $anEvent  = $this->processEventIcalDateTime($anEvent);
-                                        $events[] = $anEvent;
+                                        $anEvent            = $this->processEventIcalDateTime($anEvent);
+                                        $recurrenceEvents[] = $anEvent;
                                         $this->eventCount++;
 
                                         // If RRULE[COUNT] is reached then break
@@ -1044,7 +1057,12 @@ class ICal
                             // Move forwards $interval weeks
                             $weekRecurringTimestamp = strtotime($offset, $weekRecurringTimestamp);
                         }
-                        break;
+
+                        $recurrenceEvents    = $this->trimToRecurrenceCount($rrules, $recurrenceEvents);
+                        $allRecurrenceEvents = array_merge($allRecurrenceEvents, $recurrenceEvents);
+                        $recurrenceEvents    = array(); // Reset
+
+                    break;
 
                     case 'MONTHLY':
                         // Create offset
@@ -1131,8 +1149,8 @@ class ICal
                                     }
 
                                     if (!$isExcluded) {
-                                        $anEvent  = $this->processEventIcalDateTime($anEvent);
-                                        $events[] = $anEvent;
+                                        $anEvent            = $this->processEventIcalDateTime($anEvent);
+                                        $recurrenceEvents[] = $anEvent;
                                         $this->eventCount++;
 
                                         // If RRULE[COUNT] is reached then break
@@ -1221,8 +1239,8 @@ class ICal
                                         }
 
                                         if (!$isExcluded) {
-                                            $anEvent  = $this->processEventIcalDateTime($anEvent);
-                                            $events[] = $anEvent;
+                                            $anEvent            = $this->processEventIcalDateTime($anEvent);
+                                            $recurrenceEvents[] = $anEvent;
                                             $this->eventCount++;
 
                                             // If RRULE[COUNT] is reached then break
@@ -1249,7 +1267,12 @@ class ICal
                                 $recurringTimestamp = strtotime($offset, $recurringTimestamp);
                             }
                         }
-                        break;
+
+                        $recurrenceEvents    = $this->trimToRecurrenceCount($rrules, $recurrenceEvents);
+                        $allRecurrenceEvents = array_merge($allRecurrenceEvents, $recurrenceEvents);
+                        $recurrenceEvents    = array(); // Reset
+
+                    break;
 
                     case 'YEARLY':
                         // Create offset
@@ -1327,8 +1350,8 @@ class ICal
                                             }
 
                                             if (!$isExcluded) {
-                                                $anEvent  = $this->processEventIcalDateTime($anEvent);
-                                                $events[] = $anEvent;
+                                                $anEvent            = $this->processEventIcalDateTime($anEvent);
+                                                $recurrenceEvents[] = $anEvent;
                                                 $this->eventCount++;
 
                                                 // If RRULE[COUNT] is reached then break
@@ -1411,8 +1434,8 @@ class ICal
                                         }
 
                                         if (!$isExcluded) {
-                                            $anEvent  = $this->processEventIcalDateTime($anEvent);
-                                            $events[] = $anEvent;
+                                            $anEvent            = $this->processEventIcalDateTime($anEvent);
+                                            $recurrenceEvents[] = $anEvent;
                                             $this->eventCount++;
 
                                             // If RRULE[COUNT] is reached then break
@@ -1431,12 +1454,17 @@ class ICal
                                 $recurringTimestamp = strtotime($offset, $recurringTimestamp);
                             }
                         }
-                        break;
 
-                        $events = (isset($countOrig) && sizeof($events) > $countOrig) ? array_slice($events, 0, $countOrig) : $events; // Ensure we abide by COUNT if defined
+                        $recurrenceEvents    = $this->trimToRecurrenceCount($rrules, $recurrenceEvents);
+                        $allRecurrenceEvents = array_merge($allRecurrenceEvents, $recurrenceEvents);
+                        $recurrenceEvents    = array(); // Reset
+
+                    break;
                 }
             }
         }
+
+        $events = array_merge($events, $allRecurrenceEvents);
 
         $this->cal['VEVENT'] = $events;
     }
@@ -1832,7 +1860,7 @@ class ICal
 
         $timestamp = (is_object($timestamp)) ? $timestamp : \DateTime::createFromFormat(self::UNIX_FORMAT, $timestamp);
         $start     = strtotime('first day of ' . $timestamp->format(self::DATE_TIME_FORMAT_PRETTY));
-        $end       = strtotime('last day of '  . $timestamp->format(self::DATE_TIME_FORMAT_PRETTY));
+        $end       = strtotime('last day of ' . $timestamp->format(self::DATE_TIME_FORMAT_PRETTY));
 
         // Used with pow(2, X) so pow(2, 4) is THURSDAY
         $weekdays = array_flip(array_keys($this->weekdays));
@@ -1857,6 +1885,32 @@ class ICal
     protected function removeUnprintableChars($data)
     {
         return preg_replace('/[\x00-\x1F\x7F\xA0]/u', '', $data);
+    }
+
+    /**
+     * Provides a polyfill for PHP 7.2's `mb_chr()`, which is a multibyte safe version of `chr()`.
+     * Multibyte safe.
+     *
+     * @param  integer $code
+     * @return string
+     */
+    protected function mb_chr($code)
+    {
+        if (function_exists('mb_chr')) {
+            return mb_chr($code);
+        } else {
+            if (0x80 > $code %= 0x200000) {
+                $s = chr($code);
+            } elseif (0x800 > $code) {
+                $s = chr(0xc0 | $code >> 6) . chr(0x80 | $code & 0x3f);
+            } elseif (0x10000 > $code) {
+                $s = chr(0xe0 | $code >> 12) . chr(0x80 | $code >> 6 & 0x3f) . chr(0x80 | $code & 0x3f);
+            } else {
+                $s = chr(0xf0 | $code >> 18) . chr(0x80 | $code >> 12 & 0x3f) . chr(0x80 | $code >> 6 & 0x3f) . chr(0x80 | $code & 0x3f);
+            }
+
+            return $s;
+        }
     }
 
     /**
@@ -1920,7 +1974,10 @@ class ICal
         $cleanedData = strtr($data, $replacementChars);
 
         // Replace Windows-1252 equivalents
-        $cleanedData = $this->mb_str_replace(array(chr(145), chr(146), chr(147), chr(148), chr(150), chr(151), chr(133), chr(194)), $replacementChars, $cleanedData);
+        $charsToReplace = array_map(function ($code) {
+            return $this->mb_chr($code);
+        }, array(133, 145, 146, 147, 148, 150, 151, 194));
+        $cleanedData = $this->mb_str_replace($charsToReplace, $replacementChars, $cleanedData);
 
         return $cleanedData;
     }
@@ -1950,7 +2007,7 @@ class ICal
             foreach ($subArray as $key => $value) {
                 if ($key === 'TZID') {
                     $currentTimeZone = $subArray[$key];
-                } else {
+                } elseif (is_numeric($key)) {
                     $icalDate = sprintf(self::ICAL_DATE_TIME_TEMPLATE, $currentTimeZone) . $subArray[$key];
                     $output[] = $this->iCalDateToUnixTimestamp($icalDate);
 
@@ -2012,5 +2069,27 @@ class ICal
         }
 
         return $lines;
+    }
+
+    /**
+     * Ensures the recurrence count is enforced against generated recurrence events.
+     *
+     * @param  array $rrules
+     * @param  array $recurrenceEvents
+     * @return array
+     */
+    protected function trimToRecurrenceCount(array $rrules, array $recurrenceEvents)
+    {
+        if (isset($rrules['COUNT'])) {
+            $recurrenceCount = (intval($rrules['COUNT']) - 1);
+            $surplusCount    = (sizeof($recurrenceEvents) - $recurrenceCount);
+
+            if ($surplusCount > 0) {
+                $recurrenceEvents  = array_slice($recurrenceEvents, 0, $recurrenceCount);
+                $this->eventCount -= $surplusCount;
+            }
+        }
+
+        return $recurrenceEvents;
     }
 }

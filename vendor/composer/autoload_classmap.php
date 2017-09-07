@@ -247,6 +247,8 @@ return array(
     'Aws\\Middleware' => $vendorDir . '/aws/aws-sdk-php/src/Middleware.php',
     'Aws\\MigrationHub\\Exception\\MigrationHubException' => $vendorDir . '/aws/aws-sdk-php/src/MigrationHub/Exception/MigrationHubException.php',
     'Aws\\MigrationHub\\MigrationHubClient' => $vendorDir . '/aws/aws-sdk-php/src/MigrationHub/MigrationHubClient.php',
+    'Aws\\Mobile\\Exception\\MobileException' => $vendorDir . '/aws/aws-sdk-php/src/Mobile/Exception/MobileException.php',
+    'Aws\\Mobile\\MobileClient' => $vendorDir . '/aws/aws-sdk-php/src/Mobile/MobileClient.php',
     'Aws\\MockHandler' => $vendorDir . '/aws/aws-sdk-php/src/MockHandler.php',
     'Aws\\MultiRegionClient' => $vendorDir . '/aws/aws-sdk-php/src/MultiRegionClient.php',
     'Aws\\Multipart\\AbstractUploadManager' => $vendorDir . '/aws/aws-sdk-php/src/Multipart/AbstractUploadManager.php',
