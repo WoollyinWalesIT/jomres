@@ -28,7 +28,11 @@ class j16000addplugin
         include JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'jomres_config.php';
         $this_jomres_version = explode('.', $mrConfig[ 'version' ]);
         $debugging = false;
-        define('JOMRES_INSTALLER', 1);
+        
+		if (!defined('JOMRES_INSTALLER')) {
+			define('JOMRES_INSTALLER', 1);
+		}
+		
         $thirdparty = jomresGetParam($_REQUEST, 'thirdparty', false);
 
         if (!class_exists('ZipArchive')) {
