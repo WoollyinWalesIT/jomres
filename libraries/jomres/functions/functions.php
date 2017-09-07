@@ -14,8 +14,6 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-require_once JOMRES_LIBRARIES_ABSPATH.'http_build_url.php';
-
 function jomres_getSingleton($class, $args = array())
 {
     return jomres_singleton_abstract::getInstance($class, $args);

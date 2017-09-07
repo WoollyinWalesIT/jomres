@@ -42,8 +42,6 @@ class logging
                     define('JOMRES_ROOT_DIRECTORY', 'jomres');
                 }
             }
-
-            require_once '../../'.DIRECTORY_SEPARATOR.JOMRES_ROOT_DIRECTORY.DIRECTORY_SEPARATOR.'libraries'.DIRECTORY_SEPARATOR.'http_build_url.php';
         } else {
             $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
             $jrConfig = $siteConfig->get();
