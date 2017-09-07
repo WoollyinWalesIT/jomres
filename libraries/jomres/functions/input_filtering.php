@@ -197,9 +197,9 @@ function jomresGetParam($request, $element, $def = null, $mask = '') // variable
             }
             break;
         default: // treat everything else as a string.
-
             $allowed_inputs = get_showtime('inputs_allowing_html');
-            if (!is_array($allowed_inputs)) {
+
+			if (!is_array($allowed_inputs)) {
                 $allowed_inputs = array();
             }
 
@@ -256,7 +256,6 @@ function jomres_sanitise_string($dirty)
 
 function jomres_purify_html($dirty)
 {
-
     //logging::log_message('HTML purifier called', 'Core', 'DEBUG');
     $html_purifier = jomres_singleton_abstract::getInstance('jomres_input_filter_singleton');
     $dirty = $html_purifier->purify($dirty, $allow_html = true);
