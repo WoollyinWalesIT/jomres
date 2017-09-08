@@ -26,7 +26,7 @@ class jomres_language_definitions
         if ($jrConfig[ 'language_context' ] != '') {
             $this->ptype = $jrConfig[ 'language_context' ];
         } else {
-            $this->ptype = 0;
+            $this->ptype = '0';
         }
 
         if (get_showtime('lang') != '') {
