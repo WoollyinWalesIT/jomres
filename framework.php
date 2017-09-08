@@ -84,6 +84,12 @@ function load_jomres_environment()
 
     //00003 trigger point - input filtering
     $MiniComponents->triggerEvent('00003');
+	
+	//jomres cron object
+    $cron = jomres_singleton_abstract::getInstance('jomres_cron');
+    if ($cron->method == 'Minicomponent' && !AJAXCALL) {
+        $cron->triggerJobs();
+    }
 
     //booking object
     $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
