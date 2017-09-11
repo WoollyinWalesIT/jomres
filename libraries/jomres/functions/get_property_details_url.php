@@ -47,12 +47,16 @@ function get_property_details_url($property_uid = 0, $type = 'sef', $params = ''
 	}
 	
 	//if we have a joomla menu of type propertydetails created for this specific property, then we`ll use that url insetad, t avoid duplicates. This allows alows us having modules assigned only to this property details page.
-	if (this_cms_is_joomla() && $type == 'sef') {
+	if (this_cms_is_joomla()) {
 		$app = JFactory::getApplication(); 
 		$menu = $app->getMenu();
 		$menuItem = $menu->getItems( 'link', 'index.php?option=com_jomres&view=default&layout=propertydetails&selected_property='.$property_uid, $firstonly = true );
 		if ($menuItem) {
-			$url = JRoute::_($menuItem->link.'&Itemid='.$menuItem->id);
+			if ($type == 'sef' || $type == 'sefsafe') {
+				$url = JRoute::_($menuItem->link.'&Itemid='.$menuItem->id);
+			} else {
+				$url = jomresURL(get_showtime('live_site').'?'.$menuItem->link.'&Itemid='.$menuItem->id);
+			}
 		}
 	}
 	
