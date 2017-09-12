@@ -772,7 +772,7 @@ jr_define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_YOUR_ENQUIRY', 'Вашето за�
 jr_define('_JOMRES_COM_A_LISTLIMIT', 'Лимит на обектите показващи се на страница');
 jr_define('_JOMRES_COM_A_LISTLIMIT_DESC', 'След търсене, броя на обектите, които да се показват на страница');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE', 'Интегрирано търсене');
-jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE_DESC', 'Това е работа на системния администратор <b>'.JOMRES_TEMPLATEPATH_FRONTEND.'</b> ');
+jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE_DESC', '');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE', 'Активирай?');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE_DESC', 'Да се използва от системния администратор.');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_USECOLS', 'Използвай колони');

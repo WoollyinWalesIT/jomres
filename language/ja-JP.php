@@ -767,7 +767,7 @@ jr_define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_YOUR_ENQUIRY', '問い合わせ内
 jr_define('_JOMRES_COM_A_LISTLIMIT', '事業・プロパティ一覧での表示物件数');
 jr_define('_JOMRES_COM_A_LISTLIMIT_DESC', '検索結果のページでは何件を表示することです');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE', '統合検索機能');
-jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE_DESC', 'Jomresの統合検索機能は、allows your users to search through Jomres businesses according to a set of functions. If you have already used the search features of Jomres in Joomla you will be familiar with these settings.<br/>検索モジュールを利用されない場合、もしくはJomres検索モジュールが含まれていないCMSを利用されている場合には、Jomres内で検索をハンドリングする本機能を設けました。<br/>づロップダウンではなくリンクで検索する場合には、そのリンクに関連している条件のみが検索されます（他の検索オプションは実行されす）。<br/>統合検索の出力は、レイアウトを左右するテンプレートファイルが選択肢を全て含めざるを得ない（相互排他の様子も含む）ため、見た目がよくあります。レイアウト、見た目等を変更するためには、JOMRES_TEMPLATEPATH_FRONTENDおいうホルダーでのsrch.htmlファイルを編集する必要があります。 ');
+jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE_DESC', '');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE', '統合検索を有効にしますか?');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE_DESC', '有効する場合には、事業・プロパティ一覧を表示する全てのJomresコールは、検索オプションも表示されます。');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_USECOLS', '欄を利用');
