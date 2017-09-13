@@ -611,6 +611,7 @@ class jomSearch
             $where = '('.implode(($phrase == 'all' ? ') AND (' : ') OR ('), $wheres).')';
             $query = 'SELECT a.property_uid FROM #__jomres_custom_text a, #__jomres_propertys b ';
             $query .= " WHERE published = 1 AND ( $where ) AND ( a.property_uid = b.propertys_uid )";
+            $query .= " $property_ors ";
             $set2 = doSelectSql($query);
 
             $result = array();
