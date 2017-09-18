@@ -50,7 +50,7 @@ class j06002save_resource
         //html editor fields
         if ($jrConfig[ 'allowHTMLeditor' ] == '0') {
             $jrportal_rooms->description            = $this->convert_greaterthans(jomresGetParam($_POST, 'room_description', ''));
-            $jrportal_rooms->description            = strip_tags($jrportal_rooms->description, '<p><br>');
+            $jrportal_rooms->description            = strip_tags($jrportal_rooms->description);
         } else {
             $jrportal_rooms->description            = jomresGetParam($_POST, 'room_description', '');
         }
