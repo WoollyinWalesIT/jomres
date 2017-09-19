@@ -61,7 +61,7 @@ class j06005cancelGuestBooking
                 if (dateDiff($interval, date('Y/m/d'), $booking_arrival) > (int) $mrConfig[ 'cancellation_threashold' ]) {
                     $saveMessage = jr_gettext('_JOMRES_COM_MR_EB_GUEST_CANCELLED', '_JOMRES_COM_MR_EB_GUEST_CANCELLED', false);
 
-                    $query = "SELECT tag FROM #__jomres_contracts WHERE contract_uid = '".(int) $contract_uid."' AND property_uid = '".(int) $property_uid."'";
+                    /* $query = "SELECT tag FROM #__jomres_contracts WHERE contract_uid = '".(int) $contract_uid."' AND property_uid = '".(int) $property_uid."'";
                     $contractData = doSelectSql($query);
                     foreach ($contractData as $cancellation) {
                         $tag = $cancellation->tag;
@@ -76,7 +76,18 @@ class j06005cancelGuestBooking
                     $query = "UPDATE #__jomres_contracts SET `cancelled`='1', `cancelled_timestamp`='".date('Y-m-d H:i:s')."', `cancelled_reason`='".$reason."' WHERE contract_uid = '".(int) $contract_uid."' AND property_uid = '".(int) $property_uid."'";
                     if (!doInsertSql($query, '')) {
                         trigger_error('Unable to update cancellations data for contract'.(int) $contract_uid.', mysql db failure', E_USER_ERROR);
-                    }
+                    } */
+					
+					jr_import('jomres_generic_booking_cancel');
+					$bkg = new jomres_generic_booking_cancel();
+
+					$bkg->property_uid = $property_uid;
+					$bkg->contract_uid = $contract_uid;
+					$bkg->reason = '';
+					$bkg->note = $saveMessage;
+
+					$cancellationSuccessful = $bkg->cancel_booking();
+			
 
                     $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
                     $current_property_details->gather_data($property_uid);

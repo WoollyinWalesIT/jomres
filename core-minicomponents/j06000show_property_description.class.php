@@ -29,8 +29,8 @@ class j06000show_property_description
                         'argument' => 'property_uid',
                         'arg_info' => '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DESCRIPTION_ARG_PROPERTY_UID',
                         'arg_example' => '5',
-                        ),
-                    ),
+                        )
+                    )
                 );
 
             return;
