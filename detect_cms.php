@@ -84,7 +84,7 @@ if (!defined('_JOMRES_DETECTED_CMS')) {
 }
 
 if (_JOMRES_DETECTED_CMS == 'unknown') {
-    $message = "Error, cannot detect the current CMS.<br/>  It is possible that you have upgraded your CMS's version and the version of Jomres you're running isn't aware of the new version of the CMS. If that's the case then you will need to upgrade Jomres too, however before you do please <a href='http://manual.jomres.net/upgrading.html'>see this page.</a>";
+    $message = "Error, cannot detect the current CMS.<br/>  It is possible that you have upgraded your CMS's version and the version of Jomres you're running isn't aware of the new version of the CMS. If that's the case then you will need to upgrade Jomres too, however before you do please <a href='http://www.jomres.net/manual/installation-and-upgrading/11-upgrading'>see this page.</a>";
 
     throw new Exception($message);
 }
