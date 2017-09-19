@@ -234,7 +234,8 @@ class jomres_media_centre_images
 						`filename`, 
 						`version` 
 					FROM #__jomres_images 
-					WHERE `property_uid` IN (".jomres_implode($property_uids).")";
+					WHERE `property_uid` IN (".jomres_implode($property_uids).") 
+					ORDER BY `filename` ASC ";
 		$result = doSelectSql($query);
 
 		foreach ($result as $r) {
@@ -380,7 +381,8 @@ class jomres_media_centre_images
 						`version` 
 					FROM #__jomres_images 
 					WHERE `property_uid` = 0 
-						AND `resource_type` = '".$type."'";
+						AND `resource_type` = '".$type."' 
+					ORDER BY `filename` ASC ";
 		$result = doSelectSql($query);
 
 		foreach ($result as $r) {
