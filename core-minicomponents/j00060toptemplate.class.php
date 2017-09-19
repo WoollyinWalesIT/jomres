@@ -51,9 +51,12 @@ class j00060toptemplate
 
 		$output = array();
 
-		$jomres_video_tutorials = jomres_singleton_abstract::getInstance('jomres_video_tutorials');
-		$jomres_video_tutorials->property_uid = $defaultProperty;
-		$output[ 'VIDEO_TUTORIALS' ] = $jomres_video_tutorials->build_modal();
+		$output[ 'VIDEO_TUTORIALS' ] = '';
+		if (using_bootstrap()) {
+			$jomres_video_tutorials = jomres_singleton_abstract::getInstance('jomres_video_tutorials');
+			$jomres_video_tutorials->property_uid = $defaultProperty;
+			$output[ 'VIDEO_TUTORIALS' ] = $jomres_video_tutorials->build_modal();
+		}
 
         $output[ 'PROPERTYNAME' ] = '';
         $output[ 'HACTIVE_PROPERTY' ] = '';
