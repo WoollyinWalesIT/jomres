@@ -1,3 +1,25 @@
+<h3>Jomres 9.9.11 19/09/2017</h3>
+
+<span class="label label-warning">Change</span> Changed where we trigger 00001
+<span class="label label-warning">Change</span> Improved how we pass the selected number of guests from search modules to the first guest type dropdown on the booking form
+<span class="label label-warning">Change</span> Added http_build_url class to dependencies
+<span class="label label-warning">Change</span> Jomres cron jobs will also be triggered when needed on non jomres specific pages that have jomres plugins as modules/widgets.
+<span class="label label-warning">Change</span> Improved how we get the property details url on Joomla when we have a specific Joomla menu item for a property.
+<span class="label label-warning">Change</span> Price output function modified to use and display only 2 decimals
+<span class="label label-warning">Change</span> Sort images by filename when getting their details from db
+<span class="label label-warning">Change</span> Only show video tutorials in frontend if using bootstrap templates
+<span class="label label-warning">Change</span> Modified how guest cancellations are performed so that they're using a standard class, and ensure that the webhook is triggered.
+
+<span class="label label-important label-danger">Fix</span> Resolved an issue in Joomla 3.8 caused by changes to Joomla's version file that would prevent Jomres from working.
+<span class="label label-important label-danger">Fix</span> Solved a problem with property details sef urls in emails (joomla only)
+<span class="label label-important label-danger">Fix</span> Solved a problem with properties being displayed twice in list properties tables
+<span class="label label-important label-danger">Fix</span> Solved a recaptcha problem on contact form. Removed recaptha v1 code as the lib was removed previously anyway.
+<span class="label label-important label-danger">Fix</span> Solved a problem with html purifier stripping down all html in strong mode, including the allowed html tags
+<span class="label label-important label-danger">Fix</span> Removed a blank space after user and pass in new user email
+<span class="label label-important label-danger">Fix</span> Fixed an issue with description search returning wrong results due a missing property_ors in the 2nd query.
+<span class="label label-important label-danger">Fix</span> Solved a problem with existing room descriptions not being updated for the currently active language.
+
+
 <h3>Jomres 9.9.10 31/08/2017</h3>
 
 <span class="label label-warning">Change</span> Changed how we upload user profile images to make it consistent with media centre uploads, so we can use db image details, s3 and cloudfront integrations. Existing user images need to be reuploaded. Added support for adding hidden media centre resources that can be used internally and don`t show up in media centre dropdowns. First use for this is user images.
