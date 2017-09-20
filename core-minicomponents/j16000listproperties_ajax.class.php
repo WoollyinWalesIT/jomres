@@ -139,7 +139,8 @@ class j16000listproperties_ajax
 						a.completed,
 						(CASE WHEN (a.propertys_uid = b.property_uid 
 									AND b.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_NAME' 
-									AND b.language = '".$lang."') 
+									AND b.language = '".$lang."' 
+									AND b.language_context != '') 
 							THEN b.customtext 
 							ELSE a.property_name 
 						END) AS property_name,
@@ -153,7 +154,6 @@ class j16000listproperties_ajax
 						LEFT JOIN #__jomresportal_c_rates d ON c.crate_id = d.id "
                     .$clause
                     .' '.$sWhere
-					.' GROUP BY a.propertys_uid '
                     .' '.$sOrder
                     .' '.$sLimit;
         $jomresPropertyList = doSelectSql($query);
