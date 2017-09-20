@@ -774,7 +774,7 @@ jr_define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_YOUR_ENQUIRY','Din forespørsel...
 jr_define('_JOMRES_COM_A_LISTLIMIT','Grense for utleielisten');
 jr_define('_JOMRES_COM_A_LISTLIMIT_DESC','Antall utleieenheter som vises på en side etter søk');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE','Integrert søkefunksjon');
-jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE_DESC','Systemets integrerte søkefunksjon tillater brukerne å søke gjennom systemts utleieenheter i henhold til et sett av funksjoner. Hvis du allerede har brukt søkefunksjonen i Joomla tidligere så vil du være kjent med disse innstillingene.<br/>Denne funksjonen tillater oss å tilby søkehåndtering innen systemet for brukere som ikke ønsker å bruke Joomlas søkemoduler, eller for andre CMS-brukere der CMSet ikke har sin egen søkemodul for systemet.<br/>Husk på at hvis du velger å søke etter noe via en link (altså ikke en nedtrekksmeny) så vil ikke søkeopsjonene bli implementert, kun elementet som korresponderer med linken som du klikket.<br/>Merk at som standard så er layouten på det integrerte søket ikke veldig pent. Det er fordi template-filen som sørger for layouten må ta med alle mulige opsjoner, og noen er ikke kompatible.');
+jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE_DESC','Systemets integrerte søkefunksjon tillater brukerne å søke gjennom systemts utleieenheter i henhold til et sett av funksjoner. Hvis du allerede har brukt søkefunksjonen i Joomla tidligere så vil du være kjent med disse innstillingene.<br/>Denne funksjonen tillater oss å tilby søkehåndtering innen systemet for brukere som ikke ønsker å bruke Joomlas søkemoduler, eller for andre CMS-brukere der CMSet ikke har sin egen søkemodul for systemet.<br/>Husk på at hvis du velger å søke etter noe via en link (altså ikke en nedtrekksmeny) så vil ikke søkeopsjonene bli implementert, kun elementet som korresponderer med linken som du klikket.<br/>Merk at som standard så er layouten på det integrerte søket ikke veldig pent. Det er fordi template-filen som sørger for layouten må ta med alle mulige opsjoner, og noen er ikke kompatible. For å forbedre layouten og få til det du ønsker må du endre på <b>srch.html</b> i mappen /jomres/templates/(bootstrap3 eller bootstrap eller jquery_ui)/frontend/ ');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE','Aktivér denne funksjonen');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE_DESC','Hvis denne funksjonen er aktivert, så vil alle kall til systemet som viser utleielisten også vise søkeopsjonene.');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_USECOLS','Bruk kolonner');
@@ -1899,7 +1899,7 @@ jr_define('_JOMRES_FAQ_ADMIN_QUESTION_TOURS_GLOBALTOURS', 'How can I create a To
 jr_define('_JOMRES_FAQ_ADMIN_ANSWER_TOURS_GLOBALTOURS', "In the administrator area of your site, visit the Portal > Functionality Tour/Activity Managenent page. The tour profile/generation process is the same as used in the frontend, however any tours generated here are seen in the frontend. One typical scenario where this may be used is if the site administrator is organising events around the country, and they want to sell hotel bookings. They would create the participating hotels in the frontend as normal, setting room prices etc, then the 'tours' in this case would actually be the attendance fee for the event itself.");
 jr_define('_JOMRES_FAQ_ADMIN_QUESTION_INTRODUCTION_FIRSTTHINGSFIRST', "Ok, I've installed Jomres, what next?");
 jr_define('_JOMRES_FAQ_ADMIN_ANSWER_INTRODUCTION_FIRSTTHINGSFIRST', "The very, very first thing you should do, now that you've installed Jomres is click Help on the menu to the left, then click Getting Started. Seriously, go away and do that now.");
-jr_define('_JOMRES_MANAGE_PROPERTIES', 'Manage Properties');
+jr_define('_JOMRES_MANAGE_PROPERTIES', 'Utleiesteder');
 jr_define('_JOMRES_CONFIG_IPINFODB_KEY_WARNING', "You do not have an <a href='http://ipinfodb.com/account.php' target='_blank'>IP Detection API Key</a> set. This is required to allow the system to automatically detect the user's location and set their currency and country automatically. Please <a href='http://www.jomres.net/manual/site-managers-guide/35-control-panel/main/site-configuration/128-site-configuration-currency-conversion-currency-codes-tab' target='_blank'>see our manual page on how to create an IP detection API key</a> and save the key in Jomres > Site Configuration > Currency Conversions / Currency Codes.");
 jr_define('_JOMRES_CONFIG_OPENEXCHANGERATES_KEY_WARNING', "You do not have an <a href='https://openexchangerates.org/account/apps' target='_blank'> Open Exchange Rates API Key</a> set. This is required to allow the system to automatically download and use currency exchange rates. Please <a href='http://www.jomres.net/manual/site-managers-guide/35-control-panel/main/site-configuration/128-site-configuration-currency-conversion-currency-codes-tab' target='_blank'>see our manual page on how to create an Open Exchange Rates API key</a> and save the key in Jomres > Site Configuration > Currency Conversions / Currency Codes.");
 jr_define('_JOMRES_PERMIT_NUMBER_TITLE', 'Tillatelsesnummer');
@@ -2009,26 +2009,26 @@ jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_UPDATEINFO_KEYVALID', 'Please not
 jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_RENEWALS', "If you would like to update Jomres and it's plugins you will need a renewal license. Please visit <a href='https://www.jomres.net/pricing' target='_blank'>our site</a> for more information. In most cases these licenses are 50% of the price of a full license. Please ensure that you have logged into our shop before attempting to purchase a renewal.");
 jr_define('_JOMRES_PAYMENT_METHOD_USED',"Payment method : ");
 
-jr_define('_JOMRES_PRICES',"Buy Jomres");
+jr_define('_JOMRES_PRICES',"Kjøp Jomres");
 
 
-jr_define('_OAUTH_TITLE',"App key management");
-jr_define('_OAUTH_APPS',"REST API client details");
+jr_define('_OAUTH_TITLE',"Håndtering av app-nøkler");
+jr_define('_OAUTH_APPS',"REST API klientdetaljer");
 jr_define('_OAUTH_IDENTIFIER',"Identifier");
 jr_define('_OAUTH_APIKEY',"Client ID");
 jr_define('_OAUTH_SECRET',"Secret");
-jr_define('_OAUTH_CREATED',"Created/Updated App");
-jr_define('_OAUTH_CLIENT_ID_INFO',"The Client ID and Secret are created for you. The Identifier is so that you can easily identify this key pair.");
-jr_define('_OAUTH_SCOPE_TITLE',"Permissions ( what the client can do ) ");
-jr_define('_OAUTH_SCOPE_CATEGORY_USER' , "User permissions");
-jr_define('_OAUTH_SCOPE_CATEGORY_PROPERTIES' , "Property permissions");
+jr_define('_OAUTH_CREATED',"Laget/Oppdatert App");
+jr_define('_OAUTH_CLIENT_ID_INFO'," Client ID og Secret lages for deg. Identifier er for at du enkelt skal kunne identifisere disse to nøklene.");
+jr_define('_OAUTH_SCOPE_TITLE',"Tillatelser ( hva klienten kan gjøre ) ");
+jr_define('_OAUTH_SCOPE_CATEGORY_USER' , "Brukertilgang");
+jr_define('_OAUTH_SCOPE_CATEGORY_PROPERTIES' , "Tillatelser for utleiested");
 
-jr_define('API_DOCUMENTATION_TITLE',"App REST API documentation");
+jr_define('API_DOCUMENTATION_TITLE',"App REST API dokumentasjon");
 
-jr_define('_OAUTH_CONFIG',"API Core configuration");
+jr_define('_OAUTH_CONFIG',"API Core konfigurasjon");
 
-jr_define('_OAUTH_CONFIG_SHOW',"Show API client configuration options in Jomres main menu?");
-jr_define('_OAUTH_CONFIG_SHOW_DESC',"You may choose to not show the API client configuration options in the 'My Account' section of the Jomres mainmenu. You could instead decide that you wanted to show them on other pages using Jomres Shortcodes.");
+jr_define('_OAUTH_CONFIG_SHOW',"Vis valg for API klientkonfigurasjon i Jomres hovedmeny?");
+jr_define('_OAUTH_CONFIG_SHOW_DESC',"Du kan velge å ikke vise valg for API klientkonfigurasjon i 'Min Konto'-seksjonen av Jomres hovedmeny. I stedet kan du velge å vise dette andre steder ved bruk av Jomres Shortcodes.");
 
 jr_define( '_JOMRES_SHORTCODES_06000API_CORE_DOCS', "Displays the API core documentation page. The API Core allows users to create API clients, which are then used to access the API functionality which is outlined in the API Core documentation." );
 
@@ -2067,17 +2067,19 @@ jr_define( 'WEBHOOKS_MANAGER_PROPERTIES_NONE', 'Any webhooks you create will not
 jr_define( 'WEBHOOKS_MANAGER_PROPERTIES_ASSIGNED_DESC', 'Any webhooks you create will be triggered against the following properties : ' );
 
 
-jr_define( 'PORTAL_REVIEWS_LIMIT', 'Reviews limit' );
-jr_define( 'PORTAL_REVIEWS_LIMIT_DESC', 'Use this setting to limit the number of reviews shown in the property details page.' );
-jr_define( 'PORTAL_REVIEWS_SHOW_ALL_REVIEWS', 'Show all reviews' );
+jr_define( 'PORTAL_REVIEWS_LIMIT', 'Grense for anmeldelser' );
+jr_define( 'PORTAL_REVIEWS_LIMIT_DESC', 'Bruk denne innstillingen for å begrense antall anmeldelser som vises på siden for detaljer for utleiested.' );
+jr_define( 'PORTAL_REVIEWS_SHOW_ALL_REVIEWS', 'Vis alle anmeldelser' );
 
-jr_define( 'VIDEO_TUTORIALS', 'Video Tutorials' );
+jr_define( 'VIDEO_TUTORIALS', 'Video-opplæring' );
+jr_define( '_JOMRES_PROPERTY_HCATEGORIES', 'Utleiekategorier' );
+jr_define( '_JOMRES_PROPERTY_HCATEGORIES_HEDIT', 'Endre utleiekategori' );
 
-jr_define( '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE', 'Minimum deposit value' );
-jr_define( '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC', "If the calculated deposit is less than this figure, then set deposit to this value instead. This figure might itself be over-ridden if it does not satisfy the site's minimum deposit setting. Leave it set to 0 to not use the setting." );
+jr_define( '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE', 'Minimum forskudd' );
+jr_define( '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC', "Hvis det kalkulerte forskuddet er mindre enn dette tallet, så settes forskuddet til denne verdien i stedet. Dette tallet kan også bli overskrevet hvis det ikke passer med sidens minimumsinnstilling for forskudd. Sett til 0 for å ikke bruke innstillingen." );
 
 jr_define( '_JOMRES_MEDIA_CENTRE_DBIMPORT_WARNING', 'To increase your site speed, we recommend importing details of the existing site and properties images to database.');
-jr_define( '_JOMRES_MEDIA_CENTRE_DBIMPORT_ACTION', 'Import existing images details to database');
+jr_define( '_JOMRES_MEDIA_CENTRE_DBIMPORT_ACTION', 'Importer eksisterende bildedetaljer til database');
 
 jr_define( '_JOMRES_S3_ACTIVE_DESC', 'Experimental feature. If enabled, images uploaded using the media centre feature will also be copied to your Amazon S3 bucket and served from your Amazon S3 bucket url. When enabling this the first time, you`ll also be promted to import existing images to your S3 bucket.');
 jr_define( '_JOMRES_CLOUDFRONT_DMAIN', 'CloudFront domain');
