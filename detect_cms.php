@@ -39,8 +39,8 @@ if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'wp-config.php')) {
 
     require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'libraries'.JRDS.'src'.JRDS.'Version.php';
 
-    $jversion = new JVersion();
-    if ($jversion->MAJOR_VERSION == '3') {
+    $jversion = new Joomla\CMS\Version();
+    if ($jversion::MAJOR_VERSION == '3') {
         define('_JOMRES_DETECTED_CMS', 'joomla3');
         define('_JOMRES_DETECTED_CMS_SPECIFIC_FILES', JOMRES_CMSSPECIFIC_ABSPATH._JOMRES_DETECTED_CMS.JRDS);
     }
