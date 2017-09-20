@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.10
+ * @version Jomres 9.9.11
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -769,7 +769,7 @@ jr_define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_YOUR_ENQUIRY', 'Sorgunuz ...');
 jr_define('_JOMRES_COM_A_LISTLIMIT', 'Özellik Listesinin sınırı');
 jr_define('_JOMRES_COM_A_LISTLIMIT_DESC', 'Bir aramadan sonra bir sayfada gösterilecek işletme sayısı');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE', 'Entegre arama özelliği');
-jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE_DESC', 'Jomres entegre arama özelliği kullanıcılarınızın Jomres işletmelerinde bir dizi işleve göre arama yapmalarını sağlar. sistemdaki Jomres arama özelliklerini zaten kullandıysanız, bu ayarları biliyorsunuzdur. <br/> Bu özellik, Joomla arama modüllerini kullanmak istemeyen kullanıcılar için Jomres\'ta arama işlemi yapmamızı sağlar; CMS\'nin kendi Jomres arama modüllerine sahip olmadığı diğer CMS kullanıcıları için. <br/> Bir şeyle bir şey aramayı seçerseniz (diğer bir deyişle açılır menü değil) diğer arama seçeneklerini unutmayın Uygulanmadı, yalnızca tıkladığınız bağlantıya karşılık gelen öğe. <br/> Varsayılan olarak, bu entegre aramanın düzeni çok güzel değil. Düzeni gerçekleştiren şablon dosyasının olası seçeneklerin tümünü içermesi gerektiği için bazıları uyumsuzdur. Düzeni geliştirmek ve arzuladığınız görünümü elde etmek için <b> / jomres / templates / (bootstrap3 veya önyükleme veya jquery_ui) / frontend / </ b klasöründe <b> srch.html </b> düzenleyeceksiniz >' );
+jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE_DESC', 'Jomres entegre arama özelliği kullanıcılarınızın Jomres işletmelerinde bir dizi işleve göre arama yapmalarını sağlar. sistemdaki Jomres arama özelliklerini zaten kullandıysanız, bu ayarları biliyorsunuzdur. <br/> Bu özellik, Joomla arama modüllerini kullanmak istemeyen kullanıcılar için Jomres\'ta arama işlemi yapmamızı sağlar; CMS\'nin kendi Jomres arama modüllerine sahip olmadığı diğer CMS kullanıcıları için. <br/> Bir şeyle bir şey aramayı seçerseniz (diğer bir deyişle açılır menü değil) diğer arama seçeneklerini unutmayın Uygulanmadı, yalnızca tıkladığınız bağlantıya karşılık gelen öğe. <br/> Varsayılan olarak, bu entegre aramanın düzeni çok güzel değil. Düzeni gerçekleştiren şablon dosyasının olası seçeneklerin tümünü içermesi gerektiği için bazıları uyumsuzdur.' );
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE', 'Bu özellik etkinleştirilsin mi?');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE_DESC', 'Bu özellik etkin durumdaysa, özellik listesini gösteren herhangi bir Jomres çağrısı, arama seçeneklerinin de gösterileceği anlamına gelir.');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_USECOLS', 'Sütunları kullan');

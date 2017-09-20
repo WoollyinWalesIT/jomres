@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.10
+ * @version Jomres 9.9.11
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -805,7 +805,7 @@ jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE_DESC', 'Zintegrowana funkcja wys
 	<br />
 	Pamiętaj, że jeśli zdecydujesz się szukać czegoś za pośrednictwem linku (nie listy rozwijanej), inne opcje wyszukiwania nie będą realizowane, tylko kliknięty link.
 	<br />
-	Zauważ, że domyślnie układ tej zintegrowanej wyszukiwarki nie jest ładny. Jest tak ponieważ plik szablonu musi zawierać wszystkie możliwe opcje, a niektóre z nich są sprzeczne. Aby poprawić wygląd i dostosować go do własnych preferencji, trzeba zmienić <b>srch.html</b> w katalogu <b>'.JOMRES_TEMPLATEPATH_FRONTEND.'</b>.');
+	Zauważ, że domyślnie układ tej zintegrowanej wyszukiwarki nie jest ładny. Jest tak ponieważ plik szablonu musi zawierać wszystkie możliwe opcje, a niektóre z nich są sprzeczne.');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE', 'Włącz integracje wyszukiwarki');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE_DESC', 'Jeśli Tak, to każde zapytanie do Jomres pokazuje listę ofert i wszystkie opcje wyszukiwania.');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_USECOLS', 'Korzystaj z kolumn');

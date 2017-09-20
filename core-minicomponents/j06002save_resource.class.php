@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.10
+ * @version Jomres 9.9.11
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -50,7 +50,7 @@ class j06002save_resource
         //html editor fields
         if ($jrConfig[ 'allowHTMLeditor' ] == '0') {
             $jrportal_rooms->description            = $this->convert_greaterthans(jomresGetParam($_POST, 'room_description', ''));
-            $jrportal_rooms->description            = strip_tags($jrportal_rooms->description, '<p><br>');
+            $jrportal_rooms->description            = strip_tags($jrportal_rooms->description);
         } else {
             $jrportal_rooms->description            = jomresGetParam($_POST, 'room_description', '');
         }

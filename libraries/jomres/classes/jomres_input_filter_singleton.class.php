@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.10
+ * @version Jomres 9.9.11
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -57,6 +57,7 @@ class jomres_input_filter_singleton
         $config->set('HTML.Allowed', $jrConfig[ 'html_purifier_allowed_tags' ]);
         $this->purifier_allow_html = new HTMLPurifier($config);
 
+		$config = HTMLPurifier_Config::createDefault();
         $config->set('HTML.Allowed', '');
         $this->purifier_no_html = new HTMLPurifier($config);
 		

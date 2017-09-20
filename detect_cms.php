@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.10
+ * @version Jomres 9.9.11
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -32,7 +32,21 @@ if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'wp-config.php')) {
         define('_JOMRES_DETECTED_CMS', 'joomla3');
         define('_JOMRES_DETECTED_CMS_SPECIFIC_FILES', JOMRES_CMSSPECIFIC_ABSPATH._JOMRES_DETECTED_CMS.JRDS);
     }
+} elseif (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'libraries'.JRDS.'src'.JRDS.'Version.php')) {
+    if (!defined('JPATH_PLATFORM')) {
+        define('JPATH_PLATFORM', 1);
+    }
+
+    require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'libraries'.JRDS.'src'.JRDS.'Version.php';
+
+    $jversion = new Joomla\CMS\Version();
+    if ($jversion::MAJOR_VERSION == '3') {
+        define('_JOMRES_DETECTED_CMS', 'joomla3');
+        define('_JOMRES_DETECTED_CMS_SPECIFIC_FILES', JOMRES_CMSSPECIFIC_ABSPATH._JOMRES_DETECTED_CMS.JRDS);
+    }
 }
+
+
 
 if (!defined('_JOMRES_DETECTED_CMS')) {
     $jrePath = JOMRES_REMOTEPLUGINS_ABSPATH;
@@ -70,7 +84,7 @@ if (!defined('_JOMRES_DETECTED_CMS')) {
 }
 
 if (_JOMRES_DETECTED_CMS == 'unknown') {
-    $message = "Error, cannot detect the current CMS.<br/>  It is possible that you have upgraded your CMS's version and the version of Jomres you're running isn't aware of the new version of the CMS. If that's the case then you will need to upgrade Jomres too, however before you do please <a href='http://manual.jomres.net/upgrading.html'>see this page.</a>";
+    $message = "Error, cannot detect the current CMS.<br/>  It is possible that you have upgraded your CMS's version and the version of Jomres you're running isn't aware of the new version of the CMS. If that's the case then you will need to upgrade Jomres too, however before you do please <a href='http://www.jomres.net/manual/installation-and-upgrading/11-upgrading'>see this page.</a>";
 
     throw new Exception($message);
 }

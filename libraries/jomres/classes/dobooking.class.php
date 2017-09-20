@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.10
+ * @version Jomres 9.9.11
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1818,6 +1818,8 @@ class dobooking
 			}
 		}
 
+		$default_number_of_first_guest_type_set = false;
+		
 		foreach ($exList as $ct) {
 			$customerTypes = array();
 			$customerTypes[ 'ID' ] = $ct->id;
@@ -1825,8 +1827,14 @@ class dobooking
 			$current = $this->getGuestVariantDetails($ct->id);
 
 			if ($current != false) {
-				if (isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['guestnumbers'][0]) && $ct->maximum >= (int) $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['guestnumbers'][0] && (int) $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['guestnumbers'][0] > 0) {
-					$defNo = (int) $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['guestnumbers'][0];
+				if (
+					!$default_number_of_first_guest_type_set &&
+					isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['guestnumbers'][0]) && 
+					$ct->maximum >= (int)$tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['guestnumbers'][0] && 
+					(int) $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['guestnumbers'][0] > 0
+					) {
+					$defNo = (int)$tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['guestnumbers'][0];
+					$default_number_of_first_guest_type_set = true;
 				} else {
 					$defNo = $current[ 'quantity' ];
 				}

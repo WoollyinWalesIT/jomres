@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.10
+ * @version Jomres 9.9.11
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -827,7 +827,7 @@ jr_define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_YOUR_ENQUIRY', 'Ihre Frage...');
 jr_define('_JOMRES_COM_A_LISTLIMIT', 'Maximum Unterkünfte in der Liste');
 jr_define('_JOMRES_COM_A_LISTLIMIT_DESC', 'Anzahl Unterkünfte die nach einer Suche pro Seite angezeigt werden sollen');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE', 'eingebaute Suchfunktion');
-jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE_DESC', 'Die in Jomres integrierte Suchfunktion ermöglicht es den Nutzern, die Suche in den Unterkünften von Jomres mit einer Reihe von Funktionen durchzuführen. Nutzern die bereits mit der Suchfunktionen von Jomres in Joomla gearbeitet haben wird der Umgang damit vertraut sein. <br/> Diese Funktion ermöglicht es, die Suche innerhalb von Jomres für die Benutzer anzubieten, die das Joomla Suchmodul nicht verwenden wollen, bzw. für Nutzer anderer CMS die keine Suchfunktion haben. <br/> Es ist anzumerken, dass bei einer Suche über einen Link (z.B nicht über das Drop-Down), andere Suchoptionen nicht inbegriffen sind, sondern nur das Element das mit dem geklickten Link korrespondiert.<br/> Das Layout dieser integrierten Suche ist nicht besonders schön, da im Template, das für das Aussehen verantwortlich ist, alle möglichen und teilweise inkompatible Optionen berücksichtigt werden müssen. Um das Layout zu verbessern und den eigenen Bedingungen anzupassen ist die Template-Datei <b>srch.html</b> im Ordner <b>'.JOMRES_TEMPLATEPATH_FRONTEND.'</b> zu bearbeiten. ');
+jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE_DESC', 'Die in Jomres integrierte Suchfunktion ermöglicht es den Nutzern, die Suche in den Unterkünften von Jomres mit einer Reihe von Funktionen durchzuführen. Nutzern die bereits mit der Suchfunktionen von Jomres in Joomla gearbeitet haben wird der Umgang damit vertraut sein. <br/> Diese Funktion ermöglicht es, die Suche innerhalb von Jomres für die Benutzer anzubieten, die das Joomla Suchmodul nicht verwenden wollen, bzw. für Nutzer anderer CMS die keine Suchfunktion haben. <br/> Es ist anzumerken, dass bei einer Suche über einen Link (z.B nicht über das Drop-Down), andere Suchoptionen nicht inbegriffen sind, sondern nur das Element das mit dem geklickten Link korrespondiert.<br/> Das Layout dieser integrierten Suche ist nicht besonders schön, da im Template, das für das Aussehen verantwortlich ist, alle möglichen und teilweise inkompatible Optionen berücksichtigt werden müssen.');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE', 'Diese Funktion aktivieren?');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE_DESC', 'Ist diese Funktion aktiviert werden bei jedem Aufruf von Jomres mit Listendarstellung der Unterkünfte auch die Suchoptionen angezeigt.');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_USECOLS', 'Zeilen verwenden');

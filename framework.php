@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.10
+ * @version Jomres 9.9.11
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -57,9 +57,6 @@ function load_cms_environment()
 function load_jomres_environment()
 {
     $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-	
-	//trigger 00001 event
-	$MiniComponents->triggerEvent('00001');
 
     //site config object
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -75,6 +72,9 @@ function load_jomres_environment()
 
     //custom text object - load all custom text
     $customTextObj = jomres_singleton_abstract::getInstance('custom_text');
+	
+	//trigger 00001 event
+	$MiniComponents->triggerEvent('00001');
 
     //trigger 00002 event
     $MiniComponents->triggerEvent('00002');
@@ -84,6 +84,12 @@ function load_jomres_environment()
 
     //00003 trigger point - input filtering
     $MiniComponents->triggerEvent('00003');
+	
+	//jomres cron object
+    $cron = jomres_singleton_abstract::getInstance('jomres_cron');
+    if ($cron->method == 'Minicomponent' && !AJAXCALL) {
+        $cron->triggerJobs();
+    }
 
     //booking object
     $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');

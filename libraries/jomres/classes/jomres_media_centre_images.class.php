@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.10
+ * @version Jomres 9.9.11
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -234,7 +234,8 @@ class jomres_media_centre_images
 						`filename`, 
 						`version` 
 					FROM #__jomres_images 
-					WHERE `property_uid` IN (".jomres_implode($property_uids).")";
+					WHERE `property_uid` IN (".jomres_implode($property_uids).") 
+					ORDER BY `filename` ASC ";
 		$result = doSelectSql($query);
 
 		foreach ($result as $r) {
@@ -380,7 +381,8 @@ class jomres_media_centre_images
 						`version` 
 					FROM #__jomres_images 
 					WHERE `property_uid` = 0 
-						AND `resource_type` = '".$type."'";
+						AND `resource_type` = '".$type."' 
+					ORDER BY `filename` ASC ";
 		$result = doSelectSql($query);
 
 		foreach ($result as $r) {
