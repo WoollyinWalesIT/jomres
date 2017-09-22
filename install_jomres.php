@@ -615,6 +615,10 @@ function doTableUpdates()
         alterPropertysCatIdCol();
     }
 	
+	if (!checkPtypesHasStarsColExists()) {
+        alterPtypesHasStarsCol();
+    }
+	
 	if (!checkCustomtextLangContextColExists()) {
         alterCustomtextLangContextCol();
     } else {
@@ -631,6 +635,25 @@ function doTableUpdates()
 	add_jomres_images_table();
     updateSiteSettings('update_time', time());
     
+}
+
+function alterPtypesHasStarsCol()
+{
+    //output_message ( "Editing __jomres_ptypes table adding has_stars column");
+    $query = "ALTER TABLE `#__jomres_ptypes` ADD `has_stars` TINYINT(1) UNSIGNED NOT NULL DEFAULT 1 ";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to add __jomres_ptypes has_stars column', 'danger');
+    }
+}
+
+function checkPropertysCatIdColExists()
+{
+    $query = "SHOW COLUMNS FROM #__jomres_ptypes LIKE 'has_stars'";
+    $result = doSelectSql($query);
+    if (count($result) > 0) {
+        return true;
+    }
+    return false;
 }
 
 function add_jomres_images_table()
@@ -3666,6 +3689,7 @@ function createJomresTables()
 		`order` INT NULL DEFAULT '0',
 		`mrp_srp_flag` TINYINT DEFAULT '2',
 		`marker` varchar( 255 ) DEFAULT 'free-map-marker-icon-red.png',
+		`has_stars` TINYINT(1) UNSIGNED NOT NULL DEFAULT 1,
 		PRIMARY KEY (`id`)
 		) ";
     if (!doInsertSql($query)) {
