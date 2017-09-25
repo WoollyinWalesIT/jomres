@@ -646,7 +646,7 @@ function alterPtypesHasStarsCol()
     }
 }
 
-function checkPropertysCatIdColExists()
+function checkPtypesHasStarsColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_ptypes LIKE 'has_stars'";
     $result = doSelectSql($query);
