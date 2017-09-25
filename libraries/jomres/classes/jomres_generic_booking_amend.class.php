@@ -22,6 +22,25 @@ class jomres_generic_booking_amend
 
         return true;
     }
+	
+	private function init()
+    {
+        $this->property_uid = 0; // 1 ***** Required *****
+        $this->contract_uid = 0; // (int) ***** Required *****
+        $this->room_uid = 0; // (int) ***** Required *****
+        $this->new_room_uid = 0; // (int) ***** Required *****
+        $this->arrival = ''; // (date) ***** Required *****
+        $this->departure = ''; // (date) ***** Required *****
+        $this->last_booked_date = ''; // (date) last date to be marked as booked for this contract
+        $this->date_range_array = array(); //(array) booked dates array
+        $this->contract_booked_dates = array(); //(array) originally booked dates in db for this contract
+        $this->note = ''; // (string) optional booking note
+        $this->this_contract_room_uids = array(); // (array) array of this contract room uids
+        $this->dates_changed = false; //(bool) dates also changed for this booking, or it`s just a room switch. By default it`s just a room switch
+        $this->event_resized = false; //(bool) event was resized or not. If it was resized, we check availability by excluding the booked rooms uids
+
+        return true;
+    }
 
     public function amend_booking()
     {
@@ -80,39 +99,21 @@ class jomres_generic_booking_amend
 
             if ($this->arrival == $first_day && $this->last_booked_date == $last_day) {
                 //dates not changed, so this is just a room switch
-                return true;
+				$this->dates_changed = false;
             } else {
                 //dates changed, so we need to go further and check availability for all rooms in this contract_uid. We can`t amend just one room and change it`s dates, since there maybe be more rooms in this contract, so all have to be moved to the new dates. This doesn`t also update the price. Maybe with the new booking engine we will update prices too.
                 $this->dates_changed = true;
-
-                if ($this->check_availability()) {
-                    return true;
-                } else {
-                    throw new Exception('Not all rooms included in this booking are available for the new selected dates');
-                }
             }
+			
+			//check availability, even if this is just a room switch
+			if ($this->check_availability()) {
+				return true;
+			} else {
+				throw new Exception('Not all rooms included in this booking are available for the new selected dates');
+			}
         } else {
             throw new Exception('Cound not get room booking details');
         }
-
-        return true;
-    }
-
-    private function init()
-    {
-        $this->property_uid = 0; // 1 ***** Required *****
-        $this->contract_uid = 0; // (int) ***** Required *****
-        $this->room_uid = 0; // (int) ***** Required *****
-        $this->new_room_uid = 0; // (int) ***** Required *****
-        $this->arrival = ''; // (date) ***** Required *****
-        $this->departure = ''; // (date) ***** Required *****
-        $this->last_booked_date = ''; // (date) last date to be marked as booked for this contract
-        $this->date_range_array = array(); //(array) booked dates array
-        $this->contract_booked_dates = array(); //(array) originally booked dates in db for this contract
-        $this->note = ''; // (string) optional booking note
-        $this->this_contract_room_uids = array(); // (array) array of this contract room uids
-        $this->dates_changed = false; //(bool) dates also changed for this booking, or it`s just a room switch. By default it`s just a room switch
-        $this->event_resized = false; //(bool) event was resized or not. If it was resized, we check availability by excluding the booked rooms uids
 
         return true;
     }
