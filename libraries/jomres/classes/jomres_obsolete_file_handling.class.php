@@ -1532,6 +1532,7 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_minicomponents.'j99994user_feedback.class.php');
 		$this->add_obs_file($this->dir_functions.'imagehandling.php');
 		$this->add_obs_file($this->dir_libraries.'http_build_url.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00001functioncall_output_filters.class.php');
     }
 
     public function add_obs_file($path_and_file)
