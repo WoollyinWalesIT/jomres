@@ -79,6 +79,6 @@ class jomres_custom_field_handler
             return $this->custom_fields_by_ptype_id[ 0 ];
         }
 
-        return $this->custom_fields;
+        return array();
     }
 }
