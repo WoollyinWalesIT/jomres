@@ -178,6 +178,7 @@ class jomres_generic_booking_email
         $this->data[$contract_uid]['BOOKING_NUMBER'] = $current_contract_details->contract[$contract_uid]['contractdeets']['tag'];
         $this->data[$contract_uid]['ARRIVAL'] = outputDate($current_contract_details->contract[$contract_uid]['contractdeets']['arrival']);
         $this->data[$contract_uid]['DEPARTURE'] = outputDate($current_contract_details->contract[$contract_uid]['contractdeets']['departure']);
+		$this->data[$contract_uid]['BOOKING_LENGTH'] = dateDiff('d', $current_contract_details->contract[$contract_uid]['contractdeets']['arrival'], $current_contract_details->contract[$contract_uid]['contractdeets']['departure']);
         $this->data[$contract_uid]['TOTAL'] = output_price($current_contract_details->contract[$contract_uid]['contractdeets']['contract_total']);
         $this->data[$contract_uid]['DEPOSIT'] = output_price($current_contract_details->contract[$contract_uid]['contractdeets']['deposit_required']);
         $this->data[$contract_uid]['BALANCE'] = output_price($current_contract_details->contract[$contract_uid]['contractdeets']['contract_total'] - $current_contract_details->contract[$contract_uid]['contractdeets']['deposit_required']);
