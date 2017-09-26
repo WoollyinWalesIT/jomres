@@ -42,6 +42,8 @@ class j16000media_centre_dbimport
 			if (!doInsertSql($query)) {
 				throw new Exception('Could not truncate images table');
 			}
+			
+			$siteConfig->update_setting('images_imported_to_db','0');
 		} elseif ($jrConfig['images_imported_to_db'] == '0') {
 			//check if table is empty
 			$query = "SELECT `id` FROM #__jomres_images LIMIT 1";
