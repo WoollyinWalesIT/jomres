@@ -85,6 +85,14 @@ class j19995menu
 			$jomres_menu->add_admin_item(70, jr_gettext('_JOMRES_TEMPLATE_PACKAGES', '_JOMRES_TEMPLATE_PACKAGES', false), 'list_template_overrides', 'fa-puzzle-piece');
 		}
 		
+		if ($jrConfig[ 'images_imported_to_db' ] == '1') {
+			$jomres_menu->add_admin_item(70, jr_gettext('_JOMRES_MEDIA_CENTRE_DBIMPORT_FORCE', '_JOMRES_MEDIA_CENTRE_DBIMPORT_FORCE', false), jomresUrl(JOMRES_SITEPAGE_URL_ADMIN).'&task=media_centre_dbimport&force=1', 'fa-database', true, true);
+		}
+		
+		if ($jrConfig[ 'images_imported_to_s3' ] == '1' && $jrConfig[ 'amazon_s3_active' ] == '1') {
+			$jomres_menu->add_admin_item(70, jr_gettext('_JOMRES_MEDIA_CENTRE_S3IMPORT_FORCE', '_JOMRES_MEDIA_CENTRE_S3IMPORT_FORCE', false), jomresUrl(JOMRES_SITEPAGE_URL_ADMIN).'&task=media_centre_s3import&force=1', 'fa-amazon', true, true);
+		}
+		
 		//reports section menus
 		$jomres_menu->add_admin_item(80, jr_gettext('_JOMRES_CHARTS', '_JOMRES_CHARTS', false), 'charts', 'fa-line-chart');
 		
