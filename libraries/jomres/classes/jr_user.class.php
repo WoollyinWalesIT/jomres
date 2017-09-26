@@ -82,7 +82,7 @@ class jr_user
 		$this->params = array(); //user settings
 
 		if ( $id == 0 ) {
-			if (class_exists('Flight')) {
+			if (defined("JOMRES_API_CMS_ROOT") ) {
             $this->id = Flight::get('user_id');
 			} else {
 				$this->id = jomres_cmsspecific_getcurrentusers_id();

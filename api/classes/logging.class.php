@@ -21,7 +21,7 @@ use Monolog\Handler\AbstractProcessingHandler;
 use Monolog\Handler\BrowserConsoleHandler;
 use Monolog\Processor\WebProcessor;
 
-require_once(dirname(__DIR__).DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'monolog'.DIRECTORY_SEPARATOR.'monolog'.DIRECTORY_SEPARATOR.'src'.DIRECTORY_SEPARATOR.'Monolog'.DIRECTORY_SEPARATOR.'Handler'.DIRECTORY_SEPARATOR.'BrowserConsoleHandler.php');
+require_once(dirname(__DIR__).'../../'.DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'monolog'.DIRECTORY_SEPARATOR.'monolog'.DIRECTORY_SEPARATOR.'src'.DIRECTORY_SEPARATOR.'Monolog'.DIRECTORY_SEPARATOR.'Handler'.DIRECTORY_SEPARATOR.'BrowserConsoleHandler.php');
 
 
 class logging

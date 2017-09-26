@@ -24,6 +24,7 @@
         "league/flysystem": "^1.0",
         "league/flysystem-aws-s3-v3": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
-        "jakeasmith/http_build_url": "^1.0"
+        "jakeasmith/http_build_url": "^1.0",
+        "mikecao/flight": "^1.3"
     }
 }
