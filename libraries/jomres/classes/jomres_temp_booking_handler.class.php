@@ -600,4 +600,21 @@ class jomres_temp_booking_handler
     {
         $this->cart_data = array();
     }
+	
+	public function resetTmpSearchData()
+    {
+        $this->tmpsearch_data = array(
+			'jomsearch_availability' => '', 
+			'jomsearch_availability_departure' => ''
+		);
+    }
+	
+	public function resetTmpUserData()
+	{
+		$this->user_settings = array(
+			'editing_on' => false, 
+			'property_management_view' => false, 
+			'last_viewed_property_uid' => 0
+		);
+	}
 }
