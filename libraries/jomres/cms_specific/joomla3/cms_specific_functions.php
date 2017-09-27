@@ -74,7 +74,7 @@ function jomres_cmsspecific_createNewUser()
     $id = $thisJRUser->id;
 
     if (!$thisJRUser->userIsRegistered) {
-        require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'libraries'.JRDS.'joomla'.JRDS.'user'.JRDS.'helper.php';
+        JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'libraries'.JRDS.'src'.JRDS.'User'.JRDS.'UserHelper.php';
         $guestDeets = $tmpBookingHandler->getGuestData();
 
         //If the email address already exists in the system, we'll not bother carrying on, just return this user's "mos_id"
@@ -98,8 +98,8 @@ function jomres_cmsspecific_createNewUser()
         $usertype = 'Registered';
         $block = '0';
 
-        $password = JUserHelper::genRandomPassword();
-        $encryptedPassword = JUserHelper::getCryptedPassword($password);
+        $password = UserHelper::genRandomPassword();
+        $encryptedPassword = UserHelper::getCryptedPassword($password);
 
         $query = "INSERT INTO #__users (
 			`name`,
