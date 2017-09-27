@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.11
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2171,3 +2171,7 @@ jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_ACTION', 'Copy existing images to Amaz
 jr_define( 'JOMRES_INCOMPLETE', 'Incomplete' );
 jr_define( 'JOMRES_WATING_APPROVAL', 'Pending approval' );
 jr_define( 'JOMRES_GOOGLE_MAPS_PDETAILS', 'Property details map' );
+
+jr_define( 'HAS_STARS_TITLE', 'Allows stars classification?');
+jr_define( '_JOMRES_MEDIA_CENTRE_DBIMPORT_FORCE', 'Force reimport image details to database');
+jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_FORCE', 'Force reupload images to S3 bucket');

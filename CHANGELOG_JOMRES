@@ -1,3 +1,16 @@
+
+<span class="label label-warning">Change</span> Flight library moved to top level vendor directory
+<span class="label label-warning">Change</span> manager_properties_none.html updated to produce output to advise user to use a different property manager for webhooks.
+<span class="label label-warning">Change</span> Plugin images re-added to plugin list as they're now (mostly) on an ssl enabled server.
+<span class="label label-warning">Change</span> Added an option to property types to set if this property type allows stars classification or not. Depending on this, the stars input will be shown/not shown in edit property page.
+<span class="label label-warning">Change</span> Added BOOKING_LENGTH output to emails (number of days/nights)
+
+<span class="label label-important label-danger">Fix</span> Modified api, a change to dependencies broke the api's ability to find the http_build_url function that was recently moved.
+<span class="label label-important label-danger">Fix</span> When amending a booking from dashboard, check availability even if this is just a room switch. It may happen that the currently checked in guest with a departure overdue may not be in the current view. Thanks Jad Makhlouta for pointing this out.
+<span class="label label-important label-danger">Fix</span> Return empty array if no custom fields are available for this property type id
+<span class="label label-important label-danger">Fix</span> Removed output_filters function override because we use that function even before the 00001 trigger point
+
+
 <h3>Jomres 9.9.11 19/09/2017</h3>
 
 <span class="label label-warning">Change</span> Changed where we trigger 00001

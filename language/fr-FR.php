@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.11stable
+ * @version Jomres 9.9.12stable
  *
  * @copyright	2005-2017 Vince Wooll
  * Translated to fr-FR by Mario Oliveira, Camara de Lobos, Madeira Island, Portugal, 14Oct2010 - www.marioliveira.net. Updated 21-Jun2011 for version 5 stable
@@ -2172,3 +2172,7 @@ jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_ACTION', 'Copy existing images to Amaz
 jr_define( 'JOMRES_INCOMPLETE', 'Incomplete' );
 jr_define( 'JOMRES_WATING_APPROVAL', 'Pending approval' );
 jr_define( 'JOMRES_GOOGLE_MAPS_PDETAILS', 'Property details map' );
+
+jr_define( 'HAS_STARS_TITLE', 'Allows stars classification?');
+jr_define( '_JOMRES_MEDIA_CENTRE_DBIMPORT_FORCE', 'Force reimport image details to database');
+jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_FORCE', 'Force reupload images to S3 bucket');

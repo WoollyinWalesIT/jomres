@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.11
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -187,7 +187,10 @@ class jomres_generic_booking_email
         if (isset($tmpBookingHandler->tmpbooking[ 'booking_notes' ][ 'suppliment_note' ])) {
             $this->data[$contract_uid]['ALLOCATION_NOTE'] = $tmpBookingHandler->tmpbooking[ 'booking_notes' ][ 'suppliment_note' ];
         }
-        $this->data[$contract_uid]['BOOKING_CREATION_DATE'] = outputDate($current_contract_details->contract[$contract_uid]['contractdeets']['timestamp']);
+        
+		$this->data[$contract_uid]['BOOKING_CREATION_DATE'] = outputDate($current_contract_details->contract[$contract_uid]['contractdeets']['timestamp']);
+		
+		$this->data[$contract_uid]['BOOKING_LENGTH'] = dateDiff('d', $current_contract_details->contract[$contract_uid]['contractdeets']['arrival'], $current_contract_details->contract[$contract_uid]['contractdeets']['departure']);
 
         $this->data[$contract_uid]['REMOTE_IP'] = $_SERVER['REMOTE_ADDR'];
 

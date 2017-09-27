@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.11
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -600,4 +600,21 @@ class jomres_temp_booking_handler
     {
         $this->cart_data = array();
     }
+	
+	public function resetTmpSearchData()
+    {
+        $this->tmpsearch_data = array(
+			'jomsearch_availability' => '', 
+			'jomsearch_availability_departure' => ''
+		);
+    }
+	
+	public function resetTmpUserData()
+	{
+		$this->user_settings = array(
+			'editing_on' => false, 
+			'property_management_view' => false, 
+			'last_viewed_property_uid' => 0
+		);
+	}
 }

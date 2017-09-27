@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.11
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -42,6 +42,8 @@ class j16000media_centre_dbimport
 			if (!doInsertSql($query)) {
 				throw new Exception('Could not truncate images table');
 			}
+			
+			$siteConfig->update_setting('images_imported_to_db','0');
 		} elseif ($jrConfig['images_imported_to_db'] == '0') {
 			//check if table is empty
 			$query = "SELECT `id` FROM #__jomres_images LIMIT 1";

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.11
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -118,8 +118,9 @@ $license_data->owner = "'.$license_data->owner.'";
 $license_data->license_valid = "'.$license_data->license_valid.'";
 $license_data->allows_plugins = "'.$license_data->allows_plugins.'";
 $license_data->is_trial_license = "'.$license_data->is_trial_license.'";
+$license_data->allowed_plugins = "'.$license_data->allowed_plugins.'";
 ';
-
+				
                 file_put_contents(JOMRES_TEMP_ABSPATH.'license_key_check_cache.php', $lic_data);
             }
         }
@@ -129,6 +130,7 @@ $license_data->is_trial_license = "'.$license_data->is_trial_license.'";
             $this->key_status = $license_data->key_status;
             $this->owner = $license_data->owner;
 			$this->license_name = $license_data->license_name;
+			$this->allowed_plugins = explode("," , $license_data->allowed_plugins);
             if ($license_data->license_valid == true) {
                 $this->key_valid = true;
             }

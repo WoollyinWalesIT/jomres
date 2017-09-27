@@ -13,4 +13,6 @@ return array(
     '8a9dc1de0ca7e01f3e08231539562f61' => $vendorDir . '/aws/aws-sdk-php/src/functions.php',
     '2cffec82183ee1cea088009cef9a6fc3' => $vendorDir . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
     'b45b351e6b6f7487d819961fef2fda77' => $vendorDir . '/jakeasmith/http_build_url/src/http_build_url.php',
+    'fc73bab8d04e21bcdda37ca319c63800' => $vendorDir . '/mikecao/flight/flight/autoload.php',
+    '5b7d984aab5ae919d3362ad9588977eb' => $vendorDir . '/mikecao/flight/flight/Flight.php',
 );

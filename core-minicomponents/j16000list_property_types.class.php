@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.11
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -37,6 +37,7 @@ class j16000list_property_types
         $output[ '_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD' ] = jr_gettext('_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD', '_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD', false);
         $output[ '_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES' ] = jr_gettext('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', '_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', false);
         $output[ '_JOMRES_PROPERTYTYPE_MARKER' ] = jr_gettext('_JOMRES_PROPERTYTYPE_MARKER', '_JOMRES_PROPERTYTYPE_MARKER', false);
+		$output[ 'HAS_STARS_TITLE' ] = jr_gettext('HAS_STARS_TITLE', 'HAS_STARS_TITLE', false);
 
         //get all property type details
         $jomres_property_types = jomres_singleton_abstract::getInstance('jomres_property_types');
@@ -67,6 +68,12 @@ class j16000list_property_types
                 $r[ 'PUBLISHIMAGE' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/Tick.png';
             } else {
                 $r[ 'PUBLISHIMAGE' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/Cancel.png';
+            }
+			
+			if ($p['has_stars'] == 1) {
+                $r[ 'HAS_STARS' ] = jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false);
+            } else {
+                $r[ 'HAS_STARS' ] = jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false);
             }
 
             switch ($p['mrp_srp_flag']) {

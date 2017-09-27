@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.11
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -35,6 +35,7 @@ class j16000save_property_type
         $jomres_property_types->property_type['ptype_desc'] = preg_replace('/[^A-Za-z0-9_-]+/', '', $jomres_property_types->property_type['ptype_desc']);
         $jomres_property_types->property_type['mrp_srp_flag'] = (int) jomresGetParam($_POST, 'mrp_srp_flag', 0);
         $jomres_property_types->property_type['marker'] = jomresGetParam($_POST, 'marker', '');
+		$jomres_property_types->property_type['has_stars'] = (int)jomresGetParam($_POST, 'has_stars', '');
 
         $jomres_property_types->save_property_type();
 
