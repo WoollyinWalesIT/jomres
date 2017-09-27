@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -19,21 +19,20 @@ ob_start('removeBOMadmin');
 
 @ini_set('max_execution_time', '480');
 
-//TODO: remove these too
-global $thisJRUser;
-
 require_once dirname(__FILE__).'/integration.php';
 
 try {
     //minicomponents object
     $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-	
-	//trigger 00001 event
-	$MiniComponents->triggerEvent('00001');
 
     //site config object
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
+	
+	//request log
+	if ($jrConfig['development_production'] == 'development') {
+		request_log();
+	}
 
     //get all properties in system.
     $jomres_properties = jomres_singleton_abstract::getInstance('jomres_properties');
@@ -45,6 +44,9 @@ try {
 
     //custom text object
     $customTextObj = jomres_singleton_abstract::getInstance('custom_text');
+	
+	//trigger 00001 event
+	$MiniComponents->triggerEvent('00001');
 
     //trigger 00002 event
     $MiniComponents->triggerEvent('00002');
@@ -69,7 +71,7 @@ try {
     set_showtime('jomressession', $jomressession);
 
     //set task showtime
-    $task = jomresGetParam($_REQUEST, 'task', '');
+    $task = jomresGetParam($_REQUEST, 'task', 'cpanel');
     $task = str_replace('&#60;x&#62;', '', $task);
     set_showtime('task', $task);
 
@@ -97,16 +99,6 @@ try {
     $MiniComponents->triggerEvent('00005');
 
     if (!AJAXCALL) {
-        // Dates back to Jomres v4. Could be removed, but we'll leave it in for those users upgrading from v4, as v4 spanned two years
-        if (is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'plugins')) {
-            emptyDir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'plugins');
-            rmdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'plugins');
-            if (is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'plugins')) {
-                echo '<font color="red" face="arial" size="1">Warning: directory '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'plugins still exists. Please delete it.</font><br/>';
-            }
-            emptyDir(JOMRES_CACHE_ABSPATH);
-        }
-
         $pageoutput = array();
         $output = array();
 		
@@ -117,7 +109,12 @@ try {
         //frequently asked questions
         $output['_JOMRES_FAQ'] = jr_gettext('_JOMRES_FAQ', '_JOMRES_FAQ', false);
 
-        //manage properties button
+		//video tutorials
+		$jomres_video_tutorials = jomres_singleton_abstract::getInstance('jomres_video_tutorials');
+		$jomres_video_tutorials->property_uid = 0;
+		$output[ 'VIDEO_TUTORIALS' ] = $jomres_video_tutorials->build_modal();
+        
+		//manage properties button
         $output['HMANAGE_PROPERTIES'] = jr_gettext('_JOMRES_MANAGE_PROPERTIES', '_JOMRES_MANAGE_PROPERTIES', false);
 
         //obsolete files warnings
@@ -139,8 +136,6 @@ try {
         $output[ 'LANGDROPDOWN' ] = $jomres_language->get_languageselection_dropdown();
 
 		//check jomres support key
-        jr_import('jomres_check_support_key');
-        $key_validation = new jomres_check_support_key(JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins');
         $output['LICENSE_WARNING'] = $MiniComponents->specificEvent('16000', 'show_license_message', array('output_now' => false, 'as_modal' => false));
 
 		//bootstrap
@@ -166,16 +161,11 @@ try {
     //admins_first_run();
 
     //task
-    switch (get_showtime('task')) {
-        case 'cpanel':
-        default:
-            if ($MiniComponents->eventSpecificlyExistsCheck('16000', get_showtime('task'))) {
-                $MiniComponents->specificEvent('16000', get_showtime('task')); // task exists, execute it
-            } else {
-                $MiniComponents->triggerEvent('10001'); //task doesn`t exist, go to cpanel frontpage
-            }
-            break;
-        }
+    if ($MiniComponents->eventSpecificlyExistsCheck('16000', get_showtime('task'))) {
+		$MiniComponents->specificEvent('16000', get_showtime('task')); // task exists, execute it
+	} else {
+		$MiniComponents->triggerEvent('10001'); //task doesn`t exist, go to cpanel frontpage
+	}
 
     //output bottom area
     if (!AJAXCALL) {
@@ -190,6 +180,11 @@ try {
         $tmpl->addRows('pageoutput', $pageoutput);
         $tmpl->displayParsedTemplate();
     }
+	
+	//trigger 99998 event - jomres feedback messages
+	if (!AJAXCALL) {
+		$MiniComponents->triggerEvent('99998');
+	}
 
     $componentArgs = array();
     $MiniComponents->triggerEvent('99999', $componentArgs);

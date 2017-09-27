@@ -1,18 +1,18 @@
 /*
- * jQuery File Upload Image Preview & Resize Plugin 1.2.3
+ * jQuery File Upload Image Preview & Resize Plugin
  * https://github.com/blueimp/jQuery-File-Upload
  *
  * Copyright 2013, Sebastian Tschan
  * https://blueimp.net
  *
  * Licensed under the MIT license:
- * http://www.opensource.org/licenses/MIT
+ * https://opensource.org/licenses/MIT
  */
 
-/*jslint nomen: true, unparam: true, regexp: true */
-/*global define, window, document, DataView, Blob, Uint8Array */
+/* jshint nomen:false */
+/* global define, require, window, Blob */
 
-(function (factory) {
+;(function (factory) {
     'use strict';
     if (typeof define === 'function' && define.amd) {
         // Register as an anonymous AMD module:
@@ -20,11 +20,22 @@
             'jquery',
             'load-image',
             'load-image-meta',
+            'load-image-scale',
             'load-image-exif',
-            'load-image-ios',
             'canvas-to-blob',
             './jquery.fileupload-process'
         ], factory);
+    } else if (typeof exports === 'object') {
+        // Node/CommonJS:
+        factory(
+            require('jquery'),
+            require('blueimp-load-image/js/load-image'),
+            require('blueimp-load-image/js/load-image-meta'),
+            require('blueimp-load-image/js/load-image-scale'),
+            require('blueimp-load-image/js/load-image-exif'),
+            require('blueimp-canvas-to-blob'),
+            require('./jquery.fileupload-process')
+        );
     } else {
         // Browser globals:
         factory(
@@ -64,10 +75,14 @@
             minWidth: '@',
             minHeight: '@',
             crop: '@',
+            orientation: '@',
+            forceResize: '@',
             disabled: '@disableImageResize'
         },
         {
             action: 'saveImage',
+            quality: '@imageQuality',
+            type: '@imageType',
             disabled: '@disableImageResize'
         },
         {
@@ -92,6 +107,10 @@
             action: 'setImage',
             name: '@imagePreviewName',
             disabled: '@disableImagePreview'
+        },
+        {
+            action: 'deleteImageReferences',
+            disabled: '@disableImageReferencesDeletion'
         }
     );
 
@@ -102,13 +121,16 @@
         options: {
             // The regular expression for the types of images to load:
             // matched against the file type:
-            loadImageFileTypes: /^image\/(gif|jpeg|png)$/,
+            loadImageFileTypes: /^image\/(gif|jpeg|png|svg\+xml)$/,
             // The maximum file size of images to load:
             loadImageMaxFileSize: 10000000, // 10MB
             // The maximum width of resized images:
             imageMaxWidth: 1920,
             // The maximum height of resized images:
             imageMaxHeight: 1080,
+            // Defines the image orientation (1-8) or takes the orientation
+            // value from Exif data if set to true:
+            imageOrientation: false,
             // Define if resized images should be cropped or only scaled:
             imageCrop: false,
             // Disable the resize image functionality by default:
@@ -131,7 +153,7 @@
         processActions: {
 
             // Loads the image given via data.files and data.index
-            // as img element if the browser supports canvas.
+            // as img element, if the browser supports the File API.
             // Accepts the options fileTypes (regular expression)
             // and maxFileSize (integer) to limit the files to load:
             loadImage: function (data, options) {
@@ -162,22 +184,27 @@
 
             // Resizes the image given as data.canvas or data.img
             // and updates data.canvas or data.img with the resized image.
+            // Also stores the resized image as preview property.
             // Accepts the options maxWidth, maxHeight, minWidth,
             // minHeight, canvas and crop:
             resizeImage: function (data, options) {
-                if (options.disabled) {
+                if (options.disabled || !(data.canvas || data.img)) {
                     return data;
                 }
+                options = $.extend({canvas: true}, options);
                 var that = this,
                     dfd = $.Deferred(),
+                    img = (options.canvas && data.canvas) || data.img,
                     resolve = function (newImg) {
-                        data[newImg.getContext ? 'canvas' : 'img'] = newImg;
+                        if (newImg && (newImg.width !== img.width ||
+                                newImg.height !== img.height ||
+                                options.forceResize)) {
+                            data[newImg.getContext ? 'canvas' : 'img'] = newImg;
+                        }
+                        data.preview = newImg;
                         dfd.resolveWith(that, [data]);
                     },
-                    thumbnail,
-                    img,
-                    newImg;
-                options = $.extend({canvas: true}, options);
+                    thumbnail;
                 if (data.exif) {
                     if (options.orientation === true) {
                         options.orientation = data.exif.get('Orientation');
@@ -189,15 +216,16 @@
                             return dfd.promise();
                         }
                     }
-                }
-                img = (options.canvas && data.canvas) || data.img;
-                if (img) {
-                    newImg = loadImage.scale(img, options);
-                    if (newImg.width !== img.width ||
-                            newImg.height !== img.height) {
-                        resolve(newImg);
-                        return dfd.promise();
+                    // Prevent orienting the same image twice:
+                    if (data.orientation) {
+                        delete options.orientation;
+                    } else {
+                        data.orientation = options.orientation;
                     }
+                }
+                if (img) {
+                    resolve(loadImage.scale(img, options));
+                    return dfd.promise();
                 }
                 return data;
             },
@@ -210,35 +238,32 @@
                 }
                 var that = this,
                     file = data.files[data.index],
-                    name = file.name,
-                    dfd = $.Deferred(),
-                    callback = function (blob) {
-                        if (!blob.name) {
-                            if (file.type === blob.type) {
-                                blob.name = file.name;
-                            } else if (file.name) {
-                                blob.name = file.name.replace(
-                                    /\..+$/,
-                                    '.' + blob.type.substr(6)
-                                );
+                    dfd = $.Deferred();
+                if (data.canvas.toBlob) {
+                    data.canvas.toBlob(
+                        function (blob) {
+                            if (!blob.name) {
+                                if (file.type === blob.type) {
+                                    blob.name = file.name;
+                                } else if (file.name) {
+                                    blob.name = file.name.replace(
+                                        /\.\w+$/,
+                                        '.' + blob.type.substr(6)
+                                    );
+                                }
                             }
-                        }
-                        // Store the created blob at the position
-                        // of the original file in the files list:
-                        data.files[data.index] = blob;
-                        dfd.resolveWith(that, [data]);
-                    };
-                // Use canvas.mozGetAsFile directly, to retain the filename, as
-                // Gecko doesn't support the filename option for FormData.append:
-                if (data.canvas.mozGetAsFile) {
-                    callback(data.canvas.mozGetAsFile(
-                        (/^image\/(jpeg|png)$/.test(file.type) && name) ||
-                            ((name && name.replace(/\..+$/, '')) ||
-                                'blob') + '.png',
-                        file.type
-                    ));
-                } else if (data.canvas.toBlob) {
-                    data.canvas.toBlob(callback, file.type);
+                            // Don't restore invalid meta data:
+                            if (file.type !== blob.type) {
+                                delete data.imageHead;
+                            }
+                            // Store the created blob at the position
+                            // of the original file in the files list:
+                            data.files[data.index] = blob;
+                            dfd.resolveWith(that, [data]);
+                        },
+                        options.type || file.type,
+                        options.quality
+                    );
                 } else {
                     return data;
                 }
@@ -278,9 +303,18 @@
             // Sets the resized version of the image as a property of the
             // file object, must be called after "saveImage":
             setImage: function (data, options) {
-                var img = data.canvas || data.img;
-                if (img && !options.disabled) {
-                    data.files[data.index][options.name || 'preview'] = img;
+                if (data.preview && !options.disabled) {
+                    data.files[data.index][options.name || 'preview'] = data.preview;
+                }
+                return data;
+            },
+
+            deleteImageReferences: function (data, options) {
+                if (!options.disabled) {
+                    delete data.img;
+                    delete data.canvas;
+                    delete data.preview;
+                    delete data.imageHead;
                 }
                 return data;
             }

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -33,9 +33,9 @@ class j06002delete_property
             $is_jintour_property = get_showtime('is_jintour_property');
             if (in_array($property_uid, $thisJRUser->authorisedProperties) && count($thisJRUser->authorisedProperties) > 1) {
                 $saveMessage = jr_gettext('_JOMRES_COM_MR_PROPERTY_DELETED', '_JOMRES_COM_MR_PROPERTY_DELETED', false);
-                emptyDir(JOMRES_IMAGELOCATION_ABSPATH.$property_uid.JRDS);
-                rmdir(JOMRES_IMAGELOCATION_ABSPATH.$property_uid.JRDS);
-                dropImage($property_uid, 'property', 0, false);
+                
+				$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
+				$jomres_media_centre_images->delete_all_images($property_uid);
 
                 $subject = _JOMRES_MR_AUDIT_DELETE_PROPERTY.$property_name;
                 //sendAdminEmail(getPropertyName($property_uid),$saveMessage);

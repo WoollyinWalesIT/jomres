@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -52,7 +52,11 @@ function get_property_details_url($property_uid = 0, $type = 'sef', $params = ''
 		$menu = $app->getMenu();
 		$menuItem = $menu->getItems( 'link', 'index.php?option=com_jomres&view=default&layout=propertydetails&selected_property='.$property_uid, $firstonly = true );
 		if ($menuItem) {
-			$url = JRoute::_($menuItem->link.'&Itemid='.$menuItem->id);
+			if ($type == 'sef' || $type == 'sefsafe') {
+				$url = JRoute::_($menuItem->link.'&Itemid='.$menuItem->id);
+			} else {
+				$url = jomresURL(get_showtime('live_site').'?'.$menuItem->link.'&Itemid='.$menuItem->id);
+			}
 		}
 	}
 	

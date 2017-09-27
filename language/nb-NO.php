@@ -1267,10 +1267,7 @@ jr_define('_JOMRES_ACCESS_CONTROL_LEVELS_SUPERMANAGER',"Superbruker");
 jr_define('_JOMRES_ACCESS_CONTROL_LEVELS_NOBODY',"Ingen");
 jr_define('_JOMRES_ACCESS_CONTROL_TITLE',"Meny tilgangskontroll");
 jr_define('_JOMRES_ACCESS_CONTROL_DESC',"Denne funksjonen gjør at du kan kontrollere hvem som kan se en plugin i hovedmenyen. Typisk vil brukeropsjon 00009 synlig for enten/eller uregistrerte besøkende, 00010-opsjoner refererer normalt til resepsjonsaktiviteter som brukes dag for dag, mens 00011-opsjonener blir brukt for å sette opp og konfigurere et utleiested (men brukes ganske sjelden).");
-jr_define('_JOMRES_ACCESS_CONTROL_LEVELS_RECEPTIONIST',"Resepsjonist");
-	Denne funksjonen gjør at du kan kontrollere hvem som har tilgang til forskjellige minikomponenter (med noen unntak som er kodet inn i systemet). Hvis tilgangsnivået ved siden av et script er satt til Standard så vil, hvis Full tilgangskontroll er satt til Ja, <strong>alle</strong> ha til gang til script som de ikke skulle hatt tilgang til. Dermed må du, hvis du ønsker å bruke denne funksjonen, sette tilgangskontroll for <strong>alle</strong> systemets minikomponenter som er listet her. Hvis du ikke vet hva disse minikomponentene gjør, anbefaler vi sterkt at du ikke bruker denne funksjonen i det hele tatt.<br/>
-	I systemet følger tilgangsnivåene en pyramide, slik at Superbrukere er høyere enn Utleiere. Kort forklart Superbruker > Utleier > Resepsjonist > Registrert > Uregistrert. Dermed, hvis en Registrert bruker har tilgang til en minikomponent, så har også Resepsjonist, Utleier og Superbruker det samme.<br/>
-	Merk at du ikke kan kontrollere minikomponenter for administratorområdet. Alle i administratorområdet regnes som en tiltrodd bruker som ikke skal utestenges fra noe script (og spesielt ikke dette).");
+
 jr_define('_JOMRES_SHOWPROFILES_USERSWITHACCESS',"Brukere med admin-rettigheter til dette utleiestedet");
 jr_define('_JOMRES_DEBUGGING_YOUREMAIL','Din epost-adresse');
 jr_define('_JOMRES_EXTRAS_MODELS_MODEL','Modell');
@@ -1300,11 +1297,6 @@ jr_define('_JOMRES_RETURN_TO_RESULTS',"Tilbake til søkeresultater");
 jr_define('_JOMRES_ADDTOSHORTLIST',"Legg til i favoritter");
 jr_define('_JOMRES_REMOVEFROMSHORTLIST',"Fjern fra favoritter");
 jr_define('_JOMRES_VIEWSHORTLIST',"Vis dine favoritter");
-<br/>
-Systemet bruker verts-CMSens cookie for å konstruere sin egen sesjonsfil der informasjon om brukerens søkeresultater og andre aktiviteter kan lagres, for å gjøre brukerens besøk enklere. Selvom vi mener at normal systemfunksjonalitet sannsynligvis er dekket under bestemmelser i regelverket definert som <i>'such storage or access is strictly necessary to provide an information society service requested by the subscriber or user'</i> (se http://www.ico.gov.uk/for_organisations/privacy_and_electronic_communications/the_guide/cookies.aspx), så har vi inkludert denne funksjonen for å gi mulighet til å hindre brukere fra å få tilgang til andre sider enn søkesidene hvis de ikke tillater bruk av cookie på denne måten. <br/>
-Hvis aktivert vil systemet vise en 'opt-in' link der brukere kan velge å ha cookie som lagres for dem og brukes som dette. Hvis de ikke ønsker dette vil systemet kun vise dem basissidene (som utleiedetaljene, vise favoritter, søkeresultater etc). 
-<br/>
-Sett denne til Ja for å sette denne bestemmelsen.");
 jr_define('_JOMRES_COOKIEPOLICY_1',"Viktig: Cookie Policy");
 jr_define('_JOMRES_COOKIEPOLICY_2',"Vi bruker cookies for å bidra til å holde siden vår relevant og enkel å bruke.");
 jr_define('_JOMRES_COOKIEPOLICY_3',"Les mere...");
@@ -1402,14 +1394,6 @@ jr_define( "_JOMRES_COM_TRANSLATE_COUNTRIESREGIONS" , "Oversett stedsnavn");
 jr_define( "_JOMRES_COM_TRANSLATE_LANGUAGEFILES" , "Oversett språktekster");
 jr_define( "_JOMRES_COM_NOTAMANAGER" , "Feil, brukeren er ikke logget inn som Superbruker i systemet, og du vil ikke kunne bruke denne funksjonen før du har brukt Vis Profiler for å gjøre deg selv til BÅDE Utleier og Superbruker. Dette er en sikkerhetsfunksjon.");
 jr_define( "_JOMRES_COM_LAYOUTS_DEFAULT" , "Standard layout på utleielisten");
-<br/>
-Når du endrer en mal har du muligheten til å gjøre endringen gjeldende for alle utleietypene, eller en bestemt utleietype. For eksempel bruker NGM Random module plugin basic_module_output.html-malen for å konstruere layout. Som en resultat kan du lage forskjellige tilpasninger av basic_module_output.html-malen for forskjellige utleietyper.  <br/>
-<br/>
-Hvis en mal ikke har blitt endret før kan du lage en ny tilpasning ved å velge Ny ved siden av den. Når du klikker på Ny blir du videresendt til en ny side der du kan endre malen. Utgangspunktet tas fra malen lagret i mappen /jomres/templates/xxx/frontend, og når du klikker på Lagre vil tilpasningene lagres i databasen, og systemet bruker den endrede fra databasen neste gang. Dette gjør at tilpasninger ikke overskrives når du oppgraderer systemet.<br/>
-<br/>
-Når en mal har blitt tilpasset har du flere opsjoner. Du kan lage en Ny copy av den originale malen (som vist ovenfor), du kan Kopiere en tilpasning til en ny mal-tilpasning, slik at hvis du eksempelvis allerede har tilpasset basic_module_output.html for hoteller, så kan du kopiere den tilpasningen til en ny tilpasning for en ny utleietype, som bil. Du kan Endre en eksisterende tilpasning, eller du kan Slette den. Når du sletter en tilpasning vil, forutsatt at det ikke finnes flere tilpasninger av samme, systemet gå tilbake til å bruke malen i /jomres/templates/xxx/frontend. Dette er nyttig hvis du har endret en mal, men ikke liker endringene du har gjort. Du kan slette tilpasningene og begynne fra begynnelsen med originalmalen.<br/>
-<br/>
-Jomres endres hele tiden, og grunnmaler blir ofte modifisert/oppdatert. Hvis du bruker Maleditering så vil oppdateringene ikke overskrive dine endringer, men det betyr også at dine tilpasninger muligens ikke inneholder alle nye funksjoner i grunnmalene. Siden vi ikke har mulighet til å analysere dine tilpasninger kan vi ikke si om endringene vil ha innvirkning på dine maler. Maleditering vil se på datoen for siste endring av filer i mappen /jomres/templates/xxx/frontend, og hvis den finner en mal som er endret mer nylig enn malen du har lagret, så vil systemet advare deg om dette. Det betyr ikke nødvendigvis at du på oppdatere malen – det er opp til deg å bestemme.'); // Updated template editing information to correspond with changes to 7.2.0 and it's template editing changes related to property type templates
 jr_define( "_JOMRES_STAYFORAMINIMUMOF" , "Overnatt miniumum");
 jr_define( "_JOMRES_NIGHTSFOR" , " netter for ");
 jr_define( "_JOMRES_AGENT" , "Agent");
@@ -1755,7 +1739,7 @@ jr_define( "_JOMRES_JINTOUR_SANITY_CHECK_LINK", "Let's create some tours!" );
 jr_define( '_JOMRES_COM_A_TARIFFS_SWAP', 'Swap currency symbol location' );
 jr_define( '_JOMRES_COM_A_TARIFFS_SWAP_DESC', 'Use this option to move the currency symbol from behind of, to in front of the price figure, or vice versa.' );
 jr_define( '_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK', 'Facebook' );
-jr_define( '_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK_DESC', 'Enter your facebook page id, for example "jomres". Leave this blank to show nothing. Do not enter https://www.facebooking.com or anything else.' );
+jr_define( '_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK_DESC', 'Enter your facebook page id, for example "jomres". Leave this blank to show nothing. Do not enter https://www.facebook.com or anything else.' );
 jr_define( 'COMMON_DOWNLOAD', 'Last ned' );
 jr_define( '_JOMRES_WARNINGS_TARIFFS_NOTARIFFS_SRP', 'Next you will need to add some tariffs. These are your basic prices.' );
 jr_define( '_JOMRES_BOOTSTRAP_OFF_WARNING_TITLE', 'Bootstrap er ikke aktivert!' );
@@ -1915,7 +1899,7 @@ jr_define('_JOMRES_FAQ_ADMIN_QUESTION_TOURS_GLOBALTOURS', 'How can I create a To
 jr_define('_JOMRES_FAQ_ADMIN_ANSWER_TOURS_GLOBALTOURS', "In the administrator area of your site, visit the Portal > Functionality Tour/Activity Managenent page. The tour profile/generation process is the same as used in the frontend, however any tours generated here are seen in the frontend. One typical scenario where this may be used is if the site administrator is organising events around the country, and they want to sell hotel bookings. They would create the participating hotels in the frontend as normal, setting room prices etc, then the 'tours' in this case would actually be the attendance fee for the event itself.");
 jr_define('_JOMRES_FAQ_ADMIN_QUESTION_INTRODUCTION_FIRSTTHINGSFIRST', "Ok, I've installed Jomres, what next?");
 jr_define('_JOMRES_FAQ_ADMIN_ANSWER_INTRODUCTION_FIRSTTHINGSFIRST', "The very, very first thing you should do, now that you've installed Jomres is click Help on the menu to the left, then click Getting Started. Seriously, go away and do that now.");
-jr_define('_JOMRES_MANAGE_PROPERTIES', 'Manage Properties');
+jr_define('_JOMRES_MANAGE_PROPERTIES', 'Utleiesteder');
 jr_define('_JOMRES_CONFIG_IPINFODB_KEY_WARNING', "You do not have an <a href='http://ipinfodb.com/account.php' target='_blank'>IP Detection API Key</a> set. This is required to allow the system to automatically detect the user's location and set their currency and country automatically. Please <a href='http://www.jomres.net/manual/site-managers-guide/35-control-panel/main/site-configuration/128-site-configuration-currency-conversion-currency-codes-tab' target='_blank'>see our manual page on how to create an IP detection API key</a> and save the key in Jomres > Site Configuration > Currency Conversions / Currency Codes.");
 jr_define('_JOMRES_CONFIG_OPENEXCHANGERATES_KEY_WARNING', "You do not have an <a href='https://openexchangerates.org/account/apps' target='_blank'> Open Exchange Rates API Key</a> set. This is required to allow the system to automatically download and use currency exchange rates. Please <a href='http://www.jomres.net/manual/site-managers-guide/35-control-panel/main/site-configuration/128-site-configuration-currency-conversion-currency-codes-tab' target='_blank'>see our manual page on how to create an Open Exchange Rates API key</a> and save the key in Jomres > Site Configuration > Currency Conversions / Currency Codes.");
 jr_define('_JOMRES_PERMIT_NUMBER_TITLE', 'Tillatelsesnummer');
@@ -2023,3 +2007,93 @@ jr_define('_JOMRES_PTYPE_CHANGE_WARNING',"Changing the property type will delete
 jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_UPDATEINFO', 'Please note, after updating you must update any Jomres Plugins that are already installed, through the Jomres plugin manager. If you have Core plugins installed, but do not have a valid Jomres license then we <em>do not</em> recommend that you update Jomres as older plugins often may not work with newer versions of Jomres. ');
 jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_UPDATEINFO_KEYVALID', 'Please note, after updating you must update any Jomres Plugins that are already installed, through the Jomres plugin manager.');
 jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_RENEWALS', "If you would like to update Jomres and it's plugins you will need a renewal license. Please visit <a href='https://www.jomres.net/pricing' target='_blank'>our site</a> for more information. In most cases these licenses are 50% of the price of a full license. Please ensure that you have logged into our shop before attempting to purchase a renewal.");
+jr_define('_JOMRES_PAYMENT_METHOD_USED',"Payment method : ");
+
+jr_define('_JOMRES_PRICES',"Kjøp Jomres");
+
+
+jr_define('_OAUTH_TITLE',"Håndtering av app-nøkler");
+jr_define('_OAUTH_APPS',"REST API klientdetaljer");
+jr_define('_OAUTH_IDENTIFIER',"Identifier");
+jr_define('_OAUTH_APIKEY',"Client ID");
+jr_define('_OAUTH_SECRET',"Secret");
+jr_define('_OAUTH_CREATED',"Laget/Oppdatert App");
+jr_define('_OAUTH_CLIENT_ID_INFO'," Client ID og Secret lages for deg. Identifier er for at du enkelt skal kunne identifisere disse to nøklene.");
+jr_define('_OAUTH_SCOPE_TITLE',"Tillatelser ( hva klienten kan gjøre ) ");
+jr_define('_OAUTH_SCOPE_CATEGORY_USER' , "Brukertilgang");
+jr_define('_OAUTH_SCOPE_CATEGORY_PROPERTIES' , "Tillatelser for utleiested");
+
+jr_define('API_DOCUMENTATION_TITLE',"App REST API dokumentasjon");
+
+jr_define('_OAUTH_CONFIG',"API Core konfigurasjon");
+
+jr_define('_OAUTH_CONFIG_SHOW',"Vis valg for API klientkonfigurasjon i Jomres hovedmeny?");
+jr_define('_OAUTH_CONFIG_SHOW_DESC',"Du kan velge å ikke vise valg for API klientkonfigurasjon i 'Min Konto'-seksjonen av Jomres hovedmeny. I stedet kan du velge å vise dette andre steder ved bruk av Jomres Shortcodes.");
+
+jr_define( '_JOMRES_SHORTCODES_06000API_CORE_DOCS', "Displays the API core documentation page. The API Core allows users to create API clients, which are then used to access the API functionality which is outlined in the API Core documentation." );
+
+jr_define( '_JOMRES_SHORTCODES_06005API_CORE_CLIENT_ADMIN', "Displays the API core administration page, where property managers can configure API clients. Note that this is a registered user only feature, so users must be registered and logged in before they can see this page." );
+
+jr_define('API_METHODS_TITLE',"API Methods");
+jr_define('API_METHODS_DESCRIPTION',"This list of methods is based on your installed API feature plugins and is automatically generated. If you install or delete an API feature plugin you must visit this page to rebuild this list of API methods available on your site.");
+
+jr_define('_OAUTH_REDIRECT_URI',"Redirect URI");
+jr_define('_OAUTH_IDENTIFIER_PLACEHOLDER',"Give me a name that's meaningful to you, such as My Phone");
+
+jr_define('_OAUTH_GRANT_TYPES',"This system supports two grant types , Client Credentials and Implicit. If you are using the <em>client_credentials</em> flow then you will need both the client id and the client secret. If using <em>implicit</em> then your app would send just the client id and you would log into the system to explicitly authorise that app.");
+
+jr_define('_OAUTH_IMPLICIT_NOTES',"To use the <em>implicit</em> grant type flow, you will need to use this url to authorise your apps. When this url is called, and you have authorised the app the system will issue a token that you apps will then use to call this system's API ");
+jr_define('_OAUTH_AUTHORISATION_URL',"Authorisation URL");
+
+jr_define( 'WEBHOOKS_CORE', 'Webhooks' );
+
+jr_define('_WEBHOOKS_CONFIG_SHOW',"Show Webhook configuration options in Jomres main menu?");
+jr_define('_WEBHOOKS_CONFIG_SHOW_DESC',"You may choose to not show the Webhook configuration options in the 'My Account' section of the Jomres mainmenu. You could instead decide that you wanted to show them on other pages using Jomres Shortcodes.");
+
+jr_define('WEBHOOKS_DOCUMENTATION_TITLE',"Webhooks documentation");
+
+jr_define( '_JOMRES_SHORTCODES_06000WEBHOOKS_DOCS', "Displays the API core documentation page. The API Core allows users to create API clients, which are then used to access the API functionality which is outlined in the API Core documentation." );
+
+jr_define( '_JOMRES_SHORTCODES_06005WEBHOOKS_CLIENT_ADMIN', "Displays the API core administration page, where property managers can configure API clients. Note that this is a registered user only feature, so users must be registered and logged in before they can see this page." );
+
+jr_define( 'WEBHOOKS_INTEGRATION_EDIT', 'Edit Integration' );
+jr_define( 'WEBHOOKS_INTEGRATION_ID', 'Integration ID' );
+jr_define( 'WEBHOOKS_INTEGRATION_URL', 'URL or Name' );
+jr_define( 'WEBHOOKS_ENABLED', 'Enabled' );
+
+jr_define( 'WEBHOOKS_AUTH_METHOD_SELECT', 'Authentication method/Integration' );
+
+jr_define( 'WEBHOOKS_MANAGER_PROPERTIES_NONE', 'Any webhooks you create will not be triggered as you are not assigned to any properties. Super property managers are not typically assigned individual properties, so you may need a new user for webhook creation.' );
+jr_define( 'WEBHOOKS_MANAGER_PROPERTIES_ASSIGNED_DESC', 'Any webhooks you create will be triggered against the following properties : ' );
+
+
+jr_define( 'PORTAL_REVIEWS_LIMIT', 'Grense for anmeldelser' );
+jr_define( 'PORTAL_REVIEWS_LIMIT_DESC', 'Bruk denne innstillingen for å begrense antall anmeldelser som vises på siden for detaljer for utleiested.' );
+jr_define( 'PORTAL_REVIEWS_SHOW_ALL_REVIEWS', 'Vis alle anmeldelser' );
+
+jr_define( 'VIDEO_TUTORIALS', 'Video-opplæring' );
+jr_define( '_JOMRES_PROPERTY_HCATEGORIES', 'Utleiekategorier' );
+jr_define( '_JOMRES_PROPERTY_HCATEGORIES_HEDIT', 'Endre utleiekategori' );
+
+jr_define( '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE', 'Minimum forskudd' );
+jr_define( '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC', "Hvis det kalkulerte forskuddet er mindre enn dette tallet, så settes forskuddet til denne verdien i stedet. Dette tallet kan også bli overskrevet hvis det ikke passer med sidens minimumsinnstilling for forskudd. Sett til 0 for å ikke bruke innstillingen." );
+
+jr_define( '_JOMRES_MEDIA_CENTRE_DBIMPORT_WARNING', 'To increase your site speed, we recommend importing details of the existing site and properties images to database.');
+jr_define( '_JOMRES_MEDIA_CENTRE_DBIMPORT_ACTION', 'Importer eksisterende bildedetaljer til database');
+
+jr_define( '_JOMRES_S3_ACTIVE_DESC', 'Experimental feature. If enabled, images uploaded using the media centre feature will also be copied to your Amazon S3 bucket and served from your Amazon S3 bucket url. When enabling this the first time, you`ll also be promted to import existing images to your S3 bucket.');
+jr_define( '_JOMRES_CLOUDFRONT_DMAIN', 'CloudFront domain');
+jr_define( '_JOMRES_CLOUDFRONT_DMAIN_DESC', 'Replace your default Amazon S3 domain with your CloudFront domain');
+jr_define( '_JOMRES_S3_SSLTLS_DESC', 'Recommended to be enabled. For Windows and Mac OSX only, if libcurl wasn`t built with Schannel or Secure Transport support (the native SSL libraries included in Windows and Mac OS X), you should set this to No.');
+jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_WARNING', 'You`ve enabled the Amazon S3 integration, so you`ll have to copy all existing images to your S3 bucket. Images are now served to your site visitors from your Amazon S3 url, so you`ll need to copy them first to your S3 bucket, otherwise they won`t be visible to your site visitors.');
+jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_WARNING2', 'Once you click this button, please do not interrupt the process and wait for a success or error message. Depending on server speed, this may take a while to complete.');
+jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_ACTION', 'Copy existing images to Amazon S3 bucket');
+
+
+jr_define( 'JOMRES_INCOMPLETE', 'Incomplete' );
+jr_define( 'JOMRES_WATING_APPROVAL', 'Pending approval' );
+jr_define( 'JOMRES_GOOGLE_MAPS_PDETAILS', 'Property details map' );
+
+jr_define( 'HAS_STARS_TITLE', 'Allows stars classification?');
+jr_define( '_JOMRES_MEDIA_CENTRE_DBIMPORT_FORCE', 'Force reimport image details to database');
+jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_FORCE', 'Force reupload images to S3 bucket');

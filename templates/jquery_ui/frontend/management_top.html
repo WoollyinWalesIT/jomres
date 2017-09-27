@@ -42,7 +42,7 @@
 <div id="jomres_alternate_menu_position" style="float:left;width:20%;margin-bottom:20px;"></div>
 <!-- available if required by a plugin -->
 <div style="float:right;width:79%;margin-bottom:20px;">
-	<div id="jomres_content_area"> <!-- opens the jomres content area -->
+	<div id="jomres_content_area" class="jr_property_{PROPERTY_UID}"> <!-- opens the jomres content area -->
 		<noscript>
 			<blockquote>
 				<p><font size="3" color="#FF0000"><b>You do not have JavaScript enabled.</b></font><br/>
@@ -52,7 +52,5 @@
 			</blockquote>
 		</noscript>
 		<h2>{HACTIVE_PROPERTY}{PROPERTYNAME}</h2>
-		<patTemplate:tmpl name="messages" type="simpleCondition" requiredVars="message">
-			<div class="ui-state-highlight">{MESSAGE}</div>
-		</patTemplate:tmpl>
+		<div id="jomres_feedback" class="clearfix"></div>
 </patTemplate:tmpl>

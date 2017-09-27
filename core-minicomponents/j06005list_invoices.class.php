@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -32,12 +32,12 @@ class j06005list_invoices
         $startDate = jomresGetParam($_POST, 'startDate', '');
         $endDate = jomresGetParam($_POST, 'endDate', '');
         if ($startDate == '%' || $startDate == '') {
-            $startDate = date('Y/m/d', strtotime('-3 months'));
+            $startDate = date('Y/m/d', strtotime('-5 years'));
         } else {
             $startDate = JSCalConvertInputDates($startDate);
         }
         if ($endDate == '%' || $endDate == '') {
-            $endDate = date('Y/m/d', strtotime('+2 years'));
+            $endDate = date('Y/m/d', strtotime('+5 years'));
         } else {
             $endDate = JSCalConvertInputDates($endDate);
         }

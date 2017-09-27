@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -33,6 +33,8 @@ class j16000updates
         }
 
         $jomresConfig_offline = true;
+		
+		$this->updateServer = 'http://updates.jomres4.net';
 
         if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'includes'.JRDS.'defines.php')) {
             $CONFIG = new JConfig();
@@ -46,9 +48,9 @@ class j16000updates
             return;
         }
         // This is just to improve the user's experience. Users can remove this and attempt to upgrade, but then their Quickstart Only installation's plugins may not work with the newer version of Jomres.
-        jr_import('jomres_check_support_key');
-        $key_validation = new jomres_check_support_key(JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins');
-        $this->key_valid = $key_validation->key_valid;
+        $key_validation = jomres_singleton_abstract::getInstance('jomres_check_support_key');
+        
+		$this->key_valid = $key_validation->key_valid;
 
         $current_version_is_uptodate = check_jomres_version();
 
@@ -168,8 +170,10 @@ class j16000updates
                 $requiredEncoding = jomresGetParam($_REQUEST, 'encoding', '');
                 $requiredVersion = jomresGetParam($_REQUEST, 'version', '');
 
-                $updateFile = $this->updateServer.'/index.php?encoding='.$requiredEncoding.'&version='.$requiredVersion.$liveSite;
-                $newfilename = $this->updateFolder.'/jomres.zip';
+                $base_uri = $this->updateServer;
+				$query_string = '/index.php?encoding='.$requiredEncoding.'&version='.$requiredVersion.$liveSite;
+                
+				$newfilename = $this->updateFolder.'/jomres.zip';
 
                 $out = fopen($newfilename, 'wb');
                 if ($out == false) {
@@ -177,22 +181,23 @@ class j16000updates
                     exit;
                 }
 
-                logging::log_message('Starting curl call to '.$updateFile, 'Curl', 'DEBUG');
-                $logging_time_start = microtime(true);
+				try {
+					$client = new GuzzleHttp\Client([
+						'base_uri' => $base_uri
+					]);
 
-                $curl_handle = curl_init($updateFile);
-                curl_setopt($curl_handle, CURLOPT_FILE, $out);
-                curl_setopt($curl_handle, CURLOPT_USERAGENT, 'Jomres');
-                curl_setopt($curl_handle, CURLOPT_HEADER, 0);
-                curl_setopt($curl_handle, CURLOPT_URL, $updateFile);
-                curl_exec($curl_handle);
-                curl_close($curl_handle);
-
-                $logging_time_end = microtime(true);
-                $logging_time = $logging_time_end - $logging_time_start;
-                logging::log_message('Curl call took '.$logging_time.' seconds ', 'Curl', 'DEBUG');
-
-                fclose($out);
+					logging::log_message('Starting guzzle call to '.$base_uri.$query_string, 'Guzzle', 'DEBUG');
+					
+					$response = $client->request('GET', $query_string, ['sink' => $out]);
+				}
+				catch (Exception $e) {
+					$jomres_user_feedback = jomres_singleton_abstract::getInstance('jomres_user_feedback');
+					$jomres_user_feedback->construct_message(array('message'=>"Could not download update", 'css_class'=>'alert-danger alert-error'));
+				}
+				
+				if (is_resource($out)) {
+					fclose($out);
+				}
 
                 if (file_exists($newfilename) && filesize($newfilename) > 0) {
                     echo 'Got it<br />';

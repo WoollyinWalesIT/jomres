@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -37,12 +37,11 @@ class j10501a_misc
 		$navbar_location_dropdown = $componentArgs[ 'navbar_location_dropdown' ];
         $support_key_is_trial_license = '';
         $renewal_link = '';
+		
+		$jomres_check_support_key = jomres_singleton_abstract::getInstance('jomres_check_support_key');
+		$jomres_check_support_key->check_license_key(true);
 
         if (trim($jrConfig['licensekey']) != '') {
-            jr_import('jomres_check_support_key');
-            $jomres_check_support_key = new jomres_check_support_key('site_settings');
-            $jomres_check_support_key->check_license_key();
-
             if ($jomres_check_support_key->key_valid) {
                 if ($jomres_check_support_key->allows_plugins == '1') {
                     $support_key_message = '<p class="alert alert-success">'.jr_gettext('_JOMRES_SUPPORTKEY_DESC_VALID', '_JOMRES_SUPPORTKEY_DESC_VALID', false, false).'</p>';
@@ -53,9 +52,11 @@ class j10501a_misc
                 $support_key_message = '<p class="alert alert-danger">'.jr_gettext('_JOMRES_SUPPORTKEY_DESC_INVALID', '_JOMRES_SUPPORTKEY_DESC_INVALID', false, false).'</p>';
                 $renewal_link = '<a href="https://license-server.jomres.net/order.php?cmd=products/licenses/list&product_id=13" target="_blank">Renew now</a>';
             }
+
             $support_key_status = '<span class="badge">Status</span> '.$jomres_check_support_key->key_status.'';
             $support_key_owner = '<span class="badge">Owner</span> '.$jomres_check_support_key->owner.'<br/>';
             $support_key_expires = '<span class="badge">Expires</span> '.$jomres_check_support_key->expires.'';
+			$support_key_license_name = '<span class="badge">License name</span> '.$jomres_check_support_key->license_name.'';
 
             if ($jomres_check_support_key->is_trial_license == '1') {
                 $support_key_is_trial_license = '<span class="badge badge-warning">Trial license</span> ';
@@ -65,17 +66,17 @@ class j10501a_misc
             $support_key_owner = '';
             $support_key_message = '';
             $support_key_expires = '';
+			$support_key_license_name = '';
+			$support_key_property_limit = '';
         }
         $configurationPanel->startPanel(jr_gettext('_JOMRES_A_TABS_MISC', '_JOMRES_A_TABS_MISC', false));
 
         $configurationPanel->setleft(jr_gettext('_JOMRES_SUPPORTKEY', '_JOMRES_SUPPORTKEY', false));
-        $configurationPanel->setmiddle('<input type="password" class="input-xlarge" name="cfg_licensekey" value="'.$jrConfig[ 'licensekey' ].'" /><br/>'.' '.$support_key_status.' '.$support_key_owner.' '.$support_key_expires.' '.$renewal_link.' '.$support_key_is_trial_license);
+        $configurationPanel->setmiddle('<input type="password" class="input-xlarge" name="cfg_licensekey" value="'.$jrConfig[ 'licensekey' ].'" /><br/>'.' '.$support_key_status.' '.$support_key_owner.' '.$support_key_expires.' '.$renewal_link.' '.$support_key_is_trial_license.' '.$support_key_license_name);
         $configurationPanel->setright(jr_gettext('_JOMRES_SUPPORTKEY_DESC', '_JOMRES_SUPPORTKEY_DESC', false).' '.$support_key_message);
         $configurationPanel->insertSetting();
 
-        jr_import('jomres_check_support_key');
-        $key_validation = new jomres_check_support_key(JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins');
-        if ($key_validation->shop_status == 'OPEN') {
+        if ($jomres_check_support_key->shop_status == 'OPEN') {
             $configurationPanel->setleft(jr_gettext('_JOMRES_LICENSESERVER_USERNAME', '_JOMRES_LICENSESERVER_USERNAME', false));
             $configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_license_server_username" value="'.$jrConfig[ 'license_server_username' ].'" />');
             $configurationPanel->setright(jr_gettext('_JOMRES_LICENSESERVER_USERNAME_DESC', '_JOMRES_LICENSESERVER_USERNAME_DESC', false));
@@ -116,13 +117,6 @@ class j10501a_misc
 		$configurationPanel->setmiddle($lists[ 'editingModeAffectsAllProperties' ]);
 		$configurationPanel->setright(jr_gettext('_JOMRES_COM_JRCONFIG_GLOBALEDITING_DESC', '_JOMRES_COM_JRCONFIG_GLOBALEDITING_DESC', false));
 		$configurationPanel->insertSetting();
-
-		if (!this_cms_is_wordpress()) {
-			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_JRCONFIG_ISWRAPPED', '_JOMRES_COM_JRCONFIG_ISWRAPPED', false));
-			$configurationPanel->setmiddle($lists[ 'isInIframe' ]);
-			$configurationPanel->setright(jr_gettext('_JOMRES_COM_JRCONFIG_ISWRAPPED_DESC', '_JOMRES_COM_JRCONFIG_ISWRAPPED_DESC', false));
-			$configurationPanel->insertSetting();
-		}
 
 		$configurationPanel->setleft(jr_gettext('_JOMRES_CONFIG_JQUERY', '_JOMRES_CONFIG_JQUERY', false));
 		$configurationPanel->setmiddle($lists[ 'load_jquery' ]);

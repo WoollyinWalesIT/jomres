@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -25,6 +25,8 @@ class j16000jomres_warnings
 
             return;
         }
+		
+		$this->retVals = '';
 
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
@@ -45,14 +47,14 @@ class j16000jomres_warnings
         $output[ 'SUHOSIN_GET_MAX_VARS_CHECK' ] = suhosin_get_max_vars_test();
 
         //license key not entered warning
-		$output[ 'JOMRES_PRODUCT_INFORMATION' ] = '';
+		/* $output[ 'JOMRES_PRODUCT_INFORMATION' ] = '';
 		$output[ 'JOMRES_PRODUCT_INFORMATION2' ] = '';
 		$output[ 'JOMRES_PRODUCT_INFO_HIGHLIGHT' ] = '';
         if (trim($jrConfig['licensekey']) == '') {
             $output[ 'JOMRES_PRODUCT_INFORMATION' ] = jr_gettext('_JOMRES_PRODUCT_INFORMATION', '_JOMRES_PRODUCT_INFORMATION', false);
             $output[ 'JOMRES_PRODUCT_INFORMATION2' ] = jr_gettext('_JOMRES_PRODUCT_INFORMATION2', '_JOMRES_PRODUCT_INFORMATION2', false);
 			$output[ 'JOMRES_PRODUCT_INFO_HIGHLIGHT' ] = 'alert alert-info';
-        }
+        } */
 
         //wordpress Page with [jomres:xx-XX] not created yet
         $output[ 'JOMRES_DEFAULT_SHORTCODE_HIGHLIGHT' ] = '';
@@ -65,12 +67,14 @@ class j16000jomres_warnings
         // Google maps api key warning
         $output['GMAPS_KEY_WARNING'] = gmaps_apikey_check();
 
-        $output['IPINFODB_KEY_WARNING'] = ipinfodb_apikey_check();
+		//ipinfodb api key
+        //$output['IPINFODB_KEY_WARNING'] = ipinfodb_apikey_check();
 
-        $output['OPENEXCHANGERATES_KEY_WARNING'] = openexchangerates_apikey_check();
+		//open exchange rates api key
+        //$output['OPENEXCHANGERATES_KEY_WARNING'] = openexchangerates_apikey_check();
 
         // Logfile location warning
-        $output['LOGFILE_LOCATION_WARNING'] = logs_path_check();
+        //$output['LOGFILE_LOCATION_WARNING'] = logs_path_check();
 		
 		//review text
         /* if (this_cms_is_wordpress()) {
@@ -90,6 +94,10 @@ class j16000jomres_warnings
         $jomres_property_types->get_all_property_types();
 
         $output['PROPERTY_TYPE_WARNING'] = $jomres_property_types->get_property_types_with_no_room_types_assigned($show_link_to_room_types = true);
+		
+		$output['MEDIA_CENTRE_DB_IMAGES_IMPORT_WARNING'] = db_images_import_check();
+		
+		$output['MEDIA_CENTRE_S3_IMAGES_IMPORT_WARNING'] = s3_images_import_check();
 
         $pageoutput[ ] = $output;
         $tmpl = new patTemplate();

@@ -79,15 +79,15 @@ jomresJquery(document).ready(function(){
 		</div>
 	</div>
 </div>
-<div id="jomres_status" class="navbar navbar-fixed-bottom hidden-phone">
-	<p class="pull-right">Copyright: &copy; 2005 - 2017 Vince Wooll</p>
-	{MANAGEMENT_VIEW_DROPDOWN} &bull; <a href="#FAQModal" ajax_task="faq" data-toggle="modal" faq-modal-title="{_JOMRES_FAQ}" random_identifier="FAQModal" class="hidden-phone hidden-tablet">{_JOMRES_FAQ}</a>
+<div id="jomres_status" class="navbar navbar-fixed-bottom">
+	<p class="pull-right hidden-phone hidden-tablet">Copyright: &copy; 2005 - 2017 Vince Wooll</p>
+	{MANAGEMENT_VIEW_DROPDOWN}
 </div>
 {SANITY_CHECKS}
 <div class="container-fluid management-wrapper">
 	<div class="row-fluid">
 		<div class="span12">
-			<div id="jomres_content_area"> <!-- opens the jomres content area -->
+			<div id="jomres_content_area" class="jr_property_{PROPERTY_UID}"> <!-- opens the jomres content area -->
 				<noscript>
 					<blockquote>
 						<p><font size="3" color="#FF0000"><b>You do not have JavaScript enabled.</b></font><br/>
@@ -96,10 +96,6 @@ jomresJquery(document).ready(function(){
 								JavaScript, please contact the webmaster.</font></p>
 					</blockquote>
 				</noscript>
-				<patTemplate:tmpl name="messages" type="simpleCondition" requiredVars="message">
-					<div class="alert alert-warning">{MESSAGE}</div>
-				</patTemplate:tmpl>
+				<div id="jomres_feedback" class="clearfix"></div>
 				<div id="tour_target_content"></div>
-				
-				<div class="modal hide fade" id="FAQModal"></div>
 </patTemplate:tmpl>

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -96,11 +96,9 @@ function showSiteConfig()
     $lists[ 'useGlobalPFeatures' ] = jomresHTML::selectList($yesno, 'cfg_useGlobalPFeatures', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useGlobalPFeatures' ]);
     $lists[ 'useGlobalRoomTypes' ] = jomresHTML::selectList($yesno, 'cfg_useGlobalRoomTypes', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useGlobalRoomTypes' ]);
     $lists[ 'selfRegistrationAllowed' ] = jomresHTML::selectList($yesno, 'cfg_selfRegistrationAllowed', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'selfRegistrationAllowed' ]);
-    $lists[ 'isInIframe' ] = jomresHTML::selectList($yesno, 'cfg_isInIframe', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'isInIframe' ]);
     $lists[ 'allowHTMLeditor' ] = jomresHTML::selectList($editoryesno, 'cfg_allowHTMLeditor', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'allowHTMLeditor' ]);
     $lists[ 'dumpTemplate' ] = jomresHTML::selectList($yesno, 'cfg_dumpTemplate', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'dumpTemplate' ]);
     $lists[ 'emailErrors' ] = jomresHTML::selectList($yesno, 'cfg_emailErrors', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'emailErrors' ]);
-    $lists[ 'minimalconfiguration' ] = jomresHTML::selectList($yesno, 'cfg_minimalconfiguration', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'minimalconfiguration' ]);
     $lists[ 'useJomresEmailCheck' ] = jomresHTML::selectList($yesno, 'cfg_useJomresEmailCheck', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useJomresEmailCheck' ]);
     $lists[ 'composite_property_details' ] = jomresHTML::selectList($yesno, 'cfg_composite_property_details', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'composite_property_details' ]);
 
@@ -111,11 +109,6 @@ function showSiteConfig()
     $geosearchList[ ] = jomresHTML::makeOption('town', jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', false));
     $geosearchList[ ] = jomresHTML::makeOption('region', jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', false));
     $geosearchDropdownList = jomresHTML::selectList($geosearchList, 'cfg_integratedSearch_geosearchtype', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_geosearchtype' ]);
-
-    $mapWeatherTempGrad = array();
-    $mapWeatherTempGrad[ ] = jomresHTML::makeOption('CELCIUS', jr_gettext('JOMRES_GOOGLE_MAP_OPTION_WEATHER_CELCIUS', 'JOMRES_GOOGLE_MAP_OPTION_WEATHER_CELCIUS', false));
-    $mapWeatherTempGrad[ ] = jomresHTML::makeOption('FAHRENHEIT', jr_gettext('JOMRES_GOOGLE_MAP_OPTION_WEATHER_FARENHEIT', 'JOMRES_GOOGLE_MAP_OPTION_WEATHER_FARENHEIT', false));
-    $mapWeatherTempGradDropdownList = jomresHTML::selectList($mapWeatherTempGrad, 'cfg_gmap_layer_temperature_grad', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'gmap_layer_temperature_grad' ]);
 
     $calendarStartDays = array();
     $calendarStartDays[ ] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_COM_MR_WEEKDAYS_SUNDAY', '_JOMRES_COM_MR_WEEKDAYS_SUNDAY', false));
@@ -135,20 +128,8 @@ function showSiteConfig()
     $currency_codes = jomres_singleton_abstract::getInstance('currency_codes');
     $currency_codes_dropdown = $currency_codes->makeCodesDropdown($jrConfig[ 'globalCurrencyCode' ], true);
 
-    $language_context = array();
-    $ptype_descs = array();
-    $language_context[ ] = jomresHTML::makeOption('', '');
-
-    if (!empty($basic_property_details->all_property_types)) {
-        foreach ($basic_property_details->all_property_types as $k => $v) {
-            $ptype_descs[] = $v;
-        }
-        $ptype_descs = array_unique($ptype_descs);
-        foreach ($ptype_descs as $desc) {
-            $language_context[ ] = jomresHTML::makeOption($desc, $desc);
-        }
-    }
-    $language_context_dropdown = jomresHTML::selectList($language_context, 'cfg_language_context', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'language_context' ], false);
+    $jomres_property_types = jomres_singleton_abstract::getInstance('jomres_property_types');
+    $language_context_dropdown = $jomres_property_types->getPropertyTypeDescDropdown($jrConfig[ 'language_context' ], 'cfg_language_context');
 
     $filtering_level = array();
     $filtering_level[ ] = jomresHTML::makeOption('weak', jr_gettext('_JOMRES_INPUTFILTERING_LEVEL_WEAK', '_JOMRES_INPUTFILTERING_LEVEL_WEAK', false));
@@ -194,6 +175,7 @@ function showSiteConfig()
     $lists[ 'integratedSearch_propertyname' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_propertyname', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_propertyname' ]);
     $lists[ 'integratedSearch_propertyname_dropdown' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_propertyname_dropdown', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_propertyname_dropdown' ]);
     $lists[ 'integratedSearch_ptype' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_ptype', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_ptype' ]);
+	$lists[ 'integratedSearch_category' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_category', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_category' ]);
     $lists[ 'integratedSearch_ptype_dropdown' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_ptype_dropdown', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_ptype_dropdown' ]);
     $lists[ 'integratedSearch_geosearchtype_dropdown' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_geosearchtype_dropdown', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_geosearchtype_dropdown' ]);
 
@@ -239,7 +221,6 @@ function showSiteConfig()
     $lists[ 'load_jquery_ui_css' ] = jomresHTML::selectList($yesno, 'cfg_load_jquery_ui_css', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'load_jquery_ui_css' ]);
     $lists[ 'use_conversion_feature' ] = jomresHTML::selectList($yesno, 'cfg_use_conversion_feature', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_conversion_feature' ]);
     $lists[ 'booking_form_modal_popup' ] = jomresHTML::selectList($yesno, 'cfg_booking_form_modal_popup', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'booking_form_modal_popup' ]);
-    $lists[ 'booking_form_totals_panel_as_slider' ] = jomresHTML::selectList($yesno, 'cfg_booking_form_totals_panel_as_slider', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'booking_form_totals_panel_as_slider' ]);
     $lists[ 'useNewusers_sendemail' ] = jomresHTML::selectList($yesno, 'cfg_useNewusers_sendemail', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useNewusers_sendemail' ]);
     $lists[ 'show_tax_in_totals_summary' ] = jomresHTML::selectList($yesno, 'cfg_show_tax_in_totals_summary', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'show_tax_in_totals_summary' ]);
     $lists[ 'alternate_smtp_use_settings' ] = jomresHTML::selectList($yesno, 'cfg_alternate_smtp_use_settings', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'alternate_smtp_use_settings' ]);
@@ -356,7 +337,6 @@ function showSiteConfig()
     $componentArgs[ 'guestnumbersearchDropdownList' ] = $guestnumbersearchDropdownList;
     $componentArgs[ 'filtering_level_dropdown' ] = $filtering_level_dropdown;
     $componentArgs[ 'layouts' ] = $layouts;
-    $componentArgs[ 'mapWeatherTempGradDropdownList' ] = $mapWeatherTempGradDropdownList;
     $componentArgs[ 'production_development_dropdown' ] = $production_development_dropdown;
     $componentArgs[ 'navbar_location_dropdown' ] = $navbar_location_dropdown;
     $componentArgs[ 'bootstrap_ver_dropdown' ] = $bootstrap_ver_dropdown;

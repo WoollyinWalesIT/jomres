@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -172,6 +172,7 @@ class j06001listguests_ajax
                 $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
                 $jrtb = $jrtbar->startTable();
                 $jrtb .= $jrtbar->toolbarItem('', jomresURL(JOMRES_SITEPAGE_URL.'&task=list_invoices&guest_id='.$g->guests_uid), jr_gettext('_JOMRES_MANAGER_SHOWINVOICES', '_JOMRES_MANAGER_SHOWINVOICES', false));
+				$jrtb .= $jrtbar->toolbarItem('', jomresURL(JOMRES_SITEPAGE_URL.'&task=list_bookings&guest_uid='.$g->guests_uid), jr_gettext('_JRPORTAL_CPANEL_LISTBOOKINGS', '_JRPORTAL_CPANEL_LISTBOOKINGS', false));
                 $jrtb .= $jrtbar->toolbarItem('edit', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_guest&id='.$g->guests_uid.$thisProperty), jr_gettext('COMMON_EDIT', 'COMMON_EDIT', false));
                 $jrtb .= $jrtbar->toolbarItem('delete', jomresURL(JOMRES_SITEPAGE_URL.'&task=delete_guest&id='.$g->guests_uid.$thisProperty), jr_gettext('COMMON_DELETE', 'COMMON_DELETE', false));
                 $r[] = $jrtb .= $jrtbar->endTable();
@@ -180,6 +181,7 @@ class j06001listguests_ajax
                 $toolbar->newToolbar();
                 $toolbar->addItem('fa fa-pencil-square-o', 'btn btn-info', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_guest&id='.$g->guests_uid.$thisProperty), jr_gettext('COMMON_EDIT', 'COMMON_EDIT', false));
                 $toolbar->addSecondaryItem('fa fa-file-text', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=list_invoices&guest_id='.$g->guests_uid), jr_gettext('_JOMRES_MANAGER_SHOWINVOICES', '_JOMRES_MANAGER_SHOWINVOICES', false));
+				$toolbar->addSecondaryItem('fa fa-list', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=list_bookings&guest_uid='.$g->guests_uid), jr_gettext('_JRPORTAL_CPANEL_LISTBOOKINGS', '_JRPORTAL_CPANEL_LISTBOOKINGS', false));
                 $toolbar->addSecondaryItem('fa fa-trash-o', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=delete_guest&id='.$g->guests_uid.$thisProperty), jr_gettext('COMMON_DELETE', 'COMMON_DELETE', false));
                 $r[] = $toolbar->getToolbar();
             }

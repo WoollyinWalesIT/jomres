@@ -18,17 +18,20 @@ class JwtAccessToken extends AccessToken
     protected $encryptionUtil;
 
     /**
-     * @param $config
-     *  - store_encrypted_token_string (bool true)
-     *       whether the entire encrypted string is stored,
-     *       or just the token ID is stored
+     * @param PublicKeyInterface          $publicKeyStorage -
+     * @param AccessTokenStorageInterface $tokenStorage     -
+     * @param RefreshTokenInterface       $refreshStorage   -
+     * @param array                       $config           - array with key store_encrypted_token_string (bool true)
+     *                                                        whether the entire encrypted string is stored,
+     *                                                        or just the token ID is stored
+     * @param EncryptionInterface         $encryptionUtil   -
      */
     public function __construct(PublicKeyInterface $publicKeyStorage = null, AccessTokenStorageInterface $tokenStorage = null, RefreshTokenInterface $refreshStorage = null, array $config = array(), EncryptionInterface $encryptionUtil = null)
     {
         $this->publicKeyStorage = $publicKeyStorage;
         $config = array_merge(array(
             'store_encrypted_token_string' => true,
-            'issuer' => '',
+            'issuer' => ''
         ), $config);
         if (is_null($tokenStorage)) {
             // a pass-thru, so we can call the parent constructor
@@ -44,46 +47,31 @@ class JwtAccessToken extends AccessToken
     /**
      * Handle the creation of access token, also issue refresh token if supported / desirable.
      *
-     * @param $client_id
-     * Client identifier related to the access token
-     * @param $user_id
-     * User ID associated with the access token
-     * @param $scope
-     * (optional) Scopes to be stored in space-separated string
-     * @param bool $includeRefreshToken
-     *                                  If true, a new refresh_token will be added to the response
+     * @param mixed  $client_id           - Client identifier related to the access token.
+     * @param mixed  $user_id             - User ID associated with the access token
+     * @param string $scope               - (optional) Scopes to be stored in space-separated string.
+     * @param bool   $includeRefreshToken - If true, a new refresh_token will be added to the response
+     * @return array                      - The access token
      *
      * @see http://tools.ietf.org/html/rfc6749#section-5
      * @ingroup oauth2_section_5
      */
     public function createAccessToken($client_id, $user_id, $scope = null, $includeRefreshToken = true)
     {
-        // token to encrypt
-        $expires = time() + $this->config['access_lifetime'];
-        $id = $this->generateAccessToken();
-        $jwtAccessToken = array(
-            'id' => $id, // for BC (see #591)
-            'jti' => $id,
-            'iss' => $this->config['issuer'],
-            'aud' => $client_id,
-            'sub' => $user_id,
-            'exp' => $expires,
-            'iat' => time(),
-            'token_type' => $this->config['token_type'],
-            'scope' => $scope,
-        );
+        // payload to encrypt
+        $payload = $this->createPayload($client_id, $user_id, $scope);
 
         /*
-         * Encode the token data into a single access_token string
+         * Encode the payload data into a single JWT access_token string
          */
-        $access_token = $this->encodeToken($jwtAccessToken, $client_id);
+        $access_token = $this->encodeToken($payload, $client_id);
 
         /*
          * Save the token to a secondary storage.  This is implemented on the
          * OAuth2\Storage\JwtAccessToken side, and will not actually store anything,
          * if no secondary storage has been supplied
          */
-        $token_to_store = $this->config['store_encrypted_token_string'] ? $access_token : $jwtAccessToken['id'];
+        $token_to_store = $this->config['store_encrypted_token_string'] ? $access_token : $payload['id'];
         $this->tokenStorage->setAccessToken($token_to_store, $client_id, $user_id, $this->config['access_lifetime'] ? time() + $this->config['access_lifetime'] : null, $scope);
 
         // token to return to the client
@@ -91,7 +79,7 @@ class JwtAccessToken extends AccessToken
             'access_token' => $access_token,
             'expires_in' => $this->config['access_lifetime'],
             'token_type' => $this->config['token_type'],
-            'scope' => $scope,
+            'scope' => $scope
         );
 
         /*
@@ -113,11 +101,43 @@ class JwtAccessToken extends AccessToken
         return $token;
     }
 
+    /**
+     * @param array $token
+     * @param mixed $client_id
+     * @return mixed
+     */
     protected function encodeToken(array $token, $client_id = null)
     {
         $private_key = $this->publicKeyStorage->getPrivateKey($client_id);
-        $algorithm = $this->publicKeyStorage->getEncryptionAlgorithm($client_id);
+        $algorithm   = $this->publicKeyStorage->getEncryptionAlgorithm($client_id);
 
         return $this->encryptionUtil->encode($token, $private_key, $algorithm);
+    }
+
+    /**
+     * This function can be used to create custom JWT payloads
+     *
+     * @param mixed  $client_id           - Client identifier related to the access token.
+     * @param mixed  $user_id             - User ID associated with the access token
+     * @param string $scope               - (optional) Scopes to be stored in space-separated string.
+     * @return array                      - The access token
+     */
+    protected function createPayload($client_id, $user_id, $scope = null)
+    {
+        // token to encrypt
+        $expires = time() + $this->config['access_lifetime'];
+        $id = $this->generateAccessToken();
+
+        return array(
+            'id'         => $id, // for BC (see #591)
+            'jti'        => $id,
+            'iss'        => $this->config['issuer'],
+            'aud'        => $client_id,
+            'sub'        => $user_id,
+            'exp'        => $expires,
+            'iat'        => time(),
+            'token_type' => $this->config['token_type'],
+            'scope'      => $scope
+        );
     }
 }

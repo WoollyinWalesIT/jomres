@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -35,13 +35,14 @@ class j16000edit_property_type
 
         $output[ 'PAGETITLE' ] = jr_gettext('_JOMRES_COM_PTYPES_LIST_TITLE_EDIT', '_JOMRES_COM_PTYPES_LIST_TITLE_EDIT', false);
         $output[ 'HPTYPE' ] = jr_gettext('_JOMRES_COM_PTYPES_PTYPE', '_JOMRES_COM_PTYPES_PTYPE', false);
-        $output[ 'HPTYPE_DESC' ] = jr_gettext('_JOMRES_PROPERTYSPECIFIC_LANGUAGESUBDIR', '_JOMRES_PROPERTYSPECIFIC_LANGUAGESUBDIR', false);
+        $output[ 'HPTYPE_DESC' ] = jr_gettext('_JOMRES_COM_LANGUAGE_CONTEXT', '_JOMRES_COM_LANGUAGE_CONTEXT', false);
         $output[ 'HPUBLISHED' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PUBLISHED', '_JOMRES_COM_MR_VRCT_PUBLISHED', false);
         $output[ 'FURTHER' ] = jr_gettext('_JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER', '_JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER', false);
         $output[ 'JOMRES_SITEPAGE_URL_ADMIN' ] = jr_gettext('JOMRES_SITEPAGE_URL_ADMIN', 'JOMRES_SITEPAGE_URL_ADMIN', false);
         $output[ '_JOMRES_PROPERTYTYPE_FLAG' ] = jr_gettext('_JOMRES_PROPERTYTYPE_FLAG', '_JOMRES_PROPERTYTYPE_FLAG', false);
         $output[ '_JOMRES_PROPERTYTYPE_FLAG_DESC' ] = jr_gettext('_JOMRES_PROPERTYTYPE_FLAG_DESC', '_JOMRES_PROPERTYTYPE_FLAG_DESC', false);
         $output[ '_JOMRES_PROPERTYTYPE_MARKER' ] = jr_gettext('_JOMRES_PROPERTYTYPE_MARKER', '_JOMRES_PROPERTYTYPE_MARKER', false);
+		$output[ 'HAS_STARS_TITLE' ] = jr_gettext('HAS_STARS_TITLE', 'HAS_STARS_TITLE', false);
 
         //get property type details by id
         $jomres_property_types = jomres_singleton_abstract::getInstance('jomres_property_types');
@@ -87,6 +88,11 @@ class j16000edit_property_type
         $mrp_srp_flag_options[ ] = jomresHTML::makeOption('3', jr_gettext('_JOMRES_PROPERTYTYPE_FLAG_TOURS', '_JOMRES_PROPERTYTYPE_FLAG_TOURS', false));
         $mrp_srp_flag_options[ ] = jomresHTML::makeOption('4', jr_gettext('_JOMRES_PROPERTYTYPE_FLAG_REALESTATE', '_JOMRES_PROPERTYTYPE_FLAG_REALESTATE', false));
         $output[ '_JOMRES_PROPERTYTYPE_FLAG_DROPDOWN' ] = jomresHTML::selectList($mrp_srp_flag_options, 'mrp_srp_flag', 'class="inputbox" size="1"', 'value', 'text', $mrp_srp_flag);
+		
+		$has_stars_options = array();
+        $has_stars_options[ ] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false));
+        $has_stars_options[ ] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false));
+        $output[ 'HAS_STARS' ] = jomresHTML::selectList($has_stars_options, 'has_stars', 'class="inputbox" size="1"', 'value', 'text', $jomres_property_types->property_type['has_stars']);
 
         $output[ 'ID' ] = $id;
 

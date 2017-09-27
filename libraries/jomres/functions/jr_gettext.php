@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -41,6 +41,8 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
 	
+	$jomres_language_definitions = jomres_singleton_abstract::getInstance('jomres_language_definitions');
+	
 	$editing = false;
 
     if (!jomres_cmsspecific_areweinadminarea()) {
@@ -65,7 +67,7 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
             $tmpBookingHandler->user_settings[ 'editing_on' ] = false;
         }
 
-        if ($thisJRUser->userIsManager && $thisJRUser->accesslevel <= 50) { //receptionist or lower
+        if ($thisJRUser->userIsManager && $thisJRUser->accesslevel < 70) { //lower than manager
             $tmpBookingHandler->user_settings[ 'editing_on' ] = false;
         }
 
@@ -79,14 +81,16 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
         $br = '<br />';
     }
 
-    if (isset($customTextObj->global_custom_text[$theConstant])) {
-        $theText = stripslashes($customTextObj->global_custom_text[$theConstant]);
-    } else {
+    if (isset($customTextObj->global_custom_text[$jomres_language_definitions->ptype][$theConstant])) {
+        $theText = $customTextObj->global_custom_text[$jomres_language_definitions->ptype][$theConstant];
+    } elseif (isset($customTextObj->global_custom_text['0'][$theConstant])) {
+		$theText = $customTextObj->global_custom_text['0'][$theConstant];
+	} else {
 		if (!isset($customTextObj->properties_custom_text[$property_uid])) {
 			$customTextObj->get_custom_text_for_property($property_uid);
 		}
 		if (isset($customTextObj->properties_custom_text[$property_uid][$theConstant])) {
-			$theText = stripslashes($customTextObj->properties_custom_text[$property_uid][$theConstant]);
+			$theText = $customTextObj->properties_custom_text[$property_uid][$theConstant];
 		} else {
 			$theText = jr_get_defined($theConstant, $theValue);
 		}
@@ -122,13 +126,9 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
             if ($isLink) {
                 //do nothing
             } else {
-                if (!isset($_REQUEST[ 'no_html' ])) {
-                    $_REQUEST[ 'no_html' ] = 0;
-                }
-
-                if ($editing && $_REQUEST[ 'no_html' ] != '1') {
+                if ($editing && (int)jomresGetParam($_REQUEST, 'no_html', 0) == 0) {
                     if (jomres_cmsspecific_areweinadminarea()) {
-                        $url = JOMRES_SITEPAGE_URL_ADMIN_AJAX.'&task=editinplace&lang='.get_showtime('lang');
+                        $url = JOMRES_SITEPAGE_URL_ADMIN_AJAX.'&task=editinplace&lang='.get_showtime('lang').'&language_context='.$jomres_language_definitions->ptype;
                     } else {
                         $url = JOMRES_SITEPAGE_URL_AJAX.'&task=editinplace';
                     }

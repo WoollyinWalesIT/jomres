@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -94,13 +94,13 @@ class jrportal_rooms
                             "' .(string) $this->description.'"
 							)';
         $this->room_uid = doInsertSql($query, '');
-
-        updateCustomText('_JOMRES_CUSTOMTEXT_ROOM_TAGLINE'.$this->room_uid, $this->tagline, true);
-        updateCustomText('_JOMRES_CUSTOMTEXT_ROOM_DESCRIPTION_'.$this->room_uid, $this->description, true);
         
         if (!$this->room_uid) {
             throw new Exception('Error: New room insert failed.');
         }
+		
+		updateCustomText('_JOMRES_CUSTOMTEXT_ROOM_TAGLINE'.$this->room_uid, $this->tagline, true);
+        updateCustomText('_JOMRES_CUSTOMTEXT_ROOM_DESCRIPTION_'.$this->room_uid, $this->description, true);
 
         if ($mrConfig[ 'singleRoomProperty' ] == '1') {
             $this->update_tariffs($this->propertys_uid);
@@ -158,6 +158,9 @@ class jrportal_rooms
         if (!doInsertSql($query, jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_SAVE_UPDATE', '_JOMRES_COM_MR_VRCT_ROOM_SAVE_UPDATE', false))) {
             throw new Exception('Error: Room update failed.');
         }
+		
+		updateCustomText('_JOMRES_CUSTOMTEXT_ROOM_TAGLINE'.$this->room_uid, $this->tagline, true);
+        updateCustomText('_JOMRES_CUSTOMTEXT_ROOM_DESCRIPTION_'.$this->room_uid, $this->description, true);
 
         if ($mrConfig[ 'singleRoomProperty' ] == '1') {
             $this->update_tariffs($this->propertys_uid);

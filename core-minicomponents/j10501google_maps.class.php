@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -34,6 +34,8 @@ class j10501google_maps
         $map_styles_dropdown = $componentArgs[ 'map_styles_dropdown' ];
 
         $configurationPanel->startPanel(jr_gettext('JOMRES_GOOGLE_MAPS', 'JOMRES_GOOGLE_MAPS', false));
+		
+		$configurationPanel->insertHeading(jr_gettext('JOMRES_GOOGLE_MAPS_PDETAILS', 'JOMRES_GOOGLE_MAPS_PDETAILS', false));
 		
 		$configurationPanel->setleft(jr_gettext('_JOMRES_MAP_MAPTYPE', '_JOMRES_MAP_MAPTYPE', false));
         $configurationPanel->setmiddle($lists['map_type']);

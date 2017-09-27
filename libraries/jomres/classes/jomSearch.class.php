@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -30,7 +30,7 @@ class jomSearch
         $jrConfig = $siteConfig->get();
         $this->formname = '';
         $this->searchAll = $searchAll;
-        $this->filter = array('propertyname' => '', 'country' => '', 'region' => '', 'town' => '', 'description' => '', 'feature_uids' => '', 'arrival' => '', 'departure' => '', 'ptype' => '', 'room_type' => '');
+        $this->filter = array('propertyname' => '', 'country' => '', 'region' => '', 'town' => '', 'description' => '', 'feature_uids' => '', 'arrival' => '', 'departure' => '', 'ptype' => '', 'cat_id' => '', 'room_type' => '');
         $this->makeFormName();
 
         if (!isset($calledByModule) || empty($calledByModule)) {
@@ -76,6 +76,9 @@ class jomSearch
             }
             if (!isset($vals[ 'ptype' ])) {
                 $vals[ 'ptype' ] = false;
+            }
+			if (!isset($vals[ 'cat_id' ])) {
+                $vals[ 'cat_id' ] = false;
             }
             if (!isset($vals[ 'room_type' ])) {
                 $vals[ 'room_type' ] = false;
@@ -127,6 +130,7 @@ class jomSearch
             if ( $calledByModule == 'mod_jomsearch_m0' && !this_cms_is_wordpress() ){
                 $vals[ 'propertyname' ] = true;
                 $vals[ 'ptype' ]        = true;
+				$vals[ 'cat_id' ]       = true;
                 $vals[ 'room_type' ]    = true;
                 $vals[ 'features' ]     = true;
                 $vals[ 'description' ]  = true;
@@ -141,6 +145,7 @@ class jomSearch
             $geosearchtype = $vals[ 'geosearchtype' ];
             $pn = $vals[ 'propertyname' ];
             $ptype = $vals[ 'ptype' ];
+			$cat_id = $vals[ 'cat_id' ];
             $room_type = $vals[ 'room_type' ];
             $features = $vals[ 'features' ];
             $description = $vals[ 'description' ];
@@ -169,6 +174,9 @@ class jomSearch
         }
         if ($ptype) {
             $searchOptions[ ] = 'ptype';
+        }
+		if ($cat_id) {
+            $searchOptions[ ] = 'cat_id';
         }
         if ($room_type) {
             $searchOptions[ ] = 'room_type';
@@ -203,7 +211,7 @@ class jomSearch
             $searchOptions[ ] = 'town';
         }
 
-        $searchOutput = array('propertyname' => 'dropdown', 'country' => 'dropdown', 'region' => 'dropdown', 'town' => 'dropdown', 'feature_uids' => 'dropdown', 'ptype' => 'dropdown', 'room_type' => 'dropdown');
+        $searchOutput = array('propertyname' => 'dropdown', 'country' => 'dropdown', 'region' => 'dropdown', 'town' => 'dropdown', 'feature_uids' => 'dropdown', 'ptype' => 'dropdown', 'cat_id' => 'dropdown', 'room_type' => 'dropdown');
         if (!$geosearch_dropdown) {
             $searchOutput[ 'country' ] = '';
             $searchOutput[ 'region' ] = '';
@@ -370,6 +378,17 @@ class jomSearch
             if ($result && !empty($result)) {
                 foreach ($result as $ptype) {
                     $this->prep[ 'ptypes' ][ ] = array('id' => $ptype[ 'id' ], 'ptype' => $ptype[ 'ptype' ]);
+                    //if (!empty($ptype['id']) && !empty($ptype['ptype']) )
+                    //$this->prep['ptypes'][]=array('id'=>$ptype['id'] ,'ptype'=>$ptype['ptype'],'number'=>$ptype['number']);
+                }
+            }
+        }
+		
+		if (in_array('cat_id', $this->searchOptions)) {
+            $result = prepPropertyCategoriesSearch();
+            if ($result && !empty($result)) {
+                foreach ($result as $c) {
+                    $this->prep[ 'categories' ][ ] = array('id' => $c[ 'id' ], 'title' => $c[ 'title' ]);
                     //if (!empty($ptype['id']) && !empty($ptype['ptype']) )
                     //$this->prep['ptypes'][]=array('id'=>$ptype['id'] ,'ptype'=>$ptype['ptype'],'number'=>$ptype['number']);
                 }
@@ -592,6 +611,7 @@ class jomSearch
             $where = '('.implode(($phrase == 'all' ? ') AND (' : ') OR ('), $wheres).')';
             $query = 'SELECT a.property_uid FROM #__jomres_custom_text a, #__jomres_propertys b ';
             $query .= " WHERE published = 1 AND ( $where ) AND ( a.property_uid = b.propertys_uid )";
+            $query .= " $property_ors ";
             $set2 = doSelectSql($query);
 
             $result = array();
@@ -717,6 +737,22 @@ class jomSearch
         //var_dump($this->resultBucket);exit;
         $this->sortResult();
     }
+	
+	/**
+     * Performs a search based on property category.
+     */
+    public function jomSearch_categories()
+    {
+        $filter = $this->filter[ 'cat_id' ];
+        $this->makeOrs();
+        $property_ors = $this->ors;
+        if (!empty($filter) && $filter > 0 && $property_ors) {
+            $query = "SELECT propertys_uid FROM #__jomres_propertys WHERE published = '1' AND cat_id = $filter  $property_ors ";
+            $this->resultBucket = doSelectSql($query);
+        }
+        //var_dump($this->resultBucket);exit;
+        $this->sortResult();
+    }
 
     /**
      * Performs a search based on property types.
@@ -743,12 +779,13 @@ class jomSearch
         $filter = (int) $this->filter[ 'guestnumber' ];
         $this->makeOrs('property_uid');
         $property_ors = $this->ors;
+		$res = array();
         if (!empty($filter) && $property_ors) {
             $query = 'SELECT property_uid FROM #__jomres_rates WHERE maxpeople '.$clause.' '.$filter.' '.$property_ors;
             $result = doSelectSql($query);
             // We need to create a new result array with classes called propertys_uid in, cos that's what resultBucket needs. Annoying fiddly stuff because we've not consistently named the property uids column in various tables, but there you have it. It's not going to change now.
             foreach ($result as $r) {
-                $resultObj = new stdClass();
+				$resultObj = new stdClass();
                 $resultObj->propertys_uid = $r->property_uid;
                 if (!in_array($resultObj, $res)) {
                     $res[ ] = $resultObj;
@@ -945,7 +982,9 @@ class jomSearch
 
                     if (!isset($this->filter[ 'guestnumber' ]) || (isset($this->filter[ 'guestnumber' ]) && (int) $this->filter[ 'guestnumber' ] == 0)) {
                         $total_in_party = 1;
-                    }
+                    } else {
+						$total_in_party = (int)$this->filter[ 'guestnumber' ];
+					}
 
                     if ($total_in_party <= $max_capacity) {
                         $propertiesWithFreeRoomsArray[ ] = $property;
@@ -1281,6 +1320,40 @@ function prepPropertyTypeSearch()
 }
 
 /**
+ * Prepares the property categories search data.
+ */
+function prepPropertyCategoriesSearch()
+{
+    // Prepares the property categories data required for a search
+    $searchAll = jr_gettext('_JOMRES_SEARCH_ALL', '_JOMRES_SEARCH_ALL', false, false);
+    $result = array();
+    $r = array();
+
+    $r[ 'id' ] = $searchAll;
+    $r[ 'title' ] = $searchAll;
+    $r[ 'description' ] = $searchAll;
+    $result[ ] = $r;
+
+    $jomres_property_categories = jomres_singleton_abstract::getInstance('jomres_property_categories');
+    $jomres_property_categories->get_all_property_categories();
+
+    if (!empty($jomres_property_categories->property_categories)) {
+        foreach ($jomres_property_categories->property_categories as $c) {
+            $r = array();
+
+			$r[ 'id' ] = $c['id'];
+			$r[ 'title' ] = $c['title'];
+			$r[ 'description' ] = $c['description'];
+
+			$result[ ] = $r;
+        }
+    }
+
+    //var_dump($result);exit;
+    return $result;
+}
+
+/**
  * Prepares the price range search dropdown data.
  */
 function prepPriceRangeSearch($increments = 10)
@@ -1308,30 +1381,36 @@ function prepPriceRangeSearch($increments = 10)
 	}
 
 	sort($allTariffs);
-	$lowest = $allTariffs[ 0 ];
-	$count = count($allTariffs) - 1;
-	$highest = $allTariffs[ $count ];
+	
+	if ( isset($allTariffs[ 0 ])) {
+		$highest = end($allTariffs);
+		$lowest = reset($allTariffs);
+		// Found during testing, when one property has the price 100,000,000 and the increments is left to the default 20, you'll get an out of memory error.
+		// This is because you'll have up to half a million possible ranges. Here we'll test highest/increments. If the result is > 100 we'll have to set the increments to something a bit more sensible to stave off out of memory errors.
+		if ($highest / $increments > 10000) {
+			$increments = $increments * 1000;
+		}
 
-	// Found during testing, when one property has the price 100,000,000 and the increments is left to the default 20, you'll get an out of memory error.
-	// This is because you'll have up to half a million possible ranges. Here we'll test highest/increments. If the result is > 100 we'll have to set the increments to something a bit more sensible to stave off out of memory errors.
-	if ($highest / $increments > 10000) {
-		$increments = $increments * 1000;
-	}
-
-	$ranges = my_range(0, $highest, $increments);
-	foreach ($ranges as $range) {
-		$startRange = $range;
-		$endRange = $range + $increments;
-		$rangeHasElements = false;
-		foreach ($allTariffs as $t) {
-			if ($t > $startRange && $t <= $endRange) {
-				$rangeHasElements = true;
+		$ranges = my_range(0, $highest, $increments);
+		foreach ($ranges as $range) {
+			$startRange = $range;
+			$endRange = $range + $increments;
+			$rangeHasElements = false;
+			foreach ($allTariffs as $t) {
+				if ($t > $startRange && $t <= $endRange) {
+					$rangeHasElements = true;
+				}
+			}
+			if ($rangeHasElements) {
+				$result[ ] = $startRange.'-'.$endRange;
 			}
 		}
-		if ($rangeHasElements) {
-			$result[ ] = $startRange.'-'.$endRange;
-		}
+		$count = count($allTariffs) - 1;
+		$highest = $allTariffs[ $count ];		
 	}
+
+
+
 
     return $result;
 }

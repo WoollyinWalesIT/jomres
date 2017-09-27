@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -24,10 +24,16 @@ class j06000show_property_reviews
             $this->shortcode_data = array(
                 'task' => 'show_property_reviews',
                 'info' => '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_REVIEWS',
-                'arguments' => array(0 => array(
+                'arguments' => array(
+						array(
                         'argument' => 'property_uid',
                         'arg_info' => '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_REVIEWS_ARG_PROPERTY_UID',
                         'arg_example' => '1',
+                        ),
+						array(
+                        'argument' => 'reviews_limit',
+                        'arg_info' => '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_REVIEWS_LIMIT',
+                        'arg_example' => '3',
                         ),
                     ),
                 );
@@ -43,6 +49,7 @@ class j06000show_property_reviews
         $data_only = false;
 
         $task = jomresGetParam($_REQUEST, 'task', '');
+		$modal_wrap = (int)jomresGetParam($_REQUEST, 'modal_wrap', 0);
 
         $just_added = 0;
         if (isset($_GET[ 'ja' ])) {
@@ -91,10 +98,8 @@ class j06000show_property_reviews
         $output[ '_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW' ] = jr_gettext('_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW', '_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW', false, false);
         $output[ '_JOMRES_REVIEWS_THANKS_FOR_CONFIRM' ] = jr_gettext('_JOMRES_REVIEWS_THANKS_FOR_CONFIRM', '_JOMRES_REVIEWS_THANKS_FOR_CONFIRM', false, false);
         $output[ '_JOMRES_REVIEWS_ALREADY_CONFIRMED' ] = jr_gettext('_JOMRES_REVIEWS_ALREADY_CONFIRMED', '_JOMRES_REVIEWS_ALREADY_CONFIRMED', false, false);
-
-        if ($_REQUEST['modal_wrap'] == '0') {
-            $output[ 'PROPERTY_NAME' ] = $current_property_details->property_name;
-        }
+		
+		$output[ 'PROPERTY_NAME' ] = $current_property_details->property_name;
 
         $output[ '_JOMRES_REVIEWS_THANKS_FOR_REVIEW' ] = '';
         $output[ 'SHOW_THANKS' ] = 'false';
@@ -256,8 +261,30 @@ class j06000show_property_reviews
                 $rows[ ] = $r;
             }
 
+			if (!isset($_REQUEST['reviews_limit']) ) {
+				if (!isset($jrConfig[ 'reviews_limit' ])) {
+					$jrConfig[ 'reviews_limit' ] = 2;
+				}
+				$reviews_limit = $jrConfig[ 'reviews_limit' ];
+			} else {
+				$reviews_limit = (int)jomresGetParam($_REQUEST, 'reviews_limit', 0);
+			}
+
+			$showall = array();
+			$show_fullpage_link = false;
+			if ( $reviews_limit < count($rows) ) {
+				
+				$showall[] = array ( 
+					"TEXT" => jr_gettext('PORTAL_REVIEWS_SHOW_ALL_REVIEWS', 'PORTAL_REVIEWS_SHOW_ALL_REVIEWS', false, false) ,
+					"LINK" => jomresURL(JOMRES_SITEPAGE_URL."&task=show_property_reviews&property_uid=".$property_uid."&reviews_limit=". count($rows)) 
+					);
+			}
+
+			$rows = array_slice($rows, 0, $reviews_limit);
+			
             $pageoutput[ ] = $output;
             $tmpl = new patTemplate();
+			$tmpl->addRows('showall', $showall);
             $tmpl->addRows('pageoutput', $pageoutput);
             $tmpl->addRows('rows', $rows);
             $tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);

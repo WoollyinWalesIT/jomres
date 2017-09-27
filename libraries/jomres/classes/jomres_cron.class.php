@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -31,12 +31,6 @@ class jomres_cron
         $this->dueJobs = array();
         $this->debug = array();
 		$this->displaylog = false;
-        
-		if (!function_exists('curl_init')) {
-            $this->displaylog = true;
-            $this->debug[ ] = '<b>Cannot process jobs, curl function does not exist!</b>';
-			$this->displayDebug();
-        }
         
 		$this->checkForStalledJobs(); // New for 5.1, some old jobs have been found to be locked, we need to check those and unlock any that need unlocking.
         
@@ -253,8 +247,8 @@ class jomres_cron
 			
 			//handle domain names that contain non-latin chars
 			if (preg_match('/[^\x20-\x7f]/', $livesite)) {
-				require_once JOMRES_LIBRARIES_ABSPATH.'idna_converter'.JRDS.'idna_convert.class.php';
-				$IDN = new jomres_idna_convert();
+				//require_once JOMRES_LIBRARIES_ABSPATH.'idna_converter'.JRDS.'idna_convert.class.php';
+				$IDN = new Mso\IdnaConvert\IdnaConvert();
 				$encoded = $IDN->encode($livesite);
 				$new = str_replace($livesite, $encoded, JOMRES_SITEPAGE_URL_AJAX);
 				$livesite = $new;

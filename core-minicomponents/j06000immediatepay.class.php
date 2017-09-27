@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -61,7 +61,7 @@ class j06000immediatepay
             $this->paypal_settings = $paypal_settings->paypalConfigOptions;
         }
 
-        $ourCallbackURL = JOMRES_SITEPAGE_URL_NOSEF.'&task=ospayment&no_html=1&Itemid='.$Itemid.'&subscription_id='.$subscription->id;
+        $ourCallbackURL = JOMRES_SITEPAGE_URL_NOSEF.'&task=ospayment&no_html=1&Itemid='.$Itemid.'&subscription_id='.$invoice->subscription_id;
 
         $transactionName = 'Paypal Invoice from '.$jomresConfig_sitename;
         if ($this->paypal_settings[ 'usesandbox' ] == '1') {
@@ -76,11 +76,7 @@ class j06000immediatepay
         $this->add_field('invoice', $invoice_id);
         $this->add_field('custom', $invoice_id);
         $this->add_field('no_shipping', '1');
-        if ($invoice->subscription == 1) {
-            $this->add_field('amount', number_format($invoice->recur_total, 2));
-        } else {
-            $this->add_field('amount', number_format($invoice->init_total, 2));
-        }
+        $this->add_field('amount', number_format($invoice->init_total, 2));
         $this->add_field('return', JOMRES_SITEPAGE_URL_NOSEF);
         //$this->add_field('cancel_return', JOMRES_SITEPAGE_URL.'&task=canc_subscribed&Itemid='.$Itemid);
         $this->add_field('notify_url', $ourCallbackURL.'&action=ipn');

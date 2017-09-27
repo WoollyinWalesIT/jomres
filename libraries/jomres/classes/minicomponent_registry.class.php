@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -88,8 +88,6 @@ class minicomponent_registry
         $this->getMiniComponentCMSSpecificClasses();
 
         if ($jrConfig[ 'safe_mode' ] == '0') {
-            $this->getMiniCorePluginsClasses();
-            $this->getMiniComponentRemoteClasses();
 
             if (!defined('AUTO_UPGRADE')) {
                 $this->getMiniComponentCmsTemplateClasses();
@@ -225,40 +223,9 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
         }
     }
 
-    // Reads in class files from the components table and inserts them into the registeredClasses array
-    public function getMiniComponentRemoteClasses()
-    {
-        $jrePath = JOMRES_REMOTEPLUGINS_ABSPATH;
-        $d = @dir($jrePath);
-        $docs = array();
-        if ($d) {
-            while (false !== ($entry = $d->read())) {
-                $filename = $entry;
-                if (substr($entry, 0, 1) != '.') {
-                    $docs[ ] = $entry;
-                }
-            }
-            $d->close();
-            if (!empty($docs)) {
-                sort($docs);
-                foreach ($docs as $doc) {
-                    $listdir = $jrePath.$doc.JRDS;
-                    $dr = @dir($listdir);
-                    if ($dr) {
-                        while (false !== ($entry = $dr->read())) {
-                            $filename = $entry;
-                            $this->registerComponentFile($listdir, $filename, 'remotecomponent');
-                        }
-                        $dr->close();
-                    }
-                }
-            }
-        }
-    }
-
     public function getMiniComponentCMSSpecificClasses()
     {
-        $jrePath = JOMRES_CMSSPECIFIC_ABSPATH._JOMRES_DETECTED_CMS.JRDS;
+        $jrePath = _JOMRES_DETECTED_CMS_SPECIFIC_FILES;
         $d = @dir($jrePath);
         if ($d) {
             while (false !== ($entry = $d->read())) {
@@ -272,7 +239,7 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
     // Reads in class files from the events folder and inserts them into the registeredClasses array
     public function getMiniComponentCoreClasses()
     {
-        $listdir = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'core-minicomponents'.JRDS;
+        $listdir = JOMRES_APP_ABSPATH;
         $d = @dir($listdir);
         if ($d) {
             while (false !== ($entry = $d->read())) {
@@ -280,36 +247,6 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
                 $this->registerComponentFile($listdir, $filename, 'core');
             }
             $d->close();
-        }
-    }
-
-    public function getMiniCorePluginsClasses()
-    {
-        $jrePath = JOMRES_COREPLUGINS_ABSPATH;
-        $d = @dir($jrePath);
-        $docs = array();
-        if ($d) {
-            while (false !== ($entry = $d->read())) {
-                $filename = $entry;
-                if (substr($entry, 0, 1) != '.') {
-                    $docs[ ] = $entry;
-                }
-            }
-            $d->close();
-            if (!empty($docs)) {
-                sort($docs);
-                foreach ($docs as $doc) {
-                    $listdir = $jrePath.$doc.JRDS;
-                    $dr = @dir($listdir);
-                    if ($dr) {
-                        while (false !== ($entry = $dr->read())) {
-                            $filename = $entry;
-                            $this->registerComponentFile($listdir, $filename, 'core-plugin');
-                        }
-                        $dr->close();
-                    }
-                }
-            }
         }
     }
 

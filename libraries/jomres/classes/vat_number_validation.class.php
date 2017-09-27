@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -174,7 +174,7 @@ class vat_number_validation
 
             $this->vat_number = $countryCode.$vatNumber;
 
-            require_once JOMRES_LIBRARIES_ABSPATH.'nusoap'.JRDS.'nusoap.php';
+            //require_once JOMRES_LIBRARIES_ABSPATH.'nusoap'.JRDS.'nusoap.php';
 
             $client = new nusoap_client('http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl', 'wsdl');
             $params = array('countryCode' => $countryCode, 'vatNumber' => $vatNumber);

@@ -5,6 +5,9 @@ namespace OAuth2\TokenType;
 use OAuth2\RequestInterface;
 use OAuth2\ResponseInterface;
 
+/**
+*
+*/
 class Bearer implements TokenTypeInterface
 {
     private $config;
@@ -12,7 +15,7 @@ class Bearer implements TokenTypeInterface
     public function __construct(array $config = array())
     {
         $this->config = array_merge(array(
-            'token_param_name' => 'access_token',
+            'token_param_name'         => 'access_token',
             'token_bearer_header_name' => 'Bearer',
         ), $config);
     }
@@ -23,7 +26,7 @@ class Bearer implements TokenTypeInterface
     }
 
     /**
-     * Check if the request has supplied token.
+     * Check if the request has supplied token
      *
      * @see https://github.com/bshaffer/oauth2-server-php/issues/349#issuecomment-37993588
      */
@@ -55,6 +58,7 @@ class Bearer implements TokenTypeInterface
      *
      * Old Android version bug (at least with version 2.2)
      * @see http://code.google.com/p/android/issues/detail?id=6684
+     *
      */
     public function getAccessTokenParameter(RequestInterface $request, ResponseInterface $response)
     {
@@ -62,7 +66,7 @@ class Bearer implements TokenTypeInterface
 
         /**
          * Ensure more than one method is not used for including an
-         * access token.
+         * access token
          *
          * @see http://tools.ietf.org/html/rfc6750#section-3.1
          */
@@ -73,7 +77,7 @@ class Bearer implements TokenTypeInterface
             return null;
         }
 
-        /*
+        /**
          * If no authentication is provided, set the status code
          * to 401 and return no other error information
          *
@@ -87,7 +91,7 @@ class Bearer implements TokenTypeInterface
 
         // HEADER: Get the access token from the header
         if (!empty($headers)) {
-            if (!preg_match('/'.$this->config['token_bearer_header_name'].'\s(\S+)/i', $headers, $matches)) {
+            if (!preg_match('/' . $this->config['token_bearer_header_name'] . '\s(\S+)/i', $headers, $matches)) {
                 $response->setError(400, 'invalid_request', 'Malformed auth header');
 
                 return null;

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -36,7 +36,7 @@ class jomres_obsolete_file_handling
         }
         $this->dir_root = JOMRESCONFIG_ABSOLUTE_PATH;
         $this->dir_jomres = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS;
-        $this->dir_minicomponents = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'core-minicomponents'.JRDS;
+        $this->dir_minicomponents = JOMRES_APP_ABSPATH;
         $this->dir_classes = JOMRES_CLASSES_ABSPATH;
         $this->dir_functions = JOMRES_FUNCTIONS_ABSPATH;
         $this->dir_libraries = JOMRES_LIBRARIES_ABSPATH;
@@ -917,6 +917,8 @@ class jomres_obsolete_file_handling
 
         $this->add_obs_file($this->dir_javascript.'bootstrap-tour.min.js');
         $this->add_obs_file($this->dir_javascript.'bootstrap-tour-standalone.min.js');
+		$this->add_obs_file($this->dir_javascript.'bootstrap-tour.js');
+        $this->add_obs_file($this->dir_javascript.'bootstrap-tour-standalone.js');
         $this->add_obs_file($this->dir_javascript.'ColVis.js');
         $this->add_obs_file($this->dir_javascript.'jomres.min.js');
         $this->add_obs_file($this->dir_javascript.'jomres_consolidated_files.js');
@@ -1505,6 +1507,32 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_minicomponents.'j06001dashboard_weekly_percentages.class.php');
 		$this->add_obs_file($this->dir_templates_bootstrap_backend.'dashboard_weekly_percentages.html');
 		$this->add_obs_file($this->dir_templates_bootstrap3_backend.'dashboard_weekly_percentages.html');
+		$this->add_obs_file($this->dir_minicomponents.'j06002edit_booking.class.php');
+		
+		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'plugin_manager_licenses_subscriptions.html');
+		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'plugin_manager_licenses_full.html');
+		$this->add_obs_file($this->dir_minicomponents.'j16000key_saved_check.class.php');
+		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'key_saved_check.html');
+		$this->add_obs_file($this->dir_classes.'jomres_frontend_configuration_level.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j06001set_config_level.class.php');
+		$this->add_obs_file($this->dir_templates_bootstrap_backend.'frontend_configuration_level_snippet.html');
+		$this->add_obs_file($this->dir_templates_bootstrap3_backend.'frontend_configuration_level_snippet.html');
+		$this->add_obs_file($this->dir_templates_jqueryui_backend.'frontend_configuration_level_snippet.html');
+		$this->add_obs_dir($this->dir_libraries.'json'.JRDS);
+		$this->add_obs_dir($this->dir_libraries.'htmlpurifier'.JRDS);
+		$this->add_obs_dir($this->dir_libraries.'idna_converter'.JRDS);
+		$this->add_obs_dir($this->dir_libraries.'nusoap'.JRDS);
+		$this->add_obs_dir($this->dir_libraries.'Parsedown'.JRDS);
+		$this->add_obs_dir($this->dir_libraries.'PHPMailer-5.2.21'.JRDS);
+		$this->add_obs_dir($this->dir_libraries.'qr_code_lib'.JRDS);
+		$this->add_obs_dir($this->dir_libraries.'recaptcha'.JRDS);
+		$this->add_obs_dir($this->dir_libraries.'adodb'.JRDS);
+		$this->add_obs_file($this->dir_minicomponents.'j05010handlereq.class.php');
+		$this->add_obs_dir($this->dir_libraries.'phptools'.JRDS.'Parsedown'.JRDS);
+		$this->add_obs_file($this->dir_minicomponents.'j99994user_feedback.class.php');
+		$this->add_obs_file($this->dir_functions.'imagehandling.php');
+		$this->add_obs_file($this->dir_libraries.'http_build_url.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00001functioncall_output_filters.class.php');
     }
 
     public function add_obs_file($path_and_file)

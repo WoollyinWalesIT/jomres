@@ -74,12 +74,24 @@ Jomres includes Access Control functionality, however we find that a more simpli
 
 99994 Post run scripts are run here, for example the Channel Manager functionality has a watcher for here, and webhooks are triggered at this point.
 
+99998 jomres feedback messages
 99999 Anything that needs to be done right at the end of a run.
 
 Administrator area
 
 10001 Builds the control panel.  
-10501 Site Configuration tabs.  
+10501 Site Configuration tabs.
+10521 trigger point to add settings from plugins to site config->misc tab
+10522 trigger point to add settings from plugins to site config->booking tab
+10523 trigger point to add settings from plugins to site config->business details tab
+10524 trigger point to add settings from plugins to site config->file uploads tab
+10525 trigger point to add settings from plugins to site config->google maps tab
+10526 trigger point to add settings from plugins to site config->js calendar tab
+10527 trigger point to add settings from plugins to site config->portal functionality tab
+10529 trigger point to add settings from plugins to site config->search options tab
+10530 trigger point to add settings from plugins to site config->cron tab
+10531 trigger point to add settings from plugins to site config->integrations tab
+  
 11010,11020,11040 Administrator area Media centre resource options.
 
 13100 Allows plugins to add warnings to the control panel.
@@ -89,6 +101,7 @@ Administrator area
 19995 creates the admin core menu items  
 19997 builds the admin cpanel menu
 
+99998 jomres feedback messages
 
 Menu sections (Frontend)
 

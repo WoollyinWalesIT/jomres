@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -57,11 +57,6 @@ class j10501properties
 		$configurationPanel->setleft(jr_gettext('_JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_COUNTRY', '_JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_COUNTRY', false));
 		$configurationPanel->setmiddle(limitCountriesDropdown());
 		$configurationPanel->setright();
-		$configurationPanel->insertSetting();
-		
-		$configurationPanel->setleft(jr_gettext('JOMRES_COM_A_MINIMALCONFIG', 'JOMRES_COM_A_MINIMALCONFIG', false));
-		$configurationPanel->setmiddle($lists[ 'minimalconfiguration' ]);
-		$configurationPanel->setright(jr_gettext('JOMRES_COM_A_MINIMALCONFIG_DESC', 'JOMRES_COM_A_MINIMALCONFIG_DESC', false));
 		$configurationPanel->insertSetting();
 
 		$configurationPanel->setleft(jr_gettext('_JOMRES_PROPERTYDETAILS_INTABS_TITLE', '_JOMRES_PROPERTYDETAILS_INTABS_TITLE', false));

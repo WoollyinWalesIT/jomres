@@ -30,7 +30,9 @@ class jomres_deferred_tasks {
     public function handle_message( $payload_source ) {
         if ( is_file($this->queued_tasks_dir.$payload_source) ) {
 			$file_contents = file_get_contents($this->queued_tasks_dir.$payload_source);
+			// logging::log_message("Deferred tasks handle message contents ".$file_contents , 'Core', 'DEBUG'  );
 			$result = $this->process_trigger($file_contents);
+			// logging::log_message("Deferred tasks handle message prcess result ".serialize($result) , 'Core', 'DEBUG'  );
 			$siteConfig        = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 			$jrConfig          = $siteConfig->get();
 			if ($jrConfig['development_production'] != 'development') {
@@ -42,6 +44,7 @@ class jomres_deferred_tasks {
 	public function process_trigger( $message ) {
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 		$message_contents = unserialize($message);
+		
 		if (!isset($message_contents->trigger_number)) {
             throw new Exception('Error: Received message with no trigger number');
         }
@@ -50,20 +53,20 @@ class jomres_deferred_tasks {
         }
         
         $complete_message = array ( "payload" => $message_contents->payload , "task" => $message_contents->task );
-        
-        if (isset($messsage_contents->minicomponent) && $messsage_contents->minicomponent != '' ) {
-            if ( $MiniComponents->eventSpecificlyExistsCheck( $message_contents->trigger_number, $messsage_contents->minicomponent  ) ) {
-                logging::log_message("Starting call to minicomponent ".$message_contents->trigger_number.$messsage_contents->minicomponent , 'Core', 'DEBUG' , $message_contents->payload );
-                $MiniComponents->specificEvent($message_contents->trigger_number, $messsage_contents->minicomponent, $complete_message );
+
+        if (isset($message_contents->minicomponent) && $message_contents->minicomponent != '' ) {
+            if ( $MiniComponents->eventSpecificlyExistsCheck( $message_contents->trigger_number, $message_contents->minicomponent  ) ) {
+                logging::log_message("Starting call to minicomponent ".$message_contents->trigger_number.$message_contents->minicomponent , 'Core', 'DEBUG' , $message_contents->payload );
+                $MiniComponents->specificEvent($message_contents->trigger_number, $message_contents->minicomponent, $complete_message );
             }
             else {
-                logging::log_message("Failed to find ".$message_contents->trigger_number.$messsage_contents->minicomponent, 'Core', 'WARNING');
+                logging::log_message("Failed to find ".$message_contents->trigger_number.$message_contents->minicomponent, 'Core', 'WARNING');
             }
 		} else {
 			$MiniComponents->triggerEvent($message_contents->trigger_number , $complete_message );
 		}
 	}
-    
+
 	public function construct_background_message( $trigger_number = '', $minicomponent = '', $payload = '' )  {
 		if ($trigger_number == '' ) {
 			throw new Exception('Error: trigger number not set ');

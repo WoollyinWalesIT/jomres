@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -25,24 +25,39 @@ class j00060toptemplate
 
             return;
         }
+
         if (get_showtime('topoff')) {
             return;
         }
-
+		
         $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+        
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
-        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-        $management_view = jomresGetParam($_REQUEST, 'tmpl', false);
+        
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+        
+		$management_view = jomresGetParam($_REQUEST, 'tmpl', false);
         $popup = intval(jomresGetParam($_REQUEST, 'popup', 0));
         //$tz         	   	= $componentArgs[ 'tz' ];
-        $jomreslang 		= jomres_singleton_abstract::getInstance( 'jomres_language' );
+        
+		$jomreslang 		= jomres_singleton_abstract::getInstance( 'jomres_language' );
+		
+		$defaultProperty 	= getDefaultProperty();
 
         if (AJAXCALL || $popup == 1) {
             return;
         }
 
-        $output = array();
+		$output = array();
+
+		$output[ 'VIDEO_TUTORIALS' ] = '';
+		if (using_bootstrap()) {
+			$jomres_video_tutorials = jomres_singleton_abstract::getInstance('jomres_video_tutorials');
+			$jomres_video_tutorials->property_uid = $defaultProperty;
+			$output[ 'VIDEO_TUTORIALS' ] = $jomres_video_tutorials->build_modal();
+		}
+
         $output[ 'PROPERTYNAME' ] = '';
         $output[ 'HACTIVE_PROPERTY' ] = '';
         $output[ 'MANAGEMENT_VIEW_DROPDOWN' ] = '';
@@ -106,6 +121,7 @@ class j00060toptemplate
         $output[ 'BACKLINK' ] = '<a href="javascript:history.go(-1)">'.jr_gettext('_JOMRES_COM_MR_BACK', '_JOMRES_COM_MR_BACK').'</a>';
         $output[ 'LIVESITE' ] = get_showtime('live_site');
         $output[ 'DATEPICKERLANG' ] = get_showtime('datepicker_lang');
+		$output[ 'PROPERTY_UID' ] = $defaultProperty;
 
         $lang_dropdown = array();
         if ($jrConfig[ 'showLangDropdown' ] == '1')
@@ -121,7 +137,6 @@ class j00060toptemplate
                 $output['PROPERTY_SELECTOR_DROPDOWN'] = $jomres_property_selector_dropdown->get_dropdown();
                 set_showtime('property_selector_dropdown', $output['PROPERTY_SELECTOR_DROPDOWN']);
             } else {
-                $defaultProperty = getDefaultProperty();
                 $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
                 $current_property_details->gather_data($defaultProperty);
                 $output[ 'PROPERTYNAME' ] = $current_property_details->property_name;
@@ -132,27 +147,18 @@ class j00060toptemplate
 		
 		//widgets selection dropdown
 		$widgets_dropdown = array();
-		if ($thisJRUser->userIsManager && get_showtime('task') == 'cpanel' || get_showtime('task') == '') {
+		if (
+			$thisJRUser->userIsManager && 
+			!isset($_REQUEST['calledByModule']) && 
+				(
+				get_showtime('task') == 'cpanel' || 
+				get_showtime('task') == ''
+				) 
+			) {
 			$jomres_widgets = jomres_singleton_abstract::getInstance('jomres_widgets');
 			
 			$widgets_dropdown[]['WIDGETS_DROPDOWN'] = $jomres_widgets->get_widgets_dropdown();
 		}
-		
-		//jomres FAQ
-        $output['_JOMRES_FAQ'] = jr_gettext('_JOMRES_FAQ', '_JOMRES_FAQ', false);
-
-		//messages
-        $messaging = array();
-
-        $jomres_messaging = jomres_singleton_abstract::getInstance('jomres_messages');
-        $messages = $jomres_messaging->get_messages();
-
-        if (!empty($messages)) {
-            foreach ($messages as $mes) {
-                $m[ 'MESSAGE' ] = $mes;
-                $messaging[ ] = $m;
-            }
-        }
 
         if (using_bootstrap()) {
             $output[ 'USING_BOOTSTRAP' ] = 'true';
@@ -169,7 +175,6 @@ class j00060toptemplate
             $tmpl->readTemplatesFromInput('top.html');
         }
         $tmpl->addRows('pageoutput', $pageoutput);
-        $tmpl->addRows('messages', $messaging);
         //$tmpl->addRows( 'timezone_dropdown', $timezone_dropdown );
         $tmpl->addRows( 'lang_dropdown', $lang_dropdown );
 		$tmpl->addRows( 'widgets_dropdown', $widgets_dropdown );
@@ -194,9 +199,6 @@ class j00060toptemplate
         }
     }
 
-/**
- * Must be included in every mini-component.
- */
     // This must be included in every Event/Mini-component
     public function getRetVals()
     {

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -108,10 +108,10 @@ class j01010listpropertys
             $propertys_uids = array();
         }
 
-        if (!@session_start()) {
+        /* if (!@session_start()) {
             @ini_set('session.save_handler', 'files');
             session_start();
-        }
+        } */
 
         if ($propertylist_layout != '' || $this->jr_page > 0 || $return_to_search_results) {
             $propertys_uids = $tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ];

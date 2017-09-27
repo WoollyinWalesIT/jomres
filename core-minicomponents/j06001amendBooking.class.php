@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -41,18 +41,23 @@ class j06001amendBooking
             $tmpArray = array();
 
             $basic_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
-            $basic_property_details->get_property_name_multi($thisJRUser->authorisedProperties);
 
+			$basic_property_details->gather_data_multi($thisJRUser->authorisedProperties);
+			$current_property_property_type = $basic_property_details->multi_query_result[$defaultProperty]['ptype_id'];
+			
             foreach ($thisJRUser->authorisedProperties as $p) {
-                $obj = new stdClass();
-                $obj->propertys_uid = $p;
-                $obj->property_name = $basic_property_details->property_names[$p];
-                $tmpArray[ ] = $obj;
+				if ( $basic_property_details->multi_query_result[$p]['ptype_id'] == $current_property_property_type ) {
+					$obj = new stdClass();
+					$obj->propertys_uid = $p;
+					$obj->property_name =$basic_property_details->multi_query_result[$p]['property_name'];
+					$tmpArray[ ] = $obj;
+				}
             }
             $propertysList = $tmpArray;
-            if (count($propertysList == 1)) {
+            if (count($propertysList) == 1) {
                 jomresRedirect(get_booking_url($defaultProperty,'', '&amend=1&contractuid='.$contract_uid), '');
             }
+			
             $counter = 0;
             foreach ($propertysList as $property) {
                 if ($counter == 0) {
@@ -70,16 +75,18 @@ class j06001amendBooking
             $cancelText = jr_gettext('_JOMRES_COM_A_CANCEL', '_JOMRES_COM_A_CANCEL', false);
             $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
             $jrtb = $jrtbar->startTable();
-            $jrtb .= $jrtbar->toolbarItem('cancel', jomresURL(JOMRES_SITEPAGE_URL), $cancelText);
+            $jrtb .= $jrtbar->toolbarItem('cancel', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_booking&contract_uid='.$contract_uid), $cancelText);
             $jrtb .= $jrtbar->endTable();
             $output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
             $output[ 'PAGETITLE' ] = jr_gettext('_JOMCOMP_AMEND', '_JOMCOMP_AMEND');
             $output[ 'SELECTPROPERTY' ] = jr_gettext('_JOMCOMP_AMEND_SELECTPROPERTY', '_JOMCOMP_AMEND_SELECTPROPERTY');
             $output[ 'CONTRACTUID' ] = $contract_uid;
+			$output[ '_JOMRES_CONFIRMATION_AMEND' ] = jr_gettext('_JOMRES_CONFIRMATION_AMEND', '_JOMRES_CONFIRMATION_AMEND');
 			
 			$output[ 'BOOKING_FORM_URL' ] = get_booking_url($defaultProperty,'nosef');
-
+			
+			
             $pageoutput[ ] = $output;
             $tmpl = new patTemplate();
 
@@ -113,6 +120,6 @@ class j06001amendBooking
      */
     public function getRetVals()
     {
-        return $this->returnValue;
+        return null;
     }
 }

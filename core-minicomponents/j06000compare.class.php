@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -54,7 +54,7 @@ class j06000compare
 
         $output = array();
         $output[ '_JOMRES_RETURN_TO_RESULTS' ] = jr_gettext('_JOMRES_RETURN_TO_RESULTS', '_JOMRES_RETURN_TO_RESULTS', false, false);
-        $output[ 'RETURN_TO_RESULTS_LINK' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=compare');
+        $output[ 'RETURN_TO_RESULTS_LINK' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=search');
 
         $output[ '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN', false, false);
         $output[ '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', false, false);
@@ -115,9 +115,12 @@ class j06000compare
                 $MiniComponents->specificEvent('01050', 'x_geocoder', $Args);
                 $r[ 'MAP' ] = $MiniComponents->miniComponentData[ '01050' ][ 'x_geocoder' ];
 
-                $r[ 'PRICE_PRE_TEXT' ] = $jomres_property_list_prices->lowest_prices[$property_uid][ 'PRE_TEXT' ];
-                $r[ 'PRICE_PRICE' ] = $jomres_property_list_prices->lowest_prices[$property_uid][ 'PRICE' ];
-                $r[ 'PRICE_POST_TEXT' ] = $jomres_property_list_prices->lowest_prices[$property_uid][ 'POST_TEXT' ];
+				if (isset($jomres_property_list_prices->lowest_prices[$property_uid])) {
+					$r[ 'PRICE_PRE_TEXT' ] = $jomres_property_list_prices->lowest_prices[$property_uid][ 'PRE_TEXT' ];
+					$r[ 'PRICE_PRICE' ] = $jomres_property_list_prices->lowest_prices[$property_uid][ 'PRICE' ];
+					$r[ 'PRICE_POST_TEXT' ] = $jomres_property_list_prices->lowest_prices[$property_uid][ 'POST_TEXT' ];
+				}
+
 
                 $property_image = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/noimage.gif';
                 if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.$property_uid.'_property_'.$property_uid.'.jpg')) {

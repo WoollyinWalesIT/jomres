@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.8
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -35,7 +35,12 @@ class jr_user
     {
         self::$internal_debugging = false;
 
-        //jomres user role
+        $this->init_user();
+    }
+
+	public function init_user( $id = 0 )
+	{
+		//jomres user role
         $this->jomres_manager_id 				= 0;                        //user/manager id in the _jomres_managers table
         $this->id 								= 0;                        //cms user id TODO: remove duplicate from the entire codebase
         $this->userid 							= 0;                        //cms user id TODO: remove duplicate from the entire codebase
@@ -45,7 +50,6 @@ class jr_user
         $this->last_active 						= '1970-01-01 00:00:01';    //last active
         $this->authorisedProperties 			= array();                  //array of properties that this user has access to
         //$this->users_timezone					= "America/Lima";			//user timezone - not used anymore
-        $this->simple_configuration 			= false;                    //simple configuration true/false
         $this->userIsSuspended 					= false;                    //user is suspended true/false
 
         $this->userIsRegistered 				= false;                    //user is registered true/false
@@ -77,11 +81,16 @@ class jr_user
         $this->vat_number_validation_response = '';
 		$this->params = array(); //user settings
 
-        if (class_exists('Flight')) {
+		if ( $id == 0 ) {
+			if (defined("JOMRES_API_CMS_ROOT") ) {
             $this->id = Flight::get('user_id');
-        } else {
-            $this->id = jomres_cmsspecific_getcurrentusers_id();
-        }
+			} else {
+				$this->id = jomres_cmsspecific_getcurrentusers_id();
+			}
+		} else {
+			$this->id = $id;
+		}
+        
 
         if ($this->id > 0) {
             $this->userIsRegistered = true;
@@ -95,8 +104,8 @@ class jr_user
             //get user role details
             $this->get_user_role();
         }
-    }
-
+	}
+	
     public static function getInstance()
     {
         if (!self::$configInstance) {
@@ -213,7 +222,6 @@ class jr_user
 						`currentproperty`,
 						`suspended`,
 						`users_timezone`,
-						`simple_configuration`,
 						`last_active`
 					FROM #__jomres_managers 
 					WHERE `userid` = ' .(int) $this->id.' 
@@ -231,7 +239,6 @@ class jr_user
                 $this->currentproperty = $r->currentproperty;
                 $this->username = jomres_cmsspecific_getcurrentusers_username();
                 $this->userIsSuspended = (bool) $r->suspended;
-                $this->simple_configuration = (bool) $r->simple_configuration;
 
                 if (isset($r->last_active)) {
                     $this->last_active = $r->last_active;
@@ -316,7 +323,6 @@ class jr_user
         $this->last_active = '1970-01-01 00:00:01';
         $this->authorisedProperties = array();
         $this->jomres_manager_id = 0;
-        $this->simple_configuration = false;
 
         $this->userIsManager = false;
         $this->superPropertyManager = false;

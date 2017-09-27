@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -30,16 +30,23 @@ class j06001list_bookings
 
         $mrConfig = getPropertySpecificSettings();
         $defaultProperty = getDefaultProperty();
+		
+		$deposit_status = (int) jomresGetParam($_POST, 'deposit_status', '2');
+        $resident_status = (int) jomresGetParam($_POST, 'resident_status', '2');
+        $booking_status = (int) jomresGetParam($_POST, 'booking_status', '2');
+        $show_all = (int) jomresGetParam($_POST, 'show_all', '0');
+        $tag = (int) jomresGetParam($_POST, 'tag', '0');
+		$guest_uid = (int) jomresGetParam($_REQUEST, 'guest_uid', '0');
 
         $startDate = jomresGetParam($_POST, 'startDate', '');
         $endDate = jomresGetParam($_POST, 'endDate', '');
         if ($startDate == '%' || $startDate == '') {
-            $startDate = date('Y/m/d', strtotime('-3 months'));
+            $startDate = date('Y/m/d', strtotime('-5 years'));
         } else {
             $startDate = JSCalConvertInputDates($startDate);
         }
         if ($endDate == '%' || $endDate == '') {
-            $endDate = date('Y/m/d', strtotime('+2 years'));
+            $endDate = date('Y/m/d', strtotime('+5 years'));
         } else {
             $endDate = JSCalConvertInputDates($endDate);
         }
@@ -49,12 +56,6 @@ class j06001list_bookings
         } else {
             $output_now = true;
         }
-
-        $deposit_status = (int) jomresGetParam($_POST, 'deposit_status', '2');
-        $resident_status = (int) jomresGetParam($_POST, 'resident_status', '2');
-        $booking_status = (int) jomresGetParam($_POST, 'booking_status', '2');
-        $show_all = (int) jomresGetParam($_POST, 'show_all', '0');
-        $tag = (int) jomresGetParam($_POST, 'tag', '0');
 
         $output = array();
         $output[ 'PAGETITLE' ] = jr_gettext('_JOMRES_STATUS_BOOKINGS', '_JOMRES_STATUS_BOOKINGS', false);
@@ -147,7 +148,7 @@ class j06001list_bookings
         $options[] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_STATUS_ALL_PROPERTIES', '_JOMRES_STATUS_ALL_PROPERTIES', false));
         $output['SHOW_ALL'] = jomresHTML::selectList($options, 'show_all', 'class="inputbox" size="1"', 'value', 'text', $show_all);
 
-        $output['AJAX_URL'] = JOMRES_SITEPAGE_URL_AJAX.'&task=list_bookings_ajax&startDate='.$startDate.'&endDate='.$endDate.'&deposit_status='.$deposit_status.'&resident_status='.$resident_status.'&booking_status='.$booking_status.'&show_all='.$show_all.'&tag='.$tag;
+        $output['AJAX_URL'] = JOMRES_SITEPAGE_URL_AJAX.'&task=list_bookings_ajax&startDate='.$startDate.'&endDate='.$endDate.'&deposit_status='.$deposit_status.'&resident_status='.$resident_status.'&booking_status='.$booking_status.'&show_all='.$show_all.'&tag='.$tag.'&guest_uid='.$guest_uid;
 
 		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -43,7 +43,9 @@ class jrportal_coupons
             throw new Exception('Error: Coupon id not set.');
         }
 		
-		if ($this->property_uid == 0) {
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+
+		if ($this->property_uid == 0 && !$thisJRUser->superPropertyManager) {
             throw new Exception('Error: Property uid not set.');
         }
 
@@ -91,7 +93,9 @@ class jrportal_coupons
             throw new Exception('Error: Coupon id already set. Are you sure you`re creating a new coupon?');
         }
 
-        if ($this->property_uid == 0) {
+        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+
+		if ($this->property_uid == 0 && !$thisJRUser->superPropertyManager) {
             throw new Exception('Error: Property uid not set.');
         }
 		
@@ -153,7 +157,9 @@ class jrportal_coupons
             throw new Exception('Error: Coupon id not set.');
         }
 
-        if ($this->property_uid == 0) {
+        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+
+		if ($this->property_uid == 0 && !$thisJRUser->superPropertyManager) {
             throw new Exception('Error: Property uid not set.');
         }
 		
@@ -201,7 +207,9 @@ class jrportal_coupons
             throw new Exception('Error: Coupon id not set.');
         }
 
-        if ($this->property_uid == 0) {
+        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+
+		if ($this->property_uid == 0 && !$thisJRUser->superPropertyManager) {
             throw new Exception('Error: Property uid not set.');
         }
 		

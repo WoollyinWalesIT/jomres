@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,12 +17,10 @@ $jrConfig = array(
   'useGlobalCurrency' => '1',
   'globalCurrencyCode' => 'EUR',
   'google_maps_api_key' => '',
-  'minimalconfiguration' => '0',
   'editingModeAffectsAllProperties' => '0',
   'allowHTMLeditor' => '1',
   'selfRegistrationAllowed' => '1',
   'cal_input' => '%d/%m/%Y',
-  'isInIframe' => '0',
   'errorChecking' => '0',
   'dumpTemplate' => '0',
   'maxwidth' => '900',
@@ -46,6 +44,7 @@ $jrConfig = array(
   'integratedSearch_geosearchtype' => '',
   'integratedSearch_geosearchtype_dropdown' => '1',
   'integratedSearch_ptype' => '1',
+  'integratedSearch_category' => '0',
   'integratedSearch_ptype_dropdown' => '1',
   'integratedSearch_room_type' => '0',
   'integratedSearch_room_type_dropdown' => '1',
@@ -105,7 +104,6 @@ $jrConfig = array(
   'booking_form_modal_popup' => '0',
   'booking_form_totalspanel_position' => '455',
   'booking_form_width' => '450',
-  'booking_form_totals_panel_as_slider' => '0',
   'useNewusers_sendemail' => '1',
   'show_tax_in_totals_summary' => '1',
   'alternate_smtp_use_settings' => '0',
@@ -150,7 +148,7 @@ $jrConfig = array(
   'show_powered_by' => '1',
   'use_budget_feature' => '1',
   'update_time' => '',
-  'live_scrolling_enabled' => '1',
+  'live_scrolling_enabled' => '0',
   'load_font_awesome' => '0',
   'licensekey' => '',
   'openexchangerates_api_key' => '',
@@ -177,5 +175,16 @@ $jrConfig = array(
   'map_zoom' => '10',
   'map_height' => '300',
   'selected_languages' => '',
-  'front_cpanel_home_grid' => '2/3 1/3'
+  'front_cpanel_home_grid' => '2/3 1/3',
+  'reviews_limit' => '2',
+  'images_imported_to_db' => '0',
+  'images_imported_to_s3' => '0',
+  'amazon_s3_active' => '0',
+  'amazon_s3_key' => '',
+  'amazon_s3_secret' => '',
+  'amazon_s3_region' => 'us-east-1',
+  'amazon_s3_bucket' => '',
+  'amazon_cloudfront_domain' => '',
+  'amazon_s3_remove_local_copies' => '0',
+  'amazon_s3_use_tls' => '0'
 );

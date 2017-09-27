@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -34,11 +34,22 @@ class j06005new_property
         $jrConfig = $siteConfig->get();
 
         $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+		
+		$jomres_property_types = jomres_singleton_abstract::getInstance('jomres_property_types');
 
         if ($jrConfig['selfRegistrationAllowed'] == '0' && !$thisJRUser->superPropertyManager) {
             return;
         }
+		
+		// You can, by all means, remove this section of code but it's only here to ensure you don't lock yourself out of your own system accidentally
+		if (function_exists("get_number_of_allowed_properties") ) {
+			if (get_showtime('numberOfPropertiesInSystem') >= get_number_of_allowed_properties() ) {
+				echo '<p class="alert alert-danger">Error, your license does not allow you to add more properties</p>';
+				return;
+			}
+		}
 
+			
         //get selected country
         $selectedCountry = jomresGetParam($_REQUEST, 'new_property_country', '');
         if ($selectedCountry == '') {
@@ -69,7 +80,7 @@ class j06005new_property
         $output['JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE2'] = jr_gettext('JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE2', 'JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE2', false);
 
         $output['HPROPERTY_TYPE'] = jr_gettext('_JOMRES_FRONT_PTYPE', '_JOMRES_FRONT_PTYPE', false);
-        $output['PROPERTY_TYPE_DROPDOWN'] = getPropertyTypeDropdown('', true);
+        $output['PROPERTY_TYPE_DROPDOWN'] = $jomres_property_types->getPropertyTypeDropdown('', true);
 
         $pageoutput[] = $output;
         $tmpl = new patTemplate();

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -40,9 +40,21 @@ class j06002save_property
         if ($jrConfig[ 'selfRegistrationAllowed' ] == '0' && $property_uid == 0) {
             $property_uid = getDefaultProperty();
         }
-
-        //jomres properties object
+		
+		$published = 0;
+		$approved = 0;
+		
+		//jomres properties object
         $jomres_properties = jomres_singleton_abstract::getInstance('jomres_properties');
+		
+		//get property details
+		if ($property_uid > 0) {
+			$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
+			$current_property_details->gather_data($property_uid);
+			
+			$published = $current_property_details->published;
+			$approved = $current_property_details->approved;
+		}
 
         $jomres_properties->propertys_uid = $property_uid;
         $jomres_properties->property_name = trim(jomresGetParam($_POST, 'property_name', ''));
@@ -63,8 +75,11 @@ class j06002save_property
         $jomres_properties->ptype_id = jomresGetParam($_POST, 'propertyType', 0);
         $jomres_properties->stars = jomresGetParam($_POST, 'stars', 0);
         $jomres_properties->superior = jomresGetParam($_POST, 'superior', 0);
+		$jomres_properties->cat_id = jomresGetParam($_POST, 'cat_id', 0);
         $jomres_properties->permit_number = jomresGetParam($_POST, 'permit_number', '');
         $jomres_properties->property_features = jomresGetParam($_POST, 'pid', array());
+		$jomres_properties->published = $published;
+		$jomres_properties->approved = $approved;
 
         //property country
         if ($jrConfig[ 'limit_property_country' ] == '0') {
@@ -109,7 +124,7 @@ class j06002save_property
 
         //send approval email to site admin
         if ((int) $jrConfig['automatically_approve_new_properties'] == 0 && !$thisJRUser->superPropertyManager) {
-            $link = JOMRES_SITEPAGE_URL_ADMIN.'&task=list_properties_awaiting_approval';
+            $link = JOMRES_SITEPAGE_URL_ADMIN.'&task=property_approvals';
             $subject = jr_gettext('_JOMRES_APPROVALS_ADMIN_EMAIL_SUBJECT', '_JOMRES_APPROVALS_ADMIN_EMAIL_SUBJECT', false).' ('.$jomres_properties->property_name.') ';
             $message = jr_gettext('_JOMRES_APPROVALS_ADMIN_EMAIL_CONTENT', '_JOMRES_APPROVALS_ADMIN_EMAIL_CONTENT', false).$link;
             sendAdminEmail($subject, $message);

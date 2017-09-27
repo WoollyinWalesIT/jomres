@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -23,13 +23,14 @@ class jomres_property_types
         $this->property_types = false;
 
         $this->property_type = array();
-        $this->property_type['id'] = 0;                    // new property type id default
-        $this->property_type['ptype'] = '';                    // property type name; TODO: make it use jr_gettext
-        $this->property_type['ptype_desc'] = '';                    // property type specific language file dir name
-        $this->property_type['published'] = 1;                    // published
-        $this->property_type['order'] = 0;                    // order
-        $this->property_type['mrp_srp_flag'] = 0;                    // what will guests book: rooms in the property or the property itself
+        $this->property_type['id'] = 0;                    		// new property type id default
+        $this->property_type['ptype'] = '';                    	// property type name; TODO: make it use jr_gettext
+        $this->property_type['ptype_desc'] = '';                // property type specific language file dir name
+        $this->property_type['published'] = 1;                  // published
+        $this->property_type['order'] = 0;                    	// order
+        $this->property_type['mrp_srp_flag'] = 0;               // what will guests book: rooms in the property or the property itself
         $this->property_type['marker'] = '';                    // Google map marker
+		$this->property_type['has_stars'] = 1;        			// Show stars input or not
 
         $jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
         $this->property_type['marker_image'] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/'.$jomres_media_centre_images->multi_query_images['noimage-small'];
@@ -59,7 +60,7 @@ class jomres_property_types
             $this->property_types = array();
         }
 
-        $query = 'SELECT `id`, `ptype`, `ptype_desc`, `published`, `order`, `mrp_srp_flag`, `marker` FROM #__jomres_ptypes ORDER BY `order` ASC';
+        $query = 'SELECT `id`, `ptype`, `ptype_desc`, `published`, `order`, `mrp_srp_flag`, `marker`, `has_stars` FROM #__jomres_ptypes ORDER BY `ptype` ASC';
         $result = doSelectSql($query);
 
         if (empty($result)) {
@@ -74,6 +75,7 @@ class jomres_property_types
             $this->property_types[$r->id]['order'] = (int) $r->order;            // order
             $this->property_types[$r->id]['mrp_srp_flag'] = (int) $r->mrp_srp_flag;    // what will guests book: rooms in the property or the property itself
             $this->property_types[$r->id]['marker'] = $r->marker;                // Google maps marker
+			$this->property_types[$r->id]['has_stars'] = $r->has_stars;                // allows/doesn`t allow star ratings
            
 			$this->property_types[$r->id]['marker_image'] = get_marker_src($this->property_types[$r->id]['marker']);
         }
@@ -94,7 +96,7 @@ class jomres_property_types
             return true;
         }
 
-        $query = 'SELECT `id`, `ptype`, `ptype_desc`, `published`, `order`, `mrp_srp_flag`, `marker` FROM #__jomres_ptypes WHERE `id` = '.(int) $id;
+        $query = 'SELECT `id`, `ptype`, `ptype_desc`, `published`, `order`, `mrp_srp_flag`, `marker`, `has_stars` FROM #__jomres_ptypes WHERE `id` = '.(int) $id;
         $result = doSelectSql($query);
 
         if (empty($result)) {
@@ -109,6 +111,7 @@ class jomres_property_types
             $this->property_type['order'] = (int) $r->order;            // order
             $this->property_type['mrp_srp_flag'] = (int) $r->mrp_srp_flag;    // what will guests book: rooms in the property or the property itself
             $this->property_type['marker'] = $r->marker;                // Google maps marker
+			$this->property_type['has_stars'] = $r->has_stars;                // Google maps marker
 
             if (
                 is_dir(JOMRES_IMAGELOCATION_ABSPATH.'markers') &&
@@ -126,20 +129,14 @@ class jomres_property_types
     //Save new or existing property type
     public function save_property_type()
     {
-        if ($this->property_type['ptype_desc'] != '') {
-            if (!is_dir(JOMRESPATH_BASE.'/language/'.$this->property_type['ptype_desc']) && is_writable(JOMRESPATH_BASE.'/language/')) {
-                mkdir(JOMRESPATH_BASE.'/language/'.$this->property_type['ptype_desc']);
-                copy(JOMRESPATH_BASE.'/language/'.get_showtime('lang').'.php', JOMRESPATH_BASE.'/language/'.$this->property_type['ptype_desc'].'/'.get_showtime('lang').'.php');
-            }
-        }
-
         if ($this->property_type['id'] > 0) {
             $query = "UPDATE #__jomres_ptypes 
 						SET 
 							`ptype` 		= '".$this->property_type['ptype']."',
 							`ptype_desc` 	= '".$this->property_type['ptype_desc']."', 
-							`mrp_srp_flag` 	= ".$this->property_type['mrp_srp_flag']." ,
-							`marker` 		= '".$this->property_type['marker']."'
+							`mrp_srp_flag` 	= ".(int)$this->property_type['mrp_srp_flag']." ,
+							`marker` 		= '".$this->property_type['marker']."',
+							`has_stars` 	= ".(int)$this->property_type['has_stars']."
 						WHERE id = " .(int) $this->property_type['id'];
         } else {
             $query = "INSERT INTO #__jomres_ptypes 
@@ -147,14 +144,16 @@ class jomres_property_types
 								`ptype`,
 								`ptype_desc` ,
 								`mrp_srp_flag`,
-								`marker`
+								`marker`,
+								`has_stars`
 								) 
 							VALUES 
 								(
 								'".$this->property_type['ptype']."',
 								'".$this->property_type['ptype_desc']."', 
-								".$this->property_type['mrp_srp_flag'].",
-								'".$this->property_type['marker']."'
+								".(int)$this->property_type['mrp_srp_flag'].",
+								'".$this->property_type['marker']."',
+								".(int)$this->property_type['has_stars']."
 								)
 								";
         }
@@ -315,8 +314,94 @@ class jomres_property_types
 				$images[] = $r;
 			}
 		}
-		
 
 		return $images;
+	}
+	
+	//get property type dropdown
+	public function getPropertyTypeDropdown($selected = '', $extended = false, $is_disabled = false, $input_name = 'propertyType')
+	{
+		if (!$this->property_types) {
+			$this->get_all_property_types();
+		}
+
+		if (empty($this->property_types)) {
+			return '';
+		}
+		
+		if ($input_name == '') {
+			$input_name = 'propertyType';
+		}
+		
+		$options = array();
+		foreach ($this->property_types as $p) {
+			if ($p['published'] == 1) {
+				$ptype = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPE'.(int) $p['id'], $p['ptype'], false);
+
+				if ($extended) {
+					switch ($p['mrp_srp_flag']) {
+						case 1:
+							$ptype .= ' - '.jr_gettext('_JOMRES_PROPERTYTYPE_FLAG_VILLA', '_JOMRES_PROPERTYTYPE_FLAG_VILLA', false);
+							break;
+						case 2:
+							$ptype .= ' - '.jr_gettext('_JOMRES_PROPERTYTYPE_FLAG_BOTH', '_JOMRES_PROPERTYTYPE_FLAG_BOTH', false);
+							break;
+						case 3:
+							$ptype .= ' - '.jr_gettext('_JOMRES_PROPERTYTYPE_FLAG_TOURS', '_JOMRES_PROPERTYTYPE_FLAG_TOURS', false);
+							break;
+						case 4:
+							$ptype .= ' - '.jr_gettext('_JOMRES_PROPERTYTYPE_FLAG_REALESTATE', '_JOMRES_PROPERTYTYPE_FLAG_REALESTATE', false);
+							break;
+						default:
+							$ptype .= ' - '.jr_gettext('_JOMRES_PROPERTYTYPE_FLAG_HOTEL', '_JOMRES_PROPERTYTYPE_FLAG_HOTEL', false);
+							break;
+					}
+				}
+
+				$options[] = jomresHTML::makeOption($p['id'], $ptype);
+			}
+		}
+		
+		if ($is_disabled) {
+			$disabled = ' disabled';
+		} else {
+			$disabled = '';
+		}
+
+		$dropdown = jomresHTML::selectList($options, $input_name, 'class="inputbox" size="1"'.$disabled, 'value', 'text', $selected);
+
+		return $dropdown;
+	}
+	
+	//get property descriptions dropdown - used for language contexts
+	public function getPropertyTypeDescDropdown($selected = '0', $input_name = 'language_context', $javascript = '')
+	{
+		if (!$this->property_types) {
+			$this->get_all_property_types();
+		}
+
+		if (empty($this->property_types)) {
+			return '';
+		}
+		
+		if ($input_name == '') {
+			$input_name = 'language_context';
+		}
+		
+		$options = array();
+		$descriptions = array();
+
+		$options[] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_SEARCH_ALL', '_JOMRES_SEARCH_ALL', false));
+		
+		foreach ($this->property_types as $p) {
+			if ($p['published'] == 1 && !in_array($p['ptype_desc'], $descriptions)) {
+				$options[] = jomresHTML::makeOption($p['ptype_desc'], $p['ptype_desc']);
+				$descriptions[] = $p['ptype_desc'];
+			}
+		}
+
+		$dropdown = jomresHTML::selectList($options, $input_name, 'class="inputbox" size="1" '.$javascript, 'value', 'text', $selected);
+
+		return $dropdown;
 	}
 }

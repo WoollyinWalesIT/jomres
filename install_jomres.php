@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.11
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -211,7 +211,6 @@ if ($folderChecksPassed && $functionChecksPassed) {
             if (ACTION == 'Install') { // Installing
                 //output_message ( "Creating Jomres tables if they don't already exist.");
                 createJomresTables();
-                add_api_tables();
                 //output_message ( "Inserting sample data");
                 insertSampleData();
                 //output_message ( "Importing configuration settings to database");
@@ -224,7 +223,7 @@ if ($folderChecksPassed && $functionChecksPassed) {
                 import_countries();
                 import_regions();
                 insert_pfeature_categories();
-                
+                addApiAndWebhooksTables();
                 require_once _JOMRES_DETECTED_CMS_SPECIFIC_FILES.'cms_specific_installation.php';
                 showCompletedText();
             } elseif (ACTION == 'Upgrade') { // Upgrading
@@ -252,7 +251,8 @@ if ($folderChecksPassed && $functionChecksPassed) {
                 import_regions();
 
                 import_images_to_media_centre_directories();
-
+				addApiAndWebhooksTables();
+				
                 require_once _JOMRES_DETECTED_CMS_SPECIFIC_FILES.'cms_specific_upgrade.php';
                 showCompletedText();
             }
@@ -607,16 +607,145 @@ function doTableUpdates()
         alterGuestsProfileParamsCol();
     }
     
+	if (!checkPropertysCompletedColExists()) {
+        alterPropertysCompletedCol();
+    }
+	
+	if (!checkPropertysCatIdColExists()) {
+        alterPropertysCatIdCol();
+    }
+	
+	if (!checkPtypesHasStarsColExists()) {
+        alterPtypesHasStarsCol();
+    }
+	
+	if (!checkCustomtextLangContextColExists()) {
+        alterCustomtextLangContextCol();
+    } else {
+		alterCustomtextLangContextColChangeDefaultVal();
+	}
+ 
 	copy_default_property_type_markers();
     drop_orphan_line_items_table();
     drop_room_images_table();
 	drop_cronlog_table();
-    add_api_tables();
 	add_jomres_sessions_table();
 	add_jomres_template_package_table();
+	add_jomres_property_categories_table();
+	add_jomres_images_table();
     updateSiteSettings('update_time', time());
     
 }
+
+function alterPtypesHasStarsCol()
+{
+    //output_message ( "Editing __jomres_ptypes table adding has_stars column");
+    $query = "ALTER TABLE `#__jomres_ptypes` ADD `has_stars` TINYINT(1) UNSIGNED NOT NULL DEFAULT 1 ";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to add __jomres_ptypes has_stars column', 'danger');
+    }
+}
+
+function checkPtypesHasStarsColExists()
+{
+    $query = "SHOW COLUMNS FROM #__jomres_ptypes LIKE 'has_stars'";
+    $result = doSelectSql($query);
+    if (count($result) > 0) {
+        return true;
+    }
+    return false;
+}
+
+function add_jomres_images_table()
+{
+	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_images (
+		`id` INT(11) NOT NULL auto_increment,
+        `property_uid` INT(11) NOT NULL DEFAULT 0,
+		`resource_type` VARCHAR(100),
+		`resource_id` VARCHAR(255),
+		`filename` VARCHAR(255),
+		`version` VARCHAR(20),
+        PRIMARY KEY (`id`)
+        )";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to create the __jomres_images table', 'danger');
+    }
+}
+
+function alterCustomtextLangContextColChangeDefaultVal()
+{
+    $query = "ALTER TABLE `#__jomres_custom_text` MODIFY COLUMN `language_context` VARCHAR(255) NOT NULL DEFAULT '0' ";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to modify __jomres_custom_text language_context column default value', 'danger');
+    }
+	
+	$query = "UPDATE #__jomres_custom_text SET `language_context` = '0' WHERE `language_context` = '' ";
+	if (!doInsertSql($query, '')) {
+        output_message('Error, unable to update __jomres_custom_text language_context to 0 where language context is blank', 'danger');
+    }
+}
+
+function alterCustomtextLangContextCol()
+{
+    $query = "ALTER TABLE `#__jomres_custom_text` ADD `language_context` VARCHAR(255) NOT NULL DEFAULT '0' ";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to add __jomres_custom_text language_context column', 'danger');
+    }
+}
+
+function checkCustomtextLangContextColExists()
+{
+    $query = "SHOW COLUMNS FROM #__jomres_custom_text LIKE 'language_context'";
+    $result = doSelectSql($query);
+    if (count($result) > 0) {
+        return true;
+    }
+    return false;
+}
+
+function alterPropertysCatIdCol()
+{
+    //output_message ( "Editing __jomres_propertys table adding permit_number column");
+    $query = "ALTER TABLE `#__jomres_propertys` ADD `cat_id` BOOL NOT NULL DEFAULT 0 ";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to add __jomres_propertys cat_id', 'danger');
+    }
+}
+
+function checkPropertysCatIdColExists()
+{
+    $query = "SHOW COLUMNS FROM #__jomres_propertys LIKE 'cat_id'";
+    $result = doSelectSql($query);
+    if (count($result) > 0) {
+        return true;
+    }
+    return false;
+}
+
+function alterPropertysCompletedCol()
+{
+    //output_message ( "Editing __jomres_propertys table adding permit_number column");
+    $query = "ALTER TABLE `#__jomres_propertys` ADD `completed` BOOL NOT NULL DEFAULT 0 ";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to add __jomres_propertys completed', 'danger');
+    }
+	
+	$query = "UPDATE `#__jomres_propertys` SET `completed` = 1 WHERE `published` = 1 ";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to set completed flag to published properties', 'danger');
+    }
+}
+
+function checkPropertysCompletedColExists()
+{
+    $query = "SHOW COLUMNS FROM #__jomres_propertys LIKE 'completed'";
+    $result = doSelectSql($query);
+    if (count($result) > 0) {
+        return true;
+    }
+    return false;
+}
+
 
 function alterGuestsProfileParamsCol()
 {
@@ -647,6 +776,19 @@ function add_jomres_template_package_table()
         )";
     if (!doInsertSql($query, '')) {
         output_message('Error, unable to create the __jomres_template_package_overrides table', 'danger');
+    }
+}
+
+function add_jomres_property_categories_table()
+{
+	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_property_categories (
+		`id` INT(11) NOT NULL auto_increment,
+        `title` VARCHAR(255),
+		`description` TEXT,
+        PRIMARY KEY (`id`)
+        )";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to create the __jomres_property_categories table', 'danger');
     }
 }
 
@@ -754,52 +896,6 @@ function copy_default_property_type_markers() {
 			output_message("Error, unable to copy marker image", 'danger');
 		}
 	}
-}
-
-function add_api_tables() {
-    $query = "CREATE TABLE IF NOT EXISTS  #__jomres_oauth_clients (
-        client_id VARCHAR(80) NOT NULL, 
-        client_secret VARCHAR(80), 
-        redirect_uri VARCHAR(2000) NOT NULL, 
-        grant_types VARCHAR(80), 
-        scope VARCHAR(1000), 
-        user_id VARCHAR(80), 
-        CONSTRAINT clients_client_id_pk 
-        PRIMARY KEY (client_id)
-        )";
-    doInsertSql($query,"");
-
-    $query = "CREATE TABLE IF NOT EXISTS  #__jomres_oauth_access_tokens (access_token VARCHAR(40) NOT NULL, client_id VARCHAR(80) NOT NULL, user_id VARCHAR(255), expires TIMESTAMP NOT NULL, scope VARCHAR(2000), CONSTRAINT access_token_pk PRIMARY KEY (access_token))";
-    doInsertSql($query,"");
-
-    $query = "CREATE TABLE IF NOT EXISTS  #__jomres_oauth_authorization_codes (authorization_code VARCHAR(40) NOT NULL, client_id VARCHAR(80) NOT NULL, user_id VARCHAR(255), redirect_uri VARCHAR(2000), expires TIMESTAMP NOT NULL, scope VARCHAR(2000), CONSTRAINT auth_code_pk PRIMARY KEY (authorization_code))";
-    doInsertSql($query,"");
-
-    $query = "CREATE TABLE IF NOT EXISTS  #__jomres_oauth_refresh_tokens (refresh_token VARCHAR(40) NOT NULL, client_id VARCHAR(80) NOT NULL, user_id VARCHAR(255), expires TIMESTAMP NOT NULL, scope VARCHAR(2000), CONSTRAINT refresh_token_pk PRIMARY KEY (refresh_token))";
-    doInsertSql($query,"");
-
-
-    $query = "CREATE TABLE IF NOT EXISTS  #__jomres_oauth_users (username VARCHAR(255) NOT NULL, password VARCHAR(2000), first_name VARCHAR(255), last_name VARCHAR(255), CONSTRAINT username_pk PRIMARY KEY (username))";
-    doInsertSql($query,"");
-
-
-    $query = "CREATE TABLE IF NOT EXISTS  #__jomres_oauth_scopes (scope TEXT, is_default BOOLEAN)";
-    doInsertSql($query,"");
-
-    $query = "CREATE TABLE IF NOT EXISTS  #__jomres_oauth_jwt (client_id VARCHAR(80) NOT NULL, subject VARCHAR(80), public_key VARCHAR(2000), CONSTRAINT jwt_client_id_pk PRIMARY KEY (client_id))";
-    doInsertSql($query,"");
-
-    // We need to see if there's a "system" user in the database, if there's not we'll create them. This is a once only action
-    $query = "SELECT client_id,scope FROM #__jomres_oauth_clients WHERE client_id = 'system' LIMIT 1";
-    $result = doSelectSql($query);
-    if (count($result)==0) {
-        $query = "INSERT INTO #__jomres_oauth_clients 
-        (`client_id`,`client_secret`,`redirect_uri`,`grant_types`,`scope`,`user_id`) 
-        VALUES 
-        ('system','".createNewAPIKey()."','',null,'*',99999999999999999999)";
-        if ( !doInsertSql( $query, jr_gettext( '_OAUTH_CREATED', '_OAUTH_CREATED', false ) ) )
-            throw new Exception("Unable to update oauth client details, mysql db failure");
-    }
 }
 
 function checkManagersUsernameColExists()
@@ -3593,21 +3689,23 @@ function createJomresTables()
 		`order` INT NULL DEFAULT '0',
 		`mrp_srp_flag` TINYINT DEFAULT '2',
 		`marker` varchar( 255 ) DEFAULT 'free-map-marker-icon-red.png',
+		`has_stars` TINYINT(1) UNSIGNED NOT NULL DEFAULT 1,
 		PRIMARY KEY (`id`)
 		) ";
     if (!doInsertSql($query)) {
         output_message('Failed to run query: '.$query, 'danger');
     }
 
-    $query = 'CREATE TABLE IF NOT EXISTS `#__jomres_custom_text` (
+    $query = "CREATE TABLE IF NOT EXISTS `#__jomres_custom_text` (
 		`uid` INT( 11 ) NOT NULL AUTO_INCREMENT ,
 		`constant` VARCHAR( 255 ) ,
 		`customtext` TEXT NULL,
 		`property_uid` INT( 11 ),
 		`language` VARCHAR( 255 ),
 		`reserved` VARCHAR( 255 ),
+		`language_context` VARCHAR(255) NOT NULL DEFAULT '0',
 		PRIMARY KEY ( `uid` )
-		) ';
+		) ";
     if (!doInsertSql($query)) {
         output_message('Failed to run query: '.$query, 'danger');
     }
@@ -3890,6 +3988,29 @@ function createJomresTables()
     if (!doInsertSql($query)) {
         output_message('Failed to run query: '.$query, 'danger');
     }
+	
+	$query = 'CREATE TABLE IF NOT EXISTS `#__jomres_property_categories` (
+		`id` int(11) NOT NULL auto_increment,
+		`title` VARCHAR(255),
+		`description` TEXT,
+		PRIMARY KEY(`id`)
+		) ';
+    if (!doInsertSql($query)) {
+        output_message('Failed to run query: '.$query, 'danger');
+    }
+	
+	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_images (
+		`id` INT(11) NOT NULL auto_increment,
+        `property_uid` INT(11) NOT NULL DEFAULT 0,
+		`resource_type` VARCHAR(100),
+		`resource_id` VARCHAR(255),
+		`filename` VARCHAR(255),
+		`version` VARCHAR(20),
+        PRIMARY KEY (`id`)
+        )";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to create the __jomres_property_categories table', 'danger');
+    }
 
     $query = "CREATE TABLE IF NOT EXISTS `#__jomres_managers` (
 		`manager_uid` int(11) NOT NULL auto_increment,
@@ -3943,6 +4064,8 @@ function createJomresTables()
 		`property_site_id` VARCHAR( 255 ) NULL,
 		`last_changed` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 		`permit_number` varchar( 255 ) DEFAULT '',
+		`completed`  BOOL NOT NULL DEFAULT '0',
+		`cat_id` BOOL NOT NULL DEFAULT 0,
 		PRIMARY KEY(`propertys_uid`)
 		) ";
     if (!doInsertSql($query)) {
@@ -4445,6 +4568,15 @@ function createExtraIndexs()
             output_message('Failed to run query: '.$query, 'danger');
         }
     }
+	
+	$query = "SHOW INDEX FROM `#__jomres_custom_text` WHERE Key_name = 'language_context' ";
+    $indexExists = doSelectSql($query);
+    if (count($indexExists) < 1) {
+        $query = 'ALTER TABLE `#__jomres_custom_text` ADD INDEX `language_context` ( `language_context` ) ';
+        if (!doInsertSql($query)) {
+            output_message('Failed to run query: '.$query, 'danger');
+        }
+    }
 
     $query = "SHOW INDEX FROM `#__jomresportal_invoices` WHERE Key_name = 'property_uid' ";
     $indexExists = doSelectSql($query);
@@ -4676,6 +4808,26 @@ function createExtraIndexs()
     $indexExists = doSelectSql($query);
     if (count($indexExists) < 1) {
         $query = 'ALTER TABLE `#__jomres_managers` ADD INDEX userid ( userid ) ';
+        if (!doInsertSql($query)) {
+            output_message('Failed to run query: '.$query, 'danger');
+        }
+    }
+	
+	//output_message ( "Altering table __jomres_images, creating new property_uid index if necessary");
+    $query = "SHOW INDEX FROM `#__jomres_images` WHERE Key_name = 'property_uid' ";
+    $indexExists = doSelectSql($query);
+    if (count($indexExists) < 1) {
+        $query = 'ALTER TABLE `#__jomres_images` ADD INDEX property_uid ( property_uid ) ';
+        if (!doInsertSql($query)) {
+            output_message('Failed to run query: '.$query, 'danger');
+        }
+    }
+	
+	//output_message ( "Altering table __jomres_images, creating new resource_type index if necessary");
+    $query = "SHOW INDEX FROM `#__jomres_images` WHERE Key_name = 'resource_type' ";
+    $indexExists = doSelectSql($query);
+    if (count($indexExists) < 1) {
+        $query = 'ALTER TABLE `#__jomres_images` ADD INDEX resource_type (resource_type) ';
         if (!doInsertSql($query)) {
             output_message('Failed to run query: '.$query, 'danger');
         }
@@ -6531,7 +6683,7 @@ function showCompletedText()
 		setTimeout(function() {
 		parent.jQuery('#jomres-installation-modal').modal('hide');
 		parent.window.location.href = "<?php echo $administrator_url ?>";
-		}, 5000);
+		}, 50);
 		</script>
 		<?php
 
@@ -6577,3 +6729,97 @@ function showfooter()
 		</center>';
     }
 }
+
+function addApiAndWebhooksTables() {
+
+	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_oauth_clients (
+		`client_id` VARCHAR(80) NOT NULL, 
+		`client_secret` VARCHAR(80), 
+		`redirect_uri` VARCHAR(2000) NOT NULL, 
+		`grant_types` VARCHAR(80), 
+		`scope` VARCHAR(1000), 
+		`user_id` VARCHAR(80), 
+		`identifier` VARCHAR(255),
+		CONSTRAINT clients_client_id_pk 
+		PRIMARY KEY (client_id)
+		)";
+	doInsertSql($query,"");
+
+	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_oauth_access_tokens (access_token VARCHAR(40) NOT NULL, client_id VARCHAR(80) NOT NULL, user_id VARCHAR(255), expires TIMESTAMP NOT NULL, scope VARCHAR(2000), CONSTRAINT access_token_pk PRIMARY KEY (access_token))";
+	doInsertSql($query,"");
+
+	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_oauth_authorization_codes (authorization_code VARCHAR(40) NOT NULL, client_id VARCHAR(80) NOT NULL, user_id VARCHAR(255), redirect_uri VARCHAR(2000), expires TIMESTAMP NOT NULL, scope VARCHAR(2000), CONSTRAINT auth_code_pk PRIMARY KEY (authorization_code))";
+	doInsertSql($query,"");
+
+	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_oauth_refresh_tokens (refresh_token VARCHAR(40) NOT NULL, client_id VARCHAR(80) NOT NULL, user_id VARCHAR(255), expires TIMESTAMP NOT NULL, scope VARCHAR(2000), CONSTRAINT refresh_token_pk PRIMARY KEY (refresh_token))";
+	doInsertSql($query,"");
+
+
+	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_oauth_scopes (scope TEXT, is_default BOOLEAN)";
+	doInsertSql($query,"");
+
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+	$jrConfig = $siteConfig->get();
+
+	if (!isset($jrConfig[ 'api_core_show' ])) {
+		$siteConfig->insert_new_setting('api_core_show', '0');
+	}
+
+	$query = "SHOW COLUMNS FROM #__jomres_oauth_clients LIKE 'identifier'";
+	$colExists = doSelectSql( $query );
+	if (count($colExists) < 1)
+		{
+		$query = "ALTER TABLE `#__jomres_oauth_clients` ADD `identifier` VARCHAR(255) ";
+		doInsertSql($query,"");
+		}
+
+	$cron =jomres_getSingleton('jomres_cron');
+	$cron->addJob("api_tokens_cleanup","D","");
+    
+
+	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_webhooks_integrations (
+		`id` INT(11) auto_increment, 
+		`manager_id` int(11),
+		`settings`  text null, 
+		`enabled` BOOL NOT NULL DEFAULT '1',
+		PRIMARY KEY	(`id`)
+		)";
+	doInsertSql($query,"");
+
+	if ( !checkIntegrationsEnabledColExists() ) alterIntegrationsEnabledCol();
+
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+	$jrConfig = $siteConfig->get();
+
+	if (!isset($jrConfig[ 'webhooks_core_show' ])) {
+		$siteConfig->insert_new_setting('webhooks_core_show', '0');
+	}
+	
+	// We need to see if there's a "system" user in the database, if there's not we'll create them. This is a once only action
+    $query = "SELECT client_id,scope FROM #__jomres_oauth_clients WHERE client_id = 'system' LIMIT 1";
+    $result = doSelectSql($query);
+    if (count($result)==0) {
+        $query = "INSERT INTO #__jomres_oauth_clients 
+        (`client_id`,`client_secret`,`redirect_uri`,`grant_types`,`scope`,`user_id`) 
+        VALUES 
+        ('system','".createNewAPIKey()."','',null,'*',99999999999999999999)";
+        if ( !doInsertSql( $query, jr_gettext( '_OAUTH_CREATED', '_OAUTH_CREATED', false ) ) )
+            throw new Exception("Unable to update oauth client details, mysql db failure");
+    }
+	
+}
+
+function checkIntegrationsEnabledColExists()
+	{
+	$query  = "SHOW COLUMNS FROM #__jomres_webhooks_integrations LIKE 'enabled'";
+	$result = doSelectSql( $query );
+	if ( !empty( $result ))
+		return true;
+	return false;
+	}
+
+function alterIntegrationsEnabledCol()
+	{
+	$query = "ALTER TABLE `#__jomres_webhooks_integrations` ADD `enabled` BOOLEAN NOT NULL DEFAULT TRUE AFTER `settings` ";
+	doInsertSql( $query, '' );
+	}

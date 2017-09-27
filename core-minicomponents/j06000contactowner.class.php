@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -48,15 +48,8 @@ class j06000contactowner
         $mrConfig = getPropertySpecificSettings();
         $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 
-        $version = 'V2';
-
         if ($use_recaptcha) {
-            if ($version == 'V1') {
-                require_once JOMRESPATH_BASE.'/libraries/recaptcha/recaptchalib.php';
-            } elseif ($version == 'V2') {
-                require_once JOMRESPATH_BASE.'/libraries/recaptcha/autoload.php';
-                $recaptcha = new \ReCaptcha\ReCaptcha(trim($jrConfig[ 'recaptcha_private_key' ]), new \ReCaptcha\RequestMethod\CurlPost());
-            }
+            $recaptcha = new \ReCaptcha\ReCaptcha(trim($jrConfig[ 'recaptcha_private_key' ]), new \ReCaptcha\RequestMethod\SocketPost());
         }
 		
 		$property_uid = (int)jomresGetParam($_REQUEST, 'property_uid', 0);
@@ -152,27 +145,16 @@ class j06000contactowner
         if ($use_recaptcha && $output[ 'GUEST_NAME' ] != '' && $output[ 'SUBJECT' ] != '' && $output[ 'GUEST_EMAIL' ] != '') {
             $challenge = '';
 
-            if ($version == 'V1' && isset($_POST[ 'recaptcha_challenge_field' ])) {
-                $challenge = trim($_POST[ 'recaptcha_challenge_field' ]);
-            } elseif ($version == 'V2' && isset($_POST[ 'g-recaptcha-response' ])) {
+            if (isset($_POST[ 'g-recaptcha-response' ])) {
                 $challenge = trim($_POST[ 'g-recaptcha-response' ]);
             }
 
             if ($challenge != '') {
-                if ($version == 'V1') {
-                    $resp = recaptcha_check_answer(
-                        trim($jrConfig[ 'recaptcha_private_key' ]),
-                        $_SERVER[ 'REMOTE_ADDR' ],
-                        jomresGetParam($_POST, 'recaptcha_challenge_field', ''),
-                        jomresGetParam($_POST, 'recaptcha_response_field', '')
+                $resp = $recaptcha->verify(
+							$_POST['g-recaptcha-response'],
+							$_SERVER['REMOTE_ADDR']
                         );
-                } elseif ($version == 'V2') {
-                    $resp = $recaptcha->verify(
-                        $_POST['g-recaptcha-response'],
-                        $_SERVER['REMOTE_ADDR']
-                        );
-                    $resp->is_valid = $resp->isSuccess();
-                }
+                $resp->is_valid = $resp->isSuccess();
             } else {
                 $resp = new stdClass();
                 $resp->is_valid = false;
@@ -232,16 +214,12 @@ class j06000contactowner
             }
 
             if ($use_recaptcha) {
-                if ($version == 'V1') {
-                    $output[ 'CAPTCHA' ] = recaptcha_get_html(trim($jrConfig[ 'recaptcha_public_key' ]), null, $use_ssl);
-                } elseif ($version == 'V2') {
-                    $output[ 'CAPTCHA' ] = '
-							<div class="g-recaptcha" data-sitekey="'.trim($jrConfig[ 'recaptcha_public_key' ]).'"></div>
-							<script type="text/javascript"
-								src="https://www.google.com/recaptcha/api.js?hl='.get_showtime('lang_shortcode').'">
-							</script>
-						';
-                }
+                $output[ 'CAPTCHA' ] = '
+					<div class="g-recaptcha" data-sitekey="'.trim($jrConfig[ 'recaptcha_public_key' ]).'"></div>
+					<script type="text/javascript"
+						src="https://www.google.com/recaptcha/api.js?hl='.get_showtime('lang_shortcode').'">
+					</script>
+				';
             }
         }
 

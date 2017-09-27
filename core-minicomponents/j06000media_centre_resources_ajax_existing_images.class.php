@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -46,9 +46,9 @@ class j06000media_centre_resources_ajax_existing_images
 		}
 
         if (!jomres_cmsspecific_areweinadminarea()) {
-            $delete_url = JOMRES_SITEPAGE_URL_AJAX.'&task=media_centre_handler&delete=1&resource_type='.$resource_type.'&resource_id='.$resource_id.'&filename=';
+            $delete_url = JOMRES_SITEPAGE_URL_AJAX.'&task=media_centre_handler&delete=1&resource_type='.$resource_type.'&resource_id='.$resource_id.'&file=';
         } else {
-            $delete_url = JOMRES_SITEPAGE_URL_ADMIN_AJAX.'&task=media_centre_handler&delete=1&resource_type='.$resource_type.'&resource_id='.$resource_id.'&filename=';
+            $delete_url = JOMRES_SITEPAGE_URL_ADMIN_AJAX.'&task=media_centre_handler&delete=1&resource_type='.$resource_type.'&resource_id='.$resource_id.'&file=';
         }
 
         $image_result = '';
@@ -70,15 +70,6 @@ class j06000media_centre_resources_ajax_existing_images
                     $output['IMAGE_REL_SMALL'] = $image['large'];
                 } else {
                     $output['IMAGE_REL_SMALL'] = $image['small'];
-                }
-
-                $sizes = getimagesize($output['IMAGE_REL_SMALL']);
-                if ($sizes[0] > 60) {
-                    $output['WIDTH'] = '60';
-                    $output['HEIGHT'] = '40';
-                } else {
-                    $output['WIDTH'] = $sizes[0];
-                    $output['HEIGHT'] = $sizes[1];
                 }
 
                 $output['IMAGE_REL_LARGE'] = $image['large'];

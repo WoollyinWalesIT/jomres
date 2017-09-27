@@ -1,0 +1,303 @@
+	<section id="overview">
+		<div class="jumbotron">
+			 <h1>The API is for:</h1>
+			<div class="row">
+				<div class="col-sm-4"> 
+					<h2>Individuals</h2>
+					<p>Helps individuals remotely access their accounts.</p>
+				</div>
+				<div class="col-sm-4"> 
+					<h2>Managers</h2>
+					<p>Helps property managers share their property details with remote services and apps.</p>
+				</div>
+				<div class="col-sm-4"> 
+					<h2>Everybody</h2>
+					<p>Helps everybody to make online bookings.</p>
+				</div>
+			 </div>
+		</div>
+	</section>
+	
+	<section id="security">
+		 <h1>Security</h1>
+		<p>Your Client ID and Secret allow you to make secure calls to your account on the system, therefore you should never expose your details to the web or share them with another person. These keys are bound to your registered account, and not any properties that you may have access to, so compromising your Client ID and Secret would allow access to all properties you have access rights to.</p>
+		<p>If you suspect that your Client ID might have been compromised, you must immediately inform us.</p>
+	</section>
+	
+	<section id="authentication">
+		<h1>Authentication</h1>
+		<p>The system allows you to make an unlimited number of API Client ids and secrets. This allows you to create different clients for different services, for example you may want one service (e.g. a website) to only have the ability to search for properties, whereas another client ( such as a mobile phone app) might have the ability to pull invoice information from accounts.</p>
+		
+		<p>The API uses the OAuth 2.0 protocol for simple, but effective authentication and authorization. OAuth 2.0 is much easier to use than previous schemes and developers can start using the API almost immediately.</p>
+		
+		<p>Calls to the API require a token issued by the system, which can be retrieved by sending a POST request containing grant_type, client id and secret. This is an example of what a token request in PHP might look like:</p>
+		<pre class="prettyprint">
+$client_id = 'CLIENT-ID';
+$client_secret = 'CLIENT-SECRET';
+$server = '[LIVE_SITE]/jomres/api/';
+
+$data=array(
+	'grant_type' => 'client_credentials' , 
+	"client_id" => $client_id , 
+	"client_secret" => $client_secret
+	);
+
+$ch = curl_init($server);
+curl_setopt($ch, CURLINFO_HEADER_OUT, true);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+$token_request=curl_exec ($ch);
+
+$status = curl_getinfo($ch); 
+curl_close ($ch);
+$response = json_decode($token_request);  
+		</pre>
+		
+		<p>Successfully authenticated clients will receive a message like</p>
+		
+		<pre class="prettyprint">
+{"access_token":"2c8d95f62b9b700f4515acb9f23d07f9a131e8df","expires_in":3600,"token_type":"Bearer","scope":"bookings_get,bookings_set,properties_get,properties_set,email_get,favourites_get,favourites_set,search_get"}
+		</pre>
+		
+		<p>The token in the response is what you will use to send calls to the system that request access to the system's available Methods. Once you have your token, you can start requesting information from the system:</p>
+		
+		<pre class="prettyprint">
+$token = $response->access_token;
+$server = '[LIVE_SITE]/jomres/api/';
+$result = query_remote_server( $server , $token , "GET" , "favourites" );
+
+function query_remote_server( $server , $token , $method="GET" , $request ="" , $data=array(3) )
+	{
+	$ch = curl_init($server.$request);
+
+	switch ( $method )
+		{
+		case 'POST':
+				curl_setopt($ch, CURLOPT_POST, true);
+				curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+			break;
+		case 'DELETE':
+				curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+			break;
+		case 'PUT':
+				curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT"); 
+				curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+			break;
+		default :
+			break;
+		}
+	
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+		'Authorization: Bearer '.$token,
+		'Accept: application/json',
+		));
+	
+	curl_setopt($ch, CURLINFO_HEADER_OUT, true);
+	curl_setopt($ch, CURLOPT_TIMEOUT, 30); //timeout after 30 seconds
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+	$result=curl_exec ($ch);
+	$errors = curl_error($ch);
+	$status = curl_getinfo($ch); 
+	$response_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+	curl_close ($ch);
+	return array (
+		"result" => $result , 
+		"status" => $status , 
+		"errors" => $errors , 
+		"response_code" => $response_code
+		);
+	}
+		</pre>
+		
+	</section>
+	
+	<section id="scope">
+		<h1>Permissions ( Scopes )</h1>
+		<p>You can give each Client specific permissions, for example some may only be able to perform searches, whereas others can directly access properties.</p>
+		<p>Additionally you can allow these clients to only Get (retrieve) information, or both Get and Set (change, including delete) information.</p>
+	</section>
+	<section id="endpoints">
+		<h1>Endpoints</h1>
+		<p>Calls to this API use an OAuth2 REST format request (DELETE , GET , POST & PUT ) and the endpoint is </p>
+		<pre class="prettyprint">
+[LIVE_SITE]/jomres/api/
+		</pre>
+
+	<section id="responses">
+		<h1>Responses</h1>
+		
+		<h3>The Envelope</h3>
+		<p>Every authenticated response is contained by an envelope. That is, each response has a predictable set of keys with which you can expect to interact.</p>
+		<pre class="prettyprint">
+{
+	"meta": {
+		"code": 200
+		},
+	"data": {
+		"xxx": yyy
+		}
+}
+		</pre>
+		
+		When dealing with the response, you would normally act on the response found in the "data" key.
+		
+		<h3>meta</h3>
+		<p>The meta key is used to communicate extra information about the response to the developer. Normally, you'll only ever see a code key with value 200. However, sometimes things go wrong, and in that case you might see a response like:</p>
+		<pre class="prettyprint">
+{
+	"meta": {
+		"code": 400,
+		"error_message": "You didn't send something."
+		}
+}
+		</pre>
+
+      </section>
+	  <section id="methods">
+		<h1>Methods</h1>
+		<p>Methods are the actual things you can do once you have a valid access token.<p>
+		
+		<a href="https://api.jomres.net" target="_blank" class="btn btn-primary btn-lg">See all available Methods/Endpoints.</a>
+	</section>
+	
+	<section id="example">
+		<h1>PHP Example</h1>
+		<p>Here you can see a complete example of adding a new property through the API.</p>
+		<p>CLIENT-ID and CLIENT-SECRET in this example are placeholders, you would need to use your own Client ID and Secret.</p>
+		<pre class="prettyprint">
+$client_id = 'CLIENT-ID';
+$client_secret = 'CLIENT-SECRET';
+$server = '[LIVE_SITE]/jomres/api/';
+
+$data=array(
+    'grant_type' => 'client_credentials' , 
+    'client_id' => $client_id , 
+    'client_secret' => $client_secret
+    );
+
+// First let's get our access token
+
+try 
+    {
+    $ch = curl_init($server);
+    curl_setopt($ch, CURLINFO_HEADER_OUT, true);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+    $token_request=curl_exec ($ch);
+
+    $status = curl_getinfo($ch); 
+    curl_close ($ch);
+    $response = json_decode($token_request);  
+
+    if (isset($response->access_token))
+        {
+        $token = $response->access_token;
+        // Now that we've got the access token, we can request access to the API
+        
+        // First we will build the data we'll send to the remote server. 
+         $data = array (
+            "property_name"        => "API Property",
+            "property_email"       => "api_test@test.com",
+            "property_street"      => "API Property",
+            "property_town"        => "API Property",
+            "region"               => 6,
+            "property_postcode"    => "API Property",
+            "country"              => "GB",
+            "property_tel"         => "01234 567890",
+            "price"                => "0.00", // Real estate type properties only
+            "lat"                  => "51.50068",
+            "long"                 => "-0.14317",
+            "ptype_id"             => 1,
+            "stars"                => 4,
+            "superior"             => 0, // 0 no, 1 yes
+            "property_description"          => 'Lorem ipsum dolor sit amet...',
+            "property_checkin_times"        => 'Lorem ipsum dolor sit amet...',
+            "property_area_activities"      => 'Lorem ipsum dolor sit amet...',
+            "property_driving_directions"   => 'Lorem ipsum dolor sit amet...',
+            "property_airports"             => 'Lorem ipsum dolor sit amet...',
+            "property_othertransport"       => 'Lorem ipsum dolor sit amet...',
+            "property_policies_disclaimers" => 'Lorem ipsum dolor sit amet...'
+            );
+
+        $result = query_remote_server( $server , $token , "POST" , "properties/add/" ,$data  ); 
+    
+        if ($result['response_code'] == "200"  )
+            {
+            echo $result['result'];
+            }
+        elseif ( $result['response_code'] == "204")
+            {
+            echo "No data to return";
+            }
+        else
+            {
+            echo "Response code ".$result['response_code'];
+            var_dump($result['result']);
+            }
+        }
+    else
+        {
+        throw new Exception("Error, json & token not returned ".$token_request);
+        }
+    }
+catch(Exception $e) 
+    {
+    echo 'Message: ' .$e->getMessage();
+    }
+    
+    
+function query_remote_server( $server , $token , $method="GET" , $request ="" , $data=array(3) )
+    {
+    $ch = curl_init($server.$request);
+
+    switch ( $method )
+        {
+        case 'POST':
+                curl_setopt($ch, CURLOPT_POST, true);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+            break;
+        case 'DELETE':
+                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+            break;
+        case 'PUT':
+                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT"); 
+                curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+            break;
+        default :
+            break;
+        }
+    
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        'Authorization: Bearer '.$token,
+        'Accept: application/json',
+        ));
+    
+    curl_setopt($ch, CURLINFO_HEADER_OUT, true);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 30); //timeout after 30 seconds
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+    $result=curl_exec ($ch);
+    $errors = curl_error($ch);
+    $status = curl_getinfo($ch); 
+    $response_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    return array (
+	"result" => $result ,
+	"status" => $status , 
+	"errors" => $errors , 
+	"response_code" => $response_code 
+	);
+    }
+	</pre>
+	</section>
+	
+	<section id="policy">
+		<h1>TERMS AND CONDITIONS</h1>
+
+		<p>By using the API, you agree to this policy. We reserve the right to change this policy at any time without notice, so please check it regularly. Your continued use of the API constitutes acceptance of any changes.</p>
+		
+		[WEBSITE TERMS AND CONDITIONS]
+	</section>
+

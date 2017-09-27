@@ -4,15 +4,10 @@ jomresJquery(document).ready(function(){
 	jomresJquery('#FAQModal').appendTo("body");
 });
 </script>
-<style type="text/css">
-.bootstrap-tour {
-max-width: 350px;
-width: auto;
-}
-</style>
+
 <div id="jomres_alternate_menu_position"></div>
-<!-- available if required by a plugin -->
-<div id="jomres_content_area">
+
+<div id="jomres_content_area" class="jr_property_{PROPERTY_UID}">
 	<noscript>
 		<blockquote>
 			<p><font size="3" color="#FF0000"><b>You do not have JavaScript enabled.</b></font><br/>
@@ -21,12 +16,13 @@ width: auto;
 					webmaster.</font></p>
 		</blockquote>
 	</noscript>
+	{LICENSE_MESSAGE}
 	<div class="">
 		<h2 id="tour_target_property_name" style="{CURRENT_PROPERTY_STYLE}">
 			{HACTIVE_PROPERTY}{PROPERTYNAME}
 			<span class="small pull-right">
-				<a href="#FAQModal" ajax_task="faq" data-toggle="modal" faq-modal-title="{_JOMRES_FAQ}" random_identifier="FAQModal" class="btn btn-primary hidden-phone hidden-tablet"><i class="fa fa-question-circle"></i> {_JOMRES_FAQ}</a>
 				{MANAGEMENT_VIEW_DROPDOWN}
+				{VIDEO_TUTORIALS}
 			</span>
 		</h2>
 		<div class="row-fluid">
@@ -50,11 +46,6 @@ width: auto;
 	</div>
 	<div class="clearfix"></div>
 	{SANITY_CHECKS}
-	<patTemplate:tmpl name="messages" type="simpleCondition" requiredVars="message">
-		<div class="alert alert-warning">{MESSAGE}</div>
-	</patTemplate:tmpl>
-
+	<div id="jomres_feedback" class="clearfix"></div>
 	<div id="tour_target_content"></div>
-	
-	<div class="modal hide fade" id="FAQModal"></div>
 </patTemplate:tmpl>

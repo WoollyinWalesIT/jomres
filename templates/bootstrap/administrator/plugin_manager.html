@@ -334,6 +334,9 @@
 						<div class="modal-body">
 							<div class="row-fluid">
 								<div class="span6">
+									<img src="{IMAGE}" class="img-responsive" alt="{READABLE_NAME}"/>
+								</div>
+								<div class="span6">
 									<div class="alert alert-info">
 										<p>Minimum Jomres version {MIN_JOMRES_VER}</p>
 										<p>Your Version {LOCAL_VER}</p>
@@ -345,12 +348,9 @@
 										</p>
 									</div>
 								</div>
-								<div class="span6">
-									<p class="text-info">{PLUGIN_DESC}</p>
-									<p class="{HIGHLIGHT_CLASS}">{HIGHLIGHT}</p>
-								</div>
 							</div>
-
+							<p class="text-info">{PLUGIN_DESC}</p>
+							<p class="{HIGHLIGHT_CLASS}">{HIGHLIGHT}</p>
 							<button type="button" class="btn" data-toggle="collapse" data-target="#collapse_{PLUGIN_NAME}">
 								Changelog
 							</button>

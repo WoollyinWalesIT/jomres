@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.5
+ * @version Jomres 9.9.12
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -55,8 +55,11 @@ class j01011discounts
             set_showtime('propertylist_discounts', $relevant_properties);
         } else {
             $relevant_properties = get_showtime('propertylist_discounts');
+			$original_property_uid = get_showtime('property_uid');
 
-            if (array_key_exists($property_uid, $relevant_properties)) {
+            if (isset($relevant_properties[$property_uid])) {
+				set_showtime('property_uid', $property_uid);
+				
                 if ($relevant_properties[ $property_uid ][ 'discount_type' ] == 'lastminuteactive') { // Using last minute calculations
                     $lastminutethreshold = $relevant_properties[ $property_uid ][ 'lastminutethreshold' ];
                     $lastminutediscount = $relevant_properties[ $property_uid ][ 'lastminutediscount' ];
@@ -89,6 +92,8 @@ class j01011discounts
                     $this->returnValue = array('LASTMINUTE' => $text, 'LASTMINUTECLASS' => 'jomres_message');
                 }
             }
+			
+			set_showtime('property_uid', $original_property_uid);
         }
     }
 
