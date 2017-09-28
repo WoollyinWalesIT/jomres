@@ -1690,8 +1690,9 @@ function dropPlugin($pluginName)
         include $pluginPath.JRDS.'plugin_uninstall.php';
     }
     emptyDir($pluginPath);
-    if (rmdir($pluginPath)) {
-        return true;
+	if (is_dir($pluginPath)) {
+		rmdir($pluginPath);
+		return true;
     } else {
         $pluginPath = JOMRES_COREPLUGINS_ABSPATH.$pluginName;
         if (file_exists($pluginPath.JRDS.'plugin_uninstall.php')) {
