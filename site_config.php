@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.12
+ * @version Jomres 9.9.13
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -95,7 +95,7 @@ $jrConfig = array(
   'manager_bookings_trigger_commission' => '1',
   'commission_autosuspend_on_overdue' => '1',
   'commission_autosuspend_on_overdue_threashold' => '60',
-  'language_context' => '',
+  'language_context' => '0',
   'load_jquery_ui' => '1',
   'guestnumbersearch' => 'greaterthan',
   'load_jquery_ui_css' => '1',

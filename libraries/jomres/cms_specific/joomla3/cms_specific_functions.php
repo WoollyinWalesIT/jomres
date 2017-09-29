@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.12
+ * @version Jomres 9.9.13
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -74,7 +74,7 @@ function jomres_cmsspecific_createNewUser()
     $id = $thisJRUser->id;
 
     if (!$thisJRUser->userIsRegistered) {
-        require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'libraries'.JRDS.'src'.JRDS.'User'.JRDS.'UserHelper.php';
+        
         $guestDeets = $tmpBookingHandler->getGuestData();
 
         //If the email address already exists in the system, we'll not bother carrying on, just return this user's "mos_id"
@@ -83,23 +83,12 @@ function jomres_cmsspecific_createNewUser()
         if ($existing) {
             return $existing;
         }
-
-/* 		$valid = false;
-        while ( !$valid )
-            {
-            $username = $guestDeets[ 'firstname' ] . "_" . $guestDeets[ 'surname' ] . rand( 0, 1000 );
-            $username = strtolower( preg_replace( '/[^A-Za-z0-9_-]+/', "", $username ) );
-            $query    = "SELECT `id` FROM #__users WHERE `username` = '" . $username . "'";
-            $users    = doSelectSql( $query );
-            if ( count( $users ) == 0 )
-                $valid = true;
-            } */
         $name = $guestDeets[ 'firstname' ].' '.$guestDeets[ 'surname' ];
         $usertype = 'Registered';
         $block = '0';
 
-        $password = UserHelper::genRandomPassword();
-        $encryptedPassword = UserHelper::getCryptedPassword($password);
+        $password = Joomla\CMS\User\UserHelper::genRandomPassword();
+        $encryptedPassword = Joomla\CMS\User\UserHelper::getCryptedPassword($password);
 
         $query = "INSERT INTO #__users (
 			`name`,

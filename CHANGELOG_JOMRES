@@ -1,3 +1,10 @@
+<h3>Jomres 9.9.13 29/09/2017</h3>
+
+<span class="label label-important label-danger">Fix</span> Fixed an issue when creating new Joomla users in J! 3.8  Thanks Rod.
+<span class="label label-important label-danger">Fix</span> Solved a bug on fresh installs which prevented the proper creation of guest profiles table
+<span class="label label-important label-danger">Fix</span> Solved a problem with default value of language_context on fresh installs
+<span class="label label-important label-danger">Fix</span> Solved a problem in jomres settings table which prevented an index being created because the akey column length was higher than 1000 bytes, so changed the akey column length to varchar(100). Should be more than enough for any setting name.
+
 <h3>Jomres 9.9.12 27/09/2017</h3>
 
 <span class="label label-warning">Change</span> Flight library moved to top level vendor directory

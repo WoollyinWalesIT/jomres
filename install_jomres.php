@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.11
+ * @version Jomres 9.9.13
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2408,6 +2408,7 @@ function createGuestProfileTable()
 		`vat_number` CHAR (25) DEFAULT '' NOT NULL,
 		`vat_number_validated` BOOL NOT NULL DEFAULT '0',
 		`vat_number_validation_response` TEXT NULL,
+		`params` TEXT, 
 		PRIMARY KEY(id)
 		) ";
     if (!doInsertSql($query, '')) {
@@ -3360,6 +3361,7 @@ function createJomresTables()
 		`vat_number` CHAR (25) DEFAULT '' NOT NULL,
 		`vat_number_validated` BOOL NOT NULL DEFAULT '0',
 		`vat_number_validation_response` TEXT NULL,
+		`params` TEXT, 
 		PRIMARY KEY(id)
 		)";
     doInsertSql($query, '');
@@ -3762,7 +3764,7 @@ function createJomresTables()
     $query = 'CREATE TABLE IF NOT EXISTS `#__jomres_settings` (
 		`uid` int(11) auto_increment,
 		`property_uid` int( 11 ),
-		`akey`	VARCHAR(255),
+		`akey`	VARCHAR(100),
 		`value`	VARCHAR(255),
 		PRIMARY KEY	(`uid`)
 		) ';
