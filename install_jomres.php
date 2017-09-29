@@ -3764,7 +3764,7 @@ function createJomresTables()
     $query = 'CREATE TABLE IF NOT EXISTS `#__jomres_settings` (
 		`uid` int(11) auto_increment,
 		`property_uid` int( 11 ),
-		`akey`	VARCHAR(255),
+		`akey`	VARCHAR(100),
 		`value`	VARCHAR(255),
 		PRIMARY KEY	(`uid`)
 		) ';
