@@ -14,8 +14,6 @@
 defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.');
 // ################################################################
 
-use Joomla\CMS\User\UserHelper;
-
 function jomres_cmsspecific_error_logging_cms_files_to_not_backtrace()
 {
     return array('application.php', 'mcHandler.class.php', 'site.php', 'cms.php', 'helper.php');
@@ -89,8 +87,8 @@ function jomres_cmsspecific_createNewUser()
         $usertype = 'Registered';
         $block = '0';
 
-        $password = UserHelper::genRandomPassword();
-        $encryptedPassword = UserHelper::getCryptedPassword($password);
+        $password = Joomla\CMS\User\UserHelper::genRandomPassword();
+        $encryptedPassword = Joomla\CMS\User\UserHelper::getCryptedPassword($password);
 
         $query = "INSERT INTO #__users (
 			`name`,
