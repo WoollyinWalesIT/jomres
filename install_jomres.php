@@ -2408,6 +2408,7 @@ function createGuestProfileTable()
 		`vat_number` CHAR (25) DEFAULT '' NOT NULL,
 		`vat_number_validated` BOOL NOT NULL DEFAULT '0',
 		`vat_number_validation_response` TEXT NULL,
+		`params` TEXT, 
 		PRIMARY KEY(id)
 		) ";
     if (!doInsertSql($query, '')) {
@@ -3360,6 +3361,7 @@ function createJomresTables()
 		`vat_number` CHAR (25) DEFAULT '' NOT NULL,
 		`vat_number_validated` BOOL NOT NULL DEFAULT '0',
 		`vat_number_validation_response` TEXT NULL,
+		`params` TEXT, 
 		PRIMARY KEY(id)
 		)";
     doInsertSql($query, '');
