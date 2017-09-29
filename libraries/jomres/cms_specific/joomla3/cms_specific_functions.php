@@ -14,6 +14,8 @@
 defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.');
 // ################################################################
 
+use Joomla\CMS\User\UserHelper;
+
 function jomres_cmsspecific_error_logging_cms_files_to_not_backtrace()
 {
     return array('application.php', 'mcHandler.class.php', 'site.php', 'cms.php', 'helper.php');
@@ -74,7 +76,7 @@ function jomres_cmsspecific_createNewUser()
     $id = $thisJRUser->id;
 
     if (!$thisJRUser->userIsRegistered) {
-        require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'libraries'.JRDS.'src'.JRDS.'User'.JRDS.'UserHelper.php';
+        
         $guestDeets = $tmpBookingHandler->getGuestData();
 
         //If the email address already exists in the system, we'll not bother carrying on, just return this user's "mos_id"
@@ -83,17 +85,6 @@ function jomres_cmsspecific_createNewUser()
         if ($existing) {
             return $existing;
         }
-
-/* 		$valid = false;
-        while ( !$valid )
-            {
-            $username = $guestDeets[ 'firstname' ] . "_" . $guestDeets[ 'surname' ] . rand( 0, 1000 );
-            $username = strtolower( preg_replace( '/[^A-Za-z0-9_-]+/', "", $username ) );
-            $query    = "SELECT `id` FROM #__users WHERE `username` = '" . $username . "'";
-            $users    = doSelectSql( $query );
-            if ( count( $users ) == 0 )
-                $valid = true;
-            } */
         $name = $guestDeets[ 'firstname' ].' '.$guestDeets[ 'surname' ];
         $usertype = 'Registered';
         $block = '0';
