@@ -37,7 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
 date_default_timezone_set('UTC');
 
-require JOMRES_API_JOMRES_ROOT.'/vendor/autoload.php';
 require 'classes/logging.class.php';
 require 'oauth/inc_configs.php';
 

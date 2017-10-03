@@ -36,6 +36,7 @@ class jomres_obsolete_file_handling
         }
         $this->dir_root = JOMRESCONFIG_ABSOLUTE_PATH;
         $this->dir_jomres = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS;
+		$this->dir_api = JOMRES_API_ABSPATH;
         $this->dir_minicomponents = JOMRES_APP_ABSPATH;
         $this->dir_classes = JOMRES_CLASSES_ABSPATH;
         $this->dir_functions = JOMRES_FUNCTIONS_ABSPATH;
@@ -1533,6 +1534,9 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_functions.'imagehandling.php');
 		$this->add_obs_file($this->dir_libraries.'http_build_url.php');
 		$this->add_obs_file($this->dir_minicomponents.'j00001functioncall_output_filters.class.php');
+		
+		$this->add_obs_dir($this->dir_api.'vendor'.JRDS);
+		$this->add_obs_file($this->dir_api.'composer.json');
     }
 
     public function add_obs_file($path_and_file)
