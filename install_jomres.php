@@ -621,10 +621,9 @@ function doTableUpdates()
 	
 	if (!checkCustomtextLangContextColExists()) {
         alterCustomtextLangContextCol();
-    } else {
-		alterCustomtextColsChangeDefaultVals();
 	}
  
+	alterCustomtextColsChangeDefaultVals();
 	copy_default_property_type_markers();
     drop_orphan_line_items_table();
     drop_room_images_table();
@@ -634,7 +633,6 @@ function doTableUpdates()
 	add_jomres_property_categories_table();
 	add_jomres_images_table();
     updateSiteSettings('update_time', time());
-    
 }
 
 function alterPtypesHasStarsCol()
