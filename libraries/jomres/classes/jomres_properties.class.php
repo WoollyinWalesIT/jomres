@@ -393,7 +393,7 @@ class jomres_properties
         updateCustomText('_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE', $this->metatitle, true, $this->propertys_uid);
         updateCustomText('_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION', $this->metadescription, true, $this->propertys_uid);
         updateCustomText('_JOMRES_CUSTOMTEXT_PROPERTY_METAKEYWORDS', $this->metakeywords, true, $this->propertys_uid);
-		
+
 		//change the approval and published status if the property is edited by a manager (not super manager) and properties require approval
         if ((int) $jrConfig['automatically_approve_new_properties'] == 0 && !$thisJRUser->superPropertyManager) {
 			if ($this->approved == 1) {
@@ -583,6 +583,8 @@ class jomres_properties
             throw new Exception('Error: Cound not approve property.');
         }
 		
+		$this->approved = 1;
+		
 		$webhook_notification                               = new stdClass();
 		$webhook_notification->webhook_event                = 'property_approved';
 		$webhook_notification->webhook_event_description    = 'Logs when a property is approved.';
@@ -605,6 +607,8 @@ class jomres_properties
 		if (!doInsertSql($query, '')) {
             throw new Exception('Error: Cound not unapprove property.');
         }
+		
+		$this->approved = 0;
 		
 		$webhook_notification                               = new stdClass();
 		$webhook_notification->webhook_event                = 'property_unapproved';
@@ -644,6 +648,8 @@ class jomres_properties
             throw new Exception('Error: Cound not publish property.');
         }
 		
+		$this->published = 1;
+		
 		$webhook_notification                               = new stdClass();
 		$webhook_notification->webhook_event                = 'property_published';
 		$webhook_notification->webhook_event_description    = 'Logs when a property is published.';
@@ -651,7 +657,7 @@ class jomres_properties
 		$webhook_notification->data                         = new stdClass();
 		$webhook_notification->data->property_uid           = (int)$this->propertys_uid;
 		add_webhook_notification($webhook_notification);
-				
+
 		return true;
 	}
 	
@@ -667,6 +673,8 @@ class jomres_properties
             throw new Exception('Error: Cound not unpublish property.');
         }
 		
+		$this->published = 0;
+		
 		$webhook_notification                               = new stdClass();
 		$webhook_notification->webhook_event                = 'property_unpublished';
 		$webhook_notification->webhook_event_description    = 'Logs when a property is unpublished.';
@@ -674,7 +682,7 @@ class jomres_properties
 		$webhook_notification->data                         = new stdClass();
 		$webhook_notification->data->property_uid           = (int)$this->propertys_uid;
 		add_webhook_notification($webhook_notification);
-		
+
 		return true;
 	}
 	
@@ -705,6 +713,8 @@ class jomres_properties
             throw new Exception('Error: Cound not mark property as complete.');
         }
 		
+		$this->completed = 1;
+		
 		$webhook_notification                               = new stdClass();
 		$webhook_notification->webhook_event                = 'property_completed';
 		$webhook_notification->webhook_event_description    = 'Logs when a property is marked as complete.';
@@ -727,6 +737,8 @@ class jomres_properties
 		if (!doInsertSql($query, '')) {
             throw new Exception('Error: Cound not mark property as incomplete.');
         }
+		
+		$this->completed = 0;
 		
 		$webhook_notification                               = new stdClass();
 		$webhook_notification->webhook_event                = 'property_incompleted';

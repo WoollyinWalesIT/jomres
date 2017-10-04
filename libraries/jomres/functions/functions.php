@@ -3259,7 +3259,7 @@ function getPropertySpecificSettings($property_uid = null)
     if ($property_uid == null) {
         $mrConfig = $propertyConfig->get();
     } else {
-        if ((int) $property_uid != (int) $propertyConfig->property_uid) {
+        if ((int)$property_uid != (int)$propertyConfig->property_uid) {
             $propertyConfig->load_property_config($property_uid);
             $mrConfig = $propertyConfig->get();
         } else {
@@ -3320,6 +3320,9 @@ function publishProperty()
 
     $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
     $current_property_details->gather_data($defaultProperty);
+	
+	$jomres_properties = jomres_singleton_abstract::getInstance('jomres_properties');
+	$jomres_properties->propertys_uid = $defaultProperty;
     
 	if (!$current_property_details->approved) {
         jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=cannot_redirect'), '');
@@ -3327,40 +3330,34 @@ function publishProperty()
         $jomres_messaging = jomres_singleton_abstract::getInstance('jomres_messages');
 
         if (in_array($defaultProperty, $thisJRUser->authorisedProperties)) {
-            $query = 'SELECT published FROM #__jomres_propertys WHERE propertys_uid = '.(int) $defaultProperty.' LIMIT 1';
-            $published = doSelectSql($query, 1);
-            if ($published) {
-                $query = "UPDATE #__jomres_propertys SET `published`='0' WHERE propertys_uid = ".(int) $defaultProperty.' LIMIT 1';
-                if (doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY', '_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY', false))) {
-                    $MiniComponents->triggerEvent('02274'); // Optional trigger after property unpublished
-                    $jomres_messaging->set_message(jr_gettext('_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY', '_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY', false));
-                        
-                    $webhook_notification                               = new stdClass();
-                    $webhook_notification->webhook_event                = 'property_unpublished';
-                    $webhook_notification->webhook_event_description    = 'Logs when a property is unpublished.';
-                    $webhook_notification->webhook_event_plugin         = 'core';
-                    $webhook_notification->data                         = new stdClass();
-                    $webhook_notification->data->property_uid           = $defaultProperty;
-                    add_webhook_notification($webhook_notification);
-                }
+            if ($current_property_details->published) {
+				if ($jomres_properties->setPublished(0)) {                
+					$MiniComponents->triggerEvent('02274'); // Optional trigger after property unpublished
+				
+					$jomres_messaging->set_message(jr_gettext('_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY', '_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY', false));
+				} else {
+					$jomres_messaging->set_message('There was a problem unpublishing the property.');
+					
+					return false;
+				}
             } else {
-                $query = "UPDATE #__jomres_propertys SET `published`='1' WHERE propertys_uid = ".(int) $defaultProperty.' LIMIT 1';
-                if (doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', '_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', false))) {
-                    $MiniComponents->triggerEvent('02273'); // Optional trigger after property published
-                    $jomres_messaging->set_message(jr_gettext('_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', '_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', false));
-                        
-                    $webhook_notification                               = new stdClass();
-                    $webhook_notification->webhook_event                = 'property_published';
-                    $webhook_notification->webhook_event_description    = 'Logs when a property is published.';
-                    $webhook_notification->webhook_event_plugin         = 'core';
-                    $webhook_notification->data                         = new stdClass();
-                    $webhook_notification->data->property_uid           = $defaultProperty;
-                    add_webhook_notification($webhook_notification);
-                }
+				if ($jomres_properties->setPublished(1)) {
+					$MiniComponents->triggerEvent('02273'); // Optional trigger after property published
+                    
+					$jomres_messaging->set_message(jr_gettext('_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', '_JOMRES_MR_AUDIT_PUBLISH_PROPERTY', false));
+				} else {
+					$jomres_messaging->set_message('There was a problem publishing the property.');
+					
+					return false;
+				}
             }
         } else {
             echo "You naughty little tinker, that's not your property";
+			
+			return false;
         }
+		
+		return true;
     }       
 }
 
@@ -3383,7 +3380,7 @@ function propertyClicked($p_uid)
     $cookiename = "jomresp$p_uid";
     $alreadyClicked = jomresGetParam($_COOKIE, $cookiename, '0');
     if (!$alreadyClicked) {
-        setcookie($cookiename, '1', time() + 60 * 60 * 24 * 30);
+        @setcookie($cookiename, '1', time() + 60 * 60 * 24 * 30);
         $query = "INSERT INTO #__jomres_pcounter (`count`, `p_uid`) VALUES (1, ".(int)$p_uid.") ON DUPLICATE KEY UPDATE `count` = `count` + 1";
 
         if (!doInsertSql($query, '')) {

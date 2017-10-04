@@ -80,7 +80,7 @@ class basic_property_details
             $property_uid = $this->property_uid;
         }
 
-        if (!array_key_exists($property_uid, $this->property_names)) {
+        if (!isset($this->property_names[$property_uid])) {
             $this->get_property_name_multi(array($property_uid));
         }
 
@@ -126,7 +126,7 @@ class basic_property_details
 		//unset property uids that already have been handled by $this->gather_data_multi() function
 		$temp_array = array();
 		foreach ($property_uids as $id) {
-			if (!array_key_exists($id, $this->multi_query_result) && !isset($this->property_names[ $id ])) {
+			if (!isset($this->multi_query_result[$id]) && !isset($this->property_names[ $id ])) {
 				$temp_array[] = $id;
 			} else {
 				if (isset($this->multi_query_result[$id]['property_name'])) {
@@ -177,7 +177,7 @@ class basic_property_details
 
         $this->gather_data_multi(array($this->property_uid)); //if more properties are on the same page (for example if we have an NGM module published) and changes the property uid showtime, when the showtime is set back to this property uid, the query will be executed again, because this property uid is not in the multi_query_result. So we use gather_data_multi to get data for this property_uid, then reuse this data later from $this->multi_query_result if necessary.
 
-        if (array_key_exists($this->property_uid, $this->multi_query_result)) {
+        if (isset($this->multi_query_result[$this->property_uid])) {
             $this->property_name = $this->multi_query_result[ $this->property_uid ][ 'property_name' ];
             $this->property_street = $this->multi_query_result[ $this->property_uid ][ 'property_street' ];
             $this->property_town = $this->multi_query_result[ $this->property_uid ][ 'property_town' ];
@@ -218,7 +218,6 @@ class basic_property_details
             $this->permit_number = $this->multi_query_result[ $this->property_uid ][ 'permit_number' ];
 			$this->completed  = $this->multi_query_result[ $this->property_uid ][ 'completed' ];
 			$this->cat_id  = $this->multi_query_result[ $this->property_uid ][ 'cat_id' ];
-			
 
             $this->accommodation_tax_rate = $this->multi_query_result[ $this->property_uid ][ 'accommodation_tax_rate' ];
 
@@ -331,7 +330,7 @@ class basic_property_details
         // First we need to extract those uids that are not already in the $this->multi_query_result var, this (may) reduce the number of properties we need to query
         $temp_array = array();
         foreach ($property_uids as $id) {
-            if (!array_key_exists($id, $this->multi_query_result)) {
+            if (!isset($this->multi_query_result[$id])) {
                 $temp_array[ ] = $id;
             }
         }
@@ -340,6 +339,7 @@ class basic_property_details
 
         $customTextObj = jomres_singleton_abstract::getInstance('custom_text');
         $jrportal_taxrate = jomres_singleton_abstract::getInstance('jrportal_taxrate');
+		$jomres_config_property_singleton = jomres_singleton_abstract::getInstance('jomres_config_property_singleton');
 
         if (!empty($property_uids)) {
             $query = 'SELECT 
@@ -380,6 +380,9 @@ class basic_property_details
 						FROM #__jomres_propertys 
 						WHERE propertys_uid IN (' .jomres_implode($property_uids).') ';
             $propertyData = doSelectSql($query);
+
+			//load all property specific settings
+			$jomres_config_property_singleton->get_property_settings($property_uids);
 
             //get custom text for these properties
             $customTextObj->gather_data($property_uids);
@@ -459,6 +462,7 @@ class basic_property_details
                 $this->multi_query_result[ $data->propertys_uid ][ 'permit_number' ] = (string) $data->permit_number;
 				$this->multi_query_result[ $data->propertys_uid ][ 'completed' ] = (int)$data->completed;
 				$this->multi_query_result[ $data->propertys_uid ][ 'cat_id' ] = (int)$data->cat_id;
+
                 $this->property_names[$data->propertys_uid] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME', $data->property_name, $editable, false);
             }
 
@@ -533,7 +537,7 @@ class basic_property_details
         if (!empty($jomres_property_types->property_types)) {
             foreach ($jomres_property_types->property_types as $pt) {
                 $this->all_property_types[ $pt['id'] ] = $pt['ptype_desc'];
-                $this->all_property_type_titles[ $pt['id'] ] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPE'.(int) $pt['id'], $pt['ptype'], false);
+                $this->all_property_type_titles[ $pt['id'] ] = $pt['ptype'];
             }
         }
     }

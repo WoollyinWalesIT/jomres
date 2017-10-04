@@ -50,6 +50,9 @@ class j06002edit_property
         //get current property details
         $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
         $current_property_details->gather_data($property_uid);
+		
+		//property types
+		$jomres_property_types = jomres_singleton_abstract::getInstance('jomres_property_types');
 
         $output[ 'PROPERTY_NAME' ] = $current_property_details->property_name;
         $output[ 'PROPERTY_STREET' ] = $current_property_details->property_street;
@@ -182,7 +185,6 @@ class j06002edit_property
         }
 
         //property type dropdown (extended version, with explanation about what will guests book in this property)
-		$jomres_property_types = jomres_singleton_abstract::getInstance('jomres_property_types');
         $output[ 'HPROPERTY_TYPE' ] = jr_gettext('_JOMRES_FRONT_PTYPE', '_JOMRES_FRONT_PTYPE');
         $output[ 'PROPERTY_TYPE_DROPDOWN' ] = $jomres_property_types->getPropertyTypeDropdown($current_property_details->ptype_id, true);
 		
@@ -271,7 +273,7 @@ class j06002edit_property
         }
 
 		$stars = array();
-		if ($mrConfig[ 'singleRoomProperty' ] != '1') {
+		if ($jomres_property_types->property_types[$current_property_details->ptype_id]['has_stars'] == 1) {
 			$s = array();
 			
 			$s[ 'HSTARS' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STARS', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STARS');
