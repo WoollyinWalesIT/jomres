@@ -143,7 +143,7 @@ class j03025insertbooking_invoice
 							$tour_coupon_discount = $discount_amount;
 							break;
 						case 'Partner':
-							$partner_discount += $discount_amount;
+							$partner_discount = $discount_amount;
 							break;
 						default:
 							break;
