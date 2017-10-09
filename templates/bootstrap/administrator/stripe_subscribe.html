@@ -1,0 +1,226 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.4/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.4/lodash.min.js"></script>
+<script src="https://checkout.stripe.com/checkout.js"></script>
+
+<style>
+.panel{
+	background: rgba(255, 255, 255, 0.8);
+	box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
+}
+</style>
+
+<div id="app">
+	<div class="container-fluid">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Free 30 day trial</div>
+			<div class="panel-body">
+				<form v-on:submit="sub" action="#" id="subs_form_1" >
+
+					<div class="form-group">
+						<label for="firstname" class="cols-sm-2 control-label">First name</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+								<input type="text" class="form-control" placeholder="First name (required)" v-model="firstname" autofocus>
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="surname" class="cols-sm-2 control-label">Surname</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+								<input type="text" class="form-control" placeholder="Surname (required)" v-model="surname">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="country" class="cols-sm-2 control-label">Country</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-globe" aria-hidden="true"></i></span>
+								<select  class="form-control" v-model="country">
+								<option value="" disabled selected>Country (required)</option>
+								<option v-for="option in countries" v-bind:value="option.country_code">
+									{{ option.country_name }}
+								</option>
+							</select>
+							</div>
+						</div>
+					</div>
+						
+					<div class="form-group">
+						<label for="tax_number" class="cols-sm-2 control-label">Tax number</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
+								<input type="text" class="form-control" placeholder="VAT/Tax number (optional)" v-model="tax_number">
+							</div>
+						</div>
+					</div>
+						
+					<div class="form-group">
+						<label for="email" class="cols-sm-2 control-label">Email</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+								<input v-model="email" class="form-control span6" type="email" placeholder="Email (required)">
+							</div>
+						</div>
+					</div>
+				
+					<div class="row">
+						<div class="span12">
+							<div id="warning" v-bind:class="{ 'alert-success': this.isSuccessful, 'alert-danger': this.isError }">
+								{{log}}
+							</div>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="span12">
+							<button class="btn btn-primary btn-block" type="submit">Sign up - it's free</button>
+						</div>
+					</div>
+				</form>
+			</div> <!-- end of panel body-->
+		</div> <!-- end of panel -->
+	</div> <!-- end of .container -->
+	<button id="customButton" style="display:none">Subscribe</button> <!-- This is here to allow automatic triggering of the Stripe checkout form to make it popup once the invoice id has been received -->
+</div> <!-- end of #app -->
+
+
+	<script>
+	var invoice_id = 0;
+	var client_email = 0;
+	
+	var app = new Vue({
+		el: '#app',
+		data: {
+			firstname:	'',
+			surname:	'',
+			email:		'',
+			country:	'ES',
+			countries:	{COUNTRIES},
+			tax_number:	'',
+            isError: false,
+			log: ""
+			
+		},
+		methods: {
+			sub: function(event){
+				event.preventDefault();
+				if(
+					this.firstname == "" || 
+					this.surname == "" || 
+					this.country == "" || 
+					this.email == ""
+					){
+					this.log ="Please fill all required fields";
+					this.isError = true;
+				}else{
+					var app = this
+						jomresJquery.blockUI({
+							message: '<h3>Please wait, I am setting up your account</h3>',
+							baseZ: 1030,
+							css: {
+								border: 'none', 
+								padding: '15px', 
+								backgroundColor: '#000', 
+								'-webkit-border-radius': '10px', 
+								'-moz-border-radius': '10px', 
+								opacity: .8, 
+								color: '#fff' 
+							} });
+			
+					axios.get("{JOMRES_SITEPAGE_URL_ADMIN_AJAX}&task=stripe_subscribe_ajax&firstname="+this.firstname+'&surname='+this.surname+'&country='+this.country+'&email='+this.email+'&tax_number='+this.tax_number)
+						.then(function (response) {
+							if (response.data.success ) {
+								invoice_id = response.data.invoice_id;
+								client_email = app.email;
+								jomresJquery.unblockUI();
+								jomresJquery('#customButton').trigger('click');
+								}
+							else {
+								app.log = response.data.error;
+								app.isError = true;
+								jomresJquery.unblockUI();
+								}
+						})
+						.catch(function (error) {
+							app.log = response.data.error;
+							app.isError = true;
+							jomresJquery.unblockUI();
+				})
+			  }   
+		  }
+		}
+	}) 
+	
+
+var handler = StripeCheckout.configure({
+  key: 'pk_live_LXNptgK7gnpdRxCuV05tnmrN',
+  image: '{LIVESITE}/jomres/images/jrhouse.png',
+  locale: 'auto',
+  token: function(token) {
+	jomresJquery.blockUI({
+			message: '<h3>Hang on a moment, I\'m getting your key and will install for you</h3>',
+			baseZ: 1030,
+			css: {
+				border: 'none', 
+				padding: '15px', 
+				backgroundColor: '#000', 
+				'-webkit-border-radius': '10px', 
+				'-moz-border-radius': '10px', 
+				opacity: .8, 
+				color: '#fff' 
+			} });
+			
+	axios.get('{JOMRES_SITEPAGE_URL_ADMIN_AJAX}&task=stripe_subscribe_validate_token&stripeToken='+token.id+'&invoice_id='+invoice_id)
+		.then(function (response) {
+			if (response.data.success ) {
+				var newLoc = '{JOMRES_SITEPAGE_URL_ADMIN}&task=stripe_subscribe_save_key&license_key='+response.data.key
+				window.location = newLoc;
+				}
+			})
+		.catch(function (error) {
+			alert("Couldnt get license key");
+		})
+
+  },
+  opened: function() {
+  	console.log("Form opened");
+  },
+  closed: function() {
+  	console.log("Form closed");
+  }
+});
+
+jomresJquery('#customButton').on('click', function(e) {
+  // Open Checkout with further options:
+  handler.open({
+    name: "Developer Subscription",
+    description: "30 day free trial, then 29€ per month",
+    amount: 0,
+	email:client_email,
+	panelLabel:'Start my free trial',
+	allowRememberMe: false,
+	zipCode:true
+  });
+  e.preventDefault();
+});
+
+// Close Checkout on page navigation:
+jomresJquery(window).on('popstate', function() {
+  handler.close();
+});
+
+
+
+	</script>
+	
+
+</patTemplate:tmpl>
