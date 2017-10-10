@@ -74,7 +74,11 @@ class minicomponent_registry
 
     public function regenerate_registry($force_reload_allowed = false)
     {
-		jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/javascript/', 'jquery.blockUI.js');
+		if (!defined('AUTO_UPGRADE')) { // We don't want to do this if the installer is running this script
+			jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/javascript/', 'jquery.blockUI.js');
+		}
+		
+		
 		
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
@@ -133,7 +137,7 @@ class minicomponent_registry
 
         //reload page if registry changed
         if ($this->original_filesize != $this->new_filesize && $force_reload_allowed) {
-			
+			if (!defined('AUTO_UPGRADE')) { // We don't want to do this if the installer is running this script
             echo "<script>	jomresJquery.blockUI({ 
 			message: '<h3>Reloading the page as the registry has changed</h3>',
 			baseZ: 1030,
@@ -146,6 +150,7 @@ class minicomponent_registry
 				opacity: .8, 
 				color: '#fff' 
 			} });</script>";
+				}
             echo '<script>window.location.reload();</script>';
         }
     }
