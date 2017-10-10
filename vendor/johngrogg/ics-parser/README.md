@@ -81,6 +81,7 @@ var_dump($event->dtstart_array);
 | `RECURRENCE_EVENT`        | Used to isolate generated recurrence events   |
 | `SECONDS_IN_A_WEEK`       | The number of seconds in a week               |
 | `TIME_FORMAT`             | Default time format to use                    |
+| `TIME_ZONE_UTC`           | UTC time zone string                          |
 | `UNIX_FORMAT`             | Unix timestamp date format                    |
 | `UNIX_MIN_YEAR`           | The year Unix time began                      |
 
@@ -89,6 +90,7 @@ var_dump($event->dtstart_array);
 | Name                     | Description                                                         | Configurable       | Default Value  |
 |--------------------------|---------------------------------------------------------------------|:------------------:|----------------|
 | `$cal`                   | The parsed calendar                                                 |         :x:        | N/A            |
+| `$alarmCount`            | Tracks the number of alarms in the current iCal feed                |         :x:        | N/A            |
 | `$eventCount`            | Tracks the number of events in the current iCal feed                |         :x:        | N/A            |
 | `$freeBusyCount`         | Tracks the free/busy count in the current iCal feed                 |         :x:        | N/A            |
 | `$todoCount`             | Tracks the number of todos in the current iCal feed                 |         :x:        | N/A            |
@@ -111,6 +113,7 @@ var_dump($event->dtstart_array);
 | `cleanData`                           | `$data`                                                    | `protected` | Replaces curly quotes and other special characters with their standard equivalents                    |
 | `convertDayOrdinalToPositive`         | `$dayNumber`, `$weekday`, `$timestamp`                     | `protected` | Converts a negative day ordinal to its equivalent positive form                                       |
 | `fileOrUrl`                           | `$filename`                                                | `protected` | Reads an entire file or URL into an array                                                             |
+| `isExdateMatch`                       | `$exdate`, `$anEvent`, `$recurringOffset`                  | `protected` | Checks if an excluded date matches a given date by reconciling time zones                             |
 | `isFileOrUrl`                         | `$filename`                                                | `protected` | Checks if a filename exists as a file or URL                                                          |
 | `isValidTimeZoneId`                   | `$timeZone`                                                | `protected` | Checks if a time zone is valid                                                                        |
 | `keyValueFromString`                  | `$text`                                                    | `protected` | Gets the key value pair from an iCal string                                                           |

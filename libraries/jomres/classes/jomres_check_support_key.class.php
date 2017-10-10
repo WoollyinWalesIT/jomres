@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.13
+ * @version Jomres 9.9.14
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,16 +16,10 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_check_support_key
 {
-    public function __construct($task)
+    public function __construct($task = '')
     {
         $this->task = $task;
         $this->key_valid = false;
-
-        if (isset($_REQUEST[ 'support_key' ]) && strlen($_REQUEST[ 'support_key' ]) > 0) {
-            $this->save_key($task);
-        }
-
-        $task = jomresGetParam($_REQUEST, 'task', '');
 
         $this->shop_status = 'CLOSED';
         $this->check_license_key();
@@ -53,12 +47,18 @@ class jomres_check_support_key
         $this->plugin_licenses = plugin_licenses();
     }
 
-    public function check_license_key($force = false)
+    public function check_license_key($force = false , $key = '' )
     {
+
+		
+		
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
 
-        $str = 'key='.$jrConfig['licensekey'];
+		if ( $key == '' )
+			$str = 'key='.$jrConfig['licensekey'];
+		else
+			$str = 'key='.$key;
         $this->key_hash = $jrConfig['licensekey'];
 
         $license_data = new stdClass();
@@ -81,7 +81,11 @@ class jomres_check_support_key
             }
         }
 
+
+
         if (!file_exists(JOMRES_TEMP_ABSPATH.'license_key_check_cache.php') || $force) {
+			
+			
             $buffer = queryUpdateServer('check_key.php', $str, 'updates');
             if ($buffer != '') {
                 $license_data = json_decode($buffer);

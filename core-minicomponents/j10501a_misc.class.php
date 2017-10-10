@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.13
+ * @version Jomres 9.9.14
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -50,7 +50,7 @@ class j10501a_misc
                 }
             } else {
                 $support_key_message = '<p class="alert alert-danger">'.jr_gettext('_JOMRES_SUPPORTKEY_DESC_INVALID', '_JOMRES_SUPPORTKEY_DESC_INVALID', false, false).'</p>';
-                $renewal_link = '<a href="https://license-server.jomres.net/order.php?cmd=products/licenses/list&product_id=13" target="_blank">Renew now</a>';
+                $renewal_link = '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=stripe_subscribe">Subscribe now</a>';
             }
 
             $support_key_status = '<span class="badge">Status</span> '.$jomres_check_support_key->key_status.'';

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.13
+ * @version Jomres 9.9.14
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -621,10 +621,9 @@ function doTableUpdates()
 	
 	if (!checkCustomtextLangContextColExists()) {
         alterCustomtextLangContextCol();
-    } else {
-		alterCustomtextLangContextColChangeDefaultVal();
 	}
  
+	alterCustomtextColsChangeDefaultVals();
 	copy_default_property_type_markers();
     drop_orphan_line_items_table();
     drop_room_images_table();
@@ -634,7 +633,6 @@ function doTableUpdates()
 	add_jomres_property_categories_table();
 	add_jomres_images_table();
     updateSiteSettings('update_time', time());
-    
 }
 
 function alterPtypesHasStarsCol()
@@ -672,16 +670,33 @@ function add_jomres_images_table()
     }
 }
 
-function alterCustomtextLangContextColChangeDefaultVal()
+function alterCustomtextColsChangeDefaultVals()
 {
-    $query = "ALTER TABLE `#__jomres_custom_text` MODIFY COLUMN `language_context` VARCHAR(255) NOT NULL DEFAULT '0' ";
-    if (!doInsertSql($query, '')) {
-        output_message('Error, unable to modify __jomres_custom_text language_context column default value', 'danger');
+    $query = "ALTER TABLE `#__jomres_custom_text` CHANGE `constant` `constant` VARCHAR(100) NOT NULL DEFAULT '0', CHANGE `language` `language` VARCHAR(5) NOT NULL DEFAULT 'en-GB', CHANGE `language_context` `language_context` VARCHAR(50) NOT NULL DEFAULT '0' ";
+	if (!doInsertSql($query, '')) {
+        output_message('Error, unable to alter __jomres_custom_text constant,language and language_context columns', 'danger');
     }
 	
 	$query = "UPDATE #__jomres_custom_text SET `language_context` = '0' WHERE `language_context` = '' ";
 	if (!doInsertSql($query, '')) {
         output_message('Error, unable to update __jomres_custom_text language_context to 0 where language context is blank', 'danger');
+    }
+	
+	//add unique index to 4 columns to prevent future duplicates
+	$query = "SHOW INDEX FROM `#__jomres_custom_text` WHERE Key_name = 'const_puid_lang_langcontext' ";
+    $indexExists = doSelectSql($query);
+    if (count($indexExists) < 1) {
+		//delete duplicate redords
+		$query = "DELETE FROM #__jomres_custom_text USING #__jomres_custom_text INNER JOIN #__jomres_custom_text b WHERE #__jomres_custom_text.constant = b.constant AND #__jomres_custom_text.property_uid = b.property_uid AND #__jomres_custom_text.language = b.language AND #__jomres_custom_text.language_context = b.language_context AND #__jomres_custom_text.uid < b.uid";
+		if (!doInsertSql($query, '')) {
+			output_message('Error, unable to delete duplicates from __jomres_custom_text table', 'danger');
+		}
+		
+		//add unique index to 4 columns
+		$query = "ALTER TABLE `#__jomres_custom_text` ADD UNIQUE `const_puid_lang_langcontext` (`constant`, `property_uid`, `language`, `language_context`)";
+        if (!doInsertSql($query)) {
+            output_message('Failed to run query: '.$query, 'danger');
+        }
     }
 }
 

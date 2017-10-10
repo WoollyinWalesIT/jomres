@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.13
+ * @version Jomres 9.9.14
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -74,6 +74,8 @@ class minicomponent_registry
 
     public function regenerate_registry($force_reload_allowed = false)
     {
+		jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/javascript/', 'jquery.blockUI.js');
+		
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
 
@@ -131,7 +133,19 @@ class minicomponent_registry
 
         //reload page if registry changed
         if ($this->original_filesize != $this->new_filesize && $force_reload_allowed) {
-            echo "<script>alert('Reloading current page as minicomponents registry has changed');</script>";
+			
+            echo "<script>	jomresJquery.blockUI({ 
+			message: '<h3>Reloading the page as the registry has changed</h3>',
+			baseZ: 1030,
+			css: {
+				border: 'none', 
+				padding: '15px', 
+				backgroundColor: '#000', 
+				'-webkit-border-radius': '10px', 
+				'-moz-border-radius': '10px', 
+				opacity: .8, 
+				color: '#fff' 
+			} });</script>";
             echo '<script>window.location.reload();</script>';
         }
     }

@@ -1,3 +1,12 @@
+<h3>Jomres 9.9.14 10/10/2017</h3>
+
+<span class="label label-warning">Change</span> Implemented new code that allows site admins to register trial license keys through the administrator area.
+<span class="label label-warning">Change</span> Removed api vendor dir as now all api libraries are included in the core
+<span class="label label-warning">Change</span> Added property publish method to jomres properties class. Improved property config so that we won`t get all property configs from db, but just the configs for the properties we need
+
+<span class="label label-important label-danger">Fix</span> Solved a partner discount incorrect amount on invoices
+<span class="label label-important label-danger">Fix</span> Improved installer to remove duplicate records from jomres custom text table and after that add a unique index to prevent future duplicates.
+
 <h3>Jomres 9.9.13 29/09/2017</h3>
 
 <span class="label label-important label-danger">Fix</span> Fixed an issue when creating new Joomla users in J! 3.8  Thanks Rod.
