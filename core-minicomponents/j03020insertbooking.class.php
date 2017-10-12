@@ -293,6 +293,7 @@ class j03020insertbooking
                     $booked_in = $tempBookingData->booked_in;
                     $sendGuestEmail = $tempBookingData->sendGuestEmail;
                     $sendHotelEmail = $tempBookingData->sendHotelEmail;
+					$channel_manager_booking = $tempBookingData->channel_manager_booking;
 
                     if ($thisJRUser->userIsRegistered) { // The user is already registered
                         $user = jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id($thisJRUser->id);
@@ -401,13 +402,75 @@ class j03020insertbooking
 
                 if (!$secret_key_payment) {
                     $query = "INSERT INTO #__jomres_contracts (
-						`arrival`, `departure`, `rates_uid`, `guest_uid`, `rate_rules`, `rooms_tariffs`, `contract_total`, `special_reqs`, `deposit_paid`, `deposit_required`, `date_range_string`, `booked_in`, `booked_out`, `property_uid`, `single_person_suppliment`, `extras`, `extrasquantities`, `extrasvalue`, `tax`, `tag`, `timestamp`, `room_total`, `discount`, `currency_code`, `discount_details`, `username`, `coupon_id`, `approved`, `booking_data_archive_id`, `secret_key`, `booking_language` , `referrer`)
-						VALUES (
-						'$arrivalDate','$departureDate','".(int) $rates_uid."',
-						'" .(int) $guests_uid."','$rateRules','".(string) $requestedRoom."', '".(float) $contract_total."','$specialReqs',
-						'".(int) $depositPaid."','".(float) $deposit_required."',
-						'$dateRangeString','".(int) $booked_in."','0',
-						'" .(int) $property_uid."','".(float) $single_person_suppliment."','$extras','".(string) $extrasquantities."','".(float) $extrasValue."','".(float) $tax."','$cartnumber','$datetime','".(float) $room_total."','".(float) $discount."','$ccode','".$discount_details."','".$bookersUsername."',".(int) $coupon_id.','.$approved." , '".$booking_data_archive_id."' , '".$secret_key."' , '".get_showtime('lang')."' , '".$tmpBookingHandler->tmpbooking[ 'referrer' ]."') ";
+						`arrival`, 
+						`departure`, 
+						`rates_uid`, 
+						`guest_uid`, 
+						`rate_rules`, 
+						`rooms_tariffs`, 
+						`contract_total`, 
+						`special_reqs`, 
+						`deposit_paid`, 
+						`deposit_required`, 
+						`date_range_string`, 
+						`booked_in`, 
+						`booked_out`, 
+						`property_uid`, 
+						`single_person_suppliment`, 
+						`extras`, 
+						`extrasquantities`, 
+						`extrasvalue`, 
+						`tax`, 
+						`tag`, 
+						`timestamp`, 
+						`room_total`, 
+						`discount`, 
+						`currency_code`, 
+						`discount_details`, 
+						`username`, 
+						`coupon_id`, 
+						`channel_manager_booking`, 
+						`approved`, 
+						`booking_data_archive_id`, 
+						`secret_key`, 
+						`booking_language`, 
+						`referrer`
+						)
+					VALUES (
+						'$arrivalDate',
+						'$departureDate',
+						".(int) $rates_uid.",
+						".(int) $guests_uid.",
+						'$rateRules',
+						'".(string) $requestedRoom."', 
+						".(float) $contract_total.",
+						'$specialReqs',
+						".(int) $depositPaid.",
+						".(float) $deposit_required.",
+						'$dateRangeString',
+						".(int) $booked_in.",
+						0,
+						" .(int) $property_uid.",
+						".(float) $single_person_suppliment.",
+						'$extras',
+						'".(string) $extrasquantities."',
+						".(float) $extrasValue.",
+						".(float) $tax.",
+						'$cartnumber',
+						'$datetime',
+						".(float) $room_total.",
+						".(float) $discount.",
+						'$ccode',
+						'".$discount_details."',
+						'".$bookersUsername."',
+						".(int) $coupon_id.",
+						".(int) $channel_manager_booking.",
+						".(int) $approved.",
+						".(int) $booking_data_archive_id.", 
+						'".$secret_key."', 
+						'".get_showtime('lang')."', 
+						'".$tmpBookingHandler->tmpbooking[ 'referrer' ]."'
+						)";
 
 					$contract_uid = doInsertSql($query, '');
                     system_log('Insert query '.$query);
@@ -506,6 +569,7 @@ class j03020insertbooking
                 $componentArgs[ 'sendGuestEmail' ] = $sendGuestEmail;
                 $componentArgs[ 'sendHotelEmail' ] = $sendHotelEmail;
                 $componentArgs[ 'approved' ] = $approved;
+				$componentArgs[ 'channel_manager_booking' ] = $channel_manager_booking;
 
                 if ($secret_key_payment) {
                     $componentArgs[ 'secret_key_payment' ] = true;
@@ -622,11 +686,6 @@ class j03020insertbooking
         }
     }
 
-/**
- * Must be included in every mini-component.
- #
- * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
- */
     // This must be included in every Event/Mini-component
     public function getRetVals()
     {
