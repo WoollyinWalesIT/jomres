@@ -180,8 +180,14 @@ class jomres_generic_booking_email
         $this->data[$contract_uid]['DEPARTURE'] = outputDate($current_contract_details->contract[$contract_uid]['contractdeets']['departure']);
         $this->data[$contract_uid]['TOTAL'] = output_price($current_contract_details->contract[$contract_uid]['contractdeets']['contract_total']);
         $this->data[$contract_uid]['DEPOSIT'] = output_price($current_contract_details->contract[$contract_uid]['contractdeets']['deposit_required']);
-        $this->data[$contract_uid]['BALANCE'] = output_price($current_contract_details->contract[$contract_uid]['contractdeets']['contract_total'] - $current_contract_details->contract[$contract_uid]['contractdeets']['deposit_required']);
-        $this->data[$contract_uid]['SPECIAL_REQUIREMENTS'] = jomres_decode($current_contract_details->contract[$contract_uid]['contractdeets']['special_reqs']);
+        
+		if ($current_contract_details->contract[$contract_uid]['contractdeets']['deposit_paid'] == 1) {
+			$this->data[$contract_uid]['BALANCE'] = output_price($current_contract_details->contract[$contract_uid]['contractdeets']['contract_total'] - $current_contract_details->contract[$contract_uid]['contractdeets']['deposit_required']);
+		} else {
+			$this->data[$contract_uid]['BALANCE'] = output_price($current_contract_details->contract[$contract_uid]['contractdeets']['contract_total']);
+		}
+        
+		$this->data[$contract_uid]['SPECIAL_REQUIREMENTS'] = jomres_decode($current_contract_details->contract[$contract_uid]['contractdeets']['special_reqs']);
 
         $this->data[$contract_uid]['ALLOCATION_NOTE'] = '';
         if (isset($tmpBookingHandler->tmpbooking[ 'booking_notes' ][ 'suppliment_note' ])) {
