@@ -58,7 +58,7 @@ class j06005oauth_authorise
 			require_once __DIR__.'/../../api/oauth/inc_configs.php';
 		}
 		
-		require_once __DIR__.'/../../api/oauth/server.php';
+		require_once JOMRESPATH_BASE.'/api/oauth/server.php';
 
 		$request = OAuth2\Request::createFromGlobals();
 		$response = new OAuth2\Response();
