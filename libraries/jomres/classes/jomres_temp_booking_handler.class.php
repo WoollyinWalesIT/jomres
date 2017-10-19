@@ -132,6 +132,7 @@ class jomres_temp_booking_handler
 			'sendGuestEmail' => true,
 			'sendHotelEmail' => true,
 			'secret_key_payment' => false,
+			'channel_manager_booking' => 0
 			);
 
         $this->tmpguest = array(
