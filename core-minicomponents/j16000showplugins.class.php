@@ -25,7 +25,12 @@ class j16000showplugins
 
 			return;
 		}
-
+		
+		if (!class_exists('ZipArchive')) {
+			echo "Error : The ZipArchive class does not exist. This is needed to extract files so please ensure that PHP is built with this PHP extension installed. If you cannot do that, your hosts will be able to help.";
+			return;
+		}
+		
         $key_validation = jomres_singleton_abstract::getInstance('jomres_check_support_key');
 		$key_validation->check_license_key(true); //only needed if we want to force a recheck
 		
