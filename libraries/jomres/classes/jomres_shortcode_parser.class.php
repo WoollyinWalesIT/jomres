@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class shortcode_parser
+class jomres_shortcode_parser
 {
     private static $configInstance;
 
