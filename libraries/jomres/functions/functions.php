@@ -741,8 +741,6 @@ function make_gmap_url_for_property_uid($property_uid)
 
 function jomres_make_qr_code($string = '', $format = 'text')
 {
-    //$qr = jomres_singleton_abstract::getInstance('jomres_qr_code');
-
     $dir = JOMRES_TEMP_ABSPATH.'qr_codes';
     test_and_make_directory($dir);
 
