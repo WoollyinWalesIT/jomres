@@ -1467,12 +1467,14 @@ class dobooking
 			return false;
 		}
 		$n = count($this->variancetypes);
-		for ($i = 0; $i < $n; ++$i) {
+		for ($i = 0; $i <= $n; ++$i) {
 			if (isset($this->variancetypes[$i])) {
 				if ($this->variancetypes[ $i ] == $type && $this->varianceuids[ $i ] == $id) {
 					$qty = $this->varianceqty[ $i ];
 					$val = $this->variancevals[ $i ];
-					$val_nodiscount = $this->variancevals_nodiscount[ $i ];
+					$val_nodiscount = 0;
+					if ( isset($this->variancevals_nodiscount[ $i ])) 
+						$val_nodiscount = $this->variancevals_nodiscount[ $i ];
 
 					return array('quantity' => $qty, 'value' => $val, 'val_nodiscount' => $val_nodiscount);
 				}
@@ -1495,12 +1497,14 @@ class dobooking
 		//$this->setErrorLog("Variable variancetypes is : ".gettype($this->variancetypes) );
 
 		$n = count($this->variancetypes);
-		for ($i = 0; $i < $n; ++$i) {
+		for ($i = 0; $i <= $n; ++$i) {
 			if (isset($this->variancetypes[ $i ]) && $this->variancetypes[ $i ] == $type) {
 				$id = $this->varianceuids[ $i ];
 				$qty = $this->varianceqty[ $i ];
 				$val = $this->variancevals[ $i ];
-				$val_nodiscount = $this->variancevals_nodiscount[ $i ];
+				$val_nodiscount = 0;
+				if ( isset($this->variancevals_nodiscount[ $i ])) 
+					$val_nodiscount = $this->variancevals_nodiscount[ $i ];
 				$tmpArray[ ] = array('id' => $id, 'qty' => $qty, 'val' => $val, 'val_nodiscount' => $val_nodiscount);
 			}
 		}
