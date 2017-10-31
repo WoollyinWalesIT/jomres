@@ -54,8 +54,8 @@ class j06005oauth_authorise
 
 		// include our OAuth2 Server object
 		
-		if (file_exists(__DIR__.'/../../api/oauth/inc_configs.php')) { // Check for the existance of this file, which in 9.9.5 doesn't exist, but in 9.9.6. Allows transition between versions and should be removed sometime after July 2018
-			require_once __DIR__.'/../../api/oauth/inc_configs.php';
+		if (file_exists(JOMRESPATH_BASE . '/api/oauth/inc_configs.php')) { // Check for the existance of this file, which in 9.9.5 doesn't exist, but in 9.9.6. Allows transition between versions and should be removed sometime after July 2018
+			require_once JOMRESPATH_BASE . '/api/oauth/inc_configs.php';
 		}
 		
 		require_once JOMRESPATH_BASE.'/api/oauth/server.php';
