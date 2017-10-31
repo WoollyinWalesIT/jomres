@@ -530,6 +530,7 @@ class UploadHandler
 		if ($name) {
 			$extension = pathinfo($name, PATHINFO_EXTENSION);
 			$filename = rtrim($name, $extension);
+			$filename = jomres_cmsspecific_stringURLSafe($filename);
 			$name = $filename.str_replace('.', '', microtime(true)).'.'.$extension;
 		}
 		//end jomres specific

@@ -131,8 +131,8 @@ class minicomponent_registry
 
         //rebuild the shortcodes list
         if (!defined('AUTO_UPGRADE')) {
-            $shortcode_parser = jomres_singleton_abstract::getInstance('shortcode_parser');
-            $shortcode_parser->build_shortcodes($force = true);
+            $jomres_shortcode_parser = jomres_singleton_abstract::getInstance('jomres_shortcode_parser');
+            $jomres_shortcode_parser->build_shortcodes($force = true);
         }
 
         //reload page if registry changed

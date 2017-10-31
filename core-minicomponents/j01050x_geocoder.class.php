@@ -71,7 +71,7 @@ class j01050x_geocoder
         }
 
         $output[ 'MAP_WIDTH' ] = 300;
-        $output[ 'MAP_HEIGHT' ] = 300;
+        $output[ 'MAP_HEIGHT' ] = $jrConfig['map_height'];
         $output[ 'MARKER_PATH' ] = '';
         if (isset($componentArgs[ 'width' ])) {
             $output[ 'MAP_WIDTH' ] = (int) $componentArgs[ 'width' ];
