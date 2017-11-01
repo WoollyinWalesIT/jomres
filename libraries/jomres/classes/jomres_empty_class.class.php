@@ -37,7 +37,7 @@ class jomres_empty_class
         //throw new Exception("failed to call method ".$name);
     }
     
-	public function __callStatic($name, $arguments) 
+	public static function __callStatic($name, $arguments) 
 	{
         //throw new Exception("failed to call static method ".$name);
     }
