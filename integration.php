@@ -95,6 +95,7 @@ require_once JOMRES_FUNCTIONS_ABSPATH.'functions.php';
 require_once JOMRES_FUNCTIONS_ABSPATH.'multibye_functions.php';
 require_once JOMRES_FUNCTIONS_ABSPATH.'jr_gettext.php';
 require_once JOMRES_FUNCTIONS_ABSPATH.'countries.php';
+require_once JOMRES_CLASSES_ABSPATH.'jomres_empty_class.class.php';
 require_once JOMRES_CLASSES_ABSPATH.'jomres_singleton_abstract.class.php';
 
 //include the classes registry file and make $classes a global variable to be easily accessible, so we`ll avoid calling include() more times
