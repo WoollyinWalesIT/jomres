@@ -32,6 +32,11 @@ if ($folderChecksPassed) {
         echo '<h1>Error, unable to copy '._JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'trigger.php to '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'wp-content'.JRDS.'plugins'.JRDS.'jomres'.JRDS.'trigger.php
 			automatically, please do this manually through FTP</h1><br/>';
     }
+	
+	if (!copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'uninstall.php', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'wp-content'.JRDS.'plugins'.JRDS.'jomres'.JRDS.'uninstall.php')) {
+        echo '<h1>Error, unable to copy '._JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'uninstall.php to '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'wp-content'.JRDS.'plugins'.JRDS.'jomres'.JRDS.'uninstall.php
+			automatically, please do this manually through FTP</h1><br/>';
+    }
 }
 
 // Don't need to run this again if the table's already populated
