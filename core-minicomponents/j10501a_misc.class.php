@@ -162,6 +162,11 @@ class j10501a_misc
 		$configurationPanel->setmiddle($lists[ 'session_handler' ]);
 		$configurationPanel->setright(jr_gettext('_JOMRES_SESSION_HANDLER_DESC', '_JOMRES_SESSION_HANDLER_DESC', false));
 		$configurationPanel->insertSetting();
+
+		$configurationPanel->setleft(jr_gettext('_JOMRES_UNINSTALL_TABLES', '_JOMRES_UNINSTALL_TABLES', false));
+		$configurationPanel->setmiddle($lists[ 'delete_all_data_on_uninstall' ]);
+		$configurationPanel->setright(jr_gettext('_JOMRES_UNINSTALL_TABLES_DESC', '_JOMRES_UNINSTALL_TABLES_DESC', false));
+		$configurationPanel->insertSetting();
 		
 		$configurationPanel->insertHeading('Frontend Control Panel');
 		
