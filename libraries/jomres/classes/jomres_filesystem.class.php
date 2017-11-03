@@ -30,6 +30,10 @@ class jomres_filesystem
     {
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $this->jrConfig = $siteConfig->get();
+		
+		if (!$local_root_dir) {
+			$local_root_dir = JOMRESPATH_BASE;
+		}
 
 		//mount local filesystem
 		$this->mount_local_filesystem($local_root_dir);
@@ -52,10 +56,6 @@ class jomres_filesystem
 	
 	private function mount_local_filesystem($local_root_dir = false)
 	{
-		if (!$local_root_dir) {
-			$local_root_dir = JOMRESPATH_BASE;
-		}
-
 		//local adapter
 		$localAdapter = new Local($local_root_dir, LOCK_EX, Local::DISALLOW_LINKS, [
 			'file' => [
