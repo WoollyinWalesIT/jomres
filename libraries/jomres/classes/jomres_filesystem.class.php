@@ -26,13 +26,13 @@ class jomres_filesystem
 	
 	protected $jrConfig;
 
-    public function __construct()
+    public function __construct($local_root_dir = false)
     {
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $this->jrConfig = $siteConfig->get();
 
 		//mount local filesystem
-		$this->mount_local_filesystem();
+		$this->mount_local_filesystem($local_root_dir);
 		
 		//mount s3 filesystem if enabled
 		if (
@@ -50,10 +50,14 @@ class jomres_filesystem
 		return $this->filesystem;
 	}
 	
-	private function mount_local_filesystem()
+	private function mount_local_filesystem($local_root_dir = false)
 	{
+		if (!$local_root_dir) {
+			$local_root_dir = JOMRESPATH_BASE;
+		}
+
 		//local adapter
-		$localAdapter = new Local(JOMRESPATH_BASE, LOCK_EX, Local::DISALLOW_LINKS, [
+		$localAdapter = new Local($local_root_dir, LOCK_EX, Local::DISALLOW_LINKS, [
 			'file' => [
 				'public' => 0644,
 				'private' => 0600,

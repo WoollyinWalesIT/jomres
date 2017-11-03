@@ -25,7 +25,7 @@ class jomres_uninstall
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $this->jrConfig = $siteConfig->get();
 		
-		$this->filesystem = jomres_singleton_abstract::getInstance('jomres_filesystem')->getFilesystem();
+		$this->filesystem = jomres_singleton_abstract::getInstance('jomres_filesystem', JOMRESCONFIG_ABSOLUTE_PATH)->getFilesystem();
     }
 	
 	public function uninstall()
@@ -46,7 +46,7 @@ class jomres_uninstall
 	private function drop_jomres_tables()
 	{
 		$query = 'SHOW TABLES';
-		$result = doSelectSql($query, $mode = false);
+		$result = doSelectSql($query);
 		
 		$string = 'Tables_in_'.get_showtime('db');
 		
@@ -64,7 +64,7 @@ class jomres_uninstall
 	
 	private function delete_jomres_dir()
 	{
-		$this->filesystem->deleteDir('local://');
+		$this->filesystem->deleteDir('local://jomres');
 		
 		return true;
 	}
