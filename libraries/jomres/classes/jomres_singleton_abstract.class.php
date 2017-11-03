@@ -20,6 +20,7 @@ class jomres_singleton_abstract
 
     public function __construct()
     {
+
     }
 
     public static function getInstance($class, $arg1 = null)
@@ -59,6 +60,11 @@ class jomres_singleton_abstract
         $trace .= " File ".$backtrace[2]['file']." Line ".$backtrace[2]['line']. " Function ".$backtrace[2]['function']."<br/> ";
         $trace .= " File ".$backtrace[3]['file']." Line ".$backtrace[3]['line']. " Function ".$backtrace[3]['function']."<br/> "; 
         echo $trace;
-		exit;
+		
+		if (!isset(self::$_instances[ $class ])) {
+			self::$_instances[ $class ] = new jomres_empty_class();
+		}
+		
+		return self::$_instances[ $class ];
     }
 }
