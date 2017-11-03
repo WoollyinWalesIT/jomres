@@ -43,6 +43,7 @@ class jomres_uninstall
 		return true;
 	}
 	
+	//drop jomres tables
 	private function drop_jomres_tables()
 	{
 		$query = 'SHOW TABLES';
@@ -62,9 +63,14 @@ class jomres_uninstall
 		return true;
 	}
 	
+	//delete jomres files
 	private function delete_jomres_dir()
 	{
+		//delete jomres dir
 		$this->filesystem->deleteDir('local://jomres');
+		
+		//delete jomres_root file
+		$this->filesystem->delete('local://jomres_root.php');
 		
 		return true;
 	}
