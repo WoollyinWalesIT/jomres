@@ -1,7 +1,7 @@
 <?php
 
 if (!defined('ABSPATH') || !defined('WP_UNINSTALL_PLUGIN')) {
-	 exit();  // silence is golden
+	die;
 }
 
 define( '_JOMRES_INITCHECK', 1 );
