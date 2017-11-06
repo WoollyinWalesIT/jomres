@@ -134,7 +134,7 @@ class j03025insertbooking_invoice
 							$wiseprice_discount += $discount_amount * $stayDays;
 							break;
 						case 'SRP':
-							$lastminute_discount += $discount_amount;
+							$lastminute_discount = $discount_amount;
 							break;
 						case 'Coupon':
 							$coupon_discount = $discount_amount;
