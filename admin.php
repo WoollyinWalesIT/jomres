@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.14
+ * @version Jomres 9.9.15
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -144,7 +144,10 @@ try {
         if ($jrConfig['use_bootstrap_in_frontend'] == '0') {
             $output['BOOTSTRAP_WARNING'] = $MiniComponents->specificEvent('16000', 'show_bootstrap_warning', array('output_now' => false));
         }
-
+		
+		// Review message
+		$output['REVIEW_REQUEST'] = $MiniComponents->specificEvent('16000', 'show_reviews_message', array('output_now' => false));
+		
         //output top area
         $pageoutput[ ] = $output;
         $tmpl = new patTemplate();

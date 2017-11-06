@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.14
+ * @version Jomres 9.9.15
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -161,6 +161,11 @@ class j10501a_misc
 		$configurationPanel->setleft(jr_gettext('_JOMRES_SESSION_HANDLER', '_JOMRES_SESSION_HANDLER', false));
 		$configurationPanel->setmiddle($lists[ 'session_handler' ]);
 		$configurationPanel->setright(jr_gettext('_JOMRES_SESSION_HANDLER_DESC', '_JOMRES_SESSION_HANDLER_DESC', false));
+		$configurationPanel->insertSetting();
+
+		$configurationPanel->setleft(jr_gettext('_JOMRES_UNINSTALL_TABLES', '_JOMRES_UNINSTALL_TABLES', false));
+		$configurationPanel->setmiddle($lists[ 'delete_all_data_on_uninstall' ]);
+		$configurationPanel->setright(jr_gettext('_JOMRES_UNINSTALL_TABLES_DESC', '_JOMRES_UNINSTALL_TABLES_DESC', false));
 		$configurationPanel->insertSetting();
 		
 		$configurationPanel->insertHeading('Frontend Control Panel');

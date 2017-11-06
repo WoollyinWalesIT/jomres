@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.14
+ * @version Jomres 9.9.15
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1539,6 +1539,10 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_api.'composer.json');
 		
 		$this->add_obs_file($this->dir_minicomponents.'j16000prices.class.php');
+		$this->add_obs_file($this->dir_classes.'shortcode_parser.class.php');
+		$this->add_obs_file($this->dir_classes.'browser_detect.class.php');
+		$this->add_obs_file($this->dir_classes.'images.class.php');
+		$this->add_obs_file($this->dir_classes.'jomres_qr_code.class.php');
     }
 
     public function add_obs_file($path_and_file)

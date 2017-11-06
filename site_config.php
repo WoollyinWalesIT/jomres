@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.14
+ * @version Jomres 9.9.15
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -186,5 +186,6 @@ $jrConfig = array(
   'amazon_s3_bucket' => '',
   'amazon_cloudfront_domain' => '',
   'amazon_s3_remove_local_copies' => '0',
-  'amazon_s3_use_tls' => '0'
+  'amazon_s3_use_tls' => '0',
+  'delete_all_data_on_uninstall' => '0'
 );

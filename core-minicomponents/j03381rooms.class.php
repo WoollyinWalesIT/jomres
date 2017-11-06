@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.14
+ * @version Jomres 9.9.15
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -33,16 +33,29 @@ class j03381rooms
 		$dropdown = '';
         
 		$defaultProperty = getDefaultProperty();
+		
+		$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
+        $current_property_details->gather_data($defaultProperty);
+		
+		$basic_room_details = jomres_singleton_abstract::getInstance('basic_room_details');
+        $basic_room_details->get_all_rooms($defaultProperty);
 
-        $query = "SELECT room_uid,room_classes_uid,propertys_uid,room_features_uid,room_name,room_number,room_floor,max_people FROM #__jomres_rooms WHERE propertys_uid = '".(int) $defaultProperty."' ORDER BY room_number,room_name";
-        $roomsList = doSelectSql($query);
-        if (!empty($roomsList)) {
+        if (!empty($basic_room_details->rooms)) {
             $resource_options = array();
-            foreach ($roomsList as $room) {
-                $resource_options[ ] = jomresHTML::makeOption($room->room_uid, jr_gettext('_JOMRES_COM_MR_EB_ROOM_NUMBER', '_JOMRES_COM_MR_EB_ROOM_NUMBER', false)." ".$room->room_number.' '.$room->room_name);
+			
+            foreach ($basic_room_details->rooms as $room) {
+				$room_type = '';
+				
+				if ((int) $room['room_classes_uid'] > 0 && isset($current_property_details->room_types[ $room['room_classes_uid'] ]['abbv'])) {
+					$room_type = $current_property_details->room_types[ $room['room_classes_uid'] ]['abbv'];
+				} else {
+					$room_type = '';
+				}
+				
+                $resource_options[ ] = jomresHTML::makeOption($room['room_uid'], $room_type.' '.$room['room_number'].' '.$room['room_name']);
             }
-            $use_bootstrap_radios = false;
-            $dropdown = jomresHTML::selectList($resource_options, 'resource_id', ' autocomplete="off" class="btn btn-success btn-lg" size="1" ', 'value', 'text', '', $use_bootstrap_radios);
+
+            $dropdown = jomresHTML::selectList($resource_options, 'resource_id', ' autocomplete="off" class="btn btn-success btn-lg" size="1" ', 'value', 'text', '', false);
         }
 
         $this->ret_vals = $dropdown;

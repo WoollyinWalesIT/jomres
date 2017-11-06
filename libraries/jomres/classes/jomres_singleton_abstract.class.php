@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.14
+ * @version Jomres 9.9.15
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -20,6 +20,7 @@ class jomres_singleton_abstract
 
     public function __construct()
     {
+
     }
 
     public static function getInstance($class, $arg1 = null)
@@ -54,10 +55,16 @@ class jomres_singleton_abstract
 		echo 'Error, class '.$class." doesn't exist.";
         $trace = '';
             $backtrace = debug_backtrace();
-            $trace = "<br/> File ".$backtrace[1]['file']." Line ".$backtrace[1]['line']. " Function ".$backtrace[1]['function']."<br/> ";
-            $trace .= " File ".$backtrace[2]['file']." Line ".$backtrace[2]['line']. " Function ".$backtrace[2]['function']."<br/> ";
-            $trace .= " File ".$backtrace[3]['file']." Line ".$backtrace[3]['line']. " Function ".$backtrace[3]['function']."<br/> "; 
+		$trace = "<br/> File ".$backtrace[0]['file']." Line ".$backtrace[0]['line']. " Function ".$backtrace[0]['function']."<br/> ";
+        $trace .= "File ".$backtrace[1]['file']." Line ".$backtrace[1]['line']. " Function ".$backtrace[1]['function']."<br/> ";
+        $trace .= " File ".$backtrace[2]['file']." Line ".$backtrace[2]['line']. " Function ".$backtrace[2]['function']."<br/> ";
+        $trace .= " File ".$backtrace[3]['file']." Line ".$backtrace[3]['line']. " Function ".$backtrace[3]['function']."<br/> "; 
         echo $trace;
-		exit;
+		
+		if (!isset(self::$_instances[ $class ])) {
+			self::$_instances[ $class ] = new jomres_empty_class();
+		}
+		
+		return self::$_instances[ $class ];
     }
 }

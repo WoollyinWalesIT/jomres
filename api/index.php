@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.14
+ * @version Jomres 9.9.15
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -15,7 +15,6 @@ define('TRANSACTION_ID', time());
 
 define('JOMRES_API_CMS_ROOT', dirname(dirname(dirname(__FILE__))));
 define('JOMRES_API_JOMRES_ROOT', dirname(dirname(__FILE__)));
-
 if (!defined('_JOMRES_INITCHECK')) {
     define('_JOMRES_INITCHECK', 1);
 }
@@ -36,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 }
 
 date_default_timezone_set('UTC');
-
+require JOMRES_API_JOMRES_ROOT.'/vendor/autoload.php';
 require 'classes/logging.class.php';
 require 'oauth/inc_configs.php';
 

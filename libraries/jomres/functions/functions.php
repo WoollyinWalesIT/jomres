@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.14
+ * @version Jomres 9.9.15
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -741,8 +741,6 @@ function make_gmap_url_for_property_uid($property_uid)
 
 function jomres_make_qr_code($string = '', $format = 'text')
 {
-    //$qr = jomres_singleton_abstract::getInstance('jomres_qr_code');
-
     $dir = JOMRES_TEMP_ABSPATH.'qr_codes';
     test_and_make_directory($dir);
 

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.14
+ * @version Jomres 9.9.15
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -136,6 +136,7 @@ class jomres_generic_booking_insert
             'sendGuestEmail' => true,                // (bool) true if should send a booking email to guest
             'sendHotelEmail' => true,                    // (book) true if should send a booking email to hotel
             'referrer' => '',                    // "AN Other channel"
+			'channel_manager_booking' => 0,          // (int) is this booking from a channel manager? yes/no"
             );
 
         $this->guest_details = array(
@@ -187,6 +188,7 @@ class jomres_generic_booking_insert
         $tmpBookingHandler->tmpbooking['sendGuestEmail'] = $this->booking_details['sendGuestEmail'];
         $tmpBookingHandler->tmpbooking['sendHotelEmail'] = $this->booking_details['sendHotelEmail'];
         $tmpBookingHandler->tmpbooking['referrer'] = $this->booking_details['referrer'];
+		$tmpBookingHandler->tmpbooking['channel_manager_booking'] = $this->booking_details['channel_manager_booking'];
 
         return true;
     }

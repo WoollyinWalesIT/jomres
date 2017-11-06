@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.14
+ * @version Jomres 9.9.15
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -291,6 +291,7 @@ function showSiteConfig()
 
     $lists[ 'sendErrorEmails' ] = jomresHTML::selectList($yesno, 'cfg_sendErrorEmails', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'sendErrorEmails' ]);
 	$lists[ 'plist_images_as_slideshow' ] = jomresHTML::selectList($yesno, 'cfg_plist_images_as_slideshow', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'plist_images_as_slideshow' ]);
+	$lists[ 'delete_all_data_on_uninstall' ] = jomresHTML::selectList($yesno, 'cfg_delete_all_data_on_uninstall', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'delete_all_data_on_uninstall' ]);
 
 	$options = array();
 	$options[ ] = jomresHTML::makeOption('Minicomponent', 'Minicomponent');

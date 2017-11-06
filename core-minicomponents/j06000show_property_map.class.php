@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.14
+ * @version Jomres 9.9.15
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -42,6 +42,9 @@ class j06000show_property_map
         }
 
         $this->retVals = '';
+		
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+        $jrConfig = $siteConfig->get();
 
         if (isset($componentArgs[ 'property_uid' ])) {
             $property_uid = (int)$componentArgs[ 'property_uid' ];
@@ -66,7 +69,7 @@ class j06000show_property_map
         $mrConfig = getPropertySpecificSettings($property_uid);
 
         $mw = 300;
-        $mh = 300;
+        $mh = $jrConfig['map_height'];
         if ((int)jomresGetParam($_REQUEST, 'property_uid', 0) > 0) {
             if (isset($_REQUEST[ 'mw' ])) {
                 $mw = (int) $_REQUEST[ 'mw' ];

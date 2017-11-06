@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.14
+ * @version Jomres 9.9.15
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -26,13 +26,17 @@ class jomres_filesystem
 	
 	protected $jrConfig;
 
-    public function __construct()
+    public function __construct($local_root_dir = false)
     {
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $this->jrConfig = $siteConfig->get();
+		
+		if (!$local_root_dir) {
+			$local_root_dir = JOMRESPATH_BASE;
+		}
 
 		//mount local filesystem
-		$this->mount_local_filesystem();
+		$this->mount_local_filesystem($local_root_dir);
 		
 		//mount s3 filesystem if enabled
 		if (
@@ -50,10 +54,10 @@ class jomres_filesystem
 		return $this->filesystem;
 	}
 	
-	private function mount_local_filesystem()
+	private function mount_local_filesystem($local_root_dir = false)
 	{
 		//local adapter
-		$localAdapter = new Local(JOMRESPATH_BASE, LOCK_EX, Local::DISALLOW_LINKS, [
+		$localAdapter = new Local($local_root_dir, LOCK_EX, Local::DISALLOW_LINKS, [
 			'file' => [
 				'public' => 0644,
 				'private' => 0600,
