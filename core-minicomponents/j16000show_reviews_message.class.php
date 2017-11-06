@@ -34,11 +34,15 @@ class j16000show_reviews_message
         }
 
 		$review_sites = array (
-			"capterra" => array ( "url" => 'https://www.capterra.com/p/134469/Jomres/' , "site_name" => "Capterra" ),
-			"wordpress" => array ( "url" => 'https://wordpress.org/support/plugin/jomres/reviews/' , "site_name" => "Wordpress repository" ),
-			"joomla" => array ( "url" => 'https://extensions.joomla.org/extensions/extension/vertical-markets/booking-a-reservations/jomres/' , "site_name" => "Joomla Extension Directory" ),
+			"capterra" => array ( "url" => 'https://www.capterra.com/p/134469/Jomres/' , "site_name" => "Capterra" )
 		);
 
+		if (this_cms_is_joomla()) {
+			$review_sites['joomla'] = array ( "url" => 'https://extensions.joomla.org/extensions/extension/vertical-markets/booking-a-reservations/jomres/' , "site_name" => "Joomla Extension Directory" );
+		} else {
+			$review_sites['wordpress'] = array ( "url" => 'https://wordpress.org/support/plugin/jomres/reviews/' , "site_name" => "Wordpress repository" );
+		}
+		
 		$message = '';
 
 		if (get_showtime("task") == "cpanel" ) {
