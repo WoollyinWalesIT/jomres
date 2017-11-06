@@ -144,7 +144,10 @@ try {
         if ($jrConfig['use_bootstrap_in_frontend'] == '0') {
             $output['BOOTSTRAP_WARNING'] = $MiniComponents->specificEvent('16000', 'show_bootstrap_warning', array('output_now' => false));
         }
-
+		
+		// Review message
+		$output['REVIEW_REQUEST'] = $MiniComponents->specificEvent('16000', 'show_reviews_message', array('output_now' => false));
+		
         //output top area
         $pageoutput[ ] = $output;
         $tmpl = new patTemplate();
