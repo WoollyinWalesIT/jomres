@@ -242,9 +242,6 @@ if ($folderChecksPassed && $functionChecksPassed) {
                 removeCronJob('optimise');
                 removeCronJob('exchangerates');
 
-                addCronJob('session_files_cleanup', 'D', '');
-				addCronJob('geolocation_cleanup', 'D', '');
-
                 updateImages();
 
                 import_countries();
@@ -3075,7 +3072,11 @@ function installCronjobs()
     //output_message ( "Installing cron jobs<br/>";
     jr_import('jomres_cron');
     $cron = new jomres_cron();
-    $cron->addJob('error_logs_cleanup', 'H', '');
+	$cron->addJob('session_files_cleanup', 'D', '');
+    $cron->addJob('error_logs_cleanup', 'D', '');
+	$cron->addJob('geolocation_cleanup', 'D', '');
+	$cron->addJob("api_tokens_cleanup","D","");
+	$cron->addJob('version_check', 'D', '');
 }
 
 function trashTables()
@@ -6789,10 +6790,6 @@ function addApiAndWebhooksTables() {
 		$query = "ALTER TABLE `#__jomres_oauth_clients` ADD `identifier` VARCHAR(255) ";
 		doInsertSql($query,"");
 		}
-
-	$cron =jomres_getSingleton('jomres_cron');
-	$cron->addJob("api_tokens_cleanup","D","");
-    
 
 	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_webhooks_integrations (
 		`id` INT(11) auto_increment, 
