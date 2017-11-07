@@ -23,7 +23,6 @@ $mrConfig = array(
   'depositIsPercentage' => '1',
   'depositValue' => '20',
   'errorChecking' => '0',
-  'errorCheckingShowSQL' => '0',
   'jomresdotnet' => 'www.jomres.net',
   'visitorscanbookonline' => '1',
   'fixedPeriodBookings' => '0',
