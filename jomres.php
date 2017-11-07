@@ -56,6 +56,9 @@ try {
     //custom text object - load all custom text
     $customTextObj = jomres_singleton_abstract::getInstance('custom_text');
 	
+    //check the current version and send an email to any user marked as an admin if there is a new version available
+    $jomres_version_check = jomres_singleton_abstract::getInstance('jomres_version_check');
+	
 	//trigger 00001 event
 	$MiniComponents->triggerEvent('00001');
 
