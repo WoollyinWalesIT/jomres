@@ -281,7 +281,12 @@ class dobooking
 		$this->tel_landline = $userDeets[ 'tel_landline' ];
 		$this->tel_mobile = $userDeets[ 'tel_mobile' ];
 		$this->email = $userDeets[ 'email' ];
-		$this->guest_specific_discount = $userDeets[ 'discount' ];
+		
+		$this->guest_specific_discount = 0;
+		if (isset($userDeets[ 'discount' ])) {
+			$this->guest_specific_discount = $userDeets[ 'discount' ];
+		}
+		
 
 		$mrConfig = getPropertySpecificSettings($this->property_uid);
 
