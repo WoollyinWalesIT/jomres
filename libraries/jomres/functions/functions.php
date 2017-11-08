@@ -2469,7 +2469,6 @@ function propertyConfiguration()
     $lists[ 'singlePersonSuppliment' ] = jomresHTML::selectList($yesno, 'cfg_singlePersonSuppliment', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'singlePersonSuppliment' ]);
     $lists[ 'perPersonPerNight' ] = jomresHTML::selectList($yesno, 'cfg_perPersonPerNight', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'perPersonPerNight' ]);
     $lists[ 'depositIsPercentage' ] = jomresHTML::selectList($yesno, 'cfg_depositIsPercentage', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'depositIsPercentage' ]);
-    $lists[ 'errorCheckingShowSQL' ] = jomresHTML::selectList($yesno, 'cfg_errorCheckingShowSQL', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'errorCheckingShowSQL' ]);
     $lists[ 'errorChecking' ] = jomresHTML::selectList($yesno, 'cfg_errorChecking', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'errorChecking' ]);
     $lists[ 'visitorscanbookonline' ] = jomresHTML::selectList($yesno, 'cfg_visitorscanbookonline', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'visitorscanbookonline' ]);
     $lists[ 'fixedPeriodBookings' ] = jomresHTML::selectList($yesno, 'cfg_fixedPeriodBookings', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'fixedPeriodBookings' ]);
