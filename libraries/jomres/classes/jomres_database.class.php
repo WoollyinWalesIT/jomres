@@ -186,7 +186,7 @@ class jomres_database
                     try {
                         $this->result = $this->PDOdb->exec($this->query);
                     } catch (PDOException $e) {
-                        output_fatal_error($e);
+                        output_fatal_error($e , $this->query );
                     }
                     break;
                 default:

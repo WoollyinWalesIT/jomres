@@ -322,7 +322,7 @@ function jomres_get_client_ip()
     return filter_var($ipaddress, FILTER_SANITIZE_STRING);
 }
 
-function output_fatal_error($e)
+function output_fatal_error($e , $extra_info = '' )
 {
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
@@ -353,6 +353,7 @@ function output_fatal_error($e)
     $output = array(
         'URL' => $cleaned_link,
         'MESSAGE' => $e->getMessage(),
+		'EXTRA_INFO' => $extra_info,
         'FILE' => $e->getFile(),
         'LINE' => $e->getLine(),
         'TRACE' => $e->getTraceAsString(),
