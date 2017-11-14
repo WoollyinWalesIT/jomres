@@ -28,7 +28,9 @@ class j02202a_update_invoice
         $defaultProperty = getDefaultProperty();
         $contractUid = intval(jomresGetParam($_POST, 'contractUid', 0));
 		$depositRef = getEscaped(jomresGetParam($_POST, 'depositRef', ''));
-
+		$payment_method = getEscaped(jomresGetParam($_POST, 'payment_method', ''));
+		$transaction_id = getEscaped(jomresGetParam($_POST, 'transaction_id', ''));
+		
         if ($contractUid > 0) {
             // This is a security check because we don't have a property uid associated with invoices
             $query = 'SELECT contract_uid,deposit_required FROM #__jomres_contracts WHERE contract_uid = '.$contractUid.' AND property_uid = '.$defaultProperty;
@@ -51,8 +53,11 @@ class j02202a_update_invoice
                                          'init_qty' => 1,
                                          'init_discount' => 0,
                                          'is_payment' => 1,
+										 'payment_method' => $payment_method,
+										 'transaction_id' => $transaction_id
                                          );
                 $invoice->add_line_item($line_items);
+				
                 $invoice->commitUpdateInvoice();
             } else {
                 error_logging("Couldn't corrolate contract uid with user's current property.");

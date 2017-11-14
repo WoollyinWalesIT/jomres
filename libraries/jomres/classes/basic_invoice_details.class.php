@@ -154,7 +154,10 @@ class basic_invoice_details
 						`tax_description`,
 						`tax_rate`,
 						`inv_id`,
-						`is_payment` 
+						`is_payment` ,
+						`payment_method`,
+						`transaction_id`,
+						`management_url`
 					FROM #__jomresportal_lineitems 
 					WHERE `inv_id` = ' .(int) $invoice_id;
         $result = doSelectSql($query);
@@ -177,7 +180,10 @@ class basic_invoice_details
             $this->invoice[$invoice_id]['lineitems'][ $r->id ][ 'tax_rate' ] = $r->tax_rate;
             $this->invoice[$invoice_id]['lineitems'][ $r->id ][ 'inv_id' ] = $r->inv_id;
             $this->invoice[$invoice_id]['lineitems'][ $r->id ][ 'is_payment' ] = $r->is_payment;
-
+			$this->invoice[$invoice_id]['lineitems'][ $r->id ][ 'payment_method' ] = $r->payment_method;
+			$this->invoice[$invoice_id]['lineitems'][ $r->id ][ 'transaction_id' ] = $r->transaction_id;
+			$this->invoice[$invoice_id]['lineitems'][ $r->id ][ 'management_url' ] = $r->management_url;
+			
             if ($this->invoice[$invoice_id]['vat_will_be_charged'] && $r->init_total_inclusive > 0 && $r->is_payment == 0) {
                 $this->invoice[$invoice_id]['lineitems'][ $r->id ]['tax_amount'] = $r->init_total_inclusive - $r->init_total;
             } else {

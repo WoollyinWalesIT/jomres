@@ -620,6 +620,10 @@ function doTableUpdates()
         alterCustomtextLangContextCol();
 	}
  
+	if (!checkLineitemsPaymentMethodColExists()) {
+        alterLineitemsPaymentMethodCol();
+	}
+	
 	alterCustomtextColsChangeDefaultVals();
 	copy_default_property_type_markers();
     drop_orphan_line_items_table();
@@ -630,6 +634,31 @@ function doTableUpdates()
 	add_jomres_property_categories_table();
 	add_jomres_images_table();
     updateSiteSettings('update_time', time());
+	
+}
+ 
+function checkLineitemsPaymentMethodColExists()
+{
+    $query = "SHOW COLUMNS FROM #__jomresportal_lineitems  LIKE 'payment_method'";
+    $result = doSelectSql($query);
+    if (count($result) > 0) {
+        return true;
+    }
+
+    return false;
+}
+
+function alterLineitemsPaymentMethodCol()
+{
+    //output_message ( "Editing __jomresportal_lineitems table adding is_payment column");
+    $query = 'ALTER TABLE `#__jomresportal_lineitems` ADD `payment_method`  VARCHAR(100) NOT NULL DEFAULT ""';
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to add __jomresportal_lineitems is_payment', 'danger');
+    }
+    $query = 'ALTER TABLE #__jomresportal_lineitems ADD `transaction_id`  VARCHAR(255) NOT NULL DEFAULT ""';
+    $result = doInsertSql($query);
+    $query = 'ALTER TABLE #__jomresportal_lineitems ADD `management_url`  VARCHAR(1000) NOT NULL DEFAULT ""';
+    $result = doInsertSql($query);
 }
 
 function alterPtypesHasStarsCol()
