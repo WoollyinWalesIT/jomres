@@ -293,7 +293,10 @@ class j03020insertbooking
                     $booked_in = $tempBookingData->booked_in;
                     $sendGuestEmail = $tempBookingData->sendGuestEmail;
                     $sendHotelEmail = $tempBookingData->sendHotelEmail;
-					$channel_manager_booking = $tempBookingData->channel_manager_booking;
+					
+					$channel_manager_booking = 0;
+					if (isset($tempBookingData->channel_manager_booking))
+						$channel_manager_booking = $tempBookingData->channel_manager_booking;
 
                     if ($thisJRUser->userIsRegistered) { // The user is already registered
                         $user = jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id($thisJRUser->id);
