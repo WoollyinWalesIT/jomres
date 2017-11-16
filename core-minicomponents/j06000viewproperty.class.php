@@ -84,15 +84,17 @@ class j06000viewproperty
         if (!$thisJRUser->userIsManager) {
             propertyClicked($property_uid);
         }
-
+		
+        //trigger point before the property details
+        $MiniComponents->triggerEvent('00015', array('property_uid' => $property_uid));
+		
         //show property header
         property_header($property_uid);
 
         $output = array();
         $pageoutput = array();
 
-        //trigger point before the property details
-        $MiniComponents->triggerEvent('00015', array('property_uid' => $property_uid));
+
 
         //property slideshow
         if ($mrConfig[ 'showSlideshowInline' ] == '1') {
