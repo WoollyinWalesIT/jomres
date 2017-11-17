@@ -130,7 +130,6 @@ class j06005view_invoice
         $output[ 'HINITTOTAL' ] = jr_gettext('_JRPORTAL_INVOICES_INITTOTAL', '_JRPORTAL_INVOICES_INITTOTAL');
         $output[ 'HCURRENCYCODE' ] = jr_gettext('_JRPORTAL_INVOICES_CURRENCYCODE', '_JRPORTAL_INVOICES_CURRENCYCODE');
         $output[ 'HINVOICENO' ] = jr_gettext('_JOMRES_INVOICE_NUMBER', '_JOMRES_INVOICE_NUMBER');
-		
 		$output[ 'TRANSACTION_ID' ] = jr_gettext('TRANSACTION_IDS', 'TRANSACTION_IDS');
 		$output[ 'PAYMENT_METHOD' ] = jr_gettext('PAYMENT_METHOD', 'PAYMENT_METHOD');
 
@@ -248,14 +247,12 @@ class j06005view_invoice
                 $r[ 'LI_TAX_AMOUNT' ] = output_price($li[ 'tax_amount' ], $invoice->currencycode, false, true);
                 $r[ 'LI_INV_ID' ] = $li[ 'inv_id' ];
                 $r[ 'CURRENCYCODE' ] = $invoice->currencycode;
-				
 				$r[ 'TRANSACTION_ID' ] = $li[ 'transaction_id' ];
+				$r[ 'PAYMENT_METHOD' ] = $li[ 'payment_method' ];
 				
 				$r[ 'MANAGEMENT_URL' ] = '';
 				if ($thisJRUser->userIsManager)
 					$r[ 'MANAGEMENT_URL' ] = $li[ 'management_url' ];
-				
-				$r[ 'PAYMENT_METHOD' ] = $li[ 'payment_method' ];
 				
                 if ((int) $li[ 'is_payment' ] == 0) {
                     $rows[] = $r;
