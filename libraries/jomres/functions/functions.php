@@ -2326,6 +2326,11 @@ function jomresRedirect($url, $msg = '', $class = 'alert-info', $code = 302)
 		$tmpBookingHandler->close_jomres_session();
 	}
 	
+	$redirect_url = jomresGetParam($_REQUEST, 'redirect_url', '');
+	if ( (string)$redirect_url != '') {
+		$url = $redirect_url;
+	}
+
     if (strncmp('cli', PHP_SAPI, 3) !== 0) {
         if (headers_sent() !== true) {
             if (strncmp('cgi', PHP_SAPI, 3) === 0) {
