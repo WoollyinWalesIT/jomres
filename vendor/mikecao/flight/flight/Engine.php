@@ -115,24 +115,19 @@ class Engine {
         $this->set('flight.views.path', './views');
         $this->set('flight.views.extension', '.php');
 
-        $initialized = true;
-    }
+        // Startup configuration
+        $this->before('start', function() use ($self) {
+            // Enable error handling
+            if ($self->get('flight.handle_errors')) {
+                set_error_handler(array($self, 'handleError'));
+                set_exception_handler(array($self, 'handleException'));
+            }
 
-    /**
-     * Enables/disables custom error handling.
-     *
-     * @param bool $enabled True or false
-     */
-    public function handleErrors($enabled)
-    {
-        if ($enabled) {
-            set_error_handler(array($this, 'handleError'));
-            set_exception_handler(array($this, 'handleException'));
-        }
-        else {
-            restore_error_handler();
-            restore_exception_handler();
-        }
+            // Set case-sensitivity
+            $self->router()->case_sensitive = $self->get('flight.case_sensitive');
+        });
+
+        $initialized = true;
     }
 
     /**
@@ -289,6 +284,11 @@ class Engine {
         $response = $this->response();
         $router = $this->router();
 
+        // Allow filters to run
+        $this->after('start', function() use ($self) {
+            $self->stop();
+        });
+
         // Flush any existing output
         if (ob_get_length() > 0) {
             $response->write(ob_get_clean());
@@ -296,17 +296,6 @@ class Engine {
 
         // Enable output buffering
         ob_start();
-
-        // Enable error handling
-        $this->handleErrors($this->get('flight.handle_errors'));
-
-        // Allow post-filters to run
-        $this->after('start', function() use ($self) {
-            $self->stop();
-        });
-
-        // Set case-sensitivity
-        $router->case_sensitive = $this->get('flight.case_sensitive');
 
         // Route the request
         while ($route = $router->route($request)) {
@@ -342,11 +331,29 @@ class Engine {
      *
      * @param int $code HTTP status code
      */
-    public function _stop($code = 200) {
-        $this->response()
-            ->status($code)
-            ->write(ob_get_clean())
-            ->send();
+    public function _stop($code = null) {
+        $response = $this->response();
+
+        if (!$response->sent()) {
+            if ($code !== null) {
+                $response->status($code);
+            }
+
+            $response->write(ob_get_clean());
+
+            $response->send();
+        }
+    }
+
+    /**
+     * Routes a URL to a callback function.
+     *
+     * @param string $pattern URL pattern to match
+     * @param callback $callback Callback function
+     * @param boolean $pass_route Pass the matching route object to the callback
+     */
+    public function _route($pattern, $callback, $pass_route = false) {
+        $this->router()->map($pattern, $callback, $pass_route);
     }
 
     /**
@@ -377,7 +384,8 @@ class Engine {
         );
 
         try {
-            $this->response(false)
+            $this->response()
+                ->clear()
                 ->status(500)
                 ->write($msg)
                 ->send();
@@ -394,7 +402,8 @@ class Engine {
      * Sends an HTTP 404 response when a URL is not found.
      */
     public function _notFound() {
-        $this->response(false)
+        $this->response()
+            ->clear()
             ->status(404)
             ->write(
                 '<h1>404 Not Found</h1>'.
@@ -402,17 +411,6 @@ class Engine {
                 str_repeat(' ', 512)
             )
             ->send();
-    }
-
-    /**
-     * Routes a URL to a callback function.
-     *
-     * @param string $pattern URL pattern to match
-     * @param callback $callback Callback function
-     * @param boolean $pass_route Pass the matching route object to the callback
-     */
-    public function _route($pattern, $callback, $pass_route = false) {
-        $this->router()->map($pattern, $callback, $pass_route);
     }
 
     /**
@@ -433,7 +431,8 @@ class Engine {
             $url = $base . preg_replace('#/+#', '/', '/' . $url);
         }
 
-        $this->response(false)
+        $this->response()
+            ->clear()
             ->status($code)
             ->header('Location', $url)
             ->write($url)
