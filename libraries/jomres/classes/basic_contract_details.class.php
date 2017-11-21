@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.15
+ * @version Jomres 9.9.16
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -286,6 +286,9 @@ class basic_contract_details
                 $vDeets = explode('_', $v);
                 if ($vDeets[0] == 'guesttype') {
                     $this->contract[$contract_uid]['guesttype'][$vDeets[1]]['id'] = $vDeets[1];
+					if ( !isset( $guesttypeNames[$vDeets[1]])) {
+						 $guesttypeNames[$vDeets[1]] = 'Unknown';
+					}
                     $this->contract[$contract_uid]['guesttype'][$vDeets[1]]['title'] = $guesttypeNames[$vDeets[1]];
                     $this->contract[$contract_uid]['guesttype'][$vDeets[1]]['qty'] = $vDeets[2];
                     $this->contract[$contract_uid]['guesttype'][$vDeets[1]]['value'] = $vDeets[3];

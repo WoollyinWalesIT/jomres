@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.15
+ * @version Jomres 9.9.16
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -84,15 +84,17 @@ class j06000viewproperty
         if (!$thisJRUser->userIsManager) {
             propertyClicked($property_uid);
         }
-
+		
+        //trigger point before the property details
+        $MiniComponents->triggerEvent('00015', array('property_uid' => $property_uid));
+		
         //show property header
         property_header($property_uid);
 
         $output = array();
         $pageoutput = array();
 
-        //trigger point before the property details
-        $MiniComponents->triggerEvent('00015', array('property_uid' => $property_uid));
+
 
         //property slideshow
         if ($mrConfig[ 'showSlideshowInline' ] == '1') {

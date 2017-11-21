@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.15
+ * @version Jomres 9.9.16
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -26,6 +26,15 @@ class j16000show_reviews_message
         }
 		
 		$this->retVals = '';
+		
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
+		
+		$jr_review_left = (int)jomresGetParam($_REQUEST, 'jr_review_left', 0);
+		
+		if ($jr_review_left == 1) {
+			$siteConfig->update_setting('jomres_review_left', '1');
+		}
 
         if (isset($componentArgs[ 'output_now' ])) {
             $output_now = $componentArgs[ 'output_now' ];
@@ -45,21 +54,19 @@ class j16000show_reviews_message
 		
 		$message = '';
 
-		if (get_showtime("task") == "cpanel" ) {
+		if (get_showtime("task") == "cpanel" && $jrConfig['jomres_review_left'] == '0' && $jr_review_left == 0) {
 
 			$message = '
-	<div class="alert alert-success">
-		If you like Jomres, please consider leaving a review on one of these sites
-		';
-		foreach ( $review_sites as $site ) {
-			$message .= '<a href="'.$site['url'].'" class="btn btn-default btn-mini" target="_blank">'.$site['site_name'].'</a>';
-		}
-			$message .= '	</div>
-			';
-
-
+<p class="alert alert-success">If you like Jomres, please consider leaving a review on one of these sites ';
+			foreach ( $review_sites as $site ) {
+				$message .= '<a href="'.$site['url'].'" class="btn btn-default" target="_blank">'.$site['site_name'].'</a>&nbsp;';
 			}
-		else $message = "";
+			
+			$message .= '<a href="'.jomresUrl(JOMRES_SITEPAGE_URL_ADMIN.'&jr_review_left=1').'" class="btn btn-success">I`m a nice person, i`ve already left a review</a>';
+			$message .= '</p>';
+		} else {
+			$message = '';
+		}
 		
 		if ($output_now) {
 			echo $message;

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.15
+ * @version Jomres 9.9.16
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -163,6 +163,17 @@ class j03025insertbooking_invoice
 
             //Deposit line item
             if ($depositPaid) {
+				$payment_method = get_showtime("gateway_payment_method");
+				$management_url = get_showtime("gateway_management_url");
+				$transaction_id = get_showtime("gateway_transaction_id");
+
+				if (is_null($payment_method))
+					$payment_method = '';
+				if (is_null($management_url))
+					$management_url = '';
+				if (is_null($transaction_id))
+					$transaction_id = '';
+				
                 $line_items[] = array('tax_code_id' => 0,
                                        'name' => '_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED',
                                        'description' => '',
@@ -170,6 +181,9 @@ class j03025insertbooking_invoice
                                        'init_qty' => 1,
                                        'init_discount' => 0,
                                        'is_payment' => 1,
+									   'payment_method' => $payment_method,
+									   'management_url' => $management_url,
+									   'transaction_id' => $transaction_id
                                        );
             }
 
@@ -351,14 +365,28 @@ class j03025insertbooking_invoice
                 doInsertSql($query, '');
             } elseif ($depositPaid) {
                 //Deposit line item
+				$payment_method = get_showtime("gateway_payment_method");
+				$management_url = get_showtime("gateway_management_url");
+				$transaction_id = get_showtime("gateway_transaction_id");
+				
+				if (is_null($payment_method))
+					$payment_method = '';
+				if (is_null($management_url))
+					$management_url = '';
+				if (is_null($transaction_id))
+					$transaction_id = '';
+				
                 $deposit_paid_line_item_data = array('tax_code_id' => 0,
-                                                      'name' => '_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED',
-                                                      'description' => '',
-                                                      'init_price' => 0 - $deposit_required,
-                                                      'init_qty' => 1,
-                                                      'init_discount' => 0,
+														'name' => '_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED',
+														'description' => '',
+														'init_price' => 0 - $deposit_required,
+														'init_qty' => 1,
+														'init_discount' => 0,
+														'payment_method' => $payment_method,
+														'management_url' => $management_url,
+														'transaction_id' => $transaction_id
                                                       );
-
+													  
                 $query = 'SELECT id FROM #__jomresportal_invoices WHERE contract_id = '.$contract_uid;
                 $invoice->id = (int) doSelectSql($query, 1);
 

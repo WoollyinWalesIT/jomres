@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.15
+ * @version Jomres 9.9.16
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -57,6 +57,10 @@ class jrportal_invoice
         $this->lineitem['tax_rate '] = 0.00;
         $this->lineitem['inv_id'] = 0;
         $this->lineitem['is_payment'] = 0;
+		$this->lineitem['payment_method'] = '';
+		$this->lineitem['transaction_id'] = '';
+		$this->lineitem['management_url'] = '';
+		
     }
 
     //Create a new invoice
@@ -143,7 +147,17 @@ class jrportal_invoice
         } else {
 			$this->lineitem['is_payment'] = 0;
 		}
-
+		if (!isset($line_item_data[ 'payment_method' ])) {
+			$line_item_data[ 'payment_method' ] = '';
+			$line_item_data[ 'management_url' ] = '';
+			$line_item_data[ 'transaction_id' ] = '';
+		}
+			
+		
+		$this->lineitem['payment_method']	= $line_item_data[ 'payment_method' ];
+		$this->lineitem['management_url']	= $line_item_data[ 'management_url' ];
+		$this->lineitem['transaction_id']	= $line_item_data[ 'transaction_id' ];
+		
         $this->lineitem['inv_id'] = $this->id;
 
         $i_total = ($this->lineitem['init_price'] * $this->lineitem['init_qty']) + $this->lineitem['init_discount'];
@@ -217,7 +231,7 @@ class jrportal_invoice
 
         $jrportal_taxrate = jomres_singleton_abstract::getInstance('jrportal_taxrate');
 
-        if ($jrportal_taxrate->gather_data($line_item_data[ 'tax_code_id' ])) {
+        if ( isset($line_item_data[ 'tax_code_id' ]) && $jrportal_taxrate->gather_data($line_item_data[ 'tax_code_id' ])) {
             $this->lineitem['tax_rate'] = (float) $jrportal_taxrate->rate;
             $this->lineitem['tax_code'] = $jrportal_taxrate->code;
             $this->lineitem['tax_description'] = $jrportal_taxrate->description;
@@ -233,7 +247,11 @@ class jrportal_invoice
         $this->lineitem['init_qty'] = $line_item_data[ 'init_qty' ];
         $this->lineitem['init_discount'] = $line_item_data[ 'init_discount' ];
         $this->lineitem['is_payment'] = (int) $line_item_data[ 'is_payment' ];
-
+		$this->lineitem['payment_method'] = (string) $line_item_data[ 'payment_method' ];
+		$this->lineitem['transaction_id'] = (int) $line_item_data[ 'transaction_id' ];
+		$this->lineitem['management_url'] = (int) $line_item_data[ 'management_url' ];
+		
+		
         $i_total = ($this->lineitem['init_price'] * $this->lineitem['init_qty']) - $this->lineitem['init_discount'];
 		
 		$this->lineitem['init_total'] = number_format($i_total, 2, '.', '');
@@ -353,7 +371,10 @@ class jrportal_invoice
 						`tax_description`,
 						`tax_rate`,
 						`inv_id`,
-						`is_payment`
+						`is_payment`,
+						`payment_method`,
+						`transaction_id`,
+						`management_url`
 					FROM #__jomresportal_lineitems 
 					WHERE `id` = " . (int)$this->lineitem['id'] . " 
 						AND `inv_id` = " . (int)$this->id . "
@@ -376,6 +397,10 @@ class jrportal_invoice
                 $this->lineitem['tax_rate'] = $r->tax_rate;
                 $this->lineitem['inv_id'] = $r->inv_id;
                 $this->lineitem['is_payment'] = $r->is_payment;
+				$this->lineitem['payment_method'] = $r->payment_method;
+				$this->lineitem['transaction_id'] = $r->transaction_id;
+				$this->lineitem['management_url'] = $r->management_url;
+				
             }
 
             return true;
@@ -470,7 +495,7 @@ class jrportal_invoice
         }
 
         if ($this->lineitem['id'] < 1) {
-            $query = "INSERT INTO #__jomresportal_lineitems
+            $query = 'INSERT INTO #__jomresportal_lineitems
 				(
 				`name`,
 				`description`,
@@ -483,13 +508,16 @@ class jrportal_invoice
 				`tax_description`,
 				`tax_rate`,
 				`inv_id`,
-				`is_payment`
+				`is_payment`,
+				`payment_method`,
+				`transaction_id`,
+				`management_url`
 				)
 				VALUES
 				(
-				'".$this->lineitem['name']."',
-				'".$this->lineitem['description']."',
-				" .$this->lineitem['init_price'].',
+				"'.$this->lineitem['name'].'",
+				"'.$this->lineitem['description'].'",
+				' .$this->lineitem['init_price'].',
 				' .$this->lineitem['init_qty'].',
 				' .$this->lineitem['init_discount'].',
 				' .$this->lineitem['init_total'].',
@@ -498,12 +526,16 @@ class jrportal_invoice
 				'".$this->lineitem['tax_description']."',
 				" .$this->lineitem['tax_rate'].',
 				' .(int) $this->id.',
-				' .(int) $this->lineitem['is_payment'].'
+				' .(int) $this->lineitem['is_payment'].',
+				"' .$this->lineitem['payment_method'].'",
+				"' .$this->lineitem['transaction_id'].'",
+				"' .$this->lineitem['management_url'].'"
 				)';
 
             $lineitem_id = doInsertSql($query, '');
 
             if ((int) $lineitem_id > 0) {
+				$this->last_added_line_item_id = $lineitem_id;
                 $this->lineitem['id'] = (int) $lineitem_id;
             
                 return true;
@@ -572,20 +604,22 @@ class jrportal_invoice
         }
 
         $query = "UPDATE #__jomresportal_lineitems SET
-						`name` 					= '$this->lineitem['name']',
-						`description` 			= '$this->lineitem['description']',
+						`name` 					= '".$this->lineitem['name']."',
+						`description` 			= '".$this->lineitem['description']."',
 						`init_price` 			= ".$this->lineitem['init_price'].',
 						`init_qty` 				= ' .$this->lineitem['init_qty'].',
 						`init_discount` 		= ' .$this->lineitem['init_discount'].',
 						`init_total` 			= ' .$this->lineitem['init_total'].',
 						`init_total_inclusive`	= ' .$this->lineitem['init_total_inclusive'].",
-						`tax_code` 				= '$this->lineitem['tax_code']',
-						`tax_description` 		= '$this->lineitem['tax_description']',
+						`tax_code` 				= '".$this->lineitem['tax_code']."',
+						`tax_description` 		= '".$this->lineitem['tax_description']."',
 						`tax_rate` 				= ".$this->lineitem['tax_rate'].',
 						`inv_id` 				= ' .(int) $this->id.',
-						`is_payment`			= ' .(int) $this->lineitem['is_payment'].'
+						`is_payment`			= ' .(int) $this->lineitem['is_payment'].',
+						`payment_method`			= "' .(string) $this->lineitem['payment_method'].'",
+						`transaction_id`			= "' .(string) $this->lineitem['transaction_id'].'",
+						`management_url`			= "' .(string) $this->lineitem['management_url'].'"
 					WHERE `id`=' .(int)$this->lineitem['id'];
-        
         return doInsertSql($query, '');
     }
 
@@ -786,16 +820,31 @@ class jrportal_invoice
 
         $balance = $this->get_line_items_balance();
 
+		$payment_method = get_showtime("gateway_payment_method");
+		$management_url = get_showtime("gateway_management_url");
+		$transaction_id = get_showtime("gateway_transaction_id");
+				
+		if (is_null($payment_method))
+			$payment_method = '';
+		if (is_null($management_url))
+			$management_url = '';
+		if (is_null($transaction_id))
+			$transaction_id = '';
+		
         $line_items = array();
         if (number_format($balance, 2, '.', '') > 0.00) {
             $line_item_data = array('tax_code_id' => 0,
-                                     'name' => '_JOMRES_AJAXFORM_BILLING_BALANCE_PAYMENT',
-                                     'description' => '('.$today.')',
-                                     'init_price' => 0 - number_format($balance, 2, '.', ''),
-                                     'init_qty' => 1,
-                                     'init_discount' => 0,
-                                     'is_payment' => 1,
+									'name' => '_JOMRES_AJAXFORM_BILLING_BALANCE_PAYMENT',
+									'description' => '('.$today.')',
+									'init_price' => 0 - number_format($balance, 2, '.', ''),
+									'init_qty' => 1,
+									'init_discount' => 0,
+									'is_payment' => 1,
+									'payment_method' => $payment_method,
+									'management_url' => $management_url,
+									'transaction_id' => $transaction_id
                                      );
+		
             $this->add_line_item($line_item_data);
         }
 

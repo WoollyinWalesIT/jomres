@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.15
+ * @version Jomres 9.9.16
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -57,7 +57,11 @@ class j00101amendBooking
 
                 $query = "SELECT * FROM #__jomres_contracts WHERE contract_uid = '".(int) $contract_uid."' LIMIT 1";
                 $contract = doSelectSql($query);
+				
+				$original_rooms = array();
+				
                 foreach ($contract as $c) {
+					
                     $tmpBookingHandler->updateBookingField('amend_deposit_required', $c->deposit_required);
                     $tmpBookingHandler->updateBookingField('amend_deposit_paid', $c->deposit_paid);
                     $tmpBookingHandler->updateBookingField('amend_property_uid', $c->property_uid);
@@ -146,7 +150,27 @@ class j00101amendBooking
                         $tmpBookingHandler->tmpbooking[ 'mininterval' ] = '';
                     } else {
                         //Same property so carry over all possible fields
-
+						
+						$original_room_ids = array();
+						$original_rooms_bang = array();
+						if (isset($c->rooms_tariffs)) {
+							$original_rooms_bang = explode(",",$c->rooms_tariffs);
+							foreach ( $original_rooms_bang as $room_tariff_combo ) {
+								$combo_bang = explode("^" , $room_tariff_combo );
+								$original_room_ids[] = $combo_bang[0];
+							}
+							
+							$basic_room_details = jomres_singleton_abstract::getInstance('basic_room_details');
+							$basic_room_details->get_all_rooms($c->property_uid);
+							
+							foreach ($original_room_ids as $room_id ) {
+								$or = array ();
+								$or['ORIGINAL_ROOM'] = $basic_room_details->rooms[$room_id]['room_number'].' '.$basic_room_details->rooms[$room_id]['room_name'];
+								
+								$original_rooms[] = $or;
+							}
+						}
+						
                         $tmpBookingHandler->tmpbooking[ 'requestedRoom' ] = '';
                         $tmpBookingHandler->tmpbooking[ 'rate_pernight' ] = '';
                         if ((int) $c->coupon_id > 0) {
@@ -238,6 +262,7 @@ class j00101amendBooking
                 $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
                 $tmpl->readTemplatesFromInput('original_details.html');
                 $tmpl->addRows('pageoutput', $pageoutput);
+				$tmpl->addRows('original_rooms', $original_rooms);
                 $tmpl->displayParsedTemplate();
             }
         } else {

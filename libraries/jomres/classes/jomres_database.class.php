@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.15
+ * @version Jomres 9.9.16
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -186,7 +186,7 @@ class jomres_database
                     try {
                         $this->result = $this->PDOdb->exec($this->query);
                     } catch (PDOException $e) {
-                        output_fatal_error($e);
+                        output_fatal_error($e , $this->query );
                     }
                     break;
                 default:

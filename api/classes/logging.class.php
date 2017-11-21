@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.15
+ * @version Jomres 9.9.16
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -20,9 +20,6 @@ use Monolog\Handler\HandlerInterface;
 use Monolog\Handler\AbstractProcessingHandler;
 use Monolog\Handler\BrowserConsoleHandler;
 use Monolog\Processor\WebProcessor;
-
-require_once(dirname(__DIR__).'../../'.DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'monolog'.DIRECTORY_SEPARATOR.'monolog'.DIRECTORY_SEPARATOR.'src'.DIRECTORY_SEPARATOR.'Monolog'.DIRECTORY_SEPARATOR.'Handler'.DIRECTORY_SEPARATOR.'BrowserConsoleHandler.php');
-
 
 class logging
 {
@@ -47,10 +44,14 @@ class logging
             $jrConfig = $siteConfig->get();
 
             if (!defined('AUTO_UPGRADE')) {
-                $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-                if ($thisJRUser->username !== false) {
-                    $username = $thisJRUser->username;
-                }
+				if (get_showtime('jr_user_ready')) {
+					$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+					if ($thisJRUser->username !== false) {
+						$username = $thisJRUser->username;
+					}
+				} else {
+					$username = 'Startup';
+				}
             } else {
                 $username = 'Installer';
             }

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.15
+ * @version Jomres 9.9.16
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -573,6 +573,8 @@ class j01010listpropertys
                         $property_deets[ 'PROP_NAME' ] = $current_property_details->multi_query_result[ $propertys_uid ][ 'property_name' ];
                     }
 
+					$property_deets[ 'PROPERTY_NAME_FULL' ] = $current_property_details->multi_query_result[ $propertys_uid ][ 'property_name' ];
+					 
                     $property_deets[ 'LAT' ] = $current_property_details->multi_query_result[ $propertys_uid ][ 'lat' ];
                     $property_deets[ 'LONG' ] = $current_property_details->multi_query_result[ $propertys_uid ][ 'long' ];
                     $property_deets[ 'PROP_STREET' ] = stripslashes($current_property_details->multi_query_result[ $propertys_uid ][ 'property_street' ]);

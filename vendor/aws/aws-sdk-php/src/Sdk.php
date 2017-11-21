@@ -162,6 +162,8 @@ namespace Aws;
  * @method \Aws\MultiRegionClient createMultiRegionPinpoint(array $args = [])
  * @method \Aws\Polly\PollyClient createPolly(array $args = [])
  * @method \Aws\MultiRegionClient createMultiRegionPolly(array $args = [])
+ * @method \Aws\Pricing\PricingClient createPricing(array $args = [])
+ * @method \Aws\MultiRegionClient createMultiRegionPricing(array $args = [])
  * @method \Aws\Rds\RdsClient createRds(array $args = [])
  * @method \Aws\MultiRegionClient createMultiRegionRds(array $args = [])
  * @method \Aws\Redshift\RedshiftClient createRedshift(array $args = [])
@@ -215,7 +217,7 @@ namespace Aws;
  */
 class Sdk
 {
-    const VERSION = '3.36.18';
+    const VERSION = '3.38.5';
 
     /** @var array Arguments for creating clients */
     private $args;

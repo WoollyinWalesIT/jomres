@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.15
+ * @version Jomres 9.9.16
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -241,9 +241,6 @@ if ($folderChecksPassed && $functionChecksPassed) {
                 removeCronJob('invoice');
                 removeCronJob('optimise');
                 removeCronJob('exchangerates');
-
-                addCronJob('session_files_cleanup', 'D', '');
-				addCronJob('geolocation_cleanup', 'D', '');
 
                 updateImages();
 
@@ -623,6 +620,10 @@ function doTableUpdates()
         alterCustomtextLangContextCol();
 	}
  
+	if (!checkLineitemsPaymentMethodColExists()) {
+        alterLineitemsPaymentMethodCol();
+	}
+	
 	alterCustomtextColsChangeDefaultVals();
 	copy_default_property_type_markers();
     drop_orphan_line_items_table();
@@ -633,6 +634,31 @@ function doTableUpdates()
 	add_jomres_property_categories_table();
 	add_jomres_images_table();
     updateSiteSettings('update_time', time());
+	
+}
+ 
+function checkLineitemsPaymentMethodColExists()
+{
+    $query = "SHOW COLUMNS FROM #__jomresportal_lineitems  LIKE 'payment_method'";
+    $result = doSelectSql($query);
+    if (count($result) > 0) {
+        return true;
+    }
+
+    return false;
+}
+
+function alterLineitemsPaymentMethodCol()
+{
+    //output_message ( "Editing __jomresportal_lineitems table adding is_payment column");
+    $query = 'ALTER TABLE `#__jomresportal_lineitems` ADD `payment_method`  VARCHAR(100) NOT NULL DEFAULT ""';
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to add __jomresportal_lineitems is_payment', 'danger');
+    }
+    $query = 'ALTER TABLE #__jomresportal_lineitems ADD `transaction_id`  VARCHAR(255) NOT NULL DEFAULT ""';
+    $result = doInsertSql($query);
+    $query = 'ALTER TABLE #__jomresportal_lineitems ADD `management_url`  VARCHAR(1000) NOT NULL DEFAULT ""';
+    $result = doInsertSql($query);
 }
 
 function alterPtypesHasStarsCol()
@@ -3075,7 +3101,11 @@ function installCronjobs()
     //output_message ( "Installing cron jobs<br/>";
     jr_import('jomres_cron');
     $cron = new jomres_cron();
-    $cron->addJob('error_logs_cleanup', 'H', '');
+	$cron->addJob('session_files_cleanup', 'D', '');
+    $cron->addJob('error_logs_cleanup', 'D', '');
+	$cron->addJob('geolocation_cleanup', 'D', '');
+	$cron->addJob("api_tokens_cleanup","D","");
+	$cron->addJob('version_check', 'D', '');
 }
 
 function trashTables()
@@ -6789,10 +6819,6 @@ function addApiAndWebhooksTables() {
 		$query = "ALTER TABLE `#__jomres_oauth_clients` ADD `identifier` VARCHAR(255) ";
 		doInsertSql($query,"");
 		}
-
-	$cron =jomres_getSingleton('jomres_cron');
-	$cron->addJob("api_tokens_cleanup","D","");
-    
 
 	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_webhooks_integrations (
 		`id` INT(11) auto_increment, 

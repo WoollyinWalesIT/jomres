@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.15
+ * @version Jomres 9.9.16
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -322,7 +322,7 @@ function jomres_get_client_ip()
     return filter_var($ipaddress, FILTER_SANITIZE_STRING);
 }
 
-function output_fatal_error($e)
+function output_fatal_error($e , $extra_info = '' )
 {
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
@@ -353,6 +353,7 @@ function output_fatal_error($e)
     $output = array(
         'URL' => $cleaned_link,
         'MESSAGE' => $e->getMessage(),
+		'EXTRA_INFO' => $extra_info,
         'FILE' => $e->getFile(),
         'LINE' => $e->getLine(),
         'TRACE' => $e->getTraceAsString(),
@@ -2325,6 +2326,11 @@ function jomresRedirect($url, $msg = '', $class = 'alert-info', $code = 302)
 		$tmpBookingHandler->close_jomres_session();
 	}
 	
+	$redirect_url = jomresGetParam($_REQUEST, 'redirect_url', '');
+	if ( (string)$redirect_url != '') {
+		$url = $redirect_url;
+	}
+
     if (strncmp('cli', PHP_SAPI, 3) !== 0) {
         if (headers_sent() !== true) {
             if (strncmp('cgi', PHP_SAPI, 3) === 0) {
@@ -2469,7 +2475,6 @@ function propertyConfiguration()
     $lists[ 'singlePersonSuppliment' ] = jomresHTML::selectList($yesno, 'cfg_singlePersonSuppliment', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'singlePersonSuppliment' ]);
     $lists[ 'perPersonPerNight' ] = jomresHTML::selectList($yesno, 'cfg_perPersonPerNight', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'perPersonPerNight' ]);
     $lists[ 'depositIsPercentage' ] = jomresHTML::selectList($yesno, 'cfg_depositIsPercentage', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'depositIsPercentage' ]);
-    $lists[ 'errorCheckingShowSQL' ] = jomresHTML::selectList($yesno, 'cfg_errorCheckingShowSQL', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'errorCheckingShowSQL' ]);
     $lists[ 'errorChecking' ] = jomresHTML::selectList($yesno, 'cfg_errorChecking', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'errorChecking' ]);
     $lists[ 'visitorscanbookonline' ] = jomresHTML::selectList($yesno, 'cfg_visitorscanbookonline', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'visitorscanbookonline' ]);
     $lists[ 'fixedPeriodBookings' ] = jomresHTML::selectList($yesno, 'cfg_fixedPeriodBookings', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'fixedPeriodBookings' ]);
@@ -3833,7 +3838,7 @@ function max_input_vars_test()
     $max_vars = (int) ini_get('max_input_vars');
     if ($max_vars < 1001 && isset($MiniComponents->registeredClasses[ '00005']['advanced_micromanage_tariff_editing_modes' ])) { // The default is 1000 on most installations
         $highlight = (using_bootstrap() ? 'alert alert-error alert-danger' : 'ui-state-highlight');
-        $response = "<div class='".$highlight."'>Please note, your max_input_vars setting seems to be set to 1000, which is the default setting. If you're using the Micromanage tariff editing mode and wish to save prices for more than a year in advance, we recommend that you change this setting to 3000 or more. <a href=\"https://tickets.jomres.net/index.php?/Knowledgebase/Article/View/115/15/too-many-variables\" target=\"_blank\">This page </a>has  more information.</div>";
+        $response = "<div class='".$highlight."'>Please note, your max_input_vars setting seems to be set to 1000, which is the default setting. If you're using the Micromanage tariff editing mode and wish to save prices for more than a year in advance, we recommend that you change this setting to 3000 or more. <a href=\"http://www.jomres.net/manual/developers-guide/56-other-discussions/364-max-input-vars-max-input-vars-in-php-ini\" target=\"_blank\">This page </a>has  more information.</div>";
     }
 
     return $response;

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.15
+ * @version Jomres 9.9.16
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -293,7 +293,10 @@ class j03020insertbooking
                     $booked_in = $tempBookingData->booked_in;
                     $sendGuestEmail = $tempBookingData->sendGuestEmail;
                     $sendHotelEmail = $tempBookingData->sendHotelEmail;
-					$channel_manager_booking = $tempBookingData->channel_manager_booking;
+					
+					$channel_manager_booking = 0;
+					if (isset($tempBookingData->channel_manager_booking))
+						$channel_manager_booking = $tempBookingData->channel_manager_booking;
 
                     if ($thisJRUser->userIsRegistered) { // The user is already registered
                         $user = jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id($thisJRUser->id);

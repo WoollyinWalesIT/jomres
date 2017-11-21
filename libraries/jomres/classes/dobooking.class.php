@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.15
+ * @version Jomres 9.9.16
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -281,7 +281,12 @@ class dobooking
 		$this->tel_landline = $userDeets[ 'tel_landline' ];
 		$this->tel_mobile = $userDeets[ 'tel_mobile' ];
 		$this->email = $userDeets[ 'email' ];
-		$this->guest_specific_discount = $userDeets[ 'discount' ];
+		
+		$this->guest_specific_discount = 0;
+		if (isset($userDeets[ 'discount' ])) {
+			$this->guest_specific_discount = $userDeets[ 'discount' ];
+		}
+		
 
 		$mrConfig = getPropertySpecificSettings($this->property_uid);
 

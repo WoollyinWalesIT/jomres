@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.15
+ * @version Jomres 9.9.16
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -66,6 +66,19 @@ if (!defined('JOMRESPATH_BASE')) {
     define('JOMRESPATH_BASE', $dir_path.JRDS);
 }
 
+//check if this is an ajax call or not
+if (!defined('AJAXCALL')) {
+    if (isset($_REQUEST[ 'jrajax' ])) {
+        if ((int) $_REQUEST[ 'jrajax' ] == 1) {
+            define('AJAXCALL', true);
+        } else {
+            define('AJAXCALL', false);
+        }
+    } else {
+        define('AJAXCALL', false);
+    }
+}
+
 //define jomres paths
 define('JOMRESCONFIG_ABSOLUTE_PATH', substr(JOMRESPATH_BASE, 0, strlen(JOMRESPATH_BASE) - strlen(JOMRES_ROOT_DIRECTORY.JRDS)));
 define('JOMRES_APP_ABSPATH', JOMRESPATH_BASE.'core-minicomponents'.JRDS);
@@ -120,6 +133,11 @@ if (!class_exists('patErrorManager')) {
     require_once JOMRES_LIBRARIES_ABSPATH.'phptools'.JRDS.'patErrorManager.php';
 }
 
+// The API includes the logger class. As the API doesn't always include the framework ( for performance ) to use the logger within Jomres itself, we'll need to make the distinction here
+if (!defined('JOMRES_API_CMS_ROOT')) {
+    require_once JOMRES_API_ABSPATH.'classes'.JRDS.'logging.class.php';
+}
+
 //site config
 $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 $jrConfig = $siteConfig->get();
@@ -130,24 +148,6 @@ if (!isset($jrConfig['log_path']) || $jrConfig['log_path'] == '') {
 }
 
 define('JOMRES_SYSTEMLOG_PATH', fix_path($jrConfig['log_path']));
-
-// The API includes the logger class. As the API doesn't always include the framework ( for performance ) to use the logger within Jomres itself, we'll need to make the distinction here
-if (!defined('JOMRES_API_CMS_ROOT')) {
-    require_once JOMRES_API_ABSPATH.'classes'.JRDS.'logging.class.php';
-}
-
-//check if this is an ajax call or not
-if (!defined('AJAXCALL')) {
-    if (isset($_REQUEST[ 'jrajax' ])) {
-        if ((int) $_REQUEST[ 'jrajax' ] == 1) {
-            define('AJAXCALL', true);
-        } else {
-            define('AJAXCALL', false);
-        }
-    } else {
-        define('AJAXCALL', false);
-    }
-}
 
 // set language to en-GB by default TODO: may not be needed anymore
 if (get_showtime('lang') && get_showtime('lang') == '') {

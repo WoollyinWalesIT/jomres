@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.15
+ * @version Jomres 9.9.16
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -130,6 +130,8 @@ class j06005view_invoice
         $output[ 'HINITTOTAL' ] = jr_gettext('_JRPORTAL_INVOICES_INITTOTAL', '_JRPORTAL_INVOICES_INITTOTAL');
         $output[ 'HCURRENCYCODE' ] = jr_gettext('_JRPORTAL_INVOICES_CURRENCYCODE', '_JRPORTAL_INVOICES_CURRENCYCODE');
         $output[ 'HINVOICENO' ] = jr_gettext('_JOMRES_INVOICE_NUMBER', '_JOMRES_INVOICE_NUMBER');
+		$output[ 'TRANSACTION_ID' ] = jr_gettext('TRANSACTION_IDS', 'TRANSACTION_IDS');
+		$output[ 'PAYMENT_METHOD' ] = jr_gettext('PAYMENT_METHOD', 'PAYMENT_METHOD');
 
         $markaspaid_link = array();
         if ($thisJRUser->userIsManager && (int) $invoice->property_uid > 0 && (int) $invoice->status != 1 && $contractData['approved'] == 1) {
@@ -245,7 +247,13 @@ class j06005view_invoice
                 $r[ 'LI_TAX_AMOUNT' ] = output_price($li[ 'tax_amount' ], $invoice->currencycode, false, true);
                 $r[ 'LI_INV_ID' ] = $li[ 'inv_id' ];
                 $r[ 'CURRENCYCODE' ] = $invoice->currencycode;
-
+				$r[ 'TRANSACTION_ID' ] = $li[ 'transaction_id' ];
+				$r[ 'PAYMENT_METHOD' ] = $li[ 'payment_method' ];
+				
+				$r[ 'MANAGEMENT_URL' ] = '';
+				if ($thisJRUser->userIsManager)
+					$r[ 'MANAGEMENT_URL' ] = $li[ 'management_url' ];
+				
                 if ((int) $li[ 'is_payment' ] == 0) {
                     $rows[] = $r;
                 } else {
