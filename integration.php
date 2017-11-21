@@ -66,6 +66,19 @@ if (!defined('JOMRESPATH_BASE')) {
     define('JOMRESPATH_BASE', $dir_path.JRDS);
 }
 
+//check if this is an ajax call or not
+if (!defined('AJAXCALL')) {
+    if (isset($_REQUEST[ 'jrajax' ])) {
+        if ((int) $_REQUEST[ 'jrajax' ] == 1) {
+            define('AJAXCALL', true);
+        } else {
+            define('AJAXCALL', false);
+        }
+    } else {
+        define('AJAXCALL', false);
+    }
+}
+
 //define jomres paths
 define('JOMRESCONFIG_ABSOLUTE_PATH', substr(JOMRESPATH_BASE, 0, strlen(JOMRESPATH_BASE) - strlen(JOMRES_ROOT_DIRECTORY.JRDS)));
 define('JOMRES_APP_ABSPATH', JOMRESPATH_BASE.'core-minicomponents'.JRDS);
@@ -135,19 +148,6 @@ if (!isset($jrConfig['log_path']) || $jrConfig['log_path'] == '') {
 }
 
 define('JOMRES_SYSTEMLOG_PATH', fix_path($jrConfig['log_path']));
-
-//check if this is an ajax call or not
-if (!defined('AJAXCALL')) {
-    if (isset($_REQUEST[ 'jrajax' ])) {
-        if ((int) $_REQUEST[ 'jrajax' ] == 1) {
-            define('AJAXCALL', true);
-        } else {
-            define('AJAXCALL', false);
-        }
-    } else {
-        define('AJAXCALL', false);
-    }
-}
 
 // set language to en-GB by default TODO: may not be needed anymore
 if (get_showtime('lang') && get_showtime('lang') == '') {
