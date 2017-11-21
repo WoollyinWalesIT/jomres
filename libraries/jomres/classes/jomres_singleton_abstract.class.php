@@ -51,15 +51,16 @@ class jomres_singleton_abstract
 			return self::$_instances[ $class ];
 		}
 		
-		//class doesn`t exist so we`ll echo a message and exit
-		echo 'Error, class '.$class." doesn't exist.";
-        $trace = '';
-            $backtrace = debug_backtrace();
+		//class doesn`t exist so we`ll echo a message
+		echo '<p class="alert alert-danger alert-error">Error, class '.$class.' doesn`t exist.</p>';
+
+        $backtrace = debug_backtrace();
 		$trace = "<br/> File ".$backtrace[0]['file']." Line ".$backtrace[0]['line']. " Function ".$backtrace[0]['function']."<br/> ";
         $trace .= "File ".$backtrace[1]['file']." Line ".$backtrace[1]['line']. " Function ".$backtrace[1]['function']."<br/> ";
         $trace .= " File ".$backtrace[2]['file']." Line ".$backtrace[2]['line']. " Function ".$backtrace[2]['function']."<br/> ";
         $trace .= " File ".$backtrace[3]['file']." Line ".$backtrace[3]['line']. " Function ".$backtrace[3]['function']."<br/> "; 
-        echo $trace;
+        
+		logging::log_message($trace , "Core" , "CRITICAL" );
 		
 		if (!isset(self::$_instances[ $class ])) {
 			self::$_instances[ $class ] = new jomres_empty_class();

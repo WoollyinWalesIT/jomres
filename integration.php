@@ -120,6 +120,11 @@ if (!class_exists('patErrorManager')) {
     require_once JOMRES_LIBRARIES_ABSPATH.'phptools'.JRDS.'patErrorManager.php';
 }
 
+// The API includes the logger class. As the API doesn't always include the framework ( for performance ) to use the logger within Jomres itself, we'll need to make the distinction here
+if (!defined('JOMRES_API_CMS_ROOT')) {
+    require_once JOMRES_API_ABSPATH.'classes'.JRDS.'logging.class.php';
+}
+
 //site config
 $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 $jrConfig = $siteConfig->get();
@@ -130,11 +135,6 @@ if (!isset($jrConfig['log_path']) || $jrConfig['log_path'] == '') {
 }
 
 define('JOMRES_SYSTEMLOG_PATH', fix_path($jrConfig['log_path']));
-
-// The API includes the logger class. As the API doesn't always include the framework ( for performance ) to use the logger within Jomres itself, we'll need to make the distinction here
-if (!defined('JOMRES_API_CMS_ROOT')) {
-    require_once JOMRES_API_ABSPATH.'classes'.JRDS.'logging.class.php';
-}
 
 //check if this is an ajax call or not
 if (!defined('AJAXCALL')) {

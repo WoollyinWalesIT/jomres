@@ -44,10 +44,14 @@ class logging
             $jrConfig = $siteConfig->get();
 
             if (!defined('AUTO_UPGRADE')) {
-                $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-                if ($thisJRUser->username !== false) {
-                    $username = $thisJRUser->username;
-                }
+				if (get_showtime('jr_user_ready')) {
+					$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+					if ($thisJRUser->username !== false) {
+						$username = $thisJRUser->username;
+					}
+				} else {
+					$username = 'Startup';
+				}
             } else {
                 $username = 'Installer';
             }
