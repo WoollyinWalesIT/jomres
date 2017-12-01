@@ -55,7 +55,7 @@ function get_property_details_url($property_uid = 0, $type = 'sef', $params = ''
 			if ($type == 'sef' || $type == 'sefsafe') {
 				$url = JRoute::_($menuItem->link.'&Itemid='.$menuItem->id);
 			} else {
-				$url = jomresURL(get_showtime('live_site').$menuItem->link.'&Itemid='.$menuItem->id);
+				$url = jomresURL(get_showtime('live_site').'/'.$menuItem->link.'&Itemid='.$menuItem->id);
 			}
 		}
 	}
