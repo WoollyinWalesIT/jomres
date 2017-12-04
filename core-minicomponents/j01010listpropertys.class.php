@@ -179,11 +179,11 @@ class j01010listpropertys
                 $jrConfig['use_budget_feature'] = '1';
             }
 
+			$budget_output = array();
             if (using_bootstrap() && $jrConfig['use_budget_feature'] == '1') {
                 jr_import('jomres_user_budget');
                 $budget = new jomres_user_budget();
 
-                $budget_output = array();
                 $budget_output[0]['BUDGET_DROPDOWN'] = $budget->get_budget_dropdown();
             }
 
