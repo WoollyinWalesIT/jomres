@@ -1441,7 +1441,7 @@ class dobooking
 		}
 		$found = false;
 		$n = count($this->variancetypes);
-		for ($i = 0; $i < $n; ++$i) {
+		for ($i = 0; $i <= $n; ++$i) {
 			if (isset($this->variancetypes[ $i ])) {
 				if ($this->variancetypes[ $i ] == $type && $this->varianceuids[ $i ] == $id) {
 					//$this->setErrorLog("Setting variant with qty ".$qty." and value ".$val );
