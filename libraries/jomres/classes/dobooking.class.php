@@ -572,8 +572,8 @@ class dobooking
 		}
 
 		//store the new search dates
-		$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] = $this->arrivalDate;
-		$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] = $this->departureDate;
+		//$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] = $this->arrivalDate;
+		//$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] = $this->departureDate;
 	}
 
 	public function getAllRoomsData()
