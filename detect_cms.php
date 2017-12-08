@@ -44,6 +44,10 @@ if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'wp-config.php')) {
         define('_JOMRES_DETECTED_CMS', 'joomla3');
         define('_JOMRES_DETECTED_CMS_SPECIFIC_FILES', JOMRES_CMSSPECIFIC_ABSPATH._JOMRES_DETECTED_CMS.JRDS);
     }
+    if ($jversion::MAJOR_VERSION == '4') {
+        define('_JOMRES_DETECTED_CMS', 'joomla4');
+        define('_JOMRES_DETECTED_CMS_SPECIFIC_FILES', JOMRES_CMSSPECIFIC_ABSPATH._JOMRES_DETECTED_CMS.JRDS);
+    } 
 }
 
 

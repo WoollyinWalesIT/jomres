@@ -1,0 +1,20 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<h4 class="page-header">{_OAUTH_SCOPE_CATEGORY}</h4>
+
+<patTemplate:tmpl name="rows" unusedvars="strip">
+
+	
+<div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="scopes[]" value="{SCOPE}" {CHECKED} /> {SCOPE_FRIENDLY}
+                </label>
+				<br/>{SCOPE_DESCRIPTION}
+            </div>
+        </div>
+    </div>
+</patTemplate:tmpl>
+
+</patTemplate:tmpl>

@@ -1,0 +1,32 @@
+<patTemplate:tmpl name="pageoutput">
+<script type="text/javascript">
+<!--
+// Moves the menu to the content/component area (above the Jomres output), however that will be overriden by navbar-fixed-bottom or navbar-fixed-top
+jomresJquery(document).ready(function () {
+	var $content = jomresJquery('#jomres-menu-pinned').html();
+	jomresJquery('#{MENU_LOCATION}').html($content);
+	jomresJquery('#jomres-menu-pinned').empty(); // making sure that the old div doesn't have the accordion applied to it.
+});
+//-->
+</script>
+
+<div id="jomres-menu-pinned" style="display:none;">
+	<nav class="navbar {NAVBAR_LOCATION} {NAVBAR_INVERSE}" role="navigation">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#jomres-mainmenu-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<i class="fa fa-bars"></i>
+			</button>
+		</div>
+		<div class="collapse navbar-collapse" id="jomres-mainmenu-collapse">
+			<ul class="nav navbar-nav">
+				<patTemplate:tmpl name="menu_sections">
+					{SECTION}
+				</patTemplate:tmpl>
+			</ul>
+		</div>
+	</nav>
+{USER_FEEDBACK}
+</div>
+
+</patTemplate:tmpl>

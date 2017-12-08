@@ -1,0 +1,90 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<script type="text/javascript">
+var ajaxurl = "{JOMRES_SITEPAGE_URL_ADMIN_AJAX}&task=cms_users_find";
+jomresJquery(function () {
+	jomresJquery("#cms_username").autocomplete({
+		source: ajaxurl,
+		minLength: 2,
+		focus: function( event, ui ) {
+			jomresJquery( "#cms_username" ).val( ui.item.username );
+			return false;
+			},
+		select: function (event, ui) {
+			jomresJquery("#cms_user_id").val(ui.item.cms_user_id);
+			jomresJquery("#cms_username").val(ui.item.username);
+			return false;
+			}
+		})
+	.autocomplete( "instance" )._renderItem = function( ul, item ) {
+		return jomresJquery( "<li>" )
+		.append( "<a>" + item.cms_user_id + " - " + item.username + "</a>" )
+		.appendTo( ul );
+		};
+	});
+</script>
+
+<h2 class="page-header">{PAGETITLE}</h2>
+
+<p>{INSTRUCTIONS}</p>
+
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm" class="form-horizontal">
+{JOMRESTOOLBAR}
+
+<div class="control-group">
+	<label class="control-label" for="cms_username">{HUSERNAME}</label>
+	<div class="controls">
+		<input type="text" id="cms_username" name="cms_username" value="{USERNAME}" class="input-large" {DISABLED}/>
+		<span class="help-inline">
+			{USER_PROFILE_LINK}
+		</span>
+		<span class="help-block">
+			{HUSERNAME_DESC}
+		</span>
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label" for="access_level">{HACCESSLEVEL}</label>
+	<div class="controls">
+		{ACCESSLEVEL}
+	</div>
+</div>
+
+<div class="control-group">
+	<label class="control-label" for="apikey">API KEY</label>
+	<div class="controls">
+		<input type="text" class="input-xlarge" name="apikey" value="{API_KEY}" READONLY onclick="select_all(this);"/>
+		<span class="help-inline">
+			{NEWAPIKEY_LINK}
+		</span>
+	</div>
+</div>
+
+<table width="100%" class="table table-striped">
+	<thead>
+		<tr>
+			<th><input type="checkbox" name="toggle" value="" onclick="jomres_checkAll({TOTALINLISTPLUSONE});"/>
+			</th>
+			<th>{_JRPORTAL_PROPERTIES_PROPERTYNAME}</th>
+			<th class="hidden-phone">{_JOMRES_SHOWPROFILES_USERSWITHACCESS}</th>
+		</tr>
+	</thead>
+	<tbody>
+	<patTemplate:tmpl name="rows" unusedvars="strip" type="simpleCondition" requiredVars="propertyname">
+		<tr>
+			<td>{INPUT}</td>
+			<td>{PROPERTYNAME}</td>
+			<td class="hidden-phone">{MANAGERS}</td>
+		</tr>
+	</patTemplate:tmpl>
+	</tbody>
+</table>
+
+<input type="hidden" name="boxchecked" value="0">
+<input type="hidden" id="id" name="id" value="{ID}"/>
+<input type="hidden" id="cms_user_id" name="cms_user_id" value="{CMS_USER_ID}"/>
+<input type="hidden" name="option" value="com_jomres"/>
+<input type="hidden" name="task" value="save_user"/>
+</form>
+</patTemplate:tmpl>
