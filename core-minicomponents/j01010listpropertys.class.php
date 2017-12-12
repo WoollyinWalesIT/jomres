@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.16
+ * @version Jomres 9.9.17
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -179,11 +179,11 @@ class j01010listpropertys
                 $jrConfig['use_budget_feature'] = '1';
             }
 
+			$budget_output = array();
             if (using_bootstrap() && $jrConfig['use_budget_feature'] == '1') {
                 jr_import('jomres_user_budget');
                 $budget = new jomres_user_budget();
 
-                $budget_output = array();
                 $budget_output[0]['BUDGET_DROPDOWN'] = $budget->get_budget_dropdown();
             }
 

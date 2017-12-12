@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.16
+ * @version Jomres 9.9.17
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -572,8 +572,8 @@ class dobooking
 		}
 
 		//store the new search dates
-		$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] = $this->arrivalDate;
-		$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] = $this->departureDate;
+		//$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] = $this->arrivalDate;
+		//$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] = $this->departureDate;
 	}
 
 	public function getAllRoomsData()
@@ -1441,7 +1441,7 @@ class dobooking
 		}
 		$found = false;
 		$n = count($this->variancetypes);
-		for ($i = 0; $i < $n; ++$i) {
+		for ($i = 0; $i <= $n; ++$i) {
 			if (isset($this->variancetypes[ $i ])) {
 				if ($this->variancetypes[ $i ] == $type && $this->varianceuids[ $i ] == $id) {
 					//$this->setErrorLog("Setting variant with qty ".$qty." and value ".$val );

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.16
+ * @version Jomres 9.9.17
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -188,6 +188,7 @@ class jomres_generic_booking_email
 		}
         
 		$this->data[$contract_uid]['SPECIAL_REQUIREMENTS'] = jomres_decode($current_contract_details->contract[$contract_uid]['contractdeets']['special_reqs']);
+		$this->data[$contract_uid]['CANCELLED_REASON'] = jomres_decode($current_contract_details->contract[$contract_uid]['contractdeets']['cancelled_reason']);
 
         $this->data[$contract_uid]['ALLOCATION_NOTE'] = '';
         if (isset($tmpBookingHandler->tmpbooking[ 'booking_notes' ][ 'suppliment_note' ])) {
