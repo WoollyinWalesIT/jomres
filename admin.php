@@ -152,7 +152,7 @@ try {
         $pageoutput[ ] = $output;
         $tmpl = new patTemplate();
         $tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
-		if (this_cms_is_joomla()) {
+		if (_JOMRES_DETECTED_CMS == 'joomla3') {
 			$tmpl->readTemplatesFromInput('administrator_content_area_top_vertical.html');
 		} else {
 			$tmpl->readTemplatesFromInput('administrator_content_area_top.html');
@@ -175,7 +175,7 @@ try {
         $pageoutput[] = $output;
         $tmpl = new patTemplate();
         $tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
-		if (this_cms_is_joomla()) {
+		if (_JOMRES_DETECTED_CMS == 'joomla3') {
 			$tmpl->readTemplatesFromInput('administrator_content_area_bottom_vertical.html');
 		} else {
 			$tmpl->readTemplatesFromInput('administrator_content_area_bottom.html');
