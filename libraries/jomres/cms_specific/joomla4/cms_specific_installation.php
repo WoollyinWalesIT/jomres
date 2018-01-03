@@ -128,7 +128,7 @@ $query = "INSERT INTO #__extensions	(
 	`name`,`type`,`element`,`folder`,
 	`client_id`,`enabled`,`access`,`protected`,
 	`manifest_cache`,
-	`params`,`custom_data`,`system_data`,
+	`params`,`namespace`,
 	`checked_out`,`checked_out_time`,`ordering`,`state`
 	)
 	VALUES
@@ -136,7 +136,7 @@ $query = "INSERT INTO #__extensions	(
 	'Jomres','component','com_jomres','',
 	'1','1','1','0',
 	'{\"name\":\"Jomres\",\"type\":\"component\",\"creationDate\":\"2005-03-18\",\"author\":\"Vince Wooll\",\"copyright\":\"(C) 2005 - 2011 Vince Wooll. All rights reserved.\t\",\"authorEmail\":\"sales@jomres.net\",\"authorUrl\":\"www.jomres.net\",\"version\":\"7\",\"description\":\"Jomres\",\"group\":\"\"}',
-	'{}','','',
+	'{}','Joomla\Component\Jomres',
 	'0','1970-01-01 00:00:01','0','0'
 	)
 	";
