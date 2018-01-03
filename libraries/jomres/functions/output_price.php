@@ -117,7 +117,12 @@ function output_price($value, $currencycode = '', $do_conversion = true, $zeroOK
             $price = $currfmt->get_formatted($price);
             $price = $symbols[ 'pre' ].$price.$symbols[ 'post' ];
         } else {
-            $price = ' '.$symbols[ 'pre' ].jr_gettext('_JOMRES_PRICE_ON_APPLICATION', '_JOMRES_PRICE_ON_APPLICATION', false, false).$symbols[ 'post' ];
+			if ($mrConfig['poa_price'] != '') {
+				$poa_price = (float)$mrConfig['poa_price'];
+				$price = $symbols[ 'pre' ].$poa_price.$symbols[ 'post' ];
+			}
+			else
+				$price = ' '.$symbols[ 'pre' ].jr_gettext('_JOMRES_PRICE_ON_APPLICATION', '_JOMRES_PRICE_ON_APPLICATION', false, false).$symbols[ 'post' ];
         }
     }
 

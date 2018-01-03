@@ -152,5 +152,6 @@ $mrConfig = array(
   'useOnlinepayment' => '0',
   'minimum_deposit_percentage' => '0',
   'externalBookingFormUrl' => '',
-  'minimum_deposit_value' => 0
+  'minimum_deposit_value' => 0,
+  'poa_price' => ''
 );
