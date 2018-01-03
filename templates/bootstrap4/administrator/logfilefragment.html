@@ -1,0 +1,20 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<table width="100%" class="table table-striped">
+		<tr>
+			<!--<th>&nbsp;</td>-->
+			<th id="datetime">Date and time</td>
+			<th id="">Task</td>
+			<th id="">Message</td>
+		</tr>
+		<patTemplate:tmpl name="rows" type="simpleCondition" requiredVars="datetime">
+			<tr>
+				<!--<td><img src="{LIVESITE}/{JOMRES_ROOT_DIRECTORY}/images/info.png" border="0" onclick="toggleDetail('provider{COUNTER}_type',1)"></td>-->
+				<td>{DATETIME}</td>
+				<td>{TASK}</td>
+				<td>{MESSAGEFULL}</td>
+			</tr>
+		</patTemplate:tmpl>
+	</table>
+</patTemplate:tmpl>
+

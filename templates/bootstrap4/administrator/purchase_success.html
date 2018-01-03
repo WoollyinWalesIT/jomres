@@ -1,0 +1,17 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<!-- Modal -->
+<div id="invoice_created" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h3 id="myModalLabel">Invoice created</h3>
+	</div>
+	<div class="modal-body">
+		<div class="alert alert-success">{MESSAGE}</div>
+	</div>
+	<div class="modal-footer">
+		<a class="btn btn-default" onclick="javascript:window.location.reload()" data-dismiss="modal">Close</a>
+		<a class="btn btn-success" href="http://license-server.jomres.net/index.php" target="_blank">Log in to view your account</a>
+	</div>
+</div>
+</patTemplate:tmpl>

@@ -22,7 +22,7 @@ if (isset($_REQUEST[ 'autoupgrade' ])) {
 
 // Set this to "development" to prevent the installer from setting the site to production and therefore deleting this file on run.
 define('PROD_DEV', 'production');
-// define ("PROD_DEV" , "development");
+//define ("PROD_DEV" , "development");
 
 // Useful for testing installer changes, uncomment to prevent redirection after run
 // define ( "ERRORS_SHOWN_NO_REDIRECT" , 1 );
@@ -4592,6 +4592,11 @@ function createExtraIndexs()
     $query = "SHOW INDEX FROM `#__jomres_guest_profile` WHERE Key_name = 'cms_user_id' ";
     $indexExists = doSelectSql($query);
     if (count($indexExists) < 1) {
+		$query = "ALTER TABLE `#__jomres_guest_profile` CHANGE `cms_user_id` `cms_user_id` INT(11) NULL DEFAULT NULL";
+		if (!doInsertSql($query, '')) {
+			output_message('Error, unable to alter __jomres_guest_profile cms_user_id column', 'danger');
+		}
+		
         $query = 'ALTER TABLE `#__jomres_guest_profile` ADD INDEX cms_user_id ( cms_user_id ) ';
         if (!doInsertSql($query)) {
             output_message('Failed to run query: '.$query, 'danger');
@@ -4610,6 +4615,11 @@ function createExtraIndexs()
     $query = "SHOW INDEX FROM `#__jomres_custom_text` WHERE Key_name = 'language' ";
     $indexExists = doSelectSql($query);
     if (count($indexExists) < 1) {
+		$query = "ALTER TABLE `#__jomres_custom_text` CHANGE `language` `language` VARCHAR(10) NULL DEFAULT NULL";
+		if (!doInsertSql($query, '')) {
+			output_message('Error, unable to alter __jomres_custom_text language column', 'danger');
+		}
+		
         $query = 'ALTER TABLE `#__jomres_custom_text` ADD INDEX `language` ( `language` ) ';
         if (!doInsertSql($query)) {
             output_message('Failed to run query: '.$query, 'danger');
@@ -4619,6 +4629,11 @@ function createExtraIndexs()
 	$query = "SHOW INDEX FROM `#__jomres_custom_text` WHERE Key_name = 'language_context' ";
     $indexExists = doSelectSql($query);
     if (count($indexExists) < 1) {
+		$query = "ALTER TABLE `#__jomres_custom_text` CHANGE `language_context` `language_context` VARCHAR(100) NULL DEFAULT NULL";
+		if (!doInsertSql($query, '')) {
+			output_message('Error, unable to alter __jomres_custom_text language_context column', 'danger');
+		}
+		
         $query = 'ALTER TABLE `#__jomres_custom_text` ADD INDEX `language_context` ( `language_context` ) ';
         if (!doInsertSql($query)) {
             output_message('Failed to run query: '.$query, 'danger');
@@ -4709,6 +4724,11 @@ function createExtraIndexs()
     $query = "SHOW INDEX FROM `#__jomres_guests` WHERE Key_name = 'mos_userid' ";
     $indexExists = doSelectSql($query);
     if (count($indexExists) < 1) {
+		$query = "ALTER TABLE `#__jomres_guests` CHANGE `mos_userid` `mos_userid` INT(11) NULL DEFAULT NULL";
+		if (!doInsertSql($query, '')) {
+			output_message('Error, unable to alter __jomres_guests mos_userid column', 'danger');
+		}
+		
         $query = 'ALTER TABLE `#__jomres_guests` ADD INDEX mos_userid ( mos_userid ) ';
         if (!doInsertSql($query)) {
             output_message('Failed to run query: '.$query, 'danger');
@@ -4736,6 +4756,11 @@ function createExtraIndexs()
     $query = "SHOW INDEX FROM `#__jomres_propertys` WHERE Key_name = 'property_town' ";
     $indexExists = doSelectSql($query);
     if (count($indexExists) < 1) {
+		$query = "ALTER TABLE `#__jomres_propertys` CHANGE `property_town` `property_town` VARCHAR(100) NULL DEFAULT NULL";
+		if (!doInsertSql($query, '')) {
+			output_message('Error, unable to alter __jomres_propertys property_town column', 'danger');
+		}
+		
         $query = 'ALTER TABLE `#__jomres_propertys` ADD INDEX `property_town` ( `property_town` ) ';
         if (!doInsertSql($query)) {
             output_message('Failed to run query: '.$query, 'danger');
@@ -4745,6 +4770,11 @@ function createExtraIndexs()
     $query = "SHOW INDEX FROM `#__jomres_propertys` WHERE Key_name = 'property_region' ";
     $indexExists = doSelectSql($query);
     if (count($indexExists) < 1) {
+		$query = "ALTER TABLE `#__jomres_propertys` CHANGE `property_region` `property_region` VARCHAR(100) NULL DEFAULT NULL";
+		if (!doInsertSql($query, '')) {
+			output_message('Error, unable to alter __jomres_propertys property_region column', 'danger');
+		}
+		
         $query = 'ALTER TABLE `#__jomres_propertys` ADD INDEX `property_region` ( `property_region` ) ';
         if (!doInsertSql($query)) {
             output_message('Failed to run query: '.$query, 'danger');
@@ -4754,6 +4784,11 @@ function createExtraIndexs()
     $query = "SHOW INDEX FROM `#__jomres_propertys` WHERE Key_name = 'property_country' ";
     $indexExists = doSelectSql($query);
     if (count($indexExists) < 1) {
+		$query = "ALTER TABLE `#__jomres_propertys` CHANGE `property_country` `property_country` VARCHAR(100) NULL DEFAULT NULL";
+		if (!doInsertSql($query, '')) {
+			output_message('Error, unable to alter __jomres_propertys property_country column', 'danger');
+		}
+		
         $query = 'ALTER TABLE `#__jomres_propertys` ADD INDEX `property_country` ( `property_country` ) ';
         if (!doInsertSql($query)) {
             output_message('Failed to run query: '.$query, 'danger');
@@ -6542,7 +6577,7 @@ function output_message($message, $class_style = 'info')
         echo '<p class="alert '.$class.'">'.$message.'</p>
 		';
     }
-    if ($class_style == 'danger') {
+    if ($class_style == 'danger' && !defined('ERRORS_SHOWN_NO_REDIRECT') ) {
         define('ERRORS_SHOWN_NO_REDIRECT', 1);
     }
 }

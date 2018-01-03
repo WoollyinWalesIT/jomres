@@ -1,0 +1,43 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<script type="text/javascript">
+		<!--
+		function toggleDetail(id, number) {
+			for (i = 1; i <= number; i++) {
+				body = document.getElementById(id + i);
+				if (body) {
+					if (body.style.display == 'none') {
+						try {
+							body.style.display = 'table-row';
+						}
+						catch (e) {
+							body.style.display = 'block';
+						}
+					}
+					else {
+						body.style.display = 'none';
+					}
+				}
+			}
+		}
+		//-->
+	</script>
+
+	<h2 class="page-header">{TITLE}</h2>
+
+	<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+		<table class="table well" width="100%">
+			<tr>
+				<td class="pull-left">{BACKLINK}</td>
+				<td class="pull-right"><a href="{DELETELINK}"><img
+						src="{LIVESITE}/{JOMRES_ROOT_DIRECTORY}/images/jomresimages/small/WasteBasket.png" border="0" alt=""/></a></td>
+			</tr>
+		</table>
+		<div>&nbsp;</div>
+		<div id="tbl">
+			<div id="logfileresult">{LOGFILEDATA}</div>
+		</div>
+		<input type="hidden" name="task" value="cpanel"/>
+	</form>
+	{HEARTBEAT}
+</patTemplate:tmpl>

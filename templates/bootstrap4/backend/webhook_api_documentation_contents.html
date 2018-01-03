@@ -1,0 +1,62 @@
+	<section id="overview">
+			 <h2>What are Webhooks?</h2>
+
+            <h3 id="webhook-terminology">Webhook terminology<a class="anchor" href="#webhook-terminology"></a></h3>
+            <p>An <em>event</em> is an occurrence, such as a booking being made or an invoice being marked as paid. Each occurrence has a corresponding <code>Event</code>.</p>
+            <p><em>Webhook endpoints</em> are URLs defined by users to which our Webhooks sends events. A single event may be sent to many webhook endpoints.</p>
+            <p><em>Webhooks</em> refers to the overall concept of sending notifications to webhook endpoints.</p>
+
+          <p>Interacting with a third-party API like a booking form can introduce two problems:</p>
+
+          <ul>
+            <li>Services not directly responsible for making an API request may still need to know the response of that request</li>
+            <li>Some events, like adding a booking through the interface are not the result of a direct API request</li>
+          </ul>
+
+          <p>Webhooks solve these problems by letting you register a URL that we will notify anytime an event happens on any of the properties you're marked as a manager of. When the event occurs&mdash;for example, when a booking is created by a receptionist, our system triggers an <code>Event</code>. </p>
+
+          <p>You might use webhooks as the basis to:</p>
+
+          <ul>
+            <li>Update your PMS to create a booking.</li>
+            <li>Email yourself when an invoice has been raised.</li>
+          </ul>
+
+          <p>Webhooks allow us to update you without you needing to add any code to our website.</p>
+
+	</section>
+	
+	<section id="security">
+		 <h1>Security</h1>
+		<section>
+            <h2 id="tls">Use TLS<a class="anchor" href="#tls"></a></h2>
+            <p>If you are setting up a remote site to receive data sent from our system, you are strongly advised to use TLS ( successor to SSL ) to receive data sent from our site.</p>
+            <p>If you think that your Username/password/API keys have been compromised, you should change them immediately on your remote site. Once that's done, you can easily update your Webhooks here with the new authentication details. Changes are applied immediately.</p>
+	</section>
+	
+	<section id="authentication">
+		<h1>Authentication</h1>
+		<p>The webhook system allows you to update a remote site when something happens on one of your properties.</p>
+		<p>You can create an unlimited number of Webhooks, each going to different sites. A variety of Authentication methods are available, including No authentication, basic authentication and Oauth2 based authentication.</p>
+	</section>
+
+	<section id="responding">
+		<h1>Responding to a webhook</h1>
+		<p>To acknowledge receipt of a webhook, your endpoint should return a 2xx HTTP status code. Any other information returned in the request headers or request body is ignored.</p>
+	</section>
+    
+	<section id="methods">
+		<h1>Events</h1>
+		<p>When a task has been performed against one of your properties, then we will update your remote service with certain information, for example if a booking is taken we will update your remote site with new availability data for all your room/property types.<p>
+		
+		[METHODS]
+	</section>
+	
+	<section id="policy">
+		<h1>TERMS AND CONDITIONS</h1>
+
+		<p>By using our Webhooks, you agree to this policy. We reserve the right to change this policy at any time without notice, so please check it regularly. Your continued use of our Webhooks constitutes acceptance of any changes.</p>
+
+		[WEBSITE TERMS AND CONDITIONS]
+	</section>
+

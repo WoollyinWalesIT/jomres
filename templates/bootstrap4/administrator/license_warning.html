@@ -1,0 +1,53 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<div class="row-fluid">
+	<div class="span6">
+		<div class="alert alert-danger" role="alert">
+			<h3>{TITLE}</h3>
+			<p>
+				Unfortunately you don't have a valid license number saved, so you will not be able to download plugins or get support.
+			</p>
+			<p>
+				Plugins greatly extend the functionality of the system, and it's through sales of Download and Support licenses that we finance future development of Jomres.
+			</p>
+			<p>
+				If you would like to get access to any of the plugins listed in the Jomres plugin manager, or use our support service, we would ask that you <a href="https://license-server.jomres.net/order.php?cmd=products/licenses/list&product_id=13" target="_blank">consider purchasing a Download and Support license.</a>
+			</p>
+			<p>
+				If you do have a valid license key, please ensure that you have saved it in the <a href="{JOMRES_SITEPAGE_URL_ADMIN}&task=site_settings">Site Configuration -> Misc tab</a> <strong>Support key</strong> field.
+			</p>
+		</div>
+	</div>
+	<div class="span6">
+		<div class="alert alert-success" role="alert">
+			<h3>You can still help!</h3>
+			<div class="row-fluid">
+				<div class="span6">
+					<p>
+						Even if you don't want or need the full features of the plugins and only use the free Core, you can still contribute to future Jomres development by buying us a coffee or pizza.
+					</p>
+					<p>
+						It won't get you any support or plugins, but you'll definately feel better about yourself ;)
+					</p>
+					<p>
+					<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+					<input type="hidden" name="cmd" value="_s-xclick">
+					<input type="hidden" name="hosted_button_id" value="WCDXW6EXWB7YA">
+					<input type="image" src="https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
+					<img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
+					</form>
+					</p>
+				</div>
+				<div class="span6">
+					<p>
+						If you don't want to donate to us, we'd ask if you would consider instead making a donation to the Dog's Trust UK, our chosen Charity.
+						You can donate to them either directly <a href="https://www.dogstrust.org.uk/donation/" target="_blank">on their site</a>, or <a href="https://www.paypal-donations.co.uk/pp-charity/charity.jsp?NP_ID=12492" target="_blank">via Paypal.</a>
+						<a href="https://www.paypal-donations.co.uk/pp-charity/charity.jsp?NP_ID=12492" target="_blank"><img src="{LIVE_SITE}/{JOMRES_ROOT_DIRECTORY}/images/Dogs-Trust-Logo.png" class="img-responsive"/></a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</patTemplate:tmpl>

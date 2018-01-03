@@ -1,0 +1,305 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<style>
+.REmail {
+	border:solid 1px {INPUTBOXERRORBORDER};
+	background-color: {INPUTBOXERRORBACKGROUND};
+	}
+
+	span.required {
+		color: red;
+	}
+</style>
+
+<script language="javascript">
+	<!--
+	jomresJquery(function(){
+		jomresJquery("#country").change(function(){
+			var selectedValue = jomresJquery(this).find(":selected").val();
+			clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
+			jomresJquery.get(live_site_ajax + clause, function (data) {
+				populateDiv("property_region",data);
+				});
+			});
+		});
+	
+	jomresJquery(document).ready(function () {
+
+		jomresJquery('#adminForm').attr('novalidate', 'novalidate'); // Disable html5 validation
+        jQuery.validator.setDefaults({
+            highlight: function (element, errorClass, validClass) {
+                if (element.type === "radio") {
+                    this.findByName(element.name).addClass(errorClass).removeClass(validClass);
+                } else {
+                    jomresJquery(element).closest('.form-group').removeClass('has-success has-feedback').addClass('has-error has-feedback');
+                }
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                if (element.type === "radio") {
+                    this.findByName(element.name).removeClass(errorClass).addClass(validClass);
+                } else {
+                    jomresJquery(element).closest('.form-group').removeClass('has-error has-feedback').addClass('has-success has-feedback');
+                }
+            }
+        });
+		
+		jomresJquery('#adminForm').validate(
+				{
+				rules: {
+					property_name: {
+						minlength: 1,
+						required: true
+					},
+					property_street: {
+						minlength: 1,
+						required: true
+					},
+					property_town: {
+						minlength: 1,
+						required: true
+					},
+					property_postcode: {
+						minlength: 1,
+						required: true
+					},
+					property_tel: {
+						minlength: 1,
+						required: true
+					},
+					property_description: {
+						minlength: 1,
+						required: true
+					},
+					property_email: {
+						email: true,
+						required: true
+					}
+				},
+				messages: {
+					property_name: "{_JOMRES_REQUIREDFIELDS}",
+					property_street: "{_JOMRES_REQUIREDFIELDS}",
+					property_town: "{_JOMRES_REQUIREDFIELDS}",
+					property_postcode: "{_JOMRES_REQUIREDFIELDS}",
+					property_tel: "{_JOMRES_REQUIREDFIELDS}",
+					property_description: "{_JOMRES_REQUIREDFIELDS}",
+					property_email: "{_JOMRES_REQUIREDFIELDS}",
+				}
+			});
+		jomresJquery("#adminForm").valid();
+	});
+	
+	//-->
+</script>
+
+<h2 class="page-header">{PAGETITLE}</h2>
+
+<patTemplate:tmpl name="approval_warning" type="simpleCondition" requiredVars="approvalwarning">
+<p class="alert alert-warning">{APPROVALWARNING}</p>
+</patTemplate:tmpl>
+
+
+<form action="" method="post" id="adminForm" name="adminForm" class="form-horizontal" role="form">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="form-group">
+				<label class="col-md-2 control-label" for="propertyType">{HPROPERTY_TYPE}</label>
+				<div class="col-md-10">
+					{PROPERTY_TYPE_DROPDOWN}
+					<p class="help-block alert alert-warning">{PROPERTY_TYPE_DROPDOWN_WARNING}</p>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label" for="cat_id">{HCATEGORY}</label>
+				<div class="col-md-10">
+					{PROPERTY_CATEGORIES_DROPDOWN}
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label" for="property_name">{HNAME}</label><div id="tour_target_registration_2_name_address"></div>
+				<div class="col-md-10">
+					<input id="property_name" name="property_name" type="text" value="{PROPERTY_NAME}" class="form-control " placeholder="{COMMON_PLACEHOLDER_PROPERTYNAME}"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label" for="xyz">{HCOUNTRY}</label>
+				<div class="col-md-10">
+					{AJAX_COUNTRIESDROPDOWN}
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label" for="region">{HREGION}</label>
+				<div class="col-md-10" id="property_region">
+					{AJAX_REGIONDROPDOWN}
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label" for="property_town" required>{HTOWN}</label>
+				<div class="col-md-10">
+					<input id="property_town" name="property_town" type="text" value="{PROPERTY_TOWN}" class="form-control" placeholder="{COMMON_PLACEHOLDER_TOWN}"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label" for="property_street">{HSTREET}</label>
+				<div class="col-md-10">
+					<input id="property_street" name="property_street" type="text" value="{PROPERTY_STREET}" class="form-control" placeholder="{COMMON_PLACEHOLDER_STREET}"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label" for="property_postcode">{HPOSTCODE}</label>
+				<div class="col-md-10">
+					<input id="property_postcode" name="property_postcode" type="text" value="{PROPERTY_POSTCODE}" class="form-control" placeholder="{COMMON_PLACEHOLDER_POSTCODE}"/>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group">
+				<label class="col-md-2 control-label" for="property_tel">{HTELEPHONE}</label>
+				<div class="col-md-10">
+					<input id="property_tel" name="property_tel" type="tel" value="{PROPERTY_TEL}" class="form-control" placeholder="{COMMON_PLACEHOLDER_LANDLINE}"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label" for="property_fax">{HFAX}</label>
+				<div class="col-md-10">
+					<input id="property_fax" name="property_fax" type="text" value="{PROPERTY_FAX}" class="form-control" placeholder="{HFAX}"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label" for="property_email">{HEMAIL}</label>
+				<div class="col-md-10">
+					<input id="property_email" name="property_email" type="email" value="{PROPERTY_EMAIL}" class="form-control" placeholder="{COMMON_PLACEHOLDER_EMAIL}"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label" for="permit_number">{_JOMRES_PERMIT_NUMBER_TITLE}</label>
+				<div class="col-md-10">
+					<input id="permit_number" name="permit_number" type="text" value="{PERMIT_NUMBER}" class="form-control" placeholder="{_JOMRES_PERMIT_NUMBER_TITLE}"/>
+					<span id="helpBlock" class="help-block">{_JOMRES_PERMIT_NUMBER_DESCRIPTION}</span>
+				</div>
+			</div>
+			<patTemplate:tmpl name="stars" type="simpleCondition" requiredVars="hstars">
+			<div class="form-group">
+				<label class="col-md-2 control-label" for="stars">{HSTARS}</label><div id="tour_target_registration_2_stars"></div>
+				<div class="col-md-10">
+					{STARSDROPDOWN}
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label" for="stars">{HSUPERIOR}</label>
+				<div class="col-md-10">
+					{SUPERIOR_DROPDOWN}
+				</div>
+			</div>
+			</patTemplate:tmpl>
+			<div class="form-group">
+				<label class="col-md-2 control-label" for="lat">{HLAT}</label>
+				<div class="col-md-10">
+					<input id="lat" name="lat" type="text" value="{LAT}" class="form-control" placeholder="00.0000"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label" for="long">{HLONG}</label>
+				<div class="col-md-10">
+					<input id="lng" name="long" type="text" value="{LONG}" class="form-control" placeholder="{00.0000}"/>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="firstname">{LATLONG_DESC}</label><div id="tour_target_registration_2_latlong"></div>
+		<div class="col-md-10">
+			{MAP}
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="pid">{HFEATURES}</label><div id="tour_target_registration_2_features"></div>
+		<div class="col-md-10">
+			<patTemplate:tmpl name="globalPfeatures">
+			<div style="float:left;">
+				<input type="checkbox" name="pid[]" value="{PID}" style="float:left;" {ISCHECKED}> {FEATURE}
+			</div>
+			</patTemplate:tmpl>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+    {MARKDOWN_BUTTON}
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="property_description">{HPROPDESCRIPTION}</label><div id="tour_target_registration_2_description"></div>
+		<div class="col-md-10">
+			{PROPERTY_DESCRIPTION}
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="property_checkin_times">{HCHECKINTIMES}</label>
+		<div class="col-md-10">
+			{PROPERTY_CHECKIN_TIMES}
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="property_area_activities">{HAREAACTIVITIES}</label>
+		<div class="col-md-10">
+			{PROPERTY_AREA_ACTIVITIES}
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="property_driving_directions">{HDRIVINGDIRECTIONS}</label>
+		<div class="col-md-10">
+			{PROPERTY_DRIVING_DIRECTIONS}
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="property_airports">{HAIRPORTS}</label>
+		<div class="col-md-10">
+			{PROPERTY_AIRPORTS}
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="property_othertransport">{HOTHERTRANSPORT}</label>
+		<div class="col-md-10">
+			{PROPERTY_OTHERTRANSPORT}
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="property_policies_disclaimers">{HPOLICIESDISCLAIMERS}</label><div id="tour_target_registration_2_policies"></div>
+		<div class="col-md-10">
+			{PROPERTY_POLICIES_DISCLAIMERS}
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="metatitle">{_JOMRES_METATITLE}</label>
+		<div class="col-md-10">
+			<input type="text" name="metatitle" value="{METATITLE}" class="form-control" placeholder="{_JOMRES_METATITLE}"/>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="metadescription">{_JOMRES_METADESCRIPTION}</label>
+		<div class="col-md-10">
+			<input type="text" name="metadescription" value="{METADESCRIPTION}" class="form-control" placeholder="{_JOMRES_METADESCRIPTION}"/>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="metakeywords">{_JOMRES_METAKEYWORDS}</label>
+		<div class="col-md-10">
+			<input type="text" name="metakeywords" value="{METAKEYWORDS}" class="form-control" placeholder="{_JOMRES_METAKEYWORDS}"/>
+		</div>
+	</div>
+	<patTemplate:tmpl name="multi" type="simpleCondition" requiredVars="multisites_select">
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="property_site_id">{LABEL}</label>
+		<div class="col-md-10">
+			{MULTISITES_SELECT}
+		</div>
+	</div>
+	</patTemplate:tmpl>
+	<div class="form-actions">
+		<div class="col-md-10 col-md-offset-2">
+			<button class="btn btn-primary" type="submit">{COMMON_SUBMIT}</button>
+			<a class="btn btn-default" href="{CANCEL_URL}">{COMMON_CANCEL}</a>
+		</div>
+	</div>
+	<input type="hidden" name="property_uid" value="{PROPERTYUID}"/>
+	<input type="hidden" name="task" value="save_property"/>
+</form>
+
+{SIMPLEMDE_JAVASCRIPT}
+</patTemplate:tmpl>

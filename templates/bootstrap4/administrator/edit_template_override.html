@@ -1,0 +1,17 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<h2 class="page-header">{TEMPLATE_NAME}</h2>
+
+	<p>{_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO}</p>
+	
+	<form action="{JOMRES_SITEPAGE_URL_ADMIN}&task=save_template_override&template_name={TEMPLATE_NAME}" method="post" name="adminForm" class="form-horizontal">
+	
+		
+		{JOMRESTOOLBAR}
+		
+		{DROPDOWN}
+		
+	<input type="hidden" name="task" value="save_template_override"/>
+	<input type="hidden" name="template_name" value="{TEMPLATE_NAME}"/>
+	</form>
+</patTemplate:tmpl>

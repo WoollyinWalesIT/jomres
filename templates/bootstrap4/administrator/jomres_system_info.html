@@ -1,0 +1,17 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">Jomres System Info</h3>
+	</div>
+	<div class="panel-body">
+		<div class="jomres-system-info">
+			<p>{_JOMRES_VERSIONCHECK_THISJOMRESVERSION} <span class="label label-blue pull-right">{THIS_JOMRES_VERSION}</span><p>
+			<p>{_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION} <span class="label {JOMRES_VERSION_LABEL_CLASS} pull-right">{LATEST_JOMRES_VERSION}</span></p>
+			<div id="version_check_warning">
+				<div class="{HIGHLIGHT}">{ALERT}{ERROR}</div>
+				<div class="{HIGHLIGHT}">{UPDATEINFO} <br/>{_JOMRES_VERSIONCHECK_VERSIONWARNING_RENEWALS}</div>
+			</div>
+		</div>
+	</div>
+</div>
+</patTemplate:tmpl>

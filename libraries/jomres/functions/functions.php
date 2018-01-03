@@ -3635,7 +3635,7 @@ function scandir_getfiles_recursive($directory, $recursive = true, $listDirs = f
 
 function this_cms_is_joomla()
 {
-    if (_JOMRES_DETECTED_CMS != 'joomla3') {
+    if (_JOMRES_DETECTED_CMS != 'joomla3' && _JOMRES_DETECTED_CMS != 'joomla4') {
         return false;
     }
 
