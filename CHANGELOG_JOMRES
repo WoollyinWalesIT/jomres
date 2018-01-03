@@ -1,26 +1,38 @@
+
+<h3>Jomres 9.9.17 12/12/2017</h3>
+
+<span class="label label-warning">Change</span> Added cancellation reason output support to booking email templates
+<span class="label label-warning">Change</span> basic_contract_details class updated to include last_changed and referrer db columns.
+<span class="label label-warning">Change</span> Improved redirect url handling to base64 encode urls. Without encoding urls, redirect url tasks are treated as the real task, causing tariff exporting functionality in the Beds24 plugin to not work.
+
+<span class="label label-warning">Change</span> Fixed a link in emails
+<span class="label label-warning">Change</span> Fixed a notice in property list triggered when the budget feature is disabled
+<span class="label label-warning">Change</span> Solved a problem with searched dates always being reset on the booking form
+<span class="label label-warning">Change</span> Solved a problem with guest types when amending bookings
+
 <h3>Jomres 9.9.16 20/11/2017</h3>
 
-Added room names and numbers to Amend Booking panel in booking form when editing a booking.
-Added functionality to allow payment gateways to pass transaction ids and payment methods to invoice line items.
-Email Admin when Jomres has a New Update
+<span class="label label-success">Feature</span> Added room names and numbers to Amend Booking panel in booking form when editing a booking.
+<span class="label label-success">Feature</span> Added functionality to allow payment gateways to pass transaction ids and payment methods to invoice line items.
+<span class="label label-success">Feature</span> Email Admin when Jomres has a New Update
 
-Made the version check a cron job
-Removed a depreciated setting from jomres_config.php
-Added PROPERTY_NAME_FULL to property list templates.
-Small improvement when detecting the localhost ip
-Added ability to add extra information to developer output on fatal error, and added query details to jomres_database.class.php
-Moved where the 00015 trigger point is fired in viewproperty script.
-Added ability to pass "redirect_url" in $_REQUEST and let jomresRedirect function use that instead of the url passed by the calling method.
-Added support for displaying transaction id and gateway in admin invoices too, plus some minor layout tweaks
-Removed an unneeded global in the en-GB language file
-Modified the link to the max input vars explanation page to point to a new page in the manual.
-Added a button to close the jomres review message that shows up in admin cpanel
-Removed a require in logging class that's no longer needed.
-Improved logging of missing classes caused sometimes by incomplete updates
-Moved where we check if the request is an ajax call in integration.php
+<span class="label label-warning">Change</span> Made the version check a cron job
+<span class="label label-warning">Change</span> Removed a depreciated setting from jomres_config.php
+<span class="label label-warning">Change</span> Added PROPERTY_NAME_FULL to property list templates.
+<span class="label label-warning">Change</span> Small improvement when detecting the localhost ip
+<span class="label label-warning">Change</span> Added ability to add extra information to developer output on fatal error, and added query details to jomres_database.class.php
+<span class="label label-warning">Change</span> Moved where the 00015 trigger point is fired in viewproperty script.
+<span class="label label-warning">Change</span> Added ability to pass "redirect_url" in $_REQUEST and let jomresRedirect function use that instead of the url passed by the calling method.
+<span class="label label-warning">Change</span> Added support for displaying transaction id and gateway in admin invoices too, plus some minor layout tweaks
+<span class="label label-warning">Change</span> Removed an unneeded global in the en-GB language file
+<span class="label label-warning">Change</span> Modified the link to the max input vars explanation page to point to a new page in the manual.
+<span class="label label-warning">Change</span> Added a button to close the jomres review message that shows up in admin cpanel
+<span class="label label-warning">Change</span> Removed a require in logging class that's no longer needed.
+<span class="label label-warning">Change</span> Improved logging of missing classes caused sometimes by incomplete updates
+<span class="label label-warning">Change</span> Moved where we check if the request is an ajax call in integration.php
 
-Fixed a notice in view booking page caused by deleting guest types
-Resolved a notice in booking insert regarding channel_manager_booking flag.
+<span class="label label-important label-danger">Fix</span> Fixed a notice in view booking page caused by deleting guest types
+<span class="label label-important label-danger">Fix</span> Resolved a notice in booking insert regarding channel_manager_booking flag.
 
 
 <h3>Jomres 9.9.15 06/11/2017</h3>

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.16
+ * @version Jomres 9.9.17
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2305,6 +2305,15 @@ function jomres_audit($query, $op = '')
     logging::log_message($query, 'Audit', 'INFO');
 }
 
+// redirect urls must be base64 encoded before they can be used, otherwise PHP parses the redirect url's task as the current task. To get around this we need to base64 encode redirect urls. Unforunately, straightforward base64 will cause Joomla to throw an error because base64 encoding uses characters that do not work well in URLs, so we'll use these custom functions to encode/decode urls.
+function jr_base64url_encode($data) {
+  return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
+}
+
+function jr_base64url_decode($data) {
+  return base64_decode(str_pad(strtr($data, '-_', '+/'), strlen($data) % 4, '=', STR_PAD_RIGHT));
+} 
+
 /**
  * Redirects to $url.
  */
@@ -2326,9 +2335,9 @@ function jomresRedirect($url, $msg = '', $class = 'alert-info', $code = 302)
 		$tmpBookingHandler->close_jomres_session();
 	}
 	
-	$redirect_url = jomresGetParam($_REQUEST, 'redirect_url', '');
-	if ( (string)$redirect_url != '') {
-		$url = $redirect_url;
+	$jr_redirect_url = jomresGetParam($_REQUEST, 'jr_redirect_url', '');
+	if ( (string)$jr_redirect_url != '') {
+		$url = jr_base64url_decode($jr_redirect_url);
 	}
 
     if (strncmp('cli', PHP_SAPI, 3) !== 0) {

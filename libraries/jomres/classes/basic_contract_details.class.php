@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.16
+ * @version Jomres 9.9.17
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -86,6 +86,8 @@ class basic_contract_details
 						a.booking_data_archive_id,
 						a.secret_key,
 						a.booking_language,
+						a.last_changed,
+						a.referrer,
 						b.mos_userid,
 						b.firstname,
 						b.surname,
@@ -151,6 +153,9 @@ class basic_contract_details
             $this->contract[$contract_uid]['contractdeets']['approved'] = $contract->approved;
             $this->contract[$contract_uid]['contractdeets']['secret_key'] = $contract->secret_key;
             $this->contract[$contract_uid]['contractdeets']['booking_language'] = $contract->booking_language;
+			$this->contract[$contract_uid]['contractdeets']['last_changed'] = $contract->last_changed ;
+			$this->contract[$contract_uid]['contractdeets']['referrer'] = $contract->referrer;
+			
             $this->contract[$contract_uid]['contractdeets']['booking_data_archive_id'] = $contract->booking_data_archive_id;
 
             //guest details
