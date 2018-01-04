@@ -2624,8 +2624,23 @@ class patTemplate
 
 		$result = $this->output_template_name_details( $result , $files );
 
-		$regex = '/{jomres_shortcode\s*.*?}/i';
-		// find all instances of mambot and put in $matches
+		/*
+		How to use
+		
+		You can create shortcodes in template files to include scripts (minicomponents) generated output in different templates. This allows you to build pages in Jomres that are composites of different Jomres scripts, without needing to actually modify any individual minicomponents. All of the requests are done in the template itself.
+		
+		For example, you can put
+		{jomres_script show_property_features PROPERTY_UID={UID}}
+		in list_properties.html inside the patTemplate property_details tag and the result will be the property features inserted into the property information panel/card for each property, if available.
+		Because of how j01010listpropertys.class.php works, you have to include the {UID} code so that patTemplate will insert the property uid in the template.
+		
+		In templates that are shown for specific properties, you can use a similar shortcode, for example
+		both {jomres_script show_property_features PROPERTY_UID=N} and {jomres_script show_property_features PROPERTY_UID={PROPERTY_UID}} will work in the property_header.html template file.
+		
+		*/
+		
+		$regex = '/{jomres_script\s*.*?}/i';
+		// find all instances of jomres_script and put in $matches
 		
 		preg_match_all( $regex, $result, $matches );
 		if (!empty($matches))
@@ -2639,6 +2654,8 @@ class patTemplate
 				$match = str_replace("&amp;","&",$match);
 				$bang = explode (" ",$match);
 				$our_task = $bang[1];
+				$_REQUEST['task'] = $our_task;
+				
 				if (!isset($bang[2]))
 					$bang[2] = "";
 
@@ -2648,31 +2665,39 @@ class patTemplate
 					{
 					$args_array = explode("&",$arguments);
 					
-					foreach ($args_array as $arg)
-						{
-						$vals = explode ("=",$arg);
-						if(array_key_exists(1,$vals))
-							{
-							if ($vals[1] == "N")
-								{
-								$vals[1] = get_showtime("property_uid");
-								if ($vals[1] == 0) // For whatever reason, property uid isn't set, we won't be able to continue showing this snippet. We'll dive out here.
-									break;
-								}
-							$vals[1] = str_replace("+","-",$vals[1]);
+					for ($i=0;$i<count($args_array);$i++) {
+						if( $args_array[$i] == 'PROPERTY_UID=N' ) { // We're looking to see if we need to find the current property uid 
+							$property_uid = get_showtime("property_uid");
+							if ($property_uid == 0) // For whatever reason, property uid isn't set, we won't be able to continue showing this snippet. We'll dive out here.
+								break;
+							else {
+								$_REQUEST['property_uid']=$property_uid;
+								$_GET['property_uid']=$property_uid;
+							}
+						} elseif (substr($args_array[$i],0,12) == 'PROPERTY_UID' ) { // In list properties we can't check showtime because the list properties template script is called AFTER all of the data has been compiled. Therefore, we will allow writing of the property uid to the shortcode string and check the args here to see if it has been set to something like PROPERTY_UID=12 and use that instead. The example code this was tested against was {jomres_shortcode show_property_features PROPERTY_UID={UID}}
+							$vals = explode ("=",$args_array[$i] );
+							if (isset($vals[0]) && $vals[1] > 0) {
+								$property_uid = (int)$vals[1];
+								$_REQUEST['property_uid']=$property_uid;
+								$_GET['property_uid']=$property_uid;
+							}
+						} else { // It's not the property uid argument, we'll just transpose the argument values over instead to be included in the call in the next section
+							$vals = explode ("=",$args_array[$i] );
 							$_REQUEST[$vals[0]]=$vals[1];
 							$_GET[$vals[0]]=$vals[1];
-							}
 						}
 					}
-				
+				}
+
 				if ( $our_task != $original_task ) // Can you say recurururururing?
 					{
 					ob_start();
+					
 					$MiniComponents =jomres_getSingleton('mcHandler');
 					set_showtime('task',$our_task);
 					$MiniComponents->specificEvent('06000',$our_task);
 					$contents = ob_get_contents();
+
 					if ($contents == "" ) {
 						$MiniComponents->specificEvent('06001',$our_task);
 						$contents = ob_get_contents();
@@ -2685,6 +2710,7 @@ class patTemplate
 					set_showtime('task',$original_task);
 					$_REQUEST = $original_request;
 					$result = str_replace($m,$contents,$result);
+					
 					unset($contents);
 					ob_end_clean();
 					}
