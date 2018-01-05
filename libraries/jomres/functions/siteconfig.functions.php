@@ -157,6 +157,7 @@ function showSiteConfig()
     $bootstrap_ver_opt = array();
     $bootstrap_ver_opt[ ] = jomresHTML::makeOption('', 'Bootstrap 2');
     $bootstrap_ver_opt[ ] = jomresHTML::makeOption('3', 'Bootstrap 3');
+	$bootstrap_ver_opt[ ] = jomresHTML::makeOption('4', 'Bootstrap 4');
     $bootstrap_ver_dropdown = jomresHTML::selectList($bootstrap_ver_opt, 'cfg_bootstrap_version', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'bootstrap_version' ], false);
 
     $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');

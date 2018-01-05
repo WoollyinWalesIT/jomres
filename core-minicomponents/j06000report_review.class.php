@@ -32,8 +32,6 @@ class j06000report_review
             $rating_id = jomresGetParam($_REQUEST, 'rating_id', 0);
 
             if ($rating_id > 0) {
-                jomres_cmsspecific_addheaddata('javascript', get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/javascript/', 'jquery.validate.min.js');
-
                 $output[ '_JOMRES_REVIEWS_REPORT_REVIEW_MOREDETAIL' ] = jr_gettext('_JOMRES_REVIEWS_REPORT_REVIEW_MOREDETAIL', '_JOMRES_REVIEWS_REPORT_REVIEW_MOREDETAIL', false, false);
                 $output[ '_JOMRES_REVIEWS_REPORT_REVIEW' ] = jr_gettext('_JOMRES_REVIEWS_REPORT_REVIEW', '_JOMRES_REVIEWS_REPORT_REVIEW', false, false);
                 $output[ '_JOMRES_REVIEWS_SUBMIT' ] = jr_gettext('_JOMRES_REVIEWS_SUBMIT', '_JOMRES_REVIEWS_SUBMIT', false, false);

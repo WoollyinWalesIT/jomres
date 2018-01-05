@@ -1,0 +1,82 @@
+{
+  "_from": "galleria@1.5.7",
+  "_id": "galleria@1.5.7",
+  "_inBundle": false,
+  "_integrity": "sha1-/9wHmx3dASxxgcydSaVna8zizeY=",
+  "_location": "/galleria",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "galleria@1.5.7",
+    "name": "galleria",
+    "escapedName": "galleria",
+    "rawSpec": "1.5.7",
+    "saveSpec": null,
+    "fetchSpec": "1.5.7"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/galleria/-/galleria-1.5.7.tgz",
+  "_shasum": "ffdc079b1ddd012c7181cc9d49a5676bcce2cde6",
+  "_spec": "galleria@1.5.7",
+  "_where": "C:\\wamp64\\www\\j4\\jomres",
+  "author": {
+    "name": "worse is better UG",
+    "email": "hello@wib.io",
+    "url": "http://wib.io"
+  },
+  "bugs": {
+    "url": "https://github.com/worseisbetter/galleria/issues"
+  },
+  "bundleDependencies": false,
+  "contributors": [
+    {
+      "name": "David Hellsing",
+      "email": "david@aino.com",
+      "url": "http://aino.com"
+    },
+    {
+      "name": "Frank Ludwig",
+      "email": "frank@wib.io",
+      "url": "http://wib.io"
+    }
+  ],
+  "dependencies": {
+    "jquery": ">=1.9.0"
+  },
+  "deprecated": false,
+  "description": "A free JavaScript image gallery framework that simplifies the process of creating beautiful image galleries for the web and mobile devices.",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-cssmin": "^1.0.2",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-text-replace": "^0.4.0"
+  },
+  "homepage": "https://galleria.io",
+  "keywords": [
+    "gallery",
+    "thumbnails",
+    "photo",
+    "image",
+    "lightbox",
+    "youtube",
+    "vimeo"
+  ],
+  "license": "MIT",
+  "main": "./dist/galleria.js",
+  "name": "galleria",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/worseisbetter/galleria.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "title": "Responsive JavaScript Image Gallery",
+  "version": "1.5.7"
+}

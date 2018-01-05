@@ -33,11 +33,31 @@ class j00021colourscheme
                 $css_file = 'jomrescss_wordpress.css';
             }
         } else {
-            if (jomres_bootstrap_version() == '2' || jomres_cmsspecific_areweinadminarea()) {
-                $css_file = 'jomrescss_bootstrap.css';
-            } else {
-                $css_file = 'jomrescss_bootstrap3.css';
-            }
+			if (jomres_cmsspecific_areweinadminarea()) {
+				switch (_JOMRES_DETECTED_CMS) {
+					case 'joomla4':
+						$css_file = 'jomrescss_bootstrap4.css';
+						break;
+					default:
+						$css_file = 'jomrescss_bootstrap.css';
+						break;
+				}
+			} else {
+				switch (jomres_bootstrap_version()) {
+					case '2':
+						$css_file = 'jomrescss_bootstrap.css';
+						break;
+					case '3':
+						$css_file = 'jomrescss_bootstrap3.css';
+						break;
+					case '4':
+						$css_file = 'jomrescss_bootstrap4.css';
+						break;
+					default:
+						$css_file = 'jomrescss_bootstrap.css';
+						break;
+				}
+			}
         }
 
         jomres_cmsspecific_addheaddata('css', JOMRES_CSS_RELPATH, $css_file);

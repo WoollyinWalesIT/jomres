@@ -403,11 +403,11 @@ function jomres_cmsspecific_parseByBots($str)
 {
     $limitstart = 0;
     $params = '';
-    $dispatcher = JEventDispatcher::getInstance();
+    $app = JFactory::getApplication();
     JPluginHelper::importPlugin('content');
     $obj = new stdClass();
     $obj->text = $str;
-    $output = $dispatcher->trigger('onContentPrepare', array('jomres.default', &$obj, &$params, $limitstart));
+    $output = $app->triggerEvent('onContentPrepare', array('jomres.default', &$obj, &$params, $limitstart));
     $output = $obj->text;
 
     return $output;
