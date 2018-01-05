@@ -2627,7 +2627,7 @@ class patTemplate
 		/*
 		How to use
 		
-		You can create shortcodes in template files to include scripts (minicomponents) generated output in different templates. This allows you to build pages in Jomres that are composites of different Jomres scripts, without needing to actually modify any individual minicomponents. All of the requests are done in the template itself.
+		You can create shortcodes in template files to include script (minicomponents) generated output in different templates. This allows you to build pages in Jomres that are composites of different Jomres scripts, without needing to actually modify any individual minicomponents. All of the requests are done in the template itself.
 		
 		For example, you can put
 		{jomres_script show_property_features PROPERTY_UID={UID}}
