@@ -134,7 +134,7 @@ class j00004a_init_javascript_css_files
 				$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'datatables.net-buttons/js/', 'dataTables.buttons.min.js');
 				$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'jszip/dist/', 'jszip.min.js');
 				$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'pdfmake/build/', 'pdfmake.min.js');
-				$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'pdfmake/build/', 'vfs_fonts.min.js');
+				$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'pdfmake/build/', 'vfs_fonts.js');
 				$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'datatables.net-buttons/js/', 'dataTables.buttons.min.js');
 				$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'datatables.net-buttons/js/', 'buttons.print.min.js');
 				$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'datatables.net-buttons/js/', 'buttons.html5.min.js');
