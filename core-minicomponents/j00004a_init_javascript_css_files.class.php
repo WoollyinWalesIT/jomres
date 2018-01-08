@@ -125,8 +125,24 @@ class j00004a_init_javascript_css_files
         }
 
         if ($thisJRUser->userIsRegistered || jomres_cmsspecific_areweinadminarea()) {
-            $javascript_files[] = array(JOMRES_JS_RELPATH, 'datatables.min.js');
-            $css_files[] = array(JOMRES_CSS_RELPATH, 'datatables.css');
+			if (_JOMRES_DETECTED_CMS != 'joomla4') {
+				$javascript_files[] = array(JOMRES_JS_RELPATH, 'datatables.min.js');
+				$css_files[] = array(JOMRES_CSS_RELPATH, 'datatables.css');
+			} else {
+				$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'datatables.net/js/', 'jquery.dataTables.js');
+				$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'datatables.net-bs4/js/', 'dataTables.bootstrap4.js');
+				$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'datatables.net-buttons/js/', 'dataTables.buttons.min.js');
+				$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'datatables.net-buttons/js/', 'buttons.print.min.js');
+				$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'datatables.net-buttons/js/', 'buttons.html5.min.js');
+				$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'datatables.net-buttons/js/', 'buttons.colVis.min.js');
+				$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'datatables.net-buttons-bs4/js/', 'buttons.bootstrap4.min.js');
+				$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'datatables.net-responsive/js/', 'dataTables.responsive.min.js');
+				$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'datatables.net-responsive-bs4/js/', 'responsive.bootstrap4.min.js');
+				
+				$css_files[] = array(JOMRES_NODE_MODULES_RELPATH.'datatables.net-bs4/css/', 'dataTables.bootstrap4.css');
+				$css_files[] = array(JOMRES_NODE_MODULES_RELPATH.'datatables.net-buttons-bs4/css/', 'buttons.bootstrap4.min.css');
+				$css_files[] = array(JOMRES_NODE_MODULES_RELPATH.'datatables.net-responsive-bs4/css/', 'responsive.bootstrap4.min.css');
+			}
         }
 
         if (!using_bootstrap()) {
