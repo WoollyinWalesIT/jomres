@@ -68,8 +68,6 @@ class j00004a_init_javascript_css_files
 
         $css_files = array();
         $javascript_files = array();
-		
-		//$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'jquery/dist/', 'jquery.min.js');
 
         if (jomres_cmsspecific_areweinadminarea() || $jrConfig[ 'load_jquery_ui' ] == '1' && !$management_view) {
             jomres_cmsspecific_addheaddata('css', $themePath, 'jquery-ui.min.css');
@@ -95,7 +93,7 @@ class j00004a_init_javascript_css_files
 				$javascript_files[] = array(JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/jomres_bootstrap_wrapper/js/', 'jomres_bootstrap_wrapper.js');
 			}
         }
-		
+
         $javascript_files[] = array(JOMRES_JS_RELPATH, 'jomres.js');
 
         $datepicker_localisation_file = 'datepicker-'.get_showtime('datepicker_lang').'.js';
