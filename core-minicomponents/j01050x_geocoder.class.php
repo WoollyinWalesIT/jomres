@@ -177,13 +177,6 @@ class j01050x_geocoder
             }
         }
 
-        // IE was playing silly boys and wouldn't load without using (window).load, however if we use that then the map will not run in module popups, so we need to change the loading trigger depending on the "task".
-        $output['LOAD_TRIGGER'] = 'jomresJquery(window).load(function(){';
-        
-		if ($task == 'module_popup' || $task == 'ajax_list_properties' || $task == 'ajax_search_filter') {
-            $output['LOAD_TRIGGER'] = 'jomresJquery(document).ready(function(){';
-        }
-
         set_showtime('current_map_identifier', $output[ 'RANDOM_IDENTIFIER' ]);
 
         $pageoutput[ ] = $output;
