@@ -53,7 +53,7 @@ class jomres_charts
         $this->datasets = array();
 
         //include the chart.js in the head
-        jomres_cmsspecific_addheaddata('javascript',  JJOMRES_NODE_MODULES_RELPATH.'chart.js/dist/', 'Chart.min.js');
+        jomres_cmsspecific_addheaddata('javascript',  JOMRES_NODE_MODULES_RELPATH.'chart.js/dist/', 'Chart.min.js');
     }
 
     public function get_chart()
