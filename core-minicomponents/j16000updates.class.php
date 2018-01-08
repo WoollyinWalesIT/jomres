@@ -58,7 +58,7 @@ class j16000updates
         $_REQUEST['reviewseen'] = 1;
 
         if (!$current_version_is_uptodate && !isset($_REQUEST['reviewseen']) && !isset($_REQUEST['version'])) {
-            jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/node_modules/blockui-npm/', 'jquery.blockUI.js');
+            jomres_cmsspecific_addheaddata('javascript', JOMRES_NODE_MODULES_RELPATH.'blockui-npm/', 'jquery.blockUI.js');
 
             $output = array();
 

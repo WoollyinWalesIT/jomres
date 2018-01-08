@@ -81,22 +81,34 @@ if (!defined('AJAXCALL')) {
 
 //define jomres paths
 define('JOMRESCONFIG_ABSOLUTE_PATH', substr(JOMRESPATH_BASE, 0, strlen(JOMRESPATH_BASE) - strlen(JOMRES_ROOT_DIRECTORY.JRDS)));
+
+//app
 define('JOMRES_APP_ABSPATH', JOMRESPATH_BASE.'core-minicomponents'.JRDS);
-define('JOMRES_CSS_RELPATH', JOMRES_ROOT_DIRECTORY.'/css/');
-define('JOMRES_CSS_ABSPATH', JOMRESPATH_BASE.'css'.JRDS);
-define('JOMRES_JS_ABSPATH', JOMRESPATH_BASE.'javascript'.JRDS);
-define('JOMRES_SESSIONS_ABSPATH', JOMRESPATH_BASE.'sessions'.JRDS);
-define('JOMRES_TEMP_ABSPATH', JOMRESPATH_BASE.'temp'.JRDS);
-define('JOMRES_CACHE_ABSPATH', JOMRESPATH_BASE.'cache'.JRDS);
-define('JOMRES_UPDATES_ABSPATH', JOMRESPATH_BASE.'updates'.JRDS);
 define('JOMRES_COREPLUGINS_ABSPATH', JOMRESPATH_BASE.'core-plugins'.JRDS);
 define('JOMRES_REMOTEPLUGINS_ABSPATH', JOMRESPATH_BASE.'remote_plugins'.JRDS);
 define('JOMRES_LIBRARIES_ABSPATH', JOMRESPATH_BASE.'libraries'.JRDS);
-define('JOMRES_VENDOR_ABSPATH', JOMRESPATH_BASE.'vendor'.JRDS);
 define('JOMRES_CLASSES_ABSPATH', JOMRESPATH_BASE.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS);
 define('JOMRES_FUNCTIONS_ABSPATH', JOMRESPATH_BASE.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS);
 define('JOMRES_CMSSPECIFIC_ABSPATH', JOMRESPATH_BASE.'libraries'.JRDS.'jomres'.JRDS.'cms_specific'.JRDS);
 define('JOMRES_API_ABSPATH', JOMRESPATH_BASE.'api'.JRDS);
+
+//assets
+define('JOMRES_ASSETS_ABSPATH', JOMRESPATH_BASE.'assets'.JRDS);
+define('JOMRES_CSS_RELPATH', JOMRES_ROOT_DIRECTORY.'/assets/css/');
+define('JOMRES_CSS_ABSPATH', JOMRES_ASSETS_ABSPATH.'css'.JRDS);
+define('JOMRES_JS_RELPATH', JOMRES_ROOT_DIRECTORY.'/assets/js/');
+define('JOMRES_JS_ABSPATH', JOMRES_ASSETS_ABSPATH.'js'.JRDS);
+
+//storage
+define('JOMRES_SESSIONS_ABSPATH', JOMRESPATH_BASE.'sessions'.JRDS);
+define('JOMRES_TEMP_ABSPATH', JOMRESPATH_BASE.'temp'.JRDS);
+define('JOMRES_CACHE_ABSPATH', JOMRESPATH_BASE.'cache'.JRDS);
+define('JOMRES_UPDATES_ABSPATH', JOMRESPATH_BASE.'updates'.JRDS);
+
+//vendors
+define('JOMRES_VENDOR_ABSPATH', JOMRESPATH_BASE.'vendor'.JRDS);
+define('JOMRES_NODE_MODULES_ABSPATH', JOMRESPATH_BASE.'node_modules'.JRDS);
+define('JOMRES_NODE_MODULES_RELPATH', JOMRES_ROOT_DIRECTORY.'/node_modules/');
 
 //includes
 require_once JOMRES_VENDOR_ABSPATH.'autoload.php';
@@ -153,6 +165,12 @@ define('JOMRES_SYSTEMLOG_PATH', fix_path($jrConfig['log_path']));
 if (get_showtime('lang') && get_showtime('lang') == '') {
     set_showtime('lang', 'en-GB');
 }
+
+//define core images paths
+$uri = parse_url(get_showtime('live_site'));
+
+define('JOMRES_IMAGES_ABSPATH', JOMRES_ASSETS_ABSPATH.'images'.JRDS);
+define('JOMRES_IMAGES_RELPATH', $uri['path'].'/'.JOMRES_ROOT_DIRECTORY.'/assets/images/');
 
 //define uploaded images paths
 if (!defined('JOMRES_IMAGELOCATION_ABSPATH')) {

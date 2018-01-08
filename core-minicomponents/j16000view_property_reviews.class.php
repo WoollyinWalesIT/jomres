@@ -52,9 +52,9 @@ class j16000view_property_reviews
 				$all_users = array();
 			}
 
-			$unpublish_icon = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/Tick.png';
-			$publish_icon = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/Cancel.png';
-			$delete_icon = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/WasteBasket.png';
+			$unpublish_icon = JOMRES_IMAGES_RELPATH.'jomresimages/small/Tick.png';
+			$publish_icon = JOMRES_IMAGES_RELPATH.'jomresimages/small/Cancel.png';
+			$delete_icon = JOMRES_IMAGES_RELPATH.'jomresimages/small/WasteBasket.png';
 
 			$output[ 'UNPUBLISH_IMAGE' ] = $unpublish_icon;
 			$output[ 'PUBLISH_IMAGE' ] = $publish_icon;

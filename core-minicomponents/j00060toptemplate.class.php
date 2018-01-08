@@ -108,10 +108,10 @@ class j00060toptemplate
             } elseif (file_exists(JOMRES_IMAGELOCATION_ABSPATH.'logo.jpg')) {
                 $output[ 'LOGO_RELATIVE_URL' ] = JOMRES_IMAGELOCATION_RELPATH.'/logo.jpg';
             } else {
-                $output[ 'LOGO_RELATIVE_URL' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/logo.png';
+                $output[ 'LOGO_RELATIVE_URL' ] = JOMRES_IMAGES_RELPATH.'logo.png';
             }
         } else {
-            $output[ 'LOGO_RELATIVE_URL' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/jrlogo.png';
+            $output[ 'LOGO_RELATIVE_URL' ] = JOMRES_IMAGES_RELPATH.'jrlogo.png';
         }
 
         $output[ 'SANITY_CHECKS' ] = get_showtime('sanity_check_warnings');

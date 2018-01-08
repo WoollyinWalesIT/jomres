@@ -20,7 +20,7 @@
     </files>
 
 	<administration>
-		<menu view="default" img="jomres/images/jrhouse.png">COM_JOMRES</menu>
+		<menu view="default" img="jomres/assets/images/jrhouse.png">COM_JOMRES</menu>
 		
 		<files folder="admin">
 			<filename>jomres.php</filename>

@@ -107,7 +107,7 @@ function generateDateInput($fieldName, $dateValue = '', $myID = false, $siteConf
 		';
 
     if ((using_bootstrap() && jomres_bootstrap_version() == '2') || !using_bootstrap()) {
-        $output .= 'buttonImage: \''.get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/calendar.png\',';
+        $output .= 'buttonImage: \''.JOMRES_IMAGES_RELPATH.'calendar.png\',';
         $bs3_icon = '';
     } else {
         $output .= 'buttonText: "",';

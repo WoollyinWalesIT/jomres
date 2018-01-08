@@ -163,7 +163,7 @@ class j01010listpropertys
             }
 
             if ($live_scrolling_enabled) {
-                jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/javascript/', 'jquery.livequery.js');
+                jomres_cmsspecific_addheaddata('javascript', JOMRES_JS_RELPATH, 'jquery.livequery.js');
             }
 
             if ($jrConfig[ 'is_single_property_installation' ] == '1') {
@@ -434,18 +434,18 @@ class j01010listpropertys
 
                     //$property_deets['AVAILABILITY_CALENDAR'] = $MiniComponents->specificEvent('06000','ui_availability_calendar',array('property_uid'=>$property->propertys_uid,'output_now'=>"1",'noshowlegend'=>1) );
 
-                    $starslink = '<img src="'.get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/blank.png" alt="star" border="0" height="1" hspace="10" vspace="1" />';
+                    $starslink = '<img src="'.JOMRES_IMAGES_RELPATH.'blank.png" alt="star" border="0" height="1" hspace="10" vspace="1" />';
                     if ($property_stars != '0') {
                         $starslink = '';
                         for ($i = 1; $i <= $property_stars; ++$i) {
-                            $starslink .= '<img src="'.get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/star.png" alt="star" border="0" />';
+                            $starslink .= '<img src="'.JOMRES_IMAGES_RELPATH.'star.png" alt="star" border="0" />';
                         }
                         $starslink .= '';
                     }
 
                     $property_deets[ 'SUPERIOR' ] = '';
                     if ($current_property_details->multi_query_result[ $propertys_uid ]['superior'] == 1) {
-                        $property_deets[ 'SUPERIOR' ] = '<img src="'.get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/superior.png" alt="superior" border="0" />';
+                        $property_deets[ 'SUPERIOR' ] = '<img src="'.JOMRES_IMAGES_RELPATH.'superior.png" alt="superior" border="0" />';
                     }
 
                     $rtRows = '';

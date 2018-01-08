@@ -54,7 +54,7 @@ class j16000list_property_categories
 
         $jrtbar = jomres_getSingleton('jomres_toolbar');
         $jrtb = $jrtbar->startTable();
-        $image = $jrtbar->makeImageValid('/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/AddItem.png');
+        $image = $jrtbar->makeImageValid(JOMRES_IMAGES_RELPATH.'jomresimages/small/AddItem.png');
         $link = JOMRES_SITEPAGE_URL_ADMIN;
         $jrtb .= $jrtbar->customToolbarItem('edit_property_category', $link, $text = 'Add', $submitOnClick = true, $submitTask = 'edit_property_category', $image);
         $jrtb .= $jrtbar->toolbarItem('cancel', JOMRES_SITEPAGE_URL_ADMIN, jr_gettext('_JRPORTAL_CANCEL', '_JRPORTAL_CANCEL', false));

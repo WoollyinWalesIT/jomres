@@ -819,6 +819,8 @@ class patTemplate
 		$common_strings[ 'JOMRES_SITEPAGE_URL_ADMIN' ]      = JOMRES_SITEPAGE_URL_ADMIN;
 		$common_strings[ 'JOMRES_SITEPAGE_URL_ADMIN_AJAX' ] = JOMRES_SITEPAGE_URL_ADMIN_AJAX;
 
+		$common_strings[ 'JOMRES_IMAGES_RELPATH' ]   		= JOMRES_IMAGES_RELPATH;
+
 		$common_strings[ 'LIVE_SITE' ]                       = get_showtime( "live_site" );
 		$common_strings[ 'LIVESITE' ]                        = get_showtime( "live_site" );
 		$common_strings[ 'COMMON_LAST_VIEWED_PROPERTY_UID' ] = get_showtime( 'last_viewed_property_uid' );

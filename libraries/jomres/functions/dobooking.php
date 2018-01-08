@@ -412,7 +412,7 @@ function dobooking($selectedProperty, $thisdate, $remus)
     $extrasH = array();
 
     if ((!empty($extra_details) || !empty($third_party_extras)) && $mrConfig[ 'showExtras' ] == '1') {
-        $output[ 'EXTRAS_INFO' ] = '<img border="0" style="vertical-align:top;" src="'.get_showtime('live_site').'/components/com_jomres/images/info.png" />';
+        $output[ 'EXTRAS_INFO' ] = '<img border="0" style="vertical-align:top;" src="'.JOMRES_IMAGES_RELPATH.'info.png" />';
         $output[ 'AJAXFORM_EXTRAS' ] = $bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_EXTRAS', '_JOMRES_AJAXFORM_EXTRAS'));
         $output[ 'AJAXFORM_EXTRAS_DESC' ] = $bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_EXTRAS_DESC', '_JOMRES_AJAXFORM_EXTRAS_DESC', false));
         $output[ 'EXTRAS_TOTAL' ] = $bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_EXTRAS_TOTAL', '_JOMRES_AJAXFORM_EXTRAS_TOTAL'));

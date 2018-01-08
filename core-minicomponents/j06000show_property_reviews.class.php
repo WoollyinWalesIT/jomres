@@ -123,10 +123,10 @@ class j06000show_property_reviews
 
         $output[ 'AJAXURL' ] = JOMRES_SITEPAGE_URL_AJAX;
 
-        $thumb_up = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/thumb_up.png';
-        $thumb_down = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/thumb_down.png';
-        $star = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/star.png';
-        $add_review_icon = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/add_review.png';
+        $thumb_up = JOMRES_IMAGES_RELPATH.'thumb_up.png';
+        $thumb_down = JOMRES_IMAGES_RELPATH.'thumb_down.png';
+        $star = JOMRES_IMAGES_RELPATH.'star.png';
+        $add_review_icon = JOMRES_IMAGES_RELPATH.'add_review.png';
 
         if ($this_user_can_review_this_property) {
             $url = jomresURL(JOMRES_SITEPAGE_URL.'&task=add_review&amp;property_uid='.$property_uid);

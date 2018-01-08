@@ -73,9 +73,9 @@ class j06000module_popup
 
             /*
             $jomres_media_centre_images = jomres_singleton_abstract::getInstance( 'jomres_media_centre_images' );
-            $output[ 'IMAGELARGE' ]  = $property_deets[ 'LIVESITE' ] ."/jomres/images/noimage.gif";
-            $output[ 'IMAGEMEDIUM' ] = $property_deets[ 'LIVESITE' ] ."/jomres/images/noimage.gif";
-            $output[ 'IMAGETHUMB' ]  = $property_deets[ 'LIVESITE' ] ."/jomres/images/noimage.gif";
+            $output[ 'IMAGELARGE' ]  = $property_deets[ 'LIVESITE' ] ."/jomres/assets/images/noimage.gif";
+            $output[ 'IMAGEMEDIUM' ] = $property_deets[ 'LIVESITE' ] ."/jomres/assets/images/noimage.gif";
+            $output[ 'IMAGETHUMB' ]  = $property_deets[ 'LIVESITE' ] ."/jomres/assets/images/noimage.gif";
             $jomres_media_centre_images->get_images($propertys_uid, array('property'));
             if ($jomres_media_centre_images->images['property'][0][0]['large'] != "")
                 {

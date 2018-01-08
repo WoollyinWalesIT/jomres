@@ -146,8 +146,8 @@ class j06002edit_resource
 
                 $output[ 'ROOM_DESCRIPTION' ] = editorAreaText('room_description', $room_description, 'room_description', $width, $height, $col, $row);
             } else {
-                jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/node_modules/simple-cmeditor/dist/', 'simplemde.min.js');
-                jomres_cmsspecific_addheaddata('css', JOMRES_ROOT_DIRECTORY.'/node_modules/simple-cmeditor/dist/', 'simplemde.min.css');
+                jomres_cmsspecific_addheaddata('javascript', JOMRES_NODE_MODULES_RELPATH.'simple-cmeditor/dist/', 'simplemde.min.js');
+                jomres_cmsspecific_addheaddata('css', JOMRES_NODE_MODULES_RELPATH.'simple-cmeditor/dist/', 'simplemde.min.css');
                 
                 $output['SIMPLEMDE_JAVASCRIPT'] = '
                     <script type="text/javascript">
