@@ -47,9 +47,9 @@ if (file_exists(dirname(__FILE__).'/../../'.JOMRES_ROOT_DIRECTORY.'/framework.ph
         }
     }
     ?>
-	<script src="/<?php echo JOMRES_NODE_MODULES_RELPATH ?>jquery/dist/jquery.min.js"></script>
-	<script src="/<?php echo JOMRES_NODE_MODULES_RELPATH ?>jquery-migrate/dist/jquery-migrate.min.js"></script>
-	<script src="/<?php echo JOMRES_NODE_MODULES_RELPATH ?>jquery-ui-dist/jquery-ui.min.js"></script>
+	<script src="<?php echo JOMRES_NODE_MODULES_RELPATH ?>jquery/dist/jquery.min.js"></script>
+	<script src="<?php echo JOMRES_NODE_MODULES_RELPATH ?>jquery-migrate/dist/jquery-migrate.min.js"></script>
+	<script src="<?php echo JOMRES_NODE_MODULES_RELPATH ?>jquery-ui-dist/jquery-ui.min.js"></script>
 	<?php if ($view == 'bootstrap') : ?>
 	<script src="<?php echo JOMRES_ROOT_DIRECTORY ?>/libraries/fullscreen_view/bootstrap/js/bootstrap.min.js"></script>
 	<?php elseif ($view == 'bootstrap3') : ?>
@@ -62,13 +62,13 @@ if (file_exists(dirname(__FILE__).'/../../'.JOMRES_ROOT_DIRECTORY.'/framework.ph
 	<jdoc:include type="head" />
 	<?php if ($view == 'bootstrap') : ?>
 	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/libraries/fullscreen_view/bootstrap/css/fullscreen.css" type="text/css" />
-	<link rel="stylesheet" href="/<?php echo JOMRES_NODE_MODULES_RELPATH ?>font-awesome/css/font-awesome.min.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo JOMRES_NODE_MODULES_RELPATH ?>font-awesome/css/font-awesome.min.css" type="text/css" />
 	<?php elseif ($view == 'bootstrap3') : ?>
-	<link rel="stylesheet" href="/<?php echo JOMRES_NODE_MODULES_RELPATH ?>jquery-ui-themes/themes/base/jquery-ui.min.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo JOMRES_NODE_MODULES_RELPATH ?>jquery-ui-themes/themes/base/jquery-ui.min.css" type="text/css" />
 	<link rel="stylesheet" href="<?php echo JOMRES_ROOT_DIRECTORY ?>/libraries/fullscreen_view/bootstrap3/css/fullscreen.css" type="text/css" />
-	<link rel="stylesheet" href="/<?php echo JOMRES_NODE_MODULES_RELPATH ?>font-awesome/css/font-awesome.min.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo JOMRES_NODE_MODULES_RELPATH ?>font-awesome/css/font-awesome.min.css" type="text/css" />
 	<?php elseif ($view == 'jquery_ui') : ?>
-	<link rel="stylesheet" href="/<?php echo JOMRES_NODE_MODULES_RELPATH ?>jquery-ui-themes/themes/base/jquery-ui.min.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo JOMRES_NODE_MODULES_RELPATH ?>jquery-ui-themes/themes/base/jquery-ui.min.css" type="text/css" />
 	<?php endif; ?>
 </head>
 <body class="contentpane">
