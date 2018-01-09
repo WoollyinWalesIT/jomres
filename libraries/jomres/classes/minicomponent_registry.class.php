@@ -75,10 +75,8 @@ class minicomponent_registry
     public function regenerate_registry($force_reload_allowed = false)
     {
 		if (!defined('AUTO_UPGRADE')) { // We don't want to do this if the installer is running this script
-			jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/javascript/', 'jquery.blockUI.js');
+			jomres_cmsspecific_addheaddata('javascript', JOMRES_NODE_MODULES_RELPATH.'blockui-npm/', 'jquery.blockUI.js');
 		}
-		
-		
 		
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();

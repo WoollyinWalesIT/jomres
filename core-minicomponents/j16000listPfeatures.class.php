@@ -78,11 +78,11 @@ class j16000listPfeatures
         $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
         $jrtb = $jrtbar->startTable();
         $jrtb .= $jrtbar->toolbarItem('cancel', JOMRES_SITEPAGE_URL_ADMIN, '');
-        $image = $jrtbar->makeImageValid('/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/AddItem.png');
+        $image = $jrtbar->makeImageValid(JOMRES_IMAGES_RELPATH.'jomresimages/small/AddItem.png');
         $link = JOMRES_SITEPAGE_URL_ADMIN;
         $jrtb .= $jrtbar->customToolbarItem('editPfeature', $link, jr_gettext('_JOMRES_COM_MR_NEWTARIFF', '_JOMRES_COM_MR_NEWTARIFF', false), $submitOnClick = true, $submitTask = 'editPfeature', $image);
         $jrtb .= $jrtbar->spacer();
-        $image = $jrtbar->makeImageValid('/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/WasteBasket.png');
+        $image = $jrtbar->makeImageValid(JOMRES_IMAGES_RELPATH.'jomresimages/small/WasteBasket.png');
         $link = JOMRES_SITEPAGE_URL_ADMIN;
         $jrtb .= $jrtbar->customToolbarItem('deletePfeature', $link, jr_gettext('_JOMRES_COM_MR_ROOM_DELETE', '_JOMRES_COM_MR_ROOM_DELETE', false), $submitOnClick = true, $submitTask = 'deletePfeature', $image);
         $jrtb .= $jrtbar->endTable();

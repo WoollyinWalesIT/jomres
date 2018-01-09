@@ -25,7 +25,7 @@ class j16000stripe_subscribe
 
 			return;
 		}
-		jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/javascript/', 'jquery.blockUI.js');
+		jomres_cmsspecific_addheaddata('javascript', JOMRES_NODE_MODULES_RELPATH.'blockui-npm/', 'jquery.blockUI.js');
 
 		jr_import('jomres_check_support_key');
 		$key_validation = new jomres_check_support_key(JOMRES_SITEPAGE_URL_ADMIN.'&task=stripe_subscribe');

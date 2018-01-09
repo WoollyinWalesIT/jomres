@@ -53,7 +53,7 @@ class j16000list_property_types
             $r[ 'COUNTER' ] = $counter;
             $r[ 'ID' ] = $p[ 'id' ];
             $r[ 'EDITURL' ] = jomresUrl(JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_property_type&id='.$p[ 'id' ]);
-            $r[ 'EDITICON' ] = '<img src="'.get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/EditItem.png" border="0" />';
+            $r[ 'EDITICON' ] = '<img src="'.JOMRES_IMAGES_RELPATH.'jomresimages/small/EditItem.png" border="0" />';
             $r[ 'PTYPE' ] = $p[ 'ptype' ];
             $r[ 'PTYPEDESC' ] = $p[ 'ptype_desc' ];
             $r[ 'PUBLISHURL' ] = jomresUrl(JOMRES_SITEPAGE_URL_ADMIN.'&task=publish_property_type&id='.$p[ 'id' ]);
@@ -61,13 +61,13 @@ class j16000list_property_types
             if (isset($p['marker_image'])) {
                 $r[ 'MARKER_IMAGE' ] = $p['marker_image'];
             } else {
-                $r[ 'MARKER_IMAGE' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/noimage_small.gif';
+                $r[ 'MARKER_IMAGE' ] = JOMRES_IMAGES_RELPATH.'noimage_small.gif';
             }
 
             if ($p['published'] == 1) {
-                $r[ 'PUBLISHIMAGE' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/Tick.png';
+                $r[ 'PUBLISHIMAGE' ] = JOMRES_IMAGES_RELPATH.'jomresimages/small/Tick.png';
             } else {
-                $r[ 'PUBLISHIMAGE' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/Cancel.png';
+                $r[ 'PUBLISHIMAGE' ] = JOMRES_IMAGES_RELPATH.'jomresimages/small/Cancel.png';
             }
 			
 			if ($p['has_stars'] == 1) {
@@ -120,10 +120,10 @@ class j16000list_property_types
         $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
         $jrtb = $jrtbar->startTable();
         $jrtb .= $jrtbar->toolbarItem('cancel', JOMRES_SITEPAGE_URL_ADMIN, '');
-        $image = $jrtbar->makeImageValid('/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/AddItem.png');
+        $image = $jrtbar->makeImageValid(JOMRES_IMAGES_RELPATH.'jomresimages/small/AddItem.png');
         $link = JOMRES_SITEPAGE_URL_ADMIN;
         $jrtb .= $jrtbar->customToolbarItem('editPropertyType', $link, jr_gettext('_JOMRES_COM_MR_NEWTARIFF', '_JOMRES_COM_MR_NEWTARIFF', false), $submitOnClick = true, $submitTask = 'edit_property_type', $image);
-        $image = $jrtbar->makeImageValid('/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/WasteBasket.png');
+        $image = $jrtbar->makeImageValid(JOMRES_IMAGES_RELPATH.'jomresimages/small/WasteBasket.png');
         $link = JOMRES_SITEPAGE_URL_ADMIN;
         $jrtb .= $jrtbar->customToolbarItem('deletePropertyType', $link, jr_gettext('_JOMRES_COM_MR_ROOM_DELETE', '_JOMRES_COM_MR_ROOM_DELETE', false), $submitOnClick = true, $submitTask = 'delete_property_type', $image);
         $jrtb .= $jrtbar->endTable();

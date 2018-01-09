@@ -30,7 +30,7 @@ function showSiteConfig()
 
     $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
     $jrtb = $jrtbar->startTable();
-    $image = $jrtbar->makeImageValid('/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/Save.png');
+    $image = $jrtbar->makeImageValid(JOMRES_IMAGES_RELPATH.'jomresimages/small/Save.png');
     $jrtb .= $jrtbar->toolbarItem('cancel', JOMRES_SITEPAGE_URL_ADMIN, '');
     $jrtb .= $jrtbar->customToolbarItem('saveSiteConfig', JOMRES_SITEPAGE_URL_ADMIN, jr_gettext('_JOMRES_COM_MR_SAVE', '_JOMRES_COM_MR_SAVE', false), $submitOnClick = true, $submitTask = 'save_site_settings', $image);
     $jrtb .= $jrtbar->endTable();
@@ -157,6 +157,7 @@ function showSiteConfig()
     $bootstrap_ver_opt = array();
     $bootstrap_ver_opt[ ] = jomresHTML::makeOption('', 'Bootstrap 2');
     $bootstrap_ver_opt[ ] = jomresHTML::makeOption('3', 'Bootstrap 3');
+	$bootstrap_ver_opt[ ] = jomresHTML::makeOption('4', 'Bootstrap 4');
     $bootstrap_ver_dropdown = jomresHTML::selectList($bootstrap_ver_opt, 'cfg_bootstrap_version', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'bootstrap_version' ], false);
 
     $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
@@ -484,7 +485,7 @@ function searchCSSThemesDirForCSSFiles()
 
 function get_map_styles()
 {
-    $map_style_dir = JOMRES_LIBRARIES_ABSPATH.'map_styles'.JRDS;
+    $map_style_dir = JOMRES_ASSETS_ABSPATH.'map_styles'.JRDS;
     $styles = array();
     foreach (new DirectoryIterator($map_style_dir) as $file) {
         if ($file->isFile()) {

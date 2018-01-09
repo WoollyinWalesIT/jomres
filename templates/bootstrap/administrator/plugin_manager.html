@@ -82,7 +82,7 @@
 		
 		<patTemplate:tmpl name="encoded_on_full_license" type="simpleCondition" requiredVars="encoding_warning">
         <script type="text/javascript">
-            jomresJquery(window).load(function(){
+            jomresJquery(document).ready(function(){
                 jomresJquery('#encoded_plugins_warning').modal('show');
             });
         </script>
@@ -163,7 +163,7 @@
 								<h3>Total &pound;<span id="total">0.00</span></h3>
 							</div>
 							<div class="span3">
-								<h3 class="page-header"><img src = "{LIVE_SITE}/jomres/images/cart_red_transparent.png"/>Your shopping cart</h3>
+								<h3 class="page-header"><img src = "{JOMRES_IMAGES_RELPATH}cart_red_transparent.png"/>Your shopping cart</h3>
 							</div>
 						</div>
 

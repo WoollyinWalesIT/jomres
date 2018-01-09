@@ -47,7 +47,7 @@ class j01050x_geocoder
         $output = array();
         $pageoutput = array();
 
-        $output['MAP_STYLE'] = file_get_contents(JOMRES_LIBRARIES_ABSPATH.'map_styles'.JRDS.$jrConfig['map_style'].'.style');
+        $output['MAP_STYLE'] = file_get_contents(JOMRES_ASSETS_ABSPATH.'map_styles'.JRDS.$jrConfig['map_style'].'.style');
 		$output['ZOOMLEVEL'] = (int)$jrConfig['map_zoom'];
 		if ( isset( $_REQUEST['map_zoom'] )) {
 			$output['ZOOMLEVEL'] = (int) $_REQUEST['map_zoom'];
@@ -175,13 +175,6 @@ class j01050x_geocoder
 		jomresJquery('#lng').val(latLng.lng(5).toFixed(7));
 					}";
             }
-        }
-
-        // IE was playing silly boys and wouldn't load without using (window).load, however if we use that then the map will not run in module popups, so we need to change the loading trigger depending on the "task".
-        $output['LOAD_TRIGGER'] = 'jomresJquery(window).load(function(){';
-        
-		if ($task == 'module_popup' || $task == 'ajax_list_properties' || $task == 'ajax_search_filter') {
-            $output['LOAD_TRIGGER'] = 'jomresJquery(document).ready(function(){';
         }
 
         set_showtime('current_map_identifier', $output[ 'RANDOM_IDENTIFIER' ]);

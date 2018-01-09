@@ -25,7 +25,7 @@ class j16000list_tax_rules
 
             return;
         }
-        $editIcon = '<img src="'.get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/EditItem.png" border="0" alt="editicon" />';
+        $editIcon = '<img src="'.JOMRES_IMAGES_RELPATH.'jomresimages/small/EditItem.png" border="0" alt="editicon" />';
 
         $jrportal_taxrate = jomres_singleton_abstract::getInstance('jrportal_taxrate');
 

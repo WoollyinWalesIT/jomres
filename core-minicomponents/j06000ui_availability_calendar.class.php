@@ -270,7 +270,7 @@ class j06000ui_availability_calendar
 			</script>';
             if ($mrConfig[ 'singleRoomProperty' ]) {
                 $inline_calendar .= '
-				<a href="#" id="legend_dialog_opener" title="Legend"><img src="' .get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/information.png" /></a>
+				<a href="#" id="legend_dialog_opener" title="Legend"><img src="' .JOMRES_IMAGES_RELPATH.'information.png" /></a>
 				<div id="legend_dialog" title="Legend">
 				<table width="100%" border="0">
 					<tr>
@@ -281,7 +281,7 @@ class j06000ui_availability_calendar
 				';
             } else {
                 $inline_calendar .= '
-				<a href="#" id="legend_dialog_opener" title="Legend"><img src="' .get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/information.png" /></a>
+				<a href="#" id="legend_dialog_opener" title="Legend"><img src="' .JOMRES_IMAGES_RELPATH.'information.png" /></a>
 				<div id="legend_dialog" title="Legend">
 				<table width="100%" border="0">
 					<tr>

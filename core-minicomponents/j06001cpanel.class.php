@@ -39,7 +39,7 @@ class j06001cpanel
 		$jomres_widgets->get_widgets($property_uid);
 
 		//widgets js
-		jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/javascript/', 'jomres-widgets.js');
+		jomres_cmsspecific_addheaddata('javascript', JOMRES_JS_RELPATH, 'jomres-widgets.js');
 
 		$output = array();
 		

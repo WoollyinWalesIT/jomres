@@ -101,7 +101,7 @@ class j06000media_centre_resources_ajax_existing_images
             $tmpl->addRows('pageoutput', $pageoutput);
             $tmpl->displayParsedTemplate();
         } else {
-            echo ' <img src="'.get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/noimage.gif'.'" />';
+            echo ' <img src="'.JOMRES_IMAGES_RELPATH.'noimage.gif'.'" />';
         }
     }
 

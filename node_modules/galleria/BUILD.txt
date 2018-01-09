@@ -1,0 +1,8 @@
+change Version in:
+    galleria.js
+    package.json
+change version&date in first line:
+    galleria.js
+grunt
+commit+push
+create Tag and Release on github

@@ -136,7 +136,7 @@ class j06000search
 
         $calledByModule = getEscaped($calledByModule);
 
-        $infoIcon = '/'.JOMRES_ROOT_DIRECTORY.'/images/information.png';
+        $infoIcon = JOMRES_IMAGES_RELPATH.'information.png';
         $output = array();
         $pageoutput = array();
         $showButton = false;
@@ -346,7 +346,7 @@ class j06000search
             if (in_array('selectcombo', $searchOptions) && $showSearchOptions) {
                 if (!defined('_JOMRES_SELECTCOMBO')) {
                     // define("_JOMRES_SELECTCOMBO",1);
-                    //jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.chainedSelects.js");  // This doesn't work, because if we're using the jomres javascript cache this file may not have been included in the original, therefore we MUST add it to the init_javascript function in functions.php instead.
+                    //jomres_cmsspecific_addheaddata("javascript",JOMRES_NODE_MODULES_RELPATH.'jquery-chained','jquery.chained.js');  // This doesn't work, because if we're using the jomres javascript cache this file may not have been included in the original, therefore we MUST add it to the init_javascript function in functions.php instead.
 
                     echo '
 							<script language="JavaScript" type="text/javascript">

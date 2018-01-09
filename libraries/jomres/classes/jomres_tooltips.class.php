@@ -74,7 +74,7 @@ class jomres_tooltips
                 $pageoutput = array();
 
                 $output[ 'TITLE' ] = $hover_content;
-                $output[ 'IMAGE' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/SymbolInformation.png';
+                $output[ 'IMAGE' ] = JOMRES_IMAGES_RELPATH.'SymbolInformation.png';
 
                 $pageoutput[ ] = $output;
                 $tmpl = new patTemplate();

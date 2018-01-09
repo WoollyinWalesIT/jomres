@@ -69,7 +69,7 @@ class j16000list_gateways
                 $r['GATEWAY_NAME'] = $gateway['friendlyname'];
 
                 if (!using_bootstrap()) {
-                    $editIcon = '<img src="'.get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/EditItem.png" border="0" alt="editicon" />';
+                    $editIcon = '<img src="'.JOMRES_IMAGES_RELPATH.'jomresimages/small/EditItem.png" border="0" alt="editicon" />';
 
                     $r['EDITLINK'] = '<a href="'.jomresUrl(JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_gateway&plugin='.$gateway['name']).'">'.$editIcon.'</a>';
                 } else {

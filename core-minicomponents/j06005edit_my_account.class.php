@@ -48,7 +48,7 @@ class j06005edit_my_account
         $output[ 'LANDLINE' ] = '';
         $output[ 'MOBILE' ] = '';
         $output[ 'EMAIL' ] = $user_details[ $thisJRUser->id ][ 'email' ];
-        $output[ 'IMAGE' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/noimage.gif';
+        $output[ 'IMAGE' ] = JOMRES_IMAGES_RELPATH.'noimage.gif';
 
         if (isset($componentArgs['return_url']) && $componentArgs['return_url'] != '') {
             $output[ 'RETURN_URL' ] = $componentArgs['return_url'];

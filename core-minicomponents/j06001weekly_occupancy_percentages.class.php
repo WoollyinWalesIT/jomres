@@ -69,7 +69,7 @@ class j06001weekly_occupancy_percentages
 		
 		$output[ '_JOMRES_OVERALL_ROOMS_BOOKED' ] = jr_gettext('_JOMRES_OVERALL_ROOMS_BOOKED', '_JOMRES_OVERALL_ROOMS_BOOKED', false);
 		
-        jomres_cmsspecific_addheaddata('css', JOMRES_ROOT_DIRECTORY.'/css/purecss-circular-progress-bar-master/', 'css-circular-prog-bar.css');
+        jomres_cmsspecific_addheaddata('css', JOMRES_CSS_RELPATH, 'css-circular-prog-bar.css');
 
         $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
         $current_property_details->gather_data($property_uid);

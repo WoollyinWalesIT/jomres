@@ -111,7 +111,7 @@ class j16000edit_user
 		
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
 		$jrtb   = $jrtbar->startTable();
-		$image  = $jrtbar->makeImageValid( "/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/Save.png" );
+		$image  = $jrtbar->makeImageValid( JOMRES_IMAGES_RELPATH.'jomresimages/small/Save.png' );
 		
 		$link   = get_showtime( 'live_site' ) . "/" . JOMRES_ADMINISTRATORDIRECTORY . "/index.php?option=com_jomres";
 		

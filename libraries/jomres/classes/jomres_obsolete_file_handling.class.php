@@ -61,9 +61,9 @@ class jomres_obsolete_file_handling
         $this->dir_templates_bootstrap3_backend = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'templates'.JRDS.'bootstrap3'.JRDS.'backend'.JRDS;
         $this->dir_templates_bootstrap3_administrator = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'templates'.JRDS.'bootstrap3'.JRDS.'administrator'.JRDS;
 
-        $this->dir_images = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS;
-        $this->dir_images_large = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'jomresimages'.JRDS.'large'.JRDS;
-        $this->dir_images_small = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'jomresimages'.JRDS.'small'.JRDS;
+        $this->dir_images = JOMRES_IMAGES_ABSPATH;
+        $this->dir_images_large = JOMRES_IMAGES_ABSPATH.'jomresimages'.JRDS.'large'.JRDS;
+        $this->dir_images_small = JOMRES_IMAGES_ABSPATH.'jomresimages'.JRDS.'small'.JRDS;
 
         $this->dir_components_administrator = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ADMINISTRATORDIRECTORY.JRDS.'components'.JRDS.'com_jomres'.JRDS;
         $this->dir_components = JOMRESCONFIG_ABSOLUTE_PATH.'components'.JRDS.'com_jomres'.JRDS;
@@ -1543,6 +1543,13 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_classes.'browser_detect.class.php');
 		$this->add_obs_file($this->dir_classes.'images.class.php');
 		$this->add_obs_file($this->dir_classes.'jomres_qr_code.class.php');
+		
+		$this->add_obs_dir($this->dir_libraries.JRDS.'simpleMDE'.JRDS);
+		$this->add_obs_dir($this->dir_libraries.JRDS.'map_styles'.JRDS);
+		$this->add_obs_dir(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'css'.JRDS);
+		$this->add_obs_dir(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'javascript'.JRDS);
+		$this->add_obs_dir(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS);
+		$this->add_obs_dir(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'fonts'.JRDS);
     }
 
     public function add_obs_file($path_and_file)

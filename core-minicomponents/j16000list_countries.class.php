@@ -42,7 +42,7 @@ class j16000list_countries
             import_countries();
         }
 		
-		jomres_cmsspecific_addheaddata("css",JOMRES_ROOT_DIRECTORY.'/css/flag-icon-css/css/','flag-icon.min.css');
+		jomres_cmsspecific_addheaddata("css",JOMRES_NODE_MODULES_RELPATH.'flag-icon-css/css/','flag-icon.min.css');
 
         foreach ($jomres_countries->countries as $country) {
             $r = array();
