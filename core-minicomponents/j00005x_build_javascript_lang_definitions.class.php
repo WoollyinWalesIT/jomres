@@ -57,7 +57,11 @@ class j00005x_build_javascript_lang_definitions
 
         $template_dir = find_plugin_template_directory();
         if (jomres_cmsspecific_areweinadminarea() && $template_dir != 'jquery_ui') {
-            $template_dir = 'bootstrap';
+            if (_JOMRES_DETECTED_CMS != 'joomla4') {
+				$template_dir = 'bootstrap';
+			} else {
+				$template_dir = 'bootstrap4';
+			}
         }
 
         $misc_url_defs .= '
