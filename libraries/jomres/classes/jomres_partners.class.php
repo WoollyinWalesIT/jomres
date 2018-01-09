@@ -27,7 +27,11 @@ class jomres_partners
             foreach ($existing as $partner) {
                 $cms_userid = $partner->cms_userid;
                 $this->partners[$cms_userid]['cms_userid'] = $cms_userid;
-                $this->partners[$cms_userid]['username'] = $all_users[$cms_userid]['username'];
+				
+				$this->partners[$cms_userid]['username'] = '';
+				if (isset($all_users[$cms_userid]['username'])) {
+					$this->partners[$cms_userid]['username'] = $all_users[$cms_userid]['username'];
+				}
             }
         }
     }
