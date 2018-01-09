@@ -2170,3 +2170,7 @@ jr_define( 'TRANSACTION_IDS', 'Transaction id');
 jr_define( 'PAYMENT_METHOD', 'Payment method');
 jr_define( 'POA_DISPLAY_PRICE', 'POA Price');
 jr_define( 'POA_DISPLAY_PRICE_DESC', 'When properties are shown in a list, the system will attempt to find a valid price from configured tariffs based on either today\'s date, or if dates were used in a search, then based on those dates. If it cannot, then it will show POA (Price on application), meaning that the guest should contact you to get a price. If you want, you can configure a price here that will be shown instead of the POA text. This figure would be a "fallback" price to display if no other price can be determined.');
+
+jr_define( 'PLUGINMANAGER_INSTALL', 'You need to install the plugin manager before you can install Jomres plugins, would you like to do that now?');
+jr_define( 'PLUGINMANAGER_REINSTALL', 'You need to update the plugin manager before you can update any installed plugins, would you like to do that now?');
+jr_define( 'PLUGINMANAGER_INSTALL_BUTTON', "Let's do this!");

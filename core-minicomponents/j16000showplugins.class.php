@@ -31,6 +31,24 @@ class j16000showplugins
 			return;
 		}
 		
+		$force_plugin_manager_reinstallation = false;
+		
+		// Jomres 9.9.18 specific code, we need to check to see if the task == showplugins, and if so double check the plugin manager's version. If it's < 1.9 we need to force an update of the plugin manager before the plugin manager script can be shown
+		// Without this check and force of the reinstallation of the plugin manager, users will only be able to update the 40 or so plugins one by one, which would be a significant annoyance.
+		// Todo remove sometime after January 2019
+		if (isset($MiniComponents->registeredClasses['16000']['showplugins']['real_filepath'])) { // admin.php has found that the installed version of the plugin manager is 1.8 or less, and has forced us to run the Core plugin manager script, not the plugin version. 
+			if (file_exists($MiniComponents->registeredClasses['16000']['showplugins']['real_filepath']."plugin_info.php") ) {
+				require_once($MiniComponents->registeredClasses['16000']['showplugins']['real_filepath']."plugin_info.php");
+				$plugin_info_plugin_manager = new plugin_info_plugin_manager();
+				$bang = explode("." , $plugin_info_plugin_manager->data['version'] );
+				if ( $bang [0] <= 1 ) {
+					if ($bang [1] <= 8) {
+						$force_plugin_manager_reinstallation = true;
+					}
+				}
+			}
+		}
+		
         $key_validation = jomres_singleton_abstract::getInstance('jomres_check_support_key');
 		$key_validation->check_license_key(true); //only needed if we want to force a recheck
 		
@@ -57,7 +75,10 @@ class j16000showplugins
             }
         }
 
-		if ( !file_exists(JOMRES_COREPLUGINS_ABSPATH.'plugin_manager'.JRDS.'plugin_info.php') && $this->key_valid ) { // The plugin manager plugin is not installed, we will need to install the plugin manager plugin force a registry rebuild, then redirect to this page again.
+		if ( 
+			(!file_exists(JOMRES_COREPLUGINS_ABSPATH.'plugin_manager'.JRDS.'plugin_info.php') && $this->key_valid)  ||
+			$force_plugin_manager_reinstallation === true
+			) { // We will need to install the plugin manager, plugin force a registry rebuild, then redirect to this page again.
 			if (!isset($_REQUEST['install']) ) {
 				
 				$output = array();
@@ -84,6 +105,14 @@ class j16000showplugins
 						$output['ENCODING_MESSAGE'] = $tmpl->getParsedTemplate();
 						}
 					}
+				
+				if ($force_plugin_manager_reinstallation == true) {
+					$output['INSTALLATION_MESSAGE'] = jr_gettext('PLUGINMANAGER_REINSTALL', 'PLUGINMANAGER_REINSTALL', false);
+				}
+				else {
+					$output['INSTALLATION_MESSAGE'] = jr_gettext('PLUGINMANAGER_INSTALL', 'PLUGINMANAGER_INSTALL', false);
+				}
+				$output['PLUGINMANAGER_INSTALL_BUTTON'] = jr_gettext('PLUGINMANAGER_INSTALL_BUTTON', 'PLUGINMANAGER_INSTALL_BUTTON', false);
 				
 				$pageoutput[ ] = $output;
 				$tmpl = new patTemplate();
