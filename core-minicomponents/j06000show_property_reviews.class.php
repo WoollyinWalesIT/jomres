@@ -160,7 +160,12 @@ class j06000show_property_reviews
                 $r[ '_JOMRES_REVIEWS_REVIEWED_BY' ] = jr_gettext('_JOMRES_REVIEWS_REVIEWED_BY', '_JOMRES_REVIEWS_REVIEWED_BY', false, false);
 
                 $r[ 'RATING_ID' ] = $review[ 'rating_id' ];
-                $r[ 'USERNAME' ] = $site_userids[ $review[ 'user_id' ] ][ 'username' ];
+				
+				$r[ 'USERNAME' ] = '';
+				if (isset($site_userids[ $review[ 'user_id' ] ][ 'username' ])) {
+					$r[ 'USERNAME' ] = $site_userids[ $review[ 'user_id' ] ][ 'username' ];
+				}
+				
                 $r[ 'REVIEW_TITLE' ] = $review[ 'review_title' ];
                 $r[ 'REVIEW_DESCRIPTION' ] = $review[ 'review_description' ];
                 $r[ 'PROS' ] = $review[ 'pros' ];
