@@ -30,6 +30,14 @@ class j16000save_template_override
         $template_name			= (string) jomresGetParam($_POST, 'template_name', '');
 		$template_path			= (string) jomresGetParam($_POST, 'template_path', '');
 		
+		// Older template override plugins had templates in the template root. We are extending here to allow copies of the files to exist in bootstrap specific version directories.
+		if (!file_exists($template_path.$template_name)) {
+			$bs_version = jomres_bootstrap_version();
+			if ( file_exists (JOMRESPATH_BASE.$template_path."templates".JRDS."bootstrap".$bs_version.JRDS.$template_name) ) {
+				$template_path = $template_path."templates".JRDS."bootstrap".$bs_version.JRDS;
+			}
+		}
+
 		$template_overrides->template_overrides[$template_name]['template_name']	= $template_name;
 		$template_overrides->template_overrides[$template_name]['path']				= addslashes($template_path);
 

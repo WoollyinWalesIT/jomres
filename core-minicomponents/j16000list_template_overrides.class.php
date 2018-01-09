@@ -34,7 +34,7 @@ class j16000list_template_overrides
 			$template_files_overrideable = array();
 			
 			$already_found = array();
-			
+
 			foreach ( $template_packages as $packages ) {
 				foreach ( $packages as $package_item ) {
 					$r = array();

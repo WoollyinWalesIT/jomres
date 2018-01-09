@@ -22,6 +22,7 @@ class patTemplate_Reader_Jomres extends patTemplate_Reader
 
 	function readTemplates( $templatename = '', $options = array() )
 		{
+		
         $template_packages = get_showtime('template_packages');
 
         if (!empty($template_packages)) { // There are some override packages installed, we can go ahead and check for overrides, which requires an extra query.
@@ -30,8 +31,15 @@ class patTemplate_Reader_Jomres extends patTemplate_Reader
 			$ptype_id = (int)get_showtime('ptype_id');
 		}
 		
-		if (isset($overrides_class->template_overrides[$templatename])) {
-			$content = file_get_contents( JOMRESPATH_BASE.JRDS.$overrides_class->template_overrides[$templatename]['path'] . $templatename );
+		if (isset($overrides_class->template_overrides[$templatename])) { // Template overrides are available
+			if (
+					(int)$ptype_id >0 && // Property type id is set and greater than 0
+					file_exists(JOMRESPATH_BASE.$overrides_class->template_overrides[$templatename]['path'] .$ptype_id.JRDS. $templatename) // And a template of the required name exists in the property type template directory with a sub directory of the property type id
+				) {
+				$content = file_get_contents( JOMRESPATH_BASE.$overrides_class->template_overrides[$templatename]['path'] .$ptype_id.JRDS. $templatename );
+			} else {
+				$content = file_get_contents( JOMRESPATH_BASE.$overrides_class->template_overrides[$templatename]['path'] . $templatename );
+			}
 		} else {
 			$override_template = false;
 			if ( !isset( $_REQUEST[ 'nocustomtemplate' ] ) )

@@ -47,6 +47,14 @@ class template_overrides
 			if (file_exists(JOMRESPATH_BASE.$r->path.$r->template_name) ) {
 				$this->template_overrides[$r->template_name]['template_name']		= $r->template_name;
 				$this->template_overrides[$r->template_name]['path']				= $r->path;
+			} else {
+				$bs_version = jomres_bootstrap_version();
+				if ( file_exists (JOMRESPATH_BASE.$r->path."templates".JRDS."bootstrap".$bs_version.JRDS.$r->template_name) ) {
+					$template_path = $r->path."templates".JRDS."bootstrap".$bs_version.JRDS;
+					$this->template_overrides[$r->template_name]['template_name']		= $r->template_name;
+					$this->template_overrides[$r->template_name]['path']				= $template_path;
+				
+				}
 			}
         }
 
