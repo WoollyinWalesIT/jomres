@@ -65,6 +65,14 @@ class logging
         $jrConfig['log_path'] = rtrim($jrConfig['log_path'], '\\');
         $jrConfig['log_path'] .= DIRECTORY_SEPARATOR;
 
+		if (!is_dir($jrConfig['log_path'])) {
+			@mkdir($jrConfig['log_path']);
+		}
+		
+		if (!is_dir($jrConfig['log_path'])) { // We won't throw an error, we just wont try to write to the log file.
+			return;
+		}
+		
         $log_file = str_replace(' ', '_', $channel).'.application.log';
 
         if ($jrConfig[ 'development_production' ] == 'production' && $level == 'DEBUG') { // In Production, we don't want to see DEBUG level stuff.
