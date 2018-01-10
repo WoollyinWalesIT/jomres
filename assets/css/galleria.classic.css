@@ -209,7 +209,7 @@
 .galleria-theme-classic .galleria-info-close,
 .galleria-theme-classic .galleria-image-nav-left,
 .galleria-theme-classic .galleria-image-nav-right {
-    background-image: url(classic-map.png);
+    background-image: url(../images/classic-map.png);
     background-repeat: no-repeat;
 }
 .galleria-theme-classic.galleria-container.videoplay .galleria-info,
