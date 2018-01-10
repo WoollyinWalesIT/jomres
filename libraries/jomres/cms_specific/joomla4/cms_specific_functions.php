@@ -164,7 +164,7 @@ function jomres_cmsspecific_getTextEditor($name, $content, $hiddenField, $width,
         $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
         $ret = $MiniComponents->specificEvent('06005', 'editor', array('name' => $name, 'content' => $content, 'height' => $height));
     } else {
-        $editor = JFactory::getEditor();
+        $editor = Joomla\CMS\Editor\Editor::getInstance();
         $ret = $editor->display($name, $content, $width, $height, $col, $row, false);
     }
 
