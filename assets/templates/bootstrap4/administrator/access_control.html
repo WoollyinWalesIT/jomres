@@ -1,0 +1,39 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+<!--
+jomresJquery(document).ready(function () {
+	make_datatable('access_control_list', '{PAGETITLE}', '{LIVESITE}');
+});
+
+function change_access_level(minicomp, level) {
+	cmd = '{JOMRES_SITEPAGE_URL_ADMIN_AJAX}&task=ajax_change_access_level&minicomp=' + minicomp + '&new_level=' + level;
+	jomresJquery.get(cmd, function (data) {
+		//	if (data == 1)
+		//		{
+		//		jomresJquery(div_name).attr("src",curr_img);
+		//		}
+	});
+}
+//-->
+</script>
+<h2 class="page-header">{_JOMRES_ACCESS_CONTROL_TITLE}</h2>
+
+<p class="alert alert-warning">{_JOMRES_ACCESS_CONTROL_DESC}</p>
+
+<table id="access_control_list" width="100%" class="table table-striped">
+	<thead>
+	<tr>
+		<th>Task name</th>
+		<th>Minimum access level</th>
+	</tr>
+	</thead>
+	<tbody>
+	<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="taskname">
+		<tr>
+			<td>{TASKNAME}</td>
+			<td>{DROPDOWN}</td>
+		</tr>
+	</patTemplate:tmpl>
+	</tbody>
+</table>
+</patTemplate:tmpl>

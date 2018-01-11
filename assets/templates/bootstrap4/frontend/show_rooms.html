@@ -1,0 +1,53 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<patTemplate:tmpl name="rows">
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="panel-title">{ROOMTYPE} - {ROOMNAME} {ROOMNUMBER}</div>
+	</div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-sm-3">
+				 <a href="#" data-toggle="modal" data-target="#modal_{RANDOM_IDENTIFIER}"><img src="{IMAGETHUMB}" class="img-responsive" alt="{ROOMNUMBER}" /></a>
+			</div>
+			<div class="col-sm-9">
+				<p><b>{TAGLINE}</b></p>
+				<div class="row">
+					<div class="col-sm-4">
+						<div><span class="text-muted">{HEADER_MAXPEOPLE}:</span> {MAXPEOPLE}</div>
+						<div><span class="text-muted">{HEADER_ROOMFLOOR}:</span> {ROOMFLOOR}</div>
+					</div>
+					<div class="col-sm-4">
+						{ROOM_FEATURES}
+					</div>
+					<div class="col-sm-4" align="right">
+						<a href="{AVLCALLINK}" class="btn btn-default"><i class="fa fa-calendar"></i> {AVLCALTITLE}</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="modal_{RANDOM_IDENTIFIER}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+			<h4 class="modal-title" id="myModalLabel">{ROOMTYPE} - {ROOMNAME} {ROOMNUMBER}</h4>
+			</div>
+			<div class="modal-body">
+				<img src="{IMAGELARGE}" class="img-responsive" alt="{ROOMNUMBER}" />
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+   jomresJquery(document).ready(function(){
+	 jomresJquery('#modal_{RANDOM_IDENTIFIER}').appendTo("body");
+	});
+</script>
+</patTemplate:tmpl>
+
+</patTemplate:tmpl>

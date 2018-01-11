@@ -1,0 +1,31 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<h2>{PAGETITLE}</h2>
+
+	<p>{INSTRUCTIONS}</p>
+
+	<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm">
+		{JOMRESTOOLBAR}
+		<table width="100%" border="0" class="ui-widget-content ui-corner-all">
+			<tr>
+				<td width="30%">{BBDATESTARTS}</td>
+				<td>{BBSTARTJSBOX}</td>
+			</tr>
+			<tr>
+				<td>{BBDATEENDS}</td>
+				<td>{BBENDSJSBOX}</td>
+			</tr>
+			<tr>
+				<td colspan="2"></td>
+			</tr>
+			<tr>
+				<td valign="top">{_JOMRES_JR_BLACKBOOKING_REASON}</td>
+				<td><textarea cols="30" rows="2" name="bbReason"></textarea></td>
+			</tr>
+		</table>
+		<patTemplate:tmpl name="bookingsrows">
+			<p class="{BBMESSAGE_CLASS}">{BBMESSAGE}{HIDDEN}</p>
+		</patTemplate:tmpl>
+		<input type="hidden" name="boxchecked" value="0">
+		<input type="hidden" name="task" value="new_black_booking"/>
+	</form>
+</patTemplate:tmpl>

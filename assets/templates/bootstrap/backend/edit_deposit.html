@@ -1,0 +1,52 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<h2 class="page-header">{PAGETITLE}</h2>
+
+	<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm" class="form-horizontal">
+		<fieldset>
+			<div class="control-group">
+				<label class="control-label" for="feature_description">{HBOOKINGNUMBER}</label>
+
+				<div class="controls">
+					{BOOKINGNUMBER}
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="feature_description">{HCONTRACT_TOTAL}</label>
+
+				<div class="controls">
+					{CONTRACT_TOTAL}
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="feature_description">{HDEPOSITREQUIRED}</label>
+
+				<div class="controls">
+					{DEPOSITREQUIRED}
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="depositRef">{HDEPOSIT_REF}</label>
+
+				<div class="controls">
+					<input type="text" class="inputbox" size="18" name="depositRef" value=""/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="deposit_received">{_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE}</label>
+
+				<div class="controls">
+					<input type="text" class="inputbox" size="18" name="deposit_received" value="{DEPOSITREQUIREDRAW}"/>
+				</div>
+			</div>
+			
+			
+			<div class="form-actions">
+				{JOMRESTOOLBAR}
+			</div>
+			<input type="hidden" name="contractUid" value="{CONTRACTUID}"/>
+			<input type="hidden" name="guestUid" value="{GUESTUID}"/>
+			<input type="hidden" name="task" value="save_deposit"/>
+		</fieldset>
+	</form>
+</patTemplate:tmpl>

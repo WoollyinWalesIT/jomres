@@ -1,0 +1,35 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<table width="100%" border="0">
+	<patTemplate:tmpl name="rows" unusedvars="strip">
+		<tr>
+			<td width="30%">{_JOMRES_COM_MR_EB_ROOM_NAME}</td>
+			<td>{RINFO_NAME}</td>
+		</tr>
+		<tr>
+			<td>{_JOMRES_COM_MR_LISTTARIFF_RATETITLE}</td>
+			<td>{RINFO_TARIFF}</td>
+		</tr>
+		<tr>
+			<td>{_JOMRES_COM_MR_EB_ROOM_NUMBER}</td>
+			<td>{RINFO_NUMBER}</td>
+		</tr>
+		<tr>
+			<td>{_JOMRES_COM_MR_EB_ROOM_FLOOR}</td>
+			<td>{RINFO_ROOM_FLOOR}</td>
+		</tr>
+		<tr>
+			<td>{_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE}</td>
+			<td>{RINFO_MAX_PEOPLE}</td>
+		</tr>
+		<tr>
+			<td>{_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV}</td>
+			<td>{TYPE}</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<hr />
+			</td>
+		</tr>
+	</patTemplate:tmpl>
+</table>
+</patTemplate:tmpl>

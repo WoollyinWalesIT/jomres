@@ -1,0 +1,53 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<h2 class="page-header">{PAGETITLE}</h2>
+
+	<p>{INSTRUCTIONS}</p>
+
+	<form action="" method="post" name="adminForm" class="form-horizontal">
+		<div class="control-group">
+			<label class="control-label" for="start">{BBDATESTARTS}</label>
+
+			<div class="controls">
+				{BBSTARTJSBOX}
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="end">{BBDATEENDS}</label>
+
+			<div class="controls">
+				{BBENDSJSBOX}
+			</div>
+		</div>
+		<patTemplate:tmpl name="reason_output" type="simpleCondition" requiredVars="reason">
+			<div class="control-group">
+				<label class="control-label" for="bbReason">{REASON}</label>
+
+				<div class="controls">
+					<textarea class="input-xlarge" rows="2" name="bbReason"></textarea>
+				</div>
+			</div>
+		</patTemplate:tmpl>
+		<table width="100%" border="0" class="table table-bordered table-striped table-condensed">
+			<patTemplate:tmpl name="rowsheader" type="simpleCondition" requiredVars="totalinlistplusone" unusedvars="nbsp">
+				<tr>
+					<th><input type="checkbox" name="toggle" value="" onclick="jomres_checkAll({TOTALINLISTPLUSONE});"/>
+						Select all
+					</th>
+					<th>Room number/name</th>
+				</tr>
+				<patTemplate:tmpl name="bookingsrows">
+					<tr>
+						<td>{CHECKBOX}</td>
+						<td>{TEXT}</td>
+					</tr>
+				</patTemplate:tmpl>
+			</patTemplate:tmpl>
+		</table>
+		<div class="form-actions">
+			{JOMRESTOOLBAR}
+		</div>
+		<input type="hidden" name="boxchecked" value="0">
+		<input type="hidden" name="task" value="new_black_booking"/>
+	</form>
+</patTemplate:tmpl>

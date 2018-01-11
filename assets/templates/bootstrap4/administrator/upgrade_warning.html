@@ -1,0 +1,39 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+var count=40;
+var counter=setInterval(timer, 1000); //1000 will  run it every 1 second
+var message = '<h2 class="alert alert-warning">{WARNING}</h2><div class="row-fluid"><div class="span12">{UPGRADING}</div></div><br/><div class="row-fluid"><div class="span12">{PURCHASE}</div></div><br/><div class="row-fluid"><div class="span12"><a href=\'https://www.jomres.net/pricing\' target=\'_blank\' class=\"btn btn-success\">{BUYNOW}</a><br/><br/></div></div><div class="row-fluid muted"><div class="span12">{REDIRECT1} <span id="timer"></span> {REDIRECT2}</div></div>';
+
+jomresJquery(document).ready(function () { block(); });
+
+function timer()
+{
+
+  count=count-1;
+  if (count <= 0)
+  {
+	 clearInterval(counter);
+	  window.location.href = "{CONTINUE_URL}";
+	 return;
+  }
+
+jomresJquery("#timer").html(count) ; 
+}
+
+function block()
+	{
+	jomresJquery.blockUI({ 
+			message: message,
+			baseZ: 1030,
+			css: { 
+				border: 'none', 
+				padding: '15px', 
+				backgroundColor: '#fff', 
+				'-webkit-border-radius': '10px', 
+				'-moz-border-radius': '10px', 
+				color: '#000'
+			} });
+	}
+</script>
+</patTemplate:tmpl>

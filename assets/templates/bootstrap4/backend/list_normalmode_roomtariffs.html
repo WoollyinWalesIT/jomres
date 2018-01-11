@@ -1,0 +1,38 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<div id="tour_target_listtariffs_normal_mrp"></div>
+<h2 class="page-header">{PAGETITLE}</h2>
+
+<!-- works better on small screens when built as tables, than when built as css rows -->
+<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm">
+	<table class="table table-striped table-condensed table-bordered">
+		<thead>
+			<tr>
+				<th>{HROOMTYPE}</th>
+				<th>{HNUMBEROFROOMS}</th>
+				<th>{HROOMRATEPERDAY}</th>
+				<th>{HMAXPEOPLE_ROOM}</th>
+				<th>{HMAXPEOPLE_TARIFF}</th>
+			</tr>
+		</thead>
+		<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="room_class_abbv">
+			<tr>
+				<td>{ROOM_CLASS_ABBV}</td>
+				<td>{ROOMNUMBERDROPDOWN}</td>
+				<td>{ROOMRATEPERDAY}</td>
+				{EXISTINGROOMS}
+				{TARIFFTYPEID}
+				{RATESUID}
+				<td>{MAX_PEOPLE_ROOM}</td>
+				<td>{MAX_PEOPLE_TARIFF}</td>
+			</tr>
+		</patTemplate:tmpl>
+		</tbody>
+	</table>
+	<div class="form-actions">
+		{JOMRESTOOLBAR}
+	</div>
+	<input type="hidden" name="task" value="save_normalmode_tariffs"/>
+</form>
+</patTemplate:tmpl>

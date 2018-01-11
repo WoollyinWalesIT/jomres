@@ -1,0 +1,37 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<script language="JavaScript" type="text/javascript">
+		<!--
+		jomresJquery(document).ready(function () {
+			make_datatable('list_bookings', '{PAGETITLE}', '{LIVESITE}');
+		});
+		//-->
+	</script>
+	<h2 class="page-header">{TITLE}</h2>
+	<table width="100%" id="list_bookings" class="table table-striped">
+		<thead>
+		<tr>
+			<th class="hidden-phone">&nbsp;</th>
+			<th>{HPNAME}</th>
+			<th>{HARRIVAL}</th>
+			<th>{HDEPARTURE}</th>
+			<th>{HEXTRAS}</th>
+			<th>{HTOTAL}</th>
+			<th>&nbsp;</th>
+		</tr>
+		</thead>
+		<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="propertyname">
+			<tr>
+				<td class="hidden-phone"><img src="{IMAGE}" alt="{PROPERTYNAME}" /></td>
+				<td><strong><a href="{PROPERTYDETAILSLINK}">{PROPERTYNAME}</a></strong></td>
+				<td>{ARRIVAL}</td>
+				<td>{DEPARTURE}</td>
+				<td>{EXTRASVALUE}</td>
+				<td>{CONTRACT_TOTAL}</td>
+				<td><a href="{VIEWLINK}" class="btn">{VIEWLINK_TEXT}</a></td>
+			</tr>
+		</patTemplate:tmpl>
+		</tbody>
+	</table>
+</patTemplate:tmpl>

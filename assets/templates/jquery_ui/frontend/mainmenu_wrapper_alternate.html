@@ -1,0 +1,120 @@
+<patTemplate:tmpl name="pageoutput">
+
+	<script type="text/javascript">
+		<!--
+		jomresJquery(document).ready(function () {
+			jomresJquery('#jomres_mainmenu').buttonset();
+			jomresJquery('#jomres_mainmenu').ptMenu();
+			jomresJquery("#jomres-menu-pinned").fadeIn("slow");
+			jomresJquery("#jomres-menu-sub-panel").click(function () {
+				// Toggle the bar up
+				jomresJquery("#jomres-menu-top-panel").slideToggle();
+				// Settings
+				var el = jomresJquery("#shText");
+				// Lets us know whats inside the element
+				var state = jomresJquery("#shText").html();
+				// Change the state
+				state = (state == '{_JOMRES_MENU_SHOW}' ? '<span id="shText">{_JOMRES_MENU_HIDE}</span>' : '<span id="shText">{_JOMRES_MENU_SHOW}</span>');
+				// Finally change whats insdide the element ID
+				el.replaceWith(state);
+			}); // end sub panel click function
+
+			(function () {
+				//settings
+				var fadeSpeed = 200, fadeTo = 0.5, topDistance = 30;
+				var topbarME = function () {
+					jomresJquery('#jomres-menu-pinned').fadeTo(fadeSpeed, 1);
+				}, topbarML = function () {
+					jomresJquery('#jomres-menu-pinned').fadeTo(fadeSpeed, fadeTo);
+				};
+				var inside = false;
+				//do
+				jomresJquery(window).scroll(function () {
+					position = jomresJquery(window).scrollTop();
+					if (position > topDistance && !inside) {
+						//add events
+						topbarML();
+						jomresJquery('#jomres-menu-pinned').bind('mouseenter', topbarME);
+						jomresJquery('#jomres-menu-pinned').bind('mouseleave', topbarML);
+						inside = true;
+					}
+					else if (position < topDistance) {
+						topbarME();
+						jomresJquery('#jomres-menu-pinned').unbind('mouseenter', topbarME);
+						jomresJquery('#jomres-menu-pinned').unbind('mouseleave', topbarML);
+						inside = false;
+					}
+				});
+			})();
+		});
+		//-->
+	</script>
+
+	<style type="text/css">
+		#jomres-menu-pinned {
+			position: fixed;
+			top: 0;
+			z-index: 9998; /* potato menu's z-index is set to 1000, so we'll set this to 1 less */
+			width: 100%;
+			left: 0;
+			height: 0;
+		}
+
+		#jomres-menu-top-panel {
+			border-bottom: 3px solid #4297D7;
+			padding: 1px;
+		}
+
+		#jomres-menu-sub-panel {
+			text-align: center;
+			float: right;
+		}
+
+		#jomres-menu-sub-panel a {
+			width: 150px;
+			float: right;
+			color: #FFFFFF;
+			text-decoration: none;
+			margin-right: 8px;
+			font-weight: bold;
+			background: bottom left no-repeat #4297D7;
+		}
+
+		#jomres-menu-sub-panel a span {
+			padding: 3px;
+			background: right bottom no-repeat;
+			display: block;
+		}
+
+		.menu_jomres_horiz {
+			list-style: none;
+			line-height: 14em;
+			/*font-size:.9em;*/
+		}
+
+		.menu_jomres_horiz ul li {
+			z-index: 9999 !important;
+			margin: 0 0 0 0px;
+			padding: 0 0 0 0px;
+		}
+
+		ul.potato-menu li.potato-menu-item a.ui-state-default {
+			border: 0 none !important;
+		}
+
+	</style>
+
+	<div id="jomres-menu-pinned" class="ui-helper-hidden">
+		<div id="jomres-menu-top-panel" class="ui-state-default">
+			<ul id="jomres_mainmenu" class="menu_jomres_horiz">
+				<patTemplate:tmpl name="button_output">
+					{DIV}
+				</patTemplate:tmpl>
+			</ul>
+		</div>
+		<div id="jomres-menu-sub-panel" class="ui-widget ui-corner-bl"><a href="javascript:void(0);" id="toggle"><span
+				id="shText">{_JOMRES_MENU_HIDE}</span></a></div>
+	</div>
+	<br/><br/>
+	{USER_FEEDBACK}
+</patTemplate:tmpl>

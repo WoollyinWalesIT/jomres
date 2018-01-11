@@ -1,0 +1,35 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<script type="text/javascript">
+		<!--
+		jomresJquery(document).ready(function () {
+			make_datatable('list_shortcodes', '{PAGETITLE}', '{LIVESITE}');
+		});
+		//-->
+	</script>
+	<h2 class="page-header">{PAGETITLE}</h2>
+
+	{JOMRESTOOLBAR}
+	<p class="alert alert-info" >{INFO}</p>
+	<table id="list_shortcodes" width="100%" class="table table-striped">
+		<thead>
+		<tr>
+			<th>{SHORTCODE_TASK}</th>
+			<th>{SHORTCODE_DESCRIPTION}</th>
+			<th>{SHORTCODE_EXAMPLE}</th>
+			<th>{SHORTCODE_ARGUMENTS}</th>
+		</tr>
+		</thead>
+		<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="strip">
+			<tr>
+				<td>{TASK}</td>
+				<td>{DESCRIPTION}</td>
+				<td>{EXAMPLE}</td>
+				<td>{ARGUMENTS}</td>
+			</tr>
+		</patTemplate:tmpl>
+		</tbody>
+	</table>
+
+</patTemplate:tmpl>

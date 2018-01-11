@@ -1,0 +1,72 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<h2 class="page-header">{PAGETITLE}</h2>
+<p class="alert alert-warning">{SUPPLIMENT_DESC}</p>
+
+<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm" class="form-horizontal" role="form">
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="roomClasses">{HTYPE}</label>
+		<div class="col-md-10">
+			{TYPEDROPDOWN}
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="room_name">{HNAME}</label>
+		<div class="col-md-10">
+			<input type="text" name="room_name" value="{ROOMNAME}" class="form-control" placeholder="{HNAME}"/>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="room_name">{HROOM_TAGLINE}</label>
+		<div class="col-md-10">
+			<input type="text" name="room_tagline" value="{ROOM_TAGLINE}" class="form-control" placeholder="{HROOM_TAGLINE}"/>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="room_number">{HNUMBER}</label>
+		<div class="col-md-10">
+			<input type="text" name="room_number" value="{ROOMNUMBER}" class="form-control" placeholder="{HNUMBER}"/>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="room_floor">{HFLOOR}</label>
+		<div class="col-md-10">
+			<input type="text" name="room_floor" value="{ROOMFLOOR}" class="form-control" placeholder="{HFLOOR}"/>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="feature_description">{HMAXPEOPLE}</label>
+		<div class="col-md-10">
+			{MAXPEOPLE_DROPDOWN}
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="singleperson_suppliment">{HSUPPLIMENT}</label>
+		<div class="col-md-10">
+			<input type="number" name="singleperson_suppliment" value="{SUPPLIMENT}" class="form-control" placeholder="{HSUPPLIMENT}"/>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="features_list[]">{HFEATURES}</label>
+		<div class="col-md-10">
+			{FEATURES}
+		</div>
+	</div>
+    {MARKDOWN_BUTTON}
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="room_description">{HROOM_DESCRIPTION}</label>
+		<div class="col-md-10">
+			{ROOM_DESCRIPTION}
+		</div>
+	</div>
+
+	<div class="form-actions">
+		<div class="col-md-10 col-md-offset-2">
+			{JOMRESTOOLBAR}
+		</div>
+	</div>
+	<input type="hidden" name="roomUid" value="{ROOMUID}"/>
+	<input type="hidden" name="task" value="save_resource"/>
+</form>
+{SIMPLEMDE_JAVASCRIPT}
+</patTemplate:tmpl>

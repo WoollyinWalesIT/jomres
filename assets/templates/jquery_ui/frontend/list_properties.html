@@ -1,0 +1,107 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+{JOMRES_POPUPURL_GLOBALVAR}
+
+{HEADER}
+
+<patTemplate:comment>
+<table width="100%" border="0">
+	<tr>
+		<td>{PAGING}</td>
+	</tr>
+</table>
+</patTemplate:comment>
+
+<patTemplate:tmpl name="property_details" unusedvars="strip">
+	<table width="100%" class="ui-widget-content ui-corner-all jomres_property_list_propertywrapper" id="{UID}"
+		   border="0">
+		<tr class="ui-state-default">
+			<td colspan="4" width="100%" class="property-header" valign="middle">
+				<div class="half-column float-left align-left">{PROPERTY_TYPE}</div>
+				<div class="half-column float-right align-right compare-properties">
+					<div class="compare-add float-right align-center">{_JOMRES_COMPARE} <input type="checkbox"
+																							   name="compare"
+																							   value="{UID}"
+																							   autocomplete="off"/>
+					</div>
+					<div class="shortlist-add float-right align-center"><a href="javascript:void(0);"
+																		   id="shortlist_{UID}"
+																		   onclick="shortlist('{UID}')">{SHORTLIST}</a>
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td valign="top" align="center">
+				<div class="property-image property-pic-wrapper">
+					{PROPERTY_IMAGE_OR_SLIDESHOW}
+				</div>
+			</td>
+			<td valign="middle" align="left" width="100%">
+				<div class="property-title"><a href="{MOREINFORMATIONLINK}">{PROPERTYNAME}</a>&nbsp;{STARS} {SUPERIOR}</div>
+				<div><em>{PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}</em></div>
+				<div class="jomres_message property-desc">{LASTMINUTE}</div>
+			</td>
+			<td valign="top">
+				<div class="ui-state-highlight ui-corner-all price-wrapper" align="center">
+					<div class="prices-from">{PRICE_PRE_TEXT}</div>
+					<div class="big-price">{PRICE_PRICE}</div>
+					<div class="prices-period">{PRICE_POST_TEXT}</div>
+					<div class="big-price">{PRICE_CUMULATIVE}</div>
+					<div class="prices-period">{FOR} {STAY_DAYS} {NIGHTS_TEXT}</div>
+				</div>
+				{GATEWAYS}
+			</td>
+			<td class="fg-toolbar fg-buttonset plist-buttons" valign="top" align="right">
+				<a href="{LINK}" class=" ui-state-default ui-corner-all plist-button ui-helper-hidden">{BOOKTHIS_TEXT}</a>
+				<a href="{MOREINFORMATIONLINK}"
+				   class=" ui-state-default ui-corner-all plist-button ui-helper-hidden">{MOREINFORMATION}</a>
+				<a href="javascript:void(0);" onclick="quick_info({UID});"
+				   class=" ui-state-default ui-corner-all plist-button-last ui-helper-hidden">{_JOMRES_QUICK_INFO}</a>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="4" width="100%">
+				<div id="effect{UID}" class="quick-info ui-helper-hidden">
+					<div class="ui-widget-content ui-corner-all quick-info-left float-left">
+						<div><strong>{_JOMRES_FRONT_ROOMTYPES}</strong></div>
+						<div>{ROOMTYPES}</div>
+						<div style="clear:both;"></div>
+						<div><strong>{_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES}</strong></div>
+						<div>{FEATURELIST}</div>
+						<div style="clear:both;"></div>
+						<div><strong>{_JOMRES_AGENT}</strong></div>
+						<div>{AGENT_LINK}</div>
+					</div>
+					<div class="ui-widget-content ui-corner-all quick-info-right float-right">
+						<!-- <div><strong>{_JOMRES_REVIEWS}</strong></div>-->
+						<div class="property-desc">{PROPERTYDESC}</div>
+						<a href="javascript:void(0);" onclick="toggle_review_div({UID},'{JS_SAFE_PROPERTYNAME}');">{_JOMRES_REVIEWS_CLICKTOSHOW}</a>
+
+						<div>{_JOMRES_REVIEWS_TOTAL_VOTES} {NUMBER_OF_REVIEWS}</div>
+						<div>{_JOMRES_REVIEWS_AVERAGE_RATING}{AVERAGE_RATING}</div>
+						<div class="{LASTBOOKING_STYLE}">{LASTBOOKED}</div>
+						{CUSTOM_PROPERTY_FIELDS_DATA_SNIPPET}
+						<div style="clear:both;"></div>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-draggable ui-resizable ui-helper-hidden"
+		 id="property_reviews{UID}">
+		<img src="{JOMRES_IMAGES_RELPATH}ajax_animation/broken_circle.gif" alt="ajax_animation_image"/>
+	</div>
+	<div id='module_{RANDOM_IDENTIFIER}_popup' style="display:none" title="{PROPERTYNAME}"><img
+			src="{JOMRES_IMAGES_RELPATH}ajax_animation/broken_circle.gif" alt="ajax_animation_image"/></div>
+</patTemplate:tmpl>
+
+<div id = "livescrolling_results" ></div>
+
+<table width="100%" border="0">
+	<tr>
+		<td>{PAGING}</td>
+	</tr>
+</table>
+
+<patTemplate:comment>{HEADER}</patTemplate:comment>
+</patTemplate:tmpl>

@@ -1,0 +1,53 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<h2 class="page-header">{PAGETITLE}</h2>
+
+	<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm" class="form-horizontal">
+		<div class="row-fluid">
+			<div class="span3">
+				{HARRIVAL}
+			</div>
+			<div class="span9">
+				{ARRIVAL}
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span3">
+				{HDAYSTOARRIVAL}
+			</div>
+			<div class="span9">
+				{DAYSTOARRIVAL}
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span3">
+				{HDEPOSITPAID}
+			</div>
+			<div class="span9">
+				{DEPOSITAMOUNT}
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span3">
+				{HCONTRACTTOTAL}
+			</div>
+			<div class="span9">
+				{CONTRACTTOTAL}
+			</div>
+		</div>
+		<fieldset>
+			<div class="control-group">
+				<label class="control-label" for="reason">{HREASON}</label>
+
+				<div class="controls">
+					<textarea class="input-xlarge" cols="30" rows="3" name="reason"></textarea>
+				</div>
+			</div>
+			<div class="form-actions">
+				{JOMRESTOOLBAR}
+			</div>
+		</fieldset>
+		<input type="hidden" name="contract_uid" value="{CONTRACT_UID}"/>
+		<input type="hidden" name="task" value="save_cancellation"/>
+	</form>
+</patTemplate:tmpl>
