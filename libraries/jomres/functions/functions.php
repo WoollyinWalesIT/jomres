@@ -14,6 +14,12 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
+function get_qr_code_relPath($arg) 
+{
+	$result = jomres_make_qr_code ($arg);
+	return $result['relative_path'];
+}
+
 function jomres_getSingleton($class, $args = array())
 {
     return jomres_singleton_abstract::getInstance($class, $args);
