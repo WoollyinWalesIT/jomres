@@ -6,7 +6,7 @@
  *
  * @version Jomres 9.9.17
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 defined('_JEXEC') or die('Direct Access to this location is not allowed.');
