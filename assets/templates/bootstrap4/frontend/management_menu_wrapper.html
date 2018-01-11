@@ -1,0 +1,36 @@
+<patTemplate:tmpl name="pageoutput">
+<script type="text/javascript">
+<!--
+jomresJquery(function () {
+	var $content = jomresJquery('#jomres_menu_wrapper').html();
+	jomresJquery('#jomres_alternate_menu_position').html($content);
+	jomresJquery('#jomres_menu_wrapper').empty(); // making sure that the old div doesn't have the accordion applied to it.
+});
+//-->
+</script>
+
+<div id="jomres_menu_wrapper" style="display:none;">
+	<div id="tour_target_main_menu"></div>
+	<nav class="navbar {NAVBAR_INVERSE} navbar-fixed-top" role="navigation">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#jomres-mainmenu-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<i class="fa fa-bars"></i>
+			</button>
+			<a class="navbar-brand" href="#"><img src="{JOMRES_IMAGES_RELPATH}jrhouse.png" alt="Jomres logo" width="28"/></a>
+		</div>
+		<div class="collapse navbar-collapse" id="jomres-mainmenu-collapse">
+			<ul class="nav navbar-nav">
+				<patTemplate:tmpl name="menu_sections">
+					{SECTION}
+				</patTemplate:tmpl>
+			</ul>
+			<form class="navbar-form navbar-right" role="search" action="{TAG_SEARCH_URL}" method="post" name="tagSearch">
+				<div class="form-group">
+					<input type="text" name="tag" placeholder="{_JOMRES_BOOKING_NUMBER}" class="form-control" />
+				</div>
+			</form>
+		</div>
+	</nav>
+</div>
+</patTemplate:tmpl>

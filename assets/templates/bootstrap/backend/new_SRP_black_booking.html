@@ -1,0 +1,42 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<h2 class="page-header">{PAGETITLE}</h2>
+
+	<p>{INSTRUCTIONS}</p>
+
+	<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm" class="form-horizontal">
+		<fieldset>
+			<div class="control-group">
+				<label class="control-label" for="start">{BBDATESTARTS}</label>
+
+				<div class="controls">
+					{BBSTARTJSBOX}
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="end">{BBDATEENDS}</label>
+
+				<div class="controls">
+					{BBENDSJSBOX}
+				</div>
+			</div>
+			<patTemplate:tmpl name="reason_output" type="simpleCondition" requiredVars="reason">
+				<div class="control-group">
+					<label class="control-label" for="bbReason">{REASON}</label>
+
+					<div class="controls">
+						<textarea class="input-xlarge" rows="2" name="bbReason"></textarea>
+					</div>
+				</div>
+			</patTemplate:tmpl>
+			<patTemplate:tmpl name="bookingsrows">
+				<p class="{BBMESSAGE_CLASS}">{BBMESSAGE}{HIDDEN}</p>
+			</patTemplate:tmpl>
+			<div class="form-actions">
+				{JOMRESTOOLBAR}
+			</div>
+		</fieldset>
+		<input type="hidden" name="boxchecked" value="0">
+		<input type="hidden" name="task" value="new_black_booking"/>
+	</form>
+</patTemplate:tmpl>

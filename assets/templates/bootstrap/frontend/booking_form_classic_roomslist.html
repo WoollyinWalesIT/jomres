@@ -1,0 +1,80 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<patTemplate:tmpl name="rows" unusedvars="strip" type="simpleCondition" requiredVars="roomtype">
+<div class="well well-small">
+	<div class="row-fluid">
+		<div class="span2">
+			<a href="#roomdetails{ROOMUID}" role="button" data-toggle="modal" class="thumbnail hidden-phone hidden-tablet"><img src="{ROOM_IMAGE}" alt="room image"/></a>
+			<div class="thumbnail hidden-desktop"><img src="{ROOM_IMAGE}" alt="room image"/></div>
+		</div>
+		<div class="span4">
+			<h4 class="hidden-phone hidden-tablet"><a href="#roomdetails{ROOMUID}" role="button" data-toggle="modal">{ROOMTYPE}</a></h4>
+			<h4 class="hidden-desktop">{ROOMTYPE}</h4>
+			<p>
+				{HEADER_MAXPEOPLE}: {MAXPEOPLE_INROOM}<br />
+				{HTITLE}: {TITLE}<br />
+				{HDESC}: {DESC}<br />
+				<a href="#roomdetails{ROOMUID}" role="button" data-toggle="modal" class="hidden-phone hidden-tablet">{HMOREINFO}...</a>
+			</p>
+		</div>
+		<div class="span3">
+			<p><span class="big-price">{FORMATTED_PRICE}</span>{HRATEPERNIGHT}</p>
+		</div>
+		<div class="span3" align="right">
+			<div id="{ROOMTARIFFOUTPUTID}"><a href="javascript:void(0);" onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' );" class="btn {BUTTON_CLASS}"><i class="{ICON} icon-white"></i> {CAPTION}</a></div>
+		</div>
+	</div>
+	
+	<div id="roomdetails{ROOMUID}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel{ROOMUID}" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+			<h3 id="myModalLabel{ROOMUID}">{ROOMTYPE}</h3>
+		</div>
+		<div class="modal-body">
+			<div class="row-fluid">
+				<div class="span5">
+					<div class="thumbnail"><img src="{ROOM_IMAGE_MEDIUM}" alt="room image"/></div>
+				</div>
+				<div class="span7">
+					<h4 class="page-header">{HROOM_DETAILS}</h4>
+					<p>
+						<!--<img src="{ROOM_TYPE_IMAGE}" alt="room type image"/><br />-->
+						{HEADER_ROOMTYPE}: {ROOMTYPE}<br />
+						{HEADER_ROOMNAME}: {ROOMNAME}<br />
+						{HEADER_ROOMNUMBER}: {ROOMNUMBER}<br />
+						{HEADER_MAXPEOPLE}: {MAXPEOPLE_INROOM}<br />
+						{HEADER_ROOMFLOOR}: {ROOMFLOOR}<br />
+						{HEADER_FEATURES}:<br /> {FEATURES}
+					</p>
+				</div>
+			</div>
+			<div class="row-fluid">
+				<div class="span5" align="center">
+					<div class="well">
+						<p>{HRATEPERNIGHT}<span class="big-price">{FORMATTED_PRICE}</span></p>
+					</div>
+				</div>
+				<div class="span7">
+					<h4 class="page-header">{HTARIFF_DETAILS}</h4>
+					<p>
+						{HTITLE}: {TITLE}<br />
+						{HDESC}: {DESC}<br />
+						{HSTARTS}: {VALIDFROM}<br />
+						{HENDS}: {VALIDTO}<br />
+						{HMINDAYS}: {MINDAYS}<br />
+						{HMAXDAYS}: {MAXDAYS}<br />
+						{HMINPEEPS}: {MINPEOPLE}<br />
+						{HMAXPEEPS}: {MAXPEOPLE}
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<a class="btn" data-dismiss="modal" aria-hidden="true">{COMMON_CLOSE}</a>
+			<a href="javascript:void(0);" onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' );" class="btn {BUTTON_CLASS}" title="{CAPTION}" data-dismiss="modal" aria-hidden="true"><i class="{ICON} icon-white"></i> {CAPTION}</a>
+		</div>
+	</div>
+</div>
+</patTemplate:tmpl>
+</patTemplate:tmpl>

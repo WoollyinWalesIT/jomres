@@ -1,0 +1,32 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+<!--
+jomresJquery(document).ready(function () {
+	make_datatable('admin_list_countries', '{PAGETITLE}', '{LIVESITE}');
+});
+//-->
+</script>
+<h2 class="page-header">{_JOMRES_EDIT_COUNTRY_TITLE}</h2>
+{JOMRESTOOLBAR}
+
+<table id="admin_list_countries" width="100%" class="table table-striped">
+	<thead>
+	<tr>
+		<th>{COMMON_EDIT}</th>
+		<th>{_JOMRES_EDIT_COUNTRY_COUNTRYNAME}</th>
+		<th>Flag</th>
+		<th>{_JOMRES_EDIT_COUNTRY_COUNTRYCODE}</th>
+	</tr>
+	</thead>
+	<tbody>
+	<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="countrycode">
+		<tr>
+			<td>{EDITLINK}</td>
+			<td>{COUNTRYNAME}</td>
+			<td>{FLAG}</td>
+			<td>{COUNTRYCODE}</td>
+		</tr>
+	</patTemplate:tmpl>
+	</tbody>
+</table>
+</patTemplate:tmpl>

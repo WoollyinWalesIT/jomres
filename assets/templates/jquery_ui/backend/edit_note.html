@@ -1,0 +1,16 @@
+<patTemplate:tmpl name="pageoutput">
+	<div id='jomresmenu_hint' style=color:red;>&nbsp;</div>
+	<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm">
+		{JOMRESTOOLBAR}
+		<table>
+			<tr>
+				<td><b>{HNEWTEXT}</b></td>
+				<td><textarea class="inputbox" cols="40" rows="6" name="newtext">{NOTE}</textarea></td>
+			</tr>
+		</table>
+		<input type="hidden" name="no_html" value="1" />
+		<input type="hidden" name="note_id" value="{NOTE_ID}"/>
+		<input type="hidden" name="popup" value="1"/>
+		<input type="hidden" name="task" value="savenote"/>
+	</form>
+</patTemplate:tmpl>

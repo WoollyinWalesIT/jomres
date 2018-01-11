@@ -3500,6 +3500,9 @@ function createJomresTables()
 		`tax_rate` float NOT NULL default '0',
 		`inv_id` int(11) NOT NULL COMMENT 'Invoice ID',
 		`is_payment`  TINYINT DEFAULT 0 NOT NULL,
+		`payment_method` VARCHAR(100) NOT NULL DEFAULT "",
+		`transaction_id` VARCHAR(255) NOT NULL DEFAULT "",
+		`management_url` VARCHAR(1000) NOT NULL DEFAULT "",
 		PRIMARY KEY  (`id`)
 	)";
     doInsertSql($query, '');

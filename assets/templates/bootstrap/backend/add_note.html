@@ -1,0 +1,22 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<h2 class="page-header">{HNEWTEXT}</h2>
+
+	<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm" class="form-horizontal">
+		<fieldset>
+			<div class="control-group">
+				<label class="control-label" for="newtext">{HNEWTEXT}</label>
+
+				<div class="controls">
+					<textarea class="input-xlarge" rows="6" name="newtext"></textarea>
+				</div>
+			</div>
+			<div class="form-actions">
+				{JOMRESTOOLBAR}
+			</div>
+			<input type="hidden" name="contract_uid" value="{CONTRACT_UID}"/>
+			<input type="hidden" name="task" value="savenote"/>
+			<input type="hidden" name="no_html" value="1"/>
+		</fieldset>
+	</form>
+</patTemplate:tmpl>

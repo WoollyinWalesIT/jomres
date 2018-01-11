@@ -1,0 +1,117 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<patTemplate:tmpl name="guest_type_rows" type="simpleCondition" requiredVars="guest_type_title">
+	<div class="row">
+		<div class="col-md-5">
+			<strong>{GUEST_TYPE_TITLE}</strong>
+		</div>
+		<div class="col-md-7">
+			{GUEST_TYPE_QTY}
+		</div>
+	</div>
+</patTemplate:tmpl>
+<hr/>
+<div class="row">
+	<div class="col-md-9">
+		<div class="row">
+			<div class="col-md-5">
+				<strong>{_JOMRES_COM_MR_EB_ARRIVALFIRSTNAME_EXPL}</strong>
+			</div>
+			<div class="col-md-7">
+				{GUEST_FIRSTNAME}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-5">
+				<strong>{_JOMRES_COM_MR_EB_ARRIVALSURNAME_EXPL}</strong>
+			</div>
+			<div class="col-md-7">
+				{GUEST_SURNAME}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-5">
+				<strong>{_JOMRES_COM_MR_EB_GUEST_JOMRES_HOUSE_EXPL}</strong>
+			</div>
+			<div class="col-md-7">
+				{GUEST_HOUSE}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-5">
+				<strong>{_JOMRES_COM_MR_EB_GUEST_JOMRES_STREET_EXPL}</strong>
+			</div>
+			<div class="col-md-7">
+				{GUEST_STREET}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-5">
+				<strong>{_JOMRES_COM_MR_EB_GUEST_JOMRES_TOWN_EXPL}</strong>
+			</div>
+			<div class="col-md-7">
+				{GUEST_TOWN}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-5">
+				<strong>{_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION}</strong>
+			</div>
+			<div class="col-md-7">
+				{GUEST_REGION}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-5">
+				<strong>{_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY}</strong>
+			</div>
+			<div class="col-md-7">
+				{GUEST_COUNTRY}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-5">
+				<strong>{_JOMRES_COM_MR_EB_GUEST_JOMRES_POSTCODE_EXPL}</strong>
+			</div>
+			<div class="col-md-7">
+				{GUEST_POSTCODE}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-5">
+				<strong>{_JOMRES_COM_MR_EB_GUEST_JOMRES_LANDLINE_EXPL}</strong>
+			</div>
+			<div class="col-md-7">
+				{GUEST_TEL_LANDLINE}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-5">
+				<strong>{_JOMRES_COM_MR_EB_GUEST_JOMRES_MOBILE_EXPL}</strong>
+			</div>
+			<div class="col-md-7">
+				{GUEST_TEL_MOBILE}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-5">
+				<strong>{HGUEST_VAT_NUMBER}</strong>
+			</div>
+			<div class="col-md-7">
+				{GUEST_VAT_NUMBER}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-5">
+				<strong>{_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL}</strong>
+			</div>
+			<div class="col-md-7">
+				<a href="{EMAIL_LINK}">{EMAIL_ADDRESS}</a>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<img src="{GUEST_IMAGE}" class="thumbnail img-responsive" alt="{GUEST_FIRSTNAME} {GUEST_SURNAME}"/>
+	</div>
+</div>
+</patTemplate:tmpl>

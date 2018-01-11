@@ -1,0 +1,28 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<h2 class="page-header">{PAGETITLE}</h2>
+
+	<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm" class="form-horizontal">
+		<fieldset>
+			<div class="control-group">
+				<label class="control-label" for="roomClass">{_JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO}</label>
+
+				<div class="controls">
+					{DROPDOWNLIST}
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="roomClass">{_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE}</label>
+
+				<div class="controls">
+					{MAXPEOPLE_DROPDOWN}
+				</div>
+			</div>
+			<div class="form-actions">
+				{JOMRESTOOLBAR}
+			</div>
+		</fieldset>
+		<input type="hidden" name="task" value="save_resource"/>
+		<input type="hidden" name="roomUid" value="{ROOMUID}"/>
+	</form>
+</patTemplate:tmpl>

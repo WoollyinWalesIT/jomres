@@ -1,0 +1,188 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script language="JavaScript" type="text/javascript">
+	<!--
+	jomresJquery(document).ready(function () {
+		jomresJquery.validator.setDefaults({
+			highlight: function (input) {
+				jomresJquery(input).addClass("ui-state-highlight");
+			},
+			unhighlight: function (input) {
+				jomresJquery(input).removeClass("ui-state-highlight");
+			}
+		});
+	
+		jomresJquery("#reviewForm").validate({
+			rules: {
+				review_title: "required",
+				review_description: "required",
+				pros: "required",
+				cons: "required",
+				rating_1: "required",
+				rating_2: "required",
+				rating_3: "required",
+				rating_4: "required",
+				rating_5: "required",
+				rating_6: "required",
+			},
+			messages: {
+				review_title: "{_JOMRES_REVIEWS_ADDREVIEW_ERROR_TITLE}",
+				review_description: "{_JOMRES_REVIEWS_ADDREVIEW_ERROR_DESCRIPTION}",
+				pros: "{_JOMRES_REVIEWS_ADDREVIEW_ERROR_PROS}",
+				cons: "{_JOMRES_REVIEWS_ADDREVIEW_ERROR_CONS}",
+				rating_1: "{_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_1}",
+				rating_2: "{_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_2}",
+				rating_3: "{_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_3}",
+				rating_4: "{_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_4}",
+				rating_5: "{_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_5}",
+				rating_6: "{_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_6}",
+			},
+			errorLabelContainer: "#messageBox",
+			wrapper: "li",
+			submitHandler: function (form) {
+				form.submit();
+			},
+
+		});
+		jomresJquery("#messageBox").hide();
+	});
+	//-->
+</script>
+
+<div id="messageBox" class="alert alert-block"></div>
+
+<h2 class="page-header">{_JOMRES_REVIEWS_ADD_REVIEW}</h2>
+
+<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" id="reviewForm" name="adminform" class="form-horizontal" role="form">
+<div class="form-group">
+	<label class="col-md-2 control-label" for="review_title">{_JOMRES_REVIEWS_TITLE}</label>
+	<div class="col-md-10">
+		<input id="review_title" name="review_title" type="text" value="" class="form-control required" placeholder="{_JOMRES_REVIEWS_TITLE}"/>
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label" for="review_description">{_JOMRES_REVIEWS_REVIEWBODY}</label>
+	<div class="col-md-10">
+		<textarea id="review_description" name="review_description" rows="3" class="form-control required" placeholder="{_JOMRES_REVIEWS_REVIEWBODY}"></textarea>
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label" for="pros">{_JOMRES_REVIEWS_PROS}</label>
+	<div class="col-md-10">
+		<textarea id="pros" name="pros" rows="3" class="form-control required"placeholder="{_JOMRES_REVIEWS_PROS}"></textarea>
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label" for="cons">{_JOMRES_REVIEWS_CONS}</label>
+	<div class="col-md-10">
+		<textarea id="cons" name="cons" rows="3" class="form-control required"placeholder="{_JOMRES_REVIEWS_CONS}"></textarea>
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-md-2 control-label" for="rating_1">{_JOMRES_REVIEWS_RATING_1}</label>
+	<div class="col-md-10">
+		<input name="rating_1" type="radio" value="1" class="star"/>
+		<input name="rating_1" type="radio" value="2" class="star"/>
+		<input name="rating_1" type="radio" value="3" class="star"/>
+		<input name="rating_1" type="radio" value="4" class="star"/>
+		<input name="rating_1" type="radio" value="5" class="star" checked="checked"/>
+		<input name="rating_1" type="radio" value="6" class="star"/>
+		<input name="rating_1" type="radio" value="7" class="star"/>
+		<input name="rating_1" type="radio" value="8" class="star"/>
+		<input name="rating_1" type="radio" value="9" class="star"/>
+		<input name="rating_1" type="radio" value="10" class="star" validate="required:true"/>
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-md-2 control-label" for="rating_2">{_JOMRES_REVIEWS_RATING_2}</label>
+	<div class="col-md-10">
+		<input name="rating_2" type="radio" value="1" class="star"/>
+		<input name="rating_2" type="radio" value="2" class="star"/>
+		<input name="rating_2" type="radio" value="3" class="star"/>
+		<input name="rating_2" type="radio" value="4" class="star"/>
+		<input name="rating_2" type="radio" value="5" class="star" checked="checked"/>
+		<input name="rating_2" type="radio" value="6" class="star"/>
+		<input name="rating_2" type="radio" value="7" class="star"/>
+		<input name="rating_2" type="radio" value="8" class="star"/>
+		<input name="rating_2" type="radio" value="9" class="star"/>
+		<input name="rating_2" type="radio" value="10" class="star" validate="required:true"/>
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-md-2 control-label" for="rating_3">{_JOMRES_REVIEWS_RATING_3}</label>
+	<div class="col-md-10">
+		<input name="rating_3" type="radio" value="1" class="star"/>
+		<input name="rating_3" type="radio" value="2" class="star"/>
+		<input name="rating_3" type="radio" value="3" class="star"/>
+		<input name="rating_3" type="radio" value="4" class="star"/>
+		<input name="rating_3" type="radio" value="5" class="star" checked="checked"/>
+		<input name="rating_3" type="radio" value="6" class="star"/>
+		<input name="rating_3" type="radio" value="7" class="star"/>
+		<input name="rating_3" type="radio" value="8" class="star"/>
+		<input name="rating_3" type="radio" value="9" class="star"/>
+		<input name="rating_3" type="radio" value="10" class="star" validate="required:true"/>
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-md-2 control-label" for="rating_4">{_JOMRES_REVIEWS_RATING_4}</label>
+	<div class="col-md-10">
+		<input name="rating_4" type="radio" value="1" class="star"/>
+		<input name="rating_4" type="radio" value="2" class="star"/>
+		<input name="rating_4" type="radio" value="3" class="star"/>
+		<input name="rating_4" type="radio" value="4" class="star"/>
+		<input name="rating_4" type="radio" value="5" class="star" checked="checked"/>
+		<input name="rating_4" type="radio" value="6" class="star"/>
+		<input name="rating_4" type="radio" value="7" class="star"/>
+		<input name="rating_4" type="radio" value="8" class="star"/>
+		<input name="rating_4" type="radio" value="9" class="star"/>
+		<input name="rating_4" type="radio" value="10" class="star" validate="required:true"/>
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-md-2 control-label" for="rating_5">{_JOMRES_REVIEWS_RATING_5}</label>
+	<div class="col-md-10">
+		<input name="rating_5" type="radio" value="1" class="star"/>
+		<input name="rating_5" type="radio" value="2" class="star"/>
+		<input name="rating_5" type="radio" value="3" class="star"/>
+		<input name="rating_5" type="radio" value="4" class="star"/>
+		<input name="rating_5" type="radio" value="5" class="star" checked="checked"/>
+		<input name="rating_5" type="radio" value="6" class="star"/>
+		<input name="rating_5" type="radio" value="7" class="star"/>
+		<input name="rating_5" type="radio" value="8" class="star"/>
+		<input name="rating_5" type="radio" value="9" class="star"/>
+		<input name="rating_5" type="radio" value="10" class="star" validate="required:true"/>
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-md-2 control-label" for="rating_6">{_JOMRES_REVIEWS_RATING_6}</label>
+	<div class="col-md-10">
+		<input name="rating_6" type="radio" value="1" class="star"/>
+		<input name="rating_6" type="radio" value="2" class="star"/>
+		<input name="rating_6" type="radio" value="3" class="star"/>
+		<input name="rating_6" type="radio" value="4" class="star"/>
+		<input name="rating_6" type="radio" value="5" class="star" checked="checked"/>
+		<input name="rating_6" type="radio" value="6" class="star"/>
+		<input name="rating_6" type="radio" value="7" class="star"/>
+		<input name="rating_6" type="radio" value="8" class="star"/>
+		<input name="rating_6" type="radio" value="9" class="star"/>
+		<input name="rating_6" type="radio" value="10" class="star" validate="required:true"/>
+	</div>
+</div>
+	
+<div class="form-actions">
+	<div class="col-md-offset-2 col-md-10">
+		<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> {_JOMRES_REVIEWS_SUBMIT}</button>
+		<a href="{PROPERTY_DETAILS_URL}" class="btn btn-default"><i class="fa fa-times"></i> {COMMON_CANCEL}</a>
+	</div>
+</div>
+
+<input type="hidden" name="property_uid" value="{PROPERTY_UID}"/>
+<input type="hidden" name="no_html" value="1"/>
+<input type="hidden" name="task" value="save_review"/>
+</form>
+</patTemplate:tmpl>

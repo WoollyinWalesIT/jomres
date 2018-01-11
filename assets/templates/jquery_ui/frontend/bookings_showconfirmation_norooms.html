@@ -1,0 +1,163 @@
+<patTemplate:tmpl name="booking_particulars">
+	<script language="JavaScript" type="text/javascript">
+		<!--
+		function confirmation_validate(usecart) {
+			if (document.bookingForm.agreecheck.checked) {
+				if (usecart) {
+					jomresJquery('#jomres_task').val("{PROCESSURL_SAVETOCART}");
+				}
+				else {
+					jomresJquery('#jomres_task').val("{PROCESSURL}");
+				}
+
+				return true;
+			}
+			else {
+				alert("{ALERT} {TERMSTEXT}");
+				return false;
+			}
+		}
+
+		//-->
+	</script>
+	<p>{HEADER}</p>
+
+	<form action="" method="post" name="bookingForm" onsubmit="send.disabled = true; return true;">
+		<table width="100%" border="0" class="ui-widget-content ui-corner-all">
+			<tr>
+				<th colspan="2" class="ui-state-default">{AJAXFORM_PARTICULARS}</th>
+				<th colspan="2" class="ui-state-default">{AJAXFORM_ADDRESS}</th>
+			</tr>
+			<tr>
+				<td width="25%"><strong>{HARRIVAL}</strong></td>
+				<td width="25%">{ARRIVAL}</td>
+				<td colspan="2">{FIRSTNAME} {SURNAME}</td>
+			</tr>
+			<tr>
+				<td><strong>{HDEPARTURE}</strong></td>
+				<td>{DEPARTURE}</td>
+				<td colspan="2">{HOUSENO} {STREET}</td>
+			</tr>
+			<tr>
+				<td><strong>{HDAYSSTAYING}</strong></td>
+				<td>{DAYSSTAYING}</td>
+				<td colspan="2">{TOWN}, {COUNTY}, {POSTCODE}, {COUNTRY}</td>
+			</tr>
+			<tr>
+				<td><strong>{HTOTALINPARTY}</strong></td>
+				<td>{TOTALINPARTY}</td>
+				<td colspan="2">{HTEL}: {LANDLINE}</td>
+			</tr>
+			<tr>
+				<td colspan="2">&nbsp;</td>
+				<td colspan="2">{HMOBILE}: {MOBILE}</td>
+			</tr>
+			<tr>
+				<td colspan="2" valign="top">&nbsp;</td>
+				<td colspan="2" valign="top"></td>
+			</tr>
+			<!--<tr>
+				<td colspan="4" class="jomres_message">{ALLOCATION}</td>
+			</tr>-->
+		</table>
+		<br/>
+		<table width="100%" border="0" class="ui-widget-content ui-corner-all">
+			<tr>
+				<th colspan="2" class="ui-state-default">{PRICE_SUMMARY}</th>
+			</tr>
+			<tr>
+				<td>
+					<div class="jomres_message">{DISCOUNT}</div>
+				</td>
+			</tr>
+			<patTemplate:tmpl name="booking_extratext" type="simpleCondition" requiredVars="ajaxform_extras">
+				<patTemplate:tmpl name="booking_extras" type="simpleCondition" requiredVars="name">
+					<tr>
+						<td>{NAME}</td>
+						<td style="text-align:right;">{PRICE}</td>
+					</tr>
+				</patTemplate:tmpl>
+				<tr>
+					<td><strong>{HEXTRASTOTAL}</strong></td>
+					<td style="text-align:right;"><strong>{EXTRASTOTAL}</strong></td>
+				</tr>
+			</patTemplate:tmpl>
+			<tr>
+				<td><strong>{HCOUPON_DISCOUNTVALUE}</strong></td>
+				<td style="text-align: right;"><strong>{COUPON_DISCOUNT_VALUE}</strong></td>
+			</tr>
+			<tr>
+				<td><strong>{HTAX}</strong></td>
+				<td style="text-align: right;"><strong>{TAX}</strong></td>
+			</tr>
+			<tr>
+				<td><strong>{HGRANDTOTAL}</strong></td>
+				<td style="text-align: right;"><strong>{TOTAL}</strong></td>
+			</tr>
+			<tr>
+				<td><strong>{HDEPOSIT}</strong></td>
+				<td style="text-align: right;"><strong>{DEPOSIT}</strong></td>
+			</tr>
+		</table>
+		<br/>
+		<table width="100%" border="0">
+			<tr>
+				<td>{AMENDTEXT}</td>
+				<td style="text-align:right;"><input type="submit" value="{AMEND}"
+													 class="fg-button ui-state-default ui-corner-all"
+													 onclick="editbooking();"/></td>
+			</tr>
+		</table>
+		<br/>
+		<table width="100%" border="0" class="ui-widget-content ui-corner-all">
+			<tr>
+				<th class="ui-state-default">{BOOKINGSPECIALREQ}</th>
+			</tr>
+			<tr>
+				<td>{SPECIALS} {DISCLAIMER}</td>
+			</tr>
+			<tr>
+				<td><textarea cols="70" rows="2" name="specialReqs">{SPECIALREQS}</textarea></td>
+			</tr>
+		</table>
+		<br/>
+		<patTemplate:tmpl name="gateway_output" type="simpleCondition" requiredVars="gatewaychoiceintro">
+		<table width="100%" border="0" class="ui-widget-content ui-corner-all">
+			<patTemplate:tmpl name="gateways">
+				<tr>
+					<td>
+						{GWINPUT}
+					</td>
+					<td>
+						{GWIMAGE}
+					</td>
+				</tr>
+			</patTemplate:tmpl>
+		</table>
+		</patTemplate:tmpl>
+		<br/>
+		<table border="0" width="100%">
+			<tr>
+				<td>
+					<input name="agreecheck" type="checkbox"/>{TERMSPRETEXT}&nbsp;{TERMS}
+				</td>
+				<td style="text-align:right;">
+					<a href="{BOOKINGFORMURL}" class="fg-button ui-state-default ui-corner-all">{AMEND}</a>
+				</td>
+			</tr>
+			<tr>
+				<td>&nbsp;
+
+				</td>
+				<td style="text-align:right;">
+					<patTemplate:tmpl name="cartoutput" type="simpleCondition" requiredVars="_jomres_saveforlater">
+						{_JOMRES_CART_OR} <input class="fg-button ui-state-default ui-corner-all" type="submit"
+												 id="cart" name="cart" value="{_JOMRES_SAVEFORLATER}" class="button"
+												 onclick="return confirmation_validate(true);"/></patTemplate:tmpl>
+				</td>
+			</tr>
+		</table>
+	
+	<input type="hidden" name="task" id="jomres_task" value="" />
+	</form>
+</patTemplate:tmpl>

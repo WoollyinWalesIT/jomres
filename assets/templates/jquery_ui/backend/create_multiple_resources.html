@@ -1,0 +1,25 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2>{PAGETITLE}</h2>
+<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm">
+	{JOMRESTOOLBAR}
+	<table width="100%" border="0" class="ui-widget-content ui-corner-all">
+		<tr>
+			<td width="30%">{HNUMBER_OF_RESOURCES}</td>
+			<td>{NUMBER_OF_RESOURCES}</td>
+		</tr>
+		<tr>
+			<td>{HRESOURCES_OF_TYPE}</td>
+			<td>{RESOURCES_OF_TYPE}</td>
+		</tr>
+		<tr>
+			<td>{HRESOURCES_MAXGUESTS}</td>
+			<td>{RESOURCES_MAXGUESTS}</td>
+		</tr>
+		<tr>
+			<td>{HDELETE_EXISTING_RESOURCES}</td>
+			<td>{DELETE_EXISTING_RESOURCES}</td>
+		</tr>
+	</table>
+	<input type="hidden" name="task" value="generate_multiple_resources"/>
+</form>
+</patTemplate:tmpl>

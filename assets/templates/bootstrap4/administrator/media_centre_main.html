@@ -1,0 +1,293 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<style type="text/css">
+#dropzone {
+	border-width:5px;
+	border-style:dashed;
+	border-color:#333;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    font-weight: bold;
+}
+#dropzone.in {
+    width: 100%;
+    height: 200px;
+    line-height: 200px;
+    font-size: larger;
+}
+#dropzone.hover {
+    background: lawngreen;
+}
+#dropzone.fade {
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    opacity: 1;
+}
+</style>
+
+<h2 class="page-header">{TITLE}</h2>
+
+<patTemplate:tmpl name="notes" unusedvars="strip" type="simpleCondition" requiredVars="note">
+<div class="alert">
+	{NOTE}
+</div>
+</patTemplate:tmpl>
+
+<div class="row-fluid">
+	<div class="span7">
+		<p>{RESOURCE_TYPE_OPTIONS} <span id="resource_id_dropdown"><input type="hidden" id="resource_id" value="" /></span></p>
+		<div id="existing_images"></div>
+	</div>
+	<div class="span5">
+		<div class="well well-small">
+			<div class="page-header"><h3>Upload form</h3></div>
+			
+			<!-- The fileinput-button span is used to style the file input field as button -->
+			<span class="btn btn-success fileinput-button">
+				<i class="icon-plus"></i>
+				<span>{_JOMRES_MEDIA_CENTRE_BUTTON_ADD}</span>
+				<!-- The file input field used as target for the file upload widget -->
+				<input id="fileupload" type="file" name="files[]" multiple>
+			</span>
+			
+			<div class="btn" id="clearbutton">
+				<i class="icon-minus"></i>
+				{_JOMRES_MEDIA_CENTRE_CLEAR}
+			</div>
+			
+			<span class="btn btn-primary" id="upload_all">
+				<i class="icon-upload"></i>
+				Upload all
+			</span>
+			
+			<!--<button type="button" class="btn btn-danger delete">
+				<i class="icon-trash"></i>
+				<span>Delete</span>
+			</button>
+			<input type="checkbox" class="toggle">-->
+			
+			<div class="clearfix">&nbsp;</div>
+			
+			<!-- The global progress bar -->
+			<div id="progress" class="progress">
+				<div class="bar"></div>
+			</div>
+			
+			<!-- The dropzone -->
+			<div id="dropzone" class="fade">{_JOMRES_MEDIA_CENTRE_DRAGNDROP}</div>
+			
+			<!-- The container for the uploaded files -->
+			<!--<table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>-->
+			<div id="files" class="files"></div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+var ajax_url = "{AJAX_URL}";
+
+jomresJquery(function () {
+    'use strict';
+    // Change this to the location of your server-side upload handler:
+    var url = ajax_url + '&task=media_centre_handler',
+        uploadButton = jomresJquery('<button/>')
+            .addClass('btn btn-primary start')
+            .prop('disabled', true)
+            .text('Processing...')
+            .on('click', function () {
+                var $this = jomresJquery(this),
+                    data = $this.data();
+                $this
+                    .off('click')
+                    .text('Abort')
+                    .on('click', function () {
+                        $this.remove();
+                        data.abort();
+                    });
+
+				// Vince
+				var resource_types = jomresJquery('#resource_types');
+				var resource_id    = jomresJquery('#resource_id');
+				data.formData = {resource_type: resource_types.val() , resource_id:  resource_id.val() };
+                data.submit().always(function () {
+                    $this.remove();
+                });
+				
+            });
+    jomresJquery('#fileupload').fileupload({
+		dropZone: jomresJquery('#dropzone'),
+        url: url,
+        dataType: 'json',
+        autoUpload: false,
+        acceptFileTypes: /(\.|\/){ALLOWED_FILE_TYPES}$/i,
+        maxFileSize: 5000000, // 5 MB
+        // Enable image resizing, except for Android and Opera,
+        // which actually support image resizing, but fail to
+        // send Blob objects via XHR requests:
+        disableImageResize: false,
+		imageMaxWidth: {MAX_WIDTH}-1,
+		imageMaxHeight: {MAX_WIDTH}-1,
+        previewMaxWidth: 100,
+        previewMaxHeight: 100,
+        previewCrop: true
+    }).on('fileuploadadd', function (e, data) {
+        data.context = jomresJquery('<div/>').appendTo('#files');
+        jomresJquery.each(data.files, function (index, file) {
+            var node = jomresJquery('<p/>')
+                    .append(jomresJquery('<span/>').text(file.name));
+					//.css({ float: "left" })
+					//.addClass( "well well-small" );
+					 
+            if (!index) {
+                node
+                    .append('<br>')
+                    .append(uploadButton.clone(true).data(data));
+            }
+			node.addClass('alert');
+            node.appendTo(data.context);
+			
+        });
+		
+		jomresJquery('#files').show("slow");
+		
+    }).on('fileuploadprocessalways', function (e, data) {
+        var index = data.index,
+            file = data.files[index],
+            node = jomresJquery(data.context.children()[index]);
+        if (file.preview) {
+            node
+                .prepend('<br>')
+                .prepend(file.preview);
+        }
+        if (file.error) {
+            node
+                .append('<br>')
+                .append(file.error);
+        }
+        if (index + 1 === data.files.length) {
+            data.context.find('button')
+                .text('{_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD}')
+                .prop('disabled', !!data.files.error);
+        }
+    }).on('fileuploadprogressall', function (e, data) {
+        var progress = parseInt(data.loaded / data.total * 100, 10);
+        jomresJquery('#progress .bar').css(
+            'width',
+            progress + '%'
+        );
+    }).on('fileuploaddone', function (e, data) {
+		jomresJquery.each(data.files, function (index, file) {
+			jomresJquery(data.context.children()[index]).attr('id', file.random_id);
+			jomresJquery('#'+file.random_id).parent().addClass('uploaded');
+			jomresJquery('#'+file.random_id).addClass('alert alert-success');
+			jomresJquery('#progress .bar').css( 'width', '0%' );
+			
+			if (file.hasOwnProperty ('error')) {
+				jomresJquery.each(data.files, function (index, file) {
+				var error = '<div class="alert alert-error alert-danger">' + file.error + '</div>';
+				jomresJquery(data.context.children()[index])
+					.append('<br>')
+					.append(error);
+					});
+			} else {
+				var delete_link = '<a href="javascript:void(0);" class="btn btn-danger" onclick="delete_file(\''+file.deleteUrl+'\' , \''+file.random_id+'\')">{_JOMRES_MEDIA_CENTRE_BUTTON_DELETE}</a>';
+				var view_link = '<a href="'+file.url+'" target="_blank" class="btn btn-primary">{_JOMRES_MEDIA_CENTRE_BUTTON_VIEW}</a>';
+
+				var links = view_link + " " + delete_link;
+				
+				jomresJquery(data.context.children()[index])
+					.append(links);
+				
+				get_existing_images();
+			}
+		});
+		
+    }).on('fileuploadfail', function (e, data) {
+        jomresJquery.each(data.files, function (index) {
+            var error = jomresJquery('<span class="text-danger"/>').text('File upload failed.');
+            jomresJquery(data.context.children()[index])
+                .append('<br>')
+                .append(error);
+        });
+    }).prop('disabled', !jomresJquery.support.fileInput)
+        .parent().addClass(jomresJquery.support.fileInput ? undefined : 'disabled');
+});
+
+function get_resource_ids_for_resource_type(resource_type)
+	{
+	hide_uploaded();
+	jomresJquery('#existing_images').slideUp();
+	jomresJquery.get(ajax_url + '&task=media_centre_resources_ajax&resource_type=' + resource_type,
+		function (data) {
+			if (data != '')
+				{
+				populateDiv ( 'resource_id_dropdown' , data );
+				}
+			else
+				{
+				populateDiv ( 'resource_id_dropdown' , '<input type="hidden" id="resource_id" value="" />' );
+				}
+		get_existing_images();
+		});
+	}
+
+function hide_uploaded()
+	{
+	jomresJquery("#files").children().each(function(n, i) 
+		{
+		if ( jomresJquery(this).hasClass('uploaded') )
+			{
+			jomresJquery(this).slideUp();
+			jomresJquery(this).html('');
+			}
+		});
+	}
+	
+function delete_file(url, id)
+	{
+	jomresJquery.get(url,function (data) 
+		{
+		if (data != '')
+			{
+			get_existing_images();
+			jomresJquery("#"+id).slideUp();
+			jomresJquery("#"+id).html('');
+			}
+		});
+	}
+	
+function get_existing_images()
+	{
+	jomresJquery('#existing_images').slideUp();
+	var resource_type = jomresJquery('#resource_types').val();
+	var resource_id = jomresJquery('#resource_id').val();
+	if (resource_id == '') {
+		resource_id=0;
+		}
+	jomresJquery.get(ajax_url + '&task=media_centre_resources_ajax_existing_images&resource_type=' + resource_type+'&resource_id='+resource_id,
+		function (data) {
+			populateDiv ( 'existing_images' , data );
+			jomresJquery('#existing_images').slideDown();
+		});
+	}
+	
+jomresJquery(document).ready(function () {
+	get_resource_ids_for_resource_type(jomresJquery('#resource_types').val());
+	
+	jomresJquery('#upload_all').click(function () {
+		jomresJquery('.start').each(function () {
+			jomresJquery(this).click();
+		})
+	});
+	
+	jomresJquery( "#clearbutton" ).click(function() {
+		jomresJquery("#files").slideUp();
+		jomresJquery('#files').html('');
+	});
+});
+</script>
+
+</patTemplate:tmpl>

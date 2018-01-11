@@ -1,0 +1,112 @@
+<patTemplate:tmpl name="search">
+	<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="get" name="{FORMNAME}">
+		<input type="hidden" name="option" value="com_jomres"/>
+		{PROPERTYNAME}
+		{JOMRES_SEARCH_DESCRIPTION_INFO}
+		{DESCRIPTION}
+
+		<!-- If you are seeing "Search by country Search by region Search by town" in your integrated search and you will be using the "select combo" feature, and not the Search by Country/Region/Town options, then remove/comment out the lines below. -->
+		<!--{JOMRES_SEARCH_GEO_COUNTRYSEARCH}-->
+		{COUNTRY}
+		<!--{JOMRES_SEARCH_GEO_REGIONSEARCH}-->
+		{REGION}
+		<!--{JOMRES_SEARCH_GEO_TOWNSEARCH}-->
+		{TOWN}
+		<table>
+			<tr>
+				<td>
+					<table>
+						<tr>
+							<td>
+								{JOMRES_SEARCH_GEO_COUNTRYSEARCH}
+							</td>
+							<td>
+								{SELECTCOMBO_COUNTRY}
+							</td>
+							<td>
+								{JOMRES_SEARCH_GEO_REGIONSEARCH}
+							</td>
+							<td>
+								{SELECTCOMBO_HIDDENDROPDOWNS_REGION}
+							</td>
+							<td>
+								{JOMRES_SEARCH_GEO_TOWNSEARCH}
+							</td>
+							<td>
+								{SELECTCOMBO_HIDDENDROPDOWNS_TOWN}
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<table>
+						<tr>
+							<td>
+								{HARRIVALDATE}
+							</td>
+							<td>
+								{ARRIVALDATE}
+							</td>
+							<td>
+								{HDEPARTUREDATE}
+							</td>
+							<td>
+								{DEPARTUREDATE}
+							</td>
+						</tr>
+						<tr>
+							<td colspan="4" class="small">
+								{JOMRES_SEARCH_AVL_INFO}
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					{JOMRES_SEARCH_FEATURE_INFO} {FEATURE}
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<table>
+						<tr>
+							<td>
+								{JOMRES_SEARCH_RTYPES}
+							</td>
+							<td>
+								{ROOM_TYPE}
+							</td>
+							<td>
+								{JOMRES_SEARCH_PRICERANGES}
+							</td>
+							<td>
+								{PRICERANGES}
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					{JOMRES_SEARCH_PTYPES} {PTYPE}
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					{HGUESTNUMBER} {GUESTNUMBER}
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					{HSTARS} {STARS}
+				</td>
+			</tr>
+		</table>
+		{THEBUTTON}
+		{HIDDEN}
+	</form>
+
+</patTemplate:tmpl>

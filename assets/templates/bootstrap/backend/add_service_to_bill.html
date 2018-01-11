@@ -1,0 +1,42 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<h2 class="page-header">{PAGETITLE}</h2>
+
+	<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm" class="form-horizontal">
+		<fieldset>
+			<div class="control-group">
+				<label class="control-label" for="service_description">{HSERVICEDESCRIPTION}</label>
+
+				<div class="controls">
+					<input class="inputbox" type="text" name="service_description" value=""/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="service_value">{HSERVICEVALUE}</label>
+
+				<div class="controls">
+					<input class="inputbox" type="text" name="service_value" value=""/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="service_qty">{HQTY}</label>
+
+				<div class="controls">
+					<input class="inputbox" type="text" name="service_qty" value=""/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="taxrate">{HTAXRATE}</label>
+
+				<div class="controls">
+					{TAXRATEDROPDOWN}
+				</div>
+			</div>
+			<div class="form-actions">
+				{JOMRESTOOLBAR}
+			</div>
+			<input type="hidden" name="contract_uid" value="{CONTRACTUID}"/>
+			<input type="hidden" name="task" value="add_service_to_bill"/>
+		</fieldset>
+	</form>
+</patTemplate:tmpl>

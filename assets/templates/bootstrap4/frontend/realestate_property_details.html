@@ -1,0 +1,112 @@
+
+<patTemplate:tmpl name="pageoutput">
+
+	<script type="text/javascript">
+		<!--
+		//getter
+		var fx = jomresJquery(".selector").tabs("option", "fx");
+		//setter
+		jomresJquery(".selector").tabs("option", "fx", { opacity: 'toggle' });
+
+		jomresJquery(function () {
+			//all hover and click logic for buttons
+			jomresJquery(".fg-button:not(.ui-state-disabled)")
+					.hover(
+					function () {
+						jomresJquery(this).addClass("ui-state-hover");
+					},
+					function () {
+						jomresJquery(this).removeClass("ui-state-hover");
+					}
+			)
+					.mousedown(function () {
+						jomresJquery(this).parents('.fg-buttonset-single:first').find(".fg-button.ui-state-active").removeClass("ui-state-active");
+						if (jomresJquery(this).is('.ui-state-active.fg-button-toggleable, .fg-buttonset-multi .ui-state-active')) {
+							jomresJquery(this).removeClass("ui-state-active");
+						}
+						else {
+							jomresJquery(this).addClass("ui-state-active");
+						}
+					})
+					.mouseup(function () {
+						if (!jomresJquery(this).is('.fg-button-toggleable, .fg-buttonset-single .fg-button,  .fg-buttonset-multi .fg-button')) {
+							jomresJquery(this).removeClass("ui-state-active");
+						}
+					});
+
+			jomresJquery("#tabs").tabs({ fx: { opacity: 'toggle' } });
+		});
+		//-->
+	</script>
+
+	<div>
+		<table border="0" width="100%" cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="viewproperty_rightcol" valign="top">
+					<table border="0" width="100%" cellpadding="0" cellspacing="0" class="top_info">
+						<tr>
+							<td>
+								<div class="fg-toolbar ui-widget-header ui-corner-all ui-helper-clearfix">
+									<div class="fg-buttonset ui-helper-clearfix">
+										<patTemplate:tmpl name="bookinglink" type="simpleCondition"
+														  requiredVars="bookinglink" unusedvars="nbsp">
+											{BOOKINGLINK}
+										</patTemplate:tmpl>
+										<patTemplate:tmpl name="slideshowlink" type="simpleCondition" requiredVars="slideshowlink" unusedvars="nbsp">
+											{SLIDESHOWLINK}
+										</patTemplate:tmpl>
+										<patTemplate:tmpl name="tariffslink" type="simpleCondition" requiredVars="tariffslink" unusedvars="nbsp">
+											{TARIFFSLINK}
+										</patTemplate:tmpl>
+										<patTemplate:tmpl name="roomslistlink" type="simpleCondition" requiredVars="roomslistlink" unusedvars="nbsp">
+											{ROOMSLISTLINK}
+										</patTemplate:tmpl>
+										{CONTACTUS}
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<div class="ui-widget ui-widget-content ui-corner-all"
+									 style="margin-top:10px;padding:5px">
+									<!-- This gallery link has now been reused and renamed to the external link -->
+									<patTemplate:tmpl name="gallerylink" type="simpleCondition" requiredVars="gallerylink" unusedvars="nbsp">
+										{GALLERYLINK}
+									</patTemplate:tmpl>
+									<div style="clear:both;">
+										{REAL_ESTATE_PROPERTY_PRICE}
+										<br/>
+										&nbsp;&nbsp;{COM_A_BASICTEMPLATE_SHOWADDRESS} {STREET}, {TOWN}, {REGION},
+										{POSTCODE}, {COUNTRY} {TELEPHONE}
+									</div>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td class="viewproperty_leftcol " valign="top">
+					<!-- Start jquery tabs -->
+					<div id="tabs">
+						<ul>
+							<patTemplate:tmpl name="tabs_titles">
+								<li><a href="#{TAB_ANCHOR}"><span>{TAB_TITLE}</span></a></li>
+							</patTemplate:tmpl>
+						</ul>
+						<patTemplate:tmpl name="tabs_content">
+							<div id="{TAB_ANCHOR}">
+								<p>
+									{TAB_CONTENT}
+								</p>
+							</div>
+						</patTemplate:tmpl>
+					</div>
+					<!-- End jquery tabs -->
+				</td>
+			</tr>
+		</table>
+		<div style="clear:both;"></div>
+	</div>
+</patTemplate:tmpl>

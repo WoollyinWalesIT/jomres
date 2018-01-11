@@ -1,0 +1,109 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+function navigate(lat, lng) {
+    // If it's an iPhone..
+    if ((navigator.platform.indexOf("iPhone") !== -1) || (navigator.platform.indexOf("iPod") !== -1)) {
+		function iOSversion() {
+        if (/iP(hone|od|ad)/.test(navigator.platform)) {
+          // supports iOS 2.0 and later: <http://bit.ly/TJjs1V>
+          var v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
+          return [parseInt(v[1], 10), parseInt(v[2], 10), parseInt(v[3] || 0, 10)];
+        }
+      }
+      var ver = iOSversion() || [0];
+
+      if (ver[0] >= 6) {
+        protocol = 'maps://';
+      } else {
+        protocol = 'http://';
+
+      }
+      window.location = protocol + 'maps.apple.com/maps?daddr=' + lat + ',' + lng + '&amp;ll=';
+    }
+    else {
+      window.open('http://maps.google.com?daddr=' + lat + ',' + lng + '&amp;ll=');
+    }
+  }
+</script>
+
+<style type="text/css">
+.property-header-buttons {padding-top:10px;}
+.property-header-fb span.fb_iframe_widget span {height:25px !important;vertical-align:top !important;}
+.property-header-labels {padding:5px 0;}
+.property-header-labels span.label {font-size:100%;padding:0.3em 0.6em;display:block;}
+.property-header address {margin-bottom:5px;}
+</style>
+
+<div class="panel panel-default">
+	<div class="panel-body">
+		<div class="property-header" itemscope itemtype="http://schema.org/Hotel">
+			<div class="row-fluid">
+				<div class="span2 hidden-phone hidden-tablet">
+					<img alt="{PROPERTY_NAME}" src="{IMAGETHUMB}" class="responsive"/>
+				</div>
+				<div class="span10">
+					<h1 id="tour_target_property_header">{PROPERTY_NAME} <span>{STARS} {SUPERIOR}</span></h1>
+					<patTemplate:tmpl name="permit" type="simpleCondition" requiredVars="permit_number">
+						<p class="label label-info">{_JOMRES_PERMIT_NUMBER_TITLE} {PERMIT_NUMBER}</p>
+					</patTemplate:tmpl>
+					<div class="row-fluid">
+						<div class="span8">
+							<address>
+								<span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+									<span itemprop="streetAddress">{STREET}</span>,
+									<span itemprop="addressLocality">{TOWN}</span>, 
+									<span itemprop="addressRegion">{REGION}</span>, 
+									<span itemprop="postalCode">{POSTCODE}</span>, 
+									<span itemprop="addressCountry">{COUNTRY}</span><br/>
+									<span itemprop="location">
+										<span itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
+											<meta itemprop="latitude" content="{PROPERTY_LAT}" />
+											<meta itemprop="longitude" content="{PROPERTY_LONG}" />
+										</span>
+									</span>
+									<span class="hidden-phone">
+										{HTELEPHONE}<span>{TELEPHONE}</span>,
+										{HFAX}{FAX}
+									</span>
+									<span class="visible-phone">
+										<br/>
+										<a href="tel:{TELEPHONE}" class="btn btn-success"><i class="fa fa-phone"></i> 
+											{JOMRES_TAPTOCALL} {TELEPHONE}</a>
+									</span>
+								</span>
+								<div><a href="{GALLERYLINK}" target="_blank">{GALLERYDOMAIN}</a></div>
+							</address>
+							<div class="property-header-fb hidden-phone hidden-tablet">
+								{FACEBOOK_BUTTONS}
+							</div>
+						</div>
+						<div class="span4 hidden-phone hidden-tablet">
+							<div class="property-header-labels pull-right">
+								<span class="label {REQUIRE_APPROVAL_CLASS}">{REQUIRE_APPROVAL}</span>
+							</div>
+							<div class="property-header-labels pull-right">
+								<span class="label label-info">{PRE_TEXT} <span itemprop="priceRange">{PRICE}</span> {POST_TEXT}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row-fluid hidden-phone hidden-tablet">
+				<div class="span12">
+					<div class="property-header-buttons pull-left">
+						<a href="{DIRECT_URL}" class="btn btn-default"><i class="fa fa-info-circle"></i> {COMMON_VIEW}</a>
+						<patTemplate:tmpl name="bookinglink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
+						<a href="{LINK}" class="btn btn-success"><i class="fa fa-shopping-cart"></i> {TEXT}</a>
+						</patTemplate:tmpl>
+						<a href="{CONTACT_LINK}" class="btn btn-default"><i class="fa fa-envelope"></i> {HCONTACT}</a>
+						<a href="javascript:void(0);" id="shortlist_{PROPERTY_UID}" onclick="shortlist('{PROPERTY_UID}', '1')" class="btn btn-default">{SHORTLIST}</a>
+						<a href="{SHORTLIST_LINK}" class="btn btn-default"><i class="fa fa-heart"></i> {HSHORTLIST}</a>
+						<a href="javascript:navigate({PROPERTY_LAT},{PROPERTY_LONG});" class="btn btn-default"><i class="fa fa-map-marker"></i> {HMAP}</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</patTemplate:tmpl>

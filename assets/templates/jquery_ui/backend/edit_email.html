@@ -1,0 +1,19 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2>{PAGETITLE} - {EMAIL_TYPE}</h2>
+<p>{INSTRUCTIONS}</p>
+<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+<table width="100%" border="0" class="ui-widget-content ui-corner-all">
+	<tr>
+		<td width="30%">{HEMAIL_SUBJECT}</td>
+		<td><input type="text" class="inputbox" name="email_subject" value="{EMAIL_SUBJECT}"/></td>
+	</tr>
+	<tr>
+		<td width="30%">{HEMAIL_TEXT}</td>
+		<td>{EMAIL_TEXT}</td>
+	</tr>
+</table>
+<input type="hidden" name="email_type" value="{EMAIL_TYPE}" />
+<input type="hidden" name="task" value="save_email" />
+</form>
+</patTemplate:tmpl>
