@@ -2719,6 +2719,46 @@ class patTemplate
 				}
 			}
 
+		/*
+		I wanted to be able to call QR codes through templates, however reasoned that creating a j06000 script to display a qr code with a url could be a potential security risk
+		On further consideration, I realised that what I really needed to do was output the content of a Jomres function, therefore have added this code to safely add a function call to a Jomres template.
+		
+		Example usage :
+		
+		<img src="{jomres_function get_qr_code_relPath "https://www.jomres.net"}" />
+		
+		Subject to change.
+		*/
+		
+		$regex = '/{jomres_function\s*.*?}/i';
+		
+		preg_match_all( $regex, $result, $matches );
+		if (!empty($matches)) {
+			foreach ($matches[0] as $m)
+				{
+				$match = str_replace(array("{","}"),"",$m);
+				$match = str_replace("&amp;","&",$match);
+				$bang = explode (" ",$match);
+				$function = $bang[1];
+
+				if (!isset($bang[2]))
+					$bang[2] = "";
+
+				$arguments = $bang[2];
+
+				if ($arguments!='') {
+					
+					$args_array = explode("|",$arguments);
+					
+					//$property_uid =0;
+					
+				}
+				$contents = call_user_func_array( $function , $args_array);
+				$result = str_replace($m,$contents,$result);
+			}
+		}
+		
+		
 		if ( isset( $this->json_output ) ) 
 			return json_encode( $this->json_output );
 		else
