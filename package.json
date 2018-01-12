@@ -2,7 +2,7 @@
   "name": "jomres",
   "version": "1.0.0",
   "description": "Property management and online booking system",
-  "main": "javascript/jomres.js",
+  "main": "assets/js/jomres.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
