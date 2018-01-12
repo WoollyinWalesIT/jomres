@@ -2730,7 +2730,7 @@ class patTemplate
 		Subject to change.
 		*/
 		
-		$regex = '/{jomres_function\s*.*?}/i';
+/* 		$regex = '/{jomres_function\s*.*?}/i';
 		
 		preg_match_all( $regex, $result, $matches );
 		if (!empty($matches)) {
@@ -2756,7 +2756,7 @@ class patTemplate
 				$contents = call_user_func_array( $function , $args_array);
 				$result = str_replace($m,$contents,$result);
 			}
-		}
+		} */
 		
 		
 		if ( isset( $this->json_output ) ) 
