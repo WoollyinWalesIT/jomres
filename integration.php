@@ -177,7 +177,7 @@ if (!defined('JOMRES_IMAGELOCATION_ABSPATH')) {
 	define('JOMRES_IMAGELOCATION_ABSPATH', JOMRESPATH_BASE.'uploadedimages'.JRDS);
 	
 	if ($jrConfig['amazon_s3_active'] != '1' || $jrConfig['amazon_s3_bucket'] == '') {
-		define('JOMRES_IMAGELOCATION_RELPATH', get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/');
+		define('JOMRES_IMAGELOCATION_RELPATH', $uri['path'].'/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/');
 	} else {
 		if ($jrConfig['amazon_cloudfront_domain'] != '') {
 			$amazon_url = 'https://'.$jrConfig['amazon_cloudfront_domain'];
