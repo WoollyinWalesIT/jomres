@@ -14,3 +14,4 @@ desktop.ini
 /language/rvhire
 /node_modules/x-editable/test/*
 /node_modules/jquery-ui/external/*
+/node_modules/chart.js/dist/docs/*
