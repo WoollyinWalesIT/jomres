@@ -49,8 +49,6 @@
     "jquery-validation": "^1.17.0",
     "jquery.tipsy": "^1.0.3",
     "js-cookie": "^2.2.0",
-    "jszip": "^3.1.5",
-    "pdfmake": "^0.1.35",
     "popper.js": "^1.13.0",
     "simple-cmeditor": "^1.11.4",
     "x-editable": "^1.5.1"
