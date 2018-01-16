@@ -87,6 +87,9 @@ class j10501debugging
 		$configurationPanel->setmiddle($lists[ 'dumpTemplate' ]);
 		$configurationPanel->setright(jr_gettext('_JOMRES_COM_DUMPTEMPLATEDATA_DESC', '_JOMRES_COM_DUMPTEMPLATEDATA_DESC', false));
 		$configurationPanel->insertSetting();
+		
+		//plugins can add options to this tab
+		$MiniComponents->triggerEvent('10532', $componentArgs);
 
 		$configurationPanel->endPanel();
     }
