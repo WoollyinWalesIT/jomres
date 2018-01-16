@@ -60,7 +60,7 @@ class j16000show_license_message
 	</div>';
 			}
 				
-			if ($jomres_check_support_key->key_status == "Unknown") {
+			if ($jomres_check_support_key->key_status == "Unknown"  || $jomres_check_support_key->key_status == "Disabled" ) {
 				$message = '
 	<div class="alert alert-error">				
 	<h3>Unfortunately you don`t seem to be using a valid Jomres license key, so you`re missing on these great features and benefits!</h3>
