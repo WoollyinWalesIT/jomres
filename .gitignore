@@ -12,5 +12,5 @@ updates
 desktop.ini
 /logs/.gitignore
 /language/rvhire
-node-modules/x-editable/test
-node-modules/jquery-ui/external
+/node_modules/x-editable/test/*
+/node_modules/jquery-ui/external/*
