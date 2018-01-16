@@ -61,68 +61,66 @@ class j00501booking_settings
 			$configurationPanel->insertSetting();
 		}
 
-        if (!get_showtime('is_jintour_property')) {
-            $configurationPanel->setleft(jr_gettext('_JOMRES_WHOLEDAY_TITLE', '_JOMRES_WHOLEDAY_TITLE', false));
-            $configurationPanel->setmiddle($lists[ 'wholeday_booking' ]);
-            $configurationPanel->setright(jr_gettext('_JOMRES_WHOLEDAY_DESC', '_JOMRES_WHOLEDAY_DESC', false));
-            $configurationPanel->insertSetting();
+		$configurationPanel->setleft(jr_gettext('_JOMRES_WHOLEDAY_TITLE', '_JOMRES_WHOLEDAY_TITLE', false));
+		$configurationPanel->setmiddle($lists[ 'wholeday_booking' ]);
+		$configurationPanel->setright(jr_gettext('_JOMRES_WHOLEDAY_DESC', '_JOMRES_WHOLEDAY_DESC', false));
+		$configurationPanel->insertSetting();
 
-            if ($mrConfig[ 'wholeday_booking' ] == '1') {
-                $configurationPanel->setleft(jr_gettext('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WHOLEDAY', '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WHOLEDAY', false));
-                $configurationPanel->setmiddle($booking_form_daily_weekly_monthly);
-                $configurationPanel->setright();
-                $configurationPanel->insertSetting();
-
-				$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_MINIMUMINTERVAL_WHOLEDAY', '_JOMRES_COM_A_MINIMUMINTERVAL_WHOLEDAY', false));
-				$configurationPanel->setmiddle('<input type="text" class="inputbox" name="cfg_minimuminterval" size="5" value="'.$mrConfig['minimuminterval'].'" />');
-				$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_MINIMUMINTERVAL_DESC_WHOLEDAY', '_JOMRES_COM_A_MINIMUMINTERVAL_DESC_WHOLEDAY', false));
-				$configurationPanel->insertSetting();
-
-                $configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_WHOLEDAY', '_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_WHOLEDAY', false));
-                $configurationPanel->setmiddle('<input type="number" class="inputbox form-control" name="cfg_mindaysbeforearrival" size="5" value="'.$mrConfig[ 'mindaysbeforearrival' ].'" />');
-                $configurationPanel->setright(jr_gettext('_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_DESC_WHOLEDAY', '_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_DESC_WHOLEDAY', false));
-                $configurationPanel->insertSetting();
-            } else {
-                $configurationPanel->setleft(jr_gettext('_JOMRES_BOOKINGFORM_PRICINGOUTPUT', '_JOMRES_BOOKINGFORM_PRICINGOUTPUT', false));
-                $configurationPanel->setmiddle($booking_form_daily_weekly_monthly);
-                $configurationPanel->setright();
-                $configurationPanel->insertSetting();
-
-				$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_MINIMUMINTERVAL', '_JOMRES_COM_A_MINIMUMINTERVAL', false));
-				$configurationPanel->setmiddle('<input type="number" class="inputbox form-control" name="cfg_minimuminterval" size="5" value="'.$mrConfig[ 'minimuminterval' ].'" />');
-				$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_MINIMUMINTERVAL_DESC', '_JOMRES_COM_A_MINIMUMINTERVAL_DESC', false));
-				$configurationPanel->insertSetting();
-
-                $configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING', '_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING', false));
-                $configurationPanel->setmiddle('<input type="number" class="inputbox form-control" name="cfg_mindaysbeforearrival" size="5" value="'.$mrConfig[ 'mindaysbeforearrival' ].'" />');
-                $configurationPanel->setright(jr_gettext('_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_DESC', '_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_DESC', false));
-                $configurationPanel->insertSetting();
-            }
-
-			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPE', '_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPE', false));
-			$configurationPanel->setmiddle('<input type="number" class="inputbox form-control" name="cfg_defaultNumberOfFirstGuesttype" size="5" value="'.$mrConfig[ 'defaultNumberOfFirstGuesttype' ].'" />');
-			$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPEDESC', '_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPEDESC', false));
-			$configurationPanel->insertSetting();
-
-			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO', '_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO', false));
-			$configurationPanel->setmiddle($lists[ 'limitAdvanceBookingsYesNo' ]);
-			if ($mrConfig[ 'wholeday_booking' ] == '1') {
-				$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO_DESC_WHOLEDAY', '_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO_DESC_WHOLEDAY', false));
-			} else {
-				$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO_DESC', '_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO_DESC', false));
-			}
-			$configurationPanel->insertSetting();
-
-			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_ADVANCEBOOKINGSLIMITDAYS', '_JOMRES_COM_A_ADVANCEBOOKINGSLIMITDAYS', false));
-			$configurationPanel->setmiddle('<input type="number" class="inputbox form-control" size="5" name="cfg_advanceBookingsLimit" value="'.$mrConfig[ 'advanceBookingsLimit' ].'">');
+		if ($mrConfig[ 'wholeday_booking' ] == '1') {
+			$configurationPanel->setleft(jr_gettext('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WHOLEDAY', '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WHOLEDAY', false));
+			$configurationPanel->setmiddle($booking_form_daily_weekly_monthly);
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 
-			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_WEEKENDDAYS', '_JOMRES_COM_WEEKENDDAYS', false));
-			$configurationPanel->setmiddle($weekenddayDropdown);
-			$configurationPanel->setright(jr_gettext('_JOMRES_COM_WEEKENDDAYS_DESC', '_JOMRES_COM_WEEKENDDAYS_DESC', false));
+			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_MINIMUMINTERVAL_WHOLEDAY', '_JOMRES_COM_A_MINIMUMINTERVAL_WHOLEDAY', false));
+			$configurationPanel->setmiddle('<input type="text" class="inputbox" name="cfg_minimuminterval" size="5" value="'.$mrConfig['minimuminterval'].'" />');
+			$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_MINIMUMINTERVAL_DESC_WHOLEDAY', '_JOMRES_COM_A_MINIMUMINTERVAL_DESC_WHOLEDAY', false));
+			$configurationPanel->insertSetting();
+
+			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_WHOLEDAY', '_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_WHOLEDAY', false));
+			$configurationPanel->setmiddle('<input type="number" class="inputbox form-control" name="cfg_mindaysbeforearrival" size="5" value="'.$mrConfig[ 'mindaysbeforearrival' ].'" />');
+			$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_DESC_WHOLEDAY', '_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_DESC_WHOLEDAY', false));
+			$configurationPanel->insertSetting();
+		} else {
+			$configurationPanel->setleft(jr_gettext('_JOMRES_BOOKINGFORM_PRICINGOUTPUT', '_JOMRES_BOOKINGFORM_PRICINGOUTPUT', false));
+			$configurationPanel->setmiddle($booking_form_daily_weekly_monthly);
+			$configurationPanel->setright();
+			$configurationPanel->insertSetting();
+
+			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_MINIMUMINTERVAL', '_JOMRES_COM_A_MINIMUMINTERVAL', false));
+			$configurationPanel->setmiddle('<input type="number" class="inputbox form-control" name="cfg_minimuminterval" size="5" value="'.$mrConfig[ 'minimuminterval' ].'" />');
+			$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_MINIMUMINTERVAL_DESC', '_JOMRES_COM_A_MINIMUMINTERVAL_DESC', false));
+			$configurationPanel->insertSetting();
+
+			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING', '_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING', false));
+			$configurationPanel->setmiddle('<input type="number" class="inputbox form-control" name="cfg_mindaysbeforearrival" size="5" value="'.$mrConfig[ 'mindaysbeforearrival' ].'" />');
+			$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_DESC', '_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_DESC', false));
 			$configurationPanel->insertSetting();
 		}
+
+		$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPE', '_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPE', false));
+		$configurationPanel->setmiddle('<input type="number" class="inputbox form-control" name="cfg_defaultNumberOfFirstGuesttype" size="5" value="'.$mrConfig[ 'defaultNumberOfFirstGuesttype' ].'" />');
+		$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPEDESC', '_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPEDESC', false));
+		$configurationPanel->insertSetting();
+
+		$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO', '_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO', false));
+		$configurationPanel->setmiddle($lists[ 'limitAdvanceBookingsYesNo' ]);
+		if ($mrConfig[ 'wholeday_booking' ] == '1') {
+			$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO_DESC_WHOLEDAY', '_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO_DESC_WHOLEDAY', false));
+		} else {
+			$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO_DESC', '_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO_DESC', false));
+		}
+		$configurationPanel->insertSetting();
+
+		$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_ADVANCEBOOKINGSLIMITDAYS', '_JOMRES_COM_A_ADVANCEBOOKINGSLIMITDAYS', false));
+		$configurationPanel->setmiddle('<input type="number" class="inputbox form-control" size="5" name="cfg_advanceBookingsLimit" value="'.$mrConfig[ 'advanceBookingsLimit' ].'">');
+		$configurationPanel->setright();
+		$configurationPanel->insertSetting();
+
+		$configurationPanel->setleft(jr_gettext('_JOMRES_COM_WEEKENDDAYS', '_JOMRES_COM_WEEKENDDAYS', false));
+		$configurationPanel->setmiddle($weekenddayDropdown);
+		$configurationPanel->setright(jr_gettext('_JOMRES_COM_WEEKENDDAYS_DESC', '_JOMRES_COM_WEEKENDDAYS_DESC', false));
+		$configurationPanel->insertSetting();
 		
 		$threashold_dropdown = jomresHTML::integerSelectList(0, 100, 1, 'cfg_cancellation_threashold', 'class="inputbox" size="1"', (int) $mrConfig[ 'cancellation_threashold' ]);
 
