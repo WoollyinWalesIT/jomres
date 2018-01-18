@@ -125,7 +125,12 @@ class j06000show_property_extras
                     }
                     $extra_deets[ 'NAME' ] = jr_gettext('_JOMRES_CUSTOMTEXT_EXTRANAME'.$ex->uid, jomres_decode($ex->name));
                     $extra_deets[ 'MODELTEXT' ] = $tax_output.' ( '.$model_text.' )';
-                    $extra_deets[ 'PRICE' ] = output_price($inc_price);
+                    
+					if ($model[ 'model' ] == '100') {
+						$extra_deets[ 'PRICE' ] = $inc_price.'%';
+					} else {
+						$extra_deets[ 'PRICE' ] = output_price($inc_price);
+					}
 
                     $extra_deets[ 'EXTRA_IMAGE' ] = $jomres_media_centre_images->multi_query_images['noimage-small'];
                     if (isset($jomres_media_centre_images->images['extras'][$ex->uid][0]['small'])) {
