@@ -643,7 +643,7 @@ function doTableUpdates()
  
 function alterPropertyFeaturesFilterCol()
 {
-    $query = "ALTER TABLE `#__jomres_hotel_features` ADD `include_in_filters` BOOL NOT NULL DEFAULT 1 ";
+    $query = "ALTER TABLE `#__jomres_hotel_features` ADD `include_in_filters` TINYINT(1) NOT NULL DEFAULT 1 ";
     if (!doInsertSql($query, '')) {
         output_message('Error, unable to add __jomres_hotel_features include_in_filters column', 'danger');
     }
@@ -4047,6 +4047,7 @@ function createJomresTables()
 		`property_uid` VARCHAR(11),
 		`ptype_xref` text NULL DEFAULT NULL,
 		`cat_id` varchar(244) NOT NULL DEFAULT 0,
+		`include_in_filters` TINYINT(1) NOT NULL DEFAULT 1,
 		PRIMARY KEY(`hotel_features_uid`)
 		) ';
     if (!doInsertSql($query)) {
