@@ -623,6 +623,10 @@ function doTableUpdates()
 	if (!checkLineitemsPaymentMethodColExists()) {
         alterLineitemsPaymentMethodCol();
 	}
+
+	if (!checkPropertyFeaturesFilterColExists()) {
+        alterPropertyFeaturesFilterCol();
+	}
 	
 	alterCustomtextColsChangeDefaultVals();
 	copy_default_property_type_markers();
@@ -637,6 +641,25 @@ function doTableUpdates()
 	
 }
  
+function alterPropertyFeaturesFilterCol()
+{
+    $query = "ALTER TABLE `#__jomres_hotel_features` ADD `include_in_filters` BOOL NOT NULL DEFAULT 1 ";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to add __jomres_hotel_features include_in_filters column', 'danger');
+    }
+}
+
+function checkPropertyFeaturesFilterColExists()
+{
+    $query = "SHOW COLUMNS FROM #__jomres_hotel_features LIKE 'include_in_filters'";
+    $result = doSelectSql($query);
+    if (count($result) > 0) {
+        return true;
+    }
+    return false;
+}
+
+
 function checkLineitemsPaymentMethodColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomresportal_lineitems  LIKE 'payment_method'";

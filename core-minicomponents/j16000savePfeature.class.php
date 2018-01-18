@@ -28,12 +28,13 @@ class j16000savePfeature
 
 		$jomres_property_features = jomres_singleton_abstract::getInstance('jomres_property_features');
 		
-        $jomres_property_features->id = (int)jomresGetParam($_POST, 'id', 0);
-        $jomres_property_features->abbv = jomresGetParam($_POST, 'feature_abbv', '');
-        $jomres_property_features->desc = jomresGetParam($_POST, 'feature_description', '');
-        $jomres_property_features->ptype_xref = jomresGetParam($_POST, 'ptype_ids', array());
-        $jomres_property_features->image = jomresGetParam($_POST, 'image', '');
-        $jomres_property_features->cat_id = (int) jomresGetParam($_POST, 'cat_id', 0);
+        $jomres_property_features->id					= (int)jomresGetParam($_POST, 'id', 0);
+        $jomres_property_features->abbv					= jomresGetParam($_POST, 'feature_abbv', '');
+        $jomres_property_features->desc					= jomresGetParam($_POST, 'feature_description', '');
+        $jomres_property_features->ptype_xref			= jomresGetParam($_POST, 'ptype_ids', array());
+        $jomres_property_features->image				= jomresGetParam($_POST, 'image', '');
+        $jomres_property_features->cat_id				= (int) jomresGetParam($_POST, 'cat_id', 0);
+		$jomres_property_features->include_in_filters	= (int) jomresGetParam($_POST, 'include_in_filters', 0);
 		
 		if ($jomres_property_features->abbv != '') {
 			if ($jomres_property_features->id == 0) {

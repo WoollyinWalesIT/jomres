@@ -2187,3 +2187,6 @@ jr_define( 'POA_DISPLAY_PRICE_DESC', 'When properties are shown in a list, the s
 jr_define( 'PLUGINMANAGER_INSTALL', 'You need to install the plugin manager before you can install Jomres plugins, would you like to do that now?');
 jr_define( 'PLUGINMANAGER_REINSTALL', 'You need to update the plugin manager before you can update any installed plugins, would you like to do that now?');
 jr_define( 'PLUGINMANAGER_INSTALL_BUTTON', "Let's do this!");
+
+jr_define( 'INCLUDEINFILTERS', 'Include in filters?');
+jr_define( 'INCLUDEINFILTERS_DESC', 'Property feature filters in Ajax Composite Search can become very long, so you can set this option to No to prevent this feature from showing in the property feature list.');

@@ -274,6 +274,7 @@ class basic_property_details
                 $this->features[$f]['image'] = $image;
                 $this->features[$f]['cat_id'] = $this->all_property_features[$f]['cat_id'];
 				$this->features[$f]['cat_title'] = $this->all_property_features[$f]['cat_title'];
+				$this->features[$f]['include_in_filters'] = $this->all_property_features[$f]['include_in_filters'];
             }
         }
     }

@@ -1149,7 +1149,8 @@ function prepFeatureSearch()
 	$result[ ] = $r;
 
 	foreach ($basic_property_details->all_property_features as $propertyFeatureId => $feature) {
-		if (in_array($propertyFeatureId, $uniqueFeatures)) {
+
+		if (in_array($propertyFeatureId, $uniqueFeatures) && $feature['include_in_filters'] == "1" ) {
 			$r = array();
 			$r[ 'id' ] = $propertyFeatureId;
 			$r[ 'title' ] = $feature['abbv'];

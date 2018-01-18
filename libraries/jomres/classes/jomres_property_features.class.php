@@ -51,7 +51,7 @@ class jomres_property_features
 		else
 			$this->property_features = array();
 
-		$query = "SELECT `hotel_features_uid`, `hotel_feature_abbv`, `hotel_feature_full_desc`, `image`, `property_uid`, `ptype_xref`, `cat_id` FROM #__jomres_hotel_features WHERE `property_uid` = 0 ORDER BY `hotel_feature_abbv`";
+		$query = "SELECT `hotel_features_uid`, `hotel_feature_abbv`, `hotel_feature_full_desc`, `image`, `property_uid`, `ptype_xref`, `cat_id` , `include_in_filters` FROM #__jomres_hotel_features WHERE `property_uid` = 0 ORDER BY `hotel_feature_abbv`";
 		$result = doSelectSql( $query );
 		
 		if ( empty($result) )
@@ -65,11 +65,12 @@ class jomres_property_features
 
 		foreach ( $result as $r )
 			{
-			$this->property_features[$r->hotel_features_uid]['id']				= (int)$r->hotel_features_uid;			// property feature id
-			$this->property_features[$r->hotel_features_uid]['abbv']			= jr_gettext( '_JOMRES_CUSTOMTEXT_FEATURES_ABBV' . (int) $r->hotel_features_uid, $r->hotel_feature_abbv, false ); // property feature name/abbv;
-			$this->property_features[$r->hotel_features_uid]['desc']			= jr_gettext( '_JOMRES_CUSTOMTEXT_FEATURES_DESC' . (int) $r->hotel_features_uid, $r->hotel_feature_full_desc, false ); // property feature description
-			$this->property_features[$r->hotel_features_uid]['image']			= $r->image;							// property feature image/icon
-			$this->property_features[$r->hotel_features_uid]['property_uid']	= (int)$r->property_uid;				// property uid
+			$this->property_features[$r->hotel_features_uid]['id']					= (int)$r->hotel_features_uid;			// property feature id
+			$this->property_features[$r->hotel_features_uid]['abbv']				= jr_gettext( '_JOMRES_CUSTOMTEXT_FEATURES_ABBV' . (int) $r->hotel_features_uid, $r->hotel_feature_abbv, false ); // property feature name/abbv;
+			$this->property_features[$r->hotel_features_uid]['desc']				= jr_gettext( '_JOMRES_CUSTOMTEXT_FEATURES_DESC' . (int) $r->hotel_features_uid, $r->hotel_feature_full_desc, false ); // property feature description
+			$this->property_features[$r->hotel_features_uid]['image']				= $r->image;							// property feature image/icon
+			$this->property_features[$r->hotel_features_uid]['property_uid']		= (int)$r->property_uid;				// property uid
+			$this->property_features[$r->hotel_features_uid]['include_in_filters']	= (int)$r->include_in_filters;				// property uid
 			
 			if ( $r->ptype_xref != '' )
 				{
@@ -116,11 +117,12 @@ class jomres_property_features
 			$this->ptype_xref			= $this->property_features[ (int)$id ]['ptype_xref'];			// property types xref array
 			$this->cat_id				= $this->property_features[ (int)$id ]['cat_id'];				// property feature category id
 			$this->cat_title			= $this->property_features[ (int)$id ]['cat_title'];			// property feature category id
-			
+			$this->include_in_filters	= $this->property_features[ (int)$id ]['include_in_filters'];	// ajax search features filter
+
 			return true;
 			}
 
-		$query = "SELECT `hotel_features_uid`, `hotel_feature_abbv`, `hotel_feature_full_desc`, `image`, `property_uid`, `ptype_xref`, `cat_id` FROM #__jomres_hotel_features WHERE `property_uid` = 0 AND `hotel_features_uid` = " . (int)$id;
+		$query = "SELECT `hotel_features_uid`, `hotel_feature_abbv`, `hotel_feature_full_desc`, `image`, `property_uid`, `ptype_xref`, `cat_id` , `include_in_filters` FROM #__jomres_hotel_features WHERE `property_uid` = 0 AND `hotel_features_uid` = " . (int)$id;
 		$result = doSelectSql( $query );
 		
 		if ( empty( $result ) )
@@ -135,6 +137,7 @@ class jomres_property_features
 			$this->desc				= jr_gettext( '_JOMRES_CUSTOMTEXT_FEATURES_DESC' . (int) $r->hotel_features_uid, $r->hotel_feature_full_desc, false ); // property feature description
 			$this->image			= $r->image;							// property feature image/icon
 			$this->property_uid		= (int)$r->property_uid;				// property uid
+			$this->include_in_filters	= $r->include_in_filters;	// ajax search features filter
 			
 			if ( $r->ptype_xref != '' )
 				{
@@ -182,7 +185,8 @@ class jomres_property_features
 										 `image`,
 										 `property_uid`,
 										 `ptype_xref`,
-										 `cat_id` 
+										 `cat_id`,
+										 `include_in_filters`,
 										 ) 
 										VALUES 
 										(
@@ -191,7 +195,8 @@ class jomres_property_features
 										 '" . $this->image . "',
 										 " . (int)$this->property_uid . ",
 										 '" . serialize($this->ptype_xref) . "',
-										 " . (int)$this->cat_id . "
+										 " . (int)$this->cat_id . ",
+										 " . (int)$this->include_in_filters . "
 										 )";
 		
 		if ( doInsertSql( $query, false ) )
@@ -222,7 +227,8 @@ class jomres_property_features
 							`hotel_feature_abbv` = '" . $this->abbv . "',
 							`hotel_feature_full_desc` = '" . $this->desc . "',
 							`ptype_xref` = '" . serialize($this->ptype_xref) . "',
-							`cat_id` = ".(int)$this->cat_id." 
+							`cat_id` = ".(int)$this->cat_id.",
+							`include_in_filters` = ".(int)$this->include_in_filters."
 						WHERE `hotel_features_uid` = " . (int)$this->id . " 
 							AND `property_uid` = " . (int)$this->property_uid;
 		
