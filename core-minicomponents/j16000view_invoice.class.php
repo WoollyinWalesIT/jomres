@@ -221,6 +221,17 @@ class j16000view_invoice
         $output[ 'GRAND_TOTAL_EX_TAX' ] = output_price($invoice->grand_total_ex_tax, $invoice->currencycode, false, true);
         $output[ 'GRAND_TOTAL_TAX' ] = output_price($invoice->grand_total_tax, $invoice->currencycode, false, true);
         $output[ 'OUTSTANDING_TOTAL' ] = output_price($invoice->balance, $invoice->currencycode, false, true);
+		
+		//invoice logo
+		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
+		$jomres_media_centre_images->get_site_images('logo');
+		
+		$output[ 'LOGO' ] = $jomres_media_centre_images->multi_query_images [ 'noimage-small' ];
+
+		foreach ($jomres_media_centre_images->site_images['logo'] as $image) 
+			{
+			$output[ 'LOGO' ] = $image['small'];
+			}
 
         $pageoutput[ ] = $output;
         $tmpl = new patTemplate();
