@@ -273,14 +273,23 @@ class j06005view_invoice
 		
 		//invoice logo
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
-		$jomres_media_centre_images->get_images($invoice->property_uid, array('property_logo'));
 		
 		$output[ 'LOGO' ] = $jomres_media_centre_images->multi_query_images [ 'noimage-small' ];
+		
+		//booking invoices
+		if ((int) $invoice->contract_id > 0) {
+			$jomres_media_centre_images->get_images($invoice->property_uid, array('property_logo'));
 
-		foreach ($jomres_media_centre_images->images ['property_logo'] [0] as $image) 
-			{
-			$output[ 'LOGO' ] = $image['small'];
+			foreach ($jomres_media_centre_images->images ['property_logo'] [0] as $image) {
+				$output[ 'LOGO' ] = $image['small'];
 			}
+		} else { //commission and subscription invoices
+			$jomres_media_centre_images->get_site_images('logo');
+
+			foreach ($jomres_media_centre_images->site_images['logo'] as $image) {
+				$output[ 'LOGO' ] = $image['small'];
+			}
+		}
 
         $pageoutput[ ] = $output;
         $tmpl = new patTemplate();

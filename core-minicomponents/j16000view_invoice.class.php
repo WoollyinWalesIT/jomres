@@ -228,10 +228,9 @@ class j16000view_invoice
 		
 		$output[ 'LOGO' ] = $jomres_media_centre_images->multi_query_images [ 'noimage-small' ];
 
-		foreach ($jomres_media_centre_images->site_images['logo'] as $image) 
-			{
+		foreach ($jomres_media_centre_images->site_images['logo'] as $image) {
 			$output[ 'LOGO' ] = $image['small'];
-			}
+		}
 
         $pageoutput[ ] = $output;
         $tmpl = new patTemplate();
