@@ -16,6 +16,9 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_sanity_check
 {
+    public $warnings;
+    public $warning_counter;
+    
     public function __construct($autorun = true , $property_uid = 0 )
     {
         if (get_showtime('no_html') == 1 || get_showtime('popup') == 1 || AJAXCALL) {
