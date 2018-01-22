@@ -28,7 +28,8 @@ class j00006sanity_checks
         if (!defined('JOMRES_NOHTML') || JOMRES_NOHTML == 0) {
             $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
-            if ($thisJRUser->accesslevel > 50) { //higher than receptionist
+            
+			//if ($thisJRUser->accesslevel > 50) { //higher than receptionist
                 $output = array();
                 jr_import('jomres_sanity_check');
                 $sanity_checks = new jomres_sanity_check();
@@ -39,7 +40,7 @@ class j00006sanity_checks
                 $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
                 $tmpl->readTemplatesFromInput('sanity_checks.html');
                 set_showtime('sanity_check_warnings', $tmpl->getParsedTemplate());
-            }
+            //}
 
             if ($thisJRUser->is_partner == true) {
                 $output = array();

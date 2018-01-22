@@ -188,5 +188,6 @@ $jrConfig = array(
   'amazon_s3_remove_local_copies' => '0',
   'amazon_s3_use_tls' => '0',
   'delete_all_data_on_uninstall' => '0',
-  'jomres_review_left' => '0'
+  'jomres_review_left' => '0',
+  'review_nag' => '1'
 );

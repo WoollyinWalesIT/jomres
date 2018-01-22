@@ -32,7 +32,7 @@ class j06005save_review
         } else {
             $property_uid = (int) $_POST[ 'property_uid' ];
         }
-        //var_dump($_POST);exit;
+
         $rating_1 = (int) jomresGetParam($_POST, 'rating_1', 0);
         $rating_2 = (int) jomresGetParam($_POST, 'rating_2', 0);
         $rating_3 = (int) jomresGetParam($_POST, 'rating_3', 0);

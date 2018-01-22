@@ -260,7 +260,7 @@ class j06001list_bookings_ajax
                 $jrtb .= $jrtbar->toolbarItem('edit', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_booking'.'&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('COMMON_EDIT', 'COMMON_EDIT', false));
                 if ($p->cancelled == 0) {
                     if ($p->booked_in == 0 && isset($MiniComponents->registeredClasses['06001']['checkin'])) {
-                        if ($p->approved == 1 && $today >= $p->arrival) {
+                        if ($p->approved == 1 ) {
                             $jrtb .= $jrtbar->toolbarItem('bookGuestIn', jomresURL(JOMRES_SITEPAGE_URL.'&task=checkin'.'&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_FRONT_MR_BOOKIN_TITLE', '_JOMRES_FRONT_MR_BOOKIN_TITLE', false));
                         }
                     } elseif ($p->bookedout == 0) {
@@ -278,7 +278,7 @@ class j06001list_bookings_ajax
                 $toolbar->addSecondaryItem('fa fa-pencil-square-o', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_booking&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS', '_JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS', false));
                 if ($p->cancelled == 0) {
                     if ($p->booked_in == 0 && isset($MiniComponents->registeredClasses['06001']['checkin'])) {
-                        if ($p->approved == 1 && $today >= $p->arrival) {
+                        if ($p->approved == 1 ) {
                             $toolbar->addItem('fa fa-sign-in', 'btn btn-default ', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=checkin&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_ACTION_CHECKIN', '_JOMRES_ACTION_CHECKIN', false));
                         } else {
                             $toolbar->addItem('fa fa-sign-in', 'btn btn-default disabled', '', 'javascript:void();', jr_gettext('_JOMRES_ACTION_CHECKIN', '_JOMRES_ACTION_CHECKIN', false));

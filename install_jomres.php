@@ -628,6 +628,11 @@ function doTableUpdates()
         alterPropertyFeaturesFilterCol();
 	}
 	
+	if (!checkReviewsRatingsContractUidColExists()) {
+        alterReviewsRatingsContractUidCol();
+	}
+	
+	
 	alterCustomtextColsChangeDefaultVals();
 	copy_default_property_type_markers();
     drop_orphan_line_items_table();
@@ -641,6 +646,25 @@ function doTableUpdates()
 	
 }
  
+function alterReviewsRatingsContractUidCol()
+{
+    $query = "ALTER TABLE `#__jomres_reviews_ratings` ADD `contract_uid` int( 11 ) default NULL  ";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to add __jomres_reviews_ratings contract_uid column', 'danger');
+    }
+}
+
+function checkReviewsRatingsContractUidColExists()
+{
+    $query = "SHOW COLUMNS FROM #__jomres_reviews_ratings LIKE 'contract_uid'";
+    $result = doSelectSql($query);
+    if (count($result) > 0) {
+        return true;
+    }
+    return false;
+}
+
+
 function alterPropertyFeaturesFilterCol()
 {
     $query = "ALTER TABLE `#__jomres_hotel_features` ADD `include_in_filters` TINYINT(1) NOT NULL DEFAULT 1 ";
@@ -2702,6 +2726,7 @@ function createReviewsTables()
 	`rating_ip` varchar( 20 ) default NULL ,
 	`rating_date` datetime default NULL ,
 	`published` BOOL NOT NULL DEFAULT '0',
+	`contract_uid` int( 11 ) default NULL ,
 	PRIMARY KEY ( `rating_id` )
 	)";
     if (!doInsertSql($query, '')) {

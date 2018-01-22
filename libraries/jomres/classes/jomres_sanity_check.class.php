@@ -87,14 +87,18 @@ class jomres_sanity_check
 				$this->mark_as_incomplete();
 			}
 
-            return $this->warnings;
-        }
+            
+        } elseif ($thisJRUser->userIsRegistered) {
+			 $this->warnings .= $this->check_for_unreviewed_bookings();
+		}
+		
+		return $this->warnings;
     }
 
     public function construct_warning($message_array)
     {
-        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-        if ($thisJRUser->userIsManager) {
+        //$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+        //if ($thisJRUser->userIsManager) {
             $button = '';
             ++$this->warning_counter;
 
@@ -133,7 +137,7 @@ class jomres_sanity_check
             $tmpl->readTemplatesFromInput('sanity_check_pane.html');
 
             return $tmpl->getParsedTemplate();
-        }
+        //}
     }
 
     public function mark_as_complete() {
@@ -188,6 +192,57 @@ class jomres_sanity_check
 		}
 		
 		return true;
+    }
+	
+    public function check_for_unreviewed_bookings()
+    {
+		if ($this->jrConfig['review_nag'] == "0")
+			return;
+	
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+
+		$query = "SELECT contract_uid FROM #__jomres_reviews_ratings WHERE user_id = ".(int)$thisJRUser->id;
+		$reviews_data = doSelectSql($query);
+		
+		$reviews_contract_uids = array();
+		if (!empty($reviews_data)) {
+			foreach ($reviews_data as $review ) {
+				$reviews_contract_uids[]=$review->contract_uid;
+			}
+		}
+		
+		$unreviewed_bookings = 0;
+		
+		$query = "SELECT guests_uid FROM #__jomres_guests WHERE mos_userid = '".(int) $thisJRUser->id."' ";
+		$guests_uids = doSelectSql($query);
+		$allGuestUids = array();
+		
+		// Because a new record is made in the guests table for each new property the guest registers in, we need to find all the guest uids for this user
+		if (!empty($guests_uids)) {
+			foreach ($guests_uids as $g) {
+				$allGuestUids[ ] = $g->guests_uid;
+			}
+		}
+		
+		$query = 'SELECT contract_uid FROM #__jomres_contracts WHERE guest_uid IN ('.jomres_implode($allGuestUids).') AND bookedout  = 1';
+		$contracts = doSelectSql($query);
+					
+		if (!empty($contracts)) {
+			foreach ($contracts as $contract ) {
+				if (!in_array( $contract->contract_uid , $reviews_contract_uids ) ) {
+					$unreviewed_bookings++;
+				}
+			}
+		}
+
+		if ( $unreviewed_bookings>0 ) {
+			$message = jr_gettext('REVIEW_REMINDER_PT1', 'REVIEW_REMINDER_PT1', false).$unreviewed_bookings.jr_gettext('REVIEW_REMINDER_PT2', 'REVIEW_REMINDER_PT2', false);
+			$link = jomresURL(JOMRES_SITEPAGE_URL.'&task=mulistbookings&unreviewed');
+			$button_text = jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_LISTBOOKINGS', '_JOMRES_FRONT_MR_MENU_ADMIN_LISTBOOKINGS', false);
+
+			return $this->construct_warning(array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $button_text));
+		}
+
     }
 	
     public function check_tours_exist()

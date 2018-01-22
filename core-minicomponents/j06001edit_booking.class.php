@@ -141,14 +141,14 @@ class j06001edit_booking
                     $today = date('Y/m/d');
                     if ((int) $current_contract_details->contract[$contract_uid]['contractdeets']['bookedout'] != 1 && (int) $current_contract_details->contract[$contract_uid]['contractdeets']['cancelled'] != 1 && (int) $current_contract_details->contract[$contract_uid]['contractdeets']['approved'] == 1) {
                         if ((int) $current_contract_details->contract[$contract_uid]['contractdeets']['booked_in'] == 0) {
-                            if ($today >= $current_contract_details->contract[$contract_uid]['contractdeets']['arrival']) {
+                            //if ($today >= $current_contract_details->contract[$contract_uid]['contractdeets']['arrival']) {
                                 $output[ 'HBOOKGUESTIN' ] = jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN', '_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN', $editable = false, $isLink = true);
                                 $link = JOMRES_SITEPAGE_URL.'&task=checkin&contract_uid='.$contract_uid;
                                 $targetTask = 'bookGuestIn';
                                 $image = JOMRES_IMAGES_RELPATH.'jomresimages/'.$jrtbar->imageSize.'/BookGuestIn.png';
 
                                 $jrtb .= $jrtbar->customToolbarItem($targetTask, $link, $output[ 'HBOOKGUESTIN' ], $submitOnClick = false, $submitTask = '', $image);
-                            }
+                            //}
 
                             if ((int) $current_contract_details->contract[$contract_uid]['contractdeets']['channel_manager_booking'] != 1) {
                                 $jrtb .= $jrtbar->toolbarItem('cancel_booking', jomresURL(JOMRES_SITEPAGE_URL.'&task=cancel_booking&contract_uid='.$contract_uid), '');

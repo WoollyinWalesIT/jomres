@@ -2167,3 +2167,9 @@ jr_define( 'PLUGINMANAGER_INSTALL_BUTTON', "Let's do this!");
 
 jr_define( 'INCLUDEINFILTERS', 'Include in filters?');
 jr_define( 'INCLUDEINFILTERS_DESC', 'Property feature filters in Ajax Composite Search can become very long, so you can set this option to No to prevent this feature from showing in the property feature list.');
+
+jr_define( 'REVIEW_REMINDER_PT1', "You have ");
+jr_define( 'REVIEW_REMINDER_PT2', " booking(s) that you have not left a review for yet. Please leave a review.");
+jr_define( 'BOOKINGS_AWAITING_REVIEWS', "Bookings waiting for reviews");
+jr_define( 'REVIEW_NAG', "Nag guests for reviews?");
+jr_define( 'REVIEW_NAG_DESC', "Once a guest has been booked out from a booking, the system will remind them to post a review for their booking. Set this option to No to disable this reminder.");
