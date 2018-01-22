@@ -279,10 +279,12 @@ class j06005view_invoice
 		//booking invoices
 		if ((int) $invoice->contract_id > 0) {
 			$jomres_media_centre_images->get_images($invoice->property_uid, array('property_logo'));
-
-			foreach ($jomres_media_centre_images->images ['property_logo'] [0] as $image) {
-				$output[ 'LOGO' ] = $image['small'];
+			if ( isset($jomres_media_centre_images->images ['property_logo'] [0])){
+				foreach ($jomres_media_centre_images->images ['property_logo'] [0] as $image) {
+					$output[ 'LOGO' ] = $image['small'];
+				}
 			}
+
 		} else { //commission and subscription invoices
 			$jomres_media_centre_images->get_site_images('logo');
 
