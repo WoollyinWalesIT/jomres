@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -112,7 +112,7 @@ class j16000list_users
 		$jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		
-		$image = $jrtbar->makeImageValid("/".JOMRES_ROOT_DIRECTORY."/images/jomresimages/small/AddItem.png");
+		$image = $jrtbar->makeImageValid(JOMRES_IMAGES_RELPATH.'jomresimages/small/AddItem.png');
 		
 		$jrtb .= $jrtbar->customToolbarItem('edit',JOMRES_SITEPAGE_URL_ADMIN, $text=jr_gettext('COMMON_NEW', 'COMMON_NEW', false), $submitOnClick=true, $submitTask="edit_user", $image);
 		$jrtb .= $jrtbar->toolbarItem('cancel', JOMRES_SITEPAGE_URL_ADMIN, jr_gettext("COMMON_CANCEL",'COMMON_CANCEL',false) );

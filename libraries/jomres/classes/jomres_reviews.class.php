@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -118,12 +118,45 @@ class jomres_reviews
 
     public function save_review($rating, $title, $description, $pros, $cons)
     {
+		
+		$contract_uid = 0;
+		if ( isset($_POST[ 'contract_uid' ] )) {
+			$contract_uid = (int)$_POST[ 'contract_uid' ];
+			$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+			
+			$query = "SELECT guests_uid FROM #__jomres_guests WHERE mos_userid = '".(int) $thisJRUser->id."' ";
+			$guests_uids = doSelectSql($query);
+			$allGuestUids = array();
+			
+			
+			// Because a new record is made in the guests table for each new property the guest registers in, we need to find all the guest uids for this user
+			if (!empty($guests_uids)) {
+				foreach ($guests_uids as $g) {
+					$allGuestUids[ ] = $g->guests_uid;
+				}
+			}
+			
+			$guest_contracts = array();
+			$query = 'SELECT contract_uid FROM #__jomres_contracts WHERE guest_uid IN ('.jomres_implode($allGuestUids).') AND cancelled = 0 ORDER BY tag';
+			$contracts_data = doSelectSql($query);
+			if (!empty($contracts_data)) {
+				foreach ($contracts_data as $contract ) {
+					$guest_contracts[] = (int)$contract->contract_uid;
+				}
+			}
+
+			if (!in_array($contract_uid , $guest_contracts )) { // Fishy, the contract uid passed doesn't match any of the guest's contract uids. 
+				return;
+			}
+		}
+		
         $published = 0;
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
         if ($jrConfig[ 'autopublish_reviews' ] == '1') {
             $published = 1;
         }
+		
         $query = "INSERT INTO #__jomres_reviews_ratings SET
 			user_id='" .(int) $this->userid."',
 			item_id='" .(int) $this->property_uid."',
@@ -134,8 +167,9 @@ class jomres_reviews
 			review_description='" .trim($description)."',
 			pros='" .trim($pros)."',
 			cons='" .trim($cons)."',
-			published = " .$published.'
-			';
+			published = " .$published.",
+			contract_uid = " .(int)$contract_uid."
+			";
         $result = doInsertSql($query, '');
         if ($result>0) {
             

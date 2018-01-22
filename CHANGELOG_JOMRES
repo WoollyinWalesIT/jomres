@@ -1,3 +1,23 @@
+<h3>Jomres 9.9.18 10/01/2018</h3>
+
+
+<span class="label label-success">Feature</span> Added a new setting to Tariffs and Currencies tab which allows property managers to save a basic price that would be shown if no prices can otherwise be determined. When properties are shown in a list, the system will attempt to find a valid price from configured tariffs based on either today's date, or if dates were used in a search, then based on those dates. If it cannot, then it will show POA (Price on application), meaning that the guest should contact you to get a price. If you want, you can configure a price here that will be shown instead of the POA text. This figure would be a "fallback" price to display if no other price can be determined.
+<span class="label label-success">Feature</span> Updated a feature that allows you to include a script's output in a template without modifing the calling script's corresponding minicomponent.
+<span class="label label-success">Feature</span> Updated template override functionality to 1. Allow templates to reside in /plugin_name/templates/bootstrapN/ directories as well as the plugin's root and 2. Allow template overrides to have property type overrides underneath /plugin_name/templates/bootstrapN/, such as /plugin_name/templates/bootstrapN/P where P is the property type id.
+<span class="label label-success">Feature</span> Added a feature whereby property features can be configured to not show in search lists.
+<span class="label label-success">Feature</span> Moved all jomres core js, css, images, templates and map_styles to /assets dir and updated all paths accordingly. This begins the process of preparing for Joomla 4 and Bootstrap 4.
+<span class="label label-success">Feature</span> Most javascript files are now managed via npm ( npm is the package manager for JavaScript ). Results in a larger footprint, but libraries are updated regularly.
+
+<span class="label label-warning">Change</span> Modified how we get the site url. The previous function used would not return https as the protocol part of the url, even if the site was being accessed via https ( so far this has only appeared on wpengine ) which resulted in weird behaviour like being unable to save the license key. Changing the function fixes this.
+<span class="label label-warning">Change</span> Instead of relying on the monolog library, added code to the logging class to create logging directories where required.
+<span class="label label-warning">Change</span> Tweaked dobooking.php to adjust how we can hand off the property uid to the booking engine.
+<span class="label label-warning">Change</span> Updated datatables for jquery 3, joomla 4 only
+<span class="label label-warning">Change</span> Added functionality that forces a re-installation the Jomres plugin manager. Without this upgraders will need to manually update 40 or so (to date) updated plugins for .18, which would be tiresome for users and result in lots of tickets.
+<span class="label label-warning">Change</span> Tweaked image urls to use relative path without domain to increase speed
+<span class="label label-warning">Change</span> Added a new trigger point to add settings from plugins to debugging tab
+
+<span class="label label-important label-danger">Fix</span> Fixed some notices caused by deleted cms users that have reviews posted or are still set as partners in jomres
+<span class="label label-important label-danger">Fix</span> Solved a problem with how percentage extra prices are displayed in property details
 
 <h3>Jomres 9.9.17 12/12/2017</h3>
 

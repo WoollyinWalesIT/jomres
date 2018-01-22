@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -65,12 +65,12 @@ function get_property_module_data($property_uid_array, $alt_template_path = '', 
             $property_data[ 'MOREINFORMATIONLINK' ] = get_property_details_url($property_uid);
             $property_data[ 'STARSIMAGES' ] = '';
             for ($i = 1; $i <= $property_data[ 'stars' ]; ++$i) {
-                $property_data[ 'STARSIMAGES' ] .= '<img src="'.get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/star.png" alt="star" border="0" />';
+                $property_data[ 'STARSIMAGES' ] .= '<img src="'.JOMRES_IMAGES_RELPATH.'star.png" alt="star" border="0" />';
             }
 
             $property_data[ 'SUPERIOR' ] = '';
             if ($property_data[ 'superior' ] == 1) {
-                $property_data[ 'SUPERIOR' ] = '<img src="'.get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/superior.png" alt="superior" border="0" />';
+                $property_data[ 'SUPERIOR' ] = '<img src="'.JOMRES_IMAGES_RELPATH.'superior.png" alt="superior" border="0" />';
             }
 
             //animations

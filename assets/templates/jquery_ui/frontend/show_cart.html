@@ -1,0 +1,37 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<h2>{_JOMRES_CART_TITLE}</h2>
+	<table width="100%" border="0" class="ui-widget-content ui-corner-all">
+		<tr class="ui-state-default">
+			<th>{_JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME}</th>
+			<th>{_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL}</th>
+			<th>{_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE}</th>
+			<th>{_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL}</th>
+			<th>{_JOMRES_COM_MR_ROOM_DELETE}</th>
+		</tr>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+			<tr>
+				<td>{PROPERTYNAME}</td>
+				<td>{ARRIVAL}</td>
+				<td>{DEPARTURE}</td>
+				<td>{CONTRACT_TOTAL}</td>
+				<td><a href="{DELETELINK}"><img src="{DELETELINK_IMAGE}" width="20px" height="20px"/></a></td>
+			</tr>
+		</patTemplate:tmpl>
+	</table>
+	<br/>
+	<table width="100%" border="0">
+		<tr>
+			<td align="right" colspan="5">{_JOMRES_COM_INVOICE_LETTER_GRANDTOTAL} {GRANDTOTAL}</td>
+		</tr>
+		<tr>
+			<td align="right" colspan="5">
+				<div style="float:right;" class="ui-helper-clearfix"><a href="{CONFIRM_BOOKINGS_LINK}"
+																		class="fg-button ui-state-default ui-corner-all ui-priority-primary plist-button">{_JOMRES_CART_CONFIRM_BOOKINGS}</a>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td align="right" colspan="5" class="small">{_JOMRES_CART_INFO}</td>
+		</tr>
+	</table>
+</patTemplate:tmpl>

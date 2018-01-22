@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -81,7 +81,7 @@ class j16000editPfeature
 			
 			$rows[] = $i;
 		}
-
+	
 		$output[ 'HLINKTEXT' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK', '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK', false);
         $output[ 'HFEATUREABBV' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV', '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV', false);
         $output[ 'HFEATUREDESCRIPTION' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC', '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC', false);
@@ -96,10 +96,19 @@ class j16000editPfeature
         }
         $output[ 'CATEGORY' ] = jomresHTML::selectList($options, 'cat_id', 'class="inputbox" size="1"', 'value', 'text', $cat_id);
         $output[ 'HCATEGORY' ] = jr_gettext('_JOMRES_HCATEGORY', '_JOMRES_HCATEGORY');
+		
+		$output[ 'INCLUDEINFILTERS' ] = jr_gettext('INCLUDEINFILTERS', 'INCLUDEINFILTERS', false);
+		$output[ 'INCLUDEINFILTERS_DESC' ] = jr_gettext('INCLUDEINFILTERS_DESC', 'INCLUDEINFILTERS_DESC', false);
+		
+		$yesno = array();
+		$yesno[ ] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false));
+		$yesno[ ] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false));
 
+		$output[ 'FILTERS' ] = jomresHTML::selectList($yesno, 'include_in_filters', 'class="inputbox" size="1"', 'value', 'text', $jomres_property_features->include_in_filters );
+		
         $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
         $jrtb = $jrtbar->startTable();
-        $image = $jrtbar->makeImageValid('/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/Save.png');
+        $image = $jrtbar->makeImageValid(JOMRES_IMAGES_RELPATH.'jomresimages/small/Save.png');
         $link = JOMRES_SITEPAGE_URL_ADMIN;
 
         $jrtb .= $jrtbar->toolbarItem('cancel', JOMRES_SITEPAGE_URL_ADMIN.'&task=listPfeatures', '');

@@ -1,0 +1,75 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+jomresJquery(document).ready(function(){
+	jomresJquery('#FAQModal').appendTo("body");
+});
+</script>
+<style type="text/css">
+	#jomres_status {
+		background: none repeat scroll 0 0 #EDEDED;
+		border-top: 1px solid #DDDDDD;
+		padding: 2px 10px;
+	}
+
+	#jomres_status {
+		margin: 0;
+		padding: 8px 10px 0;
+	}
+
+	body {
+		padding-bottom: 60px;
+	}
+
+	.page-title {
+		color: white;
+		font-size: 20px;
+		font-weight: normal;
+		text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
+	}
+
+	.settingswrapper {
+		bottom:35px !important;
+	}
+</style>
+
+<div id="jomres_alternate_menu_position"></div>
+<!-- available if required by a plugin -->
+<div class="management-header clearfix">
+	<div class="col-md-6">
+		<h1 class="page-title" id="tour_target_property_name">{HACTIVE_PROPERTY}{PROPERTYNAME}<span>{PROPERTY_SELECTOR_DROPDOWN}</span></h1>
+	</div>
+	<div class="col-md-2 visible-md visible-lg" align="right">
+		<patTemplate:tmpl name="widgets_dropdown" type="simpleCondition" requiredVars="widgets_dropdown">
+		<div id="tour_target_widgets_dropdown">{WIDGETS_DROPDOWN}</div>
+		</patTemplate:tmpl>
+	</div>
+	<div class="col-md-2" align="right">	
+		<patTemplate:tmpl name="lang_dropdown" type="simpleCondition" requiredVars="langdropdown">
+		<div id="tour_target_lang_dropdown">{LANGDROPDOWN}</div>
+		</patTemplate:tmpl>
+	</div>
+	<div class="col-md-2 visible-md visible-lg" align="right">
+		<patTemplate:tmpl name="editing_dropdown" type="simpleCondition" requiredVars="editing_mode_dropdown">
+		<div id="tour_target_editing_mode_dropdown">{EDITING_MODE_DROPDOWN}</div>
+		</patTemplate:tmpl>
+	</div>
+</div>
+<div id="jomres_status" class="navbar-fixed-bottom">
+	<p class="pull-right hidden-xs hidden-sm">Copyright: &copy; 2005 - 2017 Vince Wooll</p>
+	{MANAGEMENT_VIEW_DROPDOWN}
+</div>
+{SANITY_CHECKS}
+<div class="management-wrapper clearfix">
+	<div class="col-md-12">
+		<div id="jomres_content_area" class="jr_property_{PROPERTY_UID}"> <!-- opens the jomres content area -->
+			<noscript>
+				<blockquote>
+					<p><font size="3" color="#FF0000"><b>You do not have JavaScript enabled.</b></font><br/>
+						<font size="2" color="#000080">The functionality of this site requires the use of
+							JavaScript so please enable before continuing. For assistance in enabling
+							JavaScript, please contact the webmaster.</font></p>
+				</blockquote>
+			</noscript>
+			<div id="jomres_feedback" class="clearfix"></div>
+			<div id="tour_target_content"></div>
+</patTemplate:tmpl>

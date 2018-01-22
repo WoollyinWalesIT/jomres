@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -42,7 +42,7 @@ class j16000list_countries
             import_countries();
         }
 		
-		jomres_cmsspecific_addheaddata("css",JOMRES_ROOT_DIRECTORY.'/css/flag-icon-css/css/','flag-icon.min.css');
+		jomres_cmsspecific_addheaddata("css",JOMRES_NODE_MODULES_RELPATH.'flag-icon-css/css/','flag-icon.min.css');
 
         foreach ($jomres_countries->countries as $country) {
             $r = array();

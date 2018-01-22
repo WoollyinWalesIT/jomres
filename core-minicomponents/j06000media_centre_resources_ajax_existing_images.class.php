@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -54,40 +54,40 @@ class j06000media_centre_resources_ajax_existing_images
         $image_result = '';
         if (!empty($images)) {
             foreach ($images as $image) {
-                $image_name_array = explode('/', $image['large']);
-                $image_name = $image_name_array[count($image_name_array) - 1];
+				if ( isset( $image['small'] ) ) {
+					$image_name_array = explode('/', $image['small']);
+					$image_name = $image_name_array[count($image_name_array) - 1];
 
-                $base_path = JOMRES_IMAGELOCATION_ABSPATH;
-                $image_small_path = str_replace(JOMRES_IMAGELOCATION_RELPATH, '', $image['small']);
+					$base_path = JOMRES_IMAGELOCATION_ABSPATH;
+					$image_small_path = str_replace(JOMRES_IMAGELOCATION_RELPATH, '', $image['small']);
+					$image_small_path = str_replace('/', JRDS , $image['small']);
 
-                $output = array();
-                $pageoutput = array();
+					$output = array();
+					$pageoutput = array();
 
-                $output['RANDOM_ID'] = generateJomresRandomString(10);
-                $output['FILENAME'] = $image_name;
+					$output['RANDOM_ID'] = generateJomresRandomString(10);
+					$output['FILENAME'] = $image_name;
 
-                if (!file_exists($base_path.$image_small_path)) {  // In the case of features images, it's possible that small images don't exist, so we'll swap to using the "large" (heh, relatively speaking) image instead.
-                    $output['IMAGE_REL_SMALL'] = $image['large'];
-                } else {
-                    $output['IMAGE_REL_SMALL'] = $image['small'];
-                }
+					$output['IMAGE_REL_SMALL'] = $image['small'];
 
-                $output['IMAGE_REL_LARGE'] = $image['large'];
-                $output['_JOMRES_MEDIA_CENTRE_BUTTON_DELETE'] = jr_gettext('_JOMRES_MEDIA_CENTRE_BUTTON_DELETE', '_JOMRES_MEDIA_CENTRE_BUTTON_DELETE', false);
-                $output['_JOMRES_MEDIA_CENTRE_BUTTON_VIEW'] = jr_gettext('_JOMRES_MEDIA_CENTRE_BUTTON_VIEW', '_JOMRES_MEDIA_CENTRE_BUTTON_VIEW', false);
-                $output['DELETE_URL'] = $delete_url.$image_name;
+					$output['IMAGE_REL_LARGE'] = $image['small'];
+					$output['_JOMRES_MEDIA_CENTRE_BUTTON_DELETE'] = jr_gettext('_JOMRES_MEDIA_CENTRE_BUTTON_DELETE', '_JOMRES_MEDIA_CENTRE_BUTTON_DELETE', false);
+					$output['_JOMRES_MEDIA_CENTRE_BUTTON_VIEW'] = jr_gettext('_JOMRES_MEDIA_CENTRE_BUTTON_VIEW', '_JOMRES_MEDIA_CENTRE_BUTTON_VIEW', false);
+					$output['DELETE_URL'] = $delete_url.$image_name;
 
-                $pageoutput[] = $output;
-                $tmpl = new patTemplate();
+					$pageoutput[] = $output;
+					$tmpl = new patTemplate();
 
-                if (jomres_cmsspecific_areweinadminarea()) {
-                    $tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
-                } else {
-                    $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
-                }
-                $tmpl->readTemplatesFromInput('media_centre_image_list.html');
-                $tmpl->addRows('pageoutput', $pageoutput);
-                $image_result .= $tmpl->getParsedTemplate();
+					if (jomres_cmsspecific_areweinadminarea()) {
+						$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
+					} else {
+						$tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
+					}
+					$tmpl->readTemplatesFromInput('media_centre_image_list.html');
+					$tmpl->addRows('pageoutput', $pageoutput);
+					$image_result .= $tmpl->getParsedTemplate();					
+				}
+
             }
 
             $pageoutput[] = array('IMAGES' => $image_result);
@@ -101,7 +101,7 @@ class j06000media_centre_resources_ajax_existing_images
             $tmpl->addRows('pageoutput', $pageoutput);
             $tmpl->displayParsedTemplate();
         } else {
-            echo ' <img src="'.get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/noimage.gif'.'" />';
+            echo ' <img src="'.JOMRES_IMAGES_RELPATH.'noimage.gif'.'" />';
         }
     }
 

@@ -1,0 +1,38 @@
+<patTemplate:tmpl name="header_pageoutput" unusedvars="strip">
+	<script type="text/javascript">
+		<!--
+		jomresJquery(".plist-button").livequery(function () {
+			jomresJquery(this).button();
+			jomresJquery(this).show();
+		});
+
+		jomresJquery(".plist-button-last").livequery(function () {
+			jomresJquery(this).button();
+			jomresJquery(this).show();
+		});
+		//-->
+	</script>
+
+	<table width="100%" border="0" class="ui-widget-header ui-corner-all plist-header">
+		<tr>
+			<td align="left">
+				<patTemplate:tmpl name="layout_rows" type="simpleCondition" requiredVars="title">
+					<a href="{LINK}" class="fg-button ui-state-default ui-corner-all">{TITLE}</a>&nbsp;
+				</patTemplate:tmpl>
+			</td>
+			<patTemplate:tmpl name="shortlist" type="simpleCondition" requiredVars="_jomres_viewshortlist">
+				<td align="center" width="140">
+					<a href="{SHORTLISTLINK}">{_JOMRES_VIEWSHORTLIST}</a>
+				</td>
+			</patTemplate:tmpl>
+			<patTemplate:tmpl name="compare" type="simpleCondition" requiredVars="_jomres_compare">
+				<td align="center" width="110">
+					{COMPARELINK}
+					<form action=""><a href="javascript:void(0);" onclick="return trigger_comparison(this);">{_JOMRES_COMPARE}</a>
+						<input type="hidden" id="comparison_ids" name="ids" value=""/></form>
+				</td>
+			</patTemplate:tmpl>
+		</tr>
+	</table>
+	<div class="full-width ui-helper-clearfix">{ORDER_DROPDOWN}</div>
+</patTemplate:tmpl>

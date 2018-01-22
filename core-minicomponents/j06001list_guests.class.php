@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -63,7 +63,7 @@ class j06001list_guests
             $text = jr_gettext('_JOMRES_COM_MR_NEWGUEST', '_JOMRES_COM_MR_NEWGUEST', false, true);
             $link = JOMRES_SITEPAGE_URL.'&task=edit_guest';
             $targetTask = 'editGuest';
-            $image = '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/'.$jrtbar->imageSize.'/guestAdd.png';
+            $image = JOMRES_IMAGES_RELPATH.'jomresimages/'.$jrtbar->imageSize.'/guestAdd.png';
             $jrtb .= $jrtbar->customToolbarItem($targetTask, $link, $text, $submitOnClick = false, $submitTask = '', $image);
             $jrtb .= $jrtbar->endTable();
             $output[ 'JOMRESTOOLBAR' ] = $jrtb;

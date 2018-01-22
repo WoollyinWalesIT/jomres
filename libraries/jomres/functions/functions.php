@@ -4,15 +4,21 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+
+function get_qr_code_relPath($arg) 
+{
+	$result = jomres_make_qr_code ($arg);
+	return $result['relative_path'];
+}
 
 function jomres_getSingleton($class, $args = array())
 {
@@ -139,8 +145,8 @@ function get_marker_src($marker_image = '')
 	
 	if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.'markers'.JRDS.$marker_image)) {
 		$result = JOMRES_IMAGELOCATION_RELPATH.'markers/'.$marker_image;
-	} elseif (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'markers'.JRDS.'free-map-marker-icon-blue.png')) {
-		$result = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/markers/free-map-marker-icon-blue.png';
+	} elseif (file_exists(JOMRES_IMAGES_ABSPATH.'markers'.JRDS.'free-map-marker-icon-blue.png')) {
+		$result = JOMRES_IMAGES_RELPATH.'markers/free-map-marker-icon-blue.png';
 	} else {
 		$result = '';
 	}
@@ -864,7 +870,7 @@ function make_agent_link($property_id = 0)
 
     $manager_id = $property_manager_xref[ $property_id ];
 
-    $output[ 'IMAGE' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/noimage.gif';
+    $output[ 'IMAGE' ] = JOMRES_IMAGES_RELPATH.'noimage.gif';
     if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.'userimages'.JRDS.'userimage_'.(int) $manager_id.'_thumbnail.jpg')) {
         $output[ 'IMAGE' ] = JOMRES_IMAGELOCATION_RELPATH.'userimages/userimage_'.(int) $manager_id.'_thumbnail.jpg';
     }
@@ -2777,13 +2783,13 @@ function removeAllPropertyRooms($property_uid)
  */
 function userHasBeenLoggedOut()
 {
-    echo '<center><img src="'.get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/Restricted.png" align="middle" border="0" />';
-    echo '<img src="'.get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/Secured.png" align="middle" border="0" />';
-    echo '<img src="'.get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/Restricted.png" align="middle" border="0" /></center><br />';
+    echo '<center><img src="'.JOMRES_IMAGES_RELPATH.'Restricted.png" align="middle" border="0" />';
+    echo '<img src="'.JOMRES_IMAGES_RELPATH.'Secured.png" align="middle" border="0" />';
+    echo '<img src="'.JOMRES_IMAGES_RELPATH.'Restricted.png" align="middle" border="0" /></center><br />';
     echo '<h2>'.jr_gettext('_JOMRES_JR_NOTLOGGEDIN', '_JOMRES_JR_NOTLOGGEDIN').'</h2>';
-    echo '<center><img src="'.get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/Restricted.png" align="middle" border="0" />';
-    echo '<img src="'.get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/Secured.png" align="middle" border="0" />';
-    echo '<img src="'.get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/Restricted.png" align="middle" border="0" /></center><br />';
+    echo '<center><img src="'.JOMRES_IMAGES_RELPATH.'Restricted.png" align="middle" border="0" />';
+    echo '<img src="'.JOMRES_IMAGES_RELPATH.'Secured.png" align="middle" border="0" />';
+    echo '<img src="'.JOMRES_IMAGES_RELPATH.'Restricted.png" align="middle" border="0" /></center><br />';
 }
 
 /**
@@ -3233,7 +3239,7 @@ function getImageForProperty($imageType, $property_uid, $itemUid)
     $fileLocation = false;
     switch ($imageType) {
         case 'property':
-            $default_image = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/jrlogo.png';
+            $default_image = JOMRES_IMAGES_RELPATH.'jrlogo.png';
             if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.$property_uid.'_property_'.$itemUid.'.jpg')) {
                 $fileLocation = JOMRES_IMAGELOCATION_RELPATH.$property_uid.'_property_'.$property_uid.'.jpg';
             } else {
@@ -3241,7 +3247,7 @@ function getImageForProperty($imageType, $property_uid, $itemUid)
             }
             break;
         case 'room':
-            $default_image = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/noimage.gif';
+            $default_image = JOMRES_IMAGES_RELPATH.'noimage.gif';
             if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.$property_uid.'_room_'.$itemUid.'.jpg')) {
                 $fileLocation = JOMRES_IMAGELOCATION_RELPATH.$property_uid.'_room_'.$itemUid.'.jpg';
             } else {
@@ -3635,7 +3641,7 @@ function scandir_getfiles_recursive($directory, $recursive = true, $listDirs = f
 
 function this_cms_is_joomla()
 {
-    if (_JOMRES_DETECTED_CMS != 'joomla3') {
+    if (_JOMRES_DETECTED_CMS != 'joomla3' && _JOMRES_DETECTED_CMS != 'joomla4') {
         return false;
     }
 

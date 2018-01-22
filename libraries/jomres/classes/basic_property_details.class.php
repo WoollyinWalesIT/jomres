@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -274,6 +274,7 @@ class basic_property_details
                 $this->features[$f]['image'] = $image;
                 $this->features[$f]['cat_id'] = $this->all_property_features[$f]['cat_id'];
 				$this->features[$f]['cat_title'] = $this->all_property_features[$f]['cat_title'];
+				$this->features[$f]['include_in_filters'] = $this->all_property_features[$f]['include_in_filters'];
             }
         }
     }

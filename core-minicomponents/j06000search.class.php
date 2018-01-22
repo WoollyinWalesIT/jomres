@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -136,7 +136,7 @@ class j06000search
 
         $calledByModule = getEscaped($calledByModule);
 
-        $infoIcon = '/'.JOMRES_ROOT_DIRECTORY.'/images/information.png';
+        $infoIcon = JOMRES_IMAGES_RELPATH.'information.png';
         $output = array();
         $pageoutput = array();
         $showButton = false;
@@ -346,13 +346,13 @@ class j06000search
             if (in_array('selectcombo', $searchOptions) && $showSearchOptions) {
                 if (!defined('_JOMRES_SELECTCOMBO')) {
                     // define("_JOMRES_SELECTCOMBO",1);
-                    //jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.chainedSelects.js");  // This doesn't work, because if we're using the jomres javascript cache this file may not have been included in the original, therefore we MUST add it to the init_javascript function in functions.php instead.
+                    //jomres_cmsspecific_addheaddata("javascript",JOMRES_NODE_MODULES_RELPATH.'jquery-chained','jquery.chained.js');  // This doesn't work, because if we're using the jomres javascript cache this file may not have been included in the original, therefore we MUST add it to the init_javascript function in functions.php instead.
 
                     echo '
 							<script language="JavaScript" type="text/javascript">
 							jomresJquery(function()
 							{
-								jomresJquery(\'#country\').chainSelect(\'#rregion\',\'' .JOMRES_SITEPAGE_URL_AJAX.'&task=selectcombo&filter=country\',
+								jomresJquery(\'#country\').chained(\'#rregion\',\'' .JOMRES_SITEPAGE_URL_AJAX.'&task=selectcombo&filter=country\',
 								{ 
 									before:function (target) //before request hide the target combobox and display the loading message
 									{ 
@@ -365,7 +365,7 @@ class j06000search
 										jomresJquery(target).css("display","inline");
 									}
 								});
-								jomresJquery(\'#rregion\').chainSelect(\'#ttown\',\'' .JOMRES_SITEPAGE_URL_AJAX.'&task=selectcombo&filter=region\',
+								jomresJquery(\'#rregion\').chained(\'#ttown\',\'' .JOMRES_SITEPAGE_URL_AJAX.'&task=selectcombo&filter=region\',
 								{ 
 									before:function (target) 
 									{ 

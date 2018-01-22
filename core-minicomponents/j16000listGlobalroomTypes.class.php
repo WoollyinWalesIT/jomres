@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -65,7 +65,7 @@ class j16000listGlobalroomTypes
                 $r[ 'PROPERTY_TYPES' ] = $selected_ptype_rows;
 
                 if (!using_bootstrap()) {
-                    $editIcon = '<img src="'.get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/EditItem.png" border="0" />';
+                    $editIcon = '<img src="'.JOMRES_IMAGES_RELPATH.'jomresimages/small/EditItem.png" border="0" />';
                     $r[ 'EDITLINK' ] = '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=editGlobalroomTypes&rmTypeUid='.$r['room_classes_uid'].'">'.$editIcon.'</a>';
                 } else {
                     $toolbar = jomres_singleton_abstract::getInstance('jomresItemToolbar');
@@ -89,10 +89,10 @@ class j16000listGlobalroomTypes
         $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
         $jrtb = $jrtbar->startTable();
         $jrtb .= $jrtbar->toolbarItem('cancel', JOMRES_SITEPAGE_URL_ADMIN, '');
-        $image = $jrtbar->makeImageValid('/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/AddItem.png');
+        $image = $jrtbar->makeImageValid(JOMRES_IMAGES_RELPATH.'jomresimages/small/AddItem.png');
         $link = JOMRES_SITEPAGE_URL_ADMIN;
         $jrtb .= $jrtbar->customToolbarItem('editGlobalroomTypes', $link, jr_gettext('_JOMRES_COM_MR_NEWTARIFF', '_JOMRES_COM_MR_NEWTARIFF', false), $submitOnClick = true, $submitTask = 'editGlobalroomTypes', $image);
-        $image = $jrtbar->makeImageValid('/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/WasteBasket.png');
+        $image = $jrtbar->makeImageValid(JOMRES_IMAGES_RELPATH.'jomresimages/small/WasteBasket.png');
         $link = JOMRES_SITEPAGE_URL_ADMIN;
         $jrtb .= $jrtbar->customToolbarItem('deleteGlobalroomTypes', $link, jr_gettext('_JOMRES_COM_MR_ROOM_DELETE', '_JOMRES_COM_MR_ROOM_DELETE', false), $submitOnClick = true, $submitTask = 'deleteGlobalroomTypes', $image);
         $jrtb .= $jrtbar->endTable();

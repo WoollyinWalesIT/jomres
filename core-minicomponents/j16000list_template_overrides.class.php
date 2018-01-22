@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -34,7 +34,7 @@ class j16000list_template_overrides
 			$template_files_overrideable = array();
 			
 			$already_found = array();
-			
+
 			foreach ( $template_packages as $packages ) {
 				foreach ( $packages as $package_item ) {
 					$r = array();

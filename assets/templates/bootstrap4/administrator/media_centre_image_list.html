@@ -1,0 +1,18 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<div id="{RANDOM_ID}">
+	<div class="row-fluid">
+		<div class="well well-small clearfix">
+			<div class="span3">
+				<img src="{IMAGE_REL_SMALL}" alt="{FILENAME}"/>
+			</div>
+			<div class="span5">
+				<h5>{FILENAME}</h5>
+			</div>
+			<div class="span4" align="right">
+				<a class="btn btn-primary" target="_blank" href="{IMAGE_REL_LARGE}" title="{_JOMRES_MEDIA_CENTRE_BUTTON_VIEW}"><i class="icon-zoom-in"></i> <!--{_JOMRES_MEDIA_CENTRE_BUTTON_VIEW}--></a>
+				<a class="btn btn-danger" onclick="delete_file('{DELETE_URL}' , '{RANDOM_ID}')" href="javascript:void(0);" title="{_JOMRES_MEDIA_CENTRE_BUTTON_DELETE}"><i class="icon-trash"></i> <!--{_JOMRES_MEDIA_CENTRE_BUTTON_DELETE}--></a>
+			</div>
+		</div>
+	</div>
+</div>
+</patTemplate:tmpl>

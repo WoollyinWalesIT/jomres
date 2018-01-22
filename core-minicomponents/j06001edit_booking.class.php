@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -114,7 +114,7 @@ class j06001edit_booking
                         $output[ 'HAPPROVEBOOKING' ] = jr_gettext('_JOMRES_BOOKING_APPROVE_INQUIRY', '_JOMRES_BOOKING_APPROVE_INQUIRY', $editable = false, $isLink = true);
                         $link = JOMRES_SITEPAGE_URL.'&task=approve_enquiry&contractUid='.$contract_uid;
                         $targetTask = 'booking_approval';
-                        $image = '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/'.$jrtbar->imageSize.'/Tick.png';
+                        $image = JOMRES_IMAGES_RELPATH.'jomresimages/'.$jrtbar->imageSize.'/Tick.png';
 
                         $jrtb .= $jrtbar->customToolbarItem($targetTask, $link, $output[ 'HAPPROVEBOOKING' ], $submitOnClick = false, $submitTask = '', $image);
                     }
@@ -122,7 +122,7 @@ class j06001edit_booking
                     $output[ 'HREJECTBOOKING' ] = jr_gettext('_JOMRES_BOOKING_REJECT_INQUIRY', '_JOMRES_BOOKING_REJECT_INQUIRY', $editable = false, $isLink = true);
                     $link = JOMRES_SITEPAGE_URL.'&task=reject_enquiry&contractUid='.$contract_uid;
                     $targetTask = 'booking_rejection';
-                    $image = '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/'.$jrtbar->imageSize.'/Cancel.png';
+                    $image = JOMRES_IMAGES_RELPATH.'jomresimages/'.$jrtbar->imageSize.'/Cancel.png';
 
                     $jrtb .= $jrtbar->customToolbarItem($targetTask, $link, $output[ 'HREJECTBOOKING' ], $submitOnClick = false, $submitTask = '', $image);
                 }
@@ -131,7 +131,7 @@ class j06001edit_booking
                 $output[ 'HAMENDBOOKING' ] = jr_gettext('_JOMRES_CONFIRMATION_AMEND', '_JOMRES_CONFIRMATION_AMEND', $editable = false, $isLink = true);
                 $link = JOMRES_SITEPAGE_URL.'&task=amendBooking&no_html=1&contractUid='.$contract_uid;
                 $targetTask = 'amendBooking';
-                $image = '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/'.$jrtbar->imageSize.'/HotelReservationEdit.png';
+                $image = JOMRES_IMAGES_RELPATH.'jomresimages/'.$jrtbar->imageSize.'/HotelReservationEdit.png';
 
                 if ((int) $current_contract_details->contract[$contract_uid]['contractdeets']['bookedout'] != 1 && (int) $current_contract_details->contract[$contract_uid]['contractdeets']['cancelled'] != 1) {
                     $jrtb .= $jrtbar->customToolbarItem($targetTask, $link, $output[ 'HAMENDBOOKING' ], $submitOnClick = false, $submitTask = '', $image);
@@ -141,14 +141,14 @@ class j06001edit_booking
                     $today = date('Y/m/d');
                     if ((int) $current_contract_details->contract[$contract_uid]['contractdeets']['bookedout'] != 1 && (int) $current_contract_details->contract[$contract_uid]['contractdeets']['cancelled'] != 1 && (int) $current_contract_details->contract[$contract_uid]['contractdeets']['approved'] == 1) {
                         if ((int) $current_contract_details->contract[$contract_uid]['contractdeets']['booked_in'] == 0) {
-                            if ($today >= $current_contract_details->contract[$contract_uid]['contractdeets']['arrival']) {
+                            //if ($today >= $current_contract_details->contract[$contract_uid]['contractdeets']['arrival']) {
                                 $output[ 'HBOOKGUESTIN' ] = jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN', '_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN', $editable = false, $isLink = true);
                                 $link = JOMRES_SITEPAGE_URL.'&task=checkin&contract_uid='.$contract_uid;
                                 $targetTask = 'bookGuestIn';
-                                $image = '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/'.$jrtbar->imageSize.'/BookGuestIn.png';
+                                $image = JOMRES_IMAGES_RELPATH.'jomresimages/'.$jrtbar->imageSize.'/BookGuestIn.png';
 
                                 $jrtb .= $jrtbar->customToolbarItem($targetTask, $link, $output[ 'HBOOKGUESTIN' ], $submitOnClick = false, $submitTask = '', $image);
-                            }
+                            //}
 
                             if ((int) $current_contract_details->contract[$contract_uid]['contractdeets']['channel_manager_booking'] != 1) {
                                 $jrtb .= $jrtbar->toolbarItem('cancel_booking', jomresURL(JOMRES_SITEPAGE_URL.'&task=cancel_booking&contract_uid='.$contract_uid), '');
@@ -157,7 +157,7 @@ class j06001edit_booking
                             $output[ 'HBOOKGUESTOUT' ] = jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTOUT', '_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTOUT', $editable = false, $isLink = true);
                             $link = JOMRES_SITEPAGE_URL.'&task=checkout&contract_uid='.$contract_uid;
                             $targetTask = 'bookGuestOut';
-                            $image = '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/'.$jrtbar->imageSize.'/BookGuestOut.png';
+                            $image = JOMRES_IMAGES_RELPATH.'jomresimages/'.$jrtbar->imageSize.'/BookGuestOut.png';
 
                             $jrtb .= $jrtbar->customToolbarItem($targetTask, $link, $output[ 'HBOOKGUESTOUT' ], $submitOnClick = false, $submitTask = '', $image);
                         }
@@ -188,7 +188,7 @@ class j06001edit_booking
                     $output[ 'SHOWINVOICE' ] = jr_gettext('_JOMRES_MANAGER_SHOWINVOICE', '_JOMRES_MANAGER_SHOWINVOICE', $editable = false, $isLink = true);
                     $link = JOMRES_SITEPAGE_URL.'&task=view_invoice&id='.(int) $current_contract_details->contract[$contract_uid]['contractdeets']['invoice_uid'];
                     $targetTask = 'view_invoice';
-                    $image = '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/'.$jrtbar->imageSize.'/Invoice.png';
+                    $image = JOMRES_IMAGES_RELPATH.'jomresimages/'.$jrtbar->imageSize.'/Invoice.png';
 
                     $jrtb .= $jrtbar->customToolbarItem($targetTask, $link, $output[ 'SHOWINVOICE' ], $submitOnClick = false, $submitTask = '', $image);
                 }
@@ -200,7 +200,7 @@ class j06001edit_booking
                     $output[ 'ICAL_EXPORT' ] = jr_gettext('_JOMRES_ICAL_EVENT', '_JOMRES_ICAL_EVENT', $editable = false, $isLink = true);
                     $link = JOMRES_SITEPAGE_URL.'&task=ical_export_contract&contract_uid='.$contract_uid.'&property_uid='.$defaultProperty;
                     $targetTask = 'ical_export_contract';
-                    $image = '/'.JOMRES_ROOT_DIRECTORY.'/images/calendar.png';
+                    $image = JOMRES_IMAGES_RELPATH.'calendar.png';
 
                     $jrtb .= $jrtbar->customToolbarItem($targetTask, $link, $output[ 'ICAL_EXPORT' ], $submitOnClick = false, $submitTask = '', $image);
                 }

@@ -1,0 +1,56 @@
+{
+  "name": "jomres",
+  "version": "1.0.0",
+  "description": "Property management and online booking system",
+  "main": "assets/js/jomres.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WoollyinWalesIT/jomres.git"
+  },
+  "keywords": [
+    "booking",
+    "reservations",
+    "calendar",
+    "schedule"
+  ],
+  "author": "Vince Wooll",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/WoollyinWalesIT/jomres/issues"
+  },
+  "homepage": "https://github.com/WoollyinWalesIT/jomres#readme",
+  "dependencies": {
+    "blockui-npm": "^1.0.0",
+    "blueimp-file-upload": "^9.19.3",
+    "bootstrap": "^4.0.0-beta.3",
+    "bootstrap-multiselect": "^0.9.13",
+    "chart.js": "^2.7.1",
+    "datatables.net-bs": "^1.10.16",
+    "datatables.net-bs4": "^1.10.16",
+    "datatables.net-buttons-bs": "^1.5.1",
+    "datatables.net-buttons-bs4": "^1.5.1",
+    "datatables.net-responsive-bs": "^2.2.1",
+    "datatables.net-responsive-bs4": "^2.2.1",
+    "flag-icon-css": "^2.9.0",
+    "font-awesome": "^4.7.0",
+    "fullcalendar": "2.9.1",
+    "fullcalendar-scheduler": "1.3.3",
+    "galleria": "^1.5.7",
+    "jquery": "^1.12.4",
+    "jquery-chained": "^2.0.0-beta.2",
+    "jquery-migrate": "^1.2.1",
+    "jquery-star-rating-plugin": "^4.11.0",
+    "jquery-ui": "^1.12.1",
+    "jquery-ui-dist": "^1.12.1",
+    "jquery-ui-themes": "^1.12.0",
+    "jquery-validation": "^1.17.0",
+    "jquery.tipsy": "^1.0.3",
+    "js-cookie": "^2.2.0",
+    "popper.js": "^1.13.0",
+    "simple-cmeditor": "^1.11.4",
+    "x-editable": "^1.5.1"
+  }
+}

@@ -1,0 +1,24 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<h2>{PAGETITLE}</h2>
+{JOMRESTOOLBAR}
+<table width="100%" border="0" id="list_rooms_srp">
+	<thead>
+		<tr>
+			<th>{COMMON_EDIT}</th>
+			<th>{HROOM_TYPE}</th>
+			<th>{HROOM_MAXPEOPLE}</th>
+		</tr>
+	</thead>
+	<tbody>
+	<patTemplate:tmpl name="rows" unusedvars="nbsp">
+		<tr>
+			<td>{BUTTONS}</td>
+			<td>{ROOM_TYPE}</td>
+			<td>{MAX_PEOPLE}</td>
+		</tr>
+	</patTemplate:tmpl>
+	</tbody>
+</table>
+
+</patTemplate:tmpl>

@@ -948,67 +948,6 @@
         ]
     },
     {
-        "name": "johngrogg/ics-parser",
-        "version": "v2.1.1",
-        "version_normalized": "2.1.1.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/u01jmg3/ics-parser.git",
-            "reference": "8bc8bd80d903512b1d9f249e621412792fa461a7"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/u01jmg3/ics-parser/zipball/8bc8bd80d903512b1d9f249e621412792fa461a7",
-            "reference": "8bc8bd80d903512b1d9f249e621412792fa461a7",
-            "shasum": ""
-        },
-        "require": {
-            "nesbot/carbon": "~1.18",
-            "php": ">=5.3.0"
-        },
-        "require-dev": {
-            "squizlabs/php_codesniffer": "^3.0"
-        },
-        "time": "2017-09-28T07:57:09+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "ICal": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Martin Thoma",
-                "email": "info@martin-thoma.de",
-                "role": "Original Developer"
-            },
-            {
-                "name": "John Grogg",
-                "email": "john.grogg@gmail.com",
-                "role": "Developer/Prior Owner"
-            },
-            {
-                "name": "Jonathan Goode",
-                "role": "Developer/Owner"
-            }
-        ],
-        "description": "ICS Parser",
-        "homepage": "https://github.com/u01jmg3/ics-parser",
-        "keywords": [
-            "iCalendar",
-            "ical",
-            "ical-parser",
-            "ics",
-            "ics-parser",
-            "ifb"
-        ]
-    },
-    {
         "name": "erusev/parsedown",
         "version": "1.6.4",
         "version_normalized": "1.6.4.0",
@@ -1180,88 +1119,6 @@
         "homepage": "http://flightphp.com"
     },
     {
-        "name": "aws/aws-sdk-php",
-        "version": "3.38.5",
-        "version_normalized": "3.38.5.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/aws/aws-sdk-php.git",
-            "reference": "13ffa481127c08e04244f116ae85a64b4172479c"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/13ffa481127c08e04244f116ae85a64b4172479c",
-            "reference": "13ffa481127c08e04244f116ae85a64b4172479c",
-            "shasum": ""
-        },
-        "require": {
-            "ext-json": "*",
-            "ext-pcre": "*",
-            "ext-simplexml": "*",
-            "ext-spl": "*",
-            "guzzlehttp/guzzle": "^5.3.1|^6.2.1",
-            "guzzlehttp/promises": "~1.0",
-            "guzzlehttp/psr7": "^1.4.1",
-            "mtdowling/jmespath.php": "~2.2",
-            "php": ">=5.5"
-        },
-        "require-dev": {
-            "andrewsville/php-token-reflection": "^1.4",
-            "aws/aws-php-sns-message-validator": "~1.0",
-            "behat/behat": "~3.0",
-            "doctrine/cache": "~1.4",
-            "ext-dom": "*",
-            "ext-openssl": "*",
-            "nette/neon": "^2.3",
-            "phpunit/phpunit": "^4.8.35|^5.4.0",
-            "psr/cache": "^1.0"
-        },
-        "suggest": {
-            "aws/aws-php-sns-message-validator": "To validate incoming SNS notifications",
-            "doctrine/cache": "To use the DoctrineCacheAdapter",
-            "ext-curl": "To send requests using cURL",
-            "ext-openssl": "Allows working with CloudFront private distributions and verifying received SNS messages"
-        },
-        "time": "2017-11-17T22:08:25+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "3.0-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Aws\\": "src/"
-            },
-            "files": [
-                "src/functions.php"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "Apache-2.0"
-        ],
-        "authors": [
-            {
-                "name": "Amazon Web Services",
-                "homepage": "http://aws.amazon.com"
-            }
-        ],
-        "description": "AWS SDK for PHP - Use Amazon Web Services in your PHP project",
-        "homepage": "http://aws.amazon.com/sdkforphp",
-        "keywords": [
-            "amazon",
-            "aws",
-            "cloud",
-            "dynamodb",
-            "ec2",
-            "glacier",
-            "s3",
-            "sdk"
-        ]
-    },
-    {
         "name": "symfony/polyfill-mbstring",
         "version": "v1.6.0",
         "version_normalized": "1.6.0.0",
@@ -1320,6 +1177,150 @@
             "polyfill",
             "portable",
             "shim"
+        ]
+    },
+    {
+        "name": "johngrogg/ics-parser",
+        "version": "v2.1.2",
+        "version_normalized": "2.1.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/u01jmg3/ics-parser.git",
+            "reference": "d47176d7edbe94764a0316801646b1faf2abb81f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/u01jmg3/ics-parser/zipball/d47176d7edbe94764a0316801646b1faf2abb81f",
+            "reference": "d47176d7edbe94764a0316801646b1faf2abb81f",
+            "shasum": ""
+        },
+        "require": {
+            "ext-mbstring": "*",
+            "nesbot/carbon": "~1.22",
+            "php": ">=5.3.0"
+        },
+        "require-dev": {
+            "squizlabs/php_codesniffer": "^3.0"
+        },
+        "time": "2017-12-19T10:46:26+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "ICal": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Martin Thoma",
+                "email": "info@martin-thoma.de",
+                "role": "Original Developer"
+            },
+            {
+                "name": "John Grogg",
+                "email": "john.grogg@gmail.com",
+                "role": "Developer/Prior Owner"
+            },
+            {
+                "name": "Jonathan Goode",
+                "role": "Developer/Owner"
+            }
+        ],
+        "description": "ICS Parser",
+        "homepage": "https://github.com/u01jmg3/ics-parser",
+        "keywords": [
+            "iCalendar",
+            "ical",
+            "ical-parser",
+            "ics",
+            "ics-parser",
+            "ifb"
+        ]
+    },
+    {
+        "name": "aws/aws-sdk-php",
+        "version": "3.48.11",
+        "version_normalized": "3.48.11.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/aws/aws-sdk-php.git",
+            "reference": "4159562ee5c2b2d322cfcccd2401d90bfaceaf1d"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/4159562ee5c2b2d322cfcccd2401d90bfaceaf1d",
+            "reference": "4159562ee5c2b2d322cfcccd2401d90bfaceaf1d",
+            "shasum": ""
+        },
+        "require": {
+            "ext-json": "*",
+            "ext-pcre": "*",
+            "ext-simplexml": "*",
+            "ext-spl": "*",
+            "guzzlehttp/guzzle": "^5.3.1|^6.2.1",
+            "guzzlehttp/promises": "~1.0",
+            "guzzlehttp/psr7": "^1.4.1",
+            "mtdowling/jmespath.php": "~2.2",
+            "php": ">=5.5"
+        },
+        "require-dev": {
+            "andrewsville/php-token-reflection": "^1.4",
+            "aws/aws-php-sns-message-validator": "~1.0",
+            "behat/behat": "~3.0",
+            "doctrine/cache": "~1.4",
+            "ext-dom": "*",
+            "ext-openssl": "*",
+            "nette/neon": "^2.3",
+            "phpunit/phpunit": "^4.8.35|^5.4.3",
+            "psr/cache": "^1.0"
+        },
+        "suggest": {
+            "aws/aws-php-sns-message-validator": "To validate incoming SNS notifications",
+            "doctrine/cache": "To use the DoctrineCacheAdapter",
+            "ext-curl": "To send requests using cURL",
+            "ext-openssl": "Allows working with CloudFront private distributions and verifying received SNS messages"
+        },
+        "time": "2018-01-09T22:01:13+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "3.0-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Aws\\": "src/"
+            },
+            "files": [
+                "src/functions.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "Apache-2.0"
+        ],
+        "authors": [
+            {
+                "name": "Amazon Web Services",
+                "homepage": "http://aws.amazon.com"
+            }
+        ],
+        "description": "AWS SDK for PHP - Use Amazon Web Services in your PHP project",
+        "homepage": "http://aws.amazon.com/sdkforphp",
+        "keywords": [
+            "amazon",
+            "aws",
+            "cloud",
+            "dynamodb",
+            "ec2",
+            "glacier",
+            "s3",
+            "sdk"
         ]
     }
 ]

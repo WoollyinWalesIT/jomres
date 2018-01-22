@@ -1,0 +1,91 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h3 class="page-header">{LIPAGETITLE}</h3>
+<table width="100%" class="table table-striped table-bordered table-condensed">
+	<thead>
+		<tr>
+			<th width="25%">{HLI_NAME}</th>
+			<th>{HLI_INIT_PRICE}</th>
+			<th>{HLI_INIT_QTY}</th>
+			<th>{HLI_INIT_DISCOUNT}</th>
+			<th>{HLI_INIT_TOTAL}</th>
+			<th>{HLI_TAX_RATE}</th>
+			<th>{HLI_TAX_DESCRIPTION}</th>
+			<th>{HLI_TAX_AMOUNT}</th>
+			<th>{HLI_INIT_TOTAL_INCLUSIVE}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+		<tr>
+			<td>{LI_NAME} {LI_DESCRIPTION}</td>
+			<td>{LI_INIT_PRICE}</td>
+			<td>{LI_INIT_QTY}</td>
+			<td>{LI_INIT_DISCOUNT}</td>
+			<td>{LI_INIT_TOTAL}</td>
+			<td>{LI_TAX_RATE}%</td>
+			<td>{LI_TAX_DESCRIPTION}</td>
+			<td>{LI_TAX_AMOUNT}</td>
+			<td>{LI_INIT_TOTAL_INCLUSIVE}</td>
+		</tr>
+		</patTemplate:tmpl>
+		<tr>
+			<td colspan="4"></td>
+			<td><strong>{JOMRES_GRANDTOTAL_EX_TAX}</strong></td>
+			<td colspan="2"></td>
+			<td><strong>{JOMRES_GRANDTOTAL_TOTAL_TAX}</strong></td>
+			<td><strong>{JOMRES_GRANDTOTAL_INC_TAX}</strong></td>
+		</tr>
+		<tr>
+			<td colspan="4"></td>
+			<td>{GRAND_TOTAL_EX_TAX}</td>
+			<td colspan="2"></td>
+			<td>{GRAND_TOTAL_TAX}</td>
+			<td><strong>{GRAND_TOTAL_INC_TAX}</strong></td>
+		</tr>
+	</tbody>
+</table>
+<br />
+<h3 class="page-header">{HINVOICE_TRANSACTIONS}</h3>
+<table width="100%" class="table table-striped table-bordered table-condensed">
+	<thead>
+		<tr>
+			<th width="25%">{HLI_NAME}</th>
+			<th>{TRANSACTION_ID}</th>
+			<th>{PAYMENT_METHOD}</th>
+			<th>{HLI_INIT_PRICE}</th>
+			<th>{HLI_INIT_QTY}</th>
+			<th>{HLI_INIT_DISCOUNT}</th>
+			<th>{HLI_INIT_TOTAL}</th>
+			<th>{HLI_TAX_RATE}</th>
+			<th>{HLI_TAX_DESCRIPTION}</th>
+			<th>{HLI_TAX_AMOUNT}</th>
+			<th>{HLI_INIT_TOTAL_INCLUSIVE}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="transaction_rows" unusedvars="nbsp">
+		<tr>
+			<td>{LI_NAME} {LI_DESCRIPTION}</td>
+			<td>{TRANSACTION_ID}</td>
+			<td>{PAYMENT_METHOD}</td>
+			<td>{LI_INIT_PRICE}</td>
+			<td>{LI_INIT_QTY}</td>
+			<td>{LI_INIT_DISCOUNT}</td>
+			<td>{LI_INIT_TOTAL}</td>
+			<td>{LI_TAX_RATE}%</td>
+			<td>{LI_TAX_DESCRIPTION}</td>
+			<td>{LI_TAX_AMOUNT}</td>
+			<td>{LI_INIT_TOTAL_INCLUSIVE}</td>
+		</tr>
+		</patTemplate:tmpl>
+		<tr>
+			<td colspan="10"></td>
+			<td><strong>{HINITTOTAL}</strong></td>
+		</tr>
+		<tr>
+			<td colspan="10"></td>
+			<td><strong>{OUTSTANDING_TOTAL}</strong></td>
+		</tr>
+	</tbody>
+</table>
+</patTemplate:tmpl>

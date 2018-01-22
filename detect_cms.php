@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -44,6 +44,10 @@ if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'wp-config.php')) {
         define('_JOMRES_DETECTED_CMS', 'joomla3');
         define('_JOMRES_DETECTED_CMS_SPECIFIC_FILES', JOMRES_CMSSPECIFIC_ABSPATH._JOMRES_DETECTED_CMS.JRDS);
     }
+    if ($jversion::MAJOR_VERSION == '4') {
+        define('_JOMRES_DETECTED_CMS', 'joomla4');
+        define('_JOMRES_DETECTED_CMS_SPECIFIC_FILES', JOMRES_CMSSPECIFIC_ABSPATH._JOMRES_DETECTED_CMS.JRDS);
+    } 
 }
 
 

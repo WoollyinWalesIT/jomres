@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head> 
+ <title>jQuery Star Rating Plugin - Issue 14 - FIXED</title>
+ 
+ <!--// plugin-specific resources //-->
+	<script src="jquery.js" type="text/javascript"></script>
+ <script src="jquery.rating.js" type="text/javascript" language="javascript"></script>
+ <link href="jquery.rating.css" type="text/css" rel="stylesheet"/>
+
+<SCRIPT type="text/javascript">
+function replace_stars(value){
+	var html="<form onsubmit='return replace_stars(this.rating.value);'>\n";
+	var i;
+	for(i=1;i<=5;i++){
+		html+=" <input class='star' type='radio' name='rating' value='"+i+"' "+(value==i?"checked='checked'":"")+" />\n";
+	}
+	html+="</form>\n";
+	html+="<script type='text/javascript'>\n";
+	html+="  $('#container').find('.star').rating({\n";
+	html+="    callback: function(){ this.form.onsubmit() && this.form.submit(); }\n"
+	html+="  });\n";
+	html+="</"+"script>\n";
+	$("#code").val(html);
+	$("#container").html(html);
+}
+$(document).ready(function(){
+ replace_stars(3);
+});
+ </SCRIPT>
+</head>
+<body>
+
+<h1>Test Page for Issue 14</h1>
+<p>
+ <a href="http://code.google.com/p/jquery-star-rating-plugin/issues/detail?id=14">View details</a>
+</p>
+<p>
+ Status: <strong style="color:#090">resolved</strong>
+ <br/>
+ The problems described at the bottom of this page will not
+ happen with the latest version of this plugin
+</p>
+
+
+<hr/>
+
+<DIV id="container">
+ <FORM onSubmit="return replace_stars(this.rating.value);">
+  <INPUT type="hidden" name="rating" value="3">
+  <DIV class="cancel"><A title="Cancel Rating"></A></DIV>
+  <DIV class="star star_group_rating star_live star_on"><A title="1">1</A></DIV>
+  <DIV class="star star_group_rating star_live star_on"><A title="2">2</A></DIV>
+  <DIV class="star star_group_rating star_live star_on"><A title="3">3</A></DIV>
+  <DIV class="star star_group_rating star_live"><A title="4">4</A></DIV>
+  <DIV class="star star_group_rating star_live"><A title="5">5</A></DIV>
+ </FORM>
+</DIV>
+<BR>
+<BR>
+<H2>Form Code:</H2>
+<FORM>
+ <TEXTAREA id="code" rows="13" cols="80" disabled="disabled"></TEXTAREA>
+</FORM>
+<H2>Problems:</H2>
+<P>Reported on <A href="http://groups.google.com/group/jquery-en/browse_thread/thread/72a1cd869562aca5">the jQuery group</A>.</P>
+<P>After replacing the contents of the div containing the stars:</P>
+<OL>
+ <LI>The cancel button disappears</LI>
+ <LI>Mouseovers stop working until you click again</LI>
+ <LI>Mouseovers get stuck (especially when mousing off rightwards)</LI>
+ <LI>Frequently, the following error occurs: (pasted from Firebug console)
+  <BLOCKQUOTE><CODE>elem.parentNode is null<BR>
+   siblings: function(elem){return jQuery....ling(elem.parentNode.firstChild,elem);},<BR>
+   <EM>jquery-1.2.6.js (line 1259)</EM></CODE></BLOCKQUOTE>
+  <CODE></CODE></LI>
+</OL>
+
+</BODY>
+</HTML>

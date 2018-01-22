@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -32,7 +32,7 @@ class j06005save_review
         } else {
             $property_uid = (int) $_POST[ 'property_uid' ];
         }
-        //var_dump($_POST);exit;
+
         $rating_1 = (int) jomresGetParam($_POST, 'rating_1', 0);
         $rating_2 = (int) jomresGetParam($_POST, 'rating_2', 0);
         $rating_3 = (int) jomresGetParam($_POST, 'rating_3', 0);

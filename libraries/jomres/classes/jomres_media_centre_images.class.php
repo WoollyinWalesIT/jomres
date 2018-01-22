@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -45,9 +45,9 @@ class jomres_media_centre_images
 		$this->images = array();
 		$this->site_images = array();
 		$this->multi_query_images = array();
-        $this->multi_query_images [ 'noimage-large' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/noimage.gif';
-        $this->multi_query_images [ 'noimage-medium' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/noimage.gif';
-        $this->multi_query_images [ 'noimage-small' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/noimage_small.gif';
+        $this->multi_query_images [ 'noimage-large' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/assets/images/noimage.gif';
+        $this->multi_query_images [ 'noimage-medium' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/assets/images/noimage.gif';
+        $this->multi_query_images [ 'noimage-small' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/assets/images/noimage_small.gif';
     }
 
 	//get all property images

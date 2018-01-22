@@ -1,0 +1,29 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<script type="text/javascript">
+		<!--
+		jomresJquery(document).ready(function () {
+			make_datatable('booking_data_archive', '{PAGETITLE}', '{LIVESITE}');
+		});
+		//-->
+	</script>
+	<h2 class="page-header">{PAGETITLE}</h2>
+	{JOMRESTOOLBAR}
+	<p>{INFO}</p>
+	<table id="booking_data_archive" class="table table-striped" width="100%">
+		<thead>
+		<tr>
+			<th>{_JOMRES_SORTORDER_PROPERTYNAME}</th>
+			<th>{_JRPORTAL_LISTBOOKINGS_HEADER_DATEARCHIVED}</th>
+		</tr>
+		</thead>
+		<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="property_name">
+			<tr>
+				<td>{PROPERTY_NAME}</td>
+				<td>{DATE_TOOTIP}</td>
+			</tr>
+		</patTemplate:tmpl>
+		</tbody>
+	</table>
+</patTemplate:tmpl>

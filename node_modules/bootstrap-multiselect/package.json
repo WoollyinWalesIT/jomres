@@ -1,0 +1,59 @@
+{
+  "_from": "bootstrap-multiselect@0.9.13",
+  "_id": "bootstrap-multiselect@0.9.13",
+  "_inBundle": false,
+  "_integrity": "sha1-V7h0URSVOTsj+GbabS6GZXn8J+U=",
+  "_location": "/bootstrap-multiselect",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "bootstrap-multiselect@0.9.13",
+    "name": "bootstrap-multiselect",
+    "escapedName": "bootstrap-multiselect",
+    "rawSpec": "0.9.13",
+    "saveSpec": null,
+    "fetchSpec": "0.9.13"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/bootstrap-multiselect/-/bootstrap-multiselect-0.9.13.tgz",
+  "_shasum": "57b874511495393b23f866da6d2e866579fc27e5",
+  "_spec": "bootstrap-multiselect@0.9.13",
+  "_where": "C:\\wamp64\\www\\j4\\jomres",
+  "author": {
+    "name": "David Stutz"
+  },
+  "bugs": {
+    "url": "https://github.com/davidstutz/bootstrap-multiselect/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "JQuery multiselect plugin based on Twitter Bootstrap.",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "homepage": "https://github.com/davidstutz/bootstrap-multiselect",
+  "keywords": [
+    "js",
+    "css",
+    "less",
+    "bootstrap",
+    "jquery",
+    "multiselect"
+  ],
+  "license": "Apache License, Version 2.0",
+  "main": "dist/bootstrap-multiselect.js",
+  "name": "bootstrap-multiselect",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidstutz/bootstrap-multiselect.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.9.13"
+}

@@ -1,0 +1,17 @@
+
+<patTemplate:tmpl name="pageoutput">
+<h2>{PAGETITLE}</h2>
+
+	<form action="{BOOKING_FORM_URL}&amend=1&contractuid={CONTRACTUID}" method="post" name="adminForm">
+
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="selectedProperty">{SELECTPROPERTY}</label>
+		<div class="col-md-10">
+			{PROPERTYDROPDOWN}</div>
+		</div>
+	</div>
+	
+	{JOMRESTOOLBAR} <input type="submit" id="send" name="send" value="{_JOMRES_CONFIRMATION_AMEND}" class="btn btn-default"/>
+	</form>
+	
+</patTemplate:tmpl>

@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -43,6 +43,8 @@ class j16000listPfeatures
         $output[ 'HJOMRES_A_ICON' ] = jr_gettext('_JOMRES_A_ICON', '_JOMRES_A_ICON', false);
         $output[ 'HPROPERTY_TYPES' ] = jr_gettext('_JOMRES_FRONT_PTYPE', '_JOMRES_FRONT_PTYPE', false);
         $output[ 'HCATEGORY' ] = jr_gettext('_JOMRES_HCATEGORY', '_JOMRES_HCATEGORY', false);
+		$output[ 'INCLUDEINFILTERS' ] = jr_gettext('INCLUDEINFILTERS', 'INCLUDEINFILTERS', false);
+
 
         foreach ($jomres_property_features->property_features as $f) {
             $selected_ptype_rows = '';
@@ -63,6 +65,11 @@ class j16000listPfeatures
             $r[ 'IMAGE' ] = JOMRES_IMAGELOCATION_RELPATH . 'pfeatures/' . $f['image'];
             $r[ 'CATEGORY' ] = $f['cat_title'];
 
+			if ($f['include_in_filters'] == "1")
+				$r[ 'INCLUDE_IN_FILTERS' ] = jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false);
+			else
+				$r[ 'INCLUDE_IN_FILTERS' ] = jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false);
+			
             $toolbar = jomres_singleton_abstract::getInstance('jomresItemToolbar');
 			$toolbar->newToolbar();
 			$toolbar->addItem('fa fa-pencil-square-o', 'btn btn-info', '', jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=editPfeature&id='.$f['id']), jr_gettext('COMMON_EDIT', 'COMMON_EDIT', false));
@@ -78,11 +85,11 @@ class j16000listPfeatures
         $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
         $jrtb = $jrtbar->startTable();
         $jrtb .= $jrtbar->toolbarItem('cancel', JOMRES_SITEPAGE_URL_ADMIN, '');
-        $image = $jrtbar->makeImageValid('/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/AddItem.png');
+        $image = $jrtbar->makeImageValid(JOMRES_IMAGES_RELPATH.'jomresimages/small/AddItem.png');
         $link = JOMRES_SITEPAGE_URL_ADMIN;
         $jrtb .= $jrtbar->customToolbarItem('editPfeature', $link, jr_gettext('_JOMRES_COM_MR_NEWTARIFF', '_JOMRES_COM_MR_NEWTARIFF', false), $submitOnClick = true, $submitTask = 'editPfeature', $image);
         $jrtb .= $jrtbar->spacer();
-        $image = $jrtbar->makeImageValid('/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/WasteBasket.png');
+        $image = $jrtbar->makeImageValid(JOMRES_IMAGES_RELPATH.'jomresimages/small/WasteBasket.png');
         $link = JOMRES_SITEPAGE_URL_ADMIN;
         $jrtb .= $jrtbar->customToolbarItem('deletePfeature', $link, jr_gettext('_JOMRES_COM_MR_ROOM_DELETE', '_JOMRES_COM_MR_ROOM_DELETE', false), $submitOnClick = true, $submitTask = 'deletePfeature', $image);
         $jrtb .= $jrtbar->endTable();

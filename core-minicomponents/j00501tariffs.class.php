@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -111,6 +111,12 @@ class j00501tariffs
                     $configurationPanel->insertSetting();
                 }
             }
+			
+        $configurationPanel->setleft(jr_gettext('POA_DISPLAY_PRICE', 'POA_DISPLAY_PRICE', false));
+        $configurationPanel->setmiddle( '<input type="text" class="inputbox form-control"  size="5" name="cfg_poa_price" value="'.$mrConfig[ 'poa_price' ].'" />' );
+        $configurationPanel->setright(jr_gettext('POA_DISPLAY_PRICE_DESC', 'POA_DISPLAY_PRICE_DESC', false));
+        $configurationPanel->insertSetting();
+			
         }
 
         $configurationPanel->endPanel();

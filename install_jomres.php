@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 date_default_timezone_set('UTC');
@@ -22,7 +22,7 @@ if (isset($_REQUEST[ 'autoupgrade' ])) {
 
 // Set this to "development" to prevent the installer from setting the site to production and therefore deleting this file on run.
 define('PROD_DEV', 'production');
-// define ("PROD_DEV" , "development");
+//define ("PROD_DEV" , "development");
 
 // Useful for testing installer changes, uncomment to prevent redirection after run
 // define ( "ERRORS_SHOWN_NO_REDIRECT" , 1 );
@@ -623,6 +623,15 @@ function doTableUpdates()
 	if (!checkLineitemsPaymentMethodColExists()) {
         alterLineitemsPaymentMethodCol();
 	}
+
+	if (!checkPropertyFeaturesFilterColExists()) {
+        alterPropertyFeaturesFilterCol();
+	}
+	
+	if (!checkReviewsRatingsContractUidColExists()) {
+        alterReviewsRatingsContractUidCol();
+	}
+	
 	
 	alterCustomtextColsChangeDefaultVals();
 	copy_default_property_type_markers();
@@ -637,6 +646,44 @@ function doTableUpdates()
 	
 }
  
+function alterReviewsRatingsContractUidCol()
+{
+    $query = "ALTER TABLE `#__jomres_reviews_ratings` ADD `contract_uid` int( 11 ) default NULL  ";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to add __jomres_reviews_ratings contract_uid column', 'danger');
+    }
+}
+
+function checkReviewsRatingsContractUidColExists()
+{
+    $query = "SHOW COLUMNS FROM #__jomres_reviews_ratings LIKE 'contract_uid'";
+    $result = doSelectSql($query);
+    if (count($result) > 0) {
+        return true;
+    }
+    return false;
+}
+
+
+function alterPropertyFeaturesFilterCol()
+{
+    $query = "ALTER TABLE `#__jomres_hotel_features` ADD `include_in_filters` TINYINT(1) NOT NULL DEFAULT 1 ";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to add __jomres_hotel_features include_in_filters column', 'danger');
+    }
+}
+
+function checkPropertyFeaturesFilterColExists()
+{
+    $query = "SHOW COLUMNS FROM #__jomres_hotel_features LIKE 'include_in_filters'";
+    $result = doSelectSql($query);
+    if (count($result) > 0) {
+        return true;
+    }
+    return false;
+}
+
+
 function checkLineitemsPaymentMethodColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomresportal_lineitems  LIKE 'payment_method'";
@@ -905,35 +952,35 @@ function copy_default_property_type_markers() {
 	}
 	
 	if ($passed) {
-		if (!copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'markers'.JRDS.'free-map-marker-icon-blue.png', JOMRES_IMAGELOCATION_ABSPATH.'markers'.JRDS.'free-map-marker-icon-blue.png')) {
+		if (!copy(JOMRES_IMAGES_ABSPATH.'markers'.JRDS.'free-map-marker-icon-blue.png', JOMRES_IMAGELOCATION_ABSPATH.'markers'.JRDS.'free-map-marker-icon-blue.png')) {
 			output_message("Error, unable to copy marker image", 'danger');
 		}
 		
-		if (!copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'markers'.JRDS.'free-map-marker-icon-blue-darker.png', JOMRES_IMAGELOCATION_ABSPATH.'markers'.JRDS.'free-map-marker-icon-blue-darker.png')) {
+		if (!copy(JOMRES_IMAGES_ABSPATH.'markers'.JRDS.'free-map-marker-icon-blue-darker.png', JOMRES_IMAGELOCATION_ABSPATH.'markers'.JRDS.'free-map-marker-icon-blue-darker.png')) {
 			output_message("Error, unable to copy marker image", 'danger');
 		}
 		
-		if (!copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'markers'.JRDS.'free-map-marker-icon-dark.png', JOMRES_IMAGELOCATION_ABSPATH.'markers'.JRDS.'free-map-marker-icon-dark.png')) {
+		if (!copy(JOMRES_IMAGES_ABSPATH.'markers'.JRDS.'free-map-marker-icon-dark.png', JOMRES_IMAGELOCATION_ABSPATH.'markers'.JRDS.'free-map-marker-icon-dark.png')) {
 			output_message("Error, unable to copy marker image", 'danger');
 		}
 		
-		if (!copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'markers'.JRDS.'free-map-marker-icon-green.png', JOMRES_IMAGELOCATION_ABSPATH.'markers'.JRDS.'free-map-marker-icon-green.png')) {
+		if (!copy(JOMRES_IMAGES_ABSPATH.'markers'.JRDS.'free-map-marker-icon-green.png', JOMRES_IMAGELOCATION_ABSPATH.'markers'.JRDS.'free-map-marker-icon-green.png')) {
 			output_message("Error, unable to copy marker image", 'danger');
 		}
 		
-		if (!copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'markers'.JRDS.'free-map-marker-icon-green-darker.png', JOMRES_IMAGELOCATION_ABSPATH.'markers'.JRDS.'free-map-marker-icon-green-darker.png')) {
+		if (!copy(JOMRES_IMAGES_ABSPATH.'markers'.JRDS.'free-map-marker-icon-green-darker.png', JOMRES_IMAGELOCATION_ABSPATH.'markers'.JRDS.'free-map-marker-icon-green-darker.png')) {
 			output_message("Error, unable to copy marker image", 'danger');
 		}
 		
-		if (!copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'markers'.JRDS.'free-map-marker-icon-orange.png', JOMRES_IMAGELOCATION_ABSPATH.'markers'.JRDS.'free-map-marker-icon-orange.png')) {
+		if (!copy(JOMRES_IMAGES_ABSPATH.'markers'.JRDS.'free-map-marker-icon-orange.png', JOMRES_IMAGELOCATION_ABSPATH.'markers'.JRDS.'free-map-marker-icon-orange.png')) {
 			output_message("Error, unable to copy marker image", 'danger');
 		}
 		
-		if (!copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'markers'.JRDS.'free-map-marker-icon-pink.png', JOMRES_IMAGELOCATION_ABSPATH.'markers'.JRDS.'free-map-marker-icon-pink.png')) {
+		if (!copy(JOMRES_IMAGES_ABSPATH.'markers'.JRDS.'free-map-marker-icon-pink.png', JOMRES_IMAGELOCATION_ABSPATH.'markers'.JRDS.'free-map-marker-icon-pink.png')) {
 			output_message("Error, unable to copy marker image", 'danger');
 		}
 		
-		if (!copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'markers'.JRDS.'free-map-marker-icon-red.png', JOMRES_IMAGELOCATION_ABSPATH.'markers'.JRDS.'free-map-marker-icon-red.png')) {
+		if (!copy(JOMRES_IMAGES_ABSPATH.'markers'.JRDS.'free-map-marker-icon-red.png', JOMRES_IMAGELOCATION_ABSPATH.'markers'.JRDS.'free-map-marker-icon-red.png')) {
 			output_message("Error, unable to copy marker image", 'danger');
 		}
 	}
@@ -2679,6 +2726,7 @@ function createReviewsTables()
 	`rating_ip` varchar( 20 ) default NULL ,
 	`rating_date` datetime default NULL ,
 	`published` BOOL NOT NULL DEFAULT '0',
+	`contract_uid` int( 11 ) default NULL ,
 	PRIMARY KEY ( `rating_id` )
 	)";
     if (!doInsertSql($query, '')) {
@@ -3183,147 +3231,147 @@ function updatePluginSettings()
 
 function copyImages()
 {
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'logo.png', JOMRES_IMAGELOCATION_ABSPATH.'logo.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'logo.png', JOMRES_IMAGELOCATION_ABSPATH.'logo.png');
 
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'facilities_Disabled_Access.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'facilities_Disabled_Access.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'facilities_Disabled_Facilities.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'facilities_Disabled_Facilities.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'facilities_Dogs_Not_Permitted.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'facilities_Dogs_Not_Permitted.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'facilities_Dogs_Permitted.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'facilities_Dogs_Permitted.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'facilities_Information.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'facilities_Information.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'facilities_Internet.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'facilities_Internet.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'facilities_Disabled_Access.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'facilities_Disabled_Access.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'facilities_Disabled_Facilities.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'facilities_Disabled_Facilities.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'facilities_Dogs_Not_Permitted.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'facilities_Dogs_Not_Permitted.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'facilities_Dogs_Permitted.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'facilities_Dogs_Permitted.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'facilities_Information.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'facilities_Information.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'facilities_Internet.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'facilities_Internet.png');
 
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'24hour.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'24hour.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'air_conditioning.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'air_conditioning.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'24hour.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'24hour.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'air_conditioning.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'air_conditioning.png');
 
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'airport_nearby.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'airport_nearby.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'baby_friendly.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'baby_friendly.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'xmas_partys.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'xmas_partys.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'wildlife.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'wildlife.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'wifi.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'wifi.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'whalewatching.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'whalewatching.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'weddings.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'weddings.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'wc.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'wc.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'walking.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'walking.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'visitor_centre.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'visitor_centre.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'valet_parking.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'valet_parking.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'tv_in_room.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'tv_in_room.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'toilets.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'toilets.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'tennis.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'tennis.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'telephone.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'telephone.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'snorkelling.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'snorkelling.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'smokers_welcome.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'smokers_welcome.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'Skionsite.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'Skionsite.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'shuttle_service.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'shuttle_service.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'shower_only.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'shower_only.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'scuba.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'scuba.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'sailing.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'sailing.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'room_service.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'room_service.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'restraunt.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'restraunt.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'restraunt2.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'restraunt2.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'ranger.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'ranger.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'pool.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'pool.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'airport_nearby.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'airport_nearby.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'baby_friendly.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'baby_friendly.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'xmas_partys.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'xmas_partys.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'wildlife.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'wildlife.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'wifi.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'wifi.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'whalewatching.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'whalewatching.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'weddings.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'weddings.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'wc.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'wc.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'walking.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'walking.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'visitor_centre.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'visitor_centre.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'valet_parking.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'valet_parking.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'tv_in_room.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'tv_in_room.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'toilets.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'toilets.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'tennis.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'tennis.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'telephone.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'telephone.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'snorkelling.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'snorkelling.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'smokers_welcome.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'smokers_welcome.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'Skionsite.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'Skionsite.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'shuttle_service.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'shuttle_service.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'shower_only.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'shower_only.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'scuba.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'scuba.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'sailing.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'sailing.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'room_service.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'room_service.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'restraunt.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'restraunt.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'restraunt2.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'restraunt2.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'ranger.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'ranger.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'pool.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'pool.png');
 
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'picnic_area.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'picnic_area.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'pets_welcome.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'pets_welcome.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'parking.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'parking.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'Ownermanaged.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'Ownermanaged.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'no_smoking.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'no_smoking.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'mountain_bike.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'mountain_bike.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'meeting_room.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'meeting_room.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'medicare.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'medicare.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'laundry_service.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'laundry_service.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'language.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'language.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'jacuzzi.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'jacuzzi.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'iron.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'iron.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'internet.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'internet.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'information.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'information.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'info2.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'info2.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'in_room_teacoffee.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'in_room_teacoffee.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'hotel_safe.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'hotel_safe.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'honeymoon_friendly.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'honeymoon_friendly.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'historichouses.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'historichouses.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'hiking.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'hiking.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'helicopterpad.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'helicopterpad.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'hairdryer.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'hairdryer.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'hairdresser.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'hairdresser.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'gym.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'gym.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'gym2.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'gym2.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'guided_tours.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'guided_tours.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'groups.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'groups.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'golf.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'golf.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'giftshop.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'giftshop.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'gastronomicrestaurant.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'gastronomicrestaurant.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'gardens.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'gardens.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'fridge.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'fridge.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'fourwd_access.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'fourwd_access.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'forrest_nearby.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'forrest_nearby.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'fishing.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'fishing.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'fishing2.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'fishing2.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'fireplace.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'fireplace.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'fees_pound.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'fees_pound.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'fees_euro.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'fees_euro.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'fees.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'fees.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'elevator.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'elevator.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'DVDVideo.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'DVDVideo.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'drinking_water.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'drinking_water.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'dogs_permitted.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'dogs_permitted.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'dogs_not_permitted.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'dogs_not_permitted.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'disco.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'disco.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'disabled_facilities.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'disabled_facilities.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'disabled_access.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'disabled_access.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'cycle_paths.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'cycle_paths.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'conference_facilities.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'conference_facilities.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'concierge.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'concierge.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'cinema.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'cinema.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'CDplayer.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'CDplayer.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'casino.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'casino.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'caravan.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'caravan.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'canoeing.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'canoeing.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'camping_area.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'camping_area.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'campfire.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'campfire.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'bird_hide.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'bird_hide.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'beach.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'beach.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'beach2.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'beach2.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'bbq_facilities.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'bbq_facilities.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'bath_tub.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'bath_tub.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'bar.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'bar.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'bar2.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'bar2.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'balcony.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'balcony.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'zodiacexcursions.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'zodiacexcursions.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'picnic_area.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'picnic_area.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'pets_welcome.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'pets_welcome.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'parking.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'parking.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'Ownermanaged.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'Ownermanaged.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'no_smoking.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'no_smoking.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'mountain_bike.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'mountain_bike.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'meeting_room.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'meeting_room.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'medicare.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'medicare.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'laundry_service.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'laundry_service.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'language.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'language.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'jacuzzi.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'jacuzzi.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'iron.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'iron.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'internet.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'internet.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'information.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'information.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'info2.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'info2.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'in_room_teacoffee.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'in_room_teacoffee.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'hotel_safe.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'hotel_safe.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'honeymoon_friendly.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'honeymoon_friendly.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'historichouses.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'historichouses.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'hiking.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'hiking.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'helicopterpad.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'helicopterpad.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'hairdryer.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'hairdryer.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'hairdresser.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'hairdresser.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'gym.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'gym.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'gym2.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'gym2.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'guided_tours.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'guided_tours.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'groups.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'groups.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'golf.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'golf.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'giftshop.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'giftshop.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'gastronomicrestaurant.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'gastronomicrestaurant.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'gardens.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'gardens.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'fridge.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'fridge.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'fourwd_access.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'fourwd_access.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'forrest_nearby.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'forrest_nearby.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'fishing.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'fishing.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'fishing2.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'fishing2.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'fireplace.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'fireplace.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'fees_pound.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'fees_pound.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'fees_euro.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'fees_euro.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'fees.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'fees.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'elevator.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'elevator.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'DVDVideo.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'DVDVideo.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'drinking_water.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'drinking_water.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'dogs_permitted.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'dogs_permitted.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'dogs_not_permitted.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'dogs_not_permitted.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'disco.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'disco.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'disabled_facilities.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'disabled_facilities.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'disabled_access.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'disabled_access.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'cycle_paths.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'cycle_paths.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'conference_facilities.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'conference_facilities.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'concierge.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'concierge.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'cinema.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'cinema.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'CDplayer.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'CDplayer.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'casino.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'casino.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'caravan.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'caravan.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'canoeing.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'canoeing.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'camping_area.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'camping_area.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'campfire.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'campfire.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'bird_hide.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'bird_hide.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'beach.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'beach.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'beach2.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'beach2.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'bbq_facilities.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'bbq_facilities.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'bath_tub.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'bath_tub.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'bar.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'bar.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'bar2.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'bar2.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'balcony.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'balcony.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'zodiacexcursions.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'zodiacexcursions.png');
 
     // Many thanks jeyjey
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'microwaves.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'microwaves.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'garden.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'garden.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'microwaves.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'microwaves.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'garden.png', JOMRES_IMAGELOCATION_ABSPATH.'pfeatures'.JRDS.'garden.png');
 
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'double.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'double.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'fourposter.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'fourposter.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'single.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'single.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'twin.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'twin.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'double.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'double.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'fourposter.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'fourposter.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'single.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'single.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'twin.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'twin.png');
 
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'1bedroom.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'1bedroom.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'2bedrooms.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'2bedrooms.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'3bedrooms.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'3bedrooms.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'4bedrooms.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'4bedrooms.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'5bedrooms.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'5bedrooms.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'6plusbedrooms.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'6plusbedrooms.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'1bedroom.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'1bedroom.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'2bedrooms.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'2bedrooms.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'3bedrooms.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'3bedrooms.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'4bedrooms.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'4bedrooms.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'5bedrooms.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'5bedrooms.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'6plusbedrooms.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'6plusbedrooms.png');
 
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'camping_1bivi_pitch.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'camping_1bivi_pitch.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'camping_2_man_tent_pitch.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'camping_2_man_tent_pitch.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'camping_3_man_tent_pitch.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'camping_3_man_tent_pitch.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'camping_4_man_tent_pitch.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'camping_4_man_tent_pitch.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'camping_6_man_tent_pitch.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'camping_6_man_tent_pitch.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'camping_caravan_pitch.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'camping_caravan_pitch.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'camping_1bivi_pitch.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'camping_1bivi_pitch.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'camping_2_man_tent_pitch.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'camping_2_man_tent_pitch.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'camping_3_man_tent_pitch.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'camping_3_man_tent_pitch.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'camping_4_man_tent_pitch.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'camping_4_man_tent_pitch.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'camping_6_man_tent_pitch.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'camping_6_man_tent_pitch.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'camping_caravan_pitch.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'camping_caravan_pitch.png');
 
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'car_rental_hatchback.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'car_rental_hatchback.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'car_rental_luxury.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'car_rental_luxury.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'car_rental_peoplecarrier.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'car_rental_peoplecarrier.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'car_rental_saloon.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'car_rental_saloon.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'car_rental_sportscar.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'car_rental_sportscar.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'car_rental_hatchback.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'car_rental_hatchback.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'car_rental_luxury.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'car_rental_luxury.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'car_rental_peoplecarrier.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'car_rental_peoplecarrier.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'car_rental_saloon.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'car_rental_saloon.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'car_rental_sportscar.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'car_rental_sportscar.png');
 
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'yacht_2_berth.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'yacht_2_berth.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'yacht_4_berth.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'yacht_4_berth.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'yacht_6_berth.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'yacht_6_berth.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'icons'.JRDS.'yacht_8_berth.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'yacht_8_berth.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'yacht_2_berth.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'yacht_2_berth.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'yacht_4_berth.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'yacht_4_berth.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'yacht_6_berth.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'yacht_6_berth.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'icons'.JRDS.'yacht_8_berth.png', JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.'yacht_8_berth.png');
 }
 
 function checkPropertyTableExists()
@@ -3500,6 +3548,9 @@ function createJomresTables()
 		`tax_rate` float NOT NULL default '0',
 		`inv_id` int(11) NOT NULL COMMENT 'Invoice ID',
 		`is_payment`  TINYINT DEFAULT 0 NOT NULL,
+		`payment_method` VARCHAR(100) NOT NULL DEFAULT '',
+		`transaction_id` VARCHAR(255) NOT NULL DEFAULT '',
+		`management_url` VARCHAR(1000) NOT NULL DEFAULT '', 
 		PRIMARY KEY  (`id`)
 	)";
     doInsertSql($query, '');
@@ -4021,6 +4072,7 @@ function createJomresTables()
 		`property_uid` VARCHAR(11),
 		`ptype_xref` text NULL DEFAULT NULL,
 		`cat_id` varchar(244) NOT NULL DEFAULT 0,
+		`include_in_filters` TINYINT(1) NOT NULL DEFAULT 1,
 		PRIMARY KEY(`hotel_features_uid`)
 		) ';
     if (!doInsertSql($query)) {
@@ -4552,17 +4604,17 @@ function insertSampleData()
     jr_installer_mkdir(JOMRES_IMAGELOCATION_ABSPATH.'1'.JRDS.'slideshow'.JRDS.'0'.JRDS.'medium');
     jr_installer_mkdir(JOMRES_IMAGELOCATION_ABSPATH.'1'.JRDS.'slideshow'.JRDS.'0'.JRDS.'thumbnail');
 
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'jrhouse.png', JOMRES_IMAGELOCATION_ABSPATH.'1'.JRDS.'property'.JRDS.'0'.JRDS.'jrhouse.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'jrhouse.png', JOMRES_IMAGELOCATION_ABSPATH.'1'.JRDS.'property'.JRDS.'0'.JRDS.'medium'.JRDS.'jrhouse.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'jrhouse.png', JOMRES_IMAGELOCATION_ABSPATH.'1'.JRDS.'property'.JRDS.'0'.JRDS.'medium'.JRDS.'jrhouse.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'jrhouse.png', JOMRES_IMAGELOCATION_ABSPATH.'1'.JRDS.'property'.JRDS.'0'.JRDS.'jrhouse.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'jrhouse.png', JOMRES_IMAGELOCATION_ABSPATH.'1'.JRDS.'property'.JRDS.'0'.JRDS.'medium'.JRDS.'jrhouse.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'jrhouse.png', JOMRES_IMAGELOCATION_ABSPATH.'1'.JRDS.'property'.JRDS.'0'.JRDS.'medium'.JRDS.'jrhouse.png');
 
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'jrhouse.png', JOMRES_IMAGELOCATION_ABSPATH.'1'.JRDS.'rooms'.JRDS.'1'.JRDS.'jrhouse.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'jrhouse.png', JOMRES_IMAGELOCATION_ABSPATH.'1'.JRDS.'rooms'.JRDS.'1'.JRDS.'medium'.JRDS.'jrhouse.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'jrhouse.png', JOMRES_IMAGELOCATION_ABSPATH.'1'.JRDS.'rooms'.JRDS.'1'.JRDS.'medium'.JRDS.'jrhouse.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'jrhouse.png', JOMRES_IMAGELOCATION_ABSPATH.'1'.JRDS.'rooms'.JRDS.'1'.JRDS.'jrhouse.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'jrhouse.png', JOMRES_IMAGELOCATION_ABSPATH.'1'.JRDS.'rooms'.JRDS.'1'.JRDS.'medium'.JRDS.'jrhouse.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'jrhouse.png', JOMRES_IMAGELOCATION_ABSPATH.'1'.JRDS.'rooms'.JRDS.'1'.JRDS.'medium'.JRDS.'jrhouse.png');
 
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'jrhouse.png', JOMRES_IMAGELOCATION_ABSPATH.'1'.JRDS.'rooms'.JRDS.'2'.JRDS.'jrhouse.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'jrhouse.png', JOMRES_IMAGELOCATION_ABSPATH.'1'.JRDS.'rooms'.JRDS.'2'.JRDS.'medium'.JRDS.'jrhouse.png');
-    $result = copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'jrhouse.png', JOMRES_IMAGELOCATION_ABSPATH.'1'.JRDS.'rooms'.JRDS.'2'.JRDS.'medium'.JRDS.'jrhouse.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'jrhouse.png', JOMRES_IMAGELOCATION_ABSPATH.'1'.JRDS.'rooms'.JRDS.'2'.JRDS.'jrhouse.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'jrhouse.png', JOMRES_IMAGELOCATION_ABSPATH.'1'.JRDS.'rooms'.JRDS.'2'.JRDS.'medium'.JRDS.'jrhouse.png');
+    $result = copy(JOMRES_IMAGES_ABSPATH.'jrhouse.png', JOMRES_IMAGELOCATION_ABSPATH.'1'.JRDS.'rooms'.JRDS.'2'.JRDS.'medium'.JRDS.'jrhouse.png');
 }
 
 function jr_installer_mkdir($dir)
@@ -4592,6 +4644,11 @@ function createExtraIndexs()
     $query = "SHOW INDEX FROM `#__jomres_guest_profile` WHERE Key_name = 'cms_user_id' ";
     $indexExists = doSelectSql($query);
     if (count($indexExists) < 1) {
+		$query = "ALTER TABLE `#__jomres_guest_profile` CHANGE `cms_user_id` `cms_user_id` INT(11) NULL DEFAULT NULL";
+		if (!doInsertSql($query, '')) {
+			output_message('Error, unable to alter __jomres_guest_profile cms_user_id column', 'danger');
+		}
+		
         $query = 'ALTER TABLE `#__jomres_guest_profile` ADD INDEX cms_user_id ( cms_user_id ) ';
         if (!doInsertSql($query)) {
             output_message('Failed to run query: '.$query, 'danger');
@@ -4610,6 +4667,11 @@ function createExtraIndexs()
     $query = "SHOW INDEX FROM `#__jomres_custom_text` WHERE Key_name = 'language' ";
     $indexExists = doSelectSql($query);
     if (count($indexExists) < 1) {
+		$query = "ALTER TABLE `#__jomres_custom_text` CHANGE `language` `language` VARCHAR(10) NULL DEFAULT NULL";
+		if (!doInsertSql($query, '')) {
+			output_message('Error, unable to alter __jomres_custom_text language column', 'danger');
+		}
+		
         $query = 'ALTER TABLE `#__jomres_custom_text` ADD INDEX `language` ( `language` ) ';
         if (!doInsertSql($query)) {
             output_message('Failed to run query: '.$query, 'danger');
@@ -4619,6 +4681,11 @@ function createExtraIndexs()
 	$query = "SHOW INDEX FROM `#__jomres_custom_text` WHERE Key_name = 'language_context' ";
     $indexExists = doSelectSql($query);
     if (count($indexExists) < 1) {
+		$query = "ALTER TABLE `#__jomres_custom_text` CHANGE `language_context` `language_context` VARCHAR(100) NULL DEFAULT NULL";
+		if (!doInsertSql($query, '')) {
+			output_message('Error, unable to alter __jomres_custom_text language_context column', 'danger');
+		}
+		
         $query = 'ALTER TABLE `#__jomres_custom_text` ADD INDEX `language_context` ( `language_context` ) ';
         if (!doInsertSql($query)) {
             output_message('Failed to run query: '.$query, 'danger');
@@ -4709,6 +4776,11 @@ function createExtraIndexs()
     $query = "SHOW INDEX FROM `#__jomres_guests` WHERE Key_name = 'mos_userid' ";
     $indexExists = doSelectSql($query);
     if (count($indexExists) < 1) {
+		$query = "ALTER TABLE `#__jomres_guests` CHANGE `mos_userid` `mos_userid` INT(11) NULL DEFAULT NULL";
+		if (!doInsertSql($query, '')) {
+			output_message('Error, unable to alter __jomres_guests mos_userid column', 'danger');
+		}
+		
         $query = 'ALTER TABLE `#__jomres_guests` ADD INDEX mos_userid ( mos_userid ) ';
         if (!doInsertSql($query)) {
             output_message('Failed to run query: '.$query, 'danger');
@@ -4736,6 +4808,11 @@ function createExtraIndexs()
     $query = "SHOW INDEX FROM `#__jomres_propertys` WHERE Key_name = 'property_town' ";
     $indexExists = doSelectSql($query);
     if (count($indexExists) < 1) {
+		$query = "ALTER TABLE `#__jomres_propertys` CHANGE `property_town` `property_town` VARCHAR(100) NULL DEFAULT NULL";
+		if (!doInsertSql($query, '')) {
+			output_message('Error, unable to alter __jomres_propertys property_town column', 'danger');
+		}
+		
         $query = 'ALTER TABLE `#__jomres_propertys` ADD INDEX `property_town` ( `property_town` ) ';
         if (!doInsertSql($query)) {
             output_message('Failed to run query: '.$query, 'danger');
@@ -4745,6 +4822,11 @@ function createExtraIndexs()
     $query = "SHOW INDEX FROM `#__jomres_propertys` WHERE Key_name = 'property_region' ";
     $indexExists = doSelectSql($query);
     if (count($indexExists) < 1) {
+		$query = "ALTER TABLE `#__jomres_propertys` CHANGE `property_region` `property_region` VARCHAR(100) NULL DEFAULT NULL";
+		if (!doInsertSql($query, '')) {
+			output_message('Error, unable to alter __jomres_propertys property_region column', 'danger');
+		}
+		
         $query = 'ALTER TABLE `#__jomres_propertys` ADD INDEX `property_region` ( `property_region` ) ';
         if (!doInsertSql($query)) {
             output_message('Failed to run query: '.$query, 'danger');
@@ -4754,6 +4836,11 @@ function createExtraIndexs()
     $query = "SHOW INDEX FROM `#__jomres_propertys` WHERE Key_name = 'property_country' ";
     $indexExists = doSelectSql($query);
     if (count($indexExists) < 1) {
+		$query = "ALTER TABLE `#__jomres_propertys` CHANGE `property_country` `property_country` VARCHAR(100) NULL DEFAULT NULL";
+		if (!doInsertSql($query, '')) {
+			output_message('Error, unable to alter __jomres_propertys property_country column', 'danger');
+		}
+		
         $query = 'ALTER TABLE `#__jomres_propertys` ADD INDEX `property_country` ( `property_country` ) ';
         if (!doInsertSql($query)) {
             output_message('Failed to run query: '.$query, 'danger');
@@ -4991,7 +5078,7 @@ function jomres_migrate()
     }
 
     //output_message ( "<b>Migration under way. Once completed, please check for any errors and if everything looks ok you can go to your administrator area.</b><br/> Remember that this migrator will not import any of your remote plugins as all the plugins need to be checked before they can be passed as working in v4. If you have any Jomres modules installed you must uninstall them using the Joomla extension manager (back up any copies of srch.html you may have customised before doing this) then use the Jomres Plugin manager to install updated versions of those modules.");
-    define(OLD_IMAGES_PATH, JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'images'.JRDS.'stories'.JRDS.JOMRES_ROOT_DIRECTORY.JRDS);
+    define(OLD_IMAGES_PATH, JOMRESCONFIG_ABSOLUTE_PATH.'images'.JRDS.'stories'.JRDS.JOMRES_ROOT_DIRECTORY.JRDS);
     define(NEW_IMAGES_PATH, JOMRES_IMAGELOCATION_ABSPATH);
 
     define(OLD_ROOMTYPES_IMAGES_PATH, 'images/stories/jomres/rmtypes/');
@@ -6542,7 +6629,7 @@ function output_message($message, $class_style = 'info')
         echo '<p class="alert '.$class.'">'.$message.'</p>
 		';
     }
-    if ($class_style == 'danger') {
+    if ($class_style == 'danger' && !defined('ERRORS_SHOWN_NO_REDIRECT') ) {
         define('ERRORS_SHOWN_NO_REDIRECT', 1);
     }
 }

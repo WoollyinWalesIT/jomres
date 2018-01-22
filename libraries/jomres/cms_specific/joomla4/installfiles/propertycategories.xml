@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+        <view title="component=com_jomres">
+                <message>Category</message>
+        </view>
+	<!-- Add fields to the request variables for the layout. -->
+	<fields name="request">
+		<fieldset name="request">
+		
+			<field name="selected_category" type="sql" default="10" label="Select a property category" query="SELECT id AS value, title AS selected_category FROM #__jomres_property_categories ORDER BY title" />
+			
+		</fieldset>
+		
+	</fields>
+</metadata>

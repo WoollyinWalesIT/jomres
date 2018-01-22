@@ -1,0 +1,56 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<style type="text/css">
+	body {
+		background: none repeat scroll 0 0 #FFFFFF;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 11px;
+		margin: 10px;
+		padding: 0 0 1px;
+	}
+
+		/* Beez template CSS fix */
+	#all {
+		max-width: 100% !important;
+		font-size: 11px !important;
+	}
+</style>
+
+<table border="0" width="100%" class="ui-widget-content ui-corner-all">
+	<tr>
+		<td align="left" width="30%" valign="middle">
+			<a href="http://www.jomres.net" target="_blank"><img src="{LOGO_RELATIVE_URL}" alt="Jomres logo"/></a>
+		</td>
+		<td align="right" valign="top" width="70%">
+			<div>{FAQ_PANE} {MANAGEMENT_VIEW_DROPDOWN}</div>
+			<div>&nbsp;</div>
+			<!--<patTemplate:tmpl name="timezone_dropdown" type="simpleCondition" requiredVars="timezoneblurb">
+				<div>{TIMEZONEBLURB}</div>
+				<div style="width:280px;;float:right;">{TIMEZONE_DROPDOWN}</div>
+			</patTemplate:tmpl>-->
+			<patTemplate:tmpl name="editing_dropdown" type="simpleCondition" requiredVars="editing_mode_dropdown">
+				<div style="width:160px;float:right;">{EDITING_MODE_DROPDOWN}</div>
+			</patTemplate:tmpl>
+			<patTemplate:tmpl name="lang_dropdown" type="simpleCondition" requiredVars="langdropdown">
+				<div style="width:160px;float:right;">{LANGDROPDOWN}</div>
+			</patTemplate:tmpl>
+		</td>
+	</tr>
+</table>
+{SANITY_CHECKS}
+<br/>
+
+<div id="jomres_alternate_menu_position" style="float:left;width:20%;margin-bottom:20px;"></div>
+<!-- available if required by a plugin -->
+<div style="float:right;width:79%;margin-bottom:20px;">
+	<div id="jomres_content_area" class="jr_property_{PROPERTY_UID}"> <!-- opens the jomres content area -->
+		<noscript>
+			<blockquote>
+				<p><font size="3" color="#FF0000"><b>You do not have JavaScript enabled.</b></font><br/>
+					<font size="2" color="#000080">The functionality of this site requires the use of JavaScript so
+						please enable before continuing. For assistance in enabling JavaScript, please contact the
+						webmaster.</font></p>
+			</blockquote>
+		</noscript>
+		<h2>{HACTIVE_PROPERTY}{PROPERTYNAME}</h2>
+		<div id="jomres_feedback" class="clearfix"></div>
+</patTemplate:tmpl>

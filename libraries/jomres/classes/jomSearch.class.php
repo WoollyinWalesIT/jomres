@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -1149,7 +1149,8 @@ function prepFeatureSearch()
 	$result[ ] = $r;
 
 	foreach ($basic_property_details->all_property_features as $propertyFeatureId => $feature) {
-		if (in_array($propertyFeatureId, $uniqueFeatures)) {
+
+		if (in_array($propertyFeatureId, $uniqueFeatures) && $feature['include_in_filters'] == "1" ) {
 			$r = array();
 			$r[ 'id' ] = $propertyFeatureId;
 			$r[ 'title' ] = $feature['abbv'];

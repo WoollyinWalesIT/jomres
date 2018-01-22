@@ -1,0 +1,51 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<h2 class="page-header">{PAGETITLE}</h2>
+
+	<div class="row-fluid">
+		<div class="span6">
+			<strong>{BBDATE}</strong>
+		</div>
+		<div class="span6">
+			{BBSTART}
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span6">
+			<strong>{BBDATEENDS}</strong>
+		</div>
+		<div class="span6">
+			{BBENDS}
+		</div>
+	</div>
+	<div class="form-actions">
+		<a href="{JOMRES_SITEPAGE_URL}&task=list_black_bookings" class="btn"><i class="icon-remove"></i> {COMMON_BACK}</a>
+		<a href="{JOMRES_SITEPAGE_URL}&task=delete_black_booking&contract_uid={CONTRACTID}" class="btn btn-danger"><i
+				class="icon-trash"></i> {COMMON_DELETE}</a>
+	</div>
+	<h3 class="page-header">{INFO}</h3>
+
+	<div class="row-striped">
+		<div class="row-fluid">
+			<div class="span6">
+				<strong>{ROOM_NUMBER}</strong>
+			</div>
+			<div class="span6">
+				<strong>{ROOM_NAME}</strong>
+			</div>
+		</div>
+		<patTemplate:tmpl name="bookingsrows" unusedvars="strip">
+			<div class="row-fluid">
+				<div class="span6">
+					{ROOMNO}
+				</div>
+				<div class="span6">
+					{ROOMNAME}
+				</div>
+			</div>
+		</patTemplate:tmpl>
+	</div>
+	<p>&nbsp;</p>
+
+	<p class="alert alert-info">{REASON}</p>
+</patTemplate:tmpl>

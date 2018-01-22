@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -29,6 +29,16 @@ class j06005mulistbookings
         $mrConfig = getPropertySpecificSettings();
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
+		
+		$query = "SELECT contract_uid FROM #__jomres_reviews_ratings WHERE user_id = ".(int)$thisJRUser->id;
+		$reviewed_contracts_data = doSelectSql($query);
+		$reviewed_contracts = array();
+		if (!empty($reviewed_contracts_data)) {
+			foreach ($reviewed_contracts_data as $review ) {
+				$reviewed_contracts[]=$review->contract_uid;
+			}
+		}
+		
         if ($thisJRUser->userIsRegistered) {
             $pageoutput = array();
             $output = array();
@@ -49,7 +59,7 @@ class j06005mulistbookings
                     $allGuestUids[ ] = $g->guests_uid;
                 }
 
-                $query = 'SELECT * FROM #__jomres_contracts WHERE guest_uid IN ('.jomres_implode($allGuestUids).') AND cancelled = 0 ORDER BY tag';
+                $query = 'SELECT * FROM #__jomres_contracts WHERE guest_uid IN ('.jomres_implode($allGuestUids).') AND cancelled = 0 ';
                 $contracts = doSelectSql($query);
             } else {
                 $contracts = array();
@@ -64,7 +74,10 @@ class j06005mulistbookings
             $output[ 'HPNAME' ] = jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME', '_JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME', $editable = false, $isLink = false);
 
             $output[ 'HMOREINFO' ] = jr_gettext('_JOMRES_COM_A_CLICKFORMOREINFORMATION', '_JOMRES_COM_A_CLICKFORMOREINFORMATION', $editable = false, $isLink = false);
-            $output[ 'TITLE' ] = jr_gettext('_JOMCOMP_MYUSER_MYBOOKINGS', '_JOMCOMP_MYUSER_MYBOOKINGS', $editable = false, $isLink = false);
+			if ( isset($_REQUEST['unreviewed']) )
+				$output[ 'TITLE' ] = jr_gettext('BOOKINGS_AWAITING_REVIEWS', 'BOOKINGS_AWAITING_REVIEWS', $editable = false, $isLink = false);
+			else
+				$output[ 'TITLE' ] = jr_gettext('_JOMCOMP_MYUSER_MYBOOKINGS', '_JOMCOMP_MYUSER_MYBOOKINGS', $editable = false, $isLink = false);
 
             if (!empty($contracts)) {
                 $basic_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
@@ -81,14 +94,29 @@ class j06005mulistbookings
 
                         $r[ 'ARRIVAL' ] = outputDate($c->arrival);
                         $r[ 'DEPARTURE' ] = outputDate($c->departure);
-                        $r[ 'lastchanged' ] = $c->timestamp;
+                        $r[ 'LASTCHANGED' ] = $c->timestamp;
                         $r[ 'EXTRASVALUE' ] = output_price($c->extrasvalue);
                         $r[ 'CONTRACT_TOTAL' ] = output_price($c->contract_total);
                         $r[ 'IMAGE' ] = $jomres_media_centre_images->images ['property'][0][0]['small'];
                         $r[ 'VIEWLINK' ] = JOMRES_SITEPAGE_URL.'&task=muviewbooking&contract_uid='.$c->contract_uid;
                         $r[ 'VIEWLINK_TEXT' ] = jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING', '_JOMCOMP_MYUSER_VIEWBOOKING', $editable = false, $isLink = true);
                         $r[ 'PROPERTYDETAILSLINK' ] = get_property_details_url($c->property_uid);
-                        $rows[ ] = $r;
+						
+						if ( !in_array($c->contract_uid , $reviewed_contracts ) ) {
+							$r[ 'REVIEWLINK' ] = JOMRES_SITEPAGE_URL.'&task=add_review&property_uid='.$c->property_uid.'&contract_uid='.$c->contract_uid;
+							$r[ 'REVIEWLINK_TEXT' ] = jr_gettext('_JOMRES_REVIEWS_ADD_REVIEW', '_JOMRES_REVIEWS_ADD_REVIEW', $editable = false, $isLink = true);
+						} else {
+							$r[ 'REVIEWLINK' ] = JOMRES_SITEPAGE_URL.'&task=show_property_reviewed_contracts&property_uid='.$c->property_uid;
+							$r[ 'REVIEWLINK_TEXT' ] = jr_gettext('_JOMRES_REVIEWS_CLICKTOSHOW', '_JOMRES_REVIEWS_CLICKTOSHOW', $editable = false, $isLink = true);
+						}
+
+						if ( isset($_REQUEST['unreviewed']) && !in_array($c->contract_uid , $reviewed_contracts ) ) {
+							$rows[ ] = $r;
+						} elseif (!isset($_REQUEST['unreviewed'])) {
+							$rows[ ] = $r;
+						}
+							
+                        
                     }
                 }
             }

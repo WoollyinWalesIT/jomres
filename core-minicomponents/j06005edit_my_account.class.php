@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -48,7 +48,7 @@ class j06005edit_my_account
         $output[ 'LANDLINE' ] = '';
         $output[ 'MOBILE' ] = '';
         $output[ 'EMAIL' ] = $user_details[ $thisJRUser->id ][ 'email' ];
-        $output[ 'IMAGE' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/noimage.gif';
+        $output[ 'IMAGE' ] = JOMRES_IMAGES_RELPATH.'noimage.gif';
 
         if (isset($componentArgs['return_url']) && $componentArgs['return_url'] != '') {
             $output[ 'RETURN_URL' ] = $componentArgs['return_url'];

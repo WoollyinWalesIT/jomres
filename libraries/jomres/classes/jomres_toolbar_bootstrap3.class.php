@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -41,7 +41,7 @@ class jomres_toolbar_bootstrap
      */
     public function spacer($width = 40)
     {
-        $image = $this->livesite.'/'.JOMRES_ROOT_DIRECTORY.'/images/blank.png';
+        $image = JOMRES_IMAGES_RELPATH.'blank.png';
         $link = '';
         $submit = '';
         $output = '
@@ -77,7 +77,7 @@ class jomres_toolbar_bootstrap
         if (empty($text)) {
             $text = $this->standardActivityImages[ $targetTask ][ 'label' ];
         }
-        $image = '/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/'.$this->imageSize.'/'.$this->standardActivityImages[ $targetTask ][ 'image' ].'.'.$this->imageExtension;
+        $image = JOMRES_IMAGES_RELPATH.'jomresimages/'.$this->imageSize.'/'.$this->standardActivityImages[ $targetTask ][ 'image' ].'.'.$this->imageExtension;
         $this->items[] = array('cell' => $this->makeCell($image, $targetTask, $link, $text, $submitOnClick, $submitTask), 'concat' => $concat);
     }
 

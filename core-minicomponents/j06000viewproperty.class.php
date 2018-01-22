@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -224,7 +224,7 @@ class j06000viewproperty
         $contactuslink[ ] = $link;
 
         //print link
-        $output[ 'PRINT_ICON' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/Printer.png';
+        $output[ 'PRINT_ICON' ] = JOMRES_IMAGES_RELPATH.'jomresimages/small/Printer.png';
         $output[ 'PRINT_LINK' ] = jomresURL(get_property_details_url($property_uid,'sefsafe','&jr_printable=1&popup=1&tmpl='.get_showtime('tmplcomponent')));
         //Property details buttons/links end
 

@@ -1,0 +1,15 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+jomresJquery(document).ready(function () {
+	var feedback_content = jomresJquery('#jr_feedback_msgs').html();
+	jomresJquery('#jomres_feedback').html(feedback_content);
+	jomresJquery('#jr_feedback_msgs').empty();
+	
+	if (jomresJquery('#jomres_feedback').html().trim() != '') {
+		jomresJquery('#jomres_feedback').css("display", "block");
+	}
+});
+</script>
+
+<div id="jr_feedback_msgs" style="display:none;">{MESSAGES}</div>
+</patTemplate:tmpl>

@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -107,7 +107,7 @@ function generateDateInput($fieldName, $dateValue = '', $myID = false, $siteConf
 		';
 
     if ((using_bootstrap() && jomres_bootstrap_version() == '2') || !using_bootstrap()) {
-        $output .= 'buttonImage: \''.get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/calendar.png\',';
+        $output .= 'buttonImage: \''.JOMRES_IMAGES_RELPATH.'calendar.png\',';
         $bs3_icon = '';
     } else {
         $output .= 'buttonText: "",';

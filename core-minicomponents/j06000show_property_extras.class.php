@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -125,7 +125,12 @@ class j06000show_property_extras
                     }
                     $extra_deets[ 'NAME' ] = jr_gettext('_JOMRES_CUSTOMTEXT_EXTRANAME'.$ex->uid, jomres_decode($ex->name));
                     $extra_deets[ 'MODELTEXT' ] = $tax_output.' ( '.$model_text.' )';
-                    $extra_deets[ 'PRICE' ] = output_price($inc_price);
+                    
+					if ($model[ 'model' ] == '100') {
+						$extra_deets[ 'PRICE' ] = $inc_price.'%';
+					} else {
+						$extra_deets[ 'PRICE' ] = output_price($inc_price);
+					}
 
                     $extra_deets[ 'EXTRA_IMAGE' ] = $jomres_media_centre_images->multi_query_images['noimage-small'];
                     if (isset($jomres_media_centre_images->images['extras'][$ex->uid][0]['small'])) {

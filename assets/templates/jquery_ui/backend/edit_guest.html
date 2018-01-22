@@ -1,0 +1,88 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script language="JavaScript" type="text/javascript">
+<!--
+jomresJquery(function(){
+	jomresJquery("#guest_country").change(function(){
+		var selectedValue = jomresJquery(this).find(":selected").val();
+		clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
+		jomresJquery.get(live_site_ajax + clause, function (data) {
+			populateDiv("guest_region_div",data);
+			});
+		});
+	});
+	//-->
+</script>
+<h2>{PAGETITLE}</h2>
+
+<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm">
+	{JOMRESTOOLBAR}
+	<table width="100%" border="0" class="ui-widget-content ui-corner-all">
+		<tr>
+			<td width="30%">{HFIRSTNAME}</td>
+			<td><input type="text" class="inputbox" name="firstname" value="{FIRSTNAME}"/></td>
+		</tr>
+		<tr>
+			<td>{HSURNAME}</td>
+			<td><input type="text" class="inputbox" name="surname" value="{SURNAME}"/></td>
+		</tr>
+		<tr>
+			<td>{HHOUSE}</td>
+			<td><input type="text" class="inputbox" name="house" value="{HOUSE}"/></td>
+		</tr>
+		<tr>
+			<td>{HSTREET}</td>
+			<td><input type="text" class="inputbox" name="street" value="{STREET}"/></td>
+		</tr>
+		<tr>
+			<td>{HTOWN}</td>
+			<td><input type="text" class="inputbox" name="town" value="{TOWN}"/></td>
+		</tr>
+		<tr>
+			<td>{HPOSTCODE}</td>
+			<td><input type="text" class="inputbox" name="postcode" value="{POSTCODE}"/></td>
+		</tr>
+		<tr>
+			<td>{HREGION}</td>
+			<td><div id="guest_region_div">{REGION}</div></td>
+		</tr>
+		<tr>
+			<td>{HCOUNTRY}</td>
+			<td>{COUNTRY}</td>
+		</tr>
+		<tr>
+			<td>{HLANDLINE}</td>
+			<td><input type="text" class="inputbox" name="landline" value="{LANDLINE}"/></td>
+		</tr>
+		<tr>
+			<td>{HMOBILE}</td>
+			<td><input type="text" class="inputbox" name="mobile" value="{MOBILE}"/></td>
+		</tr>
+		<tr>
+			<td>{HEMAIL}</td>
+			<td><input type="text" class="inputbox" name="email" value="{EMAIL}"/></td>
+		</tr>
+		<tr>
+			<td><label for="review_title">{_JOMRES_COM_YOURBUSINESS_VATNO}</label></td>
+			<td>
+				<input id="email" name="vat_number" type="text" value="{VAT_NUMBER}"/>
+				<patTemplate:tmpl name="validation" type="simpleCondition" requiredVars="validation_class">
+				<span class="help-block">
+					<div class="alert {VALIDATION_CLASS}">
+						{VAT_NUMBER_VALIDATION_STATUS}
+					</div>
+				</span>
+				</patTemplate:tmpl>
+			</td>
+		</tr>
+		<tr>
+			<td>{HDISCOUNT}</td>
+			<td>{DISCOUNT} (%)</td>
+		</tr>
+	</table>
+
+	</div>
+	<input type="hidden" name="id" value="{GUESTUID}"/>
+	<input type="hidden" name="task" value="save_guest"/>
+	<input type="hidden" name="no_html" value="1"/>
+</form>
+</patTemplate:tmpl>

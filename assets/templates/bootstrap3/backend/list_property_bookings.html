@@ -1,0 +1,106 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script language="javascript" type="text/javascript">
+	<!--
+	jomresJquery(document).ready(function () {
+		make_datatable('showLiveBookings', '{PAGETITLE}', '{LIVESITE}', '{AJAX_URL}');
+		column_ids = new Array(1,3,8,9,10,12,13,14,15,16,17,19);
+		dataTableSetHiddenColumns('showLiveBookings', column_ids);
+	});
+	//-->
+</script>
+
+<div id="{TOUR_DIV_ID}"></div>
+<div id="tour_target_table_tools"></div>
+
+<h2 class="page-header">{PAGETITLE}</h2>
+
+<div class="well">
+	<a href="{NEW_BOOKING_URL}" class="btn btn-primary"><i class="fa fa-plus"></i> {HNEW_BOOKING}</a>
+	<a href="{BLACK_BOOKINGS_URL}" class="btn btn-primary"><i class="fa fa-plus"></i> {HBLACK_BOOKINGS}</a>
+	<a href="{SIMPLE_BOOKING_URL}" class="btn btn-primary"><i class="fa fa-plus"></i> {HSIMPLE_BOOKING}</a>
+	<a href="#list_bookings_filters" role="button" data-toggle="modal" class="btn btn-default" onclick="jomresJquery('#ui-datepicker-div').appendTo('#list_bookings_filters');"><i class="fa fa-filter"></i> {HFILTER}</a>
+</div>
+
+<table class="table table-striped" id="showLiveBookings" width="100%">
+	<thead>
+		<tr>
+			<th>{_JOMRES_COM_MR_EDITBOOKINGTITLE}</th>
+			<th>{HCONTRACT_UID}</th>
+			<th>{_JOMRES_BOOKING_NUMBER}</th>
+			<th>{HPROPERTY_NAME}</th>
+			<th>{ARRIVAL}</th>
+			<th>{DEPARTURE}</th>
+			<th>{_JOMRES_COM_MR_VIEWBOOKINGS_FIRSTNAME}</th>
+			<th>{_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME}</th>
+			<th>{HGUEST_LANDLINE}</th>
+			<th>{HGUEST_MOBILE}</th>
+			<th>{_JOMRES_COM_MR_VIEWBOOKINGS_EMAIL}</th>
+			<th>{HCONTRACT_TOTAL}</th>
+			<th>{HDEPOSIT_REQUIRED}</th>
+			<th>{HDEPOSIT_STATUS}</th>
+			<th>{HSPECIAL_REQS}</th>
+			<th>{HINVOICE_UID}</th>
+			<th>{HTIMESTAMP}</th>
+			<th>{HLASTCHANGED}</th>
+			<th>{HAPPROVED}</th>
+			<th>{HMADE_BY}</th>
+		</tr>
+	</thead>
+	<tbody>
+	</tbody>
+</table>
+<h5>{HLEGEND} ({_JOMRES_BOOKING_NUMBER})</h5>
+<span class="label label-grey">{TEXT_PENDING}</span>
+<span class="label label-orange">{TEXT_ARRIVETODAY}</span>
+<span class="label label-green">{TEXT_RESIDENT}</span>
+<span class="label label-red">{TEXT_LATE}</span>
+<span class="label label-blue">{TEXT_DEPARTTODAY}</span>
+<span class="label label-purple">{TEXT_STILLHERE}</span>
+<span class="label label-teal">{TEXT_BOOKEDOUT}</span>
+<span class="label label-black">{TEXT_CANCELLED}</span>
+
+<form action="" method="post" name="filterBookings" role="form">
+<div id="list_bookings_filters" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+				<h4 id="myModalLabel">{HFILTER}</h4>
+			</div>
+			<div class="modal-body">
+				<div class="control-group">
+					<label class="control-label" for="startDate">{HSTART}</label>
+					{START}
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="endDate">{HEND}</label>
+					{END}
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="deposit_status">{HDEPOSIT_STATUS}</label>
+					{DEPOSIT_STATUS}
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="resident_status">{HRESIDENT_STATUS}</label>
+					{RESIDENT_STATUS}
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="booking_status">{HBOOKING_STATUS}</label>
+					{BOOKING_STATUS}
+
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="show_all">{HSHOW_ALL}</label>
+					{SHOW_ALL}
+				</div>
+			</div>
+			<div class="modal-footer">
+				<a class="btn btn-default" data-dismiss="modal" aria-hidden="true">{COMMON_CLOSE}</a>
+				<input type="submit" value="{HFILTER}" class="btn btn-primary" />
+			</div>
+		</div>
+	</div>
+</div>
+<input type="hidden" name="task" value="list_bookings" />
+</form>
+</patTemplate:tmpl>

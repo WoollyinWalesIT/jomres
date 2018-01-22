@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -270,7 +270,7 @@ class j06000ui_availability_calendar
 			</script>';
             if ($mrConfig[ 'singleRoomProperty' ]) {
                 $inline_calendar .= '
-				<a href="#" id="legend_dialog_opener" title="Legend"><img src="' .get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/information.png" /></a>
+				<a href="#" id="legend_dialog_opener" title="Legend"><img src="' .JOMRES_IMAGES_RELPATH.'information.png" /></a>
 				<div id="legend_dialog" title="Legend">
 				<table width="100%" border="0">
 					<tr>
@@ -281,7 +281,7 @@ class j06000ui_availability_calendar
 				';
             } else {
                 $inline_calendar .= '
-				<a href="#" id="legend_dialog_opener" title="Legend"><img src="' .get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/information.png" /></a>
+				<a href="#" id="legend_dialog_opener" title="Legend"><img src="' .JOMRES_IMAGES_RELPATH.'information.png" /></a>
 				<div id="legend_dialog" title="Legend">
 				<table width="100%" border="0">
 					<tr>

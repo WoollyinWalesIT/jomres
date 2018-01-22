@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -123,10 +123,10 @@ class j06000show_property_reviews
 
         $output[ 'AJAXURL' ] = JOMRES_SITEPAGE_URL_AJAX;
 
-        $thumb_up = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/thumb_up.png';
-        $thumb_down = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/thumb_down.png';
-        $star = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/star.png';
-        $add_review_icon = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/add_review.png';
+        $thumb_up = JOMRES_IMAGES_RELPATH.'thumb_up.png';
+        $thumb_down = JOMRES_IMAGES_RELPATH.'thumb_down.png';
+        $star = JOMRES_IMAGES_RELPATH.'star.png';
+        $add_review_icon = JOMRES_IMAGES_RELPATH.'add_review.png';
 
         if ($this_user_can_review_this_property) {
             $url = jomresURL(JOMRES_SITEPAGE_URL.'&task=add_review&amp;property_uid='.$property_uid);
@@ -160,7 +160,12 @@ class j06000show_property_reviews
                 $r[ '_JOMRES_REVIEWS_REVIEWED_BY' ] = jr_gettext('_JOMRES_REVIEWS_REVIEWED_BY', '_JOMRES_REVIEWS_REVIEWED_BY', false, false);
 
                 $r[ 'RATING_ID' ] = $review[ 'rating_id' ];
-                $r[ 'USERNAME' ] = $site_userids[ $review[ 'user_id' ] ][ 'username' ];
+				
+				$r[ 'USERNAME' ] = '';
+				if (isset($site_userids[ $review[ 'user_id' ] ][ 'username' ])) {
+					$r[ 'USERNAME' ] = $site_userids[ $review[ 'user_id' ] ][ 'username' ];
+				}
+				
                 $r[ 'REVIEW_TITLE' ] = $review[ 'review_title' ];
                 $r[ 'REVIEW_DESCRIPTION' ] = $review[ 'review_description' ];
                 $r[ 'PROS' ] = $review[ 'pros' ];

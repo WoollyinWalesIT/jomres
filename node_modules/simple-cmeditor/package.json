@@ -1,0 +1,68 @@
+{
+  "_from": "simple-cmeditor",
+  "_id": "simple-cmeditor@1.11.4",
+  "_inBundle": false,
+  "_integrity": "sha1-8+YzXLAomwM+WiwPZTXomy0XBP8=",
+  "_location": "/simple-cmeditor",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "simple-cmeditor",
+    "name": "simple-cmeditor",
+    "escapedName": "simple-cmeditor",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/simple-cmeditor/-/simple-cmeditor-1.11.4.tgz",
+  "_shasum": "f3e6335cb0289b033e5a2c0f6535e89b2d1704ff",
+  "_spec": "simple-cmeditor",
+  "_where": "C:\\wamp64\\www\\j4\\jomres",
+  "bugs": {
+    "url": "https://github.com/JoshOY/simple-commonmark-markdown-editor/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "codemirror": "*",
+    "commonmark": "*"
+  },
+  "deprecated": false,
+  "description": "A markdown editor forked from simplemde (https://simplemde.com/), removed spell checker and use commonmark parser with more options.",
+  "devDependencies": {
+    "browserify": "*",
+    "debug": "*",
+    "eslint": "*",
+    "gulp": "*",
+    "gulp-clean-css": "*",
+    "gulp-concat": "*",
+    "gulp-debug": "*",
+    "gulp-eslint": "*",
+    "gulp-header": "*",
+    "gulp-jsbeautifier": "*",
+    "gulp-rename": "*",
+    "gulp-uglify": "*",
+    "vinyl-buffer": "*",
+    "vinyl-source-stream": "*"
+  },
+  "homepage": "https://github.com/JoshOY/simple-commonmark-markdown-editor",
+  "keywords": [
+    "embeddable",
+    "markdown",
+    "editor",
+    "javascript",
+    "wysiwyg"
+  ],
+  "license": "MIT",
+  "main": "dist/simplemde.min.js",
+  "name": "simple-cmeditor",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoshOY/simple-commonmark-markdown-editor.git"
+  },
+  "version": "1.11.4"
+}

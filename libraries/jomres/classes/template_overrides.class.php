@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -47,6 +47,14 @@ class template_overrides
 			if (file_exists(JOMRESPATH_BASE.$r->path.$r->template_name) ) {
 				$this->template_overrides[$r->template_name]['template_name']		= $r->template_name;
 				$this->template_overrides[$r->template_name]['path']				= $r->path;
+			} else {
+				$bs_version = jomres_bootstrap_version();
+				if ( file_exists (JOMRESPATH_BASE.$r->path."templates".JRDS."bootstrap".$bs_version.JRDS.$r->template_name) ) {
+					$template_path = $r->path."templates".JRDS."bootstrap".$bs_version.JRDS;
+					$this->template_overrides[$r->template_name]['template_name']		= $r->template_name;
+					$this->template_overrides[$r->template_name]['path']				= $template_path;
+				
+				}
 			}
         }
 

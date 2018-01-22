@@ -1,0 +1,26 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<patTemplate:tmpl name="rows">
+<table width="100%" border="0" class="ui-widget-content ui-corner-all">
+	<tr>
+		<th colspan="4">{ROOMTYPE} - {ROOMNAME} {ROOMNUMBER}</th>
+	</tr>
+	<tr>
+		<td width="25%">
+			<img src="{IMAGETHUMB}" alt="{ROOMNUMBER}" />
+		</td>
+		<td width="25%">
+			<div><span class="muted">{HEADER_MAXPEOPLE}:</span> {MAXPEOPLE}</div>
+			<div><span class="muted">{HEADER_ROOMFLOOR}:</span> {ROOMFLOOR}</div>
+		</td>
+		<td width="25%">
+			{ROOM_FEATURES}
+		</td>
+		<td width="25%" align="right">
+			<a href="{AVLCALLINK}">{AVLCALTITLE}</a>
+		</td>
+	</tr>
+</table>
+</patTemplate:tmpl>
+
+</patTemplate:tmpl>

@@ -4,11 +4,11 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
-* @copyright	2005-2017 Vince Wooll
-* Jomres (tm) PHP files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly, however all images, css and javascript which are copyright Vince Wooll are not GPL licensed and are not freely distributable
-**/
+ * @copyright	2005-2018 Vince Wooll
+ * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
+ **/
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
@@ -54,7 +54,7 @@ class j16000list_property_categories
 
         $jrtbar = jomres_getSingleton('jomres_toolbar');
         $jrtb = $jrtbar->startTable();
-        $image = $jrtbar->makeImageValid('/'.JOMRES_ROOT_DIRECTORY.'/images/jomresimages/small/AddItem.png');
+        $image = $jrtbar->makeImageValid(JOMRES_IMAGES_RELPATH.'jomresimages/small/AddItem.png');
         $link = JOMRES_SITEPAGE_URL_ADMIN;
         $jrtb .= $jrtbar->customToolbarItem('edit_property_category', $link, $text = 'Add', $submitOnClick = true, $submitTask = 'edit_property_category', $image);
         $jrtb .= $jrtbar->toolbarItem('cancel', JOMRES_SITEPAGE_URL_ADMIN, jr_gettext('_JRPORTAL_CANCEL', '_JRPORTAL_CANCEL', false));

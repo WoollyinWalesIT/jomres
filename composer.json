@@ -2,7 +2,7 @@
     "name": "woollyinwales/jomres",
     "description": "Property management and online booking system",
     "type": "project",
-    "license": "GPLv3",
+    "license": "GPL-3.0",
     "authors": [
         {
             "name": "Vince Wooll",

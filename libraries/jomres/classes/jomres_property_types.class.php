@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -33,7 +33,7 @@ class jomres_property_types
 		$this->property_type['has_stars'] = 1;        			// Show stars input or not
 
         $jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
-        $this->property_type['marker_image'] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/'.$jomres_media_centre_images->multi_query_images['noimage-small'];
+        $this->property_type['marker_image'] = $jomres_media_centre_images->multi_query_images['noimage-small'];
     }
 
     public static function getInstance()
@@ -118,8 +118,8 @@ class jomres_property_types
                 is_file(JOMRES_IMAGELOCATION_ABSPATH.'markers'.JRDS.$this->property_type['marker'])
                 ) {
                 $this->property_type['marker_image'] = JOMRES_IMAGELOCATION_RELPATH.'markers/'.$this->property_type['marker'];
-            } elseif (JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS.'markers'.JRDS.$this->property_types['marker']) {
-                $this->property_type['marker_image'] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/images/markers/'.$this->property_type['marker'];
+            } elseif (JOMRES_IMAGES_ABSPATH.'markers'.JRDS.$this->property_types['marker']) {
+                $this->property_type['marker_image'] = JOMRES_IMAGES_RELPATH.'markers/'.$this->property_type['marker'];
             }
         }
 

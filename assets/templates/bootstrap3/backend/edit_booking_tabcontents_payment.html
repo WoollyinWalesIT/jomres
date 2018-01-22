@@ -1,0 +1,124 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<div class="row">
+	<div class="col-md-5">
+		<strong>{HROOM_TOTAL}</strong>
+	</div>
+	<div class="col-md-7">
+		{ROOM_TOTAL}
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-5">
+		<strong>{_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON}</strong>
+	</div>
+	<div class="col-md-7">
+		{SINGLE_PERSON_SUPPLIMENT}
+	</div>
+</div>
+<hr/>
+<div class="row">
+	<div class="col-md-5">
+		<strong>{_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED}</strong>
+	</div>
+	<div class="col-md-7">
+		{BOOKING_DEPOSIT_REQUIRED}
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-5">
+		<strong>{_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID}</strong>
+	</div>
+	<div class="col-md-7">
+		{DEPOSITPAID}
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-5">
+		<strong>{_JOMRES_COM_MR_EB_PAYM_DEPOSIT_REF}</strong>
+	</div>
+	<div class="col-md-7">
+		{BOOKING_DEPOSIT_REF}
+	</div>
+</div>
+<hr/>
+<div class="row">
+	<div class="col-md-5">
+		<strong>{_JOMRES_COM_FRONT_ROOMTAX}</strong>
+	</div>
+	<div class="col-md-7">
+		{TAX}
+	</div>
+</div>
+<!--<div class="row">
+	<div class="col-md-5">
+		<strong>{_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL}</strong>
+	</div>
+	<div class="col-md-7">
+		{BOOKING_CONTRACT_TOTAL}
+	</div>
+</div>-->
+<hr/>
+<div class="row">
+	<div class="col-md-5">
+		<strong>{_JOMRES_COM_MR_EXTRA_TITLE}</strong>
+	</div>
+	<div class="col-md-7">
+		&nbsp;
+	</div>
+</div>
+<patTemplate:tmpl name="extras_rows" type="simpleCondition" requiredVars="extra_name">
+	<div class="row">
+		<div class="col-md-5">
+			<strong>{EXTRA_NAME} ({EXTRA_TAX}%) X {EXTRA_QUANTITY}</strong>
+		</div>
+		<div class="col-md-7">
+			{EXTRA_INCLUSIVE_PRICE}
+		</div>
+	</div>
+</patTemplate:tmpl>
+<div class="row">
+	<div class="col-md-5">
+		<strong>{_JOMRES_COM_MR_QUICKRES_STEP4_TOTALINVOICE}</strong>
+	</div>
+	<div class="col-md-7">
+		{EXTRASOPTIONSVALUE}
+	</div>
+</div>
+<hr/>
+<div class="row">
+	<div class="col-md-5">
+		<strong>{_JOMRES_COM_ADDSERVICE_BOOKINGDESC}</strong>
+	</div>
+	<div class="col-md-7">
+		&nbsp;
+	</div>
+</div>
+<patTemplate:tmpl name="other_services_rows" type="simpleCondition" requiredVars="other_service">
+	<div class="row">
+		<div class="col-md-5">
+			<strong>{OTHER_SERVICE}</strong>
+		</div>
+		<div class="col-md-7">
+			{OTHER_SERVICE_VALUE}
+		</div>
+	</div>
+</patTemplate:tmpl>
+<hr/>
+<div class="row">
+	<div class="col-md-5">
+		<strong>{_JOMRES_COM_INVOICE_LETTER_GRANDTOTAL}</strong>
+	</div>
+	<div class="col-md-7">
+		<strong>{GRAND_TOTAL}</strong>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-5">
+		<strong>{_JOMRES_COM_MR_EDITBOOKING_REMAINDERTOPAY}</strong>
+	</div>
+	<div class="col-md-7">
+		{REMAINDER_TO_PAY}
+	</div>
+</div>
+</patTemplate:tmpl>

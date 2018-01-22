@@ -1,0 +1,33 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<table width="100%" border="0">
+		<tr>
+			<td width="80%">
+				<address>
+					<div class="property-title"><h2><span itemprop="name">{PROPERTY_NAME}</span>{STARS} {SUPERIOR}</h2></div>
+					<patTemplate:tmpl name="permit" type="simpleCondition" requiredVars="permit_number">
+						<p class="label label-info">{_JOMRES_PERMIT_NUMBER_TITLE} {PERMIT_NUMBER}</p>
+					</patTemplate:tmpl>
+					<div>
+						<span itemprop="address" itemscope itemtype="http://data-vocabulary.org/Address">
+							<span itemprop="street-address" style="display:inline ">{STREET}</span>,
+							<span itemprop="locality" style="display:inline">{TOWN}</span>,
+							<span itemprop="region" style="display:inline">{REGION}</span>, 
+							<span itemprop="postal-code" style="display:inline">{POSTCODE}</span>, 
+							<span itemprop="country-name" style="display:inline">{COUNTRY}</span><br/>
+							{HTELEPHONE}
+							<span style="display:inline">{TELEPHONE}</span>, 
+							{HFAX}
+							{FAX}
+						</span>
+					</div>
+					<div><a href="{GALLERYLINK}" target="_blank">{GALLERYDOMAIN}</a></div>
+				</address>
+				<!--<patTemplate:tmpl name="roomtypes" type="simpleCondition" requiredVars="room_type">{ROOM_TYPE}</patTemplate:tmpl>
+				<patTemplate:tmpl name="featurelist" type="simpleCondition" requiredVars="feature">{FEATURE}</patTemplate:tmpl>-->
+			</td>
+			<td align="right">
+				<img src="{QR_CODE_MAP}" title="{_JOMRES_SCAN_FOR_DIRECTIONS}" width="75" height="75" alt="qrcode"/>
+			</td>
+		</tr>
+	</table>
+</patTemplate:tmpl>

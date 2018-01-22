@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -28,7 +28,8 @@ class j00006sanity_checks
         if (!defined('JOMRES_NOHTML') || JOMRES_NOHTML == 0) {
             $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
-            if ($thisJRUser->accesslevel > 50) { //higher than receptionist
+            
+			//if ($thisJRUser->accesslevel > 50) { //higher than receptionist
                 $output = array();
                 jr_import('jomres_sanity_check');
                 $sanity_checks = new jomres_sanity_check();
@@ -39,7 +40,7 @@ class j00006sanity_checks
                 $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
                 $tmpl->readTemplatesFromInput('sanity_checks.html');
                 set_showtime('sanity_check_warnings', $tmpl->getParsedTemplate());
-            }
+            //}
 
             if ($thisJRUser->is_partner == true) {
                 $output = array();

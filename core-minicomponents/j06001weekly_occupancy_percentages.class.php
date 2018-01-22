@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -69,7 +69,7 @@ class j06001weekly_occupancy_percentages
 		
 		$output[ '_JOMRES_OVERALL_ROOMS_BOOKED' ] = jr_gettext('_JOMRES_OVERALL_ROOMS_BOOKED', '_JOMRES_OVERALL_ROOMS_BOOKED', false);
 		
-        jomres_cmsspecific_addheaddata('css', JOMRES_ROOT_DIRECTORY.'/css/purecss-circular-progress-bar-master/', 'css-circular-prog-bar.css');
+        jomres_cmsspecific_addheaddata('css', JOMRES_CSS_RELPATH, 'css-circular-prog-bar.css');
 
         $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
         $current_property_details->gather_data($property_uid);

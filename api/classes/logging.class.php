@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 use Monolog\Logger;
@@ -65,6 +65,14 @@ class logging
         $jrConfig['log_path'] = rtrim($jrConfig['log_path'], '\\');
         $jrConfig['log_path'] .= DIRECTORY_SEPARATOR;
 
+		if (!is_dir($jrConfig['log_path'])) {
+			@mkdir($jrConfig['log_path']);
+		}
+		
+		if (!is_dir($jrConfig['log_path'])) { // We won't throw an error, we just wont try to write to the log file.
+			return;
+		}
+		
         $log_file = str_replace(' ', '_', $channel).'.application.log';
 
         if ($jrConfig[ 'development_production' ] == 'production' && $level == 'DEBUG') { // In Production, we don't want to see DEBUG level stuff.

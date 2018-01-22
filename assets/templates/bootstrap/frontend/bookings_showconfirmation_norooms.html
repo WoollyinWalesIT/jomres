@@ -1,0 +1,209 @@
+
+<patTemplate:tmpl name="booking_particulars">
+<script language="JavaScript" type="text/javascript">
+	<!--
+	function confirmation_validate(usecart) {
+		if (document.bookingForm.agreecheck.checked) {
+			if (usecart) {
+				jomresJquery('#jomres_task').val("{PROCESSURL_SAVETOCART}");
+			}
+			else {
+				jomresJquery('#jomres_task').val("{PROCESSURL}");
+			}
+
+			return true;
+		}
+		else {
+			alert("{ALERT} {TERMSTEXT}");
+			return false;
+		}
+	}
+
+	//-->
+</script>
+<p>{HEADER}</p>
+
+<form action="" method="post" name="bookingForm" class="form-horizontal" onsubmit="send.disabled = true; return true;">
+<div class="row-fluid">
+	<div class="span6 well">
+		<h3 class="page-header">{AJAXFORM_PARTICULARS}</h3>
+
+		<div class="row-fluid">
+			<div class="span6">
+				<strong>{HARRIVAL}</strong>
+			</div>
+			<div class="span6">
+				{ARRIVAL}
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span6">
+				<strong>{HDEPARTURE}</strong>
+			</div>
+			<div class="span6">
+				{DEPARTURE}
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span6">
+				<strong>{HDAYSSTAYING}</strong>
+			</div>
+			<div class="span6">
+				{DAYSSTAYING}
+			</div>
+		</div>
+		<patTemplate:tmpl name="customfields" type="simpleCondition" requiredVars="description">
+			<div class="row-fluid">
+				<div class="span6">
+					{DESCRIPTION}
+				</div>
+				<div class="span6 align-right">
+					{VALUE}
+				</div>
+			</div>
+		</patTemplate:tmpl>
+	</div>
+	<div class="span6 well">
+		<h3 class="page-header">{AJAXFORM_ADDRESS}</h3>
+
+		<div class="row-fluid">
+			<div class="span12">
+				<strong>{FIRSTNAME} {SURNAME}</strong>
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span12">
+				{HOUSENO} {STREET}
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span12">
+				{TOWN}, {COUNTY}, {POSTCODE}
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span12">
+				{COUNTRY}
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span12">
+				{HTEL}: {LANDLINE}
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span12">
+				{HMOBILE}: {MOBILE}
+			</div>
+		</div>
+	</div>
+</div>
+<!--{ALLOCATION}-->
+<div class="well">
+	<h3 class="page-header">{PRICE_SUMMARY}</h3>
+
+	<div class="row-fluid">
+		<div class="span12">
+			{DISCOUNT}
+		</div>
+	</div>
+	<patTemplate:tmpl name="booking_extratext" type="simpleCondition" requiredVars="ajaxform_extras">
+		<patTemplate:tmpl name="booking_extras" type="simpleCondition" requiredVars="name">
+			<div class="row-fluid">
+				<div class="span6">
+					{NAME}
+				</div>
+				<div class="span6 align-right">
+					{PRICE}
+				</div>
+			</div>
+		</patTemplate:tmpl>
+		<div class="row-fluid">
+			<div class="span6">
+				{HEXTRASTOTAL}
+			</div>
+			<div class="span6 align-right">
+				{EXTRASTOTAL}
+			</div>
+		</div>
+	</patTemplate:tmpl>
+	<div class="row-fluid">
+		<div class="span6">
+			{HCOUPON_DISCOUNTVALUE}
+		</div>
+		<div class="span6 align-right">
+			{COUPON_DISCOUNT_VALUE}
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span6">
+			{HTAX}
+		</div>
+		<div class="span6 align-right">
+			{TAX}
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span6">
+			<strong>{HGRANDTOTAL}</strong>
+		</div>
+		<div class="span6 align-right">
+			<strong>{TOTAL}</strong>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span6">
+			{HDEPOSIT}
+		</div>
+		<div class="span6 align-right">
+			{DEPOSIT}
+		</div>
+	</div>
+</div>
+<div class="well">
+	<h3 class="page-header">{BOOKINGSPECIALREQ}</h3>
+
+	<p>{SPECIALS} {DISCLAIMER}</p>
+	<textarea class="input-xlarge " name="specialReqs" rows="2">{SPECIALREQS}</textarea>
+</div>
+
+<patTemplate:tmpl name="gateway_output" type="simpleCondition" requiredVars="gatewaychoiceintro">
+<h3 class="page-header">{GATEWAYCHOICEINTRO}</h3>
+<patTemplate:tmpl name="gateways">
+	<div class="row-fluid">
+		<div class="span3">
+			{GWINPUT}
+		</div>
+		<div class="span9">
+			{GWIMAGE}
+		</div>
+	</div>
+</patTemplate:tmpl>
+</patTemplate:tmpl>
+
+<div class="row-fluid">
+	<div class="span9">
+		{AMENDTEXT}
+	</div>
+	<div class="span3">
+		<a href="{BOOKINGFORMURL}"  class="btn btn-default">{AMEND}</a>
+	</div>
+</div>
+<p>&nbsp;</p>
+
+<div class="">
+	<input name="agreecheck" type="checkbox"/>
+	<span> {TERMSPRETEXT}&nbsp;{TERMS}</span>
+</div>
+<div class="form-actions">
+	<input type="submit" id="send" name="send" value="{THEBUTTON}" class="btn btn-primary"
+		   onclick="return confirmation_validate(false);"/>
+	<patTemplate:tmpl name="cartoutput" type="simpleCondition" requiredVars="_jomres_saveforlater"> {_JOMRES_CART_OR}
+		<input class="btn" type="submit" id="cart" name="cart" value="{_JOMRES_SAVEFORLATER}" class="btn"
+			   onclick="return confirmation_validate(true);"/>
+	</patTemplate:tmpl>
+</div>
+
+<input type="hidden" name="task" id="jomres_task" value="" />
+</form>
+</patTemplate:tmpl>

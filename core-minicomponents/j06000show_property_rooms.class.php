@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -107,9 +107,9 @@ class j06000show_property_rooms
                 }
                 $r[ 'RANDOM_IDENTIFIER' ] = generateJomresRandomString(10);
 
-                $r[ 'IMAGELARGE' ] = get_showtime('live_site').'/jomres/images/noimage.gif';
-                $r[ 'IMAGEMEDIUM' ] = get_showtime('live_site').'/jomres/images/noimage.gif';
-                $r[ 'IMAGETHUMB' ] = get_showtime('live_site').'/jomres/images/noimage.gif';
+                $r[ 'IMAGELARGE' ] = JOMRES_IMAGES_RELPATH.'noimage.gif';
+                $r[ 'IMAGEMEDIUM' ] = JOMRES_IMAGES_RELPATH.'noimage.gif';
+                $r[ 'IMAGETHUMB' ] = JOMRES_IMAGES_RELPATH.'noimage.gif';
 
                 if (isset($jomres_media_centre_images->images['rooms']) && $jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['large'] != '') {
                     $r[ 'IMAGELARGE' ] = $jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['large'];

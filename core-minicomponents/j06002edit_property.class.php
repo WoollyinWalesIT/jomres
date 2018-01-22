@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -155,8 +155,8 @@ class j06002edit_property
             $output[ 'PROPERTY_OTHERTRANSPORT' ] = editorAreaText('property_othertransport', $current_property_details->property_othertransport, 'property_othertransport', $width, $height, $col, $row);
             $output[ 'PROPERTY_POLICIES_DISCLAIMERS' ] = editorAreaText('property_policies_disclaimers', $property_policies_disclaimers, 'property_policies_disclaimers', $width, $height, $col, $row);
         } else {
-            jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/libraries/simpleMDE/dist/', 'simplemde.min.js');
-            jomres_cmsspecific_addheaddata('css', JOMRES_ROOT_DIRECTORY.'/libraries/simpleMDE/dist/', 'simplemde.min.css');
+            jomres_cmsspecific_addheaddata('javascript', JOMRES_NODE_MODULES_RELPATH.'simple-cmeditor/dist/', 'simplemde.min.js');
+            jomres_cmsspecific_addheaddata('css', JOMRES_NODE_MODULES_RELPATH.'simple-cmeditor/dist/', 'simplemde.min.css');
             
 			$output['SIMPLEMDE_JAVASCRIPT'] = '
 				<script type="text/javascript">

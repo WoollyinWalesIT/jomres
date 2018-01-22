@@ -1,0 +1,27 @@
+<patTemplate:tmpl name="pageoutput">
+	<style type="text/css">
+		.ngm_image {
+			width: 120px;
+			height: 90px;
+		}
+
+		.ngm_image:hover {
+			-moz-box-shadow: 4px 4px 2px #888;
+			-webkit-box-shadow: 4px 4px 2px #888;
+			box-shadow: 4px 4px 2px #888;
+			width: 123px;
+			height: 92px;
+		}
+
+		a.fg-button.more-info-link {
+			float: none !important;
+		}
+	</style>
+
+	<div class="ui-helper-clearfix">
+		<patTemplate:tmpl name="rows">
+			{PROPERTY}
+		</patTemplate:tmpl>
+	</div>
+	<br/>
+</patTemplate:tmpl>

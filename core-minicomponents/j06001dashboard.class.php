@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -62,14 +62,14 @@ class j06001dashboard
         $output = array();
         $pageoutput = array();
 
-        jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/', 'moment.min.js');
-        jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/', 'fullcalendar.min.js');
-        jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/', 'lang-all.js');
-        jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/', 'scheduler.min.js');
-        jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/javascript/', 'jquery.blockUI.js');
-        jomres_cmsspecific_addheaddata('css', JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/', 'fullcalendar.min.css');
-        jomres_cmsspecific_addheaddata('css', JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/', 'scheduler.min.css');
-        //jomres_cmsspecific_addheaddata("css",JOMRES_ROOT_DIRECTORY.'/javascript/fullcalendar/','fullcalendar.print.css');
+        jomres_cmsspecific_addheaddata('javascript', JOMRES_NODE_MODULES_RELPATH.'moment/min/', 'moment.min.js');
+        jomres_cmsspecific_addheaddata('javascript', JOMRES_NODE_MODULES_RELPATH.'fullcalendar/dist/', 'fullcalendar.min.js');
+        jomres_cmsspecific_addheaddata('javascript', JOMRES_NODE_MODULES_RELPATH.'fullcalendar/dist/', 'lang-all.js');
+        jomres_cmsspecific_addheaddata('javascript', JOMRES_NODE_MODULES_RELPATH.'fullcalendar-scheduler/dist/', 'scheduler.min.js');
+        jomres_cmsspecific_addheaddata('javascript', JOMRES_NODE_MODULES_RELPATH.'blockui-npm/', 'jquery.blockUI.js');
+        jomres_cmsspecific_addheaddata('css', JOMRES_NODE_MODULES_RELPATH.'fullcalendar/dist/', 'fullcalendar.min.css');
+        jomres_cmsspecific_addheaddata('css', JOMRES_NODE_MODULES_RELPATH.'fullcalendar-scheduler/dist/', 'scheduler.min.css');
+        //jomres_cmsspecific_addheaddata("css",JOMRES_NODE_MODULES_RELPATH.'fullcalendar/','fullcalendar.print.css');
 
         $output['PAGETITLE'] = jr_gettext('_JOMRES_INTERVAL', '_JOMRES_INTERVAL', false);
         $output['HROOMS'] = jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOM', '_JOMRES_COM_MR_VRCT_TAB_ROOM', false);

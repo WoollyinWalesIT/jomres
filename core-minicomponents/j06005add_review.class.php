@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -32,7 +32,7 @@ class j06005add_review
         } else {
             $property_uid = (int) $_GET[ 'property_uid' ];
         }
-
+		
         //jomres_cmsspecific_addheaddata( "javascript", get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.validate.js" );
         //jomres_cmsspecific_addheaddata( "javascript", ''.JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.rating.js" );
         //jomres_cmsspecific_addheaddata( "css", ''.JOMRES_ROOT_DIRECTORY.'/css/', 'jquery.rating.css' );
@@ -84,6 +84,11 @@ class j06005add_review
                 $output[ 'PROPERTY_DETAILS_URL' ] = get_property_details_url($property_uid);
                 $output[ 'PROPERTY_UID' ] = $property_uid;
                 $output[ '_JOMRES_COM_A_CANCEL' ] = jr_gettext('_JOMRES_COM_A_CANCEL', '_JOMRES_COM_A_CANCEL', false);
+				
+				$output[ 'CONTRACT_UID' ] = 0;
+				if ( isset($_GET[ 'contract_uid' ] )) {
+					$output[ 'CONTRACT_UID' ] = (int)$_GET[ 'contract_uid' ];
+				}
                 $pageoutput[ ] = $output;
                 $tmpl = new patTemplate();
                 $tmpl->addRows('pageoutput', $pageoutput);

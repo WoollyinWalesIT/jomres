@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 $mrConfig = array(
-  'version' => '9.9.17',
+  'version' => '9.9.18',
   'newTariffModels' => '2',
   'singlePersonSuppliment' => '0',
   'singlePersonSupplimentCost' => '10',
@@ -152,5 +152,6 @@ $mrConfig = array(
   'useOnlinepayment' => '0',
   'minimum_deposit_percentage' => '0',
   'externalBookingFormUrl' => '',
-  'minimum_deposit_value' => 0
+  'minimum_deposit_value' => 0,
+  'poa_price' => ''
 );

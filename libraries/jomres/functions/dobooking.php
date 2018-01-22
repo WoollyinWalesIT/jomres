@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.17
+ * @version Jomres 9.9.18
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -36,8 +36,9 @@ if (
     $thisJRUser->set_currentproperty($selectedProperty);
     jomresRedirect(get_booking_url($selectedProperty), '');
 }
-
-$selectedProperty = $property_uid;
+if (!defined('JOMRES_API_CMS_ROOT')) {
+	$selectedProperty = $property_uid;
+}
 
 $remus = jomresGetParam($_REQUEST, 'remus', '');
 
@@ -412,7 +413,7 @@ function dobooking($selectedProperty, $thisdate, $remus)
     $extrasH = array();
 
     if ((!empty($extra_details) || !empty($third_party_extras)) && $mrConfig[ 'showExtras' ] == '1') {
-        $output[ 'EXTRAS_INFO' ] = '<img border="0" style="vertical-align:top;" src="'.get_showtime('live_site').'/components/com_jomres/images/info.png" />';
+        $output[ 'EXTRAS_INFO' ] = '<img border="0" style="vertical-align:top;" src="'.JOMRES_IMAGES_RELPATH.'info.png" />';
         $output[ 'AJAXFORM_EXTRAS' ] = $bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_EXTRAS', '_JOMRES_AJAXFORM_EXTRAS'));
         $output[ 'AJAXFORM_EXTRAS_DESC' ] = $bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_EXTRAS_DESC', '_JOMRES_AJAXFORM_EXTRAS_DESC', false));
         $output[ 'EXTRAS_TOTAL' ] = $bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_EXTRAS_TOTAL', '_JOMRES_AJAXFORM_EXTRAS_TOTAL'));
@@ -663,62 +664,62 @@ function dobooking($selectedProperty, $thisdate, $remus)
     }
 
     $pageoutput[ ] = $output;
-    $tmpl = new patTemplate();
+		$tmpl = new patTemplate();
 
-    if (get_showtime('include_room_booking_functionality')) {
-        if ($mrConfig[ 'booking_form_rooms_list_style' ] == '1') {
-            $tmpl->addRows('classic_rooms_list', $classic_rooms_list_output);
-        }
-        if ($mrConfig[ 'booking_form_rooms_list_style' ] == '2') {
-            $tmpl->addRows('roomtype_dropdown_list', $roomtype_dropdown_list_output);
-        }
-    }
+		if (get_showtime('include_room_booking_functionality')) {
+			if ($mrConfig[ 'booking_form_rooms_list_style' ] == '1') {
+				$tmpl->addRows('classic_rooms_list', $classic_rooms_list_output);
+			}
+			if ($mrConfig[ 'booking_form_rooms_list_style' ] == '2') {
+				$tmpl->addRows('roomtype_dropdown_list', $roomtype_dropdown_list_output);
+			}
+		}
 
-    $tmpl->addRows('rooms_list_accommodation_panel_output', $rooms_list_accommodation_panel_output);
-    $tmpl->addRows('coupons', $coupons);
-    $tmpl->addRows('coupons_totals', $coupons_totals);
-    $tmpl->addRows('customfields', $customFields);
-    $tmpl->addRows('pageoutput', $pageoutput);
-    $tmpl->addRows('guesttypes', $guestTypes);
-    $tmpl->addRows('extrasrow', $extrasHeader);
-    $tmpl->addRows('roomfeaturesrowheader', $roomfeaturesHeader);
-    $tmpl->addRows('roomfeaturesrow', $roomfeatures);
-    $tmpl->addRows('manager_pricing', $manager_pricing);
-    $tmpl->addRows('tax_totals', $tax_totals);
-    $tmpl->addRows('onload', $toload);
-    $MiniComponents->triggerEvent('05019');
-    $mcOutput = $MiniComponents->getAllEventPointsData('05019');
-    if (!empty($mcOutput)) {
-        foreach ($mcOutput as $key => $val) {
-            $tmpl->addRows('customOutput_'.$key, array($val));
-        }
-    }
+		$tmpl->addRows('rooms_list_accommodation_panel_output', $rooms_list_accommodation_panel_output);
+		$tmpl->addRows('coupons', $coupons);
+		$tmpl->addRows('coupons_totals', $coupons_totals);
+		$tmpl->addRows('customfields', $customFields);
+		$tmpl->addRows('pageoutput', $pageoutput);
+		$tmpl->addRows('guesttypes', $guestTypes);
+		$tmpl->addRows('extrasrow', $extrasHeader);
+		$tmpl->addRows('roomfeaturesrowheader', $roomfeaturesHeader);
+		$tmpl->addRows('roomfeaturesrow', $roomfeatures);
+		$tmpl->addRows('manager_pricing', $manager_pricing);
+		$tmpl->addRows('tax_totals', $tax_totals);
+		$tmpl->addRows('onload', $toload);
+		$MiniComponents->triggerEvent('05019');
+		$mcOutput = $MiniComponents->getAllEventPointsData('05019');
+		if (!empty($mcOutput)) {
+			foreach ($mcOutput as $key => $val) {
+				$tmpl->addRows('customOutput_'.$key, array($val));
+			}
+		}
 
-    if (!empty($third_party_extras)) {
-        $tmpl->addRows('third_party_extras', $third_party_extras);
-    }
-    if ($mrConfig[ 'showExtras' ] == '1') {
-        $extra_details = array(array('EXTRAS_TEMPLATE' => $extra_details));
-        $tmpl->addRows('extras', $extra_details);
-    }
-    $componentArgs = array('tmpl' => $tmpl);
+		if (!empty($third_party_extras)) {
+			$tmpl->addRows('third_party_extras', $third_party_extras);
+		}
+		if ($mrConfig[ 'showExtras' ] == '1') {
+			$extra_details = array(array('EXTRAS_TEMPLATE' => $extra_details));
+			$tmpl->addRows('extras', $extra_details);
+		}
+		$componentArgs = array('tmpl' => $tmpl);
 
-    $tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
-    if (!get_showtime('include_room_booking_functionality')) {
-        $tmpl->readTemplatesFromInput('dobooking_norooms.html');
-    } else {
-        if (($mrConfig[ 'singleRoomProperty' ] == '1')) {
-            $tmpl->readTemplatesFromInput('dobooking_srp.html');
-        } else {
-            $tmpl->readTemplatesFromInput('dobooking.html');
-        }
-    }
-    if (!defined('DOBOOKING_IN_DETAILS')) {
-        $tmpl->displayParsedTemplate();
-    } else {
-        $booking_form = $tmpl->getParsedTemplate();
-        define('BOOKING_FORM_FOR_PROPERTY_DETAILS', $booking_form);
-    }
+		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+		if (!get_showtime('include_room_booking_functionality')) {
+			$tmpl->readTemplatesFromInput('dobooking_norooms.html');
+		} else {
+			if (($mrConfig[ 'singleRoomProperty' ] == '1')) {
+				$tmpl->readTemplatesFromInput('dobooking_srp.html');
+			} else {
+				$tmpl->readTemplatesFromInput('dobooking.html');
+			}
+		}
+		if (!defined('DOBOOKING_IN_DETAILS')) {
+			$tmpl->displayParsedTemplate();
+		} else {
+			$booking_form = $tmpl->getParsedTemplate();
+			define('BOOKING_FORM_FOR_PROPERTY_DETAILS', $booking_form);
+		}
 }
 
 function generateCustomFieldsJavascript($customFields)
