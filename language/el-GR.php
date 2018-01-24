@@ -2181,3 +2181,6 @@ jr_define( 'REVIEW_REMINDER_PT2', " booking(s) that you have not left a review f
 jr_define( 'BOOKINGS_AWAITING_REVIEWS', "Bookings waiting for reviews");
 jr_define( 'REVIEW_NAG', "Nag guests for reviews?");
 jr_define( 'REVIEW_NAG_DESC', "Once a guest has been booked out from a booking, the system will remind them to post a review for their booking. Set this option to No to disable this reminder.");
+
+jr_define( 'SEND_EMAIL_COPIES_TO_SITE_ADMINS_TITLE', "Send copies of the booking emails to site admins?");
+jr_define( 'SEND_EMAIL_COPIES_TO_SITE_ADMINS_DESC', "When enabled, copies of the booking emails sent to property managers will be sent to all site admins too.");
