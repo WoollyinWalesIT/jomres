@@ -629,6 +629,10 @@ function doTableUpdates()
         alterLineitemsPaymentMethodCol();
 	}
 	
+	if (!checkPropertyFeaturesFilterColExists()) {
+        alterPropertyFeaturesFilterCol();
+	}
+	
 	alterCustomtextColsChangeDefaultVals();
 	copy_default_property_type_markers();
     drop_orphan_line_items_table();
@@ -642,6 +646,25 @@ function doTableUpdates()
 	
 }
  
+function alterPropertyFeaturesFilterCol()
+{
+    $query = "ALTER TABLE `#__jomres_hotel_features` ADD `include_in_filters` TINYINT(1) NOT NULL DEFAULT 1 ";
+    if (!doInsertSql($query, '')) {
+        output_message('Error, unable to add __jomres_hotel_features include_in_filters column', 'danger');
+    }
+}
+
+function checkPropertyFeaturesFilterColExists()
+{
+    $query = "SHOW COLUMNS FROM #__jomres_hotel_features LIKE 'include_in_filters'";
+    $result = doSelectSql($query);
+    if (count($result) > 0) {
+        return true;
+    }
+    return false;
+}
+
+
 function checkLineitemsPaymentMethodColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomresportal_lineitems  LIKE 'payment_method'";
@@ -4037,6 +4060,7 @@ function createJomresTables()
 		`property_uid` VARCHAR(11),
 		`ptype_xref` text NULL DEFAULT NULL,
 		`cat_id` varchar(244) NOT NULL DEFAULT 0,
+		`include_in_filters` TINYINT(1) NOT NULL DEFAULT 1,
 		PRIMARY KEY(`hotel_features_uid`)
 		) ';
     if (!doInsertSql($query)) {
