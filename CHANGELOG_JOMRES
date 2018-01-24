@@ -1,3 +1,12 @@
+<h3>Jomres 9.9.19 24/01/2018</h3>
+
+<span class="label label-success">Feature</span> Added a new feature to copy booking emails sent to property managers to site admins too. Setting can be found in Site Configuration -> Booking Form tab.
+
+<span class="label label-warning">Change</span> Updated dependencies
+
+<span class="label label-important label-danger">Fix</span> Installer updated to cope with mysql installations that mangle table name cases.
+<span class="label label-important label-danger">Fix</span> Solved a notice in integration.php
+
 <h3>Jomres 9.9.18 22/01/2018</h3>
 
 
