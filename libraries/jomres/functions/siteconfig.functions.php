@@ -328,6 +328,8 @@ function showSiteConfig()
 		$options[] = jomresHTML::makeOption( $i, $i );
 		}
 	$lists[ 'map_zoom' ] = jomresHTML::selectList($options, 'cfg_map_zoom', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'map_zoom' ]);
+	
+	$lists[ 'send_email_copies_to_site_admins' ] = jomresHTML::selectList($yesno, 'cfg_send_email_copies_to_site_admins', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'send_email_copies_to_site_admins' ]);
 
     $componentArgs = array();
     $componentArgs[ 'lists' ] = $lists;
