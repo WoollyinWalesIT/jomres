@@ -46,6 +46,8 @@ $showtime->dbprefix = $wpdb->prefix;
 
 $showtime->sitename = get_option('blogname');
 $showtime->mailer = 'mail';
+$showtime->mailfrom = get_option('admin_email');
+$showtime->fromname = get_option('blogname');
 $showtime->smtpuser = get_option('mailserver_login');
 $showtime->smtppass = get_option('mailserver_pass');
 $showtime->smtphost = get_option('mailserver_url');

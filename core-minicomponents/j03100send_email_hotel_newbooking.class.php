@@ -27,6 +27,9 @@ class j03100send_email_hotel_newbooking
         }
 
         $email_type = 'email_hotel_newbooking';
+		
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
 
         $mrConfig = getPropertySpecificSettings();
         $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
@@ -65,6 +68,11 @@ class j03100send_email_hotel_newbooking
                 ) {
                 error_logging('Failure in sending new booking email to hotel. Target address: '.$booking_email_details->data[$contract_uid]['PROPERTY_EMAIL'].' Subject'.$booking_email_details->parsed_email['subject'].$booking_email_details->parsed_email['text']);
             }
+			
+			//send a copy of this email to site admins
+			if ($jrConfig['send_email_copies_to_site_admins'] == '1') {
+				sendAdminEmail($booking_email_details->parsed_email['subject'], $booking_email_details->parsed_email['text']);
+			}
         } else {
             echo $booking_email_details->parsed_email['text'];
         }
