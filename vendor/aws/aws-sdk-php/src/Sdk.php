@@ -22,6 +22,8 @@ namespace Aws;
  * @method \Aws\MultiRegionClient createMultiRegionAthena(array $args = [])
  * @method \Aws\AutoScaling\AutoScalingClient createAutoScaling(array $args = [])
  * @method \Aws\MultiRegionClient createMultiRegionAutoScaling(array $args = [])
+ * @method \Aws\AutoScalingPlans\AutoScalingPlansClient createAutoScalingPlans(array $args = [])
+ * @method \Aws\MultiRegionClient createMultiRegionAutoScalingPlans(array $args = [])
  * @method \Aws\Batch\BatchClient createBatch(array $args = [])
  * @method \Aws\MultiRegionClient createMultiRegionBatch(array $args = [])
  * @method \Aws\Budgets\BudgetsClient createBudgets(array $args = [])
@@ -246,6 +248,8 @@ namespace Aws;
  * @method \Aws\MultiRegionClient createMultiRegionSupport(array $args = [])
  * @method \Aws\Swf\SwfClient createSwf(array $args = [])
  * @method \Aws\MultiRegionClient createMultiRegionSwf(array $args = [])
+ * @method \Aws\TranscribeService\TranscribeServiceClient createTranscribeService(array $args = [])
+ * @method \Aws\MultiRegionClient createMultiRegionTranscribeService(array $args = [])
  * @method \Aws\Translate\TranslateClient createTranslate(array $args = [])
  * @method \Aws\MultiRegionClient createMultiRegionTranslate(array $args = [])
  * @method \Aws\Waf\WafClient createWaf(array $args = [])
@@ -263,7 +267,7 @@ namespace Aws;
  */
 class Sdk
 {
-    const VERSION = '3.48.11';
+    const VERSION = '3.52.0';
 
     /** @var array Arguments for creating clients */
     private $args;

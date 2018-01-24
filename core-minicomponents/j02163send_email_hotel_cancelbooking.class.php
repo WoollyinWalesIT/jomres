@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.18
+ * @version Jomres 9.9.19
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -27,6 +27,9 @@ class j02163send_email_hotel_cancelbooking
         }
 
         $email_type = 'email_hotel_cancelbooking';
+		
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
 
         $mrConfig = getPropertySpecificSettings();
         $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
@@ -55,6 +58,11 @@ class j02163send_email_hotel_cancelbooking
                 ) {
                 error_logging('Failure in sending new booking email to hotel. Target address: '.$booking_email_details->data[$contract_uid]['PROPERTY_EMAIL'].' Subject'.$booking_email_details->parsed_email['subject'].$booking_email_details->parsed_email['text']);
             }
+			
+			//send a copy of this email to site admins
+			if ($jrConfig['send_email_copies_to_site_admins'] == '1') {
+				sendAdminEmail($booking_email_details->parsed_email['subject'], $booking_email_details->parsed_email['text']);
+			}
         } else {
             echo $booking_email_details->parsed_email['text'];
         }

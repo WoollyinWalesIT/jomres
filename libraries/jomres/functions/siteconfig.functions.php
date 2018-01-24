@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.18
+ * @version Jomres 9.9.19
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -328,6 +328,8 @@ function showSiteConfig()
 		$options[] = jomresHTML::makeOption( $i, $i );
 		}
 	$lists[ 'map_zoom' ] = jomresHTML::selectList($options, 'cfg_map_zoom', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'map_zoom' ]);
+	
+	$lists[ 'send_email_copies_to_site_admins' ] = jomresHTML::selectList($yesno, 'cfg_send_email_copies_to_site_admins', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'send_email_copies_to_site_admins' ]);
 
     $componentArgs = array();
     $componentArgs[ 'lists' ] = $lists;
