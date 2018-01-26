@@ -5029,7 +5029,7 @@ class dobooking
 									if ($this->cfg_perPersonPerNight == '1') {
 										$pernight = jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN', '_JOMRES_FRONT_TARIFFS_PPPN', false);
 									} else {
-										$pernight = jr_gettext('_JOMRES_FRONT_TARIFFS_PN', _JOMRES_FRONT_TARIFFS_PN, false);
+										$pernight = jr_gettext('_JOMRES_FRONT_TARIFFS_PN', '_JOMRES_FRONT_TARIFFS_PN', false);
 									}
 									//echo ';jomresJquery.jGrowl(\'' . jr_gettext( '_JOMRES_STAYFORAMINIMUMOF', _JOMRES_STAYFORAMINIMUMOF, false ) . " " . $key . " " . jr_gettext( '_JOMRES_NIGHTSFOR', _JOMRES_NIGHTSFOR, false ) . " " . output_price( $val ) . $pernight . '\', { life: 20000 });';
 								}
