@@ -55,24 +55,28 @@ class j06000media_centre_resources_ajax_existing_images
         if (!empty($images)) {
             foreach ($images as $image) {
 				if ( isset( $image['small'] ) ) {
-					$image_name_array = explode('/', $image['small']);
-					$image_name = $image_name_array[count($image_name_array) - 1];
+					$image_name = basename($image['small']);
 
-					$base_path = JOMRES_IMAGELOCATION_ABSPATH;
 					$image_small_path = str_replace(JOMRES_IMAGELOCATION_RELPATH, '', $image['small']);
-					$image_small_path = str_replace('/', JRDS , $image['small']);
+					$image_small_path = str_replace('/', JRDS , $image_small_path);
 
 					$output = array();
 					$pageoutput = array();
 
 					$output['RANDOM_ID'] = generateJomresRandomString(10);
 					$output['FILENAME'] = $image_name;
+					$output['IMAGE_REL_LARGE'] = $image['large'];
 
-					$output['IMAGE_REL_SMALL'] = $image['small'];
-
-					$output['IMAGE_REL_LARGE'] = $image['small'];
+					//check if the thumbnail exists
+					if (file_exists(JOMRES_IMAGELOCATION_RELPATH.$image_small_path)) {
+						$output['IMAGE_REL_SMALL'] = $image['small'];
+					} else {
+						$output['IMAGE_REL_SMALL'] = $image['large'];
+					}
+					
 					$output['_JOMRES_MEDIA_CENTRE_BUTTON_DELETE'] = jr_gettext('_JOMRES_MEDIA_CENTRE_BUTTON_DELETE', '_JOMRES_MEDIA_CENTRE_BUTTON_DELETE', false);
 					$output['_JOMRES_MEDIA_CENTRE_BUTTON_VIEW'] = jr_gettext('_JOMRES_MEDIA_CENTRE_BUTTON_VIEW', '_JOMRES_MEDIA_CENTRE_BUTTON_VIEW', false);
+					
 					$output['DELETE_URL'] = $delete_url.$image_name;
 
 					$pageoutput[] = $output;
@@ -87,7 +91,6 @@ class j06000media_centre_resources_ajax_existing_images
 					$tmpl->addRows('pageoutput', $pageoutput);
 					$image_result .= $tmpl->getParsedTemplate();					
 				}
-
             }
 
             $pageoutput[] = array('IMAGES' => $image_result);
