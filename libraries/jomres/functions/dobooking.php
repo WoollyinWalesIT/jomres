@@ -233,7 +233,20 @@ function dobooking($selectedProperty, $thisdate, $remus)
     $output[ 'BOOKING_FORM_CALENDAR' ] = get_showtime('booking_form_calendar');
     $output[ '_JOMRES_COM_A_AVLCAL' ] = $bkg->sanitiseOutput(jr_gettext('_JOMRES_COM_A_AVLCAL', '_JOMRES_COM_A_AVLCAL', false, false));
     $output[ '_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY' ] = $bkg->sanitiseOutput(jr_gettext('_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY', '_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY', false, false));
-
+	
+	// Previous outputs for Availability calendar left in-situ for older copies of the dobooking template.
+	$calendar_modal = array();
+	 if ($mrConfig[ 'showAvailabilityCalendar' ] == '1') {
+		
+		$calendar_modal = array( 0 => 
+			array ( 
+				'BOOKING_FORM_CALENDAR' => $output[ 'BOOKING_FORM_CALENDAR' ],
+				'_JOMRES_COM_A_AVLCAL' => $output[ '_JOMRES_COM_A_AVLCAL' ],
+				'_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY' => $output[ '_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY' ]
+			)
+		);
+	}
+	 
     $output[ 'BLOCKUI_CHANGINGEXTRA' ] = $bkg->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_CHANGINGEXTRA', '_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_CHANGINGEXTRA', false, false));
     $output[ 'BLOCKUI_CHANGINGROOMSELECTION' ] = $bkg->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_CHANGINGROOMSELECTION', '_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_CHANGINGROOMSELECTION', false, false));
     $output[ 'BLOCKUI_UPDATINGADDRESS' ] = $bkg->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_UPDATINGADDRESS', '_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_UPDATINGADDRESS', false, false));
@@ -675,6 +688,7 @@ function dobooking($selectedProperty, $thisdate, $remus)
 			}
 		}
 
+		$tmpl->addRows('calendar_modal', $calendar_modal);
 		$tmpl->addRows('rooms_list_accommodation_panel_output', $rooms_list_accommodation_panel_output);
 		$tmpl->addRows('coupons', $coupons);
 		$tmpl->addRows('coupons_totals', $coupons_totals);
