@@ -39,7 +39,14 @@ class j00501propertydetailsoptions
         $configurationPanel->setright(jr_gettext('_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK_DESC', '_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK_DESC', false));
         $configurationPanel->insertSetting();
 
+		$configurationPanel->setleft(jr_gettext('HIDDEN_ADDRESS_SETTING', 'HIDDEN_ADDRESS_SETTING', false));
+		$configurationPanel->setmiddle($lists[ 'hide_local_address' ]);
+		$configurationPanel->setright(jr_gettext('HIDDEN_ADDRESS_SETTING_DESC', 'HIDDEN_ADDRESS_SETTING_DESC', false));
+		$configurationPanel->insertSetting();
+		
         if ($mrConfig[ 'is_real_estate_listing' ] == 0) {
+
+			
 			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_SHOWONLYAVLCAL', '_JOMRES_COM_A_SHOWONLYAVLCAL', false));
 			$configurationPanel->setmiddle($lists[ 'showOnlyAvailabilityCalendar' ]);
 			$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_SHOWONLYAVLCAL_DESC', '_JOMRES_COM_A_SHOWONLYAVLCAL_DESC', false));

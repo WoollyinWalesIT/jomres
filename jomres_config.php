@@ -153,5 +153,6 @@ $mrConfig = array(
   'minimum_deposit_percentage' => '0',
   'externalBookingFormUrl' => '',
   'minimum_deposit_value' => 0,
-  'poa_price' => ''
+  'poa_price' => '',
+  'hide_local_address' => '0'
 );

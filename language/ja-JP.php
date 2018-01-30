@@ -2157,3 +2157,7 @@ jr_define( 'REVIEW_NAG_DESC', "Once a guest has been booked out from a booking, 
 
 jr_define( 'SEND_EMAIL_COPIES_TO_SITE_ADMINS_TITLE', "Send copies of the booking emails to site admins?");
 jr_define( 'SEND_EMAIL_COPIES_TO_SITE_ADMINS_DESC', "When enabled, copies of the booking emails sent to property managers will be sent to all site admins too.");
+
+jr_define( 'HIDDEN_ADDRESS_SETTING', "Hide address?");
+jr_define( 'HIDDEN_ADDRESS_SETTING_DESC', "If you set this option to Yes, then only guests who have already placed a booking on your property will be able to see the property street address. You might want to use this setting to hide the property's exact location if, for example, it is routinely left unattended.");
+jr_define( 'HIDDEN_ADDRESS_PLACEHOLDER', "HIDDEN");

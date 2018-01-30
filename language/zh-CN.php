@@ -2173,3 +2173,7 @@ jr_define( 'REVIEW_REMINDER_PT2', " booking(s) that you have not left a review f
 jr_define( 'BOOKINGS_AWAITING_REVIEWS', "Bookings waiting for reviews");
 jr_define( 'REVIEW_NAG', "Nag guests for reviews?");
 jr_define( 'REVIEW_NAG_DESC', "Once a guest has been booked out from a booking, the system will remind them to post a review for their booking. Set this option to No to disable this reminder.");
+
+jr_define( 'HIDDEN_ADDRESS_SETTING', "Hide address?");
+jr_define( 'HIDDEN_ADDRESS_SETTING_DESC', "If you set this option to Yes, then only guests who have already placed a booking on your property will be able to see the property street address. You might want to use this setting to hide the property's exact location if, for example, it is routinely left unattended.");
+jr_define( 'HIDDEN_ADDRESS_PLACEHOLDER', "HIDDEN");

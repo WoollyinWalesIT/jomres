@@ -2566,6 +2566,7 @@ function propertyConfiguration()
     $lists[ 'depositIsOneNight' ] = jomresHTML::selectList($yesno, 'cfg_depositIsOneNight', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'depositIsOneNight' ]);
 
     $lists[ 'requireApproval' ] = jomresHTML::selectList($yesno, 'cfg_requireApproval', 'class="inputbox" size="1"', 'value', 'text', (int) $mrConfig[ 'requireApproval' ]);
+	$lists[ 'hide_local_address' ] = jomresHTML::selectList($yesno, 'cfg_hide_local_address', 'class="inputbox" size="1"', 'value', 'text', (int) $mrConfig[ 'hide_local_address' ]);
 
     if (!isset($mrConfig[ 'auto_detect_country_for_booking_form' ])) {
         $mrConfig[ 'auto_detect_country_for_booking_form' ] = '1';
