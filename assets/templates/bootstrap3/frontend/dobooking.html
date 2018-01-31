@@ -199,43 +199,37 @@
 					<div class="panel-body">
 						<p>{AJAXFORM_PARTICULARS_DESC}</p>
 						<div class="row">
-							<div class="col-md-4">
+							<div class="col-md-5">
 								<div class="form-group">
 									<label class="control-label" for="arrivalDate">{HARRIVALDATE}</label>
-									<div class="input-group">
-										{ARRIVALDATE}
-									</div>
+									<div class="input-group">{ARRIVALDATE}</div>
 								</div>
 							</div>
-							<div class="col-md-4">
+							<div class="col-md-5">
 								<div class="form-group">
 									<label class="control-label" for="departureDate">{HDEPARTUREDATE}</label>
-									<div class="input-group">
-										{DEPARTUREDATE}
-									</div>
+									<div class="input-group">{DEPARTUREDATE}</div>
 								</div>
 							</div>
-							<patTemplate:tmpl name="calendar_modal" type="simpleCondition" requiredVars="_jomres_com_a_avlcal">
-							<div class="col-md-4">
+							<div class="col-md-2">
+								<patTemplate:tmpl name="calendar_modal" type="simpleCondition" requiredVars="_jomres_com_a_avlcal">
 								<div class="form-group">
-									<label class="control-label" for="departureDate">{_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY}</label>
+									<label class="control-label" for="availabilityCal">{_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY}</label>
 									<div class="input-group">
-										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#availability_calendar_model">
-										{_JOMRES_COM_A_AVLCAL}
-										</button>
+										<button name="availabilityCal" type="button" class="btn btn-primary" data-toggle="modal" data-target="#availability_calendar_model">{_JOMRES_COM_A_AVLCAL}</button>
 									</div>
+								</div>
+								</patTemplate:tmpl>
+							</div>
+							<patTemplate:tmpl name="guesttypes">
+							<div class="col-md-3">
+								<div class="form-group">
+									<label class="control-label" for="{FIELDNAME}">{TEXT}</label>
+									{DROPDOWN}
 								</div>
 							</div>
 							</patTemplate:tmpl>
 						</div>
-						<patTemplate:tmpl name="guesttypes">
-						<div class="col-md-3">
-							<div class="form-group">
-								<label class="control-label" for="{FIELDNAME}">{TEXT}</label>
-								{DROPDOWN}
-							</div>
-						</div>
-						</patTemplate:tmpl>
 					</div>
 				</div>
 			</div>
