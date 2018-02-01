@@ -169,7 +169,12 @@ class mcHandler
 					$this->miniComponentData[ $eventPoint ][ $eventName ] = $retVal;
 					set_showtime('current_minicomp', '');
 					unset($e);
-				}
+				} elseif (!file_exists($eventDetails[ 'filepath' ].$filename) && $eventPoint == "00001" ) { // Has the installation been moved to a new server?
+					$registry = jomres_singleton_abstract::getInstance('minicomponent_registry');
+					$registry->regenerate_registry();
+					$this->registeredClasses = $registry->get_registered_classes();
+					$this->miniComponentDirectories = $registry->get_minicomponent_directories();
+				} 
             }
         }
         
