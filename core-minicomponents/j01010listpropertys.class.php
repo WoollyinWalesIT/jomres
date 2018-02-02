@@ -738,9 +738,18 @@ class j01010listpropertys
 							}
 						}
 					}
-
+					
+					$property_deets[ 'EDIT_LINK' ] = '';
+					if (!empty($thisJRUser->authorisedProperties)) {
+						if ( in_array($propertys_uid ,$thisJRUser->authorisedProperties )) {
+							$property_deets[ 'EDIT_LINK' ] = '<div href="'.jomresURL(JOMRES_SITEPAGE_URL.'&task=dashboard&thisProperty='.$propertys_uid).'" class="owner-links btn btn-danger">Edit</a>';
+						}
+					}
+				
 					$property_details[ ] = $property_deets;
 				}
+				
+
 
 				if (!$data_only) {
 					if (!AJAXCALL || get_showtime('task') == 'ajax_search_filter') {
@@ -762,6 +771,7 @@ class j01010listpropertys
 					if (isset($property_reviews)) {
 						$tmpl->addRows('property_reviews', $property_reviews);
 					}
+
 					$tmpl->addRows('pageoutput', $pageoutput);
 					$tmpl->addRows('property_details', $property_details);
 					$tmpl->setRoot($layout_path_to_template);
