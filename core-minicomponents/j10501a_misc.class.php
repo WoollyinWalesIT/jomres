@@ -108,10 +108,10 @@ class j10501a_misc
 		$configurationPanel->setright(jr_gettext('_JOMRES_REGION_TRANSLATION_SWITCH_DESC', '_JOMRES_REGION_TRANSLATION_SWITCH_DESC', false));
 		$configurationPanel->insertSetting();
 		
-		$configurationPanel->setleft(jr_gettext('_JOMRES_COM_LANGUAGE_CONTEXT', '_JOMRES_COM_LANGUAGE_CONTEXT', false));
+		/* $configurationPanel->setleft(jr_gettext('_JOMRES_COM_LANGUAGE_CONTEXT', '_JOMRES_COM_LANGUAGE_CONTEXT', false));
 		$configurationPanel->setmiddle($language_context_dropdown);
 		$configurationPanel->setright(jr_gettext('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', '_JOMRES_COM_LANGUAGE_CONTEXT_DESC', false));
-		$configurationPanel->insertSetting();
+		$configurationPanel->insertSetting(); */
 
 		$configurationPanel->setleft(jr_gettext('_JOMRES_COM_JRCONFIG_GLOBALEDITING', '_JOMRES_COM_JRCONFIG_GLOBALEDITING', false));
 		$configurationPanel->setmiddle($lists[ 'editingModeAffectsAllProperties' ]);
