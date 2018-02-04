@@ -642,9 +642,18 @@ class j01010listpropertys
 					}
 
 					$property_deets[ '_JOMRES_QUICK_INFO' ] = jr_gettext('_JOMRES_QUICK_INFO', '_JOMRES_QUICK_INFO', false);
+					
 					if (isset($mrConfig[ 'galleryLink' ])) {
 						$property_deets[ 'REMOTE_URL' ] = $mrConfig[ 'galleryLink' ];
 					}
+					
+					$property_deets[ 'EDIT_LINK' ] = '';
+					if (!empty($thisJRUser->authorisedProperties)) {
+						if ( in_array($propertys_uid ,$thisJRUser->authorisedProperties )) {
+							$property_deets[ 'EDIT_LINK' ] = '<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&task=dashboard&thisProperty='.$propertys_uid).'" class="owner-links btn btn-danger">'.jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME','_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME',false).'</a>';
+						}
+					}
+					
 					$property_deets[ 'RANDOM_IDENTIFIER' ] = generateJomresRandomString(10);
 					$property_deets[ '_JOMRES_COMPARE' ] = jr_gettext('_JOMRES_COMPARE', '_JOMRES_COMPARE', false);
 
@@ -736,13 +745,6 @@ class j01010listpropertys
 								$result = array_merge($property_deets, $val);
 								$property_deets = $result;
 							}
-						}
-					}
-					
-					$property_deets[ 'EDIT_LINK' ] = '';
-					if (!empty($thisJRUser->authorisedProperties)) {
-						if ( in_array($propertys_uid ,$thisJRUser->authorisedProperties )) {
-							$property_deets[ 'EDIT_LINK' ] = '<div href="'.jomresURL(JOMRES_SITEPAGE_URL.'&task=dashboard&thisProperty='.$propertys_uid).'" class="owner-links btn btn-danger">Edit</a>';
 						}
 					}
 				
