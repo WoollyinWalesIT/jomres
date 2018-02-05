@@ -3012,7 +3012,7 @@ function JSCalmakeInputDates($inputDate, $siteCal = false)
     // Lets make the calendar dates for display in the js calendar. will receive a Y/m/d formatted string &	output it in the desired format
     // m d y. Probably unneccesary, but we'll do it anyway, to be on the safe side.
     $date_elements = explode('/', $inputDate);
-    $unixDate = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ]);
+    $unixDate = mktime(0, 0, 0, (int)$date_elements[ 1 ], (int)$date_elements[ 2 ], (int)$date_elements[ 0 ]);
 
     $dateFormat = $jrConfig[ 'cal_input' ];
     switch ($dateFormat) {
