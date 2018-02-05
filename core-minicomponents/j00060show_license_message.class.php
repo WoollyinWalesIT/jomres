@@ -41,7 +41,9 @@ class j00060show_license_message
 			return;
 		}
 
-		
+		if (AJAXCALL) {
+			return;
+		}
 		$jomres_check_support_key = jomres_singleton_abstract::getInstance('jomres_check_support_key');
 
 		if ($jomres_check_support_key->key_status == "Expired") {
