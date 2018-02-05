@@ -86,7 +86,6 @@ class j06005save_review
                 sendAdminEmail($subject, $message);
 
                 jomresRedirect(get_property_details_url($property_uid), '');
-                exit;
             } else {
                 echo jr_gettext('_JOMRES_REVIEWS_CANNOTREVIEW', '_JOMRES_REVIEWS_CANNOTREVIEW');
             }
