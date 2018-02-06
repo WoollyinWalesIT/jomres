@@ -83,7 +83,7 @@ class jomres_properties
 
         set_showtime('heavyweight_system', false);
 
-        $query = 'SELECT `propertys_uid`, `published` FROM #__jomres_propertys';
+        $query = 'SELECT `propertys_uid`, `published` FROM #__jomres_propertys ORDER BY propertys_uid ASC';
         $result = doSelectSql($query);
 
         $numberOfPropertiesInSystem = count($result);
