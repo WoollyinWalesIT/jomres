@@ -182,6 +182,23 @@ class j06000ui_availability_calendar
             $full_output .= '];';
         }
 
+		$predefined_arrival_day_return_string ='';
+		if ($mrConfig[ 'fixedArrivalDay' ] != '' && (int)$mrConfig[ 'fixedArrivalDateYesNo' ] != 0  ) {
+			for ($i=0;$i<=6;$i++) {
+				if ($i != $mrConfig[ 'fixedArrivalDay' ] ) {
+					$predefined_arrival_day_return_string .= 'day != '.$i .' && ';
+				}
+				
+				//return [(day != 1 && day != 2)];
+			}
+			if ($predefined_arrival_day_return_string != '' ) {
+				$predefined_arrival_day_return_string = 'beforeShowDay: function(date) {
+				var day = date.getDay();
+				return [('.substr($predefined_arrival_day_return_string, 0, -4).')];
+			},';
+			}
+		}
+		
 		$url = get_booking_url($property_uid,'','&pdetails_cal=1');
         $inline_calendar = '
 			<script>
@@ -235,7 +252,7 @@ class j06000ui_availability_calendar
 					"dateFormat" : "yy/mm/dd",
 					"minDate": 0,
 					firstDay: '.($jrConfig[ 'calendarstartofweekday' ] - 1).',
-					beforeShowDay: highlightDays_' .$random_identifier.',
+					'.$predefined_arrival_day_return_string.'
 					onSelect: function (date, el) {
 						var day  = el.selectedDay,
 							mon  = el.selectedMonth,
