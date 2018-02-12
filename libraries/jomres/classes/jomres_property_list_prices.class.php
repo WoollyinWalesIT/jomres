@@ -184,7 +184,7 @@ class jomres_property_list_prices
                                 $pricesFromArray[ $t->property_uid ] = $t->roomrateperday;
                             }
                         }
-
+	
                         if ($mrConfig[ 'is_real_estate_listing' ] == 0) {
                             if (isset($pricesFromArray[ $property_uid ])) {
                                 if ($mrConfig[ 'prices_inclusive' ] == '0') {
@@ -237,9 +237,21 @@ class jomres_property_list_prices
                                 }
                                 $pre_text = jr_gettext('_JOMRES_TARIFFSFROM', '_JOMRES_TARIFFSFROM', false, false);
                             } else {
-                                $pre_text = '';
-                                $price = jr_gettext('_JOMRES_PRICE_ON_APPLICATION', '_JOMRES_PRICE_ON_APPLICATION', '', true, false);
-                                $post_text = '';
+								if ($mrConfig['poa_price'] != '') {
+									$poa_price = (float)$mrConfig['poa_price'];
+									$pre_text = '';
+									$price = output_price($poa_price);
+									$raw_price = $poa_price;
+									$grand_total = output_price((($raw_price / $multiplier) * $this->stayDays), '');
+									$price_no_conversion = $poa_price;
+									$post_text = '';
+								}  else {
+									$pre_text = '';
+									$price = jr_gettext('_JOMRES_PRICE_ON_APPLICATION', '_JOMRES_PRICE_ON_APPLICATION', '', true, false);
+									$post_text = '';
+								}
+							
+
                             }
                         } else {
                             $pre_text = jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE', '_JOMRES_COM_MR_EXTRA_PRICE');
@@ -250,9 +262,19 @@ class jomres_property_list_prices
                         }
                     } else {
                         if ($basic_property_details->real_estate_property_price == 0) {
-                            $pre_text = '';
-                            $price = jr_gettext('_JOMRES_PRICE_ON_APPLICATION', '_JOMRES_PRICE_ON_APPLICATION', '', true, false);
-                            $post_text = '';
+								if ($mrConfig['poa_price'] != '') {
+									$poa_price = (float)$mrConfig['poa_price'];
+									$pre_text = '';
+									$price = output_price($poa_price);
+									$raw_price = $poa_price;
+									$grand_total = output_price((($raw_price / $multiplier) * $this->stayDays), '');
+									$price_no_conversion = $poa_price;
+									$post_text = '';
+								}  else {
+									$pre_text = '';
+									$price = jr_gettext('_JOMRES_PRICE_ON_APPLICATION', '_JOMRES_PRICE_ON_APPLICATION', '', true, false);
+									$post_text = '';
+								}
                         } else {
                             $pre_text = jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE', '_JOMRES_COM_MR_EXTRA_PRICE', '', true, false);
                             $price = output_price($basic_property_details->real_estate_property_price);
