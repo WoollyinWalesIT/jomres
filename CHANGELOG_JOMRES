@@ -1,3 +1,19 @@
+Added a feature where property managers can elect to hide the property street from display to normal users. Users who have created a booking for that property can see the full address details.
+Added availability calendar modal to SRP properties booking form too
+
+Modified list properties so that EDIT_LINK could be added to list properties output for managers to quickly edit a property.
+Updated booking form to honour the "do not show inline calendars" setting from property config > property details tab.
+Added code to detect that Jomres has been moved to a new server and rebuild the registry.
+Tweaked frontend nag so that it doesn't show up if is an ajax call.
+Modified ui availability calendar so that if fix arrival day setting is used then other days will not be clickable.
+Both MRP and SRP calendars updated so that bookable dates are highlighted, and other dates disabled, when fixed day of week booking set.
+Modified date input feature for search modules so that if site is set to a single property installation then the first published property has it's settings used and if fixed arrival day is set to Yes then to set the search module's calendar to disable other days.
+
+
+Solved a problem with media centre existing images that don`t have thumbnails created
+Resolved an issue where reviews would not save in test mode.
+
+
 <h3>Jomres 9.9.19 24/01/2018</h3>
 
 <span class="label label-success">Feature</span> Added a new feature to copy booking emails sent to property managers to site admins too. Setting can be found in Site Configuration -> Booking Form tab.
