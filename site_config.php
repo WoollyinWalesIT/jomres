@@ -33,7 +33,6 @@ $jrConfig = array(
   'disableAudit' => '1',
   'allowedTags' => '|||||||||;pre&#38;#38;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#62;||||;p&#38;#38;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#62;',
   'emailErrors' => '0',
-  'useJomresEmailCheck' => '0',
   'composite_property_details' => '1',
   'integratedSearch_enable' => '1',
   'integratedSearch_useCols' => '0',

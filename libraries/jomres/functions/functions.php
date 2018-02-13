@@ -1877,66 +1877,47 @@ function dirmv($source, $dest, $overwrite = true, $funcloc = JRDS)
 /*
 Allows us to work independantly of Joomla or Mambo's emailers
 */
-
 function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode = 1, $attachments = array(), $debugging = true)
 {
+	if ($from == '') {
+		$from = get_showtime('mailfrom');
+	}
+
     logging::log_message('Sending email from '.$from.' to '.$to.' subject '.$subject, 'Mailer');
 
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
 
     $emails = array();
-    if (isset($jrConfig[ 'useJomresEmailCheck' ]) && $jrConfig[ 'useJomresEmailCheck' ] == '1') {
-        if (is_array($to)) {
-            foreach ($to as $t) {
-                if (strlen($t) > 0) {
-                    $emails[ ] = $t;
-                }
-            }
-        } else {
-            if (strpos($to, ',')) { // we've been passed a comma seperated list of emails, explode them then parse them
-                $addys = explode(',', $to);
-                foreach ($addys as $t) {
-                    if (strlen($t) > 0) {
-                        $emails[ ] = $t;
-                    }
-                }
-            } else {
-                if (strlen($to) > 0) {
-                    $emails[ ] = $to;
-                }
-            }
-        }
-    } else {
-        if (is_array($to)) {
-            foreach ($to as $t) {
-                if (strlen($t) > 0) {
-                    $emails[ ] = $t;
-                }
-            }
-        } else {
-            if (strpos($to, ',')) { // we've been passed a comma seperated list of emails, explode them then parse them
-                $addys = explode(',', $to);
-                foreach ($addys as $t) {
-                    if (strlen($t) > 0) {
-                        $emails[ ] = $t;
-                    }
-                }
-            } else {
-                if (strlen($to) > 0) {
-                    $emails[ ] = $to;
-                }
-            }
-        }
-    }
-    
-	//$mail = new jomresPHPMailer(true);
-	$mail = new PHPMailer(true);
+    if (is_array($to)) {
+		foreach ($to as $t) {
+			if (strlen($t) > 0) {
+				$emails[ ] = trim($t);
+			}
+		}
+	} else {
+		if (strpos($to, ',')) { // we've been passed a comma separated list of emails, explode them then parse them
+			$addys = explode(',', $to);
+			foreach ($addys as $t) {
+				if (strlen($t) > 0) {
+					$emails[ ] = trim($t);
+				}
+			}
+		} else {
+			if (strlen($to) > 0) {
+				$emails[ ] = trim($to);
+			}
+		}
+	}
     
 	try {
         if (!isset($GLOBALS['debug'])) {
             $GLOBALS['debug'] = '';
         }
+		
+		$mail = new PHPMailer\PHPMailer\PHPMailer(true);
+		
+		$mail->CharSet = 'UTF-8';
 
         if ($jrConfig[ 'alternate_smtp_use_settings' ] == '1') {
             $mail->Mailer = 'smtp';
@@ -1949,6 +1930,11 @@ function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode
             $mail->Password = trim($jrConfig[ 'alternate_smtp_password' ]);
         } else {
             $mail->Mailer = trim(get_showtime('mailer'));
+			
+			if ($mail->Mailer == 'smtp') {
+				$mail->IsSMTP(); // telling the class to use SMTP
+			}
+			
             $mail->Host = trim(get_showtime('smtphost'));
             $mail->Port = trim(get_showtime('smtpport'));
             $mail->SMTPSecure = trim(get_showtime('smtpsecure'));
@@ -1975,7 +1961,13 @@ function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode
 			)
 		);
 
-        if ($mode == 1) {
+        if ($jrConfig[ 'default_from_address' ] != '') {
+            $mail->setFrom($jrConfig[ 'default_from_address' ], $jomresConfig_sitename);
+        } else {
+            $mail->setFrom($from, $jomresConfig_sitename);
+        }
+		
+		if ($mode == 1) {
             $mail->IsHTML(true);
         }
 
@@ -1985,17 +1977,9 @@ function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode
             //$body = preg_replace( '@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?)?)@', '<a href="$1" target="_blank">$1</a>', $body );
         //}
 
-        if ($jrConfig[ 'default_from_address' ] != '') {
-            $mail->From = $jrConfig[ 'default_from_address' ];
-        } else {
-            $mail->From = $from;
-        }
-		
-		$mail->CharSet = 'UTF-8';
-        $mail->FromName = $jomresConfig_sitename;
+		$mail->Body = $body;
         $mail->Subject = str_replace('&#39;', "'", $subject);
-
-        //$mail->AltBody		= "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
+        //$mail->AltBody = strip_tags($body); //content for non-HTML email clients
 
         if (!empty($attachments)) {
             foreach ($attachments as $attachment) {
@@ -2005,37 +1989,36 @@ function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode
                         $image_name = $image_arr [ count($image_arr) - 1 ];
                         $image_path = $attachment[ 'image_path' ];
                         $cid = $attachment[ 'CID' ];
-                        $mail->AddEmbeddedImage($image_path, $cid, $image_name);
+                        $mail->addEmbeddedImage($image_path, $cid, $image_name);
                         break;
                     case 'pdf':
                         $path = $attachment[ 'path' ];
                         $name = $attachment[ 'filename' ];
-                        $mail->AddAttachment($path, $name, 'base64', $type = 'application/pdf');
+                        $mail->addAttachment($path, $name, 'base64', $type = 'application/pdf');
                         break;
                     default:
                         $path = $attachment[ 'path' ];
                         $name = $attachment[ 'filename' ];
                         $type = $attachment['type'];
-                        $mail->AddAttachment($path, $name, 'base64', $type);
+                        $mail->addAttachment($path, $name, 'base64', $type);
                         break;
                     }
             }
         }
 
-        $mail->MsgHTML($body);
         foreach ($emails as $to) {
             if (strlen($to) > 0) {
-                $mail->AddAddress($to);
+                $mail->addAddress($to);
             }
         }
         $mail->Send();
         logging::log_message('Email sent successfully ', 'Mailer');
-    } catch (jomres_phpmailerException $e) {
+    } catch (PHPMailer\PHPMailer\Exception $e) {
         logging::log_message('Email failed '.$GLOBALS['debug'], 'Mailer');
         $GLOBALS['debug'] = '';
 
         return false;
-    } catch (Exception $e) {
+    } catch (\Exception $e) {
         //echo $e->getMessage(); //Boring error messages from anything else!
         return false;
     }
