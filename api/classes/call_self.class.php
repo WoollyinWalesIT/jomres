@@ -1,6 +1,6 @@
 <?php
 /**
- * Core file.
+ * Allows REST API features to call the same server to facillitate reuse of existing REST API features
  *
  * @author Vince Wooll <sales@jomres.net>
  *
@@ -8,14 +8,24 @@
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
- **/
+ */
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
+/**
+*
+* Call a local REST API feature. Will only work if the original OAuth2 key pair are authorised to call the specific API function (in scope)
+*
+*/
 class call_self
 {
+	/**
+	*
+	* Constructor. Sets up endpoints based on the original information
+	*
+	*/
     public function __construct()
     {
         $this->token = Flight::get('token');
@@ -27,6 +37,11 @@ class call_self
         $this->self_url = $url.'/';
     }
 
+	/**
+	*
+	* Uses the Call class to call the local server
+	*
+	*/
     public function call($elements = array())
     {
         if (empty($elements)) {

@@ -1,6 +1,8 @@
 <?php
 /**
- * Core file.
+ * Finds all API feature scripts. 
+ *
+ * Additionally finds auth-free API features, which are scripts that can be called by any site visitor, they do not need to be authenticated. For example, a basic search and response wouldn't normally need to be authenticated, so there's no OAuth2 key pair required to call that REST API path. 
  *
  * @author Vince Wooll <sales@jomres.net>
  *
@@ -8,16 +10,25 @@
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
- **/
+ */
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-// Remote file inclusion defence. We'll collect all possible API feature file names there. Later, when routing, if the file doesn't exist then boom, we don't include it.
+/**
+*
+* Remote file inclusion defence. We'll collect all possible API feature file names there. Later, when routing, if the file doesn't exist then boom, we don't include it.
+*
+*/
 
 class all_api_features
 {
+	/**
+	*
+	* Constructor. Sets up arrays and finds API features
+	*
+	*/
     public function __construct()
     {
         $this->api_feature_files = array();
@@ -26,15 +37,30 @@ class all_api_features
         $this->get_all_api_features(JOMRES_API_JOMRES_ROOT.DIRECTORY_SEPARATOR.'remote_plugins'.DIRECTORY_SEPARATOR);
     }
 
+	/**
+	*
+	* Returns the API features found
+	*
+	*/
     public function get()
     {
         return $this->api_feature_files;
     }
 
+	/**
+	*
+	* Returns the auth-free API features
+	*
+	*/
 	public function get_authfree_routes() {
 		return $this->authentication_free_routes;
 	}
 	
+	/**
+	*
+	* Scans directories for API features in looking for plugins that are prefixed "api_feature_". 
+	*
+	*/
     private function get_all_api_features($path)
     {
         $core_plugins_dir_contents = scandir($path);

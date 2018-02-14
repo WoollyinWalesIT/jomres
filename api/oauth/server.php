@@ -1,4 +1,14 @@
 <?php
+/**
+ * Sets up the OAuth2 framework so that it can authenticate API key pairs
+ *
+ * @author Vince Wooll <sales@jomres.net>
+ *
+ * @version Jomres 9.9.19
+ *
+ * @copyright	2005-2018 Vince Wooll
+ * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
+ */
 
 $tables = array(
     'client_table' => JOMRES_API_DB_DB_PREFIX.'jomres_oauth_clients',

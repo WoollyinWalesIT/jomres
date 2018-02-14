@@ -1,9 +1,17 @@
 <?php
-// include our OAuth2 Server object
+/**
+ * Handle a request for an OAuth2.0 Access Token and send the response to the client
+ *
+ * @author Vince Wooll <sales@jomres.net>
+ *
+ * @version Jomres 9.9.19
+ *
+ * @copyright	2005-2018 Vince Wooll
+ * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
+ */
 
 require_once __DIR__.'/server.php';
 
-// Handle a request for an OAuth2.0 Access Token and send the response to the client
 $server->handleTokenRequest(OAuth2\Request::createFromGlobals())->send();
 $response = $server->getResponse();
 if ($response->getStatusCode() != 200) {

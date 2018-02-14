@@ -1,6 +1,8 @@
 <?php
 /**
- * Core file.
+ * Calls a remote API when handed a REST API set of options
+ * 
+ * @todo Test and confirm it is still functional. Convert to use Guzzle
  *
  * @author Vince Wooll <sales@jomres.net>
  *
@@ -20,6 +22,11 @@ class call
     {
     }
 
+	/**
+	*
+	* Calls the remote server
+	*
+	*/
     public function call_server($options = array())
     {
         if (empty($options)) {
