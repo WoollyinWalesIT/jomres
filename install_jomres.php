@@ -1,6 +1,6 @@
 <?php
 /**
- * Core file.
+ * Installer script
  *
  * @author Vince Wooll <sales@jomres.net>
  *

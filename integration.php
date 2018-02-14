@@ -1,6 +1,6 @@
 <?php
 /**
- * Core file.
+ * This script is mainly used for bootstrapping Jomres. It's old code, but it checks out.
  *
  * @author Vince Wooll <sales@jomres.net>
  *
@@ -14,14 +14,23 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-// This script is mainly used for bootstrapping Jomres. It's old code, but it checks out.
-
-// TRANSACTION_ID is used by the logger class to allow us to track single calls through the system
+/**
+*
+* TRANSACTION_ID is used by the logger class to allow us to track single calls through the system
+*
+*/
 if (!defined('TRANSACTION_ID')) {
     define('TRANSACTION_ID', time());
 }
 
-//jomres root directory name
+
+/**
+*
+* jomres root directory name
+*
+* Wordpress determined for some reason that the Jomres root directory should be configurable as a condition of listing Jomres on the Wordpress plugin directory. CMS root directories are sometimes not writable by the web server and jomres_root.php cannot be created, in which case we will assume that the Jomres root directory is called "jomres"
+*
+*/
 if (!defined('JOMRES_ROOT_DIRECTORY')) {
     if (file_exists(dirname(__FILE__).'/../jomres_root.php')) {
         require_once dirname(__FILE__).'/../jomres_root.php';
@@ -30,7 +39,12 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
     }
 }
 
-//find jomres root path
+
+/**
+*
+* find jomres root path
+*
+*/
 if (!defined('JOMRESPATH_BASE')) {
     if (!defined('JRDS')) {
         $apacheSig = false;
@@ -66,7 +80,11 @@ if (!defined('JOMRESPATH_BASE')) {
     define('JOMRESPATH_BASE', $dir_path.JRDS);
 }
 
-//check if this is an ajax call or not
+/**
+*
+* check if this is an ajax call or not
+*
+*/
 if (!defined('AJAXCALL')) {
     if (isset($_REQUEST[ 'jrajax' ])) {
         if ((int) $_REQUEST[ 'jrajax' ] == 1) {
@@ -79,7 +97,12 @@ if (!defined('AJAXCALL')) {
     }
 }
 
-//define jomres paths
+
+/**
+*
+* define jomres paths
+*
+*/
 define('JOMRESCONFIG_ABSOLUTE_PATH', substr(JOMRESPATH_BASE, 0, strlen(JOMRESPATH_BASE) - strlen(JOMRES_ROOT_DIRECTORY.JRDS)));
 
 //app
@@ -123,7 +146,11 @@ require_once JOMRES_FUNCTIONS_ABSPATH.'countries.php';
 require_once JOMRES_CLASSES_ABSPATH.'jomres_empty_class.class.php';
 require_once JOMRES_CLASSES_ABSPATH.'jomres_singleton_abstract.class.php';
 
-//include the classes registry file and make $classes a global variable to be easily accessible, so we`ll avoid calling include() more times
+/**
+*
+* include the classes registry file and make $classes a global variable to be easily accessible, so we`ll avoid calling include() more times
+*
+*/
 global $classes;
 
 if (file_exists(JOMRES_TEMP_ABSPATH.'registry_classes.php')) {
@@ -145,7 +172,11 @@ if (!class_exists('patErrorManager')) {
     require_once JOMRES_LIBRARIES_ABSPATH.'phptools'.JRDS.'patErrorManager.php';
 }
 
-// The API includes the logger class. As the API doesn't always include the framework ( for performance ) to use the logger within Jomres itself, we'll need to make the distinction here
+/**
+*
+* The API includes the logger class. As the API doesn't always include the framework ( for performance ) to use the logger within Jomres itself, we'll need to make the distinction here
+*
+*/
 if (!defined('JOMRES_API_CMS_ROOT')) {
     require_once JOMRES_API_ABSPATH.'classes'.JRDS.'logging.class.php';
 }
@@ -161,12 +192,24 @@ if (!isset($jrConfig['log_path']) || $jrConfig['log_path'] == '') {
 
 define('JOMRES_SYSTEMLOG_PATH', fix_path($jrConfig['log_path']));
 
-// set language to en-GB by default TODO: may not be needed anymore
+
+/**
+*
+* Set language to en-GB by default 
+* 
+* @todo may not be needed anymore
+*
+*/
 if (get_showtime('lang') && get_showtime('lang') == '') {
     set_showtime('lang', 'en-GB');
 }
 
-//define core images paths
+
+/**
+*
+* define core images paths
+*
+*/
 $uri = parse_url(get_showtime('live_site'));
 $path = '';
 
@@ -177,7 +220,11 @@ if (isset($uri['path'])) {
 define('JOMRES_IMAGES_ABSPATH', JOMRES_ASSETS_ABSPATH.'images'.JRDS);
 define('JOMRES_IMAGES_RELPATH', $path.'/'.JOMRES_ROOT_DIRECTORY.'/assets/images/');
 
-//define uploaded images paths
+/**
+*
+* define uploaded images paths
+*
+*/
 if (!defined('JOMRES_IMAGELOCATION_ABSPATH')) {
 	define('JOMRES_IMAGELOCATION_ABSPATH', JOMRESPATH_BASE.'uploadedimages'.JRDS);
 	
@@ -198,11 +245,21 @@ if (!defined('JOMRES_IMAGELOCATION_ABSPATH')) {
 	}
 }
 
-//fullscreen view setup
+
+/**
+*
+* fullscreen view setup
+*
+*/
 set_showtime('tmplcomponent', 'jomres');
 set_showtime('tmplcomponent_source', JOMRES_LIBRARIES_ABSPATH.'fullscreen_view'.JRDS.'jomres.php');
 
-//copy fullscreen_view/jomres.php to the joomla template dir to help with fullscreen mode
+
+/**
+*
+* copy fullscreen_view/jomres.php to the joomla template dir to help with fullscreen mode
+*
+*/
 if (!defined('AUTO_UPGRADE')) {
     jomres_cmsspecific_patchJoomlaTemplate();
 }

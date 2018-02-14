@@ -1,6 +1,6 @@
 <?php
 /**
- * Core file.
+ * Detect the host CMS 
  *
  * @author Vince Wooll <sales@jomres.net>
  *

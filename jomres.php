@@ -1,6 +1,6 @@
 <?php
 /**
- * Core file.
+ * Main script called by the host CMS that produces output and runs tasks
  *
  * @author Vince Wooll <sales@jomres.net>
  *
