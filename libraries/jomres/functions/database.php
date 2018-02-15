@@ -1,6 +1,6 @@
 <?php
 /**
- * Core file.
+ * Database querying functions
  *
  * @author Vince Wooll <sales@jomres.net>
  *
@@ -14,6 +14,13 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
+/**
+*
+* Performs SELECT queries
+*
+* If passed, mode 1 expects 1 row with 1 element in it. Returns a string. mode 2 The calling function expects 1 row with elements in it. Returns an associative array
+*
+*/
 function doSelectSql($query, $mode = false)
 {
     $jomres_db = jomres_singleton_abstract::getInstance('jomres_database');
@@ -61,10 +68,15 @@ function doSelectSql($query, $mode = false)
         }
 }
 
-// Called doInsertSql, the title is not quite correct as this function also handles updates and deletes
-// We'll use the lack of text in $op as a way of indicating that we don't want this operation logged
-// This way we can call the audit directly from the insert internet booking function
-// rather than logging EVERYTHING that's done by the function.
+/**
+*
+* Performs INSERT/UPDATE/DELETE queries
+*
+* Called doInsertSql, the title is not quite correct as this function also handles updates and deletes.
+* We'll use the lack of text in $op as a way of indicating that we don't want this operation logged.
+* This way we can call the audit directly from the insert internet booking function rather than logging EVERYTHING that's done by the function
+*
+*/
 function doInsertSql($query, $op = '', $ignoreErrors = false)
 {
     $jomres_db = jomres_singleton_abstract::getInstance('jomres_database');

@@ -1,6 +1,6 @@
 <?php
 /**
- * Core file.
+ * Builds the booking form
  *
  * @author Vince Wooll <sales@jomres.net>
  *
@@ -27,6 +27,9 @@ $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
 $MiniComponents->triggerEvent('00100'); // Pre-dobooking. Optional
 
+/**
+ * If the user is a manager then we will ensure that they are booking one of their own properties. They cannot book a property that's not theirs, while logged in as a manager.
+ */
 if (
     $selectedProperty > 0 &&
     $thisJRUser->userIsManager &&
@@ -40,6 +43,7 @@ if (!defined('JOMRES_API_CMS_ROOT')) {
 	$selectedProperty = $property_uid;
 }
 
+
 $remus = jomresGetParam($_REQUEST, 'remus', '');
 
 $thisdate = false;
@@ -52,6 +56,9 @@ if (!isset($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ])) {
     $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] = "";
 }
 
+/**
+ * If the arrival date is set in one of several different places (e.g. the url or stored as the result of a search) then set the arrival date in the form.
+ */
 if (!isset($_REQUEST[ 'arrivalDate' ])) {
     if (isset($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ]) && $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] == '') {
         $arrivalDate = JSCalmakeInputDates(date('Y/m/d', $unixTodaysDate), $siteCal = true);
@@ -73,6 +80,9 @@ if (!isset($_REQUEST[ 'arrivalDate' ])) {
 
 $thisdate = str_replace('-', '/', $thisdate);
 
+/**
+ * If the user is configured as a partner, ensure that the property they are booking is one of the properties that they are configured to be a partner of. If their details have not been completed in the Edit Account page then they will be redirected to that page first.
+ */
 if ($thisJRUser->is_partner) {
     $partners = jomres_singleton_abstract::getInstance('jomres_partners');
     $details_complete = $partners->check_partner_details_complete($thisJRUser->id);
@@ -82,8 +92,8 @@ if ($thisJRUser->is_partner) {
 }
 
 $MiniComponents->triggerEvent('00101'); // Pre-form generation. Optional
-$query = "SELECT propertys_uid FROM #__jomres_propertys WHERE propertys_uid = '".(int) $selectedProperty."'";
 
+$query = "SELECT propertys_uid FROM #__jomres_propertys WHERE propertys_uid = '".(int) $selectedProperty."'";
 $result = doSelectSql($query);
 if (!empty($result)) {
     if ($selectedProperty > 0) {
@@ -736,6 +746,9 @@ function dobooking($selectedProperty, $thisdate, $remus)
 		}
 }
 
+/**
+ * When building custom fields that are required, this code will add to the "jquery validator" javascript that by necessity is built inline in the form.
+ */
 function generateCustomFieldsJavascript($customFields)
 {
     $someRequired = false;
