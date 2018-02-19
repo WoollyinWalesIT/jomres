@@ -346,13 +346,13 @@ class j06000search
             if (in_array('selectcombo', $searchOptions) && $showSearchOptions) {
                 if (!defined('_JOMRES_SELECTCOMBO')) {
                     // define("_JOMRES_SELECTCOMBO",1);
-                    //jomres_cmsspecific_addheaddata("javascript",JOMRES_NODE_MODULES_RELPATH.'jquery-chained','jquery.chained.js');  // This doesn't work, because if we're using the jomres javascript cache this file may not have been included in the original, therefore we MUST add it to the init_javascript function in functions.php instead.
+                    jomres_cmsspecific_addheaddata("javascript",JOMRES_JS_RELPATH, 'jquery.chainedSelects.js');
 
                     echo '
 							<script language="JavaScript" type="text/javascript">
 							jomresJquery(function()
 							{
-								jomresJquery(\'#country\').chained(\'#rregion\',\'' .JOMRES_SITEPAGE_URL_AJAX.'&task=selectcombo&filter=country\',
+								jomresJquery(\'#country\').chainSelect(\'#rregion\',\'' .JOMRES_SITEPAGE_URL_AJAX.'&task=selectcombo&filter=country\',
 								{ 
 									before:function (target) //before request hide the target combobox and display the loading message
 									{ 
@@ -365,7 +365,7 @@ class j06000search
 										jomresJquery(target).css("display","inline");
 									}
 								});
-								jomresJquery(\'#rregion\').chained(\'#ttown\',\'' .JOMRES_SITEPAGE_URL_AJAX.'&task=selectcombo&filter=region\',
+								jomresJquery(\'#rregion\').chainSelect(\'#ttown\',\'' .JOMRES_SITEPAGE_URL_AJAX.'&task=selectcombo&filter=region\',
 								{ 
 									before:function (target) 
 									{ 

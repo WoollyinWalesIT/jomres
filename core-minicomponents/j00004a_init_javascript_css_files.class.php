@@ -114,7 +114,7 @@ class j00004a_init_javascript_css_files
             $css_files[] = array(JOMRES_NODE_MODULES_RELPATH.'font-awesome/css/', 'font-awesome.min.css');
         }
 
-        $javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'jquery-chained/', 'jquery.chained.js');
+        //$javascript_files[] = array(JOMRES_JS_RELPATH, 'jquery.chainedSelects.js');
 
         if (!isset($jrConfig['live_scrolling_enabled'])) {
             $jrConfig['live_scrolling_enabled'] = '1';
