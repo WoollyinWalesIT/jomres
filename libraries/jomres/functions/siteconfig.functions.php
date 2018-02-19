@@ -448,7 +448,7 @@ $jrConfig = ' .var_export($tmpConfig, true).';
 function searchCSSThemesDirForCSSFiles()
 {
     $cssFiles = array();
-    $jrePath = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'css'.JRDS.'jquery_ui_themes'.JRDS;
+    $jrePath = JOMRES_NODE_MODULES_ABSPATH.'jquery-ui-themes'.JRDS.'themes'.JRDS;
     $d = @dir($jrePath);
     $docs = array();
     if ($d) {
