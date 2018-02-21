@@ -66,8 +66,16 @@ if (defined('API_STARTED')) {
 }
 
 $jomresConfig_lang = 'en-GB';
+$jomresConfig_lang_shortcode = 'en';
 if (!defined('AUTO_UPGRADE')) {
     $jomresConfig_lang = JFactory::getLanguage()->getTag();
+	
+	//get lang short code
+	$languages = JLanguageHelper::getLanguages('lang_code');
+	
+	if (isset($languages[$jomresConfig_lang])) {
+		$jomresConfig_lang_shortcode = $languages[$jomresConfig_lang]->sef;
+	}
 }
 
 $showtime = jomres_singleton_abstract::getInstance('showtime');
@@ -75,6 +83,7 @@ $showtime = jomres_singleton_abstract::getInstance('showtime');
 $showtime->error_reporting = $CONFIG->error_reporting;
 $showtime->dbtype = $CONFIG->dbtype;
 $showtime->lang = $jomresConfig_lang;
+$showtime->lang_shortcode = $jomresConfig_lang_shortcode;
 $showtime->live_site = $jomresConfig_live_site;
 $showtime->offline = $CONFIG->offline;
 $showtime->db = $CONFIG->db;

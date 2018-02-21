@@ -76,7 +76,7 @@ if (isset($_REQUEST[ 'topoff' ])) {
 }
 
 //cms lang
-$lang = substr(get_showtime('lang'), 0, 2);
+$lang = get_showtime('lang_shortcode');
 
 //Jomres specific lang switching
 $lang_param = '';

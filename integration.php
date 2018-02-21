@@ -192,19 +192,6 @@ if (!isset($jrConfig['log_path']) || $jrConfig['log_path'] == '') {
 
 define('JOMRES_SYSTEMLOG_PATH', fix_path($jrConfig['log_path']));
 
-
-/**
-*
-* Set language to en-GB by default 
-* 
-* @todo may not be needed anymore
-*
-*/
-if (get_showtime('lang') && get_showtime('lang') == '') {
-    set_showtime('lang', 'en-GB');
-}
-
-
 /**
 *
 * define core images paths

@@ -46,8 +46,6 @@ class jomres_language
 
         $tmpBookingHandler->tmplang[ 'jomreslang' ] = $jomresConfig_lang;
 
-        jomres_cmsspecific_setlanguage($jomresConfig_lang);
-
         $this->lang = $jomresConfig_lang;
 		$this->datepicker_lang = $this->datepicker_crossref[ $jomresConfig_lang ];
 
@@ -59,7 +57,7 @@ class jomres_language
         $this->shortcodes = $this->get_shortcodes();
         $key = array_search($jomresConfig_lang, $this->shortcodes);
         set_showtime('lang_shortcode', $key);
-		
+
 		//selected languages
 		$this->selected_languages = array();
 
