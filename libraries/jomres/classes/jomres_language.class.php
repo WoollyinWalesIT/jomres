@@ -290,7 +290,7 @@ class jomres_language
         $langs[ 'nl-NL' ] = 'nl';
         $langs[ 'pl-PL' ] = 'pl';
         $langs[ 'pt-BR' ] = 'pt-BR';
-        $langs[ 'pt-PT' ] = 'pt-BR';
+        $langs[ 'pt-PT' ] = 'pt';
         $langs[ 'ro-RO' ] = 'ro';
         $langs[ 'ru-RU' ] = 'ru';
         $langs[ 'sk-SK' ] = 'sk';
