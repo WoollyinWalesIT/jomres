@@ -24,7 +24,7 @@
   "homepage": "https://github.com/WoollyinWalesIT/jomres#readme",
   "dependencies": {
     "blockui-npm": "^1.0.0",
-    "blueimp-file-upload": "^9.20.0",
+    "blueimp-file-upload": "^9.21.0",
     "bootstrap": "^4.0.0",
     "bootstrap-multiselect": "^0.9.13",
     "chart.js": "^2.7.1",

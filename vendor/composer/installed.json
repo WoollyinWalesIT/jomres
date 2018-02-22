@@ -1233,17 +1233,17 @@
     },
     {
         "name": "aws/aws-sdk-php",
-        "version": "3.52.7",
-        "version_normalized": "3.52.7.0",
+        "version": "3.52.14",
+        "version_normalized": "3.52.14.0",
         "source": {
             "type": "git",
             "url": "https://github.com/aws/aws-sdk-php.git",
-            "reference": "4abee976c5884b1bc376b8388dd1ac53b4643bb6"
+            "reference": "56eaf614aa943dff652ce7458cfaf3220e568a6c"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/4abee976c5884b1bc376b8388dd1ac53b4643bb6",
-            "reference": "4abee976c5884b1bc376b8388dd1ac53b4643bb6",
+            "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/56eaf614aa943dff652ce7458cfaf3220e568a6c",
+            "reference": "56eaf614aa943dff652ce7458cfaf3220e568a6c",
             "shasum": ""
         },
         "require": {
@@ -1274,7 +1274,7 @@
             "ext-curl": "To send requests using cURL",
             "ext-openssl": "Allows working with CloudFront private distributions and verifying received SNS messages"
         },
-        "time": "2018-02-12T21:48:20+00:00",
+        "time": "2018-02-21T18:50:51+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
