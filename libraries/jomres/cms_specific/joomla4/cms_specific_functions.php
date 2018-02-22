@@ -171,14 +171,6 @@ function jomres_cmsspecific_getTextEditor($name, $content, $hiddenField, $width,
     return $ret;
 }
 
-// This is called by the jomres_language class. If the jomres language chooser dropdown is used, then this function is called so that we can set the current cms's language too.
-function jomres_cmsspecific_setlanguage($lang)
-{
-    // These need testing
-    //SetCookie($_COOKIE['jfcookie']['lang'], $lang, time()+60*60);
-    //$_COOKIE['jfcookie']['lang']= $lang;
-}
-
 function jomres_cmsspecific_getcurrentusers_id()
 {
     $id = 0;
