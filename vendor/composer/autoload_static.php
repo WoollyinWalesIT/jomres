@@ -24,6 +24,8 @@ class ComposerStaticInitd51e5601f3e1cc65adbb78dfe5f4e36d
         array (
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Component\\Translation\\' => 30,
+            'Symfony\\Component\\Process\\' => 26,
+            'Symfony\\Component\\OptionsResolver\\' => 34,
         ),
         'R' => 
         array (
@@ -73,6 +75,14 @@ class ComposerStaticInitd51e5601f3e1cc65adbb78dfe5f4e36d
         'Symfony\\Component\\Translation\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/translation',
+        ),
+        'Symfony\\Component\\Process\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/process',
+        ),
+        'Symfony\\Component\\OptionsResolver\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/options-resolver',
         ),
         'ReCaptcha\\' => 
         array (
@@ -146,6 +156,10 @@ class ComposerStaticInitd51e5601f3e1cc65adbb78dfe5f4e36d
         ),
         'I' => 
         array (
+            'ImageOptimizer' => 
+            array (
+                0 => __DIR__ . '/..' . '/ps/image-optimizer/src',
+            ),
             'ICal' => 
             array (
                 0 => __DIR__ . '/..' . '/johngrogg/ics-parser/src',
@@ -892,6 +906,19 @@ class ComposerStaticInitd51e5601f3e1cc65adbb78dfe5f4e36d
         'HTMLPurifier_Zipper' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier/Zipper.php',
         'ICal\\Event' => __DIR__ . '/..' . '/johngrogg/ics-parser/src/ICal/Event.php',
         'ICal\\ICal' => __DIR__ . '/..' . '/johngrogg/ics-parser/src/ICal/ICal.php',
+        'ImageOptimizer\\ChainOptimizer' => __DIR__ . '/..' . '/ps/image-optimizer/src/ImageOptimizer/ChainOptimizer.php',
+        'ImageOptimizer\\Command' => __DIR__ . '/..' . '/ps/image-optimizer/src/ImageOptimizer/Command.php',
+        'ImageOptimizer\\CommandOptimizer' => __DIR__ . '/..' . '/ps/image-optimizer/src/ImageOptimizer/CommandOptimizer.php',
+        'ImageOptimizer\\Exception\\CommandNotFound' => __DIR__ . '/..' . '/ps/image-optimizer/src/ImageOptimizer/Exception/CommandNotFound.php',
+        'ImageOptimizer\\Exception\\Exception' => __DIR__ . '/..' . '/ps/image-optimizer/src/ImageOptimizer/Exception/Exception.php',
+        'ImageOptimizer\\Optimizer' => __DIR__ . '/..' . '/ps/image-optimizer/src/ImageOptimizer/Optimizer.php',
+        'ImageOptimizer\\OptimizerFactory' => __DIR__ . '/..' . '/ps/image-optimizer/src/ImageOptimizer/OptimizerFactory.php',
+        'ImageOptimizer\\SmartOptimizer' => __DIR__ . '/..' . '/ps/image-optimizer/src/ImageOptimizer/SmartOptimizer.php',
+        'ImageOptimizer\\SuppressErrorOptimizer' => __DIR__ . '/..' . '/ps/image-optimizer/src/ImageOptimizer/SuppressErrorOptimizer.php',
+        'ImageOptimizer\\TypeGuesser\\ExtensionTypeGuesser' => __DIR__ . '/..' . '/ps/image-optimizer/src/ImageOptimizer/TypeGuesser/ExtensionTypeGuesser.php',
+        'ImageOptimizer\\TypeGuesser\\GdTypeGuesser' => __DIR__ . '/..' . '/ps/image-optimizer/src/ImageOptimizer/TypeGuesser/GdTypeGuesser.php',
+        'ImageOptimizer\\TypeGuesser\\SmartTypeGuesser' => __DIR__ . '/..' . '/ps/image-optimizer/src/ImageOptimizer/TypeGuesser/SmartTypeGuesser.php',
+        'ImageOptimizer\\TypeGuesser\\TypeGuesser' => __DIR__ . '/..' . '/ps/image-optimizer/src/ImageOptimizer/TypeGuesser/TypeGuesser.php',
         'JmesPath\\AstRuntime' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/AstRuntime.php',
         'JmesPath\\CompilerRuntime' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/CompilerRuntime.php',
         'JmesPath\\DebugRuntime' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/DebugRuntime.php',
@@ -1098,6 +1125,33 @@ class ComposerStaticInitd51e5601f3e1cc65adbb78dfe5f4e36d
         'ReCaptcha\\RequestMethod\\SocketPost' => __DIR__ . '/..' . '/google/recaptcha/src/ReCaptcha/RequestMethod/SocketPost.php',
         'ReCaptcha\\RequestParameters' => __DIR__ . '/..' . '/google/recaptcha/src/ReCaptcha/RequestParameters.php',
         'ReCaptcha\\Response' => __DIR__ . '/..' . '/google/recaptcha/src/ReCaptcha/Response.php',
+        'Symfony\\Component\\OptionsResolver\\Exception\\AccessException' => __DIR__ . '/..' . '/symfony/options-resolver/Exception/AccessException.php',
+        'Symfony\\Component\\OptionsResolver\\Exception\\ExceptionInterface' => __DIR__ . '/..' . '/symfony/options-resolver/Exception/ExceptionInterface.php',
+        'Symfony\\Component\\OptionsResolver\\Exception\\InvalidArgumentException' => __DIR__ . '/..' . '/symfony/options-resolver/Exception/InvalidArgumentException.php',
+        'Symfony\\Component\\OptionsResolver\\Exception\\InvalidOptionsException' => __DIR__ . '/..' . '/symfony/options-resolver/Exception/InvalidOptionsException.php',
+        'Symfony\\Component\\OptionsResolver\\Exception\\MissingOptionsException' => __DIR__ . '/..' . '/symfony/options-resolver/Exception/MissingOptionsException.php',
+        'Symfony\\Component\\OptionsResolver\\Exception\\NoSuchOptionException' => __DIR__ . '/..' . '/symfony/options-resolver/Exception/NoSuchOptionException.php',
+        'Symfony\\Component\\OptionsResolver\\Exception\\OptionDefinitionException' => __DIR__ . '/..' . '/symfony/options-resolver/Exception/OptionDefinitionException.php',
+        'Symfony\\Component\\OptionsResolver\\Exception\\UndefinedOptionsException' => __DIR__ . '/..' . '/symfony/options-resolver/Exception/UndefinedOptionsException.php',
+        'Symfony\\Component\\OptionsResolver\\Options' => __DIR__ . '/..' . '/symfony/options-resolver/Options.php',
+        'Symfony\\Component\\OptionsResolver\\OptionsResolver' => __DIR__ . '/..' . '/symfony/options-resolver/OptionsResolver.php',
+        'Symfony\\Component\\Process\\Exception\\ExceptionInterface' => __DIR__ . '/..' . '/symfony/process/Exception/ExceptionInterface.php',
+        'Symfony\\Component\\Process\\Exception\\InvalidArgumentException' => __DIR__ . '/..' . '/symfony/process/Exception/InvalidArgumentException.php',
+        'Symfony\\Component\\Process\\Exception\\LogicException' => __DIR__ . '/..' . '/symfony/process/Exception/LogicException.php',
+        'Symfony\\Component\\Process\\Exception\\ProcessFailedException' => __DIR__ . '/..' . '/symfony/process/Exception/ProcessFailedException.php',
+        'Symfony\\Component\\Process\\Exception\\ProcessTimedOutException' => __DIR__ . '/..' . '/symfony/process/Exception/ProcessTimedOutException.php',
+        'Symfony\\Component\\Process\\Exception\\RuntimeException' => __DIR__ . '/..' . '/symfony/process/Exception/RuntimeException.php',
+        'Symfony\\Component\\Process\\ExecutableFinder' => __DIR__ . '/..' . '/symfony/process/ExecutableFinder.php',
+        'Symfony\\Component\\Process\\InputStream' => __DIR__ . '/..' . '/symfony/process/InputStream.php',
+        'Symfony\\Component\\Process\\PhpExecutableFinder' => __DIR__ . '/..' . '/symfony/process/PhpExecutableFinder.php',
+        'Symfony\\Component\\Process\\PhpProcess' => __DIR__ . '/..' . '/symfony/process/PhpProcess.php',
+        'Symfony\\Component\\Process\\Pipes\\AbstractPipes' => __DIR__ . '/..' . '/symfony/process/Pipes/AbstractPipes.php',
+        'Symfony\\Component\\Process\\Pipes\\PipesInterface' => __DIR__ . '/..' . '/symfony/process/Pipes/PipesInterface.php',
+        'Symfony\\Component\\Process\\Pipes\\UnixPipes' => __DIR__ . '/..' . '/symfony/process/Pipes/UnixPipes.php',
+        'Symfony\\Component\\Process\\Pipes\\WindowsPipes' => __DIR__ . '/..' . '/symfony/process/Pipes/WindowsPipes.php',
+        'Symfony\\Component\\Process\\Process' => __DIR__ . '/..' . '/symfony/process/Process.php',
+        'Symfony\\Component\\Process\\ProcessBuilder' => __DIR__ . '/..' . '/symfony/process/ProcessBuilder.php',
+        'Symfony\\Component\\Process\\ProcessUtils' => __DIR__ . '/..' . '/symfony/process/ProcessUtils.php',
         'Symfony\\Component\\Translation\\Catalogue\\AbstractOperation' => __DIR__ . '/..' . '/symfony/translation/Catalogue/AbstractOperation.php',
         'Symfony\\Component\\Translation\\Catalogue\\MergeOperation' => __DIR__ . '/..' . '/symfony/translation/Catalogue/MergeOperation.php',
         'Symfony\\Component\\Translation\\Catalogue\\OperationInterface' => __DIR__ . '/..' . '/symfony/translation/Catalogue/OperationInterface.php',
