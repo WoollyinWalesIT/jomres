@@ -11,7 +11,7 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "ezyang/htmlpurifier": "^4.9",
+        "ezyang/htmlpurifier": "^4.10",
         "mso/idna-convert": "^1.1",
         "erusev/parsedown": "^1.6",
         "phpmailer/phpmailer": "^6.0",
@@ -20,7 +20,7 @@
         "aferrandini/phpqrcode": "^1.0",
         "monolog/monolog": "^1.23",
         "psr/log": "^1.0",
-        "johngrogg/ics-parser": "^2.0",
+        "johngrogg/ics-parser": "^2.1",
         "league/flysystem": "^1.0",
         "league/flysystem-aws-s3-v3": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
