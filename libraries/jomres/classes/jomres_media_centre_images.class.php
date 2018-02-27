@@ -17,6 +17,8 @@ defined('_JOMRES_INITCHECK') or die('');
 class jomres_media_centre_images
 {
 	protected $jrConfig;
+	
+	protected $optimizer;
 
     public function __construct()
     {
@@ -27,6 +29,12 @@ class jomres_media_centre_images
 			$this->use_db = false; //we`ll scandir for images
 		} else {
 			$this->use_db = true; //images are already imported to db
+		}
+		
+		if ($this->jrConfig['optimize_images'] == '0') {
+			$this->optimize_images = false; //no image optimization performed
+		} else {
+			$this->optimize_images = true; //uploaded images will be optimized for web
 		}
 
 		//if images details are stored in db, we may want to use Amazon S3
@@ -42,6 +50,7 @@ class jomres_media_centre_images
 			$this->use_s3 = false;
 		}
 		
+		//defaults
 		$this->images = array();
 		$this->site_images = array();
 		$this->multi_query_images = array();
@@ -446,13 +455,18 @@ class jomres_media_centre_images
 		//save image details to db
 		$this->save_image_details_to_db($property_uid, $resource_type, $resource_id, $file_name, $version, $resource_id_required);
 		
-		//copy image to amazon s3 if enabled
+		//generate image path from the available data
+		$filepath = $this->build_image_path($property_uid, $resource_type, $resource_id, $file_name, $version, $resource_id_required);
+		
+		//optimize image, if enabled
+		if ($this->optimize_images) {
+			$jomres_media_centre_images_optimizer = jomres_singleton_abstract::getInstance('jomres_media_centre_images_optimizer');
+			$jomres_media_centre_images_optimizer->optimize(JOMRES_IMAGELOCATION_ABSPATH.$filepath);
+		}
+		
+		//copy image to amazon s3, if enabled
 		if ($this->use_s3) {
-			//build image path from the available data
-			$image = $this->build_image_path($property_uid, $resource_type, $resource_id, $file_name, $version, $resource_id_required);
-			
-			//copy image to s3
-			$this->copy_image_to_s3($image);
+			$this->copy_image_to_s3($filepath);
 		}
 	}
 	

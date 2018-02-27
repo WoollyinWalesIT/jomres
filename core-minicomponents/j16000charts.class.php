@@ -37,9 +37,11 @@ class j16000charts
         //set selected jr chart showtime
         if (isset($_POST['jr_chart'])) {
             set_showtime('jr_chart', jomresGetParam($_POST, 'jr_chart', 'chart_bookings'));
-        } else {
+        } elseif (isset($_REQUEST['jr_chart'])) {
             set_showtime('jr_chart', jomresGetParam($_REQUEST, 'jr_chart', 'chart_bookings'));
-        }
+        } else {
+			set_showtime('jr_chart', 'chart_bookings');
+		}
 
         //chart type
         $chart_type = jomresGetParam($_POST, 'jr_chart_type', 'line');

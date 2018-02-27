@@ -64,6 +64,11 @@ class j10501file_uploads
         $configurationPanel->setright(jr_gettext('_JOMRES_COM_A_UPLOADS_FILESIZE_DESC', '_JOMRES_COM_A_UPLOADS_FILESIZE_DESC', false));
         $configurationPanel->insertSetting();
 		
+		/* $configurationPanel->setleft(jr_gettext('_JOMRES_MEDIA_CENTRE_OPTIMIZE_IMAGES', '_JOMRES_MEDIA_CENTRE_OPTIMIZE_IMAGES', false));
+        $configurationPanel->setmiddle($lists['optimize_images']);
+        $configurationPanel->setright(jr_gettext('_JOMRES_MEDIA_CENTRE_OPTIMIZE_IMAGES_DESC', '_JOMRES_MEDIA_CENTRE_OPTIMIZE_IMAGES_DESC', false));
+        $configurationPanel->insertSetting(); */
+		
 		//plugins can add options to this tab
 		$MiniComponents->triggerEvent('10524', $componentArgs);
 

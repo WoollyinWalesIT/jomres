@@ -238,6 +238,7 @@ function showSiteConfig()
     $lists[ 'gmap_pois' ] = jomresHTML::selectList($yesno, 'cfg_gmap_pois', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'gmap_pois' ]);
 
     $lists[ 'review_nag' ] = jomresHTML::selectList($yesno, 'cfg_review_nag', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'review_nag' ]);
+	$lists[ 'optimize_images' ] = jomresHTML::selectList($yesno, 'cfg_optimize_images', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'optimize_images' ]);
 
 	
     if (!isset($jrConfig['show_powered_by'])) {
