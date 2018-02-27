@@ -46,10 +46,10 @@ try {
     $customTextObj = jomres_singleton_abstract::getInstance('custom_text');
 	
 	//trigger 00001 event
-	$MiniComponents->triggerEvent('00001,on_start');
+	$MiniComponents->triggerEvent('00001');
 
     //trigger 00002 event
-    $MiniComponents->triggerEvent('00002,on_setup_user');
+    $MiniComponents->triggerEvent('00002');
 
     //user object
     $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
