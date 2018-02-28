@@ -27,6 +27,7 @@ defined('_JOMRES_INITCHECK') or die('');
             ->header('Content-Type', 'application/json; charset='.$charset)
             ->write($json)
             ->send();
+			exit;
     });
 
     Flight::map('halt', function ($code = 200, $message = '') {
@@ -40,4 +41,5 @@ defined('_JOMRES_INITCHECK') or die('');
             ->status($code)
             ->write($json)
             ->send();
+			exit;
     });
