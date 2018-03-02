@@ -118,16 +118,11 @@ try {
         $output['HMANAGE_PROPERTIES'] = jr_gettext('_JOMRES_MANAGE_PROPERTIES', '_JOMRES_MANAGE_PROPERTIES', false);
 
         //obsolete files warnings
-        $ouput[ 'OBSOLETE_FILES_WARNINGS' ] = '';
         jr_import('jomres_obsolete_file_handling');
         $obsolete_files = new jomres_obsolete_file_handling();
         $obsolete_files->set_default_obs_files_array();
-        $obsolete_files->add_obs_file(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'administrator'.JRDS.'components'.JRDS.'com_jomres'.JRDS.'jomres_webinstall.php');
 
-        if ($jrConfig[ 'development_production' ] != 'development') {
-            $obsolete_files->add_obs_file(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'install_jomres.php');
-        }
-
+		$ouput[ 'OBSOLETE_FILES_WARNINGS' ] = '';
         if ($obsolete_files->ready_to_go()) {
             $output[ 'OBSOLETE_FILES_WARNINGS' ] = $obsolete_files->remove_obs_files();
         }

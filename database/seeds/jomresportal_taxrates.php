@@ -1,0 +1,30 @@
+<?php
+/**
+ * Core file.
+ *
+ * @author Vince Wooll <sales@jomres.net>
+ *
+ * @version Jomres 9.9.8
+ *
+ * @copyright	2005-2017 Vince Wooll
+ * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
+ **/
+
+// ################################################################
+defined('_JOMRES_INITCHECK') or die('');
+// ################################################################
+
+$query = "TRUNCATE TABLE `#__jomresportal_taxrates`;";
+
+if (!doInsertSql($query)) {
+	$this->setMessage('Error, unable to truncate #__jomresportal_taxrates table', 'danger');
+}
+
+$query = "
+INSERT INTO `#__jomresportal_taxrates` (`id`, `code`, `description`, `rate`, `is_eu_country`) VALUES
+(1, '01', 'VAT', 20, 0);
+";
+
+if (!doInsertSql($query)) {
+	$this->setMessage('Error, unable to insert sample data in the #__jomresportal_taxrates table', 'danger');
+}

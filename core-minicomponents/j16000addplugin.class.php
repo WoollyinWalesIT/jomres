@@ -25,9 +25,13 @@ class j16000addplugin
 
             return;
         }
-        include JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'jomres_config.php';
-        $this_jomres_version = explode('.', $mrConfig[ 'version' ]);
-        $debugging = false;
+        
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
+		
+        $this_jomres_version = explode('.', $jrConfig['version']);
+        
+		$debugging = false;
         
 		if (!defined('JOMRES_INSTALLER')) {
 			define('JOMRES_INSTALLER', 1);

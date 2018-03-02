@@ -1914,8 +1914,8 @@ Does what it says on the tin
 */
 function queryUpdateServer($script, $queryString, $serverType = 'plugin')
 {
-    include JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'jomres_config.php';
-    $current_version = $mrConfig[ 'version' ];
+    $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+	$jrConfig = $siteConfig->get();
 
     if ($serverType == 'plugin') {
         $updateServer = 'http://plugins.jomres4.net';
@@ -1929,7 +1929,7 @@ function queryUpdateServer($script, $queryString, $serverType = 'plugin')
 	
 	$response = '';
 
-	$query_string = $script.'?'.$queryString.'&jomresver='.$current_version.'&hostname='.get_showtime('live_site');
+	$query_string = $script.'?'.$queryString.'&jomresver='.$jrConfig[ 'version' ].'&hostname='.get_showtime('live_site');
 
 	try {
 		$client = new GuzzleHttp\Client([
@@ -3996,9 +3996,10 @@ function getbookingguestdata()
  */
 function get_jomres_current_version()
 {
-    include JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'jomres_config.php';
+    $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+	$jrConfig = $siteConfig->get();
 
-    return $mrConfig[ 'version' ];
+    return $jrConfig[ 'version' ];
 }
 
 /**

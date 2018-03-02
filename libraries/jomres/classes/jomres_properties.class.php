@@ -89,7 +89,7 @@ class jomres_properties
         $numberOfPropertiesInSystem = count($result);
 		
 		if ($numberOfPropertiesInSystem == 0) {
-			echo 'Error, no properties installed. Before you can use Jomres you need to have at least 1 property installed, this is achieved by running <a href="'.get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/install_jomres.php">install_jomres.php</a>.';
+			echo 'Error, no properties installed. Before you can use Jomres you need to have at least 1 property installed.</a>.';
 			die();
 		}
 

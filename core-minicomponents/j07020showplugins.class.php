@@ -28,6 +28,9 @@ class j07020showplugins
 
         $this->retVals = array();
 
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
+
         $remote_plugins = array();
 		$remote_plugins_data = false;
 		$installed_plugins = array();
@@ -43,12 +46,10 @@ class j07020showplugins
         }
 
         if (!file_exists(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php')) {
-            include JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'jomres_config.php';
-            $current_version = $mrConfig[ 'version' ];
 			$remote_plugins_data = '';
 			
 			$base_uri = 'http://plugins.jomres4.net/';
-			$query_string = 'index.php?r=dp&format=json&cms='._JOMRES_DETECTED_CMS.'&jomresver='.$current_version;
+			$query_string = 'index.php?r=dp&format=json&cms='._JOMRES_DETECTED_CMS.'&jomresver='.$jrConfig['version'];
 
 			try {
 				$client = new GuzzleHttp\Client([

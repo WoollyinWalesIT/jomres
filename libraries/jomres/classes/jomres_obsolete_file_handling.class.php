@@ -298,8 +298,6 @@ class jomres_obsolete_file_handling
             $this->add_obs_file($this->dir_components_administrator.'admin.jomres.php');
         }
 
-        $this->add_obs_dir($this->dir_libraries.'jomres'.JRDS.'cms_specific'.JRDS.'jomressa');
-
         $this->add_obs_dir($this->dir_core_plugins.'qr_code_lib'.JRDS.'library');
 
         $this->add_obs_file($this->dir_core_plugins.'qr_code_lib'.JRDS.'j00001qr_code_lib.class.php');
@@ -381,9 +379,6 @@ class jomres_obsolete_file_handling
         $this->add_obs_file($this->dir_minicomponents.'j00010reception_option_08_bookaguestout.class.php');
 		
         $this->add_obs_file($this->dir_classes.'jomres_cache.class.php');
-
-        $this->add_obs_dir($this->dir_libraries.'jomres'.JRDS.'cms_specific'.JRDS.'joomla30');
-        $this->add_obs_dir($this->dir_libraries.'jomres'.JRDS.'cms_specific'.JRDS.'joomla31');
 
         $this->add_obs_file($this->dir_minicomponents.'j00004x_init_javascript_css_files.class.php');
 
@@ -522,17 +517,21 @@ class jomres_obsolete_file_handling
         $this->add_obs_file($this->dir_minicomponents.'j02112publishcustomertype.class.php');
         $this->add_obs_file($this->dir_minicomponents.'j06000cron_optimise.class.php');
 
-        $this->add_obs_dir($this->dir_libraries.'jomres'.JRDS.'cms_specific'.JRDS.'wordpress3'.JRDS);
-
         $this->add_obs_file($this->dir_minicomponents.'j10501caching.class.php');
 
+		$this->add_obs_dir($this->dir_libraries.'jomres'.JRDS.'cms_specific'.JRDS.'jomressa'.JRDS);
         $this->add_obs_dir($this->dir_libraries.'jomres'.JRDS.'cms_specific'.JRDS.'joomla15'.JRDS);
+		$this->add_obs_dir($this->dir_libraries.'jomres'.JRDS.'cms_specific'.JRDS.'joomla16'.JRDS);
+		$this->add_obs_dir($this->dir_libraries.'jomres'.JRDS.'cms_specific'.JRDS.'joomla17'.JRDS);
         $this->add_obs_dir($this->dir_libraries.'jomres'.JRDS.'cms_specific'.JRDS.'joomla25'.JRDS);
+		$this->add_obs_dir($this->dir_libraries.'jomres'.JRDS.'cms_specific'.JRDS.'joomla30'.JRDS);
+        $this->add_obs_dir($this->dir_libraries.'jomres'.JRDS.'cms_specific'.JRDS.'joomla31'.JRDS);
         $this->add_obs_dir($this->dir_libraries.'jomres'.JRDS.'cms_specific'.JRDS.'joomla32'.JRDS);
         $this->add_obs_dir($this->dir_libraries.'jomres'.JRDS.'cms_specific'.JRDS.'joomla33'.JRDS);
         $this->add_obs_dir($this->dir_libraries.'jomres'.JRDS.'cms_specific'.JRDS.'joomla34'.JRDS);
         $this->add_obs_dir($this->dir_libraries.'jomres'.JRDS.'cms_specific'.JRDS.'joomla35'.JRDS);
         $this->add_obs_dir($this->dir_libraries.'jomres'.JRDS.'cms_specific'.JRDS.'joomla36'.JRDS);
+		$this->add_obs_dir($this->dir_libraries.'jomres'.JRDS.'cms_specific'.JRDS.'wordpress3'.JRDS);
 
         $this->add_obs_file($this->dir_minicomponents.'j10002zzz_about_asamodule.class.php');
         $this->add_obs_file($this->dir_minicomponents.'j16000about_asamodule.class.php');
@@ -603,7 +602,6 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_classes.'javascript_cache.class.php');
 		$this->add_obs_file($this->dir_classes.'jomres_access_control_controlable.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j10501contact_settings.class.php');
-		$this->add_obs_file($this->dir_libraries.'jomres'.JRDS.'cms_specific'.JRDS.'joomla3'.JRDS.'installfiles'.JRDS.'uninstall.jomres.php');
 		$this->add_obs_dir(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'admin'.JRDS);
 		$this->add_obs_file($this->dir_classes.'jrportal_sms_clickatell_settings.class.php');
 		$this->add_obs_dir($this->dir_libraries.'MobileDetect'.JRDS);
@@ -767,6 +765,18 @@ class jomres_obsolete_file_handling
 		$this->add_obs_dir(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'images'.JRDS);
 		$this->add_obs_dir(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'fonts'.JRDS);
 		$this->add_obs_dir(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'templates'.JRDS);
+		
+		$this->add_obs_dir($this->dir_libraries.'class.JavaScriptPacker.php');
+		$this->add_obs_dir($this->dir_libraries.'jomres'.JRDS.'cms_specific'.JRDS.'joomla3'.JRDS.'installfiles'.JRDS);
+		$this->add_obs_dir($this->dir_libraries.'jomres'.JRDS.'cms_specific'.JRDS.'joomla4'.JRDS.'installfiles'.JRDS);
+		$this->add_obs_dir($this->dir_libraries.'jomres'.JRDS.'cms_specific'.JRDS.'wordpress'.JRDS.'installfiles'.JRDS);
+		
+		
+		if (this_cms_is_joomla()) {
+            $this->add_obs_file($this->dir_components_administrator.'jomres_webinstall.php');
+        }
+		
+		$this->add_obs_file($this->dir_jomres.'install_jomres.php');
     }
 
     public function add_obs_file($path_and_file)

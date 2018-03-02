@@ -23,10 +23,6 @@ class mcHandler
 
     public function __construct()
     {
-        if (defined('AUTO_UPGRADE')) {
-            return;
-        }
-
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
 

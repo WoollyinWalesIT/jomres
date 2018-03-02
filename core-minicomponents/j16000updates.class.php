@@ -31,6 +31,9 @@ class j16000updates
 
             return;
         }
+		
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
 
         $jomresConfig_offline = true;
 		
@@ -121,10 +124,7 @@ class j16000updates
             $this->debugging = false;
             $this->test_download = false;
 
-            $configfile = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'jomres_config.php'; // This is just to pull in the Jomres version from mrConfig
-            include $configfile;
-            $thisVersion = $mrConfig[ 'version' ];
-            echo "<br /><br /><br /><center><h2>This Jomres version: $thisVersion</h2></center><br />";
+            echo '<br /><br /><br /><center><h2>This Jomres version: '.$jrConfig['version'].'</h2></center><br />';
 
             $this->ftp_user_name = 'userid';
             $this->ftp_user_pass = 'password';
@@ -229,7 +229,7 @@ class j16000updates
                         }
                     }
                     unlink($newfilename);
-                    jomresRedirect(jomresURL(get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/install_jomres.php?autoupgrade'), '');
+                    jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=jomres_install'), '');
                 } else {
                     echo 'Error creating unpack folder';
                 }
