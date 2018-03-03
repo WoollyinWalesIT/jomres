@@ -116,10 +116,10 @@ class jomres_install
 		if ($this->action == 'uninstall') {
 			return true;
 		}
-		
-		//if Jomres db version is 0 (versions older than 9.9.20 don`t have this setting), Jomres is either not installed, or an update from a version older than 9.9.20 (when the new installer was introduced)
-		if ($this->jrConfig['jomres_db_version'] == '0') {
-			if ($this->jomresIsInstalled()) {
+
+		//BC: if Jomres db version is 0 (versions older than 9.9.20 don`t have this setting), Jomres is either not installed, or an update from a version older than 9.9.20 (when the new installer was introduced)
+		if ($this->jrConfig['jomres_db_version'] == '0') { //triggers only on updates from older versions than 9.9.20 when this setting was introduced.
+			if ($this->jomresTablesExist()) {
 				$this->action = 'update';
 				
 				//perform legacy update routines too
@@ -129,17 +129,31 @@ class jomres_install
 			}
 			
 			return true;
-		} else {
+		} else { //the new way
 			//file version is higher than the db version, perform update routines
 			if (version_compare($this->jrConfig['version'], $this->jrConfig['jomres_db_version'], '>')) {
-				$this->action = 'update';
+				
+				if ($this->jomresTablesExist()) {
+					//jomres tables exist, perform update
+					$this->action = 'update';
+				} else {
+					//unusual case when files exist but db tables are not
+					$this->action = 'install';
+				}
 				
 				return true;
 			}
 
-			//file version is lower than the db version, this is an error, so do nothing
+			//file version is lower than the db version, this is an error, so do nothing and better ask for support
+			//TODO: maybe just update and be done with it? the code is here, just replace actions
 			if (version_compare($this->jrConfig['version'], $this->jrConfig['jomres_db_version'], '<')) {
-				$this->action = 'donothing';
+				if ($this->jomresTablesExist()) {
+					//jomres tables exist, perform update
+					$this->action = 'donothing';
+				} else {
+					//unusual case when files exist but db tables are not
+					$this->action = 'donothing';
+				}
 				
 				$this->setMessage('Error, your Jomres plugin version is lower than the Jomres database version, are you sure you`re not downgrading?', 'danger');
 				
@@ -157,15 +171,15 @@ class jomres_install
 		return true;
 	}
 	
-	//check if jomres is installed by trying to select data from #__jomres_settings table
+	//check if jomres is installed by trying to select data from #__jomres_propertys table
 	//if db tables exist, it means jomres is installed or was installed previously
-	private function jomresIsInstalled()
+	private function jomresTablesExist()
 	{
-		$query = "SELECT * FROM `#__jomres_settings` WHERE 1 LIMIT 1";
+		$query = "SHOW TABLES LIKE #__jomres_propertys";
 		$result = doSelectSql($query);
 		
 		if (!empty($result)) {
-			//jomres is installed
+			//jomres tables exist
 			return true;
 		}
 		
@@ -500,7 +514,14 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 
 		foreach ($contents as $fileNode) {
 			if (in_array(strtolower($fileNode['extension']), $this->allowed_image_extensions)) {
-				$this->filesystem->copy('local://'.$fileNode['path'], 'local://'.$target.$fileNode['basename']);
+				try {
+					if ( ! $this->filesystem->has('local://'.$target.$fileNode['basename'])) {
+						$this->filesystem->copy('local://'.$fileNode['path'], 'local://'.$target.$fileNode['basename']);
+					}
+				}
+				catch (Exception $e) {
+					return false;
+				}
 			}
 		}
 		

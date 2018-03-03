@@ -78,9 +78,7 @@ class Jomres_Admin {
 			if ( isset( $_GET[ 'page' ] ) && $_GET[ 'page' ] == 'jomres/jomres.php' ) {
 				ob_start();
 
-				if ( jomres_is_installed_and_updated() ) {
-					trigger_jomres();
-				}
+				trigger_jomres();
 
 				add_action('admin_enqueue_scripts', array($wp_jomres, 'add_jomres_js_css'), 9999);
 

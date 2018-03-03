@@ -22,6 +22,9 @@ if (doInsertSql($query)) {
 	$this->setMessage('Error, unable to truncate #__jomres_images table', 'danger');
 }
 
+//define MEDIACENTRE_ROOMJS so that when media centre will trigger minicomponents to discover available resources, their js won`t be echoed
+define('MEDIACENTRE_ROOMJS', 1);
+
 jr_import('jomres_media_centre_images_dbimport');
 
 $jomres_media_centre_images_dbimport = new jomres_media_centre_images_dbimport(array(1), true);

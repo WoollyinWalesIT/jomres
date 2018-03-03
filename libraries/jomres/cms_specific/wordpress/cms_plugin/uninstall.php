@@ -46,3 +46,5 @@ if (file_exists(ABSPATH.JOMRES_ROOT_DIRECTORY.'/integration.php')) {
 jr_import('jomres_install');
 
 $jomres_install = new jomres_install('uninstall');
+
+delete_option( 'jomres_wp_plugin_version' );

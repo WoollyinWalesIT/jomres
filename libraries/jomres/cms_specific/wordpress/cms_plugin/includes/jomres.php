@@ -125,7 +125,7 @@ class WP_Jomres {
 		if ( defined( 'JOMRES_WP_PLUGIN_VERSION' ) ) {
 			$this->version = JOMRES_WP_PLUGIN_VERSION;
 		} else {
-			$this->version = '9.9.19';
+			$this->version = '0';
 		}
 		
 		$this->plugin_name = 'jomres';

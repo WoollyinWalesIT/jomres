@@ -14,6 +14,9 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
+//define('PROD_DEV', 'development');
+define('PROD_DEV', 'production');
+
 // Have to do this automatically otherwise Jomres will never run when upgrading from v2.5 to v3.x of joomla
 if (this_cms_is_joomla()) {
     $result = true;
@@ -1318,15 +1321,21 @@ function save_configuration_file()
     if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php')) {
         //throw new Exception ( "Saving new configuration.php file which stores the site settings" );
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $tmpConfig = $siteConfig->get();
-        $tmpConfig['development_production'] = PROD_DEV;
+        $config_to_save = $siteConfig->get();
+        $config_to_save['development_production'] = PROD_DEV;
+		
+		//we won`t store the version in configuration.php (or BC _site_settings table), so it will always be loaded from site_config.php
+		if (isset($config_to_save['version'])) {
+			unset($config_to_save['version']);
+		}
+		
         if (!file_put_contents(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php',
 '<?php
 ##################################################################
 defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
 ##################################################################
 
-$jrConfig = ' .var_export($tmpConfig, true).';
+$jrConfig = ' .var_export($config_to_save, true).';
 ')) {
             throw new Exception('ERROR: '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php'.' can`t be saved. Please solve the permission problem and try again.');
         } else {
@@ -1334,8 +1343,6 @@ $jrConfig = ' .var_export($tmpConfig, true).';
                 $query = 'DROP TABLE IF EXISTS #__jomres_site_settings';
                 if (!doInsertSql($query, '')) {
                     throw new Exception('Error dropping the _jomres_site_settings table');
-                } else {
-                    //throw new Exception('Dropped the _jomres_site_settings table');
                 }
             }
         }

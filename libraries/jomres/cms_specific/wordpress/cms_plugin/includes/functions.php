@@ -51,12 +51,12 @@ function run_jomres() {
  * @since    9.9.19
  */
 function jomres_is_installed_and_updated() {
-	
+
 	global $wpdb;
 
 	$jomres_wp_plugin_version = get_option( 'jomres_wp_plugin_version', '0' );
 
-	if( version_compare( $jomres_wp_plugin_version, JOMRES_WP_PLUGIN_VERSION, '<' ) ) {
+	if( version_compare( $jomres_wp_plugin_version, JOMRES_WP_PLUGIN_VERSION, '!=' ) ) {
 
 		$table_name = $wpdb->prefix.'jomres_propertys';
 		
@@ -143,8 +143,17 @@ function jr_wp_trigger_admin() {
     }
 }
 
+/**
+ * Runs Jomres installation or update routine.
+ *
+ * Donwloads Jomres, unzips and runs the jomres install or update
+ *
+ * @since    9.9.19
+ */
 function run_jomres_installer( $method = 'install' ) {
 	
+	require_once(ABSPATH . 'wp-admin/includes/file.php');
+
 	WP_Filesystem();
 	
 	global $wp_filesystem;
@@ -180,7 +189,9 @@ function run_jomres_installer( $method = 'install' ) {
 	}
 	
 	//delete downloaded zip
-	unlink( $source );
+	if ( file_exists( $source ) ) {
+		unlink( $source );
+	}
 	
 	//install Jomres
 	try {
@@ -201,9 +212,18 @@ function run_jomres_installer( $method = 'install' ) {
 		
 		return false;
 	}
+	
+	return true;
+
 }
 
-//show error messages helper function
+/**
+ * Show error messages.
+ *
+ * Utility function to display error messages
+ *
+ * @since    9.9.19
+ */
 function jomres_notice( $notice ) {
 	printf(
 		'<div class="notice notice-error is-dismissible"><p><strong>%s</strong></p></div>',
