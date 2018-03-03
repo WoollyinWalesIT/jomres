@@ -36,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     }
 }
 
+	
 date_default_timezone_set('UTC');
 require JOMRES_API_JOMRES_ROOT.'/vendor/autoload.php';
 require 'classes/logging.class.php';
@@ -128,6 +129,8 @@ if (isset($server) && !is_null($server)) {
 		"scope" => ''
 	);
 }
+
+require 'put_method_handling.php';
 
 try {
     $dsn = 'mysql:dbname='.JOMRES_API_DB_NAME.';host='.JOMRES_API_DB_HOST;
