@@ -1484,7 +1484,7 @@ jr_define('_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT', 'Votre propriété a été 
 jr_define('_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT', 'Félicitations, votre propriété a été approuvée, veuillez cliquer sur le lien suivant pour afficher le panneau de configuration de la propriété : ');
 jr_define('_JOMRES_REGION_TRANSLATION_SWITCH_TITLE', 'Les noms de région sont traduisibles');
 jr_define('_JOMRES_REGION_TRANSLATION_SWITCH_DESC', "Sauf si vous utilisez un serveur très rapide, qu'il est conseillé de laisser cet option sur NON. En raison du grand nombre de noms de région, la traduction de noms de région utilise beaucoup de mémoire; ce qui peut ralentir le résultat de votre recherche.");
-jr_define('_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT', "Livre d'or.");
+jr_define('_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT', "Livre d'&eacute;or.");
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE', 'Désolé, cette adresse e-mail est déjà utilisée. Si il s\'agit de votre adresse de courriel, veuillez vous assurer que vous avez connecté avant d\'essayer de réserver.');
 jr_define('JOMRES_TAPTOCALL', 'Tap to call');
 jr_define('JOMRES_NEWREVIEW_SUBJECT', 'New review for ');
