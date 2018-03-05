@@ -20,6 +20,8 @@ if (doInsertSql($query)) {
 	$this->siteConfig->update_setting('images_imported_to_db', '0');
 } else {
 	$this->setMessage('Error, unable to truncate #__jomres_images table', 'danger');
+	
+	return;
 }
 
 //define MEDIACENTRE_ROOMJS so that when media centre will trigger minicomponents to discover available resources, their js won`t be echoed

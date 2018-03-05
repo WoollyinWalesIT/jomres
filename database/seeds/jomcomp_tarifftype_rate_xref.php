@@ -18,6 +18,8 @@ $query = "TRUNCATE TABLE `#__jomcomp_tarifftype_rate_xref`;";
 
 if (!doInsertSql($query)) {
 	$this->setMessage('Error, unable to truncate #__jomcomp_tarifftype_rate_xref table', 'danger');
+	
+	return;
 }
 
 $query = "

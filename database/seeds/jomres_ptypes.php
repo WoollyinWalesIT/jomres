@@ -18,6 +18,8 @@ $query = "TRUNCATE TABLE `#__jomres_ptypes`;";
 
 if (!doInsertSql($query)) {
 	$this->setMessage('Error, unable to truncate #__jomres_ptypes table', 'danger');
+	
+	return;
 }
 
 $query = "

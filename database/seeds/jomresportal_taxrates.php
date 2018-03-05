@@ -18,6 +18,8 @@ $query = "TRUNCATE TABLE `#__jomresportal_taxrates`;";
 
 if (!doInsertSql($query)) {
 	$this->setMessage('Error, unable to truncate #__jomresportal_taxrates table', 'danger');
+	
+	return;
 }
 
 $query = "

@@ -117,16 +117,6 @@ try {
 		//manage properties button
         $output['HMANAGE_PROPERTIES'] = jr_gettext('_JOMRES_MANAGE_PROPERTIES', '_JOMRES_MANAGE_PROPERTIES', false);
 
-        //obsolete files warnings
-        jr_import('jomres_obsolete_file_handling');
-        $obsolete_files = new jomres_obsolete_file_handling();
-        $obsolete_files->set_default_obs_files_array();
-
-		$ouput[ 'OBSOLETE_FILES_WARNINGS' ] = '';
-        if ($obsolete_files->ready_to_go()) {
-            $output[ 'OBSOLETE_FILES_WARNINGS' ] = $obsolete_files->remove_obs_files();
-        }
-
         //language dropdown
         $output[ 'LANGDROPDOWN' ] = $jomres_language->get_languageselection_dropdown();
 

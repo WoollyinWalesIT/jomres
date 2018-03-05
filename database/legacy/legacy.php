@@ -14,9 +14,6 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-//define('PROD_DEV', 'development');
-define('PROD_DEV', 'production');
-
 // Have to do this automatically otherwise Jomres will never run when upgrading from v2.5 to v3.x of joomla
 if (this_cms_is_joomla()) {
     $result = true;

@@ -18,6 +18,8 @@ $query = "TRUNCATE TABLE `#__jomresportal_properties_crates_xref`;";
 
 if (!doInsertSql($query)) {
 	$this->setMessage('Error, unable to truncate #__jomresportal_properties_crates_xref table', 'danger');
+	
+	return;
 }
 
 $query = "

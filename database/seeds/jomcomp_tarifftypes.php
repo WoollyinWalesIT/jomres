@@ -18,6 +18,8 @@ $query = "TRUNCATE TABLE `#__jomcomp_tarifftypes`;";
 
 if (!doInsertSql($query)) {
 	$this->setMessage('Error, unable to truncate #__jomcomp_tarifftypes table', 'danger');
+	
+	return;
 }
 
 $query = "

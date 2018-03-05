@@ -20,6 +20,8 @@ $query = "TRUNCATE TABLE `#__jomres_propertys`;";
 
 if (!doInsertSql($query)) {
 	$this->setMessage('Error, unable to truncate #__jomres_propertys table', 'danger');
+	
+	return;
 }
 
 $query = "

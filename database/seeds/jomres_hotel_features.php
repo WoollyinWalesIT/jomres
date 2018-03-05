@@ -18,6 +18,8 @@ $query = "TRUNCATE TABLE `#__jomres_hotel_features`;";
 
 if (!doInsertSql($query)) {
 	$this->setMessage('Error, unable to truncate #__jomres_hotel_features table', 'danger');
+	
+	return;
 }
 
 $query = "

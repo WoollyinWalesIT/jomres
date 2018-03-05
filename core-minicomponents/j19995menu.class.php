@@ -78,6 +78,7 @@ class j19995menu
 		$jomres_menu->add_admin_item(70, 'Changelog', 'changelog', 'fa-file-code-o');
 		$jomres_menu->add_admin_item(70, jr_gettext('INTEGRITY_CHECK', 'INTEGRITY_CHECK', false), 'filesystem_integrity_check', 'fa-check-square-o');
 		$jomres_menu->add_admin_item(70, jr_gettext('DATABASE_INTEGRITY_CHECK', 'DATABASE_INTEGRITY_CHECK', false), 'database_integrity_check', 'fa-check-square-o');
+		$jomres_menu->add_admin_item(70, jr_gettext('OBSOLETE_FILES_CHECK', 'OBSOLETE_FILES_CHECK', false), 'obsolete_files_check', 'fa-check-square-o');
 		$jomres_menu->add_admin_item(70, jr_gettext('JOMRES_COM_A_AVAILABLELOGS', 'JOMRES_COM_A_AVAILABLELOGS', false), 'list_error_logs', 'fa-exclamation-triangle');
 		$jomres_menu->add_admin_item(70, jr_gettext('_JOMRES_REGISTRYREBUILD', '_JOMRES_REGISTRYREBUILD', false), 'rebuildregistry', 'fa-refresh');
 		

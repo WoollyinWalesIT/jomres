@@ -18,6 +18,8 @@ $query = "TRUNCATE TABLE `#__jomres_roomtypes_propertytypes_xref`;";
 
 if (!doInsertSql($query)) {
 	$this->setMessage('Error, unable to truncate #__jomres_roomtypes_propertytypes_xref table', 'danger');
+	
+	return;
 }
 
 $query = "

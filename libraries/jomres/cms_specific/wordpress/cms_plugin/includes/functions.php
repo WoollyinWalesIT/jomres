@@ -152,6 +152,9 @@ function jr_wp_trigger_admin() {
  */
 function run_jomres_installer( $method = 'install' ) {
 	
+	@ignore_user_abort(true);
+	@set_time_limit(0);
+	
 	require_once(ABSPATH . 'wp-admin/includes/file.php');
 
 	WP_Filesystem();

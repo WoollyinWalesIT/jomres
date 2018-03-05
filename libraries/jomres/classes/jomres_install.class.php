@@ -45,6 +45,9 @@ class jomres_install
 
 		define('AUTO_UPGRADE', 1); //TODO: rename this
 		
+		//define('PROD_DEV', 'development');
+		define('PROD_DEV', 'production');
+		
 		if (!defined('JRDS')) {
 			define('JRDS', DIRECTORY_SEPARATOR);
 		}
@@ -212,6 +215,9 @@ class jomres_install
 			//importing images to db requires the minicomponent registry to discover resource types
 			$this->minicomponent_registry->regenerate_registry();
 			
+			//remove obsolete files
+			$this->remove_obsolete_files();
+			
 			//seed default/demo content
 			$this->seedDefaultContent();
 			
@@ -223,17 +229,18 @@ class jomres_install
 			//run plugins installation scripts
 			$this->installPlugins();
 			
-			//update db version so we can check this on future updates or sanity checks
+			//set to production
+			$this->siteConfig->update_setting('development_production', PROD_DEV);
+			
+			//update db version so we can check this on future updates or db sanity check
 			if (empty($this->messages)) {
 				$this->siteConfig->update_setting('jomres_db_version', $this->jrConfig['version']);
 			}
 		}
 		catch (Exception $e) {
-			foreach ($this->messages as $m) {
-				echo $m;
-			}
+			$this->setMessage($e->getMessage(), 'danger');
 			
-			echo $e;
+			return false;
 		}
 	}
 	
@@ -262,6 +269,9 @@ class jomres_install
 			//importing images to db requires the minicomponent registry to discover resource types
 			$this->minicomponent_registry->regenerate_registry();
 			
+			//remove obsolete files
+			$this->remove_obsolete_files();
+			
 			//run legacy update routines
 			//these are executed if we`re updating from a Jomres version lower than 9.9.20
 			if ($this->legacy) {
@@ -280,17 +290,18 @@ class jomres_install
 			//plugins should already be installed, so most probably their tables won`t need to be created again
 			$this->installPlugins();
 			
+			//set to production
+			$this->siteConfig->update_setting('development_production', PROD_DEV);
+			
 			//update db version so we can check this on future updates or sanity checks
 			if (empty($this->messages)) {
 				$this->siteConfig->update_setting('jomres_db_version', $this->jrConfig['version']);
 			}
 		} 
 		catch (Exception $e) {
-			foreach ($this->messages as $m) {
-				echo $m;
-			}
+			$this->setMessage($e->getMessage(), 'danger');
 			
-			echo $e;
+			return false;
 		}
 	}
 	
@@ -311,11 +322,9 @@ class jomres_install
 			return true;
 		} 
 		catch (Exception $e) {
-			foreach ($this->messages as $m) {
-				echo $m;
-			}
+			$this->setMessage($e->getMessage(), 'danger');
 			
-			echo $e;
+			return false;
 		}
 	}
 	
@@ -520,10 +529,27 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 					}
 				}
 				catch (Exception $e) {
+					$this->setMessage('Error, unable to copy ' . 'local://'.$fileNode['path'] . ' to ' . 'local://'.$target.$fileNode['basename'], 'danger');
+					
 					return false;
 				}
 			}
 		}
+		
+		return true;
+	}
+	
+	//remove obsolete files and regenerate registry
+	private function remove_obsolete_files()
+	{
+		jr_import('jomres_obsolete_file_handling');
+        $jomres_obsolete_file_handling = new jomres_obsolete_file_handling();
+        
+		//remove obsolete files
+		$jomres_obsolete_file_handling->remove_obs_files();
+		
+		//regenerate registry
+		$this->minicomponent_registry->regenerate_registry();
 		
 		return true;
 	}
@@ -540,7 +566,7 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 			if (strstr($r->$string, 'jomres_') || strstr($r->$string, 'jomcomp_') || strstr($r->$string, 'jomresportal_')) {
 				$query = 'DROP TABLE IF EXISTS '.$r->$string;
 				if (!doInsertSql($query, '')) {
-					throw new Exception( 'Error, unable to drop table '.$r->$string);
+					$this->setMessage( 'Error, unable to drop table '.$r->$string);
 				}
 			}
 		}

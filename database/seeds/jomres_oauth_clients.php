@@ -18,6 +18,8 @@ $query = "TRUNCATE TABLE `#__jomres_oauth_clients`;";
 
 if (!doInsertSql($query)) {
 	$this->setMessage('Error, unable to truncate #__jomres_oauth_clients table', 'danger');
+	
+	return;
 }
 
 $query = "

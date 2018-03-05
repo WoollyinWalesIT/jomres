@@ -18,6 +18,8 @@ $query = "TRUNCATE TABLE `#__jomres_countries`;";
 
 if (!doInsertSql($query)) {
 	$this->setMessage('Error, unable to truncate #__jomres_countries table', 'danger');
+	
+	return;
 }
 
 import_countries();

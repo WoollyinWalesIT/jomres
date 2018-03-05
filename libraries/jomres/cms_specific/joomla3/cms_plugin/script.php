@@ -6,6 +6,9 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 {
     function preflight($type, $parent) 
 	{
+		@ignore_user_abort(true);
+		@set_time_limit(0);
+
 		//this is an uninstall, so we simply return true
 		if ($type == 'uninstall') {
 			return true;

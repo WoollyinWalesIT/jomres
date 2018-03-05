@@ -18,6 +18,8 @@ $query = "TRUNCATE TABLE `#__jomres_settings`;";
 
 if (!doInsertSql($query)) {
 	$this->setMessage('Error, unable to truncate #__jomres_settings table', 'danger');
+	
+	return;
 }
 
 include JOMRESPATH_BASE.JRDS.'jomres_config.php';

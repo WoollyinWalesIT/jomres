@@ -18,6 +18,8 @@ $query = "TRUNCATE TABLE `#__jomcomp_cron`;";
 
 if (!doInsertSql($query)) {
 	$this->setMessage('Error, unable to truncate #__jomcomp_cron table', 'danger');
+	
+	return;
 }
 
 $jomres_cron = jomres_singleton_abstract::getInstance('jomres_cron');
