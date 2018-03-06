@@ -29,7 +29,7 @@ class j16000delete_obsolete_files
 		jr_import('jomres_obsolete_file_handling');
         $obsolete_files = new jomres_obsolete_file_handling();
 
-        if ($obsolete_files->remove_obs_files()) {
+        if ($obsolete_files->remove_obsolete_files()) {
             jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=obsolete_files_check'), '');
         } else {
             echo 'Could not delete obsolete files, please do ti manually.';

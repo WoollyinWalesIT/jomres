@@ -546,9 +546,9 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
         $jomres_obsolete_file_handling = new jomres_obsolete_file_handling();
         
 		//remove obsolete files
-		$jomres_obsolete_file_handling->remove_obs_files();
+		$jomres_obsolete_file_handling->remove_obsolete_files();
 		
-		//regenerate registry
+		//regenerate registry (again)
 		$this->minicomponent_registry->regenerate_registry();
 		
 		return true;
@@ -557,17 +557,18 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 	//drop jomres tables
 	private function dropDbTables()
 	{
-		$query = 'SHOW TABLES';
+		$query = "SELECT `table_name` FROM information_schema.tables WHERE 
+					`table_schema` = '".get_showtime('db')."'
+					AND `table_name` LIKE '#__jomres_%' 
+					OR `table_name` LIKE '#__jomcomp_%' 
+					OR `table_name` LIKE '#__jomresportal_%' ";
+		
 		$result = doSelectSql($query);
-		
-		$string = 'Tables_in_'.get_showtime('db');
-		
+
 		foreach ($result as $r) {
-			if (strstr($r->$string, 'jomres_') || strstr($r->$string, 'jomcomp_') || strstr($r->$string, 'jomresportal_')) {
-				$query = 'DROP TABLE IF EXISTS '.$r->$string;
-				if (!doInsertSql($query, '')) {
-					$this->setMessage( 'Error, unable to drop table '.$r->$string);
-				}
+			$query = 'DROP TABLE IF EXISTS '.$r->table_name;
+			if (!doInsertSql($query, '')) {
+				$this->setMessage( 'Error, unable to drop table '.$r->table_name);
 			}
 		}
 
