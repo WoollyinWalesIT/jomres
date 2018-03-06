@@ -48,6 +48,7 @@
     "jquery-validation": "^1.17.0",
     "jquery.tipsy": "^1.0.3",
     "js-cookie": "^2.2.0",
+    "moment": "^2.21.0",
     "popper.js": "^1.13.0",
     "simple-cmeditor": "^1.11.4",
     "x-editable": "^1.5.1"
