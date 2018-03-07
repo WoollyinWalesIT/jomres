@@ -31,6 +31,9 @@ class j16000showplugins
 			return;
 		}
 		
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
+		
 		$force_plugin_manager_reinstallation = false;
 		
 		// Jomres 9.9.18 specific code, we need to check to see if the task == showplugins, and if so double check the plugin manager's version. If it's < 1.9 we need to force an update of the plugin manager before the plugin manager script can be shown
@@ -148,10 +151,9 @@ class j16000showplugins
                         return false;
                     }
                 }
-				
-				include JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'jomres_config.php';
+
 				$base_uri = 'http://plugins.jomres4.net/';
-				$query_string = 'index.php?r=gp&cms='._JOMRES_DETECTED_CMS.'&vnw=1&plugin=plugin_manager&jomresver='. $mrConfig[ 'version' ].'&key='.$key_validation->key_hash;
+				$query_string = 'index.php?r=gp&cms='._JOMRES_DETECTED_CMS.'&vnw=1&plugin=plugin_manager&jomresver='. $jrConfig[ 'version' ].'&key='.$key_validation->key_hash;
 
                 try {
 					$client = new GuzzleHttp\Client([

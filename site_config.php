@@ -12,6 +12,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 
 $jrConfig = array(
+  'version' => '9.9.19',
   'defaultCrate' => '1',
   'property_list_limit' => '9',
   'useGlobalCurrency' => '1',
@@ -190,5 +191,6 @@ $jrConfig = array(
   'jomres_review_left' => '0',
   'review_nag' => '1',
   'send_email_copies_to_site_admins' => '0',
-  'optimize_images' => '0'
+  'optimize_images' => '0',
+  'jomres_db_version' => '0'
 );

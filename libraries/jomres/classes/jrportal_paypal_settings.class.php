@@ -23,7 +23,7 @@ class jrportal_paypal_settings
         $this->paypalConfigOptions[ 'usesandbox' ] = '1';
         $this->paypalConfigOptions[ 'currencycode' ] = 'EUR';
         $this->paypalConfigOptions[ 'email' ] = '';
-        $this->paypalConfigOptions[ 'override' ] = '';
+        $this->paypalConfigOptions[ 'override' ] = '0';
 
         $this->paypalConfigOptions[ 'client_id' ] = '';
         $this->paypalConfigOptions[ 'secret' ] = '';

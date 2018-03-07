@@ -23,6 +23,8 @@ if (!defined('AUTO_UPGRADE')) {
     if (class_exists('JURI')) {
         $jomresConfig_live_site = @JURI::root();
     } else {
+		$detect_os = strtoupper($_SERVER[ 'SERVER_SOFTWARE' ]); // converted to uppercase
+		$IIS = strpos($detect_os, 'IIS');
         if ($IIS > 0) { // Win NT, therefore $_SERVER['REQUEST_URI'] == null
             $path_info = $_SERVER[ 'PATH_INFO' ];
             $_URI = explode('/', $path_info);
@@ -37,6 +39,8 @@ if (!defined('AUTO_UPGRADE')) {
         $jomresConfig_live_site = 'http://'.implode('/', $_URI);
     }
 } else {
+	$detect_os = strtoupper($_SERVER[ 'SERVER_SOFTWARE' ]); // converted to uppercase
+	$IIS = strpos($detect_os, 'IIS');
     if ($IIS > 0) { // Win NT, therefore $_SERVER['REQUEST_URI'] == null
         $path_info = $_SERVER[ 'PATH_INFO' ];
         $_URI = explode('/', $path_info);

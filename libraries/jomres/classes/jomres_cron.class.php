@@ -98,6 +98,10 @@ class jomres_cron
 
     public function triggerJobs()
     {
+		if (defined('AUTO_UPGRADE')) {
+			return true;
+		}
+
         $this->now = time();
         $this->findDueJobs();
         $this->runDueJobs();

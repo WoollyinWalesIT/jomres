@@ -27,7 +27,7 @@
     "blueimp-file-upload": "^9.21.0",
     "bootstrap": "^4.0.0",
     "bootstrap-multiselect": "^0.9.13",
-    "chart.js": "^2.7.1",
+    "chart.js": "^2.7.2",
     "datatables.net-bs": "^1.10.16",
     "datatables.net-bs4": "^1.10.16",
     "datatables.net-buttons-bs": "^1.5.1",
@@ -48,6 +48,7 @@
     "jquery-validation": "^1.17.0",
     "jquery.tipsy": "^1.0.3",
     "js-cookie": "^2.2.0",
+    "moment": "^2.21.0",
     "popper.js": "^1.13.0",
     "simple-cmeditor": "^1.11.4",
     "x-editable": "^1.5.1"

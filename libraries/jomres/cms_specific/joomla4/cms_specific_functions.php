@@ -174,8 +174,11 @@ function jomres_cmsspecific_getTextEditor($name, $content, $hiddenField, $width,
 function jomres_cmsspecific_getcurrentusers_id()
 {
     $id = 0;
-    $user = JFactory::getUser();
-    $id = $user->get('id');
+    
+	if (!defined('AUTO_UPGRADE')) {
+		$user = JFactory::getUser();
+		$id = $user->get('id');
+	}
 
     return $id;
 }

@@ -41,6 +41,12 @@ set_showtime('socket', $socket);
 class jomres_database
 {
 	private static $configInstance;
+	
+	private $link;
+	
+	private $PDO;
+	
+	private $stmt;
 
     public function __construct()
     {
@@ -50,8 +56,9 @@ class jomres_database
             @set_magic_quotes_runtime(false);
         }
 
+		$this->link = null;
+		$this->PDO = null;
 		$this->query = '';
-        $this->system_tables = array();
         $this->error = null;
         $this->stmt = null;
         $this->result = null;
@@ -60,17 +67,9 @@ class jomres_database
         $this->dbtype = get_showtime('dbtype');
         $this->db_prefix = get_showtime('dbprefix');
 
-        if ((string) $this->dbtype == '') {
+        if ($this->dbtype != 'pdomysql' || defined('AUTO_UPGRADE')) {
             $this->dbtype = 'mysqli';
         }
-
-        if (defined('AUTO_UPGRADE')) {
-            $this->dbtype = 'mysqli';
-        }
-		
-		// We will check to see if dbtype is set to mysql. If it's not we will silently switch to mysqli. Joomla seems to be doing the same thing in J3.7
-		if ($this->dbtype == 'mysql' && !function_exists('mysql_connect'))
-			$this->dbtype = 'mysqli';
 
         if (!this_cms_is_wordpress() || defined('AUTO_UPGRADE')) {
             $this->_init();
@@ -114,15 +113,15 @@ class jomres_database
 
             case 'pdomysql':
                 try {
-                    $this->PDOdb = new PDO('mysql:host='.get_showtime('host').';dbname='.get_showtime('db'), get_showtime('user'), get_showtime('password'));
-                    $this->PDOdb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    $this->PDO = new PDO('mysql:host='.get_showtime('host').';dbname='.get_showtime('db'), get_showtime('user'), get_showtime('password'));
+                    $this->PDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 } catch (PDOException $e) {
                     output_fatal_error($e);
                 }
-                $this->PDOdb->exec('SET CHARACTER SET utf8');
-                $this->PDOdb->exec('SET NAMES utf8');
+                $this->PDO->exec('SET CHARACTER SET utf8');
+                $this->PDO->exec('SET NAMES utf8');
 
-                $this->error = $this->PDOdb->errorInfo();
+                $this->error = $this->PDO->errorInfo();
                 break;
 
             default:
@@ -138,7 +137,7 @@ class jomres_database
                     mysqli_close($this->link);
                     break;
                 case 'pdomysql':
-                    $this->PDOdb = null;
+                    $this->PDO = null;
                     break;
                 default:
                     break;
@@ -184,7 +183,7 @@ class jomres_database
                     break;
                 case 'pdomysql':
                     try {
-                        $this->result = $this->PDOdb->exec($this->query);
+                        $this->result = $this->PDO->exec($this->query);
                     } catch (PDOException $e) {
                         output_fatal_error($e , $this->query );
                     }
@@ -204,7 +203,7 @@ class jomres_database
                         $last_id = mysql_insert_id();
                         break;
                     case 'pdomysql':
-                        $last_id = $this->PDOdb->lastInsertId();
+                        $last_id = $this->PDO->lastInsertId();
                         break;
                     default:
                         break;
@@ -228,7 +227,7 @@ class jomres_database
                         $this->error = mysql_error();
                         break;
                     case 'pdomysql':
-                        $this->error = $this->PDOdb->errorInfo();
+                        $this->error = $this->PDO->errorInfo();
                         break;
                     default:
                         break;
@@ -275,7 +274,7 @@ class jomres_database
                     break;
                 case 'pdomysql':
                     try {
-                        $this->stmt = $this->PDOdb->query($this->query, PDO::FETCH_OBJ);
+                        $this->stmt = $this->PDO->query($this->query, PDO::FETCH_OBJ);
                     } catch (PDOException $e) {
                         output_fatal_error($e);
                     }

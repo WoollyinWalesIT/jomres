@@ -161,8 +161,11 @@ function jomres_cmsspecific_getTextEditor($name, $content, $hiddenField, $width,
 function jomres_cmsspecific_getcurrentusers_id()
 {
     $id = 0;
-    $user = wp_get_current_user();
-    $id = $user->get('ID');
+	
+	if (!defined('AUTO_UPGRADE')) {
+		$user = wp_get_current_user();
+		$id = $user->get('ID');
+	}
 
     return $id;
 }
@@ -181,10 +184,10 @@ function jomres_cmsspecific_addheaddata($type, $path = '', $filename = '', $incl
     if ($filename == '') {
         return;
     }
-    if (!class_exists('wp_jomres')) {
+    if (!class_exists('WP_Jomres')) {
         return;
     }
-    $wp_jomres = wp_jomres::getInstance();
+    $wp_jomres = WP_Jomres::getInstance();
 
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
@@ -199,11 +202,11 @@ function jomres_cmsspecific_addheaddata($type, $path = '', $filename = '', $incl
 
     switch ($type) {
         case 'javascript':
-            $wp_jomres->js[$filename] = array($js, $version);
+            $wp_jomres->add_js($filename, $js, $version);
             break;
         case 'css':
             $css = '/'.$path.$filename;
-            $wp_jomres->css[$filename] = array($css, $version);
+            $wp_jomres->add_css($filename, $css, $version);
             break;
         default:
 
@@ -216,11 +219,11 @@ function jomres_cmsspecific_setmetadata($meta, $data)
 {
     $data = jomres_decode($data);
 
-    $wp_jomres = wp_jomres::getInstance();
+    $wp_jomres = WP_Jomres::getInstance();
 
     switch ($meta) {
         case 'title':
-            $wp_jomres->metatitle = $data;
+            $wp_jomres->set_meta_title($data);
             break;
         case 'description':
             //$document->setDescription( $data );
@@ -360,13 +363,13 @@ function jomres_cmsspecific_addcustomtag($data)
         return;
     }
 
-    if (!class_exists('wp_jomres')) {
+    if (!class_exists('WP_Jomres')) {
         return;
     }
 
-    $wp_jomres = wp_jomres::getInstance();
+    $wp_jomres = WP_Jomres::getInstance();
 
-    $wp_jomres->custom_meta[] = trim($data);
+    $wp_jomres->add_custom_meta($data);
 
     return true;
 }
