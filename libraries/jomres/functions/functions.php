@@ -4007,6 +4007,9 @@ function get_jomres_current_version()
  */
 function get_latest_jomres_version($outputText = true)
 {
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+	$jrConfig = $siteConfig->get();
+	
     if (file_exists(JOMRES_TEMP_ABSPATH.'latest_version.php')) {
         $last_modified = filemtime(JOMRES_TEMP_ABSPATH.'latest_version.php');
         $seconds_timediff = time() - $last_modified;
@@ -4019,7 +4022,12 @@ function get_latest_jomres_version($outputText = true)
 
     if (!file_exists(JOMRES_TEMP_ABSPATH.'latest_version.php')) {
 		$base_uri = 'http://updates.jomres4.net/';
-		$query_string = 'versions.php';
+		 if ($jrConfig['development_production'] == 'development') {
+			$query_string = 'versions_dev.php';
+		} else {
+			$query_string = 'versions.php';
+		}
+		
 		$buffer = '';
 
 		try {
@@ -4037,11 +4045,6 @@ function get_latest_jomres_version($outputText = true)
 		}
 
         if ($buffer != '') {
-            $latest_jomres_version = explode('.', $buffer);
-            $latest_major_version = $latest_jomres_version[ 0 ];
-            $latest_minor_version = $latest_jomres_version[ 1 ];
-            $latest_revis_version = $latest_jomres_version[ 2 ];
-            $buffer = (int) $latest_major_version.'.'.(int) $latest_minor_version.'.'.(int) $latest_revis_version;
             file_put_contents(JOMRES_TEMP_ABSPATH.'latest_version.php', $buffer);
         }
     }
@@ -4102,6 +4105,20 @@ function check_jomres_version( $outputText = true )
     }
 
     return $current_version_is_uptodate;
+}
+
+
+function development_mode_test()
+{
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+	$jrConfig = $siteConfig->get();
+
+    if ($jrConfig[ 'development_production' ] != 'production') { // The default is 1000 on most installations
+        $highlight = (using_bootstrap() ? 'alert alert-error alert-danger' : 'ui-state-highlight');
+        $response = "<div class='".$highlight."'>Be aware that you are using the site with Development mode enabled. Unless you are a developer we do not advise that you leave this setting enabled. To change it go to Site Settings > Debugging tab and set the mode to Production.</div>";
+    }
+
+    return $response;
 }
 
 /**
