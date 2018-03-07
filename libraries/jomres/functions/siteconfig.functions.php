@@ -442,15 +442,6 @@ $jrConfig = ' .var_export($tmpConfig, true).';
     $registry->regenerate_registry();
 
 	
-	if (this_cms_is_joomla()) {
-		
-		$result = unlink(JPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'jomres.xml');
-		if ($_POST['cfg_development_production'] == "development") {
-			copy ( _JOMRES_DETECTED_CMS_SPECIFIC_FILES.'cms_plugin'.JRDS.'jomres_dev.xml' , JPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'jomres.xml');
-		} else {
-			copy ( _JOMRES_DETECTED_CMS_SPECIFIC_FILES.'cms_plugin'.JRDS.'jomres.xml' , JPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'jomres.xml');
-		}
-	}
 	if (file_exists(JOMRES_TEMP_ABSPATH.'latest_version.php')) { 
 		unlink(JOMRES_TEMP_ABSPATH.'latest_version.php');
 	}

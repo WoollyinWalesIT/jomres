@@ -44,7 +44,7 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 		if ( file_exists('JOMRES_ROOT_DIRECTORY'. DIRECTORY_SEPARATOR .'configuration.php') ) {
 			require_once JOMRESCONFIG_ABSOLUTE_PATH . DIRECTORY_SEPARATOR . 'configuration.php';
 			if ( $jrConfig['development_production'] == 'development' ) {
-				$url = 'http://updates.jomres4.net/getlatest_dev.php';
+				$url. = '&development=1';
 			}
 		}
 
