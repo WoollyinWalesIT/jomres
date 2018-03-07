@@ -152,8 +152,15 @@ class j16000showplugins
                     }
                 }
 
+				$v = explode('.', PHP_VERSION);
+				$vprts = array(
+					'major' => $v[0],
+					'minor' => $v[1],
+					'release' => $v[2], );
+				$php_version = $vprts['major'].'.'.$vprts['minor'];
+		
 				$base_uri = 'http://plugins.jomres4.net/';
-				$query_string = 'index.php?r=gp&cms='._JOMRES_DETECTED_CMS.'&vnw=1&plugin=plugin_manager&jomresver='. $jrConfig[ 'version' ].'&key='.$key_validation->key_hash;
+				$query_string = 'index.php?r=gp&cms='._JOMRES_DETECTED_CMS.'&vnw=1&plugin=plugin_manager&jomresver='. $jrConfig[ 'version' ].'&key='.$key_validation->key_hash.'&php_version='.$php_version;
 
                 try {
 					$client = new GuzzleHttp\Client([
