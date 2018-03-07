@@ -441,6 +441,11 @@ $jrConfig = ' .var_export($tmpConfig, true).';
     $registry = jomres_singleton_abstract::getInstance('minicomponent_registry');
     $registry->regenerate_registry();
 
+	
+	if (file_exists(JOMRES_TEMP_ABSPATH.'latest_version.php')) { 
+		unlink(JOMRES_TEMP_ABSPATH.'latest_version.php');
+	}
+	
     if (empty($overrides)) { // If we've come from the Site Config page, we want to redirect the user back to the site configuration page, otherwise we don't redirect.
         jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=site_settings'), 'Configuration saved');
     }

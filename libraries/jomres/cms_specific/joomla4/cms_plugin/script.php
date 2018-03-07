@@ -40,7 +40,15 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 		// Let's get on with the business of downloading Jomres. If we can`t get the latest version info (maybe becuase of a firewall preventing communication with updates.jomres4.net), we`ll abort by returning false
 		$http = Joomla\CMS\Http\HttpFactory::getHttp();
 		
-		$response = $http->get('http://updates.jomres4.net/getlatest.php?includebeta=true');
+		$url = 'http://updates.jomres4.net/getlatest.php?includebeta=true';
+		if ( file_exists('JOMRES_ROOT_DIRECTORY'. DIRECTORY_SEPARATOR .'configuration.php') ) {
+			require_once JOMRESCONFIG_ABSOLUTE_PATH . DIRECTORY_SEPARATOR . 'configuration.php';
+			if ( $jrConfig['development_production'] == 'development' ) {
+				$url. = '&development=1';
+			}
+		}
+
+		$response = $http->get($url);
 		
 		if (strlen($response->body) == 0) {
 			return false;
