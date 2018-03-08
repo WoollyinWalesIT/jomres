@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.19
+ * @version Jomres 9.10.0-alpha1
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -152,8 +152,15 @@ class j16000showplugins
                     }
                 }
 
+				$v = explode('.', PHP_VERSION);
+				$vprts = array(
+					'major' => $v[0],
+					'minor' => $v[1],
+					'release' => $v[2], );
+				$php_version = $vprts['major'].'.'.$vprts['minor'];
+		
 				$base_uri = 'http://plugins.jomres4.net/';
-				$query_string = 'index.php?r=gp&cms='._JOMRES_DETECTED_CMS.'&vnw=1&plugin=plugin_manager&jomresver='. $jrConfig[ 'version' ].'&key='.$key_validation->key_hash;
+				$query_string = 'index.php?r=gp&cms='._JOMRES_DETECTED_CMS.'&vnw=1&plugin=plugin_manager&jomresver='. $jrConfig[ 'version' ].'&key='.$key_validation->key_hash.'&php_version='.$php_version;
 
                 try {
 					$client = new GuzzleHttp\Client([
