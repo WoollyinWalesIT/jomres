@@ -580,7 +580,7 @@ function add_jomres_images_table()
 
 function alterCustomtextColsChangeDefaultVals()
 {
-    $query = "ALTER TABLE `#__jomres_custom_text` CHANGE `constant` `constant` VARCHAR(100) NOT NULL DEFAULT '0', CHANGE `language` `language` VARCHAR(5) NOT NULL DEFAULT 'en-GB', CHANGE `language_context` `language_context` VARCHAR(50) NOT NULL DEFAULT '0' ";
+    $query = "ALTER TABLE `#__jomres_custom_text` CHANGE `constant` `constant` VARCHAR(100) NOT NULL DEFAULT '0', CHANGE `language` `language` CHAR(5) NOT NULL DEFAULT 'en-GB', CHANGE `language_context` `language_context` VARCHAR(50) NOT NULL DEFAULT '0' ";
 	if (!doInsertSql($query, '')) {
         throw new Exception('Error, unable to alter __jomres_custom_text constant,language and language_context columns');
     }
@@ -610,7 +610,7 @@ function alterCustomtextColsChangeDefaultVals()
 
 function alterCustomtextLangContextCol()
 {
-    $query = "ALTER TABLE `#__jomres_custom_text` ADD `language_context` VARCHAR(255) NOT NULL DEFAULT '0' ";
+    $query = "ALTER TABLE `#__jomres_custom_text` ADD `language_context` VARCHAR(100) NOT NULL DEFAULT '0' ";
     if (!doInsertSql($query, '')) {
         throw new Exception('Error, unable to add __jomres_custom_text language_context column');
     }

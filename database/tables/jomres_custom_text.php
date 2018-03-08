@@ -17,11 +17,11 @@ defined('_JOMRES_INITCHECK') or die('');
 $query = "
 CREATE TABLE IF NOT EXISTS `#__jomres_custom_text` (
 	`uid` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
-	`constant` VARCHAR(255),
+	`constant` VARCHAR(100),
 	`customtext` TEXT,
 	`property_uid` INT UNSIGNED NOT NULL DEFAULT 0,
 	`language` CHAR(5) NOT NULL DEFAULT 'en-GB',
-	`language_context` VARCHAR(255) NOT NULL DEFAULT '0',
+	`language_context` VARCHAR(50) NOT NULL DEFAULT '0',
 	PRIMARY KEY (`uid`),
 	UNIQUE INDEX `const_puid_lang_langcontext` (`constant`, `property_uid`, `language`, `language_context`),
 	INDEX `property_uid` (`property_uid`),
