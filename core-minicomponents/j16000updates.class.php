@@ -30,7 +30,11 @@ class j16000updates
             jomresRedirect(jomresURL(get_showtime('live_site').'/administrator/index.php?option=com_installer&view=update'), '');
 
             return;
-        }
+        } else {
+			jomresRedirect(jomresURL(get_showtime('live_site').'/wp-admin/update-core.php'), '');
+			
+			return;
+		}
 		
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
