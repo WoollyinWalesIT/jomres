@@ -38,17 +38,15 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 		}
 		
 		// Let's get on with the business of downloading Jomres. If we can`t get the latest version info (maybe becuase of a firewall preventing communication with updates.jomres4.net), we`ll abort by returning false
-		try {
-			$http = Joomla\CMS\Http\HttpFactory::getHttp();
-		}
-		catch (Exception $e) {
-			JError::raiseWarning(null, 'Jomres requires minimum Joomla version 3.8 to run. Please update Joomla first.');
-			
-			return false;
-		}
+		$http = Joomla\CMS\Http\HttpFactory::getHttp();
+		
+		$debugging = JFactory::getConfig()->get('debug');
 		
 		$url = 'http://updates.jomres4.net/getlatest.php?includebeta=true';
-		if ( file_exists(JPATH_ROOT . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'configuration.php') ) {
+		
+		if ( $debugging =="1" ) {
+			$url .= '&development=1';
+		} else if ( file_exists(JPATH_ROOT . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'configuration.php') ) {
 			require_once JPATH_ROOT . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'configuration.php';
 			if ( $jrConfig['development_production'] == 'development' ) {
 				$url .= '&development=1';
@@ -60,7 +58,7 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 		if (strlen($response->body) == 0) {
 			return false;
 		}
-		
+
 		//all fine so far, let` start the download
 		$archivename = JInstallerHelper::downloadPackage($response->body);
 		

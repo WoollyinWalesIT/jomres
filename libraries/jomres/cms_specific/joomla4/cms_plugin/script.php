@@ -47,11 +47,18 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 			return false;
 		}
 		
+		$debugging = JFactory::getConfig()->get('debug');
+		
 		$url = 'http://updates.jomres4.net/getlatest.php?includebeta=true';
-		if ( file_exists(JPATH_ROOT . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'configuration.php') ) {
-			require_once JPATH_ROOT . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'configuration.php';
-			if ( $jrConfig['development_production'] == 'development' ) {
-				$url .= '&development=1';
+		
+		if ( $debugging =="1" ) {
+			$url .= '&development=1';
+		} else if ( file_exists(JPATH_ROOT . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'configuration.php') ) {
+			if ( file_exists(JPATH_ROOT . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'configuration.php') ) {
+				require_once JPATH_ROOT . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'configuration.php';
+				if ( $jrConfig['development_production'] == 'development' ) {
+					$url .= '&development=1';
+				}
 			}
 		}
 
