@@ -38,7 +38,14 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 		}
 		
 		// Let's get on with the business of downloading Jomres. If we can`t get the latest version info (maybe becuase of a firewall preventing communication with updates.jomres4.net), we`ll abort by returning false
-		$http = Joomla\CMS\Http\HttpFactory::getHttp();
+		try {
+			$http = Joomla\CMS\Http\HttpFactory::getHttp();
+		}
+		catch (Exception $e) {
+			JError::raiseWarning(null, 'Jomres requires minimum Joomla version 3.8 to run. Please update Joomla first.');
+
+			return false;
+		}
 		
 		$debugging = JFactory::getConfig()->get('debug');
 		
