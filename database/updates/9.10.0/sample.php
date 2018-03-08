@@ -14,5 +14,5 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-//this is a sample update files that does nothing
+//this is a sample update file that does nothing
 return;
