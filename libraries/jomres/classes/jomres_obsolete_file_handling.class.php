@@ -777,6 +777,7 @@ class jomres_obsolete_file_handling
         }
 		
 		$this->add_file($this->dir_jomres.'install_jomres.php');
+		$this->add_file($this->dir_classes.'jomres_uninstall.class.php');
     }
 
     public function add_file($path_and_file)

@@ -120,8 +120,8 @@ class jomres_install
 			return true;
 		}
 
-		//BC: if Jomres db version is 0 (versions older than 9.9.20 don`t have this setting), Jomres is either not installed, or an update from a version older than 9.9.20 (when the new installer was introduced)
-		if ($this->jrConfig['jomres_db_version'] == '0') { //triggers only on updates from older versions than 9.9.20 when this setting was introduced.
+		//BC: if Jomres db version is 0 (versions older than 9.10.0 don`t have this setting), Jomres is either not installed, or an update from a version older than 9.10.0 (when the new installer was introduced)
+		if ($this->jrConfig['jomres_db_version'] == '0') { //triggers only on updates from older versions than 9.10.0 when this setting was introduced.
 			if ($this->jomresTablesExist()) {
 				$this->action = 'update';
 				
@@ -165,9 +165,13 @@ class jomres_install
 
 			//if versions match just run update routines again
 			if (version_compare($this->jrConfig['version'], $this->jrConfig['jomres_db_version'], '=')) {
-				$this->action = 'update';
-				
-				return true;
+				if ($this->jomresTablesExist()) {
+					//jomres tables exist, perform update
+					$this->action = 'update';
+				} else {
+					//unusual case when files exist but db tables are not
+					$this->action = 'install';
+				}
 			}
 		}
 		
@@ -178,16 +182,21 @@ class jomres_install
 	//if db tables exist, it means jomres is installed or was installed previously
 	private function jomresTablesExist()
 	{
-		$query = "SHOW TABLES LIKE #__jomres_propertys";
+		$query = "SELECT `table_name` FROM information_schema.tables WHERE 
+					`table_schema` = '".get_showtime('db')."'
+					AND `table_name` LIKE '#__jomres_%' 
+					OR `table_name` LIKE '#__jomcomp_%' 
+					OR `table_name` LIKE '#__jomresportal_%' ";
+
 		$result = doSelectSql($query);
 		
-		if (!empty($result)) {
-			//jomres tables exist
-			return true;
+		if (empty($result)) {
+			//jomres tables don`t exist
+			return false;
 		}
 		
-		//jomres was not installed
-		return false;
+		//jomres tables exist
+		return true;
 	}
 	
 	//fresh installs
@@ -273,7 +282,7 @@ class jomres_install
 			$this->remove_obsolete_files();
 			
 			//run legacy update routines
-			//these are executed if we`re updating from a Jomres version lower than 9.9.20
+			//these are executed if we`re updating from a Jomres version lower than 9.10.0
 			if ($this->legacy) {
 				$this->runLegacyUpdates();
 			}

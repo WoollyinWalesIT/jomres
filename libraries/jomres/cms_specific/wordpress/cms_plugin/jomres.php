@@ -54,7 +54,7 @@ if ( ! defined( '_JOMRES_INITCHECK' ) ) {
 /**
  * Jomres admin init check.
  */
-if ( is_admin() && !defined( '_JOMRES_INITCHECK_ADMIN' ) ) {
+if ( is_admin() && ! defined( '_JOMRES_INITCHECK_ADMIN' ) ) {
     define( '_JOMRES_INITCHECK_ADMIN', 1 );
 }
 
