@@ -43,6 +43,7 @@ class jomres_singleton_abstract
 					//delete the classes regsitry
 					if ( file_exists(JOMRES_TEMP_ABSPATH . 'registry_classes.php') ) {
 						unlink( JOMRES_TEMP_ABSPATH . 'registry_classes.php' );
+					}
 					
 					//delete the minicomponents registry
 					if ( file_exists(JOMRES_TEMP_ABSPATH . 'registry.php') ) {
