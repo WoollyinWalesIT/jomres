@@ -161,8 +161,27 @@ function run_jomres_installer( $method = 'install' ) {
 	
 	global $wp_filesystem;
 
-	//get latest jomres version number
-	$response = wp_remote_get('http://updates.jomres4.net/getlatest.php?includebeta=true');
+	//get the latest jomres version download url
+	$url = 'http://updates.jomres4.net/getlatest.php?includebeta=true';
+
+	$nightly = false;
+	
+	if ( WP_DEBUG ) {
+		$nightly = true;
+	} elseif ( file_exists( ABSPATH . JOMRES_ROOT_DIRECTORY . '/configuration.php' ) ) {
+		include ABSPATH . JOMRES_ROOT_DIRECTORY . '/configuration.php';
+		
+		if ( $jrConfig[ 'development_production' ] == 'development' ) {
+			$nightly = true;
+		}
+	}
+	
+	if ( $nightly ) {
+		$url .= '&development=1';
+	}
+
+	//download jomres core
+	$response = wp_remote_get($url);
 	
 	if ( strlen( $response[ 'body' ] ) == 0 ) {
 		jomres_notice( 'There was an error getting the latest Jomres version number.' );
