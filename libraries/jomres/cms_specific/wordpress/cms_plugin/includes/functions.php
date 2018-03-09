@@ -221,7 +221,12 @@ function run_jomres_installer( $method = 'install' ) {
 
 		$jomres_install = new jomres_install( $method );
 		
-		update_option( 'jomres_wp_plugin_version', JOMRES_WP_PLUGIN_VERSION );
+		$messages = $jomres_install->getMessages();
+		
+		//if there are no installation errors, update jomres_wp_plugin_version in db
+		if ( empty( $messages ) ) {
+			update_option( 'jomres_wp_plugin_version', JOMRES_WP_PLUGIN_VERSION );
+		}
 	}
 	catch (Exception $e) {
 		$messages = $jomres_install->getMessages();
