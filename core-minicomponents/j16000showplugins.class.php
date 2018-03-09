@@ -36,7 +36,7 @@ class j16000showplugins
 		
 		$force_plugin_manager_reinstallation = false;
 		
-		// Jomres 9.9.18 specific code, we need to check to see if the task == showplugins, and if so double check the plugin manager's version. If it's < 1.9 we need to force an update of the plugin manager before the plugin manager script can be shown
+		// Jomres 9.10 specific code, we need to check to see if the task == showplugins, and if so double check the plugin manager's version. If it's < 1.9 we need to force an update of the plugin manager before the plugin manager script can be shown
 		// Without this check and force of the reinstallation of the plugin manager, users will only be able to update the 40 or so plugins one by one, which would be a significant annoyance.
 		// Todo remove sometime after January 2019
 		if (isset($MiniComponents->registeredClasses['16000']['showplugins']['real_filepath'])) { // admin.php has found that the installed version of the plugin manager is 1.8 or less, and has forced us to run the Core plugin manager script, not the plugin version. 
@@ -45,7 +45,7 @@ class j16000showplugins
 				$plugin_info_plugin_manager = new plugin_info_plugin_manager();
 				$bang = explode("." , $plugin_info_plugin_manager->data['version'] );
 				if ( $bang [0] <= 2 ) {
-					if ($bang [1] <= 2) {
+					if ($bang [1] <= 1) {
 						$force_plugin_manager_reinstallation = true;
 					}
 				}

@@ -160,7 +160,7 @@ try {
 				$plugin_info_plugin_manager = new plugin_info_plugin_manager();
 				$bang = explode("." , $plugin_info_plugin_manager->data['version'] );
 				if ( $bang [0] <= 2 ) {
-					if ($bang [1] <= 2) {
+					if ($bang [1] <= 1) {
 						// The plugin manager is already installed, we need to reset the registered class so that  Jomres reverts back to using the default version of the plugin manager, which forces download of the "real" plugin manager from the plugin server
 						$MiniComponents->registeredClasses['16000']['showplugins']['real_filepath']		= $MiniComponents->registeredClasses['16000']['showplugins']['filepath'];
 						$MiniComponents->registeredClasses['16000']['showplugins']['filepath']			= $MiniComponents->registeredClasses['00001']['start']['filepath'];
