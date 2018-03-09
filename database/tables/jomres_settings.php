@@ -18,7 +18,7 @@ $query = "
 CREATE TABLE IF NOT EXISTS `#__jomres_settings` (
 	`uid` INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	`property_uid` INT UNSIGNED NOT NULL DEFAULT 0,
-	`akey` VARCHAR(255),
+	`akey` VARCHAR(100),
 	`value`	VARCHAR(255),
 	PRIMARY KEY	(`uid`),
 	UNIQUE INDEX `jomres_settings` (`property_uid`, `akey`),
