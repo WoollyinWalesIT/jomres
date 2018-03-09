@@ -37,7 +37,7 @@ class jomres_singleton_abstract
 		if (isset($classes[$class])) {
 			
 			//specific check for minicomponent_registry class, to make sure it`s there
-			//if it`s not where expected, redirect to cpanel frontpage so the classes registry will be rebuilt
+			//if it`s not where expected, redirect to jomres default frontpage so the classes registry will be rebuilt
 			if ( $class == 'minicomponent_registry' ) {
 				if ( !file_exists( $classes[$class] . $class . '.class.php' ) ) {
 					//delete the classes regsitry
