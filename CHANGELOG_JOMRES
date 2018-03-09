@@ -1,26 +1,36 @@
+<h3>Jomres 9.10.0-alpha1 09/03/2018</h3>
 
-Added a feature where property managers can elect to hide the property street from display to normal users. Users who have created a booking for that property can see the full address details.
-Added availability calendar modal to SRP properties booking form too
+<span class="label label-success">Feature</span> Installation process completely rewritten and modernised.
+<span class="label label-success">Feature</span> Added a feature where property managers can elect to hide the property street from display to normal users. Users who have created a booking for that property can see the full address details.
+<span class="label label-success">Feature</span> Added availability calendar modal to SRP properties booking form too
 
-Modified list properties so that EDIT_LINK could be added to list properties output for managers to quickly edit a property.
-Updated booking form to honour the "do not show inline calendars" setting from property config > property details tab.
-Added code to detect that Jomres has been moved to a new server and rebuild the registry.
-Tweaked frontend nag so that it doesn't show up if is an ajax call.
-Modified ui availability calendar so that if fix arrival day setting is used then other days will not be clickable.
-Both MRP and SRP calendars updated so that bookable dates are highlighted, and other dates disabled, when fixed day of week booking set.
-Modified date input feature for search modules so that if site is set to a single property installation then the first published property has it's settings used and if fixed arrival day is set to Yes then to set the search module's calendar to disable other days.
-Extended POA price feature to show in lists.
-Updated the jquery ui themes path
-pt-PT datepicker code updated
+<span class="label label-warning">Change</span> Modified list properties so that EDIT_LINK could be added to list properties output for managers to quickly edit a property.
+<span class="label label-warning">Change</span> Updated booking form to honour the "do not show inline calendars" setting from property config > property details tab.
+<span class="label label-warning">Change</span> Added code to detect that Jomres has been moved to a new server and rebuild the registry.
+<span class="label label-warning">Change</span> Tweaked frontend nag so that it doesn't show up if is an ajax call.
+<span class="label label-warning">Change</span> Modified ui availability calendar so that if fixed arrival day setting is used then other days will not be clickable.
+<span class="label label-warning">Change</span> Both MRP and SRP calendars updated so that bookable dates are highlighted, and other dates disabled, when fixed day of week booking set.
+<span class="label label-warning">Change</span> Modified date input feature for search modules so that if site is set to a single property installation then the first published property has it's settings used and if fixed arrival day is set to Yes then to set the search module's calendar to disable other days.
+<span class="label label-warning">Change</span> Extended POA price feature to show in lists.
+<span class="label label-warning">Change</span> Updated the jquery ui themes path
+<span class="label label-warning">Change</span> pt-PT datepicker code updated
+<span class="label label-warning">Change</span> Added jquery chained js back to jomres assets
+<span class="label label-warning">Change</span> Added an experimental feature to optimize images for the web on upload.
+<span class="label label-warning">Change</span> Custom flight methods updated to add "exit"s after the response has been sent.
+<span class="label label-warning">Change</span> Added functionality that allows PUT requests through the API to behave like POST requests.
+<span class="label label-warning">Change</span> Added functionality to allow downloading of development versions of Jomres thru the CMS in future versions (currently Joomla only)
+<span class="label label-warning">Change</span> Added detection of Joomla debugging setting, which allows installation of development versions of Jomres onto new installations of Joomla.
+<span class="label label-warning">Change</span> Removed a script that shows license failures in the frontend. No longer needed now that the plugin manager is ioncube encoded for subscriptions.
 
-
-Solved a problem with media centre existing images that don`t have thumbnails created
-Resolved an issue where reviews would not save in test mode.
-Solved a problem where personal guest discounts were not reflected on invoices
-Added jquery chained js back to jomres assets
-Solved a problem with short language codes
-
-
+<span class="label label-important label-danger">Fix</span> Solved a problem with media centre existing images that don`t have thumbnails created.
+<span class="label label-important label-danger">Fix</span> Resolved an issue where reviews would not save in test mode.
+<span class="label label-important label-danger">Fix</span> Solved a problem where personal guest discounts were not reflected on invoices.
+<span class="label label-important label-danger">Fix</span> Added jquery chained js back to jomres assets.
+<span class="label label-important label-danger">Fix</span> Solved a problem with short language codes.
+<span class="label label-important label-danger">Fix</span> Updated the jquery ui themes path.
+<span class="label label-important label-danger">Fix</span> Solved a problem with charts selection when sef enabled.
+<span class="label label-important label-danger">Fix</span> Modified a string in the French language file as the single quote causes problems with booking notes table when a guest is booked out.
+<span class="label label-important label-danger">Fix</span> Modified the core showplugin script to ensure that it passes the php version, without it the wrong encoded version of the plugin manager was being returned.
 
 <h3>Jomres 9.9.19 24/01/2018</h3>
 
