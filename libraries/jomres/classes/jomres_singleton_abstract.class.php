@@ -35,12 +35,24 @@ class jomres_singleton_abstract
 		
 		//check core and remote plugins dirs
 		if (isset($classes[$class])) {
-			if (!file_exists($classes[$class].$class.'.class.php') && $class == 'minicomponent_registry' ) {
-				if (file_exists(JOMRES_TEMP_ABSPATH.'registry_classes.php')) {
-					unlink(JOMRES_TEMP_ABSPATH.'registry_classes.php');
-				jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL), '');
+			
+			//specific check for minicomponent_registry class, to make sure it`s there
+			//if it`s not where expected, redirect to cpanel frontpage so the classes registry will be rebuilt
+			if ( $class == 'minicomponent_registry' ) {
+				if ( !file_exists( $classes[$class] . $class . '.class.php' ) ) {
+					//delete the classes regsitry
+					if ( file_exists(JOMRES_TEMP_ABSPATH . 'registry_classes.php') ) {
+						unlink( JOMRES_TEMP_ABSPATH . 'registry_classes.php' );
+					
+					//delete the minicomponents registry
+					if ( file_exists(JOMRES_TEMP_ABSPATH . 'registry.php') ) {
+						unlink( JOMRES_TEMP_ABSPATH . 'registry.php' );
+
+					jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL ), '' );
+					}
 				}
 			}
+
 			require_once $classes[$class].$class.'.class.php';
 			
 			self::$_instances[ $class ] = new $class($arg1);
