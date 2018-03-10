@@ -61,9 +61,9 @@ function jomres_is_installed_and_updated() {
 		$result = $wpdb->query( 
 			"SELECT `table_name` FROM information_schema.tables WHERE 
 			`table_schema` = '".$wpdb->dbname."'
-			AND `table_name` LIKE '".$wpdb->prefix."jomres_%' 
+			AND (`table_name` LIKE '".$wpdb->prefix."jomres_%' 
 			OR `table_name` LIKE '".$wpdb->prefix."jomcomp_%' 
-			OR `table_name` LIKE '".$wpdb->prefix."jomresportal_%'" 
+			OR `table_name` LIKE '".$wpdb->prefix."jomresportal_%') " 
 		);
 
 		if ( empty( $result ) ) {

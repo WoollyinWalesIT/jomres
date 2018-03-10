@@ -184,9 +184,9 @@ class jomres_install
 	{
 		$query = "SELECT `table_name` FROM information_schema.tables WHERE 
 					`table_schema` = '".get_showtime('db')."'
-					AND `table_name` LIKE '#__jomres_%' 
+					AND (`table_name` LIKE '#__jomres_%' 
 					OR `table_name` LIKE '#__jomcomp_%' 
-					OR `table_name` LIKE '#__jomresportal_%' ";
+					OR `table_name` LIKE '#__jomresportal_%') ";
 
 		$result = doSelectSql($query);
 		
@@ -568,9 +568,9 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 	{
 		$query = "SELECT `table_name` FROM information_schema.tables WHERE 
 					`table_schema` = '".get_showtime('db')."'
-					AND `table_name` LIKE '#__jomres_%' 
+					AND (`table_name` LIKE '#__jomres_%' 
 					OR `table_name` LIKE '#__jomcomp_%' 
-					OR `table_name` LIKE '#__jomresportal_%' ";
+					OR `table_name` LIKE '#__jomresportal_%') ";
 		
 		$result = doSelectSql($query);
 
