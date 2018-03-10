@@ -49,6 +49,7 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 		
 		//set the jomres download url
 		$url = 'http://updates.jomres4.net/getlatest.php?includebeta=true';
+		$nightly_url = 'http://updates.jomres4.net/nightly/';
 		
 		$debugging = JFactory::getConfig()->get('debug');
 		$nightly = false;
@@ -62,12 +63,8 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 				$nightly = true;
 			}
 		}
-		
-		if ($nightly) {
-			$url .= '&development=1';
-		}
 
-		//download jomres core
+		//get the latest jomres version download url
 		$response = $http->get($url);
 
 		if (strlen($response->body) == 0) {
@@ -75,7 +72,11 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 		}
 
 		//all fine so far, let` start the download
-		$archivename = JInstallerHelper::downloadPackage($response->body);
+		if (!$nightly) {
+			$archivename = JInstallerHelper::downloadPackage($response->body);
+		} else {
+			$archivename = JInstallerHelper::downloadPackage($nightly_url);
+		}
 		
 		//was the package downloaded?
 		if (!$archivename)
