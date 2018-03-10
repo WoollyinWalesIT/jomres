@@ -48,7 +48,7 @@ if ( ! file_exists( ABSPATH . JOMRES_ROOT_DIRECTORY . '/libraries/jomres/classes
 }
 
 try {
-	require_once ABSPATH . JOMRES_ROOT_DIRECTORY . '/libraries/jomres/classes/jomres_install.class.php'
+	require_once ABSPATH . JOMRES_ROOT_DIRECTORY . '/libraries/jomres/classes/jomres_install.class.php';
 
 	$jomres_install = new jomres_install( 'uninstall' );
 
