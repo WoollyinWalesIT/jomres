@@ -58,9 +58,15 @@ function jomres_is_installed_and_updated() {
 
 	if( version_compare( $jomres_wp_plugin_version, JOMRES_WP_PLUGIN_VERSION, '!=' ) ) {
 
-		$table_name = $wpdb->prefix.'jomres_propertys';
-		
-		if ( $wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name ) {
+		$result = $wpdb->query( 
+			"SELECT `table_name` FROM information_schema.tables WHERE 
+			`table_schema` = '".$wpdb->dbname."'
+			AND `table_name` LIKE '".$wpdb->prefix."jomres_%' 
+			OR `table_name` LIKE '".$wpdb->prefix."jomcomp_%' 
+			OR `table_name` LIKE '".$wpdb->prefix."jomresportal_%'" 
+		);
+
+		if ( empty( $result ) ) {
 			if ( ! run_jomres_installer( 'install' ) ) {
 				return false;
 			}
