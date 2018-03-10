@@ -163,6 +163,7 @@ function run_jomres_installer( $method = 'install' ) {
 
 	//get the latest jomres version download url
 	$url = 'http://updates.jomres4.net/getlatest.php?includebeta=true';
+	$nightly_url = 'http://updates.jomres4.net/nightly/';
 
 	$nightly = false;
 	
@@ -175,10 +176,6 @@ function run_jomres_installer( $method = 'install' ) {
 			$nightly = true;
 		}
 	}
-	
-	if ( $nightly ) {
-		$url .= '&development=1';
-	}
 
 	//download jomres core
 	$response = wp_remote_get($url);
@@ -190,7 +187,11 @@ function run_jomres_installer( $method = 'install' ) {
 	}
 	
 	//download Jomres
-	$response = wp_remote_get( $response['body'], array( 'timeout' => 300, 'stream' => true, 'filename' => ABSPATH . '/tmp/jomres.zip' ) );
+	if ( ! $nightly ) {
+		$response = wp_remote_get( $response['body'], array( 'timeout' => 300, 'stream' => true, 'filename' => ABSPATH . '/tmp/jomres.zip' ) );
+	} else {
+		$response = wp_remote_get( $nightly_url, array( 'timeout' => 300, 'stream' => true, 'filename' => ABSPATH . '/tmp/jomres.zip' ) );
+	}
 	
 	if ( is_wp_error( $response ) ) {
 		jomres_notice( 'There was an error downloading jomres.zip.' );
