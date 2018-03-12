@@ -1,9 +1,12 @@
 <?php
 /**
-*
-* An empty language file for use by the REST API
-*
-* @todo Replace hard coded responses in API functionality with definitions 
-*
-*/
+ * Detect the host CMS 
+ *
+ * @author Vince Wooll <sales@jomres.net>
+ *
+ * @version Jomres 9.10.0-bob
+ *
+ * @copyright	2005-2018 Vince Wooll
+ * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
+ **/
 define('RESPONSE', '');
