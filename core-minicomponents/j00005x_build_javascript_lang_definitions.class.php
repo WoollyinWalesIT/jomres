@@ -64,36 +64,6 @@ class j00005x_build_javascript_lang_definitions
 			}
         }
 
-<<<<<<< Updated upstream
-        $misc_url_defs .= '
-			var jomres_template_version = "'.$template_dir.'";
-			var property_reviews_ajax_url = "'.JOMRES_SITEPAGE_URL_AJAX.'&task=show_property_reviews&nofollowtmpl=1&property_uid=";
-			
-			var JOMRES_ROOT_DIRECTORY = "' .JOMRES_ROOT_DIRECTORY.'";
-			var live_scrolling_enabled = ' .$live_scrolling_enabled.';
-			
-			var dataTables_sEmptyTable		= "'.jr_gettext('DATATABLES_SEMPTYTABLE', 'DATATABLES_SEMPTYTABLE', false).'";
-			var dataTables_sInfo			= "'.jr_gettext('DATATABLES_SINFO', 'DATATABLES_SINFO', false).'";
-			var dataTables_sInfoEmpty		= "'.jr_gettext('DATATABLES_SINFOEMPTY', 'DATATABLES_SINFOEMPTY', false).'";
-			var dataTables_sInfoFiltered	= "'.jr_gettext('DATATABLES_SINFOFILTERED', 'DATATABLES_SINFOFILTERED', false).'";
-			var dataTables_sInfoPostFix		= "'.jr_gettext('DATATABLES_SINFOPOSTFIX', 'DATATABLES_SINFOPOSTFIX', false).'";
-			var dataTables_sInfoThousands	= "'.jr_gettext('DATATABLES_SINFOTHOUSANDS', 'DATATABLES_SINFOTHOUSANDS', false).'";
-			var dataTables_sLengthMenu		= "'.jr_gettext('DATATABLES_SLENGTHMENU', 'DATATABLES_SLENGTHMENU', false).'";
-			var dataTables_sLoadingRecords	= "'.jr_gettext('DATATABLES_SLOADINGRECORDS', 'DATATABLES_SLOADINGRECORDS', false).'";
-			var dataTables_sProcessing		= "'.jr_gettext('DATATABLES_SPROCESSING', 'DATATABLES_SPROCESSING', false).'";
-			var dataTables_sSearch			= "'.jr_gettext('DATATABLES_SSEARCH', 'DATATABLES_SSEARCH', false).'";
-			var dataTables_sZeroRecords		= "'.jr_gettext('DATATABLES_SZERORECORDS', 'DATATABLES_SZERORECORDS', false).'";
-			var dataTables_sFirst			= "'.jr_gettext('DATATABLES_SFIRST', 'DATATABLES_SFIRST', false).'";
-			var dataTables_sLast			= "'.jr_gettext('DATATABLES_SLAST', 'DATATABLES_SLAST', false).'";
-			var dataTables_sNext			= "'.jr_gettext('DATATABLES_SNEXT', 'DATATABLES_SNEXT', false).'";
-			var dataTables_sPrevious		= "'.jr_gettext('DATATABLES_SPREVIOUS', 'DATATABLES_SPREVIOUS', false).'";
-			var dataTables_sSortAscending	= "'.jr_gettext('DATATABLES_SSORTASCENDING', 'DATATABLES_SSORTASCENDING', false).'";
-			var dataTables_sSortDescending	= "'.jr_gettext('DATATABLES_SSORTDESCENDING', 'DATATABLES_SSORTDESCENDING', false).'";
-			var dataTables_showhide			= "'.jr_gettext('DATATABLES_SHOWHIDE', 'DATATABLES_SHOWHIDE', false).'";
-
-			var jomres_javascript_readmore = "' .jr_gettext('_JOMRES_JAVASCRIPT_READMORE', '_JOMRES_JAVASCRIPT_READMORE', false).'";
-			var jomres_javascript_readless = "' .jr_gettext('_JOMRES_JAVASCRIPT_READLESS', '_JOMRES_JAVASCRIPT_READLESS', false).'";
-=======
         $misc_url_defs .= '
 			var jomres_template_version = "'.$template_dir.'";
 			var property_reviews_ajax_url = "'.JOMRES_SITEPAGE_URL_AJAX.'&task=show_property_reviews&nofollowtmpl=1&property_uid=";
@@ -123,7 +93,6 @@ class j00005x_build_javascript_lang_definitions
 
 			var jomres_javascript_readmore = "' .jr_gettext('_JOMRES_JAVASCRIPT_READMORE', '_JOMRES_JAVASCRIPT_READMORE', false).'";
 			var jomres_javascript_readless = "' .jr_gettext('_JOMRES_JAVASCRIPT_READLESS', '_JOMRES_JAVASCRIPT_READLESS', false).'";
->>>>>>> Stashed changes
 			';
 
         if (get_showtime('property_uid') > 0) {
