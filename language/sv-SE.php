@@ -2163,3 +2163,7 @@ jr_define( 'REVIEW_NAG_DESC', "Once a guest has been booked out from a booking, 
 jr_define( 'HIDDEN_ADDRESS_SETTING', "Hide address?");
 jr_define( 'HIDDEN_ADDRESS_SETTING_DESC', "If you set this option to Yes, then only guests who have already placed a booking on your property will be able to see the property street address. You might want to use this setting to hide the property's exact location if, for example, it is routinely left unattended.");
 jr_define( 'HIDDEN_ADDRESS_PLACEHOLDER', "HIDDEN");
+jr_define( '_JOMRES_MEDIA_CENTRE_OPTIMIZE_IMAGES', 'Optimize images on upload?');
+jr_define( '_JOMRES_MEDIA_CENTRE_OPTIMIZE_IMAGES_DESC', 'When enabled, images will be optimized for web (file size can be up to 75% smaller). Depending on the uploaded image type, your server needs to have one or more of these libraries installed by the hosting provider: optipng, pngquant, pngcrush, pngout, advpng, jpegtran, jpegoptim, gifsicle');
+jr_define( 'DATABASE_INTEGRITY_CHECK', 'Database Integrity Check');
+jr_define( 'OBSOLETE_FILES_CHECK', 'Obsolete Files Check');
