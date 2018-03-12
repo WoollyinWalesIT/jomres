@@ -35,7 +35,7 @@ if ( file_exists( ABSPATH . 'jomres_root.php' ) ) {
 
 // Important: Check if the file is the one
 // that was registered during the uninstall hook.
-if ( WP_UNINSTALL_PLUGIN != JOMRES_ROOT_DIRECTORY . '/jomres.php' ) {
+if ( WP_UNINSTALL_PLUGIN != 'jomres/jomres.php' ) {
 	return;
 }
 
