@@ -390,13 +390,17 @@ class Carbon extends DateTime
         $timezone = static::safeCreateDateTimeZone($tz);
         // @codeCoverageIgnoreStart
         if ($isNow && !isset($testInstance) && (
-            version_compare(PHP_VERSION, '7.1.0-dev', '<')
-        ) ||
-            version_compare(PHP_VERSION, '7.1.3-dev', '>=') && version_compare(PHP_VERSION, '7.1.4-dev', '<')
+                version_compare(PHP_VERSION, '7.1.0-dev', '<')
+                ||
+                version_compare(PHP_VERSION, '7.1.3-dev', '>=') && version_compare(PHP_VERSION, '7.1.4-dev', '<')
+            )
         ) {
             $dateTime = new DateTime('now', $timezone);
-            $microTime = str_pad(strval(microtime(true) * 1000000 % 1000000), 6, '0', STR_PAD_LEFT);
-            $time = $dateTime->format(static::DEFAULT_TO_STRING_FORMAT).'.'.$microTime;
+            $microTime = microtime(true) * 1000000 % 1000000;
+            if ($microTime > 0) {
+                $microTime = str_pad(strval($microTime), 6, '0', STR_PAD_LEFT);
+                $time = $dateTime->format(static::DEFAULT_TO_STRING_FORMAT).'.'.$microTime;
+            }
         }
         // @codeCoverageIgnoreEnd
 
@@ -3847,12 +3851,12 @@ class Carbon extends DateTime
     /**
      * The __set_state handler.
      *
-     * @param $state
+     * @param array $array
      *
      * @return static
      */
-    public static function __set_state($state)
+    public static function __set_state($array)
     {
-        return static::instance(parent::__set_state($state));
+        return static::instance(parent::__set_state($array));
     }
 }
