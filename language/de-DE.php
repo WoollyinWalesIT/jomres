@@ -2233,3 +2233,4 @@ jr_define( '_JOMRES_MEDIA_CENTRE_OPTIMIZE_IMAGES', 'Optimize images on upload?')
 jr_define( '_JOMRES_MEDIA_CENTRE_OPTIMIZE_IMAGES_DESC', 'When enabled, images will be optimized for web (file size can be up to 75% smaller). Depending on the uploaded image type, your server needs to have one or more of these libraries installed by the hosting provider: optipng, pngquant, pngcrush, pngout, advpng, jpegtran, jpegoptim, gifsicle');
 jr_define( 'DATABASE_INTEGRITY_CHECK', 'Database Integrity Check');
 jr_define( 'OBSOLETE_FILES_CHECK', 'Obsolete Files Check');
+jr_define( 'DATATABLES_COLVIS', 'Column Visibility');
