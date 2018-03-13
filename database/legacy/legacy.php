@@ -1319,7 +1319,6 @@ function save_configuration_file()
         //throw new Exception ( "Saving new configuration.php file which stores the site settings" );
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $config_to_save = $siteConfig->get();
-        $config_to_save['development_production'] = PROD_DEV;
 		
 		//we won`t store the version in configuration.php (or BC _site_settings table), so it will always be loaded from site_config.php
 		if (isset($config_to_save['version'])) {

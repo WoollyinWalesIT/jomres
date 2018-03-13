@@ -45,9 +45,6 @@ class jomres_install
 
 		define('AUTO_UPGRADE', 1); //TODO: rename this
 		
-		//define('PROD_DEV', 'development');
-		define('PROD_DEV', 'production');
-		
 		if (!defined('JRDS')) {
 			define('JRDS', DIRECTORY_SEPARATOR);
 		}
@@ -238,9 +235,6 @@ class jomres_install
 			//run plugins installation scripts
 			$this->installPlugins();
 			
-			//set to production
-			$this->siteConfig->update_setting('development_production', PROD_DEV);
-			
 			//update db version so we can check this on future updates or db sanity check
 			if (empty($this->messages)) {
 				$this->siteConfig->update_setting('jomres_db_version', $this->jrConfig['version']);
@@ -298,9 +292,6 @@ class jomres_install
 			//run plugins installation scripts
 			//plugins should already be installed, so most probably their tables won`t need to be created again
 			$this->installPlugins();
-			
-			//set to production
-			$this->siteConfig->update_setting('development_production', PROD_DEV);
 			
 			//update db version so we can check this on future updates or sanity checks
 			if (empty($this->messages)) {
