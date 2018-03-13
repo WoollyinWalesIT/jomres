@@ -407,7 +407,7 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 				$this->setMessage('Error, unable to make folder '.JOMRES_IMAGELOCATION_ABSPATH." automatically therefore cannot upload images. Please create the folder manually and ensure that it's writable by the web server.", 'danger');
 			}
 		}
-		var_dump($this->getMessages());exit;
+
 		return true;
     }
 	
