@@ -241,7 +241,7 @@ class jomres_install
 			}
 			
 			//run plugins installation scripts
-			$this->installPlugins();
+			//$this->installPlugins();
 			
 			//update db version so we can check this on future updates or db sanity check
 			if (empty($this->messages)) {
@@ -299,7 +299,7 @@ class jomres_install
 			
 			//run plugins installation scripts
 			//plugins should already be installed, so most probably their tables won`t need to be created again
-			$this->installPlugins();
+			//$this->installPlugins();
 			
 			//update db version so we can check this on future updates or sanity checks
 			if (empty($this->messages)) {
