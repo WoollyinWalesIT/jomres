@@ -72,7 +72,7 @@ class jomres_database
         }
 
         if (!this_cms_is_wordpress() || defined('AUTO_UPGRADE')) {
-            $this->_init();
+            $this->init();
         }
     }
 	
@@ -85,7 +85,7 @@ class jomres_database
         return self::$configInstance;
     }
 
-    public function _init()
+    public function init()
     {
         switch ($this->dbtype) {
             case 'mysqli':

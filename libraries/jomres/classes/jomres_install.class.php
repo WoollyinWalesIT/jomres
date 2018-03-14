@@ -72,6 +72,14 @@ class jomres_install
 		//jomres integration.php, so we can use jomres features
 		require_once __DIR__ .  '/../../../integration.php';
 		
+		//if this cms is WordPress and we`re running the installer from Jomres itself, 
+		//the mysqli db connection the installer uses won`t be available, so we`ll have to manually initialize the db connection.
+		//TODO: try to use $wpdb insetad
+		if (this_cms_is_wordpress()) {
+			$jomres_database = jomres_singleton_abstract::getInstance('jomres_database');
+			$jomres_database->init();
+		}
+		
 		//jomres site config
 		$this->siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $this->jrConfig = $this->siteConfig->get();
