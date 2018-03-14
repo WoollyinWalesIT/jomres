@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.19
+ * @version Jomres 9.10.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -14,12 +14,18 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
+/**
+ * Find the relative path to a QR code
+ */
 function get_qr_code_relPath($arg) 
 {
 	$result = jomres_make_qr_code ($arg);
 	return $result['relative_path'];
 }
 
+/**
+ * An easy way to quickly retrieve a singleton
+ */
 function jomres_getSingleton($class, $args = array())
 {
     return jomres_singleton_abstract::getInstance($class, $args);
@@ -135,7 +141,7 @@ function jomres_async_request($type = "GET", $url = "", $port = '', $post_data =
 }
 
 /*
-A simple function to get the marker rel path
+A simple function to get the marker relative path
 */
 
 function get_marker_src($marker_image = '') 
@@ -180,7 +186,12 @@ function add_webhook_notification($contents)
     logging::log_message('Webhook notification set '.$contents->webhook_event, 'Core', 'DEBUG' , serialize($contents) );
 }
 
-
+ /**
+ * Implodes arrays for use with queries where IN is used
+ *
+ * For performance reasons IN is used extensively, this function is used when building queries based off of arrays 
+ *
+ */
 function jomres_implode($elements = array(), $integers = true)
 {
     $txt = '';
@@ -208,6 +219,9 @@ function jomres_implode($elements = array(), $integers = true)
     return $txt;
 }
 
+/**
+ * A quick function to trim path names
+ */
 function fix_path($path = '')
 {
     $path = rtrim($path, '/');
@@ -217,7 +231,13 @@ function fix_path($path = '')
     return $path;
 }
 
-// http://www.maurits.vdschee.nl/php_hide_email/
+
+/**
+ * A function to obsfucate email addresses in content to defend against spammers.
+ *
+ * http://www.maurits.vdschee.nl/php_hide_email/
+ *
+ */
 function jomres_hide_email($email)
 {
     $character_set = '+-.0123456789@ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz';
@@ -236,6 +256,12 @@ function jomres_hide_email($email)
     return '<span id="'.$id.'">[javascript protected email address]</span>'.$script;
 }
 
+ /**
+ * Checks that the user can view the property
+ *
+ * Used extensively by j06000show_propertyxxxxx scripts. If the user is a super manager then they can view the property regardless of it's state. Otherwise, if it is not published and the user is not a manager, return false. If it is not published and the user does not have this property in their list of authorised properties ( i.e. a manager viewing another manager's property ) return false.
+ *
+ */
 function user_can_view_this_property($property_uid = 0)
 {
     if ($property_uid == 0) {
@@ -257,6 +283,9 @@ function user_can_view_this_property($property_uid = 0)
     return true;
 }
 
+/**
+ * Check that this user can modify a booking
+ */
 function can_modify_this_booking($contract_uid)
 {
     $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
@@ -281,7 +310,9 @@ function can_modify_this_booking($contract_uid)
     throw new Exception('Manager user '.serialize($thisJRUser).' attempted to modify a booking with the contract uid of '.(int) $contract_property_uid.'. Could not confirm that the manager was authorised to modify the booking.');
 }
 
-// Newer function for finding dates - dates must be passed in Y/m/d format
+/**
+ * Newer function for finding dates - dates must be passed in Y/m/d format
+ */
 function get_periods($start, $end, $interval = null)
 {
     $start = new DateTime($start);
@@ -300,7 +331,9 @@ function get_periods($start, $end, $interval = null)
     return $dates;
 }
 
-// Function to get the client IP address
+/**
+ * Function to get the client IP address
+ */
 function jomres_get_client_ip()
 {
     $ipaddress = '';
@@ -328,6 +361,12 @@ function jomres_get_client_ip()
     return filter_var($ipaddress, FILTER_SANITIZE_STRING);
 }
 
+ /**
+ * Outputs that an error has been thrown
+ *
+ * Primarily a frontend function. Logs and outputs an error message. If the site is set to Development mode then the full error details are sent to the page, otherwise if site is set to Production a generic Oops message is output. If Site is configured to, the error can be emailed to site administrators. The error is logged to Application.log as an Error.
+ *
+ */
 function output_fatal_error($e , $extra_info = '' )
 {
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -415,6 +454,9 @@ function output_fatal_error($e , $extra_info = '' )
     logging::log_message('Error logged '.$output['MESSAGE'].' '.$url, 'Core', 'ERROR');
 }
 
+/**
+ * What is the current page url?
+ */
 function getCurrentUrl($full = true)
 {
     if (isset($_SERVER['REQUEST_URI'])) {
@@ -427,6 +469,9 @@ function getCurrentUrl($full = true)
     }
 }
 
+/**
+ * Return true if the host CMS is Wordpress
+ */
 function this_cms_is_wordpress()
 {
     if (_JOMRES_DETECTED_CMS != 'wordpress') {
@@ -436,12 +481,21 @@ function this_cms_is_wordpress()
     return true;
 }
 
-// url is the remote url that will be called
-// text of the button.
-// task. The task of the called page
-// Extra. Any extra
-// Title. What the title of the modal will be set to.
 
+// 
+// 
+// 
+// 
+
+ /**
+ * A utility to create a modal button that links to a Jomres task.
+ *
+ * text of the button.
+ * task. The task of the called page.
+ * Extra. Any arguements to be added to the url.
+ * Title. What the title of the modal will be set to.
+ *
+ */
 function make_modal_button($text, $task, $extra, $title, $button_colour = 'btn-default')
 {
     $pageoutput = array();
@@ -461,14 +515,16 @@ function make_modal_button($text, $task, $extra, $title, $button_colour = 'btn-d
     return $tmpl->getParsedTemplate();
 }
 
-// A quick way to ouput data that's stored in a Jomres template but doesn't require any conditions or rows.
-// Due to the way Bootstrap 3 demands that returned data be wrapped in <div class="modal-content"> <div class="modal-header"> </div></div> we need to create new output that wraps
-// the content we wish to return. As we may want to add modal popups to other pages in the future we needed to add a new request variable "modal_wrap" which then allows us to
-// wrap the resulting output in these divs. As we don't want to change the code every time a new modal syntax appears it's preferable to add this modal wrap via a template file. The template file itself doesn't
-// demand any special conditions, so we've created this quick template output function to allow us to quickly access a template file that contains some simple html.
+// 
 
-// One string allows us to pass just one variable to the template for inclusion in output (in case, for example, the modal needs a title)
 
+ /**
+ * A quick way to ouput data that's stored in a Jomres template but doesn't require any conditions or rows.
+ *
+ * Due to the way Bootstrap 3 demands that returned data be wrapped in <div class="modal-content"> <div class="modal-header"> </div></div> we need to create new output that wraps the content we wish to return. As we may want to add modal popups to other pages in the future we needed to add a new request variable "modal_wrap" which then allows us to wrap the resulting output in these divs. As we don't want to change the code every time a new modal syntax appears it's preferable to add this modal wrap via a template file. The template file itself doesn't demand any special conditions, so we've created this quick template output function to allow us to quickly access a template file that contains some simple html.
+ * One string allows us to pass just one variable to the template for inclusion in output (in case, for example, the modal needs a title)
+ *
+ */
 function simple_template_output($path = '', $template = '', $one_string = '')
 {
     $pageoutput = array(array('TITLE' => $one_string));
@@ -480,6 +536,9 @@ function simple_template_output($path = '', $template = '', $one_string = '')
     return $tmpl->getParsedTemplate();
 }
 
+/**
+ * Generates colours for the property review rating bars
+ */
 function calc_rating_progressbar_colour($percentage)
 {
     if ($percentage >= 60) {
@@ -498,6 +557,9 @@ function calc_rating_progressbar_colour($percentage)
     return $colour;
 }
 
+/**
+ * Determine the version of Bootstrap framework that is being used
+ */
 function jomres_bootstrap_version()
 {
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -515,6 +577,12 @@ function jomres_bootstrap_version()
     return $bootstrap_version;
 }
 
+ /**
+ * For plugins to find the correct sub-directory for the template based on site settings
+ *
+ * todo Add support for Bootstrap 4 in administrator area
+ */
+ 
 function find_plugin_template_directory()
 {
     $template_dir = 'jquery_ui';
@@ -537,6 +605,12 @@ function find_plugin_template_directory()
     return $template_dir;
 }
 
+/**
+ * Return an array of dates 
+ *
+ * Receives two dates Y/m/d and returns all dates between in Y/m/d formate
+ *
+ */
 function findDateRangeForDates($d1, $d2)
 {
     $days = (int) findDaysForDates($d1, $d2);
@@ -554,6 +628,9 @@ function findDateRangeForDates($d1, $d2)
     return $dateRangeArray;
 }
 
+/**
+ * Get the number of days between two dates (Y/m/d)
+ */
 function findDaysForDates($d1, $d2)
 {
     $diff = dateDiff('d', $d1, $d2);
@@ -561,6 +638,9 @@ function findDaysForDates($d1, $d2)
     return $diff;
 }
 
+/**
+ * Import images from the uploadedimages directory into the database
+ */
 function import_images_to_media_centre_directories()
 {
     // We are going to move any property images, slideshow images and room images into the new media centre's resource directories.
@@ -708,6 +788,9 @@ function import_images_to_media_centre_directories()
     }
 }
 
+/**
+ * Output size with B,KB,MB,GB,TB suffixes
+ */
 function jomres_formatBytes($bytes, $precision = 2)
 {
     $units = array('B', 'KB', 'MB', 'GB', 'TB');
@@ -719,6 +802,9 @@ function jomres_formatBytes($bytes, $precision = 2)
     return round($bytes, $precision).' '.$units[$pow];
 }
 
+/**
+ * Debugging tool to find scripts that were called when an error was triggered. 
+ */
 function echo_backtrace()
 {
     $trace = debug_backtrace();
@@ -733,6 +819,9 @@ function echo_backtrace()
     }
 }
 
+/**
+ * Create a url for a property's address that will be marked in google maps
+ */
 function make_gmap_url_for_property_uid($property_uid)
 {
     if ($property_uid < 1) {
@@ -746,6 +835,9 @@ function make_gmap_url_for_property_uid($property_uid)
     return 'https://maps.google.com/maps?daddr='.$dest_address;
 }
 
+/**
+ * Uses the QR code library to create qr codes in the temp directory and returns relative, and absolute paths
+ */
 function jomres_make_qr_code($string = '', $format = 'text')
 {
     $dir = JOMRES_TEMP_ABSPATH.'qr_codes';
@@ -763,6 +855,9 @@ function jomres_make_qr_code($string = '', $format = 'text')
     return array('relative_path' => get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/temp/qr_codes/'.'qr_code_'.$filename.'.png', 'absolute_path' => $dir.JRDS.'qr_code_'.$filename.'.png');
 }
 
+/**
+ * Used by ajax search for searching for town names
+ */
 function genericLike($idArray, $fieldToSearch, $idArrayisInteger = true)
 {
     $newArr = array();
@@ -788,6 +883,9 @@ function genericLike($idArray, $fieldToSearch, $idArrayisInteger = true)
     return $txt;
 }
 
+/**
+ * Calculates number to be added to badges in the administrator menu
+ */
 function get_number_of_items_requiring_attention_for_menu_option($task = '')
 {
 	if ($task == '') {
@@ -809,6 +907,9 @@ function get_number_of_items_requiring_attention_for_menu_option($task = '')
     }
 }
 
+/**
+ * Given a region id, will return the name of the region, translated if applicable.
+ */
 function find_region_name($region_id)
 {
     if (!is_numeric($region_id)) { // It's already NOT numeric
@@ -820,6 +921,10 @@ function find_region_name($region_id)
 	return $jomres_regions->get_region_name($region_id);
 }
 
+
+/**
+ * Given a region name, will return the region id. 
+ */
 function find_region_id($region_name)
 {
     if (is_numeric($region_name)) { // It's already numeric
@@ -831,6 +936,9 @@ function find_region_id($region_name)
 	return $jomres_regions->get_region_id($region_name);
 }
 
+/**
+ * Returns an array of all properties with a manager id
+ */
 function build_property_manager_xref_array()
 {
     $arr = array();
@@ -850,6 +958,9 @@ function build_property_manager_xref_array()
     return $arr;
 }
 
+/**
+ * Utility to produce a url the view property manager page
+ */
 function make_agent_link($property_id = 0)
 {
     $property_manager_xref = get_showtime('property_manager_xref');
@@ -886,6 +997,9 @@ function make_agent_link($property_id = 0)
     return $tmpl->getParsedTemplate();
 }
 
+/**
+ * Checks that a user can perform the translation
+ */
 function translation_user_check()
 {
     $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
@@ -902,6 +1016,9 @@ function translation_user_check()
     return true;
 }
 
+/**
+ * Outputs the "no search results" message
+ */
 function no_search_results()
 {
     $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
@@ -909,6 +1026,9 @@ function no_search_results()
     return $MiniComponents->specificEvent('06000', 'no_search_results');
 }
 
+/**
+ * Returns a tooltip image ( image with hover test ). jomres_tooltips class used to determine what to show based on the version of bootstrap 
+ */
 function jomres_makeTooltip($div, $hover_title = '', $hover_content = '', $div_content = '', $class = '', $type = '', $type_arguments = array(), $url = '#')
 {
     // Uncomment the following line to tell Jomres to show the images and descriptions side by side, instead of using the jquery tooltip.
@@ -919,6 +1039,9 @@ function jomres_makeTooltip($div, $hover_title = '', $hover_content = '', $div_c
     return $jomres_tooltips->generate_tooltip($div, $hover_title, $hover_content, $div_content, $class, $type, $type_arguments, $url);
 }
 
+/**
+ * Optional CMS Specific end run tasks
+ */
 function endrun()
 {
     if (file_exists(_JOMRES_DETECTED_CMS_SPECIFIC_FILES.'cms_specific_endrun.php')) {
@@ -926,6 +1049,9 @@ function endrun()
     }
 }
 
+/**
+ * Returns whether or not we are using Bootstrap
+ */
 function using_bootstrap()
 {
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -952,6 +1078,9 @@ function using_bootstrap()
     return false;
 }
 
+/**
+ * Adds Google maps javascript calls to the site's head where appropriate
+ */
 function add_gmaps_source()
 {
     if (defined('JOMRES_NOHTML') && JOMRES_NOHTML == '1') {
@@ -975,6 +1104,9 @@ function add_gmaps_source()
     }
 }
 
+/**
+ * Not currently used
+ */
 function admins_first_run($manual_trigger = false)
 {
     $logfile = JOMRES_SYSTEMLOG_PATH.'admins_first_run.txt';
@@ -1094,6 +1226,9 @@ function admins_first_run($manual_trigger = false)
     // }
 }
 
+/**
+ * Asks whether the Jomres plugin shop is available or not. Not currently used.
+ */
  function query_shop($request = '')
  {
      if ($request == '') {
@@ -1125,6 +1260,9 @@ function admins_first_run($manual_trigger = false)
  }
 
 // Adapted from http://uk.php.net/manual/en/function.time.php#89415
+/**
+ * Used by list properties script to format the "last booking" output message.
+ */
 function jomres_nicetime($date)
 {
     if (empty($date)) {
@@ -1163,6 +1301,12 @@ function jomres_nicetime($date)
     return "$difference $periods[$j] {$tense}";
 }
 
+/**
+ * Geolocation class uses function to get the user's IP number
+ *
+ * @todo Duplicated function
+ *
+ */
 function get_remote_ip_number()
 {
     $ip = jomres_get_client_ip();
@@ -1174,6 +1318,9 @@ function get_remote_ip_number()
     return (int) $bang[ 0 ].'.'.(int) $bang[ 1 ].'.'.(int) $bang[ 2 ].'.'.(int) $bang[ 3 ];
 }
 
+/**
+ * Pulls the booking number from session data
+ */
 function get_booking_number()
 {
     $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
@@ -1181,6 +1328,9 @@ function get_booking_number()
     return $tmpBookingHandler->tmpbooking[ 'booking_number' ];
 }
 
+/**
+ * Figure out what the current property uid should be
+ */
 function detect_property_uid()
 {
     $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
@@ -1238,7 +1388,10 @@ function detect_property_uid()
     return $property_uid;
 }
 
-// Return "NA" if no gateway is configured for this property. The calling script will process payment without attempting to call a gateway (IE simply enter the booking)
+// 
+/**
+ * Return "NA" if no gateway is configured for this property. The calling script will process payment without attempting to call a gateway (IE simply enter the booking)
+ */
 function jomres_validate_gateway_plugin()
 {
     $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
@@ -1290,6 +1443,13 @@ function jomres_validate_gateway_plugin()
     return $plugin;
 }
 
+ /**
+ * Generates anchors for javascript tabs
+ *
+ * Commented out code that tries to make the anchor of the tabs based on the name of the tab. Too many non-latin users were reporting problems with tabs.
+ * Instead we'll just use the random string generator to create the anchor.
+ *
+ */
 function jomres_generate_tab_anchor($string)
 {
     // Commented out code that tries to make the anchor of the tabs based on the name of the tab. Too many non-latin users were reporting problems with tabs.
@@ -1310,6 +1470,9 @@ function jomres_generate_tab_anchor($string)
     return $anchor;
 }
 
+/**
+ * Return the "showtime" singleton
+ */
 function get_showtime($setting)
 {
     $showtime = jomres_singleton_abstract::getInstance('showtime');
@@ -1317,6 +1480,9 @@ function get_showtime($setting)
     return $showtime->$setting;
 }
 
+/**
+ * Set a showtime variable to X
+ */
 function set_showtime($setting, $value)
 {
 	$showtime = jomres_singleton_abstract::getInstance('showtime');
@@ -1328,6 +1494,9 @@ function set_showtime($setting, $value)
     return true;
 }
 
+/**
+ * Find settings for a given plugin. Typically used by gateways
+ */
 function get_plugin_settings($plugin, $prop_id = 0)
 {
     // This function is exclusively for gateway plugins
@@ -1366,6 +1535,9 @@ function get_plugin_settings($plugin, $prop_id = 0)
     return $plugin_settings->gateway_settings[$plugin];
 }
 
+/**
+ * Imports a class JIT as found in the classes registry. If not found will report a backtrace.
+ */
 function jr_import($class)
 {
 	if (class_exists($class)) {
@@ -1404,6 +1576,9 @@ function jr_import($class)
 	exit;
 }
 
+/**
+ * Integration script uses this to see if we need to build registry files
+ */
 function search_core_and_remote_dirs_for_classfiles()
 {
 	global $classes;
@@ -1474,6 +1649,9 @@ $classes = ' .var_export($classes, true).';
 	return $classes;
 }
 
+/**
+ * utilit to clean up urls
+ */
 function jomresValidateUrl($url)
 {
     $url = str_replace('&amp;', '&', $url);
@@ -1482,6 +1660,9 @@ function jomresValidateUrl($url)
     return $url;
 }
 
+/**
+ * CMS Specific functions use this to find settings for modules
+ */
 function getIntegratedSearchModuleVals()
 {
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -1513,6 +1694,9 @@ function getIntegratedSearchModuleVals()
     return $vals;
 }
 
+/**
+ * Get the month name, set editable to true to show the editing mode option
+ */
 function getThisMonthName($monthNumber, $editable = true)
 {
     $monthNumber = intval($monthNumber - 1);
@@ -1522,6 +1706,9 @@ function getThisMonthName($monthNumber, $editable = true)
     return $thisMonthName;
 }
 
+/**
+ * Module/Plugin/Widget installation functionality that is called when using the third party installer
+ */
 function install_external_plugin($plugin_name, $plugin_type, $mambot_type = '', $params = '', $remote_plugin_component_folder = 'c', $remote_plugin_administrator_folder = 'a', $remote_plugin_module_folder = 'm', $remote_plugin_mambot_folder = 'b')
 {
     switch ($plugin_type) {
@@ -1620,6 +1807,9 @@ function install_external_plugin($plugin_name, $plugin_type, $mambot_type = '', 
         }
 }
 
+/**
+ * Make a directory
+ */
 function test_and_make_directory($dir)
 {
     if (!is_dir($dir)) {
@@ -1639,6 +1829,9 @@ function test_and_make_directory($dir)
     }
 }
 
+/**
+ * An alternative file_get_contents function because IIRC one version of PHP had problems with this function not existing
+ */
 if (!function_exists('file_get_contents')) {
     function file_get_contents($filename, $incpath = false, $resource_context = null)
     {
@@ -1662,6 +1855,9 @@ if (!function_exists('file_get_contents')) {
     }
 }
 
+/**
+ * Delete all files and subdirectories in a directory
+ */
 function emptyDir($dir, $root = null)
 {
     if ($root == null) {
@@ -1718,8 +1914,8 @@ Does what it says on the tin
 */
 function queryUpdateServer($script, $queryString, $serverType = 'plugin')
 {
-    include JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'jomres_config.php';
-    $current_version = $mrConfig[ 'version' ];
+    $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+	$jrConfig = $siteConfig->get();
 
     if ($serverType == 'plugin') {
         $updateServer = 'http://plugins.jomres4.net';
@@ -1733,7 +1929,7 @@ function queryUpdateServer($script, $queryString, $serverType = 'plugin')
 	
 	$response = '';
 
-	$query_string = $script.'?'.$queryString.'&jomresver='.$current_version.'&hostname='.get_showtime('live_site');
+	$query_string = $script.'?'.$queryString.'&jomresver='.$jrConfig[ 'version' ].'&hostname='.get_showtime('live_site');
 
 	try {
 		$client = new GuzzleHttp\Client([
@@ -1753,7 +1949,9 @@ function queryUpdateServer($script, $queryString, $serverType = 'plugin')
 }
 
 // http://www.php.net/manual/en/function.rename.php#61152
-// Moves the contents of source dir to destination dir
+/**
+ * Moves the contents of source dir to destination dir
+ */
 function dircopy($source, $dest, $overwrite = true, $funcloc = null)
 {
     global $copiedFileLog;
@@ -1803,7 +2001,9 @@ function dircopy($source, $dest, $overwrite = true, $funcloc = null)
 } // end of dircopy()
 
 // http://www.php.net/manual/en/function.rename.php#61152
-// Moves the contents of source dir to destination dir
+/**
+ * Moves the contents of source dir to destination dir
+ */
 function dirmv($source, $dest, $overwrite = true, $funcloc = JRDS)
 {
     global $movedFileLog;
@@ -1877,66 +2077,47 @@ function dirmv($source, $dest, $overwrite = true, $funcloc = JRDS)
 /*
 Allows us to work independantly of Joomla or Mambo's emailers
 */
-
 function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode = 1, $attachments = array(), $debugging = true)
 {
+	if ($from == '') {
+		$from = get_showtime('mailfrom');
+	}
+
     logging::log_message('Sending email from '.$from.' to '.$to.' subject '.$subject, 'Mailer');
 
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
 
     $emails = array();
-    if (isset($jrConfig[ 'useJomresEmailCheck' ]) && $jrConfig[ 'useJomresEmailCheck' ] == '1') {
-        if (is_array($to)) {
-            foreach ($to as $t) {
-                if (strlen($t) > 0) {
-                    $emails[ ] = $t;
-                }
-            }
-        } else {
-            if (strpos($to, ',')) { // we've been passed a comma seperated list of emails, explode them then parse them
-                $addys = explode(',', $to);
-                foreach ($addys as $t) {
-                    if (strlen($t) > 0) {
-                        $emails[ ] = $t;
-                    }
-                }
-            } else {
-                if (strlen($to) > 0) {
-                    $emails[ ] = $to;
-                }
-            }
-        }
-    } else {
-        if (is_array($to)) {
-            foreach ($to as $t) {
-                if (strlen($t) > 0) {
-                    $emails[ ] = $t;
-                }
-            }
-        } else {
-            if (strpos($to, ',')) { // we've been passed a comma seperated list of emails, explode them then parse them
-                $addys = explode(',', $to);
-                foreach ($addys as $t) {
-                    if (strlen($t) > 0) {
-                        $emails[ ] = $t;
-                    }
-                }
-            } else {
-                if (strlen($to) > 0) {
-                    $emails[ ] = $to;
-                }
-            }
-        }
-    }
-    
-	//$mail = new jomresPHPMailer(true);
-	$mail = new PHPMailer(true);
+    if (is_array($to)) {
+		foreach ($to as $t) {
+			if (strlen($t) > 0) {
+				$emails[ ] = trim($t);
+			}
+		}
+	} else {
+		if (strpos($to, ',')) { // we've been passed a comma separated list of emails, explode them then parse them
+			$addys = explode(',', $to);
+			foreach ($addys as $t) {
+				if (strlen($t) > 0) {
+					$emails[ ] = trim($t);
+				}
+			}
+		} else {
+			if (strlen($to) > 0) {
+				$emails[ ] = trim($to);
+			}
+		}
+	}
     
 	try {
         if (!isset($GLOBALS['debug'])) {
             $GLOBALS['debug'] = '';
         }
+		
+		$mail = new PHPMailer\PHPMailer\PHPMailer(true);
+		
+		$mail->CharSet = 'UTF-8';
 
         if ($jrConfig[ 'alternate_smtp_use_settings' ] == '1') {
             $mail->Mailer = 'smtp';
@@ -1949,6 +2130,11 @@ function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode
             $mail->Password = trim($jrConfig[ 'alternate_smtp_password' ]);
         } else {
             $mail->Mailer = trim(get_showtime('mailer'));
+			
+			if ($mail->Mailer == 'smtp') {
+				$mail->IsSMTP(); // telling the class to use SMTP
+			}
+			
             $mail->Host = trim(get_showtime('smtphost'));
             $mail->Port = trim(get_showtime('smtpport'));
             $mail->SMTPSecure = trim(get_showtime('smtpsecure'));
@@ -1975,7 +2161,13 @@ function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode
 			)
 		);
 
-        if ($mode == 1) {
+        if ($jrConfig[ 'default_from_address' ] != '') {
+            $mail->setFrom($jrConfig[ 'default_from_address' ], $jomresConfig_sitename);
+        } else {
+            $mail->setFrom($from, $jomresConfig_sitename);
+        }
+		
+		if ($mode == 1) {
             $mail->IsHTML(true);
         }
 
@@ -1985,17 +2177,9 @@ function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode
             //$body = preg_replace( '@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?)?)@', '<a href="$1" target="_blank">$1</a>', $body );
         //}
 
-        if ($jrConfig[ 'default_from_address' ] != '') {
-            $mail->From = $jrConfig[ 'default_from_address' ];
-        } else {
-            $mail->From = $from;
-        }
-		
-		$mail->CharSet = 'UTF-8';
-        $mail->FromName = $jomresConfig_sitename;
+		$mail->Body = $body;
         $mail->Subject = str_replace('&#39;', "'", $subject);
-
-        //$mail->AltBody		= "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
+        //$mail->AltBody = strip_tags($body); //content for non-HTML email clients
 
         if (!empty($attachments)) {
             foreach ($attachments as $attachment) {
@@ -2005,37 +2189,36 @@ function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode
                         $image_name = $image_arr [ count($image_arr) - 1 ];
                         $image_path = $attachment[ 'image_path' ];
                         $cid = $attachment[ 'CID' ];
-                        $mail->AddEmbeddedImage($image_path, $cid, $image_name);
+                        $mail->addEmbeddedImage($image_path, $cid, $image_name);
                         break;
                     case 'pdf':
                         $path = $attachment[ 'path' ];
                         $name = $attachment[ 'filename' ];
-                        $mail->AddAttachment($path, $name, 'base64', $type = 'application/pdf');
+                        $mail->addAttachment($path, $name, 'base64', $type = 'application/pdf');
                         break;
                     default:
                         $path = $attachment[ 'path' ];
                         $name = $attachment[ 'filename' ];
                         $type = $attachment['type'];
-                        $mail->AddAttachment($path, $name, 'base64', $type);
+                        $mail->addAttachment($path, $name, 'base64', $type);
                         break;
                     }
             }
         }
 
-        $mail->MsgHTML($body);
         foreach ($emails as $to) {
             if (strlen($to) > 0) {
-                $mail->AddAddress($to);
+                $mail->addAddress($to);
             }
         }
         $mail->Send();
         logging::log_message('Email sent successfully ', 'Mailer');
-    } catch (jomres_phpmailerException $e) {
+    } catch (PHPMailer\PHPMailer\Exception $e) {
         logging::log_message('Email failed '.$GLOBALS['debug'], 'Mailer');
         $GLOBALS['debug'] = '';
 
         return false;
-    } catch (Exception $e) {
+    } catch (\Exception $e) {
         //echo $e->getMessage(); //Boring error messages from anything else!
         return false;
     }
@@ -2235,6 +2418,9 @@ function errorHandler($errno, $errstr, $errfile, $errline, $errcontext)
     } // switch
 } // errorHandler
 
+/**
+ * Pretty sure this is depreciated now
+ */
 function recordError($errno, $errstr, $errfile, $errline, $errcontext)
 {
     $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
@@ -2566,6 +2752,7 @@ function propertyConfiguration()
     $lists[ 'depositIsOneNight' ] = jomresHTML::selectList($yesno, 'cfg_depositIsOneNight', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'depositIsOneNight' ]);
 
     $lists[ 'requireApproval' ] = jomresHTML::selectList($yesno, 'cfg_requireApproval', 'class="inputbox" size="1"', 'value', 'text', (int) $mrConfig[ 'requireApproval' ]);
+	$lists[ 'hide_local_address' ] = jomresHTML::selectList($yesno, 'cfg_hide_local_address', 'class="inputbox" size="1"', 'value', 'text', (int) $mrConfig[ 'hide_local_address' ]);
 
     if (!isset($mrConfig[ 'auto_detect_country_for_booking_form' ])) {
         $mrConfig[ 'auto_detect_country_for_booking_form' ] = '1';
@@ -2758,6 +2945,9 @@ function savePropertyConfiguration()
 	return true;
 }
 
+/**
+ * Remove old tables
+ */
 function removeAllPropertyEnhanceTariffsXref($property_uid)
 {
     $query = 'DELETE FROM #__jomcomp_tarifftype_rate_xref WHERE property_uid = '.(int) $property_uid;
@@ -2766,12 +2956,18 @@ function removeAllPropertyEnhanceTariffsXref($property_uid)
     doInsertSql($query, '');
 }
 
+/**
+ * Remove old tables
+ */
 function removeAllPropertyTariffs($property_uid)
 {
     $query = "DELETE FROM #__jomres_rates WHERE property_uid = '".(int) $property_uid."'";
     doInsertSql($query, '');
 }
 
+/**
+ * Remove old tables
+ */
 function removeAllPropertyRooms($property_uid)
 {
     $query = "DELETE FROM #__jomres_rooms WHERE propertys_uid = '".(int) $property_uid."'";
@@ -3011,7 +3207,7 @@ function JSCalmakeInputDates($inputDate, $siteCal = false)
     // Lets make the calendar dates for display in the js calendar. will receive a Y/m/d formatted string &	output it in the desired format
     // m d y. Probably unneccesary, but we'll do it anyway, to be on the safe side.
     $date_elements = explode('/', $inputDate);
-    $unixDate = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ]);
+    $unixDate = mktime(0, 0, 0, (int)$date_elements[ 1 ], (int)$date_elements[ 2 ], (int)$date_elements[ 0 ]);
 
     $dateFormat = $jrConfig[ 'cal_input' ];
     switch ($dateFormat) {
@@ -3132,7 +3328,10 @@ function importSettings($property_uid, $source_property_uid = 0)
     return;
 }
 
-// Companion to the importSettings function above
+
+/**
+ * Inserts or updates a plugin's settings
+ */
 function insertSetting($property_uid, $k, $v)
 {
     $query = "SELECT value FROM #__jomres_settings WHERE property_uid = '".(int) $property_uid."' AND akey = '".$k."'";
@@ -3234,6 +3433,12 @@ function dateDiff($interval, $first_date, $second_date)
     return 1;
 }
 
+/**
+ * Used by edit resource script to show room image
+ *
+ * Update functionality in j06002edit_resource.class.php to use modern functionality and remove this function
+ *
+ */
 function getImageForProperty($imageType, $property_uid, $itemUid)
 {
     $fileLocation = false;
@@ -3383,7 +3588,9 @@ function publishProperty()
 //-E D I T	R O O M S	A N D	P R O P E R T Y	D E T A I L S
 //-----------------------------------------------------------------
 
-// Returns the editor area as a text string for inclusion in a template
+/**
+ * Returns the editor area as a text string for inclusion in a template
+ */
 function editorAreaText($name, $content, $hiddenField, $width, $height, $col, $row)
 {
     return jomres_cmsspecific_getTextEditor($name, $content, $hiddenField, $width, $height, $col, $row);
@@ -3472,6 +3679,9 @@ function sendAdminEmail($subject, $message, $send_post = false)
     }
 }
 
+/**
+ * It...er...gets the month name from what is stored in the language file.
+ */
 function getMonthName($monthNo)
 {
     $monthNo = intval($monthNo);
@@ -3479,6 +3689,12 @@ function getMonthName($monthNo)
     return jr_gettext('_JRPORTAL_MONTHS_LONG_'.$monthNo, '_JRPORTAL_MONTHS_LONG_'.$monthNo);
 }
 
+/**
+ * Used by jomres toolbar functionality to show images
+ *
+ * @todo this ancient stuff
+ * 
+ */
 function makeImageValid($imageName = '')
 {
     $image = str_replace('+', '%20', $imageName);
@@ -3487,6 +3703,12 @@ function makeImageValid($imageName = '')
     return $image;
 }
 
+/**
+ * Formats a string as a float
+ *
+ * @todo remove and test, doesn't seem to be used any more
+ *
+ */
 function parseFloat($ptString)
 {
     if (strlen($ptString) == 0) {
@@ -3537,6 +3759,9 @@ function parseFloat($ptString)
     return $result;
 }
 
+/**
+ * Quicker replacement to scandir to find directory contents
+ */
 function get_directory_contents($dir)  // Replacement for scandir which seems to be causing system slowdowns
 {
     if (is_dir($dir)) {
@@ -3559,6 +3784,9 @@ function get_directory_contents($dir)  // Replacement for scandir which seems to
     }
 }
 
+/**
+ * Quicker replacement for scandir to get sub directories
+ */
 function scandir_getdirectories($path)
 {
     $data = array();
@@ -3575,6 +3803,9 @@ function scandir_getdirectories($path)
     return $data;
 }
 
+/**
+ * Quicker replament for scandir
+ */
 function scandir_getfiles($path, $extension = false)
 {
     $data = array();
@@ -3600,8 +3831,9 @@ function scandir_getfiles($path, $extension = false)
 }
 
 // Credit : http://www.php.net/manual/en/function.scandir.php#109140
-// Often used to find obsolete files, so we'll pass back an empty array if the directory does not exist
-
+/**
+ * Often used to find obsolete files, so we'll pass back an empty array if the directory does not exist
+ */
 function scandir_getfiles_recursive($directory, $recursive = true, $listDirs = false, $listFiles = true, $exclude = '')
 {
     $arrayItems = array();
@@ -3639,6 +3871,9 @@ function scandir_getfiles_recursive($directory, $recursive = true, $listDirs = f
     return $arrayItems;
 }
 
+/**
+ * Is the host CMS Joomla?
+ */
 function this_cms_is_joomla()
 {
     if (_JOMRES_DETECTED_CMS != 'joomla3' && _JOMRES_DETECTED_CMS != 'joomla4') {
@@ -3652,6 +3887,9 @@ function this_cms_is_joomla()
 //-T E X T	M O D I F I C A T I O N	 ----
 //----------------------------------------
 
+/**
+ * Used by editing mode and label translation functionality to update custom text tables
+ */
 function updateCustomText($theConstant, $theValue, $audit = true, $property_uid = null, $language_context = '0')
 {
 	$custom_text = jomres_singleton_abstract::getInstance('custom_text');
@@ -3659,6 +3897,9 @@ function updateCustomText($theConstant, $theValue, $audit = true, $property_uid 
     return $custom_text->updateCustomText($theConstant, $theValue, $audit, $property_uid, $language_context);
 }
 
+/**
+ * Get the current domain
+ */
 function jomresGetDomain()
 {
     $thisSvrName = $_SERVER[ 'SERVER_NAME' ];
@@ -3669,6 +3910,9 @@ function jomresGetDomain()
     return strtolower($dmn);
 }
 
+/**
+ * Creates new API keys (not to be confused with REST API keypairs) for properties
+ */
 function createNewAPIKey()
 {
     $apikey = generateJomresRandomString();
@@ -3689,6 +3933,9 @@ function createNewAPIKey()
     return $apikey;
 }
 
+/**
+ * Creates a random string, default length 50 chars
+ */
 function generateJomresRandomString($length = 50)
 {
     $str = '';
@@ -3708,6 +3955,9 @@ function generateJomresRandomString($length = 50)
     return $str;
 }
 
+/**
+ * Find the property manager's currently active property
+ */
 function getDefaultProperty()
 {
     $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
@@ -3715,6 +3965,9 @@ function getDefaultProperty()
     return (int) $thisJRUser->currentproperty;
 }
 
+/**
+ * Create SEF urls, hands off to CMS specific functions to do the heavy lifting
+ */
 function jomresURL($link)
 {
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -3738,15 +3991,25 @@ function getbookingguestdata()
     return $userDeets;
 }
 
+/**
+ * Returns the current Jomres version
+ */
 function get_jomres_current_version()
 {
-    include JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'jomres_config.php';
+    $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+	$jrConfig = $siteConfig->get();
 
-    return $mrConfig[ 'version' ];
+    return $jrConfig[ 'version' ];
 }
 
+/**
+ * Gets the latest version of Jomres from the updates server
+ */
 function get_latest_jomres_version($outputText = true)
 {
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+	$jrConfig = $siteConfig->get();
+	
     if (file_exists(JOMRES_TEMP_ABSPATH.'latest_version.php')) {
         $last_modified = filemtime(JOMRES_TEMP_ABSPATH.'latest_version.php');
         $seconds_timediff = time() - $last_modified;
@@ -3759,7 +4022,12 @@ function get_latest_jomres_version($outputText = true)
 
     if (!file_exists(JOMRES_TEMP_ABSPATH.'latest_version.php')) {
 		$base_uri = 'http://updates.jomres4.net/';
-		$query_string = 'versions.php';
+		 if ($jrConfig['development_production'] == 'development') {
+			$query_string = 'versions_dev.php';
+		} else {
+			$query_string = 'versions.php';
+		}
+		
 		$buffer = '';
 
 		try {
@@ -3777,11 +4045,6 @@ function get_latest_jomres_version($outputText = true)
 		}
 
         if ($buffer != '') {
-            $latest_jomres_version = explode('.', $buffer);
-            $latest_major_version = $latest_jomres_version[ 0 ];
-            $latest_minor_version = $latest_jomres_version[ 1 ];
-            $latest_revis_version = $latest_jomres_version[ 2 ];
-            $buffer = (int) $latest_major_version.'.'.(int) $latest_minor_version.'.'.(int) $latest_revis_version;
             file_put_contents(JOMRES_TEMP_ABSPATH.'latest_version.php', $buffer);
         }
     }
@@ -3796,11 +4059,9 @@ function get_latest_jomres_version($outputText = true)
     }
 }
 
-/*
-Returns true if this version is latest, otherwise returns false
-outputText flag is for use by deferred tasks that will email admin if the system has been updated.
-*/
-
+/**
+ * Returns true if this version is latest, otherwise returns false. outputText flag is for use by deferred tasks that will email admin if the system has been updated.
+ */
 function check_jomres_version( $outputText = true )
 {
     $this_version = get_jomres_current_version();
@@ -3846,6 +4107,23 @@ function check_jomres_version( $outputText = true )
     return $current_version_is_uptodate;
 }
 
+
+function development_mode_test()
+{
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+	$jrConfig = $siteConfig->get();
+
+    if ($jrConfig[ 'development_production' ] != 'production') { // The default is 1000 on most installations
+        $highlight = (using_bootstrap() ? 'alert alert-error alert-danger' : 'ui-state-highlight');
+        $response = "<div class='".$highlight."'>Be aware that you are using the site with Development mode enabled. Unless you are a developer we do not advise that you leave this setting enabled. To change it go to Site Settings > Debugging tab and set the mode to Production.</div>";
+    }
+
+    return $response;
+}
+
+/**
+ * Try to determine php.ini's max input vars setting then show an alert if the setting is too low for micromanage tariff editing mode.
+ */
 function max_input_vars_test()
 {
     $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
@@ -3859,6 +4137,9 @@ function max_input_vars_test()
     return $response;
 }
 
+/**
+ * Try to determine if suhosin has a max_value_length setting that can cause problems.
+ */
 function suhosin_get_max_vars_test()
 {
     $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
@@ -3873,6 +4154,9 @@ function suhosin_get_max_vars_test()
     return $response;
 }
 
+/**
+ * Check that the google maps api key has been set
+ */
 function gmaps_apikey_check()
 {
     $message = '';
@@ -3888,6 +4172,9 @@ function gmaps_apikey_check()
     return $message;
 }
 
+/**
+ * Check that the ip info db api key is set
+ */
 function ipinfodb_apikey_check()
 {
     $message = '';
@@ -3903,6 +4190,9 @@ function ipinfodb_apikey_check()
     return $message;
 }
 
+/**
+ * Chest that the OpenExchange rates service's API key has been set
+ */
 function openexchangerates_apikey_check()
 {
     $message = '';
@@ -3918,6 +4208,9 @@ function openexchangerates_apikey_check()
     return $message;
 }
 
+/**
+ * Check to see if the log paths setting has been set.
+ */
 function logs_path_check()
 {
     $message = '';
@@ -3933,6 +4226,9 @@ function logs_path_check()
     return $message;
 }
 
+/**
+ * Check to see if the image file paths need to be imported into the database.
+ */
 function db_images_import_check()
 {
     $message = '';
@@ -3954,6 +4250,9 @@ function db_images_import_check()
     return $message;
 }
 
+/**
+ * Check to see if it's possible to import s3 images
+ */
 function s3_images_import_check()
 {
     $message = '';

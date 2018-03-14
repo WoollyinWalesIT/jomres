@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.19
+ * @version Jomres 9.10.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -83,13 +83,13 @@ class jomres_properties
 
         set_showtime('heavyweight_system', false);
 
-        $query = 'SELECT `propertys_uid`, `published` FROM #__jomres_propertys';
+        $query = 'SELECT `propertys_uid`, `published` FROM #__jomres_propertys ORDER BY propertys_uid ASC';
         $result = doSelectSql($query);
 
         $numberOfPropertiesInSystem = count($result);
 		
 		if ($numberOfPropertiesInSystem == 0) {
-			echo 'Error, no properties installed. Before you can use Jomres you need to have at least 1 property installed, this is achieved by running <a href="'.get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/install_jomres.php">install_jomres.php</a>.';
+			echo 'Error, no properties installed. Before you can use Jomres you need to have at least 1 property installed.</a>.';
 			die();
 		}
 

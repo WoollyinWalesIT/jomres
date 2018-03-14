@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.16
+ * @version Jomres 9.10.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -171,19 +171,14 @@ function jomres_cmsspecific_getTextEditor($name, $content, $hiddenField, $width,
     return $ret;
 }
 
-// This is called by the jomres_language class. If the jomres language chooser dropdown is used, then this function is called so that we can set the current cms's language too.
-function jomres_cmsspecific_setlanguage($lang)
-{
-    // These need testing
-    //SetCookie($_COOKIE['jfcookie']['lang'], $lang, time()+60*60);
-    //$_COOKIE['jfcookie']['lang']= $lang;
-}
-
 function jomres_cmsspecific_getcurrentusers_id()
 {
     $id = 0;
-    $user = JFactory::getUser();
-    $id = $user->get('id');
+    
+	if (!defined('AUTO_UPGRADE')) {
+		$user = JFactory::getUser();
+		$id = $user->get('id');
+	}
 
     return $id;
 }

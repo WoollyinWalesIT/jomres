@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.19
+ * @version Jomres 9.10.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -118,9 +118,16 @@ class jomres_reviews
 
     public function save_review($rating, $title, $description, $pros, $cons)
     {
-		
+        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+        $jrConfig = $siteConfig->get();
+
+		$test_mode = false;
+        if ($jrConfig[ 'reviews_test_mode' ] == '1') {
+			$test_mode = true;
+		}
+
 		$contract_uid = 0;
-		if ( isset($_POST[ 'contract_uid' ] )) {
+		if ( isset($_POST[ 'contract_uid' ] ) && !$test_mode ) {
 			$contract_uid = (int)$_POST[ 'contract_uid' ];
 			$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 			
@@ -145,7 +152,7 @@ class jomres_reviews
 				}
 			}
 
-			if (!in_array($contract_uid , $guest_contracts )) { // Fishy, the contract uid passed doesn't match any of the guest's contract uids. 
+			if (!in_array($contract_uid , $guest_contracts ) ) { // Fishy, the contract uid passed doesn't match any of the guest's contract uids. 
 				return;
 			}
 		}
@@ -170,6 +177,7 @@ class jomres_reviews
 			published = " .$published.",
 			contract_uid = " .(int)$contract_uid."
 			";
+
         $result = doInsertSql($query, '');
         if ($result>0) {
             

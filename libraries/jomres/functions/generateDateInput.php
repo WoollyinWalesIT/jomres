@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.19
+ * @version Jomres 9.10.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -75,6 +75,32 @@ function generateDateInput($fieldName, $dateValue = '', $myID = false, $siteConf
 
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
+	
+	$predefined_arrival_day_return_string ='';
+	if ( $jrConfig['is_single_property_installation'] == "1") {
+		$all_property_uids = get_showtime('all_properties_in_system');
+
+		set_showtime('property_uid', $all_property_uids[ 0 ]);
+		$property_uid = get_showtime('property_uid');
+
+		$mrConfig = getPropertySpecificSettings($property_uid);
+
+		if ($mrConfig[ 'fixedArrivalDay' ] != '' && (int)$mrConfig[ 'fixedArrivalDateYesNo' ] != 0  ) {
+			for ($i=0;$i<=6;$i++) {
+				if ($i != $mrConfig[ 'fixedArrivalDay' ] ) {
+					$predefined_arrival_day_return_string .= 'day != '.$i .' && ';
+				}
+				
+				//return [(day != 1 && day != 2)];
+			}
+			if ($predefined_arrival_day_return_string != '' ) {
+				$predefined_arrival_day_return_string = 'beforeShowDay: function(date) {
+				var day = date.getDay();
+				return [('.substr($predefined_arrival_day_return_string, 0, -4).')];
+			},';
+			}
+		}
+	}
     $dateFormat = $jrConfig[ 'cal_input' ];
     $dateFormat = strtolower(str_replace('%', '', $dateFormat)); // For the new jquery calendar, we'll strip out the % symbols. This should mean that we don't need to force upgraders to reset their settings.
     $dateFormat = str_replace('y', 'yy', $dateFormat);
@@ -127,7 +153,7 @@ function generateDateInput($fieldName, $dateValue = '', $myID = false, $siteConf
     } else {
         $output .= 'firstDay: 1,';
     }
-
+	$output .= $predefined_arrival_day_return_string;
     $output .= '	showButtonPanel: true';
     if ($fieldName == 'arrivalDate' || $fieldName == 'asc_arrivalDate') {
         $output .= ',onSelect: function(selectedDate) {

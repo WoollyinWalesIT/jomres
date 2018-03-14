@@ -1,5 +1,17 @@
 <?php
-// no direct access
+/**
+ * Supports full-screen view in any Joomla template
+ *
+ * When full-screen view of Jomres is chosen, if this file does not already exist in the template directory then this script is copied to that template's directory automatically. Once that's done then it is possible to run Jomres in full-screen view regardless of the template's own settings.
+ *
+ * @author Aladar Barthi <sales@jomres.net>
+ *
+ * @version Jomres 9.10.0
+ *
+ * @copyright	2005-2018 Vince Wooll
+ * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
+ */
+ 
 defined('_JEXEC') or die;
 
 if (!defined('_JOMRES_INITCHECK')) {

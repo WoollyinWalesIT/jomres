@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.19
+ * @version Jomres 9.10.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -117,6 +117,7 @@ class j03025insertbooking_invoice
 			$coupon_discount = 0.00;
 			$tour_coupon_discount = 0.00;
 			$partner_discount = 0.00;
+			$personal_discount = 0.00;
 
             if (!empty($discounts)) {
                 foreach ($discounts as $d) {
@@ -145,6 +146,9 @@ class j03025insertbooking_invoice
 						case 'Partner':
 							$partner_discount = $discount_amount;
 							break;
+						case 'Personal':
+							$personal_discount = $discount_amount;
+							break;
 						default:
 							break;
 					}
@@ -157,7 +161,7 @@ class j03025insertbooking_invoice
                                         'description' => '('.outputDate($arrivalDate).' - '.outputDate($departureDate).')',
                                         'init_price' => $room_total_nodiscount,
                                         'init_qty' => 1,
-                                        'init_discount' => 0 - $wiseprice_discount - $lastminute_discount - $coupon_discount - $partner_discount,
+                                        'init_discount' => 0 - $wiseprice_discount - $lastminute_discount - $coupon_discount - $partner_discount - $personal_discount,
                                         );
             }
 

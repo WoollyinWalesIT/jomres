@@ -1,10 +1,12 @@
 <?php
 /**
- * Core file.
+ * Allows logging via the Monolog library
+ *
+ * Started out as being intended just for REST API logging, but now is used throughout Jomres, not just API calls.
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.19
+ * @version Jomres 9.10.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -23,10 +25,20 @@ use Monolog\Processor\WebProcessor;
 
 class logging
 {
+	/**
+	*
+	* Constructor
+	*
+	*/
     public function __construct()
     {
     }
 
+	/**
+	*
+	* Uses monolog to log activity within Jomres
+	*
+	*/
     public static function log_message($message, $channel = 'Core', $level = 'DEBUG' , $further_info_dump = '')
     {
         $username = 'Unknown';

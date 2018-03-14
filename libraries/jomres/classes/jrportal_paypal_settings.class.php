@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.19
+ * @version Jomres 9.10.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -23,7 +23,7 @@ class jrportal_paypal_settings
         $this->paypalConfigOptions[ 'usesandbox' ] = '1';
         $this->paypalConfigOptions[ 'currencycode' ] = 'EUR';
         $this->paypalConfigOptions[ 'email' ] = '';
-        $this->paypalConfigOptions[ 'override' ] = '';
+        $this->paypalConfigOptions[ 'override' ] = '0';
 
         $this->paypalConfigOptions[ 'client_id' ] = '';
         $this->paypalConfigOptions[ 'secret' ] = '';

@@ -1,10 +1,12 @@
 <?php
 /**
- * Core file.
+ * Calls a remote API when handed a REST API set of options
+ * 
+ * @todo Test and confirm it is still functional. Convert to use Guzzle
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.19
+ * @version Jomres 9.10.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -20,6 +22,11 @@ class call
     {
     }
 
+	/**
+	*
+	* Calls the remote server
+	*
+	*/
     public function call_server($options = array())
     {
         if (empty($options)) {

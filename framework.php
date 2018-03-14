@@ -1,10 +1,12 @@
 <?php
 /**
- * Core file.
+ * Sets up the Jomres framework.
+ *
+ * The REST API is does not have to use the Jomres framework, however it saves time to use the framework and API features can optionally request the framework so make use of already existing functions and classes.
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.19
+ * @version Jomres 9.10.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -14,6 +16,12 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
+/**
+*
+* Setup JOMRES_ROOT_DIRECTORY if it doesn't already exist
+*
+*/
+ 
 if (!defined('JOMRES_ROOT_DIRECTORY')) {
     if (file_exists(dirname(__FILE__).'/../jomres_root.php')) {
         require_once dirname(__FILE__).'/../jomres_root.php';
@@ -34,6 +42,11 @@ if (!jomres_cmsspecific_areweinadminarea()) {
     load_jomres_environment();
 }
 
+/**
+*
+* Include required CMS scripts
+*
+*/
 function load_cms_environment()
 {
     if (file_exists(dirname(__FILE__).'/../configuration.php')) {
@@ -54,47 +67,101 @@ function load_cms_environment()
     return true;
 }
 
+/**
+*
+* Setup the Jomres framework for use by functionality that doesn't come directly from the host CMS (e.g. the REST API)
+*
+*/
 function load_jomres_environment()
 {
     $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
 
-    //site config object
+	/**
+	*
+	* site config object
+	*
+	*/
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
 
-    //get all properties in system.
+	/**
+	*
+	* get all properties in system.
+	*
+	*/
     $jomres_properties = jomres_singleton_abstract::getInstance('jomres_properties');
     $jomres_properties->get_all_properties();
 
-    //language object - load default language file for context
+	/**
+	*
+	* language object - load default language file for context
+	*
+	*/
     $jomres_language = jomres_singleton_abstract::getInstance('jomres_language');
     $jomres_language->get_language();
 
-    //custom text object - load all custom text
+	/**
+	*
+	* custom text object - load all custom text
+	*
+	*/
     $customTextObj = jomres_singleton_abstract::getInstance('custom_text');
 	
-	//trigger 00001 event
+	/**
+	*
+	* trigger 00001 event
+	*
+	*/
 	$MiniComponents->triggerEvent('00001');
 
-    //trigger 00002 event
+
+	/**
+	*
+	* trigger 00002 event
+	*
+	*/
     $MiniComponents->triggerEvent('00002');
 
-    //user object
+
+	/**
+	*
+	* Setup the user object
+	*
+	*/
     $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
-    //00003 trigger point - input filtering
+	/**
+	*
+	* 00003 trigger point - input filtering
+	*
+	*/
     $MiniComponents->triggerEvent('00003');
 	
-	//jomres cron object
+	/**
+	*
+	* jomres cron object
+	*
+	*/
     $cron = jomres_singleton_abstract::getInstance('jomres_cron');
     if ($cron->method == 'Minicomponent' && !AJAXCALL) {
         $cron->triggerJobs();
     }
 
-    //booking object
+
+	/**
+	*
+	* Setup the booking object*
+	* 
+	* Called the booking object, in reality it is the object that retrieves, holds for use during run, and stores specific user variables plus booking details.
+	*
+	*/
     $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 
-    //jomres session
+	/**
+	*
+	* Setup the Jomres session
+	*
+	*/
     if (is_null($tmpBookingHandler->jomressession) || $tmpBookingHandler->jomressession == '') {
         $tmpBookingHandler->initBookingSession();
         
@@ -102,10 +169,18 @@ function load_jomres_environment()
         set_showtime('jomressession', $jomressession);
     }
 
-    //currency exchange rates
+	/**
+	*
+	* currency exchange rates
+	*
+	*/
     $jomres_currency_exchange_rates = jomres_singleton_abstract::getInstance('jomres_currency_exchange_rates');
 	
-	//set currency code to the appropriate one for the detected location
+	/**
+	*
+	* set currency code to the appropriate one for the detected location
+	*
+	*/
 	$jomres_geolocation = jomres_singleton_abstract::getInstance('jomres_geolocation');
 	$jomres_geolocation->auto_set_user_currency_code();
 
@@ -113,7 +188,11 @@ function load_jomres_environment()
 
     $mrConfig = getPropertySpecificSettings($property_uid);
 
-    //load property type specific language file
+	/**
+	*
+	* load property type specific language file
+	*
+	*/
     if ($property_uid > 0) {
         set_showtime('property_uid', $property_uid);
 
@@ -129,20 +208,47 @@ function load_jomres_environment()
     }
 
     if (!AJAXCALL) {
-		//add javascript to head
+		/**
+		*
+		* add javascript to head
+		*
+		*/
         $MiniComponents->triggerEvent('00004');
 		
-		//core menu items
+		/**
+		*
+		* trigger that sets up Core menu items
+		*
+		*/
 		$MiniComponents->specificEvent('09995', 'menu', array()); //core menu items
     }
 
-    //TODO find a better place
+	/**
+	*
+	* Set the include_room_booking_functionality showtime variable to a default of true
+	*
+	* @todo find a better place
+	* 
+	*
+	*/
     set_showtime('include_room_booking_functionality', true);
 
-    //00005 trigger point
+	/**
+	*
+	* 00005 trigger point
+	*
+	* For example, plugins use 00005 trigger point to include language files, setup system variables
+	*
+	*/
     $MiniComponents->triggerEvent('00005');
 
-    //99999 trigger point
+	/**
+	*
+	* 99999 trigger point
+	*
+	* Post run "things" to be done.
+	*
+	*/
     $MiniComponents->triggerEvent('99999', array());
 
     return true;

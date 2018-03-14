@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.19
+ * @version Jomres 9.10.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -31,9 +31,12 @@ class j16000showplugins
 			return;
 		}
 		
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
+		
 		$force_plugin_manager_reinstallation = false;
 		
-		// Jomres 9.9.18 specific code, we need to check to see if the task == showplugins, and if so double check the plugin manager's version. If it's < 1.9 we need to force an update of the plugin manager before the plugin manager script can be shown
+		// Jomres 9.10 specific code, we need to check to see if the task == showplugins, and if so double check the plugin manager's version. If it's < 1.9 we need to force an update of the plugin manager before the plugin manager script can be shown
 		// Without this check and force of the reinstallation of the plugin manager, users will only be able to update the 40 or so plugins one by one, which would be a significant annoyance.
 		// Todo remove sometime after January 2019
 		if (isset($MiniComponents->registeredClasses['16000']['showplugins']['real_filepath'])) { // admin.php has found that the installed version of the plugin manager is 1.8 or less, and has forced us to run the Core plugin manager script, not the plugin version. 
@@ -41,8 +44,8 @@ class j16000showplugins
 				require_once($MiniComponents->registeredClasses['16000']['showplugins']['real_filepath']."plugin_info.php");
 				$plugin_info_plugin_manager = new plugin_info_plugin_manager();
 				$bang = explode("." , $plugin_info_plugin_manager->data['version'] );
-				if ( $bang [0] <= 1 ) {
-					if ($bang [1] <= 8) {
+				if ( $bang [0] <= 2 ) {
+					if ($bang [1] <= 1) {
 						$force_plugin_manager_reinstallation = true;
 					}
 				}
@@ -148,10 +151,16 @@ class j16000showplugins
                         return false;
                     }
                 }
-				
-				include JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'jomres_config.php';
+
+				$v = explode('.', PHP_VERSION);
+				$vprts = array(
+					'major' => $v[0],
+					'minor' => $v[1],
+					'release' => $v[2], );
+				$php_version = $vprts['major'].'.'.$vprts['minor'];
+		
 				$base_uri = 'http://plugins.jomres4.net/';
-				$query_string = 'index.php?r=gp&cms='._JOMRES_DETECTED_CMS.'&vnw=1&plugin=plugin_manager&jomresver='. $mrConfig[ 'version' ].'&key='.$key_validation->key_hash;
+				$query_string = 'index.php?r=gp&cms='._JOMRES_DETECTED_CMS.'&vnw=1&plugin=plugin_manager&jomresver='. $jrConfig[ 'version' ].'&key='.$key_validation->key_hash.'&php_version='.$php_version;
 
                 try {
 					$client = new GuzzleHttp\Client([

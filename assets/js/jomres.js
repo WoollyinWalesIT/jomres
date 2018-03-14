@@ -122,6 +122,9 @@ function make_datatable(table_id, pagetitle, livesite, ajaxurl, showTools) {
 			"aria": {
 				"sortAscending":  dataTables_sSortAscending,
 				"sortDescending": dataTables_sSortDescending
+			},
+			"buttons": {
+				"colvis": dataTables_sColVis
 			}
 		},
 		"responsive": {

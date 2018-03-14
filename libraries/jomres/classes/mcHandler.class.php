@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.19
+ * @version Jomres 9.10.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -23,10 +23,6 @@ class mcHandler
 
     public function __construct()
     {
-        if (defined('AUTO_UPGRADE')) {
-            return;
-        }
-
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
 
@@ -169,7 +165,12 @@ class mcHandler
 					$this->miniComponentData[ $eventPoint ][ $eventName ] = $retVal;
 					set_showtime('current_minicomp', '');
 					unset($e);
-				}
+				} elseif (!file_exists($eventDetails[ 'filepath' ].$filename) && $eventPoint == "00001" ) { // Has the installation been moved to a new server?
+					$registry = jomres_singleton_abstract::getInstance('minicomponent_registry');
+					$registry->regenerate_registry();
+					$this->registeredClasses = $registry->get_registered_classes();
+					$this->miniComponentDirectories = $registry->get_minicomponent_directories();
+				} 
             }
         }
         

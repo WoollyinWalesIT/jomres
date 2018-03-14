@@ -1,10 +1,10 @@
 <?php
 /**
- * Core file.
+ * Builds the booking form
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.19
+ * @version Jomres 9.10.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -27,6 +27,9 @@ $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
 $MiniComponents->triggerEvent('00100'); // Pre-dobooking. Optional
 
+/**
+ * If the user is a manager then we will ensure that they are booking one of their own properties. They cannot book a property that's not theirs, while logged in as a manager.
+ */
 if (
     $selectedProperty > 0 &&
     $thisJRUser->userIsManager &&
@@ -40,6 +43,7 @@ if (!defined('JOMRES_API_CMS_ROOT')) {
 	$selectedProperty = $property_uid;
 }
 
+
 $remus = jomresGetParam($_REQUEST, 'remus', '');
 
 $thisdate = false;
@@ -52,6 +56,9 @@ if (!isset($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ])) {
     $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] = "";
 }
 
+/**
+ * If the arrival date is set in one of several different places (e.g. the url or stored as the result of a search) then set the arrival date in the form.
+ */
 if (!isset($_REQUEST[ 'arrivalDate' ])) {
     if (isset($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ]) && $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] == '') {
         $arrivalDate = JSCalmakeInputDates(date('Y/m/d', $unixTodaysDate), $siteCal = true);
@@ -73,6 +80,9 @@ if (!isset($_REQUEST[ 'arrivalDate' ])) {
 
 $thisdate = str_replace('-', '/', $thisdate);
 
+/**
+ * If the user is configured as a partner, ensure that the property they are booking is one of the properties that they are configured to be a partner of. If their details have not been completed in the Edit Account page then they will be redirected to that page first.
+ */
 if ($thisJRUser->is_partner) {
     $partners = jomres_singleton_abstract::getInstance('jomres_partners');
     $details_complete = $partners->check_partner_details_complete($thisJRUser->id);
@@ -82,8 +92,8 @@ if ($thisJRUser->is_partner) {
 }
 
 $MiniComponents->triggerEvent('00101'); // Pre-form generation. Optional
-$query = "SELECT propertys_uid FROM #__jomres_propertys WHERE propertys_uid = '".(int) $selectedProperty."'";
 
+$query = "SELECT propertys_uid FROM #__jomres_propertys WHERE propertys_uid = '".(int) $selectedProperty."'";
 $result = doSelectSql($query);
 if (!empty($result)) {
     if ($selectedProperty > 0) {
@@ -233,7 +243,20 @@ function dobooking($selectedProperty, $thisdate, $remus)
     $output[ 'BOOKING_FORM_CALENDAR' ] = get_showtime('booking_form_calendar');
     $output[ '_JOMRES_COM_A_AVLCAL' ] = $bkg->sanitiseOutput(jr_gettext('_JOMRES_COM_A_AVLCAL', '_JOMRES_COM_A_AVLCAL', false, false));
     $output[ '_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY' ] = $bkg->sanitiseOutput(jr_gettext('_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY', '_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY', false, false));
-
+	
+	// Previous outputs for Availability calendar left in-situ for older copies of the dobooking template.
+	$calendar_modal = array();
+	 if ($mrConfig[ 'showAvailabilityCalendar' ] == '1') {
+		
+		$calendar_modal = array( 0 => 
+			array ( 
+				'BOOKING_FORM_CALENDAR' => $output[ 'BOOKING_FORM_CALENDAR' ],
+				'_JOMRES_COM_A_AVLCAL' => $output[ '_JOMRES_COM_A_AVLCAL' ],
+				'_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY' => $output[ '_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY' ]
+			)
+		);
+	}
+	 
     $output[ 'BLOCKUI_CHANGINGEXTRA' ] = $bkg->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_CHANGINGEXTRA', '_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_CHANGINGEXTRA', false, false));
     $output[ 'BLOCKUI_CHANGINGROOMSELECTION' ] = $bkg->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_CHANGINGROOMSELECTION', '_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_CHANGINGROOMSELECTION', false, false));
     $output[ 'BLOCKUI_UPDATINGADDRESS' ] = $bkg->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_UPDATINGADDRESS', '_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_UPDATINGADDRESS', false, false));
@@ -675,6 +698,7 @@ function dobooking($selectedProperty, $thisdate, $remus)
 			}
 		}
 
+		$tmpl->addRows('calendar_modal', $calendar_modal);
 		$tmpl->addRows('rooms_list_accommodation_panel_output', $rooms_list_accommodation_panel_output);
 		$tmpl->addRows('coupons', $coupons);
 		$tmpl->addRows('coupons_totals', $coupons_totals);
@@ -722,6 +746,9 @@ function dobooking($selectedProperty, $thisdate, $remus)
 		}
 }
 
+/**
+ * When building custom fields that are required, this code will add to the "jquery validator" javascript that by necessity is built inline in the form.
+ */
 function generateCustomFieldsJavascript($customFields)
 {
     $someRequired = false;

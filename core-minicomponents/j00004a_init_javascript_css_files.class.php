@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.19
+ * @version Jomres 9.10.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -114,7 +114,7 @@ class j00004a_init_javascript_css_files
             $css_files[] = array(JOMRES_NODE_MODULES_RELPATH.'font-awesome/css/', 'font-awesome.min.css');
         }
 
-        $javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'jquery-chained/', 'jquery.chained.js');
+        //$javascript_files[] = array(JOMRES_JS_RELPATH, 'jquery.chainedSelects.js');
 
         if (!isset($jrConfig['live_scrolling_enabled'])) {
             $jrConfig['live_scrolling_enabled'] = '1';

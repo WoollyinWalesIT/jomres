@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.19
+ * @version Jomres 9.10.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -46,8 +46,6 @@ class jomres_language
 
         $tmpBookingHandler->tmplang[ 'jomreslang' ] = $jomresConfig_lang;
 
-        jomres_cmsspecific_setlanguage($jomresConfig_lang);
-
         $this->lang = $jomresConfig_lang;
 		$this->datepicker_lang = $this->datepicker_crossref[ $jomresConfig_lang ];
 
@@ -59,7 +57,7 @@ class jomres_language
         $this->shortcodes = $this->get_shortcodes();
         $key = array_search($jomresConfig_lang, $this->shortcodes);
         set_showtime('lang_shortcode', $key);
-		
+
 		//selected languages
 		$this->selected_languages = array();
 
@@ -292,7 +290,7 @@ class jomres_language
         $langs[ 'nl-NL' ] = 'nl';
         $langs[ 'pl-PL' ] = 'pl';
         $langs[ 'pt-BR' ] = 'pt-BR';
-        $langs[ 'pt-PT' ] = 'pt-BR';
+        $langs[ 'pt-PT' ] = 'pt';
         $langs[ 'ro-RO' ] = 'ro';
         $langs[ 'ru-RU' ] = 'ru';
         $langs[ 'sk-SK' ] = 'sk';

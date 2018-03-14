@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.19
+ * @version Jomres 9.10.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -30,7 +30,14 @@ class j16000updates
             jomresRedirect(jomresURL(get_showtime('live_site').'/administrator/index.php?option=com_installer&view=update'), '');
 
             return;
-        }
+        } else {
+			jomresRedirect(jomresURL(get_showtime('live_site').'/wp-admin/update-core.php'), '');
+			
+			return;
+		}
+		
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
 
         $jomresConfig_offline = true;
 		
@@ -121,10 +128,7 @@ class j16000updates
             $this->debugging = false;
             $this->test_download = false;
 
-            $configfile = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'jomres_config.php'; // This is just to pull in the Jomres version from mrConfig
-            include $configfile;
-            $thisVersion = $mrConfig[ 'version' ];
-            echo "<br /><br /><br /><center><h2>This Jomres version: $thisVersion</h2></center><br />";
+            echo '<br /><br /><br /><center><h2>This Jomres version: '.$jrConfig['version'].'</h2></center><br />';
 
             $this->ftp_user_name = 'userid';
             $this->ftp_user_pass = 'password';
@@ -229,7 +233,7 @@ class j16000updates
                         }
                     }
                     unlink($newfilename);
-                    jomresRedirect(jomresURL(get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/install_jomres.php?autoupgrade'), '');
+                    jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=jomres_install'), '');
                 } else {
                     echo 'Error creating unpack folder';
                 }

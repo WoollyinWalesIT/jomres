@@ -267,7 +267,7 @@ namespace Aws;
  */
 class Sdk
 {
-    const VERSION = '3.52.0';
+    const VERSION = '3.52.24';
 
     /** @var array Arguments for creating clients */
     private $args;
@@ -295,7 +295,9 @@ class Sdk
         $args = isset($args[0]) ? $args[0] : [];
         if (strpos($name, 'createMultiRegion') === 0) {
             return $this->createMultiRegionClient(substr($name, 17), $args);
-        } elseif (strpos($name, 'create') === 0) {
+        }
+
+        if (strpos($name, 'create') === 0) {
             return $this->createClient(substr($name, 6), $args);
         }
 

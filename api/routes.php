@@ -1,14 +1,16 @@
 <?php
 /**
- * Core file.
+ * REST API feature handler
+ *
+ * Searches for REST API features when the API is called. index.php handles the authentication (OAuth2) and routing (Flight), then this is called to find the appropriate API feature to include, responds 404 if the API feature is not found.
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.19
+ * @version Jomres 9.10.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
- **/
+ */
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');

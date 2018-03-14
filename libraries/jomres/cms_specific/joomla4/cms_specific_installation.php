@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.16
+ * @version Jomres 9.10.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,84 +13,6 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.');
 // ################################################################
-
-$folderChecksPassed = true;
-if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS)) {
-    if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS)) {
-        echo '<h1>Error, unable to make folder '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS." automatically therefore cannot copy the Joomla component files. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
-        $folderChecksPassed = false;
-    }
-}
-
-if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'administrator'.JRDS.'components'.JRDS.'com_jomres'.JRDS)) {
-    if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'administrator'.JRDS.'components'.JRDS.'com_jomres'.JRDS)) {
-        echo '<h1>Error, unable to make folder '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'administrator'.JRDS.'components'.JRDS.'com_jomres'.JRDS." automatically therefore cannot copy the Joomla component files. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
-        $folderChecksPassed = false;
-    }
-}
-
-if ($folderChecksPassed) {
-    if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'views'.JRDS.'default'.JRDS.'tmpl'.JRDS)) {
-        mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'views'.JRDS);
-        mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'views'.JRDS.'default'.JRDS);
-        mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'views'.JRDS.'default'.JRDS.'tmpl'.JRDS);
-    }
-
-    if (!copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'jomres.xml', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'administrator'.JRDS.'components'.JRDS.'com_jomres'.JRDS.'jomres.xml')) {
-        echo '<h1>Error, unable to copy '._JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'jomres.xml to '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'administrator'.JRDS.'components'.JRDS.'com_jomres'.JRDS.'jomres.xml automatically, please do this manually through FTP</h1><br/>';
-    }
-
-    if (!copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'admin.jomres.php', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'administrator'.JRDS.'components'.JRDS.'com_jomres'.JRDS.'jomres.php')) {
-        echo '<h1>Error, unable to copy '._JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'admin.jomres.php to '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'administrator'.JRDS.'components'.JRDS.'com_jomres'.JRDS.'jomres.php automatically, please do this manually through FTP</h1><br/>';
-    }
-	
-	if (!copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'script.php', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'administrator'.JRDS.'components'.JRDS.'com_jomres'.JRDS.'script.php')) {
-        echo '<h1>Error, unable to copy '._JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'script.php to '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'administrator'.JRDS.'components'.JRDS.'com_jomres'.JRDS.'script.php automatically, please do this manually through FTP</h1><br/>';
-    }
-
-    if (!copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'jomres.php', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'jomres.php')) {
-        echo '<h1>Error, unable to copy '.JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'jomres.php to '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'jomres.php
-			automatically, please do this manually through FTP</h1><br/>';
-    }
-
-    if (!copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'router.php', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'router.php')) {
-        echo '<h1>Error, unable to copy '._JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'router.php to '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'router.php
-			automatically, please do this manually through FTP</h1><br/>';
-    }
-
-    if (!copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'jomres_view.xml', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'views'.JRDS.'default'.JRDS.'tmpl'.JRDS.'default.xml')) {
-        echo '<h1>Error, unable to copy '._JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'jomres_view.xml to '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'views'.JRDS.'default'.JRDS.'tmpl'.JRDS.'jomres.xml
-			automatically, please do this manually through FTP</h1><br/>';
-    }
-
-    if (!copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'countries.xml', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'views'.JRDS.'default'.JRDS.'tmpl'.JRDS.'countries.xml')) {
-        echo '<h1>Error, unable to copy '._JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'countries.xml to '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'views'.JRDS.'default'.JRDS.'tmpl'.JRDS.'countries.xml
-			automatically, please do this manually through FTP</h1><br/>';
-    }
-
-    if (!copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'regions.xml', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'views'.JRDS.'default'.JRDS.'tmpl'.JRDS.'regions.xml')) {
-        echo '<h1>Error, unable to copy '._JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'regions.xml to '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'views'.JRDS.'default'.JRDS.'tmpl'.JRDS.'regions.xml
-			automatically, please do this manually through FTP</h1><br/>';
-    }
-
-    if (!copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'towns.xml', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'views'.JRDS.'default'.JRDS.'tmpl'.JRDS.'towns.xml')) {
-        echo '<h1>Error, unable to copy '._JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'towns.xml to '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'views'.JRDS.'default'.JRDS.'tmpl'.JRDS.'towns.xml
-			automatically, please do this manually through FTP</h1><br/>';
-    }
-
-    if (!copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'propertytypes.xml', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'views'.JRDS.'default'.JRDS.'tmpl'.JRDS.'propertytypes.xml')) {
-        echo '<h1>Error, unable to copy '._JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'propertytypes.xml to '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'views'.JRDS.'default'.JRDS.'tmpl'.JRDS.'propertytypes.xml
-			automatically, please do this manually through FTP</h1><br/>';
-    }
-	if (!copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'propertydetails.xml', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'views'.JRDS.'default'.JRDS.'tmpl'.JRDS.'propertydetails.xml')) {
-        echo '<h1>Error, unable to copy '._JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'propertydetails.xml to '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'views'.JRDS.'default'.JRDS.'tmpl'.JRDS.'propertydetails.xml
-			automatically, please do this manually through FTP</h1><br/>';
-    }
-	if (!copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'propertycategories.xml', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'views'.JRDS.'default'.JRDS.'tmpl'.JRDS.'propertycategories.xml')) {
-        echo '<h1>Error, unable to copy '._JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'propertydetails.xml to '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'views'.JRDS.'default'.JRDS.'tmpl'.JRDS.'propertycategories.xml
-			automatically, please do this manually through FTP</h1><br/>';
-    }
-}
 
 // Don't need to run this again if the table's already populated
 $query = 'SELECT userid FROM #__jomres_managers LIMIT 2';

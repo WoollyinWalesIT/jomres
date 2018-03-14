@@ -1,10 +1,12 @@
 <?php
 /**
- * Core file.
+ * Confirms that the key pair have rights to query a property
+ *
+ * OAuth2 keypairs are associated with CMS users. Whilst keypairs can belong to any registered user any API feature that directly changes or exposes a property should call this class to confirm that the key pair user has rights to perform the action on the specific property. Keypairs need both therefore to have been given access to the Scope in question and additionally it needs to pass this test. 
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.19
+ * @version Jomres 9.10.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -14,12 +16,27 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
+/**
+*
+* Validate that a user's key pair can access this property
+*
+*/
 class validate_property_access
 {
+	/**
+	*
+	* Constructor
+	*
+	*/
     public function __construct()
     {
     }
 
+	/**
+	*
+	* Tests keypair to confirm that they have rights to access the property. If the user is a super property manager or the system keypair then the answer is yes. If not, then the managers_propertys_xref table is queried to check that the property is one of the manager's properties
+	*
+	*/
     public static function validate($property_uid)
     {
         $scopes = Flight::get('scopes');

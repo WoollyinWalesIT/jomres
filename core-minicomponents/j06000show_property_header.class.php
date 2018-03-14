@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.19
+ * @version Jomres 9.10.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -145,7 +145,24 @@ class j06000show_property_header
         $output[ 'POSTCODE' ] = $current_property_details->property_postcode;
         $output[ 'TELEPHONE' ] = $current_property_details->property_tel;
         $output[ 'FAX' ] = $current_property_details->property_fax;
+ 
+		$user_can_view_address = true;
+		if ( $mrConfig['hide_local_address'] == '1' ) {
+			$user_can_view_address = false;
+		}
 
+		if ( $mrConfig['hide_local_address'] == '1' && $thisJRUser->id > 0 ) {
+			$query = "SELECT guests_uid FROM #__jomres_guests WHERE mos_userid = '".(int)$thisJRUser->id."' AND `property_uid`= $property_uid LIMIT 1";
+			$xistingGuests = doSelectSql($query);
+			if (!empty($xistingGuests)) {
+				$user_can_view_address = true;
+			}
+		}
+		
+		if ( !$user_can_view_address ) {
+			$output[ 'STREET' ] =  jr_gettext('HIDDEN_ADDRESS_PLACEHOLDER', 'HIDDEN_ADDRESS_PLACEHOLDER', false);
+		}
+		
         $permit = array();
         if ($current_property_details->permit_number != '') {
             $permit[0][ 'PERMIT_NUMBER' ] = $current_property_details->permit_number;

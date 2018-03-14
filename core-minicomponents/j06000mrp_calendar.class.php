@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.19
+ * @version Jomres 9.10.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -63,7 +63,6 @@ class j06000mrp_calendar
             $show_just_month = (bool) $componentArgs ['show_just_month'];
         }
 
-        $mrConfig = getPropertySpecificSettings($property_uid);
         $query = 'SELECT room_uid FROM #__jomres_rooms WHERE propertys_uid = '.$property_uid.' ';
         $roomUids = doSelectSql($query);
 
@@ -137,6 +136,8 @@ class j06000mrp_calendar
 
     public function makecal($stmonth, $styear, $property_uid)
     {
+		$mrConfig = getPropertySpecificSettings($property_uid);
+		
         $stdate = mktime(0, 0, 0, $stmonth, 1, $styear);
         $startdate = mktime(0, 0, 0, $stmonth, 1 - date('w', mktime(0, 0, 0, $stmonth, 1, $styear)), $styear);
         $enddate = mktime(0, 0, 0, date('m', $stdate) + 1, 7 - date('w', mktime(0, 0, 0, $stmonth + 1, 0, $styear)), $styear);
@@ -162,6 +163,11 @@ class j06000mrp_calendar
         $i = 0;
         $currdate = mktime(0, 0, 0, date('m', $startdate), date('d', $startdate), date('Y', $startdate));
 
+		$fontweight = ''; // Often when inheriting this clickable dates don't stand out too well, so we'll give it a little extra ooomph when it's a fixed arrival date. Non-fixed arrival dates all days are clickable ( unless booked out ).
+		if ((int)$mrConfig[ 'fixedArrivalDateYesNo' ] != 0) {
+			$fontweight = 'font-weight: bold;';
+		}
+		
         while ($currdate < $enddate) {
             $this->retVals .= '<tr>';
             for ($c = 0; $c < 7; ++$c) {
@@ -169,6 +175,13 @@ class j06000mrp_calendar
                 $link = get_booking_url($property_uid, '', '&pdetails_cal=1&arrivalDate='.date('Y/m/d', $currdate));
                 $fmt = date('Y', $currdate).'/'.date('m', $currdate).'/'.date('d', $currdate);
 
+				$dow = date( "w", $currdate);
+				if ($mrConfig[ 'fixedArrivalDay' ] != '' && (int)$mrConfig[ 'fixedArrivalDateYesNo' ] != 0  ) {
+					if ($dow != (int)$mrConfig[ 'fixedArrivalDay' ]) {
+						$link = '';
+					}
+				}
+				
                 if (!isset($this->booked_dates[$fmt])) {
                     $this->booked_dates[$fmt] = 0;
                 }
@@ -194,7 +207,7 @@ class j06000mrp_calendar
 
                 if (date('m', $currdate) == $stmonth) {
                     if ($link != '') {
-                        $this->retVals .= '<a style="color: black  !important;" href="'.$link.'" rel="nofollow">'.date('j', $currdate).'</a>';
+                        $this->retVals .= '<a style="color: black  !important; '.$fontweight.'" href="'.$link.'" rel="nofollow">'.date('j', $currdate).'</a>';
                     } else {
                         $this->retVals .= date('j', $currdate);
                     }

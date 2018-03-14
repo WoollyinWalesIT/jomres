@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.19
+ * @version Jomres 9.10.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -24,8 +24,15 @@ if (defined('API_STARTED')) {
 }
 
 $jomresConfig_lang = 'en-GB';
+$jomresConfig_lang_shortcode = 'en';
 if (!defined('AUTO_UPGRADE')) {
     $jomresConfig_lang = str_replace('_', '-', get_locale());
+	
+	//get lang short code
+	//TODO: this is unreliable at this point, for example for pt-BR and pt-PT, because the language code is always pt.
+	//later in the code in cms_specific_urls.php the correct shortcode will be set
+	//Not a problem in Joomla
+	$jomresConfig_lang_shortcode = substr($jomresConfig_lang, 0, 2);
 }
 
 $showtime = jomres_getSingleton('showtime');
@@ -33,6 +40,7 @@ $showtime = jomres_getSingleton('showtime');
 $showtime->error_reporting = 0;
 
 $showtime->lang = $jomresConfig_lang;
+$showtime->lang_shortcode = $jomresConfig_lang_shortcode;
 $showtime->live_site = $jomresConfig_live_site;
 $showtime->offline = false;
 

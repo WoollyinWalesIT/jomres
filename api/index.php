@@ -1,14 +1,16 @@
 <?php
 /**
- * Core file.
+ * Handles REST API messages
+ *
+ * Uses Oauth2 and Flight libraries to handle authentication and routing respectively. REST API functionality is provided by API features which are Jomres plugins, this functionality hands off calls to those API features through the routes.php script. 
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.19
+ * @version Jomres 9.10.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
- **/
+ */
 
 // create a log channel
 define('TRANSACTION_ID', time());
@@ -34,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     }
 }
 
+	
 date_default_timezone_set('UTC');
 require JOMRES_API_JOMRES_ROOT.'/vendor/autoload.php';
 require 'classes/logging.class.php';
@@ -126,6 +129,8 @@ if (isset($server) && !is_null($server)) {
 		"scope" => ''
 	);
 }
+
+require 'put_method_handling.php';
 
 try {
     $dsn = 'mysql:dbname='.JOMRES_API_DB_NAME.';host='.JOMRES_API_DB_HOST;

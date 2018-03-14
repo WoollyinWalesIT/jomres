@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.19
+ * @version Jomres 9.10.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -56,14 +56,21 @@ class jomres_config_site_singleton
 
     public function save_config()
     {
+		$config_to_save = $this->config;
+		
+		//we won`t store the version in configuration.php (or BC _site_settings table), so it will always be loaded from site_config.php
+		if (isset($config_to_save['version'])) {
+			unset($config_to_save['version']);
+		}
+		
         if (!file_put_contents(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php',
-        '<?php
-		##################################################################
-		defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
-		##################################################################
+'<?php
+##################################################################
+defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
+##################################################################
 
-		$jrConfig = ' .var_export($this->config, true).';
-		')) {
+$jrConfig = ' .var_export($config_to_save, true).';
+')) {
             trigger_error('ERROR: '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php'.' can`t be saved. Please solve the permission problem and try again.', E_USER_ERROR);
             exit;
         }
@@ -71,6 +78,13 @@ class jomres_config_site_singleton
 
     public function insert_new_setting($k, $v)
     {
+		//we won`t store the version in configuration.php (or BC _site_settings table), so it will always be loaded from site_config.php
+		if ($k == 'version') {
+			$this->config[$k] = $v;
+
+			return true;
+		}
+
         if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php')) {
             include JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php';
             if (!array_key_exists($k, $jrConfig)) {
@@ -103,6 +117,13 @@ $jrConfig = ' .var_export($jrConfig, true).';
 
     public function update_setting($k, $v)
     {
+		//we won`t store the version in configuration.php (or BC _site_settings table), so it will always be loaded from site_config.php
+		if ($k == 'version') {
+			$this->config[$k] = $v;
+
+			return true;
+		}
+
         if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php')) {
             include JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php';
 
@@ -148,10 +169,10 @@ $jrConfig = ' .var_export($jrConfig, true).';
 
             foreach ($tempConfigArr as $k => $v) {
                 if (!array_key_exists($k, $this->config)) {
-                    $this->insert_new_setting($k, $v);
+					$this->insert_new_setting($k, $v);
                 }
             }
-        } else {
+        } else { //BC
             $this->config = array();
             $query = 'SELECT akey,value FROM #__jomres_site_settings';
 

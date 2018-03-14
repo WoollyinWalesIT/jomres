@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.19
+ * @version Jomres 9.10.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -23,6 +23,8 @@ if (!defined('AUTO_UPGRADE')) {
     if (class_exists('JURI')) {
         $jomresConfig_live_site = @JURI::root();
     } else {
+		$detect_os = strtoupper($_SERVER[ 'SERVER_SOFTWARE' ]); // converted to uppercase
+		$IIS = strpos($detect_os, 'IIS');
         if ($IIS > 0) { // Win NT, therefore $_SERVER['REQUEST_URI'] == null
             $path_info = $_SERVER[ 'PATH_INFO' ];
             $_URI = explode('/', $path_info);
@@ -37,6 +39,8 @@ if (!defined('AUTO_UPGRADE')) {
         $jomresConfig_live_site = 'http://'.implode('/', $_URI);
     }
 } else {
+	$detect_os = strtoupper($_SERVER[ 'SERVER_SOFTWARE' ]); // converted to uppercase
+	$IIS = strpos($detect_os, 'IIS');
     if ($IIS > 0) { // Win NT, therefore $_SERVER['REQUEST_URI'] == null
         $path_info = $_SERVER[ 'PATH_INFO' ];
         $_URI = explode('/', $path_info);
@@ -66,8 +70,16 @@ if (defined('API_STARTED')) {
 }
 
 $jomresConfig_lang = 'en-GB';
+$jomresConfig_lang_shortcode = 'en';
 if (!defined('AUTO_UPGRADE')) {
     $jomresConfig_lang = JFactory::getLanguage()->getTag();
+	
+	//get lang short code
+	$languages = JLanguageHelper::getLanguages('lang_code');
+	
+	if (isset($languages[$jomresConfig_lang])) {
+		$jomresConfig_lang_shortcode = $languages[$jomresConfig_lang]->sef;
+	}
 }
 
 $showtime = jomres_singleton_abstract::getInstance('showtime');
@@ -75,6 +87,7 @@ $showtime = jomres_singleton_abstract::getInstance('showtime');
 $showtime->error_reporting = $CONFIG->error_reporting;
 $showtime->dbtype = $CONFIG->dbtype;
 $showtime->lang = $jomresConfig_lang;
+$showtime->lang_shortcode = $jomresConfig_lang_shortcode;
 $showtime->live_site = $jomresConfig_live_site;
 $showtime->offline = $CONFIG->offline;
 $showtime->db = $CONFIG->db;

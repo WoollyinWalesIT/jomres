@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.19
+ * @version Jomres 9.10.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -12,6 +12,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 
 $jrConfig = array(
+  'version' => '9.10.0',
   'defaultCrate' => '1',
   'property_list_limit' => '9',
   'useGlobalCurrency' => '1',
@@ -33,7 +34,6 @@ $jrConfig = array(
   'disableAudit' => '1',
   'allowedTags' => '|||||||||;pre&#38;#38;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#62;||||;p&#38;#38;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#62;',
   'emailErrors' => '0',
-  'useJomresEmailCheck' => '0',
   'composite_property_details' => '1',
   'integratedSearch_enable' => '1',
   'integratedSearch_useCols' => '0',
@@ -190,5 +190,7 @@ $jrConfig = array(
   'delete_all_data_on_uninstall' => '0',
   'jomres_review_left' => '0',
   'review_nag' => '1',
-  'send_email_copies_to_site_admins' => '0'
+  'send_email_copies_to_site_admins' => '0',
+  'optimize_images' => '0',
+  'jomres_db_version' => '0'
 );

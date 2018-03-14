@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.19
+ * @version Jomres 9.10.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -37,9 +37,11 @@ class j16000charts
         //set selected jr chart showtime
         if (isset($_POST['jr_chart'])) {
             set_showtime('jr_chart', jomresGetParam($_POST, 'jr_chart', 'chart_bookings'));
-        } else {
+        } elseif (isset($_REQUEST['jr_chart'])) {
             set_showtime('jr_chart', jomresGetParam($_REQUEST, 'jr_chart', 'chart_bookings'));
-        }
+        } else {
+			set_showtime('jr_chart', 'chart_bookings');
+		}
 
         //chart type
         $chart_type = jomresGetParam($_POST, 'jr_chart_type', 'line');

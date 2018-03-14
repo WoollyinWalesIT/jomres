@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.19
+ * @version Jomres 9.10.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -35,6 +35,25 @@ class jomres_singleton_abstract
 		
 		//check core and remote plugins dirs
 		if (isset($classes[$class])) {
+			
+			//specific check for minicomponent_registry class, to make sure it`s there
+			//if it`s not where expected, redirect to jomres default frontpage so the classes and minicomponents registries will be rebuilt
+			if ( $class == 'minicomponent_registry' ) {
+				if ( !file_exists( $classes[$class] . $class . '.class.php' ) ) {
+					//delete the classes regsitry
+					if ( file_exists(JOMRES_TEMP_ABSPATH . 'registry_classes.php') ) {
+						unlink( JOMRES_TEMP_ABSPATH . 'registry_classes.php' );
+					}
+					
+					//delete the minicomponents registry
+					if ( file_exists(JOMRES_TEMP_ABSPATH . 'registry.php') ) {
+						unlink( JOMRES_TEMP_ABSPATH . 'registry.php' );
+
+					jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL ), '' );
+					}
+				}
+			}
+
 			require_once $classes[$class].$class.'.class.php';
 			
 			self::$_instances[ $class ] = new $class($arg1);

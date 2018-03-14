@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.19
+ * @version Jomres 9.10.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -89,6 +89,7 @@ class j00005x_build_javascript_lang_definitions
 			var dataTables_sSortAscending	= "'.jr_gettext('DATATABLES_SSORTASCENDING', 'DATATABLES_SSORTASCENDING', false).'";
 			var dataTables_sSortDescending	= "'.jr_gettext('DATATABLES_SSORTDESCENDING', 'DATATABLES_SSORTDESCENDING', false).'";
 			var dataTables_showhide			= "'.jr_gettext('DATATABLES_SHOWHIDE', 'DATATABLES_SHOWHIDE', false).'";
+			var dataTables_sColVis			= "'.jr_gettext('DATATABLES_COLVIS', 'DATATABLES_COLVIS', false).'";
 
 			var jomres_javascript_readmore = "' .jr_gettext('_JOMRES_JAVASCRIPT_READMORE', '_JOMRES_JAVASCRIPT_READMORE', false).'";
 			var jomres_javascript_readless = "' .jr_gettext('_JOMRES_JAVASCRIPT_READLESS', '_JOMRES_JAVASCRIPT_READLESS', false).'";

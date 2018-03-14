@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.9.19
+ * @version Jomres 9.10.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -117,21 +117,6 @@ try {
 		//manage properties button
         $output['HMANAGE_PROPERTIES'] = jr_gettext('_JOMRES_MANAGE_PROPERTIES', '_JOMRES_MANAGE_PROPERTIES', false);
 
-        //obsolete files warnings
-        $ouput[ 'OBSOLETE_FILES_WARNINGS' ] = '';
-        jr_import('jomres_obsolete_file_handling');
-        $obsolete_files = new jomres_obsolete_file_handling();
-        $obsolete_files->set_default_obs_files_array();
-        $obsolete_files->add_obs_file(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'administrator'.JRDS.'components'.JRDS.'com_jomres'.JRDS.'jomres_webinstall.php');
-
-        if ($jrConfig[ 'development_production' ] != 'development') {
-            $obsolete_files->add_obs_file(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'install_jomres.php');
-        }
-
-        if ($obsolete_files->ready_to_go()) {
-            $output[ 'OBSOLETE_FILES_WARNINGS' ] = $obsolete_files->remove_obs_files();
-        }
-
         //language dropdown
         $output[ 'LANGDROPDOWN' ] = $jomres_language->get_languageselection_dropdown();
 
@@ -165,25 +150,6 @@ try {
 
     //task
     if ($MiniComponents->eventSpecificlyExistsCheck('16000', get_showtime('task'))) {
-		
-		// Jomres 9.9.18 specific code, we need to check to see if the task == showplugins, and if so double check the plugin manager's version. If it's < 1.9 we need to force an update of the plugin manager before the plugin manager script can be shown
-		// Without this check and force of the reinstallation of the plugin manager, users will only be able to update the 40 or so plugins one by one, which would be a significant annoyance.
-		// Todo remove sometime after January 2019
-		if ( get_showtime('task') == "showplugins" ) {
-			if ($MiniComponents->registeredClasses['16000']['showplugins']['eventtype'] == "core-plugin") {
-				require_once($MiniComponents->registeredClasses['16000']['showplugins']['filepath']."plugin_info.php");
-				$plugin_info_plugin_manager = new plugin_info_plugin_manager();
-				$bang = explode("." , $plugin_info_plugin_manager->data['version'] );
-				if ( $bang [0] <= 1 ) {
-					if ($bang [1] <= 8) {
-						// The plugin manager is already installed, we need to reset the registered class so that  Jomres reverts back to using the default version of the plugin manager, which forces download of the "real" plugin manager from the plugin server
-						$MiniComponents->registeredClasses['16000']['showplugins']['real_filepath']		= $MiniComponents->registeredClasses['16000']['showplugins']['filepath'];
-						$MiniComponents->registeredClasses['16000']['showplugins']['filepath']			= $MiniComponents->registeredClasses['00001']['start']['filepath'];
-						$MiniComponents->registeredClasses['16000']['showplugins']['eventtype']			= $MiniComponents->registeredClasses['00001']['start']['eventtype'];
-					}
-				}
-			}
-		}
 		$MiniComponents->specificEvent('16000', get_showtime('task')); // task exists, execute it
 	} else {
 		$MiniComponents->triggerEvent('10001'); //task doesn`t exist, go to cpanel frontpage

@@ -179,27 +179,38 @@
 			</div>
 			<div class="panel-body">
 				<p>{AJAXFORM_PARTICULARS_DESC}</p>
-		
-				<div class="col-md-6">
-					<div class="form-group">
-						<label class="control-label" for="arrivalDate">{HARRIVALDATE}</label>
-						<div class="input-group">{ARRIVALDATE}</div>
+				<div class="row">
+					<div class="col-md-5">
+						<div class="form-group">
+							<label class="control-label" for="arrivalDate">{HARRIVALDATE}</label>
+							<div class="input-group">{ARRIVALDATE}</div>
+						</div>
 					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						<label class="control-label" for="departureDate">{HDEPARTUREDATE}</label>
-						<div class="input-group">{DEPARTUREDATE}</div>
+					<div class="col-md-5">
+						<div class="form-group">
+							<label class="control-label" for="departureDate">{HDEPARTUREDATE}</label>
+							<div class="input-group">{DEPARTUREDATE}</div>
+						</div>
 					</div>
-				</div>
-				<patTemplate:tmpl name="guesttypes">
-				<div class="col-md-3">
-					<div class="form-group">
-						<label class="control-label" for="{FIELDNAME}">{TEXT}</label>
-						{DROPDOWN}
+					<div class="col-md-2">
+						<patTemplate:tmpl name="calendar_modal" type="simpleCondition" requiredVars="_jomres_com_a_avlcal">
+						<div class="form-group">
+							<label class="control-label" for="availabilityCal">{_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY}</label>
+							<div class="input-group">
+								<button name="availabilityCal" type="button" class="btn btn-primary" data-toggle="modal" data-target="#availability_calendar_model">{_JOMRES_COM_A_AVLCAL}</button>
+							</div>
+						</div>
+						</patTemplate:tmpl>
 					</div>
+					<patTemplate:tmpl name="guesttypes">
+					<div class="col-md-3">
+						<div class="form-group">
+							<label class="control-label" for="{FIELDNAME}">{TEXT}</label>
+							{DROPDOWN}
+						</div>
+					</div>
+					</patTemplate:tmpl>
 				</div>
-				</patTemplate:tmpl>
 			</div>
 		</div>
 	</div>
@@ -467,6 +478,24 @@
 <input type="hidden" id="booking_form_property_uid" name="property_uid" value="{PROPERTYUID}">
 </form>
 </div>
+
+<div class="modal modal-wide fade"  id="availability_calendar_model" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">{_JOMRES_COM_A_AVLCAL}</h4>
+      </div>
+      <div class="modal-body">
+        {BOOKING_FORM_CALENDAR}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">{COMMON_CLOSE}</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <div style="clear:both;">&nbsp;</div>
 
 </patTemplate:tmpl>
