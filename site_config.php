@@ -12,7 +12,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 
 $jrConfig = array(
-  'version' => '9.10.0',
+  'version' => '9.10.1',
   'defaultCrate' => '1',
   'property_list_limit' => '9',
   'useGlobalCurrency' => '1',
