@@ -422,16 +422,28 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 	//create fresh install db tables
 	private function createDefaultDbTables()
 	{
-		foreach (glob(JOMRESPATH_BASE.'database'.JRDS.'tables'.JRDS.'*.php') as $filename) {
-			include $filename;
+		try {
+			foreach (glob(JOMRESPATH_BASE.'database'.JRDS.'tables'.JRDS.'*.php') as $filename) {
+				include $filename;
+			}
+		}
+		catch (Exception $e) {
+			$this->setMessage('Error, unable to create default db tables.', 'danger');
+			$this->setMessage($e->getMessage(), 'danger');
 		}
 	}
 	
 	//seed fresh install tales with default content
 	private function seedDefaultContent()
 	{
-		foreach (glob(JOMRESPATH_BASE.'database'.JRDS.'seeds'.JRDS.'*.php') as $filename) {
-			include $filename;
+		try {
+			foreach (glob(JOMRESPATH_BASE.'database'.JRDS.'seeds'.JRDS.'*.php') as $filename) {
+				include $filename;
+			}
+		}
+		catch (Exception $e) {
+			$this->setMessage('Error, unable to seed default content.', 'danger');
+			$this->setMessage($e->getMessage(), 'danger');
 		}
 	}
 	
@@ -442,17 +454,29 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 		define('JOMRES_INSTALLER', 1);
 		
 		//search all core-plugins and run their installation scripts
-		foreach (glob(JOMRESPATH_BASE.'core-plugins'.JRDS.'*', GLOB_ONLYDIR) as $dir) {
-			if (file_exists($dir.JRDS.'plugin_install.php')) {
-				include $dir.JRDS.'plugin_install.php';
+		try {
+			foreach (glob(JOMRESPATH_BASE.'core-plugins'.JRDS.'*', GLOB_ONLYDIR) as $dir) {
+				if (file_exists($dir.JRDS.'plugin_install.php')) {
+					include $dir.JRDS.'plugin_install.php';
+				}
 			}
+		}
+		catch (Exception $e) {
+			$this->setMessage('Error, unable to run core plugins installation scripts.', 'danger');
+			$this->setMessage($e->getMessage(), 'danger');
 		}
 		
 		//search all core-plugins and run their installation scripts
-		foreach (glob(JOMRESPATH_BASE.'remote_plugins'.JRDS.'*', GLOB_ONLYDIR) as $dir) {
-			if (file_exists($dir.JRDS.'plugin_install.php')) {
-				include $dir.JRDS.'plugin_install.php';
+		try {
+			foreach (glob(JOMRESPATH_BASE.'remote_plugins'.JRDS.'*', GLOB_ONLYDIR) as $dir) {
+				if (file_exists($dir.JRDS.'plugin_install.php')) {
+					include $dir.JRDS.'plugin_install.php';
+				}
 			}
+		}
+		catch (Exception $e) {
+			$this->setMessage('Error, unable to run remote plugins installation scripts.', 'danger');
+			$this->setMessage($e->getMessage(), 'danger');
 		}
 	}
 	
@@ -460,20 +484,32 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 	private function runUpdates()
 	{
 		//search all update dirs, compare their names with the jomres_db_version (latest version to which was updated) and if there are new versions, perform updates
-		foreach (glob(JOMRESPATH_BASE.'database'.JRDS.'updates'.JRDS.'*', GLOB_ONLYDIR) as $dir) {
-			if (version_compare(basename($dir), $this->jrConfig['jomres_db_version'], '>')) {
-				foreach (glob($dir.JRDS.'*.php') as $filename) {
-					include $filename;
+		try {
+			foreach (glob(JOMRESPATH_BASE.'database'.JRDS.'updates'.JRDS.'*', GLOB_ONLYDIR) as $dir) {
+				if (version_compare(basename($dir), $this->jrConfig['jomres_db_version'], '>')) {
+					foreach (glob($dir.JRDS.'*.php') as $filename) {
+						include $filename;
+					}
 				}
 			}
+		} 
+		catch (Exception $e) {
+			$this->setMessage('Error, unable to run updates.', 'danger');
+			$this->setMessage($e->getMessage(), 'danger');
 		}
 	}
 	
 	//legacy update routines
 	private function runLegacyUpdates()
 	{
-		foreach (glob(JOMRESPATH_BASE.'database'.JRDS.'legacy'.JRDS.'*.php') as $filename) {
-			include $filename;
+		try {
+			foreach (glob(JOMRESPATH_BASE.'database'.JRDS.'legacy'.JRDS.'*.php') as $filename) {
+				include $filename;
+			}
+		}
+		catch (Exception $e) {
+			$this->setMessage('Error, unable to run legacy updates.', 'danger');
+			$this->setMessage($e->getMessage(), 'danger');
 		}
 	}
 	
