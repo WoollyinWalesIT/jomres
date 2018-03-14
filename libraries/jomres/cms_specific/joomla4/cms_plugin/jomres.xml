@@ -7,7 +7,7 @@
     <license>GPL2 and MIT</license>
     <authorEmail>sales@jomres.net</authorEmail>
     <authorUrl>https://www.jomres.net</authorUrl>
-    <version>9.10.0</version>
+    <version>9.10.1</version>
     <description>Jomres - Complete Online Booking and Property Management Solution</description>
 	
 	<scriptfile>script.php</scriptfile>

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.0
+ * @version Jomres 9.10.1
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -4022,11 +4022,7 @@ function get_latest_jomres_version($outputText = true)
 
     if (!file_exists(JOMRES_TEMP_ABSPATH.'latest_version.php')) {
 		$base_uri = 'http://updates.jomres4.net/';
-		 if ($jrConfig['development_production'] == 'development') {
-			$query_string = 'versions_dev.php';
-		} else {
-			$query_string = 'versions.php';
-		}
+		$query_string = 'versions.php';
 		
 		$buffer = '';
 
