@@ -31,11 +31,6 @@ class jomres_config_property_singleton
 		$this->get_property_settings();
     }
 
-    public function __clone()
-    {
-        trigger_error('Cloning not allowed on a singleton object', E_USER_ERROR);
-    }
-
     public function set($config)
     {
         $this->property_config = $config;

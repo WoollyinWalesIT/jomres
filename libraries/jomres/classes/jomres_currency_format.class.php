@@ -30,11 +30,6 @@ class jomres_currency_format
         $this->get_format();
     }
 
-    public function __clone()
-    {
-        trigger_error('Cloning not allowed on a singleton object', E_USER_ERROR);
-    }
-
     public function get_format($cformat = false)
     {
         $mrConfig = getPropertySpecificSettings(get_showtime('property_uid'));

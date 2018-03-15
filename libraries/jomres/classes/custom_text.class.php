@@ -26,11 +26,6 @@ class custom_text
         $this->gather_data(array(0));
     }
 
-    public function __clone()
-    {
-        trigger_error('Cloning not allowed on a singleton object', E_USER_ERROR);
-    }
-
     public function reset_current_lang($lang = '')
     {
         if ($lang == '') {

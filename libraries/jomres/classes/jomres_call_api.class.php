@@ -26,11 +26,6 @@ class jomres_call_api
         $this->init();
     }
 
-    public function __clone()
-    {
-        trigger_error('Cloning not allowed on a singleton object', E_USER_ERROR);
-    }
-
     private function init() {
         // If the user is registered, we'll create a new API client and secret for that user if needed. That way, any calls done to the API will be traceable back to that user.
         $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');

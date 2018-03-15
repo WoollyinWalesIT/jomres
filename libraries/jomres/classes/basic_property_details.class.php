@@ -30,11 +30,6 @@ class basic_property_details
         $this->get_all_property_features();
     }
 
-    public function __clone()
-    {
-        trigger_error('Cloning not allowed on a singleton object', E_USER_ERROR);
-    }
-
     public function __set($setting, $value)
     {
         if (self::$internal_debugging) {

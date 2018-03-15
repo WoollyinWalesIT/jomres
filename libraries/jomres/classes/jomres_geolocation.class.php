@@ -31,11 +31,6 @@ class jomres_geolocation
 		$this->init();
     }
 
-    public function __clone()
-    {
-        trigger_error('Cloning not allowed on a singleton object', E_USER_ERROR);
-    }
-
     private function init()
     {
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
