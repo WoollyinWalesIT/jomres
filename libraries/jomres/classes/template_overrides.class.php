@@ -16,21 +16,10 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class template_overrides
 {
-    private static $configInstance;
-
     public function __construct()
     {
         $this->template_overrides = array();
 		$this->get_all_overrides();
-    }
-
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
     }
 
     // Get all room types details

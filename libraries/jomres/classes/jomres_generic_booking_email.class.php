@@ -16,21 +16,10 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_generic_booking_email
 {
-    private static $configInstance;
-
     public function __construct()
     {
         $this->data = array();
         $this->parsed_email = array();
-    }
-
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
     }
 
     public function gather_data($contract_uid = 0, $property_uid = 0, $print = false)

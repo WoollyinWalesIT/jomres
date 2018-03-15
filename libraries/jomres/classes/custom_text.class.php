@@ -16,8 +16,6 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class custom_text
 {
-    private static $configInstance;
-
     public function __construct()
     {
         $this->lang = get_showtime('lang');
@@ -26,15 +24,6 @@ class custom_text
 
         //get the global custom text
         $this->gather_data(array(0));
-    }
-
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
     }
 
     public function __clone()

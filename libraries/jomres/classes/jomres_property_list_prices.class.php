@@ -16,9 +16,6 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_property_list_prices
 {
-    // Store the single instance of Database
-    private static $configInstance;
-
     public function __construct()
     {
         $this->lowest_prices = array();
@@ -26,20 +23,6 @@ class jomres_property_list_prices
         $this->today = date('Y/m/d');
         $this->arrivalDate = date('Y/m/d', strtotime($this->today.'+1 day'));
         $this->departureDate = date('Y/m/d', strtotime($this->arrivalDate.'+1 day'));
-    }
-
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
-    }
-
-    public function __clone()
-    {
-        trigger_error('Cloning not allowed on a singleton object', E_USER_ERROR);
     }
 
     public function __set($setting, $value)

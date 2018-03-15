@@ -16,23 +16,12 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class basic_room_details
 {
-    private static $configInstance;
-
     public function __construct()
     {
         $this->rooms = false;
         $this->room = false;
         $this->all_room_features = array();
         $this->property_uid = 0;
-    }
-
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
     }
 
     //Get all rooms details

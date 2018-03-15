@@ -16,8 +16,6 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_menu
 {
-    private static $configInstance;
-
     public function __construct()
     {
 		//frontend menu
@@ -31,15 +29,6 @@ class jomres_menu
 		$this->admin_menu = array();
     }
 
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
-    }
-	
 	public function add_section($section_id = 1, $title = '')
 	{
 		if ($title == '') {

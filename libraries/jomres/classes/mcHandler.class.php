@@ -19,8 +19,6 @@ defined('_JOMRES_INITCHECK') or die('');
  */
 class mcHandler
 {
-    private static $configInstance;
-
     public function __construct()
     {
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -48,15 +46,6 @@ class mcHandler
 
         $this->registeredClasses = $registry->get_registered_classes();
         $this->miniComponentDirectories = $registry->get_minicomponent_directories();
-    }
-
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
     }
 
     public function touch_templates()

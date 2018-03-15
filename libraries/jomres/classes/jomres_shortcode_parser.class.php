@@ -16,21 +16,10 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_shortcode_parser
 {
-    private static $configInstance;
-
     public function __construct()
     {
         $this->shortcodes = false;
         $this->shortcodes_file = JOMRES_TEMP_ABSPATH.'shortcodes.php';
-    }
-
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
     }
 
     public function get_shortcodes()

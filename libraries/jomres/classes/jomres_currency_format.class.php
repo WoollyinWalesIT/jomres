@@ -22,22 +22,12 @@ defined('_JOMRES_INITCHECK') or die('');
  */
 class jomres_currency_format
 {
-    private static $configInstance;
     private static $internal_debugging;
 
     public function __construct()
     {
         self::$internal_debugging = false;
         $this->get_format();
-    }
-
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
     }
 
     public function __clone()

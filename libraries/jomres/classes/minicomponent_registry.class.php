@@ -18,8 +18,6 @@ defined('_JOMRES_INITCHECK') or die('');
  */
 class minicomponent_registry
 {
-    private static $configInstance;
-
     public function __construct()
     {
         $this->registeredClasses = array();
@@ -51,15 +49,6 @@ class minicomponent_registry
             //this loads the registry items in $this->registeredClasses and $this->miniComponentDirectories
             include_once $this->registry_file;
         }
-    }
-
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
     }
 
     public function get_registered_classes()

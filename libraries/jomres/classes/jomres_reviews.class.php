@@ -16,8 +16,6 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_reviews
 {
-    private static $instance;
-
     public function __construct()
     {
         $this->db_prefix = get_showtime('dbprefix');

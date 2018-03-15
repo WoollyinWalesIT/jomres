@@ -20,20 +20,9 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class purified_inputs_cache
 {
-    private static $configInstance;
-
     public function __construct()
     {
         $this->cached_inputs = array();
-    }
-
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
     }
 
     public function is_cached($request, $element)

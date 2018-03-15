@@ -16,9 +16,6 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_config_property_singleton
 {
-    // Store the single instance of Database
-    private static $configInstance;
-
     public function __construct()
     {
         $this->property_uid = 0;
@@ -32,15 +29,6 @@ class jomres_config_property_singleton
 		
 		//get property specific settings
 		$this->get_property_settings();
-    }
-
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
     }
 
     public function __clone()

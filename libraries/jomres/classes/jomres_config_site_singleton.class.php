@@ -16,22 +16,10 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_config_site_singleton
 {
-    // Store the single instance of Database
-    private static $configInstance;
-
     public function __construct()
     {
         $this->config = array();
         $this->init();
-    }
-
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
     }
 
     public function __clone()

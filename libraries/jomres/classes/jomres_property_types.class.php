@@ -16,8 +16,6 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_property_types
 {
-    private static $configInstance;
-
     public function __construct()
     {
         $this->property_types = false;
@@ -34,15 +32,6 @@ class jomres_property_types
 
         $jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
         $this->property_type['marker_image'] = $jomres_media_centre_images->multi_query_images['noimage-small'];
-    }
-
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
     }
 
     // Get all property types details

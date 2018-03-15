@@ -15,10 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 class jomres_media_centre_images_dbimport
-{
-    // Store the single instance of Database
-    private static $configInstance;
-	
+{	
 	protected $propertys_uids;
 	
 	protected $jomres_media_centre_images;

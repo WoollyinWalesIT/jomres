@@ -16,28 +16,12 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_input_filter_singleton
 {
-    private static $configInstance;
-
     public function __construct()
     {
 		$this->purifier_no_html = false;
 		$this->purifier_allow_html = false;
 		
         $this->init();
-    }
-
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
-    }
-
-    public function __clone()
-    {
-        trigger_error('Cloning not allowed on a singleton object', E_USER_ERROR);
     }
 
     private function init()

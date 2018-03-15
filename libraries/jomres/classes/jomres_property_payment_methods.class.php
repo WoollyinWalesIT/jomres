@@ -16,25 +16,9 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_property_payment_methods
 {
-    private static $configInstance;
-
     public function __construct()
     {
         $this->multi_query_result = array();
-    }
-
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
-    }
-
-    public function __clone()
-    {
-        trigger_error('Cloning not allowed on a singleton object', E_USER_ERROR);
     }
 
     public function get_gateways_multi($property_uids)

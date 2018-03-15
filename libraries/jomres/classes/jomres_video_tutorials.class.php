@@ -16,8 +16,6 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_video_tutorials
 {
-	private static $configInstance;
-
 	public function __construct()
 	{
 		$this->task = '';
@@ -29,16 +27,6 @@ class jomres_video_tutorials
 		
 	}
 
-	public static function getInstance()
-	{
-		if (!self::$configInstance) {
-			self::$configInstance = new self();
-		}
-
-		return self::$configInstance;
-	}
-
-	
 	public function build_modal() {
 		$this->task = $this->get_current_task();
 		$output = array();

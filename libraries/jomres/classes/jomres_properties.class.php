@@ -18,22 +18,11 @@ defined('_JOMRES_INITCHECK') or die('');
 //to get the details of an existing property use basic_property_details class
 class jomres_properties
 {
-    private static $configInstance;
-
     public function __construct()
     {
 		$this->all_property_uids = false;
 
         $this->init_property();
-    }
-
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
     }
 
     public function init_property()

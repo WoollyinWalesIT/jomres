@@ -16,22 +16,11 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class basic_subscription_details
 {
-    private static $configInstance;
-
     public function __construct()
     {
         $this->subscription = array();
 
         $this->package = array();
-    }
-
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
     }
 
     public function gatherData($cms_user_id = 0)

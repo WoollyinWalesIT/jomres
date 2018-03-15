@@ -16,22 +16,11 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_widgets
 {
-    private static $configInstance;
-
     public function __construct()
     {
 		$this->widgets = array();
 		$this->this_page_widgets = array();
 		$this->default_widgets = array();
-    }
-
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
     }
 
 	//register widget

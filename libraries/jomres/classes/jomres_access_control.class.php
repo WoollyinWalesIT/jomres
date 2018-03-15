@@ -16,7 +16,6 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_access_control
 {
-    private static $configInstance;
     private static $internal_debugging;
 
     public function __construct()
@@ -64,15 +63,6 @@ class jomres_access_control
 
 		//get currently controlled tasks
         $this->_init();
-    }
-	
-	public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
     }
 
     public function __clone()

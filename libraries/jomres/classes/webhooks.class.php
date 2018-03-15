@@ -14,7 +14,8 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-class webhooks {
+class webhooks 
+{
     public function __construct( $manager_id ) {
         if ( (int)$manager_id == 0 )
             throw new Exception('Error: Incorrect manager id used when setting webhooks object');

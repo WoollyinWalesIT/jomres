@@ -16,21 +16,10 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class basic_guest_type_details
 {
-    private static $configInstance;
-
     public function __construct()
     {
         $this->guest_types = false;
         $this->property_uid = 0;
-    }
-
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
     }
 
     //Get all guest type details

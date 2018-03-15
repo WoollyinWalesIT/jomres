@@ -16,8 +16,6 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jrportal_taxrate
 {
-    private static $configInstance;
-
     public function __construct()
     {
         $this->id = 0;
@@ -37,15 +35,6 @@ class jrportal_taxrate
         $this->taxrates = false;
 
         $this->getAllTaxRates();
-    }
-
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
     }
 
     public function getAllTaxRates()

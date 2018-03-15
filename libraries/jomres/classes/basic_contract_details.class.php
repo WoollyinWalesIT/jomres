@@ -16,20 +16,9 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class basic_contract_details
 {
-    private static $configInstance;
-
     public function __construct()
     {
         $this->contract = array();
-    }
-
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
     }
 
     public function gather_data($contract_uid = 0, $defaultProperty = 0)

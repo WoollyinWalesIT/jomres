@@ -16,21 +16,10 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class basic_invoice_details
 {
-    private static $configInstance;
-
     public function __construct()
     {
         $this->invoice = array();
         $this->status_note = '0 - unpaid , 1 - paid , 2 - cancelled , 3 - pending ';
-    }
-
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
     }
 
     public function gatherData($invoice_id = 0)

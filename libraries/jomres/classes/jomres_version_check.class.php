@@ -16,8 +16,6 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_version_check
 {
-    private static $configInstance;
-
     public function __construct()
     {
 		$this->latest_jomres_version = get_latest_jomres_version();
@@ -35,15 +33,6 @@ class jomres_version_check
 			$this->check_version();
 		}
 		
-    }
-
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
     }
 
     public function check_version() // We'll get the current version, 

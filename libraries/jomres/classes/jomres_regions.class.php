@@ -16,8 +16,6 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_regions
 {
-	private static $configInstance;
-	
     public function __construct()
     {
         $this->regions = false;
@@ -33,15 +31,6 @@ class jomres_regions
 		$this->region_names_are_translatable = (bool)$jrConfig[ 'region_names_are_translatable' ];
         
 		$this->get_used_property_regions();
-    }
-	
-	public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
     }
 
 	//get all regions used by properties, no need to get all others at this point

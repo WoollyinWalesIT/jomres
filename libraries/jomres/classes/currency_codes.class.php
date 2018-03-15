@@ -16,8 +16,6 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class currency_codes
 {
-	private static $configInstance;
-	
     public function __construct()
     {
         $this->code = '';
@@ -493,15 +491,6 @@ class currency_codes
 			'ZWD' => array('pre' => 'Lei', 'post' => ''), 
 			'XPF' => array('pre' => '', 'post' => 'F')
 			);
-    }
-	
-	public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
     }
 
     public function makeCodesDropdown($code = '', $global = false, $input_name = '')

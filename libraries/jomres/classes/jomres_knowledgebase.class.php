@@ -16,8 +16,6 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_knowledgebase
 {
-    private static $configInstance;
-
     public function __construct()
     {
 		$jomres_language = jomres_singleton_abstract::getInstance('jomres_language');
@@ -26,15 +24,6 @@ class jomres_knowledgebase
         $this->admin_faq = false;
         $this->manager_faq = false;
         $this->guest_faq = false;
-    }
-
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
     }
 
     // Get admin faq

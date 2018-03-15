@@ -40,8 +40,6 @@ set_showtime('socket', $socket);
 
 class jomres_database
 {
-	private static $configInstance;
-	
 	private $link;
 	
 	private $PDO;
@@ -74,15 +72,6 @@ class jomres_database
         if (!this_cms_is_wordpress() || defined('AUTO_UPGRADE')) {
             $this->init();
         }
-    }
-	
-	public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
     }
 
     public function init()

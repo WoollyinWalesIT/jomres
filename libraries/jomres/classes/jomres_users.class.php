@@ -21,23 +21,11 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class jomres_users
 	{
-	private static $configInstance;
-
 	public function __construct()
 		{
 		$this->_init();
 		}
-	
-	public static function getInstance()
-		{
-		if ( !self::$configInstance )
-			{
-			self::$configInstance = new self();
-			}
 
-		return self::$configInstance;
-		}
-	
 	public function _init()
 		{
 		$this->id						= 0;						//(int) manager id

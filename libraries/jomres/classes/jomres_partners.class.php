@@ -36,20 +36,6 @@ class jomres_partners
         }
     }
 
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
-    }
-
-    public function __clone()
-    {
-        trigger_error('Cloning not allowed on a singleton object', E_USER_ERROR);
-    }
-
     public function is_this_cms_user_a_partner($cms_userid)
     {
         if ((int) $cms_userid == 0) {

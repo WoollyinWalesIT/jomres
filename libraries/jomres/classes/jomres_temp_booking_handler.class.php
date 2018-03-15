@@ -16,8 +16,6 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_temp_booking_handler
 {
-    private static $configInstance;
-
     public function __construct()
     {
 
@@ -194,15 +192,6 @@ class jomres_temp_booking_handler
 		$this->_user_settings = $this->user_settings;
     }
 
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
-    }
-	
 	//if the ip and user agent don`t match, exit here
 	private function _preventHijacking()
 	{

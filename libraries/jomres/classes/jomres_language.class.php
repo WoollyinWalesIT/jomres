@@ -16,8 +16,6 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_language
 {
-	private static $configInstance;
-	
     public function __construct()
     {
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -66,15 +64,6 @@ class jomres_language
 		} else {
 			$this->selected_languages = array_keys($langfile_crossref);
 		}
-    }
-	
-	public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
     }
 
     public function get_language($property_type = '')

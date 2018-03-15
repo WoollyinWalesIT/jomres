@@ -16,20 +16,9 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_empty_class
 {
-    private static $configInstance;
-
     public function __construct()
     {
 		
-    }
-
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
     }
 
 	public function __call($name, $arguments) 

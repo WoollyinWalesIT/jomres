@@ -16,8 +16,6 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class basic_coupon_details
 {
-    private static $configInstance;
-
     public function __construct()
     {
         $this->coupons = array();
@@ -33,15 +31,6 @@ class basic_coupon_details
 		$this->is_percentage = 1;
 		$this->rooms_only = 0;
 		$this->guest_uid = 0;
-    }
-
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
     }
 
     //Get all coupons details for one or more property uids

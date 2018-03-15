@@ -16,21 +16,10 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_custom_field_handler
 {
-    private static $configInstance;
-
     public function __construct()
     {
         $this->custom_fields = false;
         $this->custom_fields_by_ptype_id = false;
-    }
-
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
     }
 
     public function get_all_custom_fields()

@@ -18,22 +18,12 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_call_api
 {
-    private static $configInstance;
     private $token;
     private $server;
 
     public function __construct()
     {
         $this->init();
-    }
-
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
     }
 
     public function __clone()

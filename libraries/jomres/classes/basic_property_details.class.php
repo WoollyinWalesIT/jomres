@@ -16,8 +16,6 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class basic_property_details
 {
-    // Store the single instance of Database
-    private static $configInstance;
     private static $internal_debugging;
 
     public function __construct()
@@ -30,15 +28,6 @@ class basic_property_details
         $this->get_all_room_types();
         $this->get_all_property_types();
         $this->get_all_property_features();
-    }
-
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
     }
 
     public function __clone()

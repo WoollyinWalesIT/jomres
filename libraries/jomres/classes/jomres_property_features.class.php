@@ -15,8 +15,6 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class jomres_property_features
 	{
-	private static $configInstance;
-
 	public function __construct()
 		{
 		$this->property_features 	= false;				// array of all property features
@@ -29,16 +27,6 @@ class jomres_property_features
 		$this->ptype_xref			= array();				// property types xref array
 		$this->cat_id				= 0;					// property feature category id
 		$this->cat_title			= 0;					// property feature category id
-		}
-
-	public static function getInstance()
-		{
-		if ( !self::$configInstance )
-			{
-			self::$configInstance = new jomres_property_features();
-			}
-
-		return self::$configInstance;
 		}
 
 	//get all property features

@@ -14,7 +14,8 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-class jomres_deferred_tasks {
+class jomres_deferred_tasks 
+{
     public function __construct( ) 
 	{
         $this->queued_tasks_dir = JOMRES_TEMP_ABSPATH.JRDS.'deferred_tasks'.JRDS;

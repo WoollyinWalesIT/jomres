@@ -15,8 +15,6 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class jomres_property_categories
 	{
-	private static $configInstance;
-
 	public function __construct()
 		{
 		$this->property_categories = false;				// array of all property  categories
@@ -26,16 +24,6 @@ class jomres_property_categories
 		$this->description					= '';		// property category description
 		}
 
-	public static function getInstance()
-		{
-		if ( !self::$configInstance )
-			{
-			self::$configInstance = new self();
-			}
-
-		return self::$configInstance;
-		}
-	
 	//get all property categories
 	public function get_all_property_categories()
 		{

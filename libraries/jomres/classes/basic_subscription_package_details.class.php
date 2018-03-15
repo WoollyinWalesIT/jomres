@@ -16,21 +16,10 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class basic_subscription_package_details
 {
-    private static $configInstance;
-
     public function __construct()
     {
         $this->allPackages = array();
         $this->getAllSubscriptionPackages();
-    }
-
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
     }
 
     public function gatherData($package_id = 0)

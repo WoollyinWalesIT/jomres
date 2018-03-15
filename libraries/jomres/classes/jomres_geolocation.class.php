@@ -16,8 +16,6 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_geolocation
 {
-    private static $configInstance;
-
     public function __construct()
     {
         $this->config = array();
@@ -31,15 +29,6 @@ class jomres_geolocation
         }
         
 		$this->init();
-    }
-
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
     }
 
     public function __clone()
