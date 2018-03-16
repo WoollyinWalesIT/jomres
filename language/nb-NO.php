@@ -1594,7 +1594,7 @@ jr_define('_JOMRES_EMAIL_TEMPLATES_TEXT',"Epost-tekst");
 jr_define('_JOMRES_EMAIL_TEMPLATES_TYPE',"Epost-type");
 jr_define('_JOMRES_EMAIL_TEMPLATES_NAME',"Epost-navn");
 jr_define('_JOMRES_EMAIL_TEMPLATES_DESC',"Epost-beskrivelse");
-jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS',"Vennligst se denne siden for hjelp til å endre eposter og for en liste over tilgjengelige funksjoner: <a href=\"http://manual.jomres.net/email_templates.html\" target=\"_blank\">Hjelp for epost-maler</a>");
+jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS',"Vennligst se denne siden for hjelp til å endre eposter og for en liste over tilgjengelige funksjoner: <a href=\"http://www.jomres.net/manual/property-managers-guide/48-your-toolbar/settings/254-email-templates\" target=\"_blank\">Hjelp for epost-maler</a>");
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME',"Epost til admin ved ny bestilling");
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC',"Epost sendt til administrator når ny bestilling gjøres, hvis global paypal-betaling er aktivert");
 jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME',"Epost til utleier ved ny bestilling");

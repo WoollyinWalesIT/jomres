@@ -2122,7 +2122,7 @@ jr_define('_JOMRES_EMAIL_TEMPLATES_TEXT',"Փոստի տեքստ ");
 jr_define('_JOMRES_EMAIL_TEMPLATES_TYPE',"Փոստի տեսակ");
 jr_define('_JOMRES_EMAIL_TEMPLATES_NAME',"Փոստի անուն");
 jr_define('_JOMRES_EMAIL_TEMPLATES_DESC',"Փոստի նկարագրություն");
-jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS',"Խնդրում ենք Տեսնել այս էջը, սովորույթի օգնությամբ  էլ - նամակների, եւ ցուցակում առկա արտադրանքի: <a href=\"http://manual.jomres.net/email_templates.html\" target=\"_blank\">Email Templates Help</a>");
+jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS',"Խնդրում ենք Տեսնել այս էջը, սովորույթի օգնությամբ  էլ - նամակների, եւ ցուցակում առկա արտադրանքի: <a href=\"http://www.jomres.net/manual/property-managers-guide/48-your-toolbar/settings/254-email-templates\" target=\"_blank\">Email Templates Help</a>");
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME',"Ադմին կայքի էլփոստի նոր ամրագրում");
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC',"Նամակն ուղարկվել է կայքի Ադմինիստրատորին, նոր ամրագրումը կատարելու ընթացքում, եթե գլոբալ Paypal Gateway միացված է");
 jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME',"Հյուրանոցի Նոր Ամրագրման փոստ");
