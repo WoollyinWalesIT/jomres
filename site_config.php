@@ -192,5 +192,6 @@ $jrConfig = array(
   'review_nag' => '1',
   'send_email_copies_to_site_admins' => '0',
   'optimize_images' => '0',
-  'jomres_db_version' => '0'
+  'jomres_db_version' => '0',
+  'api_token_lifetime' => '31536000'
 );

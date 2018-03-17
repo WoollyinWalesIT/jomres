@@ -46,6 +46,16 @@ class j10521api_core
 		$configurationPanel->setmiddle( jomresHTML::selectList( $yesno, 'cfg_api_core_show', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'api_core_show' ] ) );
 		$configurationPanel->setright( jr_gettext( '_OAUTH_CONFIG_SHOW_DESC', '_OAUTH_CONFIG_SHOW_DESC', false ) );
 		$configurationPanel->insertSetting();
+		
+		if (!isset($jrConfig['api_token_lifetime'])) {
+			$jrConfig['api_token_lifetime'] = 31536000;// 365 days
+		}
+
+		$configurationPanel->setleft( jr_gettext( 'API_TOKEN_LIFETIME', 'API_TOKEN_LIFETIME', false ) );
+		$configurationPanel->setmiddle( '<input type="text" class="input-large" name="cfg_api_token_lifetime" value="'.$jrConfig[ 'api_token_lifetime' ].'" />' );
+		$configurationPanel->setright( jr_gettext( 'API_TOKEN_LIFETIME_DESC', 'API_TOKEN_LIFETIME_DESC', false ) );
+		$configurationPanel->insertSetting();
+		
 		}
 	
 	// This must be included in every Event/Mini-component
