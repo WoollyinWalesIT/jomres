@@ -14,6 +14,10 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Psr7;
+use GuzzleHttp\Exception\RequestException;
+
 class jomres_deferred_tasks 
 {
     public function __construct( ) 
@@ -103,7 +107,7 @@ class jomres_deferred_tasks
 
         $url = JOMRES_SITEPAGE_URL_AJAX."&task=background_process&payload_source=".$this->file_identifier;
   
-        $curl_options = array(
+        /* $curl_options = array(
          CURLOPT_URL => $url,
          CURLOPT_POST => 0,
          CURLOPT_HTTP_VERSION => 1.0,
@@ -114,8 +118,20 @@ class jomres_deferred_tasks
          $curl = curl_init();
          curl_setopt_array( $curl, $curl_options );
          $result = curl_exec( $curl );
-         curl_close( $curl );
-        logging::log_message("Sent deferred message ".$this->file_identifier." to ".$url , 'Core', 'DEBUG' , serialize($result)  );
+         curl_close( $curl ); */
+
+		try {
+			$client = new GuzzleHttp\Client([
+				'verify' => false
+			]);
+
+			$response = $client->get($url );
+			$content = $response->getBody()->__toString();
+		} catch (RequestException $e) {
+			trigger_error($e->getMessage(), E_USER_ERROR);
+		}
+		 
+        logging::log_message("Sent deferred message ".$this->file_identifier." to ".$url , 'Core', 'DEBUG' , serialize($content)  );
      }
     
 }

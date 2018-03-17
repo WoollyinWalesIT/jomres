@@ -40,6 +40,12 @@ class j06005delete_client
 				WHERE `client_id`= '".$client_id."' AND `user_id` = ".(int)$thisJRUser->userid."";
 
 			doInsertSql( $query );
+			
+			$query = "DELETE FROM #__jomres_oauth_access_tokens
+				WHERE `client_id`= '".$client_id."' AND `user_id` = ".(int)$thisJRUser->userid."";
+
+			doInsertSql( $query );
+			
 			}
 
 		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=oauth" ), "" ); 
