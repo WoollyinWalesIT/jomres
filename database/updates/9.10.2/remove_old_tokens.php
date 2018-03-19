@@ -16,12 +16,11 @@ defined('_JOMRES_INITCHECK') or die('');
 
 
 // https://github.com/WoollyinWalesIT/jomres/issues/272
-try {
-	$query = "DELETE FROM #__jomres_oauth_access_tokens";
 
-	doInsertSql( $query );
-	} 
-	catch (Exception $e) {
-		//do nothing
-	}
+$query = "TRUNCATE TABLE `#__jomres_oauth_access_tokens`;";
 
+if (!doInsertSql($query)) {
+	$this->setMessage('Error, unable to truncate #__jomres_oauth_access_tokens table', 'danger');
+	
+	return;
+}
