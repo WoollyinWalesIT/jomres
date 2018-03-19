@@ -578,6 +578,8 @@ class dobooking
 
 	public function getAllRoomsData()
 	{
+		$room_type_filter = (int)jomresGetParam($_REQUEST, 'room_type_filter', 0);
+		
 		$basic_room_details = jomres_singleton_abstract::getInstance('basic_room_details');
 		$basic_room_details->get_all_rooms($this->property_uid);
 
@@ -590,26 +592,29 @@ class dobooking
 		$room_images = $images [ 'rooms' ];
 
 		foreach ($basic_room_details->rooms as $r) {
-			$this->allPropertyRooms[ $r['room_uid'] ] = array(
-				'room_uid' => $r['room_uid'],
-				'room_classes_uid' => $r['room_classes_uid'],
-				'propertys_uid' => $r['propertys_uid'],
-				'room_features_uid' => $r['room_features_uid'],
-				'room_name' => $r['room_name'],
-				'room_number' => $r['room_number'],
-				'room_floor' => $r['room_floor'],
-				'max_people' => $r['max_people'],
-				'singleperson_suppliment' => $r['singleperson_suppliment'],
-				'tagline' => $r['tagline'],
-				'description' => $jomres_markdown->get_markdown($r['description']),
-				'small_room_image' => $room_images [ $r['room_uid'] ] [0] ['small'],
-				'medium_room_image' => $room_images [ $r['room_uid'] ] [0] ['medium'],
-				);
+			
+			if ( $room_type_filter == 0 || $r['room_classes_uid'] == $room_type_filter) {
+				$this->allPropertyRooms[ $r['room_uid'] ] = array(
+					'room_uid' => $r['room_uid'],
+					'room_classes_uid' => $r['room_classes_uid'],
+					'propertys_uid' => $r['propertys_uid'],
+					'room_features_uid' => $r['room_features_uid'],
+					'room_name' => $r['room_name'],
+					'room_number' => $r['room_number'],
+					'room_floor' => $r['room_floor'],
+					'max_people' => $r['max_people'],
+					'singleperson_suppliment' => $r['singleperson_suppliment'],
+					'tagline' => $r['tagline'],
+					'description' => $jomres_markdown->get_markdown($r['description']),
+					'small_room_image' => $room_images [ $r['room_uid'] ] [0] ['small'],
+					'medium_room_image' => $room_images [ $r['room_uid'] ] [0] ['medium'],
+					);
 
-			$this->allPropertyRoomUids[ ] = $r['room_uid'];
-
-			if (!in_array($r['room_classes_uid'], $this->allRoomClassIds)) {
-				$this->allRoomClassIds[ ] = $r['room_classes_uid'];
+				$this->allPropertyRoomUids[ ] = $r['room_uid'];
+				
+				if (!in_array($r['room_classes_uid'], $this->allRoomClassIds)) {
+					$this->allRoomClassIds[ ] = $r['room_classes_uid'];
+				}
 			}
 		}
 
