@@ -189,6 +189,8 @@ class j09995menu
 			if ($mrConfig[ 'is_real_estate_listing' ] != '1') {
 				$jomres_menu->add_item(80, jr_gettext('_JOMRES_EMAIL_TEMPLATES_TITLE', '_JOMRES_EMAIL_TEMPLATES_TITLE', false), 'list_emails', 'fa-envelope-o');
 			}
+			
+			$jomres_menu->add_item(80, jr_gettext('_JOMRES_PROPERTY_ROOM_TYPES_EDIT', '_JOMRES_PROPERTY_ROOM_TYPES_EDIT', false), 'list_room_types', 'fa-pencil-square-o');
 		}
 		
 		//help section menus

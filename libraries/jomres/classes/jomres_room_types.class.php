@@ -19,7 +19,9 @@ class jomres_room_types
     public function __construct()
     {
         $this->room_types = false;
-
+		$this->property_specific_room_types = false;
+		
+		$this->property_room_types = false;
         $this->all_rtype_ptype_xrefs = false;
         $this->all_ptype_rtype_xrefs = false;
         $this->this_rtype_ptype_xrefs = array();
@@ -30,10 +32,11 @@ class jomres_room_types
         $this->room_type['room_class_full_desc'] = '';        // resource type description - not used
         $this->room_type['image'] = '';        // resource type icon path
         $this->room_type['ptype_xref'] = array();    // property types that this room type is assigned to
+		$this->room_type['property_uid'] = false;
     }
 
     // Get all room types details
-    public function get_all_room_types()
+    public function get_all_room_types( $merged = false )
     {
         if (is_array($this->room_types)) { //already executed, but there are no room types created yet, so the array is empty, or the data is retreived from cache
             return true;
@@ -43,29 +46,48 @@ class jomres_room_types
 
         //get the room type property type xrefs
         $this->get_xrefs();
-
-        $query = 'SELECT `room_classes_uid`, `room_class_abbv`, `room_class_full_desc`, `image` FROM #__jomres_room_classes WHERE `property_uid` = 0 ORDER BY `room_class_abbv` ';
+		
+        $query = 'SELECT `room_classes_uid`, `room_class_abbv`, `room_class_full_desc`, `image` , `property_uid` FROM #__jomres_room_classes ORDER BY `room_class_abbv` ';
+		
         $result = doSelectSql($query);
 
         if (empty($result)) {
             return false;
         }
 
+		
         foreach ($result as $r) {
-            $this->room_types[$r->room_classes_uid]['room_classes_uid'] = (int) $r->room_classes_uid;
-            $this->room_types[$r->room_classes_uid]['room_class_abbv'] = $r->room_class_abbv;
-            $this->room_types[$r->room_classes_uid]['room_class_full_desc'] = $r->room_class_full_desc;
-            $this->room_types[$r->room_classes_uid]['image'] = $r->image;
+			if ($r->property_uid  > 0 ) {
+				$this->property_specific_room_types[$r->property_uid][$r->room_classes_uid]['room_classes_uid'] = (int) $r->room_classes_uid;
+				$this->property_specific_room_types[$r->property_uid][$r->room_classes_uid]['room_class_abbv'] = $r->room_class_abbv;
+				$this->property_specific_room_types[$r->property_uid][$r->room_classes_uid]['room_class_full_desc'] = $r->room_class_full_desc;
+				$this->property_specific_room_types[$r->property_uid][$r->room_classes_uid]['image'] = $r->image;
 
-            if (isset($this->all_rtype_ptype_xrefs[$r->room_classes_uid])) {
-                $this->room_types[$r->room_classes_uid]['ptype_xref'] = $this->all_rtype_ptype_xrefs[$r->room_classes_uid];
-            } else {
-                $this->room_types[$r->room_classes_uid]['ptype_xref'] = array();
-            }
+				if (isset($this->all_rtype_ptype_xrefs[$r->room_classes_uid])) {
+					$this->property_specific_room_types[$r->property_uid][$r->room_classes_uid]['ptype_xref'] = $this->all_rtype_ptype_xrefs[$r->room_classes_uid];
+				} else {
+					$this->property_specific_room_types[$r->property_uid][$r->room_classes_uid]['ptype_xref'] = array();
+				}
+				$this->property_specific_room_types[$r->property_uid][$r->room_classes_uid]['property_uid'] = (int) $r->property_uid;
+			} else {
+				$this->room_types[$r->room_classes_uid]['room_classes_uid'] = (int) $r->room_classes_uid;
+				$this->room_types[$r->room_classes_uid]['room_class_abbv'] = $r->room_class_abbv;
+				$this->room_types[$r->room_classes_uid]['room_class_full_desc'] = $r->room_class_full_desc;
+				$this->room_types[$r->room_classes_uid]['image'] = $r->image;
+
+				if (isset($this->all_rtype_ptype_xrefs[$r->room_classes_uid])) {
+					$this->room_types[$r->room_classes_uid]['ptype_xref'] = $this->all_rtype_ptype_xrefs[$r->room_classes_uid];
+				} else {
+					$this->room_types[$r->room_classes_uid]['ptype_xref'] = array();
+				}
+				$this->room_types[$r->room_classes_uid]['property_uid'] = (int) $r->property_uid;
+			}
+
         }
 
         return true;
     }
+
 
     //Get room type details by room type id
     public function get_room_type($room_classes_uid = 0)
@@ -87,7 +109,7 @@ class jomres_room_types
             $this->get_xrefs($room_classes_uid);
         }
 
-        $query = 'SELECT `room_classes_uid`, `room_class_abbv`, `room_class_full_desc`, `image` FROM #__jomres_room_classes WHERE `property_uid` = 0 AND `room_classes_uid` = '.(int) $room_classes_uid;
+        $query = 'SELECT `room_classes_uid`, `room_class_abbv`, `room_class_full_desc`, `image` , `property_uid` FROM #__jomres_room_classes WHERE `room_classes_uid` = '.(int) $room_classes_uid;
         $result = doSelectSql($query);
 
         if (empty($result)) {
@@ -95,16 +117,31 @@ class jomres_room_types
         }
 
         foreach ($result as $r) {
-            $this->room_type['room_classes_uid'] = (int) $r->room_classes_uid;
-            $this->room_type['room_class_abbv'] = $r->room_class_abbv;
-            $this->room_type['room_class_full_desc'] = $r->room_class_full_desc;
-            $this->room_type['image'] = $r->image;
+			if ($r->property_uid == 0 ) {
+				$this->room_type['room_classes_uid'] = (int) $r->room_classes_uid;
+				$this->room_type['room_class_abbv'] = $r->room_class_abbv;
+				$this->room_type['room_class_full_desc'] = $r->room_class_full_desc;
+				$this->room_type['image'] = $r->image;
 
-            if (isset($this->this_rtype_ptype_xrefs[$r->room_classes_uid])) {
-                $this->room_type['ptype_xref'] = $this->this_rtype_ptype_xrefs[$r->room_classes_uid];
-            } else {
-                $this->room_type['ptype_xref'] = array();
-            }
+				if (isset($this->this_rtype_ptype_xrefs[$r->room_classes_uid])) {
+					$this->room_type['ptype_xref'] = $this->this_rtype_ptype_xrefs[$r->room_classes_uid];
+				} else {
+					$this->room_type['ptype_xref'] = array();
+				}
+			} else {
+				$this->property_specific_room_type[$r->property_uid][$r->room_classes_uid]['room_classes_uid'] = (int) $r->room_classes_uid;
+				$this->property_specific_room_type[$r->property_uid][$r->room_classes_uid]['room_class_abbv'] = $r->room_class_abbv;
+				$this->property_specific_room_type[$r->property_uid][$r->room_classes_uid]['room_class_full_desc'] = $r->room_class_full_desc;
+				$this->property_specific_room_type[$r->property_uid][$r->room_classes_uid]['image'] = $r->image;
+
+				if (isset($this->all_rtype_ptype_xrefs[$r->room_classes_uid])) {
+					$this->property_specific_room_type[$r->property_uid][$r->room_classes_uid]['ptype_xref'] = $this->all_rtype_ptype_xrefs[$r->room_classes_uid];
+				} else {
+					$this->property_specific_room_type[$r->property_uid][$r->room_classes_uid]['ptype_xref'] = array();
+				}
+				$this->property_specific_room_type[$r->property_uid][$r->room_classes_uid]['property_uid'] = (int) $r->property_uid;
+			}
+
         }
 
         return true;
@@ -113,12 +150,17 @@ class jomres_room_types
     //Save new or existing resource type
     public function save_room_type()
     {
+		if (!$this->room_type['property_uid']) {
+			throw new Exception('Error: Property uid not set');
+		}
+		
         if ($this->room_type['room_classes_uid'] > 0) {
             $query = "UPDATE #__jomres_room_classes 
 						SET 
 							`room_class_abbv` 		= '".$this->room_type['room_class_abbv']."', 
 							`room_class_full_desc` 	= '".$this->room_type['room_class_full_desc']."',
 							`image` 				= '".$this->room_type['image']."'
+							
 						WHERE `room_classes_uid` = " .(int) $this->room_type['room_classes_uid'];
 
             if (doInsertSql($query, false)) {
@@ -139,14 +181,14 @@ class jomres_room_types
 								'".$this->room_type['room_class_abbv']."', 
 								'".$this->room_type['room_class_full_desc']."',
 								'".$this->room_type['image']."',
-								0
+								".(int)$this->room_type['property_uid']."
 								)
 								";
             $roomtype_id = doInsertSql($query, false);
         }
 
         if ((int) $roomtype_id > 0) {
-            if ($this->update_roomtype_propertytype_xref_table($roomtype_id, $this->room_type['ptype_xref'])) {
+            if ($this->update_roomtype_propertytype_xref_table($roomtype_id, array($this->room_type['ptype_xref']) )) {
                 return true;
             } else {
                 return false;
@@ -262,5 +304,26 @@ class jomres_room_types
 			}
 
 		return $images;
+	}
+	
+	// To be used by any backend calling script that edits room types. Not required by admin area scripts
+	function validate_manager_access_to_room_type($room_class_uid = 0 ) 
+	{
+		$property_uid = getDefaultProperty();
+		
+		if ( $room_class_uid == 0 ) {
+			return true;
+		}
+		
+		if (empty($this->property_specific_room_types[$property_uid])) {
+			return true;
+		}
+
+		if (is_array($this->property_specific_room_types[$property_uid])){
+			if (isset($this->property_specific_room_types[$property_uid][$room_class_uid])){
+				return true;
+			}
+			throw new Exception('Manager attempted to access a room type that does not belong to them');
+		}
 	}
 }

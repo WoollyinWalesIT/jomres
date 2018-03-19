@@ -1,0 +1,31 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2 class="page-header">{PAGETITLE}</h2>
+
+<form action="" method="post" name="adminForm" class="form-horizontal">
+	{JOMRESTOOLBAR}
+	<fieldset>
+		<div class="control-group">
+			<label class="control-label" for="name">{HABBV}</label>
+
+			<div class="controls">
+				<input type="text" name="room_class_abbv" value="{CLASSABBV}" class="input-large"/>
+			</div>
+		</div>
+		
+		<div class="control-group">
+			<label class="control-label" for="name">{_JOMRES_IMAGE}</label>
+
+			<div class="controls">
+				<patTemplate:tmpl name="rows">
+					<input type="radio" name="image" value="{IMAGE_FILENAME}" {ISCHECKED}/><img src="{IMAGE_SRC}" width="25" height="25" alt="image"/>
+				</patTemplate:tmpl>
+			</div>
+		</div>
+
+		<input type="hidden" name="room_classes_uid" value="{ROOMCLASSUID}">
+		<input type="hidden" name="option" value="com_jomres"/>
+		<input type="hidden" name="task" value="save_room_type"/>
+	</fieldset>
+</form>
+</patTemplate:tmpl>

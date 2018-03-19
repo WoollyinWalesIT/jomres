@@ -30,7 +30,7 @@ class j16000listGlobalroomTypes
         $jomres_property_types->get_all_property_types();
 
         $jomres_room_types = jomres_singleton_abstract::getInstance('jomres_room_types');
-        $jomres_room_types->get_all_room_types();
+        $jomres_room_types->get_all_room_types(true);
 
         $output = array();
         $rows = array();
