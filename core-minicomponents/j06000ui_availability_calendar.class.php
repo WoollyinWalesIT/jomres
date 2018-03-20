@@ -181,22 +181,14 @@ class j06000ui_availability_calendar
             $full_output = substr($full_output, 0, strlen($full_output) - 1);
             $full_output .= '];';
         }
-
-		$predefined_arrival_day_return_string ='';
-		if ($mrConfig[ 'fixedArrivalDay' ] != '' && (int)$mrConfig[ 'fixedArrivalDateYesNo' ] != 0  ) {
-			for ($i=0;$i<=6;$i++) {
-				if ($i != $mrConfig[ 'fixedArrivalDay' ] ) {
-					$predefined_arrival_day_return_string .= 'day != '.$i .' && ';
+		
+		$fixed_arrival_day_js = '';
+		if ((int)$mrConfig[ 'fixedArrivalDateYesNo' ] == 1 && $mrConfig[ 'fixedArrivalDay' ] != '' ) {
+			$fixed_arrival_day_js = '
+				if ( day_of_week != '.(int)$mrConfig[ 'fixedArrivalDay' ].' ) {
+					day_is_clickable = false;
 				}
-				
-				//return [(day != 1 && day != 2)];
-			}
-			if ($predefined_arrival_day_return_string != '' ) {
-				$predefined_arrival_day_return_string = 'beforeShowDay: function(date) {
-				var day = date.getDay();
-				return [('.substr($predefined_arrival_day_return_string, 0, -4).')];
-			},';
-			}
+			';
 		}
 		
 		$url = get_booking_url($property_uid,'','&pdetails_cal=1');
@@ -210,7 +202,7 @@ class j06000ui_availability_calendar
 			
 			function highlightDays_' .$random_identifier.'(date)
 				{
-				var year, month, day, currDate;
+				var year, month, day, currDate, day_is_clickable, day_of_week;
 				// compile current date
 				year = String(date.getFullYear());
 				month = String(date.getMonth() + 1);
@@ -222,50 +214,46 @@ class j06000ui_availability_calendar
 					day = "0" + day;
 					}
 				currDate = String(year+\'/\'+month+\'/\'+day);
+				
+				//is day disabled when fixed arrival days are enabled?
+				day_is_clickable = true;
+				day_of_week = date.getDay();
+				
+				'.$fixed_arrival_day_js.'
+				
 				// is date in the specialDays?
 				if (\'undefined\'!=typeof(quarter_dates_' .$random_identifier.')){
 					if (jomresJquery.inArray(currDate, quarter_dates_' .$random_identifier.') >= 0) {
-						return [true, \'calendar_background_quarter\'];
+						return [day_is_clickable, \'calendar_background_quarter\'];
 						}
 					}
 				if (\'undefined\'!=typeof(half_dates_' .$random_identifier.')){
 				
 					if (jomresJquery.inArray(currDate, half_dates_' .$random_identifier.') >= 0) {
-						return [true, \'calendar_background_half\'];
+						return [day_is_clickable, \'calendar_background_half\'];
 						}
 					}
 				if (\'undefined\'!=typeof(threequarter_dates_' .$random_identifier.')){
 					if (jomresJquery.inArray(currDate, threequarter_dates_' .$random_identifier.') >= 0) {
-						return [true, \'calendar_background_threequarter\'];
+						return [day_is_clickable, \'calendar_background_threequarter\'];
 						}
 					}
 				if (\'undefined\'!=typeof(full_dates_' .$random_identifier.')){
 					if (jomresJquery.inArray(currDate, full_dates_' .$random_identifier.') >= 0) {
-						return [true, \'calendar_background_full\'];
+						return [false, \'calendar_background_full\'];
 						}
 					}
-				return [true, \'\'];
+				return [day_is_clickable, \'\'];
 				}
 
-			jomresJquery(function() {
+			jomresJquery(document).ready(function(){
 				jomresJquery( "#' .$random_identifier.'" ).datepicker({
 					"dateFormat" : "yy/mm/dd",
 					"minDate": 0,
 					firstDay: '.($jrConfig[ 'calendarstartofweekday' ] - 1).',
-					'.$predefined_arrival_day_return_string.'
+					beforeShowDay: highlightDays_' .$random_identifier.',
 					onSelect: function (date, el) {
-						var day  = el.selectedDay,
-							mon  = el.selectedMonth,
-							year = el.selectedYear;
-
-						var el = jomresJquery(el.dpDiv).find(\'[data-year="\'+year+\'"][data-month="\'+mon+\'"]\').filter(function() {
-							return jomresJquery(this).find(\'a\').text().trim() == day;
-						});
-						if ( el.hasClass("calendar_background_full") ) {
-							return true;
-						} else {
-                            window.location = booking_form_url_' .$random_identifier.'+\'&arrivalDate=\'+date;
-							}
+						window.location = booking_form_url_' .$random_identifier.'+\'&arrivalDate=\'+date;
 						}
 					});
 				});
