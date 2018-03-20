@@ -36,7 +36,7 @@ class jomres_room_types
     }
 
     // Get all room types details
-    public function get_all_room_types( $merged = false )
+    public function get_all_room_types()
     {
         if (is_array($this->room_types)) { //already executed, but there are no room types created yet, so the array is empty, or the data is retreived from cache
             return true;
