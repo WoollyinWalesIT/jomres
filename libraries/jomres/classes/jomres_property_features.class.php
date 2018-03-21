@@ -27,6 +27,7 @@ class jomres_property_features
 		$this->ptype_xref			= array();				// property types xref array
 		$this->cat_id				= 0;					// property feature category id
 		$this->cat_title			= 0;					// property feature category id
+		$this->include_in_filters	= 1;					// include in filters 
 		}
 
 	//get all property features
@@ -58,7 +59,7 @@ class jomres_property_features
 			$this->property_features[$r->hotel_features_uid]['desc']				= jr_gettext( '_JOMRES_CUSTOMTEXT_FEATURES_DESC' . (int) $r->hotel_features_uid, $r->hotel_feature_full_desc, false ); // property feature description
 			$this->property_features[$r->hotel_features_uid]['image']				= $r->image;							// property feature image/icon
 			$this->property_features[$r->hotel_features_uid]['property_uid']		= (int)$r->property_uid;				// property uid
-			$this->property_features[$r->hotel_features_uid]['include_in_filters']	= (int)$r->include_in_filters;				// property uid
+			$this->property_features[$r->hotel_features_uid]['include_in_filters']	= (int)$r->include_in_filters;			// includ ein filters
 			
 			if ( $r->ptype_xref != '' )
 				{
@@ -174,7 +175,7 @@ class jomres_property_features
 										 `property_uid`,
 										 `ptype_xref`,
 										 `cat_id`,
-										 `include_in_filters`,
+										 `include_in_filters`
 										 ) 
 										VALUES 
 										(
