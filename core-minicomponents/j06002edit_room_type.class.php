@@ -25,7 +25,9 @@ class j06002edit_room_type
 
             return;
         }
-
+        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+        $jrConfig = $siteConfig->get();
+		
         $property_uid = getDefaultProperty();
 
         $room_classes_uid = intval(jomresGetParam($_REQUEST, 'room_classes_uid', 0));
@@ -46,8 +48,32 @@ class j06002edit_room_type
         $output[ 'ROOMCLASSUID' ] = $room_classes_uid;
 		if (isset($jomres_room_types->property_specific_room_type[$property_uid][$room_classes_uid])) {
 			$output[ 'CLASSABBV' ] = stripslashes($jomres_room_types->property_specific_room_type[$property_uid][$room_classes_uid]['room_class_abbv']);
-			$output[ 'CLASSDESC' ] = stripslashes($jomres_room_types->property_specific_room_type[$property_uid][$room_classes_uid]['room_class_full_desc']);
+			if ($jrConfig[ 'allowHTMLeditor' ] == '1') {
+				$width = '95%';
+				$height = '250';
+				$col = '20';
+				$row = '3';
+				
+				$output[ 'SIMPLEMDE_JAVASCRIPT' ] = '';
+				$output[ 'MARKDOWN_BUTTON' ] = '';
+				$output[ 'CLASSDESC' ] = editorAreaText('room_class_desc', $jomres_room_types->property_specific_room_type[$property_uid][$room_classes_uid]['room_class_full_desc'], 'room_class_desc', $width, $height, $col, $row);
+			} else {
+                jomres_cmsspecific_addheaddata('javascript', JOMRES_NODE_MODULES_RELPATH.'simple-cmeditor/dist/', 'simplemde.min.js');
+                jomres_cmsspecific_addheaddata('css', JOMRES_NODE_MODULES_RELPATH.'simple-cmeditor/dist/', 'simplemde.min.css');
+                
+                $output[ 'SIMPLEMDE_JAVASCRIPT' ] = '
+                    <script type="text/javascript">
+                    jomresJquery(document).ready(function () {
+                        var buttons =  ["bold", "italic", "heading", "strikethrough" , "|" , "unordered-list" , "ordered-list" , "clean-block" , "image" , "table" , "horizontal-rule" , "|", "preview" ];
+                        var simplemde = new SimpleMDE({ element: document.getElementById("room_description") ,toolbar: buttons, });
+                    });
+                    </script>';
 
+                $output[ 'MARKDOWN_BUTTON' ] = $MiniComponents->specificEvent('06000', 'show_markdown_modal', array('output_now' => false));
+                
+                $output[ 'CLASSDESC' ] = '<textarea class="inputbox form-control" cols="70" rows="5" id="room_class_desc" name="room_class_desc">'.jomres_remove_HTML( $jomres_room_types->property_specific_room_type[$property_uid][$room_classes_uid]['room_class_full_desc'] , '').'</textarea>';
+			}
+			
 			$image = $jomres_room_types->property_specific_room_type[$property_uid][$room_classes_uid]['image'];
 		} else {
 			$output[ 'CLASSABBV' ] = '';

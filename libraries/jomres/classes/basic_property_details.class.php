@@ -451,6 +451,9 @@ class basic_property_details
                 $this->property_names[$data->propertys_uid] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME', $data->property_name, $editable, false);
             }
 
+			jr_import('jomres_markdown');
+			$jomres_markdown = new jomres_markdown();
+		
             $temp_rooms = array();
             $query = 'SELECT `room_uid`,`room_classes_uid`,`propertys_uid`,`max_people` FROM #__jomres_rooms WHERE propertys_uid IN ('.jomres_implode($property_uids).') ';
             $rooms = doSelectSql($query);
@@ -458,9 +461,10 @@ class basic_property_details
                 $this->multi_query_result[ $room->propertys_uid ][ 'rooms' ][ $room->room_uid ] = $room->room_uid;
                 if (isset($this->all_room_types[ $room->room_classes_uid ])) {
                     $this->multi_query_result[ $room->propertys_uid ][ 'room_types' ][ $room->room_classes_uid ][ 'abbv' ] = $this->all_room_types[ $room->room_classes_uid ][ 'room_class_abbv' ];
-                    $this->multi_query_result[ $room->propertys_uid ][ 'room_types' ][ $room->room_classes_uid ][ 'desc' ] = $this->all_room_types[ $room->room_classes_uid ][ 'room_class_full_desc' ];
+                    $this->multi_query_result[ $room->propertys_uid ][ 'room_types' ][ $room->room_classes_uid ][ 'desc' ] = jomres_cmsspecific_parseByBots($jomres_markdown->get_markdown($this->all_room_types[ $room->room_classes_uid ][ 'room_class_full_desc' ]));
                     $this->multi_query_result[ $room->propertys_uid ][ 'room_types' ][ $room->room_classes_uid ][ 'image' ] = $this->all_room_types[ $room->room_classes_uid ][ 'image' ];
                 }
+				
                 $this->multi_query_result[ $room->propertys_uid ][ 'rooms_by_type' ][ $room->room_classes_uid ][] = $room->room_uid;
                 $this->multi_query_result[ $room->propertys_uid ][ 'rooms_max_people' ][ $room->room_classes_uid ][$room->room_uid] = $room->max_people;
             }

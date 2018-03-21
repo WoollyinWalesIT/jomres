@@ -42,7 +42,7 @@ class j06002save_room_type
         $jomres_room_types->room_type['room_classes_uid'] = (int)$room_classes_uid;
 		$jomres_room_types->room_type['property_uid'] = (int) $property_uid;
         $jomres_room_types->room_type['room_class_abbv'] = jomresGetParam($_POST, 'room_class_abbv', '');
-        $jomres_room_types->room_type['room_class_full_desc'] = jomresGetParam($_POST, 'room_class_full_desc', '');
+        $jomres_room_types->room_type['room_class_full_desc'] = jomresGetParam($_POST, 'room_class_desc', '');
         $jomres_room_types->room_type['ptype_xref'] = $basic_property_details->multi_query_result[$property_uid]['ptype_id'];
         $jomres_room_types->room_type['image'] = jomresGetParam($_POST, 'image', '');
 

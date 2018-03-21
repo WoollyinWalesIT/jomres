@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.11.2
+ * @version Jomres 9.10.1
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j06000show_property_room_types
+class j06000show_property_room_type
 {
     public function __construct($componentArgs)
     {
@@ -42,6 +42,12 @@ class j06000show_property_room_types
 			$property_uid = (int)jomresGetParam($_REQUEST, 'property_uid', 0);
         }
 		
+        if (isset($componentArgs[ 'room_classes_uid' ])) {
+            $room_classes_uid = (int)$componentArgs[ 'room_classes_uid' ];
+        } else {
+			$room_classes_uid = (int)jomresGetParam($_REQUEST, 'room_classes_uid', 0);
+        }
+		
 		if ($property_uid == 0) {
             return;
         }
@@ -61,53 +67,41 @@ class j06000show_property_room_types
 
         $output = array();
 
-        if (!empty($basic_property_details->room_types)) {
-            $room_types = array();
+        if (!empty($basic_property_details->room_types) && isset($basic_property_details->room_types[$room_classes_uid]) ) {
+            
             $output[ '_JOMRES_SEARCH_RTYPES' ] = jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', '_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', false);
 
-            foreach ($basic_property_details->room_types as $key => $val) {
-                $room_type[ 'ROOM_TYPE' ] = '';
-                $room_type[ 'ROOM_TYPE_TEXT' ] = '';
-                $room_type[ 'ROOM_TYPE_COUNTER' ] = 0;
-                if (isset($basic_property_details->this_property_room_classes[$key])) {
-                    $url = jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&room_type='.$key);
-                    $room_type[ 'ROOM_TYPE' ] =
-                        jomres_makeTooltip(
-                            $basic_property_details->this_property_room_classes,
-                            $basic_property_details->this_property_room_classes[$key]['abbv'],
-                            $basic_property_details->this_property_room_classes[$key]['desc'],
-                            JOMRES_IMAGELOCATION_RELPATH.'rmtypes/'.$basic_property_details->this_property_room_classes[$key]['image'],
-                            '',
-                            'room_type',
-                            array(),
-                            $url
-                            );
-                    $room_type[ 'ROOM_TYPE_TEXT' ] = $basic_property_details->this_property_room_classes[$key]['abbv'];
-                    $room_type[ 'ROOM_TYPE_COUNTER' ] = count($basic_property_details->rooms_by_type[$key]);
-					$room_type[ 'ROOM_TYPE_PAGE_URL' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=show_property_room_type&property_uid='.$property_uid.'&room_classes_uid='.$key);
-                }
-
-                $room_types[] = $room_type;
-            }
-
+			//var_dump($basic_property_details->room_types[$room_classes_uid]);exit;
+			
+			$output['ROOM_TYPE_TITLE'] = $basic_property_details->room_types[$room_classes_uid]['abbv'];
+			$output['ROOM_TYPE_DESCRIPTION'] = $basic_property_details->room_types[$room_classes_uid]['desc'];
+			
+			$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
+			$jomres_media_centre_images->get_images($property_uid);
+			
+			if (!empty($jomres_media_centre_images->images['room_types'][$room_classes_uid])) {
+					$result = $MiniComponents->specificEvent('01060', 'slideshow', array('images' => $jomres_media_centre_images->images['room_types'][$room_classes_uid]));
+					$output[ 'SLIDESHOW' ] = $result ['slideshow'];
+				} else {
+					$output['SLIDESHOW'] = '';
+				}
+			
+			// var_dump($jomres_media_centre_images->images['room_types'][$room_classes_uid]);exit;
+			// if (isset($jomres_media_centre_images->images [$resource_type] [$resource_id])) {
+			
+			
             $pageoutput[] = $output;
             $tmpl = new patTemplate();
             $tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
             $tmpl->addRows('pageoutput', $pageoutput);
-            $tmpl->addRows('room_types', $room_types);
-            if ($mrConfig['singleRoomProperty'] == '1') {
-                $tmpl->readTemplatesFromInput('show_property_room_types_srp.html');
-            } else {
-                $tmpl->readTemplatesFromInput('show_property_room_types.html');
-            }
-            $features_template = $tmpl->getParsedTemplate();
+            $tmpl->readTemplatesFromInput('show_property_room_type.html');
+
+            $rendered = $tmpl->getParsedTemplate();
             if ($output_now) {
-                echo $features_template;
+                echo $rendered;
             } else {
-                $this->retVals = $features_template;
+                $this->retVals = $rendered;
             }
-        } else {
-            $output[ '_JOMRES_SEARCH_RTYPES' ] = '';
         }
     }
 

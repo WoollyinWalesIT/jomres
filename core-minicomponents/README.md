@@ -2,7 +2,7 @@ The scripts in this file are not called directly, instead they are called by oth
 
 
 00001 Set into place various functions that can be overriden, or for other bootstrapping purposes.  
-00002 Boostraps the system's user information.  
+00002 Bootstraps the system's user information.  
 00003 Currently used to boostrap the input filtering settings.  
 00004 Loads javascript and css files, which are then handing off to the host CMS for loading into the head or footer as the CMS dictates.  
 00005 This trigger point is used by most plugins primarily to load their own language files and frontend/admin menu items. At this point most of the system has been bootstrapped, internal language files loaded according to the CMS's chosen language. Various other tasks such as saving previously searched variables for such plugins are saved, and language specific javascript files are created. After this point we're starting to build the page's output.  
