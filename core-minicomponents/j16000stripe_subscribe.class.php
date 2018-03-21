@@ -25,6 +25,11 @@ class j16000stripe_subscribe
 
 			return;
 		}
+		
+		if (defined('AUTO_UPGRADE')) {
+			return;
+		}
+
 		jomres_cmsspecific_addheaddata('javascript', JOMRES_NODE_MODULES_RELPATH.'blockui-npm/', 'jquery.blockUI.js');
 
 		jr_import('jomres_check_support_key');

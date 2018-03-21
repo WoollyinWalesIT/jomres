@@ -211,7 +211,7 @@ class j16000showplugins
 		} else { // Key not valid
 			$output = array();
 			
-			$output['SUBSCRIPTION_LICENSES'] =  $MiniComponents->specificEvent('16000', 'prices', array('output_now'=>false));
+			$output['SUBSCRIPTION_LICENSES'] =  $MiniComponents->specificEvent('16000', 'stripe_subscribe', array('output_now'=>false));
 			
 			$pageoutput = array();
 			$pageoutput[ ] = $output;
