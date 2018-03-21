@@ -127,7 +127,7 @@ class jomres_install
 
 		//BC: if Jomres db version is 0 (versions older than 9.10.0 don`t have this setting), Jomres is either not installed, or an update from a version older than 9.10.0 (when the new installer was introduced)
 		if ($this->jrConfig['jomres_db_version'] == '0') { //triggers only on updates from older versions than 9.10.0 when this setting was introduced.
-			if ($this->jomresTablesExist()) {
+			if ($this->jomresTablesAndDataExist()) {
 				$this->action = 'update';
 				
 				//perform legacy update routines too
@@ -141,7 +141,7 @@ class jomres_install
 			//file version is higher than the db version, perform update routines
 			if (version_compare($this->jrConfig['version'], $this->jrConfig['jomres_db_version'], '>')) {
 				
-				if ($this->jomresTablesExist()) {
+				if ($this->jomresTablesAndDataExist()) {
 					//jomres tables exist, perform update
 					$this->action = 'update';
 				} else {
@@ -155,7 +155,7 @@ class jomres_install
 			//file version is lower than the db version, this is an error, so do nothing and better ask for support
 			//TODO: maybe just update and be done with it? the code is here, just replace actions
 			if (version_compare($this->jrConfig['version'], $this->jrConfig['jomres_db_version'], '<')) {
-				if ($this->jomresTablesExist()) {
+				if ($this->jomresTablesAndDataExist()) {
 					//jomres tables exist, perform update
 					$this->action = 'donothing';
 				} else {
@@ -170,7 +170,7 @@ class jomres_install
 
 			//if versions match just run update routines again
 			if (version_compare($this->jrConfig['version'], $this->jrConfig['jomres_db_version'], '=')) {
-				if ($this->jomresTablesExist()) {
+				if ($this->jomresTablesAndDataExist()) {
 					//jomres tables exist, perform update
 					$this->action = 'update';
 				} else {
@@ -185,22 +185,36 @@ class jomres_install
 	
 	//check if jomres is installed by trying to select data from #__jomres_propertys table
 	//if db tables exist, it means jomres is installed or was installed previously
-	private function jomresTablesExist()
+	private function jomresTablesAndDataExist()
 	{
-		$query = "SELECT `table_name` FROM information_schema.tables WHERE 
-					`table_schema` = '".get_showtime('db')."'
-					AND (`table_name` LIKE '#__jomres_%' 
-					OR `table_name` LIKE '#__jomcomp_%' 
-					OR `table_name` LIKE '#__jomresportal_%') ";
+		try {
+			$query = "SELECT `table_name` FROM information_schema.tables WHERE 
+						`table_schema` = '".get_showtime('db')."'
+						AND (`table_name` LIKE '#__jomres_%' 
+						OR `table_name` LIKE '#__jomcomp_%' 
+						OR `table_name` LIKE '#__jomresportal_%') ";
 
-		$result = doSelectSql($query);
-		
-		if (empty($result)) {
-			//jomres tables don`t exist
+			$result = doSelectSql($query);
+			
+			if (empty($result)) {
+				//jomres tables don`t exist
+				return false;
+			}
+			
+			//if tables exist, let`s check if at least a property is created, if not, we`ll consider that Jomres is not installed
+			$query = "SELECT * FROM `#__jomres_propertys` LIMIT 1 ";
+			$result = doSelectSql($query);
+			
+			if (empty($result)) {
+				//jomres data doesn`t exist
+				return false;
+			}
+		}
+		catch (Exception $e) {
 			return false;
 		}
 		
-		//jomres tables exist
+		//jomres tables and data exists
 		return true;
 	}
 	
