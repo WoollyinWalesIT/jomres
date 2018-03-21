@@ -43,7 +43,7 @@ class j06002list_room_types
 
         if (!empty($jomres_room_types->property_specific_room_types[$property_uid])) {
             foreach ($jomres_room_types->property_specific_room_types[$property_uid] as $r) {
-                $r[ 'RTTITLE' ] = $r['room_class_abbv'];
+                $r[ 'RTTITLE' ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.$r['room_classes_uid'], stripslashes($r['room_class_abbv']), true ) ;
                 $r[ 'RTDESCRIPTION' ] = $r['room_class_full_desc'];
                 $r[ 'IMAGE' ] = JOMRES_IMAGELOCATION_RELPATH.'rmtypes/'.$r['image'];
 
