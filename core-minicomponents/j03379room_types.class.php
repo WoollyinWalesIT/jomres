@@ -37,6 +37,7 @@ class j03379room_types
             $mrConfig[ 'is_real_estate_listing' ] = '0';
         }
 
+		if ($property_uid > 0 ) {
 		$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
 		$current_property_details->gather_data($property_uid);
 		$keys = array_keys($current_property_details->room_types);
@@ -66,6 +67,8 @@ class j03379room_types
 				</script>
 				';
             }
+		}
+
 		}
     }
 
