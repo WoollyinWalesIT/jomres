@@ -25,7 +25,7 @@ class j03379room_types
 
             return;
         }
-        $property_uid = getDefaultProperty();
+        $property_uid = get_showtime('property_uid');
         $mrConfig = getPropertySpecificSettings($property_uid);
         
 		$this->ret_vals = array();
