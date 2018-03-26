@@ -68,13 +68,15 @@ class j06000show_property_room_type
         $output = array();
 
         if (!empty($basic_property_details->room_types) && isset($basic_property_details->room_types[$room_classes_uid]) ) {
-            
+			jr_import('jomres_markdown');
+			$jomres_markdown = new jomres_markdown();
+			
             $output[ '_JOMRES_SEARCH_RTYPES' ] = jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', '_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', false);
 
 			//var_dump($basic_property_details->room_types[$room_classes_uid]);exit;
 			
 			$output['ROOM_TYPE_TITLE'] = $basic_property_details->room_types[$room_classes_uid]['abbv'];
-			$output['ROOM_TYPE_DESCRIPTION'] = $basic_property_details->room_types[$room_classes_uid]['desc'];
+			$output['ROOM_TYPE_DESCRIPTION'] = jomres_cmsspecific_parseByBots($jomres_markdown->get_markdown($basic_property_details->room_types[$room_classes_uid]['desc']));
 			
 			$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
 			$jomres_media_centre_images->get_images($property_uid);
