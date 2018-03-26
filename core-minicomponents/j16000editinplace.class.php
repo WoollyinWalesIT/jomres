@@ -26,11 +26,11 @@ class j16000editinplace
             return;
         }
 
-        $customText = jomresGetParam($_POST, 'value', '', 'string');
+        $customText = jomresGetParam($_POST, 'value', '');
 		
         $theConstant = filter_var($_POST[ 'pk' ], FILTER_SANITIZE_SPECIAL_CHARS);
 		
-		$language_context = jomresGetParam($_GET, 'language_context', '', '0');
+		$language_context = jomresGetParam($_GET, 'language_context', '0');
 
         $result = updateCustomText($theConstant, $customText, true, 0, $language_context);
 

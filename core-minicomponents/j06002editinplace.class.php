@@ -34,9 +34,9 @@ class j06002editinplace
         $property_uid = (int) getDefaultProperty();
 
         if ($jrConfig[ 'allowHTMLeditor' ] == '1') {
-            $customText = jomresGetParam($_POST, 'value', '', _MOS_ALLOWHTML);
+            $customText = jomresGetParam($_POST, 'value', '');
         } else {
-            $customText = jomresGetParam($_POST, 'value', '', 'string');
+            $customText = jomresGetParam($_POST, 'value', '');
         }
 
         $theConstant = filter_var($_POST[ 'pk' ], FILTER_SANITIZE_SPECIAL_CHARS);

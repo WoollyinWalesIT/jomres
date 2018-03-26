@@ -122,7 +122,7 @@ function RemoveXSS($val)
     return $val;
 }
 
-function jomresGetParam($request, $element, $def = null, $mask = '') // variable type not used, we'll cast the variable type depending on the default ($def) that's passed to the function
+function jomresGetParam($request, $element, $def = null) // variable type not used, we'll cast the variable type depending on the default ($def) that's passed to the function
 {
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
