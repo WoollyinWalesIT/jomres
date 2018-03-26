@@ -20,7 +20,7 @@ class jomres_room_types
     {
         $this->room_types = false;
 		$this->property_specific_room_types = false;
-		
+
 		$this->property_room_types = false;
         $this->all_rtype_ptype_xrefs = false;
         $this->all_ptype_rtype_xrefs = false;
@@ -46,16 +46,16 @@ class jomres_room_types
 
         //get the room type property type xrefs
         $this->get_xrefs();
-		
+
         $query = 'SELECT `room_classes_uid`, `room_class_abbv`, `room_class_full_desc`, `image` , `property_uid` FROM #__jomres_room_classes ORDER BY `room_class_abbv` ';
-		
+
         $result = doSelectSql($query);
 
         if (empty($result)) {
             return false;
         }
 
-		
+
         foreach ($result as $r) {
 			if ($r->property_uid  > 0 ) {
 				$this->property_specific_room_types[$r->property_uid][$r->room_classes_uid]['room_classes_uid'] = (int) $r->room_classes_uid;
@@ -150,17 +150,13 @@ class jomres_room_types
     //Save new or existing resource type
     public function save_room_type()
     {
-		if (!$this->room_type['property_uid']) {
-			throw new Exception('Error: Property uid not set');
-		}
-		
         if ($this->room_type['room_classes_uid'] > 0) {
-            $query = "UPDATE #__jomres_room_classes 
-						SET 
-							`room_class_abbv` 		= '".$this->room_type['room_class_abbv']."', 
+            $query = "UPDATE #__jomres_room_classes
+						SET
+							`room_class_abbv` 		= '".$this->room_type['room_class_abbv']."',
 							`room_class_full_desc` 	= '".$this->room_type['room_class_full_desc']."',
 							`image` 				= '".$this->room_type['image']."'
-							
+
 						WHERE `room_classes_uid` = " .(int) $this->room_type['room_classes_uid'];
 
             if (doInsertSql($query, false)) {
@@ -169,16 +165,16 @@ class jomres_room_types
                 throw new Exception('Error: Existing room type update failed.');
             }
         } else {
-            $query = "INSERT INTO #__jomres_room_classes 
+            $query = "INSERT INTO #__jomres_room_classes
 								(
 								`room_class_abbv` ,
 								`room_class_full_desc`,
 								`image`,
 								`property_uid`
-								) 
-							VALUES 
+								)
+							VALUES
 								(
-								'".$this->room_type['room_class_abbv']."', 
+								'".$this->room_type['room_class_abbv']."',
 								'".$this->room_type['room_class_full_desc']."',
 								'".$this->room_type['image']."',
 								".(int)$this->room_type['property_uid']."
@@ -211,14 +207,13 @@ class jomres_room_types
         }
 
         if (!empty($ptype_xref)) {
-            foreach ($ptype_xref as $ptype) {
+            foreach ($ptype_xref[0] as $ptype) {
                 $query = 'INSERT INTO #__jomres_roomtypes_propertytypes_xref (`roomtype_id`,`propertytype_id`) VALUES ('.(int) $roomtype_id.','.(int) $ptype.')';
                 if (!doInsertSql($query, '')) {
                     throw new Exception('Error: Room type ptype xref insert failed.');
                 }
             }
         }
-
         return true;
     }
 
@@ -285,36 +280,36 @@ class jomres_room_types
 
         return true;
     }
-	
+
 	function get_all_room_type_images()
 	{
 		$images = array();
-		
+
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
 		$jomres_media_centre_images->get_site_images('rmtypes');
-		
-		foreach ($jomres_media_centre_images->site_images['rmtypes'] as $image) 
+
+		foreach ($jomres_media_centre_images->site_images['rmtypes'] as $image)
 			{
 			$r = array();
-			
+
 			$r[ 'IMAGE_FILENAME' ] = substr($image['large'], strrpos($image['large'], '/') + 1);
 			$r[ 'IMAGE_SRC' ]  = $image['large'];
-			
+
 			$images[] = $r;
 			}
 
 		return $images;
 	}
-	
+
 	// To be used by any backend calling script that edits room types. Not required by admin area scripts
-	function validate_manager_access_to_room_type($room_class_uid = 0 ) 
+	function validate_manager_access_to_room_type($room_class_uid = 0 )
 	{
 		$property_uid = getDefaultProperty();
-		
+
 		if ( $room_class_uid == 0 ) {
 			return true;
 		}
-		
+
 		if (empty($this->property_specific_room_types[$property_uid])) {
 			return true;
 		}

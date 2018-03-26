@@ -25,6 +25,12 @@ class j06002save_room_type
             return;
         }
 
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
+		if ( $jrConfig[ 'frontend_room_type_editing_allowed' ] == 0 ) {
+			return;
+		}
+		
         $property_uid = getDefaultProperty();
 		
 		$room_classes_uid = intval(jomresGetParam($_REQUEST, 'room_classes_uid', 0));
@@ -43,7 +49,7 @@ class j06002save_room_type
 		$jomres_room_types->room_type['property_uid'] = (int) $property_uid;
         $jomres_room_types->room_type['room_class_abbv'] = jomresGetParam($_POST, 'room_class_abbv', '');
         $jomres_room_types->room_type['room_class_full_desc'] = jomresGetParam($_POST, 'room_class_desc', '');
-        $jomres_room_types->room_type['ptype_xref'] = $basic_property_details->multi_query_result[$property_uid]['ptype_id'];
+        $jomres_room_types->room_type['ptype_xref'] = array ( "0" => $basic_property_details->multi_query_result[$property_uid]['ptype_id']) ;
         $jomres_room_types->room_type['image'] = jomresGetParam($_POST, 'image', '');
 
         $jomres_room_types->save_room_type();

@@ -25,8 +25,11 @@ class j06002list_room_types
             return;
         }
 
-        /* $jomres_property_types = jomres_singleton_abstract::getInstance('jomres_property_types');
-        $jomres_property_types->get_all_property_types(); */
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
+		if ( $jrConfig[ 'frontend_room_type_editing_allowed' ] == 0 ) {
+			return;
+		}
 		
 		$property_uid = getDefaultProperty();
 		
@@ -40,6 +43,7 @@ class j06002list_room_types
 
         $output[ 'HLINKTEXT' ] = jr_gettext('_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_ABBV', '_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_ABBV', false);
         $output[ 'HRTTITLE' ] = jr_gettext('_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_ABBV', '_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_ABBV', false);
+		$output[ '_JOMRES_PROPERTY_ROOM_TYPES_EDIT_LEAD' ] = jr_gettext('_JOMRES_PROPERTY_ROOM_TYPES_EDIT_LEAD', '_JOMRES_PROPERTY_ROOM_TYPES_EDIT_LEAD', false);
 
         if (!empty($jomres_room_types->property_specific_room_types[$property_uid])) {
             foreach ($jomres_room_types->property_specific_room_types[$property_uid] as $r) {

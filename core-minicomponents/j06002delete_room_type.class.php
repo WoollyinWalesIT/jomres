@@ -25,6 +25,12 @@ class j06002delete_room_type
             return;
         }
 
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
+		if ( $jrConfig[ 'frontend_room_type_editing_allowed' ] == 0 ) {
+			return;
+		}
+		
         $property_uid = getDefaultProperty();
 		
 		$room_classes_uid = intval(jomresGetParam($_REQUEST, 'room_classes_uid', 0));

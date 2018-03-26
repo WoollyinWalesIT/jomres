@@ -192,10 +192,13 @@ class j09995menu
 			if ( 
 				$mrConfig[ 'is_real_estate_listing' ] != '1' && 
 				!get_showtime('is_jintour_property') && 
-				$mrConfig[ 'singleRoomProperty' ] != '1' 
+				$mrConfig[ 'singleRoomProperty' ] != '1' && 
+				$jrConfig[ 'frontend_room_type_editing_allowed' ] == "1"
 				) {
 				$jomres_menu->add_item(80, jr_gettext('_JOMRES_PROPERTY_ROOM_TYPES_EDIT', '_JOMRES_PROPERTY_ROOM_TYPES_EDIT', false), 'list_room_types', 'fa-pencil-square-o');
 			}
+			
+
 		}
 		//help section menus
 		if ($thisJRUser->accesslevel >= 50) { //FAQ works for guests too, but since it doesn`t have any content by default, we`ll just hide the menu for guests

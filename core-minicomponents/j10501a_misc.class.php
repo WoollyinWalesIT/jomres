@@ -106,6 +106,13 @@ class j10501a_misc
 		$configurationPanel->setright(jr_gettext('_JOMRES_COM_JRCONFIG_GLOBALEDITING_DESC', '_JOMRES_COM_JRCONFIG_GLOBALEDITING_DESC', false));
 		$configurationPanel->insertSetting();
 
+		
+		$configurationPanel->setleft(jr_gettext('_JOMRES_CONFIG_ROOM_TYPES_CREATING_TITLE', '_JOMRES_CONFIG_ROOM_TYPES_CREATING_TITLE', false));
+		$configurationPanel->setmiddle($lists[ 'frontend_room_type_editing_allowed' ]);
+		$configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_ROOM_TYPES_CREATING_DESC', '_JOMRES_CONFIG_ROOM_TYPES_CREATING_DESC', false));
+		$configurationPanel->insertSetting();
+		
+		
 		/* $configurationPanel->setleft(jr_gettext('_JOMRES_CONFIG_JQUERY', '_JOMRES_CONFIG_JQUERY', false));
 		$configurationPanel->setmiddle($lists[ 'load_jquery' ]);
 		$configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_JQUERY_DESC', '_JOMRES_CONFIG_JQUERY_DESC', false));

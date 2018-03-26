@@ -1974,6 +1974,7 @@ jr_define( 'DATATABLES_COLVIS', 'Column Visibility');
 jr_define( 'API_TOKEN_LIFETIME', 'API token lifetime');
 jr_define( 'API_TOKEN_LIFETIME_DESC', 'How long an API token remains valid for, in seconds. 86400 = 1 day, 31536000 = 1 year');
 
+<<<<<<< HEAD
 jr_define( 'FIREWALL_CHECK', 'Firewall check' );
 jr_define( 'FIREWALL_CHECK_DESC', 'This is a simple check to see if this server can connect to remote services. If it cannot, that might indicate that there are firewall rules in place preventing the two machines from talking to each other. If there are, then you may need to discuss adjusting firewall rules with your webserver hosts. 404 & 403 responses can be considered ok because you are getting a response from the remote service.' );
 jr_define( 'FIREWALL_CHECK_REMOTE_SERVICE', 'Remote service' );
@@ -2104,8 +2105,8 @@ jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_EDIT', 'Room Types' );
 jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_NEW', 'New Room type' );
 jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_EDIT_LEAD', 'You can create and edit room types on this page. These room types will be specific to this property only. When setting up your property you first need some Room Types. You can use either those room typies created by the administrator, or you can add your own. Once you have one or more Room Types you can then create rooms of that Room Type. After you have rooms you can then create tariffs (prices) for those rooms because tariffs are linked to Room Types.' );
 jr_define( '_JOMRES_CONFIG_ROOM_TYPES_CREATING_TITLE', 'Managers can create room types?' );
+
 jr_define( '_JOMRES_CONFIG_ROOM_TYPES_CREATING_DESC', 'Use this option to configure whether or not managers can create their own room types in the frontend. We strongly recommend that you leave this option set to No when you first start using Jomres, especially if you are creating a portal because you should create all room types in the administrator area.' );
 jr_define('_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_UPDATE', 'Room/property type updated');
 jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_CONFIG_TITLE', 'Show room types in search options' );
 jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_CONFIG_DESC', 'If you choose to allow property managers to create their own room types, you can choose whether or not to show those created room types in the search options where you have chosen to show room types.' );
-

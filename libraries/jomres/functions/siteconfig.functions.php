@@ -243,6 +243,7 @@ function showSiteConfig()
     $lists[ 'review_nag' ] = jomresHTML::selectList($yesno, 'cfg_review_nag', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'review_nag' ]);
 	$lists[ 'optimize_images' ] = jomresHTML::selectList($yesno, 'cfg_optimize_images', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'optimize_images' ]);
 
+	$lists[ 'frontend_room_type_editing_allowed' ] = jomresHTML::selectList($yesno, 'cfg_frontend_room_type_editing_allowed', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'frontend_room_type_editing_allowed' ]);
 	
     if (!isset($jrConfig['show_powered_by'])) {
         $jrConfig['show_powered_by'] = '0';

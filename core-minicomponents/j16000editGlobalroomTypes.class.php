@@ -40,8 +40,14 @@ class j16000editGlobalroomTypes
 
         $output[ 'ROOMCLASSUID' ] = $room_classes_uid;
         $output[ 'CLASSABBV' ] = stripslashes($jomres_room_types->room_type['room_class_abbv']);
-        $output[ 'CLASSDESC' ] = stripslashes($jomres_room_types->room_type['room_class_full_desc']);
 
+		$width="95%";
+		$height="250";
+		$col="20";
+		$row="10";
+		
+		$output['CLASSDESC']=editorAreaText( 'room_class_desc',$jomres_room_types->room_type['room_class_full_desc'], 'room_class_desc', $width, $height, $col, $row );
+		
         if (!empty($jomres_property_types->property_types)) {
             foreach ($jomres_property_types->property_types as $ptype) {
                 $r = array();
