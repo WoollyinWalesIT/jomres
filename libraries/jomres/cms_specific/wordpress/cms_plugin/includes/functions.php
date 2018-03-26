@@ -192,6 +192,19 @@ function run_jomres_installer( $method = 'install' ) {
 		return false;
 	}
 	
+	// Make sure that the dirctory exists and is writable
+	if (!is_dir( ABSPATH . '/tmp/')) {
+		if (!mkdir( ABSPATH . '/tmp/')) {
+			jomres_notice('Error creating temporary directory');
+			return false;
+		}
+	} elseif ( !touch( ABSPATH . '/tmp/test.txt' ) )  {
+		jomres_notice('Error creating test file in temp directory '.ABSPATH . '/tmp/  This means that the tmp directory is not writable and we would not be able to unzip Jomres.' );
+		return false;
+	} else {
+		unlink(ABSPATH . '/tmp/test.txt');
+	}
+	
 	//download Jomres
 	if ( ! $nightly ) {
 		$response = wp_remote_get( $response['body'], array( 'timeout' => 300, 'stream' => true, 'filename' => ABSPATH . '/tmp/jomres.zip' ) );
