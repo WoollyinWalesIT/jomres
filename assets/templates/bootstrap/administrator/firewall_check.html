@@ -1,0 +1,32 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<h2 class="page-header">{FIREWALL_CHECK}</h2>
+
+<p class="lead">{FIREWALL_CHECK_DESC}</p>
+
+	<table id="firewall_check" width="100%" class="table table-striped">
+		<thead>
+		<tr>
+			<th>{FIREWALL_CHECK_REMOTE_SERVICE}</th>
+			<th>{FIREWALL_CHECK_IP_NUMBER}</th>
+			<th>{FIREWALL_CHECK_STATUSCODE}</th>
+		</tr>
+		</thead>
+		<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="strip">
+			<tr>
+				<td>
+					{SERVICE}
+				</td>
+				<td>
+					{IP_NUMBER}
+				</td>
+				<td>
+					<span class="badge badge-{COLOUR}">{RESPONSE_CODE}</span>
+				</td>
+			</tr>
+		</patTemplate:tmpl>
+		</tbody>
+	</table>
+
+</patTemplate:tmpl>
