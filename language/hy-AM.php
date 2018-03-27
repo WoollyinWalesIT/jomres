@@ -3,7 +3,7 @@
  * Core file
  *
  * @author Vince Wooll <sales@jomres.net>
- * @version Jomres 9.10.1
+ * @version Jomres 9.10.2
  * @package Jomres
  * @copyright	2005-2014 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
@@ -2122,7 +2122,7 @@ jr_define('_JOMRES_EMAIL_TEMPLATES_TEXT',"Փոստի տեքստ ");
 jr_define('_JOMRES_EMAIL_TEMPLATES_TYPE',"Փոստի տեսակ");
 jr_define('_JOMRES_EMAIL_TEMPLATES_NAME',"Փոստի անուն");
 jr_define('_JOMRES_EMAIL_TEMPLATES_DESC',"Փոստի նկարագրություն");
-jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS',"Խնդրում ենք Տեսնել այս էջը, սովորույթի օգնությամբ  էլ - նամակների, եւ ցուցակում առկա արտադրանքի: <a href=\"http://manual.jomres.net/email_templates.html\" target=\"_blank\">Email Templates Help</a>");
+jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS',"Խնդրում ենք Տեսնել այս էջը, սովորույթի օգնությամբ  էլ - նամակների, եւ ցուցակում առկա արտադրանքի: <a href=\"http://www.jomres.net/manual/property-managers-guide/48-your-toolbar/settings/254-email-templates\" target=\"_blank\">Email Templates Help</a>");
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME',"Ադմին կայքի էլփոստի նոր ամրագրում");
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC',"Նամակն ուղարկվել է կայքի Ադմինիստրատորին, նոր ամրագրումը կատարելու ընթացքում, եթե գլոբալ Paypal Gateway միացված է");
 jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME',"Հյուրանոցի Նոր Ամրագրման փոստ");
@@ -2727,3 +2727,6 @@ jr_define( '_JOMRES_MEDIA_CENTRE_OPTIMIZE_IMAGES_DESC', 'When enabled, images wi
 jr_define( 'DATABASE_INTEGRITY_CHECK', 'Database Integrity Check');
 jr_define( 'OBSOLETE_FILES_CHECK', 'Obsolete Files Check');
 jr_define( 'DATATABLES_COLVIS', 'Column Visibility');
+
+jr_define( 'API_TOKEN_LIFETIME', 'API token lifetime');
+jr_define( 'API_TOKEN_LIFETIME_DESC', 'How long an API token remains valid for, in seconds. 86400 = 1 day, 31536000 = 1 year');

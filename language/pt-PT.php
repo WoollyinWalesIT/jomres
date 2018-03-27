@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.1
+ * @version Jomres 9.10.2
  *
  * @copyright	2005-2018 Vince Wooll
  * Translated to pt-PT by Mario Oliveira, Camara de Lobos, Madeira Island, Portugal, 17Set2010 - www.marioliveira.net - Updated 21Jun2011 for ver 5.1
@@ -2205,3 +2205,6 @@ jr_define( '_JOMRES_MEDIA_CENTRE_OPTIMIZE_IMAGES_DESC', 'When enabled, images wi
 jr_define( 'DATABASE_INTEGRITY_CHECK', 'Database Integrity Check');
 jr_define( 'OBSOLETE_FILES_CHECK', 'Obsolete Files Check');
 jr_define( 'DATATABLES_COLVIS', 'Column Visibility');
+
+jr_define( 'API_TOKEN_LIFETIME', 'API token lifetime');
+jr_define( 'API_TOKEN_LIFETIME_DESC', 'How long an API token remains valid for, in seconds. 86400 = 1 day, 31536000 = 1 year');

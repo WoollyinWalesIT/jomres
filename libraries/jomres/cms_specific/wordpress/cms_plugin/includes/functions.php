@@ -184,19 +184,35 @@ function run_jomres_installer( $method = 'install' ) {
 	}
 
 	//download jomres core
-	$response = wp_remote_get($url);
+	$response = wp_remote_get( $url );
 	
 	if ( strlen( $response[ 'body' ] ) == 0 ) {
 		jomres_notice( 'There was an error getting the latest Jomres version number.' );
 		
 		return false;
 	}
+
+	//set source and target
+	$source = get_temp_dir() . 'jomres.zip';
+	$target = ABSPATH . JOMRES_ROOT_DIRECTORY;
+	
+	if ( ! wp_is_writable( $target ) ) {
+		jomres_notice( 'Jomres dir is not writable.' );
+		
+		return false;
+	}
 	
 	//download Jomres
+	$options = array( 
+		'timeout' => 300, 
+		'stream' => true, 
+		'filename' => $source 
+	);
+	
 	if ( ! $nightly ) {
-		$response = wp_remote_get( $response['body'], array( 'timeout' => 300, 'stream' => true, 'filename' => ABSPATH . '/tmp/jomres.zip' ) );
+		$response = wp_remote_get( $response['body'], $options );
 	} else {
-		$response = wp_remote_get( $nightly_url, array( 'timeout' => 300, 'stream' => true, 'filename' => ABSPATH . '/tmp/jomres.zip' ) );
+		$response = wp_remote_get( $nightly_url, $options );
 	}
 	
 	if ( is_wp_error( $response ) ) {
@@ -204,11 +220,8 @@ function run_jomres_installer( $method = 'install' ) {
 		
 		return false;
 	}
-
-	//unzip jomres files
-	$source = ABSPATH . '/tmp/jomres.zip';
-	$target = ABSPATH . JOMRES_ROOT_DIRECTORY;
 	
+	//unzip jomres files
 	$unzipfile = unzip_file( $source, $target );
 
 	if ( is_wp_error( $unzipfile ) ) {

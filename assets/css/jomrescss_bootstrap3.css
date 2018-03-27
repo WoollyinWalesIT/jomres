@@ -93,19 +93,19 @@
 }
 
 /* Availability Calendar */
-.calendar_background_quarter a, td.calendar_background_quarter {
+.calendar_background_quarter a, td.calendar_background_quarter, td.calendar_background_quarter span {
 	background: #B1FB17 !important;
 }
 
-.calendar_background_half a, td.calendar_background_half {
+.calendar_background_half a, td.calendar_background_half, td.calendar_background_half span {
 	background: #FFFC17 !important;
 }
 
-.calendar_background_threequarter a, td.calendar_background_threequarter {
+.calendar_background_threequarter a, td.calendar_background_threequarter, td.calendar_background_threequarter span {
 	background: #F88017 !important;
 }
 
-.calendar_background_full a, td.calendar_background_full {
+.calendar_background_full a, td.calendar_background_full, td.calendar_background_full span {
 	background: #FF0000 !important;
 }
 

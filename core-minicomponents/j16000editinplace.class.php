@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.1
+ * @version Jomres 9.10.2
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -26,11 +26,11 @@ class j16000editinplace
             return;
         }
 
-        $customText = jomresGetParam($_POST, 'value', '', 'string');
+        $customText = jomresGetParam($_POST, 'value', '');
 		
         $theConstant = filter_var($_POST[ 'pk' ], FILTER_SANITIZE_SPECIAL_CHARS);
 		
-		$language_context = jomresGetParam($_GET, 'language_context', '', '0');
+		$language_context = jomresGetParam($_GET, 'language_context', '0');
 
         $result = updateCustomText($theConstant, $customText, true, 0, $language_context);
 

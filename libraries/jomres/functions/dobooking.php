@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.1
+ * @version Jomres 9.10.2
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -132,6 +132,7 @@ function dobooking($selectedProperty, $thisdate, $remus)
         }
     }
     
+	$room_type_filter = (int)jomresGetParam($_REQUEST, 'room_type_filter', 0);
         
     $backWasClicked = false;
     if ($tmpBookingHandler->tmpbooking[ 'confirmationSeen' ] == true) {
@@ -273,7 +274,8 @@ function dobooking($selectedProperty, $thisdate, $remus)
     $output[ 'RELPATH' ] = get_showtime('live_site');
     $output[ 'AJAXURL' ] = JOMRES_SITEPAGE_URL_AJAX;
     $output[ 'SUBMITURL' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=confirmbooking');
-
+	$output[ 'ROOM_TYPE_FILTER' ] = $room_type_filter;
+	
     $bkg->initCoupons();
     $coupons = array();
     $coupon_output = array();

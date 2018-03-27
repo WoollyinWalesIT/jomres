@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.1
+ * @version Jomres 9.10.2
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -136,10 +136,19 @@ class j06000mrp_calendar
 
     public function makecal($stmonth, $styear, $property_uid)
     {
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+        $jrConfig = $siteConfig->get();
+
 		$mrConfig = getPropertySpecificSettings($property_uid);
 		
         $stdate = mktime(0, 0, 0, $stmonth, 1, $styear);
-        $startdate = mktime(0, 0, 0, $stmonth, 1 - date('w', mktime(0, 0, 0, $stmonth, 1, $styear)), $styear);
+       
+		if ($jrConfig[ 'calendarstartofweekday' ] == '1') {
+            $startdate = mktime(0, 0, 0, $stmonth, 1 - date('w', mktime(0, 0, 0, $stmonth, 1, $styear)), $styear);
+        } else {
+            $startdate = mktime(0, 0, 0, $stmonth, 1 - date('w', mktime(0, 0, 0, $stmonth, 0, $styear)), $styear);
+        }
+		
         $enddate = mktime(0, 0, 0, date('m', $stdate) + 1, 7 - date('w', mktime(0, 0, 0, $stmonth + 1, 0, $styear)), $styear);
 
         $thisMonthName = getThisMonthName(date('n', $stdate), false);
@@ -151,13 +160,25 @@ class j06000mrp_calendar
 
         $this->retVals .= '<table class="calendar"  cellspacing="0" cellpadding="0">';
         $this->retVals .= '<tr>';
-        $this->retVals .= "<td class='calendar-day'>".mb_substr(jr_gettext('_JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR', false, false), 0, 1).'</td>';
-        $this->retVals .= "<td class='calendar-day'>".mb_substr(jr_gettext('_JOMRES_COM_MR_WEEKDAYS_MONDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_MONDAY_ABBR', false, false), 0, 1).'</td>';
-        $this->retVals .= "<td class='calendar-day'>".mb_substr(jr_gettext('_JOMRES_COM_MR_WEEKDAYS_TUESDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_TUESDAY_ABBR', false, false), 0, 1).'</td>';
-        $this->retVals .= "<td class='calendar-day'>".mb_substr(jr_gettext('_JOMRES_COM_MR_WEEKDAYS_WEDNESDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_WEDNESDAY_ABBR', false, false), 0, 1).'</td>';
-        $this->retVals .= "<td class='calendar-day'>".mb_substr(jr_gettext('_JOMRES_COM_MR_WEEKDAYS_THURSDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_THURSDAY_ABBR', false, false), 0, 1).'</td>';
-        $this->retVals .= "<td class='calendar-day'>".mb_substr(jr_gettext('_JOMRES_COM_MR_WEEKDAYS_FRIDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_FRIDAY_ABBR', false, false), 0, 1).'</td>';
-        $this->retVals .= "<td class='calendar-day'>".mb_substr(jr_gettext('_JOMRES_COM_MR_WEEKDAYS_SATURDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_SATURDAY_ABBR', false, false), 0, 1).'</td>';
+		
+		if ($jrConfig[ 'calendarstartofweekday' ] == '1') {
+			$this->retVals .= "<td class='calendar-day'>".mb_substr(jr_gettext('_JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR', false, false), 0, 1).'</td>';
+			$this->retVals .= "<td class='calendar-day'>".mb_substr(jr_gettext('_JOMRES_COM_MR_WEEKDAYS_MONDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_MONDAY_ABBR', false, false), 0, 1).'</td>';
+			$this->retVals .= "<td class='calendar-day'>".mb_substr(jr_gettext('_JOMRES_COM_MR_WEEKDAYS_TUESDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_TUESDAY_ABBR', false, false), 0, 1).'</td>';
+			$this->retVals .= "<td class='calendar-day'>".mb_substr(jr_gettext('_JOMRES_COM_MR_WEEKDAYS_WEDNESDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_WEDNESDAY_ABBR', false, false), 0, 1).'</td>';
+			$this->retVals .= "<td class='calendar-day'>".mb_substr(jr_gettext('_JOMRES_COM_MR_WEEKDAYS_THURSDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_THURSDAY_ABBR', false, false), 0, 1).'</td>';
+			$this->retVals .= "<td class='calendar-day'>".mb_substr(jr_gettext('_JOMRES_COM_MR_WEEKDAYS_FRIDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_FRIDAY_ABBR', false, false), 0, 1).'</td>';
+			$this->retVals .= "<td class='calendar-day'>".mb_substr(jr_gettext('_JOMRES_COM_MR_WEEKDAYS_SATURDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_SATURDAY_ABBR', false, false), 0, 1).'</td>';
+		} else {
+			$this->retVals .= "<td class='calendar-day'>".mb_substr(jr_gettext('_JOMRES_COM_MR_WEEKDAYS_MONDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_MONDAY_ABBR', false, false), 0, 1).'</td>';
+			$this->retVals .= "<td class='calendar-day'>".mb_substr(jr_gettext('_JOMRES_COM_MR_WEEKDAYS_TUESDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_TUESDAY_ABBR', false, false), 0, 1).'</td>';
+			$this->retVals .= "<td class='calendar-day'>".mb_substr(jr_gettext('_JOMRES_COM_MR_WEEKDAYS_WEDNESDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_WEDNESDAY_ABBR', false, false), 0, 1).'</td>';
+			$this->retVals .= "<td class='calendar-day'>".mb_substr(jr_gettext('_JOMRES_COM_MR_WEEKDAYS_THURSDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_THURSDAY_ABBR', false, false), 0, 1).'</td>';
+			$this->retVals .= "<td class='calendar-day'>".mb_substr(jr_gettext('_JOMRES_COM_MR_WEEKDAYS_FRIDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_FRIDAY_ABBR', false, false), 0, 1).'</td>';
+			$this->retVals .= "<td class='calendar-day'>".mb_substr(jr_gettext('_JOMRES_COM_MR_WEEKDAYS_SATURDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_SATURDAY_ABBR', false, false), 0, 1).'</td>';
+			$this->retVals .= "<td class='calendar-day'>".mb_substr(jr_gettext('_JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR', false, false), 0, 1).'</td>';
+		}
+
         $this->retVals .= '</tr>';
 
         $i = 0;

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.1
+ * @version Jomres 9.10.2
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -58,9 +58,9 @@ class j06002create_multiple_resources
             return;
         }
 
-        $output[ 'NUMBER_OF_RESOURCES' ] = jomresHTML::integerSelectList(1, 100, 1, 'numberOfResources', 'class="input-mini form-control"', '1', '');
-        $output[ 'RESOURCES_MAXGUESTS' ] = jomresHTML::integerSelectList(1, 10, 1, 'maxGuests', 'class="input-mini form-control"', '1', '');
-
+        $output[ 'NUMBER_OF_RESOURCES' ] = jomresHTML::integerSelectList(1, 1000, 1, 'numberOfResources', 'class="input-mini form-control"', '1', '');
+        $output[ 'RESOURCES_MAXGUESTS' ] = jomresHTML::integerSelectList(1, 100, 1, 'maxGuests', 'class="input-mini form-control"', '1', '');
+ 
         $options = array();
         $options[] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false));
         $options[] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false));

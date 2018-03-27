@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.1
+ * @version Jomres 9.10.2
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -122,7 +122,7 @@ function RemoveXSS($val)
     return $val;
 }
 
-function jomresGetParam($request, $element, $def = null, $mask = '') // variable type not used, we'll cast the variable type depending on the default ($def) that's passed to the function
+function jomresGetParam($request, $element, $def = null) // variable type not used, we'll cast the variable type depending on the default ($def) that's passed to the function
 {
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();

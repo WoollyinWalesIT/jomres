@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.1
+ * @version Jomres 9.10.2
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2197,3 +2197,6 @@ jr_define( '_JOMRES_MEDIA_CENTRE_OPTIMIZE_IMAGES_DESC', 'When enabled, images wi
 jr_define( 'DATABASE_INTEGRITY_CHECK', 'Database Integrity Check');
 jr_define( 'OBSOLETE_FILES_CHECK', 'Obsolete Files Check');
 jr_define( 'DATATABLES_COLVIS', 'Column Visibility');
+
+jr_define( 'API_TOKEN_LIFETIME', 'API token lifetime');
+jr_define( 'API_TOKEN_LIFETIME_DESC', 'How long an API token remains valid for, in seconds. 86400 = 1 day, 31536000 = 1 year');

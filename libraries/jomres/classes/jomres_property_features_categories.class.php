@@ -3,7 +3,7 @@
  * Core file
  *
  * @author Vince Wooll <sales@jomres.net>
- * @version Jomres 9.10.1
+ * @version Jomres 9.10.2
  * @package Jomres
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
@@ -15,8 +15,6 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class jomres_property_features_categories
 	{
-	private static $configInstance;
-
 	public function __construct()
 		{
 		$this->property_features_categories = false;				// array of all property features categories
@@ -25,16 +23,6 @@ class jomres_property_features_categories
 		$this->title						= '';					// property feature category title
 		}
 
-	public static function getInstance()
-		{
-		if ( !self::$configInstance )
-			{
-			self::$configInstance = new self();
-			}
-
-		return self::$configInstance;
-		}
-	
 	//get all property features categories
 	function get_all_property_features_categories()
 		{

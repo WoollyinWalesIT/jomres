@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.1
+ * @version Jomres 9.10.2
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1629,7 +1629,7 @@ jr_define('_JOMRES_EMAIL_TEMPLATES_TEXT',"E-posta metni");
 jr_define('_JOMRES_EMAIL_TEMPLATES_TYPE',"E-posta türü");
 jr_define('_JOMRES_EMAIL_TEMPLATES_NAME',"E-posta adı");
 jr_define('_JOMRES_EMAIL_TEMPLATES_DESC',"E-posta açıklaması");
-jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS',"Bu sayfa rezervasyon sürecinde gönderilecek otomatik mailler içindir: <a href=\"http://manual.jomres.net/email_templates.html\" target=\"_blank\">Email Templates Help</a>");
+jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS',"Bu sayfa rezervasyon sürecinde gönderilecek otomatik mailler içindir: <a href=\"http://www.jomres.net/manual/property-managers-guide/48-your-toolbar/settings/254-email-templates\" target=\"_blank\">Email Templates Help</a>");
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME',"Site Yöneticisi Yeni Rezervasyon E-postası");
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC',"Site yöneticisine rezervasyon yapıldığında gideek mail.");
 jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME',"Otelin yeni rezervasyon Emaili");
@@ -2170,3 +2170,6 @@ jr_define( '_JOMRES_MEDIA_CENTRE_OPTIMIZE_IMAGES_DESC', 'When enabled, images wi
 jr_define( 'DATABASE_INTEGRITY_CHECK', 'Database Integrity Check');
 jr_define( 'OBSOLETE_FILES_CHECK', 'Obsolete Files Check');
 jr_define( 'DATATABLES_COLVIS', 'Column Visibility');
+
+jr_define( 'API_TOKEN_LIFETIME', 'API token lifetime');
+jr_define( 'API_TOKEN_LIFETIME_DESC', 'How long an API token remains valid for, in seconds. 86400 = 1 day, 31536000 = 1 year');

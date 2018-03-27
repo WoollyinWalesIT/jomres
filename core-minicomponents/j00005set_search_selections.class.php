@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.1
+ * @version Jomres 9.10.2
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -137,7 +137,12 @@ class j00005set_search_selections
         //////////////////////////////////// DATES /////////////////////////////////////////////////////////
         if (isset($_REQUEST[ 'arrivalDate' ])) {
             $arrivalDate = jomresGetParam($_REQUEST, 'arrivalDate', '');
+
             if ($arrivalDate != '') {
+				if (isset($_REQUEST['pdetails_cal'])) {
+					$arrivalDate = JSCalmakeInputDates($arrivalDate, true);
+				}
+				
                 $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] = $arrivalDate;
             }
         }
@@ -150,11 +155,6 @@ class j00005set_search_selections
         }
     }
 
-/**
- * Must be included in every mini-component.
- #
- * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
- */
     // This must be included in every Event/Mini-component
     public function getRetVals()
     {

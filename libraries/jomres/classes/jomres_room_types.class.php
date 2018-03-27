@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.1
+ * @version Jomres 9.10.2
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,8 +16,6 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_room_types
 {
-    private static $configInstance;
-
     public function __construct()
     {
         $this->room_types = false;
@@ -32,15 +30,6 @@ class jomres_room_types
         $this->room_type['room_class_full_desc'] = '';        // resource type description - not used
         $this->room_type['image'] = '';        // resource type icon path
         $this->room_type['ptype_xref'] = array();    // property types that this room type is assigned to
-    }
-
-    public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
-
-        return self::$configInstance;
     }
 
     // Get all room types details

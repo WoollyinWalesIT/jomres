@@ -3,7 +3,7 @@
  * Core file
  *
  * @author Vince Wooll <sales@jomres.net>
- * @version Jomres 9.10.1
+ * @version Jomres 9.10.2
  * @package Jomres
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
@@ -15,8 +15,6 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class jomres_property_features
 	{
-	private static $configInstance;
-
 	public function __construct()
 		{
 		$this->property_features 	= false;				// array of all property features
@@ -29,16 +27,7 @@ class jomres_property_features
 		$this->ptype_xref			= array();				// property types xref array
 		$this->cat_id				= 0;					// property feature category id
 		$this->cat_title			= 0;					// property feature category id
-		}
-
-	public static function getInstance()
-		{
-		if ( !self::$configInstance )
-			{
-			self::$configInstance = new jomres_property_features();
-			}
-
-		return self::$configInstance;
+		$this->include_in_filters	= 1;					// include in filters 
 		}
 
 	//get all property features
@@ -70,7 +59,7 @@ class jomres_property_features
 			$this->property_features[$r->hotel_features_uid]['desc']				= jr_gettext( '_JOMRES_CUSTOMTEXT_FEATURES_DESC' . (int) $r->hotel_features_uid, $r->hotel_feature_full_desc, false ); // property feature description
 			$this->property_features[$r->hotel_features_uid]['image']				= $r->image;							// property feature image/icon
 			$this->property_features[$r->hotel_features_uid]['property_uid']		= (int)$r->property_uid;				// property uid
-			$this->property_features[$r->hotel_features_uid]['include_in_filters']	= (int)$r->include_in_filters;				// property uid
+			$this->property_features[$r->hotel_features_uid]['include_in_filters']	= (int)$r->include_in_filters;			// includ ein filters
 			
 			if ( $r->ptype_xref != '' )
 				{
@@ -186,7 +175,7 @@ class jomres_property_features
 										 `property_uid`,
 										 `ptype_xref`,
 										 `cat_id`,
-										 `include_in_filters`,
+										 `include_in_filters`
 										 ) 
 										VALUES 
 										(

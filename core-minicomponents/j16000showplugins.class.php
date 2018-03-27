@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.1
+ * @version Jomres 9.10.2
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -211,7 +211,7 @@ class j16000showplugins
 		} else { // Key not valid
 			$output = array();
 			
-			$output['SUBSCRIPTION_LICENSES'] =  $MiniComponents->specificEvent('16000', 'prices', array('output_now'=>false));
+			$output['SUBSCRIPTION_LICENSES'] =  $MiniComponents->specificEvent('16000', 'stripe_subscribe', array('output_now'=>false));
 			
 			$pageoutput = array();
 			$pageoutput[ ] = $output;

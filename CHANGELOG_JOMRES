@@ -1,3 +1,26 @@
+<h3>Jomres 9.10.2 27/03/2018</h3>
+
+<span class="label label-warning">Change</span> Removed singleton specific code from all classes that don`t need it. There is only one singleton in Jomres, jomres_singleton_abstract class and this is the container for all other classes instances.
+<span class="label label-warning">Change</span> Deferred tasks modified to use Guzzle.
+<span class="label label-warning">Change</span> Added setting to change token lifetime.
+<span class="label label-warning">Change</span> Added database update script to remove old tokens.
+<span class="label label-warning">Change</span> Added the ability to pre-filter room types in the booking form.
+<span class="label label-warning">Change</span> Added support for the availability calendar to use the week start day setting.
+<span class="label label-warning">Change</span> Improved jquery ui availability calendar css.
+<span class="label label-warning">Change</span> Improved how we check if Jomres is installed. If db tables are created but no properties exist, we`ll consider that Jomres is not properly installed and execute the installation routine.
+<span class="label label-warning">Change</span> Modified the create multiple room script so that maximum rooms are now 1000 and max guests are 100.
+
+<span class="label label-important label-danger">Fix</span> Several language files updated to show correct link to email template editing page in manual.
+<span class="label label-important label-danger">Fix</span> Fixed an issue with a couple of dots too many, thanks kopfnuss.
+<span class="label label-important label-danger">Fix</span> Resolved an issue where token not deleted when client deleted.
+<span class="label label-important label-danger">Fix</span> Solved a problem with fixed arrival days in property details jquery ui calendar not showing colours.
+<span class="label label-important label-danger">Fix</span> Fixed a bug that prevented new property features to be created.
+<span class="label label-important label-danger">Fix</span> Solved a problem with redirects on update.
+<span class="label label-important label-danger">Fix</span> Solved a notice in label translations.
+
+<h3>Jomres 9.10.1 14/03/2018</h3>
+
+<span class="label label-important label-danger">Fix</span> Fixed a bug in the new installer that didn't come to light until after testing.
 
 
 <h3>Jomres 9.10.0 14/03/2018</h3>
