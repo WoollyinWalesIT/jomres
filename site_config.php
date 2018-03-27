@@ -198,6 +198,7 @@ $jrConfig = array(
   'gdpr_booking_retention_period' => '365',
   'gdpr_other_invoice_retention_period' => '3653', // 10 years (including the odd leap day or two)
   'enable_gdpr_compliant_fucntionality' => '1',
-  'machine_translations_source_language' => 'en-GB'
-  'frontend_room_type_editing_allowed' => '0'
+  'machine_translations_source_language' => 'en-GB',
+  'frontend_room_type_editing_allowed' => '0',
+  'frontend_room_type_editing_show_property_room_types_in_search_options' => '1'
 );
