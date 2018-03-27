@@ -1973,3 +1973,9 @@ jr_define( 'DATATABLES_COLVIS', 'Column Visibility');
 
 jr_define( 'API_TOKEN_LIFETIME', 'API token lifetime');
 jr_define( 'API_TOKEN_LIFETIME_DESC', 'How long an API token remains valid for, in seconds. 86400 = 1 day, 31536000 = 1 year');
+
+jr_define( 'FIREWALL_CHECK', 'Firewall check' );
+jr_define( 'FIREWALL_CHECK_DESC', 'This is a simple check to see if this server can connect to remote services. If it cannot, that might indicate that there are firewall rules in place preventing the two machines from talking to each other. If there are, then you may need to discuss adjusting firewall rules with your webserver hosts. 404 & 403 responses can be considered ok because you are getting a response from the remote service.' );
+jr_define( 'FIREWALL_CHECK_REMOTE_SERVICE', 'Remote service' );
+jr_define( 'FIREWALL_CHECK_STATUSCODE', 'Status code' );
+jr_define( 'FIREWALL_CHECK_IP_NUMBER', 'IP Number' );
