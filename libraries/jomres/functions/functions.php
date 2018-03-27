@@ -1727,6 +1727,8 @@ function install_external_plugin($plugin_name, $plugin_type, $mambot_type = '', 
                 return false;
             }
 
+			emptyDir($widget_target);
+			
             $plugin_info_file = $widget_source.'plugin_info.php';
             $plugin_info_file_temp = JOMRES_SYSTEMLOG_PATH.'plugin_info.php';
             copy($plugin_info_file, $plugin_info_file_temp);
@@ -1759,7 +1761,9 @@ function install_external_plugin($plugin_name, $plugin_type, $mambot_type = '', 
 
                 return false;
             }
-
+			
+			emptyDir($module_target);
+			
             //echo "Moving contents of ".$module_xml_source." to ".$module_target."<br/>";
             $module_xml_move_result = dirmv($module_xml_source, $module_target, true, $funcloc = JRDS);
             $module_move_result = dirmv($module_source, $module_target, true, $funcloc = JRDS);
@@ -1790,6 +1794,8 @@ function install_external_plugin($plugin_name, $plugin_type, $mambot_type = '', 
                 return false;
             }
 
+			emptyDir($mambot_target);
+			
             $mambot_xml_move_result = dirmv($mambot_xml_source, $mambot_target, true, $funcloc = '/');
             $mambot_move_result = dirmv($mambot_source, $mambot_target, true, '/');
 
