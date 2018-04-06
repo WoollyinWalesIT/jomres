@@ -41,7 +41,7 @@ class jomres_video_tutorials
 				$title = $video['title'];
 				$description = $video['description'];
 				$r['TITLE'] = jr_gettext($title, $title , false );
-				$r['DESCRIPTION'] = jr_gettext($description, $description , false );
+				$r['DESCRIPTION'] = nl2br(jr_gettext($description, $description , false ));
 				$r['VIDEO_ID'] = $video['video_id'];
 				$r['VIDEO_ID_SANITISED'] = str_replace("-","", $video['video_id']);
 				
@@ -87,6 +87,18 @@ class jomres_video_tutorials
 		
 		if ( jomres_cmsspecific_areweinadminarea() ) {
 			$videos = $videos_array['ADMIN'];
+			if(isset($videos_array['MRP'])) {
+				$videos = array_merge($videos ,  $videos_array['MRP']);
+			}
+			if(isset($videos_array['SRP'])) {
+				$videos = array_merge($videos ,  $videos_array['SRP']);
+			}
+			if(isset($videos_array['TOUR'])) {
+				$videos = array_merge($videos ,  $videos_array['TOUR']);
+			}
+			if(isset($videos_array['REALESTATE'])) {
+				$videos = array_merge($videos ,  $videos_array['REALESTATE']);
+			}
 		} elseif ($mrConfig[ 'is_real_estate_listing' ] == '1') {
 			$videos = $videos_array['REALESTATE'];
 		} elseif ($mrConfig[ 'singleRoomProperty' ] == '1') {
