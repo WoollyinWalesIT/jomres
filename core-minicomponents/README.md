@@ -97,6 +97,8 @@ Administrator area
 
 13100 Allows plugins to add warnings to the control panel.
 
+13200 Third party plugins can add their own tab contents to the plugin manager.
+
 16000 Administrator area tasks/pages.
 
 19995 creates the admin core menu items  
