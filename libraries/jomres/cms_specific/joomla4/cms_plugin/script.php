@@ -47,6 +47,15 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 			return false;
 		}
 		
+		//check disk space
+		$disk_free_space = $this->free_space();
+
+		if ( $disk_free_space < 300 ) {
+			JError::raiseWarning(null, 'There is not enough disk space available to download and extract Jomres.');
+			
+			return false;
+		}
+		
 		//set the jomres download url
 		$url = 'http://updates.jomres4.net/getlatest.php?includebeta=true';
 		$nightly_url = 'http://updates.jomres4.net/nightly/';
@@ -68,15 +77,6 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 		$response = $http->get($url);
 
 		if (strlen($response->body) == 0) {
-			return false;
-		}
-		
-		//check disk space
-		$disk_free_space = free_space();
-
-		if ( $disk_free_space < 300 ) {
-			JError::raiseWarning(null, 'There is not enough disk space available to download and extract Jomres.');
-			
 			return false;
 		}
 

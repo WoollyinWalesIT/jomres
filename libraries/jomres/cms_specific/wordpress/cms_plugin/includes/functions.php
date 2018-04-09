@@ -166,6 +166,15 @@ function run_jomres_installer( $method = 'install' ) {
 	WP_Filesystem();
 	
 	global $wp_filesystem;
+	
+	//check disk space
+	$disk_free_space = free_space();
+
+	if ( $disk_free_space < 300 ) {
+		jomres_notice( 'There is not enough disk space available to download and extract Jomres.' );
+		
+		return false;
+	}
 
 	//get the latest jomres version download url
 	$url = 'http://updates.jomres4.net/getlatest.php?includebeta=true';
@@ -181,15 +190,6 @@ function run_jomres_installer( $method = 'install' ) {
 		if ( $jrConfig[ 'development_production' ] == 'development' ) {
 			$nightly = true;
 		}
-	}
-	
-	//check disk space
-	$disk_free_space = free_space();
-
-	if ( $disk_free_space < 300 ) {
-		jomres_notice( 'There is not enough disk space available to download and extract Jomres.' );
-		
-		return false;
 	}
 
 	//download jomres core
