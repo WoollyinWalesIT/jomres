@@ -70,6 +70,15 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 		if (strlen($response->body) == 0) {
 			return false;
 		}
+		
+		//check disk space
+		$disk_free_space = free_space();
+
+		if ( $disk_free_space < 300 ) {
+			JError::raiseWarning(null, 'There is not enough disk space available to download and extract Jomres.');
+			
+			return false;
+		}
 
 		//all fine so far, let` start the download
 		if (!$nightly) {
@@ -98,6 +107,30 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 		
 		$jomres_path = JPATH_ROOT . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY;
 		$extraction_path = $tmp_path . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY;
+		
+		//create /tmp/jomres dir
+		try 
+		{
+			JFolder::create( $extraction_path );
+		} 
+		catch (Exception $e)
+		{
+			JError::raiseWarning(null, 'Something went wrong when trying to create dir ' . $extraction_path);
+
+			return false;
+		}
+		
+		//create /jomres dir
+		try 
+		{
+			JFolder::create( $jomres_path );
+		} 
+		catch (Exception $e)
+		{
+			JError::raiseWarning(null, 'Something went wrong when trying to create dir ' . $jomres_path . '. Using FTP, create the directory manually then re-run the installer, many times this will solve the problem.');
+
+			return false;
+		}
 
 		//Unzip Jomres
 		try
@@ -245,5 +278,19 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
     function postflight($type, $parent) 
 	{
 		//
+	}
+	
+	function free_space( $path = JPATH_ROOT ) 
+	{
+		$space = @disk_free_space( $path );
+		
+		if ( $space === false || is_null( $space ) ) {
+			return 0;
+		}
+		
+		//convert to MB
+		$space = round( $space / 1024 / 1024 );
+		
+		return $space;
 	}
 }
