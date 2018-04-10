@@ -56,6 +56,15 @@ if (!isset($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ])) {
     $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] = "";
 }
 
+
+
+if (isset($_REQUEST['arrivalDate']) ) {
+	$is_hyphen = substr ($_REQUEST['arrivalDate'] , 4 , 1 );
+	if ($is_hyphen == "-" ) {
+		$_REQUEST['arrivalDate'] = str_replace ("-" , "/" , $_REQUEST['arrivalDate'] );
+	}
+}
+
 /**
  * If the arrival date is set in one of several different places (e.g. the url or stored as the result of a search) then set the arrival date in the form.
  */
