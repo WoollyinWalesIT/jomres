@@ -319,8 +319,8 @@ class j06005list_invoices_ajax
 			else
 				$r[] = '';
 			
-            $r[] = output_price($p->grand_total, $p->currencycode);
-            $r[] = output_price($p->init_total, $p->currencycode);
+            $r[] = output_price($p->grand_total, $p->currencycode , false );
+            $r[] = output_price($p->init_total, $p->currencycode , false );
 
             //gateways stuff
             if ((int) $p->status == 3) {
