@@ -208,19 +208,12 @@ class j16000showplugins
 				
 				jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins');
 			}
-		} else { // Key not valid
-			$output = array();
+		} else { // Key valid however plugin manager not called?
 			
-			$output['SUBSCRIPTION_LICENSES'] =  $MiniComponents->specificEvent('16000', 'stripe_subscribe', array('output_now'=>false));
-			
-			$pageoutput = array();
-			$pageoutput[ ] = $output;
-			$tmpl = new patTemplate();
-			$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
-			$tmpl->addRows('pageoutput', $pageoutput);
-			$tmpl->readTemplatesFromInput('plugin_manager_invalid_key.html');
-			$tmpl->displayParsedTemplate();
-			return;
+			// Empty the temp dir
+			emptyDir(JOMRES_TEMP_ABSPATH);
+			// redirect to showplugins
+			jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins');
 		}
 	}
 
