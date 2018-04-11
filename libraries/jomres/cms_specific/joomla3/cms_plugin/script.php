@@ -2,6 +2,8 @@
 // No direct access to this file
 defined('_JEXEC') or die('');
 
+use Joomla\Archive\Archive;
+
 class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687/script-not-running-on-plugin-installation
 {
     function preflight($type, $parent) 
@@ -135,7 +137,9 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 		//Unzip Jomres
 		try
 		{
-			$extract = JArchive::extract($tmp_path . DIRECTORY_SEPARATOR . $archivename, $extraction_path);
+			$archive = new Archive;
+
+			$extract = $archive->extract($tmp_path . DIRECTORY_SEPARATOR . $archivename, $extraction_path);
 		}
 		catch (Exception $e)
 		{
