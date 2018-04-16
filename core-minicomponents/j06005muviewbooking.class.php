@@ -149,12 +149,6 @@ class j06005muviewbooking
             $guest_tel_fax = $guest->tel_fax;
             $guest_email = $guest->email;
             $guest_preferences = $guest->preferences;
-            $guest_car_regno = $guest->car_regno;
-            $guest_ccard_no = $guest->ccard_no;
-            $guest_ccard_issued = $guest->ccard_issued;
-            $guest_ccard_expiry = $guest->ccard_expiry;
-            $guest_ccard_iss_no = $guest->ccard_iss_no;
-            $guest_ccard_name = $guest->ccard_name;
             $guest_vat_number = $guest->vat_number;
         }
 

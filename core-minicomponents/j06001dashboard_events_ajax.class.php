@@ -26,6 +26,10 @@ class j06001dashboard_events_ajax
             return;
         }
         $this->retVals = null;
+		
+		jr_import('jomres_encryption');
+		$jomres_encryption = new jomres_encryption();
+		
         $property_uid = jomresGetParam($_GET, 'property_uid', 0);
         if ($property_uid == 0) {
             $property_uid = getDefaultProperty();
@@ -120,11 +124,11 @@ class j06001dashboard_events_ajax
                 $room_uids[$contract->contract_uid][] = $contract->room_uid;
             }
             if (!empty($guest_uids)) {
-                $query = 'SELECT guests_uid,firstname,surname FROM #__jomres_guests WHERE guests_uid IN ('.jomres_implode($guest_uids).') ';
+                $query = 'SELECT guests_uid,enc_firstname,enc_surname FROM #__jomres_guests WHERE guests_uid IN ('.jomres_implode($guest_uids).') ';
                 $guestsList = doSelectSql($query);
 
                 foreach ($guestsList as $g) {
-                    $guests[$g->guests_uid] = ucfirst(jomres_decode($g->firstname)).' '.ucfirst(jomres_decode($g->surname));
+                    $guests[$g->guests_uid] = ucfirst(jomres_decode($jomres_encryption->decrypt($g->firstname))).' '.ucfirst(jomres_decode($jomres_encryption->decrypt($g->surname)));
                 }
             }
 

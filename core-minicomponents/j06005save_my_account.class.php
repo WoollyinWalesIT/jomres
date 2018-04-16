@@ -25,7 +25,9 @@ class j06005save_my_account
 
             return;
         }
-
+		jr_import('jomres_encryption');
+		$this->jomres_encryption = new jomres_encryption();
+		
         $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
         if ($thisJRUser->id == 0) {
@@ -35,18 +37,18 @@ class j06005save_my_account
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
 
-        $firstname = (string) jomresGetParam($_REQUEST, 'firstname', '');
-        $surname = (string) jomresGetParam($_REQUEST, 'surname', '');
-        $house = (string) jomresGetParam($_REQUEST, 'house', '');
-        $street = (string) jomresGetParam($_REQUEST, 'street', '');
-        $town = (string) jomresGetParam($_REQUEST, 'town', '');
-        $region = (string) jomresGetParam($_REQUEST, 'region', '');
-        $country = (string) jomresGetParam($_REQUEST, 'guest_country', '');
-        $postcode = (string) jomresGetParam($_REQUEST, 'postcode', '');
-        $landline = (string) jomresGetParam($_REQUEST, 'landline', '');
-        $mobile = (string) jomresGetParam($_REQUEST, 'mobile', '');
-        $fax = (string) jomresGetParam($_REQUEST, 'fax', '');
-        $email = (string) jomresGetParam($_REQUEST, 'email', '');
+        $firstname = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'firstname', ''));
+        $surname = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'surname', ''));
+        $house = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'house', ''));
+        $street = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'street', ''));
+        $town = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'town', ''));
+        $region = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'region', ''));
+        $country = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'guest_country', ''));
+        $postcode = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'postcode', ''));
+        $landline = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'landline', ''));
+        $mobile = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'mobile', ''));
+        $fax = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'fax', ''));
+        $email = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'email', ''));
         $vat_number = trim(filter_var($_REQUEST[ 'vat_number' ], FILTER_SANITIZE_STRING));
         $return_url = (string) jomresGetParam($_REQUEST, 'return_url', '');
 		$delete_image = (int)jomresGetParam($_REQUEST, 'delete', 0);
@@ -74,20 +76,92 @@ class j06005save_my_account
 
 			// Whilst the profiles table might be empty, the guests table might not. We'll update the guests table as well as the profiles table, at the same time.
 			if ($thisJRUser->profile_id > 0) {
-				$query = "UPDATE #__jomres_guest_profile SET `firstname`='$firstname',`surname`='$surname',`house`='$house',`street`='$street',`town`='$town',`county`='$region',`country`='$country',`postcode`='$postcode',`tel_landline`='$landline',`tel_mobile`='$mobile',`tel_fax`='$fax',`email`='$email',`vat_number`='$vat_number',`vat_number_validated`=$original_vat_number_validated WHERE cms_user_id = ".(int) $thisJRUser->id;
+				$query = "UPDATE #__jomres_guest_profile SET 
+					`enc_firstname`='".$firstname."',
+					`enc_surname`='".$surname."',
+					`enc_house`='".$house."',
+					`enc_street`='".$street."',
+					`enc_town`='".$town."',
+					`enc_county`='".$region."',
+					`enc_country`='".$country."',
+					`enc_postcode`='".$postcode."',
+					`enc_tel_landline`='".$landline."',
+					`enc_tel_mobile`='".$mobile."',
+					`enc_email`='".$email."',
+					`enc_vat_number`='".$this->jomres_encryption->encrypt($vat_number)."',
+					`vat_number_validated`=$original_vat_number_validated 
+					WHERE cms_user_id = ".(int) $thisJRUser->id;
 				if (!doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_UPDATE_GUEST', '_JOMRES_MR_AUDIT_UPDATE_GUEST', false))) {
 					trigger_error('Unable to update guest details, mysql db failure', E_USER_ERROR);
 				}
 
-				$query = "UPDATE #__jomres_guests SET `firstname`='$firstname',`surname`='$surname',`house`='$house',`street`='$street',`town`='$town',`county`='$region',`country`='$country',`postcode`='$postcode',`tel_landline`='$landline',`tel_mobile`='$mobile',`tel_fax`='$fax',`email`='$email',`vat_number`='$vat_number',`vat_number_validated`=$original_vat_number_validated WHERE mos_userid = ".(int) $thisJRUser->id;
+				$query = "UPDATE #__jomres_guests SET 
+					`enc_firstname`='".$firstname."',
+					`enc_surname`='".$surname."',
+					`enc_house`='".$house."',
+					`enc_street`='".$street."',
+					`enc_town`='".$town."',
+					`enc_county`='".$region."',
+					`enc_country`='".$country."',
+					`enc_postcode`='".$postcode."',
+					`enc_tel_landline`='".$landline."',
+					`enc_tel_mobile`='".$mobile."',
+					`enc_email`='".$email."',
+					`enc_vat_number`='".$this->jomres_encryption->encrypt($vat_number)."',
+					`vat_number_validated`=$original_vat_number_validated 
+				WHERE mos_userid = ".(int) $thisJRUser->id;
 				doInsertSql($query, '');
 			} else {
-				$query = "INSERT INTO #__jomres_guest_profile (`cms_user_id`,`firstname`,`surname`,`house`,`street`,`town`,`county`,`country`,`postcode`,`tel_landline`,`tel_mobile`,`tel_fax`,`email`,`vat_number`,`vat_number_validated`) VALUES ('".(int) $thisJRUser->id."','$firstname','$surname','$house','$street','$town','$region','$country','$postcode','$landline','$mobile','$fax','$email','$vat_number',0)";
+				$query = "INSERT INTO #__jomres_guest_profile (
+					`cms_user_id`,
+					`enc_firstname`,
+					`enc_surname`,
+					`enc_house`,
+					`enc_street`,
+					`enc_town`,
+					`enc_county`,
+					`enc_country`,
+					`enc_postcode`,
+					`enc_tel_landline`,
+					`enc_tel_mobile`,
+					`enc_email`,
+					`enc_vat_number`,
+					`vat_number_validated`) 
+					VALUES (
+					'".(int) $thisJRUser->id."',
+					'$firstname',
+					'$surname',
+					'$house',
+					'$street',
+					'$town',
+					'$region',
+					'$country',
+					'$postcode',
+					'$landline',
+					'$mobile',
+					'$email',
+					'".$this->jomres_encryption->encrypt($vat_number)."',
+					0)";
+					
 				if (!doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_INSERT_GUEST', '_JOMRES_MR_AUDIT_INSERT_GUEST', false))) {
 					trigger_error('Unable to insert guest details, mysql db failure', E_USER_ERROR);
 				}
 
-				$query = "UPDATE #__jomres_guests SET `firstname`='$firstname',`surname`='$surname',`house`='$house',`street`='$street',`town`='$town',`county`='$region',`country`='$country',`postcode`='$postcode',`tel_landline`='$landline',`tel_mobile`='$mobile',`tel_fax`='$fax',`email`='$email',`vat_number`='$vat_number',`vat_number_validated`=$original_vat_number_validated WHERE mos_userid = ".(int) $thisJRUser->id;
+				$query = "UPDATE #__jomres_guests SET 
+					`enc_firstname`='$firstname',
+					`enc_surname`='$surname',
+					`enc_house`='$house',
+					`enc_street`='$street',
+					`enc_town`='$town',
+					`enc_county`='$region',
+					`enc_country`='$country',
+					`enc_postcode`='$postcode',
+					`enc_tel_landline`='$landline',
+					`enc_tel_mobile`='$mobile',
+					`enc_email`='$email',
+					`enc_vat_number`='".$this->jomres_encryption->encrypt($vat_number)."',
+					`vat_number_validated`=$original_vat_number_validated 
+					WHERE mos_userid = ".(int) $thisJRUser->id;
 				doInsertSql($query, '');
 			}
 

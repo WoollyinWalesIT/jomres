@@ -59,6 +59,9 @@ class j06001dashboard_resources_ajax
                     $name .= $r['room_name'].' - ';
                 }
             }
+			if (!isset($current_property_details->all_room_types[ $r['room_classes_uid'] ][ 'room_class_abbv' ])) {
+				$current_property_details->all_room_types[ $r['room_classes_uid'] ][ 'room_class_abbv' ] = "";
+			}
             $name .= $current_property_details->all_room_types[ $r['room_classes_uid'] ][ 'room_class_abbv' ];
 			$siteConfig        = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 			$jrConfig          = $siteConfig->get();

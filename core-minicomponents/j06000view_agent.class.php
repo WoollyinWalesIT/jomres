@@ -46,6 +46,9 @@ class j06000view_agent
         $MiniComponents->triggerEvent('01006', $componentArgs); // optional
         $MiniComponents->triggerEvent('01007', $componentArgs); // optional
 
+		jr_import('jomres_encryption');
+		$jomres_encryption = new jomres_encryption();
+				
         $output = array();
         $this->retVals = '';
 
@@ -94,32 +97,32 @@ class j06000view_agent
         $output[ '_JOMRES_AGENT_DETAILS' ] = jr_gettext('_JOMRES_AGENT_DETAILS', '_JOMRES_AGENT_DETAILS');
         $output[ '_JOMRES_AGENT_LISTINGS' ] = jr_gettext('_JOMRES_AGENT_LISTINGS', '_JOMRES_AGENT_LISTINGS');
 
-        $query = 'SELECT firstname,surname,house,street,town,county,country,postcode,tel_landline,tel_mobile,email FROM #__jomres_guest_profile WHERE cms_user_id = '.(int) $manager_id.' LIMIT 1';
+        $query = 'SELECT enc_firstname,enc_surname,enc_house,enc_street,enc_town,enc_county,enc_country,enc_postcode,enc_tel_landline,enc_tel_mobile,enc_email FROM #__jomres_guest_profile WHERE cms_user_id = '.(int) $manager_id.' LIMIT 1';
         $managerData = doSelectSql($query);
 
         if (!empty($managerData)) {
             foreach ($managerData as $data) {
-                $output[ 'FIRSTNAME' ] = $data->firstname;
-                $output[ 'SURNAME' ] = $data->surname;
+                $output[ 'FIRSTNAME' ] = $jomres_encryption->decrypt($data->enc_firstname);
+                $output[ 'SURNAME' ] = $jomres_encryption->decrypt($data->enc_surname);
 				if (get_showtime("task") == "view_agent") {
-					jomres_cmsspecific_setmetadata('title', jomres_purify_html($data->firstname." ".$data->surname));
+					jomres_cmsspecific_setmetadata('title', jomres_purify_html($jomres_encryption->decrypt($data->enc_firstname)." ".$jomres_encryption->decrypt($data->enc_surname)));
 				}
                 
-                $output[ 'HOUSE' ] = $data->house;
-                $output[ 'STREET' ] = $data->street;
-                $output[ 'TOWN' ] = $data->town;
-                $output[ 'REGION' ] = $data->county;
-                if (is_numeric($data->county)) {
+                $output[ 'HOUSE' ] = $jomres_encryption->decrypt($data->enc_house);
+                $output[ 'STREET' ] = $jomres_encryption->decrypt($data->enc_street);
+                $output[ 'TOWN' ] = $jomres_encryption->decrypt($data->enc_town);
+                $output[ 'REGION' ] = $jomres_encryption->decrypt($data->enc_county);
+                if (is_numeric($jomres_encryption->decrypt($data->enc_county))) {
                     $jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
-                    $output[ 'REGION' ] = jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$data->county, $jomres_regions->get_region_name($data->county), false, false);
+                    $output[ 'REGION' ] = jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$data->enc_county, $jomres_regions->get_region_name($jomres_encryption->decrypt($data->enc_county)), false, false);
                 } else {
-                    $output[ 'REGION' ] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_REGION'.$data->county, $data->county, false, false);
+                    $output[ 'REGION' ] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_REGION'.$jomres_encryption->decrypt($data->enc_county), $jomres_encryption->decrypt($data->enc_county), false, false);
                 }
-                $output[ 'COUNTRY' ] = getSimpleCountry($data->country);
-                $output[ 'POSTCODE' ] = $data->postcode;
-                $output[ 'LANDLINE' ] = $data->tel_landline;
-                $output[ 'MOBILE' ] = $data->tel_mobile;
-                $output[ 'EMAIL' ] = jomres_hide_email($data->email);
+                $output[ 'COUNTRY' ] = getSimpleCountry($jomres_encryption->decrypt($data->enc_country));
+                $output[ 'POSTCODE' ] = $jomres_encryption->decrypt($data->enc_postcode);
+                $output[ 'LANDLINE' ] = $jomres_encryption->decrypt($data->enc_tel_landline);
+                $output[ 'MOBILE' ] = $jomres_encryption->decrypt($data->enc_tel_mobile);
+                $output[ 'EMAIL' ] = jomres_hide_email($jomres_encryption->decrypt($data->enc_email));
 
                 $jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
 				$jomres_media_centre_images->get_site_images('userimages');

@@ -15,3 +15,4 @@ desktop.ini
 /node_modules/x-editable/test/*
 /node_modules/jquery-ui/external/*
 /node_modules/chart.js/dist/docs/*
+/encryption_key.class.php

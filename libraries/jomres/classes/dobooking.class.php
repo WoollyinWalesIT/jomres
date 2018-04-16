@@ -33,6 +33,9 @@ class dobooking
 
 		$this->jrConfig = $jrConfig; // Importing the site config settings
 
+		jr_import('jomres_encryption');
+		$this->jomres_encryption = new jomres_encryption();
+		
 		$this->suppress_output = true;
 		if (get_showtime('task') == 'handlereq' || get_showtime('task') == 'dobooking') {
 			$this->suppress_output = false;
@@ -2984,9 +2987,9 @@ class dobooking
 
 		if ($thisJRUser->is_partner || $thisJRUser->userIsManager) {
 			if ($thisJRUser->userIsManager) {
-				$query = "SELECT guests_uid,mos_userid,firstname,surname,house,street,town,county ,country,postcode,tel_landline,tel_mobile,email,discount FROM #__jomres_guests WHERE guests_uid = '$id' AND property_uid IN (".jomres_implode($thisJRUser->authorisedProperties).') LIMIT 1';
+				$query = "SELECT guests_uid,mos_userid,enc_firstname,enc_surname,enc_house,enc_street,enc_town,enc_county ,enc_country,enc_postcode,enc_tel_landline,enc_tel_mobile,enc_email,discount FROM #__jomres_guests WHERE guests_uid = '$id' AND property_uid IN (".jomres_implode($thisJRUser->authorisedProperties).') LIMIT 1';
 			} else {
-				$query = 'SELECT guests_uid,mos_userid,firstname,surname,house,street,town,county ,country,postcode,tel_landline,tel_mobile,email,discount FROM #__jomres_guests WHERE partner_id = '.$thisJRUser->id." AND guests_uid = '$id' LIMIT 1";
+				$query = 'SELECT guests_uid,mos_userid,enc_firstname,enc_surname,enc_house,enc_street,enc_town,enc_county ,enc_country,enc_postcode,enc_tel_landline,enc_tel_mobileenc_,email,discount FROM #__jomres_guests WHERE partner_id = '.$thisJRUser->id." AND guests_uid = '$id' LIMIT 1";
 			}
 			$result = doSelectSql($query, 2);
 			if (!empty($result)) {
@@ -2996,18 +2999,18 @@ class dobooking
 				$this->setGuest_existing_id($id);
 
 				$this->mos_userid = $result[ 'mos_userid' ];
-				$this->setGuest_firstname($result[ 'firstname' ]);
-				$this->setGuest_surname($result[ 'surname' ]);
-				$this->setGuest_house($result[ 'house' ]);
-				$this->setGuest_street($result[ 'street' ]);
-				$this->setGuest_town($result[ 'town' ]);
-				$this->setGuest_region($result[ 'county' ]);
-				$this->setGuest_country($result[ 'country' ]);
-				$this->setGuest_postcode($result[ 'postcode' ]);
-				$this->setGuest_tel_landline($result[ 'tel_landline' ]);
-				$this->setGuest_tel_mobile($result[ 'tel_mobile' ]);
-				if ($this->checkEmail($result[ 'email' ])) {
-					$this->setGuest_email($result[ 'email' ]);
+				$this->setGuest_firstname($this->jomres_encryption->decrypt($result[ 'enc_firstname' ]));
+				$this->setGuest_surname($this->jomres_encryption->decrypt($result[ 'enc_surname' ]));
+				$this->setGuest_house($this->jomres_encryption->decrypt($result[ 'enc_house' ]));
+				$this->setGuest_street($this->jomres_encryption->decrypt($result[ 'enc_street' ]));
+				$this->setGuest_town($this->jomres_encryption->decrypt($result[ 'enc_town' ]));
+				$this->setGuest_region($this->jomres_encryption->decrypt($result[ 'enc_county' ]));
+				$this->setGuest_country($this->jomres_encryption->decrypt($result[ 'enc_country' ]));
+				$this->setGuest_postcode($this->jomres_encryption->decrypt($result[ 'enc_postcode' ]));
+				$this->setGuest_tel_landline($this->jomres_encryption->decrypt($result[ 'enc_tel_landline' ]));
+				$this->setGuest_tel_mobile($this->jomres_encryption->decrypt($result[ 'enc_tel_mobile' ]));
+				if ($this->checkEmail($this->jomres_encryption->decrypt($result[ 'enc_email' ]))) {
+					$this->setGuest_email($this->jomres_encryption->decrypt($result[ 'enc_email' ]));
 				}
 				$this->setGuest_discount($result[ 'discount' ]);
 
@@ -3216,24 +3219,24 @@ class dobooking
 		}
 
 		if ($id != 0 && !$userIsManager) {
-			$query = "SELECT guests_uid,mos_userid,firstname,surname,house,street,town,county,country,postcode,tel_landline,tel_mobile,tel_fax,email FROM #__jomres_guests WHERE mos_userid = '$id'";
+			$query = "SELECT guests_uid,mos_userid,enc_firstname,enc_surname,enc_house,enc_street,enc_town,enc_county,enc_country,enc_postcode,enc_tel_landline,enc_tel_mobile,enc_tel_fax,enc_email FROM #__jomres_guests WHERE mos_userid = '$id'";
 			$guestList = doSelectSql($query);
 			//echo $query;exit;
 			//var_dump($guestList);exit;
 			if (!empty($guestList)) {
 				foreach ($guestList as $data) {
 					$guests_uid = $data->guests_uid;
-					$guest_firstname = $data->firstname;
-					$guest_surname = $data->surname;
-					$guest_house = $data->house;
-					$guest_street = $data->street;
-					$guest_town = $data->town;
-					$guest_region = $data->county;
-					$guest_country = $data->country;
-					$guest_postcode = $data->postcode;
-					$guest_tel_landline = $data->tel_landline;
-					$guest_tel_mobile = $data->tel_mobile;
-					$guest_email = $data->email;
+					$guest_firstname = $this->jomres_encryption->decrypt($data->firstname);
+					$guest_surname = $this->jomres_encryption->decrypt($data->surname);
+					$guest_house = $this->jomres_encryption->decrypt($data->house);
+					$guest_street = $this->jomres_encryption->decrypt($data->street);
+					$guest_town = $this->jomres_encryption->decrypt($data->town);
+					$guest_region = $this->jomres_encryption->decrypt($data->county);
+					$guest_country = $this->jomres_encryption->decrypt($data->country);
+					$guest_postcode = $this->jomres_encryption->decrypt($data->postcode);
+					$guest_tel_landline = $this->jomres_encryption->decrypt($data->tel_landline);
+					$guest_tel_mobile = $this->jomres_encryption->decrypt($data->tel_mobile);
+					$guest_email = $this->jomres_encryption->decrypt($data->email);
 					$query = "SELECT discount FROM #__jomres_guests WHERE mos_userid = '$id' AND property_uid = '$this->property_uid' limit 1";
 					$discount = doSelectSql($query, 1);
 					$guest_specific_discount = $discount;
@@ -3296,10 +3299,10 @@ class dobooking
 		if ($thisJRUser->is_partner) {
 			$partners = jomres_singleton_abstract::getInstance('jomres_partners');
 			$guest_ids = $partners->get_guest_uids_for_partner($thisJRUser->id);
-			$query = 'SELECT guests_uid,surname, firstname, house, street,town,county FROM #__jomres_guests WHERE partner_id = '.$thisJRUser->id.' ORDER BY surname';
+			$query = 'SELECT guests_uid,enc_surname, enc_firstname, enc_house, enc_street,enc_town,enc_county FROM #__jomres_guests WHERE partner_id = '.$thisJRUser->id.' ORDER BY surname';
 			$existingCustomers = doSelectSql($query);
 		} elseif ($thisJRUser->userIsManager) {
-			$query = 'SELECT guests_uid,surname, firstname, house, street,town,county FROM #__jomres_guests WHERE property_uid IN ('.jomres_implode($thisJRUser->authorisedProperties).') ORDER BY surname';
+			$query = 'SELECT guests_uid,enc_surname, enc_firstname, enc_house, enc_street,enc_town,enc_county FROM #__jomres_guests WHERE property_uid IN ('.jomres_implode($thisJRUser->authorisedProperties).') ORDER BY surname';
 			$existingCustomers = doSelectSql($query);
 		}
 
@@ -3308,7 +3311,7 @@ class dobooking
 
 			$ec[ ] = jomresHTML::makeOption('0',  jr_gettext('_JOMRES_CLEAR_GUEST_DETAILS', '_JOMRES_CLEAR_GUEST_DETAILS', false, false));
 			foreach ($existingCustomers as $customer) {
-				$ec[ ] = jomresHTML::makeOption($customer->guests_uid, stripslashes($customer->surname).', '.stripslashes($customer->firstname));
+				$ec[ ] = jomresHTML::makeOption($customer->guests_uid, stripslashes($this->jomres_encryption->decrypt($customer->enc_surname)).', '.stripslashes($this->jomres_encryption->decrypt($customer->enc_firstname)));
 			}
 			$dropDownList = jomresHTML::selectList($ec, 'existingCustomers', ' onchange="getResponse_existing(\'existingCustomers\',this.value);" size="1" class="input-medium"', 'value', 'text', 0);
 		}
