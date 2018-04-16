@@ -316,7 +316,7 @@ class basic_contract_details
 
                 foreach ($extrasList as $e) {
                     $this->contract[$contract_uid]['extradeets'][$e->uid]['uid'] = $e->uid;
-                    $this->contract[$contract_uid]['extradeets'][$e->uid]['name'] = $e->name;
+                    $this->contract[$contract_uid]['extradeets'][$e->uid]['name'] = jr_gettext('_JOMRES_CUSTOMTEXT_EXTRANAME'.$e->uid, jomres_decode($e->name) );
                     $this->contract[$contract_uid]['extradeets'][$e->uid]['price'] = $e->price;
                     $this->contract[$contract_uid]['extradeets'][$e->uid]['tax_rate'] = $e->tax_rate;
                     $this->contract[$contract_uid]['extradeets'][$e->uid]['qty'] = $this->contract[$contract_uid]['contractdeets']['extrasquantities'][$e->uid];
