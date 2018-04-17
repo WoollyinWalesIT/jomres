@@ -32,7 +32,8 @@ class jomres_access_control
 			'06002' => '70', //manager tasks
 			'06005' => '1', //registered tasks
 			'01004' => '0', //property list views
-			'00035' => '0' //property details tabs
+			'00035' => '0', //property details tabs
+			'00501' => '70' //property configuration tabs
 		);
 		
 		//uncontrollable task names
