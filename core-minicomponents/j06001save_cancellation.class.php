@@ -26,6 +26,9 @@ class j06001save_cancellation
             return;
         }
 
+		jr_import('jomres_encryption');
+		$jomres_encryption = new jomres_encryption();
+		
         $defaultProperty = getDefaultProperty();
         $mrConfig = getPropertySpecificSettings();
         $contract_uid = jomresGetParam($_POST, 'contract_uid', 0);
@@ -54,8 +57,8 @@ class j06001save_cancellation
                     $tag = $cancellation->tag;
                 }
 
-                $query = 'SELECT email,firstname,surname FROM #__jomres_guests WHERE guests_uid = '.$guest_uid.' LIMIT 1';
-                $guestData = doSelectSql($query, 2);
+                /* $query = 'SELECT enc_email,enc_firstname,enc_surname FROM #__jomres_guests WHERE guests_uid = '.$guest_uid.' LIMIT 1';
+                $guestData = doSelectSql($query, 2); */
                 $text = $tag.' - '.$saveMessage;
 
                 $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');

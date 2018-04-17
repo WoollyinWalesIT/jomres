@@ -26,6 +26,9 @@ class j06005list_invoices_ajax
             return;
         }
 
+		jr_import('jomres_encryption');
+		$jomres_encryption = new jomres_encryption();
+		
         $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
         $defaultProperty = getDefaultProperty();
         $mrConfig = getPropertySpecificSettings($defaultProperty);
@@ -44,7 +47,7 @@ class j06005list_invoices_ajax
         $rows = array();
 
         //set the table coulmns, in the exact orcer in which they`re displayed in the table
-        $aColumns = array('a.id', 'a.id', 'd.tag', 'a.property_uid', 'c.firstname', 'c.surname', 'b.name', 'a.raised_date', 'a.due_date', 'a.paid', 'b.init_total_inclusive', 'a.init_total', 'a.status');
+        $aColumns = array('a.id', 'a.id', 'd.tag', 'a.property_uid', 'c.enc_firstname', 'c.enc_surname', 'b.name', 'a.raised_date', 'a.due_date', 'a.paid', 'b.init_total_inclusive', 'a.init_total', 'a.status');
 
         //set columns count
 		$n = count($aColumns);
@@ -184,8 +187,8 @@ class j06005list_invoices_ajax
 					d.tag,
 					d.currency_code,
 					d.approved,
-					( CASE WHEN a.subscription = 1 OR a.is_commission = 1 THEN e.firstname ELSE c.firstname END ) AS firstname, 
-					( CASE WHEN a.subscription = 1 OR a.is_commission = 1 THEN e.surname ELSE c.surname END ) AS surname  
+					( CASE WHEN a.subscription = 1 OR a.is_commission = 1 THEN e.enc_firstname ELSE c.enc_firstname END ) AS firstname, 
+					( CASE WHEN a.subscription = 1 OR a.is_commission = 1 THEN e.enc_surname ELSE c.enc_surname END ) AS surname  
 				FROM #__jomresportal_invoices a 
 					JOIN #__jomresportal_lineitems b ON a.id = b.inv_id 
 					LEFT JOIN #__jomres_contracts d ON a.id = d.invoice_uid 
@@ -291,9 +294,9 @@ class j06005list_invoices_ajax
                 $r[] = '-';
                 $r[] = '-';
             } else {
-                $r[] = $p->firstname;
-                $r[] = $p->surname;
-            }
+                $r[] = $jomres_encryption->decrypt($p->firstname);
+                $r[] = $jomres_encryption->decrypt($p->surname);
+            }	
 
             $translated_line_items = '';
             $line_items = explode('<br>', $p->line_items);

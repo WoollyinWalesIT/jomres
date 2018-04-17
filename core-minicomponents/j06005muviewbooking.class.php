@@ -81,7 +81,8 @@ class j06005muviewbooking
                 foreach ($roomBookingData as $roomBooking) {
                     $room_uid[ ] = $roomBooking->room_uid;
                 }
-                if (count($room_uid) > 1) {
+
+                if (!empty($room_uid)) {
                     $room_uid = array_unique($room_uid);
                     sort($room_uid);
 
@@ -110,6 +111,9 @@ class j06005muviewbooking
 
     public function editBooking_html($contract_uid, $bookingData, $extraBillingData, $guestData, $roomBookingData, $roomInfo, $roomClass, $roomFeatures, $mrConfig)
     {
+		jr_import('jomres_encryption');
+		$jomres_encryption = new jomres_encryption();
+		
         $popup = get_showtime('popup');
         $guest_firstname = 'N/A';
         $guest_surname = 'N/A';
@@ -123,33 +127,31 @@ class j06005muviewbooking
         $guest_postcode = 'N/A';
         $guest_tel_landline = 'N/A';
         $guest_tel_mobile = 'N/A';
-        $guest_tel_fax = 'N/A';
         $guest_email = 'N/A';
         $guest_preferences = 'N/A';
         $guest_vat_number = 'N/A';
 
         foreach ($guestData as $guest) {
-            $guest_firstname = $guest->firstname;
-            $guest_surname = $guest->surname;
+            $guest_firstname = $jomres_encryption->decrypt($guest->enc_firstname);
+            $guest_surname = $jomres_encryption->decrypt($guest->enc_surname);
             $guest_uid = $guest->guests_uid;
             $guest_mos_userid = $guest->mos_userid;
-            $guest_house = $guest->house;
-            $guest_street = $guest->street;
-            $guest_town = $guest->town;
-            if (is_numeric($guest->county)) {
+            $guest_house = $jomres_encryption->decrypt($guest->enc_house);
+            $guest_street = $jomres_encryption->decrypt($guest->enc_street);
+            $guest_town = $jomres_encryption->decrypt($guest->enc_town);
+            if (is_numeric($jomres_encryption->decrypt($guest->enc_county))) {
                 $jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
-                $guest_region = jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$guest->county, $jomres_regions->get_region_name($guest->county), false, false);
+                $guest_region = jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$jomres_encryption->decrypt($guest->enc_county), $jomres_regions->get_region_name($jomres_encryption->decrypt($guest->enc_county)), false, false);
             } else {
-                $guest_region = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_REGION'.$guest->county, $guest->county, false, false);
+                $guest_region = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_REGION'.$jomres_encryption->decrypt($guest->enc_county), $jomres_encryption->decrypt($guest->enc_county), false, false);
             }
-            $guest_country = getSimpleCountry($guest->country);
-            $guest_postcode = $guest->postcode;
-            $guest_tel_landline = $guest->tel_landline;
-            $guest_tel_mobile = $guest->tel_mobile;
-            $guest_tel_fax = $guest->tel_fax;
-            $guest_email = $guest->email;
-            $guest_preferences = $guest->preferences;
-            $guest_vat_number = $guest->vat_number;
+            $guest_country = getSimpleCountry($jomres_encryption->decrypt($guest->enc_country));
+            $guest_postcode = $jomres_encryption->decrypt($guest->enc_postcode);
+            $guest_tel_landline = $jomres_encryption->decrypt($guest->enc_tel_landline);
+            $guest_tel_mobile = $jomres_encryption->decrypt($guest->enc_tel_mobile);
+            $guest_email = $jomres_encryption->decrypt($guest->enc_email);
+            $guest_preferences = $jomres_encryption->decrypt($guest->enc_preferences);
+            $guest_vat_number = $jomres_encryption->decrypt($guest->enc_vat_number);
         }
 
         foreach ($bookingData as $booking) {

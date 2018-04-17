@@ -128,7 +128,7 @@ class j06001dashboard_events_ajax
                 $guestsList = doSelectSql($query);
 
                 foreach ($guestsList as $g) {
-                    $guests[$g->guests_uid] = ucfirst(jomres_decode($jomres_encryption->decrypt($g->firstname))).' '.ucfirst(jomres_decode($jomres_encryption->decrypt($g->surname)));
+                    $guests[$g->guests_uid] = ucfirst(jomres_decode($jomres_encryption->decrypt($g->enc_firstname))).' '.ucfirst(jomres_decode($jomres_encryption->decrypt($g->enc_surname)));
                 }
             }
 

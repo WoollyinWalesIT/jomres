@@ -19,6 +19,9 @@ class basic_contract_details
     public function __construct()
     {
         $this->contract = array();
+		
+		jr_import('jomres_encryption');
+		$this->jomres_encryption = new jomres_encryption();
     }
 
     public function gather_data($contract_uid = 0, $defaultProperty = 0)
@@ -78,19 +81,19 @@ class basic_contract_details
 						a.last_changed,
 						a.referrer,
 						b.mos_userid,
-						b.firstname,
-						b.surname,
-						b.house,
-						b.street,
-						b.town,
-						b.county,
-						b.country,
-						b.postcode,
-						b.tel_landline,
-						b.tel_mobile,
-						b.email,
+						b.enc_firstname,
+						b.enc_surname,
+						b.enc_house,
+						b.enc_street,
+						b.enc_town,
+						b.enc_county,
+						b.enc_country,
+						b.enc_postcode,
+						b.enc_tel_landline,
+						b.enc_tel_mobile,
+						b.enc_email,
 						b.discount,
-						b.vat_number,
+						b.enc_vat_number,
 						b.vat_number_validated,
 						b.vat_number_validation_response
 					FROM #__jomres_contracts a  
@@ -153,26 +156,26 @@ class basic_contract_details
                 $this->contract[$contract_uid]['guestdeets']['image'] = JOMRES_IMAGELOCATION_RELPATH.'userimages/userimage_'.(int) $contract->mos_userid.'_thumbnail.jpg';
             }
 
-            $this->contract[$contract_uid]['guestdeets']['firstname'] = $contract->firstname;
-            $this->contract[$contract_uid]['guestdeets']['surname'] = $contract->surname;
-            $this->contract[$contract_uid]['guestdeets']['house'] = $contract->house;
-            $this->contract[$contract_uid]['guestdeets']['street'] = $contract->street;
-            $this->contract[$contract_uid]['guestdeets']['town'] = $contract->town;
-            if (is_numeric($contract->county)) {
+            $this->contract[$contract_uid]['guestdeets']['firstname'] = $this->jomres_encryption->decrypt($contract->enc_firstname);
+            $this->contract[$contract_uid]['guestdeets']['surname'] = $this->jomres_encryption->decrypt($contract->enc_surname);
+            $this->contract[$contract_uid]['guestdeets']['house'] = $this->jomres_encryption->decrypt($contract->enc_house);
+            $this->contract[$contract_uid]['guestdeets']['street'] = $this->jomres_encryption->decrypt($contract->enc_street);
+            $this->contract[$contract_uid]['guestdeets']['town'] = $this->jomres_encryption->decrypt($contract->enc_town);
+            if (is_numeric($this->jomres_encryption->decrypt($contract->enc_county))) {
                 $jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
-                $this->contract[$contract_uid]['guestdeets']['county'] = jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$contract->county, $jomres_regions->get_region_name($contract->county), false);
+                $this->contract[$contract_uid]['guestdeets']['county'] = jr_gettext('_JOMRES_CUSTOMTEXT_REGIONS_'.$this->jomres_encryption->decrypt($contract->enc_county), $jomres_regions->get_region_name($this->jomres_encryption->decrypt($contract->enc_county)), false);
             } else {
-                $this->contract[$contract_uid]['guestdeets']['county'] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_REGION'.$contract->county, $contract->county, false);
+                $this->contract[$contract_uid]['guestdeets']['county'] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_REGION'.$this->jomres_encryption->decrypt($contract->enc_county), $this->jomres_encryption->decrypt($contract->enc_county), false);
             }
-            $this->contract[$contract_uid]['guestdeets']['country'] = getSimpleCountry($contract->country);
-            $this->contract[$contract_uid]['guestdeets']['country_code'] = $contract->country;
+            $this->contract[$contract_uid]['guestdeets']['country'] = getSimpleCountry($this->jomres_encryption->decrypt($contract->enc_country));
+            $this->contract[$contract_uid]['guestdeets']['country_code'] = $this->jomres_encryption->decrypt($contract->enc_country);
 
-            $this->contract[$contract_uid]['guestdeets']['postcode'] = $contract->postcode;
-            $this->contract[$contract_uid]['guestdeets']['tel_landline'] = $contract->tel_landline;
-            $this->contract[$contract_uid]['guestdeets']['tel_mobile'] = $contract->tel_mobile;
-            $this->contract[$contract_uid]['guestdeets']['email'] = $contract->email;
+            $this->contract[$contract_uid]['guestdeets']['postcode'] = $this->jomres_encryption->decrypt($contract->enc_postcode);
+            $this->contract[$contract_uid]['guestdeets']['tel_landline'] = $this->jomres_encryption->decrypt($contract->enc_tel_landline);
+            $this->contract[$contract_uid]['guestdeets']['tel_mobile'] = $this->jomres_encryption->decrypt($contract->enc_tel_mobile);
+            $this->contract[$contract_uid]['guestdeets']['email'] = $this->jomres_encryption->decrypt($contract->enc_email);
             $this->contract[$contract_uid]['guestdeets']['discount'] = $contract->discount;
-            $this->contract[$contract_uid]['guestdeets']['vat_number'] = $contract->vat_number;
+            $this->contract[$contract_uid]['guestdeets']['vat_number'] = $this->jomres_encryption->decrypt($contract->enc_vat_number);
             $this->contract[$contract_uid]['guestdeets']['vat_number_validated'] = $contract->vat_number_validated;
             $this->contract[$contract_uid]['guestdeets']['vat_number_validation_response'] = $contract->vat_number_validation_response;
         }

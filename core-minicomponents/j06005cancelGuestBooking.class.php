@@ -27,6 +27,10 @@ class j06005cancelGuestBooking
 
             return;
         }
+		
+		jr_import('jomres_encryption');
+		$jomres_encryption = new jomres_encryption();
+		
         if ($thisJRUser->userIsRegistered) {
             $contract_uid = jomresGetParam($_REQUEST, 'contract_uid', 0);
 
@@ -106,8 +110,8 @@ class j06005cancelGuestBooking
                         $invoice->mark_invoice_cancelled();
                     }
 
-                    $query = 'SELECT email,firstname,surname FROM #__jomres_guests WHERE guests_uid = '.$guest_uid.' LIMIT 1';
-                    $guestData = doSelectSql($query, 2);
+                    /* $query = 'SELECT enc_email,enc_firstname,enc_surname FROM #__jomres_guests WHERE guests_uid = '.$guest_uid.' LIMIT 1';
+                    $guestData = doSelectSql($query, 2); */
                     $text = $tag.' - '.$saveMessage;
 
                     $componentArgs = array();
