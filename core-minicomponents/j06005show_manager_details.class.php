@@ -25,6 +25,10 @@ class j06005show_manager_details
 
             return;
         }
+		
+		jr_import('jomres_encryption');
+		$jomres_encryption = new jomres_encryption();
+		
 		$this->retVals = '';
 		
         $manager_profile_id = $componentArgs[ 'manager_profile_id' ];
@@ -42,25 +46,25 @@ class j06005show_manager_details
             return false;
         }
 
-        $query = 'SELECT firstname,surname,house,street,town,county,country,postcode,tel_landline,tel_mobile,email,vat_number FROM #__jomres_guest_profile WHERE cms_user_id = '.(int) $manager_profile_id.'';
+        $query = 'SELECT enc_firstname,enc_surname,enc_house,enc_street,enc_town,enc_county,enc_country,enc_postcode,enc_tel_landline,enc_tel_mobile,enc_email,enc_vat_number FROM #__jomres_guest_profile WHERE cms_user_id = '.(int) $manager_profile_id.'';
         $managerData = doSelectSql($query);
 
         $numberOfReturns = count($managerData);
         $vat_output = array();
         if ($numberOfReturns > 0) {
             foreach ($managerData as $data) {
-                $output[ 'FIRSTNAME' ] = $data->firstname;
-                $output[ 'SURNAME' ] = $data->surname;
-                $output[ 'HOUSE' ] = $data->house;
-                $output[ 'STREET' ] = $data->street;
-                $output[ 'TOWN' ] = $data->town;
-                $output[ 'REGION' ] = find_region_name($data->county);
-                $output[ 'COUNTRY' ] = getSimpleCountry($data->country);
-                $output[ 'POSTCODE' ] = $data->postcode;
-                $output[ 'LANDLINE' ] = $data->tel_landline;
-                $output[ 'MOBILE' ] = $data->tel_mobile;
-                $output[ 'EMAIL' ] = $data->email;
-                $vat_output[0][ 'VAT_NUMBER' ] = $data->vat_number;
+                $output[ 'FIRSTNAME' ] = $jomres_encryption->decrypt($data->enc_firstname);
+                $output[ 'SURNAME' ] = $jomres_encryption->decrypt($data->enc_surname);
+                $output[ 'HOUSE' ] = $jomres_encryption->decrypt($data->enc_house);
+                $output[ 'STREET' ] = $jomres_encryption->decrypt($data->enc_street);
+                $output[ 'TOWN' ] = $jomres_encryption->decrypt($data->enc_town);
+                $output[ 'REGION' ] = find_region_name($jomres_encryption->decrypt($data->enc_county));
+                $output[ 'COUNTRY' ] = getSimpleCountry($jomres_encryption->decrypt($data->enc_country));
+                $output[ 'POSTCODE' ] = $jomres_encryption->decrypt($data->enc_postcode);
+                $output[ 'LANDLINE' ] = $jomres_encryption->decrypt($data->enc_tel_landline);
+                $output[ 'MOBILE' ] = $jomres_encryption->decrypt($data->enc_tel_mobile);
+                $output[ 'EMAIL' ] = $jomres_encryption->decrypt($data->enc_email);
+                $vat_output[0][ 'VAT_NUMBER' ] = $jomres_encryption->decrypt($data->enc_vat_number);
             }
         } else {
             return false;

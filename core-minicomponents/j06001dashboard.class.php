@@ -241,14 +241,17 @@ class j06001dashboard
             return '';
         }
 
+		jr_import('jomres_encryption');
+		$jomres_encryption = new jomres_encryption();
+		
         $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
         $dropDownList = '';
 
         $query = 'SELECT 
 						`guests_uid`,
-						`surname`,
-						`firstname`  
+						`enc_surname`,
+						`enc_firstname`  
 					FROM #__jomres_guests 
 					WHERE `property_uid` IN (' .jomres_implode($thisJRUser->authorisedProperties).')  
 					ORDER BY surname';
@@ -258,7 +261,7 @@ class j06001dashboard
         if (!empty($existingCustomers)) {
             $ec[] = jomresHTML::makeOption('0', '&nbsp;');
             foreach ($existingCustomers as $customer) {
-                $ec[] = jomresHTML::makeOption($customer->guests_uid, stripslashes($customer->surname).' '.stripslashes($customer->firstname));
+                $ec[] = jomresHTML::makeOption($customer->guests_uid, stripslashes($jomres_encryption->decrypt($customer->enc_surname)).' '.stripslashes($jomres_encryption->decrypt($customer->enc_firstname)));
             }
             $dropDownList = jomresHTML::selectList($ec, 'existingGuests', ' size="1" class="input-medium"', 'value', 'text', '0', false);
         }

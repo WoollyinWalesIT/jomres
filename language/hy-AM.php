@@ -2730,3 +2730,7 @@ jr_define( 'DATATABLES_COLVIS', 'Column Visibility');
 
 jr_define( 'API_TOKEN_LIFETIME', 'API token lifetime');
 jr_define( 'API_TOKEN_LIFETIME_DESC', 'How long an API token remains valid for, in seconds. 86400 = 1 day, 31536000 = 1 year');
+
+jr_define( 'ENCRYPTION_TITLE', 'Encryption' );
+jr_define( 'ENCRYPTION_FILE_LOCATION', 'Encryption file location' );
+jr_define( 'ENCRYPTION_FILE_LOCATION_DESC', '**Never delete the encryption file** <br/> User data is stored encrypted in tables to ensure that "data at rest" is protected securely, in accordance with GDPR recommendations. By default the encryption key is stored in the file "encryption_key.class.php" in the root of your Jomres installation (typically /public_html/jomres). You can change where the file is stored here. If you do change the location, you must MOVE the file, do not wait for Jomres to create a new version otherwise you will not be able to decode your guests\'s details.' );

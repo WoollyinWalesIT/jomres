@@ -26,6 +26,9 @@ class j16000list_invoices_ajax
             return;
         }
 
+		jr_import('jomres_encryption');
+		$jomres_encryption = new jomres_encryption();
+		
         $startDate = jomresGetParam($_GET, 'startDate', '');
         $endDate = jomresGetParam($_GET, 'endDate', '');
         $invoice_type = (int) jomresGetParam($_GET, 'invoice_type', '0');
@@ -35,7 +38,7 @@ class j16000list_invoices_ajax
         $rows = array();
 
         //set the table coulmns, in the exact orcer in which they`re displayed in the table
-        $aColumns = array('a.id', 'a.id', 'c.firstname', 'c.surname', 'b.name', 'a.raised_date', 'a.due_date', 'a.paid', 'b.init_total_inclusive', 'a.init_total');
+        $aColumns = array('a.id', 'a.id', 'c.enc_firstname', 'c.enc_surname', 'b.name', 'a.raised_date', 'a.due_date', 'a.paid', 'b.init_total_inclusive', 'a.init_total');
 
         //set columns count
 		$n = count($aColumns);
@@ -143,8 +146,8 @@ class j16000list_invoices_ajax
 					a.is_commission, 
 					GROUP_CONCAT(DISTINCT b.name SEPARATOR '<br>') AS line_items, 
 					SUM( CASE WHEN b.init_total_inclusive < 0 THEN 0 ELSE b.init_total_inclusive END ) AS grand_total,
-					c.firstname, 
-					c.surname 
+					c.enc_firstname, 
+					c.enc_surname 
 				FROM #__jomresportal_invoices a 
 					CROSS JOIN #__jomresportal_lineitems b ON a.id = b.inv_id 
 					LEFT JOIN #__jomres_guest_profile c ON ( c.cms_user_id IS NULL OR a.cms_user_id = c.cms_user_id ) "
@@ -220,16 +223,16 @@ class j16000list_invoices_ajax
 
             $r[] = '<span class="label '.$label_class.'">'.$p->id.'</span>';
 
-            if ($p->firstname == '') {
+            if ($p->enc_firstname == '') {
                 $r[] = '-';
             } else {
-                $r[] = '<a href="'.jomresUrl(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_invoices&cms_user_id='.$p->cms_user_id).'">'.$p->firstname.'</a>';
+                $r[] = '<a href="'.jomresUrl(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_invoices&cms_user_id='.$p->cms_user_id).'">'.$jomres_encryption->decrypt($p->enc_firstname).'</a>';
             }
 
-            if ($p->surname == '') {
+            if ($p->enc_surname == '') {
                 $r[] = '-';
             } else {
-                $r[] = '<a href="'.jomresUrl(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_invoices&cms_user_id='.$p->cms_user_id).'">'.$p->surname.'</a>';
+                $r[] = '<a href="'.jomresUrl(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_invoices&cms_user_id='.$p->cms_user_id).'">'.$jomres_encryption->decrypt($p->enc_surname).'</a>';
             }
 
             $translated_line_items = '';

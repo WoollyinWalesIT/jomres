@@ -18,6 +18,8 @@ class jrportal_guests
 {
     public function __construct()
     {
+		jr_import('jomres_encryption');
+		$this->jomres_encryption = new jomres_encryption();
         $this->init_guest();
     }
 
@@ -59,20 +61,21 @@ class jrportal_guests
         $query = "SELECT
 					`guests_uid`,
 					`mos_userid`,
-					`firstname`,
-					`surname`,
-					`house`,
-					`street`,
-					`town`,
-					`county`, 
-					`country`, 
-					`postcode`, 
-					`tel_landline`,
-					`tel_mobile`,
+					`enc_firstname`,
+					`enc_surname`,
+					`enc_house`,
+					`enc_street`,
+					`enc_town`,
+					`enc_county`, 
+					`enc_country`, 
+					`enc_postcode`, 
+					`enc_tel_landline`,
+					`enc_tel_mobile`,
 					`property_uid`,
-					`email`,
+					`enc_email`,
 					`discount`,
-					`vat_number`,
+					`enc_preferences`,
+					`enc_vat_number`,
 					`vat_number_validated`,
 					`vat_number_validation_response`,
 					`partner_id`,
@@ -87,25 +90,27 @@ class jrportal_guests
 
         foreach ($result as $r) {
             $this->id = (int) $r->guests_uid;
-            $this->cms_user_id = (int) $r->mos_userid;
-            $this->firstname = $r->firstname;
-            $this->surname = $r->surname;
-            $this->house = $r->house;
-            $this->street = $r->street;
-            $this->town = $r->town;
-            $this->region = $r->county;
-            $this->country = $r->country;
-            $this->postcode = $r->postcode;
-            $this->tel_landline = $r->tel_landline;
-			$this->tel_mobile = $r->tel_mobile;
-			$this->property_uid = (int) $r->property_uid;
-			$this->email = $r->email;
-			$this->discount = (int) $r->discount;
-			$this->vat_number = $r->vat_number;
-			$this->vat_number_validated = (int) $r->vat_number_validated;
-			$this->vat_number_validation_response = $r->vat_number_validation_response;
-			$this->partner_id = (int) $r->partner_id;
-            $this->blacklisted = (int) $r->blacklisted;
+            $this->cms_user_id						= (int) $r->mos_userid;
+            $this->firstname						= $this->jomres_encryption->decrypt($r->enc_firstname);
+            $this->surname							= $this->jomres_encryption->decrypt($r->enc_surname);
+            $this->house							= $this->jomres_encryption->decrypt($r->enc_house);
+            $this->street							= $this->jomres_encryption->decrypt($r->enc_street);
+            $this->town								= $this->jomres_encryption->decrypt($r->enc_town);
+            $this->region							= $this->jomres_encryption->decrypt($r->enc_county);
+            $this->country							= $this->jomres_encryption->decrypt($r->enc_country);
+            $this->postcode							= $this->jomres_encryption->decrypt($r->enc_postcode);
+            $this->tel_landline						= $this->jomres_encryption->decrypt($r->enc_tel_landline);
+			$this->tel_mobile						= $this->jomres_encryption->decrypt($r->enc_tel_mobile);
+			$this->property_uid						= (int) $r->property_uid;
+			$this->email							= $this->jomres_encryption->decrypt($r->enc_email);
+			$this->discount							= (int) $r->discount;
+			$this->vat_number						= $this->jomres_encryption->decrypt($r->enc_vat_number);
+			$this->preferences						= $this->jomres_encryption->decrypt($r->enc_preferences);
+			$this->vat_number_validated				= (int) $r->vat_number_validated;
+			$this->vat_number_validation_response	= $r->vat_number_validation_response;
+			$this->partner_id						= (int) $r->partner_id;
+            $this->blacklisted						= (int) $r->blacklisted;
+			
         }
 
         return true;
@@ -137,19 +142,20 @@ class jrportal_guests
 							(
 							`guests_uid`,
 							`mos_userid`,
-							`firstname`,
-							`surname`,
-							`house`,
-							`street`,
-							`town`,
-							`county`, 
-							`country`, 
-							`postcode`, 
-							`tel_landline`,
-							`tel_mobile`,
+							`enc_firstname`,
+							`enc_surname`,
+							`enc_house`,
+							`enc_street`,
+							`enc_town`,
+							`enc_county`, 
+							`enc_country`, 
+							`enc_postcode`, 
+							`enc_tel_landline`,
+							`enc_tel_mobile`,
 							`property_uid`,
-							`email`,
+							`enc_email`,
 							`discount`,
+							`preferences`,
 							`vat_number`,
 							`vat_number_validated`,
 							`vat_number_validation_response`,
@@ -159,20 +165,21 @@ class jrportal_guests
 							(
 							".(int)$this->id.",
 							".(int)$this->cms_user_id.",
-							'".$this->firstname."',
-							'".$this->surname."',
-							'".$this->house."',
-							'".$this->street."',
-							'".$this->town."',
-							'".$this->region."',
-							'".$this->country."',
-							'".$this->postcode."',
-							'".$this->tel_landline."',
-							'".$this->tel_mobile."',
+							'".$this->jomres_encryption->encrypt($this->firstname)."',
+							'".$this->jomres_encryption->encrypt($this->surname)."',
+							'".$this->jomres_encryption->encrypt($this->house)."',
+							'".$this->jomres_encryption->encrypt($this->street)."',
+							'".$this->jomres_encryption->encrypt($this->town)."',
+							'".$this->jomres_encryption->encrypt($this->region)."',
+							'".$this->jomres_encryption->encrypt($this->country)."',
+							'".$this->jomres_encryption->encrypt($this->postcode)."',
+							'".$this->jomres_encryption->encrypt($this->tel_landline)."',
+							'".$this->jomres_encryption->encrypt($this->tel_mobile)."',
 							".(int)$this->property_uid.",
-							'".$this->email."',
+							'".$this->jomres_encryption->encrypt($this->email)."',
 							".(int)$this->discount.",
-							'".trim($this->vat_number)."',
+							'".$this->jomres_encryption->encrypt($this->preferences)."',
+							'".$this->jomres_encryption->encrypt(trim($this->vat_number))."',
 							".(int)$this->vat_number_validated.",
 							'".$this->vat_number_validation_response."',
 							".(int)$this->partner_id." 
@@ -206,7 +213,7 @@ class jrportal_guests
             throw new Exception('Error: Property uid not set.');
         }
 		
-		//validate EU VAT info - not currencly needed anywhere but here for future use..
+		//validate EU VAT info - not currently needed anywhere but here for future use..
 		if (trim($this->vat_number) != '') {
             jr_import('vat_number_validation');
             $validation = new vat_number_validation();
@@ -221,20 +228,35 @@ class jrportal_guests
 					SET 
 						`guests_uid` = ".(int)$this->id.",
 						`mos_userid` = ".(int)$this->cms_user_id.",
-						`firstname` = '".$this->firstname."',
-						`surname` = '".$this->surname."',
-						`house` = '".$this->house."',
-						`street` = '".$this->street."',
-						`town` = '".$this->town."',
-						`county` = '".$this->region."', 
-						`country` = '".$this->country."', 
-						`postcode` = '".$this->postcode."', 
-						`tel_landline` = '".$this->tel_landline."',
-						`tel_mobile` = '".$this->tel_mobile."',
+						`firstname` = '',
+						`surname` = '',
+						`house` = '',
+						`street` = '',
+						`town` = '',
+						`county` = '', 
+						`country` = '', 
+						`postcode` = '', 
+						`tel_landline` = '',
+						`tel_mobile` = '',
+						`email` = '',
+						`vat_number` = '',
+						`preferences` = '',
+						
+						`enc_firstname` = '".$this->jomres_encryption->encrypt($this->firstname)."',
+						`enc_surname` = '".$this->jomres_encryption->encrypt($this->surname)."',
+						`enc_house` = '".$this->jomres_encryption->encrypt($this->house)."',
+						`enc_street` = '".$this->jomres_encryption->encrypt($this->street)."',
+						`enc_town` = '".$this->jomres_encryption->encrypt($this->town)."',
+						`enc_county` = '".$this->jomres_encryption->encrypt($this->region)."', 
+						`enc_country` = '".$this->jomres_encryption->encrypt($this->country)."', 
+						`enc_postcode` = '".$this->jomres_encryption->encrypt($this->postcode)."', 
+						`enc_tel_landline` = '".$this->jomres_encryption->encrypt($this->tel_landline)."',
+						`enc_tel_mobile` = '".$this->jomres_encryption->encrypt($this->tel_mobile)."',
 						`property_uid` = ".(int)$this->property_uid.",
-						`email` = '".$this->email."',
+						`enc_email` = '".$this->jomres_encryption->encrypt($this->email)."',
+						`enc_preferences` = '".$this->jomres_encryption->encrypt($this->preferences)."',
 						`discount` = ".(int)$this->discount.",
-						`vat_number` = '".$this->vat_number."',
+						`enc_vat_number` = '".$this->jomres_encryption->encrypt($this->vat_number)."',
 						`vat_number_validated` = ".(int)$this->vat_number_validated.",
 						`vat_number_validation_response` = '".$this->vat_number_validation_response."',
 						`partner_id` = ".(int)$this->partner_id.",
