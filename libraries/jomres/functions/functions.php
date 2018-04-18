@@ -2116,7 +2116,7 @@ function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode
 			}
 		} else {
 			if (strlen($to) > 0) {
-				$t = str_replace( "&#64;" , "@" , $t );
+				$to = str_replace( "&#64;" , "@" , $to );
 				$emails[ ] = trim($to);
 			}
 		}
