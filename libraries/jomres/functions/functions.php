@@ -2088,7 +2088,10 @@ function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode
 	if ($from == '') {
 		$from = get_showtime('mailfrom');
 	}
-
+	
+	$from = str_replace( "&#64;" , "=" , $from );
+	$to = str_replace( "&#64;" , "=" , $to );
+	
     logging::log_message('Sending email from '.$from.' to '.$to.' subject '.$subject, 'Mailer');
 
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -2098,6 +2101,7 @@ function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode
     if (is_array($to)) {
 		foreach ($to as $t) {
 			if (strlen($t) > 0) {
+				$t = str_replace( "&#64;" , "@" , $t );
 				$emails[ ] = trim($t);
 			}
 		}
@@ -2106,11 +2110,13 @@ function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode
 			$addys = explode(',', $to);
 			foreach ($addys as $t) {
 				if (strlen($t) > 0) {
+					$t = str_replace( "&#64;" , "@" , $t );
 					$emails[ ] = trim($t);
 				}
 			}
 		} else {
 			if (strlen($to) > 0) {
+				$t = str_replace( "&#64;" , "@" , $t );
 				$emails[ ] = trim($to);
 			}
 		}

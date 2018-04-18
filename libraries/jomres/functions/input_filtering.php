@@ -155,6 +155,7 @@ function jomresGetParam($request, $element, $def = null) // variable type not us
         return $def;
     }
 
+
     // We'll discover the type of $dirty, so that we can cast the variable to a given type
     $type = jomres_get_var_type($def);
 
@@ -231,6 +232,13 @@ function jomresGetParam($request, $element, $def = null) // variable type not us
 
             break;
         }
+		
+	// http://georgemauer.net/2017/10/07/csv-injection.html
+	// The "tab" solution in that article doesn't work because it results in output like "your	@email.com" in inputs. Instead the mailer will need to str_replace &#64; back to @
+	$csv_bad = array ( "=" , "-" , "+" , "@" );
+	$csv_good = array( '&#61;' , "&#45;" , "&#43;" , "&#64;");
+	$clean = str_replace($csv_bad,$csv_good,$clean);
+	
     if ($enable_input_cache) {
         $purified_inputs_cache->set_cache($request, $element, $clean);
     }
