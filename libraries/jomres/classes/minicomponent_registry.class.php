@@ -96,7 +96,7 @@ class minicomponent_registry
         //delete js files in /jomres/temp dir
 		$task = jomresGetParam($_REQUEST, 'task', '');
 
-        if ($task == 'rebuildregistry' || $task == 'save_site_settings') {
+        if ($task == 'rebuildregistry' || $task == 'save_site_settings' || defined('AUTO_UPGRADE')) {
             $javascript_files_in_temp_dir = scandir_getfiles(JOMRES_TEMP_ABSPATH, $extension = 'js');
             foreach ($javascript_files_in_temp_dir as $file) {
                 unlink(JOMRES_TEMP_ABSPATH.$file);
