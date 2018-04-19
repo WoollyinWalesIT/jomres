@@ -6665,10 +6665,14 @@ class dobooking
 		$jrConfig = $siteConfig->get();
 		$thisJRUser = jomres_getSingleton('jr_user');
 
+		$jrConfig[ 'useNewusers' ] = '1'; // For Jomres v9.11 and GDPR compliance we are now forcing the system to create new users whenever a booking is made
+		
 		if (trim($email) == '') { // Presumably, we're at the start of the booking and the email address hasn't been filled yet
 		$this->email_address_can_be_used = true;
 		}
 
+		$jrConfig[ 'useNewusers' ] = '1'; // For Jomres v9.11 and GDPR compliance we are now forcing the system to create new users whenever a booking is made
+		
 		if ($thisJRUser->userIsManager) { // Managers can re-use email addresses of guests.
 			$this->email_address_can_be_used = true;
 		} else {
