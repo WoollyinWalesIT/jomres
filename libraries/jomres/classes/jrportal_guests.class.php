@@ -323,7 +323,7 @@ class jrportal_guests
             throw new Exception('Error: Property uid not set.');
         }
 		
-		$query = "SELECT `contract_uid` FROM #__jomres_contracts WHERE `guest_uid` = ".(int)$this->id;
+		$query = "SELECT `contract_uid` FROM #__jomres_contracts WHERE `guest_uid` = ".(int)$this->id." AND ( `cancelled` != 1 AND `bookedout` != 1 ) " ;
 		$result = doSelectSql($query);
 
         if (empty($result)) {
