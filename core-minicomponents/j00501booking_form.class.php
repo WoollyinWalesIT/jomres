@@ -138,10 +138,12 @@ class j00501booking_form
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
 
-		$configurationPanel->setleft(jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL'));
+		$mrConfig[ 'bookingform_requiredfields_email' ] = "1"; // For GDPR compliance, bookings will always require an email address and the property manager will not be allowed to change this setting
+		
+		/* $configurationPanel->setleft(jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL'));
 		$configurationPanel->setmiddle($lists[ 'bookingform_requiredfields_email' ]);
 		$configurationPanel->setright();
-		$configurationPanel->insertSetting();
+		$configurationPanel->insertSetting(); */
 
         $configurationPanel->endPanel();
     }

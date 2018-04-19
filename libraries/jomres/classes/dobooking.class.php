@@ -393,6 +393,8 @@ class dobooking
 		$this->cfg_bookingform_requiredfields_country = $mrConfig[ 'bookingform_requiredfields_country' ];
 		$this->cfg_bookingform_requiredfields_tel = $mrConfig[ 'bookingform_requiredfields_tel' ];
 		$this->cfg_bookingform_requiredfields_mobile = $mrConfig[ 'bookingform_requiredfields_mobile' ];
+		
+		$mrConfig[ 'bookingform_requiredfields_email' ] = "1"; // For GDPR compliance, bookings will always require an email address and the property manager will not be allowed to change this setting
 		$this->cfg_bookingform_requiredfields_email = $mrConfig[ 'bookingform_requiredfields_email' ];
 
 		$this->property_currencycode = $mrConfig[ 'property_currencycode' ];
