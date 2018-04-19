@@ -37,6 +37,8 @@ class j03020insertbooking
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
 
+		$jrConfig[ 'useNewusers' ] = '1'; // For Jomres v9.11 and GDPR compliance we are now forcing the system to create new users whenever a booking is made
+		
         $secret_key_payment = false;
 
         $depositPaid = $componentArgs[ 'depositPaid' ];
