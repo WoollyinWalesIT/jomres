@@ -239,7 +239,7 @@ function jomresGetParam($request, $element, $def = null) // variable type not us
 	$csv_good = array( '&#61;' , "&#45;" , "&#43;" );
 	$clean = str_replace($csv_bad,$csv_good,$clean);
 	
-	if (  $clean[0] == "@" ) {
+	if ( isset($clean[0]) &&  $clean[0] == "@" ) {
 		$clean = str_replace("@","&#64;",$clean);
 	}
 	// end http://georgemauer.net/2017/10/07/csv-injection.html
