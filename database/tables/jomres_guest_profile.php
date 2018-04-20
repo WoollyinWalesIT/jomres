@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `#__jomres_guest_profile` (
 	`vat_number_validation_response` TEXT,
 	`params` TEXT, 
 	`enc_firstname` BLOB,
-	`enc_surname`) BLOB,
+	`enc_surname` BLOB,
 	`enc_house` BLOB,
 	`enc_street` BLOB,
 	`enc_town` BLOB,

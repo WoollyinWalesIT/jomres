@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `#__jomres_guests` (
 	`partner_id` INT UNSIGNED NOT NULL DEFAULT 0,
 	`blacklisted` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
 	`enc_firstname` BLOB,
-	`enc_surname`) BLOB,
+	`enc_surname` BLOB,
 	`enc_house` BLOB,
 	`enc_street` BLOB,
 	`enc_town` BLOB,
