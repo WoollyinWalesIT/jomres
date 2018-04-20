@@ -92,29 +92,18 @@ class j06005view_invoice
         }
         //end security checks. If everything is fine so far, let`s move forward.
 
-        if ((int) $invoice->contract_id > 0) { // It's a booking invoice being viewed either by the guest or a property manager for the appropriate property
-            $mrConfig = getPropertySpecificSettings($invoice->property_uid);
+		//get the contract details
+		//We won`t use the basic contract details here since it gets too much data for what we need
+		$query = 'SELECT guest_uid, tag, approved FROM #__jomres_contracts WHERE contract_uid = '.$invoice->contract_id.' AND property_uid = '.$invoice->property_uid;
+		$contractData = doSelectSql($query, 2);
 
-            //get the contract details
-            //We won`t use the basic contract details here since it gets too much data for what we need
-            $query = 'SELECT guest_uid, tag, approved FROM #__jomres_contracts WHERE contract_uid = '.$invoice->contract_id.' AND property_uid = '.$invoice->property_uid;
-            $contractData = doSelectSql($query, 2);
+		if (!$contractData) {
+			trigger_error('Unable to get the contract details.', E_USER_ERROR);
+			return;
+		}
 
-            if (!$contractData) {
-                trigger_error('Unable to get the contract details.', E_USER_ERROR);
-
-                return;
-            }
-
-            $output[ 'CLIENT_DETAILS_TEMPLATE' ] = $MiniComponents->specificEvent('06005', 'show_guest_details', array('guest_uid' => $contractData['guest_uid']));
-            $output[ 'BUSINESS_DETAILS_TEMPLATE' ] = $MiniComponents->specificEvent('06000', 'show_hotel_details', array('property_uid' => $invoice->property_uid));
-
-            $output[ 'BOOKING_NUMBER' ] = $contractData['tag'];
-            $output[ '_JOMRES_BOOKING_NUMBER' ] = jr_gettext('_JOMRES_BOOKING_NUMBER', '_JOMRES_BOOKING_NUMBER');
-        } else { //this is a commission/subscription invoice
-            $output[ 'BUSINESS_DETAILS_TEMPLATE' ] = $MiniComponents->specificEvent('06000', 'show_site_business', array());
-            $output[ 'CLIENT_DETAILS_TEMPLATE' ] = $MiniComponents->specificEvent('06005', 'show_manager_details', array('manager_profile_id' => $invoice->cms_user_id));
-        }
+		$output[ 'BUSINESS_DETAILS_TEMPLATE' ]	= $MiniComponents->specificEvent('06005', 'show_invoice_seller', array('invoice_id' => $invoice_id));
+		$output[ 'CLIENT_DETAILS_TEMPLATE' ]	= $MiniComponents->specificEvent('06005', 'show_invoice_buyer', array('invoice_id' => $invoice_id)); 
 
         if ($popup != 1) {
             $output[ 'PRINTLINK' ] = JOMRES_SITEPAGE_URL_NOSEF.'&tmpl='.get_showtime('tmplcomponent').'&popup=1&task=view_invoice&id='.$invoice->id;

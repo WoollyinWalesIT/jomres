@@ -72,6 +72,8 @@ class j00501businessdetails
 
         $configurationPanel->startPanel(jr_gettext('_JOMRES_COM_YOURBUSINESS', '_JOMRES_COM_YOURBUSINESS', false));
 
+		$configurationPanel->insertDescription(jr_gettext( '_JOMRES_COM_YOURBUSINESS_DESC', '_JOMRES_COM_YOURBUSINESS_DESC', false ));
+		
         $configurationPanel->setleft(jr_gettext('_JOMRES_COM_YOURBUSINESS_NAME', '_JOMRES_COM_YOURBUSINESS_NAME', false));
         $configurationPanel->setmiddle('<input type="text" class="inputbox form-control" size="50" name="cfg_property_business_name" value="'.jomres_decode($mrConfig['property_business_name']).'" />');
         $configurationPanel->setright();

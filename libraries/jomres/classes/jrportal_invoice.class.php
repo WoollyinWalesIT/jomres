@@ -20,6 +20,10 @@ class jrportal_invoice
     {
         $this->init_invoice();
         $this->init_lineitem();
+		
+		jr_import('jomres_encryption');
+		$this->jomres_encryption = new jomres_encryption();
+	
     }
 
     public function init_invoice()
@@ -105,6 +109,9 @@ class jrportal_invoice
         //insert the new invoice
         $this->commitNewInvoice();
 
+		$this->create_pii_buyer();
+		$this->create_pii_seller();
+		
         foreach ($line_items as $line_item_data) {
             $this->add_line_item($line_item_data);
         }
@@ -113,6 +120,156 @@ class jrportal_invoice
         $this->commitUpdateInvoice();
     }
 
+	// Personally Identifable information will be stored in the buyer table
+	private function create_pii_buyer()
+	{
+		$invoice_id = $this->id;
+		
+        $query = "SELECT
+					`enc_firstname`,
+					`enc_surname`,
+					`enc_house`,
+					`enc_street`,
+					`enc_town`,
+					`enc_county`, 
+					`enc_country`, 
+					`enc_postcode`, 
+					`enc_tel_landline`,
+					`enc_tel_mobile`,
+					`enc_email`,
+					`enc_vat_number`
+				FROM `#__jomres_guest_profile` WHERE cms_user_id = ".(int) $this->cms_user_id."
+				";
+		$user_details = doSelectSql($query , 2 );
+
+		$query = "INSERT INTO #__jomres_invoice_pii_buyers 
+			(
+				`invoice_id`,
+				`enc_firstname`,
+				`enc_surname`,
+				`enc_house`,
+				`enc_street`,
+				`enc_town`,
+				`enc_county`, 
+				`enc_country`, 
+				`enc_postcode`, 
+				`enc_tel_landline`,
+				`enc_tel_mobile`,
+				`enc_email`,
+				`enc_vat_number`
+			)
+			VALUES
+			(
+			".(int)$this->id.",
+			'".$user_details['enc_firstname']."',
+			'".$user_details['enc_surname']."',
+			'".$user_details['enc_house']."',
+			'".$user_details['enc_street']."',
+			'".$user_details['enc_town']."',
+			'".$user_details['enc_county']."',
+			'".$user_details['enc_country']."',
+			'".$user_details['enc_postcode']."',
+			'".$user_details['enc_tel_landline']."',
+			'".$user_details['enc_tel_mobile']."',
+			'".$user_details['enc_email']."',
+			'".$user_details['enc_vat_number']."'
+			)";
+
+		$result = doInsertSql($query, "");
+		
+	}
+	
+	private function create_pii_seller()
+	{
+		$invoice_id = $this->id;
+		 if ((int) $this->contract_id > 0) { // It's a booking invoice, therefore the seller is the property manager
+			$mrConfig = getPropertySpecificSettings($this->property_uid);
+			$manager_id = find_manager_id_for_property_uid($this->property_uid);
+			
+			$query = "SELECT
+						`enc_firstname`,
+						`enc_surname`
+					FROM `#__jomres_guest_profile` WHERE cms_user_id = ".(int)$manager_id."
+					";
+			$manager_details = doSelectSql($query , 2 );
+			if (!$manager_details === false ) {
+				$manager_details = $this->jomres_encryption->decrypt($manager_details['enc_firstname'])." ".$this->jomres_encryption->decrypt($manager_details['enc_surname']);
+			} else {
+				$manager_details = "";
+			}
+
+			$user_details = array();
+			
+			$user_details['enc_firstname']	=$this->jomres_encryption->encrypt($mrConfig['property_business_name']);
+			$user_details['enc_surname']	=$this->jomres_encryption->encrypt($manager_details);
+			$user_details['enc_house']		=$this->jomres_encryption->encrypt($mrConfig['property_business_houseno']);
+			$user_details['enc_street']		=$this->jomres_encryption->encrypt($mrConfig['property_business_street']);
+			$user_details['enc_town']		=$this->jomres_encryption->encrypt($mrConfig['property_business_town']);
+			$user_details['enc_county']		=$this->jomres_encryption->encrypt($mrConfig['property_business_region']);
+			$user_details['enc_country']	=$this->jomres_encryption->encrypt($mrConfig['property_business_country']);
+			$user_details['enc_postcode']	=$this->jomres_encryption->encrypt($mrConfig['property_business_postcode']);
+			$user_details['enc_tel_landline']=$this->jomres_encryption->encrypt($mrConfig['property_business_telephone']);
+			$user_details['enc_tel_mobile']	='';
+			$user_details['enc_email']		=$this->jomres_encryption->encrypt($mrConfig['property_business_email']);
+			$user_details['enc_vat_number']	=$this->jomres_encryption->encrypt($mrConfig['property_vat_number']);
+			
+        } else { //this is a commission/subscription invoice, therefore the seller is the "site" owner
+			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+			$jrConfig = $siteConfig->get();
+			
+			$user_details = array();
+			
+			$user_details['enc_firstname']	=$this->jomres_encryption->encrypt( $jrConfig[ 'business_name' ] );
+			$user_details['enc_surname']	= '';
+			$user_details['enc_house']		=$this->jomres_encryption->encrypt( $jrConfig[ 'business_address' ] );
+			$user_details['enc_street']		=$this->jomres_encryption->encrypt( $jrConfig[ 'business_street' ] );
+			$user_details['enc_town']		=$this->jomres_encryption->encrypt( $jrConfig[ 'business_town' ] );
+			$user_details['enc_county']		=$this->jomres_encryption->encrypt( $jrConfig[ 'business_region' ] );
+			$user_details['enc_country']	=$this->jomres_encryption->encrypt( $jrConfig[ 'business_country' ] );
+			$user_details['enc_postcode']	=$this->jomres_encryption->encrypt( $jrConfig[ 'business_postcode' ] );
+			$user_details['enc_tel_landline']=$this->jomres_encryption->encrypt( $jrConfig[ 'business_telephone' ] );
+			$user_details['enc_tel_mobile']	='';
+			$user_details['enc_email']		=$this->jomres_encryption->encrypt( $jrConfig[ 'business_email' ] );
+			$user_details['enc_vat_number']	=$this->jomres_encryption->encrypt( $jrConfig[ 'business_vat_number' ] );
+        }
+		
+		$query = "INSERT INTO #__jomres_invoice_pii_sellers
+			(
+				`invoice_id`,
+				`enc_firstname`,
+				`enc_surname`,
+				`enc_house`,
+				`enc_street`,
+				`enc_town`,
+				`enc_county`, 
+				`enc_country`, 
+				`enc_postcode`, 
+				`enc_tel_landline`,
+				`enc_tel_mobile`,
+				`enc_email`,
+				`enc_vat_number`
+			)
+			VALUES
+			(
+			".(int)$this->id.",
+			'".$user_details['enc_firstname']."',
+			'".$user_details['enc_surname']."',
+			'".$user_details['enc_house']."',
+			'".$user_details['enc_street']."',
+			'".$user_details['enc_town']."',
+			'".$user_details['enc_county']."',
+			'".$user_details['enc_country']."',
+			'".$user_details['enc_postcode']."',
+			'".$user_details['enc_tel_landline']."',
+			'".$user_details['enc_tel_mobile']."',
+			'".$user_details['enc_email']."',
+			'".$user_details['enc_vat_number']."'
+			)";
+
+		$result = doInsertSql($query, "");
+	}
+	
+	
     //Add a new line item
     public function add_line_item($line_item_data)
     {

@@ -15,6 +15,60 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 /**
+ * Easily find the manager id for a property. If there isn't a specific manager assigned to a property, then find the first super property manager and return that instead
+ */
+function find_manager_id_for_property_uid($property_uid) 
+{
+	$managers_array = get_showtime("property_uids_to_property_managers");
+	if (empty($managers_array)) {
+		$managers_array = array();
+		$property_manager_xref = get_showtime('property_manager_xref');
+        if (is_null($property_manager_xref)) {
+            $property_manager_xref = build_property_manager_xref_array();
+        }
+		
+		$all_super_property_manager_ids = find_all_super_property_manager_ids();
+		
+		$jomres_properties = jomres_singleton_abstract::getInstance('jomres_properties');
+		$all_property_ids = $jomres_properties->get_all_properties();
+
+		if (!in_array( $property_uid ,$jomres_properties->all_property_uids['all_propertys'] ) ) {
+			throw new Exception('Tried to find a manager id for a property, but the property does not exist');
+		}
+		
+		foreach ($jomres_properties->all_property_uids['all_propertys'] as $p_id ) {
+			if (isset( $property_manager_xref[$p_id] )) {
+				$managers_array[$p_id] = $property_manager_xref[$p_id];
+			} else {
+				if ( !isset($all_super_property_manager_ids[0]) ) {
+					throw new Exception('Tried to find a manager id for a property, but the property does not have a manager assigned to it, and the site does not have any super property managers');
+				}
+				$managers_array[$p_id] = $all_super_property_manager_ids[0];
+			}
+		}
+	}
+			
+	return (int)$managers_array[$property_uid];
+}
+
+/**
+ * Get all super property manager ids
+ */
+function find_all_super_property_manager_ids() 
+{
+	$managers = array();
+	$query = "SELECT userid FROM #__jomres_managers WHERE access_level >= 90 ";
+	$all_super_managers = doSelectSql($query);
+	if (!empty($all_super_managers)){
+		foreach ($all_super_managers as $super_manager ) {
+			$managers[] = $super_manager->userid;
+		}
+	}
+	return $managers;
+}
+
+
+/**
  * Find the relative path to a QR code
  */
 function get_qr_code_relPath($arg) 
@@ -3196,42 +3250,6 @@ function insertGuestDeets($jomressession)
         $returnid = doInsertSql($query, false);
     }
 
-    if (!$thisJRUser->is_partner) {
-        // New for 4.5.9. We need now to look in the new guest profile table and see if this user already exists. If they do not, we'll take these details and add them to the profile table too, then in future the profile table's data will be used as the primary source of this guest's information, continuing to ensure that guest details are not shared between properties. No property should ever be able to access a guest's details unless that guest has already booked with that property.
-        // First, we'll look at this user's id. If it's the same as mos_userid above, then the user making the booking is a guest.
-        if (($thisJRUser->id == $mos_userid && $thisJRUser->id > 0) || ($mos_userid > 0 && isset($_REQUEST['jsid']))) { // Either it's the guest making the booking, or it's a gateway call and the user's a registered user. Either way, we can update the profile table.
-            if ($thisJRUser->profile_id == 0) { // The guest doesn't have information in the profile table yet.
-                $query = "INSERT INTO #__jomres_guest_profile (
-					`cms_user_id`,
-					`enc_firstname`,
-					`enc_surname`,
-					`enc_house`,
-					`enc_street`,
-					`enc_town`,
-					`enc_county`,
-					`enc_country`,
-					`enc_postcode`,
-					`enc_tel_landline`,
-					`enc_tel_mobile`,
-					`enc_email`
-					) VALUES (
-					'".(int) $mos_userid."',
-					'".$jomres_encryption->encrypt($firstname)."',
-					'".$jomres_encryption->encrypt($surname)."',
-					'".$jomres_encryption->encrypt($house)."',
-					'".$jomres_encryption->encrypt($street)."',
-					'".$jomres_encryption->encrypt($town)."',
-					'".$jomres_encryption->encrypt($region)."',
-					'".$jomres_encryption->encrypt($country)."',
-					'".$jomres_encryption->encrypt($postcode)."',
-					'".$jomres_encryption->encrypt($landline)."',
-					'".$jomres_encryption->encrypt($mobile)."',
-					'".$jomres_encryption->encrypt($email)."'
-					)";
-                doInsertSql($query, '');
-            }
-        }
-    }
 
     if (!$returnid) {
         echo 'Error saving users details';

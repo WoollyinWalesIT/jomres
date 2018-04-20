@@ -235,13 +235,18 @@ function jomresGetParam($request, $element, $def = null) // variable type not us
 		
 	// http://georgemauer.net/2017/10/07/csv-injection.html
 	// The "tab" solution in that article doesn't work because it results in output like "your	@email.com" in inputs. Instead the mailer will need to str_replace &#64; back to @
-	$csv_bad = array ( "=" , "-" , "+" );
-	$csv_good = array( '&#61;' , "&#45;" , "&#43;" );
+	$csv_bad = array ( "=" , "+" );
+	$csv_good = array( '&#61;' , "&#43;" );
 	$clean = str_replace($csv_bad,$csv_good,$clean);
 	
 	if ( isset($clean[0]) &&  $clean[0] == "@" ) {
 		$clean = str_replace("@","&#64;",$clean);
 	}
+	
+	if ( isset($clean[0]) &&  $clean[0] == "-" ) {
+		$clean = str_replace("-","&#45;",$clean);
+	}
+	
 	// end http://georgemauer.net/2017/10/07/csv-injection.html
 	
 	

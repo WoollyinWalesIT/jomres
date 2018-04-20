@@ -249,7 +249,69 @@ class j03020insertbooking
                 $new_user_id = 0;
 
                 if ($jrConfig[ 'useNewusers' ] == '1') {
-                    $new_user_id = jomres_cmsspecific_createNewUser();
+					$all_cms_users = jomres_cmsspecific_getCMSUsers();
+					
+					$cms_user_id = 0;
+					foreach ($all_cms_users as $id=>$user) {
+						if ($user['email'] == $guestDetails->email ) {
+							$cms_user_id = $id;
+							set_showtime("new_booking_user_id" , $cms_user_id );
+						}
+					}
+
+					if ($cms_user_id == 0 ) {
+						$cms_user_id = jomres_cmsspecific_createNewUser($guestDetails->email);
+					}
+
+					if ($cms_user_id > 0 ) {
+						if (!$thisJRUser->is_partner) {
+							// New for 4.5.9. We need now to look in the new guest profile table and see if this user already exists. If they do not, we'll take these details and add them to the profile table too, then in future the profile table's data will be used as the primary source of this guest's information, continuing to ensure that guest details are not shared between properties. No property should ever be able to access a guest's details unless that guest has already booked with that property.
+							// First, we'll look at this user's id. If it's the same as mos_userid above, then the user making the booking is a guest.
+							$new_booking_user_id = get_showtime("new_booking_user_id");
+							
+							$query = "SELECT enc_firstname FROM #__jomres_guest_profile WHERE cms_user_id = ".(int)$new_booking_user_id;
+							$already_exists = doSelectSql($query);
+							
+							if (empty($already_exists)) {
+								
+								jr_import('jomres_encryption');
+								$jomres_encryption = new jomres_encryption();
+
+								$query = "INSERT INTO #__jomres_guest_profile (
+									`cms_user_id`,
+									`enc_firstname`,
+									`enc_surname`,
+									`enc_house`,
+									`enc_street`,
+									`enc_town`,
+									`enc_county`,
+									`enc_country`,
+									`enc_postcode`,
+									`enc_tel_landline`,
+									`enc_tel_mobile`,
+									`enc_email`
+									) VALUES (
+									'".(int) $cms_user_id."',
+									'".$jomres_encryption->encrypt($tmpBookingHandler->tmpguest['firstname'])."',
+									'".$jomres_encryption->encrypt($tmpBookingHandler->tmpguest['surname'])."',
+									'".$jomres_encryption->encrypt($tmpBookingHandler->tmpguest['house'])."',
+									'".$jomres_encryption->encrypt($tmpBookingHandler->tmpguest['street'])."',
+									'".$jomres_encryption->encrypt($tmpBookingHandler->tmpguest['town'])."',
+									'".$jomres_encryption->encrypt($tmpBookingHandler->tmpguest['region'])."',
+									'".$jomres_encryption->encrypt($tmpBookingHandler->tmpguest['country'])."',
+									'".$jomres_encryption->encrypt($tmpBookingHandler->tmpguest['postcode'])."',
+									'".$jomres_encryption->encrypt($tmpBookingHandler->tmpguest['tel_landline'])."',
+									'".$jomres_encryption->encrypt($tmpBookingHandler->tmpguest['tel_mobile'])."',
+									'".$jomres_encryption->encrypt($tmpBookingHandler->tmpguest['email'])."'
+									)";
+								doInsertSql($query, '');
+							}
+						}
+						set_showtime("new_booking_user_id" , $cms_user_id );
+					} else {
+						throw new Exception('Did not receive a valid user id after attempting to create/validate a new user in the insert booking script');
+					}
+					
                 }
 
                 $guests_uid = insertGuestDeets(get_showtime('jomressession'));

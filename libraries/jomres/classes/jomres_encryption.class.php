@@ -85,14 +85,15 @@ class encryption_key
 	
 	public function encrypt($string = '' )
 	{
-		return Crypto::encrypt( (string)$string, $this->encryption_key );
+		return Crypto::encrypt( (string)trim($string), $this->encryption_key );
 	}
-	
+
 	public function decrypt($ciphertext = '') 
 	{
-	if ($ciphertext == '' ) {
+	if (trim($ciphertext == '') ) {
 		return '';
 	}
+
 	if ( is_null($ciphertext) ) {
 		return '';
 	}

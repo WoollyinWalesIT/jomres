@@ -36,7 +36,8 @@ class j06005show_guest_details
         }
 
         $guestUid = $componentArgs[ 'guest_uid' ];
-
+		$invoice_id = $componentArgs[ 'invoice_id' ];
+		
         if ($thisJRUser->userIsManager) {
             $property_uid = getDefaultProperty();
             $query = "SELECT guests_uid FROM #__jomres_guests WHERE guests_uid = '".(int) $guestUid."' AND property_uid IN (".jomres_implode($thisJRUser->authorisedProperties).') ';
@@ -59,28 +60,25 @@ class j06005show_guest_details
             }
         }
 
-        $query = 'SELECT enc_firstname,enc_surname,enc_house,enc_street,enc_town,enc_county,enc_country,enc_postcode,enc_tel_landline,enc_tel_mobile,enc_email,enc_vat_number FROM #__jomres_guests WHERE guests_uid = '.(int) $guestUid.'';
-        $guestData = doSelectSql($query);
-        $numberOfReturns = count($guestData);
-        $vat_output = array();
-        if ($numberOfReturns > 0) {
-            foreach ($guestData as $data) {
-                $output[ 'FIRSTNAME' ] = $jomres_encryption->decrypt($data->enc_firstname);
-                $output[ 'SURNAME' ] = $jomres_encryption->decrypt($data->enc_surname);
-                $output[ 'HOUSE' ] = $jomres_encryption->decrypt($data->enc_house);
-                $output[ 'STREET' ] = $jomres_encryption->decrypt($data->enc_street);
-                $output[ 'TOWN' ] = $jomres_encryption->decrypt($data->enc_town);
-                $output[ 'REGION' ] = find_region_name($jomres_encryption->decrypt($data->enc_county));
-                $output[ 'COUNTRY' ] = getSimpleCountry($jomres_encryption->decrypt($data->enc_country));
-                $output[ 'POSTCODE' ] = $jomres_encryption->decrypt($data->enc_postcode);
-                $output[ 'LANDLINE' ] = $jomres_encryption->decrypt($data->enc_tel_landline);
-                $output[ 'MOBILE' ] = $jomres_encryption->decrypt($data->enc_tel_mobile);
-                $output[ 'EMAIL' ] = $jomres_encryption->decrypt($data->enc_email);
-                $vat_output[0][ 'VAT_NUMBER' ] = $jomres_encryption->decrypt($data->enc_vat_number);
-            }
-        } else {
-            return;
-        }
+		// For 9.11 (GDPR compliance) we now need to pull from the invoice pii tables instead of the guests(guest profile) table. This gives us immutable invoice details in the event that the user chooses to delete their PII information from guests/guest_profile table, allowing us to be compliant with both the GDPR Right to be Forgotten rules, and various country rules that would demand that invoice details be retrievable for the forseeable future.
+		
+		jr_import('jrportal_invoice_pii_details');
+		$jrportal_invoice_pii_details = new jrportal_invoice_pii_details();
+		$jrportal_invoice_pii_details->invoice_id=$invoice_id;
+		$guestData = $jrportal_invoice_pii_details->get_pii_buyer();
+
+		$output[ 'FIRSTNAME' ] = $guestData['firstname'];
+		$output[ 'SURNAME' ] = $guestData['surname'];
+		$output[ 'HOUSE' ] = $guestData['house'];
+		$output[ 'STREET' ] = $guestData['street'];
+		$output[ 'TOWN' ] = $guestData['town'];
+		$output[ 'REGION' ] = find_region_name($guestData['county']);
+		$output[ 'COUNTRY' ] = getSimpleCountry($guestData['country']);
+		$output[ 'POSTCODE' ] = $guestData['postcode'];
+		$output[ 'LANDLINE' ] = $guestData['tel_landline'];
+		$output[ 'MOBILE' ] = $guestData['tel_mobile'];
+		$output[ 'EMAIL' ] = $guestData['email'];
+		$vat_output[0][ 'VAT_NUMBER' ] = $guestData['vat_number'];
 
         $output[ 'TITLE' ] = jr_gettext('_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST', '_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST');
         $output[ 'HFIRSTNAME' ] = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME', '_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME');

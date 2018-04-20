@@ -64,8 +64,12 @@ function jomres_cmsspecific_areweinadminarea()
     return $administrator_area;
 }
 
-function jomres_cmsspecific_createNewUser()
+function jomres_cmsspecific_createNewUser( $email_address = '' )
 {
+	if ($email_address == '' ) {
+		throw new Exception('Cannot create a new cms user without an email address');
+	}
+	
     $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();
@@ -73,8 +77,6 @@ function jomres_cmsspecific_createNewUser()
 
     $id = $thisJRUser->id;
 
-    if (!$thisJRUser->userIsRegistered) {
-        
         $guestDeets = $tmpBookingHandler->getGuestData();
 
         //If the email address already exists in the system, we'll not bother carrying on, just return this user's "mos_id"
@@ -143,7 +145,6 @@ function jomres_cmsspecific_createNewUser()
                 }
             }
         }
-    }
 
     return $id;
 }
