@@ -4203,9 +4203,22 @@ function development_mode_test()
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig = $siteConfig->get();
 
-    if ($jrConfig[ 'development_production' ] != 'production') { // The default is 1000 on most installations
+    if ($jrConfig[ 'development_production' ] != 'production') { 
         $highlight = (using_bootstrap() ? 'alert alert-error alert-danger' : 'ui-state-highlight');
         $response = "<div class='".$highlight."'>Be aware that you are using the site with Development mode enabled. Unless you are a developer we do not advise that you leave this setting enabled. To change it go to Site Settings > Debugging tab and set the mode to Production.</div>";
+    }
+
+    return $response;
+}
+
+function safe_mode_test()
+{
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+	$jrConfig = $siteConfig->get();
+
+    if ($jrConfig[ 'safe_mode' ] != '0') { 
+        $highlight = (using_bootstrap() ? 'alert alert-error alert-danger' : 'ui-state-highlight');
+        $response = "<div class='".$highlight."'><strong><em>Safe mode is enabled, no plugins will function, including the plugin manager. You can change this in the Jomres > Settings > Site Configurat > Debugging tab.</em></strong>	</div>";
     }
 
     return $response;

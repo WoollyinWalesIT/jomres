@@ -42,7 +42,10 @@ class j16000jomres_warnings
 
 		// Show a warning if development mode enabled
 		$output[ 'DEVELOPMENT_MODE' ] = development_mode_test();
-				
+
+		// Show a warning if safe mode enabled
+		$output[ 'SAFE_MODE' ] = safe_mode_test();
+		
         //max input vars set to 1000 warning only if micromanage is enabled
         $output[ 'MAX_INPUT_VARS_CHECK' ] = max_input_vars_test();
 
