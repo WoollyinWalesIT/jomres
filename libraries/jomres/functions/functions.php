@@ -4200,6 +4200,7 @@ function check_jomres_version( $outputText = true )
 
 function development_mode_test()
 {
+	$response = '';
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig = $siteConfig->get();
 
@@ -4213,6 +4214,7 @@ function development_mode_test()
 
 function safe_mode_test()
 {
+	$response = '';
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig = $siteConfig->get();
 
