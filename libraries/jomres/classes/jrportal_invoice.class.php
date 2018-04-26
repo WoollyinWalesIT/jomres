@@ -120,6 +120,27 @@ class jrportal_invoice
         $this->commitUpdateInvoice();
     }
 
+	// Intended for use by the update script of 9.11, it converts an invoice user's PII from open data to encrypted once handed an invoice id
+	public function convert_pii_data()
+	{
+		if ($this->id == 0 ) {
+			throw new Exception("Cannot convert invoice, invoice id not set.");
+		}
+		
+		$buyer_result = $this->create_pii_buyer();
+		$seller_result = $this->create_pii_seller();
+
+		if (!$buyer_result || !$seller_result ) {
+			if ( !$buyer_result ) {
+				error_logging('Could not convert invoice id '.$this->id.' buyer PII data' );
+			}
+			if ( !$seller_result ) {
+				error_logging('Could not convert invoice id '.$this->id.' seller PII data' );
+			}
+		}
+		
+	}
+	
 	// Personally Identifable information will be stored in the buyer table
 	private function create_pii_buyer()
 	{
@@ -176,7 +197,7 @@ class jrportal_invoice
 			)";
 
 		$result = doInsertSql($query, "");
-		
+		return $result;
 	}
 	
 	private function create_pii_seller()
@@ -267,6 +288,7 @@ class jrportal_invoice
 			)";
 
 		$result = doInsertSql($query, "");
+		return $result;
 	}
 	
 	
