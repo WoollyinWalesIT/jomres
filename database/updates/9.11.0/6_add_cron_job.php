@@ -14,19 +14,5 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-$query = "TRUNCATE TABLE `#__jomcomp_cron`;";
-
-if (!doInsertSql($query)) {
-	$this->setMessage('Error, unable to truncate #__jomcomp_cron table', 'danger');
-	
-	return;
-}
-
 $jomres_cron = jomres_singleton_abstract::getInstance('jomres_cron');
-
-$jomres_cron->addJob('session_files_cleanup', 'D', '');
-$jomres_cron->addJob('error_logs_cleanup', 'D', '');
-$jomres_cron->addJob('geolocation_cleanup', 'D', '');
-$jomres_cron->addJob("api_tokens_cleanup","D","");
-$jomres_cron->addJob('version_check', 'D', '');
 $jomres_cron->addJob('booking_data_archive_cleanup', 'D', '');
