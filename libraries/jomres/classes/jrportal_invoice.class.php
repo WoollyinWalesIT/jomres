@@ -65,7 +65,7 @@ class jrportal_invoice
 		$this->lineitem['transaction_id'] = '';
 		$this->lineitem['management_url'] = '';
 		
-    }
+  }
 
     //Create a new invoice
     public function create_new_invoice($invoice_data, $line_items = array())
@@ -121,13 +121,13 @@ class jrportal_invoice
     }
 
 	// Intended for use by the update script of 9.11, it converts an invoice user's PII from open data to encrypted once handed an invoice id
-	public function convert_pii_data()
+	public function convert_pii_data( $alternative_data )
 	{
 		if ($this->id == 0 ) {
 			throw new Exception("Cannot convert invoice, invoice id not set.");
 		}
 		
-		$buyer_result = $this->create_pii_buyer();
+		$buyer_result = $this->create_pii_buyer($alternative_data );
 		$seller_result = $this->create_pii_seller();
 
 		if (!$buyer_result || !$seller_result ) {
@@ -142,27 +142,32 @@ class jrportal_invoice
 	}
 	
 	// Personally Identifable information will be stored in the buyer table
-	private function create_pii_buyer()
+	private function create_pii_buyer( $alternative_data = false )
 	{
-		$invoice_id = $this->id;
-		
-        $query = "SELECT
-					`enc_firstname`,
-					`enc_surname`,
-					`enc_house`,
-					`enc_street`,
-					`enc_town`,
-					`enc_county`, 
-					`enc_country`, 
-					`enc_postcode`, 
-					`enc_tel_landline`,
-					`enc_tel_mobile`,
-					`enc_email`,
-					`enc_vat_number`
-				FROM `#__jomres_guest_profile` WHERE cms_user_id = ".(int) $this->cms_user_id."
-				";
-		$user_details = doSelectSql($query , 2 );
 
+		if (! $alternative_data ) { 
+			$invoice_id = $this->id;
+			
+			$query = "SELECT
+						`enc_firstname`,
+						`enc_surname`,
+						`enc_house`,
+						`enc_street`,
+						`enc_town`,
+						`enc_county`, 
+						`enc_country`, 
+						`enc_postcode`, 
+						`enc_tel_landline`,
+						`enc_tel_mobile`,
+						`enc_email`,
+						`enc_vat_number`
+					FROM `#__jomres_guest_profile` WHERE cms_user_id = ".(int) $this->cms_user_id."
+					";
+			$user_details = doSelectSql($query , 2 );
+		} else {
+			$user_details = $alternative_data;
+		}
+ 
 		$query = "INSERT INTO #__jomres_invoice_pii_buyers 
 			(
 				`invoice_id`,

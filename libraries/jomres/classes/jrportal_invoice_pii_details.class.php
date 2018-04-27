@@ -89,6 +89,7 @@ class jrportal_invoice_pii_details
 					`enc_vat_number`
 				FROM `#__jomres_invoice_pii_sellers` WHERE invoice_id = ".(int)$this->invoice_id."
 				";
+
 		$user_details = doSelectSql($query , 2 );
 
 		if (empty($user_details)){
