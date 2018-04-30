@@ -30,7 +30,7 @@ class j06000cron_session_files_cleanup
         if ($secret == $jomresConfig_secret) {
 			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 			$jrConfig = $siteConfig->get();
-		
+
 			if ($jrConfig['session_handler'] == 'file') {
 				$session_path = JOMRES_SESSIONS_ABSPATH;
 				$files = scandir_getfiles_recursive($session_path);
@@ -46,6 +46,16 @@ class j06000cron_session_files_cleanup
 				//we`ll cleaan up all sessions older than 1 day
 				$query = "DELETE FROM #__jomres_sessions WHERE `last_changed` <= DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 DAY)";
 				doInsertSql($query, '');
+				
+				// Any files left in the sessions folder can be deleted
+				$session_path = JOMRES_SESSIONS_ABSPATH;
+				$files = scandir_getfiles_recursive($session_path);
+
+				if (!empty($files)) {
+					foreach ($files as $f) {
+						unlink($f);
+					}
+				}
 			}
         }
     }
