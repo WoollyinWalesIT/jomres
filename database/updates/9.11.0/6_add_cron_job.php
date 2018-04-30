@@ -16,3 +16,4 @@ defined('_JOMRES_INITCHECK') or die('');
 
 $jomres_cron = jomres_singleton_abstract::getInstance('jomres_cron');
 $jomres_cron->addJob('booking_data_archive_cleanup', 'D', '');
+$jomres_cron->addJob('gdpr_cleanup', 'D', '');

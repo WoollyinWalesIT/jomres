@@ -51,6 +51,11 @@ class jomres_geolocation
         
 		if ($this->api_key != '') {
 			if (!isset($tmpBookingHandler->user_settings[ 'geolocated_country' ])) {
+/* 				if (!isset($tmpBookingHandler->user_settings[ 'optin_for_gdpr' ])) {
+					function show_gdpr_modal();
+					return;
+				} */
+				
 				$ip = get_remote_ip_number();
 				$hash = md5($ip);
 				

@@ -92,6 +92,7 @@ Administrator area
 10530 trigger point to add settings from plugins to site config->cron tab
 10531 trigger point to add settings from plugins to site config->integrations tab
 10532 trigger point to add settings from plugins to site config->debugging tab
+10533 trigger point to add settings from plugins to site config->gdpr policies tab
   
 11010,11020,11040 Administrator area Media centre resource options.
 

@@ -30,3 +30,5 @@ $jomres_cron->addJob('geolocation_cleanup', 'D', '');
 $jomres_cron->addJob("api_tokens_cleanup","D","");
 $jomres_cron->addJob('version_check', 'D', '');
 $jomres_cron->addJob('booking_data_archive_cleanup', 'D', '');
+$jomres_cron->addJob('gdpr_cleanup', 'D', '');
+

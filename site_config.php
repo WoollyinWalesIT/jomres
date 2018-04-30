@@ -194,5 +194,7 @@ $jrConfig = array(
   'optimize_images' => '0',
   'jomres_db_version' => '0',
   'api_token_lifetime' => '31536000',
-  'secret_key_location' => ''
+  'secret_key_location' => '',
+  'gdpr_booking_retention_period' => '365',
+  'gdpr_other_invoice_retention_period' => '3653' // 10 years (including the odd leap day or two)
 );
