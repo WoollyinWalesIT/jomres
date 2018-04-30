@@ -28,7 +28,7 @@ class j06000cron_booking_data_archive_cleanup
         $secret = base64_decode(jomresGetParam($_REQUEST, 'secret', ''));
 
         if ($secret == $jomresConfig_secret) {
-			$query = "DELETE FROM #__jomres_booking_data_archive WHERE `date` <= DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL 59 DAYS)";
+			$query = "DELETE FROM #__jomres_booking_data_archive WHERE `date` <= DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL 59 DAY)";
 			doInsertSql($query, '');
         }
     }
