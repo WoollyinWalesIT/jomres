@@ -25,7 +25,7 @@ class j06000cron_error_logs_cleanup
             return;
         }
         $jomresConfig_secret = get_showtime('secret');
-        $secret = base64_decode(jomresGetParam($_REQUEST, 'secret', ''));
+        $secret = base64_decode($_REQUEST['secret']);
 		
 		$maxFileSize = 1024 * 1024;
 

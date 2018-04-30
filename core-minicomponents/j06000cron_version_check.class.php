@@ -25,7 +25,7 @@ class j06000cron_version_check
             return;
         }
         $jomresConfig_secret = get_showtime('secret');
-        $secret = base64_decode(jomresGetParam($_REQUEST, 'secret', ''));
+        $secret = base64_decode($_REQUEST['secret']);
 
         if ($secret == $jomresConfig_secret) {
 			//check the current version and send an email to any user marked as an admin if there is a new version available

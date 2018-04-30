@@ -25,7 +25,7 @@ class j06000cron_api_tokens_cleanup
             return;
         }
         $jomresConfig_secret = get_showtime('secret');
-        $secret = base64_decode(jomresGetParam($_REQUEST, 'secret', ''));
+        $secret = base64_decode($_REQUEST['secret']);
 
         if ($secret == $jomresConfig_secret) {
             $query = "DELETE FROM #__jomres_oauth_access_tokens WHERE `expires` <= DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 DAY)";

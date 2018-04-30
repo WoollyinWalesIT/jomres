@@ -25,7 +25,7 @@ class j06000cron_session_files_cleanup
             return;
         }
         $jomresConfig_secret = get_showtime('secret');
-        $secret = base64_decode(jomresGetParam($_REQUEST, 'secret', ''));
+        $secret = base64_decode($_REQUEST['secret']);
 
         if ($secret == $jomresConfig_secret) {
 			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
