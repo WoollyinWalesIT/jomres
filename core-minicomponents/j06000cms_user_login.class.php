@@ -25,6 +25,12 @@ class j06000cms_user_login
             return;
         }
 		
+		$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
+		if ( !$jomres_gdpr_optin_consent->user_consents_to_storage() ) {
+			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=opted_out'), '');
+		}
+
+		
 		$login_url = get_showtime('live_site').'/'.jomres_cmsspecific_getlogin_task();
 		
 		//simply redirect to the cms user registraation page

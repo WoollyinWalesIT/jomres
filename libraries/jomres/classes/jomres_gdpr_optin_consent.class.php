@@ -33,7 +33,7 @@ class jomres_gdpr_optin_consent
 		
     }
 	
-	public function get_consent_state()
+	public function user_consents_to_storage()
 	{
 		if(!isset($_COOKIE['jomres_gdpr_consent_form_processed']) ) {
 			return false;

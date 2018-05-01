@@ -33,11 +33,11 @@ class j06005add_review
             $property_uid = (int) $_GET[ 'property_uid' ];
         }
 		
-        //jomres_cmsspecific_addheaddata( "javascript", get_showtime( 'live_site' ) . '/'.JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.validate.js" );
-        //jomres_cmsspecific_addheaddata( "javascript", ''.JOMRES_ROOT_DIRECTORY.'/javascript/', "jquery.rating.js" );
-        //jomres_cmsspecific_addheaddata( "css", ''.JOMRES_ROOT_DIRECTORY.'/css/', 'jquery.rating.css' );
+		$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
+		if ( !$jomres_gdpr_optin_consent->user_consents_to_storage() ) {
+			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=opted_out'), '');
+		}
 
-        //property_header($property_uid);
 
         if ($jrConfig[ 'use_reviews' ] == '1' && $property_uid > 0) {
             $output = array();

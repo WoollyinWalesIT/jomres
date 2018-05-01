@@ -1,0 +1,18 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<script type="text/javascript">
+    jomresJquery(window).on('load',function(){
+        jomresJquery('#consentForm').modal('show');
+    });
+</script>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="consentForm" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+		{CONSENT_FORM}
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</patTemplate:tmpl>

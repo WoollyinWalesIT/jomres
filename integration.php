@@ -145,6 +145,7 @@ require_once JOMRES_FUNCTIONS_ABSPATH.'jr_gettext.php';
 require_once JOMRES_FUNCTIONS_ABSPATH.'countries.php';
 require_once JOMRES_CLASSES_ABSPATH.'jomres_empty_class.class.php';
 require_once JOMRES_CLASSES_ABSPATH.'jomres_singleton_abstract.class.php';
+require_once JOMRES_CLASSES_ABSPATH.'jomres_gdpr_optin_consent.class.php';
 
 /**
 *

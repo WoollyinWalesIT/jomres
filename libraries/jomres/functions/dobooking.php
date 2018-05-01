@@ -43,6 +43,10 @@ if (!defined('JOMRES_API_CMS_ROOT')) {
 	$selectedProperty = $property_uid;
 }
 
+$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
+if ( !$jomres_gdpr_optin_consent->user_consents_to_storage() ) {
+	jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=opted_out'), '');
+}
 
 $remus = jomresGetParam($_REQUEST, 'remus', '');
 

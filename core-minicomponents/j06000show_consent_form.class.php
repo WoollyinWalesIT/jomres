@@ -31,10 +31,11 @@ class j06000show_consent_form
 		}
 		
         $output_now = true;
-        if (isset($componentArgs[ 'output_now' ])) {
+        if (isset($componentArgs[ 'output_now' ]) ) {
             $output_now = (bool) $componentArgs[ 'output_now' ];
         }
-		
+
+
 		$output[ '_JOMRES_GDPR_CONSENT_FORM_INTRO' ] = jr_gettext('_JOMRES_GDPR_CONSENT_FORM_INTRO', '_JOMRES_GDPR_CONSENT_FORM_INTRO', false);
 		$output[ '_JOMRES_COM_MR_YES' ] = jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false);
 		$output[ '_JOMRES_COM_MR_NO' ] = jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false, false);
@@ -52,6 +53,14 @@ class j06000show_consent_form
 			$output['RETURN_URL'] = jr_base64url_encode($_REQUEST['return_url']);
 		} else {
 			$output['RETURN_URL'] = jr_base64url_encode(getCurrentUrl());
+		}
+		
+		$output['CONSENTED'] = jr_gettext('_JOMRES_GDPR_CONSENT_OPTED_IN', '_JOMRES_GDPR_CONSENT_OPTED_IN', false);
+		
+		if(!isset($_COOKIE['jomres_gdpr_consent_form_processed']) ) {
+			$output['CONSENTED'] = jr_gettext('_JOMRES_GDPR_CONSENT_NOT_SET', '_JOMRES_GDPR_CONSENT_NOT_SET', false);
+		} elseif( (int)$_COOKIE['jomres_gdpr_consent_form_processed'] == 0  ) {
+			$output['CONSENTED'] = jr_gettext('_JOMRES_GDPR_CONSENT_OPTED_OUT', '_JOMRES_GDPR_CONSENT_OPTED_OUT', false);
 		}
 		
 

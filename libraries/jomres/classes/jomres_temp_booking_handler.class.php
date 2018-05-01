@@ -45,11 +45,16 @@ class jomres_temp_booking_handler
 		}
 		
 		$this->ip = $_SERVER['REMOTE_ADDR'];
-		
+
+				
 		if ($this->ip == '::1') {
 			$this->ip = '127.0.0.1';
 		}
 
+		if (!isset($_COOKIE['jomres_gdpr_consent_form_processed']) || (int)$_COOKIE['jomres_gdpr_consent_form_processed'] == 0 ){
+			$this->ip = '0.0.0.0';
+		}
+		
 		if (!isset($_SERVER['HTTP_USER_AGENT'])){
 			$_SERVER['HTTP_USER_AGENT'] ="";
 		}

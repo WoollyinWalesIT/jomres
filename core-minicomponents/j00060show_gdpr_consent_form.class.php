@@ -24,14 +24,20 @@ class j00060show_gdpr_consent_form
             $this->template_touchable = false;
             return;
         }
-jr_import('jomres_gdpr_optin_consent');
 		jr_import('jomres_gdpr_optin_consent');
 		$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
-		var_dump($jomres_gdpr_optin_consent->get_consent_state() );exit;
-		
-        if(!isset($_COOKIE['jomres_gdpr_consent_form_processed']) && !AJAXCALL ){
+
+        if(!isset($_COOKIE['jomres_gdpr_consent_form_processed']) && !AJAXCALL && get_showtime("task") != "show_consent_form"){
+			
 			$consent_form = $MiniComponents->specificEvent('06000', 'show_consent_form' , array ('output_now' => false) );
-			echo $consent_form;
+			$output = array ("CONSENT_FORM" => $consent_form );
+
+			$pageoutput[] = $output;
+			$tmpl = new patTemplate();
+			$tmpl->addRows('pageoutput', $pageoutput);
+			$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+			$tmpl->readTemplatesFromInput('consent_form_wrapper.html');
+			echo $tmpl->getParsedTemplate();
 		}
     }
 
