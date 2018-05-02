@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j99999show_gdpr_consent_form
+class j00060show_gdpr_consent_form
 {
     public function __construct($componentArgs)
     {
