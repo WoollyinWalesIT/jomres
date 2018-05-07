@@ -104,12 +104,13 @@ class j09995menu
 		if (!isset($jrConfig[ 'webhooks_core_show' ]))
 			$jrConfig[ 'webhooks_core_show' ] =1;
 		
-		if ($thisJRUser->accesslevel >= 1 && $jrConfig[ 'api_core_show' ] == '1') {
+		if ($thisJRUser->accesslevel >= 50 && $jrConfig[ 'api_core_show' ] == '1') {
 			$jomres_menu->add_item(10, jr_gettext('WEBHOOKS_CORE', 'WEBHOOKS_CORE', false), 'webhooks_core', 'fa-key');
 			$jomres_menu->add_item(10, jr_gettext('WEBHOOKS_DOCUMENTATION_TITLE', 'WEBHOOKS_DOCUMENTATION_TITLE', false), 'webhooks_core_documentation', 'fa-book');
 		}
 		
 		$jomres_menu->add_item(10, jr_gettext('_JOMRES_GDPR_APP_MENU_ITEM', '_JOMRES_GDPR_APP_MENU_ITEM', false), 'show_consent_form', 'fa-lock');
+		$jomres_menu->add_item(10, jr_gettext('_JOMRES_GDPR_MY_DATA', '_JOMRES_GDPR_MY_DATA', false), 'gdpr_my_data', 'fa-lock');
 		
 		//properties section menus
 		if ($thisJRUser->accesslevel >= 50) {
