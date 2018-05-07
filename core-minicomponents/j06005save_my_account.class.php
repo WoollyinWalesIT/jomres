@@ -25,6 +25,12 @@ class j06005save_my_account
 
             return;
         }
+		
+		$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
+		if ( !$jomres_gdpr_optin_consent->user_consents_to_storage() ) {
+			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=opted_out'), '');
+		}
+
 		jr_import('jomres_encryption');
 		$this->jomres_encryption = new jomres_encryption();
 		
