@@ -185,7 +185,7 @@ class jr_user
 				}
             }
         }
-
+		$this->jomres_encryption = null;
         return true;
     }
 
