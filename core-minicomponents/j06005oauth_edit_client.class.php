@@ -21,6 +21,11 @@ class j06005oauth_edit_client
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
 		if ( $MiniComponents->template_touch ){$this->template_touchable = false;return;}
 
+		$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
+		if ( !$jomres_gdpr_optin_consent->user_consents_to_storage() ) {
+			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=opted_out'), '');
+		}
+
 		$ePointFilepath=get_showtime('ePointFilepath');
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 		$available_scopes = array();

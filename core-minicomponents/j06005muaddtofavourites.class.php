@@ -25,6 +25,12 @@ class j06005muaddtofavourites
 
             return;
         }
+		
+		$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
+		if ( !$jomres_gdpr_optin_consent->user_consents_to_storage() ) {
+			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=opted_out'), '');
+		}
+
         $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
         if ($thisJRUser->userIsRegistered) {
             $property_uid = jomresGetParam($_REQUEST, 'property_uid', 0);
