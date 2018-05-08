@@ -207,6 +207,9 @@ class jrportal_invoice
 	
 	private function create_pii_seller()
 	{
+		
+		
+		
 		$invoice_id = $this->id;
 		 if ((int) $this->contract_id > 0) { // It's a booking invoice, therefore the seller is the property manager
 			$mrConfig = getPropertySpecificSettings($this->property_uid);
@@ -222,6 +225,37 @@ class jrportal_invoice
 				$manager_details = $this->jomres_encryption->decrypt($manager_details['enc_firstname'])." ".$this->jomres_encryption->decrypt($manager_details['enc_surname']);
 			} else {
 				$manager_details = "";
+			}
+
+			if (!isset($mrConfig['property_business_name'])) {
+				$mrConfig['property_business_name'] = '';
+			}
+			if (!isset($mrConfig['property_business_houseno'])) {
+				$mrConfig['property_business_houseno'] = '';
+			}
+			if (!isset($mrConfig['property_business_street'])) {
+				$mrConfig['property_business_street'] = '';
+			}
+			if (!isset($mrConfig['property_business_town'])) {
+				$mrConfig['property_business_town'] = '';
+			}
+			if (!isset($mrConfig['property_business_region'])) {
+				$mrConfig['property_business_region'] = '';
+			}
+			if (!isset($mrConfig['property_business_country'])) {
+				$mrConfig['property_business_country'] = '';
+			}
+			if (!isset($mrConfig['property_business_postcode'])) {
+				$mrConfig['property_business_postcode'] = '';
+			}
+			if (!isset($mrConfig['property_business_telephone'])) {
+				$mrConfig['property_business_telephone'] = '';
+			}
+			if (!isset($mrConfig['property_business_email'])) {
+				$mrConfig['property_business_email'] = '';
+			}
+			if (!isset($mrConfig['property_vat_number'])) {
+				$mrConfig['property_vat_number'] = '';
 			}
 
 			$user_details = array();
