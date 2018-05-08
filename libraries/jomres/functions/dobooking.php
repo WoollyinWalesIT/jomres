@@ -237,6 +237,10 @@ function dobooking($selectedProperty, $thisdate, $remus)
     $text = $bkg->makeOutputText();
     $guest = $bkg->makeGuestData();
 
+	if ( $thisJRUser->userIsRegistered && !$thisJRUser->userIsManager && !filter_var($guest['EMAIL'], FILTER_VALIDATE_EMAIL)) {
+		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_my_account') , jr_gettext('_JOMRES_CANNOT_BOOK_INVALID_EMAIL', '_JOMRES_CANNOT_BOOK_INVALID_EMAIL', false, false) , 'alert-danger'  );
+	}
+
     $output = array_merge($text, $guest);
     $output[ 'REGION_DROPDOWN' ] = setupRegions($bkg->country, $bkg->region);
     if ($bkg->cfg_showdepartureinput == '0') {

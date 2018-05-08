@@ -27,6 +27,7 @@ class jomres_gdpr_optin_consent
 		
 		$this->date_time = date('Y-m-d H-i-s');
 		$this->ip = get_remote_ip_number();
+		$this->user_id = 0;
 		$consent_form = $MiniComponents->specificEvent('06000', 'show_consent_form' , array ('output_now' => false) );
 		$this->optin_content =  filter_var($consent_form, FILTER_SANITIZE_SPECIAL_CHARS,FILTER_FLAG_STRIP_HIGH) ;
 		$this->optedin = false;
@@ -45,11 +46,18 @@ class jomres_gdpr_optin_consent
 		return true;
 	}
 	
+	// 0 as a user id is acceptable
+	public function set_user_id($user_id)
+	{
+		$this->user_id = (int)$user_id;
+	}
+	
 	public function save_record()
 	{
 		$query = "INSERT INTO #__jomres_gdpr_optins
 			(
 				`date_time`,
+				`user_id`,
 				`ip`,
 				`optin_content`,
 				`optedin`
@@ -57,6 +65,7 @@ class jomres_gdpr_optin_consent
 			VALUES
 			(
 				'".$this->date_time."',
+				".$this->user_id.",
 				'".$this->ip."',
 				'".$this->optin_content."',
 				'".$this->optedin."'
