@@ -383,18 +383,23 @@ class jomres_gdpr_personal_information_collections
 	* Allows admins to redact guests who were not logged in/registered when their booking was made
 	*
 	*/
-	public function redact_non_registered_guest_pii($guest_id) 
+	public function redact_non_registered_guest_pii($guest_id = 0 , $property_uid = 0 ) 
 	{
+		
+		if ((int)$guest_id == 0 ) {
+			throw new Exception('guest_id not set ');
+		}
+		
 		jr_import('jomres_encryption');
 		$this->jomres_encryption = new jomres_encryption();
-		$encrypted_redacted_string = $this->jomres_encryption->encrypt(jr_gettext('_JOMRES_GDPR_REDACTION_STRING', '_JOMRES_GDPR_REDACTION_STRING', false));
+		$redacted_string = jr_gettext('_JOMRES_GDPR_REDACTION_STRING', '_JOMRES_GDPR_REDACTION_STRING', false);
 		unset($this->jomres_encryption);
 		
 		jr_import('jrportal_guests');
 		$jrportal_guests = new jrportal_guests();
 		$jrportal_guests->init_guest();
-		$jrportal_guests->id = $r->guests_uid;
-		$jrportal_guests->property_uid = $r->property_uid;
+		$jrportal_guests->id = $guest_id;
+		$jrportal_guests->property_uid = $property_uid;
 		$jrportal_guests->get_guest();
 		
 		$jrportal_guests->firstname		= $redacted_string;
