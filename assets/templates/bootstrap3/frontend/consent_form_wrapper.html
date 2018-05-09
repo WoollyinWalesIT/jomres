@@ -1,10 +1,34 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<style>
+body {margin:0;}
 
-<script type="text/javascript">
-    jomresJquery(window).on('load',function(){
-        jomresJquery('#consentForm').modal('show');
-    });
-</script>
+.GDPRConsentBar {
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  width: 70%;
+  z-index : 9001;
+}
+
+
+
+.GDPRConsentBar a:hover {
+  background: #ddd;
+  color: black;
+}
+
+.main {
+  padding: 16px;
+  margin-bottom: 30px;
+  height: 1500px; /* Used in this example to enable scrolling */
+}
+</style>
+
+
+
+<div class="GDPRConsentBar">
+  <div class="btn btn-success btn-lg" data-toggle="modal" data-target="#consentForm">{_JOMRES_GDPR_CONSENT_TRIGGER_FORM}</div>
+</div>
 
 <div class="modal fade" tabindex="-1" role="dialog" id="consentForm" >
   <div class="modal-dialog" role="document">

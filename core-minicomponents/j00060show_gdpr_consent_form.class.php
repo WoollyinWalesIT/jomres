@@ -31,6 +31,7 @@ class j00060show_gdpr_consent_form
 			
 			$consent_form = $MiniComponents->specificEvent('06000', 'show_consent_form' , array ('output_now' => false) );
 			$output = array ("CONSENT_FORM" => $consent_form );
+			$output['_JOMRES_GDPR_CONSENT_TRIGGER_FORM'] = jr_gettext('_JOMRES_GDPR_CONSENT_TRIGGER_FORM', '_JOMRES_GDPR_CONSENT_TRIGGER_FORM' , false );
 
 			$pageoutput[] = $output;
 			$tmpl = new patTemplate();
