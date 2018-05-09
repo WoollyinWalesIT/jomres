@@ -2229,7 +2229,7 @@ jr_define( '_JOMRES_GDPR_INVOICE_RETENTION_DESC', 'Other invoices, such as commi
 
 
 jr_define( '_JOMRES_GDPR_CONSENT_FORM_INTRO', 'Your data' );
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_THIRD_PARTIES', 'To use the property listings area of this website, you need to be aware that we will collect and store information about your visit to the site. We do not sell any of this information to third parties, it is used purely to ensure that your booking goes as smoothly as possible and that you have a great holiday.' );
+jr_define( '_JOMRES_GDPR_CONSENT_FORM_THIRD_PARTIES', 'Some features of this website need to store information about your visit. This is used only to provide service to you, is never shared with anyone else and is deleted when no longer needed.' );
 jr_define( '_JOMRES_GDPR_CONSENT_FORM_CONSENT_REQUEST', 'DO YOU CONSENT TO US STORING THIS INFORMATION?' );
 jr_define( '_JOMRES_GDPR_CONSENT_FORM_DETAIL', 'In detail' );
 jr_define( '_JOMRES_GDPR_CONSENT_FORM_COOKIE', 'You must consent to us storing this data for you to be able to make bookings on this site. Regardless of whether or not you consent to your data being stored, we will store a cookie on your computer to tell us whether or not you have opted in. This helps us to ensure that we do not constantly ask you whether or not you want to opt in or out and it does not contain any Personally Identifiable Information (PII). If you change your mind you can visit the "Your data" page at any time to opt in or out.' );
@@ -2243,8 +2243,8 @@ jr_define( '_JOMRES_GDPR_CONSENT_NOT_SET', 'You have not yet told us if we can c
 jr_define( '_JOMRES_GDPR_CONSENT_OPTED_IN', 'You have consented to us collecting the necessary Personally Identifiable Information to take bookings' );
 jr_define( '_JOMRES_GDPR_CONSENT_OPTED_OUT', 'You have told us to not collect Personally Identifiable Information' );
 
-jr_define( '_JOMRES_GDPR_NOCONSENT_INTRO', 'You told us to not collect data about your visit' );
-jr_define( '_JOMRES_GDPR_NOCONSENT_DIDNOTCONSENT', 'Unfortunately you have told us that we should not collect data about your visit to this area of the website. For you to perform certain actions on this website we have to collect Personally Identifiable Information about you, but you have forbidden us from doing so.' );
+jr_define( '_JOMRES_GDPR_NOCONSENT_INTRO', 'You have not given us permission to collect your private data' );
+jr_define( '_JOMRES_GDPR_NOCONSENT_DIDNOTCONSENT', 'For you to perform certain actions on this website we have to collect Personally Identifiable Information about you, but you have not given us permission to do so.' );
 jr_define( '_JOMRES_GDPR_NOCONSENT_DIDNOTCONSENT_LINK_TEXT', 'Change your permissions' );
 jr_define( '_JOMRES_GDPR_NOCONSENT_DIDNOTCONSENT_LINK_CONTINUE', 'Continue viewing properties' );
 
