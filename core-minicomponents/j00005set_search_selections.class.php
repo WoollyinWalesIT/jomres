@@ -28,6 +28,13 @@ class j00005set_search_selections
 
         $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 
+		// Do not store searched on elements if consent not given
+		$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
+		if ( !$jomres_gdpr_optin_consent->user_consents_to_storage() ) {
+			return;
+		}
+
+
         //////////////////////////////////// STARS /////////////////////////////////////////////////////////
 
         if (isset($_REQUEST[ 'stars' ])) {
