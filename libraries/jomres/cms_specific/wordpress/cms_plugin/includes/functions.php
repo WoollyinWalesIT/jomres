@@ -295,7 +295,7 @@ function jomres_notice( $notice ) {
  *
  * @since    9.10.3
  */
-public function free_space( $path = ABSPATH ) {
+function free_space( $path = ABSPATH ) {
 	
 	$space = @disk_free_space( $path );
 	
