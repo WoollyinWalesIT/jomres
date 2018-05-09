@@ -14,20 +14,20 @@
 			{CONSENTED}
 		</p>
 		
-		<h3>
-			{_JOMRES_GDPR_CONSENT_FORM_CONSENT_REQUEST}
-		</h3>
-		
-
-		
 		<div class="row">
-			<div class="col-md-2">
-				<a href="{JOMRES_SITEPAGE_URL_AJAX}&task=save_gdpr_optin&optin=1&jr_redirect_url={RETURN_URL}&nofollowtmpl" class="btn btn-success btn-lg">{_JOMRES_COM_MR_YES}</a>
+			<div class="col-md-8">
+				<h4>
+					{_JOMRES_GDPR_CONSENT_FORM_CONSENT_REQUEST}
+				</h4>
 			</div>
 			<div class="col-md-2">
-				<a href="{JOMRES_SITEPAGE_URL_AJAX}&task=save_gdpr_optin&optin=0&jr_redirect_url={RETURN_URL}&nofollowtmpl" class="btn btn-default btn-lg">{_JOMRES_COM_MR_NO}</a>
+				<a href="{JOMRES_SITEPAGE_URL_AJAX}&task=save_gdpr_optin&optin=0&jr_redirect_url={RETURN_URL}&nofollowtmpl" class="btn btn-default btn-lg muted"><i class="fa fa-thumbs-down"></i> {_JOMRES_COM_MR_NO}</a>
+			</div>
+			<div class="col-md-2">
+				<a href="{JOMRES_SITEPAGE_URL_AJAX}&task=save_gdpr_optin&optin=1&jr_redirect_url={RETURN_URL}&nofollowtmpl" class="btn btn-success btn-lg"><i class="fa fa-thumbs-up"></i> {_JOMRES_COM_MR_YES}</a>
 			</div>
 		</div>
+		
 		<hr/>
 		<a class="btn btn-primary" role="button" data-toggle="collapse" href="#moreGDPRDetails" aria-expanded="false">
 			{_JOMRES_GDPR_CONSENT_FORM_DETAIL}
