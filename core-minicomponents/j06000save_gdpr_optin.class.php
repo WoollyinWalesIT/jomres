@@ -39,7 +39,7 @@ class j06000save_gdpr_optin
 		
 		
 
-		jomresRedirect();
+		jomresRedirect($return_url);
     }
 
     // This must be included in every Event/Mini-component
