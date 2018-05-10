@@ -16,87 +16,80 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j10501a_misc
 {
-    public function __construct($componentArgs)
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct($componentArgs)
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
 
-        $configurationPanel = $componentArgs[ 'configurationPanel' ];
-        $lists = $componentArgs[ 'lists' ];
-        $bootstrap_ver_dropdown = $componentArgs[ 'bootstrap_ver_dropdown' ];
-        $jqueryUIthemesDropdownList = $componentArgs[ 'jqueryUIthemesDropdownList' ];
-        $language_context_dropdown = $componentArgs[ 'language_context_dropdown' ];
+		$configurationPanel = $componentArgs[ 'configurationPanel' ];
+		$lists = $componentArgs[ 'lists' ];
+		$bootstrap_ver_dropdown = $componentArgs[ 'bootstrap_ver_dropdown' ];
+		$jqueryUIthemesDropdownList = $componentArgs[ 'jqueryUIthemesDropdownList' ];
+		$language_context_dropdown = $componentArgs[ 'language_context_dropdown' ];
 		$navbar_location_dropdown = $componentArgs[ 'navbar_location_dropdown' ];
-        $support_key_is_trial_license = '';
-        $renewal_link = '';
+		$support_key_is_trial_license = '';
+		$renewal_link = '';
 		
 		$jomres_check_support_key = jomres_singleton_abstract::getInstance('jomres_check_support_key');
 		$jomres_check_support_key->check_license_key(true);
 
-        if (trim($jrConfig['licensekey']) != '') {
-            if ($jomres_check_support_key->key_valid) {
-                if ($jomres_check_support_key->allows_plugins == '1') {
-                    $support_key_message = '<p class="alert alert-success">'.jr_gettext('_JOMRES_SUPPORTKEY_DESC_VALID', '_JOMRES_SUPPORTKEY_DESC_VALID', false, false).'</p>';
-                } else {
-                    $support_key_message = '<p class="alert alert-success">'.jr_gettext('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', '_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', false, false).'</p>';
-                }
-            } else {
-                $support_key_message = '<p class="alert alert-danger">'.jr_gettext('_JOMRES_SUPPORTKEY_DESC_INVALID', '_JOMRES_SUPPORTKEY_DESC_INVALID', false, false).'</p>';
-                $renewal_link = '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=stripe_subscribe">Subscribe now</a>';
-            }
+		if (trim($jrConfig['licensekey']) != '') {
+			if ($jomres_check_support_key->key_valid) {
+				if ($jomres_check_support_key->allows_plugins == '1') {
+					$support_key_message = '<p class="alert alert-success">'.jr_gettext('_JOMRES_SUPPORTKEY_DESC_VALID', '_JOMRES_SUPPORTKEY_DESC_VALID', false, false).'</p>';
+				} else {
+					$support_key_message = '<p class="alert alert-success">'.jr_gettext('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', '_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', false, false).'</p>';
+				}
+			} else {
+				$support_key_message = '<p class="alert alert-danger">'.jr_gettext('_JOMRES_SUPPORTKEY_DESC_INVALID', '_JOMRES_SUPPORTKEY_DESC_INVALID', false, false).'</p>';
+				$renewal_link = '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=stripe_subscribe">Subscribe now</a>';
+			}
 
-            $support_key_status = '<span class="badge">Status</span> '.$jomres_check_support_key->key_status.'';
-            $support_key_owner = '<span class="badge">Owner</span> '.$jomres_check_support_key->owner.'<br/>';
-            $support_key_expires = '<span class="badge">Expires</span> '.$jomres_check_support_key->expires.'';
+			$support_key_status = '<span class="badge">Status</span> '.$jomres_check_support_key->key_status.'';
+			$support_key_owner = '<span class="badge">Owner</span> '.$jomres_check_support_key->owner.'<br/>';
+			$support_key_expires = '<span class="badge">Expires</span> '.$jomres_check_support_key->expires.'';
 			$support_key_license_name = '<span class="badge">License name</span> '.$jomres_check_support_key->license_name.'';
 
-            if ($jomres_check_support_key->is_trial_license == '1') {
-                $support_key_is_trial_license = '<span class="badge badge-warning">Trial license</span> ';
-            }
-        } else {
-            $support_key_status = '';
-            $support_key_owner = '';
-            $support_key_message = '';
-            $support_key_expires = '';
+			if ($jomres_check_support_key->is_trial_license == '1') {
+				$support_key_is_trial_license = '<span class="badge badge-warning">Trial license</span> ';
+			}
+		} else {
+			$support_key_status = '';
+			$support_key_owner = '';
+			$support_key_message = '';
+			$support_key_expires = '';
 			$support_key_license_name = '';
 			$support_key_property_limit = '';
-        }
-        $configurationPanel->startPanel(jr_gettext('_JOMRES_A_TABS_MISC', '_JOMRES_A_TABS_MISC', false));
+		}
+		$configurationPanel->startPanel(jr_gettext('_JOMRES_A_TABS_MISC', '_JOMRES_A_TABS_MISC', false));
 
-        $configurationPanel->setleft(jr_gettext('_JOMRES_SUPPORTKEY', '_JOMRES_SUPPORTKEY', false));
-        $configurationPanel->setmiddle('<input type="password" class="input-xlarge" name="cfg_licensekey" value="'.$jrConfig[ 'licensekey' ].'" /><br/>'.' '.$support_key_status.' '.$support_key_owner.' '.$support_key_expires.' '.$renewal_link.' '.$support_key_is_trial_license.' '.$support_key_license_name);
-        $configurationPanel->setright(jr_gettext('_JOMRES_SUPPORTKEY_DESC', '_JOMRES_SUPPORTKEY_DESC', false).' '.$support_key_message);
-        $configurationPanel->insertSetting();
+		$configurationPanel->setleft(jr_gettext('_JOMRES_SUPPORTKEY', '_JOMRES_SUPPORTKEY', false));
+		$configurationPanel->setmiddle('<input type="password" class="input-xlarge" name="cfg_licensekey" value="'.$jrConfig[ 'licensekey' ].'" /><br/>'.' '.$support_key_status.' '.$support_key_owner.' '.$support_key_expires.' '.$renewal_link.' '.$support_key_is_trial_license.' '.$support_key_license_name);
+		$configurationPanel->setright(jr_gettext('_JOMRES_SUPPORTKEY_DESC', '_JOMRES_SUPPORTKEY_DESC', false).' '.$support_key_message);
+		$configurationPanel->insertSetting();
 
-        if ($jomres_check_support_key->shop_status == 'OPEN') {
-            $configurationPanel->setleft(jr_gettext('_JOMRES_LICENSESERVER_USERNAME', '_JOMRES_LICENSESERVER_USERNAME', false));
-            $configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_license_server_username" value="'.$jrConfig[ 'license_server_username' ].'" />');
-            $configurationPanel->setright(jr_gettext('_JOMRES_LICENSESERVER_USERNAME_DESC', '_JOMRES_LICENSESERVER_USERNAME_DESC', false));
-            $configurationPanel->insertSetting();
+		$configurationPanel->setleft(jr_gettext('_JOMRES_GDPR_CONFIG_ENABLE', '_JOMRES_GDPR_CONFIG_ENABLE', false));
+		$configurationPanel->setmiddle($lists[ 'enable_gdpr_compliant_fucntionality' ]);
+		$configurationPanel->setright(jr_gettext('_JOMRES_GDPR_CONFIG_ENABLE_DESC', '_JOMRES_GDPR_CONFIG_ENABLE_DESC', false));
+		$configurationPanel->insertSetting();
 
-            $configurationPanel->setleft(jr_gettext('_JOMRES_LICENSESERVER_PASSWORD', '_JOMRES_LICENSESERVER_PASSWORD', false));
-            $configurationPanel->setmiddle('<input type="password" class="input-large" name="cfg_license_server_password" value="'.$jrConfig[ 'license_server_password' ].'" />');
-            $configurationPanel->setright();
-            $configurationPanel->insertSetting();
-        }
+		$configurationPanel->setleft(jr_gettext('_JOMRES_BOOTSTRAPSWITCH_FRONTEND', '_JOMRES_BOOTSTRAPSWITCH_FRONTEND', false));
+		$configurationPanel->setmiddle($lists[ 'use_bootstrap_in_frontend' ]);
+		$configurationPanel->setright(jr_gettext('_JOMRES_BOOTSTRAPSWITCH_INFO', '_JOMRES_BOOTSTRAPSWITCH_INFO', false));
+		$configurationPanel->insertSetting();
 
-        $configurationPanel->setleft(jr_gettext('_JOMRES_BOOTSTRAPSWITCH_FRONTEND', '_JOMRES_BOOTSTRAPSWITCH_FRONTEND', false));
-        $configurationPanel->setmiddle($lists[ 'use_bootstrap_in_frontend' ]);
-        $configurationPanel->setright(jr_gettext('_JOMRES_BOOTSTRAPSWITCH_INFO', '_JOMRES_BOOTSTRAPSWITCH_INFO', false));
-        $configurationPanel->insertSetting();
-
-        $configurationPanel->setleft(jr_gettext('_JOMRES_BOOTSTRAP_VERSION', '_JOMRES_BOOTSTRAP_VERSION', false));
-        $configurationPanel->setmiddle($bootstrap_ver_dropdown);
-        $configurationPanel->setright(jr_gettext('_JOMRES_BOOTSTRAP_VERSION_DESC', '_JOMRES_BOOTSTRAP_VERSION_DESC', false));
-        $configurationPanel->insertSetting();
+		$configurationPanel->setleft(jr_gettext('_JOMRES_BOOTSTRAP_VERSION', '_JOMRES_BOOTSTRAP_VERSION', false));
+		$configurationPanel->setmiddle($bootstrap_ver_dropdown);
+		$configurationPanel->setright(jr_gettext('_JOMRES_BOOTSTRAP_VERSION_DESC', '_JOMRES_BOOTSTRAP_VERSION_DESC', false));
+		$configurationPanel->insertSetting();
 
 		$configurationPanel->setleft( jr_gettext( '_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN', '_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN', false ) );
 		$configurationPanel->setmiddle( $lists[ 'showLangDropdown' ] );
@@ -178,12 +171,12 @@ class j10501a_misc
 		//plugins can add options to this tab
 		$MiniComponents->triggerEvent('10521', $componentArgs);
 		
-        $configurationPanel->endPanel();
-    }
+		$configurationPanel->endPanel();
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

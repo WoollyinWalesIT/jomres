@@ -109,8 +109,10 @@ class j09995menu
 			$jomres_menu->add_item(10, jr_gettext('WEBHOOKS_DOCUMENTATION_TITLE', 'WEBHOOKS_DOCUMENTATION_TITLE', false), 'webhooks_core_documentation', 'fa-book');
 		}
 		
-		$jomres_menu->add_item(10, jr_gettext('_JOMRES_GDPR_APP_MENU_ITEM', '_JOMRES_GDPR_APP_MENU_ITEM', false), 'show_consent_form', 'fa-lock');
-		$jomres_menu->add_item(10, jr_gettext('_JOMRES_GDPR_MY_DATA', '_JOMRES_GDPR_MY_DATA', false), 'gdpr_my_data', 'fa-lock');
+		if ($jrConfig[ 'enable_gdpr_compliant_fucntionality' ] == "1" ) {
+			$jomres_menu->add_item(10, jr_gettext('_JOMRES_GDPR_APP_MENU_ITEM', '_JOMRES_GDPR_APP_MENU_ITEM', false), 'show_consent_form', 'fa-lock');
+			$jomres_menu->add_item(10, jr_gettext('_JOMRES_GDPR_MY_DATA', '_JOMRES_GDPR_MY_DATA', false), 'gdpr_my_data', 'fa-lock');
+		}
 		
 		//properties section menus
 		if ($thisJRUser->accesslevel >= 50) {

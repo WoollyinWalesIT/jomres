@@ -26,19 +26,29 @@ class j00060show_gdpr_consent_form
         }
 		jr_import('jomres_gdpr_optin_consent');
 		$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
+	
+		if(!isset($_COOKIE['jomres_gdpr_consent_form_processed']) && !AJAXCALL && get_showtime("task") != "show_consent_form"){
+			if ($jrConfig[ 'enable_gdpr_compliant_fucntionality' ] == "1" ) {
+				$consent_form = $MiniComponents->specificEvent('06000', 'show_consent_form' , array ('output_now' => false) );
+				$output = array ("CONSENT_FORM" => $consent_form );
+				$output['_JOMRES_GDPR_CONSENT_TRIGGER_FORM'] = jr_gettext('_JOMRES_GDPR_CONSENT_TRIGGER_FORM', '_JOMRES_GDPR_CONSENT_TRIGGER_FORM' , false );
 
-        if(!isset($_COOKIE['jomres_gdpr_consent_form_processed']) && !AJAXCALL && get_showtime("task") != "show_consent_form"){
-			
-			$consent_form = $MiniComponents->specificEvent('06000', 'show_consent_form' , array ('output_now' => false) );
-			$output = array ("CONSENT_FORM" => $consent_form );
-			$output['_JOMRES_GDPR_CONSENT_TRIGGER_FORM'] = jr_gettext('_JOMRES_GDPR_CONSENT_TRIGGER_FORM', '_JOMRES_GDPR_CONSENT_TRIGGER_FORM' , false );
-
-			$pageoutput[] = $output;
-			$tmpl = new patTemplate();
-			$tmpl->addRows('pageoutput', $pageoutput);
-			$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
-			$tmpl->readTemplatesFromInput('consent_form_wrapper.html');
-			echo $tmpl->getParsedTemplate();
+				$pageoutput[] = $output;
+				$tmpl = new patTemplate();
+				$tmpl->addRows('pageoutput', $pageoutput);
+				$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+				$tmpl->readTemplatesFromInput('consent_form_wrapper.html');
+				echo $tmpl->getParsedTemplate();
+			} else {
+				$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+				jr_import('jomres_gdpr_optin_consent');
+				$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
+				$jomres_gdpr_optin_consent->optedin = true;
+				$jomres_gdpr_optin_consent->set_user_id($thisJRUser->id);
+				$jomres_gdpr_optin_consent->save_record();
+			}
 		}
     }
 

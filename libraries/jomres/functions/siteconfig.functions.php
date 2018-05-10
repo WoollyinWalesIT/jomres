@@ -334,6 +334,8 @@ function showSiteConfig()
 	
 	$lists[ 'send_email_copies_to_site_admins' ] = jomresHTML::selectList($yesno, 'cfg_send_email_copies_to_site_admins', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'send_email_copies_to_site_admins' ]);
 
+	$lists[ 'enable_gdpr_compliant_fucntionality' ] = jomresHTML::selectList($yesno, 'cfg_enable_gdpr_compliant_fucntionality', 'class="inputbox" size="1"', 'value', 'text', (int) $jrConfig[ 'enable_gdpr_compliant_fucntionality' ]);
+	
     $componentArgs = array();
     $componentArgs[ 'lists' ] = $lists;
     $componentArgs[ 'jsInputFormatDropdownList' ] = $jsInputFormatDropdownList;
