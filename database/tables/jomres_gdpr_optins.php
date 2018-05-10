@@ -18,6 +18,7 @@ defined('_JOMRES_INITCHECK') or die('');
 
 $query = "
 CREATE TABLE IF NOT EXISTS  #__jomres_gdpr_optins (
+	`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	`date_time` datetime default NULL ,
 	`user_id` INT UNSIGNED NOT NULL DEFAULT 0,
 	`ip` varchar( 255 ) default NULL ,
