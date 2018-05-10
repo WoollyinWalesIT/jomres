@@ -50,7 +50,13 @@ class j06000show_consent_form
 		$output[ '_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_3' ] = jr_gettext('_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_3', '_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_3', false);
 		
 		if (isset($_REQUEST['return_url'])) {
-			$output['RETURN_URL'] = jr_base64url_encode($_REQUEST['return_url']);
+			if (isset($_REQUEST['url_already_forwarded']))	 {
+				$output['RETURN_URL'] = $_REQUEST['return_url'];
+			}
+			else {
+				$output['RETURN_URL'] = jr_base64url_encode($_REQUEST['return_url']);
+			}
+				
 		} else {
 			$output['RETURN_URL'] = jr_base64url_encode(getCurrentUrl());
 		}

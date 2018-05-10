@@ -38,7 +38,7 @@ class j06000contactowner
 		
 		$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
 		if ( !$jomres_gdpr_optin_consent->user_consents_to_storage() ) {
-			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=opted_out'), '');
+			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=opted_out&jr_redirect_url='.getCurrentUrl()), '');
 		}
 
         $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
