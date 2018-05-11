@@ -21,7 +21,8 @@ CREATE TABLE IF NOT EXISTS  #__jomres_gdpr_optins (
 	`user_id` INT UNSIGNED NOT NULL DEFAULT 0,
 	`ip` varchar( 255 ) default NULL ,
 	`optin_content` TEXT,
-	`optedin` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0
+	`optedin` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
+	PRIMARY KEY(`id`)
 	)
 	ENGINE = InnoDB 
 	DEFAULT CHARSET = utf8mb4 
