@@ -76,11 +76,6 @@ class j10501a_misc
 		$configurationPanel->setright(jr_gettext('_JOMRES_SUPPORTKEY_DESC', '_JOMRES_SUPPORTKEY_DESC', false).' '.$support_key_message);
 		$configurationPanel->insertSetting();
 
-		$configurationPanel->setleft(jr_gettext('_JOMRES_GDPR_CONFIG_ENABLE', '_JOMRES_GDPR_CONFIG_ENABLE', false));
-		$configurationPanel->setmiddle($lists[ 'enable_gdpr_compliant_fucntionality' ]);
-		$configurationPanel->setright(jr_gettext('_JOMRES_GDPR_CONFIG_ENABLE_DESC', '_JOMRES_GDPR_CONFIG_ENABLE_DESC', false));
-		$configurationPanel->insertSetting();
-
 		$configurationPanel->setleft(jr_gettext('_JOMRES_BOOTSTRAPSWITCH_FRONTEND', '_JOMRES_BOOTSTRAPSWITCH_FRONTEND', false));
 		$configurationPanel->setmiddle($lists[ 'use_bootstrap_in_frontend' ]);
 		$configurationPanel->setright(jr_gettext('_JOMRES_BOOTSTRAPSWITCH_INFO', '_JOMRES_BOOTSTRAPSWITCH_INFO', false));

@@ -37,6 +37,11 @@ class j10501gdpr_policies
 
 		$configurationPanel->insertDescription(jr_gettext('_JOMRES_GDPR_POLICIES_DESC', '_JOMRES_GDPR_POLICIES_DESC', false));
 
+		$configurationPanel->setleft(jr_gettext('_JOMRES_GDPR_CONFIG_ENABLE', '_JOMRES_GDPR_CONFIG_ENABLE', false));
+		$configurationPanel->setmiddle($lists[ 'enable_gdpr_compliant_fucntionality' ]);
+		$configurationPanel->setright(jr_gettext('_JOMRES_GDPR_CONFIG_ENABLE_DESC', '_JOMRES_GDPR_CONFIG_ENABLE_DESC', false));
+		$configurationPanel->insertSetting();
+		
 		$configurationPanel->setleft(jr_gettext('_JOMRES_GDPR_BOOKING_RETENTION', '_JOMRES_GDPR_BOOKING_RETENTION', false));
 		$configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_gdpr_booking_retention_period" value="'.$jrConfig[ 'gdpr_booking_retention_period' ].'" />');
 		$configurationPanel->setright(jr_gettext('_JOMRES_GDPR_BOOKING_RETENTION_DESC', '_JOMRES_GDPR_BOOKING_RETENTION_DESC', false));
