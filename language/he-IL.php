@@ -2329,3 +2329,6 @@ jr_define( '_JOMRES_GDPR_CONSENT_TRIGGER_FORM', 'We need your permission to stor
 jr_define( '_JOMRES_GDPR_CONFIG_ENABLE', 'Enable GDPR compliant functionality?' );
 jr_define( '_JOMRES_GDPR_CONFIG_ENABLE_DESC', 'WE DO NOT RECOMMEND THAT YOU DISABLE THE GDPR COMPLIANT FUNCTIONALITY. Jomres has built-in features that helps you to ensure that the Jomres section of your site is compliant with the GDPR. If you disable this feature (and you should not if you are in the EU or you do business with citizens of the EU) then Jomres will automatically assume that every visitor to the site has given their permission to have their personal data enabled. App permission and My Data pages will not be shown and users will not be prompted to give their permission to have the data collected.' );
 
+
+jr_define( 'EMPTY_TEMP_DIR', 'Empty temp dir' );
+jr_define( 'EMPTY_TEMP_DIR_DONE', 'Temporary files deleted' );
