@@ -34,7 +34,7 @@ class j10501gdpr_policies
         $this->addCountryRegionJs();
 
 		$configurationPanel->startPanel(jr_gettext('_JOMRES_GDPR_POLICIES', '_JOMRES_GDPR_POLICIES', false));
-
+		$lists = $componentArgs[ 'lists' ];
 		$configurationPanel->insertDescription(jr_gettext('_JOMRES_GDPR_POLICIES_DESC', '_JOMRES_GDPR_POLICIES_DESC', false));
 
 		$configurationPanel->setleft(jr_gettext('_JOMRES_GDPR_CONFIG_ENABLE', '_JOMRES_GDPR_CONFIG_ENABLE', false));
