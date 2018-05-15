@@ -105,7 +105,6 @@ class jrportal_guests
 			$this->email							= $this->jomres_encryption->decrypt($r->enc_email);
 			$this->discount							= (int) $r->discount;
 			$this->vat_number						= $this->jomres_encryption->decrypt($r->enc_vat_number);
-			$this->preferences						= $this->jomres_encryption->decrypt($r->enc_preferences);
 			$this->vat_number_validated				= (int) $r->vat_number_validated;
 			$this->vat_number_validation_response	= $r->vat_number_validation_response;
 			$this->partner_id						= (int) $r->partner_id;
@@ -140,7 +139,6 @@ class jrportal_guests
 
         $query = "INSERT INTO #__jomres_guests
 							(
-							`guests_uid`,
 							`mos_userid`,
 							`enc_firstname`,
 							`enc_surname`,
@@ -155,15 +153,13 @@ class jrportal_guests
 							`property_uid`,
 							`enc_email`,
 							`discount`,
-							`preferences`,
-							`vat_number`,
+							`enc_vat_number`,
 							`vat_number_validated`,
 							`vat_number_validation_response`,
 							`partner_id` 
 							)
 						VALUES 
 							(
-							".(int)$this->id.",
 							".(int)$this->cms_user_id.",
 							'".$this->jomres_encryption->encrypt($this->firstname)."',
 							'".$this->jomres_encryption->encrypt($this->surname)."',
@@ -178,14 +174,13 @@ class jrportal_guests
 							".(int)$this->property_uid.",
 							'".$this->jomres_encryption->encrypt($this->email)."',
 							".(int)$this->discount.",
-							'".$this->jomres_encryption->encrypt($this->preferences)."',
 							'".$this->jomres_encryption->encrypt(trim($this->vat_number))."',
 							".(int)$this->vat_number_validated.",
 							'".$this->vat_number_validation_response."',
 							".(int)$this->partner_id." 
 							)";
         $this->id = doInsertSql($query, '');
-        
+
         if (!$this->id) {
             throw new Exception('Error: New guest insert failed.');
         }
@@ -240,7 +235,6 @@ class jrportal_guests
 						`enc_tel_mobile` = '".$this->jomres_encryption->encrypt($this->tel_mobile)."',
 						`property_uid` = ".(int)$this->property_uid.",
 						`enc_email` = '".$this->jomres_encryption->encrypt($this->email)."',
-						`enc_preferences` = '".$this->jomres_encryption->encrypt($this->preferences)."',
 						`discount` = ".(int)$this->discount.",
 						`enc_vat_number` = '".$this->jomres_encryption->encrypt($this->vat_number)."',
 						`vat_number_validated` = ".(int)$this->vat_number_validated.",

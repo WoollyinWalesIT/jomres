@@ -33,7 +33,8 @@ class jomres_obsolete_file_handling
 		$this->dir_core_plugins = JOMRES_COREPLUGINS_ABSPATH;
         $this->dir_css = JOMRES_CSS_ABSPATH;
         $this->dir_javascript = JOMRES_JS_ABSPATH;
-
+		$this->dir_vendor = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'vendor';
+		
         $this->dir_templates_jqueryui_frontend = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'templates'.JRDS.'jquery_ui'.JRDS.'frontend'.JRDS;
         $this->dir_templates_jqueryui_backend = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'templates'.JRDS.'jquery_ui'.JRDS.'backend'.JRDS;
         $this->dir_templates_jqueryui_administrator = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'templates'.JRDS.'jquery_ui'.JRDS.'administrator'.JRDS;
@@ -781,6 +782,7 @@ class jomres_obsolete_file_handling
 		
 		$this->add_file($this->dir_minicomponents.'j00060show_license_message.class.php');
 		
+		$this->add_dir($this->dir_vendor.'fergusean'.JRDS);
 		
     }
 
