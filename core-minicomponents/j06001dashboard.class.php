@@ -253,16 +253,26 @@ class j06001dashboard
 						`enc_surname`,
 						`enc_firstname`  
 					FROM #__jomres_guests 
-					WHERE `property_uid` IN (' .jomres_implode($thisJRUser->authorisedProperties).')  
-					ORDER BY surname';
+					WHERE `property_uid` IN (' .jomres_implode($thisJRUser->authorisedProperties).')';
         $existingCustomers = doSelectSql($query);
 
         $ec = array();
         if (!empty($existingCustomers)) {
+			$temp_arr = array();
+			
+			foreach ($existingCustomers as $customer) {
+				$temp_arr[] = array ( "guests_uid" =>$customer->guests_uid , "firstname" => stripslashes($jomres_encryption->decrypt($customer->enc_firstname)) , "surname" => stripslashes($jomres_encryption->decrypt($customer->enc_surname)) );
+			}
+			
+ 			usort($temp_arr, function($a, $b) {
+				return $a['surname'] <=> $b['surname'];
+			}); 
+
             $ec[] = jomresHTML::makeOption('0', '&nbsp;');
-            foreach ($existingCustomers as $customer) {
-                $ec[] = jomresHTML::makeOption($customer->guests_uid, stripslashes($jomres_encryption->decrypt($customer->enc_surname)).' '.stripslashes($jomres_encryption->decrypt($customer->enc_firstname)));
+            foreach ($temp_arr as $customer) {
+                $ec[] = jomresHTML::makeOption($customer['guests_uid'], $customer['surname'].' '.$customer['firstname']);
             }
+
             $dropDownList = jomresHTML::selectList($ec, 'existingGuests', ' size="1" class="input-medium"', 'value', 'text', '0', false);
         }
 
