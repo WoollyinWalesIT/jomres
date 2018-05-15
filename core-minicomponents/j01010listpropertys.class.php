@@ -529,7 +529,9 @@ class j01010listpropertys
 									$property_deets[ 'NIGHTS_TEXT' ] = jr_gettext('_JOMRES_PRICINGOUTPUT_NIGHTS', '_JOMRES_PRICINGOUTPUT_NIGHTS', false);
 								}
 							}
-
+							if ($stayDays == 0 ) {
+								$stayDays = 1;
+							}
 							$property_deets[ 'STAY_DAYS' ] = $stayDays;
 						} else {
 							$property_deets[ 'NIGHTS_TEXT' ] = '';
