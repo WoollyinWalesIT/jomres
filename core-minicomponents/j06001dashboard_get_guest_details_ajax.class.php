@@ -53,7 +53,7 @@ class j06001dashboard_get_guest_details_ajax
         $query = 'SELECT 
 						`guests_uid` AS existing_id,
 						`mos_userid`,
-						`surname`,
+						`enc_surname`,
 						`enc_firstname`,
 						`enc_house`,
 						`enc_street`,
@@ -69,11 +69,10 @@ class j06001dashboard_get_guest_details_ajax
 						AND `guests_uid` = '.(int) $existing_id.'  
 					LIMIT 1 ';
         $guestDeets = doSelectSql($query, 2);
-		
+
 		foreach ($guestDeets as $key=>$val ) {
 			if ( substr($key, 0, 4) == "enc_" ) {
 				$newkey = substr($key, 4 );
-				
 				$guestDeets[$newkey] = $jomres_encryption->decrypt($val);
 				unset($guestDeets[$key]);
 			}
