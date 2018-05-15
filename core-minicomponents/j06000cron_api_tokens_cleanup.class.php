@@ -30,7 +30,9 @@ class j06000cron_api_tokens_cleanup
         if ($secret == $jomresConfig_secret) {
             $query = "DELETE FROM #__jomres_oauth_access_tokens WHERE `expires` <= DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 DAY)";
 			doInsertSql($query, '');
-        }
+        }  else {
+			logging::log_message('Cron job called but secret incorrect', 'Core', 'WARNING');
+		}
     }
 
     // This must be included in every Event/Mini-component

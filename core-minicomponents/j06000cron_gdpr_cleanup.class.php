@@ -57,7 +57,9 @@ class j06000cron_gdpr_cleanup
 					}
 				}
 			}
-        }
+        }  else {
+			logging::log_message('Cron job called but secret incorrect', 'Core', 'WARNING');
+		}
     }
 
     // This must be included in every Event/Mini-component

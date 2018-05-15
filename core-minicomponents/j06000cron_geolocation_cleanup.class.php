@@ -33,7 +33,9 @@ class j06000cron_geolocation_cleanup
             if (is_dir($geolocation_dir)) {
 				emptyDir($geolocation_dir);
 			}
-        }
+        }  else {
+			logging::log_message('Cron job called but secret incorrect', 'Core', 'WARNING');
+		}
     }
 
     // This must be included in every Event/Mini-component
