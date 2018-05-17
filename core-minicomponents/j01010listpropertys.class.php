@@ -633,7 +633,7 @@ class j01010listpropertys
 
 					if ((int) $jrConfig['override_property_contact_details'] == 1) {
 						if ($jrConfig['override_property_contact_tel'] != '') {
-							$output[ 'TELEPHONE_NUMBER' ] = $jrConfig['override_property_contact_tel'];
+							$output[ 'TELEPHONE_NUMBER' ] = str_replace("&#38;#43;" , "+" , $jrConfig['override_property_contact_tel'] );
 						}
 					}
 
