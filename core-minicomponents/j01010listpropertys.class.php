@@ -724,10 +724,24 @@ class j01010listpropertys
 
 					$jomres_media_centre_images->get_images($propertys_uid, array('property'));
 
-					$property_deets[ 'IMAGELARGE' ] = $jomres_media_centre_images->images['property'][0][0]['large'];
-					$property_deets[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images['property'][0][0]['medium'];
-					$property_deets[ 'IMAGETHUMB' ] = $jomres_media_centre_images->images['property'][0][0]['small'];
-
+					if (isset($jomres_media_centre_images->images['property'][0][0]['large'])) {
+						$property_deets[ 'IMAGELARGE' ] = $jomres_media_centre_images->images['property'][0][0]['large'];
+					} else {
+						$property_deets[ 'IMAGELARGE' ] = $jomres_media_centre_images->multi_query_images['noimage-large'];
+					}
+					
+					if (isset($jomres_media_centre_images->images['property'][0][0]['medium'])) {
+						$property_deets[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images['property'][0][0]['medium'];
+					} else {
+						$property_deets[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->multi_query_images['noimage-medium'];
+					}
+					
+					if (isset($jomres_media_centre_images->images['property'][0][0]['small'])) {
+						$property_deets[ 'IMAGETHUMB' ] = $jomres_media_centre_images->images['property'][0][0]['small'];
+					} else {
+						$property_deets[ 'IMAGETHUMB' ] = $jomres_media_centre_images->multi_query_images['noimage-small'];
+					}
+					
 					$MiniComponents->triggerEvent('01011', array('property_uid' => $propertys_uid)); // Optional
 					$mcOutput = $MiniComponents->getAllEventPointsData('01011');
 					if (!empty($mcOutput)) {
