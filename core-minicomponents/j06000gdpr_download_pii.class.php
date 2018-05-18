@@ -32,11 +32,20 @@ class j06000gdpr_download_pii
         }
 		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 		
-		jr_import('jomres_gdpr_personal_information_collections');
-		$jomres_gdpr_personal_information_collections = new jomres_gdpr_personal_information_collections();
-		$jomres_gdpr_personal_information_collections->set_id($thisJRUser->id);
-		$pii = $jomres_gdpr_personal_information_collections->collect_pii();
+		if ($thisJRUser->id > 0 ) {
+			jr_import('jomres_gdpr_personal_information_collections');
+			$jomres_gdpr_personal_information_collections = new jomres_gdpr_personal_information_collections();
+			$jomres_gdpr_personal_information_collections->set_id($thisJRUser->id);
+			$pii = $jomres_gdpr_personal_information_collections->collect_pii();
+		} else {
+			$pii = array();
+		}
 
+		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+
+		$pii['country'] = $tmpBookingHandler->tmpguest['country'];
+		$pii['ip'] = $tmpBookingHandler->info['ip'];
+		
 		$pageoutput = array();
 		$output = array();
 		
