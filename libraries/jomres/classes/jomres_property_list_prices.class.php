@@ -107,7 +107,7 @@ class jomres_property_list_prices
 
                 //get departure date
                 if (isset($_REQUEST[ 'departureDate' ]) && $_REQUEST[ 'departureDate' ] != '') {
-					if ( $_REQUEST[ 'departureDate' ] == $_REQUEST[ 'arrivalDate' ] )  {
+					if ( $_REQUEST[ 'arrivalDate' ] != '' && $_REQUEST[ 'departureDate' ] == $_REQUEST[ 'arrivalDate' ] )  {
 						$_REQUEST[ 'departureDate' ] =JSCalmakeInputDates(date( "Y/m/d", strtotime( JSCalConvertInputDates( $_REQUEST[ 'arrivalDate' ])." +1 day" ) ));
 					}
                     $this->departureDate = JSCalConvertInputDates(jomresGetParam($_REQUEST, 'departureDate', ''));
