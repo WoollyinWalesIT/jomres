@@ -264,9 +264,7 @@ class j06001dashboard
 				$temp_arr[] = array ( "guests_uid" =>$customer->guests_uid , "firstname" => stripslashes($jomres_encryption->decrypt($customer->enc_firstname)) , "surname" => stripslashes($jomres_encryption->decrypt($customer->enc_surname)) );
 			}
 			
- 			usort($temp_arr, function($a, $b) {
-				return $a['surname'] <=> $b['surname'];
-			}); 
+ 			usort($temp_arr, 'sort_alphabetic' ); 
 
             $ec[] = jomresHTML::makeOption('0', '&nbsp;');
             foreach ($temp_arr as $customer) {
@@ -285,3 +283,13 @@ class j06001dashboard
         return $this->retVals;
     }
 }
+
+function sort_alphabetic( $a , $b ) {
+        if ($a['surname'] > $b['surname']) {
+            return 1;
+        } else if ($a['surname'] < $b['surname']) {
+            return -1;
+        } else {
+            return 0; 
+        }
+	}
