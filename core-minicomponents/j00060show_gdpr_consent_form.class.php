@@ -24,7 +24,6 @@ class j00060show_gdpr_consent_form
             $this->template_touchable = false;
             return;
         }
-		jr_import('jomres_gdpr_optin_consent');
 		$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
@@ -43,8 +42,6 @@ class j00060show_gdpr_consent_form
 				echo $tmpl->getParsedTemplate();
 			} else {
 				$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-				jr_import('jomres_gdpr_optin_consent');
-				$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
 				$jomres_gdpr_optin_consent->optedin = true;
 				$jomres_gdpr_optin_consent->set_user_id($thisJRUser->id);
 				$jomres_gdpr_optin_consent->save_record();

@@ -31,7 +31,6 @@ class j06000save_gdpr_optin
 		
 		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 		
-		jr_import('jomres_gdpr_optin_consent');
 		$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
 		$jomres_gdpr_optin_consent->optedin = $optin;
 		$jomres_gdpr_optin_consent->set_user_id($thisJRUser->id);
