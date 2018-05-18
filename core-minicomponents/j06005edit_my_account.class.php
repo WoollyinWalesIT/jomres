@@ -25,7 +25,8 @@ class j06005edit_my_account
 
             return;
         }
-
+		jomres_cmsspecific_setmetadata('title', jomres_purify_html( jr_gettext('_JOMRES_MY_ACCOUNT_EDIT', '_JOMRES_MY_ACCOUNT_EDIT', false) ));
+		
 		$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
 		if ( !$jomres_gdpr_optin_consent->user_consents_to_storage() ) {
 			echo $consent_form = $MiniComponents->specificEvent('06000', 'show_consent_form' , array ('output_now' => false) );

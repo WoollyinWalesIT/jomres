@@ -29,10 +29,11 @@ class j06001cpanel
 
             return;
         }
+		jomres_cmsspecific_setmetadata('title', jomres_purify_html( jr_gettext('_JRPORTAL_CPANEL', '_JRPORTAL_CPANEL', false) ));
 		
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
         $jrConfig = $siteConfig->get();
-
+		
         $property_uid = getDefaultProperty();
 		
 		$jomres_widgets = jomres_singleton_abstract::getInstance('jomres_widgets');

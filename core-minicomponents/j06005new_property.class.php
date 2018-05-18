@@ -29,7 +29,8 @@ class j06005new_property
                 );
             return;
         }
-
+		jomres_cmsspecific_setmetadata('title', jomres_purify_html( jr_gettext('_JOMRES_USER_LISTMYPROPERTY', '_JOMRES_USER_LISTMYPROPERTY', false) ));
+		
 		$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
 		if ( !$jomres_gdpr_optin_consent->user_consents_to_storage() ) {
 			echo $consent_form = $MiniComponents->specificEvent('06000', 'show_consent_form' , array ('output_now' => false) );
