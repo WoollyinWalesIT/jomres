@@ -32,7 +32,8 @@ class j06005oauth
 
 		$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
 		if ( !$jomres_gdpr_optin_consent->user_consents_to_storage() ) {
-			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=opted_out&jr_redirect_url='.getCurrentUrl()), '');
+			echo $consent_form = $MiniComponents->specificEvent('06000', 'show_consent_form' , array ('output_now' => false) );
+			return;
 		}
 
 		$ePointFilepath=get_showtime('ePointFilepath');

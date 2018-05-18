@@ -27,14 +27,16 @@ class j06000cms_user_register
 		
 		$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
 		if ( !$jomres_gdpr_optin_consent->user_consents_to_storage() ) {
-			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=opted_out&jr_redirect_url='.getCurrentUrl()), '');
-		}
-
+			echo $consent_form = $MiniComponents->specificEvent('06000', 'show_consent_form' , array ('output_now' => false) );
+		} else {
+			$registration_url = jomres_cmsspecific_getregistrationlink();
 			
-		$registration_url = jomres_cmsspecific_getregistrationlink();
-		
-		//simply redirect to the cms user registraation page
-		jomresRedirect($registration_url, '');
+			//simply redirect to the cms user registraation page
+			jomresRedirect($registration_url, '');
+		}
+ 
+			
+
         
     }
 
