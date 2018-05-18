@@ -86,7 +86,7 @@ class jomres_reviews
         $sql = 'SELECT count(rating_id) as cnt1 FROM #__jomres_reviews_ratings WHERE item_id = '.(int) $this->property_uid." and rating_ip = '".$this->ip."' ";
         $sql .= 'UNION SELECT count(rating_id) as cnt2 FROM #__jomres_reviews_ratings WHERE item_id = '.(int) $this->property_uid.' and user_id = '.(int) $this->userid.' ';
         $result = doSelectSql($sql);
-        if (empty($result)) {
+        if ( empty($result) || $result[0]->cnt1 == 0)  {
             return true;
         }
 
