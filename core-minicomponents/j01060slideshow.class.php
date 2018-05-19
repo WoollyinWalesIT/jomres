@@ -130,12 +130,10 @@ class j01060slideshow
 				}
 				
 				if (isset($imagesArray[ $i ][ 'large' ])) {
-					$r[ 'IMAGETHUMB' ] = $imagesArray[ $i ][ 'large' ];
+					$r[ 'IMAGE' ] = $imagesArray[ $i ][ 'large' ];
 				} else {
-					$r[ 'IMAGETHUMB' ] = $jomres_media_centre_images->multi_query_images['noimage-large'];
+					$r[ 'IMAGE' ] = $jomres_media_centre_images->multi_query_images['noimage-large'];
 				}
-				//var_dump( $jomres_media_centre_images->multi_query_images);exit;
-                //$r[ 'IMAGE' ] = $imagesArray[ $i ][ 'large' ];
 
                 if ($link_to_property_details && (int) $componentArgs[ 'property_uid' ] > 0) {
                     $r[ 'LINK' ] = get_property_details_url((int)$componentArgs[ 'property_uid' ]);
