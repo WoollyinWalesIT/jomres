@@ -143,6 +143,30 @@ class j06000show_property_reviews
             $output[ 'AVERAGE_RATING' ] = number_format($itemRating[ 'avg_rating' ], 1, '.', '');
             $output[ 'NUMBER_OF_REVIEWS' ] = $itemRating[ 'counter' ];
             $site_userids = jomres_cmsspecific_getCMSUsers();
+
+			$ids = array();
+			foreach ( $site_userids as $user_id => $user ) {
+				if ($user_id > 0 ) {
+					$ids[] = (int)$user_id ;
+				}
+				
+			}
+			
+			$guest_names = array();
+			
+			if (!empty($ids)) {
+				
+				$query = "SELECT mos_userid , enc_firstname , enc_surname FROM #__jomres_guests WHERE mos_userid IN  (" .jomres_implode($ids).")";
+				$guest_details = doSelectSql($query);
+				if (!empty($guest_details)) {
+					foreach ($guest_details as $guest ) {
+						$guest_names[$guest->mos_userid] = array ("enc_firstname" =>$guest->enc_firstname , "enc_surname" =>$guest->enc_surname );
+					}
+				}
+			}
+
+			$this->jomres_encryption = new jomres_encryption();
+			
             $review_details = $itemReviews[ 'rating_details' ];
 
             foreach ($itemReviews[ 'fields' ] as $review) {
@@ -160,12 +184,21 @@ class j06000show_property_reviews
                 $r[ '_JOMRES_REVIEWS_REVIEWED_BY' ] = jr_gettext('_JOMRES_REVIEWS_REVIEWED_BY', '_JOMRES_REVIEWS_REVIEWED_BY', false, false);
 
                 $r[ 'RATING_ID' ] = $review[ 'rating_id' ];
-				
+
 				$r[ 'USERNAME' ] = '';
-				if (isset($site_userids[ $review[ 'user_id' ] ][ 'username' ])) {
-					$r[ 'USERNAME' ] = $site_userids[ $review[ 'user_id' ] ][ 'username' ];
-				}
 				
+				if (isset($guest_names[ $review[ 'user_id' ] ])) {
+					$guest_deets = $guest_names[ $review[ 'user_id' ] ];
+					
+					$r[ 'USERNAME' ] = $site_userids[ $review[ 'user_id' ] ][ 'username' ];
+					
+					$r['REVIEWER_FIRSTNAME'] = $this->jomres_encryption->decrypt($guest_deets['enc_firstname']);
+					$r['REVIEWER_SURNAME'] = $this->jomres_encryption->decrypt($guest_deets['enc_surname']);
+
+					$r['REVIEWER_FIRSTNAME_FIRSTCHAR'] = strtoupper($r['REVIEWER_FIRSTNAME'][0]);
+					$r['REVIEWER_SURNAME_FIRSTCHAR'] = strtoupper($r['REVIEWER_SURNAME'][0]);
+				}
+
                 $r[ 'REVIEW_TITLE' ] = $review[ 'review_title' ];
                 $r[ 'REVIEW_DESCRIPTION' ] = $review[ 'review_description' ];
                 $r[ 'PROS' ] = $review[ 'pros' ];

@@ -18,7 +18,6 @@ class jrportal_guests
 {
     public function __construct()
     {
-		jr_import('jomres_encryption');
 		$this->jomres_encryption = new jomres_encryption();
         $this->init_guest();
     }
