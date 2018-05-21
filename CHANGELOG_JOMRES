@@ -1,4 +1,4 @@
-<h3>Jomres 9.11 08/05/2018</h3>
+<h3>Jomres 9.11.0 21/05/2018</h3>
 
 <span class="label label-success">Feature</span> Jomres updated to be compliant with the GDPR
 <span class="label label-success">Feature</span> GDPR compliant guest data encryption added
@@ -17,12 +17,15 @@
 <span class="label label-success">Feature</span> Added menu option to access consent form
 <span class="label label-success">Feature</span> Added functionality to allow users to view the GDPR my data page, download said data as JSON, and delete own data.
 <span class="label label-success">Feature</span> Added functionality to allow site admins to redact/anonymise guest data.
+<span class="label label-success">Feature</span> Added switch to allow site admins to disable GDPR functionality. When the GDPR functionality is disabled, users are automatically opted-in to their data being collected.
+<span class="label label-success">Feature</span> Added "empty temp dir" tool to tools area.
+<span class="label label-success">Feature</span> Added logging to cron jobs so that if secret keys used are incorrect then this will appear in the Core application log. Could be the cause of some people's session tables getting too large.
 
 <span class="label label-warning">Change</span> Run legacy db tables updates too when checking db integrity
 <span class="label label-warning">Change</span> Added nl2br to video tutorial descriptions because some of them benefit from being longer.
 <span class="label label-warning">Change</span> Modified dobooking.php so that it can accept dates presented with hyphens
 <span class="label label-warning">Change</span> Improved cms plugin installers to double check if jomres dir is writable.
-<span class="label label-warning">Change</span> Showplugins updated so that if plugin manager wasn't updated property and registry rebuilt, we will catch that.
+<span class="label label-warning">Change</span> Showplugins updated so that if plugin manager wasn't updated properly and registry rebuilt, we will catch that.
 <span class="label label-warning">Change</span> Improved Joomla cms plugin installer for J4 compatibility
 <span class="label label-warning">Change</span> Modified defaults so that conversion feature is off until it is enabled, and prices inclusive option is on by default.
 <span class="label label-warning">Change</span> Implemented hardening against potential CSV inject attacks ( http://georgemauer.net/2017/10/07/csv-injection.html )
@@ -33,6 +36,10 @@
 <span class="label label-warning">Change</span> Modified how secret passed to cron jobs is decoded as strict input filtering is not required ( as it's not stored ) and new CSV protection functionality borks the = symbol during input filtering.
 <span class="label label-warning">Change</span> Added code to empty the sessions directory if session handler is database in session cleanup script
 <span class="label label-warning">Change</span> Modified booking engine so that invalid email addresses (e.g. because it has been anonymised ) trigger a redirect to the edit account page, if the user is registered but not a manager.
+<span class="label label-warning">Change</span> Obsoleted nusoap library, adopted php native soap (for calling VIES to get vat number validity)
+<span class="label label-warning">Change</span> Tweaked output prices so that if arrival and departure dates are the same, then in property lists the date span is reset to 1 for the purpose of calculating output prices displayed in lists.
+<span class="label label-warning">Change</span> Tweaked how override contact numbers are parsed before output to refactor sanitised + symbols
+<span class="label label-warning">Change</span> Modified data available to the show property reviews template, instead of outputting username ( which is now always their email address ) instead we will output their full name.
 
 <span class="label label-important label-danger">Fix</span> List bookings ajax and list invoices ajax modified to ensure that they do not try to convert prices because the conversion on valid prices results in incorrect prices.
 <span class="label label-important label-danger">Fix</span> Solved a problem with extra names not being translated in contract details
