@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.2
+ * @version Jomres 9.11.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -201,7 +201,10 @@ function showSiteConfig()
     $lists[ 'integratedSearch_stars' ] = jomresHTML::selectList($yesno, 'cfg_integratedSearch_stars', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'integratedSearch_stars' ]);
 
     $lists[ 'showLangDropdown' ] = jomresHTML::selectList($yesno, 'cfg_showLangDropdown', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'showLangDropdown' ]);
+	
+	$jrConfig[ 'useNewusers' ] = '1'; // For Jomres v9.11 and GDPR compliance we are now forcing the system to create new users whenever a booking is made. Leaving this here to clarify this point, however site config will no longer offer this option to be changed
     $lists[ 'useNewusers' ] = jomresHTML::selectList($yesno, 'cfg_useNewusers', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useNewusers' ]);
+	
     $lists[ 'is_single_property_installation' ] = jomresHTML::selectList($yesno, 'cfg_is_single_property_installation', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'is_single_property_installation' ]);
     $lists[ 'use_html_purifier' ] = jomresHTML::selectList($yesno, 'cfg_use_html_purifier', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_html_purifier' ]);
     $lists[ 'limit_property_country' ] = jomresHTML::selectList($yesno, 'cfg_limit_property_country', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'limit_property_country' ]);
@@ -331,6 +334,8 @@ function showSiteConfig()
 	
 	$lists[ 'send_email_copies_to_site_admins' ] = jomresHTML::selectList($yesno, 'cfg_send_email_copies_to_site_admins', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'send_email_copies_to_site_admins' ]);
 
+	$lists[ 'enable_gdpr_compliant_fucntionality' ] = jomresHTML::selectList($yesno, 'cfg_enable_gdpr_compliant_fucntionality', 'class="inputbox" size="1"', 'value', 'text', (int) $jrConfig[ 'enable_gdpr_compliant_fucntionality' ]);
+	
     $componentArgs = array();
     $componentArgs[ 'lists' ] = $lists;
     $componentArgs[ 'jsInputFormatDropdownList' ] = $jsInputFormatDropdownList;

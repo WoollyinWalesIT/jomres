@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.2
+ * @version Jomres 9.11.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -241,25 +241,36 @@ class j06001dashboard
             return '';
         }
 
+		jr_import('jomres_encryption');
+		$jomres_encryption = new jomres_encryption();
+		
         $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
         $dropDownList = '';
 
         $query = 'SELECT 
 						`guests_uid`,
-						`surname`,
-						`firstname`  
+						`enc_surname`,
+						`enc_firstname`  
 					FROM #__jomres_guests 
-					WHERE `property_uid` IN (' .jomres_implode($thisJRUser->authorisedProperties).')  
-					ORDER BY surname';
+					WHERE `property_uid` IN (' .jomres_implode($thisJRUser->authorisedProperties).')';
         $existingCustomers = doSelectSql($query);
 
         $ec = array();
         if (!empty($existingCustomers)) {
+			$temp_arr = array();
+			
+			foreach ($existingCustomers as $customer) {
+				$temp_arr[] = array ( "guests_uid" =>$customer->guests_uid , "firstname" => stripslashes($jomres_encryption->decrypt($customer->enc_firstname)) , "surname" => stripslashes($jomres_encryption->decrypt($customer->enc_surname)) );
+			}
+			
+ 			usort($temp_arr, 'sort_alphabetic' ); 
+
             $ec[] = jomresHTML::makeOption('0', '&nbsp;');
-            foreach ($existingCustomers as $customer) {
-                $ec[] = jomresHTML::makeOption($customer->guests_uid, stripslashes($customer->surname).' '.stripslashes($customer->firstname));
+            foreach ($temp_arr as $customer) {
+                $ec[] = jomresHTML::makeOption($customer['guests_uid'], $customer['surname'].' '.$customer['firstname']);
             }
+
             $dropDownList = jomresHTML::selectList($ec, 'existingGuests', ' size="1" class="input-medium"', 'value', 'text', '0', false);
         }
 
@@ -272,3 +283,13 @@ class j06001dashboard
         return $this->retVals;
     }
 }
+
+function sort_alphabetic( $a , $b ) {
+        if ($a['surname'] > $b['surname']) {
+            return 1;
+        } else if ($a['surname'] < $b['surname']) {
+            return -1;
+        } else {
+            return 0; 
+        }
+	}

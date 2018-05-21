@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.2
+ * @version Jomres 9.11.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -126,36 +126,40 @@ try {
 	$jomres_geolocation = jomres_singleton_abstract::getInstance('jomres_geolocation');
 	$jomres_geolocation->auto_set_user_currency_code();
 
+	jr_import('jomres_encryption');
+	$jomres_encryption = new jomres_encryption();
+		
     //if this cms user has booked in the past and doesn`t have profile details saved yet, we`ll update his profile details aautomatically based on his guest details from one of the previous bookings he`s made
     if (get_showtime('task') != 'error') {
         $defaultProperty = (int) $thisJRUser->currentproperty;
 
         if (!$thisJRUser->userIsManager && $thisJRUser->userIsRegistered) {
+			
             if (!isset($_REQUEST['jsid'])) { // Don't want to reset mos userid if jsid is set. jsid is sent back by gateways and if we set mos id to the gateway's session, we'll never be able to  associate the booking with the guest
                 $tmpBookingHandler->updateGuestField('mos_userid', $thisJRUser->id);
             }
 
             if (get_showtime('task') != 'handlereq' && get_showtime('task') != 'completebk' && get_showtime('task') != 'processpayment' && get_showtime('task') != 'confirmbooking') {
                 if ($thisJRUser->profile_id == 0) {
-                    $query = "SELECT guests_uid,firstname,surname,house,street,town,postcode,county,country,tel_landline,tel_mobile,email,discount FROM #__jomres_guests WHERE mos_userid = '".(int) $thisJRUser->id."' LIMIT 1";
+                    $query = "SELECT guests_uid,enc_firstname,enc_surname,enc_house,enc_street,enc_town,enc_postcode,enc_county,enc_country,enc_tel_landline,enc_tel_mobile,enc_email,discount FROM #__jomres_guests WHERE mos_userid = '".(int) $thisJRUser->id."' LIMIT 1";
                     $guestData = doSelectSql($query, 2);
 
                     if ($guestData) {
-                        $query = "INSERT INTO #__jomres_guest_profile (`cms_user_id`,`firstname`,`surname`,`house`,`street`,`town`,`county`,`country`,`postcode`,`tel_landline`,`tel_mobile`,`email`) VALUES ('".(int) $thisJRUser->id."','$firstname','$surname','$house','$street','$town','$region','$country','$postcode','$landline','$mobile','$email')";
+                        $query = "INSERT INTO #__jomres_guest_profile (`cms_user_id`,`enc_firstname`,`enc_surname`,`enc_house`,`enc_street`,`enc_town`,`enc_county`,`enc_country`,`enc_postcode`,`enc_tel_landline`,`enc_tel_mobile`,`enc_email`) VALUES ('".(int) $thisJRUser->id."','$firstname','$surname','$house','$street','$town','$region','$country','$postcode','$landline','$mobile','$email')";
                         doInsertSql($query, '');
 
                         $tmpBookingHandler->updateGuestField('guests_uid', $guestData[ 'id' ]);
-                        $tmpBookingHandler->updateGuestField('firstname', $guestData[ 'firstname' ]);
-                        $tmpBookingHandler->updateGuestField('surname', $guestData[ 'surname' ]);
-                        $tmpBookingHandler->updateGuestField('house', $guestData[ 'house' ]);
-                        $tmpBookingHandler->updateGuestField('street', $guestData[ 'street' ]);
-                        $tmpBookingHandler->updateGuestField('town', $guestData[ 'town' ]);
-                        $tmpBookingHandler->updateGuestField('region', $guestData[ 'county' ]);
-                        $tmpBookingHandler->updateGuestField('country', $guestData[ 'country' ]);
-                        $tmpBookingHandler->updateGuestField('postcode', $guestData[ 'postcode' ]);
-                        $tmpBookingHandler->updateGuestField('tel_landline', $guestData[ 'tel_landline' ]);
-                        $tmpBookingHandler->updateGuestField('tel_mobile', $guestData[ 'tel_mobile' ]);
-                        $tmpBookingHandler->updateGuestField('email', $guestData[ 'email' ]);
+                        $tmpBookingHandler->updateGuestField('firstname', $jomres_encryption->decrypt($guestData[ 'enc_firstname' ]));
+                        $tmpBookingHandler->updateGuestField('surname', $jomres_encryption->decrypt($guestData[ 'enc_surname' ]));
+                        $tmpBookingHandler->updateGuestField('house', $jomres_encryption->decrypt($guestData[ 'enc_house' ]));
+                        $tmpBookingHandler->updateGuestField('street', $jomres_encryption->decrypt($guestData[ 'enc_street' ]));
+                        $tmpBookingHandler->updateGuestField('town', $jomres_encryption->decrypt($guestData[ 'enc_town' ]));
+                        $tmpBookingHandler->updateGuestField('region', $jomres_encryption->decrypt($guestData[ 'enc_county' ]));
+                        $tmpBookingHandler->updateGuestField('country', $jomres_encryption->decrypt($guestData[ 'enc_country' ]));
+                        $tmpBookingHandler->updateGuestField('postcode', $jomres_encryption->decrypt($guestData[ 'enc_postcode' ]));
+                        $tmpBookingHandler->updateGuestField('tel_landline', $jomres_encryption->decrypt($guestData[ 'enc_tel_landline' ]));
+                        $tmpBookingHandler->updateGuestField('tel_mobile', $jomres_encryption->decrypt($guestData[ 'enc_tel_mobile' ]));
+                        $tmpBookingHandler->updateGuestField('email', $jomres_encryption->decrypt($guestData[ 'enc_email' ]));
                     } else {
                         $user_details = jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id($thisJRUser->id);
                         $tmpBookingHandler->updateGuestField('email', $user_details[ $thisJRUser->id ][ 'email' ]);

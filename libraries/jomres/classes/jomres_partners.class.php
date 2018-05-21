@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.2
+ * @version Jomres 9.11.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -86,34 +86,34 @@ class jomres_partners
         $query = 'SELECT
 							`id`,
 							`cms_user_id`,
-							`firstname`,
-							`surname`,
-							`house`,
-							`street`,
-							`town`,
-							`county`,
-							`country`,
-							`postcode`,
-							`tel_landline`,
-							`tel_mobile`,
-							`email`
+							`enc_firstname`,
+							`enc_surname`,
+							`enc_house`,
+							`enc_street`,
+							`enc_town`,
+							`enc_county`,
+							`enc_country`,
+							`enc_postcode`,
+							`enc_tel_landline`,
+							`enc_tel_mobile`,
+							`enc_email`
 						FROM #__jomres_guest_profile 
 						WHERE `cms_user_id` = ' .(int) $cms_userid.' 
 						LIMIT 1 ';
         $userProfile = doSelectSql($query, 2);
 
         if (
-            $userProfile['firstname'] == '' ||
-            $userProfile['surname'] == '' ||
-            $userProfile['house'] == '' ||
-            $userProfile['street'] == '' ||
-            $userProfile['town'] == '' ||
-            $userProfile['county'] == '' ||
-            $userProfile['postcode'] == '' ||
-            $userProfile['country'] == '' ||
-            $userProfile['email'] == '' ||
-            $userProfile['tel_landline'] == '' ||
-            $userProfile['tel_mobile'] == ''
+            $userProfile['enc_firstname'] == '' ||
+            $userProfile['enc_surname'] == '' ||
+            $userProfile['enc_house'] == '' ||
+            $userProfile['enc_street'] == '' ||
+            $userProfile['enc_town'] == '' ||
+            $userProfile['enc_county'] == '' ||
+            $userProfile['enc_postcode'] == '' ||
+            $userProfile['enc_country'] == '' ||
+            $userProfile['enc_email'] == '' ||
+            $userProfile['enc_tel_landline'] == '' ||
+            $userProfile['enc_tel_mobile'] == ''
             ) {
             return false;
         } else {

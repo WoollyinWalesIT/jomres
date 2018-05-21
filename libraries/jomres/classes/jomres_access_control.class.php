@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.2
+ * @version Jomres 9.11.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -32,7 +32,8 @@ class jomres_access_control
 			'06002' => '70', //manager tasks
 			'06005' => '1', //registered tasks
 			'01004' => '0', //property list views
-			'00035' => '0' //property details tabs
+			'00035' => '0', //property details tabs
+			'00501' => '70' //property configuration tabs
 		);
 		
 		//uncontrollable task names

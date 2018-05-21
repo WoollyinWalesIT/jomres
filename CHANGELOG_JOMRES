@@ -1,3 +1,50 @@
+<h3>Jomres 9.11.0 21/05/2018</h3>
+
+<span class="label label-success">Feature</span> Jomres updated to be compliant with the GDPR
+<span class="label label-success">Feature</span> GDPR compliant guest data encryption added
+<span class="label label-success">Feature</span> System modified so that it always creates new users on booking. This allows us to be GDPR compliant because then they can be traced to a login and their details removed.
+<span class="label label-success">Feature</span> Functionality updated so that invoice buyers and sellers details are encrypted.
+<span class="label label-success">Feature</span> System modified so that the "Create new user on booking" feature is automatically set to Yes and cannot be unset. This allows us to unambiguously tie invoices to CMS users, and it ensures that the guests can request that their details be removed by logging in. New tables added so that invoice buyer's and seller's details are captured at the time of the invoice creation so regardless of how their details are changed at a later date, the information required for an invoice is securely and immutably stored and records both the buyer and the seller's details as they were presented at that time.
+<span class="label label-success">Feature</span> Added scripts to convert existing invoice PII to encoded data using the jrportal_invoices class
+<span class="label label-success">Feature</span> Added functionality that will convert existing invoices into encoded data during upgrade.
+<span class="label label-success">Feature</span> Added a cron job to delete booking data archive details over 60 days old to be GDPR compliant
+<span class="label label-success">Feature</span> GDPR automatic booking and invoice deletion functionality added. Managers can configure how long it is until a booking's rows are deleted from the database, including PII and invoice related rows. Typically a year. Non-booking invoices are treated differently, for example in Germany invoices should be retained for 10 years therefore invoices (such as commission or subscription invoices), which are not related to a booking, can be retained for much longer if required.
+<span class="label label-success">Feature</span> Added gdpr consent form(s). Added optin table. Renamed cron job so that it's run last. Added gdpr optin consent class. This functionality, among other things, describes the data that is stored in the Jomres section of the website and allows visitors to opt-in or out.
+<span class="label label-success">Feature</span> Added GDPR compliant consent handling. Blocked users who have not consented from viewing booking form, login, registration and various other pages.
+<span class="label label-success">Feature</span> Provided a form to give feedback for users who have not given consent and gives them the option to change permissions.
+<span class="label label-success">Feature</span> Made consent form show in modal on BS3 & BS4
+<span class="label label-success">Feature</span> Prevented the system from storing IP number and location information when consent not received or consent explicitly forbidden.
+<span class="label label-success">Feature</span> Added menu option to access consent form
+<span class="label label-success">Feature</span> Added functionality to allow users to view the GDPR my data page, download said data as JSON, and delete own data.
+<span class="label label-success">Feature</span> Added functionality to allow site admins to redact/anonymise guest data.
+<span class="label label-success">Feature</span> Added switch to allow site admins to disable GDPR functionality. When the GDPR functionality is disabled, users are automatically opted-in to their data being collected.
+<span class="label label-success">Feature</span> Added "empty temp dir" tool to tools area.
+<span class="label label-success">Feature</span> Added logging to cron jobs so that if secret keys used are incorrect then this will appear in the Core application log. Could be the cause of some people's session tables getting too large.
+
+<span class="label label-warning">Change</span> Run legacy db tables updates too when checking db integrity
+<span class="label label-warning">Change</span> Added nl2br to video tutorial descriptions because some of them benefit from being longer.
+<span class="label label-warning">Change</span> Modified dobooking.php so that it can accept dates presented with hyphens
+<span class="label label-warning">Change</span> Improved cms plugin installers to double check if jomres dir is writable.
+<span class="label label-warning">Change</span> Showplugins updated so that if plugin manager wasn't updated properly and registry rebuilt, we will catch that.
+<span class="label label-warning">Change</span> Improved Joomla cms plugin installer for J4 compatibility
+<span class="label label-warning">Change</span> Modified defaults so that conversion feature is off until it is enabled, and prices inclusive option is on by default.
+<span class="label label-warning">Change</span> Implemented hardening against potential CSV inject attacks ( http://georgemauer.net/2017/10/07/csv-injection.html )
+<span class="label label-warning">Change</span> Clean temp js files when rebuilding registry on install/upgrade too.
+<span class="label label-warning">Change</span> Added a safe mode warning to cpanel because.....Rod.
+<span class="label label-warning">Change</span> Added support to access control feature to control property settings tabs too.
+<span class="label label-warning">Change</span> Property managers now no longer able to set the Email field to an optional field in the booking form.
+<span class="label label-warning">Change</span> Modified how secret passed to cron jobs is decoded as strict input filtering is not required ( as it's not stored ) and new CSV protection functionality borks the = symbol during input filtering.
+<span class="label label-warning">Change</span> Added code to empty the sessions directory if session handler is database in session cleanup script
+<span class="label label-warning">Change</span> Modified booking engine so that invalid email addresses (e.g. because it has been anonymised ) trigger a redirect to the edit account page, if the user is registered but not a manager.
+<span class="label label-warning">Change</span> Obsoleted nusoap library, adopted php native soap (for calling VIES to get vat number validity)
+<span class="label label-warning">Change</span> Tweaked output prices so that if arrival and departure dates are the same, then in property lists the date span is reset to 1 for the purpose of calculating output prices displayed in lists.
+<span class="label label-warning">Change</span> Tweaked how override contact numbers are parsed before output to refactor sanitised + symbols
+<span class="label label-warning">Change</span> Modified data available to the show property reviews template, instead of outputting username ( which is now always their email address ) instead we will output their full name.
+
+<span class="label label-important label-danger">Fix</span> List bookings ajax and list invoices ajax modified to ensure that they do not try to convert prices because the conversion on valid prices results in incorrect prices.
+<span class="label label-important label-danger">Fix</span> Solved a problem with extra names not being translated in contract details
+<span class="label label-important label-danger">Fix</span> Fixed an issue where newly created users who have filled their profile details, their details were not copied to the session
+
 <h3>Jomres 9.10.2 27/03/2018</h3>
 
 <span class="label label-warning">Change</span> Removed singleton specific code from all classes that don`t need it. There is only one singleton in Jomres, jomres_singleton_abstract class and this is the container for all other classes instances.

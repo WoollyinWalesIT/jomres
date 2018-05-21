@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.2
+ * @version Jomres 9.11.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -45,11 +45,16 @@ class jomres_temp_booking_handler
 		}
 		
 		$this->ip = $_SERVER['REMOTE_ADDR'];
-		
+
+				
 		if ($this->ip == '::1') {
 			$this->ip = '127.0.0.1';
 		}
 
+		if (!isset($_COOKIE['jomres_gdpr_consent_form_processed']) || (int)$_COOKIE['jomres_gdpr_consent_form_processed'] == 0 ){
+			$this->ip = '0.0.0.0';
+		}
+		
 		if (!isset($_SERVER['HTTP_USER_AGENT'])){
 			$_SERVER['HTTP_USER_AGENT'] ="";
 		}
@@ -150,13 +155,6 @@ class jomres_temp_booking_handler
 			'tel_landline' => '',
 			'tel_mobile' => '',
 			'tel_fax' => '',
-			'ccard_no' => '',
-			'ccard_issued' => '',
-			'ccard_expiry' => '',
-			'ccard_iss_no' => '',
-			'ccard_name' => '',
-			'ccv' => '',
-			'type' => '',
 			'property_uid' => '',
 			'email' => '',
 			'discount' => '0',
@@ -272,7 +270,64 @@ class jomres_temp_booking_handler
 		} else {
 			$this->_jomres_session_start_database();
 		}
+		$this->_replace_guest_data();
     }
+	
+	// Check various guest specific fields to see if the are not populated. If they are not, we will use the thisJRUser fields to populate them so that the booking form is pre-populated
+	private function _replace_guest_data()
+	{
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+		
+		
+		if ($this->tmpguest['mos_userid'] == ''){
+			$this->tmpguest['mos_userid'] = $thisJRUser->cms_user_id;
+		}
+		
+		if ($this->tmpguest['firstname'] == ''){
+			$this->tmpguest['firstname'] = $thisJRUser->firstname;
+		}
+		
+		if ($this->tmpguest['surname'] == ''){
+			$this->tmpguest['surname'] = $thisJRUser->surname;
+		}
+		
+		if ($this->tmpguest['house'] == ''){
+			$this->tmpguest['house'] = $thisJRUser->house;
+		}
+		
+		if ($this->tmpguest['street'] == ''){
+			$this->tmpguest['street'] = $thisJRUser->street;
+		}
+		
+		if ($this->tmpguest['town'] == ''){
+			$this->tmpguest['town'] = $thisJRUser->town;
+		}
+		
+		if ($this->tmpguest['region'] == ''){
+			$this->tmpguest['region'] = $thisJRUser->region;
+		}
+		
+		if ($this->tmpguest['country'] == ''){
+			$this->tmpguest['country'] = $thisJRUser->country;
+		}
+		
+		if ($this->tmpguest['postcode'] == ''){
+			$this->tmpguest['postcode'] = $thisJRUser->postcode;
+		}
+		
+		if ($this->tmpguest['email'] == ''){
+			$this->tmpguest['email'] = $thisJRUser->email;
+		}
+		
+		if ($this->tmpguest['tel_landline'] == ''){
+			$this->tmpguest['tel_landline'] = $thisJRUser->tel_landline;
+		}
+		
+		if ($this->tmpguest['tel_mobile'] == ''){
+			$this->tmpguest['tel_mobile'] = $thisJRUser->tel_mobile;
+		}
+
+	}
 	
 	private function _jomres_session_start_file() 
 	{
@@ -503,13 +558,6 @@ class jomres_temp_booking_handler
 			'tel_landline' => '',
 			'tel_mobile' => '',
 			'tel_fax' => '',
-			'ccard_no' => '',
-			'ccard_issued' => '',
-			'ccard_expiry' => '',
-			'ccard_iss_no' => '',
-			'ccard_name' => '',
-			'ccv' => '',
-			'type' => '',
 			'property_uid' => '',
 			'email' => '',
 			'discount' => '0',

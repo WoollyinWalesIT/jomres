@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.2
+ * @version Jomres 9.11.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -155,6 +155,7 @@ function jomresGetParam($request, $element, $def = null) // variable type not us
         return $def;
     }
 
+
     // We'll discover the type of $dirty, so that we can cast the variable to a given type
     $type = jomres_get_var_type($def);
 
@@ -231,6 +232,24 @@ function jomresGetParam($request, $element, $def = null) // variable type not us
 
             break;
         }
+		
+	// http://georgemauer.net/2017/10/07/csv-injection.html
+	// The "tab" solution in that article doesn't work because it results in output like "your	@email.com" in inputs. Instead the mailer will need to str_replace &#64; back to @
+	$csv_bad = array ( "=" , "+" );
+	$csv_good = array( '&#61;' , "&#43;" );
+	$clean = str_replace($csv_bad,$csv_good,$clean);
+	
+	if ( isset($clean[0]) &&  $clean[0] == "@" ) {
+		$clean = str_replace("@","&#64;",$clean);
+	}
+	
+	if ( isset($clean[0]) &&  $clean[0] == "-" ) {
+		$clean = str_replace("-","&#45;",$clean);
+	}
+	
+	// end http://georgemauer.net/2017/10/07/csv-injection.html
+	
+	
     if ($enable_input_cache) {
         $purified_inputs_cache->set_cache($request, $element, $clean);
     }

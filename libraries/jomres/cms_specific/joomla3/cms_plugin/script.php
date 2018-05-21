@@ -2,6 +2,8 @@
 // No direct access to this file
 defined('_JEXEC') or die('');
 
+use Joomla\Archive\Archive;
+
 class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687/script-not-running-on-plugin-installation
 {
     function preflight($type, $parent) 
@@ -44,6 +46,15 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 		catch (Exception $e) {
 			JError::raiseWarning(null, 'Jomres requires minimum Joomla version 3.8 to run. Please update Joomla first.');
 
+			return false;
+		}
+		
+		//check disk space
+		$disk_free_space = $this->free_space();
+
+		if ( $disk_free_space < 300 ) {
+			JError::raiseWarning(null, 'There is not enough disk space available to download and extract Jomres.');
+			
 			return false;
 		}
 		
@@ -98,11 +109,37 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 		
 		$jomres_path = JPATH_ROOT . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY;
 		$extraction_path = $tmp_path . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY;
+		
+		//create /tmp/jomres dir
+		try 
+		{
+			JFolder::create( $extraction_path );
+		} 
+		catch (Exception $e)
+		{
+			JError::raiseWarning(null, 'Something went wrong when trying to create dir ' . $extraction_path);
+
+			return false;
+		}
+		
+		//create /jomres dir
+		try 
+		{
+			JFolder::create( $jomres_path );
+		} 
+		catch (Exception $e)
+		{
+			JError::raiseWarning(null, 'Something went wrong when trying to create dir ' . $jomres_path . '. Using FTP, create the directory manually then re-run the installer, many times this will solve the problem.');
+
+			return false;
+		}
 
 		//Unzip Jomres
 		try
 		{
-			$extract = JArchive::extract($tmp_path . DIRECTORY_SEPARATOR . $archivename, $extraction_path);
+			$archive = new Archive;
+
+			$extract = $archive->extract($tmp_path . DIRECTORY_SEPARATOR . $archivename, $extraction_path);
 		}
 		catch (Exception $e)
 		{
@@ -245,5 +282,19 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
     function postflight($type, $parent) 
 	{
 		//
+	}
+	
+	function free_space( $path = JPATH_ROOT ) 
+	{
+		$space = @disk_free_space( $path );
+		
+		if ( $space === false || is_null( $space ) ) {
+			return 0;
+		}
+		
+		//convert to MB
+		$space = round( $space / 1024 / 1024 );
+		
+		return $space;
 	}
 }

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.2
+ * @version Jomres 9.11.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -33,7 +33,8 @@ class jomres_obsolete_file_handling
 		$this->dir_core_plugins = JOMRES_COREPLUGINS_ABSPATH;
         $this->dir_css = JOMRES_CSS_ABSPATH;
         $this->dir_javascript = JOMRES_JS_ABSPATH;
-
+		$this->dir_vendor = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'vendor';
+		
         $this->dir_templates_jqueryui_frontend = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'templates'.JRDS.'jquery_ui'.JRDS.'frontend'.JRDS;
         $this->dir_templates_jqueryui_backend = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'templates'.JRDS.'jquery_ui'.JRDS.'backend'.JRDS;
         $this->dir_templates_jqueryui_administrator = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'templates'.JRDS.'jquery_ui'.JRDS.'administrator'.JRDS;
@@ -778,6 +779,11 @@ class jomres_obsolete_file_handling
 		
 		$this->add_file($this->dir_jomres.'install_jomres.php');
 		$this->add_file($this->dir_classes.'jomres_uninstall.class.php');
+		
+		$this->add_file($this->dir_minicomponents.'j00060show_license_message.class.php');
+		
+		$this->add_dir($this->dir_vendor.'fergusean'.JRDS);
+		
     }
 
     public function add_file($path_and_file)

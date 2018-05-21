@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.2
+ * @version Jomres 9.11.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -18,31 +18,22 @@ $query = "
 CREATE TABLE IF NOT EXISTS `#__jomres_guest_profile` (
 	`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	`cms_user_id` INT UNSIGNED NOT NULL DEFAULT 0,
-	`firstname` VARCHAR(255),
-	`surname` VARCHAR(255),
-	`house` VARCHAR(255),
-	`street` VARCHAR(255),
-	`town` VARCHAR(255),
-	`county` VARCHAR(255),
-	`country` CHAR(2) NOT NULL DEFAULT 'GB',
-	`postcode` VARCHAR(255),
-	`tel_landline` VARCHAR(255),
-	`tel_mobile` VARCHAR(255),
-	`tel_fax` VARCHAR(255),
-	`preferences` TEXT,
-	`car_regno` VARCHAR(20),
-	`ccard_no` BLOB,
-	`ccard_issued` BLOB,
-	`ccard_expiry` BLOB,
-	`ccard_iss_no` BLOB,
-	`ccard_name` BLOB,
-	`ccv` BLOB,
-	`type` BLOB,
-	`email` VARCHAR(100),
-	`vat_number` CHAR(25),
 	`vat_number_validated` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
 	`vat_number_validation_response` TEXT,
 	`params` TEXT, 
+	`enc_firstname` BLOB,
+	`enc_surname` BLOB,
+	`enc_house` BLOB,
+	`enc_street` BLOB,
+	`enc_town` BLOB,
+	`enc_county` BLOB,
+	`enc_country` BLOB,
+	`enc_postcode` BLOB,
+	`enc_tel_landline` BLOB,
+	`enc_tel_mobile` BLOB,
+	`enc_preferences` BLOB,
+	`enc_email` BLOB,
+	`enc_vat_number` BLOB,
 	PRIMARY KEY(`id`),
 	INDEX `cms_user_id` (`cms_user_id`)
 	)

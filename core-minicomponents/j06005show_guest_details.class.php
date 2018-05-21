@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.2
+ * @version Jomres 9.11.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -25,6 +25,10 @@ class j06005show_guest_details
 
             return;
         }
+		
+		jr_import('jomres_encryption');
+		$jomres_encryption = new jomres_encryption();
+		
         $this->retVals = '';
         $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
         if (!$thisJRUser->userIsRegistered) {
@@ -32,7 +36,8 @@ class j06005show_guest_details
         }
 
         $guestUid = $componentArgs[ 'guest_uid' ];
-
+		$invoice_id = $componentArgs[ 'invoice_id' ];
+		
         if ($thisJRUser->userIsManager) {
             $property_uid = getDefaultProperty();
             $query = "SELECT guests_uid FROM #__jomres_guests WHERE guests_uid = '".(int) $guestUid."' AND property_uid IN (".jomres_implode($thisJRUser->authorisedProperties).') ';
@@ -55,28 +60,25 @@ class j06005show_guest_details
             }
         }
 
-        $query = 'SELECT firstname,surname,house,street,town,county,country,postcode,tel_landline,tel_mobile,email,vat_number FROM #__jomres_guests WHERE guests_uid = '.(int) $guestUid.'';
-        $guestData = doSelectSql($query);
-        $numberOfReturns = count($guestData);
-        $vat_output = array();
-        if ($numberOfReturns > 0) {
-            foreach ($guestData as $data) {
-                $output[ 'FIRSTNAME' ] = $data->firstname;
-                $output[ 'SURNAME' ] = $data->surname;
-                $output[ 'HOUSE' ] = $data->house;
-                $output[ 'STREET' ] = $data->street;
-                $output[ 'TOWN' ] = $data->town;
-                $output[ 'REGION' ] = find_region_name($data->county);
-                $output[ 'COUNTRY' ] = getSimpleCountry($data->country);
-                $output[ 'POSTCODE' ] = $data->postcode;
-                $output[ 'LANDLINE' ] = $data->tel_landline;
-                $output[ 'MOBILE' ] = $data->tel_mobile;
-                $output[ 'EMAIL' ] = $data->email;
-                $vat_output[0][ 'VAT_NUMBER' ] = $data->vat_number;
-            }
-        } else {
-            return;
-        }
+		// For 9.11 (GDPR compliance) we now need to pull from the invoice pii tables instead of the guests(guest profile) table. This gives us immutable invoice details in the event that the user chooses to delete their PII information from guests/guest_profile table, allowing us to be compliant with both the GDPR Right to be Forgotten rules, and various country rules that would demand that invoice details be retrievable for the forseeable future.
+		
+		jr_import('jrportal_invoice_pii_details');
+		$jrportal_invoice_pii_details = new jrportal_invoice_pii_details();
+		$jrportal_invoice_pii_details->invoice_id=$invoice_id;
+		$guestData = $jrportal_invoice_pii_details->get_pii_buyer();
+
+		$output[ 'FIRSTNAME' ] = $guestData['firstname'];
+		$output[ 'SURNAME' ] = $guestData['surname'];
+		$output[ 'HOUSE' ] = $guestData['house'];
+		$output[ 'STREET' ] = $guestData['street'];
+		$output[ 'TOWN' ] = $guestData['town'];
+		$output[ 'REGION' ] = find_region_name($guestData['county']);
+		$output[ 'COUNTRY' ] = getSimpleCountry($guestData['country']);
+		$output[ 'POSTCODE' ] = $guestData['postcode'];
+		$output[ 'LANDLINE' ] = $guestData['tel_landline'];
+		$output[ 'MOBILE' ] = $guestData['tel_mobile'];
+		$output[ 'EMAIL' ] = $guestData['email'];
+		$vat_output[0][ 'VAT_NUMBER' ] = $guestData['vat_number'];
 
         $output[ 'TITLE' ] = jr_gettext('_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST', '_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST');
         $output[ 'HFIRSTNAME' ] = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME', '_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME');

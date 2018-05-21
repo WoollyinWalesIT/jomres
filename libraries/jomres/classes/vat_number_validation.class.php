@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.2
+ * @version Jomres 9.11.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -24,18 +24,23 @@ class vat_number_validation
         $this->validation_messages[ 'result' ] = false;
         $this->validation_messages[ 'message' ] = 'VIES not yet called';
         $this->country = '';
+		
+		jr_import('jomres_encryption');
+		$this->jomres_encryption = new jomres_encryption();
     }
 
     public function get_subject($type = '', $arguments = array())
     {
+
+		
         switch ($type) {
             case 'guest_registered_byguest_id':
                     $id = $arguments['guest_id'];
                     $property_uid = $arguments['property_uid'];
-                    $query = 'SELECT `vat_number`,`vat_number_validated`,`country`,`vat_number_validation_response` FROM #__jomres_guests WHERE guests_uid = '.(int) $id.' AND property_uid = '.(int) $property_uid.' LIMIT 1';
+                    $query = 'SELECT `enc_vat_number`,`vat_number_validated`,`country`,`vat_number_validation_response` FROM #__jomres_guests WHERE guests_uid = '.(int) $id.' AND property_uid = '.(int) $property_uid.' LIMIT 1';
                     $result = doSelectSql($query, 2);
                     if (!empty($result)) {
-                        $this->vat_number = $result[ 'vat_number' ];
+                        $this->vat_number = $this->jomres_encryption->decrypt($result[ 'enc_vat_number' ]);
                         $this->vat_number_validated = $result[ 'vat_number_validated' ];
                         $this->country = $result[ 'country' ];
                         $this->vat_number_validation_response = $result[ 'vat_number_validation_response' ];
@@ -49,10 +54,10 @@ class vat_number_validation
 
             case 'buyer_registered_byprofile_id':
                     $id = $arguments['profile_id'];
-                    $query = 'SELECT `vat_number`,`vat_number_validated`,`country`,`vat_number_validation_response` FROM #__jomres_guest_profile WHERE cms_user_id = '.(int) $id.' LIMIT 1';
+                    $query = 'SELECT `enc_vat_number`,`vat_number_validated`,`country`,`vat_number_validation_response` FROM #__jomres_guest_profile WHERE cms_user_id = '.(int) $id.' LIMIT 1';
                     $result = doSelectSql($query, 2);
                     if (!empty($result)) {
-                        $this->vat_number = $result[ 'vat_number' ];
+                        $this->vat_number = $this->jomres_encryption->decrypt($result[ 'enc_vat_number' ]);
                         $this->vat_number_validated = $result[ 'vat_number_validated' ];
                         $this->country = $result[ 'country' ];
                         $this->vat_number_validation_response = $result[ 'vat_number_validation_response' ];
@@ -110,7 +115,7 @@ class vat_number_validation
             case 'guest_registered_byguest_id':
                     $id = $arguments['guest_id'];
                     $property_uid = $arguments['property_uid'];
-                    $query = "UPDATE #__jomres_guests SET `vat_number_validated`='".$validated."',`vat_number`='".$this->validation_messages[ 'clean_vat_no' ]."',`vat_number_validation_response`='".$messages."' WHERE guests_uid = '".(int) $id."' AND `property_uid` = ".(int) $property_uid;
+                    $query = "UPDATE #__jomres_guests SET `vat_number_validated`='".$validated."',`enc_vat_number`='".$this->jomres_encryption->encrypt($this->validation_messages[ 'clean_vat_no' ])."',`vat_number_validation_response`='".$messages."' WHERE guests_uid = '".(int) $id."' AND `property_uid` = ".(int) $property_uid;
                     if (!doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_UPDATE_GUEST', '_JOMRES_MR_AUDIT_UPDATE_GUEST', false))) {
                         trigger_error('Unable to update guest details, mysql db failure', E_USER_ERROR);
                     }
@@ -118,9 +123,9 @@ class vat_number_validation
 
             case 'guest_registered_byprofile_id':
                     $id = $arguments['profile_id'];
-                    $query = "UPDATE #__jomres_guests SET `vat_number`='".$this->validation_messages[ 'clean_vat_no' ]."', `vat_number_validated`='".$validated."',`vat_number_validation_response`='".$messages."' WHERE `mos_userid`=".(int) $id;
+                    $query = "UPDATE #__jomres_guests SET `enc_vat_number`='".$this->jomres_encryption->encrypt($this->validation_messages[ 'clean_vat_no' ])."', `vat_number_validated`='".$validated."',`vat_number_validation_response`='".$messages."' WHERE `mos_userid`=".(int) $id;
                     doInsertSql($query, '');
-                    $query = "UPDATE #__jomres_guest_profile SET `vat_number`='".$this->validation_messages[ 'clean_vat_no' ]."',`vat_number_validated`='".$validated."',`vat_number_validation_response`='".$messages."' WHERE cms_user_id = ".(int) $id;
+                    $query = "UPDATE #__jomres_guest_profile SET `enc_vat_number`='".$this->jomres_encryption->encrypt($this->validation_messages[ 'clean_vat_no' ])."',`vat_number_validated`='".$validated."',`vat_number_validation_response`='".$messages."' WHERE cms_user_id = ".(int) $id;
                     doInsertSql($query, '');
                 break;
 
@@ -159,6 +164,7 @@ class vat_number_validation
 
     public function vies_check($vat_number)
     {
+
         if ($vat_number != '') {
             $vat_number = filter_var($vat_number, FILTER_SANITIZE_SPECIAL_CHARS);
             $vatNumber = str_replace(array(' ', '.', '-', ',', ', '), '', $vat_number);
@@ -174,11 +180,17 @@ class vat_number_validation
 
             $this->vat_number = $countryCode.$vatNumber;
 
-            //require_once JOMRES_LIBRARIES_ABSPATH.'nusoap'.JRDS.'nusoap.php';
-
-            $client = new nusoap_client('http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl', 'wsdl');
-            $params = array('countryCode' => $countryCode, 'vatNumber' => $vatNumber);
-            $result = $client->call('checkVat', $params);
+			try {
+				$client = new SoapClient("http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl");
+				$params = array(
+				  'countryCode' => $countryCode,
+				  'vatNumber' => $vatNumber
+				);
+				$result = (array)$client->checkVat($params);
+			} catch (Exception $e) {
+				$result = array();
+				$result['valid'] = false;
+			}
 
             $results = array();
 
@@ -197,7 +209,11 @@ class vat_number_validation
 
                 $results[ $key ] = $val;
             }
-
+			
+			if (!isset($result[ 'valid' ])) {
+				$result[ 'valid' ] = false;
+			}
+			
             if ($result[ 'valid' ] != 'true') {
                 $this->validation_messages = array('result' => false, 'message' => jr_gettext('_JOMRES_VIES_VATCHECK_INCORRECT_COULDNOTVALIDATE', '_JOMRES_VIES_VATCHECK_INCORRECT_COULDNOTVALIDATE', false), 'response_content' => $results, 'clean_vat_no' => $countryCode.$vatNumber);
                 $this->vat_number_validated = '0';

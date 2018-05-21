@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.2
+ * @version Jomres 9.11.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -27,6 +27,10 @@ class j06005cancelGuestBooking
 
             return;
         }
+		
+		jr_import('jomres_encryption');
+		$jomres_encryption = new jomres_encryption();
+		
         if ($thisJRUser->userIsRegistered) {
             $contract_uid = jomresGetParam($_REQUEST, 'contract_uid', 0);
 
@@ -106,8 +110,8 @@ class j06005cancelGuestBooking
                         $invoice->mark_invoice_cancelled();
                     }
 
-                    $query = 'SELECT email,firstname,surname FROM #__jomres_guests WHERE guests_uid = '.$guest_uid.' LIMIT 1';
-                    $guestData = doSelectSql($query, 2);
+                    /* $query = 'SELECT enc_email,enc_firstname,enc_surname FROM #__jomres_guests WHERE guests_uid = '.$guest_uid.' LIMIT 1';
+                    $guestData = doSelectSql($query, 2); */
                     $text = $tag.' - '.$saveMessage;
 
                     $componentArgs = array();
@@ -164,12 +168,6 @@ class j06005cancelGuestBooking
             $guest_tel_fax = $guest->tel_fax;
             $guest_email = $guest->email;
             $guest_preferences = $guest->preferences;
-            $guest_car_regno = $guest->car_regno;
-            $guest_ccard_no = $guest->ccard_no;
-            $guest_ccard_issued = $guest->ccard_issued;
-            $guest_ccard_expiry = $guest->ccard_expiry;
-            $guest_ccard_iss_no = $guest->ccard_iss_no;
-            $guest_ccard_name = $guest->ccard_name;
         }
 
         foreach ($bookingData as $booking) {

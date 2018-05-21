@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.2
+ * @version Jomres 9.11.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -25,6 +25,9 @@ class j16000view_invoice
 
             return;
         }
+
+		jr_import('jomres_encryption');
+		$jomres_encryption = new jomres_encryption();
 
         $invoice_id = intval(jomresGetParam($_REQUEST, 'id', 0));
         $popup = intval(jomresGetParam($_REQUEST, 'popup', 0));
@@ -57,23 +60,23 @@ class j16000view_invoice
         $output[ 'SITE_BUSINESS_VATNO' ] = $jrConfig[ 'business_vat_number' ];
 
         //manager/client business details
-        $query = 'SELECT firstname,surname,house,street,town,county,country,postcode,tel_landline,tel_mobile,email,vat_number FROM #__jomres_guest_profile WHERE cms_user_id = '.(int) $invoice->cms_user_id.'';
+        $query = 'SELECT enc_firstname,enc_surname,enc_house,enc_street,enc_town,enc_county,enc_country,enc_postcode,enc_tel_landline,enc_tel_mobile,enc_email,enc_vat_number FROM #__jomres_guest_profile WHERE cms_user_id = '.(int) $invoice->cms_user_id.'';
         $managerData = doSelectSql($query);
 
         if (!empty($managerData)) {
             foreach ($managerData as $data) {
-                $output[ 'FIRSTNAME' ] = $data->firstname;
-                $output[ 'SURNAME' ] = $data->surname;
-                $output[ 'HOUSE' ] = $data->house;
-                $output[ 'STREET' ] = $data->street;
-                $output[ 'TOWN' ] = $data->town;
-                $output[ 'REGION' ] = find_region_name($data->county);
-                $output[ 'COUNTRY' ] = getSimpleCountry($data->country);
-                $output[ 'POSTCODE' ] = $data->postcode;
-                $output[ 'LANDLINE' ] = $data->tel_landline;
-                $output[ 'MOBILE' ] = $data->tel_mobile;
-                $output[ 'EMAIL' ] = $data->email;
-                $output[ 'VATNO' ] = $data->vat_number;
+                $output[ 'FIRSTNAME' ] = $jomres_encryption->decrypt($data->enc_firstname);
+                $output[ 'SURNAME' ] = $jomres_encryption->decrypt($data->enc_surname);
+                $output[ 'HOUSE' ] = $jomres_encryption->decrypt($data->enc_house);
+                $output[ 'STREET' ] = $jomres_encryption->decrypt($data->enc_street);
+                $output[ 'TOWN' ] = $jomres_encryption->decrypt($data->enc_town);
+                $output[ 'REGION' ] = find_region_name($jomres_encryption->decrypt($data->enc_county));
+                $output[ 'COUNTRY' ] = getSimpleCountry($jomres_encryption->decrypt($data->enc_country));
+                $output[ 'POSTCODE' ] = $jomres_encryption->decrypt($data->enc_postcode);
+                $output[ 'LANDLINE' ] = $jomres_encryption->decrypt($data->enc_tel_landline);
+                $output[ 'MOBILE' ] = $jomres_encryption->decrypt($data->enc_tel_mobile);
+                $output[ 'EMAIL' ] = $jomres_encryption->decrypt($data->enc_email);
+                $output[ 'VATNO' ] = $jomres_encryption->decrypt($data->enc_vat_number);
             }
         }
 
@@ -228,9 +231,12 @@ class j16000view_invoice
 		
 		$output[ 'LOGO' ] = $jomres_media_centre_images->multi_query_images [ 'noimage-small' ];
 
-		foreach ($jomres_media_centre_images->site_images['logo'] as $image) {
-			$output[ 'LOGO' ] = $image['small'];
+		if (isset($jomres_media_centre_images->site_images['logo'])) {
+			foreach ($jomres_media_centre_images->site_images['logo'] as $image) {
+				$output[ 'LOGO' ] = $image['small'];
+			}
 		}
+
 
         $pageoutput[ ] = $output;
         $tmpl = new patTemplate();

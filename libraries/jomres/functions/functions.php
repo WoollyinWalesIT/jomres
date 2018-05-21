@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.2
+ * @version Jomres 9.11.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,6 +13,60 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+
+/**
+ * Easily find the manager id for a property. If there isn't a specific manager assigned to a property, then find the first super property manager and return that instead
+ */
+function find_manager_id_for_property_uid($property_uid) 
+{
+	$managers_array = get_showtime("property_uids_to_property_managers");
+	if (empty($managers_array)) {
+		$managers_array = array();
+		$property_manager_xref = get_showtime('property_manager_xref');
+        if (is_null($property_manager_xref)) {
+            $property_manager_xref = build_property_manager_xref_array();
+        }
+		
+		$all_super_property_manager_ids = find_all_super_property_manager_ids();
+		
+		$jomres_properties = jomres_singleton_abstract::getInstance('jomres_properties');
+		$all_property_ids = $jomres_properties->get_all_properties();
+
+		if (!in_array( $property_uid ,$jomres_properties->all_property_uids['all_propertys'] ) ) {
+			throw new Exception('Tried to find a manager id for a property, but the property does not exist');
+		}
+		
+		foreach ($jomres_properties->all_property_uids['all_propertys'] as $p_id ) {
+			if (isset( $property_manager_xref[$p_id] )) {
+				$managers_array[$p_id] = $property_manager_xref[$p_id];
+			} else {
+				if ( !isset($all_super_property_manager_ids[0]) ) {
+					throw new Exception('Tried to find a manager id for a property, but the property does not have a manager assigned to it, and the site does not have any super property managers');
+				}
+				$managers_array[$p_id] = $all_super_property_manager_ids[0];
+			}
+		}
+	}
+			
+	return (int)$managers_array[$property_uid];
+}
+
+/**
+ * Get all super property manager ids
+ */
+function find_all_super_property_manager_ids() 
+{
+	$managers = array();
+	$query = "SELECT userid FROM #__jomres_managers WHERE access_level >= 90 ";
+	$all_super_managers = doSelectSql($query);
+	if (!empty($all_super_managers)){
+		foreach ($all_super_managers as $super_manager ) {
+			$managers[] = $super_manager->userid;
+		}
+	}
+	return $managers;
+}
+
 
 /**
  * Find the relative path to a QR code
@@ -401,7 +455,7 @@ function output_fatal_error($e , $extra_info = '' )
 		'EXTRA_INFO' => $extra_info,
         'FILE' => $e->getFile(),
         'LINE' => $e->getLine(),
-        'TRACE' => $e->getTraceAsString(),
+        'TRACE' => nl2br($e->getTraceAsString()),
         '_JOMRES_ERROR_DEBUGGING_MESSAGE' => jr_gettext('_JOMRES_ERROR_DEBUGGING_MESSAGE', '_JOMRES_ERROR_DEBUGGING_MESSAGE', false),
         '_JOMRES_ERROR_DEBUGGING_FILE' => jr_gettext('_JOMRES_ERROR_DEBUGGING_FILE', '_JOMRES_ERROR_DEBUGGING_FILE', false),
         '_JOMRES_ERROR_DEBUGGING_LINE' => jr_gettext('_JOMRES_ERROR_DEBUGGING_LINE', '_JOMRES_ERROR_DEBUGGING_LINE', false),
@@ -1727,6 +1781,8 @@ function install_external_plugin($plugin_name, $plugin_type, $mambot_type = '', 
                 return false;
             }
 
+			emptyDir($widget_target);
+			
             $plugin_info_file = $widget_source.'plugin_info.php';
             $plugin_info_file_temp = JOMRES_SYSTEMLOG_PATH.'plugin_info.php';
             copy($plugin_info_file, $plugin_info_file_temp);
@@ -1759,7 +1815,9 @@ function install_external_plugin($plugin_name, $plugin_type, $mambot_type = '', 
 
                 return false;
             }
-
+			
+			emptyDir($module_target);
+			
             //echo "Moving contents of ".$module_xml_source." to ".$module_target."<br/>";
             $module_xml_move_result = dirmv($module_xml_source, $module_target, true, $funcloc = JRDS);
             $module_move_result = dirmv($module_source, $module_target, true, $funcloc = JRDS);
@@ -1790,6 +1848,8 @@ function install_external_plugin($plugin_name, $plugin_type, $mambot_type = '', 
                 return false;
             }
 
+			emptyDir($mambot_target);
+			
             $mambot_xml_move_result = dirmv($mambot_xml_source, $mambot_target, true, $funcloc = '/');
             $mambot_move_result = dirmv($mambot_source, $mambot_target, true, '/');
 
@@ -2082,7 +2142,10 @@ function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode
 	if ($from == '') {
 		$from = get_showtime('mailfrom');
 	}
-
+	
+	$from = str_replace( "&#64;" , "=" , $from );
+	$to = str_replace( "&#64;" , "=" , $to );
+	
     logging::log_message('Sending email from '.$from.' to '.$to.' subject '.$subject, 'Mailer');
 
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -2092,6 +2155,7 @@ function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode
     if (is_array($to)) {
 		foreach ($to as $t) {
 			if (strlen($t) > 0) {
+				$t = str_replace( "&#64;" , "@" , $t );
 				$emails[ ] = trim($t);
 			}
 		}
@@ -2100,11 +2164,13 @@ function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode
 			$addys = explode(',', $to);
 			foreach ($addys as $t) {
 				if (strlen($t) > 0) {
+					$t = str_replace( "&#64;" , "@" , $t );
 					$emails[ ] = trim($t);
 				}
 			}
 		} else {
 			if (strlen($to) > 0) {
+				$to = str_replace( "&#64;" , "@" , $to );
 				$emails[ ] = trim($to);
 			}
 		}
@@ -2740,6 +2806,8 @@ function propertyConfiguration()
     $lists[ 'bookingform_requiredfields_country' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_requiredfields_country', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_country' ]);
     $lists[ 'bookingform_requiredfields_tel' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_requiredfields_tel', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_tel' ]);
     $lists[ 'bookingform_requiredfields_mobile' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_requiredfields_mobile', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_mobile' ]);
+	
+	$mrConfig[ 'bookingform_requiredfields_email' ] = "1"; // For GDPR compliance, bookings will always require an email address and the property manager will not be allowed to change this setting
     $lists[ 'bookingform_requiredfields_email' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_requiredfields_email', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_requiredfields_email' ]);
 
     $lists[ 'bookingform_roomlist_showdisabled' ] = jomresHTML::selectList($yesno, 'cfg_bookingform_roomlist_showdisabled', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'bookingform_roomlist_showdisabled' ]);
@@ -3075,7 +3143,9 @@ function insertInternetBooking($jomressession = '', $depositPaid = false, $confi
  */
 function insertGuestDeets($jomressession)
 {
-
+	jr_import('jomres_encryption');
+	$jomres_encryption = new jomres_encryption();
+		
     $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
     $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
     $xCustomers = $tmpBookingHandler->getGuestData();
@@ -3130,32 +3200,56 @@ function insertGuestDeets($jomressession)
     }
 
     if ($guests_uid > 0) {
-        $query = "UPDATE	#__jomres_guests SET `firstname`='$firstname',`surname`='$surname',`house`='$house',`street`='$street',
-		`town`= '$town',`county`= '$region',`country`= '$country',`postcode`= '$postcode',`tel_landline`= '$landline',`tel_mobile`= '$mobile',
-		`property_uid`='".(int) $property_uid."',`email`='$email'
+        $query = "UPDATE	#__jomres_guests SET 
+			`enc_firstname`='".$jomres_encryption->encrypt($firstname)."',
+			`enc_surname`='".$jomres_encryption->encrypt($surname)."',
+			`enc_house`='".$jomres_encryption->encrypt($house)."',
+			`enc_street`='".$jomres_encryption->encrypt($street)."',
+			`enc_town`= '".$jomres_encryption->encrypt($town)."',
+			`enc_county`= '".$jomres_encryption->encrypt($region)."',
+			`enc_country`= '".$jomres_encryption->encrypt($country)."',
+			`enc_postcode`= '".$jomres_encryption->encrypt($postcode)."',
+			`enc_tel_landline`= '".$jomres_encryption->encrypt($landline)."',
+			`enc_tel_mobile`= '".$jomres_encryption->encrypt($mobile)."',
+			`property_uid`='".(int) $property_uid."',
+			`enc_email`='".$jomres_encryption->encrypt($email)."'
 		WHERE guests_uid = '".(int) $guests_uid."'";
         doInsertSql($query, false);
         $returnid = $guests_uid;
     } else {
         $query = 'INSERT INTO #__jomres_guests
-		(`firstname`,`surname`,`house`,`street`,`town`,`county`,`country`,`postcode`,`tel_landline`,`tel_mobile`,`property_uid`,`email`';
-        $query .= ',`mos_userid`';
-        $query .= ") VALUES ('$firstname','$surname','$house','$street','$town','$region','$country','$postcode','$landline','$mobile','$property_uid','$email'";
-        $query .= ",'".(int) $mos_userid."'";
+			(
+			`enc_firstname`,
+			`enc_surname`,
+			`enc_house`,
+			`enc_street`,
+			`enc_town`,
+			`enc_county`,
+			`enc_country`,
+			`enc_postcode`,
+			`enc_tel_landline`,
+			`enc_tel_mobile`,
+			`property_uid`,
+			`enc_email`';
+			$query .= ',`mos_userid`';
+			$query .= ") VALUES (
+			'".$jomres_encryption->encrypt($firstname)."',
+			'".$jomres_encryption->encrypt($surname)."',
+			'".$jomres_encryption->encrypt($house)."',
+			'".$jomres_encryption->encrypt($street)."',
+			'".$jomres_encryption->encrypt($town)."',
+			'".$jomres_encryption->encrypt($region)."',
+			'".$jomres_encryption->encrypt($country)."',
+			'".$jomres_encryption->encrypt($postcode)."',
+			'".$jomres_encryption->encrypt($landline)."',
+			'".$jomres_encryption->encrypt($mobile)."',
+			'".$property_uid."',
+			'".$jomres_encryption->encrypt($email)."'";
+			$query .= ",'".(int) $mos_userid."'";
         $query .= ')';
         $returnid = doInsertSql($query, false);
     }
 
-    if (!$thisJRUser->is_partner) {
-        // New for 4.5.9. We need now to look in the new guest profile table and see if this user already exists. If they do not, we'll take these details and add them to the profile table too, then in future the profile table's data will be used as the primary source of this guest's information, continuing to ensure that guest details are not shared between properties. No property should ever be able to access a guest's details unless that guest has already booked with that property.
-        // First, we'll look at this user's id. If it's the same as mos_userid above, then the user making the booking is a guest.
-        if (($thisJRUser->id == $mos_userid && $thisJRUser->id > 0) || ($mos_userid > 0 && isset($_REQUEST['jsid']))) { // Either it's the guest making the booking, or it's a gateway call and the user's a registered user. Either way, we can update the profile table.
-            if ($thisJRUser->profile_id == 0) { // The guest doesn't have information in the profile table yet.
-                $query = "INSERT INTO #__jomres_guest_profile (`cms_user_id`,`firstname`,`surname`,`house`,`street`,`town`,`county`,`country`,`postcode`,`tel_landline`,`tel_mobile`,`email`) VALUES ('".(int) $mos_userid."','$firstname','$surname','$house','$street','$town','$region','$country','$postcode','$landline','$mobile','$email')";
-                doInsertSql($query, '');
-            }
-        }
-    }
 
     if (!$returnid) {
         echo 'Error saving users details';
@@ -4106,12 +4200,27 @@ function check_jomres_version( $outputText = true )
 
 function development_mode_test()
 {
+	$response = '';
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig = $siteConfig->get();
 
-    if ($jrConfig[ 'development_production' ] != 'production') { // The default is 1000 on most installations
+    if ($jrConfig[ 'development_production' ] != 'production') { 
         $highlight = (using_bootstrap() ? 'alert alert-error alert-danger' : 'ui-state-highlight');
         $response = "<div class='".$highlight."'>Be aware that you are using the site with Development mode enabled. Unless you are a developer we do not advise that you leave this setting enabled. To change it go to Site Settings > Debugging tab and set the mode to Production.</div>";
+    }
+
+    return $response;
+}
+
+function safe_mode_test()
+{
+	$response = '';
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+	$jrConfig = $siteConfig->get();
+
+    if ($jrConfig[ 'safe_mode' ] != '0') { 
+        $highlight = (using_bootstrap() ? 'alert alert-error alert-danger' : 'ui-state-highlight');
+        $response = "<div class='".$highlight."'><strong><em>Safe mode is enabled, no plugins will function, including the plugin manager. You can change this in the Jomres > Settings > Site Configurat > Debugging tab.</em></strong>	</div>";
     }
 
     return $response;

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.2
+ * @version Jomres 9.11.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -25,6 +25,9 @@ class j06001dashboard_get_guest_details_ajax
 
             return;
         }
+
+		jr_import('jomres_encryption');
+		$jomres_encryption = new jomres_encryption();
 
         $property_uid = jomresGetParam($_GET, 'property_uid', 0);
         if ($property_uid == 0) {
@@ -50,22 +53,31 @@ class j06001dashboard_get_guest_details_ajax
         $query = 'SELECT 
 						`guests_uid` AS existing_id,
 						`mos_userid`,
-						`surname`,
-						`firstname`,
-						`house`,
-						`street`,
-						`town`,
-						`county`,
-						`country`,
-						`postcode`,
-						`tel_landline`,
-						`tel_mobile`,
-						`email`
+						`enc_surname`,
+						`enc_firstname`,
+						`enc_house`,
+						`enc_street`,
+						`enc_town`,
+						`enc_county`,
+						`enc_country`,
+						`enc_postcode`,
+						`enc_tel_landline`,
+						`enc_tel_mobile`,
+						`enc_email`
 					FROM #__jomres_guests 
 					WHERE `property_uid` IN (' .jomres_implode($thisJRUser->authorisedProperties).') 
 						AND `guests_uid` = '.(int) $existing_id.'  
 					LIMIT 1 ';
         $guestDeets = doSelectSql($query, 2);
+
+		foreach ($guestDeets as $key=>$val ) {
+			if ( substr($key, 0, 4) == "enc_" ) {
+				$newkey = substr($key, 4 );
+				$guestDeets[$newkey] = $jomres_encryption->decrypt($val);
+				unset($guestDeets[$key]);
+			}
+			
+		}
 
         echo json_encode($guestDeets);
         exit;

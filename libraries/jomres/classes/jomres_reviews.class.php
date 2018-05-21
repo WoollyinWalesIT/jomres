@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.2
+ * @version Jomres 9.11.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -86,7 +86,7 @@ class jomres_reviews
         $sql = 'SELECT count(rating_id) as cnt1 FROM #__jomres_reviews_ratings WHERE item_id = '.(int) $this->property_uid." and rating_ip = '".$this->ip."' ";
         $sql .= 'UNION SELECT count(rating_id) as cnt2 FROM #__jomres_reviews_ratings WHERE item_id = '.(int) $this->property_uid.' and user_id = '.(int) $this->userid.' ';
         $result = doSelectSql($sql);
-        if (empty($result)) {
+        if ( empty($result) || $result[0]->cnt1 == 0)  {
             return true;
         }
 

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.2
+ * @version Jomres 9.11.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -348,7 +348,13 @@ class j03025insertbooking_invoice
             $this->results = array('invoice_id' => $invoice->id);
         } else { //creating a new invoice
             $invoice_data = array();
-            $invoice_data[ 'cms_user_id' ] = $tmpBookingHandler->tmpguest[ 'mos_userid' ];
+			
+			$new_booking_user_id = get_showtime("new_booking_user_id");
+			
+			if ( $new_booking_user_id > 0 )
+				$invoice_data[ 'cms_user_id' ] = $new_booking_user_id;
+			else 
+				$invoice_data[ 'cms_user_id' ] = $tmpBookingHandler->tmpguest[ 'mos_userid' ];
 
             $invoice_data[ 'subscription' ] = false;
 

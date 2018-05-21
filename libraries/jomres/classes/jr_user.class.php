@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.2
+ * @version Jomres 9.11.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -131,6 +131,9 @@ class jr_user
      */
     public function get_user_profile()
     {
+		jr_import('jomres_encryption');
+		$this->jomres_encryption = new jomres_encryption();
+		
         if ($this->id == 0) {
             throw new Exception('Error: Can`t get user profile for cms user id 0');
         }
@@ -138,19 +141,18 @@ class jr_user
         $query = 'SELECT
 						`id`,
 						`cms_user_id`,
-						`firstname`,
-						`surname`,
-						`house`,
-						`street`,
-						`town`,
-						`county`,
-						`country`,
-						`postcode`,
-						`tel_landline`,
-						`tel_mobile`,
-						`tel_fax`,
-						`email`,
-						`vat_number`,
+						`enc_firstname`,
+						`enc_surname`,
+						`enc_house`,
+						`enc_street`,
+						`enc_town`,
+						`enc_county`,
+						`enc_country`,
+						`enc_postcode`,
+						`enc_tel_landline`,
+						`enc_tel_mobile`,
+						`enc_email`,
+						`enc_vat_number`,
 						`vat_number_validated`,
 						`vat_number_validation_response`,
 						`params`
@@ -163,19 +165,18 @@ class jr_user
             foreach ($result as $r) {
                 $this->profile_id = $r->id;
                 $this->cms_user_id = $r->cms_user_id;
-                $this->firstname = $r->firstname;
-                $this->surname = $r->surname;
-                $this->house = $r->house;
-                $this->street = $r->street;
-                $this->town = $r->town;
-                $this->region = $r->county;
-                $this->country = $r->country;
-                $this->postcode = $r->postcode;
-                $this->tel_landline = $r->tel_landline;
-                $this->tel_mobile = $r->tel_mobile;
-                $this->tel_fax = $r->tel_fax;
-                $this->email = $r->email;
-                $this->vat_number = $r->vat_number;
+                $this->firstname = $this->jomres_encryption->decrypt($r->enc_firstname);
+                $this->surname = $this->jomres_encryption->decrypt($r->enc_surname);
+                $this->house = $this->jomres_encryption->decrypt($r->enc_house);
+                $this->street = $this->jomres_encryption->decrypt($r->enc_street);
+                $this->town = $this->jomres_encryption->decrypt($r->enc_town);
+                $this->region = $this->jomres_encryption->decrypt($r->enc_county);
+                $this->country = $this->jomres_encryption->decrypt($r->enc_country);
+                $this->postcode = $this->jomres_encryption->decrypt($r->enc_postcode);
+                $this->tel_landline = $this->jomres_encryption->decrypt($r->enc_tel_landline);
+                $this->tel_mobile = $this->jomres_encryption->decrypt($r->enc_tel_mobile);
+                $this->email = $this->jomres_encryption->decrypt($r->enc_email);
+                $this->vat_number = $this->jomres_encryption->decrypt($r->enc_vat_number);
                 $this->vat_number_validated = $r->vat_number_validated;
                 $this->vat_number_validation_response = $r->vat_number_validation_response;
 				
@@ -184,7 +185,7 @@ class jr_user
 				}
             }
         }
-
+		$this->jomres_encryption = null;
         return true;
     }
 

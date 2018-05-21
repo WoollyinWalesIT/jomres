@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.2
+ * @version Jomres 9.11.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -122,8 +122,18 @@ class j01060slideshow
         if ($count > 0) {
             for ($i = 0; $i < $count; ++$i) {
                 $r = array();
-                $r[ 'IMAGETHUMB' ] = $imagesArray[ $i ][ 'small' ];
-                $r[ 'IMAGE' ] = $imagesArray[ $i ][ 'large' ];
+
+				if (isset($imagesArray[ $i ][ 'small' ])) {
+					$r[ 'IMAGETHUMB' ] = $imagesArray[ $i ][ 'small' ];
+				} else {
+					$r[ 'IMAGETHUMB' ] = $jomres_media_centre_images->multi_query_images['noimage-small'];
+				}
+				
+				if (isset($imagesArray[ $i ][ 'large' ])) {
+					$r[ 'IMAGE' ] = $imagesArray[ $i ][ 'large' ];
+				} else {
+					$r[ 'IMAGE' ] = $jomres_media_centre_images->multi_query_images['noimage-large'];
+				}
 
                 if ($link_to_property_details && (int) $componentArgs[ 'property_uid' ] > 0) {
                     $r[ 'LINK' ] = get_property_details_url((int)$componentArgs[ 'property_uid' ]);

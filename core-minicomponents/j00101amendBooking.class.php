@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.2
+ * @version Jomres 9.11.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -55,6 +55,9 @@ class j00101amendBooking
                 $tmpBookingHandler->updateBookingField('amend_contract', true);
                 $tmpBookingHandler->updateBookingField('amend_contractuid', $contract_uid);
 
+				jr_import('jomres_encryption');
+				$jomres_encryption = new jomres_encryption();
+	
                 $query = "SELECT * FROM #__jomres_contracts WHERE contract_uid = '".(int) $contract_uid."' LIMIT 1";
                 $contract = doSelectSql($query);
 				
@@ -99,17 +102,17 @@ class j00101amendBooking
                         $tmpBookingHandler->tmpguest[ 'guests_uid' ] = $g->guests_uid;
                         $tmpBookingHandler->tmpguest[ 'mos_userid' ] = $g->mos_userid;
                         $tmpBookingHandler->tmpguest[ 'existing_id' ] = $g->guests_uid;
-                        $tmpBookingHandler->tmpguest[ 'firstname' ] = getEscaped($g->firstname);
-                        $tmpBookingHandler->tmpguest[ 'surname' ] = getEscaped($g->surname);
-                        $tmpBookingHandler->tmpguest[ 'house' ] = getEscaped($g->house);
-                        $tmpBookingHandler->tmpguest[ 'street' ] = getEscaped($g->street);
-                        $tmpBookingHandler->tmpguest[ 'town' ] = getEscaped($g->town);
-                        $tmpBookingHandler->tmpguest[ 'region' ] = getEscaped($g->county);
-                        $tmpBookingHandler->tmpguest[ 'country' ] = getEscaped($g->country);
-                        $tmpBookingHandler->tmpguest[ 'postcode' ] = getEscaped($g->postcode);
-                        $tmpBookingHandler->tmpguest[ 'tel_landline' ] = getEscaped($g->tel_landline);
-                        $tmpBookingHandler->tmpguest[ 'tel_mobile' ] = getEscaped($g->tel_mobile);
-                        $tmpBookingHandler->tmpguest[ 'email' ] = getEscaped($g->email);
+                        $tmpBookingHandler->tmpguest[ 'firstname' ] = getEscaped($jomres_encryption->decrypt($g->enc_firstname));
+                        $tmpBookingHandler->tmpguest[ 'surname' ] = getEscaped($jomres_encryption->decrypt($g->enc_surname));
+                        $tmpBookingHandler->tmpguest[ 'house' ] = getEscaped($jomres_encryption->decrypt($g->enc_house));
+                        $tmpBookingHandler->tmpguest[ 'street' ] = getEscaped($jomres_encryption->decrypt($g->enc_street));
+                        $tmpBookingHandler->tmpguest[ 'town' ] = getEscaped($jomres_encryption->decrypt($g->enc_town));
+                        $tmpBookingHandler->tmpguest[ 'region' ] = getEscaped($jomres_encryption->decrypt($g->enc_county));
+                        $tmpBookingHandler->tmpguest[ 'country' ] = getEscaped($jomres_encryption->decrypt($g->enc_country));
+                        $tmpBookingHandler->tmpguest[ 'postcode' ] = getEscaped($jomres_encryption->decrypt($g->enc_postcode));
+                        $tmpBookingHandler->tmpguest[ 'tel_landline' ] = getEscaped($jomres_encryption->decrypt($g->enc_tel_landline));
+                        $tmpBookingHandler->tmpguest[ 'tel_mobile' ] = getEscaped($jomres_encryption->decrypt($g->enc_tel_mobile));
+                        $tmpBookingHandler->tmpguest[ 'email' ] = getEscaped($jomres_encryption->decrypt($g->enc_email));
                     }
 
                     if ($c->property_uid != $selectedProperty) {

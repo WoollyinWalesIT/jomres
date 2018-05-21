@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.2
+ * @version Jomres 9.11.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -25,7 +25,9 @@ class j06001list_bookings_ajax
 
             return;
         }
-
+		jr_import('jomres_encryption');
+		$jomres_encryption = new jomres_encryption();
+		
         $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
         $defaultProperty = getDefaultProperty();
 
@@ -171,11 +173,11 @@ class j06001list_bookings_ajax
 						a.property_uid,
 						a.approved,
 						a.last_changed,
-						b.firstname, 
-						b.surname, 
-						b.tel_landline, 
-						b.tel_mobile, 
-						b.email
+						b.enc_firstname, 
+						b.enc_surname, 
+						b.enc_tel_landline, 
+						b.enc_tel_mobile, 
+						b.enc_email
 					FROM #__jomres_contracts a 
 						LEFT JOIN #__jomres_guests b ON a.guest_uid = b.guests_uid '
                     .$clause
@@ -324,13 +326,13 @@ class j06001list_bookings_ajax
             $r[] = getPropertyName($p->property_uid);
             $r[] = outputDate($p->arrival);
             $r[] = outputDate($p->departure);
-            $r[] = jomres_decode($p->firstname);
-            $r[] = jomres_decode($p->surname);
-            $r[] = jomres_decode($p->tel_landline);
-            $r[] = jomres_decode($p->tel_mobile);
-            $r[] = jomres_decode($p->email);
-            $r[] = output_price($p->contract_total, $p->currency_code);
-            $r[] = output_price($p->deposit_required, $p->currency_code);
+            $r[] = jomres_decode($jomres_encryption->decrypt($p->enc_firstname));
+            $r[] = jomres_decode($jomres_encryption->decrypt($p->enc_surname));
+            $r[] = jomres_decode($jomres_encryption->decrypt($p->enc_tel_landline));
+            $r[] = jomres_decode($jomres_encryption->decrypt($p->enc_tel_mobile));
+            $r[] = jomres_decode($jomres_encryption->decrypt($p->enc_email));
+            $r[] = output_price($p->contract_total, $p->currency_code , false );
+            $r[] = output_price($p->deposit_required, $p->currency_code , false );
 
             if ((int) $p->deposit_paid == 1) {
                 $r[] = jr_gettext('_JOMRES_STATUS_PAID', '_JOMRES_STATUS_PAID', false);

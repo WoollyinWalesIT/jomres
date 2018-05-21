@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.2
+ * @version Jomres 9.11.0
  *
  * @copyright	2005-2017 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -29,3 +29,6 @@ $jomres_cron->addJob('error_logs_cleanup', 'D', '');
 $jomres_cron->addJob('geolocation_cleanup', 'D', '');
 $jomres_cron->addJob("api_tokens_cleanup","D","");
 $jomres_cron->addJob('version_check', 'D', '');
+$jomres_cron->addJob('booking_data_archive_cleanup', 'D', '');
+$jomres_cron->addJob('gdpr_cleanup', 'D', '');
+

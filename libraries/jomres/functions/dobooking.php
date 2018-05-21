@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.2
+ * @version Jomres 9.11.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -43,6 +43,11 @@ if (!defined('JOMRES_API_CMS_ROOT')) {
 	$selectedProperty = $property_uid;
 }
 
+$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
+if ( !$jomres_gdpr_optin_consent->user_consents_to_storage() ) {
+	echo $consent_form = $MiniComponents->specificEvent('06000', 'show_consent_form' , array ('output_now' => false) );
+	return;
+}
 
 $remus = jomresGetParam($_REQUEST, 'remus', '');
 
@@ -54,6 +59,15 @@ $unixTodaysDate = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $dat
 
 if (!isset($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ])) {
     $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] = "";
+}
+
+
+
+if (isset($_REQUEST['arrivalDate']) ) {
+	$is_hyphen = substr ($_REQUEST['arrivalDate'] , 4 , 1 );
+	if ($is_hyphen == "-" ) {
+		$_REQUEST['arrivalDate'] = str_replace ("-" , "/" , $_REQUEST['arrivalDate'] );
+	}
 }
 
 /**
@@ -223,6 +237,10 @@ function dobooking($selectedProperty, $thisdate, $remus)
 
     $text = $bkg->makeOutputText();
     $guest = $bkg->makeGuestData();
+
+	if ( $thisJRUser->userIsRegistered && !$thisJRUser->userIsManager && !filter_var($guest['EMAIL'], FILTER_VALIDATE_EMAIL)) {
+		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_my_account') , jr_gettext('_JOMRES_CANNOT_BOOK_INVALID_EMAIL', '_JOMRES_CANNOT_BOOK_INVALID_EMAIL', false, false) , 'alert-danger'  );
+	}
 
     $output = array_merge($text, $guest);
     $output[ 'REGION_DROPDOWN' ] = setupRegions($bkg->country, $bkg->region);

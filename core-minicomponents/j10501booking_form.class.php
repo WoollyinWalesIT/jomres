@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.2
+ * @version Jomres 9.11.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -58,10 +58,11 @@ class j10501booking_form
 		$configurationPanel->setright(jr_gettext('_JOMRES_BOOKINGORM_TAX_OUTPUT_DESC', '_JOMRES_BOOKINGORM_TAX_OUTPUT_DESC', false));
 		$configurationPanel->insertSetting();
 
-		$configurationPanel->setleft(jr_gettext('_JOMRES_COM_NEWUSER', '_JOMRES_COM_NEWUSER', false));
+		$jrConfig[ 'useNewusers' ] = '1'; // For Jomres v9.11 and GDPR compliance we are now forcing the system to create new users whenever a booking is made
+		/* $configurationPanel->setleft(jr_gettext('_JOMRES_COM_NEWUSER', '_JOMRES_COM_NEWUSER', false));
 		$configurationPanel->setmiddle($lists['useNewusers']);
 		$configurationPanel->setright(jr_gettext('_JOMRES_COM_NEWUSER_DESC', '_JOMRES_COM_NEWUSER_DESC', false));
-		$configurationPanel->insertSetting();
+		$configurationPanel->insertSetting(); */
 
 		$configurationPanel->setleft(jr_gettext('_JOMRES_BOOKINGORM_EMAIL_NEWUSER_EMAIL_LOGIN_DETAILS', '_JOMRES_BOOKINGORM_EMAIL_NEWUSER_EMAIL_LOGIN_DETAILS', false));
 		$configurationPanel->setmiddle($lists['useNewusers_sendemail']);

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.2
+ * @version Jomres 9.11.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -25,12 +25,12 @@ class j06000cron_session_files_cleanup
             return;
         }
         $jomresConfig_secret = get_showtime('secret');
-        $secret = base64_decode(jomresGetParam($_REQUEST, 'secret', ''));
+        $secret = base64_decode($_REQUEST['secret']);
 
         if ($secret == $jomresConfig_secret) {
 			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 			$jrConfig = $siteConfig->get();
-		
+
 			if ($jrConfig['session_handler'] == 'file') {
 				$session_path = JOMRES_SESSIONS_ABSPATH;
 				$files = scandir_getfiles_recursive($session_path);
@@ -46,8 +46,20 @@ class j06000cron_session_files_cleanup
 				//we`ll cleaan up all sessions older than 1 day
 				$query = "DELETE FROM #__jomres_sessions WHERE `last_changed` <= DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 DAY)";
 				doInsertSql($query, '');
+				
+				// Any files left in the sessions folder can be deleted
+				$session_path = JOMRES_SESSIONS_ABSPATH;
+				$files = scandir_getfiles_recursive($session_path);
+
+				if (!empty($files)) {
+					foreach ($files as $f) {
+						unlink($f);
+					}
+				}
 			}
-        }
+        } else {
+			logging::log_message('Cron job called but secret incorrect', 'Core', 'WARNING');
+		}
     }
 
     // This must be included in every Event/Mini-component

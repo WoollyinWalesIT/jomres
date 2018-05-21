@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.2
+ * @version Jomres 9.11.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -20,6 +20,12 @@ class jomres_geolocation
     {
         $this->config = array();
         $this->detected_country = 'DE';
+		
+		$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
+		if ( !$jomres_gdpr_optin_consent->user_consents_to_storage() ) {
+			 $this->detected_country = '--';
+		}
+		
         $this->temp_dir_abs = JOMRES_TEMP_ABSPATH.'geolocation'.JRDS;
         
 		if (!is_dir($this->temp_dir_abs)) {
@@ -51,14 +57,22 @@ class jomres_geolocation
         
 		if ($this->api_key != '') {
 			if (!isset($tmpBookingHandler->user_settings[ 'geolocated_country' ])) {
+/* 				if (!isset($tmpBookingHandler->user_settings[ 'optin_for_gdpr' ])) {
+					function show_gdpr_modal();
+					return;
+				} */
+				
 				$ip = get_remote_ip_number();
+
+				$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
+
 				$hash = md5($ip);
 				
 				if (file_exists($this->temp_dir_abs.$hash)) {
 					$this->detected_country = file_get_contents($this->temp_dir_abs.$hash);
 					$tmpBookingHandler->user_settings[ 'geolocated_country' ] = $this->detected_country;
 				} else {
-					if ($ip != '127.0.0.1' && $ip != '0.0.0.0') {
+					if ($ip != '127.0.0.1' && $ip != '0.0.0.0' && $jomres_gdpr_optin_consent->user_consents_to_storage() ) {
 						jr_import('jomres_ip2locationlite');
 						$ipLite = new jomres_ip2location_lite();
 						$ipLite->setKey($this->api_key);

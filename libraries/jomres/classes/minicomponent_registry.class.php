@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.2
+ * @version Jomres 9.11.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -96,7 +96,7 @@ class minicomponent_registry
         //delete js files in /jomres/temp dir
 		$task = jomresGetParam($_REQUEST, 'task', '');
 
-        if ($task == 'rebuildregistry' || $task == 'save_site_settings') {
+        if ($task == 'rebuildregistry' || $task == 'save_site_settings' || defined('AUTO_UPGRADE')) {
             $javascript_files_in_temp_dir = scandir_getfiles(JOMRES_TEMP_ABSPATH, $extension = 'js');
             foreach ($javascript_files_in_temp_dir as $file) {
                 unlink(JOMRES_TEMP_ABSPATH.$file);

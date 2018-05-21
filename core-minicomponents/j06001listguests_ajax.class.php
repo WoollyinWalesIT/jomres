@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.2
+ * @version Jomres 9.11.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -25,7 +25,10 @@ class j06001listguests_ajax
 
             return;
         }
-
+		
+		jr_import('jomres_encryption');
+		$this->jomres_encryption = new jomres_encryption();
+		
         $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
         $defaultProperty = getDefaultProperty();
 
@@ -111,18 +114,18 @@ class j06001listguests_ajax
 
         $query = 'SELECT SQL_CALC_FOUND_ROWS 
 						a.guests_uid, 
-						a.firstname, 
-						a.surname, 
-						a.house, 
-						a.street, 
-						a.town, 
-						a.county, 
-						a.country, 
-						a.postcode, 
-						a.tel_landline, 
-						a.tel_mobile, 
-						a.email, 
-						a.vat_number, 
+						a.enc_firstname, 
+						a.enc_surname, 
+						a.enc_house, 
+						a.enc_street, 
+						a.enc_town, 
+						a.enc_county, 
+						a.enc_country, 
+						a.enc_postcode, 
+						a.enc_tel_landline, 
+						a.enc_tel_mobile, 
+						a.enc_email, 
+						a.enc_vat_number, 
 						a.discount,
 						a.property_uid 
 					FROM #__jomres_guests a 
@@ -187,18 +190,18 @@ class j06001listguests_ajax
             }
 
             $r[] = $g->guests_uid;
-            $r[] = jomres_decode($g->firstname);
-            $r[] = jomres_decode($g->surname);
-            $r[] = jomres_decode($g->house);
-            $r[] = jomres_decode($g->street);
-            $r[] = jomres_decode($g->town);
-            $r[] = jomres_decode(find_region_name($g->county));
-            $r[] = $g->postcode;
-            $r[] = $g->country;
-            $r[] = $g->tel_landline;
-            $r[] = $g->tel_mobile;
-            $r[] = $g->email;
-            $r[] = $g->vat_number;
+            $r[] = $this->jomres_encryption->decrypt($g->enc_firstname);
+            $r[] = $this->jomres_encryption->decrypt($g->enc_surname);
+            $r[] = $this->jomres_encryption->decrypt($g->enc_house);
+            $r[] = $this->jomres_encryption->decrypt($g->enc_street);
+            $r[] = $this->jomres_encryption->decrypt($g->enc_town);
+            $r[] = jomres_decode(find_region_name($this->jomres_encryption->decrypt($g->enc_county)));
+            $r[] = $this->jomres_encryption->decrypt($g->enc_postcode);
+            $r[] = $this->jomres_encryption->decrypt($g->enc_country);
+            $r[] = $this->jomres_encryption->decrypt($g->enc_tel_landline);
+            $r[] = $this->jomres_encryption->decrypt($g->enc_tel_mobile);
+            $r[] = $this->jomres_encryption->decrypt($g->enc_email);
+            $r[] = $this->jomres_encryption->decrypt($g->enc_vat_number);
             $r[] = $g->discount.'%';
             $r[] = $basic_property_details->property_names[$g->property_uid];
 

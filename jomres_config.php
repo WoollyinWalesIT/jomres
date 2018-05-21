@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.2
+ * @version Jomres 9.11.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -126,7 +126,7 @@ $mrConfig = array(
   'variable_deposit_threashold' => '60',
   'is_real_estate_listing' => '0',
   'property_currencycode' => 'EUR',
-  'prices_inclusive' => '0',
+  'prices_inclusive' => '1',
   'booking_form_rooms_list_style' => '2',
   'booking_form_daily_weekly_monthly' => 'D',
   'showRoomImageInBookingFormOverlib' => '2',

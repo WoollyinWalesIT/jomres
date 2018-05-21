@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.2
+ * @version Jomres 9.11.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -184,11 +184,11 @@ class j06000show_property_header
         //property contact details override
         if ((int) $jrConfig['override_property_contact_details'] == 1) {
             if ($jrConfig['override_property_contact_tel'] != '') {
-                $output[ 'TELEPHONE' ] = $jrConfig['override_property_contact_tel'];
+                $output[ 'TELEPHONE' ] = str_replace("&#38;#43;" , "+" , $jrConfig['override_property_contact_tel'] );
             }
 
             if ($jrConfig['override_property_contact_fax'] != '') {
-                $output[ 'FAX' ] = $jrConfig['override_property_contact_fax'];
+                $output[ 'FAX' ] = str_replace("&#38;#43;" , "+" , $jrConfig['override_property_contact_fax'] ); 
             }
         }
 

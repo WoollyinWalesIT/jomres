@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.2
+ * @version Jomres 9.11.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -107,7 +107,11 @@ class jomres_property_list_prices
 
                 //get departure date
                 if (isset($_REQUEST[ 'departureDate' ]) && $_REQUEST[ 'departureDate' ] != '') {
+					if ( $_REQUEST[ 'arrivalDate' ] != '' && $_REQUEST[ 'departureDate' ] == $_REQUEST[ 'arrivalDate' ] )  {
+						$_REQUEST[ 'departureDate' ] =JSCalmakeInputDates(date( "Y/m/d", strtotime( JSCalConvertInputDates( $_REQUEST[ 'arrivalDate' ])." +1 day" ) ));
+					}
                     $this->departureDate = JSCalConvertInputDates(jomresGetParam($_REQUEST, 'departureDate', ''));
+
                 } elseif (!empty($tmpBookingHandler->tmpsearch_data)) {
                     if (isset($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ]) && trim($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ]) != '') {
                         $this->departureDate = $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ];
@@ -270,6 +274,7 @@ class jomres_property_list_prices
                         $raw_price = -1;
                         $price_no_conversion = -1;
                     }
+
                     $this->lowest_prices[$property_uid] = array('PRE_TEXT' => $pre_text, 'PRICE' => $price, 'POST_TEXT' => $post_text, 'RAW_PRICE' => $raw_price, 'PRICE_NOCONVERSION' => $price_no_conversion, 'PRICE_CUMULATIVE' => $grand_total);
                 }
             }

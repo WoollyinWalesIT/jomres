@@ -166,6 +166,15 @@ function run_jomres_installer( $method = 'install' ) {
 	WP_Filesystem();
 	
 	global $wp_filesystem;
+	
+	//check disk space
+	$disk_free_space = free_space();
+
+	if ( $disk_free_space < 300 ) {
+		jomres_notice( 'There is not enough disk space available to download and extract Jomres.' );
+		
+		return false;
+	}
 
 	//get the latest jomres version download url
 	$url = 'http://updates.jomres4.net/getlatest.php?includebeta=true';
@@ -196,8 +205,9 @@ function run_jomres_installer( $method = 'install' ) {
 	$source = get_temp_dir() . 'jomres.zip';
 	$target = ABSPATH . JOMRES_ROOT_DIRECTORY;
 	
+	//check if /jomres dir is writable
 	if ( ! wp_is_writable( $target ) ) {
-		jomres_notice( 'Jomres dir is not writable.' );
+		jomres_notice( 'Jomres dir ' . $target . ' can`t be created or it`s not writable. Using FTP, create the directory manually then re-run the installer, many times this will solve the problem.' );
 		
 		return false;
 	}
@@ -276,4 +286,25 @@ function jomres_notice( $notice ) {
 		'<div class="notice notice-error is-dismissible"><p><strong>%s</strong></p></div>',
 		esc_html( $notice )
 	);
+}
+
+/**
+ * Get disk free space.
+ *
+ * Utility function to get the disk space available (in MB) to download and extract Jomres
+ *
+ * @since    9.10.3
+ */
+function free_space( $path = ABSPATH ) {
+	
+	$space = @disk_free_space( $path );
+	
+	if ( $space === false || is_null( $space ) ) {
+		return 0;
+	}
+	
+	//convert to MB
+	$space = round( $space / 1024 / 1024 );
+	
+	return $space;
 }

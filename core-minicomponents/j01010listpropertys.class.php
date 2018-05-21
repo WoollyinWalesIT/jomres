@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.2
+ * @version Jomres 9.11.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -529,7 +529,9 @@ class j01010listpropertys
 									$property_deets[ 'NIGHTS_TEXT' ] = jr_gettext('_JOMRES_PRICINGOUTPUT_NIGHTS', '_JOMRES_PRICINGOUTPUT_NIGHTS', false);
 								}
 							}
-
+							if ($stayDays == 0 ) {
+								$stayDays = 1;
+							}
 							$property_deets[ 'STAY_DAYS' ] = $stayDays;
 						} else {
 							$property_deets[ 'NIGHTS_TEXT' ] = '';
@@ -631,7 +633,7 @@ class j01010listpropertys
 
 					if ((int) $jrConfig['override_property_contact_details'] == 1) {
 						if ($jrConfig['override_property_contact_tel'] != '') {
-							$output[ 'TELEPHONE_NUMBER' ] = $jrConfig['override_property_contact_tel'];
+							$output[ 'TELEPHONE_NUMBER' ] = str_replace("&#38;#43;" , "+" , $jrConfig['override_property_contact_tel'] );
 						}
 					}
 
@@ -722,10 +724,24 @@ class j01010listpropertys
 
 					$jomres_media_centre_images->get_images($propertys_uid, array('property'));
 
-					$property_deets[ 'IMAGELARGE' ] = $jomres_media_centre_images->images['property'][0][0]['large'];
-					$property_deets[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images['property'][0][0]['medium'];
-					$property_deets[ 'IMAGETHUMB' ] = $jomres_media_centre_images->images['property'][0][0]['small'];
-
+					if (isset($jomres_media_centre_images->images['property'][0][0]['large'])) {
+						$property_deets[ 'IMAGELARGE' ] = $jomres_media_centre_images->images['property'][0][0]['large'];
+					} else {
+						$property_deets[ 'IMAGELARGE' ] = $jomres_media_centre_images->multi_query_images['noimage-large'];
+					}
+					
+					if (isset($jomres_media_centre_images->images['property'][0][0]['medium'])) {
+						$property_deets[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images['property'][0][0]['medium'];
+					} else {
+						$property_deets[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->multi_query_images['noimage-medium'];
+					}
+					
+					if (isset($jomres_media_centre_images->images['property'][0][0]['small'])) {
+						$property_deets[ 'IMAGETHUMB' ] = $jomres_media_centre_images->images['property'][0][0]['small'];
+					} else {
+						$property_deets[ 'IMAGETHUMB' ] = $jomres_media_centre_images->multi_query_images['noimage-small'];
+					}
+					
 					$MiniComponents->triggerEvent('01011', array('property_uid' => $propertys_uid)); // Optional
 					$mcOutput = $MiniComponents->getAllEventPointsData('01011');
 					if (!empty($mcOutput)) {

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.2
+ * @version Jomres 9.11.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -104,9 +104,14 @@ class j09995menu
 		if (!isset($jrConfig[ 'webhooks_core_show' ]))
 			$jrConfig[ 'webhooks_core_show' ] =1;
 		
-		if ($thisJRUser->accesslevel >= 1 && $jrConfig[ 'api_core_show' ] == '1') {
+		if ($thisJRUser->accesslevel >= 50 && $jrConfig[ 'api_core_show' ] == '1') {
 			$jomres_menu->add_item(10, jr_gettext('WEBHOOKS_CORE', 'WEBHOOKS_CORE', false), 'webhooks_core', 'fa-key');
 			$jomres_menu->add_item(10, jr_gettext('WEBHOOKS_DOCUMENTATION_TITLE', 'WEBHOOKS_DOCUMENTATION_TITLE', false), 'webhooks_core_documentation', 'fa-book');
+		}
+		
+		if ($jrConfig[ 'enable_gdpr_compliant_fucntionality' ] == "1" ) {
+			$jomres_menu->add_item(10, jr_gettext('_JOMRES_GDPR_APP_MENU_ITEM', '_JOMRES_GDPR_APP_MENU_ITEM', false), 'show_consent_form', 'fa-lock');
+			$jomres_menu->add_item(10, jr_gettext('_JOMRES_GDPR_MY_DATA', '_JOMRES_GDPR_MY_DATA', false), 'gdpr_my_data', 'fa-lock');
 		}
 		
 		//properties section menus

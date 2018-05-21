@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.10.2
+ * @version Jomres 9.11.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -56,6 +56,7 @@ class j19995menu
 		
 		//users section menus
 		$jomres_menu->add_admin_item(10, jr_gettext('_JOMRES_COM_MR_SHOWPROFILES', '_JOMRES_COM_MR_SHOWPROFILES', false), 'list_users', 'fa-user');
+		$jomres_menu->add_admin_item(10, jr_gettext('_JOMRES_HLIST_GUESTS_MENU', '_JOMRES_HLIST_GUESTS_MENU', false), 'list_guests', 'fa-list');
 		
 		//invoices section menus
 		if ($jrConfig[ 'use_commission' ] == '1' || $jrConfig[ 'useSubscriptions' ] == '1') {
@@ -79,8 +80,12 @@ class j19995menu
 		$jomres_menu->add_admin_item(70, jr_gettext('INTEGRITY_CHECK', 'INTEGRITY_CHECK', false), 'filesystem_integrity_check', 'fa-check-square-o');
 		$jomres_menu->add_admin_item(70, jr_gettext('DATABASE_INTEGRITY_CHECK', 'DATABASE_INTEGRITY_CHECK', false), 'database_integrity_check', 'fa-check-square-o');
 		$jomres_menu->add_admin_item(70, jr_gettext('OBSOLETE_FILES_CHECK', 'OBSOLETE_FILES_CHECK', false), 'obsolete_files_check', 'fa-check-square-o');
+		$jomres_menu->add_admin_item(70, jr_gettext('FIREWALL_CHECK', 'FIREWALL_CHECK', false), $task = 'firewall_check', 'fa-check-square-o');
 		$jomres_menu->add_admin_item(70, jr_gettext('JOMRES_COM_A_AVAILABLELOGS', 'JOMRES_COM_A_AVAILABLELOGS', false), 'list_error_logs', 'fa-exclamation-triangle');
 		$jomres_menu->add_admin_item(70, jr_gettext('_JOMRES_REGISTRYREBUILD', '_JOMRES_REGISTRYREBUILD', false), 'rebuildregistry', 'fa-refresh');
+		$jomres_menu->add_admin_item(70, jr_gettext('EMPTY_TEMP_DIR', 'EMPTY_TEMP_DIR', false), 'empty_temp_directory', 'fa-trash');
+		
+		
 		
         $template_packages = get_showtime('template_packages');
         if (!empty($template_packages)) { // There are some override packages installed, we can go ahead and show the override manager menu option
