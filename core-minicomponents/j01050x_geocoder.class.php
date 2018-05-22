@@ -105,6 +105,10 @@ class j01050x_geocoder
                 return;
             } // If we're editing it's ok to use the default data. If we're not, it isn't and it's best to simply not show the map at all
         }
+		
+		$output[ 'LAT' ] = str_replace( "&#45;" , "-"  , $output[ 'LAT' ] );
+		$output[ 'LONG' ] = str_replace( "&#45;" , "-"  , $output[ 'LONG' ] );
+
 
         if (!isset($jrConfig[ 'gmap_layer_transit' ])) {
             $jrConfig[ 'gmap_layer_transit' ] = '0';
