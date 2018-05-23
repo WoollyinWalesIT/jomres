@@ -43,12 +43,6 @@ if (!defined('JOMRES_API_CMS_ROOT')) {
 	$selectedProperty = $property_uid;
 }
 
-$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
-if ( !$jomres_gdpr_optin_consent->user_consents_to_storage() ) {
-	echo $consent_form = $MiniComponents->specificEvent('06000', 'show_consent_form' , array ('output_now' => false) );
-	return;
-}
-
 $remus = jomresGetParam($_REQUEST, 'remus', '');
 
 $thisdate = false;
@@ -706,6 +700,39 @@ function dobooking($selectedProperty, $thisdate, $remus)
         $output[ 'BOOTSTRAP_JS_VAR' ] = 'true';
     }
 
+	$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
+	if(!isset($_COOKIE['jomres_gdpr_consent_form_processed']) || $_COOKIE['jomres_gdpr_consent_form_processed'] == "0" ){
+		if ($jrConfig[ 'enable_gdpr_compliant_fucntionality' ] == "1" ) {
+			$consent_form = $MiniComponents->specificEvent('06000', 'show_consent_form' , array ('output_now' => false) );
+			$consent_output = array ("CONSENT_FORM" => $consent_form );
+			$consent_output['_JOMRES_GDPR_CONSENT_TRIGGER_FORM'] = jr_gettext('_JOMRES_GDPR_CONSENT_TRIGGER_FORM', '_JOMRES_GDPR_CONSENT_TRIGGER_FORM' , false );
+
+			$consent_pageoutput[] = $consent_output;
+			$tmpl = new patTemplate();
+			$tmpl->addRows('pageoutput', $consent_pageoutput);
+			$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+			$tmpl->readTemplatesFromInput('consent_form_wrapper.html');
+			echo $tmpl->getParsedTemplate();
+			echo "<script>jomresJquery('#consentForm').modal('show');</script>"; 
+		} else {
+			$jomres_gdpr_optin_consent->optedin = true;
+			$jomres_gdpr_optin_consent->set_user_id($thisJRUser->id);
+			$jomres_gdpr_optin_consent->save_record();
+		}
+	}
+	
+	jomres_cmsspecific_addheaddata('javascript', JOMRES_NODE_MODULES_RELPATH.'blockui-npm/', 'jquery.blockUI.js');
+	if ( !isset($_COOKIE['jomres_gdpr_consent_form_processed']) || !$_COOKIE['jomres_gdpr_consent_form_processed'] == "1" ) {
+		echo '<script>
+		jomresJquery(document).ready(function () {
+			jomresJquery(\'#booking_form\').block({ message: null }); 
+		});
+		</script>
+	';
+	}
+	
+
+		
     $pageoutput[ ] = $output;
 		$tmpl = new patTemplate();
 
