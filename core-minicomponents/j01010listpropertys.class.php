@@ -588,8 +588,8 @@ class j01010listpropertys
 
 					$property_deets[ 'PROPERTY_NAME_FULL' ] = $current_property_details->multi_query_result[ $propertys_uid ][ 'property_name' ];
 					 
-					$property_deets[ 'LAT' ] = $current_property_details->multi_query_result[ $propertys_uid ][ 'lat' ];
-					$property_deets[ 'LONG' ] = $current_property_details->multi_query_result[ $propertys_uid ][ 'long' ];
+					$property_deets[ 'LAT' ] = str_replace( "&#45;" , "-"  , $current_property_details->multi_query_result[ $propertys_uid ][ 'lat' ]);
+					$property_deets[ 'LONG' ] = str_replace( "&#45;" , "-"  , $current_property_details->multi_query_result[ $propertys_uid ][ 'long' ]);
 					
 					// Hiding property address
 					$property_deets[ 'PROP_STREET' ] = stripslashes($current_property_details->multi_query_result[ $propertys_uid ][ 'property_street' ]);
