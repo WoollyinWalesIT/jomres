@@ -122,6 +122,11 @@ class jomres_deferred_tasks
 
 		try {
 			$client = new GuzzleHttp\Client([
+				'headers' => [
+					'User-Agent' => 'Jomres/v1.0',
+					'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+					'Accept-Encoding' => 'gzip, deflate, br',
+				  ],
 				'verify' => false
 			]);
 
