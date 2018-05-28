@@ -142,8 +142,10 @@ class j06000handlereq
                 $country = $bkg->sanitiseInput('string', $country);
                 $bkg->setGuest_country($country);
                 $landline = $bkg->sanitiseInput('string', $landline);
+				$landline = str_replace( "&#38;#38;#43;", "&#43;", $landline ); // Plus symbols sent from the booking form will be mangled after being sent via ajax, so we need to unmangle them and clean them up as their correct entity before storage
                 $bkg->setGuest_tel_landline($landline);
                 $mobile = $bkg->sanitiseInput('string', $mobile);
+				$mobile = str_replace( "&#38;#38;#43;", "&#43;", $mobile ); // Plus symbols sent from the booking form will be mangled after being sent via ajax, so we need to unmangle them and clean them up as their correct entity before storage
                 $bkg->setGuest_tel_mobile($mobile);
                 $email = $bkg->sanitiseInput('string', $email);
                 $bkg->setGuest_email($email);
