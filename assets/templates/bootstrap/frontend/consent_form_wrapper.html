@@ -1,5 +1,26 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 
-{CONSENT_FORM}
+<style>
+.modal-dialog,
+.modal-content {
+    /* 80% of window height */
+    height: 80%;
+}
+
+.modal-body {
+    /* 100% = dialog height, 120px = header + footer */
+    max-height: calc(100% - 120px);
+    overflow-y: scroll;
+}
+</style>
+<div class="modal fade" tabindex="-1" role="dialog" id="consentForm" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+		{CONSENT_FORM}
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 </patTemplate:tmpl>
