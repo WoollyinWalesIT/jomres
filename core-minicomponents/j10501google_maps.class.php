@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.11.0
+ * @version Jomres 9.11.1
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -53,12 +53,12 @@ class j10501google_maps
         $configurationPanel->insertSetting();
 		
 		$configurationPanel->setleft(jr_gettext('_JOMRES_DEFAULT_LAT_STARTPOINT', '_JOMRES_DEFAULT_LAT_STARTPOINT', false));
-        $configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_default_lat" value="'.$jrConfig[ 'default_lat' ].'" />');
+        $configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_default_lat" value="'.str_replace( "&#38;#45;" , "-"  ,$jrConfig[ 'default_lat' ] ).'" />');
         $configurationPanel->setright(jr_gettext('_JOMRES_DEFAULT_LATLONGSTARTPOINT_DESC', '_JOMRES_DEFAULT_LATLONGSTARTPOINT_DESC', false));
         $configurationPanel->insertSetting();
 
         $configurationPanel->setleft(jr_gettext('_JOMRES_DEFAULT_LONG_STARTPOINT', '_JOMRES_DEFAULT_LONG_STARTPOINT', false));
-        $configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_default_long" value="'.$jrConfig[ 'default_long' ].'" />');
+        $configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_default_long" value="'.str_replace( "&#38;#45;" , "-"  ,$jrConfig[ 'default_long' ] ).'" />');
         $configurationPanel->setright();
         $configurationPanel->insertSetting();
 

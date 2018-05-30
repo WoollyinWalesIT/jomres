@@ -1,3 +1,12 @@
+<h3>Jomres 9.11.1 30/05/2018</h3>
+
+<span class="label label-warning">Change</span> Tweaked bs2 gdpr consent form so that it opens in a modal like bs3.
+<span class="label label-important label-danger">Fix</span> GDPR consent improved to trigger in booking form, removes consent bar. BlockUI used to disable the booking form until consent given.
+
+<span class="label label-important label-danger">Fix</span> Tweaked how lat/long details are found as new input filtering to defend against http://georgemauer.net/2017/10/07/csv-injection.html borks some lat/long settings in property details.
+<span class="label label-important label-danger">Fix</span> Added some str_replace's to unmangle + symbols that have been converted to html entities too early. Ensures that + symbols sent in the booking form are not listed as real + symbols in the guest list (csv threat for spreadsheets)
+<span class="label label-important label-danger">Fix</span> Added headers to Guzzle call to self when triggering deferred (asynchronous) tasks in Jomres. Recently beds24 users had reported that automatic notifications to Beds24 had not been being sent, but manual notifications had worked. Analysis of logs had shown error reports of 403 from the webserver, which we suspected was being returned by mod_security. It looks like a new mod_security rule has been introduced recently which has caused it. Setting the headers in Guzzle resolves it for at least one user.
+
 <h3>Jomres 9.11.0 21/05/2018</h3>
 
 <span class="label label-success">Feature</span> Jomres updated to be compliant with the GDPR

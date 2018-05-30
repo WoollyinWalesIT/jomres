@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.11.0
+ * @version Jomres 9.11.1
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -122,6 +122,11 @@ class jomres_deferred_tasks
 
 		try {
 			$client = new GuzzleHttp\Client([
+				'headers' => [
+					'User-Agent' => 'Jomres/v1.0',
+					'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+					'Accept-Encoding' => 'gzip, deflate, br',
+				  ],
 				'verify' => false
 			]);
 

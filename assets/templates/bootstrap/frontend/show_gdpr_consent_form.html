@@ -1,8 +1,8 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <div class="panel panel-default">
 	<div class="panel-body">
-		<div class="row">
-			<div class="col-md-12">
+		<div class="row-fluid">
+			<div class="span12">
 				<h2>{_JOMRES_GDPR_CONSENT_FORM_INTRO}</h2>
 			</div>
 		</div>
@@ -20,11 +20,11 @@
 		
 
 		
-		<div class="row">
-			<div class="col-md-2">
+		<div class="row-fluid">
+			<div class="span2">
 				<a href="{JOMRES_SITEPAGE_URL_AJAX}&task=save_gdpr_optin&optin=1&jr_redirect_url={RETURN_URL}&nofollowtmpl" class="btn btn-success btn-lg">{_JOMRES_COM_MR_YES}</a>
 			</div>
-			<div class="col-md-2">
+			<div class="span2">
 				<a href="{JOMRES_SITEPAGE_URL_AJAX}&task=save_gdpr_optin&optin=0&jr_redirect_url={RETURN_URL}&nofollowtmpl" class="btn btn-default btn-lg">{_JOMRES_COM_MR_NO}</a>
 			</div>
 		</div>
