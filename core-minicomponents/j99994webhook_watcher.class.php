@@ -29,6 +29,7 @@ class j99994webhook_watcher
 		$all_webhooks 	= array();
 
 		if ($property_uid == 0 ) {
+			logging::log_message("Webhook watcher. Property uid not found. Returning. " , 'Core', 'DEBUG'  );
 			return;
 		}
        
@@ -41,8 +42,13 @@ class j99994webhook_watcher
 		if (array_key_exists($property_uid,  $property_manager_xref)) {
 			$manager_id = (int)$property_manager_xref[ $property_uid ];
 		}
-
+		
+		if ( $manager_id == 0 ) { // The function will try to find the manager id for a property. If it cannot be found the function will return the first super property manager's id will be returned. It's a last-ditch attempt to find a manager's id for a property. In the case of Beds24 calls, if there are more than one super property manager, and if the the first super property manager isn't registered with Beds24 then bookings still will not be sent.
+			$manager_id = (int)find_manager_id_for_property_uid($property_uid);
+		}
+		
 		if ( $manager_id == 0 ) {
+			logging::log_message("Webhook watcher. Manager id cannot be found for property. Returning. " , 'Core', 'DEBUG'  );
 			return;
 		}
 		
@@ -77,6 +83,8 @@ class j99994webhook_watcher
                     $jomres_deferred_tasks->dispatch_mesage();
                 }
 			}
+		} else {
+			logging::log_message("No webhooks to be triggered " , 'Core', 'DEBUG'  );
 		}
     }
 
