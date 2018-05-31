@@ -37,12 +37,12 @@ class vat_number_validation
             case 'guest_registered_byguest_id':
                     $id = $arguments['guest_id'];
                     $property_uid = $arguments['property_uid'];
-                    $query = 'SELECT `enc_vat_number`,`vat_number_validated`,`country`,`vat_number_validation_response` FROM #__jomres_guests WHERE guests_uid = '.(int) $id.' AND property_uid = '.(int) $property_uid.' LIMIT 1';
+                    $query = 'SELECT `enc_vat_number`,`vat_number_validated`,`enc_country`,`vat_number_validation_response` FROM #__jomres_guests WHERE guests_uid = '.(int) $id.' AND property_uid = '.(int) $property_uid.' LIMIT 1';
                     $result = doSelectSql($query, 2);
                     if (!empty($result)) {
                         $this->vat_number = $this->jomres_encryption->decrypt($result[ 'enc_vat_number' ]);
                         $this->vat_number_validated = $result[ 'vat_number_validated' ];
-                        $this->country = $result[ 'country' ];
+                        $this->country = $this->jomres_encryption->decrypt($result[ 'enc_country' ]);
                         $this->vat_number_validation_response = $result[ 'vat_number_validation_response' ];
                     } else {
                         $this->vat_number = '';
@@ -54,12 +54,12 @@ class vat_number_validation
 
             case 'buyer_registered_byprofile_id':
                     $id = $arguments['profile_id'];
-                    $query = 'SELECT `enc_vat_number`,`vat_number_validated`,`country`,`vat_number_validation_response` FROM #__jomres_guest_profile WHERE cms_user_id = '.(int) $id.' LIMIT 1';
+                    $query = 'SELECT `enc_vat_number`,`vat_number_validated`,`enc_country`,`vat_number_validation_response` FROM #__jomres_guest_profile WHERE cms_user_id = '.(int) $id.' LIMIT 1';
                     $result = doSelectSql($query, 2);
                     if (!empty($result)) {
                         $this->vat_number = $this->jomres_encryption->decrypt($result[ 'enc_vat_number' ]);
                         $this->vat_number_validated = $result[ 'vat_number_validated' ];
-                        $this->country = $result[ 'country' ];
+                        $this->country = $this->jomres_encryption->decrypt($result[ 'enc_country' ]);
                         $this->vat_number_validation_response = $result[ 'vat_number_validation_response' ];
                     } else {
                         $this->vat_number = '';
