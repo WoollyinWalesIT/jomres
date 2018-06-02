@@ -165,6 +165,7 @@ class j06000show_property_reviews
 				}
 			}
 
+			jr_import('jomres_encryption');
 			$this->jomres_encryption = new jomres_encryption();
 			
             $review_details = $itemReviews[ 'rating_details' ];
