@@ -67,7 +67,11 @@ class j06000media_centre_handler
 
         $resource_type = jomresGetParam($_REQUEST, 'resource_type', '');
         $resource_id = jomresGetParam($_REQUEST, 'resource_id', '0');
-
+		
+		if ($resource_id == 'undefined' ) {
+			$resource_id = 0;
+		}
+		
 		//if resource type is empty, return
 		if ($resource_type == '')
 			return;
