@@ -120,6 +120,15 @@ Menu sections (Frontend)
 * 80 : Settings
 * 90 : Help
 
+Menu Access Levels (Frontend)
+
+* 0  : unregistered
+* 1  : registered
+* 50 : receptionist
+* 70 : property manager
+* 90 : super property manager
+
+
 Menu sections (Administrator)
 
 * 1 :Dashboard
