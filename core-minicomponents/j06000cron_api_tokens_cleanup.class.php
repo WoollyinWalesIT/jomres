@@ -16,28 +16,23 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j06000cron_api_tokens_cleanup
 {
-    public function __construct()
-    {
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
-        $jomresConfig_secret = get_showtime('secret');
-        $secret = base64_decode($_REQUEST['secret']);
-
-        if ($secret == $jomresConfig_secret) {
-            $query = "DELETE FROM #__jomres_oauth_access_tokens WHERE `expires` <= DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 DAY)";
-			doInsertSql($query, '');
-        }  else {
-			logging::log_message('Cron job called but secret incorrect', 'Core', 'WARNING');
+			return;
 		}
-    }
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+			$query = "DELETE FROM #__jomres_oauth_access_tokens WHERE `expires` <= DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 DAY)";
+			doInsertSql($query, '');
+
+	}
+
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

@@ -816,9 +816,9 @@ jr_define('_JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT_DESC','Som standard vil det
 jr_define('_JOMRES_COM_A_CRON_TITLE','Cron jobb innstillinger og logger');
 jr_define('_JOMRES_COM_A_CRON_DESC','Pseudocron jobb-informasjon. Den pseudocrone funksjonaliteten trengs av fakturerings- og kommisjonshåndteringen.');
 jr_define('_JOMRES_COM_A_CRON_IMMEDIATERUN','Installerte cron minikomponenter. For å kjøre en individuell cron-jobb, bruk linkene under. Merk at en cron-jobb ikke genererer noen resultater, så du vil ikke se noe informasjon på siden. Referér til jobb-loggen under i stedet.');
-global $jomresConfig_secret;
+
 jr_define('_JOMRES_COM_A_CRON_METHOD','Metode');
-jr_define('_JOMRES_COM_A_CRON_METHOD_DESC',"Hvis du ikke har tilgang til cron-jobber, sett denne til Minikomponent. Hvis ikke, lag en cron-jobb og be den kjøre <br /> <i>curl -s ".JOMRES_SITEPAGE_URL_AJAX."&task=cronjobs&tmpl=component&no_html=1&secret=".$jomresConfig_secret."> /dev/null</i> ");
+jr_define('_JOMRES_COM_A_CRON_METHOD_DESC',"Hvis du ikke har tilgang til cron-jobber, sett denne til Minikomponent. Hvis ikke, lag en cron-jobb og be den kjøre <br /> <i>curl -s ".JOMRES_SITEPAGE_URL_AJAX."&task=cronjobs&tmpl=component&no_html=1> /dev/null</i> ");
 jr_define('_JOMRES_COM_TEMPLATEEDITING_TITLE','Endre mal');
 jr_define('_JOMRES_COM_CUSTOMFIELDS_TITLE','Tilpassede felt');
 jr_define('_JOMRES_COM_CUSTOMFIELDS_DESC','Her kan du definere enkle tilpassede felt som du kan vise i bestillingsskjemaet.');

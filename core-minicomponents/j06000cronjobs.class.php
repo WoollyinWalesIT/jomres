@@ -16,33 +16,28 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j06000cronjobs
 {
-    public function __construct()
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
-
-        $jomresConfig_secret = get_showtime('secret');
-        $secret = base64_decode(jomresGetParam($_REQUEST, 'secret', ''));
-
-        if ($secret == $jomresConfig_secret) {
-            jr_import('jomres_cron');
-            $cron = new jomres_cron();
-            if ($cron->method == 'Cron') {
-                $cron->triggerJobs();
-            }
-        }  else {
-			logging::log_message('Cron job called but secret incorrect', 'Core', 'WARNING' );
+			return;
 		}
-    }
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+
+			jr_import('jomres_cron');
+			$cron = new jomres_cron();
+			if ($cron->method == 'Cron') {
+				$cron->triggerJobs();
+			}
+
+	}
+
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

@@ -866,9 +866,9 @@ jr_define('_JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT_DESC', 'Per Voreinstellung 
 jr_define('_JOMRES_COM_A_CRON_TITLE', 'Cronjob Einstellungen und Logs');
 jr_define('_JOMRES_COM_A_CRON_DESC', 'Pseudocron-Job Information. Die Pseudocron Funktionalität wird zur Rechnungsstellung und Provisionsberechnung benötigt.');
 jr_define('_JOMRES_COM_A_CRON_IMMEDIATERUN', 'Installierte cron Minicomponenten. Zum Start eines individuellen cron job einen der unten spezifizierten Links benützen. Die cron jobs produzieren keinerlei Ausgaben und es sind keine Informationen auf der Seite sichtbar. In den unten stehenden logs können die Daten überprüft werden.');
-global $jomresConfig_secret;
+
 jr_define('_JOMRES_COM_A_CRON_METHOD', 'Methode');
-jr_define('_JOMRES_COM_A_CRON_METHOD_DESC', 'Falls Sie keine Cronjobs auf dem Server ausführen können auf Minikomponente stellen, andernfalls erstellen Sie einen Cronjob und geben Sie folgendes an:<br /> <i>curl -s '.JOMRES_SITEPAGE_URL_AJAX.'&task=cronjobs&tmpl=".get_showtime("tmplcomponent")."&no_html=1&secret='.base64_encode(get_showtime('secret')).'> /dev/null</i> ');
+jr_define('_JOMRES_COM_A_CRON_METHOD_DESC', 'Falls Sie keine Cronjobs auf dem Server ausführen können auf Minikomponente stellen, andernfalls erstellen Sie einen Cronjob und geben Sie folgendes an:<br /> <i>curl -s '.JOMRES_SITEPAGE_URL_AJAX.'&task=cronjobs&tmpl=".get_showtime("tmplcomponent")."&no_html=1> /dev/null</i> ');
 jr_define('_JOMRES_COM_A_CRON_LOGGING', 'Zeige logging im Browser');
 jr_define('_JOMRES_COM_A_CRON_LOGGING_DESC', 'Funktioniert nur, wenn auf Minikomponente gestellt ist.');
 jr_define('_JOMRES_COM_A_CRON_LOGGINGENABLED', 'Logging aktiviert');

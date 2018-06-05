@@ -802,9 +802,9 @@ jr_define('_JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT_DESC', 'Ve výchozím nasta
 jr_define('_JOMRES_COM_A_CRON_TITLE', 'Nastavení a logy procesu Cron');
 jr_define('_JOMRES_COM_A_CRON_DESC', 'Inforamce o úloze Cron. Tato úloha je nezbytná pro funkčnost fakturace a zúčtování provizí');
 jr_define('_JOMRES_COM_A_CRON_IMMEDIATERUN', 'Intalované minikomponenty úlohy Cron. Ke spuštění dané úlohy použijte příslušný odkaz. Uvědomte si, že úloha nebude mít žádný výstup na obrazovku a nebudete tím pádem mít žádnou zpětnou vazbu. Místo toho nahlédněte do log souboru níže.');
-global $jomresConfig_secret;
+
 jr_define('_JOMRES_COM_A_CRON_METHOD', 'Metoda');
-jr_define('_JOMRES_COM_A_CRON_METHOD_DESC', 'Jestliže nemáte přístup k procesu Cron, nastavte tuto minikomponentu. Jinak vytvřte Cron úlohu a jako parametr ke spuštění zadejte <br /> <i>curl -s '.JOMRES_SITEPAGE_URL_AJAX.'&task=cronjobs&tmpl='.get_showtime('tmplcomponent').'&no_html=1&secret='.base64_encode(get_showtime('secret')).'> /dev/null</i> ');
+jr_define('_JOMRES_COM_A_CRON_METHOD_DESC', 'Jestliže nemáte přístup k procesu Cron, nastavte tuto minikomponentu. Jinak vytvřte Cron úlohu a jako parametr ke spuštění zadejte <br /> <i>curl -s '.JOMRES_SITEPAGE_URL_AJAX.'&task=cronjobs&tmpl='.get_showtime('tmplcomponent').'&no_html=1> /dev/null</i> ');
 jr_define('_JOMRES_COM_A_CRON_LOGGING', 'Zobrazit logy v prohlížeči');
 jr_define('_JOMRES_COM_A_CRON_LOGGING_DESC', 'Pracuje pouze, pokud je metoda nastavena na minikomponentu.');
 jr_define('_JOMRES_COM_A_CRON_LOGGINGENABLED', 'Záznam logu povolen');

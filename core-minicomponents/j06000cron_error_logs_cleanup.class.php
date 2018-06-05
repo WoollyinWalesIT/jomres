@@ -16,20 +16,18 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j06000cron_error_logs_cleanup
 {
-    public function __construct()
-    {
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
-        $jomresConfig_secret = get_showtime('secret');
-        $secret = base64_decode($_REQUEST['secret']);
+			return;
+		}
+
 		
 		$maxFileSize = 1024 * 1024;
 
-        if ($secret == $jomresConfig_secret) {
 			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 			$jrConfig = $siteConfig->get();
 			
@@ -43,10 +41,10 @@ class j06000cron_error_logs_cleanup
 			
 			$log_path = $jrConfig['log_path'];
 
-            $files = scandir_getfiles($log_path);
+			$files = scandir_getfiles($log_path);
 
-            if (!empty($files)) {
-                foreach ($files as $f) {
+			if (!empty($files)) {
+				foreach ($files as $f) {
 					
 					//zip logs bigger than 1MB
 					$bang = explode('.', $f);
@@ -64,19 +62,16 @@ class j06000cron_error_logs_cleanup
 					}
 					
 					//delete files older than a month
-                    if ($f != '.htaccess' && $f != 'web.config' && time() - filemtime($log_path.$f) >= 30 * 24 * 60 * 60) { // 30 days
-                        unlink($log_path.$f);
-                    }
-                }
-            }
-        }  else {
-			logging::log_message('Cron job called but secret incorrect', 'Core', 'WARNING');
-		}
-    }
+					if ($f != '.htaccess' && $f != 'web.config' && time() - filemtime($log_path.$f) >= 30 * 24 * 60 * 60) { // 30 days
+						unlink($log_path.$f);
+					}
+				}
+			}
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

@@ -16,18 +16,15 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j06000cron_gdpr_cleanup
 {
-    public function __construct()
-    {
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
-        $jomresConfig_secret = get_showtime('secret');
-        $secret = base64_decode($_REQUEST['secret']);
+			return;
+		}
 
-        if ($secret == $jomresConfig_secret) {
 			
 			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 			$jrConfig = $siteConfig->get();
@@ -57,14 +54,12 @@ class j06000cron_gdpr_cleanup
 					}
 				}
 			}
-        }  else {
-			logging::log_message('Cron job called but secret incorrect', 'Core', 'WARNING');
-		}
-    }
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	}
+
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

@@ -830,7 +830,7 @@ jr_define('_JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT_DESC', 'Описание с
 jr_define('_JOMRES_COM_A_CRON_TITLE', 'Cron наименование');
 jr_define('_JOMRES_COM_A_CRON_DESC', 'Описание');
 jr_define('_JOMRES_COM_A_CRON_IMMEDIATERUN', 'Мгновенный запуск');
-global $jomresConfig_secret;
+
 jr_define('_JOMRES_COM_A_CRON_METHOD', 'Способ');
 jr_define('_JOMRES_COM_A_CRON_METHOD_DESC', 'Описание');
 jr_define('_JOMRES_COM_A_CRON_LOGGING', 'Отображение журнала в браузере');
