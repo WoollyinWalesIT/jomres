@@ -116,7 +116,7 @@ class j19997menu
             $pageoutput[ ] = $output;
             $tmpl = new patTemplate();
             $tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
-			if (this_cms_is_joomla()) {
+			if (this_cms_is_joomla() && _JOMRES_DETECTED_CMS == 'joomla3' ) {
 				$tmpl->readTemplatesFromInput('control_panel_menu_options_vertical.html');
 			} else {
 				$tmpl->readTemplatesFromInput('control_panel_menu_options_horizontal.html');
@@ -128,7 +128,8 @@ class j19997menu
 		
 		$tmpl = new patTemplate();
         $tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
-		if (this_cms_is_joomla()) {
+		
+		if (this_cms_is_joomla() && _JOMRES_DETECTED_CMS == 'joomla3') {
 			$tmpl->readTemplatesFromInput('control_panel_menu_wrapper_vertical.html');
 		} else {
 			$tmpl->readTemplatesFromInput('control_panel_menu_wrapper_horizontal.html');

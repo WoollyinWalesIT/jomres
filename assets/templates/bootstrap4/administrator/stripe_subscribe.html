@@ -67,13 +67,13 @@
 						<div class="cols-sm-10">
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
-								<input v-model="email" class="form-control span6" type="email" placeholder="Email (required)">
+								<input v-model="email" class="form-control col-md-6" type="email" placeholder="Email (required)">
 							</div>
 						</div>
 					</div>
 				
 					<div class="row">
-						<div class="span12">
+						<div class="col-md-12">
 							<div id="warning" v-bind:class="{ 'alert-success': this.isSuccessful, 'alert-danger': this.isError }">
 								{{log}}
 							</div>
@@ -81,7 +81,7 @@
 					</div>
 					
 					<div class="row">
-						<div class="span12">
+						<div class="col-md-12">
 							<button class="btn btn-primary btn-block" type="submit">Sign up - it's free</button>
 						</div>
 					</div>

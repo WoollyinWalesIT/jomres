@@ -137,6 +137,7 @@ try {
         $pageoutput[ ] = $output;
         $tmpl = new patTemplate();
         $tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
+
 		if (_JOMRES_DETECTED_CMS == 'joomla3') {
 			$tmpl->readTemplatesFromInput('administrator_content_area_top_vertical.html');
 		} else {
