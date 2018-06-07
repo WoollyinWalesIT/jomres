@@ -41,7 +41,7 @@ class j06001listguests_ajax
         $rows = array();
 
         //set the table coulmns, in the exact orcer in which they`re displayed in the table
-        $aColumns = array('a.guests_uid', 'a.guests_uid', 'a.firstname', 'a.surname', 'a.house', 'a.street', 'a.town', 'a.county', 'a.postcode', 'a.country', 'a.tel_landline', 'a.tel_mobile', 'a.email', 'a.vat_number', 'a.discount', 'a.property_uid');
+        $aColumns = array('a.guests_uid', 'a.guests_uid', 'a.enc_firstname', 'a.enc_surname', 'a.enc_house', 'a.enc_street', 'a.enc_town', 'a.enc_county', 'a.enc_postcode', 'a.enc_country', 'a.enc_tel_landline', 'a.enc_tel_mobile', 'a.enc_email', 'a.enc_vat_number', 'a.discount', 'a.property_uid');
 
         //set columns count
 		$n = count($aColumns);
