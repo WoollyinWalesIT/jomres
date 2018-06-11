@@ -4260,6 +4260,21 @@ function suhosin_get_max_vars_test()
 }
 
 /**
+ * Check to ensure that ZipArchive is installed in PHP
+ */
+function ziparchive_test()
+{
+    $response = '';
+
+    if (!class_exists('ZipArchive')) {
+        $highlight = (using_bootstrap() ? 'alert alert-error alert-danger' : 'ui-state-highlight');
+        $response = "<div class='".$highlight."'>The PHP library ZipArchive is not available, therefore you will not be able to install any plugins. Please contact your hosts for more information about installing the ZipArchive library.</div>";
+    }
+
+    return $response;
+}
+
+/**
  * Check that the google maps api key has been set
  */
 function gmaps_apikey_check()
