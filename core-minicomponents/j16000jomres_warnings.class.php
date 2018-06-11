@@ -52,6 +52,10 @@ class j16000jomres_warnings
         //max get vars set to 512 or less warning for datatables
         $output[ 'SUHOSIN_GET_MAX_VARS_CHECK' ] = suhosin_get_max_vars_test();
 
+		// Test for ZipArchive
+		$output[ 'ZIPARCHIVE_CHECK' ] = ziparchive_test();
+		
+		
         //license key not entered warning
 		/* $output[ 'JOMRES_PRODUCT_INFORMATION' ] = '';
 		$output[ 'JOMRES_PRODUCT_INFORMATION2' ] = '';

@@ -27,9 +27,12 @@ class j99994webhook_watcher
         $property_uid 	= (int)get_showtime("property_uid");
 		$manager_id 	= 0;
 		$all_webhooks 	= array();
+		
+		logging::log_message("Webhook watcher start." , 'Webhooks', 'DEBUG'  );
+		
 
 		if ($property_uid == 0 ) {
-			logging::log_message("Webhook watcher. Property uid not found. Returning. " , 'Core', 'DEBUG'  );
+			logging::log_message("Webhook watcher. Property uid not found. Returning. " , 'Webhooks', 'DEBUG'  );
 			return;
 		}
        
@@ -48,7 +51,7 @@ class j99994webhook_watcher
 		}
 		
 		if ( $manager_id == 0 ) {
-			logging::log_message("Webhook watcher. Manager id cannot be found for property. Returning. " , 'Core', 'DEBUG'  );
+			logging::log_message("Webhook watcher. Manager id cannot be found for property. Returning. " , 'Webhooks', 'DEBUG'  );
 			return;
 		}
 		
@@ -60,10 +63,9 @@ class j99994webhook_watcher
 		if (is_array($webhook_messages)) {
 			$webhook_messages = array_unique( $webhook_messages, SORT_REGULAR ); // Remove duplicate objects
 		}
-		
         
 		if (!empty($all_webhooks) && !empty($webhook_messages) ) {
-            logging::log_message("Preparing deferred messages " , 'Core', 'DEBUG'  );
+            logging::log_message("Preparing deferred messages " , 'Webhooks', 'DEBUG'  );
 			foreach ( $all_webhooks as $webhook ) {
                 $webhook['webhook_messages'] = $webhook_messages;
                 if ($webhook['enabled'] == true ) {
@@ -84,7 +86,7 @@ class j99994webhook_watcher
                 }
 			}
 		} else {
-			logging::log_message("No webhooks to be triggered " , 'Core', 'DEBUG'  );
+			logging::log_message("No webhooks to be triggered " , 'Webhooks', 'DEBUG'  );
 		}
     }
 
