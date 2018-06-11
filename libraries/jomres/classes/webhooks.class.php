@@ -16,16 +16,13 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class webhooks 
 {
-    public function __construct( $manager_id ) {
-        if ( (int)$manager_id == 0 )
-            throw new Exception('Error: Incorrect manager id used when setting webhooks object');
-        
+    public function __construct( $manager_id = 0) {
         $this->manager_id = (int)$manager_id;
         $this->webhooks     = array();
     }
 
     public function get_all_webhooks(){
-        $query = 'SELECT `id`, `manager_id` , `settings` , `enabled` FROM #__jomres_webhooks_integrations WHERE manager_id = '.(int)$this->manager_id;
+        $query = 'SELECT `id`, `manager_id` , `settings` , `enabled` FROM #__jomres_webhooks_integrations WHERE manager_id = '.(int)$this->manager_id.' OR manager_id = 0';
         $result = doSelectSql($query );
         if ( !empty($result) ){
             foreach ($result as $r) {
