@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.11.1
+ * @version Jomres 9.11.2
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -809,7 +809,7 @@ jr_define('_JOMRES_COM_A_CRON_TITLE', 'Cron işi ayarları ve günlükleri');
 jr_define('_JOMRES_COM_A_CRON_DESC', 'Pseudocron iş bilgisi, pseudocron işlevselliğine faturalandırma ve komisyon kullanımı gereklidir.');
 jr_define('_JOMRES_COM_A_CRON_IMMEDIATERUN', 'Yüklü cron minik bileşenleri .Bireysel bir cron işi çalıştırmak için aşağıda belirtilen bağlantıları kullanın: cron işlerinin herhangi bir çıktı üretmediğini unutmayın, bu nedenle sayfadaki hiçbir bilgiyi görmezsiniz. İş Günlüğünü yazın.');
 jr_define('_JOMRES_COM_A_CRON_METHOD', 'Yöntem');
-jr_define('_JOMRES_COM_A_CRON_METHOD_DESC', 'Cron Jobs\'a erişiminiz yoksa, bunu Minicomponent olarak ayarlayın, ya da bir cron job oluşturup <br /> <i>curl -s '.JOMRES_SITEPAGE_URL_AJAX.'&task=cronjobs&tmpl='.get_showtime('tmplcomponent').'&no_html=1&secret='.base64_encode(get_showtime('secret')).'> /dev/null</i>  dosyasını çalıştırmasını sağlayın');
+jr_define('_JOMRES_COM_A_CRON_METHOD_DESC', 'Cron Jobs\'a erişiminiz yoksa, bunu Minicomponent olarak ayarlayın, ya da bir cron job oluşturup <br /> <i>curl -s '.JOMRES_SITEPAGE_URL_AJAX.'&task=cronjobs&tmpl='.get_showtime('tmplcomponent').'&no_html=1> /dev/null</i>  dosyasını çalıştırmasını sağlayın');
 jr_define('_JOMRES_COM_A_CRON_LOGGING', 'Tarayıcıda günlüğü göster');
 jr_define('_JOMRES_COM_A_CRON_LOGGING_DESC', 'Sadece Minicomponent modunda çalışır.');
 jr_define('_JOMRES_COM_A_CRON_LOGGINGENABLED', 'Günlükleme etkin');

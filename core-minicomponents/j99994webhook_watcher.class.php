@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.11.1
+ * @version Jomres 9.11.2
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -27,8 +27,12 @@ class j99994webhook_watcher
         $property_uid 	= (int)get_showtime("property_uid");
 		$manager_id 	= 0;
 		$all_webhooks 	= array();
+		
+		logging::log_message("Webhook watcher start." , 'Webhooks', 'DEBUG'  );
+		
 
 		if ($property_uid == 0 ) {
+			logging::log_message("Webhook watcher. Property uid not found. Returning. " , 'Webhooks', 'DEBUG'  );
 			return;
 		}
        
@@ -41,8 +45,13 @@ class j99994webhook_watcher
 		if (array_key_exists($property_uid,  $property_manager_xref)) {
 			$manager_id = (int)$property_manager_xref[ $property_uid ];
 		}
-
+		
+		if ( $manager_id == 0 ) { // The function will try to find the manager id for a property. If it cannot be found the function will return the first super property manager's id will be returned. It's a last-ditch attempt to find a manager's id for a property. In the case of Beds24 calls, if there are more than one super property manager, and if the the first super property manager isn't registered with Beds24 then bookings still will not be sent.
+			$manager_id = (int)find_manager_id_for_property_uid($property_uid);
+		}
+		
 		if ( $manager_id == 0 ) {
+			logging::log_message("Webhook watcher. Manager id cannot be found for property. Returning. " , 'Webhooks', 'DEBUG'  );
 			return;
 		}
 		
@@ -54,10 +63,9 @@ class j99994webhook_watcher
 		if (is_array($webhook_messages)) {
 			$webhook_messages = array_unique( $webhook_messages, SORT_REGULAR ); // Remove duplicate objects
 		}
-		
         
 		if (!empty($all_webhooks) && !empty($webhook_messages) ) {
-            logging::log_message("Preparing deferred messages " , 'Core', 'DEBUG'  );
+            logging::log_message("Preparing deferred messages " , 'Webhooks', 'DEBUG'  );
 			foreach ( $all_webhooks as $webhook ) {
                 $webhook['webhook_messages'] = $webhook_messages;
                 if ($webhook['enabled'] == true ) {
@@ -77,6 +85,8 @@ class j99994webhook_watcher
                     $jomres_deferred_tasks->dispatch_mesage();
                 }
 			}
+		} else {
+			logging::log_message("No webhooks to be triggered " , 'Webhooks', 'DEBUG'  );
 		}
     }
 

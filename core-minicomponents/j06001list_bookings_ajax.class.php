@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.11.1
+ * @version Jomres 9.11.2
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -52,7 +52,7 @@ class j06001list_bookings_ajax
         $rows = array();
 
         //set the table coulmns, in the exact orcer in which they`re displayed in the table
-        $aColumns = array('a.contract_uid', 'a.contract_uid', 'a.tag', 'a.property_uid', 'a.arrival', 'a.departure', 'b.firstname', 'b.surname', 'b.tel_landline', 'b.tel_mobile', 'b.email', 'a.contract_total', 'a.deposit_required', 'a.deposit_paid', 'a.special_reqs', 'a.invoice_uid', 'a.timestamp', 'a.last_changed', 'a.approved', 'a.username');
+		$aColumns = array('a.contract_uid', 'a.contract_uid', 'a.tag', 'a.property_uid', 'a.arrival', 'a.departure', 'b.enc_firstname', 'b.enc_surname', 'b.enc_tel_landline', 'b.enc_tel_mobile', 'b.enc_email', 'a.contract_total', 'a.deposit_required', 'a.deposit_paid', 'a.special_reqs', 'a.invoice_uid', 'a.timestamp', 'a.last_changed', 'a.approved', 'a.username');
 
         //set columns count
 		$n = count($aColumns);

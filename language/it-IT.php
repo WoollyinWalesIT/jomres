@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.11.1
+ * @version Jomres 9.11.2
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -841,9 +841,9 @@ jr_define('_JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT_DESC', 'Come default, se un
 jr_define('_JOMRES_COM_A_CRON_TITLE', 'Impostazioni Cron job e logs');
 jr_define('_JOMRES_COM_A_CRON_DESC', 'Informazioni Pseudocron job. La funzionalita pseudocron e richiesta per invio pagamenti e gestione commissioni.');
 jr_define('_JOMRES_COM_A_CRON_IMMEDIATERUN', 'Minicomponenti cron installati. Per eseguire un cron job individuale usa il link specificato sotto. Nota che i cron jobs non producono nessun output quindi non vedrai nessuna informazione sulla pagina. Fanno riferimento invece al log dei job sotto.');
-global $jomresConfig_secret;
+
 jr_define('_JOMRES_COM_A_CRON_METHOD', 'Metodo');
-jr_define('_JOMRES_COM_A_CRON_METHOD_DESC', 'Se non hai accesso ai cron jobs, Imposta questo come Minicomponente, altrimenti crea un cron job e fallo girare<br /> <i>curl -s http://'.JOMRES_SITEPAGE_URL_ADMIN.'&task=cronjobs&no_html=1&secret='.base64_encode(get_showtime('secret')).'> /dev/null</i> ');
+jr_define('_JOMRES_COM_A_CRON_METHOD_DESC', 'Se non hai accesso ai cron jobs, Imposta questo come Minicomponente, altrimenti crea un cron job e fallo girare<br /> <i>curl -s http://'.JOMRES_SITEPAGE_URL_ADMIN.'&task=cronjobs&no_html=1> /dev/null</i> ');
 jr_define('_JOMRES_COM_A_CRON_LOGGING', 'Visualizza logging sul browser');
 jr_define('_JOMRES_COM_A_CRON_LOGGING_DESC', 'Funziona solo se il metodo &egrave; impostato su Minicomponente.');
 jr_define('_JOMRES_COM_A_CRON_LOGGINGENABLED', 'Logging abilitato');

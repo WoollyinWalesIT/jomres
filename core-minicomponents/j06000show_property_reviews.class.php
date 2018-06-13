@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.11.1
+ * @version Jomres 9.11.2
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -142,31 +142,21 @@ class j06000show_property_reviews
         if ($itemReviews[ 'totalRows' ] > 0) {
             $output[ 'AVERAGE_RATING' ] = number_format($itemRating[ 'avg_rating' ], 1, '.', '');
             $output[ 'NUMBER_OF_REVIEWS' ] = $itemRating[ 'counter' ];
-            $site_userids = jomres_cmsspecific_getCMSUsers();
 
-			$ids = array();
-			foreach ( $site_userids as $user_id => $user ) {
-				if ($user_id > 0 ) {
-					$ids[] = (int)$user_id ;
-				}
-				
-			}
-			
 			$guest_names = array();
 			
-			if (!empty($ids)) {
-				
-				$query = "SELECT mos_userid , enc_firstname , enc_surname FROM #__jomres_guests WHERE mos_userid IN  (" .jomres_implode($ids).")";
-				$guest_details = doSelectSql($query);
-				if (!empty($guest_details)) {
-					foreach ($guest_details as $guest ) {
-						$guest_names[$guest->mos_userid] = array ("enc_firstname" =>$guest->enc_firstname , "enc_surname" =>$guest->enc_surname );
-					}
+			$query = "SELECT enc_firstname , enc_surname , cms_user_id FROM #__jomres_guest_profile";
+			$guest_details = doSelectSql($query);
+
+			if (!empty($guest_details)) {
+				foreach ($guest_details as $guest ) {
+					$guest_names[$guest->cms_user_id] = array ("enc_firstname" =>$guest->enc_firstname , "enc_surname" =>$guest->enc_surname );
 				}
 			}
 
+			jr_import('jomres_encryption');
 			$this->jomres_encryption = new jomres_encryption();
-			
+
             $review_details = $itemReviews[ 'rating_details' ];
 
             foreach ($itemReviews[ 'fields' ] as $review) {
@@ -185,12 +175,9 @@ class j06000show_property_reviews
 
                 $r[ 'RATING_ID' ] = $review[ 'rating_id' ];
 
-				$r[ 'USERNAME' ] = '';
-				
+
 				if (isset($guest_names[ $review[ 'user_id' ] ])) {
 					$guest_deets = $guest_names[ $review[ 'user_id' ] ];
-					
-					$r[ 'USERNAME' ] = $site_userids[ $review[ 'user_id' ] ][ 'username' ];
 					
 					$r['REVIEWER_FIRSTNAME'] = $this->jomres_encryption->decrypt($guest_deets['enc_firstname']);
 					$r['REVIEWER_SURNAME'] = $this->jomres_encryption->decrypt($guest_deets['enc_surname']);

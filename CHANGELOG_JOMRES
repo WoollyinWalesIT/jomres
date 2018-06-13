@@ -1,3 +1,21 @@
+<h3>Jomres 9.11.2 13/06/2018</h3>
+
+<span class="label label-warning">Change</span> Added code to the webhook watcher script to try to find a super property manager's id if we cannot find a normal manager's id for a property.
+<span class="label label-warning">Change</span> Changed how we find a reviewer's name so that manager created reviews (which personally I dislike, but some users love) also show the correct name. Saves a query too.
+<span class="label label-warning">Change</span> Use of "secret" in cron tasks removed. It's not necessary and is unreliable.
+<span class="label label-warning">Change</span> README.md updated with access level notes
+<span class="label label-warning">Change</span> Added a sanity check for ZipArchive
+<span class="label label-warning">Change</span> Modified webhook functionality so that it can handle webhooks where no manager id is set.
+<span class="label label-warning">Change</span> nl-NL.php language file fully updated, thanks Ruud.
+
+<span class="label label-important label-danger">Fix</span> Added jr_import('jomres_encryption'); to show_property_reviews script
+<span class="label label-important label-danger">Fix</span> Modified media centre handler so that if 'undefined' is passed by a hinky browser, the resource id is set to 0.
+<span class="label label-important label-danger">Fix</span> Resolved a bug with new GDPR related functionality that could cause 500 errors in obscure ways when making bookings.
+<span class="label label-important label-danger">Fix</span> Fixed a bug in new GDPR related functionality that prevented us from building the existing guests dropdown in the booking form.
+<span class="label label-important label-danger">Fix</span> Improved the BS2 modal so that it plays nice with the other elements of the page.
+<span class="label label-important label-danger">Fix</span> Removed port from function that finds the current url.
+
+
 <h3>Jomres 9.11.1 30/05/2018</h3>
 
 <span class="label label-warning">Change</span> Tweaked bs2 gdpr consent form so that it opens in a modal like bs3.

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.11.1
+ * @version Jomres 9.11.2
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -518,7 +518,7 @@ function getCurrentUrl($full = true)
             (isset($_SERVER['HTTPS']) && strcasecmp($_SERVER['HTTPS'], 'off') ? 'https://' : 'http://').
             (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : (isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : '')).(($full) ? $_SERVER['REQUEST_URI'] : null)
         );
-        $parse['port'] = $_SERVER['SERVER_PORT']; // Setup protocol for sure (80 is default)
+        //$parse['port'] = $_SERVER['SERVER_PORT']; // Setup protocol for sure (80 is default)
         return http_build_url('', $parse);
     }
 }
@@ -4254,6 +4254,21 @@ function suhosin_get_max_vars_test()
     if ($max_vars != 0 && $max_vars <= 512) { // The default is 512 on most installations with the suhosin patch
         $highlight = (using_bootstrap() ? 'alert alert-error alert-danger' : 'ui-state-highlight');
         $response = "<div class='".$highlight."'>Please note that PHP setups with the suhosin patch installed will have a default limit of 512 characters for get parameters. Although bad practice, most browsers (including IE) supports URLs up to around 2000 characters, while Apache has a default of 8000. To add support for long parameters with suhosin, add suhosin.get.max_value_length = <limit> in php.ini</div>";
+    }
+
+    return $response;
+}
+
+/**
+ * Check to ensure that ZipArchive is installed in PHP
+ */
+function ziparchive_test()
+{
+    $response = '';
+
+    if (!class_exists('ZipArchive')) {
+        $highlight = (using_bootstrap() ? 'alert alert-error alert-danger' : 'ui-state-highlight');
+        $response = "<div class='".$highlight."'>The PHP library ZipArchive is not available, therefore you will not be able to install any plugins. Please contact your hosts for more information about installing the ZipArchive library.</div>";
     }
 
     return $response;

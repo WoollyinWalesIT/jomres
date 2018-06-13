@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.11.1
+ * @version Jomres 9.11.2
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -808,7 +808,7 @@ jr_define('_JOMRES_COM_A_CRON_TITLE', 'クロン・ジョブの設定とログ')
 jr_define('_JOMRES_COM_A_CRON_DESC', 'スード・コロン・ジョブ情報：本機能は、請求書とコミッションのハンドラーに必要です。');
 jr_define('_JOMRES_COM_A_CRON_IMMEDIATERUN', 'インストールされているクロンのミニコンポーネント：特定なクロン・ジョブの実行は、以下のリンクを利用ください。クロン・ジョブは出力がないので、そのページに何も表示されません。ジョッブの結果は以下のジョブのログに参照して下さい。');
 jr_define('_JOMRES_COM_A_CRON_METHOD', 'メソッド');
-jr_define('_JOMRES_COM_A_CRON_METHOD_DESC', 'クロン・ジョブにアクセスがない場合には、「ミニコンポーネント」に設定して下さい。アクセスがある場合には、クロン・ジョッブを作成し実行してください。<br /> <i>curl -s '.JOMRES_SITEPAGE_URL_AJAX.'&task=cronjobs&tmpl='.get_showtime('tmplcomponent').'&no_html=1&secret='.base64_encode(get_showtime('secret')).'> /dev/null</i>');
+jr_define('_JOMRES_COM_A_CRON_METHOD_DESC', 'クロン・ジョブにアクセスがない場合には、「ミニコンポーネント」に設定して下さい。アクセスがある場合には、クロン・ジョッブを作成し実行してください。<br /> <i>curl -s '.JOMRES_SITEPAGE_URL_AJAX.'&task=cronjobs&tmpl='.get_showtime('tmplcomponent').'&no_html=1> /dev/null</i>');
 jr_define('_JOMRES_COM_A_CRON_LOGGING', 'ブラウザーでロッグを表示する');
 jr_define('_JOMRES_COM_A_CRON_LOGGING_DESC', 'メソドが「ミニ・コンポーネント」に設定している限り実行されます。');
 jr_define('_JOMRES_COM_A_CRON_LOGGINGENABLED', 'ログイングしますか');

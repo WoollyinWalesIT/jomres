@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.11.1
+ * @version Jomres 9.11.2
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -829,9 +829,9 @@ jr_define('_JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT_DESC', "Per defecto, si una
 jr_define('_JOMRES_COM_A_CRON_TITLE', 'Ajustos de treball per a Cron i registre');
 jr_define('_JOMRES_COM_A_CRON_DESC', 'Pseudocron informació del treball. La funcionalitat pseudocron és necessària per a la facturació i maneig de la comissió.');
 jr_define('_JOMRES_COM_A_CRON_IMMEDIATERUN', "Instal·lat minicomponents cron. Per a executar una tasca de cron individual utilitzi els enllaços que s'especifiquen a continuació. Tingui en compte que el cron jobs no produeix ningún resultat pel que no veurà ninguna informació en la pàgina. En canvi, es refereix a les anotacions de treball referides a continuació.");
-global $jomresConfig_secret;
+
 jr_define('_JOMRES_COM_A_CRON_METHOD', 'Mètode');
-jr_define('_JOMRES_COM_A_CRON_METHOD_DESC', "Si vostè no té accés a cron jobs, activi aquest minicomponent, del contrari crei una tasca programada i dígali que s'executi<br /> <i>curl -s ".JOMRES_SITEPAGE_URL_AJAX.'&task=cronjobs&tmpl='.get_showtime('tmplcomponent').'&no_html=1&secret='.base64_encode(get_showtime('secret')).'> /dev/null</i> ');
+jr_define('_JOMRES_COM_A_CRON_METHOD_DESC', "Si vostè no té accés a cron jobs, activi aquest minicomponent, del contrari crei una tasca programada i dígali que s'executi<br /> <i>curl -s ".JOMRES_SITEPAGE_URL_AJAX.'&task=cronjobs&tmpl='.get_showtime('tmplcomponent').'&no_html=1> /dev/null</i> ');
 jr_define('_JOMRES_COM_A_CRON_LOGGING', 'Mostrar el registre en el navegador');
 jr_define('_JOMRES_COM_A_CRON_LOGGING_DESC', "Només funciona si el mètode s'estableix en minicomponent.");
 jr_define('_JOMRES_COM_A_CRON_LOGGINGENABLED', 'Registre habilitat');

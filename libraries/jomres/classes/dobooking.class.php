@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.11.1
+ * @version Jomres 9.11.2
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -3301,19 +3301,32 @@ class dobooking
 		if ($thisJRUser->is_partner) {
 			$partners = jomres_singleton_abstract::getInstance('jomres_partners');
 			$guest_ids = $partners->get_guest_uids_for_partner($thisJRUser->id);
-			$query = 'SELECT guests_uid,enc_surname, enc_firstname, enc_house, enc_street,enc_town,enc_county FROM #__jomres_guests WHERE partner_id = '.$thisJRUser->id.' ORDER BY surname';
+			$query = 'SELECT guests_uid,enc_surname, enc_firstname FROM #__jomres_guests WHERE partner_id = '.$thisJRUser->id.'';
 			$existingCustomers = doSelectSql($query);
 		} elseif ($thisJRUser->userIsManager) {
-			$query = 'SELECT guests_uid,enc_surname, enc_firstname, enc_house, enc_street,enc_town,enc_county FROM #__jomres_guests WHERE property_uid IN ('.jomres_implode($thisJRUser->authorisedProperties).') ORDER BY surname';
+			$query = 'SELECT guests_uid,enc_surname, enc_firstname FROM #__jomres_guests WHERE property_uid IN ('.jomres_implode($thisJRUser->authorisedProperties).')';
 			$existingCustomers = doSelectSql($query);
 		}
 
+		jr_import('jomres_encryption');
+		$jomres_encryption = new jomres_encryption();
+			
 		if (!empty($existingCustomers)) {
-			$ec = array();
-
-			$ec[ ] = jomresHTML::makeOption('0',  jr_gettext('_JOMRES_CLEAR_GUEST_DETAILS', '_JOMRES_CLEAR_GUEST_DETAILS', false, false));
+			
+			$temp_arr = array();
 			foreach ($existingCustomers as $customer) {
-				$ec[ ] = jomresHTML::makeOption($customer->guests_uid, stripslashes($this->jomres_encryption->decrypt($customer->enc_surname)).', '.stripslashes($this->jomres_encryption->decrypt($customer->enc_firstname)));
+				$temp_arr[] = array ( "guests_uid" =>$customer->guests_uid , "firstname" => stripslashes($jomres_encryption->decrypt($customer->enc_firstname)) , "surname" => stripslashes($jomres_encryption->decrypt($customer->enc_surname)) );
+			}
+			
+ 			usort($temp_arr, array($this,'sort_alphabetic') ); 
+			
+			$ec = array();
+			$ec[ ] = jomresHTML::makeOption('0',  jr_gettext('_JOMRES_CLEAR_GUEST_DETAILS', '_JOMRES_CLEAR_GUEST_DETAILS', false, false));
+			foreach ($temp_arr as $customer) {
+				if ($customer['surname'] != jr_gettext('_JOMRES_GDPR_REDACTION_STRING', '_JOMRES_GDPR_REDACTION_STRING', false, false) ) {
+					$ec[ ] = jomresHTML::makeOption($customer['guests_uid'], $customer['surname'].', '.$customer['firstname']);
+				}
+				
 			}
 			$dropDownList = jomresHTML::selectList($ec, 'existingCustomers', ' onchange="getResponse_existing(\'existingCustomers\',this.value);" size="1" class="input-medium"', 'value', 'text', 0);
 		}
@@ -3321,6 +3334,16 @@ class dobooking
 		return $dropDownList;
 	}
 
+	private static function sort_alphabetic( $a , $b ) {
+        if ($a['surname'] > $b['surname']) {
+            return 1;
+        } else if ($a['surname'] < $b['surname']) {
+            return -1;
+        } else {
+            return 0; 
+        }
+	}
+	
 	/**
 	 * Makes the countries dropdown.
 	 */

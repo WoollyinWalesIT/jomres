@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.11.1
+ * @version Jomres 9.11.2
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -830,7 +830,7 @@ jr_define('_JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT_DESC', 'Описание с
 jr_define('_JOMRES_COM_A_CRON_TITLE', 'Cron наименование');
 jr_define('_JOMRES_COM_A_CRON_DESC', 'Описание');
 jr_define('_JOMRES_COM_A_CRON_IMMEDIATERUN', 'Мгновенный запуск');
-global $jomresConfig_secret;
+
 jr_define('_JOMRES_COM_A_CRON_METHOD', 'Способ');
 jr_define('_JOMRES_COM_A_CRON_METHOD_DESC', 'Описание');
 jr_define('_JOMRES_COM_A_CRON_LOGGING', 'Отображение журнала в браузере');

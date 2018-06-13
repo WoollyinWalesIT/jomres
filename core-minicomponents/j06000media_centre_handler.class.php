@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.11.1
+ * @version Jomres 9.11.2
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -67,7 +67,11 @@ class j06000media_centre_handler
 
         $resource_type = jomresGetParam($_REQUEST, 'resource_type', '');
         $resource_id = jomresGetParam($_REQUEST, 'resource_id', '0');
-
+		
+		if ($resource_id == 'undefined' ) {
+			$resource_id = 0;
+		}
+		
 		//if resource type is empty, return
 		if ($resource_type == '')
 			return;

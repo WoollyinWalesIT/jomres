@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.11.1stable
+ * @version Jomres 9.11.2stable
  *
  * @copyright	2005-2018 Vince Wooll
  * Translated to fr-FR by Mario Oliveira, Camara de Lobos, Madeira Island, Portugal, 14Oct2010 - www.marioliveira.net. Updated 21-Jun2011 for version 5 stable
@@ -829,9 +829,9 @@ jr_define('_JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT_DESC', 'Par défaut, si un 
 jr_define('_JOMRES_COM_A_CRON_TITLE', 'Définition el résultats des travaux automatiques (<i>cron jobs</i>)');
 jr_define('_JOMRES_COM_A_CRON_DESC', 'Information de travail Pseudocron. La fonctionnalité pseudocron est nécessaire pour la manipulation de facturation et commissions.');
 jr_define('_JOMRES_COM_A_CRON_IMMEDIATERUN', 'Minicomposants <i>cron</i> installés. Pour un travail automatique individuel, utilisez les liens ci-dessous. Remarquez que les travaux automatiques (<i>cron jobs</i>) ne produisent aucune sortie de données, donc vous ne verrez pas aucune information sur la page. Référez-vous par contre à la liste de travaux ci-dessous.');
-global $jomresConfig_secret;
+
 jr_define('_JOMRES_COM_A_CRON_METHOD', 'Méthode');
-jr_define('_JOMRES_COM_A_CRON_METHOD_DESC', "Si vous n\'avez pas accès aux travaux automatiques, définissez ceci comme minicomposant, autrement créez un travail automatique (<i>cron job</i>) et préparez-le pour exécuter <br /> <i>curl -s ".JOMRES_SITEPAGE_URL_AJAX.'&task=cronjobs&tmpl='.get_showtime('tmplcomponent').'&no_html=1&secret='.base64_encode(get_showtime('secret')).'> /dev/null</i> ');
+jr_define('_JOMRES_COM_A_CRON_METHOD_DESC', "Si vous n\'avez pas accès aux travaux automatiques, définissez ceci comme minicomposant, autrement créez un travail automatique (<i>cron job</i>) et préparez-le pour exécuter <br /> <i>curl -s ".JOMRES_SITEPAGE_URL_AJAX.'&task=cronjobs&tmpl='.get_showtime('tmplcomponent').'&no_html=1> /dev/null</i> ');
 jr_define('_JOMRES_COM_A_CRON_LOGGING', 'Montrer <i>logging</i> dans le <i>browser</i>');
 jr_define('_JOMRES_COM_A_CRON_LOGGING_DESC', 'Fonctionne seulement si la méthode est définie comme minicomposant.');
 jr_define('_JOMRES_COM_A_CRON_LOGGINGENABLED', 'Logging activé');
