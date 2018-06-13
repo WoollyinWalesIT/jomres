@@ -721,15 +721,18 @@ function dobooking($selectedProperty, $thisdate, $remus)
 		}
 	}
 	
-	jomres_cmsspecific_addheaddata('javascript', JOMRES_NODE_MODULES_RELPATH.'blockui-npm/', 'jquery.blockUI.js');
-	if ( !isset($_COOKIE['jomres_gdpr_consent_form_processed']) || !$_COOKIE['jomres_gdpr_consent_form_processed'] == "1" ) {
-		echo '<script>
-		jomresJquery(document).ready(function () {
-			jomresJquery(\'#booking_form\').block({ message: null }); 
-		});
-		</script>
-	';
+	if ($jrConfig[ 'enable_gdpr_compliant_fucntionality' ] == "1") {
+		jomres_cmsspecific_addheaddata('javascript', JOMRES_NODE_MODULES_RELPATH.'blockui-npm/', 'jquery.blockUI.js');
+		if ( !isset($_COOKIE['jomres_gdpr_consent_form_processed']) || !$_COOKIE['jomres_gdpr_consent_form_processed'] == "1" ) {
+			echo '<script>
+			jomresJquery(document).ready(function () {
+				jomresJquery(\'#booking_form\').block({ message: null }); 
+			});
+			</script>
+		';
+		}
 	}
+
 	
 
 		
