@@ -1,7 +1,7 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <div id="{RANDOM_ID}">
-	<div class="row-fluid">
-		<div class="well well-small clearfix">
+	<div class="row">
+
 			<div class="col-md-3">
 				<img src="{IMAGE_REL_SMALL}" alt="{FILENAME}"/>
 			</div>
@@ -12,7 +12,7 @@
 				<a class="btn btn-primary" target="_blank" href="{IMAGE_REL_LARGE}" title="{_JOMRES_MEDIA_CENTRE_BUTTON_VIEW}"><i class="icon-zoom-in"></i> <!--{_JOMRES_MEDIA_CENTRE_BUTTON_VIEW}--></a>
 				<a class="btn btn-danger" onclick="delete_file('{DELETE_URL}' , '{RANDOM_ID}')" href="javascript:void(0);" title="{_JOMRES_MEDIA_CENTRE_BUTTON_DELETE}"><i class="icon-trash"></i> <!--{_JOMRES_MEDIA_CENTRE_BUTTON_DELETE}--></a>
 			</div>
-		</div>
+
 	</div>
 </div>
 </patTemplate:tmpl>

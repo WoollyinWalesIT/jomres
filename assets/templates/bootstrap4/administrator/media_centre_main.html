@@ -36,7 +36,7 @@
 </div>
 </patTemplate:tmpl>
 
-<div class="row-fluid">
+<div class="row">
 	<div class="col-md-7">
 		<p>{RESOURCE_TYPE_OPTIONS} <span id="resource_id_dropdown"><input type="hidden" id="resource_id" value="" /></span></p>
 		<div id="existing_images"></div>
@@ -98,6 +98,7 @@ jomresJquery(function () {
             .prop('disabled', true)
             .text('Processing...')
             .on('click', function () {
+
                 var $this = jomresJquery(this),
                     data = $this.data();
                 $this
