@@ -21,9 +21,18 @@ if (!using_bootstrap()) {
     {
     }
 } else {
-    jr_import('jomres_content_tabs_bootstrap');
+	$bs_version = jomres_bootstrap_version();
+	if ($bs_version == '2' ) {
+		jr_import('jomres_content_tabs_bootstrap');
+		class jomres_content_tabs extends jomres_content_tabs_bootstrap
+		{
+		}
+	} else { // BS4
+		jr_import('jomres_content_tabs_bootstrap4');
+		class jomres_content_tabs extends jomres_content_tabs_bootstrap4
+		{
+		}
 
-    class jomres_content_tabs extends jomres_content_tabs_bootstrap
-    {
-    }
+	}
+
 }

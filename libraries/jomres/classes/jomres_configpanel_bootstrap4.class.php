@@ -17,12 +17,11 @@ defined('_JOMRES_INITCHECK') or die('');
 jr_import('jomres_content_tabs');
 
 /**
- * Creates the Jomres config panel object.
- #
  *
- * @since 2.6
+ * Creates the Jomres config panel object.
+ * 
  */
-class jomres_configpanel extends jomres_content_tabs
+class jomres_configpanel_bootstrap4 extends jomres_content_tabs
 {
     /**
      * Inserts the settings into the panes array.
@@ -31,58 +30,42 @@ class jomres_configpanel extends jomres_content_tabs
     {
         $rowclass = '';
 
-        if (!using_bootstrap()) {
-            if ($this->counter % 2) {
-                $rowclass = 'odd';
-            } else {
-                $rowclass = 'even';
-            }
-            $this->panes[ ] = '
-			<tr class="' .$rowclass.'">
-				<td width="30%">' .$this->left.'</td>
-				<td>' .$this->middle.'</td>
-				<td>' .$this->right.'</td>
-			</tr>
-			';
-        } else { 
-            if ($this->counter % 2) {
-                $rowclass = 'row-even';
-            } else {
-                $rowclass = 'row-odd';
-            }
-			if ( jomres_bootstrap_version() == '4' ) {
-				$this->panes[ ] = '
-				<div class="row ' .$rowclass.'">
-					<div class="col">' .$this->left.'</div>
-					<div class="col">' .$this->middle.'</div>
-					<div class="col	">' .$this->right.'</div>
-				</div>
-				';
-			} else {
-				$this->panes[ ] = '
-				<div class="row-fluid ' .$rowclass.'">
-					<div class="span3">' .$this->left.'</div>
-					<div class="span4">' .$this->middle.'</div>
-					<div class="span5">' .$this->right.'</div>
-				</div>
-				';
-			}
-
+        if ($this->counter % 2) {
+            $rowclass = 'row-even';
+        } else {
+            $rowclass = 'row-odd';
         }
+
+        $this->panes[ ] = '
+			<div class="col-md-12 ' .$rowclass.'">
+				<div class="row">
+					<div class="col-md-3">' .$this->left.'</div>
+					<div class="col-md-4">' .$this->middle.'</div>
+					<div class="col-md-5">' .$this->right.'</div>
+				</div>
+			</div>
+			';
+
         $this->left = '&nbsp;';
         $this->middle = '&nbsp;';
         $this->right = '&nbsp;';
         ++$this->counter;
     }
 
+    /**
+     * Inserts a description row.
+     */
     public function insertDescription($description = '', $class = 'alert alert-info')
     {
-        $this->panes[ ] = '<p class="'.$class.'">'.$description.'</p>';
+        $this->panes[ ] = '<div class="row"><div class="col-md-12"><p class="'.$class.'">'.$description.'</p></div></div>';
     }
 
+    /**
+     * Inserts a heading.
+     */
     public function insertHeading($text = '', $type = 'h3')
     {
-        $this->panes[ ] = '<div class="row-fluid"><div class="span12"><'.$type.'>'.$text.'</'.$type.'></div></div>';
+        $this->panes[ ] = '<div class="row"><div class="col-md-12"><'.$type.'>'.$text.'</'.$type.'></div></div>';
     }
 
     /**
