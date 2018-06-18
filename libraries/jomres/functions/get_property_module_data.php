@@ -43,7 +43,8 @@ function get_property_module_data($property_uid_array, $alt_template_path = '', 
 
             set_showtime('property_uid', $property_uid);
             set_showtime('property_type', $current_property_details->property_type);
-
+			set_showtime('ptype_id', $current_property_details->ptype_id);
+			
             $jomres_media_centre_images->get_images($property_uid, array('property'));
 
             $property_data[ 'THUMBNAIL' ] = $jomres_media_centre_images->images ['property'][0][0]['small'];
