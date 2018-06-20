@@ -2092,3 +2092,7 @@ jr_define( '_JOMRES_GDPR_CONFIG_ENABLE_DESC', 'WIJ RADEN NIET AAN DAT U DE GDPR 
 jr_define( 'EMPTY_TEMP_DIR', 'temp dir leeg maken' );
 jr_define( 'EMPTY_TEMP_DIR_DONE', 'Tijdelijke bestanden verwijderd' );
 
+
+jr_define( 'MACHINE_TRANSLATION', 'Machine translations' );
+jr_define( 'MACHINE_TRANSLATION_DEFAULT_LANG', 'Source language' );
+jr_define( 'MACHINE_TRANSLATION_DEFAULT_LANG_DESC', 'It is possible to hook in machine translation functionality. This allows you to enter strings in one language and translations could be pulled from remote services. Be aware that not all translation services support all languages. See those services for more detail.' );

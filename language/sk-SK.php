@@ -2322,3 +2322,7 @@ jr_define( '_JOMRES_GDPR_CONFIG_ENABLE_DESC', 'WE DO NOT RECOMMEND THAT YOU DISA
 
 jr_define( 'EMPTY_TEMP_DIR', 'Empty temp dir' );
 jr_define( 'EMPTY_TEMP_DIR_DONE', 'Temporary files deleted' );
+
+jr_define( 'MACHINE_TRANSLATION', 'Machine translations' );
+jr_define( 'MACHINE_TRANSLATION_DEFAULT_LANG', 'Source language' );
+jr_define( 'MACHINE_TRANSLATION_DEFAULT_LANG_DESC', 'It is possible to hook in machine translation functionality. This allows you to enter strings in one language and translations could be pulled from remote services. Be aware that not all translation services support all languages. See those services for more detail.' );

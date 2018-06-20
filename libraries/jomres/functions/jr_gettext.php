@@ -24,7 +24,7 @@ function jr_get_defined($constant, $default = '')
 {
     if (!defined($constant)) {
         $jomres_language_definitions = jomres_singleton_abstract::getInstance('jomres_language_definitions');
-        $result = $jomres_language_definitions->get_defined($constant);
+        $result = $jomres_language_definitions->get_defined($constant , $default );
 
         if ($result === false && $default != '') {
             $result = $default;

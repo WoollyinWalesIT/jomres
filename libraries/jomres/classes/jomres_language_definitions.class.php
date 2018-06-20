@@ -62,15 +62,22 @@ class jomres_language_definitions
         $this->definitions[ $this->ptype ][ $constant ] = $string;
     }
 
-    public function get_defined($constant)
+    public function get_defined( $constant , $default )
     {
+		$jomres_machine_translations = jomres_singleton_abstract::getInstance('jomres_machine_translations');
+		
         $this->set_property_type(get_showtime('property_type'));
 
         if (!array_key_exists($this->ptype, $this->definitions)) {
             $jomres_language = jomres_singleton_abstract::getInstance('jomres_language');
             $jomres_language->get_language($this->ptype);
         }
-
+ 
+		if (!isset($this->definitions[ $this->default_ptype ][ $constant ])) {
+			$translation = $jomres_machine_translations->get_translation ( $default , $constant , get_showtime('lang') );
+			//var_dump($translation);exit;
+		}
+		
         if (isset($this->definitions[ $this->ptype ][ $constant ])) {
             return $this->definitions[ $this->ptype ][ $constant ];
         } elseif (isset($this->definitions[ $this->default_ptype ][ $constant ])) {

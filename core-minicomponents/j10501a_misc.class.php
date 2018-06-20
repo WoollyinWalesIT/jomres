@@ -163,6 +163,16 @@ class j10501a_misc
 		$configurationPanel->setright(jr_gettext('_JOMRES_CPANEL_GRID_DESC', '_JOMRES_CPANEL_GRID_DESC', false));
 		$configurationPanel->insertSetting();
 
+		$configurationPanel->insertHeading(jr_gettext('MACHINE_TRANSLATION', 'MACHINE_TRANSLATION', false));
+		
+		$jomres_language = jomres_singleton_abstract::getInstance('jomres_language');
+		$language_dropdown = $jomres_language-> get_languageselection_dropdown(false , $jrConfig['machine_translations_source_language'] );
+		
+		$configurationPanel->setleft(jr_gettext('MACHINE_TRANSLATION_DEFAULT_LANG', 'MACHINE_TRANSLATION_DEFAULT_LANG', false));
+		$configurationPanel->setmiddle($language_dropdown);
+		$configurationPanel->setright(jr_gettext('MACHINE_TRANSLATION_DEFAULT_LANG_DESC', 'MACHINE_TRANSLATION_DEFAULT_LANG_DESC', false));
+		$configurationPanel->insertSetting();
+		
 		//plugins can add options to this tab
 		$MiniComponents->triggerEvent('10521', $componentArgs);
 		

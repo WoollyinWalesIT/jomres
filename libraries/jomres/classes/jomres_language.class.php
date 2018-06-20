@@ -138,7 +138,9 @@ class jomres_language
             $javascript = '';
             $input_name = 'cfg_property_language';
         }
-
+		
+		$langfile_crossref = $this->define_langfile_to_languages_array();
+		
         if ($default_lang != '' && array_key_exists($default_lang, $langfile_crossref)) {
             $lang = $default_lang;
         } else {
