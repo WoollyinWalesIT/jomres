@@ -115,7 +115,7 @@ class jomres_language
         return false;
     }
 
-    public function get_languageselection_dropdown($config_option = false, $default_lang = '')
+    public function get_languageselection_dropdown($config_option = false, $default_lang = '' , $custom_input_name = '' )
     {
 		$langfile_options = array();
 
@@ -131,13 +131,19 @@ class jomres_language
 			}
 		}
 
-        if (!$config_option) {
-            $javascript = 'onchange="this.form.submit();"';
-            $input_name = 'jomreslang';
-        } else {
-            $javascript = '';
-            $input_name = 'cfg_property_language';
-        }
+		if ($custom_input_name == '' ) {
+			if (!$config_option) {
+				$javascript = 'onchange="this.form.submit();"';
+				$input_name = 'jomreslang';
+			} else {
+				$javascript = '';
+				$input_name = 'cfg_property_language';
+			}
+		} else {
+			$input_name = $custom_input_name;
+			$javascript = '';
+		}
+
 		
 		$langfile_crossref = $this->define_langfile_to_languages_array();
 		
@@ -149,15 +155,19 @@ class jomres_language
 
         $dropdown = jomresHTML::selectList($langfile_options, $input_name, 'class="inputbox" size="1" '.$javascript.'', 'value', 'text', $lang);
 
-        $selecthtml = '';
-        if (!$config_option) {
-            $selecthtml = '<form action="" method="post" name="jomreslang">';
-        }
-        $selecthtml .= $dropdown;
-        if (!$config_option) {
-            $selecthtml .= '</form>';
-        }
-
+		$selecthtml = '';
+		if ($custom_input_name == '' ) {
+			if (!$config_option) {
+				$selecthtml = '<form action="" method="post" name="jomreslang">';
+			}
+			$selecthtml .= $dropdown;
+			if (!$config_option) {
+				$selecthtml .= '</form>';
+			}
+		} else {
+			$selecthtml = $dropdown;
+		}
+		
         return $selecthtml;
     }
 
