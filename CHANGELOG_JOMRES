@@ -1,3 +1,16 @@
+<h3>Jomres 9.12.0 13/06/2018</h3>
+
+Added feature to allow property managers to create room types in the frontend. A new setting in Site Config > Misc tab allows managers to enable/disable this setting. Another new setting in the same place allows site administrators to decide if these room types should show in search dropdown fields. This is an oft-requested feature that I am confident will be very popular.
+Added functionality to easily hook in machine learning plugins to automagically translate Jomres language strings. A new DeepL Jomres plugin will be available in the plugin manager.
+
+Modified jomreslanguage class so that arbitrary names can be set and javascript not used.
+
+Modified how Advanced tariff names are pulled from the db, fixes an issue where tariff names are not shown in Advanced mode.
+Removed a reference to a database column that should no longer have existed.
+Fixed consent form wrapper to improve scrolling of modal in BS2 templates.
+Tweaked some code because blockui being triggered when gdpr functionality is disabled.
+
+
 <h3>Jomres 9.11.2 13/06/2018</h3>
 
 <span class="label label-warning">Change</span> Added code to the webhook watcher script to try to find a super property manager's id if we cannot find a normal manager's id for a property.
