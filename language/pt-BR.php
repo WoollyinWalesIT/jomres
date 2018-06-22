@@ -256,7 +256,7 @@ jr_define('_JOMRES_COM_MR_WEEKDAYS_THURSDAY_ABBR', 'Qui');
 jr_define('_JOMRES_COM_MR_WEEKDAYS_FRIDAY_ABBR', 'Sex');
 jr_define('_JOMRES_COM_MR_WEEKDAYS_SATURDAY_ABBR', 'Sab');
 jr_define('_JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR', 'Dom');
-//==============================================================Configuraçăodo Calendário
+//======Configuraçăodo Calendário
 jr_define('_JOMRES_COM_A_AVLCAL', 'Para checar disponibilidade ligue.');
 jr_define('_JOMRES_COM_AVLCAL_TODAYCOLOUR', 'Cor da fonte para a data de hoje');
 jr_define('_JOMRES_COM_AVLCAL_INMONTHFACE', 'Cor da fonte para os demais dias do męs ');
@@ -266,7 +266,7 @@ jr_define('_JOMRES_COM_AVLCAL_OUTBGCOLOUR', 'Cor da célula para os dias dos out
 jr_define('_JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR', 'Cor da célula para os dias já ocupados');
 jr_define('_JOMRES_COM_AVLCAL_PROVISIONALCOLOUR', 'Cor da célula para reservas aguardando o depósito');
 jr_define('_JOMRES_COM_AVLCAL_PASTCOLOUR', 'Cor da célula para dias no passado');
-//=========================================================================Status da Reserva
+//===Status da Reserva
 jr_define('_JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR_KEY', 'Ocupado/Indisponível');
 jr_define('_JOMRES_COM_AVLCAL_INMONTHFACE_KEY', 'Disponível');
 jr_define('_JOMRES_COM_AVLCAL_PROVISIONALCOLOUR_KEY', 'Reservado');
@@ -277,17 +277,17 @@ jr_define('_JOMRES_FRONT_MR_FIXEDPRIOD1', 'Peródo da Estadia (em dias)');
 jr_define('_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR', 'Mostrar a disponibilidade no calendário?');
 jr_define('_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR_DESC', 'Marque como SIM para mostrar a disponibilidade no calendário');
 jr_define('_JOMRES_FRONT_AVAILABILITY', 'Disponível?');
-//====================================================================Lista de tarefas para o Hóspede
+//=====Lista de tarefas para o Hóspede
 jr_define('_JOMRES_FRONT_CALENDAR_CLICKDATES', 'Para acessar o formulário de reserva escolha um período.');
-//=================================================================================Reservas BLACK
+//====Reservas BLACK
 jr_define('_JOMRES_FRONT_BLACKBOOKING', 'Reservas admin');
 jr_define('_JOMRES_FRONT_BLACKBOOKING_NEW', 'Nova reserva admin');
 jr_define('_JOMRES_FRONT_DELETEGUEST', 'Delete Hóspede');
 jr_define('_JOMRES_FRONT_DELETEGUEST_GUESTDELETED', 'Hóspede deleted');
 jr_define('_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST', 'Impossível deletar o Hóspede pois existe uma ou mais reservas para ele. Cancele as reservas e tente novamente.');
-//===============================================================================Apresentaçăo do Calendário
-//=================================================================================CRM = email para os usuários
-//=============================================================================Fumantes + Datas no Calendário
+//==Apresentaçăo do Calendário
+//====CRM = email para os usuários
+//Fumantes + Datas no Calendário
 jr_define('_JOMRES_FRONT_ROOMSMOKING_EITHER', 'Indiferente');
 jr_define('_JOMRES_COM_CALENDAROUTPUT', 'Formato do calendário');
 jr_define('_JOMRES_COM_CALENDARINPUT', 'Formato das datas');
@@ -295,13 +295,13 @@ jr_define('_JOMRES_COM_CALENDARINPUT_DESC', 'Permite ao usuário alterar o forma
 jr_define('_JOMRES_COM_A_FIXEDPERIODBOOKINGSSHORT', 'Pacotes permitem pequenos intervalos');
 jr_define('_JOMRES_COM_A_FIXEDPERIOD_SHORTBREAK_DAYS', 'Tamanho do intervalo');
 jr_define('_JOMRES_COM_MR_VRCT_PUBLISHED', 'Publicado');
-//====================================================================Formas de Pagamento PAYPAL
+//=====Formas de Pagamento PAYPAL
 jr_define('_JOMRES_COM_A_PAYPAL', 'Paypal');
-//============================================================================Acompanhamento
+//======Acompanhamento
 jr_define('_JOMRES_FRONT_MR_MENU_ADMIN_AUDITTRAIL', 'Rastrear|');
 jr_define('_JOMRES_MR_AUDIT_LISTING_DATE', 'Dia');
 jr_define('_JOMRES_MR_AUDIT_LISTING_USER', 'Usuário (username)');
-//===================================================================Acompanhamento das Reservas
+//====Acompanhamento das Reservas
 jr_define('_JOMRES_MR_AUDIT_LISTING_FILTER_DATE', 'Filtrar por data');
 jr_define('_JOMRES_COM_MR_VIEWBOOKINGS_STATUS', 'Status');
 jr_define('_JOMRES_COM_MR_VIEWBOOKINGS_PENDING', 'Chegada pendente');
@@ -352,7 +352,7 @@ jr_define('_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS', 'Res para Manutençăo|')
 jr_define('_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS_STAGE2_ERROR', 'ERRO, uma ou mais UH selecionadas năo está livre.');
 jr_define('_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS_ROOMSSUBJECT', 'UH incluidos na Reserva admin');
 jr_define('_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS_NOBBOOKINGS', 'Nenhuma Reserva admin encontrada');
-//=========================================================================Classificaçăo
+//===Classificaçăo
 jr_define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STARS', 'Número de Estrelas');
 jr_define('_JOMRES_COM_A_RESET', 'Confirmar');
 jr_define('_JOMRES_COM_A_PAYPAL_CANCELLED', 'Reserva Cancelada');
@@ -2212,6 +2212,7 @@ jr_define( 'DATATABLES_COLVIS', 'Column Visibility');
 jr_define( 'API_TOKEN_LIFETIME', 'API token lifetime');
 jr_define( 'API_TOKEN_LIFETIME_DESC', 'How long an API token remains valid for, in seconds. 86400 = 1 day, 31536000 = 1 year');
 
+
 jr_define( 'ENCRYPTION_TITLE', 'Encryption' );
 jr_define( 'ENCRYPTION_FILE_LOCATION', 'Encryption file location' );
 jr_define( 'ENCRYPTION_FILE_LOCATION_DESC', '**Never delete the encryption file** <br/> User data is stored encrypted in tables to ensure that "data at rest" is protected securely, in accordance with GDPR recommendations. By default the encryption key is stored in the file "encryption_key.class.php" in the root of your Jomres installation (typically /public_html/jomres). You can change where the file is stored here. If you do change the location, you must MOVE the file, do not wait for Jomres to create a new version otherwise you will not be able to decode your guests\'s details.' );
@@ -2332,3 +2333,13 @@ jr_define( 'EMPTY_TEMP_DIR_DONE', 'Temporary files deleted' );
 jr_define( 'MACHINE_TRANSLATION', 'Machine translations' );
 jr_define( 'MACHINE_TRANSLATION_DEFAULT_LANG', 'Source language' );
 jr_define( 'MACHINE_TRANSLATION_DEFAULT_LANG_DESC', 'It is possible to hook in machine translation functionality. This allows you to enter strings in one language and translations could be pulled from remote services. Be aware that not all translation services support all languages. See those services for more detail.' );
+
+jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_EDIT', 'Room Types' );
+jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_NEW', 'New Room type' );
+jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_EDIT_LEAD', 'You can create and edit room types on this page. These room types will be specific to this property only. When setting up your property you first need some Room Types. You can use either those room typies created by the administrator, or you can add your own. Once you have one or more Room Types you can then create rooms of that Room Type. After you have rooms you can then create tariffs (prices) for those rooms because tariffs are linked to Room Types.' );
+jr_define( '_JOMRES_CONFIG_ROOM_TYPES_CREATING_TITLE', 'Managers can create room types?' );
+jr_define( '_JOMRES_CONFIG_ROOM_TYPES_CREATING_DESC', 'Use this option to configure whether or not managers can create their own room types in the frontend. We strongly recommend that you leave this option set to No when you first start using Jomres, especially if you are creating a portal because you should create all room types in the administrator area. Room types created by managers will appear in search forms, but because these room types are specific to individual properties, only one property will be shown in search results if that room type is selected durings searches. If you want so that only Super Property Managers can create room types then leave this option set to Yes and use the Access Control plugin to allow only super managers to view the "Settings > Room types" menu option. Only properties that rent out rooms in the property and use Advanced or Micromanage tariff editing modes can use this option. Villa/apartment type properties will not be able to use it.' );
+jr_define('_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_UPDATE', 'Room/property type updated');
+jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_CONFIG_TITLE', 'Show room types in search options' );
+jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_CONFIG_DESC', 'If you choose to allow property managers to create their own room types, you can choose whether or not to show those created room types in the search options where you have chosen to show room types.' );
+

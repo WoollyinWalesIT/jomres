@@ -38,8 +38,12 @@ class j06002save_room_type
         $jomres_room_types = jomres_singleton_abstract::getInstance('jomres_room_types');
 		$jomres_room_types->get_all_room_types();
 		
+
+		$feedback_message = jr_gettext('_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_INSERT', '_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_INSERT', false);
+		
 		if ($room_classes_uid > 0 ) {
 			$jomres_room_types->validate_manager_access_to_room_type($room_classes_uid);
+			$feedback_message = jr_gettext('_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_UPDATE', '_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_UPDATE', false);
 		}
 		
         $basic_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
@@ -54,7 +58,8 @@ class j06002save_room_type
 
         $jomres_room_types->save_room_type();
 
-        jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=list_room_types'), jr_gettext('_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_INSERT', '_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_INSERT', false));
+		
+        jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=list_room_types'), $feedback_message );
 		
     }
 

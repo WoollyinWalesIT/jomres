@@ -112,12 +112,11 @@ class j10501a_misc
 		$configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_ROOM_TYPES_CREATING_DESC', '_JOMRES_CONFIG_ROOM_TYPES_CREATING_DESC', false));
 		$configurationPanel->insertSetting();
 		
+		$configurationPanel->setleft(jr_gettext('_JOMRES_PROPERTY_ROOM_TYPES_CONFIG_TITLE', '_JOMRES_PROPERTY_ROOM_TYPES_CONFIG_TITLE', false));
+		$configurationPanel->setmiddle($lists[ 'frontend_room_type_editing_show_property_room_types_in_search_options' ]);
+		$configurationPanel->setright(jr_gettext('_JOMRES_PROPERTY_ROOM_TYPES_CONFIG_DESC', '_JOMRES_PROPERTY_ROOM_TYPES_CONFIG_DESC', false));
+		$configurationPanel->insertSetting();
 		
-		/* $configurationPanel->setleft(jr_gettext('_JOMRES_CONFIG_JQUERY', '_JOMRES_CONFIG_JQUERY', false));
-		$configurationPanel->setmiddle($lists[ 'load_jquery' ]);
-		$configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_JQUERY_DESC', '_JOMRES_CONFIG_JQUERY_DESC', false));
-		$configurationPanel->insertSetting(); */
-
 		$configurationPanel->setleft(jr_gettext('_JOMRES_CONFIG_JQUERY_UI', '_JOMRES_CONFIG_JQUERY_UI', false));
 		$configurationPanel->setmiddle($lists[ 'load_jquery_ui' ]);
 		$configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_JQUERY_UI_DESC', '_JOMRES_CONFIG_JQUERY_UI_DESC', false));

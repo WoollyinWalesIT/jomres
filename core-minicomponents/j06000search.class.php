@@ -598,6 +598,7 @@ class j06000search
         // -------------------------------------------------------------------------------------------------------------------------------------------
         if (in_array('room_type', $searchOptions) && $showSearchOptions) {
             $rtypeArray = array();
+
             if (!empty($sch->prep[ 'rtypes' ])) {
                 $r = '';
                 if (empty($sch->filter[ 'room_type' ])) {

@@ -235,7 +235,13 @@ class basic_property_details
         $this->this_property_room_classes = array();
 		if (isset($jomres_room_types->all_ptype_rtype_xrefs[$this->ptype_id])) {
 			foreach ($jomres_room_types->all_ptype_rtype_xrefs[$this->ptype_id] as $rtype) {
-				if (isset($this->classAbbvs[ $rtype ])) {
+				if (
+					isset($this->classAbbvs[ $rtype ]) && 
+						(
+						(isset($jomres_room_types->room_types[$rtype]) && $jomres_room_types->room_types[$rtype]['property_uid'] == 0) ||
+						isset($jomres_room_types->property_specific_room_types[$this->property_uid][$rtype])
+						)
+					) {
 					$this->this_property_room_classes[ $rtype ] = $this->classAbbvs[ $rtype ];
 				}
 			}

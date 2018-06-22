@@ -1169,11 +1169,30 @@ function prepFeatureSearch()
  */
 function prepRoomtypeSearch()
 {
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+	$jrConfig = $siteConfig->get();
+	
+	if (!isset($jrConfig['frontend_room_type_editing_show_property_room_types_in_search_options']) ) {
+		$jrConfig['frontend_room_type_editing_show_property_room_types_in_search_options'] = "1";
+	}
+
     // Prepares the Room type data required for a search
     $searchAll = jr_gettext('_JOMRES_SEARCH_ALL', '_JOMRES_SEARCH_ALL', false, false);
 
-    $basic_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
-    $roomTypeList = $basic_property_details->all_room_types;
+	$jomres_room_types = jomres_singleton_abstract::getInstance('jomres_room_types');
+	$jomres_room_types->get_all_room_types();
+	$roomTypeList = $jomres_room_types->room_types;
+	
+	
+	if ($jrConfig['frontend_room_type_editing_show_property_room_types_in_search_options'] == "1") {
+		if (!empty($jomres_room_types->property_specific_room_types)) {
+			foreach ($jomres_room_types->property_specific_room_types as $property ) {
+				foreach ($property as $property_specific_room_type ) {
+					$roomTypeList[] = $property_specific_room_type;
+				}
+			}
+		}
+	}
 
     $result = array();
     $r = array();

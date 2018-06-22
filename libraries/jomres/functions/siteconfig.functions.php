@@ -245,6 +245,10 @@ function showSiteConfig()
 
 	$lists[ 'frontend_room_type_editing_allowed' ] = jomresHTML::selectList($yesno, 'cfg_frontend_room_type_editing_allowed', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'frontend_room_type_editing_allowed' ]);
 	
+	$lists[ 'frontend_room_type_editing_show_property_room_types_in_search_options' ] = jomresHTML::selectList($yesno, 'cfg_frontend_room_type_editing_show_property_room_types_in_search_options', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'frontend_room_type_editing_show_property_room_types_in_search_options' ]);
+	
+	
+	
     if (!isset($jrConfig['show_powered_by'])) {
         $jrConfig['show_powered_by'] = '0';
     }
