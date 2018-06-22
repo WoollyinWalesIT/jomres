@@ -392,9 +392,9 @@ class basic_property_details
 				$this->multi_query_result[ $data->propertys_uid ][ 'published' ] = (int) $data->published;
 				
                 $this->multi_query_result[ $data->propertys_uid ][ 'propertys_uid' ] = $data->propertys_uid;
-                $this->multi_query_result[ $data->propertys_uid ][ 'property_name' ] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME', $data->property_name, $editable, false);
-                $this->multi_query_result[ $data->propertys_uid ][ 'property_street' ] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_STREET', $data->property_street, $editable, false);
-                $this->multi_query_result[ $data->propertys_uid ][ 'property_town' ] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_TOWN', $data->property_town, $editable, false);
+                $this->multi_query_result[ $data->propertys_uid ][ 'property_name' ] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME_'.$data->propertys_uid, $data->property_name, $editable, false);
+                $this->multi_query_result[ $data->propertys_uid ][ 'property_street' ] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_STREET_'.$data->propertys_uid, $data->property_street, $editable, false);
+                $this->multi_query_result[ $data->propertys_uid ][ 'property_town' ] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_TOWN_'.$data->propertys_uid, $data->property_town, $editable, false);
                 $this->multi_query_result[ $data->propertys_uid ][ 'property_postcode' ] = $data->property_postcode;
                 if (is_numeric($data->property_region)) {
                     $jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
@@ -434,27 +434,27 @@ class basic_property_details
 
                 $this->multi_query_result[ $data->propertys_uid ][ 'lat' ] = $data->lat;
                 $this->multi_query_result[ $data->propertys_uid ][ 'long' ] = $data->long;
-                $this->multi_query_result[ $data->propertys_uid ][ 'metatitle' ] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE', $data->metatitle, false);
-                $this->multi_query_result[ $data->propertys_uid ][ 'metadescription' ] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION', $data->metadescription, false);
-                $this->multi_query_result[ $data->propertys_uid ][ 'metakeywords' ] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_METAKEYWORDS', $data->metakeywords, false);
+                $this->multi_query_result[ $data->propertys_uid ][ 'metatitle' ] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE_'.$data->propertys_uid, $data->metatitle, false);
+                $this->multi_query_result[ $data->propertys_uid ][ 'metadescription' ] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION_'.$data->propertys_uid, $data->metadescription, false);
+                $this->multi_query_result[ $data->propertys_uid ][ 'metakeywords' ] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_METAKEYWORDS_'.$data->propertys_uid, $data->metakeywords, false);
                 $this->multi_query_result[ $data->propertys_uid ][ 'property_features' ] = $data->property_features;
                 $this->multi_query_result[ $data->propertys_uid ][ 'property_mappinglink' ] = $data->property_mappinglink;
                 $this->multi_query_result[ $data->propertys_uid ][ 'real_estate_property_price' ] = $data->property_key;
 
-                $this->multi_query_result[ $data->propertys_uid ][ 'property_description' ] = jomres_decode(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION', $data->property_description, $editable, false));
-                $this->multi_query_result[ $data->propertys_uid ][ 'property_checkin_times' ] = jomres_decode(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES', $data->property_checkin_times, $editable, false));
-                $this->multi_query_result[ $data->propertys_uid ][ 'property_area_activities' ] = jomres_decode(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES', $data->property_area_activities, $editable, false));
-                $this->multi_query_result[ $data->propertys_uid ][ 'property_driving_directions' ] = jomres_decode(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS', $data->property_driving_directions, $editable, false));
-                $this->multi_query_result[ $data->propertys_uid ][ 'property_airports' ] = jomres_decode(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS', $data->property_airports, $editable, false));
-                $this->multi_query_result[ $data->propertys_uid ][ 'property_othertransport' ] = jomres_decode(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT', $data->property_othertransport, $editable, false));
-                $this->multi_query_result[ $data->propertys_uid ][ 'property_policies_disclaimers' ] = jomres_decode(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS', $data->property_policies_disclaimers, $editable, false));
+                $this->multi_query_result[ $data->propertys_uid ][ 'property_description' ] = jomres_decode(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION_'.$data->propertys_uid, $data->property_description, $editable, false));
+                $this->multi_query_result[ $data->propertys_uid ][ 'property_checkin_times' ] = jomres_decode(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES_'.$data->propertys_uid, $data->property_checkin_times, $editable, false));
+                $this->multi_query_result[ $data->propertys_uid ][ 'property_area_activities' ] = jomres_decode(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES_'.$data->propertys_uid, $data->property_area_activities, $editable, false));
+                $this->multi_query_result[ $data->propertys_uid ][ 'property_driving_directions' ] = jomres_decode(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS_'.$data->propertys_uid, $data->property_driving_directions, $editable, false));
+                $this->multi_query_result[ $data->propertys_uid ][ 'property_airports' ] = jomres_decode(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS_'.$data->propertys_uid, $data->property_airports, $editable, false));
+                $this->multi_query_result[ $data->propertys_uid ][ 'property_othertransport' ] = jomres_decode(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT_'.$data->propertys_uid, $data->property_othertransport, $editable, false));
+                $this->multi_query_result[ $data->propertys_uid ][ 'property_policies_disclaimers' ] = jomres_decode(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS_'.$data->propertys_uid, $data->property_policies_disclaimers, $editable, false));
                 $this->multi_query_result[ $data->propertys_uid ][ 'apikey' ] = $data->apikey;
                 $this->multi_query_result[ $data->propertys_uid ][ 'approved' ] = (int)$data->approved;
                 $this->multi_query_result[ $data->propertys_uid ][ 'permit_number' ] = (string) $data->permit_number;
 				$this->multi_query_result[ $data->propertys_uid ][ 'completed' ] = (int)$data->completed;
 				$this->multi_query_result[ $data->propertys_uid ][ 'cat_id' ] = (int)$data->cat_id;
 
-                $this->property_names[$data->propertys_uid] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME', $data->property_name, $editable, false);
+                $this->property_names[$data->propertys_uid] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME_'.$data->propertys_uid, $data->property_name, $editable, false);
             }
 
             $temp_rooms = array();

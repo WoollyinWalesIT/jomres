@@ -595,17 +595,17 @@ class jomSearch
             $wheres = array();
             foreach ($words as $word) {
                 $wheres2 = array();
-                $wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_NAME' AND LOWER(a.customtext) LIKE '%$word%' AND a.language = '$lang'";
-                $wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_STREET' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang'";
-                $wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_TOWN' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang'";
-                $wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_POSTCODE' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang'";
-                $wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang'";
-                $wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang'";
-                $wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang'";
-                $wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang'";
-                $wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang'";
-                $wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang'";
-                $wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang' ";
+                $wheres2[ ] = "a.constant LIKE '_JOMRES_CUSTOMTEXT_PROPERTY_NAME%' AND LOWER(a.customtext) LIKE '%$word%' AND a.language = '$lang'";
+                $wheres2[ ] = "a.constant LIKE '_JOMRES_CUSTOMTEXT_PROPERTY_STREET%' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang'";
+                $wheres2[ ] = "a.constant LIKE '_JOMRES_CUSTOMTEXT_PROPERTY_TOWN%' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang'";
+                $wheres2[ ] = "a.constant LIKE '_JOMRES_CUSTOMTEXT_PROPERTY_POSTCODE%' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang'";
+                $wheres2[ ] = "a.constant LIKE '_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION%' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang'";
+                $wheres2[ ] = "a.constant LIKE '_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES%' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang'";
+                $wheres2[ ] = "a.constant LIKE '_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES%' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang'";
+                $wheres2[ ] = "a.constant LIKE '_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS%' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang'";
+                $wheres2[ ] = "a.constant LIKE '_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS%' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang'";
+                $wheres2[ ] = "a.constant LIKE '_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT%' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang'";
+                $wheres2[ ] = "a.constant LIKE '_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS%' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang' ";
                 $wheres[ ] = implode(' OR ', $wheres2);
             }
             $where = '('.implode(($phrase == 'all' ? ') AND (' : ') OR ('), $wheres).')';
