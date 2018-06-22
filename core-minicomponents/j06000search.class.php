@@ -339,7 +339,9 @@ class j06000search
 
         $output[ 'SUBMITURL' ] = jomresURL(JOMRES_SITEPAGE_URL_NOSEF);
         $output[ 'FORMNAME' ] = $jomresSearchFormname;
-
+		 
+		$output[ 'SELECTCOMBO_HIDDENDROPDOWNS_TOWN' ] = '';
+		
         if (!$data_only) {
             // -------------------------------------------------------------------------------------------------------------------------------------------
 
