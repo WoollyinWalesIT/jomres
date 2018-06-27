@@ -237,6 +237,10 @@ class j06002edit_property
             }
         }
 
+		$sanitised_lat_long_hyphes = array ("&#38;#45;" , "&#45;" );
+		$output[ 'LAT' ] = str_replace( $sanitised_lat_long_hyphes, "-" , $output[ 'LAT' ] ) ;
+		$output[ 'LONG' ] = str_replace( $sanitised_lat_long_hyphes, "-" , $output[ 'LONG' ] ) ;
+			
         //other language strings
         $output[ 'PAGETITLE' ] = jr_gettext('_JOMRES_COM_MR_VRCT_TAB_PROPERTYS', '_JOMRES_COM_MR_VRCT_TAB_PROPERTYS');
         $output[ '_JOMRES_REQUIREDFIELDS' ] = jr_gettext('_JOMRES_REQUIREDFIELDS', '_JOMRES_REQUIREDFIELDS');
