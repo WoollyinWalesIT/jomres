@@ -183,6 +183,10 @@ class j01050x_geocoder
 
         set_showtime('current_map_identifier', $output[ 'RANDOM_IDENTIFIER' ]);
 
+		$sanitised_lat_long_hyphes = array ("&#38;#45;" , "&#45;" );
+		$output[ 'LAT' ] = str_replace( $sanitised_lat_long_hyphes, "-" , $output[ 'LAT' ] ) ;
+		$output[ 'LONG' ] = str_replace( $sanitised_lat_long_hyphes, "-" , $output[ 'LONG' ] ) ;
+		
         $pageoutput[ ] = $output;
         $tmpl = new patTemplate();
         $tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
