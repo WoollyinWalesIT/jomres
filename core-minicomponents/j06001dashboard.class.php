@@ -190,6 +190,8 @@ class j06001dashboard
         $output[ '_JOMRES_COM_MR_WEEKDAYS_SATURDAY_ABBR' ] = jr_gettext('_JOMRES_COM_MR_WEEKDAYS_SATURDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_SATURDAY_ABBR', false);
         $output[ '_JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR' ] = jr_gettext('_JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR', '_JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR', false);
 
+		$output[ '_JOMRES_QUICKBOOKING_EMAIL_ADDRESS_NOTE' ] = jr_gettext('_JOMRES_QUICKBOOKING_EMAIL_ADDRESS_NOTE', '_JOMRES_QUICKBOOKING_EMAIL_ADDRESS_NOTE', false);
+		
         $options = array();
         $options[] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false));
         $options[] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false));
