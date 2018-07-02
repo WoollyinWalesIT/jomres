@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.11.2
+ * @version Jomres 9.12.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -241,12 +241,12 @@ class j02990showconfirmation
                         }
 
                         $roomadd = 1;
-                        $query = "SELECT room_class_full_desc FROM #__jomres_room_classes WHERE property_uid = '".(int) $property_uid."' and room_classes_uid = '".(int) $room_classes_uid."' ";
+                        $query = "SELECT room_class_abbv FROM #__jomres_room_classes WHERE property_uid = '".(int) $property_uid."' and room_classes_uid = '".(int) $room_classes_uid."' ";
                         $roomclass = doSelectSql($query);
 
                         if (!empty($roomclass)) {
                             foreach ($roomclass as $class) {
-                                $fulldesc = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int) $room_classes_uid, stripslashes($class->room_class_full_desc), false, false);
+                                $fulldesc = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int) $room_classes_uid, stripslashes($class->room_class_abbv), false, false);
                             }
                         } else {
                             $query = "SELECT room_class_abbv FROM #__jomres_room_classes WHERE property_uid = 0 and room_classes_uid = '$room_classes_uid'";

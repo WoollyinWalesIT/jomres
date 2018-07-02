@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.11.2
+ * @version Jomres 9.12.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -243,6 +243,11 @@ function showSiteConfig()
     $lists[ 'review_nag' ] = jomresHTML::selectList($yesno, 'cfg_review_nag', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'review_nag' ]);
 	$lists[ 'optimize_images' ] = jomresHTML::selectList($yesno, 'cfg_optimize_images', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'optimize_images' ]);
 
+	$lists[ 'frontend_room_type_editing_allowed' ] = jomresHTML::selectList($yesno, 'cfg_frontend_room_type_editing_allowed', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'frontend_room_type_editing_allowed' ]);
+	
+	$lists[ 'frontend_room_type_editing_show_property_room_types_in_search_options' ] = jomresHTML::selectList($yesno, 'cfg_frontend_room_type_editing_show_property_room_types_in_search_options', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'frontend_room_type_editing_show_property_room_types_in_search_options' ]);
+	
+	
 	
     if (!isset($jrConfig['show_powered_by'])) {
         $jrConfig['show_powered_by'] = '0';

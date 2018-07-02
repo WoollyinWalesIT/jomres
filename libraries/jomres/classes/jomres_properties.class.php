@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.11.2
+ * @version Jomres 9.12.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -369,6 +369,21 @@ class jomres_properties
         }
 
         //update custom text
+        updateCustomText('_JOMRES_CUSTOMTEXT_PROPERTY_NAME_'.$this->propertys_uid, $this->property_name, true, $this->propertys_uid);
+        updateCustomText('_JOMRES_CUSTOMTEXT_PROPERTY_STREET_'.$this->propertys_uid, $this->property_street, true, $this->propertys_uid);
+        updateCustomText('_JOMRES_CUSTOMTEXT_PROPERTY_TOWN_'.$this->propertys_uid, $this->property_town, true, $this->propertys_uid);
+        updateCustomText('_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION_'.$this->propertys_uid, $this->property_description, true, $this->propertys_uid);
+        updateCustomText('_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES_'.$this->propertys_uid, $this->property_checkin_times, true, $this->propertys_uid);
+        updateCustomText('_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES_'.$this->propertys_uid, $this->property_area_activities, true, $this->propertys_uid);
+        updateCustomText('_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS_'.$this->propertys_uid, $this->property_driving_directions, true, $this->propertys_uid);
+        updateCustomText('_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS_'.$this->propertys_uid, $this->property_airports, true, $this->propertys_uid);
+        updateCustomText('_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT_'.$this->propertys_uid, $this->property_othertransport, true, $this->propertys_uid);
+        updateCustomText('_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS_'.$this->propertys_uid, $this->property_policies_disclaimers, true, $this->propertys_uid);
+        updateCustomText('_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE_'.$this->propertys_uid, $this->metatitle, true, $this->propertys_uid);
+        updateCustomText('_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION_'.$this->propertys_uid, $this->metadescription, true, $this->propertys_uid);
+        updateCustomText('_JOMRES_CUSTOMTEXT_PROPERTY_METAKEYWORDS_'.$this->propertys_uid, $this->metakeywords, true, $this->propertys_uid);
+
+		// Old style, which should be dropped in...January 2019. It will be removed in favour of the set above, as the below set doesn't include the property uid in the definition, without which machine translation will not work
         updateCustomText('_JOMRES_CUSTOMTEXT_PROPERTY_NAME', $this->property_name, true, $this->propertys_uid);
         updateCustomText('_JOMRES_CUSTOMTEXT_PROPERTY_STREET', $this->property_street, true, $this->propertys_uid);
         updateCustomText('_JOMRES_CUSTOMTEXT_PROPERTY_TOWN', $this->property_town, true, $this->propertys_uid);
@@ -382,7 +397,7 @@ class jomres_properties
         updateCustomText('_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE', $this->metatitle, true, $this->propertys_uid);
         updateCustomText('_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION', $this->metadescription, true, $this->propertys_uid);
         updateCustomText('_JOMRES_CUSTOMTEXT_PROPERTY_METAKEYWORDS', $this->metakeywords, true, $this->propertys_uid);
-
+		
 		//change the approval and published status if the property is edited by a manager (not super manager) and properties require approval
         if ((int) $jrConfig['automatically_approve_new_properties'] == 0 && !$thisJRUser->superPropertyManager) {
 			if ($this->approved == 1) {

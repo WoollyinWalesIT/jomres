@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.11.2
+ * @version Jomres 9.12.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -106,11 +106,17 @@ class j10501a_misc
 		$configurationPanel->setright(jr_gettext('_JOMRES_COM_JRCONFIG_GLOBALEDITING_DESC', '_JOMRES_COM_JRCONFIG_GLOBALEDITING_DESC', false));
 		$configurationPanel->insertSetting();
 
-		/* $configurationPanel->setleft(jr_gettext('_JOMRES_CONFIG_JQUERY', '_JOMRES_CONFIG_JQUERY', false));
-		$configurationPanel->setmiddle($lists[ 'load_jquery' ]);
-		$configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_JQUERY_DESC', '_JOMRES_CONFIG_JQUERY_DESC', false));
-		$configurationPanel->insertSetting(); */
-
+		
+		$configurationPanel->setleft(jr_gettext('_JOMRES_CONFIG_ROOM_TYPES_CREATING_TITLE', '_JOMRES_CONFIG_ROOM_TYPES_CREATING_TITLE', false));
+		$configurationPanel->setmiddle($lists[ 'frontend_room_type_editing_allowed' ]);
+		$configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_ROOM_TYPES_CREATING_DESC', '_JOMRES_CONFIG_ROOM_TYPES_CREATING_DESC', false));
+		$configurationPanel->insertSetting();
+		
+		$configurationPanel->setleft(jr_gettext('_JOMRES_PROPERTY_ROOM_TYPES_CONFIG_TITLE', '_JOMRES_PROPERTY_ROOM_TYPES_CONFIG_TITLE', false));
+		$configurationPanel->setmiddle($lists[ 'frontend_room_type_editing_show_property_room_types_in_search_options' ]);
+		$configurationPanel->setright(jr_gettext('_JOMRES_PROPERTY_ROOM_TYPES_CONFIG_DESC', '_JOMRES_PROPERTY_ROOM_TYPES_CONFIG_DESC', false));
+		$configurationPanel->insertSetting();
+		
 		$configurationPanel->setleft(jr_gettext('_JOMRES_CONFIG_JQUERY_UI', '_JOMRES_CONFIG_JQUERY_UI', false));
 		$configurationPanel->setmiddle($lists[ 'load_jquery_ui' ]);
 		$configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_JQUERY_UI_DESC', '_JOMRES_CONFIG_JQUERY_UI_DESC', false));
@@ -163,6 +169,16 @@ class j10501a_misc
 		$configurationPanel->setright(jr_gettext('_JOMRES_CPANEL_GRID_DESC', '_JOMRES_CPANEL_GRID_DESC', false));
 		$configurationPanel->insertSetting();
 
+		$configurationPanel->insertHeading(jr_gettext('MACHINE_TRANSLATION', 'MACHINE_TRANSLATION', false));
+		
+		$jomres_language = jomres_singleton_abstract::getInstance('jomres_language');
+		$language_dropdown = $jomres_language-> get_languageselection_dropdown(true , $jrConfig['machine_translations_source_language'] , 'cfg_machine_translations_source_language' );
+		
+		$configurationPanel->setleft(jr_gettext('MACHINE_TRANSLATION_DEFAULT_LANG', 'MACHINE_TRANSLATION_DEFAULT_LANG', false));
+		$configurationPanel->setmiddle($language_dropdown);
+		$configurationPanel->setright(jr_gettext('MACHINE_TRANSLATION_DEFAULT_LANG_DESC', 'MACHINE_TRANSLATION_DEFAULT_LANG_DESC', false));
+		$configurationPanel->insertSetting();
+		
 		//plugins can add options to this tab
 		$MiniComponents->triggerEvent('10521', $componentArgs);
 		

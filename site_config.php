@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.11.2
+ * @version Jomres 9.12.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -12,7 +12,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 
 $jrConfig = array(
-  'version' => '9.11.2',
+  'version' => '9.12.0',
   'defaultCrate' => '1',
   'property_list_limit' => '9',
   'useGlobalCurrency' => '1',
@@ -125,7 +125,7 @@ $jrConfig = array(
   'room_lock_timeout' => '3600',
   'input_filtering' => 'strong',
   'html_purifier_allowed_tags' => 'p[class],b,strong,a[href],i,em,img[src],ul,li,h1[class],table[width],table[border],tr,td,th,br',
-  'inputs_allowing_html' => 'property_description property_checkin_times property_area_activities property_driving_directions property_airports property_othertransport property_policies_disclaimers email_text description room_description',
+  'inputs_allowing_html' => 'property_description property_checkin_times property_area_activities property_driving_directions property_airports property_othertransport property_policies_disclaimers email_text description room_description room_class_desc',
   'property_details_in_tabs' => '0',
   'property_list_layout_default' => 'tile',
   'automatically_approve_new_properties' => '1',
@@ -197,5 +197,8 @@ $jrConfig = array(
   'secret_key_location' => '',
   'gdpr_booking_retention_period' => '365',
   'gdpr_other_invoice_retention_period' => '3653', // 10 years (including the odd leap day or two)
-  'enable_gdpr_compliant_fucntionality' => '1'
+  'enable_gdpr_compliant_fucntionality' => '1',
+  'machine_translations_source_language' => 'en-GB',
+  'frontend_room_type_editing_allowed' => '0',
+  'frontend_room_type_editing_show_property_room_types_in_search_options' => '1'
 );

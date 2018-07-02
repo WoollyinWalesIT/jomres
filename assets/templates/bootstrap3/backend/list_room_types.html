@@ -1,0 +1,40 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+	<!--
+	jomresJquery(document).ready(function () {
+		make_datatable('list_room_types', '{PAGETITLE}', '{LIVESITE}');
+	});
+	//-->
+</script>
+<h2 class="page-header">{PAGETITLE}</h2>
+<p>{_JOMRES_PROPERTY_ROOM_TYPES_EDIT_LEAD}</p>
+
+
+<div class="well">
+	<a href="{NEW_ROOM_TYPE_URL}" class="btn btn-primary"><i class="fa fa-plus"></i> {_JOMRES_PROPERTY_ROOM_TYPES_NEW}</a>
+</div>
+
+<form action="" method="post" name="listRoomTypes">
+	{JOMRESTOOLBAR}
+	<table id="list_room_types" width="100%" class="table table-striped">
+		<thead>
+		<tr>
+			<th></th>
+			<th>{HRTTITLE}</th>
+			<th class="hidden-phone">{HJOMRES_A_ICON}</th>
+		</tr>
+		</thead>
+		<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="strip" type="simpleCondition" requiredVars="rttitle">
+			<tr>
+				<td>{EDITLINK}</td>
+				<td>{RTTITLE}</td>
+				<td class="hidden-phone"><img src="{IMAGE}"  width="25" height="25" /></td>
+			</tr>
+		</patTemplate:tmpl>
+		</tbody>
+	</table>
+	<input type="hidden" name="option" value="com_jomres"/>
+</form>
+</patTemplate:tmpl>

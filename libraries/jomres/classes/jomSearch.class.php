@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.11.2
+ * @version Jomres 9.12.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -595,17 +595,17 @@ class jomSearch
             $wheres = array();
             foreach ($words as $word) {
                 $wheres2 = array();
-                $wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_NAME' AND LOWER(a.customtext) LIKE '%$word%' AND a.language = '$lang'";
-                $wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_STREET' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang'";
-                $wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_TOWN' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang'";
-                $wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_POSTCODE' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang'";
-                $wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang'";
-                $wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang'";
-                $wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang'";
-                $wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang'";
-                $wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang'";
-                $wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang'";
-                $wheres2[ ] = "a.constant = '_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang' ";
+                $wheres2[ ] = "a.constant LIKE '_JOMRES_CUSTOMTEXT_PROPERTY_NAME%' AND LOWER(a.customtext) LIKE '%$word%' AND a.language = '$lang'";
+                $wheres2[ ] = "a.constant LIKE '_JOMRES_CUSTOMTEXT_PROPERTY_STREET%' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang'";
+                $wheres2[ ] = "a.constant LIKE '_JOMRES_CUSTOMTEXT_PROPERTY_TOWN%' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang'";
+                $wheres2[ ] = "a.constant LIKE '_JOMRES_CUSTOMTEXT_PROPERTY_POSTCODE%' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang'";
+                $wheres2[ ] = "a.constant LIKE '_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION%' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang'";
+                $wheres2[ ] = "a.constant LIKE '_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES%' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang'";
+                $wheres2[ ] = "a.constant LIKE '_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES%' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang'";
+                $wheres2[ ] = "a.constant LIKE '_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS%' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang'";
+                $wheres2[ ] = "a.constant LIKE '_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS%' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang'";
+                $wheres2[ ] = "a.constant LIKE '_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT%' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang'";
+                $wheres2[ ] = "a.constant LIKE '_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS%' AND LOWER(a.customtext)  LIKE '%$word%' AND a.language = '$lang' ";
                 $wheres[ ] = implode(' OR ', $wheres2);
             }
             $where = '('.implode(($phrase == 'all' ? ') AND (' : ') OR ('), $wheres).')';
@@ -1169,11 +1169,30 @@ function prepFeatureSearch()
  */
 function prepRoomtypeSearch()
 {
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+	$jrConfig = $siteConfig->get();
+	
+	if (!isset($jrConfig['frontend_room_type_editing_show_property_room_types_in_search_options']) ) {
+		$jrConfig['frontend_room_type_editing_show_property_room_types_in_search_options'] = "1";
+	}
+
     // Prepares the Room type data required for a search
     $searchAll = jr_gettext('_JOMRES_SEARCH_ALL', '_JOMRES_SEARCH_ALL', false, false);
 
-    $basic_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
-    $roomTypeList = $basic_property_details->all_room_types;
+	$jomres_room_types = jomres_singleton_abstract::getInstance('jomres_room_types');
+	$jomres_room_types->get_all_room_types();
+	$roomTypeList = $jomres_room_types->room_types;
+	
+	
+	if ($jrConfig['frontend_room_type_editing_show_property_room_types_in_search_options'] == "1") {
+		if (!empty($jomres_room_types->property_specific_room_types)) {
+			foreach ($jomres_room_types->property_specific_room_types as $property ) {
+				foreach ($property as $property_specific_room_type ) {
+					$roomTypeList[] = $property_specific_room_type;
+				}
+			}
+		}
+	}
 
     $result = array();
     $r = array();

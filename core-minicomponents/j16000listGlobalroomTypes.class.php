@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.11.2
+ * @version Jomres 9.12.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -30,7 +30,7 @@ class j16000listGlobalroomTypes
         $jomres_property_types->get_all_property_types();
 
         $jomres_room_types = jomres_singleton_abstract::getInstance('jomres_room_types');
-        $jomres_room_types->get_all_room_types();
+        $jomres_room_types->get_all_room_types(true);
 
         $output = array();
         $rows = array();

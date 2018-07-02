@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.11.2
+ * @version Jomres 9.12.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -37,8 +37,14 @@ class j06000module_popup
         $result = '';
         $output = array();
 
+		$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
+
         if ($property_uid > 0) {
             property_header($property_uid, false);
+
+
+			$current_property_details->gather_data($property_uid);
+			set_showtime('ptype_id', $current_property_details->ptype_id);
 
             $output[ 'PROPERTY_UID' ] = $property_uid;
             $output[ 'RANDOM_IDENTIFIER' ] = generateJomresRandomString(10);

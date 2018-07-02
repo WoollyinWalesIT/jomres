@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.11.2
+ * @version Jomres 9.12.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -721,15 +721,18 @@ function dobooking($selectedProperty, $thisdate, $remus)
 		}
 	}
 	
-	jomres_cmsspecific_addheaddata('javascript', JOMRES_NODE_MODULES_RELPATH.'blockui-npm/', 'jquery.blockUI.js');
-	if ( !isset($_COOKIE['jomres_gdpr_consent_form_processed']) || !$_COOKIE['jomres_gdpr_consent_form_processed'] == "1" ) {
-		echo '<script>
-		jomresJquery(document).ready(function () {
-			jomresJquery(\'#booking_form\').block({ message: null }); 
-		});
-		</script>
-	';
+	if ($jrConfig[ 'enable_gdpr_compliant_fucntionality' ] == "1") {
+		jomres_cmsspecific_addheaddata('javascript', JOMRES_NODE_MODULES_RELPATH.'blockui-npm/', 'jquery.blockUI.js');
+		if ( !isset($_COOKIE['jomres_gdpr_consent_form_processed']) || !$_COOKIE['jomres_gdpr_consent_form_processed'] == "1" ) {
+			echo '<script>
+			jomresJquery(document).ready(function () {
+				jomresJquery(\'#booking_form\').block({ message: null }); 
+			});
+			</script>
+		';
+		}
 	}
+
 	
 
 		

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.11.2
+ * @version Jomres 9.12.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -339,7 +339,9 @@ class j06000search
 
         $output[ 'SUBMITURL' ] = jomresURL(JOMRES_SITEPAGE_URL_NOSEF);
         $output[ 'FORMNAME' ] = $jomresSearchFormname;
-
+		 
+		$output[ 'SELECTCOMBO_HIDDENDROPDOWNS_TOWN' ] = '';
+		
         if (!$data_only) {
             // -------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -596,6 +598,7 @@ class j06000search
         // -------------------------------------------------------------------------------------------------------------------------------------------
         if (in_array('room_type', $searchOptions) && $showSearchOptions) {
             $rtypeArray = array();
+
             if (!empty($sch->prep[ 'rtypes' ])) {
                 $r = '';
                 if (empty($sch->filter[ 'room_type' ])) {

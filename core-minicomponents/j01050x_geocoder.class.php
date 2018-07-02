@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.11.2
+ * @version Jomres 9.12.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -183,6 +183,10 @@ class j01050x_geocoder
 
         set_showtime('current_map_identifier', $output[ 'RANDOM_IDENTIFIER' ]);
 
+		$sanitised_lat_long_hyphes = array ("&#38;#45;" , "&#45;" );
+		$output[ 'LAT' ] = str_replace( $sanitised_lat_long_hyphes, "-" , $output[ 'LAT' ] ) ;
+		$output[ 'LONG' ] = str_replace( $sanitised_lat_long_hyphes, "-" , $output[ 'LONG' ] ) ;
+		
         $pageoutput[ ] = $output;
         $tmpl = new patTemplate();
         $tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);

@@ -1,3 +1,19 @@
+<h3>Jomres 9.12.0 02/07/2018</h3>
+
+<span class="label label-success">Feature</span> Added feature to allow property managers to create room types in the frontend. A new setting in Site Config > Misc tab allows managers to enable/disable this setting. Another new setting in the same place allows site administrators to decide if these room types should show in search dropdown fields. This is an oft-requested feature that I am confident will be very popular.
+<span class="label label-success">Feature</span> Added functionality to easily hook in machine learning plugins to automagically translate Jomres language strings. A new DeepL Jomres plugin will be available in the plugin manager.
+
+<span class="label label-warning">Change</span> Modified jomreslanguage class so that arbitrary names can be set and javascript not used.
+<span class="label label-warning">Change</span> Forced to modify how custom text strings are stored for property name, address and description texts. The older style, without the property uid, caused global strings that would overwrite property names, descriptions etc when machine translation is used.
+<span class="label label-warning">Change</span> Modified how Advanced tariff names are pulled from the db, fixes an issue where tariff names are not shown in Advanced mode.
+<span class="label label-warning">Change</span> Added functionality to convert old style property details content text from definitions such as _JOMRES_CUSTOMTEXT_PROPERTY_NAME to the more recent _JOMRES_CUSTOMTEXT_PROPERTY_NAME_X This has been done so that machine translation of strings doesn't force global text strings in the custom text field for property details content.
+<span class="label label-warning">Change</span> Added a new note to the timeline modal popup regarding re-using email addresses.
+
+<span class="label label-important label-danger">Fix</span> Removed a reference to a database column that should no longer have existed.
+<span class="label label-important label-danger">Fix</span> Fixed consent form wrapper to improve scrolling of modal in BS2 templates.
+<span class="label label-important label-danger">Fix</span> Tweaked some code because blockui being triggered when gdpr functionality is disabled.
+<span class="label label-important label-danger">Fix</span> Resolved an issue with hyphens being set incorrectly when editing properties and using the default lat/long settings.
+
 <h3>Jomres 9.11.2 13/06/2018</h3>
 
 <span class="label label-warning">Change</span> Added code to the webhook watcher script to try to find a super property manager's id if we cannot find a normal manager's id for a property.

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.11.2
+ * @version Jomres 9.12.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -3221,10 +3221,8 @@ class dobooking
 		}
 
 		if ($id != 0 && !$userIsManager) {
-			$query = "SELECT guests_uid,mos_userid,enc_firstname,enc_surname,enc_house,enc_street,enc_town,enc_county,enc_country,enc_postcode,enc_tel_landline,enc_tel_mobile,enc_tel_fax,enc_email FROM #__jomres_guests WHERE mos_userid = '$id'";
+			$query = "SELECT guests_uid,mos_userid,enc_firstname,enc_surname,enc_house,enc_street,enc_town,enc_county,enc_country,enc_postcode,enc_tel_landline,enc_tel_mobile,enc_email FROM #__jomres_guests WHERE mos_userid = '$id'";
 			$guestList = doSelectSql($query);
-			//echo $query;exit;
-			//var_dump($guestList);exit;
 			if (!empty($guestList)) {
 				foreach ($guestList as $data) {
 					$guests_uid = $data->guests_uid;

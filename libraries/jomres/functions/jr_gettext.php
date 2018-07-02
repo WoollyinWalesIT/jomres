@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.11.2
+ * @version Jomres 9.12.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -24,7 +24,7 @@ function jr_get_defined($constant, $default = '')
 {
     if (!defined($constant)) {
         $jomres_language_definitions = jomres_singleton_abstract::getInstance('jomres_language_definitions');
-        $result = $jomres_language_definitions->get_defined($constant);
+        $result = $jomres_language_definitions->get_defined($constant , $default );
 
         if ($result === false && $default != '') {
             $result = $default;
