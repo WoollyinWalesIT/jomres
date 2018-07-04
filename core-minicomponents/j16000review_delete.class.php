@@ -44,6 +44,6 @@ class j16000review_delete
 
     public function getRetVals()
     {
-        return $this->retVals;
+        return null;
     }
 }

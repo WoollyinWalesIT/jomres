@@ -37,11 +37,9 @@ class j16000review_publish
                 $result = $Reviews->unpublish_review($rating_id);
             }
             if ($result) {
-                echo '1';
-            } else {
-                echo '0';
-            }
-
+				echo '1';
+			}
+			
             return;
         }
         echo '2';
@@ -51,6 +49,6 @@ class j16000review_publish
 
     public function getRetVals()
     {
-        return $this->retVals;
+        return null;
     }
 }
