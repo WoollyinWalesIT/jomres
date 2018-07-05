@@ -115,6 +115,8 @@ class j16000view_property_reviews
 			$tmpl->addRows('pageoutput', $pageoutput);
 			$tmpl->addRows('rows', $rows);
 			$tmpl->displayParsedTemplate();
+		}  else {
+			echo jr_gettext('_JOMRES_REVIEWS_NOREVIEWS', '_JOMRES_REVIEWS_NOREVIEWS', false);
 		}
     }
 
