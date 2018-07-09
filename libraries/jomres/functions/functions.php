@@ -14,9 +14,44 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
+
 /**
- * Easily find the manager id for a property. If there isn't a specific manager assigned to a property, then find the first super property manager and return that instead
- */
+* When passed a username and password, return a response that confirms or denies that the login was successful. TFA not currently supported
+*/
+
+function jomres_login_user($username = null , $password = null , $tfa = '' ) 
+{
+		$result = false;
+ 		if (isset($username)) {
+			
+		if ( this_cms_is_joomla() ) {
+			$app = JFactory::getApplication();
+			$result = $app->login(array('username' => $username, 'password' => $password));
+		}
+		else {
+			$credentials = array();
+			$credentials['user_login'] = $username;
+			$credentials['user_password'] = $password;
+			$user = wp_signon($credentials);
+
+			if ( is_wp_error($user) ) {
+				$result = false;
+			}
+			else {
+				$result = true;
+			}
+		}
+	}
+	
+	$response = new stdClass();
+	$response->success = $result;
+	 return $response;
+}
+ 
+
+/**
+* Easily find the manager id for a property. If there isn't a specific manager assigned to a property, then find the first super property manager and return that instead
+*/
 function find_manager_id_for_property_uid($property_uid) 
 {
 	$managers_array = get_showtime("property_uids_to_property_managers");

@@ -233,3 +233,5 @@ jr_define('_JOMRES_SHORTCODES_06000SHOW_CONSENT_FORM', 'Shows the GDPR compliant
 
 jr_define( '_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE_LIST', 'Property room type list' );
 jr_define( '_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE', 'Show a property room type' );
+
+jr_define( '_JOMRES_SHORTCODE_LOGIN_FORM', 'Show the login form' );

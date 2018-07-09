@@ -27,6 +27,7 @@ $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
 $MiniComponents->triggerEvent('00100'); // Pre-dobooking. Optional
 
+
 /**
  * If the user is a manager then we will ensure that they are booking one of their own properties. They cannot book a property that's not theirs, while logged in as a manager.
  */
@@ -195,6 +196,8 @@ function dobooking($selectedProperty, $thisdate, $remus)
 
     $MiniComponents->triggerEvent('00102'); // First-form generation
     $bkg = $MiniComponents->triggerEvent('05000'); // Create the booking object
+
+
 
     if (get_showtime('include_room_booking_functionality')) {
         if (is_null($current_property_details->rooms)) {
@@ -598,13 +601,22 @@ function dobooking($selectedProperty, $thisdate, $remus)
 
     $output[ 'PANELPOSITION' ] = (int) $jrConfig[ 'booking_form_totalspanel_position' ];
     $output[ 'BOOKINGFORMWIDTH' ] = (int) $jrConfig[ 'booking_form_width' ];
-    $output[ 'EMAIL_ALREADY_INUSE' ] = jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE', '_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE', false, false);
+    $output[ 'EMAIL_ALREADY_INUSE' ] = jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE', '_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE', false, false)." <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#loginModal'>".jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN', '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN', false)."</button>";
 
     $output[ 'EMAIL_INPUT_DISABLED' ] = '';
     if (($thisJRUser->userIsRegistered && $output[ 'EMAIL' ] != '' && !$thisJRUser->userIsManager) || $thisJRUser->is_partner) {
         $output[ 'EMAIL_INPUT_DISABLED' ] = 'disabled';
     }
 
+	if ( !$thisJRUser->userIsRegistered && $output[ 'EMAIL' ] != '' )  {
+		$email_stored_in_temp_data_can_be_used = $bkg->email_usage_check( $output[ 'EMAIL' ]);
+		if (!$email_stored_in_temp_data_can_be_used) {
+			$login_form = $MiniComponents->specificEvent('06000', 'show_login_form' , array ('output_now' => false , 'login_reason' => jr_gettext('_JOMRES_LOGIN_REASON_EMAIL_ALREADY_USED', '_JOMRES_LOGIN_REASON_EMAIL_ALREADY_USED', false)  ) );
+			echo $login_form;
+			return;
+		}
+	}
+		
     $output[ 'DEPOSIT_CLASS' ] = '';
     if (isset($output[ 'DEPOSIT' ])) { // Need this to stop the booking form totals panel from showing a thick line if the deposit option is disabled
         $output[ 'DEPOSIT_CLASS' ] = 'class="ui-widget-content ui-corner-all"';
@@ -729,10 +741,18 @@ function dobooking($selectedProperty, $thisdate, $remus)
 		}
 	}
 
+	// To show the login modal without forcing umpteen users to update their dobooking template files, we will attach the login form modal contents to the end of the current dobooking template output.
+	$login_form = $MiniComponents->specificEvent('06000', 'show_login_form' , array ('output_now' => false , 'login_reason' => jr_gettext('_JOMRES_LOGIN_REASON_EMAIL_ALREADY_USED', '_JOMRES_LOGIN_REASON_EMAIL_ALREADY_USED', false)  ) );
+	$loginoutput[0] = array ( "login_form" => $login_form );
 	
+	$tmpl = new patTemplate();
+	$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+	$tmpl->readTemplatesFromInput('login_form_modal_wrapper.html');
+	$tmpl->addRows('loginoutput', $loginoutput);
+	$login_modal = $tmpl->getParsedTemplate();
+	
+	$pageoutput[ ] = $output;
 
-		
-    $pageoutput[ ] = $output;
 		$tmpl = new patTemplate();
 
 		if (get_showtime('include_room_booking_functionality')) {
@@ -784,10 +804,12 @@ function dobooking($selectedProperty, $thisdate, $remus)
 				$tmpl->readTemplatesFromInput('dobooking.html');
 			}
 		}
+
 		if (!defined('DOBOOKING_IN_DETAILS')) {
 			$tmpl->displayParsedTemplate();
+			echo $login_modal;
 		} else {
-			$booking_form = $tmpl->getParsedTemplate();
+			$booking_form = $tmpl->getParsedTemplate().$login_modal;
 			define('BOOKING_FORM_FOR_PROPERTY_DETAILS', $booking_form);
 		}
 }
