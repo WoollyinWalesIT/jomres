@@ -38,9 +38,12 @@ class jomres_roomlocks
         $now = strtotime('now');
         $dates_array = $this->init_lockfile();
         $all_sessions = array();
-        foreach ($dates_array as $sess => $d) {
-            $all_sessions[ ] = $sess;
-        }
+		if (!empty($dates_array)) {
+			foreach ($dates_array as $sess => $d) {
+				$all_sessions[ ] = $sess;
+			}
+		}
+
         if (!empty($dates_array)) {
             foreach ($dates_array as $sess_id => $session) {
                 foreach ($session as $date => $room) {
@@ -87,9 +90,12 @@ class jomres_roomlocks
         $room_uid = $this->extract_room_uid($room_uid);
         $dates_array = $this->init_lockfile();
         $all_sessions = array();
-        foreach ($dates_array as $sess => $d) {
-            $all_sessions[ ] = $sess;
-        }
+		if (!empty($dates_array)) {
+			foreach ($dates_array as $sess => $d) {
+				$all_sessions[ ] = $sess;
+			}
+		}
+
 
         $jomressession = get_showtime('jomressession');
         $dateRangeArray = explode(',', $date_range_string);
