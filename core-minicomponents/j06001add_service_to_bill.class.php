@@ -58,7 +58,10 @@ class j06001add_service_to_bill
         } else {
             $contract_uid = jomresGetParam($_POST, 'contract_uid', 0);
             $service_description = ucfirst(jomresGetParam($_POST, 'service_description', ''));
-            $service_value = convert_entered_price_into_safe_float(jomresGetParam($_POST, 'service_value', 0.00));
+			
+			$sv = str_replace( "&#45;" , "-"  , jomresGetParam($_POST, 'service_value', 0.00) );
+            $service_value = convert_entered_price_into_safe_float($sv);
+
             $taxrate = jomresGetParam($_POST, 'taxrate', 0);
             $service_qty = jomresGetParam($_POST, 'service_qty', 1.00);
 
