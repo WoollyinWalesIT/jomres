@@ -54,8 +54,12 @@ class j06000show_login_form
 		
 		$output['_JOMRES_LOGIN_RESET_MESSAGE'] = jr_gettext('_JOMRES_LOGIN_RESET_MESSAGE', '_JOMRES_LOGIN_RESET_MESSAGE', false);
 		$output['_JOMRES_LOGIN_RESET_BUTTON'] = jr_gettext('_JOMRES_LOGIN_RESET_BUTTON', '_JOMRES_LOGIN_RESET_BUTTON', false);
-		$output['RESET_URL'] = get_showtime('live_site').'/index.php?option=com_users&task=reset&view=reset&lang='.get_showtime('lang_shortcode');
 		
+		if (!this_cms_is_wordpress()) {
+			$output['RESET_URL'] = get_showtime('live_site').'/index.php?option=com_users&task=reset&view=reset&lang='.get_showtime('lang_shortcode');
+		} else {
+			$output['RESET_URL'] = wp_lostpassword_url();
+		}
 		
 		$pageoutput[] = $output;
 		$tmpl = new patTemplate();
