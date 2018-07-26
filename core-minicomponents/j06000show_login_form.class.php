@@ -52,6 +52,11 @@ class j06000show_login_form
 		$output['_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN'] = jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN', '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN', false);
 		$output['RETURN_URL'] = getCurrentUrl(true);
 		
+		$output['_JOMRES_LOGIN_RESET_MESSAGE'] = jr_gettext('_JOMRES_LOGIN_RESET_MESSAGE', '_JOMRES_LOGIN_RESET_MESSAGE', false);
+		$output['_JOMRES_LOGIN_RESET_BUTTON'] = jr_gettext('_JOMRES_LOGIN_RESET_BUTTON', '_JOMRES_LOGIN_RESET_BUTTON', false);
+		$output['RESET_URL'] = get_showtime('live_site').'/index.php?option=com_users&task=reset&view=reset&lang='.get_showtime('lang_shortcode');
+		
+		
 		$pageoutput[] = $output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
