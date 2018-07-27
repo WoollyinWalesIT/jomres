@@ -280,7 +280,7 @@ class jr_user
 		}
 
 		if ($this->profile_id == 0) {
-            $query = "INSERT INTO #__jomres_guest_profile (`cms_user_id`,`firstname`,`surname`,`house`,`street`,`town`,`county`,`country`,`postcode`,`tel_landline`,`tel_mobile`,`tel_fax`,`email`,`vat_number`,`vat_number_validated`) VALUES ('".(int) $this->id."','','','','','','','','','','','','','',0)";
+            $query = "INSERT INTO #__jomres_guest_profile (`cms_user_id`,`enc_firstname`,`enc_surname`,`enc_house`,`enc_street`,`enc_town`,`enc_county`,`enc_country`,`enc_postcode`,`enc_tel_landline`,`enc_tel_mobile`,`enc_email`,`enc_vat_number`,`vat_number_validated`) VALUES ('".(int) $this->id."','','','','','','','','','','','','',0)";
             if (!doInsertSql($query, '')) {
                 throw new Exception( 'Unable to insert user profile details');
             }
