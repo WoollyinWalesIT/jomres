@@ -2374,7 +2374,7 @@ jr_define( '_JOMRES_QUICKBOOKING_EMAIL_ADDRESS_NOTE', "You shouldn't re-use the 
 
 jr_define( '_JOMRES_LOGIN_USERNAME', 'Email address' );
 jr_define( '_JOMRES_LOGIN_PASSWORD', 'Password' );
-jr_define( '_JOMRES_LOGIN_REASON_EMAIL_ALREADY_USED',"We are delighted that you would like to book with us again. To be able to manage all your bookings together, it is necessary that you log in so that the booking can be added to your account. This also ensures that you are authorized to use the e-mail address provided." );
+jr_define( '_JOMRES_LOGIN_REASON_EMAIL_ALREADY_USED',"Wir freuen uns, dass Sie wieder bei uns buchen möchten. Damit Sie alle Ihre Buchungen zusammen verwalten können, ist es notwendig, dass Sie sich einloggen, damit die Buchung zu Ihrem Benutzerkonto hinzugefügt werden kann. Zudem ist so auch sichergestellt, dass Sie berechtigt sind, die angegebene E-Mail-Adresse zu verwenden." );
 
-jr_define( '_JOMRES_LOGIN_RESET_MESSAGE', 'If you do not know your password we can send you a password reset email. Please follow the instructions in that email to reset your password.' );
-jr_define( '_JOMRES_LOGIN_RESET_BUTTON', 'Forgot your password?' );
+jr_define( '_JOMRES_LOGIN_RESET_MESSAGE', 'Wenn Sie Ihr Passwort nicht zur Hand oder vergessen haben, können wir Ihnen eine E-Mail zum Zurücksetzen Ihres Passworts zusenden. Bitte folgen Sie den Anweisungen in dieser E-Mail, um Ihr Passwort zurückzusetzen.' );
+jr_define( '_JOMRES_LOGIN_RESET_BUTTON', 'Passwort vergessen?' );

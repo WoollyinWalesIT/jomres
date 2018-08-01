@@ -1727,7 +1727,7 @@ jr_define('_JOMRES_STATUS_INQUIRY', 'Запит');
 jr_define('_JOMRES_BOOKING_INQUIRY_SETTING_TITLE', 'Бронювання потребують ручного підтвердження?');
 jr_define('_JOMRES_BOOKING_INQUIRY_SETTING_DESC', 'If set to yes, when a booking is made, it will not show up on the availability calendars (and other guests can still book those days and resource) until the property manager accepts/confirms availability for the booking. Once confirmed, booking is inserted as provisional (if doesn`t override other bookings; other guests can`t book the same dates anymore) and an email is sent to the customer to make the payment.');
 jr_define('_JOMRES_ERROR', 'Помилка');
-jr_define('_JOMRES_ERROR_MESSAGE', 'Sorry! An error occured while trying to process this function. It has been reported for you and we will look into it.');
+jr_define('_JOMRES_ERROR_MESSAGE', 'Sorry! An error occurred while trying to process this function. It has been reported for you and we will look into it.');
 jr_define('_JOMRES_ERROR_DEBUGGING_MESSAGE', 'Повідомлення');
 jr_define('_JOMRES_ERROR_DEBUGGING_FILE', 'Файл');
 jr_define('_JOMRES_ERROR_DEBUGGING_LINE', 'Line');
