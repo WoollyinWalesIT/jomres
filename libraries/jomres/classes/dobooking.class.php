@@ -3221,7 +3221,7 @@ class dobooking
 		}
 
 		if ($id != 0 && !$userIsManager) {
-			$query = "SELECT guests_uid,mos_userid,enc_firstname,enc_surname,enc_house,enc_street,enc_town,enc_county,enc_country,enc_postcode,enc_tel_landline,enc_tel_mobile,enc_email FROM #__jomres_guest_profiles WHERE mos_userid = '$id'";
+			$query = "SELECT guests_uid,mos_userid,enc_firstname,enc_surname,enc_house,enc_street,enc_town,enc_county,enc_country,enc_postcode,enc_tel_landline,enc_tel_mobile,enc_email FROM #__jomres_guest_profile WHERE mos_userid = '$id'";
 			$guestList = doSelectSql($query);
 			if (!empty($guestList)) {
 				foreach ($guestList as $data) {
