@@ -3221,11 +3221,11 @@ class dobooking
 		}
 
 		if ($id != 0 && !$userIsManager) {
-			$query = "SELECT guests_uid,mos_userid,enc_firstname,enc_surname,enc_house,enc_street,enc_town,enc_county,enc_country,enc_postcode,enc_tel_landline,enc_tel_mobile,enc_email FROM #__jomres_guest_profile WHERE mos_userid = '$id'";
+			$query = "SELECT  cms_user_id,enc_firstname,enc_surname,enc_house,enc_street,enc_town,enc_county,enc_country,enc_postcode,enc_tel_landline,enc_tel_mobile,enc_email FROM #__jomres_guest_profile WHERE cms_user_id = '$id'";
 			$guestList = doSelectSql($query);
 			if (!empty($guestList)) {
 				foreach ($guestList as $data) {
-					$guests_uid = $data->guests_uid;
+					$guests_uid = $data->cms_user_id;
 					$guest_firstname = $this->jomres_encryption->decrypt($data->enc_firstname);
 					$guest_surname = $this->jomres_encryption->decrypt($data->enc_surname);
 					$guest_house = $this->jomres_encryption->decrypt($data->enc_house);
