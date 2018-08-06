@@ -163,19 +163,23 @@ class j00004a_init_javascript_css_files
         } else {
             if ($thisJRUser->userIsManager || jomres_cmsspecific_areweinadminarea()) {
                 $tail = jomres_bootstrap_version();
-				
-				if ($tail == '2' || jomres_cmsspecific_areweinadminarea()) {
-					$tail = '';
-				}
-				
-				if (_JOMRES_DETECTED_CMS == 'joomla4') {
-					$tail = '3';
-				}
+				if ($tail == '4' ) {
+					$javascript_files[] = array(JOMRES_JS_RELPATH , 'bootstrap4-editable.js');
+					$css_files[] = array(JOMRES_CSS_RELPATH , 'bootstrap4-editable.css');
+				} else {
+					if ($tail == '2' || jomres_cmsspecific_areweinadminarea()) {
+						$tail = '';
+					}
+					
+					if (_JOMRES_DETECTED_CMS == 'joomla4') {
+						$tail = '3';
+					}
 
-                $javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap'.$tail.'-editable/js/', 'bootstrap-editable.min.js');
-                $css_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap'.$tail.'-editable/css/', 'bootstrap-editable.css');
-            }
-        }
+					$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap'.$tail.'-editable/js/', 'bootstrap-editable.min.js');
+					$css_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap'.$tail.'-editable/css/', 'bootstrap-editable.css');
+					}
+				}
+			}
 
         if (get_showtime('task') == 'media_centre' || jomresGetParam($_REQUEST, 'task', '') == 'media_centre') {
 			$css_files[] = array(JOMRES_NODE_MODULES_RELPATH.'blueimp-file-upload/css/',  'jquery.fileupload.css');
