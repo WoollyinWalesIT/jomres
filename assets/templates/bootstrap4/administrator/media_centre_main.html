@@ -36,12 +36,12 @@
 </div>
 </patTemplate:tmpl>
 
-<div class="row-fluid">
-	<div class="span7">
+<div class="row">
+	<div class="col-md-7">
 		<p>{RESOURCE_TYPE_OPTIONS} <span id="resource_id_dropdown"><input type="hidden" id="resource_id" value="" /></span></p>
 		<div id="existing_images"></div>
 	</div>
-	<div class="span5">
+	<div class="col-md-5">
 		<div class="well well-small">
 			<div class="page-header"><h3>Upload form</h3></div>
 			
@@ -98,6 +98,7 @@ jomresJquery(function () {
             .prop('disabled', true)
             .text('Processing...')
             .on('click', function () {
+
                 var $this = jomresJquery(this),
                     data = $this.data();
                 $this
