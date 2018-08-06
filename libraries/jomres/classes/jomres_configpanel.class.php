@@ -44,19 +44,30 @@ class jomres_configpanel extends jomres_content_tabs
 				<td>' .$this->right.'</td>
 			</tr>
 			';
-        } else {
+        } else { 
             if ($this->counter % 2) {
                 $rowclass = 'row-even';
             } else {
                 $rowclass = 'row-odd';
             }
-            $this->panes[ ] = '
-			<div class="row-fluid ' .$rowclass.'">
-				<div class="span3">' .$this->left.'</div>
-				<div class="span4">' .$this->middle.'</div>
-				<div class="span5">' .$this->right.'</div>
-			</div>
-			';
+			if ( jomres_bootstrap_version() == '4' ) {
+				$this->panes[ ] = '
+				<div class="row ' .$rowclass.'">
+					<div class="col">' .$this->left.'</div>
+					<div class="col">' .$this->middle.'</div>
+					<div class="col	">' .$this->right.'</div>
+				</div>
+				';
+			} else {
+				$this->panes[ ] = '
+				<div class="row-fluid ' .$rowclass.'">
+					<div class="span3">' .$this->left.'</div>
+					<div class="span4">' .$this->middle.'</div>
+					<div class="span5">' .$this->right.'</div>
+				</div>
+				';
+			}
+
         }
         $this->left = '&nbsp;';
         $this->middle = '&nbsp;';

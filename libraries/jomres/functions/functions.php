@@ -657,11 +657,13 @@ function jomres_bootstrap_version()
         $jrConfig[ 'bootstrap_version' ] = '';
     }
 
-    if ($jrConfig[ 'bootstrap_version' ] == '') {
-        $bootstrap_version = '2';
-    } else { // Leaves us room to manouver in the future when newer versions are created
+	if  ( jomres_cmsspecific_areweinadminarea() && _JOMRES_DETECTED_CMS == 'joomla4' ) {
+		$bootstrap_version = '4';
+    } elseif  ( jomres_cmsspecific_areweinadminarea() && _JOMRES_DETECTED_CMS == 'joomla3' ) {
+		$bootstrap_version = '2';
+    } else { 
         $bootstrap_version = $jrConfig[ 'bootstrap_version' ];
-    }
+    } 
 
     return $bootstrap_version;
 }
