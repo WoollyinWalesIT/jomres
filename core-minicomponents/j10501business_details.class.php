@@ -16,26 +16,26 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j10501business_details
 {
-    public function __construct($componentArgs)
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct($componentArgs)
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
 
-        $configurationPanel = $componentArgs[ 'configurationPanel' ];
-        $lists = $componentArgs[ 'lists' ];
+		$configurationPanel = $componentArgs[ 'configurationPanel' ];
+		$lists = $componentArgs[ 'lists' ];
 
-        $country_dropdown = createSimpleCountriesDropdown($jrConfig[ 'business_country' ], 'cfg_business_country');
-        $region_dropdown = setupRegions($jrConfig[ 'business_country' ], $jrConfig[ 'business_region' ], false, 'cfg_business_region');
+		$country_dropdown = createSimpleCountriesDropdown($jrConfig[ 'business_country' ], 'cfg_business_country');
+		$region_dropdown = setupRegions($jrConfig[ 'business_country' ], $jrConfig[ 'business_region' ], false, 'cfg_business_region');
 
-        $this->addCountryRegionJs();
+		$this->addCountryRegionJs();
 
 		$configurationPanel->startPanel(jr_gettext('_JOMRES_COM_YOURBUSINESS', '_JOMRES_COM_YOURBUSINESS', false));
 
@@ -95,11 +95,11 @@ class j10501business_details
 		$MiniComponents->triggerEvent('10523', $componentArgs);
 
 		$configurationPanel->endPanel();
-    }
+	}
 
-    public function addCountryRegionJs()
-    {
-        ?>
+	public function addCountryRegionJs()
+	{
+		?>
 <script type="text/javascript">
 jomresJquery(document).ready(function () {
 	jomresJquery("#cfg_business_country").change(function(){
@@ -121,11 +121,11 @@ jomresJquery(document).ready(function () {
 </script>
 		<?php
 
-    }
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

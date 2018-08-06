@@ -35,7 +35,7 @@ class jomres_install
 	protected $minicomponent_registry;
 
 	public function __construct($action = 'install', $trashtables = false, $legacy = false)
-    {
+	{
 		//first let`s check the php version
 		if (version_compare(phpversion(), '5.6', '<')) {
 			$this->setMessage('Oops, it looks like you`re running a version of PHP lower than 5.6. Jomres requires at least PHP 5.6 and will not run on earlier versions', 'danger');
@@ -82,7 +82,7 @@ class jomres_install
 		
 		//jomres site config
 		$this->siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $this->jrConfig = $this->siteConfig->get();
+		$this->jrConfig = $this->siteConfig->get();
 
 		//trashtables can be true (drop all jomres tables) or false (keep tables when uninstalling)
 		if ($this->jrConfig['delete_all_data_on_uninstall'] == '1') {
@@ -115,7 +115,7 @@ class jomres_install
 			default:
 				break;
 		}
-    }
+	}
 	
 	//jomres version checks, to double check the installer action
 	private function checkJomresVersion()
@@ -379,8 +379,8 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 	}
 
 	//check and create jomres dirs
-    private function createDirs()
-    {
+	private function createDirs()
+	{
 		//sessions dir
 		if (!is_dir(JOMRES_SESSIONS_ABSPATH)) {
 			if (!@mkdir(JOMRES_SESSIONS_ABSPATH)) {
@@ -431,7 +431,7 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 		}
 
 		return true;
-    }
+	}
 	
 	//create fresh install db tables
 	private function createDefaultDbTables()
@@ -601,8 +601,8 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 	private function remove_obsolete_files()
 	{
 		jr_import('jomres_obsolete_file_handling');
-        $jomres_obsolete_file_handling = new jomres_obsolete_file_handling();
-        
+		$jomres_obsolete_file_handling = new jomres_obsolete_file_handling();
+		
 		//remove obsolete files
 		$jomres_obsolete_file_handling->remove_obsolete_files();
 		

@@ -16,24 +16,24 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j06000ajax_budget
 {
-    public function __construct()
-    {
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
-        $requested_budget = (int) jomresGetParam($_REQUEST, 'budget_figure', 0);
-        jr_import('jomres_user_budget');
-        $budget = new jomres_user_budget();
-        $budget->set_budget($requested_budget);
-    }
+		$requested_budget = (int) jomresGetParam($_REQUEST, 'budget_figure', 0);
+		jr_import('jomres_user_budget');
+		$budget = new jomres_user_budget();
+		$budget->set_budget($requested_budget);
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

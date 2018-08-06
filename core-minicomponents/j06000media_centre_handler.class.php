@@ -33,23 +33,23 @@ $arr [ 'allowed_file_types'] = '(jpe?g|png)';
 
 class j06000media_centre_handler
 {
-    public function __construct($componentArgs)
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct($componentArgs)
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
-        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-        if (!$thisJRUser->userIsManager) {
-            return;
-        }
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+		if (!$thisJRUser->userIsManager) {
+			return;
+		}
 		
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
+		$jrConfig = $siteConfig->get();
 		
 		//resource_type_gathering_trigger
 		if (jomres_cmsspecific_areweinadminarea()) {
@@ -61,12 +61,12 @@ class j06000media_centre_handler
 		}
 
 		//no resource types..exit
-        if (empty($resource_types)) { // Do nowt.
-            return;
-        }
+		if (empty($resource_types)) { // Do nowt.
+			return;
+		}
 
-        $resource_type = jomresGetParam($_REQUEST, 'resource_type', '');
-        $resource_id = jomresGetParam($_REQUEST, 'resource_id', '0');
+		$resource_type = jomresGetParam($_REQUEST, 'resource_type', '');
+		$resource_id = jomresGetParam($_REQUEST, 'resource_id', '0');
 		
 		if ($resource_id == 'undefined' ) {
 			$resource_id = 0;
@@ -81,9 +81,9 @@ class j06000media_centre_handler
 			$resource_id = '0';
 
 		// A security check to ensure that the user's not trying to pass a resource type that we can't handle
-        if (!array_key_exists($resource_type, $resource_types)) { // The resource type isn't recognised, let's get the hell outta Dodge.
-            return;
-        }
+		if (!array_key_exists($resource_type, $resource_types)) { // The resource type isn't recognised, let's get the hell outta Dodge.
+			return;
+		}
 		
 		//set property uid
 		if (jomres_cmsspecific_areweinadminarea()) {
@@ -105,12 +105,12 @@ class j06000media_centre_handler
 		
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
 
-        if (isset($_GET['delete']) && $_GET['delete'] == '1') {
-            $file_name = (string) jomresGetParam($_REQUEST, 'file', '');
-            if ($file_name == '') {
-                return;
-            }
-            
+		if (isset($_GET['delete']) && $_GET['delete'] == '1') {
+			$file_name = (string) jomresGetParam($_REQUEST, 'file', '');
+			if ($file_name == '') {
+				return;
+			}
+			
 			//delete image from disk and db
 			if (!$jomres_media_centre_images->delete_image($property_uid, $resource_type, $resource_id, $file_name, $abs_path, $resource_id_required)) {
 				$response = array('message' => "Boo, we couldn't delete it. I'm going to have a little cry in the corner now.", 'success' => '0');
@@ -127,8 +127,8 @@ class j06000media_centre_handler
 			
 			echo json_encode($response);
 			return;
-        } else {
-            if (!empty($_FILES)) {
+		} else {
+			if (!empty($_FILES)) {
 				jr_import('jomres_media_centre_uploader');
 
 				if (!jomres_cmsspecific_areweinadminarea()) {
@@ -137,12 +137,12 @@ class j06000media_centre_handler
 					$script_url = JOMRES_SITEPAGE_URL_ADMIN_AJAX.'&task=media_centre_handler&delete=1&resource_type='.$resource_type.'&resource_id='.$resource_id;
 				}
 
-                $upload_handler = new UploadHandler(array(
-                    //class params
+				$upload_handler = new UploadHandler(array(
+					//class params
 					'accept_file_types' => '/\.(jpe?g|png)$/i',
 					'script_url' => $script_url,
-                    'upload_dir' => $abs_path,
-                    'upload_url' => $rel_path,
+					'upload_dir' => $abs_path,
+					'upload_url' => $rel_path,
 					'image_versions' => array(
 						// The empty image version key defines options for the original/large image:
 						'' => array(
@@ -163,21 +163,21 @@ class j06000media_centre_handler
 					'resource_type' => $resource_type,
 					'resource_id' => $resource_id,
 					'resource_id_required' => $resource_id_required
-                    ));
-                
+					));
+				
 				//post_upload_processing_trigger, optional for post processing
 				if (jomres_cmsspecific_areweinadminarea()) {
 					$MiniComponents->triggerEvent('11030');
 				} else {
 					$MiniComponents->triggerEvent('03382');
 				}
-            }
-        }
-    }
+			}
+		}
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

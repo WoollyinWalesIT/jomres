@@ -17,15 +17,15 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j16000stripe_subscribe_save_key
 {
-    public function __construct($componentArgs)
-    {
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct($componentArgs)
+	{
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
-        $output = array();
+			return;
+		}
+		$output = array();
 		
 		$key		= jomresGetParam($_REQUEST, 'license_key', '');
 
@@ -43,10 +43,10 @@ class j16000stripe_subscribe_save_key
 
 		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=site_settings') , "License key saved");
 		
-    }
+	}
 
-    public function getRetVals()
-    {
-        return null;
-    }
+	public function getRetVals()
+	{
+		return null;
+	}
 }

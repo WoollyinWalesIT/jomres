@@ -16,14 +16,14 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j16000show_reviews_message
 {
-    public function __construct($componentArgs)
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
-            return;
-        }
+	public function __construct($componentArgs)
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
+			return;
+		}
 		
 		$this->retVals = '';
 		
@@ -36,11 +36,11 @@ class j16000show_reviews_message
 			$siteConfig->update_setting('jomres_review_left', '1');
 		}
 
-        if (isset($componentArgs[ 'output_now' ])) {
-            $output_now = $componentArgs[ 'output_now' ];
-        } else {
-            $output_now = true;
-        }
+		if (isset($componentArgs[ 'output_now' ])) {
+			$output_now = $componentArgs[ 'output_now' ];
+		} else {
+			$output_now = true;
+		}
 
 		$review_sites = array (
 			"capterra" => array ( "url" => 'https://www.capterra.com/p/134469/Jomres/' , "site_name" => "Capterra" )
@@ -73,11 +73,11 @@ class j16000show_reviews_message
 		} else {
 			$this->retVals = $message;
 		}
-    }
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return $this->retVals;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return $this->retVals;
+	}
 }

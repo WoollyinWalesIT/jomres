@@ -16,19 +16,19 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j03379slideshow
 {
-    public function __construct($componentArgs)
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct($componentArgs)
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
-        $property_uid = getDefaultProperty();
-        $preview_link = JOMRES_SITEPAGE_URL_AJAX.'&task=show_property_slideshow&property_uid='.$property_uid;
-        
+		$property_uid = getDefaultProperty();
+		$preview_link = JOMRES_SITEPAGE_URL_AJAX.'&task=show_property_slideshow&property_uid='.$property_uid;
+		
 		$this->ret_vals = array(
 								'resource_type' => 'slideshow', 
 								'resource_id_required' => true, 
@@ -38,11 +38,11 @@ class j03379slideshow
 								'notes' => '',
 								'preview_link'=>$preview_link 
 								);
-    }
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return $this->ret_vals;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return $this->ret_vals;
+	}
 }

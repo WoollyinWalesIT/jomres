@@ -16,70 +16,70 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j10501email_settings
 {
-    public function __construct($componentArgs)
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct($componentArgs)
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
 
-        $configurationPanel = $componentArgs[ 'configurationPanel' ];
-        $lists = $componentArgs[ 'lists' ];
+		$configurationPanel = $componentArgs[ 'configurationPanel' ];
+		$lists = $componentArgs[ 'lists' ];
 
-        $this->outputTestEmailJs();
+		$this->outputTestEmailJs();
 
-        $configurationPanel->startPanel(jr_gettext('_JOMRES_CONFIG_ALTERNATE_SMTP_TITLE', '_JOMRES_CONFIG_ALTERNATE_SMTP_TITLE', false));
+		$configurationPanel->startPanel(jr_gettext('_JOMRES_CONFIG_ALTERNATE_SMTP_TITLE', '_JOMRES_CONFIG_ALTERNATE_SMTP_TITLE', false));
 
-        $configurationPanel->setleft(jr_gettext('_JOMRES_SYSTEM_EMAILS', '_JOMRES_SYSTEM_EMAILS', false));
-        $configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_default_from_address" value="'.$jrConfig[ 'default_from_address' ].'" />');
-        $configurationPanel->setright(jr_gettext('_JOMRES_SYSTEM_EMAILS_DESC', '_JOMRES_SYSTEM_EMAILS_DESC', false));
-        $configurationPanel->insertSetting();
+		$configurationPanel->setleft(jr_gettext('_JOMRES_SYSTEM_EMAILS', '_JOMRES_SYSTEM_EMAILS', false));
+		$configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_default_from_address" value="'.$jrConfig[ 'default_from_address' ].'" />');
+		$configurationPanel->setright(jr_gettext('_JOMRES_SYSTEM_EMAILS_DESC', '_JOMRES_SYSTEM_EMAILS_DESC', false));
+		$configurationPanel->insertSetting();
 
-        $configurationPanel->setleft(jr_gettext('_JOMRES_CONFIG_ALTERNATE_SMTP_TITLE', '_JOMRES_CONFIG_ALTERNATE_SMTP_TITLE', false));
-        $configurationPanel->setmiddle($lists[ 'alternate_smtp_use_settings' ]);
-        $configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_ALTERNATE_SMTP_DESC', '_JOMRES_CONFIG_ALTERNATE_SMTP_DESC', false));
-        $configurationPanel->insertSetting();
+		$configurationPanel->setleft(jr_gettext('_JOMRES_CONFIG_ALTERNATE_SMTP_TITLE', '_JOMRES_CONFIG_ALTERNATE_SMTP_TITLE', false));
+		$configurationPanel->setmiddle($lists[ 'alternate_smtp_use_settings' ]);
+		$configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_ALTERNATE_SMTP_DESC', '_JOMRES_CONFIG_ALTERNATE_SMTP_DESC', false));
+		$configurationPanel->insertSetting();
 
-        $configurationPanel->setleft(jr_gettext('_JOMRES_CONFIG_ALTERNATE_SMTP_HOST', '_JOMRES_CONFIG_ALTERNATE_SMTP_HOST', false));
-        $configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_alternate_smtp_host" value="'.$jrConfig[ 'alternate_smtp_host' ].'" />');
-        $configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_ALTERNATE_SMTP_HOST_DESC', '_JOMRES_CONFIG_ALTERNATE_SMTP_HOST_DESC', false));
-        $configurationPanel->insertSetting();
+		$configurationPanel->setleft(jr_gettext('_JOMRES_CONFIG_ALTERNATE_SMTP_HOST', '_JOMRES_CONFIG_ALTERNATE_SMTP_HOST', false));
+		$configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_alternate_smtp_host" value="'.$jrConfig[ 'alternate_smtp_host' ].'" />');
+		$configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_ALTERNATE_SMTP_HOST_DESC', '_JOMRES_CONFIG_ALTERNATE_SMTP_HOST_DESC', false));
+		$configurationPanel->insertSetting();
 
-        $configurationPanel->setleft(jr_gettext('_JOMRES_CONFIG_ALTERNATE_SMTP_PORT', '_JOMRES_CONFIG_ALTERNATE_SMTP_PORT', false));
-        $configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_alternate_smtp_port" value="'.$jrConfig[ 'alternate_smtp_port' ].'" />');
-        $configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_ALTERNATE_SMTP_PORT_DESC', '_JOMRES_CONFIG_ALTERNATE_SMTP_PORT_DESC', false));
-        $configurationPanel->insertSetting();
+		$configurationPanel->setleft(jr_gettext('_JOMRES_CONFIG_ALTERNATE_SMTP_PORT', '_JOMRES_CONFIG_ALTERNATE_SMTP_PORT', false));
+		$configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_alternate_smtp_port" value="'.$jrConfig[ 'alternate_smtp_port' ].'" />');
+		$configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_ALTERNATE_SMTP_PORT_DESC', '_JOMRES_CONFIG_ALTERNATE_SMTP_PORT_DESC', false));
+		$configurationPanel->insertSetting();
 
-        $configurationPanel->setleft(jr_gettext('_JOMRES_CONFIG_ALTERNATE_SMTP_PROTOCOL', '_JOMRES_CONFIG_ALTERNATE_SMTP_PROTOCOL', false));
-        $configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_alternate_smtp_protocol" value="'.$jrConfig[ 'alternate_smtp_protocol' ].'" />');
-        $configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_ALTERNATE_SMTP_PROTOCOL_DESC', '_JOMRES_CONFIG_ALTERNATE_SMTP_PROTOCOL_DESC', false));
-        $configurationPanel->insertSetting();
+		$configurationPanel->setleft(jr_gettext('_JOMRES_CONFIG_ALTERNATE_SMTP_PROTOCOL', '_JOMRES_CONFIG_ALTERNATE_SMTP_PROTOCOL', false));
+		$configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_alternate_smtp_protocol" value="'.$jrConfig[ 'alternate_smtp_protocol' ].'" />');
+		$configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_ALTERNATE_SMTP_PROTOCOL_DESC', '_JOMRES_CONFIG_ALTERNATE_SMTP_PROTOCOL_DESC', false));
+		$configurationPanel->insertSetting();
 
-        $configurationPanel->setleft(jr_gettext('_JOMRES_CONFIG_ALTERNATE_SMTP_AUTH', '_JOMRES_CONFIG_ALTERNATE_SMTP_AUTH', false));
-        $configurationPanel->setmiddle($lists[ 'alternate_smtp_authentication' ]);
-        $configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_ALTERNATE_SMTP_AUTH_DESC', '_JOMRES_CONFIG_ALTERNATE_SMTP_AUTH_DESC', false));
-        $configurationPanel->insertSetting();
+		$configurationPanel->setleft(jr_gettext('_JOMRES_CONFIG_ALTERNATE_SMTP_AUTH', '_JOMRES_CONFIG_ALTERNATE_SMTP_AUTH', false));
+		$configurationPanel->setmiddle($lists[ 'alternate_smtp_authentication' ]);
+		$configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_ALTERNATE_SMTP_AUTH_DESC', '_JOMRES_CONFIG_ALTERNATE_SMTP_AUTH_DESC', false));
+		$configurationPanel->insertSetting();
 
-        $configurationPanel->setleft(jr_gettext('_JOMRES_CONFIG_ALTERNATE_SMTP_USERNAME', '_JOMRES_CONFIG_ALTERNATE_SMTP_USERNAME', false));
-        $configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_alternate_smtp_username" value="'.$jrConfig[ 'alternate_smtp_username' ].'" />');
-        $configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_ALTERNATE_SMTP_USERNAME_DESC', '_JOMRES_CONFIG_ALTERNATE_SMTP_USERNAME_DESC', false));
-        $configurationPanel->insertSetting();
+		$configurationPanel->setleft(jr_gettext('_JOMRES_CONFIG_ALTERNATE_SMTP_USERNAME', '_JOMRES_CONFIG_ALTERNATE_SMTP_USERNAME', false));
+		$configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_alternate_smtp_username" value="'.$jrConfig[ 'alternate_smtp_username' ].'" />');
+		$configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_ALTERNATE_SMTP_USERNAME_DESC', '_JOMRES_CONFIG_ALTERNATE_SMTP_USERNAME_DESC', false));
+		$configurationPanel->insertSetting();
 
-        $configurationPanel->setleft(jr_gettext('_JOMRES_CONFIG_ALTERNATE_SMTP_PASSWORD', '_JOMRES_CONFIG_ALTERNATE_SMTP_PASSWORD', false));
-        $configurationPanel->setmiddle('<input type="password" class="input-large" name="cfg_alternate_smtp_password" value="'.$jrConfig[ 'alternate_smtp_password' ].'" />');
-        $configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_ALTERNATE_SMTP_PASSWORD_DESC', '_JOMRES_CONFIG_ALTERNATE_SMTP_PASSWORD_DESC', false));
-        $configurationPanel->insertSetting();
+		$configurationPanel->setleft(jr_gettext('_JOMRES_CONFIG_ALTERNATE_SMTP_PASSWORD', '_JOMRES_CONFIG_ALTERNATE_SMTP_PASSWORD', false));
+		$configurationPanel->setmiddle('<input type="password" class="input-large" name="cfg_alternate_smtp_password" value="'.$jrConfig[ 'alternate_smtp_password' ].'" />');
+		$configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_ALTERNATE_SMTP_PASSWORD_DESC', '_JOMRES_CONFIG_ALTERNATE_SMTP_PASSWORD_DESC', false));
+		$configurationPanel->insertSetting();
 
-        $configurationPanel->setleft(jr_gettext('_JOMRES_TEST_EMAIL_SEND', '_JOMRES_TEST_EMAIL_SEND', false));
-        $configurationPanel->setmiddle('<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">'.jr_gettext('_JOMRES_TEST_EMAIL_SEND', '_JOMRES_TEST_EMAIL_SEND', false).'</button>');
-        $configurationPanel->setright(
-                                    '<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		$configurationPanel->setleft(jr_gettext('_JOMRES_TEST_EMAIL_SEND', '_JOMRES_TEST_EMAIL_SEND', false));
+		$configurationPanel->setmiddle('<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">'.jr_gettext('_JOMRES_TEST_EMAIL_SEND', '_JOMRES_TEST_EMAIL_SEND', false).'</button>');
+		$configurationPanel->setright(
+									'<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 										<div class="modal-dialog">
 											<div class="modal-content">
 											  <div class="modal-header">
@@ -96,15 +96,15 @@ class j10501email_settings
 											</div>
 										</div>
 									</div>'
-                                    );
-        $configurationPanel->insertSetting();
+									);
+		$configurationPanel->insertSetting();
 
-        $configurationPanel->endPanel();
-    }
+		$configurationPanel->endPanel();
+	}
 
-    public function outputTestEmailJs()
-    {
-        ?>
+	public function outputTestEmailJs()
+	{
+		?>
 <script type="text/javascript">
 <!--
 jomresJquery(function() {
@@ -139,11 +139,11 @@ jomresJquery(function() {
 //-->
 </script>
 		<?php 
-    }
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

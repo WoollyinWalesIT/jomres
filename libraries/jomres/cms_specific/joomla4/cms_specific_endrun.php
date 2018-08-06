@@ -18,5 +18,5 @@ defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.'
 // Cheers Nic (http://www.akeebabackup.com/)
 
 if (AJAXCALL) {
-    JFactory::getApplication()->close();
+	JFactory::getApplication()->close();
 }

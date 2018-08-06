@@ -16,37 +16,37 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jrportal_custom_fields
 {
-    public function __construct()
-    {
-        $this->init_custom_field();
-    }
+	public function __construct()
+	{
+		$this->init_custom_field();
+	}
 
-    public function init_custom_field()
-    {
-        $this->uid = 0;        // custom field uid
-        $this->fieldname = '';        // custom field name (no spaces)
-        $this->default_value = '';        // custom field default value
-        $this->description = '';        // custom field description
-        $this->required = 0;        // required yes/no 1/0
-        $this->ptype_ids = array();    // property types xref
-    }
+	public function init_custom_field()
+	{
+		$this->uid = 0;		// custom field uid
+		$this->fieldname = '';		// custom field name (no spaces)
+		$this->default_value = '';		// custom field default value
+		$this->description = '';		// custom field description
+		$this->required = 0;		// required yes/no 1/0
+		$this->ptype_ids = array();	// property types xref
+	}
 
-    //Save new custom field
-    public function commit_new_custom_field()
-    {
-        if ($this->uid > 0) {
-            throw new Exception('Error: Custom field uid already set. Are you sure you`re creating a new custom field?');
-        }
+	//Save new custom field
+	public function commit_new_custom_field()
+	{
+		if ($this->uid > 0) {
+			throw new Exception('Error: Custom field uid already set. Are you sure you`re creating a new custom field?');
+		}
 
-        if ($this->fieldname == '') {
-            throw new Exception('Error: Custom field name not set.');
-        }
+		if ($this->fieldname == '') {
+			throw new Exception('Error: Custom field name not set.');
+		}
 
-        if ($this->description == '') {
-            throw new Exception('Error: Custom field description not set.');
-        }
+		if ($this->description == '') {
+			throw new Exception('Error: Custom field description not set.');
+		}
 
-        $query = "INSERT INTO #__jomres_custom_fields 
+		$query = "INSERT INTO #__jomres_custom_fields 
 							(
 							`fieldname`,
 							`default_value`,
@@ -63,31 +63,31 @@ class jrportal_custom_fields
 							'" .serialize($this->ptype_ids)."'
 							)";
 
-        $this->uid = doInsertSql($query, '');
+		$this->uid = doInsertSql($query, '');
 
-        if (!$this->uid) {
-            throw new Exception('Error: New custom field insert failed.');
-        }
+		if (!$this->uid) {
+			throw new Exception('Error: New custom field insert failed.');
+		}
 
-        return true;
-    }
+		return true;
+	}
 
-    //Update existing custom field
-    public function commit_update_custom_field()
-    {
-        if ($this->uid == 0) {
-            throw new Exception('Error: Custom field uid not set.');
-        }
+	//Update existing custom field
+	public function commit_update_custom_field()
+	{
+		if ($this->uid == 0) {
+			throw new Exception('Error: Custom field uid not set.');
+		}
 
-        if ($this->fieldname == '') {
-            throw new Exception('Error: Custom field name not set.');
-        }
+		if ($this->fieldname == '') {
+			throw new Exception('Error: Custom field name not set.');
+		}
 
-        if ($this->description == '') {
-            throw new Exception('Error: Custom field description not set.');
-        }
+		if ($this->description == '') {
+			throw new Exception('Error: Custom field description not set.');
+		}
 
-        $query = "UPDATE #__jomres_custom_fields SET 
+		$query = "UPDATE #__jomres_custom_fields SET 
 						`fieldname` = '" .$this->fieldname."',
 						`default_value` = '" .$this->default_value."',
 						`description` = '" .$this->description."',
@@ -95,26 +95,26 @@ class jrportal_custom_fields
 						`ptype_xref` = '" .serialize($this->ptype_ids)."' 
 					WHERE `uid` = " .$this->uid;
 
-        if (!doInsertSql($query, '')) {
-            throw new Exception('Error: Custom field update intert failed.');
-        }
+		if (!doInsertSql($query, '')) {
+			throw new Exception('Error: Custom field update intert failed.');
+		}
 
-        return true;
-    }
+		return true;
+	}
 
-    //Delete custom field
-    public function delete_custom_field()
-    {
-        if ($this->uid == 0) {
-            throw new Exception('Error: Custom field uid not set.');
-        }
+	//Delete custom field
+	public function delete_custom_field()
+	{
+		if ($this->uid == 0) {
+			throw new Exception('Error: Custom field uid not set.');
+		}
 
-        $query = 'DELETE FROM #__jomres_custom_fields WHERE `uid`= '.(int) $this->uid;
+		$query = 'DELETE FROM #__jomres_custom_fields WHERE `uid`= '.(int) $this->uid;
 
-        if (!doInsertSql($query, '')) {
-            throw new Exception('Error: Delete custom field failed.');
-        }
+		if (!doInsertSql($query, '')) {
+			throw new Exception('Error: Delete custom field failed.');
+		}
 
-        return true;
-    }
+		return true;
+	}
 }

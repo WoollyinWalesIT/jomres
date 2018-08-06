@@ -16,22 +16,22 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j06001videos
 {
-    public function __construct()
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
-        $this->retVals = '';
+			return;
+		}
+		$this->retVals = '';
 
-        if (isset($componentArgs[ 'output_now' ])) {
-            $output_now = $componentArgs[ 'output_now' ];
-        } else {
-            $output_now = true;
-        }
+		if (isset($componentArgs[ 'output_now' ])) {
+			$output_now = $componentArgs[ 'output_now' ];
+		} else {
+			$output_now = true;
+		}
 
 		$defaultProperty 	= getDefaultProperty();
 		
@@ -40,16 +40,16 @@ class j06001videos
 		$jomres_video_tutorials->show_all = true;
 		$video_tutorials = $jomres_video_tutorials->build_modal();
 
-        if ($output_now) {
-            echo $video_tutorials;
-        } else {
-            $this->retVals = $video_tutorials;
-        }
-    }
+		if ($output_now) {
+			echo $video_tutorials;
+		} else {
+			$this->retVals = $video_tutorials;
+		}
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

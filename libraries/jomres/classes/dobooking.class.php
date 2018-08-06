@@ -3334,13 +3334,13 @@ class dobooking
 	}
 
 	private static function sort_alphabetic( $a , $b ) {
-        if ($a['surname'] > $b['surname']) {
-            return 1;
-        } else if ($a['surname'] < $b['surname']) {
-            return -1;
-        } else {
-            return 0; 
-        }
+		if ($a['surname'] > $b['surname']) {
+			return 1;
+		} else if ($a['surname'] < $b['surname']) {
+			return -1;
+		} else {
+			return 0; 
+		}
 	}
 	
 	/**

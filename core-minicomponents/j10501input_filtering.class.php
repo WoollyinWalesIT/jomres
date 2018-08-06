@@ -16,22 +16,22 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j10501input_filtering
 {
-    public function __construct($componentArgs)
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct($componentArgs)
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
 
-        $configurationPanel = $componentArgs[ 'configurationPanel' ];
-        $lists = $componentArgs[ 'lists' ];
-        $filtering_level_dropdown = $componentArgs[ 'filtering_level_dropdown' ];
+		$configurationPanel = $componentArgs[ 'configurationPanel' ];
+		$lists = $componentArgs[ 'lists' ];
+		$filtering_level_dropdown = $componentArgs[ 'filtering_level_dropdown' ];
 		
 		$configurationPanel->startPanel(jr_gettext('_JOMRES_INPUTFILTERING', '_JOMRES_INPUTFILTERING', false));
 		
@@ -64,11 +64,11 @@ class j10501input_filtering
 		$configurationPanel->insertSetting();
 		
 		$configurationPanel->endPanel();
-    }
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

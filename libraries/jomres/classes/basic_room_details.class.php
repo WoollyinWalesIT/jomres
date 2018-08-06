@@ -16,32 +16,32 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class basic_room_details
 {
-    public function __construct()
-    {
-        $this->rooms = false;
-        $this->room = false;
-        $this->all_room_features = array();
-        $this->property_uid = 0;
-    }
+	public function __construct()
+	{
+		$this->rooms = false;
+		$this->room = false;
+		$this->all_room_features = array();
+		$this->property_uid = 0;
+	}
 
-    //Get all rooms details
-    public function get_all_rooms($property_uid = 0)
-    {
-        if ($property_uid == 0) {
-            throw new Exception('Error: Property uid not set.');
-        }
+	//Get all rooms details
+	public function get_all_rooms($property_uid = 0)
+	{
+		if ($property_uid == 0) {
+			throw new Exception('Error: Property uid not set.');
+		}
 
-        if (is_array($this->rooms)) { //already executed but the property doesn`t have any rooms created yet, so the array is empty
-            return true;
-        } else {
-            $this->rooms = array();
-        }
+		if (is_array($this->rooms)) { //already executed but the property doesn`t have any rooms created yet, so the array is empty
+			return true;
+		} else {
+			$this->rooms = array();
+		}
 
-        $this->property_uid = $property_uid;
+		$this->property_uid = $property_uid;
 
-        $room_feature_uids = ''; //here we`ll store all room feature uids so we can later get the details only for the used features, not all.
+		$room_feature_uids = ''; //here we`ll store all room feature uids so we can later get the details only for the used features, not all.
 
-        $query = 'SELECT 
+		$query = 'SELECT 
 						`room_uid`,
 						`room_classes_uid`,
 						`propertys_uid`,
@@ -51,65 +51,65 @@ class basic_room_details
 						`room_floor`,
 						`max_people`,
 						`singleperson_suppliment`,
-                        `tagline`,
-                        `description`
+						`tagline`,
+						`description`
 					FROM #__jomres_rooms 
 					WHERE `propertys_uid` = ' .(int) $property_uid.' 
 					ORDER BY LENGTH(room_number), room_number, room_name
 					';
-        $result = doSelectSql($query);
+		$result = doSelectSql($query);
 
-        if (empty($result)) {
-            return false;
-        }
+		if (empty($result)) {
+			return false;
+		}
 
-        foreach ($result as $r) {
-            $this->rooms[$r->room_uid]['room_uid']                  = (int) $r->room_uid;
-            $this->rooms[$r->room_uid]['room_classes_uid']          = (int) $r->room_classes_uid;
-            $this->rooms[$r->room_uid]['propertys_uid']             = (int) $r->propertys_uid;
-            $this->rooms[$r->room_uid]['room_features_uid']         = stripslashes($r->room_features_uid);
-            $this->rooms[$r->room_uid]['room_name']                 = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMNAME_TITLE'.$r->room_uid, stripslashes($r->room_name), false);
-            $this->rooms[$r->room_uid]['room_number']               = stripslashes($r->room_number);
-            $this->rooms[$r->room_uid]['room_floor']                = stripslashes($r->room_floor);
-            $this->rooms[$r->room_uid]['max_people']                = (int) $r->max_people;
-            $this->rooms[$r->room_uid]['singleperson_suppliment']   = (float) $r->singleperson_suppliment;
-            $this->rooms[$r->room_uid]['tagline']         			= jr_gettext('_JOMRES_CUSTOMTEXT_ROOM_TAGLINE'.$r->room_uid, stripslashes($r->tagline), false);
-            $this->rooms[$r->room_uid]['description']               = jomres_decode(jr_gettext('_JOMRES_CUSTOMTEXT_ROOM_DESCRIPTION_'.$r->room_uid, stripslashes($r->description), false));
-            
-            if ($this->rooms[$r->room_uid]['room_features_uid'] != '') {
-                $room_feature_uids .= $this->rooms[$r->room_uid]['room_features_uid'].',';
-            }
-        }
+		foreach ($result as $r) {
+			$this->rooms[$r->room_uid]['room_uid']				  = (int) $r->room_uid;
+			$this->rooms[$r->room_uid]['room_classes_uid']		  = (int) $r->room_classes_uid;
+			$this->rooms[$r->room_uid]['propertys_uid']			 = (int) $r->propertys_uid;
+			$this->rooms[$r->room_uid]['room_features_uid']		 = stripslashes($r->room_features_uid);
+			$this->rooms[$r->room_uid]['room_name']				 = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMNAME_TITLE'.$r->room_uid, stripslashes($r->room_name), false);
+			$this->rooms[$r->room_uid]['room_number']			   = stripslashes($r->room_number);
+			$this->rooms[$r->room_uid]['room_floor']				= stripslashes($r->room_floor);
+			$this->rooms[$r->room_uid]['max_people']				= (int) $r->max_people;
+			$this->rooms[$r->room_uid]['singleperson_suppliment']   = (float) $r->singleperson_suppliment;
+			$this->rooms[$r->room_uid]['tagline']		 			= jr_gettext('_JOMRES_CUSTOMTEXT_ROOM_TAGLINE'.$r->room_uid, stripslashes($r->tagline), false);
+			$this->rooms[$r->room_uid]['description']			   = jomres_decode(jr_gettext('_JOMRES_CUSTOMTEXT_ROOM_DESCRIPTION_'.$r->room_uid, stripslashes($r->description), false));
+			
+			if ($this->rooms[$r->room_uid]['room_features_uid'] != '') {
+				$room_feature_uids .= $this->rooms[$r->room_uid]['room_features_uid'].',';
+			}
+		}
 
-        if ($room_feature_uids != '') {
-            $room_feature_uids = substr($room_feature_uids, 0, -1);
-            $room_feature_uids = array_unique(explode(',', $room_feature_uids));
-            $this->get_rooms_features($room_feature_uids);
-        }
+		if ($room_feature_uids != '') {
+			$room_feature_uids = substr($room_feature_uids, 0, -1);
+			$room_feature_uids = array_unique(explode(',', $room_feature_uids));
+			$this->get_rooms_features($room_feature_uids);
+		}
 
-        return true;
-    }
+		return true;
+	}
 
-    //Get room details
-    public function get_room($room_uid = 0)
-    {
-        if ($room_uid == 0) {
-            throw new Exception('Error: Room uid not set.');
-        }
+	//Get room details
+	public function get_room($room_uid = 0)
+	{
+		if ($room_uid == 0) {
+			throw new Exception('Error: Room uid not set.');
+		}
 
-        if (is_array($this->rooms) && array_key_exists($room_uid, $this->rooms)) {
-            $this->room = $this->rooms[$room_uid];
+		if (is_array($this->rooms) && array_key_exists($room_uid, $this->rooms)) {
+			$this->room = $this->rooms[$room_uid];
 
-            return true;
-        }
+			return true;
+		}
 
-        if (is_array($this->room)) {
-            return true;
-        }
+		if (is_array($this->room)) {
+			return true;
+		}
 
-        $this->room = array();
+		$this->room = array();
 
-        $query = 'SELECT 
+		$query = 'SELECT 
 						`room_uid`,
 						`room_classes_uid`,
 						`propertys_uid`,
@@ -119,49 +119,49 @@ class basic_room_details
 						`room_floor`,
 						`max_people`,
 						`singleperson_suppliment`,
-                        `tagline`,
-                        `description`
+						`tagline`,
+						`description`
 					FROM #__jomres_rooms 
 					WHERE `room_uid` = ' .(int) $room_uid.' 
 					LIMIT 1
 					';
-        $result = doSelectSql($query);
+		$result = doSelectSql($query);
 
-        if (empty($result)) {
-            return false;
-        }
+		if (empty($result)) {
+			return false;
+		}
 
-        foreach ($result as $r) {
-            $this->room['room_uid']                 = (int) $r->room_uid;
-            $this->room['room_classes_uid']         = (int) $r->room_classes_uid;
-            $this->room['propertys_uid']            = (int) $r->propertys_uid;
-            $this->room['room_features_uid']        = stripslashes($r->room_features_uid);
-            $this->room['room_name']                = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMNAME_TITLE'.$r->room_uid, stripslashes($r->room_name), false);
-            $this->room['room_number']              = stripslashes($r->room_number);
-            $this->room['room_floor']               = stripslashes($r->room_floor);
-            $this->room['max_people']               = (int) $r->max_people;
-            $this->room['singleperson_suppliment']  = (float) $r->singleperson_suppliment;
-            $this->room['tagline']        			= jr_gettext('_JOMRES_CUSTOMTEXT_ROOM_TAGLINE'.$r->room_uid, stripslashes($r->tagline), false);
-            $this->room['description']              = jomres_decode(jr_gettext('_JOMRES_CUSTOMTEXT_ROOM_DESCRIPTION_'.$r->room_uid, stripslashes($r->description), false));
-            
-            $this->property_uid = $this->room['propertys_uid'];
-        }
+		foreach ($result as $r) {
+			$this->room['room_uid']				 = (int) $r->room_uid;
+			$this->room['room_classes_uid']		 = (int) $r->room_classes_uid;
+			$this->room['propertys_uid']			= (int) $r->propertys_uid;
+			$this->room['room_features_uid']		= stripslashes($r->room_features_uid);
+			$this->room['room_name']				= jr_gettext('_JOMRES_CUSTOMTEXT_ROOMNAME_TITLE'.$r->room_uid, stripslashes($r->room_name), false);
+			$this->room['room_number']			  = stripslashes($r->room_number);
+			$this->room['room_floor']			   = stripslashes($r->room_floor);
+			$this->room['max_people']			   = (int) $r->max_people;
+			$this->room['singleperson_suppliment']  = (float) $r->singleperson_suppliment;
+			$this->room['tagline']					= jr_gettext('_JOMRES_CUSTOMTEXT_ROOM_TAGLINE'.$r->room_uid, stripslashes($r->tagline), false);
+			$this->room['description']			  = jomres_decode(jr_gettext('_JOMRES_CUSTOMTEXT_ROOM_DESCRIPTION_'.$r->room_uid, stripslashes($r->description), false));
+			
+			$this->property_uid = $this->room['propertys_uid'];
+		}
 
-        if ($this->room['room_features_uid'] != '') {
-            $room_feature_uids = array_unique(explode(',', $this->room['room_features_uid']));
-            $this->get_rooms_features($room_feature_uids);
-        }
+		if ($this->room['room_features_uid'] != '') {
+			$room_feature_uids = array_unique(explode(',', $this->room['room_features_uid']));
+			$this->get_rooms_features($room_feature_uids);
+		}
 
-        return true;
-    }
+		return true;
+	}
 
-    public function get_rooms_features($room_feature_uids = array())
-    {
-        if (empty($room_feature_uids)) {
-            throw new Exception('Error: Room feature uids not set.');
-        }
+	public function get_rooms_features($room_feature_uids = array())
+	{
+		if (empty($room_feature_uids)) {
+			throw new Exception('Error: Room feature uids not set.');
+		}
 
-        $query = 'SELECT 
+		$query = 'SELECT 
 						`room_features_uid`, 
 						`feature_description`, 
 						`property_uid`, 
@@ -170,66 +170,66 @@ class basic_room_details
 					FROM #__jomres_room_features 
 					WHERE `room_features_uid` IN ('.jomres_implode($room_feature_uids).') 
 					';
-        $result = doSelectSql($query);
+		$result = doSelectSql($query);
 
-        if (!empty($result)) {
-            //get the room feature images for tooltips
-            $jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
-            $jomres_media_centre_images->get_images($this->property_uid, array('room_features'));
+		if (!empty($result)) {
+			//get the room feature images for tooltips
+			$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
+			$jomres_media_centre_images->get_images($this->property_uid, array('room_features'));
 
-            foreach ($result as $r) {
-                $this->all_room_features[ $r->room_features_uid ][ 'room_features_uid' ] = (int) $r->room_features_uid;
-                $this->all_room_features[ $r->room_features_uid ][ 'feature_description' ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION'.(int) $r->room_features_uid, stripslashes($r->feature_description), false, false);
+			foreach ($result as $r) {
+				$this->all_room_features[ $r->room_features_uid ][ 'room_features_uid' ] = (int) $r->room_features_uid;
+				$this->all_room_features[ $r->room_features_uid ][ 'feature_description' ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION'.(int) $r->room_features_uid, stripslashes($r->feature_description), false, false);
 
-                if ($r->ptype_xref != '') {
-                    $this->all_room_features[ $r->room_features_uid ][ 'ptype_xref' ] = unserialize($r->ptype_xref);
-                } else {
-                    $this->all_room_features[ $r->room_features_uid ][ 'ptype_xref' ] = array();
-                }
+				if ($r->ptype_xref != '') {
+					$this->all_room_features[ $r->room_features_uid ][ 'ptype_xref' ] = unserialize($r->ptype_xref);
+				} else {
+					$this->all_room_features[ $r->room_features_uid ][ 'ptype_xref' ] = array();
+				}
 
-                //feature images
-                $feature_image = $jomres_media_centre_images->multi_query_images['noimage-small'];
+				//feature images
+				$feature_image = $jomres_media_centre_images->multi_query_images['noimage-small'];
 
-                if ($r->image != '') {
-                    $feature_image = JOMRES_IMAGELOCATION_RELPATH.'rmfeatures/'.stripslashes($r->image);
-                } elseif (isset($jomres_media_centre_images->images['room_features'][ $r->room_features_uid ][0]['small'])) {
+				if ($r->image != '') {
+					$feature_image = JOMRES_IMAGELOCATION_RELPATH.'rmfeatures/'.stripslashes($r->image);
+				} elseif (isset($jomres_media_centre_images->images['room_features'][ $r->room_features_uid ][0]['small'])) {
 					$feature_image = $jomres_media_centre_images->images['room_features'][ $r->room_features_uid ][0]['small'];
 				}
-                
+				
 				$this->all_room_features[ $r->room_features_uid ][ 'image' ] = $feature_image;
 
-                $this->all_room_features[ $r->room_features_uid ][ 'tooltip' ] = jomres_makeTooltip(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION'.(int) $r->room_features_uid, stripslashes($r->feature_description), false, false), jr_gettext('_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION'.(int) $r->room_features_uid, stripslashes($r->feature_description), false, false), '', $feature_image, '', 'property_feature', array());
-            }
-        }
+				$this->all_room_features[ $r->room_features_uid ][ 'tooltip' ] = jomres_makeTooltip(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION'.(int) $r->room_features_uid, stripslashes($r->feature_description), false, false), jr_gettext('_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION'.(int) $r->room_features_uid, stripslashes($r->feature_description), false, false), '', $feature_image, '', 'property_feature', array());
+			}
+		}
 
-        return true;
-    }
+		return true;
+	}
 
-    //Get property uid for room uid
-    public function get_property_uid_for_room_uid($room_uid = 0)
-    {
-        if ($room_uid == 0) {
-            throw new Exception('Error: Room uid not set.');
-        }
+	//Get property uid for room uid
+	public function get_property_uid_for_room_uid($room_uid = 0)
+	{
+		if ($room_uid == 0) {
+			throw new Exception('Error: Room uid not set.');
+		}
 
-        if (is_array($this->rooms) && array_key_exists($room_uid, $this->rooms)) {
-            $this->property_uid = $this->rooms[$room_uid]['propertys_uid'];
+		if (is_array($this->rooms) && array_key_exists($room_uid, $this->rooms)) {
+			$this->property_uid = $this->rooms[$room_uid]['propertys_uid'];
 
-            return $this->property_uid;
-        }
+			return $this->property_uid;
+		}
 
-        $query = 'SELECT 
+		$query = 'SELECT 
 						`propertys_uid` 
 					FROM #__jomres_rooms 
 					WHERE `room_uid` = ' .(int) $room_uid;
-        $result = doSelectSql($query, 1);
+		$result = doSelectSql($query, 1);
 
-        if ((int) $result < 1) {
-            return false;
-        }
+		if ((int) $result < 1) {
+			return false;
+		}
 
-        $this->property_uid = (int) $result;
+		$this->property_uid = (int) $result;
 
-        return $this->property_uid;
-    }
+		return $this->property_uid;
+	}
 }

@@ -16,38 +16,38 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j06005save_review_report
 {
-    public function __construct()
-    {
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
+			return;
+		}
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
 
-        $rating_id = (int) $_REQUEST[ 'rating_id' ];
-        $report = jomresGetParam($_REQUEST, 'report', '');
+		$rating_id = (int) $_REQUEST[ 'rating_id' ];
+		$report = jomresGetParam($_REQUEST, 'report', '');
 
-        if ($jrConfig[ 'use_reviews' ] == '1' && $rating_id > 0 && $report != '') {
-            jr_import('jomres_reviews');
-            $Reviews = new jomres_reviews();
-            $Reviews->save_review_report($rating_id, $report);
-            $property_uid = $Reviews->get_property_uid_for_rating_id($rating_id);
+		if ($jrConfig[ 'use_reviews' ] == '1' && $rating_id > 0 && $report != '') {
+			jr_import('jomres_reviews');
+			$Reviews = new jomres_reviews();
+			$Reviews->save_review_report($rating_id, $report);
+			$property_uid = $Reviews->get_property_uid_for_rating_id($rating_id);
 
-            $property_name = getPropertyName($property_uid);
-            $subject = jr_gettext('JOMRES_NEWREPORT_SUBJECT', 'JOMRES_NEWREPORT_SUBJECT', false).' '.$property_name;
-            $message = jr_gettext('JOMRES_NEWREPORT_MESSAGE', 'JOMRES_NEWREPORT_MESSAGE', false).' '.$property_name.'  '.JOMRES_SITEPAGE_URL_ADMIN.'&task=view_property_reviews&property_uid='.(int) $property_uid.'  <br/><br/>';
-            sendAdminEmail($subject, $message);
+			$property_name = getPropertyName($property_uid);
+			$subject = jr_gettext('JOMRES_NEWREPORT_SUBJECT', 'JOMRES_NEWREPORT_SUBJECT', false).' '.$property_name;
+			$message = jr_gettext('JOMRES_NEWREPORT_MESSAGE', 'JOMRES_NEWREPORT_MESSAGE', false).' '.$property_name.'  '.JOMRES_SITEPAGE_URL_ADMIN.'&task=view_property_reviews&property_uid='.(int) $property_uid.'  <br/><br/>';
+			sendAdminEmail($subject, $message);
 
-            jomresRedirect(get_property_details_url($property_uid), '');
-            exit;
-        }
-    }
+			jomresRedirect(get_property_details_url($property_uid), '');
+			exit;
+		}
+	}
 
-    public function getRetVals()
-    {
-        return $this->retVals;
-    }
+	public function getRetVals()
+	{
+		return $this->retVals;
+	}
 }

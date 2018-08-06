@@ -16,12 +16,12 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class currency_codes
 {
-    public function __construct()
-    {
-        $this->code = '';
+	public function __construct()
+	{
+		$this->code = '';
 		$this->input_name = '';
 
-        $this->codes = array(
+		$this->codes = array(
 			'AFA' => 'Afghanistan Afghani AFA ', 
 			'ALL' => 'Albanian Lek ALL ', 
 			'DZD' => 'Algerian Dinar DZD ', 
@@ -172,7 +172,7 @@ class currency_codes
 			'ZWD' => 'Zimbabwe Dollar ZWD '
 			);
 
-        $this->country_codes_to_currency_codes = array(
+		$this->country_codes_to_currency_codes = array(
 			'AF' => 'AFA', 
 			'AL' => 'ALL', 
 			'AZ' => 'AZN', 
@@ -316,10 +316,10 @@ class currency_codes
 			'VN' => 'VND', 
 			'WS' => 'WST', 
 			// 'XOF'=>'XOF Benin: CFA Franc BCEAO',
-            // 'XOF'=>'XOF CFA Franc BCEAO',
-            // 'XAF'=>'XAF CFA Franc BEAC',
-            // 'XAF'=>'XAF CFA Franc BEAC',
-            // 'XPF'=>'XPF Franc Pacifique',
+			// 'XOF'=>'XOF CFA Franc BCEAO',
+			// 'XAF'=>'XAF CFA Franc BEAC',
+			// 'XAF'=>'XAF CFA Franc BEAC',
+			// 'XPF'=>'XPF Franc Pacifique',
 			'ZM' => 'ZMK', 
 			'ZW' => 'ZWD', 
 			'AT' => 'EUR', 
@@ -341,8 +341,8 @@ class currency_codes
 			'ES' => 'EUR'
 			);
 
-        // Some of these symbols or their pre/post assignments may be wrong, if so, please email support@jomres.net and I'll put them right
-        $this->symbols = array(
+		// Some of these symbols or their pre/post assignments may be wrong, if so, please email support@jomres.net and I'll put them right
+		$this->symbols = array(
 			'AFA' => array('pre' => '؋', 'post' => ''), 
 			'ALL' => array('pre' => 'L', 'post' => ''), 
 			'AZN' => array('pre' => '', 'post' => '&nbsp;AZN'), 
@@ -491,14 +491,14 @@ class currency_codes
 			'ZWD' => array('pre' => 'Lei', 'post' => ''), 
 			'XPF' => array('pre' => '', 'post' => 'F')
 			);
-    }
+	}
 
-    public function makeCodesDropdown($code = '', $global = false, $input_name = '')
-    {
+	public function makeCodesDropdown($code = '', $global = false, $input_name = '')
+	{
 		//selected currency code
 		if ($code != '') {
-            $this->code = strtoupper(trim($code));
-        }
+			$this->code = strtoupper(trim($code));
+		}
 		
 		//input name
 		if (!$global) {
@@ -507,47 +507,47 @@ class currency_codes
 			} else {
 				$this->input_name = $input_name;
 			}
-        } else {
-            $this->input_name = 'cfg_globalCurrencyCode';
-        }
+		} else {
+			$this->input_name = 'cfg_globalCurrencyCode';
+		}
 		
-        // We need to limit the available currency codes to those which can be converted. If we don't then the shopping cart calculations will all be wrong, so we'll use the conversion code can be converted method to check that we can use the currency code.
-        // We'll leave this as a programattic thing, as the codes will change depending on the codes that yahoo give to Jomres
-        $jomres_currency_conversion = jomres_singleton_abstract::getInstance('jomres_currency_conversion');
+		// We need to limit the available currency codes to those which can be converted. If we don't then the shopping cart calculations will all be wrong, so we'll use the conversion code can be converted method to check that we can use the currency code.
+		// We'll leave this as a programattic thing, as the codes will change depending on the codes that yahoo give to Jomres
+		$jomres_currency_conversion = jomres_singleton_abstract::getInstance('jomres_currency_conversion');
 
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
 
-        $options = array();
-        ksort($this->codes);
-        foreach ($this->codes as $k => $v) {
-            if ($jomres_currency_conversion->this_code_can_be_converted($k) || ($jrConfig[ 'useGlobalCurrency' ] == '0' && $jrConfig[ 'use_conversion_feature' ] == '0') || trim($jrConfig[ 'openexchangerates_api_key' ]) == '') {
-                $options[] = jomresHTML::makeOption($k, $v);
-            }
-        }
+		$options = array();
+		ksort($this->codes);
+		foreach ($this->codes as $k => $v) {
+			if ($jomres_currency_conversion->this_code_can_be_converted($k) || ($jrConfig[ 'useGlobalCurrency' ] == '0' && $jrConfig[ 'use_conversion_feature' ] == '0') || trim($jrConfig[ 'openexchangerates_api_key' ]) == '') {
+				$options[] = jomresHTML::makeOption($k, $v);
+			}
+		}
 
-        return jomresHTML::selectList($options, $this->input_name, 'class="inputbox" size="1"', 'value', 'text', $this->code);
-    }
+		return jomresHTML::selectList($options, $this->input_name, 'class="inputbox" size="1"', 'value', 'text', $this->code);
+	}
 
-    public function getCode($code = '')
-    {
-        if ($code == '') {
-            $code = $this->code;
-        } else {
+	public function getCode($code = '')
+	{
+		if ($code == '') {
+			$code = $this->code;
+		} else {
 			$code = strtoupper(trim($code));
 		}
 
-        return $this->codes[ $code ];
-    }
+		return $this->codes[ $code ];
+	}
 
-    public function getSymbol($code = '')
-    {
-        if ($code == '') {
-            $code = $this->code;
-        } else {
+	public function getSymbol($code = '')
+	{
+		if ($code == '') {
+			$code = $this->code;
+		} else {
 			$code = strtoupper(trim($code));
 		}
 
-        return $this->symbols[ $code ];
-    }
+		return $this->symbols[ $code ];
+	}
 }

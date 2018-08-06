@@ -16,28 +16,28 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j03200jrportal
 {
-    public function __construct($componentArgs)
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct($componentArgs)
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
-        if ($MiniComponents->eventFileExistsCheck('07005')) {
-            $propertys_uids = $MiniComponents->triggerEvent('07005');
-        } // Optional minicomponent trigger, eg for system cleanups or other pre-booking activity
+		if ($MiniComponents->eventFileExistsCheck('07005')) {
+			$propertys_uids = $MiniComponents->triggerEvent('07005');
+		} // Optional minicomponent trigger, eg for system cleanups or other pre-booking activity
 
-        if ($MiniComponents->eventFileExistsCheck('07010')) {
-            $MiniComponents->triggerEvent('07010', $componentArgs);
-        } // Allows us to run post insertion functionality for importing into foreign systems. Currently used for inserting commission line items
-    }
+		if ($MiniComponents->eventFileExistsCheck('07010')) {
+			$MiniComponents->triggerEvent('07010', $componentArgs);
+		} // Allows us to run post insertion functionality for importing into foreign systems. Currently used for inserting commission line items
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

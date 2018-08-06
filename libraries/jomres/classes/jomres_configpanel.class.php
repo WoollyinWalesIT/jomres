@@ -24,32 +24,32 @@ jr_import('jomres_content_tabs');
  */
 class jomres_configpanel extends jomres_content_tabs
 {
-    /**
-     * Inserts the settings into the panes array.
-     */
-    public function insertSetting()
-    {
-        $rowclass = '';
+	/**
+	 * Inserts the settings into the panes array.
+	 */
+	public function insertSetting()
+	{
+		$rowclass = '';
 
-        if (!using_bootstrap()) {
-            if ($this->counter % 2) {
-                $rowclass = 'odd';
-            } else {
-                $rowclass = 'even';
-            }
-            $this->panes[ ] = '
+		if (!using_bootstrap()) {
+			if ($this->counter % 2) {
+				$rowclass = 'odd';
+			} else {
+				$rowclass = 'even';
+			}
+			$this->panes[ ] = '
 			<tr class="' .$rowclass.'">
 				<td width="30%">' .$this->left.'</td>
 				<td>' .$this->middle.'</td>
 				<td>' .$this->right.'</td>
 			</tr>
 			';
-        } else { 
-            if ($this->counter % 2) {
-                $rowclass = 'row-even';
-            } else {
-                $rowclass = 'row-odd';
-            }
+		} else { 
+			if ($this->counter % 2) {
+				$rowclass = 'row-even';
+			} else {
+				$rowclass = 'row-odd';
+			}
 			if ( jomres_bootstrap_version() == '4' ) {
 				$this->panes[ ] = '
 				<div class="row ' .$rowclass.'">
@@ -68,44 +68,44 @@ class jomres_configpanel extends jomres_content_tabs
 				';
 			}
 
-        }
-        $this->left = '&nbsp;';
-        $this->middle = '&nbsp;';
-        $this->right = '&nbsp;';
-        ++$this->counter;
-    }
+		}
+		$this->left = '&nbsp;';
+		$this->middle = '&nbsp;';
+		$this->right = '&nbsp;';
+		++$this->counter;
+	}
 
-    public function insertDescription($description = '', $class = 'alert alert-info')
-    {
-        $this->panes[ ] = '<p class="'.$class.'">'.$description.'</p>';
-    }
+	public function insertDescription($description = '', $class = 'alert alert-info')
+	{
+		$this->panes[ ] = '<p class="'.$class.'">'.$description.'</p>';
+	}
 
-    public function insertHeading($text = '', $type = 'h3')
-    {
-        $this->panes[ ] = '<div class="row-fluid"><div class="span12"><'.$type.'>'.$text.'</'.$type.'></div></div>';
-    }
+	public function insertHeading($text = '', $type = 'h3')
+	{
+		$this->panes[ ] = '<div class="row-fluid"><div class="span12"><'.$type.'>'.$text.'</'.$type.'></div></div>';
+	}
 
-    /**
-     * setleft panel.
-     */
-    public function setleft($val = '&nbsp;')
-    {
-        $this->left = $val;
-    }
+	/**
+	 * setleft panel.
+	 */
+	public function setleft($val = '&nbsp;')
+	{
+		$this->left = $val;
+	}
 
-    /**
-     * setmiddle panel.
-     */
-    public function setmiddle($val = '&nbsp;')
-    {
-        $this->middle = $val;
-    }
+	/**
+	 * setmiddle panel.
+	 */
+	public function setmiddle($val = '&nbsp;')
+	{
+		$this->middle = $val;
+	}
 
-    /**
-     * setright panel.
-     */
-    public function setright($val = '&nbsp;')
-    {
-        $this->right = $val;
-    }
+	/**
+	 * setright panel.
+	 */
+	public function setright($val = '&nbsp;')
+	{
+		$this->right = $val;
+	}
 }

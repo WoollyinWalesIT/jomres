@@ -24,8 +24,8 @@ class jrportal_availability
 	
 	protected $room_uids;
 	
-    public function __construct($property_uid = 0, $arrival = '', $departure = '', $room_uids = array())
-    {
+	public function __construct($property_uid = 0, $arrival = '', $departure = '', $room_uids = array())
+	{
 		$this->property_uid = $property_uid;	//required
 
 		$this->arrival = $arrival;				//date required
@@ -33,7 +33,7 @@ class jrportal_availability
 		$this->room_uids = $room_uids;			//array of room uids, required
 		
 		$this->validate();
-    }
+	}
 	
 	public function check_availability()
 	{
@@ -51,23 +51,23 @@ class jrportal_availability
 	}
 	
 	private function validate()
-    {
-        if ($this->arrival == '') {
-            throw new Exception(' Arrival date is not valid');
-        }
-        
+	{
+		if ($this->arrival == '') {
+			throw new Exception(' Arrival date is not valid');
+		}
+		
 		if ($this->departure == '') {
-            throw new Exception(' Departure date is not valid');
-        }
-        
+			throw new Exception(' Departure date is not valid');
+		}
+		
 		if (!is_array($this->room_uids) || empty($this->room_uids)) {
-            throw new Exception(' Room uids array not set');
-        }
-        
+			throw new Exception(' Room uids array not set');
+		}
+		
 		if ($this->property_uid == 0) {
-            throw new Exception(' Error property_uid is not valid');
-        }
+			throw new Exception(' Error property_uid is not valid');
+		}
 
-        return true;
-    }
+		return true;
+	}
 }

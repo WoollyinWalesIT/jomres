@@ -16,36 +16,36 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j07020showplugins
 {
-    public function __construct()
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
-        $this->retVals = array();
+		$this->retVals = array();
 
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 
-        $remote_plugins = array();
+		$remote_plugins = array();
 		$remote_plugins_data = false;
 		$installed_plugins = array();
 
-        if (file_exists(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php')) {
-            $last_modified = filemtime(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php');
-            $seconds_timediff = time() - $last_modified;
-            if ($seconds_timediff > 3600) {
-                unlink(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php');
-            } else {
-                $remote_plugins_data = file_get_contents(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php');
-            }
-        }
+		if (file_exists(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php')) {
+			$last_modified = filemtime(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php');
+			$seconds_timediff = time() - $last_modified;
+			if ($seconds_timediff > 3600) {
+				unlink(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php');
+			} else {
+				$remote_plugins_data = file_get_contents(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php');
+			}
+		}
 
-        if (!file_exists(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php')) {
+		if (!file_exists(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php')) {
 			$remote_plugins_data = '';
 			
 			$base_uri = 'http://plugins.jomres4.net/';
@@ -65,17 +65,17 @@ class j07020showplugins
 				$jomres_user_feedback->construct_message(array('message'=>'Could not get plugins data', 'css_class'=>'alert-danger alert-error'));
 			}
 
-            // Uncomment this to show all updates, including beta plugins.
-            //$remote_plugins_data = queryUpdateServer( "", "r=dp&format=json&cms=" . _JOMRES_DETECTED_CMS  );
+			// Uncomment this to show all updates, including beta plugins.
+			//$remote_plugins_data = queryUpdateServer( "", "r=dp&format=json&cms=" . _JOMRES_DETECTED_CMS  );
 
-            if ($remote_plugins_data != '') {
-                file_put_contents(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php', $remote_plugins_data);
-            }
-        }
+			if ($remote_plugins_data != '') {
+				file_put_contents(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php', $remote_plugins_data);
+			}
+		}
 
-        $remote_plugins = json_decode($remote_plugins_data);
+		$remote_plugins = json_decode($remote_plugins_data);
 
-        if (!empty($remote_plugins)) {
+		if (!empty($remote_plugins)) {
 			
 			if (file_exists(JOMRES_TEMP_ABSPATH.'installed_plugins_data.php')) {
 				$last_modified = filemtime(JOMRES_TEMP_ABSPATH.'installed_plugins_data.php');
@@ -121,27 +121,27 @@ class j07020showplugins
 				}
 			}
 
-            if (!empty($installed_plugins)) {
-                $count = 0;
-                foreach ($installed_plugins as $ip) {
-                    $pluginname = $ip->name;
-                    $local_version = $ip->version;
-                    $remote_version = $remote_plugins->$pluginname->version;
+			if (!empty($installed_plugins)) {
+				$count = 0;
+				foreach ($installed_plugins as $ip) {
+					$pluginname = $ip->name;
+					$local_version = $ip->version;
+					$remote_version = $remote_plugins->$pluginname->version;
 
-                    if ($remote_version > $local_version) {
-                        $count++;
-                    }
-                }
-                if ($count > 0) {
-                    $this->retVals = array('red' => $count);
-                }
-            }
-        }
-    }
+					if ($remote_version > $local_version) {
+						$count++;
+					}
+				}
+				if ($count > 0) {
+					$this->retVals = array('red' => $count);
+				}
+			}
+		}
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return $this->retVals;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return $this->retVals;
+	}
 }

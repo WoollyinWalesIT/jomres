@@ -16,23 +16,23 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j00021colourscheme
 {
-    public function __construct()
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
-        if (!using_bootstrap()) {
-            if (!this_cms_is_wordpress()) {
-                $css_file = 'jomrescss.css';
-            } else {
-                $css_file = 'jomrescss_wordpress.css';
-            }
-        } else {
+		if (!using_bootstrap()) {
+			if (!this_cms_is_wordpress()) {
+				$css_file = 'jomrescss.css';
+			} else {
+				$css_file = 'jomrescss_wordpress.css';
+			}
+		} else {
 			if (jomres_cmsspecific_areweinadminarea()) {
 				switch (_JOMRES_DETECTED_CMS) {
 					case 'joomla4':
@@ -58,14 +58,14 @@ class j00021colourscheme
 						break;
 				}
 			}
-        }
+		}
 
-        jomres_cmsspecific_addheaddata('css', JOMRES_CSS_RELPATH, $css_file);
-    }
+		jomres_cmsspecific_addheaddata('css', JOMRES_CSS_RELPATH, $css_file);
+	}
 
-    //Must be included in every mini-component.
-    public function getRetVals()
-    {
-        return null;
-    }
+	//Must be included in every mini-component.
+	public function getRetVals()
+	{
+		return null;
+	}
 }

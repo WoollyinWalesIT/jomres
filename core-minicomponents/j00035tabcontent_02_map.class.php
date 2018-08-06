@@ -16,25 +16,25 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j00035tabcontent_02_map
 {
-    public function __construct($componentArgs)
-    {
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct($componentArgs)
+	{
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
-        $this->retVals = '';
-        $property_uid = (int) $componentArgs[ 'property_uid' ];
-        $mrConfig = getPropertySpecificSettings($property_uid);
+		$this->retVals = '';
+		$property_uid = (int) $componentArgs[ 'property_uid' ];
+		$mrConfig = getPropertySpecificSettings($property_uid);
 
-        $map = $MiniComponents->specificEvent('06000', 'show_property_map', array('output_now' => false, 'property_uid' => $property_uid));
-        $map_title = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK', false);
+		$map = $MiniComponents->specificEvent('06000', 'show_property_map', array('output_now' => false, 'property_uid' => $property_uid));
+		$map_title = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK', false);
 
-        if (strlen($map) > 0) {
-            $tab_id = 'mapTab';
-            $anchor = jomres_generate_tab_anchor($map_title); ?>
+		if (strlen($map) > 0) {
+			$tab_id = 'mapTab';
+			$anchor = jomres_generate_tab_anchor($map_title); ?>
 				<script type="text/javascript">
 					jomresJquery(document).ready(function () {
 						jomresJquery('#pdetails_tabs').bind('tabsshow', function (event, ui) {
@@ -45,14 +45,14 @@ class j00035tabcontent_02_map
 					});
 				</script>
 			<?php
-            $tab = array('TAB_ANCHOR' => $anchor, 'TAB_ID' => $tab_id, 'TAB_TITLE' => $map_title, 'TAB_CONTENT' => $map);
-            $this->retVals = $tab;
-        }
-    }
+			$tab = array('TAB_ANCHOR' => $anchor, 'TAB_ID' => $tab_id, 'TAB_TITLE' => $map_title, 'TAB_CONTENT' => $map);
+			$this->retVals = $tab;
+		}
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return $this->retVals;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return $this->retVals;
+	}
 }

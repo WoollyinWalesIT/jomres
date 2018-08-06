@@ -20,8 +20,8 @@ class jomres_media_centre_images_dbimport
 	
 	protected $jomres_media_centre_images;
 
-    public function __construct($propertys_uids = array(), $import_site_images = false)
-    {
+	public function __construct($propertys_uids = array(), $import_site_images = false)
+	{
 		$this->propertys_uids = $propertys_uids;
 		
 		$this->import_site_images = $import_site_images; //import site images true/false
@@ -29,10 +29,10 @@ class jomres_media_centre_images_dbimport
 		$this->batch_size = 25; //50 properties at a time. You can increase/decrease this depending on what you server can handle
 		
 		$this->jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
-    }
+	}
 
 	//run importer
-    public function run()
+	public function run()
 	{
 		//import site images
 		if ($this->import_site_images) {

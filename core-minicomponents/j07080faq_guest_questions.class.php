@@ -16,28 +16,28 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j07080faq_guest_questions
 {
-    public function __construct()
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
-        $kb = jomres_singleton_abstract::getInstance('jomres_knowledgebase');
+		$kb = jomres_singleton_abstract::getInstance('jomres_knowledgebase');
 
-        //dummy faq
-        $kb->guest_faq['_JOMRES_FAQ_GUEST_CATEGORY_SOMETHING'][] = array(
-            'question' => jr_gettext('_JOMRES_FAQ_GUEST_QUESTION_SOMEQUESTION', '_JOMRES_FAQ_GUEST_QUESTION_SOMEQUESTION', false),
-            'answer' => jr_gettext('_JOMRES_FAQ_GUEST_ANSWER_SOMEANSWER', '_JOMRES_FAQ_GUEST_ANSWER_SOMEANSWER', false),
-            );
-    }
+		//dummy faq
+		$kb->guest_faq['_JOMRES_FAQ_GUEST_CATEGORY_SOMETHING'][] = array(
+			'question' => jr_gettext('_JOMRES_FAQ_GUEST_QUESTION_SOMEQUESTION', '_JOMRES_FAQ_GUEST_QUESTION_SOMEQUESTION', false),
+			'answer' => jr_gettext('_JOMRES_FAQ_GUEST_ANSWER_SOMEANSWER', '_JOMRES_FAQ_GUEST_ANSWER_SOMEANSWER', false),
+			);
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

@@ -20,10 +20,10 @@ class jomres_media_centre_images
 	
 	protected $optimizer;
 
-    public function __construct()
-    {
+	public function __construct()
+	{
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $this->jrConfig = $siteConfig->get();
+		$this->jrConfig = $siteConfig->get();
 		
 		if ($this->jrConfig['images_imported_to_db'] == '0') {
 			$this->use_db = false; //we`ll scandir for images
@@ -54,83 +54,83 @@ class jomres_media_centre_images
 		$this->images = array();
 		$this->site_images = array();
 		$this->multi_query_images = array();
-        $this->multi_query_images [ 'noimage-large' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/assets/images/noimage.gif';
-        $this->multi_query_images [ 'noimage-medium' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/assets/images/noimage.gif';
-        $this->multi_query_images [ 'noimage-small' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/assets/images/noimage_small.gif';
-    }
+		$this->multi_query_images [ 'noimage-large' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/assets/images/noimage.gif';
+		$this->multi_query_images [ 'noimage-medium' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/assets/images/noimage.gif';
+		$this->multi_query_images [ 'noimage-small' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/assets/images/noimage_small.gif';
+	}
 
 	//get all property images
-    public function get_images($property_id = null)
-    {
-        $this->images = array();
+	public function get_images($property_id = null)
+	{
+		$this->images = array();
 
-        if ($property_id == null) {
-            $property_id = get_showtime('property_uid');
-        }
+		if ($property_id == null) {
+			$property_id = get_showtime('property_uid');
+		}
 
-        if ($property_id == 0) {
-            return;
-        }
+		if ($property_id == 0) {
+			return;
+		}
 
-        $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
-        $current_property_details->gather_data($property_id);
+		$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
+		$current_property_details->gather_data($property_id);
 
-        //get all images for this property id
-        if (!isset($this->multi_query_images[$property_id])) {
-            $this->get_images_multi($property_id);
-        }
+		//get all images for this property id
+		if (!isset($this->multi_query_images[$property_id])) {
+			$this->get_images_multi($property_id);
+		}
 
-        //property images
-        $this->images['property'] = array();
+		//property images
+		$this->images['property'] = array();
 
-        if (!isset($this->multi_query_images[$property_id]['property'])) {
-            $this->images ['property'][0][] = array(
-                                                    'large' => $this->multi_query_images[ 'noimage-large' ],
-                                                    'medium' => $this->multi_query_images[ 'noimage-medium' ],
-                                                    'small' => $this->multi_query_images[ 'noimage-small' ],
-                                                    );
-        }
+		if (!isset($this->multi_query_images[$property_id]['property'])) {
+			$this->images ['property'][0][] = array(
+													'large' => $this->multi_query_images[ 'noimage-large' ],
+													'medium' => $this->multi_query_images[ 'noimage-medium' ],
+													'small' => $this->multi_query_images[ 'noimage-small' ],
+													);
+		}
 
-        //room images
-        $this->images['rooms'] = array();
+		//room images
+		$this->images['rooms'] = array();
 
-        //slideshow images
-        $this->images['slideshow'] = array();
+		//slideshow images
+		$this->images['slideshow'] = array();
 
-        if (!isset($this->multi_query_images[$property_id]['slideshow'])) {
-            $this->images ['slideshow'][0][] = array(
-                                                    'large' => $this->multi_query_images[ 'noimage-large' ],
-                                                    'medium' => $this->multi_query_images[ 'noimage-medium' ],
-                                                    'small' => $this->multi_query_images[ 'noimage-small' ],
-                                                    );
-        }
+		if (!isset($this->multi_query_images[$property_id]['slideshow'])) {
+			$this->images ['slideshow'][0][] = array(
+													'large' => $this->multi_query_images[ 'noimage-large' ],
+													'medium' => $this->multi_query_images[ 'noimage-medium' ],
+													'small' => $this->multi_query_images[ 'noimage-small' ],
+													);
+		}
 
-        //room features images
-        $this->images['room_features'] = array();
+		//room features images
+		$this->images['room_features'] = array();
 
-        //extras images
-        $this->images['extras'] = array();
+		//extras images
+		$this->images['extras'] = array();
 
-        //populate the images array
-        foreach ($this->multi_query_images[$property_id] as $k => $v) {
-            $this->images[ $k ] = $v;
-        }
+		//populate the images array
+		foreach ($this->multi_query_images[$property_id] as $k => $v) {
+			$this->images[ $k ] = $v;
+		}
 
-        //add default images for each room if no other images are set
-        foreach ($current_property_details->rooms as $room_id) {
-            if (!array_key_exists($room_id, $this->images[ 'rooms' ])) {
-                $this->images[ 'rooms' ] [ $room_id ] [0] = array(
-                    'large' => $this->multi_query_images[ 'noimage-large' ],
-                    'medium' => $this->multi_query_images[ 'noimage-medium' ],
-                    'small' => $this->multi_query_images[ 'noimage-small' ],
-                    );
-            }
-        }
+		//add default images for each room if no other images are set
+		foreach ($current_property_details->rooms as $room_id) {
+			if (!array_key_exists($room_id, $this->images[ 'rooms' ])) {
+				$this->images[ 'rooms' ] [ $room_id ] [0] = array(
+					'large' => $this->multi_query_images[ 'noimage-large' ],
+					'medium' => $this->multi_query_images[ 'noimage-medium' ],
+					'small' => $this->multi_query_images[ 'noimage-small' ],
+					);
+			}
+		}
 
 		$jomres_room_types = jomres_singleton_abstract::getInstance('jomres_room_types');
 		$jomres_room_types->get_all_room_types();
 
-        if (isset($jomres_room_types->property_specific_room_type[$property_id])) {
+		if (isset($jomres_room_types->property_specific_room_type[$property_id])) {
 			//add default images for each room if no other images are set
 			foreach ($jomres_room_types->property_specific_room_type[$property_id] as $room_class_uid=>$val) {
 				if (!array_key_exists($room_class_uid, $this->images[ 'room_types' ])) {
@@ -144,41 +144,41 @@ class jomres_media_centre_images
 		}
 			
 
-        return $this->images;
-    }
+		return $this->images;
+	}
 	
 	//get images uploaded by admins (pfeatures, rmtypes, rmfeatures, markers, towns and other 3rd party resource types)
 	public function get_site_images( $type = '' )
-    {
-        if ($type == '') {
-            return;
-        }
+	{
+		if ($type == '') {
+			return;
+		}
 
-        //get all images of this type
-        if (!isset($this->site_images[$type])) {
-            $this->get_site_images_multi($type);
-        }
+		//get all images of this type
+		if (!isset($this->site_images[$type])) {
+			$this->get_site_images_multi($type);
+		}
 
-        return $this->site_images;
-    }
+		return $this->site_images;
+	}
 
 	//get images for property uid/s
-    public function get_images_multi($property_uids)
-    {
-        // As we're going to let this function work on both single and multiple lists of property uids, we'll cast property_ids to an array if it isn't one already
-        if (!is_array($property_uids)) {
-            $property_uids = array($property_uids);
-        }
+	public function get_images_multi($property_uids)
+	{
+		// As we're going to let this function work on both single and multiple lists of property uids, we'll cast property_ids to an array if it isn't one already
+		if (!is_array($property_uids)) {
+			$property_uids = array($property_uids);
+		}
 
-        // First we need to extract those uids that are not already in the $this->multi_query_images var, this (may) reduce the number of scandirs we need to execute
-        $temp_array = array();
-        foreach ($property_uids as $id) {
-            if (!isset($this->multi_query_images[$id])) {
-                $temp_array[] = $id;
-            }
-        }
-        $property_uids = $temp_array;
-        unset($temp_array);
+		// First we need to extract those uids that are not already in the $this->multi_query_images var, this (may) reduce the number of scandirs we need to execute
+		$temp_array = array();
+		foreach ($property_uids as $id) {
+			if (!isset($this->multi_query_images[$id])) {
+				$temp_array[] = $id;
+			}
+		}
+		$property_uids = $temp_array;
+		unset($temp_array);
 		
 		if (empty($property_uids)) {
 			return false;
@@ -231,10 +231,10 @@ class jomres_media_centre_images
 					}
 				}
 			}
-        }
+		}
 
-        return $this->multi_query_images;
-    }
+		return $this->multi_query_images;
+	}
 	
 	//get images from db for property uids array
 	private function get_images_multi_from_db($property_uids = array())
@@ -299,15 +299,15 @@ class jomres_media_centre_images
 	
 	//this scans for site images like pfeatures, rmtypes and other 3rd party images
 	public function get_site_images_multi($type = '')
-    {
+	{
 		if ($type == '') {
 			return false;
 		}
 		
-        // check if we already have images for this $type
-        if (isset($this->site_images[$type])) {
-            return true;
-        }
+		// check if we already have images for this $type
+		if (isset($this->site_images[$type])) {
+			return true;
+		}
 
 		if ($this->use_db) {
 			$this->get_site_images_multi_from_db($type);
@@ -372,8 +372,8 @@ class jomres_media_centre_images
 			}
 		}
 
-        return $this->site_images;
-    }
+		return $this->site_images;
+	}
 	
 	//get site images from db. not really a "multi"
 	private function get_site_images_multi_from_db($type = '')
@@ -542,27 +542,27 @@ class jomres_media_centre_images
 		
 		//delete files from disk
 		$passed = true;
-        
+		
 		if (file_exists($abs_path.$file_name)) {
-            if (!unlink($abs_path.$file_name)) {
-                error_logging("Error, media centre couldn't delete ".$abs_path.$file_name);
-                $passed = false;
-            }
-        }
-        if (file_exists($abs_path.'medium'.JRDS.$file_name)) {
-            if (!unlink($abs_path.'medium'.JRDS.$file_name)) {
-                error_logging("Error, media centre couldn't delete ".$abs_path.'medium'.JRDS.$file_name);
-                $passed = false;
-            }
-        }
-        if (file_exists($abs_path.'thumbnail'.JRDS.$file_name)) {
-            if (!unlink($abs_path.'thumbnail'.JRDS.$file_name)) {
-                error_logging("Error, media centre couldn't delete ".$abs_path.'thumbnail'.JRDS.$file_name);
-                $passed = false;
-            }
-        }
+			if (!unlink($abs_path.$file_name)) {
+				error_logging("Error, media centre couldn't delete ".$abs_path.$file_name);
+				$passed = false;
+			}
+		}
+		if (file_exists($abs_path.'medium'.JRDS.$file_name)) {
+			if (!unlink($abs_path.'medium'.JRDS.$file_name)) {
+				error_logging("Error, media centre couldn't delete ".$abs_path.'medium'.JRDS.$file_name);
+				$passed = false;
+			}
+		}
+		if (file_exists($abs_path.'thumbnail'.JRDS.$file_name)) {
+			if (!unlink($abs_path.'thumbnail'.JRDS.$file_name)) {
+				error_logging("Error, media centre couldn't delete ".$abs_path.'thumbnail'.JRDS.$file_name);
+				$passed = false;
+			}
+		}
 
-        if ($passed) {
+		if ($passed) {
 			if ($this->use_db) {
 				$query = "DELETE FROM #__jomres_images 
 									WHERE `property_uid` = ".(int)$property_uid." 
@@ -589,9 +589,9 @@ class jomres_media_centre_images
 			}
 			
 			return true;
-        } else {
-            return false;
-        }
+		} else {
+			return false;
+		}
 		
 		return false;
 	}
@@ -603,7 +603,7 @@ class jomres_media_centre_images
 		if ($property_uid == 0) {
 			throw new Exception('Error: Property uid not set.');
 		}
-        
+		
 		//delete image from db
 		if ($this->use_db) {
 			$query = "DELETE FROM #__jomres_images WHERE `property_uid` = ".(int)$property_uid;

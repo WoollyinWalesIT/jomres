@@ -16,60 +16,60 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j06000show_facebook_buttons
 {
-    public function __construct($componentArgs = null)
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct($componentArgs = null)
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
-        if (isset($componentArgs[ 'property_uid' ])) {
-            $property_uid = (int)$componentArgs[ 'property_uid' ];
-        } else {
+		if (isset($componentArgs[ 'property_uid' ])) {
+			$property_uid = (int)$componentArgs[ 'property_uid' ];
+		} else {
 			$property_uid = (int)jomresGetParam($_REQUEST, 'property_uid', 0);
-        }
+		}
 		
 		if ($property_uid == 0) {
-            return;
-        }
+			return;
+		}
 
-        if (!user_can_view_this_property($property_uid)) {
-            return;
-        }
+		if (!user_can_view_this_property($property_uid)) {
+			return;
+		}
 
-        if (isset($componentArgs[ 'output_now' ])) {
-            $output_now = $componentArgs[ 'output_now' ];
-        } else {
-            $output_now = true;
-        }
+		if (isset($componentArgs[ 'output_now' ])) {
+			$output_now = $componentArgs[ 'output_now' ];
+		} else {
+			$output_now = true;
+		}
 
-        $ePointFilepath = get_showtime('ePointFilepath');
-        $mrConfig = getPropertySpecificSettings($property_uid);
+		$ePointFilepath = get_showtime('ePointFilepath');
+		$mrConfig = getPropertySpecificSettings($property_uid);
 
-        $output = array();
-        $pageoutput = array();
+		$output = array();
+		$pageoutput = array();
 
-        $output['DIRECT_URL'] = get_property_details_url($property_uid);
+		$output['DIRECT_URL'] = get_property_details_url($property_uid);
 
-        $pageoutput[ ] = $output;
-        $tmpl = new patTemplate();
+		$pageoutput[ ] = $output;
+		$tmpl = new patTemplate();
 
-        $tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
-        $tmpl->addRows('pageoutput', $pageoutput);
-        $tmpl->readTemplatesFromInput('show_facebook_buttons.html');
-        $this->retVals = $tmpl->getParsedTemplate();
+		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+		$tmpl->addRows('pageoutput', $pageoutput);
+		$tmpl->readTemplatesFromInput('show_facebook_buttons.html');
+		$this->retVals = $tmpl->getParsedTemplate();
 
-        if ($output_now) {
-            echo $this->retVals;
-        }
-    }
+		if ($output_now) {
+			echo $this->retVals;
+		}
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return $this->retVals;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return $this->retVals;
+	}
 }

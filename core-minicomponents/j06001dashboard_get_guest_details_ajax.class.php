@@ -16,41 +16,41 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j06001dashboard_get_guest_details_ajax
 {
-    public function __construct()
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
 		jr_import('jomres_encryption');
 		$jomres_encryption = new jomres_encryption();
 
-        $property_uid = jomresGetParam($_GET, 'property_uid', 0);
-        if ($property_uid == 0) {
-            $property_uid = getDefaultProperty();
-        }
+		$property_uid = jomresGetParam($_GET, 'property_uid', 0);
+		if ($property_uid == 0) {
+			$property_uid = getDefaultProperty();
+		}
 
-        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-        if (!in_array($property_uid, $thisJRUser->authorisedProperties)) {
-            return;
-        }
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+		if (!in_array($property_uid, $thisJRUser->authorisedProperties)) {
+			return;
+		}
 
-        $existing_id = (int) jomresGetParam($_GET, 'existing_id', 0);
+		$existing_id = (int) jomresGetParam($_GET, 'existing_id', 0);
 
-        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
-        $guestDeets = array();
+		$guestDeets = array();
 
-        if ($existing_id == 0) {
-            echo json_encode($guestDeets);
-            exit;
-        }
+		if ($existing_id == 0) {
+			echo json_encode($guestDeets);
+			exit;
+		}
 
-        $query = 'SELECT 
+		$query = 'SELECT 
 						`guests_uid` AS existing_id,
 						`mos_userid`,
 						`enc_surname`,
@@ -68,7 +68,7 @@ class j06001dashboard_get_guest_details_ajax
 					WHERE `property_uid` IN (' .jomres_implode($thisJRUser->authorisedProperties).') 
 						AND `guests_uid` = '.(int) $existing_id.'  
 					LIMIT 1 ';
-        $guestDeets = doSelectSql($query, 2);
+		$guestDeets = doSelectSql($query, 2);
 
 		foreach ($guestDeets as $key=>$val ) {
 			if ( substr($key, 0, 4) == "enc_" ) {
@@ -79,13 +79,13 @@ class j06001dashboard_get_guest_details_ajax
 			
 		}
 
-        echo json_encode($guestDeets);
-        exit;
-    }
+		echo json_encode($guestDeets);
+		exit;
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

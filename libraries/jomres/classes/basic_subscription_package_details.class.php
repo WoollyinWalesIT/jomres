@@ -16,45 +16,45 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class basic_subscription_package_details
 {
-    public function __construct()
-    {
-        $this->allPackages = array();
-        $this->getAllSubscriptionPackages();
-    }
+	public function __construct()
+	{
+		$this->allPackages = array();
+		$this->getAllSubscriptionPackages();
+	}
 
-    public function gatherData($package_id = 0)
-    {
-        if ($package_id == 0) {
-            throw new Exception('Error: Package id not set.');
-        }
+	public function gatherData($package_id = 0)
+	{
+		if ($package_id == 0) {
+			throw new Exception('Error: Package id not set.');
+		}
 
-        if (array_key_exists($package_id, $this->allPackages)) {
-            $this->id = $this->allPackages[ $package_id ][ 'id' ];
-            $this->name = $this->allPackages[ $package_id ][ 'name' ];
-            $this->description = $this->allPackages[ $package_id ][ 'description' ];
-            $this->published = $this->allPackages[ $package_id ][ 'published' ];
-            $this->frequency = $this->allPackages[ $package_id ][ 'frequency' ];
-            $this->full_amount = $this->allPackages[ $package_id ][ 'full_amount' ];
-            $this->tax_code_id = $this->allPackages[ $package_id ][ 'tax_code_id' ];
-            $this->currencycode = $this->allPackages[ $package_id ][ 'currencycode' ];
-            $this->renewal_price = $this->allPackages[ $package_id ][ 'renewal_price' ];
-            $this->params = $this->allPackages[ $package_id ][ 'params' ];
+		if (array_key_exists($package_id, $this->allPackages)) {
+			$this->id = $this->allPackages[ $package_id ][ 'id' ];
+			$this->name = $this->allPackages[ $package_id ][ 'name' ];
+			$this->description = $this->allPackages[ $package_id ][ 'description' ];
+			$this->published = $this->allPackages[ $package_id ][ 'published' ];
+			$this->frequency = $this->allPackages[ $package_id ][ 'frequency' ];
+			$this->full_amount = $this->allPackages[ $package_id ][ 'full_amount' ];
+			$this->tax_code_id = $this->allPackages[ $package_id ][ 'tax_code_id' ];
+			$this->currencycode = $this->allPackages[ $package_id ][ 'currencycode' ];
+			$this->renewal_price = $this->allPackages[ $package_id ][ 'renewal_price' ];
+			$this->params = $this->allPackages[ $package_id ][ 'params' ];
 
-            return true;
-        } else {
-            return false;
-        }
-    }
+			return true;
+		} else {
+			return false;
+		}
+	}
 
-    //Get all subscription packages
-    public function getAllSubscriptionPackages()
-    {
-        //check if we already got them
-        if (!empty($this->allPackages)) {
-            return true;
-        }
+	//Get all subscription packages
+	public function getAllSubscriptionPackages()
+	{
+		//check if we already got them
+		if (!empty($this->allPackages)) {
+			return true;
+		}
 
-        $query = 'SELECT 
+		$query = 'SELECT 
 						`id`,
 						`name`,
 						`description`,
@@ -66,25 +66,25 @@ class basic_subscription_package_details
 						`renewal_price`,
 						`params` 
 					FROM #__jomresportal_subscriptions_packages ';
-        $result = doSelectSql($query);
+		$result = doSelectSql($query);
 
-        if (!empty($result)) {
-            foreach ($result as $r) {
-                $this->allPackages[ $r->id ][ 'id' ] = $r->id;
-                $this->allPackages[ $r->id ][ 'name' ] = $r->name;
-                $this->allPackages[ $r->id ][ 'description' ] = $r->description;
-                $this->allPackages[ $r->id ][ 'published' ] = $r->published;
-                $this->allPackages[ $r->id ][ 'frequency' ] = $r->frequency;
-                $this->allPackages[ $r->id ][ 'full_amount' ] = $r->full_amount;
-                $this->allPackages[ $r->id ][ 'tax_code_id' ] = $r->tax_code_id;
-                $this->allPackages[ $r->id ][ 'currencycode' ] = $r->currencycode;
-                $this->allPackages[ $r->id ][ 'renewal_price' ] = $r->renewal_price;
-                $this->allPackages[ $r->id ][ 'params' ] = unserialize($r->params);
-            }
+		if (!empty($result)) {
+			foreach ($result as $r) {
+				$this->allPackages[ $r->id ][ 'id' ] = $r->id;
+				$this->allPackages[ $r->id ][ 'name' ] = $r->name;
+				$this->allPackages[ $r->id ][ 'description' ] = $r->description;
+				$this->allPackages[ $r->id ][ 'published' ] = $r->published;
+				$this->allPackages[ $r->id ][ 'frequency' ] = $r->frequency;
+				$this->allPackages[ $r->id ][ 'full_amount' ] = $r->full_amount;
+				$this->allPackages[ $r->id ][ 'tax_code_id' ] = $r->tax_code_id;
+				$this->allPackages[ $r->id ][ 'currencycode' ] = $r->currencycode;
+				$this->allPackages[ $r->id ][ 'renewal_price' ] = $r->renewal_price;
+				$this->allPackages[ $r->id ][ 'params' ] = unserialize($r->params);
+			}
 
-            return true;
-        }
+			return true;
+		}
 
-        return false;
-    }
+		return false;
+	}
 }

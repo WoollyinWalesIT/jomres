@@ -18,14 +18,14 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_markdown {
 
-    public function __construct() {
-        //require_once (JOMRES_LIBRARIES_ABSPATH.'Parsedown'.JRDS.'Parsedown.php');
+	public function __construct() {
+		//require_once (JOMRES_LIBRARIES_ABSPATH.'Parsedown'.JRDS.'Parsedown.php');
 		$this->Parsedown = new Parsedown();
-        $this->Parsedown->setBreaksEnabled(true);
-    }
+		$this->Parsedown->setBreaksEnabled(true);
+	}
 
-    public function get_markdown($string) {
-        return $this->Parsedown->text($string);
-    }
+	public function get_markdown($string) {
+		return $this->Parsedown->text($string);
+	}
 
 }

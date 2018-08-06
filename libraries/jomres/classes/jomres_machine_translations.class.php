@@ -24,12 +24,12 @@ class jomres_machine_translations
 	
 	private static $internal_debugging;
 
-    public function __construct()
-    {
-        self::$internal_debugging = false;
+	public function __construct()
+	{
+		self::$internal_debugging = false;
 
-        $this->init_service();
-    }
+		$this->init_service();
+	}
 
 	
 	public function init_service(  )

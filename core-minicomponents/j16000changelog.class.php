@@ -16,21 +16,21 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j16000changelog
 {
-    public function __construct()
-    {
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
-        $changelog = nl2br(file_get_contents('http://updates.jomres4.net/CHANGELOG_JOMRES'));
-        echo $changelog;
-    }
+			return;
+		}
+		$changelog = nl2br(file_get_contents('http://updates.jomres4.net/CHANGELOG_JOMRES'));
+		echo $changelog;
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

@@ -21,10 +21,10 @@ defined('_JOMRES_INITCHECK') or die('');
 */
 class jomres_gdpr_cleanup
 {
-    public function __construct()
-    {
-        
-    }
+	public function __construct()
+	{
+		
+	}
 
 	/**
 	*

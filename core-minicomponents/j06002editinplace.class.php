@@ -16,45 +16,45 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j06002editinplace
 {
-    public function __construct()
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
-        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-        if (!$thisJRUser->userIsManager) {
-            return;
-        }
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
-        $property_uid = (int) getDefaultProperty();
+			return;
+		}
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+		if (!$thisJRUser->userIsManager) {
+			return;
+		}
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
+		$property_uid = (int) getDefaultProperty();
 
-        if ($jrConfig[ 'allowHTMLeditor' ] == '1') {
-            $customText = jomresGetParam($_POST, 'value', '');
-        } else {
-            $customText = jomresGetParam($_POST, 'value', '');
-        }
+		if ($jrConfig[ 'allowHTMLeditor' ] == '1') {
+			$customText = jomresGetParam($_POST, 'value', '');
+		} else {
+			$customText = jomresGetParam($_POST, 'value', '');
+		}
 
-        $theConstant = filter_var($_POST[ 'pk' ], FILTER_SANITIZE_SPECIAL_CHARS);
+		$theConstant = filter_var($_POST[ 'pk' ], FILTER_SANITIZE_SPECIAL_CHARS);
 
-        $result = updateCustomText($theConstant, $customText, true, $property_uid);
-        //$result = false;
-        if ($result) {
-            header('Status: 200');
-            echo jomres_decode($customText);
-        } else {
-            header('Status: 500');
-            echo 'Something burped';
-        }
-    }
+		$result = updateCustomText($theConstant, $customText, true, $property_uid);
+		//$result = false;
+		if ($result) {
+			header('Status: 200');
+			echo jomres_decode($customText);
+		} else {
+			header('Status: 500');
+			echo 'Something burped';
+		}
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

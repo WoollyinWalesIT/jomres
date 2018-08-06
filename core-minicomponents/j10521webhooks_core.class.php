@@ -27,8 +27,8 @@ class j10521webhooks_core
 			return;
 			}
 
-		$siteConfig         = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
-		$jrConfig           = $siteConfig->get();
+		$siteConfig		 = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig		   = $siteConfig->get();
 
 		$configurationPanel 			= $componentArgs[ 'configurationPanel' ];
 
@@ -36,7 +36,7 @@ class j10521webhooks_core
 			$jrConfig[ 'webhooks_core_show' ] =1;
 		
 		// make a standard yes/no list
-		$yesno    = array ();
+		$yesno	= array ();
 		$yesno[ ] = jomresHTML::makeOption( '0', jr_gettext( '_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false ) );
 		$yesno[ ] = jomresHTML::makeOption( '1', jr_gettext( '_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false ) );
 		

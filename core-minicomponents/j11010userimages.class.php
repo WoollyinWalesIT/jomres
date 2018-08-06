@@ -16,16 +16,16 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j11010userimages
 {
-    public function __construct($componentArgs)
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct($componentArgs)
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
-        
+			return;
+		}
+		
 		$this->ret_vals = array(
 								'resource_type' => 'userimages', 
 								'resource_id_required' => true, 
@@ -36,11 +36,11 @@ class j11010userimages
 								'preview_link'=>'',
 								'hidden' => true //won`t be displayed in media centre
 								);
-    }
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return $this->ret_vals;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return $this->ret_vals;
+	}
 }

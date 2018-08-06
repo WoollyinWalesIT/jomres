@@ -21,8 +21,8 @@ defined('_JOMRES_INITCHECK') or die('');
 */
 class jomres_gdpr_optin_consent
 {
-    public function __construct()
-    {
+	public function __construct()
+	{
 		$MiniComponents = jomres_getSingleton('mcHandler');
 		
 		$this->date_time = date('Y-m-d H-i-s');
@@ -32,7 +32,7 @@ class jomres_gdpr_optin_consent
 		$this->optin_content =  filter_var($consent_form, FILTER_SANITIZE_SPECIAL_CHARS,FILTER_FLAG_STRIP_HIGH) ;
 		$this->optedin = false;
 		
-    }
+	}
 	
 	public function user_consents_to_storage()
 	{

@@ -60,5 +60,5 @@ function get_property_details_url($property_uid = 0, $type = 'sef', $params = ''
 		}
 	}
 	
-    return $url;
+	return $url;
 }

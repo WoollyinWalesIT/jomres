@@ -32,11 +32,11 @@ class j11040towns
 		$resource_id   = jomresGetParam( $_REQUEST, 'resource_id', '0' );
 
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
-        $jomres_media_centre_images->get_site_images($resource_type);
-        
+		$jomres_media_centre_images->get_site_images($resource_type);
+		
 		if (isset($jomres_media_centre_images->site_images [$resource_type] [$resource_id])) 
 			{
-            $this->ret_vals = $jomres_media_centre_images->site_images [$resource_type] [$resource_id];
+			$this->ret_vals = $jomres_media_centre_images->site_images [$resource_type] [$resource_id];
 			} 
 		else 
 			{

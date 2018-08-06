@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
-    <view title="component=com_jomres">
-        <message>Jomres Default view</message>
-    </view>
+	<view title="component=com_jomres">
+		<message>Jomres Default view</message>
+	</view>
 </metadata>

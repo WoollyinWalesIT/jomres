@@ -17,29 +17,29 @@ defined('_JOMRES_INITCHECK') or die('');
 //This is a month view chart of all paid bookings, excludes cancelled/pending/unpaid ones)
 class j13600core_charts
 {
-    public function __construct($componentArgs)
-    {
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct($componentArgs)
+	{
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
-        $all_jomres_charts = get_showtime('all_jomres_charts');
+		$all_jomres_charts = get_showtime('all_jomres_charts');
 
-        //bookings chart
-        $all_jomres_charts[] = array(
-                                     'id' => 'chart_bookings',
-                                     'title' => jr_gettext('_JOMRES_STATUS_BOOKINGS', '_JOMRES_STATUS_BOOKINGS', false, false),
-                                     'description' => jr_gettext('_JOMRES_CHART_BOOKINGS_DESC', '_JOMRES_CHART_BOOKINGS_DESC', false, false),
-                                     );
+		//bookings chart
+		$all_jomres_charts[] = array(
+									 'id' => 'chart_bookings',
+									 'title' => jr_gettext('_JOMRES_STATUS_BOOKINGS', '_JOMRES_STATUS_BOOKINGS', false, false),
+									 'description' => jr_gettext('_JOMRES_CHART_BOOKINGS_DESC', '_JOMRES_CHART_BOOKINGS_DESC', false, false),
+									 );
 
-        set_showtime('all_jomres_charts', $all_jomres_charts);
-    }
+		set_showtime('all_jomres_charts', $all_jomres_charts);
+	}
 
-    public function getRetVals()
-    {
-        return null;
-    }
+	public function getRetVals()
+	{
+		return null;
+	}
 }

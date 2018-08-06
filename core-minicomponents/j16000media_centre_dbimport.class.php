@@ -16,18 +16,18 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j16000media_centre_dbimport
 {
-    public function __construct()
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
 		
 		$force = (int)jomresGetParam($_REQUEST, 'force', 0);
 		
@@ -64,37 +64,37 @@ class j16000media_centre_dbimport
 		jr_import('jomres_media_centre_images_dbimport');
 		$jomres_media_centre_images_dbimport = new jomres_media_centre_images_dbimport(get_showtime('all_properties_in_system'), true);
 
-        if (!using_bootstrap()) {
-            if (!$jomres_media_centre_images_dbimport->run()) {
-                echo 'Error: Could not import images to database.';
-            } else {
-                echo 'Images imported successfully.';
-            }
-        } else {
-            if (!$jomres_media_centre_images_dbimport->run()) {
-                echo '
+		if (!using_bootstrap()) {
+			if (!$jomres_media_centre_images_dbimport->run()) {
+				echo 'Error: Could not import images to database.';
+			} else {
+				echo 'Images imported successfully.';
+			}
+		} else {
+			if (!$jomres_media_centre_images_dbimport->run()) {
+				echo '
 				<div class="alert alert-error alert-danger">
 					<h4 class="alert-heading">ERROR</h4>
 					<p>Error: Could not import images to database.</p>
 				</div>
 				';
-            } else {
+			} else {
 				//mark as imported
 				$siteConfig->update_setting('images_imported_to_db','1');
 
-                echo '
+				echo '
 				<div class="alert alert-success">
 					<h4 class="alert-heading">Congratulations!</h4>
 					<p>Image details imported successfully to database.</p>
 				</div>
 				';
-            }
-        }
-    }
+			}
+		}
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

@@ -102,11 +102,11 @@ class j16000edit_user
 				$propertyManagers = '';
 				}
 			
-			$r[ 'INPUT' ]        = '<input type="checkbox" id="cb' . count( $rows ) . '" name="authorised_properties[]" value="' . $i . '" ' . $checked . '>';
+			$r[ 'INPUT' ]		= '<input type="checkbox" id="cb' . count( $rows ) . '" name="authorised_properties[]" value="' . $i . '" ' . $checked . '>';
 			$r[ 'PROPERTYNAME' ] = $basic_property_details->property_names[$i];
-			$r[ 'MANAGERS' ]     = $propertyManagers;
+			$r[ 'MANAGERS' ]	 = $propertyManagers;
 			
-			$rows[ ]             = $r;
+			$rows[ ]			 = $r;
 			}
 		
 		$jrtbar = jomres_singleton_abstract::getInstance( 'jomres_toolbar' );
@@ -120,14 +120,14 @@ class j16000edit_user
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
-		$output[ '_JRPORTAL_PROPERTIES_PROPERTYNAME' ]    	= jr_gettext( "_JRPORTAL_PROPERTIES_PROPERTYNAME", '_JRPORTAL_PROPERTIES_PROPERTYNAME', false );
+		$output[ '_JRPORTAL_PROPERTIES_PROPERTYNAME' ]		= jr_gettext( "_JRPORTAL_PROPERTIES_PROPERTYNAME", '_JRPORTAL_PROPERTIES_PROPERTYNAME', false );
 		$output[ '_JOMRES_SHOWPROFILES_USERSWITHACCESS' ] 	= jr_gettext( "_JOMRES_SHOWPROFILES_USERSWITHACCESS", '_JOMRES_SHOWPROFILES_USERSWITHACCESS', false );
 		$output[ 'HACCESSLEVEL' ]							= jr_gettext( "_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL", '_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL', false );
 		$output[ 'HUSERNAME' ]	 							= jr_gettext( "_JOMRES_MR_AUDIT_LISTING_USER", '_JOMRES_MR_AUDIT_LISTING_USER', false );
-        if ( $id == 0 )
-            $output[ 'HUSERNAME_DESC' ]							= jr_gettext( '_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS', '_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS', false );
-        else
-            $output[ 'HUSERNAME_DESC' ]							= '';
+		if ( $id == 0 )
+			$output[ 'HUSERNAME_DESC' ]							= jr_gettext( '_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS', '_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS', false );
+		else
+			$output[ 'HUSERNAME_DESC' ]							= '';
 		$output[ 'PAGETITLE' ]	 							= jr_gettext( "_JOMRES_EDIT_PROFILE", '_JOMRES_EDIT_PROFILE', false );
 		
 		$output['ID'] 					= $id;

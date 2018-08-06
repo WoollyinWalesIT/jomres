@@ -16,29 +16,29 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j16000show_license_message
 {
-    public function __construct($componentArgs)
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct($componentArgs)
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 		
 		$this->retVals = '';
 
-        if (isset($componentArgs[ 'output_now' ])) {
-            $output_now = $componentArgs[ 'output_now' ];
-        } else {
-            $output_now = true;
-        }
-        
+		if (isset($componentArgs[ 'output_now' ])) {
+			$output_now = $componentArgs[ 'output_now' ];
+		} else {
+			$output_now = true;
+		}
+		
 		/* if (defined('LICENSE_EXPIRED_MESSAGE')) {
-            $this->retVals = LICENSE_EXPIRED_MESSAGE;
-        } else {
-            $this->retVals = '';
-        } */
+			$this->retVals = LICENSE_EXPIRED_MESSAGE;
+		} else {
+			$this->retVals = '';
+		} */
 		
 		$jomres_check_support_key = jomres_singleton_abstract::getInstance('jomres_check_support_key');
 		
@@ -81,11 +81,11 @@ class j16000show_license_message
 		} else {
 			$this->retVals = $message;
 		}
-    }
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return $this->retVals;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return $this->retVals;
+	}
 }

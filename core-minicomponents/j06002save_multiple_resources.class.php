@@ -16,37 +16,37 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j06002save_multiple_resources
 {
-    public function __construct($componentArgs)
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct($componentArgs)
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
-        $defaultProperty = getDefaultProperty();
+		$defaultProperty = getDefaultProperty();
 
-        $mrConfig = getPropertySpecificSettings();
+		$mrConfig = getPropertySpecificSettings();
 
-        jr_import('jrportal_rooms');
-        $jrportal_rooms = new jrportal_rooms();
+		jr_import('jrportal_rooms');
+		$jrportal_rooms = new jrportal_rooms();
 
-        $jrportal_rooms->rooms_generator['propertys_uid'] = (int) $defaultProperty;
-        $jrportal_rooms->rooms_generator['number_of_rooms'] = (int) jomresGetParam($_POST, 'numberOfResources', 0);
-        $jrportal_rooms->rooms_generator['room_classes_uid'] = (int) jomresGetParam($_POST, 'resourcesType', 0);
-        $jrportal_rooms->rooms_generator['max_people'] = (int) jomresGetParam($_POST, 'maxGuests', 0);
-        $jrportal_rooms->rooms_generator['delete_existing_rooms'] = (bool) jomresGetParam($_POST, 'deleteExistingResources', false);
+		$jrportal_rooms->rooms_generator['propertys_uid'] = (int) $defaultProperty;
+		$jrportal_rooms->rooms_generator['number_of_rooms'] = (int) jomresGetParam($_POST, 'numberOfResources', 0);
+		$jrportal_rooms->rooms_generator['room_classes_uid'] = (int) jomresGetParam($_POST, 'resourcesType', 0);
+		$jrportal_rooms->rooms_generator['max_people'] = (int) jomresGetParam($_POST, 'maxGuests', 0);
+		$jrportal_rooms->rooms_generator['delete_existing_rooms'] = (bool) jomresGetParam($_POST, 'deleteExistingResources', false);
 
-        $jrportal_rooms->commit_new_rooms();
+		$jrportal_rooms->commit_new_rooms();
 
-        jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=list_resources'), '');
-    }
+		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=list_resources'), '');
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

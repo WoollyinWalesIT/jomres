@@ -16,32 +16,32 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j99999handlereq_javascript
 {
-    public function __construct($componentArgs)
-    {
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct($componentArgs)
+	{
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
-        $mrConfig = getPropertySpecificSettings();
+		$mrConfig = getPropertySpecificSettings();
 
-        if (AJAXCALL && get_showtime('task') == 'handlereq' && $mrConfig[ 'booking_form_rooms_list_style' ] == '1') {
-            $endrun_javascript_for_eval_by_handlereq = get_showtime('endrun_javascript_for_eval_by_handlereq');
+		if (AJAXCALL && get_showtime('task') == 'handlereq' && $mrConfig[ 'booking_form_rooms_list_style' ] == '1') {
+			$endrun_javascript_for_eval_by_handlereq = get_showtime('endrun_javascript_for_eval_by_handlereq');
 
-            if (!empty($endrun_javascript_for_eval_by_handlereq)) {
-                $javascript = '';
-                foreach ($endrun_javascript_for_eval_by_handlereq as $js) {
-                    $javascript .= $js;
-                }
-                echo $javascript;
-            }
-        }
-    }
+			if (!empty($endrun_javascript_for_eval_by_handlereq)) {
+				$javascript = '';
+				foreach ($endrun_javascript_for_eval_by_handlereq as $js) {
+					$javascript .= $js;
+				}
+				echo $javascript;
+			}
+		}
+	}
 
-    public function getRetVals()
-    {
-        return null;
-    }
+	public function getRetVals()
+	{
+		return null;
+	}
 }

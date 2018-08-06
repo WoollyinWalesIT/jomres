@@ -16,20 +16,20 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j16000deletePfeature
 {
-    public function __construct()
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
 		$jomres_property_features = jomres_singleton_abstract::getInstance('jomres_property_features');
 		
-        $ids = jomresGetParam($_POST, 'idarray', array());
-        
+		$ids = jomresGetParam($_POST, 'idarray', array());
+		
 		if (is_array($ids) && !empty($ids)) {
 			$messages = $jomres_property_features->delete_property_features($ids);
 			
@@ -39,11 +39,11 @@ class j16000deletePfeature
 		}
 		
 		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=listPfeatures'), jr_gettext('_JOMRES_COM_MR_PROPERTYFEATURE_DELETED', '_JOMRES_COM_MR_PROPERTYFEATURE_DELETED', false));
-    }
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

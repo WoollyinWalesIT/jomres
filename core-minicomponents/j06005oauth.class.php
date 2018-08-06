@@ -69,11 +69,11 @@ class j06005oauth
 		
 		$output['PAGETITLE']			= jr_gettext('_OAUTH_APPS', '_OAUTH_APPS', false);
 		$output['_OAUTH_APIKEY']		= jr_gettext('_OAUTH_APIKEY', '_OAUTH_APIKEY', false);
-        $output['_OAUTH_IDENTIFIER']	= jr_gettext('_OAUTH_IDENTIFIER', '_OAUTH_IDENTIFIER', false);
+		$output['_OAUTH_IDENTIFIER']	= jr_gettext('_OAUTH_IDENTIFIER', '_OAUTH_IDENTIFIER', false);
 		$output['_OAUTH_SCOPE_TITLE']	= jr_gettext('_OAUTH_SCOPE_TITLE', '_OAUTH_SCOPE_TITLE', false);
 		
-        
-        
+		
+		
 		$output['_OAUTH_INFORMATION_1']									= jr_gettext('_OAUTH_INFORMATION_1', '_OAUTH_INFORMATION_1', false);
 		$output['_OAUTH_INFORMATION_2']									= jr_gettext('_OAUTH_INFORMATION_2', '_OAUTH_INFORMATION_2', false);
 		$output['_OAUTH_INFORMATION_SECURITY_TITLE']					= jr_gettext('_OAUTH_INFORMATION_SECURITY_TITLE', '_OAUTH_INFORMATION_SECURITY_TITLE', false);
@@ -114,7 +114,7 @@ class j06005oauth
 					{
 					$r=array();
 					$r['CLIENT_ID']=$client->client_id;
-                    $r['IDENTIFIER']=$client->identifier;
+					$r['IDENTIFIER']=$client->identifier;
 					$r['SCOPE']= '';
 					if (trim($client->scope) != "" )
 						{

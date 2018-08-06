@@ -16,72 +16,72 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j03100send_email_admin_newbooking
 {
-    public function __construct($componentArgs)
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct($componentArgs)
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
-        $email_type = 'email_admin_newbooking';
+			return;
+		}
+		$email_type = 'email_admin_newbooking';
 
-        $mrConfig = getPropertySpecificSettings();
-        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-        $tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+		$mrConfig = getPropertySpecificSettings();
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 
-        $property_uid = $componentArgs[ 'property_uid' ];
-        $contract_uid = $componentArgs[ 'contract_uid' ];
-        $secret_key_payment = $tmpBookingHandler->getBookingFieldVal('secret_key_payment');
+		$property_uid = $componentArgs[ 'property_uid' ];
+		$contract_uid = $componentArgs[ 'contract_uid' ];
+		$secret_key_payment = $tmpBookingHandler->getBookingFieldVal('secret_key_payment');
 
-        if (!isset($componentArgs[ 'email_when_done' ])) {
-            $email_when_done = true;
-        } else {
-            $email_when_done = $componentArgs[ 'email_when_done' ];
-        } // Optional. We'll set email_when_done by default to true, otherwise we'll set it in the componentArgs variable. This allows us to call this script independantly which in turn allows us to view the email as it's contructed, rather than when sent.
+		if (!isset($componentArgs[ 'email_when_done' ])) {
+			$email_when_done = true;
+		} else {
+			$email_when_done = $componentArgs[ 'email_when_done' ];
+		} // Optional. We'll set email_when_done by default to true, otherwise we'll set it in the componentArgs variable. This allows us to call this script independantly which in turn allows us to view the email as it's contructed, rather than when sent.
 
-        if (!$componentArgs[ 'sendHotelEmail']) {
-            return;
-        }
+		if (!$componentArgs[ 'sendHotelEmail']) {
+			return;
+		}
 
-        if ((int) $mrConfig['requireApproval'] == 1 && !$thisJRUser->userIsManager && !$secret_key_payment) {
-            return;
-        }
+		if ((int) $mrConfig['requireApproval'] == 1 && !$thisJRUser->userIsManager && !$secret_key_payment) {
+			return;
+		}
 
-        $site_paypal_settings = get_plugin_settings('paypal', 0);
+		$site_paypal_settings = get_plugin_settings('paypal', 0);
 
-        if (!isset($site_paypal_settings[ 'override' ]) || !isset($site_paypal_settings[ 'paypalemail' ])) {
-            return;
-        }
+		if (!isset($site_paypal_settings[ 'override' ]) || !isset($site_paypal_settings[ 'paypalemail' ])) {
+			return;
+		}
 
-        if ($site_paypal_settings[ 'override' ] != '1') { // The property paypal settings aren't overridden, so we'll not bother sending this email
-            return;
-        }
+		if ($site_paypal_settings[ 'override' ] != '1') { // The property paypal settings aren't overridden, so we'll not bother sending this email
+			return;
+		}
 
-        $booking_email_details = jomres_singleton_abstract::getInstance('jomres_generic_booking_email');
-        $booking_email_details->gather_data($contract_uid, $property_uid);
-        $booking_email_details->parse_email($email_type, $contract_uid);
+		$booking_email_details = jomres_singleton_abstract::getInstance('jomres_generic_booking_email');
+		$booking_email_details->gather_data($contract_uid, $property_uid);
+		$booking_email_details->parse_email($email_type, $contract_uid);
 
-        if ($email_when_done) {
-            if (!jomresMailer($booking_email_details->data[$contract_uid]['EMAIL'],
-                                $booking_email_details->data[$contract_uid]['FIRSTNAME'].' '.$booking_email_details->data[$contract_uid]['SURNAME'],
-                                $site_paypal_settings['paypalemail'],
-                                $booking_email_details->parsed_email['subject'],
-                                $booking_email_details->parsed_email['text'],
-                                $mode = 1,
-                                $booking_email_details->parsed_email['attachments'])
-                ) {
-                error_logging('Failure in sending new booking email to admin. Target address: '.$site_paypal_settings['paypalemail'].' Subject'.$booking_email_details->parsed_email['subject'].$booking_email_details->parsed_email['text']);
-            }
-        } else {
-            echo $booking_email_details->parsed_email['text'];
-        }
-    }
+		if ($email_when_done) {
+			if (!jomresMailer($booking_email_details->data[$contract_uid]['EMAIL'],
+								$booking_email_details->data[$contract_uid]['FIRSTNAME'].' '.$booking_email_details->data[$contract_uid]['SURNAME'],
+								$site_paypal_settings['paypalemail'],
+								$booking_email_details->parsed_email['subject'],
+								$booking_email_details->parsed_email['text'],
+								$mode = 1,
+								$booking_email_details->parsed_email['attachments'])
+				) {
+				error_logging('Failure in sending new booking email to admin. Target address: '.$site_paypal_settings['paypalemail'].' Subject'.$booking_email_details->parsed_email['subject'].$booking_email_details->parsed_email['text']);
+			}
+		} else {
+			echo $booking_email_details->parsed_email['text'];
+		}
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

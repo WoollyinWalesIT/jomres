@@ -16,34 +16,34 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j16000review_delete
 {
-    public function __construct()
-    {
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
-        $rating_id = (int) $_GET[ 'rating_id' ];
+		$rating_id = (int) $_GET[ 'rating_id' ];
 
-        if ($rating_id > 0) {
-            jr_import('jomres_reviews');
-            $Reviews = new jomres_reviews();
-            $result = $Reviews->delete_review($rating_id);
-            if ($result) {
-                echo '1';
+		if ($rating_id > 0) {
+			jr_import('jomres_reviews');
+			$Reviews = new jomres_reviews();
+			$result = $Reviews->delete_review($rating_id);
+			if ($result) {
+				echo '1';
 
-                return;
-            }
-            echo '0';
+				return;
+			}
+			echo '0';
 
-            return;
-        }
-    }
+			return;
+		}
+	}
 
-    public function getRetVals()
-    {
-        return null;
-    }
+	public function getRetVals()
+	{
+		return null;
+	}
 }

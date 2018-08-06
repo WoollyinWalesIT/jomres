@@ -16,15 +16,15 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j06000save_gdpr_optin
 {
-    public function __construct()
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_getSingleton('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_getSingleton('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
 		$optin = (bool)jomresGetParam($_REQUEST, 'optin', 0);
 		$return_url = jomresGetParam($_REQUEST, 'return_url', 0);
@@ -39,11 +39,11 @@ class j06000save_gdpr_optin
 		
 
 		jomresRedirect($return_url);
-    }
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

@@ -16,23 +16,23 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j06000media_centre_resources_ajax_existing_images
 {
-    public function __construct($componentArgs)
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct($componentArgs)
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
-        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-        if (!$thisJRUser->userIsManager) {
-            return;
-        }
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+		if (!$thisJRUser->userIsManager) {
+			return;
+		}
 
-        $resource_type = jomresGetParam($_REQUEST, 'resource_type', '');
-        $resource_id = jomresGetParam($_REQUEST, 'resource_id', '0');
+		$resource_type = jomresGetParam($_REQUEST, 'resource_type', '');
+		$resource_id = jomresGetParam($_REQUEST, 'resource_id', '0');
 		
 		//if resource type is empty, return
 		if ($resource_type == '')
@@ -45,15 +45,15 @@ class j06000media_centre_resources_ajax_existing_images
 			$images = $MiniComponents->specificEvent('03383', $resource_type);
 		}
 
-        if (!jomres_cmsspecific_areweinadminarea()) {
-            $delete_url = JOMRES_SITEPAGE_URL_AJAX.'&task=media_centre_handler&delete=1&resource_type='.$resource_type.'&resource_id='.$resource_id.'&file=';
-        } else {
-            $delete_url = JOMRES_SITEPAGE_URL_ADMIN_AJAX.'&task=media_centre_handler&delete=1&resource_type='.$resource_type.'&resource_id='.$resource_id.'&file=';
-        }
+		if (!jomres_cmsspecific_areweinadminarea()) {
+			$delete_url = JOMRES_SITEPAGE_URL_AJAX.'&task=media_centre_handler&delete=1&resource_type='.$resource_type.'&resource_id='.$resource_id.'&file=';
+		} else {
+			$delete_url = JOMRES_SITEPAGE_URL_ADMIN_AJAX.'&task=media_centre_handler&delete=1&resource_type='.$resource_type.'&resource_id='.$resource_id.'&file=';
+		}
 
-        $image_result = '';
-        if (!empty($images)) {
-            foreach ($images as $image) {
+		$image_result = '';
+		if (!empty($images)) {
+			foreach ($images as $image) {
 				if ( isset( $image['small'] ) ) {
 					$image_name = basename($image['small']);
 
@@ -91,26 +91,26 @@ class j06000media_centre_resources_ajax_existing_images
 					$tmpl->addRows('pageoutput', $pageoutput);
 					$image_result .= $tmpl->getParsedTemplate();					
 				}
-            }
+			}
 
-            $pageoutput[] = array('IMAGES' => $image_result);
-            $tmpl = new patTemplate();
-            if (jomres_cmsspecific_areweinadminarea()) {
-                $tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
-            } else {
-                $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
-            }
-            $tmpl->readTemplatesFromInput('media_centre_image_list_wrapper.html');
-            $tmpl->addRows('pageoutput', $pageoutput);
-            $tmpl->displayParsedTemplate();
-        } else {
-            echo ' <img src="'.JOMRES_IMAGES_RELPATH.'noimage.gif'.'" />';
-        }
-    }
+			$pageoutput[] = array('IMAGES' => $image_result);
+			$tmpl = new patTemplate();
+			if (jomres_cmsspecific_areweinadminarea()) {
+				$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
+			} else {
+				$tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
+			}
+			$tmpl->readTemplatesFromInput('media_centre_image_list_wrapper.html');
+			$tmpl->addRows('pageoutput', $pageoutput);
+			$tmpl->displayParsedTemplate();
+		} else {
+			echo ' <img src="'.JOMRES_IMAGES_RELPATH.'noimage.gif'.'" />';
+		}
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

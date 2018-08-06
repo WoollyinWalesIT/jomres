@@ -30,10 +30,10 @@ class j06000show_consent_form
 			return;
 		}
 		
-        $output_now = true;
-        if (isset($componentArgs[ 'output_now' ]) ) {
-            $output_now = (bool) $componentArgs[ 'output_now' ];
-        }
+		$output_now = true;
+		if (isset($componentArgs[ 'output_now' ]) ) {
+			$output_now = (bool) $componentArgs[ 'output_now' ];
+		}
 
 
 		$output[ '_JOMRES_GDPR_CONSENT_FORM_INTRO' ] = jr_gettext('_JOMRES_GDPR_CONSENT_FORM_INTRO', '_JOMRES_GDPR_CONSENT_FORM_INTRO', false);
@@ -77,9 +77,9 @@ class j06000show_consent_form
 		$tmpl->readTemplatesFromInput('show_gdpr_consent_form.html');
 		$this->retVals = $tmpl->getParsedTemplate();
 		
-        if ($output_now) {
-            echo $this->retVals;
-        }
+		if ($output_now) {
+			echo $this->retVals;
+		}
 	}
 
 

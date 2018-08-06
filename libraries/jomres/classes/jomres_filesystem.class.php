@@ -22,14 +22,14 @@ use League\Flysystem\AwsS3v3\AwsS3Adapter;
 
 class jomres_filesystem
 {
-    protected $filesystem;
+	protected $filesystem;
 	
 	protected $jrConfig;
 
-    public function __construct($local_root_dir = false)
-    {
+	public function __construct($local_root_dir = false)
+	{
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $this->jrConfig = $siteConfig->get();
+		$this->jrConfig = $siteConfig->get();
 		
 		if (!$local_root_dir) {
 			$local_root_dir = JOMRESPATH_BASE;
@@ -47,7 +47,7 @@ class jomres_filesystem
 			) {
 			$this->mount_s3_filesystem();
 		}
-    }
+	}
 	
 	public function getFilesystem()
 	{
@@ -86,14 +86,14 @@ class jomres_filesystem
 		//s3 adapter
 		$s3client = S3Client::factory([
 			'credentials' => [
-				'key'    => $this->jrConfig['amazon_s3_key'],
+				'key'	=> $this->jrConfig['amazon_s3_key'],
 				'secret' => $this->jrConfig['amazon_s3_secret'],
 			],
 			'region' => $this->jrConfig['amazon_s3_region'],
 			'version' => 'latest',
 			'validation' => false,
 			'scheme' => $scheme,
-			/* 'http'    => [
+			/* 'http'	=> [
 				'verify' => $this->jrConfig['tls_certificate_path']
 			] */
 		]);

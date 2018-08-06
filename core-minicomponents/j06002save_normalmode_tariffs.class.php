@@ -16,16 +16,16 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j06002save_normalmode_tariffs
 {
-    public function __construct($componentArgs)
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct($componentArgs)
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
-        
+			return;
+		}
+		
 		date_default_timezone_set('UTC'); // Must be left in place, without it the date range selectors will not work properly on servers with different timezones.
 		
 		$defaultProperty = getDefaultProperty();
@@ -36,7 +36,7 @@ class j06002save_normalmode_tariffs
 			return;
 		
 		$basic_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
-        $basic_property_details->gather_data($defaultProperty);
+		$basic_property_details->gather_data($defaultProperty);
 		
 		//rooms object
 		jr_import('jrportal_rooms');
@@ -213,11 +213,11 @@ class j06002save_normalmode_tariffs
 		$jomres_messaging->set_message($saveMessage);
 		
 		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=edit_tariffs_normal" ), $saveMessage );
-    }
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

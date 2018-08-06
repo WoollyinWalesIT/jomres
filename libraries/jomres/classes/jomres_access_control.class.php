@@ -16,11 +16,11 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_access_control
 {
-    private static $internal_debugging;
+	private static $internal_debugging;
 
-    public function __construct()
-    {
-        self::$internal_debugging = false;
+	public function __construct()
+	{
+		self::$internal_debugging = false;
 
 		//controlled eventPoints
 		$this->controlled = array();
@@ -63,33 +63,33 @@ class jomres_access_control
 		$this->options = false;
 
 		//get currently controlled tasks
-        $this->_init();
-    }
+		$this->_init();
+	}
 
-    public function __set($setting, $value)
-    {
-        if (self::$internal_debugging) {
-            echo 'Setting '.$setting.' to '.$value.' <br>';
-        }
-        $this->$setting = $value;
+	public function __set($setting, $value)
+	{
+		if (self::$internal_debugging) {
+			echo 'Setting '.$setting.' to '.$value.' <br>';
+		}
+		$this->$setting = $value;
 
-        return true;
-    }
+		return true;
+	}
 
-    public function __get($setting)
-    {
-        if (self::$internal_debugging) {
-            echo 'Getting '.$setting.' which is '.$this->$setting.'<br>';
-        }
-        if (isset($this->$setting)) {
-            return $this->$setting;
-        }
+	public function __get($setting)
+	{
+		if (self::$internal_debugging) {
+			echo 'Getting '.$setting.' which is '.$this->$setting.'<br>';
+		}
+		if (isset($this->$setting)) {
+			return $this->$setting;
+		}
 
-        return null;
-    }
+		return null;
+	}
 	
 	private function _init()
-    {
+	{
 		$query = 'SELECT `id`, `scriptname`, `access_level` FROM #__jomres_access_control';
 		$result = doSelectSql($query);
 		
@@ -98,27 +98,27 @@ class jomres_access_control
 				$this->controlled[ $r->scriptname ] = (int)$r->access_level;
 			}
 		}
-    }
+	}
 
-    private function delete_controlled_task($task = '')
-    {
+	private function delete_controlled_task($task = '')
+	{
 		if ($task == '') {
 			return true;
 		}
-        
+		
 		$query = "DELETE FROM #__jomres_access_control WHERE `scriptname` = '".$task."'";
-        
+		
 		if (!doInsertSql($query, '')) {
-            trigger_error('Unable to delete from access control table, mysql db failure', E_USER_ERROR);
-        }
+			trigger_error('Unable to delete from access control table, mysql db failure', E_USER_ERROR);
+		}
 		
 		unset($this->controlled[$task]);
 		
 		return true;
-    }
+	}
 	
 	public function update_task_access_level($task = '', $access_level = '-1')
-    {
+	{
 		if ($task == '') {
 			return true;
 		}
@@ -153,14 +153,14 @@ class jomres_access_control
 		}
 
 		return false;
-    }
+	}
 
 	//check if a user can access a specific task
-    public function this_user_can($task = '')
-    {
-        if (in_array($task, $this->uncontrollable_tasks)) {
-            return true;
-        }
+	public function this_user_can($task = '')
+	{
+		if (in_array($task, $this->uncontrollable_tasks)) {
+			return true;
+		}
 		
 		if (empty($this->controlled)) {
 			return true;
@@ -214,17 +214,17 @@ class jomres_access_control
 		}
 		
 		return $user_can_access;
-    }
+	}
 
 	//not used but here is somebody wants to do this for some reason..
-    public function recount_controlled_scripts()
-    {
-        $this->_init();
-    }
+	public function recount_controlled_scripts()
+	{
+		$this->_init();
+	}
 
 	//access levels dropdown
-    public function generate_access_control_dropdown($task = '', $min_access_level = 0)
-    {
+	public function generate_access_control_dropdown($task = '', $min_access_level = 0)
+	{
 		if ($task == '') {
 			return '';
 		}
@@ -275,10 +275,10 @@ class jomres_access_control
 			$current_level = '-1';
 		}
 
-        $javascript = 'onChange="change_access_level(\''.$task.'\',this.value)";';
+		$javascript = 'onChange="change_access_level(\''.$task.'\',this.value)";';
 
-        return jomresHTML::selectList($options, '', ' autocomplete="off" class="inputbox" size="1" '.$javascript.'', 'value', 'text', $current_level);
-    }
+		return jomresHTML::selectList($options, '', ' autocomplete="off" class="inputbox" size="1" '.$javascript.'', 'value', 'text', $current_level);
+	}
 	
 	//check if a task is controllable (some tasks are not controllable)
 	public function is_controllable($task = '')

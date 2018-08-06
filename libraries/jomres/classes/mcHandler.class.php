@@ -19,47 +19,47 @@ defined('_JOMRES_INITCHECK') or die('');
  */
 class mcHandler
 {
-    public function __construct()
-    {
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
+	public function __construct()
+	{
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
 
-        $this->miniComponentData = array();
-        $this->miniComponentDirectories = array();
-        $this->template_touch = false;
-        $this->log = array();
-        $this->logging_enbled = false;
+		$this->miniComponentData = array();
+		$this->miniComponentDirectories = array();
+		$this->template_touch = false;
+		$this->log = array();
+		$this->logging_enbled = false;
 
-        if (isset($jrConfig[ 'errorChecking' ])) {
-            if ($jrConfig[ 'errorChecking' ] == '1') {
-                $this->logging_enbled = true;
-            }
-        }
+		if (isset($jrConfig[ 'errorChecking' ])) {
+			if ($jrConfig[ 'errorChecking' ] == '1') {
+				$this->logging_enbled = true;
+			}
+		}
 
-        $this->currentEvent = '';
+		$this->currentEvent = '';
 
-        $registry = jomres_singleton_abstract::getInstance('minicomponent_registry');
+		$registry = jomres_singleton_abstract::getInstance('minicomponent_registry');
 
-        if (!isset($registry->registeredClasses[ '00001' ]['start'])) {
-            $registry->regenerate_registry();
-        }
+		if (!isset($registry->registeredClasses[ '00001' ]['start'])) {
+			$registry->regenerate_registry();
+		}
 
-        $this->registeredClasses = $registry->get_registered_classes();
-        $this->miniComponentDirectories = $registry->get_minicomponent_directories();
-    }
+		$this->registeredClasses = $registry->get_registered_classes();
+		$this->miniComponentDirectories = $registry->get_minicomponent_directories();
+	}
 
-    public function touch_templates()
-    {
-        $mrConfig = getPropertySpecificSettings(0);
+	public function touch_templates()
+	{
+		$mrConfig = getPropertySpecificSettings(0);
 		
 		$mrConfig[ 'editingOn' ] = '1';
-        $eventArgs = null;
-        $this->template_touch = true;
+		$eventArgs = null;
+		$this->template_touch = true;
 		$classFileSuffix = '.class.php';
-        
+		
 		echo jr_gettext('_JOMRES_CUSTOMTEXT_TOUCHTEMPLATES', 'This feature allows you to edit language text for any template configured to allow you to edit text. You will be editing the default text for every property and saving that text to the database. HTML code is not allowed. To change the language that the text is saved for, change the default language in the Site Settings -> Misc tab. Click on a line to edit the text.');
-        echo '<br/>';
-        
+		echo '<br/>';
+		
 		foreach ($this->registeredClasses as $eventPoint => $ev) {
 			foreach ($ev as $eventName => $eventDetails) {
 				$ePointFilepath = $eventDetails[ 'filepath' ];
@@ -93,13 +93,13 @@ class mcHandler
 					unset($e);
 				}
 			}
-        }
-    }
+		}
+	}
 
-    // Acutally calls the triggered event.
-    public function triggerEvent($eventPoint, $eventArgs = null)
-    {
-        $retVal = null;
+	// Acutally calls the triggered event.
+	public function triggerEvent($eventPoint, $eventArgs = null)
+	{
+		$retVal = null;
 		$check_access = false;
 		$can_access = true;
 		$classFileSuffix = '.class.php';
@@ -112,9 +112,9 @@ class mcHandler
 			}
 		}
 
-        if (!empty($this->registeredClasses && isset($this->registeredClasses[$eventPoint]))) {
-            foreach ($this->registeredClasses[$eventPoint] as $eventName => $eventDetails) {
-                $ePointFilepath = $eventDetails[ 'filepath' ];
+		if (!empty($this->registeredClasses && isset($this->registeredClasses[$eventPoint]))) {
+			foreach ($this->registeredClasses[$eventPoint] as $eventName => $eventDetails) {
+				$ePointFilepath = $eventDetails[ 'filepath' ];
 				set_showtime('ePointFilepath', $eventDetails[ 'filepath' ]);
 				
 				$filename = 'j'.$eventPoint.$eventName.$classFileSuffix;
@@ -160,18 +160,18 @@ class mcHandler
 					$this->registeredClasses = $registry->get_registered_classes();
 					$this->miniComponentDirectories = $registry->get_minicomponent_directories();
 				} 
-            }
-        }
-        
+			}
+		}
+		
 		$this->currentEvent = '';
 
-        return $retVal;
-    }
+		return $retVal;
+	}
 
-    // Calls a specific event.
-    public function specificEvent($eventPoint, $eventName, $eventArgs = null)
-    {
-        $retVal = null;
+	// Calls a specific event.
+	public function specificEvent($eventPoint, $eventName, $eventArgs = null)
+	{
+		$retVal = null;
 		$check_access = false;
 		$can_access = true;
 		$classFileSuffix = '.class.php';
@@ -179,13 +179,13 @@ class mcHandler
 		
 		if (!jomres_cmsspecific_areweinadminarea()) {
 			$jomres_access_control = jomres_singleton_abstract::getInstance('jomres_access_control');
-        
+		
 			if (isset($jomres_access_control->controllable_patterns[$eventPoint])) {
 				$check_access = true;
 			}
 		}
 		
-        if (!empty($this->registeredClasses) && isset($this->registeredClasses[$eventPoint][$eventName])) {
+		if (!empty($this->registeredClasses) && isset($this->registeredClasses[$eventPoint][$eventName])) {
 			$ePointFilepath = $this->registeredClasses[$eventPoint][$eventName][ 'filepath' ];
 			
 			set_showtime('ePointFilepath', $this->registeredClasses[$eventPoint][$eventName][ 'filepath' ]);
@@ -220,63 +220,63 @@ class mcHandler
 				set_showtime('current_minicomp', '');
 				unset($e);
 			}
-        }
-        
+		}
+		
 		$this->currentEvent = '';
 
-        return $retVal;
-    }
+		return $retVal;
+	}
 
-    //  This function is used to see if a mini-component exists for a given event point
-    public function eventFileExistsCheck($eventPoint)
-    {
-        if (!empty($this->registeredClasses)) {
+	//  This function is used to see if a mini-component exists for a given event point
+	public function eventFileExistsCheck($eventPoint)
+	{
+		if (!empty($this->registeredClasses)) {
 			if (isset($this->registeredClasses[$eventPoint])) {
 				return true;
-            }
-        }
+			}
+		}
 
-        return false;
-    }
+		return false;
+	}
 
-    //  This function is used to see if a mini-component exists.
-    public function eventSpecificlyExistsCheck($eventPoint, $eventName)
-    {
-        if (!empty($this->registeredClasses)) {
-            if (isset($this->registeredClasses[$eventPoint][$eventName])) {
+	//  This function is used to see if a mini-component exists.
+	public function eventSpecificlyExistsCheck($eventPoint, $eventName)
+	{
+		if (!empty($this->registeredClasses)) {
+			if (isset($this->registeredClasses[$eventPoint][$eventName])) {
 				return true;
 			}
-        }
+		}
 
-        return false;
-    }
+		return false;
+	}
 
-    //  This function is used to see if a mini-component file exists.
-    public function eventFileLocate($eventPoint, $eventName)
-    {
+	//  This function is used to see if a mini-component file exists.
+	public function eventFileLocate($eventPoint, $eventName)
+	{
 		if (!empty($this->registeredClasses)) {
-            if (isset($this->registeredClasses[$eventPoint][$eventName])) {
+			if (isset($this->registeredClasses[$eventPoint][$eventName])) {
 				return true;
-            }
-        }
+			}
+		}
 
-        return false;
-    }
+		return false;
+	}
 
-    public function getAllEventPointsData($ePoint)
-    {
-        $retVal = array();
-        if (isset($this->miniComponentData[ $ePoint ]) && !empty($this->miniComponentData[ $ePoint ])) {
-           foreach ($this->miniComponentData[ $ePoint ] as $key => $val) {
+	public function getAllEventPointsData($ePoint)
+	{
+		$retVal = array();
+		if (isset($this->miniComponentData[ $ePoint ]) && !empty($this->miniComponentData[ $ePoint ])) {
+		   foreach ($this->miniComponentData[ $ePoint ] as $key => $val) {
 				$retVal[ $key ] = $this->getEventPointData($ePoint, $key);
 			}
-        }
+		}
 
-        return $retVal;
-    }
+		return $retVal;
+	}
 
-    public function getEventPointData($ePoint, $eName)
-    {
-        return $this->miniComponentData[ $ePoint ][ $eName ];
-    }
+	public function getEventPointData($ePoint, $eName)
+	{
+		return $this->miniComponentData[ $ePoint ][ $eName ];
+	}
 }

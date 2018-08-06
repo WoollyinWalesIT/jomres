@@ -16,12 +16,12 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_widgets
 {
-    public function __construct()
-    {
+	public function __construct()
+	{
 		$this->widgets = array();
 		$this->this_page_widgets = array();
 		$this->default_widgets = array();
-    }
+	}
 
 	//register widget
 	public function register_widget($eventPoint = '', $eventName = '', $title = '', $default = false)

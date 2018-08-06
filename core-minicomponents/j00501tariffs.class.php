@@ -16,115 +16,115 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j00501tariffs
 {
-    public function __construct($componentArgs)
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct($componentArgs)
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
-        $configurationPanel = $componentArgs[ 'configurationPanel' ];
-        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
-        $mrConfig = getPropertySpecificSettings();
+			return;
+		}
+		$configurationPanel = $componentArgs[ 'configurationPanel' ];
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
+		$mrConfig = getPropertySpecificSettings();
 
-        $lists = $componentArgs[ 'lists' ];
-        $tariffModelsDropdown = $componentArgs[ 'tariffModelsDropdown' ];
+		$lists = $componentArgs[ 'lists' ];
+		$tariffModelsDropdown = $componentArgs[ 'tariffModelsDropdown' ];
 
-        $this->outputConversionJavascript();
-        $currfmt = jomres_singleton_abstract::getInstance('jomres_currency_format');
-        $cformatdropdown = $currfmt->get_currency_format_dropdowninput();
+		$this->outputConversionJavascript();
+		$currfmt = jomres_singleton_abstract::getInstance('jomres_currency_format');
+		$cformatdropdown = $currfmt->get_currency_format_dropdowninput();
 
-        $jrportal_taxrate = jomres_singleton_abstract::getInstance('jrportal_taxrate');
+		$jrportal_taxrate = jomres_singleton_abstract::getInstance('jrportal_taxrate');
 
-        if (!isset($mrConfig[ 'margin' ]) || empty($mrConfig[ 'margin' ])) {
-            $mrConfig[ 'margin' ] = '0.00';
-        }
+		if (!isset($mrConfig[ 'margin' ]) || empty($mrConfig[ 'margin' ])) {
+			$mrConfig[ 'margin' ] = '0.00';
+		}
 
-        $configurationPanel->startPanel(jr_gettext('_JOMRES_COM_A_TARIFFS', '_JOMRES_COM_A_TARIFFS', false));
+		$configurationPanel->startPanel(jr_gettext('_JOMRES_COM_A_TARIFFS', '_JOMRES_COM_A_TARIFFS', false));
 
-        if ($mrConfig[ 'is_real_estate_listing' ] == 0 && !get_showtime('is_jintour_property')) {
-            if ($mrConfig[ 'tariffmode' ] == '1') {
-                $configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_TARIFFPRICESAREWEEKLY', '_JOMRES_COM_A_TARIFFPRICESAREWEEKLY', false));
-                $configurationPanel->setmiddle($lists[ 'tariffChargesStoredWeeklyYesNo' ]);
-                $configurationPanel->setright(jr_gettext('_JOMRES_COM_A_TARIFFPRICESAREWEEKLY_DESC', '_JOMRES_COM_A_TARIFFPRICESAREWEEKLY_DESC', false));
-                $configurationPanel->insertSetting();
-            }
-        }
+		if ($mrConfig[ 'is_real_estate_listing' ] == 0 && !get_showtime('is_jintour_property')) {
+			if ($mrConfig[ 'tariffmode' ] == '1') {
+				$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_TARIFFPRICESAREWEEKLY', '_JOMRES_COM_A_TARIFFPRICESAREWEEKLY', false));
+				$configurationPanel->setmiddle($lists[ 'tariffChargesStoredWeeklyYesNo' ]);
+				$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_TARIFFPRICESAREWEEKLY_DESC', '_JOMRES_COM_A_TARIFFPRICESAREWEEKLY_DESC', false));
+				$configurationPanel->insertSetting();
+			}
+		}
 
-        if ($jrConfig[ 'useGlobalCurrency' ] != '1') {
-            if (!isset($mrConfig[ 'property_currencycode' ])) { // for v4.5 converting the old currencyCode value to property_currencycode
-            $mrConfig[ 'property_currencycode' ] = $mrConfig[ 'currencyCode' ];
-            }
-            $currency_codes = jomres_singleton_abstract::getInstance('currency_codes');
+		if ($jrConfig[ 'useGlobalCurrency' ] != '1') {
+			if (!isset($mrConfig[ 'property_currencycode' ])) { // for v4.5 converting the old currencyCode value to property_currencycode
+			$mrConfig[ 'property_currencycode' ] = $mrConfig[ 'currencyCode' ];
+			}
+			$currency_codes = jomres_singleton_abstract::getInstance('currency_codes');
 			$currency_codes_dropdown = $currency_codes->makeCodesDropdown($mrConfig[ 'property_currencycode' ]);
 			
-            $configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_CURRENCYCODE', '_JOMRES_COM_A_CURRENCYCODE', false));
-            $configurationPanel->setmiddle($currency_codes_dropdown);
-            $configurationPanel->setright();
-            $configurationPanel->insertSetting();
+			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_CURRENCYCODE', '_JOMRES_COM_A_CURRENCYCODE', false));
+			$configurationPanel->setmiddle($currency_codes_dropdown);
+			$configurationPanel->setright();
+			$configurationPanel->insertSetting();
 
-            $configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_TARIFFS_SWAP', '_JOMRES_COM_A_TARIFFS_SWAP', false));
-            $configurationPanel->setmiddle($lists[ 'currency_symbol_swap' ]);
-            $configurationPanel->setright(jr_gettext('_JOMRES_COM_A_TARIFFS_SWAP_DESC', '_JOMRES_COM_A_TARIFFS_SWAP_DESC', false));
-            $configurationPanel->insertSetting();
-        }
+			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_TARIFFS_SWAP', '_JOMRES_COM_A_TARIFFS_SWAP', false));
+			$configurationPanel->setmiddle($lists[ 'currency_symbol_swap' ]);
+			$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_TARIFFS_SWAP_DESC', '_JOMRES_COM_A_TARIFFS_SWAP_DESC', false));
+			$configurationPanel->insertSetting();
+		}
 
 		$configurationPanel->setleft(jr_gettext('_JOMRES_CURRENCYFORMAT', '_JOMRES_CURRENCYFORMAT', false));
 		$configurationPanel->setmiddle($cformatdropdown);
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
 
-        if ($mrConfig[ 'is_real_estate_listing' ] == 0) {
-            if (!get_showtime('is_jintour_property')) {
+		if ($mrConfig[ 'is_real_estate_listing' ] == 0) {
+			if (!get_showtime('is_jintour_property')) {
 				$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_TARIFFS_MODEL', '_JOMRES_COM_A_TARIFFS_MODEL', false));
 				$configurationPanel->setmiddle($tariffModelsDropdown);
 				$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_TARIFFS_MODEL_DESC', '_JOMRES_COM_A_TARIFFS_MODEL_DESC', false));
 				$configurationPanel->insertSetting();
 			}
 
-            $configurationPanel->setleft(jr_gettext('_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE', '_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE', false));
-            $configurationPanel->setmiddle($jrportal_taxrate->makeTaxratesDropdown($mrConfig[ 'accommodation_tax_code' ], 'cfg_accommodation_tax_code'));
-            $configurationPanel->setright('');
-            $configurationPanel->insertSetting();
+			$configurationPanel->setleft(jr_gettext('_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE', '_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE', false));
+			$configurationPanel->setmiddle($jrportal_taxrate->makeTaxratesDropdown($mrConfig[ 'accommodation_tax_code' ], 'cfg_accommodation_tax_code'));
+			$configurationPanel->setright('');
+			$configurationPanel->insertSetting();
 
-            $configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_TAXINCLUSIVE', '_JOMRES_COM_A_TAXINCLUSIVE', false));
-            $configurationPanel->setmiddle($lists[ 'prices_inclusive' ]);
-            $configurationPanel->setright(jr_gettext('_JOMRES_COM_A_TAXINCLUSIVE_DESC', '_JOMRES_COM_A_TAXINCLUSIVE_DESC', false));
-            $configurationPanel->insertSetting();
-        }
+			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_TAXINCLUSIVE', '_JOMRES_COM_A_TAXINCLUSIVE', false));
+			$configurationPanel->setmiddle($lists[ 'prices_inclusive' ]);
+			$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_TAXINCLUSIVE_DESC', '_JOMRES_COM_A_TAXINCLUSIVE_DESC', false));
+			$configurationPanel->insertSetting();
+		}
 
-        if ($mrConfig[ 'is_real_estate_listing' ] == '0') {
-            if (isset($MiniComponents->registeredClasses['00005']['guest_types' ])) {
-                if ($mrConfig[ 'wholeday_booking' ] == '1') {
-                    $configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_TARIFFS_PER_WHOLEDAY', '_JOMRES_COM_A_TARIFFS_PER_WHOLEDAY', false));
-                    $configurationPanel->setmiddle($lists[ 'perPersonPerNight' ]);
-                    $configurationPanel->setright(jr_gettext('_JOMRES_COM_A_TARIFFS_PER_DESC_WHOLEDAY', '_JOMRES_COM_A_TARIFFS_PER_DESC_WHOLEDAY', false));
-                    $configurationPanel->insertSetting();
-                } else {
-                    $configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_TARIFFS_PER', '_JOMRES_COM_A_TARIFFS_PER', false));
-                    $configurationPanel->setmiddle($lists[ 'perPersonPerNight' ]);
-                    $configurationPanel->setright(jr_gettext('_JOMRES_COM_A_TARIFFS_PER_DESC', '_JOMRES_COM_A_TARIFFS_PER_DESC', false));
-                    $configurationPanel->insertSetting();
-                }
-            }
+		if ($mrConfig[ 'is_real_estate_listing' ] == '0') {
+			if (isset($MiniComponents->registeredClasses['00005']['guest_types' ])) {
+				if ($mrConfig[ 'wholeday_booking' ] == '1') {
+					$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_TARIFFS_PER_WHOLEDAY', '_JOMRES_COM_A_TARIFFS_PER_WHOLEDAY', false));
+					$configurationPanel->setmiddle($lists[ 'perPersonPerNight' ]);
+					$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_TARIFFS_PER_DESC_WHOLEDAY', '_JOMRES_COM_A_TARIFFS_PER_DESC_WHOLEDAY', false));
+					$configurationPanel->insertSetting();
+				} else {
+					$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_TARIFFS_PER', '_JOMRES_COM_A_TARIFFS_PER', false));
+					$configurationPanel->setmiddle($lists[ 'perPersonPerNight' ]);
+					$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_TARIFFS_PER_DESC', '_JOMRES_COM_A_TARIFFS_PER_DESC', false));
+					$configurationPanel->insertSetting();
+				}
+			}
 			
-        $configurationPanel->setleft(jr_gettext('POA_DISPLAY_PRICE', 'POA_DISPLAY_PRICE', false));
-        $configurationPanel->setmiddle( '<input type="text" class="inputbox form-control"  size="5" name="cfg_poa_price" value="'.$mrConfig[ 'poa_price' ].'" />' );
-        $configurationPanel->setright(jr_gettext('POA_DISPLAY_PRICE_DESC', 'POA_DISPLAY_PRICE_DESC', false));
-        $configurationPanel->insertSetting();
+		$configurationPanel->setleft(jr_gettext('POA_DISPLAY_PRICE', 'POA_DISPLAY_PRICE', false));
+		$configurationPanel->setmiddle( '<input type="text" class="inputbox form-control"  size="5" name="cfg_poa_price" value="'.$mrConfig[ 'poa_price' ].'" />' );
+		$configurationPanel->setright(jr_gettext('POA_DISPLAY_PRICE_DESC', 'POA_DISPLAY_PRICE_DESC', false));
+		$configurationPanel->insertSetting();
 			
-        }
+		}
 
-        $configurationPanel->endPanel();
-    }
+		$configurationPanel->endPanel();
+	}
 
-    public function outputConversionJavascript()
-    {
-        ?>
+	public function outputConversionJavascript()
+	{
+		?>
 			<script type="text/javascript">
 				var arrOldValues;
 
@@ -188,11 +188,11 @@ class j00501tariffs
 			</script>
 		<?php
 
-    }
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

@@ -16,9 +16,9 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class jomres_oauth_scopes 
 	{
-    public function __construct($cwd = "") 
+	public function __construct($cwd = "") 
 		{
-        $this->default_scopes		= array();
+		$this->default_scopes		= array();
 		$this->scopes_file	= "scopes.json";
 		$this->get_scopes_file();
 		}
@@ -27,7 +27,7 @@ class jomres_oauth_scopes
 		{
 		$already_found = array();
 		
-		$jrePath             = JOMRES_COREPLUGINS_ABSPATH;
+		$jrePath			 = JOMRES_COREPLUGINS_ABSPATH;
 		$core_plugins_dir_contents = scandir($jrePath);
 		$api_feature_directories = array();
 		foreach ($core_plugins_dir_contents as $directory )
@@ -79,10 +79,10 @@ class jomres_oauth_scopes
 						{
 						foreach ($v as $scope)
 							{
-                            if (!in_array($scope,$already_found)) {
-                                $this->default_scopes[$k][] = $scope;
-                                $already_found[] = $scope;
-                                }
+							if (!in_array($scope,$already_found)) {
+								$this->default_scopes[$k][] = $scope;
+								$already_found[] = $scope;
+								}
 							}
 						}
 					}

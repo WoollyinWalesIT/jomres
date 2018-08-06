@@ -16,25 +16,25 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j06000contactowner
 {
-    public function __construct($componentArgs)
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = true;
-            $this->shortcode_data = array(
-                'task' => 'contactowner',
-                'info' => '_JOMRES_SHORTCODES_06000CONTACTOWNER',
-                'arguments' => array(0 => array(
-                        'argument' => 'property_uid',
-                        'arg_info' => '_JOMRES_SHORTCODES_06000CONTACTOWNER_ARG_PROPERTY_UID',
-                        'arg_example' => '18',
-                        ),
-                    ),
-                );
+	public function __construct($componentArgs)
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = true;
+			$this->shortcode_data = array(
+				'task' => 'contactowner',
+				'info' => '_JOMRES_SHORTCODES_06000CONTACTOWNER',
+				'arguments' => array(0 => array(
+						'argument' => 'property_uid',
+						'arg_info' => '_JOMRES_SHORTCODES_06000CONTACTOWNER_ARG_PROPERTY_UID',
+						'arg_example' => '18',
+						),
+					),
+				);
 
-            return;
-        }
+			return;
+		}
 		
 		$this->ret_vals = '';
 		
@@ -259,34 +259,34 @@ class j06000contactowner
 			}
 			
 		}
-    }
+	}
 
-    public function touch_template_language()
-    {
-        $output = array();
+	public function touch_template_language()
+	{
+		$output = array();
 
-        $output[ ] = jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_THANKS', '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_THANKS');
-        $output[ ] = jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_SUBJECT', '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_SUBJECT');
-        $output[ ] = jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_REGARDING', '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_REGARDING');
-        $output[ ] = jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL');
-        $output[ ] = jr_gettext('_JOMRES_FRONT_MR_EMAIL_TEXT_NAME', '_JOMRES_FRONT_MR_EMAIL_TEXT_NAME');
-        $output[ ] = jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_ENQUIRY', '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_ENQUIRY');
-        $output[ ] = jr_gettext('_JOMRES_BACKTOPROPERTYDETAILSLINK', '_JOMRES_BACKTOPROPERTYDETAILSLINK');
+		$output[ ] = jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_THANKS', '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_THANKS');
+		$output[ ] = jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_SUBJECT', '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_SUBJECT');
+		$output[ ] = jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_REGARDING', '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_REGARDING');
+		$output[ ] = jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL');
+		$output[ ] = jr_gettext('_JOMRES_FRONT_MR_EMAIL_TEXT_NAME', '_JOMRES_FRONT_MR_EMAIL_TEXT_NAME');
+		$output[ ] = jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_ENQUIRY', '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_ENQUIRY');
+		$output[ ] = jr_gettext('_JOMRES_BACKTOPROPERTYDETAILSLINK', '_JOMRES_BACKTOPROPERTYDETAILSLINK');
 
-        foreach ($output as $o) {
-            echo $o;
-            echo '<br/>';
-        }
-    }
+		foreach ($output as $o) {
+			echo $o;
+			echo '<br/>';
+		}
+	}
 
 /**
  * Must be included in every mini-component.
  #
  * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
  */
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return $this->ret_vals;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return $this->ret_vals;
+	}
 }

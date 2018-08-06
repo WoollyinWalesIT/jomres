@@ -16,24 +16,24 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j99998user_feedback
 {
-    public function __construct($componentArgs)
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct($componentArgs)
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 		
 		if (get_showtime('no_html') == 1 || get_showtime('popup') == 1 || AJAXCALL) {
-            return '';
-        }
+			return '';
+		}
 
 		$output = array();
 		
-        $jomres_messaging = jomres_singleton_abstract::getInstance('jomres_messages');
-        $messages = $jomres_messaging->get_messages();
+		$jomres_messaging = jomres_singleton_abstract::getInstance('jomres_messages');
+		$messages = $jomres_messaging->get_messages();
 		
 		$jomres_user_feedback = jomres_singleton_abstract::getInstance('jomres_user_feedback');
 
@@ -56,11 +56,11 @@ class j99998user_feedback
 		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
 		$tmpl->readTemplatesFromInput('user_feedback.html');
 		$tmpl->displayParsedTemplate();
-    }
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

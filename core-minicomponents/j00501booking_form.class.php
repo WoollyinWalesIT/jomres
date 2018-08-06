@@ -16,45 +16,45 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j00501booking_form
 {
-    public function __construct($componentArgs)
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct($componentArgs)
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
-        $configurationPanel = $componentArgs[ 'configurationPanel' ];
-        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
-        $mrConfig = getPropertySpecificSettings();
-        if ($mrConfig[ 'is_real_estate_listing' ] == 1) {
-            return;
-        }
-        $lists = $componentArgs[ 'lists' ];
-        //$tabs=$componentArgs['tabs'];
-        $weekenddayDropdown = $componentArgs[ 'weekenddayDropdown' ];
-        $booking_form_rooms_list_style = $componentArgs[ 'booking_form_rooms_list_style' ];
-        $booking_form_daily_weekly_monthly = $componentArgs[ 'booking_form_daily_weekly_monthly' ];
+			return;
+		}
+		$configurationPanel = $componentArgs[ 'configurationPanel' ];
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
+		$mrConfig = getPropertySpecificSettings();
+		if ($mrConfig[ 'is_real_estate_listing' ] == 1) {
+			return;
+		}
+		$lists = $componentArgs[ 'lists' ];
+		//$tabs=$componentArgs['tabs'];
+		$weekenddayDropdown = $componentArgs[ 'weekenddayDropdown' ];
+		$booking_form_rooms_list_style = $componentArgs[ 'booking_form_rooms_list_style' ];
+		$booking_form_daily_weekly_monthly = $componentArgs[ 'booking_form_daily_weekly_monthly' ];
 		
 		if (!isset($mrConfig[ 'externalBookingFormUrl' ])) {
 			$mrConfig[ 'externalBookingFormUrl' ] = '';
 		}
 
-        $configurationPanel->startPanel(jr_gettext('_JOMRES_HBOOKING_FORM', '_JOMRES_HBOOKING_FORM', false));
+		$configurationPanel->startPanel(jr_gettext('_JOMRES_HBOOKING_FORM', '_JOMRES_HBOOKING_FORM', false));
 
 		$configurationPanel->setleft(jr_gettext('_JOMRES_BOOKING_FORM_EXTERNAL_URL', '_JOMRES_BOOKING_FORM_EXTERNAL_URL', false));
 		$configurationPanel->setmiddle('<input type="url" class="inputbox form-control"  size="50" name="cfg_externalBookingFormUrl" value="'.$mrConfig[ 'externalBookingFormUrl' ].'" />');
 		$configurationPanel->setright(jr_gettext('_JOMRES_BOOKING_FORM_EXTERNAL_URL_DESC', '_JOMRES_BOOKING_FORM_EXTERNAL_URL_DESC', false));
 		$configurationPanel->insertSetting();
 
-        if ($mrConfig[ 'singleRoomProperty' ] != '1') {
-            $configurationPanel->setleft(jr_gettext('_JOMRES_ROOMMSLIST_STYLE', '_JOMRES_ROOMMSLIST_STYLE', false));
-            $configurationPanel->setmiddle($booking_form_rooms_list_style);
-            $configurationPanel->setright(jr_gettext('_JOMRES_ROOMMSLIST_STYLE_DESC', '_JOMRES_ROOMMSLIST_STYLE_DESC', false));
-            $configurationPanel->insertSetting();
+		if ($mrConfig[ 'singleRoomProperty' ] != '1') {
+			$configurationPanel->setleft(jr_gettext('_JOMRES_ROOMMSLIST_STYLE', '_JOMRES_ROOMMSLIST_STYLE', false));
+			$configurationPanel->setmiddle($booking_form_rooms_list_style);
+			$configurationPanel->setright(jr_gettext('_JOMRES_ROOMMSLIST_STYLE_DESC', '_JOMRES_ROOMMSLIST_STYLE_DESC', false));
+			$configurationPanel->insertSetting();
 
 			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_LIMITROOMSLIST', '_JOMRES_COM_LIMITROOMSLIST', false));
 			$configurationPanel->setmiddle('<input type="number" class="inputbox form-control" size="5" name="cfg_returnRoomsLimit" value="'.$mrConfig[ 'returnRoomsLimit' ].'">');
@@ -72,12 +72,12 @@ class j00501booking_form
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
 
-        if (!get_showtime('is_jintour_property')) {
-            $configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_EXTRAS', '_JOMRES_COM_A_EXTRAS', false));
-            $configurationPanel->setmiddle($lists[ 'showExtras' ]);
-            $configurationPanel->setright(jr_gettext('_JOMRES_COM_A_EXTRAS_DESC', '_JOMRES_COM_A_EXTRAS_DESC', false));
-            $configurationPanel->insertSetting();
-        }
+		if (!get_showtime('is_jintour_property')) {
+			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_EXTRAS', '_JOMRES_COM_A_EXTRAS', false));
+			$configurationPanel->setmiddle($lists[ 'showExtras' ]);
+			$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_EXTRAS_DESC', '_JOMRES_COM_A_EXTRAS_DESC', false));
+			$configurationPanel->insertSetting();
+		}
 
 		if ($mrConfig[ 'wholeday_booking' ] == '1') {
 			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_SHOWDEPARTUREINPUT_WHOLEDAY', '_JOMRES_COM_A_SHOWDEPARTUREINPUT_WHOLEDAY', false));
@@ -145,12 +145,12 @@ class j00501booking_form
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting(); */
 
-        $configurationPanel->endPanel();
-    }
+		$configurationPanel->endPanel();
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

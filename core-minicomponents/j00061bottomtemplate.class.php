@@ -16,26 +16,26 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j00061bottomtemplate
 {
-    public function __construct($componentArgs)
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct($componentArgs)
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
-        if (AJAXCALL) {
-            return;
-        }
-        $jomres_tooltips = jomres_singleton_abstract::getInstance('jomres_tooltips');
+			return;
+		}
+		if (AJAXCALL) {
+			return;
+		}
+		$jomres_tooltips = jomres_singleton_abstract::getInstance('jomres_tooltips');
 
-        $management_view = jomresGetParam($_REQUEST, 'tmpl', false);
+		$management_view = jomresGetParam($_REQUEST, 'tmpl', false);
 
-        $output = array();
+		$output = array();
 
-        if (using_bootstrap()) {
-            $output[ 'RADIO_BUTTON_JAVASCRIPT' ] = '
+		if (using_bootstrap()) {
+			$output[ 'RADIO_BUTTON_JAVASCRIPT' ] = '
 			<!-- Joomla 3 frontend doesn\'t yet have this, and Jomres needs it for the property config (among others). Put in for now, will see if we need to remove it when Alpha 2 is released -->
 			<script>
 				(function($){
@@ -56,24 +56,24 @@ class j00061bottomtemplate
 					});
 				})(jQuery);
 			</script>';
-        }
+		}
 
-        $pageoutput[ ] = $output;
+		$pageoutput[ ] = $output;
 
-        $tmpl = new patTemplate();
-        $tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
-        if ($management_view) {
-            $tmpl->readTemplatesFromInput('management_bottom.html');
-        } else {
-            $tmpl->readTemplatesFromInput('bottom.html');
-        }
-        $tmpl->addRows('pageoutput', $pageoutput);
-        $tmpl->displayParsedTemplate();
-    }
+		$tmpl = new patTemplate();
+		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+		if ($management_view) {
+			$tmpl->readTemplatesFromInput('management_bottom.html');
+		} else {
+			$tmpl->readTemplatesFromInput('bottom.html');
+		}
+		$tmpl->addRows('pageoutput', $pageoutput);
+		$tmpl->displayParsedTemplate();
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

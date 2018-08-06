@@ -16,19 +16,19 @@ defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.'
 
 class j06005new_property
 {
-    public function __construct()
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
-            $this->shortcode_data = array(
-                'task' => 'new_property',
-                'info' => '_JOMRES_SHORTCODES_06005NEW_PROPERTY',
-                'arguments' => array()
-                );
-            return;
-        }
+	public function __construct()
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
+			$this->shortcode_data = array(
+				'task' => 'new_property',
+				'info' => '_JOMRES_SHORTCODES_06005NEW_PROPERTY',
+				'arguments' => array()
+				);
+			return;
+		}
 		jomres_cmsspecific_setmetadata('title', jomres_purify_html( jr_gettext('_JOMRES_USER_LISTMYPROPERTY', '_JOMRES_USER_LISTMYPROPERTY', false) ));
 		
 		$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
@@ -37,16 +37,16 @@ class j06005new_property
 			return;
 		}
 
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
 
-        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 		
 		$jomres_property_types = jomres_singleton_abstract::getInstance('jomres_property_types');
 
-        if ($jrConfig['selfRegistrationAllowed'] == '0' && !$thisJRUser->superPropertyManager) {
-            return;
-        }
+		if ($jrConfig['selfRegistrationAllowed'] == '0' && !$thisJRUser->superPropertyManager) {
+			return;
+		}
 		
 		// You can, by all means, remove this section of code but it's only here to ensure you don't lock yourself out of your own system accidentally
 		if (function_exists("get_number_of_allowed_properties") ) {
@@ -57,49 +57,49 @@ class j06005new_property
 		}
 
 			
-        //get selected country
-        $selectedCountry = jomresGetParam($_REQUEST, 'new_property_country', '');
-        if ($selectedCountry == '') {
-            $selectedCountry = $jrConfig['limit_property_country_country'];
-        }
+		//get selected country
+		$selectedCountry = jomresGetParam($_REQUEST, 'new_property_country', '');
+		if ($selectedCountry == '') {
+			$selectedCountry = $jrConfig['limit_property_country_country'];
+		}
 
-        $output = array();
-        $propertyRegion = '';
+		$output = array();
+		$propertyRegion = '';
 
-        //setup countries and regions dropdowns
-        if ($jrConfig['limit_property_country'] == '0') {
-            $output['REGIONDROPDOWN'] = setupRegions($selectedCountry, $propertyRegion);
-            $output['COUNTRIESDROPDOWN'] = createCountriesDropdown($selectedCountry, 'new_property_country', false);
-        } else {
-            $output['REGIONDROPDOWN'] = setupRegions($jrConfig['limit_property_country_country'], $propertyRegion);
-            $output['COUNTRIESDROPDOWN'] = getSimpleCountry($jrConfig['limit_property_country_country']);
-        }
+		//setup countries and regions dropdowns
+		if ($jrConfig['limit_property_country'] == '0') {
+			$output['REGIONDROPDOWN'] = setupRegions($selectedCountry, $propertyRegion);
+			$output['COUNTRIESDROPDOWN'] = createCountriesDropdown($selectedCountry, 'new_property_country', false);
+		} else {
+			$output['REGIONDROPDOWN'] = setupRegions($jrConfig['limit_property_country_country'], $propertyRegion);
+			$output['COUNTRIESDROPDOWN'] = getSimpleCountry($jrConfig['limit_property_country_country']);
+		}
 
-        $output['PAGETITLE'] = jr_gettext('_JOMRES_COM_MR_NEWPROPERTY', '_JOMRES_COM_MR_NEWPROPERTY', false);
-        $output['HCOUNTRY'] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', false);
-        $output['HREGION'] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', false);
-        $output['HNAME'] = jr_gettext('_JRPORTAL_PROPERTIES_PROPERTYNAME', '_JRPORTAL_PROPERTIES_PROPERTYNAME', false);
-        $output['HEMAIL'] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL', false);
-        $output['_JOMRES_FIELDS_HIGHLIGHTED_ARE_REQUIRED'] = jr_gettext('_JOMRES_FIELDS_HIGHLIGHTED_ARE_REQUIRED', '_JOMRES_FIELDS_HIGHLIGHTED_ARE_REQUIRED', false);
+		$output['PAGETITLE'] = jr_gettext('_JOMRES_COM_MR_NEWPROPERTY', '_JOMRES_COM_MR_NEWPROPERTY', false);
+		$output['HCOUNTRY'] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY', false);
+		$output['HREGION'] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION', false);
+		$output['HNAME'] = jr_gettext('_JRPORTAL_PROPERTIES_PROPERTYNAME', '_JRPORTAL_PROPERTIES_PROPERTYNAME', false);
+		$output['HEMAIL'] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL', false);
+		$output['_JOMRES_FIELDS_HIGHLIGHTED_ARE_REQUIRED'] = jr_gettext('_JOMRES_FIELDS_HIGHLIGHTED_ARE_REQUIRED', '_JOMRES_FIELDS_HIGHLIGHTED_ARE_REQUIRED', false);
 
-        $output['JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_TITLE'] = jr_gettext('JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_TITLE', 'JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_TITLE', false);
-        $output['JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE1'] = jr_gettext('JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE1', 'JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE1', false);
-        $output['JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE2'] = jr_gettext('JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE2', 'JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE2', false);
+		$output['JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_TITLE'] = jr_gettext('JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_TITLE', 'JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_TITLE', false);
+		$output['JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE1'] = jr_gettext('JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE1', 'JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE1', false);
+		$output['JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE2'] = jr_gettext('JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE2', 'JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE2', false);
 
-        $output['HPROPERTY_TYPE'] = jr_gettext('_JOMRES_FRONT_PTYPE', '_JOMRES_FRONT_PTYPE', false);
-        $output['PROPERTY_TYPE_DROPDOWN'] = $jomres_property_types->getPropertyTypeDropdown('', true);
+		$output['HPROPERTY_TYPE'] = jr_gettext('_JOMRES_FRONT_PTYPE', '_JOMRES_FRONT_PTYPE', false);
+		$output['PROPERTY_TYPE_DROPDOWN'] = $jomres_property_types->getPropertyTypeDropdown('', true);
 
-        $pageoutput[] = $output;
-        $tmpl = new patTemplate();
-        $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
-        $tmpl->readTemplatesFromInput('new_property.html');
-        $tmpl->addRows('pageoutput', $pageoutput);
-        $tmpl->displayParsedTemplate();
-    }
+		$pageoutput[] = $output;
+		$tmpl = new patTemplate();
+		$tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
+		$tmpl->readTemplatesFromInput('new_property.html');
+		$tmpl->addRows('pageoutput', $pageoutput);
+		$tmpl->displayParsedTemplate();
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

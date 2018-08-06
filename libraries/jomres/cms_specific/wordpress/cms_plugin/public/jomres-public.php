@@ -3,10 +3,10 @@
 /**
  * The Jomres public-facing functionality.
  *
- * @link       https://www.jomres.net
- * @since      9.9.19
+ * @link	   https://www.jomres.net
+ * @since	  9.9.19
  *
- * @package    Jomres
+ * @package	Jomres
  * @subpackage Jomres/public
  */
 
@@ -15,36 +15,36 @@
  *
  * Defines the plugin name, version.
  *
- * @package    Jomres
+ * @package	Jomres
  * @subpackage Jomres/public
- * @author     Vince Wooll <support@jomres.net>
+ * @author	 Vince Wooll <support@jomres.net>
  */
 class Jomres_Public {
 
 	/**
 	 * The ID of this plugin.
 	 *
-	 * @since    9.9.19
+	 * @since	9.9.19
 	 * @access   private
-	 * @var      string    $plugin_name    The ID of this plugin.
+	 * @var	  string	$plugin_name	The ID of this plugin.
 	 */
 	private $plugin_name;
 
 	/**
 	 * The version of this plugin.
 	 *
-	 * @since    9.9.19
+	 * @since	9.9.19
 	 * @access   private
-	 * @var      string    $version    The current version of this plugin.
+	 * @var	  string	$version	The current version of this plugin.
 	 */
 	private $version;
 
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since    9.9.19
-	 * @param      string    $plugin_name       The name of the plugin.
-	 * @param      string    $version    The version of this plugin.
+	 * @since	9.9.19
+	 * @param	  string	$plugin_name	   The name of the plugin.
+	 * @param	  string	$version	The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
@@ -56,7 +56,7 @@ class Jomres_Public {
 	/**
 	 * Trigger Jomres frontend.
 	 *
-	 * @since    9.9.19
+	 * @since	9.9.19
 	 */
 	public function frontend_trigger_jomres() {
 	
@@ -95,7 +95,7 @@ class Jomres_Public {
 	/**
 	 * Wraps Jomres output in the asamodule_search_results div.
 	 *
-	 * @since    9.9.19
+	 * @since	9.9.19
 	 */
 	public function asamodule_search_results( $content ) {
 		
@@ -124,7 +124,7 @@ class Jomres_Public {
 	/**
 	 * Disables all widgets.
 	 *
-	 * @since    9.9.19
+	 * @since	9.9.19
 	 */
 	public function disable_all_widgets( $sidebars_widgets ) {
 	
@@ -139,7 +139,7 @@ class Jomres_Public {
 	/**
 	 * Sets Jomres pages meta title.
 	 *
-	 * @since    9.9.19
+	 * @since	9.9.19
 	 */
 	public function set_jomres_meta_title( $title, $id = null ) {
 		
@@ -158,7 +158,7 @@ class Jomres_Public {
 	/**
 	 * Sets Jomres pages meta title.
 	 *
-	 * @since    9.9.19
+	 * @since	9.9.19
 	 */
 	public function jomres_fullscreen_view( $template ) {
 		
@@ -171,7 +171,7 @@ class Jomres_Public {
 	/**
 	 * Prevents redirects to permalink urls.
 	 *
-	 * @since    9.9.19
+	 * @since	9.9.19
 	 */
 	public function payments_redirect_canonical( $redirect_url, $requested_url ) {
 		

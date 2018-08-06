@@ -3,10 +3,10 @@
 /**
  * Fired when the plugin is uninstalled.
  *
- * @link       https://www.jomres.net
- * @since      9.9.19
+ * @link	   https://www.jomres.net
+ * @since	  9.9.19
  *
- * @package    Jomres
+ * @package	Jomres
  */
 
 // If uninstall not called from WordPress, then exit.

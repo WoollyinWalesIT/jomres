@@ -16,30 +16,30 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j06000no_search_results
 {
-    public function __construct()
-    {
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
-        $pageoutput[ ] = array('MESSAGE' => jr_gettext('_JOMRES_FRONT_NORESULTS', '_JOMRES_FRONT_NORESULTS', $editable = true, $islink = false));
-        $tmpl = new patTemplate();
-        $tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
-        $tmpl->readTemplatesFromInput('no_search_results.html');
-        $tmpl->addRows('pageoutput', $pageoutput);
-        $this->ret_vals = $tmpl->getParsedTemplate();
-    }
+			return;
+		}
+		$pageoutput[ ] = array('MESSAGE' => jr_gettext('_JOMRES_FRONT_NORESULTS', '_JOMRES_FRONT_NORESULTS', $editable = true, $islink = false));
+		$tmpl = new patTemplate();
+		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+		$tmpl->readTemplatesFromInput('no_search_results.html');
+		$tmpl->addRows('pageoutput', $pageoutput);
+		$this->ret_vals = $tmpl->getParsedTemplate();
+	}
 
 /**
  * Must be included in every mini-component.
  #
  * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
  */
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return $this->ret_vals;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return $this->ret_vals;
+	}
 }

@@ -16,63 +16,63 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j06001weekly_occupancy_percentages
 {
-    public function __construct($componentArgs)
-    {
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
-            $this->shortcode_data = array(
-                    'task' => 'dashboard',
-                    'arguments' => array(),
-                    'info' => '_JOMRES_SHORTCODES_06001DASHBOARD',
-                );
+	public function __construct($componentArgs)
+	{
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
+			$this->shortcode_data = array(
+					'task' => 'dashboard',
+					'arguments' => array(),
+					'info' => '_JOMRES_SHORTCODES_06001DASHBOARD',
+				);
 
-            return;
-        }
+			return;
+		}
 
-        $ePointFilepath = get_showtime('ePointFilepath');
+		$ePointFilepath = get_showtime('ePointFilepath');
 		$this->retVals = '';
 		
-        if (isset($componentArgs[ 'property_uid' ])) {
-            $property_uid = $componentArgs[ 'property_uid' ];
-        } else {
-            $property_uid = getDefaultProperty();
-        }
+		if (isset($componentArgs[ 'property_uid' ])) {
+			$property_uid = $componentArgs[ 'property_uid' ];
+		} else {
+			$property_uid = getDefaultProperty();
+		}
 
-        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-        if (!in_array($property_uid, $thisJRUser->authorisedProperties)) {
-            return;
-        }
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+		if (!in_array($property_uid, $thisJRUser->authorisedProperties)) {
+			return;
+		}
 
-        $mrConfig = getPropertySpecificSettings($property_uid);
-        if ($mrConfig[ 'is_real_estate_listing' ] == 1 || get_showtime('is_jintour_property')) {
-            return;
-        }
+		$mrConfig = getPropertySpecificSettings($property_uid);
+		if ($mrConfig[ 'is_real_estate_listing' ] == 1 || get_showtime('is_jintour_property')) {
+			return;
+		}
 
-        if (isset($componentArgs[ 'output_now' ])) {
-            $output_now = $componentArgs[ 'output_now' ];
-        } else {
-            $output_now = true;
-        }
+		if (isset($componentArgs[ 'output_now' ])) {
+			$output_now = $componentArgs[ 'output_now' ];
+		} else {
+			$output_now = true;
+		}
 		
 		if (isset($componentArgs[ 'is_widget' ])) {
-            $is_widget = $componentArgs[ 'is_widget' ];
-        } else {
-            $is_widget = false;
-        }
+			$is_widget = $componentArgs[ 'is_widget' ];
+		} else {
+			$is_widget = false;
+		}
 		
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
 
-        $output = array();
-        $pageoutput = array();
+		$output = array();
+		$pageoutput = array();
 		
 		$output[ '_JOMRES_OVERALL_ROOMS_BOOKED' ] = jr_gettext('_JOMRES_OVERALL_ROOMS_BOOKED', '_JOMRES_OVERALL_ROOMS_BOOKED', false);
 		
-        jomres_cmsspecific_addheaddata('css', JOMRES_CSS_RELPATH, 'css-circular-prog-bar.css');
+		jomres_cmsspecific_addheaddata('css', JOMRES_CSS_RELPATH, 'css-circular-prog-bar.css');
 
-        $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
-        $current_property_details->gather_data($property_uid);
+		$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
+		$current_property_details->gather_data($property_uid);
 
 		if (isset($current_property_details->multi_query_result[$property_uid]['rooms'])) {
 			$number_of_rooms = count($current_property_details->multi_query_result[$property_uid]['rooms']);
@@ -82,13 +82,13 @@ class j06001weekly_occupancy_percentages
 		
 		
 		$start   = new DateTime();
-		$end     = new DateTime();
+		$end	 = new DateTime();
 		$start   = $start->modify( '0 days' ); 
 		
 		if ($is_widget) {
-			$end     = $end->modify( '+3 days' ); // Date Period doesn't include the end date
+			$end	 = $end->modify( '+3 days' ); // Date Period doesn't include the end date
 		} else {
-			$end     = $end->modify( '+7 days' ); // Date Period doesn't include the end date
+			$end	 = $end->modify( '+7 days' ); // Date Period doesn't include the end date
 		}
 		$interval = new DateInterval('P1D');
 		$daterange = new DatePeriod($start, $interval ,$end);
@@ -125,28 +125,28 @@ class j06001weekly_occupancy_percentages
 			}
 		}
 
-        $pageoutput[] = $output;
-        $tmpl = new patTemplate();
-        $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
+		$pageoutput[] = $output;
+		$tmpl = new patTemplate();
+		$tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
 		$tmpl->addRows('pageoutput', $pageoutput);
-        $tmpl->addRows('rows', $dates);
-        
+		$tmpl->addRows('rows', $dates);
+		
 		if ($is_widget) {
 			$tmpl->readTemplatesFromInput('widget_weekly_occupancy_percentages.html');
 		} else {
 			$tmpl->readTemplatesFromInput('weekly_occupancy_percentages.html');
 		}
 
-        if ($output_now) {
-            $tmpl->displayParsedTemplate();
-        } else {
-            $this->retVals = $tmpl->getParsedTemplate();
-        }
-    }
+		if ($output_now) {
+			$tmpl->displayParsedTemplate();
+		} else {
+			$this->retVals = $tmpl->getParsedTemplate();
+		}
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return $this->retVals;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return $this->retVals;
+	}
 }

@@ -49,7 +49,7 @@ class j06005oauth_edit_client
 		$output['_OAUTH_REDIRECT_URI']=jr_gettext('_OAUTH_REDIRECT_URI', '_OAUTH_REDIRECT_URI', false);
 		$output['_OAUTH_SCOPE_TITLE']=jr_gettext('_OAUTH_SCOPE_TITLE', '_OAUTH_SCOPE_TITLE', false);
 		$output['_OAUTH_IDENTIFIER']	= jr_gettext('_OAUTH_IDENTIFIER', '_OAUTH_IDENTIFIER', false);
-        $output['_OAUTH_CLIENT_ID_INFO']	= jr_gettext('_OAUTH_CLIENT_ID_INFO', '_OAUTH_CLIENT_ID_INFO', false);
+		$output['_OAUTH_CLIENT_ID_INFO']	= jr_gettext('_OAUTH_CLIENT_ID_INFO', '_OAUTH_CLIENT_ID_INFO', false);
 		$output['_OAUTH_IDENTIFIER_PLACEHOLDER']	= jr_gettext('_OAUTH_IDENTIFIER_PLACEHOLDER', '_OAUTH_IDENTIFIER_PLACEHOLDER', false);
 		
 		$output['_OAUTH_GRANT_TYPES']	= jr_gettext('_OAUTH_GRANT_TYPES', '_OAUTH_GRANT_TYPES', false);

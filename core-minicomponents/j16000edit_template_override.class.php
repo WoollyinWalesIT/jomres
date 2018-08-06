@@ -16,17 +16,17 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j16000edit_template_override
 {
-    public function __construct()
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
-        $template_overrides = jomres_singleton_abstract::getInstance('template_overrides');
+		$template_overrides = jomres_singleton_abstract::getInstance('template_overrides');
 		
 		$template_name = jomresGetParam($_REQUEST, 'template_name', '');
 		$template_packages = get_showtime('template_packages');
@@ -65,26 +65,26 @@ class j16000edit_template_override
 		$output['TEMPLATE_NAME'] = $template_name;
 		$output['_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO'] =jr_gettext("_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO",'_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO',false,false);
 		
-        $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
-        $jrtb = $jrtbar->startTable();
+		$jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
+		$jrtb = $jrtbar->startTable();
 
-        $jrtb .= $jrtbar->toolbarItem('cancel', JOMRES_SITEPAGE_URL_ADMIN.'&task=list_template_overrides', '');
-        $jrtb .= $jrtbar->toolbarItem('save', '', '', true, 'save_template_override');
-        $jrtb .= $jrtbar->endTable();
-        $output[ 'JOMRESTOOLBAR' ] = $jrtb;
+		$jrtb .= $jrtbar->toolbarItem('cancel', JOMRES_SITEPAGE_URL_ADMIN.'&task=list_template_overrides', '');
+		$jrtb .= $jrtbar->toolbarItem('save', '', '', true, 'save_template_override');
+		$jrtb .= $jrtbar->endTable();
+		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
-        $pageoutput[ ] = $output;
-        $tmpl = new patTemplate();
-        $tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
-        $tmpl->readTemplatesFromInput('edit_template_override.html');
-        $tmpl->addRows('pageoutput', $pageoutput);
-        // $tmpl->addRows('rows', $rows);
-        $tmpl->displayParsedTemplate();
-    }
+		$pageoutput[ ] = $output;
+		$tmpl = new patTemplate();
+		$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
+		$tmpl->readTemplatesFromInput('edit_template_override.html');
+		$tmpl->addRows('pageoutput', $pageoutput);
+		// $tmpl->addRows('rows', $rows);
+		$tmpl->displayParsedTemplate();
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

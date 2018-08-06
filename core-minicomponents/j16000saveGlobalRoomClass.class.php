@@ -16,33 +16,33 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j16000saveGlobalRoomClass
 {
-    public function __construct()
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
-        $jomres_room_types = jomres_singleton_abstract::getInstance('jomres_room_types');
+		$jomres_room_types = jomres_singleton_abstract::getInstance('jomres_room_types');
 
-        $jomres_room_types->room_type['room_classes_uid'] = (int) jomresGetParam($_POST, 'roomClassUid', 0);
-        $jomres_room_types->room_type['room_class_abbv'] = jomresGetParam($_POST, 'room_class_abbv', '');
-        $jomres_room_types->room_type['room_class_full_desc'] = jomresGetParam($_POST, 'room_class_desc', '');
-        $jomres_room_types->room_type['ptype_xref'] = jomresGetParam($_POST, 'ptype_ids', array());
-        $jomres_room_types->room_type['image'] = jomresGetParam($_POST, 'image', '');
+		$jomres_room_types->room_type['room_classes_uid'] = (int) jomresGetParam($_POST, 'roomClassUid', 0);
+		$jomres_room_types->room_type['room_class_abbv'] = jomresGetParam($_POST, 'room_class_abbv', '');
+		$jomres_room_types->room_type['room_class_full_desc'] = jomresGetParam($_POST, 'room_class_desc', '');
+		$jomres_room_types->room_type['ptype_xref'] = jomresGetParam($_POST, 'ptype_ids', array());
+		$jomres_room_types->room_type['image'] = jomresGetParam($_POST, 'image', '');
 		$jomres_room_types->room_type['property_uid'] = 0;
 
-        $jomres_room_types->save_room_type();
+		$jomres_room_types->save_room_type();
 
-        jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=listGlobalroomTypes'), jr_gettext('_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_INSERT', '_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_INSERT', false));
-    }
+		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=listGlobalroomTypes'), jr_gettext('_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_INSERT', '_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_INSERT', false));
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

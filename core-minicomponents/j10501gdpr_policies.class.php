@@ -16,22 +16,22 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j10501gdpr_policies
 {
-    public function __construct($componentArgs)
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct($componentArgs)
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
 
-        $configurationPanel = $componentArgs[ 'configurationPanel' ];
+		$configurationPanel = $componentArgs[ 'configurationPanel' ];
 
-        $this->addCountryRegionJs();
+		$this->addCountryRegionJs();
 
 		$configurationPanel->startPanel(jr_gettext('_JOMRES_GDPR_POLICIES', '_JOMRES_GDPR_POLICIES', false));
 		$lists = $componentArgs[ 'lists' ];
@@ -58,11 +58,11 @@ class j10501gdpr_policies
 		$MiniComponents->triggerEvent('10533', $componentArgs);
 
 		$configurationPanel->endPanel();
-    }
+	}
 
-    public function addCountryRegionJs()
-    {
-        ?>
+	public function addCountryRegionJs()
+	{
+		?>
 <script type="text/javascript">
 jomresJquery(document).ready(function () {
 	jomresJquery("#cfg_business_country").change(function(){
@@ -84,11 +84,11 @@ jomresJquery(document).ready(function () {
 </script>
 		<?php
 
-    }
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

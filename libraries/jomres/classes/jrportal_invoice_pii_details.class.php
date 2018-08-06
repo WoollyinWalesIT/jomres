@@ -16,22 +16,22 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jrportal_invoice_pii_details
 {
-    public function __construct()
-    {
+	public function __construct()
+	{
 		$this->invoice_id = 0;
 		jr_import('jomres_encryption');
 		$this->jomres_encryption = new jomres_encryption();
 	
-    }
+	}
 
 	// Retrieve the PII data for this invoice's buyer
 	public function get_pii_buyer()
 	{
-        if ($this->invoice_id == 0) {
-            throw new Exception('Error: Invoice id not set');
-        }
+		if ($this->invoice_id == 0) {
+			throw new Exception('Error: Invoice id not set');
+		}
 
-        $query = "SELECT
+		$query = "SELECT
 					`enc_firstname`,
 					`enc_surname`,
 					`enc_house`,
@@ -70,11 +70,11 @@ class jrportal_invoice_pii_details
 	// Retrieve the PII data for this invoice's buyer
 	public function get_pii_seller()
 	{
-        if ($this->invoice_id == 0) {
-            throw new Exception('Error: Invoice id not set');
-        }
+		if ($this->invoice_id == 0) {
+			throw new Exception('Error: Invoice id not set');
+		}
 
-        $query = "SELECT
+		$query = "SELECT
 					`enc_firstname`,
 					`enc_surname`,
 					`enc_house`,

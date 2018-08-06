@@ -16,33 +16,33 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j06001delete_guest
 {
-    public function __construct()
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
-        $id = jomresGetParam($_REQUEST, 'id', 0);
-        $defaultProperty = getDefaultProperty();
-        
+			return;
+		}
+		$id = jomresGetParam($_REQUEST, 'id', 0);
+		$defaultProperty = getDefaultProperty();
+		
 		jr_import( 'jrportal_guests' );
 		$jrportal_guests = new jrportal_guests();
 		$jrportal_guests->id = $id;
 		$jrportal_guests->property_uid = $defaultProperty;
 		
 		if ($jrportal_guests->delete_guest()) {
-            jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=list_guests'), jr_gettext('_JOMRES_FRONT_DELETEGUEST_GUESTDELETED', '_JOMRES_FRONT_DELETEGUEST_GUESTDELETED', false));
-        } else {
-            echo jr_gettext('_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST', '_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST', false);
-        }
-    }
+			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=list_guests'), jr_gettext('_JOMRES_FRONT_DELETEGUEST_GUESTDELETED', '_JOMRES_FRONT_DELETEGUEST_GUESTDELETED', false));
+		} else {
+			echo jr_gettext('_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST', '_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST', false);
+		}
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

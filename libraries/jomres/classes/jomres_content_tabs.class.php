@@ -15,11 +15,11 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 if (!using_bootstrap()) {
-    jr_import('jomres_content_tabs_normal');
+	jr_import('jomres_content_tabs_normal');
 
-    class jomres_content_tabs extends jomres_content_tabs_normal
-    {
-    }
+	class jomres_content_tabs extends jomres_content_tabs_normal
+	{
+	}
 } else {
 	$bs_version = jomres_bootstrap_version();
 	if ($bs_version == '2' ) {

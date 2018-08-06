@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="3.0" type="component" method="upgrade">
-    <name>com_jomres</name>
-    <author>Vince Wooll</author>
-    <creationDate>October 2016</creationDate>
-    <copyright>Copyright (C) 2005-2017 Vince Wooll. All rights reserved.</copyright>
-    <license>GPL2 and MIT</license>
-    <authorEmail>sales@jomres.net</authorEmail>
-    <authorUrl>https://www.jomres.net</authorUrl>
-    <version>9.12.0</version>
-    <description>Jomres - Complete Online Booking and Property Management Solution</description>
+	<name>com_jomres</name>
+	<author>Vince Wooll</author>
+	<creationDate>October 2016</creationDate>
+	<copyright>Copyright (C) 2005-2017 Vince Wooll. All rights reserved.</copyright>
+	<license>GPL2 and MIT</license>
+	<authorEmail>sales@jomres.net</authorEmail>
+	<authorUrl>https://www.jomres.net</authorUrl>
+	<version>9.12.0</version>
+	<description>Jomres - Complete Online Booking and Property Management Solution</description>
 	
 	<scriptfile>script.php</scriptfile>
 	
@@ -16,7 +16,7 @@
 		<filename>jomres.php</filename>
 		<filename>router.php</filename>
 		<folder>views</folder>
-    </files>
+	</files>
 
 	<administration>
 		<menu view="default" img="jomres/assets/images/jrhouse.png">COM_JOMRES</menu>
@@ -32,6 +32,6 @@
 	</administration>
 	
 	<updateservers>
-        <server type="extension" name="Jomres Update">http://updates.jomres4.net/jomres_updates.xml</server>
-    </updateservers>
+		<server type="extension" name="Jomres Update">http://updates.jomres4.net/jomres_updates.xml</server>
+	</updateservers>
 </extension>

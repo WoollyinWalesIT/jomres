@@ -16,15 +16,15 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j06005save_my_account
 {
-    public function __construct()
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 		
 		$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
 		if ( !$jomres_gdpr_optin_consent->user_consents_to_storage() ) {
@@ -34,35 +34,35 @@ class j06005save_my_account
 		jr_import('jomres_encryption');
 		$this->jomres_encryption = new jomres_encryption();
 		
-        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
-        if ($thisJRUser->id == 0) {
-            return false;
-        }
+		if ($thisJRUser->id == 0) {
+			return false;
+		}
 		
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
+		$jrConfig = $siteConfig->get();
 
-        $firstname = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'firstname', ''));
-        $surname = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'surname', ''));
-        $house = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'house', ''));
-        $street = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'street', ''));
-        $town = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'town', ''));
-        $region = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'region', ''));
-        $country = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'guest_country', ''));
-        $postcode = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'postcode', ''));
-        $landline = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'landline', ''));
-        $mobile = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'mobile', ''));
-        $fax = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'fax', ''));
-        $email = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'email', ''));
-        $vat_number = trim(filter_var($_REQUEST[ 'vat_number' ], FILTER_SANITIZE_STRING));
-        $return_url = (string) jomresGetParam($_REQUEST, 'return_url', '');
+		$firstname = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'firstname', ''));
+		$surname = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'surname', ''));
+		$house = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'house', ''));
+		$street = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'street', ''));
+		$town = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'town', ''));
+		$region = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'region', ''));
+		$country = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'guest_country', ''));
+		$postcode = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'postcode', ''));
+		$landline = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'landline', ''));
+		$mobile = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'mobile', ''));
+		$fax = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'fax', ''));
+		$email = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'email', ''));
+		$vat_number = trim(filter_var($_REQUEST[ 'vat_number' ], FILTER_SANITIZE_STRING));
+		$return_url = (string) jomresGetParam($_REQUEST, 'return_url', '');
 		$delete_image = (int)jomresGetParam($_REQUEST, 'delete', 0);
 
-        $original_vat_number = $thisJRUser->vat_number;
-        $original_vat_number_validated = (int) $thisJRUser->vat_number_validated;
+		$original_vat_number = $thisJRUser->vat_number;
+		$original_vat_number_validated = (int) $thisJRUser->vat_number_validated;
 
-        if (
+		if (
 			!$delete_image &&
 				(
 				$firstname == '' || 
@@ -73,8 +73,8 @@ class j06005save_my_account
 				$email == ''
 				)
 			) { // Not going to mess about. If they've bypassed the javascript to get this far we're not going to waste time telling them they've missed something out. Just return.
-            return;
-        }
+			return;
+		}
 
 		if (!$delete_image) {
 			$query = 'SELECT id FROM #__jomres_guest_profile WHERE cms_user_id = '.(int) $thisJRUser->id;
@@ -187,10 +187,10 @@ class j06005save_my_account
 			$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
 
 			$file_name = (string)jomresGetParam($_REQUEST, 'file', '');
-            if ($file_name == '') {
-                jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_my_account'), '');
-            }
-            
+			if ($file_name == '') {
+				jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_my_account'), '');
+			}
+			
 			//delete image from disk and db
 			if (!$jomres_media_centre_images->delete_image(0, 'userimages', $thisJRUser->id, $file_name, $abs_path, true)) {
 				jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_my_account'), "Boo, we couldn't delete it. I'm going to have a little cry in the corner now.");
@@ -232,19 +232,19 @@ class j06005save_my_account
 					'resource_id_required' => true
 				));
 			}
-        }
+		}
 
-        if ($return_url != '') {
-            $return_url = base64_decode($return_url);
-            jomresRedirect($return_url, '');
-        } else {
-            jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_my_account'), '');
-        }
-    }
+		if ($return_url != '') {
+			$return_url = base64_decode($return_url);
+			jomresRedirect($return_url, '');
+		} else {
+			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_my_account'), '');
+		}
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

@@ -19,15 +19,15 @@ use GuzzleHttp\Exception\ClientException;
 
 class j16000firewall_check
 {
-    public function __construct()
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
 		$output = array();
 		$rows = array();
@@ -82,14 +82,14 @@ class j16000firewall_check
 		$output[ 'FIREWALL_CHECK_STATUSCODE' ]		= jr_gettext('FIREWALL_CHECK_STATUSCODE', 'FIREWALL_CHECK_STATUSCODE', false);
 		$output[ 'FIREWALL_CHECK_IP_NUMBER' ]		= jr_gettext('FIREWALL_CHECK_IP_NUMBER', 'FIREWALL_CHECK_IP_NUMBER', false);
 
-        $pageoutput[ ] = $output;
-        $tmpl = new patTemplate();
-        $tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
-        $tmpl->readTemplatesFromInput('firewall_check.html');
-        $tmpl->addRows('pageoutput', $pageoutput);
-        $tmpl->addRows('rows', $rows);
-        $tmpl->displayParsedTemplate();
-    }
+		$pageoutput[ ] = $output;
+		$tmpl = new patTemplate();
+		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+		$tmpl->readTemplatesFromInput('firewall_check.html');
+		$tmpl->addRows('pageoutput', $pageoutput);
+		$tmpl->addRows('rows', $rows);
+		$tmpl->displayParsedTemplate();
+	}
 
 	function get_ip_number($service) 
 	{
@@ -124,9 +124,9 @@ class j16000firewall_check
 		}
 	}	
 	
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

@@ -16,34 +16,34 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_shortcode_parser
 {
-    public function __construct()
-    {
-        $this->shortcodes = false;
-        $this->shortcodes_file = JOMRES_TEMP_ABSPATH.'shortcodes.php';
-    }
+	public function __construct()
+	{
+		$this->shortcodes = false;
+		$this->shortcodes_file = JOMRES_TEMP_ABSPATH.'shortcodes.php';
+	}
 
-    public function get_shortcodes()
-    {
-        $this->build_shortcodes();
+	public function get_shortcodes()
+	{
+		$this->build_shortcodes();
 
-        if (file_exists($this->shortcodes_file)) {
-            include_once $this->shortcodes_file;
-        } else {
-            throw new Exception('Error, the shortcodes file couldn`t be created.');
-        }
-    }
+		if (file_exists($this->shortcodes_file)) {
+			include_once $this->shortcodes_file;
+		} else {
+			throw new Exception('Error, the shortcodes file couldn`t be created.');
+		}
+	}
 
-    public function build_shortcodes($force = false)
-    {
-        if (!file_exists($this->shortcodes_file) || $force) {
-            $this->shortcodes = array();
+	public function build_shortcodes($force = false)
+	{
+		if (!file_exists($this->shortcodes_file) || $force) {
+			$this->shortcodes = array();
 
-            $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-            $MiniComponents->template_touch = true;
+			$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+			$MiniComponents->template_touch = true;
 
-            $eventArgs = null;
+			$eventArgs = null;
 
-            foreach ($MiniComponents->registeredClasses as $eventPoint => $ev) {
+			foreach ($MiniComponents->registeredClasses as $eventPoint => $ev) {
 				foreach ($ev as $eventName => $eventDetails) {
 					$classFileSuffix = '.class.php';
 					$filename = 'j'.$eventPoint.$eventName.$classFileSuffix;
@@ -66,9 +66,9 @@ class jomres_shortcode_parser
 						}
 					}
 				}
-            }
+			}
 
-            if (!file_put_contents($this->shortcodes_file,
+			if (!file_put_contents($this->shortcodes_file,
 '<?php
 ##################################################################
 defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
@@ -76,13 +76,13 @@ defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
 
 $this->shortcodes = ' .var_export($this->shortcodes, true).';
 ')) {
-                trigger_error('ERROR: '.$this->shortcodes_file.' can`t be saved. Please solve the permission problem and try again.', E_USER_ERROR);
-                exit;
-            }
+				trigger_error('ERROR: '.$this->shortcodes_file.' can`t be saved. Please solve the permission problem and try again.', E_USER_ERROR);
+				exit;
+			}
 
-            $MiniComponents->template_touch = false;
-        }
+			$MiniComponents->template_touch = false;
+		}
 
-        return true;
-    }
+		return true;
+	}
 }

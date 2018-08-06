@@ -16,24 +16,24 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j16000savePfeature
 {
-    public function __construct()
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
 		$jomres_property_features = jomres_singleton_abstract::getInstance('jomres_property_features');
 		
-        $jomres_property_features->id					= (int)jomresGetParam($_POST, 'id', 0);
-        $jomres_property_features->abbv					= jomresGetParam($_POST, 'feature_abbv', '');
-        $jomres_property_features->desc					= jomresGetParam($_POST, 'feature_description', '');
-        $jomres_property_features->ptype_xref			= jomresGetParam($_POST, 'ptype_ids', array());
-        $jomres_property_features->image				= jomresGetParam($_POST, 'image', '');
-        $jomres_property_features->cat_id				= (int) jomresGetParam($_POST, 'cat_id', 0);
+		$jomres_property_features->id					= (int)jomresGetParam($_POST, 'id', 0);
+		$jomres_property_features->abbv					= jomresGetParam($_POST, 'feature_abbv', '');
+		$jomres_property_features->desc					= jomresGetParam($_POST, 'feature_description', '');
+		$jomres_property_features->ptype_xref			= jomresGetParam($_POST, 'ptype_ids', array());
+		$jomres_property_features->image				= jomresGetParam($_POST, 'image', '');
+		$jomres_property_features->cat_id				= (int) jomresGetParam($_POST, 'cat_id', 0);
 		$jomres_property_features->include_in_filters	= (int) jomresGetParam($_POST, 'include_in_filters', 0);
 		
 		if ($jomres_property_features->abbv != '') {
@@ -47,11 +47,11 @@ class j16000savePfeature
 		}
 
 		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=listPfeatures'), jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_UPDATE', '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_UPDATE', false));
-    }
+	}
 
-    // This must be included in every Event/Mini-component
+	// This must be included in every Event/Mini-component
 	public function getRetVals()
-    {
-        return null;
-    }
+	{
+		return null;
+	}
 }

@@ -16,15 +16,15 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_generic_black_booking_insert
 {
-    public function __construct()
-    {
-        $this->init();
+	public function __construct()
+	{
+		$this->init();
 
-        return true;
-    }
+		return true;
+	}
 	
 	private function init()
-    {
+	{
 		$this->contract_uid = 0;									//this will be populated after the new black booking insert
 		$this->property_uid = 0;
 
@@ -36,49 +36,49 @@ class jomres_generic_black_booking_insert
 		$this->booking_number = '';									//string, if not set will be generated automatically
 	}
 
-    public function create_black_booking()
-    {
-        try {
-            if (!$this->validate()) {
+	public function create_black_booking()
+	{
+		try {
+			if (!$this->validate()) {
 				return false;
 			}
 			
 			if (!$this->check_availability()) {
 				return false;
 			}
-            
+			
 			$this->insert_black_booking();
 			
 			return true;
-        } catch (Exception $e) {
-            return $e->getMessage();
-        }
-    }
+		} catch (Exception $e) {
+			return $e->getMessage();
+		}
+	}
 
-    private function validate()
-    {
-        if ($this->arrival == '') {
-            throw new Exception(' Arrival date is not valid');
-        }
-        
+	private function validate()
+	{
+		if ($this->arrival == '') {
+			throw new Exception(' Arrival date is not valid');
+		}
+		
 		if ($this->departure == '') {
-            throw new Exception(' Departure date is not valid');
-        }
-        
+			throw new Exception(' Departure date is not valid');
+		}
+		
 		if (!is_array($this->room_uids) || empty($this->room_uids)) {
-            throw new Exception(' Room uids array not set');
-        }
-        
+			throw new Exception(' Room uids array not set');
+		}
+		
 		if ($this->property_uid == 0) {
-            throw new Exception(' Error property_uid is not valid');
-        }
+			throw new Exception(' Error property_uid is not valid');
+		}
 
 		if ($this->booking_number == '') {
 			$this->booking_number = set_booking_number();
 		}
 
-        return true;
-    }
+		return true;
+	}
 	
 	private function check_availability()
 	{
@@ -100,13 +100,13 @@ class jomres_generic_black_booking_insert
 		$this->insert_contract_details();
 		$this->insert_room_bookings();
 		
-		$webhook_notification                               = new stdClass();
-		$webhook_notification->webhook_event                = 'blackbooking_created';
-		$webhook_notification->webhook_event_description    = 'Logs when black bookings are created.';
-		$webhook_notification->webhook_event_plugin         = 'black_bookings';
-		$webhook_notification->data                         = new stdClass();
-		$webhook_notification->data->property_uid           = $this->property_uid;
-		$webhook_notification->data->contract_uid           = $this->contract_uid;
+		$webhook_notification							   = new stdClass();
+		$webhook_notification->webhook_event				= 'blackbooking_created';
+		$webhook_notification->webhook_event_description	= 'Logs when black bookings are created.';
+		$webhook_notification->webhook_event_plugin		 = 'black_bookings';
+		$webhook_notification->data						 = new stdClass();
+		$webhook_notification->data->property_uid		   = $this->property_uid;
+		$webhook_notification->data->contract_uid		   = $this->contract_uid;
 		add_webhook_notification($webhook_notification);
 		
 		return true;
@@ -134,8 +134,8 @@ class jomres_generic_black_booking_insert
 		$this->contract_uid = doInsertSql($query,'');
 		
 		if (!$this->contract_uid) {
-            throw new Exception('Error: New contract insert failed.');
-        }
+			throw new Exception('Error: New contract insert failed.');
+		}
 		
 		return true;
 	}
@@ -170,8 +170,8 @@ class jomres_generic_black_booking_insert
 		$query = rtrim($query, ',');
 		
 		if (!doInsertSql($query,'')) {
-            throw new Exception('Error: Room bookings insert failed.');
-        }
+			throw new Exception('Error: Room bookings insert failed.');
+		}
 		
 		return true;
 	}

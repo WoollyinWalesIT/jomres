@@ -16,20 +16,20 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j06000gdpr_my_data
 {
-    public function __construct($componentArgs)
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
-            $this->shortcode_data = array(
-                'task' => 'gdpr_my_data',
-                'info' => '_JOMRES_GDPR_MY_DATA',
-                'arguments' => array()
-                );
+	public function __construct($componentArgs)
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
+			$this->shortcode_data = array(
+				'task' => 'gdpr_my_data',
+				'info' => '_JOMRES_GDPR_MY_DATA',
+				'arguments' => array()
+				);
 
-            return;
-        }
+			return;
+		}
 		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 		jr_import('jomres_gdpr_personal_information_collections');
 		
@@ -97,11 +97,11 @@ class j06000gdpr_my_data
 		$tmpl->addRows('pageoutput', $pageoutput);
 		$tmpl->readTemplatesFromInput('gdpr_my_data.html');
 		$tmpl->displayParsedTemplate();
-    }
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

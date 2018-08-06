@@ -16,21 +16,21 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j10501integrations
 {
-    public function __construct($componentArgs)
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct($componentArgs)
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
 
-        $configurationPanel = $componentArgs[ 'configurationPanel' ];
-        $lists = $componentArgs[ 'lists' ];
+		$configurationPanel = $componentArgs[ 'configurationPanel' ];
+		$lists = $componentArgs[ 'lists' ];
 
 		$configurationPanel->startPanel(ucfirst(jr_gettext('_JOMRES_CUSTOMCODE_MENUCATEGORIES_INTEGRATION', '_JOMRES_CUSTOMCODE_MENUCATEGORIES_INTEGRATION', false)));
 
@@ -53,35 +53,35 @@ class j10501integrations
 		$configurationPanel->insertHeading('Google Maps');
 
 		$configurationPanel->setleft(jr_gettext('JOMRES_COM_A_MAPSKEY', 'JOMRES_COM_A_MAPSKEY', false));
-        $configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_google_maps_api_key" value="'.$jrConfig[ 'google_maps_api_key' ].'" />');
-        $configurationPanel->setright(jr_gettext('JOMRES_COM_A_MAPSKEY_DESC', 'JOMRES_COM_A_MAPSKEY_DESC', false));
-        $configurationPanel->insertSetting();
+		$configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_google_maps_api_key" value="'.$jrConfig[ 'google_maps_api_key' ].'" />');
+		$configurationPanel->setright(jr_gettext('JOMRES_COM_A_MAPSKEY_DESC', 'JOMRES_COM_A_MAPSKEY_DESC', false));
+		$configurationPanel->insertSetting();
 		
 		//open exchange rates
 		$configurationPanel->insertHeading('Open Exchange Rates');
 		
 		$configurationPanel->setleft(jr_gettext('_OPENEXCHANGE_API', '_OPENEXCHANGE_API', false));
-        $configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_openexchangerates_api_key" value="'.$jrConfig[ 'openexchangerates_api_key' ].'" />');
-        $configurationPanel->setright(jr_gettext('_OPENEXCHANGE_API_DESC', '_OPENEXCHANGE_API_DESC', false));
-        $configurationPanel->insertSetting();
+		$configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_openexchangerates_api_key" value="'.$jrConfig[ 'openexchangerates_api_key' ].'" />');
+		$configurationPanel->setright(jr_gettext('_OPENEXCHANGE_API_DESC', '_OPENEXCHANGE_API_DESC', false));
+		$configurationPanel->insertSetting();
 		
 		//ip info db
 		$configurationPanel->insertHeading('IPInfoDB');
 		
 		$configurationPanel->setleft(jr_gettext('_JOMRES_IP_DETECTION_API_KEY_TITLE', '_JOMRES_IP_DETECTION_API_KEY_TITLE', false));
-        $configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_geolocation_api_key" value="'.$jrConfig[ 'geolocation_api_key' ].'" />');
-        $configurationPanel->setright(jr_gettext('_JOMRES_IP_DETECTION_API_KEY_DESC', '_JOMRES_IP_DETECTION_API_KEY_DESC', false));
-        $configurationPanel->insertSetting();
+		$configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_geolocation_api_key" value="'.$jrConfig[ 'geolocation_api_key' ].'" />');
+		$configurationPanel->setright(jr_gettext('_JOMRES_IP_DETECTION_API_KEY_DESC', '_JOMRES_IP_DETECTION_API_KEY_DESC', false));
+		$configurationPanel->insertSetting();
 		
 		//plugins can add options to this tab
 		$MiniComponents->triggerEvent('10531', $componentArgs);
 
 		$configurationPanel->endPanel();
-    }
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

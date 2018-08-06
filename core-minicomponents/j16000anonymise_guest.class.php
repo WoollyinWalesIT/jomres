@@ -16,15 +16,15 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j16000anonymise_guest
 {
-    public function __construct()
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_getSingleton('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_getSingleton('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
 		$guest_id = (int)jomresGetParam($_REQUEST, 'guest_id', 0);
 		$property_uid = (int)jomresGetParam($_REQUEST, 'property_uid', 0);
@@ -35,11 +35,11 @@ class j16000anonymise_guest
 		
 		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=list_guests" ), jr_gettext( "_JOMRES_GDPR_RTBF_GUEST_REDACTED", '_JOMRES_GDPR_RTBF_GUEST_REDACTED', false ) );
 		
-    }
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

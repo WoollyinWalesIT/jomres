@@ -16,20 +16,20 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j16000savePfeatureCategory
 {
-    public function __construct()
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
 		$jomres_property_features_categories = jomres_singleton_abstract::getInstance('jomres_property_features_categories');
 		
-        $jomres_property_features_categories->id = (int)jomresGetParam($_POST, 'id', 0);
-        $jomres_property_features_categories->title = jomresGetParam($_POST, 'title', '');
+		$jomres_property_features_categories->id = (int)jomresGetParam($_POST, 'id', 0);
+		$jomres_property_features_categories->title = jomresGetParam($_POST, 'title', '');
 		
 		if ($jomres_property_features_categories->title != '') {
 			if ($jomres_property_features_categories->id > 0) {
@@ -41,12 +41,12 @@ class j16000savePfeatureCategory
 			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=editPfeatureCategory'), 'Please enter a category title');
 		}
 
-        jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=listPfeaturesCategories'), '');
-    }
+		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=listPfeaturesCategories'), '');
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

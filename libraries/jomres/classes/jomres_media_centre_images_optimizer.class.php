@@ -18,20 +18,20 @@ class jomres_media_centre_images_optimizer
 {
 	protected $optimizer;
 
-    public function __construct()
-    {
+	public function __construct()
+	{
 		$factory = new \ImageOptimizer\OptimizerFactory();
 		$this->optimizer = $factory->get();
-    }
+	}
 	
 	public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
+	{
+		if (!self::$configInstance) {
+			self::$configInstance = new self();
+		}
 
-        return self::$configInstance;
-    }
+		return self::$configInstance;
+	}
 	
 	public function optimize($filepath = '')
 	{

@@ -20,13 +20,13 @@ if (!defined('WPINC')) {
 
 $jomresConfig_live_site = get_site_url('siteurl');
 if (defined('API_STARTED')) {
-    $jomresConfig_live_site = str_replace('/jomres/api', '', $jomresConfig_live_site);
+	$jomresConfig_live_site = str_replace('/jomres/api', '', $jomresConfig_live_site);
 }
 
 $jomresConfig_lang = 'en-GB';
 $jomresConfig_lang_shortcode = 'en';
 if (!defined('AUTO_UPGRADE')) {
-    $jomresConfig_lang = str_replace('_', '-', get_locale());
+	$jomresConfig_lang = str_replace('_', '-', get_locale());
 	
 	//get lang short code
 	//TODO: this is unreliable at this point, for example for pt-BR and pt-PT, because the language code is always pt.
@@ -66,7 +66,7 @@ $showtime->smtpsecure = '';
 $showtime->gzip = '0'; //this is not used in wp
 
 if (get_option('permalink_structure') != '') {
-    $showtime->sef = '1';  // Sef urls are enabled.
+	$showtime->sef = '1';  // Sef urls are enabled.
 } else {
-    $showtime->sef = '0';
+	$showtime->sef = '0';
 }

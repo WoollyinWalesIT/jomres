@@ -15,7 +15,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 
 class j06000background_process
-    {
+	{
 	function __construct()
 		{
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
@@ -27,9 +27,9 @@ class j06000background_process
 
 			
 			$payload_source = jomresGetParam($_REQUEST, 'payload_source', '');
-            
-            logging::log_message("Received deferred message notification " , 'message_handling', 'DEBUG'  );
-            
+			
+			logging::log_message("Received deferred message notification " , 'message_handling', 'DEBUG'  );
+			
 			if ($payload_source != '' ) {
 				jr_import('jomres_deferred_tasks');
 				$jomres_deferred_tasks = new jomres_deferred_tasks();

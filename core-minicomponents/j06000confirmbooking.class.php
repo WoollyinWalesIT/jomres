@@ -16,15 +16,15 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j06000confirmbooking
 {
-    public function __construct()
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 		
 		$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
 		if ( !$jomres_gdpr_optin_consent->user_consents_to_storage() ) {
@@ -36,7 +36,7 @@ class j06000confirmbooking
 		
 		$mrConfig = getPropertySpecificSettings();
 
-        if ($thisJRUser->userIsManager) {
+		if ($thisJRUser->userIsManager) {
 			$MiniComponents->triggerEvent('02990');
 		} // Trigger the booking confirmation page
 		else {
@@ -48,11 +48,11 @@ class j06000confirmbooking
 				} // Trigger the booking confirmation page
 			}
 		}
-    }
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

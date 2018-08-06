@@ -24,20 +24,20 @@ jr_import('jomres_content_tabs');
  */
 class jomres_configpanel_bootstrap3 extends jomres_content_tabs
 {
-    /**
-     * Inserts the settings into the panes array.
-     */
-    public function insertSetting()
-    {
-        $rowclass = '';
+	/**
+	 * Inserts the settings into the panes array.
+	 */
+	public function insertSetting()
+	{
+		$rowclass = '';
 
-        if ($this->counter % 2) {
-            $rowclass = 'row-even';
-        } else {
-            $rowclass = 'row-odd';
-        }
+		if ($this->counter % 2) {
+			$rowclass = 'row-even';
+		} else {
+			$rowclass = 'row-odd';
+		}
 
-        $this->panes[ ] = '
+		$this->panes[ ] = '
 			<div class="col-md-12 ' .$rowclass.'">
 				<div class="row">
 					<div class="col-md-3">' .$this->left.'</div>
@@ -47,49 +47,49 @@ class jomres_configpanel_bootstrap3 extends jomres_content_tabs
 			</div>
 			';
 
-        $this->left = '&nbsp;';
-        $this->middle = '&nbsp;';
-        $this->right = '&nbsp;';
-        ++$this->counter;
-    }
+		$this->left = '&nbsp;';
+		$this->middle = '&nbsp;';
+		$this->right = '&nbsp;';
+		++$this->counter;
+	}
 
-    /**
-     * Inserts a description row.
-     */
-    public function insertDescription($description = '', $class = 'alert alert-info')
-    {
-        $this->panes[ ] = '<div class="row"><div class="col-md-12"><p class="'.$class.'">'.$description.'</p></div></div>';
-    }
+	/**
+	 * Inserts a description row.
+	 */
+	public function insertDescription($description = '', $class = 'alert alert-info')
+	{
+		$this->panes[ ] = '<div class="row"><div class="col-md-12"><p class="'.$class.'">'.$description.'</p></div></div>';
+	}
 
-    /**
-     * Inserts a heading.
-     */
-    public function insertHeading($text = '', $type = 'h3')
-    {
-        $this->panes[ ] = '<div class="row"><div class="col-md-12"><'.$type.'>'.$text.'</'.$type.'></div></div>';
-    }
+	/**
+	 * Inserts a heading.
+	 */
+	public function insertHeading($text = '', $type = 'h3')
+	{
+		$this->panes[ ] = '<div class="row"><div class="col-md-12"><'.$type.'>'.$text.'</'.$type.'></div></div>';
+	}
 
-    /**
-     * setleft panel.
-     */
-    public function setleft($val = '&nbsp;')
-    {
-        $this->left = $val;
-    }
+	/**
+	 * setleft panel.
+	 */
+	public function setleft($val = '&nbsp;')
+	{
+		$this->left = $val;
+	}
 
-    /**
-     * setmiddle panel.
-     */
-    public function setmiddle($val = '&nbsp;')
-    {
-        $this->middle = $val;
-    }
+	/**
+	 * setmiddle panel.
+	 */
+	public function setmiddle($val = '&nbsp;')
+	{
+		$this->middle = $val;
+	}
 
-    /**
-     * setright panel.
-     */
-    public function setright($val = '&nbsp;')
-    {
-        $this->right = $val;
-    }
+	/**
+	 * setright panel.
+	 */
+	public function setright($val = '&nbsp;')
+	{
+		$this->right = $val;
+	}
 }

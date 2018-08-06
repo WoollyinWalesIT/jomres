@@ -16,18 +16,18 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j16000export_definitions
 {
-    public function __construct()
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 		
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
+		$jrConfig = $siteConfig->get();
 		
 		if ($jrConfig['language_context'] == '') {
 			$jrConfig['language_context'] = '0';
@@ -43,35 +43,35 @@ class j16000export_definitions
 		$javascript = 'onchange="switch_language_context(this.value);"';
 
 		echo '<h2 class="page-header">Export language file definitions - '.get_showtime('lang').'</h2>';
-        
+		
 		echo '<p>'.jr_gettext('_JOMRES_EXPORT_DEFINITIONS_INFO', '_JOMRES_EXPORT_DEFINITIONS_INFO', false).'</p>';
 		
 		echo '<p>'.jr_gettext('_JOMRES_COM_LANGUAGE_CONTEXT', '_JOMRES_COM_LANGUAGE_CONTEXT', false) . ' ' . $jomres_property_types->getPropertyTypeDescDropdown($language_context, 'language_context', $javascript).'</p>';
 
-        $definitions = array();
-        foreach ($jomres_language_definitions->definitions[ $jrConfig['language_context'] ] as $const => $def) {
-            $definitions[ $const ] = jr_gettext($const, $def, false);
-        }
+		$definitions = array();
+		foreach ($jomres_language_definitions->definitions[ $jrConfig['language_context'] ] as $const => $def) {
+			$definitions[ $const ] = jr_gettext($const, $def, false);
+		}
 
-        $output_string = '
+		$output_string = '
 <?php
 ##################################################################
 defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
 ##################################################################
 ';
-        foreach ($definitions as $const => $string) {
-            str_replace("\'", "'", $string);
-            $string = filter_var($string, FILTER_SANITIZE_SPECIAL_CHARS);
-            $output_string .= 'jr_define("'.$const.'","'.$string.'");
+		foreach ($definitions as $const => $string) {
+			str_replace("\'", "'", $string);
+			$string = filter_var($string, FILTER_SANITIZE_SPECIAL_CHARS);
+			$output_string .= 'jr_define("'.$const.'","'.$string.'");
 ';
-        }
+		}
 
-        echo '<textarea style="width: 100%;height: 900px;" >'.$output_string.'</textarea>';
-    }
+		echo '<textarea style="width: 100%;height: 900px;" >'.$output_string.'</textarea>';
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

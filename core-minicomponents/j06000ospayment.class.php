@@ -16,23 +16,23 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j06000ospayment
 {
-    public function __construct()
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
-        jr_import('jomres_gateway_handler');
-        $transaction = new jomres_gateway_handler();
-        $transaction->callback();
-    }
+			return;
+		}
+		jr_import('jomres_gateway_handler');
+		$transaction = new jomres_gateway_handler();
+		$transaction->callback();
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

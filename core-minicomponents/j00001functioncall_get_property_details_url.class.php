@@ -16,20 +16,20 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j00001functioncall_get_property_details_url
 {
-    public function __construct()
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
-        require_once JOMRES_FUNCTIONS_ABSPATH.'get_property_details_url.php';
-    }
+			return;
+		}
+		require_once JOMRES_FUNCTIONS_ABSPATH.'get_property_details_url.php';
+	}
 
-    public function getRetVals()
-    {
-        return null;
-    }
+	public function getRetVals()
+	{
+		return null;
+	}
 }

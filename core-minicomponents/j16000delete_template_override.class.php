@@ -16,26 +16,26 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j16000delete_template_override
 {
-    public function __construct()
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
 		$template_overrides = jomres_singleton_abstract::getInstance('template_overrides');
-        $template_name		= (string) jomresGetParam($_REQUEST, 'template_name', '');
-        $template_overrides->delete_override($template_name);
+		$template_name		= (string) jomresGetParam($_REQUEST, 'template_name', '');
+		$template_overrides->delete_override($template_name);
 
-        jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_template_overrides'), '');
-    }
+		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_template_overrides'), '');
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

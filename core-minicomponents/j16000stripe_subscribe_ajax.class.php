@@ -16,14 +16,14 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j16000stripe_subscribe_ajax
 {
-    public function __construct($componentArgs)
-    {
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct($componentArgs)
+	{
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
 		$firstname		= jomresGetParam($_REQUEST, 'firstname', '');
 		$surname		= jomresGetParam($_REQUEST, 'surname', '');
@@ -52,10 +52,10 @@ class j16000stripe_subscribe_ajax
 		}
 
 		echo $result;
-    }
+	}
 
-    public function getRetVals()
-    {
-        return null;
-    }
+	public function getRetVals()
+	{
+		return null;
+	}
 }

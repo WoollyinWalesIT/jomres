@@ -23,8 +23,8 @@ class jomres_encryption
 {
 	private $encryption_key = '';
 
-    public function __construct()
-    {
+	public function __construct()
+	{
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 		
@@ -40,7 +40,7 @@ class jomres_encryption
 		
 		$this->get_key();
 		
-    }
+	}
 	
 	private function generate_new_key()
 	{

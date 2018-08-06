@@ -16,29 +16,29 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j16000delete_obsolete_files
 {
-    public function __construct()
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 		
 		jr_import('jomres_obsolete_file_handling');
-        $obsolete_files = new jomres_obsolete_file_handling();
+		$obsolete_files = new jomres_obsolete_file_handling();
 
-        if ($obsolete_files->remove_obsolete_files()) {
-            jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=obsolete_files_check'), '');
-        } else {
-            echo 'Could not delete obsolete files, please do ti manually.';
-        }
-    }
+		if ($obsolete_files->remove_obsolete_files()) {
+			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=obsolete_files_check'), '');
+		} else {
+			echo 'Could not delete obsolete files, please do ti manually.';
+		}
+	}
 
    //Must be included in every mini-component.
-    public function getRetVals()
-    {
-        return null;
-    }
+	public function getRetVals()
+	{
+		return null;
+	}
 }

@@ -16,23 +16,23 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class template_overrides
 {
-    public function __construct()
-    {
-        $this->template_overrides = array();
+	public function __construct()
+	{
+		$this->template_overrides = array();
 		$this->get_all_overrides();
-    }
+	}
 
-    // Get all room types details
-    public function get_all_overrides()
-    {
-        $query = 'SELECT `template_name`, `path` FROM #__jomres_template_package_overrides';
-        $result = doSelectSql($query);
+	// Get all room types details
+	public function get_all_overrides()
+	{
+		$query = 'SELECT `template_name`, `path` FROM #__jomres_template_package_overrides';
+		$result = doSelectSql($query);
 
-        if (empty($result)) {
-            return false;
-        }
+		if (empty($result)) {
+			return false;
+		}
 
-        foreach ($result as $r) {
+		foreach ($result as $r) {
 			if (file_exists(JOMRESPATH_BASE.$r->path.$r->template_name) ) {
 				$this->template_overrides[$r->template_name]['template_name']		= $r->template_name;
 				$this->template_overrides[$r->template_name]['path']				= $r->path;
@@ -45,16 +45,16 @@ class template_overrides
 				
 				}
 			}
-        }
+		}
 
-        return true;
-    }
+		return true;
+	}
 
-    //Save new or existing resource type
-    public function save_template_override($template_name)
-    {
-        $query = "SELECT `template_name` FROM #__jomres_template_package_overrides WHERE  `template_name` = '".$template_name."'";
-        $result = doSelectSql($query);
+	//Save new or existing resource type
+	public function save_template_override($template_name)
+	{
+		$query = "SELECT `template_name` FROM #__jomres_template_package_overrides WHERE  `template_name` = '".$template_name."'";
+		$result = doSelectSql($query);
 		
 		if (empty($result)) {
 			$query = "INSERT INTO #__jomres_template_package_overrides 
@@ -69,28 +69,28 @@ class template_overrides
 				)
 				";
 		} else {
-            $query = "UPDATE #__jomres_template_package_overrides 
+			$query = "UPDATE #__jomres_template_package_overrides 
 						SET 
 							`template_name` 		= '".$template_name."', 
 							`path` 					= '".$this->template_overrides[$template_name]['path']."'
 						WHERE `template_name` ='" .$template_name."'";
 		}
 
-        if (doInsertSql($query, false)) {
+		if (doInsertSql($query, false)) {
 			return true;
 		} else {
 			throw new Exception('Error: Failed to update template overrides.');
 		}
-    }
+	}
 
-    //Delete resource type
-    public function delete_override($template_name)
-    {
+	//Delete resource type
+	public function delete_override($template_name)
+	{
 		$success = true;
 		$query = "DELETE FROM #__jomres_template_package_overrides WHERE `template_name` = '".$template_name."'";
-        if (!doInsertSql($query, false)) {
+		if (!doInsertSql($query, false)) {
 			$success = false;
 		}
 		return $success;
-    }
+	}
 }

@@ -6,10 +6,10 @@
  * A class definition that includes attributes and functions used across both the
  * public-facing side of the site and the admin area.
  *
- * @link       https://wwww.jomres.net
- * @since      9.9.19
+ * @link	   https://wwww.jomres.net
+ * @since	  9.9.19
  *
- * @package    Jomres
+ * @package	Jomres
  * @subpackage Jomres/includes
  */
 
@@ -22,10 +22,10 @@
  * Also maintains the unique identifier of this Jomres as well as the current
  * version of the Jomres.
  *
- * @since      9.9.19
- * @package    Jomres
+ * @since	  9.9.19
+ * @package	Jomres
  * @subpackage Jomres/includes
- * @author     Vince Wooll <support@jomres.net>
+ * @author	 Vince Wooll <support@jomres.net>
  */
 class WP_Jomres {
 
@@ -33,81 +33,81 @@ class WP_Jomres {
 	 * The loader that's responsible for maintaining and registering all hooks that power
 	 * Jomres.
 	 *
-	 * @since    9.9.19
+	 * @since	9.9.19
 	 * @access   protected
-	 * @var      Jomres_Loader    $loader    Maintains and registers all Jomres hooks.
+	 * @var	  Jomres_Loader	$loader	Maintains and registers all Jomres hooks.
 	 */
 	protected $loader;
 
 	/**
 	 * The Jomres plugin unique identifier.
 	 *
-	 * @since    9.9.19
+	 * @since	9.9.19
 	 * @access   protected
-	 * @var      string    $plugin_name    The string used to uniquely identify the Jomres plugin.
+	 * @var	  string	$plugin_name	The string used to uniquely identify the Jomres plugin.
 	 */
 	protected $plugin_name;
 
 	/**
 	 * The current Jomres version.
 	 *
-	 * @since    9.9.19
+	 * @since	9.9.19
 	 * @access   protected
-	 * @var      string    $version    The current Jomres version.
+	 * @var	  string	$version	The current Jomres version.
 	 */
 	protected $version;
 	
 	/**
 	 * The Jomres instance.
 	 *
-	 * @since    9.9.19
+	 * @since	9.9.19
 	 * @access   protected
-	 * @var      object    $configInstance    The Jomres instance.
+	 * @var	  object	$configInstance	The Jomres instance.
 	 */
 	private static $configInstance;
 	
 	/**
 	 * The Jomres javascript.
 	 *
-	 * @since    9.9.19
+	 * @since	9.9.19
 	 * @access   private
-	 * @var      array    $js    The Jomres javascript.
+	 * @var	  array	$js	The Jomres javascript.
 	 */
 	private $js;
 	
 	/**
 	 * The Jomres css.
 	 *
-	 * @since    9.9.19
+	 * @since	9.9.19
 	 * @access   private
-	 * @var      array    $css    The Jomres css.
+	 * @var	  array	$css	The Jomres css.
 	 */
 	private $css;
 	
 	/**
 	 * The Jomres custom meta.
 	 *
-	 * @since    9.9.19
+	 * @since	9.9.19
 	 * @access   private
-	 * @var      array    $custom_meta    The Jomres custom meta.
+	 * @var	  array	$custom_meta	The Jomres custom meta.
 	 */
 	private $custom_meta;
 	
 	/**
 	 * The Jomres output.
 	 *
-	 * @since    9.9.19
+	 * @since	9.9.19
 	 * @access   private
-	 * @var      string    $content    The Jomres output.
+	 * @var	  string	$content	The Jomres output.
 	 */
 	private $content;
 	
 	/**
 	 * The Jomres page meta title.
 	 *
-	 * @since    9.9.19
+	 * @since	9.9.19
 	 * @access   private
-	 * @var      string    $meta_title    The Jomres page meta title.
+	 * @var	  string	$meta_title	The Jomres page meta title.
 	 */
 	private $meta_title;
 
@@ -118,7 +118,7 @@ class WP_Jomres {
 	 * Load the dependencies, define the locale, and set the hooks for the admin area and
 	 * the public-facing side of the site.
 	 *
-	 * @since    9.9.19
+	 * @since	9.9.19
 	 */
 	public function __construct() {
 		
@@ -150,7 +150,7 @@ class WP_Jomres {
 	 *
 	 * Description.
 	 *
-	 * @since    9.9.19
+	 * @since	9.9.19
 	 */
 	public static function getInstance() {
 
@@ -174,7 +174,7 @@ class WP_Jomres {
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
 	 *
-	 * @since    9.9.19
+	 * @since	9.9.19
 	 * @access   private
 	 */
 	private function load_dependencies() {
@@ -205,7 +205,7 @@ class WP_Jomres {
 	 * Uses the Jomres_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
-	 * @since    9.9.19
+	 * @since	9.9.19
 	 * @access   private
 	 */
 	private function set_locale() {
@@ -219,7 +219,7 @@ class WP_Jomres {
 	/**
 	 * Register all of the common hooks related to the Jomres admin area and public-facing functionality.
 	 *
-	 * @since    9.9.19
+	 * @since	9.9.19
 	 * @access   private
 	 */
 	private function define_common_hooks() {
@@ -233,7 +233,7 @@ class WP_Jomres {
 	/**
 	 * Register all of the hooks related to the Jomres admin area functionality.
 	 *
-	 * @since    9.9.19
+	 * @since	9.9.19
 	 * @access   private
 	 */
 	private function define_admin_hooks() {
@@ -259,7 +259,7 @@ class WP_Jomres {
 	/**
 	 * Register all of the hooks related to the Jomres public-facing functionality.
 	 *
-	 * @since    9.9.19
+	 * @since	9.9.19
 	 * @access   private
 	 */
 	private function define_public_hooks() {
@@ -287,7 +287,7 @@ class WP_Jomres {
 	/**
 	 * Register all scripts and styles related to the Jomres andmin and public-facing functionality.
 	 *
-	 * @since    9.9.19
+	 * @since	9.9.19
 	 * @access   public
 	 */
 	public function add_jomres_js_css() {
@@ -320,7 +320,7 @@ class WP_Jomres {
 	/**
 	 * Clear the Jomres session data.
 	 *
-	 * @since    9.9.19
+	 * @since	9.9.19
 	 * @access   private
 	 */
 	public function jomres_wp_end_session() {
@@ -332,7 +332,7 @@ class WP_Jomres {
 	/**
 	 * Echoes the Jomres custom meta data.
 	 *
-	 * @since    9.9.19
+	 * @since	9.9.19
 	 * @access   private
 	 */
 	public function jomres_add_custom_meta() {
@@ -353,7 +353,7 @@ class WP_Jomres {
 	/**
 	 * Run the loader to execute all of the hooks with WordPress.
 	 *
-	 * @since    9.9.19
+	 * @since	9.9.19
 	 */
 	public function run() {
 		
@@ -365,8 +365,8 @@ class WP_Jomres {
 	 * The name of the plugin used to uniquely identify it within the context of
 	 * WordPress and to define internationalization functionality.
 	 *
-	 * @since     9.9.19
-	 * @return    string    The name of the plugin.
+	 * @since	 9.9.19
+	 * @return	string	The name of the plugin.
 	 */
 	public function get_plugin_name() {
 		
@@ -377,8 +377,8 @@ class WP_Jomres {
 	/**
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
-	 * @since     9.9.19
-	 * @return    Jomres_Loader    Orchestrates the hooks of the plugin.
+	 * @since	 9.9.19
+	 * @return	Jomres_Loader	Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		
@@ -389,8 +389,8 @@ class WP_Jomres {
 	/**
 	 * Retrieve the Jomres version number.
 	 *
-	 * @since     9.9.19
-	 * @return    string    The Jomres version number.
+	 * @since	 9.9.19
+	 * @return	string	The Jomres version number.
 	 */
 	public function get_version() {
 		
@@ -401,8 +401,8 @@ class WP_Jomres {
 	/**
 	 * Retrieve the Jomres js.
 	 *
-	 * @since     9.9.19
-	 * @return    array    The Jomres js.
+	 * @since	 9.9.19
+	 * @return	array	The Jomres js.
 	 */
 	public function get_js() {
 		
@@ -413,8 +413,8 @@ class WP_Jomres {
 	/**
 	 * Retrieve the Jomres css.
 	 *
-	 * @since     9.9.19
-	 * @return    array    The Jomres css.
+	 * @since	 9.9.19
+	 * @return	array	The Jomres css.
 	 */
 	public function get_css() {
 		
@@ -425,8 +425,8 @@ class WP_Jomres {
 	/**
 	 * Retrieve the Jomres custom meta.
 	 *
-	 * @since     9.9.19
-	 * @return    array    The Jomres custom meta.
+	 * @since	 9.9.19
+	 * @return	array	The Jomres custom meta.
 	 */
 	public function get_custom_meta() {
 		
@@ -437,8 +437,8 @@ class WP_Jomres {
 	/**
 	 * Retrieve the Jomres output.
 	 *
-	 * @since     9.9.19
-	 * @return    string    The Jomres output.
+	 * @since	 9.9.19
+	 * @return	string	The Jomres output.
 	 */
 	public function get_content() {
 		
@@ -449,8 +449,8 @@ class WP_Jomres {
 	/**
 	 * Retrieve the Jomres page metta title.
 	 *
-	 * @since     9.9.19
-	 * @return    array    The Jomres page meta title.
+	 * @since	 9.9.19
+	 * @return	array	The Jomres page meta title.
 	 */
 	public function get_meta_title() {
 		
@@ -461,8 +461,8 @@ class WP_Jomres {
 	/**
 	 * Retrieve the Jomres output.
 	 *
-	 * @since     9.9.19
-	 * @return    bool    true.
+	 * @since	 9.9.19
+	 * @return	bool	true.
 	 */
 	public function set_content($content) {
 		
@@ -475,8 +475,8 @@ class WP_Jomres {
 	/**
 	 * Adds javascript files to $js array.
 	 *
-	 * @since     9.9.19
-	 * @return    bool    true.
+	 * @since	 9.9.19
+	 * @return	bool	true.
 	 */
 	public function add_js( $filename, $js, $version ) {
 		
@@ -489,8 +489,8 @@ class WP_Jomres {
 	/**
 	 * Adds javascript files to $js array.
 	 *
-	 * @since     9.9.19
-	 * @return    bool    true.
+	 * @since	 9.9.19
+	 * @return	bool	true.
 	 */
 	public function add_css( $filename, $css, $version ) {
 		
@@ -503,8 +503,8 @@ class WP_Jomres {
 	/**
 	 * Adds custom meta data cu $custom_meta array.
 	 *
-	 * @since     9.9.19
-	 * @return    bool    true.
+	 * @since	 9.9.19
+	 * @return	bool	true.
 	 */
 	public function add_custom_meta( $meta ) {
 		
@@ -517,8 +517,8 @@ class WP_Jomres {
 	/**
 	 * Sets the Jomres page meta title.
 	 *
-	 * @since     9.9.19
-	 * @return    bool    true.
+	 * @since	 9.9.19
+	 * @return	bool	true.
 	 */
 	public function set_meta_title( $title ) {
 		

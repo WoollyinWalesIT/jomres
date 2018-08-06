@@ -18,28 +18,28 @@ defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.'
 $query = 'SELECT userid FROM #__jomres_managers LIMIT 2';
 $existing_users = doSelectSql($query);
 if (!empty($existing_users)) {
-    return;
+	return;
 }
 
 $query = 'SELECT id,user_login FROM #__users';
 $user_ids = doSelectSql($query);
 
 if (!empty($user_ids)) {
-    $super_admin_ids = array();
-    foreach ($user_ids as $user) {
-        //echo $user->id."<br />";
-        if (is_super_admin($user->id)) {
-            $super_admin_ids[] = array('username' => $user->user_login, 'id' => $user->id);
-        }
-    }
+	$super_admin_ids = array();
+	foreach ($user_ids as $user) {
+		//echo $user->id."<br />";
+		if (is_super_admin($user->id)) {
+			$super_admin_ids[] = array('username' => $user->user_login, 'id' => $user->id);
+		}
+	}
 
-    if (!empty($super_admin_ids)) {
-        foreach ($super_admin_ids as $admin_user) {
-            $query = "INSERT INTO #__jomres_managers
+	if (!empty($super_admin_ids)) {
+		foreach ($super_admin_ids as $admin_user) {
+			$query = "INSERT INTO #__jomres_managers
 				(`userid`,`access_level`,`currentproperty`)
 			VALUES
 				(".$admin_user[ 'id' ].",90,1)";
-            $result = doInsertSql($query, '');
-        }
-    }
+			$result = doInsertSql($query, '');
+		}
+	}
 }
