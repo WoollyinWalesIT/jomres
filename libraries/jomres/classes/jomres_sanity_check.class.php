@@ -235,7 +235,7 @@ class jomres_sanity_check
 			}
 		}
 
-		if ( $unreviewed_bookings>0 ) {
+		if ( $unreviewed_bookings > 0 && ( get_showtime("task") != "dobooking" && get_showtime("task") != "confirmbooking" ) )  {
 			$message = jr_gettext('REVIEW_REMINDER_PT1', 'REVIEW_REMINDER_PT1', false).$unreviewed_bookings.jr_gettext('REVIEW_REMINDER_PT2', 'REVIEW_REMINDER_PT2', false);
 			$link = jomresURL(JOMRES_SITEPAGE_URL.'&task=mulistbookings&unreviewed');
 			$button_text = jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_LISTBOOKINGS', '_JOMRES_FRONT_MR_MENU_ADMIN_LISTBOOKINGS', false);
