@@ -75,9 +75,10 @@ class j01009a_filterproperties
 					}
 				}
 
-				function cmp($a, $b)
-				{
-					return strcmp($a->property_region, $b->property_region);
+				if( !function_exists('cmp') ) {
+					function cmp($a, $b) {
+						return strcmp($a->property_region, $b->property_region);
+					}
 				}
 
 				usort($regions, 'cmp');
