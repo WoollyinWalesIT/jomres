@@ -144,6 +144,7 @@ class j06000show_property_header
 		$output[ 'COUNTRY' ] = $current_property_details->property_country;
 		$output[ 'POSTCODE' ] = $current_property_details->property_postcode;
 		$output[ 'TELEPHONE' ] = $current_property_details->property_tel;
+		$output[ 'WHATSAPP_TELEPHONE' ] = str_replace( array ( "+" , "00") , "" , $current_property_details->property_tel);
 		$output[ 'FAX' ] = $current_property_details->property_fax;
  
 		$user_can_view_address = true;

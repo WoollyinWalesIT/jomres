@@ -73,8 +73,6 @@ class j06000show_property_room_type
 			
 			$output[ '_JOMRES_SEARCH_RTYPES' ] = jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', '_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', false);
 
-			//var_dump($basic_property_details->room_types[$room_classes_uid]);exit;
-			
 			$output['ROOM_TYPE_TITLE'] = $basic_property_details->room_types[$room_classes_uid]['abbv'];
 			$output['ROOM_TYPE_DESCRIPTION'] = jomres_cmsspecific_parseByBots($jomres_markdown->get_markdown($basic_property_details->room_types[$room_classes_uid]['desc']));
 			
@@ -87,10 +85,7 @@ class j06000show_property_room_type
 				} else {
 					$output['SLIDESHOW'] = '';
 				}
-			
-			// var_dump($jomres_media_centre_images->images['room_types'][$room_classes_uid]);exit;
-			// if (isset($jomres_media_centre_images->images [$resource_type] [$resource_id])) {
-			
+
 			
 			$pageoutput[] = $output;
 			$tmpl = new patTemplate();
