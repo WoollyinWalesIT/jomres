@@ -125,7 +125,7 @@ class jomres_reviews
 		}
 
 		$contract_uid = 0;
-		if ( isset($_POST[ 'contract_uid' ] ) && !$test_mode ) {
+		if ( isset($_POST[ 'contract_uid' ] )  && (int)$_POST[ 'contract_uid' ] > 0 && !$test_mode ) {
 			$contract_uid = (int)$_POST[ 'contract_uid' ];
 			$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 			
