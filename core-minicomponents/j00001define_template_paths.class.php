@@ -51,7 +51,7 @@ class j00001define_template_paths
 		if (!defined('JOMRES_TEMPLATEPATH_ADMINISTRATOR')) {
 			if (!using_bootstrap()) {
 				define('JOMRES_TEMPLATEPATH_ADMINISTRATOR', JOMRESPATH_BASE.JRDS.'assets'.JRDS.'templates'.JRDS.'jquery_ui'.JRDS.'administrator');
-			} elseif (_JOMRES_DETECTED_CMS == 'joomla3') {
+			} elseif (_JOMRES_DETECTED_CMS == 'joomla3' || this_cms_is_wordpress() ) {
 				define('JOMRES_TEMPLATEPATH_ADMINISTRATOR', JOMRESPATH_BASE.JRDS.'assets'.JRDS.'templates'.JRDS.'bootstrap'.JRDS.'administrator');
 			} else {
 				define('JOMRES_TEMPLATEPATH_ADMINISTRATOR', JOMRESPATH_BASE.JRDS.'assets'.JRDS.'templates'.JRDS.'bootstrap4'.JRDS.'administrator');
