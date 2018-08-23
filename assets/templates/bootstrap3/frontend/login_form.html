@@ -1,6 +1,6 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 
-<form id="jomres_login" method="POST" action="{RETURN_URL}" class="form-horizontal" role="form" method="post">
+<form id="jomres_login" action="{RETURN_URL}" class="form-horizontal" role="form" method="post">
 
 	<h4>{_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN}</h4>
 
@@ -39,6 +39,7 @@
 	
 	<input type="hidden" name="return_url" value="{RETURN_URL}" />
 	<input type="hidden" name="jomres_loginform_email" value="{EMAIL}" />
+	{CSRF_TOKEN}
 </form>
 
 <div id="reset_form_area">

@@ -147,6 +147,7 @@ require_once JOMRES_CLASSES_ABSPATH.'jomres_empty_class.class.php';
 require_once JOMRES_CLASSES_ABSPATH.'jomres_singleton_abstract.class.php';
 require_once JOMRES_CLASSES_ABSPATH.'jomres_gdpr_optin_consent.class.php';
 
+
 /**
 *
 * include the classes registry file and make $classes a global variable to be easily accessible, so we`ll avoid calling include() more times
@@ -268,5 +269,20 @@ if ($jrConfig[ 'development_production' ] == 'production') {
 
 //TODO find a better place, maybe jomres.php and framework.php
 $jomresHTML = jomres_singleton_abstract::getInstance('jomresHTML');
+
+
+// CSRF handling
+require_once JOMRES_LIBRARIES_ABSPATH.JRDS.'crsfhandler'.JRDS.'csrfhandler.lib.php';
+
+if (!empty($_POST)) {
+	$token = isset($_POST['jomres_csrf_token']) ? $_POST['jomres_csrf_token'] : '';
+	$valid = !empty($token) && $isValid = csrf::checkToken($token);
+	if (!$valid) {
+		// log then die 
+		logging::log_message('CSRF token failed to validate ', 'Core', 'WARNING');
+		die("Could not validate token");
+	}
+	csrf::flushKeys();
+}
 
 // Stops here
