@@ -498,8 +498,8 @@ class j06000handlereq
 			echo '; populateDiv("room_allocations","'.$bkg->getRoomAllocationOutput().'");';
 
 			$bkg->setErrorLogFirst($ajrq);
-			$bkg->storeBookingDetails();
 		}
+		$bkg->storeBookingDetails();
 	}
 
 
