@@ -91,16 +91,20 @@ class j06005view_invoice
 			}
 		}
 		//end security checks. If everything is fine so far, let`s move forward.
+		if ($invoice->invoice[$invoice_id]['subscription'] != "1" && $invoice->invoice[$invoice_id]['is_commission'] != "1") {
+			//get the contract details
+			//We won`t use the basic contract details here since it gets too much data for what we need
+			$query = 'SELECT guest_uid, tag, approved FROM #__jomres_contracts WHERE contract_uid = '.$invoice->contract_id.' AND property_uid = '.$invoice->property_uid;
+			$contractData = doSelectSql($query, 2);
 
-		//get the contract details
-		//We won`t use the basic contract details here since it gets too much data for what we need
-		$query = 'SELECT guest_uid, tag, approved FROM #__jomres_contracts WHERE contract_uid = '.$invoice->contract_id.' AND property_uid = '.$invoice->property_uid;
-		$contractData = doSelectSql($query, 2);
-
-		if (!$contractData) {
-			trigger_error('Unable to get the contract details.', E_USER_ERROR);
-			return;
+			if (!$contractData) {
+				trigger_error('Unable to get the contract details.', E_USER_ERROR);
+				return;
+			}
+		} else {
+			$contractData = array ('approved' => 1);
 		}
+
 
 		$output[ 'BUSINESS_DETAILS_TEMPLATE' ]	= $MiniComponents->specificEvent('06005', 'show_invoice_seller', array('invoice_id' => $invoice_id));
 		$output[ 'CLIENT_DETAILS_TEMPLATE' ]	= $MiniComponents->specificEvent('06005', 'show_invoice_buyer', array('invoice_id' => $invoice_id)); 
