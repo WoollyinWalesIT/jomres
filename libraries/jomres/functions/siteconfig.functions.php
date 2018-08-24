@@ -384,6 +384,7 @@ function showSiteConfig()
 	<input type="hidden" name="no_html" value="1"/>
 	<input type="hidden" name="task" value="save_site_settings"/>
 	<input type="hidden" name="option" value="com_jomres"/>
+	<input type="hidden" name="jomres_csrf_token" value="<?php echo csrf::setToken(); ?>"/>'
 	</form>
 	<?php
 	ob_end_flush();
