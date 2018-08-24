@@ -274,7 +274,10 @@ $jomresHTML = jomres_singleton_abstract::getInstance('jomresHTML');
 // CSRF handling
 require_once JOMRES_LIBRARIES_ABSPATH.JRDS.'crsfhandler'.JRDS.'csrfhandler.lib.php';
 
-if (!empty($_POST)) {
+// Currently disabled. Gateways POST payment information, and because gateways use different sessions (i.e. different sessions than the guest or manager's browser session) there's no reliable way to validate CSRF tokens yet
+// 
+
+/* if (!empty($_POST)) {
 	$token = isset($_POST['jomres_csrf_token']) ? $_POST['jomres_csrf_token'] : '';
 	$valid = !empty($token) && $isValid = csrf::checkToken($token);
 	if (!$valid) {
@@ -283,6 +286,7 @@ if (!empty($_POST)) {
 		die("Could not validate token");
 	}
 	csrf::flushKeys();
-}
+} */
 
 // Stops here
+
