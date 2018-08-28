@@ -21,10 +21,10 @@
 			
 			csrf::startSession();
 			
-			if (function_exists('mcrypt_create_iv')) {
-				$key = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
-			} else {
+			if (function_exists('openssl_random_pseudo_bytes')) {
 				$key = bin2hex(openssl_random_pseudo_bytes(32));
+			} else {
+				$key = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
 			}
 			
 			if(empty($_SESSION["jomres_csrfTokenlist"]) || !isset($_SESSION["jomres_csrfTokenlist"])){
