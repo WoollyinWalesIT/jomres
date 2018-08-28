@@ -100,6 +100,7 @@ class gateway_plugin_settings
 							}
 						}
 					else { //we need the gateways for commission and subscription invoices
+						$balance_payments_supported = true;
 						if ( isset($global_gateway_settings[$gateway]) ) {
 							$this->gateway_settings[$gateway] = $global_gateway_settings[$gateway];
 							}
@@ -107,7 +108,7 @@ class gateway_plugin_settings
 							$this->gateway_settings[$gateway] = array("active" => 0 , "override" => 0 );
 							}
 						}
-					
+
 					if (isset($gateway_array[$gateway]['balance_payments_supported']) && $gateway_array[$gateway]['balance_payments_supported'] == "1") {
 						$balance_payments_supported = true;
 						}
