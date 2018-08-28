@@ -282,6 +282,27 @@ class j06000handlereq
 				$bkg->updateSelectedRoom($value);
 
 				break;
+				
+			// To ensure that guests who have logged in are able to choose the last available room again, the user they were before they logged in must first release the room
+			case 'releaseRooms':
+				$ajrq = ' -- Release room locks -- ';
+				$bkg->setOkToBook(false);
+				
+				jr_import('jomres_roomlocks');
+				$room_locker = new jomres_roomlocks();
+				
+				$room_selections = explode(',', $value);
+
+				if (!empty($bkg->requestedRoom)) {
+					foreach ($bkg->requestedRoom as $index => $rm) {
+						$currently_selected_rooms = explode('^', $rm);
+						unset($bkg->requestedRoom[ $index ]);
+						$room_locker->unlock_room($currently_selected_rooms[ 0 ], $bkg->dateRangeString);
+					}
+				}
+				
+				break;
+				
 			case 'multiroom_select':
 				$ajrq = ' -- Selected multiple rooms -- ';
 				jr_import('jomres_roomlocks');

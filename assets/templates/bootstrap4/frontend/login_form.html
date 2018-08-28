@@ -1,6 +1,6 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 
-<form id="jomres_login" method="POST" action="{RETURN_URL}" class="form-horizontal" role="form" method="post">
+<form id="jomres_login" action="{RETURN_URL}" class="form-horizontal" role="form" method="post">
 
 	<h4>{_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN}</h4>
 
@@ -24,7 +24,7 @@
 	
 	<div class="form-group">
 		<div class="col-sm-10 col-sm-offset-2">
-			<button type="submit" class="btn btn-primary">{_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN}</button>
+			<button type="submit" class="btn btn-primary" onclick="getResponse('releaseRooms','1')" >{_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN}</button>
 			<button type="button" class="btn btn-default" data-dismiss="modal">{COMMON_CANCEL}</button>
 		</div>
 	</div>
