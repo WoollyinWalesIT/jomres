@@ -26,13 +26,15 @@ define('JOMRES_ADMINISTRATORDIRECTORY', 'administrator');
 //find jomres itemId
 $jomresItemid = 0;
 
-if (!defined('AUTO_UPGRADE')) {
+if (!defined('AUTO_UPGRADE') && !isset($_REQUEST['itemId']) ) {
 	$app = JFactory::getApplication(); 
 	$menu = $app->getMenu();
 	$menuItem = $menu->getItems( 'link', 'index.php?option=com_jomres&view=default', $firstonly = true );
 	if ($menuItem) {
 		$jomresItemid = (int)$menuItem->id;
 	}
+} elseif ( isset($_REQUEST['itemId']) ) {
+	$jomresItemid = (int)$_REQUEST['itemId'];
 }
 
 //set jomres itemid
