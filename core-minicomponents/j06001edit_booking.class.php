@@ -127,6 +127,16 @@ class j06001edit_booking
 					$jrtb .= $jrtbar->customToolbarItem($targetTask, $link, $output[ 'HREJECTBOOKING' ], $submitOnClick = false, $submitTask = '', $image);
 				}
 
+				
+				$output[ 'HEDIT_GUEST' ] = jr_gettext('_JOMRES_COM_MR_DISPGUEST_EDITDETAILS', '_JOMRES_COM_MR_DISPGUEST_EDITDETAILS', $editable = false, $isLink = true);
+				$link = JOMRES_SITEPAGE_URL.'&task=edit_guest&id='.$current_contract_details->contract[$contract_uid]['contractdeets']['guest_uid'];
+				$targetTask = 'edit_guest';
+				$image = JOMRES_IMAGES_RELPATH.'jomresimages/'.$jrtbar->imageSize.'/Edit.png';
+
+				$jrtb .= $jrtbar->customToolbarItem($targetTask, $link, $output[ 'HEDIT_GUEST' ], $submitOnClick = false, $submitTask = '', $image);
+					
+				//var_dump($current_contract_details->contract[$contract_uid]['contractdeets']['guest_uid']);exit;
+				
 				//amend booking
 				$output[ 'HAMENDBOOKING' ] = jr_gettext('_JOMRES_CONFIRMATION_AMEND', '_JOMRES_CONFIRMATION_AMEND', $editable = false, $isLink = true);
 				$link = JOMRES_SITEPAGE_URL.'&task=amendBooking&no_html=1&contractUid='.$contract_uid;
