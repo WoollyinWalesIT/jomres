@@ -269,14 +269,13 @@ class j03020insertbooking
 							// First, we'll look at this user's id. If it's the same as mos_userid above, then the user making the booking is a guest.
 							$new_booking_user_id = get_showtime("new_booking_user_id");
 							
-							$query = "SELECT enc_firstname FROM #__jomres_guest_profile WHERE cms_user_id = ".(int)$new_booking_user_id;
-							$already_exists = doSelectSql($query);
+							$query = "SELECT cms_user_id FROM #__jomres_guest_profile WHERE cms_user_id = ".(int)$new_booking_user_id;
+							$already_exists = doSelectSql($query );
+							
+							jr_import('jomres_encryption');
+							$jomres_encryption = new jomres_encryption();
 							
 							if (empty($already_exists)) {
-								
-								jr_import('jomres_encryption');
-								$jomres_encryption = new jomres_encryption();
-
 								$query = "INSERT INTO #__jomres_guest_profile (
 									`cms_user_id`,
 									`enc_firstname`,
@@ -305,7 +304,24 @@ class j03020insertbooking
 									'".$jomres_encryption->encrypt($tmpBookingHandler->tmpguest['email'])."'
 									)";
 								doInsertSql($query, '');
+							} else {
+								$query = "UPDATE #__jomres_guest_profile SET 
+									`enc_firstname` = '".$jomres_encryption->encrypt($tmpBookingHandler->tmpguest['firstname'])."',
+									`enc_surname` = '".$jomres_encryption->encrypt($tmpBookingHandler->tmpguest['surname'])."',
+									`enc_house` = '".$jomres_encryption->encrypt($tmpBookingHandler->tmpguest['house'])."',
+									`enc_street` = '".$jomres_encryption->encrypt($tmpBookingHandler->tmpguest['street'])."',
+									`enc_town` = '".$jomres_encryption->encrypt($tmpBookingHandler->tmpguest['town'])."',
+									`enc_county` = '".$jomres_encryption->encrypt($tmpBookingHandler->tmpguest['region'])."',
+									`enc_country` = '".$jomres_encryption->encrypt($tmpBookingHandler->tmpguest['country'])."',
+									`enc_postcode` = '".$jomres_encryption->encrypt($tmpBookingHandler->tmpguest['postcode'])."',
+									`enc_tel_landline` = '".$jomres_encryption->encrypt($tmpBookingHandler->tmpguest['tel_landline'])."',
+									`enc_tel_mobile` = '".$jomres_encryption->encrypt($tmpBookingHandler->tmpguest['tel_mobile'])."',
+									`enc_email` = '".$jomres_encryption->encrypt($tmpBookingHandler->tmpguest['email'])."'
+									WHERE 
+									`cms_user_id` = ".(int)$new_booking_user_id;
+								doInsertSql($query, '');
 							}
+
 						}
 						set_showtime("new_booking_user_id" , $cms_user_id );
 					} else {
