@@ -113,19 +113,22 @@ class custom_text
 		
 		if (
 			strlen($testStr) == 0 &&
-			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION' &&
-			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES' &&
-			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES' &&
-			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS' &&
-			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS' &&
-			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT' &&
-			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS' &&
-			$theConstant != '_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE' &&
-			$theConstant != '_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION' &&
-			$theConstant != '_JOMRES_CUSTOMTEXT_PROPERTY_METAKEYWORDS'
+			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION_'.$property_uid &&
+			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES_'.$property_uid &&
+			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES_'.$property_uid &&
+			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS_'.$property_uid &&
+			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS_'.$property_uid &&
+			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT_'.$property_uid &&
+			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS_'.$property_uid &&
+			$theConstant != '_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE_'.$property_uid &&
+			$theConstant != '_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION_'.$property_uid &&
+			$theConstant != '_JOMRES_CUSTOMTEXT_PROPERTY_METAKEYWORDS_'.$property_uid
 			) {
 			return false;
 		}
+		
+		
+
 		
 		if (!isset($property_uid)) {
 			if ($jrConfig[ 'editingModeAffectsAllProperties' ] == '1' && $thisJRUser->superPropertyManager == true) {
@@ -142,7 +145,7 @@ class custom_text
 						AND `language_context` = '".$language_context."'";
 		$result = doSelectSql($query);
 		
-		if (strlen($theValue) == 0) {
+		if (strlen($theValue) == 0 || $theValue == "" ) {
 			$query = "DELETE FROM #__jomres_custom_text 
 							WHERE `constant` = '".$theConstant."' 
 							AND `property_uid` = ".(int) $property_uid." 
