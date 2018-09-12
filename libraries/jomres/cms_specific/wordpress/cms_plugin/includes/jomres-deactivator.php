@@ -3,10 +3,10 @@
 /**
  * Fired during plugin deactivation
  *
- * @link       https://www.jomres.net
- * @since      9.9.19
+ * @link	   https://www.jomres.net
+ * @since	  9.9.19
  *
- * @package    Jomres
+ * @package	Jomres
  * @subpackage Jomres/includes
  */
 
@@ -15,10 +15,10 @@
  *
  * This class defines all code necessary to run during the plugin's deactivation.
  *
- * @since      9.9.19
- * @package    Jomres
+ * @since	  9.9.19
+ * @package	Jomres
  * @subpackage Jomres/includes
- * @author     Vince Wooll <support@jomres.net>
+ * @author	 Vince Wooll <support@jomres.net>
  */
 class Jomres_Deactivator {
 
@@ -27,7 +27,7 @@ class Jomres_Deactivator {
 	 *
 	 * Not used.
 	 *
-	 * @since    9.9.19
+	 * @since	9.9.19
 	 */
 	public static function deactivate() {
 		//

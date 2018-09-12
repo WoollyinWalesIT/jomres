@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -18,61 +18,61 @@ require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'configuration.php';
 $CONFIG = new JConfig();
 
 if (!defined('AUTO_UPGRADE')) {
-    //JFactory::getConfig()->setValue('config.caching', 0);
-    //JRegistry::set('config.caching', 0);
-    if (class_exists('JURI')) {
-        $jomresConfig_live_site = @JURI::root();
-    } else {
+	//JFactory::getConfig()->setValue('config.caching', 0);
+	//JRegistry::set('config.caching', 0);
+	if (class_exists('JURI')) {
+		$jomresConfig_live_site = @JURI::root();
+	} else {
 		$detect_os = strtoupper($_SERVER[ 'SERVER_SOFTWARE' ]); // converted to uppercase
 		$IIS = strpos($detect_os, 'IIS');
-        if ($IIS > 0) { // Win NT, therefore $_SERVER['REQUEST_URI'] == null
-            $path_info = $_SERVER[ 'PATH_INFO' ];
-            $_URI = explode('/', $path_info);
-        } else {
-            list($path, $args) = explode('?', $_SERVER[ 'REQUEST_URI' ]);
-            $_URI = explode('/', $path);
-        }
-        array_shift($_URI);
-        $_URI = array_slice($_URI, 0, count($_URI) - 1);
-        array_unshift($_URI, $_SERVER[ 'SERVER_NAME' ]);
+		if ($IIS > 0) { // Win NT, therefore $_SERVER['REQUEST_URI'] == null
+			$path_info = $_SERVER[ 'PATH_INFO' ];
+			$_URI = explode('/', $path_info);
+		} else {
+			list($path, $args) = explode('?', $_SERVER[ 'REQUEST_URI' ]);
+			$_URI = explode('/', $path);
+		}
+		array_shift($_URI);
+		$_URI = array_slice($_URI, 0, count($_URI) - 1);
+		array_unshift($_URI, $_SERVER[ 'SERVER_NAME' ]);
 
-        $jomresConfig_live_site = 'http://'.implode('/', $_URI);
-    }
+		$jomresConfig_live_site = 'http://'.implode('/', $_URI);
+	}
 } else {
 	$detect_os = strtoupper($_SERVER[ 'SERVER_SOFTWARE' ]); // converted to uppercase
 	$IIS = strpos($detect_os, 'IIS');
-    if ($IIS > 0) { // Win NT, therefore $_SERVER['REQUEST_URI'] == null
-        $path_info = $_SERVER[ 'PATH_INFO' ];
-        $_URI = explode('/', $path_info);
-    } else {
-        @list($path, $args) = explode('?', $_SERVER[ 'REQUEST_URI' ]);
-        $_URI = explode('/', $path);
-    }
-    array_shift($_URI);
-    $_URI = array_slice($_URI, 0, count($_URI) - 1);
-    array_unshift($_URI, $_SERVER[ 'SERVER_NAME' ]);
+	if ($IIS > 0) { // Win NT, therefore $_SERVER['REQUEST_URI'] == null
+		$path_info = $_SERVER[ 'PATH_INFO' ];
+		$_URI = explode('/', $path_info);
+	} else {
+		@list($path, $args) = explode('?', $_SERVER[ 'REQUEST_URI' ]);
+		$_URI = explode('/', $path);
+	}
+	array_shift($_URI);
+	$_URI = array_slice($_URI, 0, count($_URI) - 1);
+	array_unshift($_URI, $_SERVER[ 'SERVER_NAME' ]);
 
-    $jomresConfig_live_site = 'http://'.implode('/', $_URI);
+	$jomresConfig_live_site = 'http://'.implode('/', $_URI);
 }
 
 if ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443) {
-    $jomresConfig_live_site = str_replace('http://', 'https://', $jomresConfig_live_site);
+	$jomresConfig_live_site = str_replace('http://', 'https://', $jomresConfig_live_site);
 }
 
 $jomresConfig_live_site = str_replace('/administrator/', '', $jomresConfig_live_site);
 $jomresConfig_live_site = str_replace('/administrator', '', $jomresConfig_live_site);
 if (substr($jomresConfig_live_site, -1) == '/') {
-    $jomresConfig_live_site = substr($jomresConfig_live_site, 0, -1);
+	$jomresConfig_live_site = substr($jomresConfig_live_site, 0, -1);
 }
 
 if (defined('API_STARTED')) {
-    $jomresConfig_live_site = str_replace('/jomres/api', '', $jomresConfig_live_site);
+	$jomresConfig_live_site = str_replace('/jomres/api', '', $jomresConfig_live_site);
 }
 
 $jomresConfig_lang = 'en-GB';
 $jomresConfig_lang_shortcode = 'en';
 if (!defined('AUTO_UPGRADE')) {
-    $jomresConfig_lang = JFactory::getLanguage()->getTag();
+	$jomresConfig_lang = JFactory::getLanguage()->getTag();
 	
 	//get lang short code
 	$languages = JLanguageHelper::getLanguages('lang_code');

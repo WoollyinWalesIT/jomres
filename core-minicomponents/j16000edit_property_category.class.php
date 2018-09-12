@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,15 +16,15 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j16000edit_property_category
 {
-    public function __construct()
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 		
 		$output = array();
 		$pageoutput = array();
@@ -34,14 +34,14 @@ class j16000edit_property_category
 		
 		$jomres_property_categories = jomres_singleton_abstract::getInstance('jomres_property_categories');
 		
-        $id = (int)jomresGetParam($_REQUEST, 'id', 0);
+		$id = (int)jomresGetParam($_REQUEST, 'id', 0);
 
-        if ($id > 0) {
+		if ($id > 0) {
 			$jomres_property_categories->get_property_category($id);
 		}
-        
+		
 		$output[ 'ID' ] = $jomres_property_categories->id;
-        $output[ 'TITLE' ] = $jomres_property_categories->title;
+		$output[ 'TITLE' ] = $jomres_property_categories->title;
 		
 		if ($jrConfig['allowHTMLeditor'] == "1")
 			{
@@ -54,31 +54,31 @@ class j16000edit_property_category
 		else
 			$output['DESCRIPTION']='<textarea class="inputbox" cols="60" rows="6" name="description">'.$jomres_property_categories->description.'</textarea>';
 
-        $output[ 'PAGETITLE' ] = jr_gettext('_JOMRES_PROPERTY_HCATEGORIES_HEDIT', '_JOMRES_PROPERTY_HCATEGORIES_HEDIT', false);
-        $output[ 'HTITLE' ] = jr_gettext('_JRPORTAL_CRATE_TITLE', '_JRPORTAL_CRATE_TITLE', false);
+		$output[ 'PAGETITLE' ] = jr_gettext('_JOMRES_PROPERTY_HCATEGORIES_HEDIT', '_JOMRES_PROPERTY_HCATEGORIES_HEDIT', false);
+		$output[ 'HTITLE' ] = jr_gettext('_JRPORTAL_CRATE_TITLE', '_JRPORTAL_CRATE_TITLE', false);
 		$output[ 'HDESCRIPTION' ] = jr_gettext('_JOMRES_COM_MR_EXTRA_DESC', '_JOMRES_COM_MR_EXTRA_DESC', false);
 
-        $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
-        $jrtb = $jrtbar->startTable();
-        $image = $jrtbar->makeImageValid(JOMRES_IMAGES_RELPATH.'jomresimages/small/Save.png');
-        $link = JOMRES_SITEPAGE_URL_ADMIN;
+		$jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
+		$jrtb = $jrtbar->startTable();
+		$image = $jrtbar->makeImageValid(JOMRES_IMAGES_RELPATH.'jomresimages/small/Save.png');
+		$link = JOMRES_SITEPAGE_URL_ADMIN;
 
-        $jrtb .= $jrtbar->toolbarItem('cancel', JOMRES_SITEPAGE_URL_ADMIN.'&task=list_property_categories', '');
-        $jrtb .= $jrtbar->customToolbarItem('save_property_category', $link, jr_gettext('_JOMRES_COM_MR_SAVE', '_JOMRES_COM_MR_SAVE', false), $submitOnClick = true, $submitTask = 'save_property_category', $image);
-        $jrtb .= $jrtbar->endTable();
-        $output[ 'JOMRESTOOLBAR' ] = $jrtb;
+		$jrtb .= $jrtbar->toolbarItem('cancel', JOMRES_SITEPAGE_URL_ADMIN.'&task=list_property_categories', '');
+		$jrtb .= $jrtbar->customToolbarItem('save_property_category', $link, jr_gettext('_JOMRES_COM_MR_SAVE', '_JOMRES_COM_MR_SAVE', false), $submitOnClick = true, $submitTask = 'save_property_category', $image);
+		$jrtb .= $jrtbar->endTable();
+		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
-        $pageoutput[ ] = $output;
-        $tmpl = new patTemplate();
-        $tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
-        $tmpl->readTemplatesFromInput('edit_property_category.html');
-        $tmpl->addRows('pageoutput', $pageoutput);
-        $tmpl->displayParsedTemplate();
-    }
+		$pageoutput[ ] = $output;
+		$tmpl = new patTemplate();
+		$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
+		$tmpl->readTemplatesFromInput('edit_property_category.html');
+		$tmpl->addRows('pageoutput', $pageoutput);
+		$tmpl->displayParsedTemplate();
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

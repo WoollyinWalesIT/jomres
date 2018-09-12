@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,21 +16,21 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j16000changelog
 {
-    public function __construct()
-    {
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
-        $changelog = nl2br(file_get_contents('http://updates.jomres4.net/CHANGELOG_JOMRES'));
-        echo $changelog;
-    }
+			return;
+		}
+		$changelog = nl2br(file_get_contents('http://updates.jomres4.net/CHANGELOG_JOMRES'));
+		echo $changelog;
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

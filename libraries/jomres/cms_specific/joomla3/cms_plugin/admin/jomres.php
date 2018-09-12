@@ -20,11 +20,11 @@ define( '_JOMRES_INITCHECK_ADMIN', 1 );
 JToolBarHelper::title( 'Jomres', 'home.png' );
 
 if (!defined('JOMRES_ROOT_DIRECTORY'))
-    {
-    if (file_exists(dirname(__FILE__).'/../../../jomres_root.php'))
-        require_once (dirname(__FILE__).'/../../../jomres_root.php');
-    else
-        define ( 'JOMRES_ROOT_DIRECTORY' , "jomres" ) ;
-    }
+	{
+	if (file_exists(dirname(__FILE__).'/../../../jomres_root.php'))
+		require_once (dirname(__FILE__).'/../../../jomres_root.php');
+	else
+		define ( 'JOMRES_ROOT_DIRECTORY' , "jomres" ) ;
+	}
 
 require_once( dirname( __FILE__ ) . '/../../../'.JOMRES_ROOT_DIRECTORY.'/admin.php' );

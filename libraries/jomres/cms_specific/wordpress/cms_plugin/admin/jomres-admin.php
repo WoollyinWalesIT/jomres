@@ -3,10 +3,10 @@
 /**
  * The admin-specific functionality of the plugin.
  *
- * @link       https://www.jomres.net
- * @since      9.9.19
+ * @link	   https://www.jomres.net
+ * @since	  9.9.19
  *
- * @package    Jomres
+ * @package	Jomres
  * @subpackage Jomres/admin
  */
 
@@ -15,36 +15,36 @@
  *
  * Defines the plugin name, version.
  *
- * @package    Jomres
+ * @package	Jomres
  * @subpackage Jomres/admin
- * @author     Vince Wooll <support@jomres.net>
+ * @author	 Vince Wooll <support@jomres.net>
  */
 class Jomres_Admin {
 
 	/**
 	 * The ID of this plugin.
 	 *
-	 * @since    9.9.19
+	 * @since	9.9.19
 	 * @access   private
-	 * @var      string    $plugin_name    The ID of this plugin.
+	 * @var	  string	$plugin_name	The ID of this plugin.
 	 */
 	private $plugin_name;
 
 	/**
 	 * The version of this plugin.
 	 *
-	 * @since    9.9.19
+	 * @since	9.9.19
 	 * @access   private
-	 * @var      string    $version    The current version of this plugin.
+	 * @var	  string	$version	The current version of this plugin.
 	 */
 	private $version;
 
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since    9.9.19
-	 * @param      string    $plugin_name       The name of this plugin.
-	 * @param      string    $version    The version of this plugin.
+	 * @since	9.9.19
+	 * @param	  string	$plugin_name	   The name of this plugin.
+	 * @param	  string	$version	The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version, $loader ) {
 
@@ -56,7 +56,7 @@ class Jomres_Admin {
 	/**
 	 * Register the Jomres admin area menu.
 	 *
-	 * @since    9.9.19
+	 * @since	9.9.19
 	 */
 	public function register_jomres_admin_menu() {
 		
@@ -67,7 +67,7 @@ class Jomres_Admin {
 	/**
 	 * Trigger Jomres admin cpanel.
 	 *
-	 * @since    9.9.19
+	 * @since	9.9.19
 	 */
 	public function admin_trigger_jomres() {
 	

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -24,77 +24,88 @@ jr_import('jomres_content_tabs');
  */
 class jomres_configpanel extends jomres_content_tabs
 {
-    /**
-     * Inserts the settings into the panes array.
-     */
-    public function insertSetting()
-    {
-        $rowclass = '';
+	/**
+	 * Inserts the settings into the panes array.
+	 */
+	public function insertSetting()
+	{
+		$rowclass = '';
 
-        if (!using_bootstrap()) {
-            if ($this->counter % 2) {
-                $rowclass = 'odd';
-            } else {
-                $rowclass = 'even';
-            }
-            $this->panes[ ] = '
+		if (!using_bootstrap()) {
+			if ($this->counter % 2) {
+				$rowclass = 'odd';
+			} else {
+				$rowclass = 'even';
+			}
+			$this->panes[ ] = '
 			<tr class="' .$rowclass.'">
 				<td width="30%">' .$this->left.'</td>
 				<td>' .$this->middle.'</td>
 				<td>' .$this->right.'</td>
 			</tr>
 			';
-        } else {
-            if ($this->counter % 2) {
-                $rowclass = 'row-even';
-            } else {
-                $rowclass = 'row-odd';
-            }
-            $this->panes[ ] = '
-			<div class="row-fluid ' .$rowclass.'">
-				<div class="span3">' .$this->left.'</div>
-				<div class="span4">' .$this->middle.'</div>
-				<div class="span5">' .$this->right.'</div>
-			</div>
-			';
-        }
-        $this->left = '&nbsp;';
-        $this->middle = '&nbsp;';
-        $this->right = '&nbsp;';
-        ++$this->counter;
-    }
+		} else { 
+			if ($this->counter % 2) {
+				$rowclass = 'row-even';
+			} else {
+				$rowclass = 'row-odd';
+			}
+			if ( jomres_bootstrap_version() == '4' ) {
+				$this->panes[ ] = '
+				<div class="row ' .$rowclass.'">
+					<div class="col">' .$this->left.'</div>
+					<div class="col">' .$this->middle.'</div>
+					<div class="col	">' .$this->right.'</div>
+				</div>
+				';
+			} else {
+				$this->panes[ ] = '
+				<div class="row-fluid ' .$rowclass.'">
+					<div class="span3">' .$this->left.'</div>
+					<div class="span4">' .$this->middle.'</div>
+					<div class="span5">' .$this->right.'</div>
+				</div>
+				';
+			}
 
-    public function insertDescription($description = '', $class = 'alert alert-info')
-    {
-        $this->panes[ ] = '<p class="'.$class.'">'.$description.'</p>';
-    }
+		}
+		$this->left = '&nbsp;';
+		$this->middle = '&nbsp;';
+		$this->right = '&nbsp;';
+		++$this->counter;
+	}
 
-    public function insertHeading($text = '', $type = 'h3')
-    {
-        $this->panes[ ] = '<div class="row-fluid"><div class="span12"><'.$type.'>'.$text.'</'.$type.'></div></div>';
-    }
+	public function insertDescription($description = '', $class = 'alert alert-info')
+	{
+		$this->panes[ ] = '<p class="'.$class.'">'.$description.'</p>';
+	}
 
-    /**
-     * setleft panel.
-     */
-    public function setleft($val = '&nbsp;')
-    {
-        $this->left = $val;
-    }
+	public function insertHeading($text = '', $type = 'h3')
+	{
+		$this->panes[ ] = '<div class="row-fluid"><div class="span12"><'.$type.'>'.$text.'</'.$type.'></div></div>';
+	}
 
-    /**
-     * setmiddle panel.
-     */
-    public function setmiddle($val = '&nbsp;')
-    {
-        $this->middle = $val;
-    }
+	/**
+	 * setleft panel.
+	 */
+	public function setleft($val = '&nbsp;')
+	{
+		$this->left = $val;
+	}
 
-    /**
-     * setright panel.
-     */
-    public function setright($val = '&nbsp;')
-    {
-        $this->right = $val;
-    }
+	/**
+	 * setmiddle panel.
+	 */
+	public function setmiddle($val = '&nbsp;')
+	{
+		$this->middle = $val;
+	}
+
+	/**
+	 * setright panel.
+	 */
+	public function setright($val = '&nbsp;')
+	{
+		$this->right = $val;
+	}
 }

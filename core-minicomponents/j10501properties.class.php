@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,23 +16,23 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j10501properties
 {
-    public function __construct($componentArgs)
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct($componentArgs)
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
 
-        $configurationPanel = $componentArgs[ 'configurationPanel' ];
-        $lists = $componentArgs[ 'lists' ];
+		$configurationPanel = $componentArgs[ 'configurationPanel' ];
+		$lists = $componentArgs[ 'lists' ];
 
-        $configurationPanel->startPanel(ucwords(jr_gettext('_JOMRES_CUSTOMCODE_MENUCATEGORIES_PORTAL', '_JOMRES_CUSTOMCODE_MENUCATEGORIES_PORTAL', false)));
+		$configurationPanel->startPanel(ucwords(jr_gettext('_JOMRES_CUSTOMCODE_MENUCATEGORIES_PORTAL', '_JOMRES_CUSTOMCODE_MENUCATEGORIES_PORTAL', false)));
 
 		$configurationPanel->setleft(jr_gettext('_JOMRES_SINGLEPROPERTYINSTALLATION_TITLE', '_JOMRES_SINGLEPROPERTYINSTALLATION_TITLE', false));
 		$configurationPanel->setmiddle($lists[ 'is_single_property_installation' ]);
@@ -60,9 +60,9 @@ class j10501properties
 		$configurationPanel->insertSetting();
 
 		$configurationPanel->setleft(jr_gettext('_JOMRES_PROPERTYDETAILS_INTABS_TITLE', '_JOMRES_PROPERTYDETAILS_INTABS_TITLE', false));
-        $configurationPanel->setmiddle($lists[ 'property_details_in_tabs' ]);
-        $configurationPanel->setright(jr_gettext('_JOMRES_PROPERTYDETAILS_INTABS_DESC', '_JOMRES_PROPERTYDETAILS_INTABS_DESC', false));
-        $configurationPanel->insertSetting();
+		$configurationPanel->setmiddle($lists[ 'property_details_in_tabs' ]);
+		$configurationPanel->setright(jr_gettext('_JOMRES_PROPERTYDETAILS_INTABS_DESC', '_JOMRES_PROPERTYDETAILS_INTABS_DESC', false));
+		$configurationPanel->insertSetting();
 
 		$configurationPanel->insertHeading(jr_gettext('_JOMRES_CONTACT_SETTINGS', '_JOMRES_CONTACT_SETTINGS', false));
 		
@@ -92,11 +92,11 @@ class j10501properties
 		$MiniComponents->triggerEvent('10527', $componentArgs);
 
 		$configurationPanel->endPanel();
-    }
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

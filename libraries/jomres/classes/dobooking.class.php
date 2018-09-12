@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -3221,22 +3221,23 @@ class dobooking
 		}
 
 		if ($id != 0 && !$userIsManager) {
-			$query = "SELECT guests_uid,mos_userid,enc_firstname,enc_surname,enc_house,enc_street,enc_town,enc_county,enc_country,enc_postcode,enc_tel_landline,enc_tel_mobile,enc_email FROM #__jomres_guests WHERE mos_userid = '$id'";
+			$query = "SELECT  cms_user_id,enc_firstname,enc_surname,enc_house,enc_street,enc_town,enc_county,enc_country,enc_postcode,enc_tel_landline,enc_tel_mobile,enc_email FROM #__jomres_guest_profile WHERE cms_user_id = '$id'";
 			$guestList = doSelectSql($query);
 			if (!empty($guestList)) {
 				foreach ($guestList as $data) {
-					$guests_uid = $data->guests_uid;
-					$guest_firstname = $this->jomres_encryption->decrypt($data->firstname);
-					$guest_surname = $this->jomres_encryption->decrypt($data->surname);
-					$guest_house = $this->jomres_encryption->decrypt($data->house);
-					$guest_street = $this->jomres_encryption->decrypt($data->street);
-					$guest_town = $this->jomres_encryption->decrypt($data->town);
-					$guest_region = $this->jomres_encryption->decrypt($data->county);
-					$guest_country = $this->jomres_encryption->decrypt($data->country);
-					$guest_postcode = $this->jomres_encryption->decrypt($data->postcode);
-					$guest_tel_landline = $this->jomres_encryption->decrypt($data->tel_landline);
-					$guest_tel_mobile = $this->jomres_encryption->decrypt($data->tel_mobile);
-					$guest_email = $this->jomres_encryption->decrypt($data->email);
+					$guests_uid = $data->cms_user_id;
+					$guest_firstname = $this->jomres_encryption->decrypt($data->enc_firstname);
+					$guest_surname = $this->jomres_encryption->decrypt($data->enc_surname);
+					$guest_house = $this->jomres_encryption->decrypt($data->enc_house);
+					$guest_street = $this->jomres_encryption->decrypt($data->enc_street);
+					$guest_town = $this->jomres_encryption->decrypt($data->enc_town);
+					$guest_region = $this->jomres_encryption->decrypt($data->enc_county);
+					$guest_country = $this->jomres_encryption->decrypt($data->enc_country);
+					$guest_postcode = $this->jomres_encryption->decrypt($data->enc_postcode);
+					$guest_tel_landline = $this->jomres_encryption->decrypt($data->enc_tel_landline);
+					$guest_tel_mobile = $this->jomres_encryption->decrypt($data->enc_tel_mobile);
+					$guest_email = $this->jomres_encryption->decrypt($data->enc_email);
+
 					$query = "SELECT discount FROM #__jomres_guests WHERE mos_userid = '$id' AND property_uid = '$this->property_uid' limit 1";
 					$discount = doSelectSql($query, 1);
 					$guest_specific_discount = $discount;
@@ -3333,13 +3334,13 @@ class dobooking
 	}
 
 	private static function sort_alphabetic( $a , $b ) {
-        if ($a['surname'] > $b['surname']) {
-            return 1;
-        } else if ($a['surname'] < $b['surname']) {
-            return -1;
-        } else {
-            return 0; 
-        }
+		if ($a['surname'] > $b['surname']) {
+			return 1;
+		} else if ($a['surname'] < $b['surname']) {
+			return -1;
+		} else {
+			return 0; 
+		}
 	}
 	
 	/**

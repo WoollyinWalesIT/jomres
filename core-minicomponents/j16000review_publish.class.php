@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,41 +16,39 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j16000review_publish
 {
-    public function __construct()
-    {
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
-        $rating_id = (int) $_GET[ 'rating_id' ];
-        $state = (int) $_GET[ 'state' ];
+		$rating_id = (int) $_GET[ 'rating_id' ];
+		$state = (int) $_GET[ 'state' ];
 
-        if ($rating_id > 0) {
-            jr_import('jomres_reviews');
-            $Reviews = new jomres_reviews();
-            if ($state == 0) {
-                $result = $Reviews->publish_review($rating_id);
-            } else {
-                $result = $Reviews->unpublish_review($rating_id);
-            }
-            if ($result) {
-                echo '1';
-            } else {
-                echo '0';
-            }
+		if ($rating_id > 0) {
+			jr_import('jomres_reviews');
+			$Reviews = new jomres_reviews();
+			if ($state == 0) {
+				$result = $Reviews->publish_review($rating_id);
+			} else {
+				$result = $Reviews->unpublish_review($rating_id);
+			}
+			if ($result) {
+				echo '1';
+			}
+			
+			return;
+		}
+		echo '2';
 
-            return;
-        }
-        echo '2';
+		return;
+	}
 
-        return;
-    }
-
-    public function getRetVals()
-    {
-        return $this->retVals;
-    }
+	public function getRetVals()
+	{
+		return null;
+	}
 }

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,10 +16,10 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_menu
 {
-    public function __construct()
-    {
+	public function __construct()
+	{
 		//frontend menu
-        $this->sections = array();
+		$this->sections = array();
 		$this->items = array();
 		$this->menu = array();
 		
@@ -27,7 +27,7 @@ class jomres_menu
 		$this->admin_sections = array();
 		$this->admin_items = array();
 		$this->admin_menu = array();
-    }
+	}
 
 	public function add_section($section_id = 1, $title = '')
 	{
@@ -42,7 +42,7 @@ class jomres_menu
 		return true;
 	}
 
-    public function add_admin_section($section_id = 1, $title = '')
+	public function add_admin_section($section_id = 1, $title = '')
 	{
 		if ($title == '') {
 			return false;

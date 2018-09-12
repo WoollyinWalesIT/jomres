@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,17 +16,17 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_temp_booking_handler
 {
-    public function __construct()
-    {
+	public function __construct()
+	{
 
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
-        
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
+		
 		$this->task = get_showtime('task');
-        $this->jomressession = '';
+		$this->jomressession = '';
 		$this->jomressession_db = '';
-        $this->sessionfile = '';
-        $this->session_directory = JOMRES_SESSIONS_ABSPATH;
+		$this->sessionfile = '';
+		$this->session_directory = JOMRES_SESSIONS_ABSPATH;
 		$this->session_handler = $jrConfig['session_handler'];
 
 		//check and create the session dirs if necessary
@@ -72,7 +72,7 @@ class jomres_temp_booking_handler
 			'user_agent' => $this->user_agent
 		);
 
-        $this->tmpbooking = array(
+		$this->tmpbooking = array(
 			'requestedRoom' => '',
 			'rate_pernight' => '',
 			'variancetypes' => '',
@@ -140,7 +140,7 @@ class jomres_temp_booking_handler
 			'channel_manager_booking' => 0
 			);
 
-        $this->tmpguest = array(
+		$this->tmpguest = array(
 			'guests_uid' => '',
 			'mos_userid' => '',
 			'existing_id' => '',
@@ -162,16 +162,16 @@ class jomres_temp_booking_handler
 			'timestamp' => '',
 			);
 
-        $this->tmpsearch_data = array(
+		$this->tmpsearch_data = array(
 			'jomsearch_availability' => '', 
 			'jomsearch_availability_departure' => ''
 			);
-        
+		
 
-        $this->tmplang = array(
+		$this->tmplang = array(
 			'jomreslang' => get_showtime('lang')
 			);
-        
+		
 		$this->user_settings = array(
 			'editing_on' => false, 
 			'property_management_view' => false, 
@@ -188,7 +188,7 @@ class jomres_temp_booking_handler
 		$this->_tmpsearch_data = $this->tmpsearch_data;
 		$this->_tmplang = $this->tmplang;
 		$this->_user_settings = $this->user_settings;
-    }
+	}
 
 	//if the ip and user agent don`t match, exit here
 	private function _preventHijacking()
@@ -208,70 +208,70 @@ class jomres_temp_booking_handler
 		return false;
 	}
 
-    public function initCustomFields($allCustomFields = array())
-    {
-        $data = array();
-        
+	public function initCustomFields($allCustomFields = array())
+	{
+		$data = array();
+		
 		foreach ($allCustomFields as $f) {
-            $uid = $f[ 'uid' ];
-            $newBookingfieldName = $f[ 'fieldname' ].'_'.$uid;
+			$uid = $f[ 'uid' ];
+			$newBookingfieldName = $f[ 'fieldname' ].'_'.$uid;
 			if (!isset($this->tmpbooking[ $newBookingfieldName ])) {
-                $this->addNewBookingField($newBookingfieldName);
-            }
-        }
-    }
+				$this->addNewBookingField($newBookingfieldName);
+			}
+		}
+	}
 
-    public function saveCustomFields($allCustomFields = array())
-    {
-        $data = array();
-        foreach ($allCustomFields as $f) {
-            $uid = $f[ 'uid' ];
-            $newBookingfieldName = $f[ 'fieldname' ].'_'.$uid;
-            $data = jomresGetParam($_POST, $f[ 'fieldname' ].'_'.$uid, '');
-            if (!isset($this->tmpbooking[ $newBookingfieldName ])) {
-                $this->addNewBookingField($newBookingfieldName);
-            }
-            $this->updateBookingField($newBookingfieldName, $data);
-        }
-    }
+	public function saveCustomFields($allCustomFields = array())
+	{
+		$data = array();
+		foreach ($allCustomFields as $f) {
+			$uid = $f[ 'uid' ];
+			$newBookingfieldName = $f[ 'fieldname' ].'_'.$uid;
+			$data = jomresGetParam($_POST, $f[ 'fieldname' ].'_'.$uid, '');
+			if (!isset($this->tmpbooking[ $newBookingfieldName ])) {
+				$this->addNewBookingField($newBookingfieldName);
+			}
+			$this->updateBookingField($newBookingfieldName, $data);
+		}
+	}
 
-    public function initBookingSession($jomressession = '')
-    {
-        if (isset($_REQUEST[ 'jsid' ])) { // jsid is passed by gateway services sending response codes
-            $session_id = jomresGetParam($_REQUEST, 'jsid', '');
-        } elseif (strlen($jomressession) > 0) {
-            $session_id = $jomressession;
-        } else {
-            $session_id = jomres_cmsspecific_getsessionid();
-        }
+	public function initBookingSession($jomressession = '')
+	{
+		if (isset($_REQUEST[ 'jsid' ])) { // jsid is passed by gateway services sending response codes
+			$session_id = jomresGetParam($_REQUEST, 'jsid', '');
+		} elseif (strlen($jomressession) > 0) {
+			$session_id = $jomressession;
+		} else {
+			$session_id = jomres_cmsspecific_getsessionid();
+		}
 
 		//we`ll check to see if session id is set and if we haven`t already loaded it..
-        if (strlen($session_id) > 0 && $this->jomressession != $session_id) {
-            $this->jomressession = $session_id;
+		if (strlen($session_id) > 0 && $this->jomressession != $session_id) {
+			$this->jomressession = $session_id;
 
-            $hash = sha1($this->jomressession);
-            $this->sessionfile = $this->session_directory.$hash.'.txt';
+			$hash = sha1($this->jomressession);
+			$this->sessionfile = $this->session_directory.$hash.'.txt';
 			
 			$this->jomressession_db = substr($this->jomressession, 0, 50);
 
-            $jomres_custom_field_handler = jomres_singleton_abstract::getInstance('jomres_custom_field_handler');
-            $jomres_custom_field_handler->get_all_custom_fields();
+			$jomres_custom_field_handler = jomres_singleton_abstract::getInstance('jomres_custom_field_handler');
+			$jomres_custom_field_handler->get_all_custom_fields();
 
-            $this->initCustomFields($jomres_custom_field_handler->custom_fields);
+			$this->initCustomFields($jomres_custom_field_handler->custom_fields);
 
-            $this->session_jomres_start();
-        }
-    }
+			$this->session_jomres_start();
+		}
+	}
 
-    public function session_jomres_start()
-    {
+	public function session_jomres_start()
+	{
 		if ($this->session_handler == 'file') {
 			$this->_jomres_session_start_file();
 		} else {
 			$this->_jomres_session_start_database();
 		}
 		$this->_replace_guest_data();
-    }
+	}
 	
 	// Check various guest specific fields to see if the are not populated. If they are not, we will use the thisJRUser fields to populate them so that the booking form is pre-populated
 	private function _replace_guest_data()
@@ -429,8 +429,8 @@ class jomres_temp_booking_handler
 		}
 	}
 
-    public function close_jomres_session()
-    {
+	public function close_jomres_session()
+	{
 		if (
 			$this->info != $this->_info || 
 			$this->tmpbooking != $this->_tmpbooking || 
@@ -463,74 +463,74 @@ class jomres_temp_booking_handler
 				}
 			}
 		}
-    }
+	}
 
-    public function getJomressession()
-    {
-        return $this->jomressession;
-    }
+	public function getJomressession()
+	{
+		return $this->jomressession;
+	}
 
-    public function getBookingPropertyId()
-    {
-        return $this->tmpbooking[ 'property_uid' ];
-    }
+	public function getBookingPropertyId()
+	{
+		return $this->tmpbooking[ 'property_uid' ];
+	}
 
-    public function getBookingData()
-    {
-        return $this->tmpbooking;
-    }
+	public function getBookingData()
+	{
+		return $this->tmpbooking;
+	}
 
-    public function getGuestData()
-    {
-        return $this->tmpguest;
-    }
+	public function getGuestData()
+	{
+		return $this->tmpguest;
+	}
 
-    public function saveBookingData()
-    {
-        $this->close_jomres_session();
-    }
+	public function saveBookingData()
+	{
+		$this->close_jomres_session();
+	}
 
-    public function saveGuestData()
-    {
-        $this->close_jomres_session();
-    }
+	public function saveGuestData()
+	{
+		$this->close_jomres_session();
+	}
 
-    public function getBookingFieldVal($field)
-    {
-        if (isset($this->tmpbooking[ $field ])) {
-            return $this->tmpbooking[ $field ];
-        } else {
-            return null;
-        }
-    }
+	public function getBookingFieldVal($field)
+	{
+		if (isset($this->tmpbooking[ $field ])) {
+			return $this->tmpbooking[ $field ];
+		} else {
+			return null;
+		}
+	}
 
-    public function updateBookingField($fieldname, $value)
-    {
-        if (!isset($this->tmpbooking[ $fieldname ])) {
-            $this->addNewBookingField($fieldname);
-        }
-        
+	public function updateBookingField($fieldname, $value)
+	{
+		if (!isset($this->tmpbooking[ $fieldname ])) {
+			$this->addNewBookingField($fieldname);
+		}
+		
 		$this->tmpbooking[ $fieldname ] = $value;
-    }
+	}
 
-    public function updateGuestField($fieldname, $value)
-    {
-        $this->tmpguest[ $fieldname ] = $value;
-    }
+	public function updateGuestField($fieldname, $value)
+	{
+		$this->tmpguest[ $fieldname ] = $value;
+	}
 
-    public function addNewBookingField($fieldname)
-    {
-        $this->tmpbooking[ $fieldname ] = '';
-    }
+	public function addNewBookingField($fieldname)
+	{
+		$this->tmpbooking[ $fieldname ] = '';
+	}
 
-    public function addNewGuestField($fieldname)
-    {
-        $this->tmpguest[ $fieldname ] = '';
-    }
+	public function addNewGuestField($fieldname)
+	{
+		$this->tmpguest[ $fieldname ] = '';
+	}
 
-    public function resetCreditCardDetails()
-    {
-        $this->tmpguest = array(
+	public function resetCreditCardDetails()
+	{
+		$this->tmpguest = array(
 			'ccard_no' => '',
 			'ccard_issued' => '',
 			'ccard_expiry' => '',
@@ -539,11 +539,11 @@ class jomres_temp_booking_handler
 			'ccv' => '',
 			'type' => '',
 			);
-    }
+	}
 
-    public function resetTempGuestData()
-    {
-        $this->tmpguest = array(
+	public function resetTempGuestData()
+	{
+		$this->tmpguest = array(
 			'guests_uid' => '',
 			'mos_userid' => '',
 			'existing_id' => '',
@@ -564,12 +564,12 @@ class jomres_temp_booking_handler
 			'tag' => '',
 			'timestamp' => '',
 			);
-    }
+	}
 
-    public function resetTempBookingData()
-    {
-        $pid = $this->tmpbooking[ 'property_uid' ];
-        
+	public function resetTempBookingData()
+	{
+		$pid = $this->tmpbooking[ 'property_uid' ];
+		
 		$this->tmpbooking = array(
 			'property_uid' => $pid,
 			'requestedRoom' => '',
@@ -634,20 +634,20 @@ class jomres_temp_booking_handler
 			'sendHotelEmail' => true,
 			'secret_key_payment' => false
 			);
-    }
+	}
 
-    public function resetCart()
-    {
-        $this->cart_data = array();
-    }
+	public function resetCart()
+	{
+		$this->cart_data = array();
+	}
 	
 	public function resetTmpSearchData()
-    {
-        $this->tmpsearch_data = array(
+	{
+		$this->tmpsearch_data = array(
 			'jomsearch_availability' => '', 
 			'jomsearch_availability_departure' => ''
 		);
-    }
+	}
 	
 	public function resetTmpUserData()
 	{

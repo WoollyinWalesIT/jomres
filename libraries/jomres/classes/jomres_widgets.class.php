@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,12 +16,12 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_widgets
 {
-    public function __construct()
-    {
+	public function __construct()
+	{
 		$this->widgets = array();
 		$this->this_page_widgets = array();
 		$this->default_widgets = array();
-    }
+	}
 
 	//register widget
 	public function register_widget($eventPoint = '', $eventName = '', $title = '', $default = false)

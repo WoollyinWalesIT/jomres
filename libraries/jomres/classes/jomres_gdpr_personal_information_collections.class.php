@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -23,10 +23,10 @@ class jomres_gdpr_personal_information_collections
 {
 	 private $cms_id = 0;
 	 
-    public function __construct()
-    {
-        $this->cms_id = 0;
-    }
+	public function __construct()
+	{
+		$this->cms_id = 0;
+	}
 
 	/**
 	*
@@ -199,7 +199,7 @@ class jomres_gdpr_personal_information_collections
 		}
 
 		// Profile table data
-        $query = 'SELECT
+		$query = 'SELECT
 						`enc_firstname`,
 						`enc_surname`,
 						`enc_house`,
@@ -215,11 +215,11 @@ class jomres_gdpr_personal_information_collections
 					FROM #__jomres_guest_profile 
 					WHERE `cms_user_id` = ' .(int) $this->cms_id.' 
 					LIMIT 1 ';
-        $result = doSelectSql($query );
+		$result = doSelectSql($query );
 
 		
-        if (!empty($result)) {
-            foreach ($result as $r) {
+		if (!empty($result)) {
+			foreach ($result as $r) {
 				$profile_data ['description'] = jr_gettext('_JOMRES_GDPR_DOWNLOAD_PROFILE_DATA_DESC', '_JOMRES_GDPR_DOWNLOAD_PROFILE_DATA_DESC', false);
 				$profile_data['profile_data'] = array (
 					array (
@@ -284,7 +284,7 @@ class jomres_gdpr_personal_information_collections
 						)
 				);
 			}
-        }
+		}
 		return array("guest_data" => $guest_data , "profile_data" => $profile_data);
 	}
 	

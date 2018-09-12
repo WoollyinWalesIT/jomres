@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,20 +16,20 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class basic_rate_details
 {
-    public function __construct()
-    {
-        $this->multi_query_rates = array();
-        $this->rates = array();
+	public function __construct()
+	{
+		$this->multi_query_rates = array();
+		$this->rates = array();
 		$this->property_uid = 0;
-    }
+	}
 
 	//get rates for property uid
 	//returns an array like $this->rates[roomclass_uid][tarifftype_id][rates_uid][]
 	public function get_rates($property_uid = 0)
 	{
 		if ($property_uid == 0) {
-            throw new Exception('Error: Property uids not set.');
-        }
+			throw new Exception('Error: Property uids not set.');
+		}
 		
 		if (!isset($this->multi_query_rates[$property_uid])) {
 			$this->get_rates_multi(array($property_uid));
@@ -47,11 +47,11 @@ class basic_rate_details
 		return true;
 	}
 
-    //get all rates details for multiple property uids array
-    public function get_rates_multi($property_uids = array())
-    {
+	//get all rates details for multiple property uids array
+	public function get_rates_multi($property_uids = array())
+	{
 		//if the property uids passed are not an array, we`ll make it one
-        if (!is_array($property_uids)) {
+		if (!is_array($property_uids)) {
 			if ((int)$property_uids > 0) {
 				$property_uids = array((int)$property_uids);
 			} else {
@@ -60,8 +60,8 @@ class basic_rate_details
 		}
 		
 		if (empty($property_uids)) {
-            throw new Exception('Error: Property uids not set.');
-        }
+			throw new Exception('Error: Property uids not set.');
+		}
 		
 		$tmp_property_uids = array();
 		
@@ -80,7 +80,7 @@ class basic_rate_details
 		$property_uids = $tmp_property_uids;
 		unset($tmp_property_uids);
 
-        $query = "SELECT
+		$query = "SELECT
 					a.rates_uid,
 					a.rate_title,
 					a.rate_description,
@@ -110,7 +110,7 @@ class basic_rate_details
 				LEFT JOIN #__jomcomp_tarifftypes c ON b.tarifftype_id = c.id 
 				WHERE 
 					a.property_uid IN (".jomres_implode($property_uids).") ";
-        $result = doSelectSql($query);
+		$result = doSelectSql($query);
 		
 		if (empty($result)) {
 			return false;
@@ -150,6 +150,6 @@ class basic_rate_details
 				);
 		}
 
-        return true;
-    }
+		return true;
+	}
 }

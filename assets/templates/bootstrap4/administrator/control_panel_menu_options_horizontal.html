@@ -1,14 +1,19 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<li id="{ID}" class="dropdown">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown">{CATEGORY} <span class="caret"></span></a>
-	<ul class="dropdown-menu" role="menu">
+
+<li class="nav-item dropdown" id="{ID}" >
+	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown_{ID}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			{CATEGORY}
+	</a>
+		
+	
+	<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 		<patTemplate:tmpl name="rows" unusedvars="strip">
-			<li class="{ACTIVE} {DISABLED_CLASS}">
-				<a href="{LINK}" {TARGET}>
-					<i class="fa {ICON_CLASS}" aria-hidden="true" style="font-size:18px;"></i> {MENU_NAME} {BADGES}
-				</a>
-			</li>
+			<div class="{ACTIVE} {DISABLED_CLASS}">
+			<a class="dropdown-item" href="{LINK}"  {TARGET}>
+				<i class="fa {ICON_CLASS}" aria-hidden="true" style="font-size:18px;"></i> {MENU_NAME} {BADGES}
+			</a>
+			</div>
 		</patTemplate:tmpl>
-	</ul>
+	</div>
 </li>
 </patTemplate:tmpl>

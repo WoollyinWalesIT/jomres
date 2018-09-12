@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,30 +16,30 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j16000view_property_reviews
 {
-    public function __construct($componentArgs)
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct($componentArgs)
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
-        $output = array();
-        $pageoutput = array();
-        $rows = array();
+			return;
+		}
+		$output = array();
+		$pageoutput = array();
+		$rows = array();
 
-        if (isset($componentArgs[ 'property_uid' ])) {
-            $property_uid = $componentArgs[ 'property_uid' ];
-        } else {
-            $property_uid = jomresGetParam($_REQUEST, 'property_uid', 0);
-        }
+		if (isset($componentArgs[ 'property_uid' ])) {
+			$property_uid = $componentArgs[ 'property_uid' ];
+		} else {
+			$property_uid = jomresGetParam($_REQUEST, 'property_uid', 0);
+		}
 
-        $output[ 'PROPERTY_NAME' ] = getPropertyName($property_uid);
+		$output[ 'PROPERTY_NAME' ] = getPropertyName($property_uid);
 
-        jr_import('jomres_reviews');
-        $Reviews = new jomres_reviews();
-        $all_reviews = $Reviews->get_all_reviews_index_by_property_uid();
+		jr_import('jomres_reviews');
+		$Reviews = new jomres_reviews();
+		$all_reviews = $Reviews->get_all_reviews_index_by_property_uid();
 
 		if (isset($all_reviews[ $property_uid ])) {
 			if (is_array($all_reviews) && !empty($all_reviews)) {
@@ -115,12 +115,14 @@ class j16000view_property_reviews
 			$tmpl->addRows('pageoutput', $pageoutput);
 			$tmpl->addRows('rows', $rows);
 			$tmpl->displayParsedTemplate();
+		}  else {
+			echo jr_gettext('_JOMRES_REVIEWS_NOREVIEWS', '_JOMRES_REVIEWS_NOREVIEWS', false);
 		}
-    }
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

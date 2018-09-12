@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -233,3 +233,5 @@ jr_define('_JOMRES_SHORTCODES_06000SHOW_CONSENT_FORM', 'Shows the GDPR compliant
 
 jr_define( '_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE_LIST', 'Property room type list' );
 jr_define( '_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE', 'Show a property room type' );
+
+jr_define( '_JOMRES_SHORTCODE_LOGIN_FORM', 'Show the login form' );

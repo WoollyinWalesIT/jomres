@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,24 +16,24 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_countries
 {
-    public function __construct()
-    {
-        $this->countries = false;
+	public function __construct()
+	{
+		$this->countries = false;
 		$this->used_countries = false;
-        
+		
 		$this->get_used_property_countries();
-    }
+	}
 
 	//get countries used by properties in the system
-    public function get_used_property_countries()
-    {
+	public function get_used_property_countries()
+	{
 		if (is_array($this->used_countries)) {
 			return true;
 		}
 		
 		$this->used_countries = array();
 
-        $query = "SELECT `id`,`countrycode`,`countryname` FROM #__jomres_countries WHERE `countrycode` IN (SELECT DISTINCT `property_country` FROM #__jomres_propertys) ORDER BY `countryname`";
+		$query = "SELECT `id`,`countrycode`,`countryname` FROM #__jomres_countries WHERE `countrycode` IN (SELECT DISTINCT `property_country` FROM #__jomres_propertys) ORDER BY `countryname`";
 		$result = doSelectSql($query);
 		
 		if (!empty($result)) {
@@ -44,17 +44,17 @@ class jomres_countries
 		
 		unset($result);
 
-        return true;
-    }
+		return true;
+	}
 	
 	//get all countries in the system
 	public function get_all_countries()
-    {
+	{
 		if (is_array($this->countries)) {
 			return true;
 		}
 
-        $query = "SELECT `id`,`countrycode`,`countryname` FROM #__jomres_countries ORDER BY `countryname`";
+		$query = "SELECT `id`,`countrycode`,`countryname` FROM #__jomres_countries ORDER BY `countryname`";
 		$result = doSelectSql($query);
 		
 		if (!empty($result)) {
@@ -65,13 +65,13 @@ class jomres_countries
 		
 		unset($result);
 
-        return true;
-    }
+		return true;
+	}
 
 	//get country by id, used on edit country admin page
-    public function get_country_by_id($id = 0)
-    {
-        if ($id == 0) {
+	public function get_country_by_id($id = 0)
+	{
+		if ($id == 0) {
 			return false;
 		}
 		
@@ -82,6 +82,6 @@ class jomres_countries
 			return $result;
 		}
 
-        return false;
-    }
+		return false;
+	}
 }

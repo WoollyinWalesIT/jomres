@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -18,53 +18,53 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j00005x_build_javascript_lang_definitions
 {
-    public function __construct($componentArgs)
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct($componentArgs)
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
-        if (AJAXCALL == '1') {
-            return;
-        }
+		if (AJAXCALL == '1') {
+			return;
+		}
 
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
-        $ls = jomresGetDomain();
-        $javascript_files = array();
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
+		$ls = jomresGetDomain();
+		$javascript_files = array();
 
-        $live_scrolling_enabled = 'true';
-        if ($jrConfig['live_scrolling_enabled'] == '0' || jomres_cmsspecific_areweinadminarea()) {
-            $live_scrolling_enabled = 'false';
-        }
+		$live_scrolling_enabled = 'true';
+		if ($jrConfig['live_scrolling_enabled'] == '0' || jomres_cmsspecific_areweinadminarea()) {
+			$live_scrolling_enabled = 'false';
+		}
 
-        if (jomres_cmsspecific_areweinadminarea()) {
-            $jomres_sitepage_url_ajax = JOMRES_SITEPAGE_URL_ADMIN_AJAX;
-        } else {
-            $jomres_sitepage_url_ajax = JOMRES_SITEPAGE_URL_AJAX;
-        }
+		if (jomres_cmsspecific_areweinadminarea()) {
+			$jomres_sitepage_url_ajax = JOMRES_SITEPAGE_URL_ADMIN_AJAX;
+		} else {
+			$jomres_sitepage_url_ajax = JOMRES_SITEPAGE_URL_AJAX;
+		}
 
-        $misc_url_defs = '
+		$misc_url_defs = '
 			var live_site_ajax = "'.$jomres_sitepage_url_ajax.'";
 			var compare_url = "'.JOMRES_SITEPAGE_URL_NOSEF.'&task=compare'.'";
 			var path_to_jomres_dir = "'.get_showtime('live_site').'";
 			var module_pop_ajax_url = "'.JOMRES_SITEPAGE_URL_AJAX.'&task=module_popup&nofollowtmpl=1&id=";
 			';
 
-        $template_dir = find_plugin_template_directory();
-        if (jomres_cmsspecific_areweinadminarea() && $template_dir != 'jquery_ui') {
-            if (_JOMRES_DETECTED_CMS != 'joomla4') {
+		$template_dir = find_plugin_template_directory();
+		if (jomres_cmsspecific_areweinadminarea() && $template_dir != 'jquery_ui') {
+			if (_JOMRES_DETECTED_CMS != 'joomla4') {
 				$template_dir = 'bootstrap';
 			} else {
 				$template_dir = 'bootstrap4';
 			}
-        }
+		}
 
-        $misc_url_defs .= '
+		$misc_url_defs .= '
 			var jomres_template_version = "'.$template_dir.'";
 			var property_reviews_ajax_url = "'.JOMRES_SITEPAGE_URL_AJAX.'&task=show_property_reviews&nofollowtmpl=1&property_uid=";
 			
@@ -95,39 +95,39 @@ class j00005x_build_javascript_lang_definitions
 			var jomres_javascript_readless = "' .jr_gettext('_JOMRES_JAVASCRIPT_READLESS', '_JOMRES_JAVASCRIPT_READLESS', false).'";
 			';
 
-        if (get_showtime('property_uid') > 0) {
-            $current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
-            $current_property_details->gather_data(get_showtime('property_uid'));
+		if (get_showtime('property_uid') > 0) {
+			$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
+			$current_property_details->gather_data(get_showtime('property_uid'));
 
-            $property_type = $current_property_details->property_type;
-        } else {
-            $property_type = 'nopropertytype';
-        }
+			$property_type = $current_property_details->property_type;
+		} else {
+			$property_type = 'nopropertytype';
+		}
 
-        if ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443) {// We need to include some javascript which could normally be echo'd into the page, but due to the fact that it might be included by Jomres proper, as well as plugins, we'll instead create it's own .js file, and use the host CMS to insert it into the head.
-            $temp_file = $ls.'_ssl_'.get_showtime('lang').'_'.$property_type.'_';
-        } else {
-            $temp_file = $ls.'_'.get_showtime('lang').'_'.$property_type.'_';
-        }
+		if ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443) {// We need to include some javascript which could normally be echo'd into the page, but due to the fact that it might be included by Jomres proper, as well as plugins, we'll instead create it's own .js file, and use the host CMS to insert it into the head.
+			$temp_file = $ls.'_ssl_'.get_showtime('lang').'_'.$property_type.'_';
+		} else {
+			$temp_file = $ls.'_'.get_showtime('lang').'_'.$property_type.'_';
+		}
 
-        if (jomres_cmsspecific_areweinadminarea()) {
-            $temp_file .= '_misc_url_defs_admin.js';
-        } else {
-            $temp_file .= '_misc_url_defs.js';
-        }
-        if (!file_exists(JOMRES_TEMP_ABSPATH.$temp_file)) {
-            $result = file_put_contents(JOMRES_TEMP_ABSPATH.$temp_file, $misc_url_defs);
-            if (!$result) {
-                throw new Exception('Tried to write  '.JOMRES_TEMP_ABSPATH.$temp_file.' but was not succcessful');
-            }
-        }
+		if (jomres_cmsspecific_areweinadminarea()) {
+			$temp_file .= '_misc_url_defs_admin.js';
+		} else {
+			$temp_file .= '_misc_url_defs.js';
+		}
+		if (!file_exists(JOMRES_TEMP_ABSPATH.$temp_file)) {
+			$result = file_put_contents(JOMRES_TEMP_ABSPATH.$temp_file, $misc_url_defs);
+			if (!$result) {
+				throw new Exception('Tried to write  '.JOMRES_TEMP_ABSPATH.$temp_file.' but was not succcessful');
+			}
+		}
 
-        jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/temp/', $temp_file);
-    }
+		jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/temp/', $temp_file);
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -18,20 +18,20 @@ class jomres_media_centre_images_optimizer
 {
 	protected $optimizer;
 
-    public function __construct()
-    {
+	public function __construct()
+	{
 		$factory = new \ImageOptimizer\OptimizerFactory();
 		$this->optimizer = $factory->get();
-    }
+	}
 	
 	public static function getInstance()
-    {
-        if (!self::$configInstance) {
-            self::$configInstance = new self();
-        }
+	{
+		if (!self::$configInstance) {
+			self::$configInstance = new self();
+		}
 
-        return self::$configInstance;
-    }
+		return self::$configInstance;
+	}
 	
 	public function optimize($filepath = '')
 	{

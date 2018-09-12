@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,25 +16,25 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j06001cpanel
 {
-    public function __construct($componentArgs)
-    {
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
-            $this->shortcode_data = array(
-                    'task' => 'cpanel',
-                    'arguments' => array(),
-                    'info' => '_JOMRES_SHORTCODES_06001CPANEL',
-                );
+	public function __construct($componentArgs)
+	{
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
+			$this->shortcode_data = array(
+					'task' => 'cpanel',
+					'arguments' => array(),
+					'info' => '_JOMRES_SHORTCODES_06001CPANEL',
+				);
 
-            return;
-        }
+			return;
+		}
 		jomres_cmsspecific_setmetadata('title', jomres_purify_html( jr_gettext('_JRPORTAL_CPANEL', '_JRPORTAL_CPANEL', false) ));
 		
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
+		$jrConfig = $siteConfig->get();
 		
-        $property_uid = getDefaultProperty();
+		$property_uid = getDefaultProperty();
 		
 		$jomres_widgets = jomres_singleton_abstract::getInstance('jomres_widgets');
 		$jomres_widgets->get_widgets($property_uid);
@@ -93,10 +93,10 @@ class j06001cpanel
 		}
 		
 		$pageoutput = array();
-        $pageoutput[] = $output;
-        $tmpl = new patTemplate();
-        $tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
-        $tmpl->addRows('pageoutput', $pageoutput);
+		$pageoutput[] = $output;
+		$tmpl = new patTemplate();
+		$tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
+		$tmpl->addRows('pageoutput', $pageoutput);
 
 		for ($i = 1; $i <= $number_of_columns; ++$i) {
 			if (!isset(${'output'.$i})) {
@@ -107,15 +107,15 @@ class j06001cpanel
 			$tmpl->addRows('columns'.$i, array(${'output'.$i}));
 		}
 
-        $tmpl->readTemplatesFromInput('cpanel.html');
-        $tmpl->displayParsedTemplate();
-    }
+		$tmpl->readTemplatesFromInput('cpanel.html');
+		$tmpl->displayParsedTemplate();
+	}
 
 
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

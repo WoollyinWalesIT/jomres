@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -26,15 +26,15 @@ class j16000list_users
 			return;
 			}
 		
-		$output     = array ();
-		$rows       = array ();
+		$output	 = array ();
+		$rows	   = array ();
 		$pageoutput = array ();
 
 		$output[ 'HLEGEND' ] 					   					   	= jr_gettext( '_JOMRES_HLEGEND', '_JOMRES_HLEGEND',false );
-		$output[ '_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE' ]              	= jr_gettext( '_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE', '_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE',false );
+		$output[ '_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE' ]			  	= jr_gettext( '_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE', '_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE',false );
 		$output[ '_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED' ] 	= jr_gettext( '_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', '_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED',false );
-		$output[ 'HACCESSLEVEL' ]       								= jr_gettext( '_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL', '_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL',false );
-		$output[ 'HUSERNAME' ]           								= jr_gettext( '_JOMRES_COM_MR_ASSIGNUSER_USERNAME', '_JOMRES_COM_MR_ASSIGNUSER_USERNAME',false );
+		$output[ 'HACCESSLEVEL' ]	   								= jr_gettext( '_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL', '_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL',false );
+		$output[ 'HUSERNAME' ]		   								= jr_gettext( '_JOMRES_COM_MR_ASSIGNUSER_USERNAME', '_JOMRES_COM_MR_ASSIGNUSER_USERNAME',false );
 
 		$jomres_users = jomres_singleton_abstract::getInstance('jomres_users');
 		$jomres_users->get_users();
@@ -99,9 +99,9 @@ class j16000list_users
 				$r[ 'LINKTEXT' ] = "";
 
 			if ($u['username'] != '')
-				$r[ 'USERNAME' ]       = $u['username'];
+				$r[ 'USERNAME' ]	   = $u['username'];
 			else
-				$r[ 'USERNAME' ]       = '-';
+				$r[ 'USERNAME' ]	   = '-';
 			
 			$r[ 'NUMBEROFPROPERTIES' ] = count($u['authorised_properties']);
 			$r[ 'API_KEY' ] 		   = $u['apikey'];

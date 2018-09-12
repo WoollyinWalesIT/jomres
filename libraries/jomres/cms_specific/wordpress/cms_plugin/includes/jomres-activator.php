@@ -3,10 +3,10 @@
 /**
  * Fired during plugin activation
  *
- * @link       https://www.jomres.net
- * @since      9.9.19
+ * @link	   https://www.jomres.net
+ * @since	  9.9.19
  *
- * @package    Jomres
+ * @package	Jomres
  * @subpackage Jomres/includes
  */
 
@@ -15,10 +15,10 @@
  *
  * This class defines all code necessary to run during the plugin's activation.
  *
- * @since      9.9.19
- * @package    Jomres
+ * @since	  9.9.19
+ * @package	Jomres
  * @subpackage Jomres/includes
- * @author     Vince Wooll <support@jomres.net>
+ * @author	 Vince Wooll <support@jomres.net>
  */
 class Jomres_Activator {
 
@@ -27,7 +27,7 @@ class Jomres_Activator {
 	 *
 	 * Download Jomres, unzip files, move files to /jomres dir and execute the Jomres installer.
 	 *
-	 * @since    9.9.19
+	 * @since	9.9.19
 	 */
 	public static function activate() {
 		
@@ -41,7 +41,7 @@ class Jomres_Activator {
 	 *
 	 * This installs or updates Jomres on Jomres WP plugin activation.
 	 *
-	 * @since    9.9.19
+	 * @since	9.9.19
 	 */
 	private static function maybe_install_or_update_jomres() {
 		
@@ -55,7 +55,7 @@ class Jomres_Activator {
 	 * Default Jomres Page includes the Jomres shortcode formatted like [jomres:xx-XX].
 	 * xx-XX is the language code, for example: en-GB.
 	 *
-	 * @since    9.9.19
+	 * @since	9.9.19
 	 */
 	private static function maybe_add_default_jomres_page() {
 		

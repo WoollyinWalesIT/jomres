@@ -834,6 +834,9 @@ class patTemplate
 		
 		$common_strings[ 'COMMON_LANG' ] = get_showtime("lang");
 		$common_strings[ 'COMMON_LANG_SHORT' ] = substr( get_showtime("lang"), 0, 2 );
+		
+		$common_strings[ 'CSRF_TOKEN' ] = '<input type="hidden" name="jomres_csrf_token" value="' . csrf::setToken() . '"/>' ;
+
 
 		return $common_strings;
 		}

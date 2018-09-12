@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -41,7 +41,7 @@ class j06005save_client
 		jr_import("jomres_oauth_scopes");
 		$scopes_class = new jomres_oauth_scopes($ePointFilepath);
 		
-        $identifier			= jomresGetParam( $_POST, 'identifier', "" );
+		$identifier			= jomresGetParam( $_POST, 'identifier', "" );
 		$client_id			= jomresGetParam( $_POST, 'client_id', "" );
 		$client_secret		= jomresGetParam( $_POST, 'client_secret', "" );
 		$redirect_uri		= jomresGetParam( $_POST, 'redirect_uri', "" );
@@ -51,43 +51,43 @@ class j06005save_client
 
 		$grant_types = null;
 		
-        if ( $client_id != $thisJRUser->username ) {
-            foreach ($scopes_class->default_scopes as $category => $category_scopes)
-                {
-                foreach ($category_scopes as $scope)
-                    {
-                    if ( in_array ( $scope->user_type ,  $available_scopes ) && in_array( $scope->scope , $posted_scopes )  )
-                        {
-                        $requested_scopes .= $scope->scope.",";
-                        }
-                    }
-                
-                }
-            $requested_scopes = rtrim($requested_scopes, ",");
+		if ( $client_id != $thisJRUser->username ) {
+			foreach ($scopes_class->default_scopes as $category => $category_scopes)
+				{
+				foreach ($category_scopes as $scope)
+					{
+					if ( in_array ( $scope->user_type ,  $available_scopes ) && in_array( $scope->scope , $posted_scopes )  )
+						{
+						$requested_scopes .= $scope->scope.",";
+						}
+					}
+				
+				}
+			$requested_scopes = rtrim($requested_scopes, ",");
 
 
-            if ($client_id == "" || $client_secret == "")
-                jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=oauth_edit_client&client_id=".$client_id ), "" );
+			if ($client_id == "" || $client_secret == "")
+				jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=oauth_edit_client&client_id=".$client_id ), "" );
 
-            $thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
-            $query = "SELECT client_id FROM #__jomres_oauth_clients WHERE client_id = '".$client_id."' AND user_id = ".(int)$thisJRUser->userid . ' LIMIT 1 ';
-            $result = doSelectSql($query);
+			$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
+			$query = "SELECT client_id FROM #__jomres_oauth_clients WHERE client_id = '".$client_id."' AND user_id = ".(int)$thisJRUser->userid . ' LIMIT 1 ';
+			$result = doSelectSql($query);
 
-            if (count($result)==0)
-                {
-                $query = "INSERT INTO #__jomres_oauth_clients 
-                    (`client_id`,`client_secret`,`redirect_uri`,`grant_types`,`scope`,`user_id` , `identifier` ) 
-                    VALUES 
-                    ('".$client_id."','".$client_secret."','".$redirect_uri."',null,'".$requested_scopes."',".(int)$thisJRUser->userid." , '".$identifier."' )";
-                }
-            else
-                {
-                $query = "UPDATE #__jomres_oauth_clients SET `client_secret`='".$client_secret."',`redirect_uri`='".$redirect_uri."',`grant_types`=null,`scope`='".$requested_scopes."',`identifier`='".$identifier."' WHERE user_id =".(int)$thisJRUser->userid." AND client_id ='".$client_id."'";
-                }
+			if (count($result)==0)
+				{
+				$query = "INSERT INTO #__jomres_oauth_clients 
+					(`client_id`,`client_secret`,`redirect_uri`,`grant_types`,`scope`,`user_id` , `identifier` ) 
+					VALUES 
+					('".$client_id."','".$client_secret."','".$redirect_uri."',null,'".$requested_scopes."',".(int)$thisJRUser->userid." , '".$identifier."' )";
+				}
+			else
+				{
+				$query = "UPDATE #__jomres_oauth_clients SET `client_secret`='".$client_secret."',`redirect_uri`='".$redirect_uri."',`grant_types`=null,`scope`='".$requested_scopes."',`identifier`='".$identifier."' WHERE user_id =".(int)$thisJRUser->userid." AND client_id ='".$client_id."'";
+				}
 
-            if ( !doInsertSql( $query, jr_gettext( '_OAUTH_CREATED', '_OAUTH_CREATED', false ) ) ) trigger_error( "Unable to update oauth client details, mysql db failure", E_USER_ERROR );
+			if ( !doInsertSql( $query, jr_gettext( '_OAUTH_CREATED', '_OAUTH_CREATED', false ) ) ) trigger_error( "Unable to update oauth client details, mysql db failure", E_USER_ERROR );
 		}
-        
+		
 		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=oauth" ), "" ); 
 		}
 

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,13 +16,13 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jrportal_rates
 {
-    public function __construct()
-    {
+	public function __construct()
+	{
 		$this->init_rate();
-    }
+	}
 
-    public function init_rate()
-    {
+	public function init_rate()
+	{
 		$this->property_uid = 0;
 		
 		$this->tarifftype_id = 0;
@@ -77,18 +77,18 @@ class jrportal_rates
 		$this->dates_mindays			= array(); //example: array(unixtime => mindays) TODO make it use date(Ymd)
 		$this->new_rates 				= array();
 		$this->new_rates_uids 			= array();
-    }
+	}
 	
 	//Get all tariff details by tariff type id
-    public function get_rate()
-    {
-        if ($this->tarifftype_id == 0) {
-            throw new Exception('Error: tarifftype_id not set.');
-        }
+	public function get_rate()
+	{
+		if ($this->tarifftype_id == 0) {
+			throw new Exception('Error: tarifftype_id not set.');
+		}
 		
 		if ($this->property_uid == 0) {
-            throw new Exception('Error: Property uid not set.');
-        }
+			throw new Exception('Error: Property uid not set.');
+		}
 		
 		//check if we already have the details of this tarifftype id
 		if (isset($this->rates[$this->tarifftype_id])) {
@@ -123,7 +123,7 @@ class jrportal_rates
 		}
 
 		//get the tariff details for all rates uids
-        $query = "SELECT
+		$query = "SELECT
 					`rates_uid`,
 					`rate_title`,
 					`rate_description`,
@@ -148,10 +148,10 @@ class jrportal_rates
 				FROM `#__jomres_rates` 
 				WHERE `rates_uid` IN (".jomres_implode(array_keys($this->rates[$this->tarifftype_id])).") 
 					AND `property_uid` = ".(int)$this->property_uid;
-        $result = doSelectSql($query);
+		$result = doSelectSql($query);
 
-        if (empty($result)) {
-            throw new Exception('Error: there are no tariffs saved for these rates uids, so tariffs are not configured properly. Please create tariffs again.');
+		if (empty($result)) {
+			throw new Exception('Error: there are no tariffs saved for these rates uids, so tariffs are not configured properly. Please create tariffs again.');
 		} else {
 			foreach ($result as $r) {
 				$this->rates[$this->tarifftype_id][$r->rates_uid]['rates_uid'] 					= (int)$r->rates_uid;
@@ -177,18 +177,18 @@ class jrportal_rates
 				$this->rates[$this->tarifftype_id][$r->rates_uid]['property_uid'] 				= (int)$r->property_uid;
 			}
 
-        return true;
+		return true;
 		}
 	
 	return false;
 	}
 
-    //Save tariff
-    public function save_rate()
-    {
+	//Save tariff
+	public function save_rate()
+	{
 		if ($this->property_uid == 0) {
-            throw new Exception('Error: Property uid not set.');
-        }
+			throw new Exception('Error: Property uid not set.');
+		}
 		
 		//first cleanup the tarifftype details if the tarifftype id already exists
 		$this->cleanup_existing_rate();
@@ -201,26 +201,26 @@ class jrportal_rates
 			$this->insert_new_rates();
 		
 			//webhook notification
-			$webhook_notification                               = new stdClass();
-			$webhook_notification->webhook_event                = 'tariffs_updated';
-			$webhook_notification->webhook_event_description    = 'Logs when tariffs updated.';
-			$webhook_notification->webhook_event_plugin         = 'advanced_micromanage_tariff_editing_modes';
-			$webhook_notification->data                         = new stdClass();
-			$webhook_notification->data->property_uid           = $this->property_uid;
+			$webhook_notification							   = new stdClass();
+			$webhook_notification->webhook_event				= 'tariffs_updated';
+			$webhook_notification->webhook_event_description	= 'Logs when tariffs updated.';
+			$webhook_notification->webhook_event_plugin		 = 'advanced_micromanage_tariff_editing_modes';
+			$webhook_notification->data						 = new stdClass();
+			$webhook_notification->data->property_uid		   = $this->property_uid;
 			add_webhook_notification($webhook_notification);
 		
 			return true;
 		}
 		
 		return false;
-    }
+	}
 	
 	//insert new tariffftype or update existing tarifftype details by tarifftype id
 	private function update_tarifftype_details()
 	{
 		if ($this->property_uid == 0) {
-            throw new Exception('Error: Property uid not set.');
-        }
+			throw new Exception('Error: Property uid not set.');
+		}
 
 		if ($this->tarifftype_id == 0) {
 			$query = "INSERT INTO #__jomcomp_tarifftypes 
@@ -262,20 +262,20 @@ class jrportal_rates
 	private function build_new_rates()
 	{
 		if ($this->property_uid == 0) {
-            throw new Exception('Error: Property uid not set.');
-        }
+			throw new Exception('Error: Property uid not set.');
+		}
 		
 		if ($this->tarifftype_id == 0) {
-            throw new Exception('Error: Tarifftype id not set.');
-        }
+			throw new Exception('Error: Tarifftype id not set.');
+		}
 		
 		if (empty($this->dates_rates)) {
-            throw new Exception('Error: Dates-rates array not set.');
-        }
+			throw new Exception('Error: Dates-rates array not set.');
+		}
 		
 		if (empty($this->dates_mindays)) {
-            throw new Exception('Error: Dates-midays array not set.');
-        }
+			throw new Exception('Error: Dates-midays array not set.');
+		}
 		
 		//sort the dates_rates array by unix time ascending
 		ksort($this->dates_rates);
@@ -333,16 +333,16 @@ class jrportal_rates
 	private function insert_new_rates()
 	{
 		if ($this->property_uid == 0) {
-            throw new Exception('Error: Property uid not set.');
-        }
+			throw new Exception('Error: Property uid not set.');
+		}
 		
 		if ($this->tarifftype_id == 0) {
-            throw new Exception('Error: Tarifftype id not set.');
-        }
+			throw new Exception('Error: Tarifftype id not set.');
+		}
 		
 		if (empty($this->new_rates)) {
-            throw new Exception('Error: New rates array is empty.');
-        }
+			throw new Exception('Error: New rates array is empty.');
+		}
 		
 		//we`ll do one query for each rate, because we`ll need the rate uids for each to update the tariftype rate xref table
 		foreach ($this->new_rates as $r) {
@@ -417,16 +417,16 @@ class jrportal_rates
 	private function update_tarifftype_rate_xref()
 	{
 		if ($this->property_uid == 0) {
-            throw new Exception('Error: Property uid not set.');
-        }
+			throw new Exception('Error: Property uid not set.');
+		}
 		
 		if ($this->tarifftype_id == 0) {
-            throw new Exception('Error: Tarifftype id not set.');
-        }
+			throw new Exception('Error: Tarifftype id not set.');
+		}
 		
 		if (empty($this->new_rates_uids)) {
-            throw new Exception('Error: New rates uids array is empty.');
-        }
+			throw new Exception('Error: New rates uids array is empty.');
+		}
 		
 		$values = '';
 		
@@ -459,16 +459,16 @@ class jrportal_rates
 		return true;
 	}
 
-    //Cleanup rate by tarifftype id to prepare for new tariffs insertion
-    public function cleanup_existing_rate()
-    {
+	//Cleanup rate by tarifftype id to prepare for new tariffs insertion
+	public function cleanup_existing_rate()
+	{
 		if ($this->property_uid == 0) {
-            throw new Exception('Error: Property uid not set.');
-        }
+			throw new Exception('Error: Property uid not set.');
+		}
 
-        if ($this->tarifftype_id == 0) {
-            return true; //looks like we`re creating a new tarff so no tarifftype id exists yet
-        }
+		if ($this->tarifftype_id == 0) {
+			return true; //looks like we`re creating a new tarff so no tarifftype id exists yet
+		}
 		
 		//check if we have the details of this tarifftype id
 		if (!isset($this->rates[$this->tarifftype_id])) {
@@ -495,18 +495,18 @@ class jrportal_rates
 		$this->rates[$this->tarifftype_id] = array();
 		
 		return true;
-    }
+	}
 	
 	//delete rate by tarifftype id
-    public function delete_rate()
-    {
+	public function delete_rate()
+	{
 		if ($this->property_uid == 0) {
-            throw new Exception('Error: Property uid not set.');
-        }
+			throw new Exception('Error: Property uid not set.');
+		}
 
-        if ($this->tarifftype_id == 0) {
-            throw new Exception('Error: Tarifftype id not set.');
-        }
+		if ($this->tarifftype_id == 0) {
+			throw new Exception('Error: Tarifftype id not set.');
+		}
 		
 		//check if we have the details of this tarifftype id
 		if (!isset($this->rates[$this->tarifftype_id])) {
@@ -547,28 +547,28 @@ class jrportal_rates
 		$this->rates[$this->tarifftype_id] = array();
 		
 		//webhook notification
-		$webhook_notification                               = new stdClass();
-		$webhook_notification->webhook_event                = 'tariffs_updated';
-		$webhook_notification->webhook_event_description    = 'Logs when tariffs updated.';
-		$webhook_notification->webhook_event_plugin         = 'advanced_micromanage_tariff_editing_modes';
-		$webhook_notification->data                         = new stdClass();
-		$webhook_notification->data->property_uid           = $this->property_uid;
+		$webhook_notification							   = new stdClass();
+		$webhook_notification->webhook_event				= 'tariffs_updated';
+		$webhook_notification->webhook_event_description	= 'Logs when tariffs updated.';
+		$webhook_notification->webhook_event_plugin		 = 'advanced_micromanage_tariff_editing_modes';
+		$webhook_notification->data						 = new stdClass();
+		$webhook_notification->data->property_uid		   = $this->property_uid;
 		add_webhook_notification($webhook_notification);
 		
 		return true;
-    }
+	}
 	
 	//this function is used only for Advanced and Normal tariff editing modes and it`s assumed that each rate uid will have it`s own tarifftype id
 	//only Micromanage has more rate uids for the same tarifftype id
 	public function get_tarifftype_id($rates_uid = 0)
 	{
 		if ($this->property_uid == 0) {
-            throw new Exception('Error: Property uid not set.');
-        }
+			throw new Exception('Error: Property uid not set.');
+		}
 		
 		if ($rates_uid == 0) {
-            throw new Exception('Error: Rate uid not set.');
-        }
+			throw new Exception('Error: Rate uid not set.');
+		}
 
 		//get tarifftype id TODO: remove this, we already have this data in _jomres_rates table..
 		$query = "SELECT `tarifftype_id` FROM #__jomcomp_tarifftype_rate_xref WHERE `tariff_id` = ".(int)$rates_uid." AND `property_uid` = ".(int)$this->property_uid;
@@ -585,12 +585,12 @@ class jrportal_rates
 	private function create_tarifftype($rates_uid = 0)
 	{
 		if ($this->property_uid == 0) {
-            throw new Exception('Error: Property uid not set.');
-        }
+			throw new Exception('Error: Property uid not set.');
+		}
 		
 		if ($rates_uid == 0) {
-            throw new Exception('Error: Rate uid not set.');
-        }
+			throw new Exception('Error: Rate uid not set.');
+		}
 		
 		$id = 0;
 		
@@ -647,11 +647,11 @@ class jrportal_rates
 	* Legacy functions
 	*/
 	//Save legacy tariff (advanced and normal modes)
-    public function save_rate_legacy()
-    {
+	public function save_rate_legacy()
+	{
 		if ($this->property_uid == 0) {
-            throw new Exception('Error: Property uid not set.');
-        }
+			throw new Exception('Error: Property uid not set.');
+		}
 		
 		//insert or update the tarifftype details
 		$this->update_tarifftype_details();
@@ -663,31 +663,31 @@ class jrportal_rates
 		}
 	
 		//webhook notification
-		$webhook_notification                               = new stdClass();
-		$webhook_notification->webhook_event                = 'tariffs_updated';
-		$webhook_notification->webhook_event_description    = 'Logs when tariffs updated.';
-		$webhook_notification->webhook_event_plugin         = 'advanced_micromanage_tariff_editing_modes';
-		$webhook_notification->data                         = new stdClass();
-		$webhook_notification->data->property_uid           = $this->property_uid;
+		$webhook_notification							   = new stdClass();
+		$webhook_notification->webhook_event				= 'tariffs_updated';
+		$webhook_notification->webhook_event_description	= 'Logs when tariffs updated.';
+		$webhook_notification->webhook_event_plugin		 = 'advanced_micromanage_tariff_editing_modes';
+		$webhook_notification->data						 = new stdClass();
+		$webhook_notification->data->property_uid		   = $this->property_uid;
 		add_webhook_notification($webhook_notification);
 	
 		return true;
-    }
+	}
 	
 	//insert new rates/tariffs legacy mode
 	private function insert_new_rate_legacy()
 	{
 		if ($this->property_uid == 0) {
-            throw new Exception('Error: Property uid not set.');
-        }
+			throw new Exception('Error: Property uid not set.');
+		}
 		
 		if ($this->tarifftype_id == 0) {
-            throw new Exception('Error: Tarifftype id not set.');
-        }
+			throw new Exception('Error: Tarifftype id not set.');
+		}
 		
 		if ($this->rates_uid > 0) {
-            throw new Exception('Error: Are you sure you`re creating a new tariff?');
-        }
+			throw new Exception('Error: Are you sure you`re creating a new tariff?');
+		}
 		
 		$this->validfrom_ts = str_replace("/","-",$this->validfrom);
 		$this->validto_ts = str_replace("/","-",$this->validto);
@@ -759,16 +759,16 @@ class jrportal_rates
 	private function update_rate_legacy()
 	{
 		if ($this->property_uid == 0) {
-            throw new Exception('Error: Property uid not set.');
-        }
+			throw new Exception('Error: Property uid not set.');
+		}
 		
 		if ($this->tarifftype_id == 0) {
-            throw new Exception('Error: Tarifftype id not set.');
-        }
+			throw new Exception('Error: Tarifftype id not set.');
+		}
 		
 		if ($this->rates_uid == 0) {
-            throw new Exception('Error: Are you sure you`re updatring an existing tariff?');
-        }
+			throw new Exception('Error: Are you sure you`re updatring an existing tariff?');
+		}
 		
 		$this->validfrom_ts = str_replace("/","-",$this->validfrom);
 		$this->validto_ts = str_replace("/","-",$this->validto);

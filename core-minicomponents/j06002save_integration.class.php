@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -25,26 +25,26 @@ class j06002save_integration
 		$ePointFilepath=get_showtime('ePointFilepath');
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
 
-        jr_import("webhooks");
-        $webhooks = new webhooks($thisJRUser->id);
-        $all_webhooks = $webhooks->get_all_webhooks();
-        
-        $integration_id = (int)jomresGetParam( $_POST,'integration_id', 0 );
-        
-        $settings = array();
-        foreach ( $_POST as $key=>$val ) {
-            if ($key != "nohtml" && $key != "task" && $key != "integration_id") {
-                $val = jomresGetParam( $_POST, $key, '' );
-                $key = filter_var($key, FILTER_SANITIZE_SPECIAL_CHARS); // Trust nobody
-                $webhooks->set_setting( $integration_id , $key , $val );
-            }
-        }
-        
-       
-        $webhooks->commit_integration($integration_id);
-        
-        
-      
+		jr_import("webhooks");
+		$webhooks = new webhooks($thisJRUser->id);
+		$all_webhooks = $webhooks->get_all_webhooks();
+		
+		$integration_id = (int)jomresGetParam( $_POST,'integration_id', 0 );
+		
+		$settings = array();
+		foreach ( $_POST as $key=>$val ) {
+			if ($key != "nohtml" && $key != "task" && $key != "integration_id") {
+				$val = jomresGetParam( $_POST, $key, '' );
+				$key = filter_var($key, FILTER_SANITIZE_SPECIAL_CHARS); // Trust nobody
+				$webhooks->set_setting( $integration_id , $key , $val );
+			}
+		}
+		
+	   
+		$webhooks->commit_integration($integration_id);
+		
+		
+	  
 		/* if (!$thisJRUser->userIsManager)
 			{
 			$available_scopes = array ( "user");

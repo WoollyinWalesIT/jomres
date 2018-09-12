@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,25 +16,25 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j19995menu
 {
-    public function __construct()
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 		
 		if (AJAXCALL) {
 			return;
 		}
 
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
+		$jrConfig = $siteConfig->get();
 		
 		$jomres_menu = jomres_singleton_abstract::getInstance('jomres_menu');
-        
+		
 		//define the core admin sections
 		$jomres_menu->add_admin_section(1, 'Dashboard');
 		$jomres_menu->add_admin_section(10, 'Users');
@@ -87,8 +87,8 @@ class j19995menu
 		
 		
 		
-        $template_packages = get_showtime('template_packages');
-        if (!empty($template_packages)) { // There are some override packages installed, we can go ahead and show the override manager menu option
+		$template_packages = get_showtime('template_packages');
+		if (!empty($template_packages)) { // There are some override packages installed, we can go ahead and show the override manager menu option
 			$jomres_menu->add_admin_item(70, jr_gettext('_JOMRES_TEMPLATE_PACKAGES', '_JOMRES_TEMPLATE_PACKAGES', false), 'list_template_overrides', 'fa-puzzle-piece');
 		}
 		
@@ -128,11 +128,11 @@ class j19995menu
 		$jomres_menu->add_admin_item(100, 'Jomres Partners', 'partners', 'fa-book');
 		$jomres_menu->add_admin_item(100, jr_gettext('API_METHODS_TITLE', 'API_METHODS_TITLE', false), 'https://api.jomres.net/', 'fa-book', true, true);
 		$jomres_menu->add_admin_item(100, jr_gettext('VIDEO_TUTORIALS', 'VIDEO_TUTORIALS', false), 'videos', 'fa-youtube-play');
-    }
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

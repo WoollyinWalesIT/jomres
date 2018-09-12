@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,13 +16,13 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jrportal_coupons
 {
-    public function __construct()
-    {
-        $this->init_coupon();
-    }
+	public function __construct()
+	{
+		$this->init_coupon();
+	}
 
-    public function init_coupon()
-    {
+	public function init_coupon()
+	{
 		$this->id = 0; // coupon_id
 		$this->property_uid = 0;
 		$this->coupon_code = '';
@@ -34,22 +34,22 @@ class jrportal_coupons
 		$this->is_percentage = 1;
 		$this->rooms_only = 0;
 		$this->guest_uid = 0;
-    }
+	}
 	
 	//Get coupon details by id
-    public function get_coupon()
-    {
-        if ($this->id == 0) {
-            throw new Exception('Error: Coupon id not set.');
-        }
+	public function get_coupon()
+	{
+		if ($this->id == 0) {
+			throw new Exception('Error: Coupon id not set.');
+		}
 		
 		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
 		if ($this->property_uid == 0 && !$thisJRUser->superPropertyManager) {
-            throw new Exception('Error: Property uid not set.');
-        }
+			throw new Exception('Error: Property uid not set.');
+		}
 
-        $query = "SELECT
+		$query = "SELECT
 					`coupon_id`,
 					`property_uid`,
 					`coupon_code`,
@@ -63,48 +63,48 @@ class jrportal_coupons
 					`guest_uid` 
 				FROM #__jomres_coupons  
 				WHERE `coupon_id` = ".(int)$this->id." AND `property_uid` = ".(int)$this->property_uid;
-        $result = doSelectSql($query);
+		$result = doSelectSql($query);
 
-        if (empty($result)) {
-            return false;
-        }
+		if (empty($result)) {
+			return false;
+		}
 
-        foreach ($result as $r) {
-            $this->id = (int)$r->coupon_id;
-            $this->property_uid = (int)$r->property_uid;
-            $this->coupon_code = $r->coupon_code;
-            $this->valid_from = $r->valid_from;
-            $this->valid_to = $r->valid_to;
+		foreach ($result as $r) {
+			$this->id = (int)$r->coupon_id;
+			$this->property_uid = (int)$r->property_uid;
+			$this->coupon_code = $r->coupon_code;
+			$this->valid_from = $r->valid_from;
+			$this->valid_to = $r->valid_to;
 			$this->amount = $r->amount;
-            $this->is_percentage = (int)$r->is_percentage;
-            $this->rooms_only = (int)$r->rooms_only;
-            $this->booking_valid_from = $r->booking_valid_from;
+			$this->is_percentage = (int)$r->is_percentage;
+			$this->rooms_only = (int)$r->rooms_only;
+			$this->booking_valid_from = $r->booking_valid_from;
 			$this->booking_valid_to = $r->booking_valid_to;
-            $this->guest_uid = (int)$r->guest_uid;
-        }
+			$this->guest_uid = (int)$r->guest_uid;
+		}
 
-        return true;
-    }
+		return true;
+	}
 
-    //Save new coupon
-    public function commit_new_coupon()
-    {
-        if ($this->id > 0) {
-            throw new Exception('Error: Coupon id already set. Are you sure you`re creating a new coupon?');
-        }
+	//Save new coupon
+	public function commit_new_coupon()
+	{
+		if ($this->id > 0) {
+			throw new Exception('Error: Coupon id already set. Are you sure you`re creating a new coupon?');
+		}
 
-        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
 		if ($this->property_uid == 0 && !$thisJRUser->superPropertyManager) {
-            throw new Exception('Error: Property uid not set.');
-        }
+			throw new Exception('Error: Property uid not set.');
+		}
 		
 		$valid_from = str_replace('/','-',$this->valid_from);
 		$valid_to = str_replace('/','-',$this->valid_to);
 		$booking_valid_from = str_replace('/','-',$this->booking_valid_from);
 		$booking_valid_to = str_replace('/','-',$this->booking_valid_to);
 
-        $query = "INSERT INTO #__jomres_coupons
+		$query = "INSERT INTO #__jomres_coupons
 							(
 							`coupon_id`,
 							`property_uid`,
@@ -132,43 +132,43 @@ class jrportal_coupons
 							'".$booking_valid_to."',
 							".(int)$this->guest_uid."
 							)";
-        $this->id = doInsertSql($query, '');
-        
-        if (!$this->id) {
-            throw new Exception('Error: New coupon insert failed.');
-        }
+		$this->id = doInsertSql($query, '');
 		
-		$webhook_notification                               = new stdClass();
-        $webhook_notification->webhook_event                = 'coupon_saved';
-        $webhook_notification->webhook_event_description    = 'Logs when coupon added.';
-        $webhook_notification->webhook_event_plugin         = 'core';
-        $webhook_notification->data                         = new stdClass();
-        $webhook_notification->data->property_uid           = $this->property_uid;
-        $webhook_notification->data->coupon_id         		= $this->id;
-        add_webhook_notification($webhook_notification);
+		if (!$this->id) {
+			throw new Exception('Error: New coupon insert failed.');
+		}
+		
+		$webhook_notification							   = new stdClass();
+		$webhook_notification->webhook_event				= 'coupon_saved';
+		$webhook_notification->webhook_event_description	= 'Logs when coupon added.';
+		$webhook_notification->webhook_event_plugin		 = 'core';
+		$webhook_notification->data						 = new stdClass();
+		$webhook_notification->data->property_uid		   = $this->property_uid;
+		$webhook_notification->data->coupon_id		 		= $this->id;
+		add_webhook_notification($webhook_notification);
 
-        return true;
-    }
+		return true;
+	}
 
-    //Update existing coupon
-    public function commit_update_coupon()
-    {
-        if ($this->id == 0) {
-            throw new Exception('Error: Coupon id not set.');
-        }
+	//Update existing coupon
+	public function commit_update_coupon()
+	{
+		if ($this->id == 0) {
+			throw new Exception('Error: Coupon id not set.');
+		}
 
-        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
 		if ($this->property_uid == 0 && !$thisJRUser->superPropertyManager) {
-            throw new Exception('Error: Property uid not set.');
-        }
+			throw new Exception('Error: Property uid not set.');
+		}
 		
 		$valid_from = str_replace('/','-',$this->valid_from);
 		$valid_to = str_replace('/','-',$this->valid_to);
 		$booking_valid_from = str_replace('/','-',$this->booking_valid_from);
 		$booking_valid_to = str_replace('/','-',$this->booking_valid_to);
 
-        $query = "UPDATE #__jomres_coupons 
+		$query = "UPDATE #__jomres_coupons 
 					SET 
 						`coupon_id` = ".(int)$this->id.",
 						`property_uid` = ".(int)$this->property_uid.",
@@ -184,34 +184,34 @@ class jrportal_coupons
 					WHERE `coupon_id` = " .(int) $this->id." 
 						AND `property_uid` = " .(int)$this->property_uid;
 
-        if (!doInsertSql($query, '')) {
-            throw new Exception('Error: Coupon update intert failed.');
-        }
-        
-        $webhook_notification                               = new stdClass();
-        $webhook_notification->webhook_event                = 'coupon_updated';
-        $webhook_notification->webhook_event_description    = 'Logs when coupon updated.';
-        $webhook_notification->webhook_event_plugin         = 'core';
-        $webhook_notification->data                         = new stdClass();
-        $webhook_notification->data->property_uid           = $this->property_uid;
-        $webhook_notification->data->coupon_id         		= $this->id;
-        add_webhook_notification($webhook_notification);
-        
-        return true;
-    }
+		if (!doInsertSql($query, '')) {
+			throw new Exception('Error: Coupon update intert failed.');
+		}
+		
+		$webhook_notification							   = new stdClass();
+		$webhook_notification->webhook_event				= 'coupon_updated';
+		$webhook_notification->webhook_event_description	= 'Logs when coupon updated.';
+		$webhook_notification->webhook_event_plugin		 = 'core';
+		$webhook_notification->data						 = new stdClass();
+		$webhook_notification->data->property_uid		   = $this->property_uid;
+		$webhook_notification->data->coupon_id		 		= $this->id;
+		add_webhook_notification($webhook_notification);
+		
+		return true;
+	}
 
-    //Delete coupon
-    public function delete_coupon()
-    {
-        if ($this->id == 0) {
-            throw new Exception('Error: Coupon id not set.');
-        }
+	//Delete coupon
+	public function delete_coupon()
+	{
+		if ($this->id == 0) {
+			throw new Exception('Error: Coupon id not set.');
+		}
 
-        $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
 		if ($this->property_uid == 0 && !$thisJRUser->superPropertyManager) {
-            throw new Exception('Error: Property uid not set.');
-        }
+			throw new Exception('Error: Property uid not set.');
+		}
 		
 		if ($this->get_coupon()) {
 			$query = 'DELETE FROM #__jomres_coupons WHERE `coupon_id` = '.(int)$this->id.' AND `property_uid` = '.(int)$this->property_uid;
@@ -219,18 +219,18 @@ class jrportal_coupons
 				throw new Exception('Error: Delete coupon failed.');
 			}
 
-			$webhook_notification                               = new stdClass();
-			$webhook_notification->webhook_event                = 'coupon_deleted';
-			$webhook_notification->webhook_event_description    = 'Logs when coupon deleted.';
-			$webhook_notification->webhook_event_plugin         = 'core';
-			$webhook_notification->data                         = new stdClass();
-			$webhook_notification->data->property_uid           = $this->property_uid;
-			$webhook_notification->data->coupon_id        		= $this->id;
+			$webhook_notification							   = new stdClass();
+			$webhook_notification->webhook_event				= 'coupon_deleted';
+			$webhook_notification->webhook_event_description	= 'Logs when coupon deleted.';
+			$webhook_notification->webhook_event_plugin		 = 'core';
+			$webhook_notification->data						 = new stdClass();
+			$webhook_notification->data->property_uid		   = $this->property_uid;
+			$webhook_notification->data->coupon_id				= $this->id;
 			add_webhook_notification($webhook_notification);
 			
 			return true;
 		}
 		
 		return false;
-    }
+	}
 }

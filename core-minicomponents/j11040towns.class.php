@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -32,11 +32,11 @@ class j11040towns
 		$resource_id   = jomresGetParam( $_REQUEST, 'resource_id', '0' );
 
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
-        $jomres_media_centre_images->get_site_images($resource_type);
-        
+		$jomres_media_centre_images->get_site_images($resource_type);
+		
 		if (isset($jomres_media_centre_images->site_images [$resource_type] [$resource_id])) 
 			{
-            $this->ret_vals = $jomres_media_centre_images->site_images [$resource_type] [$resource_id];
+			$this->ret_vals = $jomres_media_centre_images->site_images [$resource_type] [$resource_id];
 			} 
 		else 
 			{

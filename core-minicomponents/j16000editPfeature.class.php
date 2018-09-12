@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,15 +16,15 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j16000editPfeature
 {
-    public function __construct()
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 		
 		$output = array();
 		$rows = array();
@@ -33,9 +33,9 @@ class j16000editPfeature
 		
 		$jomres_property_features = jomres_singleton_abstract::getInstance('jomres_property_features');
 		
-        $id = (int)jomresGetParam($_REQUEST, 'id', 0);
+		$id = (int)jomresGetParam($_REQUEST, 'id', 0);
  
-        if ($id > 0) {
+		if ($id > 0) {
 			$jomres_property_features->get_property_feature($id);
 		}
 		
@@ -49,8 +49,8 @@ class j16000editPfeature
 		
 		$output[ 'PROPERTYFEATUREUID' ] = $id;
 		$output[ 'FEATURE_ABBV' ] = $jomres_property_features->abbv;
-        $output[ 'FEATURE_DESCRIPTION' ] = $jomres_property_features->desc;
-        
+		$output[ 'FEATURE_DESCRIPTION' ] = $jomres_property_features->desc;
+		
 		$image = $jomres_property_features->image;
 		$cat_id = $jomres_property_features->cat_id;
 
@@ -83,19 +83,19 @@ class j16000editPfeature
 		}
 	
 		$output[ 'HLINKTEXT' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK', '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK', false);
-        $output[ 'HFEATUREABBV' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV', '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV', false);
-        $output[ 'HFEATUREDESCRIPTION' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC', '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC', false);
-        $output[ 'PAGETITLE' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK', '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK', false);
-        $output[ '_JOMRES_PROPERTY_TYPE_ASSIGNMENT' ] = jr_gettext('_JOMRES_PROPERTY_TYPE_ASSIGNMENT', '_JOMRES_PROPERTY_TYPE_ASSIGNMENT', false);
-        $output[ 'HIMAGE' ] = jr_gettext('_JOMRES_A_ICON', '_JOMRES_A_ICON', false);
+		$output[ 'HFEATUREABBV' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV', '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV', false);
+		$output[ 'HFEATUREDESCRIPTION' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC', '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC', false);
+		$output[ 'PAGETITLE' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK', '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK', false);
+		$output[ '_JOMRES_PROPERTY_TYPE_ASSIGNMENT' ] = jr_gettext('_JOMRES_PROPERTY_TYPE_ASSIGNMENT', '_JOMRES_PROPERTY_TYPE_ASSIGNMENT', false);
+		$output[ 'HIMAGE' ] = jr_gettext('_JOMRES_A_ICON', '_JOMRES_A_ICON', false);
 
-        $options = array();
-        $options[] = jomresHTML::makeOption(0, '');
-        foreach ($jomres_property_features_categories->property_features_categories as $c) {
-            $options[] = jomresHTML::makeOption($c['id'], $c['title']);
-        }
-        $output[ 'CATEGORY' ] = jomresHTML::selectList($options, 'cat_id', 'class="inputbox" size="1"', 'value', 'text', $cat_id);
-        $output[ 'HCATEGORY' ] = jr_gettext('_JOMRES_HCATEGORY', '_JOMRES_HCATEGORY');
+		$options = array();
+		$options[] = jomresHTML::makeOption(0, '');
+		foreach ($jomres_property_features_categories->property_features_categories as $c) {
+			$options[] = jomresHTML::makeOption($c['id'], $c['title']);
+		}
+		$output[ 'CATEGORY' ] = jomresHTML::selectList($options, 'cat_id', 'class="inputbox" size="1"', 'value', 'text', $cat_id);
+		$output[ 'HCATEGORY' ] = jr_gettext('_JOMRES_HCATEGORY', '_JOMRES_HCATEGORY');
 		
 		$output[ 'INCLUDEINFILTERS' ] = jr_gettext('INCLUDEINFILTERS', 'INCLUDEINFILTERS', false);
 		$output[ 'INCLUDEINFILTERS_DESC' ] = jr_gettext('INCLUDEINFILTERS_DESC', 'INCLUDEINFILTERS_DESC', false);
@@ -106,30 +106,30 @@ class j16000editPfeature
 
 		$output[ 'FILTERS' ] = jomresHTML::selectList($yesno, 'include_in_filters', 'class="inputbox" size="1"', 'value', 'text', $jomres_property_features->include_in_filters );
 		
-        $jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
-        $jrtb = $jrtbar->startTable();
-        $image = $jrtbar->makeImageValid(JOMRES_IMAGES_RELPATH.'jomresimages/small/Save.png');
-        $link = JOMRES_SITEPAGE_URL_ADMIN;
+		$jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
+		$jrtb = $jrtbar->startTable();
+		$image = $jrtbar->makeImageValid(JOMRES_IMAGES_RELPATH.'jomresimages/small/Save.png');
+		$link = JOMRES_SITEPAGE_URL_ADMIN;
 
-        $jrtb .= $jrtbar->toolbarItem('cancel', JOMRES_SITEPAGE_URL_ADMIN.'&task=listPfeatures', '');
-        $jrtb .= $jrtbar->customToolbarItem('savePfeature', $link, jr_gettext('_JOMRES_COM_MR_SAVE', '_JOMRES_COM_MR_SAVE', false), $submitOnClick = true, $submitTask = 'savePfeature', $image);
-        $jrtb .= $jrtbar->endTable();
-        $output[ 'JOMRESTOOLBAR' ] = $jrtb;
+		$jrtb .= $jrtbar->toolbarItem('cancel', JOMRES_SITEPAGE_URL_ADMIN.'&task=listPfeatures', '');
+		$jrtb .= $jrtbar->customToolbarItem('savePfeature', $link, jr_gettext('_JOMRES_COM_MR_SAVE', '_JOMRES_COM_MR_SAVE', false), $submitOnClick = true, $submitTask = 'savePfeature', $image);
+		$jrtb .= $jrtbar->endTable();
+		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
-        $pageoutput = array();
-        $pageoutput[ ] = $output;
-        $tmpl = new patTemplate();
-        $tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
-        $tmpl->readTemplatesFromInput('edit_property_feature.html');
-        $tmpl->addRows('pageoutput', $pageoutput);
-        $tmpl->addRows('all_ptype_rows', $all_ptype_rows);
-        $tmpl->addRows('rows', $rows);
-        $tmpl->displayParsedTemplate();
-    }
+		$pageoutput = array();
+		$pageoutput[ ] = $output;
+		$tmpl = new patTemplate();
+		$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
+		$tmpl->readTemplatesFromInput('edit_property_feature.html');
+		$tmpl->addRows('pageoutput', $pageoutput);
+		$tmpl->addRows('all_ptype_rows', $all_ptype_rows);
+		$tmpl->addRows('rows', $rows);
+		$tmpl->displayParsedTemplate();
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

@@ -30,7 +30,7 @@ function deactivate_jomres() {
  * then kicking off the plugin from this point in the file does
  * not affect the page life cycle.
  *
- * @since    9.9.19
+ * @since	9.9.19
  */
 function run_jomres() {
 
@@ -48,7 +48,7 @@ function run_jomres() {
  * Checks if Jomres is installed and updated. If it`s not, 
  * install or update it.
  *
- * @since    9.9.19
+ * @since	9.9.19
  */
 function jomres_is_installed_and_updated() {
 
@@ -86,23 +86,23 @@ function jomres_is_installed_and_updated() {
  *
  * Triggers Jomres frontend or admin
  *
- * @since    9.9.19
+ * @since	9.9.19
  */
 function trigger_jomres() {
-    
+	
 	if ( isset( $_REQUEST[ 'jr_wp_source' ] ) ) {
-        if ( $_REQUEST[ 'jr_wp_source' ] == 'admin' ) {
-            jr_wp_trigger_admin();
-        } else {
-            jr_wp_trigger_frontend();
-        }
-    } else {
-        if ( strpos( $_SERVER[ 'SCRIPT_FILENAME' ], 'wp-admin' ) > 0 ) {
-            jr_wp_trigger_admin();
-        } else {
-            jr_wp_trigger_frontend();
-        }
-    }
+		if ( $_REQUEST[ 'jr_wp_source' ] == 'admin' ) {
+			jr_wp_trigger_admin();
+		} else {
+			jr_wp_trigger_frontend();
+		}
+	} else {
+		if ( strpos( $_SERVER[ 'SCRIPT_FILENAME' ], 'wp-admin' ) > 0 ) {
+			jr_wp_trigger_admin();
+		} else {
+			jr_wp_trigger_frontend();
+		}
+	}
 
 }
 
@@ -111,16 +111,16 @@ function trigger_jomres() {
  *
  * Triggers Jomres frontend
  *
- * @since    9.9.19
+ * @since	9.9.19
  */
 function jr_wp_trigger_frontend() {
-    
+	
 	require_once ABSPATH . JOMRES_ROOT_DIRECTORY . '/jomres.php';
-    
+	
 	// If it's an ajax call, we need to die when Jomres has done it's stuff
 	if ( isset( $_REQUEST[ 'jrajax' ] ) && (int) $_REQUEST[ 'jrajax' ] == 1 ) {
-        die();
-    }
+		die();
+	}
 
 }
 
@@ -129,24 +129,24 @@ function jr_wp_trigger_frontend() {
  *
  * Triggers Jomres admin and installs or update Jomres if needed
  *
- * @since    9.9.19
+ * @since	9.9.19
  */
 function jr_wp_trigger_admin() {
-    
+	
 	global $current_user;
-    
+	
 	$user_roles = $current_user->roles;
-    $user_role = array_shift( $user_roles );
-    $role = trim( $user_role );
-    
+	$user_role = array_shift( $user_roles );
+	$role = trim( $user_role );
+	
 	if ( $role == 'administrator' && jomres_is_installed_and_updated() ) {
-        require_once ABSPATH . JOMRES_ROOT_DIRECTORY . '/admin.php';
-    }
-    
+		require_once ABSPATH . JOMRES_ROOT_DIRECTORY . '/admin.php';
+	}
+	
 	// If it's an ajax call, we need to die when Jomres has done it's stuff
 	if ( isset( $_REQUEST[ 'jrajax' ] ) && (int) $_REQUEST[ 'jrajax' ] == 1 ) {
-        die();
-    }
+		die();
+	}
 }
 
 /**
@@ -154,7 +154,7 @@ function jr_wp_trigger_admin() {
  *
  * Donwloads Jomres, unzips and runs the jomres install or update
  *
- * @since    9.9.19
+ * @since	9.9.19
  */
 function run_jomres_installer( $method = 'install' ) {
 	
@@ -279,7 +279,7 @@ function run_jomres_installer( $method = 'install' ) {
  *
  * Utility function to display error messages
  *
- * @since    9.9.19
+ * @since	9.9.19
  */
 function jomres_notice( $notice ) {
 	printf(
@@ -293,7 +293,7 @@ function jomres_notice( $notice ) {
  *
  * Utility function to get the disk space available (in MB) to download and extract Jomres
  *
- * @since    9.10.3
+ * @since	9.10.3
  */
 function free_space( $path = ABSPATH ) {
 	

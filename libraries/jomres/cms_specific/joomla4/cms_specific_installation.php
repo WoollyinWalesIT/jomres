@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -18,7 +18,7 @@ defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.'
 $query = 'SELECT userid FROM #__jomres_managers LIMIT 2';
 $existing_users = doSelectSql($query);
 if (!empty($existing_users)) {
-    return;
+	return;
 }
 
 $query = 'SELECT user_id FROM #__user_usergroup_map WHERE group_id = 8 LIMIT 1';
@@ -35,15 +35,15 @@ VALUES
 $result = doInsertSql($query, '');
 
 /* if ( $result )
-    echo "Inserted " . $admin_user[ 'username' ] . " as manager<br>";
+	echo "Inserted " . $admin_user[ 'username' ] . " as manager<br>";
 else
-    echo "Could not create " . $admin_user[ 'username' ] . " as manager<br>"; */
+	echo "Could not create " . $admin_user[ 'username' ] . " as manager<br>"; */
 
 // Looking to see if Jomres is already installed in Joomla. If it is, we'll simply return true as there's nothing else to do
 $query = "SELECT `element` FROM #__extensions WHERE `element` = 'com_jomres' ";
 $result = doSelectSql($query);
 if (count($result) == 1) {
-    return true;
+	return true;
 }
 
 $query = "INSERT INTO #__extensions	(
@@ -66,15 +66,15 @@ $query = "INSERT INTO #__extensions	(
 $component_id = doInsertSql($query, '');
 
 if ($component_id) {
-    $query = "SELECT title FROM #__menu WHERE `link` = 'index.php?option=com_jomres' LIMIT 1";
-    $result = doSelectSql($query);
-    if (empty($result)) {
-        $query = 'SELECT max(rgt) FROM #__menu';
-        $highest = (int) doSelectSql($query, 1);
-        $lft = $highest + 1;
-        $rgt = $highest + 2;
+	$query = "SELECT title FROM #__menu WHERE `link` = 'index.php?option=com_jomres' LIMIT 1";
+	$result = doSelectSql($query);
+	if (empty($result)) {
+		$query = 'SELECT max(rgt) FROM #__menu';
+		$highest = (int) doSelectSql($query, 1);
+		$lft = $highest + 1;
+		$rgt = $highest + 2;
 
-        $query = "INSERT INTO #__menu (
+		$query = "INSERT INTO #__menu (
 				`menutype`,`title`,`alias`,`note`,
 				`path`,`link`,`type`,`published`,
 				`parent_id`,`level`,`component_id`,
@@ -90,8 +90,8 @@ if ($component_id) {
 				" .$lft.','.$rgt.",0,'*',1
 				)";
 
-        $result = doInsertSql($query, '');
-    }
+		$result = doInsertSql($query, '');
+	}
 } else {
-    echo 'Unable to create main Jomres admin menu option<br>';
+	echo 'Unable to create main Jomres admin menu option<br>';
 }

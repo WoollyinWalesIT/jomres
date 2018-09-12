@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,18 +16,18 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j16000media_centre_s3import
 {
-    public function __construct()
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
 		
 		$force = (int)jomresGetParam($_REQUEST, 'force', 0);
 		
@@ -63,37 +63,37 @@ class j16000media_centre_s3import
 		jr_import('jomres_media_centre_images_s3import');
 		$jomres_media_centre_images_s3import = new jomres_media_centre_images_s3import();
 
-        if (!using_bootstrap()) {
-            if (!$jomres_media_centre_images_s3import->run()) {
-                echo 'Error: Could not import images to Aamazon S3 bucket.';
-            } else {
-                echo 'Images imported successfully to Amazon S3 bucket.';
-            }
-        } else {
-            if (!$jomres_media_centre_images_s3import->run()) {
-                echo '
+		if (!using_bootstrap()) {
+			if (!$jomres_media_centre_images_s3import->run()) {
+				echo 'Error: Could not import images to Aamazon S3 bucket.';
+			} else {
+				echo 'Images imported successfully to Amazon S3 bucket.';
+			}
+		} else {
+			if (!$jomres_media_centre_images_s3import->run()) {
+				echo '
 				<div class="alert alert-error alert-danger">
 					<h4 class="alert-heading">ERROR</h4>
 					<p>Error: Could not import images to Aamazon S3 bucket.</p>
 				</div>
 				';
-            } else {
+			} else {
 				//mark as imported
 				$siteConfig->update_setting('images_imported_to_s3','1');
 
-                echo '
+				echo '
 				<div class="alert alert-success">
 					<h4 class="alert-heading">Congratulations!</h4>
 					<p>Images imported successfully to Amazon S3 bucket.</p>
 				</div>
 				';
-            }
-        }
-    }
+			}
+		}
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

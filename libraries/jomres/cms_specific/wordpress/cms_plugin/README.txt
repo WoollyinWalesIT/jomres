@@ -57,39 +57,39 @@ Yes. Jomres follows the [Open Core](https://en.wikipedia.org/wiki/Open_core) bus
 
 = What do I get for free? =
 
-    **Tried and tested** Jomres is a true bookings portal and has thousands of users who've helped us to fine-tune the system to make it the best in it's class.
-    **Large and enthusiastic community forum** Before choosing a competitor, check out their forums, if they have one. In our experience a plugin's real value can be determined from a forum's activity, it is the heart and soul of the project. If the forum's dead, so is the project. Don't believe fake reviews, look for yourself.
-    **Totally multilingual** 45 language files are included by default. Unique label editing feature allows each property to have their own labels, and our Language Context feature allows different property types to have completely different language files.
-    **Supports both Bootstrap 2 and Bootstrap 3, another first** Completely responsive. We have adhered to the BS2 and BS3 coding standards religiously, so Jomres will work in any theme that uses Bootstrap. As always, where we lead other Booking systems will follow.
-    **Works for just single property sites, or multiple properties** Equally suited to booking hotels, B&Bs and individual properties like apartments and villas, cars, boats and tools.
-    **Intelligent, Ajax driven reservation system** Our goal is to make it as easy as possible for guests to make bookings. Two different room list styles, autodetect guest country, even disable the depature date input altogether. Each property can have different Required fields in the form. Property managers can enable/disable booking functionality on each property at the flick of a switch. For hotels, single person supplements can be applied in the event of under-occupancy. Each property chooses it's own currency and pricing output format. Create new Wordpress users when unregistered users book for the first time. Room locking means that if one person selects a room during booking, another person using the form at the same time can't book the same room.
-    **Optimised for performance** our clients have successfully used it on websites with more than 30,000 properties listed. Guests, invoices and booking listings are all Ajax driven meaning that it deals with large data volumes very easily.
-    **Bookings per night or per day** Deposits can be a percentage or flat rate, or the first day's booking cost. Variable depsosits based on the number days from today determine if the deposit paid should be a smaller fee, or the whole booking cost.
-    **We listen to our users** The property manager's User Interface has been designed after consulting with real property managers to provide the most logical User eXperience possible.
-    **Clear separation of Site and Property manager responsibilities** All property management is done via the front end of the site, no need to allow managers to access the administrator area.
-    **Todo lists** They guide your property managers through setting up individual properties, from pricing through to property description and images.
-    **Simple or extended property configuration** Site managers choose whether property managers should have few, or many settings to choose from.
-    **Crisp, clean dashboard** Drag and click the calendar to create or modify a booking's room and dates, or drag away to easily cancel a booking.
-    **Slick Media Centre** Images are exceptionally easy to upload, and you can upload images for the main asset image, property list slideshow, main property page slideshow and more. Small, medium and large images are created automatically and the slideshow for displaying images is fully responsive.
-    **Calendars** Several different calendars for displaying occupancies and arrivals and departures. Whether it's a villa or hotel, you'll know at a glance how busy you are.
-    **Amend bookings** After a booking has been created, add extras to bookings while the guest is on-site, or completely change the booking's dates and prices.
-    **Email templates** Property managers can customise the email templates to suit their individual properties.
-    **Detailed invoicing** Shows all line items, including tax. Additional items added to invoices can have their own tax rates.
-    **Taxes** Accommodation and other services can each use their own tax codes.
-    **Guests have their own accounts** Their details are remembered from visit to visit.
-    **Guest dashboard** This allows them to easily see their bookings, invoices and favourite properties.
-    **Contact form** If the guest's not ready to book right away, they can contact the hotel directly through a simple form instead.
-    **Elegant Property List** Shows multiple views including List and Photo views, plus various sorting features and when a guest sets a budget then properties outside that budget are de-emphasised. Offers both infinite scrolling or paging to show search results.
-    **Property comparison** page Guests can compare up to 3 properties at a time.
-    **Property feature icons** Create by property managers, they can be defined for all property types, or just one property type.
-    **Review functionality** Reviews can either be automatically approved or not, guests can input comments and other reviewers can score a review's helpfulness.
-    **Fully automatic exchange rate conversion** No configuration required at all, just request a free API key from OpenExchangeRates and Jomres will download the current rates daily and use them as needed.
-    **Plugins plugins plugins** Using our plugin philosophy, all areas of Jomres functionality can be modified. This has helped to breed a healthy and diverse plugin community.
-    **Modular** It's designed to be third party plug-in friendly. See the extension specific plugins page here on the JED, or visit our Partners page.
-    **Google maps well supported** Drag and drop pointers or type your address for the pointer to move. Choose to show POI's or not, and choose a map colour scheme that suits your site's theme. 30+ map styles so that the maps match your site's theme.
-    **QR codes in both front and back end facing pages** Receptionists can scan a customer's booking printout and immediately book them in on arrival. Guests can scan QR codes to be taken to directions to the property.
-    **Logging** Detailed logging for the data-nerds out there. Extensive log files that are cycled regularly, and logging can be sent to a remote syslog server.
-    **Recaptcha** Uses the most modern No CAPTCHA reCAPTCHA in contact forms to reduce spam.
+	**Tried and tested** Jomres is a true bookings portal and has thousands of users who've helped us to fine-tune the system to make it the best in it's class.
+	**Large and enthusiastic community forum** Before choosing a competitor, check out their forums, if they have one. In our experience a plugin's real value can be determined from a forum's activity, it is the heart and soul of the project. If the forum's dead, so is the project. Don't believe fake reviews, look for yourself.
+	**Totally multilingual** 45 language files are included by default. Unique label editing feature allows each property to have their own labels, and our Language Context feature allows different property types to have completely different language files.
+	**Supports both Bootstrap 2 and Bootstrap 3, another first** Completely responsive. We have adhered to the BS2 and BS3 coding standards religiously, so Jomres will work in any theme that uses Bootstrap. As always, where we lead other Booking systems will follow.
+	**Works for just single property sites, or multiple properties** Equally suited to booking hotels, B&Bs and individual properties like apartments and villas, cars, boats and tools.
+	**Intelligent, Ajax driven reservation system** Our goal is to make it as easy as possible for guests to make bookings. Two different room list styles, autodetect guest country, even disable the depature date input altogether. Each property can have different Required fields in the form. Property managers can enable/disable booking functionality on each property at the flick of a switch. For hotels, single person supplements can be applied in the event of under-occupancy. Each property chooses it's own currency and pricing output format. Create new Wordpress users when unregistered users book for the first time. Room locking means that if one person selects a room during booking, another person using the form at the same time can't book the same room.
+	**Optimised for performance** our clients have successfully used it on websites with more than 30,000 properties listed. Guests, invoices and booking listings are all Ajax driven meaning that it deals with large data volumes very easily.
+	**Bookings per night or per day** Deposits can be a percentage or flat rate, or the first day's booking cost. Variable depsosits based on the number days from today determine if the deposit paid should be a smaller fee, or the whole booking cost.
+	**We listen to our users** The property manager's User Interface has been designed after consulting with real property managers to provide the most logical User eXperience possible.
+	**Clear separation of Site and Property manager responsibilities** All property management is done via the front end of the site, no need to allow managers to access the administrator area.
+	**Todo lists** They guide your property managers through setting up individual properties, from pricing through to property description and images.
+	**Simple or extended property configuration** Site managers choose whether property managers should have few, or many settings to choose from.
+	**Crisp, clean dashboard** Drag and click the calendar to create or modify a booking's room and dates, or drag away to easily cancel a booking.
+	**Slick Media Centre** Images are exceptionally easy to upload, and you can upload images for the main asset image, property list slideshow, main property page slideshow and more. Small, medium and large images are created automatically and the slideshow for displaying images is fully responsive.
+	**Calendars** Several different calendars for displaying occupancies and arrivals and departures. Whether it's a villa or hotel, you'll know at a glance how busy you are.
+	**Amend bookings** After a booking has been created, add extras to bookings while the guest is on-site, or completely change the booking's dates and prices.
+	**Email templates** Property managers can customise the email templates to suit their individual properties.
+	**Detailed invoicing** Shows all line items, including tax. Additional items added to invoices can have their own tax rates.
+	**Taxes** Accommodation and other services can each use their own tax codes.
+	**Guests have their own accounts** Their details are remembered from visit to visit.
+	**Guest dashboard** This allows them to easily see their bookings, invoices and favourite properties.
+	**Contact form** If the guest's not ready to book right away, they can contact the hotel directly through a simple form instead.
+	**Elegant Property List** Shows multiple views including List and Photo views, plus various sorting features and when a guest sets a budget then properties outside that budget are de-emphasised. Offers both infinite scrolling or paging to show search results.
+	**Property comparison** page Guests can compare up to 3 properties at a time.
+	**Property feature icons** Create by property managers, they can be defined for all property types, or just one property type.
+	**Review functionality** Reviews can either be automatically approved or not, guests can input comments and other reviewers can score a review's helpfulness.
+	**Fully automatic exchange rate conversion** No configuration required at all, just request a free API key from OpenExchangeRates and Jomres will download the current rates daily and use them as needed.
+	**Plugins plugins plugins** Using our plugin philosophy, all areas of Jomres functionality can be modified. This has helped to breed a healthy and diverse plugin community.
+	**Modular** It's designed to be third party plug-in friendly. See the extension specific plugins page here on the JED, or visit our Partners page.
+	**Google maps well supported** Drag and drop pointers or type your address for the pointer to move. Choose to show POI's or not, and choose a map colour scheme that suits your site's theme. 30+ map styles so that the maps match your site's theme.
+	**QR codes in both front and back end facing pages** Receptionists can scan a customer's booking printout and immediately book them in on arrival. Guests can scan QR codes to be taken to directions to the property.
+	**Logging** Detailed logging for the data-nerds out there. Extensive log files that are cycled regularly, and logging can be sent to a remote syslog server.
+	**Recaptcha** Uses the most modern No CAPTCHA reCAPTCHA in contact forms to reduce spam.
 
 = If I purchase a license key what happens when the license expires? =
 

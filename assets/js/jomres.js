@@ -270,9 +270,9 @@ function bind_data_toggle() {
 			else{
 				ajax_url = module_pop_ajax_url + property_uid;
 				}
-			
+
 			jomresJquery.get(ajax_url , function (data) {
-				if (jomres_template_version == "bootstrap3"){
+				if (jomres_template_version == "bootstrap3" || jomres_template_version == "bootstrap4"){
 					result = '<div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">x</button><h4>' + modal_title + '</h4></div><div class="modal-body">' + data + '</div></div></div>';
 					}
 				else {
@@ -757,9 +757,7 @@ function checkSelectRoomMessage(oktobook, disable_address) {
 			if (show_extras == true) {
 				jomresJquery("#extrascontainer").delay(800).fadeTo("slow", 0.1);
 				}
-			if (disable_address) {
-				jomresJquery("#bookingform_address").delay(800).slideUp("slow");
-				}
+
 			jomresJquery("#bookingform_footer").delay(800).fadeTo("slow", 0.1);
 			jomresJquery("#accommodation_container").delay(800).fadeTo("slow", 0.1);
 		}

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,20 +16,20 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j10531amazon_s3
 {
-    public function __construct($componentArgs)
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct($componentArgs)
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
 
-        $configurationPanel = $componentArgs[ 'configurationPanel' ];
+		$configurationPanel = $componentArgs[ 'configurationPanel' ];
 		
 		$options = array();
 		$options[] = jomresHTML::makeOption( 'us-east-1', 'US East (N. Virginia)' );
@@ -56,7 +56,7 @@ class j10531amazon_s3
 		$remove_local_copies = jomresHTML::selectList( $yesno, 'cfg_amazon_s3_remove_local_copies','class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'amazon_s3_remove_local_copies' ]);
 		$use_tls = jomresHTML::selectList( $yesno, 'cfg_amazon_s3_use_tls','class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'amazon_s3_use_tls' ]);
 
-        $configurationPanel->insertHeading('Amazon S3');
+		$configurationPanel->insertHeading('Amazon S3');
 		
 		$configurationPanel->setleft(jr_gettext('_JOMRES_STATUS_ACTIVE', '_JOMRES_STATUS_ACTIVE', false));
 		$configurationPanel->setmiddle($active);
@@ -97,11 +97,11 @@ class j10531amazon_s3
 		$configurationPanel->setmiddle($remove_local_copies);
 		$configurationPanel->setright('Once a file has been copied to Amazon S3, remove it from the local server');
 		$configurationPanel->insertSetting(); */
-    }
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

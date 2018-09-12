@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,25 +16,25 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j06000review_confirm
 {
-    public function __construct()
-    {
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
+			return;
+		}
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
 
-        $rating_id = (int) $_GET[ 'rating_id' ];
-        $state = (int) $_GET[ 'state' ];
+		$rating_id = (int) $_GET[ 'rating_id' ];
+		$state = (int) $_GET[ 'state' ];
 
-        if ($jrConfig[ 'use_reviews' ] == '1' && $rating_id > 0) {
-            $string = '';
+		if ($jrConfig[ 'use_reviews' ] == '1' && $rating_id > 0) {
+			$string = '';
 
-            jr_import('jomres_reviews');
-            $Reviews = new jomres_reviews();
+			jr_import('jomres_reviews');
+			$Reviews = new jomres_reviews();
 
 			$property_uid = $Reviews->get_property_uid_for_rating_id($rating_id);
 			
@@ -52,11 +52,11 @@ class j06000review_confirm
 			$Reviews->save_confirmation($rating_id, $state);
 			echo '1';
 			return;
-        }
-    }
+		}
+	}
 
-    public function getRetVals()
-    {
-        return $this->retVals;
-    }
+	public function getRetVals()
+	{
+		return $this->retVals;
+	}
 }

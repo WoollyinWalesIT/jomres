@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,18 +16,18 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j16000list_template_overrides
 {
-    public function __construct()
-    {
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
-        $template_packages = get_showtime('template_packages');
+		$template_packages = get_showtime('template_packages');
 
-        if (!empty($template_packages)) {
+		if (!empty($template_packages)) {
 			
 			$template_overrides = jomres_singleton_abstract::getInstance('template_overrides');
 
@@ -69,21 +69,21 @@ class j16000list_template_overrides
 			$output[ '_JOMRES_TEMPLATE_PACKAGE_NAME' ] = jr_gettext('_JOMRES_TEMPLATE_PACKAGE_NAME', '_JOMRES_TEMPLATE_PACKAGE_NAME', false);
 			$output[ '_JOMRES_TEMPLATE_PACKAGE_PATH' ] = jr_gettext('_JOMRES_TEMPLATE_PACKAGE_PATH', '_JOMRES_TEMPLATE_PACKAGE_PATH', false);
 
-            $pageoutput[ ] = $output;
-            $tmpl = new patTemplate();
-            $tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
-            $tmpl->readTemplatesFromInput('template_packages.html');
-            $tmpl->addRows('pageoutput', $pageoutput);
-            $tmpl->addRows('rows', $rows);
-            $tmpl->displayParsedTemplate();
-        } else {
-            echo 'No template packages installed';
-        }
-    }
+			$pageoutput[ ] = $output;
+			$tmpl = new patTemplate();
+			$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
+			$tmpl->readTemplatesFromInput('template_packages.html');
+			$tmpl->addRows('pageoutput', $pageoutput);
+			$tmpl->addRows('rows', $rows);
+			$tmpl->displayParsedTemplate();
+		} else {
+			echo 'No template packages installed';
+		}
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

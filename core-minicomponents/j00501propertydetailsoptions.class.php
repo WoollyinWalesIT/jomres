@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,35 +16,35 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j00501propertydetailsoptions
 {
-    public function __construct($componentArgs)
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct($componentArgs)
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
-        $configurationPanel = $componentArgs[ 'configurationPanel' ];
+			return;
+		}
+		$configurationPanel = $componentArgs[ 'configurationPanel' ];
 
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
-        $mrConfig = getPropertySpecificSettings();
-        $lists = $componentArgs[ 'lists' ];
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
+		$mrConfig = getPropertySpecificSettings();
+		$lists = $componentArgs[ 'lists' ];
 
-        $configurationPanel->startPanel(jr_gettext('PROPERTY_DETAILS_PAGE_OPTIONS', 'PROPERTY_DETAILS_PAGE_OPTIONS', false));
+		$configurationPanel->startPanel(jr_gettext('PROPERTY_DETAILS_PAGE_OPTIONS', 'PROPERTY_DETAILS_PAGE_OPTIONS', false));
 
-        $configurationPanel->setleft(jr_gettext('_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK', '_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK', false));
-        $configurationPanel->setmiddle('<input text="text" class="inputbox" size="5" name="cfg_facebook_page" value="'.$mrConfig[ 'facebook_page' ].'"/>');
-        $configurationPanel->setright(jr_gettext('_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK_DESC', '_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK_DESC', false));
-        $configurationPanel->insertSetting();
+		$configurationPanel->setleft(jr_gettext('_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK', '_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK', false));
+		$configurationPanel->setmiddle('<input text="text" class="inputbox" size="5" name="cfg_facebook_page" value="'.$mrConfig[ 'facebook_page' ].'"/>');
+		$configurationPanel->setright(jr_gettext('_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK_DESC', '_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK_DESC', false));
+		$configurationPanel->insertSetting();
 
 		$configurationPanel->setleft(jr_gettext('HIDDEN_ADDRESS_SETTING', 'HIDDEN_ADDRESS_SETTING', false));
 		$configurationPanel->setmiddle($lists[ 'hide_local_address' ]);
 		$configurationPanel->setright(jr_gettext('HIDDEN_ADDRESS_SETTING_DESC', 'HIDDEN_ADDRESS_SETTING_DESC', false));
 		$configurationPanel->insertSetting();
 		
-        if ($mrConfig[ 'is_real_estate_listing' ] == 0) {
+		if ($mrConfig[ 'is_real_estate_listing' ] == 0) {
 
 			
 			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_SHOWONLYAVLCAL', '_JOMRES_COM_A_SHOWONLYAVLCAL', false));
@@ -52,18 +52,18 @@ class j00501propertydetailsoptions
 			$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_SHOWONLYAVLCAL_DESC', '_JOMRES_COM_A_SHOWONLYAVLCAL_DESC', false));
 			$configurationPanel->insertSetting();
 
-            if ($mrConfig[ 'showOnlyAvailabilityCalendar' ] == '1') {
-                $configurationPanel->setleft(jr_gettext('_JOMRES_COM_MONTHSTOSHOW', '_JOMRES_COM_MONTHSTOSHOW', false));
-                $configurationPanel->setmiddle('<input type="number" class="inputbox" size="5" name="cfg_CalendarMonthsToShow" value="'.$mrConfig[ 'CalendarMonthsToShow' ].'"/>');
-                $configurationPanel->setright(jr_gettext('_JOMRES_COM_MONTHSTOSHOW_DESC', '_JOMRES_COM_MONTHSTOSHOW_DESC', false));
-                $configurationPanel->insertSetting();
+			if ($mrConfig[ 'showOnlyAvailabilityCalendar' ] == '1') {
+				$configurationPanel->setleft(jr_gettext('_JOMRES_COM_MONTHSTOSHOW', '_JOMRES_COM_MONTHSTOSHOW', false));
+				$configurationPanel->setmiddle('<input type="number" class="inputbox" size="5" name="cfg_CalendarMonthsToShow" value="'.$mrConfig[ 'CalendarMonthsToShow' ].'"/>');
+				$configurationPanel->setright(jr_gettext('_JOMRES_COM_MONTHSTOSHOW_DESC', '_JOMRES_COM_MONTHSTOSHOW_DESC', false));
+				$configurationPanel->insertSetting();
 
-                $configurationPanel->setleft(jr_gettext('_JOMRES_COM_MONTHS_STARTOFYEAR', '_JOMRES_COM_MONTHS_STARTOFYEAR', false));
-                $configurationPanel->setmiddle($lists[ 'calstartfrombeginningofyear' ]);
-                $configurationPanel->setright(jr_gettext('_JOMRES_COM_MONTHS_STARTOFYEAR_DESC', '_JOMRES_COM_MONTHS_STARTOFYEAR_DESC', false));
-                $configurationPanel->insertSetting();
-            }
-        }
+				$configurationPanel->setleft(jr_gettext('_JOMRES_COM_MONTHS_STARTOFYEAR', '_JOMRES_COM_MONTHS_STARTOFYEAR', false));
+				$configurationPanel->setmiddle($lists[ 'calstartfrombeginningofyear' ]);
+				$configurationPanel->setright(jr_gettext('_JOMRES_COM_MONTHS_STARTOFYEAR_DESC', '_JOMRES_COM_MONTHS_STARTOFYEAR_DESC', false));
+				$configurationPanel->insertSetting();
+			}
+		}
 
 		$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_SLIDESHOWS_SHOWSLIDESHOWINLINE', '_JOMRES_COM_A_SLIDESHOWS_SHOWSLIDESHOWINLINE', false));
 		$configurationPanel->setmiddle($lists[ 'showSlideshowInline' ]);
@@ -75,18 +75,18 @@ class j00501propertydetailsoptions
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
 
-        if ($mrConfig[ 'is_real_estate_listing' ] == 0) {
-            if ($mrConfig[ 'singleRoomProperty' ] != '1') {
-                $configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', '_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', false));
-                $configurationPanel->setmiddle($lists[ 'roomslistinpropertydetails' ]);
-                $configurationPanel->setright();
-                $configurationPanel->insertSetting();
+		if ($mrConfig[ 'is_real_estate_listing' ] == 0) {
+			if ($mrConfig[ 'singleRoomProperty' ] != '1') {
+				$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', '_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', false));
+				$configurationPanel->setmiddle($lists[ 'roomslistinpropertydetails' ]);
+				$configurationPanel->setright();
+				$configurationPanel->insertSetting();
 
-                $configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_SHOWROOMSLISTLINK', '_JOMRES_COM_A_SHOWROOMSLISTLINK', false));
-                $configurationPanel->setmiddle($lists[ 'showRoomsListingLink' ]);
-                $configurationPanel->setright();
-                $configurationPanel->insertSetting();
-            }
+				$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_SHOWROOMSLISTLINK', '_JOMRES_COM_A_SHOWROOMSLISTLINK', false));
+				$configurationPanel->setmiddle($lists[ 'showRoomsListingLink' ]);
+				$configurationPanel->setright();
+				$configurationPanel->insertSetting();
+			}
 
 			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR', '_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR', false));
 			$configurationPanel->setmiddle($lists[ 'showAvailabilityCalendar' ]);
@@ -107,7 +107,7 @@ class j00501propertydetailsoptions
 			$configurationPanel->setmiddle($lists[ 'verbosetariffinfo' ]);
 			$configurationPanel->setright(jr_gettext('JOMRES_COM_A_VERBOSETARIFFINTO_DESC', 'JOMRES_COM_A_VERBOSETARIFFINTO_DESC', false));
 			$configurationPanel->insertSetting();
-        }
+		}
 
 		if (!isset($mrConfig[ 'galleryLink' ])) {
 			$mrConfig[ 'galleryLink' ] = '';
@@ -123,12 +123,12 @@ class j00501propertydetailsoptions
 		$configurationPanel->setright(jr_gettext('_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES_DESC', '_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES_DESC', false));
 		$configurationPanel->insertSetting();
 
-        $configurationPanel->endPanel();
-    }
+		$configurationPanel->endPanel();
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }

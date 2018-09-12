@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,78 +16,78 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class custom_text
 {
-    public function __construct()
-    {
-        $this->lang = get_showtime('lang');
-        $this->global_custom_text = false;
-        $this->properties_custom_text = false;
+	public function __construct()
+	{
+		$this->lang = get_showtime('lang');
+		$this->global_custom_text = false;
+		$this->properties_custom_text = false;
 
-        //get the global custom text
-        $this->gather_data(array(0));
-    }
+		//get the global custom text
+		$this->gather_data(array(0));
+	}
 
-    public function reset_current_lang($lang = '')
-    {
-        if ($lang == '') {
-            $lang = get_showtime('lang');
-        }
+	public function reset_current_lang($lang = '')
+	{
+		if ($lang == '') {
+			$lang = get_showtime('lang');
+		}
 
-        $this->lang = $lang;
-        $this->global_custom_text = false;
-        $this->properties_custom_text = false;
+		$this->lang = $lang;
+		$this->global_custom_text = false;
+		$this->properties_custom_text = false;
 
-        //get the global custom text
-        $this->gather_data(array(0));
-    }
+		//get the global custom text
+		$this->gather_data(array(0));
+	}
 
-    public function gather_data($property_uids = array())
-    {
-        if (empty($property_uids)) {
-            return false;
-        }
+	public function gather_data($property_uids = array())
+	{
+		if (empty($property_uids)) {
+			return false;
+		}
 
-        if (!is_array($this->global_custom_text)) {
-            $this->global_custom_text = array();
-        }
+		if (!is_array($this->global_custom_text)) {
+			$this->global_custom_text = array();
+		}
 
-        if (!is_array($this->properties_custom_text)) {
-            $this->properties_custom_text = array();
-        }
+		if (!is_array($this->properties_custom_text)) {
+			$this->properties_custom_text = array();
+		}
 
-        //filter the properties for which we`ve already got the custom text in $this->properties_custom_text
-        $tmp_array = array();
-        foreach ($property_uids as $uid) {
-            if (!isset($this->properties_custom_text[$uid])) {
-                $tmp_array[] = $uid;
+		//filter the properties for which we`ve already got the custom text in $this->properties_custom_text
+		$tmp_array = array();
+		foreach ($property_uids as $uid) {
+			if (!isset($this->properties_custom_text[$uid])) {
+				$tmp_array[] = $uid;
 				//we`ll define this here, so even if empty, we know that we`ve gone through this property uid before
 				$this->properties_custom_text[$uid] = array();
-            }
-        }
-        $property_uids = $tmp_array;
+			}
+		}
+		$property_uids = $tmp_array;
 
-        if (!empty($property_uids)) {
-            $query = 'SELECT `constant` AS language_constant, `customtext`, `property_uid`, `language_context` FROM #__jomres_custom_text WHERE `property_uid` IN ('.jomres_implode($property_uids).") AND `language` = '".$this->lang."'";
-            $customTextList = doSelectSql($query);
+		if (!empty($property_uids)) {
+			$query = 'SELECT `constant` AS language_constant, `customtext`, `property_uid`, `language_context` FROM #__jomres_custom_text WHERE `property_uid` IN ('.jomres_implode($property_uids).") AND `language` = '".$this->lang."'";
+			$customTextList = doSelectSql($query);
 
-            if ($customTextList) {
-                foreach ($customTextList as $text) {
-                    $theConstant = str_replace('sc<x>ript', 'script', $text->language_constant);
+			if ($customTextList) {
+				foreach ($customTextList as $text) {
+					$theConstant = str_replace('sc<x>ript', 'script', $text->language_constant);
 
-                    if ($text->property_uid == 0) { //it`s a global custom text
-                        $this->global_custom_text[$text->language_context][ $theConstant ] = stripslashes($text->customtext);
-                    } else { //it`s a property specific custom text
-                        $this->properties_custom_text[ $text->property_uid ][ $theConstant ] = stripslashes($text->customtext);
-                    }
-                }
-            }
-        }
+					if ($text->property_uid == 0) { //it`s a global custom text
+						$this->global_custom_text[$text->language_context][ $theConstant ] = stripslashes($text->customtext);
+					} else { //it`s a property specific custom text
+						$this->properties_custom_text[ $text->property_uid ][ $theConstant ] = stripslashes($text->customtext);
+					}
+				}
+			}
+		}
 
-        return true;
-    }
+		return true;
+	}
 
-    //Legacy function: we`ll keep it here because it`s used in various places
-    public function get_custom_text_for_property($property_uid = 0)
-    {
+	//Legacy function: we`ll keep it here because it`s used in various places
+	public function get_custom_text_for_property($property_uid = 0)
+	{
 		if ($property_uid == 0)
 			return true;
 		
@@ -96,8 +96,8 @@ class custom_text
 		else
 			$this->gather_data(array($property_uid));
 		
-        return true;
-    }
+		return true;
+	}
 	
 	//update custom text
 	function updateCustomText($theConstant, $theValue, $audit = true, $property_uid = null, $language_context = '0')
@@ -113,19 +113,22 @@ class custom_text
 		
 		if (
 			strlen($testStr) == 0 &&
-			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION' &&
-			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES' &&
-			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES' &&
-			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS' &&
-			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS' &&
-			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT' &&
-			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS' &&
-			$theConstant != '_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE' &&
-			$theConstant != '_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION' &&
-			$theConstant != '_JOMRES_CUSTOMTEXT_PROPERTY_METAKEYWORDS'
+			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION_'.$property_uid &&
+			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES_'.$property_uid &&
+			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES_'.$property_uid &&
+			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS_'.$property_uid &&
+			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS_'.$property_uid &&
+			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT_'.$property_uid &&
+			$theConstant != '_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS_'.$property_uid &&
+			$theConstant != '_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE_'.$property_uid &&
+			$theConstant != '_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION_'.$property_uid &&
+			$theConstant != '_JOMRES_CUSTOMTEXT_PROPERTY_METAKEYWORDS_'.$property_uid
 			) {
 			return false;
 		}
+		
+		
+
 		
 		if (!isset($property_uid)) {
 			if ($jrConfig[ 'editingModeAffectsAllProperties' ] == '1' && $thisJRUser->superPropertyManager == true) {
@@ -142,7 +145,7 @@ class custom_text
 						AND `language_context` = '".$language_context."'";
 		$result = doSelectSql($query);
 		
-		if (strlen($theValue) == 0) {
+		if (strlen($theValue) == 0 || $theValue == "" ) {
 			$query = "DELETE FROM #__jomres_custom_text 
 							WHERE `constant` = '".$theConstant."' 
 							AND `property_uid` = ".(int) $property_uid." 

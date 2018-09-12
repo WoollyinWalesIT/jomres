@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -18,90 +18,90 @@ defined('_JOMRES_INITCHECK') or die('');
  */
 class minicomponent_registry
 {
-    public function __construct()
-    {
-        $this->registeredClasses = array();
-        $this->miniComponentDirectories = array();
-        $this->eventPoints = array();
-        $this->new_filesize = 0;
-        $this->error_detected = false;
-        $this->unWantedFolderContents = array('.', '..', 'cvs', '.svn', 'registry.php');
-        $this->temp_directory = JOMRES_TEMP_ABSPATH;
-        $this->registry_file = JOMRES_TEMP_ABSPATH.'registry.php';
+	public function __construct()
+	{
+		$this->registeredClasses = array();
+		$this->miniComponentDirectories = array();
+		$this->eventPoints = array();
+		$this->new_filesize = 0;
+		$this->error_detected = false;
+		$this->unWantedFolderContents = array('.', '..', 'cvs', '.svn', 'registry.php');
+		$this->temp_directory = JOMRES_TEMP_ABSPATH;
+		$this->registry_file = JOMRES_TEMP_ABSPATH.'registry.php';
 
-        if (file_exists($this->registry_file)) {
-            $this->original_filesize = @filesize($this->registry_file);
-        } // @to prevent notices when the file doesn't exist at all
-        else {
-            $this->original_filesize = 0;
-        }
+		if (file_exists($this->registry_file)) {
+			$this->original_filesize = @filesize($this->registry_file);
+		} // @to prevent notices when the file doesn't exist at all
+		else {
+			$this->original_filesize = 0;
+		}
 
-        if (!defined('AUTO_UPGRADE')) {
-            if (!is_dir($this->temp_directory)) {
-                mkdir($this->temp_directory);
-            }
+		if (!defined('AUTO_UPGRADE')) {
+			if (!is_dir($this->temp_directory)) {
+				mkdir($this->temp_directory);
+			}
 
-            if (!file_exists($this->registry_file)) {
-                $this->regenerate_registry();
-                $this->new_filesize = filesize($this->registry_file);
-            }
+			if (!file_exists($this->registry_file)) {
+				$this->regenerate_registry();
+				$this->new_filesize = filesize($this->registry_file);
+			}
 
-            //this loads the registry items in $this->registeredClasses and $this->miniComponentDirectories
-            include_once $this->registry_file;
-        }
-    }
+			//this loads the registry items in $this->registeredClasses and $this->miniComponentDirectories
+			include_once $this->registry_file;
+		}
+	}
 
-    public function get_registered_classes()
-    {
-        return $this->registeredClasses;
-    }
+	public function get_registered_classes()
+	{
+		return $this->registeredClasses;
+	}
 
-    public function get_minicomponent_directories()
-    {
-        return $this->miniComponentDirectories;
-    }
+	public function get_minicomponent_directories()
+	{
+		return $this->miniComponentDirectories;
+	}
 
-    public function regenerate_registry($force_reload_allowed = false)
-    {
+	public function regenerate_registry($force_reload_allowed = false)
+	{
 		if (!defined('AUTO_UPGRADE')) { // We don't want to do this if the installer is running this script
 			jomres_cmsspecific_addheaddata('javascript', JOMRES_NODE_MODULES_RELPATH.'blockui-npm/', 'jquery.blockUI.js');
 		}
 		
-        $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-        $jrConfig = $siteConfig->get();
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
 
-        if (!isset($jrConfig[ 'safe_mode' ])) {
-            $jrConfig[ 'safe_mode' ] = '0';
-        }
+		if (!isset($jrConfig[ 'safe_mode' ])) {
+			$jrConfig[ 'safe_mode' ] = '0';
+		}
 
-        $this->registeredClasses = array();
-        $this->miniComponentDirectories = array();
+		$this->registeredClasses = array();
+		$this->miniComponentDirectories = array();
 
-        $this->getMiniComponentCoreClasses();
-        $this->getMiniComponentCMSSpecificClasses();
+		$this->getMiniComponentCoreClasses();
+		$this->getMiniComponentCMSSpecificClasses();
 
-        if ($jrConfig[ 'safe_mode' ] == '0') {
+		if ($jrConfig[ 'safe_mode' ] == '0') {
 
-            if (!defined('AUTO_UPGRADE')) {
-                $this->getMiniComponentCmsTemplateClasses();
-            }
-        }
+			if (!defined('AUTO_UPGRADE')) {
+				$this->getMiniComponentCmsTemplateClasses();
+			}
+		}
 
-        asort($this->registeredClasses);
+		asort($this->registeredClasses);
 
-        $this->save_registry_file();
+		$this->save_registry_file();
 
-        $this->new_filesize = filesize($this->registry_file);
+		$this->new_filesize = filesize($this->registry_file);
 
-        //delete js files in /jomres/temp dir
+		//delete js files in /jomres/temp dir
 		$task = jomresGetParam($_REQUEST, 'task', '');
 
-        if ($task == 'rebuildregistry' || $task == 'save_site_settings' || defined('AUTO_UPGRADE')) {
-            $javascript_files_in_temp_dir = scandir_getfiles(JOMRES_TEMP_ABSPATH, $extension = 'js');
-            foreach ($javascript_files_in_temp_dir as $file) {
-                unlink(JOMRES_TEMP_ABSPATH.$file);
-            }
-        }
+		if ($task == 'rebuildregistry' || $task == 'save_site_settings' || defined('AUTO_UPGRADE')) {
+			$javascript_files_in_temp_dir = scandir_getfiles(JOMRES_TEMP_ABSPATH, $extension = 'js');
+			foreach ($javascript_files_in_temp_dir as $file) {
+				unlink(JOMRES_TEMP_ABSPATH.$file);
+			}
+		}
 		
 		//delete installed and remote plugins cached lists
 		if (file_exists(JOMRES_TEMP_ABSPATH.'installed_plugins_data.php')) {
@@ -116,16 +116,16 @@ class minicomponent_registry
 			unlink(JOMRES_TEMP_ABSPATH.'registry_classes.php');
 		}
 
-        //rebuild the shortcodes list
-        if (!defined('AUTO_UPGRADE')) {
-            $jomres_shortcode_parser = jomres_singleton_abstract::getInstance('jomres_shortcode_parser');
-            $jomres_shortcode_parser->build_shortcodes($force = true);
-        }
+		//rebuild the shortcodes list
+		if (!defined('AUTO_UPGRADE')) {
+			$jomres_shortcode_parser = jomres_singleton_abstract::getInstance('jomres_shortcode_parser');
+			$jomres_shortcode_parser->build_shortcodes($force = true);
+		}
 
-        //reload page if registry changed
-        if ($this->original_filesize != $this->new_filesize && $force_reload_allowed) {
+		//reload page if registry changed
+		if ($this->original_filesize != $this->new_filesize && $force_reload_allowed) {
 			if (!defined('AUTO_UPGRADE')) { // We don't want to do this if the installer is running this script
-            echo "<script>	jomresJquery.blockUI({ 
+			echo "<script>	jomresJquery.blockUI({ 
 			message: '<h3>Reloading the page as the registry has changed</h3>',
 			baseZ: 1030,
 			css: {
@@ -138,23 +138,23 @@ class minicomponent_registry
 				color: '#fff' 
 			} });</script>";
 				}
-            echo '<script>window.location.reload();</script>';
-        }
-    }
+			echo '<script>window.location.reload();</script>';
+		}
+	}
 
-    public function save_registry_file()
-    {
-        $existed = false;
-        if (file_exists($this->registry_file)) {
-            if (!unlink($this->registry_file)) {
-                error_logging('Could not delete existing registry file  :: '.$this->registry_file);
+	public function save_registry_file()
+	{
+		$existed = false;
+		if (file_exists($this->registry_file)) {
+			if (!unlink($this->registry_file)) {
+				error_logging('Could not delete existing registry file  :: '.$this->registry_file);
 
-                return false;
-            }
-            $existed = true;
-        }
+				return false;
+			}
+			$existed = true;
+		}
 
-        $this->miniComponentDirectories = array_unique($this->miniComponentDirectories);
+		$this->miniComponentDirectories = array_unique($this->miniComponentDirectories);
 		sort($this->miniComponentDirectories);
 		
 		//sort by eventPoint
@@ -165,7 +165,7 @@ class minicomponent_registry
 			ksort($this->registeredClasses[$k]);
 		}
 
-        if (!file_put_contents($this->registry_file,
+		if (!file_put_contents($this->registry_file,
 '<?php
 ##################################################################
 defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
@@ -174,46 +174,46 @@ defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
 $this->registeredClasses = ' .var_export($this->registeredClasses, true).';
 $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories, true).';
 ')) {
-            trigger_error('ERROR: '.$this->registry_file.' can`t be saved. Please solve the permission problem and try again.', E_USER_ERROR);
-            exit;
-        }
-    }
+			trigger_error('ERROR: '.$this->registry_file.' can`t be saved. Please solve the permission problem and try again.', E_USER_ERROR);
+			exit;
+		}
+	}
 
-    // If this is Joomla we'll also scan the Joomla template's html/com_jomres dir for minicomponents.
-    public function getMiniComponentCmsTemplateClasses()
-    {
-        if (!this_cms_is_joomla() && !this_cms_is_wordpress()) {
-            return;
-        }
+	// If this is Joomla we'll also scan the Joomla template's html/com_jomres dir for minicomponents.
+	public function getMiniComponentCmsTemplateClasses()
+	{
+		if (!this_cms_is_joomla() && !this_cms_is_wordpress()) {
+			return;
+		}
 
-        if (this_cms_is_joomla()) {
-            $db = JFactory::getDBO();
-            $query = 'SELECT `template` FROM #__template_styles WHERE `client_id` = 0 AND `home` = 1';
-            $db->setQuery($query);
-            $templateName = $db->loadResult();
+		if (this_cms_is_joomla()) {
+			$db = JFactory::getDBO();
+			$query = 'SELECT `template` FROM #__template_styles WHERE `client_id` = 0 AND `home` = 1';
+			$db->setQuery($query);
+			$templateName = $db->loadResult();
 
-            $jrePath = JOMRESCONFIG_ABSOLUTE_PATH.'templates'.JRDS.$templateName.JRDS.'html'.JRDS.'com_jomres'.JRDS;
-        } elseif (this_cms_is_wordpress()) {
-            $jrePath = get_stylesheet_directory().JRDS.'html'.JRDS.'com_jomres'.JRDS;
-        } else {
-            return;
-        }
+			$jrePath = JOMRESCONFIG_ABSOLUTE_PATH.'templates'.JRDS.$templateName.JRDS.'html'.JRDS.'com_jomres'.JRDS;
+		} elseif (this_cms_is_wordpress()) {
+			$jrePath = get_stylesheet_directory().JRDS.'html'.JRDS.'com_jomres'.JRDS;
+		} else {
+			return;
+		}
 
-        $d = @dir($jrePath);
-        $docs = array();
-        if ($d) {
-            while (false !== ($entry = $d->read())) {
-                $filename = $entry;
-                if (substr($entry, 0, 1) != '.') {
-                    $docs[ ] = $entry;
-                }
-            }
+		$d = @dir($jrePath);
+		$docs = array();
+		if ($d) {
+			while (false !== ($entry = $d->read())) {
+				$filename = $entry;
+				if (substr($entry, 0, 1) != '.') {
+					$docs[ ] = $entry;
+				}
+			}
 
-            $d->close();
-            if (!empty($docs)) {
-                sort($docs);
-                foreach ($docs as $doc) {
-                    $listdir = $jrePath.$doc.JRDS;
+			$d->close();
+			if (!empty($docs)) {
+				sort($docs);
+				foreach ($docs as $doc) {
+					$listdir = $jrePath.$doc.JRDS;
 					if (is_dir($listdir)) {
 						$dr = @dir($listdir);
 						if ($dr) {
@@ -224,52 +224,52 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
 							$dr->close();
 						}
 					}
-                }
-            }
-        }
-    }
+				}
+			}
+		}
+	}
 
-    public function getMiniComponentCMSSpecificClasses()
-    {
-        $jrePath = _JOMRES_DETECTED_CMS_SPECIFIC_FILES;
-        $d = @dir($jrePath);
-        if ($d) {
-            while (false !== ($entry = $d->read())) {
-                $filename = $entry;
-                $this->registerComponentFile($jrePath, $filename, 'cms_specific_component');
-            }
-            $d->close();
-        }
-    }
+	public function getMiniComponentCMSSpecificClasses()
+	{
+		$jrePath = _JOMRES_DETECTED_CMS_SPECIFIC_FILES;
+		$d = @dir($jrePath);
+		if ($d) {
+			while (false !== ($entry = $d->read())) {
+				$filename = $entry;
+				$this->registerComponentFile($jrePath, $filename, 'cms_specific_component');
+			}
+			$d->close();
+		}
+	}
 
-    // Reads in class files from the events folder and inserts them into the registeredClasses array
-    public function getMiniComponentCoreClasses()
-    {
-        $listdir = JOMRES_APP_ABSPATH;
-        $d = @dir($listdir);
-        if ($d) {
-            while (false !== ($entry = $d->read())) {
-                $filename = $entry;
-                $this->registerComponentFile($listdir, $filename, 'core');
-            }
-            $d->close();
-        }
-    }
+	// Reads in class files from the events folder and inserts them into the registeredClasses array
+	public function getMiniComponentCoreClasses()
+	{
+		$listdir = JOMRES_APP_ABSPATH;
+		$d = @dir($listdir);
+		if ($d) {
+			while (false !== ($entry = $d->read())) {
+				$filename = $entry;
+				$this->registerComponentFile($listdir, $filename, 'core');
+			}
+			$d->close();
+		}
+	}
 
-    public function registerComponentFile($filePath, $filename, $eventType = 'component')
-    {
-        $strippedName = str_replace('.', '', $filename);
-        $strippedName = substr($strippedName, 0, -8);
+	public function registerComponentFile($filePath, $filename, $eventType = 'component')
+	{
+		$strippedName = str_replace('.', '', $filename);
+		$strippedName = substr($strippedName, 0, -8);
 
-        $classfileEventPoint = substr($strippedName, 1, 5);
+		$classfileEventPoint = substr($strippedName, 1, 5);
 
-        $classfileEventName = substr($strippedName, 6);
-        
+		$classfileEventName = substr($strippedName, 6);
+		
 		$path_parts = pathinfo($filePath.$filename);
-        if (isset($path_parts[ 'extension' ])) {
-            $extension = $path_parts[ 'extension' ];
-        }
-        
+		if (isset($path_parts[ 'extension' ])) {
+			$extension = $path_parts[ 'extension' ];
+		}
+		
 		if (
 			is_file($filePath.$filename) && 
 			!in_array(strtolower($filename), $this->unWantedFolderContents) && 
@@ -298,5 +298,5 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
 			$this->miniComponentDirectories[ ] = $filePath;
 			$this->registeredClasses[ $classfileEventPoint ][$classfileEventName] = array('filepath' => $filePath, 'eventtype' => $eventType);
 		}
-    }
+	}
 }

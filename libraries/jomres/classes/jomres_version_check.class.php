@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,8 +16,8 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_version_check
 {
-    public function __construct()
-    {
+	public function __construct()
+	{
 		$this->latest_jomres_version = get_latest_jomres_version();
 		$this->tmp_dir = JOMRES_TEMP_ABSPATH."version_checks";
 		$this->secret = md5(get_showtime('secret')); // We will use the secret variable because we don't want temporary files with just the version number as this is a security risk. Bad people could just come and test for version numbers and if a version has a vulnerability then that could be zeroed in on. So, we'll md5 hash the site secret to help with creating the version file.
@@ -33,10 +33,10 @@ class jomres_version_check
 			$this->check_version();
 		}
 		
-    }
+	}
 
-    public function check_version() // We'll get the current version, 
-    {
+	public function check_version() // We'll get the current version, 
+	{
 		$current_version_is_uptodate = check_jomres_version(false);
 		if (!$current_version_is_uptodate) {
 			$subject = jr_gettext('_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION', '_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION', false , false ).' '.$this->latest_jomres_version;
@@ -44,7 +44,7 @@ class jomres_version_check
 			sendAdminEmail($subject, $message );
 		}
 		$this->write_checkfile();
-    }
+	}
 	
 	private function write_checkfile() 
 	{

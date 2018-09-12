@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -21,8 +21,8 @@ defined('_JOMRES_INITCHECK') or die('');
 */
 class jomres_gdpr_optin_consent
 {
-    public function __construct()
-    {
+	public function __construct()
+	{
 		$MiniComponents = jomres_getSingleton('mcHandler');
 		
 		$this->date_time = date('Y-m-d H-i-s');
@@ -32,7 +32,7 @@ class jomres_gdpr_optin_consent
 		$this->optin_content =  filter_var($consent_form, FILTER_SANITIZE_SPECIAL_CHARS,FILTER_FLAG_STRIP_HIGH) ;
 		$this->optedin = false;
 		
-    }
+	}
 	
 	public function user_consents_to_storage()
 	{

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,9 +16,9 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_regions
 {
-    public function __construct()
-    {
-        $this->regions = false;
+	public function __construct()
+	{
+		$this->regions = false;
 		$this->country_regions = false;
 		
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -29,14 +29,14 @@ class jomres_regions
 		}
 		
 		$this->region_names_are_translatable = (bool)$jrConfig[ 'region_names_are_translatable' ];
-        
+		
 		$this->get_used_property_regions();
-    }
+	}
 
 	//get all regions used by properties, no need to get all others at this point
-    public function get_used_property_regions()
-    {
-        if (is_array($this->regions)) {
+	public function get_used_property_regions()
+	{
+		if (is_array($this->regions)) {
 			return true;
 		}
 		
@@ -57,19 +57,19 @@ class jomres_regions
 		
 		unset($result);
 
-        return true;
-    }
+		return true;
+	}
 	
 	//get all regions, used only when we need to get all regions from db
-    public function get_all_regions()
-    {
+	public function get_all_regions()
+	{
 		if (!defined('ALL_REGIONS_SET')) {
 			define('ALL_REGIONS_SET', 1);
 		} else {
 			return true;
 		}
 
-        $this->regions = array();
+		$this->regions = array();
 
 		$query = "SELECT `id`, `countrycode`, `regionname` FROM #__jomres_regions ORDER BY `countrycode`,`regionname`";
 		$result = doSelectSql($query);
@@ -86,12 +86,12 @@ class jomres_regions
 		
 		unset($result);
 
-        return true;
-    }
+		return true;
+	}
 
 	//this is mostly used when generating the ajax region dropdown
-    public function get_country_regions($country_code = '')
-    {
+	public function get_country_regions($country_code = '')
+	{
 		if ($country_code == '') {
 			return false;
 		}
@@ -102,7 +102,7 @@ class jomres_regions
 		
 		$this->country_regions[$country_code] = array();
 		
-        $query = "SELECT `id`, `regionname` FROM #__jomres_regions WHERE `countrycode` = '$country_code' ORDER BY `regionname`";
+		$query = "SELECT `id`, `regionname` FROM #__jomres_regions WHERE `countrycode` = '$country_code' ORDER BY `regionname`";
 		$result = doSelectSql($query);
 		
 		if (!empty($result)) {
@@ -117,19 +117,19 @@ class jomres_regions
 		
 		unset($result);
 
-        return $this->country_regions[$country_code];
-    }
+		return $this->country_regions[$country_code];
+	}
 
 	//get region details by region id
-    public function get_region($id = 0)
-    {
+	public function get_region($id = 0)
+	{
 		if ((int)$id == 0) {
 			return '';
 		}
 
-        if (isset($this->regions[ $id ])) {
-            return $this->regions[ $id ];
-        } else {
+		if (isset($this->regions[ $id ])) {
+			return $this->regions[ $id ];
+		} else {
 			$query = "SELECT `id`, `countrycode`, `regionname` FROM #__jomres_regions WHERE `id` = ".(int)$id;
 			$result = doSelectSql($query);
 			
@@ -147,19 +147,19 @@ class jomres_regions
 			}
 			
 			return $this->regions[ $id ];
-        }
-    }
+		}
+	}
 	
 	//get region name by region id, mostly used when we need to display a region name
-    public function get_region_name($id = 0)
-    {
+	public function get_region_name($id = 0)
+	{
 		if ((int)$id == 0) {
 			return '';
 		}
 
-        if (isset($this->regions[ $id ])) {
-            return $this->regions[ $id ]['regionname'];
-        } else {
+		if (isset($this->regions[ $id ])) {
+			return $this->regions[ $id ]['regionname'];
+		} else {
 			$region_details = $this->get_region($id);
 			
 			if (isset($region_details['regionname'])) {
@@ -169,24 +169,24 @@ class jomres_regions
 				return null;
 				// throw new Exception('Tried to get region with non-existant id');
 			}
-        }
-    }
+		}
+	}
 	
 	//get region name by region id, mostly used when we need to display a region name
-    public function get_region_id($region_name = '')
-    {
+	public function get_region_id($region_name = '')
+	{
 		$region_name = jomres_cmsspecific_stringURLSafe($region_name);
 
 		if ($region_name == '') {
 			throw new Exception('Tried to get region id for empty region name');
 		}
 
-        $this->get_all_regions();
+		$this->get_all_regions();
 
 		foreach ($this->regions as $r) {
 			if (strcasecmp(jomres_cmsspecific_stringURLSafe($r[ 'regionname' ]), $region_name) == 0) {
 				return (int) $r[ 'id' ];
 			}
 		}
-    }
+	}
 }

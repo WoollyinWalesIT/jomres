@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,20 +16,20 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class jomres_singleton_abstract
 {
-    protected static $_instances;
+	protected static $_instances;
 
-    public function __construct()
-    {
+	public function __construct()
+	{
 
-    }
+	}
 
-    public static function getInstance($class, $arg1 = null)
-    {
+	public static function getInstance($class, $arg1 = null)
+	{
 		//instance already available
 		if (isset(self::$_instances[ $class ])) {
 			return self::$_instances[ $class ];
 		}
-        
+		
 		//classes registry
 		global $classes;
 		
@@ -73,12 +73,12 @@ class jomres_singleton_abstract
 		//class doesn`t exist so we`ll echo a message
 		echo '<p class="alert alert-danger alert-error">Error, class '.$class.' doesn`t exist.</p>';
 
-        $backtrace = debug_backtrace();
+		$backtrace = debug_backtrace();
 		$trace = "<br/> File ".$backtrace[0]['file']." Line ".$backtrace[0]['line']. " Function ".$backtrace[0]['function']."<br/> ";
-        $trace .= "File ".$backtrace[1]['file']." Line ".$backtrace[1]['line']. " Function ".$backtrace[1]['function']."<br/> ";
-        $trace .= " File ".$backtrace[2]['file']." Line ".$backtrace[2]['line']. " Function ".$backtrace[2]['function']."<br/> ";
-        $trace .= " File ".$backtrace[3]['file']." Line ".$backtrace[3]['line']. " Function ".$backtrace[3]['function']."<br/> "; 
-        
+		$trace .= "File ".$backtrace[1]['file']." Line ".$backtrace[1]['line']. " Function ".$backtrace[1]['function']."<br/> ";
+		$trace .= " File ".$backtrace[2]['file']." Line ".$backtrace[2]['line']. " Function ".$backtrace[2]['function']."<br/> ";
+		$trace .= " File ".$backtrace[3]['file']." Line ".$backtrace[3]['line']. " Function ".$backtrace[3]['function']."<br/> "; 
+		
 		logging::log_message($trace , "Core" , "CRITICAL" );
 		
 		if (!isset(self::$_instances[ $class ])) {
@@ -86,5 +86,5 @@ class jomres_singleton_abstract
 		}
 		
 		return self::$_instances[ $class ];
-    }
+	}
 }

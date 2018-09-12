@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.12.0
+ * @version Jomres 9.13.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,27 +16,27 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j06001toggle_jomres_widget_ajax
 {
-    public function __construct()
-    {
-        // Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        if ($MiniComponents->template_touch) {
-            $this->template_touchable = false;
+	public function __construct()
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
 
-            return;
-        }
+			return;
+		}
 
 		$property_uid = getDefaultProperty();
 		
 		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-        if (!in_array($property_uid, $thisJRUser->authorisedProperties)) {
-            return;
-        }
+		if (!in_array($property_uid, $thisJRUser->authorisedProperties)) {
+			return;
+		}
 		
 		$response = array();
 		$content = '';
 
-        $jr_widget = jomresGetParam($_GET, 'jr_widget', '');
+		$jr_widget = jomresGetParam($_GET, 'jr_widget', '');
 		$jr_widget_enabled = (int)jomresGetParam($_GET, 'jr_widget_enabled', 0);
 		$jr_widget_column = (int)jomresGetParam($_GET, 'jr_widget_column', 1);
 		$jr_widget_position = (int)jomresGetParam($_GET, 'jr_widget_position', 0);
@@ -52,7 +52,7 @@ class j06001toggle_jomres_widget_ajax
 			}
 		}
 
-        $jomres_widgets = jomres_singleton_abstract::getInstance('jomres_widgets');
+		$jomres_widgets = jomres_singleton_abstract::getInstance('jomres_widgets');
 		$jomres_widgets->property_uid = $property_uid; //we need to set this so we`ll be sure we`ll get/set just the enabled widgets for this property uid. Other properties may have other widgets enabled
 
 		if (!isset($jomres_widgets->widgets[$jr_widget])) {
@@ -103,13 +103,13 @@ class j06001toggle_jomres_widget_ajax
 			'content' => $content
 		);
 
-        echo json_encode($response);
-        exit;
-    }
+		echo json_encode($response);
+		exit;
+	}
 
-    // This must be included in every Event/Mini-component
-    public function getRetVals()
-    {
-        return null;
-    }
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
 }
