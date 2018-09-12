@@ -180,6 +180,7 @@ class jomres_language
 		$langs[ 'cs-CZ' ] = 'Czech';
 		$langs[ 'da-DK' ] = 'Dansk';
 		$langs[ 'de-DE' ] = 'Deutsch';
+		$langs[ 'de-CH' ] = 'Deutsch Schweiz';
 		$langs[ 'el-GR' ] = 'Ελληνικά';
 		$langs[ 'en-CA' ] = 'Canadian';
 		$langs[ 'en-US' ] = 'American';
@@ -233,6 +234,7 @@ class jomres_language
 		$langs[ 'cs' ] = 'cs-CZ';
 		$langs[ 'da' ] = 'da-DK';
 		$langs[ 'de' ] = 'de-DE';
+		$langs[ 'ch' ] = 'de-CH';
 		$langs[ 'el' ] = 'el-GR';
 		$langs[ 'es' ] = 'es-ES';
 		$langs[ 'fr' ] = 'fr-FR';
@@ -277,6 +279,7 @@ class jomres_language
 		$langs[ 'cs-CZ' ] = 'cs';
 		$langs[ 'da-DK' ] = 'da';
 		$langs[ 'de-DE' ] = 'de';
+		$langs[ 'de-CH' ] = 'de-CH';
 		$langs[ 'el-GR' ] = 'el';
 		$langs[ 'en-CA' ] = 'en-GB';
 		$langs[ 'en-US' ] = 'en-GB';
