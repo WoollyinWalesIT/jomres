@@ -1,3 +1,36 @@
+<h3>Jomres 9.13.0 12/09/2018</h3>
+
+<span class="label label-success">Feature</span> Added functionality to allow guests to login via a modal in the booking form.
+<span class="label label-success">Feature</span> Added "Edit guest" link to edit booking page.
+
+<span class="label label-warning">Change</span> Modified jomres_properties.class.php so that on update, hyphen html entities are converted back to hyphens when saving lat/long.
+<span class="label label-warning">Change</span> Removed an email check that was causing more problems then it resolved.
+<span class="label label-warning">Change</span> Added output to admin area script so that if there are no reviews to see, a message is shown.
+<span class="label label-warning">Change</span> Dobooking extras updated to add commented out extra description.
+<span class="label label-warning">Change</span> Added a variety of J4 administrator area BS4 changes.
+<span class="label label-warning">Change</span> Tweaked jr_user class to create a new guest profile record if it doesn't exist, because dashboard widgets need a row in profiles table before they can be saved as a manager's selection.
+<span class="label label-warning">Change</span> Replaced spaces with tabs. Seriously, what lunatic wants spaces everywhere? Tabs FTW.
+<span class="label label-warning">Change</span> Tweaked sanity check to not show reviews nag on dobooking or confirmbooking tasks.
+<span class="label label-warning">Change</span> Added a functions_exists check in one of the filters in case a user somehow manages to include the filter script twice.
+<span class="label label-warning">Change</span> Added whatsapp link to property header template that will only show on mobile devices.
+<span class="label label-warning">Change</span> Added a check to jomres_reviews.class.php to ensure that we only attempt to log a contract uid if it's actually set.
+<span class="label label-warning">Change</span> Tweaked where the Store booking details process is triggered during handlereq phase.
+<span class="label label-warning">Change</span> Tweaked view invoice script so that non-booking invoices can always be viewed by managers.
+<span class="label label-warning">Change</span> Added Balance payments supported flag as TRUE if it's an admin area configured payments plugin. Not sure how that will impact 3rd party plugins, however.
+<span class="label label-warning">Change</span> Added functionality that should release requested rooms when a previously unlogged in user logs in.
+<span class="label label-warning">Change</span> Tweaked cms specific urls in J to adopt the itemId when passed
+<span class="label label-warning">Change</span> Tweaked a class to adjust to new constant names for property details.
+
+<span class="label label-important label-danger">Fix</span> Tweaked how admin area review approval works so that the publish/unpublish icon changes correctly.
+<span class="label label-important label-danger">Fix</span> Fixed a couple of notice triggers in roomlocks class.
+<span class="label label-important label-danger">Fix</span> Modified add service to bill functionality to ensure that negative figures are safely added instead of being sanitised, as blunt force trauma to bills isn't nice :(
+<span class="label label-important label-danger">Fix</span> Resolved an issue where widgets cannot be loaded if property manager has not yet saved their account details.
+<span class="label label-important label-danger">Fix</span> Fixed an issue where the wrong table name was used after previous GDPR related changes.
+<span class="label label-important label-danger">Fix</span> Resolved an issue when pulling existing guest data from the database in the booking form.
+<span class="label label-important label-danger">Fix</span> Resolved an issue where guest name filters wouldn't work post GDPR changes.
+<span class="label label-important label-danger">Fix</span> Tweaked functionality that was preventing existing guests from updating their data to the profiles table when creating a new booking.
+
+
 <h3>Jomres 9.12.0 02/07/2018</h3>
 
 <span class="label label-success">Feature</span> Added feature to allow property managers to create room types in the frontend. A new setting in Site Config > Misc tab allows managers to enable/disable this setting. Another new setting in the same place allows site administrators to decide if these room types should show in search dropdown fields. This is an oft-requested feature that I am confident will be very popular.
