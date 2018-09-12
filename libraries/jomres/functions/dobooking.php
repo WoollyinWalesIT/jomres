@@ -601,7 +601,7 @@ function dobooking($selectedProperty, $thisdate, $remus)
 
 	$output[ 'PANELPOSITION' ] = (int) $jrConfig[ 'booking_form_totalspanel_position' ];
 	$output[ 'BOOKINGFORMWIDTH' ] = (int) $jrConfig[ 'booking_form_width' ];
-	$output[ 'EMAIL_ALREADY_INUSE' ] = jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE', '_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE', false, false)." <button type='button' id='login_modal_trigger' class='btn btn-primary'>Login (to be changed to a multilang variable)</button>"; 
+	$output[ 'EMAIL_ALREADY_INUSE' ] = jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE', '_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE', false, false)." <button type='button' id='login_modal_trigger' class='btn btn-primary'>".jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN', '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN', false, false)."</button>"; 
      echo "<script>
         jomresJquery(function(){
             jomresJquery('[name=jomres_loginform_email]').val( jomresJquery('#eemail').val() );  
