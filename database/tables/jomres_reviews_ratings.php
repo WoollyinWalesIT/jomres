@@ -6,7 +6,7 @@
  *
  * @version Jomres 9.13.0
  *
- * @copyright	2005-2017 Vince Wooll
+ * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -28,6 +28,7 @@ CREATE TABLE  IF NOT EXISTS `#__jomres_reviews_ratings` (
 	`rating_date` DATETIME NOT NULL DEFAULT '1970-01-01 00:00:01',
 	`published` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
 	`contract_uid` INT UNSIGNED NOT NULL DEFAULT 0,
+	`user_name` VARCHAR(255),
 	PRIMARY KEY (`rating_id`),
 	INDEX `item_id` (`item_id`),
 	INDEX `published` (`published`)

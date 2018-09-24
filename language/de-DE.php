@@ -2378,3 +2378,7 @@ jr_define( '_JOMRES_LOGIN_REASON_EMAIL_ALREADY_USED',"Wir freuen uns, dass Sie w
 
 jr_define( '_JOMRES_LOGIN_RESET_MESSAGE', 'Wenn Sie Ihr Passwort nicht zur Hand oder vergessen haben, können wir Ihnen eine E-Mail zum Zurücksetzen Ihres Passworts zusenden. Bitte folgen Sie den Anweisungen in dieser E-Mail, um Ihr Passwort zurückzusetzen.' );
 jr_define( '_JOMRES_LOGIN_RESET_BUTTON', 'Passwort vergessen?' );
+
+jr_define('_JOMRES_REVIEWS_ANONYMISE', 'Anonymise your name?');
+jr_define('_JOMRES_REVIEWS_ANONYMISE_DESC', 'If you choose to anonymise your name when reviewing we will use your initials instead.');
+jr_define('ANONYMOUS', 'Anon');

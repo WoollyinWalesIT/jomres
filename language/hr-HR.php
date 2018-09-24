@@ -2353,3 +2353,7 @@ jr_define( '_JOMRES_LOGIN_REASON_EMAIL_ALREADY_USED',"We are delighted that you 
 
 jr_define( '_JOMRES_LOGIN_RESET_MESSAGE', 'If you do not know your password we can send you a password reset email. Please follow the instructions in that email to reset your password.' );
 jr_define( '_JOMRES_LOGIN_RESET_BUTTON', 'Forgot your password?' );
+
+jr_define('_JOMRES_REVIEWS_ANONYMISE', 'Anonymise your name?');
+jr_define('_JOMRES_REVIEWS_ANONYMISE_DESC', 'If you choose to anonymise your name when reviewing we will use your initials instead.');
+jr_define('ANONYMOUS', 'Anon');
