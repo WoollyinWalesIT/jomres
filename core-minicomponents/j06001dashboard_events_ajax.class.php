@@ -117,6 +117,18 @@ class j06001dashboard_events_ajax
 				}
 			}
 
+			$all_black_booking_reasons = array();
+			$query = "SELECT `contract_uid` , `special_reqs` FROM #__jomres_contracts WHERE property_uid = " .(int) $property_uid ;
+			$notesList = doSelectSql ( $query );
+			if (!empty($notesList)) {
+				foreach ($notesList as $note ) {
+					if ( trim($note->special_reqs) != "" ) {
+						$all_black_booking_reasons[$note->contract_uid][] = $note->special_reqs;
+					}
+					
+				}
+			}
+
 			$today = date('Y/m/d');
 
 			foreach ($contractList as $contract) {
@@ -208,6 +220,14 @@ class j06001dashboard_events_ajax
 						 $description .= $note->timestamp.' '.sanitiseOverlibOutput($note->note).'<br/>';
 					}
 				}
+				
+				if (isset($all_black_booking_reasons[$c->contract_uid]) ) {
+					$description .= '<hr/>';
+					foreach ( $all_black_booking_reasons[$c->contract_uid] as $note ) {
+						 $description .= sanitiseOverlibOutput($note).'<br/>';
+					}
+				}
+
 				
 				if ((int) $resource > 0) {
 					$contracts[] = array(
