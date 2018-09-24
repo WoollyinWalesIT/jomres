@@ -102,26 +102,27 @@ class j06000mrp_calendar
 					<div class="col-md-2 jomres-calendar-day-num jomres-calendar-booking-occupied-threequarter ">' .jr_gettext('_JOMRES_AVLCAL_THREEQUARTER', '_JOMRES_AVLCAL_THREEQUARTER').'</div>
 					<div class="col-md-2 jomres-calendar-day-num jomres-calendar-booking-occupied-completely ">' .jr_gettext('_JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR_KEY', '_JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR_KEY').'</div>
 				</div>
-				<table width="100%">
-					<tr>';
+				<div class="container-fluid">
+					<div class="row">
+				';
 
 			for ($start_month; $counter <= $months_to_show; ++$start_month) {
-				$this->retVals .= '<td><div class="calendar-month-container">';
+				$this->retVals .= '<div class="col-md-4 col-sm-6">';
 				$this->retVals .= $this->makecal($start_month, $start_year, $property_uid);
 				if ($start_month == 12) {
 					$start_year = $start_year + 1;
 					$start_month = 0;
 				}
-				$this->retVals .= "</div></td>\n";
+				$this->retVals .= "</div>\n";
 				if ($counter % 3 == 0 and $counter < 72) {
-					$this->retVals .= "</tr>\n<tr>";
+					$this->retVals .= '<div class="clearfix"></div>';
 				}
 				++$counter;
 			}
 
 			$this->retVals .= '
-					</tr>
-				</table>
+					</div>
+				</div>
 				';
 		} else {
 			$this->retVals .= $this->makecal($start_month, $start_year, $property_uid);
