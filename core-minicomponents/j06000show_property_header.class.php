@@ -175,13 +175,24 @@ class j06000show_property_header
 		$output['SHORT_PROPERTY_DESCRIPTION'] = $short_property_description;
 		$output['_JOMRES_COM_A_CLICKFORMOREINFORMATION'] = jr_gettext('_JOMRES_COM_A_CLICKFORMOREINFORMATION', '_JOMRES_COM_A_CLICKFORMOREINFORMATION', false);
 
+		// Old method, dropped in favour of the new method used in the list properties page which can also use plugins for calculating prices
 		//property prices from
-		$price = get_property_price_for_display_in_lists($property_uid);
+		/* $price = get_property_price_for_display_in_lists($property_uid);
 
 		$output['PRICE'] = $price['PRICE'];
 		$output['PRE_TEXT'] = $price['PRE_TEXT'];
-		$output['POST_TEXT'] = $price['POST_TEXT'];
+		$output['POST_TEXT'] = $price['POST_TEXT']; */
 
+		$jomres_property_list_prices = jomres_singleton_abstract::getInstance('jomres_property_list_prices');
+		$jomres_property_list_prices->gather_lowest_prices_multi(array( $property_uid ) , $lowest_ever = false, $hide_rpn = true);
+		
+		$output['PRE_TEXT']		= $jomres_property_list_prices->lowest_prices[$property_uid][ 'PRE_TEXT' ];
+		$output['PRICE']		= $jomres_property_list_prices->lowest_prices[$property_uid][ 'PRICE' ];
+		$output['POST_TEXT']	= $jomres_property_list_prices->lowest_prices[$property_uid][ 'POST_TEXT' ];
+		if (isset($jomres_property_list_prices->lowest_prices[$property_uid][ 'PRICE_NOCONVERSION' ])) {
+			$output[ 'PRICE_NOCONVERSION' ] = $jomres_property_list_prices->lowest_prices[$property_uid][ 'PRICE_NOCONVERSION' ];
+		}
+		
 		//property contact details override
 		if ((int) $jrConfig['override_property_contact_details'] == 1) {
 			if ($jrConfig['override_property_contact_tel'] != '') {
