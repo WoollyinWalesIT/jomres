@@ -22,13 +22,18 @@ class j06000show_property_room_type
 		if ($MiniComponents->template_touch) {
 			$this->template_touchable = false;
 			$this->shortcode_data = array(
-				'task' => 'show_property_room_types',
-				'info' => '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_TYPES',
+				'task' => 'show_property_room_type',
+				'info' => '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_TYPE',
 				'arguments' => array(0 => array(
 						'argument' => 'property_uid',
 						'arg_info' => '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_TYPES_ARG_PROPERTY_UID',
 						'arg_example' => '1',
 						),
+						1 => array(
+						'argument' => 'room_classes_uid',
+						'arg_info' => '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_TYPE_ARG_ROOM_TYPE_ID',
+						'arg_example' => '3',
+						)
 					),
 				);
 
