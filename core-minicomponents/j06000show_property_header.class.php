@@ -193,6 +193,51 @@ class j06000show_property_header
 			$output[ 'PRICE_NOCONVERSION' ] = $jomres_property_list_prices->lowest_prices[$property_uid][ 'PRICE_NOCONVERSION' ];
 		}
 		
+		//total price
+		$plugin_will_provide_lowest_price = false;
+		$MiniComponents->triggerEvent('07015', array('property_uid' => $propertys_uid)); // Optional
+		$mcOutput = $MiniComponents->getAllEventPointsData('07015');
+		if (!empty($mcOutput)) {
+			foreach ($mcOutput as $val) {
+				if ($val == true) {
+					$plugin_will_provide_lowest_price = true;
+				}
+			}
+		}
+
+		if ($mrConfig[ 'is_real_estate_listing' ] == 0 && !$plugin_will_provide_lowest_price && $jomres_property_list_prices->lowest_prices[$propertys_uid]['PRICE'] != jr_gettext('_JOMRES_PRICE_ON_APPLICATION', '_JOMRES_PRICE_ON_APPLICATION', '', true, false)) {//&& $stayDays > 1)
+			if ($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] > 0) {
+				$output[ 'PRICE_CUMULATIVE' ] = $jomres_property_list_prices->lowest_prices[$propertys_uid]['PRICE_CUMULATIVE'];
+			} else {
+				$output[ 'PRICE_CUMULATIVE' ] = $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'PRICE' ];
+			}
+
+			$output['FOR'] = jr_gettext('_JOMRES_FOR', '_JOMRES_FOR', false);
+			if ($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] > 0) {
+				if ($mrConfig[ 'wholeday_booking' ] == '1') {
+					$output[ 'NIGHTS_TEXT' ] = jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY', '_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY', false);
+				} else {
+					if ($stayDays == 1) {
+						$output[ 'NIGHTS_TEXT' ] = jr_gettext('_JOMRES_PRICINGOUTPUT_NIGHT', '_JOMRES_PRICINGOUTPUT_NIGHT', false);
+					} else {
+						$output[ 'NIGHTS_TEXT' ] = jr_gettext('_JOMRES_PRICINGOUTPUT_NIGHTS', '_JOMRES_PRICINGOUTPUT_NIGHTS', false);
+					}
+				}
+				if ($stayDays == 0 ) {
+					$stayDays = 1;
+				}
+				$output[ 'STAY_DAYS' ] = $stayDays;
+			} else {
+				$output[ 'NIGHTS_TEXT' ] = '';
+				$output[ 'STAY_DAYS' ] = '';
+			}
+		} elseif ($mrConfig[ 'is_real_estate_listing' ] == 1) {
+			$output[ 'PRICE_CUMULATIVE' ] = $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'PRICE' ];
+		}
+		//end total price
+		
+		
+		
 		//property contact details override
 		if ((int) $jrConfig['override_property_contact_details'] == 1) {
 			if ($jrConfig['override_property_contact_tel'] != '') {
