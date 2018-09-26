@@ -184,7 +184,7 @@ class j06000show_property_header
 		$output['POST_TEXT'] = $price['POST_TEXT']; */
 
 		$jomres_property_list_prices = jomres_singleton_abstract::getInstance('jomres_property_list_prices');
-		$jomres_property_list_prices->gather_lowest_prices_multi(array( $property_uid ) , $lowest_ever = false, $hide_rpn = true);
+		$jomres_property_list_prices->gather_lowest_prices_multi( array( $property_uid ) , $lowest_ever = false, $hide_rpn = true);
 		
 		$output['PRE_TEXT']		= $jomres_property_list_prices->lowest_prices[$property_uid][ 'PRE_TEXT' ];
 		$output['PRICE']		= $jomres_property_list_prices->lowest_prices[$property_uid][ 'PRICE' ];
@@ -195,7 +195,7 @@ class j06000show_property_header
 		
 		//total price
 		$plugin_will_provide_lowest_price = false;
-		$MiniComponents->triggerEvent('07015', array('property_uid' => $propertys_uid)); // Optional
+		$MiniComponents->triggerEvent('07015', array('property_uid' => $property_uid)); // Optional
 		$mcOutput = $MiniComponents->getAllEventPointsData('07015');
 		if (!empty($mcOutput)) {
 			foreach ($mcOutput as $val) {
@@ -205,15 +205,15 @@ class j06000show_property_header
 			}
 		}
 
-		if ($mrConfig[ 'is_real_estate_listing' ] == 0 && !$plugin_will_provide_lowest_price && $jomres_property_list_prices->lowest_prices[$propertys_uid]['PRICE'] != jr_gettext('_JOMRES_PRICE_ON_APPLICATION', '_JOMRES_PRICE_ON_APPLICATION', '', true, false)) {//&& $stayDays > 1)
-			if ($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] > 0) {
-				$output[ 'PRICE_CUMULATIVE' ] = $jomres_property_list_prices->lowest_prices[$propertys_uid]['PRICE_CUMULATIVE'];
+		if ($mrConfig[ 'is_real_estate_listing' ] == 0 && !$plugin_will_provide_lowest_price && $jomres_property_list_prices->lowest_prices[$property_uid]['PRICE'] != jr_gettext('_JOMRES_PRICE_ON_APPLICATION', '_JOMRES_PRICE_ON_APPLICATION', '', true, false)) {//&& $stayDays > 1)
+			if ($jomres_property_list_prices->lowest_prices[$property_uid]['RAW_PRICE'] > 0) {
+				$output[ 'PRICE_CUMULATIVE' ] = $jomres_property_list_prices->lowest_prices[$property_uid]['PRICE_CUMULATIVE'];
 			} else {
-				$output[ 'PRICE_CUMULATIVE' ] = $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'PRICE' ];
+				$output[ 'PRICE_CUMULATIVE' ] = $jomres_property_list_prices->lowest_prices[$property_uid][ 'PRICE' ];
 			}
 
 			$output['FOR'] = jr_gettext('_JOMRES_FOR', '_JOMRES_FOR', false);
-			if ($jomres_property_list_prices->lowest_prices[$propertys_uid]['RAW_PRICE'] > 0) {
+			if ($jomres_property_list_prices->lowest_prices[$property_uid]['RAW_PRICE'] > 0) {
 				if ($mrConfig[ 'wholeday_booking' ] == '1') {
 					$output[ 'NIGHTS_TEXT' ] = jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY', '_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY', false);
 				} else {
@@ -232,7 +232,7 @@ class j06000show_property_header
 				$output[ 'STAY_DAYS' ] = '';
 			}
 		} elseif ($mrConfig[ 'is_real_estate_listing' ] == 1) {
-			$output[ 'PRICE_CUMULATIVE' ] = $jomres_property_list_prices->lowest_prices[$propertys_uid][ 'PRICE' ];
+			$output[ 'PRICE_CUMULATIVE' ] = $jomres_property_list_prices->lowest_prices[$property_uid][ 'PRICE' ];
 		}
 		//end total price
 		
