@@ -194,6 +194,29 @@ class j06000show_property_header
 		}
 		
 		//total price
+		
+		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+
+		$stayDays = 1;
+
+		if (isset($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ]) && $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] != '' && $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ]) {
+			$start = $tmpBookingHandler->tmpsearch_data['jomsearch_availability'];
+			$end = $tmpBookingHandler->tmpsearch_data['jomsearch_availability_departure'];
+
+			$range = get_periods($start, $end);
+			$stayDays = count($range);
+		} elseif (
+				isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']) &&
+				(isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate']) && $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] != '') &&
+				(isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate']) && $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'] != '')
+				) {
+			$start = JSCalConvertInputDates($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'], $siteCal = true);
+			$end = JSCalConvertInputDates($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'], $siteCal = true);
+
+			$range = get_periods($start, $end);
+			$stayDays = count($range);
+		}
+		
 		$plugin_will_provide_lowest_price = false;
 		$MiniComponents->triggerEvent('07015', array('property_uid' => $property_uid)); // Optional
 		$mcOutput = $MiniComponents->getAllEventPointsData('07015');
