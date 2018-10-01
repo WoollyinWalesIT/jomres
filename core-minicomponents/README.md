@@ -69,6 +69,9 @@ Jomres includes Access Control functionality, however we find that a more simpli
 07070 Used for building administrator area FAQs.  
 07080 Used for building guest FAQs. Whilst the code to support these in place, currently there are no guest level FAQs.
 
+07300 Used to tell Webhook functionality that a given webhook exists, and some language strings and parameters
+07310 Webhook trigger processing scripts. When a Webhook is called, these are the scripts that will actually authenticate with the remote site and pass the information of the action performed on this server.
+
 09995 Creates the core menu items  
 09997 Builds the frontend control panel menu
 
