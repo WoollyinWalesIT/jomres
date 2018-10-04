@@ -59,7 +59,7 @@ The next trigger numbers are used when building the property list/search results
 Jomres includes Access Control functionality, however we find that a more simplistic approach suits the vast majority of users.  
  
 06000 These scripts are individual tasks that can called that do not require a user to be logged in. Some scripts like the cron scripts do demand that the system pass the CMS's secret to itself, this is to prevent spiders or other web services from calling these scripts at some point and bogging the system down with scheduled jobs. On the whole, however, the bulk of these scripts are used for displaying public/guest facing output.  
-06001 These tasks are for Reception level functionality. 
+06001 These tasks are for Reception level functionality.  
 06002 These tasks are for Manager level functionality.  
 06005 These tasks/scripts are for pages that can be viewed by any registered and logged in user.
 
@@ -69,7 +69,7 @@ Jomres includes Access Control functionality, however we find that a more simpli
 07070 Used for building administrator area FAQs.  
 07080 Used for building guest FAQs. Whilst the code to support these in place, currently there are no guest level FAQs.
 
-07300 Used to tell Webhook functionality that a given webhook exists, and some language strings and parameters
+07300 Used to tell Webhook functionality that a given webhook exists, and some language strings and parameters  
 07310 Webhook trigger processing scripts. When a Webhook is called, these are the scripts that will actually authenticate with the remote site and pass the information of the action performed on this server.
 
 09995 Creates the core menu items  
@@ -84,18 +84,18 @@ Administrator area
 
 10001 Builds the control panel.  
 10501 Site Configuration tabs.
-10521 trigger point to add settings from plugins to site config->misc tab 
-10522 trigger point to add settings from plugins to site config->booking tab 
-10523 trigger point to add settings from plugins to site config->business details tab 
-10524 trigger point to add settings from plugins to site config->file uploads tab 
-10525 trigger point to add settings from plugins to site config->google maps tab 
-10526 trigger point to add settings from plugins to site config->js calendar tab
-10527 trigger point to add settings from plugins to site config->portal functionality tab 
-10529 trigger point to add settings from plugins to site config->search options tab 
-10530 trigger point to add settings from plugins to site config->cron tab 
-10531 trigger point to add settings from plugins to site config->integrations tab 
-10532 trigger point to add settings from plugins to site config->debugging tab 
-10533 trigger point to add settings from plugins to site config->gdpr policies tab 
+10521 trigger point to add settings from plugins to site config->misc tab  
+10522 trigger point to add settings from plugins to site config->booking tab  
+10523 trigger point to add settings from plugins to site config->business details tab  
+10524 trigger point to add settings from plugins to site config->file uploads tab  
+10525 trigger point to add settings from plugins to site config->google maps tab  
+10526 trigger point to add settings from plugins to site config->js calendar tab  
+10527 trigger point to add settings from plugins to site config->portal functionality tab  
+10529 trigger point to add settings from plugins to site config->search options tab  
+10530 trigger point to add settings from plugins to site config->cron tab  
+10531 trigger point to add settings from plugins to site config->integrations tab  
+10532 trigger point to add settings from plugins to site config->debugging tab  
+10533 trigger point to add settings from plugins to site config->gdpr policies tab  
   
 11010,11020,11040 Administrator area Media centre resource options.
 
