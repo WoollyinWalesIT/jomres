@@ -14,7 +14,7 @@
 // Corrected tons of typos, completed and changed style to avoid - where possible - the German typical problem of formal and informal style
 // I did my best to form the composed phrases in a good style but as if I'm not able to proof all responds there could be some rubbish.
 // If you find anything that should be corrected (in the German language file) send it to apartment@gr7.org.
-// German Translation and Revision 2018: Micha Zutter (http://konzeptplus.ch/)
+// Swissgerman Translation copied from German Translation and Revision 2018: Micha Zutter (http://konzeptplus.ch/)
 //#################################################################
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
