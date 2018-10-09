@@ -2908,7 +2908,7 @@ function propertyConfiguration()
 		$configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel');
 	} else {
 		$bs_version = jomres_bootstrap_version();
-		if ($bs_version == '2') {
+		if ($bs_version == '2' || $bs_version == '') {
 			$configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel');
 		} elseif ($bs_version == '3') {
 			$configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel_bootstrap3');
