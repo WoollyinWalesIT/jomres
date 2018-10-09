@@ -22,13 +22,18 @@ class j06000show_property_room_type
 		if ($MiniComponents->template_touch) {
 			$this->template_touchable = false;
 			$this->shortcode_data = array(
-				'task' => 'show_property_room_types',
-				'info' => '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_TYPES',
+				'task' => 'show_property_room_type',
+				'info' => '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_TYPE',
 				'arguments' => array(0 => array(
 						'argument' => 'property_uid',
 						'arg_info' => '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_TYPES_ARG_PROPERTY_UID',
 						'arg_example' => '1',
 						),
+						1 => array(
+						'argument' => 'room_classes_uid',
+						'arg_info' => '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_TYPE_ARG_ROOM_TYPE_ID',
+						'arg_example' => '3',
+						)
 					),
 				);
 
@@ -48,58 +53,7 @@ class j06000show_property_room_type
 			$room_classes_uid = (int)jomresGetParam($_REQUEST, 'room_classes_uid', 0);
 		}
 		
-		if ($property_uid == 0) {
-			return;
-		}
-
-		if (!user_can_view_this_property($property_uid)) {
-			return;
-		}
-
-		$output_now = true;
-		if (isset($componentArgs[ 'output_now' ])) {
-			$output_now = (bool) $componentArgs[ 'output_now' ];
-		}
-
-		$mrConfig = getPropertySpecificSettings($property_uid);
-		$basic_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
-		$basic_property_details->gather_data($property_uid);
-
-		$output = array();
-
-		if (!empty($basic_property_details->room_types) && isset($basic_property_details->room_types[$room_classes_uid]) ) {
-			jr_import('jomres_markdown');
-			$jomres_markdown = new jomres_markdown();
-			
-			$output[ '_JOMRES_SEARCH_RTYPES' ] = jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', '_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', false);
-
-			$output['ROOM_TYPE_TITLE'] = $basic_property_details->room_types[$room_classes_uid]['abbv'];
-			$output['ROOM_TYPE_DESCRIPTION'] = jomres_cmsspecific_parseByBots($jomres_markdown->get_markdown($basic_property_details->room_types[$room_classes_uid]['desc']));
-			
-			$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
-			$jomres_media_centre_images->get_images($property_uid);
-			
-			if (!empty($jomres_media_centre_images->images['room_types'][$room_classes_uid])) {
-					$result = $MiniComponents->specificEvent('01060', 'slideshow', array('images' => $jomres_media_centre_images->images['room_types'][$room_classes_uid]));
-					$output[ 'SLIDESHOW' ] = $result ['slideshow'];
-				} else {
-					$output['SLIDESHOW'] = '';
-				}
-
-			
-			$pageoutput[] = $output;
-			$tmpl = new patTemplate();
-			$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
-			$tmpl->addRows('pageoutput', $pageoutput);
-			$tmpl->readTemplatesFromInput('show_property_room_type.html');
-
-			$rendered = $tmpl->getParsedTemplate();
-			if ($output_now) {
-				echo $rendered;
-			} else {
-				$this->retVals = $rendered;
-			}
-		}
+		echo $MiniComponents->specificEvent('06000', 'show_property_rooms', array('output_now' => false, 'property_uid' => $property_uid, 'room_classes_uid' => $room_classes_uid ));
 	}
 
 	public function getRetVals()

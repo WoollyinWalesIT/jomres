@@ -2372,3 +2372,14 @@ jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_CONFIG_DESC', 'If you choose to allow pr
 
 
 jr_define( '_JOMRES_QUICKBOOKING_EMAIL_ADDRESS_NOTE', "You shouldn't re-use the same email address for each booking.<br/>If you have a unique domain (eg. not a gmail email address) for your business then use the guest's telephone number as their email address. The email address would then look something like 123456@mydomain.com<br/>This will ensure that a new guest is created when you create a booking ." );
+
+jr_define( '_JOMRES_LOGIN_USERNAME', 'Email address' );
+jr_define( '_JOMRES_LOGIN_PASSWORD', 'Password' );
+jr_define( '_JOMRES_LOGIN_REASON_EMAIL_ALREADY_USED',"Wir freuen uns, dass Sie wieder bei uns buchen möchten. Damit Sie alle Ihre Buchungen zusammen verwalten können, ist es notwendig, dass Sie sich einloggen, damit die Buchung zu Ihrem Benutzerkonto hinzugefügt werden kann. Zudem ist so auch sichergestellt, dass Sie berechtigt sind, die angegebene E-Mail-Adresse zu verwenden." );
+
+jr_define( '_JOMRES_LOGIN_RESET_MESSAGE', 'Wenn Sie Ihr Passwort nicht zur Hand oder vergessen haben, können wir Ihnen eine E-Mail zum Zurücksetzen Ihres Passworts zusenden. Bitte folgen Sie den Anweisungen in dieser E-Mail, um Ihr Passwort zurückzusetzen.' );
+jr_define( '_JOMRES_LOGIN_RESET_BUTTON', 'Passwort vergessen?' );
+
+jr_define('_JOMRES_REVIEWS_ANONYMISE', 'Anonymise your name?');
+jr_define('_JOMRES_REVIEWS_ANONYMISE_DESC', 'If you choose to anonymise your name when reviewing we will use your initials instead.');
+jr_define('ANONYMOUS', 'Anon');

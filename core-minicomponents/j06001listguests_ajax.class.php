@@ -114,7 +114,6 @@ class j06001listguests_ajax
 					FROM #__jomres_guests a 
 						LEFT JOIN #__jomres_contracts b ON a.guests_uid = b.guest_uid '
 					.$clause
-					.' '.$sWhere
 					.' GROUP BY a.guests_uid '
 					.$sOrder
 					.' '.$sLimit;

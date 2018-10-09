@@ -33,7 +33,7 @@ class j06002save_integration
 		
 		$settings = array();
 		foreach ( $_POST as $key=>$val ) {
-			if ($key != "nohtml" && $key != "task" && $key != "integration_id") {
+			if ($key != "nohtml" && $key != "task" && $key != "integration_id" && $key != "jomres_csrf_token" ) {
 				$val = jomresGetParam( $_POST, $key, '' );
 				$key = filter_var($key, FILTER_SANITIZE_SPECIAL_CHARS); // Trust nobody
 				$webhooks->set_setting( $integration_id , $key , $val );

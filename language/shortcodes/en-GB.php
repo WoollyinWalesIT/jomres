@@ -235,3 +235,9 @@ jr_define( '_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE_LIST', 'Property room type list
 jr_define( '_JOMRES_SHORTCODE_PROPERTY_ROOM_TYPE', 'Show a property room type' );
 
 jr_define( '_JOMRES_SHORTCODE_LOGIN_FORM', 'Show the login form' );
+
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_TYPE', 'Show a list of rooms of a certain room type');
+jr_define( '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_TYPE_ARG_ROOM_TYPE_ID', 'Room type id' );
+
+
+

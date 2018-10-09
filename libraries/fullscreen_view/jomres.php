@@ -50,7 +50,7 @@ if (file_exists(dirname(__FILE__).'/../../'.JOMRES_ROOT_DIRECTORY.'/framework.ph
     if (!using_bootstrap()) {
         $view = 'jquery_ui';
     } else {
-        if (jomres_bootstrap_version() == '2') {
+        if (jomres_bootstrap_version() == '2' || jomres_bootstrap_version() == '' ) {
             $view = 'bootstrap';
         } elseif (!jomres_cmsspecific_areweinadminarea()) {
             $view = 'bootstrap3';

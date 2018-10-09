@@ -265,7 +265,9 @@ class j06000viewproperty
 
 		//generate the tabs
 		$tmpl = new patTemplate();
-
+		
+		$output['BOOKING_FORM'] = $MiniComponents->miniComponentData[ '00035' ]['tabcontent_02_bookingform'];
+		
 		if (!empty($MiniComponents->miniComponentData[ '00035' ])) {
 			$tab_titles = array();
 			$tab_contents = array();

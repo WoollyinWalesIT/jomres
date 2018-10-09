@@ -208,6 +208,13 @@ class j03020insertbooking
 					}
 				}
 
+				$bookingNotes = $tempBookingData->booking_notes;
+				foreach ($bookingNotes as $k => $v) {
+					$note = ' '.strip_tags($k).' '.strip_tags($v).'<br/>';
+					$query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('".(int) $amend_contractuid."','".$note."','$dt','".(int) $property_uid."')";
+					doInsertSql($query, '');
+				}
+				
 				jomres_audit(get_showtime('jomressession'), 'Amend booking - updated room booking '.$amend_contractuid);
 				$jomres_messaging = jomres_singleton_abstract::getInstance('jomres_messages');
 				$jomres_messaging->set_message('Amend booking - updated room booking '.$amend_contractuid);

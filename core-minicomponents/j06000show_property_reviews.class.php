@@ -175,15 +175,18 @@ class j06000show_property_reviews
 
 				$r[ 'RATING_ID' ] = $review[ 'rating_id' ];
 
-
-				if (isset($guest_names[ $review[ 'user_id' ] ])) {
+				$r['REVIEWER_FIRSTNAME'] = '';
+				if ( 
+					isset(
+						$guest_names[ $review[ 'user_id' ] ]) && 
+						( !isset($review[ 'user_name' ]) || trim($review[ 'user_name' ]) == '' )
+					) {  // Reviewer details were not saved, we will query the db for them instead
 					$guest_deets = $guest_names[ $review[ 'user_id' ] ];
 					
 					$r['REVIEWER_FIRSTNAME'] = $this->jomres_encryption->decrypt($guest_deets['enc_firstname']);
 					$r['REVIEWER_SURNAME'] = $this->jomres_encryption->decrypt($guest_deets['enc_surname']);
-
-					$r['REVIEWER_FIRSTNAME_FIRSTCHAR'] = strtoupper($r['REVIEWER_FIRSTNAME'][0]);
-					$r['REVIEWER_SURNAME_FIRSTCHAR'] = strtoupper($r['REVIEWER_SURNAME'][0]);
+				} else {
+					$r['REVIEWER_FIRSTNAME'] = $review[ 'user_name' ];
 				}
 
 				$r[ 'REVIEW_TITLE' ] = $review[ 'review_title' ];

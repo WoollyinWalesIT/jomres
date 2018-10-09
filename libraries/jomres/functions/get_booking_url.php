@@ -32,6 +32,7 @@ function get_booking_url($property_uid = 0, $type = 'sef', $params = '') {
 	
 	if (isset($mrConfig[ 'externalBookingFormUrl' ]) && $mrConfig[ 'externalBookingFormUrl' ] != '') {
 		$url = filter_var($mrConfig[ 'externalBookingFormUrl' ], FILTER_SANITIZE_URL);
+		$url = str_replace( "&#38;#61;" , "=" , $url );
 	} else {
 		switch($type) {
 			case 'sef':

@@ -14,21 +14,11 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-$query = "
-CREATE TABLE IF NOT EXISTS `#__jomres_custom_fields` (
-	`uid` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-	`fieldname` VARCHAR(255),
-	`default_value` VARCHAR(255),
-	`description` VARCHAR(255),
-	`required` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
-	`ptype_xref` TEXT,
-	PRIMARY KEY (`uid`)
-	)
-	ENGINE = MyISAM 
-	DEFAULT CHARSET = utf8mb4 
-	COLLATE = utf8mb4_unicode_ci;
-";
-
-if (!doInsertSql($query)) {
-	$this->setMessage('Error, unable to create the #__jomres_custom_fields table', 'danger');
-}
+$query = "SHOW COLUMNS FROM #__jomres_reviews_ratings LIKE 'user_name'";
+$colExists = doSelectSql( $query );
+if (count($colExists) < 1)
+	{
+	$query = "ALTER TABLE `#__jomres_reviews_ratings` ADD `user_name` VARCHAR(255) ";
+	doInsertSql($query,"");
+	}
+	

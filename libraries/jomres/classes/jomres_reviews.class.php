@@ -114,7 +114,7 @@ class jomres_reviews
 		return false;
 	}
 
-	public function save_review($rating, $title, $description, $pros, $cons)
+	public function save_review($rating, $title, $description, $pros, $cons , $user_name )
 	{
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
@@ -173,7 +173,8 @@ class jomres_reviews
 			pros='" .trim($pros)."',
 			cons='" .trim($cons)."',
 			published = " .$published.",
-			contract_uid = " .(int)$contract_uid."
+			contract_uid = " .(int)$contract_uid.",
+			user_name  = '" .(string)$user_name."'
 			";
 
 		$result = doInsertSql($query, '');
@@ -308,6 +309,9 @@ class jomres_reviews
 				$reviews[ $property_uid ][ $res->rating_id ][ 'rating_ip' ] = $res->rating_ip;
 				$reviews[ $property_uid ][ $res->rating_id ][ 'rating_date' ] = $res->rating_date;
 				$reviews[ $property_uid ][ $res->rating_id ][ 'published' ] = $res->published;
+				$reviews[ $property_uid ][ $res->rating_id ][ 'user_name' ] = $res->user_name;
+				
+				
 			}
 		}
 
