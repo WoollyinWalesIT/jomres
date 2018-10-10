@@ -514,3 +514,8 @@ fieldset[disabled] .btn-videos.active {
   color: #2AFA00; 
   background-color: #004D15; 
 }
+
+div.ui-datepicker {
+  font-size: 140%;
+}
+
