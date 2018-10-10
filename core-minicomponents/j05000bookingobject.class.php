@@ -201,7 +201,7 @@ if (!class_exists('booking')) {
 
 			});';
 
-			if (using_bootstrap() && jomres_bootstrap_version() == '3') {
+			if (using_bootstrap() && (jomres_bootstrap_version() == '3' || jomres_bootstrap_version() == '4') ) {
 				$output .= '
 				jomresJquery(function() {jomresJquery("#dp_trigger_'.$uniqueID.'").on("click", function() {jomresJquery("#'.$uniqueID.'").datepicker("show");})});
 				';
