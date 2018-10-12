@@ -97,8 +97,10 @@ function output_price($value, $currencycode = '', $do_conversion = true, $zeroOK
 		$price = $currfmt->get_formatted($price);
 		$price = $symbols[ 'pre' ].$price.$symbols[ 'post' ];
 
-		//$price = ''.$converted_output_price.' <span>('.$price.')</span> ';
-		$price = $converted_output_price;
+		$original_price_template = simple_template_output(JOMRES_TEMPLATEPATH_FRONTEND , 'output_price_native_price.html' , $price );
+		
+		$price = ''.$converted_output_price.$original_price_template;
+		//$price = $converted_output_price;
 	} else {
 		$symbols = $currency_codes->getSymbol($currencycode);
 		
