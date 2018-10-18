@@ -2360,3 +2360,38 @@ jr_define( '_JOMRES_LOGIN_RESET_BUTTON', 'Forgot your password?' );
 jr_define('_JOMRES_REVIEWS_ANONYMISE', 'Anonymise your name?');
 jr_define('_JOMRES_REVIEWS_ANONYMISE_DESC', 'If you choose to anonymise your name when reviewing we will use your initials instead.');
 jr_define('ANONYMOUS', 'Anon');
+
+jr_define('_JOMRES_REVIEWS_REPLY_SAID', ' said ');
+jr_define('_JOMRES_REVIEWS_REPLY_OPPORTUNITY', 'Reply to this review');
+jr_define('_JOMRES_REVIEWS_PLACEHOLDER_REPLY', 'Type your reply to this review here.');
+jr_define('_JOMRES_REVIEWS_YOUR_REPLY', 'Your reply');
+jr_define('_JOMRES_REVIEWS_REPLY_COMMENT', 'Main review');
+jr_define('_JOMRES_REVIEWS_REPLY_SAVED', 'Review reply saved');
+
+
+jr_define('_JOMRES_REVIEWS_REPLY_RULES_WARNING', 'Before submitting a review reply, you must read the following. By submitting a reply you confirm that you agree to these terms and conditions.');
+jr_define('_JOMRES_REVIEWS_REPLY_RULES_GUIDELINES', 'What are our guidelines for a review reply?');
+jr_define('_JOMRES_REVIEWS_REPLY_RULES_REPORT', 'You are responding to the review of your property. You <em>must not</em> use your reply as a commercial dispute process. If you need to report a review, you must use the "Report Review" button on the listing, and not this review reply page.');
+
+jr_define('_JOMRES_REVIEWS_REPLY_RULES_FIRM', 'Once you have left your reply you will not be able to edit it.');
+
+jr_define('_JOMRES_REVIEWS_REPLY_RULES_ALLOWED_TITLE', 'Allowed and Encouraged');
+jr_define('_JOMRES_REVIEWS_REPLY_RULES_ALLOWED_TEXT', '
+	<ul>
+    <li>A full response to the review.</li>
+    <li>Courtesy and Honesty.</li>
+    <li>Sensible responses to the reviewer\'s issues (remember, others may be having similar issues but did not take the opportunity to post a review).</li>
+    <li>Encourage the guest to get in contact with you directly to solve issues.
+    <li>Always remember that future guests will see your response. Make sure to be professional at all times.</li>
+	</ul>
+	');
+	
+jr_define('_JOMRES_REVIEWS_REPLY_RULES_NOTALLOWED_TITLE', 'Not allowed');
+
+jr_define('_JOMRES_REVIEWS_REPLY_RULES_NOTALLOWED_TEXT', '
+	<ul>
+    <li>Commercial disputes.</li>
+    <li>Questions to the Reviewer or Others.</li>
+    <li>Questionable Language (including cursing).</li>
+	</ul>
+	');

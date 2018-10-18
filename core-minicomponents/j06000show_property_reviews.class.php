@@ -121,6 +121,18 @@ class j06000show_property_reviews
 		$itemRating = $Reviews->showRating($property_uid);
 		$this_user_can_review = $Reviews->this_user_can_review();
 
+		$review_ids = array();
+		if (!empty($itemReviews)) {
+			foreach ($itemReviews as $review ) {
+				foreach ($itemReviews["rating_details"] as $key => $val ) {
+					$review_ids[] = $key;
+				}
+			}
+			$review_ids  = array_unique($review_ids);
+		}
+		
+		$replies = $Reviews->get_review_replies_for_review_ids($review_ids);
+
 		$output[ 'AJAXURL' ] = JOMRES_SITEPAGE_URL_AJAX;
 
 		$thumb_up = JOMRES_IMAGES_RELPATH.'thumb_up.png';
@@ -285,6 +297,17 @@ class j06000show_property_reviews
 				$sum = array_sum($review_details[ $review[ 'rating_id' ] ]);
 				$count = count($review_details[ $review[ 'rating_id' ] ]);
 				$r[ 'RATING_SCHEMA_RATINGVALUE' ] = $sum / $count;
+				
+				$r['REVIEW_REPLY']= '';
+				if ( isset($replies[ $review[ 'rating_id' ] ] )) {
+					$r['REVIEW_REPLY'] = $this->show_review_reply( $replies[ $review[ 'rating_id' ] ] );
+				}
+				elseif ( 
+					$thisJRUser->userIsManager && 
+					in_array($property_uid, $thisJRUser->authorisedProperties) 
+					) { // If the user is a manager for this property, show a link that gives them the opportunity to reply to the review
+						$r['REVIEW_REPLY'] = $this->show_review_reply_opportunity( $review[ 'rating_id' ] );
+				}
 
 				$rows[ ] = $r;
 			}
@@ -334,6 +357,47 @@ class j06000show_property_reviews
 		}
 	}
 
+	private function show_review_reply($reply) {
+		
+		if ( is_null($reply) ) {
+			throw new Exception('Reply not set');
+		}
+		
+		$pageoutput = array();
+		$output = array();
+		
+		$output['_JOMRES_REVIEWS_REPLY_SAID'] = jr_gettext('_JOMRES_REVIEWS_REPLY_SAID', '_JOMRES_REVIEWS_REPLY_SAID');
+		
+		$output['REPLIER_NAME'] = $reply->replier_name;
+		$output['REPLY'] = $reply->reply;
+
+		$pageoutput[ ] = $output;
+		$tmpl = new patTemplate();
+		$tmpl->addRows('pageoutput', $pageoutput);
+		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+		$tmpl->readTemplatesFromInput('review_reply.html');
+		return $tmpl->getParsedTemplate();
+	}
+	
+	private function show_review_reply_opportunity($rating_id = 0 ) {
+		if ($rating_id == 0 ) {
+			throw new Exception('Rating id is empty. ');
+		}
+		
+		$pageoutput = array();
+		$output = array();
+		
+		$output['_JOMRES_REVIEWS_REPLY_OPPORTUNITY'] = jr_gettext('_JOMRES_REVIEWS_REPLY_OPPORTUNITY', '_JOMRES_REVIEWS_REPLY_OPPORTUNITY');
+		$output['_JOMRES_REVIEWS_REPLY_OPPORTUNITY_LINK'] = jomresURL(JOMRES_SITEPAGE_URL.'&task=add_review_reply&rating_id='.$rating_id);
+		
+		$pageoutput[ ] = $output;
+		$tmpl = new patTemplate();
+		$tmpl->addRows('pageoutput', $pageoutput);
+		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+		$tmpl->readTemplatesFromInput('review_reply_opportunity.html');
+		return $tmpl->getParsedTemplate();
+	}
+	
 	public function touch_template_language()
 	{
 		$output = array();

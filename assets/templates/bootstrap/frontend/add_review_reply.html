@@ -1,0 +1,63 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<h2 class="page-header">{PAGETITLE}</h2>
+
+<div class="row">
+	<div class="col-md-4">
+		
+		<p  class="alert alert-warning">{_JOMRES_REVIEWS_REPLY_RULES_WARNING}</p>
+		<div class="alert alert-info" role="alert">
+			<p>{_JOMRES_REVIEWS_REPLY_RULES_GUIDELINES}</p>
+			<p>{_JOMRES_REVIEWS_REPLY_RULES_REPORT}</p>
+			<p><strong>{_JOMRES_REVIEWS_REPLY_RULES_FIRM}</strong></p>
+		</div>
+		<div class="alert alert-success" role="alert">
+			<p>{_JOMRES_REVIEWS_REPLY_RULES_ALLOWED_TITLE}</p>
+			<p>{_JOMRES_REVIEWS_REPLY_RULES_ALLOWED_TEXT}</p>
+		</div>
+		<div class="alert alert-danger" role="alert">
+			<p>{_JOMRES_REVIEWS_REPLY_RULES_NOTALLOWED_TITLE}</p>
+			<p>{_JOMRES_REVIEWS_REPLY_RULES_NOTALLOWED_TEXT}</p>
+		</div>
+		
+	</div>
+	<div class="col-md-8">
+		<h4>{_JOMRES_REVIEWS_TITLE} : {TITLE}</h4>
+		<p><strong>{_JOMRES_REVIEWS_SUBMITTEDDATE}</strong> {SUBMITTEDDATE}</p>
+		<p><strong>{_JOMRES_REVIEWS_AVERAGE_RATING}</strong> {AVERAGE_RATING}</p>
+		<br/>
+		<p><strong>{REVIEWBODY_SAID}</strong> {_JOMRES_REVIEWS_REPLY_SAID}</p>
+
+
+		<p><strong>{_JOMRES_REVIEWS_REPLY_COMMENT}</strong> {REVIEWBODY}</p>
+		<p><strong>{_JOMRES_REVIEWS_PROS}</strong> {PROS}</p>
+		<p><strong>{_JOMRES_REVIEWS_CONS}</strong> {CONS}</p>
+
+		<hr>
+
+		<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" id="reviewForm" name="adminform" class="form-horizontal" role="form">
+
+		<div class="form-group">
+			<label class="col-md-2 control-label" for="review_reply">{_JOMRES_REVIEWS_YOUR_REPLY}</label>
+			<div class="col-md-10">
+				<textarea rows="4" name="review_reply" class="form-control required" placeholder="{_JOMRES_REVIEWS_PLACEHOLDER_REPLY}"></textarea>
+			</div>
+		</div>
+
+
+		<div class="form-actions">
+			<div class="col-md-offset-2 col-md-10">
+				<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> {_JOMRES_REVIEWS_REPLY_OPPORTUNITY}</button>
+				<a href="{PROPERTY_DETAILS_URL}" class="btn btn-default"><i class="fa fa-times"></i> {COMMON_CANCEL}</a>
+			</div>
+		</div>
+
+		<input type="hidden" name="no_html" value="1"/>
+		<input type="hidden" name="task" value="save_review_reply"/>
+		<input type="hidden" name="rating_id" value="{RATING_ID}"/>
+		{CSRF_TOKEN}
+		</form>
+	</div>
+</div>
+
+</patTemplate:tmpl>

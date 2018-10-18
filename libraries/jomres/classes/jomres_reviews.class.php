@@ -526,6 +526,96 @@ class jomres_reviews
 		$result = doInsertSql($query, '');
 	}
 
+	public function get_review_replies_for_review_ids($review_ids = array() ) 
+	{
+		$response = array();
+		if (empty($review_ids)) {
+			return array();
+		}
+		
+		$count = count($review_ids);
+		$txt=" ( ";
+		for ($i=0, $n=$count; $i < $n; $i++)
+			{
+			$id=(int)$review_ids[$i];
+			$txt .= "$id";
+			if ($i < $n-1)
+				$txt .= ",";
+			}
+		$txt .= " ) ";
+	
+		$query = "SELECT `rating_id` , `replier_id` ,`replier_name` ,`reply`  FROM `#__jomres_reviews_ratings_replies` WHERE `rating_id` IN ".$txt;
+		$result = doSelectSql($query);
+		
+		$replies = array();
+		if (!empty($result)) {
+			foreach ($result as $reply) {
+				$replies[ $reply->rating_id ] = $reply;
+			}
+		}
+		return $replies;
+	}
+	
+	public function save_review_reply( $user_id = 0 , $reply = '' , $rating_id = 0  )
+	{
+		if ($user_id == 0 ) {
+			throw new Exception('User id is empty. ');
+		}
+		
+		if ($reply == '' ) {
+			throw new Exception('Reply is empty. ');
+		}
+		
+		if ($rating_id == 0 ) {
+			throw new Exception('Rating id is empty. ');
+		}
+		
+		$query = "SELECT enc_firstname , enc_surname , cms_user_id FROM #__jomres_guest_profile WHERE cms_user_id = ".(int)$user_id;
+		$replier_details = doSelectSql($query);
+		
+		jr_import('jomres_encryption');
+		$this->jomres_encryption = new jomres_encryption();
+		if (!empty($replier_details)) {
+			foreach ($replier_details as $guest ) {
+				$manager_name = $this->jomres_encryption->decrypt($guest->enc_firstname)." ".$this->jomres_encryption->decrypt($guest->enc_surname);
+			}
+		} else {
+			// The manager name is not stored in the profiles table, we will fall back to the ANONYMOUS definition.
+			$manager_name = jr_gettext('ANONYMOUS', 'ANONYMOUS', false, false);
+		}
+		
+		$query = "INSERT INTO `#__jomres_reviews_ratings_replies` 
+			(
+			`rating_id` , 
+			`replier_id` ,
+			`replier_name` ,
+			`reply`
+			)
+			VALUES
+			(
+			".(int)$rating_id.",
+			".(int)$user_id.",
+			'".$manager_name."',
+			'".$reply."'
+			)
+			";
+		
+		$result = doInsertSql($query, '');
+		if ($result) {
+			$webhook_notification							= new stdClass();
+			$webhook_notification->webhook_event			= 'review_replied';
+			$webhook_notification->webhook_event_description= 'Logs when a review reply is added.';
+			$webhook_notification->webhook_event_plugin		= 'core';
+			$webhook_notification->data						= new stdClass();
+			$webhook_notification->data->property_uid		= $this->property_uid;
+			$webhook_notification->data->review_uid			= $rating_id;
+			add_webhook_notification($webhook_notification);
+		}
+		
+		return $result;
+	}
+	
+	
 	// public function get_highest_rated_and_ratings($limit)
 	// {
 	// $query = "SELECT * FROM #__jomres_reviews_ratings ORDER BY item_id";
