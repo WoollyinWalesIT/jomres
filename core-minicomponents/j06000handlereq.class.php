@@ -632,7 +632,7 @@ class j06000handlereq
 					if (!empty($freeRoomsArray)) {
 						$output .= ";jomresJquery('#availRooms').fadeIn();";
 					} else {
-						$output .= ";jomresJquery('#availRooms').fadeOut();";
+						//$output .= ";jomresJquery('#availRooms').fadeOut();"; // Don't use this as it hides the available rooms list, and thereby hides the no rooms available message.
 					}
 
 					if ($bkg->cfg_booking_form_rooms_list_style == '1') {
