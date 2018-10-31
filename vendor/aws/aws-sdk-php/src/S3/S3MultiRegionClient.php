@@ -162,6 +162,8 @@ use GuzzleHttp\Promise;
  * @method \GuzzleHttp\Promise\Promise putObjectTaggingAsync(array $args = [])
  * @method \Aws\Result restoreObject(array $args = [])
  * @method \GuzzleHttp\Promise\Promise restoreObjectAsync(array $args = [])
+ * @method \Aws\Result selectObjectContent(array $args = [])
+ * @method \GuzzleHttp\Promise\Promise selectObjectContentAsync(array $args = [])
  * @method \Aws\Result uploadPart(array $args = [])
  * @method \GuzzleHttp\Promise\Promise uploadPartAsync(array $args = [])
  * @method \Aws\Result uploadPartCopy(array $args = [])
@@ -244,7 +246,7 @@ class S3MultiRegionClient extends BaseClient implements S3ClientInterface
                     } catch (AwsException $e) {
                         if ($e->getAwsErrorCode() === 'AuthorizationHeaderMalformed') {
                             $region = $this->determineBucketRegionFromExceptionBody(
-                                $e->getResponse()->getBody()
+                                $e->getResponse()
                             );
                             if (!empty($region)) {
                                 $this->cache->set($cacheKey, $region);

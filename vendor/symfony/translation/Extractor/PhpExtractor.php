@@ -83,8 +83,10 @@ class PhpExtractor extends AbstractFileExtractor implements ExtractorInterface
         foreach ($files as $file) {
             $this->parseTokens(token_get_all(file_get_contents($file)), $catalog);
 
-            // PHP 7 memory manager will not release after token_get_all(), see https://bugs.php.net/70098
-            gc_mem_caches();
+            if (\PHP_VERSION_ID >= 70000) {
+                // PHP 7 memory manager will not release after token_get_all(), see https://bugs.php.net/70098
+                gc_mem_caches();
+            }
         }
     }
 
@@ -208,7 +210,7 @@ class PhpExtractor extends AbstractFileExtractor implements ExtractorInterface
                     } elseif (self::MESSAGE_TOKEN === $item) {
                         $message = $this->getValue($tokenIterator);
 
-                        if (count($sequence) === ($sequenceKey + 1)) {
+                        if (\count($sequence) === ($sequenceKey + 1)) {
                             break;
                         }
                     } elseif (self::METHOD_ARGUMENTS_TOKEN === $item) {
