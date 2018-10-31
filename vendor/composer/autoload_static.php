@@ -57,10 +57,6 @@ class ComposerStaticInitd51e5601f3e1cc65adbb78dfe5f4e36d
             'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
         ),
-        'C' => 
-        array (
-            'Carbon\\' => 7,
-        ),
         'A' => 
         array (
             'Aws\\' => 4,
@@ -132,14 +128,14 @@ class ComposerStaticInitd51e5601f3e1cc65adbb78dfe5f4e36d
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
         ),
-        'Carbon\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon',
-        ),
         'Aws\\' => 
         array (
             0 => __DIR__ . '/..' . '/aws/aws-sdk-php/src',
         ),
+    );
+
+    public static $fallbackDirsPsr4 = array (
+        0 => __DIR__ . '/..' . '/nesbot/carbon/src',
     );
 
     public static $prefixesPsr0 = array (
@@ -202,6 +198,7 @@ class ComposerStaticInitd51e5601f3e1cc65adbb78dfe5f4e36d
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitd51e5601f3e1cc65adbb78dfe5f4e36d::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitd51e5601f3e1cc65adbb78dfe5f4e36d::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInitd51e5601f3e1cc65adbb78dfe5f4e36d::$fallbackDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInitd51e5601f3e1cc65adbb78dfe5f4e36d::$prefixesPsr0;
             $loader->classMap = ComposerStaticInitd51e5601f3e1cc65adbb78dfe5f4e36d::$classMap;
 

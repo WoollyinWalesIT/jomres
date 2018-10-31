@@ -11,17 +11,17 @@
 
 namespace Symfony\Component\Translation;
 
-use Symfony\Component\Translation\Loader\LoaderInterface;
-use Symfony\Component\Translation\Exception\NotFoundResourceException;
+use Symfony\Component\Config\ConfigCacheFactory;
+use Symfony\Component\Config\ConfigCacheFactoryInterface;
+use Symfony\Component\Config\ConfigCacheInterface;
 use Symfony\Component\Translation\Exception\InvalidArgumentException;
 use Symfony\Component\Translation\Exception\LogicException;
+use Symfony\Component\Translation\Exception\NotFoundResourceException;
 use Symfony\Component\Translation\Exception\RuntimeException;
-use Symfony\Component\Config\ConfigCacheInterface;
-use Symfony\Component\Config\ConfigCacheFactoryInterface;
-use Symfony\Component\Config\ConfigCacheFactory;
-use Symfony\Component\Translation\Formatter\MessageFormatterInterface;
 use Symfony\Component\Translation\Formatter\ChoiceMessageFormatterInterface;
 use Symfony\Component\Translation\Formatter\MessageFormatter;
+use Symfony\Component\Translation\Formatter\MessageFormatterInterface;
+use Symfony\Component\Translation\Loader\LoaderInterface;
 
 /**
  * @author Fabien Potencier <fabien@symfony.com>
@@ -74,13 +74,21 @@ class Translator implements TranslatorInterface, TranslatorBagInterface
     private $configCacheFactory;
 
     /**
+     * @param string                         $locale    The locale
+     * @param MessageFormatterInterface|null $formatter The message formatter
+     * @param string|null                    $cacheDir  The directory to use for the cache
+     * @param bool                           $debug     Use cache in debug mode ?
+     *
      * @throws InvalidArgumentException If a locale contains invalid characters
      */
-    public function __construct(?string $locale, MessageFormatterInterface $formatter = null, string $cacheDir = null, bool $debug = false)
+    public function __construct($locale, $formatter = null, $cacheDir = null, $debug = false)
     {
         $this->setLocale($locale);
 
-        if (null === $formatter) {
+        if ($formatter instanceof MessageSelector) {
+            $formatter = new MessageFormatter($formatter);
+            @trigger_error(sprintf('Passing a "%s" instance into the "%s()" method as a second argument is deprecated since Symfony 3.4 and will be removed in 4.0. Inject a "%s" implementation instead.', MessageSelector::class, __METHOD__, MessageFormatterInterface::class), E_USER_DEPRECATED);
+        } elseif (null === $formatter) {
             $formatter = new MessageFormatter();
         }
 
@@ -125,7 +133,7 @@ class Translator implements TranslatorInterface, TranslatorBagInterface
 
         $this->resources[$locale][] = array($format, $resource, $domain);
 
-        if (in_array($locale, $this->fallbackLocales)) {
+        if (\in_array($locale, $this->fallbackLocales)) {
             $this->catalogues = array();
         } else {
             unset($this->catalogues[$locale]);
@@ -196,7 +204,7 @@ class Translator implements TranslatorInterface, TranslatorBagInterface
     public function transChoice($id, $number, array $parameters = array(), $domain = null, $locale = null)
     {
         if (!$this->formatter instanceof ChoiceMessageFormatterInterface) {
-            throw new LogicException(sprintf('The formatter "%s" does not support plural translations.', get_class($this->formatter)));
+            throw new LogicException(sprintf('The formatter "%s" does not support plural translations.', \get_class($this->formatter)));
         }
 
         if (null === $domain) {
@@ -275,7 +283,10 @@ class Translator implements TranslatorInterface, TranslatorBagInterface
         $this->loadFallbackCatalogues($locale);
     }
 
-    private function initializeCacheCatalogue(string $locale): void
+    /**
+     * @param string $locale
+     */
+    private function initializeCacheCatalogue($locale)
     {
         if (isset($this->catalogues[$locale])) {
             /* Catalogue already initialized. */
@@ -298,7 +309,7 @@ class Translator implements TranslatorInterface, TranslatorBagInterface
         $this->catalogues[$locale] = include $cache->getPath();
     }
 
-    private function dumpCatalogue($locale, ConfigCacheInterface $cache): void
+    private function dumpCatalogue($locale, ConfigCacheInterface $cache)
     {
         $this->initializeCatalogue($locale);
         $fallbackContent = $this->getFallbackContent($this->catalogues[$locale]);
@@ -323,7 +334,7 @@ EOF
         $cache->write($content, $this->catalogues[$locale]->getResources());
     }
 
-    private function getFallbackContent(MessageCatalogue $catalogue): string
+    private function getFallbackContent(MessageCatalogue $catalogue)
     {
         $fallbackContent = '';
         $current = '';
@@ -358,7 +369,7 @@ EOF
         return $this->cacheDir.'/catalogue.'.$locale.'.'.strtr(substr(base64_encode(hash('sha256', serialize($this->fallbackLocales), true)), 0, 7), '/', '_').'.php';
     }
 
-    private function doLoadCatalogue($locale): void
+    private function doLoadCatalogue($locale)
     {
         $this->catalogues[$locale] = new MessageCatalogue($locale);
 
@@ -372,7 +383,7 @@ EOF
         }
     }
 
-    private function loadFallbackCatalogues($locale): void
+    private function loadFallbackCatalogues($locale)
     {
         $current = $this->catalogues[$locale];
 
@@ -402,7 +413,7 @@ EOF
         }
 
         if (false !== strrchr($locale, '_')) {
-            array_unshift($locales, substr($locale, 0, -strlen(strrchr($locale, '_'))));
+            array_unshift($locales, substr($locale, 0, -\strlen(strrchr($locale, '_'))));
         }
 
         return array_unique($locales);
@@ -425,8 +436,10 @@ EOF
     /**
      * Provides the ConfigCache factory implementation, falling back to a
      * default implementation if necessary.
+     *
+     * @return ConfigCacheFactoryInterface $configCacheFactory
      */
-    private function getConfigCacheFactory(): ConfigCacheFactoryInterface
+    private function getConfigCacheFactory()
     {
         if (!$this->configCacheFactory) {
             $this->configCacheFactory = new ConfigCacheFactory($this->debug);

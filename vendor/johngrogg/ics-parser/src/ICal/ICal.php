@@ -7,7 +7,7 @@
  *
  * @author  Jonathan Goode <https://github.com/u01jmg3>
  * @license https://opensource.org/licenses/mit-license.php MIT License
- * @version 2.1.2
+ * @version 2.1.6
  */
 
 namespace ICal;
@@ -16,6 +16,8 @@ use Carbon\Carbon;
 
 class ICal
 {
+    // phpcs:disable Generic.Arrays.DisallowLongArraySyntax.Found
+
     const DATE_TIME_FORMAT        = 'Ymd\THis';
     const DATE_TIME_FORMAT_PRETTY = 'F Y H:i:s';
     const ICAL_DATE_TIME_TEMPLATE = 'TZID=%s:';
@@ -95,6 +97,13 @@ class ICal
      * @var boolean
      */
     public $disableCharacterReplacement = false;
+
+    /**
+     * Toggles whether to replace (non-CLDR) Windows time zone IDs with their IANA equivalent.
+     *
+     * @var boolean
+     */
+    public $replaceWindowsTimeZoneIds = false;
 
     /**
      * The parsed calendar
@@ -213,16 +222,174 @@ class ICal
         'defaultTimeZone',
         'defaultWeekStart',
         'disableCharacterReplacement',
+        'replaceWindowsTimeZoneIds',
         'skipRecurrence',
         'useTimeZoneWithRRules',
     );
 
     /**
+     * Maps Windows (non-CLDR) time zone ID to IANA ID. This is pragmatic but not 100% precise as one Windows zone ID
+     * maps to multiple IANA IDs (one for each territory). For all practical purposes this should be good enough, though.
+     *
+     * Source: http://unicode.org/repos/cldr/trunk/common/supplemental/windowsZones.xml
+     *
+     * @var array
+     */
+    private static $windowsTimeZonesMap = array(
+        'AUS Central Standard Time'       => 'Australia/Darwin',
+        'AUS Eastern Standard Time'       => 'Australia/Sydney',
+        'Afghanistan Standard Time'       => 'Asia/Kabul',
+        'Alaskan Standard Time'           => 'America/Anchorage',
+        'Aleutian Standard Time'          => 'America/Adak',
+        'Altai Standard Time'             => 'Asia/Barnaul',
+        'Arab Standard Time'              => 'Asia/Riyadh',
+        'Arabian Standard Time'           => 'Asia/Dubai',
+        'Arabic Standard Time'            => 'Asia/Baghdad',
+        'Argentina Standard Time'         => 'America/Buenos_Aires',
+        'Atlantic Standard Time'          => 'America/Halifax',
+        'Aus Central W. Standard Time'    => 'Australia/Eucla',
+        'Azerbaijan Standard Time'        => 'Asia/Baku',
+        'Azores Standard Time'            => 'Atlantic/Azores',
+        'Bahia Standard Time'             => 'America/Bahia',
+        'Bangladesh Standard Time'        => 'Asia/Dhaka',
+        'Belarus Standard Time'           => 'Europe/Minsk',
+        'Bougainville Standard Time'      => 'Pacific/Bougainville',
+        'Canada Central Standard Time'    => 'America/Regina',
+        'Cape Verde Standard Time'        => 'Atlantic/Cape_Verde',
+        'Caucasus Standard Time'          => 'Asia/Yerevan',
+        'Cen. Australia Standard Time'    => 'Australia/Adelaide',
+        'Central America Standard Time'   => 'America/Guatemala',
+        'Central Asia Standard Time'      => 'Asia/Almaty',
+        'Central Brazilian Standard Time' => 'America/Cuiaba',
+        'Central Europe Standard Time'    => 'Europe/Budapest',
+        'Central European Standard Time'  => 'Europe/Warsaw',
+        'Central Pacific Standard Time'   => 'Pacific/Guadalcanal',
+        'Central Standard Time (Mexico)'  => 'America/Mexico_City',
+        'Central Standard Time'           => 'America/Chicago',
+        'Chatham Islands Standard Time'   => 'Pacific/Chatham',
+        'China Standard Time'             => 'Asia/Shanghai',
+        'Cuba Standard Time'              => 'America/Havana',
+        'Dateline Standard Time'          => 'Etc/GMT+12',
+        'E. Africa Standard Time'         => 'Africa/Nairobi',
+        'E. Australia Standard Time'      => 'Australia/Brisbane',
+        'E. Europe Standard Time'         => 'Europe/Chisinau',
+        'E. South America Standard Time'  => 'America/Sao_Paulo',
+        'Easter Island Standard Time'     => 'Pacific/Easter',
+        'Eastern Standard Time (Mexico)'  => 'America/Cancun',
+        'Eastern Standard Time'           => 'America/New_York',
+        'Egypt Standard Time'             => 'Africa/Cairo',
+        'Ekaterinburg Standard Time'      => 'Asia/Yekaterinburg',
+        'FLE Standard Time'               => 'Europe/Kiev',
+        'Fiji Standard Time'              => 'Pacific/Fiji',
+        'GMT Standard Time'               => 'Europe/London',
+        'GTB Standard Time'               => 'Europe/Bucharest',
+        'Georgian Standard Time'          => 'Asia/Tbilisi',
+        'Greenland Standard Time'         => 'America/Godthab',
+        'Greenwich Standard Time'         => 'Atlantic/Reykjavik',
+        'Haiti Standard Time'             => 'America/Port-au-Prince',
+        'Hawaiian Standard Time'          => 'Pacific/Honolulu',
+        'India Standard Time'             => 'Asia/Calcutta',
+        'Iran Standard Time'              => 'Asia/Tehran',
+        'Israel Standard Time'            => 'Asia/Jerusalem',
+        'Jordan Standard Time'            => 'Asia/Amman',
+        'Kaliningrad Standard Time'       => 'Europe/Kaliningrad',
+        'Korea Standard Time'             => 'Asia/Seoul',
+        'Libya Standard Time'             => 'Africa/Tripoli',
+        'Line Islands Standard Time'      => 'Pacific/Kiritimati',
+        'Lord Howe Standard Time'         => 'Australia/Lord_Howe',
+        'Magadan Standard Time'           => 'Asia/Magadan',
+        'Magallanes Standard Time'        => 'America/Punta_Arenas',
+        'Marquesas Standard Time'         => 'Pacific/Marquesas',
+        'Mauritius Standard Time'         => 'Indian/Mauritius',
+        'Middle East Standard Time'       => 'Asia/Beirut',
+        'Montevideo Standard Time'        => 'America/Montevideo',
+        'Morocco Standard Time'           => 'Africa/Casablanca',
+        'Mountain Standard Time (Mexico)' => 'America/Chihuahua',
+        'Mountain Standard Time'          => 'America/Denver',
+        'Myanmar Standard Time'           => 'Asia/Rangoon',
+        'N. Central Asia Standard Time'   => 'Asia/Novosibirsk',
+        'Namibia Standard Time'           => 'Africa/Windhoek',
+        'Nepal Standard Time'             => 'Asia/Katmandu',
+        'New Zealand Standard Time'       => 'Pacific/Auckland',
+        'Newfoundland Standard Time'      => 'America/St_Johns',
+        'North Asia East Standard Time'   => 'Asia/Irkutsk',
+        'North Asia Standard Time'        => 'Asia/Krasnoyarsk',
+        'North Korea Standard Time'       => 'Asia/Pyongyang',
+        'Omsk Standard Time'              => 'Asia/Omsk',
+        'Pacific SA Standard Time'        => 'America/Santiago',
+        'Pacific Standard Time (Mexico)'  => 'America/Tijuana',
+        'Pacific Standard Time'           => 'America/Los_Angeles',
+        'Pakistan Standard Time'          => 'Asia/Karachi',
+        'Paraguay Standard Time'          => 'America/Asuncion',
+        'Romance Standard Time'           => 'Europe/Paris',
+        'Russia Time Zone 10'             => 'Asia/Srednekolymsk',
+        'Russia Time Zone 11'             => 'Asia/Kamchatka',
+        'Russia Time Zone 3'              => 'Europe/Samara',
+        'Russian Standard Time'           => 'Europe/Moscow',
+        'SA Eastern Standard Time'        => 'America/Cayenne',
+        'SA Pacific Standard Time'        => 'America/Bogota',
+        'SA Western Standard Time'        => 'America/La_Paz',
+        'SE Asia Standard Time'           => 'Asia/Bangkok',
+        'Saint Pierre Standard Time'      => 'America/Miquelon',
+        'Sakhalin Standard Time'          => 'Asia/Sakhalin',
+        'Samoa Standard Time'             => 'Pacific/Apia',
+        'Sao Tome Standard Time'          => 'Africa/Sao_Tome',
+        'Saratov Standard Time'           => 'Europe/Saratov',
+        'Singapore Standard Time'         => 'Asia/Singapore',
+        'South Africa Standard Time'      => 'Africa/Johannesburg',
+        'Sri Lanka Standard Time'         => 'Asia/Colombo',
+        'Sudan Standard Time'             => 'Africa/Tripoli',
+        'Syria Standard Time'             => 'Asia/Damascus',
+        'Taipei Standard Time'            => 'Asia/Taipei',
+        'Tasmania Standard Time'          => 'Australia/Hobart',
+        'Tocantins Standard Time'         => 'America/Araguaina',
+        'Tokyo Standard Time'             => 'Asia/Tokyo',
+        'Tomsk Standard Time'             => 'Asia/Tomsk',
+        'Tonga Standard Time'             => 'Pacific/Tongatapu',
+        'Transbaikal Standard Time'       => 'Asia/Chita',
+        'Turkey Standard Time'            => 'Europe/Istanbul',
+        'Turks And Caicos Standard Time'  => 'America/Grand_Turk',
+        'US Eastern Standard Time'        => 'America/Indianapolis',
+        'US Mountain Standard Time'       => 'America/Phoenix',
+        'UTC'                             => 'Etc/GMT',
+        'UTC+12'                          => 'Etc/GMT-12',
+        'UTC+13'                          => 'Etc/GMT-13',
+        'UTC-02'                          => 'Etc/GMT+2',
+        'UTC-08'                          => 'Etc/GMT+8',
+        'UTC-09'                          => 'Etc/GMT+9',
+        'UTC-11'                          => 'Etc/GMT+11',
+        'Ulaanbaatar Standard Time'       => 'Asia/Ulaanbaatar',
+        'Venezuela Standard Time'         => 'America/Caracas',
+        'Vladivostok Standard Time'       => 'Asia/Vladivostok',
+        'W. Australia Standard Time'      => 'Australia/Perth',
+        'W. Central Africa Standard Time' => 'Africa/Lagos',
+        'W. Europe Standard Time'         => 'Europe/Berlin',
+        'W. Mongolia Standard Time'       => 'Asia/Hovd',
+        'West Asia Standard Time'         => 'Asia/Tashkent',
+        'West Bank Standard Time'         => 'Asia/Hebron',
+        'West Pacific Standard Time'      => 'Pacific/Port_Moresby',
+        'Yakutsk Standard Time'           => 'Asia/Yakutsk',
+    );
+
+    /**
+     * Store the Windows Time Zone IDs to search and replace
+     *
+     * @var array
+     */
+    private $windowsTimeZones;
+
+    /**
+     * Store the IANA IDs to be used as a replacement for Windows Time Zone IDs
+     *
+     * @var array
+     */
+    private $windowsTimeZonesIana;
+
+    /**
      * Creates the ICal object
      *
-     * @param  mixed $files   The path or URL to each ICS file to parse
-     *                        or iCal content provided as an array
-     * @param  array $options Default options to be used by the parser
+     * @param  mixed $files
+     * @param  array $options
      * @return void
      */
     public function __construct($files = false, array $options = array())
@@ -240,11 +407,14 @@ class ICal
             $this->defaultTimeZone = date_default_timezone_get();
         }
 
+        $this->windowsTimeZones     = array_keys(self::$windowsTimeZonesMap);
+        $this->windowsTimeZonesIana = array_values(self::$windowsTimeZonesMap);
+
         if ($files !== false) {
             $files = is_array($files) ? $files : array($files);
 
             foreach ($files as $file) {
-                if ($this->isFileOrUrl($file)) {
+                if (!is_array($file) && $this->isFileOrUrl($file)) {
                     $lines = $this->fileOrUrl($file);
                 } else {
                     $lines = is_array($file) ? $file : array($file);
@@ -258,7 +428,7 @@ class ICal
     /**
      * Initialises lines from a string
      *
-     * @param  string $string The contents of the ICS file to initialise
+     * @param  string $string
      * @return ICal
      */
     public function initString($string)
@@ -277,7 +447,7 @@ class ICal
     /**
      * Initialises lines from a file
      *
-     * @param  string $file The file path or URL of the ICS to use
+     * @param  string $file
      * @return ICal
      */
     public function initFile($file)
@@ -296,7 +466,7 @@ class ICal
     /**
      * Initialises lines from a URL
      *
-     * @param  string $url The url of the ICS file to download and initialise from
+     * @param  string $url
      * @return ICal
      */
     public function initUrl($url)
@@ -310,7 +480,7 @@ class ICal
      * Initialises the parser using an array
      * containing each line of iCal content
      *
-     * @param  array $lines The lines to initialise
+     * @param  array $lines
      * @return void
      */
     protected function initLines(array $lines)
@@ -322,9 +492,15 @@ class ICal
             foreach ($lines as $line) {
                 $line = rtrim($line); // Trim trailing whitespace
                 $line = $this->removeUnprintableChars($line);
+
                 if (!$this->disableCharacterReplacement) {
                     $line = $this->cleanData($line);
                 }
+
+                if ($this->replaceWindowsTimeZoneIds && strpos($line, 'TZID') !== false) {
+                    $line = $this->replaceWindowsTimeZoneId($line);
+                }
+
                 $add = $this->keyValueFromString($line);
 
                 $keyword = $add[0];
@@ -347,27 +523,30 @@ class ICal
 
                 foreach ($values as $value) {
                     switch ($line) {
-                        // http://www.kanzaki.com/docs/ical/vtodo.html
+                        // https://www.kanzaki.com/docs/ical/vtodo.html
                         case 'BEGIN:VTODO':
                             if (!is_array($value)) {
                                 $this->todoCount++;
                             }
+
                             $component = 'VTODO';
                         break;
 
-                        // http://www.kanzaki.com/docs/ical/vevent.html
+                        // https://www.kanzaki.com/docs/ical/vevent.html
                         case 'BEGIN:VEVENT':
                             if (!is_array($value)) {
                                 $this->eventCount++;
                             }
+
                             $component = 'VEVENT';
                         break;
 
-                        // http://www.kanzaki.com/docs/ical/vfreebusy.html
+                        // https://www.kanzaki.com/docs/ical/vfreebusy.html
                         case 'BEGIN:VFREEBUSY':
                             if (!is_array($value)) {
                                 $this->freeBusyIndex++;
                             }
+
                             $component = 'VFREEBUSY';
                         break;
 
@@ -375,6 +554,7 @@ class ICal
                             if (!is_array($value)) {
                                 $this->alarmCount++;
                             }
+
                             $component = 'VALARM';
                         break;
 
@@ -410,6 +590,21 @@ class ICal
 
             if (!$this->skipRecurrence) {
                 $this->processRecurrences();
+
+                // Apply changes to altered recurrence instances
+                if (!empty($this->alteredRecurrenceInstances)) {
+                    $events = $this->cal['VEVENT'];
+
+                    foreach ($this->alteredRecurrenceInstances as $alteredRecurrenceInstance) {
+                        if (isset($alteredRecurrenceInstance['altered-event'])) {
+                            $alteredEvent = $alteredRecurrenceInstance['altered-event'];
+                            $key          = key($alteredEvent);
+                            $events[$key] = $alteredEvent[$key];
+                        }
+                    }
+
+                    $this->cal['VEVENT'] = $events;
+                }
             }
 
             $this->processDateConversions();
@@ -420,7 +615,7 @@ class ICal
      * Unfolds an iCal file in preparation for parsing
      * (https://icalendar.org/iCalendar-RFC-5545/3-1-content-lines.html)
      *
-     * @param  array $lines The contents of the iCal string to unfold
+     * @param  array $lines
      * @return string
      */
     protected function unfold(array $lines)
@@ -435,9 +630,9 @@ class ICal
     /**
      * Add one key and value pair to the `$this->cal` array
      *
-     * @param  string         $component This could be VTODO, VEVENT, VCALENDAR, ...
-     * @param  string|boolean $keyword   The keyword, for example DTSTART
-     * @param  string         $value     The value, for example 20110105T090000Z
+     * @param  string         $component
+     * @param  string|boolean $keyword
+     * @param  string         $value
      * @return void
      */
     protected function addCalendarComponentWithKeyAndValue($component, $keyword, $value)
@@ -579,6 +774,7 @@ class ICal
                     $combinedValue .= $matches[$key];
                 }
             }
+
             $matches    = array_slice($matches, 0, 2);
             $matches[1] = $combinedValue;
             array_unshift($matches, $before . $text);
@@ -642,18 +838,16 @@ class ICal
     /**
      * Returns a `DateTime` object from an iCal date time format
      *
-     * @param  string  $icalDate      A Date in the format YYYYMMDD[T]HHMMSS[Z],
-     *                                YYYYMMDD[T]HHMMSS or
-     *                                TZID={Time Zone}:YYYYMMDD[T]HHMMSS
-     * @param  boolean $forceTimeZone Whether to force the time zone; the event's or the default
-     * @param  boolean $forceUtc      Whether to force the time zone as UTC
+     * @param  string  $icalDate
+     * @param  boolean $forceTimeZone
+     * @param  boolean $forceUtc
      * @return DateTime
-     * @throws Exception
+     * @throws \Exception
      */
     public function iCalDateToDateTime($icalDate, $forceTimeZone = false, $forceUtc = false)
     {
         /**
-         * iCal times may be in 3 formats, (http://www.kanzaki.com/docs/ical/dateTime.html)
+         * iCal times may be in 3 formats, (https://www.kanzaki.com/docs/ical/dateTime.html)
          *
          * UTC:      Has a trailing 'Z'
          * Floating: No time zone reference specified, no trailing 'Z', use local time
@@ -701,8 +895,10 @@ class ICal
                 if ($date[8] === 'Z') {
                     $isUtc    = true;
                     $dateTime = new \DateTime('now', new \DateTimeZone(self::TIME_ZONE_UTC));
-                } elseif (isset($eventTimeZone) && $this->isValidTimeZoneId($eventTimeZone)) {
+                } elseif (isset($eventTimeZone) && $this->isValidIanaTimeZoneId($eventTimeZone)) {
                     $dateTime = new \DateTime('now', new \DateTimeZone($eventTimeZone));
+                } elseif (isset($eventTimeZone) && $this->isValidCldrTimeZoneId($eventTimeZone)) {
+                    $dateTime = new \DateTime('now', new \DateTimeZone($this->isValidCldrTimeZoneId($eventTimeZone, true)));
                 } else {
                     $dateTime = new \DateTime('now', new \DateTimeZone($this->defaultTimeZone));
                 }
@@ -730,11 +926,9 @@ class ICal
     /**
      * Returns a Unix timestamp from an iCal date time format
      *
-     * @param  string  $icalDate      A Date in the format YYYYMMDD[T]HHMMSS[Z],
-     *                                YYYYMMDD[T]HHMMSS or
-     *                                TZID={Time Zone}:YYYYMMDD[T]HHMMSS
-     * @param  boolean $forceTimeZone Whether to force the time zone; the event's or the default
-     * @param  boolean $forceUtc      Whether to force the time zone as UTC
+     * @param  string  $icalDate
+     * @param  boolean $forceTimeZone
+     * @param  boolean $forceUtc
      * @return integer
      */
     public function iCalDateToUnixTimestamp($icalDate, $forceTimeZone = false, $forceUtc = false)
@@ -752,9 +946,9 @@ class ICal
     /**
      * Returns a date adapted to the calendar time zone depending on the event `TZID`
      *
-     * @param  array  $event  An event
-     * @param  string $key    An event property (`DTSTART` or `DTEND`)
-     * @param  string $format The date format to apply
+     * @param  array  $event
+     * @param  string $key
+     * @param  string $format
      * @return string|boolean
      */
     public function iCalDateWithTimeZone(array $event, $key, $format = self::DATE_TIME_FORMAT)
@@ -776,8 +970,10 @@ class ICal
 
         // Force time zone
         if (isset($dateArray[0]['TZID'])) {
-            if ($this->isValidTimeZoneId($dateArray[0]['TZID'])) {
+            if ($this->isValidIanaTimeZoneId($dateArray[0]['TZID'])) {
                 $dateTime->setTimezone(new \DateTimeZone($dateArray[0]['TZID']));
+            } elseif ($this->isValidCldrTimeZoneId($dateArray[0]['TZID'])) {
+                $dateTime->setTimezone(new \DateTimeZone($this->isValidCldrTimeZoneId($dateArray[0]['TZID'], true)));
             } else {
                 $dateTime->setTimezone(new \DateTimeZone($this->defaultTimeZone));
             }
@@ -815,19 +1011,23 @@ class ICal
             foreach (array('DTSTART', 'DTEND', 'RECURRENCE-ID') as $type) {
                 if (isset($anEvent[$type])) {
                     $date = $anEvent[$type . '_array'][1];
+
                     if (isset($anEvent[$type . '_array'][0]['TZID'])) {
                         $date = sprintf(self::ICAL_DATE_TIME_TEMPLATE, $anEvent[$type . '_array'][0]['TZID']) . $date;
                     }
-                    $anEvent[$type . '_array'][2] = $this->iCalDateToUnixTimestamp($date);
+
+                    $anEvent[$type . '_array'][2] = $this->iCalDateToUnixTimestamp($date, true, true);
                     $anEvent[$type . '_array'][3] = $date;
                 }
             }
 
             if (isset($anEvent['RECURRENCE-ID'])) {
                 $uid = $anEvent['UID'];
+
                 if (!isset($this->alteredRecurrenceInstances[$uid])) {
                     $this->alteredRecurrenceInstances[$uid] = array();
                 }
+
                 $recurrenceDateUtc = $this->iCalDateToUnixTimestamp($anEvent['RECURRENCE-ID_array'][3], true, true);
                 $this->alteredRecurrenceInstances[$uid][$key] = $recurrenceDateUtc;
             }
@@ -836,22 +1036,31 @@ class ICal
         }
 
         $eventKeysToRemove = array();
+
         foreach ($events as $key => $event) {
             $checks[] = !isset($event['RECURRENCE-ID']);
             $checks[] = isset($event['UID']);
-            $checks[] = isset($this->alteredRecurrenceInstances[$event['UID']]);
+            $checks[] = isset($event['UID']) && isset($this->alteredRecurrenceInstances[$event['UID']]);
 
             if ((bool) array_product($checks)) {
                 $eventDtstartUnix = $this->iCalDateToUnixTimestamp($event['DTSTART_array'][3], true, true);
 
                 if (false !== $alteredEventKey = array_search($eventDtstartUnix, $this->alteredRecurrenceInstances[$event['UID']])) {
-                    $events[$key]        = array_replace_recursive($events[$key], $events[$alteredEventKey]);
                     $eventKeysToRemove[] = $alteredEventKey;
+
+                    $alteredEvent = array_replace_recursive($events[$key], $events[$alteredEventKey]);
+                    $this->alteredRecurrenceInstances[$event['UID']]['altered-event'] = array($key => $alteredEvent);
                 }
             }
+
             unset($checks);
         }
-        $events = array_diff_key($events, array_flip($eventKeysToRemove));
+
+        if (!empty($eventKeysToRemove)) {
+            foreach ($eventKeysToRemove as $eventKeyToRemove) {
+                $events[$eventKeyToRemove] = null;
+            }
+        }
 
         $this->cal['VEVENT'] = $events;
     }
@@ -880,12 +1089,10 @@ class ICal
                 $isAllDayEvent = (strlen($anEvent['DTSTART_array'][1]) === 8) ? true : false;
 
                 $initialStart             = new \DateTime($anEvent['DTSTART_array'][1]);
-                $initialStartOffset       = $initialStart->getOffset();
                 $initialStartTimeZoneName = $initialStart->getTimezone()->getName();
 
                 if (isset($anEvent['DTEND'])) {
                     $initialEnd             = new \DateTime($anEvent['DTEND_array'][1]);
-                    $initialEndOffset       = $initialEnd->getOffset();
                     $initialEndTimeZoneName = $initialEnd->getTimezone()->getName();
                 } else {
                     $initialEndTimeZoneName = $initialStartTimeZoneName;
@@ -894,14 +1101,17 @@ class ICal
                 // Recurring event, parse RRULE and add appropriate duplicate events
                 $rrules = array();
                 $rruleStrings = explode(';', $anEvent['RRULE']);
+
                 foreach ($rruleStrings as $s) {
                     list($k, $v) = explode('=', $s);
                     $rrules[$k] = $v;
                 }
+
                 // Get frequency
                 $frequency = $rrules['FREQ'];
                 // Get Start timestamp
                 $startTimestamp = $initialStart->getTimestamp();
+
                 if (isset($anEvent['DTEND'])) {
                     $endTimestamp = $initialEnd->getTimestamp();
                 } elseif (isset($anEvent['DURATION'])) {
@@ -910,6 +1120,7 @@ class ICal
                 } else {
                     $endTimestamp = $anEvent['DTSTART_array'][2];
                 }
+
                 $eventTimestampOffset = $endTimestamp - $startTimestamp;
                 // Get Interval
                 $interval = (isset($rrules['INTERVAL']) && $rrules['INTERVAL'] !== '') ? $rrules['INTERVAL'] : 1;
@@ -933,9 +1144,13 @@ class ICal
                     $weekday = substr($byDay, -2);
                 }
 
-                $untilDefault = date_create('now');
-                $untilDefault->modify($this->defaultSpan . ' year');
-                $untilDefault->setTime(23, 59, 59); // End of the day
+                if (is_int($this->defaultSpan)) {
+                    $untilDefault = date_create('now');
+                    $untilDefault->modify($this->defaultSpan . ' year');
+                    $untilDefault->setTime(23, 59, 59); // End of the day
+                } else {
+                    trigger_error('ICal::defaultSpan: User defined value is not an integer', E_USER_NOTICE);
+                }
 
                 // Compute EXDATEs
                 $exdates = $this->parseExdates($anEvent);
@@ -957,8 +1172,8 @@ class ICal
                     }
 
                     $countNb = 1;
-                    $offset = "+{$count} " . $this->frequencyConversion[$frequency];
-                    $until = strtotime($offset, $startTimestamp);
+                    $offset  = "+{$count} " . $this->frequencyConversion[$frequency];
+                    $until   = strtotime($offset, $startTimestamp);
 
                     if (in_array($frequency, array('MONTHLY', 'YEARLY'))
                         && isset($rrules['BYDAY']) && $rrules['BYDAY'] !== ''
@@ -1062,7 +1277,6 @@ class ICal
                         $recurrenceEvents    = $this->trimToRecurrenceCount($rrules, $recurrenceEvents);
                         $allRecurrenceEvents = array_merge($allRecurrenceEvents, $recurrenceEvents);
                         $recurrenceEvents    = array(); // Reset
-
                     break;
 
                     case 'WEEKLY':
@@ -1164,7 +1378,6 @@ class ICal
                         $recurrenceEvents    = $this->trimToRecurrenceCount($rrules, $recurrenceEvents);
                         $allRecurrenceEvents = array_merge($allRecurrenceEvents, $recurrenceEvents);
                         $recurrenceEvents    = array(); // Reset
-
                     break;
 
                     case 'MONTHLY':
@@ -1274,6 +1487,7 @@ class ICal
 
                                 // Adjust time zone from initial event
                                 $monthRecurringOffset = 0;
+
                                 if ($this->useTimeZoneWithRRules) {
                                     $recurringTimeZone = \DateTime::createFromFormat(self::UNIX_FORMAT, $monthRecurringTimestamp);
                                     $recurringTimeZone->setTimezone($initialStart->getTimezone());
@@ -1292,6 +1506,7 @@ class ICal
                                     $lastDayDesc = "{$this->convertDayOrdinalToPositive($dayNumber, $weekday, $monthRecurringTimestamp)} {$this->weekdays[$weekday]} of "
                                         . date(self::DATE_TIME_FORMAT_PRETTY, $monthRecurringTimestamp);
                                 }
+
                                 $lastDayTimestamp = strtotime($lastDayDesc);
 
                                 do {
@@ -1306,7 +1521,7 @@ class ICal
                                         continue;
                                     }
 
-                                    if ($eventStartTimestamp > $startTimestamp && $eventStartTimestamp < $until) {
+                                    if ($eventStartTimestamp > $startTimestamp && $eventStartTimestamp <= $until) {
                                         $anEvent['DTSTART'] = date(self::DATE_TIME_FORMAT, $eventStartTimestamp) . ($isAllDayEvent || ($initialStartTimeZoneName === 'Z') ? 'Z' : '');
                                         $anEvent['DTSTART_array'][1] = $anEvent['DTSTART'];
                                         $anEvent['DTSTART_array'][2] = $eventStartTimestamp;
@@ -1370,7 +1585,6 @@ class ICal
                         $recurrenceEvents    = $this->trimToRecurrenceCount($rrules, $recurrenceEvents);
                         $allRecurrenceEvents = array_merge($allRecurrenceEvents, $recurrenceEvents);
                         $recurrenceEvents    = array(); // Reset
-
                     break;
 
                     case 'YEARLY':
@@ -1390,6 +1604,7 @@ class ICal
 
                                 // Adjust time zone from initial event
                                 $yearRecurringOffset = 0;
+
                                 if ($this->useTimeZoneWithRRules) {
                                     $recurringTimeZone = \DateTime::createFromFormat(self::UNIX_FORMAT, $yearRecurringTimestamp);
                                     $recurringTimeZone->setTimezone($initialStart->getTimezone());
@@ -1412,10 +1627,11 @@ class ICal
                                             . " of {$this->monthNames[$bymonth]} "
                                             . gmdate('Y H:i:s', $yearRecurringTimestamp);
                                     }
+
                                     $lastDayTimestamp = strtotime($lastDayDesc);
 
                                     do {
-                                        if ($eventStartTimestamp > $startTimestamp && $eventStartTimestamp < $until) {
+                                        if ($eventStartTimestamp > $startTimestamp && $eventStartTimestamp <= $until) {
                                             $anEvent['DTSTART'] = date(self::DATE_TIME_FORMAT, $eventStartTimestamp) . ($isAllDayEvent || ($initialStartTimeZoneName === 'Z') ? 'Z' : '');
                                             $anEvent['DTSTART_array'][1] = $anEvent['DTSTART'];
                                             $anEvent['DTSTART_array'][2] = $eventStartTimestamp;
@@ -1488,7 +1704,7 @@ class ICal
                                 $eventStartDescs = array();
                                 if (isset($rrules['BYMONTH']) && $rrules['BYMONTH'] !== '') {
                                     foreach ($bymonths as $bymonth) {
-                                        array_push($eventStartDescs, "$day {$this->monthNames[$bymonth]} " . gmdate('Y H:i:s', $yearRecurringTimestamp));
+                                        array_push($eventStartDescs, "{$day} {$this->monthNames[$bymonth]} " . gmdate('Y H:i:s', $yearRecurringTimestamp));
                                     }
                                 } else {
                                     array_push($eventStartDescs, $day . gmdate(self::DATE_TIME_FORMAT_PRETTY, $yearRecurringTimestamp));
@@ -1497,7 +1713,7 @@ class ICal
                                 foreach ($eventStartDescs as $eventStartDesc) {
                                     $eventStartTimestamp = strtotime($eventStartDesc);
 
-                                    if ($eventStartTimestamp > $startTimestamp && $eventStartTimestamp < $until) {
+                                    if ($eventStartTimestamp > $startTimestamp && $eventStartTimestamp <= $until) {
                                         $anEvent['DTSTART'] = date(self::DATE_TIME_FORMAT, $eventStartTimestamp) . ($isAllDayEvent || ($initialStartTimeZoneName === 'Z') ? 'Z' : '');
                                         $anEvent['DTSTART_array'][1] = $anEvent['DTSTART'];
                                         $anEvent['DTSTART_array'][2] = $eventStartTimestamp;
@@ -1553,7 +1769,6 @@ class ICal
                         $recurrenceEvents    = $this->trimToRecurrenceCount($rrules, $recurrenceEvents);
                         $allRecurrenceEvents = array_merge($allRecurrenceEvents, $recurrenceEvents);
                         $recurrenceEvents    = array(); // Reset
-
                     break;
                 }
             }
@@ -1591,7 +1806,7 @@ class ICal
 
             if ($this->useTimeZoneWithRRules && isset($anEvent['RRULE_array'][2]) && $anEvent['RRULE_array'][2] === self::RECURRENCE_EVENT) {
                 $events[$key]['DTSTART_tz'] = $anEvent['DTSTART'];
-                $events[$key]['DTEND_tz']   = $anEvent['DTEND'];
+                $events[$key]['DTEND_tz']   = isset($anEvent['DTEND']) ? $anEvent['DTEND'] : $anEvent['DTSTART'];
             } else {
                 $events[$key]['DTSTART_tz'] = $this->iCalDateWithTimeZone($anEvent, 'DTSTART');
 
@@ -1599,6 +1814,8 @@ class ICal
                     $events[$key]['DTEND_tz'] = $this->iCalDateWithTimeZone($anEvent, 'DTEND');
                 } elseif ($this->iCalDateWithTimeZone($anEvent, 'DURATION')) {
                     $events[$key]['DTEND_tz'] = $this->iCalDateWithTimeZone($anEvent, 'DURATION');
+                } elseif ($this->iCalDateWithTimeZone($anEvent, 'DTSTART')) {
+                    $events[$key]['DTEND_tz'] = $this->iCalDateWithTimeZone($anEvent, 'DTSTART');
                 }
             }
         }
@@ -1688,8 +1905,11 @@ class ICal
         }
 
         // Use default time zone if the calendar's is invalid
-        if (!$this->isValidTimeZoneId($timeZone)) {
-            $timeZone = $this->defaultTimeZone;
+        if ($this->isValidIanaTimeZoneId($timeZone) === false) {
+            // phpcs:ignore CustomPHPCS.ControlStructures.AssignmentInCondition.Warning
+            if (($timeZone = $this->isValidCldrTimeZoneId($timeZone, true)) === false) {
+                $timeZone = $this->defaultTimeZone;
+            }
         }
 
         if ($ignoreUtc && strtoupper($timeZone) === self::TIME_ZONE_UTC) {
@@ -1742,10 +1962,10 @@ class ICal
      * problem for events on, during, or after 29 Jan 2038.
      * See https://en.wikipedia.org/wiki/Unix_time#Representing_the_number
      *
-     * @param  string $rangeStart Start date of the search range.
-     * @param  string $rangeEnd   End date of the search range.
+     * @param  string $rangeStart
+     * @param  string $rangeEnd
      * @return array
-     * @throws Exception
+     * @throws \Exception
      */
     public function eventsFromRange($rangeStart = false, $rangeEnd = false)
     {
@@ -1833,7 +2053,7 @@ class ICal
     /**
      * Sorts events based on a given sort order
      *
-     * @param  array   $events    An array of Events
+     * @param  array   $events
      * @param  integer $sortOrder Either SORT_ASC, SORT_DESC, SORT_REGULAR, SORT_NUMERIC, SORT_STRING
      * @return array
      */
@@ -1853,16 +2073,28 @@ class ICal
     }
 
     /**
-     * Checks if a time zone is valid
+     * Checks if a time zone is valid (IANA or CLDR)
      *
      * @param  string $timeZone
      * @return boolean
      */
     protected function isValidTimeZoneId($timeZone)
     {
+        return ($this->isValidIanaTimeZoneId($timeZone) !== false || $this->isValidCldrTimeZoneId($timeZone) !== false);
+    }
+
+    /**
+     * Checks if a time zone is a valid IANA time zone
+     *
+     * @param  string $timeZone
+     * @return boolean
+     */
+    protected function isValidIanaTimeZoneId($timeZone)
+    {
         if (in_array($timeZone, $this->validTimeZones)) {
             return true;
         }
+
         $valid = array();
         $tza   = timezone_abbreviations_list();
 
@@ -1884,11 +2116,142 @@ class ICal
     }
 
     /**
+     * Checks if a time zone is a valid CLDR time zone
+     *
+     * @param  string  $timeZone
+     * @param  boolean $doConversion
+     * @return boolean|string
+     */
+    public function isValidCldrTimeZoneId($timeZone, $doConversion = false)
+    {
+        $timeZone = html_entity_decode($timeZone);
+
+        $cldrTimeZones = array(
+            '(UTC-12:00) International Date Line West'                      => 'Etc/GMT+12',
+            '(UTC-11:00) Coordinated Universal Time-11'                     => 'Etc/GMT+11',
+            '(UTC-10:00) Hawaii'                                            => 'Pacific/Honolulu',
+            '(UTC-09:00) Alaska'                                            => 'America/Anchorage',
+            '(UTC-08:00) Pacific Time (US & Canada)'                        => 'America/Los_Angeles',
+            '(UTC-07:00) Arizona'                                           => 'America/Phoenix',
+            '(UTC-07:00) Chihuahua, La Paz, Mazatlan'                       => 'America/Chihuahua',
+            '(UTC-07:00) Mountain Time (US & Canada)'                       => 'America/Denver',
+            '(UTC-06:00) Central America'                                   => 'America/Guatemala',
+            '(UTC-06:00) Central Time (US & Canada)'                        => 'America/Chicago',
+            '(UTC-06:00) Guadalajara, Mexico City, Monterrey'               => 'America/Mexico_City',
+            '(UTC-06:00) Saskatchewan'                                      => 'America/Regina',
+            '(UTC-05:00) Bogota, Lima, Quito, Rio Branco'                   => 'America/Bogota',
+            '(UTC-05:00) Chetumal'                                          => 'America/Cancun',
+            '(UTC-05:00) Eastern Time (US & Canada)'                        => 'America/New_York',
+            '(UTC-05:00) Indiana (East)'                                    => 'America/Indianapolis',
+            '(UTC-04:00) Asuncion'                                          => 'America/Asuncion',
+            '(UTC-04:00) Atlantic Time (Canada)'                            => 'America/Halifax',
+            '(UTC-04:00) Caracas'                                           => 'America/Caracas',
+            '(UTC-04:00) Cuiaba'                                            => 'America/Cuiaba',
+            '(UTC-04:00) Georgetown, La Paz, Manaus, San Juan'              => 'America/La_Paz',
+            '(UTC-04:00) Santiago'                                          => 'America/Santiago',
+            '(UTC-03:30) Newfoundland'                                      => 'America/St_Johns',
+            '(UTC-03:00) Brasilia'                                          => 'America/Sao_Paulo',
+            '(UTC-03:00) Cayenne, Fortaleza'                                => 'America/Cayenne',
+            '(UTC-03:00) City of Buenos Aires'                              => 'America/Buenos_Aires',
+            '(UTC-03:00) Greenland'                                         => 'America/Godthab',
+            '(UTC-03:00) Montevideo'                                        => 'America/Montevideo',
+            '(UTC-03:00) Salvador'                                          => 'America/Bahia',
+            '(UTC-02:00) Coordinated Universal Time-02'                     => 'Etc/GMT+2',
+            '(UTC-01:00) Azores'                                            => 'Atlantic/Azores',
+            '(UTC-01:00) Cabo Verde Is.'                                    => 'Atlantic/Cape_Verde',
+            '(UTC) Coordinated Universal Time'                              => 'Etc/GMT',
+            '(UTC+00:00) Casablanca'                                        => 'Africa/Casablanca',
+            '(UTC+00:00) Dublin, Edinburgh, Lisbon, London'                 => 'Europe/London',
+            '(UTC+00:00) Monrovia, Reykjavik'                               => 'Atlantic/Reykjavik',
+            '(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna'  => 'Europe/Berlin',
+            '(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague' => 'Europe/Budapest',
+            '(UTC+01:00) Brussels, Copenhagen, Madrid, Paris'               => 'Europe/Paris',
+            '(UTC+01:00) Sarajevo, Skopje, Warsaw, Zagreb'                  => 'Europe/Warsaw',
+            '(UTC+01:00) West Central Africa'                               => 'Africa/Lagos',
+            '(UTC+02:00) Amman'                                             => 'Asia/Amman',
+            '(UTC+02:00) Athens, Bucharest'                                 => 'Europe/Bucharest',
+            '(UTC+02:00) Beirut'                                            => 'Asia/Beirut',
+            '(UTC+02:00) Cairo'                                             => 'Africa/Cairo',
+            '(UTC+02:00) Chisinau'                                          => 'Europe/Chisinau',
+            '(UTC+02:00) Damascus'                                          => 'Asia/Damascus',
+            '(UTC+02:00) Harare, Pretoria'                                  => 'Africa/Johannesburg',
+            '(UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius'     => 'Europe/Kiev',
+            '(UTC+02:00) Jerusalem'                                         => 'Asia/Jerusalem',
+            '(UTC+02:00) Kaliningrad'                                       => 'Europe/Kaliningrad',
+            '(UTC+02:00) Tripoli'                                           => 'Africa/Tripoli',
+            '(UTC+02:00) Windhoek'                                          => 'Africa/Windhoek',
+            '(UTC+03:00) Baghdad'                                           => 'Asia/Baghdad',
+            '(UTC+03:00) Istanbul'                                          => 'Europe/Istanbul',
+            '(UTC+03:00) Kuwait, Riyadh'                                    => 'Asia/Riyadh',
+            '(UTC+03:00) Minsk'                                             => 'Europe/Minsk',
+            '(UTC+03:00) Moscow, St. Petersburg, Volgograd'                 => 'Europe/Moscow',
+            '(UTC+03:00) Nairobi'                                           => 'Africa/Nairobi',
+            '(UTC+03:30) Tehran'                                            => 'Asia/Tehran',
+            '(UTC+04:00) Abu Dhabi, Muscat'                                 => 'Asia/Dubai',
+            '(UTC+04:00) Baku'                                              => 'Asia/Baku',
+            '(UTC+04:00) Izhevsk, Samara'                                   => 'Europe/Samara',
+            '(UTC+04:00) Port Louis'                                        => 'Indian/Mauritius',
+            '(UTC+04:00) Tbilisi'                                           => 'Asia/Tbilisi',
+            '(UTC+04:00) Yerevan'                                           => 'Asia/Yerevan',
+            '(UTC+04:30) Kabul'                                             => 'Asia/Kabul',
+            '(UTC+05:00) Ashgabat, Tashkent'                                => 'Asia/Tashkent',
+            '(UTC+05:00) Ekaterinburg'                                      => 'Asia/Yekaterinburg',
+            '(UTC+05:00) Islamabad, Karachi'                                => 'Asia/Karachi',
+            '(UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi'               => 'Asia/Calcutta',
+            '(UTC+05:30) Sri Jayawardenepura'                               => 'Asia/Colombo',
+            '(UTC+05:45) Kathmandu'                                         => 'Asia/Katmandu',
+            '(UTC+06:00) Astana'                                            => 'Asia/Almaty',
+            '(UTC+06:00) Dhaka'                                             => 'Asia/Dhaka',
+            '(UTC+06:30) Yangon (Rangoon)'                                  => 'Asia/Rangoon',
+            '(UTC+07:00) Bangkok, Hanoi, Jakarta'                           => 'Asia/Bangkok',
+            '(UTC+07:00) Krasnoyarsk'                                       => 'Asia/Krasnoyarsk',
+            '(UTC+07:00) Novosibirsk'                                       => 'Asia/Novosibirsk',
+            '(UTC+08:00) Beijing, Chongqing, Hong Kong, Urumqi'             => 'Asia/Shanghai',
+            '(UTC+08:00) Irkutsk'                                           => 'Asia/Irkutsk',
+            '(UTC+08:00) Kuala Lumpur, Singapore'                           => 'Asia/Singapore',
+            '(UTC+08:00) Perth'                                             => 'Australia/Perth',
+            '(UTC+08:00) Taipei'                                            => 'Asia/Taipei',
+            '(UTC+08:00) Ulaanbaatar'                                       => 'Asia/Ulaanbaatar',
+            '(UTC+09:00) Osaka, Sapporo, Tokyo'                             => 'Asia/Tokyo',
+            '(UTC+09:00) Pyongyang'                                         => 'Asia/Pyongyang',
+            '(UTC+09:00) Seoul'                                             => 'Asia/Seoul',
+            '(UTC+09:00) Yakutsk'                                           => 'Asia/Yakutsk',
+            '(UTC+09:30) Adelaide'                                          => 'Australia/Adelaide',
+            '(UTC+09:30) Darwin'                                            => 'Australia/Darwin',
+            '(UTC+10:00) Brisbane'                                          => 'Australia/Brisbane',
+            '(UTC+10:00) Canberra, Melbourne, Sydney'                       => 'Australia/Sydney',
+            '(UTC+10:00) Guam, Port Moresby'                                => 'Pacific/Port_Moresby',
+            '(UTC+10:00) Hobart'                                            => 'Australia/Hobart',
+            '(UTC+10:00) Vladivostok'                                       => 'Asia/Vladivostok',
+            '(UTC+11:00) Chokurdakh'                                        => 'Asia/Srednekolymsk',
+            '(UTC+11:00) Magadan'                                           => 'Asia/Magadan',
+            '(UTC+11:00) Solomon Is., New Caledonia'                        => 'Pacific/Guadalcanal',
+            '(UTC+12:00) Anadyr, Petropavlovsk-Kamchatsky'                  => 'Asia/Kamchatka',
+            '(UTC+12:00) Auckland, Wellington'                              => 'Pacific/Auckland',
+            '(UTC+12:00) Coordinated Universal Time+12'                     => 'Etc/GMT-12',
+            '(UTC+12:00) Fiji'                                              => 'Pacific/Fiji',
+            "(UTC+13:00) Nuku'alofa"                                        => 'Pacific/Tongatapu',
+            '(UTC+13:00) Samoa'                                             => 'Pacific/Apia',
+            '(UTC+14:00) Kiritimati Island'                                 => 'Pacific/Kiritimati',
+        );
+
+        if (array_key_exists($timeZone, $cldrTimeZones)) {
+            if ($doConversion) {
+                return $cldrTimeZones[$timeZone];
+            } else {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Parses a duration and applies it to a date
      *
-     * @param  string $date     A date to add a duration to
-     * @param  string $duration A duration to parse
-     * @param  string $format   The format to apply to the DateTime object
+     * @param  string $date
+     * @param  string $duration
+     * @param  string $format
      * @return integer|DateTime
      */
     protected function parseDuration($date, $duration, $format = self::UNIX_FORMAT)
@@ -2017,18 +2380,17 @@ class ICal
      * Replaces all occurrences of a search string with a given replacement string.
      * Multibyte safe.
      *
-     * @param  string|array $search  The value being searched for, otherwise known as the needle. An array may be used to designate multiple needles.
-     * @param  string|array $replace The replacement value that replaces found search values. An array may be used to designate multiple replacements.
-     * @param  string|array $subject The string or array being searched and replaced on, otherwise known as the haystack.
-     *                               If subject is an array, then the search and replace is performed with every entry of subject, and the return value is an array as well.
-     * @param  integer      $count   If passed, this will be set to the number of replacements performed.
+     * @param  string|array $search
+     * @param  string|array $replace
+     * @param  string|array $subject
+     * @param  integer      $count
      * @return array|string
      */
     protected function mb_str_replace($search, $replace, $subject, &$count = 0)
     {
         if (!is_array($subject)) {
             // Normalize `$search` and `$replace` so they are both arrays of the same length
-            $searches     = is_array($search)  ? array_values($search)  : array($search);
+            $searches     = is_array($search) ? array_values($search) : array($search);
             $replacements = is_array($replace) ? array_values($replace) : array($replace);
             $replacements = array_pad($replacements, count($searches), '');
 
@@ -2106,7 +2468,15 @@ class ICal
 
             foreach ($subArray as $key => $value) {
                 if ($key === 'TZID') {
-                    $currentTimeZone = $subArray[$key];
+                    $checkTimeZone = $subArray[$key];
+
+                    if ($this->isValidIanaTimeZoneId($checkTimeZone)) {
+                        $currentTimeZone = $checkTimeZone;
+                    } elseif ($this->isValidCldrTimeZoneId($checkTimeZone)) {
+                        $currentTimeZone = $this->isValidCldrTimeZoneId($checkTimeZone, true);
+                    } else {
+                        $currentTimeZone = $this->defaultTimeZone;
+                    }
                 } elseif (is_numeric($key)) {
                     $icalDate = $subArray[$key];
 
@@ -2132,7 +2502,7 @@ class ICal
      *
      * @param  string $value
      * @return boolean
-     * @throws Exception
+     * @throws \Exception
      */
     public function isValidDate($value)
     {
@@ -2165,7 +2535,7 @@ class ICal
      *
      * @param  string $filename
      * @return array
-     * @throws Exception
+     * @throws \Exception
      */
     protected function fileOrUrl($filename)
     {
@@ -2212,15 +2582,36 @@ class ICal
 
         if (substr($searchDate, -1) === 'Z') {
             $timeZone = self::TIME_ZONE_UTC;
-        } elseif (isset($anEvent['DTSTART_array'][0]['TZID'])) {
-            $timeZone = $anEvent['DTSTART_array'][0]['TZID'];
         } else {
-            $timeZone = $this->defaultTimeZone;
+            if (isset($anEvent['DTSTART_array'][0]['TZID'])) {
+                $checkTimeZone = $anEvent['DTSTART_array'][0]['TZID'];
+
+                if ($this->isValidIanaTimeZoneId($checkTimeZone)) {
+                    $timeZone = $checkTimeZone;
+                } elseif ($this->isValidCldrTimeZoneId($checkTimeZone)) {
+                    $timeZone = $this->isValidCldrTimeZoneId($checkTimeZone, true);
+                } else {
+                    $timeZone = $this->defaultTimeZone;
+                }
+            } else {
+                $timeZone = $this->defaultTimeZone;
+            }
         }
 
         $a = new Carbon($searchDate, $timeZone);
         $b = $exdate->addSeconds($recurringOffset);
 
         return $a->eq($b);
+    }
+
+    /**
+     * Replaces non-CLDR Windows time zone ID like 'W. Europe Standard Time' with its IANA equivalent.
+     *
+     * @param  string $lineWithTzid
+     * @return string
+     */
+    protected function replaceWindowsTimeZoneId($lineWithTzid)
+    {
+        return str_replace($this->windowsTimeZones, $this->windowsTimeZonesIana, $lineWithTzid);
     }
 }

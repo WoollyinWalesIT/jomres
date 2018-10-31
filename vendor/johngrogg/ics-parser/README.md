@@ -2,8 +2,6 @@
 
 [![Latest Stable Release](https://poser.pugx.org/johngrogg/ics-parser/v/stable.png "Latest Stable Release")](https://packagist.org/packages/johngrogg/ics-parser)
 [![Total Downloads](https://poser.pugx.org/johngrogg/ics-parser/downloads.png "Total Downloads")](https://packagist.org/packages/johngrogg/ics-parser)
-[![Reference Status](https://www.versioneye.com/php/johngrogg:ics-parser/reference_badge.svg?style=flat "Reference Status")](https://www.versioneye.com/php/johngrogg:ics-parser/references)
-[![Dependency Status](https://www.versioneye.com/php/johngrogg:ics-parser/badge.svg "Dependency Status")](https://www.versioneye.com/php/johngrogg:ics-parser)
 
 ---
 
@@ -12,13 +10,16 @@
 ### Requirements
  - PHP 5 (≥ 5.3.0)
  - [Valid ICS](https://icalendar.org/validator.html) (`.ics`, `.ical`, `.ifb`) file
+ - [IANA](https://www.iana.org/time-zones), [Unicode CLDR](http://cldr.unicode.org/translation/timezones) or [Windows](https://support.microsoft.com/en-ca/help/973627/microsoft-time-zone-index-values) Time Zones
+   - Windows will need the `$replaceWindowsTimeZoneIds = true` configuration
 
 ### Setup
 
  - Install [Composer](https://getcomposer.org/)
    - Add the following dependency to `composer.json`
      - :warning: **Note with Composer the owner is `johngrogg` and not `u01jmg3`**
-   - To access new features require [`dev-master`](https://getcomposer.org/doc/articles/aliases.md#branch-alias)
+   - To access the latest stable branch (`v2`) use the following
+     - To access new features you can require [`dev-master`](https://getcomposer.org/doc/articles/aliases.md#branch-alias)
 
        ```yaml
        {
@@ -71,19 +72,20 @@
 
 #### Variables
 
-| Name                           | Description                                                         | Configurable       | Default Value                                                                                   |
-|--------------------------------|---------------------------------------------------------------------|:------------------:|-------------------------------------------------------------------------------------------------|
-| `$defaultSpan`                 | The value in years to use for indefinite, recurring events          | :white_check_mark: | `2`                                                                                             |
-| `$defaultTimeZone`             | Enables customisation of the default time zone                      | :white_check_mark: | [System default](https://secure.php.net/manual/en/function.date-default-timezone-get.php) |
-| `$defaultWeekStart`            | The two letter representation of the first day of the week          | :white_check_mark: | `MO`                                                                                            |
-| `$disableCharacterReplacement` | Toggles whether to disable all character replacement                | :white_check_mark: | `false`                                                                                         |
-| `$skipRecurrence`              | Toggles whether to skip the parsing of recurrence rules             | :white_check_mark: | `false`                                                                                         |
-| `$useTimeZoneWithRRules`       | Toggles whether to use time zone info when parsing recurrence rules | :white_check_mark: | `false`                                                                                         |
-| `$alarmCount`                  | Tracks the number of alarms in the current iCal feed                |         :x:        | N/A                                                                                             |
-| `$cal`                         | The parsed calendar                                                 |         :x:        | N/A                                                                                             |
-| `$eventCount`                  | Tracks the number of events in the current iCal feed                |         :x:        | N/A                                                                                             |
-| `$freeBusyCount`               | Tracks the free/busy count in the current iCal feed                 |         :x:        | N/A                                                                                             |
-| `$todoCount`                   | Tracks the number of todos in the current iCal feed                 |         :x:        | N/A                                                                                             |
+| Name                           | Configurable             | Default Value                                                                                     | Description                                                                                                                                                                                                                                                                                                                                                                                                       |
+|--------------------------------|:------------------------:|---------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `$alarmCount`                  | :heavy_multiplication_x: | N/A                                                                                               | Tracks the number of alarms in the current iCal feed                                                                                                                                                                                                                                                                                                                                                              |
+| `$cal`                         | :heavy_multiplication_x: | N/A                                                                                               | The parsed calendar                                                                                                                                                                                                                                                                                                                                                                                               |
+| `$defaultSpan`                 | :ballot_box_with_check:  | `2`                                                                                               | The value in years to use for indefinite, recurring events                                                                                                                                                                                                                                                                                                                                                        |
+| `$defaultTimeZone`             | :ballot_box_with_check:  | [System default](https://secure.php.net/manual/en/function.date-default-timezone-get.php)         | Enables customisation of the default time zone                                                                                                                                                                                                                                                                                                                                                                    |
+| `$defaultWeekStart`            | :ballot_box_with_check:  | `MO`                                                                                              | The two letter representation of the first day of the week                                                                                                                                                                                                                                                                                                                                                        |
+| `$disableCharacterReplacement` | :ballot_box_with_check:  | `false`                                                                                           | Toggles whether to disable all character replacement. Will replace curly quotes and other special characters with their standard equivalents if `false`. Can be a costly operation!                                                                                                                                                                                                                               |
+| `$eventCount`                  | :heavy_multiplication_x: | N/A                                                                                               | Tracks the number of events in the current iCal feed                                                                                                                                                                                                                                                                                                                                                              |
+| `$freeBusyCount`               | :heavy_multiplication_x: | N/A                                                                                               | Tracks the free/busy count in the current iCal feed                                                                                                                                                                                                                                                                                                                                                               |
+| `$replaceWindowsTimeZoneIds`   | :ballot_box_with_check:  | `false`                                                                                           | Toggles whether to replace (non-CLDR) Windows time zone IDs with their IANA equivalent e.g. "Mountain Standard Time" would be replaced with "America/Denver". As there are 130+ Windows time zone IDs that need to be searched and replaced this flag should only be turned on if you know that your calendar file contains such time zone IDs. **Microsoft Exchange** calendars are often seen using such IDs.   |
+| `$skipRecurrence`              | :ballot_box_with_check:  | `false`                                                                                           | Toggles whether to skip the parsing of recurrence rules                                                                                                                                                                                                                                                                                                                                                           |
+| `$todoCount`                   | :heavy_multiplication_x: | N/A                                                                                               | Tracks the number of todos in the current iCal feed                                                                                                                                                                                                                                                                                                                                                               |
+| `$useTimeZoneWithRRules`       | :ballot_box_with_check:  | `false`                                                                                           | Toggles whether to use time zone info when parsing recurrence rules                                                                                                                                                                                                                                                                                                                                               |
 
 #### Methods
 
@@ -112,7 +114,9 @@
 | `isExdateMatch`                       | `$exdate`, `$anEvent`, `$recurringOffset`                  | `protected` | Checks if an excluded date matches a given date by reconciling time zones                             |
 | `isFileOrUrl`                         | `$filename`                                                | `protected` | Checks if a filename exists as a file or URL                                                          |
 | `isValidDate`                         | `$value`                                                   | `public`    | Checks if a date string is a valid date                                                               |
-| `isValidTimeZoneId`                   | `$timeZone`                                                | `protected` | Checks if a time zone is valid                                                                        |
+| `isValidTimeZoneId`                   | `$timeZone`                                                | `protected` | Checks if a time zone is valid (IANA or CLDR)                                                         |
+| `isValidIanaTimeZoneId`               | `$timeZone`                                                | `protected` | Checks if a time zone is a valid IANA time zone                                                       |
+| `isValidCldrTimeZoneId`               | `$timeZone`, `doConversion = false`                        | `protected` | Checks if a time zone is a valid CLDR time zone                                                       |
 | `keyValueFromString`                  | `$text`                                                    | `protected` | Gets the key value pair from an iCal string                                                           |
 | `mb_chr`                              | `$code`                                                    | `protected` | Provides a polyfill for PHP 7.2's `mb_chr()`, which is a multibyte safe version of `chr()`            |
 | `mb_str_replace`                      | `$search`, `$replace`, `$subject`, `$count = 0`            | `protected` | Replaces all occurrences of a search string with a given replacement string                           |
@@ -120,7 +124,7 @@
 | `parseDuration`                       | `$date`, `$duration`, `$format = 'U'`                      | `protected` | Parses a duration and applies it to a date                                                            |
 | `parseExdates`                        | `$event`                                                   | `public`    | Parses a list of excluded dates to be applied to an Event                                             |
 | `processDateConversions`              | -                                                          | `protected` | Processes date conversions using the time zone                                                        |
-| `processEventIcalDate`                | `$event`, `$index = 3`                                     | `protected` | Extends the `{DTSTART\|DTEND\|RECURRENCE-ID}_array` array to include an iCal date time for each event |
+| `processEventIcalDateTime`            | `$event`, `$index = 3`                                     | `protected` | Extends the `{DTSTART\|DTEND\|RECURRENCE-ID}_array` array to include an iCal date time for each event |
 | `processEvents`                       | -                                                          | `protected` | Performs admin tasks on all events as read from the iCal file                                         |
 | `processRecurrences`                  | -                                                          | `protected` | Processes recurrence rules                                                                            |
 | `removeUnprintableChars`              | `$data`                                                    | `protected` | Removes unprintable ASCII and UTF-8 characters                                                        |
@@ -166,8 +170,6 @@
 ## Credits
  - [Jonathan Goode](https://github.com/u01jmg3) (programming, bug fixing, enhancement, coding standard)
  - [John Grogg](john.grogg@gmail.com) (programming, addition of event recurrence handling)
- - Frank Gregor (programming, feedback, testing)
- - [Martin Thoma](info@martin-thoma.de) (programming, bug fixing, project management, initial concept)
 
 ---
 
@@ -175,4 +177,4 @@
 
  - [iCal Validator](https://icalendar.org/validator.html)
  - [Recurrence Rule Tester](https://jakubroztocil.github.io/rrule/)
- - [Unix Timestamp Converter](http://www.unixtimestamp.com)
+ - [Unix Timestamp Converter](https://www.unixtimestamp.com)

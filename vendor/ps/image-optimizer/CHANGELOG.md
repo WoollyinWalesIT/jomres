@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+* 1.2.0 (2018-04-11)
+
+  * [#46] Add support for svg files (using svgo library)
+
 * 1.1.3 (2018-04-09)
 
   * [#53, #54, #50] Compatibility with Symfony 4
@@ -19,3 +23,8 @@ CHANGELOG
     * execute only first successful optimizer by default (new options: `execute_only_first_png_optimizer` and `execute_only_first_jpeg_optimizer`)
     * ignore error when first optimizer fails, but second one succeeds
     * report an error when all optimizers fail (an error is ignored when `ignore_errors` is enabled)
+    * BC break - `ChainOptimizer` constructor now requires 2nd parameter, and adds 3rd parameter logger:
+```diff    
+-    public function __construct(array $optimizers, $executeFirst = false)
++    public function __construct(array $optimizers, $executeFirst, LoggerInterface $logger)
+```
