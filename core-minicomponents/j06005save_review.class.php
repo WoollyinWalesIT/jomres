@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.13.0
+ * @version Jomres 9.14.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -39,6 +39,8 @@ class j06005save_review
 		$rating_4 = (int) jomresGetParam($_POST, 'rating_4', 0);
 		$rating_5 = (int) jomresGetParam($_POST, 'rating_5', 0);
 		$rating_6 = (int) jomresGetParam($_POST, 'rating_6', 0);
+		
+		$anonymise = (bool) jomresGetParam($_POST, 'anonymise', false);
 
 		$review_title = jomresGetParam($_POST, 'review_title', '');
 		$review_description = jomresGetParam($_POST, 'review_description', '');
@@ -51,7 +53,33 @@ class j06005save_review
 			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=add_review&property_uid='.$property_uid), '');
 		}
 
-		//property_header($property_uid);
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+		
+		$query = "SELECT enc_firstname , enc_surname , cms_user_id FROM #__jomres_guest_profile WHERE cms_user_id = ".(int)$thisJRUser->id;
+		$guest_details = doSelectSql($query);
+		
+		jr_import('jomres_encryption');
+		$this->jomres_encryption = new jomres_encryption();
+		if (!empty($guest_details)) {
+			foreach ($guest_details as $guest ) {
+				$guest_names = $this->jomres_encryption->decrypt($guest->enc_firstname)." ".$this->jomres_encryption->decrypt($guest->enc_surname);
+			}
+		}
+		
+		if ($anonymise && trim($guest_names) != '' ) {  // Guest wants their name anonymised? If yes, and if the guest name isn't blank, we will do that, so for example Vince Wooll becomes VW
+			$words = preg_split("/\s+/", $guest_names);
+			$acronym = "";
+
+			foreach ($words as $w) {
+				$acronym .= $w[0];
+			}
+			$user_name = strtoupper($acronym);
+		} elseif (trim($guest_names) != '') {  // Guest does not want their name anonymised
+			$user_name = $guest_names;
+		} else { // The guest name is not stored in the profiles table, we will fall back to the ANONYMOUS definition.
+			$user_name = jr_gettext('ANONYMOUS', 'ANONYMOUS', false, false);
+			
+		}
 
 		if ($jrConfig[ 'use_reviews' ] == '1' && $property_uid > 0) {
 			$output = array();
@@ -67,7 +95,7 @@ class j06005save_review
 			if ($this_user_can_review_this_property) {
 				$overall_rating = (int) ($rating_1 + $rating_2 + $rating_3 + $rating_4 + $rating_5 + $rating_6) / 6;
 
-				$rating_id = $Reviews->save_review($overall_rating, $review_title, $review_description, $pros, $cons);
+				$rating_id = $Reviews->save_review($overall_rating, $review_title, $review_description, $pros, $cons , $user_name );
 				$Reviews->save_rating_detail($property_uid, $rating_id, $rating_1, $rating_2, $rating_3, $rating_4, $rating_5, $rating_6);
 
 				if ($jrConfig[ 'autopublish_reviews' ] == '1') {

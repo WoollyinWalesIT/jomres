@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.13.0
+ * @version Jomres 9.14.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -208,6 +208,13 @@ class j03020insertbooking
 					}
 				}
 
+				$bookingNotes = $tempBookingData->booking_notes;
+				foreach ($bookingNotes as $k => $v) {
+					$note = ' '.strip_tags($k).' '.strip_tags($v).'<br/>';
+					$query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('".(int) $amend_contractuid."','".$note."','$dt','".(int) $property_uid."')";
+					doInsertSql($query, '');
+				}
+				
 				jomres_audit(get_showtime('jomressession'), 'Amend booking - updated room booking '.$amend_contractuid);
 				$jomres_messaging = jomres_singleton_abstract::getInstance('jomres_messages');
 				$jomres_messaging->set_message('Amend booking - updated room booking '.$amend_contractuid);

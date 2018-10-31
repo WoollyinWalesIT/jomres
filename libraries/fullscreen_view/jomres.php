@@ -6,7 +6,7 @@
  *
  * @author Aladar Barthi <sales@jomres.net>
  *
- * @version Jomres 9.13.0
+ * @version Jomres 9.14.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -50,7 +50,7 @@ if (file_exists(dirname(__FILE__).'/../../'.JOMRES_ROOT_DIRECTORY.'/framework.ph
     if (!using_bootstrap()) {
         $view = 'jquery_ui';
     } else {
-        if (jomres_bootstrap_version() == '2') {
+        if (jomres_bootstrap_version() == '2' || jomres_bootstrap_version() == '' ) {
             $view = 'bootstrap';
         } elseif (!jomres_cmsspecific_areweinadminarea()) {
             $view = 'bootstrap3';

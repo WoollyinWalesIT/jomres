@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.13.0
+ * @version Jomres 9.14.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -79,9 +79,10 @@ class j16000showplugins
 		}
 
 		if ( 
-			(!file_exists(JOMRES_COREPLUGINS_ABSPATH.'plugin_manager'.JRDS.'plugin_info.php') && $this->key_valid)  ||
+			(!file_exists(JOMRES_COREPLUGINS_ABSPATH.'plugin_manager'.JRDS.'plugin_info.php'))  ||
 			$force_plugin_manager_reinstallation === true
 			) { // We will need to install the plugin manager, plugin force a registry rebuild, then redirect to this page again.
+			
 			if (!isset($_REQUEST['install']) ) {
 				
 				$output = array();

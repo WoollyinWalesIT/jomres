@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.13.0
+ * @version Jomres 9.14.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -36,6 +36,13 @@ class jomres_gdpr_optin_consent
 	
 	public function user_consents_to_storage()
 	{
+		// I don't like this solution, but Chrome is causing problems with cookies.
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
+		if ($jrConfig[ 'enable_gdpr_compliant_fucntionality' ] != "1" ) {
+			return true;
+		}
+		
 		if(!isset($_COOKIE['jomres_gdpr_consent_form_processed']) ) {
 			return false;
 		}

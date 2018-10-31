@@ -1,3 +1,26 @@
+<h3>Jomres 9.14.0 31/10/2018</h3>
+
+<span class="label label-success">Feature</span> Added ability for guests to semi-anonymise their reviews.
+<span class="label label-success">Feature</span> Added review reply feature. Managers can now respond to reviews.
+
+<span class="label label-warning">Change</span> Updated show property room type script and show property rooms to receive room type id and filter based on those if required.
+<span class="label label-warning">Change</span> Updated shortcode information for show property room type script.
+<span class="label label-warning">Change</span> Modified calendar scripts to render better in small screens
+<span class="label label-warning">Change</span> Show property header script updated so that the price output uses the same method as the List Properties script, because list properties can take advantage of plugins for calculating prices. Provides consistency in pricing output between the two pages.
+<span class="label label-warning">Change</span> Minicomponent readme updated with webhook trigger numbers and summary.
+<span class="label label-warning">Change</span> Added booking form content to $output variable in viewproperty script, and added markup to comments section of the notabs template.  {BOOKING_FORM} // Yes, that booking form. show_booking_form_in_property_details setting from Site Config needs to be set to Yes for the form to show.
+<span class="label label-warning">Change</span> Added css definitions to make the date picker a bit bigger.
+<span class="label label-warning">Change</span> Re-added converted price details to output price function so that value is shown in both selected and native currencies.
+<span class="label label-warning">Change</span> Tweaked GDPR functionality so that if GDPR consent policies are not used, then the "given consent" method returns true every time.
+<span class="label label-warning">Change</span> Tweaked booking engine so that no rooms message is not hidden.
+<span class="label label-warning">Change</span> Improved a language string so that it makes sense when seen on the control panel.
+
+<span class="label label-important label-danger">Fix</span> Improved get booking url function to ensure that the = symbol isn't santitised.
+<span class="label label-important label-danger">Fix</span> Fixed an issue due to BS4 related changes where when site is set to BS2 (a rarity nowadays, as BS2 isn't as responsive as BS3) then the fullscreen view would render the Jomres Main Menu vertically instead of horizontally.
+<span class="label label-important label-danger">Fix</span> Resolved an issue with a historic section of a query that's no longer relevant due to GDPR related changes. Thanks Juan.
+<span class="label label-important label-danger">Fix</span> Tweaked how we find the bs version for setting up tabs in property config on older BS2 sites.
+<span class="label label-important label-danger">Fix</span> Fixed an issue that preventing the system from downloading the plugin manager (a free plugin) if the license key wasn't set.
+
 <h3>Jomres 9.13.0 12/09/2018</h3>
 
 <span class="label label-success">Feature</span> Added functionality to allow guests to login via a modal in the booking form.

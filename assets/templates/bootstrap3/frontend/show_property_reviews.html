@@ -64,7 +64,7 @@
 			<div class="col-md-12" itemprop="name" ><h3>{REVIEW_TITLE} <span>{RATING_STARS}</span></h3></div>
 		</div>
 		<meta itemprop="datePublished" content="{RATING_DATE_META}">
-		<div class="small">{_JOMRES_REVIEWS_DATE} {RATING_DATE} {_JOMRES_REVIEWS_REVIEWED_BY}<span itemprop="author">{REVIEWER_FIRSTNAME} {REVIEWER_SURNAME}</span></div>
+		<div class="small">{_JOMRES_REVIEWS_DATE} {RATING_DATE} {_JOMRES_REVIEWS_REVIEWED_BY}<span itemprop="author"><strong>{REVIEWER_FIRSTNAME} {REVIEWER_SURNAME}</strong></span></div>
 	</div>
 	<div class="row" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
 		<meta itemprop="bestRating" content = "{RATING_SCHEMA_BESTRATING}">
@@ -162,6 +162,8 @@
 			</div>
 		</div>
 	</div>
+	
+	{REVIEW_REPLY}
 	<p>&nbsp;</p>
 	<!--<div>{NUMBER_AGREE} {_JOMRES_REVIEWS_NUMBER_AGREE_WITHREVIEW}&nbsp;</div>
 	<div>{NUMBER_DISAGREE} {_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW}&nbsp;</div>-->

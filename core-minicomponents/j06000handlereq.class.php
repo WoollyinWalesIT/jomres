@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.13.0
+ * @version Jomres 9.14.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -632,7 +632,7 @@ class j06000handlereq
 					if (!empty($freeRoomsArray)) {
 						$output .= ";jomresJquery('#availRooms').fadeIn();";
 					} else {
-						$output .= ";jomresJquery('#availRooms').fadeOut();";
+						//$output .= ";jomresJquery('#availRooms').fadeOut();"; // Don't use this as it hides the available rooms list, and thereby hides the no rooms available message.
 					}
 
 					if ($bkg->cfg_booking_form_rooms_list_style == '1') {

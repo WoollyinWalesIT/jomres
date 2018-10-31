@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.13.0
+ * @version Jomres 9.14.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -4456,7 +4456,11 @@ class dobooking
 				$this->setErrorLog('<b>generateRoomsList:: roomAndTariffArray is empty: </b>');
 				if ($this->cfg_singleRoomProperty == '0') {
 					if (empty($roomAndTariffArray) && empty($this->requestedRoom)) {
-						$return_output = '<div class="ui-state-highlight">'.jr_gettext('_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE', '_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE', false).'</div>';
+						$highlight = "alert alert-danger";
+						if (!using_bootstrap()) {
+							$highlight = "ui-state-highlight";
+						}
+						$return_output = '<div class="'.$highlight.'">'.jr_gettext('_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE', '_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE', false).'</div>';
 					} else {
 						$return_output = '';
 					}

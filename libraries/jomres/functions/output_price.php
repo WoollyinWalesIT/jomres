@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.13.0
+ * @version Jomres 9.14.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -97,8 +97,10 @@ function output_price($value, $currencycode = '', $do_conversion = true, $zeroOK
 		$price = $currfmt->get_formatted($price);
 		$price = $symbols[ 'pre' ].$price.$symbols[ 'post' ];
 
-		//$price = ''.$converted_output_price.' <span>('.$price.')</span> ';
-		$price = $converted_output_price;
+		$original_price_template = simple_template_output(JOMRES_TEMPLATEPATH_FRONTEND , 'output_price_native_price.html' , $price );
+		
+		$price = ''.$converted_output_price.$original_price_template;
+		//$price = $converted_output_price;
 	} else {
 		$symbols = $currency_codes->getSymbol($currencycode);
 		
