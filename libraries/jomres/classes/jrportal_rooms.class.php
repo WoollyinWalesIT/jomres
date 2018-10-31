@@ -289,9 +289,10 @@ class jrportal_rooms
 		$nextRoomNumber = (int) doSelectSql($query, 1);
 
 		if ($nextRoomNumber == 0) {
-			$nextRoomNumber = 1;
+			$nextRoomNumber = 0;
 		}
-
+		$nextRoomNumber++;
+		
 		$query = 'INSERT INTO #__jomres_rooms 
 							(
 							`room_classes_uid`,
