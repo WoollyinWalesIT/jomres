@@ -93,7 +93,7 @@ class j06005save_review
 			$this_user_can_review_this_property = $Reviews->this_user_can_review_this_property();
 
 			if ($this_user_can_review_this_property) {
-				$overall_rating = (int) ($rating_1 + $rating_2 + $rating_3 + $rating_4 + $rating_5 + $rating_6) / 6;
+				$overall_rating = number_format ( ($rating_1 + $rating_2 + $rating_3 + $rating_4 + $rating_5 + $rating_6) / 6 , 2 );
 
 				$rating_id = $Reviews->save_review($overall_rating, $review_title, $review_description, $pros, $cons , $user_name );
 				$Reviews->save_rating_detail($property_uid, $rating_id, $rating_1, $rating_2, $rating_3, $rating_4, $rating_5, $rating_6);

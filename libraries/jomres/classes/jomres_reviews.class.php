@@ -165,7 +165,7 @@ class jomres_reviews
 		$query = "INSERT INTO #__jomres_reviews_ratings SET
 			user_id='" .(int) $this->userid."',
 			item_id='" .(int) $this->property_uid."',
-			rating='" .(int) $rating."',
+			rating='" .(float) $rating."',
 			rating_ip='" .$this->ip."',
 			rating_date='" .date('Y-m-d H:i:s')."',
 			review_title='" .trim($title)."',
