@@ -122,10 +122,13 @@ class j06000show_property_reviews
 		$this_user_can_review = $Reviews->this_user_can_review();
 
 		$review_ids = array();
+
 		if (!empty($itemReviews)) {
 			foreach ($itemReviews as $review ) {
-				foreach ($itemReviews["rating_details"] as $key => $val ) {
-					$review_ids[] = $key;
+				if (isset($itemReviews["rating_details"])) {
+					foreach ($itemReviews["rating_details"] as $key => $val ) {
+						$review_ids[] = $key;
+					}
 				}
 			}
 			$review_ids  = array_unique($review_ids);
