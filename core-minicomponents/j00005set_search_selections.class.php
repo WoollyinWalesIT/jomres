@@ -29,10 +29,12 @@ class j00005set_search_selections
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 
 		// Do not store searched on elements if consent not given
-		$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
+		// This decision is now disabled. The optin consent has been moved to the booking form/property creation/contact areas explicitely, meaning that users do not get the option to change this setting til later.
+		// Given that this temporary data storage is A. mandatory for site functioning and B doesn't store any PII and C deleted automatically 24hrs later, I will disable this decision.
+		/* $jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
 		if ( !$jomres_gdpr_optin_consent->user_consents_to_storage() ) {
 			return;
-		}
+		} */
 
 
 		//////////////////////////////////// STARS /////////////////////////////////////////////////////////
