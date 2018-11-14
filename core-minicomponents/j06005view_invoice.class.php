@@ -106,6 +106,7 @@ class j06005view_invoice
 		}
 
 
+
 		$output[ 'BUSINESS_DETAILS_TEMPLATE' ]	= $MiniComponents->specificEvent('06005', 'show_invoice_seller', array('invoice_id' => $invoice_id));
 		$output[ 'CLIENT_DETAILS_TEMPLATE' ]	= $MiniComponents->specificEvent('06005', 'show_invoice_buyer', array('invoice_id' => $invoice_id)); 
 
@@ -125,6 +126,14 @@ class j06005view_invoice
 		$output[ 'HINVOICENO' ] = jr_gettext('_JOMRES_INVOICE_NUMBER', '_JOMRES_INVOICE_NUMBER');
 		$output[ 'TRANSACTION_ID' ] = jr_gettext('TRANSACTION_IDS', 'TRANSACTION_IDS');
 		$output[ 'PAYMENT_METHOD' ] = jr_gettext('PAYMENT_METHOD', 'PAYMENT_METHOD');
+		$output[ '_JOMRES_BOOKING_NUMBER' ] = jr_gettext('_JOMRES_BOOKING_NUMBER', '_JOMRES_BOOKING_NUMBER');
+		
+		if (isset($contractData['tag'])) {
+			$output[ 'BOOKING_NUMBER' ] = $contractData['tag'];
+		} else {
+			$output[ 'BOOKING_NUMBER' ] = null;
+		}
+		
 
 		$markaspaid_link = array();
 		if ($thisJRUser->userIsManager && (int) $invoice->property_uid > 0 && (int) $invoice->status != 1 && $contractData['approved'] == 1) {
