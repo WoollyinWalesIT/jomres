@@ -1,6 +1,17 @@
 <patTemplate:tmpl name="pageoutput">
-{SLIDESHOW}
+<h2>{ROOM_CLASS_ABBV}</h2>
 
-<h2>{ROOM_TYPE_TITLE}</h2>
-{ROOM_TYPE_DESCRIPTION}
+
+
+<div class="row">
+	<div class="col-md-4">
+		{ROOM_CLASS_FULL_DESC}
+	</div>
+	<div class="col-md-8">
+		{SLIDESHOW}
+		
+		{ROOMS}
+	</div>
+</div>
+
 </patTemplate:tmpl>

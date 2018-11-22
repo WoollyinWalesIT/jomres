@@ -53,7 +53,62 @@ class j06000show_property_room_type
 			$room_classes_uid = (int)jomresGetParam($_REQUEST, 'room_classes_uid', 0);
 		}
 		
-		echo $MiniComponents->specificEvent('06000', 'show_property_rooms', array('output_now' => false, 'property_uid' => $property_uid, 'room_classes_uid' => $room_classes_uid ));
+		if (isset($componentArgs[ 'output_now' ])) {
+			$output_now = $componentArgs[ 'output_now' ];
+		} else if (isset($_REQUEST[ 'output_now' ])) {
+			$output_now = (bool) jomresGetParam($_REQUEST, 'output_now', 1);
+		} else {
+			$output_now = true;
+		}
+		
+		$jomres_room_types = jomres_singleton_abstract::getInstance('jomres_room_types');
+		$jomres_room_types->get_all_room_types();
+		
+		$jomres_room_types->get_room_type($room_classes_uid);
+		
+		$output = array();
+		$pageoutput = array();
+		
+		
+		$output[ 'ROOM_CLASS_ABBV' ] = $jomres_room_types->property_specific_room_type[$property_uid][$room_classes_uid]['room_class_abbv'];
+		$output[ 'ROOM_CLASS_FULL_DESC' ] = $jomres_room_types->property_specific_room_type[$property_uid][$room_classes_uid]['room_class_full_desc'];
+		
+
+		$output['ROOMS'] = $MiniComponents->specificEvent('06000', 'show_property_rooms', array('output_now' => false, 'property_uid' => $property_uid, 'room_classes_uid' => $room_classes_uid ));
+		
+		$resource_type = 'room_types';
+		$resource_id = $room_classes_uid;
+		
+		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
+		$jomres_media_centre_images->get_images($defaultProperty);
+		if (isset($jomres_media_centre_images->images [$resource_type] [$resource_id])) {
+			$images = $jomres_media_centre_images->images [$resource_type] [$resource_id];
+		} else {
+			$images = array ( array(
+				"large" => $jomres_media_centre_images->multi_query_images['noimage-large'],
+				"medium" => $jomres_media_centre_images->multi_query_images['noimage-medium'],
+				"small" => $jomres_media_centre_images->multi_query_images['noimage-small']
+			) );
+			
+		}
+		$slideshow = $MiniComponents->specificEvent('01060', 'slideshow', array('images' => $images ));
+		$output['SLIDESHOW'] = $slideshow['slideshow'];
+		
+		$pageoutput[] = $output;
+		$tmpl = new patTemplate();
+		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+		$tmpl->addRows('pageoutput', $pageoutput);
+
+		$tmpl->readTemplatesFromInput('show_property_room_type.html');
+		$template = $tmpl->getParsedTemplate();
+		
+		if ($output_now) {
+			echo $template;
+		} else {
+			$this->retVals = $template;
+		}
+		
+		
 	}
 
 	public function getRetVals()
