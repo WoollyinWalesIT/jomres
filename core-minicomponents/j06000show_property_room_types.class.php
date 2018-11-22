@@ -59,6 +59,8 @@ class j06000show_property_room_types
 		$basic_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
 		$basic_property_details->gather_data($property_uid);
 
+		$this->getTariffRanges($property_uid);
+		
 		$output = array();
 
 		if (!empty($basic_property_details->room_types)) {
@@ -85,6 +87,12 @@ class j06000show_property_room_types
 					$room_type[ 'ROOM_TYPE_TEXT' ] = $basic_property_details->this_property_room_classes[$key]['abbv'];
 					$room_type[ 'ROOM_TYPE_COUNTER' ] = count($basic_property_details->rooms_by_type[$key]);
 					$room_type[ 'ROOM_TYPE_PAGE_URL' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=show_property_room_type&property_uid='.$property_uid.'&room_classes_uid='.$key);
+					
+					$room_type[ 'ROOM_TYPE_PRICE' ] = ' ??? ';
+					
+					if (isset($this->roomTypePriceRanges[$key])) {
+						$room_type[ 'ROOM_TYPE_PRICE' ] = $this->roomTypePriceRanges[$key];
+					}
 				}
 
 				$room_types[] = $room_type;
@@ -111,6 +119,63 @@ class j06000show_property_room_types
 		}
 	}
 
+	private function getTariffRanges($property_uid) 
+	{
+		$this->roomTypePriceRanges = array();
+		
+		$today = date('Y/m/d', mktime(0, 0, 0, date('m'), date('d'), date('Y')));
+		
+		$query = "SELECT `rates_uid`,`rate_title`,`roomclass_uid`,`roomrateperday`
+			FROM #__jomres_rates WHERE property_uid = ".(int)$property_uid."
+			AND DATE_FORMAT(`validto`, '%Y/%m/%d') >= DATE_FORMAT('".$today."', '%Y/%m/%d')
+			";
+
+		$tariffs = doSelectSql($query);
+
+		if (empty($tariffs)) {
+			return $this->roomTypePriceRanges;
+		}
+		
+		$this->allPropertyTariffs = array();
+		
+		foreach ($tariffs as $t) {
+			$roomrate = $this->get_nett_price($t->roomrateperday);
+			$this->allPropertyTariffs[ $t->roomclass_uid ][] = $roomrate;
+		}
+
+		$to = jr_gettext( '_JOMCOMP_WISEPRICE_TO', '_JOMCOMP_WISEPRICE_TO' );
+
+		foreach ($this->allPropertyTariffs as $key=>$val) {
+			
+			$val = array_unique($val);
+			
+			if (count($val) == 1 ) { // There's only one price for this tariff/room type combo
+				$this->roomTypePriceRanges[$key] = output_price($val[0]);
+			} else {
+				$highest = output_price(max($val)); 
+				$lowest = output_price(min($val)); 
+				$this->roomTypePriceRanges[$key] = $lowest." ".$to." ".$highest;
+			}
+		}
+	}
+	
+	private function get_nett_price($price)
+	{
+		if ($mrConfig[ 'prices_inclusive' ] == 1) {
+			$mrConfig = getPropertySpecificSettings($this->property_uid);
+			
+			$jrportal_taxrate = jomres_singleton_abstract::getInstance('jrportal_taxrate');
+			$cfgcode = $mrConfig[ 'accommodation_tax_code' ];
+			$accommodation_tax_rate = (float) $jrportal_taxrate->taxrates[ $cfgcode ][ 'rate' ];
+			
+			$divisor = ($accommodation_tax_rate / 100) + 1;
+			$price = $price / $divisor;
+		}
+
+		return $price;
+	}
+	
+	
 	public function getRetVals()
 	{
 		return $this->retVals;
