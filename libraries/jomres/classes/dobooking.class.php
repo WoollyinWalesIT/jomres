@@ -687,13 +687,35 @@ class dobooking
 
 	public function getAllRoomClasses()
 	{
+		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
+		$jomres_media_centre_images->get_images($this->property_uid);
+		$jomres_media_centre_images->get_site_images('rmtypes'); // These are administrator created room type images. If the property manager doesn't upload images for a room type (which is quite possible if they aren't given the option) then we'll "fallback" to admin created images instead
+
+		$resource_type = 'room_types';
+		
 		$query = 'SELECT room_classes_uid,room_class_abbv,room_class_full_desc,image FROM #__jomres_room_classes WHERE room_classes_uid IN ('.jomres_implode($this->allRoomClassIds).') ';
 		$roomClasses = doSelectSql($query);
 		foreach ($roomClasses as $c) {
 			$roomtype_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int) $c->room_classes_uid, stripslashes($c->room_class_abbv), false, false);
 			$roomtype_desc = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int) $c->room_classes_uid, stripslashes($c->room_class_full_desc), false, false);
 
-			$this->allRoomClasses[ $c->room_classes_uid ] = array('room_class_abbv' => $roomtype_abbv, 'room_class_full_desc' => $roomtype_desc, 'image' => $c->image);
+			$resource_id = $c->room_classes_uid;
+			
+			if (isset($jomres_media_centre_images->images [$resource_type] [$resource_id])) {
+				$images = $jomres_media_centre_images->images [$resource_type] [$resource_id];
+			} else {
+				if (isset($jomres_media_centre_images->site_images['rmtypes'][$resource_id])) {
+					$images = array ($jomres_media_centre_images->site_images['rmtypes'][$resource_id]);
+				} else {
+					$images = array ( array(
+						"large" => $jomres_media_centre_images->multi_query_images['noimage-large'],
+						"medium" => $jomres_media_centre_images->multi_query_images['noimage-medium'],
+						"small" => $jomres_media_centre_images->multi_query_images['noimage-small']
+					) );
+				}
+			}
+		
+			$this->allRoomClasses[ $c->room_classes_uid ] = array('room_class_abbv' => $roomtype_abbv, 'room_class_full_desc' => $roomtype_desc, 'image' => $c->image , 'images' => $images);
 		}
 	}
 
@@ -4476,7 +4498,10 @@ class dobooking
 
 	public function generate_room_type_dropdowns()
 	{
+		$MiniComponents = jomres_getSingleton('mcHandler');
+		
 		$dropdown_output = array();
+		
 		// We need to strip out rooms from the available arrays if they've already
 		// been selected in conjunction with another tariff
 		if (isset($this->room_type_style_output)) {
@@ -4515,6 +4540,7 @@ class dobooking
 			}
 
 			ksort($this->room_type_style_output);
+			
 			foreach ($this->room_type_style_output as $tariff_id => $tariff_and_roomtypes) {
 				$number_of_rooms = count($tariff_and_roomtypes[ 'roomTariffOutputId' ]);
 
@@ -4539,6 +4565,8 @@ class dobooking
 				$dropdown_output[ $tariff_id ][ 'dropdown' ] = jomresHTML::selectList($rooms_list_style_dropdown, 'fred', 'class="input-mini" size="1"  autocomplete="off" onchange="getResponse_multiroom_select(\'multiroom_select\',this.value);"', 'value', 'text', $already_selected_string);
 				$dropdown_output[ $tariff_id ][ 'room_type' ] = $tariff_and_roomtypes[ 'room_type' ];
 				$dropdown_output[ $tariff_id ][ 'tariff_title' ] = $tariff_and_roomtypes[ 'tariff_title' ];
+				$dropdown_output[ $tariff_id ][ 'room_type_images' ] = $tariff_and_roomtypes[ 'room_type_images' ];
+
 				$dropdown_output[ $tariff_id ][ 'room_price_inc_tax' ] = output_price($tariff_and_roomtypes[ 'room_price_inc_tax' ]);
 
 				if ($this->cfg_bookingform_roomlist_showmaxpeople == '1') {
@@ -4589,6 +4617,9 @@ class dobooking
 			$r[ 'NUMBEROFROOMS' ] = $routput[ 'dropdown' ];
 			$r[ 'ROOM_TYPE_TEXT' ] = $routput[ 'room_type' ];
 			$r[ 'TARIFF_NAME_TEXT' ] = $routput[ 'tariff_title' ];
+
+			$r[ 'ROOM_TYPE_IMAGE' ] = $routput[ 'room_type_images' ][0]['large']; // Have to choose large here because thumbnails for admin uploaded room types may not exist
+			
 			$r[ 'RATE_TEXT' ] = $routput[ 'room_price_inc_tax' ];
 			$r[ 'NUMBER_OF_ROOMS' ] = $routput[ 'number_of_rooms' ];
 			$r[ 'NUMBER_OF_ROOMS_PRE' ] = jr_gettext('_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_PRE', '_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_PRE', false, false);
@@ -4645,10 +4676,6 @@ class dobooking
 		$roomTariffOutputId = $roomuid.'^'.$tariffuid;
 		$roomTariffOutputText = '';
 
-		$classId = $this->allPropertyRooms[ $roomuid ][ 'room_classes_uid' ];
-
-		$this->typeImage = JOMRES_IMAGELOCATION_RELPATH.'rmtypes/'.$this->allRoomClasses[ $classId ][ 'image' ];
-
 		return array('requestedRoom' => $roomTariffOutputId, 'roomandtariffinfo' => $roomTariffOutputText);
 	}
 
@@ -4696,7 +4723,6 @@ class dobooking
 		$tariffStuff[ 'ROOMTARIFFOUTPUTID' ] = $roomTariffOutputId;
 		$tariffStuff[ 'CAPTION' ] = $caption;
 
-		$roomStuff[ 'ROOM_TYPE_IMAGE' ] = $this->typeImage;
 		$roomStuff[ 'ROOM_IMAGE' ] = $this->allPropertyRooms [ $roomUid ] [ 'small_room_image' ];
 		$roomStuff[ 'ROOM_IMAGE_MEDIUM' ] = $this->allPropertyRooms [ $roomUid ] [ 'medium_room_image' ];
 		
@@ -4709,6 +4735,10 @@ class dobooking
 			foreach ($this->allRoomClasses as $room_type_id => $room_type) {
 				foreach ($this->rooms_list_style_roomstariffs as $tariff_id => $room_and_tariff_data) {
 					if ($room_and_tariff_data[ 'room_type_id' ] == $room_type_id) {
+						$room_type_id = $room_and_tariff_data[ 'tariffStuff' ]['TARIFF_ROOMTYPE'];
+
+						$this->room_type_style_output[ $tariff_id ][ 'room_type_images' ] = $this->allRoomClasses[$room_type_id]['images'];
+
 						$this->room_type_style_output[ $tariff_id ][ 'tariff_title' ] = $room_and_tariff_data[ 'tariffStuff' ][ 'TITLE' ];
 						$this->room_type_style_output[ $tariff_id ][ 'room_type' ] = $room_and_tariff_data[ 'roomStuff' ][ 'ROOMTYPE' ];
 						$this->room_type_style_output[ $tariff_id ][ 'roomTariffOutputId' ][ ] = $room_and_tariff_data[ 'roomTariffOutputId' ];

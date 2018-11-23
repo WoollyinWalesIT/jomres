@@ -89,8 +89,9 @@ class j06000show_property_room_type
 				"medium" => $jomres_media_centre_images->multi_query_images['noimage-medium'],
 				"small" => $jomres_media_centre_images->multi_query_images['noimage-small']
 			) );
-			
 		}
+		
+		
 		$slideshow = $MiniComponents->specificEvent('01060', 'slideshow', array('images' => $images ));
 		$output['SLIDESHOW'] = $slideshow['slideshow'];
 		
