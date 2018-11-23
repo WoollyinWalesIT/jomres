@@ -4435,7 +4435,6 @@ class dobooking
 				$roomDeets = array();
 				$roomUidArray = array();
 				$tariffUidArray = array();
-				$roomDeets = array();
 				$number = count($roomAndTariffArray);
 				for ($i = 0; $i < $number; ++$i) {
 					$roomuid = $roomAndTariffArray[ $i ][ 0 ];
@@ -4728,6 +4727,8 @@ class dobooking
 		
 		$roomStuff[ 'TAGLINE' ] = $this->allPropertyRooms [ $roomUid ] [ 'tagline' ];
 		$roomStuff[ 'DESCRIPTION' ] = $this->allPropertyRooms [ $roomUid ] [ 'description' ];
+		
+		$roomStuff[ 'ROOM_TYPE_IMAGE' ] = $this->allRoomClasses[ $tariffStuff[ 'TARIFF_ROOMTYPE' ] ]['images'][0]['large'];
 		
 		if ($this->cfg_booking_form_rooms_list_style == '2') {
 			$this->rooms_list_style_roomstariffs[ $tariffUid ] = array('room_type_id' => $tariffStuff[ 'TARIFF_ROOMTYPE' ], 'room_id' => $roomUid, 'tariff_id' => $tariffUid, 'roomTariffOutputId' => $roomTariffOutputId, 'tariffStuff' => $tariffStuff, 'roomStuff' => $roomStuff);
