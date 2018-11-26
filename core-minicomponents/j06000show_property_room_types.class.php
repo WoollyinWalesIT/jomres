@@ -65,7 +65,8 @@ class j06000show_property_room_types
 
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
 		$jomres_media_centre_images->get_images($property_uid);
-		$jomres_media_centre_images->get_site_images('rmtypes'); // These are administrator created room type images. If the property manager doesn't upload images for a room type (which is quite possible if they aren't given the option) then we'll "fallback" to admin created images instead
+		$jomres_media_centre_images->get_site_images('rmtypes'); // These are administrator created room type images. If the property manager doesn't upload images for a room type (which is quite possible if they aren't given the option) then we'll "fallback" to admin created images instead. 
+		
 		$resource_type = 'room_types';
 		
 		if (!empty($basic_property_details->room_types)) {
@@ -73,14 +74,13 @@ class j06000show_property_room_types
 			$output[ '_JOMRES_SEARCH_RTYPES' ] = jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', '_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', false);
 
 			foreach ($basic_property_details->room_types as $key => $val) {
-				
 				$resource_id = $key;
 				
 				if (isset($jomres_media_centre_images->images [$resource_type] [$resource_id])) {
 					$images = $jomres_media_centre_images->images [$resource_type] [$resource_id];
 				} else {
-					if (isset($jomres_media_centre_images->site_images['rmtypes'][$resource_id])) {
-						$images = array ($jomres_media_centre_images->site_images['rmtypes'][$resource_id]);
+					if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.'rmtypes/'.$basic_property_details->this_property_room_classes[$key]['image'])) {
+						$images = array( array ( "large" => JOMRES_IMAGELOCATION_RELPATH.'rmtypes/'.$basic_property_details->this_property_room_classes[$key]['image']) );
 					} else {
 						$images = array ( array(
 							"large" => $jomres_media_centre_images->multi_query_images['noimage-large'],

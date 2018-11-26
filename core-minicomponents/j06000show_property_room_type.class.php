@@ -78,8 +78,6 @@ class j06000show_property_room_type
 			$output[ 'ROOM_CLASS_FULL_DESC' ] = $jomres_room_types->room_types[$room_classes_uid]['room_class_full_desc'];
 		}
 
-		
-
 		$output['ROOMS'] = $MiniComponents->specificEvent('06000', 'show_property_rooms', array('output_now' => false, 'property_uid' => $property_uid, 'room_classes_uid' => $room_classes_uid ));
 		
 		$resource_type = 'room_types';

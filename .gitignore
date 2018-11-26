@@ -16,3 +16,4 @@ desktop.ini
 /node_modules/jquery-ui/external/*
 /node_modules/chart.js/dist/docs/*
 /encryption_key.class.php
+/database/updates/9.15.0/jomres_images_resource_id_update_rmtypes.php

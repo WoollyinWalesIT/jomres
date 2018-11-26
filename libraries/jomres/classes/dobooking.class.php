@@ -691,6 +691,8 @@ class dobooking
 		$jomres_media_centre_images->get_images($this->property_uid);
 		$jomres_media_centre_images->get_site_images('rmtypes'); // These are administrator created room type images. If the property manager doesn't upload images for a room type (which is quite possible if they aren't given the option) then we'll "fallback" to admin created images instead
 
+		$basic_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
+		
 		$resource_type = 'room_types';
 		
 		$query = 'SELECT room_classes_uid,room_class_abbv,room_class_full_desc,image FROM #__jomres_room_classes WHERE room_classes_uid IN ('.jomres_implode($this->allRoomClassIds).') ';
@@ -704,8 +706,8 @@ class dobooking
 			if (isset($jomres_media_centre_images->images [$resource_type] [$resource_id])) {
 				$images = $jomres_media_centre_images->images [$resource_type] [$resource_id];
 			} else {
-				if (isset($jomres_media_centre_images->site_images['rmtypes'][$resource_id])) {
-					$images = array ($jomres_media_centre_images->site_images['rmtypes'][$resource_id]);
+				if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.'rmtypes/'.$basic_property_details->this_property_room_classes[$resource_id]['image'])) {
+					$images = array( array ( "large" => JOMRES_IMAGELOCATION_RELPATH.'rmtypes/'.$basic_property_details->this_property_room_classes[$resource_id]['image']) );
 				} else {
 					$images = array ( array(
 						"large" => $jomres_media_centre_images->multi_query_images['noimage-large'],
