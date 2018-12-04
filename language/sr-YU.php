@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.15.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2381,3 +2381,7 @@ jr_define('_JOMRES_REVIEWS_REPLY_RULES_NOTALLOWED_TEXT', '
     <li>Questionable Language (including cursing).</li>
 	</ul>
 	');
+
+jr_define('_JOMRES_COM_A_CRON_LASTRAN', 'Last ran');
+jr_define('_JOMRES_COM_A_CRON_SCHEDULE', 'Schedule');
+

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.15.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -943,7 +943,7 @@ class j01010listpropertys
 		}
 
 		$totalItems = count($propertys_uids);
-		$urlPattern = jomresURL(JOMRES_SITEPAGE_URL.'&task=search&jr_page=(:num)'.$selections);
+		$urlPattern = JOMRES_SITEPAGE_URL.'&task=search&jr_page=(:num)'.$selections;
 
 		//build the pagination
 		jr_import('jomres_pagination');
@@ -951,13 +951,13 @@ class j01010listpropertys
 
 		//previous page
 		if ($paginator->getPrevUrl()) {
-			$prev_output[]['PREV_URL'] = $paginator->getPrevUrl();
+			$prev_output[]['PREV_URL'] = jomresURL($paginator->getPrevUrl());
 			$first_output[]['FIRST_URL'] = jomresURL(JOMRES_SITEPAGE_URL.'&task=search'.$selections);
 		}
 
 		//next page
 		if ($paginator->getNextUrl()) {
-			$next_output[]['NEXT_URL'] = $paginator->getNextUrl();
+			$next_output[]['NEXT_URL'] = jomresURL($paginator->getNextUrl());
 			$last_output[]['LAST_URL'] = jomresURL(JOMRES_SITEPAGE_URL.'&task=search&jr_page='.ceil($totalItems / $limit).$selections);
 		}
 
@@ -968,7 +968,7 @@ class j01010listpropertys
 				if ($page['isCurrent']) {
 					$r['PAGE_CLASS'] = 'active';
 				}
-				$r['PAGE_URL'] = $page['url'];
+				$r['PAGE_URL'] = jomresURL($page['url']);
 			} else {
 				$r['PAGE_CLASS'] = 'disabled';
 				$r['PAGE_URL'] = 'javascript:void();';

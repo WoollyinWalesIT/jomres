@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.15.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Translated to pt-PT by Mario Oliveira, Camara de Lobos, Madeira Island, Portugal, 17Set2010 - www.marioliveira.net - Updated 21Jun2011 for ver 5.1
@@ -2388,3 +2388,7 @@ jr_define('_JOMRES_REVIEWS_REPLY_RULES_NOTALLOWED_TEXT', '
     <li>Questionable Language (including cursing).</li>
 	</ul>
 	');
+
+jr_define('_JOMRES_COM_A_CRON_LASTRAN', 'Last ran');
+jr_define('_JOMRES_COM_A_CRON_SCHEDULE', 'Schedule');
+

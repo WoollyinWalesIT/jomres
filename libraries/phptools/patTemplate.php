@@ -1638,18 +1638,23 @@ class patTemplate
 				{
 				$backtrace = debug_backtrace();
 				$files     = '';
-				foreach ( $backtrace as $trace )
-					{
+				foreach ( $backtrace as $trace ) {
+						
 					$file     = $trace[ 'file' ];
 					$bang     = explode( JRDS, $file );
+
 					$filename = $bang[ count( $bang ) - 1 ];
-					if ( $filename != 'patTemplate.php' && $filename != 'index.php' && $filename != 'application.php' && $filename != 'helper.php' && $filename != 'mcHandler.class.php' )
-						{
-						$files .= " " . $filename . " on line ".$trace['line']."<br/>";
+					
+					if ( strstr($trace[ 'file' ] , JOMRESPATH_BASE ) !== false ) {
+						$path = str_replace( JOMRESPATH_BASE , '' , $trace[ 'file' ] );
+						
+						if ( $filename != 'patTemplate.php' && $filename != 'index.php' && $filename != 'application.php' && $filename != 'helper.php' && $filename != 'mcHandler.class.php' ) {
+							$files .= " " . $filename . " on line ".$trace['line']." <span class='small'>(".$path.")</span><br/>";
+							}
 						}
 					}
 
-				return patErrorManager::raiseWarning( PATTEMPLATE_WARNING_NO_TEMPLATE, "Path to template is not set. <br/>Related to " . $this->_options[ 'root' ][ '__default' ] . " <br/>Backtrace of files <br/>" . $files );
+				return patErrorManager::raiseWarning( PATTEMPLATE_WARNING_NO_TEMPLATE, "Path to template is not set. <br/>Related to " . $this->_options[ 'root' ][ '__default' ] . " <br/>Backtrace of Jomres files <br/>" . $files );
 				}
 			else
 				{

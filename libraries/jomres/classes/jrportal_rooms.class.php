@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.15.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -289,9 +289,10 @@ class jrportal_rooms
 		$nextRoomNumber = (int) doSelectSql($query, 1);
 
 		if ($nextRoomNumber == 0) {
-			$nextRoomNumber = 1;
+			$nextRoomNumber = 0;
 		}
-
+		$nextRoomNumber++;
+		
 		$query = 'INSERT INTO #__jomres_rooms 
 							(
 							`room_classes_uid`,

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.15.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -59,24 +59,50 @@ class j06000show_property_room_types
 		$basic_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
 		$basic_property_details->gather_data($property_uid);
 
+		$this->getTariffRanges($property_uid);
+		
 		$output = array();
 
+		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
+		$jomres_media_centre_images->get_images($property_uid);
+		$jomres_media_centre_images->get_site_images('rmtypes'); // These are administrator created room type images. If the property manager doesn't upload images for a room type (which is quite possible if they aren't given the option) then we'll "fallback" to admin created images instead. 
+		
+		$resource_type = 'room_types';
+		
 		if (!empty($basic_property_details->room_types)) {
 			$room_types = array();
 			$output[ '_JOMRES_SEARCH_RTYPES' ] = jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', '_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', false);
 
 			foreach ($basic_property_details->room_types as $key => $val) {
+				$resource_id = $key;
+				
+				if (isset($jomres_media_centre_images->images [$resource_type] [$resource_id])) {
+					$images = $jomres_media_centre_images->images [$resource_type] [$resource_id];
+				} else {
+					if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.'rmtypes/'.$basic_property_details->this_property_room_classes[$key]['image'])) {
+						$images = array( array ( "large" => JOMRES_IMAGELOCATION_RELPATH.'rmtypes/'.$basic_property_details->this_property_room_classes[$key]['image']) );
+					} else {
+						$images = array ( array(
+							"large" => $jomres_media_centre_images->multi_query_images['noimage-large'],
+							"medium" => $jomres_media_centre_images->multi_query_images['noimage-medium'],
+							"small" => $jomres_media_centre_images->multi_query_images['noimage-small']
+						) );
+					}
+				}
+				
+				
+				
 				$room_type[ 'ROOM_TYPE' ] = '';
 				$room_type[ 'ROOM_TYPE_TEXT' ] = '';
 				$room_type[ 'ROOM_TYPE_COUNTER' ] = 0;
 				if (isset($basic_property_details->this_property_room_classes[$key])) {
-					$url = jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&room_type='.$key);
+					$url = jomresURL(JOMRES_SITEPAGE_URL.'&task=show_property_room_type&property_uid='.$property_uid.'&room_classes_uid='.$key);
 					$room_type[ 'ROOM_TYPE' ] =
 						jomres_makeTooltip(
 							$basic_property_details->this_property_room_classes,
 							$basic_property_details->this_property_room_classes[$key]['abbv'],
 							$basic_property_details->this_property_room_classes[$key]['desc'],
-							JOMRES_IMAGELOCATION_RELPATH.'rmtypes/'.$basic_property_details->this_property_room_classes[$key]['image'],
+							$images[0]['large'],
 							'',
 							'room_type',
 							array(),
@@ -85,6 +111,12 @@ class j06000show_property_room_types
 					$room_type[ 'ROOM_TYPE_TEXT' ] = $basic_property_details->this_property_room_classes[$key]['abbv'];
 					$room_type[ 'ROOM_TYPE_COUNTER' ] = count($basic_property_details->rooms_by_type[$key]);
 					$room_type[ 'ROOM_TYPE_PAGE_URL' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=show_property_room_type&property_uid='.$property_uid.'&room_classes_uid='.$key);
+					
+					$room_type[ 'ROOM_TYPE_PRICE' ] = ' ??? ';
+					
+					if (isset($this->roomTypePriceRanges[$key])) {
+						$room_type[ 'ROOM_TYPE_PRICE' ] = $this->roomTypePriceRanges[$key];
+					}
 				}
 
 				$room_types[] = $room_type;
@@ -111,6 +143,63 @@ class j06000show_property_room_types
 		}
 	}
 
+	private function getTariffRanges($property_uid) 
+	{
+		$this->roomTypePriceRanges = array();
+		
+		$today = date('Y/m/d', mktime(0, 0, 0, date('m'), date('d'), date('Y')));
+		
+		$query = "SELECT `rates_uid`,`rate_title`,`roomclass_uid`,`roomrateperday`
+			FROM #__jomres_rates WHERE property_uid = ".(int)$property_uid."
+			AND DATE_FORMAT(`validto`, '%Y/%m/%d') >= DATE_FORMAT('".$today."', '%Y/%m/%d')
+			";
+
+		$tariffs = doSelectSql($query);
+
+		if (empty($tariffs)) {
+			return $this->roomTypePriceRanges;
+		}
+		
+		$this->allPropertyTariffs = array();
+		
+		foreach ($tariffs as $t) {
+			$roomrate = $this->get_nett_price($t->roomrateperday);
+			$this->allPropertyTariffs[ $t->roomclass_uid ][] = $roomrate;
+		}
+
+		$to = jr_gettext( '_JOMCOMP_WISEPRICE_TO', '_JOMCOMP_WISEPRICE_TO' );
+
+		foreach ($this->allPropertyTariffs as $key=>$val) {
+			
+			$val = array_unique($val);
+			
+			if (count($val) == 1 ) { // There's only one price for this tariff/room type combo
+				$this->roomTypePriceRanges[$key] = output_price($val[0]);
+			} else {
+				$highest = output_price(max($val)); 
+				$lowest = output_price(min($val)); 
+				$this->roomTypePriceRanges[$key] = $lowest." ".$to." ".$highest;
+			}
+		}
+	}
+	
+	private function get_nett_price($price)
+	{
+		if ($mrConfig[ 'prices_inclusive' ] == 1) {
+			$mrConfig = getPropertySpecificSettings($this->property_uid);
+			
+			$jrportal_taxrate = jomres_singleton_abstract::getInstance('jrportal_taxrate');
+			$cfgcode = $mrConfig[ 'accommodation_tax_code' ];
+			$accommodation_tax_rate = (float) $jrportal_taxrate->taxrates[ $cfgcode ][ 'rate' ];
+			
+			$divisor = ($accommodation_tax_rate / 100) + 1;
+			$price = $price / $divisor;
+		}
+
+		return $price;
+	}
+	
+	
 	public function getRetVals()
 	{
 		return $this->retVals;

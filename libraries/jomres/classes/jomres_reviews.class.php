@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.15.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -165,7 +165,7 @@ class jomres_reviews
 		$query = "INSERT INTO #__jomres_reviews_ratings SET
 			user_id='" .(int) $this->userid."',
 			item_id='" .(int) $this->property_uid."',
-			rating='" .(int) $rating."',
+			rating='" .(float) $rating."',
 			rating_ip='" .$this->ip."',
 			rating_date='" .date('Y-m-d H:i:s')."',
 			review_title='" .trim($title)."',
