@@ -1,3 +1,23 @@
+<h3>Jomres 9.15.0 04/12/2018</h3>
+
+<span class="label label-important label-danger">Fix</span> Updated upload handler to use new code that fixes unauthenticated arbitrary file upload vulnerability in Blueimp jQuery-File-Upload library
+
+<span class="label label-success">Feature</span> Updated show property room type script to show slideshow images, and room type name and description. Repurposed an old template that had recently been abandoned to show this content.
+<span class="label label-success">Feature</span> Added room type price ranges to show_property_room_types script and templates.
+<span class="label label-success">Feature</span> Modified booking engine so that room type list shows room type images.
+<span class="label label-success">Feature</span> Improved show_property_room_type script to use administrator entered room type title and description if it's an admin created room type
+<span class="label label-success">Feature</span> Booking form classic rooms list updated to show room type images as well as room images. This helps to address an occasional request that users not be forced to upload so many images (one or more for each room) by allowing them to remove the room image markup altogether from the booking_form_classic_roomslist.html and booking_form_classic_roomslist_selected.html templates and showing just the room type image instead.
+<span class="label label-success">Feature</span> Updated cron job tab to show schedule and last ran time of job.
+
+<span class="label label-warning">Change</span> Modified room class table to allow more content in room type description.
+<span class="label label-warning">Change</span> Modified rating functionality to allow the scores to be more fine-grained.
+<span class="label label-warning">Change</span> Disabled a GDPR related decision as the info stored is not PII, and the optin option doesn't appear until much later.
+<span class="label label-warning">Change</span> Added paths to backtrace of patTemplate to see which script is being run (could be a customised version, which the older code would not reveal)
+
+<span class="label label-important label-danger">Fix</span> Resolved an issue where when generating multiple rooms, the last room number was re-used incorrectly.
+<span class="label label-important label-danger">Fix</span> Fixed an issue with pagination and SEF (sh404SEF) urls
+<span class="label label-important label-danger">Fix</span> Added booking number and booking number text to script that displays invoices.
+
 <h3>Jomres 9.14.0 31/10/2018</h3>
 
 <span class="label label-success">Feature</span> Added ability for guests to semi-anonymise their reviews.
