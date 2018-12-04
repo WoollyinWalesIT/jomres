@@ -2449,3 +2449,7 @@ jr_define('_JOMRES_REVIEWS_REPLY_RULES_NOTALLOWED_TEXT', '
     <li>Questionable Language (including cursing).</li>
 	</ul>
 	');
+
+jr_define('_JOMRES_COM_A_CRON_LASTRAN', 'Last ran');
+jr_define('_JOMRES_COM_A_CRON_SCHEDULE', 'Schedule');
+

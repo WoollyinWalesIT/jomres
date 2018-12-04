@@ -51,7 +51,14 @@ class j10501cron
 		$configurationPanel->insertDescription(jr_gettext('_JOMRES_COM_A_CRON_IMMEDIATERUN', '_JOMRES_COM_A_CRON_IMMEDIATERUN', false));
 		
 		foreach ($cron->allUnlockedJobs as $job) {
-			$configurationPanel->setleft('<a href="'.JOMRES_SITEPAGE_URL_AJAX.'&task=cron_'.$job[ 'job_name' ].'" target="_blank" >'.$job[ 'job_name' ].'</a>');
+			$d = DateTime::createFromFormat('U', $job['last_ran']);
+			$last_ran = $d->format('Y-m-d H:i');
+			$schedule = $job['schedule'];
+
+			$_jomres_com_a_cron_lastran = jr_gettext('_JOMRES_COM_A_CRON_LASTRAN', '_JOMRES_COM_A_CRON_LASTRAN', false);
+			$_jomres_com_a_cron_schedule = jr_gettext('_JOMRES_COM_A_CRON_SCHEDULE', '_JOMRES_COM_A_CRON_SCHEDULE', false);
+			
+			$configurationPanel->setleft('<a href="'.JOMRES_SITEPAGE_URL_AJAX.'&task=cron_'.$job[ 'job_name' ].'" target="_blank" >'.$job[ 'job_name' ].' ----- '.$_jomres_com_a_cron_lastran.' '.$last_ran.' '.$_jomres_com_a_cron_schedule.' '.$schedule.'</a>');
 			$configurationPanel->setmiddle('');
 			$configurationPanel->setright('');
 			$configurationPanel->insertSetting();
