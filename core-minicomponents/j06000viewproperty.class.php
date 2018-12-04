@@ -204,7 +204,7 @@ class j06000viewproperty
 		}
 
 		//room list link
-		if ($mrConfig[ 'is_real_estate_listing' ] == 0) {
+		if ($mrConfig[ 'is_real_estate_listing' ] == 0 && !get_showtime('is_jintour_property') ) {
 			if ($mrConfig[ 'showRoomsListingLink' ] == '1') {
 				$link = array();
 				$link[ 'LINK' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=show_property_rooms&property_uid='.$property_uid);
