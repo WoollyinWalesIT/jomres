@@ -152,6 +152,7 @@ class j06000show_property_room_types
 		$query = "SELECT `rates_uid`,`rate_title`,`roomclass_uid`,`roomrateperday`
 			FROM #__jomres_rates WHERE property_uid = ".(int)$property_uid."
 			AND DATE_FORMAT(`validto`, '%Y/%m/%d') >= DATE_FORMAT('".$today."', '%Y/%m/%d')
+			AND roomrateperday > 0
 			";
 
 		$tariffs = doSelectSql($query);
