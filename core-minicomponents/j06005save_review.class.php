@@ -49,7 +49,7 @@ class j06005save_review
 
 		// We won't pass a message back, the only way the user will have got this far is if they've bypassed the javascript or don't have javascript enabled.
 		// Either way, they've bypassed the methods we've built to guide them through the submission process. We can still take a valid submission, but we won't take invalid ones.
-		if (($rating_1 < 1 || $rating_1 > 10) || ($rating_2 < 1 || $rating_2 > 10) || ($rating_3 < 1 || $rating_3 > 10) || ($rating_4 < 1 || $rating_4 > 10) || ($rating_5 < 1 || $rating_5 > 10) || ($rating_6 < 1 || $rating_6 > 10) || $review_title == '' || $review_description == '' || $pros == '' || $cons == '') {
+		if (($rating_1 < 1 || $rating_1 > 10) || ($rating_2 < 1 || $rating_2 > 10) || ($rating_3 < 1 || $rating_3 > 10) || ($rating_4 < 1 || $rating_4 > 10) || ($rating_5 < 1 || $rating_5 > 10) || ($rating_6 < 1 || $rating_6 > 10) || $review_title == '' || $review_description == '' || $pros == '' ) {
 			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=add_review&property_uid='.$property_uid), '');
 		}
 
