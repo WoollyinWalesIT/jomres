@@ -107,52 +107,52 @@ class jomres_generic_booking_insert
 		$this->booking_details = array(
 			'property_uid' => 0,					// 1 ***** Required *****
 			'requestedRoom' => '',					// "48^1522,49^1522" A HAT separated list of rooms combined with tariffs ***** Required *****
-			'dateRangeString' => '',					// Comma seperated list of all dates in booking
-			'guests_uid' => '',					// If is empty or zero then a new guest will be created from the guest details array
-			'single_person_suppliment' => 0.00,				// float(10)
+			'dateRangeString' => '',				// Comma seperated list of all dates in booking
+			'guests_uid' => '',						// If is empty or zero then a new guest will be created from the guest details array
+			'single_person_suppliment' => 0.00,		// float(10)
 			'deposit_required' => 0.00,				// float(220)
 			'contract_total' => 0.00,				// float(400) ***** Required *****
-			/* "extrasvalue"				=> 0.00,				// float(40)
-			"extrasvalues_items"		=> array(),				// "a:1:{i:1;a:1:{s:19:"quantity_multiplier";i:1;}}"
-			"extras"					=> "",					// "1,"
-			"extrasquantities"			=> array(),				// array(1) { [1]=>int(2) } */
-			'depositpaidsuccessfully' => false,				// True or false (e.g. if the payment was at the front desk, this would be set to true) ***** Required *****
-			'tax' => 0.00,				// float(30)  ***** Required ***** ????
+			/* "extrasvalue"				=> 0.00,// float(40)
+			"extrasvalues_items"		=> array(),	// "a:1:{i:1;a:1:{s:19:"quantity_multiplier";i:1;}}"
+			"extras"					=> "",		// "1,"
+			"extrasquantities"			=> array(),	// array(1) { [1]=>int(2) } */
+			'depositpaidsuccessfully' => false,		// True or false (e.g. if the payment was at the front desk, this would be set to true) ***** Required *****
+			'tax' => 0.00,							// float(30)  ***** Required ***** ????
 			'booker_class' => '100',				// Unused
-			'ok_to_book' => false,				// Do not set, this class will set this flag once it's performed it's pre-insertion checks ***** Required *****
+			'ok_to_book' => false,					// Do not set, this class will set this flag once it's performed it's pre-insertion checks ***** Required *****
 			'total_in_party' => 0,					// int(2)
-			'room_total' => 0.00,				// float(150) NET PRICE!!!! (price without tax) ***** Required *****
-			'room_total_nodiscount' => 0.00,				// float(150) NET PRICE!!!! (price without tax) ***** Required *****
+			'room_total' => 0.00,					// float(150) NET PRICE!!!! (price without tax) ***** Required *****
+			'room_total_nodiscount' => 0.00,		// float(150) NET PRICE!!!! (price without tax) ***** Required *****
 			'currency_code' => '',					// string (EUR) ***** Required *****
-			'coupon_id' => '',					// "1"
+			'coupon_id' => '',						// "1"
 			'coupon_code' => '',					// "rDRkpUSKBbqFTCU"
-			'coupon_details' => array(),				// array(5) { ["amount"]=>string(2) "20" ["is_percentage"]=>string(1) "1" ["coupon_id"]=> string(1) "1" ["booking_valid_from"]=> string(10) "2013-06-20" ["booking_valid_to"]=> string(10) "2014-06-01" }
+			'coupon_details' => array(),			// array(5) { ["amount"]=>string(2) "20" ["is_percentage"]=>string(1) "1" ["coupon_id"]=> string(1) "1" ["booking_valid_from"]=> string(10) "2013-06-20" ["booking_valid_to"]=> string(10) "2014-06-01" }
 			'booking_notes' => array(),				// array(1) { ["Coupon"]=>string(70) "Booking discounted. Coupon code/discount value/coupon settings :  N/A "}
 			'booking_number' => '',					// int(14063067) ***** Required *****
-			'property_currencycode' => '',					// Not required, will be set later
+			'property_currencycode' => '',			// Not required, will be set later
 			'arrivalDate' => '',					// "2013/12/13" ***** Required *****
 			'departureDate' => '',					// "2013/12/16" ***** Required *****
-			'booked_in' => 0,					// (int) 1 if guest is set as booked in
+			'booked_in' => 0,						// (int) 1 if guest is set as booked in
 			'sendGuestEmail' => true,				// (bool) true if should send a booking email to guest
-			'sendHotelEmail' => true,					// (book) true if should send a booking email to hotel
-			'referrer' => '',					// "AN Other channel"
-			'channel_manager_booking' => 0,		  // (int) is this booking from a channel manager? yes/no"
+			'sendHotelEmail' => true,				// (book) true if should send a booking email to hotel
+			'referrer' => '',						// "AN Other channel"
+			'channel_manager_booking' => 0,			// (int) is this booking from a channel manager? yes/no"
 			);
 
 		$this->guest_details = array(
 			'existing_id' => '',					// If not set a new guest will be created
-			'mos_userid' => '',					// The CMS user id. If MOS ID is set then that existing CMS user will be used.
-			'firstname' => '',					// "Maj`or" ***** Required *****
-			'surname' => '',					// "Gowen" ***** Required *****
-			'house' => '',					// "Watery Fowls"
-			'street' => '',					// "a Street"
-			'town' => '',					// "Wherever"
-			'region' => '',					// "566"
-			'country' => '',					// "CH"
-			'postcode' => '',					// "XXNN NXX"
+			'mos_userid' => '',						// The CMS user id. If MOS ID is set then that existing CMS user will be used.
+			'firstname' => '',						// "Maj`or" ***** Required *****
+			'surname' => '',						// "Gowen" ***** Required *****
+			'house' => '',							// "Watery Fowls"
+			'street' => '',							// "a Street"
+			'town' => '',							// "Wherever"
+			'region' => '',							// "566"
+			'country' => '',						// "CH"
+			'postcode' => '',						// "XXNN NXX"
 			'tel_landline' => '',					// "01000 123456"
-			'tel_mobile' => '',					// "01777 123456"
-			'email' => '',					// "notify@jomres.net" ***** Required *****
+			'tel_mobile' => '',						// "01777 123456"
+			'email' => '',							// "notify@jomres.net" ***** Required *****
 			);
 
 		return true;

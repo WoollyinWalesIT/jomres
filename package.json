@@ -45,11 +45,11 @@
     "jquery-ui": "^1.12.1",
     "jquery-ui-dist": "^1.12.1",
     "jquery-ui-themes": "^1.12.0",
-    "jquery-validation": "^1.18.0",
+    "jquery-validation": "^1.19.0",
     "jquery.tipsy": "^1.0.3",
     "js-cookie": "^2.2.0",
     "moment": "^2.22.2",
-    "popper.js": "^1.14.5",
+    "popper.js": "^1.14.6",
     "simple-cmeditor": "^1.11.4",
     "x-editable": "^1.5.1"
   }

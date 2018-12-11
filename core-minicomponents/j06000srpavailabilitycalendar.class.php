@@ -371,7 +371,6 @@ jomresJquery(function(){
 		$currdate = mktime(0, 0, 0, date('m', $startdate), date('d', $startdate), date('Y', $startdate));
 		$startingmonth = date('m', mktime(0, 0, 0, date('m', $startdate), date('d', $startdate), date('Y', $startdate)));
 		$endingmonth = date('m', mktime(0, 0, 0, date('m', $stdate) + 1, 7 - date('w', mktime(0, 0, 0, $stmonth + 1, 0, $styear)), $styear));
-		//var_dump($currdate);var_dump($enddate);exit;
 		while ($currdate < $enddate) {
 			$this->retVals .= "<tr>\n";
 			for ($c = 0; $c < 7; ++$c) {

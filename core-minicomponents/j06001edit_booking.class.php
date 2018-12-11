@@ -135,8 +135,6 @@ class j06001edit_booking
 
 				$jrtb .= $jrtbar->customToolbarItem($targetTask, $link, $output[ 'HEDIT_GUEST' ], $submitOnClick = false, $submitTask = '', $image);
 					
-				//var_dump($current_contract_details->contract[$contract_uid]['contractdeets']['guest_uid']);exit;
-				
 				//amend booking
 				$output[ 'HAMENDBOOKING' ] = jr_gettext('_JOMRES_CONFIRMATION_AMEND', '_JOMRES_CONFIRMATION_AMEND', $editable = false, $isLink = true);
 				$link = JOMRES_SITEPAGE_URL.'&task=amendBooking&no_html=1&contractUid='.$contract_uid;
