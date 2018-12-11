@@ -105,6 +105,8 @@ class j00004a_init_javascript_css_files
 		$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'jquery-star-rating-plugin/', 'jquery.rating.pack.js');
 
 		$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'jquery.tipsy/src/', 'jquery.tipsy.js');
+		
+		$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'bootstrap-notify/', 'bootstrap-notify.min.js');
 
 		if (!isset($jrConfig[ 'load_font_awesome' ])) {
 			$jrConfig[ 'load_font_awesome' ] = '0';
