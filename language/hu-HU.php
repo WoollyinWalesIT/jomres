@@ -1197,7 +1197,7 @@ jr_define('_JOMRES_CONFIG_JQUERY_UI_CSS_DESC', 'Set this to No to disable only t
 jr_define('_JOMRES_LINEITEM_TOTAL_INCLUDINGTAX', 'Végösszeg adóval');
 jr_define('_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY', 'Unpublished property');
 // v5.2
-jr_define('_JOMRES_CONVERSION_TITLE', 'Use conversion functionaity');
+jr_define('_JOMRES_CONVERSION_TITLE', 'Use conversion functionality');
 jr_define('_JOMRES_CONVERSION_TITLE_DESC', "Use the Jomres online conversion functionality. This will offer a conversion dropdown to frontend users, where they will be able to choose a currency that they wish to see prices offered in. Price output is adjusted to show the converted price followed by the property's 'native' price in brackets.");
 jr_define('_JOMRES_CONVERSION_DISCLAIMER', 'We have used our best efforts to obtain the most accurate and timely exchange rates that we can. Our online currency convertion feature is a service provided for informational purposes only and is not intended to provide exact figures. Accordingly, we do not guarantee the accuracy of the exchange rates. Using this feature, you are deemed to have agreed that any reliance on or use of the rate conversion feature shall be entirely at your own risk.');
 // 5.2.1
