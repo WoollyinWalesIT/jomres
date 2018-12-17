@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.15.0
+ * @version Jomres 9.14.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -452,7 +452,7 @@ jr_define('_JOMRES_SHOWGOOGLECURRENCYLINKS', "Toon valuta conversie links in tar
 jr_define('_JOMRES_CURRENCYCONVERSIONTEXT', "Tarief omrekenen");
 jr_define('_JOMRES_COM_ALLOWHTMLEDITOR', "Gebruikers toestaan ​​te bewerken met HTML-editors? ");
 jr_define('_JOMRES_AJAXFORM_INSTRUCTIONS', "Gebruik dit formulier om uw boeking te plaatsen. Wijzig uw boekingsgegevens zoals aankomst- en vertrekdata en aantal personen, selecteer vervolgens de kamer(s) die u nodig heeft in de lijst met beschikbare kamers. Klik op de beschikbare kamers om ze toe te voegen aan uw boeking. Wanneer u klaar bent, kunt u extra opties toevoegen die u nodig heeft en uw adresgegevens opgeven. Wanneer het formulier voldoende informatie heeft, klik dan op de bevestig knop zodat u uw boeking kunt bevestigen. ");
-jr_define('_JOMRES_AJAXFORM_INSTRUCTIONS_SRP', "Gebruik dit formulier om uw boeking te plaatsen. Wijzig uw boekingsgegevens zoals aankomst- en vertrekdata en aantal personen. Wanneer u klaar bent, kunt u extra opties toevoegen die u nodig heeft en uw adresgegevens opgeven. Wanneer het formulier voldoende informatie heeft, klik dan op de bevestig knop zodat u uw boeking kunt bevestigen.");
+jr_define('_JOMRES_AJAXFORM_INSTRUCTIONS_SRP', "Gebruik dit formulier om uw boeking te plaatsen. Wijzig uw boekingsgegevens zoals aankomst- en vertrekdata en aantal gasten. Wanneer u klaar bent, kunt u extra opties toevoegen die u nodig heeft en uw adresgegevens opgeven. Wanneer het formulier voldoende informatie heeft, klik dan op de bevestig knop zodat u uw boeking kunt bevestigen.");
 jr_define('_JOMRES_AJAXFORM_PARTICULARS', "Reserveringsgegevens ");
 jr_define('_JOMRES_AJAXFORM_PARTICULARS_DESC', "Selecteer de details van uw boeking ");
 jr_define('_JOMRES_AJAXFORM_AVAILABLE', "Beschikbaarheid ");
@@ -528,9 +528,9 @@ jr_define('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1', "De reservering i
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2', "Uw hoeveelheid is ");
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_GUEST_TYPE_INCORRECT', "Gasttype variant niet correct ");
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_SELECT_GUEST_NUMBERS', "Selecteer uw gastnummers / type ");
-jr_define('_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_IN_PARTY_FOR_TARIFFS', "Je hebt te veel personen voor de beschikbare tarieven ");
-jr_define('_JOMRES_BOOKINGFORM_MONITORING_MORE_ROOMS_THAN_GUESTS', "Je hebt meer kamers gekozen dan je personen hebt, klik op een kamer om het uit je selectie te verwijderen ");
-jr_define('_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_GUESTS_FOR_BEDS', "Te veel personen voor de beschikbare bedden ");
+jr_define('_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_IN_PARTY_FOR_TARIFFS', "Je hebt te veel gasten voor de beschikbare tarieven ");
+jr_define('_JOMRES_BOOKINGFORM_MONITORING_MORE_ROOMS_THAN_GUESTS', "Je hebt meer kamers gekozen dan je gasten hebt, klik op een kamer om het uit je selectie te verwijderen ");
+jr_define('_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_GUESTS_FOR_BEDS', "Te veel gasten voor de beschikbare bedden ");
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS', "Je moet meer kamers kiezen ");
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_SELECT_A_ROOM', "Selecteer een kamer ");
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_FIRSTNAME', "Voornaam is verplicht ");
@@ -583,9 +583,9 @@ jr_define('_JOMRES_SEARCH_RTYPES', "Kamertype");
 jr_define('_JOMRES_SORTORDER_DEFAULT', "Standaard");
 jr_define('_JOMRES_SORTORDER_PROPERTYNAME', "Verhuurobject naam");
 jr_define('_JOMRES_SORTORDER_PROPERTYREGION', "Verhuurobject regio ");
-jr_define('_JOMRES_SORTORDER_PROPERTYTOWN', "Verhuurobject Town ");
+jr_define('_JOMRES_SORTORDER_PROPERTYTOWN', "Verhuurobject Stad ");
 jr_define('_JOMRES_SORTORDER_STARS', "Sterren");
-jr_define('_JOMRES_PATHWAY_PROPERTYDETAILS', "Verhuurobject details ");
+jr_define('_JOMRES_PATHWAY_PROPERTYDETAILS', "Verhuurobject gegevens ");
 jr_define('_JOMRES_PATHWAY_BOOKINGFORM', "Boekingsformulier");
 jr_define('_JOMRES_BOOKINGFORM_UPDATEADDRESSBUTTON', "Werk adresgegevens bij");
 jr_define('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_RECHECKINGROOMAVIALABILITY', "Herziening van de beschikbaarheid van de kamer<br/> (Kamerkeuze wordt opnieuw ingesteld) ");
@@ -604,7 +604,7 @@ jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', "Normaal ");
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', "Geavanceerd ");
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', "Micromanage ");
 jr_define('JOMRES_COM_A_TARIFFMODE', "Tariefconfiguratiemodus ");
-jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b> Waarschuwing: het wisselen van modus kan leiden tot het verlies van data.Zdie de toelichting hieronder over dit </b>.
+jr_define('JOMRES_COM_A_TARIFFMODE_DESC', "<b> Waarschuwing: het wisselen van modus kan leiden tot het verlies van data.Zie de toelichting hieronder over dit </b>.
 <br/><br/>
 U heeft drie opties over hoe u uw tarieven configureert. <br/>
 Normale modus: U hebt één tarief voor elk kamertype dat geldig is voor de komende 10 jaar. <br/>
@@ -626,8 +626,8 @@ Micromanage -> Advanced. Alle bestaande kruisverwijzingen tussen tarieven worden
 Micromanage -> Normaal. Alle bestaande kruisverwijzingen en tarieven worden verwijderd. <br/> ");
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', "Toon kamerlijst op pagina met verhuurobjectgegevens? ");
 jr_define('JOMRES_PROPERTYTYPE', "Verhuurobject type");
-jr_define('JOMRES_MAXPEOPLEINROOM', "Max personen per kamer ");
-jr_define('JOMRES_MAXPEOPLEINBOOKING', "Max. personen in boeking ");
+jr_define('JOMRES_MAXPEOPLEINROOM', "Max gasten per kamer ");
+jr_define('JOMRES_MAXPEOPLEINBOOKING', "Max. gasten per boeking ");
 jr_define('_JOMCOMP_BOOKINGNOTES_ADD', "Voeg opmerking toe ");
 jr_define('_JOMCOMP_BOOKINGNOTES_EDIT', "Bewerk notitie ");
 jr_define('_JOMCOMP_BOOKINGNOTES_DELETE', "Verwijder notitie ");
@@ -641,7 +641,7 @@ jr_define('_JOMCOMP_MYUSER_VIEWBOOKING', "Bekijk boeking ");
 jr_define('_JOMCOMP_MYUSER_VIEWFAVOURITES', "Bekijk favorieten ");
 jr_define('_JOMCOMP_MYUSER_VIEWFAVOURITES_NONE', "Je hebt nog geen favorieten toegevoegd! ");
 jr_define('_JOMCOMP_MYUSER_PROPERTYTYPE', "Verhuurobject type");
-jr_define('_JOMCOMP_WISEPRICE_TITLE', "Stunt prijzen ");
+jr_define('_JOMCOMP_WISEPRICE_TITLE', "Stuntprijzen ");
 jr_define('_JOMCOMP_WISEPRICE_ACTIVE', "Actief");
 jr_define('_JOMCOMP_WISEPRICE_TITLE_DESC', "Met deze plugin kunt u uw kortingen dynamisch configureren. ");
 jr_define('_JOMCOMP_WISEPRICE_TITLE_DESC_FULL', "De meeste bedrijven zullen de bronprijzen herberekenen op basis van het aantal kamers van een vereist type dat op een bepaalde datum beschikbaar is. Dit stelt hen in staat om kortingen aan te bieden op een verhuurobject dat in een bepaalde periode niet in trek is. <br/> Met deze plugin kunt u aangepaste tariven aanbieden op basis van het aantal nog beschikbare kamers van een bepaald type dat nog beschikbaar is het verhuurobject op een speciefieke dag. <br/> De dagdrempel definieert het aantal dagen voor de aankomstdatum, voordat de bronprijzen worden aangepast aan deze functie. Het percentage dat u instelt is het percentage kamers dat beschikbaar mote zijn op de bepaalde datum voordat de korting wordt toegepast. Let wel, als meerdere kamers worden geboekt, dan wordt het huidige kortingsniveau op alle kamers toegepast en wordt het niet verminderd omdat er meer kamers zijn geselecteerd. ");
@@ -878,7 +878,7 @@ jr_define('_JRPORTAL_NEWUSER_LOG_IN', "Log in om uw boekingen te bekijken");
 jr_define('_JOMRES_MR_AUDIT_UPDATE_COUPON', "Coupon opgeslagen ");
 jr_define('_JOMRES_MR_AUDIT_DELETE_COUPON', "Coupon verwijderd ");
 jr_define('_JOMRES_COM_A_BOOKINGFORM_SHOWDISABLED', "Boekingsformulier kamerlijst toont gehandicapte toegang ");
-jr_define('_JOMRES_COM_A_BOOKINGFORM_SHOWMAXPEOPLE', "Boekingsformulier kamerlijst toont maximale aantal personen ");
+jr_define('_JOMRES_COM_A_BOOKINGFORM_SHOWMAXPEOPLE', "Boekingsformulier kamerlijst toont maximale aantal gasten");
 jr_define('_JRPORTAL_HORIZROOMSLIST_ESTIMATEWARNING', "De volledige prijs van de boeking wordt berekend nadat u een kamer heeft toegevoegd aan uw selectie. ");
 jr_define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TITLE', "Abonnementen");
 jr_define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_NAME', "Naam");
@@ -1606,7 +1606,7 @@ jr_define('DATATABLES_SSORTASCENDING', ": activeer om de kolom oplopend te sorte
 jr_define('DATATABLES_SSORTDESCENDING', ": activeer om de kolom aflopen te sorteren");
 jr_define('DATATABLES_SHOWHIDE', "Kolommen wijzigen");
 jr_define('_BOOKING_ONREQUEST', "Reserveren op aanvraag");
-jr_define('_BOOKING_INSTANT', "Directe boeking");
+jr_define('_BOOKING_INSTANT', "Meteen Boeken");
 jr_define('_JOMRES_COM_FONTAWESOME', "Inclusief Font Awesome icon set?");
 jr_define('_JOMRES_COM_FONTAWESOME_DESC', "Stel dit in op Ja als je joomla template geen Font Awesome bevat.");
 jr_define('_BOOKING_CALCQUOTE', "Aanvraag reservering");
