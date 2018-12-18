@@ -198,18 +198,17 @@ function jomres_cmsspecific_addheaddata($type, $path = '', $filename = '', $incl
 	$includeVersion ? $version = $jrConfig['update_time'] : $version = '';
 
 	if (strpos($path, 'http') === false) {
-		$js = get_showtime('live_site').'/'.$path.$filename;
+        	$url = get_showtime('live_site').'/'.$path.$filename;
 	} else {
-		$js = $path.$filename;
-	}
+        	$url = $path.$filename;
+   	 }
 
 	switch ($type) {
 		case 'javascript':
-			$wp_jomres->add_js($filename, $js, $version);
+			$wp_jomres->add_js($filename, $url, $version);
 			break;
 		case 'css':
-			$css = '/'.$path.$filename;
-			$wp_jomres->add_css($filename, $css, $version);
+			$wp_jomres->add_css($filename, $url, $version);
 			break;
 		default:
 
