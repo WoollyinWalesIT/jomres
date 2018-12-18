@@ -179,6 +179,7 @@ class j06005save_my_account
 			}
 		}
 		
+		
 		//profile image
 		$abs_path = JOMRES_IMAGELOCATION_ABSPATH.'userimages'.JRDS.$thisJRUser->id.JRDS;
 		$rel_path = JOMRES_IMAGELOCATION_RELPATH.'userimages/'.$thisJRUser->id.'/';
@@ -234,6 +235,22 @@ class j06005save_my_account
 			}
 		}
 
+		// Session update 
+		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+		
+		$tmpBookingHandler->updateGuestField('firstname', $this->jomres_encryption->decrypt($firstname));
+		$tmpBookingHandler->updateGuestField('surname', $this->jomres_encryption->decrypt($surname));
+		$tmpBookingHandler->updateGuestField('house', $this->jomres_encryption->decrypt($house));
+		$tmpBookingHandler->updateGuestField('street', $this->jomres_encryption->decrypt($street));
+		$tmpBookingHandler->updateGuestField('town', $this->jomres_encryption->decrypt($town));
+		$tmpBookingHandler->updateGuestField('region', $this->jomres_encryption->decrypt($region));
+		$tmpBookingHandler->updateGuestField('country', $this->jomres_encryption->decrypt($country));
+		$tmpBookingHandler->updateGuestField('postcode', $this->jomres_encryption->decrypt($postcode));
+		$tmpBookingHandler->updateGuestField('tel_landline', $this->jomres_encryption->decrypt($landline));
+		$tmpBookingHandler->updateGuestField('tel_mobile', $this->jomres_encryption->decrypt($mobile));
+		$tmpBookingHandler->updateGuestField('email', $this->jomres_encryption->decrypt($email));
+		
+		
 		if ($return_url != '') {
 			$return_url = base64_decode($return_url);
 			jomresRedirect($return_url, '');
