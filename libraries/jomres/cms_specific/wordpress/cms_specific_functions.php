@@ -141,6 +141,9 @@ function jomres_cmsspecific_createNewUser( $email_address = '' )
 					error_logging('Failure in sending registration email to guest. Target address: '.$hotelemail.' Subject'.$subject);
 				}
 			}
+			
+			wp_set_current_user($id); // set the current wp user
+			wp_set_auth_cookie($id); // start the cookie for the current registered user
 		}
 
 

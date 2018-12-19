@@ -77,74 +77,82 @@ function jomres_cmsspecific_createNewUser( $email_address = '' )
 
 	$id = $thisJRUser->id;
 
-		$guestDeets = $tmpBookingHandler->getGuestData();
+	$guestDeets = $tmpBookingHandler->getGuestData();
 
-		//If the email address already exists in the system, we'll not bother carrying on, just return this user's "mos_id"
-		$query = "SELECT `id` FROM #__users WHERE `email` = '".$guestDeets[ 'email' ]."' LIMIT 1";
-		$existing = doSelectSql($query, 1);
-		if ($existing) {
-			return $existing;
-		}
-		$name = $guestDeets[ 'firstname' ].' '.$guestDeets[ 'surname' ];
-		$usertype = 'Registered';
-		$block = '0';
+	//If the email address already exists in the system, we'll not bother carrying on, just return this user's "mos_id"
+	$query = "SELECT `id` FROM #__users WHERE `email` = '".$guestDeets[ 'email' ]."' LIMIT 1";
+	$existing = doSelectSql($query, 1);
+	if ($existing) {
+		return $existing;
+	}
+	$name = $guestDeets[ 'firstname' ].' '.$guestDeets[ 'surname' ];
+	$usertype = 'Registered';
+	$block = '0';
 
-		$password = Joomla\CMS\User\UserHelper::genRandomPassword();
-		$encryptedPassword = Joomla\CMS\User\UserHelper::getCryptedPassword($password);
+	$password = Joomla\CMS\User\UserHelper::genRandomPassword();
+	$encryptedPassword = Joomla\CMS\User\UserHelper::getCryptedPassword($password);
 
-		$query = "INSERT INTO #__users (
-			`name`,
-			`username`,
-			`email`,
-			`password`,
-			`registerDate`,
-			`lastvisitDate`,
-			`lastResetTime`,
-			`params`
+	$query = "INSERT INTO #__users (
+		`name`,
+		`username`,
+		`email`,
+		`password`,
+		`registerDate`,
+		`lastvisitDate`,
+		`lastResetTime`,
+		`params`
+		) VALUES (
+		'" .$name."',
+		'" .$guestDeets[ 'email' ]."',
+		'" .$guestDeets[ 'email' ]."',
+		'" .$encryptedPassword."',
+		'" .date('Y-m-d H:i:s')."',
+		'" .date('Y-m-d H:i:s')."',
+		'" .date('Y-m-d H:i:s')."',
+		'{}'
+		) ";
+	$id = doInsertSql($query);
+	if (!$id) {
+		trigger_error('Failed insert new user '.$query, E_USER_ERROR);
+		$this->insertSuccessful = false;
+	} else {
+		$query = "INSERT INTO #__user_usergroup_map  (
+			`user_id`,
+			`group_id`
 			) VALUES (
-			'" .$name."',
-			'" .$guestDeets[ 'email' ]."',
-			'" .$guestDeets[ 'email' ]."',
-			'" .$encryptedPassword."',
-			'" .date('Y-m-d H:i:s')."',
-			'" .date('Y-m-d H:i:s')."',
-			'" .date('Y-m-d H:i:s')."',
-			'{}'
+			'" .$id."',
+			2
 			) ";
-		$id = doInsertSql($query);
-		if (!$id) {
-			trigger_error('Failed insert new user '.$query, E_USER_ERROR);
-			$this->insertSuccessful = false;
-		} else {
-			$query = "INSERT INTO #__user_usergroup_map  (
-				`user_id`,
-				`group_id`
-				) VALUES (
-				'" .$id."',
-				2
-				) ";
-			doInsertSql($query);
+		doInsertSql($query);
 
-			//$thisJRUser->userIsRegistered=true; // Disabled as this setting would be incorrect during the booking phase. We want newly created users to have their details recorded by the insertGuestDeets function in insertbookings
-			$thisJRUser->id = $id;
-			$tmpBookingHandler->updateGuestField('mos_userid', $id);
+		//$thisJRUser->userIsRegistered=true; // Disabled as this setting would be incorrect during the booking phase. We want newly created users to have their details recorded by the insertGuestDeets function in insertbookings
+		$thisJRUser->id = $id;
+		$tmpBookingHandler->updateGuestField('mos_userid', $id);
 
-			$subject = jr_gettext('_JRPORTAL_NEWUSER_SUBJECT', '_JRPORTAL_NEWUSER_SUBJECT', false);
+		$subject = jr_gettext('_JRPORTAL_NEWUSER_SUBJECT', '_JRPORTAL_NEWUSER_SUBJECT', false);
 
-			$text = jr_gettext('_JRPORTAL_NEWUSER_DEAR', '_JRPORTAL_NEWUSER_DEAR', false).' '.stripslashes($guestDeets[ 'firstname' ]).' '.stripslashes($guestDeets[ 'surname' ]).'<br />';
-			$text .= jr_gettext('_JRPORTAL_NEWUSER_THANKYOU', '_JRPORTAL_NEWUSER_THANKYOU', false).'<br />';
-			$text .= jr_gettext('_JRPORTAL_NEWUSER_USERNAME', '_JRPORTAL_NEWUSER_USERNAME', false).' '.$guestDeets[ 'email' ].'<br />';
-			$text .= jr_gettext('_JRPORTAL_NEWUSER_PASSWORD', '_JRPORTAL_NEWUSER_PASSWORD', false).' '.$password.'<br />';
-			$text .= jr_gettext('_JRPORTAL_NEWUSER_LOG_IN', '_JRPORTAL_NEWUSER_LOG_IN', false).' '.get_showtime('live_site').'<br />';
+		$text = jr_gettext('_JRPORTAL_NEWUSER_DEAR', '_JRPORTAL_NEWUSER_DEAR', false).' '.stripslashes($guestDeets[ 'firstname' ]).' '.stripslashes($guestDeets[ 'surname' ]).'<br />';
+		$text .= jr_gettext('_JRPORTAL_NEWUSER_THANKYOU', '_JRPORTAL_NEWUSER_THANKYOU', false).'<br />';
+		$text .= jr_gettext('_JRPORTAL_NEWUSER_USERNAME', '_JRPORTAL_NEWUSER_USERNAME', false).' '.$guestDeets[ 'email' ].'<br />';
+		$text .= jr_gettext('_JRPORTAL_NEWUSER_PASSWORD', '_JRPORTAL_NEWUSER_PASSWORD', false).' '.$password.'<br />';
+		$text .= jr_gettext('_JRPORTAL_NEWUSER_LOG_IN', '_JRPORTAL_NEWUSER_LOG_IN', false).' '.get_showtime('live_site').'<br />';
 
-			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-			$jrConfig = $siteConfig->get();
-			if ($jrConfig[ 'useNewusers_sendemail' ] == '1') {
-				if (!jomresMailer(get_showtime('mailfrom'), get_showtime('fromname'), $guestDeets[ 'email' ], $subject, $text, $mode = 1)) {
-					error_logging('Failure in sending registration email to guest. Target address: '.$hotelemail.' Subject'.$subject);
-				}
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
+		if ($jrConfig[ 'useNewusers_sendemail' ] == '1') {
+			if (!jomresMailer(get_showtime('mailfrom'), get_showtime('fromname'), $guestDeets[ 'email' ], $subject, $text, $mode = 1)) {
+				error_logging('Failure in sending registration email to guest. Target address: '.$hotelemail.' Subject'.$subject);
 			}
 		}
+		
+		$mainframe = & JFactory::getApplication('site');
+		jimport('joomla.plugin.helper');
+		$error = $mainframe->login([
+			'username' => $guestDeets[ 'email' ],
+			'password' => $password,
+		]);
+		$user = JFactory::getUser();
+	}
 
 	return $id;
 }
