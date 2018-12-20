@@ -1020,6 +1020,8 @@ class dobooking
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
 		$jomres_media_centre_images->get_images($this->property_uid, array('extras'));
 
+		$thisJRUser = jomres_getSingleton('jr_user');
+		
 		$mrConfig = $this->mrConfig;
 		$extra_details = array();
 
@@ -1172,7 +1174,7 @@ class dobooking
 					}
 
 					$clickUnlock = '';
-					if ($model[ 'force' ] != '1') {
+					if ($model[ 'force' ] != '1' || $thisJRUser->userIsManager ) {
 						$extra_deets[ 'INPUTBOX' ] = '<input id="extras_'.$ex->uid.'" type="checkbox" name="extras['.$ex->uid.']" value="'.$ex->uid.'" '.$checked.' autocomplete="off"  onClick="'.$clickUnlock.'getResponse_extras(\'extras\',this.value,'.$ex->uid.');" />';
 					} else {
 						$this->forcedExtras[ ] = $ex->uid;
