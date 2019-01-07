@@ -153,5 +153,8 @@ $mrConfig = array(
   'externalBookingFormUrl' => '',
   'minimum_deposit_value' => 0,
   'poa_price' => '',
-  'hide_local_address' => '0'
+  'hide_local_address' => '0',
+  'use_custom_invoice_numbers' => '1',
+  'last_invoice_number' => '1000',
+  'custom_invoice_pattern' => '{N}'
 );

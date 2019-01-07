@@ -43,6 +43,7 @@ class jrportal_invoice
 		$this->is_commission = 0;
 		$this->charging_business_is_in_eu = false; // If the seller isn't in the EU then we'll ignore the VAT question and just charge tax anyway.
 		$this->vat_will_be_charged = true;
+		$this->invoice_number = '';
 	}
 
 	public function init_lineitem()
@@ -643,6 +644,8 @@ class jrportal_invoice
 	{
 		$this->set_vat_charging_flag();
 
+		$this->generate_invoice_number();
+		
 		if ($this->id < 1) {
 			$query = 'INSERT INTO #__jomresportal_invoices
 							(
@@ -658,7 +661,8 @@ class jrportal_invoice
 							`contract_id`,
 							`property_uid`,
 							`is_commission`,
-							`vat_will_be_charged`
+							`vat_will_be_charged`,
+							`invoice_number`
 							)
 							VALUES
 							(
@@ -674,7 +678,8 @@ class jrportal_invoice
 							' .(int) $this->contract_id.',
 							' .(int) $this->property_uid.',
 							' .(int) $this->is_commission.',
-							' .(int) $this->vat_will_be_charged.'
+							' .(int) $this->vat_will_be_charged.',
+							\'' .(string) $this->invoice_number.'\'
 							)';
 
 			$invoice_id = doInsertSql($query, '');
@@ -703,6 +708,41 @@ class jrportal_invoice
 		return false;
 	}
 
+	private function generate_invoice_number() {
+		
+		$mrConfig = getPropertySpecificSettings($this->property_uid);
+		
+		$this->property_uid = 1;
+		
+		if ($mrConfig['use_custom_invoice_numbers'] == "0" || $this->property_uid == 0 ) {
+			$query = "SELECT MAX(id) FROM #__jomresportal_invoices";
+			$this->invoice_number = doSelectSql($query, 1);
+		} else {
+			if (isset($mrConfig['last_invoice_number'])) {
+				$last_invoice_number	= (int)$mrConfig['last_invoice_number'];
+				$new_invoice_seq		= $last_invoice_number+1;
+			} elseif ( isset($mrConfig['custom_invoice_start_number']) ) {
+				$last_invoice_number	= (int)$mrConfig['custom_invoice_start_number'];
+				$new_invoice_seq		= $last_invoice_number;
+			} else {
+				$new_invoice_seq		= 1;
+			}
+			
+			if ($this->property_uid > 0) {
+				$_POST[ 'cfg_last_invoice_number' ] = $new_invoice_seq;
+				savePropertyConfiguration();
+			}
+
+			$pattern = $mrConfig['custom_invoice_pattern'];
+			
+			$pattern = str_replace( "{N}" , $new_invoice_seq ,		$pattern );
+			$pattern = str_replace( "{D}" , date("Y") ,				$pattern );
+			$pattern = str_replace( "{Y}" , date("Ymd") ,			$pattern );
+			
+			$this->invoice_number = $pattern;
+		}
+	}
+	
 	//Insert a new line item
 	public function commitLineItem()
 	{

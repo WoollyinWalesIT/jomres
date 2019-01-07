@@ -48,6 +48,7 @@ class basic_invoice_details
 		$this->is_commission = $this->invoice[$invoice_id]['is_commission'];
 		$this->vat_will_be_charged = $this->invoice[$invoice_id]['vat_will_be_charged'];
 		$this->lineitems = $this->invoice[$invoice_id]['lineitems'];
+		$this->invoice_number = $this->invoice[$invoice_id]['invoice_number'];
 
 		//Grand total is the sum of all line items (positive or negative), except payments line items.
 		//Amount already paid is the sum of the payment line items.
@@ -96,7 +97,8 @@ class basic_invoice_details
 						`contract_id`,
 						`property_uid`,
 						`is_commission`,
-						`vat_will_be_charged`
+						`vat_will_be_charged`,
+						`invoice_number`
 					FROM #__jomresportal_invoices 
 					WHERE `id`= $invoice_id 
 					LIMIT 1";
@@ -122,6 +124,7 @@ class basic_invoice_details
 			$this->invoice[$r->id]['property_uid'] = $r->property_uid;
 			$this->invoice[$r->id]['is_commission'] = $r->is_commission;
 			$this->invoice[$r->id]['vat_will_be_charged'] = $r->vat_will_be_charged;
+			$this->invoice[$r->id]['invoice_number'] = $r->invoice_number;
 		}
 
 		return true;
