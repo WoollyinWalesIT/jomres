@@ -611,8 +611,10 @@ class dobooking
 					'singleperson_suppliment' => $r['singleperson_suppliment'],
 					'tagline' => $r['tagline'],
 					'description' => $jomres_markdown->get_markdown($r['description']),
+					'surcharge' => $r['surcharge'],
 					'small_room_image' => $room_images [ $r['room_uid'] ] [0] ['small'],
 					'medium_room_image' => $room_images [ $r['room_uid'] ] [0] ['medium'],
+					
 					);
 
 				$this->allPropertyRoomUids[ ] = $r['room_uid'];
@@ -6540,10 +6542,14 @@ class dobooking
 			if ($tarifftypeid != false) {
 				$dates = $this->micromanage_tarifftype_to_date_map[ $tarifftypeid ];
 				$cumulative_price = 0.00;
+				$surcharge_base = $this->allPropertyRooms[$room_id]['surcharge'];
+				$surcharge_nett = $this->get_nett_price($surcharge_base, $this->accommodation_tax_rate);
+				
 				foreach ($dateRangeArray as $date) {
 					$cumulative_price += $dates[ $date ][ 'price' ];
+					$cumulative_price = $cumulative_price  + $surcharge_nett;
 				}
-
+//var_dump($cumulative_price);exit;
 				$basic_room_rate = $cumulative_price / $stayDays;
 
 				if (count($datesTilBooking) <= $wisepricethreshold && $mrConfig[ 'wisepriceactive' ] == '1') {

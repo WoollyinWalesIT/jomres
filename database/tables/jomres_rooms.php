@@ -27,6 +27,7 @@ CREATE TABLE IF NOT EXISTS `#__jomres_rooms` (
 	`singleperson_suppliment` DOUBLE(11,2) NOT NULL DEFAULT 0,
 	`tagline` VARCHAR(255),
 	`description` TEXT,
+	`surcharge` FLOAT NOT NULL DEFAULT '0',
 	PRIMARY KEY(`room_uid`),
 	INDEX `room_classes_uid` (`room_classes_uid`),
 	INDEX `propertys_uid` (`propertys_uid`)
