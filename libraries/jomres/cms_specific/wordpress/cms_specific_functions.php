@@ -142,8 +142,11 @@ function jomres_cmsspecific_createNewUser( $email_address = '' )
 				}
 			}
 			
-			wp_set_current_user($id); // set the current wp user
-			wp_set_auth_cookie($id); // start the cookie for the current registered user
+			if (!$thisJRUser->userIsManager) {
+				wp_set_current_user($id); // set the current wp user
+				wp_set_auth_cookie($id); // start the cookie for the current registered user
+			}
+
 		}
 
 
