@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.15.0
+ * @version Jomres 9.16.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -498,13 +498,13 @@ class j06000handlereq
 
 			if ($bkg->getOkToBook()) {
 				echo $oktobookClass;
-				echo '; populateDiv("messages","'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_FRONT_MR_REVIEWBOOKING', '_JOMRES_FRONT_MR_REVIEWBOOKING', false, false)).'"); checkSelectRoomMessage(true,"'.$disable_address.'");';
+				echo '; populateDiv("messages","'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_FRONT_MR_REVIEWBOOKING', '_JOMRES_FRONT_MR_REVIEWBOOKING', false, false)).'"); checkSelectRoomMessage(true,"'.$disable_address.'");  jomresJquery.notify({ message: "'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_FRONT_MR_REVIEWBOOKING', '_JOMRES_FRONT_MR_REVIEWBOOKING', false, false)).'"  },{ type: "info" });';
 				echo $bkg->setGuestPopupMessage(jr_gettext('_JOMRES_FRONT_MR_REVIEWBOOKING', '_JOMRES_FRONT_MR_REVIEWBOOKING', false, false));
 				echo '; enableSubmitButton(document.ajaxform.confirmbooking); '; // Added timeout because if a user clicks on this button too soon they'll get taken to the review booking before oktobook has been saved, therefore getting themselves redirected back to here
 			} else {
 				$messagesClass = $errorClass;
 				echo $messagesClass;
-				echo '; populateDiv("messages","'.$bkg->sanitiseOutput($bkg->monitorGetFirstMessage()).'"); checkSelectRoomMessage(false,"'.$disable_address.'");';
+				echo '; populateDiv("messages","'.$bkg->sanitiseOutput($bkg->monitorGetFirstMessage()).'"); checkSelectRoomMessage(false,"'.$disable_address.'"); jomresJquery.notify({ message: "'.$bkg->sanitiseOutput($bkg->monitorGetFirstMessage()).'"  },{ type: "danger" });';
 				if ($firstrun != '1') {
 					echo $bkg->setGuestPopupMessage($bkg->monitorGetFirstMessage());
 				}

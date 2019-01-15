@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.15.0
+ * @version Jomres 9.16.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -153,7 +153,12 @@ class j06005view_invoice
 			$viewbooking_link[] = array('VIEWBOOKING_LINK' => JOMRES_SITEPAGE_URL.'&task=edit_booking&contract_uid='.$invoice->contract_id, 'VIEWBOOKING_TEXT' => $viewbooking);
 		}
 
-		$output[ 'ID' ] = $invoice->id;
+		if ( trim($invoice->invoice_number) == '' ) {
+			$output[ 'ID' ] = $invoice->id;
+		} else {
+			$output[ 'ID' ] = $invoice->invoice_number;
+		}
+		
 
 		// Invoice status:
 		// 0 unpaid

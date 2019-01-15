@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.15.0
+ * @version Jomres 9.16.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -135,8 +135,6 @@ class j06001edit_booking
 
 				$jrtb .= $jrtbar->customToolbarItem($targetTask, $link, $output[ 'HEDIT_GUEST' ], $submitOnClick = false, $submitTask = '', $image);
 					
-				//var_dump($current_contract_details->contract[$contract_uid]['contractdeets']['guest_uid']);exit;
-				
 				//amend booking
 				$output[ 'HAMENDBOOKING' ] = jr_gettext('_JOMRES_CONFIRMATION_AMEND', '_JOMRES_CONFIRMATION_AMEND', $editable = false, $isLink = true);
 				$link = JOMRES_SITEPAGE_URL.'&task=amendBooking&no_html=1&contractUid='.$contract_uid;

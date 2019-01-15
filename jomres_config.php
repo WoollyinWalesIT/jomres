@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.15.0
+ * @version Jomres 9.16.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -153,5 +153,8 @@ $mrConfig = array(
   'externalBookingFormUrl' => '',
   'minimum_deposit_value' => 0,
   'poa_price' => '',
-  'hide_local_address' => '0'
+  'hide_local_address' => '0',
+  'use_custom_invoice_numbers' => '1',
+  'last_invoice_number' => '1000',
+  'custom_invoice_pattern' => '{N}'
 );

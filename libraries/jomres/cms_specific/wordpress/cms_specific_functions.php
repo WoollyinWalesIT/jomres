@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.15.0
+ * @version Jomres 9.16.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -141,6 +141,12 @@ function jomres_cmsspecific_createNewUser( $email_address = '' )
 					error_logging('Failure in sending registration email to guest. Target address: '.$hotelemail.' Subject'.$subject);
 				}
 			}
+			
+			if (!$thisJRUser->userIsManager) {
+				wp_set_current_user($id); // set the current wp user
+				wp_set_auth_cookie($id); // start the cookie for the current registered user
+			}
+
 		}
 
 
@@ -198,18 +204,17 @@ function jomres_cmsspecific_addheaddata($type, $path = '', $filename = '', $incl
 	$includeVersion ? $version = $jrConfig['update_time'] : $version = '';
 
 	if (strpos($path, 'http') === false) {
-		$js = get_showtime('live_site').'/'.$path.$filename;
+        	$url = get_showtime('live_site').'/'.$path.$filename;
 	} else {
-		$js = $path.$filename;
-	}
+        	$url = $path.$filename;
+   	 }
 
 	switch ($type) {
 		case 'javascript':
-			$wp_jomres->add_js($filename, $js, $version);
+			$wp_jomres->add_js($filename, $url, $version);
 			break;
 		case 'css':
-			$css = '/'.$path.$filename;
-			$wp_jomres->add_css($filename, $css, $version);
+			$wp_jomres->add_css($filename, $url, $version);
 			break;
 		default:
 

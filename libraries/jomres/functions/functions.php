@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.15.0
+ * @version Jomres 9.16.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2867,6 +2867,8 @@ function propertyConfiguration()
 
 	$lists[ 'showPfeaturesCategories' ] = jomresHTML::selectList($yesno, 'cfg_showPfeaturesCategories', 'class="inputbox" size="1"', 'value', 'text', (int) $mrConfig[ 'showPfeaturesCategories' ]);
 	$lists[ 'currency_symbol_swap' ] = jomresHTML::selectList($yesno, 'cfg_currency_symbol_swap', 'class="inputbox" size="1"', 'value', 'text', (int) $mrConfig[ 'currency_symbol_swap' ]);
+	
+	$lists[ 'use_custom_invoice_numbers' ] = jomresHTML::selectList($yesno, 'cfg_use_custom_invoice_numbers', 'class="inputbox" size="1"', 'value', 'text', (int) $mrConfig[ 'use_custom_invoice_numbers' ]);
 
 	$componentArgs = array();
 	$componentArgs[ 'mrConfig' ] = $mrConfig;

@@ -1,3 +1,24 @@
+<h3>Jomres 9.16.0 15/01/2019</h3>
+
+<span class="label label-success">Feature</span> Added bootstrap notify lib and functionality to show messages in a popup in the booking form so that they're always visible even when scrolled down.
+<span class="label label-success">Feature</span> Added functionality to auto-login a user to the CMS after they are created as a registered user.
+<span class="label label-success">Feature</span> Added functionality that allow property managers to create custom invoice numbers, including formatted numbers like NNN/DATE etc.
+<span class="label label-success">Feature</span> Surcharges for individual rooms. This allows property managers to say that a specific room costs X extra because, for example, it's a penthouse suite or it has a particular amenity. Feature can be configured in the Edit Room page (Micromanage and Advanced tariff editing modes).
+
+<span class="label label-warning">Change</span> Modified ui availability calendar so that from view property page we can set the start day / month / year to correspond to search options selected in the search module/widget.
+<span class="label label-warning">Change</span> Modified shortcodes so that 06005 scripts can also be included.
+<span class="label label-warning">Change</span> In reviews, the "cons" field is now no longer required.
+<span class="label label-warning">Change</span> Tweaked new functionality to ensure that 0 prices aren't included when figuring room type price ranges.
+<span class="label label-warning">Change</span> nl-NL.php file updated, thanks Coen.
+<span class="label label-warning">Change</span> Tweaked save profiles script so that session data is immediately updated to use new details.
+<span class="label label-warning">Change</span> Modified booking engine so that if booker is a manager, they can disable forced extras.
+
+<span class="label label-important label-danger">Fix</span> Resolved an issue where BS2 booking form elements were untappable in small screens. Many thanks Rod for your help in tracking this little blighter down.
+<span class="label label-important label-danger">Fix</span> Tweaked media centre script so that room type image upload isn't an option if it's disabled in the admin area.
+<span class="label label-important label-danger">Fix</span> Tweaked temp booking handler so that carriage returns in booking engine data doesn't cause json decode to fail.
+<span class="label label-important label-danger">Fix</span> Fixed an issue when is not possible to load external css or js in WP
+<span class="label label-important label-danger">Fix</span> Tweaked the GDPR consent form for BS2 as it would refuse to close when consent given or denied.
+
 <h3>Jomres 9.15.0 04/12/2018</h3>
 
 <span class="label label-important label-danger">Fix</span> Updated upload handler to use new code that fixes unauthenticated arbitrary file upload vulnerability in Blueimp jQuery-File-Upload library

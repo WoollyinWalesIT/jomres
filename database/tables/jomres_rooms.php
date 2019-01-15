@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.15.0
+ * @version Jomres 9.16.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -27,6 +27,7 @@ CREATE TABLE IF NOT EXISTS `#__jomres_rooms` (
 	`singleperson_suppliment` DOUBLE(11,2) NOT NULL DEFAULT 0,
 	`tagline` VARCHAR(255),
 	`description` TEXT,
+	`surcharge` FLOAT NOT NULL DEFAULT '0',
 	PRIMARY KEY(`room_uid`),
 	INDEX `room_classes_uid` (`room_classes_uid`),
 	INDEX `propertys_uid` (`propertys_uid`)

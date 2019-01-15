@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.15.0
+ * @version Jomres 9.16.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS `#__jomresportal_invoices` (
 	`property_uid` INT UNSIGNED NOT NULL DEFAULT 0,
 	`is_commission` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
 	`vat_will_be_charged` TINYINT(1) UNSIGNED NOT NULL DEFAULT 1,
+	`invoice_number` VARCHAR(255),
 	PRIMARY KEY  (`id`),
 	INDEX `property_uid` (`property_uid`)
 	)

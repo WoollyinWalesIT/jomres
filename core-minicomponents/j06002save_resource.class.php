@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.15.0
+ * @version Jomres 9.16.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -36,17 +36,18 @@ class j06002save_resource
 		jr_import('jrportal_rooms');
 		$jrportal_rooms = new jrportal_rooms();
 
-		$jrportal_rooms->propertys_uid			  = $defaultProperty;
-		$jrportal_rooms->room_uid				   = (int) jomresGetParam($_POST, 'roomUid', 0);
-		$jrportal_rooms->room_classes_uid		   = (int) jomresGetParam($_POST, 'roomClasses', 0);
-		$jrportal_rooms->max_people				 = (int) jomresGetParam($_POST, 'max_people', 0);
-		$jrportal_rooms->room_name				  = getEscaped(jomresGetParam($_POST, 'room_name', ''));
+		$jrportal_rooms->propertys_uid				= $defaultProperty;
+		$jrportal_rooms->room_uid					= (int) jomresGetParam($_POST, 'roomUid', 0);
+		$jrportal_rooms->room_classes_uid			= (int) jomresGetParam($_POST, 'roomClasses', 0);
+		$jrportal_rooms->max_people					= (int) jomresGetParam($_POST, 'max_people', 0);
+		$jrportal_rooms->room_name					= getEscaped(jomresGetParam($_POST, 'room_name', ''));
 		$jrportal_rooms->room_number				= getEscaped(jomresGetParam($_POST, 'room_number', ''));
-		$jrportal_rooms->room_floor				 = getEscaped(jomresGetParam($_POST, 'room_floor', ''));
+		$jrportal_rooms->room_floor					= getEscaped(jomresGetParam($_POST, 'room_floor', ''));
 		$jrportal_rooms->singleperson_suppliment	= (float) jomresGetParam($_POST, 'singleperson_suppliment', 0.0);
-		$jrportal_rooms->room_features_uid		  = jomresGetParam($_POST, 'features_list', array());
+		$jrportal_rooms->room_features_uid			= jomresGetParam($_POST, 'features_list', array());
 		$jrportal_rooms->tagline					= getEscaped(jomresGetParam($_POST, 'room_tagline', ''));
-
+		$jrportal_rooms->surcharge					= (float) jomresGetParam($_POST, 'surcharge', 0.0);
+		
 		//html editor fields
 		if ($jrConfig[ 'allowHTMLeditor' ] == '0') {
 			$jrportal_rooms->description			= $this->convert_greaterthans(jomresGetParam($_POST, 'room_description', ''));

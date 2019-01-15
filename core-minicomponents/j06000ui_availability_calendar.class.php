@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.15.0
+ * @version Jomres 9.16.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -191,6 +191,22 @@ class j06000ui_availability_calendar
 			';
 		}
 		
+		$defaultDate = date ( "Y/m/d");
+		
+		if ( 
+			isset($componentArgs['start_year']) &&
+			isset($componentArgs['start_month']) &&
+			isset($componentArgs['start_day']) &&
+			$componentArgs['start_year'] != '' &&
+			$componentArgs['start_month'] != '' &&
+			$componentArgs['start_day'] != ''
+			) {
+			$cal_default_year = (int)$componentArgs['start_year'];
+			$cal_default_month = (int)$componentArgs['start_month'];
+			$cal_default_day = (int)$componentArgs['start_day'];
+			$defaultDate = $cal_default_year."/".$cal_default_month."/".$cal_default_day;
+			}
+
 		$url = get_booking_url($property_uid,'','&pdetails_cal=1');
 		$inline_calendar = '
 			<script>
@@ -250,6 +266,7 @@ class j06000ui_availability_calendar
 				jomresJquery( "#' .$random_identifier.'" ).datepicker({
 					"dateFormat" : "yy/mm/dd",
 					"minDate": 0,
+					"defaultDate" : "'.$defaultDate.'",
 					firstDay: '.($jrConfig[ 'calendarstartofweekday' ] - 1).',
 					beforeShowDay: highlightDays_' .$random_identifier.',
 					onSelect: function (date, el) {

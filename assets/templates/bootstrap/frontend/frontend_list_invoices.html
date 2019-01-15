@@ -4,7 +4,7 @@
 	<!--
 	jomresJquery(document).ready(function () {
 		make_datatable('frontend_list_invoices', '{PAGETITLE}', '{LIVESITE}', '{AJAX_URL}');
-		column_ids = new Array(2,3,6,8,9,11,12);
+		column_ids = new Array(2,3,6,8,9,11,12,13);
 		dataTableSetHiddenColumns('frontend_list_invoices', column_ids);
 	});
 	//-->
@@ -32,6 +32,7 @@
 			<th>{HGRAND_TOTAL}</th>
 			<th>{HINITTOTAL}</th>
 			<th>{HPAYNOW}</th>
+			<th>{_JOMRES_INVOICE_NUMBER}</th>
 		</tr>
 	</thead>
 	<tbody>

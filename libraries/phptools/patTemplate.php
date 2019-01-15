@@ -2716,7 +2716,10 @@ class patTemplate
 						$MiniComponents->specificEvent('06002',$our_task);
 						$contents = ob_get_contents();
 					}
-
+					if ($contents == "" ) {
+						$MiniComponents->specificEvent('06005',$our_task);
+						$contents = ob_get_contents();
+					}
 					set_showtime('task',$original_task);
 					$_REQUEST = $original_request;
 					$result = str_replace($m,$contents,$result);

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.15.0
+ * @version Jomres 9.16.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -371,7 +371,6 @@ jomresJquery(function(){
 		$currdate = mktime(0, 0, 0, date('m', $startdate), date('d', $startdate), date('Y', $startdate));
 		$startingmonth = date('m', mktime(0, 0, 0, date('m', $startdate), date('d', $startdate), date('Y', $startdate)));
 		$endingmonth = date('m', mktime(0, 0, 0, date('m', $stdate) + 1, 7 - date('w', mktime(0, 0, 0, $stmonth + 1, 0, $styear)), $styear));
-		//var_dump($currdate);var_dump($enddate);exit;
 		while ($currdate < $enddate) {
 			$this->retVals .= "<tr>\n";
 			for ($c = 0; $c < 7; ++$c) {

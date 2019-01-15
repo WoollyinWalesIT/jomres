@@ -1,10 +1,13 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+jomresJquery(document).ready(function () {
+	jomresJquery('#consentForm').appendTo("body");
+});
+</script>
 
 <style>
 .modal-dialog,
 .modal {
-    /* 80% of window height */
-    height: 80%;
 }
 
 .modal-body {

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.15.0
+ * @version Jomres 9.16.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -611,8 +611,10 @@ class dobooking
 					'singleperson_suppliment' => $r['singleperson_suppliment'],
 					'tagline' => $r['tagline'],
 					'description' => $jomres_markdown->get_markdown($r['description']),
+					'surcharge' => $r['surcharge'],
 					'small_room_image' => $room_images [ $r['room_uid'] ] [0] ['small'],
 					'medium_room_image' => $room_images [ $r['room_uid'] ] [0] ['medium'],
+					
 					);
 
 				$this->allPropertyRoomUids[ ] = $r['room_uid'];
@@ -1020,6 +1022,8 @@ class dobooking
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
 		$jomres_media_centre_images->get_images($this->property_uid, array('extras'));
 
+		$thisJRUser = jomres_getSingleton('jr_user');
+		
 		$mrConfig = $this->mrConfig;
 		$extra_details = array();
 
@@ -1172,7 +1176,7 @@ class dobooking
 					}
 
 					$clickUnlock = '';
-					if ($model[ 'force' ] != '1') {
+					if ($model[ 'force' ] != '1' || $thisJRUser->userIsManager ) {
 						$extra_deets[ 'INPUTBOX' ] = '<input id="extras_'.$ex->uid.'" type="checkbox" name="extras['.$ex->uid.']" value="'.$ex->uid.'" '.$checked.' autocomplete="off"  onClick="'.$clickUnlock.'getResponse_extras(\'extras\',this.value,'.$ex->uid.');" />';
 					} else {
 						$this->forcedExtras[ ] = $ex->uid;
@@ -6538,10 +6542,14 @@ class dobooking
 			if ($tarifftypeid != false) {
 				$dates = $this->micromanage_tarifftype_to_date_map[ $tarifftypeid ];
 				$cumulative_price = 0.00;
+				$surcharge_base = $this->allPropertyRooms[$room_id]['surcharge'];
+				$surcharge_nett = $this->get_nett_price($surcharge_base, $this->accommodation_tax_rate);
+				
 				foreach ($dateRangeArray as $date) {
 					$cumulative_price += $dates[ $date ][ 'price' ];
+					$cumulative_price = $cumulative_price  + $surcharge_nett;
 				}
-
+//var_dump($cumulative_price);exit;
 				$basic_room_rate = $cumulative_price / $stayDays;
 
 				if (count($datesTilBooking) <= $wisepricethreshold && $mrConfig[ 'wisepriceactive' ] == '1') {

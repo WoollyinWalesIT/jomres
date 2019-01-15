@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.15.0
+ * @version Jomres 9.16.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -113,9 +113,21 @@ class j06000viewproperty
 		//property inline availability calendar
 		$output['INLINE_CALENDAR'] = '';
 		
+		
+		$ui_calendar_requested_year = '';
+		$ui_calendar_requested_month = '';
+		
+		if ( isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] ) && $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] != '' ) {
+			$bang = explode("/" , $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate']);
+			$ui_calendar_requested_year = $bang[2];
+			$ui_calendar_requested_month = $bang[1];
+			$ui_calendar_requested_day = $bang[0];
+		}
+
+		
 		if ($mrConfig[ 'is_real_estate_listing' ] == 0) {
 			if ($mrConfig[ 'showAvailabilityCalendar' ] == 1) {
-				$output['INLINE_CALENDAR'] = $MiniComponents->specificEvent('06000', 'ui_availability_calendar', array('output_now' => false, 'property_uid' => $property_uid));
+				$output['INLINE_CALENDAR'] = $MiniComponents->specificEvent('06000', 'ui_availability_calendar', array('output_now' => false, 'property_uid' => $property_uid , "start_year" => $ui_calendar_requested_year , "start_month" => $ui_calendar_requested_month , "start_day" => $ui_calendar_requested_day ));
 			}
 		}
 
@@ -204,7 +216,7 @@ class j06000viewproperty
 		}
 
 		//room list link
-		if ($mrConfig[ 'is_real_estate_listing' ] == 0) {
+		if ($mrConfig[ 'is_real_estate_listing' ] == 0 && !get_showtime('is_jintour_property') ) {
 			if ($mrConfig[ 'showRoomsListingLink' ] == '1') {
 				$link = array();
 				$link[ 'LINK' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=show_property_rooms&property_uid='.$property_uid);

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.15.0
+ * @version Jomres 9.16.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -28,6 +28,9 @@ class j03379room_types
 		$property_uid = getDefaultProperty();
 		$mrConfig = getPropertySpecificSettings($property_uid);
 		
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
+		
 		$this->ret_vals = array();
 		
 		if (!isset($mrConfig[ 'singleRoomProperty' ])) {
@@ -37,7 +40,7 @@ class j03379room_types
 			$mrConfig[ 'is_real_estate_listing' ] = '0';
 		}
 
-		if ($property_uid > 0 ) {
+		if ($property_uid > 0 && $jrConfig[ 'frontend_room_type_editing_allowed' ] == "1" ) {
 		$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
 		$current_property_details->gather_data($property_uid);
 		$keys = array_keys($current_property_details->room_types);

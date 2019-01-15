@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.15.0
+ * @version Jomres 9.16.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -25,22 +25,23 @@ class jrportal_rooms
 	{
 		$this->room_uid = 0;
 		$this->room_classes_uid = 0;			// new room id default
-		$this->propertys_uid = 0;			   // resource type id
-		$this->room_features_uid = array();	 // room features array
-		$this->room_name = '';				  // room name
+		$this->propertys_uid = 0;				// resource type id
+		$this->room_features_uid = array();		// room features array
+		$this->room_name = '';					// room name
 		$this->room_number = '';				// room number
-		$this->room_floor = '';				 // room floor
-		$this->max_people = 1;				  // room`s max guests
+		$this->room_floor = '';					// room floor
+		$this->max_people = 1;					// room`s max guests
 		$this->singleperson_suppliment = '';	// single person suppliment
-		$this->tagline = '';		  // 1000 chars maximum
+		$this->tagline = '';					// 1000 chars maximum
 		$this->description = '';				// 3000 chars maximum
+		$this->surcharge = '';					// float
 		
 		//multiple rooms creation
-		$this->rooms_generator = array();						   // array of data used to mass create rooms
+		$this->rooms_generator = array();							// array of data used to mass create rooms
 		$this->rooms_generator['propertys_uid'] = 0;				// property uid
-		$this->rooms_generator['number_of_rooms'] = 0;			  // how many rooms to be created
-		$this->rooms_generator['room_classes_uid'] = 0;			 // what room type to be used for the mass created rooms
-		$this->rooms_generator['max_people'] = 0;				   // max guests per room
+		$this->rooms_generator['number_of_rooms'] = 0;				// how many rooms to be created
+		$this->rooms_generator['room_classes_uid'] = 0;				// what room type to be used for the mass created rooms
+		$this->rooms_generator['max_people'] = 0;					// max guests per room
 		$this->rooms_generator['delete_existing_rooms'] = false;	// delete existing rooms before mass creating new ones
 	}
 
@@ -78,7 +79,8 @@ class jrportal_rooms
 							`max_people`,
 							`singleperson_suppliment`,
 							`tagline`,
-							`description`
+							`description`,
+							`surcharge`
 							)
 						VALUES 
 							(
@@ -91,7 +93,8 @@ class jrportal_rooms
 							" .(int) $this->max_people.',
 							' .(float) $this->singleperson_suppliment.',
 							"' .(string) $this->tagline.'",
-							"' .(string) $this->description.'"
+							"' .(string) $this->description.'",
+							' .(float) $this->surcharge.'
 							)';
 		$this->room_uid = doInsertSql($query, '');
 		
@@ -106,13 +109,13 @@ class jrportal_rooms
 			$this->update_tariffs($this->propertys_uid);
 		}
 
-		$webhook_notification							   = new stdClass();
+		$webhook_notification								= new stdClass();
 		$webhook_notification->webhook_event				= 'room_added';
 		$webhook_notification->webhook_event_description	= 'Logs when a room is added.';
-		$webhook_notification->webhook_event_plugin		 = 'core';
-		$webhook_notification->data						 = new stdClass();
-		$webhook_notification->data->property_uid		   = $this->propertys_uid;
-		$webhook_notification->data->room_uid			   = $this->room_uid;
+		$webhook_notification->webhook_event_plugin			= 'core';
+		$webhook_notification->data							= new stdClass();
+		$webhook_notification->data->property_uid			= $this->propertys_uid;
+		$webhook_notification->data->room_uid				= $this->room_uid;
 		add_webhook_notification($webhook_notification);
 		
 		return true;
@@ -143,15 +146,16 @@ class jrportal_rooms
 
 		$query = 'UPDATE #__jomres_rooms 
 					SET 
-						`room_classes_uid`		  = '.(int) $this->room_classes_uid.",
-						`room_features_uid`		 = '".$room_features."',
-						`room_name`				 = '".$this->room_name."',
-						`room_number`			   = '".$this->room_number."',
+						`room_classes_uid`			= '.(int) $this->room_classes_uid.",
+						`room_features_uid`			= '".$room_features."',
+						`room_name`					= '".$this->room_name."',
+						`room_number`				= '".$this->room_number."',
 						`room_floor`				= '".$this->room_floor."',
 						`max_people`				= " .(int) $this->max_people.',
-						`singleperson_suppliment`   = ' .(float) $this->singleperson_suppliment.' ,
+						`singleperson_suppliment`	= ' .(float) $this->singleperson_suppliment.' ,
 						`tagline`		 			= "' .(string) $this->tagline.'",
-						`description`			   = "' .(string) $this->description.'" 
+						`description`				= "' .(string) $this->description.'" ,
+						`surcharge`					= ' .(float) $this->surcharge.'
 					WHERE `room_uid` = ' .(int) $this->room_uid.' 
 						AND `propertys_uid` = ' .(int) $this->propertys_uid;
 
@@ -166,13 +170,13 @@ class jrportal_rooms
 			$this->update_tariffs($this->propertys_uid);
 		}
 
-		$webhook_notification							   = new stdClass();
+		$webhook_notification								= new stdClass();
 		$webhook_notification->webhook_event				= 'room_updated';
 		$webhook_notification->webhook_event_description	= 'Logs when a room is updated.';
-		$webhook_notification->webhook_event_plugin		 = 'core';
-		$webhook_notification->data						 = new stdClass();
-		$webhook_notification->data->property_uid		   = $this->propertys_uid;
-		$webhook_notification->data->room_uid			   = $this->room_uid;
+		$webhook_notification->webhook_event_plugin			= 'core';
+		$webhook_notification->data							= new stdClass();
+		$webhook_notification->data->property_uid			= $this->propertys_uid;
+		$webhook_notification->data->room_uid				= $this->room_uid;
 		add_webhook_notification($webhook_notification);
 		
 		return true;
@@ -214,13 +218,13 @@ class jrportal_rooms
 				throw new Exception('Error: Delete room failed.');
 			}
 			
-			$webhook_notification							   = new stdClass();
+			$webhook_notification								= new stdClass();
 			$webhook_notification->webhook_event				= 'room_updated';
 			$webhook_notification->webhook_event_description	= 'Logs when a room is deleted.';
-			$webhook_notification->webhook_event_plugin		 = 'core';
-			$webhook_notification->data						 = new stdClass();
-			$webhook_notification->data->property_uid		   = $this->propertys_uid;
-			$webhook_notification->data->room_uid			   = $this->room_uid;
+			$webhook_notification->webhook_event_plugin			= 'core';
+			$webhook_notification->data							= new stdClass();
+			$webhook_notification->data->property_uid			= $this->propertys_uid;
+			$webhook_notification->data->room_uid				= $this->room_uid;
 			add_webhook_notification($webhook_notification);
 			
 			return true;
@@ -302,7 +306,8 @@ class jrportal_rooms
 							`room_number`,
 							`room_floor`,
 							`max_people`,
-							`singleperson_suppliment`
+							`singleperson_suppliment`,
+							`surcharge`
 							)
 						VALUES ';
 
@@ -322,6 +327,7 @@ class jrportal_rooms
 						'".$nextRoomNumberStr."',
 						'',
 						" .(int) $this->rooms_generator['max_people'].',
+						0,
 						0
 						),';
 			++$nextRoomNumber;
@@ -333,12 +339,12 @@ class jrportal_rooms
 			throw new Exception('Error: Could not mass generate rooms.');
 		}
 		
-		$webhook_notification							   = new stdClass();
+		$webhook_notification								= new stdClass();
 		$webhook_notification->webhook_event				= 'rooms_multiple_added';
 		$webhook_notification->webhook_event_description	= 'Logs when mulitiple rooms are added.  Because multiple rooms have been added, the remote service is advised to completely refresh their rooms list.';
-		$webhook_notification->webhook_event_plugin		 = 'core';
-		$webhook_notification->data						 = new stdClass();
-		$webhook_notification->data->property_uid		   = $this->rooms_generator['propertys_uid'];
+		$webhook_notification->webhook_event_plugin			= 'core';
+		$webhook_notification->data							= new stdClass();
+		$webhook_notification->data->property_uid			= $this->rooms_generator['propertys_uid'];
 		add_webhook_notification($webhook_notification);
 		
 		return true;

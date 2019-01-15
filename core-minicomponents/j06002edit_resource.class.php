@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.15.0
+ * @version Jomres 9.16.0
  *
  * @copyright	2005-2018 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -51,28 +51,29 @@ class j06002edit_resource
 
 		if ($mrConfig[ 'singleRoomProperty' ] == '0') { //MRPs
 		
-			$room_features_uid		  = '';
-			$room_name				  = '';
+			$room_features_uid			= '';
+			$room_name					= '';
 			$room_number				= '';
-			$room_floor				 = '';
-			$room_classes_uid		   = false;
-			$max_people				 = '10';
+			$room_floor					= '';
+			$room_classes_uid			= false;
+			$max_people					= '10';
 			$singleperson_suppliment	= 0;
 			$room_tagline	 			= '';
-			$room_description		   = '';
+			$room_description			= '';
+			$surcharge					= '';
 
 			if ($roomUid > 0 && $basic_room_details->get_room($roomUid)) {
 
-				$room_classes_uid		   = $basic_room_details->room['room_classes_uid'];
-				$room_features_uid		  = $basic_room_details->room['room_features_uid'];
-				$room_name				  = $basic_room_details->room['room_name'];
+				$room_classes_uid			= $basic_room_details->room['room_classes_uid'];
+				$room_features_uid			= $basic_room_details->room['room_features_uid'];
+				$room_name					= $basic_room_details->room['room_name'];
 				$room_number				= $basic_room_details->room['room_number'];
-				$room_floor				 = $basic_room_details->room['room_floor'];
-				$max_people				 = $basic_room_details->room['max_people'];
+				$room_floor					= $basic_room_details->room['room_floor'];
+				$max_people					= $basic_room_details->room['max_people'];
 				$singleperson_suppliment	= $basic_room_details->room['singleperson_suppliment'];
 				$room_tagline	 			= $basic_room_details->room['tagline'];
-				$room_description		   = $basic_room_details->room['description'];
-				
+				$room_description			= $basic_room_details->room['description'];
+				$surcharge					= $basic_room_details->room['surcharge'];
 			}
 
 			//dropdown with room types assigned to this property type
@@ -116,14 +117,15 @@ class j06002edit_resource
 
 			$output[ 'MAXPEOPLE_DROPDOWN' ] = jomresHTML::integerSelectList(1, $max_max_people, 1, 'max_people', '', $max_people);
 
-			$output[ 'ROOMNAME' ]				   = $room_name;
-			$output[ 'ROOMNUMBER' ]				 = $room_number;
-			$output[ 'ROOMFLOOR' ]				  = $room_floor;
-			$output[ 'FEATURES' ]				   = $featureListTxt;
-			$output[ 'SUPPLIMENT' ]				 = $singleperson_suppliment;
-			$output[ 'ROOM_TAGLINE' ]	 			= $room_tagline;
-			$output[ 'ROOM_DESCRIPTION' ]		   = $room_description;
-			
+			$output[ 'ROOMNAME' ]				= $room_name;
+			$output[ 'ROOMNUMBER' ]				= $room_number;
+			$output[ 'ROOMFLOOR' ]				= $room_floor;
+			$output[ 'FEATURES' ]				= $featureListTxt;
+			$output[ 'SUPPLIMENT' ]				= $singleperson_suppliment;
+			$output[ 'ROOM_TAGLINE' ]	 		= $room_tagline;
+			$output[ 'ROOM_DESCRIPTION' ]		= $room_description;
+			$output[ 'SURCHARGE' ]				= $surcharge;
+
 			$output[ 'IMAGE' ] = '<img src="'.getImageForProperty('room', $defaultProperty, (int) $roomUid).'" />';
 
 			$output[ 'HTYPE' ] = jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE', '_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE', false, false);
@@ -137,6 +139,8 @@ class j06002edit_resource
 			$output[ 'PAGETITLE' ] = jr_gettext('_JOMRES_COM_MR_EB_HROOM_DETAILS', '_JOMRES_COM_MR_EB_HROOM_DETAILS', false);
 			$output[ 'HROOM_TAGLINE' ] = jr_gettext('_JOMRES_ROOM_TAGLINE', '_JOMRES_ROOM_TAGLINE', false);
 			$output[ 'HROOM_DESCRIPTION' ] = jr_gettext('_JOMRES_ROOM_DESCRIPTION', '_JOMRES_ROOM_DESCRIPTION', false);
+			$output[ '_JOMRES_SURCHARGE_TITLE' ] = jr_gettext('_JOMRES_SURCHARGE_TITLE', '_JOMRES_SURCHARGE_TITLE', false);
+			$output[ '_JOMRES_SURCHARGE_DESC' ] = jr_gettext('_JOMRES_SURCHARGE_DESC', '_JOMRES_SURCHARGE_DESC', false);
 
 			if ($jrConfig[ 'allowHTMLeditor' ] == '1') {
 				$width = '95%';
