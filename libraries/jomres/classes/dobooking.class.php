@@ -4736,6 +4736,14 @@ class dobooking
 		
 		$roomStuff[ 'ROOM_TYPE_IMAGE' ] = $this->allRoomClasses[ $tariffStuff[ 'TARIFF_ROOMTYPE' ] ]['images'][0]['large'];
 		
+		$roomStuff[ 'SURCHARGE' ] = '';
+		$roomStuff[ 'SURCHARGE_TEXT' ] = '';
+		$sc = $this->allPropertyRooms [ $roomUid ] ['surcharge'];
+		if ((float) $sc > 0 ) {
+			$roomStuff[ 'SURCHARGE' ] =  output_price($sc);
+			$roomStuff[ 'SURCHARGE_TEXT' ] = jr_gettext('_JOMRES_SURCHARGE_TITLE', '_JOMRES_SURCHARGE_TITLE', false);
+		}
+		
 		if ($this->cfg_booking_form_rooms_list_style == '2') {
 			$this->rooms_list_style_roomstariffs[ $tariffUid ] = array('room_type_id' => $tariffStuff[ 'TARIFF_ROOMTYPE' ], 'room_id' => $roomUid, 'tariff_id' => $tariffUid, 'roomTariffOutputId' => $roomTariffOutputId, 'tariffStuff' => $tariffStuff, 'roomStuff' => $roomStuff);
 
