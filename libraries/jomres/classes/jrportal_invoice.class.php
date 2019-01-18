@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.16.0
+ * @version Jomres 9.16.1
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -711,8 +711,6 @@ class jrportal_invoice
 	private function generate_invoice_number() {
 		
 		$mrConfig = getPropertySpecificSettings($this->property_uid);
-		
-		$this->property_uid = 1;
 		
 		if ($mrConfig['use_custom_invoice_numbers'] == "0" || $this->property_uid == 0 ) {
 			$query = "SELECT MAX(id) FROM #__jomresportal_invoices";

@@ -1,3 +1,12 @@
+<h3>Jomres 9.16.1 18/01/2019</h3>
+
+<span class="label label-success">Feature</span> Added functionality to show new surcharges in the Show Room and Booking form pages.
+
+<span class="label label-warning">Change</span> Added surcharge language strings to other language files.
+
+<span class="label label-important label-danger">Fix</span> Removed test code inadvertently left in place that was causing invoices to fail to be created.
+
+
 <h3>Jomres 9.16.0 15/01/2019</h3>
 
 <span class="label label-success">Feature</span> Added bootstrap notify lib and functionality to show messages in a popup in the booking form so that they're always visible even when scrolled down.

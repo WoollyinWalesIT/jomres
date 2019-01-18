@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.16.0
+ * @version Jomres 9.16.1
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -121,9 +121,16 @@ class j06000show_property_room
 
 			$output[ 'RANDOM_IDENTIFIER' ] = generateJomresRandomString(10);
 
+			$surcharge = array();
+			$sc = $basic_room_details->room['surcharge'];
+			if ((float) $sc > 0 ) {
+				$surcharge = array ( "0" => array ( "SURCHARGE" => output_price($sc) , "SURCHARGE_TEXT" => jr_gettext('_JOMRES_SURCHARGE_TITLE', '_JOMRES_SURCHARGE_TITLE', false) ) );
+			}
+
 			$pageoutput[] = $output;
 			$tmpl = new patTemplate();
 			$tmpl->addRows('pageoutput', $pageoutput);
+			$tmpl->addRows('surcharge', $surcharge);
 			$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
 			$tmpl->readTemplatesFromInput('show_room.html');
 			$tmpl->displayParsedTemplate();

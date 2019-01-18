@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.16.0
+ * @version Jomres 9.16.1
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -4735,6 +4735,14 @@ class dobooking
 		$roomStuff[ 'DESCRIPTION' ] = $this->allPropertyRooms [ $roomUid ] [ 'description' ];
 		
 		$roomStuff[ 'ROOM_TYPE_IMAGE' ] = $this->allRoomClasses[ $tariffStuff[ 'TARIFF_ROOMTYPE' ] ]['images'][0]['large'];
+		
+		$roomStuff[ 'SURCHARGE' ] = '';
+		$roomStuff[ 'SURCHARGE_TEXT' ] = '';
+		$sc = $this->allPropertyRooms [ $roomUid ] ['surcharge'];
+		if ((float) $sc > 0 ) {
+			$roomStuff[ 'SURCHARGE' ] =  output_price($sc);
+			$roomStuff[ 'SURCHARGE_TEXT' ] = jr_gettext('_JOMRES_SURCHARGE_TITLE', '_JOMRES_SURCHARGE_TITLE', false);
+		}
 		
 		if ($this->cfg_booking_form_rooms_list_style == '2') {
 			$this->rooms_list_style_roomstariffs[ $tariffUid ] = array('room_type_id' => $tariffStuff[ 'TARIFF_ROOMTYPE' ], 'room_id' => $roomUid, 'tariff_id' => $tariffUid, 'roomTariffOutputId' => $roomTariffOutputId, 'tariffStuff' => $tariffStuff, 'roomStuff' => $roomStuff);
