@@ -712,8 +712,6 @@ class jrportal_invoice
 		
 		$mrConfig = getPropertySpecificSettings($this->property_uid);
 		
-		$this->property_uid = 1;
-		
 		if ($mrConfig['use_custom_invoice_numbers'] == "0" || $this->property_uid == 0 ) {
 			$query = "SELECT MAX(id) FROM #__jomresportal_invoices";
 			$this->invoice_number = doSelectSql($query, 1);
