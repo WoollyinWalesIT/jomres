@@ -186,6 +186,7 @@ class j06000show_property_room_types
 	
 	private function get_nett_price($price)
 	{
+		$mrConfig = getPropertySpecificSettings($property_uid);
 		if ($mrConfig[ 'prices_inclusive' ] == 1) {
 			$mrConfig = getPropertySpecificSettings($this->property_uid);
 			

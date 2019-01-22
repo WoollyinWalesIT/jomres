@@ -116,6 +116,7 @@ class j06000viewproperty
 		
 		$ui_calendar_requested_year = '';
 		$ui_calendar_requested_month = '';
+		$ui_calendar_requested_day = '';
 		
 		if ( isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] ) && $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] != '' ) {
 			$bang = explode("/" , $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate']);
