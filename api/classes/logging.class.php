@@ -98,7 +98,13 @@ class logging
                 (isset($_SERVER['HTTPS']) && strcasecmp($_SERVER['HTTPS'], 'off') ? 'https://' : 'http://').
                 (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : (isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : '')).(($full) ? $_SERVER['REQUEST_URI'] : null)
             );
-            $parse['port'] = $_SERVER['SERVER_PORT']; // Setup protocol for sure (80 is default)
+			
+			if (isset($_SERVER['SERVER_PORT'])) { // CLI not isset variable fix
+				$parse['port'] = $_SERVER['SERVER_PORT']; // Setup protocol for sure (80 is default)
+			} else {
+				$parse['port'] = '80';
+			}
+            
             $url = http_build_url('', $parse);
             $url = filter_var($url, FILTER_VALIDATE_URL, FILTER_FLAG_PATH_REQUIRED);
         }

@@ -4035,7 +4035,12 @@ function updateCustomText($theConstant, $theValue, $audit = true, $property_uid 
  */
 function jomresGetDomain()
 {
-	$thisSvrName = $_SERVER[ 'SERVER_NAME' ];
+	if (!isset($_SERVER[ "SERVER_NAME" ])) {
+		$thisSvrName = 'CLI'; // Probably a CLI call if SERVER_NAME is not set in the global var
+	} else {
+		$thisSvrName = $_SERVER[ 'SERVER_NAME' ];
+	}
+	
 	$dmn = str_replace('http://', '', $thisSvrName);
 
 	//$domain=str_replace("www.","",$dmn);
