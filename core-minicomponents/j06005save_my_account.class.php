@@ -252,7 +252,7 @@ class j06005save_my_account
 		
 		
 		if ($return_url != '') {
-			$return_url = base64_decode($return_url);
+			$return_url = jr_base64url_decode($return_url);
 			jomresRedirect($return_url, '');
 		} else {
 			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_my_account'), '');
