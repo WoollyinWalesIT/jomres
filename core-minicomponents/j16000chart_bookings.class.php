@@ -56,7 +56,7 @@ class j16000chart_bookings
 					SUM( CASE WHEN b.init_total_inclusive < 0 THEN 0 ELSE b.init_total_inclusive END ) AS grand_total   
 				FROM #__jomresportal_invoices a 
 					JOIN #__jomresportal_lineitems b ON a.id = b.inv_id 
-				WHERE a.status = 1 
+				WHERE (a.status = 1 OR a.status = 3)
 					AND a.contract_id > 0 
 				GROUP BY a.id 
 				ORDER BY a.raised_date ASC 
