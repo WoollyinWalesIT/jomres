@@ -26,6 +26,8 @@ class j06005view_invoice
 			return;
 		}
 
+		$as_pdf = intval(jomresGetParam($_REQUEST, 'as_pdf', 0));
+
 		$invoice_id = intval(jomresGetParam($_REQUEST, 'id', 0));
 		$popup = intval(jomresGetParam($_REQUEST, 'popup', 0));
 		$bypass_security_check = false;
@@ -128,6 +130,9 @@ class j06005view_invoice
 		$output[ 'PAYMENT_METHOD' ] = jr_gettext('PAYMENT_METHOD', 'PAYMENT_METHOD');
 		$output[ '_JOMRES_BOOKING_NUMBER' ] = jr_gettext('_JOMRES_BOOKING_NUMBER', '_JOMRES_BOOKING_NUMBER');
 		
+		$output[ '_JOMRES_PDF_LINK' ] =  get_pdf_url();
+		$output[ '_JOMRES_PDF_BUTTON' ] = jr_gettext('_JOMRES_PDF_BUTTON', '_JOMRES_PDF_BUTTON');
+
 		if (isset($contractData['tag'])) {
 			$output[ 'BOOKING_NUMBER' ] = $contractData['tag'];
 		} else {
@@ -323,6 +328,11 @@ class j06005view_invoice
 			$tmpl->addRows('immediate_pay', $immediate_pay);
 		}
 
+		if ($as_pdf == 1) {
+			output_pdf($tmpl->getParsedTemplate() , $output[ 'HINVOICENO' ].' '.$output[ 'ID' ] );
+		}
+		
+		
 		if ($output_now) {
 			$tmpl->displayParsedTemplate();
 		} else {

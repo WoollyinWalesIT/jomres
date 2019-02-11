@@ -2399,3 +2399,6 @@ jr_define('_JOMRES_CUSTOM_INVOICE_NUMBERS_PATTERN_DESC', 'Configure the invoice 
 jr_define('_JOMRES_SURCHARGE_TITLE', 'Surcharge');
 jr_define('_JOMRES_SURCHARGE_DESC', 'An additional charge that will be added to the room when booked (calculated per day)');
 
+
+jr_define('_JOMRES_PDF_BUTTON', 'PDF');
+
