@@ -329,6 +329,7 @@ class j06005view_invoice
 		}
 
 		if ($as_pdf == 1) {
+			$tmpl->readTemplatesFromInput('frontend_view_invoice_pdf.html');
 			output_pdf($tmpl->getParsedTemplate() , $output[ 'HINVOICENO' ].' '.$output[ 'ID' ] );
 		}
 		
