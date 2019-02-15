@@ -15,25 +15,17 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 /**
-Outputs the pdf after having been handed the outputted template data
+Outputs the pdf after having been handed the outputted template data, or returns said PDF. Doesn't handle clean up of pdfs
 **/
 
-function output_pdf($tmpl , $title = '' )
+function output_pdf($tmpl , $title = '' , $return_pdf = false )
 {
 	if ($title == '' ) {
 		$title = get_showtime('sitename');
 	}
 	
 	// mPDF doesn't work with Bootstrap :(
-	/* $stylesheet = file_get_contents(JOMRES_ROOT_DIRECTORY.'/libraries/fullscreen_view/jomres_bootstrap_wrapper/css/jomres_bootstrap_wrapper.css');
-	$stylesheet .= file_get_contents(JOMRES_ROOT_DIRECTORY.'/assets/css/jomrescss_bootstrap3.css');
-	$stylesheet .= '
-	.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
-	border:0;
-	padding:0;
-	margin-left:-0.00001;
-	}'; */
-	
+
 	$stylesheet = '';
 	
 	$mpdf = new \Mpdf\Mpdf(['tempDir' =>JOMRES_MPDF_ABSPATH]);
@@ -42,8 +34,14 @@ function output_pdf($tmpl , $title = '' )
 	$mpdf->SetDisplayMode('fullpage');
 	$mpdf->WriteHTML($stylesheet,1);
 	$mpdf->WriteHTML($tmpl);
-	$mpdf->Output(str_replace(" ", "", $title.".pdf"), 'D');
-	exit;
+	
+	if (!$return_pdf) {
+		$mpdf->Output(str_replace(" ", "", $title.".pdf"), 'D');
+		exit;
+	} else {
+		return $mpdf->Output('', \Mpdf\Output\Destination::STRING_RETURN );
+	}
+	
 
 }
 
@@ -2214,7 +2212,7 @@ function dirmv($source, $dest, $overwrite = true, $funcloc = JRDS)
 } // end of dirmv()
 
 /*
-Allows us to work independantly of Joomla or Mambo's emailers
+Allows us to work independantly of Joomla, Wordpress or Mambo's emailers
 */
 function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode = 1, $attachments = array(), $debugging = true)
 {
@@ -2339,7 +2337,9 @@ function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode
 					case 'pdf':
 						$path = $attachment[ 'path' ];
 						$name = $attachment[ 'filename' ];
-						$mail->addAttachment($path, $name, 'base64', $type = 'application/pdf');
+						if (file_exists($path.$name)) {
+							$result = $mail->addAttachment($path.$name, $name, 'base64', $type = 'application/pdf');
+						}
 						break;
 					default:
 						$path = $attachment[ 'path' ];

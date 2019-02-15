@@ -35,6 +35,23 @@ class j06000terms
 			return;
 		}
 		$property_uid = intval(jomresGetParam($_REQUEST, 'property_uid', 0));
+		
+		if (isset($componentArgs['as_pdf'])) {
+			$as_pdf = (bool)$componentArgs['as_pdf'];
+		} elseif ( isset($_REQUEST['as_pdf']) ) {
+			$as_pdf = (bool)jomresGetParam($_REQUEST, 'as_pdf', false);
+		} else {
+			$as_pdf = false;
+		}
+		
+		if (isset($componentArgs['output_now'])) {
+			$output_now = (bool)$componentArgs['output_now'];
+		} elseif ( isset($_REQUEST['output_now']) ) {
+			$output_now = (bool)jomresGetParam($_REQUEST, 'output_now', false);
+		} else {
+			$output_now = false;
+		}
+		
 		$this->retVals = '';
 
 		$query = "SELECT property_policies_disclaimers FROM #__jomres_propertys WHERE propertys_uid = '".$property_uid."' LIMIT 1";
@@ -57,12 +74,22 @@ class j06000terms
 		$tmpl = new patTemplate();
 		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
 		$tmpl->addRows('property_deets', $property_deets);
-		$tmpl->readTemplatesFromInput('terms.html');
-		if (!isset($componentArgs['return_template'])) {
-			$tmpl->displayParsedTemplate();
+		
+		
+		if ($as_pdf) {
+			$tmpl->readTemplatesFromInput('terms_pdf.html');
+			$pdf = output_pdf($tmpl->getParsedTemplate() , $property[ 'HPOLICIESDISCLAIMERS' ] , true ); 
+			$this->retVals = $pdf;
 		} else {
-			$this->retVals = $tmpl->getParsedTemplate();
+			$tmpl->readTemplatesFromInput('terms.html');
+			if (!isset($componentArgs['return_template'])) {
+				$tmpl->displayParsedTemplate();
+			} else {
+				$this->retVals = $tmpl->getParsedTemplate();
+			}
 		}
+		
+
 	}
 
 /**

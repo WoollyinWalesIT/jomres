@@ -26,8 +26,7 @@ class j06005view_invoice
 			return;
 		}
 
-		$as_pdf = intval(jomresGetParam($_REQUEST, 'as_pdf', 0));
-
+		
 		$invoice_id = intval(jomresGetParam($_REQUEST, 'id', 0));
 		$popup = intval(jomresGetParam($_REQUEST, 'popup', 0));
 		$bypass_security_check = false;
@@ -49,6 +48,15 @@ class j06005view_invoice
 		if ($invoice_id == 0) { //no invoice id passed, so nothing to display
 			return;
 		}
+		
+		if (isset($componentArgs['as_pdf'])) {
+			$as_pdf = (bool)$componentArgs['as_pdf'];
+		} elseif ( isset($_REQUEST['as_pdf']) ) {
+			$as_pdf = (bool)jomresGetParam($_REQUEST, 'as_pdf', false);
+		} else {
+			$as_pdf = false;
+		}
+		
 		
 		if (isset($componentArgs['line_items_only'])) {
 			$line_items_only = $componentArgs['line_items_only'];
@@ -328,7 +336,7 @@ class j06005view_invoice
 			$tmpl->addRows('immediate_pay', $immediate_pay);
 		}
 
-		if ($as_pdf == 1) {
+		if ($as_pdf) {
 			$tmpl->readTemplatesFromInput('frontend_view_invoice_pdf.html');
 			output_pdf($tmpl->getParsedTemplate() , $output[ 'HINVOICENO' ].' '.$output[ 'ID' ] );
 		}
