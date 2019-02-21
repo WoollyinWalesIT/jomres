@@ -35,7 +35,9 @@ function output_pdf($tmpl , $title = '' , $return_pdf = false )
 	$mpdf->WriteHTML($stylesheet,1);
 	$mpdf->WriteHTML($tmpl);
 	
+	ob_clean();
 	if (!$return_pdf) {
+		
 		$mpdf->Output(str_replace(" ", "", $title.".pdf"), 'D');
 		exit;
 	} else {
