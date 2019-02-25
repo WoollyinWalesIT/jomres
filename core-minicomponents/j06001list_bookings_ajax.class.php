@@ -92,10 +92,22 @@ class j06001list_bookings_ajax
 		 */
 		$sWhere = '';
 		$search = jomresGetParam($_GET, 'jr_search', array());
-		if (isset($search['value']) && $search['value'] != '') {
+/* 		if (isset($search['value']) && $search['value'] != '') {
 			$sWhere = 'AND (';
 			for ($i = 0; $i < $n; ++$i) {
 				$sWhere .= ''.$aColumns[$i]." LIKE '%".$search['value']."%' OR ";
+			}
+			$sWhere = rtrim($sWhere, ' OR ');
+			$sWhere .= ')';
+			
+		} */
+		
+		$guest_matches = search_property_guests_by_string( $search['value'] , $defaultProperty , $thisJRUser->id , $show_all );
+		if ( isset($guest_matches['guest_uids']) && !empty($guest_matches['guest_uids'])) {
+			$sWhere = 'AND (';
+			$count = count($guest_matches['guest_uids']);
+			for ($i = 0; $i < $count; ++$i) {
+				$sWhere .= "b.guests_uid = '".$guest_matches['guest_uids'][$i]."' OR ";
 			}
 			$sWhere = rtrim($sWhere, ' OR ');
 			$sWhere .= ')';
@@ -173,6 +185,7 @@ class j06001list_bookings_ajax
 						a.property_uid,
 						a.approved,
 						a.last_changed,
+						b.guests_uid,
 						b.enc_firstname, 
 						b.enc_surname, 
 						b.enc_tel_landline, 
