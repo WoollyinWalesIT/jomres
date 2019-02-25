@@ -42,6 +42,8 @@ class j06000show_property_room_types
 			$property_uid = (int)jomresGetParam($_REQUEST, 'property_uid', 0);
 		}
 		
+		$this->property_uid = $property_uid;
+		
 		if ($property_uid == 0) {
 			return;
 		}
@@ -186,9 +188,8 @@ class j06000show_property_room_types
 	
 	private function get_nett_price($price)
 	{
-		$mrConfig = getPropertySpecificSettings($property_uid);
+		$mrConfig = getPropertySpecificSettings($this->property_uid);
 		if ($mrConfig[ 'prices_inclusive' ] == 1) {
-			$mrConfig = getPropertySpecificSettings($this->property_uid);
 			
 			$jrportal_taxrate = jomres_singleton_abstract::getInstance('jrportal_taxrate');
 			$cfgcode = $mrConfig[ 'accommodation_tax_code' ];
