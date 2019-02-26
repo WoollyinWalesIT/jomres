@@ -51,9 +51,9 @@ class j06002edit_room_type
 
 		$output[ 'ROOMCLASSUID' ] = $room_classes_uid;
 		if (isset($jomres_room_types->property_specific_room_type[$property_uid][$room_classes_uid])) {
-			$output[ 'CLASSABBV' ] = stripslashes($jomres_room_types->property_specific_room_type[$property_uid][$room_classes_uid]['room_class_abbv']);
+			$output[ 'CLASSABBV' ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$room_classes_uid  ,stripslashes($jomres_room_types->property_specific_room_type[$property_uid][$room_classes_uid]['room_class_abbv']) , false , false );
 			$image = $jomres_room_types->property_specific_room_type[$property_uid][$room_classes_uid]['image'];
-			$output[ 'CLASSDESC' ] = $jomres_room_types->property_specific_room_type[$property_uid][$room_classes_uid]['room_class_full_desc'];
+			$output[ 'CLASSDESC' ] =jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int)$room_classes_uid  , $jomres_room_types->property_specific_room_type[$property_uid][$room_classes_uid]['room_class_full_desc'] , false , false );
 		} else {
 			$output[ 'CLASSABBV' ] = '';
 			$output[ 'CLASSDESC' ] = '';
