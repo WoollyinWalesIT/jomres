@@ -81,10 +81,21 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
 		$br = '<br />';
 	}
 
-	if (isset($customTextObj->global_custom_text[$jomres_language_definitions->ptype][$theConstant])) {
-		$theText = $customTextObj->global_custom_text[$jomres_language_definitions->ptype][$theConstant];
-	} elseif (isset($customTextObj->global_custom_text['0'][$theConstant])) {
-		$theText = $customTextObj->global_custom_text['0'][$theConstant];
+	if ($jrConfig[ 'prioritise_sitewide_label_definitions' ] == "1") {
+		if (isset($customTextObj->global_custom_text[$jomres_language_definitions->ptype][$theConstant])) {
+			$theText = $customTextObj->global_custom_text[$jomres_language_definitions->ptype][$theConstant];
+		} elseif (isset($customTextObj->global_custom_text['0'][$theConstant])) {
+			$theText = $customTextObj->global_custom_text['0'][$theConstant];
+		} else {
+			if (!isset($customTextObj->properties_custom_text[$property_uid])) {
+				$customTextObj->get_custom_text_for_property($property_uid);
+			}
+			if (isset($customTextObj->properties_custom_text[$property_uid][$theConstant])) {
+				$theText = $customTextObj->properties_custom_text[$property_uid][$theConstant];
+			} else {
+				$theText = jr_get_defined($theConstant, $theValue);
+			}
+		}
 	} else {
 		if (!isset($customTextObj->properties_custom_text[$property_uid])) {
 			$customTextObj->get_custom_text_for_property($property_uid);
@@ -92,9 +103,22 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
 		if (isset($customTextObj->properties_custom_text[$property_uid][$theConstant])) {
 			$theText = $customTextObj->properties_custom_text[$property_uid][$theConstant];
 		} else {
-			$theText = jr_get_defined($theConstant, $theValue);
+			if (isset($customTextObj->global_custom_text[$jomres_language_definitions->ptype][$theConstant])) {
+				$theText = $customTextObj->global_custom_text[$jomres_language_definitions->ptype][$theConstant];
+			} else {
+				if (isset($customTextObj->global_custom_text['0'][$theConstant])) {
+					$theText = $customTextObj->global_custom_text['0'][$theConstant];
+				} else {
+					$theText = jr_get_defined($theConstant, $theValue);
+				}
+			}
 		}
 	}
+	
+
+	
+	
+
 	
 	$theText = jomres_decode($theText);
 

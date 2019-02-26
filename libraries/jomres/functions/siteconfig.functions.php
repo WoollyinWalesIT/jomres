@@ -341,6 +341,9 @@ function showSiteConfig()
 
 	$lists[ 'enable_gdpr_compliant_fucntionality' ] = jomresHTML::selectList($yesno, 'cfg_enable_gdpr_compliant_fucntionality', 'class="inputbox" size="1"', 'value', 'text', (int) $jrConfig[ 'enable_gdpr_compliant_fucntionality' ]);
 	
+	
+	$lists[ 'prioritise_sitewide_label_definitions' ] = jomresHTML::selectList($yesno, 'cfg_prioritise_sitewide_label_definitions', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'prioritise_sitewide_label_definitions' ]);
+	
 	$componentArgs = array();
 	$componentArgs[ 'lists' ] = $lists;
 	$componentArgs[ 'jsInputFormatDropdownList' ] = $jsInputFormatDropdownList;

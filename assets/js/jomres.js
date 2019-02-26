@@ -26,6 +26,11 @@ jomresJquery(document).ready(function () {
 			return this.fadeOut();
 		}
 	}
+	
+  jomresJquery.fn.editableform.buttons  = ''+
+      '<button type="submit" class="btn btn-primary editable-submit"><i class="fa fa-check"></i></button>'+
+      '<button type="button" class="btn editable-cancel"><i class="fa fa-window-close"></i></button>';
+	  
 });
 
 function Block_Error() {
