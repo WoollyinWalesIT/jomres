@@ -1,3 +1,25 @@
+<h3>Jomres 9.17.0 26/02/2019</h3>
+
+<span class="label label-success">Feature</span> Invoices can now be exported as PDF files. 
+<span class="label label-success">Feature</span> Terms and conditions are automatically converted to PDF and added to booking confirmation emails. 
+
+<span class="label label-warning">Change</span> Updated currency codes, using CUC instead of CUP as this is more relevant to travellers.
+<span class="label label-warning">Change</span> Modified admin area stats so that pending invoice payment bookings are counted when generating stats because some users do not mark invoices as paid.
+<span class="label label-warning">Change</span> Added classic-loader.gif to assets css dir.
+<span class="label label-warning">Change</span> Improved property bookings list by including custom invoice numbers where appropriate in the invoice id column.
+<span class="label label-warning">Change</span> Improved functionality where if review functionality is disabled, reviews button isn't shown in guest bookings list.
+<span class="label label-warning">Change</span> Added gatekeeping to check for visitors allowed to book online when feature disabled.
+<span class="label label-warning">Change</span> Bootstrap 3 version updated.
+<span class="label label-warning">Change</span> Improved room type functionality so that it uses custom text strings.
+<span class="label label-warning">Change</span> Improved custom text handling. Added a site config option that allows you to choose which custom text should have priority if there is a definition for both individual properties and site-wide. Defaults to giving property strings priority. Improved buttons in inline editing to use font awesome classes.
+
+<span class="label label-important label-danger">Fix</span> Implemented functionality that should fix the "can't filter by guest name in list bookings and list invoices pages" problems.
+<span class="label label-important label-danger">Fix</span> Fixed a couple of minor notices.
+<span class="label label-important label-danger">Fix</span> Resolved an issue where one installation wouldn't fire the correct task (save_property)
+<span class="label label-important label-danger">Fix</span> Fixed error when saving account details for the first time 
+<span class="label label-important label-danger">Fix</span> Fixed disabled wiseprice note adding to booking when plugin not installed/used. 
+
+
 <h3>Jomres 9.16.1 18/01/2019</h3>
 
 <span class="label label-success">Feature</span> Added functionality to show new surcharges in the Show Room and Booking form pages.
