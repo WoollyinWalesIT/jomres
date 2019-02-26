@@ -2061,7 +2061,7 @@ jr_define( '_JOMRES_GDPR_MY_DATA_DOWNLOAD_TEXT', 'Je kunt alle persoonlijk ident
 jr_define( '_JOMRES_GDPR_MY_DATA_DOWNLOAD_BUTTON', 'Download nu' );
 
 jr_define( '_JOMRES_GDPR_MY_RTBF_LEAD', 'Recht om te worden vergeten (RTBF)' );
-jr_define( '_JOMRES_GDPR_MY_RTBF_INTRO', 'We zijn van mening dat u <a href="https://gdpr-info.eu/art-17-gdpr/" target="_blank">verwijder</a> uw <a href="https://gdpr-info.eu/art-4-gdpr/" target="_blank">persoonlijk identificeerbare informatie </a>als je dat wilt en als het praktisch uitvoerbaar is. ' );
+jr_define( '_JOMRES_GDPR_MY_RTBF_INTRO', 'We zijn van mening dat u uw <a href="https://gdpr-info.eu/art-4-gdpr/" target="_blank">persoonlijk identificeerbare informatie </a><a href="https://gdpr-info.eu/art-17-gdpr/" target="_blank">kan verwijderen</a>als u dat wilt en als het praktisch uitvoerbaar is. ' );
 jr_define( '_JOMRES_GDPR_MY_RTBF_NOTREGISTERED_OPTEDIN', 'U bent niet geregistreerd op deze site. Uw algemene locatie (land) en IP-nummer worden maximaal 24 uur opgeslagen en vervolgens verwijderd.' );
 jr_define( '_JOMRES_GDPR_MY_RTBF_NOTREGISTERED_OPTEDOUT', 'U bent niet geregistreerd op deze site en u hebt zich afgemeld voor het verzamelen van gegevens. We hebben uw PII niet opgeslagen.' );
 
