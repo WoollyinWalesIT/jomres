@@ -3,7 +3,7 @@ Contributors: jomres
 Tags: Booking, booking calendar, events, hotel, hotels, calendar, motel, motels, booking system, booking portal, room booking, online booking software, booking engine, online reservation, online reservation system, reservation system, reservation widget, hotel booking, villa booking, villa rentals, accommodation, reservation, reserve room, availability, availability calendar, bed and breakfast, booking form, booking enquiry, web booking, reservation plugin, holiday apartments, holiday rentals, apartment rentals, cottage rental, b&b, tool hire, ecommerce, shop, store, ajax, gallery, slideshow, portal, twitter, online booking system, tours, api, json, REST, rest-api, webhooks
 Donate link: https://www.jomres.net
 Requires at least: 4.3.1
-Tested up to: 4.9.4
+Tested up to: 5.1
 Stable tag: trunk
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
