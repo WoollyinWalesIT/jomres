@@ -157,13 +157,13 @@ class j00004a_init_javascript_css_files
 		}
 
 		if (!using_bootstrap()) {
-			if ($thisJRUser->userIsManager || jomres_cmsspecific_areweinadminarea()) {
+			//if ($thisJRUser->userIsManager || jomres_cmsspecific_areweinadminarea()) {
 				$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/jqueryui-editable/js/', 'jqueryui-editable.min.js');
 				$css_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/jqueryui-editable/css/', 'jqueryui-editable.css');
-			}
+			//}
 			$javascript_files[] = array(JOMRES_JS_RELPATH, 'jquery.bt.js');
 		} else {
-			if ($thisJRUser->userIsManager || jomres_cmsspecific_areweinadminarea()) {
+			//if ($thisJRUser->userIsManager || jomres_cmsspecific_areweinadminarea()) {
 				$tail = jomres_bootstrap_version();
 				if ($tail == '4' ) {
 					$javascript_files[] = array(JOMRES_JS_RELPATH , 'bootstrap4-editable.js');
@@ -180,7 +180,7 @@ class j00004a_init_javascript_css_files
 					$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap'.$tail.'-editable/js/', 'bootstrap-editable.min.js');
 					$css_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap'.$tail.'-editable/css/', 'bootstrap-editable.css');
 					}
-				}
+				//}
 			}
 
 		if (get_showtime('task') == 'media_centre' || jomresGetParam($_REQUEST, 'task', '') == 'media_centre') {
