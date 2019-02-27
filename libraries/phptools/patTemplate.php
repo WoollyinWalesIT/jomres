@@ -852,13 +852,27 @@ class patTemplate
 				}
 			}
 		$pageURL .= "://";
-		if ( $_SERVER[ "SERVER_PORT" ] != "80" )
+		
+		
+		if (!isset($_SERVER[ "SERVER_PORT" ])) { // CLI not isset variable fix
+			$SERVER_PORT = '80';
+		} else {
+			$SERVER_PORT = $_SERVER[ "SERVER_PORT" ];
+		}
+		
+		if (!isset($_SERVER[ "SERVER_NAME" ])) { // CLI not isset variable fix
+			$SERVER_NAME = 'CLI';
+		} else {
+			$SERVER_NAME = $_SERVER[ "SERVER_NAME" ];
+		}
+		
+		if ( $SERVER_PORT != "80" )
 			{
-			$pageURL .= $_SERVER[ "SERVER_NAME" ] . ":" . $_SERVER[ "SERVER_PORT" ] . $_SERVER[ "REQUEST_URI" ];
+			$pageURL .= $SERVER_NAME . ":" . $SERVER_PORT . $_SERVER[ "REQUEST_URI" ];
 			}
 		else
 			{
-			$pageURL .= $_SERVER[ "SERVER_NAME" ] . $_SERVER[ "REQUEST_URI" ];
+			$pageURL .= $SERVER_NAME . $_SERVER[ "REQUEST_URI" ];
 			}
 
 		return $pageURL;

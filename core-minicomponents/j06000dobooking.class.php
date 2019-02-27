@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.16.1
+ * @version Jomres 9.17.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -29,6 +29,10 @@ class j06000dobooking
 		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 		
 		$mrConfig = getPropertySpecificSettings();
+
+		if ( $mrConfig[ 'visitorscanbookonline' ] == '0' && $thisJRUser->userIsManager != true ) {
+			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=contactowner&amp;selectedProperty='.get_showtime('property_uid') ) );
+		}
 
 		if ($thisJRUser->userIsManager) {
 			$MiniComponents->triggerEvent('05020');

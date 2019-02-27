@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.16.1
+ * @version Jomres 9.17.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -51,8 +51,8 @@ class j06001list_bookings_ajax
 
 		$rows = array();
 
-		//set the table coulmns, in the exact orcer in which they`re displayed in the table
-		$aColumns = array('a.contract_uid', 'a.contract_uid', 'a.tag', 'a.property_uid', 'a.arrival', 'a.departure', 'b.enc_firstname', 'b.enc_surname', 'b.enc_tel_landline', 'b.enc_tel_mobile', 'b.enc_email', 'a.contract_total', 'a.deposit_required', 'a.deposit_paid', 'a.special_reqs', 'a.invoice_uid', 'a.timestamp', 'a.last_changed', 'a.approved', 'a.username');
+		//set the table columns, in the exact orcer in which they`re displayed in the table
+		$aColumns = array('a.contract_uid', 'a.contract_uid', 'a.tag', 'a.property_uid', 'a.arrival', 'a.departure', 'b.enc_firstname', 'b.enc_surname', 'b.enc_tel_landline', 'b.enc_tel_mobile', 'b.enc_email', 'a.contract_total', 'a.deposit_required', 'a.deposit_paid', 'a.special_reqs', 'a.invoice_uid', 'a.timestamp', 'a.last_changed', 'a.approved', 'a.username', 'c.invoice_number');
 
 		//set columns count
 		$n = count($aColumns);
@@ -92,10 +92,22 @@ class j06001list_bookings_ajax
 		 */
 		$sWhere = '';
 		$search = jomresGetParam($_GET, 'jr_search', array());
-		if (isset($search['value']) && $search['value'] != '') {
+/* 		if (isset($search['value']) && $search['value'] != '') {
 			$sWhere = 'AND (';
 			for ($i = 0; $i < $n; ++$i) {
 				$sWhere .= ''.$aColumns[$i]." LIKE '%".$search['value']."%' OR ";
+			}
+			$sWhere = rtrim($sWhere, ' OR ');
+			$sWhere .= ')';
+			
+		} */
+		
+		$guest_matches = search_property_guests_by_string( $search['value'] , $defaultProperty , $thisJRUser->id , $show_all );
+		if ( isset($guest_matches['guest_uids']) && !empty($guest_matches['guest_uids'])) {
+			$sWhere = 'AND (';
+			$count = count($guest_matches['guest_uids']);
+			for ($i = 0; $i < $count; ++$i) {
+				$sWhere .= "b.guests_uid = '".$guest_matches['guest_uids'][$i]."' OR ";
 			}
 			$sWhere = rtrim($sWhere, ' OR ');
 			$sWhere .= ')';
@@ -173,13 +185,16 @@ class j06001list_bookings_ajax
 						a.property_uid,
 						a.approved,
 						a.last_changed,
+						b.guests_uid,
 						b.enc_firstname, 
 						b.enc_surname, 
 						b.enc_tel_landline, 
 						b.enc_tel_mobile, 
-						b.enc_email
+						b.enc_email,
+						c.invoice_number
 					FROM #__jomres_contracts a 
-						LEFT JOIN #__jomres_guests b ON a.guest_uid = b.guests_uid '
+						LEFT JOIN #__jomres_guests b ON a.guest_uid = b.guests_uid 
+						LEFT JOIN #__jomresportal_invoices c ON a.invoice_uid  = c.id  '
 					.$clause
 					.' '.$sWhere
 					.' '.$sOrder
@@ -341,7 +356,12 @@ class j06001list_bookings_ajax
 			}
 
 			$r[] = jomres_decode($p->special_reqs);
-			$r[] = $p->invoice_uid;
+			if ($p->invoice_number != '' ) {
+				$r[] = $p->invoice_number;
+			} else {
+				$r[] = $p->invoice_uid;
+			}
+			
 			$r[] = $p->timestamp;
 			$r[] = $p->last_changed;
 

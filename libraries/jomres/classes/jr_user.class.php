@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.16.1
+ * @version Jomres 9.17.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -184,9 +184,16 @@ class jr_user
 					$this->params = json_decode($r->params, true);
 				}
 			}
-		} else { // Registered user has no row in guest profile table. Some things, such as widgets on the dashboard, require a row in this table, and it'll fail with a silly error if the user tries to select a widget without it. As a result, we'll create a record in the profile table for this user, to get  us around this problem.
-			$query = "INSERT INTO #__jomres_guest_profile (`cms_user_id`) VALUES ( '".(int) $this->id."' )";
-			doInsertSql($query , '' );
+		} else { 
+		
+			// 14th June 2018
+			// Registered user has no row in guest profile table. Some things, such as widgets on the dashboard, require a row in this table, and it'll fail with a silly error if the user tries to select a widget without it. As a result, we'll create a record in the profile table for this user, to get  us around this problem.
+		
+			// 27th Feb 2019
+			// This section of code was creating problems where multiple profile records would be being created preventing bookings from going ahead. Disabled for now. It shouldn't, but it did.
+			
+			/* $query = "INSERT INTO #__jomres_guest_profile (`cms_user_id`) VALUES ( '".(int) $this->id."' )";
+			doInsertSql($query , '' ); */
 		}
 		
 		$this->jomres_encryption = null;

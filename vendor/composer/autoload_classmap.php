@@ -6,7 +6,13 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'FPDF_TPL' => $vendorDir . '/setasign/fpdi/fpdf_tpl.php',
+    'FPDI' => $vendorDir . '/setasign/fpdi/fpdi.php',
+    'FilterASCII85' => $vendorDir . '/setasign/fpdi/filters/FilterASCII85.php',
+    'FilterASCIIHexDecode' => $vendorDir . '/setasign/fpdi/filters/FilterASCIIHexDecode.php',
+    'FilterLZW' => $vendorDir . '/setasign/fpdi/filters/FilterLZW.php',
     'XMLSchema' => $vendorDir . '/fergusean/nusoap/lib/class.xmlschema.php',
+    'fpdi_pdf_parser' => $vendorDir . '/setasign/fpdi/fpdi_pdf_parser.php',
     'nusoap_base' => $vendorDir . '/fergusean/nusoap/lib/class.nusoap_base.php',
     'nusoap_client' => $vendorDir . '/fergusean/nusoap/lib/class.soapclient.php',
     'nusoap_client_mime' => $vendorDir . '/fergusean/nusoap/lib/nusoapmime.php',
@@ -17,6 +23,7 @@ return array(
     'nusoap_wsdlcache' => $vendorDir . '/fergusean/nusoap/lib/class.wsdlcache.php',
     'nusoap_xmlschema' => $vendorDir . '/fergusean/nusoap/lib/class.xmlschema.php',
     'nusoapservermime' => $vendorDir . '/fergusean/nusoap/lib/nusoapmime.php',
+    'pdf_context' => $vendorDir . '/setasign/fpdi/pdf_context.php',
     'soap_fault' => $vendorDir . '/fergusean/nusoap/lib/class.soap_fault.php',
     'soap_parser' => $vendorDir . '/fergusean/nusoap/lib/class.soap_parser.php',
     'soap_server' => $vendorDir . '/fergusean/nusoap/lib/class.soap_server.php',

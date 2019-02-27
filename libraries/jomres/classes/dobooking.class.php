@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.16.1
+ * @version Jomres 9.17.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -242,6 +242,13 @@ class dobooking
 			if (isset($bookingDeets[ 'thirdparty_vars' ])) {
 				$this->thirdparty_vars = $bookingDeets[ 'thirdparty_vars' ];
 			}
+			
+			$MiniComponents = jomres_getSingleton('mcHandler');
+			$this->wiseprice_installed = false;
+			if (isset( $MiniComponents->registeredClasses['00501']['xwiseprice'])) { // A check to see if the wiseprice config tab plugin is installed. If it is not, we will not use the setting elsewhere in the engine
+				$this->wiseprice_installed = true;
+			}
+				
 		}
 
 		$dbdata = serialize($bookingDeets);
@@ -6314,12 +6321,16 @@ class dobooking
 					$tmpBookingHandler->updateBookingField('wisepricediscount', $discountOutput);
 					$this->discounts[ ] = array('type' => 'MRP', 'roomtypeabbr' => $roomtype_abbr, 'discountfrom' => $roomrate, 'discountto' => $d[ 'discountedRate' ]);
 				} else {
-					$tmpBookingHandler->updateBookingField('wisepricediscount', jr_gettext('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', '_JOMCOMP_WISEPRICE_NOTDISCOUNTED', false));
+					if ($this->wiseprice_installed) {
+						$tmpBookingHandler->updateBookingField('wisepricediscount', jr_gettext('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', '_JOMCOMP_WISEPRICE_NOTDISCOUNTED', false));
+					}
 				}
 			}
 			$tmpBookingHandler->updateBookingField('discounts', $this->discounts);
 		} else {
-			$tmpBookingHandler->updateBookingField('wisepricediscount', jr_gettext('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', '_JOMCOMP_WISEPRICE_NOTDISCOUNTED', false));
+			if ($this->wiseprice_installed) {
+				$tmpBookingHandler->updateBookingField('wisepricediscount', jr_gettext('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', '_JOMCOMP_WISEPRICE_NOTDISCOUNTED', false));
+			}
 			$this->echo_populate_div('; populateDiv("discount","")');
 		}
 		$this->echo_populate_div('; populateDiv("discount","'.$discountOutput.'")');

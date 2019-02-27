@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.16.1
+ * @version Jomres 9.17.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -102,12 +102,24 @@ class j06005mulistbookings
 						$r[ 'VIEWLINK_TEXT' ] = jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING', '_JOMCOMP_MYUSER_VIEWBOOKING', $editable = false, $isLink = true);
 						$r[ 'PROPERTYDETAILSLINK' ] = get_property_details_url($c->property_uid);
 						
-						if ( !in_array($c->contract_uid , $reviewed_contracts ) ) {
-							$r[ 'REVIEWLINK' ] = JOMRES_SITEPAGE_URL.'&task=add_review&property_uid='.$c->property_uid.'&contract_uid='.$c->contract_uid;
-							$r[ 'REVIEWLINK_TEXT' ] = jr_gettext('_JOMRES_REVIEWS_ADD_REVIEW', '_JOMRES_REVIEWS_ADD_REVIEW', $editable = false, $isLink = true);
-						} else {
-							$r[ 'REVIEWLINK' ] = JOMRES_SITEPAGE_URL.'&task=show_property_reviewed_contracts&property_uid='.$c->property_uid;
-							$r[ 'REVIEWLINK_TEXT' ] = jr_gettext('_JOMRES_REVIEWS_CLICKTOSHOW', '_JOMRES_REVIEWS_CLICKTOSHOW', $editable = false, $isLink = true);
+						$r['REVIEW_BUTTON'] = '';
+						if ((int) $jrConfig[ 'use_reviews' ] == 1) {
+							$o = array();
+							$p = array();
+							
+							if ( !in_array($c->contract_uid , $reviewed_contracts ) ) {
+								$o[ 'REVIEWLINK' ] = JOMRES_SITEPAGE_URL.'&task=add_review&property_uid='.$c->property_uid.'&contract_uid='.$c->contract_uid;
+								$o[ 'REVIEWLINK_TEXT' ] = jr_gettext('_JOMRES_REVIEWS_ADD_REVIEW', '_JOMRES_REVIEWS_ADD_REVIEW', $editable = false, $isLink = true);
+							} else {
+								$o[ 'REVIEWLINK' ] = JOMRES_SITEPAGE_URL.'&task=show_property_reviewed_contracts&property_uid='.$c->property_uid;
+								$o[ 'REVIEWLINK_TEXT' ] = jr_gettext('_JOMRES_REVIEWS_CLICKTOSHOW', '_JOMRES_REVIEWS_CLICKTOSHOW', $editable = false, $isLink = true);
+							}
+							$p[]=$o;
+							$tmpl = new patTemplate();
+							$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+							$tmpl->addRows('pageoutput', $p);
+							$tmpl->readTemplatesFromInput('review_button.html');
+							$r['REVIEW_BUTTON'] =$tmpl->getParsedTemplate();
 						}
 
 						if ( isset($_REQUEST['unreviewed']) && !in_array($c->contract_uid , $reviewed_contracts ) ) {

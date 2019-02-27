@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.16.1
+ * @version Jomres 9.17.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -116,6 +116,7 @@ class j06000viewproperty
 		
 		$ui_calendar_requested_year = '';
 		$ui_calendar_requested_month = '';
+		$ui_calendar_requested_day = '';
 		
 		if ( isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] ) && $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] != '' ) {
 			$bang = explode("/" , $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate']);

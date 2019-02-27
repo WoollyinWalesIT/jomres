@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.16.1
+ * @version Jomres 9.17.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,9 +16,170 @@ defined('_JOMRES_INITCHECK') or die('');
 
 
 /**
+
+Search properties for guests with details LIKE the string 
+
+Return an array of guest ids that match string.
+
+Encryption functionality has broken the datatables functionality that allowed us to search by guest details (name, email etc). We need to search guest details, find those that match "string" and return those ids to the list bookings and list invoices ajax tasks (and maybe others too).
+
+$string : The string we are searching on. If '' (blank) then return an empty array.
+$property_uid : The specific property we are searching on. If set to 0 then that's all properties that this manager is a manager for.
+$manager_id : show_all is 1 and manager id is > 0 then we'll search all properties that the manager is a manager of. If the manager is a super manager, then we'll search all properties in the system.
+
+The function has been kept self-contained (doesn't use thisJRUser object, which is set during a run, is to allow other features, such as the REST API to potentially use it)
+We will return two arrays, first array will be an array of guest uids only. Second array is the same guest details plus the unencrypted data. We're unencrypting here anyway to search for the string, so we might as well hand that data back so that calling function/methods don't need to recreate that data 
+
+**/
+
+function search_property_guests_by_string($string = '' , $property_uid = 0 , $manager_id = 0 , $show_all = 0)
+	{
+	if (trim($string) == '' ) {
+		return array();
+	}
+
+	jr_import('jomres_encryption');
+	$jomres_encryption = new jomres_encryption();
+	
+	$show_all = (int)$show_all;
+	
+	$query = 'SELECT `access_level` FROM #__jomres_managers WHERE `userid` = ' .(int) $manager_id.' LIMIT 1 ';
+	$manager_access_level = doSelectSql($query , 1 );
+	
+	if ($manager_access_level >= 90 ) {
+		$authorisedProperties = get_showtime('all_properties_in_system');
+	} else {
+		$authorisedProperties = array();
+		
+		$query = 'SELECT `property_uid` FROM #__jomres_managers_propertys_xref WHERE `manager_id` = '.(int) $manager_id;
+		$managersToPropertyList = doSelectSql($query);
+
+		if (!empty($managersToPropertyList)) {
+			foreach ($managersToPropertyList as $x) {
+				$authorisedProperties[] = $x->property_uid;
+			}
+		}
+	}
+
+	if ( ! in_array($property_uid,$authorisedProperties) || empty($authorisedProperties) ) {
+		return array();
+	}
+	
+	if ( (int)$show_all == 1 && (int)$manager_id > 0 ) {
+		$sWhere = ' WHERE property_uid IN ('.jomres_implode($authorisedProperties).') ';
+	} else {
+		$sWhere = " WHERE property_uid = '".(int) $property_uid."' ";
+	}
+	
+	$query = 'SELECT 
+				guests_uid,
+				enc_firstname, 
+				enc_surname, 
+				enc_house,
+				enc_street,
+				enc_town,
+				enc_county,
+				enc_country,
+				enc_postcode,
+				enc_tel_landline, 
+				enc_tel_mobile, 
+				enc_email
+				FROM #__jomres_guests'
+					.$sWhere;
+		$jomresGuestList = doSelectSql($query);
+		
+		if (empty($jomresGuestList)) {
+			return array();
+		}
+		
+		// Now we'll decrypt the guest information and put the results into an array, then search them afterwards
+		$all_guests = array();
+		$count = count($jomresGuestList);
+		for ($i=0;$i<$count;$i++) {
+			$guest_data = $jomresGuestList[$i];
+			$guests_uid = $jomresGuestList[$i]->guests_uid;
+			$all_guests[]= array (
+				'guests_uid' => $jomresGuestList[$i]->guests_uid,
+				'firstname' => jomres_decode($jomres_encryption->decrypt($jomresGuestList[$i]->enc_firstname)),
+				'surname' => jomres_decode($jomres_encryption->decrypt($jomresGuestList[$i]->enc_surname)),
+				'house' => jomres_decode($jomres_encryption->decrypt($jomresGuestList[$i]->enc_house)),
+				'street' => jomres_decode($jomres_encryption->decrypt($jomresGuestList[$i]->enc_street)),
+				'town' => jomres_decode($jomres_encryption->decrypt($jomresGuestList[$i]->enc_town)),
+				'county' => find_region_name(jomres_decode($jomres_encryption->decrypt($jomresGuestList[$i]->enc_county))),
+				'country' => getSimpleCountry(jomres_decode($jomres_encryption->decrypt($jomresGuestList[$i]->enc_country))),
+				'postcode' => jomres_decode($jomres_encryption->decrypt($jomresGuestList[$i]->enc_postcode)),
+				'tel_landline' => jomres_decode($jomres_encryption->decrypt($jomresGuestList[$i]->enc_tel_landline)),
+				'tel_mobile' => jomres_decode($jomres_encryption->decrypt($jomresGuestList[$i]->enc_tel_mobile)),
+				'email' => jomres_decode($jomres_encryption->decrypt($jomresGuestList[$i]->enc_email))
+				);
+		}
+
+		$matches = array ();
+		
+		$count = count($all_guests);
+		for ($i=0;$i<$count;$i++) {
+			$guest = $all_guests[$i];
+			foreach ($guest as $column_name => $content ) {
+				if ($column_name != 'guests_uid') {
+					if( preg_match( "/$string/" , $content) ){
+						$matches[$guest['guests_uid']] = $all_guests[$i];
+						$guest_uids[] = $guest['guests_uid'];
+						break;
+					}
+				}
+			}
+		}
+
+		return array ( "matches" => $matches , "guest_uids" => $guest_uids);
+	}
+
+/**
+Outputs the pdf after having been handed the outputted template data, or returns said PDF. Doesn't handle clean up of pdfs
+**/
+
+function output_pdf($tmpl , $title = '' , $return_pdf = false )
+{
+	if ($title == '' ) {
+		$title = get_showtime('sitename');
+	}
+	
+	// mPDF doesn't work with Bootstrap :(
+
+	$stylesheet = '';
+	
+	$mpdf = new \Mpdf\Mpdf(['tempDir' =>JOMRES_MPDF_ABSPATH]);
+
+	$mpdf->SetTitle($title);
+	$mpdf->SetDisplayMode('fullpage');
+	$mpdf->WriteHTML($stylesheet,1);
+	$mpdf->WriteHTML($tmpl);
+	
+	ob_clean();
+	if (!$return_pdf) {
+		
+		$mpdf->Output(str_replace(" ", "", $title.".pdf"), 'D');
+		exit;
+	} else {
+		return $mpdf->Output('', \Mpdf\Output\Destination::STRING_RETURN );
+	}
+	
+
+}
+
+
+
+/**
+Adds as_pdf to url
+**/
+function get_pdf_url()
+{
+	$url = getCurrentUrl(true).'&tmpl='.get_showtime('tmplcomponent').'&popup=1&as_pdf=1';
+	return $url;
+}
+
+/**
 * When passed a username and password, return a response that confirms or denies that the login was successful. TFA not currently supported
 */
-
 function jomres_login_user($username = null , $password = null , $tfa = '' ) 
 {
 		$result = false;
@@ -2172,7 +2333,7 @@ function dirmv($source, $dest, $overwrite = true, $funcloc = JRDS)
 } // end of dirmv()
 
 /*
-Allows us to work independantly of Joomla or Mambo's emailers
+Allows us to work independantly of Joomla, Wordpress or Mambo's emailers
 */
 function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode = 1, $attachments = array(), $debugging = true)
 {
@@ -2297,7 +2458,9 @@ function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode
 					case 'pdf':
 						$path = $attachment[ 'path' ];
 						$name = $attachment[ 'filename' ];
-						$mail->addAttachment($path, $name, 'base64', $type = 'application/pdf');
+						if (file_exists($path.$name)) {
+							$result = $mail->addAttachment($path.$name, $name, 'base64', $type = 'application/pdf');
+						}
 						break;
 					default:
 						$path = $attachment[ 'path' ];
@@ -4035,7 +4198,12 @@ function updateCustomText($theConstant, $theValue, $audit = true, $property_uid 
  */
 function jomresGetDomain()
 {
-	$thisSvrName = $_SERVER[ 'SERVER_NAME' ];
+	if (!isset($_SERVER[ "SERVER_NAME" ])) {
+		$thisSvrName = 'CLI'; // Probably a CLI call if SERVER_NAME is not set in the global var
+	} else {
+		$thisSvrName = $_SERVER[ 'SERVER_NAME' ];
+	}
+	
 	$dmn = str_replace('http://', '', $thisSvrName);
 
 	//$domain=str_replace("www.","",$dmn);

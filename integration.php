@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.16.1
+ * @version Jomres 9.17.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -127,6 +127,9 @@ define('JOMRES_SESSIONS_ABSPATH', JOMRESPATH_BASE.'sessions'.JRDS);
 define('JOMRES_TEMP_ABSPATH', JOMRESPATH_BASE.'temp'.JRDS);
 define('JOMRES_CACHE_ABSPATH', JOMRESPATH_BASE.'cache'.JRDS);
 define('JOMRES_UPDATES_ABSPATH', JOMRESPATH_BASE.'updates'.JRDS);
+
+//mPDF
+define('JOMRES_MPDF_ABSPATH', JOMRES_TEMP_ABSPATH.'pdfs'.JRDS);
 
 //vendors
 define('JOMRES_VENDOR_ABSPATH', JOMRESPATH_BASE.'vendor'.JRDS);

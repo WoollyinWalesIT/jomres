@@ -2061,7 +2061,7 @@ jr_define( '_JOMRES_GDPR_MY_DATA_DOWNLOAD_TEXT', 'Je kunt alle persoonlijk ident
 jr_define( '_JOMRES_GDPR_MY_DATA_DOWNLOAD_BUTTON', 'Download nu' );
 
 jr_define( '_JOMRES_GDPR_MY_RTBF_LEAD', 'Recht om te worden vergeten (RTBF)' );
-jr_define( '_JOMRES_GDPR_MY_RTBF_INTRO', 'We zijn van mening dat u <a href="https://gdpr-info.eu/art-17-gdpr/" target="_blank">verwijder</a> uw <a href="https://gdpr-info.eu/art-4-gdpr/" target="_blank">persoonlijk identificeerbare informatie </a>als je dat wilt en als het praktisch uitvoerbaar is. ' );
+jr_define( '_JOMRES_GDPR_MY_RTBF_INTRO', 'We zijn van mening dat u uw <a href="https://gdpr-info.eu/art-4-gdpr/" target="_blank">persoonlijk identificeerbare informatie </a><a href="https://gdpr-info.eu/art-17-gdpr/" target="_blank">kan verwijderen</a>als u dat wilt en als het praktisch uitvoerbaar is. ' );
 jr_define( '_JOMRES_GDPR_MY_RTBF_NOTREGISTERED_OPTEDIN', 'U bent niet geregistreerd op deze site. Uw algemene locatie (land) en IP-nummer worden maximaal 24 uur opgeslagen en vervolgens verwijderd.' );
 jr_define( '_JOMRES_GDPR_MY_RTBF_NOTREGISTERED_OPTEDOUT', 'U bent niet geregistreerd op deze site en u hebt zich afgemeld voor het verzamelen van gegevens. We hebben uw PII niet opgeslagen.' );
 
@@ -2176,3 +2176,9 @@ jr_define('_JOMRES_CUSTOM_INVOICE_NUMBERS_PATTERN_DESC', 'Configure the invoice 
 jr_define('_JOMRES_SURCHARGE_TITLE', 'Surcharge');
 jr_define('_JOMRES_SURCHARGE_DESC', 'An additional charge that will be added to the room when booked (calculated per day)');
 
+
+jr_define('_JOMRES_PDF_BUTTON', 'PDF');
+
+
+jr_define('_JOMRES_COM_LABEL_PRIORITY_TITLE', 'Prioritise site-wide labels?');
+jr_define('_JOMRES_COM_LABEL_PRIORITY_DESC', 'Custom text saved in the label editing or the translate lang file strings pages are considered "site-wide" labels. Property managers can also customise labels for each property using the label editing feature in the frontend. This allows a property manager to have different texts for his property, which is useful if the property is different to all of the other properties on the site.<br/> When the system searches for label texts, it will prioritise site-wide texts over property specific texts meaning that if a site-wide text exists for that label, the system will choose that one first. If you set this option to No, the system will prioritise property specific texts over site-wide texts.');

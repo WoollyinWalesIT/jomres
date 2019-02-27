@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.16.1
+ * @version Jomres 9.17.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -37,6 +37,7 @@ class jomres_generic_booking_email
 
 		$mrConfig = getPropertySpecificSettings();
 
+		
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
@@ -46,6 +47,8 @@ class jomres_generic_booking_email
 
 		$current_contract_details = jomres_singleton_abstract::getInstance('basic_contract_details');
 		$current_contract_details->gather_data($contract_uid, $property_uid);
+
+		$this->property_uid = $property_uid;
 
 		//selected rooms/resources and tariff details
 		$this->data[$contract_uid]['ROOMS'] = '';
@@ -251,12 +254,29 @@ class jomres_generic_booking_email
 		$this->parsed_email['text'] = $tmpl->getParsedTemplate();
 
 		//attachments
+		
+		if (isset($this->property_uid) && (int)$this->property_uid > 0 ) {
+			$terms_pdf_name = "terms_and_conditions_".(int)$this->property_uid.".pdf";
+
+			if (!file_exists(JOMRES_MPDF_ABSPATH.JRDS.$terms_pdf_name )) {
+				$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+				$pdf = $MiniComponents->specificEvent('06000', 'terms', array('property_uid' => $this->property_uid , "as_pdf" => true , $output_now => false ));
+				file_put_contents(JOMRES_MPDF_ABSPATH.JRDS.$terms_pdf_name , $pdf );
+			}
+			
+			$terms_pdf = array('type' => 'pdf', 'path' => JOMRES_MPDF_ABSPATH, 'filename' => $terms_pdf_name);
+			$this->parsed_email['attachments'][] = $terms_pdf;
+		}
+		
 		$office_qr_code = array('type' => 'image', 'image_path' => $this->data[$contract_uid]['QR_CODE_OFFICE'][ 'absolute_path' ], 'CID' => 'qr_code_office');
 		$this->parsed_email['attachments'][] = $office_qr_code;
 
 		$map_qr_code = array('type' => 'image', 'image_path' => $this->data[$contract_uid]['QR_CODE_MAP'][ 'absolute_path' ], 'CID' => 'qr_code_map');
 		$this->parsed_email['attachments'][] = $map_qr_code;
+		
 
+		
+		
 		return true;
 	}
 }
