@@ -87,17 +87,14 @@ class j06000show_property_room_type
 		$jomres_media_centre_images->get_images($defaultProperty);
 		if (isset($jomres_media_centre_images->images [$resource_type] [$resource_id])) {
 			$images = $jomres_media_centre_images->images [$resource_type] [$resource_id];
+			$slideshow = $MiniComponents->specificEvent('01060', 'slideshow', array('images' => $images ));
+			$output['SLIDESHOW'] = $slideshow['slideshow'];
 		} else {
-			$images = array ( array(
-				"large" => $jomres_media_centre_images->multi_query_images['noimage-large'],
-				"medium" => $jomres_media_centre_images->multi_query_images['noimage-medium'],
-				"small" => $jomres_media_centre_images->multi_query_images['noimage-small']
-			) );
+			$output['SLIDESHOW'] = '';
 		}
 		
 		
-		$slideshow = $MiniComponents->specificEvent('01060', 'slideshow', array('images' => $images ));
-		$output['SLIDESHOW'] = $slideshow['slideshow'];
+
 		
 		$pageoutput[] = $output;
 		$tmpl = new patTemplate();
