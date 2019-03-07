@@ -166,7 +166,7 @@ class j06000show_property_room_types
 		$this->allPropertyTariffs = array();
 		
 		foreach ($tariffs as $t) {
-			$roomrate = $this->get_nett_price($t->roomrateperday);
+			$roomrate = $t->roomrateperday;
 			$this->allPropertyTariffs[ $t->roomclass_uid ][] = $roomrate;
 		}
 
