@@ -93,7 +93,13 @@ if (!defined('AJAXCALL')) {
 			define('AJAXCALL', false);
 		}
 	} else {
-		define('AJAXCALL', false);
+		$contentType = isset($_SERVER["HTTP_ACCEPT"]) ? trim($_SERVER["HTTP_ACCEPT"]) : '';
+		if( stristr($contentType, 'application/json') === TRUE ){
+			define('AJAXCALL', true);
+		}
+		else {
+			define('AJAXCALL', false);
+		}
 	}
 }
 
