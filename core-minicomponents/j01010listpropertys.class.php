@@ -748,9 +748,16 @@ class j01010listpropertys
 						foreach ($mcOutput as $key => $val) {
 							if (!is_null($val)) {
 								$result = array_merge($property_deets, $val);
+								if ($val['LASTMINUTE'] != null ) {
+									$result['DISCOUNT_OVERLAY'] = simple_template_output(JOMRES_TEMPLATEPATH_FRONTEND , 'last_minute_overlay.html' , $val['LASTMINUTE'] );
+								} else {
+									$result['DISCOUNT_OVERLAY'] = '';
+								}
 								$property_deets = $result;
 							}
 						}
+					} else {
+						$result['DISCOUNT_OVERLAY'] = '';
 					}
 
 					$MiniComponents->triggerEvent('01012', array('property_uid' => $propertys_uid)); // Optional
