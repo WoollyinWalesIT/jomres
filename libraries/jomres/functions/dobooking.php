@@ -709,7 +709,7 @@ function dobooking($selectedProperty, $thisdate, $remus)
 
 	$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
 	if(!isset($_COOKIE['jomres_gdpr_consent_form_processed']) || $_COOKIE['jomres_gdpr_consent_form_processed'] == "0" ){
-		if ($jrConfig[ 'enable_gdpr_compliant_fucntionality' ] == "1" && !isset($_REQUEST['skip_consent_form']) ) ) {
+		if ($jrConfig[ 'enable_gdpr_compliant_fucntionality' ] == "1" && !isset($_REQUEST['skip_consent_form']) ) {
 			$consent_form = $MiniComponents->specificEvent('06000', 'show_consent_form' , array ('output_now' => false) );
 			$consent_output = array ("CONSENT_FORM" => $consent_form );
 			$consent_output['_JOMRES_GDPR_CONSENT_TRIGGER_FORM'] = jr_gettext('_JOMRES_GDPR_CONSENT_TRIGGER_FORM', '_JOMRES_GDPR_CONSENT_TRIGGER_FORM' , false );
