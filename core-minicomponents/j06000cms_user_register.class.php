@@ -26,7 +26,7 @@ class j06000cms_user_register
 		}
 		
 		$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
-		if ( !$jomres_gdpr_optin_consent->user_consents_to_storage() ) {
+		if ( !$jomres_gdpr_optin_consent->user_consents_to_storage()&& !isset($_REQUEST['skip_consent_form'])  ) {
 			echo $consent_form = $MiniComponents->specificEvent('06000', 'show_consent_form' , array ('output_now' => false) );
 		} else {
 			$registration_url = jomres_cmsspecific_getregistrationlink();

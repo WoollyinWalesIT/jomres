@@ -39,7 +39,7 @@ class j06000contactowner
 		$this->ret_vals = '';
 		
 		$jomres_gdpr_optin_consent = new jomres_gdpr_optin_consent();
-		if ( !$jomres_gdpr_optin_consent->user_consents_to_storage() ) {
+		if ( !$jomres_gdpr_optin_consent->user_consents_to_storage()&& !isset($_REQUEST['skip_consent_form'])  ) {
 			//jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=opted_out&jr_redirect_url='.getCurrentUrl()), '');
 			$consent_form = $MiniComponents->specificEvent('06000', 'show_consent_form' , array ('output_now' => false) );
 			if (isset($componentArgs[ 'noshownow' ])) {
