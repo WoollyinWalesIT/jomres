@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.17.0
+ * @version Jomres 9.17.1
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -93,7 +93,13 @@ if (!defined('AJAXCALL')) {
 			define('AJAXCALL', false);
 		}
 	} else {
-		define('AJAXCALL', false);
+		$contentType = isset($_SERVER["HTTP_ACCEPT"]) ? trim($_SERVER["HTTP_ACCEPT"]) : '';
+		if( stristr($contentType, 'application/json') === TRUE ){
+			define('AJAXCALL', true);
+		}
+		else {
+			define('AJAXCALL', false);
+		}
 	}
 }
 

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.17.0
+ * @version Jomres 9.17.1
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -398,6 +398,7 @@ function showSiteConfig()
  */
 function saveSiteConfig($overrides = array())
 {
+
 	ignore_user_abort(true);
 
 	if (file_exists(JOMRES_TEMP_ABSPATH.'key.php')) {
@@ -418,7 +419,7 @@ function saveSiteConfig($overrides = array())
 	}
 
 	foreach ($_POST as $k => $v) {
-		if (strpos($k, 'cfg_') !== false) {
+		if (strpos($k, 'cfg_') !== false && !is_array($v) ) {
 			$v = jomresGetParam($_POST, $k, '');
 			
 			$dirty = (string) $k;
@@ -435,6 +436,23 @@ function saveSiteConfig($overrides = array())
 			$v = filter_var($v, FILTER_SANITIZE_SPECIAL_CHARS);
 
 			$tmpConfig[ $k ] = $v;
+		} elseif (is_array($v)) { // Adds support for multi-dimensional arrays being used for channel manager framework
+			$dirty = (string) $k;
+			$k = substr(addslashes($dirty), 4);
+			if (is_array($v)) {
+				foreach ( $v as $a=>$b) {
+					if (is_array($b)) {
+						foreach ($b as $c=>$d) {
+							
+							$a = (string)filter_var($a, FILTER_SANITIZE_SPECIAL_CHARS);
+							$c = (string)filter_var($c, FILTER_SANITIZE_SPECIAL_CHARS);
+							$d = (string)filter_var($d, FILTER_SANITIZE_SPECIAL_CHARS);
+
+							$tmpConfig[$k][$a][$c] = $d;
+						}
+					}
+				}
+			}
 		}
 	}
 

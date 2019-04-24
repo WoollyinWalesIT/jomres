@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.17.0
+ * @version Jomres 9.17.1
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -129,7 +129,7 @@ class j06000show_property_header
 
 		//Facebook meta data
 		$short_property_description = jomres_decode(jr_substr(strip_tags($current_property_details->property_description), 0, 200)).'...';
-		jomres_cmsspecific_addcustomtag('<meta property="og:url" content="'.get_property_details_url($property_uid, 'nosef').'" />');
+		jomres_cmsspecific_addcustomtag('<meta property="og:url" content="'.get_property_details_url($property_uid, 'nosef').'&skip_consent_form=1" />');
 		jomres_cmsspecific_addcustomtag('<meta property="og:type" content="article" />');
 		jomres_cmsspecific_addcustomtag('<meta property="og:title" content="'.jomres_decode($current_property_details->property_name).'" />');
 		jomres_cmsspecific_addcustomtag('<meta property="og:description" content="'.$short_property_description.'" />');
