@@ -1,3 +1,22 @@
+<h3>Jomres 9.17.1 24/04/2019</h3>
+
+<span class="label label-warning">Change</span> Modified show property room type script so that if there are no slideshow images for that room type (which there will not be if the room type was created by site admin, then don't show the no-image slideshow. This is a stop-gap change until I can figure out a better solution.
+<span class="label label-warning">Change</span> Tweaked javascript/css loader script so that editable javascript files are always included. Allows us to include custom buttons in jomres.js for the inline editing feature.
+<span class="label label-warning">Change</span> Improved how new filtering for guest names works so that other columns correctly have their filters applied.
+<span class="label label-warning">Change</span> Added checks for application/json so that the ajax definition can be set if required by looking at the http accept headers.
+<span class="label label-warning">Change</span> Added some tweaks to site config settings saving functionality to support upcoming channel manager functionality & saving multiple accounts.
+<span class="label label-warning">Change</span> Node modules and obsolete file handling updated
+<span class="label label-warning">Change</span> Tweaked image uploader to ensure that spaces and brackets are removed from file names.
+<span class="label label-warning">Change</span> Added last_minute_overlay.html and code to allow site owners to display discount information on the photo view search results.
+<span class="label label-warning">Change</span> Added a flag to skip the gdpr consent form if set in the url, so that FB urls etc can show the property description etc rather than the "consent to store data" message.
+
+<span class="label label-important label-danger">Fix</span> Disabled some functionality that has caused several users to have duplicate users in the guest profiles table, causing bookings to fail.
+<span class="label label-important label-danger">Fix</span> Removed lots of fonts from mpdf because they were making the Nightly package too large.
+<span class="label label-important label-danger">Fix</span> Fix issue where some users were seeing javascript error on list bookings page
+<span class="label label-important label-danger">Fix</span> Modified show property room type script so that tariff price displays consistently.
+<span class="label label-important label-danger">Fix</span> Added some additional input filtering the prevent fatal errors that could arise in some circumstances.
+<span class="label label-important label-danger">Fix</span> Fixed a notice caused by missing images.
+
 <h3>Jomres 9.17.0 26/02/2019</h3>
 
 <span class="label label-success">Feature</span> Invoices can now be exported as PDF files. 
