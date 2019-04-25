@@ -2479,3 +2479,6 @@ jr_define('_JOMRES_SURCHARGE_DESC', 'An additional charge that will be added to 
 
 jr_define('_JOMRES_PDF_BUTTON', 'PDF');
 
+
+jr_define('_JOMRES_REFERRER', 'Referrer');
+jr_define('_JOMRES_REFERRER_SYSTEM', 'Jomres'); // This could be changed if whitelisting, so site "World's best booking site" would change this to "WBBS" or similar.

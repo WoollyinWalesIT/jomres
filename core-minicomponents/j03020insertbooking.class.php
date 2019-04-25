@@ -486,8 +486,8 @@ class j03020insertbooking
 
 				system_log('Referrer '.serialize($tmpBookingHandler->tmpbooking[ 'referrer' ]));
 
-				if (!isset($tmpBookingHandler->tmpbooking[ 'referrer' ])) {
-					$tmpBookingHandler->tmpbooking[ 'referrer' ] = 'Jomres';
+				if (!isset($tmpBookingHandler->tmpbooking[ 'referrer' ]) || $tmpBookingHandler->tmpbooking[ 'referrer' ] == '') {
+					$tmpBookingHandler->tmpbooking[ 'referrer' ] = jr_gettext('_JOMRES_REFERRER_SYSTEM', '_JOMRES_REFERRER_SYSTEM', false);
 				}
 
 				if (!$secret_key_payment) {
