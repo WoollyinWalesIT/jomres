@@ -41,27 +41,30 @@ function generateDateInput($fieldName, $dateValue = '', $myID = false, $siteConf
 		if (!isset($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ])) {
 			$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] = '';
 		}
-
-		if (
-			(!isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate']) || $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] == '') &&
-			(!isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate']) || $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'] == '') &&
-			$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] == '' &&
-			$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] == ''
-			) {
-			$placeholder = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', false);
-			$dateValue = '';
+		if ($fieldName != 'start') {
+			if (
+				(!isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate']) || $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] == '') &&
+				(!isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate']) || $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'] == '') &&
+				$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] == '' &&
+				$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] == ''
+				) {
+				$placeholder = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', false);
+				$dateValue = '';
+			}
 		}
+
 	} elseif ($fieldName == 'departureDate' || $fieldName == 'asc_departureDate' || $fieldName == 'end') {
 		$uniqueID = get_showtime('departure_date_unique_id');
-
-		if (
-			(!isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate']) || $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] == '') &&
-			(!isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate']) || $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'] == '') &&
-			$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] == '' &&
-			$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] == ''
-			) {
-			$placeholder = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', false);
-			$dateValue = '';
+		if ($fieldName != 'end') {
+			if (
+				(!isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate']) || $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['arrivalDate'] == '') &&
+				(!isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate']) || $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['departureDate'] == '') &&
+				$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] == '' &&
+				$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] == ''
+				) {
+				$placeholder = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', false);
+				$dateValue = '';
+			}
 		}
 	} else { //all other date input fields
 		if ($dateValue == '') {
