@@ -26,9 +26,12 @@ class j16000refresh_library_packages
 		}
 
 		if (isset($_REQUEST['go'])){
-			$core_package_management = new core_package_management();
-			$core_package_management->force_packages_reinstall();
-			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=dashboard'), '');
+			if (isset($_REQUEST['package_manager_install'])) {
+				jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=dashboard'), '');
+			} else {
+				$core_package_management = new core_package_management();
+				$core_package_management->show_installer_html();
+			}
 		} else {
 			$output = array();
 			$pageoutput = array();
@@ -37,7 +40,7 @@ class j16000refresh_library_packages
 			$output['_JOMRES_LIBRARY_PACKAGES_DESC'] = jr_gettext('_JOMRES_LIBRARY_PACKAGES_DESC', '_JOMRES_LIBRARY_PACKAGES_DESC', false);
 			$output['_JOMRES_LIBRARY_PACKAGES_REFRESH'] = jr_gettext('_JOMRES_LIBRARY_PACKAGES_REFRESH', '_JOMRES_LIBRARY_PACKAGES_REFRESH', false);
 			
-			$output['URL'] = JOMRES_SITEPAGE_URL_ADMIN.'&task=refresh_library_packages&go=1'; 
+			$output['URL'] = JOMRES_SITEPAGE_URL_ADMIN_AJAX.'&task=refresh_library_packages&go=1'; 
 			
 
 			$pageoutput[ ] = $output;
@@ -54,6 +57,6 @@ class j16000refresh_library_packages
 	// This must be included in every Event/Mini-component
 	public function getRetVals()
 	{
-		return $this->retVals;
+		return null;
 	}
 }

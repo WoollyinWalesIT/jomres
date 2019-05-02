@@ -216,12 +216,12 @@ class core_package_management
 		
 	}
 	
-	private function remove_directory($path) {
-		$files = glob($path . '/*');
-		foreach ($files as $file) {
-			is_dir($file) ? $this->remove_directory($file) : unlink($file);
+	private function remove_directory($dirPath) {
+		foreach(new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dirPath, FilesystemIterator::SKIP_DOTS), RecursiveIteratorIterator::CHILD_FIRST) as $path) {
+        $path->isDir() && !$path->isLink() ? rmdir($path->getPathname()) : unlink($path->getPathname());
 		}
-		rmdir($path);
+		rmdir($dirPath);
+		
 		return;
 	}
 	
