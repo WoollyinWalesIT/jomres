@@ -85,7 +85,7 @@ class core_package_management
 			$this->install_package( $library , $repo);
 		}
 		
-		jr_import('jomres_obsolete_file_handling');
+		require_once(JOMRES_CLASSES_ABSPATH . 'jomres_obsolete_file_handling.class.php' ) ;
 		$jomres_obsolete_file_handling = new jomres_obsolete_file_handling();
 		
 		//remove obsolete files
