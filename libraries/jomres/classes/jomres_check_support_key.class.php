@@ -134,7 +134,13 @@ $license_data->allowed_plugins = "'.$license_data->allowed_plugins.'";
 			$this->key_status = $license_data->key_status;
 			$this->owner = $license_data->owner;
 			$this->license_name = $license_data->license_name;
-			$this->allowed_plugins = explode("," , $license_data->allowed_plugins);
+			if (isset($license_data->allowed_plugins)) {
+				$this->allowed_plugins = explode("," , $license_data->allowed_plugins);
+			} else {
+				$this->allowed_plugins = array();
+			}
+			
+			
 			if ($license_data->license_valid == true) {
 				$this->key_valid = true;
 			}
