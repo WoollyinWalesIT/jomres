@@ -224,18 +224,19 @@ class core_package_management
 	}
 	
 	private function remove_directory($dirPath) {
-		foreach(new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dirPath, FilesystemIterator::SKIP_DOTS), RecursiveIteratorIterator::CHILD_FIRST) as $path) {
-        $path->isDir() && !$path->isLink() ? rmdir($path->getPathname()) : unlink($path->getPathname());
+		if ( is_dir($dirPath)) {
+			foreach(new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dirPath, FilesystemIterator::SKIP_DOTS), RecursiveIteratorIterator::CHILD_FIRST) as $path) {
+				$path->isDir() && !$path->isLink() ? rmdir($path->getPathname()) : unlink($path->getPathname());
+			}
+			rmdir($dirPath);
 		}
-		rmdir($dirPath);
-		
 		return;
 	}
 	
 	private function check_repo_local_dirs_exist( $library , $repo )
 	{
 		if (!is_dir($repo['local_abs_path'])) {
-			$this->show_installer_html();
+			$this->install_packages();
 		}
 	}
 	
