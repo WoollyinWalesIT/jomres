@@ -261,7 +261,7 @@ class core_package_management
 			(isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : (isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : '')).((true) ? $_SERVER['REQUEST_URI'] : null)
 		);
 
-		$current_url = http_build_url('', $parse);
+		$current_url = str_replace("option=com_installer" , "option=com_jomres" , http_build_url('', $parse));
 		$dashboard_url = str_replace("&no_html=1&jrajax=1" , "" , $current_url."&task=dashboard");
 		?>
 		
