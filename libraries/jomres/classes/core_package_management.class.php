@@ -84,6 +84,13 @@ class core_package_management
 		foreach ($this->repos as $library => $repo) {
 			$this->install_package( $library , $repo);
 		}
+		
+		jr_import('jomres_obsolete_file_handling');
+		$jomres_obsolete_file_handling = new jomres_obsolete_file_handling();
+		
+		//remove obsolete files
+		$jomres_obsolete_file_handling->remove_obsolete_files();
+		
 	}
 	
 	// Install an individual package
