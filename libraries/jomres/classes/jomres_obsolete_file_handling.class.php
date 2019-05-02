@@ -1102,6 +1102,9 @@ class jomres_obsolete_file_handling
 		$this->add_file($this->dir_node_modules.'chart.js'.JRDS.'test'.JRDS.'specs'.JRDS.'scale.time.tests.js');
 
 		
+		$this->add_dir($this->dir_vendor);
+		$this->add_dir($this->dir_node_modules);
+		
 	}
 
 	public function add_file($path_and_file)

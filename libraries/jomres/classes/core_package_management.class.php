@@ -65,7 +65,6 @@ class core_package_management
 		$this->install_packages();
 	}
 	
-	
 	// 
 	public function check_shas()
 	{
@@ -254,7 +253,7 @@ class core_package_management
 	// Not using patTemplate here because it's not loaded yet and we need to ensure that this class relies on other libraries as little as possible. Also, not using a basic html file because we don't want bad bots finding the file and calling it and possibly running javascript on the page, bogging the system down, ergo plain old fashioned html here
 	// This installer will download and install the library repos automatically through ajax (eventually)
 	
-	private function show_installer_html()
+	public function show_installer_html()
 	{
 		
 		$parse = parse_url(
@@ -263,109 +262,111 @@ class core_package_management
 		);
 
 		$current_url = http_build_url('', $parse);
-
+		$dashboard_url = str_replace("&no_html=1&jrajax=1" , "" , $current_url."&task=dashboard");
 		?>
 		
 		<!doctype html>
 		<html lang="en">
-		  <head>
-			<!-- Required meta tags -->
-			<meta charset="utf-8">
-			<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+			<head>
+				<!-- Required meta tags -->
+				<meta charset="utf-8">
+				<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-			<!-- Bootstrap CSS -->
-			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-			<style>
-			/*
-			* Globals
-			*/
+				<!-- Bootstrap CSS -->
+				<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+				
+				<style>
+				/*
+				* Globals
+				*/
 
-			/* Links */
-			a,
-			a:focus,
-			a:hover {
-			  color: #fff;
-			}
+				/* Links */
+				a,
+				a:focus,
+				a:hover {
+				  color: #fff;
+				}
 
-			/* Custom default button */
-			.btn-secondary,
-			.btn-secondary:hover,
-			.btn-secondary:focus {
-			  color: #333;
-			  text-shadow: none; /* Prevent inheritance from `body` */
-			  background-color: #fff;
-			  border: .05rem solid #fff;
-			}
-
-
-			/*
-			 * Base structure
-			 */
-
-			html,
-			body {
-			  height: 100%;
-			  background-color: #333;
-			}
-
-			body {
-			  display: -ms-flexbox;
-			  display: flex;
-			  color: #fff;
-			  text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
-			  box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
-			}
-
-			.cover-container {
-			  max-width: 42em;
-			}
-
-			/*
-			 * Cover
-			 */
-			.cover {
-			  padding: 0 1.5rem;
-			}
-			.cover .btn-lg {
-			  padding: .75rem 1.25rem;
-			  font-weight: 700;
-			}
+				/* Custom default button */
+				.btn-secondary,
+				.btn-secondary:hover,
+				.btn-secondary:focus {
+				  color: #333;
+				  text-shadow: none; /* Prevent inheritance from `body` */
+				  background-color: #fff;
+				  border: .05rem solid #fff;
+				}
 
 
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
+				/*
+				 * Base structure
+				 */
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
-			<title>Jomres Local Package Installer</title>
-		  </head>
+				html,
+				body {
+				  height: 100%;
+				  background-color: #333;
+				}
 
-		<body class="text-center">
-			<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-				<main role="main" class="inner cover">
-					<h1 class="cover-heading">Jomres Local Package Installer</h1>
-					<p class="lead">Before you can continue to use to Jomres we need to download and install the latest versions of the Vendor and Node Module repo packages</p>
-					<p class="lead">
-					  <a href="<?php echo $current_url; ?>&package_manager_install=1" class="btn btn-lg btn-secondary">Let's do it!</a>
-					</p>
-				</main>
-			</div>
-			<!-- Optional JavaScript -->
-			<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-			<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-		  </body>
+				body {
+				  display: -ms-flexbox;
+				  display: flex;
+				  color: #fff;
+				  text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
+				  box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
+				}
+
+				.cover-container {
+				  max-width: 42em;
+				}
+
+				/*
+				 * Cover
+				 */
+				.cover {
+				  padding: 0 1.5rem;
+				}
+				.cover .btn-lg {
+				  padding: .75rem 1.25rem;
+				  font-weight: 700;
+				}
+
+
+				.bd-placeholder-img {
+					font-size: 1.125rem;
+					text-anchor: middle;
+					-webkit-user-select: none;
+					-moz-user-select: none;
+					-ms-user-select: none;
+					user-select: none;
+				}
+
+				@media (min-width: 768px) {
+					.bd-placeholder-img-lg {
+					font-size: 3.5rem;
+					}
+				}
+			</style>
+				<title>Jomres Local Package Installer</title>
+			</head>
+
+			<body class="text-center">
+				<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+					<main role="main" class="inner cover">
+						<h1 class="cover-heading">Jomres Local Package Installer</h1>
+						<p class="lead">Before you can continue to use to Jomres we need to download and install the latest versions of the Vendor and Node Module repo packages</p>
+						<p>Please be patient, this might take a minute or two.</p>
+						<p class="lead">
+						  <a href="<?php echo $current_url; ?>&package_manager_install=1" class="btn btn-lg btn-secondary">Let's do it!</a>
+						</p>
+					</main>
+				</div>
+				<!-- Optional JavaScript -->
+				<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+				<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+				<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+			</body>
 		</html>
 		<?php
 		die();
