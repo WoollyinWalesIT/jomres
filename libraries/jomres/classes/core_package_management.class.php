@@ -73,7 +73,7 @@ class core_package_management
 			$remote_sha = $this->get_latest_sha($repo['version_sha'] , $library);
 			
 			if ($local_sha != $remote_sha ) {
-				$this->show_installer_html();
+				$this->install_packages();
 			}
 		}
 	}
@@ -186,6 +186,13 @@ class core_package_management
 	
 	private function download_package( $remote_archive , $local_archive )
 	{
+		if (!is_dir(JOMRES_TEMP_ABSPATH)) {
+			mkdir(JOMRES_TEMP_ABSPATH);
+			if (!is_dir(JOMRES_TEMP_ABSPATH)) {
+				throw new Exception("Can't make temporary dir ".JOMRES_TEMP_ABSPATH );
+			}
+		}
+		
 		if (!is_dir($this->download_location)) {
 			mkdir($this->download_location);
 			if (!is_dir($this->download_location)) {
