@@ -2482,3 +2482,6 @@ jr_define('_JOMRES_PDF_BUTTON', 'PDF');
 
 jr_define('_JOMRES_REFERRER', 'Referrer');
 jr_define('_JOMRES_REFERRER_SYSTEM', 'Jomres'); // This could be changed if whitelisting, so site "World's best booking site" would change this to "WBBS" or similar.
+jr_define('_JOMRES_LIBRARY_PACKAGES', 'Library Packages');
+jr_define('_JOMRES_LIBRARY_PACKAGES_DESC', 'Vendor and Node Modules are separate (free) packages for Jomres. You can re-install the packages on this page.');
+jr_define('_JOMRES_LIBRARY_PACKAGES_REFRESH', 'Re-install library packages');
