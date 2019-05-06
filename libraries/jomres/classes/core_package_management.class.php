@@ -97,7 +97,7 @@ class core_package_management
 		if (!is_file($local_archive)) {
 			throw new Exception("File not downloaded ".$local_archive . ' for the '.$library . ' repo :: Download error reported ' . $this->download_error );
 		}
-		$this->unzip_downloaded_package($local_archive , $repo['local_abs_path'] );
+		$this->unzip_downloaded_package($library , $local_archive , $repo['local_abs_path'] );
 		
 		unlink($local_archive);
 
@@ -109,17 +109,19 @@ class core_package_management
 	
 	
 	// Download the file from the repo
-	private function unzip_downloaded_package($local_archive , $destination )
+	private function unzip_downloaded_package($library , $local_archive , $destination )
 	{
 		$this->remove_directory($destination);
 		
 		$zip = new ZipArchive;
 		if (true === $zip->open($local_archive)) {
-			$zip->extractTo($destination);
+			$zip->extractTo($this->download_location);
 			$zip->close();
 		} else {
 			throw new Exception("Could not unzip ".$local_archive );
 		}
+
+		$this->dirmv( $this->download_location.JRDS.$library , $destination );
 	}
 	
 	private function get_local_sha( $repo )
@@ -245,13 +247,13 @@ class core_package_management
 	{
 		$this->repos = array();
 		
-		$this->repos['library_node_modules'] =  array(
+		$this->repos['node_modules'] =  array(
 			'version_sha'		=> 'http://updates.jomres4.net/library_packages/jomres_node_modules.txt',
 			'download_url'	=> 'http://updates.jomres4.net/library_packages/index.php?repo=jomres_node_modules',
 			'local_abs_path'	=> JOMRES_NODE_MODULES_ABSPATH
 			);
 		
-		$this->repos['library_vendor'] =  array(
+		$this->repos['vendor'] =  array(
 			'version_sha' => 'http://updates.jomres4.net/library_packages/jomres_vendor.txt',
 			'download_url' => 'http://updates.jomres4.net/library_packages/index.php?repo=jomres_vendor',
 			'local_abs_path'	=> JOMRES_VENDOR_ABSPATH
@@ -380,6 +382,81 @@ class core_package_management
 		<?php
 		die();
 	}
+	
+
+	// http://www.php.net/manual/en/function.rename.php#61152
+	/**
+	 * Moves the contents of source dir to destination dir
+	 */
+	function dirmv($source, $dest, $overwrite = true, $funcloc = JRDS)
+	{
+		global $movedFileLog;
+		$debugging = false;
+		$movedFileLog = array();
+		//$success=true;
+		/*
+			if(is_null($funcloc))
+				{
+				$dest .= '/' . strrev(substr(strrev($source), 0, strpos(strrev($source), null)));
+				$funcloc = '/';
+				}
+			*/
+		if (!is_dir($dest.$funcloc)) {
+			mkdir($dest.$funcloc);
+		} // make subdirectory before subdirectory is copied
+		//echo "Opening " . $source . $funcloc."<br/>";
+		if ($handle = opendir($source.$funcloc)) { // if the folder exploration is sucsessful, continue
+			//echo "Opened ". $source . $funcloc."<br/>";
+			while (false !== ($file = readdir($handle))) { // as long as storing the next file to $file is successful, continue
+				if ($file != '.' && $file != '..') {
+					$path = $source.$funcloc.$file;
+					$path2 = $dest.$funcloc.$file;
+
+					if (is_file($path)) {
+						if (!is_file($path2)) {
+							if (!@rename($path, $path2)) {
+								if (copy($oldfile, $newfile)) {
+									unlink($oldfile);
+								} else {
+									echo 'File ('.$path.') could not be moved to  '.$path2.', likely a permissions problem.';
+
+									return array('success' => false, 'errormsg' => 'File ('.$path.') could not be moved, likely a permissions problem.');
+								}
+							}
+						} elseif ($overwrite) {
+							if (!@unlink($path2)) {
+								echo 'Unable to overwrite file ("'.$path2.'"), likely to be a permissions problem.<br/>';
+
+								return array('success' => false, 'errormsg' => 'Unable to overwrite file ("'.$path2.'"), likely to be a permissions problem.<br/>');
+							} else {
+								if (!@rename($path, $path2)) {
+									echo '<font color="red">File ('.$path.') could not be moved while overwritting, likely a permissions problem.</font><br/>';
+
+									return array('success' => false, 'errormsg' => 'File ('.$path.') could not be moved while overwritting, likely a permissions problem.<br/>');
+								} else {
+									$movedFileLog[ ] = 'Moved '.$path.'<br/> to '.$path2.'<br/>';
+								}
+							}
+						} else {
+							echo 'Not allowed to overwrite'.$path2.'<br/>'; // Not technically an error message, just advisory
+						}
+					} elseif (is_dir($path)) {
+						$this->dirmv($source, $dest, $overwrite, $funcloc.$file.JRDS); //recurse!
+						rmdir($path);
+					}
+				}
+			}
+			closedir($handle);
+		}
+		if ($debugging) {
+			foreach ($movedFileLog as $m) {
+				echo $m.'<br/>';
+			}
+		}
+
+		return array('success' => true, 'errormsg' => '');
+		//echo "Finished upgrade <br/>";
+	} // end of dirmv()
 }
 
 // Credit https://stackoverflow.com/questions/14056977/function-http-build-url
