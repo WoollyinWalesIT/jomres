@@ -189,13 +189,13 @@ if (!class_exists('booking')) {
 							' .$onchange.'
 						}';
 
-			if ($fieldName == 'arrivalDate') {
+			//if ($fieldName == 'arrivalDate') { // Disabled for https://github.com/WoollyinWalesIT/jomres/issues/391
 				$output .= ',beforeShowDay: isAvailable';
 
 				if ($onclose != '') {
 					$output .= ', onClose: function() { '.$onclose.' }';
 				}
-			}
+			//}
 
 			$output .= '} );
 
