@@ -20,3 +20,5 @@ desktop.ini
 npm_modules
 node_modules
 vendor
+/libraries/composer.lock
+/libraries/composer.json
