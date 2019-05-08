@@ -72,7 +72,7 @@ class core_package_management
 			$local_sha = $this->get_local_sha($repo);
 			$remote_sha = $this->get_latest_sha($repo['version_sha'] , $library);
 			
-			if ($local_sha != $remote_sha ) {
+			if ($local_sha != $remote_sha || $local_sha === false ) {
 				$this->install_packages();
 			}
 		}
@@ -91,15 +91,15 @@ class core_package_management
 	private function install_package( $library , $repo )
 	{
 		$this->download_location = JOMRES_TEMP_ABSPATH . 'package_libs' . JRDS ;
-		$local_archive = $this->download_location.'master.zip';
-		$this->download_package($repo['download_url'] , $local_archive );
+		$local_archive = $this->download_location.'master_'.$library.'.zip';
+		$this->download_package( $library , $repo['download_url'] , $local_archive );
 		
 		if (!is_file($local_archive)) {
 			throw new Exception("File not downloaded ".$local_archive . ' for the '.$library . ' repo :: Download error reported ' . $this->download_error );
 		}
 		$this->unzip_downloaded_package($library , $local_archive , $repo['local_abs_path'] );
 		
-		unlink($local_archive);
+		//unlink($local_archive); // Do not uncomment!
 
 		$remote_sha = $this->get_latest_sha($repo['version_sha'] , $library );
 		$this->save_local_sha( $repo , $remote_sha );
@@ -121,11 +121,39 @@ class core_package_management
 			throw new Exception("Could not unzip ".$local_archive );
 		}
 
-		$this->dirmv( $this->download_location.JRDS.$library , $destination );
+		 if ( $this->dirmv( $this->download_location.JRDS.$library , $destination ) ) {
+			// unlink($local_archive); // Do not uncomment!
+		 }
+		
+		
 	}
 	
+	private function retrieve_remote_file_time($library){
+		$url = 'http://updates.jomres4.net/library_packages/jomres_'.$library.'_last_modified.txt';
+		$ch = curl_init();
+
+		curl_setopt($ch, CURLOPT_HEADER, 0);
+		curl_setopt($ch, CURLOPT_VERBOSE, 0);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_USERAGENT, "Jomres");
+		curl_setopt($ch, CURLOPT_URL, $url);
+
+		$data = curl_exec($ch);
+		curl_close($ch);
+		
+		if ($data == '') {
+			return 0;
+		} else {
+			return $data;
+		}
+
+	}
+
 	private function get_local_sha( $repo )
 	{
+		if (!file_exists($repo['local_abs_path'].'sha.php')) {
+			return false;
+		}
 		require($repo['local_abs_path'].'sha.php');
 		return $local_sha;
 	}
@@ -160,7 +188,7 @@ class core_package_management
 				$buffer = file_get_contents(JOMRES_TEMP_ABSPATH.$library.'_sha.txt');
 			}
 		}
-		
+
 		if (!file_exists(JOMRES_TEMP_ABSPATH.$library.'_sha.txt')) {
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $api_location);
@@ -187,43 +215,59 @@ class core_package_management
 		return $buffer;
 	}
 	
-	private function download_package( $remote_archive , $local_archive )
+	private function download_package( $library , $remote_archive , $local_archive )
 	{
-		if (!is_dir(JOMRES_TEMP_ABSPATH)) {
-			mkdir(JOMRES_TEMP_ABSPATH);
+		$this->file_modification_flag_file = str_replace ( ".zip" , ".txt" , $local_archive );
+
+		if (file_exists($local_archive)) {
+			$last_remote_file_mtime = (int)$this->retrieve_remote_file_time($library);
+		} else {
+			$last_remote_file_mtime = 0;
+		}
+
+		$last_local_file_mtime = -1;
+		if (file_exists($this->file_modification_flag_file)) {
+			$last_local_file_mtime = (int)file_get_contents($this->file_modification_flag_file);
+		}
+
+		if ($last_local_file_mtime < $last_remote_file_mtime || is_null($last_remote_file_mtime) ) { // The remote file modification time is less than the remote file modification time. This means that the remote file was more recently updated, so we need to download it. This prevents us from needing to constantly download the same file time and again, if it has already been downloaded once, as it's possible that the server timed out previously due to it being slow to download or unzip the file locally. 
 			if (!is_dir(JOMRES_TEMP_ABSPATH)) {
-				throw new Exception("Can't make temporary dir ".JOMRES_TEMP_ABSPATH );
+				mkdir(JOMRES_TEMP_ABSPATH);
+				if (!is_dir(JOMRES_TEMP_ABSPATH)) {
+					throw new Exception("Can't make temporary dir ".JOMRES_TEMP_ABSPATH );
+				}
 			}
-		}
-		
-		if (!is_dir($this->download_location)) {
-			mkdir($this->download_location);
+			
 			if (!is_dir($this->download_location)) {
-				throw new Exception("Can't make temporary dir ".$this->download_location );
+				mkdir($this->download_location);
+				if (!is_dir($this->download_location)) {
+					throw new Exception("Can't make temporary dir ".$this->download_location );
+				}
 			}
+
+			
+			$ch = curl_init();
+			
+			curl_setopt($ch, CURLOPT_URL, $remote_archive);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+			curl_setopt($ch, CURLOPT_TIMEOUT, 50);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false); 
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); 
+			
+			$data = curl_exec ($ch);
+			$download_error = curl_error($ch); 
+			
+			curl_close ($ch);
+
+			$file = fopen( $local_archive , "w+" );
+
+			fputs($file, $data);
+			fclose($file);
+			
+			file_put_contents( $this->file_modification_flag_file , $last_remote_file_mtime) ;
 		}
-
-		
-		$ch = curl_init();
-		
-		curl_setopt($ch, CURLOPT_URL, $remote_archive);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 50);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false); 
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); 
-		
-		$data = curl_exec ($ch);
-		$download_error = curl_error($ch); 
-		
-		curl_close ($ch);
-
-		$file = fopen( $local_archive , "w+" );
-
-		fputs($file, $data);
-		fclose($file);
-		
 	}
 	
 	private function remove_directory($dirPath) {
@@ -231,7 +275,7 @@ class core_package_management
 			foreach(new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dirPath, FilesystemIterator::SKIP_DOTS), RecursiveIteratorIterator::CHILD_FIRST) as $path) {
 				$path->isDir() && !$path->isLink() ? rmdir($path->getPathname()) : unlink($path->getPathname());
 			}
-			rmdir($dirPath);
+			@rmdir($dirPath);
 		}
 		return;
 	}
@@ -248,13 +292,13 @@ class core_package_management
 		$this->repos = array();
 		
 		$this->repos['node_modules'] =  array(
-			'version_sha'		=> 'http://updates.jomres4.net/library_packages/jomres_node_modules.txt',
+			'version_sha'		=> 'http://updates.jomres4.net/library_packages/jomres_node_modules_sha.txt',
 			'download_url'	=> 'http://updates.jomres4.net/library_packages/index.php?repo=jomres_node_modules',
 			'local_abs_path'	=> JOMRES_NODE_MODULES_ABSPATH
 			);
 		
 		$this->repos['vendor'] =  array(
-			'version_sha' => 'http://updates.jomres4.net/library_packages/jomres_vendor.txt',
+			'version_sha' => 'http://updates.jomres4.net/library_packages/jomres_vendor_sha.txt',
 			'download_url' => 'http://updates.jomres4.net/library_packages/index.php?repo=jomres_vendor',
 			'local_abs_path'	=> JOMRES_VENDOR_ABSPATH
 			);
