@@ -33,9 +33,23 @@ class j16000publish_property_type
 		}
 
 		$jomres_property_types = jomres_singleton_abstract::getInstance('jomres_property_types');
-		$jomres_property_types->publish_property_type($id);
+		$success = $jomres_property_types->publish_property_type($id);
+		
 
-		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_property_types'), jr_gettext('_JOMRES_COM_PTYPES_SAVED', '_JOMRES_COM_PTYPES_SAVED', false));
+
+		if ($success) {
+			$save_message = jr_gettext('_JOMRES_COM_PTYPES_SAVED', '_JOMRES_COM_PTYPES_SAVED', false);
+			$message_class = '';
+		} else {
+				$halting_properties = jr_gettext('_JOMRES_COM_PTYPES_NOT_UNPUBLISHED', '_JOMRES_COM_PTYPES_NOT_UNPUBLISHED', false);
+				foreach ($jomres_property_types->properties_that_prevent_property_type_from_being_unpublished as $property_uid ) {
+					$halting_properties .= $property_uid." ";
+				}
+			$save_message = $halting_properties;
+			$message_class = 'alert-danger';
+		}
+
+		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_property_types'), $save_message , $message_class );
 	}
 
 	// This must be included in every Event/Mini-component

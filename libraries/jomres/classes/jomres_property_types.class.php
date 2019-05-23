@@ -219,10 +219,15 @@ class jomres_property_types
 			throw new Exception('Error: Property type id not set.');
 		}
 
-		$query = 'SELECT `ptype_id` FROM #__jomres_propertys WHERE `ptype_id` = '.(int) $id;
+		$query = 'SELECT `propertys_uid` , `ptype_id` FROM #__jomres_propertys WHERE `ptype_id` = '.(int) $id;
 		$result = doSelectSql($query);
 
+
 		if (!empty($result)) {
+			$this->properties_that_prevent_property_type_from_being_unpublished = array();
+			foreach ($result as $r ) {
+				$this->properties_that_prevent_property_type_from_being_unpublished[] = $r->propertys_uid;
+			}
 			return true;
 		} else {
 			return false;
