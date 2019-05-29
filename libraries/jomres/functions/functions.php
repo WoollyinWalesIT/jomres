@@ -2478,13 +2478,14 @@ function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode
 			}
 		}
 		$mail->Send();
-		logging::log_message('Email sent successfully ', 'Mailer');
+		logging::log_message('Email sent successfully to '.$to, 'Mailer' , 'DEBUG' );
 	} catch (PHPMailer\PHPMailer\Exception $e) {
-		logging::log_message('Email failed '.$GLOBALS['debug'], 'Mailer');
+		logging::log_message('Email failed sending to '.$to.' Message '.$GLOBALS['debug'], 'Mailer' , 'ERROR' );
 		$GLOBALS['debug'] = '';
 
 		return false;
 	} catch (\Exception $e) {
+		logging::log_message('Email failed sending to '.$to.' Message '.$e->getMessage(), 'Mailer' , 'ERROR' );
 		//echo $e->getMessage(); //Boring error messages from anything else!
 		return false;
 	}
