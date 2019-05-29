@@ -6756,7 +6756,7 @@ class dobooking
 		$jrConfig[ 'useNewusers' ] = '1'; // For Jomres v9.11 and GDPR compliance we are now forcing the system to create new users whenever a booking is made
 		
 		if (trim($email) == '') { // Presumably, we're at the start of the booking and the email address hasn't been filled yet
-		$this->email_address_can_be_used = true;
+			$this->email_address_can_be_used = true;
 		}
 
 		$jrConfig[ 'useNewusers' ] = '1'; // For Jomres v9.11 and GDPR compliance we are now forcing the system to create new users whenever a booking is made
@@ -6777,17 +6777,22 @@ class dobooking
 				}
 
 				if ($email_found) {
-					if ($thisJRUser->userIsRegistered) {
-						$users_id = jomres_cmsspecific_getcurrentusers_id();
-						$stored_email = $all_users[ $users_id ][ 'email' ];
-						if ($stored_email == $email) {
-							$this->email_address_can_be_used = true;
+					if ($thisJRUser->userIsManager) { // At this point we have a manager who is using the dropdown to select a guest's details
+						$this->email_address_can_be_used = true;
+					} else {
+						if ($thisJRUser->userIsRegistered) {
+							$users_id = jomres_cmsspecific_getcurrentusers_id();
+							$stored_email = $all_users[ $users_id ][ 'email' ];
+							if ($stored_email == $email) {
+								$this->email_address_can_be_used = true;
+							} else {
+								$this->email_address_can_be_used = false;
+							}
 						} else {
 							$this->email_address_can_be_used = false;
 						}
-					} else {
-						$this->email_address_can_be_used = false;
 					}
+
 				} else {
 					$this->email_address_can_be_used = true;
 				}
