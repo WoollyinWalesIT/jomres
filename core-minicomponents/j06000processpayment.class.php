@@ -30,6 +30,11 @@ class j06000processpayment
 		$bookingdata = gettempBookingdata();
 		
 		request_log();
+		
+		if ($bookingdata[ 'ok_to_book' ] == false ) {
+			die("Naughty bot");
+		}
+		
 		$tag = set_booking_number();
 
 		$plugin = jomres_validate_gateway_plugin();
@@ -46,6 +51,8 @@ class j06000processpayment
 
 		$MiniComponents->triggerEvent('00599', array('bookingdata' => $tmpBookingHandler->tmpbooking)); // Optional
 
+
+		
 		// We'll let bookings of 0 value passed the gateway plugin handling as some users offer 100% discounts via coupons
 		if ($bookingdata[ 'contract_total' ] == 0.00) {
 			$plugin = 'NA';
