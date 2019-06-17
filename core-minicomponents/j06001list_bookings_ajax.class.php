@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.17.1
+ * @version Jomres 9.18.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -51,8 +51,8 @@ class j06001list_bookings_ajax
 
 		$rows = array();
 
-		//set the table columns, in the exact orcer in which they`re displayed in the table
-		$aColumns = array('a.contract_uid', 'a.contract_uid', 'a.tag', 'a.property_uid', 'a.arrival', 'a.departure', 'b.enc_firstname', 'b.enc_surname', 'b.enc_tel_landline', 'b.enc_tel_mobile', 'b.enc_email', 'a.contract_total', 'a.deposit_required', 'a.deposit_paid', 'a.special_reqs', 'a.invoice_uid', 'a.timestamp', 'a.last_changed', 'a.approved', 'a.username', 'c.invoice_number');
+		//set the table columns, in the exact order in which they`re displayed in the table
+		$aColumns = array('a.contract_uid', 'a.contract_uid', 'a.tag', 'a.property_uid', 'a.arrival', 'a.departure', 'b.enc_firstname', 'b.enc_surname', 'b.enc_tel_landline', 'b.enc_tel_mobile', 'b.enc_email', 'a.contract_total', 'a.deposit_required', 'a.deposit_paid', 'a.special_reqs', 'a.invoice_uid', 'a.timestamp', 'a.last_changed', 'a.approved', 'a.username', 'c.invoice_number', 'a.referrer');
 
 		//set columns count
 		$n = count($aColumns);
@@ -184,6 +184,7 @@ class j06001list_bookings_ajax
 						a.invoice_uid,
 						a.property_uid,
 						a.approved,
+						a.referrer,
 						a.last_changed,
 						b.guests_uid,
 						b.enc_firstname, 
@@ -374,6 +375,7 @@ class j06001list_bookings_ajax
 			}
 			
 			$r[] = $p->username;
+			$r[] = $p->referrer;
 
 			$output['data'][] = $r;
 		}

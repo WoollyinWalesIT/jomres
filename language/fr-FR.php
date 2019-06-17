@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.17.1
+ * @version Jomres 9.18.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Translation to fr-FR by Stéphane Bernard, Valtari NumAgency, France - 14/06/2019 - https://www.valtari.fr
@@ -2214,5 +2214,16 @@ jr_define('_JOMRES_CUSTOM_INVOICE_NUMBERS_PATTERN_DESC', 'Configurez le format d
 jr_define('_JOMRES_SURCHARGE_TITLE', 'Supplément');
 jr_define('_JOMRES_SURCHARGE_DESC', 'Un supplément qui sera ajouté à la chambre lors de la réservation (calculé par jour)');
 jr_define('_JOMRES_PDF_BUTTON', 'PDF');
+
 jr_define('_JOMRES_COM_LABEL_PRIORITY_TITLE', 'Prioriser les Étiquettes par défaut ?');
 jr_define('_JOMRES_COM_LABEL_PRIORITY_DESC', 'Le texte personnalisé enregistré dans les pages de modification d\'étiquette ou de chaîne de caractère de traduction sont considérés comme étiquettes par défaut. Les gestionnaires d\'établissement peuvent également personnaliser les étiquettes pour chaque établissement à l\'aide de la fonctionnalité d\'édition d\'étiquettes depuis le site. Cela permet à un gestionnaire d\'établissement d\'avoir différents textes pour son établissement, ce qui est utile si il est différent de toutes les autres. <br/>Lorsque le système recherche des textes d\'étiquette, il donne la priorité aux étiquettes par défaut par rapport aux textes spécifiques à un établissement, ce qui signifie que s\'il existe une étiquettes par défaut, le système choisit d\'abord celle-ci.Si vous définissez cette option sur Non, le système accordera la priorité aux textes spécifiques à un établissement par rapport aux étiquettes par défaut.');
+
+jr_define('_JOMRES_REFERRER', 'Referrer');
+jr_define('_JOMRES_REFERRER_SYSTEM', 'Jomres'); // This could be changed if whitelisting, so site "World's best booking site" would change this to "WBBS" or similar.
+jr_define('_JOMRES_LIBRARY_PACKAGES', 'Library Packages');
+jr_define('_JOMRES_LIBRARY_PACKAGES_DESC', 'Vendor and Node Modules are separate (free) packages for Jomres. You can re-install the packages on this page.');
+jr_define('_JOMRES_LIBRARY_PACKAGES_REFRESH', 'Re-install library packages');
+
+jr_define('_JOMRES_COM_PTYPES_NOT_DELETED', 'Unable to delete property type because it is still be used by some properties. You must change these properties to another property type first before attempting to delete this one. Property UIDs that prevent deletion : ');
+jr_define('_JOMRES_COM_PTYPES_NOT_UNPUBLISHED', 'Unable to unpublish property type because it is still be used by some properties. You must change these properties to another property type first before attempting to unpublish this one. Property UIDs that prevent the change : ');
+

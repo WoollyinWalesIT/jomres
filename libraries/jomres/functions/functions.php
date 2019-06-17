@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.17.1
+ * @version Jomres 9.18.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2478,13 +2478,14 @@ function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode
 			}
 		}
 		$mail->Send();
-		logging::log_message('Email sent successfully ', 'Mailer');
+		logging::log_message('Email sent successfully to '.$to, 'Mailer' , 'DEBUG' );
 	} catch (PHPMailer\PHPMailer\Exception $e) {
-		logging::log_message('Email failed '.$GLOBALS['debug'], 'Mailer');
+		logging::log_message('Email failed sending to '.$to.' Message '.$GLOBALS['debug'], 'Mailer' , 'ERROR' );
 		$GLOBALS['debug'] = '';
 
 		return false;
 	} catch (\Exception $e) {
+		logging::log_message('Email failed sending to '.$to.' Message '.$e->getMessage(), 'Mailer' , 'ERROR' );
 		//echo $e->getMessage(); //Boring error messages from anything else!
 		return false;
 	}

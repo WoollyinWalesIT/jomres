@@ -17,3 +17,8 @@ desktop.ini
 /node_modules/chart.js/dist/docs/*
 /encryption_key.class.php
 /database/updates/9.15.0/jomres_images_resource_id_update_rmtypes.php
+npm_modules
+node_modules
+vendor
+/libraries/composer.lock
+/libraries/composer.json
