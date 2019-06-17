@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.17.1
+ * @version Jomres 9.18.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2387,3 +2387,9 @@ jr_define('_JOMRES_SURCHARGE_DESC', 'An additional charge that will be added to 
 
 jr_define('_JOMRES_PDF_BUTTON', 'PDF');
 
+
+jr_define('_JOMRES_REFERRER', 'Referrer');
+jr_define('_JOMRES_REFERRER_SYSTEM', 'Jomres'); // This could be changed if whitelisting, so site "World's best booking site" would change this to "WBBS" or similar.
+jr_define('_JOMRES_LIBRARY_PACKAGES', 'Library Packages');
+jr_define('_JOMRES_LIBRARY_PACKAGES_DESC', 'Vendor and Node Modules are separate (free) packages for Jomres. You can re-install the packages on this page.');
+jr_define('_JOMRES_LIBRARY_PACKAGES_REFRESH', 'Re-install library packages');

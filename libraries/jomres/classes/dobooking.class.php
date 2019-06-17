@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.17.1
+ * @version Jomres 9.18.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -6756,12 +6756,12 @@ class dobooking
 		$jrConfig[ 'useNewusers' ] = '1'; // For Jomres v9.11 and GDPR compliance we are now forcing the system to create new users whenever a booking is made
 		
 		if (trim($email) == '') { // Presumably, we're at the start of the booking and the email address hasn't been filled yet
-		$this->email_address_can_be_used = true;
+			$this->email_address_can_be_used = true;
 		}
 
 		$jrConfig[ 'useNewusers' ] = '1'; // For Jomres v9.11 and GDPR compliance we are now forcing the system to create new users whenever a booking is made
 		
-		if ($thisJRUser->userIsManager) { // Managers can re-use email addresses of guests.
+		if ($this->amend_contract) { // Managers can re-use email addresses of guests.
 			$this->email_address_can_be_used = true;
 		} else {
 			if ($jrConfig[ 'useNewusers' ] == '0') { // We don't create new users on bookings from non-registered bookers, so it's ok to re-use an email address.
@@ -6777,17 +6777,22 @@ class dobooking
 				}
 
 				if ($email_found) {
-					if ($thisJRUser->userIsRegistered) {
-						$users_id = jomres_cmsspecific_getcurrentusers_id();
-						$stored_email = $all_users[ $users_id ][ 'email' ];
-						if ($stored_email == $email) {
-							$this->email_address_can_be_used = true;
+					if ($thisJRUser->userIsManager) { // At this point we have a manager who is using the dropdown to select a guest's details
+						$this->email_address_can_be_used = true;
+					} else {
+						if ($thisJRUser->userIsRegistered) {
+							$users_id = jomres_cmsspecific_getcurrentusers_id();
+							$stored_email = $all_users[ $users_id ][ 'email' ];
+							if ($stored_email == $email) {
+								$this->email_address_can_be_used = true;
+							} else {
+								$this->email_address_can_be_used = false;
+							}
 						} else {
 							$this->email_address_can_be_used = false;
 						}
-					} else {
-						$this->email_address_can_be_used = false;
 					}
+
 				} else {
 					$this->email_address_can_be_used = true;
 				}

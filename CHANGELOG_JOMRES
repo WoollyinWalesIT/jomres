@@ -1,3 +1,13 @@
+<h3>Jomres 9.18.0 02/05/2019</h3>
+
+<span class="label label-warning">Change</span> Added referrer to list bookings page
+<span class="label label-warning">Change</span> Modified translate lang file strings page to output the constant name as this makes the strings more identifiable
+<span class="label label-warning">Change</span> Modified calendar generator so that black booking date picker automatically jumps to next date in "end" calendar.
+<span class="label label-warning">Change</span> Added Core Package Management to Jomres to allow us to treat Vendor and Node Modules as separate packages, reducing the size of Jomres Core. This is required because these directories in particular make Jomres much larger than it needs to be. It also allows us to apply vuln fixes without forcing complete updates of Jomres. Todo : Make the installer page a bit prettier and fire the installation process through ajax.
+
+<span class="label label-important label-danger">Fix</span> Fixed an issue where the no image sanity check wasn't returning the required message when no image had been uploaded.
+
+
 <h3>Jomres 9.17.1 24/04/2019</h3>
 
 <span class="label label-warning">Change</span> Modified show property room type script so that if there are no slideshow images for that room type (which there will not be if the room type was created by site admin, then don't show the no-image slideshow. This is a stop-gap change until I can figure out a better solution.
