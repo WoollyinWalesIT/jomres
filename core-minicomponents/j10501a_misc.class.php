@@ -185,6 +185,18 @@ class j10501a_misc
 		$configurationPanel->setright(jr_gettext('MACHINE_TRANSLATION_DEFAULT_LANG_DESC', 'MACHINE_TRANSLATION_DEFAULT_LANG_DESC', false));
 		$configurationPanel->insertSetting();
 		
+		$configurationPanel->insertHeading(jr_gettext('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_HEADING', '_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_HEADING', false));
+
+		$configurationPanel->setleft(jr_gettext('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_TITLE', '_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_TITLE', false));
+		$configurationPanel->setmiddle($lists[ 'generate_random_emails' ]);
+		$configurationPanel->setright(jr_gettext('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_DESCRIPTION', '_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_DESCRIPTION', false));
+		$configurationPanel->insertSetting();
+		
+		$configurationPanel->setleft(jr_gettext('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_DOMAIN_TITLE', '_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_DOMAIN_TITLE', false));
+		$configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_random_email_domain" value="'.$jrConfig[ 'random_email_domain' ].'" />');
+		$configurationPanel->setright(jr_gettext('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_DOMIAN_DESCRIPTION', '_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_DOMIAN_DESCRIPTION', false));
+		$configurationPanel->insertSetting();
+		
 		//plugins can add options to this tab
 		$MiniComponents->triggerEvent('10521', $componentArgs);
 		

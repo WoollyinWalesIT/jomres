@@ -201,7 +201,7 @@ $jrConfig = array(
   'machine_translations_source_language' => 'en-GB',
   'frontend_room_type_editing_allowed' => '0',
   'frontend_room_type_editing_show_property_room_types_in_search_options' => '1',
-  'prioritise_sitewide_label_definitions' => '0'
-  
-  
+  'prioritise_sitewide_label_definitions' => '0',
+  'generate_random_emails' => '0',
+  'random_email_domain' => ''
 );
