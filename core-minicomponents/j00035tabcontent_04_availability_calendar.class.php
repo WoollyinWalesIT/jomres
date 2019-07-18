@@ -39,16 +39,21 @@ class j00035tabcontent_04_availability_calendar
 				return;
 			}
 
+			if (isset($mrConfig[ 'CalendarMonthsToShow' ])) {
+				$_REQUEST['months_to_show'] = (int)$mrConfig[ 'CalendarMonthsToShow' ];
+			}
+
+			
 			$tab_title = jr_gettext('_JOMRES_FRONT_AVAILABILITY', '_JOMRES_FRONT_AVAILABILITY', false);
 
 			if ($mrConfig[ 'singleRoomProperty' ] == 1) {
-				$MiniComponents->specificEvent('06000', 'srp_calendar', array('output_now' => false, 'property_uid' => $property_uid, 'months_to_show' => 24, 'show_just_month' => false));
+				$MiniComponents->specificEvent('06000', 'srp_calendar', array('output_now' => false, 'property_uid' => $property_uid, 'months_to_show' => $_REQUEST['months_to_show'], 'show_just_month' => false));
 
 				$anchor = jomres_generate_tab_anchor($tab_title);
 				$tab = array('TAB_ANCHOR' => $anchor, 'TAB_TITLE' => $tab_title, 'TAB_CONTENT' => $MiniComponents->miniComponentData[ '06000' ][ 'srp_calendar' ], 'TAB_ID' => 'tour_target_availability_calendar_srp');
 				$this->retVals = $tab;
 			} else {
-				$MiniComponents->specificEvent('06000', 'mrp_calendar', array('output_now' => false, 'property_uid' => $property_uid, 'months_to_show' => 24, 'show_just_month' => false));
+				$MiniComponents->specificEvent('06000', 'mrp_calendar', array('output_now' => false, 'property_uid' => $property_uid, 'months_to_show' => $_REQUEST['months_to_show'], 'show_just_month' => false));
 
 				$anchor = jomres_generate_tab_anchor($tab_title);
 				$tab = array('TAB_ANCHOR' => $anchor, 'TAB_TITLE' => $tab_title, 'TAB_CONTENT' => $MiniComponents->miniComponentData[ '06000' ][ 'mrp_calendar' ], 'TAB_ID' => 'tour_target_availability_calendar_mrp');

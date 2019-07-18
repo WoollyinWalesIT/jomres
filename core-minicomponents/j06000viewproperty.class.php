@@ -58,7 +58,7 @@ class j06000viewproperty
 			}
 			
 			 if ($mrConfig['singleRoomProperty'] == '1') {
-				echo $MiniComponents->specificEvent('06000', 'srp_calendar', array('output_now' => false, 'property_uid' => $property_uid, 'months_to_show' => 24));
+				echo $MiniComponents->specificEvent('06000', 'srp_calendar', array('output_now' => false, 'property_uid' => $property_uid, 'months_to_show' => $_REQUEST['months_to_show'] ));
 			} else {
 				echo $MiniComponents->specificEvent('06000', 'mrp_calendar' , array('output_now' => false, 'property_uid' => $property_uid) );
 			}
