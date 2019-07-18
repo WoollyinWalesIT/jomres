@@ -36,18 +36,20 @@ class j19995menu
 		$jomres_menu = jomres_singleton_abstract::getInstance('jomres_menu');
 		
 		//define the core admin sections
-		$jomres_menu->add_admin_section(1, 'Dashboard');
-		$jomres_menu->add_admin_section(10, 'Users');
-		$jomres_menu->add_admin_section(20, 'Commission');
-		$jomres_menu->add_admin_section(30, 'Subscriptions');
-		$jomres_menu->add_admin_section(40, 'Invoices');
-		$jomres_menu->add_admin_section(50, 'Portal');
-		$jomres_menu->add_admin_section(60, 'Translations');
-		$jomres_menu->add_admin_section(70, 'Tools');
-		$jomres_menu->add_admin_section(80, 'Reports');
-		$jomres_menu->add_admin_section(90, 'Settings');
-		$jomres_menu->add_admin_section(100, 'Help');
+		$jomres_menu->add_admin_section(1, jr_gettext('_ADMIN_MENU_SECTIONS_DASHBOARD', '_ADMIN_MENU_SECTIONS_DASHBOARD', false,false));
+		$jomres_menu->add_admin_section(10, jr_gettext('_ADMIN_MENU_SECTIONS_USERS', '_ADMIN_MENU_SECTIONS_USERS', false,false)); 
+		$jomres_menu->add_admin_section(20, jr_gettext('_ADMIN_MENU_SECTIONS_COMMISSION', '_ADMIN_MENU_SECTIONS_COMMISSION', false,false)); 
+		$jomres_menu->add_admin_section(30, jr_gettext('_ADMIN_MENU_SECTIONS_SUBSCRIPTIONS', '_ADMIN_MENU_SECTIONS_SUBSCRIPTIONS', false,false)); 
+		$jomres_menu->add_admin_section(40, jr_gettext('_ADMIN_MENU_SECTIONS_INVOICES', '_ADMIN_MENU_SECTIONS_INVOICES', false,false)); 
+		$jomres_menu->add_admin_section(50, jr_gettext('_ADMIN_MENU_SECTIONS_PORTAL', '_ADMIN_MENU_SECTIONS_PORTAL', false,false)); 
+		$jomres_menu->add_admin_section(60, jr_gettext('_ADMIN_MENU_SECTIONS_TRANSLATIONS', '_ADMIN_MENU_SECTIONS_TRANSLATIONS', false,false)); 
+		$jomres_menu->add_admin_section(70, jr_gettext('_ADMIN_MENU_SECTIONS_TOOLS', '_ADMIN_MENU_SECTIONS_TOOLS', false,false)); 
+		$jomres_menu->add_admin_section(80, jr_gettext('_ADMIN_MENU_SECTIONS_REPORTS', '_ADMIN_MENU_SECTIONS_REPORTS', false,false)); 
+		$jomres_menu->add_admin_section(90, jr_gettext('_ADMIN_MENU_SECTIONS_SETTINGS', '_ADMIN_MENU_SECTIONS_SETTINGS', false,false)); 
+		$jomres_menu->add_admin_section(100, jr_gettext('_ADMIN_MENU_SECTIONS_HELP', '_ADMIN_MENU_SECTIONS_HELP', false,false)); 
 		
+
+
 		//define the core admin menu items
 		//dashboard section menus
 		$jomres_menu->add_admin_item(1, jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_HOME', '_JOMRES_FRONT_MR_MENU_ADMIN_HOME', false), '', 'fa-tachometer');

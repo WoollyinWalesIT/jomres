@@ -88,6 +88,9 @@ class j16000jomres_system_info
 			$output[ 'LATEST_JOMRES_VERSION' ] = $latest_version;
 		}
 
+		
+		$output[ '_ADMIN_CPANEL_SYSTEM_INFO' ] = jr_gettext('_ADMIN_CPANEL_SYSTEM_INFO', '_ADMIN_CPANEL_SYSTEM_INFO', false);
+		
 		$pageoutput[ ] = $output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);

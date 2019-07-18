@@ -57,12 +57,12 @@ class j16000show_reviews_message
 		if (get_showtime("task") == "cpanel" && $jrConfig['jomres_review_left'] == '0' && $jr_review_left == 0) {
 
 			$message = '
-<p class="alert alert-success">If you like Jomres, please consider leaving a review on one of these sites ';
+<p class="alert alert-success"> '.jr_gettext('_REVIEW_JOMRES_PLEASEREVIEW', '_REVIEW_JOMRES_PLEASEREVIEW', false, false);
 			foreach ( $review_sites as $site ) {
 				$message .= '<a href="'.$site['url'].'" class="btn btn-default" target="_blank">'.$site['site_name'].'</a>&nbsp;';
 			}
 			
-			$message .= '<a href="'.jomresUrl(JOMRES_SITEPAGE_URL_ADMIN.'&jr_review_left=1').'" class="btn btn-success">I`m a nice person, i`ve already left a review</a>';
+			$message .= '<a href="'.jomresUrl(JOMRES_SITEPAGE_URL_ADMIN.'&jr_review_left=1').'" class="btn btn-success">'.jr_gettext('_REVIEW_JOMRES_ALREADYREVIEWED', '_REVIEW_JOMRES_ALREADYREVIEWED', false, false).'</a>';
 			$message .= '</p>';
 		} else {
 			$message = '';

@@ -2958,3 +2958,45 @@ jr_define('_LIST_USERS_LEGEND_SUPERPROPERTYMANAGER', 'Super Property Manager');
 jr_define('_LIST_USERS_LEGEND_SUSPENDED', 'Suspended');
 jr_define('_LIST_USERS_LEGEND_DELETEDFROMCMS', 'Deleted from CMS');
 
+
+jr_define('_REVIEW_JOMRES_PLEASEREVIEW', 'If you like Jomres, please consider leaving a review on one of these sites');
+jr_define('_REVIEW_JOMRES_ALREADYREVIEWED', 'I`m a nice person, i`ve already left a review');
+
+jr_define('_LICENCE_PROMPT_DEAR', 'Dear ');
+jr_define('_LICENCE_EXPIRED', ', your Jomres license key has expired, so you`re missing these great features and benefits! ');
+jr_define('_LICENCE_EXPIRED_BENEFITS_1', 'Plugin updates and new plugin releases');
+jr_define('_LICENCE_EXPIRED_BENEFITS_2', 'Exclusive members only Email/Tickets support');
+jr_define('_LICENCE_EXPIRED_BENEFITS_3', 'Worry-free Jomres Core updates');
+jr_define('_LICENCE_EXPIRED_POST', 'Jomres membership is very affordable and offers access to all plugins and member-only support services.');
+jr_define('_LICENCE_EXPIRED_RESTART', 'Restart your membership now!');
+
+jr_define('_LICENCE_INVALID_KEY', 'Unfortunately you don`t seem to be using a valid Jomres license key, so you`re missing on these great features and benefits!');
+jr_define('_LICENCE_INVALID_BENEFITS_1', '<a href="https://www.jomres.net/jomres-plugins" target="_blank">Plugins</a> that greatly extend Jomres functionality');
+jr_define('_LICENCE_INVALID_BENEFITS_2', 'Exclusive members only Email/Tickets support');
+jr_define('_LICENCE_INVALID_BENEFITS_3', 'Worry-free Jomres Core updates');
+jr_define('_LICENCE_INVALID_POST', 'Jomres membership is very affordable and offers access to all plugins and member-only support services.');
+jr_define('_LICENCE_INVALID_START', 'Start your free trial now!');
+
+jr_define('_ADMIN_MENU_SECTIONS_DASHBOARD', 'Dashboard');
+jr_define('_ADMIN_MENU_SECTIONS_USERS', 'Users');
+jr_define('_ADMIN_MENU_SECTIONS_COMMISSION', 'Commission');
+jr_define('_ADMIN_MENU_SECTIONS_SUBSCRIPTIONS', 'Subscriptions');
+jr_define('_ADMIN_MENU_SECTIONS_INVOICES', 'Invoices');
+jr_define('_ADMIN_MENU_SECTIONS_PORTAL', 'Portal');
+jr_define('_ADMIN_MENU_SECTIONS_TRANSLATIONS', 'Translations');
+jr_define('_ADMIN_MENU_SECTIONS_TOOLS', 'Tools');
+jr_define('_ADMIN_MENU_SECTIONS_REPORTS', 'Reports');
+jr_define('_ADMIN_MENU_SECTIONS_SETTINGS', 'Settings');
+jr_define('_ADMIN_MENU_SECTIONS_HELP', 'Help');
+
+jr_define('_ADMIN_CPANEL_PROPERTIES_PANEL_TOTAL', 'Total properties in system');
+jr_define('_ADMIN_CPANEL_PROPERTIES_PANEL_PUBLISHED', 'Published properties');
+jr_define('_ADMIN_CPANEL_PROPERTIES_PANEL_UNPUBLISHED', 'Unpublished properties');
+jr_define('_ADMIN_CPANEL_PROPERTIES_PANEL_APPROVED', 'Approved properties');
+jr_define('_ADMIN_CPANEL_PROPERTIES_PANEL_REQUIREAPPROVAL', 'Properties requiring approval');
+
+jr_define('_ADMIN_CPANEL_REVIEWS_PANEL_TOTAL_REVIEWS', 'Total reviews ');
+jr_define('_ADMIN_CPANEL_REVIEWS_PANEL_UNPUBLISHED_REVIEWS', 'Unpublished reviews ');
+jr_define('_ADMIN_CPANEL_REVIEWS_PANEL_REPORTED_REVIEWS', 'Review reports ');
+
+jr_define('_ADMIN_CPANEL_SYSTEM_INFO', 'Jomres System Info');
