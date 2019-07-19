@@ -50,7 +50,7 @@ class j19997menu
 				$r = array();
 				
 				//menu item name
-				$r['MENU_NAME'] = jr_ucwords($jomres_menu->admin_items[$task]['title']);
+				$r['MENU_NAME'] = $jomres_menu->admin_items[$task]['title'];
 
 				//menu item url
 				if ($jomres_menu->admin_items[$task]['is_url']) {
@@ -110,7 +110,7 @@ class j19997menu
 				$rows[] = $r;
 			}
 			
-			$output[ 'CATEGORY' ] = jr_ucwords($jomres_menu->admin_sections[$section_id]['title']);
+			$output[ 'CATEGORY' ] = $jomres_menu->admin_sections[$section_id]['title'];
 			$output[ 'ID' ] = 'cpanel-category-'.$section_id;
 
 			$pageoutput[ ] = $output;
