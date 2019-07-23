@@ -75,6 +75,8 @@ class j16000jomres_reviews_overview
 		$output['_ADMIN_CPANEL_REVIEWS_PANEL_UNPUBLISHED_REVIEWS'] = jr_gettext('_ADMIN_CPANEL_REVIEWS_PANEL_UNPUBLISHED_REVIEWS', '_ADMIN_CPANEL_REVIEWS_PANEL_UNPUBLISHED_REVIEWS', false, false);
 		$output['_ADMIN_CPANEL_REVIEWS_PANEL_REPORTED_REVIEWS'] = jr_gettext('_ADMIN_CPANEL_REVIEWS_PANEL_REPORTED_REVIEWS', '_ADMIN_CPANEL_REVIEWS_PANEL_REPORTED_REVIEWS', false, false);
 		
+		$output['_JOMRES_REVIEWS'] = jr_gettext('_JOMRES_REVIEWS', '_JOMRES_REVIEWS', false, false);
+		
 		
 		$pageoutput[ ] = $output;
 		$tmpl = new patTemplate();
