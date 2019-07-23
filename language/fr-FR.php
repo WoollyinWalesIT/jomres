@@ -1689,7 +1689,7 @@ jr_define('_JOMRES_EXTRAS_TEMPLATE', 'Voici une liste des extras et activités q
 jr_define('GATEWAYS_INSTRUCTIONS', 'Sur cette page, vous pouvez configurer les modes de paiements installés. Ces options vous permettent d’accepter des paiements pour toute facture de commission ou d’abonnement. ils ne peuvent être remplacés que par Paypal sur le site ; toutes les modes de paiements devront être configurées via Configuration de l\'établissement -> Gateways (passerelles). Toutefois, si une passerelle apparaît dans cette liste, elle devrait pouvoir traiter à la fois les paiements d\'acompte et les factures.');
 jr_define('EXTRAS_INCLUDE_IN_PROPERTYDETAILS', 'Afficher dans la page Descriptif de l\'établissement ?');
 jr_define('PROPERTY_DETAILS_PAGE_OPTIONS', 'Réglages de la page Descriptif de l\'établissement');
-jr_define('_JOMRES_HLIST_PROPERTIES_WARNING', 'La gestion d\'établissements du logiciel Jomres se fait uniquement à partir du site. Sur cette page, vous pourrez lister toutes les établissements du système. Vous pourrez ainsi affecter des taux de commission et les confirmer ou les supprimer (si ces fonctionnalités sont activées). Pour créer un nouvel établissement, modifier des établissements existants, gérer des réservations ou toute autre tâche liée à la réservation, vous devez vous connecter du site et accéder à la page par défaut du logiciel Jomres. Vous accéderez ainsi à l’interface de gestion.');
+jr_define('_JOMRES_HLIST_PROPERTIES_WARNING', 'La gestion d\'établissements se fait uniquement à partir du site. Sur cette page, vous pourrez lister toutes les établissements. Vous pourrez ainsi affecter des taux de commission et les confirmer ou les supprimer (si ces fonctionnalités sont activées). Pour créer un nouvel établissement, modifier des établissements existants, gérer des réservations ou toute autre tâche liée à la réservation, vous devez vous connecter au site et aller sur la page par défaut. Vous accéderez ainsi à l’interface de gestion.');
 jr_define('_MEDIA_CENTRE_RESOURCE_FEATURES_ICONS', 'Icônes des équipements des chambres');
 jr_define('_JOMRES_PROPERTYFEATURES_HCATEGORIES', 'Catégories des équipements de l\'établissement.');
 jr_define('_JOMRES_PROPERTYFEATURES_HCATEGORIES_HEDIT', 'Modifier la catégorie des équipements de l\'établissement.');
@@ -1777,7 +1777,7 @@ jr_define('_JOMRES_CONFIG_LOG_LOCATION', 'Emplacement du fichier des logs');
 jr_define('_JOMRES_CONFIG_LOG_LOCATION_DESC', 'Le logiciel Jomres enregistre l\'activité système par défaut à \'emplacement JOMRES_SYSTEMLOG_PATH. Ce fichier pouvant contenir des informations sensibles (clés API, chemins système, informations de passerelles de paiements, informations des clients), nous vous recommandons vivement de remplacer ce chemin par un autre au-dessus de la racine de votre site. Si vous ne comprenez pas ce que cela signifie, veuillez demander conseil à votre webmaster ou votre administrateur de serveur, car ils connaissent l\'arborescence des fichiers et dossier de votre site.');
 jr_define('_JOMRES_CONFIG_LOG_LOCATION_WARNING', 'Le logiciel Jomres enregistre des informations détaillées sur votre système, y compris les clés API, les chemins système, la passerelle de paiement et les informations relatives aux clients, qui ne doivent pas être visibles des internautes. Le chemin du journal des logs système n’est pas défini et les journaux des logs système sont en cours d’enregistrement dans le répertoire JOMRES_SYSTEMLOG_PATH. Ce qui n’est pas idéal ! Consultez la rubrique Configuration du site -> Débogage et définissez un chemin dans votre système de fichiers situé en dehors de la racine de votre site. En cas de doute, veuillez contacter votre hébergeur ou votre webmaster qui pourront vous conseiller.');
 jr_define('_JOMRES_CONFIG_LOG_LOCATION_RECOMMENDED', 'Si votre CMS est installé dans le répertoire racine de votre site Web, un emplacement approprié serait : ');
-jr_define('_JOMRES_CONFIG_GMAP_KEY_WARNING', 'Vous n\'avez pas de clé Google Maps. En raison des modifications récentes apportées à Google Maps, tous les nouveaux sites auront besoin d\'une clé API pour pouvoir utiliser les fonctionnalités de Google Map. Veuillez <a href="http://www.jomres.net/manual/site-managers-guide/14-getting-started/338-google-maps-api-key" target="_blank""> voir notre page de documentation sur la façon de créer une clé API </a> et de la sauvegarder dans le logiciel Jomres.');
+jr_define('_JOMRES_CONFIG_GMAP_KEY_WARNING', 'Vous n\'avez pas de clé API Google Maps. En raison des modifications récentes apportées à Google Maps, tous les nouveaux sites auront besoin d\'une clé API pour pouvoir utiliser ses fonctionnalités. Veuillez <a href="http://www.jomres.net/manual/site-managers-guide/14-getting-started/338-google-maps-api-key" target="_blank""> consulter notre page de documentation sur la façon de créer une clé API </a> et de la sauvegarder dans le sytème.');
 jr_define('JOMRES_GOOGLE_MAP_STYLE', 'Palette de couleurs Google Map');
 jr_define('JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_TITLE', 'Commençons par ajouter votre établissement sur le site. Nous devons collecter un peu d\'informations sur votre établissement à cet endroit. Cela nous permettra de mettre en place les bases de votre établissement. Une fois que cela est fait, vous serez guidé pour l\'ajout de chambres, de prix et d\'images.');
 jr_define('JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE1', 'Le type d\'établissement vous aide à définir son mode de réservation : par exemple avec les hôtels vous mettez à la réservation une ou plusieurs chambres à la fois, alors qu\'avec les villas/maison/gîte vous proposer la propriété entière.');
@@ -2227,20 +2227,20 @@ jr_define('FIREWALL_CHECK_STATUSCODE', 'Code des statuts');
 jr_define('_JOMRES_LIBRARY_PACKAGES', 'Liste des bibliothèques');
 jr_define('_JOMRES_LIBRARY_PACKAGES_DESC', 'Liste des bibliothèques utilisées dans Jomres');
 jr_define('_JOMRES_LIBRARY_PACKAGES_REFRESH', 'Rafraîchir la liste');
-
-
-jr_define('_JOMRES_REFERRER_SYSTEM', 'Jomres'); // This could be changed if whitelisting, so site "World's best booking site" would change this to "WBBS" or similar.
-jr_define('_JOMRES_LIBRARY_PACKAGES', 'Library Packages');
-jr_define('_JOMRES_LIBRARY_PACKAGES_DESC', 'Vendor and Node Modules are separate (free) packages for Jomres. You can re-install the packages on this page.');
-jr_define('_JOMRES_LIBRARY_PACKAGES_REFRESH', 'Re-install library packages');
-
-jr_define('_JOMRES_COM_PTYPES_NOT_DELETED', 'Unable to delete property type because it is still be used by some properties. You must change these properties to another property type first before attempting to delete this one. Property UIDs that prevent deletion : ');
-jr_define('_JOMRES_COM_PTYPES_NOT_UNPUBLISHED', 'Unable to unpublish property type because it is still be used by some properties. You must change these properties to another property type first before attempting to unpublish this one. Property UIDs that prevent the change : ');
-
-
-jr_define('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_HEADING', 'Random email addresses');
-
-// Added new legend translation to list managers page 08/07/2019
+// This could be changed if whitelisting, so site "World's best booking site" would change this to "WBBS" or similar. (Added by Vince - Translated at 10/07/2019)
+jr_define('_JOMRES_REFERRER_SYSTEM', 'Jomres'); 
+jr_define('_JOMRES_LIBRARY_PACKAGES', 'Paquets de bibliothèques');
+jr_define('_JOMRES_LIBRARY_PACKAGES_DESC', 'Les modules Vendor et Node sont des paquets (packages) distincts et gratuits pour Jomres. Vous pouvez réinstaller les packages sur cette page.');
+jr_define('_JOMRES_LIBRARY_PACKAGES_REFRESH', 'Réinstaller les paquets (packages) de bibliothèques');
+jr_define('_JOMRES_COM_PTYPES_NOT_DELETED', 'Impossible de supprimer le type d\'établissements, car certains établissements l\'utilisent toujours. Vous devez d\'abord remplacer ces établissements par un autre type d\'établissements avant de tenter de supprimer celui-ci. En suivant, les UID d\'établissements qui empêchent la suppression : ');
+jr_define('_JOMRES_COM_PTYPES_NOT_UNPUBLISHED', 'Impossible de dépublier le type d\'établissements, car certains établissements l\'utilisent toujours. Vous devez d\'abord remplacer ces établissements par un autre type d\'établissements avant de tenter de supprimer celui-ci. En suivant, les UID d\'établissements qui empêchent la suppression : ');
+//missing strings in french language file. Translated at 11/07/2019
+jr_define('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_HEADING', 'Adresses mails aléatoires');
+jr_define('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_TITLE', 'Générer et donner des mails aléatoires');
+jr_define('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_DESCRIPTION', 'Vous pouvez autoriser le système à générer des adresses mails aléatoires dans la boîte de dialogue Réservation rapide du tableau de bord. Cela permet aux gestionnaires et aux réceptionnistes de créer des réservations pour des clients pour lesquels ils n\'ont pas d\'adresse mail. Il s\'agit d\'un gain de temps pour les établissements comportant de nombreux réceptionnistes ou gestionnaires. Ces mails aléatoires ne seront jamais utilisés pour une communication réelle. Le but est de contourner le fait qu\'avec Jomres tous les clients doivent avoir une adresse mail. Vous DEVEZ également fournir un domaine dans le champ suivant.');
+jr_define('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_DOMAIN_TITLE', 'Domaine des mails aléatoires');
+jr_define('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_DOMIAN_DESCRIPTION', 'Cela ne doit pas être obligatoirement un domaine de messagerie tel que gmail ou Outlook. Il peut s\'agir de votre propre domaine ou de tout autre chose, tel que mysite.emails.');
+// Added new legend translation to list managers page. Translaled at 08/07/2019
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_FORM', 'Zone de téléchargement');
 jr_define('_LIST_USERS_LEGEND_NOROLE', 'Aucun rôle d\'utilisateur');
 jr_define('_LIST_USERS_LEGEND_RECEPTIONIST', 'Réceptionniste');
@@ -2248,47 +2248,41 @@ jr_define('_LIST_USERS_LEGEND_PROPERTYMANAGER', 'Manger');
 jr_define('_LIST_USERS_LEGEND_SUPERPROPERTYMANAGER', 'Super Manager');
 jr_define('_LIST_USERS_LEGEND_SUSPENDED', 'Suspendu(e)');
 jr_define('_LIST_USERS_LEGEND_DELETEDFROMCMS', 'Supprimé(e) du CMS');
-// Updated two templates with new definitions, removed hard coded button… 08/07/2019
+// Updated two templates with new definitions, removed hard coded button… 08/07/2019. 
 jr_define('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_DOMIAN_DESCRIPTION', 'Cela ne doit pas être obligatoirement un domaine de messagerie tel que gmail ou Outlook. Il peut s\'agir de votre propre domaine ou de tout autre chose, tel que @monsite.com.');
-jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_FORM', 'Zone de téléchargement'); 
-jr_define('_REVIEW_JOMRES_PLEASEREVIEW', 'If you like Jomres, please consider leaving a review on one of these sites');
-jr_define('_REVIEW_JOMRES_ALREADYREVIEWED', 'I`m a nice person, i`ve already left a review');
-
-jr_define('_LICENCE_PROMPT_DEAR', 'Dear ');
-jr_define('_LICENCE_EXPIRED', ', your Jomres license key has expired, so you`re missing these great features and benefits! ');
-jr_define('_LICENCE_EXPIRED_BENEFITS_1', 'Plugin updates and new plugin releases');
-jr_define('_LICENCE_EXPIRED_BENEFITS_2', 'Exclusive members only Email/Tickets support');
-jr_define('_LICENCE_EXPIRED_BENEFITS_3', 'Worry-free Jomres Core updates');
-jr_define('_LICENCE_EXPIRED_POST', 'Jomres membership is very affordable and offers access to all plugins and member-only support services.');
-jr_define('_LICENCE_EXPIRED_RESTART', 'Restart your membership now!');
-
-jr_define('_LICENCE_INVALID_KEY', 'Unfortunately you don`t seem to be using a valid Jomres license key, so you`re missing on these great features and benefits!');
-jr_define('_LICENCE_INVALID_BENEFITS_1', '<a href="https://www.jomres.net/jomres-plugins" target="_blank">Plugins</a> that greatly extend Jomres functionality');
-jr_define('_LICENCE_INVALID_BENEFITS_2', 'Exclusive members only Email/Tickets support');
-jr_define('_LICENCE_INVALID_BENEFITS_3', 'Worry-free Jomres Core updates');
-jr_define('_LICENCE_INVALID_POST', 'Jomres membership is very affordable and offers access to all plugins and member-only support services.');
-jr_define('_LICENCE_INVALID_START', 'Start your free trial now!');
-
-jr_define('_ADMIN_MENU_SECTIONS_DASHBOARD', 'Dashboard');
-jr_define('_ADMIN_MENU_SECTIONS_USERS', 'Users');
+jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_FORM', 'Zone de téléchargement');
+jr_define('_REVIEW_JOMRES_PLEASEREVIEW', 'si vous aimez Jomres, n\'hésitez pas à laisser un commentaire sur l\'un de ces sites');//Added and translated at 19/07/2019
+jr_define('_REVIEW_JOMRES_ALREADYREVIEWED', 'Je suis une personne sympa, j\'ai déjà laissé un avis !');
+jr_define('_LICENCE_PROMPT_DEAR', 'Chère/Cher ');
+jr_define('_LICENCE_EXPIRED', ', votre licence Jomres a expiré, vous n\'avez donc pas accès à ces fonctionnalités et ces avantages ! ');
+jr_define('_LICENCE_EXPIRED_BENEFITS_1', 'Mises à jour et nouvelles versions de plugins en attente d\'installation...');
+jr_define('_LICENCE_EXPIRED_BENEFITS_2', 'Seuls les abonnés bénéficient du support !');
+jr_define('_LICENCE_EXPIRED_BENEFITS_3', 'Mise à jour stable du coeur (core) de Jomres');
+jr_define('_LICENCE_EXPIRED_POST', 'L\abonnement à Jomres est très abordable et offre un accès à tous les plugins et services d\'assistance réservés aux membres.');
+jr_define('_LICENCE_EXPIRED_RESTART', 'Resouscrivez votre abonnement maintenant !');
+jr_define('_LICENCE_INVALID_KEY', 'Malheureusement, vous ne semblez pas utiliser une licence Jomres valide, vous ne pouvez donc pas profiter de ces fonctionnalités et avantages !');
+jr_define('_LICENCE_INVALID_BENEFITS_1', '<a href="https://www.jomres.net/jomres-plugins" target="_blank">Découvrez les plugins</a> qui améliorent grandement les fonctionnalités de Jomres');
+jr_define('_LICENCE_INVALID_BENEFITS_2', 'Seuls les abonnés bénéficient du support !');
+jr_define('_LICENCE_INVALID_BENEFITS_3', 'Mise à jour stable du coeur (core) de Jomres');
+jr_define('_LICENCE_INVALID_POST', 'L\abonnement à Jomres est très abordable et offre un accès à tous les plugins et services d\'assistance réservés aux membres.');
+jr_define('_LICENCE_INVALID_START', 'Commencez votre essai gratuit maintenant !');
+jr_define('_ADMIN_MENU_SECTIONS_DASHBOARD', 'Tableau de bord');
+jr_define('_ADMIN_MENU_SECTIONS_USERS', 'Utilisateurs');
 jr_define('_ADMIN_MENU_SECTIONS_COMMISSION', 'Commission');
-jr_define('_ADMIN_MENU_SECTIONS_SUBSCRIPTIONS', 'Subscriptions');
-jr_define('_ADMIN_MENU_SECTIONS_INVOICES', 'Invoices');
-jr_define('_ADMIN_MENU_SECTIONS_PORTAL', 'Portal');
-jr_define('_ADMIN_MENU_SECTIONS_TRANSLATIONS', 'Translations');
-jr_define('_ADMIN_MENU_SECTIONS_TOOLS', 'Tools');
-jr_define('_ADMIN_MENU_SECTIONS_REPORTS', 'Reports');
-jr_define('_ADMIN_MENU_SECTIONS_SETTINGS', 'Settings');
-jr_define('_ADMIN_MENU_SECTIONS_HELP', 'Help');
-
-jr_define('_ADMIN_CPANEL_PROPERTIES_PANEL_TOTAL', 'Total properties in system');
-jr_define('_ADMIN_CPANEL_PROPERTIES_PANEL_PUBLISHED', 'Published properties');
-jr_define('_ADMIN_CPANEL_PROPERTIES_PANEL_UNPUBLISHED', 'Unpublished properties');
-jr_define('_ADMIN_CPANEL_PROPERTIES_PANEL_APPROVED', 'Approved properties');
-jr_define('_ADMIN_CPANEL_PROPERTIES_PANEL_REQUIREAPPROVAL', 'Properties requiring approval');
-
-jr_define('_ADMIN_CPANEL_REVIEWS_PANEL_TOTAL_REVIEWS', 'Total reviews ');
-jr_define('_ADMIN_CPANEL_REVIEWS_PANEL_UNPUBLISHED_REVIEWS', 'Unpublished reviews ');
-jr_define('_ADMIN_CPANEL_REVIEWS_PANEL_REPORTED_REVIEWS', 'Review reports ');
-
-jr_define('_ADMIN_CPANEL_SYSTEM_INFO', 'Jomres System Info');
+jr_define('_ADMIN_MENU_SECTIONS_SUBSCRIPTIONS', 'Abonnements');
+jr_define('_ADMIN_MENU_SECTIONS_INVOICES', 'Facturation');
+jr_define('_ADMIN_MENU_SECTIONS_PORTAL', 'Gestion');
+jr_define('_ADMIN_MENU_SECTIONS_TRANSLATIONS', 'Traduction');
+jr_define('_ADMIN_MENU_SECTIONS_TOOLS', 'Outils');
+jr_define('_ADMIN_MENU_SECTIONS_REPORTS', 'Rapports');
+jr_define('_ADMIN_MENU_SECTIONS_SETTINGS', 'Paramétrage');
+jr_define('_ADMIN_MENU_SECTIONS_HELP', 'Aides');
+jr_define('_ADMIN_CPANEL_PROPERTIES_PANEL_TOTAL', 'Total des établissements');
+jr_define('_ADMIN_CPANEL_PROPERTIES_PANEL_PUBLISHED', 'Établissement(s) publié(s)');
+jr_define('_ADMIN_CPANEL_PROPERTIES_PANEL_UNPUBLISHED', 'Établissement(s) non publié(s)');
+jr_define('_ADMIN_CPANEL_PROPERTIES_PANEL_APPROVED', 'Établissement(s) confirmé(s)');
+jr_define('_ADMIN_CPANEL_PROPERTIES_PANEL_REQUIREAPPROVAL', 'Établissement(s) en attente de confirmation');
+jr_define('_ADMIN_CPANEL_REVIEWS_PANEL_TOTAL_REVIEWS', 'Total des avis ');
+jr_define('_ADMIN_CPANEL_REVIEWS_PANEL_UNPUBLISHED_REVIEWS', 'Avis non publié(s) ');
+jr_define('_ADMIN_CPANEL_REVIEWS_PANEL_REPORTED_REVIEWS', 'Avis signalé(s) ');
+jr_define('_ADMIN_CPANEL_SYSTEM_INFO', 'Informations sur Jomres');
