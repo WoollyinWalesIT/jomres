@@ -196,7 +196,15 @@ class jomres_property_types
 		}
 
 		if ($this->property_type['id'] > 0) {
-			if ($publish == 0 && $this->ptype_is_used($this->property_type['id'])) {
+			
+			if ( $publish == 0 ) {
+				$include_unpublished_properties = false;
+			} else {
+				$include_unpublished_properties = true;
+			}
+			
+			
+			if ($publish == 0 && $this->ptype_is_used($this->property_type['id'] , $include_unpublished_properties )) {
 				return false;
 			}
 
@@ -213,15 +221,19 @@ class jomres_property_types
 	}
 
 	//check if a property type is used by some property in the system
-	public function ptype_is_used($id = 0)
+	public function ptype_is_used($id = 0 , $include_unpublished_properties = true )
 	{
 		if ($id == 0) {
 			throw new Exception('Error: Property type id not set.');
 		}
 
-		$query = 'SELECT `propertys_uid` , `ptype_id` FROM #__jomres_propertys WHERE `ptype_id` = '.(int) $id;
+		if ($include_unpublished_properties) {
+			$query = 'SELECT `propertys_uid` , `ptype_id` FROM #__jomres_propertys WHERE `ptype_id` = '.(int) $id;
+		} else {
+			$query = 'SELECT `propertys_uid` , `ptype_id` FROM #__jomres_propertys WHERE `ptype_id` = '.(int) $id . " AND published = 1";
+		}
+		
 		$result = doSelectSql($query);
-
 
 		if (!empty($result)) {
 			$this->properties_that_prevent_property_type_from_being_unpublished = array();
