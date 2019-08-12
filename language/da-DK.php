@@ -2476,3 +2476,5 @@ jr_define('_ADMIN_CPANEL_SYSTEM_INFO', 'Jomres System Info');
 jr_define('_JOMRES_PROPERTYTYPE_UNPUBLISHED_SANITY_CHECK', "This property's property type is not published, it may not appear in search results. Please contact the site administrator to publish the property type, or change the property type in the Edit Property page.");
 jr_define('_JOMRES_PROPERTYTYPE_UNPUBLISHED_SANITY_CHECK_LINK', 'Update your property type');
 
+
+jr_define('_JOMRES_INCOME_PAID_AMOUNTS', 'Income (paid amounts)');

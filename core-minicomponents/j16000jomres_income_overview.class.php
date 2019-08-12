@@ -59,6 +59,8 @@ class j16000jomres_income_overview
 		$output['BOOKINGS_INCOME'] = output_price(abs($result['bookings_total']));
 		$output['BOOKINGS_INCOME_LABEL_CLASS'] = 'label-blue';
 
+		$output['_JOMRES_INCOME_PAID_AMOUNTS'] = jr_gettext('_JOMRES_INCOME_PAID_AMOUNTS', '_JOMRES_INCOME_PAID_AMOUNTS', false);
+		
 		if ((int) $jrConfig['useSubscriptions'] == 1) {
 			$r = array();
 
