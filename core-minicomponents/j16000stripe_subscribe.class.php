@@ -36,42 +36,8 @@ class j16000stripe_subscribe
 		$key_validation = new jomres_check_support_key(JOMRES_SITEPAGE_URL_ADMIN.'&task=stripe_subscribe');
 
 		if (!$key_validation->key_valid) {
-			try {
-				$cachefile = JOMRES_TEMP_ABSPATH.'jomres_shop_countries.json';
-				if (!file_exists($cachefile)) {
-					$base_uri = 'https://license-server.jomres.net/';
-					$query_string = 'shop/countries.php';
-					
-					// Many users will be installing on localhost etc, where selfsigned certificates may not be set up correctly, therefore we will disable verification of certs
-					$client = new GuzzleHttp\Client([
-						'base_uri' => $base_uri,
-						'verify' => false
-					]);
-
-					logging::log_message('Starting guzzle call to '.$base_uri.$query_string, 'Guzzle', 'DEBUG');
-					
-					$countries_response = $client->request('GET', $query_string)->getBody()->getContents();
-					$countries = json_decode($countries_response);
-
-					if (!is_array($countries)) {
-						throw new Exception('Could not get list of countries');
-					}
-					file_put_contents($cachefile , $countries_response );
-				
-				
-				}
-				$countries_response = file_get_contents($cachefile);
-			}
-			catch (ClientErrorResponseException $exception) {
-				$jomres_user_feedback = jomres_singleton_abstract::getInstance('jomres_user_feedback');
-				$jomres_user_feedback->construct_message(array('message'=>'Could not get countries list', 'css_class'=>'alert-danger alert-error'));
-				$jomres_user_feedback->construct_message(array('message'=>$exception->getResponse()->getBody(true), 'css_class'=>'alert-danger alert-error'));
-			}
 
 		$output = array();
-		
-		$output['COUNTRIES'] = $countries_response;
-		$output['ADMIN_EMAIL'] = get_showtime('mailfrom');
 		
 		$pageoutput[] = $output;
 		$tmpl = new patTemplate();
