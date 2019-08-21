@@ -242,41 +242,47 @@ class jomres_property_features
 		$used_property_features = array();
 		$allDeleted = true;
 		$messages = '';
-
+		
+		$this->properties_that_prevent_feature_from_being_deleted = array();
+		
 		// First we need to check that the feature isn't recorded against any propertys. If it is, we can't move forward
 		//TODO: do something better with this..too resource intensive on sites with lots of properties
 		//get all used property feature ids
-		$query = "SELECT `property_features` FROM #__jomres_propertys WHERE `property_features` != '' ";
+		$query = "SELECT `propertys_uid`, `property_features` FROM #__jomres_propertys WHERE `property_features` != '' ";
 		$propertyFeaturesList = doSelectSql( $query );
 		
-		foreach ( $propertyFeaturesList as $r )
-			{
+		$feature_ids_to_property_ids = array();
+		
+		foreach ( $propertyFeaturesList as $r ) {
+			$property_uid = $r->propertys_uid;
+				
 			$featuresArray = explode( ",", ( $r->property_features ) );
 			
-			foreach ($featuresArray as $f)
-				{
-				$used_property_features[] = $f; 
+			foreach ($featuresArray as $f) {
+				 
+				if ($f != '' ) {
+					$used_property_features[] = $f;
+					$feature_ids_to_property_ids[$f][] = $property_uid;
 				}
 			}
-		
+		}
+
 		array_unique( $used_property_features );
 		
-		foreach ( $ids as $id )
-			{
+		$success = true;
+		
+		foreach ( $ids as $id ) {
 			$safeToDelete = true;
 			
-			if ( in_array( $id, $used_property_features ) )
-				{
+			if ( in_array( $id, $used_property_features ) ) {
 				$safeToDelete = false;
-				$allDeleted   = false;
 				}
 
-			if ( !$safeToDelete )
-				{
-				$messages .= jr_gettext( '_JOMRES_COM_MR_PROPERTYFEATURE_UNABLETODELETE', '_JOMRES_COM_MR_PROPERTYFEATURE_UNABLETODELETE', false ) . $propertyFeatureUid . ": <br>";
+			if ( in_array( $id, $used_property_features ) ) {
+				$success = false;
+				$this->properties_that_prevent_feature_from_being_deleted[$id] = $feature_ids_to_property_ids[$id];
 				}
-			else
-				{
+			else {
 				$query = "DELETE FROM #__jomres_hotel_features WHERE `hotel_features_uid` = " . (int)$id;
 				if ( !doInsertSql( $query, '' ))
 					{
@@ -284,8 +290,8 @@ class jomres_property_features
 					}
 				}
 			}
-		
-		return $messages;
+
+		return $success;
 		}
 	
 	function get_all_property_features_images()
