@@ -289,7 +289,7 @@ class jrportal_rooms
 		}
 
 		// We need to find the next room number available to us
-		$query = 'SELECT MAX(`room_number`) FROM #__jomres_rooms WHERE `propertys_uid` = '.(int) $this->rooms_generator['propertys_uid'].' LIMIT 1';
+		$query = 'SELECT MAX(`room_number` + 0) FROM #__jomres_rooms WHERE `propertys_uid` = '.(int) $this->rooms_generator['propertys_uid'].' LIMIT 1';  // +0 converts room number from string to integer for the purpose of this query
 		$nextRoomNumber = (int) doSelectSql($query, 1);
 
 		if ($nextRoomNumber == 0) {
