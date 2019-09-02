@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.17.1
+ * @version Jomres 9.18.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -51,7 +51,7 @@ class j16000translate_lang_file_strings
 		$output = array();
 
 		foreach ($jomres_language_definitions->definitions[$jrConfig['language_context']] as $const => $def) {
-			$output[] = jr_gettext($const, $def);
+			$output[] = $const." ".jr_gettext($const, $def);
 		}
 
 		foreach ($output as $o) {

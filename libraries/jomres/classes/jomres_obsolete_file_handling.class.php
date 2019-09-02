@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.17.1
+ * @version Jomres 9.18.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1101,6 +1101,9 @@ class jomres_obsolete_file_handling
 		$this->add_file($this->dir_node_modules.'chart.js'.JRDS.'test'.JRDS.'specs'.JRDS.'scale.radialLinear.tests.js');
 		$this->add_file($this->dir_node_modules.'chart.js'.JRDS.'test'.JRDS.'specs'.JRDS.'scale.time.tests.js');
 
+		
+		$this->add_dir($this->dir_vendor);
+		$this->add_dir($this->dir_node_modules);
 		
 	}
 

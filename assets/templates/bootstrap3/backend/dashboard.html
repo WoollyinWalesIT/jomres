@@ -504,9 +504,11 @@ jomresJquery(function(){
 	});
 
 jomresJquery(function(){
+
 	jomresJquery("#existingGuests").change(function(){
 		var selectedValue = jomresJquery(this).find(":selected").val();
 		clause = "&task=dashboard_get_guest_details_ajax&existing_id="+selectedValue;
+		
 		jomresJquery.get(live_site_ajax + clause, function (data) {
 			var guestDeets = JSON && JSON.parse(data) || jomresJquery.parseJSON(data);
 			jomresJquery('#existing_id').val(guestDeets.existing_id);
@@ -522,9 +524,15 @@ jomresJquery(function(){
 			jomresJquery('#landline').val(guestDeets.tel_landline);
 			jomresJquery('#mobile').val(guestDeets.tel_mobile);
 			jomresJquery('#email').val(guestDeets.email);
-			});
+			
+			if (typeof guestDeets.email === 'undefined') {
+				reset_guest_details();
+				reset_region_dropdown();
+			}
+		
 		});
 	});
+});
 
 jomresJquery("#blackBookingForm").appendTo("body");
 });
@@ -549,6 +557,15 @@ function reset_booking_modal() {
 }
 
 function reset_guest_details() {
+
+	var use_random_emails = {USE_RANDOM_EMAILS};
+	
+	if (use_random_emails == true ) {
+		random_generated_guest_email_address = get_email_address_not_already_in_use();
+	} else {
+		random_generated_guest_email_address = '';
+	}
+	
 	jomresJquery('#existing_id').val('');
 	jomresJquery('#mos_userid').val('');
 	jomresJquery('#firstname').val('');
@@ -559,7 +576,28 @@ function reset_guest_details() {
 	jomresJquery('#postcode').val('');
 	jomresJquery('#landline').val('');
 	jomresJquery('#mobile').val('');
-	jomresJquery('#email').val('');
+	jomresJquery('#email').val(random_generated_guest_email_address);
+}
+
+function get_email_address_not_already_in_use() {
+	guest_email_address_account_name = Math.floor((Math.random() * 1000000) + 1);
+	var random_generated_email_address = guest_email_address_account_name+'{DEFAULT_EMAIL_DOMAIN}';
+	jomresJquery.ajax({
+		type: 'GET',
+		async: true,
+		url: live_site_ajax + '&task=dashboard_email_check_ajax',
+		data: {
+			guest_email_address: random_generated_email_address
+			},
+		success: function(data)
+			{
+			var response = JSON && JSON.parse(data) || jomresJquery.parseJSON(data);
+			if ( response.email_already_in_system == true ) {
+				random_generated_email_address = get_email_address_not_already_in_use();
+				}
+			}
+		});
+	return random_generated_email_address;
 }
 </script>
 

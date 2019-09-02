@@ -1,12 +1,12 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <div class="card">
 	<div class="card-body">
-		<h5 class="card-title">Properties</h5>
-			<p>Total properties in system <span class="badge badge-success {TOTAL_PROPERTIES_LABEL_CLASS} pull-right ">{TOTAL_PROPERTIES}</span></p>
-			<p>Published properties <span class="badge badge-success  {TOTAL_PUBLISHED_LABEL_CLASS} pull-right">{TOTAL_PUBLISHED}</span></p>
-			<p>Unpublished properties <span class="badge badge-success  {TOTAL_UNPUBLISHED_LABEL_CLASS} pull-right">{TOTAL_UNPUBLISHED}</span></p>
-			<p>Approved properties <span class="badge badge-success  {TOTAL_APPROVED_LABEL_CLASS} pull-right">{TOTAL_APPROVED}</span></p>
-			<p>Properties requiring approval <span class="badge badge-success  {TOTAL_NOTAPPROVED_LABEL_CLASS} pull-right">{TOTAL_NOTAPPROVED}</span></p>
+		<h5 class="card-title">{_JOMRES_HLIST_PROPERTIES}</h5>
+			<p>{_ADMIN_CPANEL_PROPERTIES_PANEL_TOTAL} <span class="badge badge-success {TOTAL_PROPERTIES_LABEL_CLASS} pull-right">{TOTAL_PROPERTIES}</span></p>
+			<p>{_ADMIN_CPANEL_PROPERTIES_PANEL_PUBLISHED} <span class="badge badge-success {TOTAL_PUBLISHED_LABEL_CLASS} pull-right">{TOTAL_PUBLISHED}</span></p>
+			<p>{_ADMIN_CPANEL_PROPERTIES_PANEL_UNPUBLISHED} <span class="badge badge-success {TOTAL_UNPUBLISHED_LABEL_CLASS} pull-right">{TOTAL_UNPUBLISHED}</span></p>
+			<p>{_ADMIN_CPANEL_PROPERTIES_PANEL_APPROVED} <span class="badge badge-success {TOTAL_APPROVED_LABEL_CLASS} pull-right">{TOTAL_APPROVED}</span></p>
+			<p>{_ADMIN_CPANEL_PROPERTIES_PANEL_REQUIREAPPROVAL} <span class="badge badge-success {TOTAL_NOTAPPROVED_LABEL_CLASS} pull-right">{TOTAL_NOTAPPROVED}</span></p>
 	</div>
 </div>
 

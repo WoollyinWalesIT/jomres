@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.17.1
+ * @version Jomres 9.18.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -62,6 +62,8 @@ class jomres_sanity_check
 				}
 			}
 
+			$this->warnings .= $this->check_property_type_published();
+			
 			$this->warnings .= $this->checks_guest_types_pppn();
 			if ($this->mrConfig[ 'is_real_estate_listing' ] == 0 && get_showtime('include_room_booking_functionality')) {
 				$this->warnings .= $this->checks_tariffs_exist();
@@ -194,6 +196,26 @@ class jomres_sanity_check
 		return true;
 	}
 	
+	public function check_property_type_published()
+	{
+		
+			$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
+			$current_property_details->gather_data($this->property_uid);
+			
+			$jomres_property_types = jomres_singleton_abstract::getInstance('jomres_property_types');
+			$jomres_property_types->get_all_property_types();
+			
+			if ( $jomres_property_types->property_types[$current_property_details->ptype_id]['published'] == 0 ) {
+				$message = jr_gettext('_JOMRES_PROPERTYTYPE_UNPUBLISHED_SANITY_CHECK', '_JOMRES_PROPERTYTYPE_UNPUBLISHED_SANITY_CHECK', false);
+				$link = jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_property');
+				$button_text = jr_gettext('_JOMRES_PROPERTYTYPE_UNPUBLISHED_SANITY_CHECK_LINK', '_JOMRES_PROPERTYTYPE_UNPUBLISHED_SANITY_CHECK_LINK', false);
+
+				return $this->construct_warning(array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $button_text , 'LABEL' => 'danger'));
+			}
+		
+	}
+
+	
 	public function check_for_unreviewed_bookings()
 	{
 		if ($this->jrConfig['review_nag'] == "0")
@@ -296,7 +318,8 @@ class jomres_sanity_check
 			$current_property_details->gather_data($this->property_uid);
 			$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
 			$jomres_media_centre_images->get_images($this->property_uid, array('property'));
-			$noimage = JOMRES_IMAGES_RELPATH.'noimage.gif';
+			$noimage = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/assets/images/noimage.gif';
+
 			if (!isset($jomres_media_centre_images->images['property'][0][0]['large']) || $jomres_media_centre_images->images['property'][0][0]['large'] == $noimage) {
 				$message = jr_gettext('_JOMRES_IMAGES_EXIST_SANITY_CHECK', '_JOMRES_IMAGES_EXIST_SANITY_CHECK', false);
 				$link = jomresURL(JOMRES_SITEPAGE_URL.'&task=media_centre&upload_context=properties');

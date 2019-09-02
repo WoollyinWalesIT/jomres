@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.17.1
+ * @version Jomres 9.18.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -96,6 +96,9 @@ class j06000media_centre
 			$output['ALLOWED_FILE_TYPES']								   = '(jpe?g|png)';
 			$output['MAX_UPLOAD_SIZE']									  = $this->filesize_formatted($this->file_upload_max_size());
 			$output['WIDTH_PIXELS']										 = $jrConfig[ 'maxwidth' ];
+			
+			$output['_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_FORM']			   = jr_gettext('_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_FORM', '_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_FORM', false);
+			
 			
 			$property_uid = getDefaultProperty();
 			$mrConfig = getPropertySpecificSettings($property_uid);

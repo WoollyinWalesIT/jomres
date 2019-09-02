@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.17.1
+ * @version Jomres 9.18.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -30,12 +30,19 @@ class j16000list_users
 		$rows	   = array ();
 		$pageoutput = array ();
 
-		$output[ 'HLEGEND' ] 					   					   	= jr_gettext( '_JOMRES_HLEGEND', '_JOMRES_HLEGEND',false );
-		$output[ '_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE' ]			  	= jr_gettext( '_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE', '_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE',false );
-		$output[ '_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED' ] 	= jr_gettext( '_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', '_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED',false );
-		$output[ 'HACCESSLEVEL' ]	   								= jr_gettext( '_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL', '_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL',false );
-		$output[ 'HUSERNAME' ]		   								= jr_gettext( '_JOMRES_COM_MR_ASSIGNUSER_USERNAME', '_JOMRES_COM_MR_ASSIGNUSER_USERNAME',false );
+		$output[ 'HLEGEND' ] 					   						= jr_gettext( '_JOMRES_HLEGEND', '_JOMRES_HLEGEND',false );
+		$output[ '_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE' ]				= jr_gettext( '_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE', '_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE',false );
+		$output[ '_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED' ]	= jr_gettext( '_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', '_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED',false );
+		$output[ 'HACCESSLEVEL' ]	   									= jr_gettext( '_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL', '_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL',false );
+		$output[ 'HUSERNAME' ]		   									= jr_gettext( '_JOMRES_COM_MR_ASSIGNUSER_USERNAME', '_JOMRES_COM_MR_ASSIGNUSER_USERNAME',false );
 
+		$output[ '_LIST_USERS_LEGEND_NOROLE' ]		   								= jr_gettext( '_LIST_USERS_LEGEND_NOROLE', '_LIST_USERS_LEGEND_NOROLE',false );
+		$output[ '_LIST_USERS_LEGEND_RECEPTIONIST' ]		   						= jr_gettext( '_LIST_USERS_LEGEND_RECEPTIONIST', '_LIST_USERS_LEGEND_RECEPTIONIST',false );
+		$output[ '_LIST_USERS_LEGEND_PROPERTYMANAGER' ]		   						= jr_gettext( '_LIST_USERS_LEGEND_PROPERTYMANAGER', '_LIST_USERS_LEGEND_PROPERTYMANAGER',false );
+		$output[ '_LIST_USERS_LEGEND_SUPERPROPERTYMANAGER' ]		   				= jr_gettext( '_LIST_USERS_LEGEND_SUPERPROPERTYMANAGER', '_LIST_USERS_LEGEND_SUPERPROPERTYMANAGER',false );
+		$output[ '_LIST_USERS_LEGEND_SUSPENDED' ]		   							= jr_gettext( '_LIST_USERS_LEGEND_SUSPENDED', '_LIST_USERS_LEGEND_SUSPENDED',false );
+		$output[ '_LIST_USERS_LEGEND_DELETEDFROMCMS' ]		   						= jr_gettext( '_LIST_USERS_LEGEND_DELETEDFROMCMS', '_LIST_USERS_LEGEND_DELETEDFROMCMS',false );
+		
 		$jomres_users = jomres_singleton_abstract::getInstance('jomres_users');
 		$jomres_users->get_users();
 		

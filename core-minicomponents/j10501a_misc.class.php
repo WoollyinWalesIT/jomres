@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.17.1
+ * @version Jomres 9.18.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -183,6 +183,18 @@ class j10501a_misc
 		$configurationPanel->setleft(jr_gettext('MACHINE_TRANSLATION_DEFAULT_LANG', 'MACHINE_TRANSLATION_DEFAULT_LANG', false));
 		$configurationPanel->setmiddle($language_dropdown);
 		$configurationPanel->setright(jr_gettext('MACHINE_TRANSLATION_DEFAULT_LANG_DESC', 'MACHINE_TRANSLATION_DEFAULT_LANG_DESC', false));
+		$configurationPanel->insertSetting();
+		
+		$configurationPanel->insertHeading(jr_gettext('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_HEADING', '_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_HEADING', false));
+
+		$configurationPanel->setleft(jr_gettext('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_TITLE', '_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_TITLE', false));
+		$configurationPanel->setmiddle($lists[ 'generate_random_emails' ]);
+		$configurationPanel->setright(jr_gettext('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_DESCRIPTION', '_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_DESCRIPTION', false));
+		$configurationPanel->insertSetting();
+		
+		$configurationPanel->setleft(jr_gettext('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_DOMAIN_TITLE', '_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_DOMAIN_TITLE', false));
+		$configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_random_email_domain" value="'.$jrConfig[ 'random_email_domain' ].'" />');
+		$configurationPanel->setright(jr_gettext('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_DOMIAN_DESCRIPTION', '_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_DOMIAN_DESCRIPTION', false));
 		$configurationPanel->insertSetting();
 		
 		//plugins can add options to this tab

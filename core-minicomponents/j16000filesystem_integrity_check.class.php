@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.17.1
+ * @version Jomres 9.18.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -41,7 +41,7 @@ class j16000filesystem_integrity_check
 
 		for ($i = 0; $i < $files_count; ++$i) {
 			if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.$hashes[$i]->filename)) {
-				$local_hash = md5(file_get_contents(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.$hashes[$i]->filename));
+				$local_hash = hash_file('md5', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.$hashes[$i]->filename);
 				$hashes[$i]->local_hash = $local_hash;
 				$hashes[$i]->hash_ok = true;
 				$hashes[$i]->hash_class = 'alert-success';

@@ -1,3 +1,33 @@
+<h3>Jomres 9.18.0 02/08/2019</h3>
+
+<span class="label label-success">Feature</span> Added new package handling functionality that reduces the size of Jomres Core, putting Node and Composer files into their own packages which are then downloaded and installed automatically by Jomres. 
+<span class="label label-success">Feature</span> System French language files significantly updated, plus hard-coded lables in a handful of files removed and replaced with placeholder strings for patTemplate so that everything can be translated. All plugins updated with French language files. Many thanks for your hard work regarding this, Stephane. 
+
+<span class="label label-warning">Change</span> Added referrer to list bookings page
+<span class="label label-warning">Change</span> Modified translate lang file strings page to output the constant name as this makes the strings more identifiable
+<span class="label label-warning">Change</span> Modified calendar generator so that black booking date picker automatically jumps to next date in "end" calendar.
+<span class="label label-warning">Change</span> Added Core Package Management to Jomres to allow us to treat Vendor and Node Modules as separate packages, reducing the size of Jomres Core. This is required because these directories in particular make Jomres much larger than it needs to be. It also allows us to apply vuln fixes without forcing complete updates of Jomres. Todo : Make the installer page a bit prettier and fire the installation process through ajax.
+<span class="label label-warning">Change</span> Modified booking engine so that unavailable dates are shown in departure calendar as well as arrival calendar, in booking form.
+<span class="label label-warning">Change</span> Modified booking engine to prevent managers from inadvertently re-using email addresses of existing guests.
+<span class="label label-warning">Change</span> Modfied property type handling. If a property type has no published properties, you will be able to unpublish it. Added a sanity check so that if a manager is attempting to modify a property who's property type is not published, they are advised to either contact the site admin, or change the property type.
+<span class="label label-warning">Change</span> Updated the system so that if a property prevents a feature from being deleted, the system will give useful feedback as to which properties cause the problem.
+<span class="label label-warning">Change</span> Added a new language definition and changed the delete property type handling so that property uids that prevent a property type from being deleted are shown.
+<span class="label label-warning">Change</span> Added reason notification if a property type cannot be unpublished.
+<span class="label label-warning">Change</span> Updated logging in mailer to log to own channel with more information.
+<span class="label label-warning">Change</span> Added a check to see if a bot is trying to post to the completebk page without going through the booking form.
+<span class="label label-warning">Change</span> Changed how integrity check is done, thanks Rod.
+<span class="label label-warning">Change</span> Removed jr_ucwords from admin area menu generation because it's not valid in all languages.
+<span class="label label-warning">Change</span> Updated subscription links in admin area for Jomres Trial/Subscription
+
+<span class="label label-important label-danger">Fix</span> Fixed an issue where the no image sanity check wasn't returning the required message when no image had been uploaded.
+<span class="label label-important label-danger">Fix</span> Added a missing table for initial installation process.
+<span class="label label-important label-danger">Fix</span> Fixed a notice warning When an external plugin has a 01011 class but there is not a "LASTMINUTE" override with in the response
+<span class="label label-important label-danger">Fix</span> Modified availability calendar functionality to ensure that default calendar months to show setting from default property settings is honoured.
+<span class="label label-important label-danger">Fix</span> Tweaked slideshow.html so that it behaves properly on mobile.
+<span class="label label-important label-danger">Fix</span> Tweaked edit tariffs normal to ensure that room/property types are listed in a more natural order.
+<span class="label label-important label-danger">Fix</span> Tweaked a query that creates multiple rooms, ensuring that the query converts strings to integers when trying to find the highest room number.
+
+
 <h3>Jomres 9.17.1 24/04/2019</h3>
 
 <span class="label label-warning">Change</span> Modified show property room type script so that if there are no slideshow images for that room type (which there will not be if the room type was created by site admin, then don't show the no-image slideshow. This is a stop-gap change until I can figure out a better solution.

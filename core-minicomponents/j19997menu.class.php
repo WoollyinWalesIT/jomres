@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.17.1
+ * @version Jomres 9.18.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -50,7 +50,7 @@ class j19997menu
 				$r = array();
 				
 				//menu item name
-				$r['MENU_NAME'] = jr_ucwords($jomres_menu->admin_items[$task]['title']);
+				$r['MENU_NAME'] = $jomres_menu->admin_items[$task]['title'];
 
 				//menu item url
 				if ($jomres_menu->admin_items[$task]['is_url']) {
@@ -110,7 +110,7 @@ class j19997menu
 				$rows[] = $r;
 			}
 			
-			$output[ 'CATEGORY' ] = jr_ucwords($jomres_menu->admin_sections[$section_id]['title']);
+			$output[ 'CATEGORY' ] = $jomres_menu->admin_sections[$section_id]['title'];
 			$output[ 'ID' ] = 'cpanel-category-'.$section_id;
 
 			$pageoutput[ ] = $output;
