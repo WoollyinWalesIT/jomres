@@ -228,3 +228,5 @@ jr_define( '_JOMRES_SHORTCODE_LOGIN_FORM', 'Afficher le formulaire de connexion'
 
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_TYPE', 'Afficher une liste de chambres d\'un certain type de chambres');
 jr_define( '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_TYPE_ARG_ROOM_TYPE_ID', 'ID du type de chambres' );
+
+jr_define('_JOMRES_SHORTCODES_06001DASHBOARD', 'Tableau de bord général');
