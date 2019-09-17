@@ -98,18 +98,20 @@ class j06001list_bookings_ajax
 				$sWhere .= ''.$aColumns[$i]." LIKE '%".$search['value']."%' OR ";
 			}
 			$sWhere = rtrim($sWhere, ' OR ');
-			$sWhere .= ')';
-			
 		}
 		
 		$guest_matches = search_property_guests_by_string( $search['value'] , $defaultProperty , $thisJRUser->id , $show_all );
 		if ( isset($guest_matches['guest_uids']) && !empty($guest_matches['guest_uids'])) {
-			$sWhere .= ' AND (';
+			$sWhere .= ' OR ';
 			$count = count($guest_matches['guest_uids']);
 			for ($i = 0; $i < $count; ++$i) {
 				$sWhere .= "b.guests_uid = '".$guest_matches['guest_uids'][$i]."' OR ";
 			}
 			$sWhere = rtrim($sWhere, ' OR ');
+			
+		}
+
+		if ($sWhere != '' ) {
 			$sWhere .= ')';
 		}
 
