@@ -140,7 +140,7 @@ function search_property_guests_by_string($string = '' , $property_uid = 0 , $ma
 		}
 
 		$matches = array ();
-		
+		$guest_uids = array ();
 		$count = count($all_guests);
 		for ($i=0;$i<$count;$i++) {
 			$guest = $all_guests[$i];
