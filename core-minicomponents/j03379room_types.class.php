@@ -44,33 +44,36 @@ class j03379room_types
 		$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
 		$current_property_details->gather_data($property_uid);
 		$keys = array_keys($current_property_details->room_types);
+		if (isset($keys[0])) {
 		$first_index = $keys[0];
 		$preview_link = JOMRES_SITEPAGE_URL_AJAX.'&task=show_property_room_type&property_uid='.$property_uid."&room_class_uid=".$first_index;
 			
 		if ($mrConfig[ 'singleRoomProperty' ] != '1' && $mrConfig['is_real_estate_listing'] != '1' && !empty($current_property_details->room_types) ) {
-			$this->ret_vals = array(
-									'resource_type' => 'room_types', 
-									'resource_id_required' => true, 
-									'name' => jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', '_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', false),
-									'upload_root_abs_path' => JOMRES_IMAGELOCATION_ABSPATH.$property_uid.JRDS,
-									'upload_root_rel_path' => JOMRES_IMAGELOCATION_RELPATH.$property_uid.'/',
-									'notes' => '', 
-									'preview_link'=>$preview_link 
-									);
+				$this->ret_vals = array(
+										'resource_type' => 'room_types', 
+										'resource_id_required' => true, 
+										'name' => jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', '_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', false),
+										'upload_root_abs_path' => JOMRES_IMAGELOCATION_ABSPATH.$property_uid.JRDS,
+										'upload_root_rel_path' => JOMRES_IMAGELOCATION_RELPATH.$property_uid.'/',
+										'notes' => '', 
+										'preview_link'=>$preview_link 
+										);
 
-			if (!AJAXCALL && !defined('MEDIACENTRE_ROOMJS')) {
-				define('MEDIACENTRE_ROOMJS', 1);
-				echo '
-				<script>
-				jomresJquery(function () {
-					jomresJquery("#resource_id_dropdown").change(function () {
-						get_existing_images(); 
+				if (!AJAXCALL && !defined('MEDIACENTRE_ROOMJS')) {
+					define('MEDIACENTRE_ROOMJS', 1);
+					echo '
+					<script>
+					jomresJquery(function () {
+						jomresJquery("#resource_id_dropdown").change(function () {
+							get_existing_images(); 
+							});
 						});
-					});
-				</script>
-				';
+					</script>
+					';
+				}
 			}
 		}
+
 
 		}
 	}
