@@ -3982,7 +3982,8 @@ class dobooking
 
 					$rates_uid = $tariff->rates_uid;
 					$this->setErrorLog('getTariffsForRoomUids:: Checking tariff id '.$rates_uid.' ');
-					if ($datesValid && $stayDaysValid && $numberPeopleValid && $dowCheck && $roomsAlreadySelectedTests) {
+					
+					if ($datesValid && $stayDaysValid && $numberPeopleValid && $dowCheck && $roomsAlreadySelectedTests && (float)$tariff->roomrateperday > 0.00 ) {
 						$tariff_type_id = 0;
 						if (isset($this->all_tariff_id_to_tariff_type_xref[ $rates_uid ][ 0 ])) {
 							$tariff_type_id = $this->all_tariff_id_to_tariff_type_xref[ $rates_uid ][ 0 ];
