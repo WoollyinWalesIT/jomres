@@ -1129,7 +1129,7 @@ jr_define('_JOMCOMP_MYUSER_REMOVE', 'Eliminar favoritos');
 jr_define('_JOMRES_DATA_ARCHIVE_TITLE', 'Archivo de datos de Reservas');
 jr_define('_JOMRES_DATA_ARCHIVE_TITLE_DESC', 'El archivo de reserva de datos es un volcado de la información de la reserva, la información es capturada después de confirmar la reserva haciendo clic. Pase el ratón sobre una de fecha para ver el volcado de los datos en bruto. La información es almacenada en la tabla XXX__jomres_booking_data_archive.');
 jr_define('_JOMRES_MY_ACCOUNT_EDIT', 'Editar cuenta');
-jr_define('_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS', 'To add a user as a property manager, first enter the first few characters of their username in the field above. When the correct user has been found click on that name to select it, then choose which property(s) they should be a manager of.');
+jr_define('_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS', 'To add a user as a property manager, first enter the first few characters of their username in the field above. When the correct user has been found click on that name to select it, then choose which property(s) they should be a manager of. The user <em>must already be a user in the CMS</em>');
 jr_define('_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE', 'Actuales Administradores');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYGUESTNUMBER', 'Buscar por número de huéspedes');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYGUESTNUMBER_DESC', 'Mostrar la búsqueda número de huéspedes en menú desplegable');

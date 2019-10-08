@@ -1120,7 +1120,7 @@ jr_define('_JOMCOMP_MYUSER_REMOVE', 'Usuń z ulubionych');
 jr_define('_JOMRES_DATA_ARCHIVE_TITLE', 'Archiwum danych');
 jr_define('_JOMRES_DATA_ARCHIVE_TITLE_DESC', 'Archiwum danych rezerwacji jest to zrzut informacji rezerwacji zrobiony po naciśnięciu przycisku rezerwacja. Najedź na datę aby zobaczyć surowy zrzut danych. Informacje te są przechowywane w tabeli XXX__jomres_booking_data_archive .');
 jr_define('_JOMRES_MY_ACCOUNT_EDIT', 'Moje dane');
-jr_define('_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS', 'To add a user as a property manager, first enter the first few characters of their username in the field above. When the correct user has been found click on that name to select it, then choose which property(s) they should be a manager of.');
+jr_define('_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS', 'To add a user as a property manager, first enter the first few characters of their username in the field above. When the correct user has been found click on that name to select it, then choose which property(s) they should be a manager of. The user <em>must already be a user in the CMS</em>');
 jr_define('_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE', 'Obecni managerowie');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYGUESTNUMBER', 'Liczba osób');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYGUESTNUMBER_DESC', 'Pokaż wyszukiwanie według liczby osób wybieranej z listy rozwijanej.');

@@ -1092,7 +1092,7 @@ jr_define('_JOMCOMP_MYUSER_REMOVE', 'Премахни фаворита');
 jr_define('_JOMRES_DATA_ARCHIVE_TITLE', 'Архив на резервациите');
 jr_define('_JOMRES_DATA_ARCHIVE_TITLE_DESC', 'Да се избира от системния администратор.');
 jr_define('_JOMRES_MY_ACCOUNT_EDIT', 'Редактирай профил');
-jr_define('_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS', 'To add a user as a property manager, first enter the first few characters of their username in the field above. When the correct user has been found click on that name to select it, then choose which property(s) they should be a manager of.');
+jr_define('_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS', 'To add a user as a property manager, first enter the first few characters of their username in the field above. When the correct user has been found click on that name to select it, then choose which property(s) they should be a manager of. The user <em>must already be a user in the CMS</em>');
 jr_define('_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE', 'Настоящи мениджъри');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYGUESTNUMBER', 'Търси по брой гости');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYGUESTNUMBER_DESC', 'Падащо меню');

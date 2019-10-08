@@ -1144,7 +1144,7 @@ jr_define('_JOMCOMP_MYUSER_REMOVE', 'rimuovere preferito');
 jr_define('_JOMRES_DATA_ARCHIVE_TITLE', 'archivio di dati di prenotazione');
 jr_define('_JOMRES_DATA_ARCHIVE_TITLE_DESC', "L'archivio dei dati di prenotazione è un dump raw di prenotazione informazioni acquisite dopo che il pulsante di prenotazione di conferma viene cliccato. Passa il mouse sopra una data per vedere il dump di dati grezzi. Le informazioni sono memorizzate nella tabella XXX__jomres_booking_data_archive.");
 jr_define('_JOMRES_MY_ACCOUNT_EDIT', 'Modifica account');
-jr_define('_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS', "To add a user as a property manager, first enter the first few characters of their username in the field above. When the correct user has been found click on that name to select it, then choose which property(s) they should be a manager of.");
+jr_define('_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS', "To add a user as a property manager, first enter the first few characters of their username in the field above. When the correct user has been found click on that name to select it, then choose which property(s) they should be a manager of. The user <em>must already be a user in the CMS</em>");
 jr_define('_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE', 'i gestori esistenti');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYGUESTNUMBER', 'Posti letto');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYGUESTNUMBER_DESC', 'Mostra la ricerca in base al numero degli ospiti discesa');

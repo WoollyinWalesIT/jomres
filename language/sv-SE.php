@@ -1107,7 +1107,7 @@ jr_define('_JOMCOMP_MYUSER_REMOVE', 'Ta bort favorit');
 jr_define('_JOMRES_DATA_ARCHIVE_TITLE', 'Arkiv över bokningsuppgifter');
 jr_define('_JOMRES_DATA_ARCHIVE_TITLE_DESC', 'Arkivet över bokningsuppgifter är oformaterad bokningsinformation som hämtas från minnet och som skapas efter ett klick på knappen Bekräfta bokning . För muspekaren över ett datum för att se den oformaterade informationen. Den lagras i tabellen XXX__jomres_booking_data_archive.');
 jr_define('_JOMRES_MY_ACCOUNT_EDIT', 'Redigera konto');
-jr_define('_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS', 'To add a user as a property manager, first enter the first few characters of their username in the field above. When the correct user has been found click on that name to select it, then choose which property(s) they should be a manager of.');
+jr_define('_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS', 'To add a user as a property manager, first enter the first few characters of their username in the field above. When the correct user has been found click on that name to select it, then choose which property(s) they should be a manager of. The user <em>must already be a user in the CMS</em>');
 jr_define('_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE', 'Befintliga administratörer');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYGUESTNUMBER', 'Sök gästantal');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYGUESTNUMBER_DESC', 'Visa rullgardinslistan sök via gästantal');
