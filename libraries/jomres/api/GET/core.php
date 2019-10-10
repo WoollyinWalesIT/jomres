@@ -31,7 +31,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 Flight::route('GET /core/report', function() 
 	{
 	require_once("../framework.php");
-	
+
 	$jomres_properties = jomres_singleton_abstract::getInstance('jomres_properties');
 	$jomres_properties->get_all_properties();
 
