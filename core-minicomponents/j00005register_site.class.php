@@ -46,7 +46,7 @@ class j00005register_site
 		$tries = $jrConfig['appServerRegister'];
 		}
 	
-	if ($tries >= 6000 ) { //It aint happening, let's give up
+	if ($tries >= 6 ) { //It aint happening, let's give up
 		return;
 		}
 	
