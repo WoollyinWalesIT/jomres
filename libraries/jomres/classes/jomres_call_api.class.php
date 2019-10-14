@@ -19,7 +19,7 @@ defined('_JOMRES_INITCHECK') or die('');
 class jomres_call_api
 {
 	private $token;
-	private $server;
+	public $server;
 
 	public function __construct()
 	{

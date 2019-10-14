@@ -1,0 +1,26 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+{CSRF_TOKEN}
+</form>
+
+<h2 class="page-header">{_JOMRES_REST_API_CONNECTIVITY_TEST}</h2>
+
+
+<p class="alert alert-info">{_JOMRES_REST_API_CONNECTIVITY_TEST_INFO}</p>
+
+<p class="alert alert-{STATUS}">{TEST_RESULT}</p>
+
+	<div class="form-group">
+		{_JOMRES_REST_API_CONNECTIVITY_TEST_CALLED}
+		<a href="{URL}" class="form-control" target="_blank">{URL}</a>
+	</div>
+	<hr/>
+	<div class="form-group">
+		{_JOMRES_REST_API_CONNECTIVITY_TEST_RESPONSE}
+		<textarea class="form-control col-lg-9" rows="20">{RESPONSE}</textarea> 
+	</div>
+</div>
+
+</patTemplate:tmpl>
