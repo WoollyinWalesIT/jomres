@@ -889,7 +889,7 @@ class j01010listpropertys
 				switch ($key) {
 					case 'stars':
 						foreach ($val as $v) {
-							$selections .= '&stars[]='.$v;
+							$selections .= '&stars='.$v[0];
 						}
 						break;
 					case 'pricerange_value_from':
