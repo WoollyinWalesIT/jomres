@@ -19,7 +19,6 @@ defined('_JOMRES_INITCHECK') or die('');
 $request = Flight::request();
 
 if (substr($request->url,0,6) == '/core/' ) {
-
 	if (file_exists(JOMRES_CORE_API_ABSPATH.$request->method.DIRECTORY_SEPARATOR.$route.'.php')) {
 		require_once JOMRES_CORE_API_ABSPATH.$request->method.DIRECTORY_SEPARATOR.$route.'.php';
 	} else {

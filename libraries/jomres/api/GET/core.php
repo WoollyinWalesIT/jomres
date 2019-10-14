@@ -38,7 +38,7 @@ Flight::route('GET /core/report', function()
   	$data[] = array ( 
 		"api_url"				=> urlencode(get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/api/'),
 		"jomres_url" 			=> urlencode(JOMRES_SITEPAGE_URL_NOSEF),
-		"property_count"		=> count($jomres_properties->all_property_uids['all_published_propertys'])
+		"property_count"		=> count($jomres_properties->all_property_uids['all_propertys'])
 	);
 
 	Flight::json( $response_name = "report" ,$data);
