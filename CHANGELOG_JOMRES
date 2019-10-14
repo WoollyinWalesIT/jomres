@@ -1,4 +1,19 @@
-<h3>Jomres 9.18.0 02/08/2019</h3>
+<h3>Jomres 9.18.1 14/10/2019</h3>
+
+<span class="label label-success">Feature</span> Added feature where API functionality can offer built-in API methods. 
+<span class="label label-success">Feature</span> Added functionality that allows Jomres installations to report themselves to a remote server. This allows us to have a registry of Jomres installations. No personal data is recorded or revealed, just the url to the Jomres site and the number of properties it has.
+
+<span class="label label-warning">Change</span> Added code to delete property script to allow deletion of properties through componentArgs, meaning it can be called as a discreet script, rather than always being intended to be run through the browser.
+<span class="label label-warning">Change</span> Added  ROW_FORMAT=DYNAMIC to the query that creates the propertys table.
+<span class="label label-warning">Change</span> Updated language files to emphasise that property managers must always be existing cms users.
+
+<span class="label label-important label-danger">Fix</span> Fixed an issue where stars selection was not added to paging urls in list properties.
+<span class="label label-important label-danger">Fix</span> Asynchronous deferred tasks were causing some slowdowns to added a solution to possibly use wget to trigger deferred tasks instead.
+<span class="label label-important label-danger">Fix</span> Improved how list bookings page searches for guest names & email addresses
+<span class="label label-important label-danger">Fix</span> Modified booking engine so that a double check is done on price to ensure that an edge case doesn't result in 0 price tariffs being presented in the booking form.
+<span class="label label-important label-danger">Fix</span> Fixed some issues in REST API functionality created by the previous update's changes to file paths.
+
+<h3>Jomres 9.18.0 02/09/2019</h3>
 
 <span class="label label-success">Feature</span> Added new package handling functionality that reduces the size of Jomres Core, putting Node and Composer files into their own packages which are then downloaded and installed automatically by Jomres. 
 <span class="label label-success">Feature</span> System French language files significantly updated, plus hard-coded lables in a handful of files removed and replaced with placeholder strings for patTemplate so that everything can be translated. All plugins updated with French language files. Many thanks for your hard work regarding this, Stephane. 
