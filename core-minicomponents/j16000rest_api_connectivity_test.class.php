@@ -37,6 +37,8 @@ class j16000rest_api_connectivity_test
 			//
 		}
 		
+
+		
 		$output['URL'] = $jomres_call_api->server."core/report/";
 		
 		if (is_object($response)) {
@@ -57,12 +59,37 @@ class j16000rest_api_connectivity_test
 		}
 		
 		
+		// Syndication network testing
+		
+		$client = new GuzzleHttp\Client();
+
+		$response = $client->request('POST', "http://app.jomres.net/jomres/api/get_sites/confirm/", [
+			'form_params' => [
+				
+				'api_url' => urlencode(get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/api/')
+				]
+			]);
+
+		$body				= json_decode((string)$response->getBody());
+
+		if ($body->meta->code == "200" && $body->data->response == true ) {
+			
+			$output[ '_JOMRES_REST_API_SYNDICATION_TEST' ] = jr_gettext('_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_PASSED', '_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_PASSED', false);
+			$output[ 'SYNDICATION_STATUS' ]				= "success";
+		} else {
+			$output[ '_JOMRES_REST_API_SYNDICATION_TEST' ] = jr_gettext('_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_FAILED', '_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_FAILED', false);
+			$output[ 'SYNDICATION_STATUS' ]				= "danger";
+			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+			$siteConfig->update_setting('appServerRegister',0);
+		}
+		
+		
+		$output[ '_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_TITLE' ] = jr_gettext('_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_TITLE', '_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_TITLE', false);
+		$output[ '_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_INTRO' ] = jr_gettext('_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_INTRO', '_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_INTRO', false);
 		$output[ '_JOMRES_REST_API_CONNECTIVITY_TEST' ] = jr_gettext('_JOMRES_REST_API_CONNECTIVITY_TEST', '_JOMRES_REST_API_CONNECTIVITY_TEST', false);
 		$output[ '_JOMRES_REST_API_CONNECTIVITY_TEST_INFO' ]		= jr_gettext('_JOMRES_REST_API_CONNECTIVITY_TEST_INFO', '_JOMRES_REST_API_CONNECTIVITY_TEST_INFO', false);
 		$output[ '_JOMRES_REST_API_CONNECTIVITY_TEST_CALLED' ]		= jr_gettext('_JOMRES_REST_API_CONNECTIVITY_TEST_CALLED', '_JOMRES_REST_API_CONNECTIVITY_TEST_CALLED', false);
 		$output[ '_JOMRES_REST_API_CONNECTIVITY_TEST_RESPONSE' ]	= jr_gettext('_JOMRES_REST_API_CONNECTIVITY_TEST_RESPONSE', '_JOMRES_REST_API_CONNECTIVITY_TEST_RESPONSE', false);
-		
-		
 		
 		$jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
