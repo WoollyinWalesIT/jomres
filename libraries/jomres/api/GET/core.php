@@ -99,6 +99,7 @@ Flight::route('GET /core/get_properties', function()
 						$all_published_propertys[] = array (
 							"view_property_url"		=> get_property_details_url($property['propertys_uid'] , "nosef"),
 							"booking_form_url"		=> get_booking_url($property['propertys_uid'] , "nosef"),
+							"propertys_uid"			=> (int)$property['propertys_uid'],
 							"name"					=> $property['property_name'],
 							"multi_room_property"	=> $mrp,
 							"lat"					=> $property['lat'],

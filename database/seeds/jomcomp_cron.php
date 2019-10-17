@@ -31,4 +31,8 @@ $jomres_cron->addJob("api_tokens_cleanup","D","");
 $jomres_cron->addJob('version_check', 'D', '');
 $jomres_cron->addJob('booking_data_archive_cleanup', 'D', '');
 $jomres_cron->addJob('gdpr_cleanup', 'D', '');
+$jomres_cron->addJob('syndication_get_syndicate_domains', 'D', '');
+$jomres_cron->addJob('syndication_get_syndicate_properties', 'M', '');
+$jomres_cron->addJob('syndication_check_syndicate_domains', 'QH', '');
+$jomres_cron->addJob('syndication_check_syndicate_properties', 'QH', '');
 
