@@ -64,8 +64,17 @@ class j06000syndication_get_syndicate_properties
 						$row_str = '';
 						foreach ($body->data->properties[0]->properties as $property) {
 							$bang = explode("/",$property->thumbnail_location);
-							if ( isset($property->propertys_uid) && parse_url($property->view_property_url) && parse_url($property->booking_form_url) && end($bang) != 'noimage_small.gif' && !in_array( $property->propertys_uid, $local_domain_properties) )  {
-								if (!in_array($property->propertys_uid , $domain_properties ) ) {
+							if ( 
+								isset($property->propertys_uid) && 
+								isset($property->view_property_url) &&
+								isset($property->booking_form_url) &&
+								isset($property->thumbnail_location) &&
+								parse_url($property->view_property_url) && 
+								parse_url($property->booking_form_url) && 
+								end($bang) != 'noimage_small.gif' && 
+								$this->check_image_exists($property->thumbnail_location) &&
+								!in_array( $property->propertys_uid, $local_domain_properties)
+								)  {
 									$row_str .= "
 										('".$syndication_domain_id."',
 										'".$property->view_property_url."',
@@ -80,7 +89,6 @@ class j06000syndication_get_syndicate_properties
 										'".$now."',
 										'".$now."',
 										'1'),";
-								}
 							}
 						}
 						
@@ -140,7 +148,17 @@ class j06000syndication_get_syndicate_properties
 		}
 	}
 
-	
+	private function check_image_exists($image_url) 
+	{
+		$client = new GuzzleHttp\Client();
+
+		try {
+			$client->head($image_url);
+			return true;
+		} catch (GuzzleHttp\Exception\ClientException $e) {
+			return false;
+		}
+	}
 	// This must be included in every Event/Mini-component
 	public function getRetVals()
 	{
