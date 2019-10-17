@@ -241,3 +241,6 @@ jr_define( '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_TYPE_ARG_ROOM_TYPE_ID', '
 
 jr_define('_JOMRES_SHORTCODES_06001DASHBOARD', 'Dashboard');
 
+jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES', 'Shows a list of syndicated properties');
+jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_LIMIT', 'The number of syndicated properties to show');
+jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'Whether to show MRPs (hotels/bed & breakfasts) or SRPs (cottages/apartments/villas). Default is determinded from the current property\'s property uid, if that is not available, then MRPs are shown. To choose a specific type, set this value to 0 for srps, or 1 for mrps.');

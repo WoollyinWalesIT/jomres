@@ -37,7 +37,7 @@ class j06000cron_syndication_get_syndicate_domains
 		
 		try {
 			$client = new GuzzleHttp\Client();
-			$response = $client->request('GET', "http://app.jomres.net/jomres/api/get_sites/" , ['connect_timeout' => 1 ] );
+			$response = $client->request('GET', "http://app.jomres.net/jomres/api/get_sites/" , ['connect_timeout' => 10 ] );
 
 			$body				= json_decode((string)$response->getBody());
 					

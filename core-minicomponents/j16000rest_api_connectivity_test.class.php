@@ -58,9 +58,6 @@ class j16000rest_api_connectivity_test
 			$output[ 'STATUS' ]				= "danger";
 		}
 		
-		
-		// Syndication network testing
-		
 		$client = new GuzzleHttp\Client();
 
 		$response = $client->request('POST', "http://app.jomres.net/jomres/api/get_sites/confirm/", [

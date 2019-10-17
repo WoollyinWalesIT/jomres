@@ -21,7 +21,6 @@ class j06000cron_syndication_get_syndicate_properties
 		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch) {
 			$this->template_touchable = false;
-
 			return;
 		}
 
@@ -56,13 +55,16 @@ class j06000cron_syndication_get_syndicate_properties
 				
 				try {
 					$client = new GuzzleHttp\Client();
-					$response = $client->request('GET', $r->api_url.'core/get_properties'.'/' , ['connect_timeout' => 1 ] );
+					$response = $client->request('GET', $r->api_url.'core/get_properties'.'/' , ['connect_timeout' => 60 ] );
 
 					$body				= json_decode((string)$response->getBody());
 
 					if (!empty($body->data->properties[0]->properties)){
 						$row_str = '';
 						foreach ($body->data->properties[0]->properties as $property) {
+							
+							$image_exists = $this->check_image_exists($property->thumbnail_location);
+
 							$bang = explode("/",$property->thumbnail_location);
 							if ( 
 								isset($property->propertys_uid) && 
@@ -72,7 +74,7 @@ class j06000cron_syndication_get_syndicate_properties
 								parse_url($property->view_property_url) && 
 								parse_url($property->booking_form_url) && 
 								end($bang) != 'noimage_small.gif' && 
-								$this->check_image_exists($property->thumbnail_location) &&
+								$image_exists &&
 								!in_array( $property->propertys_uid, $local_domain_properties)
 								)  {
 									$row_str .= "
@@ -150,14 +152,12 @@ class j06000cron_syndication_get_syndicate_properties
 
 	private function check_image_exists($image_url) 
 	{
-		$client = new GuzzleHttp\Client();
-
-		try {
-			$client->head($image_url);
+		$im = @imagecreatefromjpeg($image_url);
+		if($im) {
+			imagedestroy($im);
 			return true;
-		} catch (GuzzleHttp\Exception\ClientException $e) {
-			return false;
 		}
+		else return false;
 	}
 	// This must be included in every Event/Mini-component
 	public function getRetVals()
