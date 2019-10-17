@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j06000syndication_get_syndicate_domains
+class j06000cron_syndication_get_syndicate_domains
 {
 	public function __construct()
 	{

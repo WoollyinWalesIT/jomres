@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-class j06000syndication_check_syndicate_properties
+class j06000cron_syndication_check_syndicate_properties
 {
 	public function __construct()
 	{
