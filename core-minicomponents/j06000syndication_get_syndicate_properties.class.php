@@ -64,7 +64,7 @@ class j06000syndication_get_syndicate_properties
 						$row_str = '';
 						foreach ($body->data->properties[0]->properties as $property) {
 							$bang = explode("/",$property->thumbnail_location);
-							if ( parse_url($property->view_property_url) && parse_url($property->booking_form_url) && end($bang) != 'noimage_small.gif' && !in_array( $property->propertys_uid, $local_domain_properties) )  {
+							if ( isset($property->propertys_uid) && parse_url($property->view_property_url) && parse_url($property->booking_form_url) && end($bang) != 'noimage_small.gif' && !in_array( $property->propertys_uid, $local_domain_properties) )  {
 								if (!in_array($property->propertys_uid , $domain_properties ) ) {
 									$row_str .= "
 										('".$syndication_domain_id."',

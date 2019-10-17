@@ -34,7 +34,7 @@ class j06000syndication_check_syndicate_domains
 				try {
 					$client = new GuzzleHttp\Client();
 					
-					$response = $client->request('GET', $r->api_url.'core/report/' , ['connect_timeout' => 1 ] );
+					$response = $client->request('GET', $r->api_url.'core/get_properties/' , ['connect_timeout' => 1 ] );
 
 					if ( $r->approved == 0 ) { // It wasn't responding before, but now it is, let's approve it again
 						$query = "UPDATE  #__jomres_syndication_domains SET 

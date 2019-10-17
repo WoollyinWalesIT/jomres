@@ -40,7 +40,7 @@ class j06000syndication_check_syndicate_properties
 						$domain = parse_url($r->api_url);
 						
 						$client = new GuzzleHttp\Client();
-						$response = $client->request('GET', $r->api_url.'core/get_properties'.'/' , ['connect_timeout' => 1 ] );
+						$response = $client->request('GET', $r->api_url.'core/get_properties/' , ['connect_timeout' => 1 ] );
 
 						$body				= json_decode((string)$response->getBody());
 						
@@ -51,7 +51,9 @@ class j06000syndication_check_syndicate_properties
 						} else {
 							$remote_properties = array();
 							foreach ($body->data->properties[0]->properties as $remote_property) {
-								$remote_properties[] = $remote_property->propertys_uid;
+								if (isset($remote_property->propertys_uid)) {
+									$remote_properties[] = $remote_property->propertys_uid;
+								}
 							}
 
 							foreach ($local_properties as $local_property) {
