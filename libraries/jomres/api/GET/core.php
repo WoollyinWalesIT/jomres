@@ -97,8 +97,8 @@ Flight::route('GET /core/get_properties', function()
 					
 					if (!in_array($property['propertys_uid'] , $curr_jintour_properties )) {
 						$all_published_propertys[] = array (
-							"view_property_url"		=> get_property_details_url($property['propertys_uid']),
-							"booking_form_url"		=> get_booking_url($property['propertys_uid']),
+							"view_property_url"		=> get_property_details_url($property['propertys_uid'] , "nosef"),
+							"booking_form_url"		=> get_booking_url($property['propertys_uid'] , "nosef"),
 							"name"					=> $property['property_name'],
 							"multi_room_property"	=> $mrp,
 							"lat"					=> $property['lat'],
