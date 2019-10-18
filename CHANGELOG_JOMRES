@@ -1,7 +1,8 @@
 <h3>Jomres 9.18.1 14/10/2019</h3>
 
+<span class="label label-success">Feature</span> Added the Jomres Syndication Network functionality which lists your properties on other Jomres based sites, giving you the opportunity to advertise your properties at no extra cost, across the world. No personal data is recorded or revealed, just the url to the Jomres site and the number of properties it has.
 <span class="label label-success">Feature</span> Added feature where API functionality can offer built-in API methods. 
-<span class="label label-success">Feature</span> Added functionality that allows Jomres installations to report themselves to a remote server. This allows us to have a registry of Jomres installations. No personal data is recorded or revealed, just the url to the Jomres site and the number of properties it has.
+
 
 <span class="label label-warning">Change</span> Added code to delete property script to allow deletion of properties through componentArgs, meaning it can be called as a discreet script, rather than always being intended to be run through the browser.
 <span class="label label-warning">Change</span> Added  ROW_FORMAT=DYNAMIC to the query that creates the propertys table.
