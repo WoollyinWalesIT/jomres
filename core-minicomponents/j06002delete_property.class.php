@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.18.0
+ * @version Jomres 9.19.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -25,11 +25,27 @@ class j06002delete_property
 
 			return;
 		}
-		$thisJRUser = jomres_getSingleton('jr_user');
-
+	
 		$sure = jomresGetParam($_REQUEST, 'sure', 0);
+		
+		if (isset($componentArgs['sure'])) {
+			$sure = true;
+		}
+		
 		if ($sure) {
-			$property_uid = (int) getDefaultProperty();
+			
+			if (!isset($componentArgs['property_uid'])) {
+				$property_uid = (int) getDefaultProperty();
+			} else {
+				$property_uid = (int) $componentArgs['property_uid'] ;
+			}
+			
+			if (!isset($componentArgs['thisJRUser'])) {
+				$thisJRUser = jomres_getSingleton('jr_user');
+			} else {
+				$thisJRUser = $componentArgs['thisJRUser'];
+			}
+			
 			$is_jintour_property = get_showtime('is_jintour_property');
 			if (in_array($property_uid, $thisJRUser->authorisedProperties) && count($thisJRUser->authorisedProperties) > 1) {
 				$saveMessage = jr_gettext('_JOMRES_COM_MR_PROPERTY_DELETED', '_JOMRES_COM_MR_PROPERTY_DELETED', false);
@@ -99,10 +115,17 @@ class j06002delete_property
 				$webhook_notification->data->property_uid		   = $property_uid;
 				add_webhook_notification($webhook_notification);
 		
-				jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=listyourproperties&thisProperty='.$resetProperty, ''));
+				if (!isset($componentArgs['property_uid'])) {  
+					jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=listyourproperties&thisProperty='.$resetProperty, ''));
+				} else {
+					$this->retVals = true;
+				}
+				
 			} else {
 				trigger_error(jr_gettext('_JOMRES_COM_MR_PROPERTY_DELETE_NORIGHTS', '_JOMRES_COM_MR_PROPERTY_DELETE_NORIGHTS', false), E_USER_ERROR);
-				echo "<script> alert('".jr_gettext('_JOMRES_COM_MR_PROPERTY_DELETE_NORIGHTS', '_JOMRES_COM_MR_PROPERTY_DELETE_NORIGHTS', false)."'); ; </script>\n";
+				if (!isset($componentArgs['property_uid'])) {
+					echo "<script> alert('".jr_gettext('_JOMRES_COM_MR_PROPERTY_DELETE_NORIGHTS', '_JOMRES_COM_MR_PROPERTY_DELETE_NORIGHTS', false)."'); ; </script>\n";
+					}
 			}
 		} else {
 			$property_uid = (int) getDefaultProperty();

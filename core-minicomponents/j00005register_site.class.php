@@ -1,0 +1,91 @@
+<?php
+/**
+ * Core file.
+ *
+ * @author Vince Wooll <sales@jomres.net>
+ *
+ * @version Jomres 9.19.0
+ *
+ * @copyright	2005-2019 Vince Wooll
+ * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
+ **/
+
+// ################################################################
+defined('_JOMRES_INITCHECK') or die('');
+// ################################################################
+
+class j00005register_site
+{
+	public function __construct()
+	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		if ($MiniComponents->template_touch) {
+			$this->template_touchable = false;
+			return;
+		}
+	
+	if ( 
+		get_showtime("task") == "view_log_file" ||
+		get_showtime("task") == "list_error_logs" ||
+		AJAXCALL
+		) {
+			return;
+		}
+	
+	// reports the server's existence to the Jomres app server
+	
+	$app_server = "http://app.jomres.net/jomres/api/register_site/";
+	
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+	$jrConfig = $siteConfig->get();
+	
+	if (!isset($jrConfig['appServerRegister'])) {
+		$tries = 0;
+	} else {
+		$tries = $jrConfig['appServerRegister'];
+		}
+	
+	if ($tries >= 6 ) { //It aint happening, let's give up
+		return;
+		}
+	
+	
+	try {
+		$client = new GuzzleHttp\Client();
+
+		$response = $client->request('POST', $app_server, [
+			//'debug' => true,
+			'form_params' => [
+				'api_url' => urlencode(get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/api/')
+				]
+			]);
+
+		$code				= $response->getStatusCode();
+		$body				= (string)$response->getBody();
+
+		
+		
+		if ($code == 200) {
+			logging::log_message('Updated app.jomres.net ', 'API', 'DEBUG');
+			$tries = 10;
+			} 
+		else {
+			logging::log_message('Failed to update app.jomres.net Received response code '.$code, 'API', 'WARNING');
+			$tries++;
+			}
+	} catch (\Exception $e) {
+		logging::log_message('Failed to update app.jomres.net Received response '.$e->getMessage()." with message ".$body, 'API', 'WARNING' , $body)  ;
+		$tries++;
+		}
+		
+	$siteConfig->update_setting('appServerRegister',$tries);
+	}
+	
+	
+	// This must be included in every Event/Mini-component
+	public function getRetVals()
+	{
+		return null;
+	}
+}

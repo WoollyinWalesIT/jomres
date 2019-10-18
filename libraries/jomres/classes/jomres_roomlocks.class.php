@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.18.0
+ * @version Jomres 9.19.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -164,17 +164,24 @@ class jomres_roomlocks
 		$this->rooms_already_in_cart = array();
 		if (!empty($tmpBookingHandler->cart_data)) {
 			foreach ($tmpBookingHandler->cart_data as $cart) {
-				$requestedRooms = $cart['requestedRoom'];
-				$roomBang = explode(',', $requestedRooms);
 				$rooms = array();
-				foreach ($roomBang as $r) {
-					$rooms[] = $this->extract_room_uid($r);
+				
+				if (isset($cart['requestedRoom'])) {
+					$requestedRooms = $cart['requestedRoom'];
+					$roomBang = explode(',', $requestedRooms);
+					
+					foreach ($roomBang as $r) {
+						$rooms[] = $this->extract_room_uid($r);
+					}
 				}
 
-				$dateRangeString = $cart['dateRangeString'];
-				$datesBang = explode(',', $dateRangeString);
-				foreach ($datesBang as $date) {
-					$this->rooms_already_in_cart [$date] = $rooms;
+				if (isset( $cart['dateRangeString'])) {
+					$dateRangeString = $cart['dateRangeString'];
+					$datesBang = explode(',', $dateRangeString);
+					foreach ($datesBang as $date) {
+						$this->rooms_already_in_cart [$date] = $rooms;
+					}
+
 				}
 			}
 		}

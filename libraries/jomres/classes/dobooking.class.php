@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.18.0
+ * @version Jomres 9.19.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -3982,7 +3982,8 @@ class dobooking
 
 					$rates_uid = $tariff->rates_uid;
 					$this->setErrorLog('getTariffsForRoomUids:: Checking tariff id '.$rates_uid.' ');
-					if ($datesValid && $stayDaysValid && $numberPeopleValid && $dowCheck && $roomsAlreadySelectedTests) {
+					
+					if ($datesValid && $stayDaysValid && $numberPeopleValid && $dowCheck && $roomsAlreadySelectedTests && (float)$tariff->roomrateperday > 0.00 ) {
 						$tariff_type_id = 0;
 						if (isset($this->all_tariff_id_to_tariff_type_xref[ $rates_uid ][ 0 ])) {
 							$tariff_type_id = $this->all_tariff_id_to_tariff_type_xref[ $rates_uid ][ 0 ];
