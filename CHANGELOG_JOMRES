@@ -1,3 +1,11 @@
+<h3>Jomres 9.19.1 21/10/2019</h3>
+
+<span class="label label-warning">Change</span> Added functionality to silently add plugins if required by REST API
+<span class="label label-warning">Change</span> Installer scripts updated to remove space check
+
+<span class="label label-important label-danger">Fix</span> Removed a usort section of code that was preventing normal mode tariffs from being saved.
+
+
 <h3>Jomres 9.19.0 18/10/2019</h3>
 
 <span class="label label-success">Feature</span> Added the Jomres Syndication Network functionality which lists your properties on other Jomres based sites, giving you the opportunity to advertise your properties at no extra cost, across the world. No personal data is recorded or revealed, just the url to the Jomres site and the number of properties it has.
