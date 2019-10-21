@@ -174,7 +174,10 @@ class logging
             $backtrace = debug_backtrace();
             $trace = "<br/> File ".$backtrace[1]['file']." Line ".$backtrace[1]['line']. " Function ".$backtrace[1]['function']."<br/> ";
             $trace .= " File ".$backtrace[2]['file']." Line ".$backtrace[2]['line']. " Function ".$backtrace[2]['function']."<br/> ";
-            $trace .= " File ".$backtrace[3]['file']." Line ".$backtrace[3]['line']. " Function ".$backtrace[3]['function']."<br/> "; 
+			if (isset($backtrace[3]['file'])) {
+				$trace .= " File ".$backtrace[3]['file']." Line ".$backtrace[3]['line']. " Function ".$backtrace[3]['function']."<br/> "; 
+			}
+            
         }
         $context = array( 'info_dump' => $further_info_dump.$trace);
 
