@@ -77,56 +77,69 @@ class j06000show_syndicated_properties
 
 		jr_import('jomres_syndicate_properties');
 		$jomres_syndicate_properties = new jomres_syndicate_properties();
+		
+
+		if ( get_showtime('property_uid') > 0 ) {
+			$basic_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
+			$basic_property_details->gather_data(get_showtime('property_uid'));
+			$jomres_syndicate_properties->base_property_id = get_showtime('property_uid');
+			$jomres_syndicate_properties->base_lat_long = array ( "lat" => $basic_property_details->lat , "long" => $basic_property_details->long ); 
+		}
+		
 		$random_properties = $jomres_syndicate_properties->get_random_properties( $limit , $multi_room_property );
-		$property_templates = array();
-		foreach ($random_properties as $property ) {
+		
+		if ( !empty($random_properties)) {
+			$property_templates = array();
+			foreach ($random_properties as $property ) {
+				$output = array();
+				$pageoutput = array();
+				$template = array();
+				
+				$output['VIEW_PROPERTY_URL']	= $property->view_property_url;
+				$output['BOOKING_FORM_URL']		= $property->booking_form_url;
+				$output['NAME']					= $property->name;
+				$output['LAT']					= $property->lat;
+				$output['LONG']					= $property->long;
+				$output['METADESCRIPTION']		= $property->metadescription;
+				$output['THUMBNAIL_LOCATION']	= $property->thumbnail_location;
+				$output['DATE_ADDED']			= $property->date_added;
+				$output['LAST_CHECKED']			= $property->last_checked;
+				
+				$pageoutput[] = $output;
+				$tmpl = new patTemplate();
+				$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+				$tmpl->addRows('pageoutput', $pageoutput);
+
+				$tmpl->readTemplatesFromInput('show_syndicated_property.html');
+				$template['TEMPLATE'] = $tmpl->getParsedTemplate();
+
+				$property_templates[] = $template;
+			}
+			
 			$output = array();
 			$pageoutput = array();
-			$template = array();
 			
-			$output['VIEW_PROPERTY_URL']	= $property->view_property_url;
-			$output['BOOKING_FORM_URL']		= $property->booking_form_url;
-			$output['NAME']					= $property->name;
-			$output['LAT']					= $property->lat;
-			$output['LONG']					= $property->long;
-			$output['METADESCRIPTION']		= $property->metadescription;
-			$output['THUMBNAIL_LOCATION']	= $property->thumbnail_location;
-			$output['DATE_ADDED']			= $property->date_added;
-			$output['LAST_CHECKED']			= $property->last_checked;
+			$output['_JOMRES_SYNDICATION_TITLE'] = jr_gettext('_JOMRES_SYNDICATION_TITLE', '_JOMRES_SYNDICATION_TITLE', false);
+			$output['_JOMRES_SYNDICATION_TAGLINE'] = jr_gettext('_JOMRES_SYNDICATION_TAGLINE', '_JOMRES_SYNDICATION_TAGLINE', false);
+			
 			
 			$pageoutput[] = $output;
 			$tmpl = new patTemplate();
 			$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+			$tmpl->addRows('property_templates', $property_templates);
 			$tmpl->addRows('pageoutput', $pageoutput);
-
-			$tmpl->readTemplatesFromInput('show_syndicated_property.html');
-			$template['TEMPLATE'] = $tmpl->getParsedTemplate();
-
-			$property_templates[] = $template;
+			$tmpl->readTemplatesFromInput('show_syndicated_properties.html');
+			$template = $tmpl->getParsedTemplate();
+			
+			if ($output_now) {
+				echo $template;
+			} else {
+				$this->retVals = $template;
+			}
+			
+			$jomres_syndicate_properties->report_properties_display($random_properties);
 		}
-		
-		$output = array();
-		$pageoutput = array();
-		
-		$output['_JOMRES_SYNDICATION_TITLE'] = jr_gettext('_JOMRES_SYNDICATION_TITLE', '_JOMRES_SYNDICATION_TITLE', false);
-		$output['_JOMRES_SYNDICATION_TAGLINE'] = jr_gettext('_JOMRES_SYNDICATION_TAGLINE', '_JOMRES_SYNDICATION_TAGLINE', false);
-		
-		
-		$pageoutput[] = $output;
-		$tmpl = new patTemplate();
-		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
-		$tmpl->addRows('property_templates', $property_templates);
-		$tmpl->addRows('pageoutput', $pageoutput);
-		$tmpl->readTemplatesFromInput('show_syndicated_properties.html');
-		$template = $tmpl->getParsedTemplate();
-		
-		if ($output_now) {
-			echo $template;
-		} else {
-			$this->retVals = $template;
-		}
-		
-		$jomres_syndicate_properties->report_properties_display($random_properties);
+
 		
 	}
 
