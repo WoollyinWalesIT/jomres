@@ -43,6 +43,7 @@ class j06000cron_syndication_get_syndicate_domains
 					
 			if (!empty($body->data->sites->sites)) {
 				foreach ( $body->data->sites->sites as $site ) {
+					var_dump($site);
 					$domain = parse_url($site->api_url);
 					if ($domain) {
 						$now = date("Y-m-d H:i:s");
@@ -60,11 +61,14 @@ class j06000cron_syndication_get_syndicate_domains
 										`date_added` =  '".$new_site_datetime_added."',
 										`last_checked` =  '".$new_site_datetime_last_checked."'
 								";
-								$result = doInsertSql($query);
+								doInsertSql($query);
+								echo $query;
 							}
 							catch (Exception $e) {
 								logging::log_message("Tried to insert domain ".$new_site_domain." but failed ", 'Syndication', 'WARNING');
 							}
+						} else {
+							logging::log_message("Domain ".$domain['host']." already in domains table ", 'Syndication', 'DEBUGGING');
 						}
 					}
 				}

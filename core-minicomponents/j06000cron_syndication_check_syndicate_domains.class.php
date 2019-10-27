@@ -34,21 +34,32 @@ class j06000cron_syndication_check_syndicate_domains
 				try {
 					$client = new GuzzleHttp\Client();
 					
-					$response = $client->request('GET', $r->api_url.'core/get_properties/' , ['connect_timeout' => 1 ] );
+					$response = $client->request('GET', $r->api_url.'core/get_properties/' ,  ['connect_timeout' => 1 , 'verify' => false , 'http_errors' => false] );
 
-					if ( $r->approved == 0 ) { // It wasn't responding before, but now it is, let's approve it again
-						$query = "UPDATE  #__jomres_syndication_domains SET 
-							`approved` = 1 ,
-							`unapproval_reason` = '',
-							`last_checked` = '".date("Y-m-d H:i:s")."'
+					if ((string)$response->getStatusCode() == "404") {
+							$query = "UPDATE  #__jomres_syndication_domains SET 
+							`last_checked` = '".date("Y-m-d H:i:s" , strtotime("+1 year") )."' ,
+							`approved` = 0 ,
+							`unapproval_reason` = 'system'
 							WHERE id = ".(int)$r->id;
 						doInsertSql($query);
 					} else {
-						$query = "UPDATE  #__jomres_syndication_domains SET 
-							`last_checked` = '".date("Y-m-d H:i:s")."'
-							WHERE id = ".(int)$r->id;
-						doInsertSql($query);
+						if ( $r->approved == 0 ) { // It wasn't responding before, but now it is, let's approve it again
+							$query = "UPDATE  #__jomres_syndication_domains SET 
+								`approved` = 1 ,
+								`unapproval_reason` = '',
+								`last_checked` = '".date("Y-m-d H:i:s")."'
+								WHERE id = ".(int)$r->id;
+							doInsertSql($query);
+						} else {
+							$query = "UPDATE  #__jomres_syndication_domains SET 
+								`last_checked` = '".date("Y-m-d H:i:s")."'
+								WHERE id = ".(int)$r->id;
+							doInsertSql($query);
+						}
 					}
+						
+
 				}
 				catch (GuzzleHttp\Exception\ClientException $e) {
 					if ((int)$r->approved == 1 ) { // Oops, it's stopped responding. We'll take it offline and check it again in an hour
