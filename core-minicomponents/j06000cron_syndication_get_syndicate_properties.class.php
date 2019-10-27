@@ -75,8 +75,8 @@ class j06000cron_syndication_get_syndicate_properties
 							$row_str = '';
 							foreach ($body->data->properties[0]->properties as $property) {
 								if (!in_array( $property->propertys_uid, $local_domain_properties)) {
-			//						$image_exists = $this->check_image_exists($property->thumbnail_location);
-			$image_exists = true;
+									$image_exists = $this->check_image_exists($property->thumbnail_location);
+
 									$bang = explode("/",$property->thumbnail_location);
 									if ( 
 										isset($property->propertys_uid) && 
