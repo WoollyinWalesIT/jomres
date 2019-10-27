@@ -45,7 +45,7 @@ class j11010towns
 		
 		if ( $thisJRUser->userIsManager )
 			{
-			if ( !AJAXCALL && !defined("MEDIACENTRE_ROOMJS") )
+			if ( !AJAXCALL && !defined("MEDIACENTRE_ROOMJS") && !defined('JOMRES_API_CMS_ROOT') )
 				{
 				define ("MEDIACENTRE_ROOMJS",1);
 				echo '

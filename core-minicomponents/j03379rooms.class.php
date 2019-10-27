@@ -50,7 +50,7 @@ class j03379rooms
 									'preview_link'=>$preview_link 
 									);
 
-			if (!AJAXCALL && !defined('MEDIACENTRE_ROOMJS')) {
+			if (!AJAXCALL && !defined('MEDIACENTRE_ROOMJS') && !defined('JOMRES_API_CMS_ROOT') ) {
 				define('MEDIACENTRE_ROOMJS', 1);
 				echo '
 				<script>
