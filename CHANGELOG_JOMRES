@@ -5,6 +5,8 @@
 <span class="label label-important label-danger">Fix</span> Updated PUT method handling to ensure that it doesn't throw notices when form data is empty.
 <span class="label label-important label-danger">Fix</span> Added check to see if API definition exists, if it does and it's an API call, we suppress some output.
 <span class="label label-important label-danger">Fix</span> Improved performance and exception handling of syndicate cron tasks
+<span class="label label-important label-danger">Fix</span> Improved core package handling to ensure graceful fallback in the event of a sha not being built correctly.
+
 
 <h3>Jomres 9.19.1 21/10/2019</h3>
 
