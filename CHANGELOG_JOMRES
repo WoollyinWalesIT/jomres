@@ -1,3 +1,13 @@
+<h3>Jomres 9.19.2 28/10/2019</h3>
+
+<span class="label label-success">Feature</span> Improved syndication functionality, added new table for property distances, when the show syndication script attempts to show syndicated properties a min and max distances setting is applied and any properties that fall within that window are selected to be shown. This allows the guest to see properties in the general area (currently between 50 & 100km) whilst not showing the current property's neighbours who may also be competitors.
+
+<span class="label label-important label-danger">Fix</span> Updated PUT method handling to ensure that it doesn't throw notices when form data is empty.
+<span class="label label-important label-danger">Fix</span> Added check to see if API definition exists, if it does and it's an API call, we suppress some output.
+<span class="label label-important label-danger">Fix</span> Improved performance and exception handling of syndicate cron tasks
+<span class="label label-important label-danger">Fix</span> Improved core package handling to ensure graceful fallback in the event of a sha not being built correctly.
+
+
 <h3>Jomres 9.19.1 21/10/2019</h3>
 
 <span class="label label-warning">Change</span> Added functionality to silently add plugins if required by REST API

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.19.1
+ * @version Jomres 9.19.2
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -45,7 +45,7 @@ class j11010towns
 		
 		if ( $thisJRUser->userIsManager )
 			{
-			if ( !AJAXCALL && !defined("MEDIACENTRE_ROOMJS") )
+			if ( !AJAXCALL && !defined("MEDIACENTRE_ROOMJS") && !defined('JOMRES_API_CMS_ROOT') )
 				{
 				define ("MEDIACENTRE_ROOMJS",1);
 				echo '

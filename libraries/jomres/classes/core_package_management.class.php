@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.19.1
+ * @version Jomres 9.19.2
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -154,6 +154,13 @@ class core_package_management
 		if (!file_exists($repo['local_abs_path'].'sha.php')) {
 			return false;
 		}
+		
+		$contents = file_get_contents($repo['local_abs_path'].'sha.php');
+		if (strlen($contents)>500) { // This is hinky, let's force redownloading of the package 
+			unlink($repo['local_abs_path'].'sha.php');
+			return false;
+		}
+		
 		require($repo['local_abs_path'].'sha.php');
 		return $local_sha;
 	}
