@@ -22,13 +22,14 @@ class jomres_syndicate_properties
 	{
 		$this->all_properties = array();
 		$this->all_approved_properties = array();
+		$this->fallback_approved_properties = array();
 		$this->existing_domains = array();
 		
 		$this->base_lat_long = array();
 		$this->base_property_id = 0;
 		
-		$this->min_distance_allowed = 50;
-		$this->max_distance_allowed = 100;
+		$this->min_distance_allowed = 1;
+		$this->max_distance_allowed = 20;
 	}
 
 	public function get_all_properties() {
@@ -109,7 +110,7 @@ class jomres_syndicate_properties
 				
 				
 				if ( $distance > $this->max_distance_allowed || $distance < $this->min_distance_allowed ) {
-					
+					$this->fallback_approved_properties[] = $this->all_approved_properties[$type][$key];
 					unset($this->all_approved_properties[$type][$key]);
 				} else {
 					$val->distance = $distance;
@@ -127,7 +128,10 @@ class jomres_syndicate_properties
 	
 		$count = count($this->all_approved_properties[$type]);
 		
-		if ($count == 0 ) {
+		if ($count == 0 && !empty($this->fallback_approved_properties)) {
+			$this->all_approved_properties[$type] = $this->fallback_approved_properties;
+			$count = count($this->all_approved_properties[$type]);
+		} elseif ($count == 0) {
 			return array();
 		}
 		
