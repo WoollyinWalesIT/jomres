@@ -154,6 +154,13 @@ class core_package_management
 		if (!file_exists($repo['local_abs_path'].'sha.php')) {
 			return false;
 		}
+		
+		$contents = file_get_contents($repo['local_abs_path'].'sha.php');
+		if (strlen($contents)>500) { // This is hinky, let's force redownloading of the package 
+			unlink($repo['local_abs_path'].'sha.php');
+			return false;
+		}
+		
 		require($repo['local_abs_path'].'sha.php');
 		return $local_sha;
 	}
