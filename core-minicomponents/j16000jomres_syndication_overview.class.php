@@ -78,7 +78,7 @@ class j16000jomres_syndication_overview
 			$output[ '_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS_DESC' ] = jr_gettext('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS_DESC', '_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS_DESC', false);
 			$output[ '_JOMRES_SYNDICATION_STATS_BLURB' ] = jr_gettext('_JOMRES_SYNDICATION_STATS_BLURB', '_JOMRES_SYNDICATION_STATS_BLURB', false);
 	
-			if ($this_installation_listed_on_server->data->response !== false ) {
+			if ($this_installation_listed_on_server->data->response == false ) {
 				$output[ 'IS_LISTED' ] = jr_gettext('_JOMRES_SYNDICATION_STATS_IS_NOT_LISTED', '_JOMRES_SYNDICATION_STATS_IS_NOT_LISTED', false);
 				$output[ 'IS_LISTED_STATUS' ] = '😢';
 			} else {
