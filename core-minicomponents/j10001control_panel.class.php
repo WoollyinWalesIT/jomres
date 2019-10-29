@@ -88,6 +88,10 @@ class j10001control_panel
 			$output['SUBSCRIPTIONS_CHART'] = $MiniComponents->specificEvent('16000', 'chart_subscriptions', array('output_now' => false, 'height'=> 300));
 		}
 
+		//bookings chart
+		$output['SYNDICATION_NETWORK'] = $MiniComponents->specificEvent('16000', 'jomres_syndication_overview', array('output_now' => false, 'height'=> 300));
+		
+		
 		$pageoutput[ ] = $output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
