@@ -2512,3 +2512,51 @@ jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS', 'Total Property d
 jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS_DESC', 'In total, all of the times a Jomres property has been linked to from another Jomres based site.');
 jr_define('_JOMRES_SYNDICATION_STATS_BLURB', 'The Jomres Syndicate Network (JSN) is a free feature available to all Jomres users. It\'s purpose is to provide you with free advertising of your properties on other Jomres based sites. The goal is to help you get your site off the ground fast, offering free advertising so that your properties are recognised and trusted because they are linked to high confidence, high relevance websites that are already well known to the search engines. See this <a href="https://www.jomres.net/features/jomres-syndication-network" target="_blank">article on our website</a> and <a href="https://www.jomres.net/manual/developers-guide-2/387-jomres-syndication-network" target="_blank">the manual</a>  for more information.');
 
+
+jr_define('GUEST_PROFILE_INFORMATION', 'This is your guest profile data, fields with this symbol <i class="fa fa-users" aria-hidden="true"></i>
+ are publicly visible, whereas fields with this symbol <i class="fa fa-user-secret" aria-hidden="true"></i> can only be seen by you, your hosts and site administrators.<br/><br/>Hosts can only see private information if you have already created a booking with them.<br/><br/>Your information is safely encrypted and stored in our database using AES-256 encryption.');
+
+jr_define('GUEST_PROFILE_OPTIONAL', 'These fields are optional, however hosts may use the information here to determine if they feel that they can trust you, therefore it\'s better to add the information. Remember, you are asking to stay in their property, and they may turn you down if they feel you aren’t a good fit or that your bio doesn’t contain enough information.');
+ 
+jr_define('GUEST_PROFILE_DRIVING_LICENSE', 'Driving license');
+jr_define('GUEST_PROFILE_PASSPORT_NUMBER', 'Passport number');
+jr_define('GUEST_PROFILE_IBAN', 'IBAN number');
+jr_define('GUEST_PROFILE_ABOUT_ME', 'About me');
+jr_define('GUEST_PROFILE_ABOUT_ME_HINTS', 'This "About me" section is publicly viewable so don\'t put in any private information. That said, do make an effort to put as much as you feel comfortable sharing such as your passions, what you do for a living, your hobbies etc. You can use Markup to give it a bit of jazz. Hosts will want to feel that they can trust you with their properties. Make sure that your picture is a real picture of you, not your dog or car (yes, guys, we\'re talking to you!).');
+
+jr_define('GUEST_PROFILE_PREFERENCES', 'Enter any special requirements you may have, such as ease of access needs here. They will not be shown on your public profile but they will be added to the booking information when you make a booking.');
+
+jr_define('VIEW_HOST_PROFILE', 'Host\'s profile');
+
+jr_define('GUEST_PROFILE_TITLE', 'Guest profile');
+jr_define('GUEST_PROFILE_TITLE_MY', 'My profile');
+
+jr_define('GUEST_PROFILE_WELCOME', 'Hi, let me tell you a little bit about myself.');
+jr_define('GUEST_PROFILE_MY_NAME', 'My name is ');
+jr_define('GUEST_PROFILE_I_COME_FROM', ' and I come from the ');
+jr_define('GUEST_PROFILE_IN', ' region in ');
+
+jr_define('GUEST_PROFILE_PRIVATE_INFORMATION', 'My private information');
+jr_define('GUEST_PROFILE_PRIVATE_INFORMATION_DISCLAIMER', 'We do our best to validate guest and host information however you should do your own due dilligence and decide for yourself whether or not this person is trustworthy.');
+
+jr_define('GUEST_PROFILE_MY_PROPERTIES', 'My properties');
+jr_define('GUEST_PROFILE_MY_REVIEWS', 'My reviews');
+jr_define('GUEST_PROFILE_MY_REVIEWS_I_SAID', 'This is what I said about this property : ');
+jr_define('GUEST_PROFILE_MY_REVIEWS_I_SCORED', 'I gave this property a rating score of : ');
+jr_define('GUEST_PROFILE_MY_REVIEWS', 'My reviews');
+jr_define('GUEST_PROFILE_OF_ME', 'What other people say about me');
+jr_define('GUEST_PROFILE_OF_HOST_SAID', 'What this host said about me');
+
+jr_define('GUEST_PROFILE_REVIEW_GUEST', 'Review guest');
+jr_define('GUEST_PROFILE_REVIEW_GUEST_CONTENT', 'My review of this guest ');
+jr_define('GUEST_PROFILE_REVIEW_GUEST_CONTENT_EXAMPLES', 'Here are some example guest reviews to get the ball rolling : <br/>
+	
+	<ul>
+	<li>(guests name) was a pleasure to host! They left the space clean and were quiet throughout the weekend. They had smooth communication and I look forward to having them stay with me again!</li>
+    <li>I loved having (guest name) because they were able to treat the place with respect, have a great time and enjoy the area. They were awesome with renting the space and I hope I get to host them again.</li>
+    <li>All of my house rules were respected with (guest name) and they were able to come in and go with ease. I loved having them there as they were respectful and quiet. I highly recommend them to others!</li>
+	</ul>
+
+');
+
+jr_define('GUEST_PROFILE_UNKNOWN', 'Sorry, I can\'t find that user.');
