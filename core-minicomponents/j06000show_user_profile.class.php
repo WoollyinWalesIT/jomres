@@ -68,9 +68,11 @@ class j06000show_user_profile
 			$result = doSelectSql($query);
 			if (count($result) == 1) {
 				$can_view_private_details = true;
-			} else {
-				return;
-			}
+			} elseif ( (int)$thisJRUser->id == $cms_user_id ) {
+					$can_view_private_details = true;
+				} else {
+					return;
+				}
 
 		} elseif ( (int)$thisJRUser->id == $cms_user_id ) {
 			$can_view_private_details = true;
