@@ -64,11 +64,14 @@ class j06000show_user_profile
 		if ( ($thisJRUser->userIsManager && isset($componentArgs['cms_user_id'])) || $thisJRUser->superPropertyManager ) { // This is a property manager attempting to view a guest's profile, probably for inclusion in the Booking details page, or a super property manager
 
 			$property_uid = getDefaultProperty();
-			$query = "SELECT mos_userid FROM #__jomres_guests WHERE cms_user_id = '".(int) $cms_user_id." AND property_uid = ".(int)$property_uid;  // We'll check that the guest has been a guest of this property
+			$query = "SELECT mos_userid FROM #__jomres_guests WHERE mos_userid = ".(int) $cms_user_id." AND property_uid = ".(int)$property_uid;  // We'll check that the guest has been a guest of this property
 			$result = doSelectSql($query);
 			if (count($result) == 1) {
 				$can_view_private_details = true;
+			} else {
+				return;
 			}
+
 		} elseif ( (int)$thisJRUser->id == $cms_user_id ) {
 			$can_view_private_details = true;
 		}

@@ -354,12 +354,16 @@ class j06001edit_booking
 		$output[ 'EMAIL_ADDRESS' ] = $current_contract_details->contract[$contract_uid]['guestdeets']['email'];
 		$output[ 'GUEST_IMAGE' ] = $current_contract_details->contract[$contract_uid]['guestdeets']['image'];
 		
-		$cms_user = jomres_cmsspecific_getCMS_users_frontend_userdetails_by_username($current_contract_details->contract[$contract_uid]['contractdeets']['username']);
-		foreach ($cms_user as $u ) {
-			$cms_user_id = $u['id'];
-		}
+	
+		$guest_uid = $current_contract_details->contract[$contract_uid]['contractdeets']['guest_uid'];
+		
+		jr_import('jrportal_guests');
+		$jrportal_guests = new jrportal_guests();
+		$jrportal_guests->id = $guest_uid;
+		$jrportal_guests->property_uid = $defaultProperty;
+		$jrportal_guests->get_guest();
 
-		$output['GUEST_PROFILE'] = $MiniComponents->specificEvent('06000', 'show_user_profile', array('output_now' => false , 'cms_user_id' => $cms_user_id ));
+		$output['GUEST_PROFILE'] = $MiniComponents->specificEvent('06000', 'show_user_profile', array('output_now' => false , 'cms_user_id' => $jrportal_guests->cms_user_id ));
 
 		$pageoutput[ ] = $output;
 		$tmpl = new patTemplate();
