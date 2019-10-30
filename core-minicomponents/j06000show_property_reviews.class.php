@@ -203,7 +203,10 @@ class j06000show_property_reviews
 				} else {
 					$r['REVIEWER_FIRSTNAME'] = $review[ 'user_name' ];
 				}
-
+				
+				$r['REVIEWER_PROFILE_LINK'] = jomresUrl(JOMRES_SITEPAGE_URL.'&task=show_user_profile&cms_user_id='.$review[ 'user_id' ]);
+				
+				
 				$r[ 'REVIEW_TITLE' ] = $review[ 'review_title' ];
 				$r[ 'REVIEW_DESCRIPTION' ] = $review[ 'review_description' ];
 				$r[ 'PROS' ] = $review[ 'pros' ];

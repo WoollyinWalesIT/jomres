@@ -76,6 +76,10 @@ class jr_user
 		$this->vat_number_validated = '';
 		$this->vat_number_validation_response = '';
 		$this->params = array(); //user settings
+		$this->drivers_license = '';
+		$this->passport_number = '';
+		$this->iban = '';
+		$this->about_me = '';
 
 		if ( $id == 0 ) {
 			if (defined("JOMRES_API_CMS_ROOT") ) {
@@ -155,7 +159,12 @@ class jr_user
 						`enc_vat_number`,
 						`vat_number_validated`,
 						`vat_number_validation_response`,
-						`params`
+						`params`,
+						`enc_preferences`,
+						`enc_drivers_license`,
+						`enc_passport_number`,
+						`enc_iban`,
+						`enc_about_me`
 					FROM #__jomres_guest_profile 
 					WHERE `cms_user_id` = ' .(int) $this->id.' 
 					LIMIT 1 ';
@@ -163,22 +172,28 @@ class jr_user
 
 		if (!empty($result)) {
 			foreach ($result as $r) {
-				$this->profile_id = $r->id;
-				$this->cms_user_id = $r->cms_user_id;
-				$this->firstname = $this->jomres_encryption->decrypt($r->enc_firstname);
-				$this->surname = $this->jomres_encryption->decrypt($r->enc_surname);
-				$this->house = $this->jomres_encryption->decrypt($r->enc_house);
-				$this->street = $this->jomres_encryption->decrypt($r->enc_street);
-				$this->town = $this->jomres_encryption->decrypt($r->enc_town);
-				$this->region = $this->jomres_encryption->decrypt($r->enc_county);
-				$this->country = $this->jomres_encryption->decrypt($r->enc_country);
-				$this->postcode = $this->jomres_encryption->decrypt($r->enc_postcode);
-				$this->tel_landline = $this->jomres_encryption->decrypt($r->enc_tel_landline);
-				$this->tel_mobile = $this->jomres_encryption->decrypt($r->enc_tel_mobile);
-				$this->email = $this->jomres_encryption->decrypt($r->enc_email);
-				$this->vat_number = $this->jomres_encryption->decrypt($r->enc_vat_number);
-				$this->vat_number_validated = $r->vat_number_validated;
-				$this->vat_number_validation_response = $r->vat_number_validation_response;
+				$this->profile_id						= $r->id;
+				$this->cms_user_id						= $r->cms_user_id;
+				$this->firstname						= $this->jomres_encryption->decrypt($r->enc_firstname);
+				$this->surname							= $this->jomres_encryption->decrypt($r->enc_surname);
+				$this->house							= $this->jomres_encryption->decrypt($r->enc_house);
+				$this->street							= $this->jomres_encryption->decrypt($r->enc_street);
+				$this->town								= $this->jomres_encryption->decrypt($r->enc_town);
+				$this->region							= $this->jomres_encryption->decrypt($r->enc_county);
+				$this->country							= $this->jomres_encryption->decrypt($r->enc_country);
+				$this->postcode							= $this->jomres_encryption->decrypt($r->enc_postcode);
+				$this->tel_landline						= $this->jomres_encryption->decrypt($r->enc_tel_landline);
+				$this->tel_mobile						= $this->jomres_encryption->decrypt($r->enc_tel_mobile);
+				$this->email							= $this->jomres_encryption->decrypt($r->enc_email);
+				$this->vat_number						= $this->jomres_encryption->decrypt($r->enc_vat_number);
+				$this->vat_number_validated				= $r->vat_number_validated;
+				$this->vat_number_validation_response	= $r->vat_number_validation_response;
+				$this->drivers_license					= $this->jomres_encryption->decrypt($r->enc_drivers_license);
+				$this->passport_number					= $this->jomres_encryption->decrypt($r->enc_passport_number);
+				$this->iban								= $this->jomres_encryption->decrypt($r->enc_iban);
+				$this->about_me							= $this->jomres_encryption->decrypt($r->enc_about_me);
+				$this->preferences							= $this->jomres_encryption->decrypt($r->enc_preferences);
+				 
 				
 				if (!empty($r->params)) {
 					$this->params = json_decode($r->params, true);

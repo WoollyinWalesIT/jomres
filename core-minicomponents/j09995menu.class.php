@@ -69,6 +69,7 @@ class j09995menu
 		//my account section menus
 		if ($thisJRUser->accesslevel >= 1) {
 			$jomres_menu->add_item(10, jr_gettext('_JOMRES_MY_ACCOUNT_EDIT', '_JOMRES_MY_ACCOUNT_EDIT', false), 'edit_my_account', 'fa-user');
+			$jomres_menu->add_item(10, jr_gettext('GUEST_PROFILE_TITLE_MY', 'GUEST_PROFILE_TITLE_MY', false), 'show_user_profile', 'fa-user');
 		}
 		
 		if ($thisJRUser->accesslevel == 1 && $jrConfig['is_single_property_installation'] == '0' && $jrConfig[ 'selfRegistrationAllowed' ] == '1') {

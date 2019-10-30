@@ -55,6 +55,15 @@ class j06005save_my_account
 		$mobile = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'mobile', ''));
 		$fax = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'fax', ''));
 		$email = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'email', ''));
+		$preferences = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'preferences', ''));
+		
+		$drivers_license = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'drivers_license', ''));
+		$passport_number = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'passport_number', ''));
+		$iban = $this->jomres_encryption->encrypt((string) jomresGetParam($_REQUEST, 'iban', ''));
+
+		$about_me = $this->convert_lessgreaterthans(jomresGetParam($_REQUEST, 'about_me', ''));
+		$about_me = $this->jomres_encryption->encrypt(strip_tags($about_me, '<p><br>'));
+		
 		$vat_number = trim(filter_var($_REQUEST[ 'vat_number' ], FILTER_SANITIZE_STRING));
 		$return_url = (string) jomresGetParam($_REQUEST, 'return_url', '');
 		$delete_image = (int)jomresGetParam($_REQUEST, 'delete', 0);
@@ -94,9 +103,15 @@ class j06005save_my_account
 					`enc_tel_landline`='".$landline."',
 					`enc_tel_mobile`='".$mobile."',
 					`enc_email`='".$email."',
+					`enc_drivers_license`='".$drivers_license."',
+					`enc_passport_number`='".$passport_number."',
+					`enc_iban`='".$iban."',
+					`enc_about_me`='".$about_me."',
 					`enc_vat_number`='".$this->jomres_encryption->encrypt($vat_number)."',
+					`enc_preferences`='".$preferences."',
 					`vat_number_validated`=$original_vat_number_validated 
 					WHERE cms_user_id = ".(int) $thisJRUser->id;
+					
 				if (!doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_UPDATE_GUEST', '_JOMRES_MR_AUDIT_UPDATE_GUEST', false))) {
 					trigger_error('Unable to update guest details, mysql db failure', E_USER_ERROR);
 				}
@@ -114,8 +129,10 @@ class j06005save_my_account
 					`enc_tel_mobile`='".$mobile."',
 					`enc_email`='".$email."',
 					`enc_vat_number`='".$this->jomres_encryption->encrypt($vat_number)."',
+					`enc_preferences`='".$preferences."',
 					`vat_number_validated`=$original_vat_number_validated 
 				WHERE mos_userid = ".(int) $thisJRUser->id;
+				
 				doInsertSql($query, '');
 			} else {
 				$query = "INSERT INTO #__jomres_guest_profile (
@@ -131,7 +148,12 @@ class j06005save_my_account
 					`enc_tel_landline`,
 					`enc_tel_mobile`,
 					`enc_email`,
+					`enc_drivers_license`,
+					`enc_passport_number`,
+					`enc_iban`,
+					`enc_about_me`,
 					`enc_vat_number`,
+					`enc_preferences`,
 					`vat_number_validated`) 
 					VALUES (
 					'".(int) $thisJRUser->id."',
@@ -146,9 +168,14 @@ class j06005save_my_account
 					'$landline',
 					'$mobile',
 					'$email',
+					'$drivers_license',
+					'$passport_number',
+					'$iban',
+					'$about_me',
 					'".$this->jomres_encryption->encrypt($vat_number)."',
+					'$preferences',
 					0)";
-					
+				
 				if (!doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_INSERT_GUEST', '_JOMRES_MR_AUDIT_INSERT_GUEST', false))) {
 					trigger_error('Unable to insert guest details, mysql db failure', E_USER_ERROR);
 				}
@@ -250,7 +277,6 @@ class j06005save_my_account
 		$tmpBookingHandler->updateGuestField('tel_mobile', $this->jomres_encryption->decrypt($mobile));
 		$tmpBookingHandler->updateGuestField('email', $this->jomres_encryption->decrypt($email));
 		
-		
 		if ($return_url != '') {
 			$return_url = jr_base64url_decode($return_url);
 			jomresRedirect($return_url, '');
@@ -259,6 +285,14 @@ class j06005save_my_account
 		}
 	}
 
+	public function convert_lessgreaterthans($string)
+	{
+		$string = str_replace('&#60;', '<', $string);
+		$string = str_replace('&#62;', '>', $string);
+
+		return $string;
+	}
+	
 	// This must be included in every Event/Mini-component
 	public function getRetVals()
 	{

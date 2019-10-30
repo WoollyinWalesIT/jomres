@@ -78,19 +78,25 @@ class j06005edit_my_account
 			}
 
 			if ($thisJRUser->profile_id > 0) {
-				$output[ 'FIRSTNAME' ] = $thisJRUser->firstname;
-				$output[ 'SURNAME' ] = $thisJRUser->surname;
-				$output[ 'HOUSE' ] = $thisJRUser->house;
-				$output[ 'STREET' ] = $thisJRUser->street;
-				$output[ 'TOWN' ] = $thisJRUser->town;
-				$output[ 'REGION' ] = setupRegions($thisJRUser->country, $thisJRUser->region);
-				$output[ 'COUNTRY' ] = createSimpleCountriesDropdown($thisJRUser->country);
-				$output[ 'POSTCODE' ] = $thisJRUser->postcode;
-				$output[ 'LANDLINE' ] = $thisJRUser->tel_landline;
-				$output[ 'MOBILE' ] = $thisJRUser->tel_mobile;
-				$output[ 'FAX' ] = $thisJRUser->tel_fax;
-				$output[ 'EMAIL' ] = $thisJRUser->email;
+				$output[ 'FIRSTNAME' ]			= $thisJRUser->firstname;
+				$output[ 'SURNAME' ]			= $thisJRUser->surname;
+				$output[ 'HOUSE' ]				= $thisJRUser->house;
+				$output[ 'STREET' ]				= $thisJRUser->street;
+				$output[ 'TOWN' ]				= $thisJRUser->town;
+				$output[ 'REGION' ]				= setupRegions($thisJRUser->country, $thisJRUser->region);
+				$output[ 'COUNTRY' ]			= createSimpleCountriesDropdown($thisJRUser->country);
+				$output[ 'POSTCODE' ]			= $thisJRUser->postcode;
+				$output[ 'LANDLINE' ]			= $thisJRUser->tel_landline;
+				$output[ 'MOBILE' ]				= $thisJRUser->tel_mobile;
+				$output[ 'FAX' ]				= $thisJRUser->tel_fax;
+				$output[ 'EMAIL' ]				= $thisJRUser->email;
 
+				$output[ 'DRIVERS_LICENSE' ]	= $thisJRUser->drivers_license;
+				$output[ 'PASSPORT_NUMBER' ]	= $thisJRUser->passport_number;
+				$output[ 'IBAN' ]				= $thisJRUser->iban;
+				$output[ 'PREFERENCES' ]		= $thisJRUser->preferences;
+	
+				
 				jr_import('vat_number_validation');
 				$validation = new vat_number_validation();
 				$validation->get_subject('buyer_registered_byprofile_id', array('profile_id' => $thisJRUser->id));
@@ -129,6 +135,14 @@ class j06005edit_my_account
 			$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_COUNTRY' ] = jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_COUNTRY', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_COUNTRY', false);
 			$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL' ] = jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL', false);
 
+			$output[ 'GUEST_PROFILE_INFORMATION' ] = jr_gettext('GUEST_PROFILE_INFORMATION', 'GUEST_PROFILE_INFORMATION', false);
+			$output[ 'GUEST_PROFILE_OPTIONAL' ] = jr_gettext('GUEST_PROFILE_OPTIONAL', 'GUEST_PROFILE_OPTIONAL', false);
+			$output[ 'GUEST_PROFILE_DRIVING_LICENSE' ] = jr_gettext('GUEST_PROFILE_DRIVING_LICENSE', 'GUEST_PROFILE_DRIVING_LICENSE', false);
+			$output[ 'GUEST_PROFILE_PASSPORT_NUMBER' ] = jr_gettext('GUEST_PROFILE_PASSPORT_NUMBER', 'GUEST_PROFILE_PASSPORT_NUMBER', false);
+			$output[ 'GUEST_PROFILE_IBAN' ] = jr_gettext('GUEST_PROFILE_IBAN', 'GUEST_PROFILE_IBAN', false);
+			$output[ 'GUEST_PROFILE_ABOUT_ME' ] = jr_gettext('GUEST_PROFILE_ABOUT_ME', 'GUEST_PROFILE_ABOUT_ME', false);
+			$output[ 'GUEST_PROFILE_ABOUT_ME_HINTS' ] = jr_gettext('GUEST_PROFILE_ABOUT_ME_HINTS', 'GUEST_PROFILE_ABOUT_ME_HINTS', false);
+			
 			$output[ 'HFIRSTNAME' ] = jr_gettext('_JOMRES_COM_MR_DISPGUEST_FIRSTNAME', '_JOMRES_COM_MR_DISPGUEST_FIRSTNAME', false);
 			$output[ 'HSURNAME' ] = jr_gettext('_JOMRES_COM_MR_DISPGUEST_SURNAME', '_JOMRES_COM_MR_DISPGUEST_SURNAME', false);
 			$output[ 'HHOUSE' ] = jr_gettext('_JOMRES_COM_MR_DISPGUEST_HOUSE', '_JOMRES_COM_MR_DISPGUEST_HOUSE', false);
@@ -142,10 +156,30 @@ class j06005edit_my_account
 			$output[ 'HFAX' ] = jr_gettext('_JOMRES_COM_MR_DISPGUEST_FAX', '_JOMRES_COM_MR_DISPGUEST_FAX', false);
 			$output[ 'HEMAIL' ] = jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', false);
 			$output[ '_JOMRES_COM_YOURBUSINESS_VATNO' ] = jr_gettext('_JOMRES_COM_YOURBUSINESS_VATNO', '_JOMRES_COM_YOURBUSINESS_VATNO', false);
+			
+			$output[ 'GUEST_PROFILE_PREFERENCES' ] = jr_gettext('GUEST_PROFILE_PREFERENCES', 'GUEST_PROFILE_PREFERENCES', false);
+			$output[ '_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ' ] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ', '_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ', false);
 
 			$output[ '_JOMRES_REVIEWS_SUBMIT' ] = jr_gettext('_JOMRES_REVIEWS_SUBMIT', '_JOMRES_REVIEWS_SUBMIT', false);
 			$output[ 'PAGETITLE' ] = jr_gettext('_JOMRES_MY_ACCOUNT_EDIT', '_JOMRES_MY_ACCOUNT_EDIT', false, false);
 
+			jomres_cmsspecific_addheaddata('javascript', JOMRES_NODE_MODULES_RELPATH.'simple-cmeditor/dist/', 'simplemde.min.js');
+			jomres_cmsspecific_addheaddata('css', JOMRES_NODE_MODULES_RELPATH.'simple-cmeditor/dist/', 'simplemde.min.css');
+			
+			$output['SIMPLEMDE_JAVASCRIPT'] = '
+				<script type="text/javascript">
+				jomresJquery(document).ready(function () {
+					var buttons =  ["bold", "italic", "heading", "strikethrough" , "|" , "unordered-list" , "ordered-list" , "clean-block" , "image" , "table" , "horizontal-rule" , "|", "preview" ];
+					var simplemde = new SimpleMDE({ element: document.getElementById("about_me") ,toolbar: buttons, });
+				});
+				</script>';
+			
+			
+			$output[ 'MARKDOWN_BUTTON' ] = $MiniComponents->specificEvent('06000', 'show_markdown_modal', array('output_now' => false));
+			
+			$output[ 'ABOUT_ME' ] = '<textarea class="inputbox form-control" cols="70" rows="15" id="about_me" name="about_me">'.jomres_remove_HTML($thisJRUser->about_me , '').'</textarea>';
+			
+			
 			$pageoutput[ ] = $output;
 			$tmpl = new patTemplate();
 			$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);

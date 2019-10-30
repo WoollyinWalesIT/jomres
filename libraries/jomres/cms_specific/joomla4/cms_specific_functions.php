@@ -290,7 +290,7 @@ function jomres_cmsspecific_getCMS_users_frontend_userdetails_by_username($usern
 	$userList = doSelectSql($query);
 	if (!empty($userList)) {
 		foreach ($userList as $u) {
-			$user[ $id ] = array('id' => $u->id, 'username' => $u->username, 'email' => $u->username);
+			$user[ $u->id ] = array('id' => $u->id, 'username' => $u->username, 'email' => $u->username);
 		}
 	}
 

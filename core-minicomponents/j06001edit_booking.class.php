@@ -353,6 +353,13 @@ class j06001edit_booking
 
 		$output[ 'EMAIL_ADDRESS' ] = $current_contract_details->contract[$contract_uid]['guestdeets']['email'];
 		$output[ 'GUEST_IMAGE' ] = $current_contract_details->contract[$contract_uid]['guestdeets']['image'];
+		
+		$cms_user = jomres_cmsspecific_getCMS_users_frontend_userdetails_by_username($current_contract_details->contract[$contract_uid]['contractdeets']['username']);
+		foreach ($cms_user as $u ) {
+			$cms_user_id = $u['id'];
+		}
+
+		$output['GUEST_PROFILE'] = $MiniComponents->specificEvent('06000', 'show_user_profile', array('output_now' => false , 'cms_user_id' => $cms_user_id ));
 
 		$pageoutput[ ] = $output;
 		$tmpl = new patTemplate();

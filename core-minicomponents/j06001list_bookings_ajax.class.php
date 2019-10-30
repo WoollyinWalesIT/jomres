@@ -189,6 +189,7 @@ class j06001list_bookings_ajax
 						a.referrer,
 						a.last_changed,
 						b.guests_uid,
+						b.mos_userid,
 						b.enc_firstname, 
 						b.enc_surname, 
 						b.enc_tel_landline, 
@@ -344,8 +345,8 @@ class j06001list_bookings_ajax
 			$r[] = getPropertyName($p->property_uid);
 			$r[] = outputDate($p->arrival);
 			$r[] = outputDate($p->departure);
-			$r[] = jomres_decode($jomres_encryption->decrypt($p->enc_firstname));
-			$r[] = jomres_decode($jomres_encryption->decrypt($p->enc_surname));
+			$r[] = '<a href="'.jomresUrl(JOMRES_SITEPAGE_URL.'&task=show_user_profile&cms_user_id='.$p->mos_userid).'" target="_blank">'.jomres_decode($jomres_encryption->decrypt($p->enc_firstname)).'</a>';
+			$r[] = '<a href="'.jomresUrl(JOMRES_SITEPAGE_URL.'&task=show_user_profile&cms_user_id='.$p->mos_userid).'" target="_blank">'.jomres_decode($jomres_encryption->decrypt($p->enc_surname)).'</a>';
 			$r[] = jomres_decode($jomres_encryption->decrypt($p->enc_tel_landline));
 			$r[] = jomres_decode($jomres_encryption->decrypt($p->enc_tel_mobile));
 			$r[] = jomres_decode($jomres_encryption->decrypt($p->enc_email));

@@ -70,7 +70,7 @@ class j06000ajax_shortlist
 			$count = count($shortlist_items);
 			if ($count > 0) {
 				for ($i = 0; $i < $count; ++$i) {
-					if ($shortlist_items[ $i ] == $property_uid) {
+					if ( isset($shortlist_items[ $i ]) && $shortlist_items[ $i ] == $property_uid) {
 						array_splice($shortlist_items, $i, 1);
 					}
 				}

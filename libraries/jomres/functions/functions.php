@@ -1290,6 +1290,42 @@ function build_property_manager_xref_array()
 	return $arr;
 }
 
+
+/**
+ * Utility to produce a url the view property manager page
+ */
+function make_host_link($property_id = 0)
+{
+	$property_manager_xref = get_showtime('property_manager_xref');
+	if (is_null($property_manager_xref)) {
+		$property_manager_xref = build_property_manager_xref_array();
+	}
+
+	if (!array_key_exists($property_id, $property_manager_xref)) {
+		return '';
+	}
+
+	if ($property_id == 0) {
+		return '';
+	}
+
+	$output = array();
+	$pageoutput = array();
+
+	$manager_id = $property_manager_xref[ $property_id ];
+
+	$output[ 'URL' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=show_user_profile&id='.$manager_id);
+	$output[ 'VIEW_HOST_PROFILE' ] = jr_gettext('VIEW_HOST_PROFILE', 'VIEW_HOST_PROFILE', false);
+	
+	$pageoutput[ ] = $output;
+	$tmpl = new patTemplate();
+	$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+	$tmpl->addRows('pageoutput', $pageoutput);
+	$tmpl->readTemplatesFromInput('host_link.html');
+
+	return $tmpl->getParsedTemplate();
+}
+
 /**
  * Utility to produce a url the view property manager page
  */

@@ -15,31 +15,17 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 $query = "
-CREATE TABLE IF NOT EXISTS `#__jomres_guest_profile` (
+CREATE TABLE IF NOT EXISTS `#__jomres_guest_reviews` (
 	`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	`cms_user_id` INT UNSIGNED NOT NULL DEFAULT 0,
-	`vat_number_validated` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
-	`vat_number_validation_response` TEXT,
-	`params` TEXT, 
-	`enc_firstname` BLOB,
-	`enc_surname` BLOB,
-	`enc_house` BLOB,
-	`enc_street` BLOB,
-	`enc_town` BLOB,
-	`enc_county` BLOB,
-	`enc_country` BLOB,
-	`enc_postcode` BLOB,
-	`enc_tel_landline` BLOB,
-	`enc_tel_mobile` BLOB,
-	`enc_preferences` BLOB,
-	`enc_email` BLOB,
-	`enc_vat_number` BLOB,
-	`enc_drivers_license` BLOB,
-	`enc_passport_number` BLOB,
-	`enc_iban` BLOB,
-	`enc_about_me` BLOB,
+	`guests_uid` INT UNSIGNED NOT NULL DEFAULT 0,
+	`property_uid` INT UNSIGNED NOT NULL DEFAULT 0,
+	`review` TEXT,
+	`last_changed` datetime default NULL ,
 	PRIMARY KEY(`id`),
-	INDEX `cms_user_id` (`cms_user_id`)
+	INDEX `cms_user_id` (`cms_user_id`),
+	INDEX `guests_uid` (`guests_uid`),
+	INDEX `property_uid` (`property_uid`)
 	)
 	ENGINE = InnoDB 
 	DEFAULT CHARSET = utf8mb4 
@@ -47,5 +33,5 @@ CREATE TABLE IF NOT EXISTS `#__jomres_guest_profile` (
 ";
 
 if (!doInsertSql($query)) {
-	$this->setMessage('Error, unable to create the #__jomres_guest_profile table', 'danger');
+	$this->setMessage('Error, unable to create the #__jomres_guest_reviews table', 'danger');
 }
