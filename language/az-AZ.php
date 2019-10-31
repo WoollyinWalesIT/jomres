@@ -2470,3 +2470,7 @@ jr_define('GUEST_PROFILE_REVIEW_GUEST_CONTENT_EXAMPLES', 'Here are some example 
 ');
 
 jr_define('GUEST_PROFILE_UNKNOWN', 'Sorry, I can\'t find that user.');
+
+jr_define('GUEST_PROFILE_USERSTATUS_GUEST', 'Guest');
+jr_define('GUEST_PROFILE_USERSTATUS_HOST', 'Host');
+jr_define('GUEST_PROFILE_USERSTATUS_ADMIN', 'Admin');
