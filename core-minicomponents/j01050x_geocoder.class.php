@@ -31,6 +31,10 @@ class j01050x_geocoder
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 
+		if (trim($jrConfig['google_maps_api_key']) == '') {
+			return;
+		}
+		
 		if (isset($componentArgs[ 'property_uid' ])) {
 			$property_uid = (int) $componentArgs[ 'property_uid' ];
 		} else {
