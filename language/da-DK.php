@@ -2561,3 +2561,6 @@ jr_define('GUEST_PROFILE_UNKNOWN', 'Sorry, I can\'t find that user.');
 jr_define('GUEST_PROFILE_USERSTATUS_GUEST', 'Guest');
 jr_define('GUEST_PROFILE_USERSTATUS_HOST', 'Host');
 jr_define('GUEST_PROFILE_USERSTATUS_ADMIN', 'Admin');
+
+jr_define('WORDPRESS_THEME_ADVICE', 'Jomres is built on the Bootstrap framework, so you must use it on a theme based on Bootstrap. We recommend one based on Bootstrap 3. If you do not have access to a theme then we recommend that you use the Jomres Leohtian theme for Wordpress which you can <a href="https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target="_blank">download from here.');
+

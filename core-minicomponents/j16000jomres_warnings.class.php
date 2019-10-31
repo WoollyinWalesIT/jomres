@@ -67,8 +67,8 @@ class j16000jomres_warnings
 		} */
 
 		//wordpress Page with [jomres:xx-XX] not created yet
-		$output[ 'JOMRES_DEFAULT_SHORTCODE_HIGHLIGHT' ] = '';
-		$output[ 'JOMRES_DEFAULT_SHORTCODE_ALERT' ] = '';
+		$output[ 'JOMRES_DEFAULT_SHORTCODE_HIGHLIGHT' ] = (using_bootstrap() ? 'alert alert-info' : 'ui-state-error');
+		$output[ 'JOMRES_DEFAULT_SHORTCODE_ALERT' ] = jr_gettext('WORDPRESS_THEME_ADVICE', 'WORDPRESS_THEME_ADVICE', false);
 		if (this_cms_is_wordpress() ) {
 			
 			$query = "SELECT post_content , post_status FROM #__posts WHERE post_status != 'trash' ";
@@ -84,7 +84,10 @@ class j16000jomres_warnings
 				$output[ 'JOMRES_DEFAULT_SHORTCODE_ALERT' ] = jr_gettext('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'JOMRES_DEFAULT_SHORTCODE_ALERT', false);
 			}
 		}
-
+		
+		
+		
+		
 		// Google maps api key warning
 		$output['GMAPS_KEY_WARNING'] = gmaps_apikey_check();
 
