@@ -14,6 +14,8 @@
 <span class="label label-warning">Change</span> Made some log items debug only due to the amount of log files they were creating.
 <span class="label label-warning">Change</span> Updated the install plugin manager prompts to highlight if ioncube is not available and then recommend that the plugin manager not be installed if the user does not have a one-off license and moved the license nag to Site Configuration.
 <span class="label label-warning">Change</span> Disabled Gmap if api key not set as it triggers js errors now, which prevent the main menu from running.
+<span class="label label-warning">Change</span> Removed the hashes file as it's not needed and chunky. It was only used by the file system integrity check which itself is unreliable so there's no point in shuffling those bytes around the interwebs.
+
 
 <span class="label label-warning">Change</span> Fixed a minor bug in a cron job.
 <span class="label label-warning">Change</span> Wordpress changed stuff, so I fixed stuff. (The new page editor was trying to call index.php in the Jomres dir, causing an error so tweaked that to include the index.php above). Added warnings about installing a Bootstrap theme and provided a link to the Leohtian theme on jomres.net for those who don't have a preferred theme.
