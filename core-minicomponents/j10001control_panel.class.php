@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.19.2
+ * @version Jomres 9.20.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -88,6 +88,10 @@ class j10001control_panel
 			$output['SUBSCRIPTIONS_CHART'] = $MiniComponents->specificEvent('16000', 'chart_subscriptions', array('output_now' => false, 'height'=> 300));
 		}
 
+		//bookings chart
+		$output['SYNDICATION_NETWORK'] = $MiniComponents->specificEvent('16000', 'jomres_syndication_overview', array('output_now' => false, 'height'=> 300));
+		
+		
 		$pageoutput[ ] = $output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);

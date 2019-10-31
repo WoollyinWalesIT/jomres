@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.19.2
+ * @version Jomres 9.20.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -290,7 +290,7 @@ function jomres_cmsspecific_getCMS_users_frontend_userdetails_by_username($usern
 	$userList = doSelectSql($query);
 	if (!empty($userList)) {
 		foreach ($userList as $u) {
-			$user[ $id ] = array('id' => $u->id, 'username' => $u->username, 'email' => $u->username);
+			$user[ $u->id ] = array('id' => $u->id, 'username' => $u->username, 'email' => $u->username);
 		}
 	}
 

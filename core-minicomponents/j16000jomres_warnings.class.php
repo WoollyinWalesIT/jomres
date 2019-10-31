@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.19.2
+ * @version Jomres 9.20.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -67,13 +67,27 @@ class j16000jomres_warnings
 		} */
 
 		//wordpress Page with [jomres:xx-XX] not created yet
-		$output[ 'JOMRES_DEFAULT_SHORTCODE_HIGHLIGHT' ] = '';
-		$output[ 'JOMRES_DEFAULT_SHORTCODE_ALERT' ] = '';
-		if (this_cms_is_wordpress() && (int) get_showtime('jomresItemid') == 0) {
-			$output[ 'JOMRES_DEFAULT_SHORTCODE_HIGHLIGHT' ] = (using_bootstrap() ? 'alert alert-error' : 'ui-state-error');
-			$output[ 'JOMRES_DEFAULT_SHORTCODE_ALERT' ] = jr_gettext('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'JOMRES_DEFAULT_SHORTCODE_ALERT', false);
+		$output[ 'JOMRES_DEFAULT_SHORTCODE_HIGHLIGHT' ] = (using_bootstrap() ? 'alert alert-info' : 'ui-state-error');
+		$output[ 'JOMRES_DEFAULT_SHORTCODE_ALERT' ] = jr_gettext('WORDPRESS_THEME_ADVICE', 'WORDPRESS_THEME_ADVICE', false);
+		if (this_cms_is_wordpress() ) {
+			
+			$query = "SELECT post_content , post_status FROM #__posts WHERE post_status != 'trash' ";
+			$all_posts = doSelectSql($query);
+			$found = false;
+			foreach ($all_posts as $post) {
+				if ( strstr( $post->post_content  , "[jomres:" ) ) {
+					$found = true;
+				}
+			}
+			if (!$found) {
+				$output[ 'JOMRES_DEFAULT_SHORTCODE_HIGHLIGHT' ] = (using_bootstrap() ? 'alert alert-danger' : 'ui-state-error');
+				$output[ 'JOMRES_DEFAULT_SHORTCODE_ALERT' ] = jr_gettext('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'JOMRES_DEFAULT_SHORTCODE_ALERT', false);
+			}
 		}
-
+		
+		
+		
+		
 		// Google maps api key warning
 		$output['GMAPS_KEY_WARNING'] = gmaps_apikey_check();
 

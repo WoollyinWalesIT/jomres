@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.19.2
+ * @version Jomres 9.20.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -97,6 +97,8 @@ class j02990showconfirmation
 			$amend_contractuid = $tmpBookingHandler->getBookingFieldVal('amend_contractuid');
 			$query = 'SELECT special_reqs FROM #__jomres_contracts WHERE contract_uid = '.(int) $amend_contractuid.' AND property_uid = '.(int) $property_uid;
 			$booking_parts[ 'SPECIALREQS' ] = doSelectSql($query, 1);
+		} else {
+			$booking_parts[ 'SPECIALREQS' ] = $thisJRUser->preferences;
 		}
 
 		property_header($property_uid);
@@ -449,6 +451,7 @@ class j02990showconfirmation
 		}
 
 		$booking_parts[ 'LIVESITE' ] = get_showtime('live_site');
+		
 		if (isset($_POST[ 'specialReqs' ])) {
 			$booking_parts[ 'HSPECIAL_REQUIREMENTS' ] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ', '_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ');
 			$booking_parts[ 'SPECIAL_REQUIREMENTS' ] = getEscaped(jomresGetParam($_POST, 'specialReqs', ''));

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.19.2
+ * @version Jomres 9.20.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -79,7 +79,7 @@ class j19995menu
 		$jomres_menu->add_admin_item(70, jr_gettext('_JOMRES_SHORTCODES', '_JOMRES_SHORTCODES', false), 'asamodule_report', 'fa-code');
 		//$jomres_menu->add_admin_item(70, jr_gettext('_JOMRES_DATA_ARCHIVE_TITLE', '_JOMRES_DATA_ARCHIVE_TITLE', false), 'booking_data_archive', 'fa-archive');
 		$jomres_menu->add_admin_item(70, 'Changelog', 'changelog', 'fa-file-code-o');
-		$jomres_menu->add_admin_item(70, jr_gettext('INTEGRITY_CHECK', 'INTEGRITY_CHECK', false), 'filesystem_integrity_check', 'fa-check-square-o');
+		//$jomres_menu->add_admin_item(70, jr_gettext('INTEGRITY_CHECK', 'INTEGRITY_CHECK', false), 'filesystem_integrity_check', 'fa-check-square-o');
 		$jomres_menu->add_admin_item(70, jr_gettext('DATABASE_INTEGRITY_CHECK', 'DATABASE_INTEGRITY_CHECK', false), 'database_integrity_check', 'fa-check-square-o');
 		$jomres_menu->add_admin_item(70, jr_gettext('OBSOLETE_FILES_CHECK', 'OBSOLETE_FILES_CHECK', false), 'obsolete_files_check', 'fa-check-square-o');
 		$jomres_menu->add_admin_item(70, jr_gettext('FIREWALL_CHECK', 'FIREWALL_CHECK', false), $task = 'firewall_check', 'fa-check-square-o');

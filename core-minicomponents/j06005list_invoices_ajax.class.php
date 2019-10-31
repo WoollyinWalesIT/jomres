@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.19.2
+ * @version Jomres 9.20.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -307,8 +307,14 @@ class j06005list_invoices_ajax
 				$r[] = '-';
 				$r[] = '-';
 			} else {
-				$r[] = $jomres_encryption->decrypt($p->firstname);
-				$r[] = $jomres_encryption->decrypt($p->surname);
+				if (!$thisJRUser->userIsManager) {
+					$r[] = $jomres_encryption->decrypt($p->firstname);
+					$r[] = $jomres_encryption->decrypt($p->surname);
+				} else {
+					$r[] = '<a href="'.jomresUrl(JOMRES_SITEPAGE_URL.'&task=show_user_profile&cms_user_id='.$p->cms_user_id).'" target="_blank">'.jomres_decode($jomres_encryption->decrypt($p->firstname)).'</a>';
+					$r[] = '<a href="'.jomresUrl(JOMRES_SITEPAGE_URL.'&task=show_user_profile&cms_user_id='.$p->cms_user_id).'" target="_blank">'.jomres_decode($jomres_encryption->decrypt($p->surname)).'</a>';
+				}
+
 			}	
 
 			$translated_line_items = '';

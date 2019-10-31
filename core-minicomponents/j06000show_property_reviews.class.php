@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.19.2
+ * @version Jomres 9.20.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -141,7 +141,6 @@ class j06000show_property_reviews
 		$thumb_up = JOMRES_IMAGES_RELPATH.'thumb_up.png';
 		$thumb_down = JOMRES_IMAGES_RELPATH.'thumb_down.png';
 		$star = JOMRES_IMAGES_RELPATH.'star.png';
-		$add_review_icon = JOMRES_IMAGES_RELPATH.'add_review.png';
 
 		if ($this_user_can_review_this_property) {
 			$url = jomresURL(JOMRES_SITEPAGE_URL.'&task=add_review&amp;property_uid='.$property_uid);
@@ -203,7 +202,10 @@ class j06000show_property_reviews
 				} else {
 					$r['REVIEWER_FIRSTNAME'] = $review[ 'user_name' ];
 				}
-
+				
+				$r['REVIEWER_PROFILE_LINK'] = jomresUrl(JOMRES_SITEPAGE_URL.'&task=show_user_profile&cms_user_id='.$review[ 'user_id' ]);
+				
+				
 				$r[ 'REVIEW_TITLE' ] = $review[ 'review_title' ];
 				$r[ 'REVIEW_DESCRIPTION' ] = $review[ 'review_description' ];
 				$r[ 'PROS' ] = $review[ 'pros' ];

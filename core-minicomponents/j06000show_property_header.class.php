@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.19.2
+ * @version Jomres 9.20.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -358,7 +358,11 @@ class j06000show_property_header
 		//property agent
 		$output[ 'AGENT_LINK' ] = make_agent_link($property_uid);
 		$output[ '_JOMRES_AGENT' ] = jr_gettext('_JOMRES_AGENT', '_JOMRES_AGENT');
+		
+		//Leaving the agent link in situ for those who are already using it, but Leohtian will be updated to provide a new copy of property_header.html which will include a link to the new guest/host profile page
+		$output[ 'HOST_LINK' ] = make_host_link($property_uid);
 
+		
 		//property buttons
 		$output[ 'DIRECT_URL' ] = get_property_details_url($property_uid);
 		$output[ 'CONTACT_LINK' ] = jomresUrl(JOMRES_SITEPAGE_URL.'&task=contactowner&selectedProperty='.$property_uid);

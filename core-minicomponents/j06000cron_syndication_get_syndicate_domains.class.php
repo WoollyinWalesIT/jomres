@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.19.2
+ * @version Jomres 9.20.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -43,7 +43,6 @@ class j06000cron_syndication_get_syndicate_domains
 					
 			if (!empty($body->data->sites->sites)) {
 				foreach ( $body->data->sites->sites as $site ) {
-					var_dump($site);
 					$domain = parse_url($site->api_url);
 					if ($domain) {
 						$now = date("Y-m-d H:i:s");
@@ -62,7 +61,6 @@ class j06000cron_syndication_get_syndicate_domains
 										`last_checked` =  '".$new_site_datetime_last_checked."'
 								";
 								doInsertSql($query);
-								echo $query;
 							}
 							catch (Exception $e) {
 								logging::log_message("Tried to insert domain ".$new_site_domain." but failed ", 'Syndication', 'WARNING');

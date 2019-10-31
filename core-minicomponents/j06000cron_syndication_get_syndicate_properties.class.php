@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.19.2
+ * @version Jomres 9.20.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -53,10 +53,10 @@ class j06000cron_syndication_get_syndicate_properties
 						$local_domain_properties[] = $p->propertys_uid;
 					}
 				}
-				var_dump($domain);
+				
 				try {
 					$client = new GuzzleHttp\Client();
-					$response = $client->request('GET', $r->api_url.'core/get_properties'.'/' , ['connect_timeout' => 4 , 'verify' => false , 'http_errors' => false] );
+					$response = $client->request('GET', $r->api_url.'core/get_properties'.'/' , ['connect_timeout' => 4 , 'read_timeout' => 30, 'verify' => false , 'http_errors' => false] );
 
 					if ((string)$response->getStatusCode() == "404") {
 						$query = "UPDATE  #__jomres_syndication_domains SET 
@@ -75,7 +75,8 @@ class j06000cron_syndication_get_syndicate_properties
 							$row_str = '';
 							foreach ($body->data->properties[0]->properties as $property) {
 								if (!in_array( $property->propertys_uid, $local_domain_properties)) {
-									$image_exists = $this->check_image_exists($property->thumbnail_location);
+
+									$image_exists =true;
 
 									$bang = explode("/",$property->thumbnail_location);
 									if ( 
@@ -132,11 +133,8 @@ class j06000cron_syndication_get_syndicate_properties
 						}
 					}
 				}
-				catch (GuzzleHttp\Exception\ClientException $e) {
-					$response = $e->getResponse();
-					$responseCode = $response->getStatusCode();
+				catch (GuzzleHttp\Exception\RequestException $e) {
 
-					if ( (int)$responseCode == 404 ) {
 						if (!in_array( $domain['host'] , $existing_domains )) {
 							$query = "
 								INSERT INTO #__jomres_syndication_domains SET
@@ -157,7 +155,7 @@ class j06000cron_syndication_get_syndicate_properties
 						doInsertSql($query);
 
 						logging::log_message("Tried to get properties information for domain ".$domain['host']." but received 404 message so either the server is offline, or it cannot response to core api requests. Blocking from future requests until recheck time ", 'Syndication', 'INFO');
-					}
+
 				}
 			}
 		}
