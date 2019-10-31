@@ -67,10 +67,12 @@ class j16000jomres_warnings
 		} */
 
 		//wordpress Page with [jomres:xx-XX] not created yet
-		$output[ 'JOMRES_DEFAULT_SHORTCODE_HIGHLIGHT' ] = (using_bootstrap() ? 'alert alert-info' : 'ui-state-error');
-		$output[ 'JOMRES_DEFAULT_SHORTCODE_ALERT' ] = jr_gettext('WORDPRESS_THEME_ADVICE', 'WORDPRESS_THEME_ADVICE', false);
+		$output[ 'JOMRES_DEFAULT_SHORTCODE_HIGHLIGHT' ] = '';
+		$output[ 'JOMRES_DEFAULT_SHORTCODE_ALERT' ] = '';
 		if (this_cms_is_wordpress() ) {
-			
+			$output[ 'JOMRES_DEFAULT_SHORTCODE_HIGHLIGHT' ] = (using_bootstrap() ? 'alert alert-info' : 'ui-state-error');
+			$output[ 'JOMRES_DEFAULT_SHORTCODE_ALERT' ] = jr_gettext('WORDPRESS_THEME_ADVICE', 'WORDPRESS_THEME_ADVICE', false);
+
 			$query = "SELECT post_content , post_status FROM #__posts WHERE post_status != 'trash' ";
 			$all_posts = doSelectSql($query);
 			$found = false;
