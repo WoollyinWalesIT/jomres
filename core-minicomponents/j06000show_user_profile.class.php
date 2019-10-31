@@ -100,7 +100,8 @@ class j06000show_user_profile
 
 		$output = array();
 		$private_output = array();
-		
+		$pageoutput = array();
+
 		$guest_is_also_a_manager = false;
 		
 		$query = "SELECT access_level FROM #__jomres_managers WHERE userid = ".(int)$cms_user_id;
@@ -120,6 +121,30 @@ class j06000show_user_profile
 			
 			$output[ 'HOST_PROPERTIES' ]		= $MiniComponents->specificEvent('06000', 'show_host_properties' , array ('output_now' => false , "manager_id" => (int)$cms_user_id ) );
 		}
+		
+		// Get the user status badge
+		$o = array();
+		$po = array();
+		
+		if ($is_super_manager) {
+			$o[ 'STATUS_TEXT' ] = jr_gettext('GUEST_PROFILE_USERSTATUS_ADMIN', 'GUEST_PROFILE_USERSTATUS_ADMIN' , false );
+			$o[ 'STATUS_COLOUR' ] = 'danger';
+			
+		} elseif ( $guest_is_also_a_manager ) {
+			$o[ 'STATUS_TEXT' ] = jr_gettext('GUEST_PROFILE_USERSTATUS_HOST', 'GUEST_PROFILE_USERSTATUS_HOST' , false );
+			$o[ 'STATUS_COLOUR' ] = 'info';
+		} else {
+			$o[ 'STATUS_TEXT' ] = jr_gettext('GUEST_PROFILE_USERSTATUS_GUEST', 'GUEST_PROFILE_USERSTATUS_GUEST' , false );
+			$o[ 'STATUS_COLOUR' ] = 'success';
+		}
+		
+
+		$po[] = $o;
+		$tmpl = new patTemplate();
+		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+		$tmpl->readTemplatesFromInput('user_profile_status_snippet.html');
+		$tmpl->addRows('pageoutput', $po);
+		$output['USER_STATUS_BADGE'] = $tmpl->getParsedTemplate();
 		
 		$output[ 'GUEST_REVIEWS' ]		= $MiniComponents->specificEvent('06000', 'show_my_reviews' , array ('output_now' => false , "cms_user_id" => (int)$cms_user_id ) );
 		
