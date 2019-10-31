@@ -85,7 +85,7 @@ class j06000show_user_profile
 
 		if ($result == false ) { // Can't find that user, have they been deleted? 
 			if ((int)$thisJRUser->id == $cms_user_id) {
-				jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_my_account'), jr_gettext('GUEST_PROFILE_UNKNOWN', 'GUEST_PROFILE_UNKNOWN' , false ) );
+				jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_my_account'), '' );
 			} else {
 				$output = array();
 				$output['GUEST_PROFILE_UNKNOWN'] = jr_gettext('GUEST_PROFILE_UNKNOWN', 'GUEST_PROFILE_UNKNOWN' , false );
