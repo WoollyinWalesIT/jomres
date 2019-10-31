@@ -3,7 +3,7 @@ Contributors: jomres
 Tags: Booking, booking calendar, events, hotel, hotels, calendar, motel, motels, booking system, booking portal, room booking, online booking software, booking engine, online reservation, online reservation system, reservation system, reservation widget, hotel booking, villa booking, villa rentals, accommodation, reservation, reserve room, availability, availability calendar, bed and breakfast, booking form, booking enquiry, web booking, reservation plugin, holiday apartments, holiday rentals, apartment rentals, cottage rental, b&b, tool hire, ecommerce, shop, store, ajax, gallery, slideshow, portal, twitter, online booking system, tours, api, json, REST, rest-api, webhooks
 Donate link: https://www.jomres.net
 Requires at least: 4.3.1
-Tested up to: 5.1
+Tested up to: 5.2.4
 Stable tag: trunk
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -22,7 +22,12 @@ Jomres is a commission-free, responsive, Open Source multi-vendor, multi-languag
 
 = What's new? =
 
-Property managers can now add and remove widgets in the Dashboard at the click of a button.
+Jomres Syndication Network released. This free feature is designed to help you get your business off the ground quickly by sharing your properties on other Jomres based sites around the world. [Full description here](https://www.jomres.net/features/jomres-syndication-network), plus [Manual page describing the new functionality](https://www.jomres.net/manual/site-managers-guide-2/388-user-profiles).
+
+User profiles. 
+
+[User profiles page](https://www.jomres.net/manual/developers-guide-2/387-jomres-syndication-network)
+
 
 [youtube https://www.youtube.com/watch?v=KkomX9HVjro]
 

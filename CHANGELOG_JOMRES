@@ -1,3 +1,23 @@
+<h3>Jomres 9.20.0 31/10/2019</h3>
+
+<span class="label label-success">Feature</span> Added significant update to user handling within Jomres to allow for private and public user data and user profiles.
+<span class="label label-success">Feature</span> Users are now able to add "About me" information which is added to their profile page, and define Preferences (which are prefilled in the special requirements field of the Booking Confirmation form). Their Edit Account page now prompts them to enter such private information as driving license, passport and IBAN number (suggested only, not mandatory).
+<span class="label label-success">Feature</span> Private data is viewable by the user themselves, their hosts when they've made a booking at a property, and super managers only.
+<span class="label label-success">Feature</span> List Bookings/Invoices/Guests pages offer links to the guest's profiles, and in the List Guests page a receptionist or manager can add a review of the guest, which is visible in the Guest's profile page. This means that when managers/hosts are viewing booking requests they can view both the guest's reviews of other properties, plus other host's reviews of the guest. They can also view the guest's About me section and the private data, all of which should help managers when they're deciding whether or not to approve a booking.
+<span class="label label-success">Feature</span> The guest's profile (including private data) are also viewable in the Guest tab of the view booking page.
+
+<span class="label label-success">Feature</span> New syndication stats panel added to cpanel
+
+
+<span class="label label-warning">Change</span> Changed syndication network range from 1 - 20km for finding first choice properties to display.
+<span class="label label-warning">Change</span> Improved performance of get_properties syndicate cron job, had to disable checking of images because the process would take too long
+<span class="label label-warning">Change</span> Made some log items debug only due to the amount of log files they were creating.
+<span class="label label-warning">Change</span> Updated the install plugin manager prompts to highlight if ioncube is not available and then recommend that the plugin manager not be installed if the user does not have a one-off license and moved the license nag to Site Configuration.
+<span class="label label-warning">Change</span> Disabled Gmap if api key not set as it triggers js errors now, which prevent the main menu from running.
+
+<span class="label label-warning">Change</span> Fixed a minor bug in a cron job.
+
+
 <h3>Jomres 9.19.2 28/10/2019</h3>
 
 <span class="label label-success">Feature</span> Improved syndication functionality, added new table for property distances, when the show syndication script attempts to show syndicated properties a min and max distances setting is applied and any properties that fall within that window are selected to be shown. This allows the guest to see properties in the general area (currently between 50 & 100km) whilst not showing the current property's neighbours who may also be competitors.
