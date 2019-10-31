@@ -50,11 +50,13 @@ class j06001review_guest
 		
  		jr_import( 'jrportal_guest_profile' );
 		$jrportal_guest_profile = new jrportal_guest_profile();
-		$jrportal_guest_profile->cms_user_id =  $jrportal_guests->cms_user_id;
+		$jrportal_guest_profile->cms_user_id =  $jrportal_guests->id;
 		$jrportal_guest_profile->get_guest_profile();
 		$jrportal_guest_profile->get_guest_reviews();
 		
-		$output[ 'REVIEW_CONTENT' ] = $jrportal_guest_profile->guest_reviews[$defaultProperty]['review'];
+		$output[ 'REVIEW_CONTENT' ] = '';
+		if ( isset($jrportal_guest_profile->guest_reviews[$defaultProperty]['review']) && $jrportal_guest_profile->guest_reviews[$defaultProperty]['review'] != '')
+			$output[ 'REVIEW_CONTENT' ] = $jrportal_guest_profile->guest_reviews[$defaultProperty]['review'];
 		
 		$jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
 		$jrtb = $jrtbar->startTable();
