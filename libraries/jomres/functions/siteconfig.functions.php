@@ -23,6 +23,11 @@ defined('_JOMRES_INITCHECK') or die('');
  */
 function showSiteConfig()
 {
+	
+	//check jomres support key
+	$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+	echo $MiniComponents->specificEvent('16000', 'show_license_message', array('output_now' => false, 'as_modal' => false));
+		
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig = $siteConfig->get();
 

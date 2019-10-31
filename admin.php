@@ -120,8 +120,7 @@ try {
 		//language dropdown
 		$output[ 'LANGDROPDOWN' ] = $jomres_language->get_languageselection_dropdown();
 
-		//check jomres support key
-		$output['LICENSE_WARNING'] = $MiniComponents->specificEvent('16000', 'show_license_message', array('output_now' => false, 'as_modal' => false));
+
 
 		//bootstrap
 		$output[ 'USING_BOOTSTRAP' ] = 'true';

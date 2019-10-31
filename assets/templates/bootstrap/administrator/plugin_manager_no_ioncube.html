@@ -1,3 +1,13 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-	<div class="alert alert-danger">Sorry, you do not have Ioncube Loaders installed on this server, therefore you will not be able to use the plugin manager to install plugins. Please contact your hosts, asking them to install Ioncube Loaders on this server. Once that has been done you will be able to install and use the plugin manager.</div>
+	<div class="alert alert-danger">
+		<h3>{INTRO}</h3>
+		<p>{MESSAGE}</p>
+		<a href="{JOMRES_SITEPAGE_URL_ADMIN}&task=showplugins" class="btn btn-danger  btn-lg ">Get the plugin manager now!</a>
+		<br/>
+		<p>{MESSAGE2}</p>
+		
+		
+	</div>
+	
+	
 </patTemplate:tmpl>
