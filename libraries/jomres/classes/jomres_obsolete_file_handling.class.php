@@ -1270,7 +1270,6 @@ class jomres_obsolete_file_handling
 		$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'forward_enabled.jpg');
 		$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'Help.png');
 		$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'info.png');
-		$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'information.png');
 		$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'large_warning.png');
 		$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'late.gif');
 		$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'loading.gif');
