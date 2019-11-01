@@ -2552,7 +2552,7 @@ jr_define('GUEST_PROFILE_REVIEW_GUEST_CONTENT_EXAMPLES', 'Here are some example 
 
 ');
 
-jr_define('GUEST_PROFILE_UNKNOWN', 'Sorry, I can\'t find that user.');
+jr_define('GUEST_PROFILE_UNKNOWN', 'Sorry, I can\'t find that user. Most likely they have not filled in their account details yet.');
 
 jr_define('GUEST_PROFILE_USERSTATUS_GUEST', 'Guest');
 jr_define('GUEST_PROFILE_USERSTATUS_HOST', 'Host');
