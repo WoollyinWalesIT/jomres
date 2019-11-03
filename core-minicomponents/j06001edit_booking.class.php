@@ -49,6 +49,15 @@ class j06001edit_booking
 		//check if the booking can be approved or not
 		$can_be_approved = true;
 		$approval_msg = array();
+		
+		$noshow = array();
+		if($current_contract_details->contract[$contract_uid]['contractdeets']['noshow_flag'] == '1' ) {
+			$noshow[0]['CLASS'] = 'alert alert-error alert-danger';
+			$noshow[0]['MESSAGE'] = jr_gettext('BOOKING_NOSHOW_AUDIT_LOG', 'BOOKING_NOSHOW_AUDIT_LOG', false);
+		}
+		
+		
+		
 		if ((int) $current_contract_details->contract[$contract_uid]['contractdeets']['approved'] == 0) {
 			$rooms_tariffs = $current_contract_details->contract[$contract_uid]['contractdeets']['rooms_tariffs'];
 			$date_range_string = $current_contract_details->contract[$contract_uid]['contractdeets']['date_range_string'];
@@ -159,7 +168,14 @@ class j06001edit_booking
 							//}
 
 							if ((int) $current_contract_details->contract[$contract_uid]['contractdeets']['channel_manager_booking'] != 1) {
-								$jrtb .= $jrtbar->toolbarItem('cancel_booking', jomresURL(JOMRES_SITEPAGE_URL.'&task=cancel_booking&contract_uid='.$contract_uid), '');
+								if($current_contract_details->contract[$contract_uid]['contractdeets']['noshow_flag'] != '1' ) {
+									$output[ 'BOOKING_NOSHOW_MENU' ] = jr_gettext('BOOKING_NOSHOW_MENU', 'BOOKING_NOSHOW_MENU', $editable = false, $isLink = true);
+									$link = JOMRES_SITEPAGE_URL.'&task=mark_booking_noshow&contract_uid='.$contract_uid.'&property_uid='.$defaultProperty;
+									$targetTask = 'mark_booking_noshow';
+									
+									$jrtb .= $jrtbar->customToolbarItem($targetTask, $link, $output[ 'BOOKING_NOSHOW_MENU' ], $submitOnClick = false, $submitTask = '', $image);
+									$jrtb .= $jrtbar->toolbarItem('cancel_booking', jomresURL(JOMRES_SITEPAGE_URL.'&task=cancel_booking&popup=1&contract_uid='.$contract_uid), '');
+									}
 							}
 						} else {
 							$output[ 'HBOOKGUESTOUT' ] = jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTOUT', '_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTOUT', $editable = false, $isLink = true);
@@ -213,7 +229,15 @@ class j06001edit_booking
 					$jrtb .= $jrtbar->customToolbarItem($targetTask, $link, $output[ 'ICAL_EXPORT' ], $submitOnClick = false, $submitTask = '', $image);
 				}
 			} else {
-				$jrtb .= $jrtbar->toolbarItem('cancel_booking', jomresURL(JOMRES_SITEPAGE_URL.'&task=cancel_booking&popup=1&contract_uid='.$contract_uid), '');
+				if($current_contract_details->contract[$contract_uid]['contractdeets']['noshow_flag'] != '1' ) {
+					$output[ 'BOOKING_NOSHOW_MENU' ] = jr_gettext('BOOKING_NOSHOW_MENU', 'BOOKING_NOSHOW_MENU', $editable = false, $isLink = true);
+					$link = JOMRES_SITEPAGE_URL.'&task=mark_booking_noshow&contract_uid='.$contract_uid.'&property_uid='.$defaultProperty;
+					$targetTask = 'mark_booking_noshow';
+					
+					$jrtb .= $jrtbar->customToolbarItem($targetTask, $link, $output[ 'BOOKING_NOSHOW_MENU' ], $submitOnClick = false, $submitTask = '', $image);
+					
+					$jrtb .= $jrtbar->toolbarItem('cancel_booking', jomresURL(JOMRES_SITEPAGE_URL.'&task=cancel_booking&popup=1&contract_uid='.$contract_uid), '');
+					}
 			}
 			$jrtb .= $jrtbar->endTable();
 
@@ -235,6 +259,7 @@ class j06001edit_booking
 			$tmpl->readTemplatesFromInput('edit_booking_header.html');
 			$tmpl->addRows('pageoutput', $pageoutput);
 			$tmpl->addRows('approval_message', $approval_message);
+			$tmpl->addRows('noshow_status', $noshow);
 			echo $tmpl->getParsedTemplate();
 		}
 

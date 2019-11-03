@@ -16,7 +16,7 @@ defined('_JOMRES_INITCHECK') or die('');
 
 class j06001save_cancellation
 {
-	public function __construct()
+	public function __construct($componentArgs)
 	{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
@@ -29,10 +29,20 @@ class j06001save_cancellation
 		jr_import('jomres_encryption');
 		$jomres_encryption = new jomres_encryption();
 		
-		$defaultProperty = getDefaultProperty();
+		
+		
+		if (isset($componentArgs['contract_uid'])) {
+			$contract_uid = (int)$componentArgs['contract_uid'];
+			$reason = $componentArgs['reason'];
+			$defaultProperty = $componentArgs['property_uid'];
+		} else {
+			$contract_uid = jomresGetParam($_POST, 'contract_uid', 0);
+			$reason = jomresGetParam($_POST, 'reason', '');
+			$defaultProperty = getDefaultProperty();
+		}
+		
 		$mrConfig = getPropertySpecificSettings();
-		$contract_uid = jomresGetParam($_POST, 'contract_uid', 0);
-		$reason = jomresGetParam($_POST, 'reason', '');
+		
 		$cancellationSuccessful = false;
 		$saveMessage = jr_gettext('_JOMRES_COM_MR_EB_GUEST_CANCELLED', '_JOMRES_COM_MR_EB_GUEST_CANCELLED', false);
 
@@ -74,7 +84,9 @@ class j06001save_cancellation
 					$MiniComponents->triggerEvent('07011', $componentArgs);
 				}
 
-				jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=list_bookings'), $saveMessage);
+				if (!isset($componentArgs['contract_uid'])) {
+					jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=list_bookings'), $saveMessage);
+				}
 			} else {
 				trigger_error('Unable to save cancellation. '.$cancellationSuccessful, E_USER_ERROR);
 			}

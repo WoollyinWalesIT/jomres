@@ -67,6 +67,7 @@ CREATE TABLE IF NOT EXISTS `#__jomres_contracts` (
 	`booking_language` CHAR(5) NOT NULL DEFAULT 'en-GB',
 	`last_changed` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	`referrer` VARCHAR(255) NOT NULL DEFAULT 'Jomres',
+	`noshow_flag` TINYINT(1) NOT NULL DEFAULT 0,
 	PRIMARY KEY(`contract_uid`),
 	INDEX `guest_uid` (`guest_uid`),
 	INDEX `property_uid` (`property_uid`),

@@ -164,7 +164,7 @@ class jomres_syndicate_properties
 		}
 
 		$client = new GuzzleHttp\Client();
-		$response = $client->request('POST', "http://app.jomres.net/jomres/api/syndication/report/", [
+		$response = $client->request('POST', "https://app.jomres.net/jomres/api/syndication/report/", [
 			'form_params' => [
 				'api_url' => urlencode(get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/api/'),
 				'report' => json_encode($report)

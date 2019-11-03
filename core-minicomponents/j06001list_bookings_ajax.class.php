@@ -286,6 +286,7 @@ class j06001list_bookings_ajax
 						}
 					} elseif ($p->bookedout == 0) {
 						$jrtb .= $jrtbar->toolbarItem('bookGuestOut', jomresURL(JOMRES_SITEPAGE_URL.'&task=checkout'.'&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_FRONT_MR_BOOKOUT_TITLE', '_JOMRES_FRONT_MR_BOOKOUT_TITLE', false));
+						$jrtb .= $jrtbar->toolbarItem('mark_booking_noshow', jomresURL(JOMRES_SITEPAGE_URL.'&task=mark_booking_noshow'.'&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('BOOKING_NOSHOW_MENU', 'BOOKING_NOSHOW_MENU', false));
 					}
 				}
 				if ($p->approved == 0 && isset($MiniComponents->registeredClasses['00005']['booking_enquiries'])) {
@@ -326,6 +327,7 @@ class j06001list_bookings_ajax
 					}
 					if ($p->booked_in == 0) {
 						$toolbar->addSecondaryItem('fa fa-trash-o', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=cancel_booking&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', '_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', false));
+						$toolbar->addSecondaryItem('fa fa-exclamation', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=mark_booking_noshow&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('BOOKING_NOSHOW_MENU', 'BOOKING_NOSHOW_MENU', false));
 					}
 					if (isset($MiniComponents->registeredClasses['00005']['jomres_ical'])) {
 						$toolbar->addSecondaryItem('fa fa-calendar', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=ical_export_contract&contract_uid='.$p->contract_uid.'&property_uid='.$p->property_uid), jr_gettext('_JOMRES_ICAL_EVENT', '_JOMRES_ICAL_EVENT', false));

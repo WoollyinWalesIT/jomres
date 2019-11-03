@@ -47,7 +47,7 @@ class j16000jomres_syndication_overview
 
 			$client = new GuzzleHttp\Client();
 
-			$response = $client->request('POST', "http://app.jomres.net/jomres/api/get_sites/confirm/", [
+			$response = $client->request('POST', "https://app.jomres.net/jomres/api/get_sites/confirm/", [
 				'form_params' => [
 					
 					'api_url' => urlencode(get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/api/')
@@ -56,11 +56,11 @@ class j16000jomres_syndication_overview
 
 			$this_installation_listed_on_server = json_decode((string)$response->getBody());
 			
-			$response = $client->request('GET', "http://app.jomres.net/jomres/api/get_sites/");
+			$response = $client->request('GET', "https://app.jomres.net/jomres/api/get_sites/");
 			
 			$total_sites_on_app_server = json_decode((string)$response->getBody());
 			
-			$response = $client->request('GET', "http://app.jomres.net/jomres/api/get_sites/page_view_counts");
+			$response = $client->request('GET', "https://app.jomres.net/jomres/api/get_sites/page_view_counts");
 			
 			$total_page_views_in_network = json_decode((string)$response->getBody());
 			

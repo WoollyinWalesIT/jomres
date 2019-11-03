@@ -35,7 +35,7 @@ class j00005register_site
 	
 	// reports the server's existence to the Jomres app server
 	
-	$app_server = "http://app.jomres.net/jomres/api/register_site/";
+	$app_server = "https://app.jomres.net/jomres/api/register_site/";
 	
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig = $siteConfig->get();

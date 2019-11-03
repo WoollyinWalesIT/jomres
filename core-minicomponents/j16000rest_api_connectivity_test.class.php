@@ -60,7 +60,7 @@ class j16000rest_api_connectivity_test
 		
 		$client = new GuzzleHttp\Client();
 
-		$response = $client->request('POST', "http://app.jomres.net/jomres/api/get_sites/confirm/", [
+		$response = $client->request('POST', "https://app.jomres.net/jomres/api/get_sites/confirm/", [
 			'form_params' => [
 				
 				'api_url' => urlencode(get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/api/')
