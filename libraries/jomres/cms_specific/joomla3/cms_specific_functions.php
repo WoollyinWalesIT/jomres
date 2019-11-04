@@ -439,7 +439,9 @@ function jomres_cmsspecific_stringURLSafe($str)
 function jomres_cmsspecific_addcustomtag($data)
 {
 	$document = JFactory::getDocument();
-	$document->addCustomTag($data);
+	if($document->getType() === 'html') { 
+		$document->addCustomTag($data);
+	}
 }
 
 function jomres_cmsspecific_currenturl()
