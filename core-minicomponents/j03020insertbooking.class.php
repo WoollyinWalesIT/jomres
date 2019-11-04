@@ -631,6 +631,7 @@ class j03020insertbooking
 					//mark the secret key as used
 					$query = "UPDATE #__jomres_contracts SET secret_key_used = '1' $deposit_paid_clause WHERE contract_uid = '".$contract_uid."' ";
 					doInsertSql($query, '');
+					
 
 					//add a booking note that the booking enquiry has been approved
 					$query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('".(int) $contract_uid."','".'Secret key payment made'."','".date('Y-m-d H:i:s')."','".(int) $property_uid."')";
@@ -639,6 +640,14 @@ class j03020insertbooking
 					$this->insertSuccessful = true;
 				}
 
+				// Update the contract with the number of bookings and number of no shows for this guest's email address. Doing it at this point means that this booking is not taken into account.
+				jr_import('jomres_syndicate_guests');
+				$jomres_syndicate_guests = new jomres_syndicate_guests();
+				$response = $jomres_syndicate_guests->get_booking_stats_for_guest("guest@jomres.net");
+					
+				$query = "UPDATE #__jomres_contracts SET network_stats  = '".json_encode($response)."' WHERE contract_uid = '".$contract_uid."' ";
+				doInsertSql($query, '');
+				
 				$componentArgs = array();
 				$componentArgs[ 'cartnumber' ] = $cartnumber;
 				$componentArgs[ 'tempBookingDataList' ] = $tempBookingDataList;

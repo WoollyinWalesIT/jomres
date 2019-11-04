@@ -24,8 +24,17 @@
 	//-->
 </script>
 <h2 class="page-header">{_JOMRES_BOOKING_NUMBER} {BOOKING_NUMBER} - {GUEST_FIRSTNAME} {GUEST_SURNAME}</h2>
-<div class="well">
-	{TOOLBAR}
+
+<div class="row">
+	<div class="col-sm-8">
+		<div class="well">
+			{TOOLBAR}
+		</div>
+		<h2 class="page-header">{_JOMRES_BOOKING_NUMBER} {BOOKING_NUMBER} - {GUEST_FIRSTNAME} {GUEST_SURNAME}</h2>
+	</div>
+	<div class="col-sm-4">
+			{NETWORK_STATS}
+	</div>
 </div>
 
 <patTemplate:tmpl name="noshow_status" unusedvars="strip" type="simpleCondition" requiredVars="message">

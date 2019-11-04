@@ -75,23 +75,23 @@ class j07310watcher_authmethod_process_app_server
 
 					$this_plugin_tasks = array( "booking_added" , "booking_marked_noshow" );
 					if ( in_array( $data->task , $this_plugin_tasks )) {
+
 						$current_contract_details = jomres_singleton_abstract::getInstance('basic_contract_details');
 						$current_contract_details->gather_data($data->contract_uid, $data->property_uid);
 						
 						if (!array_key_exists($data->contract_uid, $current_contract_details->contract)) { // The contract uid is wrong. Was it for a different property?
 							return;
 							}
-					
+
 						switch ( $data->task )
 							{
 							case 'booking_added':
 								$context = 'syndication_guests';
 								$this->send_notification_to_app_server( $context , 'booking_added/'	, $data = array( "email" => $current_contract_details->contract[$data->contract_uid]['guestdeets']['email']) );
-								
+								break;
 							case 'booking_marked_noshow';
 								$context = 'syndication_guests';
 								$this->send_notification_to_app_server( $context , 'booking_noshow/', $data = array( "email" => $current_contract_details->contract[$data->contract_uid]['guestdeets']['email']) );
-
 								break;
 							}
 					}
@@ -103,9 +103,8 @@ class j07310watcher_authmethod_process_app_server
 	logging::log_message("Completed Watcher's run." , 'AppServerWebhooks', 'DEBUG' , '' );
 	}
 	
-	private function send_notification_to_app_server(  $context , $endpoint = '' , $data )
+	private function send_notification_to_app_server(  $context = '' , $endpoint = '' , $data )
 	{
-
 	try {
 		$client = new GuzzleHttp\Client();
 		

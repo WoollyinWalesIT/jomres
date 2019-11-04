@@ -80,6 +80,7 @@ class basic_contract_details
 						a.booking_language,
 						a.last_changed,
 						a.noshow_flag,
+						a.network_stats,
 						a.referrer,
 						b.mos_userid,
 						b.enc_firstname,
@@ -148,6 +149,7 @@ class basic_contract_details
 			$this->contract[$contract_uid]['contractdeets']['booking_language'] = $contract->booking_language;
 			$this->contract[$contract_uid]['contractdeets']['last_changed'] = $contract->last_changed ;
 			$this->contract[$contract_uid]['contractdeets']['noshow_flag'] = $contract->noshow_flag ;
+			$this->contract[$contract_uid]['contractdeets']['network_stats'] = $contract->network_stats ;
 			$this->contract[$contract_uid]['contractdeets']['referrer'] = $contract->referrer;
 			$this->contract[$contract_uid]['contractdeets']['booking_data_archive_id'] = $contract->booking_data_archive_id;
 
