@@ -66,8 +66,19 @@ class j06001show_network_stats_for_contract
 		
 		$stats = json_decode($current_contract_details->contract[$contract_uid]['contractdeets']['network_stats']);
 		
-		$output[ 'BOOKINGS' ]	= $stats->stats->bookings;
-		$output[ 'NOSHOWS' ]	=  $stats->stats->noshows;
+		if (isset($stats->stats->bookings)) {
+			$output[ 'BOOKINGS' ]	= $stats->stats->bookings;
+		} else {
+			$output[ 'BOOKINGS' ]	= 0;
+		}
+		
+		if (isset($stats->stats->bookings)) {
+			$output[ 'NOSHOWS' ]	=  $stats->stats->noshows;
+		} else {
+			$output[ 'NOSHOWS' ]	=  0;
+		}
+		
+		
 
 		$output[ 'BOOKING_NOSHOW_NETWORK_STATUS' ]	= jr_gettext('BOOKING_NOSHOW_NETWORK_STATUS', 'BOOKING_NOSHOW_NETWORK_STATUS');
 		$output[ 'BOOKING_NOSHOW_BOOKINGS' ]		= jr_gettext('BOOKING_NOSHOW_BOOKINGS', 'BOOKING_NOSHOW_BOOKINGS');

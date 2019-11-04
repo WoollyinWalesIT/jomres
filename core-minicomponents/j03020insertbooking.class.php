@@ -643,7 +643,7 @@ class j03020insertbooking
 				// Update the contract with the number of bookings and number of no shows for this guest's email address. Doing it at this point means that this booking is not taken into account.
 				jr_import('jomres_syndicate_guests');
 				$jomres_syndicate_guests = new jomres_syndicate_guests();
-				$response = $jomres_syndicate_guests->get_booking_stats_for_guest("guest@jomres.net");
+				$response = $jomres_syndicate_guests->get_booking_stats_for_guest( $tmpBookingHandler->tmpguest['email'] );
 					
 				$query = "UPDATE #__jomres_contracts SET network_stats  = '".json_encode($response)."' WHERE contract_uid = '".$contract_uid."' ";
 				doInsertSql($query, '');
