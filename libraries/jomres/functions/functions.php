@@ -3241,30 +3241,33 @@ function savePropertyConfiguration()
 	$mrConfig = getPropertySpecificSettings($property_uid);
 
 	$tariffmodeChange = false;
-	if ($_POST[ 'oldsetting_cfg_tariffmode' ] == '1' && $_POST[ 'cfg_tariffmode' ] == '2') { // Advanced  -> micromanage
-		echo 'Deleting old tariffs';
-		removeAllPropertyTariffs($property_uid);
-		$tariffmodeChange = true;
+	if (isset($_POST[ 'oldsetting_cfg_tariffmode' ])) {
+		if ($_POST[ 'oldsetting_cfg_tariffmode' ] == '1' && $_POST[ 'cfg_tariffmode' ] == '2') { // Advanced  -> micromanage
+			echo 'Deleting old tariffs';
+			removeAllPropertyTariffs($property_uid);
+			$tariffmodeChange = true;
+		}
+		if ($_POST[ 'oldsetting_cfg_tariffmode' ] == '0' && $_POST[ 'cfg_tariffmode' ] == '2') { // Normal  -> micromanage
+			echo 'Deleting old tariffs';
+			removeAllPropertyTariffs($property_uid);
+			$tariffmodeChange = true;
+		}
+		if ($_POST[ 'oldsetting_cfg_tariffmode' ] == '2' && ($_POST[ 'cfg_tariffmode' ] == '0' || $_POST[ 'cfg_tariffmode' ] == '1')) { // Micromanage  -> normal/advanced
+			echo 'Deleting old tariffs';
+			removeAllPropertyEnhanceTariffsXref($property_uid);
+			$tariffmodeChange = true;
+		}
+		if (($_POST[ 'oldsetting_cfg_tariffmode' ] == '1' || $_POST[ 'oldsetting_cfg_tariffmode' ] == '2') && $_POST[ 'cfg_tariffmode' ] == '0') { // Advanced/Micromanage  -> normal
+			echo 'Deleting old tariffs';
+			removeAllPropertyTariffs($property_uid);
+			removeAllPropertyEnhanceTariffsXref($property_uid);
+			$tariffmodeChange = true;
+		}
+		if ($_POST[ 'oldsetting_cfg_tariffmode' ] == '0' && $_POST[ 'cfg_tariffmode' ] != '0') {
+			$tariffmodeChange = true;
+		}
 	}
-	if ($_POST[ 'oldsetting_cfg_tariffmode' ] == '0' && $_POST[ 'cfg_tariffmode' ] == '2') { // Normal  -> micromanage
-		echo 'Deleting old tariffs';
-		removeAllPropertyTariffs($property_uid);
-		$tariffmodeChange = true;
-	}
-	if ($_POST[ 'oldsetting_cfg_tariffmode' ] == '2' && ($_POST[ 'cfg_tariffmode' ] == '0' || $_POST[ 'cfg_tariffmode' ] == '1')) { // Micromanage  -> normal/advanced
-		echo 'Deleting old tariffs';
-		removeAllPropertyEnhanceTariffsXref($property_uid);
-		$tariffmodeChange = true;
-	}
-	if (($_POST[ 'oldsetting_cfg_tariffmode' ] == '1' || $_POST[ 'oldsetting_cfg_tariffmode' ] == '2') && $_POST[ 'cfg_tariffmode' ] == '0') { // Advanced/Micromanage  -> normal
-		echo 'Deleting old tariffs';
-		removeAllPropertyTariffs($property_uid);
-		removeAllPropertyEnhanceTariffsXref($property_uid);
-		$tariffmodeChange = true;
-	}
-	if ($_POST[ 'oldsetting_cfg_tariffmode' ] == '0' && $_POST[ 'cfg_tariffmode' ] != '0') {
-		$tariffmodeChange = true;
-	}
+
 
 	// If the minimum deposit percentage setting is set, then these options cannot be altered, instead we will force them so that Deposits are always charged, the "deposit is one night's value" setting cannot be used, and of course we'll force the Deposit is Percentage setting to true
 	if (!isset($jrConfig[ 'minimum_deposit_percentage' ])) {
