@@ -128,7 +128,7 @@ class j06000cron_syndication_get_syndicate_properties
 
 								doInsertSql($query);
 							} else {
-								logging::log_message("No new properties found for domain ".$domain['host'], 'Syndication', 'INFO');
+								logging::log_message("No new properties found for domain ".$domain['host'], 'Syndication', 'DEBUG');
 							}
 						}
 					}
@@ -154,7 +154,7 @@ class j06000cron_syndication_get_syndicate_properties
 						}
 						doInsertSql($query);
 
-						logging::log_message("Tried to get properties information for domain ".$domain['host']." but received 404 message so either the server is offline, or it cannot response to core api requests. Blocking from future requests until recheck time ", 'Syndication', 'INFO');
+						logging::log_message("Tried to get properties information for domain ".$domain['host']." but received 404 message so either the server is offline, or it cannot response to core api requests. Blocking from future requests until recheck time ", 'Syndication', 'DEBUG');
 
 				}
 			}
