@@ -231,6 +231,7 @@ class j06001listguests_ajax
 				$r[] = $g->guests_uid;
 				$r[] = '<a href="'.jomresUrl(JOMRES_SITEPAGE_URL.'&task=show_user_profile&cms_user_id='.$g->mos_userid).'" target="_blank">'.$firstname.'</a>';
 				$r[] = '<a href="'.jomresUrl(JOMRES_SITEPAGE_URL.'&task=show_user_profile&cms_user_id='.$g->mos_userid).'" target="_blank">'.$surname.'</a>';
+				$r[] = $email;
 				$r[] = $house;
 				$r[] = $street;
 				$r[] = $town;
@@ -239,7 +240,6 @@ class j06001listguests_ajax
 				$r[] = $country;
 				$r[] = $tel_landline;
 				$r[] = $tel_mobile;
-				$r[] = $email;
 				$r[] = $vat_number;
 				$r[] = $g->discount.'%';
 				$r[] = $basic_property_details->property_names[$g->property_uid];
