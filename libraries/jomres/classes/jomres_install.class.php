@@ -43,7 +43,10 @@ class jomres_install
 			return false;
 		}
 
-		define('AUTO_UPGRADE', 1); //TODO: rename this
+		if (!defined('AUTO_UPGRADE')) {
+			define('AUTO_UPGRADE', 1); //TODO: rename this
+		}
+		
 		
 		if (!defined('JRDS')) {
 			define('JRDS', DIRECTORY_SEPARATOR);
