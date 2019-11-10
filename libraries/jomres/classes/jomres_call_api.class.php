@@ -82,9 +82,9 @@ class jomres_call_api
 		return array ( "client_id" => $this->user->username ,"client_secret" => $client_secret );
 	}
 
-	public function send_request($method = '', $endpoint = '', $data = array()) {
+	public function send_request($method = '', $endpoint = '', $data = array() ,  $headers = array() ) {
 		if ($this->token != '') {
-			$response = $this->query_api($method, $endpoint, $data);
+			$response = $this->query_api($method, $endpoint, $data , $headers );
 			if ($response['response_code'] == '200' || $response['response_code'] == '204') {
 				return json_decode($response['response']);
 			} else {
@@ -95,7 +95,7 @@ class jomres_call_api
 		}
 	}
 
-	private function query_api($method = 'GET', $endpoint = '', $data = array())
+	private function query_api($method = 'GET', $endpoint = '', $data = array() , $headers = array() )
 	{
 		$ch = curl_init($this->server.$endpoint);
 		
@@ -121,18 +121,33 @@ class jomres_call_api
 			}
 
 		if (isset($this->token) && $this->token != '') {
-			curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-				'Authorization: Bearer '.$this->token,
-				'Accept: application/json',
-				));
+			
+			if (isset($headers) && count($headers) > 0 ) {
+				$default_headers = array (
+					"Authorization: Bearer ".$this->token ,
+					"Accept: application/json"
+					);
+				$arr =  array_merge ( $default_headers , $headers ) ;
+				curl_setopt($ch, CURLOPT_HTTPHEADER, $arr );
+			} else {
+				curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+					'Authorization: Bearer '.$this->token,
+					'Accept: application/json',
+					));
+			}
+
 		}
-
-
+		
+		curl_setopt($ch,CURLOPT_VERBOSE,true);
+		curl_setopt($ch, CURLINFO_HEADER_OUT, true);
+		
 		$result = curl_exec($ch);
 		$status = curl_getinfo($ch);
+		
 		$response_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		curl_close($ch);
 
 		return array('response_code' => $response_code, 'response' => $result, 'status' => $status);
 	}
+	
 }
