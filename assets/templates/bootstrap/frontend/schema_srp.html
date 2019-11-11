@@ -1,0 +1,74 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<style>
+.schema-hidden-fields {
+	display: none;
+}
+</style>
+
+<div class="schema-hidden-fields" itemscope itemtype="http://schema.org/Product">
+	<span itemscope itemtype="http://schema.org/Place">
+		<meta itemprop="url" content="{DIRECT_URL}">
+		<meta itemprop="name" content="{PROPERTY_NAME}">
+		<meta itemprop="description" content="{SHORT_PROPERTY_DESCRIPTION}">
+	
+		<span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+			<span itemprop="streetAddress">{STREET}</span>,
+			<span itemprop="addressLocality">{TOWN}</span>, 
+			<span itemprop="addressRegion">{REGION}</span>, 
+			<span itemprop="postalCode">{POSTCODE}</span>, 
+			<span itemprop="addressCountry">{COUNTRY}</span><br/>
+			<span itemprop="location">
+				<span itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
+					<meta itemprop="latitude" content="{PROPERTY_LAT}" />
+					<meta itemprop="longitude" content="{PROPERTY_LONG}" />
+				</span>
+			</span>
+			<span itemprop="telephone">{TELEPHONE}</span>
+			<span itemprop="starRating" itemscope itemtype="http://schema.org/Rating">
+				<meta itemprop="ratingValue" content="{STARS}">
+			</span>
+		</span>
+
+		<span itemprop="priceRange">{LOWEST_PRICE} - {HIGHEST_PRICE}</span>
+		<img itemprop="photo" src="{IMAGEMEDIUM}" alt="{PROPERTY_NAME}" />
+		
+
+		
+		<patTemplate:tmpl name="tariff_deets" unusedvars="strip">
+		<span itemprop="name">{TITLE} </span> 
+			<span itemprop="description">{DESC} / {ROOMCLASSABBV} / {HMINDAYS} {MINDAYS} {HMAXDAYS} {MAXDAYS} / {HMINPEEPS} {MINPEOPLE} {HMAXPEEPS} {MAXPEOPLE} / {NOTWEEKENDS} </span>
+			<link itemprop="businessFunction" href="http://purl.org/goodrelations/v1#LeaseOut">
+			<span itemprop="priceSpecification" itemscope itemtype="http://schema.org/UnitPriceSpecification">
+			<meta itemprop="priceCurrency" content="{CURRENCY_CODE}">{CURRENCY_SYMBOL} <span itemprop="price">{ROOMRATEPERDAY}</span>
+			<meta itemprop="unitCode" content="DAY">{ROOMCLASSABBV} 
+			<meta itemprop="validThrough" content="{RAW_VALIDTO}">{VALIDTO}
+		</span> 
+		</patTemplate:tmpl>
+	</span>
+	
+	<patTemplate:tmpl name="slideshow_images" unusedvars="strip">
+	<span itemscope itemtype="http://schema.org/Place http://schema.org/ImageObject">
+		<img src="{IMAGE}" alt="{ALT}">
+	</span>
+	</patTemplate:tmpl>
+	
+	<patTemplate:tmpl name="pfeatures" unusedvars="strip">
+		<span itemprop="amenityFeature" itemscope itemtype="http://schema.org/LocationFeatureSpecification">
+			<span itemprop="name">{NAME}</span>
+			<meta itemprop="value" content="True">
+		</span>
+	</patTemplate:tmpl>
+  
+	<patTemplate:tmpl name="ratings" unusedvars="strip">
+	<span itemscope itemtype="http://schema.org/AggregateRating">
+		<meta itemprop="itemReviewed" content="{PROPERTY_NAME}"/>
+		<meta itemprop="bestRating" content="{BESTRATING}"/>
+		<meta itemprop="worstRating" content="{WORSTRATING}"/>
+		<meta itemprop="ratingValue" content="{RATINGVALUE}"/>
+		<meta itemprop="reviewCount" content="{REVIEWCOUNT}"/>
+	</span>
+	</patTemplate:tmpl>
+</div>
+
+</patTemplate:tmpl>
