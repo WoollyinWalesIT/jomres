@@ -2894,7 +2894,7 @@ function jr_base64url_decode($data) {
  */
 function jomresRedirect($url, $msg = '', $class = 'alert-info', $code = 302)
 {
-	logging::log_message($msg, 'Core', 'INFO');
+	//logging::log_message($msg, 'Core', 'INFO');
 	
 	if ($msg != '' ) {
 		$jomres_messages = jomres_singleton_abstract::getInstance('jomres_messages');
