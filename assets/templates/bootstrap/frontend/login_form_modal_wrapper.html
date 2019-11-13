@@ -1,5 +1,23 @@
 <patTemplate:tmpl name="loginoutput"  >
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
+<script type="text/javascript">
+jomresJquery(document).ready(function () {
+	jomresJquery('#loginModal').appendTo("body");
+});
+</script>
+
+<style>
+.modal-dialog,
+.modal {
+}
+
+.modal-body {
+    /* 100% = dialog height, 120px = header + footer */
+    max-height: calc(100% - 120px);
+    overflow-y: scroll;
+}
+</style>
+
+<div class="modal hide fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-body">

@@ -6,9 +6,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.20.0
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 use Monolog\Logger;
@@ -98,7 +98,13 @@ class logging
                 (isset($_SERVER['HTTPS']) && strcasecmp($_SERVER['HTTPS'], 'off') ? 'https://' : 'http://').
                 (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : (isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : '')).(($full) ? $_SERVER['REQUEST_URI'] : null)
             );
-            $parse['port'] = $_SERVER['SERVER_PORT']; // Setup protocol for sure (80 is default)
+			
+			if (isset($_SERVER['SERVER_PORT'])) { // CLI not isset variable fix
+				$parse['port'] = $_SERVER['SERVER_PORT']; // Setup protocol for sure (80 is default)
+			} else {
+				$parse['port'] = '80';
+			}
+            
             $url = http_build_url('', $parse);
             $url = filter_var($url, FILTER_VALIDATE_URL, FILTER_FLAG_PATH_REQUIRED);
         }
@@ -168,7 +174,10 @@ class logging
             $backtrace = debug_backtrace();
             $trace = "<br/> File ".$backtrace[1]['file']." Line ".$backtrace[1]['line']. " Function ".$backtrace[1]['function']."<br/> ";
             $trace .= " File ".$backtrace[2]['file']." Line ".$backtrace[2]['line']. " Function ".$backtrace[2]['function']."<br/> ";
-            $trace .= " File ".$backtrace[3]['file']." Line ".$backtrace[3]['line']. " Function ".$backtrace[3]['function']."<br/> "; 
+			if (isset($backtrace[3]['file'])) {
+				$trace .= " File ".$backtrace[3]['file']." Line ".$backtrace[3]['line']. " Function ".$backtrace[3]['function']."<br/> "; 
+			}
+            
         }
         $context = array( 'info_dump' => $further_info_dump.$trace);
 

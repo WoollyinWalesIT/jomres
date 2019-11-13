@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.20.0
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -15,10 +15,251 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 
+/*
+
+Get the remote plugins data. 
+
+Previously just a feature of the add plugin script, it's usage has been moved to here to allow the API to use the same functionality as we want to automatically install plugins when the API is called, and if the plugin is available. API Feature are still subject to scope limitations and other validation checks.
+
+*/
+
+function get_remote_plugin_data()
+{
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+	$jrConfig = $siteConfig->get();
+	
+	if (file_exists(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php')) {
+		$last_modified = filemtime(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php');
+		$seconds_timediff = time() - $last_modified;
+		if ($seconds_timediff > 3600) {
+			unlink(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php');
+		} else {
+			$remote_plugins_data = file_get_contents(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php');
+		}
+	}
+
+	if (!file_exists(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php')) {
+		$remote_plugins_data = '';
+		
+		$base_uri = 'http://plugins.jomres4.net/';
+		$query_string = 'index.php?r=dp&format=json&cms='._JOMRES_DETECTED_CMS.'&jomresver='.$jrConfig['version'];
+
+		try {
+			$client = new GuzzleHttp\Client([
+				'base_uri' => $base_uri
+			]);
+			logging::log_message('Starting guzzle call to '.$base_uri.$query_string, 'Guzzle', 'DEBUG');
+			
+			$remote_plugins_data = $client->request('GET', $query_string)->getBody()->getContents();
+		}
+		catch (Exception $e) {
+			$jomres_user_feedback = jomres_singleton_abstract::getInstance('jomres_user_feedback');
+			$jomres_user_feedback->construct_message(array('message'=>'Could not get plugins data', 'css_class'=>'alert-danger alert-error'));
+		}
+		// Uncomment this to show all updates, including beta plugins.
+		//$remote_plugins_data = queryUpdateServer( "", "r=dp&format=json&cms=" . _JOMRES_DETECTED_CMS  );
+		if ($remote_plugins_data != '') {
+			file_put_contents(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php', $remote_plugins_data);
+		}
+	}
+	
+	$remote_plugins = json_decode($remote_plugins_data);
+	
+	return $remote_plugins;
+
+}
+
+
+/**
+
+Search properties for guests with details LIKE the string 
+
+Return an array of guest ids that match string.
+
+Encryption functionality has broken the datatables functionality that allowed us to search by guest details (name, email etc). We need to search guest details, find those that match "string" and return those ids to the list bookings and list invoices ajax tasks (and maybe others too).
+
+$string : The string we are searching on. If '' (blank) then return an empty array.
+$property_uid : The specific property we are searching on. If set to 0 then that's all properties that this manager is a manager for.
+$manager_id : show_all is 1 and manager id is > 0 then we'll search all properties that the manager is a manager of. If the manager is a super manager, then we'll search all properties in the system. If manager_id is 0, then we will search all guests
+
+
+The function has been kept self-contained (doesn't use thisJRUser object, which is set during a run, is to allow other features, such as the REST API to potentially use it)
+We will return two arrays, first array will be an array of guest uids only. Second array is the same guest details plus the unencrypted data. We're unencrypting here anyway to search for the string, so we might as well hand that data back so that calling function/methods don't need to recreate that data 
+
+**/
+
+function search_property_guests_by_string($string = '' , $property_uid = 0 , $manager_id = 0 , $show_all = 0)
+	{
+	if (trim($string) == '' ) {
+		return array();
+	}
+
+	jr_import('jomres_encryption');
+	$jomres_encryption = new jomres_encryption();
+	
+	$show_all = (int)$show_all;
+	
+	if ($manager_id > 0 ) {
+		$query = 'SELECT `access_level` FROM #__jomres_managers WHERE `userid` = ' .(int) $manager_id.' LIMIT 1 ';
+		$manager_access_level = doSelectSql($query , 1 );
+		
+		if ($manager_access_level >= 90 ) {
+			$authorisedProperties = get_showtime('all_properties_in_system');
+		} else {
+			$authorisedProperties = array();
+			
+			$query = 'SELECT `property_uid` FROM #__jomres_managers_propertys_xref WHERE `manager_id` = '.(int) $manager_id;
+			$managersToPropertyList = doSelectSql($query);
+
+			if (!empty($managersToPropertyList)) {
+				foreach ($managersToPropertyList as $x) {
+					$authorisedProperties[] = $x->property_uid;
+				}
+			}
+		}
+		
+		if ( ! in_array($property_uid,$authorisedProperties) || empty($authorisedProperties) ) {
+			return array();
+		}
+		
+		if ( (int)$show_all == 1 && (int)$manager_id > 0 ) {
+			$sWhere = ' WHERE property_uid IN ('.jomres_implode($authorisedProperties).') ';
+		} else {
+			$sWhere = " WHERE property_uid = '".(int) $property_uid."' ";
+		}
+	
+	} else {
+		$authorisedProperties = get_showtime('all_properties_in_system');
+		$sWhere = ' WHERE property_uid IN ('.jomres_implode($authorisedProperties).') ';
+	}
+	
+/* 	$query = 'SELECT `access_level` FROM #__jomres_managers WHERE `userid` = ' .(int) $manager_id.' LIMIT 1 ';
+	$manager_access_level = doSelectSql($query , 1 );
+	
+	if ($manager_access_level >= 90 ) {
+		$authorisedProperties = get_showtime('all_properties_in_system');
+	} else {
+		$authorisedProperties = array();
+		
+		$query = 'SELECT `property_uid` FROM #__jomres_managers_propertys_xref WHERE `manager_id` = '.(int) $manager_id;
+		$managersToPropertyList = doSelectSql($query);
+
+		if (!empty($managersToPropertyList)) {
+			foreach ($managersToPropertyList as $x) {
+				$authorisedProperties[] = $x->property_uid;
+			}
+		}
+	} */
+	
+	$query = 'SELECT 
+				guests_uid,
+				enc_firstname, 
+				enc_surname, 
+				enc_house,
+				enc_street,
+				enc_town,
+				enc_county,
+				enc_country,
+				enc_postcode,
+				enc_tel_landline, 
+				enc_tel_mobile, 
+				enc_email
+				FROM #__jomres_guests'
+					.$sWhere;
+		$jomresGuestList = doSelectSql($query);
+		
+		if (empty($jomresGuestList)) {
+			return array();
+		}
+		
+		// Now we'll decrypt the guest information and put the results into an array, then search them afterwards
+		$all_guests = array();
+		$count = count($jomresGuestList);
+		for ($i=0;$i<$count;$i++) {
+			$guest_data = $jomresGuestList[$i];
+			$guests_uid = $jomresGuestList[$i]->guests_uid;
+			$all_guests[]= array (
+				'guests_uid' => $jomresGuestList[$i]->guests_uid,
+				'firstname' => jomres_decode($jomres_encryption->decrypt($jomresGuestList[$i]->enc_firstname)),
+				'surname' => jomres_decode($jomres_encryption->decrypt($jomresGuestList[$i]->enc_surname)),
+				'house' => jomres_decode($jomres_encryption->decrypt($jomresGuestList[$i]->enc_house)),
+				'street' => jomres_decode($jomres_encryption->decrypt($jomresGuestList[$i]->enc_street)),
+				'town' => jomres_decode($jomres_encryption->decrypt($jomresGuestList[$i]->enc_town)),
+				'county' => find_region_name(jomres_decode($jomres_encryption->decrypt($jomresGuestList[$i]->enc_county))),
+				'country' => getSimpleCountry(jomres_decode($jomres_encryption->decrypt($jomresGuestList[$i]->enc_country))),
+				'postcode' => jomres_decode($jomres_encryption->decrypt($jomresGuestList[$i]->enc_postcode)),
+				'tel_landline' => jomres_decode($jomres_encryption->decrypt($jomresGuestList[$i]->enc_tel_landline)),
+				'tel_mobile' => jomres_decode($jomres_encryption->decrypt($jomresGuestList[$i]->enc_tel_mobile)),
+				'email' => jomres_decode($jomres_encryption->decrypt($jomresGuestList[$i]->enc_email))
+				);
+		}
+
+		$matches = array ();
+		$guest_uids = array ();
+		$count = count($all_guests);
+		for ($i=0;$i<$count;$i++) {
+			$guest = $all_guests[$i];
+			foreach ($guest as $column_name => $content ) {
+				if ($column_name != 'guests_uid') {
+					if( preg_match( "/$string/" , $content) ){
+						$matches[$guest['guests_uid']] = $all_guests[$i];
+						$guest_uids[] = $guest['guests_uid'];
+						break;
+					}
+				}
+			}
+		}
+
+		return array ( "matches" => $matches , "guest_uids" => $guest_uids);
+	}
+
+/**
+Outputs the pdf after having been handed the outputted template data, or returns said PDF. Doesn't handle clean up of pdfs
+**/
+
+function output_pdf($tmpl , $title = '' , $return_pdf = false )
+{
+	if ($title == '' ) {
+		$title = get_showtime('sitename');
+	}
+	
+	// mPDF doesn't work with Bootstrap :(
+
+	$stylesheet = '';
+	
+	$mpdf = new \Mpdf\Mpdf(['tempDir' =>JOMRES_MPDF_ABSPATH]);
+
+	$mpdf->SetTitle($title);
+	$mpdf->SetDisplayMode('fullpage');
+	$mpdf->WriteHTML($stylesheet,1);
+	$mpdf->WriteHTML($tmpl);
+	
+	ob_clean();
+	if (!$return_pdf) {
+		
+		$mpdf->Output(str_replace(" ", "", $title.".pdf"), 'D');
+		exit;
+	} else {
+		return $mpdf->Output('', \Mpdf\Output\Destination::STRING_RETURN );
+	}
+	
+
+}
+
+
+
+/**
+Adds as_pdf to url
+**/
+function get_pdf_url()
+{
+	$url = getCurrentUrl(true).'&tmpl='.get_showtime('tmplcomponent').'&popup=1&as_pdf=1';
+	return $url;
+}
+
 /**
 * When passed a username and password, return a response that confirms or denies that the login was successful. TFA not currently supported
 */
-
 function jomres_login_user($username = null , $password = null , $tfa = '' ) 
 {
 		$result = false;
@@ -1047,6 +1288,42 @@ function build_property_manager_xref_array()
 	set_showtime('property_manager_xref', $arr);
 
 	return $arr;
+}
+
+
+/**
+ * Utility to produce a url the view property manager page
+ */
+function make_host_link($property_id = 0)
+{
+	$property_manager_xref = get_showtime('property_manager_xref');
+	if (is_null($property_manager_xref)) {
+		$property_manager_xref = build_property_manager_xref_array();
+	}
+
+	if (!array_key_exists($property_id, $property_manager_xref)) {
+		return '';
+	}
+
+	if ($property_id == 0) {
+		return '';
+	}
+
+	$output = array();
+	$pageoutput = array();
+
+	$manager_id = $property_manager_xref[ $property_id ];
+
+	$output[ 'URL' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=show_user_profile&id='.$manager_id);
+	$output[ 'VIEW_HOST_PROFILE' ] = jr_gettext('VIEW_HOST_PROFILE', 'VIEW_HOST_PROFILE', false);
+	
+	$pageoutput[ ] = $output;
+	$tmpl = new patTemplate();
+	$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+	$tmpl->addRows('pageoutput', $pageoutput);
+	$tmpl->readTemplatesFromInput('host_link.html');
+
+	return $tmpl->getParsedTemplate();
 }
 
 /**
@@ -2172,7 +2449,7 @@ function dirmv($source, $dest, $overwrite = true, $funcloc = JRDS)
 } // end of dirmv()
 
 /*
-Allows us to work independantly of Joomla or Mambo's emailers
+Allows us to work independantly of Joomla, Wordpress or Mambo's emailers
 */
 function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode = 1, $attachments = array(), $debugging = true)
 {
@@ -2297,7 +2574,9 @@ function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode
 					case 'pdf':
 						$path = $attachment[ 'path' ];
 						$name = $attachment[ 'filename' ];
-						$mail->addAttachment($path, $name, 'base64', $type = 'application/pdf');
+						if (file_exists($path.$name)) {
+							$result = $mail->addAttachment($path.$name, $name, 'base64', $type = 'application/pdf');
+						}
 						break;
 					default:
 						$path = $attachment[ 'path' ];
@@ -2315,13 +2594,14 @@ function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode
 			}
 		}
 		$mail->Send();
-		logging::log_message('Email sent successfully ', 'Mailer');
+		logging::log_message('Email sent successfully to '.$to, 'Mailer' , 'DEBUG' );
 	} catch (PHPMailer\PHPMailer\Exception $e) {
-		logging::log_message('Email failed '.$GLOBALS['debug'], 'Mailer');
+		logging::log_message('Email failed sending to '.$to.' Message '.$GLOBALS['debug'], 'Mailer' , 'ERROR' );
 		$GLOBALS['debug'] = '';
 
 		return false;
 	} catch (\Exception $e) {
+		logging::log_message('Email failed sending to '.$to.' Message '.$e->getMessage(), 'Mailer' , 'ERROR' );
 		//echo $e->getMessage(); //Boring error messages from anything else!
 		return false;
 	}
@@ -2614,7 +2894,7 @@ function jr_base64url_decode($data) {
  */
 function jomresRedirect($url, $msg = '', $class = 'alert-info', $code = 302)
 {
-	logging::log_message($msg, 'Core', 'INFO');
+	//logging::log_message($msg, 'Core', 'INFO');
 	
 	if ($msg != '' ) {
 		$jomres_messages = jomres_singleton_abstract::getInstance('jomres_messages');
@@ -2867,6 +3147,8 @@ function propertyConfiguration()
 
 	$lists[ 'showPfeaturesCategories' ] = jomresHTML::selectList($yesno, 'cfg_showPfeaturesCategories', 'class="inputbox" size="1"', 'value', 'text', (int) $mrConfig[ 'showPfeaturesCategories' ]);
 	$lists[ 'currency_symbol_swap' ] = jomresHTML::selectList($yesno, 'cfg_currency_symbol_swap', 'class="inputbox" size="1"', 'value', 'text', (int) $mrConfig[ 'currency_symbol_swap' ]);
+	
+	$lists[ 'use_custom_invoice_numbers' ] = jomresHTML::selectList($yesno, 'cfg_use_custom_invoice_numbers', 'class="inputbox" size="1"', 'value', 'text', (int) $mrConfig[ 'use_custom_invoice_numbers' ]);
 
 	$componentArgs = array();
 	$componentArgs[ 'mrConfig' ] = $mrConfig;
@@ -2959,30 +3241,33 @@ function savePropertyConfiguration()
 	$mrConfig = getPropertySpecificSettings($property_uid);
 
 	$tariffmodeChange = false;
-	if ($_POST[ 'oldsetting_cfg_tariffmode' ] == '1' && $_POST[ 'cfg_tariffmode' ] == '2') { // Advanced  -> micromanage
-		echo 'Deleting old tariffs';
-		removeAllPropertyTariffs($property_uid);
-		$tariffmodeChange = true;
+	if (isset($_POST[ 'oldsetting_cfg_tariffmode' ])) {
+		if ($_POST[ 'oldsetting_cfg_tariffmode' ] == '1' && $_POST[ 'cfg_tariffmode' ] == '2') { // Advanced  -> micromanage
+			echo 'Deleting old tariffs';
+			removeAllPropertyTariffs($property_uid);
+			$tariffmodeChange = true;
+		}
+		if ($_POST[ 'oldsetting_cfg_tariffmode' ] == '0' && $_POST[ 'cfg_tariffmode' ] == '2') { // Normal  -> micromanage
+			echo 'Deleting old tariffs';
+			removeAllPropertyTariffs($property_uid);
+			$tariffmodeChange = true;
+		}
+		if ($_POST[ 'oldsetting_cfg_tariffmode' ] == '2' && ($_POST[ 'cfg_tariffmode' ] == '0' || $_POST[ 'cfg_tariffmode' ] == '1')) { // Micromanage  -> normal/advanced
+			echo 'Deleting old tariffs';
+			removeAllPropertyEnhanceTariffsXref($property_uid);
+			$tariffmodeChange = true;
+		}
+		if (($_POST[ 'oldsetting_cfg_tariffmode' ] == '1' || $_POST[ 'oldsetting_cfg_tariffmode' ] == '2') && $_POST[ 'cfg_tariffmode' ] == '0') { // Advanced/Micromanage  -> normal
+			echo 'Deleting old tariffs';
+			removeAllPropertyTariffs($property_uid);
+			removeAllPropertyEnhanceTariffsXref($property_uid);
+			$tariffmodeChange = true;
+		}
+		if ($_POST[ 'oldsetting_cfg_tariffmode' ] == '0' && $_POST[ 'cfg_tariffmode' ] != '0') {
+			$tariffmodeChange = true;
+		}
 	}
-	if ($_POST[ 'oldsetting_cfg_tariffmode' ] == '0' && $_POST[ 'cfg_tariffmode' ] == '2') { // Normal  -> micromanage
-		echo 'Deleting old tariffs';
-		removeAllPropertyTariffs($property_uid);
-		$tariffmodeChange = true;
-	}
-	if ($_POST[ 'oldsetting_cfg_tariffmode' ] == '2' && ($_POST[ 'cfg_tariffmode' ] == '0' || $_POST[ 'cfg_tariffmode' ] == '1')) { // Micromanage  -> normal/advanced
-		echo 'Deleting old tariffs';
-		removeAllPropertyEnhanceTariffsXref($property_uid);
-		$tariffmodeChange = true;
-	}
-	if (($_POST[ 'oldsetting_cfg_tariffmode' ] == '1' || $_POST[ 'oldsetting_cfg_tariffmode' ] == '2') && $_POST[ 'cfg_tariffmode' ] == '0') { // Advanced/Micromanage  -> normal
-		echo 'Deleting old tariffs';
-		removeAllPropertyTariffs($property_uid);
-		removeAllPropertyEnhanceTariffsXref($property_uid);
-		$tariffmodeChange = true;
-	}
-	if ($_POST[ 'oldsetting_cfg_tariffmode' ] == '0' && $_POST[ 'cfg_tariffmode' ] != '0') {
-		$tariffmodeChange = true;
-	}
+
 
 	// If the minimum deposit percentage setting is set, then these options cannot be altered, instead we will force them so that Deposits are always charged, the "deposit is one night's value" setting cannot be used, and of course we'll force the Deposit is Percentage setting to true
 	if (!isset($jrConfig[ 'minimum_deposit_percentage' ])) {
@@ -4033,7 +4318,12 @@ function updateCustomText($theConstant, $theValue, $audit = true, $property_uid 
  */
 function jomresGetDomain()
 {
-	$thisSvrName = $_SERVER[ 'SERVER_NAME' ];
+	if (!isset($_SERVER[ "SERVER_NAME" ])) {
+		$thisSvrName = 'CLI'; // Probably a CLI call if SERVER_NAME is not set in the global var
+	} else {
+		$thisSvrName = $_SERVER[ 'SERVER_NAME' ];
+	}
+	
 	$dmn = str_replace('http://', '', $thisSvrName);
 
 	//$domain=str_replace("www.","",$dmn);

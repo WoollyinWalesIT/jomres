@@ -1,3 +1,180 @@
+<h3>Jomres 9.20.0 31/10/2019</h3>
+
+<span class="label label-success">Feature</span> Added significant update to user handling within Jomres to allow for private and public user data and user profiles.
+<span class="label label-success">Feature</span> Users are now able to add "About me" information which is added to their profile page, and define Preferences (which are prefilled in the special requirements field of the Booking Confirmation form). Their Edit Account page now prompts them to enter such private information as driving license, passport and IBAN number (suggested only, not mandatory).
+<span class="label label-success">Feature</span> Private data is viewable by the user themselves, their hosts when they've made a booking at a property, and super managers only.
+<span class="label label-success">Feature</span> List Bookings/Invoices/Guests pages offer links to the guest's profiles, and in the List Guests page a receptionist or manager can add a review of the guest, which is visible in the Guest's profile page. This means that when managers/hosts are viewing booking requests they can view both the guest's reviews of other properties, plus other host's reviews of the guest. They can also view the guest's About me section and the private data, all of which should help managers when they're deciding whether or not to approve a booking.
+<span class="label label-success">Feature</span> The guest's profile (including private data) are also viewable in the Guest tab of the view booking page.
+
+<span class="label label-success">Feature</span> New syndication stats panel added to cpanel
+
+
+<span class="label label-warning">Change</span> Changed syndication network range from 1 - 20km for finding first choice properties to display.
+<span class="label label-warning">Change</span> Improved performance of get_properties syndicate cron job, had to disable checking of images because the process would take too long
+<span class="label label-warning">Change</span> Made some log items debug only due to the amount of log files they were creating.
+<span class="label label-warning">Change</span> Updated the install plugin manager prompts to highlight if ioncube is not available and then recommend that the plugin manager not be installed if the user does not have a one-off license and moved the license nag to Site Configuration.
+<span class="label label-warning">Change</span> Disabled Gmap if api key not set as it triggers js errors now, which prevent the main menu from running.
+<span class="label label-warning">Change</span> Removed the hashes file as it's not needed and chunky. It was only used by the file system integrity check which itself is unreliable so there's no point in shuffling those bytes around the interwebs.
+
+
+<span class="label label-warning">Change</span> Fixed a minor bug in a cron job.
+<span class="label label-warning">Change</span> Wordpress changed stuff, so I fixed stuff. (The new page editor was trying to call index.php in the Jomres dir, causing an error so tweaked that to include the index.php above). Added warnings about installing a Bootstrap theme and provided a link to the Leohtian theme on jomres.net for those who don't have a preferred theme.
+
+<h3>Jomres 9.19.2 28/10/2019</h3>
+
+<span class="label label-success">Feature</span> Improved syndication functionality, added new table for property distances, when the show syndication script attempts to show syndicated properties a min and max distances setting is applied and any properties that fall within that window are selected to be shown. This allows the guest to see properties in the general area (currently between 50 & 100km) whilst not showing the current property's neighbours who may also be competitors.
+
+<span class="label label-important label-danger">Fix</span> Updated PUT method handling to ensure that it doesn't throw notices when form data is empty.
+<span class="label label-important label-danger">Fix</span> Added check to see if API definition exists, if it does and it's an API call, we suppress some output.
+<span class="label label-important label-danger">Fix</span> Improved performance and exception handling of syndicate cron tasks
+<span class="label label-important label-danger">Fix</span> Improved core package handling to ensure graceful fallback in the event of a sha not being built correctly.
+
+
+<h3>Jomres 9.19.1 21/10/2019</h3>
+
+<span class="label label-warning">Change</span> Added functionality to silently add plugins if required by REST API
+<span class="label label-warning">Change</span> Installer scripts updated to remove space check
+
+<span class="label label-important label-danger">Fix</span> Removed a usort section of code that was preventing normal mode tariffs from being saved.
+
+
+<h3>Jomres 9.19.0 18/10/2019</h3>
+
+<span class="label label-success">Feature</span> Added the Jomres Syndication Network functionality which lists your properties on other Jomres based sites, giving you the opportunity to advertise your properties at no extra cost, across the world. No personal data is recorded or revealed, just the url to the Jomres site and the number of properties it has.
+<span class="label label-success">Feature</span> Added feature where API functionality can offer built-in API methods. 
+
+
+<span class="label label-warning">Change</span> Added code to delete property script to allow deletion of properties through componentArgs, meaning it can be called as a discreet script, rather than always being intended to be run through the browser.
+<span class="label label-warning">Change</span> Added  ROW_FORMAT=DYNAMIC to the query that creates the propertys table.
+<span class="label label-warning">Change</span> Updated language files to emphasise that property managers must always be existing cms users.
+
+<span class="label label-important label-danger">Fix</span> Fixed an issue where stars selection was not added to paging urls in list properties.
+<span class="label label-important label-danger">Fix</span> Asynchronous deferred tasks were causing some slowdowns to added a solution to possibly use wget to trigger deferred tasks instead.
+<span class="label label-important label-danger">Fix</span> Improved how list bookings page searches for guest names & email addresses
+<span class="label label-important label-danger">Fix</span> Modified booking engine so that a double check is done on price to ensure that an edge case doesn't result in 0 price tariffs being presented in the booking form.
+<span class="label label-important label-danger">Fix</span> Fixed some issues in REST API functionality created by the previous update's changes to file paths.
+
+<h3>Jomres 9.18.0 02/09/2019</h3>
+
+<span class="label label-success">Feature</span> Added new package handling functionality that reduces the size of Jomres Core, putting Node and Composer files into their own packages which are then downloaded and installed automatically by Jomres. 
+<span class="label label-success">Feature</span> System French language files significantly updated, plus hard-coded lables in a handful of files removed and replaced with placeholder strings for patTemplate so that everything can be translated. All plugins updated with French language files. Many thanks for your hard work regarding this, Stephane. 
+
+<span class="label label-warning">Change</span> Added referrer to list bookings page
+<span class="label label-warning">Change</span> Modified translate lang file strings page to output the constant name as this makes the strings more identifiable
+<span class="label label-warning">Change</span> Modified calendar generator so that black booking date picker automatically jumps to next date in "end" calendar.
+<span class="label label-warning">Change</span> Added Core Package Management to Jomres to allow us to treat Vendor and Node Modules as separate packages, reducing the size of Jomres Core. This is required because these directories in particular make Jomres much larger than it needs to be. It also allows us to apply vuln fixes without forcing complete updates of Jomres. Todo : Make the installer page a bit prettier and fire the installation process through ajax.
+<span class="label label-warning">Change</span> Modified booking engine so that unavailable dates are shown in departure calendar as well as arrival calendar, in booking form.
+<span class="label label-warning">Change</span> Modified booking engine to prevent managers from inadvertently re-using email addresses of existing guests.
+<span class="label label-warning">Change</span> Modfied property type handling. If a property type has no published properties, you will be able to unpublish it. Added a sanity check so that if a manager is attempting to modify a property who's property type is not published, they are advised to either contact the site admin, or change the property type.
+<span class="label label-warning">Change</span> Updated the system so that if a property prevents a feature from being deleted, the system will give useful feedback as to which properties cause the problem.
+<span class="label label-warning">Change</span> Added a new language definition and changed the delete property type handling so that property uids that prevent a property type from being deleted are shown.
+<span class="label label-warning">Change</span> Added reason notification if a property type cannot be unpublished.
+<span class="label label-warning">Change</span> Updated logging in mailer to log to own channel with more information.
+<span class="label label-warning">Change</span> Added a check to see if a bot is trying to post to the completebk page without going through the booking form.
+<span class="label label-warning">Change</span> Changed how integrity check is done, thanks Rod.
+<span class="label label-warning">Change</span> Removed jr_ucwords from admin area menu generation because it's not valid in all languages.
+<span class="label label-warning">Change</span> Updated subscription links in admin area for Jomres Trial/Subscription
+
+<span class="label label-important label-danger">Fix</span> Fixed an issue where the no image sanity check wasn't returning the required message when no image had been uploaded.
+<span class="label label-important label-danger">Fix</span> Added a missing table for initial installation process.
+<span class="label label-important label-danger">Fix</span> Fixed a notice warning When an external plugin has a 01011 class but there is not a "LASTMINUTE" override with in the response
+<span class="label label-important label-danger">Fix</span> Modified availability calendar functionality to ensure that default calendar months to show setting from default property settings is honoured.
+<span class="label label-important label-danger">Fix</span> Tweaked slideshow.html so that it behaves properly on mobile.
+<span class="label label-important label-danger">Fix</span> Tweaked edit tariffs normal to ensure that room/property types are listed in a more natural order.
+<span class="label label-important label-danger">Fix</span> Tweaked a query that creates multiple rooms, ensuring that the query converts strings to integers when trying to find the highest room number.
+
+
+<h3>Jomres 9.17.1 24/04/2019</h3>
+
+<span class="label label-warning">Change</span> Modified show property room type script so that if there are no slideshow images for that room type (which there will not be if the room type was created by site admin, then don't show the no-image slideshow. This is a stop-gap change until I can figure out a better solution.
+<span class="label label-warning">Change</span> Tweaked javascript/css loader script so that editable javascript files are always included. Allows us to include custom buttons in jomres.js for the inline editing feature.
+<span class="label label-warning">Change</span> Improved how new filtering for guest names works so that other columns correctly have their filters applied.
+<span class="label label-warning">Change</span> Added checks for application/json so that the ajax definition can be set if required by looking at the http accept headers.
+<span class="label label-warning">Change</span> Added some tweaks to site config settings saving functionality to support upcoming channel manager functionality & saving multiple accounts.
+<span class="label label-warning">Change</span> Node modules and obsolete file handling updated
+<span class="label label-warning">Change</span> Tweaked image uploader to ensure that spaces and brackets are removed from file names.
+<span class="label label-warning">Change</span> Added last_minute_overlay.html and code to allow site owners to display discount information on the photo view search results.
+<span class="label label-warning">Change</span> Added a flag to skip the gdpr consent form if set in the url, so that FB urls etc can show the property description etc rather than the "consent to store data" message.
+
+<span class="label label-important label-danger">Fix</span> Disabled some functionality that has caused several users to have duplicate users in the guest profiles table, causing bookings to fail.
+<span class="label label-important label-danger">Fix</span> Removed lots of fonts from mpdf because they were making the Nightly package too large.
+<span class="label label-important label-danger">Fix</span> Fix issue where some users were seeing javascript error on list bookings page
+<span class="label label-important label-danger">Fix</span> Modified show property room type script so that tariff price displays consistently.
+<span class="label label-important label-danger">Fix</span> Added some additional input filtering the prevent fatal errors that could arise in some circumstances.
+<span class="label label-important label-danger">Fix</span> Fixed a notice caused by missing images.
+
+<h3>Jomres 9.17.0 26/02/2019</h3>
+
+<span class="label label-success">Feature</span> Invoices can now be exported as PDF files. 
+<span class="label label-success">Feature</span> Terms and conditions are automatically converted to PDF and added to booking confirmation emails. 
+
+<span class="label label-warning">Change</span> Updated currency codes, using CUC instead of CUP as this is more relevant to travellers.
+<span class="label label-warning">Change</span> Modified admin area stats so that pending invoice payment bookings are counted when generating stats because some users do not mark invoices as paid.
+<span class="label label-warning">Change</span> Added classic-loader.gif to assets css dir.
+<span class="label label-warning">Change</span> Improved property bookings list by including custom invoice numbers where appropriate in the invoice id column.
+<span class="label label-warning">Change</span> Improved functionality where if review functionality is disabled, reviews button isn't shown in guest bookings list.
+<span class="label label-warning">Change</span> Added gatekeeping to check for visitors allowed to book online when feature disabled.
+<span class="label label-warning">Change</span> Bootstrap 3 version updated.
+<span class="label label-warning">Change</span> Improved room type functionality so that it uses custom text strings.
+<span class="label label-warning">Change</span> Improved custom text handling. Added a site config option that allows you to choose which custom text should have priority if there is a definition for both individual properties and site-wide. Defaults to giving property strings priority. Improved buttons in inline editing to use font awesome classes.
+
+<span class="label label-important label-danger">Fix</span> Implemented functionality that should fix the "can't filter by guest name in list bookings and list invoices pages" problems.
+<span class="label label-important label-danger">Fix</span> Fixed a couple of minor notices.
+<span class="label label-important label-danger">Fix</span> Resolved an issue where one installation wouldn't fire the correct task (save_property)
+<span class="label label-important label-danger">Fix</span> Fixed error when saving account details for the first time 
+<span class="label label-important label-danger">Fix</span> Fixed disabled wiseprice note adding to booking when plugin not installed/used. 
+
+
+<h3>Jomres 9.16.1 18/01/2019</h3>
+
+<span class="label label-success">Feature</span> Added functionality to show new surcharges in the Show Room and Booking form pages.
+
+<span class="label label-warning">Change</span> Added surcharge language strings to other language files.
+
+<span class="label label-important label-danger">Fix</span> Removed test code inadvertently left in place that was causing invoices to fail to be created.
+
+
+<h3>Jomres 9.16.0 15/01/2019</h3>
+
+<span class="label label-success">Feature</span> Added bootstrap notify lib and functionality to show messages in a popup in the booking form so that they're always visible even when scrolled down.
+<span class="label label-success">Feature</span> Added functionality to auto-login a user to the CMS after they are created as a registered user.
+<span class="label label-success">Feature</span> Added functionality that allow property managers to create custom invoice numbers, including formatted numbers like NNN/DATE etc.
+<span class="label label-success">Feature</span> Surcharges for individual rooms. This allows property managers to say that a specific room costs X extra because, for example, it's a penthouse suite or it has a particular amenity. Feature can be configured in the Edit Room page (Micromanage and Advanced tariff editing modes).
+
+<span class="label label-warning">Change</span> Modified ui availability calendar so that from view property page we can set the start day / month / year to correspond to search options selected in the search module/widget.
+<span class="label label-warning">Change</span> Modified shortcodes so that 06005 scripts can also be included.
+<span class="label label-warning">Change</span> In reviews, the "cons" field is now no longer required.
+<span class="label label-warning">Change</span> Tweaked new functionality to ensure that 0 prices aren't included when figuring room type price ranges.
+<span class="label label-warning">Change</span> nl-NL.php file updated, thanks Coen.
+<span class="label label-warning">Change</span> Tweaked save profiles script so that session data is immediately updated to use new details.
+<span class="label label-warning">Change</span> Modified booking engine so that if booker is a manager, they can disable forced extras.
+
+<span class="label label-important label-danger">Fix</span> Resolved an issue where BS2 booking form elements were untappable in small screens. Many thanks Rod for your help in tracking this little blighter down.
+<span class="label label-important label-danger">Fix</span> Tweaked media centre script so that room type image upload isn't an option if it's disabled in the admin area.
+<span class="label label-important label-danger">Fix</span> Tweaked temp booking handler so that carriage returns in booking engine data doesn't cause json decode to fail.
+<span class="label label-important label-danger">Fix</span> Fixed an issue when is not possible to load external css or js in WP
+<span class="label label-important label-danger">Fix</span> Tweaked the GDPR consent form for BS2 as it would refuse to close when consent given or denied.
+
+<h3>Jomres 9.15.0 04/12/2018</h3>
+
+<span class="label label-important label-danger">Fix</span> Updated upload handler to use new code that fixes unauthenticated arbitrary file upload vulnerability in Blueimp jQuery-File-Upload library
+
+<span class="label label-success">Feature</span> Updated show property room type script to show slideshow images, and room type name and description. Repurposed an old template that had recently been abandoned to show this content.
+<span class="label label-success">Feature</span> Added room type price ranges to show_property_room_types script and templates.
+<span class="label label-success">Feature</span> Modified booking engine so that room type list shows room type images.
+<span class="label label-success">Feature</span> Improved show_property_room_type script to use administrator entered room type title and description if it's an admin created room type
+<span class="label label-success">Feature</span> Booking form classic rooms list updated to show room type images as well as room images. This helps to address an occasional request that users not be forced to upload so many images (one or more for each room) by allowing them to remove the room image markup altogether from the booking_form_classic_roomslist.html and booking_form_classic_roomslist_selected.html templates and showing just the room type image instead.
+<span class="label label-success">Feature</span> Updated cron job tab to show schedule and last ran time of job.
+
+<span class="label label-warning">Change</span> Modified room class table to allow more content in room type description.
+<span class="label label-warning">Change</span> Modified rating functionality to allow the scores to be more fine-grained.
+<span class="label label-warning">Change</span> Disabled a GDPR related decision as the info stored is not PII, and the optin option doesn't appear until much later.
+<span class="label label-warning">Change</span> Added paths to backtrace of patTemplate to see which script is being run (could be a customised version, which the older code would not reveal)
+
+<span class="label label-important label-danger">Fix</span> Resolved an issue where when generating multiple rooms, the last room number was re-used incorrectly.
+<span class="label label-important label-danger">Fix</span> Fixed an issue with pagination and SEF (sh404SEF) urls
+<span class="label label-important label-danger">Fix</span> Added booking number and booking number text to script that displays invoices.
+
 <h3>Jomres 9.14.0 31/10/2018</h3>
 
 <span class="label label-success">Feature</span> Added ability for guests to semi-anonymise their reviews.

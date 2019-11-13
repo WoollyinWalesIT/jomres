@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.20.0
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -105,6 +105,8 @@ class j00004a_init_javascript_css_files
 		$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'jquery-star-rating-plugin/', 'jquery.rating.pack.js');
 
 		$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'jquery.tipsy/src/', 'jquery.tipsy.js');
+		
+		$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'bootstrap-notify/', 'bootstrap-notify.min.js');
 
 		if (!isset($jrConfig[ 'load_font_awesome' ])) {
 			$jrConfig[ 'load_font_awesome' ] = '0';
@@ -155,13 +157,13 @@ class j00004a_init_javascript_css_files
 		}
 
 		if (!using_bootstrap()) {
-			if ($thisJRUser->userIsManager || jomres_cmsspecific_areweinadminarea()) {
+			//if ($thisJRUser->userIsManager || jomres_cmsspecific_areweinadminarea()) {
 				$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/jqueryui-editable/js/', 'jqueryui-editable.min.js');
 				$css_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/jqueryui-editable/css/', 'jqueryui-editable.css');
-			}
+			//}
 			$javascript_files[] = array(JOMRES_JS_RELPATH, 'jquery.bt.js');
 		} else {
-			if ($thisJRUser->userIsManager || jomres_cmsspecific_areweinadminarea()) {
+			//if ($thisJRUser->userIsManager || jomres_cmsspecific_areweinadminarea()) {
 				$tail = jomres_bootstrap_version();
 				if ($tail == '4' ) {
 					$javascript_files[] = array(JOMRES_JS_RELPATH , 'bootstrap4-editable.js');
@@ -178,7 +180,7 @@ class j00004a_init_javascript_css_files
 					$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap'.$tail.'-editable/js/', 'bootstrap-editable.min.js');
 					$css_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap'.$tail.'-editable/css/', 'bootstrap-editable.css');
 					}
-				}
+				//}
 			}
 
 		if (get_showtime('task') == 'media_centre' || jomresGetParam($_REQUEST, 'task', '') == 'media_centre') {

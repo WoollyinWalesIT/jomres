@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.20.0
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -62,7 +62,8 @@ CREATE TABLE IF NOT EXISTS `#__jomres_propertys` (
 	)
 	ENGINE = InnoDB 
 	DEFAULT CHARSET = utf8mb4 
-	COLLATE = utf8mb4_unicode_ci;
+	COLLATE = utf8mb4_unicode_ci
+	ROW_FORMAT=DYNAMIC;
 ";
 
 if (!doInsertSql($query)) {

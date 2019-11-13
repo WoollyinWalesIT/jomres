@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.20.0
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -36,18 +36,20 @@ class j19995menu
 		$jomres_menu = jomres_singleton_abstract::getInstance('jomres_menu');
 		
 		//define the core admin sections
-		$jomres_menu->add_admin_section(1, 'Dashboard');
-		$jomres_menu->add_admin_section(10, 'Users');
-		$jomres_menu->add_admin_section(20, 'Commission');
-		$jomres_menu->add_admin_section(30, 'Subscriptions');
-		$jomres_menu->add_admin_section(40, 'Invoices');
-		$jomres_menu->add_admin_section(50, 'Portal');
-		$jomres_menu->add_admin_section(60, 'Translations');
-		$jomres_menu->add_admin_section(70, 'Tools');
-		$jomres_menu->add_admin_section(80, 'Reports');
-		$jomres_menu->add_admin_section(90, 'Settings');
-		$jomres_menu->add_admin_section(100, 'Help');
+		$jomres_menu->add_admin_section(1, jr_gettext('_ADMIN_MENU_SECTIONS_DASHBOARD', '_ADMIN_MENU_SECTIONS_DASHBOARD', false,false));
+		$jomres_menu->add_admin_section(10, jr_gettext('_ADMIN_MENU_SECTIONS_USERS', '_ADMIN_MENU_SECTIONS_USERS', false,false)); 
+		$jomres_menu->add_admin_section(20, jr_gettext('_ADMIN_MENU_SECTIONS_COMMISSION', '_ADMIN_MENU_SECTIONS_COMMISSION', false,false)); 
+		$jomres_menu->add_admin_section(30, jr_gettext('_ADMIN_MENU_SECTIONS_SUBSCRIPTIONS', '_ADMIN_MENU_SECTIONS_SUBSCRIPTIONS', false,false)); 
+		$jomres_menu->add_admin_section(40, jr_gettext('_ADMIN_MENU_SECTIONS_INVOICES', '_ADMIN_MENU_SECTIONS_INVOICES', false,false)); 
+		$jomres_menu->add_admin_section(50, jr_gettext('_ADMIN_MENU_SECTIONS_PORTAL', '_ADMIN_MENU_SECTIONS_PORTAL', false,false)); 
+		$jomres_menu->add_admin_section(60, jr_gettext('_ADMIN_MENU_SECTIONS_TRANSLATIONS', '_ADMIN_MENU_SECTIONS_TRANSLATIONS', false,false)); 
+		$jomres_menu->add_admin_section(70, jr_gettext('_ADMIN_MENU_SECTIONS_TOOLS', '_ADMIN_MENU_SECTIONS_TOOLS', false,false)); 
+		$jomres_menu->add_admin_section(80, jr_gettext('_ADMIN_MENU_SECTIONS_REPORTS', '_ADMIN_MENU_SECTIONS_REPORTS', false,false)); 
+		$jomres_menu->add_admin_section(90, jr_gettext('_ADMIN_MENU_SECTIONS_SETTINGS', '_ADMIN_MENU_SECTIONS_SETTINGS', false,false)); 
+		$jomres_menu->add_admin_section(100, jr_gettext('_ADMIN_MENU_SECTIONS_HELP', '_ADMIN_MENU_SECTIONS_HELP', false,false)); 
 		
+
+
 		//define the core admin menu items
 		//dashboard section menus
 		$jomres_menu->add_admin_item(1, jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_HOME', '_JOMRES_FRONT_MR_MENU_ADMIN_HOME', false), '', 'fa-tachometer');
@@ -77,15 +79,15 @@ class j19995menu
 		$jomres_menu->add_admin_item(70, jr_gettext('_JOMRES_SHORTCODES', '_JOMRES_SHORTCODES', false), 'asamodule_report', 'fa-code');
 		//$jomres_menu->add_admin_item(70, jr_gettext('_JOMRES_DATA_ARCHIVE_TITLE', '_JOMRES_DATA_ARCHIVE_TITLE', false), 'booking_data_archive', 'fa-archive');
 		$jomres_menu->add_admin_item(70, 'Changelog', 'changelog', 'fa-file-code-o');
-		$jomres_menu->add_admin_item(70, jr_gettext('INTEGRITY_CHECK', 'INTEGRITY_CHECK', false), 'filesystem_integrity_check', 'fa-check-square-o');
+		//$jomres_menu->add_admin_item(70, jr_gettext('INTEGRITY_CHECK', 'INTEGRITY_CHECK', false), 'filesystem_integrity_check', 'fa-check-square-o');
 		$jomres_menu->add_admin_item(70, jr_gettext('DATABASE_INTEGRITY_CHECK', 'DATABASE_INTEGRITY_CHECK', false), 'database_integrity_check', 'fa-check-square-o');
 		$jomres_menu->add_admin_item(70, jr_gettext('OBSOLETE_FILES_CHECK', 'OBSOLETE_FILES_CHECK', false), 'obsolete_files_check', 'fa-check-square-o');
 		$jomres_menu->add_admin_item(70, jr_gettext('FIREWALL_CHECK', 'FIREWALL_CHECK', false), $task = 'firewall_check', 'fa-check-square-o');
 		$jomres_menu->add_admin_item(70, jr_gettext('JOMRES_COM_A_AVAILABLELOGS', 'JOMRES_COM_A_AVAILABLELOGS', false), 'list_error_logs', 'fa-exclamation-triangle');
 		$jomres_menu->add_admin_item(70, jr_gettext('_JOMRES_REGISTRYREBUILD', '_JOMRES_REGISTRYREBUILD', false), 'rebuildregistry', 'fa-refresh');
 		$jomres_menu->add_admin_item(70, jr_gettext('EMPTY_TEMP_DIR', 'EMPTY_TEMP_DIR', false), 'empty_temp_directory', 'fa-trash');
-		
-		
+		$jomres_menu->add_admin_item(70, jr_gettext('_JOMRES_LIBRARY_PACKAGES', '_JOMRES_LIBRARY_PACKAGES', false), 'refresh_library_packages', 'fa-book');
+		$jomres_menu->add_admin_item(70, jr_gettext('_JOMRES_REST_API_CONNECTIVITY_TEST', '_JOMRES_REST_API_CONNECTIVITY_TEST', false), 'rest_api_connectivity_test', 'fa-arrows-h');
 		
 		$template_packages = get_showtime('template_packages');
 		if (!empty($template_packages)) { // There are some override packages installed, we can go ahead and show the override manager menu option

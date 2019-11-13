@@ -5,6 +5,7 @@
 	<div class="row">
 		<div class="col-md-2">
 			<a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-toggle="modal" class="thumbnail"><img src="{ROOM_IMAGE}" alt="room image" class="img-responsive" /></a>
+			<a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-toggle="modal" class="thumbnail"><img src="{ROOM_TYPE_IMAGE}" alt="room type image" class="img-responsive" /></a>
 		</div>
 		<div class="col-md-4">
 			<h4 class=""><a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-toggle="modal">{ROOMTYPE}</a></h4>
@@ -37,7 +38,7 @@ jomresJquery(document).ready(function(){
 </script>
 	
 <div id="roomdetails{ROOMUID}_{TARIFFUID}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel{ROOMUID}_{TARIFFUID}" aria-hidden="true">
-	<div class="modal-dialog">
+	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
@@ -68,6 +69,7 @@ jomresJquery(document).ready(function(){
 						<div class="well">
 							<p>{HRATEPERNIGHT}<span class="big-price">{FORMATTED_PRICE}</span></p>
 						</div>
+						<div class="thumbnail"><img src="{ROOM_TYPE_IMAGE}" alt="room type image" class="img-responsive"/></div>
 					</div>
 					<div class="col-md-7">
 						<h4 class="page-header">{HTARIFF_DETAILS}</h4>
@@ -89,9 +91,9 @@ jomresJquery(document).ready(function(){
 				<a class="btn btn-default" data-dismiss="modal" aria-hidden="true">{COMMON_CLOSE}</a>
 				<a href="javascript:void(0);" onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' );" class="btn {BUTTON_CLASS}" title="{CAPTION}" data-dismiss="modal" aria-hidden="true"><i class="{ICON} icon-white"></i> {CAPTION}</a>
 			</div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+		</div>
+	</div>
+</div>
 
 </patTemplate:tmpl>
 </patTemplate:tmpl>

@@ -6,9 +6,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.20.0
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  */
 
@@ -17,6 +17,7 @@ define('TRANSACTION_ID', time());
 
 define('JOMRES_API_CMS_ROOT', dirname(dirname(dirname(__FILE__))));
 define('JOMRES_API_JOMRES_ROOT', dirname(dirname(__FILE__)));
+define('JOMRES_CORE_API_ABSPATH', JOMRES_API_CMS_ROOT.DIRECTORY_SEPARATOR.'jomres'.DIRECTORY_SEPARATOR.'libraries'.DIRECTORY_SEPARATOR.'jomres'.DIRECTORY_SEPARATOR.'api'.DIRECTORY_SEPARATOR);
 if (!defined('_JOMRES_INITCHECK')) {
     define('_JOMRES_INITCHECK', 1);
 }
@@ -35,10 +36,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
         header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
     }
 }
-
-	
+			
 date_default_timezone_set('UTC');
-require JOMRES_API_JOMRES_ROOT.'/vendor/autoload.php';
+require JOMRES_API_CMS_ROOT.DIRECTORY_SEPARATOR.'jomres'.DIRECTORY_SEPARATOR.'libraries'.DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'autoload.php';
+
 require 'classes/logging.class.php';
 require 'oauth/inc_configs.php';
 
@@ -78,7 +79,7 @@ $api_features = new all_api_features();
 $features_files = $api_features->get();
 $auth_free_routes = $api_features->get_authfree_routes();
 
-if (!in_array($route,$auth_free_routes) ) {
+if (!in_array($route,$auth_free_routes) && $route != 'core' ) {
 	if (isset($_POST['grant_type']) && ($_POST['grant_type'] == 'client_credentials' || $_POST['grant_type'] == 'authorization_code')) {
 		if (!isset($_POST['client_id'])) {
 			$_POST['client_id'] = '';
@@ -98,11 +99,9 @@ if (!in_array($route,$auth_free_routes) ) {
 	}
 }
 
-
 if (!PRODUCTION) {
     ini_set('display_errors', '1');
 }
-
 
 if (!defined('_JOMRES_INITCHECK')) {
     define('_JOMRES_INITCHECK', 1);
@@ -155,6 +154,7 @@ try {
     Flight::set('features_files', $features_files);
 
     require 'custom_methods.php';
+
     require 'routes.php';
 
     Flight::start();

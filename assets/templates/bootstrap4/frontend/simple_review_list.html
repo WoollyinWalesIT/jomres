@@ -1,0 +1,36 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<h3>{GUEST_PROFILE_MY_REVIEWS}</h3>
+
+<patTemplate:tmpl name="rows">
+<div class="row">
+	<div class="col-sm-12">
+		<h4><a href="{VIEW_PROPERTY_REVIEWS}">{PROPERTY_NAME}</a></h4>
+	</div>
+	<div class="col-sm-2">
+			<a href="{VIEW_PROPERTY_REVIEWS}"><img src="{IMAGE}" class="img-responsive" /></a>
+	</div>
+	<div class="col-sm-10">
+		<div class="row">
+			<div class="col-sm-4 small">
+				<strong>{GUEST_PROFILE_MY_REVIEWS_I_SCORED}</strong>
+			</div>
+			<div class="col-sm-8">
+				{REVIEW_SCORE}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-4 small">
+				<strong>{GUEST_PROFILE_MY_REVIEWS_I_SAID}</strong>
+			</div>
+			<div class="col-sm-8">
+				{REVIEW_TITLE}
+			</div>
+		</div>
+	</div>
+</div>	
+<hr>
+</patTemplate:tmpl>
+
+
+</patTemplate:tmpl>

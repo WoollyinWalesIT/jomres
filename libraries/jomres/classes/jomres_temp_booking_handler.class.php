@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.20.0
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -44,9 +44,12 @@ class jomres_temp_booking_handler
 			}
 		}
 		
-		$this->ip = $_SERVER['REMOTE_ADDR'];
-
-				
+		if (isset($_SERVER['REMOTE_ADDR'])) { // CLI not isset variable fix
+			$this->ip = $_SERVER['REMOTE_ADDR'];
+		} else {
+			$this->ip = '127.0.0.1';
+		}
+		
 		if ($this->ip == '::1') {
 			$this->ip = '127.0.0.1';
 		}
@@ -385,7 +388,8 @@ class jomres_temp_booking_handler
 		$result = doSelectSql($query);
 
 		if (!empty($result)) {
-			$result = json_decode(stripslashes($result[0]->data), true);
+			
+			$result = json_decode(preg_replace('/^\s+|\n|\r|\s+$/m', '', stripslashes($result[0]->data) ), true);
 
 			$this->info				= $result[ 'info' ];
 			

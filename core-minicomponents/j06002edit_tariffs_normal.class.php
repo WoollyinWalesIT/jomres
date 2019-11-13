@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.20.0
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -61,6 +61,7 @@ class j06002edit_tariffs_normal
 			throw new Exception('Error, there are no room types for this property type. You can assign room types to this property type by visiting Administrator -> Jomres -> Site Structure -> and editing the room/resource types.');
 			return;
 		}
+
 
 		//check for SRPs to make sure they don`t have more than one rooms created. TODO: may not be needed anymore
 		if ($mrConfig[ 'singleRoomProperty' ] == '1' && count($basic_room_details->rooms) > 1) { // Looks like property manager has changed from MRP to SRP. Let's clean things up and start anew
@@ -136,6 +137,7 @@ class j06002edit_tariffs_normal
 		
 		//MRPs
 		if ($mrConfig[ 'singleRoomProperty' ] == '0') {
+			
 			foreach ($basic_property_details->this_property_room_classes as $roomtype_id  => $r) {
 				$rw = array();
 				

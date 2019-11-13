@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.20.0
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -486,8 +486,8 @@ class j03020insertbooking
 
 				system_log('Referrer '.serialize($tmpBookingHandler->tmpbooking[ 'referrer' ]));
 
-				if (!isset($tmpBookingHandler->tmpbooking[ 'referrer' ])) {
-					$tmpBookingHandler->tmpbooking[ 'referrer' ] = 'Jomres';
+				if (!isset($tmpBookingHandler->tmpbooking[ 'referrer' ]) || $tmpBookingHandler->tmpbooking[ 'referrer' ] == '') {
+					$tmpBookingHandler->tmpbooking[ 'referrer' ] = jr_gettext('_JOMRES_REFERRER_SYSTEM', '_JOMRES_REFERRER_SYSTEM', false);
 				}
 
 				if (!$secret_key_payment) {
@@ -631,6 +631,7 @@ class j03020insertbooking
 					//mark the secret key as used
 					$query = "UPDATE #__jomres_contracts SET secret_key_used = '1' $deposit_paid_clause WHERE contract_uid = '".$contract_uid."' ";
 					doInsertSql($query, '');
+					
 
 					//add a booking note that the booking enquiry has been approved
 					$query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('".(int) $contract_uid."','".'Secret key payment made'."','".date('Y-m-d H:i:s')."','".(int) $property_uid."')";
@@ -639,6 +640,14 @@ class j03020insertbooking
 					$this->insertSuccessful = true;
 				}
 
+				// Update the contract with the number of bookings and number of no shows for this guest's email address. Doing it at this point means that this booking is not taken into account.
+				jr_import('jomres_syndicate_guests');
+				$jomres_syndicate_guests = new jomres_syndicate_guests();
+				$response = $jomres_syndicate_guests->get_booking_stats_for_guest( $tmpBookingHandler->tmpguest['email'] );
+					
+				$query = "UPDATE #__jomres_contracts SET network_stats  = '".json_encode($response)."' WHERE contract_uid = '".$contract_uid."' ";
+				doInsertSql($query, '');
+				
 				$componentArgs = array();
 				$componentArgs[ 'cartnumber' ] = $cartnumber;
 				$componentArgs[ 'tempBookingDataList' ] = $tempBookingDataList;

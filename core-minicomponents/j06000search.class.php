@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.20.0
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -283,8 +283,6 @@ class j06000search
 			jomres_cmsspecific_setmetadata('title', $metaTitle);
 		}
 
-		//var_dump($sch->searchOptions);exit;
-
 		if (!empty($_REQUEST[ 'arrivalDate' ]) && in_array('availability', $sch->searchOptions)) {
 			$sch->filter[ 'arrival' ] = $sch->prep[ 'arrival' ];
 			$sch->filter[ 'departure' ] = $sch->prep[ 'departure' ];
@@ -508,7 +506,7 @@ class j06000search
 		// -------------------------------------------------------------------------------------------------------------------------------------------
 		if (in_array('town', $searchOptions) && $showSearchOptions && !in_array('selectcombo', $searchOptions)) {
 			$townArray = array();
-			//var_dump($sch->prep['town']);
+
 			$ta = $sch->prep[ 'town' ];
 			if (!empty($sch->prep[ 'town' ])) {
 				if (empty($sch->filter[ 'town' ])) {
@@ -751,8 +749,6 @@ class j06000search
 		}
 
 		// -------------------------------------------------------------------------------------------------------------------------------------------
-		//if ($option=="com_jomres" && !$includedInModule)
-		//	var_dump($sch);
 		// -------------------------------------------------------------------------------------------------------------------------------------------
 
 		if ($doSearch) {

@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.20.0
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -51,7 +51,14 @@ class j10501cron
 		$configurationPanel->insertDescription(jr_gettext('_JOMRES_COM_A_CRON_IMMEDIATERUN', '_JOMRES_COM_A_CRON_IMMEDIATERUN', false));
 		
 		foreach ($cron->allUnlockedJobs as $job) {
-			$configurationPanel->setleft('<a href="'.JOMRES_SITEPAGE_URL_AJAX.'&task=cron_'.$job[ 'job_name' ].'" target="_blank" >'.$job[ 'job_name' ].'</a>');
+			$d = DateTime::createFromFormat('U', $job['last_ran']);
+			$last_ran = $d->format('Y-m-d H:i');
+			$schedule = $job['schedule'];
+
+			$_jomres_com_a_cron_lastran = jr_gettext('_JOMRES_COM_A_CRON_LASTRAN', '_JOMRES_COM_A_CRON_LASTRAN', false);
+			$_jomres_com_a_cron_schedule = jr_gettext('_JOMRES_COM_A_CRON_SCHEDULE', '_JOMRES_COM_A_CRON_SCHEDULE', false);
+			
+			$configurationPanel->setleft('<a href="'.JOMRES_SITEPAGE_URL_AJAX.'&task=cron_'.$job[ 'job_name' ].'" target="_blank" >'.$job[ 'job_name' ].' ----- '.$_jomres_com_a_cron_lastran.' '.$last_ran.' '.$_jomres_com_a_cron_schedule.' '.$schedule.'</a>');
 			$configurationPanel->setmiddle('');
 			$configurationPanel->setright('');
 			$configurationPanel->insertSetting();

@@ -1,0 +1,21 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<h2 class="page-header">{PAGETITLE} : {FIRSTNAME} {SURNAME} </h2>
+
+<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm" class="form-horizontal" role="form">
+
+	{GUEST_PROFILE_REVIEW_GUEST_CONTENT}
+	
+	<textarea class="col-md-12" name="guest_review" rows="5">{REVIEW_CONTENT}</textarea><p class="help-block">{GUEST_PROFILE_REVIEW_GUEST_CONTENT_EXAMPLES}</p>
+	
+	<div class="form-actions">
+		<div class="col-md-10 col-md-offset-2">
+			{JOMRESTOOLBAR}
+		</div>
+	</div>
+	<input type="hidden" name="id" value="{GUESTUID}"/>
+	<input type="hidden" name="task" value="save_guest_review"/>
+	<input type="hidden" name="no_html" value="1"/>
+	{CSRF_TOKEN}
+</form>
+</patTemplate:tmpl>

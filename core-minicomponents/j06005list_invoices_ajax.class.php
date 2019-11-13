@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.20.0
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -47,7 +47,7 @@ class j06005list_invoices_ajax
 		$rows = array();
 
 		//set the table coulmns, in the exact orcer in which they`re displayed in the table
-		$aColumns = array('a.id', 'a.id', 'd.tag', 'a.property_uid', 'c.enc_firstname', 'c.enc_surname', 'b.name', 'a.raised_date', 'a.due_date', 'a.paid', 'b.init_total_inclusive', 'a.init_total', 'a.status');
+		$aColumns = array('a.id', 'a.id', 'd.tag', 'a.property_uid', 'c.enc_firstname', 'c.enc_surname', 'b.name', 'a.raised_date', 'a.due_date', 'a.paid', 'b.init_total_inclusive', 'a.init_total', 'a.status' , 'a.invoice_number');
 
 		//set columns count
 		$n = count($aColumns);
@@ -87,15 +87,26 @@ class j06005list_invoices_ajax
 		 */
 		$sWhere = '';
 		$search = jomresGetParam($_GET, 'jr_search', array());
-		if (isset($search['value']) && $search['value'] != '') {
+/* 		if (isset($search['value']) && $search['value'] != '') {
 			$sWhere = 'AND (';
 			for ($i = 0; $i < $n; ++$i) {
 				$sWhere .= ''.$aColumns[$i]." LIKE '%".$search['value']."%' OR ";
 			}
 			$sWhere = rtrim($sWhere, ' OR ');
 			$sWhere .= ')';
-		}
+		} */
 
+		$guest_matches = search_property_guests_by_string( $search['value'] , $defaultProperty , $thisJRUser->id , $show_all );
+		if ( isset($guest_matches['guest_uids']) && !empty($guest_matches['guest_uids'])) {
+			$sWhere = 'AND (';
+			$count = count($guest_matches['guest_uids']);
+			for ($i = 0; $i < $count; ++$i) {
+				$sWhere .= "c.guests_uid = '".$guest_matches['guest_uids'][$i]."' OR ";
+			}
+			$sWhere = rtrim($sWhere, ' OR ');
+			$sWhere .= ')';
+		}
+		
 		/*
 		 * Prefilter
 		 */
@@ -182,6 +193,7 @@ class j06005list_invoices_ajax
 					a.subscription,
 					a.property_uid,
 					a.is_commission, 
+					a.invoice_number, 
 					GROUP_CONCAT(DISTINCT b.name SEPARATOR '<br>') AS line_items, 
 					SUM( CASE WHEN b.init_total_inclusive < 0 THEN 0 ELSE b.init_total_inclusive END ) AS grand_total, 
 					d.tag,
@@ -200,6 +212,7 @@ class j06005list_invoices_ajax
 				.' GROUP BY a.id '
 				.$sOrder
 				.' '.$sLimit;
+
 		$jomresInvoicesList = doSelectSql($query);
 
 		/*
@@ -294,8 +307,14 @@ class j06005list_invoices_ajax
 				$r[] = '-';
 				$r[] = '-';
 			} else {
-				$r[] = $jomres_encryption->decrypt($p->firstname);
-				$r[] = $jomres_encryption->decrypt($p->surname);
+				if (!$thisJRUser->userIsManager) {
+					$r[] = $jomres_encryption->decrypt($p->firstname);
+					$r[] = $jomres_encryption->decrypt($p->surname);
+				} else {
+					$r[] = '<a href="'.jomresUrl(JOMRES_SITEPAGE_URL.'&task=show_user_profile&cms_user_id='.$p->cms_user_id).'" target="_blank">'.jomres_decode($jomres_encryption->decrypt($p->firstname)).'</a>';
+					$r[] = '<a href="'.jomresUrl(JOMRES_SITEPAGE_URL.'&task=show_user_profile&cms_user_id='.$p->cms_user_id).'" target="_blank">'.jomres_decode($jomres_encryption->decrypt($p->surname)).'</a>';
+				}
+
 			}	
 
 			$translated_line_items = '';
@@ -342,7 +361,9 @@ class j06005list_invoices_ajax
 			} else {
 				$r[] = '';
 			}
-
+			
+			$r[] = $p->invoice_number;
+			
 			$output['data'][] = $r;
 		}
 

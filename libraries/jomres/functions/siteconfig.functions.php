@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.20.0
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -23,6 +23,11 @@ defined('_JOMRES_INITCHECK') or die('');
  */
 function showSiteConfig()
 {
+	
+	//check jomres support key
+	$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+	echo $MiniComponents->specificEvent('16000', 'show_license_message', array('output_now' => false, 'as_modal' => false));
+		
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig = $siteConfig->get();
 
@@ -341,6 +346,11 @@ function showSiteConfig()
 
 	$lists[ 'enable_gdpr_compliant_fucntionality' ] = jomresHTML::selectList($yesno, 'cfg_enable_gdpr_compliant_fucntionality', 'class="inputbox" size="1"', 'value', 'text', (int) $jrConfig[ 'enable_gdpr_compliant_fucntionality' ]);
 	
+	
+	$lists[ 'prioritise_sitewide_label_definitions' ] = jomresHTML::selectList($yesno, 'cfg_prioritise_sitewide_label_definitions', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'prioritise_sitewide_label_definitions' ]);
+	
+	$lists[ 'generate_random_emails' ] = jomresHTML::selectList($yesno, 'cfg_generate_random_emails', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'generate_random_emails' ]);
+	
 	$componentArgs = array();
 	$componentArgs[ 'lists' ] = $lists;
 	$componentArgs[ 'jsInputFormatDropdownList' ] = $jsInputFormatDropdownList;
@@ -395,6 +405,7 @@ function showSiteConfig()
  */
 function saveSiteConfig($overrides = array())
 {
+
 	ignore_user_abort(true);
 
 	if (file_exists(JOMRES_TEMP_ABSPATH.'key.php')) {
@@ -415,7 +426,7 @@ function saveSiteConfig($overrides = array())
 	}
 
 	foreach ($_POST as $k => $v) {
-		if (strpos($k, 'cfg_') !== false) {
+		if (strpos($k, 'cfg_') !== false && !is_array($v) ) {
 			$v = jomresGetParam($_POST, $k, '');
 			
 			$dirty = (string) $k;
@@ -432,6 +443,23 @@ function saveSiteConfig($overrides = array())
 			$v = filter_var($v, FILTER_SANITIZE_SPECIAL_CHARS);
 
 			$tmpConfig[ $k ] = $v;
+		} elseif (is_array($v)) { // Adds support for multi-dimensional arrays being used for channel manager framework
+			$dirty = (string) $k;
+			$k = substr(addslashes($dirty), 4);
+			if (is_array($v)) {
+				foreach ( $v as $a=>$b) {
+					if (is_array($b)) {
+						foreach ($b as $c=>$d) {
+							
+							$a = (string)filter_var($a, FILTER_SANITIZE_SPECIAL_CHARS);
+							$c = (string)filter_var($c, FILTER_SANITIZE_SPECIAL_CHARS);
+							$d = (string)filter_var($d, FILTER_SANITIZE_SPECIAL_CHARS);
+
+							$tmpConfig[$k][$a][$c] = $d;
+						}
+					}
+				}
+			}
 		}
 	}
 

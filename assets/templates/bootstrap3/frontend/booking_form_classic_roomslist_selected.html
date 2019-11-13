@@ -5,6 +5,7 @@
 	<div class="row">
 		<div class="col-md-2">
 			<a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-toggle="modal" class="thumbnail"><img src="{ROOM_IMAGE}" alt="room image" class="img-responsive" /></a>
+			<a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-toggle="modal" class="thumbnail"><img src="{ROOM_TYPE_IMAGE}" alt="room type image" class="img-responsive" /></a>  <patTemplate:comment>Remove this line altogether to remove the room type image from display </patTemplate:comment>
 		</div>
 		<div class="col-md-4">
 			<h4 class=""><a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-toggle="modal">{ROOMTYPE}</a></h4>
@@ -13,6 +14,7 @@
 				{HEADER_MAXPEOPLE}: {MAXPEOPLE_INROOM}<br />
 				{HTITLE}: {TITLE}<br />
 				{HDESC}: {DESC}<br />
+				<span class="big-price big-total-price">{SURCHARGE_TEXT} {SURCHARGE}</span>
 				<a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-toggle="modal" class="hidden-phone hidden-tablet">{HMOREINFO}...</a>
 			</p>
 		</div>
@@ -59,6 +61,7 @@ jomresJquery(document).ready(function(){
 							{HEADER_MAXPEOPLE}: {MAXPEOPLE_INROOM}<br />
 							{HEADER_ROOMFLOOR}: {ROOMFLOOR}<br />
 							{HEADER_FEATURES}:<br /> {FEATURES}
+							<span class="big-price big-total-price">{SURCHARGE_TEXT} {SURCHARGE}</span>
 						</p>
 					</div>
 				</div>
@@ -68,6 +71,7 @@ jomresJquery(document).ready(function(){
 						<div class="well">
 							<p>{HRATEPERNIGHT}<span class="big-price">{FORMATTED_PRICE}</span></p>
 						</div>
+						<div class="thumbnail"><img src="{ROOM_TYPE_IMAGE}" alt="room type image" class="img-responsive"/></div> <patTemplate:comment>Remove this line altogether to remove the room type image from display </patTemplate:comment>
 					</div>
 					<div class="col-md-7">
 						<h4 class="page-header">{HTARIFF_DETAILS}</h4>

@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.20.0
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -58,10 +58,21 @@ class j06001dashboard
 
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
+		
+		
 
 		$output = array();
 		$pageoutput = array();
 
+		if ($jrConfig['generate_random_emails'] == 1 && $jrConfig['random_email_domain'] != '' ) {
+			$output['DEFAULT_EMAIL_DOMAIN'] = "@".$jrConfig['random_email_domain'];
+			$output['USE_RANDOM_EMAILS'] = 'true';
+		} else {
+			$output['DEFAULT_EMAIL_DOMAIN'] = '';
+			$output['USE_RANDOM_EMAILS'] = 'false';
+		}
+		
+		
 		jomres_cmsspecific_addheaddata('javascript', JOMRES_NODE_MODULES_RELPATH.'moment/min/', 'moment.min.js');
 		jomres_cmsspecific_addheaddata('javascript', JOMRES_NODE_MODULES_RELPATH.'fullcalendar/dist/', 'fullcalendar.min.js');
 		jomres_cmsspecific_addheaddata('javascript', JOMRES_NODE_MODULES_RELPATH.'fullcalendar/dist/', 'lang-all.js');

@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.20.0
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -67,6 +67,8 @@ CREATE TABLE IF NOT EXISTS `#__jomres_contracts` (
 	`booking_language` CHAR(5) NOT NULL DEFAULT 'en-GB',
 	`last_changed` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	`referrer` VARCHAR(255) NOT NULL DEFAULT 'Jomres',
+	`noshow_flag` TINYINT(1) NOT NULL DEFAULT 0,
+	`network_stats` VARCHAR(255),
 	PRIMARY KEY(`contract_uid`),
 	INDEX `guest_uid` (`guest_uid`),
 	INDEX `property_uid` (`property_uid`),

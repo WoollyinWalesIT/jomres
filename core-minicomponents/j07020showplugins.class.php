@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.20.0
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -35,45 +35,7 @@ class j07020showplugins
 		$remote_plugins_data = false;
 		$installed_plugins = array();
 
-		if (file_exists(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php')) {
-			$last_modified = filemtime(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php');
-			$seconds_timediff = time() - $last_modified;
-			if ($seconds_timediff > 3600) {
-				unlink(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php');
-			} else {
-				$remote_plugins_data = file_get_contents(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php');
-			}
-		}
-
-		if (!file_exists(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php')) {
-			$remote_plugins_data = '';
-			
-			$base_uri = 'http://plugins.jomres4.net/';
-			$query_string = 'index.php?r=dp&format=json&cms='._JOMRES_DETECTED_CMS.'&jomresver='.$jrConfig['version'];
-
-			try {
-				$client = new GuzzleHttp\Client([
-					'base_uri' => $base_uri
-				]);
-
-				logging::log_message('Starting guzzle call to '.$base_uri.$query_string, 'Guzzle', 'DEBUG');
-				
-				$remote_plugins_data = $client->request('GET', $query_string)->getBody()->getContents();
-			}
-			catch (Exception $e) {
-				$jomres_user_feedback = jomres_singleton_abstract::getInstance('jomres_user_feedback');
-				$jomres_user_feedback->construct_message(array('message'=>'Could not get plugins data', 'css_class'=>'alert-danger alert-error'));
-			}
-
-			// Uncomment this to show all updates, including beta plugins.
-			//$remote_plugins_data = queryUpdateServer( "", "r=dp&format=json&cms=" . _JOMRES_DETECTED_CMS  );
-
-			if ($remote_plugins_data != '') {
-				file_put_contents(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php', $remote_plugins_data);
-			}
-		}
-
-		$remote_plugins = json_decode($remote_plugins_data);
+		$remote_plugins = get_remote_plugin_data();
 
 		if (!empty($remote_plugins)) {
 			

@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.20.0
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -76,6 +76,10 @@ class jr_user
 		$this->vat_number_validated = '';
 		$this->vat_number_validation_response = '';
 		$this->params = array(); //user settings
+		$this->drivers_license = '';
+		$this->passport_number = '';
+		$this->iban = '';
+		$this->about_me = '';
 
 		if ( $id == 0 ) {
 			if (defined("JOMRES_API_CMS_ROOT") ) {
@@ -155,7 +159,12 @@ class jr_user
 						`enc_vat_number`,
 						`vat_number_validated`,
 						`vat_number_validation_response`,
-						`params`
+						`params`,
+						`enc_preferences`,
+						`enc_drivers_license`,
+						`enc_passport_number`,
+						`enc_iban`,
+						`enc_about_me`
 					FROM #__jomres_guest_profile 
 					WHERE `cms_user_id` = ' .(int) $this->id.' 
 					LIMIT 1 ';
@@ -163,30 +172,43 @@ class jr_user
 
 		if (!empty($result)) {
 			foreach ($result as $r) {
-				$this->profile_id = $r->id;
-				$this->cms_user_id = $r->cms_user_id;
-				$this->firstname = $this->jomres_encryption->decrypt($r->enc_firstname);
-				$this->surname = $this->jomres_encryption->decrypt($r->enc_surname);
-				$this->house = $this->jomres_encryption->decrypt($r->enc_house);
-				$this->street = $this->jomres_encryption->decrypt($r->enc_street);
-				$this->town = $this->jomres_encryption->decrypt($r->enc_town);
-				$this->region = $this->jomres_encryption->decrypt($r->enc_county);
-				$this->country = $this->jomres_encryption->decrypt($r->enc_country);
-				$this->postcode = $this->jomres_encryption->decrypt($r->enc_postcode);
-				$this->tel_landline = $this->jomres_encryption->decrypt($r->enc_tel_landline);
-				$this->tel_mobile = $this->jomres_encryption->decrypt($r->enc_tel_mobile);
-				$this->email = $this->jomres_encryption->decrypt($r->enc_email);
-				$this->vat_number = $this->jomres_encryption->decrypt($r->enc_vat_number);
-				$this->vat_number_validated = $r->vat_number_validated;
-				$this->vat_number_validation_response = $r->vat_number_validation_response;
+				$this->profile_id						= $r->id;
+				$this->cms_user_id						= $r->cms_user_id;
+				$this->firstname						= $this->jomres_encryption->decrypt($r->enc_firstname);
+				$this->surname							= $this->jomres_encryption->decrypt($r->enc_surname);
+				$this->house							= $this->jomres_encryption->decrypt($r->enc_house);
+				$this->street							= $this->jomres_encryption->decrypt($r->enc_street);
+				$this->town								= $this->jomres_encryption->decrypt($r->enc_town);
+				$this->region							= $this->jomres_encryption->decrypt($r->enc_county);
+				$this->country							= $this->jomres_encryption->decrypt($r->enc_country);
+				$this->postcode							= $this->jomres_encryption->decrypt($r->enc_postcode);
+				$this->tel_landline						= $this->jomres_encryption->decrypt($r->enc_tel_landline);
+				$this->tel_mobile						= $this->jomres_encryption->decrypt($r->enc_tel_mobile);
+				$this->email							= $this->jomres_encryption->decrypt($r->enc_email);
+				$this->vat_number						= $this->jomres_encryption->decrypt($r->enc_vat_number);
+				$this->vat_number_validated				= $r->vat_number_validated;
+				$this->vat_number_validation_response	= $r->vat_number_validation_response;
+				$this->drivers_license					= $this->jomres_encryption->decrypt($r->enc_drivers_license);
+				$this->passport_number					= $this->jomres_encryption->decrypt($r->enc_passport_number);
+				$this->iban								= $this->jomres_encryption->decrypt($r->enc_iban);
+				$this->about_me							= $this->jomres_encryption->decrypt($r->enc_about_me);
+				$this->preferences							= $this->jomres_encryption->decrypt($r->enc_preferences);
+				 
 				
 				if (!empty($r->params)) {
 					$this->params = json_decode($r->params, true);
 				}
 			}
-		} else { // Registered user has no row in guest profile table. Some things, such as widgets on the dashboard, require a row in this table, and it'll fail with a silly error if the user tries to select a widget without it. As a result, we'll create a record in the profile table for this user, to get  us around this problem.
-			$query = "INSERT INTO #__jomres_guest_profile (`cms_user_id`) VALUES ( '".(int) $this->id."' )";
-			doInsertSql($query , '' );
+		} else { 
+		
+			// 14th June 2018
+			// Registered user has no row in guest profile table. Some things, such as widgets on the dashboard, require a row in this table, and it'll fail with a silly error if the user tries to select a widget without it. As a result, we'll create a record in the profile table for this user, to get  us around this problem.
+		
+			// 27th Feb 2019
+			// This section of code was creating problems where multiple profile records would be being created preventing bookings from going ahead. Disabled for now. It shouldn't, but it did.
+			
+			/* $query = "INSERT INTO #__jomres_guest_profile (`cms_user_id`) VALUES ( '".(int) $this->id."' )";
+			doInsertSql($query , '' ); */
 		}
 		
 		$this->jomres_encryption = null;

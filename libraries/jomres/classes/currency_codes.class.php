@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.20.0
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -61,7 +61,7 @@ class currency_codes
 			'XAF' => 'Congo: CFA Franc BEAC XAF ', 
 			'CRC' => 'Costa Rican Colon CRC ', 
 			'HRK' => 'Croatian Kuna HRK ', 
-			'CUP' => 'Cuban Peso CUP ', 
+			'CUC' => 'Cuban Convertible Peso CUC ', 
 			'CZK' => 'Czech koruna CZK ', 
 			'DKK' => 'Danish Krone DKK ', 
 			'DJF' => 'Djibouti Franc DJF ', 
@@ -211,7 +211,7 @@ class currency_codes
 			'CD' => 'XAF', 
 			'CR' => 'CRC', 
 			'HR' => 'HRK', 
-			'CU' => 'CUP', 
+			'CU' => 'CUC', 
 			'DK' => 'DKK', 
 			'DJ' => 'DJF', 
 			'DO' => 'DOP', 
@@ -382,7 +382,7 @@ class currency_codes
 			'KMF' => array('pre' => 'CF', 'post' => ''), 
 			'CRC' => array('pre' => '₡', 'post' => ''), 
 			'HRK' => array('pre' => 'kn', 'post' => ''), 
-			'CUP' => array('pre' => 'MN$', 'post' => ''), 
+			'CUC' => array('pre' => 'MN$', 'post' => ''), 
 			'DKK' => array('pre' => '', 'post' => 'kr'), 
 			'DJF' => array('pre' => 'Fdj', 'post' => ''), 
 			'DOP' => array('pre' => 'RD$', 'post' => ''), 

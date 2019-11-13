@@ -1,11 +1,11 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title">Income (paid amounts)</h3>
+		<h3 class="panel-title">{_JOMRES_INCOME_PAID_AMOUNTS}</h3>
 	</div>
 	<div class="panel-body">
 		<div class="jomres-overview">
-			<p>Bookings <span class="label {BOOKINGS_INCOME_LABEL_CLASS} pull-right">{BOOKINGS_INCOME}</span></p>
+			<p>{_JOMRES_STATUS_BOOKINGS} <span class="label {BOOKINGS_INCOME_LABEL_CLASS} pull-right">{BOOKINGS_INCOME}</span></p>
 			<patTemplate:tmpl name="subscriptions_income" unusedvars="strip" type="simpleCondition" requiredVars="subscriptions_income">
 				<p>Subscriptions <span class="label {SUBSCRIPTIONS_INCOME_LABEL_CLASS} pull-right">{SUBSCRIPTIONS_INCOME}</span></p>
 			</patTemplate:tmpl>

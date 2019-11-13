@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.20.0
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -51,8 +51,8 @@ class j06001list_bookings_ajax
 
 		$rows = array();
 
-		//set the table coulmns, in the exact orcer in which they`re displayed in the table
-		$aColumns = array('a.contract_uid', 'a.contract_uid', 'a.tag', 'a.property_uid', 'a.arrival', 'a.departure', 'b.enc_firstname', 'b.enc_surname', 'b.enc_tel_landline', 'b.enc_tel_mobile', 'b.enc_email', 'a.contract_total', 'a.deposit_required', 'a.deposit_paid', 'a.special_reqs', 'a.invoice_uid', 'a.timestamp', 'a.last_changed', 'a.approved', 'a.username');
+		//set the table columns, in the exact order in which they`re displayed in the table
+		$aColumns = array('a.contract_uid', 'a.contract_uid', 'a.tag', 'a.property_uid', 'a.arrival', 'a.departure', 'b.enc_firstname', 'b.enc_surname', 'b.enc_tel_landline', 'b.enc_tel_mobile', 'b.enc_email', 'a.contract_total', 'a.deposit_required', 'a.deposit_paid', 'a.special_reqs', 'a.invoice_uid', 'a.timestamp', 'a.last_changed', 'a.approved', 'a.username', 'c.invoice_number', 'a.referrer');
 
 		//set columns count
 		$n = count($aColumns);
@@ -92,12 +92,26 @@ class j06001list_bookings_ajax
 		 */
 		$sWhere = '';
 		$search = jomresGetParam($_GET, 'jr_search', array());
-		if (isset($search['value']) && $search['value'] != '') {
+ 		if (isset($search['value']) && $search['value'] != '') {
 			$sWhere = 'AND (';
 			for ($i = 0; $i < $n; ++$i) {
 				$sWhere .= ''.$aColumns[$i]." LIKE '%".$search['value']."%' OR ";
 			}
 			$sWhere = rtrim($sWhere, ' OR ');
+		}
+		
+		$guest_matches = search_property_guests_by_string( $search['value'] , $defaultProperty , $thisJRUser->id , $show_all );
+		if ( isset($guest_matches['guest_uids']) && !empty($guest_matches['guest_uids'])) {
+			$sWhere .= ' OR ';
+			$count = count($guest_matches['guest_uids']);
+			for ($i = 0; $i < $count; ++$i) {
+				$sWhere .= "b.guests_uid = '".$guest_matches['guest_uids'][$i]."' OR ";
+			}
+			$sWhere = rtrim($sWhere, ' OR ');
+			
+		}
+
+		if ($sWhere != '' ) {
 			$sWhere .= ')';
 		}
 
@@ -172,14 +186,19 @@ class j06001list_bookings_ajax
 						a.invoice_uid,
 						a.property_uid,
 						a.approved,
+						a.referrer,
 						a.last_changed,
+						b.guests_uid,
+						b.mos_userid,
 						b.enc_firstname, 
 						b.enc_surname, 
 						b.enc_tel_landline, 
 						b.enc_tel_mobile, 
-						b.enc_email
+						b.enc_email,
+						c.invoice_number
 					FROM #__jomres_contracts a 
-						LEFT JOIN #__jomres_guests b ON a.guest_uid = b.guests_uid '
+						LEFT JOIN #__jomres_guests b ON a.guest_uid = b.guests_uid 
+						LEFT JOIN #__jomresportal_invoices c ON a.invoice_uid  = c.id  '
 					.$clause
 					.' '.$sWhere
 					.' '.$sOrder
@@ -267,6 +286,7 @@ class j06001list_bookings_ajax
 						}
 					} elseif ($p->bookedout == 0) {
 						$jrtb .= $jrtbar->toolbarItem('bookGuestOut', jomresURL(JOMRES_SITEPAGE_URL.'&task=checkout'.'&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_FRONT_MR_BOOKOUT_TITLE', '_JOMRES_FRONT_MR_BOOKOUT_TITLE', false));
+						$jrtb .= $jrtbar->toolbarItem('mark_booking_noshow', jomresURL(JOMRES_SITEPAGE_URL.'&task=mark_booking_noshow'.'&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('BOOKING_NOSHOW_MENU', 'BOOKING_NOSHOW_MENU', false));
 					}
 				}
 				if ($p->approved == 0 && isset($MiniComponents->registeredClasses['00005']['booking_enquiries'])) {
@@ -307,6 +327,7 @@ class j06001list_bookings_ajax
 					}
 					if ($p->booked_in == 0) {
 						$toolbar->addSecondaryItem('fa fa-trash-o', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=cancel_booking&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', '_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', false));
+						$toolbar->addSecondaryItem('fa fa-exclamation', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=mark_booking_noshow&contract_uid='.$p->contract_uid.$thisProperty), jr_gettext('BOOKING_NOSHOW_MENU', 'BOOKING_NOSHOW_MENU', false));
 					}
 					if (isset($MiniComponents->registeredClasses['00005']['jomres_ical'])) {
 						$toolbar->addSecondaryItem('fa fa-calendar', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=ical_export_contract&contract_uid='.$p->contract_uid.'&property_uid='.$p->property_uid), jr_gettext('_JOMRES_ICAL_EVENT', '_JOMRES_ICAL_EVENT', false));
@@ -326,8 +347,8 @@ class j06001list_bookings_ajax
 			$r[] = getPropertyName($p->property_uid);
 			$r[] = outputDate($p->arrival);
 			$r[] = outputDate($p->departure);
-			$r[] = jomres_decode($jomres_encryption->decrypt($p->enc_firstname));
-			$r[] = jomres_decode($jomres_encryption->decrypt($p->enc_surname));
+			$r[] = '<a href="'.jomresUrl(JOMRES_SITEPAGE_URL.'&task=show_user_profile&cms_user_id='.$p->mos_userid).'" target="_blank">'.jomres_decode($jomres_encryption->decrypt($p->enc_firstname)).'</a>';
+			$r[] = '<a href="'.jomresUrl(JOMRES_SITEPAGE_URL.'&task=show_user_profile&cms_user_id='.$p->mos_userid).'" target="_blank">'.jomres_decode($jomres_encryption->decrypt($p->enc_surname)).'</a>';
 			$r[] = jomres_decode($jomres_encryption->decrypt($p->enc_tel_landline));
 			$r[] = jomres_decode($jomres_encryption->decrypt($p->enc_tel_mobile));
 			$r[] = jomres_decode($jomres_encryption->decrypt($p->enc_email));
@@ -341,7 +362,12 @@ class j06001list_bookings_ajax
 			}
 
 			$r[] = jomres_decode($p->special_reqs);
-			$r[] = $p->invoice_uid;
+			if ($p->invoice_number != '' ) {
+				$r[] = $p->invoice_number;
+			} else {
+				$r[] = $p->invoice_uid;
+			}
+			
 			$r[] = $p->timestamp;
 			$r[] = $p->last_changed;
 
@@ -354,6 +380,7 @@ class j06001list_bookings_ajax
 			}
 			
 			$r[] = $p->username;
+			$r[] = $p->referrer;
 
 			$output['data'][] = $r;
 		}

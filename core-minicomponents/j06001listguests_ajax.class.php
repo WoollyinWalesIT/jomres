@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.20.0
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -97,6 +97,7 @@ class j06001listguests_ajax
 
 		$query = 'SELECT SQL_CALC_FOUND_ROWS 
 						a.guests_uid, 
+						a.mos_userid, 
 						a.enc_firstname, 
 						a.enc_surname, 
 						a.enc_house, 
@@ -182,6 +183,7 @@ class j06001listguests_ajax
 				$toolbar->newToolbar();
 				$toolbar->addItem('fa fa-pencil-square-o', 'btn btn-info', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_guest&id='.$g->guests_uid.$thisProperty), jr_gettext('COMMON_EDIT', 'COMMON_EDIT', false));
 				$toolbar->addSecondaryItem('fa fa-file-text', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=list_invoices&guest_id='.$g->guests_uid), jr_gettext('_JOMRES_MANAGER_SHOWINVOICES', '_JOMRES_MANAGER_SHOWINVOICES', false));
+				$toolbar->addSecondaryItem('fa fa-address-book-o', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=review_guest&guest_id='.$g->guests_uid), jr_gettext('GUEST_PROFILE_REVIEW_GUEST', 'GUEST_PROFILE_REVIEW_GUEST', false));
 				$toolbar->addSecondaryItem('fa fa-list', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=list_bookings&guest_uid='.$g->guests_uid), jr_gettext('_JRPORTAL_CPANEL_LISTBOOKINGS', '_JRPORTAL_CPANEL_LISTBOOKINGS', false));
 				$toolbar->addSecondaryItem('fa fa-trash-o', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=delete_guest&id='.$g->guests_uid.$thisProperty), jr_gettext('COMMON_DELETE', 'COMMON_DELETE', false));
 				$r[] = $toolbar->getToolbar();
@@ -227,8 +229,9 @@ class j06001listguests_ajax
 			
 			if ($found) {
 				$r[] = $g->guests_uid;
-				$r[] = $firstname;
-				$r[] = $surname;
+				$r[] = '<a href="'.jomresUrl(JOMRES_SITEPAGE_URL.'&task=show_user_profile&cms_user_id='.$g->mos_userid).'" target="_blank">'.$firstname.'</a>';
+				$r[] = '<a href="'.jomresUrl(JOMRES_SITEPAGE_URL.'&task=show_user_profile&cms_user_id='.$g->mos_userid).'" target="_blank">'.$surname.'</a>';
+				$r[] = $email;
 				$r[] = $house;
 				$r[] = $street;
 				$r[] = $town;
@@ -237,7 +240,6 @@ class j06001listguests_ajax
 				$r[] = $country;
 				$r[] = $tel_landline;
 				$r[] = $tel_mobile;
-				$r[] = $email;
 				$r[] = $vat_number;
 				$r[] = $g->discount.'%';
 				$r[] = $basic_property_details->property_names[$g->property_uid];

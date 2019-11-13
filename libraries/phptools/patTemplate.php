@@ -852,13 +852,27 @@ class patTemplate
 				}
 			}
 		$pageURL .= "://";
-		if ( $_SERVER[ "SERVER_PORT" ] != "80" )
+		
+		
+		if (!isset($_SERVER[ "SERVER_PORT" ])) { // CLI not isset variable fix
+			$SERVER_PORT = '80';
+		} else {
+			$SERVER_PORT = $_SERVER[ "SERVER_PORT" ];
+		}
+		
+		if (!isset($_SERVER[ "SERVER_NAME" ])) { // CLI not isset variable fix
+			$SERVER_NAME = 'CLI';
+		} else {
+			$SERVER_NAME = $_SERVER[ "SERVER_NAME" ];
+		}
+		
+		if ( $SERVER_PORT != "80" )
 			{
-			$pageURL .= $_SERVER[ "SERVER_NAME" ] . ":" . $_SERVER[ "SERVER_PORT" ] . $_SERVER[ "REQUEST_URI" ];
+			$pageURL .= $SERVER_NAME . ":" . $SERVER_PORT . $_SERVER[ "REQUEST_URI" ];
 			}
 		else
 			{
-			$pageURL .= $_SERVER[ "SERVER_NAME" ] . $_SERVER[ "REQUEST_URI" ];
+			$pageURL .= $SERVER_NAME . $_SERVER[ "REQUEST_URI" ];
 			}
 
 		return $pageURL;
@@ -1638,18 +1652,23 @@ class patTemplate
 				{
 				$backtrace = debug_backtrace();
 				$files     = '';
-				foreach ( $backtrace as $trace )
-					{
+				foreach ( $backtrace as $trace ) {
+						
 					$file     = $trace[ 'file' ];
 					$bang     = explode( JRDS, $file );
+
 					$filename = $bang[ count( $bang ) - 1 ];
-					if ( $filename != 'patTemplate.php' && $filename != 'index.php' && $filename != 'application.php' && $filename != 'helper.php' && $filename != 'mcHandler.class.php' )
-						{
-						$files .= " " . $filename . " on line ".$trace['line']."<br/>";
+					
+					if ( strstr($trace[ 'file' ] , JOMRESPATH_BASE ) !== false ) {
+						$path = str_replace( JOMRESPATH_BASE , '' , $trace[ 'file' ] );
+						
+						if ( $filename != 'patTemplate.php' && $filename != 'index.php' && $filename != 'application.php' && $filename != 'helper.php' && $filename != 'mcHandler.class.php' ) {
+							$files .= " " . $filename . " on line ".$trace['line']." <span class='small'>(".$path.")</span><br/>";
+							}
 						}
 					}
 
-				return patErrorManager::raiseWarning( PATTEMPLATE_WARNING_NO_TEMPLATE, "Path to template is not set. <br/>Related to " . $this->_options[ 'root' ][ '__default' ] . " <br/>Backtrace of files <br/>" . $files );
+				return patErrorManager::raiseWarning( PATTEMPLATE_WARNING_NO_TEMPLATE, "Path to template is not set. <br/>Related to " . $this->_options[ 'root' ][ '__default' ] . " <br/>Backtrace of Jomres files <br/>" . $files );
 				}
 			else
 				{
@@ -2711,7 +2730,10 @@ class patTemplate
 						$MiniComponents->specificEvent('06002',$our_task);
 						$contents = ob_get_contents();
 					}
-
+					if ($contents == "" ) {
+						$MiniComponents->specificEvent('06005',$our_task);
+						$contents = ob_get_contents();
+					}
 					set_showtime('task',$original_task);
 					$_REQUEST = $original_request;
 					$result = str_replace($m,$contents,$result);

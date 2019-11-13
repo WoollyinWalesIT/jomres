@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.20.0
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -242,6 +242,13 @@ class dobooking
 			if (isset($bookingDeets[ 'thirdparty_vars' ])) {
 				$this->thirdparty_vars = $bookingDeets[ 'thirdparty_vars' ];
 			}
+			
+			$MiniComponents = jomres_getSingleton('mcHandler');
+			$this->wiseprice_installed = false;
+			if (isset( $MiniComponents->registeredClasses['00501']['xwiseprice'])) { // A check to see if the wiseprice config tab plugin is installed. If it is not, we will not use the setting elsewhere in the engine
+				$this->wiseprice_installed = true;
+			}
+				
 		}
 
 		$dbdata = serialize($bookingDeets);
@@ -611,8 +618,10 @@ class dobooking
 					'singleperson_suppliment' => $r['singleperson_suppliment'],
 					'tagline' => $r['tagline'],
 					'description' => $jomres_markdown->get_markdown($r['description']),
+					'surcharge' => $r['surcharge'],
 					'small_room_image' => $room_images [ $r['room_uid'] ] [0] ['small'],
 					'medium_room_image' => $room_images [ $r['room_uid'] ] [0] ['medium'],
+					
 					);
 
 				$this->allPropertyRoomUids[ ] = $r['room_uid'];
@@ -687,13 +696,37 @@ class dobooking
 
 	public function getAllRoomClasses()
 	{
+		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
+		$jomres_media_centre_images->get_images($this->property_uid);
+		$jomres_media_centre_images->get_site_images('rmtypes'); // These are administrator created room type images. If the property manager doesn't upload images for a room type (which is quite possible if they aren't given the option) then we'll "fallback" to admin created images instead
+
+		$basic_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
+		
+		$resource_type = 'room_types';
+		
 		$query = 'SELECT room_classes_uid,room_class_abbv,room_class_full_desc,image FROM #__jomres_room_classes WHERE room_classes_uid IN ('.jomres_implode($this->allRoomClassIds).') ';
 		$roomClasses = doSelectSql($query);
 		foreach ($roomClasses as $c) {
 			$roomtype_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int) $c->room_classes_uid, stripslashes($c->room_class_abbv), false, false);
 			$roomtype_desc = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int) $c->room_classes_uid, stripslashes($c->room_class_full_desc), false, false);
 
-			$this->allRoomClasses[ $c->room_classes_uid ] = array('room_class_abbv' => $roomtype_abbv, 'room_class_full_desc' => $roomtype_desc, 'image' => $c->image);
+			$resource_id = $c->room_classes_uid;
+			
+			if (isset($jomres_media_centre_images->images [$resource_type] [$resource_id])) {
+				$images = $jomres_media_centre_images->images [$resource_type] [$resource_id];
+			} else {
+				if ( isset($basic_property_details->this_property_room_classes[$resource_id]['image']) && file_exists(JOMRES_IMAGELOCATION_ABSPATH.'rmtypes/'.$basic_property_details->this_property_room_classes[$resource_id]['image'])) {
+					$images = array( array ( "large" => JOMRES_IMAGELOCATION_RELPATH.'rmtypes/'.$basic_property_details->this_property_room_classes[$resource_id]['image']) );
+				} else {
+					$images = array ( array(
+						"large" => $jomres_media_centre_images->multi_query_images['noimage-large'],
+						"medium" => $jomres_media_centre_images->multi_query_images['noimage-medium'],
+						"small" => $jomres_media_centre_images->multi_query_images['noimage-small']
+					) );
+				}
+			}
+		
+			$this->allRoomClasses[ $c->room_classes_uid ] = array('room_class_abbv' => $roomtype_abbv, 'room_class_full_desc' => $roomtype_desc, 'image' => $c->image , 'images' => $images);
 		}
 	}
 
@@ -996,6 +1029,8 @@ class dobooking
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
 		$jomres_media_centre_images->get_images($this->property_uid, array('extras'));
 
+		$thisJRUser = jomres_getSingleton('jr_user');
+		
 		$mrConfig = $this->mrConfig;
 		$extra_details = array();
 
@@ -1148,7 +1183,7 @@ class dobooking
 					}
 
 					$clickUnlock = '';
-					if ($model[ 'force' ] != '1') {
+					if ($model[ 'force' ] != '1' || $thisJRUser->userIsManager ) {
 						$extra_deets[ 'INPUTBOX' ] = '<input id="extras_'.$ex->uid.'" type="checkbox" name="extras['.$ex->uid.']" value="'.$ex->uid.'" '.$checked.' autocomplete="off"  onClick="'.$clickUnlock.'getResponse_extras(\'extras\',this.value,'.$ex->uid.');" />';
 					} else {
 						$this->forcedExtras[ ] = $ex->uid;
@@ -3947,7 +3982,8 @@ class dobooking
 
 					$rates_uid = $tariff->rates_uid;
 					$this->setErrorLog('getTariffsForRoomUids:: Checking tariff id '.$rates_uid.' ');
-					if ($datesValid && $stayDaysValid && $numberPeopleValid && $dowCheck && $roomsAlreadySelectedTests) {
+					
+					if ($datesValid && $stayDaysValid && $numberPeopleValid && $dowCheck && $roomsAlreadySelectedTests && (float)$tariff->roomrateperday > 0.00 ) {
 						$tariff_type_id = 0;
 						if (isset($this->all_tariff_id_to_tariff_type_xref[ $rates_uid ][ 0 ])) {
 							$tariff_type_id = $this->all_tariff_id_to_tariff_type_xref[ $rates_uid ][ 0 ];
@@ -4413,7 +4449,6 @@ class dobooking
 				$roomDeets = array();
 				$roomUidArray = array();
 				$tariffUidArray = array();
-				$roomDeets = array();
 				$number = count($roomAndTariffArray);
 				for ($i = 0; $i < $number; ++$i) {
 					$roomuid = $roomAndTariffArray[ $i ][ 0 ];
@@ -4476,7 +4511,10 @@ class dobooking
 
 	public function generate_room_type_dropdowns()
 	{
+		$MiniComponents = jomres_getSingleton('mcHandler');
+		
 		$dropdown_output = array();
+		
 		// We need to strip out rooms from the available arrays if they've already
 		// been selected in conjunction with another tariff
 		if (isset($this->room_type_style_output)) {
@@ -4515,6 +4553,7 @@ class dobooking
 			}
 
 			ksort($this->room_type_style_output);
+			
 			foreach ($this->room_type_style_output as $tariff_id => $tariff_and_roomtypes) {
 				$number_of_rooms = count($tariff_and_roomtypes[ 'roomTariffOutputId' ]);
 
@@ -4539,6 +4578,8 @@ class dobooking
 				$dropdown_output[ $tariff_id ][ 'dropdown' ] = jomresHTML::selectList($rooms_list_style_dropdown, 'fred', 'class="input-mini" size="1"  autocomplete="off" onchange="getResponse_multiroom_select(\'multiroom_select\',this.value);"', 'value', 'text', $already_selected_string);
 				$dropdown_output[ $tariff_id ][ 'room_type' ] = $tariff_and_roomtypes[ 'room_type' ];
 				$dropdown_output[ $tariff_id ][ 'tariff_title' ] = $tariff_and_roomtypes[ 'tariff_title' ];
+				$dropdown_output[ $tariff_id ][ 'room_type_images' ] = $tariff_and_roomtypes[ 'room_type_images' ];
+
 				$dropdown_output[ $tariff_id ][ 'room_price_inc_tax' ] = output_price($tariff_and_roomtypes[ 'room_price_inc_tax' ]);
 
 				if ($this->cfg_bookingform_roomlist_showmaxpeople == '1') {
@@ -4589,6 +4630,9 @@ class dobooking
 			$r[ 'NUMBEROFROOMS' ] = $routput[ 'dropdown' ];
 			$r[ 'ROOM_TYPE_TEXT' ] = $routput[ 'room_type' ];
 			$r[ 'TARIFF_NAME_TEXT' ] = $routput[ 'tariff_title' ];
+
+			$r[ 'ROOM_TYPE_IMAGE' ] = $routput[ 'room_type_images' ][0]['large']; // Have to choose large here because thumbnails for admin uploaded room types may not exist
+			
 			$r[ 'RATE_TEXT' ] = $routput[ 'room_price_inc_tax' ];
 			$r[ 'NUMBER_OF_ROOMS' ] = $routput[ 'number_of_rooms' ];
 			$r[ 'NUMBER_OF_ROOMS_PRE' ] = jr_gettext('_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_PRE', '_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_PRE', false, false);
@@ -4645,10 +4689,6 @@ class dobooking
 		$roomTariffOutputId = $roomuid.'^'.$tariffuid;
 		$roomTariffOutputText = '';
 
-		$classId = $this->allPropertyRooms[ $roomuid ][ 'room_classes_uid' ];
-
-		$this->typeImage = JOMRES_IMAGELOCATION_RELPATH.'rmtypes/'.$this->allRoomClasses[ $classId ][ 'image' ];
-
 		return array('requestedRoom' => $roomTariffOutputId, 'roomandtariffinfo' => $roomTariffOutputText);
 	}
 
@@ -4696,12 +4736,21 @@ class dobooking
 		$tariffStuff[ 'ROOMTARIFFOUTPUTID' ] = $roomTariffOutputId;
 		$tariffStuff[ 'CAPTION' ] = $caption;
 
-		$roomStuff[ 'ROOM_TYPE_IMAGE' ] = $this->typeImage;
 		$roomStuff[ 'ROOM_IMAGE' ] = $this->allPropertyRooms [ $roomUid ] [ 'small_room_image' ];
 		$roomStuff[ 'ROOM_IMAGE_MEDIUM' ] = $this->allPropertyRooms [ $roomUid ] [ 'medium_room_image' ];
 		
 		$roomStuff[ 'TAGLINE' ] = $this->allPropertyRooms [ $roomUid ] [ 'tagline' ];
 		$roomStuff[ 'DESCRIPTION' ] = $this->allPropertyRooms [ $roomUid ] [ 'description' ];
+		
+		$roomStuff[ 'ROOM_TYPE_IMAGE' ] = $this->allRoomClasses[ $tariffStuff[ 'TARIFF_ROOMTYPE' ] ]['images'][0]['large'];
+		
+		$roomStuff[ 'SURCHARGE' ] = '';
+		$roomStuff[ 'SURCHARGE_TEXT' ] = '';
+		$sc = $this->allPropertyRooms [ $roomUid ] ['surcharge'];
+		if ((float) $sc > 0 ) {
+			$roomStuff[ 'SURCHARGE' ] =  output_price($sc);
+			$roomStuff[ 'SURCHARGE_TEXT' ] = jr_gettext('_JOMRES_SURCHARGE_TITLE', '_JOMRES_SURCHARGE_TITLE', false);
+		}
 		
 		if ($this->cfg_booking_form_rooms_list_style == '2') {
 			$this->rooms_list_style_roomstariffs[ $tariffUid ] = array('room_type_id' => $tariffStuff[ 'TARIFF_ROOMTYPE' ], 'room_id' => $roomUid, 'tariff_id' => $tariffUid, 'roomTariffOutputId' => $roomTariffOutputId, 'tariffStuff' => $tariffStuff, 'roomStuff' => $roomStuff);
@@ -4709,6 +4758,10 @@ class dobooking
 			foreach ($this->allRoomClasses as $room_type_id => $room_type) {
 				foreach ($this->rooms_list_style_roomstariffs as $tariff_id => $room_and_tariff_data) {
 					if ($room_and_tariff_data[ 'room_type_id' ] == $room_type_id) {
+						$room_type_id = $room_and_tariff_data[ 'tariffStuff' ]['TARIFF_ROOMTYPE'];
+
+						$this->room_type_style_output[ $tariff_id ][ 'room_type_images' ] = $this->allRoomClasses[$room_type_id]['images'];
+
 						$this->room_type_style_output[ $tariff_id ][ 'tariff_title' ] = $room_and_tariff_data[ 'tariffStuff' ][ 'TITLE' ];
 						$this->room_type_style_output[ $tariff_id ][ 'room_type' ] = $room_and_tariff_data[ 'roomStuff' ][ 'ROOMTYPE' ];
 						$this->room_type_style_output[ $tariff_id ][ 'roomTariffOutputId' ][ ] = $room_and_tariff_data[ 'roomTariffOutputId' ];
@@ -6269,12 +6322,16 @@ class dobooking
 					$tmpBookingHandler->updateBookingField('wisepricediscount', $discountOutput);
 					$this->discounts[ ] = array('type' => 'MRP', 'roomtypeabbr' => $roomtype_abbr, 'discountfrom' => $roomrate, 'discountto' => $d[ 'discountedRate' ]);
 				} else {
-					$tmpBookingHandler->updateBookingField('wisepricediscount', jr_gettext('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', '_JOMCOMP_WISEPRICE_NOTDISCOUNTED', false));
+					if ($this->wiseprice_installed) {
+						$tmpBookingHandler->updateBookingField('wisepricediscount', jr_gettext('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', '_JOMCOMP_WISEPRICE_NOTDISCOUNTED', false));
+					}
 				}
 			}
 			$tmpBookingHandler->updateBookingField('discounts', $this->discounts);
 		} else {
-			$tmpBookingHandler->updateBookingField('wisepricediscount', jr_gettext('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', '_JOMCOMP_WISEPRICE_NOTDISCOUNTED', false));
+			if ($this->wiseprice_installed) {
+				$tmpBookingHandler->updateBookingField('wisepricediscount', jr_gettext('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', '_JOMCOMP_WISEPRICE_NOTDISCOUNTED', false));
+			}
 			$this->echo_populate_div('; populateDiv("discount","")');
 		}
 		$this->echo_populate_div('; populateDiv("discount","'.$discountOutput.'")');
@@ -6505,10 +6562,14 @@ class dobooking
 			if ($tarifftypeid != false) {
 				$dates = $this->micromanage_tarifftype_to_date_map[ $tarifftypeid ];
 				$cumulative_price = 0.00;
+				$surcharge_base = $this->allPropertyRooms[$room_id]['surcharge'];
+				$surcharge_nett = $this->get_nett_price($surcharge_base, $this->accommodation_tax_rate);
+				
 				foreach ($dateRangeArray as $date) {
 					$cumulative_price += $dates[ $date ][ 'price' ];
+					$cumulative_price = $cumulative_price  + $surcharge_nett;
 				}
-
+//var_dump($cumulative_price);exit;
 				$basic_room_rate = $cumulative_price / $stayDays;
 
 				if (count($datesTilBooking) <= $wisepricethreshold && $mrConfig[ 'wisepriceactive' ] == '1') {
@@ -6696,12 +6757,12 @@ class dobooking
 		$jrConfig[ 'useNewusers' ] = '1'; // For Jomres v9.11 and GDPR compliance we are now forcing the system to create new users whenever a booking is made
 		
 		if (trim($email) == '') { // Presumably, we're at the start of the booking and the email address hasn't been filled yet
-		$this->email_address_can_be_used = true;
+			$this->email_address_can_be_used = true;
 		}
 
 		$jrConfig[ 'useNewusers' ] = '1'; // For Jomres v9.11 and GDPR compliance we are now forcing the system to create new users whenever a booking is made
 		
-		if ($thisJRUser->userIsManager) { // Managers can re-use email addresses of guests.
+		if ($this->amend_contract) { // Managers can re-use email addresses of guests.
 			$this->email_address_can_be_used = true;
 		} else {
 			if ($jrConfig[ 'useNewusers' ] == '0') { // We don't create new users on bookings from non-registered bookers, so it's ok to re-use an email address.
@@ -6717,17 +6778,22 @@ class dobooking
 				}
 
 				if ($email_found) {
-					if ($thisJRUser->userIsRegistered) {
-						$users_id = jomres_cmsspecific_getcurrentusers_id();
-						$stored_email = $all_users[ $users_id ][ 'email' ];
-						if ($stored_email == $email) {
-							$this->email_address_can_be_used = true;
+					if ($thisJRUser->userIsManager) { // At this point we have a manager who is using the dropdown to select a guest's details
+						$this->email_address_can_be_used = true;
+					} else {
+						if ($thisJRUser->userIsRegistered) {
+							$users_id = jomres_cmsspecific_getcurrentusers_id();
+							$stored_email = $all_users[ $users_id ][ 'email' ];
+							if ($stored_email == $email) {
+								$this->email_address_can_be_used = true;
+							} else {
+								$this->email_address_can_be_used = false;
+							}
 						} else {
 							$this->email_address_can_be_used = false;
 						}
-					} else {
-						$this->email_address_can_be_used = false;
 					}
+
 				} else {
 					$this->email_address_can_be_used = true;
 				}

@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.20.0
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -49,6 +49,15 @@ class j06001edit_booking
 		//check if the booking can be approved or not
 		$can_be_approved = true;
 		$approval_msg = array();
+		
+		$noshow = array();
+		if($current_contract_details->contract[$contract_uid]['contractdeets']['noshow_flag'] == '1' ) {
+			$noshow[0]['CLASS'] = 'alert alert-error alert-danger';
+			$noshow[0]['MESSAGE'] = jr_gettext('BOOKING_NOSHOW_AUDIT_LOG', 'BOOKING_NOSHOW_AUDIT_LOG', false);
+		}
+		
+		
+		
 		if ((int) $current_contract_details->contract[$contract_uid]['contractdeets']['approved'] == 0) {
 			$rooms_tariffs = $current_contract_details->contract[$contract_uid]['contractdeets']['rooms_tariffs'];
 			$date_range_string = $current_contract_details->contract[$contract_uid]['contractdeets']['date_range_string'];
@@ -135,8 +144,6 @@ class j06001edit_booking
 
 				$jrtb .= $jrtbar->customToolbarItem($targetTask, $link, $output[ 'HEDIT_GUEST' ], $submitOnClick = false, $submitTask = '', $image);
 					
-				//var_dump($current_contract_details->contract[$contract_uid]['contractdeets']['guest_uid']);exit;
-				
 				//amend booking
 				$output[ 'HAMENDBOOKING' ] = jr_gettext('_JOMRES_CONFIRMATION_AMEND', '_JOMRES_CONFIRMATION_AMEND', $editable = false, $isLink = true);
 				$link = JOMRES_SITEPAGE_URL.'&task=amendBooking&no_html=1&contractUid='.$contract_uid;
@@ -161,7 +168,14 @@ class j06001edit_booking
 							//}
 
 							if ((int) $current_contract_details->contract[$contract_uid]['contractdeets']['channel_manager_booking'] != 1) {
-								$jrtb .= $jrtbar->toolbarItem('cancel_booking', jomresURL(JOMRES_SITEPAGE_URL.'&task=cancel_booking&contract_uid='.$contract_uid), '');
+								if($current_contract_details->contract[$contract_uid]['contractdeets']['noshow_flag'] != '1' ) {
+									$output[ 'BOOKING_NOSHOW_MENU' ] = jr_gettext('BOOKING_NOSHOW_MENU', 'BOOKING_NOSHOW_MENU', $editable = false, $isLink = true);
+									$link = JOMRES_SITEPAGE_URL.'&task=mark_booking_noshow&contract_uid='.$contract_uid.'&property_uid='.$defaultProperty;
+									$targetTask = 'mark_booking_noshow';
+									
+									$jrtb .= $jrtbar->customToolbarItem($targetTask, $link, $output[ 'BOOKING_NOSHOW_MENU' ], $submitOnClick = false, $submitTask = '', $image);
+									$jrtb .= $jrtbar->toolbarItem('cancel_booking', jomresURL(JOMRES_SITEPAGE_URL.'&task=cancel_booking&popup=1&contract_uid='.$contract_uid), '');
+									}
 							}
 						} else {
 							$output[ 'HBOOKGUESTOUT' ] = jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTOUT', '_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTOUT', $editable = false, $isLink = true);
@@ -215,13 +229,23 @@ class j06001edit_booking
 					$jrtb .= $jrtbar->customToolbarItem($targetTask, $link, $output[ 'ICAL_EXPORT' ], $submitOnClick = false, $submitTask = '', $image);
 				}
 			} else {
-				$jrtb .= $jrtbar->toolbarItem('cancel_booking', jomresURL(JOMRES_SITEPAGE_URL.'&task=cancel_booking&popup=1&contract_uid='.$contract_uid), '');
+				if($current_contract_details->contract[$contract_uid]['contractdeets']['noshow_flag'] != '1' ) {
+					$output[ 'BOOKING_NOSHOW_MENU' ] = jr_gettext('BOOKING_NOSHOW_MENU', 'BOOKING_NOSHOW_MENU', $editable = false, $isLink = true);
+					$link = JOMRES_SITEPAGE_URL.'&task=mark_booking_noshow&contract_uid='.$contract_uid.'&property_uid='.$defaultProperty;
+					$targetTask = 'mark_booking_noshow';
+					
+					$jrtb .= $jrtbar->customToolbarItem($targetTask, $link, $output[ 'BOOKING_NOSHOW_MENU' ], $submitOnClick = false, $submitTask = '', $image);
+					
+					$jrtb .= $jrtbar->toolbarItem('cancel_booking', jomresURL(JOMRES_SITEPAGE_URL.'&task=cancel_booking&popup=1&contract_uid='.$contract_uid), '');
+					}
 			}
 			$jrtb .= $jrtbar->endTable();
 
 			$output = array();
 			$pageoutput = array();
 
+			$output['NETWORK_STATS'] = $MiniComponents->specificEvent('06001', 'show_network_stats_for_contract', array('output_now' => false , 'contract_uid' => $contract_uid , 'property_uid' => $defaultProperty ));
+			
 			$output[ '_JOMRES_BOOKING_NUMBER' ] = jr_gettext('_JOMRES_BOOKING_NUMBER', '_JOMRES_BOOKING_NUMBER', $editable = true, $isLink = false);
 
 			$output[ 'BOOKING_NUMBER' ] = $current_contract_details->contract[$contract_uid]['contractdeets']['tag'];
@@ -237,6 +261,7 @@ class j06001edit_booking
 			$tmpl->readTemplatesFromInput('edit_booking_header.html');
 			$tmpl->addRows('pageoutput', $pageoutput);
 			$tmpl->addRows('approval_message', $approval_message);
+			$tmpl->addRows('noshow_status', $noshow);
 			echo $tmpl->getParsedTemplate();
 		}
 
@@ -266,9 +291,13 @@ class j06001edit_booking
 		}
 
 		if (isset($current_contract_details->contract[$contract_uid]['roomdeets']) && (int)$current_contract_details->contract[$contract_uid]['contractdeets']['approved'] == 1) {
+			$roomBooking_black_booking = 0;
+			$roomBooking_reception_booking = 0;
 			foreach ($current_contract_details->contract[$contract_uid]['roomdeets'] as $rd) {
-				$roomBooking_black_booking = $rd['black_booking'];
-				$roomBooking_reception_booking = $rd['reception_booking'];
+				if (isset($rd['black_booking']) && isset($rd['reception_booking']) ) {
+					$roomBooking_black_booking = $rd['black_booking'];
+					$roomBooking_reception_booking = $rd['reception_booking'];
+				}
 			}
 
 			if ((int) $roomBooking_black_booking == 1) {
@@ -355,6 +384,17 @@ class j06001edit_booking
 
 		$output[ 'EMAIL_ADDRESS' ] = $current_contract_details->contract[$contract_uid]['guestdeets']['email'];
 		$output[ 'GUEST_IMAGE' ] = $current_contract_details->contract[$contract_uid]['guestdeets']['image'];
+		
+	
+		$guest_uid = $current_contract_details->contract[$contract_uid]['contractdeets']['guest_uid'];
+		
+		jr_import('jrportal_guests');
+		$jrportal_guests = new jrportal_guests();
+		$jrportal_guests->id = $guest_uid;
+		$jrportal_guests->property_uid = $defaultProperty;
+		$jrportal_guests->get_guest();
+
+		$output['GUEST_PROFILE'] = $MiniComponents->specificEvent('06000', 'show_user_profile', array('output_now' => false , 'cms_user_id' => $jrportal_guests->cms_user_id ));
 
 		$pageoutput[ ] = $output;
 		$tmpl = new patTemplate();
@@ -381,21 +421,33 @@ class j06001edit_booking
 					$r = array();
 					
 					$r[ '_JOMRES_COM_MR_EB_ROOM_NAME' ] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_NAME', '_JOMRES_COM_MR_EB_ROOM_NAME');
-					$r[ 'RINFO_NAME' ] = $rd[ 'room_name' ];
+					
 					$r[ '_JOMRES_COM_MR_LISTTARIFF_RATETITLE' ] = jr_gettext('_JOMRES_COM_MR_LISTTARIFF_RATETITLE', '_JOMRES_COM_MR_LISTTARIFF_RATETITLE');
 					$r[ 'RINFO_TARIFF' ] = $rd[ 'rate_title' ];
-
-					$r[ '_JOMRES_COM_MR_EB_ROOM_NUMBER' ] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_NUMBER', '_JOMRES_COM_MR_EB_ROOM_NUMBER');
-					$r[ 'RINFO_NUMBER' ] = $rd[ 'room_number' ];
-					$r[ '_JOMRES_COM_MR_EB_ROOM_FLOOR' ] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_FLOOR', '_JOMRES_COM_MR_EB_ROOM_FLOOR');
-					$r[ 'RINFO_ROOM_FLOOR' ] = $rd[ 'room_floor' ];
-
-					$r[ '_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE' ] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE', '_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE');
-					$r[ 'RINFO_MAX_PEOPLE' ] = $rd[ 'max_people' ];
+						
+					if ( isset($rd[ 'room_name' ])) {
+						$r[ 'RINFO_NAME' ] = $rd[ 'room_name' ];
+					}
+					
+					if ( isset($rd[ 'room_number' ])) {
+						$r[ '_JOMRES_COM_MR_EB_ROOM_NUMBER' ] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_NUMBER', '_JOMRES_COM_MR_EB_ROOM_NUMBER');
+						$r[ 'RINFO_NUMBER' ] = $rd[ 'room_number' ];
+					}
+					
+					if ( isset($rd[ 'room_floor' ])) {
+						$r[ '_JOMRES_COM_MR_EB_ROOM_FLOOR' ] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_FLOOR', '_JOMRES_COM_MR_EB_ROOM_FLOOR');
+						$r[ 'RINFO_ROOM_FLOOR' ] = $rd[ 'room_floor' ];
+					}
+					
+					if ( isset($rd[ 'max_people' ])) {
+						$r[ '_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE' ] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE', '_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE');
+						$r[ 'RINFO_MAX_PEOPLE' ] = $rd[ 'max_people' ];
+					}
+					
 					
 					$r[ '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV' ] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV', '_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV');
 					
-					if (isset($current_property_details->all_room_types[$rd['room_classes_uid']]['room_class_abbv'])) {
+					if ( isset( $rd['room_classes_uid']) && isset($current_property_details->all_room_types[$rd['room_classes_uid']]['room_class_abbv'])) {
 						$type = $current_property_details->all_room_types[$rd['room_classes_uid']]['room_class_abbv'];
 						$r[ 'TYPE' ] = $type;
 						

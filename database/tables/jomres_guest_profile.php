@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.20.0
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -34,6 +34,10 @@ CREATE TABLE IF NOT EXISTS `#__jomres_guest_profile` (
 	`enc_preferences` BLOB,
 	`enc_email` BLOB,
 	`enc_vat_number` BLOB,
+	`enc_drivers_license` BLOB,
+	`enc_passport_number` BLOB,
+	`enc_iban` BLOB,
+	`enc_about_me` BLOB,
 	PRIMARY KEY(`id`),
 	INDEX `cms_user_id` (`cms_user_id`)
 	)

@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.20.0
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -104,7 +104,13 @@ class j00005x_build_javascript_lang_definitions
 			$property_type = 'nopropertytype';
 		}
 
-		if ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443) {// We need to include some javascript which could normally be echo'd into the page, but due to the fact that it might be included by Jomres proper, as well as plugins, we'll instead create it's own .js file, and use the host CMS to insert it into the head.
+		if (!isset($_SERVER[ "SERVER_PORT" ])) { // CLI not isset variable fix
+			$SERVER_PORT = '80';
+		} else {
+			$SERVER_PORT = $_SERVER[ "SERVER_PORT" ];
+		}
+		
+		if ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $SERVER_PORT == 443) {// We need to include some javascript which could normally be echo'd into the page, but due to the fact that it might be included by Jomres proper, as well as plugins, we'll instead create it's own .js file, and use the host CMS to insert it into the head.
 			$temp_file = $ls.'_ssl_'.get_showtime('lang').'_'.$property_type.'_';
 		} else {
 			$temp_file = $ls.'_'.get_showtime('lang').'_'.$property_type.'_';

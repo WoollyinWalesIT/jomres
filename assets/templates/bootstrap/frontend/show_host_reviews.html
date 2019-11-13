@@ -1,0 +1,27 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<h3>{GUEST_PROFILE_OF_ME}</h3>
+
+<patTemplate:tmpl name="rows">
+<div class="row">
+	<div class="span12">
+		<h4><a href="{VIEW_PROPERTY_LINK}">{PROPERTY_NAME}</a></h4>
+	</div>
+	<div class="span2">
+			<a href="{VIEW_PROPERTY_LINK}"><img src="{IMAGE}" class="img-responsive" /></a>
+	</div>
+	<div class="span10">
+		<div class="row">
+			<div class="span4 small">
+				<strong>{GUEST_PROFILE_OF_HOST_SAID}</strong>
+			</div>
+			<div class="span8">
+				{REVIEW_CONTENT}
+			</div>
+		</div>
+	</div>
+</div>	
+</patTemplate:tmpl>
+
+
+</patTemplate:tmpl>

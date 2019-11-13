@@ -6,7 +6,7 @@
  *
  * @version Jomres 9.10.2
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -53,7 +53,64 @@ class j06000show_property_room_type
 			$room_classes_uid = (int)jomresGetParam($_REQUEST, 'room_classes_uid', 0);
 		}
 		
-		echo $MiniComponents->specificEvent('06000', 'show_property_rooms', array('output_now' => false, 'property_uid' => $property_uid, 'room_classes_uid' => $room_classes_uid ));
+		if (isset($componentArgs[ 'output_now' ])) {
+			$output_now = $componentArgs[ 'output_now' ];
+		} else if (isset($_REQUEST[ 'output_now' ])) {
+			$output_now = (bool) jomresGetParam($_REQUEST, 'output_now', 1);
+		} else {
+			$output_now = true;
+		}
+		
+		$jomres_room_types = jomres_singleton_abstract::getInstance('jomres_room_types');
+		$jomres_room_types->get_all_room_types();
+		
+		$jomres_room_types->get_room_type($room_classes_uid);
+		
+		$output = array();
+		$pageoutput = array();
+		
+		if (isset($jomres_room_types->property_specific_room_type[$property_uid][$room_classes_uid]['room_class_abbv'])) {
+			$output[ 'ROOM_CLASS_ABBV' ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int) $room_classes_uid , $jomres_room_types->property_specific_room_type[$property_uid][$room_classes_uid]['room_class_abbv']);
+			$output[ 'ROOM_CLASS_FULL_DESC' ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int) $room_classes_uid , $jomres_room_types->property_specific_room_type[$property_uid][$room_classes_uid]['room_class_full_desc']);
+		} else {
+			
+			$output[ 'ROOM_CLASS_ABBV' ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int) $room_classes_uid , $jomres_room_types->room_types[$room_classes_uid]['room_class_abbv'] );
+			$output[ 'ROOM_CLASS_FULL_DESC' ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int) $room_classes_uid , $jomres_room_types->room_types[$room_classes_uid]['room_class_full_desc']);
+		}
+
+		$output['ROOMS'] = $MiniComponents->specificEvent('06000', 'show_property_rooms', array('output_now' => false, 'property_uid' => $property_uid, 'room_classes_uid' => $room_classes_uid ));
+		
+		$resource_type = 'room_types';
+		$resource_id = $room_classes_uid;
+		
+		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
+		$jomres_media_centre_images->get_images($property_uid);
+		if (isset($jomres_media_centre_images->images [$resource_type] [$resource_id])) {
+			$images = $jomres_media_centre_images->images [$resource_type] [$resource_id];
+			$slideshow = $MiniComponents->specificEvent('01060', 'slideshow', array('images' => $images ));
+			$output['SLIDESHOW'] = $slideshow['slideshow'];
+		} else {
+			$output['SLIDESHOW'] = '';
+		}
+		
+		
+
+		
+		$pageoutput[] = $output;
+		$tmpl = new patTemplate();
+		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+		$tmpl->addRows('pageoutput', $pageoutput);
+
+		$tmpl->readTemplatesFromInput('show_property_room_type.html');
+		$template = $tmpl->getParsedTemplate();
+		
+		if ($output_now) {
+			echo $template;
+		} else {
+			$this->retVals = $template;
+		}
+		
+		
 	}
 
 	public function getRetVals()

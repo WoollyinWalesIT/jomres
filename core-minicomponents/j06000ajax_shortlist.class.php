@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.20.0
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -70,7 +70,7 @@ class j06000ajax_shortlist
 			$count = count($shortlist_items);
 			if ($count > 0) {
 				for ($i = 0; $i < $count; ++$i) {
-					if ($shortlist_items[ $i ] == $property_uid) {
+					if ( isset($shortlist_items[ $i ]) && $shortlist_items[ $i ] == $property_uid) {
 						array_splice($shortlist_items, $i, 1);
 					}
 				}

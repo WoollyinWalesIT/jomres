@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.20.0
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -183,6 +183,9 @@ class jomres_room_types
 			$roomtype_id = doInsertSql($query, false);
 		}
 
+		updateCustomText('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int) $roomtype_id, $this->room_type['room_class_abbv'], true, $this->room_type['property_uid'] );
+		updateCustomText('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int) $roomtype_id, $this->room_type['room_class_full_desc'], true, $this->room_type['property_uid'] );
+		
 		if ((int) $roomtype_id > 0) {
 			if ($this->update_roomtype_propertytype_xref_table($roomtype_id, array($this->room_type['ptype_xref']) )) {
 				return true;

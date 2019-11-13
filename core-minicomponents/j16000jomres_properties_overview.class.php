@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.20.0
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -65,6 +65,16 @@ class j16000jomres_properties_overview
 			$output['TOTAL_NOTAPPROVED_LABEL_CLASS'] = 'label-green';
 		}
 
+
+		$output['_ADMIN_CPANEL_PROPERTIES_PANEL_TOTAL'] = jr_gettext('_ADMIN_CPANEL_PROPERTIES_PANEL_TOTAL', '_ADMIN_CPANEL_PROPERTIES_PANEL_TOTAL', false, false);
+		$output['_ADMIN_CPANEL_PROPERTIES_PANEL_PUBLISHED'] = jr_gettext('_ADMIN_CPANEL_PROPERTIES_PANEL_PUBLISHED', '_ADMIN_CPANEL_PROPERTIES_PANEL_PUBLISHED', false, false);
+		$output['_ADMIN_CPANEL_PROPERTIES_PANEL_UNPUBLISHED'] = jr_gettext('_ADMIN_CPANEL_PROPERTIES_PANEL_UNPUBLISHED', '_ADMIN_CPANEL_PROPERTIES_PANEL_UNPUBLISHED', false, false);
+		$output['_ADMIN_CPANEL_PROPERTIES_PANEL_APPROVED'] = jr_gettext('_ADMIN_CPANEL_PROPERTIES_PANEL_APPROVED', '_ADMIN_CPANEL_PROPERTIES_PANEL_APPROVED', false, false);
+		$output['_ADMIN_CPANEL_PROPERTIES_PANEL_REQUIREAPPROVAL'] = jr_gettext('_ADMIN_CPANEL_PROPERTIES_PANEL_REQUIREAPPROVAL', '_ADMIN_CPANEL_PROPERTIES_PANEL_REQUIREAPPROVAL', false, false);
+		
+		$output['_JOMRES_HLIST_PROPERTIES'] = jr_gettext('_JOMRES_HLIST_PROPERTIES', '_JOMRES_HLIST_PROPERTIES', false, false);
+		
+		
 		$pageoutput[ ] = $output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);

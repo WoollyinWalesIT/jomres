@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.20.0
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -52,7 +52,8 @@ class basic_room_details
 						`max_people`,
 						`singleperson_suppliment`,
 						`tagline`,
-						`description`
+						`description`,
+						`surcharge`
 					FROM #__jomres_rooms 
 					WHERE `propertys_uid` = ' .(int) $property_uid.' 
 					ORDER BY LENGTH(room_number), room_number, room_name
@@ -64,17 +65,18 @@ class basic_room_details
 		}
 
 		foreach ($result as $r) {
-			$this->rooms[$r->room_uid]['room_uid']				  = (int) $r->room_uid;
-			$this->rooms[$r->room_uid]['room_classes_uid']		  = (int) $r->room_classes_uid;
-			$this->rooms[$r->room_uid]['propertys_uid']			 = (int) $r->propertys_uid;
-			$this->rooms[$r->room_uid]['room_features_uid']		 = stripslashes($r->room_features_uid);
-			$this->rooms[$r->room_uid]['room_name']				 = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMNAME_TITLE'.$r->room_uid, stripslashes($r->room_name), false);
-			$this->rooms[$r->room_uid]['room_number']			   = stripslashes($r->room_number);
+			$this->rooms[$r->room_uid]['room_uid']					= (int) $r->room_uid;
+			$this->rooms[$r->room_uid]['room_classes_uid']			= (int) $r->room_classes_uid;
+			$this->rooms[$r->room_uid]['propertys_uid']				= (int) $r->propertys_uid;
+			$this->rooms[$r->room_uid]['room_features_uid']			= stripslashes($r->room_features_uid);
+			$this->rooms[$r->room_uid]['room_name']					= jr_gettext('_JOMRES_CUSTOMTEXT_ROOMNAME_TITLE'.$r->room_uid, stripslashes($r->room_name), false);
+			$this->rooms[$r->room_uid]['room_number']				= stripslashes($r->room_number);
 			$this->rooms[$r->room_uid]['room_floor']				= stripslashes($r->room_floor);
 			$this->rooms[$r->room_uid]['max_people']				= (int) $r->max_people;
-			$this->rooms[$r->room_uid]['singleperson_suppliment']   = (float) $r->singleperson_suppliment;
+			$this->rooms[$r->room_uid]['singleperson_suppliment']	= (float) $r->singleperson_suppliment;
 			$this->rooms[$r->room_uid]['tagline']		 			= jr_gettext('_JOMRES_CUSTOMTEXT_ROOM_TAGLINE'.$r->room_uid, stripslashes($r->tagline), false);
-			$this->rooms[$r->room_uid]['description']			   = jomres_decode(jr_gettext('_JOMRES_CUSTOMTEXT_ROOM_DESCRIPTION_'.$r->room_uid, stripslashes($r->description), false));
+			$this->rooms[$r->room_uid]['description']				= jomres_decode(jr_gettext('_JOMRES_CUSTOMTEXT_ROOM_DESCRIPTION_'.$r->room_uid, stripslashes($r->description), false));
+			$this->rooms[$r->room_uid]['surcharge']					= (float) $r->surcharge;
 			
 			if ($this->rooms[$r->room_uid]['room_features_uid'] != '') {
 				$room_feature_uids .= $this->rooms[$r->room_uid]['room_features_uid'].',';
@@ -120,7 +122,8 @@ class basic_room_details
 						`max_people`,
 						`singleperson_suppliment`,
 						`tagline`,
-						`description`
+						`description`,
+						`surcharge`
 					FROM #__jomres_rooms 
 					WHERE `room_uid` = ' .(int) $room_uid.' 
 					LIMIT 1
@@ -132,17 +135,18 @@ class basic_room_details
 		}
 
 		foreach ($result as $r) {
-			$this->room['room_uid']				 = (int) $r->room_uid;
-			$this->room['room_classes_uid']		 = (int) $r->room_classes_uid;
+			$this->room['room_uid']					= (int) $r->room_uid;
+			$this->room['room_classes_uid']			= (int) $r->room_classes_uid;
 			$this->room['propertys_uid']			= (int) $r->propertys_uid;
 			$this->room['room_features_uid']		= stripslashes($r->room_features_uid);
 			$this->room['room_name']				= jr_gettext('_JOMRES_CUSTOMTEXT_ROOMNAME_TITLE'.$r->room_uid, stripslashes($r->room_name), false);
-			$this->room['room_number']			  = stripslashes($r->room_number);
-			$this->room['room_floor']			   = stripslashes($r->room_floor);
-			$this->room['max_people']			   = (int) $r->max_people;
-			$this->room['singleperson_suppliment']  = (float) $r->singleperson_suppliment;
+			$this->room['room_number']				= stripslashes($r->room_number);
+			$this->room['room_floor']				= stripslashes($r->room_floor);
+			$this->room['max_people']				= (int) $r->max_people;
+			$this->room['singleperson_suppliment']	= (float) $r->singleperson_suppliment;
 			$this->room['tagline']					= jr_gettext('_JOMRES_CUSTOMTEXT_ROOM_TAGLINE'.$r->room_uid, stripslashes($r->tagline), false);
-			$this->room['description']			  = jomres_decode(jr_gettext('_JOMRES_CUSTOMTEXT_ROOM_DESCRIPTION_'.$r->room_uid, stripslashes($r->description), false));
+			$this->room['description']				= jomres_decode(jr_gettext('_JOMRES_CUSTOMTEXT_ROOM_DESCRIPTION_'.$r->room_uid, stripslashes($r->description), false));
+			$this->room['surcharge']				= (float) $r->surcharge;
 			
 			$this->property_uid = $this->room['propertys_uid'];
 		}

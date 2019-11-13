@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.20.0
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -71,6 +71,13 @@ class j16000jomres_reviews_overview
 			$output['TOTAL_REVIEW_REPORTS_LABEL_CLASS'] = 'label-green';
 		}
 
+		$output['_ADMIN_CPANEL_REVIEWS_PANEL_TOTAL_REVIEWS'] = jr_gettext('_ADMIN_CPANEL_REVIEWS_PANEL_TOTAL_REVIEWS', '_ADMIN_CPANEL_REVIEWS_PANEL_TOTAL_REVIEWS', false, false);
+		$output['_ADMIN_CPANEL_REVIEWS_PANEL_UNPUBLISHED_REVIEWS'] = jr_gettext('_ADMIN_CPANEL_REVIEWS_PANEL_UNPUBLISHED_REVIEWS', '_ADMIN_CPANEL_REVIEWS_PANEL_UNPUBLISHED_REVIEWS', false, false);
+		$output['_ADMIN_CPANEL_REVIEWS_PANEL_REPORTED_REVIEWS'] = jr_gettext('_ADMIN_CPANEL_REVIEWS_PANEL_REPORTED_REVIEWS', '_ADMIN_CPANEL_REVIEWS_PANEL_REPORTED_REVIEWS', false, false);
+		
+		$output['_JOMRES_REVIEWS'] = jr_gettext('_JOMRES_REVIEWS', '_JOMRES_REVIEWS', false, false);
+		
+		
 		$pageoutput[ ] = $output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);

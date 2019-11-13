@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.20.0
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -141,6 +141,12 @@ function jomres_cmsspecific_createNewUser( $email_address = '' )
 					error_logging('Failure in sending registration email to guest. Target address: '.$hotelemail.' Subject'.$subject);
 				}
 			}
+			
+			if (!$thisJRUser->userIsManager) {
+				wp_set_current_user($id); // set the current wp user
+				wp_set_auth_cookie($id); // start the cookie for the current registered user
+			}
+
 		}
 
 

@@ -6,6 +6,9 @@
 	</div>
 	<div class="col-md-6">
 		<h3 class="page-header">{TAGLINE}</h3>
+		<patTemplate:tmpl name="surcharge" type="simpleCondition" requiredVars="surcharge" unusedvars="nbsp">
+			<span class="big-price big-total-price">{SURCHARGE_TEXT} {SURCHARGE}</span>
+		</patTemplate:tmpl>
 		<p><strong>{HEADER_MAXPEOPLE}:</strong> {MAXPEOPLE}</p>
 		<p><strong>{HEADER_ROOMFLOOR}:</strong> {ROOMFLOOR}</p>
 		<p>&nbsp;</p>

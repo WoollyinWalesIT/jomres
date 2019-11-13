@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.20.0
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -125,6 +125,17 @@ class jrportal_guests
 			throw new Exception('Error: Property uid not set.');
 		}
 		
+		// A little hacky :s 
+		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+		$original_guestDeets = $tmpBookingHandler->tmpguest;
+		
+		$tmpBookingHandler->tmpguest['firstname'] = $this->firstname;
+		$tmpBookingHandler->tmpguest['surname'] = $this->surname;
+		$tmpBookingHandler->tmpguest['email'] = $this->email;
+		
+		$this->cms_user_id = jomres_cmsspecific_createNewUser($this->email);
+		$tmpBookingHandler->tmpguest = $original_guestDeets;
+		
 		//validate EU VAT info - not currencly needed anywhere but here for future use..
 		if (trim($this->vat_number) != '') {
 			jr_import('vat_number_validation');
@@ -183,6 +194,8 @@ class jrportal_guests
 		if (!$this->id) {
 			throw new Exception('Error: New guest insert failed.');
 		}
+		
+
 		
 		$webhook_notification							   = new stdClass();
 		$webhook_notification->webhook_event				= 'guest_saved';

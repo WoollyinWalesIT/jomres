@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.20.0
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -20,7 +20,7 @@ defined('_JOMRES_INITCHECK') or die('');
 *
 */
 if (!defined('TRANSACTION_ID')) {
-    define('TRANSACTION_ID', time());
+	define('TRANSACTION_ID', time());
 }
 
 
@@ -32,11 +32,11 @@ if (!defined('TRANSACTION_ID')) {
 *
 */
 if (!defined('JOMRES_ROOT_DIRECTORY')) {
-    if (file_exists(dirname(__FILE__).'/../jomres_root.php')) {
-        require_once dirname(__FILE__).'/../jomres_root.php';
-    } else {
-        define('JOMRES_ROOT_DIRECTORY', 'jomres');
-    }
+	if (file_exists(dirname(__FILE__).'/../jomres_root.php')) {
+		require_once dirname(__FILE__).'/../jomres_root.php';
+	} else {
+		define('JOMRES_ROOT_DIRECTORY', 'jomres');
+	}
 }
 
 
@@ -46,38 +46,38 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 *
 */
 if (!defined('JOMRESPATH_BASE')) {
-    if (!defined('JRDS')) {
-        $apacheSig = false;
+	if (!defined('JRDS')) {
+		$apacheSig = false;
 
-        $detect_os = strtoupper($_SERVER[ 'SERVER_SOFTWARE' ]); // converted to uppercase
-        $isWin32 = strpos($detect_os, 'WIN32');
-        $IIS = strpos($detect_os, 'IIS');
+		$detect_os = strtoupper($_SERVER[ 'SERVER_SOFTWARE' ]); // converted to uppercase
+		$isWin32 = strpos($detect_os, 'WIN32');
+		$IIS = strpos($detect_os, 'IIS');
 
-        if (isset($_SERVER[ 'SERVER_SIGNATURE' ])) {
-            $signature = strtoupper($_SERVER[ 'SERVER_SIGNATURE' ]);
-            $apacheSig = strpos($signature, 'APACHE');
-        }
+		if (isset($_SERVER[ 'SERVER_SIGNATURE' ])) {
+			$signature = strtoupper($_SERVER[ 'SERVER_SIGNATURE' ]);
+			$apacheSig = strpos($signature, 'APACHE');
+		}
 
-        $dir = dirname(realpath(__FILE__));
+		$dir = dirname(realpath(__FILE__));
 
-        if (strpos($dir, ':\\')) {
-            define('JRDS', '\\');
-        } else {
-            if ($isWin32 === false || $apacheSig == true) {
-                define('JRDS', '/');
-            } else {
-                define('JRDS', '\\');
-            }
-        }
-    }
+		if (strpos($dir, ':\\')) {
+			define('JRDS', '\\');
+		} else {
+			if ($isWin32 === false || $apacheSig == true) {
+				define('JRDS', '/');
+			} else {
+				define('JRDS', '\\');
+			}
+		}
+	}
 
-    if (isset($_SERVER[ 'SCRIPT_FILENAME' ])) {
-        $dir_path = str_replace($_SERVER[ 'SCRIPT_FILENAME' ], '', dirname(realpath(__FILE__)));
-    } else {
-        $dir_path = str_replace($_SERVER[ 'SCRIPT_NAME' ], '', dirname(realpath(__FILE__)));
-    }
+	if (isset($_SERVER[ 'SCRIPT_FILENAME' ])) {
+		$dir_path = str_replace($_SERVER[ 'SCRIPT_FILENAME' ], '', dirname(realpath(__FILE__)));
+	} else {
+		$dir_path = str_replace($_SERVER[ 'SCRIPT_NAME' ], '', dirname(realpath(__FILE__)));
+	}
 
-    define('JOMRESPATH_BASE', $dir_path.JRDS);
+	define('JOMRESPATH_BASE', $dir_path.JRDS);
 }
 
 /**
@@ -86,15 +86,21 @@ if (!defined('JOMRESPATH_BASE')) {
 *
 */
 if (!defined('AJAXCALL')) {
-    if (isset($_REQUEST[ 'jrajax' ])) {
-        if ((int) $_REQUEST[ 'jrajax' ] == 1) {
-            define('AJAXCALL', true);
-        } else {
-            define('AJAXCALL', false);
-        }
-    } else {
-        define('AJAXCALL', false);
-    }
+	if (isset($_REQUEST[ 'jrajax' ])) {
+		if ((int) $_REQUEST[ 'jrajax' ] == 1) {
+			define('AJAXCALL', true);
+		} else {
+			define('AJAXCALL', false);
+		}
+	} else {
+		$contentType = isset($_SERVER["HTTP_ACCEPT"]) ? trim($_SERVER["HTTP_ACCEPT"]) : '';
+		if( stristr($contentType, 'application/json') === TRUE ){
+			define('AJAXCALL', true);
+		}
+		else {
+			define('AJAXCALL', false);
+		}
+	}
 }
 
 
@@ -128,10 +134,18 @@ define('JOMRES_TEMP_ABSPATH', JOMRESPATH_BASE.'temp'.JRDS);
 define('JOMRES_CACHE_ABSPATH', JOMRESPATH_BASE.'cache'.JRDS);
 define('JOMRES_UPDATES_ABSPATH', JOMRESPATH_BASE.'updates'.JRDS);
 
+//mPDF
+define('JOMRES_MPDF_ABSPATH', JOMRES_TEMP_ABSPATH.'pdfs'.JRDS);
+
 //vendors
-define('JOMRES_VENDOR_ABSPATH', JOMRESPATH_BASE.'vendor'.JRDS);
-define('JOMRES_NODE_MODULES_ABSPATH', JOMRESPATH_BASE.'node_modules'.JRDS);
-define('JOMRES_NODE_MODULES_RELPATH', JOMRES_ROOT_DIRECTORY.'/node_modules/');
+define('JOMRES_VENDOR_ABSPATH', JOMRES_LIBRARIES_ABSPATH.'vendor'.JRDS);
+define('JOMRES_NODE_MODULES_ABSPATH', JOMRES_LIBRARIES_ABSPATH.'node_modules'.JRDS);
+define('JOMRES_NODE_MODULES_RELPATH', JOMRES_ROOT_DIRECTORY.'/libraries/node_modules/');
+
+require_once(JOMRES_CLASSES_ABSPATH.'core_package_management.class.php');
+
+$core_package_management = new core_package_management();
+
 
 //includes
 require_once JOMRES_VENDOR_ABSPATH.'autoload.php';
@@ -167,11 +181,11 @@ require_once _JOMRES_DETECTED_CMS_SPECIFIC_FILES.'cms_specific_functions.php';
 
 //patTemplate
 if (!class_exists('patTemplate')) {
-    require_once JOMRES_LIBRARIES_ABSPATH.'phptools'.JRDS.'patTemplate.php';
+	require_once JOMRES_LIBRARIES_ABSPATH.'phptools'.JRDS.'patTemplate.php';
 }
 
 if (!class_exists('patErrorManager')) {
-    require_once JOMRES_LIBRARIES_ABSPATH.'phptools'.JRDS.'patErrorManager.php';
+	require_once JOMRES_LIBRARIES_ABSPATH.'phptools'.JRDS.'patErrorManager.php';
 }
 
 /**
@@ -180,7 +194,7 @@ if (!class_exists('patErrorManager')) {
 *
 */
 if (!defined('JOMRES_API_CMS_ROOT')) {
-    require_once JOMRES_API_ABSPATH.'classes'.JRDS.'logging.class.php';
+	require_once JOMRES_API_ABSPATH.'classes'.JRDS.'logging.class.php';
 }
 
 //site config
@@ -189,7 +203,7 @@ $jrConfig = $siteConfig->get();
 
 //define jomres logs path
 if (!isset($jrConfig['log_path']) || $jrConfig['log_path'] == '') {
-    $jrConfig['log_path'] = JOMRESPATH_BASE.'logs'.JRDS;
+	$jrConfig['log_path'] = JOMRESPATH_BASE.'logs'.JRDS;
 }
 
 define('JOMRES_SYSTEMLOG_PATH', fix_path($jrConfig['log_path']));
@@ -250,7 +264,7 @@ set_showtime('tmplcomponent_source', JOMRES_LIBRARIES_ABSPATH.'fullscreen_view'.
 *
 */
 if (!defined('AUTO_UPGRADE')) {
-    jomres_cmsspecific_patchJoomlaTemplate();
+	jomres_cmsspecific_patchJoomlaTemplate();
 }
 
 //cms specific urls
@@ -261,10 +275,10 @@ jomres_parseRequest();
 
 //error reporting
 if ($jrConfig[ 'development_production' ] == 'production') {
-    set_error_handler('errorHandler');
+	set_error_handler('errorHandler');
 } else {
-    error_reporting(-1);
-    ini_set('display_errors', 'On');
+	error_reporting(-1);
+	ini_set('display_errors', 'On');
 }
 
 //TODO find a better place, maybe jomres.php and framework.php

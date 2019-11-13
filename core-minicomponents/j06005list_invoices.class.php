@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.20.0
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -86,6 +86,7 @@ class j06005list_invoices
 		$output[ 'HPENDING' ] = jr_gettext('_JRPORTAL_INVOICES_STATUS_PENDING', '_JRPORTAL_INVOICES_STATUS_PENDING', false);
 		$output[ '_JRPORTAL_INVOICES_LINEITEMS' ] = jr_gettext('_JRPORTAL_INVOICES_LINEITEMS', '_JRPORTAL_INVOICES_LINEITEMS', false);
 		$output[ 'HPAYNOW' ] = jr_gettext('_JRPORTAL_INVOICES_PAYNOW', '_JRPORTAL_INVOICES_PAYNOW', false);
+		$output[ '_JOMRES_INVOICE_NUMBER' ] = jr_gettext('_JOMRES_INVOICE_NUMBER', '_JOMRES_INVOICE_NUMBER', false);
 
 		if (!using_bootstrap()) {
 			$output[ 'TASK_FILTER_ANY' ] = '<a href="'.JOMRES_SITEPAGE_URL.'&task=list_invoices">'.jr_gettext('_JOMRES_FRONT_ROOMSMOKING_EITHER', '_JOMRES_FRONT_ROOMSMOKING_EITHER', false).'</a>';

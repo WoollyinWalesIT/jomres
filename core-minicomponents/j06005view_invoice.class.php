@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.14.0
+ * @version Jomres 9.20.0
  *
- * @copyright	2005-2018 Vince Wooll
+ * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -26,6 +26,7 @@ class j06005view_invoice
 			return;
 		}
 
+		
 		$invoice_id = intval(jomresGetParam($_REQUEST, 'id', 0));
 		$popup = intval(jomresGetParam($_REQUEST, 'popup', 0));
 		$bypass_security_check = false;
@@ -47,6 +48,15 @@ class j06005view_invoice
 		if ($invoice_id == 0) { //no invoice id passed, so nothing to display
 			return;
 		}
+		
+		if (isset($componentArgs['as_pdf'])) {
+			$as_pdf = (bool)$componentArgs['as_pdf'];
+		} elseif ( isset($_REQUEST['as_pdf']) ) {
+			$as_pdf = (bool)jomresGetParam($_REQUEST, 'as_pdf', false);
+		} else {
+			$as_pdf = false;
+		}
+		
 		
 		if (isset($componentArgs['line_items_only'])) {
 			$line_items_only = $componentArgs['line_items_only'];
@@ -106,6 +116,7 @@ class j06005view_invoice
 		}
 
 
+
 		$output[ 'BUSINESS_DETAILS_TEMPLATE' ]	= $MiniComponents->specificEvent('06005', 'show_invoice_seller', array('invoice_id' => $invoice_id));
 		$output[ 'CLIENT_DETAILS_TEMPLATE' ]	= $MiniComponents->specificEvent('06005', 'show_invoice_buyer', array('invoice_id' => $invoice_id)); 
 
@@ -125,6 +136,17 @@ class j06005view_invoice
 		$output[ 'HINVOICENO' ] = jr_gettext('_JOMRES_INVOICE_NUMBER', '_JOMRES_INVOICE_NUMBER');
 		$output[ 'TRANSACTION_ID' ] = jr_gettext('TRANSACTION_IDS', 'TRANSACTION_IDS');
 		$output[ 'PAYMENT_METHOD' ] = jr_gettext('PAYMENT_METHOD', 'PAYMENT_METHOD');
+		$output[ '_JOMRES_BOOKING_NUMBER' ] = jr_gettext('_JOMRES_BOOKING_NUMBER', '_JOMRES_BOOKING_NUMBER');
+		
+		$output[ '_JOMRES_PDF_LINK' ] =  get_pdf_url();
+		$output[ '_JOMRES_PDF_BUTTON' ] = jr_gettext('_JOMRES_PDF_BUTTON', '_JOMRES_PDF_BUTTON');
+
+		if (isset($contractData['tag'])) {
+			$output[ 'BOOKING_NUMBER' ] = $contractData['tag'];
+		} else {
+			$output[ 'BOOKING_NUMBER' ] = null;
+		}
+		
 
 		$markaspaid_link = array();
 		if ($thisJRUser->userIsManager && (int) $invoice->property_uid > 0 && (int) $invoice->status != 1 && $contractData['approved'] == 1) {
@@ -144,7 +166,12 @@ class j06005view_invoice
 			$viewbooking_link[] = array('VIEWBOOKING_LINK' => JOMRES_SITEPAGE_URL.'&task=edit_booking&contract_uid='.$invoice->contract_id, 'VIEWBOOKING_TEXT' => $viewbooking);
 		}
 
-		$output[ 'ID' ] = $invoice->id;
+		if ( trim($invoice->invoice_number) == '' ) {
+			$output[ 'ID' ] = $invoice->id;
+		} else {
+			$output[ 'ID' ] = $invoice->invoice_number;
+		}
+		
 
 		// Invoice status:
 		// 0 unpaid
@@ -309,6 +336,12 @@ class j06005view_invoice
 			$tmpl->addRows('immediate_pay', $immediate_pay);
 		}
 
+		if ($as_pdf) {
+			$tmpl->readTemplatesFromInput('frontend_view_invoice_pdf.html');
+			output_pdf($tmpl->getParsedTemplate() , $output[ 'HINVOICENO' ].' '.$output[ 'ID' ] );
+		}
+		
+		
 		if ($output_now) {
 			$tmpl->displayParsedTemplate();
 		} else {
