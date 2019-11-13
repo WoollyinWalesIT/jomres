@@ -17,6 +17,9 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * Core Minicomponent.
 	 *
+     * Generates significant information used in microdata, and then calls the relevant schema template to show the schema. The trigger number 01070 causes the schema to be shown after the property header template is output.
+     *
+     * TODO : Remove microdata from property_header.html
 	 * 
 	 */
 
@@ -356,7 +359,12 @@ class j01070show_property_schema
 		
 	}
 
-	private function getTariffRanges($property_uid) 
+    /**
+     * @param $property_uid
+     * @return array
+     * @throws Exception
+     */
+    private function getTariffRanges($property_uid)
 	{
 		$this->roomTypePriceRanges = array();
 		
@@ -395,9 +403,12 @@ class j01070show_property_schema
 			}
 		}
 	}
-	
 
-	public function getRetVals()
+
+    /**
+     * @return null
+     */
+    public function getRetVals()
 	{
 		return null;
 	}

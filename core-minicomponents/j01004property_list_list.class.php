@@ -17,7 +17,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * Core Minicomponent.
 	 *
-	 * 
+	 * Registers the list layout for property search results/lists. These are the options that a user can choose to alter the layout they want to see properties displayed in.
 	 */
 
 class j01004property_list_list

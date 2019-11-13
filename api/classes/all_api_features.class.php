@@ -17,14 +17,20 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 /**
-*
+ *
 * Remote file inclusion defence. We'll collect all possible API feature file names there. Later, when routing, if the file doesn't exist then boom, we don't include it.
 *
-*/
+ * @property array authentication_free_routes
+ */
 
 class all_api_features
 {
-	/**
+    /**
+     * @var array
+     */
+    private $api_feature_files;
+
+    /**
 	*
 	* Constructor. Sets up arrays and finds API features
 	*
@@ -55,12 +61,13 @@ class all_api_features
 	public function get_authfree_routes() {
 		return $this->authentication_free_routes;
 	}
-	
-	/**
-	*
-	* Scans directories for API features in looking for plugins that are prefixed "api_feature_". 
-	*
-	*/
+
+    /**
+     *
+     * Scans directories for API features in looking for plugins that are prefixed "api_feature_".
+     *
+     * @param $path the path of the directory to be scanned
+     */
     private function get_all_api_features($path)
     {
         $core_plugins_dir_contents = scandir($path);

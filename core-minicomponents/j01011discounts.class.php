@@ -17,6 +17,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * Core Minicomponent.
 	 *
+     * If any properties found in a search result set offer discounts, then text is assembled and returned to 01010listproperties
 	 * 
 	 */
 
@@ -113,20 +114,6 @@ class j01011discounts
 		}
 	}
 
-	public function touch_template_language()
-	{
-		$output = array();
-		$output[ ] = jr_gettext('_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST', '_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST');
-		$output[ ] = jr_gettext('_JOMCOMP_LASTMINUTE_ORMORE', '_JOMCOMP_LASTMINUTE_ORMORE');
-		$output[ ] = jr_gettext('_JOMCOMP_LASTMINUTE_PROPERTYLIST_PRE', '_JOMCOMP_LASTMINUTE_PROPERTYLIST_PRE');
-		$output[ ] = jr_gettext('_JOMCOMP_LASTMINUTE_PROPERTYLIST_MID', '_JOMCOMP_LASTMINUTE_PROPERTYLIST_MID');
-		$output[ ] = jr_gettext('_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST', '_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST');
-
-		foreach ($output as $o) {
-			echo $o;
-			echo '<br/>';
-		}
-	}
 
 /**
  * Must be included in every mini-component.

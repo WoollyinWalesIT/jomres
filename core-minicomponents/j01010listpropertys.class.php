@@ -17,6 +17,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * Core Minicomponent.
 	 *
+     * Generates and displays the search results property list page
 	 * 
 	 */
 
@@ -790,68 +791,37 @@ class j01010listpropertys
 					$property_details[ ] = $property_deets;
 				}
 				
-
-
-				if (!$data_only) {
-					if (!AJAXCALL || get_showtime('task') == 'ajax_search_filter') {
-						$header_pageoutput[ ] = $header_output;
-						$tmpl = new patTemplate();
-						$tmpl->addRows('header_pageoutput', $header_pageoutput);
-						$tmpl->addRows('layout_rows', $layout_rows);
-						$tmpl->addRows('compare', $compare);
-						$tmpl->addRows('shortlist', $shortlist);
-
-						$tmpl->addRows('budget_output', $budget_output);
-						$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
-						$tmpl->readTemplatesFromInput('list_properties_header.html');
-						$output[ 'HEADER' ] = $tmpl->getParsedTemplate();
-					}
-
-					$pageoutput[ ] = $output;
+				if (!AJAXCALL || get_showtime('task') == 'ajax_search_filter') {
+					$header_pageoutput[ ] = $header_output;
 					$tmpl = new patTemplate();
-					if (isset($property_reviews)) {
-						$tmpl->addRows('property_reviews', $property_reviews);
-					}
+					$tmpl->addRows('header_pageoutput', $header_pageoutput);
+					$tmpl->addRows('layout_rows', $layout_rows);
+					$tmpl->addRows('compare', $compare);
+					$tmpl->addRows('shortlist', $shortlist);
 
-					$tmpl->addRows('pageoutput', $pageoutput);
-					$tmpl->addRows('property_details', $property_details);
-					$tmpl->setRoot($layout_path_to_template);
-					$tmpl->readTemplatesFromInput($layout_template);
-					$tmpl->displayParsedTemplate();
-				} else {
-					include JOMRES_TEMPLATEPATH_FRONTEND.JRDS.'main.php';
-					$jomres_remote_xml = new SimpleXMLElement($xmlstr);
-					foreach ($property_details as $property) {
-						$xml_property = $jomres_remote_xml->addChild('property', $property[ 'UID' ]);
-						$xml_property->addChild('property_name', $property[ 'PROP_NAME' ]);
-						$xml_property->addChild('booking_link', $property[ 'BOOKTHIS_TEXT' ]);
-						$xml_property->addChild('prop_street', $property[ 'PROP_STREET' ]);
-						$xml_property->addChild('prop_town', $property[ 'PROPERTYTOWN' ]);
-						$xml_property->addChild('prop_postcode', $property[ 'PROP_POSTCODE' ]);
-						$xml_property->addChild('prop_region', $property[ 'PROPERTYREGION' ]);
-						$xml_property->addChild('prop_country', $property[ 'PROPERTYCOUNTRY' ]);
-						$xml_property->addChild('moreinformation', $property[ 'MOREINFORMATION' ]);
-						$xml_property->addChild('image', $property[ 'IMAGE' ]);
-						$xml_property->addChild('property_type', $property[ 'PROPERTY_TYPE' ]);
-						$xml_property->addChild('description', $property[ 'PROPERTYDESC' ]);
-						$xml_property->addChild('stars', $property[ 'STARS' ]);
-
-						$xml_property->addChild('livesite', urlencode(get_showtime('live_site')));
-						$xml_property->addChild('lowestprice', urlencode($property[ 'LOWESTPRICE' ]));
-						$xml_property->addChild('moreinformationlink', urlencode($property[ 'MOREINFORMATIONLINK_SEFSAFE' ]));
-					}
-
-					$xmlString = $jomres_remote_xml->asXML(); // returns the SimpleXML object as a serialized XML string
-					echo $xmlString;
-					exit;
+					$tmpl->addRows('budget_output', $budget_output);
+					$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+					$tmpl->readTemplatesFromInput('list_properties_header.html');
+					$output[ 'HEADER' ] = $tmpl->getParsedTemplate();
 				}
+
+				$pageoutput[ ] = $output;
+				$tmpl = new patTemplate();
+				if (isset($property_reviews)) {
+					$tmpl->addRows('property_reviews', $property_reviews);
+				}
+
+				$tmpl->addRows('pageoutput', $pageoutput);
+				$tmpl->addRows('property_details', $property_details);
+				$tmpl->setRoot($layout_path_to_template);
+				$tmpl->readTemplatesFromInput($layout_template);
+				$tmpl->displayParsedTemplate();
+
 
 				//set back the initial property type and property uid
 				set_showtime('property_uid', $original_property_uid);
 				set_showtime('property_type', $original_property_type);
 			}
-			//else
-				//echo jr_gettext('_JOMRES_FRONT_NORESULTS',_JOMRES_FRONT_NORESULTS,$editable=true,$islink=false) ;
 		}
 	}
 

@@ -17,7 +17,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * Core Minicomponent.
 	 *
-	 * 
+	 * Called by the 01010 script, given a list of property uids, it will rejig the order of the ids based on the jomsearch_sortby variable that can be passed via a variety of methods (componentArgs, $_REQUEST, user_settings etc)
 	 */
 
 class j01009a_filterproperties
@@ -66,10 +66,6 @@ class j01009a_filterproperties
 		$tmpBookingHandler->user_settings[ 'jomsearch_sortby' ] = $sortid;
 
 		switch ($sortid) {
-			//########################################################################################
-			case '1':
-				$this->propertys_uids = $propertys_uids;
-				break;
 			//########################################################################################
 			case '2':
 				$query = 'SELECT propertys_uid, property_name FROM #__jomres_propertys WHERE propertys_uid IN ('.jomres_implode($propertys_uids).') ORDER BY property_name';
@@ -169,24 +165,6 @@ class j01009a_filterproperties
 			$tmpl->readTemplatesFromInput('order.html');
 			$tmpl->addRows('sort_order', $sortorder);
 			set_showtime('order_dropdown', $tmpl->getParsedTemplate());
-		}
-	}
-
-	public function touch_template_language()
-	{
-		$output = array();
-
-		$output[ ] = jr_gettext('_JOMRES_SORTORDER_DEFAULT', '_JOMRES_SORTORDER_DEFAULT');
-		$output[ ] = jr_gettext('_JOMRES_SORTORDER_PROPERTYNAME', '_JOMRES_SORTORDER_PROPERTYNAME');
-		$output[ ] = jr_gettext('_JOMRES_SORTORDER_PROPERTYREGION', '_JOMRES_SORTORDER_PROPERTYREGION');
-		$output[ ] = jr_gettext('_JOMRES_SORTORDER_PROPERTYTOWN', '_JOMRES_SORTORDER_PROPERTYTOWN');
-		$output[ ] = jr_gettext('_JOMRES_SORTORDER_STARS', '_JOMRES_SORTORDER_STARS');
-		$output[ ] = jr_gettext('_JOMRES_SORTORDER_PRICE_ASC', '_JOMRES_SORTORDER_PRICE_ASC');
-		$output[ ] = jr_gettext('_JOMRES_SORTORDER_PRICE_DESC', '_JOMRES_SORTORDER_PRICE_DESC');
-
-		foreach ($output as $o) {
-			echo $o;
-			echo '<br/>';
 		}
 	}
 

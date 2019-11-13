@@ -1,8 +1,5 @@
 <?php
 /**
- * Allows logging via the Monolog library
- *
- * Started out as being intended just for REST API logging, but now is used throughout Jomres, not just API calls.
  *
  * @author Vince Wooll <sales@jomres.net>
  *
@@ -24,8 +21,10 @@ use Monolog\Handler\BrowserConsoleHandler;
 use Monolog\Processor\WebProcessor;
 	
 	/**
-	 * 
 	 *
+     * Allows logging via the Monolog library.
+     *
+     * Started out as being intended just for REST API logging, but now is used throughout Jomres, not just API calls.
 	 *
 	 */
 

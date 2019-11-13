@@ -1,9 +1,6 @@
 <?php
 /**
- * Confirms that the key pair has been given rights to the scope
- *
- * Key pairs have to have been given rights to a scope (e.g. get_property, set_property etc). The scopes available to the keypair have already been determined by index.php, here we will check that the scope in question is allowed.
- *
+*
  * @author Vince Wooll <sales@jomres.net>
  *
  * @version Jomres 9.20.0
@@ -18,8 +15,10 @@ defined('_JOMRES_INITCHECK') or die('');
 
 /**
 *
-* Confirms that a key pair has rights to a scope.
-*
+ * Confirms that the key pair has been given rights to the scope
+ *
+ * Key pairs have to have been given rights to a scope (e.g. get_property, set_property etc). The scopes available to the keypair have already been determined by index.php, here we will check that the scope in question is allowed.
+ *
 */
 class validate_scope
 {

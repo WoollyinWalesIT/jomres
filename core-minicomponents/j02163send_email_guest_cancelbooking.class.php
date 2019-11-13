@@ -17,6 +17,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * Core Minicomponent.
 	 *
+     * Sends the booking cancellation email intended for the guest
 	 * 
 	 */
 

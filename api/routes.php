@@ -16,13 +16,6 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-	
-	/**
-	 * 
-	 *
-	 *
-	 */
-
 $request = Flight::request();
 
 if (substr($request->url,0,6) == '/core/' ) {
@@ -44,7 +37,7 @@ if (substr($request->url,0,6) == '/core/' ) {
 			
 		/**
 		 * 
-		 *
+		 * Pre-9.21.0, to allow us to break scripts up into groups you could have files and then subfiles with the naming scheme endpoint_xxx however this is unweildy. This newer code allows us to have file names like cmf_dictionary_items_map that will resolve to endpoints like /cmf/dictionary/items/map/
 		 *
 		 */
 
@@ -80,11 +73,10 @@ if (substr($request->url,0,6) == '/core/' ) {
 		
 	/**
 	 * 
-	 *
+	 * Improved tree to route mapping
 	 *
 	 */
 
-	// Improved tree to route mapping
 	$potential_paths = JOMRES_API_JOMRES_ROOT.DIRECTORY_SEPARATOR.'core-plugins'.DIRECTORY_SEPARATOR.'api_feature_'.$route.DIRECTORY_SEPARATOR.$request->method.DIRECTORY_SEPARATOR;
 	$potential_paths_arr = array();
 	foreach ($bang as $potential_path) {
@@ -108,7 +100,7 @@ if (substr($request->url,0,6) == '/core/' ) {
 		
 	/**
 	 * 
-	 *
+	 * The older route finding method, required to work with current API Feature plugins
 	 *
 	 */
 

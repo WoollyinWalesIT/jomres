@@ -17,6 +17,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * Core Minicomponent.
 	 *
+     * Produces slideshows based on the Galleria slideshow functionality
 	 * 
 	 */
 

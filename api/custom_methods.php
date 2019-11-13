@@ -18,7 +18,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	
 	/**
 	 * 
-	 *
+	 * Responds with JSON encoded values returned from individual REST API feature plugins
 	 *
 	 */
 
@@ -38,7 +38,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	
 	/**
 	 * 
-	 *
+	 * Halts execution of an API feature plugin with an error code. Typically used when the user doesn't have relevant permissions or they have sent faulty data and we cannot continue
 	 *
 	 */
 

@@ -17,6 +17,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * Core Minicomponent.
 	 *
+     * Returns google map template. Used by numerous scripts to provide mapping output.
 	 * 
 	 */
 

@@ -18,7 +18,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	
 	/**
 	 * 
-	 *
+	 * Allows the REST API to call another server via OAuth2
 	 *
 	 */
 
@@ -26,7 +26,7 @@ class call
 {	
 	/**
 	 * 
-	 *
+	 * Constructor
 	 *
 	 */
 
