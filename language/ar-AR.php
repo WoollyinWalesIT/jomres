@@ -12,6 +12,13 @@
 //#################################################################
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
+/**
+ *
+ * @package Jomres\Core\Languages
+ *
+ * Language files.
+ *
+ **/
 jr_define('_JOMRES_COM_MR_QUICKRESDESC', 'Reservas rápidas');
 jr_define('_JOMRES_COM_MR_SHOWPROFILES', 'Mostrar perfiles');
 jr_define('_JOMRES_COM_MR_QUICK______DESC', 'Dejado en blanco intencionadamente');

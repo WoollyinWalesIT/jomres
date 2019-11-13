@@ -19,8 +19,8 @@ defined('_JOMRES_INITCHECK') or die('');
 // As Jomres is like an onion, with discreet pages that can be called separately, we often find that we're re-filtering the same url variables time and again. For example, a typical call to viewproperty on a default instance of Fawlty Towers from the Quickstart can result in us using HTML purifier 19 times in one page load. HTML purifier is super effective at what it does, but it's a waste of cpu load times to constantly re-filter something that's already been filtered. With this purified inputs cache, we can cut down from 19 calls to html purifier to 5.
 	
 	/**
-	 * 
 	 *
+	 * @package Jomres\Core\Classes
 	 *
 	 */
 

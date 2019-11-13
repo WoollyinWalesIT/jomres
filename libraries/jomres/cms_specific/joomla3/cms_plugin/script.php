@@ -5,8 +5,8 @@ defined('_JEXEC') or die('');
 use Joomla\Archive\Archive;
 	
 	/**
-	 * 
 	 *
+	 * @package Jomres\Core\CMS_Specific
 	 *
 	 */
 

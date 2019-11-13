@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent.
+	 * @package Jomres\Core\Minicomponents
 	 *
 	 * Property Configuration page tabs. Offers settings related to single person suppliments (charges for rooms that should have two people in, but in fact only have one)
 	 * 

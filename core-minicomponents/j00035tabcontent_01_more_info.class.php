@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent.
+	 * @package Jomres\Core\Minicomponents
 	 *
 	 * Used by j06000viewproperty.class.php to build tabs in the property details page. Builds More Information (other area activities etc) template output.
 	 * 

@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent.
+	 * @package Jomres\Core\Minicomponents
 	 *
 	 * When a user performs a search, those search options are saved to the $tmpBookingHandler session object to be used later when re-building search forms, ensuring that previously selected options are re-selected.
 	 * 

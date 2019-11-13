@@ -16,7 +16,7 @@ defined('_JOMRES_INITCHECK') or die('');
 
 /**
  * 
- *
+ * @package Jomres\Core\Functions
  *
  */
 function get_property_price_for_display_in_lists($property_uid)

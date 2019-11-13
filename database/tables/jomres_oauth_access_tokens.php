@@ -13,7 +13,13 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Database creation during installation
+ *
+ **/
 $query = "
 CREATE TABLE IF NOT EXISTS  #__jomres_oauth_access_tokens (
 	`access_token` VARCHAR(40) NOT NULL, 

@@ -1,5 +1,7 @@
 <?php
 /**
+ *
+ *  @package Jomres\Core\REST_API
  * Handles REST API messages
  *
  * Uses Oauth2 and Flight libraries to handle authentication and routing respectively. REST API functionality is provided by API features which are Jomres plugins, this functionality hands off calls to those API features through the routes.php script. 
@@ -9,6 +11,8 @@
  * @version Jomres 9.20.0
  *
  * @copyright	2005-2019 Vince Wooll
+ *
+ *
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  */
 

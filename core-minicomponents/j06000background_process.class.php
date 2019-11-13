@@ -15,7 +15,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 	
 	/**
-	 * Core Minicomponent.
+	 * @package Jomres\Core\Minicomponents
 	 *
 	 * 
 	 */

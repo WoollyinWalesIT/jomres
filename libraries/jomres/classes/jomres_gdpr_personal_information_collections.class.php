@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 /**
-*
+ * @package Jomres\Core\Classes
 * Methods for collecting and anonymising various sets of data for GDPR compliance
 *
 */

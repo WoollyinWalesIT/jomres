@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent.
+	 * @package Jomres\Core\Minicomponents
 	 *
 	 * The very first minicomponent to be run. Doesn't do anything, but does allow us to check that everything is running.
 	 * 

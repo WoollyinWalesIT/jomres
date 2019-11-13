@@ -17,8 +17,8 @@ defined('_JOMRES_INITCHECK') or die('');
 // Gets the exchange rates and stores them in a temporary file. Updates the exchange rates daily, or whenever the exchange rate temp file doesn't exist.
 	
 	/**
-	 * 
 	 *
+	 * @package Jomres\Core\Classes
 	 *
 	 */
 

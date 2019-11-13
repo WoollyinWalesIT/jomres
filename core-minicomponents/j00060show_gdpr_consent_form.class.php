@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent.
+	 * @package Jomres\Core\Minicomponents
 	 *
 	 * Shows the GDPR consent form if required. If config disables the form from being shown then consent is automatically assumed, optin records are saved and we move on.
 	 * 

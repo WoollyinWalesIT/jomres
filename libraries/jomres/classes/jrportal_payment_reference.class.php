@@ -18,8 +18,8 @@ defined('_JOMRES_INITCHECK') or die('');
 // This class is used to create a payment reference between an invoice id & a gateway so that gateway process, receiving payment confirmation, can then query this table for the invoice number etc
 	
 	/**
-	 * 
 	 *
+	 * @package Jomres\Core\Classes
 	 *
 	 */
 

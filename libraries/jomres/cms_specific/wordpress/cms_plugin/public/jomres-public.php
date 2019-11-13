@@ -3,20 +3,10 @@
 /**
  * The Jomres public-facing functionality.
  *
- * @link	   https://www.jomres.net
- * @since	  9.9.19
- *
- * @package	Jomres
- * @subpackage Jomres/public
- */
-
-/**
- * The Jomres public-facing functionality.
- *
  * Defines the plugin name, version.
  *
- * @package	Jomres
- * @subpackage Jomres/public
+ * @package Jomres\Core\CMS_Specific
+ *
  * @author	 Vince Wooll <support@jomres.net>
  */
 class Jomres_Public {

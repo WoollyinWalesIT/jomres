@@ -1,5 +1,6 @@
 <?php
 /**
+ *
  * Core file.
  *
  * @author Vince Wooll <sales@jomres.net>
@@ -15,6 +16,9 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Makes a javascript date input field. Creates a random name for the form element each time so that multiple javascript forms can be used on the same page without collision.
  */
 function generateDateInput($fieldName, $dateValue = '', $myID = false, $siteConfig = false, $historic = false)

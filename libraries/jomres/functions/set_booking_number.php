@@ -17,7 +17,8 @@ defined('_JOMRES_INITCHECK') or die('');
 // 
 
 /**
- * 
+ * @package Jomres\Core\Functions
+ *
  * The purpose of this function is to allow us to override the booking number programatically.
  *
  */

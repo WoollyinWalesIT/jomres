@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent.
+	 * @package Jomres\Core\Minicomponents
 	 *
 	 * Shows the top template, which among other things shows video tutorials, property name, management view switching, editing mode dropdown etc.
 	 * 

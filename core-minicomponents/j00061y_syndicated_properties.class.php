@@ -9,7 +9,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 	
 	/**
-	 * Core Minicomponent.
+	 * @package Jomres\Core\Minicomponents
 	 *
 	 * Shows the syndicated properties script output at the bottom of the page.
 	 * 

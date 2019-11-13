@@ -15,8 +15,8 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 /**
- * 
  *
+ * @package Jomres\Core\Classes
  *
  */
 

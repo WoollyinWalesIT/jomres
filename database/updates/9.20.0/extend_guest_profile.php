@@ -13,7 +13,13 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Database modification during updates
+ *
+ **/
 $profiles_cols_added = false;
 
 $query = "SHOW COLUMNS FROM #__jomres_guest_profile LIKE 'enc_drivers_license'";

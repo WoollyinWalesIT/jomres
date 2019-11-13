@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.'
 // ################################################################
 	
 	/**
-	 * 
 	 *
+	 * @package Jomres\Core\CMS_Specific
 	 *
 	 */

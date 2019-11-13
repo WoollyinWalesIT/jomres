@@ -15,6 +15,9 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 /**
+ *
+ * @package Jomres\Core\Classes
+ *
  * Creates the Jomres config panel object.
  #
  *

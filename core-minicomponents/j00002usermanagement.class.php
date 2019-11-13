@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent.
+	 * @package Jomres\Core\Minicomponents
 	 *
 	 * Loads the thisJRUser object, which is used throughout the system to make decisions based on who the current user is and their status within the system. 
 	 * 

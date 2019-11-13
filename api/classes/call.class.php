@@ -1,5 +1,8 @@
 <?php
 /**
+ *
+ *  @package Jomres\Core\REST_API
+ *
  * Calls a remote API when handed a REST API set of options
  * 
  * @todo Test and confirm it is still functional. Convert to use Guzzle

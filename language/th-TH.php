@@ -11,6 +11,13 @@
 ##################################################################
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 ##################################################################
+/**
+ *
+ * @package Jomres\Core\Languages
+ *
+ * Language files.
+ *
+ **/
 jr_define( "_JOMRES_COM_MR_QUICKRESDESC", "จองด่วน" );
 jr_define( "_JOMRES_COM_MR_SHOWPROFILES", "แสดงส่วนกำหนดข้อมูลส่วนตัว" );
 jr_define( "_JOMRES_COM_MR_GENERALCONFIGDESC", "การตั้งค่าองค์ประกอบของธุรกิจ" );

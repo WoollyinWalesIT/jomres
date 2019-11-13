@@ -15,8 +15,11 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 /**
- * 
+ * @package Jomres\Core\Functions
  *
+ * Define a string
+ *
+ *          In the past Jomres used Constants in language files. That's not the case now, however the variable name remains the same.
  *
  */
 function jr_define($constant, $string)
@@ -26,8 +29,9 @@ function jr_define($constant, $string)
 }
 
 /**
- * 
+ * @package Jomres\Core\Functions
  *
+ *          What's the string value stored against the (originally, but not now) constant.
  *
  */
 function jr_get_defined($constant, $default = '')
@@ -48,8 +52,17 @@ function jr_get_defined($constant, $default = '')
 
 /**
  * 
+ * @package Jomres\Core\Functions
  *
+ *          All output strings are passed through this function for processing.
  *
+ *          Performs several functions.
+ *
+ *          theConstant and theValue are normally one and the same, nowadays
+ *          If oktoedit, then editinplace can be used
+ *          If is link is largely defunct, but if set to True then don't offer editinplace
+ *
+ *          Gets language definitions, finds relevant strings, and if required fires up the editinplace javascript that allows property managers to customise strings just for their properties
  */
 function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
 {
@@ -131,10 +144,6 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
 	}
 	
 
-	
-	
-
-	
 	$theText = jomres_decode($theText);
 
 	if (get_showtime('jr_user_ready') && $thisJRUser->userIsManager) {

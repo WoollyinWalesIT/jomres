@@ -17,6 +17,9 @@ defined('_JOMRES_INITCHECK') or die('');
 jr_import('jomres_content_tabs');
 
 /**
+ *
+ * @package Jomres\Core\Classes
+ *
  * Creates the Jomres config panel object.
  #
  *

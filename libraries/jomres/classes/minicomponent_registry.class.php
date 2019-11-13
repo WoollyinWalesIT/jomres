@@ -19,8 +19,8 @@ defined('_JOMRES_INITCHECK') or die('');
 class minicomponent_registry
 {	
 	/**
-	 * 
 	 *
+	 * @package Jomres\Core\Classes
 	 *
 	 */
 

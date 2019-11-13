@@ -13,8 +13,8 @@ defined('_JEXEC') or die('Direct Access to this location is not allowed.');
 
 	
 	/**
-	 * 
 	 *
+	 * @package Jomres\Core\CMS_Specific
 	 *
 	 */
 

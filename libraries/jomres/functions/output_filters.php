@@ -15,9 +15,11 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 /**
- * 
+ * @package Jomres\Core\Functions
  *
+ * Attempt to clean XSS that may have found it's way into the database.
  *
+ *          It's not always possible to catch every attempt to insert XSS, but a multi-layered approach to the problem will help to mitigate this.
  */
 function xss_clean($data)
 {
@@ -58,7 +60,8 @@ function xss_clean($data)
 */
 
 /**
- * 
+ * @package Jomres\Core\Functions
+ *
  * An output filter.
  *
  */

@@ -1,5 +1,8 @@
 <?php
 /**
+ *
+ * @package Jomres\Core\REST_API
+ *
  * Handle a request to a resource and authenticate the access token
  *
  * @author Vince Wooll <sales@jomres.net>
@@ -10,11 +13,6 @@
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  */
 	
-	/**
-	 * 
-	 *
-	 *
-	 */
 
 require_once __DIR__.'/server.php';
 

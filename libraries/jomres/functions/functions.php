@@ -1,5 +1,6 @@
 <?php
 /**
+ *
  * Core file.
  *
  * @author Vince Wooll <sales@jomres.net>
@@ -25,7 +26,7 @@ Previously just a feature of the add plugin script, it's usage has been moved to
 
 /**
  * 
- *
+ * @package Jomres\Core\Functions
  *
  */
 
@@ -77,21 +78,22 @@ function get_remote_plugin_data()
 
 
 /**
-
-Search properties for guests with details LIKE the string 
-
-Return an array of guest ids that match string.
-
-Encryption functionality has broken the datatables functionality that allowed us to search by guest details (name, email etc). We need to search guest details, find those that match "string" and return those ids to the list bookings and list invoices ajax tasks (and maybe others too).
-
-$string : The string we are searching on. If '' (blank) then return an empty array.
-$property_uid : The specific property we are searching on. If set to 0 then that's all properties that this manager is a manager for.
-$manager_id : show_all is 1 and manager id is > 0 then we'll search all properties that the manager is a manager of. If the manager is a super manager, then we'll search all properties in the system. If manager_id is 0, then we will search all guests
-
-
-The function has been kept self-contained (doesn't use thisJRUser object, which is set during a run, is to allow other features, such as the REST API to potentially use it)
-We will return two arrays, first array will be an array of guest uids only. Second array is the same guest details plus the unencrypted data. We're unencrypting here anyway to search for the string, so we might as well hand that data back so that calling function/methods don't need to recreate that data 
-
+ * @package Jomres\Core\Functions
+*
+ *Search properties for guests with details LIKE the string.
+*
+*Return an array of guest ids that match string.
+*
+*Encryption functionality has broken the datatables functionality that allowed us to search by guest details (name, email etc). We need to search guest details, find those that match "string" and return those ids to the list bookings and list invoices ajax tasks (and maybe others too).
+*
+*$string : The string we are searching on. If '' (blank) then return an empty array.
+*$property_uid : The specific property we are searching on. If set to 0 then that's all properties that this manager is a manager for.
+*$manager_id : show_all is 1 and manager id is > 0 then we'll search all properties that the manager is a manager of. If the manager is a super manager, then we'll search all properties in the system. If manager_id is 0, then we will search all guests
+*
+*
+*The function has been kept self-contained (doesn't use thisJRUser object, which is set during a run, is to allow other features, such as the REST API to potentially use it)
+*We will return two arrays, first array will be an array of guest uids only. Second array is the same guest details plus the unencrypted data. We're unencrypting here anyway to search for the string, so we might as well hand that data back so that calling function/methods don't need to recreate that data
+*
 **/
 
 function search_property_guests_by_string($string = '' , $property_uid = 0 , $manager_id = 0 , $show_all = 0)
@@ -202,13 +204,10 @@ function search_property_guests_by_string($string = '' , $property_uid = 0 , $ma
 	}
 
 /**
-Outputs the pdf after having been handed the outputted template data, or returns said PDF. Doesn't handle clean up of pdfs
-**/
-
-/**
  * 
+ * @package Jomres\Core\Functions
  *
- *
+ *  Outputs the pdf after having been handed the outputted template data, or returns said PDF. Doesn't handle clean up of pdfs
  */
 function output_pdf($tmpl , $title = '' , $return_pdf = false )
 {
@@ -239,15 +238,11 @@ function output_pdf($tmpl , $title = '' , $return_pdf = false )
 
 }
 
-
-
 /**
-Adds as_pdf to url
-**/
-
-/**
- * 
  *
+ * @package Jomres\Core\Functions
+ *
+ * Adds as_pdf to url.
  *
  */
 function get_pdf_url()
@@ -257,6 +252,9 @@ function get_pdf_url()
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions.
+ *
 * When passed a username and password, return a response that confirms or denies that the login was successful. TFA not currently supported
 */
 function jomres_login_user($username = null , $password = null , $tfa = '' ) 
@@ -290,7 +288,10 @@ function jomres_login_user($username = null , $password = null , $tfa = '' )
  
 
 /**
-* Easily find the manager id for a property. If there isn't a specific manager assigned to a property, then find the first super property manager and return that instead
+ *
+ * @package Jomres\Core\Functions
+ *
+* Easily find the manager id for a property. If there isn't a specific manager assigned to a property, then find the first super property manager and return that instead,
 */
 function find_manager_id_for_property_uid($property_uid) 
 {
@@ -327,7 +328,10 @@ function find_manager_id_for_property_uid($property_uid)
 }
 
 /**
- * Get all super property manager ids
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Get all super property manager ids.
  */
 function find_all_super_property_manager_ids() 
 {
@@ -344,7 +348,10 @@ function find_all_super_property_manager_ids()
 
 
 /**
- * Find the relative path to a QR code
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Find the relative path to a QR code.
  */
 function get_qr_code_relPath($arg) 
 {
@@ -353,21 +360,20 @@ function get_qr_code_relPath($arg)
 }
 
 /**
- * An easy way to quickly retrieve a singleton
+ *
+ * @package Jomres\Core\Functions
+ *
+ * An easy way to quickly retrieve a singleton.
  */
 function jomres_getSingleton($class, $args = array())
 {
 	return jomres_singleton_abstract::getInstance($class, $args);
 }
 
-/*
-A function that makes an async POST or GET request using sockets
-*/
-
 /**
- * 
+ * @package Jomres\Core\Functions
  *
- *
+ * A function that makes an async POST or GET request using sockets.
  */
 function jomres_async_request($type = "GET", $url = "", $port = '', $post_data = array())
 {
@@ -475,12 +481,15 @@ function jomres_async_request($type = "GET", $url = "", $port = '', $post_data =
 }
 
 /*
-A simple function to get the marker relative path
+
 */
 
 /**
- * 
+ * @package Jomres\Core\Functions
  *
+ *A simple function to get the marker relative path.
+ *
+ * Markers, in this context, are map markers for google maps. They are uploaded through the Admin > Settings > Media centre
  *
  */
 function get_marker_src($marker_image = '') 
@@ -499,14 +508,10 @@ function get_marker_src($marker_image = '')
 	return $result;
 }
 	
-/*
-A simple function to pull the contract uid based on the booking number
-*/
-
 /**
- * 
+ * @package Jomres\Core\Functions
  *
- *
+ * A simple function to pull the contract uid based on the booking number.
  */
 function get_contract_uid_for_tag($tag) 
 {
@@ -515,17 +520,13 @@ function get_contract_uid_for_tag($tag)
 	$contract_uid = doSelectSql($query , 1 );
 	return $contract_uid;
 }
-	
-/*
-This function allows a script writer to add webhook notifications dynamically. 
-If the collection script variable is set, then the none/basic/oauth authmethod processors will use a collection script that goes by the name of collector_$collection_script_name.php , e.g. collector_dashboard.php
-Otherwise the processor will attempt to use the contents of the object's $data variable instead.
-*/
 
 /**
- * 
+ * @package Jomres\Core\Functions
  *
- *
+ * This function allows a script writer to add webhook notifications dynamically.
+If the collection script variable is set, then the none/basic/oauth authmethod processors will use a collection script that goes by the name of collector_$collection_script_name.php , e.g. collector_dashboard.php
+Otherwise the processor will attempt to use the contents of the object's $data variable instead.
  */
 function add_webhook_notification($contents)
 {
@@ -536,7 +537,10 @@ function add_webhook_notification($contents)
 }
 
  /**
- * Implodes arrays for use with queries where IN is used
+  *
+  * @package Jomres\Core\Functions
+  *
+ * Implodes arrays for use with queries where IN is used.
  *
  * For performance reasons IN is used extensively, this function is used when building queries based off of arrays 
  *
@@ -569,7 +573,9 @@ function jomres_implode($elements = array(), $integers = true)
 }
 
 /**
- * A quick function to trim path names
+ * @package Jomres\Core\Functions
+ *
+ * A quick function to trim path names.
  */
 function fix_path($path = '')
 {
@@ -582,6 +588,8 @@ function fix_path($path = '')
 
 
 /**
+ * @package Jomres\Core\Functions
+ *
  * A function to obsfucate email addresses in content to defend against spammers.
  *
  * http://www.maurits.vdschee.nl/php_hide_email/
@@ -606,7 +614,10 @@ function jomres_hide_email($email)
 }
 
  /**
- * Checks that the user can view the property
+  *
+  * @package Jomres\Core\Functions
+  *
+ * Checks that the user can view the property.
  *
  * Used extensively by j06000show_propertyxxxxx scripts. If the user is a super manager then they can view the property regardless of it's state. Otherwise, if it is not published and the user is not a manager, return false. If it is not published and the user does not have this property in their list of authorised properties ( i.e. a manager viewing another manager's property ) return false.
  *
@@ -633,7 +644,10 @@ function user_can_view_this_property($property_uid = 0)
 }
 
 /**
- * Check that this user can modify a booking
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Check that this user can modify a booking.
  */
 function can_modify_this_booking($contract_uid)
 {
@@ -660,7 +674,10 @@ function can_modify_this_booking($contract_uid)
 }
 
 /**
- * Newer function for finding dates - dates must be passed in Y/m/d format
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Newer function for finding dates - dates must be passed in Y/m/d format.
  */
 function get_periods($start, $end, $interval = null)
 {
@@ -681,7 +698,10 @@ function get_periods($start, $end, $interval = null)
 }
 
 /**
- * Function to get the client IP address
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Function to get the client IP address.
  */
 function jomres_get_client_ip()
 {
@@ -711,7 +731,10 @@ function jomres_get_client_ip()
 }
 
  /**
- * Outputs that an error has been thrown
+  *
+  * @package Jomres\Core\Functions
+  *
+ * Outputs that an error has been thrown.
  *
  * Primarily a frontend function. Logs and outputs an error message. If the site is set to Development mode then the full error details are sent to the page, otherwise if site is set to Production a generic Oops message is output. If Site is configured to, the error can be emailed to site administrators. The error is logged to Application.log as an Error.
  *
@@ -804,7 +827,10 @@ function output_fatal_error($e , $extra_info = '' )
 }
 
 /**
- * What is the current page url?
+ *
+ * @package Jomres\Core\Functions
+ *
+ * What is the current page url?.
  */
 function getCurrentUrl($full = true)
 {
@@ -819,7 +845,10 @@ function getCurrentUrl($full = true)
 }
 
 /**
- * Return true if the host CMS is Wordpress
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Return true if the host CMS is Wordpress.
  */
 function this_cms_is_wordpress()
 {
@@ -831,12 +860,11 @@ function this_cms_is_wordpress()
 }
 
 
-// 
-// 
-// 
-// 
 
  /**
+  *
+  * @package Jomres\Core\Functions
+  *
  * A utility to create a modal button that links to a Jomres task.
  *
  * text of the button.
@@ -868,6 +896,9 @@ function make_modal_button($text, $task, $extra, $title, $button_colour = 'btn-d
 
 
  /**
+  *
+  * @package Jomres\Core\Functions
+  *
  * A quick way to ouput data that's stored in a Jomres template but doesn't require any conditions or rows.
  *
  * Due to the way Bootstrap 3 demands that returned data be wrapped in <div class="modal-content"> <div class="modal-header"> </div></div> we need to create new output that wraps the content we wish to return. As we may want to add modal popups to other pages in the future we needed to add a new request variable "modal_wrap" which then allows us to wrap the resulting output in these divs. As we don't want to change the code every time a new modal syntax appears it's preferable to add this modal wrap via a template file. The template file itself doesn't demand any special conditions, so we've created this quick template output function to allow us to quickly access a template file that contains some simple html.
@@ -886,7 +917,10 @@ function simple_template_output($path = '', $template = '', $one_string = '')
 }
 
 /**
- * Generates colours for the property review rating bars
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Generates colours for the property review rating bars.
  */
 function calc_rating_progressbar_colour($percentage)
 {
@@ -907,7 +941,10 @@ function calc_rating_progressbar_colour($percentage)
 }
 
 /**
- * Determine the version of Bootstrap framework that is being used
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Determine the version of Bootstrap framework that is being used.
  */
 function jomres_bootstrap_version()
 {
@@ -929,7 +966,10 @@ function jomres_bootstrap_version()
 }
 
  /**
- * For plugins to find the correct sub-directory for the template based on site settings
+  *
+  * @package Jomres\Core\Functions
+  *
+ * For plugins to find the correct sub-directory for the template based on site settings.
  *
  * todo Add support for Bootstrap 4 in administrator area
  */
@@ -957,7 +997,10 @@ function find_plugin_template_directory()
 }
 
 /**
- * Return an array of dates 
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Return an array of dates.
  *
  * Receives two dates Y/m/d and returns all dates between in Y/m/d formate
  *
@@ -980,7 +1023,10 @@ function findDateRangeForDates($d1, $d2)
 }
 
 /**
- * Get the number of days between two dates (Y/m/d)
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Get the number of days between two dates (Y/m/d).
  */
 function findDaysForDates($d1, $d2)
 {
@@ -990,7 +1036,10 @@ function findDaysForDates($d1, $d2)
 }
 
 /**
- * Import images from the uploadedimages directory into the database
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Import images from the uploadedimages directory into the database.
  */
 function import_images_to_media_centre_directories()
 {
@@ -1140,7 +1189,10 @@ function import_images_to_media_centre_directories()
 }
 
 /**
- * Output size with B,KB,MB,GB,TB suffixes
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Output size with B,KB,MB,GB,TB suffixes.
  */
 function jomres_formatBytes($bytes, $precision = 2)
 {
@@ -1154,6 +1206,9 @@ function jomres_formatBytes($bytes, $precision = 2)
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Debugging tool to find scripts that were called when an error was triggered. 
  */
 function echo_backtrace()
@@ -1171,7 +1226,10 @@ function echo_backtrace()
 }
 
 /**
- * Create a url for a property's address that will be marked in google maps
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Create a url for a property's address that will be marked in google maps.
  */
 function make_gmap_url_for_property_uid($property_uid)
 {
@@ -1187,7 +1245,10 @@ function make_gmap_url_for_property_uid($property_uid)
 }
 
 /**
- * Uses the QR code library to create qr codes in the temp directory and returns relative, and absolute paths
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Uses the QR code library to create qr codes in the temp directory and returns relative, and absolute paths.
  */
 function jomres_make_qr_code($string = '', $format = 'text')
 {
@@ -1207,7 +1268,10 @@ function jomres_make_qr_code($string = '', $format = 'text')
 }
 
 /**
- * Used by ajax search for searching for town names
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Used by ajax search for searching for town names.
  */
 function genericLike($idArray, $fieldToSearch, $idArrayisInteger = true)
 {
@@ -1235,7 +1299,10 @@ function genericLike($idArray, $fieldToSearch, $idArrayisInteger = true)
 }
 
 /**
- * Calculates number to be added to badges in the administrator menu
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Calculates number to be added to badges in the administrator menu.
  */
 function get_number_of_items_requiring_attention_for_menu_option($task = '')
 {
@@ -1259,6 +1326,9 @@ function get_number_of_items_requiring_attention_for_menu_option($task = '')
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Given a region id, will return the name of the region, translated if applicable.
  */
 function find_region_name($region_id)
@@ -1274,6 +1344,9 @@ function find_region_name($region_id)
 
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Given a region name, will return the region id. 
  */
 function find_region_id($region_name)
@@ -1288,7 +1361,10 @@ function find_region_id($region_name)
 }
 
 /**
- * Returns an array of all properties with a manager id
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Returns an array of all properties with a manager id.
  */
 function build_property_manager_xref_array()
 {
@@ -1311,7 +1387,10 @@ function build_property_manager_xref_array()
 
 
 /**
- * Utility to produce a url the view property manager page
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Utility to produce a url the view property manager page.
  */
 function make_host_link($property_id = 0)
 {
@@ -1346,7 +1425,12 @@ function make_host_link($property_id = 0)
 }
 
 /**
- * Utility to produce a url the view property manager page
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Utility to produce a url to the view property manager page.
+ *
+ * Superceeded by the make host link function
  */
 function make_agent_link($property_id = 0)
 {
@@ -1385,7 +1469,10 @@ function make_agent_link($property_id = 0)
 }
 
 /**
- * Checks that a user can perform the translation
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Checks that a user can perform the translation.
  */
 function translation_user_check()
 {
@@ -1404,7 +1491,10 @@ function translation_user_check()
 }
 
 /**
- * Outputs the "no search results" message
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Outputs the "no search results" message.
  */
 function no_search_results()
 {
@@ -1414,7 +1504,10 @@ function no_search_results()
 }
 
 /**
- * Returns a tooltip image ( image with hover test ). jomres_tooltips class used to determine what to show based on the version of bootstrap 
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Returns a tooltip image ( image with hover test ). jomres_tooltips class used to determine what to show based on the version of bootstrap.
  */
 function jomres_makeTooltip($div, $hover_title = '', $hover_content = '', $div_content = '', $class = '', $type = '', $type_arguments = array(), $url = '#')
 {
@@ -1427,7 +1520,10 @@ function jomres_makeTooltip($div, $hover_title = '', $hover_content = '', $div_c
 }
 
 /**
- * Optional CMS Specific end run tasks
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Optional CMS Specific end run tasks.
  */
 function endrun()
 {
@@ -1437,7 +1533,10 @@ function endrun()
 }
 
 /**
- * Returns whether or not we are using Bootstrap
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Returns whether or not we are using Bootstrap.
  */
 function using_bootstrap()
 {
@@ -1466,7 +1565,10 @@ function using_bootstrap()
 }
 
 /**
- * Adds Google maps javascript calls to the site's head where appropriate
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Adds Google maps javascript calls to the site's head where appropriate.
  */
 function add_gmaps_source()
 {
@@ -1492,7 +1594,10 @@ function add_gmaps_source()
 }
 
 /**
- * Not currently used
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Not currently used.
  */
 function admins_first_run($manual_trigger = false)
 {
@@ -1614,6 +1719,9 @@ function admins_first_run($manual_trigger = false)
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Asks whether the Jomres plugin shop is available or not. Not currently used.
  */
  function query_shop($request = '')
@@ -1648,6 +1756,9 @@ function admins_first_run($manual_trigger = false)
 
 // Adapted from http://uk.php.net/manual/en/function.time.php#89415
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Used by list properties script to format the "last booking" output message.
  */
 function jomres_nicetime($date)
@@ -1689,7 +1800,10 @@ function jomres_nicetime($date)
 }
 
 /**
- * Geolocation class uses function to get the user's IP number
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Geolocation class uses function to get the user's IP number.
  *
  * @todo Duplicated function
  *
@@ -1706,7 +1820,10 @@ function get_remote_ip_number()
 }
 
 /**
- * Pulls the booking number from session data
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Pulls the booking number from session data.
  */
 function get_booking_number()
 {
@@ -1716,7 +1833,10 @@ function get_booking_number()
 }
 
 /**
- * Figure out what the current property uid should be
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Figure out what the current property uid should be.
  */
 function detect_property_uid()
 {
@@ -1777,7 +1897,12 @@ function detect_property_uid()
 
 // 
 /**
- * Return "NA" if no gateway is configured for this property. The calling script will process payment without attempting to call a gateway (IE simply enter the booking)
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Return "NA" if no gateway is configured for this property.
+ *
+ * The calling script will process payment without attempting to call a gateway (IE simply enter the booking)
  */
 function jomres_validate_gateway_plugin()
 {
@@ -1831,7 +1956,10 @@ function jomres_validate_gateway_plugin()
 }
 
  /**
- * Generates anchors for javascript tabs
+  *
+  * @package Jomres\Core\Functions
+  *
+ * Generates anchors for javascript tabs.
  *
  * Commented out code that tries to make the anchor of the tabs based on the name of the tab. Too many non-latin users were reporting problems with tabs.
  * Instead we'll just use the random string generator to create the anchor.
@@ -1858,7 +1986,10 @@ function jomres_generate_tab_anchor($string)
 }
 
 /**
- * Return the "showtime" singleton
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Return the "showtime" singleton.
  */
 function get_showtime($setting)
 {
@@ -1868,7 +1999,10 @@ function get_showtime($setting)
 }
 
 /**
- * Set a showtime variable to X
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Set a showtime variable to X.
  */
 function set_showtime($setting, $value)
 {
@@ -1882,7 +2016,12 @@ function set_showtime($setting, $value)
 }
 
 /**
- * Find settings for a given plugin. Typically used by gateways
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Find settings for a given plugin.
+ *
+ * Typically used by gateways.
  */
 function get_plugin_settings($plugin, $prop_id = 0)
 {
@@ -1923,7 +2062,12 @@ function get_plugin_settings($plugin, $prop_id = 0)
 }
 
 /**
- * Imports a class JIT as found in the classes registry. If not found will report a backtrace.
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Imports a class JIT as found in the classes registry.
+ *
+ * If not found will report a backtrace.
  */
 function jr_import($class)
 {
@@ -1964,7 +2108,10 @@ function jr_import($class)
 }
 
 /**
- * Integration script uses this to see if we need to build registry files
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Integration script uses this to see if we need to build registry files.
  */
 function search_core_and_remote_dirs_for_classfiles()
 {
@@ -2037,7 +2184,10 @@ $classes = ' .var_export($classes, true).';
 }
 
 /**
- * utilit to clean up urls
+ *
+ * @package Jomres\Core\Functions
+ *
+ * utility to clean up urls
  */
 function jomresValidateUrl($url)
 {
@@ -2048,7 +2198,10 @@ function jomresValidateUrl($url)
 }
 
 /**
- * CMS Specific functions use this to find settings for modules
+ *
+ * @package Jomres\Core\Functions
+ *
+ * CMS Specific functions use this to find settings for modules.
  */
 function getIntegratedSearchModuleVals()
 {
@@ -2082,7 +2235,10 @@ function getIntegratedSearchModuleVals()
 }
 
 /**
- * Get the month name, set editable to true to show the editing mode option
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Get the month name, set editable to true to show the editing mode option.
  */
 function getThisMonthName($monthNumber, $editable = true)
 {
@@ -2094,7 +2250,10 @@ function getThisMonthName($monthNumber, $editable = true)
 }
 
 /**
- * Module/Plugin/Widget installation functionality that is called when using the third party installer
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Module/Plugin/Widget installation functionality that is called when using the third party installer.
  */
 function install_external_plugin($plugin_name, $plugin_type, $mambot_type = '', $params = '', $remote_plugin_component_folder = 'c', $remote_plugin_administrator_folder = 'a', $remote_plugin_module_folder = 'm', $remote_plugin_mambot_folder = 'b')
 {
@@ -2201,7 +2360,10 @@ function install_external_plugin($plugin_name, $plugin_type, $mambot_type = '', 
 }
 
 /**
- * Make a directory
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Make a directory.
  */
 function test_and_make_directory($dir)
 {
@@ -2223,7 +2385,10 @@ function test_and_make_directory($dir)
 }
 
 /**
- * An alternative file_get_contents function because IIRC one version of PHP had problems with this function not existing
+ *
+ * @package Jomres\Core\Functions
+ *
+ * An alternative file_get_contents function because IIRC one version of PHP had problems with this function not existing.
  */
 if (!function_exists('file_get_contents')) {
 	function file_get_contents($filename, $incpath = false, $resource_context = null)
@@ -2249,7 +2414,10 @@ if (!function_exists('file_get_contents')) {
 }
 
 /**
- * Delete all files and subdirectories in a directory
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Delete all files and subdirectories in a directory.
  */
 function emptyDir($dir, $root = null)
 {
@@ -2273,8 +2441,11 @@ function emptyDir($dir, $root = null)
 	}
 }
 
-/*
-Does what it says on the tin
+/**
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Uninstall a Jomres plugin
 */
 function dropPlugin($pluginName)
 {
@@ -2302,8 +2473,13 @@ function dropPlugin($pluginName)
 	return false;
 }
 
-/*
-Does what it says on the tin
+/**
+ *
+ * @package Jomres\Core\Functions
+ *
+* Send a query to one of two Jomres servers, either the plugin server or the updates server.
+ *
+ *  Returns the response, un-furtled with (i.e. not json_decoded/unserialized). This functionality was originally devised back in 2009, so significantly pre-dates REST APIs etc.
 */
 function queryUpdateServer($script, $queryString, $serverType = 'plugin')
 {
@@ -2343,6 +2519,9 @@ function queryUpdateServer($script, $queryString, $serverType = 'plugin')
 
 // http://www.php.net/manual/en/function.rename.php#61152
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Moves the contents of source dir to destination dir
  */
 function dircopy($source, $dest, $overwrite = true, $funcloc = null)
@@ -2395,6 +2574,9 @@ function dircopy($source, $dest, $overwrite = true, $funcloc = null)
 
 // http://www.php.net/manual/en/function.rename.php#61152
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Moves the contents of source dir to destination dir
  */
 function dirmv($source, $dest, $overwrite = true, $funcloc = JRDS)
@@ -2467,8 +2649,10 @@ function dirmv($source, $dest, $overwrite = true, $funcloc = JRDS)
 	//echo "Finished upgrade <br/>";
 } // end of dirmv()
 
-/*
-Allows us to work independantly of Joomla, Wordpress or Mambo's emailers
+/**
+ * @package Jomres\Core\Functions
+ *
+ * Allows us to work independantly of Joomla, Wordpress or Mambo's emailers
 */
 function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode = 1, $attachments = array(), $debugging = true)
 {
@@ -2629,6 +2813,9 @@ function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Returns the guest details for a booking.
  */
 function addBookingNote($contract_uid, $property_uid, $message)
@@ -2655,6 +2842,9 @@ function addBookingNote($contract_uid, $property_uid, $message)
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Returns the guest details for a booking.
  */
 function getGuestDetailsForContract($contract_uid)
@@ -2691,6 +2881,9 @@ function getGuestDetailsForContract($contract_uid)
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Cconstruct data from session variables.
  */
 function getCurrentBookingData($jomressession = '')
@@ -2726,6 +2919,9 @@ function getCurrentBookingData($jomressession = '')
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Returns the booking details from the tmpbooking session data.
  */
 function gettempBookingdata()
@@ -2737,7 +2933,12 @@ function gettempBookingdata()
 }
 
 /**
- * Inserts the property manager/property uid into the xref table. Receives a property uid array which is a list of the users current properties and updates the xref table to that effect
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Inserts the property manager/property uid into the xref table.
+ *
+ * Receives a property uid array which is a list of the users current properties and updates the xref table to that effect
  * If the $property_uids is empty then the manager will loose all access to properties, so ensure that $property_uids contains all of the current properties that the manager has rights to before passing data to this function.
  */
 function updateManagerIdToPropertyXrefTable($cms_user_id = 0, $property_uids = array())
@@ -2796,7 +2997,12 @@ function updateManagerIdToPropertyXrefTable($cms_user_id = 0, $property_uids = a
 }
 
 /**
- * Handles errors generated by the system, redirects the user to an error page. Only used if system is set to Production.
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Handles errors generated by the system, redirects the user to an error page.
+ *
+ * Only used if system is set to Production.
  */
 function errorHandler($errno, $errstr, $errfile, $errline, $errcontext)
 {
@@ -2821,6 +3027,9 @@ function errorHandler($errno, $errstr, $errfile, $errline, $errcontext)
 } // errorHandler
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Pretty sure this is depreciated now
  */
 function recordError($errno, $errstr, $errfile, $errline, $errcontext)
@@ -2849,6 +3058,9 @@ function recordError($errno, $errstr, $errfile, $errline, $errcontext)
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  *  Legacy function, previously wrote to writexml, now uses the Logger class.
  */
 function error_logging($message, $emailMessage = true)
@@ -2857,6 +3069,9 @@ function error_logging($message, $emailMessage = true)
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  *  Legacy function, previously wrote to writexml, now uses the Logger class.
  */
 function request_log()
@@ -2876,6 +3091,9 @@ function request_log()
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  *  Legacy function, previously wrote to writexml, now uses the Logger class.
  */
 function system_log($message)
@@ -2884,6 +3102,9 @@ function system_log($message)
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Legacy function, previously wrote to writexml, now uses the Logger class.
  */
 function gateway_log($message)
@@ -2892,6 +3113,9 @@ function gateway_log($message)
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  *  Audit log.
  */
 function jomres_audit($query, $op = '')
@@ -2899,17 +3123,40 @@ function jomres_audit($query, $op = '')
 	logging::log_message($query, 'Audit', 'INFO');
 }
 
-// redirect urls must be base64 encoded before they can be used, otherwise PHP parses the redirect url's task as the current task. To get around this we need to base64 encode redirect urls. Unforunately, straightforward base64 will cause Joomla to throw an error because base64 encoding uses characters that do not work well in URLs, so we'll use these custom functions to encode/decode urls.
+/**
+ *
+ * @package Jomres\Core\Functions
+ *
+ *  Base64 encodes urls.
+ *
+ *         Used by scripts that intercept queries, such as the "Show GDPR optin" form. To ensure that the user is returned to the correct page we need to append the url to the opt-in form, however if we include the url in the query string Joomla will send us off to some weird and wonderful places, so we base64 encode the url, add it to the form, then when we are ready to redirect back to the original page we unencode it again.
+ *
+ */
+
 function jr_base64url_encode($data) {
   return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
 }
 
+/**
+ *
+ * @package Jomres\Core\Functions
+ *
+ *  Base64 decodes urls.
+ *
+ *         Used by scripts that intercept queries, such as the "Show GDPR optin" form. To ensure that the user is returned to the correct page we need to append the url to the opt-in form, however if we include the url in the query string Joomla will send us off to some weird and wonderful places, so we base64 encode the url, add it to the form, then when we are ready to redirect back to the original page we unencode it again.
+ *
+ */
 function jr_base64url_decode($data) {
   return base64_decode(str_pad(strtr($data, '-_', '+/'), strlen($data) % 4, '=', STR_PAD_RIGHT));
 } 
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Redirects to $url.
+ *
+ *          Can be handed a message which is then stored briefly before being shown on next page load
  */
 function jomresRedirect($url, $msg = '', $class = 'alert-info', $code = 302)
 {
@@ -2948,7 +3195,12 @@ function jomresRedirect($url, $msg = '', $class = 'alert-info', $code = 302)
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Sanitises the overlib output.
+ *
+ *          One of those functions that originally did one thing and now....
  */
 function sanitiseOverlibOutput($data)
 {
@@ -2963,6 +3215,9 @@ function sanitiseOverlibOutput($data)
 //------------------------------------
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Constructs the standard configuration settings for display in the config panel, then triggers events to show same configuration panels.
  */
 function propertyConfiguration()
@@ -3241,6 +3496,9 @@ function propertyConfiguration()
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Takes settings from the configuration and saves (most of them) to the jomres_settings table.
  */
 function savePropertyConfiguration()
@@ -3355,7 +3613,10 @@ function savePropertyConfiguration()
 }
 
 /**
- * Remove old tables
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Remove old tables.
  */
 function removeAllPropertyEnhanceTariffsXref($property_uid)
 {
@@ -3366,7 +3627,10 @@ function removeAllPropertyEnhanceTariffsXref($property_uid)
 }
 
 /**
- * Remove old tables
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Empty the tariffs table by property uid.
  */
 function removeAllPropertyTariffs($property_uid)
 {
@@ -3375,7 +3639,10 @@ function removeAllPropertyTariffs($property_uid)
 }
 
 /**
- * Remove old tables
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Empty the Rooms table for rooms with property uid.
  */
 function removeAllPropertyRooms($property_uid)
 {
@@ -3384,6 +3651,9 @@ function removeAllPropertyRooms($property_uid)
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * User has been logged out (or has attempted to access functionality illegally).
  */
 function userHasBeenLoggedOut()
@@ -3398,7 +3668,12 @@ function userHasBeenLoggedOut()
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Triggers the insert booking mini-comp 03020.
+ *
+ *          This function name takes me back a long way. It's probably the very oldest function in Jomres. The code has long since been updated/refactored but for backward compatibility reasons, the name has remained the same for nearly 15 years
  */
 function insertInternetBooking($jomressession = '', $depositPaid = false, $confirmationPageRequired = true, $customTextForConfirmationForm = '', $usejomressessionasCartid = false)
 {
@@ -3480,7 +3755,12 @@ function insertInternetBooking($jomressession = '', $depositPaid = false, $confi
 }
 
 /**
- * Used during the insert internet booking phase. Takes guest data from the tmpbookings table and inserts it into the guests table (or updates same, depending on the value of $existing_id).
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Used during the insert internet booking phase.
+ *
+ * Takes guest data from the tmpbookings table and inserts it into the guests table (or updates same, depending on the value of $existing_id).
  */
 function insertGuestDeets($jomressession)
 {
@@ -3606,6 +3886,9 @@ function insertGuestDeets($jomressession)
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Receives a date yyyy/mm/dd from the system and converts it to the configured output format.
  */
 function outputDate($thedate)
@@ -3631,6 +3914,9 @@ function outputDate($thedate)
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Makes the date for display in the javascript calendar. Will receive a yyyy/mm/dd formatted string and output it in the format desired by configuration settings.
  */
 function JSCalmakeInputDates($inputDate, $siteCal = false)
@@ -3677,6 +3963,9 @@ function JSCalmakeInputDates($inputDate, $siteCal = false)
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Converts a date that was supplied by the javascript calendar into yyyy/mm/dd for the system to use.
  */
 function JSCalConvertInputDates($inputDate, $siteCal = false)
@@ -3729,16 +4018,13 @@ function JSCalConvertInputDates($inputDate, $siteCal = false)
 	return $theDate;
 }
 
-//--------------------------------------
-//-E D I T	G A T E W A Y
-//--------------------------------------
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Imports settings from jomres_config.php for new properties, or import settings into the db during install.
  */
-//--------------------------------------
-//-I M P O R T	S E T T I N G S
-//--------------------------------------
 
 function importSettings($property_uid, $source_property_uid = 0)
 {
@@ -3765,6 +4051,9 @@ function importSettings($property_uid, $source_property_uid = 0)
 
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Inserts or updates a plugin's settings
  */
 function insertSetting($property_uid, $k, $v)
@@ -3780,11 +4069,10 @@ function insertSetting($property_uid, $k, $v)
 	return doInsertSql($query, '');
 }
 
-//-------------------------------
-// G A T E W A Y	C O N F I G ---
-//-------------------------------
-
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Saves a plugin's settings.
  */
 function savePlugin($plugin)
@@ -3823,6 +4111,9 @@ function savePlugin($plugin)
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Returns the property's name when passed a property uid.
  */
 function getPropertyName($property_uid)
@@ -3836,6 +4127,9 @@ function getPropertyName($property_uid)
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Works out the difference between two dates in days.
  */
 function dateDiff($interval, $first_date, $second_date)
@@ -3869,9 +4163,12 @@ function dateDiff($interval, $first_date, $second_date)
 }
 
 /**
- * Used by edit resource script to show room image
  *
- * Update functionality in j06002edit_resource.class.php to use modern functionality and remove this function
+ * @package Jomres\Core\Functions
+ *
+ * Used by edit resource script to show room image.
+ *
+ * TODO Update functionality in j06002edit_resource.class.php to use modern functionality and remove this function
  *
  */
 function getImageForProperty($imageType, $property_uid, $itemUid)
@@ -3902,6 +4199,9 @@ function getImageForProperty($imageType, $property_uid, $itemUid)
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Constructs the mrConfig data when passed a property uid.
  */
 function getPropertySpecificSettings($property_uid = null)
@@ -3929,7 +4229,12 @@ function getPropertySpecificSettings($property_uid = null)
 }
 
 /**
- * Generic or creation function. Pass a number of ids and the field you're searching on, will return ( `xyx`='1' OR `xyx`='2' OR`xyx`='3' ) etc.
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Generic OR creation function.
+ *
+ * Pass a number of ids and the field you're searching on, will return ( `xyx`='1' OR `xyx`='2' OR`xyx`='3' ) etc.
  */
 function genericOr($idArray, $fieldToSearch, $idArrayisInteger = true)
 {
@@ -3956,6 +4261,9 @@ function genericOr($idArray, $fieldToSearch, $idArrayisInteger = true)
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Publish the user's property. Toggle action.
  */
 function publishProperty()
@@ -4019,11 +4327,10 @@ function publishProperty()
 	}	   
 }
 
-//-----------------------------------------------------------------
-//-E D I T	R O O M S	A N D	P R O P E R T Y	D E T A I L S
-//-----------------------------------------------------------------
-
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Returns the editor area as a text string for inclusion in a template
  */
 function editorAreaText($name, $content, $hiddenField, $width, $height, $col, $row)
@@ -4032,6 +4339,9 @@ function editorAreaText($name, $content, $hiddenField, $width, $height, $col, $r
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Increments the pcounter table when a property clicked and sets a cookie to say that this user has clicked this property.
  */
 function propertyClicked($p_uid)
@@ -4051,7 +4361,14 @@ function propertyClicked($p_uid)
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Makes a popup link.
+ *
+ *          Because why not? It's still 2005 somewhere, isn't it?
+ *
+ *          TODO : Modernise this!
  */
 function makePopupLink($link, $text, $isLocalPage = true, $width = 550, $height = 500)
 {
@@ -4073,6 +4390,9 @@ function makePopupLink($link, $text, $isLocalPage = true, $width = 550, $height 
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Triggers the property header event/mini-component.
  */
 function property_header($property_uid)
@@ -4082,6 +4402,9 @@ function property_header($property_uid)
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Sends emails to admins.
  */
 function sendAdminEmail($subject, $message, $send_post = false)
@@ -4115,6 +4438,9 @@ function sendAdminEmail($subject, $message, $send_post = false)
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * It...er...gets the month name from what is stored in the language file.
  */
 function getMonthName($monthNo)
@@ -4125,6 +4451,9 @@ function getMonthName($monthNo)
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Used by jomres toolbar functionality to show images
  *
  * @todo this ancient stuff
@@ -4139,6 +4468,9 @@ function makeImageValid($imageName = '')
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Formats a string as a float
  *
  * @todo remove and test, doesn't seem to be used any more
@@ -4195,6 +4527,9 @@ function parseFloat($ptString)
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Quicker replacement to scandir to find directory contents
  */
 function get_directory_contents($dir)  // Replacement for scandir which seems to be causing system slowdowns
@@ -4220,6 +4555,9 @@ function get_directory_contents($dir)  // Replacement for scandir which seems to
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Quicker replacement for scandir to get sub directories
  */
 function scandir_getdirectories($path)
@@ -4239,6 +4577,9 @@ function scandir_getdirectories($path)
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Quicker replament for scandir
  */
 function scandir_getfiles($path, $extension = false)
@@ -4267,6 +4608,9 @@ function scandir_getfiles($path, $extension = false)
 
 // Credit : http://www.php.net/manual/en/function.scandir.php#109140
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Often used to find obsolete files, so we'll pass back an empty array if the directory does not exist
  */
 function scandir_getfiles_recursive($directory, $recursive = true, $listDirs = false, $listFiles = true, $exclude = '')
@@ -4307,6 +4651,9 @@ function scandir_getfiles_recursive($directory, $recursive = true, $listDirs = f
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Is the host CMS Joomla?
  */
 function this_cms_is_joomla()
@@ -4318,11 +4665,11 @@ function this_cms_is_joomla()
 	return true;
 }
 
-//----------------------------------------
-//-T E X T	M O D I F I C A T I O N	 ----
-//----------------------------------------
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Used by editing mode and label translation functionality to update custom text tables
  */
 function updateCustomText($theConstant, $theValue, $audit = true, $property_uid = null, $language_context = '0')
@@ -4333,7 +4680,10 @@ function updateCustomText($theConstant, $theValue, $audit = true, $property_uid 
 }
 
 /**
- * Get the current domain
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Get the current domain.
  */
 function jomresGetDomain()
 {
@@ -4351,7 +4701,10 @@ function jomresGetDomain()
 }
 
 /**
- * Creates new API keys (not to be confused with REST API keypairs) for properties
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Creates new API keys (not to be confused with REST API keypairs) for properties.
  */
 function createNewAPIKey()
 {
@@ -4374,7 +4727,12 @@ function createNewAPIKey()
 }
 
 /**
- * Creates a random string, default length 50 chars
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Creates a random string, default length 50 chars.
+ *
+ *          Used in a variety of places, but primarily for datepicker input names so that you can have multiple pickers on a page.
  */
 function generateJomresRandomString($length = 50)
 {
@@ -4396,7 +4754,10 @@ function generateJomresRandomString($length = 50)
 }
 
 /**
- * Find the property manager's currently active property
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Find the property manager's currently active property.
  */
 function getDefaultProperty()
 {
@@ -4406,7 +4767,10 @@ function getDefaultProperty()
 }
 
 /**
- * Create SEF urls, hands off to CMS specific functions to do the heavy lifting
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Create SEF urls, hands off to CMS specific functions to do the heavy lifting.
  */
 function jomresURL($link)
 {
@@ -4421,6 +4785,9 @@ function jomresURL($link)
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Returns the guest details from the tmpguests session data.
  */
 function getbookingguestdata()
@@ -4432,7 +4799,10 @@ function getbookingguestdata()
 }
 
 /**
- * Returns the current Jomres version
+ *
+ *  @package Jomres\Core\Functions
+ *
+ * Returns the current Jomres version.
  */
 function get_jomres_current_version()
 {
@@ -4443,7 +4813,10 @@ function get_jomres_current_version()
 }
 
 /**
- * Gets the latest version of Jomres from the updates server
+ *
+ *  @package Jomres\Core\Functions
+ *
+ * Gets the latest version of Jomres from the updates server.
  */
 function get_latest_jomres_version($outputText = true)
 {
@@ -4496,7 +4869,11 @@ function get_latest_jomres_version($outputText = true)
 }
 
 /**
- * Returns true if this version is latest, otherwise returns false. outputText flag is for use by deferred tasks that will email admin if the system has been updated.
+ *  @package Jomres\Core\Functions
+ *
+ * Returns true if this version is latest, otherwise returns false.
+ *
+ * outputText flag is for use by deferred tasks that will email admin if the system has been updated.
  */
 function check_jomres_version( $outputText = true )
 {
@@ -4543,7 +4920,13 @@ function check_jomres_version( $outputText = true )
 	return $current_version_is_uptodate;
 }
 
-
+/**
+ *  @package Jomres\Core\Functions
+ *
+ * Is Development mode enabled.
+ *
+ * If yes response will include a string warning about leaving dev mode on.
+ */
 function development_mode_test()
 {
 	$response = '';
@@ -4557,6 +4940,14 @@ function development_mode_test()
 
 	return $response;
 }
+
+/**
+ *  @package Jomres\Core\Functions
+ *
+ * Is safe mode on
+ *
+ * If yes response will return a string warning about safe mode
+ */
 
 function safe_mode_test()
 {
@@ -4573,6 +4964,9 @@ function safe_mode_test()
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Try to determine php.ini's max input vars setting then show an alert if the setting is too low for micromanage tariff editing mode.
  */
 function max_input_vars_test()
@@ -4589,6 +4983,9 @@ function max_input_vars_test()
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Try to determine if suhosin has a max_value_length setting that can cause problems.
  */
 function suhosin_get_max_vars_test()
@@ -4606,6 +5003,9 @@ function suhosin_get_max_vars_test()
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Check to ensure that ZipArchive is installed in PHP
  */
 function ziparchive_test()
@@ -4621,6 +5021,9 @@ function ziparchive_test()
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Check that the google maps api key has been set
  */
 function gmaps_apikey_check()
@@ -4639,6 +5042,9 @@ function gmaps_apikey_check()
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Check that the ip info db api key is set
  */
 function ipinfodb_apikey_check()
@@ -4657,7 +5063,10 @@ function ipinfodb_apikey_check()
 }
 
 /**
- * Chest that the OpenExchange rates service's API key has been set
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Check that the OpenExchange rates service's API key has been set
  */
 function openexchangerates_apikey_check()
 {
@@ -4675,6 +5084,9 @@ function openexchangerates_apikey_check()
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Check to see if the log paths setting has been set.
  */
 function logs_path_check()
@@ -4693,6 +5105,9 @@ function logs_path_check()
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Check to see if the image file paths need to be imported into the database.
  */
 function db_images_import_check()
@@ -4717,7 +5132,10 @@ function db_images_import_check()
 }
 
 /**
- * Check to see if it's possible to import s3 images
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Check to see if it's possible to import s3 images.
  */
 function s3_images_import_check()
 {

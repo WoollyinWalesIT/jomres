@@ -18,8 +18,8 @@ defined('_JOMRES_INITCHECK') or die('');
 //to get the details of an existing property use basic_property_details class
 	
 	/**
-	 * 
 	 *
+	 * @package Jomres\Core\Classes
 	 *
 	 */
 

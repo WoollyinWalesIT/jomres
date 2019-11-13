@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent.
+	 * @package Jomres\Core\Minicomponents
 	 *
 	 * If the user is allowed the script resets the user's current property to the appropriate property uid and then redirects the user to the amend booking script.
 	 * 

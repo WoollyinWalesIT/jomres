@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent.
+	 * @package Jomres\Core\Minicomponents
 	 *
 	 * Configures which CSS and Javascript files should be loaded to the theme/template, hands off to the CMS Specific functionality to actually handle adding them to the head of the theme/template.
 	 * 

@@ -12,7 +12,13 @@
 //#################################################################
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
-
+/**
+ *
+ * @package Jomres\Core\Languages
+ *
+ * Language files.
+ *
+ **/
 jr_define('VIDEO_TUTORALS_TITLE', 'Video Tutorials');
 
 jr_define('_JOMRES_TUTORIAL_CPANEL', 'Control Panel');

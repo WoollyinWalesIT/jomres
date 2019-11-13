@@ -1,5 +1,6 @@
 <?php
 /**
+ *
  * Contains countries related functions
  *
  * @author Vince Wooll <sales@jomres.net>
@@ -15,6 +16,8 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 /**
+ *
+ * @package Jomres\Core\Functions
 *
 * Uses the jomres_countries singleton to get country names
 * 
@@ -45,6 +48,8 @@ function getSimpleCountry($selectedCountry = '')
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
 *
 * Used in property configuration - booking form tab to create a dropdown of countries
 * 
@@ -78,6 +83,8 @@ function configCountries()
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
 *
 * Creates a countries dropdown
 * 
@@ -108,6 +115,8 @@ function createSimpleCountriesDropdown($selectedCountry = '', $input_name = 'gue
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
 *
 * Creates a countries dropdown
 * 
@@ -133,6 +142,8 @@ function limitCountriesDropdown()
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
 *
 * Creates a countries dropdown that adds onChange javascript so that an associated region dropdown will be updated 
 *
@@ -167,6 +178,8 @@ function createCountriesDropdown($selectedCountry, $input_name = 'country', $inc
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
 *
 * Builds a region name dropdown
 * 
@@ -213,6 +226,8 @@ function setupRegions($countryCode = 'GB', $currentRegion = 'Pembrokeshire', $fi
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
 *
 * Returns region names grouped by country codes
 * 
@@ -227,6 +242,8 @@ function regionNamesArray()
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
 *
 * Returns an array of country names
 * 
@@ -250,6 +267,8 @@ function countryNameArray()
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
 *
 * Replaces the older countryCodes array, which is now only used for importing into the #__jomres_countries table
 * 
@@ -268,6 +287,8 @@ function countryCodesArray()
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
 *
 * Used by the installer when initially populating the countries table
 * 
@@ -292,6 +313,8 @@ function old_countryCodesArray($translate = true)
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
 *
 * During installation/update, if the countries table is empty, then populate it. 
 * 
@@ -324,6 +347,8 @@ function import_countries()
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
 *
 * During installation/update, if the regions table is empty, then populate it. 
 * 

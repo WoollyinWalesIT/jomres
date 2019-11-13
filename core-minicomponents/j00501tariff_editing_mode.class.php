@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent.
+	 * @package Jomres\Core\Minicomponents
 	 *
 	 * Property Configuration page tabs. Offers the dropdown that allows the manager to change the property's tariff editing mode.
 	 * 

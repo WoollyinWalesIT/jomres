@@ -13,7 +13,13 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Seed data for various tables
+ *
+ **/
 $query = "TRUNCATE TABLE `#__jomresportal_properties_crates_xref`;";
 
 if (!doInsertSql($query)) {

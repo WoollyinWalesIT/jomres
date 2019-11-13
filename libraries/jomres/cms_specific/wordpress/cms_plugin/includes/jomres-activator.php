@@ -6,8 +6,7 @@
  * @link	   https://www.jomres.net
  * @since	  9.9.19
  *
- * @package	Jomres
- * @subpackage Jomres/includes
+ * @package Jomres\Core\CMS_Specific
  */
 
 /**
@@ -16,8 +15,7 @@
  * This class defines all code necessary to run during the plugin's activation.
  *
  * @since	  9.9.19
- * @package	Jomres
- * @subpackage Jomres/includes
+ *
  * @author	 Vince Wooll <support@jomres.net>
  */
 class Jomres_Activator {

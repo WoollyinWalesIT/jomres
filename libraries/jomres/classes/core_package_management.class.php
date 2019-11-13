@@ -15,6 +15,8 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 /**
+ * @package Jomres\Core\Classes
+ *
  * Manages version checking, download and extraction of node modules and the vendor directory. 
  */
 

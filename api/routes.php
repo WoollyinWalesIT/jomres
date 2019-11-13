@@ -1,5 +1,8 @@
 <?php
 /**
+ *
+ *  @package Jomres\Core\REST_API
+ *
  * REST API feature handler
  *
  * Searches for REST API features when the API is called. index.php handles the authentication (OAuth2) and routing (Flight), then this is called to find the appropriate API feature to include, responds 404 if the API feature is not found.

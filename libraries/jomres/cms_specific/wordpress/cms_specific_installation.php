@@ -15,8 +15,10 @@ defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.'
 // ################################################################
 	
 	/**
-	 * 
 	 *
+	 * Installation script run by the installer when it detects that we are installing on this CMS.
+	 *
+	 * @package Jomres\Core\CMS_Specific
 	 *
 	 */
 

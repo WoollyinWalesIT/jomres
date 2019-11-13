@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent.
+	 * @package Jomres\Core\Minicomponents
 	 *
 	 * Attempts to update the App Server (<a href="https://www.jomres.net/manual/developers-guide-2/387-jomres-syndication-network">Jomres Syndicate Network</a>) with this installation's existence. 
 	 *

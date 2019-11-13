@@ -17,8 +17,8 @@ defined('_JOMRES_INITCHECK') or die('');
 // My little joke, "showtime" was my favourite server on Delta Force 2 when I used to play it back in the late nineties.
 	
 	/**
-	 * 
 	 *
+	 * @package Jomres\Core\Classes
 	 *
 	 */
 

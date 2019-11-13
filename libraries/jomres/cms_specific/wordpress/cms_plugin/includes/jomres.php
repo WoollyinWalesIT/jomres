@@ -1,30 +1,10 @@
 <?php
-
 /**
- * The file that defines the core Jomres class
- *
  * A class definition that includes attributes and functions used across both the
  * public-facing side of the site and the admin area.
  *
- * @link	   https://wwww.jomres.net
- * @since	  9.9.19
+ * @package Jomres\Core\CMS_Specific
  *
- * @package	Jomres
- * @subpackage Jomres/includes
- */
-
-/**
- * The core Jomres class.
- *
- * This is used to define internationalization, admin-specific hooks, and
- * public-facing site hooks.
- *
- * Also maintains the unique identifier of this Jomres as well as the current
- * version of the Jomres.
- *
- * @since	  9.9.19
- * @package	Jomres
- * @subpackage Jomres/includes
  * @author	 Vince Wooll <support@jomres.net>
  */
 class WP_Jomres {

@@ -17,8 +17,8 @@ defined('_JOMRES_INITCHECK') or die('');
 // This allows Jomres to call it's own API. As more functionality is added to the API then there are times that that will be the choice of connection.
 
 	/**
-	 * 
 	 *
+	 * @package Jomres\Core\Classes
 	 *
 	 */
 

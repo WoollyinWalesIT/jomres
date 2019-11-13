@@ -1,6 +1,8 @@
 <?php
 /**
  *
+ *  @package Jomres\Core\REST_API
+ *
  * @author Vince Wooll <sales@jomres.net>
  *
  * @version Jomres 9.20.0

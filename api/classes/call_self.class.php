@@ -1,5 +1,8 @@
 <?php
 /**
+ *
+ *  @package Jomres\Core\REST_API
+ *
  * Allows REST API features to call the same server to facillitate reuse of existing REST API features
  *
  * @author Vince Wooll <sales@jomres.net>

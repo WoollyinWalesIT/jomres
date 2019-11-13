@@ -17,7 +17,7 @@ defined('_JOMRES_INITCHECK') or die('');
 /**
  * This file is the main code block that manages the booking engine.
  #
- *
+ * @package Jomres\Core\Classes
  #
  * It is not designed to be implemented or called directly. Instead it is called by the j05000bookingobject.class.php file which inherits from this file.
  */

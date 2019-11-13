@@ -12,8 +12,8 @@
  
  	
 	/**
-	 * 
 	 *
+	 * @package Jomres\Core\CMS_Specific
 	 *
 	 */
 

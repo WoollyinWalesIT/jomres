@@ -15,6 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 /**
+ * 	 * @package Jomres\Core\Classes
  * Utility class for all HTML drawing classes.
  */
 class jomresHTML

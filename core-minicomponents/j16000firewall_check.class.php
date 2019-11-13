@@ -18,7 +18,7 @@ use GuzzleHttp\Psr7;
 use GuzzleHttp\Exception\ClientException;
 	
 	/**
-	 * Core Minicomponent.
+	 * @package Jomres\Core\Minicomponents
 	 *
 	 * 
 	 */

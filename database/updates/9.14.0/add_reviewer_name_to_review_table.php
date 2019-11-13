@@ -13,7 +13,13 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Database modification during updates
+ *
+ **/
 $query = "SHOW COLUMNS FROM #__jomres_reviews_ratings LIKE 'user_name'";
 $colExists = doSelectSql( $query );
 if (count($colExists) < 1)

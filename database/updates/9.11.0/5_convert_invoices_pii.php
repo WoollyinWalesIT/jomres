@@ -14,7 +14,13 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Database modification during updates
+ *
+ **/
 // Let's check that the buyer's table isn't populated. If it is not, then we are able to convert invoices.
 $query = "SELECT id FROM `#__jomres_invoice_pii_buyers` LIMIT 1";
 $populated = doSelectSql($query);

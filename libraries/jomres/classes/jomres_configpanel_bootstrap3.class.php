@@ -18,7 +18,8 @@ jr_import('jomres_content_tabs');
 
 /**
  * Creates the Jomres config panel object.
- #
+ *
+ * @package Jomres\Core\Classes
  *
  * @since 2.6
  */

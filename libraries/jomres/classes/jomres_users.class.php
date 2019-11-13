@@ -20,8 +20,8 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 //90: super property manager
 	
 	/**
-	 * 
 	 *
+	 * @package Jomres\Core\Classes
 	 *
 	 */
 

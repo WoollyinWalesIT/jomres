@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent.
+	 * @package Jomres\Core\Minicomponents
 	 *
      * Generates significant information used in microdata, and then calls the relevant schema template to show the schema. The trigger number 01070 causes the schema to be shown after the property header template is output.
      *

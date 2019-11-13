@@ -13,7 +13,13 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Seed data for various tables
+ *
+ **/
 $query = "TRUNCATE TABLE `#__jomcomp_cron`;";
 
 if (!doInsertSql($query)) {

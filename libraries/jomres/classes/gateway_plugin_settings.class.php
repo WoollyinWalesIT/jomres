@@ -16,8 +16,8 @@ defined('_JOMRES_INITCHECK') or die('');
 
 // Allows Jomres to determine gateway settings
 	/**
-	 * 
 	 *
+	 * @package Jomres\Core\Classes
 	 *
 	 */
 

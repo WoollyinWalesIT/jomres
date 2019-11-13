@@ -17,7 +17,9 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * 
+	 *
+	 * @package Jomres\Core\REST_API
+	 *
 	 * Responds with JSON encoded values returned from individual REST API feature plugins
 	 *
 	 */

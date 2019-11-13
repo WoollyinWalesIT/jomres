@@ -17,6 +17,7 @@ defined('_JOMRES_INITCHECK') or die('');
 /**
  * Creates the Jomres currency format object.
  #
+ * @package Jomres\Core\Classes
  *
  * @since 2.6
  */

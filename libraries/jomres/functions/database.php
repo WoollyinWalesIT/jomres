@@ -1,5 +1,6 @@
 <?php
 /**
+ *
  * Database querying functions
  *
  * @author Vince Wooll <sales@jomres.net>
@@ -15,6 +16,8 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 /**
+ *
+ * @package Jomres\Core\Functions
 *
 * Performs SELECT queries
 *
@@ -69,6 +72,8 @@ function doSelectSql($query, $mode = false)
 }
 
 /**
+ *
+ * @package Jomres\Core\Functions
 *
 * Performs INSERT/UPDATE/DELETE queries
 *
@@ -104,8 +109,10 @@ function doInsertSql($query, $op = '', $ignoreErrors = false)
 }
 
 /**
- * 
  *
+ * @package Jomres\Core\Functions
+ * 
+ * Closes the database connection
  *
  */
 function doDBClose()

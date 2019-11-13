@@ -13,7 +13,13 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Database modification during updates
+ *
+ **/
 $query = "
 	ALTER TABLE `#__jomres_room_classes` CHANGE `room_class_full_desc` `room_class_full_desc` TEXT NULL DEFAULT NULL;
 	";

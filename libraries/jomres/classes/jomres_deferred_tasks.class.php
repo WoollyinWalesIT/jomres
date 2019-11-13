@@ -19,8 +19,8 @@ use GuzzleHttp\Psr7;
 use GuzzleHttp\Exception\RequestException;
 	
 	/**
-	 * 
 	 *
+	 * @package Jomres\Core\Classes
 	 *
 	 */
 

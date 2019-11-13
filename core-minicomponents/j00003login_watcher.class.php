@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent.
+	 * @package Jomres\Core\Minicomponents
 	 *
 	 * Allows users to login through Jomres and uses the CMS's login functionality to log them in. TFA not currently supported.
 	 * 

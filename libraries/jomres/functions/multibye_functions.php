@@ -15,9 +15,9 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 /**
- * 
+ * @package Jomres\Core\Functions
  *
- *
+ * Where possible us mb_string functionality for substr.
  */
 function jr_substr($str, $arg1, $arg2)
 {
@@ -31,7 +31,9 @@ function jr_substr($str, $arg1, $arg2)
 }
 
 /**
- * 
+ * @package Jomres\Core\Functions
+ *
+ *          Where possible use mb_string functionalty for strtolower
  *
  *
  */
@@ -47,8 +49,9 @@ function jr_strtolower($str)
 }
 
 /**
- * 
+ * @package Jomres\Core\Functions
  *
+ *          Where possible use mb_string functionality to return uppercase words
  *
  */
 function jr_ucwords($str)
@@ -58,7 +61,9 @@ function jr_ucwords($str)
 
 /**
  * 
+ * @package Jomres\Core\Functions
  *
+ *          A roll-your-own implementation of mb_ucwords
  *
  */
 if (!function_exists('mb_ucwords')) {

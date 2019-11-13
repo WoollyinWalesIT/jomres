@@ -13,7 +13,13 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Database creation during installation
+ *
+ **/
 $query = "
 CREATE TABLE IF NOT EXISTS `#__jomres_tax_rules` (
 	`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,

@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 	/**
-	 * Core Minicomponent.
+	 * @package Jomres\Core\Minicomponents
 	 *
 	 * This script will build language definition scripts for javascript files that need to be called AFTER all of the other language files have been read in.
 	 * 

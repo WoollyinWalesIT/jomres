@@ -13,7 +13,13 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Database modification during updates
+ *
+ **/
 $old_style_property_description_definitions = array (
 	'_JOMRES_CUSTOMTEXT_PROPERTY_NAME',
 	'_JOMRES_CUSTOMTEXT_PROPERTY_STREET',

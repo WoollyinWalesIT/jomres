@@ -6,8 +6,7 @@
  * @link	   https://www.jomres.net
  * @since	  9.9.19
  *
- * @package	Jomres
- * @subpackage Jomres/includes
+ * @package Jomres\Core\CMS_Specific
  */
 
 /**
@@ -17,8 +16,6 @@
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package	Jomres
- * @subpackage Jomres/includes
  * @author	 Vince Wooll <support@jomres.net>
  */
 class Jomres_Loader {

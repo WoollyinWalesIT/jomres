@@ -15,6 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 /**
+ * 	 * @package Jomres\Core\Classes
  * Manages the current user's access rights.
  */
 

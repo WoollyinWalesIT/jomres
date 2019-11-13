@@ -14,14 +14,15 @@
 defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.');
 // ################################################################
 
-// Joomla 3 insists on adding html even when tmpl = component, so we'll nip that behaviour in the bud, thankyouverymuch
-// Cheers Nic (http://www.akeebabackup.com/)
-	
-	/**
-	 * 
-	 *
-	 *
-	 */
+/**
+ *
+ * Installation script run by the installer when it detects that we are installing on this CMS.
+ *
+ * Joomla 3 insists on adding html even when tmpl = component, so we'll nip that behaviour in the bud, thankyouverymuch Cheers Nic (http://www.akeebabackup.com/). Will assume the same for Joomla 4.
+ *
+ * @package Jomres\Core\CMS_Specific
+ *
+ */
 
 if (AJAXCALL) {
 	JFactory::getApplication()->close();

@@ -20,8 +20,8 @@ defined('_JOMRES_INITCHECK') or die('');
 class mcHandler
 {	
 	/**
-	 * 
 	 *
+	 * @package Jomres\Core\Classes
 	 *
 	 */
 

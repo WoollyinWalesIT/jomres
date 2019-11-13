@@ -17,8 +17,8 @@ defined('_JOMRES_INITCHECK') or die('');
 class jomres_empty_class
 {	
 	/**
-	 * 
 	 *
+	 * @package Jomres\Core\Classes
 	 *
 	 */
 

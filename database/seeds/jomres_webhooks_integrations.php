@@ -14,7 +14,13 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Seed data for various tables
+ *
+ **/
 $manager_uid = 0;
 $url = 'App Server'; // We don't need to set a url, the endpoint will be coded into the webhook script.
 		

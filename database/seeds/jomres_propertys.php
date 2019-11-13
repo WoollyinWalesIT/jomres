@@ -13,7 +13,13 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Seed data for various tables
+ *
+ **/
 $property_email = get_showtime('mailfrom'); //we`ll set this to the site admin email
 
 $query = "TRUNCATE TABLE `#__jomres_propertys`;";

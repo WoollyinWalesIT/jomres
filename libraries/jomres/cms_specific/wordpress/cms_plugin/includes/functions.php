@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * The Jomres public-facing functionality.
+ *
+ * Defines the plugin name, version.
+ *
+ * @package Jomres\Core\CMS_Specific
+ *
+ * @author	 Vince Wooll <support@jomres.net>
+ */
+
+
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
 	die;

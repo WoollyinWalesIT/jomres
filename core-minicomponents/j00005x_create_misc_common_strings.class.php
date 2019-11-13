@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent.
+	 * @package Jomres\Core\Minicomponents
 	 *
 	 * Defines common language strings that can be used in any patTemplate template file without having been first set in the script calling the template file. The main purpose of this was to make it possible for third party plugin developers to create their own language definitions that could be used anywhere in their template files, if so required.
 	 * 

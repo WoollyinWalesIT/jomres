@@ -28,7 +28,7 @@ defined('_JOMRES_INITCHECK') or die('');
 
 /**
  * Creates the Jomres paging object.
- #
+ * @package Jomres\Core\Classes
  *
  * @since 2.6
  */

@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent.
+	 * @package Jomres\Core\Minicomponents
 	 *
 	 * Called by the 01010 script, given a list of property uids, it will rejig the order of the ids based on the jomsearch_sortby variable that can be passed via a variety of methods (componentArgs, $_REQUEST, user_settings etc)
 	 */

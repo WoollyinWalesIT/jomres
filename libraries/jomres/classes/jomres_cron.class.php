@@ -18,8 +18,8 @@ defined('_JOMRES_INITCHECK') or die('');
 // Nice simple schedules used: M,H,D,W,QH
 	
 	/**
-	 * 
 	 *
+	 * @package Jomres\Core\Classes
 	 *
 	 */
 

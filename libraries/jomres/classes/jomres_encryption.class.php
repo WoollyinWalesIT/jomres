@@ -20,8 +20,8 @@ use Defuse\Crypto\Key;
 use Defuse\Crypto\Crypto;
 	
 	/**
-	 * 
 	 *
+	 * @package Jomres\Core\Classes
 	 *
 	 */
 

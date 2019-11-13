@@ -10,7 +10,7 @@
  *
  * @link			  https://www.jomres.net
  * @since			 9.9.19
- * @package		   Jomres
+ * @package Jomres\Core\CMS_Specific
  *
  * @wordpress-plugin
  * Plugin Name:	   Jomres

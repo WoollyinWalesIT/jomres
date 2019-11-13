@@ -13,7 +13,13 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Database modification during updates
+ *
+ **/
 $query = "SHOW COLUMNS FROM #__jomres_contracts LIKE 'network_stats'";
 $colExists = doSelectSql( $query );
 if (count($colExists) < 1)

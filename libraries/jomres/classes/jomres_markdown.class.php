@@ -17,8 +17,8 @@ defined('_JOMRES_INITCHECK') or die('');
 // A wrapper class for parsing data through a markdown class
 	
 	/**
-	 * 
 	 *
+	 * @package Jomres\Core\Classes
 	 *
 	 */
 

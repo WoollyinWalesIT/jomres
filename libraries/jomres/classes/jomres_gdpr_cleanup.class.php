@@ -15,6 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 /**
+ * @package Jomres\Core\Classes
 *
 * Methods for cleaning up various sets of data, primarily for GDPR compliance
 *

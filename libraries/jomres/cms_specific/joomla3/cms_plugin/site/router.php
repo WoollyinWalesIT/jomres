@@ -13,8 +13,8 @@ defined('_JEXEC') or die('');
 
 	
 	/**
-	 * 
 	 *
+	 * @package Jomres\Core\CMS_Specific
 	 *
 	 */
 

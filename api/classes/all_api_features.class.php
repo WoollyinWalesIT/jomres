@@ -1,5 +1,8 @@
 <?php
 /**
+ *
+ *  @package Jomres\Core\REST_API
+ *
  * Finds all API feature scripts. 
  *
  * Additionally finds auth-free API features, which are scripts that can be called by any site visitor, they do not need to be authenticated. For example, a basic search and response wouldn't normally need to be authenticated, so there's no OAuth2 key pair required to call that REST API path. 

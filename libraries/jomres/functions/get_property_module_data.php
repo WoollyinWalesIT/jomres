@@ -17,7 +17,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // Intended as a utility function used by Jomres modules to display information about a property in modules
 /**
  * 
- *
+ * @package Jomres\Core\Functions
  *
  */
 function get_property_module_data($property_uid_array, $alt_template_path = '', $alt_template_name = '', $vertical = false)

@@ -13,7 +13,13 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Seed data for various tables
+ *
+ **/
 $query = "TRUNCATE TABLE `#__jomres_hotel_features_categories`;";
 
 if (!doInsertSql($query)) {

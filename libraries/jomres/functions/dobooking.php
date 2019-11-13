@@ -1,5 +1,6 @@
 <?php
 /**
+ *
  * Builds the booking form
  *
  * @author Vince Wooll <sales@jomres.net>
@@ -15,6 +16,9 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 /**
+ *
+ * @package Jomres\Core\Functions
+ *
  * Get some basic data before beginning construction of the booking form.
  */
 $property_uid = (int)get_showtime('property_uid');

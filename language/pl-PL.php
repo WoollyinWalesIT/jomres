@@ -14,6 +14,13 @@
 //#################################################################
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
+/**
+ *
+ * @package Jomres\Core\Languages
+ *
+ * Language files.
+ *
+ **/
 jr_define('_JOMRES_COM_MR_QUICKRESDESC', 'Bezpośrednia rezerwacja');
 jr_define('_JOMRES_COM_MR_SHOWPROFILES', 'Użytkownicy');
 jr_define('_JOMRES_COM_MR_QUICK______DESC', 'Zostawić puste');

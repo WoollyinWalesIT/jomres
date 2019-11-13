@@ -13,7 +13,13 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Database modification during updates
+ *
+ **/
 $query = "
 	ALTER TABLE `#__jomres_reviews_ratings` CHANGE `rating` `rating` FLOAT(2) NULL DEFAULT NULL;
 	";

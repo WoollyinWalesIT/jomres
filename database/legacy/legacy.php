@@ -59,6 +59,8 @@ catch (Exception $e) {
 
 /**
  *
+ * @package Jomres\Core\Database
+ *
  * Legacy update functions
  *
  **/
@@ -114,6 +116,14 @@ function updateImages()
     }
 }
 
+
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Add API and Webhook tables
+ *
+ **/
 function addApiAndWebhooksTables() 
 {
 	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_oauth_clients (
@@ -185,6 +195,13 @@ function addApiAndWebhooksTables()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy table updates
+ *
+ **/
 function doTableUpdates()
 {
     // Might not need this, commented out for now
@@ -482,6 +499,13 @@ function doTableUpdates()
 	add_jomres_images_table();	
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterReviewsRatingsContractUidCol()
 {
     $query = "ALTER TABLE `#__jomres_reviews_ratings` ADD `contract_uid` int( 11 ) default NULL  ";
@@ -490,6 +514,13 @@ function alterReviewsRatingsContractUidCol()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkReviewsRatingsContractUidColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_reviews_ratings LIKE 'contract_uid'";
@@ -500,6 +531,13 @@ function checkReviewsRatingsContractUidColExists()
     return false;
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterPropertyFeaturesFilterCol()
 {
     $query = "ALTER TABLE `#__jomres_hotel_features` ADD `include_in_filters` TINYINT(1) NOT NULL DEFAULT 1 ";
@@ -508,6 +546,13 @@ function alterPropertyFeaturesFilterCol()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkPropertyFeaturesFilterColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_hotel_features LIKE 'include_in_filters'";
@@ -518,7 +563,13 @@ function checkPropertyFeaturesFilterColExists()
     return false;
 }
 
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkLineitemsPaymentMethodColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomresportal_lineitems  LIKE 'payment_method'";
@@ -530,6 +581,13 @@ function checkLineitemsPaymentMethodColExists()
     return false;
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterLineitemsPaymentMethodCol()
 {
     //throw new Exception ( "Editing __jomresportal_lineitems table adding is_payment column");
@@ -543,6 +601,13 @@ function alterLineitemsPaymentMethodCol()
     $result = doInsertSql($query);
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterPtypesHasStarsCol()
 {
     //throw new Exception ( "Editing __jomres_ptypes table adding has_stars column");
@@ -552,6 +617,13 @@ function alterPtypesHasStarsCol()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkPtypesHasStarsColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_ptypes LIKE 'has_stars'";
@@ -562,6 +634,13 @@ function checkPtypesHasStarsColExists()
     return false;
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function add_jomres_images_table()
 {
 	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_images (
@@ -578,6 +657,13 @@ function add_jomres_images_table()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterCustomtextColsChangeDefaultVals()
 {
     $query = "ALTER TABLE `#__jomres_custom_text` CHANGE `constant` `constant` VARCHAR(100) NOT NULL DEFAULT '0', CHANGE `language` `language` CHAR(5) NOT NULL DEFAULT 'en-GB', CHANGE `language_context` `language_context` VARCHAR(50) NOT NULL DEFAULT '0' ";
@@ -608,6 +694,13 @@ function alterCustomtextColsChangeDefaultVals()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterCustomtextLangContextCol()
 {
     $query = "ALTER TABLE `#__jomres_custom_text` ADD `language_context` VARCHAR(100) NOT NULL DEFAULT '0' ";
@@ -616,6 +709,13 @@ function alterCustomtextLangContextCol()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkCustomtextLangContextColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_custom_text LIKE 'language_context'";
@@ -626,6 +726,13 @@ function checkCustomtextLangContextColExists()
     return false;
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterPropertysCatIdCol()
 {
     //throw new Exception ( "Editing __jomres_propertys table adding permit_number column");
@@ -635,6 +742,13 @@ function alterPropertysCatIdCol()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkPropertysCatIdColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_propertys LIKE 'cat_id'";
@@ -645,6 +759,13 @@ function checkPropertysCatIdColExists()
     return false;
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterPropertysCompletedCol()
 {
     //throw new Exception ( "Editing __jomres_propertys table adding permit_number column");
@@ -659,6 +780,13 @@ function alterPropertysCompletedCol()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkPropertysCompletedColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_propertys LIKE 'completed'";
@@ -669,7 +797,13 @@ function checkPropertysCompletedColExists()
     return false;
 }
 
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterGuestsProfileParamsCol()
 {
     $query = 'ALTER TABLE `#__jomres_guest_profile` ADD `params` TEXT';
@@ -678,6 +812,13 @@ function alterGuestsProfileParamsCol()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkGuestsProfileParamsColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_guest_profile LIKE 'params'";
@@ -688,7 +829,14 @@ function checkGuestsProfileParamsColExists()
 
     return false;
 }
-		
+
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function add_jomres_template_package_table()
 {
 	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_template_package_overrides (
@@ -702,6 +850,13 @@ function add_jomres_template_package_table()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function add_jomres_property_categories_table()
 {
 	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_property_categories (
@@ -715,6 +870,13 @@ function add_jomres_property_categories_table()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function add_jomres_sessions_table()
 {
 	$query = "CREATE TABLE IF NOT EXISTS  #__jomres_sessions (
@@ -728,6 +890,13 @@ function add_jomres_sessions_table()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterGuestsBlacklistedCol()
 {
     $query = 'ALTER TABLE `#__jomres_guests` ADD `blacklisted` tinyint( 1 ) default 0 NOT NULL ';
@@ -736,6 +905,13 @@ function alterGuestsBlacklistedCol()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkGuestsBlacklistedColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_guests LIKE 'blacklisted'";
@@ -747,6 +923,13 @@ function checkGuestsBlacklistedColExists()
     return false;
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkRoomDescriptionColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_rooms LIKE 'description'";
@@ -758,6 +941,13 @@ function checkRoomDescriptionColExists()
     return false;
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterRoomsDescriptionCol()
 {
     $query = 'ALTER TABLE #__jomres_rooms ADD `tagline` VARCHAR(255)';
@@ -770,6 +960,13 @@ function alterRoomsDescriptionCol()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function drop_cronlog_table() {
 	$query = 'DROP TABLE IF EXISTS `#__jomcomp_cronlog` ';
     if (!doInsertSql($query, '')) {
@@ -777,6 +974,13 @@ function drop_cronlog_table() {
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function copy_default_property_type_markers() {
 	$passed = true;
 	if (!is_dir(JOMRES_IMAGELOCATION_ABSPATH.'markers'.JRDS)) {
@@ -821,6 +1025,13 @@ function copy_default_property_type_markers() {
 	}
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkManagersUsernameColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_managers LIKE 'username' ";
@@ -832,6 +1043,13 @@ function checkManagersUsernameColExists()
     return false;
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function doUserRolesUpdates()
 {
     //throw new Exception ( "Updating user role for super property managers");
@@ -871,6 +1089,13 @@ function doUserRolesUpdates()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterPtypesMarkerCol()
 {
     //throw new Exception ( "Editing __jomres_ptypes table adding marker column");
@@ -880,6 +1105,13 @@ function alterPtypesMarkerCol()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkPtypesMarkerColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_ptypes LIKE 'marker'";
@@ -891,6 +1123,13 @@ function checkPtypesMarkerColExists()
     return false;
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function change_default_date_value_for_subscriptions_table()
 {
     $query = "ALTER TABLE `#__jomresportal_subscriptions` MODIFY COLUMN `raised_date` DATETIME NOT NULL DEFAULT '1970-01-01 00:00:01', MODIFY COLUMN `expiration_date` DATETIME NOT NULL DEFAULT '1970-01-01 00:00:01' ";
@@ -899,6 +1138,13 @@ function change_default_date_value_for_subscriptions_table()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterPropertysPermitCol()
 {
     //throw new Exception ( "Editing __jomres_propertys table adding permit_number column");
@@ -908,6 +1154,13 @@ function alterPropertysPermitCol()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkPropertysPermitColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_propertys LIKE 'permit_number'";
@@ -919,6 +1172,13 @@ function checkPropertysPermitColExists()
     return false;
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function removeCronJob($job = '')
 {
     if ($job == '') {
@@ -930,6 +1190,13 @@ function removeCronJob($job = '')
     $cron->removeJob($job);
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function addCronJob($job = '', $schedule = 'D', $params = '')
 {
     if ($job == '') {
@@ -941,6 +1208,13 @@ function addCronJob($job = '', $schedule = 'D', $params = '')
     $cron->addJob($job, $schedule, $params);
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function drop_orphan_line_items_table()
 {
     $query = 'DROP TABLE IF EXISTS `#__jomresportal_orphan_lineitems` ';
@@ -949,6 +1223,13 @@ function drop_orphan_line_items_table()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function drop_room_images_table()
 {
     $query = 'DROP TABLE IF EXISTS `#__jomres_room_images` ';
@@ -957,6 +1238,13 @@ function drop_room_images_table()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkRtypesSrpOnlyFlagColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_room_classes LIKE 'srp_only'";
@@ -968,6 +1256,13 @@ function checkRtypesSrpOnlyFlagColExists()
     return false;
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function dropRtypesSrpOnlyFlagCol()
 {
     //throw new Exception ( "Editing __jomres_room_classes table dropping srp_only column");
@@ -977,6 +1272,13 @@ function dropRtypesSrpOnlyFlagCol()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterPtypesMrpsrpFlagCol()
 {
     //throw new Exception ( "Editing __jomres_ptypes table adding mrp_srp_flag column");
@@ -986,6 +1288,13 @@ function alterPtypesMrpsrpFlagCol()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkPtypesMrpsrpFlagColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_ptypes LIKE 'mrp_srp_flag'";
@@ -997,6 +1306,13 @@ function checkPtypesMrpsrpFlagColExists()
     return false;
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterContractsReferrerCol()
 {
     //throw new Exception ( "Editing __jomres_contracts table adding referrer column");
@@ -1006,6 +1322,13 @@ function alterContractsReferrerCol()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkContractsReferrerColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_contracts LIKE 'referrer'";
@@ -1017,6 +1340,13 @@ function checkContractsReferrerColExists()
     return false;
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterExtrasLimitedtoroomtypeCol()
 {
     //throw new Exception ( "Editing __jomres_extras table adding limited_to_room_type column");
@@ -1026,6 +1356,13 @@ function alterExtrasLimitedtoroomtypeCol()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkExtrasLimitedtoroomtypeColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_extras LIKE 'limited_to_room_type'";
@@ -1037,6 +1374,13 @@ function checkExtrasLimitedtoroomtypeColExists()
     return false;
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterGuestsPartnerIdCol()
 {
     //throw new Exception ( "Editing __jomres_guests table adding partner_id columns");
@@ -1046,6 +1390,13 @@ function alterGuestsPartnerIdCol()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkGuestsPartnerIdColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_guests LIKE 'partner_id'";
@@ -1057,6 +1408,13 @@ function checkGuestsPartnerIdColExists()
     return false;
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function createPartnerBookingsTable()
 {
     //throw new Exception ( "Creating _jomres_partner_bookings table");
@@ -1072,6 +1430,13 @@ function createPartnerBookingsTable()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkPartnerBookingsTableExists()
 {
     $tablesFound = false;
@@ -1087,6 +1452,13 @@ function checkPartnerBookingsTableExists()
     return false;
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkExtraservicesQtyColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_extraservices LIKE 'service_qty'";
@@ -1098,6 +1470,13 @@ function checkExtraservicesQtyColExists()
     return false;
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterExtraservicesQtyCol()
 {
     //throw new Exception ( "Editing __jomres_extraservices table adding services_qty column");
@@ -1107,6 +1486,13 @@ function alterExtraservicesQtyCol()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkRoomSmokingColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_rooms LIKE 'smoking'";
@@ -1118,6 +1504,13 @@ function checkRoomSmokingColExists()
     return false;
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterRoomsSmokingCol()
 {
     //throw new Exception ( "Editing __jomres_rooms table dropping smoking, room_disabled_access columns");
@@ -1127,6 +1520,13 @@ function alterRoomsSmokingCol()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkContractsSmokingColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_contracts LIKE 'smoking'";
@@ -1138,6 +1538,13 @@ function checkContractsSmokingColExists()
     return false;
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterContractsSmokingCol()
 {
     //throw new Exception ( "Editing __jomres_contracts table dropping smoking column");
@@ -1147,6 +1554,13 @@ function alterContractsSmokingCol()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkPfeaturesCategoriesTableExists()
 {
     $tablesFound = false;
@@ -1162,6 +1576,13 @@ function checkPfeaturesCategoriesTableExists()
     return false;
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function createPfeaturesCategoriesTable()
 {
     //throw new Exception ( "Creating jomres_hotel_features_categories table");
@@ -1178,6 +1599,13 @@ function createPfeaturesCategoriesTable()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkPfeaturesCategoryColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_hotel_features LIKE 'cat_id'";
@@ -1189,6 +1617,13 @@ function checkPfeaturesCategoryColExists()
     return false;
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterPfeaturesCategoryCol()
 {
     //throw new Exception ( "Editing __jomres_hotel_features table adding cat_id column");
@@ -1198,6 +1633,13 @@ function alterPfeaturesCategoryCol()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkRfeaturesImageColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_room_features LIKE 'image'";
@@ -1209,6 +1651,13 @@ function checkRfeaturesImageColExists()
     return false;
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterRfeaturesImageCol()
 {
     //throw new Exception ( "Editing __jomres_room_features table adding image column");
@@ -1218,6 +1667,13 @@ function alterRfeaturesImageCol()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterExtrasIncludeinlistsCol()
 {
     //throw new Exception ( "Editing __jomres_extras table adding include_in_property_lists column");
@@ -1227,6 +1683,13 @@ function alterExtrasIncludeinlistsCol()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkExtrasIncludeinlistsColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_extras LIKE 'include_in_property_lists'";
@@ -1238,6 +1701,13 @@ function checkExtrasIncludeinlistsColExists()
     return false;
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterExtrasValidfromCol()
 {
     //throw new Exception('Editing __jomres_extras table adding validfrom column');
@@ -1255,6 +1725,13 @@ function alterExtrasValidfromCol()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkExtrasValidfromColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_extras LIKE 'validfrom'";
@@ -1266,6 +1743,13 @@ function checkExtrasValidfromColExists()
     return false;
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function createInvoicePaymentXrefTable()
 {
     //throw new Exception ( "Creating jomres_invoice_payment_ref table");
@@ -1282,6 +1766,13 @@ function createInvoicePaymentXrefTable()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkInvoicePaymentXrefTableExists()
 {
     $tablesFound = false;
@@ -1297,6 +1788,13 @@ function checkInvoicePaymentXrefTableExists()
     return false;
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function move_license_key_to_site_settings()
 {
     if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php')) {
@@ -1313,6 +1811,13 @@ function move_license_key_to_site_settings()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function save_configuration_file()
 {
     if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php')) {
@@ -1345,18 +1850,39 @@ $jrConfig = ' .var_export($config_to_save, true).';
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function drop_portal_bookings_table()
 {
     $query = 'DROP TABLE IF EXISTS #__jomresportal_bookings';
     doInsertSql($query, '');
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function drop_portal_users_table()
 {
     $query = 'DROP TABLE IF EXISTS #__jomresportal_users';
     doInsertSql($query, '');
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkLineitemsIspaymentColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomresportal_lineitems  LIKE 'is_payment'";
@@ -1368,6 +1894,13 @@ function checkLineitemsIspaymentColExists()
     return false;
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterLineitemsIspaymentCol()
 {
     //throw new Exception ( "Editing __jomresportal_lineitems table adding is_payment column");
@@ -1379,6 +1912,13 @@ function alterLineitemsIspaymentCol()
     $result = doInsertSql($query);
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterPropertysLastchangedCol()
 {
     //throw new Exception ( "Editing __jomres_propertys table adding last_changed column");
@@ -1388,6 +1928,13 @@ function alterPropertysLastchangedCol()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkPropertysLastchangedColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_propertys LIKE 'last_changed'";
@@ -1399,6 +1946,13 @@ function checkPropertysLastchangedColExists()
     return false;
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterContractsLastchangedCol()
 {
     //throw new Exception ( "Editing __jomres_contracts table adding last_changed column");
@@ -1408,6 +1962,13 @@ function alterContractsLastchangedCol()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkContractsLastchangedColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_contracts LIKE 'last_changed'";
@@ -1419,6 +1980,13 @@ function checkContractsLastchangedColExists()
     return false;
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterManagerLastactiveCol()
 {
     //throw new Exception ( "Editing __jomres_managers table adding last_active column");
@@ -1428,6 +1996,13 @@ function alterManagerLastactiveCol()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkManagerLastactiveColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_managers LIKE 'last_active'";
@@ -1439,6 +2014,13 @@ function checkManagerLastactiveColExists()
     return false;
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterTaxratesEUCol()
 {
     //throw new Exception ( "Editing __jomresportal_taxrates table adding is_eu_country column");
@@ -1448,6 +2030,13 @@ function alterTaxratesEUCol()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkTaxratesEUColExists()
 {
     $guestsTimestampInstalled = true;
@@ -1460,6 +2049,13 @@ function checkTaxratesEUColExists()
     return false;
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterPropertysSiteIdCol()
 {
     //throw new Exception ( "Editing __jomres_propertys table adding property_site_id column");
@@ -1469,6 +2065,13 @@ function alterPropertysSiteIdCol()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkPropertysSiteIdColExists()
 {
     $guestsTimestampInstalled = true;
@@ -1481,6 +2084,13 @@ function checkPropertysSiteIdColExists()
     return false;
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterContractsLang()
 {
     //throw new Exception ( "Editing __jomres_contracts table adding booking_language column");
@@ -1490,6 +2100,13 @@ function alterContractsLang()
     }
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkContractsLangColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_contracts LIKE 'booking_language'";
@@ -1501,6 +2118,13 @@ function checkContractsLangColExists()
     return false;
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkCustomertypesIsChildColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_customertypes LIKE 'is_child'";
@@ -1512,6 +2136,13 @@ function checkCustomertypesIsChildColExists()
     return false;
 }
 
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterCustomertypesIsChildCol()
 {
     //throw new Exception ( "Editing __jomres_customertypes table adding is_child column");
@@ -1522,7 +2153,13 @@ function alterCustomertypesIsChildCol()
 }
 
 // In Jomres 8.1 we're offering the ability to use a different path to the Jomres root directory due to requirements of the wordpress repository. As a result, we need to change the paths to the property feature and room type images.
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function update_room_type_images_paths()
 {
     $query = 'SELECT  `room_classes_uid` , `image` FROM #__jomres_room_classes';
@@ -1538,7 +2175,13 @@ function update_room_type_images_paths()
         }
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function update_property_features_images_paths()
 {
     $query = 'SELECT  `hotel_features_uid` , `image` FROM #__jomres_hotel_features';
@@ -1554,7 +2197,13 @@ function update_property_features_images_paths()
         }
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function renameExtraServicesTable()
 {
     $query = 'RENAME TABLE `#__jomres_extraServices` TO `#__jomres_temp`';
@@ -1565,7 +2214,13 @@ function renameExtraServicesTable()
 
     //throw new Exception ( "Renamed `#__jomres_extraServices to #__jomres_extraservices");
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkExtraServicesTableNeedsRenaming()
 {
     $query = "SHOW VARIABLES LIKE 'lower_case_table_names';";
@@ -1588,7 +2243,13 @@ function checkExtraServicesTableNeedsRenaming()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterBookingdataarchiveContractid()
 {
     //throw new Exception ( "Editing __jomres_booking_data_archive table adding contract_uid column");
@@ -1601,7 +2262,13 @@ function alterBookingdataarchiveContractid()
         throw new Exception('Error, unable to add __jomres_booking_data_archive tag');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkBookingdataarchiveContractidColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_booking_data_archive LIKE 'contract_uid'";
@@ -1612,7 +2279,13 @@ function checkBookingdataarchiveContractidColExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterContractsBookingdataarchiveCol()
 {
     //throw new Exception ( "Editing __jomres_contracts table adding booking_data_archive_id column");
@@ -1629,7 +2302,13 @@ function alterContractsBookingdataarchiveCol()
         throw new Exception('Error, unable to add __jomres_contracts secret_key_used');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkContractsBookingdataarchiveColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_contracts LIKE 'booking_data_archive_id'";
@@ -1640,7 +2319,13 @@ function checkContractsBookingdataarchiveColExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkLineitemsInitqtyColFloat()
 {
     $query = 'DESCRIBE #__jomresportal_lineitems';
@@ -1652,7 +2337,13 @@ function checkLineitemsInitqtyColFloat()
         }
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterContractsApproved()
 {
     //throw new Exception ( "Editing __jomres_contracts table adding approved column");
@@ -1661,7 +2352,13 @@ function alterContractsApproved()
         throw new Exception('Error, unable to add __jomres_contracts approved');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkContractsApprovedColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_contracts LIKE 'approved'";
@@ -1672,7 +2369,13 @@ function checkContractsApprovedColExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterTarifftypesDescriptionCol()
 {
     //throw new Exception ( "Editing __jomcomp_tarifftypes table adding description column");
@@ -1681,7 +2384,13 @@ function alterTarifftypesDescriptionCol()
         throw new Exception('Error, unable to add __jomcomp_tarifftypes description');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkTarifftypesDescriptionColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomcomp_tarifftypes LIKE 'description'";
@@ -1692,7 +2401,13 @@ function checkTarifftypesDescriptionColExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterManagerSimpleconfigCol()
 {
     //throw new Exception ( "Editing __jomres_managers table adding simple_configuration column");
@@ -1701,7 +2416,13 @@ function alterManagerSimpleconfigCol()
         throw new Exception('Error, unable to add __jomres_managers simple_configuration');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkManagerSimpleconfigColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_managers LIKE 'simple_configuration'";
@@ -1712,7 +2433,13 @@ function checkManagerSimpleconfigColExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterContractsChannelManagerBookingCol()
 {
     //throw new Exception ( "Editing __jomres_contracts table adding channel_manager_booking column");
@@ -1721,7 +2448,13 @@ function alterContractsChannelManagerBookingCol()
         throw new Exception('Error, unable to add __jomres_contracts channel_manager_booking');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkContractsChannelManagerBookingColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_contracts LIKE 'channel_manager_booking'";
@@ -1732,7 +2465,13 @@ function checkContractsChannelManagerBookingColExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkPTypeXrefColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_hotel_features LIKE 'ptype_xref'";
@@ -1743,7 +2482,13 @@ function checkPTypeXrefColExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterPTypeXrefCol()
 {
     //throw new Exception ( "Editing __jomres_hotel_features table renaming ptype_id column");
@@ -1777,7 +2522,13 @@ function alterPTypeXrefCol()
         throw new Exception('Error, unable to add __jomres_custom_fields ptype_xref');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkCratesTaxRateColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomresportal_c_rates LIKE 'tax_rate'";
@@ -1788,7 +2539,13 @@ function checkCratesTaxRateColExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterCratesTaxRateCol()
 {
     //throw new Exception ( "Editing __jomresportal_c_rates table adding tax_rate column");
@@ -1797,7 +2554,13 @@ function alterCratesTaxRateCol()
         throw new Exception('Error, unable to add __jomresportal_c_rates tax_rate');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkInvoicesVATFlagColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomresportal_invoices LIKE 'vat_will_be_charged'";
@@ -1808,7 +2571,13 @@ function checkInvoicesVATFlagColExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterInvoicesVATFlagCol()
 {
     //throw new Exception ( "Editing __jomresportal_invoices table adding vat_will_be_charged column");
@@ -1817,7 +2586,13 @@ function alterInvoicesVATFlagCol()
         throw new Exception('Error, unable to add __jomresportal_invoices vat_will_be_charged');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function createTaxRulesTable()
 {
     //throw new Exception ( "Creating jomres_tax_rules table");
@@ -1833,7 +2608,13 @@ function createTaxRulesTable()
         throw new Exception('Error creating table table jomres_tax_rules ');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkTaxRulesTableExists()
 {
     $tablesFound = false;
@@ -1848,7 +2629,13 @@ function checkTaxRulesTableExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterGuestsVatcodeCol()
 {
     //throw new Exception ( "Editing __jomres_guests table adding vat_number/vat_number_validated columns");
@@ -1878,7 +2665,13 @@ function alterGuestsVatcodeCol()
         throw new Exception('Error, unable to add __jomres_guest_profile vat_number_validation_response');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkGuestsVatcodeColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_guests LIKE 'vat_number'";
@@ -1889,7 +2682,13 @@ function checkGuestsVatcodeColExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterPropertysMetakeywordsCol()
 {
     //throw new Exception ( "Editing __jomres_propertys table adding metakeywords column");
@@ -1898,7 +2697,13 @@ function alterPropertysMetakeywordsCol()
         throw new Exception('Error, unable to add __jomres_propertys metakeywords');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkPropertysMetakeywordsColExists()
 {
     $guestsTimestampInstalled = true;
@@ -1910,7 +2715,13 @@ function checkPropertysMetakeywordsColExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterPropertysSuperiorCol()
 {
     //throw new Exception ( "Editing __jomres_propertys table adding superior column");
@@ -1919,7 +2730,13 @@ function alterPropertysSuperiorCol()
         throw new Exception('Error, unable to add __jomres_propertys superior');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkPropertysSuperiorColExists()
 {
     $guestsTimestampInstalled = true;
@@ -1931,7 +2748,13 @@ function checkPropertysSuperiorColExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterPropertysApprovedCol()
 {
     //throw new Exception ( "Editing __jomres_propertys table adding approved column");
@@ -1940,7 +2763,13 @@ function alterPropertysApprovedCol()
         throw new Exception('Error, unable to add __jomres_propertys approved');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkPropertysApprovedColExists()
 {
     $guestsTimestampInstalled = true;
@@ -1956,6 +2785,13 @@ function checkPropertysApprovedColExists()
 /*
 Added a new "migrate region names to region ids" function, but will leave it disabled for now. New Jomres functionality forces us to store region names as the database region ids, however we don't want this new functionality to negatively impact users with existing data so search functionality has been updated to search both region names and region ids in the jomres_propertys table. For now we BELIEVE that this will be sufficient to provide a painless upgrade, however we'll keep this migration function in our back pockets in case we find that users benefit from migrating their properties to region ids.
 */
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function migrate_region_names()
 {
     $query = 'SELECT propertys_uid,property_region FROM #__jomres_propertys';
@@ -2005,7 +2841,13 @@ function migrate_region_names()
 }
 
 // The functions.php version of this function has recently had a call to a Joomla function added. This creates a problem during installation. Rather than making the find_region_id ALWAYS check for the existence of the CMS specific function every time it's run, we'll duplicate the function here instead. find_region_id has the potential to be called many times, so the fewer calls we can make to check if a function exists when 99.99999% if the time it does, the less load we're creating.
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function installer_find_region_id($region)
 {
     if (is_numeric($region)) { // It's already numeric
@@ -2021,7 +2863,13 @@ function installer_find_region_id($region)
 
     return null;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function createCountriesTable()
 {
     //throw new Exception ( "Creating _jomres_countries table");
@@ -2048,7 +2896,13 @@ function createCountriesTable()
         throw new Exception('Error creating table table _jomres_countries ');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkCountriesTableExists()
 {
     $tablesFound = false;
@@ -2063,7 +2917,13 @@ function checkCountriesTableExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkExtraServicesTaxtax_codeColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_extraservices LIKE 'tax_code'";
@@ -2074,7 +2934,13 @@ function checkExtraServicesTaxtax_codeColExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterExtraServicesTaxtax_codeCol()
 {
     //throw new Exception ( "Editing __jomres_extraservices table adding tax_code column");
@@ -2083,7 +2949,13 @@ function alterExtraServicesTaxtax_codeCol()
         throw new Exception('Error, unable to add __jomres_extraservices tax_code');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkInvoicesGuestidColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomresportal_invoices LIKE 'guest_id'";
@@ -2094,7 +2966,13 @@ function checkInvoicesGuestidColExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterInvoicesGuestidCol()
 {
     //throw new Exception ( "Editing __jomresportal_invoices table adding guest_id column");
@@ -2103,7 +2981,13 @@ function alterInvoicesGuestidCol()
         throw new Exception('Error, unable to add __jomresportal_invoices guest_id');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function createAccessControlTable()
 {
     //throw new Exception ( "Creating __jomres_access_control table");
@@ -2118,7 +3002,13 @@ function createAccessControlTable()
         throw new Exception('Error creating table table __jomres_access_control ');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkAccessControlTableExists()
 {
     $tablesFound = false;
@@ -2133,7 +3023,13 @@ function checkAccessControlTableExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterPtypesOrderCol()
 {
     //throw new Exception ( "Editing __jomres_ptypes table adding order column");
@@ -2142,7 +3038,13 @@ function alterPtypesOrderCol()
         throw new Exception('Error, unable to add __jomres_ptypes order');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkPtypesOrderColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_ptypes LIKE 'order'";
@@ -2153,7 +3055,13 @@ function checkPtypesOrderColExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterExtrasAutoSelectCol()
 {
     //throw new Exception ( "Editing __jomres_extras table adding auto_select column");
@@ -2162,7 +3070,13 @@ function alterExtrasAutoSelectCol()
         throw new Exception('Error, unable to add __jomres_extras auto_select');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkExtrasAutoselectColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_extras LIKE 'auto_select'";
@@ -2173,7 +3087,13 @@ function checkExtrasAutoselectColExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkLineitemsInclusiveColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomresportal_lineitems  LIKE 'init_total_inclusive'";
@@ -2184,7 +3104,13 @@ function checkLineitemsInclusiveColExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterLineitemsInclusiveCol()
 {
     //throw new Exception ( "Editing __jomresportal_lineitems table adding init_total_inclusive column");
@@ -2193,7 +3119,13 @@ function alterLineitemsInclusiveCol()
         throw new Exception('Error, unable to add __jomresportal_lineitems init_total_inclusive');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkCouponsBookingValidColsExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_coupons  LIKE 'booking_valid_from'";
@@ -2204,7 +3136,13 @@ function checkCouponsBookingValidColsExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterCouponsBookingValidCols()
 {
     //throw new Exception ( "Editing __jomres_coupons table adding booking_valid_from column");
@@ -2225,7 +3163,13 @@ function alterCouponsBookingValidCols()
         throw new Exception('Error, unable to add __jomres_coupons booking_valid_to');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkExtraServicesTaxColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_extraservices  LIKE 'tax_rate_val'";
@@ -2236,7 +3180,13 @@ function checkExtraServicesTaxColExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterExtraServicesTaxCol()
 {
     //throw new Exception ( "Editing __jomres_extraservices table adding tax_rate_val column");
@@ -2283,7 +3233,13 @@ function checkExtraServicesTableExists()
 
     return false;
     } */
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function createGuestProfileTable()
 {
     //throw new Exception ( "Creating _jomres_guest_profile table");
@@ -2321,7 +3277,13 @@ function createGuestProfileTable()
         throw new Exception('Error, unable to add _jomres_guest_profile table');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkGuestProfileTableExists()
 {
     $tablesFound = false;
@@ -2336,7 +3298,13 @@ function checkGuestProfileTableExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkInvoicesIsCommisionColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomresportal_invoices LIKE 'is_commission'";
@@ -2347,7 +3315,13 @@ function checkInvoicesIsCommisionColExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterInvoicesIsCommisionCol()
 {
     //throw new Exception ( "Editing __jomresportal_invoices table adding is_commission column");
@@ -2356,7 +3330,13 @@ function alterInvoicesIsCommisionCol()
         throw new Exception('Error, unable to add __jomresportal_invoices is_commission');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterManagerSuspendedCol()
 {
     //throw new Exception ( "Editing __jomres_managers table adding suspended column");
@@ -2365,7 +3345,13 @@ function alterManagerSuspendedCol()
         throw new Exception('Error, unable to add __jomres_managers suspended');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkManagerSuspendedColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_managers LIKE 'suspended'";
@@ -2376,7 +3362,13 @@ function checkManagerSuspendedColExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function createPartnerTables()
 {
     //throw new Exception ( "Creating __jomres_partners table");
@@ -2403,7 +3395,13 @@ function createPartnerTables()
         throw new Exception('Error, unable to add __jomres_partners_discounts table');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkPartnerTablesExist()
 {
     $tablesFound = false;
@@ -2418,7 +3416,13 @@ function checkPartnerTablesExist()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterManagerTimezoneCol()
 {
     //throw new Exception ( "Editing __jomres_managers table adding users_timezone column");
@@ -2427,7 +3431,13 @@ function alterManagerTimezoneCol()
         throw new Exception('Error, unable to add __jomres_managers users_timezone');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkManagerTimezoneColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_managers LIKE 'users_timezone'";
@@ -2438,7 +3448,13 @@ function checkManagerTimezoneColExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function createRoomtypePropertytypeXrefTable()
 {
     //throw new Exception ( "Creating room type/property type xref table");
@@ -2452,7 +3468,13 @@ function createRoomtypePropertytypeXrefTable()
         throw new Exception('Error, unable to add __jomres_roomtypes_propertytypes_xref table');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkRoomtypePropertytypeXrefTableExists()
 {
     $tablesFound = false;
@@ -2467,7 +3489,13 @@ function checkRoomtypePropertytypeXrefTableExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function createBookingdataArchiveTable()
 {
     //throw new Exception ( "Creating booking data archive tables");
@@ -2483,7 +3511,13 @@ function createBookingdataArchiveTable()
         throw new Exception('Error, unable to add _jomres_booking_data_archive table');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkBookingdataArchiveTableExists()
 {
     $tablesFound = false;
@@ -2498,7 +3532,13 @@ function checkBookingdataArchiveTableExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function createReviewDetailTable()
 {
     //throw new Exception ( "Creating review detail tables");
@@ -2513,7 +3553,13 @@ function createReviewDetailTable()
         throw new Exception('Error, unable to add _jomres_reviews_ratings_detail table');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkReviewDetailTableExists()
 {
     $tablesFound = false;
@@ -2528,7 +3574,13 @@ function checkReviewDetailTableExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function createReviewsTables()
 {
     //throw new Exception ( "Creating reviews tables");
@@ -2577,7 +3629,13 @@ function createReviewsTables()
         throw new Exception('Error, unable to add __jomres_reviews_reports table');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkReviewsTablesExist()
 {
     $tablesFound = false;
@@ -2592,12 +3650,24 @@ function checkReviewsTablesExist()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled()
 {
     require_once _JOMRES_DETECTED_CMS_SPECIFIC_FILES.'cms_specific_installation.php';
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterGuestsDiscountCol()
 {
     //throw new Exception ( "Editing __jomres_guests table adding discount column");
@@ -2606,7 +3676,13 @@ function alterGuestsDiscountCol()
         throw new Exception('Error, unable to add __jomres_guests discount');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkGuestsDiscountColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_guests LIKE 'discount'";
@@ -2617,7 +3693,13 @@ function checkGuestsDiscountColExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterContractsInvoice()
 {
     //throw new Exception ( "Editing __jomres_contracts table adding invoice_uid column");
@@ -2626,7 +3708,13 @@ function alterContractsInvoice()
         throw new Exception('Error, unable to add __jomres_contracts invoice_uid');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkContractsInvoiceColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_contracts LIKE 'invoice_uid'";
@@ -2637,7 +3725,13 @@ function checkContractsInvoiceColExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterPfeaturesPtypeidCol()
 {
     //throw new Exception ( "Editing __jomres_hotel_features table adding ptype_id column");
@@ -2646,7 +3740,13 @@ function alterPfeaturesPtypeidCol()
         throw new Exception('Error, unable to add __jomres_hotel_features ptype_id');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkPfeaturesPtypeidColExists()
 {
     // Jomres 7.3.3 changed the ptype_id column to ptype_xref. If we leave this function as-is, the ptype Id column will be added on subsequent installations so we'll need to double check for that.
@@ -2664,7 +3764,13 @@ function checkPfeaturesPtypeidColExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterSubscribersSubscriptionPackageIdCol()
 {
     //throw new Exception ( "Editing __jomresportal_subscriptions table adding package_id column");
@@ -2673,7 +3779,13 @@ function alterSubscribersSubscriptionPackageIdCol()
         throw new Exception('Error, unable to add __jomresportal_subscriptions package_id');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function doV9subscriptionUpdates()
 {
     //throw new Exception ( "Dropping __jomresportal_subscribers table ");
@@ -2766,7 +3878,13 @@ function doV9subscriptionUpdates()
         }
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkSubscribersSubscriptionPackageIdColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomresportal_subscriptions LIKE 'package_id'";
@@ -2777,7 +3895,13 @@ function checkSubscribersSubscriptionPackageIdColExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkSubscriptionExpirationDateColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomresportal_subscriptions LIKE 'expiration_date'";
@@ -2788,7 +3912,13 @@ function checkSubscriptionExpirationDateColExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterExtrasTaxrateCol()
 {
     //throw new Exception ( "Editing __jomres_extras table adding tax_rate column");
@@ -2797,7 +3927,13 @@ function alterExtrasTaxrateCol()
         throw new Exception('Error, unable to add __jomres_extras tax_rate');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkExtrasTaxrateColExists()
 {
     $query = "SHOW COLUMNS FROM #__jomres_extras LIKE 'tax_rate'";
@@ -2808,7 +3944,13 @@ function checkExtrasTaxrateColExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterPropertyLatLongToChar12()
 {
     $query = 'ALTER TABLE #__jomres_propertys CHANGE `lat` `lat` VARCHAR( 12 ) NULL DEFAULT NULL  ';
@@ -2816,7 +3958,13 @@ function alterPropertyLatLongToChar12()
     $query = 'ALTER TABLE #__jomres_propertys CHANGE `long` `long` VARCHAR( 12 ) NULL DEFAULT NULL';
     doInsertSql($query, '');
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function createSubscriptionsTables()
 {
     $query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_subscriptions_packages` (
@@ -2844,7 +3992,13 @@ function createSubscriptionsTables()
 	)";
     doInsertSql($query, '');
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkSubscriptionsTablesExist()
 {
     $tablesFound = false;
@@ -2859,7 +4013,13 @@ function checkSubscriptionsTablesExist()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterPropertysTimestampCol()
 {
     //throw new Exception ( "Editing __jomres_propertys table adding timestamp column");
@@ -2868,7 +4028,13 @@ function alterPropertysTimestampCol()
         throw new Exception('Error, unable to add __jomres_propertys timestamp');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkPropertysTimestampColExists()
 {
     $guestsTimestampInstalled = true;
@@ -2880,7 +4046,13 @@ function checkPropertysTimestampColExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function createClickatellMessagesTable()
 {
     $query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_sms_clickatell_messages` (
@@ -2898,7 +4070,13 @@ function createClickatellMessagesTable()
 
     return $result;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkInvoicesContractuidColExists()
 {
     $guestsTimestampInstalled = true;
@@ -2910,7 +4088,13 @@ function checkInvoicesContractuidColExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterInvoicesContractuidCol()
 {
     throw new Exception('Editing __jomresportal_invoices table adding contract_id column');
@@ -2919,7 +4103,13 @@ function alterInvoicesContractuidCol()
         throw new Exception('Error, unable to add __jomresportal_invoices contract_id');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkInvoicesPropertyuidColExists()
 {
     $guestsTimestampInstalled = true;
@@ -2931,7 +4121,13 @@ function checkInvoicesPropertyuidColExists()
 
     return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterInvoicesPropertyuidCol()
 {
     //throw new Exception ( "Editing __jomresportal_invoices table adding property_uid column");
@@ -2940,7 +4136,13 @@ function alterInvoicesPropertyuidCol()
         throw new Exception('Error, unable to add __jomresportal_invoices property_uid');
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function installCronjobs()
 {
     //throw new Exception ( "Installing cron jobs<br/>";
@@ -2952,7 +4154,13 @@ function installCronjobs()
 	$cron->addJob("api_tokens_cleanup","D","");
 	$cron->addJob('version_check', 'D', '');
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function updateMrConfig()
 {
     include JOMRESPATH_BASE.'jomres_config.php';
@@ -2974,7 +4182,13 @@ function updateMrConfig()
         }
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function updatePluginSettings()
 {
     // Invoices backend paypal settings
@@ -3004,7 +4218,13 @@ function updatePluginSettings()
         }
     }
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function checkIntegrationsEnabledColExists()
 {
 	$query  = "SHOW COLUMNS FROM #__jomres_webhooks_integrations LIKE 'enabled'";
@@ -3013,13 +4233,25 @@ function checkIntegrationsEnabledColExists()
 		return true;
 	return false;
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function alterIntegrationsEnabledCol()
 {
 	$query = "ALTER TABLE `#__jomres_webhooks_integrations` ADD `enabled` BOOLEAN NOT NULL DEFAULT TRUE AFTER `settings` ";
 	doInsertSql( $query, '' );
 }
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Legacy update functions
+ *
+ **/
 function createExtraIndexs()
 {
     //throw new Exception ( "Altering tables, creating new indexes if necessary");

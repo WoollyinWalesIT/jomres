@@ -13,7 +13,13 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Database creation during installation
+ *
+ **/
 $query = "
 CREATE TABLE IF NOT EXISTS  #__jomres_sessions (
 	`session_id` CHAR(50) NOT NULL, 

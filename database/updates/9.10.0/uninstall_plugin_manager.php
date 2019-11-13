@@ -13,7 +13,13 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Database modification during updates
+ *
+ **/
 $jomres_check_support_key = jomres_singleton_abstract::getInstance('jomres_check_support_key');
 
 //delete plugin manager (only if the user has a valid license) so users will be forced to install the latest version

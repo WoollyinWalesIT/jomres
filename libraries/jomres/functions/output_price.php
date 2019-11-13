@@ -15,8 +15,11 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 /**
- * 
+ * @package Jomres\Core\Functions
  *
+ *          Output a final price value with currency symbols.
+ *
+ *          Uses currency conversion settings to automatically convert prices to the selected price, determines the correct symbols to use for the selected currency.
  *
  */
 function output_price($value, $currencycode = '', $do_conversion = true, $zeroOK = true)
