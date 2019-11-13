@@ -13,6 +13,12 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 // Good ol' 1and1
 $tmp = substr(strstr(get_showtime('host'), ':'), 1);
@@ -37,6 +43,12 @@ if ($host == '') {
 set_showtime('host', $host);
 set_showtime('port', $port);
 set_showtime('socket', $socket);
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_database
 {
@@ -45,6 +57,12 @@ class jomres_database
 	private $PDO;
 	
 	private $stmt;
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function __construct()
 	{
@@ -73,6 +91,12 @@ class jomres_database
 			$this->init();
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function init()
 	{
@@ -117,6 +141,12 @@ class jomres_database
 				break;
 			}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function close()
 	{
@@ -135,6 +165,12 @@ class jomres_database
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function query()
 	{
@@ -226,6 +262,12 @@ class jomres_database
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function setQuery($query)
 	{
@@ -239,6 +281,12 @@ class jomres_database
 			$this->query = $q;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function loadObjectList()
 	{
@@ -298,6 +346,12 @@ class jomres_database
 
 		return $this->result;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function unsetResult()
 	{
@@ -305,6 +359,12 @@ class jomres_database
 		$this->result = array();
 	}
 }
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 function whereCalled()
 {

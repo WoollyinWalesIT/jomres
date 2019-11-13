@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_property_selector_dropdown
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function get_dropdown()
 	{
 		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
@@ -46,6 +58,12 @@ class jomres_property_selector_dropdown
 
 		return jomresHTML::selectList($options, 'switch_property', ' autocomplete="off" class="inputbox" size="1" '.$javascript.'', 'value', 'text', $currentProperty, false);
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function curPageURL()
 	{

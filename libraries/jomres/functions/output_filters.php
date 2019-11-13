@@ -14,6 +14,11 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
+/**
+ * 
+ *
+ *
+ */
 function xss_clean($data)
 {
 	// Fix &entity\n;
@@ -49,9 +54,14 @@ function xss_clean($data)
 }
 
 /*
-An output filter.
+
 */
 
+/**
+ * 
+ * An output filter.
+ *
+ */
 function jomres_decode($string)
 {
 

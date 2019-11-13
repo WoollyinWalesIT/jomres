@@ -13,14 +13,32 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class basic_invoice_details
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->invoice = array();
 		$this->status_note = '0 - unpaid , 1 - paid , 2 - cancelled , 3 - pending ';
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function gatherData($invoice_id = 0)
 	{
@@ -80,6 +98,12 @@ class basic_invoice_details
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Get the invoice details
 	public function get_invoice($invoice_id)
@@ -129,6 +153,12 @@ class basic_invoice_details
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Get the line items for invoice id
 	public function get_line_items($invoice_id)

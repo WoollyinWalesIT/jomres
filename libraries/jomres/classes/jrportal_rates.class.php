@@ -13,13 +13,31 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jrportal_rates
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->init_rate();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function init_rate()
 	{
@@ -78,7 +96,13 @@ class jrportal_rates
 		$this->new_rates 				= array();
 		$this->new_rates_uids 			= array();
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//Get all tariff details by tariff type id
 	public function get_rate()
 	{
@@ -182,6 +206,12 @@ class jrportal_rates
 	
 	return false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Save tariff
 	public function save_rate()
@@ -214,7 +244,13 @@ class jrportal_rates
 		
 		return false;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//insert new tariffftype or update existing tarifftype details by tarifftype id
 	private function update_tarifftype_details()
 	{
@@ -257,7 +293,13 @@ class jrportal_rates
 		
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//build the new rates and mindays array to be inserted
 	private function build_new_rates()
 	{
@@ -328,7 +370,13 @@ class jrportal_rates
 	
 	return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//insert new rates/tariffs
 	private function insert_new_rates()
 	{
@@ -412,7 +460,13 @@ class jrportal_rates
 		
 		return false;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//update the tarifftype rates xref
 	private function update_tarifftype_rate_xref()
 	{
@@ -458,6 +512,12 @@ class jrportal_rates
 		
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Cleanup rate by tarifftype id to prepare for new tariffs insertion
 	public function cleanup_existing_rate()
@@ -496,7 +556,13 @@ class jrportal_rates
 		
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//delete rate by tarifftype id
 	public function delete_rate()
 	{
@@ -557,7 +623,13 @@ class jrportal_rates
 		
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//this function is used only for Advanced and Normal tariff editing modes and it`s assumed that each rate uid will have it`s own tarifftype id
 	//only Micromanage has more rate uids for the same tarifftype id
 	public function get_tarifftype_id($rates_uid = 0)
@@ -580,7 +652,13 @@ class jrportal_rates
 		
 		return $tarifftype_id;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//create tarifftype for existing rate uid (used for Advanced and Normal mode tariff saved a long time ago..)
 	private function create_tarifftype($rates_uid = 0)
 	{
@@ -673,7 +751,13 @@ class jrportal_rates
 	
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//insert new rates/tariffs legacy mode
 	private function insert_new_rate_legacy()
 	{
@@ -754,7 +838,13 @@ class jrportal_rates
 		
 		return false;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//update rates/tariffs legacy mode
 	private function update_rate_legacy()
 	{

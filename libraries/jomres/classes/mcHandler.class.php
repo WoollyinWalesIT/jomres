@@ -18,7 +18,13 @@ defined('_JOMRES_INITCHECK') or die('');
  * The true heart of Jomres. Finds all core and plugin minicomponents for Jomres, enables calling of specific minicomponents and can return minicomponent stored variables.
  */
 class mcHandler
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -47,6 +53,12 @@ class mcHandler
 		$this->registeredClasses = $registry->get_registered_classes();
 		$this->miniComponentDirectories = $registry->get_minicomponent_directories();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function touch_templates()
 	{
@@ -95,6 +107,12 @@ class mcHandler
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	// Acutally calls the triggered event.
 	public function triggerEvent($eventPoint, $eventArgs = null)
@@ -167,6 +185,12 @@ class mcHandler
 
 		return $retVal;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	// Calls a specific event.
 	public function specificEvent($eventPoint, $eventName, $eventArgs = null)
@@ -226,6 +250,12 @@ class mcHandler
 
 		return $retVal;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//  This function is used to see if a mini-component exists for a given event point
 	public function eventFileExistsCheck($eventPoint)
@@ -238,6 +268,12 @@ class mcHandler
 
 		return false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//  This function is used to see if a mini-component exists.
 	public function eventSpecificlyExistsCheck($eventPoint, $eventName)
@@ -250,6 +286,12 @@ class mcHandler
 
 		return false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//  This function is used to see if a mini-component file exists.
 	public function eventFileLocate($eventPoint, $eventName)
@@ -262,6 +304,12 @@ class mcHandler
 
 		return false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getAllEventPointsData($ePoint)
 	{
@@ -274,6 +322,12 @@ class mcHandler
 
 		return $retVal;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getEventPointData($ePoint, $eName)
 	{

@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jrportal_property_functions // Functions supplied as a class so that they can be extended easily without rewriting  the functions
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function getAllJomresProperties($limit = false, $limitstart = false)
 	{
 		$retResult = array();

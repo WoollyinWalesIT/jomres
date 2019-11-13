@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class basic_coupon_details
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->coupons = array();
@@ -32,6 +44,12 @@ class basic_coupon_details
 		$this->rooms_only = 0;
 		$this->guest_uid = 0;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Get all coupons details for one or more property uids
 	public function get_all_coupons($property_uids = array())

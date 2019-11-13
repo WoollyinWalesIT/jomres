@@ -10,6 +10,14 @@
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  */
 
+ 	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
+	 
 require_once __DIR__.'/server.php';
 
 $server->handleTokenRequest(OAuth2\Request::createFromGlobals())->send();

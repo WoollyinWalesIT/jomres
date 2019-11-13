@@ -20,7 +20,13 @@ defined('_JOMRES_INITCHECK') or die('');
 *
 */
 class jomres_gdpr_optin_consent
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$MiniComponents = jomres_getSingleton('mcHandler');
@@ -33,7 +39,13 @@ class jomres_gdpr_optin_consent
 		$this->optedin = false;
 		
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function user_consents_to_storage()
 	{
 		// I don't like this solution, but Chrome is causing problems with cookies.
@@ -52,13 +64,25 @@ class jomres_gdpr_optin_consent
 		}
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	// 0 as a user id is acceptable
 	public function set_user_id($user_id)
 	{
 		$this->user_id = (int)$user_id;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function save_record()
 	{
 		$query = "INSERT INTO #__jomres_gdpr_optins

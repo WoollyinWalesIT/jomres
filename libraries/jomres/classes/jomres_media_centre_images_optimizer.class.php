@@ -13,17 +13,35 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_media_centre_images_optimizer
 {
 	protected $optimizer;
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function __construct()
 	{
 		$factory = new \ImageOptimizer\OptimizerFactory();
 		$this->optimizer = $factory->get();
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public static function getInstance()
 	{
 		if (!self::$configInstance) {
@@ -32,7 +50,13 @@ class jomres_media_centre_images_optimizer
 
 		return self::$configInstance;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function optimize($filepath = '')
 	{
 		if ($filepath == '') {

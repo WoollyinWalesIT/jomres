@@ -1,8 +1,5 @@
 <?php
 /**
- * Sets up the Jomres framework.
- *
- * The REST API is does not have to use the Jomres framework, however it saves time to use the framework and API features can optionally request the framework so make use of already existing functions and classes.
  *
  * @author Vince Wooll <sales@jomres.net>
  *
@@ -18,8 +15,10 @@ defined('_JOMRES_INITCHECK') or die('');
 
 /**
 *
-* Setup JOMRES_ROOT_DIRECTORY if it doesn't already exist
+* Sets up the Jomres framework.
 *
+* The REST API is does not have to use the Jomres framework, however it saves time to use the framework and API features can optionally request the framework to make use of already existing functions and classes.
+* 
 */
  
 if (!defined('JOMRES_ROOT_DIRECTORY')) {

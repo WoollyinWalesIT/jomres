@@ -15,15 +15,32 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 // Allows Jomres to determine gateway settings
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class gateway_plugin_settings
 {
 	public $gateway_settings;
 
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 
 	}
+
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_settings_for_property_uid($property_uid = 0)
 	{

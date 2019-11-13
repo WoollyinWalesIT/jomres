@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_input_filter_singleton
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->purifier_no_html = false;
@@ -23,6 +35,12 @@ class jomres_input_filter_singleton
 		
 		$this->init();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	private function init()
 	{
@@ -47,6 +65,12 @@ class jomres_input_filter_singleton
 		
 		unset($config);
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function purify($dirty, $allow_html = false)
 	{

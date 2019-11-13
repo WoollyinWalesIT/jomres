@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_charts
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->chart = ''; //the generated chart/graph
@@ -55,6 +67,12 @@ class jomres_charts
 		//include the chart.js in the head
 		jomres_cmsspecific_addheaddata('javascript',  JOMRES_NODE_MODULES_RELPATH.'chart.js/dist/', 'Chart.min.js');
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_chart()
 	{
@@ -88,6 +106,12 @@ class jomres_charts
 
 		return $tmpl->getParsedTemplate();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	private function build_chart()
 	{

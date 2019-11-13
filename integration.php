@@ -16,6 +16,14 @@ defined('_JOMRES_INITCHECK') or die('');
 
 /**
 *
+* Does a lot of file inclusion, creation of constants etc. 
+*
+* 
+*/
+
+
+/**
+*
 * TRANSACTION_ID is used by the logger class to allow us to track single calls through the system
 *
 */

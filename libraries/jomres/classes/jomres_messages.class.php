@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_messages
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->jomres_messages = array();
@@ -28,6 +40,12 @@ class jomres_messages
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_messages()
 	{
@@ -38,6 +56,12 @@ class jomres_messages
 
 		return $this->jomres_messages;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function set_message($message = '', $class = 'alert-info')
 	{

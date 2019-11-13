@@ -16,6 +16,13 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 $request = Flight::request();
 
 if (substr($request->url,0,6) == '/core/' ) {
@@ -34,6 +41,13 @@ if (substr($request->url,0,6) == '/core/' ) {
 
 	if (!in_array($route.'.php', $features_files) && !in_array($sub_filename.'.php', $features_files)) {
 		
+			
+		/**
+		 * 
+		 *
+		 *
+		 */
+
 		// We now need to include the Jomres framework and install the relevant api plugin, if available
 		require_once("../framework.php");
 		
@@ -63,6 +77,13 @@ if (substr($request->url,0,6) == '/core/' ) {
 		}
 	}
 	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	// Improved tree to route mapping
 	$potential_paths = JOMRES_API_JOMRES_ROOT.DIRECTORY_SEPARATOR.'core-plugins'.DIRECTORY_SEPARATOR.'api_feature_'.$route.DIRECTORY_SEPARATOR.$request->method.DIRECTORY_SEPARATOR;
 	$potential_paths_arr = array();
@@ -83,6 +104,13 @@ if (substr($request->url,0,6) == '/core/' ) {
 			break;
 		}
 	}
+
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	// Fall back to the older way, which will still work for existing api features
 	if (!$found) {

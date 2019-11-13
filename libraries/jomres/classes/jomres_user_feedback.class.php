@@ -13,15 +13,33 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 // A class for providing feedback to all users
 class jomres_user_feedback
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->user_feedback_messages = array();
 		$this->messages = '';
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_messages()
 	{
@@ -35,6 +53,12 @@ class jomres_user_feedback
 
 		return false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function construct_message($message_array = array())
 	{

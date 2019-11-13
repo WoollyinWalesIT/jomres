@@ -13,15 +13,33 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class basic_rate_details
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->multi_query_rates = array();
 		$this->rates = array();
 		$this->property_uid = 0;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//get rates for property uid
 	//returns an array like $this->rates[roomclass_uid][tarifftype_id][rates_uid][]
@@ -46,6 +64,12 @@ class basic_rate_details
 		
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//get all rates details for multiple property uids array
 	public function get_rates_multi($property_uids = array())

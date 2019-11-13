@@ -14,6 +14,12 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
+/**
+ * 
+ *
+ *
+ */
+
 class currency_codes
 {
 	public function __construct()
@@ -493,6 +499,12 @@ class currency_codes
 			);
 	}
 
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function makeCodesDropdown($code = '', $global = false, $input_name = '')
 	{
 		//selected currency code
@@ -529,6 +541,12 @@ class currency_codes
 		return jomresHTML::selectList($options, $this->input_name, 'class="inputbox" size="1"', 'value', 'text', $this->code);
 	}
 
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function getCode($code = '')
 	{
 		if ($code == '') {
@@ -539,6 +557,12 @@ class currency_codes
 
 		return $this->codes[ $code ];
 	}
+
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getSymbol($code = '')
 	{

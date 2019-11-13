@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_geolocation
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->config = array();
@@ -36,6 +48,12 @@ class jomres_geolocation
 		
 		$this->init();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	private function init()
 	{
@@ -50,6 +68,12 @@ class jomres_geolocation
 		
 		$this->determine_user_location();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function determine_user_location()
 	{
@@ -98,6 +122,12 @@ class jomres_geolocation
 			$tmpBookingHandler->user_settings[ 'geolocated_country' ] = $this->detected_country;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function auto_set_user_currency_code()
 	{

@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_version_check
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->latest_jomres_version = get_latest_jomres_version();
@@ -34,6 +46,12 @@ class jomres_version_check
 		}
 		
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function check_version() // We'll get the current version, 
 	{
@@ -45,7 +63,13 @@ class jomres_version_check
 		}
 		$this->write_checkfile();
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function write_checkfile() 
 	{
 		touch($this->check_file);

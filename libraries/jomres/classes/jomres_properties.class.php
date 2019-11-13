@@ -16,14 +16,33 @@ defined('_JOMRES_INITCHECK') or die('');
 
 //used for getting all properties in system, deleting, saving existing and inserting new ones
 //to get the details of an existing property use basic_property_details class
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 class jomres_properties
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->all_property_uids = false;
 
 		$this->init_property();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function init_property()
 	{
@@ -62,6 +81,12 @@ class jomres_properties
 		$this->permit_number = '';
 		$this->cat_id = 0;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Get all properties in the system
 	public function get_all_properties()
@@ -106,6 +131,12 @@ class jomres_properties
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function commit_new_property()
 	{
@@ -285,6 +316,12 @@ class jomres_properties
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function commit_update_property()
 	{
@@ -418,6 +455,12 @@ class jomres_properties
 		
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	private function check_mrp_srp_flags_match($ptype_id1 = 0, $ptype_id2 = 0)
 	{
@@ -451,6 +494,12 @@ class jomres_properties
 			return false;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function delete_rooms_tariffs_settings($delete_rooms = true, $delete_tariffs = true, $delete_settings = true)
 	{
@@ -496,6 +545,12 @@ class jomres_properties
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	private function update_property_settings()
 	{
@@ -560,6 +615,12 @@ class jomres_properties
 		return true;
 	}
 	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function setApproved($approved = 0)
 	{
 		if ($this->propertys_uid == 0) {
@@ -574,7 +635,13 @@ class jomres_properties
 		
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function approve_property() 
 	{
 		if ($this->propertys_uid == 0) {
@@ -599,7 +666,13 @@ class jomres_properties
 				
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function unapprove_property() 
 	{
 		if ($this->propertys_uid == 0) {
@@ -624,7 +697,13 @@ class jomres_properties
 		
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function setPublished($published = 0)
 	{
 		if ($this->propertys_uid == 0) {
@@ -639,7 +718,13 @@ class jomres_properties
 		
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function publish_property() 
 	{
 		if ($this->propertys_uid == 0) {
@@ -664,7 +749,13 @@ class jomres_properties
 
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function unpublish_property() 
 	{
 		if ($this->propertys_uid == 0) {
@@ -689,7 +780,13 @@ class jomres_properties
 
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function setCompleted($completed = 0)
 	{
 		if ($this->propertys_uid == 0) {
@@ -704,7 +801,13 @@ class jomres_properties
 		
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function complete_property() 
 	{
 		if ($this->propertys_uid == 0) {
@@ -729,7 +832,13 @@ class jomres_properties
 				
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function incomplete_property()
 	{
 		if ($this->propertys_uid == 0) {

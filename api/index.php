@@ -13,6 +13,13 @@
  */
 
 // create a log channel
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 define('TRANSACTION_ID', time());
 
 define('JOMRES_API_CMS_ROOT', dirname(dirname(dirname(__FILE__))));
@@ -64,6 +71,13 @@ if ( $https == false && $jrConfig['api_force_ssl'] == true ) {
 
 
 // We will parse the url and find out exactly what the call wishes to do. 
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 $request = Flight::request();
 $bang = explode('/', $request->url);
 if (strpos($bang[1], '?') !== false) { // Has the client appended the token to the url? If so, we'll detect it here and figure out the route based on explode
@@ -74,10 +88,24 @@ if (strpos($bang[1], '?') !== false) { // Has the client appended the token to t
 }
 
 // Let's see if the route chosen is auth-free, or if it requires authentication. If an API feature wants to be a "free" route ( one that does not require an authenticated client id & secret pair ) it must explicitely declare itself as "free" via a json file.
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 require 'classes/all_api_features.class.php';
 $api_features = new all_api_features();
 $features_files = $api_features->get();
 $auth_free_routes = $api_features->get_authfree_routes();
+
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 if (!in_array($route,$auth_free_routes) && $route != 'core' ) {
 	if (isset($_POST['grant_type']) && ($_POST['grant_type'] == 'client_credentials' || $_POST['grant_type'] == 'authorization_code')) {
@@ -114,6 +142,13 @@ require 'classes/call_self.class.php';
 
 define('API_STARTED', true);
 
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 // $server will be null if authentication has not been used ( i.e. this is a "free" route, in which case token (which contains the access token, plus scope information ) is not relevant )
 // Individual api features ( should ) always validate that a user can perform a certain action through the "validate_scope::validate('search_get');" call. 
 if (isset($server) && !is_null($server)) {
@@ -129,7 +164,21 @@ if (isset($server) && !is_null($server)) {
 	);
 }
 
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 require 'put_method_handling.php';
+
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 try {
     $dsn = 'mysql:dbname='.JOMRES_API_DB_NAME.';host='.JOMRES_API_DB_HOST;

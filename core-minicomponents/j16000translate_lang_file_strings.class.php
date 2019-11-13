@@ -13,9 +13,25 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * Core Minicomponent 
+	 *
+	 * 
+	 */
 
 class j16000translate_lang_file_strings
-{
+{	
+	/**
+	 *
+	 * Constructor
+	 * 
+	 * Main functionality of the Minicomponent 
+	 *
+	 * 
+	 * 
+	 */
+	 
 	public function __construct()
 	{
 		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');

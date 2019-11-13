@@ -13,12 +13,24 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_media_centre_images_dbimport
 {	
 	protected $propertys_uids;
 	
 	protected $jomres_media_centre_images;
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function __construct($propertys_uids = array(), $import_site_images = false)
 	{
@@ -30,6 +42,12 @@ class jomres_media_centre_images_dbimport
 		
 		$this->jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//run importer
 	public function run()
@@ -64,7 +82,13 @@ class jomres_media_centre_images_dbimport
 		
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function get_site_images()
 	{
 		$MiniComponents = jomres_getSingleton('mcHandler');
@@ -80,7 +104,13 @@ class jomres_media_centre_images_dbimport
 		
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function get_property_images($p_uids = array())
 	{
 		if (empty($p_uids)) {
@@ -91,7 +121,13 @@ class jomres_media_centre_images_dbimport
 			
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//import site images in batches, one query for each resource type
 	private function import_site_images()
 	{
@@ -169,7 +205,13 @@ class jomres_media_centre_images_dbimport
 		
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function import_property_images($property_uids = array())
 	{
 		if (empty($property_uids)) {

@@ -13,10 +13,26 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * Core Minicomponent 
+	 *
+	 * 
+	 */
 
 //This is a month view chart of all paid bookings, excludes cancelled/pending/unpaid ones)
 class j16000chart_bookings
-{
+{	
+	/**
+	 *
+	 * Constructor
+	 * 
+	 * Main functionality of the Minicomponent 
+	 *
+	 * 
+	 * 
+	 */
+	 
 	public function __construct($componentArgs)
 	{
 		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');

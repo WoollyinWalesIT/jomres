@@ -15,6 +15,13 @@ defined('_JOMRES_INITCHECK') or die('');
 defined('_JOMRES_INITCHECK_ADMIN') or die('');
 //#################################################################
 
+/**
+ * Administrator area main script.
+ * 
+ * Builds the administrator area page.
+ * 
+ **/
+ 
 ob_start('removeBOMadmin');
 
 @ini_set('max_execution_time', '480');

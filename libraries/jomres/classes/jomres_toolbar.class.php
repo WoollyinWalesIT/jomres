@@ -13,12 +13,30 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 if (!using_bootstrap()) {
 	jr_import('jomres_toolbar_normal');
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	class jomres_toolbar extends jomres_toolbar_normal
-	{
+	{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 		public function __construct()
 		{
 			$mrConfig = getPropertySpecificSettings();
@@ -47,9 +65,21 @@ if (!using_bootstrap()) {
 
 	jr_import($the_toolbar_class_filename);
 	jr_import('jomresItemToolbar');
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	class jomres_toolbar extends jomres_toolbar_bootstrap
-	{
+	{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 		public function __construct()
 		{
 			$mrConfig = getPropertySpecificSettings();

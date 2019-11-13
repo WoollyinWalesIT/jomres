@@ -14,13 +14,31 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 class basic_subscription_package_details
 {
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->allPackages = array();
 		$this->getAllSubscriptionPackages();
 	}
+
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function gatherData($package_id = 0)
 	{
@@ -47,6 +65,12 @@ class basic_subscription_package_details
 	}
 
 	//Get all subscription packages
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function getAllSubscriptionPackages()
 	{
 		//check if we already got them

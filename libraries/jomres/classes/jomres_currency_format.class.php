@@ -23,12 +23,24 @@ defined('_JOMRES_INITCHECK') or die('');
 class jomres_currency_format
 {
 	private static $internal_debugging;
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function __construct()
 	{
 		self::$internal_debugging = false;
 		$this->get_format();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_format($cformat = false)
 	{

@@ -13,13 +13,31 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_tooltips
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->divs = array();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function generate_tooltip($div, $hover_title, $hover_content, $div_content, $class, $type, $type_arguments, $url = '#')
 	{

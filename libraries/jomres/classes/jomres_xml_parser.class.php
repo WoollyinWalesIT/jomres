@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_xml_parser
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct($xml)
 	{
 		$this->rawXML = $xml;
@@ -23,6 +35,12 @@ class jomres_xml_parser
 
 		return $this->parse();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function parse()
 	{
@@ -77,6 +95,12 @@ class jomres_xml_parser
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function findDuplicateKeys()
 	{
@@ -99,6 +123,12 @@ class jomres_xml_parser
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function setArrayValue(&$array, $stack, $value)
 	{
@@ -111,11 +141,23 @@ class jomres_xml_parser
 			$array = $value;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getOutput()
 	{
 		return $this->output;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getStatus()
 	{

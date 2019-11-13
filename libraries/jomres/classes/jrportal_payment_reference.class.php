@@ -16,12 +16,30 @@ defined('_JOMRES_INITCHECK') or die('');
 
 // When sending invoice payments to gateways, some gateways will not let you send more than one return element in the url when passing back to ( for example ) Jomres.
 // This class is used to create a payment reference between an invoice id & a gateway so that gateway process, receiving payment confirmation, can then query this table for the invoice number etc
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jrportal_payment_reference
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function set_payment_refence()
 	{
@@ -40,6 +58,12 @@ class jrportal_payment_reference
 			output_fatal_error($e);
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_invoice_details_for_reference($id)
 	{
@@ -52,6 +76,12 @@ class jrportal_payment_reference
 			return false;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_invoice_data($invoice_id)
 	{
@@ -145,6 +175,12 @@ class jrportal_payment_reference
 			return false;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function mark_payment_reference_paid()
 	{

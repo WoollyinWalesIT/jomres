@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jrportal_commissions // Functions supplied as a class so that they can be extended easily without rewriting  the functions
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->crates = array();
@@ -28,6 +40,12 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
 		$this->tax_rate = 0;
 		$this->error = null;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getCrateForPropertyuid($property_uid)
 	{
@@ -44,6 +62,12 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
 
 		return array();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getAllCrates()
 	{
@@ -51,6 +75,12 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
 
 		return $this->crates;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getCratesByIdArray($idArray)
 	{
@@ -59,6 +89,12 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
 
 		return $this->crates;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getCrates($clause = '')
 	{
@@ -78,6 +114,12 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
 
 		return $this->crates;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getCrate()
 	{
@@ -114,6 +156,12 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
 			return false;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function commitNewCrate()
 	{
@@ -150,6 +198,12 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
 
 		return false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function commitUpdateCrate()
 	{
@@ -175,6 +229,12 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
 
 		return false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function deleteCrates($id = false)
 	{
@@ -200,6 +260,12 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
 
 		return false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function makeCrateDropdown($selected = 1, $idx = null, $params = array())
 	{
@@ -222,6 +288,12 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
 
 		return jomresHTML::selectList($options, "crates[$idx]", ' size="1"'.$js, 'value', 'text', $selected, false);
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function makeCrateTypeDropdown($selected = 1)
 	{
@@ -234,6 +306,12 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
 
 		return jomresHTML::selectList($options, 'type', 'class="inputbox" size="1"', 'value', 'text', $selected);
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function assignDefaultCrate($property_uid = 0, $crate_id = 0)
 	{
@@ -258,6 +336,12 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
 
 		return false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getCurrentCrateInvoiceIdForManagerId($manager_id = 0)
 	{
@@ -274,6 +358,12 @@ class jrportal_commissions // Functions supplied as a class so that they can be 
 			return false;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function createNewCrateInvoiceForManagerId($manager_id = 0, $currencycode = 'GBP')
 	{

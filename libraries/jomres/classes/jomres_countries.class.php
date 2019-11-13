@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_countries
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->countries = false;
@@ -23,6 +35,12 @@ class jomres_countries
 		
 		$this->get_used_property_countries();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//get countries used by properties in the system
 	public function get_used_property_countries()
@@ -46,7 +64,13 @@ class jomres_countries
 
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//get all countries in the system
 	public function get_all_countries()
 	{
@@ -67,6 +91,12 @@ class jomres_countries
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//get country by id, used on edit country admin page
 	public function get_country_by_id($id = 0)

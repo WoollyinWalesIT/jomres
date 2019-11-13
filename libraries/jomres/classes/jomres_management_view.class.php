@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_management_view
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function get_dropdown()
 	{
 		$response = '';
@@ -36,6 +48,12 @@ class jomres_management_view
 
 		return $response;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function remove_querystring_var($key)
 	{
@@ -51,6 +69,12 @@ class jomres_management_view
 
 		return $new_url;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function curPageURL()
 	{
@@ -72,6 +96,12 @@ class jomres_management_view
 
 		return $pageURL;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function unparse_url($parsed_url)
 	{

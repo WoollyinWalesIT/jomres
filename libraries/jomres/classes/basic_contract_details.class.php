@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class basic_contract_details
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->contract = array();
@@ -23,6 +35,12 @@ class basic_contract_details
 		jr_import('jomres_encryption');
 		$this->jomres_encryption = new jomres_encryption();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function gather_data($contract_uid = 0, $defaultProperty = 0)
 	{

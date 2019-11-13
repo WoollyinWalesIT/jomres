@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_language_definitions
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -38,6 +50,12 @@ class jomres_language_definitions
 
 		$this->definitions = array();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function set_language($lang = 'en-GB')
 	{
@@ -47,6 +65,12 @@ class jomres_language_definitions
 
 		$this->lang = $lang;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function set_property_type($ptype = '')
 	{
@@ -56,11 +80,23 @@ class jomres_language_definitions
 
 		$this->ptype = $ptype;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function define($constant, $string)
 	{
 		$this->definitions[ $this->ptype ][ $constant ] = $string;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_defined( $constant , $default )
 	{
@@ -86,6 +122,12 @@ class jomres_language_definitions
 			return false;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function reset_lang_and_property_type()
 	{

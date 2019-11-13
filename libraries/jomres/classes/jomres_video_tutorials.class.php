@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_video_tutorials
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->task = '';
@@ -26,6 +38,12 @@ class jomres_video_tutorials
 		$jomres_language->get_language('video_tutorials');
 		
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function build_modal() {
 		$this->task = $this->get_current_task();
@@ -78,7 +96,13 @@ class jomres_video_tutorials
 	}
 	
 	
-	//Get room details
+	//Get room details	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function get_video_urls()
 	{
 		$mrConfig = getPropertySpecificSettings($this->property_uid);
@@ -129,13 +153,25 @@ class jomres_video_tutorials
 		return '';
 		}
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function get_current_task() 
 	{
 		return get_showtime('task');
 	}
 	
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function get_videos_array() 
 	{
 		$videos_array = array( 

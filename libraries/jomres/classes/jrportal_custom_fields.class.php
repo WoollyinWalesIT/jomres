@@ -13,13 +13,31 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jrportal_custom_fields
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->init_custom_field();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function init_custom_field()
 	{
@@ -30,6 +48,12 @@ class jrportal_custom_fields
 		$this->required = 0;		// required yes/no 1/0
 		$this->ptype_ids = array();	// property types xref
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Save new custom field
 	public function commit_new_custom_field()
@@ -71,6 +95,12 @@ class jrportal_custom_fields
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Update existing custom field
 	public function commit_update_custom_field()
@@ -101,6 +131,12 @@ class jrportal_custom_fields
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Delete custom field
 	public function delete_custom_field()

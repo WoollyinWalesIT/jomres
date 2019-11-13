@@ -13,13 +13,31 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jrportal_coupons
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->init_coupon();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function init_coupon()
 	{
@@ -35,7 +53,13 @@ class jrportal_coupons
 		$this->rooms_only = 0;
 		$this->guest_uid = 0;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//Get coupon details by id
 	public function get_coupon()
 	{
@@ -85,6 +109,12 @@ class jrportal_coupons
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Save new coupon
 	public function commit_new_coupon()
@@ -149,6 +179,12 @@ class jrportal_coupons
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Update existing coupon
 	public function commit_update_coupon()
@@ -199,6 +235,12 @@ class jrportal_coupons
 		
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Delete coupon
 	public function delete_coupon()

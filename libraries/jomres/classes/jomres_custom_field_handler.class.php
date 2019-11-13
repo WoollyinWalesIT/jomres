@@ -13,14 +13,32 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_custom_field_handler
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->custom_fields = false;
 		$this->custom_fields_by_ptype_id = false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_all_custom_fields()
 	{
@@ -53,6 +71,12 @@ class jomres_custom_field_handler
 
 		return $this->custom_fields;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getAllCustomFieldsByPtypeId($ptype_id = 0)
 	{

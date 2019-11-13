@@ -14,6 +14,11 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
+/**
+ * 
+ *
+ *
+ */
 function output_price($value, $currencycode = '', $do_conversion = true, $zeroOK = true)
 {
 	$price = (float) number_format($value, 2, '.', '');

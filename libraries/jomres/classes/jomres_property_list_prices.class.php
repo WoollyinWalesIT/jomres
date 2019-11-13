@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_property_list_prices
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->lowest_prices = array();
@@ -24,6 +36,12 @@ class jomres_property_list_prices
 		$this->arrivalDate = date('Y/m/d', strtotime($this->today.'+1 day'));
 		$this->departureDate = date('Y/m/d', strtotime($this->arrivalDate.'+1 day'));
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function __set($setting, $value)
 	{
@@ -31,11 +49,23 @@ class jomres_property_list_prices
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function __get($setting)
 	{
 		return $this->$setting;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function gather_lowest_prices_multi($property_uids = array(), $lowest_ever = false, $hide_rpn = false)
 	{

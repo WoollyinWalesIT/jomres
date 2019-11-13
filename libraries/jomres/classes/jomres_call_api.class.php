@@ -16,6 +16,12 @@ defined('_JOMRES_INITCHECK') or die('');
 
 // This allows Jomres to call it's own API. As more functionality is added to the API then there are times that that will be the choice of connection.
 
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 class jomres_call_api
 {
 	private $token;
@@ -38,6 +44,12 @@ class jomres_call_api
 		$this->init();
 		
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	private function init() {
 		// If the user is registered, we'll create a new API client and secret for that user if needed. That way, any calls done to the API will be traceable back to that user.
@@ -64,6 +76,12 @@ class jomres_call_api
 			}
 	}
 	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function init_manager() {
 		// We need to see if there's a user in the database, if there's not we'll create them. 
 		$query = "SELECT client_id,scope FROM #__jomres_oauth_clients WHERE client_id = '".$this->user->username."' LIMIT 1";
@@ -81,6 +99,12 @@ class jomres_call_api
 		$client_secret = doSelectSql($query, 1);
 		return array ( "client_id" => $this->user->username ,"client_secret" => $client_secret );
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function send_request($method = '', $endpoint = '', $data = array() ,  $headers = array() ) {
 		if ($this->token != '') {
@@ -94,6 +118,12 @@ class jomres_call_api
 			throw new Exception('Could not call API as token not setup. Is the API Core installed?');
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	private function query_api($method = 'GET', $endpoint = '', $data = array() , $headers = array() )
 	{

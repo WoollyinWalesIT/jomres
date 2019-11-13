@@ -60,7 +60,13 @@ class jomres_gdpr_cleanup
 			throw new Exception('Error: invalid table name passed');
 		}
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function cleanup_booking($contract_uid = 0 , $invoice_id = 0 )
 	{
 		if ( (int)$contract_uid == 0 ) {

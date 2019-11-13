@@ -13,14 +13,32 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class basic_guest_type_details
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->guest_types = false;
 		$this->property_uid = 0;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Get all guest type details
 	public function get_all_guest_types($property_uid = 0)

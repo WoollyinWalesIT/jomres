@@ -23,6 +23,12 @@ Previously just a feature of the add plugin script, it's usage has been moved to
 
 */
 
+/**
+ * 
+ *
+ *
+ */
+
 function get_remote_plugin_data()
 {
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -133,24 +139,6 @@ function search_property_guests_by_string($string = '' , $property_uid = 0 , $ma
 		$sWhere = ' WHERE property_uid IN ('.jomres_implode($authorisedProperties).') ';
 	}
 	
-/* 	$query = 'SELECT `access_level` FROM #__jomres_managers WHERE `userid` = ' .(int) $manager_id.' LIMIT 1 ';
-	$manager_access_level = doSelectSql($query , 1 );
-	
-	if ($manager_access_level >= 90 ) {
-		$authorisedProperties = get_showtime('all_properties_in_system');
-	} else {
-		$authorisedProperties = array();
-		
-		$query = 'SELECT `property_uid` FROM #__jomres_managers_propertys_xref WHERE `manager_id` = '.(int) $manager_id;
-		$managersToPropertyList = doSelectSql($query);
-
-		if (!empty($managersToPropertyList)) {
-			foreach ($managersToPropertyList as $x) {
-				$authorisedProperties[] = $x->property_uid;
-			}
-		}
-	} */
-	
 	$query = 'SELECT 
 				guests_uid,
 				enc_firstname, 
@@ -217,6 +205,11 @@ function search_property_guests_by_string($string = '' , $property_uid = 0 , $ma
 Outputs the pdf after having been handed the outputted template data, or returns said PDF. Doesn't handle clean up of pdfs
 **/
 
+/**
+ * 
+ *
+ *
+ */
 function output_pdf($tmpl , $title = '' , $return_pdf = false )
 {
 	if ($title == '' ) {
@@ -251,6 +244,12 @@ function output_pdf($tmpl , $title = '' , $return_pdf = false )
 /**
 Adds as_pdf to url
 **/
+
+/**
+ * 
+ *
+ *
+ */
 function get_pdf_url()
 {
 	$url = getCurrentUrl(true).'&tmpl='.get_showtime('tmplcomponent').'&popup=1&as_pdf=1';
@@ -365,6 +364,11 @@ function jomres_getSingleton($class, $args = array())
 A function that makes an async POST or GET request using sockets
 */
 
+/**
+ * 
+ *
+ *
+ */
 function jomres_async_request($type = "GET", $url = "", $port = '', $post_data = array())
 {
 	$post_string = "";
@@ -474,6 +478,11 @@ function jomres_async_request($type = "GET", $url = "", $port = '', $post_data =
 A simple function to get the marker relative path
 */
 
+/**
+ * 
+ *
+ *
+ */
 function get_marker_src($marker_image = '') 
 {
 	if ($marker_image == '')
@@ -494,6 +503,11 @@ function get_marker_src($marker_image = '')
 A simple function to pull the contract uid based on the booking number
 */
 
+/**
+ * 
+ *
+ *
+ */
 function get_contract_uid_for_tag($tag) 
 {
 	$tag = trim(filter_var($tag, FILTER_SANITIZE_SPECIAL_CHARS));
@@ -508,6 +522,11 @@ If the collection script variable is set, then the none/basic/oauth authmethod p
 Otherwise the processor will attempt to use the contents of the object's $data variable instead.
 */
 
+/**
+ * 
+ *
+ *
+ */
 function add_webhook_notification($contents)
 {
 	$webhook_messages = get_showtime('webhook_messages');

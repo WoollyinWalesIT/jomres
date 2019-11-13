@@ -13,16 +13,34 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_generic_booking_amend
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->init();
 
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function init()
 	{
 		$this->property_uid = 0; // 1 ***** Required *****
@@ -41,6 +59,12 @@ class jomres_generic_booking_amend
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function amend_booking()
 	{
@@ -54,6 +78,12 @@ class jomres_generic_booking_amend
 			return $e->getMessage();
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	private function validate()
 	{
@@ -117,6 +147,12 @@ class jomres_generic_booking_amend
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	private function do_amend_booking()
 	{
@@ -126,6 +162,12 @@ class jomres_generic_booking_amend
 			return false;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	private function do_amend_contract()
 	{
@@ -249,6 +291,12 @@ class jomres_generic_booking_amend
 		
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	private function do_insert_booking_note()
 	{
@@ -273,6 +321,12 @@ class jomres_generic_booking_amend
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	private function check_availability()
 	{

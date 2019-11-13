@@ -26,6 +26,12 @@ defined('_JOMRES_INITCHECK') or die('');
 class jr_user
 {
 	private static $internal_debugging;
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function __construct()
 	{
@@ -33,6 +39,12 @@ class jr_user
 
 		$this->init_user();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function init_user( $id = 0 )
 	{
@@ -105,6 +117,12 @@ class jr_user
 			$this->get_user_role();
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function __set($setting, $value)
 	{
@@ -116,6 +134,12 @@ class jr_user
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function __get($setting)
 	{
@@ -297,7 +321,13 @@ class jr_user
 
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//update user profile params
 	public function update_params()
 	{
@@ -379,6 +409,12 @@ class jr_user
 			trigger_error('Unable to reassign a manager to any existing, authorised property. Either last property in database has been deleted, or this manager has rights to no properties.', E_USER_ERROR);
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//checks if the current user is a super property manager
 	public function is_super_property_manager()
@@ -389,6 +425,12 @@ class jr_user
 
 		return false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//checks if the current user is a property manager
 	public function is_property_manager()
@@ -399,6 +441,12 @@ class jr_user
 
 		return false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//checks if the current user is a receptionist
 	public function is_receptionist()
@@ -409,7 +457,13 @@ class jr_user
 
 		return false;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//checks if the current user is a receptionist
 	public function is_registered()
 	{

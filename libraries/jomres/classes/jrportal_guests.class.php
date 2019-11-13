@@ -13,14 +13,32 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jrportal_guests
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->jomres_encryption = new jomres_encryption();
 		$this->init_guest();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function init_guest()
 	{
@@ -45,7 +63,13 @@ class jrportal_guests
 		$this->blacklisted = 0;
 		$this->partner_id = 0;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//Get guest details by id
 	public function get_guest()
 	{
@@ -113,6 +137,12 @@ class jrportal_guests
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Save new guest
 	public function commit_new_guest()
@@ -208,6 +238,12 @@ class jrportal_guests
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Update existing guest
 	public function commit_update_guest()
@@ -271,6 +307,12 @@ class jrportal_guests
 		
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Delete guest
 	public function delete_guest()
@@ -303,7 +345,13 @@ class jrportal_guests
 		
 		return false;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//check if a guest can be deleted
 	function guest_can_be_deleted()
 	{
@@ -324,7 +372,13 @@ class jrportal_guests
 		
 		return false;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	function get_guest_id_by_cms_id($cms_id)
 	{
 		if ($this->property_uid == 0) {

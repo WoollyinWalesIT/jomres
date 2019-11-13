@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jrportal_paypal_settings
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->paypalConfigOptions = array();
@@ -30,6 +42,12 @@ class jrportal_paypal_settings
 		$this->paypalConfigOptions[ 'client_id_sandbox' ] = '';
 		$this->paypalConfigOptions[ 'secret_sandbox' ] = '';
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_paypal_settings()
 	{
@@ -48,6 +66,12 @@ class jrportal_paypal_settings
 
 		return $this->paypalConfigOptions;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function save_paypal_settings()
 	{

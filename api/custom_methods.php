@@ -15,6 +15,12 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
     Flight::map('json', function ($response_name, $data, $code = 200, $encode = true, $charset = 'utf-8') {
         logging::log_message(' Replied with code '.$code, 'API', 'DEBUG' , ' Replied with code '.$code.' and contents'.json_encode($data));
@@ -29,6 +35,12 @@ defined('_JOMRES_INITCHECK') or die('');
             ->send();
 			exit;
     });
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
     Flight::map('halt', function ($code = 200, $message = '') {
         $log = ' Halted run '.$code.' with message '.$message;

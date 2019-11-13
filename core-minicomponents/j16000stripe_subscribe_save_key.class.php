@@ -14,9 +14,25 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
+	
+	/**
+	 * Core Minicomponent 
+	 *
+	 * 
+	 */
 
 class j16000stripe_subscribe_save_key
-{
+{	
+	/**
+	 *
+	 * Constructor
+	 * 
+	 * Main functionality of the Minicomponent 
+	 *
+	 * 
+	 * 
+	 */
+	 
 	public function __construct($componentArgs)
 	{
 		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');

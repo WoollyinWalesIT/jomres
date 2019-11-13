@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_config_property_singleton
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->property_uid = 0;
@@ -30,31 +42,67 @@ class jomres_config_property_singleton
 		//get property specific settings
 		$this->get_property_settings();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function set($config)
 	{
 		$this->property_config = $config;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get()
 	{
 		return $this->property_config;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function set_setting($setting, $value)
 	{
 		$this->property_config[ $setting ] = $value;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_setting($setting)
 	{
 		return $this->property_config[ $setting ];
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function init($property_uid = null)
 	{
 		return $this->load_property_config($property_uid);
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//load property config for current property uid
 	public function load_property_config($property_uid = null)
@@ -86,6 +134,12 @@ class jomres_config_property_singleton
 		
 		return $this->property_config;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//get property configs multi
 	public function get_property_settings($property_uids = array())
@@ -119,7 +173,13 @@ class jomres_config_property_singleton
 			}
 		}
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//get default property config
 	private function get_default_property_config()
 	{

@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_temp_booking_handler
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 
@@ -67,7 +79,13 @@ class jomres_temp_booking_handler
 		//init arrays
 		$this->_init();
 	}
-		
+			
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function _init()
 	{
 		$this->info = array(
@@ -192,6 +210,12 @@ class jomres_temp_booking_handler
 		$this->_tmplang = $this->tmplang;
 		$this->_user_settings = $this->user_settings;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//if the ip and user agent don`t match, exit here
 	private function _preventHijacking()
@@ -210,6 +234,12 @@ class jomres_temp_booking_handler
 
 		return false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function initCustomFields($allCustomFields = array())
 	{
@@ -223,6 +253,12 @@ class jomres_temp_booking_handler
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function saveCustomFields($allCustomFields = array())
 	{
@@ -237,6 +273,12 @@ class jomres_temp_booking_handler
 			$this->updateBookingField($newBookingfieldName, $data);
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function initBookingSession($jomressession = '')
 	{
@@ -265,6 +307,12 @@ class jomres_temp_booking_handler
 			$this->session_jomres_start();
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function session_jomres_start()
 	{
@@ -276,6 +324,12 @@ class jomres_temp_booking_handler
 		$this->_replace_guest_data();
 	}
 	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	// Check various guest specific fields to see if the are not populated. If they are not, we will use the thisJRUser fields to populate them so that the booking form is pre-populated
 	private function _replace_guest_data()
 	{
@@ -331,7 +385,13 @@ class jomres_temp_booking_handler
 		}
 
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function _jomres_session_start_file() 
 	{
 		if (file_exists($this->sessionfile)) {
@@ -382,6 +442,12 @@ class jomres_temp_booking_handler
 		}
 	}
 	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function _jomres_session_start_database()
 	{
 		$query = "SELECT `data` FROM #__jomres_sessions WHERE `session_id` = '".$this->jomressession_db."'";
@@ -432,6 +498,12 @@ class jomres_temp_booking_handler
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function close_jomres_session()
 	{
@@ -468,36 +540,78 @@ class jomres_temp_booking_handler
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getJomressession()
 	{
 		return $this->jomressession;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getBookingPropertyId()
 	{
 		return $this->tmpbooking[ 'property_uid' ];
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getBookingData()
 	{
 		return $this->tmpbooking;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getGuestData()
 	{
 		return $this->tmpguest;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function saveBookingData()
 	{
 		$this->close_jomres_session();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function saveGuestData()
 	{
 		$this->close_jomres_session();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getBookingFieldVal($field)
 	{
@@ -507,6 +621,12 @@ class jomres_temp_booking_handler
 			return null;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function updateBookingField($fieldname, $value)
 	{
@@ -516,21 +636,45 @@ class jomres_temp_booking_handler
 		
 		$this->tmpbooking[ $fieldname ] = $value;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function updateGuestField($fieldname, $value)
 	{
 		$this->tmpguest[ $fieldname ] = $value;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function addNewBookingField($fieldname)
 	{
 		$this->tmpbooking[ $fieldname ] = '';
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function addNewGuestField($fieldname)
 	{
 		$this->tmpguest[ $fieldname ] = '';
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function resetCreditCardDetails()
 	{
@@ -544,6 +688,12 @@ class jomres_temp_booking_handler
 			'type' => '',
 			);
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function resetTempGuestData()
 	{
@@ -569,6 +719,12 @@ class jomres_temp_booking_handler
 			'timestamp' => '',
 			);
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function resetTempBookingData()
 	{
@@ -639,12 +795,24 @@ class jomres_temp_booking_handler
 			'secret_key_payment' => false
 			);
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function resetCart()
 	{
 		$this->cart_data = array();
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function resetTmpSearchData()
 	{
 		$this->tmpsearch_data = array(
@@ -652,7 +820,13 @@ class jomres_temp_booking_handler
 			'jomsearch_availability_departure' => ''
 		);
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function resetTmpUserData()
 	{
 		$this->user_settings = array(

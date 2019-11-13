@@ -46,7 +46,13 @@ class jomres_gdpr_personal_information_collections
 		
 		$this->cms_id = (int) $cms_id;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function can_redact_this_cms_user()
 	{
 		if ((int)$this->cms_id == 0 ) {
@@ -287,7 +293,13 @@ class jomres_gdpr_personal_information_collections
 		}
 		return array("guest_data" => $guest_data , "profile_data" => $profile_data);
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function redact_pii()
 	{
 		jr_import('jomres_encryption');

@@ -14,8 +14,20 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 class custom_text
 {
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->lang = get_showtime('lang');
@@ -25,6 +37,12 @@ class custom_text
 		//get the global custom text
 		$this->gather_data(array(0));
 	}
+
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function reset_current_lang($lang = '')
 	{
@@ -39,6 +57,12 @@ class custom_text
 		//get the global custom text
 		$this->gather_data(array(0));
 	}
+
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function gather_data($property_uids = array())
 	{
@@ -86,6 +110,12 @@ class custom_text
 	}
 
 	//Legacy function: we`ll keep it here because it`s used in various places
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function get_custom_text_for_property($property_uid = 0)
 	{
 		if ($property_uid == 0)
@@ -100,6 +130,12 @@ class custom_text
 	}
 	
 	//update custom text
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	function updateCustomText($theConstant, $theValue, $audit = true, $property_uid = null, $language_context = '0')
 	{
 		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');

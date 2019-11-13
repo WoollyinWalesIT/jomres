@@ -16,9 +16,25 @@ defined('_JOMRES_INITCHECK') or die('');
 
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Exception\ClientException;
+	
+	/**
+	 * Core Minicomponent 
+	 *
+	 * 
+	 */
 
 class j16000firewall_check
-{
+{	
+	/**
+	 *
+	 * Constructor
+	 * 
+	 * Main functionality of the Minicomponent 
+	 *
+	 * 
+	 * 
+	 */
+	 
 	public function __construct()
 	{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return

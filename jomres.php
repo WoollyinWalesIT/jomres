@@ -1,6 +1,6 @@
 <?php
 /**
- * Main script called by the host CMS that produces output and runs tasks
+
  *
  * @author Vince Wooll <sales@jomres.net>
  *
@@ -13,6 +13,15 @@
 //#################################################################
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
+
+/**
+*
+* Main script called by the host CMS that produces output and runs tasks
+*
+* 
+* 
+*/
+
 
 @ignore_user_abort(true);
 

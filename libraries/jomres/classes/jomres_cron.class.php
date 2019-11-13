@@ -16,8 +16,21 @@ defined('_JOMRES_INITCHECK') or die('');
 
 // Creates - adds - removes all jomres cron jobs. A pseudo cron class.
 // Nice simple schedules used: M,H,D,W,QH
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 class jomres_cron
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -36,6 +49,12 @@ class jomres_cron
 		
 		$this->getAllJobs();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function checkForStalledJobs()
 	{
@@ -95,6 +114,12 @@ class jomres_cron
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function triggerJobs()
 	{
@@ -107,6 +132,12 @@ class jomres_cron
 		$this->runDueJobs();
 		$this->updateCronlog();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getAllJobs()
 	{
@@ -143,6 +174,12 @@ class jomres_cron
 			$this->debug[ ] = '<b>No jobs in database!</b>';
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function findDueJobs()
 	{
@@ -205,6 +242,12 @@ class jomres_cron
 			$this->debug[ ] = 'No jobs due';
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function lockJobs($jobIds = array())
 	{
@@ -221,6 +264,12 @@ class jomres_cron
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function unlockJobs($jobIds = array())
 	{
@@ -237,6 +286,12 @@ class jomres_cron
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	// Any cron minicomponents will need to be called j06000crom_XXXXXX.class.php
 	// We will use jomresConfig_secret to prevent outsiders from triggering a specific cron job remotely. The cron 6000 minicomponent can be edited to disable this check if the developer wants to run the job manually while testing
@@ -280,6 +335,12 @@ class jomres_cron
 			$this->updateJob_lastrans($lockedJobs);
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function updateJob_lastrans($jobIds = array())
 	{
@@ -300,6 +361,12 @@ class jomres_cron
 
 		return false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function jobExists($jobName = '')
 	{
@@ -323,6 +390,12 @@ class jomres_cron
 		
 		return false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function addJob($jobName = '', $schedule = 'D', $parameters = '')
 	{
@@ -347,6 +420,12 @@ class jomres_cron
 		
 		return false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function removeJob($jobName = '')
 	{
@@ -374,6 +453,12 @@ class jomres_cron
 		
 		return false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function updateJobSchedule($jobName, $schedule)
 	{
@@ -398,6 +483,12 @@ class jomres_cron
 		
 		return false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function updateJobParameters($jobName, $parameters)
 	{
@@ -422,6 +513,12 @@ class jomres_cron
 		
 		return false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function displayDebug()
 	{
@@ -431,6 +528,12 @@ class jomres_cron
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function updateCronlog()
 	{

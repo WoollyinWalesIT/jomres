@@ -11,6 +11,13 @@
 **/
 defined('_JEXEC') or die('Direct Access to this location is not allowed.');
 
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 if (!defined('_JOMRES_INITCHECK')) {
 	define('_JOMRES_INITCHECK', 1);
 }

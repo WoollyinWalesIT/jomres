@@ -14,14 +14,30 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
+/**
+ * 
+ *
+ *
+ */
 class basic_subscription_details
 {
+	/**
+	 * 
+	 *
+	 *
+	 */
 	public function __construct()
 	{
 		$this->subscription = array();
 
 		$this->package = array();
 	}
+
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function gatherData($cms_user_id = 0)
 	{

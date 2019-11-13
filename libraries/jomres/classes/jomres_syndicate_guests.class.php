@@ -15,13 +15,31 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 // 
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_syndicate_guests
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_booking_stats_for_guest( $email ) {
 		$response = '';

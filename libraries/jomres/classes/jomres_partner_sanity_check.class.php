@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_partner_sanity_check
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct($autorun = true)
 	{
 		if (get_showtime('no_html') == 1 || get_showtime('popup') == 1 || AJAXCALL) {
@@ -24,6 +36,12 @@ class jomres_partner_sanity_check
 		
 		$this->warnings = '';
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function do_sanity_checks()
 	{
@@ -31,6 +49,12 @@ class jomres_partner_sanity_check
 
 		return $this->warnings;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function construct_warning($message_array)
 	{
@@ -55,6 +79,12 @@ class jomres_partner_sanity_check
 
 		return '<p>'.$warning.'</p>';
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function check_details_completed()
 	{

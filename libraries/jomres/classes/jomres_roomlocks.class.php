@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_roomlocks
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$property_uid = get_showtime('property_uid');
@@ -26,7 +38,13 @@ class jomres_roomlocks
 		$this->get_all_rooms_already_in_cart();
 	}
 
-	// If the lock is an hour old, we'll remove the lock.
+	// If the lock is an hour old, we'll remove the lock.	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function clean_up_old_locks()
 	{
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -57,6 +75,12 @@ class jomres_roomlocks
 		}
 		$this->save_lockfile_data($dates_array);
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function lock_room($room_uid, $date_range_string)
 	{
@@ -72,6 +96,12 @@ class jomres_roomlocks
 		}
 		$this->save_lockfile_data($dates_array);
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function unlock_room($room_uid, $date_range_string)
 	{
@@ -84,6 +114,12 @@ class jomres_roomlocks
 		}
 		$this->save_lockfile_data($dates_array);
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function is_room_locked($room_uid, $date_range_string)
 	{
@@ -117,6 +153,12 @@ class jomres_roomlocks
 
 		return false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function unlock_all_rooms_for_session()
 	{
@@ -125,6 +167,12 @@ class jomres_roomlocks
 		unset($dates_array[ $jomressession ]);
 		$this->save_lockfile_data($dates_array);
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function init_lockfile()
 	{
@@ -137,11 +185,23 @@ class jomres_roomlocks
 
 		return $dates_array;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function save_lockfile_data($dates_array)
 	{
 		file_put_contents($this->sessionfile, serialize($dates_array));
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	// Allows us to pass either room uids or roomtariff strings (e.g. 4^3) to the class and extract the room uid for use within the class
 	public function extract_room_uid($room_uid)
@@ -156,6 +216,12 @@ class jomres_roomlocks
 			return $rtArray[ 0 ];
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_all_rooms_already_in_cart()
 	{

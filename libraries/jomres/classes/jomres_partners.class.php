@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_partners
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$all_users = jomres_cmsspecific_getCMSUsers();
@@ -35,6 +47,12 @@ class jomres_partners
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function is_this_cms_user_a_partner($cms_userid)
 	{
@@ -51,6 +69,12 @@ class jomres_partners
 
 		return false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_guest_uids_for_partner($cms_userid)
 	{
@@ -71,6 +95,12 @@ class jomres_partners
 			return $this->partner_guests;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function check_partner_details_complete($cms_userid)
 	{

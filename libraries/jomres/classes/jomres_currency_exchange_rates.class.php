@@ -15,9 +15,21 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 // Gets the exchange rates and stores them in a temporary file. Updates the exchange rates daily, or whenever the exchange rate temp file doesn't exist.
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_currency_exchange_rates
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -59,6 +71,12 @@ class jomres_currency_exchange_rates
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//check if exchange rates files is expired (it`s not from today)
 	public function exchange_rate_file_expired()
@@ -72,6 +90,12 @@ class jomres_currency_exchange_rates
 
 		return false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//update exchange rates
 	public function update_exchange_rates()
@@ -119,6 +143,12 @@ class jomres_currency_exchange_rates
 		
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//save exchange rates to file
 	public function save_rates()
@@ -143,6 +173,12 @@ $this->rates = ' .var_export($this->rates, true).';
 			exit;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//get exchange rates json
 	public function get_openexchangerates_rates()

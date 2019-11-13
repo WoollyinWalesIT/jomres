@@ -17,7 +17,13 @@ defined('_JOMRES_INITCHECK') or die('');
  * New for v3.2 of Jomres. Allows the system to create a registry file so that the minicomponent handler doesn't need to constantly search folders and record minicomponents on each run.
  */
 class minicomponent_registry
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->registeredClasses = array();
@@ -50,16 +56,34 @@ class minicomponent_registry
 			include_once $this->registry_file;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_registered_classes()
 	{
 		return $this->registeredClasses;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_minicomponent_directories()
 	{
 		return $this->miniComponentDirectories;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function regenerate_registry($force_reload_allowed = false)
 	{
@@ -141,6 +165,12 @@ class minicomponent_registry
 			echo '<script>window.location.reload();</script>';
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function save_registry_file()
 	{
@@ -228,6 +258,12 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getMiniComponentCMSSpecificClasses()
 	{
@@ -241,6 +277,12 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
 			$d->close();
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	// Reads in class files from the events folder and inserts them into the registeredClasses array
 	public function getMiniComponentCoreClasses()
@@ -255,6 +297,12 @@ $this->miniComponentDirectories = ' .var_export($this->miniComponentDirectories,
 			$d->close();
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function registerComponentFile($filePath, $filename, $eventType = 'component')
 	{

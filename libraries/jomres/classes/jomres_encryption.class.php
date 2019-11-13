@@ -18,10 +18,22 @@ require_once( JOMRESPATH_BASE.'libraries'.JRDS.'php-encryption'.JRDS.'autoload.p
 
 use Defuse\Crypto\Key;
 use Defuse\Crypto\Crypto;
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_encryption
 {
 	private $encryption_key = '';
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function __construct()
 	{
@@ -41,7 +53,13 @@ class jomres_encryption
 		$this->get_key();
 		
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function generate_new_key()
 	{
 		$key = Key::createNewRandomKey();
@@ -67,7 +85,13 @@ class encryption_key
 
 		file_put_contents($this->key_location."encryption_key.class.php" , $str );
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function get_key() 
 	{
 		try
@@ -82,17 +106,35 @@ class encryption_key
 			throw new Exception('Cannot get encryption key');
 		}
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function encrypt($string = '' )
 	{
 		return Crypto::encrypt( (string)trim($string), $this->encryption_key );
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function decrypt($ciphertext = '') 
 	{
 	if (trim($ciphertext == '') ) {
 		return '';
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	if ( is_null($ciphertext) ) {
 		return '';

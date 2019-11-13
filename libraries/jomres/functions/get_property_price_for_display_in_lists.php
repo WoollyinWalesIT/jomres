@@ -14,6 +14,11 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
+/**
+ * 
+ *
+ *
+ */
 function get_property_price_for_display_in_lists($property_uid)
 {
 	$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');

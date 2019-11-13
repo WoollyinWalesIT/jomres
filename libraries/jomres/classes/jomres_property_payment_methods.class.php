@@ -13,6 +13,12 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_property_payment_methods
 {
@@ -20,6 +26,12 @@ class jomres_property_payment_methods
 	{
 		$this->multi_query_result = array();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_gateways_multi($property_uids)
 	{
@@ -65,6 +77,12 @@ class jomres_property_payment_methods
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_property_gateways($property_uid)
 	{

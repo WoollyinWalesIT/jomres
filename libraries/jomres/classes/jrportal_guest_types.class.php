@@ -13,13 +13,31 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jrportal_guest_types
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->init_guest_type();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function init_guest_type()
 	{
@@ -36,7 +54,13 @@ class jrportal_guest_types
 		$this->is_child = 0;		// this guest type is a child - used on channel managers
 		//$this->xref 			= array();	// TODO: not used yet for global guest types - guest type property type xref
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//Get guest type details by guest type id
 	public function get_guest_type()
 	{
@@ -84,6 +108,12 @@ class jrportal_guest_types
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Save new guest type
 	public function commit_new_guest_type()
@@ -141,6 +171,12 @@ class jrportal_guest_types
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Update existing guest type
 	public function commit_update_guest_type()
@@ -180,6 +216,12 @@ class jrportal_guest_types
 		
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Delete guest type
 	public function delete_guest_type()
@@ -208,6 +250,12 @@ class jrportal_guest_types
 		
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Publish/unpublish guest type
 	public function publish_guest_type()
@@ -243,6 +291,12 @@ class jrportal_guest_types
 			return false;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Guest type order
 	public function save_guest_type_order()

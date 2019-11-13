@@ -13,20 +13,44 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jrportal_booking_manager
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->init();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	private function init()
 	{
 		$this->contract_uid = 0; // contract_uid
 		$this->property_uid = 0; // property_uid
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//Guest checkin
 	public function guest_checkin()
 	{
@@ -63,7 +87,13 @@ class jrportal_booking_manager
 
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//Undo guest checkin
 	public function undo_guest_checkin()
 	{
@@ -100,7 +130,13 @@ class jrportal_booking_manager
 
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//Guest checkout
 	public function guest_checkout()
 	{
@@ -137,7 +173,13 @@ class jrportal_booking_manager
 
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//Undo guest checkout
 	public function undo_guest_checkout()
 	{

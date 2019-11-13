@@ -11,6 +11,13 @@
  **/
 defined('_JOMRES_INITCHECK') or die('');
 
+/**
+ * Default Site Configuration settings
+ * 
+ * These settings are used to populate the Site Configuration table for the first time. On update any newly added settings are automatically imported to the database.
+ * 
+ **/
+ 
 $jrConfig = array(
   'version' => '9.20.0',
   'defaultCrate' => '1',

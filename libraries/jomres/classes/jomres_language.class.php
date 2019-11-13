@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_language
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -65,6 +77,12 @@ class jomres_language
 			$this->selected_languages = array_keys($langfile_crossref);
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_language($property_type = '')
 	{
@@ -114,6 +132,12 @@ class jomres_language
 
 		return false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_languageselection_dropdown($config_option = false, $default_lang = '' , $custom_input_name = '' )
 	{
@@ -170,6 +194,12 @@ class jomres_language
 		
 		return $selecthtml;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function define_langfile_to_languages_array()
 	{
@@ -215,6 +245,12 @@ class jomres_language
 		
 		return $langs;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_shortcode_to_longcode($lang)
 	{
@@ -224,6 +260,12 @@ class jomres_language
 
 		return 'en-GB';
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_shortcodes()
 	{
@@ -269,6 +311,12 @@ class jomres_language
 
 		return $langs;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function define_langfile_to_datepicker_files_array()
 	{

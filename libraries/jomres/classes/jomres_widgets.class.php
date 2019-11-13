@@ -13,15 +13,33 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_widgets
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->widgets = array();
 		$this->this_page_widgets = array();
 		$this->default_widgets = array();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//register widget
 	public function register_widget($eventPoint = '', $eventName = '', $title = '', $default = false)
@@ -45,7 +63,13 @@ class jomres_widgets
 		
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//unregister widget
 	public function unregister_widget($eventName = '')
 	{
@@ -59,7 +83,13 @@ class jomres_widgets
 		
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//unregister widget
 	public function unregister_default_widget($eventName = '')
 	{
@@ -73,7 +103,13 @@ class jomres_widgets
 		
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//generate this page widgets list
 	public function get_widgets()
 	{
@@ -117,7 +153,13 @@ class jomres_widgets
 
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//generate the widgets dropdown TODO: make it a dropdown with checkboxes
 	public function get_widgets_dropdown()
 	{
@@ -160,7 +202,13 @@ class jomres_widgets
 		
 		return $widgets_dropdown;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//toggle widget
 	public function toggle_widget($widget = '', $enabled = 0, $column = 1, $order = array() )
 	{

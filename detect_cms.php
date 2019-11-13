@@ -14,6 +14,13 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
+/**
+ * Detects which CMS Jomres is installed on.
+ * 
+ * In theory Jomres can (with the appropriate supporting CMS specific functionality) be run on any PHP CMS, although in practice only Joomla and Wordpress are supported, there simply isn't enough demand for any other CMSs. First looks to see if we are installed on a recognised CMS, if _JOMRES_DETECTED_CMS isn't found then we'll scan JOMRES_REMOTEPLUGINS_ABSPATH (typically /jomres/remote_plugins/) to find another file that will set the Detected CMS.
+ * 
+ **/
+ 
 if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'wp-config.php')) {
 	define('_JOMRES_DETECTED_CMS', 'wordpress');
 	define('_JOMRES_DETECTED_CMS_SPECIFIC_FILES', JOMRES_CMSSPECIFIC_ABSPATH._JOMRES_DETECTED_CMS.JRDS);

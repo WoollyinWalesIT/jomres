@@ -15,9 +15,21 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 // This allows Jomres to call it's own API. As more functionality is added to the API then there are times that that will be the choice of connection.
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_syndicate_properties
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->all_properties = array();
@@ -31,6 +43,12 @@ class jomres_syndicate_properties
 		$this->min_distance_allowed = 1;
 		$this->max_distance_allowed = 20;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_all_properties() {
 		$query = "SELECT id , domain FROM #__jomres_syndication_domains ";
@@ -52,7 +70,13 @@ class jomres_syndicate_properties
 			}
 		}
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function get_approved_properties ()
 	{
 		if (empty($this->all_properties)) {
@@ -70,7 +94,13 @@ class jomres_syndicate_properties
 		}
 		return $this->all_approved_properties;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function get_random_properties( $limit = 5 , $multi_room_property = 1)
 	{
 		if ($multi_room_property == 1 ) {
@@ -148,7 +178,13 @@ class jomres_syndicate_properties
 		
 		return $result;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function report_properties_display( $properties )
 	{
 		$report = new stdClass();
@@ -171,6 +207,12 @@ class jomres_syndicate_properties
 				]
 			]);
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	private function codexworldGetDistanceOpt($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo)
 	{

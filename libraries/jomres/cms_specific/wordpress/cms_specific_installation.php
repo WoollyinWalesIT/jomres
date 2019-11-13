@@ -13,6 +13,12 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 // Don't need to run this again if the table's already populated
 $query = 'SELECT userid FROM #__jomres_managers LIMIT 2';

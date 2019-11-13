@@ -13,15 +13,33 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_media_centre_images_s3import
 {
 	protected $filesystem;
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->filesystem = jomres_singleton_abstract::getInstance('jomres_filesystem')->getFilesystem();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//run importer
 	public function run()

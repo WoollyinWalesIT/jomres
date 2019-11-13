@@ -13,6 +13,12 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jrportal_availability
 {
@@ -23,7 +29,13 @@ class jrportal_availability
 	protected $departure;
 	
 	protected $room_uids;
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct($property_uid = 0, $arrival = '', $departure = '', $room_uids = array())
 	{
 		$this->property_uid = $property_uid;	//required
@@ -34,7 +46,13 @@ class jrportal_availability
 		
 		$this->validate();
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function check_availability()
 	{
 		$date_range = findDateRangeForDates($this->arrival, $this->departure);
@@ -49,7 +67,13 @@ class jrportal_availability
 		
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function validate()
 	{
 		if ($this->arrival == '') {

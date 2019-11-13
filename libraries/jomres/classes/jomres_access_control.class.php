@@ -14,9 +14,21 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 class jomres_access_control
 {
 	private static $internal_debugging;
+
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function __construct()
 	{
@@ -66,6 +78,12 @@ class jomres_access_control
 		$this->_init();
 	}
 
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __set($setting, $value)
 	{
 		if (self::$internal_debugging) {
@@ -75,6 +93,12 @@ class jomres_access_control
 
 		return true;
 	}
+
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function __get($setting)
 	{
@@ -88,6 +112,12 @@ class jomres_access_control
 		return null;
 	}
 	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function _init()
 	{
 		$query = 'SELECT `id`, `scriptname`, `access_level` FROM #__jomres_access_control';
@@ -99,6 +129,12 @@ class jomres_access_control
 			}
 		}
 	}
+
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	private function delete_controlled_task($task = '')
 	{
@@ -117,6 +153,12 @@ class jomres_access_control
 		return true;
 	}
 	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function update_task_access_level($task = '', $access_level = '-1')
 	{
 		if ($task == '') {
@@ -156,6 +198,12 @@ class jomres_access_control
 	}
 
 	//check if a user can access a specific task
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function this_user_can($task = '')
 	{
 		if (in_array($task, $this->uncontrollable_tasks)) {
@@ -217,12 +265,24 @@ class jomres_access_control
 	}
 
 	//not used but here is somebody wants to do this for some reason..
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function recount_controlled_scripts()
 	{
 		$this->_init();
 	}
 
 	//access levels dropdown
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function generate_access_control_dropdown($task = '', $min_access_level = 0)
 	{
 		if ($task == '') {
@@ -281,6 +341,12 @@ class jomres_access_control
 	}
 	
 	//check if a task is controllable (some tasks are not controllable)
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function is_controllable($task = '')
 	{
 		if ($task == '') {

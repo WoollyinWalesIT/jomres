@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class basic_room_details
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->rooms = false;
@@ -23,6 +35,12 @@ class basic_room_details
 		$this->all_room_features = array();
 		$this->property_uid = 0;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Get all rooms details
 	public function get_all_rooms($property_uid = 0)
@@ -91,6 +109,12 @@ class basic_room_details
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Get room details
 	public function get_room($room_uid = 0)
@@ -158,6 +182,12 @@ class basic_room_details
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_rooms_features($room_feature_uids = array())
 	{
@@ -208,6 +238,12 @@ class basic_room_details
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Get property uid for room uid
 	public function get_property_uid_for_room_uid($room_uid = 0)

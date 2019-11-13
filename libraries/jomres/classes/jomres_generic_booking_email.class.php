@@ -13,14 +13,32 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_generic_booking_email
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->data = array();
 		$this->parsed_email = array();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function gather_data($contract_uid = 0, $property_uid = 0, $print = false)
 	{
@@ -209,6 +227,12 @@ class jomres_generic_booking_email
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function parse_email($email_type = '', $contract_uid = 0)
 	{

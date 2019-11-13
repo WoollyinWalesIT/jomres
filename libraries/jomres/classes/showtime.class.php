@@ -15,16 +15,34 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 // My little joke, "showtime" was my favourite server on Delta Force 2 when I used to play it back in the late nineties.
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class showtime
 {
 	private static $internal_debugging;
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function __construct()
 	{
 		self::$internal_debugging = false;
 		$this->custom_paths = array();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function __set($setting, $value)
 	{
@@ -35,6 +53,12 @@ class showtime
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function __get($setting)
 	{
@@ -47,6 +71,12 @@ class showtime
 
 		return null;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function set_custom_path_for_template($templatename, $path)
 	{

@@ -13,12 +13,24 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_sanity_check
 {
 	public $warnings;
 	public $warning_counter;
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct($autorun = true , $property_uid = 0 )
 	{
 		if (get_showtime('no_html') == 1 || get_showtime('popup') == 1 || AJAXCALL) {
@@ -41,7 +53,13 @@ class jomres_sanity_check
 	/*
 	Blind flag is for automatically created properties that need to be checked
 	*/
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function do_sanity_checks( $blind = false )
 	{
 		if (get_showtime('no_html') == 1 || get_showtime('popup') == 1 || AJAXCALL) {
@@ -96,6 +114,12 @@ class jomres_sanity_check
 		
 		return $this->warnings;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function construct_warning($message_array)
 	{
@@ -141,6 +165,12 @@ class jomres_sanity_check
 			return $tmpl->getParsedTemplate();
 		//}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function mark_as_complete() {
 		// This is only triggered if a property doesn't have any warnings fired (address, images etc)
@@ -165,7 +195,13 @@ class jomres_sanity_check
 		
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function mark_as_incomplete() {
 		// This is only triggered if a property has warnings fired (address, images etc)
 		// sets the completed flag to 0, makes the property require a new approval and also unpublishes the property
@@ -195,7 +231,13 @@ class jomres_sanity_check
 		
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function check_property_type_published()
 	{
 		
@@ -215,7 +257,13 @@ class jomres_sanity_check
 		
 	}
 
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function check_for_unreviewed_bookings()
 	{
 		if ($this->jrConfig['review_nag'] == "0")
@@ -266,7 +314,13 @@ class jomres_sanity_check
 		}
 
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function check_tours_exist()
 	{
 		//if (get_showtime('task') != 'jintour') {
@@ -290,6 +344,12 @@ class jomres_sanity_check
 			}
 		//}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function check_address()
 	{
@@ -310,6 +370,12 @@ class jomres_sanity_check
 			}
 		//}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function check_main_image()
 	{
@@ -329,6 +395,12 @@ class jomres_sanity_check
 			}
 		//}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function check_approved()
 	{
@@ -340,6 +412,12 @@ class jomres_sanity_check
 			return $this->construct_warning(array('MESSAGE' => $message));
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function check_suspended()
 	{
@@ -351,6 +429,12 @@ class jomres_sanity_check
 			return $this->construct_warning(array('MESSAGE' => $message));
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function checks_guest_types_pppn()
 	{
@@ -371,6 +455,12 @@ class jomres_sanity_check
 
 		return '';
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function checks_tariffs_exist()
 	{
@@ -409,6 +499,12 @@ class jomres_sanity_check
 
 		return '';
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function check_editing_mode()
 	{
@@ -421,6 +517,12 @@ class jomres_sanity_check
 			return $this->construct_warning(array('MESSAGE' => $message, 'LABEL' => 'danger'));
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function check_published()
 	{
@@ -437,6 +539,12 @@ class jomres_sanity_check
 			return $this->construct_warning(array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $button_text));
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function check_srp_room_exists()
 	{
@@ -454,6 +562,12 @@ class jomres_sanity_check
 			//}
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function check_srp_room_type_set()
 	{
@@ -473,6 +587,12 @@ class jomres_sanity_check
 			//}
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function check_mrp_rooms_exists()
 	{

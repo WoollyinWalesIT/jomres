@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_timezones
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->check_timezone_change();
@@ -27,6 +39,12 @@ class jomres_timezones
 		$this->users_timezone = $this->get_users_timezone();
 		//date_default_timezone_set( $this->users_timezone );
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function check_timezone_change()
 	{
@@ -41,6 +59,12 @@ class jomres_timezones
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_dropdown()
 	{
@@ -58,6 +82,12 @@ class jomres_timezones
 
 		return $selecthtml;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_users_timezone()
 	{
@@ -68,6 +98,12 @@ class jomres_timezones
 			return $this->default_timezone;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_supported_timezones()
 	{

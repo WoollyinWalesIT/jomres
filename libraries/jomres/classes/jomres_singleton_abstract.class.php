@@ -13,15 +13,33 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_singleton_abstract
 {
 	protected static $_instances;
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function __construct()
 	{
 
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public static function getInstance($class, $arg1 = null)
 	{

@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_editing_mode
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -48,6 +60,12 @@ class jomres_editing_mode
 		
 		$this->editing = $tmpBookingHandler->user_settings[ 'editing_on' ];
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function switch_mode_on()
 	{
@@ -59,6 +77,12 @@ class jomres_editing_mode
 		
 		$this->editing = true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function switch_mode_off()
 	{
@@ -70,6 +94,12 @@ class jomres_editing_mode
 		
 		$this->editing = false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function make_editing_mode_dropdown()
 	{

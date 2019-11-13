@@ -14,6 +14,11 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
+/**
+ * 
+ *
+ *
+ */
 function jr_substr($str, $arg1, $arg2)
 {
 	if (!function_exists('mb_substr')) {
@@ -25,6 +30,11 @@ function jr_substr($str, $arg1, $arg2)
 	return $result;
 }
 
+/**
+ * 
+ *
+ *
+ */
 function jr_strtolower($str)
 {
 	if (!function_exists('mb_strtolower')) {
@@ -36,11 +46,21 @@ function jr_strtolower($str)
 	return $result;
 }
 
+/**
+ * 
+ *
+ *
+ */
 function jr_ucwords($str)
 {
 	return mb_ucwords($str);
 }
 
+/**
+ * 
+ *
+ *
+ */
 if (!function_exists('mb_ucwords')) {
 	function mb_ucwords($str)
 	{

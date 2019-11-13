@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jrportal_invoice_pii_details
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->invoice_id = 0;
@@ -23,6 +35,12 @@ class jrportal_invoice_pii_details
 		$this->jomres_encryption = new jomres_encryption();
 	
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	// Retrieve the PII data for this invoice's buyer
 	public function get_pii_buyer()
@@ -66,6 +84,12 @@ class jrportal_invoice_pii_details
 			'vat_number'	=> $this->jomres_encryption->decrypt($user_details['enc_vat_number'])
 		);
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	// Retrieve the PII data for this invoice's buyer
 	public function get_pii_seller()

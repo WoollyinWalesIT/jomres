@@ -13,15 +13,33 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_generic_booking_cancel
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->init();
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function cancel_booking()
 	{
@@ -35,6 +53,12 @@ class jomres_generic_booking_cancel
 			return $e->getMessage();
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	private function validate()
 	{
@@ -61,6 +85,12 @@ class jomres_generic_booking_cancel
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	private function init()
 	{
@@ -72,6 +102,12 @@ class jomres_generic_booking_cancel
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	private function apply_cancellation()
 	{

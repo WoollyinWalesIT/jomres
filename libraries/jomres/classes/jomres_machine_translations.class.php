@@ -23,6 +23,12 @@ class jomres_machine_translations
 {
 	
 	private static $internal_debugging;
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function __construct()
 	{
@@ -31,13 +37,25 @@ class jomres_machine_translations
 		$this->init_service();
 	}
 
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function init_service(  )
 	{
 		$jomres_language = jomres_singleton_abstract::getInstance('jomres_language');
 		
 	}
 
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_translation( $default_text , $constant , $target_language )
 	{

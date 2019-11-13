@@ -14,7 +14,13 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-// The purpose of this function is to allow us to override the booking number programatically.
+// 
+
+/**
+ * 
+ * The purpose of this function is to allow us to override the booking number programatically.
+ *
+ */
 function set_booking_number()
 {
 	$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');

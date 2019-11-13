@@ -14,12 +14,22 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
+/**
+ * 
+ *
+ *
+ */
 function jr_define($constant, $string)
 {
 	$jomres_language_definitions = jomres_singleton_abstract::getInstance('jomres_language_definitions');
 	$jomres_language_definitions->define($constant, $string);
 }
 
+/**
+ * 
+ *
+ *
+ */
 function jr_get_defined($constant, $default = '')
 {
 	if (!defined($constant)) {
@@ -36,6 +46,11 @@ function jr_get_defined($constant, $default = '')
 	}
 }
 
+/**
+ * 
+ *
+ *
+ */
 function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
 {
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');

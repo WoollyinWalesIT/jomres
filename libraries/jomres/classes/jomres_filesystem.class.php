@@ -19,12 +19,24 @@ use League\Flysystem\Adapter\Local;
 use League\Flysystem\MountManager;
 use Aws\S3\S3Client;
 use League\Flysystem\AwsS3v3\AwsS3Adapter;
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_filesystem
 {
 	protected $filesystem;
 	
 	protected $jrConfig;
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function __construct($local_root_dir = false)
 	{
@@ -49,11 +61,23 @@ class jomres_filesystem
 		}
 	}
 	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function getFilesystem()
 	{
 		return $this->filesystem;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function mount_local_filesystem($local_root_dir = false)
 	{
 		//local adapter
@@ -74,7 +98,13 @@ class jomres_filesystem
 			'local' => $local
 		]);
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function mount_s3_filesystem()
 	{
 		if ($this->jrConfig['amazon_s3_use_tls'] == '1') {

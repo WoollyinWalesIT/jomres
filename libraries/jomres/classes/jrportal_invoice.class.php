@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jrportal_invoice
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->init_invoice();
@@ -25,6 +37,12 @@ class jrportal_invoice
 		$this->jomres_encryption = new jomres_encryption();
 	
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function init_invoice()
 	{
@@ -45,6 +63,12 @@ class jrportal_invoice
 		$this->vat_will_be_charged = true;
 		$this->invoice_number = '';
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function init_lineitem()
 	{
@@ -67,6 +91,12 @@ class jrportal_invoice
 		$this->lineitem['management_url'] = '';
 		
   }
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Create a new invoice
 	public function create_new_invoice($invoice_data, $line_items = array())
@@ -120,6 +150,12 @@ class jrportal_invoice
 		//update the invoice with new totals after inserting the line items
 		$this->commitUpdateInvoice();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	// Intended for use by the update script of 9.11, it converts an invoice user's PII from open data to encrypted once handed an invoice id
 	public function convert_pii_data( $alternative_data )
@@ -141,7 +177,13 @@ class jrportal_invoice
 		}
 		
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	// Personally Identifable information will be stored in the buyer table
 	private function create_pii_buyer( $alternative_data = false )
 	{
@@ -205,7 +247,13 @@ class jrportal_invoice
 		$result = doInsertSql($query, "");
 		return $result;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function create_pii_seller()
 	{
 		
@@ -331,7 +379,13 @@ class jrportal_invoice
 		return $result;
 	}
 	
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//Add a new line item
 	public function add_line_item($line_item_data)
 	{
@@ -396,6 +450,12 @@ class jrportal_invoice
 		//insert the new line item
 		$this->commitLineItem();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Update an existing invoice by deleting all line items and inserting new ones
 	public function update_invoice($invoice_data, $line_items = array())
@@ -437,6 +497,12 @@ class jrportal_invoice
 
 		$this->commitUpdateInvoice();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Update line item, not currently used. It`ll stay here for now, just in case we`ll add invoice editing features in the future
 	public function update_line_item($line_item_data)
@@ -487,6 +553,12 @@ class jrportal_invoice
 
 		$this->commitUpdateLineItem();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Check the line item data and if it doesn`t have a name, return false and don`t insert the line item
 	public function check_line_item_data($line_item_data)
@@ -499,6 +571,12 @@ class jrportal_invoice
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Get the invoice details
 	public function getInvoice()
@@ -562,6 +640,12 @@ class jrportal_invoice
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Get the line item details
 	public function getLineItem()
@@ -638,6 +722,12 @@ class jrportal_invoice
 		
 		return false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Insert a new invoice with no line items
 	public function commitNewInvoice()
@@ -707,6 +797,12 @@ class jrportal_invoice
 
 		return false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	private function generate_invoice_number() {
 		
@@ -740,7 +836,13 @@ class jrportal_invoice
 			$this->invoice_number = $pattern;
 		}
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//Insert a new line item
 	public function commitLineItem()
 	{
@@ -805,6 +907,12 @@ class jrportal_invoice
 
 		return false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Update an existing invoice
 	public function commitUpdateInvoice()
@@ -844,6 +952,12 @@ class jrportal_invoice
 				
 		return doInsertSql($query, '');
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Update existing line item
 	public function commitUpdateLineItem()
@@ -878,6 +992,12 @@ class jrportal_invoice
 					WHERE `id`=' .(int)$this->lineitem['id'];
 		return doInsertSql($query, '');
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Delete a line item by id
 	public function deleteLineItemById($line_item_id = 0)
@@ -892,6 +1012,12 @@ class jrportal_invoice
 		
 		return doInsertSql($query, '');
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Get the invoice booking number by contract uid. TODO: Is this really needed here? We already have a _jomres_contracts query in j06005view_invoice.class.php.
 	public function get_invoice_booking_number($contract_uid = 0)
@@ -906,6 +1032,12 @@ class jrportal_invoice
 
 		return doSelectSql($query, 1);
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Check if we'll charge VAT or not for this b2b invoice and set the flag
 	public function b2b_transaction_is_vat_to_be_charged()
@@ -1020,6 +1152,12 @@ class jrportal_invoice
 			return;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Check if we'll charge VAT or not for this invoice and set the flag
 	public function set_vat_charging_flag()
@@ -1053,6 +1191,12 @@ class jrportal_invoice
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	// Invoice status:
 	// 0 unpaid
@@ -1108,6 +1252,12 @@ class jrportal_invoice
 		
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Mark an invoice as pending
 	public function mark_invoice_pending()
@@ -1125,6 +1275,12 @@ class jrportal_invoice
 		
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Mark an invoice as unpaid
 	public function mark_invoice_unpaid()
@@ -1146,6 +1302,12 @@ class jrportal_invoice
 		
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Mark an invoice as cancelled
 	public function mark_invoice_cancelled()
@@ -1169,6 +1331,12 @@ class jrportal_invoice
 		$webhook_notification->data->invoice_uid			= $this->id;
 		add_webhook_notification($webhook_notification);
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Mark an invoice as issued
 	public function mark_invoice_issued()
@@ -1187,6 +1355,12 @@ class jrportal_invoice
 		
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Get the line items balance
 	public function get_line_items_balance()
@@ -1206,6 +1380,12 @@ class jrportal_invoice
 		
 		return false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_invoice_id_by_contract_uid($contract_uid = 0)
 	{

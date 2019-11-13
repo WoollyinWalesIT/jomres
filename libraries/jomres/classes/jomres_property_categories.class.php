@@ -12,9 +12,21 @@
 // ################################################################
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_property_categories
-	{
+	{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 		{
 		$this->property_categories = false;				// array of all property  categories
@@ -25,6 +37,13 @@ class jomres_property_categories
 		}
 
 	//get all property categories
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function get_all_property_categories()
 		{
 		if ( is_array( $this->property_categories ) )
@@ -53,6 +72,13 @@ class jomres_property_categories
 		}
 	
 	//get property category by id
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function get_property_category( $id = 0 )
 		{
 		if ( (int)$id == 0 )
@@ -88,6 +114,13 @@ class jomres_property_categories
 		}
 	
 	//Save new property category
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function commit_new_property_category()
 		{
 		if ( $this->id > 0 )
@@ -113,6 +146,13 @@ class jomres_property_categories
 		}
 	
 	//Update existing property category
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function commit_update_property_category()
 		{
 		if ( $this->id == 0 )
@@ -138,6 +178,13 @@ class jomres_property_categories
 		}
 	
 	//Delete property category
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function delete_property_category()
 		{
 		if ( $this->id == 0 )
@@ -166,6 +213,13 @@ class jomres_property_categories
 			}
 		}
 		
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function getPropertyCategoriesDropdown($selected = 0)
 		{
 		$this->get_all_property_categories();

@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_menu
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		//frontend menu
@@ -28,6 +40,12 @@ class jomres_menu
 		$this->admin_items = array();
 		$this->admin_menu = array();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function add_section($section_id = 1, $title = '')
 	{
@@ -41,6 +59,12 @@ class jomres_menu
 		
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function add_admin_section($section_id = 1, $title = '')
 	{
@@ -68,6 +92,13 @@ class jomres_menu
 	80 => 'Settings'
 	90 => 'Help'
 	*/
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function add_item($section_id = 70, $title = '', $task = '', $icon = 'fa-cog', $is_url = false, $external = false, $disabled = false)
 	{
 		if ($title == '') {
@@ -137,6 +168,13 @@ class jomres_menu
 	90 => 'Settings'
 	100 => 'Help' 
 	*/
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function add_admin_item($section_id = 70, $title = '', $task = '', $icon = 'fa-cog', $is_url = false, $external = false, $disabled = false)
 	{
 		if ($title == '') {
@@ -171,6 +209,13 @@ class jomres_menu
 	}
 	
 	//generate frontend cpanel menu
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function generate_menu()
 	{
 		if (empty($this->sections) || empty($this->items)) {
@@ -193,6 +238,13 @@ class jomres_menu
 	}
 	
 	//generate admin cpanel menu
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function generate_admin_menu()
 	{
 		if (empty($this->admin_sections) || empty($this->admin_items)) {

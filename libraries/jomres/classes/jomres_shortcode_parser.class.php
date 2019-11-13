@@ -13,14 +13,32 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_shortcode_parser
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->shortcodes = false;
 		$this->shortcodes_file = JOMRES_TEMP_ABSPATH.'shortcodes.php';
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_shortcodes()
 	{
@@ -32,6 +50,12 @@ class jomres_shortcode_parser
 			throw new Exception('Error, the shortcodes file couldn`t be created.');
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function build_shortcodes($force = false)
 	{

@@ -14,6 +14,13 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
+/**
+*
+* Default property configuration settings.
+*
+* 
+* 
+*/
 $mrConfig = array(
   'newTariffModels' => '2',
   'singlePersonSuppliment' => '0',

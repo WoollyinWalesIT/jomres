@@ -14,6 +14,12 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
+/**
+ * 
+ *
+ *
+ */
+ 
 global $ra1, $ra2, $convertedRAs, $lessThans; // globaled so that we don't need to initialise them every time
 
 //global $R;
@@ -35,6 +41,11 @@ function initRemoveXSS($ra1, $ra2)
 	return array($base64);
 }
 
+/**
+ * 
+ *
+ *
+ */
 function RemoveXSS($val)
 {
 	global $ra1, $ra2, $convertedRAs, $lessThans;
@@ -122,6 +133,11 @@ function RemoveXSS($val)
 	return $val;
 }
 
+/**
+ * 
+ *
+ *
+ */
 function jomresGetParam($request, $element, $def = null) // variable type not used, we'll cast the variable type depending on the default ($def) that's passed to the function
 {
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -260,6 +276,11 @@ function jomresGetParam($request, $element, $def = null) // variable type not us
 	return $clean;
 }
 
+/**
+ * 
+ *
+ *
+ */
 function jomres_sanitise_string($dirty)
 {
 	if ($dirty == '') { // No need to call purifier if there's noting to purify
@@ -276,6 +297,11 @@ function jomres_sanitise_string($dirty)
 	return $clean;
 }
 
+/**
+ * 
+ *
+ *
+ */
 function jomres_purify_html($dirty)
 {
 	//logging::log_message('HTML purifier called', 'Core', 'DEBUG');
@@ -288,6 +314,11 @@ function jomres_purify_html($dirty)
 	return $clean;
 }
 
+/**
+ * 
+ *
+ *
+ */
 function getEscaped($text)
 {
 	$text = str_replace("'", '&#39;', $text);
@@ -297,6 +328,13 @@ function getEscaped($text)
 
 // http://www.php.net/manual/en/function.strip-tags.php#97386
 // Like many other functions in Jomres, it has been renamed to jomres_ becomes it's not unusual for other software developers to use the same functions in their libraries. Renaming the function thus prevents php from throwing duplicate function name errors
+
+/**
+ * 
+ *
+ *
+ */
+
 function jomres_remove_HTML($s, $keep = 'p|br', $expand = 'script|style|noframes|select|option')
 {
 	//prep the string
@@ -405,6 +443,11 @@ function strip_tags_except($text, $strip = true)
 }
 
 // Returns the utf string corresponding to the unicode value (from php.net, courtesy - romans@void.lv)
+/**
+ * 
+ *
+ *
+ */
 function jomres_code2utf($num)
 {
 	if ($num < 128) {
@@ -423,6 +466,11 @@ function jomres_code2utf($num)
 	return '';
 }
 
+/**
+ * 
+ *
+ *
+ */
 function jomres_get_var_type($variable)
 {
 	if (is_array($variable)) {
@@ -440,6 +488,11 @@ function jomres_get_var_type($variable)
 	}
 }
 
+/**
+ * 
+ *
+ *
+ */
 function jomres_parseRequest() // A simple request parser to check that mosConf.... isn't in the request string.
 {
 	// %6D%6F%73%43%6F%6E%66 = mosConf : urlencode
@@ -465,6 +518,11 @@ function jomres_parseRequest() // A simple request parser to check that mosConf.
 }
 
 // Previously we just used floats, however Europeans commonly use commas as a decimal seperator so we'll use this function to convert entered prices to nnn.nn values
+/**
+ * 
+ *
+ *
+ */
 function convert_entered_price_into_safe_float($value)
 {
 	$result = 0.00;

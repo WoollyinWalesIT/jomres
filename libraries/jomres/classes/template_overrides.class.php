@@ -13,14 +13,32 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class template_overrides
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->template_overrides = array();
 		$this->get_all_overrides();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	// Get all room types details
 	public function get_all_overrides()
@@ -49,6 +67,12 @@ class template_overrides
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Save new or existing resource type
 	public function save_template_override($template_name)
@@ -82,6 +106,12 @@ class template_overrides
 			throw new Exception('Error: Failed to update template overrides.');
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Delete resource type
 	public function delete_override($template_name)

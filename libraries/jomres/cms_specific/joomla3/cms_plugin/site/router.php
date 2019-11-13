@@ -11,6 +11,13 @@
  **/
 defined('_JEXEC') or die('');
 
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 if (!defined('_JOMRES_INITCHECK')) {
 	define('_JOMRES_INITCHECK', 1);
 }
@@ -24,6 +31,13 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 }
 
 if (!class_exists('JomresRouter')) {
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	class JomresRouter extends JComponentRouterBase
 	{
 		/**
@@ -53,6 +67,13 @@ if (!class_exists('JomresRouter')) {
 		{
 			return $this->JomresParseRoute($segments);
 		}
+
+			
+		/**
+		 * 
+		 *
+		 *
+		 */
 
 		public function JomresBuildRoute(&$query)
 		{
@@ -221,6 +242,12 @@ if (!class_exists('JomresRouter')) {
 		// ******************************************************************************************************************************
 		// ******************************************************************************************************************************
 		// ******************************************************************************************************************************
+	
+		/**
+		 * 
+		 *
+		 *
+		 */
 
 		public function JomresParseRoute($segments)
 		{

@@ -13,12 +13,30 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_contract_secret_key
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function generate_secret_key()
 	{
@@ -35,6 +53,12 @@ class jomres_contract_secret_key
 
 		return $secret_key;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function save_secret_key($secret_key, $contract_uid)
 	{
@@ -51,6 +75,12 @@ class jomres_contract_secret_key
 			throw new Exception($e->getMessage());
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_secret_key_for_contract_id($contract_uid)
 	{
@@ -62,6 +92,12 @@ class jomres_contract_secret_key
 
 		return $secret_key;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_contract_id_for_secret_key($secret_key)
 	{
@@ -73,6 +109,12 @@ class jomres_contract_secret_key
 
 		return $contract_uid;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function validate_secret_key($secret_key)
 	{
@@ -84,6 +126,12 @@ class jomres_contract_secret_key
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function check_secret_key_used($secret_key)
 	{

@@ -12,9 +12,21 @@
 // ################################################################
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_property_features
-	{
+	{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 		{
 		$this->property_features 	= false;				// array of all property features
@@ -30,7 +42,13 @@ class jomres_property_features
 		$this->include_in_filters	= 1;					// include in filters 
 		}
 
-	//get all property features
+	//get all property features	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	function get_all_property_features()
 		{
 		if ( is_array( $this->property_features ) )
@@ -86,7 +104,13 @@ class jomres_property_features
 		return true;
 		}
 	
-	//get property feature by id
+	//get property feature by id	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	function get_property_feature( $id = 0 )
 		{
 		if ( (int)$id == 0 )
@@ -154,7 +178,13 @@ class jomres_property_features
 		return true;
 		}
 	
-	//create new property feature
+	//create new property feature	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	function commit_new_property_feature()
 		{
 		if ( $this->id > 0 )
@@ -198,7 +228,13 @@ class jomres_property_features
 			}
 		}
 	
-	//update existing property feature
+	//update existing property feature	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	function commit_update_property_feature()
 		{
 		if ( $this->id == 0 )
@@ -231,7 +267,13 @@ class jomres_property_features
 			}
 		}
 	
-	//Delete property feature
+	//Delete property feature	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	function delete_property_features( $ids = array() )
 		{
 		if ( !is_array($ids) || empty($ids) )
@@ -293,7 +335,13 @@ class jomres_property_features
 
 		return $success;
 		}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	function get_all_property_features_images()
 		{
 		$images = array();

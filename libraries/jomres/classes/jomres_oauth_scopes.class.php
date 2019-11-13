@@ -13,16 +13,34 @@
 // ################################################################
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_oauth_scopes 
-	{
+	{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct($cwd = "") 
 		{
 		$this->default_scopes		= array();
 		$this->scopes_file	= "scopes.json";
 		$this->get_scopes_file();
 		}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function get_scopes_file()
 		{
 		$already_found = array();

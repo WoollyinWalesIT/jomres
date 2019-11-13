@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_property_types
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->property_types = false;
@@ -41,6 +53,13 @@ class jomres_property_types
 	// 2 - both - BC, resets to 0
 	// 3 - tours
 	// 4 - real estate
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function get_all_property_types()
 	{
 		if (is_array($this->property_types)) { //already executed, but there are no property types created yet, so the array is empty
@@ -71,6 +90,12 @@ class jomres_property_types
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Get property type details by property type id
 	public function get_property_type($id = 0)
@@ -114,6 +139,12 @@ class jomres_property_types
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Save new or existing property type
 	public function save_property_type()
@@ -153,6 +184,12 @@ class jomres_property_types
 			throw new Exception('Error: Property type insert or update failed.');
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Delete property type
 	public function delete_property_type($ids = array())
@@ -179,6 +216,12 @@ class jomres_property_types
 
 		return $success;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Publish or unpublish property type
 	public function publish_property_type($id = 0)
@@ -219,6 +262,12 @@ class jomres_property_types
 			return false;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//check if a property type is used by some property in the system
 	public function ptype_is_used($id = 0 , $include_unpublished_properties = true )
@@ -245,6 +294,12 @@ class jomres_property_types
 			return false;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	// We have a situation where a property type needs to be cross-referenced with room types, this check will ascertain if any property types are missing room types
 	public function get_property_types_with_no_room_types_assigned($show_link_to_room_types = false)
@@ -306,7 +361,13 @@ class jomres_property_types
 			return '';
 		}
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	function get_all_property_type_images()
 	{
 		$images = array();
@@ -327,7 +388,13 @@ class jomres_property_types
 
 		return $images;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//get property type dropdown
 	public function getPropertyTypeDropdown($selected = '', $extended = false, $is_disabled = false, $input_name = 'propertyType')
 	{
@@ -382,7 +449,13 @@ class jomres_property_types
 
 		return $dropdown;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//get property descriptions dropdown - used for language contexts
 	public function getPropertyTypeDescDropdown($selected = '0', $input_name = 'language_context', $javascript = '')
 	{

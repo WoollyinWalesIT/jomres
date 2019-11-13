@@ -103,6 +103,11 @@ function doInsertSql($query, $op = '', $ignoreErrors = false)
 	}
 }
 
+/**
+ * 
+ *
+ *
+ */
 function doDBClose()
 {
 	$jomres_db = jomres_singleton_abstract::getInstance('jomres_database');

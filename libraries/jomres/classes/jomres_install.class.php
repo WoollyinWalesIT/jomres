@@ -13,6 +13,12 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 class jomres_install
 {
@@ -33,6 +39,12 @@ class jomres_install
 	protected $allowed_image_extensions;
 	
 	protected $minicomponent_registry;
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function __construct($action = 'install', $trashtables = false, $legacy = false)
 	{
@@ -121,6 +133,13 @@ class jomres_install
 	}
 	
 	//jomres version checks, to double check the installer action
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function checkJomresVersion()
 	{
 		//if we uninstall, just return true
@@ -188,6 +207,13 @@ class jomres_install
 	
 	//check if jomres is installed by trying to select data from #__jomres_propertys table
 	//if db tables exist, it means jomres is installed or was installed previously
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function jomresTablesAndDataExist()
 	{
 		try {
@@ -222,6 +248,13 @@ class jomres_install
 	}
 	
 	//fresh installs
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function install()
 	{
 		try {
@@ -273,6 +306,13 @@ class jomres_install
 	}
 	
 	//update existing installation
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function update()
 	{
 		try {
@@ -331,6 +371,13 @@ class jomres_install
 	}
 	
 	//uninstall action
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function uninstall()
 	{
 		try {
@@ -354,6 +401,13 @@ class jomres_install
 	}
 	
 	//create jomres root dir file and define jomres root dir
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function createJomresRootDirFile()
 	{
 		$path = dirname(dirname(dirname(dirname(__FILE__))));
@@ -382,6 +436,13 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 	}
 
 	//check and create jomres dirs
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function createDirs()
 	{
 		//sessions dir
@@ -437,6 +498,13 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 	}
 	
 	//create fresh install db tables
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function createDefaultDbTables()
 	{
 		try {
@@ -451,6 +519,13 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 	}
 	
 	//seed fresh install tales with default content
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function seedDefaultContent()
 	{
 		try {
@@ -465,6 +540,13 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 	}
 	
 	//run all plugins installation scripts
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function installPlugins()
 	{
 		//needed by plugin installation scripts to allow execution
@@ -498,6 +580,13 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 	}
 	
 	//update routines
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function runUpdates()
 	{
 		//search all update dirs, compare their names with the jomres_db_version (latest version to which was updated) and if there are new versions, perform updates
@@ -517,6 +606,13 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 	}
 	
 	//legacy update routines
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function runLegacyUpdates()
 	{
 		try {
@@ -531,6 +627,13 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 	}
 	
 	//copy sample images on fresh installs
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function copySampleImages()
 	{
 		//copy property feature icons
@@ -574,6 +677,13 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 	}
 	
 	//copy utility function
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function performCopy($source = '', $target = '')
 	{
 		if ($source == '' || $target == '') {
@@ -601,6 +711,13 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 	}
 	
 	//remove obsolete files and regenerate registry
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function remove_obsolete_files()
 	{
 		jr_import('jomres_obsolete_file_handling');
@@ -616,6 +733,13 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 	}
 	
 	//drop jomres tables
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function dropDbTables()
 	{
 		$query = "SELECT `table_name` FROM information_schema.tables WHERE 
@@ -637,6 +761,13 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 	}
 	
 	//delete all jomres files
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function deleteFiles()
 	{
 		//delete jomres dir
@@ -649,6 +780,13 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 	}
 	
 	//build installation error messages
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function setMessage($message = '', $class_style = 'info')
 	{
 		if (trim($message) == '') {
@@ -661,6 +799,13 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 	}
 	
 	//get installation messages/errors
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function getMessages()
 	{
 		return $this->messages;

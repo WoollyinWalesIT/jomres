@@ -639,6 +639,12 @@ class jomSearch
 		}
 		$this->sortResult();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function jomSearch_propertyname()
 	{
@@ -1085,6 +1091,12 @@ function prepGeographicSearch()
 
 	return $result;
 }
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 function prepGuestnumberSearch()
 {
@@ -1434,6 +1446,12 @@ function prepPriceRangeSearch($increments = 10)
 
 	return $result;
 }
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 // http://uk.php.net/manual/en/function.range.php#82104
 function my_range($start, $end, $step = 1)

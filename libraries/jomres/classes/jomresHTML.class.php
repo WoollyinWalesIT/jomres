@@ -18,7 +18,13 @@ defined('_JOMRES_INITCHECK') or die('');
  * Utility class for all HTML drawing classes.
  */
 class jomresHTML
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public static function makeOption($val, $text = '', $value_name = 'value', $text_name = 'text')
 	{
 		if (!defined('SELECTLISTJAVASCRIPT') && using_bootstrap() && !AJAXCALL) {
@@ -56,6 +62,12 @@ class jomresHTML
 
 		return $obj;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public static function selectList($arr, $name, $attribs, $key, $text, $default = null, $use_bootstrap_radios = true)
 	{
@@ -112,6 +124,12 @@ class jomresHTML
 
 		return $output;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public static function integerSelectList($start, $end, $increment, $name, $attribs, $selected, $format = '', $use_bootstrap_radios = true)
 	{
