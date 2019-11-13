@@ -17,6 +17,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * Core Minicomponent.
 	 *
+	 * Initialises the Wiseprice discount arrays in the temp booking handler (the session object).
 	 * 
 	 */
 

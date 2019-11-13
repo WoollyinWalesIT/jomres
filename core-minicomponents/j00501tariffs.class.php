@@ -17,8 +17,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * Core Minicomponent.
 	 *
+	 * Property Configuration page tabs. Offers various tariff and charging related settings.
 	 * 
 	 */
+
 
 class j00501tariffs
 {	

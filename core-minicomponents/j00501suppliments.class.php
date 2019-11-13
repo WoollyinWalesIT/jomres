@@ -17,8 +17,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * Core Minicomponent.
 	 *
+	 * Property Configuration page tabs. Offers settings related to single person suppliments (charges for rooms that should have two people in, but in fact only have one)
 	 * 
 	 */
+
 
 class j00501suppliments
 {	

@@ -17,6 +17,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * Core Minicomponent.
 	 *
+	 * Sets up the $tmpBookingHandler with data required to amend an existing booking, then displays the original booking information at the top of the booking form.
 	 * 
 	 */
 

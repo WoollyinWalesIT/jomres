@@ -17,6 +17,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * Core Minicomponent.
 	 *
+	 * Includes one of two possible template files, plus a little javascript for slider radio buttons that were originally included as part of the Joomla 3 Bootstrap 2 implementation.,
 	 * 
 	 */
 

@@ -17,8 +17,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * Core Minicomponent.
 	 *
+	 * Property Configuration page tabs. Offers business details related settings. These are details that are shown on the invoice and are different to those stored against the hotel.
 	 * 
 	 */
+
 
 class j00501businessdetails
 {	

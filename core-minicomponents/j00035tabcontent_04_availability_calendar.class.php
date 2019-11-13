@@ -17,6 +17,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * Core Minicomponent.
 	 *
+	 * Used by j06000viewproperty.class.php to build tabs in the property details page. Builds availability calendar template output.
 	 * 
 	 */
 

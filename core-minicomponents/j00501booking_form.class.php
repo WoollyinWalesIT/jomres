@@ -17,6 +17,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * Core Minicomponent.
 	 *
+	 * Property Configuration page tabs. Offers booking form related configuration options.
 	 * 
 	 */
 

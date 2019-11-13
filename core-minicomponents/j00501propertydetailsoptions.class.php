@@ -17,8 +17,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * Core Minicomponent.
 	 *
+	 * Property Configuration page tabs. Offers property details page settings.
 	 * 
 	 */
+
 
 class j00501propertydetailsoptions
 {	

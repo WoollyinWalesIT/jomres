@@ -11,6 +11,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 	/**
 	 * Core Minicomponent.
 	 *
+	 * Shows the syndicated properties script output at the bottom of the page.
 	 * 
 	 */
 

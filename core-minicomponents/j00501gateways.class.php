@@ -17,8 +17,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * Core Minicomponent.
 	 *
+	 * Property Configuration page tabs. Shows links to the gateway configuration popups
 	 * 
 	 */
+
 
 class j00501gateways
 {	

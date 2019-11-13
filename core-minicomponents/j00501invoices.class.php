@@ -17,8 +17,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * Core Minicomponent.
 	 *
+	 * Property Configuration page tabs. Offers invoice number related settings.
 	 * 
 	 */
+
 
 class j00501invoices
 {	

@@ -17,8 +17,10 @@ defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.'
 	/**
 	 * Core Minicomponent.
 	 *
+	 * Property Configuration page tabs. Offers tourist tax related settings.
 	 * 
 	 */
+
 
 class j00501tourist_tax
 {	
