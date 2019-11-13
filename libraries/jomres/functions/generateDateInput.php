@@ -166,8 +166,10 @@ function generateDateInput($fieldName, $dateValue = '', $myID = false, $siteConf
 				jomresJquery("#' .get_showtime('departure_date_unique_id').'").datepicker(\'option\', {minDate: jomresJquery(this).datepicker(\'getDate\')});
 				}';
 		$output .= ', onClose: function() {
-				jomresJquery("#' .get_showtime('departure_date_unique_id').'").datepicker(\'show\');
-				}';
+			      	setTimeout(function(){
+				    jomresJquery("#' .get_showtime('departure_date_unique_id').'").datepicker(\'show\');
+				},0);	
+			      }';
 	}
 
 	$output .= '} );
