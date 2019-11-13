@@ -50,7 +50,10 @@ class j03381slideshow
 	}
 
 
-	public function getRetVals()
+    /**
+     * @return string
+     */
+    public function getRetVals()
 	{
 		return $this->ret_vals;
 	}

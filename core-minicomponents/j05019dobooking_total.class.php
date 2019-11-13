@@ -94,17 +94,6 @@ class j05019dobooking_total
 		$this->returnValue = $bookingFormInsert;
 	}
 
-	public function touch_template_language()
-	{
-		$output = array();
-
-		$output[ ] = jr_gettext('_JOMCOMP_AMEND_OVERRIDE_TOTAL', '_JOMCOMP_AMEND_OVERRIDE_TOTAL');
-
-		foreach ($output as $o) {
-			echo $o;
-			echo '<br/>';
-		}
-	}
 
 	/**
 	 * Must be included in every mini-component.

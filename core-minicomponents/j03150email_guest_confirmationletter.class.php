@@ -49,7 +49,10 @@ class j03150email_guest_confirmationletter
 	}
 
 
-	public function getRetVals()
+    /**
+     * @return array
+     */
+    public function getRetVals()
 	{
 		return $this->ret_vals;
 	}

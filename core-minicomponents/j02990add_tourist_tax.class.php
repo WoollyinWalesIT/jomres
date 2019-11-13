@@ -88,7 +88,10 @@ class j02990add_tourist_tax
 	}
 
 
-	public function getRetVals()
+    /**
+     * @return null
+     */
+    public function getRetVals()
 	{
 		return null;
 	}

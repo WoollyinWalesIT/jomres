@@ -60,7 +60,10 @@ class j03382slideshow
 	}
 
 
-	public function getRetVals()
+    /**
+     * @return null
+     */
+    public function getRetVals()
 	{
 		return null;
 	}

@@ -70,7 +70,10 @@ class j03381room_types
 	}
 
 
-	public function getRetVals()
+    /**
+     * @return string
+     */
+    public function getRetVals()
 	{
 		return $this->ret_vals;
 	}

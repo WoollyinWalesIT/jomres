@@ -48,7 +48,10 @@ class j03150email_hotel_newbooking
 	}
 
 
-	public function getRetVals()
+    /**
+     * @return array
+     */
+    public function getRetVals()
 	{
 		return $this->ret_vals;
 	}

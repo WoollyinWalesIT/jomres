@@ -87,7 +87,10 @@ class j03110send_email_guest_newbooking
 	}
 
 
-	public function getRetVals()
+    /**
+     * @return null
+     */
+    public function getRetVals()
 	{
 		return null;
 	}

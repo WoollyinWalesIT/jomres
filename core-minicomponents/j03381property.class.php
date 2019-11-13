@@ -50,7 +50,10 @@ class j03381property
 	}
 
 
-	public function getRetVals()
+    /**
+     * @return string
+     */
+    public function getRetVals()
 	{
 		return $this->ret_vals;
 	}

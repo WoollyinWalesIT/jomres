@@ -95,7 +95,10 @@ class j03100send_email_hotel_newbooking
 	}
 
 
-	public function getRetVals()
+    /**
+     * @return null
+     */
+    public function getRetVals()
 	{
 		return null;
 	}

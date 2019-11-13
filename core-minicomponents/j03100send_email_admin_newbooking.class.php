@@ -96,7 +96,10 @@ class j03100send_email_admin_newbooking
 	}
 
 
-	public function getRetVals()
+    /**
+     * @return null
+     */
+    public function getRetVals()
 	{
 		return null;
 	}

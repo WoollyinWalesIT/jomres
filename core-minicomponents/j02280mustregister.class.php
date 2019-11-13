@@ -45,20 +45,12 @@ class j02280mustregister
 		echo '<a href="'.jomres_cmsspecific_getregistrationlink().'">'.jr_gettext('_JOMRES_REGISTEREDUSERSONLYBOOK', '_JOMRES_REGISTEREDUSERSONLYBOOK', false).'</a>';
 	}
 
-	public function touch_template_language()
-	{
-		$output = array();
-
-		$output[ ] = jr_gettext('_JOMRES_REGISTEREDUSERSONLYBOOK', '_JOMRES_REGISTEREDUSERSONLYBOOK');
-
-		foreach ($output as $o) {
-			echo $o;
-			echo '<br/>';
-		}
-	}
 
 
-	public function getRetVals()
+    /**
+     * @return null
+     */
+    public function getRetVals()
 	{
 		return null;
 	}
