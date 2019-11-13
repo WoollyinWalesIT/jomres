@@ -15,8 +15,9 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent 
+	 * Core Minicomponent.
 	 *
+	 * Defines common language strings that can be used in any patTemplate template file without having been first set in the script calling the template file. The main purpose of this was to make it possible for third party plugin developers to create their own language definitions that could be used anywhere in their template files, if so required.
 	 * 
 	 */
 
@@ -84,7 +85,7 @@ class j00005x_create_misc_common_strings
  #
  * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
  */
-	// This must be included in every Event/Mini-component
+
 	public function getRetVals()
 	{
 		return null;

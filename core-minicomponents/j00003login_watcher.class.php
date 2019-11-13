@@ -15,8 +15,9 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent 
+	 * Core Minicomponent.
 	 *
+	 * Allows users to login through Jomres and uses the CMS's login functionality to log them in. TFA not currently supported.
 	 * 
 	 */
 
@@ -59,7 +60,7 @@ class j00003login_watcher
  #
  * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
  */
-	// This must be included in every Event/Mini-component
+
 	public function getRetVals()
 	{
 		return null;

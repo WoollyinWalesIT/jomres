@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent 
+	 * Core Minicomponent.
 	 *
 	 * 
 	 */
@@ -71,7 +71,7 @@ class j06002preview_email
 		$MiniComponents->triggerEvent('03110', $componentArgs); // Generate guest confirmation email
 	}
 
-	// This must be included in every Event/Mini-component
+
 	public function getRetVals()
 	{
 		return null;

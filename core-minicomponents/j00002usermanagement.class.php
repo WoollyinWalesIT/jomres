@@ -15,8 +15,9 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent 
+	 * Core Minicomponent.
 	 *
+	 * Loads the thisJRUser object, which is used throughout the system to make decisions based on who the current user is and their status within the system. 
 	 * 
 	 */
 
@@ -75,7 +76,7 @@ class j00002usermanagement
 		}
 	}
 
-	// This must be included in every Event/Mini-component
+
 	public function getRetVals()
 	{
 		return $this->userObject;

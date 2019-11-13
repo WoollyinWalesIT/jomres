@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent 
+	 * Core Minicomponent.
 	 *
 	 * 
 	 */
@@ -85,7 +85,7 @@ defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
 		echo '<textarea style="width: 100%;height: 900px;" >'.$output_string.'</textarea>';
 	}
 
-	// This must be included in every Event/Mini-component
+
 	public function getRetVals()
 	{
 		return null;

@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent 
+	 * Core Minicomponent.
 	 *
 	 * 
 	 */
@@ -46,7 +46,7 @@ class j06000cron_api_tokens_cleanup
 
 	}
 
-	// This must be included in every Event/Mini-component
+
 	public function getRetVals()
 	{
 		return null;

@@ -15,7 +15,7 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowe
 // ################################################################
 	
 	/**
-	 * Core Minicomponent 
+	 * Core Minicomponent.
 	 *
 	 * 
 	 */
@@ -44,7 +44,7 @@ class j08000webhook_watcher
 		}
 
 
-	// This must be included in every Event/Mini-component
+
 	function getRetVals()
 		{
 		return null;

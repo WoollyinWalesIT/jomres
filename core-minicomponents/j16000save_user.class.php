@@ -15,7 +15,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 	
 	/**
-	 * Core Minicomponent 
+	 * Core Minicomponent.
 	 *
 	 * 
 	 */
@@ -76,7 +76,7 @@ class j16000save_user
 		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=list_users" ), jr_gettext( "_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE", '_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE', false ) );
 		}
 
-	// This must be included in every Event/Mini-component
+
 	function getRetVals()
 		{
 		return null;

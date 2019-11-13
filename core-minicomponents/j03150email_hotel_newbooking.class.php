@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent 
+	 * Core Minicomponent.
 	 *
 	 * 
 	 */
@@ -47,7 +47,7 @@ class j03150email_hotel_newbooking
 		$this->ret_vals = array('type' => 'email_hotel_newbooking', 'name' => jr_gettext('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME', '_JOMRES_HOTEL_NEWBOOKING_EMAILNAME', false), 'desc' => jr_gettext('_JOMRES_HOTEL_NEWBOOKING_EMAILDESC', '_JOMRES_HOTEL_NEWBOOKING_EMAILDESC', false), 'default_template' => $default_template);
 	}
 
-	// This must be included in every Event/Mini-component
+
 	public function getRetVals()
 	{
 		return $this->ret_vals;

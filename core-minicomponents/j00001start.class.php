@@ -15,8 +15,9 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent 
+	 * Core Minicomponent.
 	 *
+	 * The very first minicomponent to be run. Doesn't do anything, but does allow us to check that everything is running.
 	 * 
 	 */
 
@@ -48,7 +49,6 @@ class j00001start
  #
  * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
  */
-	// This must be included in every Event/Mini-component
 	public function getRetVals()
 	{
 		return null;

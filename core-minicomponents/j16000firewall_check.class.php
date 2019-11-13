@@ -18,7 +18,7 @@ use GuzzleHttp\Psr7;
 use GuzzleHttp\Exception\ClientException;
 	
 	/**
-	 * Core Minicomponent 
+	 * Core Minicomponent.
 	 *
 	 * 
 	 */
@@ -140,7 +140,7 @@ class j16000firewall_check
 		}
 	}	
 	
-	// This must be included in every Event/Mini-component
+
 	public function getRetVals()
 	{
 		return null;

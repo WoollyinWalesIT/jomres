@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.'
 // ################################################################
 	
 	/**
-	 * Core Minicomponent 
+	 * Core Minicomponent.
 	 *
 	 * 
 	 */
@@ -101,7 +101,7 @@ class j06005save_new_property
 		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&thisProperty='.$jomres_properties->propertys_uid), '');
 	}
 
-	// This must be included in every Event/Mini-component
+
 	public function getRetVals()
 	{
 		return null;

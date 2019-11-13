@@ -14,7 +14,7 @@ defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.'
 // ################################################################
 	
 	/**
-	 * Core Minicomponent 
+	 * Core Minicomponent.
 	 *
 	 * 
 	 */

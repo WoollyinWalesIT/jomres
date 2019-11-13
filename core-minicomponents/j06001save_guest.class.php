@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent 
+	 * Core Minicomponent.
 	 *
 	 * 
 	 */
@@ -77,7 +77,7 @@ class j06001save_guest
 		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=list_guests"), 'Guest saved' );
 	}
 
-	// This must be included in every Event/Mini-component
+
 	public function getRetVals()
 	{
 		return null;

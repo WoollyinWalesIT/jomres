@@ -15,8 +15,9 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent 
+	 * Core Minicomponent.
 	 *
+	 * Loads the appropriate Jomres specific css files for the configured version of Bootstrap.
 	 * 
 	 */
 

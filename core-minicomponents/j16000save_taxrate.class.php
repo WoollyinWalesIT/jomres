@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent 
+	 * Core Minicomponent.
 	 *
 	 * 
 	 */
@@ -64,7 +64,7 @@ class j16000save_taxrate
 		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_taxrates'), '');
 	}
 
-	// This must be included in every Event/Mini-component
+
 	public function getRetVals()
 	{
 		return null;

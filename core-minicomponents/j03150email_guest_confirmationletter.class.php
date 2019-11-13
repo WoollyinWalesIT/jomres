@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent 
+	 * Core Minicomponent.
 	 *
 	 * 
 	 */
@@ -48,7 +48,7 @@ class j03150email_guest_confirmationletter
 		$this->ret_vals = array('type' => 'email_guest_confirmationletter', 'name' => jr_gettext('_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILNAME', '_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILNAME', false), 'desc' => jr_gettext('_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILDESC', '_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILDESC', false), 'default_template' => $default_template);
 	}
 
-	// This must be included in every Event/Mini-component
+
 	public function getRetVals()
 	{
 		return $this->ret_vals;

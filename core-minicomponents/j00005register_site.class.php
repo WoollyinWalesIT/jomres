@@ -15,9 +15,10 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent 
+	 * Core Minicomponent.
 	 *
-	 * 
+	 * Attempts to update the App Server (<a href="https://www.jomres.net/manual/developers-guide-2/387-jomres-syndication-network">Jomres Syndicate Network</a>) with this installation's existence. 
+	 *
 	 */
 
 class j00005register_site
@@ -99,7 +100,7 @@ class j00005register_site
 	}
 	
 	
-	// This must be included in every Event/Mini-component
+
 	public function getRetVals()
 	{
 		return null;

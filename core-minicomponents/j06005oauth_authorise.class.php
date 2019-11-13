@@ -15,7 +15,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 	
 	/**
-	 * Core Minicomponent 
+	 * Core Minicomponent.
 	 *
 	 * 
 	 */
@@ -110,7 +110,7 @@ class j06005oauth_authorise
 		}
 
 
-	// This must be included in every Event/Mini-component
+
 	function getRetVals()
 		{
 		return null;

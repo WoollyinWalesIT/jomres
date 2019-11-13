@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent 
+	 * Core Minicomponent.
 	 *
 	 * 
 	 */
@@ -669,7 +669,7 @@ class j06000handlereq
 				echo $output;
 			}
 		}
-	// This must be included in every Event/Mini-component
+
 	public function getRetVals()
 	{
 		return null;

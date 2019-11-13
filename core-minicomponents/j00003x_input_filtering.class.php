@@ -15,8 +15,9 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent 
+	 * Core Minicomponent.
 	 *
+	 * The system sets up default inputs where html input is allowed
 	 * 
 	 */
 
@@ -68,7 +69,7 @@ class j00003x_input_filtering
 		set_showtime('inputs_allowing_html', $inputs_allowing_html);
 	}
 
-	// This must be included in every Event/Mini-component
+
 	public function getRetVals()
 	{
 		return null;

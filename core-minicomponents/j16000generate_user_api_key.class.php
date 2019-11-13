@@ -14,7 +14,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 	
 	/**
-	 * Core Minicomponent 
+	 * Core Minicomponent.
 	 *
 	 * 
 	 */
@@ -57,7 +57,7 @@ class j16000generate_user_api_key
 		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=edit_user&cms_user_id=" . (int) $cms_user_id ), jr_gettext( '_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE', '_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE' ) );
 		}
 
-	// This must be included in every Event/Mini-component
+
 	function getRetVals()
 		{
 		return null;

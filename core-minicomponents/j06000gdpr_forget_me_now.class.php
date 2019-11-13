@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent 
+	 * Core Minicomponent.
 	 *
 	 * 
 	 */
@@ -59,7 +59,7 @@ class j06000gdpr_forget_me_now
 		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_my_account'), jr_gettext('_JOMRES_GDPR_MY_RTBF_FORGET_ME_FORGOTTEN', '_JOMRES_GDPR_MY_RTBF_FORGET_ME_FORGOTTEN', false) );
 	}
 
-	// This must be included in every Event/Mini-component
+
 	public function getRetVals()
 	{
 		return null;

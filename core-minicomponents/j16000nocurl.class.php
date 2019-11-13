@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent 
+	 * Core Minicomponent.
 	 *
 	 * 
 	 */
@@ -44,7 +44,7 @@ class j16000nocurl
 		echo '<h2>Error. CURL is not enabled on this server, please enable CURL, restart the server if you can, and try again</h2>';
 	}
 
-	// This must be included in every Event/Mini-component
+
 	public function getRetVals()
 	{
 		return null;

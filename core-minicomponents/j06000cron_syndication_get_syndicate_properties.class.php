@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent 
+	 * Core Minicomponent.
 	 *
 	 * 
 	 */
@@ -191,7 +191,7 @@ class j06000cron_syndication_get_syndicate_properties
 		}
 		else return false;
 	}
-	// This must be included in every Event/Mini-component
+
 	public function getRetVals()
 	{
 		return null;

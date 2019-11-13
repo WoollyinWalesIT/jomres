@@ -15,7 +15,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 	
 	/**
-	 * Core Minicomponent 
+	 * Core Minicomponent.
 	 *
 	 * 
 	 */
@@ -71,7 +71,7 @@ class j06000webhooks_core_documentation
 
 
 
-	// This must be included in every Event/Mini-component
+
 	function getRetVals()
 		{
 		return null;

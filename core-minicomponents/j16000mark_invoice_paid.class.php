@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent 
+	 * Core Minicomponent.
 	 *
 	 * 
 	 */
@@ -71,7 +71,7 @@ class j16000mark_invoice_paid
 		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=view_invoice&id='.$invoice_id), '');
 	}
 
-	// This must be included in every Event/Mini-component
+
 	public function getRetVals()
 	{
 		return null;

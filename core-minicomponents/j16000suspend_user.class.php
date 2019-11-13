@@ -14,7 +14,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 	
 	/**
-	 * Core Minicomponent 
+	 * Core Minicomponent.
 	 *
 	 * 
 	 */
@@ -63,7 +63,7 @@ class j16000suspend_user
 		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL_ADMIN . "&task=list_users" ), "" );
 		}
 
-	// This must be included in every Event/Mini-component
+
 	function getRetVals()
 		{
 		return null;

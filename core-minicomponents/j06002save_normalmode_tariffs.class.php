@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent 
+	 * Core Minicomponent.
 	 *
 	 * 
 	 */
@@ -231,7 +231,7 @@ class j06002save_normalmode_tariffs
 		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=edit_tariffs_normal" ), $saveMessage );
 	}
 
-	// This must be included in every Event/Mini-component
+
 	public function getRetVals()
 	{
 		return null;

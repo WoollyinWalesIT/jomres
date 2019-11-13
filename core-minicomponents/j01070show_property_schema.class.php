@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent 
+	 * Core Minicomponent.
 	 *
 	 * 
 	 */
@@ -396,7 +396,7 @@ class j01070show_property_schema
 		}
 	}
 	
-	// This must be included in every Event/Mini-component
+
 	public function getRetVals()
 	{
 		return null;

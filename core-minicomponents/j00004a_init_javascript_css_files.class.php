@@ -15,8 +15,9 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent 
+	 * Core Minicomponent.
 	 *
+	 * Configures which CSS and Javascript files should be loaded to the theme/template, hands off to the CMS Specific functionality to actually handle adding them to the head of the theme/template.
 	 * 
 	 */
 
@@ -234,7 +235,7 @@ class j00004a_init_javascript_css_files
 		}
 	}
 
-	// This must be included in every Event/Mini-component
+
 	public function getRetVals()
 	{
 		return null;

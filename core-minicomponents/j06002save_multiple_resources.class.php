@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent 
+	 * Core Minicomponent.
 	 *
 	 * 
 	 */
@@ -60,7 +60,7 @@ class j06002save_multiple_resources
 		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=list_resources'), '');
 	}
 
-	// This must be included in every Event/Mini-component
+
 	public function getRetVals()
 	{
 		return null;

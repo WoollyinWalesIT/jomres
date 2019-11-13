@@ -15,8 +15,9 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent 
+	 * Core Minicomponent.
 	 *
+	 * Obsolete, as template overrides are better understood by users, but left in situ for historic users.
 	 * 
 	 */
 
@@ -75,7 +76,7 @@ class j00001define_template_paths
 		}
 	}
 
-	// This must be included in every Event/Mini-component
+
 	public function getRetVals()
 	{
 		return null;

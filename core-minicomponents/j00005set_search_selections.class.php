@@ -15,8 +15,9 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
 	/**
-	 * Core Minicomponent 
+	 * Core Minicomponent.
 	 *
+	 * When a user performs a search, those search options are saved to the $tmpBookingHandler session object to be used later when re-building search forms, ensuring that previously selected options are re-selected.
 	 * 
 	 */
 
@@ -180,7 +181,7 @@ class j00005set_search_selections
 		}
 	}
 
-	// This must be included in every Event/Mini-component
+
 	public function getRetVals()
 	{
 		return null;

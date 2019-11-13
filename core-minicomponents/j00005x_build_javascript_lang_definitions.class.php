@@ -14,11 +14,10 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-// This script will build language definition scripts for javascript files that need to be called AFTER all of the other language files have been read in.
-	
 	/**
-	 * Core Minicomponent 
+	 * Core Minicomponent.
 	 *
+	 * This script will build language definition scripts for javascript files that need to be called AFTER all of the other language files have been read in.
 	 * 
 	 */
 
@@ -147,7 +146,7 @@ class j00005x_build_javascript_lang_definitions
 		jomres_cmsspecific_addheaddata('javascript', JOMRES_ROOT_DIRECTORY.'/temp/', $temp_file);
 	}
 
-	// This must be included in every Event/Mini-component
+
 	public function getRetVals()
 	{
 		return null;
