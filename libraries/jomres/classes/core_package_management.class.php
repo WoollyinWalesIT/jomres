@@ -615,19 +615,50 @@ class core_package_management
  if(!function_exists('http_build_url'))
         {
             // Define constants
-            define('HTTP_URL_REPLACE',          0x0001);    // Replace every part of the first URL when there's one of the second URL
-            define('HTTP_URL_JOIN_PATH',        0x0002);    // Join relative paths
-            define('HTTP_URL_JOIN_QUERY',       0x0004);    // Join query strings
-            define('HTTP_URL_STRIP_USER',       0x0008);    // Strip any user authentication information
-            define('HTTP_URL_STRIP_PASS',       0x0010);    // Strip any password authentication information
-            define('HTTP_URL_STRIP_PORT',       0x0020);    // Strip explicit port numbers
-            define('HTTP_URL_STRIP_PATH',       0x0040);    // Strip complete path
-            define('HTTP_URL_STRIP_QUERY',      0x0080);    // Strip query string
-            define('HTTP_URL_STRIP_FRAGMENT',   0x0100);    // Strip any fragments (#identifier)
+			if (!defined('HTTP_URL_REPLACE') ) {
+				define('HTTP_URL_REPLACE',          0x0001);    // Replace every part of the first URL when there's one of the second URL
+			}
+
+			if (!defined('HTTP_URL_JOIN_PATH') ) {
+				define('HTTP_URL_JOIN_PATH',          0x0002);    // Join relative paths
+			}
+			
+			if (!defined('HTTP_URL_JOIN_QUERY') ) {
+				define('HTTP_URL_JOIN_QUERY',       0x0004);    // Join query strings
+			}
+			
+			if (!defined('HTTP_URL_STRIP_USER') ) {
+				define('HTTP_URL_STRIP_USER',       0x0008);    // Strip any user authentication information
+			}
+			
+			if (!defined('HTTP_URL_STRIP_PASS') ) {
+				define('HTTP_URL_STRIP_PASS',       0x0010);    // Strip any password authentication information
+			}
+			
+			if (!defined('HTTP_URL_STRIP_PORT') ) {
+				define('HTTP_URL_STRIP_PORT',       0x0020);    // Strip explicit port numbers
+			}
+			
+			if (!defined('HTTP_URL_STRIP_PATH') ) {
+				define('HTTP_URL_STRIP_PATH',       0x0040);    // Strip complete path
+			}
+			
+			if (!defined('HTTP_URL_STRIP_QUERY') ) {
+				define('HTTP_URL_STRIP_QUERY',      0x0080);    // Strip query string
+			}
+
+			if (!defined('HTTP_URL_STRIP_FRAGMENT') ) {
+				define('HTTP_URL_STRIP_FRAGMENT',   0x0100);    // Strip any fragments (#identifier)
+			}
 
             // Combination constants
-            define('HTTP_URL_STRIP_AUTH',       HTTP_URL_STRIP_USER | HTTP_URL_STRIP_PASS);
-            define('HTTP_URL_STRIP_ALL',        HTTP_URL_STRIP_AUTH | HTTP_URL_STRIP_PORT | HTTP_URL_STRIP_QUERY | HTTP_URL_STRIP_FRAGMENT);
+			if ( defined('HTTP_URL_STRIP_AUTH')) {
+				define('HTTP_URL_STRIP_AUTH',       HTTP_URL_STRIP_USER | HTTP_URL_STRIP_PASS);
+			}
+			
+			if ( defined('HTTP_URL_STRIP_ALL')) {
+				define('HTTP_URL_STRIP_ALL',        HTTP_URL_STRIP_AUTH | HTTP_URL_STRIP_PORT | HTTP_URL_STRIP_QUERY | HTTP_URL_STRIP_FRAGMENT);
+			}
 
             /**
              * HTTP Build URL
