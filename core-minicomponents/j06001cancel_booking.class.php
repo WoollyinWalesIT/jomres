@@ -60,13 +60,12 @@ class j06001cancel_booking
 				$booked_in = $current_contract_details->contract[$contract_uid]['contractdeets']['booked_in'];
 				$property_uid = (int) $defaultProperty;
 			
-
 			if ($booked_in != '1') {
 				$output[ 'PAGETITLE' ] = jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', '_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING');
 				$output[ 'SAVEBUTTON' ] = jr_gettext('_JOMRES_COM_MR_EB_GUEST_CANCELLATION_BUTTON', '_JOMRES_COM_MR_EB_GUEST_CANCELLATION_BUTTON', false);
 				$output[ 'HREASON' ] = jr_gettext('_JOMRES_JR_BLACKBOOKING_REASON', '_JOMRES_JR_BLACKBOOKING_REASON');
 				
-				$output[ '_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST' ] = jr_gettext('_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST', '_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST');
+				$output[ 'BOOKING_NUMBER' ] = $current_contract_details->contract[$contract_uid]['contractdeets']['tag'];
 				$output[ 'GUEST_NAME' ] = $current_contract_details->contract[$contract_uid]['guestdeets']['firstname']." ".$current_contract_details->contract[$contract_uid]['guestdeets']['surname'];
 				
 				$output[ 'CONTRACT_UID' ] = $contract_uid;
