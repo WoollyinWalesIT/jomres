@@ -13,7 +13,13 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Database modification during updates
+ *
+ **/
 $query = "
 CREATE TABLE IF NOT EXISTS `#__jomres_invoice_pii_buyers` (
 	`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,

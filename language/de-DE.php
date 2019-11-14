@@ -18,6 +18,13 @@
 //#################################################################
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
+/**
+ *
+ * @package Jomres\Core\Languages
+ *
+ * Language files.
+ *
+ **/
 jr_define('_JOMRES_COM_A_TARIFFS_SHOWTARIFFSINLINE', 'Tarife im Rahmen, nicht als PopUp anzeigen?');
 jr_define('_JOMRES_COM_A_BASICTEMPLATE_SHOWADDRESS', 'Adressinformation');
 jr_define('_JOMRES_COM_A_BASICTEMPLATE_SHOWDETAILS', 'Kurzinformationen');

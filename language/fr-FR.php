@@ -13,6 +13,13 @@
 //#################################################################
 defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.');
 //#################################################################
+/**
+ *
+ * @package Jomres\Core\Languages
+ *
+ * Language files.
+ *
+ **/
 jr_define('_JOMRES_COM_MR_QUICKRESDESC', 'Réservation rapide');
 jr_define('_JOMRES_COM_MR_SHOWPROFILES', 'Liste du personnel et des gestionnaires');
 jr_define('_JOMRES_COM_MR_GENERALCONFIGDESC', 'Configuration Générale');

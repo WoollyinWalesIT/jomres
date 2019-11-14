@@ -12,7 +12,13 @@
 //#################################################################
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
-
+/**
+ *
+ * @package Jomres\Core\Languages
+ *
+ * Language files.
+ *
+ **/
 jr_define('_JOMRES_SHORTCODES_06001CPANEL', 'This is the property cpanel frontpage.');
 
 jr_define('_JOMRES_SHORTCODES_06001TAPECHART', 'This is the property tape chart which which provides an overview of real-time bookings, availability and occupancy at a glance.');

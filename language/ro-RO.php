@@ -12,6 +12,13 @@
 //#################################################################
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
+/**
+ *
+ * @package Jomres\Core\Languages
+ *
+ * Language files.
+ *
+ **/
 jr_define('_JOMRES_COM_MR_QUICKRESDESC', 'Rezervare rapida');
 jr_define('_JOMRES_COM_MR_SHOWPROFILES', 'Arata profilurile');
 jr_define('_JOMRES_COM_MR_GENERALCONFIGDESC', 'Configurare generala');

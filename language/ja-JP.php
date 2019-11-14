@@ -15,6 +15,13 @@
 //#################################################################
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
+/**
+ *
+ * @package Jomres\Core\Languages
+ *
+ * Language files.
+ *
+ **/
 jr_define('_JOMRES_COM_MR_QUICKRESDESC', 'QUICK予約');
 jr_define('_JOMRES_COM_MR_SHOWPROFILES', 'プロフィル表示');
 jr_define('_JOMRES_COM_MR_GENERALCONFIGDESC', '事業経営の設定');

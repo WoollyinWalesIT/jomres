@@ -12,6 +12,15 @@
 //#################################################################
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
+
+/**
+ *
+ * @package Jomres\Core\Languages
+ *
+ * Language files.
+ *
+ **/
+
 jr_define('_JOMRES_COM_MR_QUICKRESDESC', 'حجز سريع');
 jr_define('_JOMRES_COM_MR_SHOWPROFILES', 'عرض الملف الشخصي');
 jr_define('_JOMRES_COM_MR_GENERALCONFIGDESC', 'إعدادات الشركة');

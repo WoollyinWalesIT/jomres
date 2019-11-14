@@ -14,7 +14,13 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Database modification during updates
+ *
+ **/
 // https://github.com/WoollyinWalesIT/jomres/issues/272
 
 $query = "TRUNCATE TABLE `#__jomres_oauth_access_tokens`;";

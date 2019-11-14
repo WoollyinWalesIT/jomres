@@ -13,7 +13,13 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Database modification during updates
+ *
+ **/
 $jomres_cron = jomres_singleton_abstract::getInstance('jomres_cron');
 $jomres_cron->addJob('syndication_get_syndicate_domains', 'D', '');
 $jomres_cron->addJob('syndication_get_syndicate_properties', 'M', '');

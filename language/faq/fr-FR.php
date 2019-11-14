@@ -13,6 +13,13 @@
 //#################################################################
 defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.');
 //#################################################################
+/**
+ *
+ * @package Jomres\Core\Languages
+ *
+ * Language files.
+ *
+ **/
 jr_define('_JOMRES_FAQ', 'FAQ (Questions Fréquemment Posées)');
 jr_define('_JOMRES_FAQ_ADMIN_CATEGORY_INTRODUCTION', 'Introduction');
 jr_define('_JOMRES_FAQ_ADMIN_QUESTION_INTRODUCTION_WHATISJOMRES', 'Qu\'est-ce que le logiciel Jomres ?');

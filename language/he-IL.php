@@ -12,6 +12,13 @@
 //#################################################################
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
+/**
+ *
+ * @package Jomres\Core\Languages
+ *
+ * Language files.
+ *
+ **/
 jr_define('_JOMRES_COM_MR_QUICKRESDESC', 'הזמנה מהירה');
 jr_define('_JOMRES_COM_MR_SHOWPROFILES', 'הצג פרופילים');
 jr_define('_JOMRES_COM_MR_GENERALCONFIGDESC', 'תצורה כללית');
