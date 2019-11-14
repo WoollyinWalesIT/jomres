@@ -49,6 +49,14 @@ class j06001add_service_to_bill
 
 		if (!isset($_POST[ 'service_description' ])) {
 			$output[ 'PAGETITLE' ] = jr_gettext('_JOMRES_COM_ADDSERVICE_TITLE', '_JOMRES_COM_ADDSERVICE_TITLE');
+			
+			$defaultProperty = getDefaultProperty();
+			$current_contract_details = jomres_singleton_abstract::getInstance('basic_contract_details');
+			$current_contract_details->gather_data($contract_uid, $defaultProperty);
+			
+			$output[ 'BOOKING_NUMBER' ] = $current_contract_details->contract[$contract_uid]['contractdeets']['tag'];
+			$output[ 'GUEST_NAME' ] = $current_contract_details->contract[$contract_uid]['guestdeets']['firstname']." ".$current_contract_details->contract[$contract_uid]['guestdeets']['surname'];
+		
 			$output[ 'HSERVICEDESCRIPTION' ] = jr_gettext('_JOMRES_COM_ADDSERVICE_DESCRIPTION', '_JOMRES_COM_ADDSERVICE_DESCRIPTION');
 			$output[ 'HSERVICEVALUE' ] = jr_gettext('_JRPORTAL_INVOICES_LINEITEMS_INIT_PRICE', '_JRPORTAL_INVOICES_LINEITEMS_INIT_PRICE');
 			$output[ 'HTAXRATE' ] = jr_gettext('_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE', '_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE');

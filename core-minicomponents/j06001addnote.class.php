@@ -52,6 +52,13 @@ class j06001addnote
 			return;
 		}
 
+		$defaultProperty = getDefaultProperty();
+		$current_contract_details = jomres_singleton_abstract::getInstance('basic_contract_details');
+		$current_contract_details->gather_data($contract_uid, $defaultProperty);
+			
+		$output[ 'BOOKING_NUMBER' ] = $current_contract_details->contract[$contract_uid]['contractdeets']['tag'];
+		$output[ 'GUEST_NAME' ] = $current_contract_details->contract[$contract_uid]['guestdeets']['firstname']." ".$current_contract_details->contract[$contract_uid]['guestdeets']['surname'];
+			
 		$jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
 		$jrtb = $jrtbar->startTable();
 
