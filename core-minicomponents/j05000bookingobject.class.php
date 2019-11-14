@@ -150,7 +150,7 @@ if (!class_exists('booking')) {
 				} else {
 					$onchange .= ' ajaxADate(this.value,\''.$this->cfg_cal_input.'\'); getResponse_particulars(\'arrivalDate\',this.value,\''.$uniqueID.'\'); ';
 					$onchange .= ' jomresJquery("#'.get_showtime('departure_date_unique_id').'").datepicker(\'option\', {minDate: jomresJquery(this).datepicker(\'getDate\')})';
-					$onclose .= ' jomresJquery("#'.get_showtime('departure_date_unique_id').'").datepicker(\'show\'); ';
+					$onclose .= 'setTimeout(function(){ jomresJquery("#'.get_showtime('departure_date_unique_id').'").datepicker(\'show\');},0); ';
 				}
 			} else {
 				$onchange .= ' getResponse_particulars(\'departureDate\',this.value); ';
