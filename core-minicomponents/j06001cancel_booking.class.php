@@ -47,23 +47,28 @@ class j06001cancel_booking
 		$jsLink = jomresURL(JOMRES_SITEPAGE_URL."&task=save_cancellation&contract_uid=$contract_uid");
 		$defaultProperty = getDefaultProperty();
 		$today = date('Y/m/d');
-		$query = "SELECT arrival,deposit_paid,contract_total,deposit_required,booked_in,property_uid FROM #__jomres_contracts WHERE contract_uid = '".(int) $contract_uid."' AND property_uid = '".(int) $defaultProperty."'";
-		$arrivalList = doSelectSql($query);
-		if (!empty($arrivalList)) {
-			foreach ($arrivalList as $cancellationFigures) {
-				$arrival = $cancellationFigures->arrival;
-				$deposit_paid = $cancellationFigures->deposit_paid;
-				$contract_total = $cancellationFigures->contract_total;
-				$deposit_required = $cancellationFigures->deposit_required;
-				$booked_in = $cancellationFigures->booked_in;
-				$property_uid = (int) $cancellationFigures->property_uid;
-			}
+
+		$current_contract_details = jomres_singleton_abstract::getInstance('basic_contract_details');
+		$current_contract_details->gather_data($contract_uid, $defaultProperty);
+	
+		if (isset($current_contract_details->contract[$contract_uid])) {
+
+				$arrival = $current_contract_details->contract[$contract_uid]['contractdeets']['arrival'];
+				$deposit_paid = $current_contract_details->contract[$contract_uid]['contractdeets']['deposit_paid'];
+				$contract_total = $current_contract_details->contract[$contract_uid]['contractdeets']['contract_total'];
+				$deposit_required = $current_contract_details->contract[$contract_uid]['contractdeets']['deposit_required'];
+				$booked_in = $current_contract_details->contract[$contract_uid]['contractdeets']['booked_in'];
+				$property_uid = (int) $defaultProperty;
+			
 
 			if ($booked_in != '1') {
 				$output[ 'PAGETITLE' ] = jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', '_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING');
 				$output[ 'SAVEBUTTON' ] = jr_gettext('_JOMRES_COM_MR_EB_GUEST_CANCELLATION_BUTTON', '_JOMRES_COM_MR_EB_GUEST_CANCELLATION_BUTTON', false);
 				$output[ 'HREASON' ] = jr_gettext('_JOMRES_JR_BLACKBOOKING_REASON', '_JOMRES_JR_BLACKBOOKING_REASON');
-
+				
+				$output[ '_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST' ] = jr_gettext('_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST', '_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST');
+				$output[ 'GUEST_NAME' ] = $current_contract_details->contract[$contract_uid]['guestdeets']['firstname']." ".$current_contract_details->contract[$contract_uid]['guestdeets']['surname'];
+				
 				$output[ 'CONTRACT_UID' ] = $contract_uid;
 				$output[ 'HARRIVAL' ] = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL');
 				$output[ 'HCONTRACTTOTAL' ] = jr_gettext('_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL', '_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL');
