@@ -71,8 +71,8 @@ class j06005show_invoice_buyer
 		$output[ 'REGION' ] = find_region_name($sellerData['county']);
 		$output[ 'COUNTRY' ] = getSimpleCountry($sellerData['country']);
 		$output[ 'POSTCODE' ] = $sellerData['postcode'];
-		$output[ 'LANDLINE' ] = $sellerData['tel_landline'];
-		$output[ 'MOBILE' ] = $sellerData['tel_mobile'];
+		$output[ 'LANDLINE' ] =  str_replace("&#38;#43;" , "+" , $sellerData['tel_landline'] );
+		$output[ 'MOBILE' ] = str_replace("&#38;#43;" , "+" , $sellerData['tel_mobile'] );
 		$output[ 'EMAIL' ] = $sellerData['email'];
 		$vat_output[0][ 'VAT_NUMBER' ] = $sellerData['vat_number'];
 
