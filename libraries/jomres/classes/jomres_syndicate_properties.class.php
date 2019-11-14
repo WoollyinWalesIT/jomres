@@ -125,28 +125,31 @@ class jomres_syndicate_properties
 			}
 
 			$row_str = '';
-			foreach ($this->all_approved_properties[$type] as $key=>$val) {
-				if ( isset($distances[$key]	) ) {
-					$distance = $distances[$key];
-				} else {
-					$latitudeFrom = $this->base_lat_long["lat"];
-					$longitudeFrom = $this->base_lat_long["long"];
-					$latitudeTo = $val->lat;
-					$longitudeTo = $val->long;
-					$distance = $this->codexworldGetDistanceOpt($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo);
+			if (isset($this->all_approved_properties[$type])) {
+				foreach ($this->all_approved_properties[$type] as $key=>$val) {
+					if ( isset($distances[$key]	) ) {
+						$distance = $distances[$key];
+					} else {
+						$latitudeFrom = $this->base_lat_long["lat"];
+						$longitudeFrom = $this->base_lat_long["long"];
+						$latitudeTo = $val->lat;
+						$longitudeTo = $val->long;
+						$distance = $this->codexworldGetDistanceOpt($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo);
+						
+						$row_str .= "( ".(int)$this->base_property_id." , ".(int)$key. " , ".(int)$distance." ),";
+					}
 					
-					$row_str .= "( ".(int)$this->base_property_id." , ".(int)$key. " , ".(int)$distance." ),";
-				}
-				
-				
-				if ( $distance > $this->max_distance_allowed || $distance < $this->min_distance_allowed ) {
-					$this->fallback_approved_properties[] = $this->all_approved_properties[$type][$key];
-					unset($this->all_approved_properties[$type][$key]);
-				} else {
-					$val->distance = $distance;
-					$this->all_approved_properties[$type][$key] = $val;
+					
+					if ( $distance > $this->max_distance_allowed || $distance < $this->min_distance_allowed ) {
+						$this->fallback_approved_properties[] = $this->all_approved_properties[$type][$key];
+						unset($this->all_approved_properties[$type][$key]);
+					} else {
+						$val->distance = $distance;
+						$this->all_approved_properties[$type][$key] = $val;
+					}
 				}
 			}
+
 			
 			if ($row_str != '' ) {
 				$row_str = substr($row_str, 0, -1);
@@ -155,27 +158,29 @@ class jomres_syndicate_properties
 			doInsertSql($query);
 			}
 		}
-	
-		$count = count($this->all_approved_properties[$type]);
-		
-		if ($count == 0 && !empty($this->fallback_approved_properties)) {
-			$this->all_approved_properties[$type] = $this->fallback_approved_properties;
-			$count = count($this->all_approved_properties[$type]);
-		} elseif ($count == 0) {
-			return array();
-		}
-		
-		if ( $count <= $limit ) {
-			$limit = $count;
-		}
-		
-		$ids = array_rand( $this->all_approved_properties[$type] , $limit );
 		
 		$result = array();
-		foreach ($ids as $id) {
-			$result[$id] = $this->all_approved_properties[$type][$id];
+		if (isset($this->all_approved_properties[$type])) { 
+			$count = count($this->all_approved_properties[$type]);
+			
+			if ($count == 0 && !empty($this->fallback_approved_properties)) {
+				$this->all_approved_properties[$type] = $this->fallback_approved_properties;
+				$count = count($this->all_approved_properties[$type]);
+			} elseif ($count == 0) {
+				return array();
+			}
+			
+			if ( $count <= $limit ) {
+				$limit = $count;
+			}
+			
+			$ids = array_rand( $this->all_approved_properties[$type] , $limit );
+			
+			
+			foreach ($ids as $id) {
+				$result[$id] = $this->all_approved_properties[$type][$id];
+			}
 		}
-		
 		return $result;
 	}
 		

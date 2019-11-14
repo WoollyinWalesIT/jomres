@@ -140,9 +140,15 @@ class j01070show_property_schema
 
 			}
 		}
+		
+		$output["LOWEST_PRICE"] ='';
+		$output["HIGHEST_PRICE"] = '';
+		
+		if ( !empty($this->roomTypePriceRanges)) {
+			$output["LOWEST_PRICE"] = min($this->roomTypePriceRanges); // Either I'm going crackers, or there's something weird in PHP-land. My installation is throwing the highest for min() and the lowest for max(). I'm going to leave these with the theoretically correct code, even if my tests produce the wrong results, and wait to see if there's any feedback. 
+			$output["HIGHEST_PRICE"] = max($this->roomTypePriceRanges);
+		}
 
-		$output["LOWEST_PRICE"] = min($this->roomTypePriceRanges); // Either I'm going crackers, or there's something weird in PHP-land. My installation is throwing the highest for min() and the lowest for max(). I'm going to leave these with the theoretically correct code, even if my tests produce the wrong results, and wait to see if there's any feedback. 
-		$output["HIGHEST_PRICE"] = max($this->roomTypePriceRanges);
 		
 		$short_property_description = jomres_decode(jr_substr(strip_tags($current_property_details->property_description), 0, 200)).'...';
 
@@ -208,12 +214,15 @@ class j01070show_property_schema
 			}
 		}
 
-		$ratings = array();
-		$ratings[0]['PROPERTY_NAME'] = $output[ 'PROPERTY_NAME' ];
-		$ratings[0]['RATINGVALUE'] = $itemRating["avg_rating"];
-		$ratings[0]['REVIEWCOUNT'] = $itemRating["counter"];
-		$ratings[0]['BESTRATING'] = max($individualRatings);
-		$ratings[0]['WORSTRATING'] = min($individualRatings);
+		if (!empty($individualRatings)) {
+			$ratings = array();
+			$ratings[0]['PROPERTY_NAME'] = $output[ 'PROPERTY_NAME' ];
+			$ratings[0]['RATINGVALUE'] = $itemRating["avg_rating"];
+			$ratings[0]['REVIEWCOUNT'] = $itemRating["counter"];
+			$ratings[0]['BESTRATING'] = max($individualRatings);
+			$ratings[0]['WORSTRATING'] = min($individualRatings);
+		}
+
 		
 		jr_import('jomres_markdown');
 		$jomres_markdown = new jomres_markdown();
@@ -349,9 +358,13 @@ class j01070show_property_schema
 		$tmpl->addRows('pfeatures', $pFeatures);
 		$tmpl->addRows('room_types', $room_types);
 		$tmpl->addRows('slideshow_images', $slideshow_images);
-		$tmpl->addRows('ratings', $ratings);
+		
 		$tmpl->addRows('room_rows', $room_rows);
 		$tmpl->addRows('tariff_deets', $tariff_deets);
+		
+		if (!empty($individualRatings)) {
+			$tmpl->addRows('ratings', $ratings);
+		}
 
 		$tmpl->readTemplatesFromInput($template);
 		$tmpl->displayParsedTemplate();
