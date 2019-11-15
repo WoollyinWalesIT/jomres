@@ -205,6 +205,42 @@ class j01070show_property_schema
 		$Reviews->property_uid = $property_uid;
 		$itemRating = $Reviews->showRating($property_uid);
 		$itemReviews = $Reviews->showReviews($property_uid);
+		$allReviews = $Reviews->get_all_reviews_index_by_property_uid(); 
+		$propertyReviews = $allReviews[$property_uid];
+		
+
+
+		$reviews = array();
+		if (!empty($propertyReviews)) {
+			foreach ( $propertyReviews as $review ) {
+				$r = array();
+				
+				$r['ITEMREVIEWED']		=  $output[ 'PROPERTY_NAME' ];
+				$r['RATINGVALUE']		=  $review[ 'rating' ];
+				$r['BESTRATING']		=  10;
+				$r['IMAGEMEDIUM']		=  $output[ 'IMAGEMEDIUM' ];
+				
+				if ( $review->user_name == null ) {
+					$r['AUTHOR']		=  jr_gettext('ANONYMOUS', 'ANONYMOUS', false);
+				} else {
+					$r['AUTHOR']		=  $review[ 'user_name' ];
+				}
+				
+				$r[ 'STREET' ]			= $output[ 'STREET' ];
+				$r[ 'TOWN' ]			= $output[ 'TOWN' ];
+				$r[ 'REGION' ]			= $output[ 'REGION' ];
+				$r[ 'COUNTRY' ]			= $output[ 'COUNTRY' ];
+				$r[ 'POSTCODE' ]		= $output[ 'POSTCODE' ];
+				$r[ 'TELEPHONE' ]		= $output[ 'TELEPHONE' ];
+				
+				$r[ 'LOWEST_PRICE' ]	= $output[ 'LOWEST_PRICE' ];
+				$r[ 'HIGHEST_PRICE' ]	= $output[ 'HIGHEST_PRICE' ];
+				
+				$r['REVIEWBODY']		=  $review[ 'review_title' ]." ". $review[ 'review_description' ]." ". $review[ 'pros' ]." ". $review[ 'cons' ];
+	
+				$reviews[]= $r;
+			}
+		}
 		
 
 		$individualRatings = array ();
@@ -214,6 +250,8 @@ class j01070show_property_schema
 			}
 		}
 
+		$ratings = array();
+		
 		if (!empty($individualRatings)) {
 			$ratings = array();
 			$ratings[0]['PROPERTY_NAME'] = $output[ 'PROPERTY_NAME' ];
@@ -224,8 +262,17 @@ class j01070show_property_schema
 		}
 
 		
+		
+		$query = 'SELECT `rates_uid`,`rate_title`,`rate_description`,`validfrom`,`validto`,
+			`roomrateperday`,`mindays`,`maxdays`,`minpeople`,`maxpeople`,`roomclass_uid`,
+			`ignore_pppn`,`allow_ph`,`allow_we`
+			FROM #__jomres_rates WHERE property_uid = ' .$property_uid.' ORDER BY rate_title,roomclass_uid,validto';
+		$tariffsList = doSelectSql($query);
+		
 		jr_import('jomres_markdown');
 		$jomres_markdown = new jomres_markdown();
+		
+		$room_type_images = array();
 		
 		if (!empty($basic_room_details->rooms)) {
 			$room_rows = array();
@@ -248,6 +295,8 @@ class j01070show_property_schema
 						$r[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['medium'];
 					}
 
+					$room_type_images[$room_type_id] = $r[ 'IMAGEMEDIUM' ];
+					
 					$r[ 'TAGLINE' ] = $room['tagline'];
 					$r[ 'DESCRIPTION' ] = $jomres_markdown->get_markdown($room['description']);
 
@@ -256,11 +305,7 @@ class j01070show_property_schema
 				}
 			}
 			
-		$query = 'SELECT `rates_uid`,`rate_title`,`rate_description`,`validfrom`,`validto`,
-			`roomrateperday`,`mindays`,`maxdays`,`minpeople`,`maxpeople`,`roomclass_uid`,
-			`ignore_pppn`,`allow_ph`,`allow_we`
-			FROM #__jomres_rates WHERE property_uid = ' .$property_uid.' ORDER BY rate_title,roomclass_uid,validto';
-		$tariffsList = doSelectSql($query);
+
 		
 		$query = 'SELECT `tarifftype_id`,`tariff_id`  FROM #__jomcomp_tarifftype_rate_xref  WHERE `property_uid` = '.(int) $property_uid;
 		$result = doSelectSql($query);
@@ -297,11 +342,15 @@ class j01070show_property_schema
 				$unixValidto = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ]);
 
 				if ($unixTodaysDate < $unixValidto) {
-					$r = array();
+					$r = $ratings[0];
 					
+					$r[ 'PROPERTY_NAME' ] = $output[ 'PROPERTY_NAME' ];
+					$r[ 'DIRECT_URL' ] = $output[ 'DIRECT_URL' ];
 					$r['CURRENCY_CODE'] = $currency_code;
 					$r['CURRENCY_SYMBOL'] = $currency_symbol;
-
+					$r['SKU'] = $tariff->rates_uid;
+					
+					
 					if (isset($tariff_tarifftypes_xref[ $tariff->rates_uid ])) {
 						$r[ 'TITLE' ] = jr_gettext('_JOMRES_CUSTOMTEXT_TARIFF_TITLE_TARIFFTYPE_ID'.$tariff_tarifftypes_xref[ $tariff->rates_uid ], stripslashes($tariff->rate_title));
 					} else {
@@ -319,6 +368,7 @@ class j01070show_property_schema
 					$r[ 'HSTARTS' ] 	= jr_gettext('_JOMRES_FRONT_TARIFFS_STARTS', '_JOMRES_FRONT_TARIFFS_STARTS');
 					$r[ 'HENDS' ] 		= jr_gettext('_JOMRES_FRONT_TARIFFS_ENDS', '_JOMRES_FRONT_TARIFFS_ENDS');
 					$r[ 'VALIDFROM' ]	= outputDate($tariff->validfrom);
+					$r[ 'RAW_VALIDFROM' ]	= str_replace("/", "-" , $tariff->validfrom );
 					$r[ 'VALIDTO' ]		= outputDate($tariff->validto);
 					$r[ 'RAW_VALIDTO' ]	= str_replace("/", "-" , $tariff->validto );
 
@@ -337,6 +387,7 @@ class j01070show_property_schema
 						$r[ 'NOTWEEKENDS' ] = jr_gettext('_JOMRES_FRONT_TARIFFS_NOTWEEKEND', '_JOMRES_FRONT_TARIFFS_NOTWEEKEND');
 					}
 					
+					$r['ROOM_TYPE_IMAGE'] = $room_type_images[$tariff->roomclass_uid];
 					$tariff_deets[ ] = $r;
 				}
 			}
@@ -362,8 +413,12 @@ class j01070show_property_schema
 		$tmpl->addRows('room_rows', $room_rows);
 		$tmpl->addRows('tariff_deets', $tariff_deets);
 		
-		if (!empty($individualRatings)) {
+		if (!empty($ratings)) {
 			$tmpl->addRows('ratings', $ratings);
+		}
+		
+		if (!empty($reviews)) {
+			$tmpl->addRows('reviews', $reviews);
 		}
 
 		$tmpl->readTemplatesFromInput($template);

@@ -37,7 +37,7 @@ function navigate(lat, lng) {
 
 <div class="panel panel-default">
 	<div class="panel-body">
-		<div class="property-header" itemscope itemtype="http://schema.org/Hotel">
+		<div class="property-header">
 			<div class="row">
 				<div class="col-md-2 hidden-xs hidden-sm">
 					<img alt="{PROPERTY_NAME}" src="{IMAGETHUMB}" class="img-responsive"/>
@@ -49,32 +49,19 @@ function navigate(lat, lng) {
 					</patTemplate:tmpl>
 					<div class="row">
 						<div class="col-md-8">
-							<address>
-								<span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-									<span itemprop="streetAddress">{STREET}</span>,
-									<span itemprop="addressLocality">{TOWN}</span>, 
-									<span itemprop="addressRegion">{REGION}</span>, 
-									<span itemprop="postalCode">{POSTCODE}</span>, 
-									<span itemprop="addressCountry">{COUNTRY}</span><br/>
-									<span itemprop="location">
-										<span itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
-											<meta itemprop="latitude" content="{PROPERTY_LAT}" />
-											<meta itemprop="longitude" content="{PROPERTY_LONG}" />
-										</span>
-									</span>
-									<span class="hidden-xs">
-										{HTELEPHONE}<span>{TELEPHONE}</span>,
-										{HFAX}{FAX}
-									</span>
-									<span class="visible-xs">
-										<br/>
-										<a href="tel:{TELEPHONE}" class="btn btn-success"><i class="fa fa-phone"></i> 
-											{JOMRES_TAPTOCALL} {TELEPHONE}</a>
-										<a href="whatsapp://send?phone={WHATSAPP_TELEPHONE}" class="btn btn-success"><i class="fa fa-whatsapp"></i></a>
-									</span>
+							{STREET}, {TOWN}, {REGION} {POSTCODE}, {COUNTRY}
+								<span class="hidden-xs">
+									{HTELEPHONE}<span>{TELEPHONE}</span>,
+									{HFAX}{FAX}
 								</span>
-								<div><a href="{GALLERYLINK}" target="_blank">{GALLERYDOMAIN}</a></div>
-							</address>
+								<span class="visible-xs">
+									<br/>
+									<a href="tel:{TELEPHONE}" class="btn btn-success"><i class="fa fa-phone"></i>
+										{JOMRES_TAPTOCALL} {TELEPHONE}</a>
+									<a href="whatsapp://send?phone={WHATSAPP_TELEPHONE}" class="btn btn-success"><i class="fa fa-whatsapp"></i></a>
+								</span>
+
+							<div><a href="{GALLERYLINK}" target="_blank">{GALLERYDOMAIN}</a></div>
 							<div class="property-header-fb hidden-xs hidden-sm">
 								{FACEBOOK_BUTTONS}
 							</div>
