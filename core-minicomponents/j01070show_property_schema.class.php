@@ -220,7 +220,7 @@ class j01070show_property_schema
 				$r['BESTRATING']		=  10;
 				$r['IMAGEMEDIUM']		=  $output[ 'IMAGEMEDIUM' ];
 				
-				if ( $review->user_name == null ) {
+				if ( !isset($review->user_name) ||  $review->user_name == null ) {
 					$r['AUTHOR']		=  jr_gettext('ANONYMOUS', 'ANONYMOUS', false);
 				} else {
 					$r['AUTHOR']		=  $review[ 'user_name' ];
