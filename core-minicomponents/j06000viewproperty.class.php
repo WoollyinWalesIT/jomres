@@ -286,12 +286,15 @@ class j06000viewproperty
 				'TABCONTENT_01_MAIN_DETAILS',
 				'TABCONTENT_01_MORE_INFO',
 				'TABCONTENT_02_BOOKINGFORM',
-				'TABCONTENT_02_MAP',
 				'TABCONTENT_03_REVIEWS',
 				'TABCONTENT_06_EXTRAS',
 				);
 		}
 
+		if (trim($jrConfig['google_maps_api_key']) != '') {
+			$standalone_elements[] = 'TABCONTENT_02_MAP';
+		}
+		
 		//generate the tabs
 		$tmpl = new patTemplate();
 		
@@ -327,6 +330,14 @@ class j06000viewproperty
 							$output[ strtoupper($key.'_tab_content') ] = $content;
 						}
 					} else {
+						if (trim($jrConfig['google_maps_api_key']) != '' && strtoupper($key) == 'TABCONTENT_02_MAP' ) {
+							$map_output = array();
+							$map_output [0][ strtoupper($key).'_CONTENT' ] = $tabs[ 'TAB_CONTENT' ];
+							$map_output [0][ strtoupper($key).'_TITLE' ] = $tabs[ 'TAB_TITLE' ];
+							$map_output [0][ strtoupper($key).'_ANCHOR' ] = $tabs[ 'TAB_ANCHOR' ];
+
+							$tmpl->addRows('map_output', $map_output);
+						}
 						if (strtoupper($key) == 'TABCONTENT_06_EXTRAS') {
 							$extras_output [0][ strtoupper($key).'_CONTENT' ] = $tabs[ 'TAB_CONTENT' ];
 							$extras_output [0][ strtoupper($key).'_TITLE' ] = $tabs[ 'TAB_TITLE' ];

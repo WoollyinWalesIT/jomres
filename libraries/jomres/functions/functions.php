@@ -5028,6 +5028,7 @@ function ziparchive_test()
  */
 function gmaps_apikey_check()
 {
+	return;
 	$message = '';
 	$highlight = (using_bootstrap() ? 'alert alert-warning' : 'ui-state-highlight');
 
