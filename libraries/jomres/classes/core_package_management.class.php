@@ -652,11 +652,11 @@ class core_package_management
 			}
 
             // Combination constants
-			if ( defined('HTTP_URL_STRIP_AUTH')) {
+			if ( !defined('HTTP_URL_STRIP_AUTH')) {
 				define('HTTP_URL_STRIP_AUTH',       HTTP_URL_STRIP_USER | HTTP_URL_STRIP_PASS);
 			}
 			
-			if ( defined('HTTP_URL_STRIP_ALL')) {
+			if ( !defined('HTTP_URL_STRIP_ALL')) {
 				define('HTTP_URL_STRIP_ALL',        HTTP_URL_STRIP_AUTH | HTTP_URL_STRIP_PORT | HTTP_URL_STRIP_QUERY | HTTP_URL_STRIP_FRAGMENT);
 			}
 
