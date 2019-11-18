@@ -87,6 +87,12 @@ class jomres_gdpr_optin_consent
 
 	public function save_record()
 	{
+		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+		if ($tmpBookingHandler->ip == "0.0.0.0" ) {
+			header('Set-Cookie: jomres_gdpr_consent_form_processed='.(int)$this->optedin.'; expires=Fri, 31-Dec-9999 23:59:59 GMT');
+			return;
+		}
+		
 		$query = "INSERT INTO #__jomres_gdpr_optins
 			(
 				`date_time`,
