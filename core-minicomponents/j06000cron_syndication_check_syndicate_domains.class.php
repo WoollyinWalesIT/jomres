@@ -77,7 +77,7 @@ class j06000cron_syndication_check_syndicate_domains
 						
 
 				}
-				catch (GuzzleHttp\Exception\ClientException $e) {
+				catch (GuzzleHttp\Exception\RequestException $e) {
 					if ((int)$r->approved == 1 ) { // Oops, it's stopped responding. We'll take it offline and check it again in an hour
 						$query = "UPDATE  #__jomres_syndication_domains SET 
 							`approved` = 0 ,
