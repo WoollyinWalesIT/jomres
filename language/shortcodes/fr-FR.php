@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Translation to fr-FR by Stéphane Bernard, Valtari NumAgency, France - 03/07/2019 - https://www.valtari.fr
@@ -13,7 +13,13 @@
 //#################################################################
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
-
+/**
+ *
+ * @package Jomres\Core\Languages
+ *
+ * Language files.
+ *
+ **/
 jr_define('_JOMRES_SHORTCODES_06001CPANEL', 'Voici la page de gestion de l\'établissement.');
 
 jr_define('_JOMRES_SHORTCODES_06001TAPECHART', 'Il s’agit du diagramme d\'établissement qui fournit un aperçu des réservations en temps réel, de la disponibilité et de l’occupation.');

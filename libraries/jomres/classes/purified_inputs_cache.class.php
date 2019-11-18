@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,6 +17,12 @@ defined('_JOMRES_INITCHECK') or die('');
 // This class is used to cache previously input filtered variables. Once an input is filtered once, the data is stored here in memory and reused instead of constantly calling input filtering beasts which might be the cause of intermittent slowdowns.
 
 // As Jomres is like an onion, with discreet pages that can be called separately, we often find that we're re-filtering the same url variables time and again. For example, a typical call to viewproperty on a default instance of Fawlty Towers from the Quickstart can result in us using HTML purifier 19 times in one page load. HTML purifier is super effective at what it does, but it's a waste of cpu load times to constantly re-filter something that's already been filtered. With this purified inputs cache, we can cut down from 19 calls to html purifier to 5.
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class purified_inputs_cache
 {
@@ -34,6 +40,12 @@ class purified_inputs_cache
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_cache($request, $element)
 	{
@@ -41,12 +53,24 @@ class purified_inputs_cache
 
 		return $this->cached_inputs [ $request_hash ] [ $element ];
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function set_cache($request, $element, $cleaned)
 	{
 		$request_hash = $this->hash_array($request);
 		$this->cached_inputs [ $request_hash ] [ $element ] = $cleaned;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function hash_array($array = array())
 	{

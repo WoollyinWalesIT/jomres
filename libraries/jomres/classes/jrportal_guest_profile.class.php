@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,15 +13,33 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class jrportal_guest_profile
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->jomres_encryption = new jomres_encryption();
 		$this->init_guest_profile();
 		
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function init_guest_profile()
 	{
@@ -47,7 +65,13 @@ class jrportal_guest_profile
 		
 		$this->guest_reviews = array();
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//Get guest details by id
 	public function get_guest_profile()
 	{
@@ -111,6 +135,12 @@ class jrportal_guest_profile
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_guest_reviews()
 	{
@@ -128,7 +158,13 @@ class jrportal_guest_profile
 		}
 		return $this->guest_reviews;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function save_guest_review( $guests_id = 0 , $property_uid = 0 , $review = ''  )
 	{
 		if ($this->cms_user_id == 0) {

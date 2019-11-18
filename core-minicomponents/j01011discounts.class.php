@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,9 +13,26 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * @package Jomres\Core\Minicomponents
+	 *
+     * If any properties found in a search result set offer discounts, then text is assembled and returned to 01010listproperties
+	 * 
+	 */
 
 class j01011discounts
-{
+{	
+	/**
+	 *
+	 * Constructor
+	 * 
+	 * Main functionality of the Minicomponent 
+	 *
+	 * 
+	 * 
+	 */
+	 
 	public function __construct($componentArgs)
 	{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
@@ -97,27 +114,13 @@ class j01011discounts
 		}
 	}
 
-	public function touch_template_language()
-	{
-		$output = array();
-		$output[ ] = jr_gettext('_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST', '_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST');
-		$output[ ] = jr_gettext('_JOMCOMP_LASTMINUTE_ORMORE', '_JOMCOMP_LASTMINUTE_ORMORE');
-		$output[ ] = jr_gettext('_JOMCOMP_LASTMINUTE_PROPERTYLIST_PRE', '_JOMCOMP_LASTMINUTE_PROPERTYLIST_PRE');
-		$output[ ] = jr_gettext('_JOMCOMP_LASTMINUTE_PROPERTYLIST_MID', '_JOMCOMP_LASTMINUTE_PROPERTYLIST_MID');
-		$output[ ] = jr_gettext('_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST', '_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST');
-
-		foreach ($output as $o) {
-			echo $o;
-			echo '<br/>';
-		}
-	}
 
 /**
  * Must be included in every mini-component.
  #
  * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
  */
-	// This must be included in every Event/Mini-component
+
 	public function getRetVals()
 	{
 		return $this->returnValue;

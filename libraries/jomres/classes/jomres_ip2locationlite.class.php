@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -15,6 +15,12 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 final class jomres_ip2location_lite
 {
@@ -22,14 +28,32 @@ final class jomres_ip2location_lite
 	protected $service = 'api.ipinfodb.com';
 	protected $version = 'v3';
 	protected $apiKey = '';
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function __construct()
 	{
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function __destruct()
 	{
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function setKey($key)
 	{
@@ -37,21 +61,45 @@ final class jomres_ip2location_lite
 			$this->apiKey = $key;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getError()
 	{
 		return implode("\n", $this->errors);
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getCountry($host)
 	{
 		return $this->getResult($host, 'ip-country');
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getCity($host)
 	{
 		return $this->getResult($host, 'ip-city');
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	private function getResult($host, $name)
 	{

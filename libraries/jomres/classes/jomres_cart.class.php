@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,9 +13,22 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class jomres_cart
 {
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
@@ -34,6 +47,12 @@ class jomres_cart
 
 		$this->calc_totals();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function calc_totals()
 	{
@@ -64,6 +83,12 @@ class jomres_cart
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function move_from_temp_booking_to_cart_array()
 	{
@@ -81,6 +106,12 @@ class jomres_cart
 
 		$this->calc_totals();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function remove_from_cart($identifier)
 	{
@@ -91,6 +122,12 @@ class jomres_cart
 
 		$this->calc_totals();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function build_booking_form_data_for_payment_gateways()
 	{

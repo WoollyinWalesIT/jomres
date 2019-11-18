@@ -1,12 +1,11 @@
 <?php
 /**
- * Allows logging via the Monolog library
  *
- * Started out as being intended just for REST API logging, but now is used throughout Jomres, not just API calls.
+ *  @package Jomres\Core\REST_API
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -22,6 +21,14 @@ use Monolog\Handler\HandlerInterface;
 use Monolog\Handler\AbstractProcessingHandler;
 use Monolog\Handler\BrowserConsoleHandler;
 use Monolog\Processor\WebProcessor;
+	
+	/**
+	 *
+     * Allows logging via the Monolog library.
+     *
+     * Started out as being intended just for REST API logging, but now is used throughout Jomres, not just API calls.
+	 *
+	 */
 
 class logging
 {

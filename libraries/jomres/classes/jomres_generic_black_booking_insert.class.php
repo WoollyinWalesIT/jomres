@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,16 +13,34 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class jomres_generic_black_booking_insert
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->init();
 
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function init()
 	{
 		$this->contract_uid = 0;									//this will be populated after the new black booking insert
@@ -35,6 +53,12 @@ class jomres_generic_black_booking_insert
 		$this->special_reqs = '';									//text, not required
 		$this->booking_number = '';									//string, if not set will be generated automatically
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function create_black_booking()
 	{
@@ -54,6 +78,12 @@ class jomres_generic_black_booking_insert
 			return $e->getMessage();
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	private function validate()
 	{
@@ -79,7 +109,13 @@ class jomres_generic_black_booking_insert
 
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function check_availability()
 	{
 		jr_import('jrportal_availability');
@@ -91,7 +127,13 @@ class jomres_generic_black_booking_insert
 		
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function insert_black_booking()
 	{
 		$this->date_range = findDateRangeForDates($this->arrival, $this->departure);
@@ -111,7 +153,13 @@ class jomres_generic_black_booking_insert
 		
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function insert_contract_details()
 	{
 		$query = "INSERT INTO #__jomres_contracts (
@@ -139,7 +187,13 @@ class jomres_generic_black_booking_insert
 		
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function insert_room_bookings()
 	{
 		$query = "INSERT INTO #__jomres_room_bookings (

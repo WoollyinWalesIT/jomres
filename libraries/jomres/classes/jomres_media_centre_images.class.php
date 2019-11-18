@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,12 +13,24 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class jomres_media_centre_images
 {
 	protected $jrConfig;
 	
 	protected $optimizer;
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function __construct()
 	{
@@ -58,6 +70,12 @@ class jomres_media_centre_images
 		$this->multi_query_images [ 'noimage-medium' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/assets/images/noimage.gif';
 		$this->multi_query_images [ 'noimage-small' ] = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/assets/images/noimage_small.gif';
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//get all property images
 	public function get_images($property_id = null)
@@ -146,7 +164,13 @@ class jomres_media_centre_images
 
 		return $this->images;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//get images uploaded by admins (pfeatures, rmtypes, rmfeatures, markers, towns and other 3rd party resource types)
 	public function get_site_images( $type = '' )
 	{
@@ -161,6 +185,12 @@ class jomres_media_centre_images
 
 		return $this->site_images;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//get images for property uid/s
 	public function get_images_multi($property_uids)
@@ -235,7 +265,13 @@ class jomres_media_centre_images
 
 		return $this->multi_query_images;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//get images from db for property uids array
 	private function get_images_multi_from_db($property_uids = array())
 	{
@@ -296,7 +332,13 @@ class jomres_media_centre_images
 
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//this scans for site images like pfeatures, rmtypes and other 3rd party images
 	public function get_site_images_multi($type = '')
 	{
@@ -374,7 +416,13 @@ class jomres_media_centre_images
 
 		return $this->site_images;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//get site images from db. not really a "multi"
 	private function get_site_images_multi_from_db($type = '')
 	{
@@ -449,7 +497,13 @@ class jomres_media_centre_images
 
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//do jomres specific stuff for the newly uploaded image
 	public function handle_uploaded_image($property_uid = 0, $resource_type = '', $resource_id = '', $file_name = '', $version = '', $resource_id_required = true)
 	{
@@ -486,7 +540,13 @@ class jomres_media_centre_images
 			$this->copy_image_to_s3($filepath);
 		}
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//save image details to db
 	private function save_image_details_to_db($property_uid = 0, $resource_type = '', $resource_id = '', $file_name = '', $version = '', $resource_id_required = true)
 	{
@@ -519,6 +579,12 @@ class jomres_media_centre_images
 		
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//delete image from disk and db
 	public function delete_image($property_uid = 0, $resource_type = '', $resource_id = '', $file_name = '', $abs_path = '', $resource_id_required = true)
@@ -595,7 +661,13 @@ class jomres_media_centre_images
 		
 		return false;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//delete image from disk and db
 	public function delete_all_images($property_uid = 0)
 	{
@@ -625,7 +697,13 @@ class jomres_media_centre_images
 		
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function copy_image_to_s3($image = '')
 	{
 		if ($image == '') {
@@ -649,7 +727,13 @@ class jomres_media_centre_images
 		
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function delete_image_from_s3($image = '')
 	{
 		if ($image == '') {
@@ -664,7 +748,13 @@ class jomres_media_centre_images
 		
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function build_image_path($property_uid = 0, $resource_type = '', $resource_id = '', $file_name = '', $version = '', $resource_id_required = true) 
 	{
 		$image = '';

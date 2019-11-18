@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -18,13 +18,31 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 //50: receptionist
 //70: property manager
 //90: super property manager
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class jomres_users
-	{
+	{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 		{
 		$this->_init();
 		}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function _init()
 		{
@@ -46,7 +64,13 @@ class jomres_users
 		$this->all_cms_users			= false;					//(array) all cms users - TODO: find a better way
 		}
 
-	//get all jomres users
+	//get all jomres users	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	function get_users()
 		{
 		if ( is_array($this->users) )
@@ -104,7 +128,13 @@ class jomres_users
 		return true;
 		}
 	
-	//get jomres user by id
+	//get jomres user by id	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	function get_user( $cms_user_id = 0 )
 		{
 		if ( (int)$cms_user_id == 0 )
@@ -184,7 +214,13 @@ class jomres_users
 		return false;
 		}
 
-	//save new user
+	//save new user	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	function commit_new_user()
 		{
 		if ( $this->id > 0 )
@@ -230,7 +266,13 @@ class jomres_users
 		return true;
 		}
 	
-	//update existing user
+	//update existing user	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	function commit_update_user()
 		{
 		if ( $this->id == 0 )
@@ -262,7 +304,13 @@ class jomres_users
 		return true;
 		}
 	
-	//delete user
+	//delete user	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	function delete_user( $cms_user_id = 0 )
 		{
 		if ( $cms_user_id == 0 )
@@ -283,7 +331,13 @@ class jomres_users
 		return true;
 		}
 	
-	//this function generates a new user api key for an existing user by cms_user_id
+	//this function generates a new user api key for an existing user by cms_user_id	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	function generate_user_api_key()
 		{
 		if ( $this->cms_user_id == 0 )
@@ -303,7 +357,13 @@ class jomres_users
 		return true;
 		}
 	
-	// Will find all manager ids for a property id. Note, only returns managers who are not Super Property Managers
+	// Will find all manager ids for a property id. Note, only returns managers who are not Super Property Managers	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function getManagerIdsForProperty($property_uid = 0, $notIncludingSuperManagers = false)
 	{
 		if ( $property_uid == 0 )

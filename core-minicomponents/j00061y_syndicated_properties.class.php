@@ -7,8 +7,25 @@
 // ################################################################
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
+	
+	/**
+	 * @package Jomres\Core\Minicomponents
+	 *
+	 * Shows the syndicated properties script output at the bottom of the page.
+	 * 
+	 */
 
-class j00061y_syndicated_properties {
+class j00061y_syndicated_properties {	
+	/**
+	 *
+	 * Constructor
+	 * 
+	 * Main functionality of the Minicomponent 
+	 *
+	 * 
+	 * 
+	 */
+	 
 	function __construct($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
@@ -24,7 +41,7 @@ class j00061y_syndicated_properties {
 		
 		}
 
-	// This must be included in every Event/Mini-component
+
 	function getRetVals()
 		{
 		return null;

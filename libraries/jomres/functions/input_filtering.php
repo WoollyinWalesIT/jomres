@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -14,6 +14,15 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
+/**
+ * 
+ * @package Jomres\Core\Functions
+ *
+ *  Input filtering tools
+ *
+ *  Back in the mid-to-late naughties Joomla in particular was getting hammered by script kiddies trying to compromise systems. Filter var at the time wasn't available, or users were running older PHP versions so instead I found a variety of techniques to stymie the naughtly little blighters. This input filtering pre-dated those features since brought in by Joomla and Wordpress. To the best of my knowledge Jomres has never been compromised, so it makes sense to me to keep this in-situ, even though it looks as ugly as sin. If it aint broke, don't fix it.
+ */
+ 
 global $ra1, $ra2, $convertedRAs, $lessThans; // globaled so that we don't need to initialise them every time
 
 //global $R;
@@ -35,6 +44,11 @@ function initRemoveXSS($ra1, $ra2)
 	return array($base64);
 }
 
+/**
+ * @package Jomres\Core\Functions
+ *
+ * Remove cross site scripting javascript
+ */
 function RemoveXSS($val)
 {
 	global $ra1, $ra2, $convertedRAs, $lessThans;
@@ -122,6 +136,11 @@ function RemoveXSS($val)
 	return $val;
 }
 
+/**
+ * @package Jomres\Core\Functions
+ *
+ * Filters all inputs passed from Requests into Jomres
+ */
 function jomresGetParam($request, $element, $def = null) // variable type not used, we'll cast the variable type depending on the default ($def) that's passed to the function
 {
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -260,6 +279,13 @@ function jomresGetParam($request, $element, $def = null) // variable type not us
 	return $clean;
 }
 
+/**
+ * @package Jomres\Core\Functions
+ *
+ * Going nuclear on inputs.
+ *
+ *
+ */
 function jomres_sanitise_string($dirty)
 {
 	if ($dirty == '') { // No need to call purifier if there's noting to purify
@@ -276,6 +302,12 @@ function jomres_sanitise_string($dirty)
 	return $clean;
 }
 
+/**
+ * @package Jomres\Core\Functions
+ *
+ *          Allow html, but still sanitise inputs
+ *
+ */
 function jomres_purify_html($dirty)
 {
 	//logging::log_message('HTML purifier called', 'Core', 'DEBUG');
@@ -288,6 +320,12 @@ function jomres_purify_html($dirty)
 	return $clean;
 }
 
+/**
+ * 
+ * @package Jomres\Core\Functions
+ *
+ *          Replace single quotes with their html equivalent.
+ */
 function getEscaped($text)
 {
 	$text = str_replace("'", '&#39;', $text);
@@ -297,6 +335,16 @@ function getEscaped($text)
 
 // http://www.php.net/manual/en/function.strip-tags.php#97386
 // Like many other functions in Jomres, it has been renamed to jomres_ becomes it's not unusual for other software developers to use the same functions in their libraries. Renaming the function thus prevents php from throwing duplicate function name errors
+
+/**
+ * 
+ * @package Jomres\Core\Functions
+ *
+ *          Nuke html in a string, but preserve some depending on settings passed.
+ *
+ *
+ */
+
 function jomres_remove_HTML($s, $keep = 'p|br', $expand = 'script|style|noframes|select|option')
 {
 	//prep the string
@@ -362,6 +410,9 @@ function jomres_remove_HTML($s, $keep = 'p|br', $expand = 'script|style|noframes
 }
 
 /**
+ * @package Jomres\Core\Functions
+ *
+ *          TODO Check to see if this is used anywhere
  * @return
  *
  * @param string
@@ -404,7 +455,12 @@ function strip_tags_except($text, $strip = true)
 	return $text;
 }
 
-// Returns the utf string corresponding to the unicode value (from php.net, courtesy - romans@void.lv)
+
+/**
+ * @package Jomres\Core\Functions
+ *
+ * Returns the utf string corresponding to the unicode value (from php.net, courtesy - romans@void.lv).
+ */
 function jomres_code2utf($num)
 {
 	if ($num < 128) {
@@ -423,6 +479,14 @@ function jomres_code2utf($num)
 	return '';
 }
 
+/**
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Find the variable type.
+ *
+ *          TODO Check to see if this is still used anywhere
+ */
 function jomres_get_var_type($variable)
 {
 	if (is_array($variable)) {
@@ -440,7 +504,14 @@ function jomres_get_var_type($variable)
 	}
 }
 
-function jomres_parseRequest() // A simple request parser to check that mosConf.... isn't in the request string.
+/**
+ * @package Jomres\Core\Functions
+ *
+ * A simple request parser to check that mosConf.... isn't in the request string.
+ *
+ *          If it is, a naughty person might be trying to hack Jomres
+ */
+function jomres_parseRequest() //
 {
 	// %6D%6F%73%43%6F%6E%66 = mosConf : urlencode
 	// %6D%72%43%6F%6E%66%69%67  mrConfig hex
@@ -464,7 +535,14 @@ function jomres_parseRequest() // A simple request parser to check that mosConf.
 	}
 }
 
-// Previously we just used floats, however Europeans commonly use commas as a decimal seperator so we'll use this function to convert entered prices to nnn.nn values
+//
+/**
+ * @package Jomres\Core\Functions
+ *
+ *          Converts a price into a safe Float
+ *
+ *          Previously we just used floats, however Europeans commonly use commas as a decimal seperator so we'll use this function to convert entered prices to nnn.nn values
+ */
 function convert_entered_price_into_safe_float($value)
 {
 	$result = 0.00;

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,9 +13,25 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * @package Jomres\Core\Minicomponents
+	 *
+	 * 
+	 */
 
 class j06000cron_syndication_get_syndicate_domains
-{
+{	
+	/**
+	 *
+	 * Constructor
+	 * 
+	 * Main functionality of the Minicomponent 
+	 *
+	 * 
+	 * 
+	 */
+	 
 	public function __construct()
 	{
 		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
@@ -37,7 +53,7 @@ class j06000cron_syndication_get_syndicate_domains
 		
 		try {
 			$client = new GuzzleHttp\Client();
-			$response = $client->request('GET', "http://app.jomres.net/jomres/api/get_sites/" , ['connect_timeout' => 10 ] );
+			$response = $client->request('GET', "https://app.jomres.net/jomres/api/get_sites/" , ['connect_timeout' => 10 ] );
 
 			$body				= json_decode((string)$response->getBody());
 					
@@ -72,12 +88,12 @@ class j06000cron_syndication_get_syndicate_domains
 				}
 			}
 		}
-		catch (GuzzleHttp\Exception\ClientException $e) {
+		catch (GuzzleHttp\Exception\RequestException $e) {
 			//  If the user reports problems, the REST API connectivity check should give us some clues
 		}
 	}
 
-	// This must be included in every Event/Mini-component
+
 	public function getRetVals()
 	{
 		return null;

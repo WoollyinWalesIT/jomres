@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class jomres_currency_conversion
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$jomres_currency_exchange_rates = jomres_singleton_abstract::getInstance('jomres_currency_exchange_rates');
@@ -27,6 +39,12 @@ class jomres_currency_conversion
 			$this->rates[ 'GBP' ] = array();
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function this_code_can_be_converted($target_code)
 	{
@@ -39,6 +57,12 @@ class jomres_currency_conversion
 
 		return $valid;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function convert_sum($figure, $base, $foreign)
 	{
@@ -49,6 +73,12 @@ class jomres_currency_conversion
 
 		return $foreign_sum;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_exchange_rate_dropdown($base = '', $alternate_template = false)
 	{
@@ -101,6 +131,12 @@ class jomres_currency_conversion
 
 		return $dropdown;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function check_currency_code_valid($code)
 	{

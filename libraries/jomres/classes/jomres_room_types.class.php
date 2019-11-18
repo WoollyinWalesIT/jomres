@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class jomres_room_types
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->room_types = false;
@@ -34,6 +46,12 @@ class jomres_room_types
 		$this->room_type['ptype_xref'] = array();	// property types that this room type is assigned to
 		$this->room_type['property_uid'] = false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	// Get all room types details
 	public function get_all_room_types()
@@ -88,6 +106,12 @@ class jomres_room_types
 		return true;
 	}
 
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Get room type details by room type id
 	public function get_room_type($room_classes_uid = 0)
@@ -146,6 +170,12 @@ class jomres_room_types
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Save new or existing resource type
 	public function save_room_type()
@@ -196,6 +226,12 @@ class jomres_room_types
 			return false;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//update room type property type xref
 	public function update_roomtype_propertytype_xref_table($roomtype_id = 0, $ptype_xref = array())
@@ -219,6 +255,12 @@ class jomres_room_types
 		}
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Delete resource type
 	public function delete_room_type($ids = array())
@@ -245,6 +287,12 @@ class jomres_room_types
 
 		return $success;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//get room type property type xrefs, all or by room type id
 	public function get_xrefs($id = 0)
@@ -283,6 +331,12 @@ class jomres_room_types
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	function get_all_room_type_images()
 	{
@@ -303,6 +357,12 @@ class jomres_room_types
 
 		return $images;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	// To be used by any backend calling script that edits room types. Not required by admin area scripts
 	function validate_manager_access_to_room_type($room_class_uid = 0 )

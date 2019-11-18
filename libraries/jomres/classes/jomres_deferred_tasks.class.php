@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,9 +17,21 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Exception\RequestException;
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class jomres_deferred_tasks 
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct( ) 
 	{
 		$this->queued_tasks_dir = JOMRES_TEMP_ABSPATH.JRDS.'deferred_tasks'.JRDS;
@@ -32,6 +44,12 @@ class jomres_deferred_tasks
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function handle_message( $payload_source ) {
 		if ( is_file($this->queued_tasks_dir.$payload_source) ) {
@@ -46,6 +64,12 @@ class jomres_deferred_tasks
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function process_trigger( $message ) {
 		$MiniComponents = jomres_singleton_abstract::getInstance( 'mcHandler' );
@@ -72,6 +96,12 @@ class jomres_deferred_tasks
 			$MiniComponents->triggerEvent($message_contents->trigger_number , $complete_message );
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function construct_background_message( $trigger_number = '', $minicomponent = '', $payload = '' )  {
 		if ($trigger_number == '' ) {
@@ -98,7 +128,13 @@ class jomres_deferred_tasks
 			throw new Exception('Error: failed to create '.$this->queued_tasks_dir.$randomstring);
 		}
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	// The dispatcher will receive a trigger, which is a minicomponent trigger *number*, an optional specific event , and the payload string. The string can contain anything required, xml, json, it doesn´t matter as the minicomponent called will use that information as it sees fit.
 	public function dispatch_mesage(){
 		if ( $this->file_identifier == '' ) {

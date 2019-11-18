@@ -1,10 +1,13 @@
 <?php
 /**
+ *
+ *  @package Jomres\Core\REST_API
+ *
  * Allows REST API features to call the same server to facillitate reuse of existing REST API features
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly

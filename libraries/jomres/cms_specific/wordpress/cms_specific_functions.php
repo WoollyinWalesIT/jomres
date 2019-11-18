@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,11 +13,23 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\CMS_Specific
+	 *
+	 */
 
 function jomres_cmsspecific_error_logging_cms_files_to_not_backtrace()
 {
 	return array('application.php', 'mcHandler.class.php', 'site.php', 'cms.php', 'helper.php');
 }
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 function jomres_cmsspecific_getsessionid()
 {
@@ -35,6 +47,12 @@ function jomres_cmsspecific_getsessionid()
 
 	return $session_id;
 }
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 // Date is sent in format YYYY/mm/dd, e.g. 2013/
 function jomres_cmsspecific_output_date($date, $format = false)
@@ -47,21 +65,45 @@ function jomres_cmsspecific_output_date($date, $format = false)
 
 	return $result;
 }
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 function jomres_cmsspecific_getregistrationlink()
 {
 	return jomresURL(get_showtime('live_site').'/wp-login.php?action=register');
 }
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 function jomres_cmsspecific_getlogout_task()
 {
 	return 'wp-login.php?action=logout';
 }
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 function jomres_cmsspecific_getlogin_task()
 {
 	return 'wp-login.php?action=login';
 }
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 function jomres_cmsspecific_areweinadminarea()
 {
@@ -73,6 +115,12 @@ function jomres_cmsspecific_areweinadminarea()
 		return is_admin();
 	}
 }
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 function jomres_cmsspecific_createNewUser( $email_address = '' )
 {
@@ -152,10 +200,22 @@ function jomres_cmsspecific_createNewUser( $email_address = '' )
 
 	return $id;
 }
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 function jomres_cmsspecific_getRegistrationURL()
 {
 }
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 function jomres_cmsspecific_getTextEditor($name, $content, $hiddenField, $width, $height, $col, $row)
 {
@@ -166,6 +226,12 @@ function jomres_cmsspecific_getTextEditor($name, $content, $hiddenField, $width,
 
 	return $contents;
 }
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 function jomres_cmsspecific_getcurrentusers_id()
 {
@@ -178,6 +244,12 @@ function jomres_cmsspecific_getcurrentusers_id()
 
 	return $id;
 }
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 function jomres_cmsspecific_getcurrentusers_username()
 {
@@ -187,6 +259,12 @@ function jomres_cmsspecific_getcurrentusers_username()
 
 	return $username;
 }
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 function jomres_cmsspecific_addheaddata($type, $path = '', $filename = '', $includeVersion = true, $async = false)
 {
@@ -221,6 +299,12 @@ function jomres_cmsspecific_addheaddata($type, $path = '', $filename = '', $incl
 			break;
 		}
 }
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 // set our meta data
 function jomres_cmsspecific_setmetadata($meta, $data)
@@ -244,6 +328,12 @@ function jomres_cmsspecific_setmetadata($meta, $data)
 			break;
 		}
 }
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 // As per the function name
 function jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id($id)
@@ -259,6 +349,12 @@ function jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id($id)
 
 	return $user;
 }
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 // As per the function name
 function jomres_cmsspecific_getCMS_users_frontend_userdetails_by_username($username)
@@ -274,6 +370,12 @@ function jomres_cmsspecific_getCMS_users_frontend_userdetails_by_username($usern
 
 	return $user;
 }
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 // As per the function name
 function jomres_cmsspecific_getCMS_users_admin_userdetails_by_id($id)
@@ -289,6 +391,12 @@ function jomres_cmsspecific_getCMS_users_admin_userdetails_by_id($id)
 
 	return $user;
 }
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 // As per the function name
 function jomres_cmsspecific_getCMS_users_admin_getalladmins_ids()
@@ -304,6 +412,12 @@ function jomres_cmsspecific_getCMS_users_admin_getalladmins_ids()
 
 	return $users;
 }
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 function jomres_cmsspecific_getSearchModuleParameters($moduleName = '')
 {
@@ -327,6 +441,12 @@ function jomres_cmsspecific_getSearchModuleParameters($moduleName = '')
 		}
 	}
 }
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 // Returns an indexed array of the CMS's users
 function jomres_cmsspecific_getCMSUsers($cms_user_id = 0)
@@ -348,22 +468,46 @@ function jomres_cmsspecific_getCMSUsers($cms_user_id = 0)
 
 	return $users;
 }
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 function jomres_cmsspecific_makeSEF_URL($link)
 {
 	//for now we don`t have wp router like in joomla to convert a non permalink to permalink url.
 	return esc_url_raw($link);
 }
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 function jomres_cmsspecific_parseByBots($str)
 {
 	return $str;
 }
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 function jomres_cmsspecific_stringURLSafe($str)
 {
 	return sanitize_title($str);
 }
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 function jomres_cmsspecific_addcustomtag($data)
 {
@@ -381,23 +525,47 @@ function jomres_cmsspecific_addcustomtag($data)
 
 	return true;
 }
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 function jomres_cmsspecific_currenturl()
 {
 	return $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 }
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 function jomres_cmsspecific_patchJoomlaTemplate($force = false)
 {
 	// Don't need this in WP
 	return true;
 }
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 // Get the cms language
 function jomres_cmsspecific_getcmslang()
 {
 	return get_bloginfo('language');
 }
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 // Returns an indexed array of the CMS's users where username matches a searched string
 function jomres_cmsspecific_find_cms_users($search_term = '')
@@ -420,6 +588,12 @@ function jomres_cmsspecific_find_cms_users($search_term = '')
 
 	return $users;
 }
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 function jomres_cmsspecific_getUsername($user_id = 0) {
 	if ($user_id == 0) {
@@ -431,6 +605,12 @@ function jomres_cmsspecific_getUsername($user_id = 0) {
 	
 	return $result;
 }
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 function jomres_cmsspecific_getCmsUserProfileLink($cms_user_id = 0) {
 	if ($cms_user_id == 0) {
@@ -441,12 +621,24 @@ function jomres_cmsspecific_getCmsUserProfileLink($cms_user_id = 0) {
 	
 	return $url;
 }
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 function jomres_cmsspecific_isRtl($cms_user_id = 0) {
 	$isRtl = is_rtl();
 	
 	return $isRtl;
 }
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 function jomres_cmsspecific_user_is_admin() {
 	if ( current_user_can( 'manage_options' ) ) {

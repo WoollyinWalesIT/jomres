@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,11 +16,19 @@ defined('_JOMRES_INITCHECK') or die('');
 
 /**
 *
+ * @package Jomres\Core\Classes
+ *
 * Methods for cleaning up various sets of data, primarily for GDPR compliance
 *
 */
 class jomres_gdpr_optin_consent
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$MiniComponents = jomres_getSingleton('mcHandler');
@@ -33,7 +41,13 @@ class jomres_gdpr_optin_consent
 		$this->optedin = false;
 		
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function user_consents_to_storage()
 	{
 		// I don't like this solution, but Chrome is causing problems with cookies.
@@ -52,15 +66,33 @@ class jomres_gdpr_optin_consent
 		}
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	// 0 as a user id is acceptable
 	public function set_user_id($user_id)
 	{
 		$this->user_id = (int)$user_id;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function save_record()
 	{
+		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+		if ($tmpBookingHandler->ip == "0.0.0.0" ) {
+			header('Set-Cookie: jomres_gdpr_consent_form_processed='.(int)$this->optedin.'; expires=Fri, 31-Dec-9999 23:59:59 GMT');
+			return;
+		}
+		
 		$query = "INSERT INTO #__jomres_gdpr_optins
 			(
 				`date_time`,

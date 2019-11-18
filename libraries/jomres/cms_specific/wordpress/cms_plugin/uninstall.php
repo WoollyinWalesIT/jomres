@@ -6,8 +6,10 @@
  * @link	   https://www.jomres.net
  * @since	  9.9.19
  *
- * @package	Jomres
+ * @package Jomres\Core\CMS_Specific
  */
+
+
 
 // If uninstall not called from WordPress, then exit.
 if ( ! defined( 'ABSPATH' ) || ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {

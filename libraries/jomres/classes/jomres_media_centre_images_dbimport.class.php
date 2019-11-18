@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,12 +13,24 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class jomres_media_centre_images_dbimport
 {	
 	protected $propertys_uids;
 	
 	protected $jomres_media_centre_images;
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function __construct($propertys_uids = array(), $import_site_images = false)
 	{
@@ -30,6 +42,12 @@ class jomres_media_centre_images_dbimport
 		
 		$this->jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//run importer
 	public function run()
@@ -64,7 +82,13 @@ class jomres_media_centre_images_dbimport
 		
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function get_site_images()
 	{
 		$MiniComponents = jomres_getSingleton('mcHandler');
@@ -80,7 +104,13 @@ class jomres_media_centre_images_dbimport
 		
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function get_property_images($p_uids = array())
 	{
 		if (empty($p_uids)) {
@@ -91,7 +121,13 @@ class jomres_media_centre_images_dbimport
 			
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//import site images in batches, one query for each resource type
 	private function import_site_images()
 	{
@@ -169,7 +205,13 @@ class jomres_media_centre_images_dbimport
 		
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function import_property_images($property_uids = array())
 	{
 		if (empty($property_uids)) {

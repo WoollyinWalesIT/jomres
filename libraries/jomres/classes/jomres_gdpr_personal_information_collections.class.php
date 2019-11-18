@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -15,7 +15,7 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 /**
-*
+ * @package Jomres\Core\Classes
 * Methods for collecting and anonymising various sets of data for GDPR compliance
 *
 */
@@ -46,7 +46,13 @@ class jomres_gdpr_personal_information_collections
 		
 		$this->cms_id = (int) $cms_id;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function can_redact_this_cms_user()
 	{
 		if ((int)$this->cms_id == 0 ) {
@@ -287,7 +293,13 @@ class jomres_gdpr_personal_information_collections
 		}
 		return array("guest_data" => $guest_data , "profile_data" => $profile_data);
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function redact_pii()
 	{
 		jr_import('jomres_encryption');

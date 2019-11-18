@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,9 +13,25 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * @package Jomres\Core\Minicomponents
+	 *
+	 * 
+	 */
 
 class j06001listguests_ajax
-{
+{	
+	/**
+	 *
+	 * Constructor
+	 * 
+	 * Main functionality of the Minicomponent 
+	 *
+	 * 
+	 * 
+	 */
+	 
 	public function __construct()
 	{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
@@ -231,6 +247,7 @@ class j06001listguests_ajax
 				$r[] = $g->guests_uid;
 				$r[] = '<a href="'.jomresUrl(JOMRES_SITEPAGE_URL.'&task=show_user_profile&cms_user_id='.$g->mos_userid).'" target="_blank">'.$firstname.'</a>';
 				$r[] = '<a href="'.jomresUrl(JOMRES_SITEPAGE_URL.'&task=show_user_profile&cms_user_id='.$g->mos_userid).'" target="_blank">'.$surname.'</a>';
+				$r[] = $email;
 				$r[] = $house;
 				$r[] = $street;
 				$r[] = $town;
@@ -239,7 +256,6 @@ class j06001listguests_ajax
 				$r[] = $country;
 				$r[] = $tel_landline;
 				$r[] = $tel_mobile;
-				$r[] = $email;
 				$r[] = $vat_number;
 				$r[] = $g->discount.'%';
 				$r[] = $basic_property_details->property_names[$g->property_uid];
@@ -256,7 +272,7 @@ class j06001listguests_ajax
 		echo json_encode($output);
 	}
 
-	// This must be included in every Event/Mini-component
+
 	public function getRetVals()
 	{
 		return null;

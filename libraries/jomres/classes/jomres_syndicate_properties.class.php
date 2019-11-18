@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -15,9 +15,21 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 // This allows Jomres to call it's own API. As more functionality is added to the API then there are times that that will be the choice of connection.
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class jomres_syndicate_properties
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->all_properties = array();
@@ -31,6 +43,12 @@ class jomres_syndicate_properties
 		$this->min_distance_allowed = 1;
 		$this->max_distance_allowed = 20;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_all_properties() {
 		$query = "SELECT id , domain FROM #__jomres_syndication_domains ";
@@ -52,7 +70,13 @@ class jomres_syndicate_properties
 			}
 		}
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function get_approved_properties ()
 	{
 		if (empty($this->all_properties)) {
@@ -70,7 +94,13 @@ class jomres_syndicate_properties
 		}
 		return $this->all_approved_properties;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function get_random_properties( $limit = 5 , $multi_room_property = 1)
 	{
 		if ($multi_room_property == 1 ) {
@@ -95,28 +125,31 @@ class jomres_syndicate_properties
 			}
 
 			$row_str = '';
-			foreach ($this->all_approved_properties[$type] as $key=>$val) {
-				if ( isset($distances[$key]	) ) {
-					$distance = $distances[$key];
-				} else {
-					$latitudeFrom = $this->base_lat_long["lat"];
-					$longitudeFrom = $this->base_lat_long["long"];
-					$latitudeTo = $val->lat;
-					$longitudeTo = $val->long;
-					$distance = $this->codexworldGetDistanceOpt($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo);
+			if (isset($this->all_approved_properties[$type])) {
+				foreach ($this->all_approved_properties[$type] as $key=>$val) {
+					if ( isset($distances[$key]	) ) {
+						$distance = $distances[$key];
+					} else {
+						$latitudeFrom = $this->base_lat_long["lat"];
+						$longitudeFrom = $this->base_lat_long["long"];
+						$latitudeTo = $val->lat;
+						$longitudeTo = $val->long;
+						$distance = $this->codexworldGetDistanceOpt($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo);
+						
+						$row_str .= "( ".(int)$this->base_property_id." , ".(int)$key. " , ".(int)$distance." ),";
+					}
 					
-					$row_str .= "( ".(int)$this->base_property_id." , ".(int)$key. " , ".(int)$distance." ),";
-				}
-				
-				
-				if ( $distance > $this->max_distance_allowed || $distance < $this->min_distance_allowed ) {
-					$this->fallback_approved_properties[] = $this->all_approved_properties[$type][$key];
-					unset($this->all_approved_properties[$type][$key]);
-				} else {
-					$val->distance = $distance;
-					$this->all_approved_properties[$type][$key] = $val;
+					
+					if ( $distance > $this->max_distance_allowed || $distance < $this->min_distance_allowed ) {
+						$this->fallback_approved_properties[] = $this->all_approved_properties[$type][$key];
+						unset($this->all_approved_properties[$type][$key]);
+					} else {
+						$val->distance = $distance;
+						$this->all_approved_properties[$type][$key] = $val;
+					}
 				}
 			}
+
 			
 			if ($row_str != '' ) {
 				$row_str = substr($row_str, 0, -1);
@@ -125,30 +158,38 @@ class jomres_syndicate_properties
 			doInsertSql($query);
 			}
 		}
-	
-		$count = count($this->all_approved_properties[$type]);
-		
-		if ($count == 0 && !empty($this->fallback_approved_properties)) {
-			$this->all_approved_properties[$type] = $this->fallback_approved_properties;
-			$count = count($this->all_approved_properties[$type]);
-		} elseif ($count == 0) {
-			return array();
-		}
-		
-		if ( $count <= $limit ) {
-			$limit = $count;
-		}
-		
-		$ids = array_rand( $this->all_approved_properties[$type] , $limit );
 		
 		$result = array();
-		foreach ($ids as $id) {
-			$result[$id] = $this->all_approved_properties[$type][$id];
+		if (isset($this->all_approved_properties[$type])) { 
+			$count = count($this->all_approved_properties[$type]);
+			
+			if ($count == 0 && !empty($this->fallback_approved_properties)) {
+				$this->all_approved_properties[$type] = $this->fallback_approved_properties;
+				$count = count($this->all_approved_properties[$type]);
+			} elseif ($count == 0) {
+				return array();
+			}
+			
+			if ( $count <= $limit ) {
+				$limit = $count;
+			}
+			
+			$ids = array_rand( $this->all_approved_properties[$type] , $limit );
+			
+			
+			foreach ($ids as $id) {
+				$result[$id] = $this->all_approved_properties[$type][$id];
+			}
 		}
-		
 		return $result;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function report_properties_display( $properties )
 	{
 		$report = new stdClass();
@@ -164,13 +205,19 @@ class jomres_syndicate_properties
 		}
 
 		$client = new GuzzleHttp\Client();
-		$response = $client->request('POST', "http://app.jomres.net/jomres/api/syndication/report/", [
+		$response = $client->request('POST', "https://app.jomres.net/jomres/api/syndication/report/", [
 			'form_params' => [
 				'api_url' => urlencode(get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/api/'),
 				'report' => json_encode($report)
 				]
 			]);
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	private function codexworldGetDistanceOpt($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo)
 	{

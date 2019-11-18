@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,9 +13,25 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * @package Jomres\Core\Minicomponents
+	 *
+	 * 
+	 */
 
 class j06005show_invoice_buyer
-{
+{	
+	/**
+	 *
+	 * Constructor
+	 * 
+	 * Main functionality of the Minicomponent 
+	 *
+	 * 
+	 * 
+	 */
+	 
 	public function __construct($componentArgs)
 	{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
@@ -55,8 +71,8 @@ class j06005show_invoice_buyer
 		$output[ 'REGION' ] = find_region_name($sellerData['county']);
 		$output[ 'COUNTRY' ] = getSimpleCountry($sellerData['country']);
 		$output[ 'POSTCODE' ] = $sellerData['postcode'];
-		$output[ 'LANDLINE' ] = $sellerData['tel_landline'];
-		$output[ 'MOBILE' ] = $sellerData['tel_mobile'];
+		$output[ 'LANDLINE' ] =  str_replace("&#38;#43;" , "+" , $sellerData['tel_landline'] );
+		$output[ 'MOBILE' ] = str_replace("&#38;#43;" , "+" , $sellerData['tel_mobile'] );
 		$output[ 'EMAIL' ] = $sellerData['email'];
 		$vat_output[0][ 'VAT_NUMBER' ] = $sellerData['vat_number'];
 
@@ -86,7 +102,7 @@ class j06005show_invoice_buyer
 		$this->retVals = $tmpl->getParsedTemplate();
 	}
 
-	// This must be included in every Event/Mini-component
+
 	public function getRetVals()
 	{
 		return $this->retVals;

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -28,7 +28,7 @@ defined('_JOMRES_INITCHECK') or die('');
 
 /**
  * Creates the Jomres paging object.
- #
+ * @package Jomres\Core\Classes
  *
  * @since 2.6
  */
@@ -62,11 +62,23 @@ class JomresPage
 	{
 		return $this->page == 0 ? true : false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function current_page()
 	{
 		return $this->page + 1;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function total_page()
 	{
@@ -74,11 +86,23 @@ class JomresPage
 	}
 
 	//@param : $show = if you want to show desabled links on navigation links.
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function show_disabled_links($show = true)
 	{
 		$this->show_disabled_links = $show;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//@param : $link_para = if you want to pass any parameter to link
 
@@ -86,17 +110,35 @@ class JomresPage
 	{
 		$this->link_para = $link_para;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function set_page_name($page_name)
 	{
 		$this->page_name = $page_name;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//@param : str= query string you want to pass to links.
 	public function set_qry_string($str = '')
 	{
 		$this->qry_str .= '&'.$str;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function set_scroll_page($scroll_num = 0)
 	{
@@ -106,6 +148,12 @@ class JomresPage
 			$this->scroll_page = $this->total_records;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function set_total_records($total_records)
 	{
@@ -114,6 +162,12 @@ class JomresPage
 		}
 		$this->total_records = $total_records;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function set_records_per_page($records_per_page)
 	{
@@ -133,7 +187,7 @@ class JomresPage
 	 *	$show_scroll_prev_next= boolean(true/false) to show scrolled prev Next Link
 	 *	$show_first_last= boolean(true/false) to show first last Link to move first and last page.
 	 */
-
+	
 	public function set_page_data($page_name, $total_records, $records_per_page, $scroll_num, $show_prev_next, $show_scroll_prev_next, $show_first_last, $limit)
 	{
 		$this->url_ptype_string = '';
@@ -150,6 +204,12 @@ class JomresPage
 		$this->show_first_last = $show_first_last;
 		$this->limit = $limit;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_first_page_nav($user_link = '', $link_para = '')
 	{
@@ -168,6 +228,12 @@ class JomresPage
 
 		return $txt;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_last_page_nav($user_link = '', $link_para = '')
 	{
@@ -186,6 +252,12 @@ class JomresPage
 
 		return $txt;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_next_page_nav($user_link = '', $link_para = '')
 	{
@@ -204,6 +276,12 @@ class JomresPage
 
 		return $txt;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_prev_page_nav($user_link = '', $link_para = '')
 	{
@@ -222,6 +300,12 @@ class JomresPage
 
 		return $txt;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_scroll_prev_page_nav($user_link = '', $link_para = '')
 	{
@@ -240,6 +324,12 @@ class JomresPage
 
 		return $txt;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_scroll_next_page_nav($user_link = '', $link_para = '')
 	{
@@ -258,6 +348,12 @@ class JomresPage
 
 		return $txt;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_number_page_nav($link_para = '')
 	{
@@ -287,6 +383,12 @@ class JomresPage
 
 		return $txt;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_page_nav()
 	{
@@ -306,6 +408,12 @@ class JomresPage
 
 		return $txt;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function writePagesCounterJR()
 	{
@@ -320,6 +428,12 @@ class JomresPage
 
 		return $txt;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function calculate()
 	{
@@ -330,6 +444,12 @@ class JomresPage
 			$this->total_page++;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_limit_query($qry, $start)
 	{
@@ -337,6 +457,12 @@ class JomresPage
 
 		return $qry.' LIMIT '.(int) $this->start.','.(int) $this->records_per_page.'';
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getLimitBox()
 	{

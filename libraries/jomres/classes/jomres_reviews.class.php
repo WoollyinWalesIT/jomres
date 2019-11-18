@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,9 +13,21 @@
 //Originally based on Xoriant Reviews by Manish Khanchandani http://www.phpclasses.org/browse/package/5542.html, it's been hugely rewritten for use in Jomres.
 
 defined('_JOMRES_INITCHECK') or die('');
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class jomres_reviews
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->db_prefix = get_showtime('dbprefix');
@@ -25,6 +37,12 @@ class jomres_reviews
 		$this->property_uid = 0;
 		$this->review_fields_note = "Field 1 Hospitality , Field 2 Location , Field 3 Cleanliness , Field 4 Accommodation , Field 5 Value for money , Field 6 Services ";
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function this_user_can_report()
 	{
@@ -35,6 +53,12 @@ class jomres_reviews
 
 		return false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function this_user_can_review()
 	{
@@ -55,6 +79,12 @@ class jomres_reviews
 
 		return $can_post;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function this_user_can_review_this_property()
 	{
@@ -92,6 +122,12 @@ class jomres_reviews
 
 		return false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function save_confirmation($rating_id, $state)
 	{
@@ -113,6 +149,12 @@ class jomres_reviews
 
 		return false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function save_review($rating, $title, $description, $pros, $cons , $user_name )
 	{
@@ -194,6 +236,12 @@ class jomres_reviews
 
 		return false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function save_review_report($rating_id, $report)
 	{
@@ -210,6 +258,12 @@ class jomres_reviews
 
 		return false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function delete_review($rating_id)
 	{
@@ -246,6 +300,12 @@ class jomres_reviews
 			return false;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function publish_review($rating_id)
 	{
@@ -265,6 +325,12 @@ class jomres_reviews
 			return false;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function unpublish_review($rating_id)
 	{
@@ -284,11 +350,23 @@ class jomres_reviews
 			return false;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	private function processString($text)
 	{
 		return addslashes(stripslashes(trim($text)));
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_all_reviews_index_by_property_uid()
 	{
@@ -317,6 +395,12 @@ class jomres_reviews
 
 		return $reviews;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function validateData($record)
 	{
@@ -329,6 +413,12 @@ class jomres_reviews
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function checkRatingUniqueIp()
 	{
@@ -337,6 +427,12 @@ class jomres_reviews
 
 		return $result;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function checkRatingUniqueUser()
 	{
@@ -345,6 +441,12 @@ class jomres_reviews
 
 		return $result;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function checkConfirmUniqueIp($rating_id)
 	{
@@ -353,6 +455,12 @@ class jomres_reviews
 
 		return $result;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function checkConfirmUniqueUser($rating_id)
 	{
@@ -361,6 +469,12 @@ class jomres_reviews
 
 		return $result;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getRatingsMulti($property_uids)
 	{
@@ -389,6 +503,12 @@ class jomres_reviews
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function showRating($item_id)
 	{
@@ -415,6 +535,12 @@ class jomres_reviews
 
 		return $arr;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function showReviews($item_id, $max = -1, $pageNum = 0)
 	{
@@ -466,6 +592,12 @@ class jomres_reviews
 
 		return $return;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function showConfirm($rating_id)
 	{
@@ -483,6 +615,12 @@ class jomres_reviews
 
 		return $arr;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_property_uid_for_rating_id($rating_id)
 	{
@@ -490,6 +628,12 @@ class jomres_reviews
 
 		return doSelectSql($query, 1);
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_all_reports_index_by_rating_id()
 	{
@@ -509,6 +653,12 @@ class jomres_reviews
 
 		return $reports;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function save_rating_detail($property_uid, $rating_id, $rating_1, $rating_2, $rating_3, $rating_4, $rating_5, $rating_6)
 	{
@@ -525,6 +675,12 @@ class jomres_reviews
 		$query = 'INSERT INTO #__jomres_reviews_ratings_detail SET `item_id`='.(int) $property_uid.',`rating_id` = '.(int) $rating_id.',`detail_rating`='.(int) $rating_6.'';
 		$result = doInsertSql($query, '');
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_review_replies_for_review_ids($review_ids = array() ) 
 	{
@@ -555,7 +711,13 @@ class jomres_reviews
 		}
 		return $replies;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function save_review_reply( $user_id = 0 , $reply = '' , $rating_id = 0  )
 	{
 		if ($user_id == 0 ) {

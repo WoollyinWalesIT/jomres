@@ -3,9 +3,21 @@
 defined('_JEXEC') or die('');
 
 use Joomla\Archive\Archive;
+	
+	/**
+	 *
+	 * @package Jomres\Core\CMS_Specific
+	 *
+	 */
 
 class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687/script-not-running-on-plugin-installation
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	function preflight($type, $parent) 
 	{
 		@ignore_user_abort(true);
@@ -179,7 +191,13 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 			return false;
 		}
 	}
-	 
+	 	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	function install($parent) 
 	{
 		if (!defined('_JOMRES_INITCHECK')) {
@@ -212,7 +230,13 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 			return false;
 		}
 	}
- 
+ 	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	function update($parent) 
 	{
 		if (!defined('_JOMRES_INITCHECK')) {
@@ -245,7 +269,13 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 			return false;
 		}
 	}
- 
+ 	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	function uninstall($parent) 
 	{
 		if (!defined('_JOMRES_INITCHECK')) {
@@ -278,12 +308,24 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 			return false;
 		}
 	}
- 
+ 	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	function postflight($type, $parent) 
 	{
 		//
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	function free_space( $path = JPATH_ROOT ) 
 	{
 		$space = @disk_free_space( $path );

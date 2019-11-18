@@ -1,12 +1,12 @@
 <?php
 /**
- * Confirms that the key pair have rights to query a property
+  *
  *
- * OAuth2 keypairs are associated with CMS users. Whilst keypairs can belong to any registered user any API feature that directly changes or exposes a property should call this class to confirm that the key pair user has rights to perform the action on the specific property. Keypairs need both therefore to have been given access to the Scope in question and additionally it needs to pass this test. 
+ *  @package Jomres\Core\REST_API
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -18,7 +18,9 @@ defined('_JOMRES_INITCHECK') or die('');
 
 /**
 *
-* Validate that a user's key pair can access this property
+ * Confirms that the key pair have rights to query a property
+ *
+ * OAuth2 keypairs are associated with CMS users. Whilst keypairs can belong to any registered user any API feature that directly changes or exposes a property should call this class to confirm that the key pair user has rights to perform the action on the specific property. Keypairs need both therefore to have been given access to the Scope in question and additionally it needs to pass this test.
 *
 */
 class validate_property_access

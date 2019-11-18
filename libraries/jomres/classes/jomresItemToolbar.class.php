@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,14 +13,32 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class jomresItemToolbar
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->newToolbar();
 		$this->bs_version = jomres_bootstrap_version();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function newToolbar()
 	{
@@ -28,6 +46,12 @@ class jomresItemToolbar
 		$this->items = array();
 		$this->secondaryItems = array();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function addItem($icon, $buttonClass, $task, $link, $title, $submitOnClick = false, $otherParams = '')
 	{
@@ -44,6 +68,12 @@ class jomresItemToolbar
 
 		return $this->items;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function addSecondaryItem($icon, $buttonClass, $task, $link, $title, $submitOnClick = false, $otherParams = '')
 	{
@@ -61,6 +91,12 @@ class jomresItemToolbar
 
 		return $this->secondaryItems;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getToolbar()
 	{

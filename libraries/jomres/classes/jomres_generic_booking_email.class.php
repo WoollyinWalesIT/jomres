@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,14 +13,32 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class jomres_generic_booking_email
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->data = array();
 		$this->parsed_email = array();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function gather_data($contract_uid = 0, $property_uid = 0, $print = false)
 	{
@@ -54,13 +72,15 @@ class jomres_generic_booking_email
 		$this->data[$contract_uid]['ROOMS'] = '';
 		if (isset($current_contract_details->contract[$contract_uid]['roomdeets'])) {
 			foreach ($current_contract_details->contract[$contract_uid]['roomdeets'] as $rd) {
-				$this->data[$contract_uid]['ROOMS'] .= $current_property_details->all_room_types[$rd['room_classes_uid']]['room_class_abbv'];
-
-				if ($rd[ 'room_name' ] != '') {
+				if ( isset($current_property_details->all_room_types[$rd['room_classes_uid']]) ) {
+					$this->data[$contract_uid]['ROOMS'] .= $current_property_details->all_room_types[$rd['room_classes_uid']]['room_class_abbv'];
+				}
+				
+				if (isset($rd[ 'room_name' ]) && $rd[ 'room_name' ] != '') {
 					$this->data[$contract_uid]['ROOMS'] .= ' - '.$rd[ 'room_name' ];
 				}
 
-				if ($rd[ 'room_number' ] != '') {
+				if (isset($rd[ 'room_number' ]) &&  $rd[ 'room_number' ] != '') {
 					$this->data[$contract_uid]['ROOMS'] .= ' - '.$rd[ 'room_number' ];
 				}
 
@@ -207,6 +227,12 @@ class jomres_generic_booking_email
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function parse_email($email_type = '', $contract_uid = 0)
 	{

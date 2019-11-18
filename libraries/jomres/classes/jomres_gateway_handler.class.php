@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class jomres_gateway_handler
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		jr_import('jrportal_paypal_settings');
@@ -23,6 +35,12 @@ class jomres_gateway_handler
 		$paypal_settings->get_paypal_settings();
 		$this->paypal_settings = $paypal_settings->paypalConfigOptions;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function callback($internal_call = false, $args = array())
 	{
@@ -273,6 +291,12 @@ class jomres_gateway_handler
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function validate_ipn()
 	{
@@ -329,6 +353,12 @@ class jomres_gateway_handler
 			return false;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function log_transaction($invoice_id, $result, $currency, $amount, $fees, $ref, $notes = '')
 	{

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,6 +13,12 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class jomres_pagination
 {
@@ -42,6 +48,12 @@ class jomres_pagination
 
 		$this->updateNumPages();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	protected function updateNumPages()
 	{
@@ -152,6 +164,12 @@ class jomres_pagination
 	{
 		return str_replace(self::NUM_PLACEHOLDER, $pageNum, $this->urlPattern);
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getNextPage()
 	{
@@ -161,6 +179,12 @@ class jomres_pagination
 
 		return null;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getPrevPage()
 	{
@@ -170,6 +194,12 @@ class jomres_pagination
 
 		return null;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getNextUrl()
 	{
@@ -316,11 +346,23 @@ class jomres_pagination
 
 		return $html;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function __toString()
 	{
 		return $this->toHtml();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getCurrentPageFirstItem()
 	{
@@ -332,6 +374,12 @@ class jomres_pagination
 
 		return $first;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getCurrentPageLastItem()
 	{
@@ -347,6 +395,12 @@ class jomres_pagination
 
 		return $last;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function setPreviousText($text)
 	{
@@ -354,6 +408,12 @@ class jomres_pagination
 
 		return $this;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function setNextText($text)
 	{

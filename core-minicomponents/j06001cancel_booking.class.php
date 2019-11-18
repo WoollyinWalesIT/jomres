@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,9 +13,25 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * @package Jomres\Core\Minicomponents
+	 *
+	 * 
+	 */
 
 class j06001cancel_booking
-{
+{	
+	/**
+	 *
+	 * Constructor
+	 * 
+	 * Main functionality of the Minicomponent 
+	 *
+	 * 
+	 * 
+	 */
+	 
 	public function __construct()
 	{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
@@ -31,23 +47,27 @@ class j06001cancel_booking
 		$jsLink = jomresURL(JOMRES_SITEPAGE_URL."&task=save_cancellation&contract_uid=$contract_uid");
 		$defaultProperty = getDefaultProperty();
 		$today = date('Y/m/d');
-		$query = "SELECT arrival,deposit_paid,contract_total,deposit_required,booked_in,property_uid FROM #__jomres_contracts WHERE contract_uid = '".(int) $contract_uid."' AND property_uid = '".(int) $defaultProperty."'";
-		$arrivalList = doSelectSql($query);
-		if (!empty($arrivalList)) {
-			foreach ($arrivalList as $cancellationFigures) {
-				$arrival = $cancellationFigures->arrival;
-				$deposit_paid = $cancellationFigures->deposit_paid;
-				$contract_total = $cancellationFigures->contract_total;
-				$deposit_required = $cancellationFigures->deposit_required;
-				$booked_in = $cancellationFigures->booked_in;
-				$property_uid = (int) $cancellationFigures->property_uid;
-			}
 
+		$current_contract_details = jomres_singleton_abstract::getInstance('basic_contract_details');
+		$current_contract_details->gather_data($contract_uid, $defaultProperty);
+	
+		if (isset($current_contract_details->contract[$contract_uid])) {
+
+				$arrival = $current_contract_details->contract[$contract_uid]['contractdeets']['arrival'];
+				$deposit_paid = $current_contract_details->contract[$contract_uid]['contractdeets']['deposit_paid'];
+				$contract_total = $current_contract_details->contract[$contract_uid]['contractdeets']['contract_total'];
+				$deposit_required = $current_contract_details->contract[$contract_uid]['contractdeets']['deposit_required'];
+				$booked_in = $current_contract_details->contract[$contract_uid]['contractdeets']['booked_in'];
+				$property_uid = (int) $defaultProperty;
+			
 			if ($booked_in != '1') {
 				$output[ 'PAGETITLE' ] = jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', '_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING');
 				$output[ 'SAVEBUTTON' ] = jr_gettext('_JOMRES_COM_MR_EB_GUEST_CANCELLATION_BUTTON', '_JOMRES_COM_MR_EB_GUEST_CANCELLATION_BUTTON', false);
 				$output[ 'HREASON' ] = jr_gettext('_JOMRES_JR_BLACKBOOKING_REASON', '_JOMRES_JR_BLACKBOOKING_REASON');
-
+				
+				$output[ 'BOOKING_NUMBER' ] = $current_contract_details->contract[$contract_uid]['contractdeets']['tag'];
+				$output[ 'GUEST_NAME' ] = $current_contract_details->contract[$contract_uid]['guestdeets']['firstname']." ".$current_contract_details->contract[$contract_uid]['guestdeets']['surname'];
+				
 				$output[ 'CONTRACT_UID' ] = $contract_uid;
 				$output[ 'HARRIVAL' ] = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL');
 				$output[ 'HCONTRACTTOTAL' ] = jr_gettext('_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL', '_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL');
@@ -113,7 +133,7 @@ class j06001cancel_booking
  #
  * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
  */
-	// This must be included in every Event/Mini-component
+
 	public function getRetVals()
 	{
 		return null;

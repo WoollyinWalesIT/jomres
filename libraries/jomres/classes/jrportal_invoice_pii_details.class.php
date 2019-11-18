@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class jrportal_invoice_pii_details
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->invoice_id = 0;
@@ -23,6 +35,12 @@ class jrportal_invoice_pii_details
 		$this->jomres_encryption = new jomres_encryption();
 	
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	// Retrieve the PII data for this invoice's buyer
 	public function get_pii_buyer()
@@ -66,6 +84,12 @@ class jrportal_invoice_pii_details
 			'vat_number'	=> $this->jomres_encryption->decrypt($user_details['enc_vat_number'])
 		);
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	// Retrieve the PII data for this invoice's buyer
 	public function get_pii_seller()

@@ -9,6 +9,14 @@
  * @copyright	2005-2016 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
+ 
+ 	
+	/**
+	 *
+	 * @package Jomres\Core\CMS_Specific
+	 *
+	 */
+
 defined('_JEXEC') or die('');
 
 if (!defined('_JOMRES_INITCHECK')) {
@@ -24,6 +32,13 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 }
 
 if (!class_exists('JomresRouter')) {
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	class JomresRouter extends JComponentRouterBase
 	{
 		/**
@@ -53,6 +68,13 @@ if (!class_exists('JomresRouter')) {
 		{
 			return $this->JomresParseRoute($segments);
 		}
+
+			
+		/**
+		 * 
+		 *
+		 *
+		 */
 
 		public function JomresBuildRoute(&$query)
 		{
@@ -221,6 +243,12 @@ if (!class_exists('JomresRouter')) {
 		// ******************************************************************************************************************************
 		// ******************************************************************************************************************************
 		// ******************************************************************************************************************************
+	
+		/**
+		 * 
+		 *
+		 *
+		 */
 
 		public function JomresParseRoute($segments)
 		{

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -15,12 +15,20 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 /**
+ * @package Jomres\Core\Classes
+ *
  * Manages version checking, download and extraction of node modules and the vendor directory. 
  */
 
 class core_package_management
 {
 	private static $internal_debugging;
+
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function __construct()
 	{
@@ -40,6 +48,12 @@ class core_package_management
 		
 	}
 	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function check_basics()
 	{
 		if (!isset($_REQUEST['package_manager_install']) || $_REQUEST['package_manager_install'] == '0' ) {
@@ -60,12 +74,23 @@ class core_package_management
 		}
 	}
 
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function force_packages_reinstall()
 	{
 		$this->install_packages();
 	}
 	
-	// 
+	/**
+	 * 
+	 *
+	 *
+	 */
+ 
 	public function check_shas()
 	{
 		foreach ($this->repos as $library => $repo ) {
@@ -79,6 +104,12 @@ class core_package_management
 	}
 	
 	// Install all packages from github
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function install_packages()
 	{
 		foreach ($this->repos as $library => $repo) {
@@ -88,6 +119,12 @@ class core_package_management
 	}
 	
 	// Install an individual package
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function install_package( $library , $repo )
 	{
 		$this->download_location = JOMRES_TEMP_ABSPATH . 'package_libs' . JRDS ;
@@ -109,6 +146,11 @@ class core_package_management
 	
 	
 	// Download the file from the repo
+	/**
+	 * 
+	 *
+	 *
+	 */
 	private function unzip_downloaded_package($library , $local_archive , $destination )
 	{
 		$this->remove_directory($destination);
@@ -128,6 +170,12 @@ class core_package_management
 		
 	}
 	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function retrieve_remote_file_time($library){
 		$url = 'http://updates.jomres4.net/library_packages/jomres_'.$library.'_last_modified.txt';
 		$ch = curl_init();
@@ -149,6 +197,12 @@ class core_package_management
 
 	}
 
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function get_local_sha( $repo )
 	{
 		if (!file_exists($repo['local_abs_path'].'sha.php')) {
@@ -167,6 +221,12 @@ class core_package_management
 	
 	
 	// Save the sha to the relevant directory
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function save_local_sha( $repo , $new_sha = '' )
 	{
 		if ( trim($new_sha) == '' ) {
@@ -178,6 +238,12 @@ class core_package_management
 		file_put_contents($repo['local_abs_path'].'sha.php' , $file_contents );
 	}
 	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function get_latest_sha( $api_location , $library )
 	{
 
@@ -222,6 +288,12 @@ class core_package_management
 		return $buffer;
 	}
 	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function download_package( $library , $remote_archive , $local_archive )
 	{
 		$this->file_modification_flag_file = str_replace ( ".zip" , ".txt" , $local_archive );
@@ -277,6 +349,12 @@ class core_package_management
 		}
 	}
 	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function remove_directory($dirPath) {
 		if ( is_dir($dirPath)) {
 			foreach(new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dirPath, FilesystemIterator::SKIP_DOTS), RecursiveIteratorIterator::CHILD_FIRST) as $path) {
@@ -287,6 +365,12 @@ class core_package_management
 		return;
 	}
 	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function check_repo_local_dirs_exist( $library , $repo )
 	{
 		if (!is_dir($repo['local_abs_path'])) {
@@ -294,6 +378,12 @@ class core_package_management
 		}
 	}
 	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function set_repos()
 	{
 		$this->repos = array();
@@ -314,7 +404,12 @@ class core_package_management
 	
 	// Not using patTemplate here because it's not loaded yet and we need to ensure that this class relies on other libraries as little as possible. Also, not using a basic html file because we don't want bad bots finding the file and calling it and possibly running javascript on the page, bogging the system down, ergo plain old fashioned html here
 	// This installer will download and install the library repos automatically through ajax (eventually)
-	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function show_installer_html()
 	{
 		
@@ -511,22 +606,59 @@ class core_package_management
 }
 
 // Credit https://stackoverflow.com/questions/14056977/function-http-build-url
+	/**
+	 * 
+	 *
+	 *
+	 */
+
  if(!function_exists('http_build_url'))
         {
             // Define constants
-            define('HTTP_URL_REPLACE',          0x0001);    // Replace every part of the first URL when there's one of the second URL
-            define('HTTP_URL_JOIN_PATH',        0x0002);    // Join relative paths
-            define('HTTP_URL_JOIN_QUERY',       0x0004);    // Join query strings
-            define('HTTP_URL_STRIP_USER',       0x0008);    // Strip any user authentication information
-            define('HTTP_URL_STRIP_PASS',       0x0010);    // Strip any password authentication information
-            define('HTTP_URL_STRIP_PORT',       0x0020);    // Strip explicit port numbers
-            define('HTTP_URL_STRIP_PATH',       0x0040);    // Strip complete path
-            define('HTTP_URL_STRIP_QUERY',      0x0080);    // Strip query string
-            define('HTTP_URL_STRIP_FRAGMENT',   0x0100);    // Strip any fragments (#identifier)
+			if (!defined('HTTP_URL_REPLACE') ) {
+				define('HTTP_URL_REPLACE',          0x0001);    // Replace every part of the first URL when there's one of the second URL
+			}
+
+			if (!defined('HTTP_URL_JOIN_PATH') ) {
+				define('HTTP_URL_JOIN_PATH',          0x0002);    // Join relative paths
+			}
+			
+			if (!defined('HTTP_URL_JOIN_QUERY') ) {
+				define('HTTP_URL_JOIN_QUERY',       0x0004);    // Join query strings
+			}
+			
+			if (!defined('HTTP_URL_STRIP_USER') ) {
+				define('HTTP_URL_STRIP_USER',       0x0008);    // Strip any user authentication information
+			}
+			
+			if (!defined('HTTP_URL_STRIP_PASS') ) {
+				define('HTTP_URL_STRIP_PASS',       0x0010);    // Strip any password authentication information
+			}
+			
+			if (!defined('HTTP_URL_STRIP_PORT') ) {
+				define('HTTP_URL_STRIP_PORT',       0x0020);    // Strip explicit port numbers
+			}
+			
+			if (!defined('HTTP_URL_STRIP_PATH') ) {
+				define('HTTP_URL_STRIP_PATH',       0x0040);    // Strip complete path
+			}
+			
+			if (!defined('HTTP_URL_STRIP_QUERY') ) {
+				define('HTTP_URL_STRIP_QUERY',      0x0080);    // Strip query string
+			}
+
+			if (!defined('HTTP_URL_STRIP_FRAGMENT') ) {
+				define('HTTP_URL_STRIP_FRAGMENT',   0x0100);    // Strip any fragments (#identifier)
+			}
 
             // Combination constants
-            define('HTTP_URL_STRIP_AUTH',       HTTP_URL_STRIP_USER | HTTP_URL_STRIP_PASS);
-            define('HTTP_URL_STRIP_ALL',        HTTP_URL_STRIP_AUTH | HTTP_URL_STRIP_PORT | HTTP_URL_STRIP_QUERY | HTTP_URL_STRIP_FRAGMENT);
+			if ( !defined('HTTP_URL_STRIP_AUTH')) {
+				define('HTTP_URL_STRIP_AUTH',       HTTP_URL_STRIP_USER | HTTP_URL_STRIP_PASS);
+			}
+			
+			if ( !defined('HTTP_URL_STRIP_ALL')) {
+				define('HTTP_URL_STRIP_ALL',        HTTP_URL_STRIP_AUTH | HTTP_URL_STRIP_PORT | HTTP_URL_STRIP_QUERY | HTTP_URL_STRIP_FRAGMENT);
+			}
 
             /**
              * HTTP Build URL

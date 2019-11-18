@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class jomres_check_support_key
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct($task = '')
 	{
 		$this->task = $task;
@@ -24,6 +36,12 @@ class jomres_check_support_key
 		$this->shop_status = 'CLOSED';
 		$this->check_license_key();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_shop_status()
 	{
@@ -35,17 +53,35 @@ class jomres_check_support_key
 			$this->shop_status = 'CLOSED';
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function remove_plugin_licenses_file()
 	{
 		unlink(JOMRES_TEMP_ABSPATH.$this->user_plugin_license_temp_file_name);
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_user_plugin_licenses()
 	{
 		include_once JOMRES_TEMP_ABSPATH.$this->user_plugin_license_temp_file_name;
 		$this->plugin_licenses = plugin_licenses();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function check_license_key($force = false , $key = '' )
 	{

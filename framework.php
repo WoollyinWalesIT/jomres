@@ -1,12 +1,9 @@
 <?php
 /**
- * Sets up the Jomres framework.
- *
- * The REST API is does not have to use the Jomres framework, however it saves time to use the framework and API features can optionally request the framework so make use of already existing functions and classes.
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -18,8 +15,10 @@ defined('_JOMRES_INITCHECK') or die('');
 
 /**
 *
-* Setup JOMRES_ROOT_DIRECTORY if it doesn't already exist
+* Sets up the Jomres framework.
 *
+* The REST API is does not have to use the Jomres framework, however it saves time to use the framework and API features can optionally request the framework to make use of already existing functions and classes.
+* 
 */
  
 if (!defined('JOMRES_ROOT_DIRECTORY')) {

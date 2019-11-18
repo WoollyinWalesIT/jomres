@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -14,7 +14,14 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-// The purpose of this function is to allow us to override the booking number programatically.
+// 
+
+/**
+ * @package Jomres\Core\Functions
+ *
+ * The purpose of this function is to allow us to override the booking number programatically.
+ *
+ */
 function set_booking_number()
 {
 	$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');

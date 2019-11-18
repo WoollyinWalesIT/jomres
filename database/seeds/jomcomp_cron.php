@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,7 +13,13 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-
+/**
+ *
+ * @package Jomres\Core\Database
+ *
+ * Seed data for various tables
+ *
+ **/
 $query = "TRUNCATE TABLE `#__jomcomp_cron`;";
 
 if (!doInsertSql($query)) {
@@ -24,7 +30,7 @@ if (!doInsertSql($query)) {
 
 $jomres_cron = jomres_singleton_abstract::getInstance('jomres_cron');
 
-$jomres_cron->addJob('session_files_cleanup', 'D', '');
+$jomres_cron->addJob('session_files_cleanup', 'H', '');
 $jomres_cron->addJob('error_logs_cleanup', 'D', '');
 $jomres_cron->addJob('geolocation_cleanup', 'D', '');
 $jomres_cron->addJob("api_tokens_cleanup","D","");

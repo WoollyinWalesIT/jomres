@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,9 +13,25 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * @package Jomres\Core\Minicomponents
+	 *
+	 * 
+	 */
 
 class j06001add_service_to_bill
-{
+{	
+	/**
+	 *
+	 * Constructor
+	 * 
+	 * Main functionality of the Minicomponent 
+	 *
+	 * 
+	 * 
+	 */
+	 
 	public function __construct()
 	{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
@@ -33,6 +49,14 @@ class j06001add_service_to_bill
 
 		if (!isset($_POST[ 'service_description' ])) {
 			$output[ 'PAGETITLE' ] = jr_gettext('_JOMRES_COM_ADDSERVICE_TITLE', '_JOMRES_COM_ADDSERVICE_TITLE');
+			
+			$defaultProperty = getDefaultProperty();
+			$current_contract_details = jomres_singleton_abstract::getInstance('basic_contract_details');
+			$current_contract_details->gather_data($contract_uid, $defaultProperty);
+			
+			$output[ 'BOOKING_NUMBER' ] = $current_contract_details->contract[$contract_uid]['contractdeets']['tag'];
+			$output[ 'GUEST_NAME' ] = $current_contract_details->contract[$contract_uid]['guestdeets']['firstname']." ".$current_contract_details->contract[$contract_uid]['guestdeets']['surname'];
+		
 			$output[ 'HSERVICEDESCRIPTION' ] = jr_gettext('_JOMRES_COM_ADDSERVICE_DESCRIPTION', '_JOMRES_COM_ADDSERVICE_DESCRIPTION');
 			$output[ 'HSERVICEVALUE' ] = jr_gettext('_JRPORTAL_INVOICES_LINEITEMS_INIT_PRICE', '_JRPORTAL_INVOICES_LINEITEMS_INIT_PRICE');
 			$output[ 'HTAXRATE' ] = jr_gettext('_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE', '_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE');
@@ -125,7 +149,7 @@ class j06001add_service_to_bill
 		}
 	}
 
-	// This must be included in every Event/Mini-component
+
 	public function getRetVals()
 	{
 		return null;

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -12,6 +12,13 @@
 //#################################################################
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
+/**
+ *
+ * @package Jomres\Core\Languages
+ *
+ * Language files.
+ *
+ **/
 jr_define('_JOMRES_COM_MR_QUICKRESDESC', 'Rýchla rezervácia');
 jr_define('_JOMRES_COM_MR_SHOWPROFILES', 'Zobraziť profily');
 jr_define('_JOMRES_COM_MR_GENERALCONFIGDESC', 'Všeobecné nastavenia');
@@ -2558,7 +2565,7 @@ jr_define('GUEST_PROFILE_REVIEW_GUEST_CONTENT_EXAMPLES', 'Here are some example 
 
 ');
 
-jr_define('GUEST_PROFILE_UNKNOWN', 'Sorry, I can\'t find that user.');
+jr_define('GUEST_PROFILE_UNKNOWN', 'Sorry, I can\'t find that user. Most likely they have not filled in their account details yet.');
 
 jr_define('GUEST_PROFILE_USERSTATUS_GUEST', 'Guest');
 jr_define('GUEST_PROFILE_USERSTATUS_HOST', 'Host');
@@ -2566,3 +2573,13 @@ jr_define('GUEST_PROFILE_USERSTATUS_ADMIN', 'Admin');
 
 jr_define('WORDPRESS_THEME_ADVICE', 'Jomres is built on the Bootstrap framework, so you must use it on a theme based on Bootstrap. We recommend one based on Bootstrap 3. If you do not have access to a theme then we recommend that you use the Jomres Leohtian theme for Wordpress which you can <a href="https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target="_blank">download from here.</a>');
 
+
+jr_define('BOOKING_NOSHOW_MENU', 'Mark as No Show');
+jr_define('BOOKING_NOSHOW_AUDIT_LOG', 'Booking marked as No Show');
+jr_define('BOOKING_NOSHOW_BOOKINGS', 'Bookings');
+jr_define('BOOKING_NOSHOW_NOSHOWS', 'No Shows');
+jr_define('BOOKING_NOSHOW_NETWORK_STATUS', 'JSN statistics for this user');
+
+jr_define('BOOKING_NOSHOW_INFO', 'Booking and No Show information is pulled from the Jomres Syndicate Network at booking time. It is taken from anonymised data and can be used by you to decide if this guest is a risk of not fulfilling the booking. If the system reports that the data is unknown, it is probably because this system is not recognised on the network.');
+
+jr_define('BOOKING_NOSHOW_UNKNOWN', 'Unknown');

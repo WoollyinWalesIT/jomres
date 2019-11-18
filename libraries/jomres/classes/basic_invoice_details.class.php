@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,14 +13,32 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class basic_invoice_details
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->invoice = array();
 		$this->status_note = '0 - unpaid , 1 - paid , 2 - cancelled , 3 - pending ';
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function gatherData($invoice_id = 0)
 	{
@@ -80,6 +98,12 @@ class basic_invoice_details
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Get the invoice details
 	public function get_invoice($invoice_id)
@@ -129,6 +153,12 @@ class basic_invoice_details
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Get the line items for invoice id
 	public function get_line_items($invoice_id)

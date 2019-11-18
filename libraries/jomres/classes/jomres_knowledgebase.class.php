@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class jomres_knowledgebase
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$jomres_language = jomres_singleton_abstract::getInstance('jomres_language');
@@ -25,6 +37,12 @@ class jomres_knowledgebase
 		$this->manager_faq = false;
 		$this->guest_faq = false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	// Get admin faq
 	public function get_admin_faq()
@@ -39,6 +57,12 @@ class jomres_knowledgebase
 
 		return $this->build_faq($this->admin_faq);
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	// Get manager faq
 	public function get_manager_faq()
@@ -53,6 +77,12 @@ class jomres_knowledgebase
 
 		return $this->build_faq($this->manager_faq);
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	// Get guest faq
 	public function get_guest_faq()
@@ -67,6 +97,12 @@ class jomres_knowledgebase
 
 		return $this->build_faq($this->guest_faq);
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function build_faq($faq = array())
 	{

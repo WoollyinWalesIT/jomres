@@ -92,6 +92,13 @@ class Jomres_Admin {
 
 	}
 	
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function jomres_wp_ajax() {
 	
 		trigger_jomres();

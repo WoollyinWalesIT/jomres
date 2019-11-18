@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,14 +13,32 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class jomres_shortcode_parser
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->shortcodes = false;
 		$this->shortcodes_file = JOMRES_TEMP_ABSPATH.'shortcodes.php';
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_shortcodes()
 	{
@@ -32,6 +50,12 @@ class jomres_shortcode_parser
 			throw new Exception('Error, the shortcodes file couldn`t be created.');
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function build_shortcodes($force = false)
 	{

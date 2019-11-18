@@ -1,15 +1,21 @@
 <?php
 /**
+ *
+ *  @package Jomres\Core\REST_API
+ *
  * Sets up the OAuth2 framework so that it can authenticate API key pairs
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  */
 
+
+
+	 
 $tables = array(
     'client_table' => JOMRES_API_DB_DB_PREFIX.'jomres_oauth_clients',
     'access_token_table' => JOMRES_API_DB_DB_PREFIX.'jomres_oauth_access_tokens',
@@ -41,20 +47,55 @@ foreach ($tables as $table) {
 }
 
 // error reporting
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 ini_set('display_errors', 1); error_reporting(E_ALL);
 
 // Autoloading (composer is preferred, but for this example let's just do this)
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 require_once dirname(__FILE__).DIRECTORY_SEPARATOR.'OAuth2'.DIRECTORY_SEPARATOR.'Autoloader.php';
 OAuth2\Autoloader::register();
 
 // $dsn is the Data Source Name for your database, for exmaple "mysql:dbname=my_oauth2_db;host=localhost"
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 $storage = new OAuth2\Storage\Pdo(array('dsn' => $dsn, 'username' => JOMRES_API_DB_USERNAME, 'password' => JOMRES_API_DB_PASSWORD), $tables);
+
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 require dirname(__FILE__).'../../../'.'configuration.php';
 
 if (!isset($jrConfig['api_token_lifetime'])) {
 	$jrConfig['api_token_lifetime'] = 31536000;// 365 days
 }
+
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 // Pass a storage object or array of storage objects to the OAuth2 server class
 $server = new OAuth2\Server($storage , 
@@ -66,8 +107,22 @@ $server = new OAuth2\Server($storage ,
 		)
 	);
 
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 // Add the "Client Credentials" grant type (it is the simplest of the grant types)
 $server->addGrantType(new OAuth2\GrantType\ClientCredentials($storage));
+
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 // Add the "Authorization Code" grant type (this is where the oauth magic happens)
 $server->addGrantType(new OAuth2\GrantType\AuthorizationCode($storage));

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,6 +13,12 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class jomres_config_site_singleton
 {
@@ -21,21 +27,45 @@ class jomres_config_site_singleton
 		$this->config = array();
 		$this->init();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function set($config)
 	{
 		$this->config = $config;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get()
 	{
 		return $this->config;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function set_setting($setting, $value)
 	{
 		$this->config[ $setting ] = $value;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function save_config()
 	{
@@ -58,6 +88,12 @@ $jrConfig = ' .var_export($config_to_save, true).';
 			exit;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function insert_new_setting($k, $v)
 	{
@@ -97,6 +133,12 @@ $jrConfig = ' .var_export($jrConfig, true).';
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function update_setting($k, $v)
 	{
@@ -135,11 +177,23 @@ $jrConfig = ' .var_export($jrConfig, true).';
 			$this->config[$k] = $v;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_setting($setting)
 	{
 		return $this->config[ $setting ];
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	private function init()
 	{

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,9 +13,25 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * @package Jomres\Core\Minicomponents
+	 *
+	 * 
+	 */
 
 class j06000cron_syndication_check_syndicate_domains
-{
+{	
+	/**
+	 *
+	 * Constructor
+	 * 
+	 * Main functionality of the Minicomponent 
+	 *
+	 * 
+	 * 
+	 */
+	 
 	public function __construct()
 	{
 		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
@@ -61,7 +77,7 @@ class j06000cron_syndication_check_syndicate_domains
 						
 
 				}
-				catch (GuzzleHttp\Exception\ClientException $e) {
+				catch (GuzzleHttp\Exception\RequestException $e) {
 					if ((int)$r->approved == 1 ) { // Oops, it's stopped responding. We'll take it offline and check it again in an hour
 						$query = "UPDATE  #__jomres_syndication_domains SET 
 							`approved` = 0 ,
@@ -79,7 +95,7 @@ class j06000cron_syndication_check_syndicate_domains
 		}
 	}
 
-	// This must be included in every Event/Mini-component
+
 	public function getRetVals()
 	{
 		return null;

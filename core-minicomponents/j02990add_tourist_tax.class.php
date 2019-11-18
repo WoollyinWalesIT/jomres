@@ -4,7 +4,7 @@
 *
 * @author Woollyinwales IT <sales@jomres.net>
 *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,9 +13,25 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.');
 // ################################################################
+	
+	/**
+	 * @package Jomres\Core\Minicomponents
+	 *
+	 * 
+	 */
 
 class j02990add_tourist_tax
-{
+{	
+	/**
+	 *
+	 * Constructor
+	 * 
+	 * Main functionality of the Minicomponent 
+	 *
+	 * 
+	 * 
+	 */
+	 
 	public function __construct()
 	{
 		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
@@ -71,8 +87,11 @@ class j02990add_tourist_tax
 		$bkg->storeBookingDetails();
 	}
 
-	// This must be included in every Event/Mini-component
-	public function getRetVals()
+
+    /**
+     * @return null
+     */
+    public function getRetVals()
 	{
 		return null;
 	}

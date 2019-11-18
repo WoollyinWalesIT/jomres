@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,7 +17,7 @@ defined('_JOMRES_INITCHECK') or die('');
 /**
  * This file is the main code block that manages the booking engine.
  #
- *
+ * @package Jomres\Core\Classes
  #
  * It is not designed to be implemented or called directly. Instead it is called by the j05000bookingobject.class.php file which inherits from this file.
  */
@@ -588,6 +588,12 @@ class dobooking
 		//$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] = $this->departureDate;
 	}
 
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function getAllRoomsData()
 	{
 		$room_type_filter = (int)jomresGetParam($_REQUEST, 'room_type_filter', 0);
@@ -637,6 +643,12 @@ class dobooking
 		}
 	}
 
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function getAllTariffsData()
 	{
 		$query = "SELECT `rates_uid`,`rate_title`,`rate_description`,`validfrom`,`validto`,
@@ -681,6 +693,12 @@ class dobooking
 		}
 	}
 
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function getAllRoomFeatureDetails()
 	{
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
@@ -693,6 +711,12 @@ class dobooking
 			$this->allFeatureDetails[ $f['room_features_uid'] ] = array('room_features_uid' => $f['room_features_uid'], 'feature_description' => $f['feature_description'], 'image' => $f['image'], 'tooltip' => $f['tooltip']);
 		}
 	}
+
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getAllRoomClasses()
 	{
@@ -730,6 +754,12 @@ class dobooking
 		}
 	}
 
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function getAllRoomFeatures()
 	{
 		$basic_room_details = jomres_singleton_abstract::getInstance('basic_room_details');
@@ -741,6 +771,12 @@ class dobooking
 			}
 		}
 	}
+
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getAllBookings()
 	{
@@ -762,6 +798,12 @@ class dobooking
 		}
 	}
 
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function get_all_tariff_types()
 	{
 		$mrConfig = $this->mrConfig;
@@ -779,12 +821,24 @@ class dobooking
 		}
 	}
 
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function getAllTaxRates()
 	{
 		$jrportal_taxrate = jomres_singleton_abstract::getInstance('jrportal_taxrate');
 		$this->taxrates = $jrportal_taxrate->taxrates;
 		//$this->setErrorLog( "Init found tax rates " . serialize( $this->taxrates ) );
 	}
+
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function sanitise_for_eval($string)
 	{
@@ -793,6 +847,12 @@ class dobooking
 		$string = trim(preg_replace('/\s+/', ' ', $string)); // strips carriage returns from strings generated through templates
 		return $string;
 	}
+
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_fullybooked_dates()
 	{
@@ -953,10 +1013,22 @@ class dobooking
 		return $this->error;
 	}
 
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function writeToLogfile($text)
 	{
 		logging::log_message($text, 'Dobooking', 'DEBUG');
 	}
+
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getGrowlMessages()
 	{
@@ -986,6 +1058,12 @@ class dobooking
 		}
 	}
 
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function setPopupMessage($message)
 	{
 		$msg = $this->sanitiseOutput($message);
@@ -994,6 +1072,12 @@ class dobooking
 		}
 	}
 
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function setGuestPopupMessage($message)
 	{
 		$msg = $this->sanitiseOutput($message);
@@ -1001,6 +1085,12 @@ class dobooking
 			$this->growlmessages[ 'guest_feedback' ] = $msg;
 		}
 	}
+
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function echo_populate_div($message)
 	{
@@ -1224,6 +1314,12 @@ class dobooking
 
 		return array('core_extras' => $extras_template);
 	}
+
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function makeThirdPartyExtras($selectedProperty)
 	{
@@ -1570,6 +1666,12 @@ class dobooking
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function initRoomFeatureFiltering()
 	{
 		$this->room_feature_checkboxes = array();
@@ -1587,6 +1689,12 @@ class dobooking
 		}
 	}
 
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function toggleRoomFilterId($id)
 	{
 		if (isset($this->room_feature_filter[ $id ])) {
@@ -1595,6 +1703,12 @@ class dobooking
 			$this->room_feature_filter[ $id ] = $id;
 		}
 	}
+
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function check_room_has_selected_room_feature($room_id)
 	{
@@ -1621,6 +1735,12 @@ class dobooking
 		}
 	}
 
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function room_acceptable_according_to_room_filter($room_id)
 	{
 		if (empty($this->room_feature_filter)) { // If the all room features array is empty, we'll return true as we don't want to do any filtering because no feature's been selected yet
@@ -1632,6 +1752,12 @@ class dobooking
 
 		return $this->check_room_has_selected_room_feature($room_id);
 	}
+
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function checkRoomFeatureOption($freeRoomsArray)
 	{
@@ -1652,6 +1778,12 @@ class dobooking
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function saveOverride($values)
 	{
@@ -1741,6 +1873,12 @@ class dobooking
 
 		return count($result);
 	}
+
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getNumberOfGuestsSelected()
 	{
@@ -2031,6 +2169,12 @@ class dobooking
 	}
 
 	// New for v4.3.3
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function add_third_party_extra($plugin, $id = 0, $description = 'No description', $total_value = 0.00, $tax_code_id = 0)
 	{
 		//if ($id == 0) return false;
@@ -2042,12 +2186,24 @@ class dobooking
 		}
 	}
 
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function remove_third_party_extra($plugin, $id)
 	{
 		if (isset($this->third_party_extras[ $plugin ][ $id ])) {
 			unset($this->third_party_extras[ $plugin ][ $id ]);
 		}
 	}
+
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function reset_choices_for_plugin($plugin)
 	{
@@ -2063,6 +2219,12 @@ class dobooking
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function add_additiional_line_item($context = 'UNKNOWN', $id = 0, $description = 'No description', $total_value = 0.00, $tax_code_id = 0)
 	{
@@ -2372,9 +2534,9 @@ class dobooking
 		return $departureDate;
 	}
 
-/**
- * Ensure that the departure date is not < tomorrows date, or less than arrival date.
- */
+	/**
+	 * Ensure that the departure date is not < tomorrows date, or less than arrival date.
+	 */
 	public function checkDepartureDate($departureDate)
 	{
 		$tmpBookingHandler = jomres_getSingleton('jomres_temp_booking_handler');
@@ -2675,6 +2837,12 @@ class dobooking
 		return $this->stayDays;
 	}
 
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function get_part_of_stay_period($staydays)
 	{
 		switch ($this->cfg_booking_form_daily_weekly_monthly) {
@@ -2699,6 +2867,12 @@ class dobooking
 
 		return $num_period;
 	}
+
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_rate_per_night_converted_to_output_period($ratepernight)
 	{
@@ -2827,30 +3001,6 @@ class dobooking
 	/**
 	 * Returns an array of fixed period dates from arrival date for the number of times fixedArrivalDatesRecurring configuration option is set.
 	 */
-	/*
-	function calcPeriods($arrivalDate)
-		{
-		global $mrConfig;
-		$increment = 7;
-		$stmt = 'days';
-		$t=0;
-		$date_elements  = explode("/",$arrivalDate);
-		$unixCurrentDate= mktime(0,0,0,$date_elements[1],$date_elements[2]-($this->cfg_fixedArrivalDatesRecurring*$increment),$date_elements[0]); //
-		$arrivalDate = date("Y/m/d",$unixCurrentDate);
-		$number_times_recurring=$this->cfg_fixedArrivalDatesRecurring+$this->cfg_fixedArrivalDatesRecurring;
-		$datesArray=array();
-		//will continue to loop as many times as the recurrence ($number_times_recurring)
-		while ($t<($number_times_recurring*$increment))
-			{
-			//$calendar_startdate and $calendar_enddate are pre-determined and match the Y-m-d format
-			$startdate = date("Y/m/d", strtotime($arrivalDate." +".$t." ".$stmt));
-			//$enddate = date("Y/m/d", strtotime($calendar_enddate." +".$t." ".$stmt));
-			$t = ($t+$increment);
-			$datesArray[]=$startdate;
-			}
-		return $datesArray;
-		}
-	*/
 
 	public function calcPeriods($arrivalDate)
 	{
@@ -3216,19 +3366,6 @@ class dobooking
 		$thisJRUser = jomres_getSingleton('jr_user');
 		$userIsManager = $thisJRUser->userIsManager;
 		$guests_uid = 0;
-		/*
-		$guest_firstname	=	"";
-		$guest_surname		=	"";
-		$guest_house		=	"";
-		$guest_street		=	"";
-		$guest_town			=	"";
-		$guest_region		=	"";
-		$guest_country		=	$mrConfig['defaultcountry'];
-		$guest_postcode	=	"";
-		$guest_tel_landline	=	"";
-		$guest_tel_mobile	=	"";
-		$guest_email		=	"";
-		*/
 
 		$guest_firstname = $this->firstname;
 		$guest_surname = $this->surname;
@@ -3368,6 +3505,12 @@ class dobooking
 		return $dropDownList;
 	}
 
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private static function sort_alphabetic( $a , $b ) {
 		if ($a['surname'] > $b['surname']) {
 			return 1;
@@ -3448,6 +3591,12 @@ class dobooking
 
 	// Not currently used. Developed when the assignation code was first developed however it wasn't needed. I'll leave it in situ for now in case we decide to add the option for guests to choose the numbers in each room, however this is unlikely to be developed at this time.
 	// Add/remove a number of guests to the $this->room_allocations variable, we'll use it later to calculate the single person supplements.
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function updateRoomAllocation($add_allocation = true, $rm_id = 0, $num_of_guests = 0)
 	{
 		if ($rm_id == 0) {
@@ -3469,6 +3618,12 @@ class dobooking
 	}
 
 	// Sanity check the $this->room_allocations varaible. We'll count the number of guests and ensure that each selected room has at least one guest
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function checkAllGuestsAllocatedToRooms()
 	{
 		$this->room_allocations = array();
@@ -4091,6 +4246,12 @@ class dobooking
 		return $stayDaysValid;
 	}
 
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function filter_tariffs_on_dates($tariff, $unixArrivalDate, $unixDepartureDate)
 	{
 		$mrConfig = $this->mrConfig;
@@ -4120,6 +4281,12 @@ class dobooking
 
 		return $datesValid;
 	}
+
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function filter_tariffs_alreadyselectedcheck($tariff)
 	{
@@ -4152,6 +4319,12 @@ class dobooking
 		return $roomsAlreadySelectedTests;
 	}
 
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function filter_tariffs_peoplenumbercheck($tariff)
 	{
 		$numberPeopleValid = false;
@@ -4173,6 +4346,12 @@ class dobooking
 
 		return $numberPeopleValid;
 	}
+
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function filter_tariffs_dowcheck($tariff)
 	{
@@ -4215,94 +4394,12 @@ class dobooking
 		return $dowCheck;
 	}
 
-	/*
-	function check_other_dates_for_this_tariff_type_valid($tariff_uid,$date_range_array)  // We're looking for min intervals for all tariffs where the tariff has already been seen to probably match. Now let's look at the rest of the tariffs over this period and see if the price is still valid. If the price is == 0 then it's not a match.
-		{
-		$tariff_valid = true;
-		$mrConfig = $this->mrConfig;
-		//$this->setErrorLog("check_other_dates_for_this_tariff_type_valid::Stay days ".$this->stayDays);
-		if ( $mrConfig['tariffmode']=="2")
-			{
-			// Now, we need to find all the other tariff ids that are appropriate for this tariff's type
-			if (isset($this->all_tariff_id_to_tariff_type_xref[$tariff_uid] ) ) // Something has gone hideously wrong if this is false, the tariff doesn't have any types associated with it. All we can do is return false
-				{
-				$tariff_type_id = $this->all_tariff_id_to_tariff_type_xref[$tariff_uid][0];
-				// Now we can get all of the tariff uids that are associated with this tariff type
-				$all_associated_tariff_ids = $this->all_tariff_types_to_tariff_id_xref[$tariff_type_id];
-				// First we'll quickly run through the prices associated with this type. If none of the prices are 0 then we'll forgo any further checking
-				$tariff_includes_zero_prices = false;
-				foreach ($all_associated_tariff_ids as $t_id)
-					{
-					$tariff_info = $this->allPropertyTariffs[$t_id];
-					if ( (float)$tariff_info['roomrateperday'] == 0.00 )
-						$tariff_includes_zero_prices = true;
-					}
+	/**
+	 * 
+	 *
+	 *
+	 */
 
-				if ($tariff_includes_zero_prices)  // Now we'll go through each tariff associated with this type. We'll check the dates of the tariff, if a date falls within the arrival and departure dates we'll look to see if the price at that time is zero. If it is, then the tariff type as a group isn't a match. We'll pass back false to the getTariffsForRoomUids method in that case.
-					{
-					// $date_elements  = explode("/",$this->arrivalDate);
-					// $unixArrivalDate= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
-					// $date_elements  = explode("/",$this->departureDate);
-					// $unixDepartureDate= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
-
-					$unixArrivalDate = $this->getMkTime($this->arrivalDate);
-					$unixDepartureDate = $this->getMkTime($this->departureDate);
-
-					foreach ($all_associated_tariff_ids as $t_id)
-						{
-						$tariff_info = $this->allPropertyTariffs[$t_id];
-						// $date_elements  = explode("/",$tariff_info['validfrom'] );
-						// $unixValidFromDate= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
-						// $date_elements  = explode("/",$tariff_info['validto']);
-						// $unixValidToDate= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
-
-						$unixValidFromDate = $this->getMkTime($tariff_info['validfrom']);
-						$unixValidToDate = $this->getMkTime($tariff_info['validto']);
-
-						// Test scenario : tariff 1 all days 100 except 10-20 dec which are 0 tariff 2 all days are 100 except 10 - 20 dec which are 150
-
-						// arr 9/12 dep 12/12
-						if ( $unixArrivalDate <= $unixValidFromDate && $unixArrivalDate <= $unixValidToDate && $unixDepartureDate > $unixValidFromDate && $unixDepartureDate <= $unixValidToDate )
-							{
-							if ( (float)$tariff_info['roomrateperday'] == 0.00 )
-								{
-								$this->setErrorLog("check_other_dates_for_this_tariff_type_valid::Filtering out tariff, test 1. ".$this->cfg_minimuminterval);
-								$tariff_valid=false;
-								}
-							}
-
-						// arr
-						if ($unixArrivalDate>= $unixValidFromDate && $unixArrivalDate <= $unixValidToDate )
-							{
-							if ( (float)$tariff_info['roomrateperday'] == 0.00 )
-								{
-								$tariff_valid=false;
-								}
-							}
-
-						//
-						if ($unixArrivalDate <= $unixValidFromDate && $unixDepartureDate >= $unixValidToDate )
-							{
-							if ( (float)$tariff_info['roomrateperday'] == 0.00 )
-								{
-								$tariff_valid=false;
-								}
-							}
-
-						}
-					}
-				unset($all_associated_tariff_ids);
-				}
-			else
-				$tariff_valid = false;
-			}
-		else // We're using the Advanced tariff mode, therefore this question does not apply
-			$tariff_valid = true;
-
-		return $tariff_valid;
-		}
-
- */
 	public function build_tariff_to_date_map()
 	{
 		$this->simple_tariff_to_date_map = array();
@@ -4351,7 +4448,13 @@ class dobooking
 		}
 	}
 
-	// This function is slower than the one that uses dateInterval. I will leave it in-situ as a reminder not to use it :)
+	// 
+	/**
+	 * 
+	 * This function is slower than the one that uses dateInterval. I will leave it in-situ as a reminder not to use it :)
+	 *
+	 */
+
 	/*
 	function get_periods($start,$end)
 		{
@@ -4365,6 +4468,12 @@ class dobooking
 		return $dates;
 		}
 	*/
+
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_periods($start, $end, $interval = null)
 	{
@@ -4508,6 +4617,12 @@ class dobooking
 
 		return $return_output;
 	}
+
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function generate_room_type_dropdowns()
 	{
@@ -4782,6 +4897,12 @@ class dobooking
 		return array_merge($roomStuff, $tariffStuff);
 	}
 
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function calculateRoomPriceIncVat($price)
 	{
 		if ($this->accommodation_tax_rate > 0) {
@@ -5003,6 +5124,12 @@ class dobooking
 
 		return $rpn;
 	}
+
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function makeTariffHeaders()
 	{
@@ -5238,6 +5365,12 @@ class dobooking
 			$this->ok_to_book = true;
 		}
 	}
+
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function outputZeroPrices()
 	{
@@ -5651,6 +5784,12 @@ class dobooking
 
 		return true;
 	}
+
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function coupon_booking_date_ranges($first, $last, $step = '+1 day', $format = 'Y-m-d')
 	{
@@ -6172,8 +6311,11 @@ class dobooking
 	}
 
 	/**
-	 #
+	 * 
+	 *
+	 *
 	 */
+
 	public function makeRatePerNight()
 	{
 		if (!get_showtime('include_room_booking_functionality')) {
@@ -6299,6 +6441,12 @@ class dobooking
 		return true;
 	}
 
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function outputDiscounts()
 	{
 		$tmpBookingHandler = jomres_getSingleton('jomres_temp_booking_handler');
@@ -6337,6 +6485,12 @@ class dobooking
 		$this->echo_populate_div('; populateDiv("discount","'.$discountOutput.'")');
 	}
 
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function getPercentageOfRoomsBookedForRoomtype($roomtypeid)
 	{
 		$this->setErrorLog('getPercentageOfRoomsBookedForRoomtype:: Started');
@@ -6364,6 +6518,12 @@ class dobooking
 		//$this->setErrorLog("<b>getPercentageOfRoomsBookedForRoomtype:: totalRoomsOfType: $totalRoomsOfType totalRoomsOfTypeBooked: $totalRoomsOfTypeBooked percentageBooked: $percentageBooked</b>");
 		return $percentageBooked;
 	}
+
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getDiscountedRoomrate($roomrate, $percentagebooked)
 	{
@@ -6626,6 +6786,12 @@ class dobooking
 		return true;
 	}
 
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function get_nett_price($price, $tax_rate)
 	{
 		$mrConfig = $this->mrConfig;
@@ -6637,12 +6803,24 @@ class dobooking
 		return $price;
 	}
 
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function get_gross_price($price, $tax_rate)
 	{
 		$tax = ($price / 100) * $tax_rate;
 
 		return $price + $tax;
 	}
+
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function calcLastMinuteDiscount()
 	{
@@ -6673,6 +6851,12 @@ class dobooking
 			$tmpBookingHandler->updateBookingField('lastminutediscount', jr_gettext('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', '_JOMCOMP_WISEPRICE_NOTDISCOUNTED', false));
 		}
 	}
+
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function generateBilling()
 	{
@@ -6721,12 +6905,24 @@ class dobooking
 		$this->setErrorLog('generateBilling:: Ending');
 	}
 
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function addBookingNote($context, $note)
 	{
 		$this->booking_notes[ $context ] = $note;
 	}
 
 	private static $mktimes = array();
+
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getMkTime($date)
 	{
@@ -6747,6 +6943,12 @@ class dobooking
 
 	// If the system is not configured to create new users then a new Joomla user isn't created anyway, in which case Jomres will simply return that it's ok to use the email address
 	// Managers can re-use email addresses
+
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function email_usage_check($email)
 	{

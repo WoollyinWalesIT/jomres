@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,9 +13,25 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * @package Jomres\Core\Minicomponents
+	 *
+	 * 
+	 */
 
 class j06000cron_syndication_get_syndicate_properties
-{
+{	
+	/**
+	 *
+	 * Constructor
+	 * 
+	 * Main functionality of the Minicomponent 
+	 *
+	 * 
+	 * 
+	 */
+	 
 	public function __construct()
 	{
 		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
@@ -36,6 +52,10 @@ class j06000cron_syndication_get_syndicate_properties
 			}
 		}
 
+		
+		$local_domain = parse_url(get_showtime('live_site'));
+		$local_hostname = $local_domain['host'];
+		
 		$now = date("Y-m-d H:i:s");
 		
 		if (!empty($result)) {
@@ -66,69 +86,70 @@ class j06000cron_syndication_get_syndicate_properties
 						WHERE id = ".(int)$syndication_domain_id;
 					doInsertSql($query);
 					} else {
-						
-						logging::log_message("Checking for new properties for ".$domain['host'], 'Syndication', 'DEBUG');
-						
-						$body				= json_decode((string)$response->getBody());
+						if ( $local_hostname != $domain['host'] ) {
+							logging::log_message("Checking for new properties for ".$domain['host'], 'Syndication', 'DEBUG');
+							
+							$body				= json_decode((string)$response->getBody());
 
-						if (!empty($body->data->properties[0]->properties)){
-							$row_str = '';
-							foreach ($body->data->properties[0]->properties as $property) {
-								if (!in_array( $property->propertys_uid, $local_domain_properties)) {
+							if (!empty($body->data->properties[0]->properties)){
+								$row_str = '';
+								foreach ($body->data->properties[0]->properties as $property) {
+									if (!in_array( $property->propertys_uid, $local_domain_properties)) {
 
-									$image_exists =true;
+										$image_exists =true;
 
-									$bang = explode("/",$property->thumbnail_location);
-									if ( 
-										isset($property->propertys_uid) && 
-										isset($property->view_property_url) &&
-										isset($property->booking_form_url) &&
-										isset($property->thumbnail_location) &&
-										parse_url($property->view_property_url) && 
-										parse_url($property->booking_form_url) && 
-										end($bang) != 'noimage_small.gif' && 
-										$image_exists
-										)  {
-											$row_str .= "
-												('".$syndication_domain_id."',
-												'".$property->view_property_url."',
-												'".$property->booking_form_url."',
-												".(int)$property->propertys_uid.",
-												'".filter_var($property->name, FILTER_SANITIZE_STRING)."',
-												".(int)$property->multi_room_property.",
-												'".filter_var($property->lat, FILTER_SANITIZE_STRING)."',
-												'".filter_var($property->long, FILTER_SANITIZE_STRING)."',
-												'".filter_var($property->metadescription, FILTER_SANITIZE_STRING)."',
-												'".filter_var($property->thumbnail_location, FILTER_SANITIZE_STRING)."',
-												'".$now."',
-												'".$now."',
-												'1'),";
+										$bang = explode("/",$property->thumbnail_location);
+										if ( 
+											isset($property->propertys_uid) && 
+											isset($property->view_property_url) &&
+											isset($property->booking_form_url) &&
+											isset($property->thumbnail_location) &&
+											parse_url($property->view_property_url) && 
+											parse_url($property->booking_form_url) && 
+											end($bang) != 'noimage_small.gif' && 
+											$image_exists
+											)  {
+												$row_str .= "
+													('".$syndication_domain_id."',
+													'".$property->view_property_url."',
+													'".$property->booking_form_url."',
+													".(int)$property->propertys_uid.",
+													'".filter_var($property->name, FILTER_SANITIZE_STRING)."',
+													".(int)$property->multi_room_property.",
+													'".filter_var($property->lat, FILTER_SANITIZE_STRING)."',
+													'".filter_var($property->long, FILTER_SANITIZE_STRING)."',
+													'".filter_var($property->metadescription, FILTER_SANITIZE_STRING)."',
+													'".filter_var($property->thumbnail_location, FILTER_SANITIZE_STRING)."',
+													'".$now."',
+													'".$now."',
+													'1'),";
+										}
 									}
 								}
-							}
-							if ($row_str != '' ) {
-								$row_str = substr($row_str, 0, -1);
-								
-								$query = "INSERT INTO #__jomres_syndication_properties (
-									`syndication_domain_id`,
-									`view_property_url`,
-									`booking_form_url`,
-									`propertys_uid`,
-									`name`,
-									`multi_room_property`,
-									`lat`,
-									`long`,
-									`metadescription`,
-									`thumbnail_location`,
-									`date_added`,
-									`last_checked`,
-									`approved`
-								)
-								VALUES ".$row_str;
+								if ($row_str != '' ) {
+									$row_str = substr($row_str, 0, -1);
+									
+									$query = "INSERT INTO #__jomres_syndication_properties (
+										`syndication_domain_id`,
+										`view_property_url`,
+										`booking_form_url`,
+										`propertys_uid`,
+										`name`,
+										`multi_room_property`,
+										`lat`,
+										`long`,
+										`metadescription`,
+										`thumbnail_location`,
+										`date_added`,
+										`last_checked`,
+										`approved`
+									)
+									VALUES ".$row_str;
 
-								doInsertSql($query);
-							} else {
-								logging::log_message("No new properties found for domain ".$domain['host'], 'Syndication', 'INFO');
+									doInsertSql($query);
+								} else {
+									logging::log_message("No new properties found for domain ".$domain['host'], 'Syndication', 'DEBUG');
+								}
 							}
 						}
 					}
@@ -154,7 +175,7 @@ class j06000cron_syndication_get_syndicate_properties
 						}
 						doInsertSql($query);
 
-						logging::log_message("Tried to get properties information for domain ".$domain['host']." but received 404 message so either the server is offline, or it cannot response to core api requests. Blocking from future requests until recheck time ", 'Syndication', 'INFO');
+						logging::log_message("Tried to get properties information for domain ".$domain['host']." but received 404 message so either the server is offline, or it cannot response to core api requests. Blocking from future requests until recheck time ", 'Syndication', 'DEBUG');
 
 				}
 			}
@@ -170,7 +191,7 @@ class j06000cron_syndication_get_syndicate_properties
 		}
 		else return false;
 	}
-	// This must be included in every Event/Mini-component
+
 	public function getRetVals()
 	{
 		return null;

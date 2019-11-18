@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class jomres_suspensions
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->cms_user_id = 0;				   // This is the userid in #__jomres_managers. It corresponds with the CMS user's id
@@ -30,6 +42,12 @@ class jomres_suspensions
 													'edit_booking',
 													);  // blocked tasks for suspended managers
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//gets the userid(cms user id) and sets the id (manager_uid)
 	public function set_manager_id($cms_user_id = 0)
@@ -48,6 +66,12 @@ class jomres_suspensions
 			$this->accesslevel = $jomres_users->accesslevel;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//suspend the user
 	public function suspend_manager()
@@ -63,6 +87,12 @@ class jomres_suspensions
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//unsuspend the user
 	public function unsuspend_manager()
@@ -78,6 +108,12 @@ class jomres_suspensions
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//unpublish the suspended user properties
 	public function unpublish_managers_properties()
@@ -105,6 +141,12 @@ class jomres_suspensions
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//publish the unsuspended user properties
 	//maybe this shouldn`t be done automatically, as this will also publish whatever test properties the manager may have..
@@ -133,6 +175,12 @@ class jomres_suspensions
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//send email to user that his account has been suspended
 	public function email_suspension_to_manager()
@@ -155,6 +203,12 @@ class jomres_suspensions
 
 		sendAdminEmail($subject, $body);
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//send email to user that his account has been unsuspended
 	public function email_unsuspension_to_manager()
@@ -177,6 +231,12 @@ class jomres_suspensions
 
 		sendAdminEmail($subject, $body);
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//checks if this suspended user has has the rights to access this task
 	public function suspended_manager_denied_task($task = '')

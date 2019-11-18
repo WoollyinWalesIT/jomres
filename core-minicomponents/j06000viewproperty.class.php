@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,9 +13,25 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * @package Jomres\Core\Minicomponents
+	 *
+	 * 
+	 */
 
 class j06000viewproperty
-{
+{	
+	/**
+	 *
+	 * Constructor
+	 * 
+	 * Main functionality of the Minicomponent 
+	 *
+	 * 
+	 * 
+	 */
+	 
 	public function __construct($componentArgs)
 	{
 		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
@@ -270,12 +286,15 @@ class j06000viewproperty
 				'TABCONTENT_01_MAIN_DETAILS',
 				'TABCONTENT_01_MORE_INFO',
 				'TABCONTENT_02_BOOKINGFORM',
-				'TABCONTENT_02_MAP',
 				'TABCONTENT_03_REVIEWS',
 				'TABCONTENT_06_EXTRAS',
 				);
 		}
 
+		if (trim($jrConfig['google_maps_api_key']) != '') {
+			$standalone_elements[] = 'TABCONTENT_02_MAP';
+		}
+		
 		//generate the tabs
 		$tmpl = new patTemplate();
 		
@@ -311,6 +330,14 @@ class j06000viewproperty
 							$output[ strtoupper($key.'_tab_content') ] = $content;
 						}
 					} else {
+						if (trim($jrConfig['google_maps_api_key']) != '' && strtoupper($key) == 'TABCONTENT_02_MAP' ) {
+							$map_output = array();
+							$map_output [0][ strtoupper($key).'_CONTENT' ] = $tabs[ 'TAB_CONTENT' ];
+							$map_output [0][ strtoupper($key).'_TITLE' ] = $tabs[ 'TAB_TITLE' ];
+							$map_output [0][ strtoupper($key).'_ANCHOR' ] = $tabs[ 'TAB_ANCHOR' ];
+
+							$tmpl->addRows('map_output', $map_output);
+						}
 						if (strtoupper($key) == 'TABCONTENT_06_EXTRAS') {
 							$extras_output [0][ strtoupper($key).'_CONTENT' ] = $tabs[ 'TAB_CONTENT' ];
 							$extras_output [0][ strtoupper($key).'_TITLE' ] = $tabs[ 'TAB_TITLE' ];
@@ -428,7 +455,7 @@ class j06000viewproperty
  #
  * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
  */
-	// This must be included in every Event/Mini-component
+
 	public function getRetVals()
 	{
 		return null;

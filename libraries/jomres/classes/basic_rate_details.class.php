@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,15 +13,33 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class basic_rate_details
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->multi_query_rates = array();
 		$this->rates = array();
 		$this->property_uid = 0;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//get rates for property uid
 	//returns an array like $this->rates[roomclass_uid][tarifftype_id][rates_uid][]
@@ -46,6 +64,12 @@ class basic_rate_details
 		
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//get all rates details for multiple property uids array
 	public function get_rates_multi($property_uids = array())

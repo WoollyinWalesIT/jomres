@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class jomres_partner_sanity_check
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct($autorun = true)
 	{
 		if (get_showtime('no_html') == 1 || get_showtime('popup') == 1 || AJAXCALL) {
@@ -24,6 +36,12 @@ class jomres_partner_sanity_check
 		
 		$this->warnings = '';
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function do_sanity_checks()
 	{
@@ -31,6 +49,12 @@ class jomres_partner_sanity_check
 
 		return $this->warnings;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function construct_warning($message_array)
 	{
@@ -55,6 +79,12 @@ class jomres_partner_sanity_check
 
 		return '<p>'.$warning.'</p>';
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function check_details_completed()
 	{

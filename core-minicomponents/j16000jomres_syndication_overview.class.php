@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,9 +13,25 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * @package Jomres\Core\Minicomponents
+	 *
+	 * 
+	 */
 
 class j16000jomres_syndication_overview
-{
+{	
+	/**
+	 *
+	 * Constructor
+	 * 
+	 * Main functionality of the Minicomponent 
+	 *
+	 * 
+	 * 
+	 */
+	 
 	public function __construct($componentArgs)
 	{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
@@ -47,7 +63,7 @@ class j16000jomres_syndication_overview
 
 			$client = new GuzzleHttp\Client();
 
-			$response = $client->request('POST', "http://app.jomres.net/jomres/api/get_sites/confirm/", [
+			$response = $client->request('POST', "https://app.jomres.net/jomres/api/get_sites/confirm/", [
 				'form_params' => [
 					
 					'api_url' => urlencode(get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/api/')
@@ -56,11 +72,11 @@ class j16000jomres_syndication_overview
 
 			$this_installation_listed_on_server = json_decode((string)$response->getBody());
 			
-			$response = $client->request('GET', "http://app.jomres.net/jomres/api/get_sites/");
+			$response = $client->request('GET', "https://app.jomres.net/jomres/api/get_sites/");
 			
 			$total_sites_on_app_server = json_decode((string)$response->getBody());
 			
-			$response = $client->request('GET', "http://app.jomres.net/jomres/api/get_sites/page_view_counts");
+			$response = $client->request('GET', "https://app.jomres.net/jomres/api/get_sites/page_view_counts");
 			
 			$total_page_views_in_network = json_decode((string)$response->getBody());
 			
@@ -102,7 +118,7 @@ class j16000jomres_syndication_overview
 		}
 	}
 
-	// This must be included in every Event/Mini-component
+
 	public function getRetVals()
 	{
 		return $this->retVals;

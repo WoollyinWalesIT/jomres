@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class jomres_regions
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->regions = false;
@@ -32,6 +44,12 @@ class jomres_regions
 		
 		$this->get_used_property_regions();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//get all regions used by properties, no need to get all others at this point
 	public function get_used_property_regions()
@@ -59,7 +77,13 @@ class jomres_regions
 
 		return true;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//get all regions, used only when we need to get all regions from db
 	public function get_all_regions()
 	{
@@ -88,6 +112,12 @@ class jomres_regions
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//this is mostly used when generating the ajax region dropdown
 	public function get_country_regions($country_code = '')
@@ -119,6 +149,12 @@ class jomres_regions
 
 		return $this->country_regions[$country_code];
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//get region details by region id
 	public function get_region($id = 0)
@@ -149,7 +185,13 @@ class jomres_regions
 			return $this->regions[ $id ];
 		}
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//get region name by region id, mostly used when we need to display a region name
 	public function get_region_name($id = 0)
 	{
@@ -171,7 +213,13 @@ class jomres_regions
 			}
 		}
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//get region name by region id, mostly used when we need to display a region name
 	public function get_region_id($region_name = '')
 	{

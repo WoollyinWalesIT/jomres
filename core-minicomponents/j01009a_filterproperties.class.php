@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,9 +13,25 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * @package Jomres\Core\Minicomponents
+	 *
+	 * Called by the 01010 script, given a list of property uids, it will rejig the order of the ids based on the jomsearch_sortby variable that can be passed via a variety of methods (componentArgs, $_REQUEST, user_settings etc)
+	 */
 
 class j01009a_filterproperties
-{
+{	
+	/**
+	 *
+	 * Constructor
+	 * 
+	 * Main functionality of the Minicomponent 
+	 *
+	 * 
+	 * 
+	 */
+	 
 	public function __construct($componentArgs)
 	{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
@@ -50,10 +66,6 @@ class j01009a_filterproperties
 		$tmpBookingHandler->user_settings[ 'jomsearch_sortby' ] = $sortid;
 
 		switch ($sortid) {
-			//########################################################################################
-			case '1':
-				$this->propertys_uids = $propertys_uids;
-				break;
 			//########################################################################################
 			case '2':
 				$query = 'SELECT propertys_uid, property_name FROM #__jomres_propertys WHERE propertys_uid IN ('.jomres_implode($propertys_uids).') ORDER BY property_name';
@@ -156,25 +168,7 @@ class j01009a_filterproperties
 		}
 	}
 
-	public function touch_template_language()
-	{
-		$output = array();
 
-		$output[ ] = jr_gettext('_JOMRES_SORTORDER_DEFAULT', '_JOMRES_SORTORDER_DEFAULT');
-		$output[ ] = jr_gettext('_JOMRES_SORTORDER_PROPERTYNAME', '_JOMRES_SORTORDER_PROPERTYNAME');
-		$output[ ] = jr_gettext('_JOMRES_SORTORDER_PROPERTYREGION', '_JOMRES_SORTORDER_PROPERTYREGION');
-		$output[ ] = jr_gettext('_JOMRES_SORTORDER_PROPERTYTOWN', '_JOMRES_SORTORDER_PROPERTYTOWN');
-		$output[ ] = jr_gettext('_JOMRES_SORTORDER_STARS', '_JOMRES_SORTORDER_STARS');
-		$output[ ] = jr_gettext('_JOMRES_SORTORDER_PRICE_ASC', '_JOMRES_SORTORDER_PRICE_ASC');
-		$output[ ] = jr_gettext('_JOMRES_SORTORDER_PRICE_DESC', '_JOMRES_SORTORDER_PRICE_DESC');
-
-		foreach ($output as $o) {
-			echo $o;
-			echo '<br/>';
-		}
-	}
-
-	// This must be included in every Event/Mini-component
 	public function getRetVals()
 	{
 		return $this->propertys_uids;

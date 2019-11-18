@@ -13,9 +13,25 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 * @package Jomres\Core\Minicomponents
+	 *
+	 * 
+	 */
 
 class j06000show_property_room_type
-{
+{	
+	/**
+	 *
+	 * Constructor
+	 * 
+	 * Main functionality of the Minicomponent 
+	 *
+	 * 
+	 * 
+	 */
+	 
 	public function __construct($componentArgs)
 	{
 		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
@@ -84,7 +100,7 @@ class j06000show_property_room_type
 		$resource_id = $room_classes_uid;
 		
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
-		$jomres_media_centre_images->get_images($defaultProperty);
+		$jomres_media_centre_images->get_images($property_uid);
 		if (isset($jomres_media_centre_images->images [$resource_type] [$resource_id])) {
 			$images = $jomres_media_centre_images->images [$resource_type] [$resource_id];
 			$slideshow = $MiniComponents->specificEvent('01060', 'slideshow', array('images' => $images ));

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,14 +13,32 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class jrportal_guests
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->jomres_encryption = new jomres_encryption();
 		$this->init_guest();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function init_guest()
 	{
@@ -45,7 +63,13 @@ class jrportal_guests
 		$this->blacklisted = 0;
 		$this->partner_id = 0;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//Get guest details by id
 	public function get_guest()
 	{
@@ -113,6 +137,12 @@ class jrportal_guests
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Save new guest
 	public function commit_new_guest()
@@ -124,6 +154,17 @@ class jrportal_guests
 		if ($this->property_uid == 0) {
 			throw new Exception('Error: Property uid not set.');
 		}
+		
+		// A little hacky :s 
+		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+		$original_guestDeets = $tmpBookingHandler->tmpguest;
+		
+		$tmpBookingHandler->tmpguest['firstname'] = $this->firstname;
+		$tmpBookingHandler->tmpguest['surname'] = $this->surname;
+		$tmpBookingHandler->tmpguest['email'] = $this->email;
+		
+		$this->cms_user_id = jomres_cmsspecific_createNewUser($this->email);
+		$tmpBookingHandler->tmpguest = $original_guestDeets;
 		
 		//validate EU VAT info - not currencly needed anywhere but here for future use..
 		if (trim($this->vat_number) != '') {
@@ -184,6 +225,8 @@ class jrportal_guests
 			throw new Exception('Error: New guest insert failed.');
 		}
 		
+
+		
 		$webhook_notification							   = new stdClass();
 		$webhook_notification->webhook_event				= 'guest_saved';
 		$webhook_notification->webhook_event_description	= 'Logs when guest added.';
@@ -195,6 +238,12 @@ class jrportal_guests
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Update existing guest
 	public function commit_update_guest()
@@ -258,6 +307,12 @@ class jrportal_guests
 		
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Delete guest
 	public function delete_guest()
@@ -290,7 +345,13 @@ class jrportal_guests
 		
 		return false;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	//check if a guest can be deleted
 	function guest_can_be_deleted()
 	{
@@ -311,7 +372,13 @@ class jrportal_guests
 		
 		return false;
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	function get_guest_id_by_cms_id($cms_id)
 	{
 		if ($this->property_uid == 0) {

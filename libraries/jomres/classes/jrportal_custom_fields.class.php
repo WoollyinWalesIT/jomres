@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,13 +13,31 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class jrportal_custom_fields
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->init_custom_field();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function init_custom_field()
 	{
@@ -30,6 +48,12 @@ class jrportal_custom_fields
 		$this->required = 0;		// required yes/no 1/0
 		$this->ptype_ids = array();	// property types xref
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Save new custom field
 	public function commit_new_custom_field()
@@ -71,6 +95,12 @@ class jrportal_custom_fields
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Update existing custom field
 	public function commit_update_custom_field()
@@ -101,6 +131,12 @@ class jrportal_custom_fields
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Delete custom field
 	public function delete_custom_field()

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -15,10 +15,17 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 /**
+ * 	 * @package Jomres\Core\Classes
  * Utility class for all HTML drawing classes.
  */
 class jomresHTML
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public static function makeOption($val, $text = '', $value_name = 'value', $text_name = 'text')
 	{
 		if (!defined('SELECTLISTJAVASCRIPT') && using_bootstrap() && !AJAXCALL) {
@@ -56,6 +63,12 @@ class jomresHTML
 
 		return $obj;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public static function selectList($arr, $name, $attribs, $key, $text, $default = null, $use_bootstrap_radios = true)
 	{
@@ -112,6 +125,12 @@ class jomresHTML
 
 		return $output;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public static function integerSelectList($start, $end, $increment, $name, $attribs, $selected, $format = '', $use_bootstrap_radios = true)
 	{

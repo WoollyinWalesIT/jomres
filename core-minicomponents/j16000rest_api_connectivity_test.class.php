@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,9 +13,25 @@
 // ################################################################
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
+	
+	/**
+	 * @package Jomres\Core\Minicomponents
+	 *
+	 * 
+	 */
 
 class j16000rest_api_connectivity_test
-	{
+	{	
+	/**
+	 *
+	 * Constructor
+	 * 
+	 * Main functionality of the Minicomponent 
+	 *
+	 * 
+	 * 
+	 */
+	 
 	function __construct()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
@@ -60,7 +76,7 @@ class j16000rest_api_connectivity_test
 		
 		$client = new GuzzleHttp\Client();
 
-		$response = $client->request('POST', "http://app.jomres.net/jomres/api/get_sites/confirm/", [
+		$response = $client->request('POST', "https://app.jomres.net/jomres/api/get_sites/confirm/", [
 			'form_params' => [
 				
 				'api_url' => urlencode(get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/api/')
@@ -103,7 +119,7 @@ class j16000rest_api_connectivity_test
 		}
 
   
-	// This must be included in every Event/Mini-component
+
 	function getRetVals()
 		{
 		return null;

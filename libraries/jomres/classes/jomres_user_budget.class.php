@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,6 +13,12 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class jomres_user_budget
 {
@@ -26,12 +32,24 @@ class jomres_user_budget
 			$tmpBookingHandler->user_settings[ 'budget' ] = 0;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function set_budget($budget)
 	{
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		$tmpBookingHandler->user_settings[ 'budget' ] = (int) $budget;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_budget($with_currency = false)
 	{
@@ -46,6 +64,12 @@ class jomres_user_budget
 			return '';
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_budget_dropdown()
 	{
@@ -119,6 +143,12 @@ class jomres_user_budget
 			return '';
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_price_ranges()
 	{

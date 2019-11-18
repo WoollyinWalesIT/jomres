@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class jomres_property_list_prices
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->lowest_prices = array();
@@ -24,6 +36,12 @@ class jomres_property_list_prices
 		$this->arrivalDate = date('Y/m/d', strtotime($this->today.'+1 day'));
 		$this->departureDate = date('Y/m/d', strtotime($this->arrivalDate.'+1 day'));
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function __set($setting, $value)
 	{
@@ -31,11 +49,23 @@ class jomres_property_list_prices
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function __get($setting)
 	{
 		return $this->$setting;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function gather_lowest_prices_multi($property_uids = array(), $lowest_ever = false, $hide_rpn = false)
 	{

@@ -4,11 +4,17 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
+	
+	/**
+	 *
+	 * @package Jomres\Core\CMS_Specific
+	 *
+	 */
 
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.');
@@ -439,7 +445,9 @@ function jomres_cmsspecific_stringURLSafe($str)
 function jomres_cmsspecific_addcustomtag($data)
 {
 	$document = JFactory::getDocument();
-	$document->addCustomTag($data);
+	if($document->getType() === 'html') { 
+		$document->addCustomTag($data);
+	}
 }
 
 function jomres_cmsspecific_currenturl()

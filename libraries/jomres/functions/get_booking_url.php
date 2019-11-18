@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -14,13 +14,19 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-// The purpose of this function is to allow us to override the dobooking link programatically. In this case it will simply return the dobooking link, but making it a simple function allows us to override it if needed
-// Types:
-// sef: sef url
-// nosef: no sef url
-// sefsafe: sef url not passed through jomresURL function
-// ajax: ajax safe url
 
+
+/**
+ * @package Jomres\Core\Functions
+ *
+ *  The purpose of this function is to allow us to override the dobooking link programatically. In this case it will simply return the dobooking link, but making it a simple function allows us to override it if needed
+ *
+ * Types:
+*  sef: sef url
+* nosef: no sef url
+* sefsafe: sef url not passed through jomresURL function
+* ajax: ajax safe url
+ */
 function get_booking_url($property_uid = 0, $type = 'sef', $params = '') {
 	$jomres_access_control = jomres_singleton_abstract::getInstance('jomres_access_control');
 	

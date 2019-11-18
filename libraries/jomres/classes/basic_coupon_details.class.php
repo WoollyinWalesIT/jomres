@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class basic_coupon_details
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->coupons = array();
@@ -32,6 +44,12 @@ class basic_coupon_details
 		$this->rooms_only = 0;
 		$this->guest_uid = 0;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Get all coupons details for one or more property uids
 	public function get_all_coupons($property_uids = array())

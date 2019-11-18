@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class basic_property_details
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private static $internal_debugging;
 
 	public function __construct()
@@ -29,6 +41,12 @@ class basic_property_details
 		$this->get_all_property_types();
 		$this->get_all_property_features();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function __set($setting, $value)
 	{
@@ -39,6 +57,12 @@ class basic_property_details
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function __get($setting)
 	{
@@ -57,6 +81,12 @@ class basic_property_details
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_property_name($property_uid = 0, $editable = true)
 	{
@@ -72,6 +102,12 @@ class basic_property_details
 
 		return $property_name;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_property_name_multi($property_uids = array(), $database_obj = false)
 	{
@@ -146,6 +182,12 @@ class basic_property_details
 
 		return $this->property_names;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function gather_data($property_uid = 0)
 	{
@@ -268,6 +310,12 @@ class basic_property_details
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_gross_accommodation_price($nett_amount, $property_uid = 0)
 	{
@@ -288,6 +336,12 @@ class basic_property_details
 
 		return $gross;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_nett_accommodation_price($gross_amount, $property_uid = 0)
 	{
@@ -308,6 +362,12 @@ class basic_property_details
 
 		return $nett;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function gather_data_multi($property_uids = array(), $editable = false)
 	{
@@ -490,6 +550,12 @@ class basic_property_details
 
 		return $this->multi_query_result;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	private function get_all_room_types()
 	{
@@ -533,6 +599,12 @@ class basic_property_details
 		//each property type with it`s assigned room types.
 		$this->roomtypes_propertytypes_xref = $jomres_room_types->all_ptype_rtype_xrefs;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	private function get_all_property_types()
 	{
@@ -549,6 +621,12 @@ class basic_property_details
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	private function get_all_property_features()
 	{
@@ -559,6 +637,12 @@ class basic_property_details
 
 		$this->all_property_features = $jomres_property_features->property_features;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_all_resource_features($property_uid = 0, $including_global_room_features = false)
 	{

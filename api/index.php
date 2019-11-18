@@ -1,14 +1,18 @@
 <?php
 /**
+ *
+ *  @package Jomres\Core\REST_API
  * Handles REST API messages
  *
  * Uses Oauth2 and Flight libraries to handle authentication and routing respectively. REST API functionality is provided by API features which are Jomres plugins, this functionality hands off calls to those API features through the routes.php script. 
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
+ *
+ *
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  */
 
@@ -63,7 +67,12 @@ if ( $https == false && $jrConfig['api_force_ssl'] == true ) {
 } */
 
 
-// We will parse the url and find out exactly what the call wishes to do. 
+	/**
+	 * 
+	 * We will parse the url and find out exactly what the call wishes to do.
+     *
+	 */
+
 $request = Flight::request();
 $bang = explode('/', $request->url);
 if (strpos($bang[1], '?') !== false) { // Has the client appended the token to the url? If so, we'll detect it here and figure out the route based on explode
@@ -73,11 +82,24 @@ if (strpos($bang[1], '?') !== false) { // Has the client appended the token to t
     $route = filter_var($bang[1], FILTER_SANITIZE_STRING);
 }
 
-// Let's see if the route chosen is auth-free, or if it requires authentication. If an API feature wants to be a "free" route ( one that does not require an authenticated client id & secret pair ) it must explicitely declare itself as "free" via a json file.
+//
+	/**
+	 * 
+	 * Let's see if the route chosen is auth-free, or if it requires authentication. If an API feature wants to be a "free" route ( one that does not require an authenticated client id & secret pair ) it must explicitely declare itself as "free" via a json file.
+     *
+	 */
+
 require 'classes/all_api_features.class.php';
 $api_features = new all_api_features();
 $features_files = $api_features->get();
 $auth_free_routes = $api_features->get_authfree_routes();
+
+	
+	/**
+	 * 
+	 * If it's not an auth-free route/endpoint then we will look to see if it's a token request. If a token is already sent, we'll verify it.
+	 *
+	 */
 
 if (!in_array($route,$auth_free_routes) && $route != 'core' ) {
 	if (isset($_POST['grant_type']) && ($_POST['grant_type'] == 'client_credentials' || $_POST['grant_type'] == 'authorization_code')) {
@@ -114,8 +136,15 @@ require 'classes/call_self.class.php';
 
 define('API_STARTED', true);
 
-// $server will be null if authentication has not been used ( i.e. this is a "free" route, in which case token (which contains the access token, plus scope information ) is not relevant )
-// Individual api features ( should ) always validate that a user can perform a certain action through the "validate_scope::validate('search_get');" call. 
+	
+	/**
+	 * 
+	 * $server will be null if authentication has not been used ( i.e. this is a "free" route, in which case token (which contains the access token, plus scope information ) is not relevant )
+     * Individual api features ( should ) always validate that a user can perform a certain action through the "validate_scope::validate('search_get');" call.
+     *
+	 */
+
+
 if (isset($server) && !is_null($server)) {
 	$token = $server->getAccessTokenData(OAuth2\Request::createFromGlobals());
 	$scopes = explode(',', $token['scope']);
@@ -129,7 +158,21 @@ if (isset($server) && !is_null($server)) {
 	);
 }
 
+	
+	/**
+	 * 
+	 * A special script that creates a "new" PUT super global because PHP doesn't manage PUT requests natively, and the syntax of REST API assumes that PUT requests are for changing existing records.
+	 *
+	 */
+
 require 'put_method_handling.php';
+
+	
+	/**
+	 * 
+	 * Let's fire up the database. The Jomres framework, even though it is optimised, still carries an overhead therefore the REST API functionality does not demand that the framework be loaded. This means that it can be super quick, however in most instances the framework is used because it's a massive time-saver.
+	 *
+	 */
 
 try {
     $dsn = 'mysql:dbname='.JOMRES_API_DB_NAME.';host='.JOMRES_API_DB_HOST;

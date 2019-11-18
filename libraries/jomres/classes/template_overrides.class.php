@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,14 +13,32 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class template_overrides
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->template_overrides = array();
 		$this->get_all_overrides();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	// Get all room types details
 	public function get_all_overrides()
@@ -49,6 +67,12 @@ class template_overrides
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Save new or existing resource type
 	public function save_template_override($template_name)
@@ -82,6 +106,12 @@ class template_overrides
 			throw new Exception('Error: Failed to update template overrides.');
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Delete resource type
 	public function delete_override($template_name)

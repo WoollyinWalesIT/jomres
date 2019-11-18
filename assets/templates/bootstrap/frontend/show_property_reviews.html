@@ -42,34 +42,28 @@
 		{_JOMRES_REVIEWS_THANKS_FOR_REVIEW}
 	</div>
 </div>
-<div itemscope itemtype="http://schema.org/Hotel">
-<div itemscope itemtype="http://data-vocabulary.org/Review-aggregate">
+<div>
+<div >
 	<h2>
-		<span itemprop="itemreviewed">{PROPERTY_NAME}</span><!-- hotel name -->
-		<span itemprop="rating" itemscope itemtype="http://data-vocabulary.org/Rating">
+		<span >{PROPERTY_NAME}</span><!-- hotel name -->
+		<span >
 	{_JOMRES_REVIEWS_AVERAGE_RATING}
-		<span itemprop="average">{AVERAGE_RATING}</span> 
-		<meta itemprop="best" content="10"/>  
-		<meta itemprop="worst" content="1"/>
+		<span >{AVERAGE_RATING}</span> 
 	</span><!-- average rating --> -
 		{_JOMRES_REVIEWS_TOTAL_VOTES}
-		<span itemprop="count">{NUMBER_OF_REVIEWS}</span><!-- number of reviews -->
+		<span>{NUMBER_OF_REVIEWS}</span><!-- number of reviews -->
 	</h2>
 </div>
 
 <patTemplate:tmpl name="rows" unusedvars="strip" type="simpleCondition" requiredVars="review_title">
-<div itemprop="review" itemscope itemtype="http://schema.org/Review">
+<div>
 	<div class="page-header">
 		<div class="row">
 			<div class="col-md-12" itemprop="name" ><h3>{REVIEW_TITLE} <span>{RATING_STARS}</span></h3></div>
 		</div>
-		<meta itemprop="datePublished" content="{RATING_DATE_META}">
-		<div class="small">{_JOMRES_REVIEWS_DATE} {RATING_DATE} {_JOMRES_REVIEWS_REVIEWED_BY}<span itemprop="author"><strong><a href="{REVIEWER_PROFILE_LINK}">{REVIEWER_FIRSTNAME} {REVIEWER_SURNAME}</a></strong></span></div>
+		<div class="small">{_JOMRES_REVIEWS_DATE} {RATING_DATE} {_JOMRES_REVIEWS_REVIEWED_BY}<span><strong><a href="{REVIEWER_PROFILE_LINK}">{REVIEWER_FIRSTNAME} {REVIEWER_SURNAME}</a></strong></span></div>
 	</div>
-	<div class="row" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
-		<meta itemprop="bestRating" content = "{RATING_SCHEMA_BESTRATING}">
-		<meta itemprop="worstRating"  content = "{RATING_SCHEMA_WORSTRATING}">
-		<meta itemprop="ratingValue" content = "{RATING_SCHEMA_RATINGVALUE}">
+	<div class="row" >
 		<div class="col-md-4">
 			<div class="well">
 				<div class="row">

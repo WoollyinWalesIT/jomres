@@ -1,12 +1,15 @@
 <?php
 /**
+ *
+ *  @package Jomres\Core\REST_API
+ *
  * Finds all API feature scripts. 
  *
  * Additionally finds auth-free API features, which are scripts that can be called by any site visitor, they do not need to be authenticated. For example, a basic search and response wouldn't normally need to be authenticated, so there's no OAuth2 key pair required to call that REST API path. 
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,14 +20,20 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 /**
-*
+ *
 * Remote file inclusion defence. We'll collect all possible API feature file names there. Later, when routing, if the file doesn't exist then boom, we don't include it.
 *
-*/
+ * @property array authentication_free_routes
+ */
 
 class all_api_features
 {
-	/**
+    /**
+     * @var array
+     */
+    private $api_feature_files;
+
+    /**
 	*
 	* Constructor. Sets up arrays and finds API features
 	*
@@ -55,12 +64,13 @@ class all_api_features
 	public function get_authfree_routes() {
 		return $this->authentication_free_routes;
 	}
-	
-	/**
-	*
-	* Scans directories for API features in looking for plugins that are prefixed "api_feature_". 
-	*
-	*/
+
+    /**
+     *
+     * Scans directories for API features in looking for plugins that are prefixed "api_feature_".
+     *
+     * @param $path the path of the directory to be scanned
+     */
     private function get_all_api_features($path)
     {
         $core_plugins_dir_contents = scandir($path);

@@ -6,7 +6,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
@@ -15,6 +15,14 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\REST_API
+	 *
+	 * Responds with JSON encoded values returned from individual REST API feature plugins
+	 *
+	 */
 
     Flight::map('json', function ($response_name, $data, $code = 200, $encode = true, $charset = 'utf-8') {
         logging::log_message(' Replied with code '.$code, 'API', 'DEBUG' , ' Replied with code '.$code.' and contents'.json_encode($data));
@@ -29,6 +37,12 @@ defined('_JOMRES_INITCHECK') or die('');
             ->send();
 			exit;
     });
+	
+	/**
+	 * 
+	 * Halts execution of an API feature plugin with an error code. Typically used when the user doesn't have relevant permissions or they have sent faulty data and we cannot continue
+	 *
+	 */
 
     Flight::map('halt', function ($code = 200, $message = '') {
         $log = ' Halted run '.$code.' with message '.$message;

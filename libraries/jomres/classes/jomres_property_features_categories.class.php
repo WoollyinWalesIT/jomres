@@ -3,7 +3,7 @@
  * Core file
  *
  * @author Vince Wooll <sales@jomres.net>
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  * @package Jomres
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
@@ -12,9 +12,21 @@
 // ################################################################
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class jomres_property_features_categories
-	{
+	{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 		{
 		$this->property_features_categories = false;				// array of all property features categories
@@ -23,7 +35,13 @@ class jomres_property_features_categories
 		$this->title						= '';					// property feature category title
 		}
 
-	//get all property features categories
+	//get all property features categories	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	function get_all_property_features_categories()
 		{
 		if ( is_array( $this->property_features_categories ) )
@@ -50,7 +68,13 @@ class jomres_property_features_categories
 		return true;
 		}
 	
-	//get property features category by id
+	//get property features category by id	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	function get_property_features_category( $id = 0 )
 		{
 		if ( (int)$id == 0 )
@@ -83,7 +107,13 @@ class jomres_property_features_categories
 		return true;
 		}
 	
-	//Save new property feature category
+	//Save new property feature category	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	function commit_new_property_features_category()
 		{
 		if ( $this->id > 0 )
@@ -108,7 +138,13 @@ class jomres_property_features_categories
 			}
 		}
 	
-	//Update existing property feature category
+	//Update existing property feature category	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	function commit_update_property_features_category()
 		{
 		if ( $this->id == 0 )
@@ -133,7 +169,13 @@ class jomres_property_features_categories
 			}
 		}
 	
-	//Delete property features category
+	//Delete property features category	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	function delete_property_features_category()
 		{
 		if ( $this->id == 0 )

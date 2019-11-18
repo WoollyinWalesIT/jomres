@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class jomres_timezones
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->check_timezone_change();
@@ -27,6 +39,12 @@ class jomres_timezones
 		$this->users_timezone = $this->get_users_timezone();
 		//date_default_timezone_set( $this->users_timezone );
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function check_timezone_change()
 	{
@@ -41,6 +59,12 @@ class jomres_timezones
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_dropdown()
 	{
@@ -58,6 +82,12 @@ class jomres_timezones
 
 		return $selecthtml;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_users_timezone()
 	{
@@ -68,6 +98,12 @@ class jomres_timezones
 			return $this->default_timezone;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_supported_timezones()
 	{

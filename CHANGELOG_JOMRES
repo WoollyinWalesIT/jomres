@@ -1,3 +1,30 @@
+<h3>Jomres 9.21.0 18/11/2019</h3>
+
+<span class="label label-success">Feature</span> Added functionality to mark guests as "no show". This information is then passed to the app server so that together Jomres syndicate site owners can get information about potential guests.
+<span class="label label-success">Feature</span> Added complete new schema templates and script for MRPs and SRPs.
+<span class="label label-success">Feature</span> Added ability to add menu options based on searching by property feature.
+<span class="label label-success">Feature</span> Added ability for Jomres Call Api class (class that calls the local api) to handle headers. New channel management REST API code requires having the channel name in the headers.
+
+<span class="label label-warning">Change</span> Improved api routing so that files like aaa_bbb_ccc_ddd which correspond to endpoints like jomres/api/aaa/bbb/ccc/ddd/@id can be found and used. Preserves older style of routing for existing api feature plugins.
+<span class="label label-warning">Change</span> Tweaked functionality so that if gmaps api key not saved, then user not encouraged to save the key, and panels are no longer visible.
+<span class="label label-warning">Change</span> Tweaked how check syndicate domains handles exceptions
+<span class="label label-warning">Change</span> Tweaked optin save record functionality to not bother if IP number is localhost.
+<span class="label label-warning">Change</span> Changed functionality so that localhost sessions are cleaned up more quickly. With the addition of a variety of features Jomres calls itself more often and this is causing the session table to grow more quickly in the past so we'll clean up more quickly too.
+<span class="label label-warning">Change</span> Added guest name and booking number to add note and add service to bill screens.
+<span class="label label-warning">Change</span> Added guest name to cancel booking output, refactored cancellation script to use a new class.
+<span class="label label-warning">Change</span> Code comments and a couple of not needed methods removed.
+<span class="label label-warning">Change</span> Disabled some logging that didn't need to be in place.
+<span class="label label-warning">Change</span> Refactored the internal call api class.
+<span class="label label-warning">Change</span> Modified list guests page because the guest's email address not being immediately visible was bugging me.
+<span class="label label-warning">Change</span> Added functionality to ensure that we're not adding our own property to the list of properties in the network.
+<span class="label label-warning">Change</span> Changed a logging level in get syndication properties script
+<span class="label label-warning">Change</span> Improved syndicated properties display in small screens
+<span class="label label-warning">Change</span> Tweaked new guest creation by manager so that a cms user is already created if one does not already exist with that email address.
+
+<span class="label label-important label-danger">Fix</span> Decoded some sanitisation of telephone numbers.
+<span class="label label-important label-danger">Fix</span> Resolved an issue that jsitemaps was having building sitemaps for Jomres.
+<span class="label label-important label-danger">Fix</span> Fixed a bug when users needed to click two times in order to go to next month.
+
 <h3>Jomres 9.20.0 31/10/2019</h3>
 
 <span class="label label-success">Feature</span> Added significant update to user handling within Jomres to allow for private and public user data and user profiles.

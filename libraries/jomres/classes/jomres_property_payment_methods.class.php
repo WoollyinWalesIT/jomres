@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,6 +13,12 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class jomres_property_payment_methods
 {
@@ -20,6 +26,12 @@ class jomres_property_payment_methods
 	{
 		$this->multi_query_result = array();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_gateways_multi($property_uids)
 	{
@@ -65,6 +77,12 @@ class jomres_property_payment_methods
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_property_gateways($property_uid)
 	{

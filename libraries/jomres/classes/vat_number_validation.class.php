@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class vat_number_validation
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->vat_number = '';
@@ -28,6 +40,12 @@ class vat_number_validation
 		jr_import('jomres_encryption');
 		$this->jomres_encryption = new jomres_encryption();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_subject($type = '', $arguments = array())
 	{
@@ -101,6 +119,12 @@ class vat_number_validation
 				break;
 			}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function save_subject($type = '', $arguments = array())
 	{
@@ -161,6 +185,12 @@ class vat_number_validation
 				break;
 			}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function vies_check($vat_number)
 	{
@@ -277,7 +307,13 @@ class vat_number_validation
 			}
 			$this->output = false;
 		}
-	}
+	}	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	// The purpose of this method is for it to be passed a country code that's been pulled from a VAT number, and to convert it to a country code that Jomres will recognise. Countries like Greece use EL instead of Jomres' GR, so we need to pass EL, cycle through the xref array until we find that code, then return the key, which would be GR
 	public function get_adjusted_country_code($country_code)
 	{
@@ -288,11 +324,23 @@ class vat_number_validation
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_euro_countries()
 	{
 		return array('AT' => 'Austria', 'BE' => 'Belgium', 'HR' => 'Croatia', 'CY' => 'Cyprus', 'CZ' => 'Czech R.ublic', 'DK' => 'Denmark', 'EE' => 'Estonia', 'FI' => 'Finland', 'FR' => 'France', 'DE' => 'Germany', 'GR' => 'Greece', 'HU' => 'Hungary', 'IE' => 'Ireland', 'IT' => 'Italy', 'LV' => 'Latvia', 'LT' => 'Lithuania', 'LU' => 'Luxembourg', 'MT' => 'Malta', 'NL' => 'Netherlands', 'PL' => 'Poland', 'PT' => 'Portugal', 'SK' => 'Slovakia', 'SI' => 'Slovenia', 'ES' => 'Spain', 'SE' => 'Sweden', 'GB' => 'United Kingdom', 'RO' => 'Romania', 'BG' => 'Bulgaria', 'HR' => 'Croatia');
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_euro_country_xref() // Greece use different codes, in our database they're GR, but for VAT numbers they're using EL, so we'll need a cross reference in case a new joiner creates the same situation in the future
 	{

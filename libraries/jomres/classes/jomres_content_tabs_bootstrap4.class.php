@@ -16,12 +16,20 @@ defined('_JOMRES_INITCHECK') or die('');
 
 /**
  *
+ * @package Jomres\Core\Classes
+ *
  * Creates the Jomres config panel object.
  *
  *
  */
 class jomres_content_tabs_bootstrap4
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->panes = array();

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Translation to fr-FR by Stéphane Bernard, Valtari NumAgency, France - 14/06/2019 - https://www.valtari.fr
@@ -13,6 +13,13 @@
 //#################################################################
 defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.');
 //#################################################################
+/**
+ *
+ * @package Jomres\Core\Languages
+ *
+ * Language files.
+ *
+ **/
 jr_define('_JOMRES_FAQ', 'FAQ (Questions Fréquemment Posées)');
 jr_define('_JOMRES_FAQ_ADMIN_CATEGORY_INTRODUCTION', 'Introduction');
 jr_define('_JOMRES_FAQ_ADMIN_QUESTION_INTRODUCTION_WHATISJOMRES', 'Qu\'est-ce que le logiciel Jomres ?');

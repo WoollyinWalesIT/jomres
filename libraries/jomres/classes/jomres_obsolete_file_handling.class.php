@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,11 +13,23 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class jomres_obsolete_file_handling
 {
 	protected $filesystem;
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->obs_files = array();
@@ -66,6 +78,12 @@ class jomres_obsolete_file_handling
 		
 		$this->set_default_obs_files_array();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	private function set_default_obs_files_array()
 	{
@@ -1249,7 +1267,6 @@ class jomres_obsolete_file_handling
 		$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'arrow_right_grey.png');
 		$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'back_disabled.jpg');
 		$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'back_enabled.jpg');
-		$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'blank.png');
 		$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'btn_paynowCC_LG.gif');
 		$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'bug_icon.png');
 		$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'calendar_msg_bubble.png');
@@ -1301,6 +1318,12 @@ class jomres_obsolete_file_handling
 		$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'User_Ninja.png');
 		
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function add_file($path_and_file)
 	{
@@ -1308,6 +1331,12 @@ class jomres_obsolete_file_handling
 			$this->obs_files[] = $path_and_file;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function add_dir($dir)
 	{
@@ -1315,6 +1344,12 @@ class jomres_obsolete_file_handling
 			$this->obs_directories[] = $dir;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function remove_obsolete_files()
 	{

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -18,10 +18,22 @@ require_once( JOMRESPATH_BASE.'libraries'.JRDS.'php-encryption'.JRDS.'autoload.p
 
 use Defuse\Crypto\Key;
 use Defuse\Crypto\Crypto;
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class jomres_encryption
 {
 	private $encryption_key = '';
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function __construct()
 	{
@@ -41,7 +53,13 @@ class jomres_encryption
 		$this->get_key();
 		
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function generate_new_key()
 	{
 		$key = Key::createNewRandomKey();
@@ -67,7 +85,13 @@ class encryption_key
 
 		file_put_contents($this->key_location."encryption_key.class.php" , $str );
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	private function get_key() 
 	{
 		try
@@ -82,17 +106,35 @@ class encryption_key
 			throw new Exception('Cannot get encryption key');
 		}
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function encrypt($string = '' )
 	{
 		return Crypto::encrypt( (string)trim($string), $this->encryption_key );
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function decrypt($ciphertext = '') 
 	{
 	if (trim($ciphertext == '') ) {
 		return '';
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	if ( is_null($ciphertext) ) {
 		return '';

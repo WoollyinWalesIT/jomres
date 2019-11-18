@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,13 +13,31 @@
 // ################################################################
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class webhooks 
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct( $manager_id = 0) {
 		$this->manager_id = (int)$manager_id;
 		$this->webhooks	 = array();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function get_all_webhooks(){
 		$query = 'SELECT `id`, `manager_id` , `settings` , `enabled` FROM #__jomres_webhooks_integrations WHERE manager_id = '.(int)$this->manager_id.' OR manager_id = 0';
@@ -32,16 +50,34 @@ class webhooks
 
 		return $this->webhooks;
 	 }
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function get_webhook ( $id ) {
 		if (empty($this->webhooks))
 			throw new Exception('Error: Webhooks array not set. Did you try to call get_webhook before get_all_webhooks?');
 		return  $this->webhooks[$id];
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function set_setting( $id , $key , $val ) {
 		$this->webhooks[$id]["settings"][$key] = $val ;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function commit_integration( $id =0 ) {
 		if ( $id == 0 ) {
@@ -80,7 +116,13 @@ class webhooks
 				}
 		}
 	}
-	
+		
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function delete_integration ( $id ) {
 		if (!isset($this->webhooks[$id])) {
 			throw new Exception( "Error: Cannot delete integration as does not exist ( for this user ) ");

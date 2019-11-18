@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,9 +13,21 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class jrportal_taxrate
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->id = 0;
@@ -36,6 +48,12 @@ class jrportal_taxrate
 
 		$this->getAllTaxRates();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function getAllTaxRates()
 	{
@@ -60,6 +78,12 @@ class jrportal_taxrate
  
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function gather_data($id = 0)
 	{
@@ -81,6 +105,12 @@ class jrportal_taxrate
 			return false;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function commitTaxRate()
 	{
@@ -115,6 +145,12 @@ class jrportal_taxrate
 
 		return false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function commitUpdateTaxRate()
 	{
@@ -139,6 +175,12 @@ class jrportal_taxrate
 
 		return false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function deleteTaxRate($id = 0)
 	{
@@ -162,6 +204,12 @@ class jrportal_taxrate
 
 		return false;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function deleteAllTaxRates()
 	{
@@ -178,6 +226,12 @@ class jrportal_taxrate
 			return false;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function makeTaxratesDropdown($selected = '0', $name = 'taxrate')
 	{

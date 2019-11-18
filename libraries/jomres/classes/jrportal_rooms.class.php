@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.20.0
+ * @version Jomres 9.21.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -13,13 +13,31 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+	
+	/**
+	 *
+	 * @package Jomres\Core\Classes
+	 *
+	 */
 
 class jrportal_rooms
-{
+{	
+	/**
+	 * 
+	 *
+	 *
+	 */
+
 	public function __construct()
 	{
 		$this->init_room();
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	public function init_room()
 	{
@@ -44,6 +62,12 @@ class jrportal_rooms
 		$this->rooms_generator['max_people'] = 0;					// max guests per room
 		$this->rooms_generator['delete_existing_rooms'] = false;	// delete existing rooms before mass creating new ones
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Save new room
 	public function commit_new_room()
@@ -120,6 +144,12 @@ class jrportal_rooms
 		
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Update existing room
 	public function commit_update_room()
@@ -181,6 +211,12 @@ class jrportal_rooms
 		
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	private function update_tariffs()
 	{
@@ -200,6 +236,12 @@ class jrportal_rooms
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Delete room
 	public function delete_room()
@@ -232,6 +274,12 @@ class jrportal_rooms
 			return false;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//check if the room can be deleted
 	private function room_can_be_deleted()
@@ -260,6 +308,12 @@ class jrportal_rooms
 
 		return true;
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 
 	//Create multiple rooms
 	public function commit_new_rooms()
