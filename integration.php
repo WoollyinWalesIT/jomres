@@ -150,10 +150,6 @@ define('JOMRES_VENDOR_ABSPATH', JOMRES_LIBRARIES_ABSPATH.'vendor'.JRDS);
 define('JOMRES_NODE_MODULES_ABSPATH', JOMRES_LIBRARIES_ABSPATH.'node_modules'.JRDS);
 define('JOMRES_NODE_MODULES_RELPATH', JOMRES_ROOT_DIRECTORY.'/libraries/node_modules/');
 
-require_once(JOMRES_CLASSES_ABSPATH.'core_package_management.class.php');
-
-$core_package_management = new core_package_management();
-
 
 //includes
 require_once JOMRES_VENDOR_ABSPATH.'autoload.php';
