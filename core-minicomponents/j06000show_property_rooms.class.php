@@ -136,7 +136,12 @@ class j06000show_property_rooms
 					$r[ 'IMAGEMEDIUM' ] = JOMRES_IMAGES_RELPATH.'noimage.gif';
 					$r[ 'IMAGETHUMB' ] = JOMRES_IMAGES_RELPATH.'noimage.gif';
 
-					if (isset($jomres_media_centre_images->images['rooms']) && $jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['large'] != '') {
+					if ( ( isset($jomres_media_centre_images->images['rooms']) && $jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['large'] != '' ) &&
+						isset($jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['large']) &&
+						isset($jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['medium']) &&
+						isset($jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['small'])
+						
+					) {
 						$r[ 'IMAGELARGE' ] = $jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['large'];
 						$r[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['medium'];
 						$r[ 'IMAGETHUMB' ] = $jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['small'];
