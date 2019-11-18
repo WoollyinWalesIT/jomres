@@ -403,7 +403,7 @@ class jomres_cron
 
 		if (!$this->jobExists($jobName)) {
 			$lastRan = 0;
-			$query = "INSERT INTO #__jomcomp_cron (`job`,`schedule`,`parameters`,`last_ran`) VALUES ('".(string) $jobName."','".(string) $schedule."','".(string) $parameters."', ".(int) $lastRan.' ) ';
+			$query = "INSERT INTO #__jomcomp_cron (`job`,`schedule`,`parameters`,`last_ran`) VALUES ('".(string) $jobName."','".(string) $schedule."','".(string) $parameters."', ".(int) $lastRan." ) ";
 			if (!doInsertSql($query, '')) {
 				$this->debug[ ] = 'Failed to add '.(string) $jobName;
 

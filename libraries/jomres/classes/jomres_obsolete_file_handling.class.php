@@ -1267,7 +1267,6 @@ class jomres_obsolete_file_handling
 		$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'arrow_right_grey.png');
 		$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'back_disabled.jpg');
 		$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'back_enabled.jpg');
-		$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'blank.png');
 		$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'btn_paynowCC_LG.gif');
 		$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'bug_icon.png');
 		$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'calendar_msg_bubble.png');

@@ -492,7 +492,13 @@ class jomres_temp_booking_handler
 			
 			$data = json_encode($data, JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE);
 			
-			$query = "INSERT INTO #__jomres_sessions (`session_id`, `data`) VALUES ('".$this->jomressession_db."','".$data."')";
+			$is_localhost = 0;
+			$ip_number = jomres_get_client_ip();
+			if ( $ip_number == "0.0.0.0" || $ip_number == '127.0.0.1' ) {
+				$is_localhost = 1;
+			}
+			
+			$query = "INSERT INTO #__jomres_sessions (`session_id`, `data` , `is_localhost` ) VALUES ('".$this->jomressession_db."','".$data."' , ".$is_localhost." )";
 			if (!doInsertSql($query, '')) {
 				throw new Exception('Error: Could not save session data');
 			}

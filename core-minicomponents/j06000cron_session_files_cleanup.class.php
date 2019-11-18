@@ -60,6 +60,9 @@ class j06000cron_session_files_cleanup
 				$query = "DELETE FROM #__jomres_sessions WHERE `last_changed` <= DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 DAY)";
 				doInsertSql($query, '');
 				
+				$query = "DELETE FROM #__jomres_sessions WHERE `last_changed` <= DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 HOUR) AND `is_localhost` = 1 ";
+				doInsertSql($query, '');
+				
 				// Any files left in the sessions folder can be deleted
 				$session_path = JOMRES_SESSIONS_ABSPATH;
 				$files = scandir_getfiles_recursive($session_path);

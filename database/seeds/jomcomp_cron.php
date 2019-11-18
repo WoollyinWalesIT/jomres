@@ -30,7 +30,7 @@ if (!doInsertSql($query)) {
 
 $jomres_cron = jomres_singleton_abstract::getInstance('jomres_cron');
 
-$jomres_cron->addJob('session_files_cleanup', 'D', '');
+$jomres_cron->addJob('session_files_cleanup', 'H', '');
 $jomres_cron->addJob('error_logs_cleanup', 'D', '');
 $jomres_cron->addJob('geolocation_cleanup', 'D', '');
 $jomres_cron->addJob("api_tokens_cleanup","D","");
