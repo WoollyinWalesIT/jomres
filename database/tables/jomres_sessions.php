@@ -24,7 +24,8 @@ $query = "
 CREATE TABLE IF NOT EXISTS  #__jomres_sessions (
 	`session_id` CHAR(50) NOT NULL, 
 	`data` TEXT, 
-	`last_changed` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, 
+	`last_changed` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`is_localhost` TINYINT(1) NOT NULL DEFAULT 0,
 	PRIMARY KEY (`session_id`),
 	INDEX `last_changed` (`last_changed`)
 	)
