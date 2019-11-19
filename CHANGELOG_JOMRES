@@ -1,3 +1,7 @@
+<h3>Jomres 9.21.2 19/11/2019</h3>
+
+<span class="label label-important label-danger">Fix</span> Fixed an issue where schema content could appear in property details pages.
+
 <h3>Jomres 9.21.1 18/11/2019</h3>
 
 <span class="label label-important label-danger">Fix</span> Sometimes, being a good developer of a system means knowing when to cut your losses and abandon a feature that you've spent many hours on. Ripped out the Package management feature, which was designed to make Jomres smaller and the system more secure. Unfortunately the implementation was troublesome and I've decided to revert to previous methodology whereby node modules and vendor packages are included in Jomres Core instead of as package files.
