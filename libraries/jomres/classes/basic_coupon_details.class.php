@@ -18,13 +18,14 @@ defined('_JOMRES_INITCHECK') or die('');
 	 *
 	 * @package Jomres\Core\Classes
 	 *
+	 *          A basic class for pulling coupon information
 	 */
 
 class basic_coupon_details
 {	
 	/**
 	 * 
-	 *
+	 * Constructor
 	 *
 	 */
 
@@ -47,11 +48,10 @@ class basic_coupon_details
 	
 	/**
 	 * 
-	 *
+	 * Get all coupons details for one or more property uids
 	 *
 	 */
 
-	//Get all coupons details for one or more property uids
 	public function get_all_coupons($property_uids = array())
 	{
 		if (empty($property_uids)) {

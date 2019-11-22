@@ -18,13 +18,18 @@ defined('_JOMRES_INITCHECK') or die('');
 	 *
 	 * @package Jomres\Core\Classes
 	 *
+	 *          A basic class for pulling property details information
+	 *
+	 *          Used extensively throughout Jomres, this is used as a singleton to ensure that we maintain property information in ram for as long as possible without having to constantly query the database for lots of complex information
 	 */
 
 class basic_property_details
 {	
 	/**
 	 * 
+	 * Constructor
 	 *
+	 * Sets up sitewide room types, property types and property features
 	 *
 	 */
 
@@ -44,7 +49,7 @@ class basic_property_details
 	
 	/**
 	 * 
-	 *
+	 * Setter
 	 *
 	 */
 
@@ -60,7 +65,7 @@ class basic_property_details
 	
 	/**
 	 * 
-	 *
+	 * Getter
 	 *
 	 */
 
@@ -84,7 +89,7 @@ class basic_property_details
 	
 	/**
 	 * 
-	 *
+	 * Method for returning the property name
 	 *
 	 */
 
@@ -105,7 +110,7 @@ class basic_property_details
 	
 	/**
 	 * 
-	 *
+	 * Get property names for multiple property uids
 	 *
 	 */
 
@@ -185,7 +190,7 @@ class basic_property_details
 	
 	/**
 	 * 
-	 *
+	 * Collect information about an individual property
 	 *
 	 */
 
@@ -201,7 +206,14 @@ class basic_property_details
 			throw new Exception('Property uid not set', 2);
 		}
 
-		$this->gather_data_multi(array($this->property_uid)); //if more properties are on the same page (for example if we have an NGM module published) and changes the property uid showtime, when the showtime is set back to this property uid, the query will be executed again, because this property uid is not in the multi_query_result. So we use gather_data_multi to get data for this property_uid, then reuse this data later from $this->multi_query_result if necessary.
+		/**
+		 *
+		 * if more properties are on the same page (for example if we have an NGM module published) and changes the property uid showtime, when the showtime is set back to this property uid,
+		 * the query will be executed again, because this property uid is not in the multi_query_result. So we use gather_data_multi to get data for this property_uid,
+		 * then reuse this data later from $this->multi_query_result if necessary.
+		 *
+		 */
+		$this->gather_data_multi(array($this->property_uid));
 
 		if (isset($this->multi_query_result[$this->property_uid])) {
 			$this->property_name = $this->multi_query_result[ $this->property_uid ][ 'property_name' ];
@@ -313,7 +325,7 @@ class basic_property_details
 	
 	/**
 	 * 
-	 *
+	 * Calculate the gross price for the accommodation, taking into account the property accommodation tax rate
 	 *
 	 */
 
@@ -339,7 +351,7 @@ class basic_property_details
 	
 	/**
 	 * 
-	 *
+	 * Calculate the nett price for the accommodation
 	 *
 	 */
 
@@ -365,7 +377,7 @@ class basic_property_details
 	
 	/**
 	 * 
-	 *
+	 * Get data for multiple properties
 	 *
 	 */
 
@@ -377,8 +389,10 @@ class basic_property_details
 		if ($no_html == '1' || $popup == '1') {
 			$editable = false;
 		}
-
-		// First we need to extract those uids that are not already in the $this->multi_query_result var, this (may) reduce the number of properties we need to query
+		
+		/**
+		* First we need to extract those uids that are not already in the $this->multi_query_result var, this (may) reduce the number of properties we need to query
+		 */
 		$temp_array = array();
 		foreach ($property_uids as $id) {
 			if (!isset($this->multi_query_result[$id])) {
@@ -553,7 +567,7 @@ class basic_property_details
 	
 	/**
 	 * 
-	 *
+	 * Get all room types, includes both global room types, plus those created just by this property
 	 *
 	 */
 
@@ -602,7 +616,7 @@ class basic_property_details
 	
 	/**
 	 * 
-	 *
+	 * Get all property types
 	 *
 	 */
 
@@ -624,7 +638,7 @@ class basic_property_details
 	
 	/**
 	 * 
-	 *
+	 * Get all property features
 	 *
 	 */
 
@@ -640,7 +654,7 @@ class basic_property_details
 	
 	/**
 	 * 
-	 *
+	 * Get all room features
 	 *
 	 */
 

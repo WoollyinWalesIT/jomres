@@ -18,13 +18,14 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * 
 	 * @package Jomres\Core\Classes
 	 *
+	 *          A utility class for getting information about a booking
 	 */
 
 class basic_contract_details
 {	
 	/**
 	 * 
-	 *
+	 * Constructor. Sets up the encryption class which is used later to decrypt guest PII
 	 *
 	 */
 
@@ -38,7 +39,7 @@ class basic_contract_details
 	
 	/**
 	 * 
-	 *
+	 * Pull booking information from the db
 	 *
 	 */
 

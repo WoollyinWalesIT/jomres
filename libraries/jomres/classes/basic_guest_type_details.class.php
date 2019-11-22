@@ -18,13 +18,14 @@ defined('_JOMRES_INITCHECK') or die('');
 	 *
 	 * @package Jomres\Core\Classes
 	 *
+	 *          A basic class for pulling guest type information
 	 */
 
 class basic_guest_type_details
 {	
 	/**
 	 * 
-	 *
+	 * Constructor
 	 *
 	 */
 
@@ -36,7 +37,7 @@ class basic_guest_type_details
 	
 	/**
 	 * 
-	 *
+	 * Get all guest types for a property
 	 *
 	 */
 

@@ -67,7 +67,11 @@ class jomres_syndicate_guests
 					
 					$reply = (string)$response->getBody()->getContents();
 					$reply = json_decode($reply);
-					return $reply->data;
+					if (isset($reply->data)) {
+						return $reply->data
+					} else {
+						return array();
+					}
 				} catch (GuzzleHttp\Exception\RequestException $e) {
 					logging::log_message('Failed to get guest stats, received response '.$e->getMessage(), 'API', 'WARNING' )  ;
 					}

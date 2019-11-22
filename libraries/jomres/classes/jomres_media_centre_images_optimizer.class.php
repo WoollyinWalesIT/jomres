@@ -11,6 +11,8 @@
  **/
 
 // ################################################################
+use ImageOptimizer\OptimizerFactory;
+
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 	
@@ -32,7 +34,7 @@ class jomres_media_centre_images_optimizer
 
 	public function __construct()
 	{
-		$factory = new \ImageOptimizer\OptimizerFactory();
+		$factory = new OptimizerFactory();
 		$this->optimizer = $factory->get();
 	}
 		
