@@ -68,7 +68,7 @@ class jomres_syndicate_guests
 					$reply = (string)$response->getBody()->getContents();
 					$reply = json_decode($reply);
 					if (isset($reply->data)) {
-						return $reply->data
+						return $reply->data;
 					} else {
 						return array();
 					}
