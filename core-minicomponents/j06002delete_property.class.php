@@ -61,7 +61,7 @@ class j06002delete_property
 			} else {
 				$thisJRUser = $componentArgs['thisJRUser'];
 			}
-			
+
 			$is_jintour_property = get_showtime('is_jintour_property');
 			if (in_array($property_uid, $thisJRUser->authorisedProperties) && count($thisJRUser->authorisedProperties) > 1) {
 				$saveMessage = jr_gettext('_JOMRES_COM_MR_PROPERTY_DELETED', '_JOMRES_COM_MR_PROPERTY_DELETED', false);
@@ -69,10 +69,8 @@ class j06002delete_property
 				$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
 				$jomres_media_centre_images->delete_all_images($property_uid);
 
-				$subject = _JOMRES_MR_AUDIT_DELETE_PROPERTY.$property_name;
-				//sendAdminEmail(getPropertyName($property_uid),$saveMessage);
-
 				$query = 'DELETE FROM #__jomres_customertypes WHERE `property_uid` = '.$property_uid.' LIMIT 10000';
+				
 				doInsertSql($query, '');
 				$query = 'DELETE FROM #__jomres_extraservices WHERE `property_uid` = '.$property_uid.' LIMIT 10000';
 				doInsertSql($query, '');
