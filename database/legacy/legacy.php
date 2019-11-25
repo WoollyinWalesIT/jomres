@@ -1595,7 +1595,24 @@ function createPfeaturesCategoriesTable()
     if (!$result) {
         throw new Exception('Error creating table table jomres_hotel_features_categories ');
     } else {
-        insert_pfeature_categories();
+        $query = "
+			INSERT INTO `#__jomres_hotel_features_categories` (`id`, `title`) VALUES
+			(1, 'Activities'),
+			(2, 'Amenities'),
+			(3, 'Accessibility'),
+			(4, 'Views'),
+			(5, 'Living Area'),
+			(6, 'Media & Technology'),
+			(7, 'Food & Drink'),
+			(8, 'Parking'),
+			(9, 'Services'),
+			(10, 'Bathroom')
+			";
+
+			if (!doInsertSql($query)) {
+				$this->setMessage('Error, unable to insert sample data in the #__jomres_hotel_features_categories table', 'danger');
+			}
+
     }
 }
 

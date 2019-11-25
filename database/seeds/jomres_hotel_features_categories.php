@@ -39,7 +39,7 @@ INSERT INTO `#__jomres_hotel_features_categories` (`id`, `title`) VALUES
 (7, 'Food & Drink'),
 (8, 'Parking'),
 (9, 'Services'),
-(10, 'Bathroom');
+(10, 'Bathroom')
 ";
 
 if (!doInsertSql($query)) {
