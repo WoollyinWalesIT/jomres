@@ -23,22 +23,22 @@ define('JOMRES_API_CMS_ROOT', dirname(dirname(dirname(__FILE__))));
 define('JOMRES_API_JOMRES_ROOT', dirname(dirname(__FILE__)));
 define('JOMRES_CORE_API_ABSPATH', JOMRES_API_CMS_ROOT.DIRECTORY_SEPARATOR.'jomres'.DIRECTORY_SEPARATOR.'libraries'.DIRECTORY_SEPARATOR.'jomres'.DIRECTORY_SEPARATOR.'api'.DIRECTORY_SEPARATOR);
 if (!defined('_JOMRES_INITCHECK')) {
-    define('_JOMRES_INITCHECK', 1);
+	define('_JOMRES_INITCHECK', 1);
 }
 
 if (isset($_SERVER['HTTP_ORIGIN'])) {
-    header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
-    header('Access-Control-Allow-Credentials: true');
-    header('Access-Control-Max-Age: 86400');
+	header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+	header('Access-Control-Allow-Credentials: true');
+	header('Access-Control-Max-Age: 86400');
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
-    if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD'])) {
-        header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
-    }
-    if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS'])) {
-        header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
-    }
+	if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD'])) {
+		header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+	}
+	if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS'])) {
+		header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
+	}
 }
 			
 date_default_timezone_set('UTC');
@@ -47,46 +47,54 @@ require JOMRES_API_CMS_ROOT.DIRECTORY_SEPARATOR.'jomres'.DIRECTORY_SEPARATOR.'li
 require 'classes/logging.class.php';
 require 'oauth/inc_configs.php';
 
+require_once(JOMRES_API_JOMRES_ROOT.DIRECTORY_SEPARATOR.'configuration.php');
+
+if ($jrConfig['development_production'] == 'development') {
+	define('PRODUCTION', false);
+} else {
+	define('PRODUCTION', true);
+}
+
 // Currently disabled as not setup right now to test this.
 /* require_once(JOMRES_API_JOMRES_ROOT.DIRECTORY_SEPARATOR.'configuration.php');
 if (!isset($jrConfig['api_force_ssl']))
-    $jrConfig['api_force_ssl'] = true;
+	$jrConfig['api_force_ssl'] = true;
 else
-    $jrConfig['api_force_ssl'] = (bool) $jrConfig['api_force_ssl'] ;
+	$jrConfig['api_force_ssl'] = (bool) $jrConfig['api_force_ssl'] ;
 
 $https = false;
 if (isset($_SERVER['SERVER_PORT']) && // nginx
-        ($_SERVER['SERVER_PORT'] === '443')) {
-    $https = true;
+		($_SERVER['SERVER_PORT'] === '443')) {
+	$https = true;
 } else if ( !isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] != 'on') { // Apache & IIS
-    $https = false;
+	$https = false;
 }
-    
+	
 if ( $https == false && $jrConfig['api_force_ssl'] == true ) {
-    Flight::halt( "403" ,"You cannot access this API via a non-encrypted url");
+	Flight::halt( "403" ,"You cannot access this API via a non-encrypted url");
 } */
 
 
 	/**
 	 * 
 	 * We will parse the url and find out exactly what the call wishes to do.
-     *
+	 *
 	 */
 
 $request = Flight::request();
 $bang = explode('/', $request->url);
 if (strpos($bang[1], '?') !== false) { // Has the client appended the token to the url? If so, we'll detect it here and figure out the route based on explode
-    $pop = explode('?', $bang[1]);
-    $route = $pop[0];
+	$pop = explode('?', $bang[1]);
+	$route = $pop[0];
 } else {
-    $route = filter_var($bang[1], FILTER_SANITIZE_STRING);
+	$route = filter_var($bang[1], FILTER_SANITIZE_STRING);
 }
 
 //
 	/**
 	 * 
 	 * Let's see if the route chosen is auth-free, or if it requires authentication. If an API feature wants to be a "free" route ( one that does not require an authenticated client id & secret pair ) it must explicitely declare itself as "free" via a json file.
-     *
+	 *
 	 */
 
 require 'classes/all_api_features.class.php';
@@ -122,11 +130,13 @@ if (!in_array($route,$auth_free_routes) && $route != 'core' ) {
 }
 
 if (!PRODUCTION) {
-    ini_set('display_errors', '1');
+	ini_set('display_errors', 1);
+	ini_set('display_startup_errors', 1);
+	error_reporting(E_ALL);
 }
 
 if (!defined('_JOMRES_INITCHECK')) {
-    define('_JOMRES_INITCHECK', 1);
+	define('_JOMRES_INITCHECK', 1);
 }
 
 require 'classes/validate_scope.class.php';
@@ -140,8 +150,8 @@ define('API_STARTED', true);
 	/**
 	 * 
 	 * $server will be null if authentication has not been used ( i.e. this is a "free" route, in which case token (which contains the access token, plus scope information ) is not relevant )
-     * Individual api features ( should ) always validate that a user can perform a certain action through the "validate_scope::validate('search_get');" call.
-     *
+	 * Individual api features ( should ) always validate that a user can perform a certain action through the "validate_scope::validate('search_get');" call.
+	 *
 	 */
 
 
@@ -175,42 +185,49 @@ require 'put_method_handling.php';
 	 */
 
 try {
-    $dsn = 'mysql:dbname='.JOMRES_API_DB_NAME.';host='.JOMRES_API_DB_HOST;
-    Flight::register(
-        'db',
-        'PDO',
-        array(
-            $dsn,
-            JOMRES_API_DB_USERNAME,
-            JOMRES_API_DB_PASSWORD,
-            array(
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                PDO::ATTR_EMULATE_PREPARES => false,
-                ),
-            )
-        );
+	$dsn = 'mysql:dbname='.JOMRES_API_DB_NAME.';host='.JOMRES_API_DB_HOST;
+	Flight::register(
+		'db',
+		'PDO',
+		array(
+			$dsn,
+			JOMRES_API_DB_USERNAME,
+			JOMRES_API_DB_PASSWORD,
+			array(
+				PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+				PDO::ATTR_EMULATE_PREPARES => false,
+				),
+			)
+		);
 
-    Flight::set('token', $token);
-    Flight::set('user_id', $token['user_id']);
-    Flight::set('scopes', explode(',', $token['scope']));
-    Flight::set('dbprefix', JOMRES_API_DB_DB_PREFIX);
-    Flight::set('features_files', $features_files);
+	Flight::set('token', $token);
+	Flight::set('user_id', $token['user_id']);
+	Flight::set('scopes', explode(',', $token['scope']));
+	Flight::set('dbprefix', JOMRES_API_DB_DB_PREFIX);
+	Flight::set('features_files', $features_files);
 
-    require 'custom_methods.php';
+	require 'custom_methods.php';
 
-    require 'routes.php';
+	require 'routes.php';
 
-    Flight::start();
+	Flight::start();
 } catch (Exception $e) {
-    if ($e->getMessage() != '' ) {
-        $response = $e->getMessage();
-        if (!PRODUCTION)
-            echo json_encode($response);
-        }
-    else {
-        $response = Flight::request_response();
-        }
-    
-    $backtrace = debug_backtrace();
-    logging::log_message(json_encode($response), 'API', 'ERROR');
+	if ($e->getMessage() != '' ) {
+		$response = $e->getMessage();
+		if (!PRODUCTION) {
+				echo "Exception: " . $response.'
+				';
+				echo "The exception was created in file: " . $e->getFile().'
+				';
+				echo "The exception was created on line: " . $e->getLine().'
+				';
+		}
+			
+	}
+	else {
+		$response = Flight::request_response();
+	}
+	
+	$backtrace = debug_backtrace();
+	logging::log_message(json_encode($response), 'API', 'ERROR');
 }
