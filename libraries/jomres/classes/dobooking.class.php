@@ -1258,7 +1258,9 @@ class dobooking
 					$checked = '';
 					if ($this->extraAlreadySelected($ex->uid) || (int) $ex->auto_select == 1) {
 						$checked = ' checked ';
-						$this->setExtras($ex->uid);
+						$this->
+							
+							tras($ex->uid);
 						$extraDefaultQuantity = $this->extrasquantities[ $ex->uid ];
 					} else {
 						$extraDefaultQuantity = 1;
@@ -2094,6 +2096,10 @@ class dobooking
 		} else {
 			$this->extras = $extra.',';
 		}
+		if (!is_array($this->extrasquantities)){
+			$this->extrasquantities = array();
+		}
+		
 		$this->extrasquantities[ $extra ] = 1;
 	}
 
