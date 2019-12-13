@@ -206,10 +206,12 @@ class j01070show_property_schema
 		$itemRating = $Reviews->showRating($property_uid);
 		$itemReviews = $Reviews->showReviews($property_uid);
 		$allReviews = $Reviews->get_all_reviews_index_by_property_uid(); 
-		$propertyReviews = $allReviews[$property_uid];
+		$propertyReviews = array();
+		if (isset($allReviews[$property_uid])) {
+			$propertyReviews = $allReviews[$property_uid];
+		}
 		
-
-
+		
 		$reviews = array();
 		if (!empty($propertyReviews)) {
 			foreach ( $propertyReviews as $review ) {
@@ -341,7 +343,8 @@ class j01070show_property_schema
 				$date_elements = explode('/', $validto);
 				$unixValidto = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ]);
 
-				if ($unixTodaysDate < $unixValidto) {
+				if ($unixTodaysDate < $unixValidto && isset($ratings[0]) ) {
+
 					$r = $ratings[0];
 					
 					$r[ 'PROPERTY_NAME' ] = $output[ 'PROPERTY_NAME' ];
