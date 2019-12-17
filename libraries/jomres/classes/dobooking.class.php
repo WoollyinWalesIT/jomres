@@ -2094,6 +2094,10 @@ class dobooking
 		} else {
 			$this->extras = $extra.',';
 		}
+		if (!is_array($this->extrasquantities)){
+			$this->extrasquantities = array();
+		}
+		
 		$this->extrasquantities[ $extra ] = 1;
 	}
 
