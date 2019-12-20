@@ -492,16 +492,16 @@ class jomres_temp_booking_handler
 			
 			$data = json_encode($data, JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE);
 			
-			$is_localhost = 0;
-			$ip_number = jomres_get_client_ip();
-			if ( $ip_number == "0.0.0.0" || $ip_number == '127.0.0.1' ) {
-				$is_localhost = 1;
+
+				
+	
+			if ( $this->ip != '0.0.0.0' ) {
+				$query = "INSERT INTO #__jomres_sessions (`session_id`, `data` , `is_localhost` ) VALUES ('".$this->jomressession_db."','".$data."' , '' )";
+				if (!doInsertSql($query, '')) {
+					throw new Exception('Error: Could not save session data');
+				}
 			}
-			
-			$query = "INSERT INTO #__jomres_sessions (`session_id`, `data` , `is_localhost` ) VALUES ('".$this->jomressession_db."','".$data."' , ".$is_localhost." )";
-			if (!doInsertSql($query, '')) {
-				throw new Exception('Error: Could not save session data');
-			}
+
 		}
 	}
 	
@@ -538,7 +538,7 @@ class jomres_temp_booking_handler
 				if (!file_put_contents($this->sessionfile, $data)) {
 					throw new Exception('Error: Could not save session file');
 				}
-			} else {
+			} elseif (  $this->ip != '0.0.0.0' ) {
 				$query = "UPDATE #__jomres_sessions SET `data` = '".$data."' WHERE `session_id` = '".$this->jomressession_db."'";
 				if (!doInsertSql($query, '')) {
 					throw new Exception('Error: Could not update session data to database');
