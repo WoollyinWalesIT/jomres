@@ -41,7 +41,13 @@ class j03379room_types
 
 			return;
 		}
-		$property_uid = getDefaultProperty();
+		
+		if (!isset($componentArgs['property_uid'])) {
+			$property_uid = getDefaultProperty();
+		} else {
+			$property_uid = (int)$componentArgs['property_uid'];
+		}
+		
 		$mrConfig = getPropertySpecificSettings($property_uid);
 		
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');

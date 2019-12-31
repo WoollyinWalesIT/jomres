@@ -42,7 +42,12 @@ class j03379property
 			return;
 		}
 
-		$property_uid = getDefaultProperty();
+		if (!isset($componentArgs['property_uid'])) {
+			$property_uid = getDefaultProperty();
+		} else {
+			$property_uid = (int)$componentArgs['property_uid'];
+		}
+		
 		$preview_link = JOMRES_SITEPAGE_URL_AJAX.'&task=show_property_header&property_uid='.$property_uid;
 		
 		$this->ret_vals = array(

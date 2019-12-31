@@ -41,7 +41,13 @@ class j03379rooms
 
 			return;
 		}
-		$property_uid = getDefaultProperty();
+		
+		if (!isset($componentArgs['property_uid'])) {
+			$property_uid = getDefaultProperty();
+		} else {
+			$property_uid = (int)$componentArgs['property_uid'];
+		}
+		
 		$mrConfig = getPropertySpecificSettings($property_uid);
 		
 		$this->ret_vals = array();
