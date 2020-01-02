@@ -496,7 +496,7 @@ class jomres_temp_booking_handler
 				
 	
 			if ( $this->ip != '0.0.0.0' ) {
-				$query = "INSERT INTO #__jomres_sessions (`session_id`, `data` , `is_localhost` ) VALUES ('".$this->jomressession_db."','".$data."' , '' )";
+				$query = "INSERT INTO #__jomres_sessions (`session_id`, `data` ) VALUES ('".$this->jomressession_db."', '".$data."' )";
 				if (!doInsertSql($query, '')) {
 					throw new Exception('Error: Could not save session data');
 				}
