@@ -2556,3 +2556,7 @@ jr_define('BOOKING_NOSHOW_NETWORK_STATUS', 'JSN statistics for this user');
 jr_define('BOOKING_NOSHOW_INFO', 'Booking and No Show information is pulled from the Jomres Syndicate Network at booking time. It is taken from anonymised data and can be used by you to decide if this guest is a risk of not fulfilling the booking. If the system reports that the data is unknown, it is probably because this system is not recognised on the network.');
 
 jr_define('BOOKING_NOSHOW_UNKNOWN', 'Unknown');
+
+jr_define('CMF_CONFIG_TITLE', 'Channel Management Framework');
+jr_define('CMF_CONFIG_KEY', 'Channel Management Framework Key');
+jr_define('CMF_CONFIG_KEY_DESC', 'The Channel Management Framework license key. You will need to provide this key to be able to download Channel Management Framework plugins.');
