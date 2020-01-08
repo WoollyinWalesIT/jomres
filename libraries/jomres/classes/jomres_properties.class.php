@@ -445,7 +445,11 @@ class jomres_properties
 				$this->setPublished(0);
 			}
 		}
-
+		
+		if ( file_exists (JOMRES_MPDF_ABSPATH.JRDS."terms_and_conditions_".(int)$this->propertys_uid.".pdf") ) {
+			unlink(JOMRES_MPDF_ABSPATH.JRDS."terms_and_conditions_".(int)$this->propertys_uid.".pdf");
+		}
+		
 		$webhook_notification						   	= new stdClass();
 		$webhook_notification->webhook_event				= 'property_updated';
 		$webhook_notification->webhook_event_description	= 'Logs when a property is updated.';
