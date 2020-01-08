@@ -171,7 +171,8 @@ class Jomres_Public {
 				$_REQUEST['task'] == 'completebk' ||
 				$_REQUEST['task'] == 'processpayment' ||
 				$_REQUEST['task'] == 'confirmbooking' ||
-				$_REQUEST['task'] == 'invoice_payment_receive'
+				$_REQUEST['task'] == 'invoice_payment_receive' ||
+				$_REQUEST['task'] == 'stripe_connect_return'
 			)
 		) {
 			return $requested_url;

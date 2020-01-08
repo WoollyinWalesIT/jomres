@@ -1,3 +1,27 @@
+<h3>Jomres 9.21.3 08/01/2020</h3>
+
+<span class="label label-warning">Change</span> Removed some unnecessary code that was preventing deletion of properties via componentArgs and REST API
+<span class="label label-warning">Change</span> Improved how errors are output by the api when in dev mode.
+<span class="label label-warning">Change</span> Improved PUT method handling
+<span class="label label-warning">Change</span> Disabled some automatic plugin installation functionality that can cause some problems and isn't really necessary.
+<span class="label label-warning">Change</span> Added some throttling to ensure that syndicate servers don't get spammed by api hits quite as much.
+<span class="label label-warning">Change</span> Guest email address and phone number added to timeline on-hover popup.
+<span class="label label-warning">Change</span> Added code to prevent the session handler from creating rows in the sessions table when queries appear to come from localhost (guzzle calls to self for deferred or asynchronous jobs).
+<span class="label label-warning">Change</span> 03379 scripts updated so that property uid can be passed via component args. This allows the channel manager property import functionality to store images using the Jomres framework which ensures that resource types etc are respected within the context of Jomres.
+<span class="label label-warning">Change</span> Added code to handle channel management framework plugins
+<span class="label label-warning">Change</span> Added stripe_connect_return as a task that wp should not allow redirections on.
+<span class="label label-warning">Change</span> Added french lang files to joomla cms plugin
+
+<span class="label label-important label-danger">Fix</span> Fixed a bug in syndicate guests details handling.
+<span class="label label-important label-danger">Fix</span> Resolved an issue with creating seeds of property feature categories.
+<span class="label label-important label-danger">Fix</span> Added code to check for crawler, and if not a crawler then it's ok to trigger scheduled tasks. Bots just create too much work/too many sessions.
+<span class="label label-important label-danger">Fix</span> Fixed an issue on new installations where a column is missing.
+<span class="label label-important label-danger">Fix</span> Re-added some template output for edit booking guest details so that in the event that the account details haven't been updated, their booking information still shows.
+<span class="label label-important label-danger">Fix</span> Fixed a bug when extras quantities are not being stored at contracts table (thanks Rod)
+<span class="label label-important label-danger">Fix</span> Removed updating of the is_localhost flag as it's no longer necessary and updaters who's installations aren't properly running the table update functionality (possibly due to timeouts) are having problems running their newly updated Jomres installations.
+<span class="label label-important label-danger">Fix</span> Fixed an issue where pdfs are not deleted on property details update
+<span class="label label-important label-danger">Fix</span> Added some pdf files that were causing new bookings to fail.
+
 <h3>Jomres 9.21.2 19/11/2019</h3>
 
 <span class="label label-important label-danger">Fix</span> Fixed an issue where schema content could appear in property details pages.

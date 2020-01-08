@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.2
+ * @version Jomres 9.21.3
  *
- * @copyright	2005-2019 Vince Wooll
+ * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -16,6 +16,7 @@ defined('_JOMRES_INITCHECK') or die('');
 
 require_once( JOMRESPATH_BASE.'libraries'.JRDS.'php-encryption'.JRDS.'autoload.php' );
 
+use Defuse\Crypto\Exception\WrongKeyOrModifiedCiphertextException;
 use Defuse\Crypto\Key;
 use Defuse\Crypto\Crypto;
 	
@@ -142,7 +143,7 @@ class encryption_key
 	try {
 		return Crypto::decrypt($ciphertext, $this->encryption_key );
 		} 
-	catch (\Defuse\Crypto\Exception\WrongKeyOrModifiedCiphertextException $ex) 
+	catch (WrongKeyOrModifiedCiphertextException $ex)
 		{
 		// An attack! Either the wrong key was loaded, or the ciphertext has
 		// changed since it was created -- either corrupted in the database or

@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.2
+ * @version Jomres 9.21.3
  *
- * @copyright	2005-2019 Vince Wooll
+ * @copyright	2005-2020 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -14,7 +14,7 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-/*
+/**
 	** Title | Report server url to Jomres and number of published properties
 	** Description | Intended for use by the superserver that will produce a list of properties with Jomres installed, and the number of properties they offer
 	** Plugin | core
@@ -46,7 +46,7 @@ Flight::route('GET /core/report', function()
 	});
 
 
-/*
+/**
 	** Title | Get a list of published properties - limited results
 	** Description | Intended for use by syndicated sites, this returns a list of published properties. Items returned include the property name, it's location, url to the view property page, and whether or not it's an MRP or SRP
 	** Plugin | core

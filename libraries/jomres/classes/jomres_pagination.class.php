@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.2
+ * @version Jomres 9.21.3
  *
- * @copyright	2005-2019 Vince Wooll
+ * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -63,12 +63,12 @@ class jomres_pagination
 	/**
 	 * @param int $maxPagesToShow
 	 *
-	 * @throws \InvalidArgumentException if $maxPagesToShow is less than 3
+	 * @throws InvalidArgumentException if $maxPagesToShow is less than 3
 	 */
 	public function setMaxPagesToShow($maxPagesToShow)
 	{
 		if ($maxPagesToShow < 3) {
-			throw new \InvalidArgumentException('maxPagesToShow cannot be less than 3.');
+			throw new InvalidArgumentException('maxPagesToShow cannot be less than 3.');
 		}
 		$this->maxPagesToShow = $maxPagesToShow;
 	}

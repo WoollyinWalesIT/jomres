@@ -4,22 +4,15 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.2
+ * @version Jomres 9.21.3
  *
- * @copyright	2005-2019 Vince Wooll
- * Translation to fr-FR by Stéphane Bernard, Valtari NumAgency, France - last update : 03/07/2019 - https://www.valtari.fr
+ * @copyright	2005-2020 Vince Wooll
+ * Translation to fr-FR by Stéphane Bernard, Valtari NumAgency, France - last update : 19/11/2019 - https://www.valtari.fr
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 //#################################################################
 defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.');
 //#################################################################
-/**
- *
- * @package Jomres\Core\Languages
- *
- * Language files.
- *
- **/
 jr_define('_JOMRES_COM_MR_QUICKRESDESC', 'Réservation rapide');
 jr_define('_JOMRES_COM_MR_SHOWPROFILES', 'Liste du personnel et des gestionnaires');
 jr_define('_JOMRES_COM_MR_GENERALCONFIGDESC', 'Configuration Générale');
@@ -1773,7 +1766,7 @@ jr_define('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Votre clé de support est
 jr_define('_JOMRES_DASHBOARD_DRAG_TRASH', 'Faites glisser les réservations dans cette zone pour les annuler');
 jr_define('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define('_JOMRES_LONG', 'Long (nn.nnnn)');
-jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Please ensure that you`ve created a WordPress Page that contains the [jomres:xx-XX] shortcode ( where xx-XX is your site language code, for example [jomres:en-GB] or [jomres:en-US] ) otherwise you will not be able to access Jomres from the frontend to manage your properties and bookings. <br> Jomres is built on the Bootstrap framework, so you must use it on a theme based on Bootstrap. We recommend one based on Bootstrap 3. If you do not have access to a theme then we recommend that you use the Jomres Leohtian theme for Wordpress which you can <a href="https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target="_blank">download from here.</a>');
+jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Veuillez vous assurer que vous avez créé une page WordPress contenant le shortcode [jomres: xx-XX] (où xx-XX est le code de langue de votre site, par exemple [jomres: en-GB]). Dans le cas contraire, vous ne pourrez pas y accéder depuis le site pour gérer vos établissements et vos réservations.');
 jr_define('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', 'Avant de pouvoir créer un type de chambre, nous devons savoir s\’il s’agit d’un établissement de type hôtel ou de type villa/maison/gîte.');
 jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', 'Cliquez pour ajouter de nouveaux types de chambres');
 jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES', 'Attention ! Vous avez un ou plusieurs types d\'établissements sans types de chambres. Les établissements ont besoin de types de chambres afin que les gestionnaires des établissements puissent créer des tarifs.');
@@ -2293,104 +2286,73 @@ jr_define('_ADMIN_CPANEL_REVIEWS_PANEL_TOTAL_REVIEWS', 'Total des avis ');
 jr_define('_ADMIN_CPANEL_REVIEWS_PANEL_UNPUBLISHED_REVIEWS', 'Avis non publié(s) ');
 jr_define('_ADMIN_CPANEL_REVIEWS_PANEL_REPORTED_REVIEWS', 'Avis signalé(s) ');
 jr_define('_ADMIN_CPANEL_SYSTEM_INFO', 'Informations sur Jomres');
-jr_define('_JOMRES_PROPERTYTYPE_UNPUBLISHED_SANITY_CHECK', "This property's property type is not published, it may not appear in search results. Please contact the site administrator to publish the property type, or change the property type in the Edit Property page.");
-jr_define('_JOMRES_PROPERTYTYPE_UNPUBLISHED_SANITY_CHECK_LINK', 'Update your property type');
-
-
-jr_define('_JOMRES_INCOME_PAID_AMOUNTS', 'Income (paid amounts)');
-jr_define('_JOMRES_CANNOT_DELETE_PROPERTY_FEATURE_1', 'Cannot delete the property feature "');
-jr_define('_JOMRES_CANNOT_DELETE_PROPERTY_FEATURE_2', '" because it is used by the following property(s) : ');
-
-
-jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST', 'REST API test');
-jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_INFO', 'This page performs a basic test of the REST API using built-in functionality in Jomres. It calls the Jomres REST API to see if it receives a valid response.');
-jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_CALLED', 'The server called this URL to see if the response is valid : ');
-jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_RESPONSE', 'The page received this response : ');
-jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_PASSED', 'The test appeared to go as expected, you will probably not have any problem receiving REST API requests from the rest of the Internet.');
-jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_FAILED', 'The test failed, look in the Response field, if it looks like a lot of html, or you recieved a 404 message, then your server is redirecting calls to another url. This will prevent you from receiving API calls.');
-
-jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_TITLE', 'Syndication test');
-jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_INTRO', 'The Jomres App server maintains a list of all Jomres sites. This allows us to build a syndication network. This network is designed to allow our users to display properties from other sites on their own sites and is useful, particularly for new sites, to build up an SEO presence on the net. The goal is for all Jomres sites to work together, building trust in the network. There is no charge for this service.');
-jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_FAILED', 'Your site is not currently listed on the Jomres App server, which is part of the syndication network. This server will try again to add this server to the network on the next 6 page loads. If, after a few page loads, this does not change please check that the connectivity test above passes the tests. Note, localhost servers cannot be added to the network.');
-jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_PASSED', 'Congratulations, your server is listed on the Jomres App server.');
-
-jr_define('_JOMRES_SYNDICATION_TITLE', 'Syndicated properties');
-jr_define('_JOMRES_SYNDICATION_TAGLINE', 'Here are some other properties available from our property network');
-
-
-jr_define('_JOMRES_SYNDICATION_STATS_TITLE', 'Syndication stats');
-jr_define('_JOMRES_SYNDICATION_STATS_IS_LISTED', 'Congratulations, your server is listed on the Jomres Syndication Network. Your property(s) will start appearing on other Jomres sites soon, if they are not already being shown.');
-jr_define('_JOMRES_SYNDICATION_STATS_IS_NOT_LISTED', 'You installation is not part of the Jomres Syndication Network, therefore your property(s) are not being shown on other Jomres based sites and you can\'t benefit from this free advertising.');
-jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_SERVERS', 'Active Jomres installations : ');
-jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_SERVERS_DESC', 'The total number of Jomres installations that are sharing Jomres Syndication Network properties on their sites. ');
-jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTIES', 'Total Properties : ');
-jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTIES_DESC', 'This is the number of properties available in the JSN.');
-jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS', 'Total Property displays : ');
-jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS_DESC', 'In total, all of the times a Jomres property has been linked to from another Jomres based site.');
-jr_define('_JOMRES_SYNDICATION_STATS_BLURB', 'The Jomres Syndicate Network (JSN) is a free feature available to all Jomres users. It\'s purpose is to provide you with free advertising of your properties on other Jomres based sites. The goal is to help you get your site off the ground fast, offering free advertising so that your properties are recognised and trusted because they are linked to high confidence, high relevance websites that are already well known to the search engines. See this <a href="https://www.jomres.net/features/jomres-syndication-network" target="_blank">article on our website</a> and <a href="https://www.jomres.net/manual/developers-guide-2/387-jomres-syndication-network" target="_blank">the manual</a>  for more information.');
-
-
-jr_define('GUEST_PROFILE_INFORMATION', 'This is your guest profile data, fields with this symbol <i class="fa fa-users" aria-hidden="true"></i>
- are publicly visible, whereas fields with this symbol <i class="fa fa-user-secret" aria-hidden="true"></i> can only be seen by you, your hosts and site administrators.<br/><br/>Hosts can only see private information if you have already created a booking with them.<br/><br/>Your information is safely encrypted and stored in our database using AES-256 encryption.');
-
-jr_define('GUEST_PROFILE_OPTIONAL', 'These fields are optional, however hosts may use the information here to determine if they feel that they can trust you, therefore it\'s better to add the information. Remember, you are asking to stay in their property, and they may turn you down if they feel you aren’t a good fit or that your bio doesn’t contain enough information.');
- 
-jr_define('GUEST_PROFILE_DRIVING_LICENSE', 'Driving license');
-jr_define('GUEST_PROFILE_PASSPORT_NUMBER', 'Passport number');
-jr_define('GUEST_PROFILE_IBAN', 'IBAN number');
-jr_define('GUEST_PROFILE_ABOUT_ME', 'About me');
-jr_define('GUEST_PROFILE_ABOUT_ME_HINTS', 'This "About me" section is publicly viewable so don\'t put in any private information. That said, do make an effort to put as much as you feel comfortable sharing such as your passions, what you do for a living, your hobbies etc. You can use Markup to give it a bit of jazz. Hosts will want to feel that they can trust you with their properties. Make sure that your picture is a real picture of you, not your dog or car (yes, guys, we\'re talking to you!).');
-
-jr_define('GUEST_PROFILE_PREFERENCES', 'Enter any special requirements you may have, such as ease of access needs here. They will not be shown on your public profile but they will be added to the booking information when you make a booking.');
-
-jr_define('VIEW_HOST_PROFILE', 'Host\'s profile');
-
-jr_define('GUEST_PROFILE_TITLE', 'Guest profile');
-jr_define('GUEST_PROFILE_TITLE_MY', 'My profile');
-
-jr_define('GUEST_PROFILE_WELCOME', 'Hi, let me tell you a little bit about myself.');
-jr_define('GUEST_PROFILE_MY_NAME', 'My name is ');
-jr_define('GUEST_PROFILE_I_COME_FROM', ' and I come from the ');
-jr_define('GUEST_PROFILE_IN', ' region in ');
-
-jr_define('GUEST_PROFILE_PRIVATE_INFORMATION', 'My private information');
-jr_define('GUEST_PROFILE_PRIVATE_INFORMATION_DISCLAIMER', 'We do our best to validate guest and host information however you should do your own due dilligence and decide for yourself whether or not this person is trustworthy.');
-
-jr_define('GUEST_PROFILE_MY_PROPERTIES', 'My properties');
-jr_define('GUEST_PROFILE_MY_REVIEWS', 'My reviews');
-jr_define('GUEST_PROFILE_MY_REVIEWS_I_SAID', 'This is what I said about this property : ');
-jr_define('GUEST_PROFILE_MY_REVIEWS_I_SCORED', 'I gave this property a rating score of : ');
-jr_define('GUEST_PROFILE_MY_REVIEWS', 'My reviews');
-jr_define('GUEST_PROFILE_OF_ME', 'What other people say about me');
-jr_define('GUEST_PROFILE_OF_HOST_SAID', 'What this host said about me');
-
-jr_define('GUEST_PROFILE_REVIEW_GUEST', 'Review guest');
-jr_define('GUEST_PROFILE_REVIEW_GUEST_CONTENT', 'My review of this guest ');
-jr_define('GUEST_PROFILE_REVIEW_GUEST_CONTENT_EXAMPLES', 'Here are some example guest reviews to get the ball rolling : <br/>
-	
-	<ul>
-	<li>(guests name) was a pleasure to host! They left the space clean and were quiet throughout the weekend. They had smooth communication and I look forward to having them stay with me again!</li>
-    <li>I loved having (guest name) because they were able to treat the place with respect, have a great time and enjoy the area. They were awesome with renting the space and I hope I get to host them again.</li>
-    <li>All of my house rules were respected with (guest name) and they were able to come in and go with ease. I loved having them there as they were respectful and quiet. I highly recommend them to others!</li>
-	</ul>
-
-');
-
-jr_define('GUEST_PROFILE_UNKNOWN', 'Sorry, I can\'t find that user. Most likely they have not filled in their account details yet.');
-
-jr_define('GUEST_PROFILE_USERSTATUS_GUEST', 'Guest');
-jr_define('GUEST_PROFILE_USERSTATUS_HOST', 'Host');
-jr_define('GUEST_PROFILE_USERSTATUS_ADMIN', 'Admin');
-
-jr_define('WORDPRESS_THEME_ADVICE', 'Jomres is built on the Bootstrap framework, so you must use it on a theme based on Bootstrap. We recommend one based on Bootstrap 3. If you do not have access to a theme then we recommend that you use the Jomres Leohtian theme for Wordpress which you can <a href="https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target="_blank">download from here.</a>');
-
-
-jr_define('BOOKING_NOSHOW_MENU', 'Mark as No Show');
-jr_define('BOOKING_NOSHOW_AUDIT_LOG', 'Booking marked as No Show');
-jr_define('BOOKING_NOSHOW_BOOKINGS', 'Bookings');
+jr_define('_JOMRES_PROPERTYTYPE_UNPUBLISHED_SANITY_CHECK', "Le type de cet établissement n'est pas publié, il peut ne pas apparaître dans les résultats de recherche. Veuillez contacter l'administrateur du site pour publier le type de d'établissement ou modifier le type de propriété dans la page Modifier la propriété.");
+jr_define('_JOMRES_PROPERTYTYPE_UNPUBLISHED_SANITY_CHECK_LINK', "Mettre à jour type d'établissement");
+jr_define('_JOMRES_INCOME_PAID_AMOUNTS', 'Chiffre d\affaires');
+jr_define('_JOMRES_CANNOT_DELETE_PROPERTY_FEATURE_1', 'Impossible de supprimer les caractéristiques de l\'établissement');
+jr_define('_JOMRES_CANNOT_DELETE_PROPERTY_FEATURE_2', ' car elles sont utilisées par le(s) établissement(s) suivant(s) :');
+jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST', 'Test de l\'API REST');
+jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_INFO', 'Cette page effectue un test de base de l\'API REST à l\'aide de la fonctionnalité intégrée dans Jomres. Il appelle l\'API REST Jomres pour voir si elle reçoit une réponse valide.');
+jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_CALLED', 'Le serveur a appelé cette URL pour voir si la réponse est valide : ');
+jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_RESPONSE', 'La page a reçu cette réponse : ');
+jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_PASSED', 'Le test a semblé se dérouler comme prévu, vous n\'aurez probablement aucun problème à recevoir les demandes d\'API REST d\'autres correspondants Internet.');
+jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_FAILED', 'Le test a échoué ! Regardez dans le champ Réponse, si c\'est du code HTML ou si vous avez reçu un message du type 404, puis que votre serveur a redirigé les requêtes vers une autre URL. Cela vous évitera de recevoir des requêtes d\'API.');
+jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_TITLE', 'Test de syndication');
+jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_INTRO', 'Le serveur Jomres App gère une liste de tous les sites Jomres. Cela nous permet de construire un réseau de syndication. Ce réseau est conçu pour permettre à nos utilisateurs d’afficher les établissements d’autres sites sur leurs propres sites. Il est utile, en particulier pour les nouveaux sites, de créer une présence SEO sur le net par le réseau qui coopte tous les Jomres ensemble. L’objectif est que tous les sites de Jomres travaillent ensemble, instaurant ainsi la confiance dans le réseau. Il n\'y a pas de frais pour ce service.');
+jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_FAILED', 'Votre site ne figure pas actuellement sur le serveur Jomres App, qui fait partie du réseau de syndication. Ce serveur essaiera à nouveau d\'ajouter ce serveur au réseau lors chargement des six prochaines pages. Si, après quelques pages de chargement, cela ne change pas, veuillez vérifier que le test de connectivité ci-dessus réussit les tests. Remarque : les serveurs localhost ne peuvent pas être ajoutés au réseau.');
+jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_PASSED', 'Félicitations, votre serveur est répertorié sur le serveur de l’application Jomres.');
+jr_define('_JOMRES_SYNDICATION_TITLE', 'Établissements syndiqués');
+jr_define('_JOMRES_SYNDICATION_TAGLINE', 'Voici quelques autres établissements disponibles sur notre réseau immobilier');
+jr_define('_JOMRES_SYNDICATION_STATS_TITLE', 'Statistiques de syndication');
+jr_define('_JOMRES_SYNDICATION_STATS_IS_LISTED', 'Félicitations, votre serveur est répertorié sur le réseau de syndication Jomres. Vos établissements apparaîtront bientôt sur d\'autres sites Jomres, s\'ils ne sont pas déjà affichés.');
+jr_define('_JOMRES_SYNDICATION_STATS_IS_NOT_LISTED', 'Votre installation ne fait pas partie du réseau de syndication Jomres. Par conséquent, vos établissements ne sont pas affichés sur les autres sites basés sur Jomres et vous ne pouvez pas bénéficier de cette publicité gratuite.');
+jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_SERVERS', 'Installations actives de Jomres : ');
+jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_SERVERS_DESC', 'Nombre total d\'installations Jomres partageant les établissements du réseau de syndication Jomres sur leurs sites. ');
+jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTIES', 'Total des établissements : ');
+jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTIES_DESC', 'C\'est le nombre d\'établissements disponibles dans le JSN (Jomres Syndicate Network).');
+jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS', 'Total d\'établissements affichés : ');
+jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS_DESC', 'Au total, toutes les fois où un établissement Jomres a été lié à un autre site basé sur Jomres.');
+jr_define('_JOMRES_SYNDICATION_STATS_BLURB', 'Le JSN (Jomres Syndicate Network) est une fonctionnalité gratuite mise à la disposition de tous les utilisateurs de Jomres. Son but est de vous fournir gratuitement de la publicité pour vos établissements sur d’autres sites basés sur Jomres. L’objectif est de vous aider à lancer votre site rapidement, en offrant de la publicité gratuite pour que vos établissemnts soient reconnues et fiables, car ils sont liées à des sites Web plus fiables et d’une grande pertinence, qui sont déjà bien connus des moteurs de recherches. Voir cet <a href="https://www.jomres.net/features/jomres-syndication-network" target="_blank"> article sur notre site Web </a> et <a href = "https: // www .jomres.net/manual/developers-guide-2/387-jomres-syndication-network "target ="_ blank "> dans le manuel </a> pour plus d\'informations.');
+jr_define('GUEST_PROFILE_INFORMATION', 'Il s\’agit des données de votre profil client. Les champs avec ce symbole <i class="fa fa-users" aria-hidden="true"></i> sont visibles publiquement, alors que les champs avec ce symbole <i class="fa fa-user-secret" aria-hidden="true"></i> ne peut être vu que par vous, l\'établissement et les administrateurs du site.<br/><br/> Les hôtes ne peuvent voir vos informations privées que si vous avez déjà créé une réservation.<br/><br/> Vos informations sont cryptées en toute sécurité et stockées dans notre base de données avec l\'encryptage AES-256.');
+jr_define('GUEST_PROFILE_OPTIONAL', 'Ces champs sont facultatifs. Cependant, l\'établissement prend en compte ces informations pour valider votre réservation. Il est donc préférable de les remplir.');
+jr_define('GUEST_PROFILE_DRIVING_LICENSE', 'Numéro de permis de conduire');
+jr_define('GUEST_PROFILE_PASSPORT_NUMBER', 'Numéro de passeport');
+jr_define('GUEST_PROFILE_IBAN', 'IBAN');
+jr_define('GUEST_PROFILE_ABOUT_ME', 'À propos de moi');
+jr_define('GUEST_PROFILE_ABOUT_ME_HINTS', 'La section À propos de moi est accessible au public. Ne mettez aucune information privée. Cela dit, partagez vos passions, ce que vous faites dans la vie, vos passe-temps, etc.');
+jr_define('GUEST_PROFILE_PREFERENCES', 'Renseigner ici toutes les exigences particulières que vous pouvez avoir. Ils ne figureront pas sur votre profil public, mais ils seront ajoutés aux informations de réservation lorsque vous en effectuerez une.');
+jr_define('VIEW_HOST_PROFILE', 'Profil de l\'établissemnt');
+jr_define('GUEST_PROFILE_TITLE', 'Profil client');
+jr_define('GUEST_PROFILE_TITLE_MY', 'Mon profil');
+jr_define('GUEST_PROFILE_WELCOME', 'Bonjour, laissez-moi me présenter !');
+jr_define('GUEST_PROFILE_MY_NAME', 'Mon nom est ');
+jr_define('GUEST_PROFILE_I_COME_FROM', ' et je viens de ');
+jr_define('GUEST_PROFILE_IN', ' dans la région de ');
+jr_define('GUEST_PROFILE_PRIVATE_INFORMATION', 'Mes informations privées');
+jr_define('GUEST_PROFILE_PRIVATE_INFORMATION_DISCLAIMER', 'Nous faisons de notre mieux pour valider les informations des clients et des établissements. Toutefois, vous devez vous faire votre propre avis et décider vous-même si cette personne est digne de confiance.');
+jr_define('GUEST_PROFILE_MY_PROPERTIES', 'Mes établissements');
+jr_define('GUEST_PROFILE_MY_REVIEWS', 'Mes avis');
+jr_define('GUEST_PROFILE_MY_REVIEWS_I_SAID', 'Information du propriétaire de l\'établissement : ');
+jr_define('GUEST_PROFILE_MY_REVIEWS_I_SCORED', 'L\'établiisement a obtenu une motation de ');
+jr_define('GUEST_PROFILE_MY_REVIEWS', 'Mes avis');
+jr_define('GUEST_PROFILE_OF_ME', 'Les avis et informations des clients de l\'établissement');
+jr_define('GUEST_PROFILE_OF_HOST_SAID', 'Les informations de l\'hôte sur moi');
+jr_define('GUEST_PROFILE_REVIEW_GUEST', 'Les avis clients');
+jr_define('GUEST_PROFILE_REVIEW_GUEST_CONTENT', 'Mon avis sur le client ');
+jr_define('GUEST_PROFILE_REVIEW_GUEST_CONTENT_EXAMPLES', 'Voici quelques exemples d\'avis clients pour lancer le processus : <br/><ul><li>Ce fut un plaisir de recevoir (Nom du client) ! Il a laissé l\'hébergement propre et s\'est comporter de façon calme tout au long du week-end. Il avait une communication respectueuse et j\'ai hâte de le recevoir de nouveau !</li><li>J\'ai aimé avoir (nom du client) comme client, car il a traité notre établissement avec respect, a passé un bon moment et a profité de la région. Il a été formidable tout au long de son séjour et j\'espère pouvoir l\'accueillir de nouveau.</li><li>Toutes les règles de l\'établissement ont été respectées par (nom du client) et il a respecté les horaires d\'arrivé et de départ. J\'ai adoré les recevoir, il a été respectueux et calme. Je le recommande fortement !</li></ul>');
+jr_define('GUEST_PROFILE_USERSTATUS_GUEST', 'Client');
+jr_define('GUEST_PROFILE_USERSTATUS_HOST', 'Établissement');
+jr_define('GUEST_PROFILE_USERSTATUS_ADMIN', 'Gestionaire');
+jr_define('GUEST_PROFILE_UNKNOWN', 'Désolé, je ne trouve pas ce client. Très probablement, il n\'a pas encore renseigné les informations détaillées de son compte.');
+jr_define('WORDPRESS_THEME_ADVICE', 'Jomres est construit sur le framework Bootstrap, vous devez donc l\'utiliser avec thème basé sur Bootstrap. Nous vous recommandons Bootstrap 3. Si vous n’avez pas accès à un thème, nous vous recommandons d’utiliser le thème Jomres Leohtian pour Wordpress que vous pouvez <a href="https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress "target ="_ blank"> télécharger ici.</a>');
+jr_define('BOOKING_NOSHOW_MENU', 'Marquer comme No Show');
+jr_define('BOOKING_NOSHOW_AUDIT_LOG', 'La réservation est un No Show');
+jr_define('BOOKING_NOSHOW_BOOKINGS', 'Réservations');
 jr_define('BOOKING_NOSHOW_NOSHOWS', 'No Shows');
-jr_define('BOOKING_NOSHOW_NETWORK_STATUS', 'JSN statistics for this user');
+jr_define('BOOKING_NOSHOW_NETWORK_STATUS', 'Statistiques JSN de ce client');
+jr_define('BOOKING_NOSHOW_INFO', 'Les informations de réservation et de No Show sont extraites du réseau de syndication de Jomres au moment de la réservation. Il provient de données anonymisées et peut être utilisé par vous pour décider si cet invité risque de ne pas honorer la réservation. Si le système signale que les données sont inconnues, c\'est probablement parce que ce système n\'est pas reconnu sur le réseau.');
+jr_define('BOOKING_NOSHOW_UNKNOWN', 'Inconnu');
 
-jr_define('BOOKING_NOSHOW_INFO', 'Booking and No Show information is pulled from the Jomres Syndicate Network at booking time. It is taken from anonymised data and can be used by you to decide if this guest is a risk of not fulfilling the booking. If the system reports that the data is unknown, it is probably because this system is not recognised on the network.');
-
-jr_define('BOOKING_NOSHOW_UNKNOWN', 'Unknown');
+jr_define('CMF_CONFIG_TITLE', 'Channel Management Framework');
+jr_define('CMF_CONFIG_KEY', 'Channel Management Framework Key');
+jr_define('CMF_CONFIG_KEY_DESC', 'The Channel Management Framework license key. You will need to provide this key to be able to download Channel Management Framework plugins.');

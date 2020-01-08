@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.2
+ * @version Jomres 9.21.3
  *
- * @copyright	2005-2019 Vince Wooll
+ * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -39,7 +39,7 @@ INSERT INTO `#__jomres_hotel_features_categories` (`id`, `title`) VALUES
 (7, 'Food & Drink'),
 (8, 'Parking'),
 (9, 'Services'),
-(10, 'Bathroom');
+(10, 'Bathroom')
 ";
 
 if (!doInsertSql($query)) {

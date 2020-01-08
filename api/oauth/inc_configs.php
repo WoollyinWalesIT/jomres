@@ -7,9 +7,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.2
+ * @version Jomres 9.21.3
  *
- * @copyright	2005-2019 Vince Wooll
+ * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  */
  
@@ -33,11 +33,6 @@ if (file_exists(JOMRES_API_CMS_ROOT.DIRECTORY_SEPARATOR.'configuration.php')) {
     $dsn = 'mysql:dbname='.$db.';host='.$host;
     $username = $CONFIG->user;
     $password = $CONFIG->password;
-    if ($CONFIG->error_reporting == 'development') {
-        define('PRODUCTION', true);
-        } else {
-        define('PRODUCTION', false);
-        }
 } elseif (file_exists(JOMRES_API_CMS_ROOT.DIRECTORY_SEPARATOR.'wp-config.php')) {
     $db_details = array();
 	$wp_config_file = file(JOMRES_API_CMS_ROOT.DIRECTORY_SEPARATOR.'wp-config.php');
@@ -63,7 +58,6 @@ if (file_exists(JOMRES_API_CMS_ROOT.DIRECTORY_SEPARATOR.'configuration.php')) {
     $dsn = 'mysql:dbname='.$db.';host='.$host;
     $username = $db_details['DB_USER'];
     $password = $db_details['DB_PASSWORD'];
-    define('PRODUCTION', false);
 } else {
     die(json_encode('Cant find configuration file.')); // No findie el config file!
 }

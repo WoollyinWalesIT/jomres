@@ -19,7 +19,6 @@ desktop.ini
 /libraries/node_modules/x-editable/test
 /libraries/node_modules/jquery-ui/external
 /libraries/vendor/ezyang/htmlpurifier/library/HTMLPurifier/DefinitionCache/Serializer/HTML/4.12.0,039209994080c416d43e1a443a5b919d9bdafeb5,1.ser
-/libraries/vendor/mpdf/mpdf/ttfonts/DejaVuSansCondensed-Oblique.ttf
 /libraries/vendor/mpdf/mpdf/ttfonts/DejaVuSansMono.ttf
 /libraries/vendor/mpdf/mpdf/ttfonts/DejaVuSansMono-Bold.ttf
 /libraries/vendor/mpdf/mpdf/ttfonts/DejaVuSansMono-BoldOblique.ttf
@@ -28,7 +27,6 @@ desktop.ini
 /libraries/vendor/mpdf/mpdf/ttfonts/DejaVuSerif.ttf
 /libraries/vendor/mpdf/mpdf/ttfonts/DejaVuSerif-Bold.ttf
 /libraries/vendor/mpdf/mpdf/ttfonts/DejaVuSerif-BoldItalic.ttf
-/libraries/vendor/mpdf/mpdf/ttfonts/DejaVuSerifCondensed.ttf
 /libraries/vendor/mpdf/mpdf/ttfonts/DejaVuSerifCondensed-Bold.ttf
 /libraries/vendor/mpdf/mpdf/ttfonts/DejaVuSerifCondensed-BoldItalic.ttf
 /libraries/vendor/mpdf/mpdf/ttfonts/DejaVuSerifCondensed-Italic.ttf
@@ -37,6 +35,5 @@ desktop.ini
 /libraries/vendor/mpdf/mpdf/ttfonts/DejaVuSans.ttf
 /libraries/vendor/mpdf/mpdf/ttfonts/DejaVuSans-Bold.ttf
 /libraries/vendor/mpdf/mpdf/ttfonts/DejaVuSans-BoldOblique.ttf
-/libraries/vendor/mpdf/mpdf/ttfonts/DejaVuSansCondensed.ttf
 /libraries/vendor/mpdf/mpdf/ttfonts/DejaVuSansCondensed-Bold.ttf
 /libraries/vendor/mpdf/mpdf/ttfonts/DejaVuSansCondensed-BoldOblique.ttf

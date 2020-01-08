@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.2
+ * @version Jomres 9.21.3
  *
- * @copyright	2005-2019 Vince Wooll
+ * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -97,7 +97,7 @@ try {
 
 	//jomres cron object
 	$cron = jomres_singleton_abstract::getInstance('jomres_cron');
-	if ($cron->method == 'Minicomponent' && !AJAXCALL) {
+	if ($cron->method == 'Minicomponent' && !AJAXCALL && !preg_match('/bot|crawl|curl|dataprovider|search|get|spider|find|java|majesticsEO|google|yahoo|teoma|contaxe|yandex|libwww-perl|facebookexternalhit/i', $_SERVER['HTTP_USER_AGENT']) ) {
 		$cron->triggerJobs();
 	}
 

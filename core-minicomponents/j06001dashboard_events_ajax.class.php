@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.2
+ * @version Jomres 9.21.3
  *
- * @copyright	2005-2019 Vince Wooll
+ * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -69,6 +69,7 @@ class j06001dashboard_events_ajax
 		$contracts = array();
 		$guest_uids = array();
 		$guests = array();
+		$guest_contacts = array();
 		$result = array();
 
 		$img_pending = 'label label-grey';
@@ -152,11 +153,12 @@ class j06001dashboard_events_ajax
 				$room_uids[$contract->contract_uid][] = $contract->room_uid;
 			}
 			if (!empty($guest_uids)) {
-				$query = 'SELECT guests_uid,enc_firstname,enc_surname FROM #__jomres_guests WHERE guests_uid IN ('.jomres_implode($guest_uids).') ';
+				$query = 'SELECT guests_uid , enc_firstname , enc_surname , enc_tel_landline , enc_email  FROM #__jomres_guests WHERE guests_uid IN ('.jomres_implode($guest_uids).') ';
 				$guestsList = doSelectSql($query);
 
 				foreach ($guestsList as $g) {
 					$guests[$g->guests_uid] = ucfirst(jomres_decode($jomres_encryption->decrypt($g->enc_firstname))).' '.ucfirst(jomres_decode($jomres_encryption->decrypt($g->enc_surname)));
+					$guest_contacts[$g->guests_uid] = array ("telephone" => jomres_decode($jomres_encryption->decrypt($g->enc_tel_landline)) , "email" => jomres_decode($jomres_encryption->decrypt($g->enc_email)) );
 				}
 			}
 
@@ -228,7 +230,13 @@ class j06001dashboard_events_ajax
 					$description .= jr_gettext('_JOMRES_BOOKING_NUMBER', '_JOMRES_BOOKING_NUMBER', false).': '.$c->tag.'<br/>';
 				}
 				$description .= jr_gettext('_JOMRES_HFROM', '_JOMRES_HFROM', false).': '.outputDate($c->arrival).'<br/>';
-				$description .= jr_gettext('_JOMRES_HTO', '_JOMRES_HTO', false).': '.outputDate($c->departure).'';
+				$description .= jr_gettext('_JOMRES_HTO', '_JOMRES_HTO', false).': '.outputDate($c->departure).'<br/><br/>';
+				
+				if (isset($guest_contacts[$c->guest_uid])) {
+					$description .= jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', false).': '.$guest_contacts[$c->guest_uid]['email'].'<br/>';
+					$description .= jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE', false).': '.$guest_contacts[$c->guest_uid]['telephone'].'';
+				}
+				
 				
 				if (isset($all_booking_notes[$c->contract_uid]) ) {
 					$description .= '<hr/>';

@@ -9,9 +9,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.2
+ * @version Jomres 9.21.3
  *
- * @copyright	2005-2019 Vince Wooll
+ * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  */
 
@@ -35,43 +35,7 @@ if (substr($request->url,0,6) == '/core/' ) {
 
 	$features_files = Flight::get('features_files');
 
-	if (!in_array($route.'.php', $features_files) && !in_array($sub_filename.'.php', $features_files)) {
-		
-			
-		/**
-		 * 
-		 * Pre-9.21.0, to allow us to break scripts up into groups you could have files and then subfiles with the naming scheme endpoint_xxx however this is unweildy. This newer code allows us to have file names like cmf_dictionary_items_map that will resolve to endpoints like /cmf/dictionary/items/map/
-		 *
-		 */
 
-		// We now need to include the Jomres framework and install the relevant api plugin, if available
-		require_once("../framework.php");
-		
-		$remote_plugins = get_remote_plugin_data();
-
-		foreach ($remote_plugins as $key => $val ) { // We'll make sure that the requested feature is a valid plugin from jomres.net
-			$found = false;
-			$plugin_name_prefix = substr($key, 0, 12);
-			if ( isset($plugin_name_prefix) && $plugin_name_prefix == "api_feature_") {
-				$found = true;
-				break;
-			}
-		}
-
-		if ( !isset($found) || !$found ) {
-			Flight::halt(404, 'Request is not a feature of this API');
-		}
-
-		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-
-		$result = $MiniComponents->specificEvent('16000', 'addplugin', array('plugin' => "api_feature_".$route, 'autoupgrade' => true));
-		
-		$features_files = Flight::get('features_files');
-		
-		if (!in_array($route.'.php', $features_files) && !in_array($sub_filename.'.php', $features_files)) {
-			Flight::halt(404, 'Request is not a feature of this API');
-		}
-	}
 	
 		
 	/**

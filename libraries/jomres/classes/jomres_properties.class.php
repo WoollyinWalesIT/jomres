@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.2
+ * @version Jomres 9.21.3
  *
- * @copyright	2005-2019 Vince Wooll
+ * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -445,7 +445,11 @@ class jomres_properties
 				$this->setPublished(0);
 			}
 		}
-
+		
+		if ( file_exists (JOMRES_MPDF_ABSPATH.JRDS."terms_and_conditions_".(int)$this->propertys_uid.".pdf") ) {
+			unlink(JOMRES_MPDF_ABSPATH.JRDS."terms_and_conditions_".(int)$this->propertys_uid.".pdf");
+		}
+		
 		$webhook_notification						   	= new stdClass();
 		$webhook_notification->webhook_event				= 'property_updated';
 		$webhook_notification->webhook_event_description	= 'Logs when a property is updated.';

@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.2
+ * @version Jomres 9.21.3
  *
- * @copyright	2005-2019 Vince Wooll
+ * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -42,7 +42,12 @@ class j03379property
 			return;
 		}
 
-		$property_uid = getDefaultProperty();
+		if (!isset($componentArgs['property_uid'])) {
+			$property_uid = getDefaultProperty();
+		} else {
+			$property_uid = (int)$componentArgs['property_uid'];
+		}
+		
 		$preview_link = JOMRES_SITEPAGE_URL_AJAX.'&task=show_property_header&property_uid='.$property_uid;
 		
 		$this->ret_vals = array(
