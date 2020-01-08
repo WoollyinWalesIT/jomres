@@ -20,7 +20,7 @@
 <span class="label label-important label-danger">Fix</span> Fixed a bug when extras quantities are not being stored at contracts table (thanks Rod)
 <span class="label label-important label-danger">Fix</span> Removed updating of the is_localhost flag as it's no longer necessary and updaters who's installations aren't properly running the table update functionality (possibly due to timeouts) are having problems running their newly updated Jomres installations.
 <span class="label label-important label-danger">Fix</span> Fixed an issue where pdfs are not deleted on property details update
-
+<span class="label label-important label-danger">Fix</span> Added some pdf files that were causing new bookings to fail.
 
 <h3>Jomres 9.21.2 19/11/2019</h3>
 
