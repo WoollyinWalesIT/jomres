@@ -51,7 +51,7 @@ class j16000showplugins
 		$jrConfig = $siteConfig->get();
 		
 		$force_plugin_manager_reinstallation = false;
-		var_dump($MiniComponents->registeredClasses['16000']['showplugins']['real_filepath']);exit;
+
 		// Jomres 9.10 specific code, we need to check to see if the task == showplugins, and if so double check the plugin manager's version. If it's < 1.9 we need to force an update of the plugin manager before the plugin manager script can be shown
 		// Without this check and force of the reinstallation of the plugin manager, users will only be able to update the 40 or so plugins one by one, which would be a significant annoyance.
 		// Todo remove sometime after January 2019
