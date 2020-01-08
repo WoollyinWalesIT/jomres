@@ -8,7 +8,7 @@
  *
  * @version Jomres 9.21.2
  *
- * @copyright	2005-2019 Vince Wooll
+ * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  */
  

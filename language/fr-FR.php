@@ -6,7 +6,7 @@
  *
  * @version Jomres 9.21.2
  *
- * @copyright	2005-2019 Vince Wooll
+ * @copyright	2005-2020 Vince Wooll
  * Translation to fr-FR by Stéphane Bernard, Valtari NumAgency, France - last update : 19/11/2019 - https://www.valtari.fr
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
