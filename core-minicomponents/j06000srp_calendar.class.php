@@ -212,7 +212,8 @@ class j06000srp_calendar
 		if ((int)$mrConfig[ 'fixedArrivalDateYesNo' ] != 0) {
 			$fontweight = 'font-weight: bold;';
 		}
-		
+		$now = time();
+
 		while ($currdate < $enddate) {
 			$this->retVals .= '<tr>';
 			for ($c = 0; $c < 7; ++$c) {
@@ -241,6 +242,10 @@ class j06000srp_calendar
 				if (in_array($fmt, $this->booking_start_dates) && in_array($fmt, $this->booking_end_dates)) {
 					$link = '';
 					$class = 'jomres-calendar-booking-crossover';
+				}
+
+				if($currdate < $now) {
+					$link = '';
 				}
 
 				$this->retVals .= '<td>';

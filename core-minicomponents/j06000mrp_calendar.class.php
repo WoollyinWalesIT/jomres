@@ -206,6 +206,8 @@ class j06000mrp_calendar
 			$fontweight = 'font-weight: bold;';
 		}
 		
+		$now = time();
+		
 		while ($currdate < $enddate) {
 			$this->retVals .= '<tr>';
 			for ($c = 0; $c < 7; ++$c) {
@@ -240,6 +242,11 @@ class j06000mrp_calendar
 					$class = 'jomres-calendar-booking-occupied-completely ';
 				}
 
+				if($currdate < $now) {
+					$link = '';
+				}
+
+				
 				$this->retVals .= '<td>';
 				$this->retVals .= '<div class="jomres-calendar-day-num '.$class.'">';
 
