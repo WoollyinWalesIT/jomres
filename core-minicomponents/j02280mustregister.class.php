@@ -17,6 +17,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
+	 * Page that outputs the message that users must register before they can perform a booking
 	 * 
 	 */
 

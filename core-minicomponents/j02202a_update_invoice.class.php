@@ -17,7 +17,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 * Add service to bill triggers 02202 which is used to update the invoice
 	 */
 
 class j02202a_update_invoice
