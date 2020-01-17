@@ -151,5 +151,20 @@ function get_property_price_for_display_in_lists($property_uid)
 		}
 	}
 
-	return array('PRE_TEXT' => $pre_text, 'PRICE' => $price, 'POST_TEXT' => $post_text);
+	if ($mrConfig[ 'is_real_estate_listing' ] == 0) {
+		if ($mrConfig[ 'prices_inclusive' ] == 1) {
+			$price_inc_vat = (float)$pricesFromArray[ $property_uid ];
+			$price_excluding_vat = (float)$current_property_details->get_nett_accommodation_price($pricesFromArray[ $property_uid ]);
+		} else {
+			$price_inc_vat = (float)$current_property_details->get_gross_accommodation_price($pricesFromArray[ $property_uid ]);
+			$price_excluding_vat = (float)$pricesFromArray[ $property_uid ];
+		}
+	} else {
+		$price_inc_vat = (float)$current_property_details->real_estate_property_price;
+		$price_excluding_vat = (float)$current_property_details->get_nett_accommodation_price($current_property_details->real_estate_property_price);
+	}
+	
+
+					
+	return array('PRE_TEXT' => $pre_text, 'PRICE' => $price, 'POST_TEXT' => $post_text , "price_inc_vat" => $price_inc_vat , "price_excluding_vat" => $price_excluding_vat );
 }
