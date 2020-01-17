@@ -22,7 +22,7 @@ defined('_JOMRES_INITCHECK') or die('');
  *          Uses currency conversion settings to automatically convert prices to the selected price, determines the correct symbols to use for the selected currency.
  *
  */
-function output_price($value, $currencycode = '', $do_conversion = true, $zeroOK = true)
+function output_price($value, $currencycode = '', $do_conversion = true, $zeroOK = true , $just_code = false )
 {
 	$price = (float) number_format($value, 2, '.', '');
 
@@ -135,6 +135,10 @@ function output_price($value, $currencycode = '', $do_conversion = true, $zeroOK
 				$price = ' '.$symbols[ 'pre' ].jr_gettext('_JOMRES_PRICE_ON_APPLICATION', '_JOMRES_PRICE_ON_APPLICATION', false, false).$symbols[ 'post' ];
 		}
 	}
-
-	return $price;
+	
+	if ($just_code == true ) {
+		return $currencycode;
+	} else {
+		return $price;
+	}
 }
