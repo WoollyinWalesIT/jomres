@@ -63,6 +63,10 @@ class call_self
             'request' => $elements['request'],
             'data' => $elements['data'],
             );
+			
+		if (isset($elements['headers'])) {
+			$options['headers'] = $elements['headers'];
+		}
 
         $response = $call->call_server($options);
 

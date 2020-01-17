@@ -42,7 +42,7 @@ class call
 	* Calls the remote server
 	*
 	*/
-    public function call_server($options = array())
+    public function call_server($options = array() )
     {
         if (empty($options)) {
             throw new Exception('Error, no request elements set ');
@@ -73,18 +73,28 @@ class call
                 break;
             }
 
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            'Authorization: Bearer '.$token,
-            'Accept: application/json',
-            ));
-
+		if (isset($options['headers']) && count($options['headers']) > 0 ) {
+			$default_headers = array (
+				"Authorization: Bearer ".$token ,
+				"Accept: application/json"
+				);
+			$arr =  array_merge ( $default_headers , $options['headers'] ) ;
+			curl_setopt($ch, CURLOPT_HTTPHEADER, $arr );
+		} else {
+			curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+				'Authorization: Bearer '.$token,
+				'Accept: application/json',
+				));
+		}
+			
         curl_setopt($ch, CURLINFO_HEADER_OUT, true);
         curl_setopt($ch, CURLOPT_TIMEOUT, 30); //timeout after 30 seconds
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         $result = curl_exec($ch);
+
         $status = curl_getinfo($ch);
+		
         $response_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        //if ($response_code != 200 && $response_code != 204)
 
         return array('result' => $result, 'status' => $status);
     }
