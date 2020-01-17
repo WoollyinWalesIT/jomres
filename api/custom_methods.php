@@ -25,6 +25,10 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
     Flight::map('json', function ($response_name, $data, $code = 200, $encode = true, $charset = 'utf-8') {
+		if (class_exists('mcHandler')) {  // The framework has been included, therefore there's a chance a webhook has been triggered. Let's fire up the watcher to respond to any events
+			$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+			$MiniComponents->triggerEvent('99994');
+		}
         logging::log_message(' Replied with code '.$code, 'API', 'DEBUG' , ' Replied with code '.$code.' and contents'.json_encode($data));
         $response = new stdClass();
         $response->data[$response_name] = $data;
@@ -45,6 +49,8 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
     Flight::map('halt', function ($code = 200, $message = '') {
+
+		
         $log = ' Halted run '.$code.' with message '.$message;
         logging::log_message($log, 'API', 'DEBUG');
         $response = new stdClass();
