@@ -114,15 +114,20 @@ class j06002webhooks_core {
 		$rows = array();
 		if (!empty($all_webhooks)) {
 			foreach ($all_webhooks as $webhook){
-				$r=array();
-				$r['INTEGRATION_ID']	= $webhook['id'];
-				$r['URL']  = $webhook['settings']['url'];
+				if ($thisJRUser->id == $webhook['manager_id']) {
+					$r=array();
+					$r['INTEGRATION_ID']	= $webhook['id'];
+					$r['URL']  = $webhook['settings']['url'];
 
-				$r['ENABLED']  = jomresHTML::selectList($yesno, 'enabled', 'onchange="toggle_enabled('.$webhook['id'].');" size="1"', 'value', 'text', $webhook['enabled'] , false);
-				$toolbar->newToolbar();
-				$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL .'&task=edit_integration&id='.$r['INTEGRATION_ID'] ), jr_gettext( 'COMMON_EDIT', 'COMMON_EDIT', false ) );
-				$r['EDITLINK']=$toolbar->getToolbar();
-				$rows[]=$r;
+					$r['ENABLED']  = jomresHTML::selectList($yesno, 'enabled', 'onchange="toggle_enabled('.$webhook['id'].');" size="1"', 'value', 'text', $webhook['enabled'] , false);
+					$toolbar->newToolbar();
+					$toolbar->addItem( 'fa fa-pencil-square-o', 'btn btn-info', '', jomresURL( JOMRES_SITEPAGE_URL .'&task=edit_integration&id='.$r['INTEGRATION_ID'] ), jr_gettext( 'COMMON_EDIT', 'COMMON_EDIT', false ) );
+					$r['EDITLINK']=$toolbar->getToolbar();
+					$rows[]=$r;
+				}
+				// 
+				
+
 			}
 		}
 

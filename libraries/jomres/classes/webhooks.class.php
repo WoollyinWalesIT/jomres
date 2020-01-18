@@ -60,7 +60,12 @@ class webhooks
 	public function get_webhook ( $id ) {
 		if (empty($this->webhooks))
 			throw new Exception('Error: Webhooks array not set. Did you try to call get_webhook before get_all_webhooks?');
-		return  $this->webhooks[$id];
+		if (isset($this->webhooks[$id])) {
+			return $this->webhooks[$id];
+		} else {
+			return false;
+		}
+
 	}
 		
 	/**
