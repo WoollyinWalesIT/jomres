@@ -18,6 +18,76 @@ defined('_JOMRES_INITCHECK') or die('');
 
 /**
 *
+* Is this a channel managed property?
+*
+*/
+
+function is_channel_property( $property_uid = 0 )
+{
+	if ($property_uid == 0 ) {
+		return false;
+	}
+	
+	$is_channel_property = false;
+	
+	if ( class_exists('channelmanagement_framework_properties' ) ) {  // The channel management framework is installed
+		
+		$channel_properties = get_showtime("channel_properties");
+
+		if (!isset($channel_properties) || is_null($channel_properties)) {
+			$channel_properties = array();
+		}
+
+		if (empty($channel_properties) &&  (bool)get_showtime("channel_properties_queried" == false )) {
+			$property_ids = array();
+			$query = 'SELECT `property_id` FROM `#__jomres_channelmanagement_framework_property_uid_xref` ';
+			$data = doSelectSql($query);
+			if ( !empty($data) ) {
+				foreach ($data as $d) {
+					$property_ids[] = $d->property_uid;
+				}
+				set_showtime ("channel_properties_queried" , true );
+			}
+		} else {
+			$property_ids = $channel_properties;
+		}
+		set_showtime ("channel_properties" , $property_ids );
+	}
+
+	if (in_array( $property_uid , $property_ids ) ) {
+		$is_channel_property = true;
+	}
+
+	return $is_channel_property;
+}
+
+/**
+*
+* Function determines whether or not this task is allowed on a channel managed property
+*
+*/
+
+function is_channel_safe_task ($task)
+{
+	
+	$is_channel_property = is_channel_property ( get_showtime("property_uid") );
+	
+	if ( $is_channel_property == false ) {
+		return true;
+	}
+
+	$safe_tasks = array ( '' , 'dashboard' , 'dashboard_resources_ajax' , 'cpanel' , 'publish_property' , 'listyourproperties' , 'preview' , 'webhooks_core', 'webhooks_core_documentation' , 'edit_integration' , 'save_integration' , 'edit_my_account', 'show_user_profile',  'muviewfavourites',  'logout',  'oauth',  'api_documentation',  'search',  'show_consent_form',  'gdpr_my_data' ); // We will not redirect on these tasks. Need to keep this list under review.
+	
+	if ( in_array( $task , $safe_tasks ) || substr ( $task , 0, 27 ) == "channelmanagement_framework" ) {
+		return true;
+	}
+	
+	return false;
+}
+
+
+/**
+*
 * Channel managed properties cannot be administered on non-origin installations, there are simply too many variables that can cause the two properties to go out of sync, therefore if a manager attempts to administer a clild property, they will be redirected to the parent site and property. Any changes on that site will then trickle back to the slave property.
 *
 * We wont use the api because it's quicker to make one query here. Two channels cannot create two properties with the same property uid, so we'll always be getting the correct management url, regardless of which channel created the property
@@ -25,13 +95,9 @@ defined('_JOMRES_INITCHECK') or die('');
 */
 function redirect_on_administration_if_channel_property ( $property_uid , $task )
 {
-	
-	$safe_tasks = array ( '' , 'dashboard' , 'listyourproperties' , 'preview' ); // We will not redirect on these tasks. Need to keep this list under review.
-
-	if ( in_array( $task , $safe_tasks ) ) {
+	if ( is_channel_safe_task ($task)) {
 		return;
 	}
-	
 	if (class_exists('channelmanagement_framework_properties')) {  // The channel management framework is installed, we will call the find_management_url method, which will do a jomresRedirct to that url, if it exists, and the user can administer the property from there. If it doesn't then we will continue as normal.
 		$query = 'SELECT `remote_data` FROM `#__jomres_channelmanagement_framework_property_uid_xref` WHERE property_uid = '.$property_uid.' LIMIT 1';
 		$data = doSelectSql($query,1);
@@ -45,6 +111,8 @@ function redirect_on_administration_if_channel_property ( $property_uid , $task 
 		}
 	}
 }
+
+
 
 /*
 

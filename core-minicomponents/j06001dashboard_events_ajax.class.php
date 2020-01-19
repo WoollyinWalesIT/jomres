@@ -173,11 +173,16 @@ class j06001dashboard_events_ajax
 					$end = date('Y-m-d', strtotime($c->departure)).'T23:59:59';
 				}
 
-				if ((int) $c->black_booking == 1) {
-					$url = JOMRES_SITEPAGE_URL_NOSEF.'&task=show_black_booking&contract_uid='.$c->contract_uid.'&thisProperty='.$property_uid;
+				if ( !is_channel_property($property_uid)) {
+					if ((int) $c->black_booking == 1) {
+						$url = JOMRES_SITEPAGE_URL_NOSEF.'&task=show_black_booking&contract_uid='.$c->contract_uid.'&thisProperty='.$property_uid;
+					} else {
+						$url = JOMRES_SITEPAGE_URL_NOSEF.'&task=edit_booking&contract_uid='.$c->contract_uid.'&thisProperty='.$property_uid;
+					}
 				} else {
-					$url = JOMRES_SITEPAGE_URL_NOSEF.'&task=edit_booking&contract_uid='.$c->contract_uid.'&thisProperty='.$property_uid;
+					$url = '';
 				}
+
 
 				$date_elements = explode('/', $today);
 				$unixToday = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ]);
