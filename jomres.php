@@ -287,8 +287,10 @@ try {
 	if ($MiniComponents->eventSpecificlyExistsCheck('06000', get_showtime('task'))) {
 		$MiniComponents->specificEvent('06000', get_showtime('task'));
 	} elseif ($MiniComponents->eventSpecificlyExistsCheck('06001', get_showtime('task')) && $thisJRUser->accesslevel >= 50) { // Receptionist and manager tasks
+		redirect_on_administration_if_channel_property ($property_uid , get_showtime('task') ); // Allows the system to redirect administration functions to a parent site if this is a channel property when certain tasks are called
 		$MiniComponents->specificEvent('06001', get_showtime('task'));
 	} elseif ($MiniComponents->eventSpecificlyExistsCheck('06002', get_showtime('task')) && $thisJRUser->accesslevel >= 70) { // Manager only tasks (higher than receptionist)
+		redirect_on_administration_if_channel_property ($property_uid , get_showtime('task') ); // Allows the system to redirect administration functions to a parent site if this is a channel property when certain tasks are called
 		$MiniComponents->specificEvent('06002', get_showtime('task'));
 	} elseif ($MiniComponents->eventSpecificlyExistsCheck('06005', get_showtime('task')) && $thisJRUser->accesslevel >= 1) { // Registered only user tasks
 		$MiniComponents->specificEvent('06005', get_showtime('task'));

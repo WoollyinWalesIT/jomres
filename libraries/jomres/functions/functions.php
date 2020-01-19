@@ -16,6 +16,36 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 
+/**
+*
+* Channel managed properties cannot be administered on non-origin installations, there are simply too many variables that can cause the two properties to go out of sync, therefore if a manager attempts to administer a clild property, they will be redirected to the parent site and property. Any changes on that site will then trickle back to the slave property.
+*
+* We wont use the api because it's quicker to make one query here. Two channels cannot create two properties with the same property uid, so we'll always be getting the correct management url, regardless of which channel created the property
+*
+*/
+function redirect_on_administration_if_channel_property ( $property_uid , $task )
+{
+	
+	$safe_tasks = array ( '' , 'dashboard' , 'listyourproperties' , 'preview' ); // We will not redirect on these tasks. Need to keep this list under review.
+
+	if ( in_array( $task , $safe_tasks ) ) {
+		return;
+	}
+	
+	if (class_exists('channelmanagement_framework_properties')) {  // The channel management framework is installed, we will call the find_management_url method, which will do a jomresRedirct to that url, if it exists, and the user can administer the property from there. If it doesn't then we will continue as normal.
+		$query = 'SELECT `remote_data` FROM `#__jomres_channelmanagement_framework_property_uid_xref` WHERE property_uid = '.$property_uid.' LIMIT 1';
+		$data = doSelectSql($query,1);
+		if ( $data != '' && $data != false ) {
+			$decoded = unserialize($data);
+			if ($decoded != false ) {
+				if (isset($decoded->origin_management_url) && $decoded->origin_management_url != '' ) {
+					jomresRedirect($decoded->origin_management_url);
+				}
+			}
+		}
+	}
+}
+
 /*
 
 Get the remote plugins data. 
