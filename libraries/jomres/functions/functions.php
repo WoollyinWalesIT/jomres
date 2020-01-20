@@ -29,7 +29,7 @@ function is_channel_property( $property_uid = 0 )
 	}
 	
 	$is_channel_property = false;
-	
+	$property_ids = array();
 	if ( class_exists('channelmanagement_framework_properties' ) ) {  // The channel management framework is installed
 		
 		$channel_properties = get_showtime("channel_properties");
@@ -39,7 +39,7 @@ function is_channel_property( $property_uid = 0 )
 		}
 
 		if (empty($channel_properties) &&  (bool)get_showtime("channel_properties_queried" == false )) {
-			$property_ids = array();
+			
 			$query = 'SELECT `property_id` FROM `#__jomres_channelmanagement_framework_property_uid_xref` ';
 			$data = doSelectSql($query);
 			if ( !empty($data) ) {
