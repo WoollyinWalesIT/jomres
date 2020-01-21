@@ -102,7 +102,6 @@ class j19995menu
 		$jomres_menu->add_admin_item(70, jr_gettext('JOMRES_COM_A_AVAILABLELOGS', 'JOMRES_COM_A_AVAILABLELOGS', false), 'list_error_logs', 'fa-exclamation-triangle');
 		$jomres_menu->add_admin_item(70, jr_gettext('_JOMRES_REGISTRYREBUILD', '_JOMRES_REGISTRYREBUILD', false), 'rebuildregistry', 'fa-refresh');
 		$jomres_menu->add_admin_item(70, jr_gettext('EMPTY_TEMP_DIR', 'EMPTY_TEMP_DIR', false), 'empty_temp_directory', 'fa-trash');
-		$jomres_menu->add_admin_item(70, jr_gettext('_JOMRES_LIBRARY_PACKAGES', '_JOMRES_LIBRARY_PACKAGES', false), 'refresh_library_packages', 'fa-book');
 		$jomres_menu->add_admin_item(70, jr_gettext('_JOMRES_REST_API_CONNECTIVITY_TEST', '_JOMRES_REST_API_CONNECTIVITY_TEST', false), 'rest_api_connectivity_test', 'fa-arrows-h');
 		
 		$template_packages = get_showtime('template_packages');
