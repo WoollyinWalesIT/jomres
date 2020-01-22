@@ -80,6 +80,18 @@ class j99994webhook_watcher
 			$webhook_messages = array_unique( $webhook_messages, SORT_REGULAR ); // Remove duplicate objects
 		}
 		
+		// We need to check for property uid being set. Regardless of what happens afterwards our first task is to clear the cmf rest api cache directory for this property of any files so that subsequent rest api calls can get fresh uptodate data.
+		if (!empty($all_webhooks) && !empty($webhook_messages) ) {
+			foreach ( $webhook_messages as $webhook ) {
+ 				if ( isset($webhook->data->property_uid) && $webhook->data->property_uid > 0  ) {
+					$temp_path = JOMRES_TEMP_ABSPATH."cmf_rest_api".JRDS.(int)$webhook->data->property_uid;
+					if (is_dir($temp_path)) {
+						emptyDir($temp_path);
+					}
+				}
+			}
+		}
+		
 		if (!empty($all_webhooks) && !empty($webhook_messages) ) {
 			logging::log_message("Preparing deferred messages " , 'Webhooks', 'DEBUG'  );
 			foreach ( $all_webhooks as $webhook ) {

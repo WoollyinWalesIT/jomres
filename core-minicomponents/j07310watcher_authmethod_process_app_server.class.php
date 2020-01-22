@@ -89,7 +89,7 @@ class j07310watcher_authmethod_process_app_server
 				if (isset($data) && $data !== false && isset($webhook_notification->webhook_event) ) { // The data, whatever it is, has been collected, let's send it off to the remote site
 					$data->task = $webhook_notification->webhook_event;
 
-					$this_plugin_tasks = array( "booking_added" , "booking_marked_noshow" );
+					$this_plugin_tasks = array ( 'booking_added' , 'booking_marked_noshow' );
 					if ( in_array( $data->task , $this_plugin_tasks )) {
 
 						$current_contract_details = jomres_singleton_abstract::getInstance('basic_contract_details');
@@ -108,6 +108,8 @@ class j07310watcher_authmethod_process_app_server
 							case 'booking_marked_noshow';
 								$context = 'syndication_guests';
 								$this->send_notification_to_app_server( $context , 'booking_noshow/', $data = array( "email" => $current_contract_details->contract[$data->contract_uid]['guestdeets']['email']) );
+								break;
+							default :
 								break;
 							}
 					}
