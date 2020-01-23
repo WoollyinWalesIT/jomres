@@ -81,13 +81,49 @@ class j99994webhook_watcher
 		}
 		
 		// We need to check for property uid being set. Regardless of what happens afterwards our first task is to clear the cmf rest api cache directory for this property of any files so that subsequent rest api calls can get fresh uptodate data.
+		// Next we'll add the webhook messages to the webhook events table
 		if (!empty($all_webhooks) && !empty($webhook_messages) ) {
+			$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 			foreach ( $webhook_messages as $webhook ) {
+				
+				// Clear the CMF api cache directory
  				if ( isset($webhook->data->property_uid) && $webhook->data->property_uid > 0  ) {
 					$temp_path = JOMRES_TEMP_ABSPATH."cmf_rest_api".JRDS.(int)$webhook->data->property_uid;
 					if (is_dir($temp_path)) {
 						emptyDir($temp_path);
 					}
+					
+				// Now to add the event to the webhook events table
+				
+				$p_id = 0;
+				if (isset($webhook->data->property_uid) ) {
+					$p_id = $webhook->data->property_uid;
+				}
+				
+				$channel_data = array();
+				if (class_exists("Flight") && (int)Flight::get('user_id') > 0 ) {
+					$channel_data['channel_id'] = Flight::get('channel_id');
+					$channel_data['channel_name'] = Flight::get('channel_name');
+					$channel_data['user_id'] = (int)Flight::get('user_id');
+				}
+				
+				$query = "INSERT INTO `#__jomres_webhook_events` (
+					`property_uid` ,
+					`user_performing_action` ,
+					`channel_data` ,
+					`date_added` ,
+					`webhook_event_title` ,
+					`webhook_event`
+				) VALUES (
+					".(int)$p_id." ,
+					".$thisJRUser->id." ,
+					'".serialize($channel_data)."' ,
+					'".date('Y-m-d H:i:s')."' , 
+					'".$webhook->webhook_event."' ,
+					'".serialize($webhook)."'
+				)";
+
+				doInsertSql($query);
 				}
 			}
 		}
