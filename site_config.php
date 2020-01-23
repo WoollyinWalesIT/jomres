@@ -211,5 +211,7 @@ $jrConfig = array(
   'prioritise_sitewide_label_definitions' => '0',
   'generate_random_emails' => '0',
   'random_email_domain' => '',
-  'cmf_license_key' => ''
+  'cmf_license_key' => '',
+  'automatic_unpublish_incomplete_properties' => '0',
+  'force_reapproval_on_automatic_unpublish' => '0',
 );

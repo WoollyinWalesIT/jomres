@@ -82,7 +82,10 @@ class j99994webhook_watcher
 		
 		// We need to check for property uid being set. Regardless of what happens afterwards our first task is to clear the cmf rest api cache directory for this property of any files so that subsequent rest api calls can get fresh uptodate data.
 		// Next we'll add the webhook messages to the webhook events table
+		// Finally we'll run the sanity check class which will mark a property as incomplete if something is missing, and unpublish it if it's published
+		
 		if (!empty($all_webhooks) && !empty($webhook_messages) ) {
+			jr_import('jomres_sanity_check');
 			$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 			foreach ( $webhook_messages as $webhook ) {
 				
@@ -125,6 +128,25 @@ class j99994webhook_watcher
 
 				doInsertSql($query);
 				}
+				
+				
+				// Rerun the sanity check and unpublish a property if required
+				if ($p_id > 0 ) {
+					$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+					$jrConfig = $siteConfig->get();
+					
+					if ( isset($jrConfig['automatic_unpublish_incomplete_properties']) && $jrConfig['automatic_unpublish_incomplete_properties'] == "1" ) {
+						$jomres_sanity_check = new jomres_sanity_check( true , $p_id );
+						$jomres_properties = jomres_singleton_abstract::getInstance('jomres_properties');
+						$jomres_properties->propertys_uid = $p_id;
+						if ( $jomres_sanity_check->warning_counter > 0 ) {
+							$jomres_properties->unpublish_property();
+							if ( isset($jrConfig['force_reapproval_on_automatic_unpublish']) && $jrConfig['force_reapproval_on_automatic_unpublish'] == "1") {
+								$jomres_properties->unapprove_property();
+							}
+						}
+					}
+				}  // End sanity checking
 			}
 		}
 		
