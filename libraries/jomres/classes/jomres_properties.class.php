@@ -644,7 +644,7 @@ class jomres_properties
 	 *
 	 */
 
-	private function approve_property() 
+	public function approve_property() 
 	{
 		if ($this->propertys_uid == 0) {
 			throw new Exception('Error: Property uid not set.');
@@ -675,7 +675,7 @@ class jomres_properties
 	 *
 	 */
 
-	private function unapprove_property() 
+	public function unapprove_property() 
 	{
 		if ($this->propertys_uid == 0) {
 			throw new Exception('Error: Property uid not set.');
@@ -727,7 +727,7 @@ class jomres_properties
 	 *
 	 */
 
-	private function publish_property() 
+	public function publish_property() 
 	{
 		if ($this->propertys_uid == 0) {
 			throw new Exception('Error: Property uid not set.');
@@ -758,7 +758,7 @@ class jomres_properties
 	 *
 	 */
 
-	private function unpublish_property() 
+	public function unpublish_property() 
 	{
 		if ($this->propertys_uid == 0) {
 			throw new Exception('Error: Property uid not set.');
