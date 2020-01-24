@@ -141,6 +141,20 @@ class j06000media_centre_handler
 				$MiniComponents->triggerEvent('03384');
 			}
 			
+			if ($property_uid > 0 ) {
+				$webhook_notification								= new stdClass();
+				$webhook_notification->webhook_event				= 'image_deleted';
+				$webhook_notification->webhook_event_description	= 'Logs when images are deleted.';
+				$webhook_notification->webhook_event_plugin			= 'core';
+				$webhook_notification->data							= new stdClass();
+				$webhook_notification->data->property_uid			= $property_uid;
+				$webhook_notification->data->deleted_image			= $file_name;
+				$webhook_notification->data->resource_type			= $resource_type;
+
+				add_webhook_notification($webhook_notification);
+			}
+
+			
 			echo json_encode($response);
 			return;
 		} else {
@@ -180,12 +194,25 @@ class j06000media_centre_handler
 					'resource_id' => $resource_id,
 					'resource_id_required' => $resource_id_required
 					));
-				
+
 				//post_upload_processing_trigger, optional for post processing
 				if (jomres_cmsspecific_areweinadminarea()) {
 					$MiniComponents->triggerEvent('11030');
 				} else {
 					$MiniComponents->triggerEvent('03382');
+				}
+				
+				if ($property_uid > 0 ) {
+					$webhook_notification								= new stdClass();
+					$webhook_notification->webhook_event				= 'image_added';
+					$webhook_notification->webhook_event_description	= 'Logs when images are added.';
+					$webhook_notification->webhook_event_plugin			= 'core';
+					$webhook_notification->data							= new stdClass();
+					$webhook_notification->data->property_uid			= $property_uid;
+					$webhook_notification->data->added_image			= $upload_handler->response['files'][0]->name;
+					$webhook_notification->data->resource_type			= $resource_type;
+
+					add_webhook_notification($webhook_notification);
 				}
 			}
 		}

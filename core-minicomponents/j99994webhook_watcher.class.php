@@ -134,13 +134,15 @@ class j99994webhook_watcher
 				if ($p_id > 0 ) {
 					$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 					$jrConfig = $siteConfig->get();
-					
 					if ( isset($jrConfig['automatic_unpublish_incomplete_properties']) && $jrConfig['automatic_unpublish_incomplete_properties'] == "1" ) {
 						$jomres_sanity_check = new jomres_sanity_check( true , $p_id );
+						$jomres_sanity_check->do_sanity_checks( true );
 						$jomres_properties = jomres_singleton_abstract::getInstance('jomres_properties');
 						$jomres_properties->propertys_uid = $p_id;
-						if ( $jomres_sanity_check->warning_counter > 0 ) {
+
+						if ( !empty($this->warnings_stack) ) {
 							$jomres_properties->unpublish_property();
+							$jomres_sanity_check->mark_as_incomplete();
 							if ( isset($jrConfig['force_reapproval_on_automatic_unpublish']) && $jrConfig['force_reapproval_on_automatic_unpublish'] == "1") {
 								$jomres_properties->unapprove_property();
 							}
