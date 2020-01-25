@@ -17,6 +17,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
+     * Triggers the dobooking class that is used as the booking engine, supplied as a minicomponent to allow easy overriding
 	 * 
 	 */
 

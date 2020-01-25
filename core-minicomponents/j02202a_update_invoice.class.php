@@ -17,7 +17,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
 class j02202a_update_invoice
@@ -28,7 +28,7 @@ class j02202a_update_invoice
 	 * 
 	 * Main functionality of the Minicomponent 
 	 *
-	 * 
+	 * Updates an invoice when a deposit is added
 	 * 
 	 */
 	 

@@ -17,7 +17,8 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 * Used by the media centre to configure media uploading options for the main property image
+     *
 	 */
 
 class j03379property

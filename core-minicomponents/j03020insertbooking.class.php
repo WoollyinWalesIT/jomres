@@ -17,7 +17,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 * Inserts a booking after confirmation and payment, triggers a variety of configuration numbers, creates the guest user if required
 	 */
 
 class j03020insertbooking

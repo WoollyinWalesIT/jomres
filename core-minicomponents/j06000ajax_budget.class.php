@@ -17,6 +17,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
+     * Ajax script. Set the guest budget found in the list properties page
 	 * 
 	 */
 

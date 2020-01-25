@@ -17,7 +17,8 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 * After booking creation, triggers the 07005 and 07010 minicomponents
+     *
 	 */
 
 class j03200jrportal

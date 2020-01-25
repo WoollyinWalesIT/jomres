@@ -1319,6 +1319,8 @@ class jomres_obsolete_file_handling
 		
 		
 		$this->add_file($this->dir_classes.'core_package_management.class.php');
+
+        $this->add_file($this->dir_minicomponents.'j04901tariffsenhanced.class.php');
 	}
 	
 	/**

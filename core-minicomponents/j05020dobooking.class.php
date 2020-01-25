@@ -17,6 +17,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
+     * Imports MRP or SRP calendar for display in the booking form, builds a button to trigger the form in a modal
 	 * 
 	 */
 

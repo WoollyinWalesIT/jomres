@@ -17,6 +17,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
+     *
 	 * 
 	 */
 
@@ -28,7 +29,7 @@ class j03150email_admin_newbooking
 	 * 
 	 * Main functionality of the Minicomponent 
 	 *
-	 * 
+	 * Builds the new booking email that is sent to administrators
 	 * 
 	 */
 	 

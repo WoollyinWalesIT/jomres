@@ -16,7 +16,8 @@ defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.'
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 * Sends the new property welcome email
+     *
 	 */
 
 class j04901email_property_welcome_message

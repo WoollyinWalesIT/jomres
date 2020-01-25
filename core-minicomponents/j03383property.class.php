@@ -17,7 +17,8 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 * Media centre uses this to find images that already exist for the main property image resource.
+     *
 	 */
 
 class j03383property

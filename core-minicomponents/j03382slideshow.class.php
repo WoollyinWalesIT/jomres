@@ -17,6 +17,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
+     * Depreciated plugin, left in place to demonstrate how we can use the trigger after uploading of images to do things post upload
 	 * 
 	 */
 

@@ -17,6 +17,7 @@ defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.'
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
+     * Adds tourist tax to the temporary booking data while the booking confirmation page is built
 	 * 
 	 */
 

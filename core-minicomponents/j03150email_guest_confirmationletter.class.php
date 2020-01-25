@@ -17,7 +17,8 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 * Builds the confirmation letter email that is sent to guests
+     *
 	 */
 
 class j03150email_guest_confirmationletter
