@@ -102,11 +102,13 @@ class jomres_media_centre_images
 		$this->images['property'] = array();
 
 		if (!isset($this->multi_query_images[$property_id]['property'])) {
-			$this->images ['property'][0][] = array(
-													'large' => $this->multi_query_images[ 'noimage-large' ],
-													'medium' => $this->multi_query_images[ 'noimage-medium' ],
-													'small' => $this->multi_query_images[ 'noimage-small' ],
-													);
+			if (!defined("JOMRES_API_CMS_ROOT")) {
+				$this->images ['property'][0][] = array(
+					'large' => $this->multi_query_images[ 'noimage-large' ],
+					'medium' => $this->multi_query_images[ 'noimage-medium' ],
+					'small' => $this->multi_query_images[ 'noimage-small' ],
+					);
+			}
 		}
 
 		//room images
@@ -116,11 +118,13 @@ class jomres_media_centre_images
 		$this->images['slideshow'] = array();
 
 		if (!isset($this->multi_query_images[$property_id]['slideshow'])) {
-			$this->images ['slideshow'][0][] = array(
-													'large' => $this->multi_query_images[ 'noimage-large' ],
-													'medium' => $this->multi_query_images[ 'noimage-medium' ],
-													'small' => $this->multi_query_images[ 'noimage-small' ],
-													);
+			if (!defined("JOMRES_API_CMS_ROOT")) {
+				$this->images ['slideshow'][0][] = array(
+					'large' => $this->multi_query_images[ 'noimage-large' ],
+					'medium' => $this->multi_query_images[ 'noimage-medium' ],
+					'small' => $this->multi_query_images[ 'noimage-small' ],
+					);
+			}
 		}
 
 		//room features images
@@ -137,11 +141,13 @@ class jomres_media_centre_images
 		//add default images for each room if no other images are set
 		foreach ($current_property_details->rooms as $room_id) {
 			if (!array_key_exists($room_id, $this->images[ 'rooms' ])) {
-				$this->images[ 'rooms' ] [ $room_id ] [0] = array(
-					'large' => $this->multi_query_images[ 'noimage-large' ],
-					'medium' => $this->multi_query_images[ 'noimage-medium' ],
-					'small' => $this->multi_query_images[ 'noimage-small' ],
-					);
+				if (!defined("JOMRES_API_CMS_ROOT")) {
+					$this->images[ 'rooms' ] [ $room_id ] [0] = array(
+						'large' => $this->multi_query_images[ 'noimage-large' ],
+						'medium' => $this->multi_query_images[ 'noimage-medium' ],
+						'small' => $this->multi_query_images[ 'noimage-small' ],
+						);
+				}
 			}
 		}
 
@@ -152,11 +158,13 @@ class jomres_media_centre_images
 			//add default images for each room if no other images are set
 			foreach ($jomres_room_types->property_specific_room_type[$property_id] as $room_class_uid=>$val) {
 				if (!array_key_exists($room_class_uid, $this->images[ 'room_types' ])) {
-					$this->images[ 'rooms' ] [ $room_id ] [0] = array(
-						'large' => $this->multi_query_images[ 'noimage-large' ],
-						'medium' => $this->multi_query_images[ 'noimage-medium' ],
-						'small' => $this->multi_query_images[ 'noimage-small' ],
-						);
+					if (!defined("JOMRES_API_CMS_ROOT")) {
+						$this->images[ 'rooms' ] [ $room_id ] [0] = array(
+							'large' => $this->multi_query_images[ 'noimage-large' ],
+							'medium' => $this->multi_query_images[ 'noimage-medium' ],
+							'small' => $this->multi_query_images[ 'noimage-small' ],
+							);
+					}
 				}
 			}
 		}
@@ -250,11 +258,13 @@ class jomres_media_centre_images
 											);
 									}
 								} else { //the dir is empty
-									$this->multi_query_images [ $property_id ][ $dir ] [ $resouce_id ] [] = array(
+									if (!defined("JOMRES_API_CMS_ROOT")) {
+										$this->multi_query_images [ $property_id ][ $dir ] [ $resouce_id ] [] = array(
 											'large' => $this->multi_query_images[ 'noimage-large' ],
 											'medium' => $this->multi_query_images[ 'noimage-medium' ],
 											'small' => $this->multi_query_images[ 'noimage-small' ],
 											);
+									}
 								}
 							}
 						}
@@ -386,11 +396,13 @@ class jomres_media_centre_images
 								);
 						}
 					} else { //the dir is empty
-						$this->site_images [ $type ] [ $resouce_id ] [] = array(
+						if (!defined("JOMRES_API_CMS_ROOT")) {
+							$this->site_images [ $type ] [ $resouce_id ] [] = array(
 								'large' => $this->multi_query_images[ 'noimage-large' ],
 								'medium' => $this->multi_query_images[ 'noimage-medium' ],
 								'small' => $this->multi_query_images[ 'noimage-small' ],
 								);
+						}
 					}
 				}
 			} else {
@@ -405,11 +417,13 @@ class jomres_media_centre_images
 							);
 					}
 				} else { //the dir is empty
-					$this->site_images [ $type ] [] = array(
+					if (!defined("JOMRES_API_CMS_ROOT")) {
+						$this->site_images [ $type ] [] = array(
 							'large' => $this->multi_query_images[ 'noimage-large' ],
 							'medium' => $this->multi_query_images[ 'noimage-medium' ],
 							'small' => $this->multi_query_images[ 'noimage-small' ],
 							);
+					}
 				}
 			}
 		}
