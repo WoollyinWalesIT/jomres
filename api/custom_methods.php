@@ -28,7 +28,13 @@ defined('_JOMRES_INITCHECK') or die('');
 		if (class_exists('mcHandler')) {  // The framework has been included, therefore there's a chance a webhook has been triggered. Let's fire up the watcher to respond to any events
 			$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
 			$MiniComponents->triggerEvent('99994');
+			
+			if ( defined("FORCE_JOMRES_SESSION") && FORCE_JOMRES_SESSION == true ) {
+				$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+				$tmpBookingHandler->close_jomres_session();
+			}
 		}
+
         logging::log_message(' Replied with code '.$code, 'API', 'DEBUG' , ' Replied with code '.$code.' and contents'.json_encode($data));
         $response = new stdClass();
         $response->data[$response_name] = $data;
