@@ -24,7 +24,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	 *
 	 */
 
-    Flight::map('json', function ($response_name, $data, $code = 200, $encode = true, $charset = 'utf-8') {
+	Flight::map('json', function ($response_name, $data, $code = 200, $encode = true, $charset = 'utf-8') {
 		if (class_exists('mcHandler')) {  // The framework has been included, therefore there's a chance a webhook has been triggered. Let's fire up the watcher to respond to any events
 			$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
 			$MiniComponents->triggerEvent('99994');
@@ -35,18 +35,18 @@ defined('_JOMRES_INITCHECK') or die('');
 			}
 		}
 
-        logging::log_message(' Replied with code '.$code, 'API', 'DEBUG' , ' Replied with code '.$code.' and contents'.json_encode($data));
-        $response = new stdClass();
-        $response->data[$response_name] = $data;
-        $response->meta['code'] = $code;
-        $json = json_encode($response);
-        Flight::response()
-            ->status($code)
-            ->header('Content-Type', 'application/json; charset='.$charset)
-            ->write($json)
-            ->send();
+		logging::log_message(' Replied with code '.$code, 'API', 'DEBUG' , ' Replied with code '.$code.' and contents'.json_encode($data));
+		$response = new stdClass();
+		$response->data[$response_name] = $data;
+		$response->meta['code'] = $code;
+		$json = json_encode($response);
+		Flight::response()
+			->status($code)
+			->header('Content-Type', 'application/json; charset='.$charset)
+			->write($json)
+			->send();
 			exit;
-    });
+	});
 	
 	/**
 	 * 
@@ -54,18 +54,13 @@ defined('_JOMRES_INITCHECK') or die('');
 	 *
 	 */
 
-    Flight::map('halt', function ($code = 200, $message = '') {
-
-		
-        $log = ' Halted run '.$code.' with message '.$message;
-        logging::log_message($log, 'API', 'DEBUG');
-        $response = new stdClass();
-        $response->meta['code'] = $code;
-        $response->meta['error_message'] = $message;
-        $json = json_encode($response);
-        Flight::response()
-            ->status($code)
-            ->write($json)
-            ->send();
-			exit;
-    });
+	Flight::map('halt', function ($code = 204, $message = '' , $charset = 'utf-8' ) {
+		$log = ' Halted run '.$code.' with message '.$message;
+		logging::log_message($log, 'API', 'DEBUG');
+		$response = new stdClass();
+		$response->meta['code'] = $code;
+		$response->meta['error_message'] = $message;
+		$json = json_encode($response);
+		echo $json;
+		exit;
+	});

@@ -33,45 +33,28 @@ class call
 	 *
 	 */
 
-    public function __construct()
-    {
-    }
+	public function __construct()
+	{
+	}
 
 	/**
 	*
 	* Calls the remote server
 	*
 	*/
-    public function call_server($options = array() )
-    {
-        if (empty($options)) {
-            throw new Exception('Error, no request elements set ');
-        }
+	public function call_server($options = array() )
+	{
+		if (empty($options)) {
+			throw new Exception('Error, no request elements set ');
+		}
 
-        $server = $options['server'];
-        $token = $options['token']['access_token'];
-        $method = $options['method'];
-        $request = $options['request'];
-        $data = $options['data'];
+		$server = $options['server'];
+		$token = $options['token']['access_token'];
+		$method = $options['method'];
+		$request = $options['request'];
+		$data = $options['data'];
 
-        $ch = curl_init($server.$request);
-
-        switch ($method) {
-            //########################################################################################
-            case 'POST':
-                    curl_setopt($ch, CURLOPT_POST, true);
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-                break;
-            case 'DELETE':
-                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
-                break;
-            case 'PUT':
-                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-                break;
-            default:
-                break;
-            }
+		$ch = curl_init($server.$request);
 
 		if (isset($options['headers']) && count($options['headers']) > 0 ) {
 			$default_headers = array (
@@ -86,16 +69,37 @@ class call
 				'Accept: application/json',
 				));
 		}
-			
-        curl_setopt($ch, CURLINFO_HEADER_OUT, true);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 30); //timeout after 30 seconds
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        $result = curl_exec($ch);
-
-        $status = curl_getinfo($ch);
 		
-        $response_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		switch ($method) {
+			//########################################################################################
+			case 'POST':
+					curl_setopt($ch, CURLOPT_POST, true);
+					curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+				break;
+			case 'DELETE':
+					curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+				break;
+			case 'PUT':
+					curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+					curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+				break;
+			default:
+				break;
+			}
 
-        return array('result' => $result, 'status' => $status);
-    }
+
+			
+		curl_setopt($ch, CURLINFO_HEADER_OUT, true);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 30); //timeout after 30 seconds
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_FAILONERROR, true);
+		
+		$result = curl_exec($ch);
+		$status = curl_getinfo($ch );
+		$errors = curl_error($ch);
+		$response_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+		curl_close($ch);
+		return array('result' => $result, 'status' => $status);
+	}
 }
