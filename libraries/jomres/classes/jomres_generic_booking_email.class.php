@@ -72,7 +72,7 @@ class jomres_generic_booking_email
 		$this->data[$contract_uid]['ROOMS'] = '';
 		if (isset($current_contract_details->contract[$contract_uid]['roomdeets'])) {
 			foreach ($current_contract_details->contract[$contract_uid]['roomdeets'] as $rd) {
-				if ( isset($current_property_details->all_room_types[$rd['room_classes_uid']]) ) {
+				if ( isset($rd['room_classes_uid']) && isset($current_property_details->all_room_types[$rd['room_classes_uid']]) ) {
 					$this->data[$contract_uid]['ROOMS'] .= $current_property_details->all_room_types[$rd['room_classes_uid']]['room_class_abbv'];
 				}
 				
