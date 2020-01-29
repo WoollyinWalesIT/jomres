@@ -3673,7 +3673,11 @@ function savePropertyConfiguration()
 				//saveKey($v); // Commented out, the function is no longer available, however keeping the IF statement here allows to be absolutely sure that if encKey is set (by a very naughty person) then nothing is done.
 			} else {
 				$oldSettingKey = 'oldsetting_'.$k;
-				$oldSettingVal = $_POST[ $oldSettingKey ];
+				if ( isset($_POST[ $oldSettingKey ])) {
+					$oldSettingVal = $_POST[ $oldSettingKey ];
+				} else {
+					$oldSettingVal = $_POST[ $k ];
+				}
 
 				if ($oldSettingVal != $v) {
 					$query = "SELECT uid FROM #__jomres_settings WHERE property_uid = '".(int) $property_uid."' and akey = '".substr($k, 4)."'";
@@ -3700,7 +3704,7 @@ function savePropertyConfiguration()
 		add_webhook_notification($webhook_notification);
 	}
 
-	if (trim($_POST['cfg_property_vat_number']) != '') {
+	if ( isset($_POST['cfg_property_vat_number']) && trim($_POST['cfg_property_vat_number']) != '') {
 		jr_import('vat_number_validation');
 		$validation = new vat_number_validation($property_uid, false);
 		$validation->vies_check(filter_var($_POST['cfg_property_vat_number'], FILTER_SANITIZE_SPECIAL_CHARS));
