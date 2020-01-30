@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.4
+ * @version Jomres 9.21.3
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -41,12 +41,13 @@ class jomres_sanity_check
 		$this->warnings_stack = array();
 		if ($property_uid > 0 )
 			$this->property_uid = $property_uid;
+		else 
+			$this->property_uid = getDefaultProperty();
+	
 		if ($autorun) {
 			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 			$this->jrConfig = $siteConfig->get();
 			$this->mrConfig = getPropertySpecificSettings();
-			$this->property_uid = getDefaultProperty();
-
 			$this->warning_counter = 0;
 		}
 	}

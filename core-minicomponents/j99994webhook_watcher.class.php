@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.4
+ * @version Jomres 9.21.3
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -83,6 +83,8 @@ class j99994webhook_watcher
 		// We need to check for property uid being set. Regardless of what happens afterwards our first task is to clear the cmf rest api cache directory for this property of any files so that subsequent rest api calls can get fresh uptodate data.
 		// Next we'll add the webhook messages to the webhook events table
 		// Finally we'll run the sanity check class which will mark a property as incomplete if something is missing, and unpublish it if it's published
+
+		
 		
 		if (!empty($all_webhooks) && !empty($webhook_messages) ) {
 			jr_import('jomres_sanity_check');
@@ -98,57 +100,53 @@ class j99994webhook_watcher
 					
 				// Now to add the event to the webhook events table
 				
-				$p_id = 0;
-				if (isset($webhook->data->property_uid) ) {
-					$p_id = $webhook->data->property_uid;
-				}
-				
-				$channel_data = array();
-				if (class_exists("Flight") && (int)Flight::get('user_id') > 0 ) {
-					$channel_data['channel_id'] = Flight::get('channel_id');
-					$channel_data['channel_name'] = Flight::get('channel_name');
-					$channel_data['user_id'] = (int)Flight::get('user_id');
-				}
-				
-				$query = "INSERT INTO `#__jomres_webhook_events` (
-					`property_uid` ,
-					`user_performing_action` ,
-					`channel_data` ,
-					`date_added` ,
-					`webhook_event_title` ,
-					`webhook_event`
-				) VALUES (
-					".(int)$p_id." ,
-					".$thisJRUser->id." ,
-					'".serialize($channel_data)."' ,
-					'".date('Y-m-d H:i:s')."' , 
-					'".$webhook->webhook_event."' ,
-					'".serialize($webhook)."'
-				)";
+				if (isset($webhook->data->property_uid) && (int)$webhook->data->property_uid > 0  ) {
 
-				doInsertSql($query);
-				}
-				
-				
-				// Rerun the sanity check and unpublish a property if required
-				if ($p_id > 0 ) {
+					$channel_data = array();
+					if (class_exists("Flight") && (int)Flight::get('user_id') > 0 ) {
+						$channel_data['channel_id'] = Flight::get('channel_id');
+						$channel_data['channel_name'] = Flight::get('channel_name');
+						$channel_data['user_id'] = (int)Flight::get('user_id');
+					}
+
+					$query = "INSERT INTO `#__jomres_webhook_events` (
+						`property_uid` ,
+						`user_performing_action` ,
+						`channel_data` ,
+						`date_added` ,
+						`webhook_event_title` ,
+						`webhook_event`
+					) VALUES (
+						".(int)$webhook->data->property_uid." ,
+						".$thisJRUser->id." ,
+						'".serialize($channel_data)."' ,
+						'".date('Y-m-d H:i:s')."' , 
+						'".$webhook->webhook_event."' ,
+						'".serialize($webhook)."'
+					)";
+
+					doInsertSql($query);
+
+					// Rerun the sanity check and unpublish a property if required
 					$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 					$jrConfig = $siteConfig->get();
 					if ( isset($jrConfig['automatic_unpublish_incomplete_properties']) && $jrConfig['automatic_unpublish_incomplete_properties'] == "1" ) {
-						$jomres_sanity_check = new jomres_sanity_check( true , $p_id );
+
+						$jomres_sanity_check = new jomres_sanity_check( true , $webhook->data->property_uid );
 						$jomres_sanity_check->do_sanity_checks( true );
 						$jomres_properties = jomres_singleton_abstract::getInstance('jomres_properties');
-						$jomres_properties->propertys_uid = $p_id;
+						$jomres_properties->propertys_uid = $webhook->data->property_uid;
 
-						if ( !empty($this->warnings_stack) ) {
+						if ( !empty($jomres_sanity_check->warnings_stack) ) {
 							$jomres_properties->unpublish_property();
 							$jomres_sanity_check->mark_as_incomplete();
 							if ( isset($jrConfig['force_reapproval_on_automatic_unpublish']) && $jrConfig['force_reapproval_on_automatic_unpublish'] == "1") {
 								$jomres_properties->unapprove_property();
+								}
 							}
-						}
+						} // End sanity checking
 					}
-				}  // End sanity checking
+				}
 			}
 		}
 		
