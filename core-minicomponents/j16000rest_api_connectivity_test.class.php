@@ -44,17 +44,26 @@ class j16000rest_api_connectivity_test
 
 		$output	 = array ();
 		$pageoutput = array ();
-		
+
+		jr_import('jomres_call_api');
+		$jomres_call_api = new jomres_call_api('system');
 		try {
-			$jomres_call_api = jomres_singleton_abstract::getInstance('jomres_call_api');
 			$response = $jomres_call_api->send_request("GET" , "core/report/");
 			}
 		catch (Exception $e) {
 			//
 		}
-		
 
-		
+
+		$api_keys = $jomres_call_api->init_manager();
+
+		$output['API_CLIENT'] = $api_keys['client_id'];
+		$output['API_SECRET'] = $api_keys['client_secret'];
+
+		$output[ '_OAUTH_APPS' ]		    = jr_gettext('_OAUTH_APPS', '_OAUTH_APPS', false);
+		$output[ '_OAUTH_APIKEY' ]		= jr_gettext('_OAUTH_APIKEY', '_OAUTH_APIKEY', false);
+		$output[ '_OAUTH_SECRET' ]		= jr_gettext('_OAUTH_SECRET', '_OAUTH_SECRET', false);
+
 		$output['URL'] = $jomres_call_api->server."core/report/";
 		
 		if (is_object($response)) {

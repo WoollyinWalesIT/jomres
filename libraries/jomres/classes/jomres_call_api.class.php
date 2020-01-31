@@ -82,7 +82,7 @@ class jomres_call_api
 	 *
 	 */
 
-	private function init_manager() {
+	public function init_manager() {
 		// We need to see if there's a user in the database, if there's not we'll create them. 
 		$query = "SELECT client_id,scope FROM #__jomres_oauth_clients WHERE client_id = '".$this->user->username."' LIMIT 1";
 		$result = doSelectSql($query);

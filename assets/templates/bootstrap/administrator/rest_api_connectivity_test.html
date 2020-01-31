@@ -1,5 +1,17 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-
+<script>
+	document.addEventListener("DOMContentLoaded", function() {
+		var inputs = document.querySelectorAll('[readonly]');
+		for(var i=0; i < inputs.length; i++){
+			inputs[i].addEventListener('keydown', function(e){
+				var key = e.which || e.keyCode || 0;
+				if(key === 8){
+					e.preventDefault();
+				}
+			})
+		}
+	});
+</script>
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
 {CSRF_TOKEN}
@@ -7,6 +19,19 @@
 
 <h2 class="page-header">{_JOMRES_REST_API_CONNECTIVITY_TEST}</h2>
 
+	<fieldset>
+		<legend>{_OAUTH_APPS}</legend>
+		<div class="form-horizontal">
+			<div class="control-group">
+				<label for="client_id" class="control-label span2 ">{_OAUTH_APIKEY}</label>
+				<input class="controls span6" id="client_id" value="{API_CLIENT}" readonly=readonly >
+			</div>
+			<div class="control-group">
+				<label for="secret" class="control-label span2">{_OAUTH_SECRET}</label>
+				<input class="controls  span6" id="secret" value="{API_SECRET}"  readonly=readonly>
+			</div>
+		</div>
+	</fieldset>
 
 <p class="alert alert-info">{_JOMRES_REST_API_CONNECTIVITY_TEST_INFO}</p>
 
