@@ -38,9 +38,9 @@ function is_channel_property( $property_uid = 0 )
 			$channel_properties = array();
 		}
 
-		if (empty($channel_properties) &&  (bool)get_showtime("channel_properties_queried" == false )) {
+		if (empty($channel_properties) &&  (bool)get_showtime("channel_properties_queried") == false ) {
 			
-			$query = 'SELECT `property_id` FROM `#__jomres_channelmanagement_framework_property_uid_xref` ';
+			$query = 'SELECT `property_uid` FROM `#__jomres_channelmanagement_framework_property_uid_xref` ';
 			$data = doSelectSql($query);
 			if ( !empty($data) ) {
 				foreach ($data as $d) {
@@ -51,6 +51,7 @@ function is_channel_property( $property_uid = 0 )
 		} else {
 			$property_ids = $channel_properties;
 		}
+		
 		set_showtime ("channel_properties" , $property_ids );
 	}
 
@@ -69,16 +70,15 @@ function is_channel_property( $property_uid = 0 )
 
 function is_channel_safe_task ($task)
 {
-	
 	$is_channel_property = is_channel_property ( get_showtime("property_uid") );
 	
 	if ( $is_channel_property == false ) {
 		return true;
 	}
 
-	$safe_tasks = array ( '' , 'dashboard' , 'dashboard_resources_ajax' , 'cpanel' , 'publish_property' , 'listyourproperties' , 'preview' , 'webhooks_core', 'webhooks_core_documentation' , 'edit_integration' , 'save_integration' , 'edit_my_account', 'show_user_profile',  'muviewfavourites',  'logout',  'oauth',  'api_documentation',  'search',  'show_consent_form',  'gdpr_my_data' ); // We will not redirect on these tasks. Need to keep this list under review.
+	$safe_tasks = array ( '' , 'dashboard' , 'dashboard_resources_ajax' , 'dashboard_events_ajax' , 'listyourproperties_ajax', 'cpanel' , 'publish_property' , 'listyourproperties' , 'preview' , 'webhooks_core', 'webhooks_core_documentation' , 'edit_integration' , 'save_integration' , 'edit_my_account', 'show_user_profile',  'muviewfavourites',  'logout',  'oauth',  'api_documentation',  'search',  'show_consent_form',  'gdpr_my_data' ,'toggle_jomres_widget_ajax' ); // We will not redirect on these tasks. Need to keep this list under review.
 	
-	if ( in_array( $task , $safe_tasks ) || substr ( $task , 0, 27 ) == "channelmanagement_framework" ) {
+	if ( in_array( $task , $safe_tasks ) || substr ( $task , 0, 27 ) == "channelmanagement_framework" || strstr (  $task ,"ajax" ) ) {
 		return true;
 	}
 	
