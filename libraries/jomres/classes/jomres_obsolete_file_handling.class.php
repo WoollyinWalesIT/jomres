@@ -1317,7 +1317,7 @@ class jomres_obsolete_file_handling
 		$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'User_Ninja.png');
 		
 		
-		$this->add_file($this->dir_classes.'core_package_management.class.php');
+		// $this->add_file($this->dir_classes.'core_package_management.class.php');  // Removed because I want to re-use this, but without sha checking
 	}
 	
 	/**
