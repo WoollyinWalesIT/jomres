@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 }
 			
 date_default_timezone_set('UTC');
-require JOMRES_API_CMS_ROOT.DIRECTORY_SEPARATOR.'jomres'.DIRECTORY_SEPARATOR.'libraries'.DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'autoload.php';
+require JOMRES_API_CMS_ROOT.DIRECTORY_SEPARATOR.'jomres'.DIRECTORY_SEPARATOR.'libraries'.DIRECTORY_SEPARATOR.'packages'.DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'autoload.php';
 
 require 'classes/logging.class.php';
 require 'oauth/inc_configs.php';
