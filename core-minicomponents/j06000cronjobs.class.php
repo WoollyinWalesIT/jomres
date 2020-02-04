@@ -42,12 +42,13 @@ class j06000cronjobs
 			return;
 		}
 
-
+		if (!defined('JOMRES_API_CMS_ROOT')) {
 			jr_import('jomres_cron');
 			$cron = new jomres_cron();
 			if ($cron->method == 'Cron') {
 				$cron->triggerJobs();
 			}
+		}
 
 	}
 
