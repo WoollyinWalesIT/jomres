@@ -39,7 +39,11 @@ class j99994webhook_watcher
 			{
 			$this->template_touchable=false; return;
 			}
-
+		
+		if ( get_showtime('task') == 'background_process') {
+			return;
+		}
+		
 		$property_uid 	= (int)get_showtime("property_uid");
 		$manager_id 	= 0;
 		$all_webhooks 	= array();
