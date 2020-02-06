@@ -108,7 +108,10 @@ class jomres_call_api
 
 	public function send_request($method = '', $endpoint = '', $data = array() ,  $headers = array() ) {
 		if ($this->token != '') {
-			$response = $this->query_api($method, $endpoint, $data , $headers );
+			$response = '';
+			do {
+				$response = $this->query_api($method, $endpoint, $data , $headers );
+			} while ( $response == '' || $response == null );
 			if ($response['response_code'] == '200' || $response['response_code'] == '204') {
 				return json_decode($response['response']);
 			} else {
