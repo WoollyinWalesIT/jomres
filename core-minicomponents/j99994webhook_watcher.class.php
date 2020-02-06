@@ -88,7 +88,12 @@ class j99994webhook_watcher
 		// Next we'll add the webhook messages to the webhook events table
 		// Finally we'll run the sanity check class which will mark a property as incomplete if something is missing, and unpublish it if it's published
 
-		
+		$channel_data = array();
+		if (class_exists("Flight") && (int)Flight::get('user_id') > 0 ) {
+			$channel_data['channel_id'] = Flight::get('channel_id');
+			$channel_data['channel_name'] = Flight::get('channel_name');
+			$channel_data['user_id'] = (int)Flight::get('user_id');
+		}
 		
 		if (!empty($all_webhooks) && !empty($webhook_messages) ) {
 			jr_import('jomres_sanity_check');
@@ -106,12 +111,7 @@ class j99994webhook_watcher
 				
 				if (isset($webhook->data->property_uid) && (int)$webhook->data->property_uid > 0  ) {
 
-					$channel_data = array();
-					if (class_exists("Flight") && (int)Flight::get('user_id') > 0 ) {
-						$channel_data['channel_id'] = Flight::get('channel_id');
-						$channel_data['channel_name'] = Flight::get('channel_name');
-						$channel_data['user_id'] = (int)Flight::get('user_id');
-					}
+
 
 					$query = "INSERT INTO `#__jomres_webhook_events` (
 						`property_uid` ,
@@ -158,7 +158,12 @@ class j99994webhook_watcher
 			logging::log_message("Preparing deferred messages " , 'Webhooks', 'DEBUG'  );
 			foreach ( $all_webhooks as $webhook ) {
 				$webhook['webhook_messages'] = $webhook_messages;
+				
+				
 				if ($webhook['enabled'] == true ) {
+					
+					$webhook['channel_data'] = $channel_data;
+					
 					$watcher_authmethod = "watcher_authmethod_process_".$webhook['settings']['authmethod'];
 
 					// Trigger number 07310 is for tasks that *have* to be carried out now. 07320 is for tasks that can be deferred slightly
