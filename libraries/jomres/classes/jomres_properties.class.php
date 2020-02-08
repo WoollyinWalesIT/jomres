@@ -91,7 +91,7 @@ class jomres_properties
 	//Get all properties in the system
 	public function get_all_properties()
 	{
-		if (is_array($this->all_property_uids)) {
+		if ( isset($this->all_property_uids) && is_array($this->all_property_uids)) {
 			return true;
 		}
 
