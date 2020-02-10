@@ -196,7 +196,7 @@ class jomres_widgets
 			</ul>
 		</div>
 		<script type="text/javascript">
-			var jr_widgets_selected = [' . jomres_implode($checked_options_js, false) . ';]
+			var jr_widgets_selected = [' . jomres_implode($checked_options_js, false) . ']
 		</script>
 		';
 		
