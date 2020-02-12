@@ -1321,6 +1321,8 @@ class jomres_obsolete_file_handling
 		
 		$this->add_dir(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'node_modules');
 		$this->add_dir(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'vendor');
+		
+		$this->add_file($this->dir_minicomponents.'j10501cmf.class.php');
 	}
 	
 	/**
