@@ -59,7 +59,7 @@ defined('_JOMRES_INITCHECK') or die('');
 		logging::log_message($log, 'API', 'DEBUG');
 
 		$response = new stdClass();
-		$response->code = $code;
+		$response->code = 200;
 		$response->error_message = $message;
 		$json = json_encode($response);
 		Flight::response()
