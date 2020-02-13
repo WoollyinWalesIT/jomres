@@ -55,11 +55,12 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 	Flight::map('halt', function ($code = 204, $message = '' , $charset = 'utf-8' ) {
+		$code = 200;
 		$log = ' Halted run '.$code.' with message '.$message;
 		logging::log_message($log, 'API', 'DEBUG');
 
 		$response = new stdClass();
-		$response->code = 200;
+		$response->code = $code;
 		$response->error_message = $message;
 		$json = json_encode($response);
 		Flight::response()
