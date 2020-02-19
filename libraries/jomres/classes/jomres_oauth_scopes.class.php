@@ -91,7 +91,8 @@ class jomres_oauth_scopes
 			{
 			foreach ($scope_file_contents as $key => $value)
 				{
-				if (count($value)>0)
+
+				if (count( (array)$value)>0)
 					{
 					foreach ($value as $k=>$v)
 						{
