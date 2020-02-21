@@ -65,7 +65,7 @@ class call
 			curl_setopt($ch, CURLOPT_HTTPHEADER, $arr );
 		} else {
 			curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-				'Authorization: Bearer '.$token,
+				'Authorization : Bearer '.$token,
 				'Accept: application/json',
 				));
 		}
