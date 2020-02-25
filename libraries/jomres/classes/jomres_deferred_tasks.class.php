@@ -113,8 +113,10 @@ class jomres_deferred_tasks
 		if ($payload == '' ) {
 			throw new Exception('Error: payload not set ');
 		}
-		
-		$randomstring = generateJomresRandomString(50);
+
+        logging::log_message("Constructing background message ", 'Core', 'DEBUG' , $trigger_number );
+
+        $randomstring = generateJomresRandomString(50);
 		$message = new stdClass();
 		$message->trigger_number = $trigger_number;
 		$message->minicomponent = $minicomponent;
@@ -176,9 +178,11 @@ class jomres_deferred_tasks
 				trigger_error($e->getMessage(), E_USER_ERROR);
 			}
 		}
-        if (isset($content)) {
-            logging::log_message("Sent deferred message ".$this->file_identifier." to ".$url , 'Core', 'DEBUG' , serialize($content)  );
+        if (!isset($content)) {
+            $content = '';
         }
+
+        logging::log_message("Sent deferred message ".$this->file_identifier." to ".$url , 'Core', 'DEBUG' , serialize($content)  );
 
 	 }
 	
