@@ -42,7 +42,8 @@ defined('_JOMRES_INITCHECK') or die('');
 		$response = new stdClass();
 		$response->data[$response_name] = $data;
 		$response->meta['code'] = $code;
-		$response->site = $envelope_data;
+		$response->meta['site'] = $envelope_data;
+
 		$json = json_encode($response);
 		Flight::response()
 			->status($code)
@@ -59,12 +60,16 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 	Flight::map('halt', function ($code = 204, $message = '' , $charset = 'utf-8' ) {
+
+		$envelope_data = Flight::response_envelope_data();
+		
 		$code = 200;
 		$log = ' Halted run '.$code.' with message '.$message;
 		logging::log_message($log, 'API', 'DEBUG');
 
 		$response = new stdClass();
 		$response->code = $code;
+		$response->meta['site'] = $envelope_data;
 		$response->error_message = $message;
 		$json = json_encode($response);
 		Flight::response()
