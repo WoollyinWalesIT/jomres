@@ -25,6 +25,9 @@ defined('_JOMRES_INITCHECK') or die('');
 	 */
 
 	Flight::map('json', function ($response_name, $data, $code = 200, $encode = true, $charset = 'utf-8') {
+
+		$envelope_data = Flight::response_envelope_data();
+
 		if (class_exists('mcHandler')) {  // The framework has been included, therefore there's a chance a webhook has been triggered. Let's fire up the watcher to respond to any events
 			$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
 			$MiniComponents->triggerEvent('99994');
@@ -39,6 +42,7 @@ defined('_JOMRES_INITCHECK') or die('');
 		$response = new stdClass();
 		$response->data[$response_name] = $data;
 		$response->meta['code'] = $code;
+		$response->site = $envelope_data;
 		$json = json_encode($response);
 		Flight::response()
 			->status($code)
@@ -69,4 +73,25 @@ defined('_JOMRES_INITCHECK') or die('');
 			->write($json)
 			->send();
 			exit;
+	});
+
+	Flight::map( 'response_envelope_data' , function () {
+
+		$data = [];
+
+		$property_uid = Flight::get('response_envelope_property_uid');
+
+		if ( (int) $property_uid > 0 && function_exists("get_showtime") ) {
+			$basic_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
+			$basic_property_details->gather_data($property_uid);
+			$data['property_name'] =  str_replace('&#39;', "'", $basic_property_details->property_name);
+		}
+
+		$live_site = '';
+		if (function_exists("get_showtime")) {
+			$data['live_site'] = get_showtime("live_site");
+		}
+
+
+		return $data;
 	});

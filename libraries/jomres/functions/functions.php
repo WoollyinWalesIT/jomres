@@ -3579,7 +3579,6 @@ function propertyConfiguration()
 			<input type="hidden" name="no_html" value="1">
 			<input type="hidden" name="task" value="save_business_settings"/>
 			<input type="hidden" name="option" value="<?php echo $option; ?>"/>
-			<input type="hidden" name="cfg_version" value="<?php echo $mrConfig[ 'version' ]; ?>"/>
 			<input type="hidden" name="cfg_jomresdotnet" value="<?php echo $mrConfig[ 'jomresdotnet' ]; ?>"/>
 			<input type="hidden" name="property_uid" value="<?php echo $property_uid; ?>"/>
 			<?php
