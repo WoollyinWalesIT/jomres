@@ -82,7 +82,7 @@ if (substr($request->url,0,6) == '/core/' ) {
 		} elseif (file_exists(JOMRES_API_JOMRES_ROOT.DIRECTORY_SEPARATOR.'remote_plugins'.DIRECTORY_SEPARATOR.'api_feature_'.$route.DIRECTORY_SEPARATOR.$request->method.DIRECTORY_SEPARATOR.$route.'.php')) {
 			require_once JOMRES_API_JOMRES_ROOT.DIRECTORY_SEPARATOR.'remote_plugins'.DIRECTORY_SEPARATOR.'api_feature_'.$route.DIRECTORY_SEPARATOR.$request->method.DIRECTORY_SEPARATOR.$route.'.php';
 		} else {
-			Flight::halt(404, 'Request unknown');
+			Flight::halt(404, ' Request '.$request->url.' unknown');
 		}
 	}
 

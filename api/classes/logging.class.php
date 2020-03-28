@@ -179,10 +179,22 @@ class logging
         $trace = '';
         if ( $level == 'DEBUG') {
             $backtrace = debug_backtrace();
-            $trace = "<br/> File ".$backtrace[1]['file']." Line ".$backtrace[1]['line']. " Function ".$backtrace[1]['function']."<br/> ";
-            $trace .= " File ".$backtrace[2]['file']." Line ".$backtrace[2]['line']. " Function ".$backtrace[2]['function']."<br/> ";
-			if (isset($backtrace[3]['file'])) {
-				$trace .= " File ".$backtrace[3]['file']." Line ".$backtrace[3]['line']. " Function ".$backtrace[3]['function']."<br/> "; 
+            if (isset($backtrace[1])) {
+            	$index = 1;
+			} else {
+            	$index = 0;
+			}
+
+            $trace = "<br/> File ".$backtrace[$index]['file'].
+				" Line ".$backtrace[$index]['line'].
+				" Function ".$backtrace[$index]['function']."<br/> ";
+			$index ++;
+			if (isset($backtrace[$index]['file'])) {
+				$trace .= " File " . $backtrace[$index]['file'] . " Line " . $backtrace[$index]['line'] . " Function " . $backtrace[$index]['function'] . "<br/> ";
+			}
+			$index ++;
+			if (isset($backtrace[$index]['file'])) {
+				$trace .= " File ".$backtrace[$index]['file']." Line ".$backtrace[$index]['line']. " Function ".$backtrace[$index]['function']."<br/> ";
 			}
             
         }

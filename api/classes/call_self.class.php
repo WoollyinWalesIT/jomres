@@ -19,25 +19,33 @@ defined('_JOMRES_INITCHECK') or die('');
 
 /**
 *
-* Call a local REST API feature. Will only work if the original OAuth2 key pair are authorised to call the specific API function (in scope)
-*
+* Call a local REST API feature.
+ *
+ * Originally I tried to do this by setting the token to the originating message's token but problems arose with mis-matches between the property manager and the system token so instead removed the use of the "call" class and instead switched to using jomres_call_api because that class already handles 1. Setting up the "system" user and 2. Getting a token for that user and 3 now there's just one class that calls self instead of two
+ * Previous users of this call_self class expect json encoded data to be returned therefore to maintain parity with existing functionality the response will be returned json encoded.
 */
 class call_self
 {
 	/**
 	*
-	* Constructor. Sets up endpoints based on the original information
+	* Constructor.
 	*
 	*/
     public function __construct()
     {
-        $this->token = Flight::get('token');
-        $request = Flight::request();
+    	if ( defined('JOMRES_API_CMS_ROOT') ) {
+			require_once(JOMRES_API_JOMRES_ROOT.JRDS."framework.php");
+		}
+
+		jr_import('jomres_call_api');
+		$this->jomres_call_api = new jomres_call_api('system');
+
+/*        $request = Flight::request();
         $url = isset($_SERVER['HTTPS']) && 'on' === $_SERVER['HTTPS'] ? 'https' : 'http';
         $url .= '://'.$_SERVER['SERVER_NAME'];
         $url .= in_array($_SERVER['SERVER_PORT'], array('80', '443')) ? '' : ':'.$_SERVER['SERVER_PORT'];
         $url .= $request->base;
-        $this->self_url = $url.'/';
+        $this->self_url = $url.'/';*/
     }
 
 	/**
@@ -51,25 +59,13 @@ class call_self
             throw new Exception('Error, no request elements set ');
         }
 
-/* 		if (Flight::get("original_call") == "/".$elements["request"])
-            throw new Exception("Error, recursion. "); */
-
-        $call = new call();
-
-        $options = array(
-            'server' => $this->self_url,
-            'token' => $this->token,
-            'method' => $elements['method'],
-            'request' => $elements['request'],
-            'data' => $elements['data'],
-            );
-			
-		if (isset($elements['headers'])) {
-			$options['headers'] = $elements['headers'];
+		try {
+			$response = $this->jomres_call_api->send_request( $elements['method']  ,  $elements['request'] , $elements['data'] , $elements['headers']);
+		}
+		catch (Exception $e) {
+			//
 		}
 
-        $response = $call->call_server($options);
-
-        return $response['result'];
+        return json_encode($response);
     }
 }

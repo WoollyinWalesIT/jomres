@@ -33,7 +33,7 @@ class jomres_call_api
 			$this->user = new stdClass();
 			$this->user->accesslevel = 101;
 			$this->user->username = 'system';
-			$this->user->userid = 99999999999999;
+			$this->user->userid = 9999999999;
 		} else {
 			$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 			$this->user->accesslevel = $thisJRUser->accesslevel;
@@ -161,6 +161,7 @@ class jomres_call_api
 					"Accept: application/json"
 					);
 				$arr =  array_merge ( $default_headers , $headers ) ;
+
 				curl_setopt($ch, CURLOPT_HTTPHEADER, $arr );
 			} else {
 				curl_setopt($ch, CURLOPT_HTTPHEADER, array(
@@ -170,13 +171,20 @@ class jomres_call_api
 			}
 
 		}
-		
+
 		curl_setopt($ch,CURLOPT_VERBOSE,true);
 		curl_setopt($ch, CURLINFO_HEADER_OUT, true);
 		
 		$result = curl_exec($ch);
 		$status = curl_getinfo($ch);
-		
+
+/*				var_dump($endpoint  );
+			var_dump($method  );
+				var_dump($data  );
+		if ($endpoint == 'cmf/property/publish' ) {
+			var_dump($result );
+		}*/
+
 		$response_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		curl_close($ch);
 

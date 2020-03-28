@@ -201,6 +201,11 @@ try {
 		);
 
 	Flight::set('token', $token);
+
+	if (  (string)$token['user_id'] == '99999999999999999999') { // Older versions of the system would create the system user with a very long id, we'll lower that somewhat
+		$token['user_id'] = '9999999999';
+	}
+
 	Flight::set('user_id', $token['user_id']);
 	Flight::set('scopes', explode(',', $token['scope']));
 	Flight::set('dbprefix', JOMRES_API_DB_DB_PREFIX);
@@ -211,6 +216,7 @@ try {
 	require 'routes.php';
 
 	Flight::start();
+
 } catch (Exception $e) {
 	if ($e->getMessage() != '' ) {
 		$response = $e->getMessage();

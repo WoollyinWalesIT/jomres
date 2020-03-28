@@ -71,6 +71,7 @@ defined('_JOMRES_INITCHECK') or die('');
 		$response->code = $code;
 		$response->meta['site'] = $envelope_data;
 		$response->error_message = $message;
+
 		$json = json_encode($response);
 		Flight::response()
 			->status($code)
@@ -81,6 +82,8 @@ defined('_JOMRES_INITCHECK') or die('');
 	});
 
 	Flight::map( 'response_envelope_data' , function () {
+
+		$request = Flight::request();
 
 		$data = [];
 
@@ -97,6 +100,9 @@ defined('_JOMRES_INITCHECK') or die('');
 			$data['live_site'] = get_showtime("live_site");
 		}
 
+		$data['base'] = $request->base;
+		$data['url'] = $request->url;
+		$data['method'] = $request->method;
 
 		return $data;
 	});

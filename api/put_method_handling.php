@@ -20,10 +20,16 @@
      * To get around that we will parse the "input" of PUT method requests and put them into $GLOBALS['PUT']. Api features can then access $GLOBALS['PUT'] to then get $_PUT for their own use, in just the same way as they would $_POST. Whilst technically using the "global" function is marginally, a teeny bit quicker, using $_PUT = $GLOBALS['PUT']; is much more consistent with how form fields are used in PHP, and it makes it obvious that we are working with super globals. This consistency will prove it's worth a few years down the road.
 	 *
 	 */
-	 
+
 if ($_SERVER['REQUEST_METHOD']==="PUT") {
 	parse_str(file_get_contents("php://input"), $_PUT);
-	if (is_array($_PUT) && count($_PUT) > 1) {
+	// Postman sends data in such a way that we need the second clause here, however php sending via curl triggers the first clause and count $_PUT will be > 0 therefore we also need to check to see if Content-Disposition is in the string before we ca trigger clause 1
+
+	reset($_PUT);
+	$first_key = key($_PUT);
+	$cd_pos = strpos ( $first_key  , 'Content-Disposition' );
+
+	if ( $cd_pos === false ) {
 		$GLOBALS['PUT'] = $_PUT;
 	} else {
 		$raw_data = file_get_contents('php://input');
@@ -90,3 +96,4 @@ if ($_SERVER['REQUEST_METHOD']==="PUT") {
 		$GLOBALS['PUT'] = $data;
 	}
 }
+
