@@ -71,12 +71,20 @@ function is_channel_property( $property_uid = 0 )
 function is_channel_safe_task ($task)
 {
 	$is_channel_property = is_channel_property ( get_showtime("property_uid") );
-	
+
 	if ( $is_channel_property == false ) {
 		return true;
 	}
 
-	$safe_tasks = array ( '' , 'dashboard' , 'dashboard_resources_ajax' , 'dashboard_events_ajax' , 'listyourproperties_ajax', 'cpanel' , 'publish_property' , 'listyourproperties' , 'preview' , 'webhooks_core', 'webhooks_core_documentation' , 'edit_integration' , 'save_integration' , 'edit_my_account', 'show_user_profile',  'muviewfavourites',  'logout',  'oauth',  'api_documentation',  'search',  'show_consent_form',  'gdpr_my_data' ,'toggle_jomres_widget_ajax' , 'delete_property'); // We will not redirect on these tasks. Need to keep this list under review.
+	if ( $task ==JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.get_showtime("property_uid") ) {
+		return true;
+	}
+
+	if ( $task == JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.get_showtime("property_uid") ) {
+		return true;
+	}
+
+	$safe_tasks = array ( '' , 'dashboard' , 'dashboard_resources_ajax' , 'dashboard_events_ajax' , 'listyourproperties_ajax', 'cpanel' , 'publish_property' , 'listyourproperties' , 'preview' , 'webhooks_core', 'webhooks_core_documentation' , 'edit_integration' , 'save_integration' , 'edit_my_account', 'show_user_profile',  'muviewfavourites',  'logout',  'oauth',  'api_documentation',  'search',  'show_consent_form',  'gdpr_my_data' ,'toggle_jomres_widget_ajax' , 'delete_property' , 'viewproperty'); // We will not redirect on these tasks. Need to keep this list under review.
 	
 	if ( in_array( $task , $safe_tasks ) || substr ( $task , 0, 17 ) == "channelmanagement" || strstr (  $task ,"ajax" ) ) {
 		return true;

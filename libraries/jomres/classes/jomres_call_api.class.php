@@ -33,7 +33,7 @@ class jomres_call_api
 			$this->user = new stdClass();
 			$this->user->accesslevel = 101;
 			$this->user->username = 'system';
-			$this->user->userid = 9999999999;
+			$this->user->userid = 999999999;
 		} else {
 			$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 			$this->user->accesslevel = $thisJRUser->accesslevel;
@@ -83,7 +83,7 @@ class jomres_call_api
 	 */
 
 	public function init_manager() {
-		// We need to see if there's a user in the database, if there's not we'll create them. 
+		// We need to see if there's a user in the database, if there's not we'll create them.
 		$query = "SELECT client_id,scope FROM #__jomres_oauth_clients WHERE client_id = '".$this->user->username."' LIMIT 1";
 		$result = doSelectSql($query);
 		if (empty($result)) {
@@ -177,7 +177,9 @@ class jomres_call_api
 		
 		$result = curl_exec($ch);
 		$status = curl_getinfo($ch);
-
+/*if ($method == 'POST' && $endpoint == 'cmf/property/') {
+	var_dump($result );exit;
+}*/
 		$response_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		curl_close($ch);
 

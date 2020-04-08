@@ -203,7 +203,7 @@ try {
 	Flight::set('token', $token);
 
 	if (  (string)$token['user_id'] == '99999999999999999999') { // Older versions of the system would create the system user with a very long id, we'll lower that somewhat
-		$token['user_id'] = '9999999999';
+		$token['user_id'] = '999999999';
 	}
 
 	Flight::set('user_id', $token['user_id']);
