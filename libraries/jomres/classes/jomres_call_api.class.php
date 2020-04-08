@@ -135,7 +135,7 @@ class jomres_call_api
 		curl_setopt($ch, CURLINFO_HEADER_OUT, true);
 		curl_setopt($ch, CURLOPT_TIMEOUT, 30); //timeout after 30 seconds
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		
+
 		switch ($method) {
 			//########################################################################################
 			case 'POST':
@@ -177,13 +177,6 @@ class jomres_call_api
 		
 		$result = curl_exec($ch);
 		$status = curl_getinfo($ch);
-
-/*				var_dump($endpoint  );
-			var_dump($method  );
-				var_dump($data  );
-		if ($endpoint == 'cmf/property/publish' ) {
-			var_dump($result );
-		}*/
 
 		$response_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		curl_close($ch);
