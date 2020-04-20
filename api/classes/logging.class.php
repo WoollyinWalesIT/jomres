@@ -116,9 +116,9 @@ class logging
             $url = filter_var($url, FILTER_VALIDATE_URL, FILTER_FLAG_PATH_REQUIRED);
         }
 
-        
 
-        $formatter = new LineFormatter("%datetime% ~~ %channel%.%level_name%: ~~ %message% ~~ %context% ~~ %extra% ::::: \n");
+		$now = DateTime::createFromFormat('U.u', microtime(true));
+        $formatter = new LineFormatter($now->format("m-d-Y H:i:s.u")." ~~ %channel%.%level_name%: ~~ %message% ~~ %context% ~~ %extra% ::::: \n");
 
         $stream_handler = new StreamHandler($jrConfig['log_path'].$log_file, Logger::DEBUG);
         $stream_handler->setFormatter($formatter);
@@ -135,8 +135,15 @@ class logging
         }
         
         $message = $username.' ~~ '.$message.' ~~ '.session_id().' ~~ '.$url;
+
+		$loggerTimeFormat = "Y-m-d H:i:s.u";
+		$loggerFormat = "[%datetime%] %level_name% %message% %context% %extra%\n";
+		$formatter = new LineFormatter($loggerFormat, $loggerTimeFormat);
+
         $logger = new Logger($channel);
+		$logger->useMicrosecondTimestamps(true);
         $logger->pushProcessor(new \Monolog\Processor\WebProcessor());
+
         $logger->pushHandler(
             $stream_handler
             );
@@ -204,7 +211,6 @@ class logging
             default:
             case 'DEBUG':
                 if ($jrConfig['development_production'] == 'development') {
-
                     $logger->addDebug($message, $context); // Detailed debug information.
                 }
                 break;

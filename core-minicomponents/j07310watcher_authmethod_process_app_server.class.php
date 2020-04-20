@@ -83,7 +83,7 @@ class j07310watcher_authmethod_process_app_server
 			}
 
 			foreach ( $webhook_messages as $webhook_notification ) {
-				logging::log_message("Webhook triggered ".$webhook_notification->webhook_event , 'AppServerWebhooks', 'DEBUG' , '' );
+				logging::log_message("App Server Webhook triggered ".$webhook_notification->webhook_event , 'AppServerWebhooks', 'DEBUG' , '' );
 				$data = $webhook_notification->data;
 				
 				if (isset($data) && $data !== false && isset($webhook_notification->webhook_event) ) { // The data, whatever it is, has been collected, let's send it off to the remote site
