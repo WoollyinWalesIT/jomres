@@ -40,12 +40,7 @@ class call_self
 		jr_import('jomres_call_api');
 		$this->jomres_call_api = new jomres_call_api('system');
 
-/*        $request = Flight::request();
-        $url = isset($_SERVER['HTTPS']) && 'on' === $_SERVER['HTTPS'] ? 'https' : 'http';
-        $url .= '://'.$_SERVER['SERVER_NAME'];
-        $url .= in_array($_SERVER['SERVER_PORT'], array('80', '443')) ? '' : ':'.$_SERVER['SERVER_PORT'];
-        $url .= $request->base;
-        $this->self_url = $url.'/';*/
+
     }
 
 	/**
@@ -59,11 +54,15 @@ class call_self
             throw new Exception('Error, no request elements set ');
         }
 
+        if (!isset($elements['headers'])) {
+			$elements['headers'] = array();
+		}
+
 		try {
 			$response = $this->jomres_call_api->send_request( $elements['method']  ,  $elements['request'] , $elements['data'] , $elements['headers']);
 		}
 		catch (Exception $e) {
-			//
+			echo $e->getMessage();
 		}
 
         return json_encode($response);
