@@ -40,7 +40,7 @@
     "fullcalendar": "2.9.1",
     "fullcalendar-scheduler": "1.3.3",
     "galleria": "^1.6.1",
-    "jquery": "^1.12.4",
+    "jquery": "^3.5.0",
     "jquery-migrate": "^1.2.1",
     "jquery-star-rating-plugin": "^4.11.0",
     "jquery-ui": "^1.12.1",
