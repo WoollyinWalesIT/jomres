@@ -66,12 +66,6 @@ class jomres_database
 
 	public function __construct()
 	{
-		// Check if magic_quotes_runtime is active
-		if (get_magic_quotes_runtime()) {
-			// Deactivate
-			@set_magic_quotes_runtime(false);
-		}
-
 		$this->link = null;
 		$this->PDO = null;
 		$this->query = '';
