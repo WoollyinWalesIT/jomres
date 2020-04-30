@@ -83,7 +83,7 @@ class j06000selectcombo
 				foreach ($locations as $location) {
 					$t = $location[ 'property_town' ];
 					if ($location[ 'region' ] == $q) {
-						$towns[ $t ] = jomres_decode($t);
+						$towns[ $t ] = str_replace('&#39;', "'", $t);
 					}
 					// else if ($q==$searchAll)
 					// $towns[$t]=$t;
