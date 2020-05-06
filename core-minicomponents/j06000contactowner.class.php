@@ -72,11 +72,10 @@ class j06000contactowner
 				$use_recaptcha = true;
 			}
 
-			$mrConfig = getPropertySpecificSettings();
 			$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 
 			if ($use_recaptcha) {
-				$recaptcha = new \ReCaptcha\ReCaptcha(trim($jrConfig[ 'recaptcha_private_key' ]), new \ReCaptcha\RequestMethod\SocketPost());
+				$recaptcha = new \ReCaptcha\ReCaptcha(trim($jrConfig[ 'recaptcha_private_key' ]), new \ReCaptcha\RequestMethod\CurlPost());
 			}
 			
 			$property_uid = (int)jomresGetParam($_REQUEST, 'property_uid', 0);
