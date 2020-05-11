@@ -76,7 +76,18 @@ function is_channel_safe_task ($task)
 		return true;
 	}
 
-	if ( $task ==JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.get_showtime("property_uid") ) {
+	// We know it's a channel property, let's find out if the manager is allowed to administer locally or if they're forced to toddle off to the parent
+	$mrConfig = getPropertySpecificSettings( get_showtime("property_uid"));
+
+	if ( !isset($mrConfig['allow_channel_property_local_admin']) ) {
+		$mrConfig['allow_channel_property_local_admin'] = 0;
+    }
+
+	if ( (bool)$mrConfig['allow_channel_property_local_admin'] == true ) {
+	    return true;
+    }
+
+	if ( $task == JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.get_showtime("property_uid") ) {
 		return true;
 	}
 
