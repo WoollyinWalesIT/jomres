@@ -3683,9 +3683,7 @@ function savePropertyConfiguration()
 			$v = jomresGetParam($_POST, $k, '');
 			$dirty = (string) $k;
 			$k = addslashes($dirty);
-			if (!get_magic_quotes_gpc()) {
-				$v = filter_var($v, FILTER_SANITIZE_SPECIAL_CHARS);
-			}
+
 
 			if (substr($k, 4) == 'encKey') {
 				//saveKey($v); // Commented out, the function is no longer available, however keeping the IF statement here allows to be absolutely sure that if encKey is set (by a very naughty person) then nothing is done.
