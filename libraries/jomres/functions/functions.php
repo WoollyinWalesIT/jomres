@@ -4226,6 +4226,15 @@ function savePlugin($plugin)
 	$tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
 	$tmpl->readTemplatesFromInput('plugin_save.html');
 	$tmpl->displayParsedTemplate();
+
+	$webhook_notification							    = new stdClass();
+	$webhook_notification->webhook_event				= 'plugin_settings_saved';
+	$webhook_notification->webhook_event_description	= 'Logs when plugin settings, typically gateways, are added/edited.';
+	$webhook_notification->webhook_event_plugin		    = 'core';
+	$webhook_notification->data						    = new stdClass();
+	$webhook_notification->data->property_uid		    = $defaultProperty;
+	$webhook_notification->data->plugin 				= $plugin;
+	add_webhook_notification($webhook_notification);
 }
 
 /**

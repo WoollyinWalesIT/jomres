@@ -89,6 +89,9 @@ function doInsertSql($query, $op = '', $ignoreErrors = false)
 
 	if (!$jomres_db->query()) {
 		if (!$ignoreErrors) {
+			if (is_array($jomres_db->error)) {
+				$jomres_db->error = serialize($jomres_db->error);
+			}
 			error_logging('Do insert failed :: '.$jomres_db->error.' '.$query);
 		}
 
