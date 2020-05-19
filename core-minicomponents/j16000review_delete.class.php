@@ -47,6 +47,7 @@ class j16000review_delete
 		if ($rating_id > 0) {
 			jr_import('jomres_reviews');
 			$Reviews = new jomres_reviews();
+			$Reviews->property_uid = (int)$_REQUEST['property_uid'];
 			$result = $Reviews->delete_review($rating_id);
 			if ($result) {
 				echo '1';

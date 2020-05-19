@@ -49,6 +49,7 @@ class j16000review_publish
 		if ($rating_id > 0) {
 			jr_import('jomres_reviews');
 			$Reviews = new jomres_reviews();
+			$Reviews->property_uid = (int)$_REQUEST['property_uid'];
 			if ($state == 0) {
 				$result = $Reviews->publish_review($rating_id);
 			} else {
