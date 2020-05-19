@@ -44,6 +44,8 @@ class j16000review_publish
 		$rating_id = (int) $_GET[ 'rating_id' ];
 		$state = (int) $_GET[ 'state' ];
 
+		set_showtime('property_uid', (int)$_REQUEST['property_uid'] );
+
 		if ($rating_id > 0) {
 			jr_import('jomres_reviews');
 			$Reviews = new jomres_reviews();

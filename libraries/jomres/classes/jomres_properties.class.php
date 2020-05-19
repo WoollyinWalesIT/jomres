@@ -297,6 +297,8 @@ class jomres_properties
 		$webhook_notification->webhook_event_plugin		 = 'core';
 		$webhook_notification->data						 = new stdClass();
 		$webhook_notification->data->property_uid		   = $this->propertys_uid;
+
+
 		add_webhook_notification($webhook_notification);
 		}
 

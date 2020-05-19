@@ -289,7 +289,7 @@ class jomres_reviews
 					$webhook_notification->webhook_event_description	= 'Logs when a review is added.';
 					$webhook_notification->webhook_event_plugin		 = 'core';
 					$webhook_notification->data						 = new stdClass();
-					$webhook_notification->data->property_uid		   = $this->property_uid;
+					$webhook_notification->data->property_uid		   =  (int)get_showtime("property_uid");
 					$webhook_notification->data->review_uid			 = $rating_id;
 					add_webhook_notification($webhook_notification);
 			
@@ -312,13 +312,13 @@ class jomres_reviews
 		$query = 'UPDATE #__jomres_reviews_ratings SET published = 1 WHERE rating_id = '.$rating_id;
 		$result = doInsertSql($query, '');
 		if ($result) {
-			$webhook_notification							   = new stdClass();
+			$webhook_notification								= new stdClass();
 			$webhook_notification->webhook_event				= 'review_published';
 			$webhook_notification->webhook_event_description	= 'Logs when a review is added.';
-			$webhook_notification->webhook_event_plugin		 = 'core';
-			$webhook_notification->data						 = new stdClass();
-			$webhook_notification->data->property_uid		   = $this->property_uid;
-			$webhook_notification->data->review_uid			  = $rating_id;
+			$webhook_notification->webhook_event_plugin		 	= 'core';
+			$webhook_notification->data						 	= new stdClass();
+			$webhook_notification->data->property_uid		   	=  (int)get_showtime("property_uid");
+			$webhook_notification->data->review_uid			  	= $rating_id;
 			add_webhook_notification($webhook_notification);
 			return true;
 		} else {
@@ -337,13 +337,13 @@ class jomres_reviews
 		$query = 'UPDATE #__jomres_reviews_ratings SET published = 0 WHERE rating_id = '.$rating_id;
 		$result = doInsertSql($query, '');
 		if ($result) {
-			$webhook_notification							   = new stdClass();
+			$webhook_notification							   	= new stdClass();
 			$webhook_notification->webhook_event				= 'review_unpublished';
 			$webhook_notification->webhook_event_description	= 'Logs when a review is added.';
-			$webhook_notification->webhook_event_plugin		 = 'core';
-			$webhook_notification->data						 = new stdClass();
-			$webhook_notification->data->property_uid		   = $this->property_uid;
-			$webhook_notification->data->review_uid			  = $rating_id;
+			$webhook_notification->webhook_event_plugin			= 'core';
+			$webhook_notification->data						 	= new stdClass();
+			$webhook_notification->data->property_uid		   	=  (int)get_showtime("property_uid");
+			$webhook_notification->data->review_uid			  	= $rating_id;
 			add_webhook_notification($webhook_notification);
 			return true;
 		} else {
