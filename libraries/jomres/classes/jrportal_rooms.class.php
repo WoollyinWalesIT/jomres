@@ -342,6 +342,15 @@ class jrportal_rooms
 			}
 		}
 
+		$query = "SELECT `room_uid` FROM #__jomres_rooms WHERE `propertys_uid` = ".(int) $this->rooms_generator['propertys_uid'];
+ 		$roomsList = doSelectSql($query);
+ 		$existingRoomUids = array();
+ 		if (!empty($roomsList)) {
+ 			foreach ($roomsList as $room) {
+				$existingRoomUids[] = $room->room_uid;
+			}
+		}
+
 		// We need to find the next room number available to us
 		$query = 'SELECT MAX(`room_number` + 0) FROM #__jomres_rooms WHERE `propertys_uid` = '.(int) $this->rooms_generator['propertys_uid'].' LIMIT 1';  // +0 converts room number from string to integer for the purpose of this query
 		$nextRoomNumber = (int) doSelectSql($query, 1);
@@ -392,13 +401,26 @@ class jrportal_rooms
 		if (!doInsertSql($query, '')) {
 			throw new Exception('Error: Could not mass generate rooms.');
 		}
-		
+
+		$query = "SELECT `room_uid` FROM #__jomres_rooms WHERE `propertys_uid` = ".(int) $this->rooms_generator['propertys_uid'];
+		$roomsList = doSelectSql($query);
+		$newRoomUids = array();
+		if (!empty($roomsList)) {
+			foreach ($roomsList as $room) {
+				if ( !in_array( $room->room_uid , $existingRoomUids) ) {
+					$newRoomUids[] = $room->room_uid;
+				}
+			}
+		}
+
 		$webhook_notification								= new stdClass();
 		$webhook_notification->webhook_event				= 'rooms_multiple_added';
 		$webhook_notification->webhook_event_description	= 'Logs when mulitiple rooms are added.  Because multiple rooms have been added, the remote service is advised to completely refresh their rooms list.';
 		$webhook_notification->webhook_event_plugin			= 'core';
 		$webhook_notification->data							= new stdClass();
 		$webhook_notification->data->property_uid			= $this->rooms_generator['propertys_uid'];
+		$webhook_notification->data->room_ids				= json_encode($newRoomUids);
+
 		add_webhook_notification($webhook_notification);
 		
 		return true;
