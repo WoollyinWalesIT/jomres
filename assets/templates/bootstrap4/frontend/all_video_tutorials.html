@@ -1,8 +1,8 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script type="text/javascript">
-jomresJquery(document).ready(function(){
-    /* Get iframe src attribute value i.e. YouTube video url
-    and store it in a variable */
+    document.addEventListener('DOMContentLoaded', function(){
+        /* Get iframe src attribute value i.e. YouTube video url
+        and store it in a variable */
 	<patTemplate:tmpl name="rows2" unusedvars="strip">
     var url_{VIDEO_ID_SANITISED} = jomresJquery("#{VIDEO_ID}").attr('src');
     </patTemplate:tmpl>
@@ -22,7 +22,7 @@ jomresJquery(document).ready(function(){
         jomresJquery("#{VIDEO_ID}").attr('src', url_{VIDEO_ID_SANITISED});
 		</patTemplate:tmpl>
     });
-});
+    }, false);
 </script>
 
 <h2 class="page-header">{VIDEO_TUTORALS_TITLE}</h2>

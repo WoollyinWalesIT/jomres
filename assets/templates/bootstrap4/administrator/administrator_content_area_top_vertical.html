@@ -16,15 +16,15 @@
 	<script type="text/javascript">
 		<!--
 		var jomres_using_bootstrap = '{USING_BOOTSTRAP}';
-		jomresJquery(document).ready(function () {
+		document.addEventListener('DOMContentLoaded', function(){
 			var $content = jomresJquery('#jomres-toolbar').html();
 			jomresJquery('#jomres_admin_toolbar').html($content);
 			jomresJquery('#jomres-toolbar').empty();
 			
 			if (jomresJquery('#jomres_admin_toolbar').html().trim() != '') {
 				jomresJquery('#jomres_admin_toolbar').css("display", "block");
-			}	
-		});
+			}
+		}, false);
 		//-->
 	</script>
 

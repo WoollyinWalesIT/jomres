@@ -117,7 +117,7 @@ class j10501business_details
 	{
 		?>
 <script type="text/javascript">
-jomresJquery(document).ready(function () {
+    document.addEventListener('DOMContentLoaded', function(){
 	jomresJquery("#cfg_business_country").change(function(){
 		var selectedValue = jomresJquery(this).val();
 		jomresJquery.ajax({
@@ -133,7 +133,7 @@ jomresJquery(document).ready(function () {
 				}
 			});
 		});
-	});
+    }, false);
 </script>
 		<?php
 

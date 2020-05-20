@@ -1,9 +1,9 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script type="text/javascript">
 <!--
-jomresJquery(document).ready(function () {
+document.addEventListener('DOMContentLoaded', function(){
 	make_datatable('access_control_list', '{PAGETITLE}', '{LIVESITE}');
-});
+}, false);
 
 function change_access_level(minicomp, level) {
 	cmd = '{JOMRES_SITEPAGE_URL_ADMIN_AJAX}&task=ajax_change_access_level&minicomp=' + minicomp + '&new_level=' + level;

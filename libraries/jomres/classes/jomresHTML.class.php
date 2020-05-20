@@ -31,7 +31,7 @@ class jomresHTML
 		if (!defined('SELECTLISTJAVASCRIPT') && using_bootstrap() && !AJAXCALL) {
 			echo '
 			<script>
-			jomresJquery(function(jomresJquery) {
+			document.addEventListener(\'DOMContentLoaded\', function(){ 
 				jomresJquery(\'div.btn-group[data-toggle-name="*"]\').each(function(){
 					var group   = jomresJquery(this);
 					var form	= group.parents(\'form\').eq(0);
@@ -48,7 +48,7 @@ class jomresHTML
 					  }
 					});
 				  });
-				});
+				}, false);
 			</script>
 			';
 			define('SELECTLISTJAVASCRIPT', 1);

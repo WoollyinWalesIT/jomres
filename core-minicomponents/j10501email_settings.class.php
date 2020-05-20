@@ -123,7 +123,7 @@ class j10501email_settings
 		?>
 <script type="text/javascript">
 <!--
-jomresJquery(function() {
+document.addEventListener('DOMContentLoaded', function(){
 	//twitter bootstrap script
 	jomresJquery("button#submit_test_email").click(function(){
 		var test_email_address = jomresJquery( "#test_email_address" ).val();
@@ -151,7 +151,7 @@ jomresJquery(function() {
 		});
 		
 	});
-});
+}, false);
 //-->
 </script>
 		<?php 

@@ -2,9 +2,9 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
 	<script language="JavaScript" type="text/javascript">
 		<!--
-		jomresJquery(document).ready(function () {
+		document.addEventListener('DOMContentLoaded', function(){
 			make_datatable('filesystem_integrity_check', '{PAGETITLE}', '{LIVESITE}');
-		});
+		}, false);
 		//-->
 	</script>
 	<h2 class="page-header">{INTEGRITY_CHECK}</h2>

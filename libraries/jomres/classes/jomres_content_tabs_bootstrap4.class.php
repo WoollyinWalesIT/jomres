@@ -65,7 +65,7 @@ class jomres_content_tabs_bootstrap4
 			$anchor = generateJomresRandomString(10);
 		$tabCookieString = '';
 		$this->panelNames[ ] = $anchor;
-		$this->paneLink[ ] = '<li class=" nav-item"><div id="tab_'.$anchor.'"></div><a href="#'.$anchor.'" class="'.$active.' nav-link" data-toggle="tab">'.$tabpage.'</a></li>
+		$this->paneLink[ ] = '<li class=" nav-item"><a href="#'.$anchor.'" class="'.$active.' nav-link" data-toggle="tab">'.$tabpage.'</a></li>
 		';
 		$this->panes[ ] = '<div class="tab-pane '.$active.'" id="'.$anchor.'"><!-- start content tab panel -->';
 	}

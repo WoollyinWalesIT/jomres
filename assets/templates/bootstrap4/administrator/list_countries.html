@@ -1,9 +1,9 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script type="text/javascript">
 <!--
-jomresJquery(document).ready(function () {
+document.addEventListener('DOMContentLoaded', function(){
 	make_datatable('admin_list_countries', '{PAGETITLE}', '{LIVESITE}');
-});
+}, false);
 //-->
 </script>
 <h2 class="page-header">{_JOMRES_EDIT_COUNTRY_TITLE}</h2>
