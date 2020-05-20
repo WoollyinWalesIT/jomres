@@ -17,6 +17,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
+     * Adds javascript and inputs to the booking form if this is a booking that is being amended, pertaining to overriding the deposit
 	 * 
 	 */
 

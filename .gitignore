@@ -57,3 +57,7 @@ assets/images/ajax_animation/fading_lines.gif
 assets/images/ajax_animation/snake.gif
 
 database/updates/9.10.0/sample.php
+
+libraries/packages/
+
+.idea/

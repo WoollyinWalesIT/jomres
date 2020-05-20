@@ -28,8 +28,8 @@ class j03000amendBooking
 	 * 
 	 * Main functionality of the Minicomponent 
 	 *
-	 * 
-	 * 
+	 *  When a booking is inserted, if it's an amendment this ensures that overrides are pushed to the booking details stored in the tmpBooking object.
+     *
 	 */
 	 
 	public function __construct()

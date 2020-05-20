@@ -56,6 +56,7 @@ The next trigger numbers are used when building the property list/search results
 04901 This trigger is used when a new property is created, typically for sending welcome emails
 
 05000 level scripts are generally used by the booking engine. A new booking engine is being planned and these will likely not be used in the future.
+05019 On booking editing, optional scripts are used to override the booking engine's default values
 
 Jomres includes Access Control functionality, however we find that a more simplistic approach suits the vast majority of users.  
  

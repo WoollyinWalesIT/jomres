@@ -334,11 +334,43 @@ class jrportal_rooms
 			throw new Exception('Error: Max people per room not set.');
 		}
 
+
+
 		//delete existing rooms
 		if ($this->rooms_generator['delete_existing_rooms']) {
+
+			$query = "SELECT `room_uid` FROM #__jomres_rooms WHERE `propertys_uid` = ".(int) $this->rooms_generator['propertys_uid'];
+			$roomsList = doSelectSql($query);
+			$originalRoomUids = array();
+			if (!empty($roomsList)) {
+				foreach ($roomsList as $room) {
+					$originalRoomUids[] = $room->room_uid;
+				}
+			}
+
 			$query = 'DELETE FROM #__jomres_rooms WHERE `propertys_uid` = '.(int) $this->rooms_generator['propertys_uid'];
 			if (!doInsertSql($query, '')) {
 				throw new Exception('Error: Could not delete all rooms.');
+			}
+
+			$webhook_notification								= new stdClass();
+			$webhook_notification->webhook_event				= 'rooms_multiple_deleted';
+			$webhook_notification->webhook_event_description	= 'Logs when mulitiple rooms are deleted. ';
+			$webhook_notification->webhook_event_plugin			= 'core';
+			$webhook_notification->data							= new stdClass();
+			$webhook_notification->data->property_uid			= $this->rooms_generator['propertys_uid'];
+			$webhook_notification->data->room_ids				= json_encode($originalRoomUids);
+
+			add_webhook_notification($webhook_notification);
+
+		}
+
+		$query = "SELECT `room_uid` FROM #__jomres_rooms WHERE `propertys_uid` = ".(int) $this->rooms_generator['propertys_uid'];
+ 		$roomsList = doSelectSql($query);
+ 		$existingRoomUids = array();
+ 		if (!empty($roomsList)) {
+ 			foreach ($roomsList as $room) {
+				$existingRoomUids[] = $room->room_uid;
 			}
 		}
 
@@ -392,13 +424,26 @@ class jrportal_rooms
 		if (!doInsertSql($query, '')) {
 			throw new Exception('Error: Could not mass generate rooms.');
 		}
-		
+
+		$query = "SELECT `room_uid` FROM #__jomres_rooms WHERE `propertys_uid` = ".(int) $this->rooms_generator['propertys_uid'];
+		$roomsList = doSelectSql($query);
+		$newRoomUids = array();
+		if (!empty($roomsList)) {
+			foreach ($roomsList as $room) {
+				if ( !in_array( $room->room_uid , $existingRoomUids) ) {
+					$newRoomUids[] = $room->room_uid;
+				}
+			}
+		}
+
 		$webhook_notification								= new stdClass();
 		$webhook_notification->webhook_event				= 'rooms_multiple_added';
 		$webhook_notification->webhook_event_description	= 'Logs when mulitiple rooms are added.  Because multiple rooms have been added, the remote service is advised to completely refresh their rooms list.';
 		$webhook_notification->webhook_event_plugin			= 'core';
 		$webhook_notification->data							= new stdClass();
 		$webhook_notification->data->property_uid			= $this->rooms_generator['propertys_uid'];
+		$webhook_notification->data->room_ids				= json_encode($newRoomUids);
+
 		add_webhook_notification($webhook_notification);
 		
 		return true;

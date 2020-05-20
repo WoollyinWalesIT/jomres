@@ -214,7 +214,8 @@ class j06002edit_property
 
 		$counter = 0;
 		foreach ($current_property_details->all_property_features as $k => $v) {
-			if (in_array($current_property_details->ptype_id, $v['ptype_xref'])) {
+
+			if (in_array($current_property_details->ptype_id, $v['ptype_xref']) || (isset($v['ptype_xref'][0]) && $v['ptype_xref'][0] == 0) ) {
 				$r = array();
 				$r[ 'ischecked' ] = '';
 

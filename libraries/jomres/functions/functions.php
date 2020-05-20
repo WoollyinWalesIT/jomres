@@ -76,7 +76,18 @@ function is_channel_safe_task ($task)
 		return true;
 	}
 
-	if ( $task ==JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.get_showtime("property_uid") ) {
+	// We know it's a channel property, let's find out if the manager is allowed to administer locally or if they're forced to toddle off to the parent
+	$mrConfig = getPropertySpecificSettings( get_showtime("property_uid"));
+
+	if ( !isset($mrConfig['allow_channel_property_local_admin']) ) {
+		$mrConfig['allow_channel_property_local_admin'] = 0;
+    }
+
+	if ( (bool)$mrConfig['allow_channel_property_local_admin'] == true ) {
+	    return true;
+    }
+
+	if ( $task == JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.get_showtime("property_uid") ) {
 		return true;
 	}
 
@@ -3672,9 +3683,7 @@ function savePropertyConfiguration()
 			$v = jomresGetParam($_POST, $k, '');
 			$dirty = (string) $k;
 			$k = addslashes($dirty);
-			if (!get_magic_quotes_gpc()) {
-				$v = filter_var($v, FILTER_SANITIZE_SPECIAL_CHARS);
-			}
+
 
 			if (substr($k, 4) == 'encKey') {
 				//saveKey($v); // Commented out, the function is no longer available, however keeping the IF statement here allows to be absolutely sure that if encKey is set (by a very naughty person) then nothing is done.
@@ -4217,6 +4226,15 @@ function savePlugin($plugin)
 	$tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
 	$tmpl->readTemplatesFromInput('plugin_save.html');
 	$tmpl->displayParsedTemplate();
+
+	$webhook_notification							    = new stdClass();
+	$webhook_notification->webhook_event				= 'plugin_settings_saved';
+	$webhook_notification->webhook_event_description	= 'Logs when plugin settings, typically gateways, are added/edited.';
+	$webhook_notification->webhook_event_plugin		    = 'core';
+	$webhook_notification->data						    = new stdClass();
+	$webhook_notification->data->property_uid		    = $defaultProperty;
+	$webhook_notification->data->plugin 				= $plugin;
+	add_webhook_notification($webhook_notification);
 }
 
 /**

@@ -93,15 +93,16 @@ class j16000view_property_reviews
 			foreach ($property_reviews as $review) {
 				$r = array();
 
-				$r[ 'rating_id' ] = $review[ 'rating_id' ];
-				$r[ 'user_id' ] = $all_users[ $review[ 'user_id' ] ][ 'username' ];
-				$r[ 'review_title' ] = $review[ 'review_title' ];
-				$r[ 'review_description' ] = $review[ 'review_description' ];
-				$r[ 'pros' ] = $review[ 'pros' ];
-				$r[ 'cons' ] = $review[ 'cons' ];
-				$r[ 'rating' ] = $review[ 'rating' ];
-				$r[ 'rating_date' ] = $review[ 'rating_date' ];
-				$r[ 'published' ] = $review[ 'published' ];
+				$r[ 'property_uid' ]		= $property_uid;
+				$r[ 'rating_id' ]			= $review[ 'rating_id' ];
+				$r[ 'user_id' ]				= $all_users[ $review[ 'user_id' ] ][ 'username' ];
+				$r[ 'review_title' ]		= $review[ 'review_title' ];
+				$r[ 'review_description' ]	= $review[ 'review_description' ];
+				$r[ 'pros' ]				= $review[ 'pros' ];
+				$r[ 'cons' ]				= $review[ 'cons' ];
+				$r[ 'rating' ]				= $review[ 'rating' ];
+				$r[ 'rating_date' ]			= $review[ 'rating_date' ];
+				$r[ 'published' ]			= $review[ 'published' ];
 
 				$r[ 'reports' ] = '';
 				if (isset($all_reports[ $r[ 'rating_id' ] ])) {

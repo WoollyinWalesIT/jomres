@@ -175,7 +175,10 @@ try {
 		$tmpl->addRows('pageoutput', $pageoutput);
 		$tmpl->displayParsedTemplate();
 	}
-	
+
+	//trigger 99994 event for webhooks
+	$MiniComponents->triggerEvent('99994');
+
 	//trigger 99998 event - jomres feedback messages
 	if (!AJAXCALL) {
 		$MiniComponents->triggerEvent('99998');

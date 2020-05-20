@@ -17,6 +17,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
+     * Called by the webhooks watcher that triggers background tasks for processing by webhook integrations
 	 * 
 	 */
 

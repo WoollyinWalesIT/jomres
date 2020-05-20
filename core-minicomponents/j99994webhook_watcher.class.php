@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.3
+ * @version Jomres 9.21.4
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -45,11 +45,11 @@ class j99994webhook_watcher
 		}
 		
 		$property_uid 	= (int)get_showtime("property_uid");
+
 		$manager_id 	= 0;
 		$all_webhooks 	= array();
 		
 		logging::log_message("Webhook watcher start." , 'Webhooks', 'DEBUG'  );
-		
 
 		if ($property_uid == 0 ) {
 			logging::log_message("Webhook watcher. Property uid not found. Returning. " , 'Webhooks', 'DEBUG'  );
@@ -57,7 +57,7 @@ class j99994webhook_watcher
 		}
 	   
 		$property_manager_xref = get_showtime('property_manager_xref');
-		
+
 		if (is_null($property_manager_xref)) {
 			$property_manager_xref = build_property_manager_xref_array();
 		}
@@ -69,7 +69,7 @@ class j99994webhook_watcher
 		if ( $manager_id == 0 ) { // The function will try to find the manager id for a property. If it cannot be found the function will return the first super property manager's id will be returned. It's a last-ditch attempt to find a manager's id for a property. In the case of Beds24 calls, if there are more than one super property manager, and if the the first super property manager isn't registered with Beds24 then bookings still will not be sent.
 			$manager_id = (int)find_manager_id_for_property_uid($property_uid);
 		}
-		
+
 		if ( $manager_id == 0 ) {
 			logging::log_message("Webhook watcher. Manager id cannot be found for property. Returning. " , 'Webhooks', 'DEBUG'  );
 			return;
@@ -83,7 +83,7 @@ class j99994webhook_watcher
 		if (is_array($webhook_messages)) {
 			$webhook_messages = array_unique( $webhook_messages, SORT_REGULAR ); // Remove duplicate objects
 		}
-		
+
 		// We need to check for property uid being set. Regardless of what happens afterwards our first task is to clear the cmf rest api cache directory for this property of any files so that subsequent rest api calls can get fresh uptodate data.
 		// Next we'll add the webhook messages to the webhook events table
 		// Finally we'll run the sanity check class which will mark a property as incomplete if something is missing, and unpublish it if it's published

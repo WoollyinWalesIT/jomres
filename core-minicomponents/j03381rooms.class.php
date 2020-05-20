@@ -17,7 +17,8 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 * Media centre uses this to determine individual ids for uploading of room images
+     *
 	 */
 
 class j03381rooms

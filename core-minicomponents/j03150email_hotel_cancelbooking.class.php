@@ -17,7 +17,8 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 * Builds the cancellation email that is sent to hotels
+     *
 	 */
 
 class j03150email_hotel_cancelbooking

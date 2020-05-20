@@ -85,7 +85,7 @@ class j09997menu
 				$r = array();
 				
 				//menu item name
-				$r['MENU_NAME'] = jr_ucwords($jomres_menu->items[$task]['title']);
+				$r['MENU_NAME'] = str_replace( "&Amp;" , "&" , jr_ucwords($jomres_menu->items[$task]['title']));
 
 				//menu item url
 				if ($jomres_menu->items[$task]['is_url']) {
