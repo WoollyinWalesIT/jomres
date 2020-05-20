@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.3
+ * @version Jomres 9.21.4
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -97,7 +97,7 @@ class j06000show_property_room_types
 				if (isset($jomres_media_centre_images->images [$resource_type] [$resource_id])) {
 					$images = $jomres_media_centre_images->images [$resource_type] [$resource_id];
 				} else {
-					if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.'rmtypes/'.$basic_property_details->this_property_room_classes[$key]['image'])) {
+					if ( isset($basic_property_details->this_property_room_classes[$key]) && file_exists(JOMRES_IMAGELOCATION_ABSPATH.'rmtypes/'.$basic_property_details->this_property_room_classes[$key]['image'])) {
 						$images = array( array ( "large" => JOMRES_IMAGELOCATION_RELPATH.'rmtypes/'.$basic_property_details->this_property_room_classes[$key]['image']) );
 					} else {
 						$images = array ( array(

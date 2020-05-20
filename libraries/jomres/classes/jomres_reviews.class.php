@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.3
+ * @version Jomres 9.21.4
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -284,13 +284,13 @@ class jomres_reviews
 				$result = doInsertSql($query, '');
 				if ($result) {
 					
-					$webhook_notification							   = new stdClass();
+					$webhook_notification							   	= new stdClass();
 					$webhook_notification->webhook_event				= 'review_deleted';
 					$webhook_notification->webhook_event_description	= 'Logs when a review is added.';
-					$webhook_notification->webhook_event_plugin		 = 'core';
-					$webhook_notification->data						 = new stdClass();
-					$webhook_notification->data->property_uid		   = $this->property_uid;
-					$webhook_notification->data->review_uid			 = $rating_id;
+					$webhook_notification->webhook_event_plugin		 	= 'core';
+					$webhook_notification->data						 	= new stdClass();
+					$webhook_notification->data->property_uid		   	= $this->property_uid;
+					$webhook_notification->data->review_uid			 	= $rating_id;
 					add_webhook_notification($webhook_notification);
 			
 					return true;
@@ -312,13 +312,13 @@ class jomres_reviews
 		$query = 'UPDATE #__jomres_reviews_ratings SET published = 1 WHERE rating_id = '.$rating_id;
 		$result = doInsertSql($query, '');
 		if ($result) {
-			$webhook_notification							   = new stdClass();
+			$webhook_notification								= new stdClass();
 			$webhook_notification->webhook_event				= 'review_published';
 			$webhook_notification->webhook_event_description	= 'Logs when a review is added.';
-			$webhook_notification->webhook_event_plugin		 = 'core';
-			$webhook_notification->data						 = new stdClass();
-			$webhook_notification->data->property_uid		   = $this->property_uid;
-			$webhook_notification->data->review_uid			  = $rating_id;
+			$webhook_notification->webhook_event_plugin		 	= 'core';
+			$webhook_notification->data						 	= new stdClass();
+			$webhook_notification->data->property_uid		   	= $this->property_uid;
+			$webhook_notification->data->review_uid			  	= $rating_id;
 			add_webhook_notification($webhook_notification);
 			return true;
 		} else {
@@ -337,13 +337,13 @@ class jomres_reviews
 		$query = 'UPDATE #__jomres_reviews_ratings SET published = 0 WHERE rating_id = '.$rating_id;
 		$result = doInsertSql($query, '');
 		if ($result) {
-			$webhook_notification							   = new stdClass();
+			$webhook_notification							   	= new stdClass();
 			$webhook_notification->webhook_event				= 'review_unpublished';
 			$webhook_notification->webhook_event_description	= 'Logs when a review is added.';
-			$webhook_notification->webhook_event_plugin		 = 'core';
-			$webhook_notification->data						 = new stdClass();
-			$webhook_notification->data->property_uid		   = $this->property_uid;
-			$webhook_notification->data->review_uid			  = $rating_id;
+			$webhook_notification->webhook_event_plugin			= 'core';
+			$webhook_notification->data						 	= new stdClass();
+			$webhook_notification->data->property_uid		   	= $this->property_uid;
+			$webhook_notification->data->review_uid			  	= $rating_id;
 			add_webhook_notification($webhook_notification);
 			return true;
 		} else {

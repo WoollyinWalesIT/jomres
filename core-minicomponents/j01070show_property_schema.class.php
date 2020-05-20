@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.3
+ * @version Jomres 9.21.4
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -115,7 +115,11 @@ class j01070show_property_schema
 						$prices = $this->roomTypePriceRanges[$key];
 					} 
 				}
-				$room_types[] = $room_type;
+				
+				if ( isset($room_type)) {
+					$room_types[] = $room_type;
+				}
+				
 			}
 		}
 
@@ -410,7 +414,10 @@ class j01070show_property_schema
 		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
 		$tmpl->addRows('pageoutput', $pageoutput);
 		$tmpl->addRows('pfeatures', $pFeatures);
-		$tmpl->addRows('room_types', $room_types);
+		if (!empty($room_types)) {
+			$tmpl->addRows('room_types', $room_types);
+		}
+		
 		$tmpl->addRows('slideshow_images', $slideshow_images);
 		
 		$tmpl->addRows('room_rows', $room_rows);

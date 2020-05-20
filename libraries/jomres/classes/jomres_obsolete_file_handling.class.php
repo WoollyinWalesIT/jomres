@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.3
+ * @version Jomres 9.21.4
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1274,7 +1274,6 @@ class jomres_obsolete_file_handling
 		
 		$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'ChartBarTrend.png');
 		$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'ChartTrend.png');
-		$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'classic-map.png');
 		$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'clear.png');
 		$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'clickatell.jpg');
 		$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'clickatell_logo.jpg');
@@ -1318,9 +1317,10 @@ class jomres_obsolete_file_handling
 		$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'User_Ninja.png');
 		
 		
-		$this->add_file($this->dir_classes.'core_package_management.class.php');
-
-        $this->add_file($this->dir_minicomponents.'j04901tariffsenhanced.class.php');
+		$this->add_dir(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'node_modules');
+		$this->add_dir(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'vendor');
+		// $this->add_file($this->dir_classes.'core_package_management.class.php');  // Removed because I want to re-use this, but without sha checking
+		$this->add_file($this->dir_minicomponents.'j10501cmf.class.php');
 	}
 	
 	/**

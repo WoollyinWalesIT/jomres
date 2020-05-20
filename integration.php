@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.3
+ * @version Jomres 9.21.4
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -146,10 +146,14 @@ define('JOMRES_UPDATES_ABSPATH', JOMRESPATH_BASE.'updates'.JRDS);
 define('JOMRES_MPDF_ABSPATH', JOMRES_TEMP_ABSPATH.'pdfs'.JRDS);
 
 //vendors
-define('JOMRES_VENDOR_ABSPATH', JOMRES_LIBRARIES_ABSPATH.'vendor'.JRDS);
-define('JOMRES_NODE_MODULES_ABSPATH', JOMRES_LIBRARIES_ABSPATH.'node_modules'.JRDS);
-define('JOMRES_NODE_MODULES_RELPATH', JOMRES_ROOT_DIRECTORY.'/libraries/node_modules/');
+define('JOMRES_PACKAGES_ABSPATH', JOMRES_LIBRARIES_ABSPATH.'packages'.JRDS);
+define('JOMRES_VENDOR_ABSPATH', JOMRES_LIBRARIES_ABSPATH.'packages'.JRDS.'vendor'.JRDS);
+define('JOMRES_NODE_MODULES_ABSPATH', JOMRES_LIBRARIES_ABSPATH.'packages'.JRDS.'node_modules'.JRDS);
+define('JOMRES_NODE_MODULES_RELPATH', JOMRES_ROOT_DIRECTORY.'/libraries/packages/node_modules/');
 
+require_once(JOMRES_CLASSES_ABSPATH.'core_package_management.class.php');
+
+$core_package_management = new core_package_management();
 
 //includes
 require_once JOMRES_VENDOR_ABSPATH.'autoload.php';

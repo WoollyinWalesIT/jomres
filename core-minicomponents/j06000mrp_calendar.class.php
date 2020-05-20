@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.3
+ * @version Jomres 9.21.4
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -206,6 +206,8 @@ class j06000mrp_calendar
 			$fontweight = 'font-weight: bold;';
 		}
 		
+		$now = time();
+		
 		while ($currdate < $enddate) {
 			$this->retVals .= '<tr>';
 			for ($c = 0; $c < 7; ++$c) {
@@ -240,6 +242,11 @@ class j06000mrp_calendar
 					$class = 'jomres-calendar-booking-occupied-completely ';
 				}
 
+				if($currdate < $now) {
+					$link = '';
+				}
+
+				
 				$this->retVals .= '<td>';
 				$this->retVals .= '<div class="jomres-calendar-day-num '.$class.'">';
 

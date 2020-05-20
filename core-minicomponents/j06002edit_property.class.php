@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.3
+ * @version Jomres 9.21.4
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -214,7 +214,8 @@ class j06002edit_property
 
 		$counter = 0;
 		foreach ($current_property_details->all_property_features as $k => $v) {
-			if (in_array($current_property_details->ptype_id, $v['ptype_xref'])) {
+
+			if (in_array($current_property_details->ptype_id, $v['ptype_xref']) || $v['ptype_xref'][0] == 0 ) {
 				$r = array();
 				$r[ 'ischecked' ] = '';
 

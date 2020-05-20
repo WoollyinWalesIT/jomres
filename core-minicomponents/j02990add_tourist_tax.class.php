@@ -4,7 +4,7 @@
 *
 * @author Woollyinwales IT <sales@jomres.net>
 *
- * @version Jomres 9.21.3
+ * @version Jomres 9.21.4
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,7 +17,7 @@ defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.'
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-     * Adds tourist tax to the temporary booking data while the booking confirmation page is built
+	 *          Adds tourist tax to the booking's Third party extras variable
 	 * 
 	 */
 

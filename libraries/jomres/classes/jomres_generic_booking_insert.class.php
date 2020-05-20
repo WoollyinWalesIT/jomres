@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.3
+ * @version Jomres 9.21.4
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -112,7 +112,7 @@ class jomres_generic_booking_insert
 
 		$query = "SELECT contract_uid FROM #__jomres_contracts WHERE tag LIKE '".$this->booking_details['booking_number']."' LIMIT 1";
 		$bklist = doSelectSql($query);
-		if (!empty($bklist)) {
+		if (!empty($bklist) && $this->booking_details['channel_manager_booking'] =! "1" ) { // Channels can create multiple bookings with the same booking number
 			throw new Exception(' Error booking_number '.$this->booking_details['booking_number'].' already exists in the database.');
 		}
 

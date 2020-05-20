@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.3
+ * @version Jomres 9.21.4
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -91,7 +91,7 @@ class jomres_properties
 	//Get all properties in the system
 	public function get_all_properties()
 	{
-		if (is_array($this->all_property_uids)) {
+		if ( isset($this->all_property_uids) && is_array($this->all_property_uids)) {
 			return true;
 		}
 
@@ -203,6 +203,7 @@ class jomres_properties
 							`apikey`, 
 							`approved`,
 							`property_site_id`,
+							`timestamp`,
 							`cat_id` 
 							)
 						VALUES
@@ -216,6 +217,7 @@ class jomres_properties
 							'".$this->apikey."',
 							".(int) $this->approved.",
 							'".$this->property_site_id."',
+							'".date('Y-m-d H:i:s')."',
 							".(int) $this->cat_id."
 							)";
 
@@ -295,6 +297,8 @@ class jomres_properties
 		$webhook_notification->webhook_event_plugin		 = 'core';
 		$webhook_notification->data						 = new stdClass();
 		$webhook_notification->data->property_uid		   = $this->propertys_uid;
+
+
 		add_webhook_notification($webhook_notification);
 		}
 
@@ -445,11 +449,7 @@ class jomres_properties
 				$this->setPublished(0);
 			}
 		}
-		
-		if ( file_exists (JOMRES_MPDF_ABSPATH.JRDS."terms_and_conditions_".(int)$this->propertys_uid.".pdf") ) {
-			unlink(JOMRES_MPDF_ABSPATH.JRDS."terms_and_conditions_".(int)$this->propertys_uid.".pdf");
-		}
-		
+
 		$webhook_notification						   	= new stdClass();
 		$webhook_notification->webhook_event				= 'property_updated';
 		$webhook_notification->webhook_event_description	= 'Logs when a property is updated.';
@@ -646,7 +646,7 @@ class jomres_properties
 	 *
 	 */
 
-	private function approve_property() 
+	public function approve_property() 
 	{
 		if ($this->propertys_uid == 0) {
 			throw new Exception('Error: Property uid not set.');
@@ -677,7 +677,7 @@ class jomres_properties
 	 *
 	 */
 
-	private function unapprove_property() 
+	public function unapprove_property() 
 	{
 		if ($this->propertys_uid == 0) {
 			throw new Exception('Error: Property uid not set.');
@@ -729,7 +729,7 @@ class jomres_properties
 	 *
 	 */
 
-	private function publish_property() 
+	public function publish_property() 
 	{
 		if ($this->propertys_uid == 0) {
 			throw new Exception('Error: Property uid not set.');
@@ -760,7 +760,7 @@ class jomres_properties
 	 *
 	 */
 
-	private function unpublish_property() 
+	public function unpublish_property() 
 	{
 		if ($this->propertys_uid == 0) {
 			throw new Exception('Error: Property uid not set.');

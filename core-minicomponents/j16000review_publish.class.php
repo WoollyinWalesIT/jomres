@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.3
+ * @version Jomres 9.21.4
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -44,9 +44,12 @@ class j16000review_publish
 		$rating_id = (int) $_GET[ 'rating_id' ];
 		$state = (int) $_GET[ 'state' ];
 
+		set_showtime('property_uid', (int)$_REQUEST['property_uid'] );
+
 		if ($rating_id > 0) {
 			jr_import('jomres_reviews');
 			$Reviews = new jomres_reviews();
+			$Reviews->property_uid = (int)$_REQUEST['property_uid'];
 			if ($state == 0) {
 				$result = $Reviews->publish_review($rating_id);
 			} else {

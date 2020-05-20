@@ -9,7 +9,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.3
+ * @version Jomres 9.21.4
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -33,59 +33,73 @@ class call
 	 *
 	 */
 
-    public function __construct()
-    {
-    }
+	public function __construct()
+	{
+	}
 
 	/**
 	*
 	* Calls the remote server
 	*
 	*/
-    public function call_server($options = array())
-    {
-        if (empty($options)) {
-            throw new Exception('Error, no request elements set ');
-        }
+	public function call_server($options = array() )
+	{
+		if (empty($options)) {
+			throw new Exception('Error, no request elements set ');
+		}
 
-        $server = $options['server'];
-        $token = $options['token']['access_token'];
-        $method = $options['method'];
-        $request = $options['request'];
-        $data = $options['data'];
+		$server = $options['server'];
+		$token = $options['token']['access_token'];
+		$method = $options['method'];
+		$request = $options['request'];
+		$data = $options['data'];
 
-        $ch = curl_init($server.$request);
+		$ch = curl_init($server.$request);
 
-        switch ($method) {
-            //########################################################################################
-            case 'POST':
-                    curl_setopt($ch, CURLOPT_POST, true);
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-                break;
-            case 'DELETE':
-                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
-                break;
-            case 'PUT':
-                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-                break;
-            default:
-                break;
-            }
+		if (isset($options['headers']) && count($options['headers']) > 0 ) {
+			$default_headers = array (
+				"Authorization: Bearer ".$token ,
+				"Accept: application/json"
+				);
+			$arr =  array_merge ( $default_headers , $options['headers'] ) ;
+			curl_setopt($ch, CURLOPT_HTTPHEADER, $arr );
+		} else {
+			curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+				'Authorization : Bearer '.$token,
+				'Accept: application/json',
+				));
+		}
+		
+		switch ($method) {
+			//########################################################################################
+			case 'POST':
+					curl_setopt($ch, CURLOPT_POST, true);
+					curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+				break;
+			case 'DELETE':
+					curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+				break;
+			case 'PUT':
+					curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+					curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+				break;
+			default:
+				break;
+			}
 
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            'Authorization: Bearer '.$token,
-            'Accept: application/json',
-            ));
 
-        curl_setopt($ch, CURLINFO_HEADER_OUT, true);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 30); //timeout after 30 seconds
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        $result = curl_exec($ch);
-        $status = curl_getinfo($ch);
-        $response_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        //if ($response_code != 200 && $response_code != 204)
+			
+		curl_setopt($ch, CURLINFO_HEADER_OUT, true);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 30); //timeout after 30 seconds
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_FAILONERROR, true);
+		
+		$result = curl_exec($ch);
+		$status = curl_getinfo($ch );
+		$errors = curl_error($ch);
+		$response_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-        return array('result' => $result, 'status' => $status);
-    }
+		curl_close($ch);
+		return array('result' => $result, 'status' => $status);
+	}
 }
