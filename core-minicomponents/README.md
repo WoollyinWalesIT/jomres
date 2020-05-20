@@ -36,6 +36,7 @@ The next trigger numbers are used when building the property list/search results
 
 02163 Emails sent on booking cancellation  
 02202 Add service to bill triggers 02202 which is used to update the invoice
+02990 Used during the confirm booking page to add tourist taxes to a booking
 
 03000 When a booking is inserted, if it's an amendment this ensures that overrides are pushed to the booking details stored in the tmpBooking object.  
 03020 Actually performs the booking creation after payment ( where valid )  

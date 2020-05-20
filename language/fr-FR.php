@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.3
+ * @version Jomres 9.21.4
  *
  * @copyright	2005-2020 Vince Wooll
  * Translation to fr-FR by Stéphane Bernard, Valtari NumAgency, France - last update : 19/11/2019 - https://www.valtari.fr
@@ -2356,3 +2356,6 @@ jr_define('BOOKING_NOSHOW_UNKNOWN', 'Inconnu');
 jr_define('CMF_CONFIG_TITLE', 'Channel Management Framework');
 jr_define('CMF_CONFIG_KEY', 'Channel Management Framework Key');
 jr_define('CMF_CONFIG_KEY_DESC', 'The Channel Management Framework license key. You will need to provide this key to be able to download Channel Management Framework plugins.');
+
+jr_define('_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT_UNAPPROVED', 'Your property has not been approved');
+jr_define('_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT_UNAPPROVED', "Your property as been unapproved. If you think that this was done in error please contact us. ");

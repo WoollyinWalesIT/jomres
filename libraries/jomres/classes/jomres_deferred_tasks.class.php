@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.3
+ * @version Jomres 9.21.4
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -113,8 +113,10 @@ class jomres_deferred_tasks
 		if ($payload == '' ) {
 			throw new Exception('Error: payload not set ');
 		}
-		
-		$randomstring = generateJomresRandomString(50);
+
+        logging::log_message("Constructing background message ", 'Core', 'DEBUG' , $trigger_number );
+
+        $randomstring = generateJomresRandomString(50);
 		$message = new stdClass();
 		$message->trigger_number = $trigger_number;
 		$message->minicomponent = $minicomponent;
@@ -156,28 +158,12 @@ class jomres_deferred_tasks
 		 $result = curl_exec( $curl );
 		 curl_close( $curl ); */
 
-		$disabled = explode(',', ini_get('disable_functions')); // A client was having slow communications using guzzle for this asynchronous call, for reasons I couldn't fathom. Here we check to see if exec is available, and if it is we will try to wget (which should be available on most Linux OSs) and if so we'll use this instead as it's much quicker.
-		if ( !in_array('exec', $disabled) && strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN' ) {
-			exec("wget -O /dev/null -o /dev/null " . $url . " --background");
-		} else {
-			try {
-				$client = new GuzzleHttp\Client([
-					'headers' => [
-						'User-Agent' => 'Jomres/v1.0',
-						'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-						'Accept-Encoding' => 'gzip, deflate, br',
-					  ],
-					'verify' => false
-				]);
+		jomres_async_request("GET", $url, 0, array());
 
-				$response = $client->get($url );
-				$content = $response->getBody()->__toString();
-			} catch (RequestException $e) {
-				trigger_error($e->getMessage(), E_USER_ERROR);
-			}
-		}
-		 
-		logging::log_message("Sent deferred message ".$this->file_identifier." to ".$url , 'Core', 'DEBUG' , serialize($content)  );
+
+
+        logging::log_message("Sent async deferred message ".$this->file_identifier." to ".$url , 'Core', 'DEBUG' , ''  );
+
 	 }
 	
 }

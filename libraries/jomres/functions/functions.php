@@ -5,7 +5,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.3
+ * @version Jomres 9.21.4
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -14,6 +14,123 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+
+
+/**
+*
+* Is this a channel managed property?
+*
+*/
+
+function is_channel_property( $property_uid = 0 )
+{
+	if ($property_uid == 0 ) {
+		return false;
+	}
+	
+	$is_channel_property = false;
+	$property_ids = array();
+	if ( class_exists('channelmanagement_framework_properties' ) ) {  // The channel management framework is installed
+		
+		$channel_properties = get_showtime("channel_properties");
+
+		if (!isset($channel_properties) || is_null($channel_properties)) {
+			$channel_properties = array();
+		}
+
+		if (empty($channel_properties) &&  (bool)get_showtime("channel_properties_queried") == false ) {
+			
+			$query = 'SELECT `property_uid` FROM `#__jomres_channelmanagement_framework_property_uid_xref` ';
+			$data = doSelectSql($query);
+			if ( !empty($data) ) {
+				foreach ($data as $d) {
+					$property_ids[] = $d->property_uid;
+				}
+				set_showtime ("channel_properties_queried" , true );
+			}
+		} else {
+			$property_ids = $channel_properties;
+		}
+		
+		set_showtime ("channel_properties" , $property_ids );
+	}
+
+	if (in_array( $property_uid , $property_ids ) ) {
+		$is_channel_property = true;
+	}
+
+	return $is_channel_property;
+}
+
+/**
+*
+* Function determines whether or not this task is allowed on a channel managed property
+*
+*/
+
+function is_channel_safe_task ($task)
+{
+	$is_channel_property = is_channel_property ( get_showtime("property_uid") );
+
+	if ( $is_channel_property == false ) {
+		return true;
+	}
+
+	// We know it's a channel property, let's find out if the manager is allowed to administer locally or if they're forced to toddle off to the parent
+	$mrConfig = getPropertySpecificSettings( get_showtime("property_uid"));
+
+	if ( !isset($mrConfig['allow_channel_property_local_admin']) ) {
+		$mrConfig['allow_channel_property_local_admin'] = 0;
+    }
+
+	if ( (bool)$mrConfig['allow_channel_property_local_admin'] == true ) {
+	    return true;
+    }
+
+	if ( $task == JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.get_showtime("property_uid") ) {
+		return true;
+	}
+
+	if ( $task == JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.get_showtime("property_uid") ) {
+		return true;
+	}
+
+	$safe_tasks = array ( '' , 'dashboard' , 'dashboard_resources_ajax' , 'dashboard_events_ajax' , 'listyourproperties_ajax', 'cpanel' , 'publish_property' , 'listyourproperties' , 'preview' , 'webhooks_core', 'webhooks_core_documentation' , 'edit_integration' , 'save_integration' , 'edit_my_account', 'show_user_profile',  'muviewfavourites',  'logout',  'oauth',  'api_documentation',  'search',  'show_consent_form',  'gdpr_my_data' ,'toggle_jomres_widget_ajax' , 'delete_property' , 'viewproperty'); // We will not redirect on these tasks. Need to keep this list under review.
+	
+	if ( in_array( $task , $safe_tasks ) || substr ( $task , 0, 17 ) == "channelmanagement" || strstr (  $task ,"ajax" ) ) {
+		return true;
+	}
+	
+	return false;
+}
+
+
+/**
+*
+* Channel managed properties cannot be administered on non-origin installations, there are simply too many variables that can cause the two properties to go out of sync, therefore if a manager attempts to administer a clild property, they will be redirected to the parent site and property. Any changes on that site will then trickle back to the slave property.
+*
+* We wont use the api because it's quicker to make one query here. Two channels cannot create two properties with the same property uid, so we'll always be getting the correct management url, regardless of which channel created the property
+*
+*/
+function redirect_on_administration_if_channel_property ( $property_uid , $task )
+{
+	if ( is_channel_safe_task ($task)) {
+		return;
+	}
+	if (class_exists('channelmanagement_framework_properties')) {  // The channel management framework is installed, we will call the find_management_url method, which will do a jomresRedirct to that url, if it exists, and the user can administer the property from there. If it doesn't then we will continue as normal.
+		$query = 'SELECT `remote_data` FROM `#__jomres_channelmanagement_framework_property_uid_xref` WHERE property_uid = '.$property_uid.' LIMIT 1';
+		$data = doSelectSql($query,1);
+		if ( $data != '' && $data != false ) {
+			$decoded = unserialize($data);
+			if ($decoded != false ) {
+				if (isset($decoded->origin_management_url) && $decoded->origin_management_url != '' ) {
+					jomresRedirect($decoded->origin_management_url);
+				}
+			}
+		}
+	}
+}
+
 
 
 /*
@@ -3481,7 +3598,6 @@ function propertyConfiguration()
 			<input type="hidden" name="no_html" value="1">
 			<input type="hidden" name="task" value="save_business_settings"/>
 			<input type="hidden" name="option" value="<?php echo $option; ?>"/>
-			<input type="hidden" name="cfg_version" value="<?php echo $mrConfig[ 'version' ]; ?>"/>
 			<input type="hidden" name="cfg_jomresdotnet" value="<?php echo $mrConfig[ 'jomresdotnet' ]; ?>"/>
 			<input type="hidden" name="property_uid" value="<?php echo $property_uid; ?>"/>
 			<?php
@@ -3567,15 +3683,17 @@ function savePropertyConfiguration()
 			$v = jomresGetParam($_POST, $k, '');
 			$dirty = (string) $k;
 			$k = addslashes($dirty);
-			if (!get_magic_quotes_gpc()) {
-				$v = filter_var($v, FILTER_SANITIZE_SPECIAL_CHARS);
-			}
+
 
 			if (substr($k, 4) == 'encKey') {
 				//saveKey($v); // Commented out, the function is no longer available, however keeping the IF statement here allows to be absolutely sure that if encKey is set (by a very naughty person) then nothing is done.
 			} else {
 				$oldSettingKey = 'oldsetting_'.$k;
-				$oldSettingVal = $_POST[ $oldSettingKey ];
+				if ( isset($_POST[ $oldSettingKey ])) {
+					$oldSettingVal = $_POST[ $oldSettingKey ];
+				} else {
+					$oldSettingVal = $_POST[ $k ];
+				}
 
 				if ($oldSettingVal != $v) {
 					$query = "SELECT uid FROM #__jomres_settings WHERE property_uid = '".(int) $property_uid."' and akey = '".substr($k, 4)."'";
@@ -3602,7 +3720,7 @@ function savePropertyConfiguration()
 		add_webhook_notification($webhook_notification);
 	}
 
-	if (trim($_POST['cfg_property_vat_number']) != '') {
+	if ( isset($_POST['cfg_property_vat_number']) && trim($_POST['cfg_property_vat_number']) != '') {
 		jr_import('vat_number_validation');
 		$validation = new vat_number_validation($property_uid, false);
 		$validation->vies_check(filter_var($_POST['cfg_property_vat_number'], FILTER_SANITIZE_SPECIAL_CHARS));
@@ -4108,6 +4226,15 @@ function savePlugin($plugin)
 	$tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
 	$tmpl->readTemplatesFromInput('plugin_save.html');
 	$tmpl->displayParsedTemplate();
+
+	$webhook_notification							    = new stdClass();
+	$webhook_notification->webhook_event				= 'plugin_settings_saved';
+	$webhook_notification->webhook_event_description	= 'Logs when plugin settings, typically gateways, are added/edited.';
+	$webhook_notification->webhook_event_plugin		    = 'core';
+	$webhook_notification->data						    = new stdClass();
+	$webhook_notification->data->property_uid		    = $defaultProperty;
+	$webhook_notification->data->plugin 				= $plugin;
+	add_webhook_notification($webhook_notification);
 }
 
 /**

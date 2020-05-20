@@ -5,7 +5,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.3
+ * @version Jomres 9.21.4
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -116,9 +116,9 @@ class logging
             $url = filter_var($url, FILTER_VALIDATE_URL, FILTER_FLAG_PATH_REQUIRED);
         }
 
-        
 
-        $formatter = new LineFormatter("%datetime% ~~ %channel%.%level_name%: ~~ %message% ~~ %context% ~~ %extra% ::::: \n");
+		$now = DateTime::createFromFormat('U.u', microtime(true));
+        $formatter = new LineFormatter($now->format("m-d-Y H:i:s.u")." ~~ %channel%.%level_name%: ~~ %message% ~~ %context% ~~ %extra% ::::: \n");
 
         $stream_handler = new StreamHandler($jrConfig['log_path'].$log_file, Logger::DEBUG);
         $stream_handler->setFormatter($formatter);
@@ -135,8 +135,15 @@ class logging
         }
         
         $message = $username.' ~~ '.$message.' ~~ '.session_id().' ~~ '.$url;
+
+		$loggerTimeFormat = "Y-m-d H:i:s.u";
+		$loggerFormat = "[%datetime%] %level_name% %message% %context% %extra%\n";
+		$formatter = new LineFormatter($loggerFormat, $loggerTimeFormat);
+
         $logger = new Logger($channel);
+		$logger->useMicrosecondTimestamps(true);
         $logger->pushProcessor(new \Monolog\Processor\WebProcessor());
+
         $logger->pushHandler(
             $stream_handler
             );
@@ -179,10 +186,22 @@ class logging
         $trace = '';
         if ( $level == 'DEBUG') {
             $backtrace = debug_backtrace();
-            $trace = "<br/> File ".$backtrace[1]['file']." Line ".$backtrace[1]['line']. " Function ".$backtrace[1]['function']."<br/> ";
-            $trace .= " File ".$backtrace[2]['file']." Line ".$backtrace[2]['line']. " Function ".$backtrace[2]['function']."<br/> ";
-			if (isset($backtrace[3]['file'])) {
-				$trace .= " File ".$backtrace[3]['file']." Line ".$backtrace[3]['line']. " Function ".$backtrace[3]['function']."<br/> "; 
+            if (isset($backtrace[1])) {
+            	$index = 1;
+			} else {
+            	$index = 0;
+			}
+
+            $trace = "<br/> File ".$backtrace[$index]['file'].
+				" Line ".$backtrace[$index]['line'].
+				" Function ".$backtrace[$index]['function']."<br/> ";
+			$index ++;
+			if (isset($backtrace[$index]['file'])) {
+				$trace .= " File " . $backtrace[$index]['file'] . " Line " . $backtrace[$index]['line'] . " Function " . $backtrace[$index]['function'] . "<br/> ";
+			}
+			$index ++;
+			if (isset($backtrace[$index]['file'])) {
+				$trace .= " File ".$backtrace[$index]['file']." Line ".$backtrace[$index]['line']. " Function ".$backtrace[$index]['function']."<br/> ";
 			}
             
         }
@@ -192,7 +211,6 @@ class logging
             default:
             case 'DEBUG':
                 if ($jrConfig['development_production'] == 'development') {
-
                     $logger->addDebug($message, $context); // Detailed debug information.
                 }
                 break;

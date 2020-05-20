@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.3
+ * @version Jomres 9.21.4
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -42,12 +42,13 @@ class j06000cronjobs
 			return;
 		}
 
-
+		if (!defined('JOMRES_API_CMS_ROOT')) {
 			jr_import('jomres_cron');
 			$cron = new jomres_cron();
 			if ($cron->method == 'Cron') {
 				$cron->triggerJobs();
 			}
+		}
 
 	}
 

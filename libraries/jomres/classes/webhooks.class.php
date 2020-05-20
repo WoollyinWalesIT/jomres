@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.3
+ * @version Jomres 9.21.4
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -60,7 +60,12 @@ class webhooks
 	public function get_webhook ( $id ) {
 		if (empty($this->webhooks))
 			throw new Exception('Error: Webhooks array not set. Did you try to call get_webhook before get_all_webhooks?');
-		return  $this->webhooks[$id];
+		if (isset($this->webhooks[$id])) {
+			return $this->webhooks[$id];
+		} else {
+			return false;
+		}
+
 	}
 		
 	/**

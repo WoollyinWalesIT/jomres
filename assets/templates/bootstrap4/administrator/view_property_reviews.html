@@ -4,14 +4,15 @@
 		<!--
 		var publish_image = "{PUBLISH_IMAGE}";
 		var unpublish_image = "{UNPUBLISH_IMAGE}";
+		var property_uid = "{PROPERTY_UID}";
 
 		function publish_review(rating_id, state) {
 			div_name = '#publish_icon' + rating_id;
 			curr_img = jomresJquery(div_name).attr("src") == publish_image ? unpublish_image : publish_image;
 			if (curr_img == unpublish_image)
-				cmd = '{JOMRES_SITEPAGE_URL_ADMIN_AJAX}&task=review_publish&rating_id=' + rating_id + '&state=0';
+				cmd = '{JOMRES_SITEPAGE_URL_ADMIN_AJAX}&task=review_publish&rating_id=' + rating_id + '&property_uid=' + property_uid + '&state=0';
 			else
-				cmd = '{JOMRES_SITEPAGE_URL_ADMIN_AJAX}&task=review_publish&rating_id=' + rating_id + '&state=1';
+				cmd = '{JOMRES_SITEPAGE_URL_ADMIN_AJAX}&task=review_publish&rating_id=' + rating_id + '&property_uid=' + property_uid +'&state=1';
 			jomresJquery.get(cmd, function (data) {
 				if (data == 1) {
 
@@ -21,7 +22,7 @@
 		}
 
 		function delete_review(rating_id) {
-			jomresJquery.get('{JOMRES_SITEPAGE_URL_ADMIN_AJAX}&task=review_delete&rating_id=' + rating_id, function (data) {
+			jomresJquery.get('{JOMRES_SITEPAGE_URL_ADMIN_AJAX}&task=review_delete&rating_id=' + rating_id + '&property_uid=' + property_uid , function (data) {
 				if (data == 1) {
 					row_id = '#rating_id' + rating_id;
 					jomresJquery(row_id).fadeOut();

@@ -38,14 +38,16 @@ class jomres_sanity_check
 		}
 		
 		$this->warnings = '';
+		$this->warnings_stack = array();
 		if ($property_uid > 0 )
 			$this->property_uid = $property_uid;
+		else 
+			$this->property_uid = getDefaultProperty();
+	
 		if ($autorun) {
 			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 			$this->jrConfig = $siteConfig->get();
 			$this->mrConfig = getPropertySpecificSettings();
-			$this->property_uid = getDefaultProperty();
-
 			$this->warning_counter = 0;
 		}
 	}
@@ -123,47 +125,48 @@ class jomres_sanity_check
 
 	public function construct_warning($message_array)
 	{
-		//$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-		//if ($thisJRUser->userIsManager) {
-			$button = '';
-			++$this->warning_counter;
+		if ( debug_backtrace()[1]['function'] != 'check_published' ) {
+			$this->warnings_stack[] = $message_array;
+		}
+			
+		$button = '';
+		++$this->warning_counter;
 
-			if (isset($message_array['LINK'])) {
-				$pageoutput = array();
-				$output = array();
-				$output['LINK'] = $message_array['LINK'];
-				$output['BUTTON_TEXT'] = $message_array['BUTTON_TEXT'];
-				$pageoutput[ ] = $output;
-				$tmpl = new patTemplate();
-				$tmpl->addRows('pageoutput', $pageoutput);
-				$tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
-				$tmpl->readTemplatesFromInput('sanity_checks_button.html');
-				$button = $tmpl->getParsedTemplate();
-			}
-
+		if (isset($message_array['LINK'])) {
 			$pageoutput = array();
 			$output = array();
-
-			if (!isset($message_array['LABEL'])) {
-				$message_array['LABEL'] = 'warning';
-			}
-
-			$output['LABEL_CLASS'] = $message_array['LABEL'];
-
-			$output['WARNING_WORD'] = jr_gettext('_JOMRES_WARNINGS_DANGERWILLROBINSON', '_JOMRES_WARNINGS_DANGERWILLROBINSON', false);
-			$output['WARNING_MESSAGE'] = $message_array['MESSAGE'];
-			$output['WARNING_COUNTER'] = $this->warning_counter;
-			$output['ACTION_LINK'] = $button;
-
+			$output['LINK'] = $message_array['LINK'];
+			$output['BUTTON_TEXT'] = $message_array['BUTTON_TEXT'];
 			$pageoutput[ ] = $output;
-
 			$tmpl = new patTemplate();
 			$tmpl->addRows('pageoutput', $pageoutput);
 			$tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
-			$tmpl->readTemplatesFromInput('sanity_check_pane.html');
+			$tmpl->readTemplatesFromInput('sanity_checks_button.html');
+			$button = $tmpl->getParsedTemplate();
+		}
 
-			return $tmpl->getParsedTemplate();
-		//}
+		$pageoutput = array();
+		$output = array();
+
+		if (!isset($message_array['LABEL'])) {
+			$message_array['LABEL'] = 'warning';
+		}
+
+		$output['LABEL_CLASS'] = $message_array['LABEL'];
+
+		$output['WARNING_WORD'] = jr_gettext('_JOMRES_WARNINGS_DANGERWILLROBINSON', '_JOMRES_WARNINGS_DANGERWILLROBINSON', false);
+		$output['WARNING_MESSAGE'] = $message_array['MESSAGE'];
+		$output['WARNING_COUNTER'] = $this->warning_counter;
+		$output['ACTION_LINK'] = $button;
+
+		$pageoutput[ ] = $output;
+
+		$tmpl = new patTemplate();
+		$tmpl->addRows('pageoutput', $pageoutput);
+		$tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
+		$tmpl->readTemplatesFromInput('sanity_check_pane.html');
+
+		return $tmpl->getParsedTemplate();
 	}
 	
 	/**

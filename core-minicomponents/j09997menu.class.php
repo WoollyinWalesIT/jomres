@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.3
+ * @version Jomres 9.21.4
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -60,19 +60,32 @@ class j09997menu
 			return;
 		}
 
+
 		//section params are in $jomres_menu->sections[section_id]
 		//menu items params are in $jomres_menu->items[task]
 		//now let`s generate the menu output
+		
+		foreach ($jomres_menu->menu as $section_id => $tasks) {
+			foreach ($tasks as $key=>$task ) {
+				if ( !is_channel_safe_task ($task) ) {
+					unset ($jomres_menu->menu[$section_id] [$key] ) ;
+				}
+			}
+		}
+		
+		
+		
 		foreach ($jomres_menu->menu as $section_id => $tasks) {
 			$pageoutput = array();
 			$rows = array();
 			$output = array();
 
+			
 			foreach ($tasks as $task) {
 				$r = array();
 				
 				//menu item name
-				$r['MENU_NAME'] = jr_ucwords($jomres_menu->items[$task]['title']);
+				$r['MENU_NAME'] = str_replace( "&Amp;" , "&" , jr_ucwords($jomres_menu->items[$task]['title']));
 
 				//menu item url
 				if ($jomres_menu->items[$task]['is_url']) {
@@ -130,22 +143,25 @@ class j09997menu
 				$rows[] = $r;
 			}
 			
-			$output[ 'CATEGORY' ] = jr_ucwords($jomres_menu->sections[$section_id]['title']);
-			$output[ 'ID_CATEGORY' ] = 'cpanel-category-'.$section_id;
+			if (!empty($rows)) {
+				$output[ 'CATEGORY' ] = jr_ucwords($jomres_menu->sections[$section_id]['title']);
+				$output[ 'ID_CATEGORY' ] = 'cpanel-category-'.$section_id;
 
-			$pageoutput[ ] = $output;
-			$tmpl = new patTemplate();
-			$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
-			if (!$management_view) {
-				$tmpl->readTemplatesFromInput('mainmenu_options_alternate.html');
-			} else {
-				$tmpl->readTemplatesFromInput('management_mainmenu_options.html');
+				$pageoutput[ ] = $output;
+				$tmpl = new patTemplate();
+				$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+				if (!$management_view) {
+					$tmpl->readTemplatesFromInput('mainmenu_options_alternate.html');
+				} else {
+					$tmpl->readTemplatesFromInput('management_mainmenu_options.html');
+				}
+				$tmpl->addRows('pageoutput', $pageoutput);
+				$tmpl->addRows('rows', $rows);
+				$menu_sections[][ 'SECTION' ] = $tmpl->getParsedTemplate();
+
 			}
-			$tmpl->addRows('pageoutput', $pageoutput);
-			$tmpl->addRows('rows', $rows);
-			$menu_sections[][ 'SECTION' ] = $tmpl->getParsedTemplate();
 		}
-		
+
 		$output = array();
 		$pageoutput = array();
 		

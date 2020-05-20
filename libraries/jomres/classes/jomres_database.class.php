@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.3
+ * @version Jomres 9.21.4
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -66,12 +66,6 @@ class jomres_database
 
 	public function __construct()
 	{
-		// Check if magic_quotes_runtime is active
-		if (get_magic_quotes_runtime()) {
-			// Deactivate
-			@set_magic_quotes_runtime(false);
-		}
-
 		$this->link = null;
 		$this->PDO = null;
 		$this->query = '';

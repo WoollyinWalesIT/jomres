@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.3
+ * @version Jomres 9.21.4
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -22,7 +22,7 @@ defined('_JOMRES_INITCHECK') or die('');
  *          Uses currency conversion settings to automatically convert prices to the selected price, determines the correct symbols to use for the selected currency.
  *
  */
-function output_price($value, $currencycode = '', $do_conversion = true, $zeroOK = true)
+function output_price($value, $currencycode = '', $do_conversion = true, $zeroOK = true , $just_code = false )
 {
 	$price = (float) number_format($value, 2, '.', '');
 
@@ -135,6 +135,10 @@ function output_price($value, $currencycode = '', $do_conversion = true, $zeroOK
 				$price = ' '.$symbols[ 'pre' ].jr_gettext('_JOMRES_PRICE_ON_APPLICATION', '_JOMRES_PRICE_ON_APPLICATION', false, false).$symbols[ 'post' ];
 		}
 	}
-
-	return $price;
+	
+	if ($just_code == true ) {
+		return $currencycode;
+	} else {
+		return $price;
+	}
 }

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.3
+ * @version Jomres 9.21.4
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -68,8 +68,8 @@ class j16000ajax_list_properties_approve
 				}
 				break;
 			case 0:
-				if (!jomresMailer($jomresConfig_mailfrom, $jomresConfig_fromname, $current_property_details->property_email, jr_gettext('_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT', '_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT', false), jr_gettext('_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT', '_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT', false).$link, $mode = 1)) {
-					error_logging('Failure in sending unapproval email to hotel. Target address: '.$current_property_details->property_email.' Subject '.jr_gettext('_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT', '_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT', false));
+				if (!jomresMailer($jomresConfig_mailfrom, $jomresConfig_fromname, $current_property_details->property_email, jr_gettext('_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT_UNAPPROVED', '_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT_UNAPPROVED', false), jr_gettext('_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT_UNAPPROVED', '_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT_UNAPPROVED', false).$link, $mode = 1)) {
+					error_logging('Failure in sending unapproval email to hotel. Target address: '.$current_property_details->property_email.' Subject '.jr_gettext('_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT_UNAPPROVED', '_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT_UNAPPROVED', false));
 				}
 				break;
 			default:

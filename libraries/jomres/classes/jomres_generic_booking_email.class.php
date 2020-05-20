@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.3
+ * @version Jomres 9.21.4
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -72,7 +72,7 @@ class jomres_generic_booking_email
 		$this->data[$contract_uid]['ROOMS'] = '';
 		if (isset($current_contract_details->contract[$contract_uid]['roomdeets'])) {
 			foreach ($current_contract_details->contract[$contract_uid]['roomdeets'] as $rd) {
-				if ( isset($current_property_details->all_room_types[$rd['room_classes_uid']]) ) {
+				if ( isset($rd['room_classes_uid']) && isset($current_property_details->all_room_types[$rd['room_classes_uid']]) ) {
 					$this->data[$contract_uid]['ROOMS'] .= $current_property_details->all_room_types[$rd['room_classes_uid']]['room_class_abbv'];
 				}
 				

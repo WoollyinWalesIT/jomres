@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.3
+ * @version Jomres 9.21.4
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -455,7 +455,7 @@ class j03020insertbooking
 									$result = doSelectSql($query);
 									if (!empty($result)) {
 										system_log('j03020insertbooking :: Failed to insert booking looks like the room has been double booked ');
-										if (get_showtime("task" == 'processpayment') ) { // We don't want to trigger errors if this script is being called by other sources such as channel manager import scripts.
+										if (get_showtime("task") == 'processpayment' ) { // We don't want to trigger errors if this script is being called by other sources such as channel manager import scripts.
 											trigger_error('Failed to insert booking looks like the room has been double booked ', E_USER_ERROR);
 										}
 										$this->insertSuccessful = false;

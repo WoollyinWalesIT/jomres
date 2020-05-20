@@ -8,7 +8,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.3
+ * @version Jomres 9.21.4
  *
  * @copyright	2005-2020 Vince Wooll
  *
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 }
 			
 date_default_timezone_set('UTC');
-require JOMRES_API_CMS_ROOT.DIRECTORY_SEPARATOR.'jomres'.DIRECTORY_SEPARATOR.'libraries'.DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'autoload.php';
+require JOMRES_API_CMS_ROOT.DIRECTORY_SEPARATOR.'jomres'.DIRECTORY_SEPARATOR.'libraries'.DIRECTORY_SEPARATOR.'packages'.DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'autoload.php';
 
 require 'classes/logging.class.php';
 require 'oauth/inc_configs.php';
@@ -201,6 +201,11 @@ try {
 		);
 
 	Flight::set('token', $token);
+
+	if (  (string)$token['user_id'] == '99999999999999999999') { // Older versions of the system would create the system user with a very long id, we'll lower that somewhat
+		$token['user_id'] = '999999999';
+	}
+
 	Flight::set('user_id', $token['user_id']);
 	Flight::set('scopes', explode(',', $token['scope']));
 	Flight::set('dbprefix', JOMRES_API_DB_DB_PREFIX);
@@ -211,6 +216,7 @@ try {
 	require 'routes.php';
 
 	Flight::start();
+
 } catch (Exception $e) {
 	if ($e->getMessage() != '' ) {
 		$response = $e->getMessage();

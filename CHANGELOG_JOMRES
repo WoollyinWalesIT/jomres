@@ -1,3 +1,70 @@
+<h3>Jomres 9.21.4 20/05/2020</h3>
+
+
+<span class="label label-warning">Change</span> Tweaked calendars so that historic dates aren't clickable.
+<span class="label label-warning">Change</span> Updated the jomres_properties class to ensure that the creation timestamp is set.
+<span class="label label-warning">Change</span> Ability to handle headers added to api call self functionality
+<span class="label label-warning">Change</span> Property price display in lists function updated to respond with inclusive and exclusive prices as well as basic pricing information
+<span class="label label-warning">Change</span> Output price function updated to allow it to respond with the calculated currency code used when building prices
+<span class="label label-warning">Change</span> Trigger the webhook watcher if the mcHandler class exists (API. Allows webhooks to be acted on by the watcher).
+<span class="label label-warning">Change</span> Changed how webhooks can be viewed/edited by managers.
+<span class="label label-warning">Change</span> Added functionality to redirect channel properties to their parent site as required.
+<span class="label label-warning">Change</span> Improved functionality to check if a property is a channel property, to ensure that the menu options aren't shown in channel properties if those menu options modify a property.
+<span class="label label-warning">Change</span> Added code to webhook watcher to clear out the cmf rest api cache if property_uid is set in any of the messages.
+<span class="label label-warning">Change</span> Added "rejected" flag to contracts table, which makes it a little easier to identify bookings where the enquiry was refused, rather than surmising it from the available data.
+<span class="label label-warning">Change</span> Add webhook events log, which allows us to capture both UI and API modifications to a property.
+<span class="label label-warning">Change</span> Changed some jomres_properties private methods to public.
+<span class="label label-warning">Change</span> Added some settings (which for now I will not add to site config) which allow, on webhook trigger, the system to check to see if the property needs to be unpublished & unapproved, if the new settings allow. At some point I'd like to make these checks a deferred task.
+<span class="label label-warning">Change</span> Added a warnings stack to the sanity check class to allow programmatic reporting of warnings.
+<span class="label label-warning">Change</span> Added image webhooks to upload handler.
+<span class="label label-warning">Change</span> Improved webhook watcher to manage unpublishing of properties (where config allows) if properties are incomplete.
+<span class="label label-warning">Change</span> Modified the media centre class to not include the noimage.gif file links if being called by the api, as it's not necessary.
+<span class="label label-warning">Change</span> Modified session handling so that a session can be forced to be used, even if ip = 0.0.0.0
+<span class="label label-warning">Change</span> Modified api custom methods to allow them to save the session if defined FORCE_JOMRES_SESSION. This allows api features to define FORCE_JOMRES_SESSION before framework.php is included, which in turn allows the api to use the session functionality of the system. This likely will only occur in a very small number of cases (when bookings are made, for example).
+<span class="label label-warning">Change</span> Modified jomres/classes/jomres_generic_booking_insert.class.php so that it allows channels to create multiple bookings with the same booking number.
+<span class="label label-warning">Change</span> Modified how 204 errors are returned because I was sick of playing guessing games to decide why something wouldn't work. Error causes are much clearer now.
+<span class="label label-warning">Change</span> Updated new functionality to scan for system changes and auto-unpublish incomplete properties
+<span class="label label-warning">Change</span> Added api client and secret to api test page
+<span class="label label-warning">Change</span> Changed how negative responses in api messages are reported so that they can be handled more automagically.
+<span class="label label-warning">Change</span> Re-added library packages for Jomres to slim down the initial installation sizes a bit
+<span class="label label-warning">Change</span> Added old paths to node modules and vendor to obsolete file handling
+<span class="label label-warning">Change</span> Prevent cron jobs from triggering if it's an api call ( Can you say recursion? )
+<span class="label label-warning">Change</span> Added any available channel data to the webhook event. This allows channels that create an event to ignore webhooks triggered by that event.
+<span class="label label-warning">Change</span> Set default error response to 200 as it's easier to trace issues than if we're using the older 204 response code.
+<span class="label label-warning">Change</span> Added a check to deferred tasks to see if there's anything to log.
+<span class="label label-warning">Change</span> Added a space to prevent stray 400 errors when using api and setting the token in the headers.
+<span class="label label-warning">Change</span> Tweaked new response envelope data & added link to Nightly to readme.md
+<span class="label label-warning">Change</span> System API user id changed to 9 characters
+<span class="label label-warning">Change</span> Custom methods updated to add routing to envelope response
+<span class="label label-warning">Change</span> API Index file changed to convert older System user's ID to 9 characters
+<span class="label label-warning">Change</span> Changed how PUT method handling detects how to handle stream
+<span class="label label-warning">Change</span> API router updated to say which response is unknown.
+<span class="label label-warning">Change</span> API Call self functionality updated to use framework and to use the jomres_call_api class
+<span class="label label-warning">Change</span> Tweaked how logging builds backtraces
+<span class="label label-warning">Change</span> Changed how we find Wordpress database configuration settings when being run via the API.
+<span class="label label-warning">Change</span> Added two new tasks to "channel safe" function so that we can view property and make bookings
+<span class="label label-warning">Change</span> Modified how apostrophes are decoded before a dropdown is created
+<span class="label label-warning">Change</span> Removed depreciated functionality
+<span class="label label-warning">Change</span> Changed how recaptcha verification is handled
+<span class="label label-warning">Change</span> Added an option that channels can use to allow local editing of properties.
+<span class="label label-warning">Change</span> Tweaked edit property script to ensure that property features not assigned to a specific property type are shown.
+<span class="label label-warning">Change</span> Added new webhook for saving plugin settings
+<span class="label label-warning">Change</span> Added ability to make webhook events for admin area review publish/unpublish/delete
+<span class="label label-warning">Change</span> Changed how property_uid is accessed by reviews class
+<span class="label label-warning">Change</span> Extended rooms_multiple_added webhook to include new room uids
+<span class="label label-warning">Change</span> Added new rooms_multiple_deleted webhook event in case manager uses the "delete all existing rooms" option
+
+<span class="label label-important label-danger">Fix</span> Corrected the unapproval email that is sent.
+<span class="label label-important label-danger">Fix</span> Restored an image that was removed in error.
+<span class="label label-important label-danger">Fix</span> Removed a depreciated link from the admin menu
+<span class="label label-important label-danger">Fix</span> Fixed a notice when changing settings that might get triggered on booking save. Not important as only shown during dev but it's nice to put it to bed.
+<span class="label label-important label-danger">Fix</span> Fixed a notice that might appear in edge cases during dev with incomplete properties.
+<span class="label label-important label-danger">Fix</span> Fixed buggy logic that meant that an error wasn't logged during cm bookings.
+<span class="label label-important label-danger">Fix</span> Added blank.png
+<span class="label label-important label-danger">Fix</span> Removed a semi-colon that has already been removed once (Grr)
+<span class="label label-important label-danger">Fix</span> Fixed a notice generated by admin level api calls.
+
+
 <h3>Jomres 9.21.3 08/01/2020</h3>
 
 <span class="label label-warning">Change</span> Removed some unnecessary code that was preventing deletion of properties via componentArgs and REST API

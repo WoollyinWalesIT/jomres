@@ -5,7 +5,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.3
+ * @version Jomres 9.21.4
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -89,6 +89,9 @@ function doInsertSql($query, $op = '', $ignoreErrors = false)
 
 	if (!$jomres_db->query()) {
 		if (!$ignoreErrors) {
+			if (is_array($jomres_db->error)) {
+				$jomres_db->error = serialize($jomres_db->error);
+			}
 			error_logging('Do insert failed :: '.$jomres_db->error.' '.$query);
 		}
 

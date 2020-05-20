@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.3
+ * @version Jomres 9.21.4
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -33,7 +33,7 @@ class jomres_call_api
 			$this->user = new stdClass();
 			$this->user->accesslevel = 101;
 			$this->user->username = 'system';
-			$this->user->userid = 99999999999999;
+			$this->user->userid = 999999999;
 		} else {
 			$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 			$this->user->accesslevel = $thisJRUser->accesslevel;
@@ -65,6 +65,17 @@ class jomres_call_api
 			$data = array('grant_type' => 'client_credentials', 'client_id' => $client_id, 'client_secret' => $client_secret);
 			$token_request = $this->query_api('POST', '', $data);
 			$response = json_decode($token_request['response']);
+			if (is_null($response)) {
+				// Uh oh, could be a 403 forbidden response, let's try to json decode $token_request
+				$unhappy_response = json_decode($token_request);
+
+				if ( isset($token_request['response_code']) && $token_request['response_code'] == "403" ) {
+					echo "<p class='alert alert-danger'>Error, tried to call API but received a 403 response, please visit the Admin > Jomres > Tools > Rest API test page. You may need to add \"Options +SymLinksIfOwnerMatch\" to the .conf file for this domain. If you don't have access to that file, then SymLinksIfOwnerMatch can be added to .htaccess. Also, check that htaccess.txt has been renamed to .htaccess (if running Joomla). Also check that url rewriting (RewriteEngine On) is enabled (a default copy of .htaccess would normally allow that). </p>";
+				} else {
+					var_dump($token_request);
+				}
+				return false;
+			}
 
 			if (isset($response->access_token)) {
 				$this->token = $response->access_token;
@@ -82,8 +93,8 @@ class jomres_call_api
 	 *
 	 */
 
-	private function init_manager() {
-		// We need to see if there's a user in the database, if there's not we'll create them. 
+	public function init_manager() {
+		// We need to see if there's a user in the database, if there's not we'll create them.
 		$query = "SELECT client_id,scope FROM #__jomres_oauth_clients WHERE client_id = '".$this->user->username."' LIMIT 1";
 		$result = doSelectSql($query);
 		if (empty($result)) {
@@ -108,7 +119,10 @@ class jomres_call_api
 
 	public function send_request($method = '', $endpoint = '', $data = array() ,  $headers = array() ) {
 		if ($this->token != '') {
-			$response = $this->query_api($method, $endpoint, $data , $headers );
+			$response = '';
+			do {
+				$response = $this->query_api($method, $endpoint, $data , $headers );
+			} while ( $response == '' || $response == null );
 			if ($response['response_code'] == '200' || $response['response_code'] == '204') {
 				return json_decode($response['response']);
 			} else {
@@ -132,7 +146,7 @@ class jomres_call_api
 		curl_setopt($ch, CURLINFO_HEADER_OUT, true);
 		curl_setopt($ch, CURLOPT_TIMEOUT, 30); //timeout after 30 seconds
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		
+
 		switch ($method) {
 			//########################################################################################
 			case 'POST':
@@ -158,6 +172,7 @@ class jomres_call_api
 					"Accept: application/json"
 					);
 				$arr =  array_merge ( $default_headers , $headers ) ;
+
 				curl_setopt($ch, CURLOPT_HTTPHEADER, $arr );
 			} else {
 				curl_setopt($ch, CURLOPT_HTTPHEADER, array(
@@ -167,13 +182,15 @@ class jomres_call_api
 			}
 
 		}
-		
+
 		curl_setopt($ch,CURLOPT_VERBOSE,true);
 		curl_setopt($ch, CURLINFO_HEADER_OUT, true);
 		
 		$result = curl_exec($ch);
 		$status = curl_getinfo($ch);
-		
+/*if ($method == 'POST' && $endpoint == 'cmf/property/') {
+	var_dump($result );exit;
+}*/
 		$response_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		curl_close($ch);
 
