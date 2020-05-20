@@ -17,7 +17,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * Show the booking confirmation page after the booking form
+	 * Builds the booking confirmation page, showing booking information and payment gateways if configured.
 	 */
 
 class j02990showconfirmation

@@ -17,8 +17,8 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * Page that outputs the message that users must register before they can perform a booking
 	 * 
+	 * Page that outputs the message that users must register before they can perform a booking
 	 */
 
 class j02280mustregister
@@ -29,7 +29,7 @@ class j02280mustregister
 	 * 
 	 * Main functionality of the Minicomponent 
 	 *
-	 * 
+	 * Outputs a message that the user must be logged in before they can perform an action, and provides a link to the registration page.
 	 * 
 	 */
 	 

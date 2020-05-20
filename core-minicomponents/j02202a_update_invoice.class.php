@@ -28,7 +28,7 @@ class j02202a_update_invoice
 	 * 
 	 * Main functionality of the Minicomponent 
 	 *
-	 * 
+	 * Updates an invoice when a deposit is added
 	 * 
 	 */
 	 

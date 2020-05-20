@@ -17,6 +17,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
+     * Automatically sets the default commission rate for a property when a new property is added
 	 * 
 	 */
 

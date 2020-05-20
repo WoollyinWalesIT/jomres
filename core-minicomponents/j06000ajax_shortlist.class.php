@@ -17,6 +17,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
+     * Ajax script. dds properties to the shortlist, if the user is logged in, instead adds the property to the user's favourites list.
 	 * 
 	 */
 

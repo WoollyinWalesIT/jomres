@@ -17,6 +17,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
+     * Builds the default bookings chart
 	 * 
 	 */
 
