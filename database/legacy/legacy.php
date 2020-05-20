@@ -2658,28 +2658,28 @@ function alterGuestsVatcodeCol()
     //throw new Exception ( "Editing __jomres_guests table adding vat_number/vat_number_validated columns");
     $query = "ALTER TABLE `#__jomres_guests` ADD `vat_number` CHAR (25) DEFAULT '' NOT NULL AFTER `discount` "; // Most I could find was up to possibly 15 chars. Adding 10 to be on the safe side.
     if (!doInsertSql($query, '')) {
-        throw new Exception('Error, unable to add __jomres_guests vat_number');
+        //throw new Exception('Error, unable to add __jomres_guests vat_number');
     }
     $query = "ALTER TABLE `#__jomres_guests` ADD `vat_number_validated` BOOL NOT NULL DEFAULT '0' AFTER `vat_number` ";
     if (!doInsertSql($query, '')) {
-        throw new Exception('Error, unable to add __jomres_guests vat_number_validated');
+        //throw new Exception('Error, unable to add __jomres_guests vat_number_validated');
     }
     $query = 'ALTER TABLE `#__jomres_guests` ADD `vat_number_validation_response` TEXT NULL AFTER `vat_number_validated` ';
     if (!doInsertSql($query, '')) {
-        throw new Exception('Error, unable to add __jomres_guests vat_number_validation_response');
+        //throw new Exception('Error, unable to add __jomres_guests vat_number_validation_response');
     }
 
     $query = "ALTER TABLE `#__jomres_guest_profile` ADD `vat_number` CHAR (25) DEFAULT '' NOT NULL AFTER `email` "; // Most I could find was up to possibly 15 chars. Adding 10 to be on the safe side.
     if (!doInsertSql($query, '')) {
-        throw new Exception('Error, unable to add __jomres_guest_profile vat_number');
+        //throw new Exception('Error, unable to add __jomres_guest_profile vat_number');
     }
     $query = "ALTER TABLE `#__jomres_guest_profile` ADD `vat_number_validated` BOOL NOT NULL DEFAULT '0' AFTER `vat_number` ";
     if (!doInsertSql($query, '')) {
-        throw new Exception('Error, unable to add __jomres_guest_profile vat_number_validated');
+        //throw new Exception('Error, unable to add __jomres_guest_profile vat_number_validated');
     }
     $query = 'ALTER TABLE `#__jomres_guest_profile` ADD `vat_number_validation_response` TEXT NULL AFTER `vat_number_validated` ';
     if (!doInsertSql($query, '')) {
-        throw new Exception('Error, unable to add __jomres_guest_profile vat_number_validation_response');
+        //throw new Exception('Error, unable to add __jomres_guest_profile vat_number_validation_response');
     }
 }
 /**
