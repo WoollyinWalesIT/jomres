@@ -37,3 +37,7 @@ desktop.ini
 /libraries/vendor/mpdf/mpdf/ttfonts/DejaVuSans-BoldOblique.ttf
 /libraries/vendor/mpdf/mpdf/ttfonts/DejaVuSansCondensed-Bold.ttf
 /libraries/vendor/mpdf/mpdf/ttfonts/DejaVuSansCondensed-BoldOblique.ttf
+
+libraries/packages/
+
+.idea/
