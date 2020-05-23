@@ -1,3 +1,7 @@
+<h3>Jomres 9.21.5 23/05/2020</h3>
+
+Removed code that was preventing ad-hoc settings from being saved in property config.
+
 <h3>Jomres 9.21.4 20/05/2020</h3>
 
 
