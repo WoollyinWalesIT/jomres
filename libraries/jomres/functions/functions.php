@@ -3695,7 +3695,7 @@ function savePropertyConfiguration()
 					$oldSettingVal = $_POST[ $k ];
 				}
 
-				if ($oldSettingVal != $v) {
+				//if ($oldSettingVal != $v) {
 					$query = "SELECT uid FROM #__jomres_settings WHERE property_uid = '".(int) $property_uid."' and akey = '".substr($k, 4)."'";
 					$result = doSelectSql($query);
 					if (empty($result)) {
@@ -3705,7 +3705,7 @@ function savePropertyConfiguration()
 					}
 					doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS', '_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS', false));
 					$update_count ++;
-				}
+				//}
 			}
 		}
 	}
