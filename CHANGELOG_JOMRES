@@ -1,3 +1,11 @@
+<h3>Jomres 9.22.0 25/05/2020</h3>
+
+<span class="label label-success">Feature</span> Added Guest types and Tariff editing modes to Jomres Core.
+
+<span class="label label-warning">Change</span> Tweaked syndicate query to reduce memory load when searching for distances
+<span class="label label-warning">Change</span> Added a greeting modal that encourages new users to visit the getting started page.
+<span class="label label-warning">Change</span> Updated the Jomres WP activator to detect if the WP root is writable. If not, then fail with a legible notice.
+
 <h3>Jomres 9.21.5 23/05/2020</h3>
 
 <span class="label label-important label-danger">Fix</span> Removed code that was preventing ad-hoc settings from being saved in property config.
