@@ -354,7 +354,7 @@ jr_define('_JOMRES_COM_A_ROOMTAX_PERCENTAGE', 'Tax percentage');
 jr_define('_JOMRES_COM_A_EUROTAX', 'Tax');
 jr_define('_JOMRES_COM_A_EUROTAX_PERCENTAGE', 'Tax percentage');
 jr_define('_JOMRES_MR_AUDIT_ARCHIVE', 'Archive all records');
-jr_define('_JOMRES_FRONT_TARIFFS', 'Our Tariffs');
+jr_define('_JOMRES_FRONT_TARIFFS', 'Accommodation prices');
 jr_define('_JOMRES_FRONT_TARIFFS_TITLE', 'Tariff name');
 jr_define('_JOMRES_FRONT_TARIFFS_DESC', 'Tariff description');
 jr_define('_JOMRES_FRONT_TARIFFS_ROOMTYPE', 'Resource/property type');

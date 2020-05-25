@@ -2647,3 +2647,5 @@ jr_define('_JOMRES_MICROMANAGE_EXTRA_OPTIONS',"These are additional options that
 jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS_LIST_PAGE',"You can create multiple tariffs for the same room type, so you can create one tariff for min/max days of 1 - 7 and a second tariff where the min days is 7, the max days 14, and so on. This allows you create pricing schemes as simple or as complicated as you need. It also allows you to create multiple tariffs with different conditions, so you can have a second set of tariffs where the price is lower for Bed & Breakfast, and another set of more expensive tariffs for Bed, Breakfast and Evening Meal.");
 
 jr_define('_JOMRES_MICROMANAGE_USE_SELECTED_DATES',"Set date picker days only");
+jr_define( '_JOMRES_PROPERTY_HCATEGORIES', 'Property Categories' );
+jr_define( '_JOMRES_PROPERTY_HCATEGORIES_HEDIT', 'Edit Property Category' );
