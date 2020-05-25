@@ -204,6 +204,7 @@ class j09995menu
 			$jomres_menu->add_item(80, jr_gettext('_JOMRES_MEDIA_CENTRE_TITLE', '_JOMRES_MEDIA_CENTRE_TITLE', false), 'media_centre', 'fa-picture-o');
 
 			if ($mrConfig[ 'is_real_estate_listing' ] != '1') {
+				$jomres_menu->add_item(80, jr_gettext('_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', '_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', false), 'listcustomertypes', 'fa-users');
 				$jomres_menu->add_item(80, jr_gettext('_JOMRES_EMAIL_TEMPLATES_TITLE', '_JOMRES_EMAIL_TEMPLATES_TITLE', false), 'list_emails', 'fa-envelope-o');
 			}
 			if ( 

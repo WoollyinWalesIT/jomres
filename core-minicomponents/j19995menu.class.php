@@ -134,7 +134,7 @@ class j19995menu
 		$jomres_menu->add_admin_item(90, jr_gettext('_JOMRES_COM_LISTCOUNTRIES', '_JOMRES_COM_LISTCOUNTRIES', false), 'list_countries', 'fa-globe');
 		$jomres_menu->add_admin_item(90, jr_gettext('_JOMRES_COM_LISTREGIONS', '_JOMRES_COM_LISTREGIONS', false), 'list_regions', 'fa-globe');
 		$jomres_menu->add_admin_item(90, jr_gettext('_JOMRES_MEDIA_CENTRE_TITLE', '_JOMRES_MEDIA_CENTRE_TITLE', false), 'media_centre', 'fa-picture-o');
-		
+
 		//help section menus
 		$jomres_menu->add_admin_item(100, jr_gettext('_JOMRES_PRICES', '_JOMRES_PRICES', false), 'stripe_subscribe', 'fa-id-card');
 		$jomres_menu->add_admin_item(100, jr_gettext('_JOMRES_CUSTOMCODE_SUPPORT_GETTINGSTARTED', '_JOMRES_CUSTOMCODE_SUPPORT_GETTINGSTARTED', false), 'getting_started', 'fa-book');

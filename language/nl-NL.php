@@ -1052,7 +1052,7 @@ jr_define('_JRPORTAL_MONTHS_LONG_10', "November ");
 jr_define('_JRPORTAL_MONTHS_LONG_11', "December");
 jr_define('JOMRES_COM_A_MINIMALCONFIG_DESC', "Stel dit in op Ja om het aantal beschikbare opties voor verhuurobject beheerders te beperken in het gedeelte Algemene configuratie. Dit is handig als u niet wilt dat verhuurobject beheerders met te veel instellingen spelen, in plaats daarvan kunt u jomres_config.php bewerken om standaard eigenschappen te definiëren. ");
 jr_define('_JOMRES_AJAXFORM_EXTRAS_SELECT', "Selecteer alstublieft een optie voor uw boeking ");
-jr_define('_JOMRES_COM_ALLOWHTMLEDITOR_DESC', "<p> Als deze optie is ingesteld op Ja, dan kunnen managers de HTML-editor die bij het CMS is geleverd, zien en HTML in de beschrijving invoeren. Dit is een potentieel beveiligingsrisico, omdat er een mogelijkheid is dat zij ongewenste HTML of Javascript kunnen invoeren. Bovendien, als ze slecht geformatteerde HTML invoeren, kan het pagina-ontwerp worden gecompromitteerd. Het is beter om deze optie op Nee te plaatsen waar mogelijk. </ P> <p> Als alle managers vertrouwde gebruikers zijn (bijvoorbeeld jezelf), dan kun je het instellen op Ja en je wijzigt de verschillende HTML-tags die ze mogen invoeren in het tabblad Input Filtering in Site Configuration. </ p> <p> Als u daarentegen Jomres gebruikt als portal waar u gebruikers uitnodigt om hun eigen eigenschappen toe te voegen en te beheren dan is dit niet de ideale configuratie . In plaats daarvan moet u deze optie instellen op Nee. Met het instellen op Geen managers zullen in plaats daarvan een markdown-editor zien die ze kunnen gebruiken om basisformattering in te voeren die voldoende zou zijn voor de meerderheid van de gebruikers. </ P> ");
+jr_define('_JOMRES_COM_ALLOWHTMLEDITOR_DESC', "<p> Als deze optie is ingesteld op Ja, dan kunnen managers de HTML-editor die bij het CMS is geleverd, zien en HTML in de beschrijving invoeren. Dit is een potentieel beveiligingsrisico, omdat er een mogelijkheid is dat zij ongewenste HTML of Javascript kunnen invoeren. Bovendien, als ze slecht geformatteerde HTML invoeren, kan het pagina-ontwerp worden gecompromitteerd. Het is beter om deze optie op Nee te plaatsen waar mogelijk. </P> <p> Als alle managers vertrouwde gebruikers zijn (bijvoorbeeld jezelf), dan kun je het instellen op Ja en je wijzigt de verschillende HTML-tags die ze mogen invoeren in het tabblad Input Filtering in Site Configuration. </ p> <p> Als u daarentegen Jomres gebruikt als portal waar u gebruikers uitnodigt om hun eigen eigenschappen toe te voegen en te beheren dan is dit niet de ideale configuratie . In plaats daarvan moet u deze optie instellen op Nee. Met het instellen op Geen managers zullen in plaats daarvan een markdown-editor zien die ze kunnen gebruiken om basisformattering in te voeren die voldoende zou zijn voor de meerderheid van de gebruikers. </p> ");
 jr_define('_JOMRES_COM_MANAGEMENTVIEW_MANAGMENT', "Volledige schermweergave ");
 jr_define('_JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW', "Normale weergave ");
 jr_define('_JOMRES_PARTNER_DISCOUNT', "Partner korting ");
@@ -1750,8 +1750,8 @@ jr_define('_JOMRES_CONFIG_OPENEXCHANGERATES_KEY_WARNING', "U heeft geen <a href=
 jr_define('_JOMRES_PERMIT_NUMBER_TITLE', "Vergunning nummer");
 jr_define('_JOMRES_PERMIT_NUMBER_DESCRIPTION', "Sommige landen hebben wetgeving waarbij u een vergunningnummer voor uw woning moet tonen. Als u zo'n nummer hebt, vul het hier in en het wordt toegevoegd aan de sectie van de koptekst van het verhuurobject. ");
 jr_define('_JOMRES_SHORTCODES', "Shortcodes");
-jr_define('_JOMRES_SHORTCODES_INFO_JOOMLA', "De <strong> plg_content_jomres_asamodule_mambot </ strong> plugin MOET worden geïnstalleerd en ingeschakeld om met deze shortcodes te kunnen werken. Dit is te vinden in de Jomres Plugin Manager. Als deze site is gebouwd met een van de Quickstarts, is het waarschijnlijk al geïnstalleerd. ");
-jr_define('_JOMRES_SHORTCODES_INFO_WORDPRESS', "U moet ervoor zorgen dat de <strong> 'Jomres Shortcodes' </ strong> plugin is ingeschakeld. Dit is te vinden in de Jomres Plugin Manager. Als deze site is gebouwd met een van de Quickstarts, is het waarschijnlijk al geïnstalleerd. ");
+jr_define('_JOMRES_SHORTCODES_INFO_JOOMLA', "De <strong> plg_content_jomres_asamodule_mambot </strong> plugin MOET worden geïnstalleerd en ingeschakeld om met deze shortcodes te kunnen werken. Dit is te vinden in de Jomres Plugin Manager. Als deze site is gebouwd met een van de Quickstarts, is het waarschijnlijk al geïnstalleerd. ");
+jr_define('_JOMRES_SHORTCODES_INFO_WORDPRESS', "U moet ervoor zorgen dat de <strong> 'Jomres Shortcodes' </strong> plugin is ingeschakeld. Dit is te vinden in de Jomres Plugin Manager. Als deze site is gebouwd met een van de Quickstarts, is het waarschijnlijk al geïnstalleerd. ");
 jr_define('SHORTCODE_TASK', "Taak");
 jr_define('SHORTCODE_DESCRIPTION', "Beschrijving");
 jr_define('SHORTCODE_ARGUMENTS', "Argumenten");
@@ -1779,12 +1779,12 @@ jr_define('VALID_LICENSE_MESSAGE', "Gefeliciteerd, u gebruikt een geldig licenti
 jr_define('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_MRP', "Op deze pagina kunt u afbeeldingen uploaden voor uw woning en de services die u aanbiedt. Het heeft een hoofdknop en een tweede knop waarmee u specifieke kamers kunt selecteren om afbeeldingen te uploaden. Het hoofdbeeld en de diavoorstelling tonen dus alleen maar één knop, maar als u bijvoorbeeld een service of meerder kamers heeft, dan ziet u een tweede knop waar u beelden kunt uploaden voor die specifieke bronnen. ");
 jr_define('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_SRP', "Op deze pagina kunt u afbeeldingen uploaden voor uw woning en de services die u aanbiedt. Het heeft een hoofdknop en een tweede knop waarmee u specifieke kamers kunt selecteren om afbeeldingen te uploaden. Het hoofdbeeld en de diavoorstelling tonen dus alleen maar één knop, maar als u extra services heeft gemaakt, ziet u een tweede knop waar u beelden kunt uploaden voor die specifieke service. ");
 jr_define('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_GENERIC', "<Ol>
-  <li> Kies eerst de afbeelding (en) die je wilt uploaden door op Afbeelding toevoegen of Drag en Drop te gebruiken. Deze worden weergegeven in de kolom aan de rechterkant. </ Li>
-  <li> Boven dit gebied, gebruik de knop 'Kies de kamer' om te kiezen voor welke kamer u beelden wilt uploaden. U kunt de mogelijkheid krijgen om een ​​specifieke kamer hieronder te kiezen. </ Li>
-  <li> Nadat u een kamer hebt gekozen, klikt u op de knop Afbeelding uploaden onder een afbeelding om deze te associëren met die kamer. Zodra een afbeelding is geüpload, verdwijnt het van de kolom aan de rechterkant en verschijnt links. </ Li>
-  <li> Gebruik de prullenbak naast bestaande afbeeldingen om afbeeldingen te verwijderen die u niet langer wilt weergeven. </ li>
-  <li> U kunt de volgorde wijzigen die bestanden in de diavoorstelling worden weergegeven door ze te wijzigen voordat u ze uploadt, zoals deze worden weergegeven in pagina's in alfabetische volgorde. </ li>
-</ Ol>
+  <li> Kies eerst de afbeelding (en) die je wilt uploaden door op Afbeelding toevoegen of Drag en Drop te gebruiken. Deze worden weergegeven in de kolom aan de rechterkant. </Li>
+  <li> Boven dit gebied, gebruik de knop 'Kies de kamer' om te kiezen voor welke kamer u beelden wilt uploaden. U kunt de mogelijkheid krijgen om een ​​specifieke kamer hieronder te kiezen. </Li>
+  <li> Nadat u een kamer hebt gekozen, klikt u op de knop Afbeelding uploaden onder een afbeelding om deze te associëren met die kamer. Zodra een afbeelding is geüpload, verdwijnt het van de kolom aan de rechterkant en verschijnt links. </Li>
+  <li> Gebruik de prullenbak naast bestaande afbeeldingen om afbeeldingen te verwijderen die u niet langer wilt weergeven. </li>
+  <li> U kunt de volgorde wijzigen die bestanden in de diavoorstelling worden weergegeven door ze te wijzigen voordat u ze uploadt, zoals deze worden weergegeven in pagina's in alfabetische volgorde. </li>
+</Ol>
  ");
 jr_define('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_PREVIEW', "Naast de knop kamer kunt u een Preview-knop zien. Als u hier klikt, ziet u een popup die u laat zien hoe de momenteel geüploadte afbeeldingen op een pagina zullen kijken. Dit helpt u een idee te geven van hoe uw klanten de afbeeldingen zien. ");
 jr_define('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_LIMITATIONS', "Er is geen limiet voor het aantal beelden dat u kunt uploaden. Afbeeldingen worden automatisch aangepast wanneer ze worden geüpload. U kunt alleen JPG- en PNG-bestanden uploaden. ");
@@ -1853,7 +1853,7 @@ jr_define('_JOMRES_CPANEL_GRID_DESC', "Selecteer de rasterlay-out van de startpa
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_MARKER_IMAGES', "Google Map Markers ");
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_TOWN_IMAGES', "Stadsbeelden ");
 jr_define('_JOMRES_PTYPE_CHANGE_WARNING', "Als u het verhuurobject type wijzigt, worden alle kamers, tarieven, verhuurobject instellingen verwijderd en de beschikbaarheid opnieuw ingesteld. ");
-jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_UPDATEINFO', "Let op, na het updaten moet u alle Jomres-plugins die al zijn geïnstalleerd, bijwerken via de Jomres plugin manager. Als u Core plugins hebt geïnstalleerd, maar geen geldige Jomres licentie heeft, raden we <em> niet </ em> aan dat u Jomres bijwerkt als oudere plugins, die vaak niet kunnen werken met nieuwere versies van Jomres. ");
+jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_UPDATEINFO', "Let op, na het updaten moet u alle Jomres-plugins die al zijn geïnstalleerd, bijwerken via de Jomres plugin manager. Als u Core plugins hebt geïnstalleerd, maar geen geldige Jomres licentie heeft, raden we <em> niet </em> aan dat u Jomres bijwerkt als oudere plugins, die vaak niet kunnen werken met nieuwere versies van Jomres. ");
 jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_UPDATEINFO_KEYVALID', "Let op, na het updaten moet u alle Jomres-plugins die al zijn geïnstalleerd, bijwerken via de Jomres plugin manager. ");
 jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_RENEWALS', "Als u Jomres wilt bijwerken en de plugins heeft u een verlengingsvergunning nodig. Ga naar <a href='https://www.jomres.net/pricing' target='_blank'> onze site </a> voor meer informatie. In de meeste gevallen zijn deze licenties 50% van de prijs van een volledige licentie. Zorg ervoor dat u in onze winkel bent aangemeld voordat u een vernieuwing probeert te kopen. ");
 
@@ -1890,7 +1890,7 @@ jr_define('API_METHODS_DESCRIPTION', "Deze lijst met methoden is gebaseerd op uw
 jr_define('_OAUTH_REDIRECT_URI', "Omleiding URI ");
 jr_define('_OAUTH_IDENTIFIER_PLACEHOLDER', "Geef een naam die zinvol is voor jou, zoals My Phone ");
 
-jr_define('_OAUTH_GRANT_TYPES', "Dit systeem ondersteunt twee grant types, Client Credentials en Implicit. Als u de <em> client_credentials </ em> -stroom gebruikt, heeft u zowel de client-id als de klantgeheim nodig. Als u <em> impliciet </ em> gebruikt, dan stuurt uw app alleen het klant-id en u zou inloggen om het programma expliciet toe te staan. ");
+jr_define('_OAUTH_GRANT_TYPES', "Dit systeem ondersteunt twee grant types, Client Credentials en Implicit. Als u de <em> client_credentials </em> -stroom gebruikt, heeft u zowel de client-id als de klantgeheim nodig. Als u <em> impliciet </em> gebruikt, dan stuurt uw app alleen het klant-id en u zou inloggen om het programma expliciet toe te staan. ");
 
 jr_define('_OAUTH_IMPLICIT_NOTES', "Om de <em>implicit</em> grant type-flowte gebruiken, moet u deze url gebruiken om uw apps te autoriseren. Wanneer deze URL is gebeld en u de app hebt geautoriseerd, geeft het systeem een ​​teken dat u apps gebruikt om deze API's API te noemen ");
 jr_define('_OAUTH_AUTHORISATION_URL', "Autorisatie URL ");
@@ -2361,3 +2361,9 @@ jr_define('CMF_CONFIG_KEY_DESC', 'The Channel Management Framework license key. 
 
 jr_define('_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT_UNAPPROVED', 'Your property has not been approved');
 jr_define('_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT_UNAPPROVED', "Your property as been unapproved. If you think that this was done in error please contact us. ");
+
+jr_define('_JOMRES_GUESTTYPES_IS_CHILD',"Is this a Child guest type?");
+jr_define('_JOMRES_GUESTTYPES_IS_CHILD_DESC',"Set this to Yes if this guest type would be classed as a Child guest type.");
+
+jr_define('_JOMRES_GUESTTYPES_INTRO',"If you want to charge per person per night then you will need to create some guest types.");
+jr_define('_JOMRES_GUESTTYPES_INSTRUCTIONS',"You can create as many guest types as you need, try starting out by creating just one guest type called 'Adult'. Leave all of the settings at their default values. Next, if for example you want to give children under 12 a discount of 50% you would create a new guest type, and call it 'Children under 12'. Set the 'Add variance?' option to - (negative) and set the 'Variance' to 50. This means when children are added to a booking they're charged 50% of the room cost of the room. " );

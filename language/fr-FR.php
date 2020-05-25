@@ -2359,3 +2359,10 @@ jr_define('CMF_CONFIG_KEY_DESC', 'The Channel Management Framework license key. 
 
 jr_define('_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT_UNAPPROVED', 'Your property has not been approved');
 jr_define('_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT_UNAPPROVED', "Your property as been unapproved. If you think that this was done in error please contact us. ");
+
+jr_define('_JOMRES_GUESTTYPES_IS_CHILD',"Est-ce un Enfant ?");
+jr_define('_JOMRES_GUESTTYPES_IS_CHILD_DESC',"Oui, si ce type de client serait classé comme Enfant.");
+
+jr_define('_JOMRES_GUESTTYPES_INTRO',"Si vous souhaitez facturer par personne et par nuit, vous devrez créer certains types de clients.");
+jr_define('_JOMRES_GUESTTYPES_INSTRUCTIONS',"Vous pouvez créer autant de types de clients que vous le souhaitez. Commencez par créer un seul type de client Adulte. Laissez tous les paramètres à leurs valeurs par défaut. Ensuite, si vous souhaitez par exemple accorder aux enfants de moins de 12 ans une réduction de 50 %, vous créez un nouveau type d’invité, que vous appelez Enfants de moins de 12 ans. Définissez le paramètre Ajouter variable ? Option - (Négatif) et réglez la variable sur 50. Cela signifie que lorsque des enfants sont ajoutés à une réservation, ils sont facturés à 50 % du coût de la chambre. " );
+

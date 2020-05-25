@@ -1,0 +1,66 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2 class="page-header">{PAGETITLE}</h2>
+<p class="lead">{_JOMRES_GUESTTYPES_INTRO}<p>
+<p>{_JOMRES_GUESTTYPES_INSTRUCTIONS}<p>
+<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm" class="form-horizontal" role="form">
+<div class="form-group">
+	<label class="col-md-2 control-label" for="type">{HTYPE}</label>
+	<div class="col-md-10">
+		<input type="text" name="type" value="{TYPE}" class="form-control" placeholder="{HTYPE}"/>
+		<p class="help-block">{HTYPE_TT_TEXT}</p>
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label" for="notes">{HNOTES}</label>
+	<div class="col-md-10">
+		<input type="text" name="notes" value="{NOTES}" class="form-control" placeholder="{HNOTES}"/>
+		<p class="help-block">{HNOTES_TT_TEXT}</p>
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label" for="maximum">{HMAXIMUM}</label>
+	<div class="col-md-10">
+		<input type="number" name="maximum" value="{MAXIMUM}" class="form-control" />
+		<p class="help-block">{HMAXIMUM_TT_TEXT}</p>
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label" for="typposnege">{HPOSNEG}</label>
+	<div class="col-md-10">
+		{POSNEG}
+		<p class="help-block">{HPOSNEG_TT_TEXT}</p>
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label" for="is_percentage">{HISPERCENTAGE}</label>
+	<div class="col-md-10">
+		{ISPERCENTAGE}
+		<p class="help-block">{HISPERCENTAGE_TT_TEXT}</p>
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label" for="variance">{HVARIANCE}</label>
+	<div class="col-md-10">
+		<input type="number" name="variance" value="{VARIANCE}" class="form-control" placeholder="00"/>
+		<p class="help-block">{HVARIANCE_T_TEXT}</p>
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-md-2 control-label" for="is_child">{H_JOMRES_GUESTTYPES_IS_CHILD}</label>
+	<div class="col-md-10">
+		{ISCHILD}
+		<p class="help-block">{HJOMRES_GUESTTYPES_IS_CHILD_T_TEXT}</p>
+	</div>
+</div>
+<div class="form-actions">
+	<div class="col-md-10 col-md-offset-2">
+		{JOMRESTOOLBAR}
+	</div>
+</div>
+<input type="hidden" name="typeid" value="{ID}"/>
+<input type="hidden" name="task" value="savecustomertype"/>
+<input type="hidden" name="no_html" value="1"/>
+{CSRF_TOKEN}
+</form>
+</patTemplate:tmpl>
