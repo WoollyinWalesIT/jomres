@@ -1,0 +1,346 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<style>
+input[type=number] {
+-moz-appearance: textfield;
+}
+</style>
+<script>
+function jomres_micromanage_rate_picker(input_type)
+	{
+	if (input_type == "mindaysinput")
+		picker_input = 'picker_mindays_value';
+	else
+		picker_input = 'picker_rate_value';
+	
+	from_value = jomresJquery('input[name=picker_from]').val();
+	to_value = jomresJquery('input[name=picker_to]').val();
+	new_rate = jomresJquery('#'+picker_input).val();
+
+	epoch_from = jomres_micromanage_picker_get_epoch(from_value);
+	epoch_to = jomres_micromanage_picker_get_epoch(to_value);
+	var i = epoch_from;
+	var r_colour = random_colour();
+	
+	while (i <= epoch_to)
+		{
+		jomresJquery("input[name='"+input_type+"["+i/1000+"]']").css("border","2px solid #"+r_colour);
+		jomresJquery("input[name='"+input_type+"["+i/1000+"]']").val(new_rate);
+		tomorrow = new Date( i.getTime() + 86400000 ); 
+		i = tomorrow;
+		}
+	}
+
+function jomres_micromanage_picker_get_epoch(jsdate)
+	{
+	dformat = "{DATE_FORMAT}";
+	var day=0
+	var mon=0
+	var year=0
+	if (dformat=="%d/%m/%Y"){
+		dateArray=jsdate.split("/")
+		day=dateArray[0]
+		mon=dateArray[1]
+		year=dateArray[2]
+		}
+	if (dformat=="%Y/%m/%d"){
+		dateArray=jsdate.split("/")
+		day=dateArray[2]
+		mon=dateArray[1]
+		year=dateArray[0]
+		}
+	if (dformat=="%m/%d/%Y"){
+		dateArray=jsdate.split("/")
+		day=dateArray[1]
+		mon=dateArray[0]
+		year=dateArray[2]
+		}
+	if (dformat=="%d-%m-%Y"){
+		dateArray=jsdate.split("-")
+		day=dateArray[0]
+		mon=dateArray[1]
+		year=dateArray[2]
+		}
+	if (dformat=="%Y-%m-%d"){
+		dateArray=jsdate.split("-")
+		day=dateArray[2]
+		mon=dateArray[1]
+		year=dateArray[0]
+		}
+	if (dformat=="%m-%d-%Y"){
+		dateArray=jsdate.split("-")
+		day=dateArray[1]
+		mon=dateArray[0]
+		year=dateArray[2]
+		}
+	return new Date(Date.UTC(year,mon-1,day,0,0,0)); 
+	}
+
+	// http://www.namepros.com/code/37251-javascript-random-hex-color.html
+	function random_colour()
+		{
+		colours = new Array(14)
+		colours[0]="0"
+		colours[1]="1"
+		colours[2]="2"
+		colours[3]="3"
+		colours[4]="4"
+		colours[5]="5"
+		colours[5]="6"
+		colours[6]="7"
+		colours[7]="8"
+		colours[8]="9"
+		colours[9]="a"
+		colours[10]="b"
+		colours[11]="c"
+		colours[12]="d"
+		colours[13]="e"
+		colours[14]="f"
+
+		digit = new Array(5)
+		colour=""
+		for (i=0;i<6;i++){
+			digit[i]=colours[Math.round(Math.random()*14)]
+			colour = colour+digit[i]
+			}
+		return colour;
+		}
+		
+function select_all(obj)
+	{ var text_val=eval(obj);
+	text_val.focus();
+	text_val.select();
+	}
+	
+jomresJquery(function() {
+    jomresJquery('#interval_price_selector').change(function(){
+        if (jomresJquery(this).val() == "2") {
+            jomresJquery('.tariff_multi_input').hide();
+			jomresJquery('.mindays_multi_input').show();
+			
+			jomresJquery('#manual_input_wrapper').removeClass("alert-success");
+			jomresJquery('#manual_input_wrapper').addClass("alert-error");
+        } else {
+            jomresJquery('.tariff_multi_input').show();
+			jomresJquery('.mindays_multi_input').hide();
+			jomresJquery('#manual_input_wrapper').removeClass("alert-error");
+			jomresJquery('#manual_input_wrapper').addClass("alert-success");
+        }
+    });
+});
+
+function set_mindays_by_dow(dow_class)
+	{
+	inputVal = jomresJquery("input[name='"+dow_class+"_mindays']").val();
+	jomresJquery('.'+dow_class+'_mindays').val(inputVal);
+	jomresJquery('.'+dow_class+'_mindays').css("border","1px solid red");
+	}
+
+function set_rates_by_dow(dow_class)
+	{
+	inputVal = jomresJquery("input[name='"+dow_class+"_rates']").val();
+	jomresJquery('.'+dow_class+'_rates').val(inputVal);
+	jomresJquery('.'+dow_class+'_rates').css("border","1px solid red");
+	}
+
+</script>
+<h2 class="page-header">{_JOMRES_COM_MR_LISTTARIFF_LINKTEXT}</h2>
+<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm" class="form-horizontal">
+<fieldset>
+	<div class="control-group">
+	<label class="control-label" for="tarifftypename">{HTARIFFTITLE}</label>
+		<div class="controls">
+			<input type="text" name="tarifftypename" value="{TARIFFTYPENAME}" class="input-large"/>
+		</div> 
+	</div>
+	<div class="control-group">
+	<label class="control-label" for="tarifftypedesc">{HTARIFFDESC}</label>
+		<div class="controls">
+			<input type="text" name="tarifftypedesc" value="{TARIFFTYPEDESC}" class="input-large"></input>
+		</div> 
+	</div>
+	<div class="control-group">
+	<label class="control-label" for="roomClass">{HROOMTYPEDROPDOWN}</label>
+		<div class="controls">
+			{ROOMTYPEDROPDOWN}
+		</div> 
+	</div>
+	<!--
+	<div class="control-group">
+	<label class="control-label" for="mindays">{HMINDAYS}</label>
+		<div class="controls">
+			{MINDAYS_DROPDOWN}
+			<patTemplate:comment><input class="inputbox" type="text" name="mindays" value="{MINDAYS}" class="input-mini"/></patTemplate:comment>
+		</div> 
+	</div>
+	-->
+	<div class="control-group">
+	<label class="control-label" for="maxdays">{HMAXDAYS}</label>
+		<div class="controls">
+			{MAXDAYS_DROPDOWN}
+			<patTemplate:comment><input class="inputbox" type="text" name="maxdays" value="{MAXDAYS}" class="input-mini"/></patTemplate:comment>
+		</div> 
+	</div>
+	<div class="control-group">
+	<label class="control-label" for="minpeople">{HMINPEOPLE}</label>
+		<div class="controls">
+			{MINPEOPLE_DROPDOWN}
+			<patTemplate:comment> <input class="inputbox" type="text" name="minpeople" value="{MINPEOPLE}" class="input-mini"/></patTemplate:comment>
+		</div> 
+	</div>
+	<div class="control-group">
+	<label class="control-label" for="maxpeople">{HMAXPEOPLE}</label>
+		<div class="controls">
+			{MAXPEOPLE_DROPDOWN}
+			<patTemplate:comment><input class="inputbox" type="text" name="maxpeople" value="{MAXPEOPLE}" class="input-mini"/></patTemplate:comment>
+		</div> 
+	</div>
+	<div class="control-group">
+	<label class="control-label" for="ignore_pppn">{HIGNOREPPPNDROPDOWN}</label>
+		<div class="controls">
+			{IGNOREPPPNDROPDOWN}
+		</div> 
+	</div>
+	<div class="control-group">
+	<label class="control-label" for="allow_we">{HALLOWWEEKENDSDROPDOWN}</label>
+		<div class="controls">
+			{ALLOWWEEKENDSDROPDOWN}
+		</div> 
+	</div>
+	<div class="control-group">
+	<label class="control-label" for="weekendonly">{HWEEKENDONLY}</label>
+		<div class="controls">
+			{WEEKENDONLY}
+		</div> 
+	</div>
+	<div class="control-group">
+	<label class="control-label" for="fixed_dayofweek">{HFIXED_DAYOFWEEK}</label>
+		<div class="controls">
+			{FIXED_ARRIVAL_DAYOFWEEK}
+		</div> 
+	</div>
+	<patTemplate:tmpl name="already_selected_rows" type="simpleCondition" requiredVars="hminrooms">
+	<div class="control-group">
+	<label class="control-label" for="minrooms_alreadyselected">{HMINROOMS}</label>
+		<div class="controls">
+			{MINROOMS_ALREADYSELECTED}
+			<p class="help-block">{MINROOMS_DESC}</p>
+		</div> 
+	</div> 
+	<div class="control-group">
+	<label class="control-label" for="maxrooms_alreadyselected">{HMAXROOMS}</label>
+		<div class="controls">
+			{MAXROOMS_ALREADYSELECTED}
+			<p class="help-block">{MAXROOMS_DESC}</p>
+		</div> 
+	</div> 
+	</patTemplate:tmpl>
+</fieldset>
+
+
+
+<h2 class="page-header">{_JOMRES_MICROMANAGE_PICKERS_SELECTOR}</h2>
+<select id="interval_price_selector" autocomplete="off" class="input-large">
+	<option value="1">{_JOMRES_MICROMANAGE_SET_PRICES}</option>
+    <option value="2">{_JOMRES_MICROMANAGE_PICKER_SETMINDAYS}</option>
+</select>
+<div class="alert alert-info">{_JOMRES_MICROMANAGE_PICKERS_SELECTOR_INFO}</div>
+<div class="clearfix"></div>
+
+
+<h3 class="page-header tariff_multi_input">{_JOMRES_MICROMANAGE_PICKER_TYPE_DOW}</h3>
+<div class="alert alert-info tariff_multi_input">{PICKER_DAYSOFWEEK}</div>
+
+<h3 class="page-header mindays_multi_input" style="display:none">{_JOMRES_MICROMANAGE_PICKER_BYDOW}</h3>
+<div class="alert alert-info mindays_multi_input" style="display:none">{_JOMRES_MICROMANAGE_PICKER_BYDOW_INFO}</div>
+
+<patTemplate:tmpl name="prefills" unusedvars="nbsp">
+	<div style="width:14.28%;" class="pull-left">
+		<p>{BUTTON}<br />{INPUT}</p>
+	</div>
+</patTemplate:tmpl>
+<div class="clearfix"></div>
+
+
+<h3 class="page-header tariff_multi_input">{_JOMRES_MICROMANAGE_PICKER_TYPE_INTERVAL_RATES}</h3>
+<h3 class="page-header mindays_multi_input" style="display:none">{_JOMRES_MICROMANAGE_PICKER_TYPE_INTERVAL_MINDAYS}</h3>
+
+<div class="alert alert-info tariff_multi_input">{_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_RATES}</div>
+<div class="alert alert-info mindays_multi_input" style="display:none">{_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_MINDAYS}</div>
+
+<fieldset>
+	<div class="control-group">
+	<label class="control-label" for="picker_from">{PICKER_DATERANGES_START}</label>
+		<div class="controls">
+			{PICKER_FROM}
+		</div> 
+	</div>
+	<div class="control-group">
+	<label class="control-label" for="picker_to">{PICKER_DATERANGES_END}</label>
+		<div class="controls">
+			{PICKER_TO}
+		</div> 
+	</div>
+	
+	<div class="control-group tariff_multi_input">
+	<label class="control-label" for="picker_from">{PICKER_DATERANGES_RATE}</label>
+		<div class="controls">
+			<input type="text" class="input-mini" id="picker_rate_value" value="55" />
+		</div> 
+	</div>
+	<div class="form-actions tariff_multi_input">
+		<input type="button" id="set_value" value="{PICKER_DATERANGES_SET}" onClick="jomres_micromanage_rate_picker('tariffinput')" class="btn btn-primary"/>
+	</div>
+	
+	<div class="control-group mindays_multi_input" style="display:none">
+	<label class="control-label" for="picker_from">{_JOMRES_MICROMANAGE_PICKER_SETMINDAYS}</label>
+		<div class="controls">
+			<input type="text" class="input-mini" id="picker_mindays_value" value="1" />
+		</div> 
+	</div>
+	<div class="form-actions mindays_multi_input" style="display:none">
+		<input type="button" id="set_value" value="Set minimum days" onClick="jomres_micromanage_rate_picker('mindaysinput')" class="btn btn-primary"/>
+	</div>
+</fieldset>
+
+
+<div class="tariff_multi_input"><h3 class="page-header">{_JOMRES_MICROMANAGE_PICKERDROPDOWN_EDITPRICES}</h3></div>
+<div class="mindays_multi_input" style="display:none"><h3 class="page-header">{_JOMRES_MICROMANAGE_PICKERDROPDOWN_EDITMINDAYS}</h3></div>
+
+<div id="manual_input_wrapper" class="alert alert-success">
+<patTemplate:tmpl name="daterows" unusedvars="strip">
+<h4 class="page-header">{YEAR} {MONTH}</h4>
+	<table width="100%" class="table table-striped table-condensed">
+		<thead>
+			<tr>
+				<th>{DAYS1}</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>{INPUTS1}</td>
+			</tr>
+		</tbody>
+	</table>
+	<table width="100%" class="table table-striped table-condensed">
+		<thead>
+			<tr>
+				<th>{DAYS2}</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>{INPUTS2}</td>
+			</tr>
+		</tbody>
+	</table>
+</patTemplate:tmpl>
+</div>
+
+<div class="form-actions">
+	{JOMRESTOOLBAR}
+</div>
+<input type="hidden" name="tarifftypeid" value="{TARIFFTYPEID}" />
+<input type="hidden" name="task" value="save_tariff_micromanage" />
+{CSRF_TOKEN}
+</form>
+</patTemplate:tmpl>
