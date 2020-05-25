@@ -419,8 +419,11 @@ class j01070show_property_schema
 		}
 		
 		$tmpl->addRows('slideshow_images', $slideshow_images);
-		
-		$tmpl->addRows('room_rows', $room_rows);
+
+		if (!empty($room_rows)) {
+			$tmpl->addRows('room_rows', $room_rows);
+		}
+
 		if (!empty($tariff_deets)) {
 			$tmpl->addRows('tariff_deets', $tariff_deets);
 		}
