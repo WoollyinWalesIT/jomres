@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.4
+ * @version Jomres 9.21.5
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -396,7 +396,7 @@ jr_define('_JOMRES_COM_A_CANCEL', 'إلغاء');
 jr_define('_JOMRES_FRONT_BLACKBOOKING_DESC', 'حدد التواريخ التي تريد تطبيق عبر السوداء. عند تحديد مواعيد مناسبة، انقر فوق "تطبيق" الزر لإعادة تحقيق توافر. <br/> 
 <br/> 
 اختيار الوحدات التي ترغب في اتخاذ خارج الخدمة. <BR> إذا وحدة لايوجد علامة الاختيار ضدها، فإنه لا يتم تضمينها في الحجز السوداء حتى يتم الانتهاء أي حجوزات المعلقة / الملغاة.<br/> ');
-jr_define('_JOMRES_JR_NOTLOGGEDIN', '<center><b>لقد تم تسجيل خروجك عن عدم النشاط </ B> الرجاء تسجيل الدخول وإعادة المحاولة.');
+jr_define('_JOMRES_JR_NOTLOGGEDIN', '<center><b>لقد تم تسجيل خروجك عن عدم النشاط </B> الرجاء تسجيل الدخول وإعادة المحاولة.');
 jr_define('_JOMRES_JR_BLACKBOOKING_REASON', 'السبب');
 jr_define('_JOMRES_COM_A_GATEWAY_USEGATEWAYS', 'إستخدام طرق الدفع او عبارات الدفع؟');
 jr_define('_JOMRES_COM_A_GATEWAY_BOOKING_CHOOSE', 'فضلا اختر طريق الدفع');
@@ -908,13 +908,13 @@ jr_define('_JRPORTAL_SMS_CLICKATELL_INSTRUCTIONS', "
 من اجل استخدام العبارة Clickatell كنت في حاجة الى حساب Clickatell واحد على الأقل اتصال مسجلة (API الفرعي المنتج المثال) بين طلبك وبوابتنا. كل اتصال
 ومن المعروف طريقة كمنتج فرعي. هيريس كيف: <BR/>
 <BR/>
-<B> الخطوة 1 - التسجيل للحصول على حساب Clickatell </ B> <BR/>
+<B> الخطوة 1 - التسجيل للحصول على حساب Clickatell </B> <BR/>
 إذا لم يكن لديك بالفعل حساب Clickatell، تحتاج للتسجيل في واحد كما في أدناه. إلا المضي قدما إلى الخطوة 2. <BR/>
 * الذهاب إلى http://www.clickatell.com/products/sms_gateway.php، واختيار المناسب subproduct API (طريقة الاتصال) التي ترغب في استخدامها (Clickatell الوسطى (API)) <br/> إذا
 * اضغط على الوصلة الإلكترونية التسجيل. <BR/>
 * املأ استمارة التسجيل. <BR/>
 وبعد تقديم النموذج بنجاح تلقائيا يتم تسجيل الدخول إلى حسابك الجديد واقتيد إلى صفحة حيث يمكنك إضافة اتصال API الذي تم اختياره. <BR/>
-<B> الخطوة 2 - إضافة اتصال API مسجلة (شبه المنتج) </ B> <BR/>
+<b> الخطوة 2 - إضافة اتصال API مسجلة (شبه المنتج) </b> </br>
 إذا كنت لا بتسجيل الدخول بالفعل إلى حسابك، ثم يجب عليك أن تفعل ذلك في http://www.clickatell.com/login.php <BR/>
 * اختر \ إدارة منتجاتي \ من القائمة العلوية. <BR/>
 * حدد نوع الاتصال API التي ترغب في استخدامها (HTTP API) من القائمة المنسدلة (إضافة اتصال). <BR/>
@@ -1306,7 +1306,7 @@ jr_define('_JOMRES_ACCESS_CONTROL_DESC', 'هذه الميزة تسمح لك ال
 jr_define('_JOMRES_ACCESS_CONTROL_LEVELS_RECEPTIONIST', 'موظف استقبال');
 jr_define('_JOMRES_ACCESS_CONTROL_CONFIG_TITLE', 'تحكم الوصول بشكل كامل');
 jr_define('_JOMRES_ACCESS_CONTROL_CONFIG_DESC', 'تعيين هذا الخيار إلى نعم لتمكين ميزة التحكم في الوصول الكامل، ثم زيارة خيار التحكم بالوصول تحت صيانة النظام لتكوين عناصر التحكم في الوصول.');
-jr_define('_JOMRES_ACCESS_CONTROL_DESC_ADDENDUM', "ملاحظة، ولكن هذا لا إعدادات هذه البرامج النصية السيطرة الكامنة التي اتصالهم، لذلك على سبيل المثال إذا قمت بتعيين <I> 00009user_option_03_search </ I> ل'المدير' على المستخدم الذي يعرف Jomres يمكن استدعاء من قبل لا تزال j06000search.class.php دخول http://www.domain.com/index.php؟option=com_jomres&task=search في شريط عنوان المتصفح الخاصة بهم. هذا هو المقصود، لأن هذا التحكم بالوصول القائمة تسيطر ببساطة ما يمكن أن ينظر إليه في القائمة الرئيسية Jomres. إذا كنت في حاجة تشديد الضوابط ثم تعيين تكوين الموقع -> التحكم في الوصول الكامل إلى الخيار نعم وإعادة النظر في خيار التحكم في الوصول القائمة.");
+jr_define('_JOMRES_ACCESS_CONTROL_DESC_ADDENDUM', "ملاحظة، ولكن هذا لا إعدادات هذه البرامج النصية السيطرة الكامنة التي اتصالهم، لذلك على سبيل المثال إذا قمت بتعيين <I> 00009user_option_03_search </I> ل'المدير' على المستخدم الذي يعرف Jomres يمكن استدعاء من قبل لا تزال j06000search.class.php دخول http://www.domain.com/index.php؟option=com_jomres&task=search في شريط عنوان المتصفح الخاصة بهم. هذا هو المقصود، لأن هذا التحكم بالوصول القائمة تسيطر ببساطة ما يمكن أن ينظر إليه في القائمة الرئيسية Jomres. إذا كنت في حاجة تشديد الضوابط ثم تعيين تكوين الموقع -> التحكم في الوصول الكامل إلى الخيار نعم وإعادة النظر في خيار التحكم في الوصول القائمة.");
 jr_define('_JOMRES_ACCESS_CONTROL_TITLE_FULL', 'تحكم الوصول بشكل كامل');
 jr_define('_JOMRES_ACCESS_CONTROL_DESC_FULL', "<strong>This feature is for advanced users only. If you do not know what it is for, and don't have a specific reason to use it, please return to Site Configuration and set the Full Access Control option to No.</strong><br/>
 	This feature allows you to control who can access which minicomponents (with some exceptions that are hard coded into the system). If the access level next to a script's name is set to Default, then with the Full Access Control option set to Yes <strong>anybody</strong> can access scripts that they should not be able to access therefore if you intend to use this feature you MUST set the access control level for <strong>every</strong> Jomres minicomponent listed here. If you do not know what these minicomponents do, then we strongly advise you to not use this feature at all.<br/>
@@ -1367,7 +1367,7 @@ jr_define('COMMON_HOME', 'الرئيسية');
 jr_define('COMMON_NEW', 'جديد');
 jr_define('COMMON_SEND', 'إرسال');
 jr_define('RECAPTCHA_TITLE', 'reCaptcha');
-jr_define('RECAPTCHA_INFO', "يتم استخدام كلمة التحقق للتأكد من أن العميل باستخدام نماذج الويب هو إنسان، ويستخدم لمنع مديري العقارات من أن \ المتطفلة \ من الروبوتات على شبكة الانترنت. لاستخدام الاتصال بنا في تشكيل Jomres سوف تحتاج للتسجيل في <a href=http://www.google.com/recaptcha\ target=\_blank\"> في اختبار reCAPTCHA جوجل </ A> الصفحة الرئيسية ووضع نطاقك لتلقي مفاتيح العامة والخاصة. عند استلام تلك المفاتيح، يرجى إدخالها أدناه. الخدمة reCapcha هي خدمة مجانية توفرها Google.");
+jr_define('RECAPTCHA_INFO', "يتم استخدام كلمة التحقق للتأكد من أن العميل باستخدام نماذج الويب هو إنسان، ويستخدم لمنع مديري العقارات من أن \ المتطفلة \ من الروبوتات على شبكة الانترنت. لاستخدام الاتصال بنا في تشكيل Jomres سوف تحتاج للتسجيل في <a href=http://www.google.com/recaptcha\ target=\_blank\"> في اختبار reCAPTCHA جوجل </A> الصفحة الرئيسية ووضع نطاقك لتلقي مفاتيح العامة والخاصة. عند استلام تلك المفاتيح، يرجى إدخالها أدناه. الخدمة reCapcha هي خدمة مجانية توفرها Google.");
 jr_define('RECAPTCHA_PUBLIC_KEY', 'المفتاح العام');
 jr_define('RECAPTCHA_PRIVATE_KEY', 'المفتاح الخاص');
 jr_define('_JOMRES_BOOKINGFORM_LOCK_TITLE', 'مهلة ملف القفل');
@@ -2563,3 +2563,61 @@ jr_define('CMF_CONFIG_KEY_DESC', 'The Channel Management Framework license key. 
 
 jr_define('_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT_UNAPPROVED', 'Your property has not been approved');
 jr_define('_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT_UNAPPROVED', "Your property as been unapproved. If you think that this was done in error please contact us. ");
+
+
+jr_define('_JOMRES_GUESTTYPES_IS_CHILD',"Is this a Child guest type?");
+jr_define('_JOMRES_GUESTTYPES_IS_CHILD_DESC',"Set this to Yes if this guest type would be classed as a Child guest type.");
+
+jr_define('_JOMRES_GUESTTYPES_INTRO',"If you want to charge per person per night then you will need to create some guest types.");
+jr_define('_JOMRES_GUESTTYPES_INSTRUCTIONS',"You can create as many guest types as you need, try starting out by creating just one guest type called 'Adult'. Leave all of the settings at their default values. Next, if for example you want to give children under 12 a discount of 50% you would create a new guest type, and call it 'Children under 12'. Set the 'Add variance?' option to - (negative) and set the 'Variance' to 50. This means when children are added to a booking they're charged 50% of the room cost of the room. " );
+
+jr_define('_JOMRES_MICROMANAGE_PICKERDROPDOWN_EDITPRICES',"Set prices manually");
+jr_define('_JOMRES_MICROMANAGE_PICKERDROPDOWN_EDITMINDAYS',"Set minimum nights manually");
+jr_define('_JOMRES_MICROMANAGE_PICKER_SETMINDAYS',"Set minimum nights");
+
+jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_DOW',"Set <em>price per night</em> by day of week");
+jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_INTERVAL_RATES',"Set <em>price per night</em> by date range");
+jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_INTERVAL_MINDAYS',"Set <em>minimum nights</em> by date range");
+
+jr_define('_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_RATES',"The date pickers and the rate input allow you to set one price for a given date range. Choose a start and end date, input a price, and click the Set price per night button.");
+jr_define('_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_MINDAYS',"The date pickers and the minimum nights input allow you to set one value for the minimum nights for a given date range. Choose a start and end date, input a number for the minimum nights, and click 'Set minimum nights'.");
+
+jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR_INFO',"Use this dropdown to change between setting prices for individual dates, to setting minimum nights for individual dates. You can use the <em>by day of week</em> picker, the <em>by date range</em> picker or set the prices/minimum nights by manually editing the dates.");
+jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR_INFO_SMALL_VIEWPORT',"Use this dropdown to change between setting prices for individual dates, to setting minimum nights for individual dates. You can use the <em>by date range</em> picker or set the prices/minimum nights by manually editing the dates.");
+jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR',"Set prices or minimum nights");
+
+jr_define('_JOMRES_MICROMANAGE_PICKER_BYDOW',"Set <em>minimum nights</em> by day of week");
+jr_define('_JOMRES_MICROMANAGE_PICKER_BYDOW_INFO',"The day of week fields allow you to set a minimum number of nights for a given day of week, once you click the day of week button all days of the week will be set to that min nights setting.");
+
+
+jr_define('_JOMRES_MICROMANAGE_MANUALLY',"Manually set prices/minimum nights");
+jr_define('_JOMRES_MICROMANAGE_SET_PRICES',"Set prices");
+jr_define('_JOMRES_MICROMANAGE_SET_MINDAYS',"Set minimum nights");
+
+jr_define('_JOMRES_MICROMANAGE_PRICE',"Per night");
+jr_define('_JOMRES_MICROMANAGE_MINDAYS',"Min nights");
+jr_define('_JOMRES_MICROMANAGE_MAXDAYS',"Max nights");
+
+jr_define('_JOMRES_MICROMANAGE_INTRO',"Here you can create you tariffs, which are associated with the room types that you have in your property. ");
+
+jr_define('_JOMRES_MICROMANAGE_BASIC_SETTINGS',"Most commonly used options");
+
+jr_define('_JOMRES_MICROMANAGE_MODAL_BUTTON',"Instructions");
+
+jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS',"If you want to add different prices for different numbers of guests then <em>you can create more than several tariffs for each room type</em> and have different min/max guests values in those tariffs.");
+
+jr_define('_JOMRES_MICROMANAGE_INFO',"Give the tariff a name, define the maximum number of nights, and the minimum and maximum number of guests that are required in the booking form before the tariff is offered.<br/><br/> Use the date picker panel to add prices and minimum nights settings to a range of dates, or edit the inputs directly. If you don't want the tariff to be offered at all on certain dates, leave the price set to 0 ( zero ) on those dates. <br/><br/> You can have different minimum nights on different dates, so if you want longer bookings during festival/conference weeks then you can set the min nights to be higher in just those periods.<br/><br/>If you charge Per Person Per Pight (PPPN) you can enable that setting in Settings > Property Configuration > Tariffs and Currency tab, then create the guest types that you require in Settings > Guest Types.");
+
+jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS',"Extra options");
+
+jr_define('_JOMRES_MICROMANAGE_EXTRA_OPTIONS',"These are additional options that are not so commonly used, but nevertheless available to you. <br/><strong>Ignore PPPN</strong> Means Ignore Per Person Per Night. You can have several different tariffs for the same room type, for example one of which charges per person per night, and one that does not.<br/><strong>Allow weekends</strong> The Allow Weekends option gives you the option to make a tariff that's only available during weekdays, for example if you want a special tariff for business travellers. In that case you would set the option to No and the min nights to 1 and the max nights, at most, 5.  <br/><strong>Weekends only</strong>  The Weekends only option is the converse of the Allow Weekends option. What you consider to be weekend days can be configured in your Property Configuration settings. This gives you the ability to define a weekend only rate that you might want to offer for special events.<br/><strong>Check-in Day of week</strong> This option gives you the ability to force checkin to only be on certain days of the week and is best used in conjunction with the Property Configuration > Bookings tab > Fixed periods options. The majority of users will want to leave this option set to All.<br/>The final two options, <strong>Min rooms already selected</strong> and <strong>Max rooms already selected</strong> are very specialised and useful to properties with extremely complicated tariffs. <em>Unless you have a specific need, you should leave these options alone.</em> Use them if you only want this tariff to be offered when the guest has already selected N number of rooms in the booking form, so for example you could have one basic tariff where those options are left at the default, and a second tariff where the min rooms already selected option is set to 1, then this second tariff will be offered in the booking form once a room has been selected.");
+
+jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS_LIST_PAGE',"You can create multiple tariffs for the same room type, so you can create one tariff for min/max days of 1 - 7 and a second tariff where the min days is 7, the max days 14, and so on. This allows you create pricing schemes as simple or as complicated as you need. It also allows you to create multiple tariffs with different conditions, so you can have a second set of tariffs where the price is lower for Bed & Breakfast, and another set of more expensive tariffs for Bed, Breakfast and Evening Meal.");
+
+jr_define('_JOMRES_MICROMANAGE_USE_SELECTED_DATES',"Set date picker days only");
+jr_define( '_JOMRES_PROPERTY_HCATEGORIES', 'Property Categories' );
+jr_define( '_JOMRES_PROPERTY_HCATEGORIES_HEDIT', 'Edit Property Category' );
+jr_define('_JOMRES_STOP_READTHISFIRST1',"Stop!");
+jr_define('_JOMRES_STOP_READTHISFIRST2',"Thanks for installing Jomres");
+jr_define('_JOMRES_STOP_READTHISFIRST3',"Property management is performed in public facing pages, not the administrator area.");
+jr_define('_JOMRES_STOP_READTHISFIRST4',"If you are not familiar with Jomres please visit the Help section > Getting Started page.");

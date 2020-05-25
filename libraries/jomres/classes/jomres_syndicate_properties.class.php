@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.4
+ * @version Jomres 9.21.5
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -117,7 +117,7 @@ class jomres_syndicate_properties
 			
 			$distances = array();
 			if ( $this->base_property_id > 0 ) {
-				$query = "SELECT distance , syndication_id FROM #__jomres_syndication_distances WHERE property_id = ".(int)$this->base_property_id ;
+				$query = "SELECT distance , syndication_id FROM #__jomres_syndication_distances WHERE property_id = ".(int)$this->base_property_id. " ORDER BY distance ASC LIMIT 200" ;
 				$distances_arr = doSelectSql($query);
 				foreach ( $distances_arr as $d) {
 					$distances[$d->syndication_id] = $d->distance;
