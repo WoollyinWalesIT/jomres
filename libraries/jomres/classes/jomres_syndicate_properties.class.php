@@ -117,7 +117,7 @@ class jomres_syndicate_properties
 			
 			$distances = array();
 			if ( $this->base_property_id > 0 ) {
-				$query = "SELECT distance , syndication_id FROM #__jomres_syndication_distances WHERE property_id = ".(int)$this->base_property_id ;
+				$query = "SELECT distance , syndication_id FROM #__jomres_syndication_distances WHERE property_id = ".(int)$this->base_property_id. " ORDER BY distance ASC LIMIT 200" ;
 				$distances_arr = doSelectSql($query);
 				foreach ( $distances_arr as $d) {
 					$distances[$d->syndication_id] = $d->distance;
