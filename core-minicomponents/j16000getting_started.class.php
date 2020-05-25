@@ -41,7 +41,7 @@ class j16000getting_started
 
 			return;
 		}
-		admins_first_run(true);
+		getting_started(true);
 	}
 
 

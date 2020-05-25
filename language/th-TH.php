@@ -2583,3 +2583,7 @@ jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS_LIST_PAGE',"You can create multi
 jr_define('_JOMRES_MICROMANAGE_USE_SELECTED_DATES',"Set date picker days only");
 jr_define( '_JOMRES_PROPERTY_HCATEGORIES', 'Property Categories' );
 jr_define( '_JOMRES_PROPERTY_HCATEGORIES_HEDIT', 'Edit Property Category' );
+jr_define('_JOMRES_STOP_READTHISFIRST1',"Stop!");
+jr_define('_JOMRES_STOP_READTHISFIRST2',"Thanks for installing Jomres");
+jr_define('_JOMRES_STOP_READTHISFIRST3',"Property management is performed in public facing pages, not the administrator area.");
+jr_define('_JOMRES_STOP_READTHISFIRST4',"If you are not familiar with Jomres please visit the Help section > Getting Started page.");

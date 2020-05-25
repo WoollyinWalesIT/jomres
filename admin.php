@@ -153,14 +153,20 @@ try {
 		$tmpl->displayParsedTemplate();
 	}
 
-	//admins_first_run();
+	$is_first_run = false;
+	if (!AJAXCALL) {
+		$is_first_run = admins_first_run();
+	}
 
 	//task
-	if ($MiniComponents->eventSpecificlyExistsCheck('16000', get_showtime('task'))) {
-		$MiniComponents->specificEvent('16000', get_showtime('task')); // task exists, execute it
-	} else {
-		$MiniComponents->triggerEvent('10001'); //task doesn`t exist, go to cpanel frontpage
+	if (!$is_first_run) {
+		if ($MiniComponents->eventSpecificlyExistsCheck('16000', get_showtime('task'))) {
+			$MiniComponents->specificEvent('16000', get_showtime('task')); // task exists, execute it
+		} else {
+			$MiniComponents->triggerEvent('10001'); //task doesn`t exist, go to cpanel frontpage
+		}
 	}
+
 
 	//output bottom area
 	if (!AJAXCALL) {
