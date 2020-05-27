@@ -58,6 +58,7 @@ if ( is_admin() && ! defined( '_JOMRES_INITCHECK_ADMIN' ) ) {
 	define( '_JOMRES_INITCHECK_ADMIN', 1 );
 }
 
+
 /**
  * Jomres root directory.
  */
@@ -65,7 +66,34 @@ if ( ! defined( 'JOMRES_ROOT_DIRECTORY' ) ) {
 	if ( file_exists( ABSPATH . 'jomres_root.php' ) ) {
 		require_once ABSPATH . 'jomres_root.php';
 	} else {
-		define( 'JOMRES_ROOT_DIRECTORY', 'jomres' );
+		if ( file_exists(JOMRES_WP_PLUGIN_PATH.DIRECTORY_SEPARATOR.'jomres'.DIRECTORY_SEPARATOR.'jomres.php') ) {
+			define_jomres_sub_dir_in_plugins_dir_as_root();
+		} else {
+			if ( !is_dir(JOMRES_WP_PLUGIN_PATH . DIRECTORY_SEPARATOR . 'jomres' . DIRECTORY_SEPARATOR) ) { // Let's see if we can install Jomres in the jomres subdir of wp-content, instead of it's traditional location off root
+				if (mkdir(JOMRES_WP_PLUGIN_PATH . DIRECTORY_SEPARATOR . 'jomres' . DIRECTORY_SEPARATOR)) {
+					define_jomres_sub_dir_in_plugins_dir_as_root();
+					run_jomres_installer();
+				}
+			} else { // fallback for updated installations
+				define( 'JOMRES_ROOT_DIRECTORY', 'jomres' );
+			}
+		}
+	}
+}
+
+/**
+ * Set path definitions.
+ *
+ *
+ * @since	9.22.0
+ */
+if (!function_exists('define_jomres_sub_dir_in_plugins_dir_as_root')) {
+	function define_jomres_sub_dir_in_plugins_dir_as_root()
+	{
+		$jr_root = str_replace( ABSPATH , '' ,  JOMRES_WP_PLUGIN_PATH );
+		define( 'JOMRES_ROOT_DIRECTORY', $jr_root.DIRECTORY_SEPARATOR.'jomres' );
+		define('JOMRESPATH_BASE', JOMRES_WP_PLUGIN_PATH.'jomres'.DIRECTORY_SEPARATOR);
+		define('JRDS', DIRECTORY_SEPARATOR );
 	}
 }
 
