@@ -84,7 +84,9 @@ class encryption_key
 }
 ';
 
-		file_put_contents($this->key_location."encryption_key.class.php" , $str );
+		if (!file_put_contents($this->key_location."encryption_key.class.php" , $str )) {
+			die ("Error, unable to save encryption key file, is ".$this->key_location." writable by the web server? If it is, please ens");
+		}
 	}
 		
 	/**
