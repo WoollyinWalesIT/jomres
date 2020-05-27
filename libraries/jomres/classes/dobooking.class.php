@@ -159,6 +159,9 @@ class dobooking
 			$this->dateRangeString = $bookingDeets[ 'dateRangeString' ];
 			$this->guests_uid = $bookingDeets[ 'guests_uid' ];
 			$this->property_uid = (int) $bookingDeets[ 'property_uid' ];
+			if ($this->property_uid==0 && isset($_GET['property_uid_check'])) {
+				$this->property_uid = (int)$_GET['property_uid_check'];
+			}
 			$this->rates_uid = $bookingDeets[ 'rates_uid' ];
 			$this->resource = $bookingDeets[ 'resource' ];
 			$this->single_person_suppliment = $bookingDeets[ 'single_person_suppliment' ];
