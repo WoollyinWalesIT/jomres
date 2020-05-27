@@ -420,13 +420,13 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 	define('JOMRES_ROOT_DIRECTORY' , '".$dir."');
 }
 ";
-		if (!file_exists(dirname($path) . '/jomres_root.php')) {
+		/*if (!file_exists(dirname($path) . '/jomres_root.php')) {
 			@file_put_contents(dirname($path) . '/jomres_root.php', $file_contents);
 		}
 
 		if (file_exists(dirname($path) . '/jomres_root.php')) {
 			require_once(dirname($path) . '/jomres_root.php');
-		}
+		}*/
 		
 		if (!defined('JOMRES_ROOT_DIRECTORY')) {
 			define('JOMRES_ROOT_DIRECTORY', 'jomres');
