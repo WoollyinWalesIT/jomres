@@ -19,7 +19,7 @@ if (this_cms_is_joomla()) {
     $result = true;
     if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ADMINISTRATORDIRECTORY.JRDS.'components'.JRDS.'com_jomres'.JRDS.'admin.jomres.php')) {
         if (!unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ADMINISTRATORDIRECTORY.JRDS.'components'.JRDS.'com_jomres'.JRDS.'admin.jomres.php')) {
-			$this->setMessage('Error, tried to delete '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ADMINISTRATORDIRECTORY.JRDS.'components'.JRDS.'com_jomres'.JRDS.'admin.jomres.php'.'. However, file permissions prevent this from happening, so you MUST delete this file before you can continue with the upgrade. This file is not used by Joomla 3.x+', 'danger');
+			throw new Exception('Error, tried to delete '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ADMINISTRATORDIRECTORY.JRDS.'components'.JRDS.'com_jomres'.JRDS.'admin.jomres.php'.'. However, file permissions prevent this from happening, so you MUST delete this file before you can continue with the upgrade. This file is not used by Joomla 3.x+');
 		}
     }
 }
@@ -53,8 +53,7 @@ try {
 	createExtraIndexs();
 } 
 catch (Exception $e) {
-	$this->setMessage('Error, something went wrong when running the legacy installer, Jomres may not be installed properly.', 'danger');
-	$this->setMessage($e->getMessage());
+	echo 'Error, something went wrong when running the legacy installer, Jomres may not be installed properly.';
 }
 
 /**
@@ -1610,7 +1609,7 @@ function createPfeaturesCategoriesTable()
 			";
 
 			if (!doInsertSql($query)) {
-				$this->setMessage('Error, unable to insert sample data in the #__jomres_hotel_features_categories table', 'danger');
+				throw new Exception('Error, unable to insert sample data in the #__jomres_hotel_features_categories table');
 			}
 
     }
