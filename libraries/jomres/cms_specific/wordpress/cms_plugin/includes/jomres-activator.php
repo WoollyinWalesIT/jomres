@@ -28,7 +28,17 @@ class Jomres_Activator {
 	 * @since	9.9.19
 	 */
 	public static function activate() {
-		
+		if ( version_compare( PHP_VERSION, '7.1', '<' ) )
+		{
+			exit( sprintf( 'Jomres requires PHP 7.1 or higher. You’re still on %s.', PHP_VERSION ) );
+		}
+
+		if ( !is_dir(ABSPATH.'jomres') ) {
+			if (!mkdir(ABSPATH.'jomres' )) {
+				exit( sprintf( 'Unable to create the directory '.ABSPATH.'jomres'.' automatically. <br/> 
+					Please FTP into your site and create it, then activate the plugin.') );
+			}
+		}
 		self::maybe_install_or_update_jomres();
 		self::maybe_add_default_jomres_page();
 	
