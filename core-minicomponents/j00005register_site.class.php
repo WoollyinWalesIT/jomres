@@ -56,7 +56,15 @@ class j00005register_site
 	
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig = $siteConfig->get();
-	
+
+	if (!isset($jrConfig['useSyndication'])) {
+		$jrConfig['useSyndication'] = 0;
+	}
+
+	if ( $jrConfig['useSyndication'] == 0) {
+		return;
+	}
+
 	if (!isset($jrConfig['appServerRegister'])) {
 		$tries = 0;
 	} else {

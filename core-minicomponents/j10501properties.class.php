@@ -54,7 +54,12 @@ class j10501properties
 		$configurationPanel->setmiddle($lists[ 'is_single_property_installation' ]);
 		$configurationPanel->setright(jr_gettext('_JOMRES_SINGLEPROPERTYINSTALLATION_DESC', '_JOMRES_SINGLEPROPERTYINSTALLATION_DESC', false));
 		$configurationPanel->insertSetting();
-		
+
+		$configurationPanel->setleft(jr_gettext('_JOMRES_CONFIG_SYNDICATION_TITLE', '_JOMRES_CONFIG_SYNDICATION_TITLE', false));
+		$configurationPanel->setmiddle($lists[ 'useSyndication' ]);
+		$configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_SYNDICATION_DESC', '_JOMRES_CONFIG_SYNDICATION_DESC', false));
+		$configurationPanel->insertSetting();
+
 		$configurationPanel->setleft(jr_gettext('_JOMRES_COM_SELFREGISTRATION', '_JOMRES_COM_SELFREGISTRATION', false));
 		$configurationPanel->setmiddle($lists[ 'selfRegistrationAllowed' ]);
 		$configurationPanel->setright(jr_gettext('_JOMRES_COM_SELFREGISTRATION_DESC', '_JOMRES_COM_SELFREGISTRATION_DESC', false));

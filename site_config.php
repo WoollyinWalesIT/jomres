@@ -214,4 +214,5 @@ $jrConfig = array(
   'cmf_license_key' => '',
   'automatic_unpublish_incomplete_properties' => '0',
   'force_reapproval_on_automatic_unpublish' => '0',
+  'useSyndication'  => '0',
 );
