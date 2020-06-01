@@ -224,7 +224,7 @@ class jomres_syndicate_properties
 		
 		$rad = M_PI / 180;
 		//Calculate distance from latitude and longitude
-		$theta = $longitudeFrom - $longitudeTo;
+		$theta = (float)$longitudeFrom - (float)$longitudeTo;
 		$dist = sin($latitudeFrom * $rad) 
 			* sin($latitudeTo * $rad) +  cos($latitudeFrom * $rad)
 			* cos($latitudeTo * $rad) * cos($theta * $rad);
