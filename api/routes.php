@@ -51,7 +51,13 @@ if (substr($request->url,0,6) == '/core/' ) {
 			$potential_paths_arr[] = $potential_paths .= $potential_path."_";
 		}
 	}
-	
+
+	$potential_paths = JOMRES_API_JOMRES_ROOT.DIRECTORY_SEPARATOR.'remote_plugins'.DIRECTORY_SEPARATOR.'api_feature_'.$route.DIRECTORY_SEPARATOR.$request->method.DIRECTORY_SEPARATOR;
+	foreach ($bang as $potential_path) {
+		if (!trim($potential_path) == '' ) {
+			$potential_paths_arr[] = $potential_paths .= $potential_path."_";
+		}
+	}
 	$reversed = array_reverse($potential_paths_arr);
 	$found = false;
 	foreach ($reversed as $path ) {
