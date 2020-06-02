@@ -1,10 +1,24 @@
 <h3>Jomres 9.22.0 25/05/2020</h3>
 
 <span class="label label-success">Feature</span> Added Guest types and Tariff editing modes to Jomres Core.
+<span class="label label-success">Feature</span> Syndication is now off by default.
 
 <span class="label label-warning">Change</span> Tweaked syndicate query to reduce memory load when searching for distances
 <span class="label label-warning">Change</span> Added a greeting modal that encourages new users to visit the getting started page.
 <span class="label label-warning">Change</span> Updated the Jomres WP activator to detect if the WP root is writable. If not, then fail with a legible notice.
+<span class="label label-warning">Change</span> dobooking modified to fallback to a previous property uid if the main property uid isn't set for some reason.
+<span class="label label-warning">Change</span> Added output that could tell us if we can't write the encryption file. Edge case, but possible.
+<span class="label label-warning">Change</span> Removed code that creates the jomres_root.php script.
+<span class="label label-warning">Change</span> Tweaked legacy installer as parts for v old installations were incorrect.
+<span class="label label-warning">Change</span> Updated some old BS2 templates to use spans correctly.
+
+<span class="label label-important label-danger">Fix</span> Cpanel syndication stats moved to bottom of page.
+<span class="label label-important label-danger">Fix</span> Remote plugins dir added for api path detection.
+<span class="label label-important label-danger">Fix</span> Commented out some duplication of effort
+<span class="label label-important label-danger">Fix</span> Fixed a notice that schema can display if rooms not created yet.
+<span class="label label-important label-danger">Fix</span> Tweaked syndicate query to reduce memory load when searching for distances
+<span class="label label-important label-danger">Fix</span> Missing definitions added to language files
+<span class="label label-important label-danger">Fix</span> Fixed a warning when passing lat & long to a method.
 
 <h3>Jomres 9.21.5 23/05/2020</h3>
 
