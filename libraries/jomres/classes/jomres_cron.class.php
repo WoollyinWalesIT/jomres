@@ -230,10 +230,10 @@ class jomres_cron
 					$unlockedJobs[] = $job[ 'id' ];
 				}
 
-				$this->debug[ ] = 'Found job name '.$job[ 'job_name' ];
-				if ($jobDue) {
-					$this->debug[ ] = '<b>This job is due now.</b>';
-				}
+				//$this->debug[ ] = 'Found job name '.$job[ 'job_name' ];
+				//if ($jobDue) {
+				//	$this->debug[ ] = '<b>This job is due now.</b>';
+				//}
 			}
 			if (!empty($unlockedJobs)) {
 				$this->lockJobs($unlockedJobs);
