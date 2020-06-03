@@ -54,9 +54,9 @@ class jomres_deferred_tasks
 	public function handle_message( $payload_source ) {
 		if ( is_file($this->queued_tasks_dir.$payload_source) ) {
 			$file_contents = file_get_contents($this->queued_tasks_dir.$payload_source);
-			// logging::log_message("Deferred tasks handle message contents ".$file_contents , 'Core', 'DEBUG'  );
+			// logging::log_message("Deferred tasks handle message contents ".$file_contents , 'DeferredTasks', 'DEBUG'  );
 			$result = $this->process_trigger($file_contents);
-			// logging::log_message("Deferred tasks handle message prcess result ".serialize($result) , 'Core', 'DEBUG'  );
+			// logging::log_message("Deferred tasks handle message prcess result ".serialize($result) , 'DeferredTasks', 'DEBUG'  );
 			$siteConfig		= jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 			$jrConfig		  = $siteConfig->get();
 			if ($jrConfig['development_production'] != 'development') {
@@ -86,11 +86,11 @@ class jomres_deferred_tasks
 
 		if (isset($message_contents->minicomponent) && $message_contents->minicomponent != '' ) {
 			if ( $MiniComponents->eventSpecificlyExistsCheck( $message_contents->trigger_number, $message_contents->minicomponent  ) ) {
-				logging::log_message("Starting call to minicomponent ".$message_contents->trigger_number.$message_contents->minicomponent , 'Core', 'DEBUG' , $message_contents->payload );
+				logging::log_message("Starting call to minicomponent ".$message_contents->trigger_number.$message_contents->minicomponent , 'DeferredTasks', 'DEBUG' , $message_contents->payload );
 				$MiniComponents->specificEvent($message_contents->trigger_number, $message_contents->minicomponent, $complete_message );
 			}
 			else {
-				logging::log_message("Failed to find ".$message_contents->trigger_number.$message_contents->minicomponent, 'Core', 'WARNING');
+				logging::log_message("Failed to find ".$message_contents->trigger_number.$message_contents->minicomponent, 'DeferredTasks', 'WARNING');
 			}
 		} else {
 			$MiniComponents->triggerEvent($message_contents->trigger_number , $complete_message );
@@ -114,7 +114,7 @@ class jomres_deferred_tasks
 			throw new Exception('Error: payload not set ');
 		}
 
-        logging::log_message("Constructing background message ", 'Core', 'DEBUG' , $trigger_number );
+        logging::log_message("Constructing background message ", 'DeferredTasks', 'DEBUG' , $trigger_number );
 
         $randomstring = generateJomresRandomString(50);
 		$message = new stdClass();
@@ -162,7 +162,7 @@ class jomres_deferred_tasks
 
 
 
-        logging::log_message("Sent async deferred message ".$this->file_identifier." to ".$url , 'Core', 'DEBUG' , ''  );
+        logging::log_message("Sent async deferred message ".$this->file_identifier." to ".$url , 'DeferredTasks', 'DEBUG' , ''  );
 
 	 }
 	
