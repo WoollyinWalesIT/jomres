@@ -136,6 +136,21 @@ class j06002edit_tariff_micromanage
 			//first let`s see what room types this property uses
 			$query = "SELECT DISTINCT `room_classes_uid` FROM #__jomres_rooms WHERE `propertys_uid` = ".(int)$defaultProperty." AND `room_classes_uid` IN (".jomres_implode(array_keys($basic_property_details->this_property_room_classes)).") ";
 			$result = doSelectSql($query);
+			if (empty($result)) {
+				$message = '<p class="alert alert-danger">';
+				$message .= jr_gettext("_JOMRES_MICROMANAGE_CREATE_ROOM_1",'_JOMRES_MICROMANAGE_CREATE_ROOM_1',false);
+				$message .= "<br/><ul>";
+
+				foreach ($basic_property_details->this_property_room_classes as $room_type) {
+					$message .= "<li>".$room_type['abbv']."</li>";
+				}
+				$message .= "</ul>";
+				$message .= jr_gettext("_JOMRES_MICROMANAGE_CREATE_ROOM_2",'_JOMRES_MICROMANAGE_CREATE_ROOM_2',false);
+				$message .= "</p>";
+				echo $message;
+				return;
+			}
+
 			foreach ($result as $r)
 				{
 				$currentPropertyRoomClasses[] = $r->room_classes_uid;
