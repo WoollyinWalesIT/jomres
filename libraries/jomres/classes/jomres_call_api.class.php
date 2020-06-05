@@ -142,7 +142,7 @@ class jomres_call_api
 	private function query_api($method = 'GET', $endpoint = '', $data = array() , $headers = array() )
 	{
 		$ch = curl_init($this->server.$endpoint);
-		
+
 		curl_setopt($ch, CURLINFO_HEADER_OUT, true);
 		curl_setopt($ch, CURLOPT_TIMEOUT, 30); //timeout after 30 seconds
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -188,9 +188,7 @@ class jomres_call_api
 		
 		$result = curl_exec($ch);
 		$status = curl_getinfo($ch);
-/*if ($method == 'POST' && $endpoint == 'cmf/property/') {
-	var_dump($result );exit;
-}*/
+
 		$response_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		curl_close($ch);
 
