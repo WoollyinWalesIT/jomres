@@ -29,10 +29,14 @@ class j00501xtariffsenhanced {
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
 		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
-		if ($MiniComponents->template_touch)
-			{
+		if ($MiniComponents->template_touch) {
 			$this->template_touchable=false; return;
 			}
+
+		if ($componentArgs['is_channel_property']) {
+			return;
+		}
+
 		$configurationPanel=$componentArgs['configurationPanel'];
 		$mrConfig=getPropertySpecificSettings();
 		if ($mrConfig['is_real_estate_listing']==1)

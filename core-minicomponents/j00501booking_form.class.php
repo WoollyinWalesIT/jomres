@@ -39,9 +39,13 @@ class j00501booking_form
 		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch) {
 			$this->template_touchable = false;
-
 			return;
 		}
+
+		if ($componentArgs['is_channel_property']) {
+			return;
+		}
+
 		$configurationPanel = $componentArgs[ 'configurationPanel' ];
 		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');

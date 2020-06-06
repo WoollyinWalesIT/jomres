@@ -40,9 +40,13 @@ class j00501propertydetailsoptions
 		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch) {
 			$this->template_touchable = false;
-
 			return;
 		}
+
+		if ($componentArgs['is_channel_property']) {
+			return;
+		}
+
 		$configurationPanel = $componentArgs[ 'configurationPanel' ];
 
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');

@@ -40,9 +40,13 @@ class j00501suppliments
 		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch) {
 			$this->template_touchable = false;
-
 			return;
 		}
+
+		if ($componentArgs['is_channel_property']) {
+			return;
+		}
+
 		$configurationPanel = $componentArgs[ 'configurationPanel' ];
 		$mrConfig = getPropertySpecificSettings();
 		if ($mrConfig[ 'is_real_estate_listing' ] == 1) {

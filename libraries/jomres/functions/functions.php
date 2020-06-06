@@ -95,12 +95,12 @@ function is_channel_safe_task ($task)
 		return true;
 	}
 
-	$safe_tasks = array ( '' , 'dashboard' , 'dashboard_resources_ajax' , 'dashboard_events_ajax' , 'listyourproperties_ajax', 'cpanel' , 'publish_property' , 'listyourproperties' , 'preview' , 'webhooks_core', 'webhooks_core_documentation' , 'edit_integration' , 'save_integration' , 'edit_my_account', 'show_user_profile',  'muviewfavourites',  'logout',  'oauth',  'api_documentation',  'search',  'show_consent_form',  'gdpr_my_data' ,'toggle_jomres_widget_ajax' , 'delete_property' , 'viewproperty'); // We will not redirect on these tasks. Need to keep this list under review.
-	
+	$safe_tasks = array ( '' , 'dashboard' , 'business_settings' , 'dashboard_resources_ajax' , 'dashboard_events_ajax' , 'listyourproperties_ajax', 'cpanel' , 'publish_property' , 'listyourproperties' , 'preview' , 'webhooks_core', 'webhooks_core_documentation' , 'edit_integration' , 'save_integration' , 'edit_my_account', 'show_user_profile',  'muviewfavourites',  'logout',  'oauth',  'api_documentation',  'search',  'show_consent_form',  'gdpr_my_data' ,'toggle_jomres_widget_ajax' , 'delete_property' , 'viewproperty'); // We will not redirect on these tasks. Need to keep this list under review.
+
 	if ( in_array( $task , $safe_tasks ) || substr ( $task , 0, 17 ) == "channelmanagement" || strstr (  $task ,"ajax" ) ) {
 		return true;
 	}
-	
+
 	return false;
 }
 
@@ -3572,8 +3572,8 @@ function propertyConfiguration()
 		}
 	}
 
-	$componentArgs[ 'configurationPanel' ] = $configurationPanel;
-
+	$componentArgs[ 'configurationPanel' ]  = $configurationPanel;
+    $componentArgs['is_channel_property']   = is_channel_property($property_uid);
 	$configurationPanel->startTabs();
 
 	$MiniComponents->triggerEvent('00501', $componentArgs); // Generate configuration options tabs
