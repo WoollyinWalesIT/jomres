@@ -29,6 +29,9 @@ class jomres_call_api
 
 	public function __construct( $user_id = 'system' )
 	{
+		$this->siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$this->jrConfig = $this->siteConfig->get();
+
 		if ($user_id == 'system' ) {
 			$this->user = new stdClass();
 			$this->user->accesslevel = 101;
@@ -40,7 +43,17 @@ class jomres_call_api
 			$this->user->username = $thisJRUser->username;
 			$this->user->userid = $thisJRUser->id;
 		}
-		
+		$this->system_token = $this->siteConfig->get_setting('system_token');
+
+		if (!isset($this->system_token)) {
+			$this->token = '';
+		} else {
+			$this->token = $this->system_token;
+		}
+
+		$this->retry_count = 0;
+
+		$this->server = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/api/';
 		$this->init();
 		
 	}
@@ -59,32 +72,36 @@ class jomres_call_api
 			$client_secret = $auth_deets['client_secret'];
 		}
 
-		$MiniComponents = jomres_getSingleton('mcHandler');
-		if (isset($MiniComponents->registeredClasses['06005']['oauth']) && isset($client_secret) && trim($client_secret) != '' ) {
-			$this->server = get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/api/';
-			$data = array('grant_type' => 'client_credentials', 'client_id' => $client_id, 'client_secret' => $client_secret);
-			$token_request = $this->query_api('POST', '', $data);
-			$response = json_decode($token_request['response']);
-			if (is_null($response)) {
-				// Uh oh, could be a 403 forbidden response, let's try to json decode $token_request
-				$unhappy_response = json_decode($token_request);
+		if ($this->token == '') {
+			$MiniComponents = jomres_getSingleton('mcHandler');
+			if (isset($MiniComponents->registeredClasses['06005']['oauth']) && isset($client_secret) && trim($client_secret) != '' ) {
 
-				if ( isset($token_request['response_code']) && $token_request['response_code'] == "403" ) {
-					echo "<p class='alert alert-danger'>Error, tried to call API but received a 403 response, please visit the Admin > Jomres > Tools > Rest API test page. You may need to add \"Options +SymLinksIfOwnerMatch\" to the .conf file for this domain. If you don't have access to that file, then SymLinksIfOwnerMatch can be added to .htaccess. Also, check that htaccess.txt has been renamed to .htaccess (if running Joomla). Also check that url rewriting (RewriteEngine On) is enabled (a default copy of .htaccess would normally allow that). </p>";
-				} else {
-					var_dump($token_request);
+				$data = array('grant_type' => 'client_credentials', 'client_id' => $client_id, 'client_secret' => $client_secret);
+				$token_request = $this->query_api('POST', '', $data);
+				$response = json_decode($token_request['response']);
+
+				if (is_null($response)) {
+					// Uh oh, could be a 403 forbidden response, let's try to json decode $token_request
+					$unhappy_response = json_decode($token_request);
+
+					if ( isset($token_request['response_code']) && $token_request['response_code'] == "403" ) {
+						echo "<p class='alert alert-danger'>Error, tried to call API but received a 403 response, please visit the Admin > Jomres > Tools > Rest API test page. You may need to add \"Options +SymLinksIfOwnerMatch\" to the .conf file for this domain. If you don't have access to that file, then SymLinksIfOwnerMatch can be added to .htaccess. Also, check that htaccess.txt has been renamed to .htaccess (if running Joomla). Also check that url rewriting (RewriteEngine On) is enabled (a default copy of .htaccess would normally allow that). </p>";
+					} else {
+						var_dump($token_request);
+					}
+					return false;
 				}
-				return false;
-			}
 
-			if (isset($response->access_token)) {
-				$this->token = $response->access_token;
-			} else {
-				throw new Exception($response->error_description);
-			}
-		}  else {
+				if (isset($response->access_token)) {
+					$token = $response->access_token;
+					$this->save_token( $token );
+				} else {
+					throw new Exception($response->error_description);
+				}
+			}  else {
 				throw new Exception("OAuth plugin not installed. At one time it was a separate plugin but now it is in Jomres Core. Is this a very old installation of Jomres?");
 			}
+		}
 	}
 	
 	/**
@@ -95,6 +112,10 @@ class jomres_call_api
 
 	public function init_manager() {
 		// We need to see if there's a user in the database, if there's not we'll create them.
+
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
+
 		$query = "SELECT client_id,scope FROM #__jomres_oauth_clients WHERE client_id = '".$this->user->username."' LIMIT 1";
 		$result = doSelectSql($query);
 		if (empty($result)) {
@@ -141,6 +162,7 @@ class jomres_call_api
 
 	private function query_api($method = 'GET', $endpoint = '', $data = array() , $headers = array() )
 	{
+
 		$ch = curl_init($this->server.$endpoint);
 
 		curl_setopt($ch, CURLINFO_HEADER_OUT, true);
@@ -190,9 +212,27 @@ class jomres_call_api
 		$status = curl_getinfo($ch);
 
 		$response_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
 		curl_close($ch);
 
+		if ($response_code == 401 ) { // The token isn't valid
+			$this->token = ''; // Wipe the token, and then initialise again
+			$this->init(); // Get a new token
+			$this->retry_count++;
+			if ($this->retry_count <= 5) {
+				$this->query_api($method , $endpoint , $data , $headers ); // Retry this again
+			} else {
+				throw new Exception("Cannot get token from self");
+			}
+
+		}
 		return array('response_code' => $response_code, 'response' => $result, 'status' => $status);
 	}
-	
+
+	private function save_token( $token )
+	{
+		$this->siteConfig->update_setting('system_token', $token );
+		$this->token = $this->siteConfig->get_setting('system_token');
+		$this->siteConfig->init();
+	}
 }
