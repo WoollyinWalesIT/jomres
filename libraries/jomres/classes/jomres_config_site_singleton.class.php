@@ -195,7 +195,7 @@ $jrConfig = ' .var_export($jrConfig, true).';
 	 *
 	 */
 
-	private function init()
+	public function init()
 	{
 		include JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'site_config.php';
 		$tempConfigArr = $jrConfig;
