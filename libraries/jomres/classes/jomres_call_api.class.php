@@ -116,6 +116,10 @@ class jomres_call_api
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 
+		// Temporary measure, older Quickstart installations had a client_id much bigger than 999999999 but that was changed, so Quickstart installations with the older id caused errors when they were udpated so now we're just going to hit things with a hammer for a few months until I can do new Quickstarts
+		$query = "DELETE FROM #__jomres_oauth_clients WHERE user_id = 99999999999999999999";
+		doInsertSql($query);
+
 		$query = "SELECT client_id,scope FROM #__jomres_oauth_clients WHERE client_id = '".$this->user->username."' LIMIT 1";
 		$result = doSelectSql($query);
 		if (empty($result)) {
