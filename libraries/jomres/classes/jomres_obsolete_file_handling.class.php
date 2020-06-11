@@ -1321,6 +1321,12 @@ class jomres_obsolete_file_handling
 		$this->add_dir(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'vendor');
 		// $this->add_file($this->dir_classes.'core_package_management.class.php');  // Removed because I want to re-use this, but without sha checking
 		$this->add_file($this->dir_minicomponents.'j10501cmf.class.php');
+
+		$this->add_file($this->dir_minicomponents.'j16000stripe_subscribe.class.php');
+		$this->add_file($this->dir_minicomponents.'j16000stripe_subscribe_ajax.class.php');
+		$this->add_file($this->dir_minicomponents.'j16000stripe_subscribe_save_key.class.php');
+		$this->add_file($this->dir_minicomponents.'j16000stripe_subscribe_validate_token.class.php');
+
 	}
 	
 	/**
