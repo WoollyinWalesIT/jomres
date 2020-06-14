@@ -117,8 +117,9 @@ class jomres_call_api
 		$jrConfig = $siteConfig->get();
 
 		// Temporary measure, older Quickstart installations had a client_id much bigger than 999999999 but that was changed, so Quickstart installations with the older id caused errors when they were udpated so now we're just going to hit things with a hammer for a few months until I can do new Quickstarts
-		$query = "DELETE FROM #__jomres_oauth_clients WHERE user_id = 99999999999999999999";
+		$query = "DELETE FROM #__jomres_oauth_clients WHERE user_id = 99999999999999999999 OR user_id = 4294967295";
 		doInsertSql($query);
+
 
 		$query = "SELECT client_id,scope FROM #__jomres_oauth_clients WHERE client_id = '".$this->user->username."' LIMIT 1";
 		$result = doSelectSql($query);
@@ -150,6 +151,8 @@ class jomres_call_api
 			} while ( $response == '' || $response == null );
 			if ($response['response_code'] == '200' || $response['response_code'] == '204') {
 				return json_decode($response['response']);
+			} elseif ($response['response_code'] == '404') {
+				return false;
 			} else {
 				throw new Exception('Call to API resulted in response code '.$response['response_code'].' and message '.$response['response']);
 			}
