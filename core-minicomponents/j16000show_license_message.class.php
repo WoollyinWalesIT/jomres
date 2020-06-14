@@ -55,7 +55,7 @@ class j16000show_license_message
 		//license key status check
 		$message = '';
 		
-		if (get_showtime("task") != "stripe_subscribe" ) {
+		if (get_showtime("task") != "connect" ) {
 			if ($jomres_check_support_key->key_status == "Expired") {
 				$message = '
 	<div class="alert alert-error">
@@ -66,7 +66,7 @@ class j16000show_license_message
 		<li><i class="fa fa-check"></i> '.jr_gettext('_LICENCE_EXPIRED_BENEFITS_3', '_LICENCE_EXPIRED_BENEFITS_3', false, false).'</li>
 	</ul>
 	<p>'.jr_gettext('_LICENCE_EXPIRED_POST', '_LICENCE_EXPIRED_POST', false, false).'<p>
-	<a href="'.jomresUrl(JOMRES_SITEPAGE_URL_ADMIN.'&task=stripe_subscribe').'" class="btn btn-large btn-success">'.jr_gettext('_LICENCE_EXPIRED_RESTART', '_LICENCE_EXPIRED_RESTART', false, false).'</a>
+	<a href="'.jomresUrl(JOMRES_SITEPAGE_URL_ADMIN.'&task=connect').'" class="btn btn-large btn-success">'.jr_gettext('_LICENCE_EXPIRED_RESTART', '_LICENCE_EXPIRED_RESTART', false, false).'</a>
 	</div>';
 			}
 
@@ -80,7 +80,7 @@ class j16000show_license_message
 		<li><i class="fa fa-check"></i> '.jr_gettext('_LICENCE_INVALID_BENEFITS_3', '_LICENCE_INVALID_BENEFITS_3', false, false).'</li>
 	</ul>
 	<p>'.jr_gettext('_LICENCE_INVALID_POST', '_LICENCE_INVALID_POST', false, false).'<p>
-	<a href="'.jomresUrl(JOMRES_SITEPAGE_URL_ADMIN.'&task=stripe_subscribe').'" class="btn btn-large btn-success">'.jr_gettext('_LICENCE_INVALID_START', '_LICENCE_INVALID_START', false, false).'</a>
+	<a href="'.jomresUrl(JOMRES_SITEPAGE_URL_ADMIN.'&task=connect').'" class="btn btn-large btn-success">'.jr_gettext('_LICENCE_INVALID_START', '_LICENCE_INVALID_START', false, false).'</a>
 	</div>';
 			}
 		}

@@ -2018,7 +2018,7 @@ jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_UPDATEINFO', 'Veuillez noter qu\'
 jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_UPDATEINFO_KEYVALID', 'Veuillez noter qu\'après la mise à jour, vous devez mettre à jour les plug-ins Jomres déjà installés, via le gestionnaire de plug-ins Jomres.');
 jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_RENEWALS', 'Si vous souhaitez mettre à jour Jomres et ses plugins, vous aurez besoin de renouvellement de licence . Veuillez visiter notre <a href="https://www.jomres.net/pricing" target="_blank""> </a> pour plus d\'informations. Dans la plupart des cas, ces licences représentent 50 % du prix d\'une licence complète. Veuillez vous assurer que vous êtes connecté à notre boutique avant de tenter d\'acheter un renouvellement.');
 jr_define('_JOMRES_PAYMENT_METHOD_USED','Méthode de paiements : ');
-jr_define('_JOMRES_PRICES','Acheter une licence Jomres');
+jr_define('_JOMRES_PRICES', 'Get Connected');
 jr_define('_OAUTH_TITLE','Gestion des clés du logiciel');
 jr_define('_OAUTH_APPS','Détails du client de l\'API REST');
 jr_define('_OAUTH_IDENTIFIER','Identifier');
@@ -2259,12 +2259,12 @@ jr_define('_LICENCE_EXPIRED_BENEFITS_1', 'Mises à jour et nouvelles versions de
 jr_define('_LICENCE_EXPIRED_BENEFITS_2', 'Seuls les abonnés bénéficient du support !');
 jr_define('_LICENCE_EXPIRED_BENEFITS_3', 'Mise à jour stable du coeur (core) de Jomres');
 jr_define('_LICENCE_EXPIRED_POST', 'L\abonnement à Jomres est très abordable et offre un accès à tous les plugins et services d\'assistance réservés aux membres.');
-jr_define('_LICENCE_EXPIRED_RESTART', 'Resouscrivez votre abonnement maintenant !');
+jr_define('_LICENCE_EXPIRED_RESTART', 'Get access to all plugins now!');
 jr_define('_LICENCE_INVALID_KEY', 'Malheureusement, vous ne semblez pas utiliser une licence Jomres valide, vous ne pouvez donc pas profiter de ces fonctionnalités et avantages !');
 jr_define('_LICENCE_INVALID_BENEFITS_1', '<a href="https://www.jomres.net/jomres-plugins" target="_blank">Découvrez les plugins</a> qui améliorent grandement les fonctionnalités de Jomres');
 jr_define('_LICENCE_INVALID_BENEFITS_2', 'Seuls les abonnés bénéficient du support !');
 jr_define('_LICENCE_INVALID_BENEFITS_3', 'Mise à jour stable du coeur (core) de Jomres');
-jr_define('_LICENCE_INVALID_POST', 'L\abonnement à Jomres est très abordable et offre un accès à tous les plugins et services d\'assistance réservés aux membres.');
+jr_define('_LICENCE_INVALID_POST', 'Connect to us for trouble free payment solutions and get access to all plugins and member-only support services.');
 jr_define('_LICENCE_INVALID_START', 'Commencez votre essai gratuit maintenant !');
 jr_define('_ADMIN_MENU_SECTIONS_DASHBOARD', 'Tableau de bord');
 jr_define('_ADMIN_MENU_SECTIONS_USERS', 'Utilisateurs');

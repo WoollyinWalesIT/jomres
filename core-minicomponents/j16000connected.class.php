@@ -41,6 +41,7 @@ class j16000connected
 				$this->siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 				$this->siteConfig->update_setting('licensekey', $connection_configuration->license_key );
 				$this->siteConfig->update_setting('connection_account_id', $connection_configuration->account_id );
+				$this->siteConfig->update_setting('platform_connected', 1 );
 				$this->siteConfig->save_config();
 				
 				if (file_exists( JOMRES_TEMP_ABSPATH.'key.php') ){

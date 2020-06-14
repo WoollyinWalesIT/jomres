@@ -66,7 +66,7 @@ class j10501a_misc
 				}
 			} else {
 				$support_key_message = '<p class="alert alert-danger">'.jr_gettext('_JOMRES_SUPPORTKEY_DESC_INVALID', '_JOMRES_SUPPORTKEY_DESC_INVALID', false, false).'</p>';
-				$renewal_link = '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=stripe_subscribe">Subscribe now</a>';
+				$renewal_link = '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=connect">Get Connected!</a>';
 			}
 
 			$support_key_status = '<span class="badge">Status</span> '.$jomres_check_support_key->key_status.'';

@@ -1857,7 +1857,7 @@ jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_RENEWALS', "If you would like to 
 
 jr_define('_JOMRES_PAYMENT_METHOD_USED',"Payment method : ");
 
-jr_define('_JOMRES_PRICES',"Jomres Memberships");
+jr_define('_JOMRES_PRICES',"Get Connected");
 
 
 jr_define('_OAUTH_TITLE',"App key management");
@@ -2222,15 +2222,15 @@ jr_define('_LICENCE_EXPIRED', ', your Jomres license key has expired, so you`re 
 jr_define('_LICENCE_EXPIRED_BENEFITS_1', 'Plugin updates and new plugin releases');
 jr_define('_LICENCE_EXPIRED_BENEFITS_2', 'Exclusive members only Email/Tickets support');
 jr_define('_LICENCE_EXPIRED_BENEFITS_3', 'Worry-free Jomres Core updates');
-jr_define('_LICENCE_EXPIRED_POST', 'Jomres membership is very affordable and offers access to all plugins and member-only support services.');
-jr_define('_LICENCE_EXPIRED_RESTART', 'Restart your membership now!');
+jr_define('_LICENCE_EXPIRED_POST', 'Connect to us for trouble free payment solutions and get access to all plugins and member-only support services.');
+jr_define('_LICENCE_EXPIRED_RESTART', 'Get access to all plugins now!');
 
 jr_define('_LICENCE_INVALID_KEY', 'Unfortunately you don`t seem to be using a valid Jomres license key, so you`re missing on these great features and benefits!');
 jr_define('_LICENCE_INVALID_BENEFITS_1', '<a href="https://www.jomres.net/jomres-plugins" target="_blank">Plugins</a> that greatly extend Jomres functionality');
 jr_define('_LICENCE_INVALID_BENEFITS_2', 'Exclusive members only Email/Tickets support');
 jr_define('_LICENCE_INVALID_BENEFITS_3', 'Worry-free Jomres Core updates');
-jr_define('_LICENCE_INVALID_POST', 'Jomres membership is very affordable and offers access to all plugins and member-only support services.');
-jr_define('_LICENCE_INVALID_START', 'Start your free trial now!');
+jr_define('_LICENCE_INVALID_POST', 'Connect to us for trouble free payment solutions and get access to all plugins and member-only support services.');
+jr_define('_LICENCE_INVALID_START', 'Get access to all plugins now!');
 
 jr_define('_ADMIN_MENU_SECTIONS_DASHBOARD', 'Dashboard');
 jr_define('_ADMIN_MENU_SECTIONS_USERS', 'Users');
