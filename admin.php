@@ -100,6 +100,12 @@ try {
 		
 		//core admin menu items
 		$MiniComponents->specificEvent('19995', 'menu', array());
+
+		if ( isset($jrConfig['platform_connected']) && $jrConfig['platform_connected'] == 1 ) {
+			if (!file_exists(JOMRES_COREPLUGINS_ABSPATH.'connect'.JRDS.'plugin_info.php')) { // Something has gone horribly wrong
+				$MiniComponents->specificEvent('16000', 'addplugin', array('plugin' => 'connect', 'autoupgrade' => true));
+			}
+		}
 	}
 
 	//00005 trigger point
