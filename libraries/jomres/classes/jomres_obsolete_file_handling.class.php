@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.5
+ * @version Jomres 9.22.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1321,6 +1321,12 @@ class jomres_obsolete_file_handling
 		$this->add_dir(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'vendor');
 		// $this->add_file($this->dir_classes.'core_package_management.class.php');  // Removed because I want to re-use this, but without sha checking
 		$this->add_file($this->dir_minicomponents.'j10501cmf.class.php');
+
+		$this->add_file($this->dir_minicomponents.'j16000stripe_subscribe.class.php');
+		$this->add_file($this->dir_minicomponents.'j16000stripe_subscribe_ajax.class.php');
+		$this->add_file($this->dir_minicomponents.'j16000stripe_subscribe_save_key.class.php');
+		$this->add_file($this->dir_minicomponents.'j16000stripe_subscribe_validate_token.class.php');
+
 	}
 	
 	/**

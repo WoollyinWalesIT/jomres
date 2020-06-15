@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.5
+ * @version Jomres 9.22.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -54,7 +54,12 @@ class j10501properties
 		$configurationPanel->setmiddle($lists[ 'is_single_property_installation' ]);
 		$configurationPanel->setright(jr_gettext('_JOMRES_SINGLEPROPERTYINSTALLATION_DESC', '_JOMRES_SINGLEPROPERTYINSTALLATION_DESC', false));
 		$configurationPanel->insertSetting();
-		
+
+		$configurationPanel->setleft(jr_gettext('_JOMRES_CONFIG_SYNDICATION_TITLE', '_JOMRES_CONFIG_SYNDICATION_TITLE', false));
+		$configurationPanel->setmiddle($lists[ 'useSyndication' ]);
+		$configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_SYNDICATION_DESC', '_JOMRES_CONFIG_SYNDICATION_DESC', false));
+		$configurationPanel->insertSetting();
+
 		$configurationPanel->setleft(jr_gettext('_JOMRES_COM_SELFREGISTRATION', '_JOMRES_COM_SELFREGISTRATION', false));
 		$configurationPanel->setmiddle($lists[ 'selfRegistrationAllowed' ]);
 		$configurationPanel->setright(jr_gettext('_JOMRES_COM_SELFREGISTRATION_DESC', '_JOMRES_COM_SELFREGISTRATION_DESC', false));

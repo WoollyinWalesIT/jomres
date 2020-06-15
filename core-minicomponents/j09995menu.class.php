@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.5
+ * @version Jomres 9.22.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -204,6 +204,7 @@ class j09995menu
 			$jomres_menu->add_item(80, jr_gettext('_JOMRES_MEDIA_CENTRE_TITLE', '_JOMRES_MEDIA_CENTRE_TITLE', false), 'media_centre', 'fa-picture-o');
 
 			if ($mrConfig[ 'is_real_estate_listing' ] != '1') {
+				$jomres_menu->add_item(80, jr_gettext('_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', '_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', false), 'listcustomertypes', 'fa-users');
 				$jomres_menu->add_item(80, jr_gettext('_JOMRES_EMAIL_TEMPLATES_TITLE', '_JOMRES_EMAIL_TEMPLATES_TITLE', false), 'list_emails', 'fa-envelope-o');
 			}
 			if ( 

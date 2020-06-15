@@ -95,12 +95,12 @@ function is_channel_safe_task ($task)
 		return true;
 	}
 
-	$safe_tasks = array ( '' , 'dashboard' , 'dashboard_resources_ajax' , 'dashboard_events_ajax' , 'listyourproperties_ajax', 'cpanel' , 'publish_property' , 'listyourproperties' , 'preview' , 'webhooks_core', 'webhooks_core_documentation' , 'edit_integration' , 'save_integration' , 'edit_my_account', 'show_user_profile',  'muviewfavourites',  'logout',  'oauth',  'api_documentation',  'search',  'show_consent_form',  'gdpr_my_data' ,'toggle_jomres_widget_ajax' , 'delete_property' , 'viewproperty'); // We will not redirect on these tasks. Need to keep this list under review.
-	
+	$safe_tasks = array ( '' , 'dashboard' , 'business_settings' , 'dashboard_resources_ajax' , 'dashboard_events_ajax' , 'listyourproperties_ajax', 'cpanel' , 'publish_property' , 'listyourproperties' , 'preview' , 'webhooks_core', 'webhooks_core_documentation' , 'edit_integration' , 'save_integration' , 'edit_my_account', 'show_user_profile',  'muviewfavourites',  'logout',  'oauth',  'api_documentation',  'search',  'show_consent_form',  'gdpr_my_data' ,'toggle_jomres_widget_ajax' , 'delete_property' , 'viewproperty'); // We will not redirect on these tasks. Need to keep this list under review.
+
 	if ( in_array( $task , $safe_tasks ) || substr ( $task , 0, 17 ) == "channelmanagement" || strstr (  $task ,"ajax" ) ) {
 		return true;
 	}
-	
+
 	return false;
 }
 
@@ -1710,32 +1710,25 @@ function add_gmaps_source()
 	}
 }
 
-/**
- *
- * @package Jomres\Core\Functions
- *
- * Not currently used.
- */
+
 function admins_first_run($manual_trigger = false)
 {
-	$logfile = JOMRES_SYSTEMLOG_PATH.'admins_first_run.txt';
-	$threshold = 25;
+	$logfile = JOMRES_TEMP_ABSPATH.'admins_first_run.txt';
 
 	if (!file_exists($logfile) || $manual_trigger) {
 		if (!$manual_trigger) {
 			touch($logfile);
-			$count = 0;
 		}
 
 		if (!$manual_trigger) {
-			echo '<div  class="modal" tabindex="-1" role="dialog" id="first_run" style="display:none" title="Welcome to Jomres, Joomla\'s favourite hotel booking system">';
+			echo '<div  class="modal" tabindex="-1" role="dialog" id="first_run" style="display:none" title="'.jr_gettext('_JOMRES_STOP_READTHISFIRST2', '_JOMRES_STOP_READTHISFIRST2', false, false).'">';
 			if (using_bootstrap()) {
-				echo '<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h3>Getting Started with Jomres</h3></div>';
+				echo '<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h3>'.jr_gettext('_JOMRES_STOP_READTHISFIRST2', '_JOMRES_STOP_READTHISFIRST2', false, false).'</h3></div>';
 			} else {
-				echo '<h3>Getting Started with Jomres</h3>';
+				echo '<h3>'.jr_gettext('_JOMRES_STOP_READTHISFIRST2', '_JOMRES_STOP_READTHISFIRST2', false, false).'</h3>';
 			}
 		} else {
-			echo '<div id = "first_run" title="Welcome to Jomres, Joomla\'s favourite hotel booking system">';
+			echo '<div id = "first_run" title="'.jr_gettext('_JOMRES_STOP_READTHISFIRST2', '_JOMRES_STOP_READTHISFIRST2', false, false).'">';
 		}
 
 		if (!using_bootstrap()) {
@@ -1744,59 +1737,17 @@ function admins_first_run($manual_trigger = false)
 			$class = 'alert';
 		}
 
-		if (!$manual_trigger) {
-			echo '<p class="'.$class.'">This appears to be the first time you\'ve used Jomres* so here is a little reading material you will probably want to look at.</p>';
-		}
-
-		if (!using_bootstrap()) {
-			$class = 'ui-widget-content ui-corner-all';
-			$style = 'margin-left:5px;margin-right:5px;';
-		} else {
-			$class = '';
-			$style = '';
-		}
-
 		echo '
-		<div class="modal-body">
-		<div class="' .$class.'" style="width:100%;">
-		<div style="' .$style.'">
-		<h3 class="page-header">Introduction.</h3>
-		<p>Firstly, a basic installation of Jomres, with absolutely no plugins, is a working booking extension for Joomla and Wordpress. Whilst this is sufficient for a small site with just one property you may quickly find that you want to add more functionality and features to the system, taking it from a simple booking system to a full online booking portal where you can gain revenue from listing properties on your site, earning commission, or taking booking deposits online.</p>
-		<p>Unless you want to build the code yourself, the best source of additional functionality is usually the <a href="' .JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins" target="_blank">Jomres Plugin Manager.</a> We have over <a href="http://www.jomres.net/manual/site-managers-guide" target="_blank">100 plugins available</a> that extend the system and we\'ve worked hard to make the Plugin Manager extremely easy to use. If you have a <a href="https://www.jomres.net/pricing" target="_blank"> download and support key</a>, then you will be able to download any plugins listed in the Plugin Manager, once you have entered your license number in the Support Key field in <a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=site_settings" target="_blank">Site Configuration.</a></p>
-		<h3 class="page-header">First steps.</h3>
-		<p>Now that you\'ve seen some of the extra features on offer, you are ready to start setting up your site. To begin with, we\'d like you to ignore the "administrator" area of Jomres altogether for the time being, a new installation of Jomres includes sample data that you can play around with later, but for now you should experiment with configuring your default property.
-		<ol>
-			<li>When Jomres is installed, the first thing it does is configure your "admin" user to be a Super Property Manager. Super Managers are akin to a Root user in linux, with super powers unavailable to normal Property Managers. If your administrator user is a different user you might need to add them as a Super Property Manager via the <a href="' .JOMRES_SITEPAGE_URL_ADMIN.'&task=list_users" target="_blank">Property Managers</a> page. View it now just to check that your administrator user has a purple badge. If they haven\'t you will need to edit their record to ensure that they are super managers before you log into the frontend of your site. Note : Super property managers do not need to be associated with a specific property, they have access to all properties.</li>
-			';
-		if (this_cms_is_joomla()) {
-			echo '<li>Next, add Jomres to your <a href="'.get_showtime('live_site').'/administrator/index.php?option=com_menus&view=items&menutype=mainmenu" target="_blank"> Main Menu</a>, as you would any other Joomla extension.</li>';
-			echo '<li>Now go to the <a href="'.get_showtime('live_site').'/index.php" target="_blank">public pages</a> of your site and log in as your admin user. When you click on the <a href="'.get_showtime('live_site').'/index.php?option=com_jomres" target="_blank">Main Menu link to Jomres</a>, as you are logged in, you will see the <a href="http://www.jomres.net/manual/property-managers-guide/38-your-toolbar" target="_blank">Property Manager\'s toolbar</a>. Go to the button marked "Tariffs & Rooms" (under Settings) and click on it.</li>';
-		} elseif (this_cms_is_wordpress()) {
-			echo '<li>Now you want to make sure that Jomres pages are visible to site visitors, so you will need to add the <i>[jomres:en-US]</i> shortcode to a new page to display your Jomres pages in the frontend of Wordpress, if using English, for other languages add [jomres:xx-XX] where xx-XX is the shortcode for your chosen language.</li>';
-
-			echo '<li>Now go to the <a href="'.get_showtime('live_site').'/index.php" target="_blank">public pages</a> of your site and log in as "admin". When you visit the post you added the shortcode to, as you are logged in, you will see the <a href="http://www.jomres.net/manual/property-managers-guide/38-your-toolbar" target="_blank">Property Manager\'s toolbar</a>. Go to the button marked "Tariffs & Rooms" (under Settings) and click on it.</li>';
-		}
-
-		echo '<li>Here you will see a number of rooms and their prices. For now, don\'t make any changes, just click the Save icon. Now you are ready to play around with the booking form and generally get used to using Jomres.</li>
-		</ol>
-		</p>
-		<h3 class="page-header">Further reading.</h3>
-		<p>Jomres is fully documented in the <a href="http://www.jomres.net/manual/" target="_blank">online manual</a>. There is a wealth of information here, including the <a href="http://www.jomres.net/manual/site-managers-guide/15-core-plugins"  target="_blank">plugin list</a>, but a good place to begin at is the <a href="http://www.jomres.net/manual/site-managers-guide/14-getting-started" target="_blank">Getting Started</a> page.</p>
-		<p>To learn how to configure your property(s) you should take a look at the <a href="http://www.jomres.net/manual/property-managers-guide" target="_blank">Property Manager\'s guide.</a> This section of the manual is aimed at Property Managers themselves, and discusses among other things the <a href="http://www.jomres.net/manual/property-managers-guide/38-your-toolbar" target="_blank">Manager\'s Toolbar.</a> Note that the toolbar shows the manager\'s toolbar with all of the most commonly installed plugin\'s buttons, until you\'ve installed the relevant plugins your toolbar will not have as many icons.</p>
-		</div></div></div>
-		';
-
-		if (!using_bootstrap()) {
-			$class = 'ui-state-highlight';
-		} else {
-			$class = 'alert alert-info';
-		}
-
-		if (!$manual_trigger) {
-			echo ' <div class="'.$class.'">If you\'ve used Jomres before or are happy exploring the manual on your own just click the big X at the top right of this popup and we won\'t bother you again.</div>';
-		}
-
-		echo '</div>
+        <div style="text-align: center">
+		    <div class="modal-body">
+		        <div class="alert">
+		            <h1><i class="fa fa-hand-paper-o" aria-hidden="true" style="font-size: 300%;"></i><h1/>
+	            	<h1 class="page-header">'.jr_gettext('_JOMRES_STOP_READTHISFIRST1', '_JOMRES_STOP_READTHISFIRST1', false, false).'</h1>
+	            	<h3>'.jr_gettext('_JOMRES_STOP_READTHISFIRST3', '_JOMRES_STOP_READTHISFIRST3', false, false).'</h3>
+	            	<p>'.jr_gettext('_JOMRES_STOP_READTHISFIRST4', '_JOMRES_STOP_READTHISFIRST4', false, false).'</p>
+	            </div>
+	        </div>
+       </div>
 		';
 		if (!$manual_trigger) {
 			if (using_bootstrap()) {
@@ -1805,34 +1756,67 @@ function admins_first_run($manual_trigger = false)
 				echo '<script>jomresJquery( "#first_run" ).dialog({width:1024,modal:true});</script>';
 			}
 		}
+
+		return true;
+	} else {
+		return false;
 	}
-	// else
-	// {
-	// $count = (int)file_get_contents ($logfile);
 
-	// if (!using_bootstrap())
-	// $class = "ui-state-highlight";
-	// else
-	// $class = "alert alert-info";
+}
 
-	// if ($count == $threshold)
-	// {
-	// echo '<div id = "jed" style="display:none;" title="Review Jomres on the Joomla Extension Directory">';
-	// echo '<p>Please remember to post a review about Jomres on the <a href="http://extensions.joomla.org/extensions/vertical-markets/booking-a-reservations/booking/335" target="_blank">Joomla Extension Directory.</a> The JED is our primary source of business and we need your review!</p>';
-	// echo '<p class="'.$class.'">This is the one and only time you will see this feedback request (unless you delete <i>"'.$logfile.'"</i>).</p>';
-	// echo '</div>';
-	// echo '<script>jomresJquery( "#jed" ).dialog({width:500,modal:true});</script>';
+/**
+ *
+ * @package Jomres\Core\Functions
+ *
+ *
+ */
+function getting_started()
+{
 
-	// }
-	// }
+	echo '<div id = "first_run" title="Welcome to Jomres, Joomla\'s favourite hotel booking system">';
 
-	// if ($count <= $threshold && !$manual_trigger && !isset($_REQUEST['no_html']) )
-	// {
-	// $count++;
-	// $fp=fopen($logfile,'r+');
-	// fwrite($fp, $count );
-	// fclose($fp);
-	// }
+	if (!using_bootstrap()) {
+		$class = 'ui-widget-content ui-corner-all';
+		$style = 'margin-left:5px;margin-right:5px;';
+		} else {
+			$class = '';
+			$style = '';
+		}
+
+		echo '
+
+		<div class="' .$class.'" style="width:100%;">
+		<div style="' .$style.'">
+		<h3 class="page-header">Introduction.</h3>
+		<p>Firstly, a basic installation of Jomres, with absolutely no plugins, is a working booking extension for Joomla and Wordpress. Whilst this is sufficient for a small site with just one property you may quickly find that you want to add more functionality and features to the system, taking it from a simple booking system to a full online booking portal where you can gain revenue from listing properties on your site, earning commission, or taking booking deposits online.</p>
+		<p>Unless you want to build the code yourself, the best source of additional functionality is usually the <a href="' .JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins" target="_blank">Jomres Plugin Manager.</a> There are over <a href="https://www.jomres.net/jomres-plugins" target="_blank">160 plugins available</a> that extend the system and I\'ve worked hard to make the Plugin Manager extremely easy to use. If you have a <a href="https://www.jomres.net/pricing" target="_blank"> download and support key</a>, then you will be able to download any plugins listed in the Plugin Manager, once you have entered your license number in the Support Key field in <a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=site_settings" target="_blank">Site Configuration.</a></p>
+		<h3 class="page-header">First steps.</h3>
+		<p>Now that you\'ve seen some of the extra features on offer, you are ready to start setting up your site. To begin with, I\'d like you to ignore the "administrator" area of Jomres altogether for the time being, a new installation of Jomres includes sample data and for now you should experiment with setting up your default property.
+		<ol>
+			<li>When Jomres is installed, the first thing it does is configure your "admin" user to be a Super Property Manager. Super Managers have super powers unavailable to normal Property Managers. If your administrator user is a different user you might need to add them as a Super Property Manager via the <a href="' .JOMRES_SITEPAGE_URL_ADMIN.'&task=list_users" target="_blank">Property Managers</a> page. View it now just to check that your administrator user has a purple badge. If they haven\'t you will need to edit their record to ensure that they are super managers before you log into the frontend of your site. Note : Super property managers do not need to be associated with a specific property, they have access to all properties.</li>
+			';
+		if (this_cms_is_joomla()) {
+			echo '<li>Next, add Jomres to your <a href="'.get_showtime('live_site').'/administrator/index.php?option=com_menus&view=items&menutype=mainmenu" target="_blank"> Main Menu</a>, as you would any other Joomla extension.</li>';
+			echo '<li>Now go to the <a href="'.get_showtime('live_site').'/index.php" target="_blank">public pages</a> of your site and log in as your admin user. When you click on the <a href="'.get_showtime('live_site').'/index.php?option=com_jomres" target="_blank">Main Menu link to Jomres</a>, as you are logged in, you will see the <a href="http://www.jomres.net/manual/property-managers-guide/38-your-toolbar" target="_blank">Property Manager\'s toolbar</a>.</li>';
+		} elseif (this_cms_is_wordpress()) {
+			echo '<li>Next you want to make sure that Jomres pages are visible to site visitors, so <strong>you will need to add the <i>[jomres:en-US]</i> shortcode to <a href="'.get_showtime('live_site').'/wp-admin/post-new.php?post_type=page"  target="_blank">a new page</strong></a> to display your Jomres pages in the public area of Wordpress. Call it something like "Bookings".</li>';
+
+			echo '<li>In the next step, you will need to add the newly created page to your main menu. In the WordPress sidebar click Appearance > Menus, in the <i>"Add menu items"</i> panel you should see the most recently added pages, including the new Bookings page. Click the checkbox next to it, and then click "Add to menu". Save the menu. </li>';
+
+			echo '<li>Now go to the <a href="'.get_showtime('live_site').'/index.php" target="_blank">public pages</a> of your site whhile you are logged in as "admin". When you visit the post you added the shortcode to, as you are logged in, you will see the <a href="http://www.jomres.net/manual/property-managers-guide/38-your-toolbar" target="_blank">Property Manager\'s toolbar</a>. </li>';
+		}
+
+		echo '<li>You are now ready to start configuring your property, and adding new properties, if you need more than one. If you only need one property I advise you to visit <a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=site_settings" target="_blank">Site Configuration</a> and in the "Portal functionality" tab set the option <i>"Is this a single property installation?"</i> to Yes. </li>
+		</ol>
+		</p>
+		<h3 class="page-header">Further reading.</h3>
+		<p>Jomres is fully documented in the <a href="http://www.jomres.net/manual/" target="_blank">online manual</a>. There is a wealth of information here, including the <a href="http://www.jomres.net/manual/site-managers-guide/15-core-plugins"  target="_blank">plugin list</a>, but a good place to begin at is the <a href="http://www.jomres.net/manual/site-managers-guide/14-getting-started" target="_blank">Getting Started</a> page.</p>
+		<p>To learn how to configure your property(s) you should take a look at the <a href="http://www.jomres.net/manual/property-managers-guide" target="_blank">Property Manager\'s guide.</a> This section of the manual is aimed at Property Managers themselves, and discusses among other things the <a href="http://www.jomres.net/manual/property-managers-guide/38-your-toolbar" target="_blank">Manager\'s Toolbar.</a> Note that the toolbar shows the manager\'s toolbar with all of the most commonly installed plugin\'s buttons, until you\'ve installed the relevant plugins your toolbar will not have as many icons.</p>
+		</div></div></div>
+		';
+
+
+
 }
 
 /**
@@ -3588,8 +3572,8 @@ function propertyConfiguration()
 		}
 	}
 
-	$componentArgs[ 'configurationPanel' ] = $configurationPanel;
-
+	$componentArgs[ 'configurationPanel' ]  = $configurationPanel;
+    $componentArgs['is_channel_property']   = is_channel_property($property_uid);
 	$configurationPanel->startTabs();
 
 	$MiniComponents->triggerEvent('00501', $componentArgs); // Generate configuration options tabs

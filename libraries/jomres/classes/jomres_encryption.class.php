@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.5
+ * @version Jomres 9.22.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -84,7 +84,9 @@ class encryption_key
 }
 ';
 
-		file_put_contents($this->key_location."encryption_key.class.php" , $str );
+		if (!file_put_contents($this->key_location."encryption_key.class.php" , $str )) {
+			die ("Error, unable to save encryption key file, is ".$this->key_location." writable by the web server? If it is, please ens");
+		}
 	}
 		
 	/**

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.5
+ * @version Jomres 9.22.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -281,6 +281,13 @@ try {
 		$componentArgs = array();
 		$componentArgs[ 'property_uid' ] = $property_uid;
 		$MiniComponents->triggerEvent('00012', $componentArgs); // Optional other stuff to do before switch is done.
+
+		if ( isset($jrConfig['platform_connected']) && $jrConfig['platform_connected'] == 1 ) {
+			if (!file_exists(JOMRES_COREPLUGINS_ABSPATH.'connect'.JRDS.'plugin_info.php') && file_exists(JOMRES_COREPLUGINS_ABSPATH.'plugin_manager'.JRDS.'plugin_info.php') ) { // Something has gone horribly wrong
+				$MiniComponents->specificEvent('16000', 'addplugin', array('plugin' => 'connect', 'autoupgrade' => true));
+			}
+		}
+
 	}
 
 	//handle tasks

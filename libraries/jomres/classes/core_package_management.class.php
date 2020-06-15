@@ -314,9 +314,9 @@ class core_package_management
 			$this->install_packages();
 		}
 		
-		if (!is_dir($repo['local_abs_path'])) {
+		/*if (!is_dir($repo['local_abs_path'])) {
 			$this->install_packages();
-		}
+		}*/
 	}
 	
 	/**

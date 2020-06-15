@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.5
+ * @version Jomres 9.22.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -249,9 +249,10 @@ function showSiteConfig()
 	$lists[ 'frontend_room_type_editing_allowed' ] = jomresHTML::selectList($yesno, 'cfg_frontend_room_type_editing_allowed', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'frontend_room_type_editing_allowed' ]);
 	
 	$lists[ 'frontend_room_type_editing_show_property_room_types_in_search_options' ] = jomresHTML::selectList($yesno, 'cfg_frontend_room_type_editing_show_property_room_types_in_search_options', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'frontend_room_type_editing_show_property_room_types_in_search_options' ]);
-	
-	
-	
+
+	$lists[ 'useSyndication' ] = jomresHTML::selectList($yesno, 'cfg_useSyndication', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useSyndication' ]);
+
+
 	if (!isset($jrConfig['show_powered_by'])) {
 		$jrConfig['show_powered_by'] = '0';
 	}

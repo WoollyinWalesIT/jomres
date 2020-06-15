@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.5
+ * @version Jomres 9.22.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -72,7 +72,6 @@ class j06000contactowner
 				$use_recaptcha = true;
 			}
 
-			$mrConfig = getPropertySpecificSettings();
 			$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 
 			if ($use_recaptcha) {

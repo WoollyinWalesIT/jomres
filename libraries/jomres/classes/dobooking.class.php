@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.5
+ * @version Jomres 9.22.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -159,6 +159,9 @@ class dobooking
 			$this->dateRangeString = $bookingDeets[ 'dateRangeString' ];
 			$this->guests_uid = $bookingDeets[ 'guests_uid' ];
 			$this->property_uid = (int) $bookingDeets[ 'property_uid' ];
+			if ($this->property_uid==0 && isset($_GET['property_uid_check'])) {
+				$this->property_uid = (int)$_GET['property_uid_check'];
+			}
 			$this->rates_uid = $bookingDeets[ 'rates_uid' ];
 			$this->resource = $bookingDeets[ 'resource' ];
 			$this->single_person_suppliment = $bookingDeets[ 'single_person_suppliment' ];

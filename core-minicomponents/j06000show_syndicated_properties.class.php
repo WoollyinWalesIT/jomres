@@ -57,6 +57,17 @@ class j06000show_syndicated_properties
 		
 		$this->retVals = '';
 
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
+
+		if (!isset($jrConfig['useSyndication'])) {
+			$jrConfig['useSyndication'] = 0;
+		}
+
+		if ( $jrConfig['useSyndication'] == 0) {
+			return;
+		}
+
 		if (isset($componentArgs[ 'limit' ])) {
 			$limit = (int)$componentArgs[ 'limit' ];
 		} else {

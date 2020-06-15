@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.5
+ * @version Jomres 9.22.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -111,7 +111,7 @@ class j99994webhook_watcher
 				
 				if (isset($webhook->data->property_uid) && (int)$webhook->data->property_uid > 0  ) {
 
-
+					$webhook->data->manager_id = $manager_id;
 
 					$query = "INSERT INTO `#__jomres_webhook_events` (
 						`property_uid` ,
@@ -158,8 +158,9 @@ class j99994webhook_watcher
 			logging::log_message("Preparing deferred messages " , 'Webhooks', 'DEBUG'  );
 			foreach ( $all_webhooks as $webhook ) {
 				$webhook['webhook_messages'] = $webhook_messages;
-				
-				
+
+				$webhook['data']['manager_id'] = $manager_id;
+
 				if ($webhook['enabled'] == true ) {
 					
 					$webhook['channel_data'] = $channel_data;

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.5
+ * @version Jomres 9.22.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Translation to fr-FR by Stéphane Bernard, Valtari NumAgency, France - last update : 19/11/2019 - https://www.valtari.fr
@@ -2018,7 +2018,7 @@ jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_UPDATEINFO', 'Veuillez noter qu\'
 jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_UPDATEINFO_KEYVALID', 'Veuillez noter qu\'après la mise à jour, vous devez mettre à jour les plug-ins Jomres déjà installés, via le gestionnaire de plug-ins Jomres.');
 jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_RENEWALS', 'Si vous souhaitez mettre à jour Jomres et ses plugins, vous aurez besoin de renouvellement de licence . Veuillez visiter notre <a href="https://www.jomres.net/pricing" target="_blank""> </a> pour plus d\'informations. Dans la plupart des cas, ces licences représentent 50 % du prix d\'une licence complète. Veuillez vous assurer que vous êtes connecté à notre boutique avant de tenter d\'acheter un renouvellement.');
 jr_define('_JOMRES_PAYMENT_METHOD_USED','Méthode de paiements : ');
-jr_define('_JOMRES_PRICES','Acheter une licence Jomres');
+jr_define('_JOMRES_PRICES', 'Get Connected');
 jr_define('_OAUTH_TITLE','Gestion des clés du logiciel');
 jr_define('_OAUTH_APPS','Détails du client de l\'API REST');
 jr_define('_OAUTH_IDENTIFIER','Identifier');
@@ -2259,12 +2259,12 @@ jr_define('_LICENCE_EXPIRED_BENEFITS_1', 'Mises à jour et nouvelles versions de
 jr_define('_LICENCE_EXPIRED_BENEFITS_2', 'Seuls les abonnés bénéficient du support !');
 jr_define('_LICENCE_EXPIRED_BENEFITS_3', 'Mise à jour stable du coeur (core) de Jomres');
 jr_define('_LICENCE_EXPIRED_POST', 'L\abonnement à Jomres est très abordable et offre un accès à tous les plugins et services d\'assistance réservés aux membres.');
-jr_define('_LICENCE_EXPIRED_RESTART', 'Resouscrivez votre abonnement maintenant !');
+jr_define('_LICENCE_EXPIRED_RESTART', 'Get access to all plugins now!');
 jr_define('_LICENCE_INVALID_KEY', 'Malheureusement, vous ne semblez pas utiliser une licence Jomres valide, vous ne pouvez donc pas profiter de ces fonctionnalités et avantages !');
 jr_define('_LICENCE_INVALID_BENEFITS_1', '<a href="https://www.jomres.net/jomres-plugins" target="_blank">Découvrez les plugins</a> qui améliorent grandement les fonctionnalités de Jomres');
 jr_define('_LICENCE_INVALID_BENEFITS_2', 'Seuls les abonnés bénéficient du support !');
 jr_define('_LICENCE_INVALID_BENEFITS_3', 'Mise à jour stable du coeur (core) de Jomres');
-jr_define('_LICENCE_INVALID_POST', 'L\abonnement à Jomres est très abordable et offre un accès à tous les plugins et services d\'assistance réservés aux membres.');
+jr_define('_LICENCE_INVALID_POST', 'Connect to us for trouble free payment solutions and get access to all plugins and member-only support services.');
 jr_define('_LICENCE_INVALID_START', 'Commencez votre essai gratuit maintenant !');
 jr_define('_ADMIN_MENU_SECTIONS_DASHBOARD', 'Tableau de bord');
 jr_define('_ADMIN_MENU_SECTIONS_USERS', 'Utilisateurs');
@@ -2359,3 +2359,53 @@ jr_define('CMF_CONFIG_KEY_DESC', 'The Channel Management Framework license key. 
 
 jr_define('_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT_UNAPPROVED', 'Your property has not been approved');
 jr_define('_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT_UNAPPROVED', "Your property as been unapproved. If you think that this was done in error please contact us. ");
+
+jr_define('_JOMRES_GUESTTYPES_IS_CHILD',"Est-ce un Enfant ?");
+jr_define('_JOMRES_GUESTTYPES_IS_CHILD_DESC',"Oui, si ce type de client serait classé comme Enfant.");
+
+jr_define('_JOMRES_GUESTTYPES_INTRO',"Si vous souhaitez facturer par personne et par nuit, vous devrez créer certains types de clients.");
+jr_define('_JOMRES_GUESTTYPES_INSTRUCTIONS',"Vous pouvez créer autant de types de clients que vous le souhaitez. Commencez par créer un seul type de client Adulte. Laissez tous les paramètres à leurs valeurs par défaut. Ensuite, si vous souhaitez par exemple accorder aux enfants de moins de 12 ans une réduction de 50 %, vous créez un nouveau type d’invité, que vous appelez Enfants de moins de 12 ans. Définissez le paramètre Ajouter variable ? Option - (Négatif) et réglez la variable sur 50. Cela signifie que lorsque des enfants sont ajoutés à une réservation, ils sont facturés à 50 % du coût de la chambre. " );
+
+
+jr_define('_JOMRES_MICROMANAGE_PICKERDROPDOWN_EDITPRICES',"Définir les prix manuellement");
+jr_define('_JOMRES_MICROMANAGE_PICKERDROPDOWN_EDITMINDAYS',"Définir les prix minimums des nuitées manuellement");
+jr_define('_JOMRES_MICROMANAGE_PICKER_SETMINDAYS',"Définir le prix minimum des nuitées");
+jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_DOW',"Définir les <em>prix des nuitées</em> par jour de la semaine");
+jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_INTERVAL_RATES',"Définir les <em>prix des nuitées</em> et par périodes");
+jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_INTERVAL_MINDAYS',"Définir les <em>prix mininums des nuitées</em> par périodes");
+jr_define('_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_RATES',"Les sélecteurs de date et le montant du tarif vous permettent de définir un prix pour une période donnée. Choisissez une date de début et de fin, entrez un prix et cliquez sur le bouton Définir le prix des nuitées.");
+jr_define('_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_MINDAYS',"Les sélecteurs de date et le montant minimum des nuitées vous permettent de définir une valeur pour le nombre minimum de nuitées pour une période donnée. Choisissez une date de début et de fin, entrez un nombre pour le nombre de nuitées minimums et cliquez sur 'Définir le montant minimum des nuitées'.");
+jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR_INFO',"Utilisez ce menu déroulant pour changer les prix entre les dates individuelles et les nuitées minimums. Vous pouvez utiliser le sélecteur <em> par jour de la semaine </em>, le sélecteur <em> par périodes </ em> ou définir les prix minimums des nuitées en modifiant manuellement les dates.");
+jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR_INFO_SMALL_VIEWPORT',"Utilisez ce menu déroulant pour changer les prix entre les dates individuelles et les prix minimums des nuitées. Vous pouvez utiliser le sélecteur <em> par périodes </ em> ou définir les prix minimums des nuitées en modifiant manuellement les dates.");
+jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR',"Définir les prix ou les nuitées munimums");
+jr_define('_JOMRES_MICROMANAGE_PICKER_BYDOW',"Définir les <em>nuitées minimums</em> par jour de la semaine");
+jr_define('_JOMRES_MICROMANAGE_PICKER_BYDOW_INFO',"Les champs du jour de la semaine vous permettent de définir un nombre minimum de nuits pour un jour de la semaine donné. Lorsque vous cliquez sur le bouton du jour de la semaine, tous les jours de la semaine sont réglés sur ce réglage de nuitées minimum.");
+jr_define('_JOMRES_MICROMANAGE_MANUALLY',"Définir manuellement les prix et nuitées minimums");
+jr_define('_JOMRES_MICROMANAGE_SET_PRICES',"Définir les prix");
+jr_define('_JOMRES_MICROMANAGE_SET_MINDAYS',"Définir les nuitées minimums");
+jr_define('_JOMRES_MICROMANAGE_PRICE',"Par nuitée");
+jr_define('_JOMRES_MICROMANAGE_MINDAYS',"Nuitées minimums");
+jr_define('_JOMRES_MICROMANAGE_MAXDAYS',"Nuitées maximums");
+jr_define('_JOMRES_MICROMANAGE_INTRO',"Ici, vous pouvez créer vos tarifs qui sont associés aux types de chambres de votre établissement. ");
+jr_define('_JOMRES_MICROMANAGE_BASIC_SETTINGS',"Options les plus couramment utilisées");
+jr_define('_JOMRES_MICROMANAGE_MODAL_BUTTON',"Explications");
+jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS',"Si vous souhaitez ajouter différents prix pour différents nombres de clients, <em> vous pouvez créer plusieurs tarifs pour chaque type de chambre </ em> et avoir différentes valeurs ninimums/maximums de client ces tarifs.");
+jr_define('_JOMRES_MICROMANAGE_INFO',"Donnez un nom au tarif, définissez le nombre maximal de nuitées, ainsi que le nombre minimal et maximal de clients, qui seront obligatoires dans le formulaire de réservation avant que le tarif ne soit proposé. <br/> <br/> Utilisez le panneau du sélecteur de date pour ajouter des prix et les réglages minimums de nuitées pour une période, ou modifier les informations directement. Si vous ne souhaitez pas que le tarif soit offert à certaines dates, laissez le prix à 0 (zéro) à ces dates. <br/> <br/> Vous pouvez avoir différents prix minimums nuitées à différentes dates. Par exemple, si vous souhaitez que les réservations soient plus longues pendant les semaines d'un festival ou d'une convention, vous pouvez définir les prix des nuitées pour ces périodes seulement. <br/> <br /> Si vous facturez un montant par personne (PPPN), vous pouvez activer ce paramètre dans l'onglet Paramètres > Configuration de l\'établissement > Tarifs et Devises, puis créer les types de clients dont vous avez besoin dans Paramètres > Types de clients.");
+jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS',"Options supplémentaires");
+jr_define('_JOMRES_MICROMANAGE_EXTRA_OPTIONS',"Ce sont des options supplémentaires qui ne sont pas couramment utilisées, mais à votre disposition. <br/> <strong> Ignorer PPPN (par personne et par nuit)</strong>. Vous pouvez avoir plusieurs tarifs différents pour le même type de chambre ; par exemple un tarif par personne et par nuit et un autre tarif.<br/><strong>Autoriser les week-ends.</strong> L'option vous donne la possibilité de créer un tarif disponible uniquement en semaine ; par exemple si vous souhaitez un tarif spécial pour la clientèle d'affaires. Dans ce cas, définissez l'option sur NON et les nuitées minimums sur 1 et les nuitées maximums au maximum sur 5. <br/><strong> Uniquement les week-ends </strong> L'option est l'inverse de l'option Autoriser les week-ends. Les jours de semaine peuvent être configuré dans vos paramètres de configuration d'établissement. Cela vous permet aussi de définir un tarif week-end unique que vous voudrez peut-être proposer pour des événements spéciaux. <br /> <strong> Arrivées en semaine.</strong> Cette option vous permet de forcer l’enregistrement uniquement certains jours de la semaine. Il est préférable de l'utiliser conjointement avec les options Configuration des établissements > Réservations > Périodes fixes. La majorité des utilisateurs voudront laisser cette option définie sur Tous. <br/> Les deux dernières options, <strong> Nombre minimum de chambres déjà sélectionnées </ strong> et <strong> Nombre maximum de chambres déjà sélectionnées </ strong> sont très spécialisées et utiles pour les établissements avec des tarifs extrêmement compliqués.<em> Sauf si vous avez un besoin spécifique, vous devez laisser ces options de côté.</em> Utilisez-les, si vous souhaitez que ce tarif ne soit proposé que si le client a déjà sélectionné X nombre de chambres dans le formulaire de réservation ; par exemple, vous pouvez avoir un tarif de base où ces options sont laissées à la valeur par défaut et un deuxième tarif où l'option de chambres minimum déjà sélectionnées est définie sur 1, alors ce second tarif sera proposé dans le formulaire de réservation une fois la chambre sélectionnée.");
+jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS_LIST_PAGE',"Vous pouvez créer plusieurs tarifs pour le même type de chambre. Ainsi, vous pouvez créer un tarif pour une période de 1 à 7 jours et un second tarif où le nombre de jours minimum est de 7, le nombre maximal de jours 14, etc. Cela vous permet de créer des schémas de tarification aussi simples ou aussi compliqués que vous le souhaitez. Il vous permet également de créer plusieurs tarifs avec différentes conditions, de sorte que vous puissiez avoir un deuxième ensemble de tarifs où le prix est inférieur pour Bed & Breakfast, et un autre ensemble de tarifs plus coûteux pour le lit + petit-déjeuner + repas du soir.");
+jr_define('_JOMRES_MICROMANAGE_USE_SELECTED_DATES',"Définir uniquement les jours du sélecteur de date ");
+
+jr_define('_JOMRES_STOP_READTHISFIRST1',"Stop!");
+jr_define('_JOMRES_STOP_READTHISFIRST2',"Thanks for installing Jomres");
+jr_define('_JOMRES_STOP_READTHISFIRST3',"Property management is performed in public facing pages, not the administrator area.");
+jr_define('_JOMRES_STOP_READTHISFIRST4',"If you are not familiar with Jomres please visit the Help section > Getting Started page.");
+
+
+jr_define('_JOMRES_CONFIG_SYNDICATION_TITLE',"Join the Jomres Syndicate");
+jr_define('_JOMRES_CONFIG_SYNDICATION_DESC',"Once you have your site setup and ready to start receiving visitors, join the Jomres.net syndicate and get your properties listed on other Jomres sites.");
+
+
+
+jr_define('_JOMRES_MICROMANAGE_CREATE_ROOM_1',"You need at least one room of one of the following types before you can create a tariff :");
+jr_define('_JOMRES_MICROMANAGE_CREATE_ROOM_2',"Go to Settings > Rooms and create a room first, once  you have done that you will be able to create a tariff for that room type.");
