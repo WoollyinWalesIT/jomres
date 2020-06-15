@@ -65,7 +65,7 @@ class j16000plugin_manager_check
 			$pageoutput = array();
 			
 			if ($ioncube_found) {
-				$output['INTRO'] = 'The Plugin Manager is required to install and use Jomres plugins. If you do not intend to install any plugins then do not install the manager.';
+				/*$output['INTRO'] = 'The Plugin Manager is required to install and use Jomres plugins. If you do not intend to install any plugins then do not install the manager.';
 				
 				$output['MESSAGE'] = 'The Plugin Manager is not installed, you must install it through the Plugin Manager page to use Jomres Core plugins or install third party plugins. You do not need a Jomres license to install third party plugins.';
 
@@ -73,7 +73,10 @@ class j16000plugin_manager_check
 				$tmpl = new patTemplate();
 				$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
 				$tmpl->addRows('pageoutput', $pageoutput);
-				$tmpl->readTemplatesFromInput('plugin_manager_warning.html');
+				$tmpl->readTemplatesFromInput('plugin_manager_warning.html');*/
+
+				return '';
+
 			} else {
 				$output['INTRO'] = 'Ioncube loaders are not installed on this system.';
 				

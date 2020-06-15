@@ -283,7 +283,7 @@ try {
 		$MiniComponents->triggerEvent('00012', $componentArgs); // Optional other stuff to do before switch is done.
 
 		if ( isset($jrConfig['platform_connected']) && $jrConfig['platform_connected'] == 1 ) {
-			if (!file_exists(JOMRES_COREPLUGINS_ABSPATH.'connect'.JRDS.'plugin_info.php')) { // Something has gone horribly wrong
+			if (!file_exists(JOMRES_COREPLUGINS_ABSPATH.'connect'.JRDS.'plugin_info.php') && file_exists(JOMRES_COREPLUGINS_ABSPATH.'plugin_manager'.JRDS.'plugin_info.php') ) { // Something has gone horribly wrong
 				$MiniComponents->specificEvent('16000', 'addplugin', array('plugin' => 'connect', 'autoupgrade' => true));
 			}
 		}
