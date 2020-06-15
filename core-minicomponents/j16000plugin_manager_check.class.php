@@ -75,11 +75,12 @@ class j16000plugin_manager_check
 				$tmpl->addRows('pageoutput', $pageoutput);
 				$tmpl->readTemplatesFromInput('plugin_manager_warning.html');
 			} else {
-				$output['INTRO'] = 'The Plugin Manager is required to install and use Jomres plugins. If you do not intend to install any plugins then do not install the manager.';
+				$output['INTRO'] = 'Ioncube loaders are not installed on this system.';
 				
-				$output['MESSAGE'] = 'The Plugin Manager is not installed, however the ioncube loaders do not appear to be installed on this server. If you have a <a href="https://www.jomres.net/pricing" target="_blank">one-off license for Jomres</a>, that is not a problem, save your license key in Settings > Site Configuration, if you haven\'t done so already and go ahead and install the manager. <a href="https://www.jomres.net/manual/60-jomres-manual/intro/383-jomres-licensing-explained#one-off-licenses" target="_blank"> The unencoded version</a> of the plugin manager will be installed.<br/><br/> ';
+				$output['MESSAGE'] = 'Ioncube loaders are required to be installed to download plugins or connect to the Jomres Platform. You do NOT need the plugin manager to use Jomres Core. <strong>Without plugins the Core system is still a functional booking system</strong>, but you will not be able to install any plugins.';
 
-				$output['MESSAGE2'] = 'If you attempt to install the plugin manager without the loaders installed, you will not be able to use Jomres at all until you manually delete the files in /jomres/core-plugins/plugin_manager and delete the contents of the /jomres/temp/ directory. In many cases you can install the ioncube loaders through your cPanel php settings area, but if you can\'t or if you are in any doubt, please contact your hosting service who will be able to talk you through the process.';
+				$output['MESSAGE2'] = 'If you attempt to install the plugin manager without the loaders installed, you will not be able to use Jomres at all until you manually delete the files in /jomres/core-plugins/plugin_manager and delete the contents of the /jomres/temp/ directory. In many cases you can install the ioncube loaders through your cPanel php settings area, but if you can\'t or if you are in any doubt, please contact your hosting service who will be able to talk you through the process. <strong>If you have an older (Essential one-off, Developer, Developer Renewal or Lifetime) license you do not need the loaders to install the plugin manager.</strong>';
+
 				$pageoutput[ ] = $output;
 				$tmpl = new patTemplate();
 				$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);

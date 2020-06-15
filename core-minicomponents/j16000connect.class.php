@@ -41,6 +41,31 @@ class j16000connect
 			return;
 		}
 
+		$ioncube_found = false;
+		foreach ( get_loaded_extensions() as $number => $extension_name ) {
+			if ( (strpos( strtolower($extension_name) , "ioncube" )) === false)  {
+				// do nothing
+			} else {
+				$ioncube_found = true;
+			}
+		}
+
+		if (!$ioncube_found) {
+			$output['INTRO'] = 'Ioncube loaders are not installed on this system.';
+
+			$output['MESSAGE'] = '<p>Ioncube loaders are required to be installed to connect to the Jomres Platform.</p> ';
+
+			$output['MESSAGE2'] = '<p>In many cases you can install the ioncube loaders through your cPanel php settings area, but if you can\'t or if you are in any doubt, please contact your hosting service who will be able to talk you through the process.</p>';
+			$pageoutput[ ] = $output;
+			$tmpl = new patTemplate();
+			$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
+			$tmpl->addRows('pageoutput', $pageoutput);
+			$tmpl->readTemplatesFromInput('plugin_manager_no_ioncube.html');
+			$tmpl->displayParsedTemplate();
+			return;
+		}
+
+
 		$local_url = base64_encode(JOMRES_SITEPAGE_URL_ADMIN_AJAX);
 
 		$connection_url = 'https://license-server.jomres.net/shop/connect/?local_url='.$local_url;
@@ -68,6 +93,9 @@ class j16000connect
      		margin-right: auto;
 			}
 
+.fill {
+  object-fit: contain;
+}
 		</style>
 		<script>
 		    var interval = window.setInterval(function() {
@@ -82,7 +110,7 @@ class j16000connect
 		</script>
 		<div id = "connect-wrapper">
 			<div class="wrap-element">
-				<iframe class="wrapped-iframe" src="https://license-server.jomres.net/shop/connect/client/connection_info.html" title="Connect to the Jomres platform"> </iframe>
+				<iframe class="wrapped-iframe fill" src="https://license-server.jomres.net/shop/connect/client/connection_info.html" title="Connect to the Jomres platform" seamless="seamless"> </iframe>
 			</div>
 			<div class="container">
 				<div class="row">
@@ -92,7 +120,7 @@ class j16000connect
 				</div>
 			</div>
 			<div class="wrap-element">
-				<iframe class="wrapped-iframe" src="https://license-server.jomres.net/shop/connect/client/details.html" title="More details about the Jomres Connect Program"> </iframe>
+				<iframe class="wrapped-iframe fill" src="https://license-server.jomres.net/shop/connect/client/details.html" title="More details about the Jomres Connect Program" seamless="auto" height="100%"> </iframe>
 			</div>		
 		</div>
 

@@ -275,7 +275,7 @@ class j16000addplugin
 				}
 
 				$base_uri = 'http://plugins.jomres4.net/';
-				$query_string = 'index.php?r=gp&cms='._JOMRES_DETECTED_CMS.'&vnw=1&key='.$key_to_send.$p.'&jomresver='.$mrConfig[ 'version' ].'&hostname='.get_showtime('live_site').'&php_version='.$php_version;
+				$query_string = 'index.php?r=gp&cms='._JOMRES_DETECTED_CMS.'&vnw=1&key='.$key_to_send.$p.'&jomresver='.$jrConfig[ 'version' ].'&hostname='.get_showtime('live_site').'&php_version='.$php_version;
 
 				$progress_messages[ ] = array('MESSAGE' => $base_uri.$query_string);
 				
