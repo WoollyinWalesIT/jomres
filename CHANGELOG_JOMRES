@@ -1,5 +1,6 @@
-<h3>Jomres 9.22.0 25/05/2020</h3>
+<h3>Jomres 9.22.0 15/06/2020</h3>
 
+<span class="label label-success">Feature</span> Jomres Platform introduced. Does not impact existing users with licenses however new users who want licenses will need to Connect to the Jomres Platform.
 <span class="label label-success">Feature</span> Added Guest types and Tariff editing modes to Jomres Core. Please uninstall the plugins.
 <span class="label label-success">Feature</span> Syndication is now off by default. You can re-enable it in Site Configuration > Portal Functionality tab.
 
