@@ -50,6 +50,9 @@ class j00005advanced_micromanage_tariff_editing_modes
 					case '2':
 						$task = 'list_tariffs_micromanage';
 						break;
+					case '5':
+						$task = 'list_tariffs_standard';
+						break;
 					default:
 						$task = 'edit_tariffs_normal';
 						break;

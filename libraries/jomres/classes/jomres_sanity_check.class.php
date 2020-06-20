@@ -490,8 +490,11 @@ class jomres_sanity_check
 					} elseif ($mrConfig['tariffmode'] == '1') {
 						$link = jomresURL(JOMRES_SITEPAGE_URL.'&task=list_tariffs_advanced');
 						$button_text = jr_gettext('_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK', '_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK', false);
-					} else {
+					} elseif ($mrConfig['tariffmode'] == '3') {
 						$link = jomresURL(JOMRES_SITEPAGE_URL.'&task=list_tariffs_micromanage');
+						$button_text = jr_gettext('_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK', '_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK', false);
+					} else {
+						$link = jomresURL(JOMRES_SITEPAGE_URL.'&task=list_tariffs_standard');
 						$button_text = jr_gettext('_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK', '_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK', false);
 					}
 

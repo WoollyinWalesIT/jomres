@@ -3397,8 +3397,12 @@ function propertyConfiguration()
 	if (isset($MiniComponents->registeredClasses[ '06002']['edit_tariff_micromanage' ])) {
 		$tariffMode[ ] = jomresHTML::makeOption('2', jr_gettext('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', false));
 		$tariffMode[ ] = jomresHTML::makeOption('1', jr_gettext('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'JOMRES_COM_A_TARIFFMODE_ADVANCED', false));
+		$tariffMode[ ] = jomresHTML::makeOption('5', jr_gettext('JOMRES_COM_A_TARIFFMODE_STANDARD', 'JOMRES_COM_A_TARIFFMODE_STANDARD', false));
 	}
 	$tariffModeDD = jomresHTML::selectList($tariffMode, 'cfg_tariffmode', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'tariffmode' ]);
+
+
+
 
 	$iconsizes = array();
 	$iconsizes[ ] = jomresHTML::makeOption('small', 'small');
