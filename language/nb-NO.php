@@ -2603,3 +2603,14 @@ jr_define('JOMRES_PLATFORM_LIVE_SECRET_KEY_DESC','Go to Developers > API keys in
 jr_define('JOMRES_PLATFORM_TEST_SECRET_KEY',"Stripe test secret key");
 jr_define('JOMRES_PLATFORM_TEST_SECRET_KEY_DESC',' ' );
 
+
+
+jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD', 'Standard Tariff Mode');
+
+jr_define('JOMRES_COM_A_ACCOMMODATES', 'Sleeps');
+jr_define('JOMRES_COM_A_ACCOMMODATES_DESC', 'How many people can this property accommodate?');
+jr_define('JOMRES_COM_A_GUESTS_IN_DAILY_PRICE', 'The number of guests in your daily price');
+jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE', 'Extra guests price ');
+
+jr_define('JOMRES_EXTRA_GUESTS_BOOKING_FORM_LABEL', 'Extra guests ');
+jr_define('JOMRES_EXTRA_GUESTS_BOOKING_FORM_LABEL_INFO', 'Booking based on two guests.');
