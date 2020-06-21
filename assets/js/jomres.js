@@ -569,6 +569,19 @@ function getResponse_guesttype(typeid, value) {
 	);
 };
 
+
+function getResponse_extraguests() {
+	var form_property_uid = jomresJquery("#booking_form_property_uid").val();
+	HideRoomsList();
+	var value = jomresJquery("#extra_guests").val();
+	jomresJquery.get(ajaxurl + '&task=handlereq&property_uid_check=' + form_property_uid + '', { field: 'extra_guests',  'value': value },
+		function (data) {
+			showRoomsList(data);
+			show_log('extraguests');
+		}
+	);
+};
+
 function getResponse_rooms(field, value) {
 	var form_property_uid = jomresJquery("#booking_form_property_uid").val();
 	HideRoomsList();

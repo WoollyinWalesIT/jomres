@@ -92,6 +92,8 @@ class dobooking
 		$this->vq = '';
 		$this->vv = '';
 		$this->rr = '';
+		$this->extra_guest_numbers = 0;
+		$this->extra_guest_price = 0.00;
 
 		$this->existing_id = '';
 		$this->mos_userid = 0;
@@ -168,7 +170,10 @@ class dobooking
 			$this->deposit_required = $bookingDeets[ 'deposit_required' ];
 			$this->contract_total = $bookingDeets[ 'contract_total' ];
 			$this->extrasvalue = $bookingDeets[ 'extrasvalue' ];
-			
+
+			$this->extra_guest_numbers = $bookingDeets[ 'extra_guest_numbers' ];
+			$this->extra_guest_price = $bookingDeets[ 'extra_guest_price' ];
+
 			if ($jrConfig['session_handler'] == 'database') {
 				if (is_array($bookingDeets[ 'extrasvalues_items' ]))
 					$this->extrasvalues_items = $bookingDeets[ 'extrasvalues_items' ];
@@ -513,82 +518,81 @@ class dobooking
 		$this->writeToLogfile($this->error);
 		$this->error = '';
 
-		$tmpBookingHandler->tmpbooking[ 'requestedRoom' ] = $rr;
-		$tmpBookingHandler->tmpbooking[ 'rate_pernight' ] = $this->rate_pernight;
-		$tmpBookingHandler->tmpbooking[ 'variancetypes' ] = $this->vt;
-		$tmpBookingHandler->tmpbooking[ 'varianceuids' ] = $this->vu;
-		$tmpBookingHandler->tmpbooking[ 'varianceqty' ] = $this->vq;
-		$tmpBookingHandler->tmpbooking[ 'variancevals' ] = $this->vv;
-		$tmpBookingHandler->tmpbooking[ 'variancevals_nodiscount' ] = $this->vv_nodiscount;
-		//$tmpBookingHandler->tmpbooking["coupon_id"]						= $this->coupon_id;
+		$tmpBookingHandler->tmpbooking[ 'requestedRoom' ]				= $rr;
+		$tmpBookingHandler->tmpbooking[ 'rate_pernight' ]				= $this->rate_pernight;
+		$tmpBookingHandler->tmpbooking[ 'variancetypes' ]				= $this->vt;
+		$tmpBookingHandler->tmpbooking[ 'varianceuids' ]				= $this->vu;
+		$tmpBookingHandler->tmpbooking[ 'varianceqty' ]					= $this->vq;
+		$tmpBookingHandler->tmpbooking[ 'variancevals' ]				= $this->vv;
+		$tmpBookingHandler->tmpbooking[ 'variancevals_nodiscount' ] 	= $this->vv_nodiscount;
+		//$tmpBookingHandler->tmpbooking["coupon_id"]					= $this->coupon_id;
 		//$tmpBookingHandler->tmpbooking["coupon"]						= $this->coupon;
-		$tmpBookingHandler->tmpbooking[ 'lastminute_id' ] = $this->lastminute_id;
-		$tmpBookingHandler->tmpbooking[ 'arrivalDate' ] = $this->arrivalDate;
-		$tmpBookingHandler->tmpbooking[ 'departureDate' ] = $this->departureDate;
-		$tmpBookingHandler->tmpbooking[ 'stayDays' ] = $this->stayDays;
-		$tmpBookingHandler->tmpbooking[ 'dateRangeString' ] = $this->dateRangeString;
-		$tmpBookingHandler->tmpbooking[ 'guests_uid' ] = $this->guests_uid;
-		$tmpBookingHandler->tmpbooking[ 'property_uid' ] = $this->property_uid;
-		$tmpBookingHandler->tmpbooking[ 'rates_uid' ] = $this->rates_uid;
-		$tmpBookingHandler->tmpbooking[ 'resource' ] = $this->resource;
-		$tmpBookingHandler->tmpbooking[ 'single_person_suppliment' ] = $this->single_person_suppliment;
-		$tmpBookingHandler->tmpbooking[ 'deposit_required' ] = $this->deposit_required;
-		$tmpBookingHandler->tmpbooking[ 'contract_total' ] = $this->contract_total;
-		$tmpBookingHandler->tmpbooking[ 'extrasvalue' ] = $this->extrasvalue;
-		$tmpBookingHandler->tmpbooking[ 'extras' ] = $this->extras;
-		$tmpBookingHandler->tmpbooking[ 'extrasquantities' ] = $this->extrasquantities;
+		$tmpBookingHandler->tmpbooking[ 'lastminute_id' ]				= $this->lastminute_id;
+		$tmpBookingHandler->tmpbooking[ 'arrivalDate' ]					= $this->arrivalDate;
+		$tmpBookingHandler->tmpbooking[ 'departureDate' ]				= $this->departureDate;
+		$tmpBookingHandler->tmpbooking[ 'stayDays' ]					= $this->stayDays;
+		$tmpBookingHandler->tmpbooking[ 'dateRangeString' ]				= $this->dateRangeString;
+		$tmpBookingHandler->tmpbooking[ 'guests_uid' ]					= $this->guests_uid;
+		$tmpBookingHandler->tmpbooking[ 'property_uid' ]				= $this->property_uid;
+		$tmpBookingHandler->tmpbooking[ 'rates_uid' ]					= $this->rates_uid;
+		$tmpBookingHandler->tmpbooking[ 'resource' ]					= $this->resource;
+		$tmpBookingHandler->tmpbooking[ 'single_person_suppliment' ]	= $this->single_person_suppliment;
+		$tmpBookingHandler->tmpbooking[ 'deposit_required' ]			= $this->deposit_required;
+		$tmpBookingHandler->tmpbooking[ 'contract_total' ]				= $this->contract_total;
+		$tmpBookingHandler->tmpbooking[ 'extrasvalue' ]					= $this->extrasvalue;
+		$tmpBookingHandler->tmpbooking[ 'extras' ]						= $this->extras;
+		$tmpBookingHandler->tmpbooking[ 'extrasquantities' ]			= $this->extrasquantities;
+		$tmpBookingHandler->tmpbooking[ 'extra_guest_numbers' ]			= $this->extra_guest_numbers;
+		$tmpBookingHandler->tmpbooking[ 'extra_guest_price' ]			= $this->extra_guest_price;
 		
 		if ($jrConfig['session_handler'] == 'database') {
-			$tmpBookingHandler->tmpbooking[ 'extrasvalues_items' ] = $this->extrasvalues_items;
-			$tmpBookingHandler->tmpbooking[ 'third_party_extras' ] = $this->third_party_extras;
-			$tmpBookingHandler->tmpbooking[ 'third_party_extras_private_data' ] = $this->third_party_extras_private_data;
-			$tmpBookingHandler->tmpbooking[ 'room_allocations' ] = $this->room_allocations;
-			$tmpBookingHandler->tmpbooking[ 'room_allocations_note' ] = $this->room_allocations_note;
-			$tmpBookingHandler->tmpbooking[ 'additional_line_items' ] = $this->additional_line_items;
-		$tmpBookingHandler->tmpbooking[ 'room_feature_filter' ] = $this->room_feature_filter;
+			$tmpBookingHandler->tmpbooking[ 'extrasvalues_items' ]				= $this->extrasvalues_items;
+			$tmpBookingHandler->tmpbooking[ 'third_party_extras' ]				= $this->third_party_extras;
+			$tmpBookingHandler->tmpbooking[ 'third_party_extras_private_data' ]	= $this->third_party_extras_private_data;
+			$tmpBookingHandler->tmpbooking[ 'room_allocations' ]				= $this->room_allocations;
+			$tmpBookingHandler->tmpbooking[ 'room_allocations_note' ]			= $this->room_allocations_note;
+			$tmpBookingHandler->tmpbooking[ 'additional_line_items' ]			= $this->additional_line_items;
+		$tmpBookingHandler->tmpbooking[ 'room_feature_filter' ]					= $this->room_feature_filter;
 		} else {
-			$tmpBookingHandler->tmpbooking[ 'extrasvalues_items' ] = serialize($this->extrasvalues_items);
-			$tmpBookingHandler->tmpbooking[ 'third_party_extras' ] = serialize($this->third_party_extras);
-			$tmpBookingHandler->tmpbooking[ 'third_party_extras_private_data' ] = serialize($this->third_party_extras_private_data);
-			$tmpBookingHandler->tmpbooking[ 'room_allocations' ] = serialize($this->room_allocations);
-			$tmpBookingHandler->tmpbooking[ 'room_allocations_note' ] = serialize($this->room_allocations_note);
-			$tmpBookingHandler->tmpbooking[ 'additional_line_items' ] = serialize($this->additional_line_items);
-			$tmpBookingHandler->tmpbooking[ 'room_feature_filter' ] = serialize($this->room_feature_filter);
+			$tmpBookingHandler->tmpbooking[ 'extrasvalues_items' ]				= serialize($this->extrasvalues_items);
+			$tmpBookingHandler->tmpbooking[ 'third_party_extras' ]				= serialize($this->third_party_extras);
+			$tmpBookingHandler->tmpbooking[ 'third_party_extras_private_data' ]	= serialize($this->third_party_extras_private_data);
+			$tmpBookingHandler->tmpbooking[ 'room_allocations' ]				= serialize($this->room_allocations);
+			$tmpBookingHandler->tmpbooking[ 'room_allocations_note' ]			= serialize($this->room_allocations_note);
+			$tmpBookingHandler->tmpbooking[ 'additional_line_items' ]			= serialize($this->additional_line_items);
+			$tmpBookingHandler->tmpbooking[ 'room_feature_filter' ]				= serialize($this->room_feature_filter);
 		}
 
-		$tmpBookingHandler->tmpbooking[ 'total_discount' ] = $this->total_discount;
-		$tmpBookingHandler->tmpbooking[ 'depositpaidsuccessfully' ] = $this->depositpaidsuccessfully;
-		$tmpBookingHandler->tmpbooking[ 'tax' ] = $this->tax;
-		$tmpBookingHandler->tmpbooking[ 'booker_class' ] = $this->booker_class;
-		$tmpBookingHandler->tmpbooking[ 'ok_to_book' ] = $this->ok_to_book;
-		$tmpBookingHandler->tmpbooking[ 'beds_available' ] = $this->beds_available;
-		$tmpBookingHandler->tmpbooking[ 'referrer' ] = $this->referrer;
-		$tmpBookingHandler->tmpbooking[ 'error_log' ] = $this->error;
-		$tmpBookingHandler->tmpbooking[ 'total_in_party' ] = $this->total_in_party;
-		$tmpBookingHandler->tmpbooking[ 'room_total' ] = $this->room_total;
-		$tmpBookingHandler->tmpbooking[ 'room_total_nodiscount' ] = $this->room_total_nodiscount;
-		$tmpBookingHandler->tmpbooking[ 'discounts' ] = $this->discounts;
-		$tmpBookingHandler->tmpbooking[ 'timestamp' ] = date('Y-m-d H:i:s');
-		$tmpBookingHandler->tmpbooking[ 'mininterval' ] = $this->mininterval;
-		$tmpBookingHandler->tmpbooking[ 'coupon_id' ] = $this->coupon_id;
-		$tmpBookingHandler->tmpbooking[ 'coupon_code' ] = $this->coupon_code;
-		$tmpBookingHandler->tmpbooking[ 'coupon_details' ] = $this->coupon_details;
-		$tmpBookingHandler->tmpbooking[ 'coupon_discount_value' ] = $this->coupon_discount_value;
-		$tmpBookingHandler->tmpbooking[ 'booking_notes' ] = $this->booking_notes;
-		$tmpBookingHandler->tmpbooking[ 'override_room_total' ] = $this->override_room_total;
-		$tmpBookingHandler->tmpbooking[ 'override_deposit' ] = $this->override_deposit;
+		$tmpBookingHandler->tmpbooking[ 'total_discount' ]						= $this->total_discount;
+		$tmpBookingHandler->tmpbooking[ 'depositpaidsuccessfully' ]				= $this->depositpaidsuccessfully;
+		$tmpBookingHandler->tmpbooking[ 'tax' ]									= $this->tax;
+		$tmpBookingHandler->tmpbooking[ 'booker_class' ]						= $this->booker_class;
+		$tmpBookingHandler->tmpbooking[ 'ok_to_book' ]							= $this->ok_to_book;
+		$tmpBookingHandler->tmpbooking[ 'beds_available' ]						= $this->beds_available;
+		$tmpBookingHandler->tmpbooking[ 'referrer' ]							= $this->referrer;
+		$tmpBookingHandler->tmpbooking[ 'error_log' ]							= $this->error;
+		$tmpBookingHandler->tmpbooking[ 'total_in_party' ]						= $this->total_in_party;
+		$tmpBookingHandler->tmpbooking[ 'room_total' ]							= $this->room_total;
+		$tmpBookingHandler->tmpbooking[ 'room_total_nodiscount' ]				= $this->room_total_nodiscount;
+		$tmpBookingHandler->tmpbooking[ 'discounts' ]							= $this->discounts;
+		$tmpBookingHandler->tmpbooking[ 'timestamp' ]							= date('Y-m-d H:i:s');
+		$tmpBookingHandler->tmpbooking[ 'mininterval' ]							= $this->mininterval;
+		$tmpBookingHandler->tmpbooking[ 'coupon_id' ]							= $this->coupon_id;
+		$tmpBookingHandler->tmpbooking[ 'coupon_code' ]							= $this->coupon_code;
+		$tmpBookingHandler->tmpbooking[ 'coupon_details' ]						= $this->coupon_details;
+		$tmpBookingHandler->tmpbooking[ 'coupon_discount_value' ]				= $this->coupon_discount_value;
+		$tmpBookingHandler->tmpbooking[ 'booking_notes' ]						= $this->booking_notes;
+		$tmpBookingHandler->tmpbooking[ 'override_room_total' ]					= $this->override_room_total;
+		$tmpBookingHandler->tmpbooking[ 'override_deposit' ]					= $this->override_deposit;
 
-		$tmpBookingHandler->tmpbooking[ 'show_extras' ] = $this->cfg_showExtras;
-		$tmpBookingHandler->tmpbooking[ 'property_currencycode' ] = $this->property_currencycode;
-		$tmpBookingHandler->tmpbooking[ 'email_address_can_be_used' ] = $this->email_address_can_be_used;
+		$tmpBookingHandler->tmpbooking[ 'show_extras' ]							= $this->cfg_showExtras;
+		$tmpBookingHandler->tmpbooking[ 'property_currencycode' ]				= $this->property_currencycode;
+		$tmpBookingHandler->tmpbooking[ 'email_address_can_be_used' ]			= $this->email_address_can_be_used;
 
 		if (isset($this->thirdparty_vars)) {
-			$tmpBookingHandler->tmpbooking[ 'thirdparty_vars' ] = $this->thirdparty_vars;
+			$tmpBookingHandler->tmpbooking[ 'thirdparty_vars' ]					= $this->thirdparty_vars;
 		}
 
-		//store the new search dates
-		//$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] = $this->arrivalDate;
-		//$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] = $this->departureDate;
 	}
 
 	/**
@@ -655,7 +659,7 @@ class dobooking
 	public function getAllTariffsData()
 	{
 		$query = "SELECT `rates_uid`,`rate_title`,`rate_description`,`validfrom`,`validto`,
-			`roomrateperday`,`mindays`,`maxdays`,`minpeople`,`maxpeople`,`roomclass_uid`,
+			`roomrateperday`, `extra_guests_price`,  `mindays`,`maxdays`,`minpeople`,`maxpeople`,`roomclass_uid`,
 			`ignore_pppn`,`allow_ph`,`allow_we`,`weekendonly`,`dayofweek`,`minrooms_alreadyselected`,`maxrooms_alreadyselected`
 			FROM #__jomres_rates WHERE property_uid = '$this->property_uid' 
 			AND DATE_FORMAT(`validto`, '%Y/%m/%d') >= DATE_FORMAT('".$this->today."', '%Y/%m/%d')
@@ -679,6 +683,7 @@ class dobooking
 				'validfrom' => $t->validfrom,
 				'validto' => $t->validto,
 				'roomrateperday' => $roomrate,
+				'extra_guests_price' => $t->extra_guests_price ,
 				'mindays' => $t->mindays,
 				'maxdays' => $t->maxdays,
 				'minpeople' => $t->minpeople,
@@ -1550,6 +1555,8 @@ class dobooking
 		$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_CELLPHONE' ] = $this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_CELLPHONE', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_CELLPHONE', false, false));
 		$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL' ] = $this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL', false, false));
 
+		$output[ 'JOMRES_EXTRA_GUESTS_BOOKING_FORM_LABEL' ] = $this->sanitiseOutput(jr_gettext('JOMRES_EXTRA_GUESTS_BOOKING_FORM_LABEL', 'JOMRES_EXTRA_GUESTS_BOOKING_FORM_LABEL', false, false));
+
 		return $output;
 	}
 
@@ -2054,6 +2061,30 @@ class dobooking
 		}
 
 		return $cust;
+	}
+
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	//	Extra guests
+
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+	/**
+	 * Receives the extra guest number and stores it
+	 */
+	public function setExtraGuests($value)
+	{
+		$this->setErrorLog('setExtraGuests::Starting');
+
+		if (!isset($this->extra_guest_numbers)) {
+			$this->extra_guest_numbers = 0;
+		}
+
+		$this->extra_guest_numbers = (int)$value;
+
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3825,12 +3856,15 @@ class dobooking
 		$ratesList=doSelectSql($query);
 		*/
 		$ratesList = array();
-		$room_class = $this->allPropertyRooms[ $room ][ 'room_classes_uid' ];
-		foreach ($this->allPropertyTariffs as $tariff) {
-			if ($tariff[ 'rates_uid' ] == $rtArray[ 1 ] && $tariff[ 'roomclass_uid' ] == $room_class) {
-				$ratesList[ ] = $tariff[ 'rates_uid' ];
+		if ( isset($this->allPropertyRooms[ $room ])) {
+			$room_class = $this->allPropertyRooms[ $room ][ 'room_classes_uid' ];
+			foreach ($this->allPropertyTariffs as $tariff) {
+				if ($tariff[ 'rates_uid' ] == $rtArray[ 1 ] && $tariff[ 'roomclass_uid' ] == $room_class) {
+					$ratesList[ ] = $tariff[ 'rates_uid' ];
+				}
 			}
 		}
+
 		if (empty($ratesList)) {
 			return false;
 		} else {
@@ -5612,9 +5646,11 @@ class dobooking
 		$total = 0.00;
 		$result = $this->getVariantsOfType('guesttype');
 		$this->allRoomsAreIgnorePPPN = true;
+		$extra_guest_price = 0;
 		foreach ($this->requestedRoom as $r) {
 			$rm_idArr = explode('^', $r);
 			$tariff_id = $rm_idArr[ 1 ];
+			$extra_guest_price = $this->allPropertyTariffs[ $tariff_id ]['extra_guests_price'];
 			$ignore_pppn = $this->allPropertyTariffs[ $tariff_id ][ 'ignore_pppn' ];
 			if ($ignore_pppn == '0') {
 				$this->allRoomsAreIgnorePPPN = false;
@@ -5726,6 +5762,16 @@ class dobooking
 			}
 			$this->addBookingNote('Coupon', $note);
 		}
+
+		$this->extra_guest_price = 0.00;
+		if ( $this->cfg_tariffmode == '5' && count($this->requestedRoom) > 0 ) {
+			if ($this->extra_guest_numbers > 0 ) {
+				$this->extra_guest_price = ($this->extra_guest_numbers * $extra_guest_price) * $this->stayDays;
+				$this->extra_guest_price = $this->get_nett_price( $this->extra_guest_price , $this->accommodation_tax_rate);
+				$this->room_total = $this->room_total + $this->extra_guest_price;
+			}
+		}
+
 
 		//Personal (guest specific) discount
 		if ($this->guest_specific_discount > 0) {

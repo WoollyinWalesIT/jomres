@@ -444,6 +444,18 @@ function dobooking($selectedProperty, $thisdate, $remus)
 		$output[ 'BILLING_TOTALINPARTY' ] = '';
 	}
 
+	if ($mrConfig['tariffmode'] == 5 ) {
+		$plus_guests = (int)$mrConfig['accommodates'] - 2;
+		$extra_guests_dropdown = jomresHTML::integerSelectList(0, $plus_guests, 1, 'extra_guests', 'size="1" class="input-mini"  autocomplete="off" onchange="getResponse_extraguests();"', 0, '%02d', $use_bootstrap_radios = false);
+
+		$extra_guests[] = array (
+			"EXTRA_GUESTS_DROPDOWN" => $extra_guests_dropdown ,
+			'TEXT' => jr_gettext('JOMRES_EXTRA_GUESTS_BOOKING_FORM_LABEL', 'JOMRES_EXTRA_GUESTS_BOOKING_FORM_LABEL')  ,
+			'INFO' => jr_gettext('JOMRES_EXTRA_GUESTS_BOOKING_FORM_LABEL_INFO', 'JOMRES_EXTRA_GUESTS_BOOKING_FORM_LABEL_INFO')
+		);
+	}
+
+
 	$ex = $bkg->makeExtras($selectedProperty);
 	$extra_details = $ex[ 'core_extras' ];
 	$exx = $bkg->makeThirdPartyExtras($selectedProperty);
@@ -776,6 +788,7 @@ function dobooking($selectedProperty, $thisdate, $remus)
 		$tmpl->addRows('customfields', $customFields);
 		$tmpl->addRows('pageoutput', $pageoutput);
 		$tmpl->addRows('guesttypes', $guestTypes);
+		$tmpl->addRows('extra_guests', $extra_guests);
 		$tmpl->addRows('extrasrow', $extrasHeader);
 		$tmpl->addRows('roomfeaturesrowheader', $roomfeaturesHeader);
 		$tmpl->addRows('roomfeaturesrow', $roomfeatures);

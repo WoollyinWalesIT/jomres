@@ -232,6 +232,16 @@ class j06000handlereq
 				}
 				$bkg->resetRequestedRoom();
 				break;
+
+			case 'extra_guests':
+				$ajrq = 'ajrq:::extra_guests';
+				$bkg->setOkToBook(false);
+				$value = $bkg->sanitiseInput('int', $value);
+				$bkg->writeToLogfile('Starting extra guest input');
+					$retText = 'Extra added to booking';
+					$bkg->setExtraGuests($value);
+				break;
+
 			case 'extras':
 				$ajrq = 'ajrq:::extras';
 				$bkg->setOkToBook(false);
@@ -472,6 +482,11 @@ class j06000handlereq
 						echo '; populateDiv("extra_tax","'.output_price($extra_tax).'")';
 					}
 					echo '; populateDiv("grandtotal","'.output_price($bkg->getGrandTotal()).'")';
+
+
+					if ( $bkg->cfg_tariffmode == '5') {
+						echo '; populateDiv("extra_guests_total","'.output_price($bkg->extra_guest_price).'")';
+					}
 
 					if (isset($bkg->room_total_inc_tax)) {
 						echo '; populateDiv("room_total_inc_tax","'.output_price($bkg->room_total_inc_tax).'")';
