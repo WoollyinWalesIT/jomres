@@ -144,7 +144,7 @@ try {
 	if (get_showtime('task') != 'error') {
 		$defaultProperty = (int) $thisJRUser->currentproperty;
 
-		if (!$thisJRUser->userIsManager && $thisJRUser->userIsRegistered) {
+		if (!$thisJRUser->userIsManager && $thisJRUser->userIsRegistered && !AJAXCALL && !preg_match('/bot|crawl|curl|dataprovider|search|get|spider|find|java|majesticsEO|google|yahoo|teoma|contaxe|yandex|libwww-perl|facebookexternalhit/i', $_SERVER['HTTP_USER_AGENT']) && get_showtime['task'] != 'background_process' ) {
 			
 			if (!isset($_REQUEST['jsid'])) { // Don't want to reset mos userid if jsid is set. jsid is sent back by gateways and if we set mos id to the gateway's session, we'll never be able to  associate the booking with the guest
 				$tmpBookingHandler->updateGuestField('mos_userid', $thisJRUser->id);
