@@ -3579,11 +3579,14 @@ function propertyConfiguration()
 			$configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel');
 		} elseif ($bs_version == '3') {
 			$configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel_bootstrap3');
+		} elseif ($bs_version == '4') {
+			$configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel_bootstrap4');
 		}
 	}
 
 	$componentArgs[ 'configurationPanel' ]  = $configurationPanel;
     $componentArgs['is_channel_property']   = is_channel_property($property_uid);
+
 	$configurationPanel->startTabs();
 
 	$MiniComponents->triggerEvent('00501', $componentArgs); // Generate configuration options tabs
