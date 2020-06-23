@@ -222,11 +222,19 @@ class j06005save_my_account
 			}
 		}
 		
-		
+		if (!is_dir( JOMRES_IMAGELOCATION_ABSPATH.'userimages')) {
+			mkdir( JOMRES_IMAGELOCATION_ABSPATH.'userimages');
+		}
+
+		if (!is_dir( JOMRES_IMAGELOCATION_ABSPATH.'userimages'.JRDS.$thisJRUser->id)) {
+			mkdir( JOMRES_IMAGELOCATION_ABSPATH.'userimages'.JRDS.$thisJRUser->id);
+		}
+
 		//profile image
 		$abs_path = JOMRES_IMAGELOCATION_ABSPATH.'userimages'.JRDS.$thisJRUser->id.JRDS;
 		$rel_path = JOMRES_IMAGELOCATION_RELPATH.'userimages/'.$thisJRUser->id.'/';
-		
+
+
 		if ($delete_image) {
 			$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
 
@@ -242,6 +250,7 @@ class j06005save_my_account
 				jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_my_account'), "Yay, we'll deleted this sukka");
 			}
 		} else {
+
 			if (!empty($_FILES) && count($_FILES) == 1) { //we won`t allow more than one file to be uploaded
 				jr_import('jomres_media_centre_uploader');
 
