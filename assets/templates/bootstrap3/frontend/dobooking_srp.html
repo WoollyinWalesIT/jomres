@@ -202,13 +202,22 @@
 						</div>
 						</patTemplate:tmpl>
 					</div>
-					<patTemplate:tmpl name="guesttypes">
+					<patTemplate:tmpl name="guesttypes" type="simpleCondition" requiredVars="fieldname">
 					<div class="col-md-3">
 						<div class="form-group">
 							<label class="control-label" for="{FIELDNAME}">{TEXT}</label>
 							{DROPDOWN}
 						</div>
 					</div>
+					</patTemplate:tmpl>
+					<patTemplate:tmpl name="extra_guests" type="simpleCondition" requiredVars="extra_guests_dropdown">
+						<div class="col-md-3">
+							<div class="form-group">
+								<label class="control-label" for="extra_guests">{TEXT}</label>
+								{EXTRA_GUESTS_DROPDOWN}
+								<p class="help-block">{INFO}</p>
+							</div>
+						</div>
 					</patTemplate:tmpl>
 				</div>
 			</div>
@@ -340,6 +349,14 @@
 							</div>
 							<div class="col-xs-3">
 								<span id="room_total_inc_tax"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-9">
+								{JOMRES_EXTRA_GUESTS_BOOKING_FORM_LABEL}
+							</div>
+							<div class="col-xs-3">
+								<span id="extra_guests_total"></span>
 							</div>
 						</div>
 						<div class="row">
