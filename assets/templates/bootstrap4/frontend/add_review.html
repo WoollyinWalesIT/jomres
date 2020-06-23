@@ -1,7 +1,7 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script language="JavaScript" type="text/javascript">
 	<!--
-	jomresJquery(document).ready(function () {
+	document.addEventListener('DOMContentLoaded', function(){
 		jomresJquery.validator.setDefaults({
 			highlight: function (input) {
 				jomresJquery(input).addClass("ui-state-highlight");
@@ -44,7 +44,7 @@
 
 		});
 		jomresJquery("#messageBox").hide();
-	});
+	}, false);
 	//-->
 </script>
 

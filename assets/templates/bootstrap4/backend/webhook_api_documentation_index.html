@@ -1,9 +1,9 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
 <script>
-	jomresJquery(document).ready(function () {
+	document.addEventListener('DOMContentLoaded', function(){
 		jomresJquery('body').scrollspy({ target: '#my-nav' });
-	});
+	}, false);
 </script>
 <style>
 table {

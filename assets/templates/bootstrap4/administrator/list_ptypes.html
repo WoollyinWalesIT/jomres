@@ -1,9 +1,9 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
 	<script language="JavaScript" type="text/javascript">
 		<!--
-		jomresJquery(document).ready(function () {
+		document.addEventListener('DOMContentLoaded', function(){
 			make_datatable('admin_list_ptypes', '{PAGETITLE}', '{LIVESITE}');
-		});
+		}, false);
 		//-->
 	</script>
 	<h2 class="page-header">{PAGETITLE}</h2>

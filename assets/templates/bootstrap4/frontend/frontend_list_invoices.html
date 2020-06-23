@@ -2,11 +2,11 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script language="javascript" type="text/javascript">
 	<!--
-	jomresJquery(document).ready(function () {
+	document.addEventListener('DOMContentLoaded', function(){
 		make_datatable('frontend_list_invoices', '{PAGETITLE}', '{LIVESITE}', '{AJAX_URL}');
 		column_ids = new Array(2,3,6,8,9,11,12,13);
 		dataTableSetHiddenColumns('frontend_list_invoices', column_ids);
-	});
+	}, false);
 	//-->
 </script>
 <div id="tour_target_table_tools"></div>

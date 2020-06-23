@@ -2,11 +2,11 @@
 <script type="text/javascript">
 <!--
 // Moves the menu to the content/component area (above the Jomres output), however that will be overriden by navbar-fixed-bottom or navbar-fixed-top
-jomresJquery(document).ready(function () {
+document.addEventListener('DOMContentLoaded', function(){
 	var $content = jomresJquery('#jomres-menu-pinned').html();
 	jomresJquery('#{MENU_LOCATION}').html($content);
 	jomresJquery('#jomres-menu-pinned').empty(); // making sure that the old div doesn't have the accordion applied to it.
-});
+}, false);
 //-->
 </script>
 

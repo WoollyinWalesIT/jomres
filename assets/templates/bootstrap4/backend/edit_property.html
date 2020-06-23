@@ -23,7 +23,7 @@
 			});
 		});
 	
-	jomresJquery(document).ready(function () {
+	document.addEventListener('DOMContentLoaded', function(){
 
 		jomresJquery('#adminForm').attr('novalidate', 'novalidate'); // Disable html5 validation
         jQuery.validator.setDefaults({
@@ -41,7 +41,7 @@
                     jomresJquery(element).closest('.form-group').removeClass('has-error has-feedback').addClass('has-success has-feedback');
                 }
             }
-        });
+		}, false);
 		
 		jomresJquery('#adminForm').validate(
 				{

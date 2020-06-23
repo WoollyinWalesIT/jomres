@@ -29,9 +29,9 @@
 				}
 			});
 		}
-		jomresJquery(document).ready(function () {
+		document.addEventListener('DOMContentLoaded', function(){
 			make_datatable('view_property_reviews', '{HPROPERTYNAME}: {PROPERTY_NAME}', '{LIVESITE}');
-		});
+		}, false);
 		//-->
 	</script>
 	<h2 class="page-header">{HPROPERTYNAME}: {PROPERTY_NAME}</h2>

@@ -1,8 +1,8 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script type="text/javascript">
-jomresJquery(document).ready(function () {
+document.addEventListener('DOMContentLoaded', function(){
 	jomresJquery('#consentForm').appendTo("body");
-});
+}, false);
 </script>
 <div class="modal fade" tabindex="-1" role="dialog" id="consentForm" >
   <div class="modal-dialog" role="document">

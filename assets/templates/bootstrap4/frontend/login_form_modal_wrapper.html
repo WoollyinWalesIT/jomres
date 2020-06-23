@@ -1,8 +1,8 @@
 <patTemplate:tmpl name="loginoutput"  >
 <script type="text/javascript">
-jomresJquery(document).ready(function () {
+document.addEventListener('DOMContentLoaded', function(){
 	jomresJquery('#loginModal').appendTo("body");
-});
+}, false);
 </script>
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
 	<div class="modal-dialog">

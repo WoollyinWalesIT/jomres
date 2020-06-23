@@ -336,7 +336,7 @@ function get_existing_images()
         }
 	}
 	
-jomresJquery(document).ready(function () {
+document.addEventListener('DOMContentLoaded', function(){
 
   jomresJquery('[data-toggle="popover"]').popover()
 
@@ -347,7 +347,7 @@ jomresJquery(document).ready(function () {
         var link = jomresJquery(e.relatedTarget);
         jomresJquery(this).find(".modal-body").load(link.attr("href"));
         });
-	});
+}, false);
 </script>
 
 <!-- The template to display files available for upload -->

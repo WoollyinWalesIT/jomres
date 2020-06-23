@@ -5,7 +5,7 @@ var count=40;
 var counter=setInterval(timer, 1000); //1000 will  run it every 1 second
 var message = '<h2 class="alert alert-warning">{WARNING}</h2><div class="row-fluid"><div class="col-md-12">{UPGRADING}</div></div><br/><div class="row-fluid"><div class="col-md-12">{PURCHASE}</div></div><br/><div class="row-fluid"><div class="col-md-12"><a href=\'https://www.jomres.net/pricing\' target=\'_blank\' class=\"btn btn-success\">{BUYNOW}</a><br/><br/></div></div><div class="row-fluid muted"><div class="col-md-12">{REDIRECT1} <span id="timer"></span> {REDIRECT2}</div></div>';
 
-jomresJquery(document).ready(function () { block(); });
+document.addEventListener('DOMContentLoaded', function(){ block(); }, false);
 
 function timer()
 {

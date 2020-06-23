@@ -4,11 +4,11 @@
 		<!--
 		var license_valid = {LICENSE_VALID};
 		
-		jomresJquery(document).ready(function () {
+		document.addEventListener('DOMContentLoaded', function(){
 			if (!license_valid) {
 				jomresJquery('#modal_license_not_valid').modal();
 				}
-			});
+		}, false);
 		
 		//-->
 	</script>

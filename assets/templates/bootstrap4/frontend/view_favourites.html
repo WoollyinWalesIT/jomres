@@ -2,8 +2,9 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script language="JavaScript" type="text/javascript">
 	<!--
-	jomresJquery(document).ready(function () {
+	document.addEventListener('DOMContentLoaded', function(){
 		make_datatable('view_favourites', '{PAGETITLE}', '{LIVESITE}');
+	}, false);
 	//-->
 </script>
 <h2 class="page-header">{_JOMCOMP_MYUSER_VIEWFAVOURITES}</h2>
