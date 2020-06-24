@@ -2775,6 +2775,14 @@ function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig = $siteConfig->get();
 
+	if (!isset($jrConfig[ 'send_emails' ])) {
+		$jrConfig[ 'send_emails' ] = 1;
+    }
+
+	if ($jrConfig[ 'send_emails' ] == 0) {
+	    return;
+    }
+
 	$emails = array();
 	if (is_array($to)) {
 		foreach ($to as $t) {
