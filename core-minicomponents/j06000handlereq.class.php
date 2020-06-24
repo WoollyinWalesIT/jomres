@@ -61,6 +61,7 @@ class j06000handlereq
 		$euroTaxYesNo = $mrConfig[ 'euroTaxYesNo' ];
 		$roomTaxYesNo = $mrConfig[ 'roomTaxYesNo' ];
 		$fixedPeriodBookings = $mrConfig[ 'fixedPeriodBookings' ];
+		$extra_guests_dropdown = '';
 
 		$messagesClass = '; document.getElementById("messages").className="messages";';
 		$errorClass = '; document.getElementById("messages").className=error_class;';
@@ -233,12 +234,21 @@ class j06000handlereq
 				$bkg->resetRequestedRoom();
 				break;
 
+			case 'standard_guests':
+				$ajrq = 'ajrq:::extra_guests';
+				$bkg->setOkToBook(false);
+				$value = $bkg->sanitiseInput('int', $value);
+				$bkg->writeToLogfile('Starting extra guest input');
+				$retText = 'Extra added to booking';
+				$bkg->setStandardGuests($value);
+				break;
+
 			case 'extra_guests':
 				$ajrq = 'ajrq:::extra_guests';
 				$bkg->setOkToBook(false);
 				$value = $bkg->sanitiseInput('int', $value);
 				$bkg->writeToLogfile('Starting extra guest input');
-					$retText = 'Extra added to booking';
+					$retText = 'Extra guests added to booking';
 					$bkg->setExtraGuests($value);
 				break;
 
@@ -486,6 +496,7 @@ class j06000handlereq
 
 					if ( $bkg->cfg_tariffmode == '5') {
 						echo '; populateDiv("extra_guests_total","'.output_price($bkg->extra_guest_price).'")';
+
 					}
 
 					if (isset($bkg->room_total_inc_tax)) {

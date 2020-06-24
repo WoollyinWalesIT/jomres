@@ -223,7 +223,7 @@ class j06000show_property_tariffs
 					}
 
 					if ($mrConfig[ 'tariffChargesStoredWeeklyYesNo' ] == '1' && $mrConfig[ 'tariffmode' ] == '1') {
-						if ($mrConfig[ 'tariffmode' ] == 2) {
+						if ($mrConfig[ 'tariffmode' ] == '2' || $mrConfig[ 'tariffmode' ] == '5') {
 							$price_inc_vat = $price_inc_vat * 7;
 						}
 						$r[ 'ROOMRATEPERDAY' ] = output_price($price_inc_vat).' '.jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK');

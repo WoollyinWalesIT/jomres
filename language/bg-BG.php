@@ -2612,7 +2612,7 @@ jr_define('JOMRES_PLATFORM',"Jomres Platform");
 
 
 jr_define('JOMRES_PLATFORM_CONNECTED',"Connected");
-jr_define('JOMRES_PLATFORM_CONNECTED_DESC',"Set this to Yes if you have already connected your sTRIPE account with the Jomres Platform.");
+jr_define('JOMRES_PLATFORM_CONNECTED_DESC',"Set this to Yes if you have already connected your Stripe account with the Jomres Platform.");
 
 jr_define('JOMRES_PLATFORM_ACCOUNT_ID',"Stripe Live Account number");
 jr_define('JOMRES_PLATFORM_ACCOUNT_ID_DESC',"This is your Stripe Account id which can be found in your Stripe Dashboard under Settings > Account information and looks like acct_xxxxxxxxx You would use this field if you have multiple Jomres installations and you want to use the same account across all sites and you have already connected to us. If you have not connected to the Jomres Platform, it's not sufficient to enter your details here. Instead, please visit the Get Connected menu option in the toolbar, under the Help section. If you want to test payments, in the Debugging tab of Site Configuration set your site from Production to Development.");
@@ -2633,4 +2633,18 @@ jr_define('JOMRES_COM_A_GUESTS_IN_DAILY_PRICE', 'The number of guests in your da
 jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE', 'Extra guests price ');
 
 jr_define('JOMRES_EXTRA_GUESTS_BOOKING_FORM_LABEL', 'Extra guests ');
-jr_define('JOMRES_EXTRA_GUESTS_BOOKING_FORM_LABEL_INFO', 'Booking based on two guests.');
+jr_define('JOMRES_EXTRA_GUESTS_BOOKING_FORM_LABEL_INFO', 'Extra guest price ');
+
+
+jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_PER_PERSON_PER_NIGHT', 'Per person per night?');
+jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_PER_PERSON_PER_NIGHT_DESC', '');
+jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_7DAY_MODIFIER', '7 day modifier');
+jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_7DAY_MODIFIER_DESC', 'Discount on daily rate if booking is for 7 days or more. Leave this set to zero if you do not want the discount to be applied.');
+jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_30DAY_MODIFIER', '30 day modifier');
+jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_30DAY_MODIFIER_DESC', 'Discount on daily rate if booking is for 30 days or more. Leave this set to zero if you do not want the discount to be applied.');
+jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL', 'Guests');
+jr_define('JOMRES_GUEST_BOOKING_FORM_LABELINFO', 'Price based on 2 guests');
+jr_define('JOMRES_BOOKING_DISCOUNTED_7_DAYS_1', 'Booking discounted from ');
+jr_define('JOMRES_BOOKING_DISCOUNTED_7_DAYS_2', ' to ');
+jr_define('JOMRES_BOOKING_DISCOUNTED_7_DAYS_NUMBER', ' because the booking is greater than 7 days.');
+jr_define('JOMRES_BOOKING_DISCOUNTED_30_DAYS_NUMBER', ' because the booking is greater than 30 days.');

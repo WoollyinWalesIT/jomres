@@ -200,6 +200,15 @@
 					</div>
 				</div>
 				</patTemplate:tmpl>
+				<patTemplate:tmpl name="standard_guests" type="simpleCondition" requiredVars="guests_dropdown">
+					<div class="col-md-3">
+						<div class="form-group">
+							<label class="control-label" for="standard_guests">{TEXT}</label>
+							{GUESTS_DROPDOWN}
+							<p class="help-block">{INFO}</p>
+						</div>
+					</div>
+				</patTemplate:tmpl>
 				<patTemplate:tmpl name="extra_guests" type="simpleCondition" requiredVars="extra_guests_dropdown">
 					<div class="col-md-3">
 						<div class="form-group">

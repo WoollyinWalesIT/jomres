@@ -55,6 +55,7 @@ class jrportal_rates
 		$this->rates_defaults['validto'] 					= date("Y/m/d");
 		$this->rates_defaults['roomrateperday'] 			= 100;
 		$this->rates_defaults['extra_guests_price'] 		= 0.00;
+		$this->rates_defaults['modifiers']			 		= array();
 		$this->rates_defaults['mindays'] 					= 1;
 		$this->rates_defaults['maxdays'] 					= 365;
 		$this->rates_defaults['minpeople'] 					= 1;
@@ -79,6 +80,7 @@ class jrportal_rates
 		$this->validto					= $this->rates_defaults['validto'];
 		$this->roomrateperday 			= $this->rates_defaults['roomrateperday'];
 		$this->extra_guests_price		= $this->rates_defaults['extra_guests_price'];
+		$this->modifiers				= $this->rates_defaults['modifiers'];
 		$this->mindays 					= $this->rates_defaults['mindays'];
 		$this->maxdays 					= $this->rates_defaults['maxdays'];
 		$this->minpeople 				= $this->rates_defaults['minpeople'];
@@ -157,6 +159,7 @@ class jrportal_rates
 					`validto`,
 					`roomrateperday`,
 					`extra_guests_price`,
+					`modifiers`,
 					`mindays`,
 					`maxdays`, 
 					`minpeople`, 
@@ -181,6 +184,11 @@ class jrportal_rates
 			throw new Exception('Error: there are no tariffs saved for these rates uids, so tariffs are not configured properly. Please create tariffs again.');
 		} else {
 			foreach ($result as $r) {
+
+				if (!isset($r->modifiers) ) {
+					$r->modifiers = base64_encode(json_encode( [] ));
+				}
+
 				$this->rates[$this->tarifftype_id][$r->rates_uid]['rates_uid'] 					= (int)$r->rates_uid;
 				$this->rates[$this->tarifftype_id][$r->rates_uid]['rate_title'] 				= $rate_title; //TODO
 				$this->rates[$this->tarifftype_id][$r->rates_uid]['rate_description'] 			= $rate_description; //TODO
@@ -188,6 +196,7 @@ class jrportal_rates
 				$this->rates[$this->tarifftype_id][$r->rates_uid]['validto'] 					= $r->validto;
 				$this->rates[$this->tarifftype_id][$r->rates_uid]['roomrateperday'] 			= $r->roomrateperday;
 				$this->rates[$this->tarifftype_id][$r->rates_uid]['extra_guests_price'] 		= $r->extra_guests_price;
+				$this->rates[$this->tarifftype_id][$r->rates_uid]['modifiers']			 		= json_decode(base64_decode($r->modifiers));
 				$this->rates[$this->tarifftype_id][$r->rates_uid]['mindays'] 					= (int)$r->mindays;
 				$this->rates[$this->tarifftype_id][$r->rates_uid]['maxdays'] 					= (int)$r->maxdays;
 				$this->rates[$this->tarifftype_id][$r->rates_uid]['minpeople'] 					= (int)$r->minpeople;
@@ -400,7 +409,11 @@ class jrportal_rates
 		foreach ($this->new_rates as $r) {
 			$this->validfrom_ts = str_replace("/","-",$r['start']);
 			$this->validto_ts = str_replace("/","-",$r['end']);
-			
+
+			if (!isset($this->modifiers) || $this->modifiers == '' ) {
+				$this->modifiers = array();
+			}
+
 			$query = "INSERT INTO #__jomres_rates 
 							(
 							`rate_title`,
@@ -409,6 +422,7 @@ class jrportal_rates
 							`validto`,
 							`roomrateperday`,
 							`extra_guests_price`,
+							`modifiers`,
 							`mindays`,
 							`maxdays`,
 							`minpeople`,
@@ -433,6 +447,7 @@ class jrportal_rates
 						'".$r['end']."',
 						".$r['value'].",
 						".$this->extra_guests_price.",
+						'".base64_encode(json_encode($this->modifiers))."',
 						".(int)$r['mindays'].",
 						".(int)$this->maxdays.",
 						".(int)$this->minpeople.",
@@ -791,6 +806,7 @@ class jrportal_rates
 						`validto`,
 						`roomrateperday`,
 						`extra_guests_price`,
+						`modifiers`,
 						`mindays`,
 						`maxdays`,
 						`minpeople`,
@@ -815,6 +831,8 @@ class jrportal_rates
 						'".$this->validto."',
 						".$this->roomrateperday.",
 						".$this->extra_guests_price.",
+						'".base64_encode(json_encode($this->modifiers))."',
+						
 						".(int)$this->mindays.",
 						".(int)$this->maxdays.",
 						".(int)$this->minpeople.",
@@ -879,6 +897,7 @@ class jrportal_rates
 						`validto` = '".$this->validto."',
 						`roomrateperday` = ".$this->roomrateperday.",
 						`extra_guests_price` = ".$this->extra_guests_price.",
+						`modifiers` = '".base64_encode(json_encode($this->modifiers))."',
 						`mindays` = ".(int)$this->mindays.",
 						`maxdays` = ".(int)$this->maxdays.",
 						`minpeople` = ".(int)$this->minpeople.",

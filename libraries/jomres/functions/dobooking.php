@@ -445,13 +445,32 @@ function dobooking($selectedProperty, $thisdate, $remus)
 	}
 
 	if ($mrConfig['tariffmode'] == 5 ) {
+		$bkg->standard_guest_numbers = 2;
+		$guests_dropdown = jomresHTML::integerSelectList(0, 2, 1, 'standard_guests', 'size="1" class="input-mini"  autocomplete="off" onchange="getResponse_standardguests();"', 2, '%02d', $use_bootstrap_radios = false);
+
+		$standard_guests[] = array (
+			"GUESTS_DROPDOWN" => $guests_dropdown ,
+			'TEXT' => jr_gettext('JOMRES_GUEST_BOOKING_FORM_LABEL', 'JOMRES_GUEST_BOOKING_FORM_LABEL')  ,
+			'INFO' => jr_gettext('JOMRES_GUEST_BOOKING_FORM_LABELINFO', 'JOMRES_GUEST_BOOKING_FORM_LABELINFO')
+		);
+
 		$plus_guests = (int)$mrConfig['accommodates'] - 2;
 		$extra_guests_dropdown = jomresHTML::integerSelectList(0, $plus_guests, 1, 'extra_guests', 'size="1" class="input-mini"  autocomplete="off" onchange="getResponse_extraguests();"', 0, '%02d', $use_bootstrap_radios = false);
+
+		$extra_guest_price = 0.00;
+		reset($bkg->allPropertyTariffs);
+		$first_key = key($bkg->allPropertyTariffs);
+
+		if (isset($bkg->allPropertyTariffs[$first_key]['extra_guests_price'])) {
+			$extra_guest_price = output_price($bkg->allPropertyTariffs[$first_key]['extra_guests_price']);
+		}
+
+	//	$extra_guest_price =  ;
 
 		$extra_guests[] = array (
 			"EXTRA_GUESTS_DROPDOWN" => $extra_guests_dropdown ,
 			'TEXT' => jr_gettext('JOMRES_EXTRA_GUESTS_BOOKING_FORM_LABEL', 'JOMRES_EXTRA_GUESTS_BOOKING_FORM_LABEL')  ,
-			'INFO' => jr_gettext('JOMRES_EXTRA_GUESTS_BOOKING_FORM_LABEL_INFO', 'JOMRES_EXTRA_GUESTS_BOOKING_FORM_LABEL_INFO')
+			'INFO' => jr_gettext('JOMRES_EXTRA_GUESTS_BOOKING_FORM_LABEL_INFO', 'JOMRES_EXTRA_GUESTS_BOOKING_FORM_LABEL_INFO')." ".$extra_guest_price
 		);
 	}
 
@@ -788,6 +807,7 @@ function dobooking($selectedProperty, $thisdate, $remus)
 		$tmpl->addRows('customfields', $customFields);
 		$tmpl->addRows('pageoutput', $pageoutput);
 		$tmpl->addRows('guesttypes', $guestTypes);
+		$tmpl->addRows('standard_guests', $standard_guests);
 		$tmpl->addRows('extra_guests', $extra_guests);
 		$tmpl->addRows('extrasrow', $extrasHeader);
 		$tmpl->addRows('roomfeaturesrowheader', $roomfeaturesHeader);

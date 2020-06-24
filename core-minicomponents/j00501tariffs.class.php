@@ -120,7 +120,7 @@ class j00501tariffs
 		}
 
 		if ($mrConfig[ 'is_real_estate_listing' ] == '0') {
-			if (isset($MiniComponents->registeredClasses['00005']['guest_types' ])) {
+			//if (isset($MiniComponents->registeredClasses['00005']['guest_types' ])) {
 				if ($mrConfig[ 'wholeday_booking' ] == '1') {
 					$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_TARIFFS_PER_WHOLEDAY', '_JOMRES_COM_A_TARIFFS_PER_WHOLEDAY', false));
 					$configurationPanel->setmiddle($lists[ 'perPersonPerNight' ]);
@@ -132,7 +132,7 @@ class j00501tariffs
 					$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_TARIFFS_PER_DESC', '_JOMRES_COM_A_TARIFFS_PER_DESC', false));
 					$configurationPanel->insertSetting();
 				}
-			}
+			//}
 			
 		$configurationPanel->setleft(jr_gettext('POA_DISPLAY_PRICE', 'POA_DISPLAY_PRICE', false));
 		$configurationPanel->setmiddle( '<input type="text" class="inputbox form-control"  size="5" name="cfg_poa_price" value="'.$mrConfig[ 'poa_price' ].'" />' );
