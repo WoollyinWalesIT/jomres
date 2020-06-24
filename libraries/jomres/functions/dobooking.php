@@ -148,7 +148,7 @@ function dobooking($selectedProperty, $thisdate, $remus)
 	$room_type_filter = (int)jomresGetParam($_REQUEST, 'room_type_filter', 0);
 		
 	$backWasClicked = false;
-	if ($tmpBookingHandler->tmpbooking[ 'confirmationSeen' ] == true) {
+	if ( isset($tmpBookingHandler->tmpbooking[ 'confirmationSeen' ]) && $tmpBookingHandler->tmpbooking[ 'confirmationSeen' ] == true) {
 		$backWasClicked = true;
 	} elseif ($thisJRUser->userIsManager == true) {
 		$tmpBookingHandler->resetTempGuestData();
