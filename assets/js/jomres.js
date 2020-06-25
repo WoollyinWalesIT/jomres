@@ -593,7 +593,6 @@ function getResponse_extraguests() {
 	HideRoomsList();
 	var value = jomresJquery("#extra_guests").val();
 	jomresJquery("#standard_guests").get(0).selectedIndex = 2;
-	getResponse_standardguests();
 	jomresJquery.get(ajaxurl + '&task=handlereq&property_uid_check=' + form_property_uid + '', { field: 'extra_guests',  'value': value },
 		function (data) {
 			showRoomsList(data);
