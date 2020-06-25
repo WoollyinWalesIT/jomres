@@ -2730,3 +2730,17 @@ jr_define('JOMRES_BOOKING_DISCOUNTED_7_DAYS_1', 'Booking discounted from ');
 jr_define('JOMRES_BOOKING_DISCOUNTED_7_DAYS_2', ' to ');
 jr_define('JOMRES_BOOKING_DISCOUNTED_7_DAYS_NUMBER', ' because the booking is greater than 7 days.');
 jr_define('JOMRES_BOOKING_DISCOUNTED_30_DAYS_NUMBER', ' because the booking is greater than 30 days.');
+
+
+jr_define('JOMRES_CITY_TAX_HEADING', 'City taxes');
+jr_define('JOMRES_CITY_TAX_VALUE', 'City tax value');
+jr_define('JOMRES_CITY_TAX_METHOD', 'Tax calculation method');
+
+jr_define('JOMRES_CITY_TAX_MODEL_SINGLE', 'Single fee');
+jr_define('JOMRES_CITY_TAX_MODEL_PER_NIGHT', 'Per night');
+jr_define('JOMRES_CITY_TAX_MODEL_PER_GUEST', 'Per guest');
+jr_define('JOMRES_CITY_TAX_MODEL_PER_GUEST_PER_NIGHT', 'Per guest per night');
+jr_define('JOMRES_CITY_TAX_MODEL_PERCENTAGE_OF_BOOKING_TOTAL', 'Percentage of booking value');
+
+jr_define('JOMRES_CLEANING_FEE_HEADING', 'Cleaning fee');
+jr_define('JOMRES_CLEANING_FEE_VALUE', 'Cleaning fee cost');

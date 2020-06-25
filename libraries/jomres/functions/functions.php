@@ -3446,7 +3446,20 @@ function propertyConfiguration()
 	$pricingOutput[ ] = jomresHTML::makeOption('M', jr_gettext('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY', '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY', false));
 	$booking_form_daily_weekly_monthly = jomresHTML::selectList($pricingOutput, 'cfg_booking_form_daily_weekly_monthly', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'booking_form_daily_weekly_monthly' ]);
 
-	//$lists['tariffmodel']= jomresHTML::selectList( $tariffmodels, 'cfg_tariffmodel', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['tariffmodel'] );
+
+
+	if (!isset($mrConfig[ 'city_tax_models' ])) {
+		$mrConfig[ 'city_tax_models' ] = 'single';
+    }
+
+	$city_tax_models = array();
+	$city_tax_models[ ] = jomresHTML::makeOption('single', jr_gettext('JOMRES_CITY_TAX_MODEL_SINGLE', 'JOMRES_CITY_TAX_MODEL_SINGLE', false));
+	$city_tax_models[ ] = jomresHTML::makeOption('pernight', jr_gettext('JOMRES_CITY_TAX_MODEL_PER_NIGHT', 'JOMRES_CITY_TAX_MODEL_PER_NIGHT', false));
+	$city_tax_models[ ] = jomresHTML::makeOption('perguest', jr_gettext('JOMRES_CITY_TAX_MODEL_PER_GUEST', 'JOMRES_CITY_TAX_MODEL_PER_GUEST', false));
+	$city_tax_models[ ] = jomresHTML::makeOption('perguestpernight', jr_gettext('JOMRES_CITY_TAX_MODEL_PER_GUEST_PER_NIGHT', 'JOMRES_CITY_TAX_MODEL_PER_GUEST_PER_NIGHT', false));
+	$city_tax_models[ ] = jomresHTML::makeOption('percentbookingtotal', jr_gettext('JOMRES_CITY_TAX_MODEL_PERCENTAGE_OF_BOOKING_TOTAL', 'JOMRES_CITY_TAX_MODEL_PERCENTAGE_OF_BOOKING_TOTAL', false));
+
+	$city_tax_models_dropdown = jomresHTML::selectList($city_tax_models, 'cfg_city_tax_models', 'size="1" class="inputbox"', 'value', 'text', $mrConfig[ 'city_tax_models' ]);
 
 	$lists[ 'showRoomImageInBookingFormOverlib' ] = jomresHTML::selectList($yesno, 'cfg_showRoomImageInBookingFormOverlib', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showRoomImageInBookingFormOverlib' ]);
 	$lists[ 'singlePersonSuppliment' ] = jomresHTML::selectList($yesno, 'cfg_singlePersonSuppliment', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'singlePersonSuppliment' ]);
@@ -3558,6 +3571,10 @@ function propertyConfiguration()
 	$componentArgs[ 'tariffModeDD' ] = $tariffModeDD;
 	$componentArgs[ 'booking_form_rooms_list_style' ] = $booking_form_rooms_list_style;
 	$componentArgs[ 'booking_form_daily_weekly_monthly' ] = $booking_form_daily_weekly_monthly;
+	$componentArgs[ 'city_tax_models_dropdown' ] = $city_tax_models_dropdown;
+
+
+
 
 	ob_start();
 

@@ -383,6 +383,8 @@ class j06000handlereq
 
 				break;
 			case 'heartbeat':
+				session_start();
+				session_write_close();
 				echo '&nbsp;';
 				break;
 			default:
@@ -494,9 +496,8 @@ class j06000handlereq
 					echo '; populateDiv("grandtotal","'.output_price($bkg->getGrandTotal()).'")';
 
 
-					if ( $bkg->cfg_tariffmode == '5') {
+					if ( $bkg->cfg_tariffmode == '5' && $bkg->extra_guest_numbers > 0 ) {
 						echo '; populateDiv("extra_guests_total","'.output_price($bkg->extra_guest_price).'")';
-
 					}
 
 					if (isset($bkg->room_total_inc_tax)) {
@@ -516,11 +517,22 @@ class j06000handlereq
 					}
 					if ($bkg->coupon_code != '') {
 						$discount = $bkg->coupon_discount_value;
-						/* if ($mrConfig[ 'prices_inclusive' ] == 1) {
-							$divisor = ($bkg->accommodation_tax_rate / 100) + 1;
-							$discount = $divisor * $discount;
-						} */
 						echo '; populateDiv("coupon_discount_value","'.output_price($discount).'")';
+					}
+
+					if ( isset($bkg->booking_length_discount) && $bkg->booking_length_discount != '' ) {
+						echo '; populateDiv("discount","'.$bkg->booking_length_discount.'")';
+					}
+					if ( isset($bkg->city_tax) && $bkg->city_tax > 0 && $bkg->getGrandTotal() > 0 ) {
+						echo '; populateDiv("city_tax","'.output_price($bkg->city_tax).'")';
+					} else {
+						echo '; populateDiv("city_tax","'.output_price(0.00).'")';
+					}
+
+					if ( isset($bkg->cleaning_fee) && $bkg->cleaning_fee > 0 && $bkg->getGrandTotal() > 0  ) {
+						echo '; populateDiv("cleaning_fee","'.output_price($bkg->cleaning_fee).'")';
+					} else {
+						echo '; populateDiv("cleaning_fee","'.output_price(0.00).'")';
 					}
 				} else {
 					$bkg->setErrorLog('handlereq:: Field '.$lastfield.' exempt from pricing rebuild');
@@ -555,6 +567,7 @@ class j06000handlereq
 
 				echo '; disableSubmitButton(document.ajaxform.confirmbooking); ';
 			}
+
 			if ($bkg->getErrorLog() != '' && $bkg->errorChecking()) {
 				$errorLog = $bkg->getErrorLog();
 			}

@@ -94,6 +94,9 @@ class dobooking
 		$this->rr = '';
 		$this->standard_guest_numbers = 0;
 		$this->extra_guest_numbers = 0;
+		$this->city_tax = 0;
+		$this->cleaning_fee = 0;
+
 		$this->extra_guest_price = 0.00;
 
 		$this->existing_id = '';
@@ -175,6 +178,8 @@ class dobooking
 			$this->standard_guest_numbers = $bookingDeets[ 'standard_guest_numbers' ];
 			$this->extra_guest_numbers = $bookingDeets[ 'extra_guest_numbers' ];
 			$this->extra_guest_price = $bookingDeets[ 'extra_guest_price' ];
+			$this->city_tax = $bookingDeets[ 'city_tax' ];
+			$this->cleaning_fee = $bookingDeets[ 'cleaning_fee' ];
 
 			if ($jrConfig['session_handler'] == 'database') {
 				if (is_array($bookingDeets[ 'extrasvalues_items' ]))
@@ -547,7 +552,9 @@ class dobooking
 		$tmpBookingHandler->tmpbooking[ 'standard_guest_numbers' ]		= $this->standard_guest_numbers;
 		$tmpBookingHandler->tmpbooking[ 'extra_guest_numbers' ]			= $this->extra_guest_numbers;
 		$tmpBookingHandler->tmpbooking[ 'extra_guest_price' ]			= $this->extra_guest_price;
-		
+		$tmpBookingHandler->tmpbooking[ 'city_tax' ]					= $this->city_tax;
+		$tmpBookingHandler->tmpbooking[ 'cleaning_fee' ]				= $this->cleaning_fee;
+
 		if ($jrConfig['session_handler'] == 'database') {
 			$tmpBookingHandler->tmpbooking[ 'extrasvalues_items' ]				= $this->extrasvalues_items;
 			$tmpBookingHandler->tmpbooking[ 'third_party_extras' ]				= $this->third_party_extras;
@@ -1562,6 +1569,36 @@ class dobooking
 		$output[ 'JOMRES_EXTRA_GUESTS_BOOKING_FORM_LABEL' ] = $this->sanitiseOutput(jr_gettext('JOMRES_EXTRA_GUESTS_BOOKING_FORM_LABEL', 'JOMRES_EXTRA_GUESTS_BOOKING_FORM_LABEL', false, false));
 		$output[ 'JOMRES_GUEST_BOOKING_FORM_LABEL' ] = $this->sanitiseOutput(jr_gettext('JOMRES_GUEST_BOOKING_FORM_LABEL', 'JOMRES_GUEST_BOOKING_FORM_LABEL', false, false));
 		$output[ 'JOMRES_GUEST_BOOKING_FORM_LABELINFO' ] = $this->sanitiseOutput(jr_gettext('JOMRES_GUEST_BOOKING_FORM_LABELINFO', 'JOMRES_GUEST_BOOKING_FORM_LABELINFO', false, false));
+
+		if ($mrConfig['city_tax_value'] > 0 ) {
+			if (!isset($mrConfig[ 'city_tax_models' ])) {
+				$mrConfig[ 'city_tax_models' ] = 'single';
+			}
+
+			$city_tax_model_string = '';
+			switch ($mrConfig[ 'city_tax_models' ]) {
+				case 'single' :
+					$city_tax_model_string = jr_gettext('JOMRES_CITY_TAX_MODEL_SINGLE', 'JOMRES_CITY_TAX_MODEL_SINGLE', false);
+					break;
+				case 'pernight' :
+					$city_tax_model_string = jr_gettext('JOMRES_CITY_TAX_MODEL_PER_NIGHT', 'JOMRES_CITY_TAX_MODEL_PER_NIGHT', false) ;
+					break;
+				case 'perguest' :
+					$city_tax_model_string = jr_gettext('JOMRES_CITY_TAX_MODEL_PER_GUEST', 'JOMRES_CITY_TAX_MODEL_PER_GUEST', false) ;
+					break;
+				case 'perguestpernight' :
+					$city_tax_model_string = jr_gettext('JOMRES_CITY_TAX_MODEL_PER_GUEST_PER_NIGHT', 'JOMRES_CITY_TAX_MODEL_PER_GUEST_PER_NIGHT', false) ;
+					break;
+				case 'percentbookingtotal' :
+					$city_tax_model_string = jr_gettext('JOMRES_CITY_TAX_MODEL_PERCENTAGE_OF_BOOKING_TOTAL', 'JOMRES_CITY_TAX_MODEL_PERCENTAGE_OF_BOOKING_TOTAL', false);
+					break;
+			}
+
+			$city_tax_model_string .= " (".$mrConfig['city_tax_value'].")" ;
+		}
+
+		$output[ 'JOMRES_CITY_TAX_HEADING' ] = $this->sanitiseOutput(jr_gettext('JOMRES_CITY_TAX_HEADING', 'JOMRES_CITY_TAX_HEADING', false, false))." : ".$city_tax_model_string;
+		$output[ 'JOMRES_CLEANING_FEE_HEADING' ] = $this->sanitiseOutput(jr_gettext('JOMRES_CLEANING_FEE_HEADING', 'JOMRES_CLEANING_FEE_HEADING', false, false));
 
 		return $output;
 	}
@@ -3691,12 +3728,15 @@ class dobooking
 
 		$this->room_allocations = array();
 		$guests = $this->getVariantsOfType('guesttype');
+
 		if ( $mrConfig[ 'tariffmode' ] == '5' ) {
 			$totalNumberOfGuests = $this->standard_guest_numbers + $this->extra_guest_numbers;
 		}else {
 			$totalNumberOfGuests = 0;
 			$guests = $this->getVariantsOfType('guesttype');
 		}
+
+		$this->city_tax_number_of_guests = $totalNumberOfGuests;
 
 		$this->setErrorLog('checkAllGuestsAllocatedToRooms::Starting ');
 		if (!empty($guests) || $mrConfig[ 'tariffmode' ] == '5' ) {
@@ -4009,16 +4049,12 @@ class dobooking
 
 			return false;
 		}
-		//var_dump($this->allBookings);exit;
-		//$this->setErrorLog("Looking for free rooms in date range: ".serialize($dateRangeArray) );
+
 		if (!empty($freeRoomsArray)) {
 			foreach ($freeRoomsArray as $roomUid) {
-				//var_dump($roomUid);
 				$roomIsFree = true;
 				foreach ($dateRangeArray as $eachdate) {
 					if (isset($this->allBookings[ $eachdate ][ $roomUid ])) {
-						//var_dump($this->allBookings[$eachdate][$roomUid]);
-						//$arrivalDate=$cycleDate;
 						$roomIsFree = false;
 
 						break;
@@ -4029,7 +4065,7 @@ class dobooking
 					$tmpArray[ ] = $roomUid;
 				}
 			}
-			//var_dump($tmpArray);exit;
+
 			if (empty($tmpArray)) {
 				$this->setErrorLog('findFreeRoomsInDateRange::No free rooms found in date range');
 			}
@@ -5282,6 +5318,7 @@ class dobooking
 		$tmpBookingHandler = jomres_getSingleton('jomres_temp_booking_handler');
 		$amend_contract = $tmpBookingHandler->getBookingFieldVal('amend_contract');
 
+		$this->setMonitoring = array();
 		// Let's see if the form is ready to be booked.
 
 		if (!empty($this->requestedRoom) && $this->email != '') {
@@ -5810,6 +5847,8 @@ class dobooking
 
 			$modifiers = $this->get_modifiers();
 
+			$discount = 0;
+
 			if ( $this->stayDays >= 7 && $this->stayDays < 30 && isset($modifiers->modifier_7_days) && $modifiers->modifier_7_days > 0 ) {
 				if ($modifiers->modifier_is_percentage == 1 ) {
 					$rate = (int)$modifiers->modifier_7_days/100;
@@ -5829,8 +5868,6 @@ class dobooking
 
 
 				$this->addBookingNote( "booking_length", $message );
-				$this->setMonitoring($message);
-
 				$this->room_total = $new_total;
 			}
 
@@ -5852,9 +5889,11 @@ class dobooking
 					jr_gettext('JOMRES_BOOKING_DISCOUNTED_30_DAYS_NUMBER', 'JOMRES_BOOKING_DISCOUNTED_30_DAYS_NUMBER', false);
 
 				$this->addBookingNote( "booking_length", $message );
-				$this->setMonitoring($message);
-
 				$this->room_total = $new_total;
+			}
+
+			if ( $discount > 0 ) {
+				$this->booking_length_discount = $message;
 			}
 		}
 
@@ -5956,7 +5995,7 @@ class dobooking
 		$this->setErrorLog('calcTotals:: sps '.$this->single_person_suppliment);
 		$this->setErrorLog('calcTotals:: extras '.$this->extrasvalue);
 
-		$this->billing_grandtotal = ($this->room_total + $this->extrasvalue + $this->tax + $this->single_person_suppliment);
+		$this->billing_grandtotal = ($this->room_total + $this->extrasvalue + $this->tax + $this->single_person_suppliment + $this->city_tax + $this->cleaning_fee );
 		$this->room_total_ex_tax = $this->room_total + $this->single_person_suppliment;
 		$this->room_total_inc_tax = $this->room_total + $this->single_person_suppliment + $this->tax;
 		$this->setErrorLog('calcTotals::Total: '.$this->billing_grandtotal);
@@ -6141,6 +6180,19 @@ class dobooking
 		//$this->extrasvalue = $extrasTotal;
 
 		$this->extrasvalue = number_format($extrasTotal, 2, '.', '');
+
+
+		$this->cleaning_fee = 0.00;
+		if (!isset($mrConfig[ 'cleaning_fee' ])) {
+			$mrConfig[ 'cleaning_fee' ] = 0;
+		}
+		if (count($this->requestedRoom) > 0 && $mrConfig[ 'cleaning_fee' ] > 0 ) {
+			$this->cleaning_fee = count($this->requestedRoom) * $mrConfig[ 'cleaning_fee' ];
+		} else {
+			$this->cleaning_fee = 0;
+		}
+
+
 	}
 
 	/**
@@ -6161,6 +6213,38 @@ class dobooking
 		$this->setErrorLog('calcTax:: Total tax calculated as '.$totalTax);
 
 		$this->tax = $totalTax;
+
+		$city_tax = 0;
+		$mrConfig = $this->mrConfig;
+		if ( (float)$mrConfig[ 'city_tax_value' ] > 0 && $totalBooking > 0 ) {
+
+			if (!isset($mrConfig[ 'city_tax_models' ])) {
+				$mrConfig[ 'city_tax_models' ] = 'single';
+			}
+
+			switch ($mrConfig[ 'city_tax_models' ]) {
+				case 'single' :
+					$city_tax = (float)$mrConfig[ 'city_tax_value' ];
+					break;
+				case 'pernight' :
+					$city_tax = (float)$mrConfig[ 'city_tax_value' ] * $this->stayDays ;
+					break;
+				case 'perguest' :
+					$city_tax = (float)$mrConfig[ 'city_tax_value' ] * $this->city_tax_number_of_guests ;
+					break;
+				case 'perguestpernight' :
+					$city_tax = ((float)$mrConfig[ 'city_tax_value' ]  * $this->stayDays)  * $this->city_tax_number_of_guests ;
+					break;
+				case 'percentbookingtotal' :
+					$city_tax = $totalBooking * ((float)$mrConfig[ 'city_tax_value' ] / 100);
+					break;
+			}
+
+		$this->city_tax = $city_tax;
+		}
+
+
+
 		$this->setErrorLog('calcTax:: Ended');
 	}
 
@@ -6174,10 +6258,10 @@ class dobooking
 		$totalNumberOfGuests = 0;
 
 		if (empty($this->requestedRoom)) { // No rooms selected yet
-		return;
+			return;
 		}
 		if (empty($guests)) { // Guest numbers not chosen/used
-		return;
+			return;
 		}
 		$use_propertywide_sps_setting = false;
 
@@ -6443,6 +6527,9 @@ class dobooking
 		$this->room_total_nodiscount = 0.00;
 		$this->extrasvalue = 0.00;
 		$this->tax = 0.00;
+		$this->city_tax = 0.00;
+		$this->extra_guest_price = 0;
+		$this->cleaning_fee = 0.00;
 		$this->single_person_suppliment = 0.00;
 		$this->deposit_required = 0.00;
 		$this->rate_pernight_nodiscount = 0.00;
