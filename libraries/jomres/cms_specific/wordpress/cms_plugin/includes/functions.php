@@ -178,15 +178,6 @@ function run_jomres_installer( $method = 'install' ) {
 	
 	global $wp_filesystem;
 	
-	//check disk space
-	$disk_free_space = free_space();
-
-	if ( $disk_free_space < 300 ) {
-		jomres_notice( 'There is not enough disk space available to download and extract Jomres.' );
-		
-		return false;
-	}
-
 	//get the latest jomres version download url
 	$url = 'http://updates.jomres4.net/getlatest.php?includebeta=true';
 	$nightly_url = 'http://updates.jomres4.net/nightly/';
@@ -299,23 +290,4 @@ function jomres_notice( $notice ) {
 	);
 }
 
-/**
- * Get disk free space.
- *
- * Utility function to get the disk space available (in MB) to download and extract Jomres
- *
- * @since	9.10.3
- */
-function free_space( $path = ABSPATH ) {
-	
-	$space = @disk_free_space( $path );
-	
-	if ( $space === false || is_null( $space ) ) {
-		return 0;
-	}
-	
-	//convert to MB
-	$space = round( $space / 1024 / 1024 );
-	
-	return $space;
-}
+
