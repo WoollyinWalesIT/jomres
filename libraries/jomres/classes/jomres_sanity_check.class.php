@@ -446,7 +446,7 @@ class jomres_sanity_check
 			//if (!in_array(get_showtime('task'), $ignore_on_tasks)) {
 				$query = 'SELECT `id` FROM `#__jomres_customertypes` where property_uid = '.(int) $this->property_uid.' AND published = 1';
 				$result = doSelectSql($query);
-				if ((int) $this->mrConfig[ 'perPersonPerNight' ] == 1 && empty($result)) {
+				if ((int) $this->mrConfig[ 'perPersonPerNight' ] == 1 && empty($result) && $this->mrConfig[ 'tariffmode' ] != 5 ) {
 					$message = jr_gettext('_JOMRES_WARNINGS_PERPERSONPERNIGHT_NOGUESTTYPES', '_JOMRES_WARNINGS_PERPERSONPERNIGHT_NOGUESTTYPES', false);
 					$link = jomresURL(JOMRES_SITEPAGE_URL.'&task=listCustomerTypes');
 					$button_text = jr_gettext('_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', '_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', false);

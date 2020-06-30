@@ -570,10 +570,29 @@ function getResponse_guesttype(typeid, value) {
 };
 
 
+function getResponse_standardguests() {
+	var form_property_uid = jomresJquery("#booking_form_property_uid").val();
+	HideRoomsList();
+	var value = jomresJquery("#standard_guests").val();
+	if (value != 2 ) {
+		jomresJquery("#extra_guests").get(0).selectedIndex = 0;
+		jomresJquery("#extra_guests").prop("disabled", true);
+	} else {
+		jomresJquery("#extra_guests").prop("disabled", false);
+	}
+
+	jomresJquery.get(ajaxurl + '&task=handlereq&property_uid_check=' + form_property_uid + '', { field: 'standard_guests',  'value': value },
+		function (data) {
+			showRoomsList(data);
+		}
+	);
+};
+
 function getResponse_extraguests() {
 	var form_property_uid = jomresJquery("#booking_form_property_uid").val();
 	HideRoomsList();
 	var value = jomresJquery("#extra_guests").val();
+	jomresJquery("#standard_guests").get(0).selectedIndex = 2;
 	jomresJquery.get(ajaxurl + '&task=handlereq&property_uid_check=' + form_property_uid + '', { field: 'extra_guests',  'value': value },
 		function (data) {
 			showRoomsList(data);

@@ -28,7 +28,7 @@ class j06002save_tariff_standard
 		$defaultProperty = getDefaultProperty();
 		
 		$mrConfig = getPropertySpecificSettings();
-		
+
 		if ($mrConfig['tariffmode'] != '5' || $mrConfig[ 'is_real_estate_listing' ] == '1' || get_showtime('is_jintour_property'))
 			return;
 		
@@ -42,6 +42,11 @@ class j06002save_tariff_standard
 				$jrportal_rates->roomclass_uid 				= (int)jomresGetParam( $_POST, 'roomClass', $jrportal_rates->rates_defaults['roomclass_uid'] );
 			}
 
+		$modifiers = array();
+		$modifiers["modifier_is_percentage"]		= $_POST["modifier_is_percentage"];
+		$modifiers["modifier_7_days"]				= $_POST["modifier_7_days"];
+		$modifiers["modifier_30_days"]				= $_POST["modifier_30_days"];
+
 		$jrportal_rates->tarifftype_id  			= (int)jomresGetParam( $_POST, 'tarifftypeid', 0 );
 		$jrportal_rates->rate_title 				= jomresGetParam( $_POST, 'tarifftypename', $jrportal_rates->rates_defaults['rate_title'] );
 		$jrportal_rates->rate_description 			= jomresGetParam( $_POST, 'tarifftypedesc', $jrportal_rates->rates_defaults['rate_description'] );
@@ -50,13 +55,14 @@ class j06002save_tariff_standard
 		$jrportal_rates->minpeople 					= 1;
 		$jrportal_rates->maxpeople 					= (int) $mrConfig[ 'accommodates' ];
 
+		$jrportal_rates->modifiers 					= $modifiers;
 		$jrportal_rates->dayofweek 					= (int)jomresGetParam( $_POST, 'fixed_dayofweek', $jrportal_rates->rates_defaults['dayofweek'] );
-		$jrportal_rates->ignore_pppn 				= 1;
+		$jrportal_rates->ignore_pppn 				= 0;
+
 		$jrportal_rates->allow_we 					= 1;
 		$jrportal_rates->weekendonly 				= 0;
 
 		//tariffs and min days, not sanitized yet. The rates class will do this
-		//TODO find a better way
 		$jrportal_rates->dates_rates				= $_POST['tariffinput'];
 		$jrportal_rates->dates_mindays				= $_POST['mindaysinput'];
 

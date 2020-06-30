@@ -291,6 +291,35 @@ class j00501booking_settings
 			$configurationPanel->setmiddle($lists[ 'roundupDepositYesNo' ]);
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
+
+
+			$configurationPanel->insertHeading(jr_gettext('JOMRES_CITY_TAX_HEADING', 'JOMRES_CITY_TAX_HEADING', false));
+
+			if (!isset($mrConfig[ 'city_tax_value' ])) {
+				$mrConfig[ 'city_tax_value' ] = 0;
+			}
+
+			$configurationPanel->setleft(jr_gettext('JOMRES_CITY_TAX_VALUE', 'JOMRES_CITY_TAX_VALUE', false));
+			$configurationPanel->setmiddle('<input type="number" class="inputbox form-control"  size="5" name="cfg_city_tax_value" value="'.$mrConfig[ 'city_tax_value' ].'" />');
+			$configurationPanel->setright();
+			$configurationPanel->insertSetting();
+
+			$configurationPanel->setleft(jr_gettext('JOMRES_CITY_TAX_METHOD', 'JOMRES_CITY_TAX_METHOD', false));
+			$configurationPanel->setmiddle($componentArgs[ 'city_tax_models_dropdown' ] );
+			$configurationPanel->setright();
+			$configurationPanel->insertSetting();
+
+
+			$configurationPanel->insertHeading(jr_gettext('JOMRES_CLEANING_FEE_HEADING', 'JOMRES_CLEANING_FEE_HEADING', false));
+
+			if (!isset($mrConfig[ 'cleaning_fee' ])) {
+				$mrConfig[ 'cleaning_fee' ] = 0;
+			}
+
+			$configurationPanel->setleft(jr_gettext('JOMRES_CLEANING_FEE_VALUE', 'JOMRES_CLEANING_FEE_VALUE', false));
+			$configurationPanel->setmiddle('<input type="number" class="inputbox form-control"  size="5" name="cfg_cleaning_fee" value="'.$mrConfig[ 'cleaning_fee' ].'" />');
+			$configurationPanel->setright();
+			$configurationPanel->insertSetting();
 		}
 
 		$configurationPanel->endPanel();

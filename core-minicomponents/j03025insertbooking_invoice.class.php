@@ -265,7 +265,7 @@ class j03025insertbooking_invoice
 					}
 
 					$line_items[] = array('tax_code_id' => $theExtras->tax_rate,
-						'name' => '_JOMRES_CUSTOMTEXT_EXTRANAME'.(string) $extraUid,
+						'name' =>  jr_gettext('_JOMRES_CUSTOMTEXT_EXTRANAME'.(string)$extraUid, '_JOMRES_CUSTOMTEXT_EXTRANAME'.(string)$extraUid , false ,false),
 						'description' => '',
 						'init_price' => $extra_price,
 						'init_qty' => $quantities,

@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS `#__jomres_rates` (
 	`validto` CHAR(10),
 	`roomrateperday` DOUBLE(11,2) NOT NULL DEFAULT 0,
 	`extra_guests_price` DOUBLE(11,2) NOT NULL DEFAULT 0,
+	`modifiers` TEXT,
 	`mindays` SMALLINT(5),
 	`maxdays` SMALLINT(5),
 	`minpeople` SMALLINT(5),

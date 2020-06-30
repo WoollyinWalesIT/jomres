@@ -2775,6 +2775,14 @@ function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig = $siteConfig->get();
 
+	if (!isset($jrConfig[ 'send_emails' ])) {
+		$jrConfig[ 'send_emails' ] = 1;
+    }
+
+	if ($jrConfig[ 'send_emails' ] == 0) {
+	    return;
+    }
+
 	$emails = array();
 	if (is_array($to)) {
 		foreach ($to as $t) {
@@ -3438,7 +3446,20 @@ function propertyConfiguration()
 	$pricingOutput[ ] = jomresHTML::makeOption('M', jr_gettext('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY', '_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY', false));
 	$booking_form_daily_weekly_monthly = jomresHTML::selectList($pricingOutput, 'cfg_booking_form_daily_weekly_monthly', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'booking_form_daily_weekly_monthly' ]);
 
-	//$lists['tariffmodel']= jomresHTML::selectList( $tariffmodels, 'cfg_tariffmodel', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['tariffmodel'] );
+
+
+	if (!isset($mrConfig[ 'city_tax_models' ])) {
+		$mrConfig[ 'city_tax_models' ] = 'single';
+    }
+
+	$city_tax_models = array();
+	$city_tax_models[ ] = jomresHTML::makeOption('single', jr_gettext('JOMRES_CITY_TAX_MODEL_SINGLE', 'JOMRES_CITY_TAX_MODEL_SINGLE', false));
+	$city_tax_models[ ] = jomresHTML::makeOption('pernight', jr_gettext('JOMRES_CITY_TAX_MODEL_PER_NIGHT', 'JOMRES_CITY_TAX_MODEL_PER_NIGHT', false));
+	$city_tax_models[ ] = jomresHTML::makeOption('perguest', jr_gettext('JOMRES_CITY_TAX_MODEL_PER_GUEST', 'JOMRES_CITY_TAX_MODEL_PER_GUEST', false));
+	$city_tax_models[ ] = jomresHTML::makeOption('perguestpernight', jr_gettext('JOMRES_CITY_TAX_MODEL_PER_GUEST_PER_NIGHT', 'JOMRES_CITY_TAX_MODEL_PER_GUEST_PER_NIGHT', false));
+	$city_tax_models[ ] = jomresHTML::makeOption('percentbookingtotal', jr_gettext('JOMRES_CITY_TAX_MODEL_PERCENTAGE_OF_BOOKING_TOTAL', 'JOMRES_CITY_TAX_MODEL_PERCENTAGE_OF_BOOKING_TOTAL', false));
+
+	$city_tax_models_dropdown = jomresHTML::selectList($city_tax_models, 'cfg_city_tax_models', 'size="1" class="inputbox"', 'value', 'text', $mrConfig[ 'city_tax_models' ]);
 
 	$lists[ 'showRoomImageInBookingFormOverlib' ] = jomresHTML::selectList($yesno, 'cfg_showRoomImageInBookingFormOverlib', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'showRoomImageInBookingFormOverlib' ]);
 	$lists[ 'singlePersonSuppliment' ] = jomresHTML::selectList($yesno, 'cfg_singlePersonSuppliment', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'singlePersonSuppliment' ]);
@@ -3550,6 +3571,10 @@ function propertyConfiguration()
 	$componentArgs[ 'tariffModeDD' ] = $tariffModeDD;
 	$componentArgs[ 'booking_form_rooms_list_style' ] = $booking_form_rooms_list_style;
 	$componentArgs[ 'booking_form_daily_weekly_monthly' ] = $booking_form_daily_weekly_monthly;
+	$componentArgs[ 'city_tax_models_dropdown' ] = $city_tax_models_dropdown;
+
+
+
 
 	ob_start();
 
@@ -5100,7 +5125,7 @@ function max_input_vars_test()
 	$max_vars = (int) ini_get('max_input_vars');
 	if ($max_vars < 1001 && isset($MiniComponents->registeredClasses[ '00005']['advanced_micromanage_tariff_editing_modes' ])) { // The default is 1000 on most installations
 		$highlight = (using_bootstrap() ? 'alert alert-error alert-danger' : 'ui-state-highlight');
-		$response = "<div class='".$highlight."'>Please note, your max_input_vars setting seems to be set to 1000, which is the default setting. If you're using the Micromanage tariff editing mode and wish to save prices for more than a year in advance, we recommend that you change this setting to 3000 or more. <a href=\"http://www.jomres.net/manual/developers-guide/56-other-discussions/364-max-input-vars-max-input-vars-in-php-ini\" target=\"_blank\">This page </a>has  more information.</div>";
+		$response = "<div class='".$highlight."'>Please note, your max_input_vars setting seems to be set to 1000, which is the default setting. If you're using the Micromanage or Standard tariff editing modes and wish to save prices for more than a year in advance, we recommend that you change this setting to 3000 or more. <a href=\"http://www.jomres.net/manual/developers-guide/56-other-discussions/364-max-input-vars-max-input-vars-in-php-ini\" target=\"_blank\">This page </a>has  more information.</div>";
 	}
 
 	return $response;

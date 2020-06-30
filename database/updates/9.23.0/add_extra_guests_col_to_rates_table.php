@@ -27,4 +27,11 @@ if (count($colExists) < 1)
 	$query = "ALTER TABLE `#__jomres_rates` ADD `extra_guests_price` DOUBLE(11,2) NOT NULL DEFAULT 0 ";
 	doInsertSql($query,"");
 	}
-	
+
+$query = "SHOW COLUMNS FROM #__jomres_rates LIKE 'modifiers'";
+$colExists = doSelectSql( $query );
+if (count($colExists) < 1)
+{
+	$query = "ALTER TABLE `#__jomres_rates` ADD `modifiers` TEXT ";
+	doInsertSql($query,"");
+}

@@ -254,7 +254,19 @@
 				</div>
 			</div>
 		</patTemplate:tmpl>
+		<patTemplate:tmpl name="standard_guests" type="simpleCondition" requiredVars="guests_dropdown">
+			<script>document.addEventListener('DOMContentLoaded', function(){getResponse_standardguests();}, false);</script>
+			<div class="control-group">
+				<label class="control-label" for="standard_guests">{TEXT}</label>
+
+				<div class="controls">
+					{GUESTS_DROPDOWN}
+					<p class="help-block">{INFO}</p>
+				</div>
+			</div>
+		</patTemplate:tmpl>
 		<patTemplate:tmpl name="extra_guests" type="simpleCondition" requiredVars="extra_guests_dropdown">
+			<script>document.addEventListener('DOMContentLoaded', function(){getResponse_extraguests();}, false);</script>
 			<div class="control-group">
 				<label class="control-label" for="extra_guests">{TEXT}</label>
 
@@ -466,6 +478,22 @@
 					</div>
 					<div class="span3">
 						<span id="extra_tax"></span>
+					</div>
+				</div>
+				<div class="row-fluid">
+					<div class="span9">
+						{JOMRES_CITY_TAX_HEADING}
+					</div>
+					<div class="span3">
+						<span id="city_tax"></span>
+					</div>
+				</div>
+				<div class="row-fluid">
+					<div class="span9">
+						{JOMRES_CLEANING_FEE_HEADING}
+					</div>
+					<div class="span3">
+						<span id="cleaning_fee"></span>
 					</div>
 				</div>
 				<patTemplate:tmpl name="coupons_totals" type="simpleCondition" requiredVars="coupon_discount_value">

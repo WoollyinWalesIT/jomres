@@ -236,7 +236,18 @@
 							</div>
 						</div>
 						</patTemplate:tmpl>
+						<patTemplate:tmpl name="standard_guests" type="simpleCondition" requiredVars="guests_dropdown">
+							<script>document.addEventListener('DOMContentLoaded', function(){getResponse_standardguests();}, false);</script>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label class="control-label" for="standard_guests">{TEXT}</label>
+									{GUESTS_DROPDOWN}
+									<p class="help-block">{INFO}</p>
+								</div>
+							</div>
+						</patTemplate:tmpl>
 						<patTemplate:tmpl name="extra_guests" type="simpleCondition" requiredVars="extra_guests_dropdown">
+							<script>document.addEventListener('DOMContentLoaded', function(){getResponse_extraguests();}, false);</script>
 							<div class="col-md-3">
 								<div class="form-group">
 									<label class="control-label" for="extra_guests">{TEXT}</label>
@@ -457,6 +468,7 @@
 								<span id="room_total_inc_tax"></span>
 							</div>
 						</div>
+
 						<div class="row">
 							<div class="col-xs-9">
 								{JOMRES_EXTRA_GUESTS_BOOKING_FORM_LABEL}
@@ -465,14 +477,7 @@
 								<span id="extra_guests_total"></span>
 							</div>
 						</div>
-						<div class="row">
-							<div class="col-xs-9">
-								{ROOM_TOTAL_ACCOM_TAX}
-							</div>
-							<div class="col-xs-3">
-								<span id="taxtotal"></span>
-							</div>
-						</div>
+
 						<div class="row">
 							<div class="col-xs-9">
 								{EXTRAS_TOTAL}
@@ -481,23 +486,16 @@
 								<span id="extrastotal_totals_panel"></span>
 							</div>
 						</div>
-						<div class="row">
-							<div class="col-xs-9">
-								{EXTRAS_TAX}
-							</div>
-							<div class="col-xs-3">
-								<span id="extra_tax"></span>
-							</div>
-						</div>
+
 						<patTemplate:tmpl name="coupons_totals" type="simpleCondition" requiredVars="coupon_discount_value">
-						<div class="row">
-							<div class="col-xs-9">
-								{COUPON_DISCOUNT_VALUE}
+							<div class="row">
+								<div class="col-xs-9">
+									{COUPON_DISCOUNT_VALUE}
+								</div>
+								<div class="col-xs-3">
+									<span id="coupon_discount_value"></span>
+								</div>
 							</div>
-							<div class="col-xs-3">
-								<span id="coupon_discount_value"></span>
-							</div>
-						</div>
 						</patTemplate:tmpl>
 						<div class="row">
 							<div class="col-xs-9">
@@ -537,6 +535,39 @@
 							</div>
 							<div class="col-xs-3">
 								<span id="balance"></span>
+							</div>
+						</div>
+						<hr class="separator"/>
+						<div class="row">
+							<div class="col-xs-9">
+								{ROOM_TOTAL_ACCOM_TAX}
+							</div>
+							<div class="col-xs-3">
+								<span id="taxtotal"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-9">
+								{JOMRES_CITY_TAX_HEADING}
+							</div>
+							<div class="col-xs-3">
+								<span id="city_tax"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-9">
+								{JOMRES_CLEANING_FEE_HEADING}
+							</div>
+							<div class="col-xs-3">
+								<span id="cleaning_fee"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-9">
+								{EXTRAS_TAX}
+							</div>
+							<div class="col-xs-3">
+								<span id="extra_tax"></span>
 							</div>
 						</div>
 					</div>

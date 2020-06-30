@@ -81,10 +81,12 @@ class j06002edit_tariff_standard
 		$already_selected = array();
 
 		//Let's get the current tarifftype details, and find the first tariff of this type so that we can get the min & max people and min and max days
-		if (isset($jrportal_rates->rates[$tarifftype_id]) && !empty($jrportal_rates->rates[$tarifftype_id]))
-			{
-			foreach ($jrportal_rates->rates[$tarifftype_id] as $r)
-				{
+		$modifier_is_percentage = false;
+		$modifier_7_days = 0;
+		$modifier_30_days = 0;
+
+		if (isset($jrportal_rates->rates[$tarifftype_id]) && !empty($jrportal_rates->rates[$tarifftype_id]))  {
+			foreach ($jrportal_rates->rates[$tarifftype_id] as $r) {
 				$output['TARIFFTYPENAME'] = $r['rate_title'];
 				$output['TARIFFTYPEDESC'] = $r['rate_description'];
 				$output['MINDAYS'] = $r['mindays'];
@@ -93,10 +95,20 @@ class j06002edit_tariff_standard
 
 				$roomclassid = $r['roomclass_uid'];
 				$fixed_dayofweek = $r['dayofweek'];
+
+				if ( isset($r['modifiers']->modifier_is_percentage)) {
+					$modifier_is_percentage = (int)$r['modifiers']->modifier_is_percentage;
+				}
+
+				if ( isset($r['modifiers']->modifier_7_days)) {
+					$modifier_7_days = (int)$r['modifiers']->modifier_7_days;
+				}
+				if ( isset($r['modifiers']->modifier_30_days)) {
+					$modifier_30_days = (int)$r['modifiers']->modifier_30_days;
 				}
 			}
-		else
-			{
+		}
+		else {
 			$output['TARIFFTYPENAME'] = $jrportal_rates->rates_defaults['rate_title'];
 			$output['TARIFFTYPEDESC'] = $jrportal_rates->rates_defaults['rate_description'];
 			$output['MINDAYS'] = $jrportal_rates->rates_defaults['mindays'];
@@ -107,14 +119,19 @@ class j06002edit_tariff_standard
 
 			$roomclassid = $jrportal_rates->rates_defaults['roomclass_uid'];
 			$fixed_dayofweek = $jrportal_rates->rates_defaults['dayofweek'];
-			}
+		}
 
 		$output['MINDAYS_DROPDOWN'] = jomresHTML::integerSelectList( 0,$jrportal_rates->rates_defaults['maxdays'],1, 'mindays','', $output['MINDAYS']);
 		$output['MAXDAYS_DROPDOWN'] = jomresHTML::integerSelectList( 0,$jrportal_rates->rates_defaults['maxdays'],1, 'maxdays','', $output['MAXDAYS']);
 
+		$output['7DAY_MODIFIER_DROPDOWN'] = jomresHTML::integerSelectList( 0,100,1, 'modifier_7_days','', $modifier_7_days);
+		$output['30DAY_MODIFIER_DROPDOWN'] = jomresHTML::integerSelectList( 0,100,1, 'modifier_30_days','', $modifier_30_days);
+
 		$yesno = array();
 		$yesno[] = jomresHTML::makeOption( '0', jr_gettext('_JOMRES_COM_MR_NO','_JOMRES_COM_MR_NO',FALSE) );
 		$yesno[] = jomresHTML::makeOption( '1', jr_gettext('_JOMRES_COM_MR_YES','_JOMRES_COM_MR_YES',FALSE));
+
+		$output['PERCENTAGE_YESNO'] = jomresHTML::selectList( $yesno, 'modifier_is_percentage', 'class="inputbox" size="1"', 'value', 'text', $modifier_is_percentage );
 
 		//room classes for this property
 		if (!empty($basic_property_details->this_property_room_classes)) 
@@ -411,8 +428,19 @@ class j06002edit_tariff_standard
 		$output['_JOMRES_MICROMANAGE_USE_SELECTED_DATES']=jr_gettext('_JOMRES_MICROMANAGE_USE_SELECTED_DATES','_JOMRES_MICROMANAGE_USE_SELECTED_DATES',false);
 		$output['JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE']=jr_gettext('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE','JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE',false);
 
+		$output['JOMRES_COM_A_TARIFFMODE_STANDARD_PER_PERSON_PER_NIGHT']=jr_gettext('JOMRES_COM_A_TARIFFMODE_STANDARD_PER_PERSON_PER_NIGHT','JOMRES_COM_A_TARIFFMODE_STANDARD_PER_PERSON_PER_NIGHT',false);
+		$output['JOMRES_COM_A_TARIFFMODE_STANDARD_PER_PERSON_PER_NIGHT_DESC']=jr_gettext('JOMRES_COM_A_TARIFFMODE_STANDARD_PER_PERSON_PER_NIGHT_DESC','JOMRES_COM_A_TARIFFMODE_STANDARD_PER_PERSON_PER_NIGHT_DESC',false);
+		$output['JOMRES_COM_A_TARIFFMODE_STANDARD_7DAY_MODIFIER']=jr_gettext('JOMRES_COM_A_TARIFFMODE_STANDARD_7DAY_MODIFIER','JOMRES_COM_A_TARIFFMODE_STANDARD_7DAY_MODIFIER',false);
+		$output['JOMRES_COM_A_TARIFFMODE_STANDARD_7DAY_MODIFIER_DESC']=jr_gettext('JOMRES_COM_A_TARIFFMODE_STANDARD_7DAY_MODIFIER_DESC','JOMRES_COM_A_TARIFFMODE_STANDARD_7DAY_MODIFIER_DESC',false);
+		$output['JOMRES_COM_A_TARIFFMODE_STANDARD_30DAY_MODIFIER']=jr_gettext('JOMRES_COM_A_TARIFFMODE_STANDARD_30DAY_MODIFIER','JOMRES_COM_A_TARIFFMODE_STANDARD_30DAY_MODIFIER',false);
+		$output['JOMRES_COM_A_TARIFFMODE_STANDARD_30DAY_MODIFIER_DESC']=jr_gettext('JOMRES_COM_A_TARIFFMODE_STANDARD_30DAY_MODIFIER_DESC','JOMRES_COM_A_TARIFFMODE_STANDARD_30DAY_MODIFIER_DESC',false);
+		$output['_JOMRES_VARIANCES_ISPERCENTAGE']=jr_gettext('_JOMRES_VARIANCES_ISPERCENTAGE','_JOMRES_VARIANCES_ISPERCENTAGE',false);
 
-		if ($mrConfig['singleRoomProperty'] ==  '0') 
+
+
+
+
+			if ($mrConfig['singleRoomProperty'] ==  '0')
 			{
 			$already_selected['HMINROOMS'] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_MINROOMS','_JOMRES_COM_MR_EB_ROOM_MINROOMS',false);
 			$already_selected['HMAXROOMS'] = jr_gettext('_JOMRES_COM_MR_EB_ROOM_MAXROOMS','_JOMRES_COM_MR_EB_ROOM_MAXROOMS',false);
