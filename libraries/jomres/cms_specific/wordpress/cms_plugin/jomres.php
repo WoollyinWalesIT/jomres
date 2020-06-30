@@ -82,22 +82,6 @@ if ( ! defined( 'JOMRES_ROOT_DIRECTORY' ) ) {
 }
 
 /**
- * Set path definitions.
- *
- *
- * @since	9.22.0
- */
-if (!function_exists('define_jomres_sub_dir_in_plugins_dir_as_root')) {
-	function define_jomres_sub_dir_in_plugins_dir_as_root()
-	{
-		$jr_root = str_replace( ABSPATH , '' ,  JOMRES_WP_PLUGIN_PATH );
-		define( 'JOMRES_ROOT_DIRECTORY', $jr_root.DIRECTORY_SEPARATOR.'jomres' );
-		define('JOMRESPATH_BASE', JOMRES_WP_PLUGIN_PATH.'jomres'.DIRECTORY_SEPARATOR);
-		define('JRDS', DIRECTORY_SEPARATOR );
-	}
-}
-
-/**
  * The Jomres wp plugin functions.
  */
 require_once plugin_dir_path( __FILE__ ) . 'includes/functions.php';
