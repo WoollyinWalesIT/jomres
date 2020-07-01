@@ -72,14 +72,27 @@ class j06001dashboard_events_ajax
 		$guest_contacts = array();
 		$result = array();
 
-		$img_pending = 'label label-grey';
-		$img_arrivetoday = 'label label-orange';
-		$img_resident = 'label label-green';
-		$img_departtoday = 'label label-blue';
-		$img_stillhere = 'label label-purple';
-		$img_late = 'label label-red';
-		$img_bookedout = 'label label-teal';
-		$img_black = 'label label-black';
+		if (jomres_bootstrap_version() == 4 ) {
+			$img_pending = 'badge badge-info';
+			$img_arrivetoday = 'badge badge-primary';
+			$img_resident = 'badge badge-success';
+			$img_departtoday = 'badge badge-secondary';
+			$img_stillhere = 'badge badge-warning';
+			$img_late = 'badge badge-danger';
+			$img_bookedout = 'badge badge-light';
+			$img_black = 'badge badge-dark';
+		} else {
+			$img_pending = 'label label-grey';
+			$img_arrivetoday = 'label label-orange';
+			$img_resident = 'label label-green';
+			$img_departtoday = 'label label-blue';
+			$img_stillhere = 'label label-purple';
+			$img_late = 'label label-red';
+			$img_bookedout = 'label label-teal';
+			$img_black = 'label label-black';
+		}
+
+
 
 		$from = jomresGetParam($_GET, 'start', '');
 		$to = jomresGetParam($_GET, 'end', '');
