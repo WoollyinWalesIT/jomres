@@ -182,7 +182,7 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
 					}
 
 					$theText = '<a href="#" id="'.$theConstant.'" data-type="text" data-pk="'.$theConstant.'" data-url="'.$url.'" data-original-title="'.htmlspecialchars($theText).'">'.htmlspecialchars($theText).'</a>
-					<script>jQuery(document).ready(function () {jomresJquery(\'#' .$theConstant.'\').editable();});</script>';
+					<script>document.addEventListener(\'DOMContentLoaded\', function(){jomresJquery(\'#' .$theConstant.'\').editable();}, false);</script>';
 				} else {
 					//do nothing
 				}
