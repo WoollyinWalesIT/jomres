@@ -121,7 +121,7 @@ class jomresItemToolbar
 		if (!empty($this->secondaryItems)) {
 			if ($this->bs_version == '3') {
 				$this->toolbar .= '
-				<a class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" href="#"> <span class="caret"></span></a>
+				<a class="btn btn-sm btn-default btn-secondary dropdown-toggle" data-toggle="dropdown" href="#"> <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 				';
 			}elseif ($this->bs_version == '4') {

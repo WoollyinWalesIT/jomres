@@ -125,7 +125,7 @@
 <div class="row">
 	<div class="col-md-12" align="center">
 		<p>{AMENDTEXT}</p>
-		<a href="{BOOKINGFORMURL}"  class="btn btn-default">{AMEND}</a>
+		<a href="{BOOKINGFORMURL}"  class="btn btn-secondary">{AMEND}</a>
 	</div>
 </div>
 
@@ -235,7 +235,7 @@
 	<div class="col-md-4 col-md-offset-4" align="center">
 		<input type="submit" id="send" name="send" value="{THEBUTTON}" class="btn btn-success btn-lg btn-block" onclick="return confirmation_validate(false);" disabled="disabled"/>
 		<patTemplate:tmpl name="cartoutput" type="simpleCondition" requiredVars="_jomres_saveforlater"> {_JOMRES_CART_OR}
-			<input class="btn btn-default btn-lg btn-block" type="submit" id="cart" name="cart" value="{_JOMRES_SAVEFORLATER}" onclick="return confirmation_validate(true);" disabled="disabled"/>
+			<input class="btn btn-secondary btn-lg btn-block" type="submit" id="cart" name="cart" value="{_JOMRES_SAVEFORLATER}" onclick="return confirmation_validate(true);" disabled="disabled"/>
 		</patTemplate:tmpl>
 	</div>
 </div>
@@ -255,7 +255,7 @@
         {TERMS_MODAL_CONTENTS}
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">{COMMON_CLOSE}</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">{COMMON_CLOSE}</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

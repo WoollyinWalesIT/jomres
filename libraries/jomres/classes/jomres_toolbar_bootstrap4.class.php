@@ -188,7 +188,7 @@ class jomres_toolbar_bootstrap
 
 		//var_dump($image." ".$icon);
 
-		$emphasis = ' btn-default';
+		$emphasis = ' btn-secondary';
 		if (strpos($image, 'Tick.png')) {
 			$emphasis = 'btn-success';
 			//$icon .= " icon-white";

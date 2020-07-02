@@ -81,14 +81,14 @@ function navigate(lat, lng) {
 			<div class="row hidden-xs hidden-sm">
 				<div class="col-md-12">
 					<div class="property-header-buttons pull-left">
-						<a href="{DIRECT_URL}" class="btn btn-default"><i class="fa fa-info-circle"></i> {COMMON_VIEW}</a>
+						<a href="{DIRECT_URL}" class="btn btn-secondary"><i class="fa fa-info-circle"></i> {COMMON_VIEW}</a>
 						<patTemplate:tmpl name="bookinglink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
 						<a href="{LINK}" class="btn btn-success"><i class="fa fa-shopping-cart"></i> {TEXT}</a>
 						</patTemplate:tmpl>
-						<a href="{CONTACT_LINK}" class="btn btn-default"><i class="fa fa-envelope"></i> {HCONTACT}</a>
-						<a href="javascript:void(0);" id="shortlist_{PROPERTY_UID}" onclick="shortlist('{PROPERTY_UID}', '1')" class="btn btn-default">{SHORTLIST}</a>
-						<a href="{SHORTLIST_LINK}" class="btn btn-default"><i class="fa fa-heart"></i> {HSHORTLIST}</a>
-						<a href="javascript:navigate({PROPERTY_LAT},{PROPERTY_LONG});" class="btn btn-default"><i class="fa fa-map-marker"></i> {HMAP}</a>
+						<a href="{CONTACT_LINK}" class="btn btn-secondary"><i class="fa fa-envelope"></i> {HCONTACT}</a>
+						<a href="javascript:void(0);" id="shortlist_{PROPERTY_UID}" onclick="shortlist('{PROPERTY_UID}', '1')" class="btn btn-secondary">{SHORTLIST}</a>
+						<a href="{SHORTLIST_LINK}" class="btn btn-secondary"><i class="fa fa-heart"></i> {HSHORTLIST}</a>
+						<a href="javascript:navigate({PROPERTY_LAT},{PROPERTY_LONG});" class="btn btn-secondary"><i class="fa fa-map-marker"></i> {HMAP}</a>
 						{HOST_LINK}
 					</div>
 				</div>
