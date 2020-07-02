@@ -86,8 +86,12 @@ class j06000show_property_room_type
 		$pageoutput = array();
 		
 		if (isset($jomres_room_types->property_specific_room_type[$property_uid][$room_classes_uid]['room_class_abbv'])) {
+			jr_import('jomres_markdown');
+			$jomres_markdown = new jomres_markdown();
+
+
 			$output[ 'ROOM_CLASS_ABBV' ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int) $room_classes_uid , $jomres_room_types->property_specific_room_type[$property_uid][$room_classes_uid]['room_class_abbv']);
-			$output[ 'ROOM_CLASS_FULL_DESC' ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int) $room_classes_uid , $jomres_room_types->property_specific_room_type[$property_uid][$room_classes_uid]['room_class_full_desc']);
+			$output[ 'ROOM_CLASS_FULL_DESC' ] = $jomres_markdown->get_markdown( jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int) $room_classes_uid , $jomres_room_types->property_specific_room_type[$property_uid][$room_classes_uid]['room_class_full_desc'] ) );
 		} else {
 			
 			$output[ 'ROOM_CLASS_ABBV' ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int) $room_classes_uid , $jomres_room_types->room_types[$room_classes_uid]['room_class_abbv'] );
