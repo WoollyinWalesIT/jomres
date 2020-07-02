@@ -30,7 +30,7 @@ From basic features like secure frontend property administration through to powe
 
 = Jomres Syndication Network =
 
-In just 27 days Jomres properties have been displayed on other Jomres sites over 2,000,000 times. That's 2 million free adverts that you would not get with any other software.
+To date Jomres properties have been displayed on other Jomres sites over 64,000,000 times. That's 64 million free adverts that you would not get with any other software.
 
 This free feature is designed to help you get your business off the ground quickly by sharing your properties on other Jomres based sites around the world. [Full description here](https://www.jomres.net/features/jomres-syndication-network), plus [Manual page describing the new functionality](https://www.jomres.net/manual/site-managers-guide-2/388-user-profiles). I don't monitise this feature in any way, there's nothing in it for me except to make Jomres everything you need it to be.
 
