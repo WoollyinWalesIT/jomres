@@ -157,13 +157,15 @@ class jomres_media_centre_images
 		if (isset($jomres_room_types->property_specific_room_type[$property_id])) {
 			//add default images for each room if no other images are set
 			foreach ($jomres_room_types->property_specific_room_type[$property_id] as $room_class_uid=>$val) {
-				if (!array_key_exists($room_class_uid, $this->images[ 'room_types' ])) {
-					if (!defined("JOMRES_API_CMS_ROOT")) {
-						$this->images[ 'rooms' ] [ $room_id ] [0] = array(
-							'large' => $this->multi_query_images[ 'noimage-large' ],
-							'medium' => $this->multi_query_images[ 'noimage-medium' ],
-							'small' => $this->multi_query_images[ 'noimage-small' ],
+				if (isset($this->images[ 'room_types' ])) {
+					if (!array_key_exists($room_class_uid, $this->images[ 'room_types' ])) {
+						if (!defined("JOMRES_API_CMS_ROOT")) {
+							$this->images[ 'rooms' ] [ $room_id ] [0] = array(
+								'large' => $this->multi_query_images[ 'noimage-large' ],
+								'medium' => $this->multi_query_images[ 'noimage-medium' ],
+								'small' => $this->multi_query_images[ 'noimage-small' ],
 							);
+						}
 					}
 				}
 			}
