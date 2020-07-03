@@ -138,7 +138,6 @@ class j19995menu
 		//help section menus
 		$jomres_menu->add_admin_item(100, jr_gettext('_JOMRES_PRICES', '_JOMRES_PRICES', false), 'connect', 'fa-id-card');
 		$jomres_menu->add_admin_item(100, jr_gettext('_JOMRES_CUSTOMCODE_SUPPORT_GETTINGSTARTED', '_JOMRES_CUSTOMCODE_SUPPORT_GETTINGSTARTED', false), 'getting_started', 'fa-book');
-		$jomres_menu->add_admin_item(100, jr_gettext('_JOMRES_FAQ', '_JOMRES_FAQ', false), 'faq', 'fa-question');
 		$jomres_menu->add_admin_item(100, jr_gettext('_JOMRES_CUSTOMCODE_MANUAL', '_JOMRES_CUSTOMCODE_MANUAL', false), 'https://www.jomres.net/manual/', 'fa-book', true, true);
 		$jomres_menu->add_admin_item(100, 'Shortcodes', 'http://www.jomres.net/manual/developers-guide/305-shortcodes', 'fa-book', true, true);
 		$jomres_menu->add_admin_item(100, jr_gettext('_JOMRES_CUSTOMCODE_MYACCOUNTONLINE', '_JOMRES_CUSTOMCODE_MYACCOUNTONLINE', false), 'https://license-server.jomres.net/index.php', 'fa-book', true, true);
