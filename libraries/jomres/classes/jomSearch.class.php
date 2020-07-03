@@ -45,12 +45,18 @@ class jomSearch
 			$calledByModule = getEscaped($calledByModule);
 			$this->calledByModule = $calledByModule;
 
-			$this->templateFilePath = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'modules'.JRDS.$calledByModule.JRDS.$calledByModule;
-			$this->templateFile = $calledByModule.'.html';
+			if (isset($_REQUEST['search_widget']) && is_dir(JOMRES_COREPLUGINS_ABSPATH.'search_widget'.JRDS.$_REQUEST['search_widget'].JRDS.'bootstrap'.$jrConfig[ 'bootstrap_version' ]) ) {
+				$this->templateFilePath = JOMRES_COREPLUGINS_ABSPATH.'search_widget'.JRDS.$_REQUEST['search_widget'].JRDS.'bootstrap'.$jrConfig[ 'bootstrap_version' ];
+				$this->templateFile = 'index.html';
+			} else {
+				$this->templateFilePath = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'modules'.JRDS.$calledByModule.JRDS.$calledByModule;
+				$this->templateFile = $calledByModule.'.html';
+			}
 
 			if (
-				($calledByModule == 'mod_jomsearch_m0' && $jrConfig[ 'integratedSearch_enable' ] == '1' && this_cms_is_joomla()) ||
-				($calledByModule == 'mod_jomsearch_m0' && this_cms_is_wordpress() && $includedInModule)
+				( ($calledByModule == 'mod_jomsearch_m0' && $jrConfig[ 'integratedSearch_enable' ] == '1' && this_cms_is_joomla()) ||
+				($calledByModule == 'mod_jomsearch_m0' && this_cms_is_wordpress() && $includedInModule) )
+				&& !isset($_REQUEST['search_widget'])
 				) {
 				$this->templateFilePath = JOMRES_TEMPLATEPATH_FRONTEND;
 				$this->templateFile = 'search.html';

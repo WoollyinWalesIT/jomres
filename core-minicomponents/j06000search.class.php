@@ -832,7 +832,11 @@ class j06000search
 			if (!using_bootstrap()) {
 				$output[ 'THEBUTTON' ] = '<input type="submit" name="send" value="'.jr_gettext('_JOMRES_SEARCH_BUTTON', '_JOMRES_SEARCH_BUTTON', false).'" class="button" />';
 			} else {
-				$output[ 'THEBUTTON' ] = '<input type="submit" class="btn btn-primary" name="send" value="'.jr_gettext('_JOMRES_SEARCH_BUTTON', '_JOMRES_SEARCH_BUTTON', false).'" />';
+				if ( isset($_REQUEST['search_widget']) ) {
+					$output[ 'THEBUTTON' ] = '<button type="submit" class="btn btn-primary" name="send" />'.jr_gettext('_JOMRES_SEARCH_BUTTON', '_JOMRES_SEARCH_BUTTON', false).'</button>';
+				} else {
+					$output[ 'THEBUTTON' ] = '<input type="submit" class="btn btn-primary" name="send" value="'.jr_gettext('_JOMRES_SEARCH_BUTTON', '_JOMRES_SEARCH_BUTTON', false).'" />';
+				}
 			}
 		}
 
