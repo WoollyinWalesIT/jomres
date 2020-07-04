@@ -5,17 +5,12 @@
 <span class="label label-success">Feature</span> Standard editing mode introduces new 7 and 30 day modifier settings. They can either be flat rate or a percentage calculation that will discount bookings if they're longer than 7 and 30 days respective.
 <span class="label label-success">Feature</span> Property Configuration > Bookings tab has two new options. City tax and Cleaning fee. City tax offers a variety of models by which the tax can be calculated. Booking form template adjustments are required to capitalise on these new changes.
 
-
-
-
-
-Added func to empty package dirs first before update
-Added Connect admin panel to Core
-Added a check for BS4 when building property config tabs
-Save my account modified to create user images dirs if they don't exist.
-Some modals modified to use new bs4 hide class
-Added ability to disable sending all emails. No config option available, configuration.php would need to be edited to disable them.
-
+<span class="label label-warning">Change</span> Added func to empty package dirs first before update
+<span class="label label-warning">Change</span> Added Connect admin panel to Core
+<span class="label label-warning">Change</span> Added a check for BS4 when building property config tabs
+<span class="label label-warning">Change</span> Save my account modified to create user images dirs if they don't exist.
+<span class="label label-warning">Change</span> Some modals modified to use new bs4 hide class
+<span class="label label-warning">Change</span> Added ability to disable sending all emails. No config option available, configuration.php would need to be edited to disable them.
 
 
 <h3>Jomres 9.22.0 15/06/2020</h3>
