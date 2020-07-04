@@ -155,6 +155,10 @@ require_once(JOMRES_CLASSES_ABSPATH.'core_package_management.class.php');
 
 $core_package_management = new core_package_management();
 
+if (!file_exists(JOMRES_VENDOR_ABSPATH.'autoload.php')) {
+	$core_package_management->force_packages_reinstall();
+}
+
 //includes
 require_once JOMRES_VENDOR_ABSPATH.'autoload.php';
 require_once JOMRESPATH_BASE.'detect_cms.php';
