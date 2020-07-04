@@ -245,7 +245,7 @@ class jomSearch
 		$this->propertys_uid[ ] = get_showtime('published_properties_in_system');
 
 		// -------------------------------------------------------------------------------------------------------------------------------------------
-		if (in_array('propertyname', $this->searchOptions)) {
+
 			$puids = array();
 			$all_published_properties = array();
 			$all_properties = array();
@@ -274,9 +274,9 @@ class jomSearch
 				$this->prep[ 'propertyname' ][ ] = array('pn' => $basic_property_details->property_names[$puid], 'puid' => $puid);
 			}
 			asort($this->prep[ 'propertyname' ]);
-		}
+
 		// -------------------------------------------------------------------------------------------------------------------------------------------
-		if (in_array('country', $this->searchOptions)) {
+
 			$query = "SELECT DISTINCT property_country FROM  #__jomres_propertys WHERE published = '1' ORDER BY  property_country ASC";
 			$activeCountriesList = doSelectSql($query);
 			$tmpCountryArray = array();
@@ -291,8 +291,9 @@ class jomSearch
 
 			ksort($this->prep[ 'country' ]);
 			array_unshift($this->prep[ 'country' ], array('countrycode' => $this->searchAll, 'countryname' => $this->searchAll));
-		}
-		if (in_array('region', $this->searchOptions)) {
+
+
+
 			$query = "SELECT DISTINCT property_region,property_country FROM #__jomres_propertys WHERE published = '1' ORDER BY property_region ASC";
 			$activeRegionsList = doSelectSql($query);
 			$tmpRegionArray = array();
@@ -307,9 +308,9 @@ class jomSearch
 				}
 			}
 			$tmpRegionArray = array_unique($tmpRegionArray);
-		}
-		if (in_array('town', $this->searchOptions)) {
-			//$result=prepGeographicSearch();
+
+
+
 			$query = "SELECT DISTINCT (CASE WHEN (a.propertys_uid = b.property_uid 
 															AND b.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_TOWN' 
 															AND b.language = '".get_showtime('lang')."') 
@@ -338,14 +339,14 @@ class jomSearch
 					$this->prep[ 'town' ][ $t ] = array('town' => stripslashes($town->property_town));
 				}
 			}
-		}
+
 		// -------------------------------------------------------------------------------------------------------------------------------------------
 		// Currently returns an empty array
 		if (in_array('description', $this->searchOptions)) {
 			$result = prepDescriptiveSearch();
 		}
 		// -------------------------------------------------------------------------------------------------------------------------------------------
-		if (in_array('availability', $searchOptions)) {
+
 			$result = prepAvailabilitySearch();
 			if (isset($result[ 'arrival' ])) {
 				$this->prep[ 'arrival' ] = $result[ 'arrival' ];
@@ -358,9 +359,9 @@ class jomSearch
 			} else {
 				$this->prep[ 'departure' ] = '';
 			}
-		}
+
 		// -------------------------------------------------------------------------------------------------------------------------------------------
-		if (in_array('feature_uids', $this->searchOptions)) {
+
 			$result = prepFeatureSearch();
 			if ($result && !empty($result)) {
 				foreach ($result as $feature) {
@@ -369,9 +370,8 @@ class jomSearch
 					}
 				}
 			}
-		}
+
 		// -------------------------------------------------------------------------------------------------------------------------------------------
-		if (in_array('room_type', $this->searchOptions)) {
 			$result = prepRoomtypeSearch();
 
 			if ($result && !empty($result)) {
@@ -381,40 +381,30 @@ class jomSearch
 					}
 				}
 			}
-		}
+
 		// -------------------------------------------------------------------------------------------------------------------------------------------
-		if (in_array('ptype', $this->searchOptions)) {
 			$result = prepPropertyTypeSearch();
 			if ($result && !empty($result)) {
 				foreach ($result as $ptype) {
 					$this->prep[ 'ptypes' ][ ] = array('id' => $ptype[ 'id' ], 'ptype' => $ptype[ 'ptype' ]);
-					//if (!empty($ptype['id']) && !empty($ptype['ptype']) )
-					//$this->prep['ptypes'][]=array('id'=>$ptype['id'] ,'ptype'=>$ptype['ptype'],'number'=>$ptype['number']);
 				}
 			}
-		}
-		
-		if (in_array('cat_id', $this->searchOptions)) {
+
 			$result = prepPropertyCategoriesSearch();
 			if ($result && !empty($result)) {
 				foreach ($result as $c) {
 					$this->prep[ 'categories' ][ ] = array('id' => $c[ 'id' ], 'title' => $c[ 'title' ]);
-					//if (!empty($ptype['id']) && !empty($ptype['ptype']) )
-					//$this->prep['ptypes'][]=array('id'=>$ptype['id'] ,'ptype'=>$ptype['ptype'],'number'=>$ptype['number']);
 				}
 			}
-		}
 
-		if (in_array('priceranges', $this->searchOptions)) {
+
 			$result = prepPriceRangeSearch($pricerange_increments);
 			if ($result && !empty($result)) {
 				foreach ($result as $r) {
 					$this->prep[ 'priceranges' ][ ] = $r;
 				}
 			}
-		}
 
-		if (in_array('guestnumber', $this->searchOptions)) {
 			$result = prepGuestnumberSearch();
 			if ($result && !empty($result)) {
 				$searchAll = jr_gettext('_JOMRES_SEARCH_ALL', '_JOMRES_SEARCH_ALL', false, false);
@@ -423,9 +413,7 @@ class jomSearch
 					$this->prep[ 'guestnumber' ][ ] = array('id' => (int) $guestnumber, 'guestnumber' => (int) $guestnumber);
 				}
 			}
-		}
 
-		if (in_array('stars', $this->searchOptions)) {
 			$searchAll = jr_gettext('_JOMRES_SEARCH_ALL', '_JOMRES_SEARCH_ALL', false, false);
 			$this->prep[ 'stars' ][ ] = array('id' => 0, 'stars' => $searchAll);
 			$this->prep[ 'stars' ][ ] = array('id' => 1, 'stars' => 1);
@@ -433,7 +421,7 @@ class jomSearch
 			$this->prep[ 'stars' ][ ] = array('id' => 3, 'stars' => 3);
 			$this->prep[ 'stars' ][ ] = array('id' => 4, 'stars' => 4);
 			$this->prep[ 'stars' ][ ] = array('id' => 5, 'stars' => 5);
-		}
+
 	}
 
 	/**

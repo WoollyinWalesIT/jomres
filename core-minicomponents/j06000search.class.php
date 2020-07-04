@@ -306,50 +306,22 @@ class j06000search
 			$sch->filter[ 'departure' ] = str_replace($unwanted, '', $sch->filter[ 'departure' ]);
 		}
 
-		if (in_array('country', $searchOptions) && $showSearchOptions) {
-			$output[ 'JOMRES_SEARCH_GEO_COUNTRYSEARCH' ] = jr_gettext('_JOMRES_SEARCH_GEO_COUNTRYSEARCH', '_JOMRES_SEARCH_GEO_COUNTRYSEARCH', false);
-		}
-		if (in_array('region', $searchOptions) && $showSearchOptions) {
-			$output[ 'JOMRES_SEARCH_GEO_REGIONSEARCH' ] = jr_gettext('_JOMRES_SEARCH_GEO_REGIONSEARCH', '_JOMRES_SEARCH_GEO_REGIONSEARCH', false);
-		}
-		if (in_array('town', $searchOptions) && $showSearchOptions) {
-			$output[ 'JOMRES_SEARCH_GEO_TOWNSEARCH' ] = jr_gettext('_JOMRES_SEARCH_GEO_TOWNSEARCH', '_JOMRES_SEARCH_GEO_TOWNSEARCH', false);
-		}
-		if (in_array('description', $searchOptions) && $showSearchOptions) {
-			$output[ 'JOMRES_SEARCH_DESCRIPTION_INFO' ] = jr_gettext('_JOMRES_SEARCH_DESCRIPTION_INFO', '_JOMRES_SEARCH_DESCRIPTION_INFO', false);
-			$output[ 'JOMRES_SEARCH_DESCRIPTION_LABEL' ] = jr_gettext('_JOMRES_SEARCH_DESCRIPTION_LABEL', '_JOMRES_SEARCH_DESCRIPTION_LABEL', false);
-		}
-		if (in_array('feature_uids', $searchOptions) && $showSearchOptions) {
-			$output[ 'JOMRES_SEARCH_FEATURE_INFO' ] = jr_gettext('_JOMRES_SEARCH_FEATURE_INFO', '_JOMRES_SEARCH_FEATURE_INFO', false);
-		}
-		if (in_array('room_type', $searchOptions) && $showSearchOptions) {
-			$output[ 'JOMRES_SEARCH_RTYPES' ] = jr_gettext('_JOMRES_SEARCH_RTYPES', '_JOMRES_SEARCH_RTYPES', false);
-		}
-		if (in_array('availability', $searchOptions) && $showSearchOptions && get_showtime('task') != 'bookaroom') {
-			$output[ 'JOMRES_SEARCH_AVL_INFO' ] = jr_gettext('_JOMRES_SEARCH_AVL_INFO', '_JOMRES_SEARCH_AVL_INFO', false);
 
-			$output[ 'HARRIVALDATE' ] = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', false);
-			$output[ 'HDEPARTUREDATE' ] = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', false);
-		}
-
-		if (in_array('ptype', $searchOptions) && $showSearchOptions) {
-			$output[ 'JOMRES_SEARCH_PTYPES' ] = jr_gettext('_JOMRES_SEARCH_PTYPES', '_JOMRES_SEARCH_PTYPES', false);
-		}
-		
-		if (in_array('cat_id', $searchOptions) && $showSearchOptions) {
-			$output[ 'JOMRES_SEARCH_CATEGORY' ] = jr_gettext('_JOMRES_HCATEGORY', '_JOMRES_HCATEGORY', false);
-		}
-
-		if (in_array('priceranges', $searchOptions) && $showSearchOptions) {
-			$output[ 'JOMRES_SEARCH_PRICERANGES' ] = jr_gettext('_JOMRES_SEARCH_PRICERANGES', '_JOMRES_SEARCH_PRICERANGES', false);
-		}
-
-		if (in_array('guestnumber', $searchOptions) && $showSearchOptions && get_showtime('task') != 'bookaroom') {
-			$output[ 'HGUESTNUMBER' ] = jr_gettext('_JOMRES_SEARCH_GUESTNUMBER', '_JOMRES_SEARCH_GUESTNUMBER', false);
-		}
-		if (in_array('stars', $searchOptions) && $showSearchOptions && get_showtime('task') != 'bookaroom') {
-			$output[ 'HSTARS' ] = jr_gettext('_JOMRES_SEARCH_STARS', '_JOMRES_SEARCH_STARS', false);
-		}
+		$output[ 'JOMRES_SEARCH_GEO_COUNTRYSEARCH' ] = jr_gettext('_JOMRES_SEARCH_GEO_COUNTRYSEARCH', '_JOMRES_SEARCH_GEO_COUNTRYSEARCH', false);
+		$output[ 'JOMRES_SEARCH_GEO_REGIONSEARCH' ] = jr_gettext('_JOMRES_SEARCH_GEO_REGIONSEARCH', '_JOMRES_SEARCH_GEO_REGIONSEARCH', false);
+		$output[ 'JOMRES_SEARCH_GEO_TOWNSEARCH' ] = jr_gettext('_JOMRES_SEARCH_GEO_TOWNSEARCH', '_JOMRES_SEARCH_GEO_TOWNSEARCH', false);
+		$output[ 'JOMRES_SEARCH_DESCRIPTION_INFO' ] = jr_gettext('_JOMRES_SEARCH_DESCRIPTION_INFO', '_JOMRES_SEARCH_DESCRIPTION_INFO', false);
+		$output[ 'JOMRES_SEARCH_DESCRIPTION_LABEL' ] = jr_gettext('_JOMRES_SEARCH_DESCRIPTION_LABEL', '_JOMRES_SEARCH_DESCRIPTION_LABEL', false);
+		$output[ 'JOMRES_SEARCH_FEATURE_INFO' ] = jr_gettext('_JOMRES_SEARCH_FEATURE_INFO', '_JOMRES_SEARCH_FEATURE_INFO', false);
+		$output[ 'JOMRES_SEARCH_RTYPES' ] = jr_gettext('_JOMRES_SEARCH_RTYPES', '_JOMRES_SEARCH_RTYPES', false);
+		$output[ 'JOMRES_SEARCH_AVL_INFO' ] = jr_gettext('_JOMRES_SEARCH_AVL_INFO', '_JOMRES_SEARCH_AVL_INFO', false);
+		$output[ 'HARRIVALDATE' ] = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', false);
+		$output[ 'HDEPARTUREDATE' ] = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', false);
+		$output[ 'JOMRES_SEARCH_PTYPES' ] = jr_gettext('_JOMRES_SEARCH_PTYPES', '_JOMRES_SEARCH_PTYPES', false);
+		$output[ 'JOMRES_SEARCH_CATEGORY' ] = jr_gettext('_JOMRES_HCATEGORY', '_JOMRES_HCATEGORY', false);
+		$output[ 'JOMRES_SEARCH_PRICERANGES' ] = jr_gettext('_JOMRES_SEARCH_PRICERANGES', '_JOMRES_SEARCH_PRICERANGES', false);
+		$output[ 'HGUESTNUMBER' ] = jr_gettext('_JOMRES_SEARCH_GUESTNUMBER', '_JOMRES_SEARCH_GUESTNUMBER', false);
+		$output[ 'HSTARS' ] = jr_gettext('_JOMRES_SEARCH_STARS', '_JOMRES_SEARCH_STARS', false);
 
 		$output[ 'SUBMITURL' ] = jomresURL(JOMRES_SITEPAGE_URL_NOSEF);
 		$output[ 'FORMNAME' ] = $jomresSearchFormname;
@@ -359,7 +331,7 @@ class j06000search
 		if (!$data_only) {
 			// -------------------------------------------------------------------------------------------------------------------------------------------
 
-			if (in_array('selectcombo', $searchOptions) && $showSearchOptions) {
+			if ($showSearchOptions) {
 				if (!defined('_JOMRES_SELECTCOMBO')) {
 					// define("_JOMRES_SELECTCOMBO",1);
 					jomres_cmsspecific_addheaddata("javascript",JOMRES_JS_RELPATH, 'jquery.chainedSelects.js');
@@ -412,7 +384,7 @@ class j06000search
 		}
 
 		// -------------------------------------------------------------------------------------------------------------------------------------------
-		if (in_array('propertyname', $searchOptions) && $showSearchOptions) {
+		if ($showSearchOptions) {
 			if (!empty($sch->prep[ 'propertyname' ])) {
 				$propertyname = array();
 				if (empty($sch->filter[ 'propertyname' ])) {
@@ -447,7 +419,7 @@ class j06000search
 		}
 
 		// -------------------------------------------------------------------------------------------------------------------------------------------
-		if (in_array('country', $searchOptions) && $showSearchOptions && !in_array('selectcombo', $searchOptions)) {
+		if ($showSearchOptions ) {
 			$countryArray = array();
 			if (!empty($sch->prep[ 'country' ])) {
 				if (empty($sch->filter[ 'country' ])) {
@@ -481,7 +453,7 @@ class j06000search
 		}
 
 		// -------------------------------------------------------------------------------------------------------------------------------------------
-		if (in_array('region', $searchOptions) && $showSearchOptions && !in_array('selectcombo', $searchOptions)) {
+		if ($showSearchOptions ) {
 			$regionArray = array();
 			if (!empty($sch->prep[ 'region' ])) {
 				if (empty($sch->filter[ 'region' ])) {
@@ -515,12 +487,13 @@ class j06000search
 					}
 					$output[ 'region' ] = $r;
 				}
+
 			} else {
 				$output[ 'region' ] = 'EMPTY';
 			}
 		}
 		// -------------------------------------------------------------------------------------------------------------------------------------------
-		if (in_array('town', $searchOptions) && $showSearchOptions && !in_array('selectcombo', $searchOptions)) {
+		if ($showSearchOptions ) {
 			$townArray = array();
 
 			$ta = $sch->prep[ 'town' ];
@@ -556,7 +529,7 @@ class j06000search
 			}
 		}
 		// -------------------------------------------------------------------------------------------------------------------------------------------
-		if (in_array('description', $searchOptions) && $showSearchOptions) {
+		if ($showSearchOptions) {
 			if (empty($sch->filter[ 'description' ])) {
 				$selectOption = $output[ 'JOMRES_SEARCH_DESCRIPTION_LABEL' ];
 			} else {
@@ -566,7 +539,7 @@ class j06000search
 			$output[ 'DESCRIPTION' ] = '<input class="inputbox" type="text" name="description" value="'.$sch->filter[ 'description' ].'"  onfocus="if (this.value ==\''.$output[ 'JOMRES_SEARCH_DESCRIPTION_LABEL' ].'\') {this.value = \'\'}" />';
 		}
 		// -------------------------------------------------------------------------------------------------------------------------------------------
-		if (in_array('feature_uids', $searchOptions) && $showSearchOptions) {
+		if ($showSearchOptions) {
 			$featureArray = array();
 			if (!empty($sch->prep[ 'features' ])) {
 				if (empty($sch->filter[ 'feature_uids' ])) {
@@ -610,7 +583,7 @@ class j06000search
 			$showButton = true;
 		}
 		// -------------------------------------------------------------------------------------------------------------------------------------------
-		if (in_array('room_type', $searchOptions) && $showSearchOptions) {
+		if ( $showSearchOptions) {
 			$rtypeArray = array();
 
 			if (!empty($sch->prep[ 'rtypes' ])) {
@@ -645,7 +618,7 @@ class j06000search
 			}
 		}
 		// -------------------------------------------------------------------------------------------------------------------------------------------
-		if (in_array('ptype', $searchOptions) && $showSearchOptions) {
+		if ($showSearchOptions) {
 			$ptypeArray = array();
 			if (!empty($sch->prep[ 'ptypes' ])) {
 				if (empty($sch->filter[ 'ptype' ])) {
@@ -682,7 +655,7 @@ class j06000search
 		}
 		
 		// -------------------------------------------------------------------------------------------------------------------------------------------
-		if (in_array('cat_id', $searchOptions) && $showSearchOptions) {
+		if ($showSearchOptions) {
 			$categoriesArray = array();
 			if (!empty($sch->prep[ 'categories' ])) {
 				if (empty($sch->filter[ 'categories' ])) {
@@ -702,7 +675,7 @@ class j06000search
 		}
 		
 		// -------------------------------------------------------------------------------------------------------------------------------------------
-		if (in_array('priceranges', $searchOptions) && $showSearchOptions) {
+		if ($showSearchOptions) {
 			$rangeArray = array();
 			if (!empty($sch->prep[ 'priceranges' ])) {
 				if (empty($sch->filter[ 'priceranges' ])) {
@@ -719,14 +692,13 @@ class j06000search
 		}
 		// -------------------------------------------------------------------------------------------------------------------------------------------
 
-		if (in_array('availability', $searchOptions)) {
 			$output[ 'ARRIVALDATE' ] = generateDateInput('arrivalDate', $sch->prep[ 'arrival' ], 'ad', true);
 			$output[ 'DEPARTUREDATE' ] = generateDateInput('departureDate', $sch->prep[ 'departure' ], false, true, false);
 			$showButton = true;
-		}
+
 
 		// -------------------------------------------------------------------------------------------------------------------------------------------
-		if (in_array('guestnumber', $searchOptions) && $showSearchOptions) {
+		if (  $showSearchOptions) {
 			$guestnumberArray = array();
 			if (!empty($sch->prep[ 'guestnumber' ])) {
 				if (empty($sch->filter[ 'guestnumber' ])) {
@@ -745,7 +717,8 @@ class j06000search
 		}
 
 		// -------------------------------------------------------------------------------------------------------------------------------------------
-		if (in_array('stars', $searchOptions) && $showSearchOptions) {
+
+		if ($showSearchOptions) {
 			$starsArray = array();
 			if (!empty($sch->prep[ 'stars' ])) {
 				if (empty($sch->filter[ 'stars' ])) {
