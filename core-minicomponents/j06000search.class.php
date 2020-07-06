@@ -153,7 +153,12 @@ class j06000search
 		$calledByModule = getEscaped($calledByModule);
 
 		$infoIcon = JOMRES_IMAGES_RELPATH.'information.png';
-		$output = array();
+		if ( isset($componentArgs['form_elements']) ) {
+			$output = $componentArgs['form_elements']; // Allows calling scripts to add form elements that are then handed to the template without needing to make any other changes to this script
+		} else {
+			$output = array();
+		}
+
 		$pageoutput = array();
 		$showButton = false;
 		$searchAll = jr_gettext('_JOMRES_SEARCH_ALL', '_JOMRES_SEARCH_ALL', false, false);
@@ -323,6 +328,8 @@ class j06000search
 		$output[ 'HGUESTNUMBER' ] = jr_gettext('_JOMRES_SEARCH_GUESTNUMBER', '_JOMRES_SEARCH_GUESTNUMBER', false);
 		$output[ 'HSTARS' ] = jr_gettext('_JOMRES_SEARCH_STARS', '_JOMRES_SEARCH_STARS', false);
 		$output[ '_JRPORTAL_PROPERTIES_PROPERTYNAME' ] = jr_gettext('_JRPORTAL_PROPERTIES_PROPERTYNAME', '_JRPORTAL_PROPERTIES_PROPERTYNAME', false);
+		$output[ '_JOMRES_PROPERTY_HCATEGORIES' ] = jr_gettext('_JOMRES_PROPERTY_HCATEGORIES', '_JOMRES_PROPERTY_HCATEGORIES', false);
+
 
 
 		$output[ 'SUBMITURL' ] = jomresURL(JOMRES_SITEPAGE_URL_NOSEF);
