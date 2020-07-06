@@ -329,12 +329,12 @@ class j06000search
 		$output[ 'HSTARS' ] = jr_gettext('_JOMRES_SEARCH_STARS', '_JOMRES_SEARCH_STARS', false);
 		$output[ '_JRPORTAL_PROPERTIES_PROPERTYNAME' ] = jr_gettext('_JRPORTAL_PROPERTIES_PROPERTYNAME', '_JRPORTAL_PROPERTIES_PROPERTYNAME', false);
 		$output[ '_JOMRES_PROPERTY_HCATEGORIES' ] = jr_gettext('_JOMRES_PROPERTY_HCATEGORIES', '_JOMRES_PROPERTY_HCATEGORIES', false);
-
-
+		$output[ '_JOMRES_REVIEWS_RATING_2' ] = jr_gettext('_JOMRES_REVIEWS_RATING_2', '_JOMRES_REVIEWS_RATING_2', false);
+		$output[ '_JOMRES_COM_A_RESET' ] = jr_gettext('_JOMRES_COM_A_RESET', '_JOMRES_COM_A_RESET', false);
 
 		$output[ 'SUBMITURL' ] = jomresURL(JOMRES_SITEPAGE_URL_NOSEF);
 		$output[ 'FORMNAME' ] = $jomresSearchFormname;
-		 
+
 		$output[ 'SELECTCOMBO_HIDDENDROPDOWNS_TOWN' ] = '';
 		
 		if (!$data_only) {
@@ -676,7 +676,7 @@ class j06000search
 				foreach ($sch->prep[ 'categories' ] as $c) {
 					$categoriesArray[ ] = jomresHTML::makeOption($c[ 'id' ], $c[ 'title' ]);
 				}
-				$output[ 'categories' ] = jomresHTML::selectList($categoriesArray, 'cat_id', '  class="inputbox search_dropdown" ', 'value', 'text', $selectOption);
+				$output[ 'categories' ] = jomresHTML::selectList($categoriesArray, 'cat_id', '  class="inputbox search_dropdown" placeholder="'.$output[ '_JOMRES_PROPERTY_HCATEGORIES' ].'"', 'value', 'text', $selectOption);
 				$showButton = true;
 			} else {
 				$output[ 'categories' ] = 'EMPTY';
