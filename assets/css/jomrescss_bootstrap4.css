@@ -519,6 +519,9 @@ div.ui-datepicker {
   font-size: 140%;
 }
 
+.search_dropdown {
+	width: 100%;
+}
 
 .input-group.search-form {
 	width: 100%;

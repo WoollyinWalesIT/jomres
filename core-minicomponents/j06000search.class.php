@@ -331,6 +331,8 @@ class j06000search
 		$output[ '_JOMRES_PROPERTY_HCATEGORIES' ] = jr_gettext('_JOMRES_PROPERTY_HCATEGORIES', '_JOMRES_PROPERTY_HCATEGORIES', false);
 		$output[ '_JOMRES_REVIEWS_RATING_2' ] = jr_gettext('_JOMRES_REVIEWS_RATING_2', '_JOMRES_REVIEWS_RATING_2', false);
 		$output[ '_JOMRES_COM_A_RESET' ] = jr_gettext('_JOMRES_COM_A_RESET', '_JOMRES_COM_A_RESET', false);
+		$output[ 'JOMRES_COM_A_ACCOMMODATES' ] = jr_gettext('JOMRES_COM_A_ACCOMMODATES', 'JOMRES_COM_A_ACCOMMODATES', false);
+
 
 		$output[ 'SUBMITURL' ] = jomresURL(JOMRES_SITEPAGE_URL_NOSEF);
 		$output[ 'FORMNAME' ] = $jomresSearchFormname;
@@ -441,7 +443,7 @@ class j06000search
 					foreach ($sch->prep[ 'country' ] as $country) {
 						$countryArray[ ] = jomresHTML::makeOption($country[ 'countrycode' ], jomres_decode($country[ 'countryname' ]));
 					}
-					$output[ 'country' ] = jomresHTML::selectList($countryArray, 'country', ' class="inputbox search_dropdown"', 'value', 'text', $selectOption);
+					$output[ 'country' ] = jomresHTML::selectList($countryArray, 'country', ' class="inputbox search_dropdown" placeholder="'.$output[ 'JOMRES_SEARCH_GEO_COUNTRYSEARCH' ].'"' , 'value', 'text', $selectOption);
 					$showButton = true;
 				} else {
 					$r = '';
@@ -478,7 +480,7 @@ class j06000search
 						$region_name = find_region_name($t);
 						$regionArray[ ] = jomresHTML::makeOption($region_id, jomres_decode($region_name));
 					}
-					$output[ 'region' ] = jomresHTML::selectList($regionArray, 'region', ' class="inputbox search_dropdown" ', 'value', 'text', $selectOption);
+					$output[ 'region' ] = jomresHTML::selectList($regionArray, 'region', ' class="inputbox search_dropdown" placeholder="'.$output[ 'JOMRES_SEARCH_GEO_REGIONSEARCH' ].'"', 'value', 'text', $selectOption);
 					$showButton = true;
 				} else {
 					$r = '';
@@ -517,7 +519,7 @@ class j06000search
 						$t = str_replace('&#39;', "'", $town[ 'town' ]); // This is important. php will not pass back, eg Sant&#39;Antimo, it will only pass back Sant, therefore we need to convert the &#39; to a ' to be shown in the url. When jomresGetParam runs it'll convert the ' back to &#39; and the search will run successfully.
 						$townArray[ ] = jomresHTML::makeOption($town[ 'town' ], jomres_decode($t));
 					}
-					$output[ 'town' ] = jomresHTML::selectList($townArray, 'town', ' class="inputbox search_dropdown" ', 'value', 'text', $selectOption);
+					$output[ 'town' ] = jomresHTML::selectList($townArray, 'town', ' class="inputbox search_dropdown" placeholder="'.$output[ 'JOMRES_SEARCH_GEO_TOWNSEARCH' ].'"', 'value', 'text', $selectOption);
 					$showButton = true;
 				} else {
 					$r = '';
@@ -561,7 +563,7 @@ class j06000search
 						$feature_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_ABBV'.(int) $feature[ 'id' ], jomres_decode($feature[ 'title' ]), false, false);
 						$featureArray[ ] = jomresHTML::makeOption($feature[ 'id' ], jomres_decode($feature_abbv));
 					}
-					$output[ 'feature' ] = jomresHTML::selectList($featureArray, 'feature_uids[]', ' class="inputbox search_dropdown"', 'value', 'text', $selectOption);
+					$output[ 'feature' ] = jomresHTML::selectList($featureArray, 'feature_uids[]', ' class="inputbox search_dropdown" placeholder="'.$output[ 'JOMRES_SEARCH_FEATURE_INFO' ].'"', 'value', 'text', $selectOption);
 				} else { // Show the features as javascript popup
 					$r = '';
 					$counter = 0;
@@ -607,7 +609,7 @@ class j06000search
 						$roomClassAbbv = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int) $rtype[ 'id' ], jomres_decode($rtype[ 'title' ]), false, false);
 						$rtypeArray[ ] = jomresHTML::makeOption($rtype[ 'id' ], $roomClassAbbv);
 					}
-					$output[ 'room_type' ] = jomresHTML::selectList($rtypeArray, 'room_type', ' class="inputbox search_dropdown" ', 'value', 'text', $selectOption);
+					$output[ 'room_type' ] = jomresHTML::selectList($rtypeArray, 'room_type', ' class="inputbox search_dropdown" placeholder="'.$output[ 'JOMRES_SEARCH_RTYPES' ].'"', 'value', 'text', $selectOption);
 					$showButton = true;
 				} else {
 					foreach ($sch->prep[ 'rtypes' ] as $room_type) {
@@ -641,7 +643,7 @@ class j06000search
 
 						$ptypeArray[ ] = jomresHTML::makeOption($ptype[ 'id' ], $ptypeAbbv);
 					}
-					$output[ 'ptype' ] = jomresHTML::selectList($ptypeArray, 'ptype', '  class="inputbox search_dropdown" ', 'value', 'text', $selectOption);
+					$output[ 'ptype' ] = jomresHTML::selectList($ptypeArray, 'ptype', '  class="inputbox search_dropdown" placeholder="'.$output[ 'JOMRES_SEARCH_PTYPES' ].'"', 'value', 'text', $selectOption);
 					$showButton = true;
 				} else {
 					$r = '';
@@ -709,6 +711,7 @@ class j06000search
 		// -------------------------------------------------------------------------------------------------------------------------------------------
 		if (  $showSearchOptions) {
 			$guestnumberArray = array();
+
 			if (!empty($sch->prep[ 'guestnumber' ])) {
 				if (empty($sch->filter[ 'guestnumber' ])) {
 					$selectOption = $sch->prep[ 'guestnumber' ][ 0 ][ 'id' ];
