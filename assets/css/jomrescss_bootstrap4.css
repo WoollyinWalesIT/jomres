@@ -519,11 +519,11 @@ div.ui-datepicker {
   font-size: 140%;
 }
 
-.search_dropdown {
+
+.input-group.search-form {
 	width: 100%;
 }
 
 .btn-search-form {
 	width: 100%;
 }
-
