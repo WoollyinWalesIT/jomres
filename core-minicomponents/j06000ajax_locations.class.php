@@ -42,10 +42,36 @@ class j06000ajax_locations
 			return;
 		}
 
-		$requested_budget = (int) jomresGetParam($_REQUEST, 'budget_figure', 0);
-		jr_import('jomres_user_budget');
-		$budget = new jomres_user_budget();
-		$budget->set_budget($requested_budget);
+		jr_import('jomSearch');
+		$locales = prepGeographicSearch();
+		// We have a list of locales, now we can build an array of ways to search for those locales
+		$result = array();
+
+		if (!empty($locales["propertyLocations"])) {
+			foreach ($locales["propertyLocations"] as $locale) {
+				$country_code = $locale['country'];
+				$countryname = $locale['countryname'];
+				$region = $locale['region'];
+				$property_town = $locale['property_town'];
+
+				$result[$countryname] = array (
+					"form_element" => "country" ,
+					"element_name" => $countryname,
+				);
+				$result[$region] = array (
+					"form_element" => "region" ,
+					"element_name" => $region,
+				);
+				if (trim($property_town) != '' ) {
+					$result[$property_town] = array (
+						"form_element" => "town" ,
+						"element_name" => $property_town,
+					);
+				}
+			}
+			ksort($result, SORT_NATURAL | SORT_FLAG_CASE );
+		}
+		echo json_encode($result);
 	}
 
 
