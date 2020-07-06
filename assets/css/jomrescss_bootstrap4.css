@@ -518,3 +518,12 @@ fieldset[disabled] .btn-videos.active {
 div.ui-datepicker {
   font-size: 140%;
 }
+
+.search_dropdown {
+	width: 100%;
+}
+
+.btn-search-form {
+	width: 100%;
+}
+
