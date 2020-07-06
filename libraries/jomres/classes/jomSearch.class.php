@@ -583,6 +583,7 @@ class jomSearch
 				$wheres2[ ] = "LOWER(property_policies_disclaimers) LIKE '%$word%'";
 				$wheres[ ] = implode(' OR ', $wheres2);
 			}
+			$phrase = ''; // Phrase seems to have been removed something in the late naughties but if I mess about with the following line things break so it's easier to just declare it here to prevent notices
 			$where = '('.implode(($phrase == 'all' ? ') AND (' : ') OR ('), $wheres).')';
 			$query = 'SELECT propertys_uid FROM #__jomres_propertys ';
 			$query .= " WHERE published = 1 AND ( $where ) ";
