@@ -180,40 +180,44 @@ class jrportal_rates
 					AND `property_uid` = ".(int)$this->property_uid;
 		$result = doSelectSql($query);
 
-		if (empty($result)) {
+		if (empty($result)
+			&& ( get_showtime("task") != 'delete_tariff_micromanage' &&
+				get_showtime("task") != 'delete_tariff_advanced' &&
+				 get_showtime("task") != 'delete_tariff_micromanage' )
+			) {
 			throw new Exception('Tariffs are not setup properly. Please go back, delete any existing tariffs and create new ones.');
 		} else {
-			foreach ($result as $r) {
+			if (empty($result)) {
+				foreach ($result as $r) {
+					if (!isset($r->modifiers) ) {
+						$r->modifiers = base64_encode(json_encode( [] ));
+					}
 
-				if (!isset($r->modifiers) ) {
-					$r->modifiers = base64_encode(json_encode( [] ));
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['rates_uid'] 					= (int)$r->rates_uid;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['rate_title'] 				= $rate_title; //TODO
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['rate_description'] 			= $rate_description; //TODO
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['validfrom'] 					= $r->validfrom;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['validto'] 					= $r->validto;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['roomrateperday'] 			= $r->roomrateperday;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['extra_guests_price'] 		= $r->extra_guests_price;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['modifiers']			 		= json_decode(base64_decode($r->modifiers));
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['mindays'] 					= (int)$r->mindays;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['maxdays'] 					= (int)$r->maxdays;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['minpeople'] 					= (int)$r->minpeople;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['maxpeople']					= (int)$r->maxpeople;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['roomclass_uid'] 				= (int)$r->roomclass_uid;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['ignore_pppn'] 				= (int)$r->ignore_pppn;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['allow_ph'] 					= (int)$r->allow_ph;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['allow_we'] 					= (int)$r->allow_we;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['weekendonly'] 				= (int)$r->weekendonly;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['validfrom_ts'] 				= $r->validfrom_ts;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['validto_ts'] 				= $r->validto_ts;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['dayofweek'] 					= (int)$r->dayofweek;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['minrooms_alreadyselected'] 	= (int)$r->minrooms_alreadyselected;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['maxrooms_alreadyselected'] 	= (int)$r->maxrooms_alreadyselected;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['property_uid'] 				= (int)$r->property_uid;
 				}
-
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['rates_uid'] 					= (int)$r->rates_uid;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['rate_title'] 				= $rate_title; //TODO
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['rate_description'] 			= $rate_description; //TODO
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['validfrom'] 					= $r->validfrom;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['validto'] 					= $r->validto;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['roomrateperday'] 			= $r->roomrateperday;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['extra_guests_price'] 		= $r->extra_guests_price;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['modifiers']			 		= json_decode(base64_decode($r->modifiers));
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['mindays'] 					= (int)$r->mindays;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['maxdays'] 					= (int)$r->maxdays;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['minpeople'] 					= (int)$r->minpeople;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['maxpeople']					= (int)$r->maxpeople;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['roomclass_uid'] 				= (int)$r->roomclass_uid;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['ignore_pppn'] 				= (int)$r->ignore_pppn;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['allow_ph'] 					= (int)$r->allow_ph;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['allow_we'] 					= (int)$r->allow_we;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['weekendonly'] 				= (int)$r->weekendonly;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['validfrom_ts'] 				= $r->validfrom_ts;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['validto_ts'] 				= $r->validto_ts;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['dayofweek'] 					= (int)$r->dayofweek;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['minrooms_alreadyselected'] 	= (int)$r->minrooms_alreadyselected;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['maxrooms_alreadyselected'] 	= (int)$r->maxrooms_alreadyselected;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['property_uid'] 				= (int)$r->property_uid;
 			}
-
 		return true;
 		}
 	
