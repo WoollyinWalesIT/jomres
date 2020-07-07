@@ -908,6 +908,7 @@ function output_fatal_error($e , $extra_info = '' )
 	$pageoutput[] = $output;
 	$tmpl = new patTemplate();
 	$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+
 	$tmpl->readTemplatesFromInput('error_developer.html');
 	$tmpl->addRows('rows', $rows);
 	$tmpl->addRows('pageoutput', $pageoutput);
@@ -924,7 +925,7 @@ function output_fatal_error($e , $extra_info = '' )
 	if ($jrConfig['development_production'] == 'development') {
 		echo $error_html;
 	} else {
-		$pageoutput = array(array('_JOMRES_ERROR' => jr_gettext('_JOMRES_ERROR', '_JOMRES_ERROR', false), '_JOMRES_ERROR_MESSAGE' => jr_gettext('_JOMRES_ERROR_MESSAGE', '_JOMRES_ERROR_MESSAGE', false)));
+		$pageoutput = array(array('_JOMRES_ERROR' => jr_gettext('_JOMRES_ERROR', '_JOMRES_ERROR', false), '_JOMRES_ERROR_MESSAGE' =>  $e->getMessage() ));
 		$tmpl = new patTemplate();
 		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
 		$tmpl->readTemplatesFromInput('error_production.html');
@@ -941,6 +942,8 @@ function output_fatal_error($e , $extra_info = '' )
 	}
 
 	logging::log_message('Error logged '.$output['MESSAGE'].' '.$url, 'Core', 'ERROR');
+	$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+	$MiniComponents->triggerEvent('00061');
 }
 
 /**

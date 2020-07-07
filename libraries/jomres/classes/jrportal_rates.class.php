@@ -181,7 +181,7 @@ class jrportal_rates
 		$result = doSelectSql($query);
 
 		if (empty($result)) {
-			throw new Exception('Error: there are no tariffs saved for these rates uids, so tariffs are not configured properly. Please create tariffs again.');
+			throw new Exception('Tariffs are not setup properly. Please go back, delete any existing tariffs and create new ones.');
 		} else {
 			foreach ($result as $r) {
 
