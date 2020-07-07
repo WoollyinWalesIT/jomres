@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		var resource_types = jomresJquery('#resource_types');
 		var resource_id    = jomresJquery('#resource_id');
 		data.formData = {resource_type: resource_types.val() , resource_id:  resource_id.val() };
-		
+
         data.context = jomresJquery('<div/>').appendTo('#files');
         jomresJquery.each(data.files, function (index, file) {
             var node = jomresJquery('<p/>')

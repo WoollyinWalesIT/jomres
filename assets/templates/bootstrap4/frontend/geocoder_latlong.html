@@ -6,7 +6,7 @@ var map;
 var latLng;
 
 
-jomresJquery(document).ready(function(){
+document.addEventListener('DOMContentLoaded', function(){
 	init_map_{RANDOM_IDENTIFIER}();
 	});
 
@@ -81,7 +81,7 @@ function codeAddress(address) {
     });
 }
 
-jomresJquery(document).ready(function() {
+document.addEventListener('DOMContentLoaded', function(){
 	jomresJquery('body').on('shown.bs.tab','#mapTab', function (e) {
 		init_map_{RANDOM_IDENTIFIER}();
 		});

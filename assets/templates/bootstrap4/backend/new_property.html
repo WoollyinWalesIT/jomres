@@ -33,8 +33,8 @@
 			alert("{_JOMRES_FIELDS_HIGHLIGHTED_ARE_REQUIRED}");
 		}
 	}
-	
-	jomresJquery(document).ready(function(){
+
+	document.addEventListener('DOMContentLoaded', function(){
 		jomresJquery("#new_property_country").change(function(){
 			var selectedValue = jomresJquery(this).find(":selected").val();
 			clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;

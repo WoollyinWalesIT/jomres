@@ -1,7 +1,7 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script language="javascript" type="text/javascript">
 <!--
-jomresJquery(document).ready(function () {
+document.addEventListener('DOMContentLoaded', function(){
 	jomresJquery("#guest_country").change(function(){
 		var selectedValue = jomresJquery(this).find(":selected").val();
 		clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;

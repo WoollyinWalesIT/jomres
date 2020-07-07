@@ -1,7 +1,7 @@
 
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script type="text/javascript">
-jomresJquery(document).ready(function () {
+	document.addEventListener('DOMContentLoaded', function(){
 	make_datatable('jomres_users', '{_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE}', '{LIVESITE}');
 });
 </script>

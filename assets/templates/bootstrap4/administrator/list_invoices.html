@@ -2,7 +2,7 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script language="javascript" type="text/javascript">
 	<!--
-	jomresJquery(document).ready(function () {
+	document.addEventListener('DOMContentLoaded', function(){
 		make_datatable('admin_list_invoices', '{PAGETITLE}', '{LIVESITE}', '{AJAX_URL}');
 		column_ids = new Array(4,6);
 		dataTableSetHiddenColumns('admin_list_invoices', column_ids);

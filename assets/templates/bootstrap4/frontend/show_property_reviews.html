@@ -7,7 +7,7 @@
 
 	var show_thanks = {SHOW_THANKS};
 
-	jomresJquery(document).ready(function () {
+	document.addEventListener('DOMContentLoaded', function(){
 		if (!show_thanks) {
 			jomresJquery("#thanks_field").hide();
 		}

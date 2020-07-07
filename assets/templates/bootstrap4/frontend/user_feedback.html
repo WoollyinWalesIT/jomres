@@ -1,6 +1,6 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script type="text/javascript">
-jomresJquery(document).ready(function () {
+    document.addEventListener('DOMContentLoaded', function(){
 	var feedback_content = jomresJquery('#jr_feedback_msgs').html();
 	jomresJquery('#jomres_feedback').html(feedback_content);
 	jomresJquery('#jr_feedback_msgs').empty();

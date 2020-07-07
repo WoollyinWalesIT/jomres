@@ -82,7 +82,7 @@
 		
 		<patTemplate:tmpl name="encoded_on_full_license" type="simpleCondition" requiredVars="encoding_warning">
         <script type="text/javascript">
-            jomresJquery(document).ready(function(){
+			document.addEventListener('DOMContentLoaded', function(){
                 jomresJquery('#encoded_plugins_warning').modal('show');
             });
         </script>

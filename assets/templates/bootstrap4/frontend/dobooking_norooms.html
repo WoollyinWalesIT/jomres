@@ -57,7 +57,7 @@
 
 	var running_bootstrap = {BOOTSTRAP_JS_VAR};
 
-	jomresJquery(document).ready(function () {
+	document.addEventListener('DOMContentLoaded', function(){
 
 		jomresJquery('#ajaxform').attr('novalidate', 'novalidate'); // Disable html5 validation
 
