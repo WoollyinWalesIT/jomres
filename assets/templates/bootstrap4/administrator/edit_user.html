@@ -2,7 +2,7 @@
 
 <script type="text/javascript">
 var ajaxurl = "{JOMRES_SITEPAGE_URL_ADMIN_AJAX}&task=cms_users_find";
-jomresJquery(function () {
+document.addEventListener('DOMContentLoaded', function() {
 	jomresJquery("#cms_username").autocomplete({
 		source: ajaxurl,
 		minLength: 2,

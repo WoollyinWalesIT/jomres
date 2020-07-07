@@ -86,7 +86,7 @@ class j03379room_types
 					define('MEDIACENTRE_ROOMJS', 1);
 					echo '
 					<script>
-					jomresJquery(function () {
+					document.addEventListener(\'DOMContentLoaded\', function() {
 						jomresJquery("#resource_id_dropdown").change(function () {
 							get_existing_images(); 
 							});

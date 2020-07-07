@@ -68,7 +68,7 @@
 
 	var running_bootstrap = {BOOTSTRAP_JS_VAR};
 
-	jomresJquery(document).ready(function () {
+	document.addEventListener('DOMContentLoaded', function() {
 
 		jomresJquery('#ajaxform').attr('novalidate', 'novalidate'); // Disable html5 validation
 
@@ -165,7 +165,7 @@
 	}
 	;
 
-	jomresJquery(function(){
+	document.addEventListener('DOMContentLoaded', function() {
 		jomresJquery("#country").change(function(){
 			var selectedValue = jomresJquery(this).find(":selected").val();
 			clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
@@ -174,8 +174,8 @@
 				});
 			});
 		});
-		
-	jomresJquery(function () {
+
+	document.addEventListener('DOMContentLoaded', function() {
 		jomresJquery('[data-toggle="tooltip"]').tooltip()
 	})
 	//-->

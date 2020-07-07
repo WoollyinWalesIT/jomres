@@ -176,7 +176,7 @@ try {
 
 	//output bottom area
 	if (!AJAXCALL) {
-		$pageoutput[] = $output;
+//		$pageoutput[] = $output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
 		if (_JOMRES_DETECTED_CMS == 'joomla3') {
@@ -184,7 +184,7 @@ try {
 		} else {
 			$tmpl->readTemplatesFromInput('administrator_content_area_bottom.html');
 		}
-		$tmpl->addRows('pageoutput', $pageoutput);
+		$tmpl->addRows('pageoutput', array() );
 		$tmpl->displayParsedTemplate();
 	}
 

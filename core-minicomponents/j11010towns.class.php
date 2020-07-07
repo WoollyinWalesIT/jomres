@@ -66,7 +66,7 @@ class j11010towns
 				define ("MEDIACENTRE_ROOMJS",1);
 				echo '
 				<script>
-				jomresJquery(function () {
+				document.addEventListener(\'DOMContentLoaded\', function() {
 					jomresJquery("#resource_id_dropdown").change(function () {
 						get_existing_images(); 
 						});

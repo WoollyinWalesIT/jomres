@@ -530,3 +530,7 @@ div.ui-datepicker {
 .btn-search-form {
 	width: 100%;
 }
+/* For image uploader */
+.fade.in {
+	opacity: 1
+}

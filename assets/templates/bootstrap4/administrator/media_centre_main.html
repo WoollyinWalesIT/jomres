@@ -89,7 +89,7 @@
 <script type="text/javascript">
 var ajax_url = "{AJAX_URL}";
 
-jomresJquery(function () {
+document.addEventListener('DOMContentLoaded', function() {
     'use strict';
     // Change this to the location of your server-side upload handler:
     var url = ajax_url + '&task=media_centre_handler',
@@ -122,7 +122,7 @@ jomresJquery(function () {
 		dropZone: jomresJquery('#dropzone'),
         url: url,
         dataType: 'json',
-        autoUpload: false,
+        autoUpload: true,
         acceptFileTypes: /(\.|\/){ALLOWED_FILE_TYPES}$/i,
         maxFileSize: 5000000, // 5 MB
         // Enable image resizing, except for Android and Opera,
@@ -135,6 +135,11 @@ jomresJquery(function () {
         previewMaxHeight: 100,
         previewCrop: true
     }).on('fileuploadadd', function (e, data) {
+		// Vince
+		var resource_types = jomresJquery('#resource_types');
+		var resource_id    = jomresJquery('#resource_id');
+		data.formData = {resource_type: resource_types.val() , resource_id:  resource_id.val() };
+		
         data.context = jomresJquery('<div/>').appendTo('#files');
         jomresJquery.each(data.files, function (index, file) {
             var node = jomresJquery('<p/>')
@@ -274,8 +279,8 @@ function get_existing_images()
 			jomresJquery('#existing_images').slideDown();
 		});
 	}
-	
-jomresJquery(document).ready(function () {
+
+document.addEventListener('DOMContentLoaded', function() {
 	get_resource_ids_for_resource_type(jomresJquery('#resource_types').val());
 	
 	jomresJquery('#upload_all').click(function () {
