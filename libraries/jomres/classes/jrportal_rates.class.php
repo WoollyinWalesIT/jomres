@@ -187,7 +187,7 @@ class jrportal_rates
 			) {
 			throw new Exception('Tariffs are not setup properly. Please go back, delete any existing tariffs and create new ones.');
 		} else {
-			if (empty($result)) {
+			if (!empty($result)) {
 				foreach ($result as $r) {
 					if (!isset($r->modifiers) ) {
 						$r->modifiers = base64_encode(json_encode( [] ));
