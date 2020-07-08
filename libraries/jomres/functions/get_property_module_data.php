@@ -42,7 +42,12 @@ function get_property_module_data($property_uid_array, $alt_template_path = '', 
 	foreach ($property_uid_array as $property_uid) {
 		if ($property_uid > 0) {
 			$property_data = $current_property_details->multi_query_result[ $property_uid ];
+
 			$mrConfig = getPropertySpecificSettings($property_uid);
+
+			if ( $mrConfig['hide_local_address'] == '1' ) {
+				$property_data[ 'property_street' ] =  jr_gettext('HIDDEN_ADDRESS_PLACEHOLDER', 'HIDDEN_ADDRESS_PLACEHOLDER', false);
+			}
 
 			$current_property_details->gather_data($property_uid);
 
