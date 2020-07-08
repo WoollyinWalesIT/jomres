@@ -19,6 +19,7 @@ defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.'
 	 * @package Jomres\Core\CMS_Specific
 	 *
 	 */
+use Joomla\CMS\Factory;
 
 function jomres_cmsspecific_error_logging_cms_files_to_not_backtrace()
 {
@@ -33,7 +34,8 @@ function jomres_cmsspecific_error_logging_cms_files_to_not_backtrace()
 
 function jomres_cmsspecific_getsessionid()
 {
-	$session = JFactory::getSession();
+	$app = JFactory::getApplication();
+	$session =  $app->getSession();
 	
 	return $session->getId();
 }
@@ -192,7 +194,7 @@ function jomres_cmsspecific_createNewUser( $email_address = '' )
 				error_logging('Failure in sending registration email to guest. Target address: '.$hotelemail.' Subject'.$subject);
 			}
 		}
-		
+
 		if (!$thisJRUser->userIsManager) {
 			$mainframe = & JFactory::getApplication('site');
 			jimport('joomla.plugin.helper');
@@ -253,7 +255,8 @@ function jomres_cmsspecific_getcurrentusers_id()
 	$id = 0;
 	
 	if (!defined('AUTO_UPGRADE')) {
-		$user = JFactory::getUser();
+		$app = JFactory::getApplication();
+		$user = $app->getIdentity();
 		$id = $user->get('id');
 	}
 
@@ -269,9 +272,9 @@ function jomres_cmsspecific_getcurrentusers_id()
 function jomres_cmsspecific_getcurrentusers_username()
 {
 	$username = '';
-	$user = JFactory::getUser();
+	$app = JFactory::getApplication();
+	$user = $app->getIdentity();
 	$username = $user->get('username');
-
 	return $username;
 }
 	
@@ -287,7 +290,8 @@ function jomres_cmsspecific_addheaddata($type, $path = '', $filename = '', $incl
 		return;
 	}
 
-	$doc = JFactory::getDocument();
+	$app = JFactory::getApplication();
+	$doc = $app->getDocument();
 
 	JHtml::_('bootstrap.framework');
 
@@ -333,7 +337,9 @@ function jomres_cmsspecific_addheaddata($type, $path = '', $filename = '', $incl
 function jomres_cmsspecific_setmetadata($meta, $data)
 {
 	$data = jomres_decode($data);
-	$document = JFactory::getDocument();
+	$app = JFactory::getApplication();
+	$document = $app->getDocument();
+
 	switch ($meta) {
 		case 'title':
 			$data = str_replace('&#39;', "'", $data);
@@ -423,7 +429,7 @@ function jomres_cmsspecific_getCMS_users_admin_userdetails_by_id($id)
 // As per the function name
 function jomres_cmsspecific_getCMS_users_admin_getalladmins_ids()
 {
-	$db = JFactory::getDbo();
+	$db = Factory::getDbo();
 	$query = $db->getQuery(true);
 	$query
 		->select($db->quoteName(array('a.id', 'a.username', 'a.email')))
