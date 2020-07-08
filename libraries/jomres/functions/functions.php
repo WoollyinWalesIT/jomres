@@ -3630,7 +3630,6 @@ function propertyConfiguration()
 	$MiniComponents->triggerEvent('00501', $componentArgs); // Generate configuration options tabs
 
 			$configurationPanel->endTabs(); ?>
-?>
 		</form>
 
 	<?php
