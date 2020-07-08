@@ -371,6 +371,15 @@ function showSiteConfig()
 	ob_start(); ?>
 	<h2 class="page-header">Jomres <?php echo jr_gettext('_JOMRES_A', '_JOMRES_A', false); ?></h2>
 	<form action="<?php echo JOMRES_SITEPAGE_URL_ADMIN; ?>" method="post" name="adminForm">
+		<input type="hidden" name="cfg_useGlobalPFeatures" value="<?php echo $jrConfig[ 'useGlobalPFeatures' ]; ?>"/>
+		<input type="hidden" name="cfg_useGlobalRoomTypes" value="<?php echo $jrConfig[ 'useGlobalRoomTypes' ]; ?>"/>
+		<input type="hidden" name="cfg_dynamicMinIntervalRecalculation" value="<?php echo $jrConfig[ 'dynamicMinIntervalRecalculation' ]; ?>"/>
+		<input type="hidden" name="cfg_disableAudit" value="<?php echo $jrConfig[ 'disableAudit' ]; ?>"/>
+		<input type="hidden" name="cfg_allowedTags" value="<?php echo $jrConfig[ 'allowedTags' ]; ?>"/>
+		<input type="hidden" name="no_html" value="1"/>
+		<input type="hidden" name="task" value="save_site_settings"/>
+		<input type="hidden" name="option" value="com_jomres"/>
+		<input type="hidden" name="jomres_csrf_token" value="<?php echo csrf::setToken(); ?>"/>
 
 	<?php
 	echo $jrtb;
@@ -383,17 +392,9 @@ function showSiteConfig()
 
 	$MiniComponents->triggerEvent('10501', $componentArgs); // Generate configuration options tabs
 
-	$configurationPanel->endTabs(); ?>
+	$configurationPanel->endTabs();
 
-	<input type="hidden" name="cfg_useGlobalPFeatures" value="<?php echo $jrConfig[ 'useGlobalPFeatures' ]; ?>"/>
-	<input type="hidden" name="cfg_useGlobalRoomTypes" value="<?php echo $jrConfig[ 'useGlobalRoomTypes' ]; ?>"/>
-	<input type="hidden" name="cfg_dynamicMinIntervalRecalculation" value="<?php echo $jrConfig[ 'dynamicMinIntervalRecalculation' ]; ?>"/>
-	<input type="hidden" name="cfg_disableAudit" value="<?php echo $jrConfig[ 'disableAudit' ]; ?>"/>
-	<input type="hidden" name="cfg_allowedTags" value="<?php echo $jrConfig[ 'allowedTags' ]; ?>"/>
-	<input type="hidden" name="no_html" value="1"/>
-	<input type="hidden" name="task" value="save_site_settings"/>
-	<input type="hidden" name="option" value="com_jomres"/>
-	<input type="hidden" name="jomres_csrf_token" value="<?php echo csrf::setToken(); ?>"/>'
+	?>
 	</form>
 	<?php
 	ob_end_flush();
