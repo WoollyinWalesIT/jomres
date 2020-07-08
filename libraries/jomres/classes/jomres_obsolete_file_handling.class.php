@@ -260,7 +260,7 @@ class jomres_obsolete_file_handling
 		$this->add_file($this->dir_minicomponents.'j00600form.html');
 		$this->add_file($this->dir_minicomponents.'j00510form.gif');
 		$this->add_file($this->dir_minicomponents.'j00501xlastminute.class.php');
-		$this->add_file($this->dir_minicomponents.'j00501xtariffsenhanced.class.php');
+		//$this->add_file($this->dir_minicomponents.'j00501xtariffsenhanced.class.php');
 		$this->add_file($this->dir_minicomponents.'j00501xwiseprice.class.php');
 		$this->add_file($this->dir_minicomponents.'j02210listtariffs_advanced.class.php');
 		$this->add_file($this->dir_minicomponents.'j02211listtariffs_micromanage.class.php');
