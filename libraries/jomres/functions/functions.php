@@ -3585,6 +3585,16 @@ function propertyConfiguration()
 	?>
 
 		<form action="<?php echo JOMRES_SITEPAGE_URL_NOSEF ?>" method="post" name="adminForm">
+			<input type="hidden" name="no_html" value="1">
+			<input type="hidden" name="task" value="save_business_settings"/>
+			<input type="hidden" name="option" value="<?php echo $option; ?>"/>
+			<input type="hidden" name="cfg_jomresdotnet" value="<?php echo $mrConfig[ 'jomresdotnet' ]; ?>"/>
+			<input type="hidden" name="property_uid" value="<?php echo $property_uid; ?>"/>
+			<?php
+			foreach ($mrConfig as $k => $v) {
+				echo '<input type="hidden" name="oldsetting_cfg_'.$k.'" value="'.$v.'" />';
+				echo '';
+			} ?>
 			<h2 class="page-header"><?php echo jr_gettext('_JOMRES_COM_MR_GENERALCONFIGDESC', '_JOMRES_COM_MR_GENERALCONFIGDESC'); ?></h2>
 			<?php
 
@@ -3620,16 +3630,7 @@ function propertyConfiguration()
 	$MiniComponents->triggerEvent('00501', $componentArgs); // Generate configuration options tabs
 
 			$configurationPanel->endTabs(); ?>
-			<input type="hidden" name="no_html" value="1">
-			<input type="hidden" name="task" value="save_business_settings"/>
-			<input type="hidden" name="option" value="<?php echo $option; ?>"/>
-			<input type="hidden" name="cfg_jomresdotnet" value="<?php echo $mrConfig[ 'jomresdotnet' ]; ?>"/>
-			<input type="hidden" name="property_uid" value="<?php echo $property_uid; ?>"/>
-			<?php
-			foreach ($mrConfig as $k => $v) {
-				echo '<input type="hidden" name="oldsetting_cfg_'.$k.'" value="'.$v.'" />';
-				echo '';
-			} ?>
+?>
 		</form>
 
 	<?php
