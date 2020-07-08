@@ -4,13 +4,33 @@
 <span class="label label-success">Feature</span> In Standard mode you can only create one tariff for each room type, however Standard is only recommended for properties that only have one room type, or SRPs.  With Standard editing guest number dropdowns are visibile in the booking form by default, the old style guest types are not supported. You can add an "Extra guest price" when editing a Standard tariff and the extra guests option in the booking form is populated by removing 2 from a new option in Property Configuration > Standard tariff mode option "Sleeps" setting.
 <span class="label label-success">Feature</span> Standard editing mode introduces new 7 and 30 day modifier settings. They can either be flat rate or a percentage calculation that will discount bookings if they're longer than 7 and 30 days respective.
 <span class="label label-success">Feature</span> Property Configuration > Bookings tab has two new options. City tax and Cleaning fee. City tax offers a variety of models by which the tax can be calculated. Booking form template adjustments are required to capitalise on these new changes.
+<span class="label label-success">Feature</span> Added clauses that allow me to distribute a new search widget plugin with different template files
+<span class="label label-success">Feature</span> Added ability for script to hand form elements to the search script, which can then be given to the template file for rendering.
+<span class="label label-success">Feature</span> Improved error feedback for users. Red whoops screens will now include the message that was part of the thrown error, as normally these errors require inspection of the error logs to determine the issue. This approach is more helpful and it doesn't expose any vulnerabilities.
+<span class="label label-success">Feature</span> Significant changes to make Jomres compatible with Joomla 4. There are still a handful of things to figure out, and Jomres plugins still need J4 template files, but this takes us 95% of the way to be J4 ready.
 
-<span class="label label-warning">Change</span> Added func to empty package dirs first before update
-<span class="label label-warning">Change</span> Added Connect admin panel to Core
-<span class="label label-warning">Change</span> Added a check for BS4 when building property config tabs
+<span class="label label-warning">Change</span> Added func to empty package dirs first before update.
+<span class="label label-warning">Change</span> Added Connect admin panel to Core.
+<span class="label label-warning">Change</span> Added a check for BS4 when building property config tabs.
 <span class="label label-warning">Change</span> Save my account modified to create user images dirs if they don't exist.
-<span class="label label-warning">Change</span> Some modals modified to use new bs4 hide class
+<span class="label label-warning">Change</span> Some modals modified to use new bs4 hide class.
 <span class="label label-warning">Change</span> Added ability to disable sending all emails. No config option available, configuration.php would need to be edited to disable them.
+<span class="label label-warning">Change</span> Switched to saving extra name instead of the definition string.
+<span class="label label-warning">Change</span> Max input vars description updated.
+<span class="label label-warning">Change</span> Updated installation process for wp to ensure that Jomres can be installed under the WP Plugins dir.
+<span class="label label-warning">Change</span> Tweaked how placeholders are set in the generate date input function.
+<span class="label label-warning">Change</span> Admin FAQ section removed as the questions are old and there are better resources available online.
+<span class="label label-warning">Change</span> Added check to see if autoload.php exists, if it doesn't force package reinstallation. On occasion, if the server was slow with the downloading then autoload.php not existing can be one of the best indicators that the packages weren't completely downloaded therefore if it doesn't then we need to start again.
+<span class="label label-warning">Change</span> Removed lots of clauses that check to see if X option has been enabled in integrated search. While these checks are useful to reduce the amount of work required to create the search form elements, unfortunately the clauses can create a lot of confusion when things don't appear in search forms (e.g. dropdowns for regions etc). For simplicity's sake we'll remove the checks, meaning that all of the search things will be available all of the time.
+<span class="label label-warning">Change</span> Added a new ajax script designed to respond with populated locations.
+<span class="label label-warning">Change</span> Removed option regarding if BS should be used in frontend, it hasn't been a valid option for years.
+<span class="label label-warning">Change</span> Moved hidden inputs from bottom of site config form to top because this may fix some odd intermittent behaviour seen in some places.
+<span class="label label-warning">Change</span> Moved hidden inputs from bottom of property config form to top because this may fix some odd intermittent behaviour seen in some places.
+
+
+<span class="label label-important label-danger">Fix</span> Fixed a notice that can be thrown when room type images don't exist.
+<span class="label label-important label-danger">Fix</span> Fixed room type markup not being re-parsed.
+<span class="label label-important label-danger">Fix</span> Anonymise street information if settings require it (basic module output function used by some plugins).
 
 
 <h3>Jomres 9.22.0 15/06/2020</h3>
