@@ -269,22 +269,16 @@ class j06002edit_tariff_micromanage
 			$p = array();
 			
 			$p["BUTTON"] = '
-				<input type="button" class="btn btn-default tariff_multi_input"  id="'.$dia['class'].'" value="'.$dia['text'].'" onClick="set_rates_by_dow(\''.$dia['class'].'\')" />
-				<input type="button" class="btn btn-default mindays_multi_input" id="'.$dia['class'].'" value="'.$dia['text'].'" onClick="set_mindays_by_dow(\''.$dia['class'].'\')"  style="display:none" />
+				<input type="button" class="btn btn-default btn-light tariff_multi_input"  id="'.$dia['class'].'" value="'.$dia['text'].'" onClick="set_rates_by_dow(\''.$dia['class'].'\')" />
+				<input type="button" class="btn btn-default btn-light mindays_multi_input" id="'.$dia['class'].'" value="'.$dia['text'].'" onClick="set_mindays_by_dow(\''.$dia['class'].'\')"  style="display:none" />
 				';
 			
 			$p["DOW"] = $dia['text'];
 			
-			if (!using_bootstrap())
-				$p["INPUT"] = '
-					<input class="'.$dia['class'].'_rates tariff_multi_input form-control "  type="number" '.$styleinfo.' size="8"  name="'.$dia['class'].'_rates" value="'.$jrportal_rates->rates_defaults['roomrateperday'].'" />
-					<input class="'.$dia['class'].'_mindays mindays_multi_input form-control " type="number" '.$styleinfo.' display:none" size="8"  name="'.$dia['class'].'_mindays" value="'.$jrportal_rates->rates_defaults['mindays'].'" />
-					';
-			else
-				$p["INPUT"] = '
-					<input class="'.$dia['class'].'_rates  form-control input-small tariff_multi_input"  type="number" step="any" min="0" name="'.$dia['class'].'_rates" value="'.$jrportal_rates->rates_defaults['roomrateperday'].'" />
-					<input class="'.$dia['class'].'_mindays form-control input-small mindays_multi_input" type="number" step="any" min="0"  name="'.$dia['class'].'_mindays" value="'.$jrportal_rates->rates_defaults['mindays'].'"  style="display:none"/>
-					';
+			$p["INPUT"] = '
+				<input class="'.$dia['class'].'_rates  form-control input-small tariff_multi_input form-control"  type="number" step="any" min="0" name="'.$dia['class'].'_rates" value="'.$jrportal_rates->rates_defaults['roomrateperday'].'" />
+				<input class="'.$dia['class'].'_mindays form-control input-small mindays_multi_input form-control" type="number" step="any" min="0"  name="'.$dia['class'].'_mindays" value="'.$jrportal_rates->rates_defaults['mindays'].'"  style="display:none"/>
+				';
 
 			$prefills[] = $p;
 			}
@@ -332,7 +326,7 @@ class j06002edit_tariff_micromanage
                         }
 					if ($dkey <= 15)
 						{
-						$days1.='<td class="setdate"> <span style="display:none" data-date="'.$d['date'].'"></span><div class="btn btn-sm btn-default">'.$d['dom'].'</div></td>';
+						$days1.='<th class="setdate manual-input-table-col-widths"> <span style="display:none" data-date="'.$d['date'].'"></span><div class="btn btn-sm btn-default">'.$d['dom'].'</div></th>';
 							$inputs1.='
 							<td>
 								<input type="number" class="'.$d['class'].'_rates  input-mini form-control " style="" id="tariffinput_'.$d['epoch'].'" name="tariffinput['.$d['epoch'].']" value="'.$d['value'].'" />
@@ -341,7 +335,7 @@ class j06002edit_tariff_micromanage
 						}
 					else
 						{
-						$days2.='<td class="setdate"> <span style="display:none" data-date="'.$d['date'].'"></span><div class="btn btn-sm btn-default">'.$d['dom'].'</div></td>';
+						$days2.='<th class="setdate manual-input-table-col-widths"> <span style="display:none" data-date="'.$d['date'].'"></span><div class="btn btn-sm btn-default">'.$d['dom'].'</div></th>';
 							$inputs2.='
 							<td>
 								<input type="number" class="'.$d['class'].'_rates input-mini form-control " style="" id="tariffinput_'.$d['epoch'].'" name="tariffinput['.$d['epoch'].']" value="'.$d['value'].'" />
