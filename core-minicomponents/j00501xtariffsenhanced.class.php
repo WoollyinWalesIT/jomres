@@ -43,8 +43,7 @@ class j00501xtariffsenhanced {
 		$mrConfig=getPropertySpecificSettings();
 		if ($mrConfig['is_real_estate_listing']==1)
 			return;
-		if ($mrConfig['tariffmode'] == 2)
-			{
+		if ($mrConfig['tariffmode'] == 2) {
 			if (!isset($mrConfig['tariffsenhanceddefault']))
 				$mrConfig['tariffsenhanceddefault']=100.00;
 			if (!isset($mrConfig['tariffsenhancedyearstoshow']))
