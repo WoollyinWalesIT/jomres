@@ -57,7 +57,17 @@ class patTemplate_Reader_Jomres extends patTemplate_Reader
 					{
 					$default_root = $this->_options[ 'root' ][ '__default' ];
 					}
-				
+
+				if ( !file_exists($default_root . JRDS . $templatename)) {
+					$siteConfig		= jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+					$jrConfig		  = $siteConfig->get();
+					$post_error_message = '';
+					if ($jrConfig['development_production'] != 'development') {
+						$post_error_message = ' Please check the administrator > jomres > tools > log files area for more information. ';
+						}
+
+					throw new Exception("Error: the file ".$default_root . JRDS . $templatename. " does not exist. ".$post_error_message );
+				}
 				$content = file_get_contents( $default_root . JRDS . $templatename );
 				}
 			else
