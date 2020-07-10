@@ -168,6 +168,12 @@ class j06000search
 		$sch = new jomSearch($calledByModule, $includedInModule);
 		$sch->searchAll = $searchAll;
 		$searchOptions = $sch->searchOptions;
+
+		if ( isset($componentArgs['template_file']) ) {
+			$sch->templateFile = $componentArgs['template_file']; // Send a custom filename which is stored in the theme/com_jomres/html directory
+		}
+
+
 		$h = '<input type="hidden" name="calledByModule" value="'.$sch->calledByModule.'"/><input type="hidden" name="Itemid" value="'.get_showtime('jomresItemid').'"/>';
 
 		if (this_cms_is_wordpress()) {
@@ -828,6 +834,7 @@ class j06000search
 		$pageoutput[ ] = $output;
 
 		if (!$data_only) {
+		//	var_dump($sch->templateFile);exit;
 			if (!$doSearch || ($calledByModule == 'mod_jomsearch_m0' && $jrConfig[ 'integratedSearch_enable' ] == '1' && !this_cms_is_joomla() && !this_cms_is_wordpress())) {
 				$stmpl = new patTemplate();
 				$stmpl->setRoot($sch->templateFilePath);
