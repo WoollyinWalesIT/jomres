@@ -1159,7 +1159,7 @@ jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYGUESTNUMBER', 'Sleeps');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYGUESTNUMBER_DESC', 'Show the search by guest number dropdown');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYTARS', 'Stars');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYSTARS_DESC', 'Show the Stars dropdown');
-jr_define('_JOMRES_SEARCH_GUESTNUMBER', 'Number of guests');
+jr_define('_JOMRES_SEARCH_GUESTNUMBER', 'Sleeps');
 jr_define('_JOMRES_SEARCH_STARS', 'Number of stars');
 jr_define('_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', 'Number of properties');
 // 4.6.1
