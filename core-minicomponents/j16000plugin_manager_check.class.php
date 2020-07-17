@@ -42,15 +42,19 @@ class j16000plugin_manager_check
 			return;
 		}
 		
-		$ioncube_found = false; 
-		foreach ( get_loaded_extensions() as $number => $extension_name ) { 
-			if ( (strpos( strtolower($extension_name) , "ioncube" )) === false)  { 
-				// do nothing 
-			} else { 
-				$ioncube_found = true; 
-			} 
-		} 
-		
+		$ioncube_found = false;
+		if (extension_loaded('ionCube Loader') == true ) {
+			$ioncube_found = true;
+		} else {
+			foreach ( get_loaded_extensions() as $number => $extension_name ) {
+				if ( (strpos( strtolower($extension_name) , "ioncube" )) === false)  {
+					// do nothing
+				} else {
+					$ioncube_found = true;
+				}
+			}
+		}
+
 		
 		$this->retVals = '';
 
