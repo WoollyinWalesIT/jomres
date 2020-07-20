@@ -1595,9 +1595,9 @@ class dobooking
 			}
 
 			$city_tax_model_string .= " (".$mrConfig['city_tax_value'].")" ;
+			$output[ 'JOMRES_CITY_TAX_HEADING' ] = $this->sanitiseOutput(jr_gettext('JOMRES_CITY_TAX_HEADING', 'JOMRES_CITY_TAX_HEADING', false, false))." : ".$city_tax_model_string;
 		}
 
-		$output[ 'JOMRES_CITY_TAX_HEADING' ] = $this->sanitiseOutput(jr_gettext('JOMRES_CITY_TAX_HEADING', 'JOMRES_CITY_TAX_HEADING', false, false))." : ".$city_tax_model_string;
 		$output[ 'JOMRES_CLEANING_FEE_HEADING' ] = $this->sanitiseOutput(jr_gettext('JOMRES_CLEANING_FEE_HEADING', 'JOMRES_CLEANING_FEE_HEADING', false, false));
 
 		return $output;
