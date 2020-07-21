@@ -1,22 +1,42 @@
 
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 
-<h2 class="page-header">{HNEWTEXT}</h2>
+<h2 class="page-header">{PAGE_TITLE}</h2>
 
-<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm" class="form-horizontal" role="form">
-	<div class="form-group">
-		<label class="col-md-2 control-label" for="newtext">{HNEWTEXT}</label>
-		<div class="col-md-10">
-			<textarea class="form-control" cols="40" rows="6" name="newtext">{NOTE}</textarea>
+	<p>{JOMRES_POLICIES_CHILDREN_CHILD_RATE_DESC}</p>
+
+	<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm" class="form-horizontal" role="form">
+		<div class="form-group">
+			<label class="col-md-2 control-label" for="age_from">{JOMRES_POLICIES_CHILDREN_CHILD_RATE_AGE_FROM}</label>
+			<div class="col-md-10">
+				{AGE_FROM}
+			</div>
 		</div>
-	</div>
-	<div class="form-actions">
-		<div class="col-md-10 col-md-offset-2">
-			{JOMRESTOOLBAR}
+		<div class="form-group">
+			<label class="col-md-2 control-label" for="age_to">{JOMRES_POLICIES_CHILDREN_CHILD_RATE_AGE_TO}</label>
+			<div class="col-md-10">
+				{AGE_TO}
+			</div>
 		</div>
-	</div>
-	<input type="hidden" name="note_id" value="{NOTE_ID}"/>
-	<input type="hidden" name="task" value="savenote"/>
+		<div class="form-group">
+			<label class="col-md-2 control-label" for="price">{JOMRES_POLICIES_CHILDREN_CHILD_RATE_PRICE}</label>
+			<div class="col-md-10">
+				<input type="text" class="form-control" name="price" value="{PRICE}" placeholder=""/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label" for="model">{JOMRES_POLICIES_CHILDREN_CHILD_RATE_MODEL}</label>
+			<div class="col-md-10">
+				{MODEL}
+			</div>
+		</div>
+		<div class="form-actions">
+			<div class="col-md-10 col-md-offset-2">
+				{JOMRESTOOLBAR}
+			</div>
+		</div>
+	<input type="hidden" name="id" value="{ID}"/>
+	<input type="hidden" name="task" value="save_child_rate"/>
 	<input type="hidden" name="no_html" value="1"/>
 	{CSRF_TOKEN}
 </form>

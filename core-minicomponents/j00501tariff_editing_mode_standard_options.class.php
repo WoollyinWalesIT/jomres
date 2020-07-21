@@ -56,22 +56,13 @@ class j00501tariff_editing_mode_standard_options
 		if ($mrConfig[ 'is_real_estate_listing' ] != 0 ) {
 			return;
 		}
+
 		if ($mrConfig['tariffmode'] == 5) {
-			if (!isset($mrConfig['accommodates'])) {
-				$mrConfig['accommodates'] = 2;
-			}
-
-			$accommodates_dropdown = jomresHTML::integerSelectList(1, 100, 1, 'cfg_accommodates', '', $mrConfig['accommodates']);
-
-			$configurationPanel->startPanel(jr_gettext('JOMRES_COM_A_TARIFFMODE_STANDARD', 'JOMRES_COM_A_TARIFFMODE_STANDARD', false));
-
-			$configurationPanel->setleft(jr_gettext('JOMRES_COM_A_ACCOMMODATES', 'JOMRES_COM_A_ACCOMMODATES', false));
-			$configurationPanel->setmiddle($accommodates_dropdown);
-			$configurationPanel->setright(jr_gettext('JOMRES_COM_A_ACCOMMODATES_DESC', 'JOMRES_COM_A_ACCOMMODATES_DESC', false));
-			$configurationPanel->insertSetting();
-
-			$configurationPanel->endPanel();
+			jr_import('jomres_calculate_accommodates_value');
+			$jomres_calculate_accommodates_value = new jomres_calculate_accommodates_value( get_showtime('property_uid') );
+			$jomres_calculate_accommodates_value->calculate_accommodates_value();
 		}
+
 	}
 
 /**

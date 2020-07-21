@@ -20,7 +20,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	 *
 	 */
 
-class jomres_child_policies
+class jomres_child_rates
 {	
 	/**
 	 * 
@@ -38,41 +38,80 @@ class jomres_child_policies
 
 		$this->mrConfig = getPropertySpecificSettings( $this->property_uid );
 
-		if ( isset($this->mrConfig['child_policies']) ) {
-			$this->child_policies = unserialize(base64_decode($this->mrConfig['child_policies']));
-		} else {
-			$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
-			$current_property_details->gather_data ( $this->property_uid );
+		$this->default_model = 'per_night';
 
-			$occupancy_levels = array();
-			if (!empty($current_property_details->room_types)) {
-				foreach ($current_property_details->room_types as $room_type_id => $room_type ) {
-					$occupancy_levels [$room_type_id] = array (
-						"room_type_name"	=> $room_type['abbv'] ,
-						"charge_model"		=> "per night",
-						"max_adults"		=> 0 ,
-						"max_children"		=> 0 ,
-						"max_occupancy"		=> 0
-					);
-				}
-			}
-			$this->child_policies = array ( "child_min_age" => 0 , "charge_model" => "per_night" , "occupancy_levels" => $occupancy_levels );
+		if ( isset($this->mrConfig['child_rates']) ) {
+			$this->child_rates = unserialize(base64_decode($this->mrConfig['child_rates']));
+		} else {
+			$this->child_rates = array ( );
 		}
+
+		uasort($this->child_rates, function($a, $b) {
+			return $a['age_from'] <=> $b['age_from'];
+		});
 	}
 
-	public function save_child_policies()
+	public function set_child_rate ( $id = 0 , $age_from = 0 , $age_to = 0 , $price = 0.00 , $model = 'per_night')
 	{
 
-		$policies = base64_encode(serialize($this->child_policies));
+		if ( $age_to == 0 ) {
+			throw new Exception('Age to must be greater than 0 ');
+		}
 
-		$query = "SELECT uid FROM #__jomres_settings WHERE property_uid = '".(int) $this->property_uid."' and akey = 'child_policies' ";
+		if ($id == 0 ) {
+			$last_key = array_key_last ($this->child_rates);
+			$id = $last_key + 1;
+		}
+
+		$this->child_rates[$id] = array ( "age_from" => (int)$age_from , "age_to" => (int)$age_to , "price" => (float)$price , "model" => (string)$model );
+
+
+	}
+
+	public function save_child_rates()
+	{
+
+		$rates = base64_encode(serialize($this->child_rates));
+
+		$query = "SELECT uid FROM #__jomres_settings WHERE property_uid = '".(int) $this->property_uid."' and akey = 'child_rates' ";
 		$result = doSelectSql($query);
 		if (empty($result)) {
-			$query = "INSERT INTO #__jomres_settings (`property_uid`,`akey`,`value`) VALUES (".(int) $this->property_uid." , 'child_policies' , '".$policies."')";
+			$query = "INSERT INTO #__jomres_settings (`property_uid`,`akey`,`value`) VALUES (".(int) $this->property_uid." , 'child_rates' , '".$rates."')";
 		} else {
-			$query = "UPDATE #__jomres_settings SET `value`='".$policies."' WHERE `property_uid` = ".(int)  $this->property_uid." and `akey` = 'child_policies' ";
+			$query = "UPDATE #__jomres_settings SET `value`='".$rates."' WHERE `property_uid` = ".(int)  $this->property_uid." and `akey` = 'child_rates' ";
 		}
 		doInsertSql($query);
 	}
 
+	public function delete_child_rate($id)
+	{
+		unset($this->child_rates[$id]);
+	}
+
+	public function check_for_overlapping_ages()
+	{
+		if (!empty($this->child_rates) ) {
+
+		}
+	}
+
+	public function build_rate_model_dropdown( $rate_id = 0 )
+	{
+		if ( $rate_id == 0 ) {
+			$current_model = $this->default_model ;
+		} else {
+			$current_model = $this->child_rates[$rate_id]['model'];
+		}
+
+		$output = array();
+
+		$output[ 'JOMRES_POLICIES_CHILDREN_CHARGE_MODEL' ] = jr_gettext('JOMRES_POLICIES_CHILDREN_CHARGE_MODEL', 'JOMRES_POLICIES_CHILDREN_CHARGE_MODEL', false);
+		$output[ 'JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_DESC' ] = jr_gettext('JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_DESC', 'JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_DESC', false);
+
+		$options = array();
+		$options[] = jomresHTML::makeOption('per_night', jr_gettext('JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_NIGHT', 'JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_NIGHT', false));
+		$options[] = jomresHTML::makeOption('per_stay', jr_gettext('JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_STAY', 'JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_STAY', false));
+		return jomresHTML::selectList($options, 'model', 'class="inputbox" size="1"', 'value', 'text', $current_model , true );
+
+	}
 }

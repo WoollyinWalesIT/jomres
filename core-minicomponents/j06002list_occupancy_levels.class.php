@@ -46,56 +46,35 @@ class j06002list_occupancy_levels
 
 		jr_import('jomres_occupancy_levels');
 		$jomres_occupancy_levels = new jomres_occupancy_levels($property_uid);
-var_dump($jomres_occupancy_levels);exit;
-		$output[ 'JOMRES_POLICIES_CHILDREN' ] = jr_gettext('JOMRES_POLICIES_CHILDREN', 'JOMRES_POLICIES_CHILDREN', false);
-		$output[ 'JOMRES_POLICIES_CHILDREN_AGES_ALLOWED' ] = jr_gettext('JOMRES_POLICIES_CHILDREN_AGES_ALLOWED', 'JOMRES_POLICIES_CHILDREN_AGES_ALLOWED', false);
-		$output[ 'JOMRES_POLICIES_CHILDREN_CHILD_RATE_NEW' ] = jr_gettext('JOMRES_POLICIES_CHILDREN_CHILD_RATE_NEW', 'JOMRES_POLICIES_CHILDREN_CHILD_RATE_NEW', false);
-		$output[ 'JOMRES_POLICIES_CHILDREN_CHILD_RATE_AGE_FROM' ] = jr_gettext('JOMRES_POLICIES_CHILDREN_CHILD_RATE_AGE_FROM', 'JOMRES_POLICIES_CHILDREN_CHILD_RATE_AGE_FROM', false);
-		$output[ 'JOMRES_POLICIES_CHILDREN_CHILD_RATE_AGE_TO' ] = jr_gettext('JOMRES_POLICIES_CHILDREN_CHILD_RATE_AGE_TO', 'JOMRES_POLICIES_CHILDREN_CHILD_RATE_AGE_TO', false);
-		$output[ 'JOMRES_POLICIES_CHILDREN_CHILD_RATE_MODEL' ] = jr_gettext('JOMRES_POLICIES_CHILDREN_CHILD_RATE_MODEL', 'JOMRES_POLICIES_CHILDREN_CHILD_RATE_MODEL', false);
-		$output[ 'JOMRES_POLICIES_CHILDREN_CHILD_RATE_PRICE' ] = jr_gettext('JOMRES_POLICIES_CHILDREN_CHILD_RATE_PRICE', 'JOMRES_POLICIES_CHILDREN_CHILD_RATE_PRICE', false);
 
-		$output[ 'CHILD_MIN_AGE' ] = jomresHTML::integerSelectList(0, 17, 1, 'child_min_age', 'class="input-mini form-control"', $jomres_child_policies->child_policies['child_min_age'], '');
-		$output[ 'NEW_RATE_URL' ] = JOMRES_SITEPAGE_URL_NOSEF.'&task=edit_child_rate&id=0';
+		$output[ 'JOMRES_OCCUPANCY_LEVELS_TITLE' ] = jr_gettext('JOMRES_OCCUPANCY_LEVELS_TITLE', 'JOMRES_OCCUPANCY_LEVELS_TITLE', false);
 
-		jr_import('jomres_child_rates');
-		$jomres_child_rates = new jomres_child_rates($property_uid);
+		$output[ '_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES' ] = jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', '_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', false);
+		$output[ 'JOMRES_OCCUPANCY_LEVELS_MAX_ADULTS' ] = jr_gettext('JOMRES_OCCUPANCY_LEVELS_MAX_ADULTS', 'JOMRES_OCCUPANCY_LEVELS_MAX_ADULTS', false);
+		$output[ 'JOMRES_OCCUPANCY_LEVELS_MAX_CHILDREN' ] = jr_gettext('JOMRES_OCCUPANCY_LEVELS_MAX_CHILDREN', 'JOMRES_OCCUPANCY_LEVELS_MAX_CHILDREN', false);
+		$output[ 'JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY' ] = jr_gettext('JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY', 'JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY', false);
 
 		$rows = array();
-		if (!empty($jomres_child_rates->child_rates)) {
+		if (!empty($jomres_occupancy_levels->occupancy_levels)) {
 
-			foreach ($jomres_child_rates->child_rates as $id => $child_rate ) {
+			foreach ($jomres_occupancy_levels->occupancy_levels as $id => $occupancy_level ) {
 				$r = array();
 
 				$toolbar = jomres_singleton_abstract::getInstance('jomresItemToolbar');
 				$toolbar->newToolbar();
-				$toolbar->addItem('fa fa-pencil-square-o', 'btn btn-info', '', jomresURL(JOMRES_SITEPAGE_URL_NOSEF.'&task=edit_child_rate&id='.(int) $id ), jr_gettext('COMMON_EDIT', 'COMMON_EDIT', false));
-				$toolbar->addSecondaryItem('fa fa-trash-o', '', '', jomresURL(JOMRES_SITEPAGE_URL_NOSEF.'&task=delete_child_rate&id='.(int) $id ), jr_gettext('COMMON_DELETE', 'COMMON_DELETE', false));
+				$toolbar->addItem('fa fa-pencil-square-o', 'btn btn-info', '', jomresURL(JOMRES_SITEPAGE_URL_NOSEF.'&task=edit_occupancy_level&id='.(int) $occupancy_level['room_type_id'] ), jr_gettext('COMMON_EDIT', 'COMMON_EDIT', false));
+				//$toolbar->addSecondaryItem('fa fa-trash-o', '', '', jomresURL(JOMRES_SITEPAGE_URL_NOSEF.'&task=delete_child_rate&id='.(int) $id ), jr_gettext('COMMON_DELETE', 'COMMON_DELETE', false));
 
 				$r['EDITLINK'] = $toolbar->getToolbar();
 
-				$r['AGE_FROM'] = $child_rate['age_from'];
-				$r['AGE_TO'] = $child_rate['age_to'];
-				$r['PRICE'] = $child_rate['price'];
-
-				if ( $child_rate['model'] == 'per_night' ) {
-					$r['MODEL'] = jr_gettext('JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_NIGHT', 'JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_NIGHT', false);
-				} else {
-					$r['MODEL'] = jr_gettext('JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_STAY', 'JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_STAY', false);
-				}
+				$r['ROOM_TYPE_NAME']	= $occupancy_level['room_type_name'];
+				$r['MAX_ADULTS'] = $occupancy_level['max_adults'];
+				$r['MAX_CHILDREN'] = $occupancy_level['max_children'];
+				$r['MAX_OCCUPANCY'] = $occupancy_level['max_occupancy'];
 
 				$rows[] = $r;
 			}
 		}
-
-		$jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
-		$jrtb = $jrtbar->startTable();
-		$image = $jrtbar->makeImageValid(JOMRES_IMAGES_RELPATH.'jomresimages/small/Save.png');
-		$link = JOMRES_SITEPAGE_URL;
-		$jrtb .= $jrtbar->toolbarItem('cancel', JOMRES_SITEPAGE_URL, '');
-		$jrtb .= $jrtbar->customToolbarItem('save_child_policies', $link, jr_gettext('_JOMRES_COM_MR_SAVE', '_JOMRES_COM_MR_SAVE', false), $submitOnClick = true, $submitTask = 'save_child_policies', $image);
-		$jrtb .= $jrtbar->endTable();
-		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 
 		$pageoutput[ ] = $output;
 		$tmpl = new patTemplate();

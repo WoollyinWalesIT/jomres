@@ -20,7 +20,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * 
 	 */
 
-class j06002save_child_rate
+class j06002delete_child_rate
 {	
 	/**
 	 *
@@ -46,19 +46,11 @@ class j06002save_child_rate
 		$defaultProperty = getDefaultProperty();
 
 		$id					= (int) $_REQUEST['id'];
-		$age_from			= (int) $_REQUEST['age_from'];
-		$age_to				= (int) $_REQUEST['age_to'];
-		$price				= convert_entered_price_into_safe_float(jomresGetParam($_REQUEST, 'price', ''));
-		$model				= (string) jomresGetParam($_REQUEST, 'model', '');
-
-		if ($model != 'per_night' && $model != 'per_stay' ) {
-			throw new Exception('Error: Invalid model sent, possible hack attempt');
-		}
 
 		jr_import('jomres_child_rates');
 		$jomres_child_rates = new jomres_child_rates($defaultProperty);
 
-		$jomres_child_rates->set_child_rate ( $id = 0 , $age_from , $age_to , $price , $model);
+		$jomres_child_rates->delete_child_rate ( $id );
 		$jomres_child_rates->save_child_rates();
 
 		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=child_policies'), '');

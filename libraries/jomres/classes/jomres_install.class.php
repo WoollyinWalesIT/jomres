@@ -292,7 +292,9 @@ class jomres_install
 			
 			//run plugins installation scripts
 			//$this->installPlugins();
-			
+
+			$this->siteConfig->update_setting('compatability_property_configuration', 1 );
+
 			//update db version so we can check this on future updates or db sanity check
 			if (empty($this->messages)) {
 				$this->siteConfig->update_setting('jomres_db_version', $this->jrConfig['version']);

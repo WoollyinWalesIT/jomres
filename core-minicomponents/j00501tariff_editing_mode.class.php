@@ -59,14 +59,16 @@ class j00501tariff_editing_mode
 			return;
 		}
 
-		$configurationPanel->startPanel(jr_gettext('JOMRES_COM_A_TARIFFMODE', 'JOMRES_COM_A_TARIFFMODE', false));
+		if ( $jrConfig[ 'compatability_property_configuration' ] != 1 ) {
+			$configurationPanel->startPanel(jr_gettext('JOMRES_COM_A_TARIFFMODE', 'JOMRES_COM_A_TARIFFMODE', false));
 
-		$configurationPanel->setleft(jr_gettext('JOMRES_COM_A_TARIFFMODE', 'JOMRES_COM_A_TARIFFMODE', false));
-		$configurationPanel->setmiddle($tariffModeDD);
-		$configurationPanel->setright(jr_gettext('JOMRES_COM_A_TARIFFMODE_DESC', 'JOMRES_COM_A_TARIFFMODE_DESC', false));
-		$configurationPanel->insertSetting();
+			$configurationPanel->setleft(jr_gettext('JOMRES_COM_A_TARIFFMODE', 'JOMRES_COM_A_TARIFFMODE', false));
+			$configurationPanel->setmiddle($tariffModeDD);
+			$configurationPanel->setright(jr_gettext('JOMRES_COM_A_TARIFFMODE_DESC', 'JOMRES_COM_A_TARIFFMODE_DESC', false));
+			$configurationPanel->insertSetting();
 
-		$configurationPanel->endPanel();
+			$configurationPanel->endPanel();
+		}
 	}
 
 /**

@@ -232,6 +232,50 @@ class jomres_properties
 
 		//insert settings
 		if (!$realestate) {
+
+			if ( $jrConfig[ 'compatability_property_configuration' ] == 1 ) {
+				$compatability_property_configuration = 1;
+			} else {
+				$compatability_property_configuration = 0;
+			}
+
+			$query = "INSERT INTO #__jomres_settings 
+			(
+			`property_uid`,
+			`akey`,
+			`value`
+			) 
+		VALUES 
+			(
+			".(int) $this->propertys_uid.",
+			'compatability_property_configuration',
+			".$compatability_property_configuration."
+			)";
+
+			if (!doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS', '_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS', false))) {
+				throw new Exception('Error: compatability_property_configuration setting insert failed.');
+			}
+
+			if ($compatability_property_configuration ==1) {
+				$query = "INSERT INTO #__jomres_settings 
+					(
+					`property_uid`,
+					`akey`,
+					`value`
+					) 
+				VALUES 
+					(
+					".(int) $this->propertys_uid.",
+					'tariffmode',
+					5
+					)";
+
+				if (!doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS', '_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS', false))) {
+					throw new Exception('Error: tariffmode setting insert failed.');
+				}
+			}
+
+
 			if ($mrp_srp_flag == '0') {
 				$singleRoomProperty = '0';
 			} else {
@@ -257,6 +301,7 @@ class jomres_properties
 					}
 				}
 			}
+
 			$query = 'INSERT INTO #__jomres_settings 
 								(
 								`property_uid`,
@@ -290,14 +335,14 @@ class jomres_properties
 			if (!doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS', '_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS', false))) {
 				throw new Exception('Error: is_real_estate_listing setting insert failed.');
 			}
-			
-		$webhook_notification							   = new stdClass();
+
+
+		$webhook_notification							  	= new stdClass();
 		$webhook_notification->webhook_event				= 'property_created';
 		$webhook_notification->webhook_event_description	= 'Logs when a new property is created.';
-		$webhook_notification->webhook_event_plugin		 = 'core';
-		$webhook_notification->data						 = new stdClass();
-		$webhook_notification->data->property_uid		   = $this->propertys_uid;
-
+		$webhook_notification->webhook_event_plugin		 	= 'core';
+		$webhook_notification->data						 	= new stdClass();
+		$webhook_notification->data->property_uid		   	= $this->propertys_uid;
 
 		add_webhook_notification($webhook_notification);
 		}

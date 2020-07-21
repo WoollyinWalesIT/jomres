@@ -3559,6 +3559,12 @@ function propertyConfiguration()
 	
 	$lists[ 'use_custom_invoice_numbers' ] = jomresHTML::selectList($yesno, 'cfg_use_custom_invoice_numbers', 'class="inputbox" size="1"', 'value', 'text', (int) $mrConfig[ 'use_custom_invoice_numbers' ]);
 
+	if (!isset($mrConfig[ 'allow_children' ])) {
+		$mrConfig[ 'allow_children' ] = 1;
+	}
+	$lists[ 'allow_children' ] = jomresHTML::selectList($yesno, 'cfg_allow_children', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'allow_children' ]);
+
+
 	$componentArgs = array();
 	$componentArgs[ 'mrConfig' ] = $mrConfig;
 	$componentArgs[ 'lists' ] = $lists;
@@ -5317,4 +5323,22 @@ function s3_images_import_check()
 	}
 
 	return $message;
+}
+
+
+/**
+ *
+ * @package Jomres\Core\Functions
+ *
+ * Let's add the array_key_last function if it doesn't exist as array_key_last came in php 7.3
+ */
+
+if (! function_exists("array_key_last")) {
+	function array_key_last($array) {
+		if (!is_array($array) || empty($array)) {
+			return NULL;
+		}
+
+		return array_keys($array)[count($array)-1];
+	}
 }

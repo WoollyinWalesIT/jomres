@@ -20,7 +20,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	 *
 	 */
 
-class jomres_child_policies
+class jomres_occupancy_levels
 {	
 	/**
 	 * 
@@ -38,8 +38,8 @@ class jomres_child_policies
 
 		$this->mrConfig = getPropertySpecificSettings( $this->property_uid );
 
-		if ( isset($this->mrConfig['child_policies']) ) {
-			$this->child_policies = unserialize(base64_decode($this->mrConfig['child_policies']));
+		if ( isset($this->mrConfig['occupancy_levels']) ) {
+			$this->occupancy_levels = unserialize(base64_decode($this->mrConfig['occupancy_levels']));
 		} else {
 			$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
 			$current_property_details->gather_data ( $this->property_uid );
@@ -49,29 +49,66 @@ class jomres_child_policies
 				foreach ($current_property_details->room_types as $room_type_id => $room_type ) {
 					$occupancy_levels [$room_type_id] = array (
 						"room_type_name"	=> $room_type['abbv'] ,
-						"max_adults"		=> 0 ,
+						"room_type_id"		=> $room_type_id ,
+						"max_adults"		=> 2 ,
 						"max_children"		=> 0 ,
 						"max_occupancy"		=> 0
 					);
 				}
 			}
-			$this->child_policies = array ( "child_min_age" => 0 , "occupancy_levels" => $occupancy_levels );
+			$this->occupancy_levels = $occupancy_levels;
 		}
 	}
 
-	public function save_child_policies()
+	public function set_occupancy_level ( $id = 0 , $max_adults = 0 , $max_children = 0 , $max_occupancy = 0 )
 	{
 
-		$policies = base64_encode(serialize($this->child_policies));
+		if ( $id == 0 ) {
+			throw new Exception('Room type id not set ');
+		}
 
-		$query = "SELECT uid FROM #__jomres_settings WHERE property_uid = '".(int) $this->property_uid."' and akey = 'child_policies' ";
+		if ( !isset($this->occupancy_levels[$id]) ) {
+			throw new Exception('Invalid room type id set');
+		}
+
+		$room_type_name = $this->occupancy_levels[$id] ["room_type_name"];
+
+		$this->occupancy_levels[$id] = array ( "room_type_name"	=> $room_type_name  , "room_type_id" => $id, "max_adults" => (int)$max_adults , "max_children" => (int)$max_children , "max_occupancy" => (int)$max_occupancy );
+
+	}
+
+	public function save_occupancy_levels($room_type_id = 0 )
+	{
+
+		if ( !isset($this->occupancy_levels[$room_type_id]) ) {
+			throw new Exception('Room type id not set');
+		}
+
+		$policies = base64_encode(serialize($this->occupancy_levels));
+
+		$query = "SELECT uid FROM #__jomres_settings WHERE property_uid = '".(int) $this->property_uid."' and akey = 'occupancy_levels' ";
 		$result = doSelectSql($query);
 		if (empty($result)) {
-			$query = "INSERT INTO #__jomres_settings (`property_uid`,`akey`,`value`) VALUES (".(int) $this->property_uid." , 'child_policies' , '".$policies."')";
+			$query = "INSERT INTO #__jomres_settings (`property_uid`,`akey`,`value`) VALUES (".(int) $this->property_uid." , 'occupancy_levels' , '".$policies."')";
 		} else {
-			$query = "UPDATE #__jomres_settings SET `value`='".$policies."' WHERE `property_uid` = ".(int)  $this->property_uid." and `akey` = 'child_policies' ";
+			$query = "UPDATE #__jomres_settings SET `value`='".$policies."' WHERE `property_uid` = ".(int)  $this->property_uid." and `akey` = 'occupancy_levels' ";
 		}
 		doInsertSql($query);
+
+		// Now to update rooms of this type with the updated occupancy levels
+
+		$query = "UPDATE #__jomres_rooms SET 
+			max_people = ".$this->occupancy_levels[$room_type_id]['max_occupancy']." ,  
+			max_adults = ".$this->occupancy_levels[$room_type_id]['max_adults']." , 
+			max_children = ".$this->occupancy_levels[$room_type_id]['max_children']." 
+			WHERE propertys_uid = ".(int) $this->property_uid." AND room_classes_uid = ".$room_type_id." ";
+
+		doInsertSql($query);
+
+		jr_import('jomres_calculate_accommodates_value');
+		$jomres_calculate_accommodates_value = new jomres_calculate_accommodates_value( $this->property_uid );
+		$jomres_calculate_accommodates_value->calculate_accommodates_value();
+
 	}
 
 }

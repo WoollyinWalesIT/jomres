@@ -215,4 +215,5 @@ $jrConfig = array(
   'automatic_unpublish_incomplete_properties' => '0',
   'force_reapproval_on_automatic_unpublish' => '0',
   'useSyndication'  => '0',
+  'compatability_property_configuration'  => '0',
 );

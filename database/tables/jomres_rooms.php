@@ -29,6 +29,8 @@ CREATE TABLE IF NOT EXISTS `#__jomres_rooms` (
 	`room_name` VARCHAR(255),
 	`room_number` VARCHAR(255),
 	`room_floor` VARCHAR(255),
+	`accommodates_adults` SMALLINT(5) UNSIGNED NOT NULL DEFAULT 2,
+	`accommodates_children` SMALLINT(5) UNSIGNED NOT NULL DEFAULT 0,
 	`max_people` SMALLINT(5) UNSIGNED NOT NULL DEFAULT 0,
 	`singleperson_suppliment` DOUBLE(11,2) NOT NULL DEFAULT 0,
 	`tagline` VARCHAR(255),

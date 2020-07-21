@@ -2448,10 +2448,10 @@ jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD', 'Standard Tariff Mode');
 jr_define('JOMRES_COM_A_ACCOMMODATES', 'Sleeps');
 jr_define('JOMRES_COM_A_ACCOMMODATES_DESC', 'How many people can this property accommodate?');
 jr_define('JOMRES_COM_A_GUESTS_IN_DAILY_PRICE', 'The number of guests in your daily price');
-jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE', 'Extra guests price ');
+jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE', 'Extra adults price ');
 
-jr_define('JOMRES_EXTRA_GUESTS_BOOKING_FORM_LABEL', 'Extra guests ');
-jr_define('JOMRES_EXTRA_GUESTS_BOOKING_FORM_LABEL_INFO', 'Extra guest price ');
+jr_define('JOMRES_CHILDREN_BOOKING_FORM_LABEL', 'Children');
+
 
 
 jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_PER_PERSON_PER_NIGHT', 'Per person per night?');
@@ -2460,8 +2460,8 @@ jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_7DAY_MODIFIER', '7 day modifier');
 jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_7DAY_MODIFIER_DESC', 'Discount on daily rate if booking is for 7 days or more. Leave this set to zero if you do not want the discount to be applied.');
 jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_30DAY_MODIFIER', '30 day modifier');
 jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_30DAY_MODIFIER_DESC', 'Discount on daily rate if booking is for 30 days or more. Leave this set to zero if you do not want the discount to be applied.');
-jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL', 'Guests');
-jr_define('JOMRES_GUEST_BOOKING_FORM_LABELINFO', 'Price based on 2 guests');
+jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL', 'Adults');
+jr_define('JOMRES_GUEST_BOOKING_FORM_LABELINFO', 'Price based on 2 adults');
 jr_define('JOMRES_BOOKING_DISCOUNTED_7_DAYS_1', 'Booking discounted from ');
 jr_define('JOMRES_BOOKING_DISCOUNTED_7_DAYS_2', ' to ');
 jr_define('JOMRES_BOOKING_DISCOUNTED_7_DAYS_NUMBER', ' because the booking is greater than 7 days.');

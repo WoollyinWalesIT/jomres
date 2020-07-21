@@ -20,7 +20,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	 *
 	 */
 
-class jomres_editing_mode
+class jomres_child_policies
 {	
 	/**
 	 * 
@@ -28,92 +28,36 @@ class jomres_editing_mode
 	 *
 	 */
 
-	public function __construct()
+	public function __construct( $property_uid = 0 )
 	{
-		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-		$jrConfig = $siteConfig->get();
-		
-		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+		if ( $property_uid == 0 ) {
+			throw new Exception('Error: Property uid not set ');
+		}
 
-		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-		
-		$this->editing_allowed = true;
-		
-		if (!isset($tmpBookingHandler->user_settings[ 'editing_on' ])) {
-			$tmpBookingHandler->user_settings[ 'editing_on' ] = false;
+		$this->property_uid = $property_uid;
+
+		$this->mrConfig = getPropertySpecificSettings( $this->property_uid );
+
+		if ( isset($this->mrConfig['child_policies']) ) {
+			$this->child_policies = unserialize(base64_decode($this->mrConfig['child_policies']));
+		} else {
+			$this->child_policies = array ( "child_min_age" => 0  );
 		}
-		
-		if (!$thisJRUser->userIsManager) {
-			$this->editing_allowed = false;
-			$tmpBookingHandler->user_settings[ 'editing_on' ] = false;
-		}
-		
-		if ($thisJRUser->userIsManager && $thisJRUser->accesslevel < 70) { //lower than manager
-			$this->editing_allowed = false;
-			$tmpBookingHandler->user_settings[ 'editing_on' ] = false;
-		}
-		
-		if ($jrConfig[ 'editingModeAffectsAllProperties' ] == '1' && $thisJRUser->superPropertyManager) {
-			$this->editing_allowed = true;
-			$tmpBookingHandler->user_settings[ 'editing_on' ] = true;
-		}
-		
-		$this->editing = $tmpBookingHandler->user_settings[ 'editing_on' ];
 	}
-	
-	/**
-	 * 
-	 *
-	 *
-	 */
 
-	public function switch_mode_on()
+	public function save_child_policies()
 	{
-		if (!$this->editing_allowed) {
-			return false;
+
+		$policies = base64_encode(serialize($this->child_policies));
+
+		$query = "SELECT uid FROM #__jomres_settings WHERE property_uid = '".(int) $this->property_uid."' and akey = 'child_policies' ";
+		$result = doSelectSql($query);
+		if (empty($result)) {
+			$query = "INSERT INTO #__jomres_settings (`property_uid`,`akey`,`value`) VALUES (".(int) $this->property_uid." , 'child_policies' , '".$policies."')";
+		} else {
+			$query = "UPDATE #__jomres_settings SET `value`='".$policies."' WHERE `property_uid` = ".(int)  $this->property_uid." and `akey` = 'child_policies' ";
 		}
-		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
-		$tmpBookingHandler->user_settings[ 'editing_on' ] = true;
-		
-		$this->editing = true;
+		doInsertSql($query);
 	}
-	
-	/**
-	 * 
-	 *
-	 *
-	 */
 
-	public function switch_mode_off()
-	{
-		if (!$this->editing_allowed) {
-			return false;
-		}
-		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
-		$tmpBookingHandler->user_settings[ 'editing_on' ] = false;
-		
-		$this->editing = false;
-	}
-	
-	/**
-	 * 
-	 *
-	 *
-	 */
-
-	public function make_editing_mode_dropdown()
-	{
-		if (!$this->editing_allowed) {
-			return false;
-		}
-		$on_text = jr_gettext('_JOMRES_EDITINGMODE_ON', '_JOMRES_EDITINGMODE_ON', false);
-		$off_text = jr_gettext('_JOMRES_EDITINGMODE_OFF', '_JOMRES_EDITINGMODE_OFF', false);
-
-		$mode_options = array();
-		$mode_options[ ] = jomresHTML::makeOption('0', $off_text);
-		$mode_options[ ] = jomresHTML::makeOption('1', $on_text);
-		$javascript = 'onchange="switch_editing_mode(\''.JOMRES_SITEPAGE_URL_AJAX.'\',this.value);"';
-
-		return jomresHTML::selectList($mode_options, 'jomres_editing_mode', ' autocomplete="off" class="inputbox" size="1" '.$javascript.'', 'value', 'text', $this->editing);
-	}
 }

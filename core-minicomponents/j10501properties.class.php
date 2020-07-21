@@ -55,6 +55,11 @@ class j10501properties
 		$configurationPanel->setright(jr_gettext('_JOMRES_SINGLEPROPERTYINSTALLATION_DESC', '_JOMRES_SINGLEPROPERTYINSTALLATION_DESC', false));
 		$configurationPanel->insertSetting();
 
+		$configurationPanel->setleft(jr_gettext('JOMRES_COMPATABILITY_MODE', 'JOMRES_COMPATABILITY_MODE', false));
+		$configurationPanel->setmiddle($lists[ 'compatability_property_configuration' ]);
+		$configurationPanel->setright(jr_gettext('JOMRES_COMPATABILITY_MODE_DESC', 'JOMRES_COMPATABILITY_MODE_DESC', false));
+		$configurationPanel->insertSetting();
+
 		$configurationPanel->setleft(jr_gettext('_JOMRES_CONFIG_SYNDICATION_TITLE', '_JOMRES_CONFIG_SYNDICATION_TITLE', false));
 		$configurationPanel->setmiddle($lists[ 'useSyndication' ]);
 		$configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_SYNDICATION_DESC', '_JOMRES_CONFIG_SYNDICATION_DESC', false));

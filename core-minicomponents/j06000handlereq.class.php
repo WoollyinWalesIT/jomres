@@ -61,7 +61,6 @@ class j06000handlereq
 		$euroTaxYesNo = $mrConfig[ 'euroTaxYesNo' ];
 		$roomTaxYesNo = $mrConfig[ 'roomTaxYesNo' ];
 		$fixedPeriodBookings = $mrConfig[ 'fixedPeriodBookings' ];
-		$extra_guests_dropdown = '';
 
 		$messagesClass = '; document.getElementById("messages").className="messages";';
 		$errorClass = '; document.getElementById("messages").className=error_class;';
@@ -243,13 +242,13 @@ class j06000handlereq
 				$bkg->setStandardGuests($value);
 				break;
 
-			case 'extra_guests':
+			case 'child_selection':
 				$ajrq = 'ajrq:::extra_guests';
 				$bkg->setOkToBook(false);
 				$value = $bkg->sanitiseInput('int', $value);
-				$bkg->writeToLogfile('Starting extra guest input');
-					$retText = 'Extra guests added to booking';
-					$bkg->setExtraGuests($value);
+				$guest_index = (int)jomresGetParam($_GET, 'guest_index', 0 ) ;
+
+				$bkg->set_child_selection( $guest_index , $value);
 				break;
 
 			case 'extras':
@@ -533,6 +532,10 @@ class j06000handlereq
 						echo '; populateDiv("cleaning_fee","'.output_price($bkg->cleaning_fee).'")';
 					} else {
 						echo '; populateDiv("cleaning_fee","'.output_price(0.00).'")';
+					}
+
+					if ( $mrConfig[ 'allow_children' ] == '1') {
+						echo '; populateDiv("child_selectors","' . $bkg->sanitise_for_eval($bkg->build_children_selectors()). '")';
 					}
 				} else {
 					$bkg->setErrorLog('handlereq:: Field '.$lastfield.' exempt from pricing rebuild');

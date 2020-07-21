@@ -252,6 +252,10 @@ function showSiteConfig()
 
 	$lists[ 'useSyndication' ] = jomresHTML::selectList($yesno, 'cfg_useSyndication', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useSyndication' ]);
 
+	if (!isset($jrConfig[ 'compatability_property_configuration' ])) { // New installations will automatically set this to Yes, therefore if it's not set this was an updated installation and we should by default set this to No and allow the site managers to decide if they want to enable the setting
+		$jrConfig[ 'compatability_property_configuration' ] = 0;
+	}
+	$lists[ 'compatability_property_configuration' ] = jomresHTML::selectList($yesno, 'cfg_compatability_property_configuration', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'compatability_property_configuration' ]);
 
 	if (!isset($jrConfig['show_powered_by'])) {
 		$jrConfig['show_powered_by'] = '0';

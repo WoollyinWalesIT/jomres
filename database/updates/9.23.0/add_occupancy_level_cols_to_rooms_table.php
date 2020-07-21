@@ -25,9 +25,24 @@ $query = "SHOW COLUMNS FROM #__jomres_rooms LIKE 'accommodates_adults'";
 $colExists = doSelectSql( $query );
 if (count($colExists) < 1)
 {
-	$query = "ALTER TABLE `#__jomres_rooms` ADD `accommodates_adults` SMALLINT(5) UNSIGNED NOT NULL DEFAULT 2 ";
+	$query = "ALTER TABLE `#__jomres_rooms` ADD `max_adults` SMALLINT(5) UNSIGNED NOT NULL DEFAULT 2 ";
 	doInsertSql($query,"");
 
-	$query = "ALTER TABLE `#__jomres_rooms` ADD `accommodates_children` SMALLINT(5) UNSIGNED NOT NULL DEFAULT 0 ";
+	$query = "ALTER TABLE `#__jomres_rooms` ADD `max_children` SMALLINT(5) UNSIGNED NOT NULL DEFAULT 0 ";
 	doInsertSql($query,"");
+
+	$query = "ALTER TABLE `#__jomres_rooms` ADD `max_occupancy` SMALLINT(5) UNSIGNED NOT NULL DEFAULT 0 ";
+	doInsertSql($query,"");
+
+	$query = "SELECT room_uid , max_people FROM #__jomres_rooms ";
+	$all_rooms = doSelectSql($query);
+	if (!empty($all_rooms)) {
+		foreach ($all_rooms as $room ) {
+			$query = "UPDATE `#__jomres_rooms` SET
+				`max_adults` = ".$room->max_people." , 
+				`max_occupancy` = ".$room->max_people." 
+				WHERE room_uid = ".$room->room_uid;
+			doInsertSql($query);
+		}
+	}
 }

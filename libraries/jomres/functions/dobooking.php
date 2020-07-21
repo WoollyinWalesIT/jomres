@@ -233,9 +233,6 @@ function dobooking($selectedProperty, $thisdate, $remus)
 		return;
 	}
 
-	// if (!get_showtime('include_room_booking_functionality'))  // Disabled for 5.5.3 as Jintour has a new option that manages this
-	// $bkg->cfg_showdepartureinput = "0";
-
 	$text = $bkg->makeOutputText();
 	$guest = $bkg->makeGuestData();
 
@@ -444,35 +441,7 @@ function dobooking($selectedProperty, $thisdate, $remus)
 		$output[ 'BILLING_TOTALINPARTY' ] = '';
 	}
 
-	if ($mrConfig['tariffmode'] == 5 ) {
-		$bkg->standard_guest_numbers = 2;
-		$guests_dropdown = jomresHTML::integerSelectList(0, 2, 1, 'standard_guests', 'size="1" class="input-mini"  autocomplete="off" onchange="getResponse_standardguests();"', 2, '%02d', $use_bootstrap_radios = false);
 
-		$standard_guests[] = array (
-			"GUESTS_DROPDOWN" => $guests_dropdown ,
-			'TEXT' => jr_gettext('JOMRES_GUEST_BOOKING_FORM_LABEL', 'JOMRES_GUEST_BOOKING_FORM_LABEL')  ,
-			'INFO' => jr_gettext('JOMRES_GUEST_BOOKING_FORM_LABELINFO', 'JOMRES_GUEST_BOOKING_FORM_LABELINFO')
-		);
-
-		$plus_guests = (int)$mrConfig['accommodates'] - 2;
-		$extra_guests_dropdown = jomresHTML::integerSelectList(0, $plus_guests, 1, 'extra_guests', 'size="1" class="input-mini"  autocomplete="off" onchange="getResponse_extraguests();"', 0, '%02d', $use_bootstrap_radios = false);
-
-		$extra_guest_price = 0.00;
-		reset($bkg->allPropertyTariffs);
-		$first_key = key($bkg->allPropertyTariffs);
-
-		if (isset($bkg->allPropertyTariffs[$first_key]['extra_guests_price'])) {
-			$extra_guest_price = output_price($bkg->allPropertyTariffs[$first_key]['extra_guests_price']);
-		}
-
-	//	$extra_guest_price =  ;
-
-		$extra_guests[] = array (
-			"EXTRA_GUESTS_DROPDOWN" => $extra_guests_dropdown ,
-			'TEXT' => jr_gettext('JOMRES_EXTRA_GUESTS_BOOKING_FORM_LABEL', 'JOMRES_EXTRA_GUESTS_BOOKING_FORM_LABEL')  ,
-			'INFO' => jr_gettext('JOMRES_EXTRA_GUESTS_BOOKING_FORM_LABEL_INFO', 'JOMRES_EXTRA_GUESTS_BOOKING_FORM_LABEL_INFO')." ".$extra_guest_price
-		);
-	}
 
 
 	$ex = $bkg->makeExtras($selectedProperty);
@@ -720,7 +689,17 @@ function dobooking($selectedProperty, $thisdate, $remus)
 		}
 	}
 
-	$manager_pricing = array();
+	$output['BOOKING_FORM_CHILD_SELECTORS'] = '';
+	if ($mrConfig[ 'tariffmode' ] == '5' ) {
+		$adults_dropdown = $bkg->build_adults_dropdown();
+
+		if ( $mrConfig[ 'allow_children' ] == '1') {
+			$output['BOOKING_FORM_CHILD_SELECTORS'] = $bkg->build_children_selectors();
+		}
+	}
+
+
+$manager_pricing = array();
 	if ($thisJRUser->userIsManager) {
 		$manager_pricing[ ] = array('_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL' => jr_gettext('_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL', '_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL', false, false), '_JOMCOMP_AMEND_OVERRIDE_DEPOSIT' => jr_gettext('_JOMCOMP_AMEND_OVERRIDE_DEPOSIT', '_JOMCOMP_AMEND_OVERRIDE_DEPOSIT', false, false), '_JOMCOMP_AMEND_OVERRIDE_SAVE' => jr_gettext('_JOMCOMP_AMEND_OVERRIDE_SAVE', '_JOMCOMP_AMEND_OVERRIDE_SAVE', false, false));
 	}
@@ -778,9 +757,7 @@ function dobooking($selectedProperty, $thisdate, $remus)
 	// To show the login modal without forcing umpteen users to update their dobooking template files, we will attach the login form modal contents to the end of the current dobooking template output.
 	$login_form = $MiniComponents->specificEvent('06000', 'show_login_form' , array ('output_now' => false , 'login_reason' => jr_gettext('_JOMRES_LOGIN_REASON_EMAIL_ALREADY_USED', '_JOMRES_LOGIN_REASON_EMAIL_ALREADY_USED', false)  ) );
 	$loginoutput[0] = array ( "login_form" => $login_form );
-	
-	
-	
+
 	$tmpl = new patTemplate();
 	$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
 	$tmpl->readTemplatesFromInput('login_form_modal_wrapper.html');
@@ -807,8 +784,11 @@ function dobooking($selectedProperty, $thisdate, $remus)
 		$tmpl->addRows('customfields', $customFields);
 		$tmpl->addRows('pageoutput', $pageoutput);
 		$tmpl->addRows('guesttypes', $guestTypes);
-		$tmpl->addRows('standard_guests', $standard_guests);
-		$tmpl->addRows('extra_guests', $extra_guests);
+		$tmpl->addRows('standard_guests', $adults_dropdown);
+		if (isset($child_dropdowns)) {
+			$tmpl->addRows('child_dropdowns', $child_dropdowns);
+		}
+
 		$tmpl->addRows('extrasrow', $extrasHeader);
 		$tmpl->addRows('roomfeaturesrowheader', $roomfeaturesHeader);
 		$tmpl->addRows('roomfeaturesrow', $roomfeatures);

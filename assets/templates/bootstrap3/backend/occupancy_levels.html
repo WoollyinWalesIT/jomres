@@ -1,54 +1,24 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 
-<h2 class="page-header">{JOMRES_POLICIES_CHILDREN}</h2>
-
-<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm" class="form-horizontal" role="form">
-	<div class="form-group">
-		<label class="col-md-2 control-label" for="child_min_age">{JOMRES_POLICIES_CHILDREN_AGES_ALLOWED}</label>
-		<div class="col-md-10">
-			{CHILD_MIN_AGE}
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-md-2 control-label" for="charge_model">{JOMRES_POLICIES_CHILDREN_CHARGE_MODEL}</label>
-		<div class="col-md-10">
-			{CHARGE_MODEL}
-		</div>
-	</div>
-
-	<div class="form-actions">
-		<div class="col-md-10 col-md-offset-2">
-			{JOMRESTOOLBAR}
-		</div>
-	</div>
-
-	<input type="hidden" name="task" value="save_child_policies"/>
-	<input type="hidden" name="no_html" value="1"/>
-	{CSRF_TOKEN}
-</form>
-
-	<div class="well">
-		<a href="{NEW_RATE_URL}" class="btn btn-primary"><i class="fa fa-plus"></i> {JOMRES_POLICIES_CHILDREN_CHILD_RATE_NEW}</a>
-	</div>
-
+<h2 class="page-header">{JOMRES_OCCUPANCY_LEVELS_TITLE} {ROOM_TYPE_NAME}</h2>
 	<table width="100%" id="list_black_bookings" class="table table-striped">
 		<thead>
 		<tr>
 			<th></th>
-			<th>{JOMRES_POLICIES_CHILDREN_CHILD_RATE_AGE_FROM}</th>
-			<th>{JOMRES_POLICIES_CHILDREN_CHILD_RATE_AGE_TO}</th>
-			<th>{JOMRES_POLICIES_CHILDREN_CHILD_RATE_PRICE}</th>
-			<th>{JOMRES_POLICIES_CHILDREN_CHILD_RATE_MODEL}</th>
+			<th>{_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES}</th>
+			<th>{JOMRES_OCCUPANCY_LEVELS_MAX_ADULTS}</th>
+			<th>{JOMRES_OCCUPANCY_LEVELS_MAX_CHILDREN}</th>
+			<th>{JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY}</th>
 		</tr>
 		</thead>
 		<tbody>
 		<patTemplate:tmpl name="rows" unusedvars="nbsp">
 			<tr>
 				<td>{EDITLINK}</td>
-				<td>{AGE_FROM}</td>
-				<td>{AGE_TO}</td>
-				<td>{PRICE}</td>
-				<td>{MODEL}</td>
+				<td>{ROOM_TYPE_NAME}</td>
+				<td>{MAX_ADULTS}</td>
+				<td>{MAX_CHILDREN}</td>
+				<td>{MAX_OCCUPANCY}</td>
 			</tr>
 		</patTemplate:tmpl>
 		</tbody>
