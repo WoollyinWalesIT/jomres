@@ -83,7 +83,10 @@ class jomres_sanity_check
 			}
 
 			$this->warnings .= $this->check_property_type_published();
-			
+
+			$this->warnings .= $this->check_child_rates();
+			$this->warnings .= $this->check_occupancy_levels();
+
 			$this->warnings .= $this->checks_guest_types_pppn();
 			if ($this->mrConfig[ 'is_real_estate_listing' ] == 0 && get_showtime('include_room_booking_functionality')) {
 				$this->warnings .= $this->checks_tariffs_exist();
@@ -240,7 +243,54 @@ class jomres_sanity_check
 		
 		return true;
 	}
-		
+
+	/**
+	 *
+	 *
+	 *
+	 */
+
+	public function check_occupancy_levels()
+	{
+		if ($this->mrConfig[ 'compatability_property_configuration' ] == '1' && $this->mrConfig[ 'allow_children' ] == '1' ) {
+			jr_import('jomres_occupancy_levels');
+			$jomres_occupancy_levels = new jomres_occupancy_levels($this->property_uid);
+
+			$total_children_allowed = 0;
+			foreach ($jomres_occupancy_levels->occupancy_levels as $room ) {
+				$total_children_allowed = $total_children_allowed + $room['max_children'];
+			}
+			if ($total_children_allowed == 0 ) {
+				$message = jr_gettext('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS', '_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS', false);
+				$link = jomresURL(JOMRES_SITEPAGE_URL.'&task=list_occupancy_levels');
+				$button_text = jr_gettext('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS_BUTTON', '_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS_BUTTON', false);
+
+				return $this->construct_warning(array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $button_text , 'LABEL' => 'warning'));
+			}
+		}
+	}
+
+	/**
+	 *
+	 *
+	 *
+	 */
+
+	public function check_child_rates()
+	{
+		if ($this->mrConfig[ 'compatability_property_configuration' ] == '1' && $this->mrConfig[ 'allow_children' ] == '1' ) {
+			jr_import('jomres_child_rates');
+			$jomres_child_rates = new jomres_child_rates($this->property_uid);
+			if (!isset($jomres_child_rates->child_rates) || empty($jomres_child_rates->child_rates) ) {
+				$message = jr_gettext('_JOMRES_SANITYCHECK_CHILD_RATES', '_JOMRES_SANITYCHECK_CHILD_RATES', false);
+				$link = jomresURL(JOMRES_SITEPAGE_URL.'&task=child_policies');
+				$button_text = jr_gettext('_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', '_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', false);
+
+				return $this->construct_warning(array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $button_text , 'LABEL' => 'warning'));
+			}
+		}
+	}
+
 	/**
 	 * 
 	 *

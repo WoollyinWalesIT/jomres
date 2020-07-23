@@ -100,6 +100,8 @@ class jrportal_rooms
 							`room_name`,
 							`room_number`,
 							`room_floor`,
+							`max_people`,
+							`max_adults`,
 							`singleperson_suppliment`,
 							`tagline`,
 							`description`,
@@ -113,13 +115,15 @@ class jrportal_rooms
 							'".$this->room_name."',
 							'".$this->room_number."',
 							'".$this->room_floor."',
-							' .(float) $this->singleperson_suppliment.',
+							'".(int)$this->max_people."',
+							'".(int)$this->max_people."',
+							'" .(float) $this->singleperson_suppliment."',
 							'" .(string) $this->tagline."',
 							'" .(string) $this->description."',
-							' .(float) $this->surcharge.'
+							'" .(float) $this->surcharge."'
 							)";
 		$this->room_uid = doInsertSql($query, '');
-		
+
 		if (!$this->room_uid) {
 			throw new Exception('Error: New room insert failed.');
 		}
@@ -183,17 +187,19 @@ class jrportal_rooms
 						`room_name`					= '".$this->room_name."',
 						`room_number`				= '".$this->room_number."',
 						`room_floor`				= '".$this->room_floor."',
+						`max_people`				= '".$this->max_people."',
+						`max_adults`				= '".$this->max_people."',
 						`singleperson_suppliment`	= " .(float) $this->singleperson_suppliment." ,
 						`tagline`		 			= '" .(string) $this->tagline."',
 						`description`				= '" .(string) $this->description."' ,
 						`surcharge`					= " .(float) $this->surcharge."
-					WHERE `room_uid` = ' .(int) $this->room_uid.' 
+					WHERE `room_uid` = " .(int) $this->room_uid." 
 						AND `propertys_uid` = " .(int) $this->propertys_uid;
 
 		if (!doInsertSql($query, jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_SAVE_UPDATE', '_JOMRES_COM_MR_VRCT_ROOM_SAVE_UPDATE', false))) {
 			throw new Exception('Error: Room update failed.');
 		}
-		
+
 		updateCustomText('_JOMRES_CUSTOMTEXT_ROOM_TAGLINE'.$this->room_uid, $this->tagline, true);
 		updateCustomText('_JOMRES_CUSTOMTEXT_ROOM_DESCRIPTION_'.$this->room_uid, $this->description, true);
 

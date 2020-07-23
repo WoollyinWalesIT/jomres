@@ -55,7 +55,7 @@ class j06002save_resource
 		$jrportal_rooms->propertys_uid				= $defaultProperty;
 		$jrportal_rooms->room_uid					= (int) jomresGetParam($_POST, 'roomUid', 0);
 		$jrportal_rooms->room_classes_uid			= (int) jomresGetParam($_POST, 'roomClasses', 0);
-		//$jrportal_rooms->max_people					= (int) jomresGetParam($_POST, 'max_people', 0);
+		$jrportal_rooms->max_people					= (int) jomresGetParam($_POST, 'max_people', 0);
 		$jrportal_rooms->room_name					= getEscaped(jomresGetParam($_POST, 'room_name', ''));
 		$jrportal_rooms->room_number				= getEscaped(jomresGetParam($_POST, 'room_number', ''));
 		$jrportal_rooms->room_floor					= getEscaped(jomresGetParam($_POST, 'room_floor', ''));
@@ -78,7 +78,17 @@ class j06002save_resource
 			$jrportal_rooms->commit_new_room();
 		}
 
-		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=list_resources'), '');
+		if ($mrConfig[ 'compatability_property_configuration' ] == 1 ) {
+
+			jr_import('jomres_calculate_accommodates_value');
+			$jomres_calculate_accommodates_value = new jomres_calculate_accommodates_value( $defaultProperty );
+			$jomres_calculate_accommodates_value->calculate_accommodates_value();
+
+			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=list_occupancy_levels'), '');
+		} else {
+			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL.'&task=list_resources'), '');
+		}
+
 	}
 
 	public function convert_greaterthans($string)

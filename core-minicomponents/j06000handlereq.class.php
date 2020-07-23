@@ -443,7 +443,7 @@ class j06000handlereq
 
 					if (get_showtime('include_room_booking_functionality')) {
 
-						if ( $mrConfig[ 'allow_children' ] == '1') {
+						if ( $mrConfig[ 'allow_children' ] == '1' && $field != 'addressstring' ) {
 
 							echo '; populateDiv("child_selectors","' . $bkg->sanitise_for_eval($bkg->build_children_selectors()). '")';
 							$bkg->calculate_child_prices();
