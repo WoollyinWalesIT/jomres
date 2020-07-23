@@ -58,6 +58,10 @@ class j00501gateways
 			return;
 			}
 
+		if ($MiniComponents->eventSpecificlyExistsCheck('06000', "connected")) { // No point in showing the gateway options as we are using Jomres Platform
+			return;
+		}
+
 		$lists = $componentArgs[ 'lists' ];
 
 			$configurationPanel->startPanel(jr_gettext('_JOMRES_COM_A_GATEWAYLIST', '_JOMRES_COM_A_GATEWAYLIST', false));
