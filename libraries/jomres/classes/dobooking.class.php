@@ -93,6 +93,7 @@ class dobooking
 		$this->standard_guest_numbers		= 0;
 		$this->extra_guest_numbers			= 0;
 		$this->child_numbers				= array();
+		$this->child_prices					= array();
 
 		$this->city_tax						= 0;
 		$this->cleaning_fee					= 0;
@@ -177,6 +178,8 @@ class dobooking
 			$this->standard_guest_numbers	= $bookingDeets[ 'standard_guest_numbers' ];
 			$this->extra_guest_numbers		= $bookingDeets[ 'extra_guest_numbers' ];
 			$this->child_numbers			= $bookingDeets[ 'child_numbers' ];
+			$this->child_prices				= $bookingDeets[ 'child_prices' ];
+
 
 
 			$this->extra_guest_price		= $bookingDeets[ 'extra_guest_price' ];
@@ -549,6 +552,9 @@ class dobooking
 		$tmpBookingHandler->tmpbooking[ 'standard_guest_numbers' ]		= $this->standard_guest_numbers;
 		$tmpBookingHandler->tmpbooking[ 'extra_guest_numbers' ]			= $this->extra_guest_numbers;
 		$tmpBookingHandler->tmpbooking[ 'child_numbers' ]				= $this->child_numbers;
+		$tmpBookingHandler->tmpbooking[ 'child_prices' ]				= $this->child_prices;
+
+
 		$tmpBookingHandler->tmpbooking[ 'extra_guest_price' ]			= $this->extra_guest_price;
 		$tmpBookingHandler->tmpbooking[ 'city_tax' ]					= $this->city_tax;
 		$tmpBookingHandler->tmpbooking[ 'cleaning_fee' ]				= $this->cleaning_fee;
@@ -1598,6 +1604,8 @@ class dobooking
 
 		$output[ 'JOMRES_CLEANING_FEE_HEADING' ] = $this->sanitiseOutput(jr_gettext('JOMRES_CLEANING_FEE_HEADING', 'JOMRES_CLEANING_FEE_HEADING', false, false));
 		$output[ 'JOMRES_BOOKING_FORM_CHILDREN_AGES' ] = $this->sanitiseOutput(jr_gettext('JOMRES_BOOKING_FORM_CHILDREN_AGES', 'JOMRES_BOOKING_FORM_CHILDREN_AGES', false, false));
+		$output[ 'JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS' ] = $this->sanitiseOutput(jr_gettext('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', false, false));
+
 
 
 		return $output;
@@ -2121,30 +2129,20 @@ class dobooking
 	{
 		$this->setErrorLog('setExtraGuests::Starting');
 
+		$default_number_of_guests = 2;
+
 		if (!isset($this->standard_guest_numbers)) {
 			$this->standard_guest_numbers = 0;
 		}
 
-		$this->standard_guest_numbers = (int)$value;
-
-		if ($this->standard_guest_numbers<2) {
-			$this->extra_guest_numbers = 0;
+		if ( $value > $default_number_of_guests ) {
+			$this->extra_guest_numbers =  $value - $default_number_of_guests;
 		}
 
-	}
-
-	/**
-	 * Receives the extra guest number and stores it
-	 */
-	public function setExtraGuests($value)
-	{
-		$this->setErrorLog('setExtraGuests::Starting');
-
-		if (!isset($this->extra_guest_numbers)) {
+		if ( $value <= $default_number_of_guests ) {
+			$this->standard_guest_numbers = (int)$value;
 			$this->extra_guest_numbers = 0;
 		}
-
-		$this->extra_guest_numbers = (int)$value;
 
 	}
 
@@ -5709,6 +5707,7 @@ class dobooking
 	 */
 	public function makeNightlyRoomCharges()
 	{
+		$mrConfig = getPropertySpecificSettings($this->property_uid);
 		if (!get_showtime('include_room_booking_functionality')) {
 			$this->room_total = 0.00;
 			$this->room_total_nodiscount = 0.00;
@@ -5724,7 +5723,7 @@ class dobooking
 		foreach ($this->requestedRoom as $r) {
 			$rm_idArr = explode('^', $r);
 			$tariff_id = $rm_idArr[ 1 ];
-			$extra_guest_price = $this->allPropertyTariffs[ $tariff_id ]['extra_guests_price'];
+			$extra_guest_price = convert_entered_price_into_safe_float($mrConfig[ 'extra_guest_price' ]);
 			$ignore_pppn = $this->allPropertyTariffs[ $tariff_id ][ 'ignore_pppn' ];
 			if ($ignore_pppn == '0') {
 				$this->allRoomsAreIgnorePPPN = false;
@@ -5999,7 +5998,11 @@ class dobooking
 		$this->setErrorLog('calcTotals:: sps '.$this->single_person_suppliment);
 		$this->setErrorLog('calcTotals:: extras '.$this->extrasvalue);
 
-		$this->billing_grandtotal = ($this->room_total + $this->extrasvalue + $this->tax + $this->single_person_suppliment + $this->city_tax + $this->cleaning_fee );
+		$child_price = 0;
+		if ( isset($this->child_prices['total_price'])) {
+			$child_price = $this->child_prices['total_price'];
+		}
+		$this->billing_grandtotal = ($this->room_total + $this->extrasvalue + $this->tax + $this->single_person_suppliment + $this->city_tax + $this->cleaning_fee + $child_price );
 		$this->room_total_ex_tax = $this->room_total + $this->single_person_suppliment;
 		$this->room_total_inc_tax = $this->room_total + $this->single_person_suppliment + $this->tax;
 		$this->setErrorLog('calcTotals::Total: '.$this->billing_grandtotal);
@@ -7254,11 +7257,11 @@ class dobooking
 		return $booking_engine_adults_dropdown->build_adults_dropdown();
 	}
 
-	public function build_children_dropdowns( $already_selected = 0 )
+	public function build_children_dropdowns()
 	{
 		jr_import('booking_engine_children_dropdown');
 		$booking_engine_children_dropdown = new booking_engine_children_dropdown($this );
-		return $booking_engine_children_dropdown->build_children_dropdowns( $already_selected );
+		return $booking_engine_children_dropdown->build_children_dropdowns();
 	}
 
 	public function set_child_selection( $guest_index , $value)
@@ -7277,5 +7280,12 @@ class dobooking
 		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
 		$tmpl->readTemplatesFromInput('booking_form_child_selectors.html');
 		return $tmpl->getParsedTemplate();
+	}
+
+	public function calculate_child_prices( )
+	{
+		jr_import('booking_engine_calculate_child_prices');
+		$booking_engine_calculate_child_prices = new booking_engine_calculate_child_prices($this );
+		$this->child_prices = $booking_engine_calculate_child_prices->calculate_child_prices( $this );
 	}
 }

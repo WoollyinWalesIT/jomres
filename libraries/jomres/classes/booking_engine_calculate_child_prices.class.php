@@ -20,7 +20,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
  *
  */
 
-class booking_engine_adults_dropdown
+class booking_engine_calculate_child_prices
 {	
 	/**
 	 * 
@@ -30,9 +30,9 @@ class booking_engine_adults_dropdown
 
 	public function __construct( $bkg  )
 	{
-		$this->available_rooms = $bkg->available_rooms_for_selected_dates;
-		$this->property_uid = $bkg->property_uid;
-		$this->available_rooms = array_unique($bkg->available_rooms_for_selected_dates);
+		$this->property_uid		= $bkg->property_uid;
+		$this->child_numbers	= $bkg->child_numbers;
+		$this->stay_days		= $bkg->stayDays;
 	}
 	
 	/**
@@ -43,8 +43,27 @@ class booking_engine_adults_dropdown
 
 	public function calculate_child_prices ( )
 	{
+		jr_import('jomres_child_rates');
+		$jomres_child_rates = new jomres_child_rates($this->property_uid);
 
-	// $this->child_numbers 	child_numbers
+		$child_prices = array();
+		$child_prices['total_price'] = 0;
+		if ( !empty($this->child_numbers)) {
+			foreach ($this->child_numbers as $id=>$number_of_children) {
+				if ( isset($jomres_child_rates->child_rates[$id])) {
+					if ($jomres_child_rates->child_rates[$id]['model'] == 'per_stay') {
+						$price = $jomres_child_rates->child_rates[$id]['price'] * $number_of_children;
+					} else {
+						$price =  ($jomres_child_rates->child_rates[$id]['price'] * $number_of_children) * $this->stay_days;
+					}
+
+				}
+
+				$child_prices['total_price'] =$child_prices['total_price'] + $price;
+				$child_prices[$id] = array ( "rate" =>  $jomres_child_rates->child_rates[$id], "price" => $price , "number_of_children" => $number_of_children) ;
+			}
+		}
+		return $child_prices;
 	}
 
 	

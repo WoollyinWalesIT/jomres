@@ -63,7 +63,7 @@ class jomres_child_rates
 			$id = $last_key + 1;
 		}
 
-		$this->child_rates[$id] = array ( "age_from" => (int)$age_from , "age_to" => (int)$age_to , "price" => (float)$price , "model" => (string)$model );
+		$this->child_rates[$id] = array ( "id" => $id , "age_from" => (int)$age_from , "age_to" => (int)$age_to , "price" => (float)$price , "model" => (string)$model );
 
 
 	}

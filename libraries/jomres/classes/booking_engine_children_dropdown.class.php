@@ -43,7 +43,7 @@ class booking_engine_children_dropdown
 	 *
 	 */
 
-	public function build_children_dropdowns (  $already_selected = array() )
+	public function build_children_dropdowns ( )
 	{
 		$child_dropdowns = array();
 
@@ -56,6 +56,18 @@ class booking_engine_children_dropdown
 			if ( isset($basic_room_details->rooms[$room_id])) {
 				$total_child_slots_available_these_dates = $total_child_slots_available_these_dates + $basic_room_details->rooms[$room_id]['max_adults'];
 			}
+		}
+
+		$total_slots_already_selected = 0;
+		if ( !empty($this->child_numbers)) {
+			foreach ($this->child_numbers as $child_selection) {
+				$total_slots_already_selected = $total_slots_already_selected  + $child_selection;
+			}
+		}
+
+		$remaining_slots_not_selected = $total_child_slots_available_these_dates - $total_slots_already_selected;
+		if ($remaining_slots_not_selected < 0 ) {
+			$remaining_slots_not_selected = 0;
 		}
 
 		jr_import('jomres_child_rates');
@@ -75,10 +87,10 @@ class booking_engine_children_dropdown
 					} else {
 						$selected = 0;
 					}
-//var_dump($selected);exit;
+
 					$slots_remaining = $slots_remaining - $selected;
 
-					$guests_dropdown = jomresHTML::integerSelectList(0, $slots_remaining, 1, 'child_dropdown['.$id.']', 'size="1" class="input-mini"  autocomplete="off" onchange="getResponse_children('.$id.');"', $selected, '%02d', $use_bootstrap_radios = false);
+					$guests_dropdown = jomresHTML::integerSelectList(0, $remaining_slots_not_selected + $selected, 1, 'child_dropdown['.$id.']', 'size="1" class="input-mini"  autocomplete="off" onchange="getResponse_children('.$id.');"', $selected, '%02d', $use_bootstrap_radios = false);
 
 					if ( $rate['model'] == 'per_stay') {
 						$price_text = output_price($rate['price'])." ".jr_gettext('JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_STAY', 'JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_STAY');

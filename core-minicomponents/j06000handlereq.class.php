@@ -442,6 +442,18 @@ class j06000handlereq
 					echo '; populateDiv("staydays","'.$num_period.'")';
 
 					if (get_showtime('include_room_booking_functionality')) {
+
+						if ( $mrConfig[ 'allow_children' ] == '1') {
+
+							echo '; populateDiv("child_selectors","' . $bkg->sanitise_for_eval($bkg->build_children_selectors()). '")';
+							$bkg->calculate_child_prices();
+							if ( isset($bkg->child_prices['total_price'])) {
+								echo '; populateDiv("child_price","' . output_price($bkg->child_prices['total_price']). '")';
+							}
+
+						}
+
+
 						$room_per_night = $bkg->getRoompernight();
 						$room_per_night = $bkg->calculateRoomPriceIncVat($room_per_night);
 						if ($bkg->cfg_tariffmode == '1' && $bkg->cfg_tariffChargesStoredWeeklyYesNo == '1') {
@@ -534,9 +546,8 @@ class j06000handlereq
 						echo '; populateDiv("cleaning_fee","'.output_price(0.00).'")';
 					}
 
-					if ( $mrConfig[ 'allow_children' ] == '1') {
-						echo '; populateDiv("child_selectors","' . $bkg->sanitise_for_eval($bkg->build_children_selectors()). '")';
-					}
+					echo '; populateDiv("extra_adults","'.output_price($bkg->extra_guest_price).'")';
+
 				} else {
 					$bkg->setErrorLog('handlereq:: Field '.$lastfield.' exempt from pricing rebuild');
 				}

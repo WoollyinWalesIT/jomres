@@ -210,16 +210,7 @@
 						</div>
 					</div>
 				</patTemplate:tmpl>
-				<patTemplate:tmpl name="extra_guests" type="simpleCondition" requiredVars="extra_guests_dropdown">
-					<script>document.addEventListener('DOMContentLoaded', function(){getResponse_extraguests();}, false);</script>
-					<div class="col-md-3">
-						<div class="form-group">
-							<label class="control-label" for="extra_guests">{TEXT}</label>
-							{EXTRA_GUESTS_DROPDOWN}
-							<p class="help-block">{INFO}</p>
-						</div>
-					</div>
-				</patTemplate:tmpl>
+				<div id="child_selectors">{BOOKING_FORM_CHILD_SELECTORS}</div>
 			</div>
 		</div>
 	</div>
@@ -354,10 +345,18 @@
 
 						<div class="row">
 							<div class="col-xs-9">
+								{JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS}
+							</div>
+							<div class="col-xs-3">
+								<span id="extra_adults"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-9">
 								{JOMRES_CHILDREN_BOOKING_FORM_LABEL}
 							</div>
 							<div class="col-xs-3">
-								<span id="extra_guests_total"></span>
+								<span id="child_price"></span>
 							</div>
 						</div>
 

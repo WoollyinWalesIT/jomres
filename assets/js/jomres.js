@@ -586,8 +586,6 @@ function getResponse_children( id ) {
 	var form_property_uid = jomresJquery("#booking_form_property_uid").val();
 	HideRoomsList();
 	var value = document.getElementById("child_dropdown["+id+"]").selectedIndex;
-	//var value = document.getElementsByTagName("option")[x].value ;
-	console.log (" Guest index = "+id+" and Value = "+value );
 	jomresJquery.get(ajaxurl + '&task=handlereq&property_uid_check=' + form_property_uid + '', { field: 'child_selection',  'value': value , 'guest_index': id},
 		function (data) {
 			showRoomsList(data);

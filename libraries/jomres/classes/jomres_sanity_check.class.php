@@ -149,24 +149,30 @@ class jomres_sanity_check
 		$output = array();
 
 		if (!isset($message_array['LABEL'])) {
+			if (!is_array($message_array)) {
+				$message_array =array();
+			}
 			$message_array['LABEL'] = 'warning';
 		}
 
-		$output['LABEL_CLASS'] = $message_array['LABEL'];
+		if ( isset($message_array['MESSAGE'])) {
+			$output['LABEL_CLASS'] = $message_array['LABEL'];
 
-		$output['WARNING_WORD'] = jr_gettext('_JOMRES_WARNINGS_DANGERWILLROBINSON', '_JOMRES_WARNINGS_DANGERWILLROBINSON', false);
-		$output['WARNING_MESSAGE'] = $message_array['MESSAGE'];
-		$output['WARNING_COUNTER'] = $this->warning_counter;
-		$output['ACTION_LINK'] = $button;
+			$output['WARNING_WORD'] = jr_gettext('_JOMRES_WARNINGS_DANGERWILLROBINSON', '_JOMRES_WARNINGS_DANGERWILLROBINSON', false);
+			$output['WARNING_MESSAGE'] = $message_array['MESSAGE'];
+			$output['WARNING_COUNTER'] = $this->warning_counter;
+			$output['ACTION_LINK'] = $button;
 
-		$pageoutput[ ] = $output;
+			$pageoutput[ ] = $output;
 
-		$tmpl = new patTemplate();
-		$tmpl->addRows('pageoutput', $pageoutput);
-		$tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
-		$tmpl->readTemplatesFromInput('sanity_check_pane.html');
+			$tmpl = new patTemplate();
+			$tmpl->addRows('pageoutput', $pageoutput);
+			$tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
+			$tmpl->readTemplatesFromInput('sanity_check_pane.html');
 
-		return $tmpl->getParsedTemplate();
+			return $tmpl->getParsedTemplate();
+		}
+
 	}
 	
 	/**
