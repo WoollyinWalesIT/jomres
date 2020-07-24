@@ -784,7 +784,10 @@ $manager_pricing = array();
 		$tmpl->addRows('customfields', $customFields);
 		$tmpl->addRows('pageoutput', $pageoutput);
 		$tmpl->addRows('guesttypes', $guestTypes);
-		$tmpl->addRows('standard_guests', $adults_dropdown);
+		if ( isset($adults_dropdown) && !empty($adults_dropdown)) {
+			$tmpl->addRows('standard_guests', $adults_dropdown);
+		}
+
 		if (isset($child_dropdowns)) {
 			$tmpl->addRows('child_dropdowns', $child_dropdowns);
 		}

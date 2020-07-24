@@ -252,7 +252,7 @@ class jomres_sanity_check
 
 	public function check_occupancy_levels()
 	{
-		if ($this->mrConfig[ 'compatability_property_configuration' ] == '1' && $this->mrConfig[ 'allow_children' ] == '1' ) {
+		if (isset($this->mrConfig[ 'compatability_property_configuration' ]) && $this->mrConfig[ 'compatability_property_configuration' ] == '1' && $this->mrConfig[ 'allow_children' ] == '1' ) {
 			jr_import('jomres_occupancy_levels');
 			$jomres_occupancy_levels = new jomres_occupancy_levels($this->property_uid);
 
@@ -278,7 +278,7 @@ class jomres_sanity_check
 
 	public function check_child_rates()
 	{
-		if ($this->mrConfig[ 'compatability_property_configuration' ] == '1' && $this->mrConfig[ 'allow_children' ] == '1' ) {
+		if ( isset($this->mrConfig[ 'compatability_property_configuration' ]) && $this->mrConfig[ 'compatability_property_configuration' ] == '1' && $this->mrConfig[ 'allow_children' ] == '1' ) {
 			jr_import('jomres_child_rates');
 			$jomres_child_rates = new jomres_child_rates($this->property_uid);
 			if (!isset($jomres_child_rates->child_rates) || empty($jomres_child_rates->child_rates) ) {
