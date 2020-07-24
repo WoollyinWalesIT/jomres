@@ -225,6 +225,15 @@ class j06000ui_availability_calendar
 
 		$url = get_booking_url($property_uid,'','&pdetails_cal=1');
 		$inline_calendar = '
+<style>
+.ui-datepicker table {
+    font-size: 0.8em;
+}
+.ui-datepicker td {
+    padding:0;
+    border: 0px !important;
+}
+</style>
 			<script>
 			' .$quarter_output.'
 			' .$half_output.'
