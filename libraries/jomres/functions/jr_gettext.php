@@ -157,11 +157,9 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
 			}
 		}
 
-		// Disabled in 9.8.19. This version introduces Markdown for non-super-managers. As a result we want super managers to continue using HTML if they want.
-		// This switch makes things confusing, as disabling the html editors will prevent html in language files from being used.
-		/* if ($jrConfig[ 'allowHTMLeditor' ] != '1') {
-			$theText = jomres_remove_HTML($theText);
-		} */
+		if ( this_cms_is_wordpress() && !jomres_cmsspecific_areweinadminarea() ) {
+			$okToEdit = false;
+		}
 
 		if ($thisJRUser->userIsManager && ($editing || ($jrConfig[ 'editingModeAffectsAllProperties' ] == '1' && $thisJRUser->superPropertyManager)) && $okToEdit && $thisJRUser->accesslevel > 50) {
 			if (strlen(trim($theText)) == 0 || strtolower(trim($theText)) == '<span></span>' || strtolower(trim($theText)) == '<span> </span>' || strtolower(trim($theText)) == '<span>  </span>') {
