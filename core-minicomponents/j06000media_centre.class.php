@@ -44,6 +44,7 @@ class j06000media_centre
 
 		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 		if (!$thisJRUser->userIsManager) {
+			echo "Error, user must be a property manager to use this feature.";
 			return;
 		}
 
