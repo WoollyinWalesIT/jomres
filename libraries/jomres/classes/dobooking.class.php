@@ -7222,7 +7222,7 @@ class dobooking
 				}
 
 				if ($email_found) {
-					if ($thisJRUser->userIsManager) { // At this point we have a manager who is using the dropdown to select a guest's details
+					if ($thisJRUser->userIsManager && isset($_GET['field']) && $_GET['field'] == 'existingCustomers') { // At this point we have a manager who is using the dropdown to select a guest's details
 						$this->email_address_can_be_used = true;
 					} else {
 						if ($thisJRUser->userIsRegistered) {
