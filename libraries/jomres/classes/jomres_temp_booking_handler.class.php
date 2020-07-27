@@ -101,13 +101,6 @@ class jomres_temp_booking_handler
 			'varianceqty' => '',
 			'variancevals' => '',
 			'variancevals_nodiscount' => '',
-			'standard_guest_numbers' => 0,
-			'extra_guest_numbers' => 0,
-			'child_numbers' => array(),
-			'child_prices' => array(),
-			'extra_guest_price' => 0.00,
-			'city_tax' => 0.00,
-			'cleaning_fee' => 0.00,
 			'lastminute_id' => '',
 			'agent_booking' => '',
 			'arrivalDate' => '',
@@ -554,7 +547,7 @@ class jomres_temp_booking_handler
 				if (!file_put_contents($this->sessionfile, $data)) {
 					throw new Exception('Error: Could not save session file');
 				}
-			} elseif (  $this->ip != '0.0.0.0' || $force_session  ) {
+			} else {
 				$query = "UPDATE #__jomres_sessions SET `data` = '".$data."' WHERE `session_id` = '".$this->jomressession_db."'";
 				if (!doInsertSql($query, '')) {
 					throw new Exception('Error: Could not update session data to database');
@@ -778,13 +771,6 @@ class jomres_temp_booking_handler
 			'extrasquantities' => '',
 			'third_party_extras' => '',
 			'third_party_extras_private_data' => '',
-			'standard_guest_numbers' => 0,
-			'extra_guest_numbers' => 0,
-			'child_numbers' => array(),
-			'child_prices' => array(),
-			'extra_guest_price' => 0.00,
-			'city_tax' => 0.00,
-			'cleaning_fee' => 0.00,
 			'room_allocations' => '',
 			'room_allocations_note' => '',
 			'total_discount' => '',
