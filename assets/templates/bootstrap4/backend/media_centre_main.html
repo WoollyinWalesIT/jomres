@@ -339,6 +339,8 @@ function get_existing_images()
         jomresJquery('#image_preview_button').hide("slow");
         }
 	}
+	
+document.addEventListener('DOMContentLoaded', function(){
 
 document.addEventListener('DOMContentLoaded', function(){
 
@@ -351,7 +353,7 @@ document.addEventListener('DOMContentLoaded', function(){
         var link = jomresJquery(e.relatedTarget);
         jomresJquery(this).find(".modal-body").load(link.attr("href"));
         });
-	});
+}, false);
 </script>
 
 <!-- The template to display files available for upload -->

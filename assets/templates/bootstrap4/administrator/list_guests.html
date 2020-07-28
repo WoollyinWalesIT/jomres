@@ -1,9 +1,9 @@
 
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script type="text/javascript">
-	document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener('DOMContentLoaded', function(){
 	make_datatable('jomres_users', '{_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE}', '{LIVESITE}');
-});
+}, false);
 </script>
 
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
