@@ -30,10 +30,6 @@ class jomres_occupancy_levels
 
 	public function __construct( $property_uid = 0 )
 	{
-		if ( $property_uid == 0 ) {
-			throw new Exception('Error: Property uid not set ');
-		}
-
 		$this->property_uid = $property_uid;
 
 		$this->mrConfig = getPropertySpecificSettings( $this->property_uid );
@@ -62,6 +58,9 @@ class jomres_occupancy_levels
 
 	public function set_occupancy_level ( $id = 0 , $max_adults = 0 , $max_children = 0 , $max_occupancy = 0 )
 	{
+		if ( $this->property_uid == 0 ) {
+			throw new Exception('Error: Property uid not set ');
+		}
 
 		if ( $id == 0 ) {
 			throw new Exception('Room type id not set ');
@@ -79,6 +78,9 @@ class jomres_occupancy_levels
 
 	public function save_occupancy_levels($room_type_id = 0 )
 	{
+		if ( $this->property_uid == 0 ) {
+			throw new Exception('Error: Property uid not set ');
+		}
 
 		if ( !isset($this->occupancy_levels[$room_type_id]) ) {
 			throw new Exception('Room type id not set');
@@ -111,4 +113,60 @@ class jomres_occupancy_levels
 
 	}
 
+	/*
+	 *
+	 * Published properties, if set, are used as a filter to only return those levels for published properties
+	 *
+	 */
+	public function get_all_occupancy_levels( $published_properties = array() )
+	{
+		$query = "SELECT property_uid ,value FROM #__jomres_settings WHERE akey = 'occupancy_levels'";
+		$all_levels_query_result = doSelectSql($query);
+
+		$occupancy_levels = array();
+		if (!empty($all_levels_query_result)) {
+			foreach ( $all_levels_query_result as $result ) {
+				$room_types = unserialize(base64_decode($result->value));
+
+				if (!empty($published_properties)) {
+					if ( in_array($result->property_uid,$published_properties) ) {
+						foreach ($room_types as $room ) {
+							$occupancy_levels[] = array ("property_uid" => $result->property_uid , "max_adults" => $room['max_adults'] , "max_children" => $room['max_children']) ;
+						}
+					}
+				} else {
+					foreach ($room_types as $room ) {
+						$occupancy_levels[] = array("property_uid" => $result->property_uid, "max_adults" => $room['max_adults'], "max_children" => $room['max_children']);
+					}
+				}
+			}
+
+			uasort($occupancy_levels, function($a, $b) {
+				return $a['max_adults'] <=> $b['max_adults'];
+			});
+
+		}
+		return $occupancy_levels;
+	}
+
+	public function find_highest_levels($all_occupancy_levels = array() )
+	{
+		if (empty($all_occupancy_levels)) {
+			return [];
+		}
+
+		$highest_adults = 0;
+		$highest_children = 0;
+		foreach ($all_occupancy_levels as $level) {
+			 if ($level['max_adults'] > $highest_adults) {
+				 $highest_adults = $level['max_adults'];
+			 }
+			if ($level['max_children'] > $highest_children) {
+				$highest_children = $level['max_children'];
+			}
+		}
+
+		return [ "highest_adults" => $highest_adults , "highest_children" => $highest_children ] ;
+
+	}
 }

@@ -735,6 +735,22 @@ class j06000search
 		}
 
 		// -------------------------------------------------------------------------------------------------------------------------------------------
+		if (  $showSearchOptions) {
+			$sleepsArray = array();
+
+			if (!empty($sch->prep[ 'occupancy_levels' ])) {
+
+				$output[ 'highest_adults' ] = $sch->prep[ 'occupancy_levels' ]["highestOccupancyLevels"] ["highest_adults"];
+				$output[ 'highest_children' ] = $sch->prep[ 'occupancy_levels' ]["highestOccupancyLevels"] ["highest_children"];
+
+				$showButton = true;
+			} else {
+				$output[ 'highest_adults' ] = '';
+				$output[ 'highest_children' ] = '';
+			}
+		}
+
+		// -------------------------------------------------------------------------------------------------------------------------------------------
 
 		if ($showSearchOptions) {
 			$starsArray = array();

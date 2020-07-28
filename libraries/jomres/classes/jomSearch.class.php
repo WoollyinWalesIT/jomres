@@ -345,6 +345,10 @@ class jomSearch
 		if (in_array('description', $this->searchOptions)) {
 			$result = prepDescriptiveSearch();
 		}
+
+		// -------------------------------------------------------------------------------------------------------------------------------------------
+		$this->prep[ 'occupancy_levels' ] = prepOccupancyLevels();
+
 		// -------------------------------------------------------------------------------------------------------------------------------------------
 
 			$result = prepAvailabilitySearch();
@@ -1043,6 +1047,17 @@ class jomSearch
 		}
 	}
 } // End class jomSearch
+
+function prepOccupancyLevels()
+{
+	$result = array();
+	jr_import('jomres_occupancy_levels');
+	$jomres_occupancy_levels = new jomres_occupancy_levels( 0 );
+	$all_occupancy_levels = $jomres_occupancy_levels->get_all_occupancy_levels();
+	$result['highestOccupancyLevels'] = $jomres_occupancy_levels->find_highest_levels($all_occupancy_levels);
+
+	return $result;
+}
 
 /**
  * Prepares data for geographic searching. To save queries this is done once by getting data for all properties, then seperating the data into various arrays, which are then parsed by methods in the search class.
