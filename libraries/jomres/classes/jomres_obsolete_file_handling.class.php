@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.4
+ * @version Jomres 9.23.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -260,7 +260,7 @@ class jomres_obsolete_file_handling
 		$this->add_file($this->dir_minicomponents.'j00600form.html');
 		$this->add_file($this->dir_minicomponents.'j00510form.gif');
 		$this->add_file($this->dir_minicomponents.'j00501xlastminute.class.php');
-		$this->add_file($this->dir_minicomponents.'j00501xtariffsenhanced.class.php');
+		//$this->add_file($this->dir_minicomponents.'j00501xtariffsenhanced.class.php');
 		$this->add_file($this->dir_minicomponents.'j00501xwiseprice.class.php');
 		$this->add_file($this->dir_minicomponents.'j02210listtariffs_advanced.class.php');
 		$this->add_file($this->dir_minicomponents.'j02211listtariffs_micromanage.class.php');
@@ -1321,6 +1321,21 @@ class jomres_obsolete_file_handling
 		$this->add_dir(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'libraries'.JRDS.'vendor');
 		// $this->add_file($this->dir_classes.'core_package_management.class.php');  // Removed because I want to re-use this, but without sha checking
 		$this->add_file($this->dir_minicomponents.'j10501cmf.class.php');
+
+		$this->add_file($this->dir_minicomponents.'j16000stripe_subscribe.class.php');
+		$this->add_file($this->dir_minicomponents.'j16000stripe_subscribe_ajax.class.php');
+		$this->add_file($this->dir_minicomponents.'j16000stripe_subscribe_save_key.class.php');
+		$this->add_file($this->dir_minicomponents.'j16000stripe_subscribe_validate_token.class.php');
+
+		$this->add_file($this->dir_minicomponents.'j16000faq.class.php');
+		$this->add_dir(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'language'.JRDS.'faq');
+
+		$this->add_file($this->dir_templates_bootstrap4_administrator.'faq_pane.html');
+		$this->add_file($this->dir_templates_bootstrap4_administrator.'faq_questions.html');
+
+		$this->add_file($this->dir_templates_bootstrap_administrator.'faq_pane.html');
+		$this->add_file($this->dir_templates_bootstrap_administrator.'faq_questions.html');
+
 	}
 	
 	/**

@@ -32,7 +32,7 @@
 </div>
 
 <script type="text/javascript">
-jomresJquery(document).ready(function(){
+	document.addEventListener('DOMContentLoaded', function(){
 	jomresJquery('#roomdetails{ROOMUID}_{TARIFFUID}').appendTo("body");
 });
 </script>
@@ -88,7 +88,7 @@ jomresJquery(document).ready(function(){
 				<p>{DESCRIPTION}</p>
 			</div>
 			<div class="modal-footer">
-				<a class="btn btn-default" data-dismiss="modal" aria-hidden="true">{COMMON_CLOSE}</a>
+				<a class="btn btn-secondary" data-dismiss="modal" aria-hidden="true">{COMMON_CLOSE}</a>
 				<a href="javascript:void(0);" onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' );" class="btn {BUTTON_CLASS}" title="{CAPTION}" data-dismiss="modal" aria-hidden="true"><i class="{ICON} icon-white"></i> {CAPTION}</a>
 			</div>
 		</div>

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.3
+ * @version Jomres 9.23.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -83,7 +83,10 @@ class jomres_sanity_check
 			}
 
 			$this->warnings .= $this->check_property_type_published();
-			
+
+			$this->warnings .= $this->check_child_rates();
+			$this->warnings .= $this->check_occupancy_levels();
+
 			$this->warnings .= $this->checks_guest_types_pppn();
 			if ($this->mrConfig[ 'is_real_estate_listing' ] == 0 && get_showtime('include_room_booking_functionality')) {
 				$this->warnings .= $this->checks_tariffs_exist();
@@ -149,24 +152,30 @@ class jomres_sanity_check
 		$output = array();
 
 		if (!isset($message_array['LABEL'])) {
+			if (!is_array($message_array)) {
+				$message_array =array();
+			}
 			$message_array['LABEL'] = 'warning';
 		}
 
-		$output['LABEL_CLASS'] = $message_array['LABEL'];
+		if ( isset($message_array['MESSAGE'])) {
+			$output['LABEL_CLASS'] = $message_array['LABEL'];
 
-		$output['WARNING_WORD'] = jr_gettext('_JOMRES_WARNINGS_DANGERWILLROBINSON', '_JOMRES_WARNINGS_DANGERWILLROBINSON', false);
-		$output['WARNING_MESSAGE'] = $message_array['MESSAGE'];
-		$output['WARNING_COUNTER'] = $this->warning_counter;
-		$output['ACTION_LINK'] = $button;
+			$output['WARNING_WORD'] = jr_gettext('_JOMRES_WARNINGS_DANGERWILLROBINSON', '_JOMRES_WARNINGS_DANGERWILLROBINSON', false);
+			$output['WARNING_MESSAGE'] = $message_array['MESSAGE'];
+			$output['WARNING_COUNTER'] = $this->warning_counter;
+			$output['ACTION_LINK'] = $button;
 
-		$pageoutput[ ] = $output;
+			$pageoutput[ ] = $output;
 
-		$tmpl = new patTemplate();
-		$tmpl->addRows('pageoutput', $pageoutput);
-		$tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
-		$tmpl->readTemplatesFromInput('sanity_check_pane.html');
+			$tmpl = new patTemplate();
+			$tmpl->addRows('pageoutput', $pageoutput);
+			$tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
+			$tmpl->readTemplatesFromInput('sanity_check_pane.html');
 
-		return $tmpl->getParsedTemplate();
+			return $tmpl->getParsedTemplate();
+		}
+
 	}
 	
 	/**
@@ -234,7 +243,54 @@ class jomres_sanity_check
 		
 		return true;
 	}
-		
+
+	/**
+	 *
+	 *
+	 *
+	 */
+
+	public function check_occupancy_levels()
+	{
+		if (isset($this->mrConfig[ 'compatability_property_configuration' ]) && $this->mrConfig[ 'compatability_property_configuration' ] == '1' && $this->mrConfig[ 'allow_children' ] == '1' ) {
+			jr_import('jomres_occupancy_levels');
+			$jomres_occupancy_levels = new jomres_occupancy_levels($this->property_uid);
+
+			$total_children_allowed = 0;
+			foreach ($jomres_occupancy_levels->occupancy_levels as $room ) {
+				$total_children_allowed = $total_children_allowed + $room['max_children'];
+			}
+			if ($total_children_allowed == 0 ) {
+				$message = jr_gettext('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS', '_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS', false);
+				$link = jomresURL(JOMRES_SITEPAGE_URL.'&task=list_occupancy_levels');
+				$button_text = jr_gettext('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS_BUTTON', '_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS_BUTTON', false);
+
+				return $this->construct_warning(array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $button_text , 'LABEL' => 'warning'));
+			}
+		}
+	}
+
+	/**
+	 *
+	 *
+	 *
+	 */
+
+	public function check_child_rates()
+	{
+		if ( isset($this->mrConfig[ 'compatability_property_configuration' ]) && $this->mrConfig[ 'compatability_property_configuration' ] == '1' && $this->mrConfig[ 'allow_children' ] == '1' ) {
+			jr_import('jomres_child_rates');
+			$jomres_child_rates = new jomres_child_rates($this->property_uid);
+			if (!isset($jomres_child_rates->child_rates) || empty($jomres_child_rates->child_rates) ) {
+				$message = jr_gettext('_JOMRES_SANITYCHECK_CHILD_RATES', '_JOMRES_SANITYCHECK_CHILD_RATES', false);
+				$link = jomresURL(JOMRES_SITEPAGE_URL.'&task=child_policies');
+				$button_text = jr_gettext('_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', '_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', false);
+
+				return $this->construct_warning(array('MESSAGE' => $message, 'LINK' => $link, 'BUTTON_TEXT' => $button_text , 'LABEL' => 'warning'));
+			}
+		}
+	}
+
 	/**
 	 * 
 	 *
@@ -446,7 +502,7 @@ class jomres_sanity_check
 			//if (!in_array(get_showtime('task'), $ignore_on_tasks)) {
 				$query = 'SELECT `id` FROM `#__jomres_customertypes` where property_uid = '.(int) $this->property_uid.' AND published = 1';
 				$result = doSelectSql($query);
-				if ((int) $this->mrConfig[ 'perPersonPerNight' ] == 1 && empty($result)) {
+				if ((int) $this->mrConfig[ 'perPersonPerNight' ] == 1 && empty($result) && $this->mrConfig[ 'tariffmode' ] != 5 ) {
 					$message = jr_gettext('_JOMRES_WARNINGS_PERPERSONPERNIGHT_NOGUESTTYPES', '_JOMRES_WARNINGS_PERPERSONPERNIGHT_NOGUESTTYPES', false);
 					$link = jomresURL(JOMRES_SITEPAGE_URL.'&task=listCustomerTypes');
 					$button_text = jr_gettext('_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', '_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', false);
@@ -471,7 +527,7 @@ class jomres_sanity_check
 			if (!get_showtime('include_room_booking_functionality')) {
 				return '';
 			}
-			$ignore_on_tasks = array('propertyadmin', 'editTariff', 'saveTariff', 'edit_tariff_micromanage', 'list_tariffs_micromanage', 'list_tariffs_advanced', 'edit_tariff_advanced', 'edit_tariffs_normal');
+			$ignore_on_tasks = array('propertyadmin', 'editTariff', 'saveTariff', 'edit_tariff_micromanage', 'list_tariffs_micromanage', 'list_tariffs_advanced', 'edit_tariff_advanced', 'edit_tariffs_normal' ,  'list_tariffs_standard', 'edit_tariff_standard' );
 			//if (!in_array(get_showtime('task'), $ignore_on_tasks)) {
 				$query = 'SELECT `rates_uid` FROM `#__jomres_rates` where property_uid = '.(int) $this->property_uid.'';
 				$result = doSelectSql($query);
@@ -490,8 +546,11 @@ class jomres_sanity_check
 					} elseif ($mrConfig['tariffmode'] == '1') {
 						$link = jomresURL(JOMRES_SITEPAGE_URL.'&task=list_tariffs_advanced');
 						$button_text = jr_gettext('_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK', '_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK', false);
-					} else {
+					} elseif ($mrConfig['tariffmode'] == '3') {
 						$link = jomresURL(JOMRES_SITEPAGE_URL.'&task=list_tariffs_micromanage');
+						$button_text = jr_gettext('_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK', '_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK', false);
+					} else {
+						$link = jomresURL(JOMRES_SITEPAGE_URL.'&task=list_tariffs_standard');
 						$button_text = jr_gettext('_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK', '_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK', false);
 					}
 

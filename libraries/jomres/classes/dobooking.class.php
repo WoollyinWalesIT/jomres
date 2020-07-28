@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.4
+ * @version Jomres 9.23.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -41,95 +41,101 @@ class dobooking
 			$this->suppress_output = false;
 		}
 
-		$this->requestedRoom = array();
-		$this->rate_pernight = 0.00;
-		$this->rate_pernight_nodiscount = 0.00;
-		$this->room_total_nodiscount = 0.00;
-		$this->discounts = array();
-		$this->total_in_party = 0;
-		$this->variancetypes = array();
-		$this->varianceuids = array();
-		$this->varianceqty = array();
-		$this->variancevals = array();
-		$this->variancevals_nodiscount = array();
-		//$this->coupon_id				= "";
-		//$this->coupon					= "";
-		$this->lastminute_id = '';
-		$this->arrivalDate = '';
-		$this->departureDate = '';
-		$this->stayDays = 1;
-		$this->dateRangeString = '';
-		$this->guests_uid = '';
-		$this->property_uid = '';
-		$this->rates_uid = '';
-		$this->tag = '';
-		$this->resource = '';
-		$this->rate_rules = 0.00;
-		$this->single_person_suppliment = 0.00;
-		$this->deposit_required = 0.00;
-		$this->contract_total = 0.00;
+		$this->requestedRoom				= array();
+		$this->rate_pernight				= 0.00;
+		$this->rate_pernight_nodiscount		= 0.00;
+		$this->room_total_nodiscount		= 0.00;
+		$this->discounts					= array();
+		$this->total_in_party				= 0;
+		$this->variancetypes				= array();
+		$this->varianceuids					= array();
+		$this->varianceqty					= array();
+		$this->variancevals					= array();
+		$this->variancevals_nodiscount		= array();
+		$this->lastminute_id				= '';
+		$this->arrivalDate					= '';
+		$this->departureDate				= '';
+		$this->stayDays						= 1;
+		$this->dateRangeString				= '';
+		$this->guests_uid					= '';
+		$this->property_uid					= '';
+		$this->rates_uid					= '';
+		$this->tag							= '';
+		$this->resource						= '';
+		$this->rate_rules					= 0.00;
+		$this->single_person_suppliment		= 0.00;
+		$this->deposit_required				= 0.00;
+		$this->contract_total				= 0.00;
 
-		$this->extrasvalue = 0.00;
-		$this->tax = 0.00;
-		$this->extras = '';
-		$this->third_party_extras = array();
-		$this->third_party_extras_private_data = array();
-		$this->total_discount = 0.00;
-		$this->depositpaidsuccessfully = false;
-		$this->booker_class = '000';
-		$this->ok_to_book = false;
-		$this->referrer = '';
-		$this->error_log = '';
-		$this->total_in_party = 0;
-		$this->mininterval = 1;
-		$this->unixArrivalDate = null;
-		$this->unixDepartureDate = null;
-		$this->beds_available = 0;
-		$this->monitoringMessages = array();
-		$this->room_feature_filter = array();
+		$this->extrasvalue					= 0.00;
+		$this->tax							= 0.00;
+		$this->extras						= '';
+		$this->third_party_extras			= array();
+		$this->third_party_extras_private_data	= array();
+		$this->total_discount				= 0.00;
+		$this->depositpaidsuccessfully		= false;
+		$this->booker_class					= '000';
+		$this->ok_to_book					= false;
+		$this->referrer						= '';
+		$this->error_log					= '';
+		$this->total_in_party				= 0;
+		$this->mininterval					= 1;
+		$this->unixArrivalDate				= null;
+		$this->unixDepartureDate			= null;
+		$this->beds_available				= 0;
+		$this->monitoringMessages			= array();
+		$this->room_feature_filter			= array();
 		$this->vt = '';
 		$this->vu = '';
 		$this->vq = '';
 		$this->vv = '';
 		$this->rr = '';
+		$this->standard_guest_numbers		= 0;
+		$this->extra_guest_numbers			= 0;
+		$this->child_numbers				= array();
+		$this->child_prices					= array();
 
-		$this->existing_id = '';
-		$this->mos_userid = 0;
-		$this->firstname = '';
-		$this->surname = '';
-		$this->house = '';
-		$this->street = '';
-		$this->town = '';
-		$this->region = '';
-		$this->postcode = '';
-		$this->tel_landline = '';
-		$this->tel_mobile = '';
-		$this->email = '';
-		$this->guest_specific_discount = 0;
-		$this->additional_line_items = array();
+		$this->city_tax						= 0;
+		$this->cleaning_fee					= 0;
 
-		//$this->today					= date("Y/m/d");
+		$this->extra_guest_price			= 0.00;
+
+		$this->existing_id					= '';
+		$this->mos_userid					= 0;
+		$this->firstname					= '';
+		$this->surname						= '';
+		$this->house						= '';
+		$this->street						= '';
+		$this->town							= '';
+		$this->region						= '';
+		$this->postcode						= '';
+		$this->tel_landline					= '';
+		$this->tel_mobile					= '';
+		$this->email						= '';
+		$this->guest_specific_discount		= 0;
+		$this->additional_line_items		= array();
+
 		// Should be better at detecting today's date subject DST
 		$this->today = date('Y/m/d', mktime(0, 0, 0, date('m'), date('d'), date('Y')));
 
-		$this->error = '';
-		$this->error_code = '';
-		$this->billing_roomtotal = 0.00;
-		//$this->customTextArray			= array();
-		$this->resetPricingOutput = false;
-		$this->roomImageHTML = '';
-		$this->allPropertyRooms = array();
-		$this->allPropertyRoomUids = array();
-		$this->allPropertyTariffs = array();
-		$this->allFeatureDetails = array();
-		$this->allFeatureIds = array();
-		$this->allRoomClasses = array();
-		$this->allRoomClassIds = array();
-		$this->allBookings = array();
-		$this->rebuildIgnoreList = array();
-		$this->currentField = '';
-		$this->singlePersonSupplimentCalculated = false;
-		$this->email_address_can_be_used = true;
+		$this->error						= '';
+		$this->error_code					= '';
+		$this->billing_roomtotal			= 0.00;
+
+		$this->resetPricingOutput			= false;
+		$this->roomImageHTML				= '';
+		$this->allPropertyRooms				= array();
+		$this->allPropertyRoomUids			= array();
+		$this->allPropertyTariffs			= array();
+		$this->allFeatureDetails			= array();
+		$this->allFeatureIds				= array();
+		$this->allRoomClasses				= array();
+		$this->allRoomClassIds				= array();
+		$this->allBookings					= array();
+		$this->rebuildIgnoreList			= array();
+		$this->currentField					= '';
+		$this->singlePersonSupplimentCalculated	= false;
+		$this->email_address_can_be_used	= true;
 
 		$bookingDeets = $this->getTmpBookingData();
 
@@ -148,34 +154,58 @@ class dobooking
 			$this->vv_nodiscount = $bookingDeets[ 'variancevals_nodiscount' ];
 			//$this->coupon_id				= $bookingDeets['coupon_id'];
 			//$this->coupon					= $bookingDeets['coupon'];
-			$this->lastminute_id = $bookingDeets[ 'lastminute_id' ];
+			$this->lastminute_id			= $bookingDeets[ 'lastminute_id' ];
 			if (!isset($bookingDeets[ 'arrivalDate' ])) {
-				$bookingDeets[ 'arrivalDate' ] = '';
-				$bookingDeets[ 'departureDate' ] = '';
+				$bookingDeets[ 'arrivalDate' ]		= '';
+				$bookingDeets[ 'departureDate' ]	= '';
 			}
-			$this->arrivalDate = $bookingDeets[ 'arrivalDate' ];
-			$this->departureDate = $bookingDeets[ 'departureDate' ];
-			$this->stayDays = $bookingDeets[ 'stayDays' ];
-			$this->dateRangeString = $bookingDeets[ 'dateRangeString' ];
-			$this->guests_uid = $bookingDeets[ 'guests_uid' ];
-			$this->property_uid = (int) $bookingDeets[ 'property_uid' ];
-			$this->rates_uid = $bookingDeets[ 'rates_uid' ];
-			$this->resource = $bookingDeets[ 'resource' ];
-			$this->single_person_suppliment = $bookingDeets[ 'single_person_suppliment' ];
-			$this->deposit_required = $bookingDeets[ 'deposit_required' ];
-			$this->contract_total = $bookingDeets[ 'contract_total' ];
-			$this->extrasvalue = $bookingDeets[ 'extrasvalue' ];
-			
+			$this->arrivalDate				= $bookingDeets[ 'arrivalDate' ];
+			$this->departureDate			= $bookingDeets[ 'departureDate' ];
+			$this->stayDays					= $bookingDeets[ 'stayDays' ];
+			$this->dateRangeString			= $bookingDeets[ 'dateRangeString' ];
+			$this->guests_uid				= $bookingDeets[ 'guests_uid' ];
+			$this->property_uid				= (int) $bookingDeets[ 'property_uid' ];
+			if ($this->property_uid==0 && isset($_GET['property_uid_check'])) {
+				$this->property_uid	= (int)$_GET['property_uid_check'];
+			}
+			$this->rates_uid				= $bookingDeets[ 'rates_uid' ];
+			$this->resource					= $bookingDeets[ 'resource' ];
+			$this->single_person_suppliment	= $bookingDeets[ 'single_person_suppliment' ];
+			$this->deposit_required			= $bookingDeets[ 'deposit_required' ];
+			$this->contract_total			= $bookingDeets[ 'contract_total' ];
+			$this->extrasvalue				= $bookingDeets[ 'extrasvalue' ];
+
+			if ( isset($bookingDeets[ 'standard_guest_numbers' ])) {
+				$this->standard_guest_numbers	= $bookingDeets[ 'standard_guest_numbers' ];
+			}
+
+			if ( isset($bookingDeets[ 'extra_guest_numbers' ])) {
+				$this->extra_guest_numbers		= $bookingDeets[ 'extra_guest_numbers' ];
+			}
+
+			if ( isset($bookingDeets[ 'child_numbers' ])) {
+				$this->child_numbers			= $bookingDeets[ 'child_numbers' ];
+			}
+
+			if ( isset($bookingDeets[ 'child_prices' ])) {
+				$this->child_prices				= $bookingDeets[ 'child_prices' ];
+			}
+
+
+			$this->extra_guest_price		= $bookingDeets[ 'extra_guest_price' ];
+			$this->city_tax					= $bookingDeets[ 'city_tax' ];
+			$this->cleaning_fee				= $bookingDeets[ 'cleaning_fee' ];
+
 			if ($jrConfig['session_handler'] == 'database') {
 				if (is_array($bookingDeets[ 'extrasvalues_items' ]))
-					$this->extrasvalues_items = $bookingDeets[ 'extrasvalues_items' ];
+					$this->extrasvalues_items	= $bookingDeets[ 'extrasvalues_items' ];
 				else
-					$this->extrasvalues_items = array();
+					$this->extrasvalues_items	= array();
 				
 				if (is_array($bookingDeets[ 'third_party_extras' ]))
-					$this->third_party_extras = $bookingDeets[ 'third_party_extras' ];
+					$this->third_party_extras	= $bookingDeets[ 'third_party_extras' ];
 				else
-					$this->third_party_extras = array();
+					$this->third_party_extras	= array();
 				
 				if (is_array($bookingDeets[ 'third_party_extras_private_data' ]))
 					$this->third_party_extras_private_data = $bookingDeets[ 'third_party_extras_private_data' ];
@@ -197,50 +227,45 @@ class dobooking
 				else
 					$this->room_feature_filter = array();
 			} else {
-				$this->extrasvalues_items = unserialize($bookingDeets[ 'extrasvalues_items' ]);
-				$this->third_party_extras = unserialize($bookingDeets[ 'third_party_extras' ]);
-				$this->third_party_extras_private_data = unserialize($bookingDeets[ 'third_party_extras_private_data' ]);
-				$this->room_allocations = unserialize($bookingDeets[ 'room_allocations' ]);
-				$this->additional_line_items = unserialize($bookingDeets[ 'additional_line_items' ]);
-				$this->room_feature_filter = unserialize($bookingDeets[ 'room_feature_filter' ]);
+				$this->extrasvalues_items				= unserialize($bookingDeets[ 'extrasvalues_items' ]);
+				$this->third_party_extras				= unserialize($bookingDeets[ 'third_party_extras' ]);
+				$this->third_party_extras_private_data	= unserialize($bookingDeets[ 'third_party_extras_private_data' ]);
+				$this->room_allocations					= unserialize($bookingDeets[ 'room_allocations' ]);
+				$this->additional_line_items			= unserialize($bookingDeets[ 'additional_line_items' ]);
+				$this->room_feature_filter				= unserialize($bookingDeets[ 'room_feature_filter' ]);
 			}
 
-			$this->room_allocations_note = $bookingDeets[ 'room_allocations_note' ];
-			$this->property_currencycode = $bookingDeets[ 'property_currencycode' ];
+			$this->room_allocations_note		= $bookingDeets[ 'room_allocations_note' ];
+			$this->property_currencycode		= $bookingDeets[ 'property_currencycode' ];
 
-			$this->tax = $bookingDeets[ 'tax' ];
-			$this->extras = $bookingDeets[ 'extras' ];
-			$this->extrasquantities = $bookingDeets[ 'extrasquantities' ];
-			$this->total_discount = $bookingDeets[ 'total_discount' ];
-			$this->depositpaidsuccessfully = $bookingDeets[ 'depositpaidsuccessfully' ];
-			$this->booker_class = $bookingDeets[ 'booker_class' ];
-			$this->ok_to_book = $bookingDeets[ 'ok_to_book' ];
-			$this->beds_available = $bookingDeets[ 'beds_available' ];
-			$this->referrer = $bookingDeets[ 'referrer' ];
-			$this->error = $bookingDeets[ 'error_log' ];
-			$this->room_total = $bookingDeets[ 'room_total' ];
-			$this->room_total_nodiscount = $bookingDeets[ 'room_total_nodiscount' ];
-			//$this->discounts			   = $bookingDeets[ 'discounts' ];
-			$this->total_in_party = $bookingDeets[ 'total_in_party' ];
-			//if ($this->booker_class == "100")
-			//	$this->mininterval				= 1;
-			//else
-			// $this->mininterval				= $bookingDeets['mininterval'];
-			// if ($this->mininterval == 0)
-			// $this->mininterval = 1;
-			$this->amend_contract = false;
+			$this->tax							= $bookingDeets[ 'tax' ];
+			$this->extras						= $bookingDeets[ 'extras' ];
+			$this->extrasquantities				= $bookingDeets[ 'extrasquantities' ];
+			$this->total_discount				= $bookingDeets[ 'total_discount' ];
+			$this->depositpaidsuccessfully		= $bookingDeets[ 'depositpaidsuccessfully' ];
+			$this->booker_class					= $bookingDeets[ 'booker_class' ];
+			$this->ok_to_book					= $bookingDeets[ 'ok_to_book' ];
+			$this->beds_available				= $bookingDeets[ 'beds_available' ];
+			$this->referrer						= $bookingDeets[ 'referrer' ];
+			$this->error						= $bookingDeets[ 'error_log' ];
+			$this->room_total					= $bookingDeets[ 'room_total' ];
+			$this->room_total_nodiscount		= $bookingDeets[ 'room_total_nodiscount' ];
+			//$this->discounts			   		= $bookingDeets[ 'discounts' ];
+			$this->total_in_party				= $bookingDeets[ 'total_in_party' ];
+
+			$this->amend_contract				= false;
 			if (isset($bookingDeets[ 'amend_contract' ])) {
-				$this->amend_contract = $bookingDeets[ 'amend_contract' ];
+				$this->amend_contract		= $bookingDeets[ 'amend_contract' ];
 			}
-			$this->coupon_id = $bookingDeets[ 'coupon_id' ];
-			$this->coupon_code = $bookingDeets[ 'coupon_code' ];
-			$this->coupon_details = $bookingDeets[ 'coupon_details' ];
-			$this->coupon_discount_value = $bookingDeets[ 'coupon_discount_value' ];
-			$this->booking_notes = $bookingDeets[ 'booking_notes' ];
-			$this->override_room_total = $bookingDeets[ 'override_room_total' ];
-			$this->override_deposit = $bookingDeets[ 'override_deposit' ];
+			$this->coupon_id					= $bookingDeets[ 'coupon_id' ];
+			$this->coupon_code					= $bookingDeets[ 'coupon_code' ];
+			$this->coupon_details				= $bookingDeets[ 'coupon_details' ];
+			$this->coupon_discount_value		= $bookingDeets[ 'coupon_discount_value' ];
+			$this->booking_notes				= $bookingDeets[ 'booking_notes' ];
+			$this->override_room_total			= $bookingDeets[ 'override_room_total' ];
+			$this->override_deposit				= $bookingDeets[ 'override_deposit' ];
 			if (isset($bookingDeets[ 'thirdparty_vars' ])) {
-				$this->thirdparty_vars = $bookingDeets[ 'thirdparty_vars' ];
+				$this->thirdparty_vars		= $bookingDeets[ 'thirdparty_vars' ];
 			}
 			
 			$MiniComponents = jomres_getSingleton('mcHandler');
@@ -510,82 +535,88 @@ class dobooking
 		$this->writeToLogfile($this->error);
 		$this->error = '';
 
-		$tmpBookingHandler->tmpbooking[ 'requestedRoom' ] = $rr;
-		$tmpBookingHandler->tmpbooking[ 'rate_pernight' ] = $this->rate_pernight;
-		$tmpBookingHandler->tmpbooking[ 'variancetypes' ] = $this->vt;
-		$tmpBookingHandler->tmpbooking[ 'varianceuids' ] = $this->vu;
-		$tmpBookingHandler->tmpbooking[ 'varianceqty' ] = $this->vq;
-		$tmpBookingHandler->tmpbooking[ 'variancevals' ] = $this->vv;
-		$tmpBookingHandler->tmpbooking[ 'variancevals_nodiscount' ] = $this->vv_nodiscount;
-		//$tmpBookingHandler->tmpbooking["coupon_id"]						= $this->coupon_id;
+		$tmpBookingHandler->tmpbooking[ 'requestedRoom' ]				= $rr;
+		$tmpBookingHandler->tmpbooking[ 'rate_pernight' ]				= $this->rate_pernight;
+		$tmpBookingHandler->tmpbooking[ 'variancetypes' ]				= $this->vt;
+		$tmpBookingHandler->tmpbooking[ 'varianceuids' ]				= $this->vu;
+		$tmpBookingHandler->tmpbooking[ 'varianceqty' ]					= $this->vq;
+		$tmpBookingHandler->tmpbooking[ 'variancevals' ]				= $this->vv;
+		$tmpBookingHandler->tmpbooking[ 'variancevals_nodiscount' ] 	= $this->vv_nodiscount;
+		//$tmpBookingHandler->tmpbooking["coupon_id"]					= $this->coupon_id;
 		//$tmpBookingHandler->tmpbooking["coupon"]						= $this->coupon;
-		$tmpBookingHandler->tmpbooking[ 'lastminute_id' ] = $this->lastminute_id;
-		$tmpBookingHandler->tmpbooking[ 'arrivalDate' ] = $this->arrivalDate;
-		$tmpBookingHandler->tmpbooking[ 'departureDate' ] = $this->departureDate;
-		$tmpBookingHandler->tmpbooking[ 'stayDays' ] = $this->stayDays;
-		$tmpBookingHandler->tmpbooking[ 'dateRangeString' ] = $this->dateRangeString;
-		$tmpBookingHandler->tmpbooking[ 'guests_uid' ] = $this->guests_uid;
-		$tmpBookingHandler->tmpbooking[ 'property_uid' ] = $this->property_uid;
-		$tmpBookingHandler->tmpbooking[ 'rates_uid' ] = $this->rates_uid;
-		$tmpBookingHandler->tmpbooking[ 'resource' ] = $this->resource;
-		$tmpBookingHandler->tmpbooking[ 'single_person_suppliment' ] = $this->single_person_suppliment;
-		$tmpBookingHandler->tmpbooking[ 'deposit_required' ] = $this->deposit_required;
-		$tmpBookingHandler->tmpbooking[ 'contract_total' ] = $this->contract_total;
-		$tmpBookingHandler->tmpbooking[ 'extrasvalue' ] = $this->extrasvalue;
-		$tmpBookingHandler->tmpbooking[ 'extras' ] = $this->extras;
-		$tmpBookingHandler->tmpbooking[ 'extrasquantities' ] = $this->extrasquantities;
-		
+		$tmpBookingHandler->tmpbooking[ 'lastminute_id' ]				= $this->lastminute_id;
+		$tmpBookingHandler->tmpbooking[ 'arrivalDate' ]					= $this->arrivalDate;
+		$tmpBookingHandler->tmpbooking[ 'departureDate' ]				= $this->departureDate;
+		$tmpBookingHandler->tmpbooking[ 'stayDays' ]					= $this->stayDays;
+		$tmpBookingHandler->tmpbooking[ 'dateRangeString' ]				= $this->dateRangeString;
+		$tmpBookingHandler->tmpbooking[ 'guests_uid' ]					= $this->guests_uid;
+		$tmpBookingHandler->tmpbooking[ 'property_uid' ]				= $this->property_uid;
+		$tmpBookingHandler->tmpbooking[ 'rates_uid' ]					= $this->rates_uid;
+		$tmpBookingHandler->tmpbooking[ 'resource' ]					= $this->resource;
+		$tmpBookingHandler->tmpbooking[ 'single_person_suppliment' ]	= $this->single_person_suppliment;
+		$tmpBookingHandler->tmpbooking[ 'deposit_required' ]			= $this->deposit_required;
+		$tmpBookingHandler->tmpbooking[ 'contract_total' ]				= $this->contract_total;
+		$tmpBookingHandler->tmpbooking[ 'extrasvalue' ]					= $this->extrasvalue;
+		$tmpBookingHandler->tmpbooking[ 'extras' ]						= $this->extras;
+		$tmpBookingHandler->tmpbooking[ 'extrasquantities' ]			= $this->extrasquantities;
+		$tmpBookingHandler->tmpbooking[ 'standard_guest_numbers' ]		= $this->standard_guest_numbers;
+		$tmpBookingHandler->tmpbooking[ 'extra_guest_numbers' ]			= $this->extra_guest_numbers;
+		$tmpBookingHandler->tmpbooking[ 'child_numbers' ]				= $this->child_numbers;
+		$tmpBookingHandler->tmpbooking[ 'child_prices' ]				= $this->child_prices;
+
+
+		$tmpBookingHandler->tmpbooking[ 'extra_guest_price' ]			= $this->extra_guest_price;
+		$tmpBookingHandler->tmpbooking[ 'city_tax' ]					= $this->city_tax;
+		$tmpBookingHandler->tmpbooking[ 'cleaning_fee' ]				= $this->cleaning_fee;
+
 		if ($jrConfig['session_handler'] == 'database') {
-			$tmpBookingHandler->tmpbooking[ 'extrasvalues_items' ] = $this->extrasvalues_items;
-			$tmpBookingHandler->tmpbooking[ 'third_party_extras' ] = $this->third_party_extras;
-			$tmpBookingHandler->tmpbooking[ 'third_party_extras_private_data' ] = $this->third_party_extras_private_data;
-			$tmpBookingHandler->tmpbooking[ 'room_allocations' ] = $this->room_allocations;
-			$tmpBookingHandler->tmpbooking[ 'room_allocations_note' ] = $this->room_allocations_note;
-			$tmpBookingHandler->tmpbooking[ 'additional_line_items' ] = $this->additional_line_items;
-		$tmpBookingHandler->tmpbooking[ 'room_feature_filter' ] = $this->room_feature_filter;
+			$tmpBookingHandler->tmpbooking[ 'extrasvalues_items' ]				= $this->extrasvalues_items;
+			$tmpBookingHandler->tmpbooking[ 'third_party_extras' ]				= $this->third_party_extras;
+			$tmpBookingHandler->tmpbooking[ 'third_party_extras_private_data' ]	= $this->third_party_extras_private_data;
+			$tmpBookingHandler->tmpbooking[ 'room_allocations' ]				= $this->room_allocations;
+			$tmpBookingHandler->tmpbooking[ 'room_allocations_note' ]			= $this->room_allocations_note;
+			$tmpBookingHandler->tmpbooking[ 'additional_line_items' ]			= $this->additional_line_items;
+		$tmpBookingHandler->tmpbooking[ 'room_feature_filter' ]					= $this->room_feature_filter;
 		} else {
-			$tmpBookingHandler->tmpbooking[ 'extrasvalues_items' ] = serialize($this->extrasvalues_items);
-			$tmpBookingHandler->tmpbooking[ 'third_party_extras' ] = serialize($this->third_party_extras);
-			$tmpBookingHandler->tmpbooking[ 'third_party_extras_private_data' ] = serialize($this->third_party_extras_private_data);
-			$tmpBookingHandler->tmpbooking[ 'room_allocations' ] = serialize($this->room_allocations);
-			$tmpBookingHandler->tmpbooking[ 'room_allocations_note' ] = serialize($this->room_allocations_note);
-			$tmpBookingHandler->tmpbooking[ 'additional_line_items' ] = serialize($this->additional_line_items);
-			$tmpBookingHandler->tmpbooking[ 'room_feature_filter' ] = serialize($this->room_feature_filter);
+			$tmpBookingHandler->tmpbooking[ 'extrasvalues_items' ]				= serialize($this->extrasvalues_items);
+			$tmpBookingHandler->tmpbooking[ 'third_party_extras' ]				= serialize($this->third_party_extras);
+			$tmpBookingHandler->tmpbooking[ 'third_party_extras_private_data' ]	= serialize($this->third_party_extras_private_data);
+			$tmpBookingHandler->tmpbooking[ 'room_allocations' ]				= serialize($this->room_allocations);
+			$tmpBookingHandler->tmpbooking[ 'room_allocations_note' ]			= serialize($this->room_allocations_note);
+			$tmpBookingHandler->tmpbooking[ 'additional_line_items' ]			= serialize($this->additional_line_items);
+			$tmpBookingHandler->tmpbooking[ 'room_feature_filter' ]				= serialize($this->room_feature_filter);
 		}
 
-		$tmpBookingHandler->tmpbooking[ 'total_discount' ] = $this->total_discount;
-		$tmpBookingHandler->tmpbooking[ 'depositpaidsuccessfully' ] = $this->depositpaidsuccessfully;
-		$tmpBookingHandler->tmpbooking[ 'tax' ] = $this->tax;
-		$tmpBookingHandler->tmpbooking[ 'booker_class' ] = $this->booker_class;
-		$tmpBookingHandler->tmpbooking[ 'ok_to_book' ] = $this->ok_to_book;
-		$tmpBookingHandler->tmpbooking[ 'beds_available' ] = $this->beds_available;
-		$tmpBookingHandler->tmpbooking[ 'referrer' ] = $this->referrer;
-		$tmpBookingHandler->tmpbooking[ 'error_log' ] = $this->error;
-		$tmpBookingHandler->tmpbooking[ 'total_in_party' ] = $this->total_in_party;
-		$tmpBookingHandler->tmpbooking[ 'room_total' ] = $this->room_total;
-		$tmpBookingHandler->tmpbooking[ 'room_total_nodiscount' ] = $this->room_total_nodiscount;
-		$tmpBookingHandler->tmpbooking[ 'discounts' ] = $this->discounts;
-		$tmpBookingHandler->tmpbooking[ 'timestamp' ] = date('Y-m-d H:i:s');
-		$tmpBookingHandler->tmpbooking[ 'mininterval' ] = $this->mininterval;
-		$tmpBookingHandler->tmpbooking[ 'coupon_id' ] = $this->coupon_id;
-		$tmpBookingHandler->tmpbooking[ 'coupon_code' ] = $this->coupon_code;
-		$tmpBookingHandler->tmpbooking[ 'coupon_details' ] = $this->coupon_details;
-		$tmpBookingHandler->tmpbooking[ 'coupon_discount_value' ] = $this->coupon_discount_value;
-		$tmpBookingHandler->tmpbooking[ 'booking_notes' ] = $this->booking_notes;
-		$tmpBookingHandler->tmpbooking[ 'override_room_total' ] = $this->override_room_total;
-		$tmpBookingHandler->tmpbooking[ 'override_deposit' ] = $this->override_deposit;
+		$tmpBookingHandler->tmpbooking[ 'total_discount' ]						= $this->total_discount;
+		$tmpBookingHandler->tmpbooking[ 'depositpaidsuccessfully' ]				= $this->depositpaidsuccessfully;
+		$tmpBookingHandler->tmpbooking[ 'tax' ]									= $this->tax;
+		$tmpBookingHandler->tmpbooking[ 'booker_class' ]						= $this->booker_class;
+		$tmpBookingHandler->tmpbooking[ 'ok_to_book' ]							= $this->ok_to_book;
+		$tmpBookingHandler->tmpbooking[ 'beds_available' ]						= $this->beds_available;
+		$tmpBookingHandler->tmpbooking[ 'referrer' ]							= $this->referrer;
+		$tmpBookingHandler->tmpbooking[ 'error_log' ]							= $this->error;
+		$tmpBookingHandler->tmpbooking[ 'total_in_party' ]						= $this->total_in_party;
+		$tmpBookingHandler->tmpbooking[ 'room_total' ]							= $this->room_total;
+		$tmpBookingHandler->tmpbooking[ 'room_total_nodiscount' ]				= $this->room_total_nodiscount;
+		$tmpBookingHandler->tmpbooking[ 'discounts' ]							= $this->discounts;
+		$tmpBookingHandler->tmpbooking[ 'timestamp' ]							= date('Y-m-d H:i:s');
+		$tmpBookingHandler->tmpbooking[ 'mininterval' ]							= $this->mininterval;
+		$tmpBookingHandler->tmpbooking[ 'coupon_id' ]							= $this->coupon_id;
+		$tmpBookingHandler->tmpbooking[ 'coupon_code' ]							= $this->coupon_code;
+		$tmpBookingHandler->tmpbooking[ 'coupon_details' ]						= $this->coupon_details;
+		$tmpBookingHandler->tmpbooking[ 'coupon_discount_value' ]				= $this->coupon_discount_value;
+		$tmpBookingHandler->tmpbooking[ 'booking_notes' ]						= $this->booking_notes;
+		$tmpBookingHandler->tmpbooking[ 'override_room_total' ]					= $this->override_room_total;
+		$tmpBookingHandler->tmpbooking[ 'override_deposit' ]					= $this->override_deposit;
 
-		$tmpBookingHandler->tmpbooking[ 'show_extras' ] = $this->cfg_showExtras;
-		$tmpBookingHandler->tmpbooking[ 'property_currencycode' ] = $this->property_currencycode;
-		$tmpBookingHandler->tmpbooking[ 'email_address_can_be_used' ] = $this->email_address_can_be_used;
+		$tmpBookingHandler->tmpbooking[ 'show_extras' ]							= $this->cfg_showExtras;
+		$tmpBookingHandler->tmpbooking[ 'property_currencycode' ]				= $this->property_currencycode;
+		$tmpBookingHandler->tmpbooking[ 'email_address_can_be_used' ]			= $this->email_address_can_be_used;
 
 		if (isset($this->thirdparty_vars)) {
-			$tmpBookingHandler->tmpbooking[ 'thirdparty_vars' ] = $this->thirdparty_vars;
+			$tmpBookingHandler->tmpbooking[ 'thirdparty_vars' ]					= $this->thirdparty_vars;
 		}
 
-		//store the new search dates
-		//$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] = $this->arrivalDate;
-		//$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] = $this->departureDate;
 	}
 
 	/**
@@ -652,7 +683,7 @@ class dobooking
 	public function getAllTariffsData()
 	{
 		$query = "SELECT `rates_uid`,`rate_title`,`rate_description`,`validfrom`,`validto`,
-			`roomrateperday`,`mindays`,`maxdays`,`minpeople`,`maxpeople`,`roomclass_uid`,
+			`roomrateperday`, `extra_guests_price`,  `modifiers`, `mindays`,`maxdays`,`minpeople`,`maxpeople`,`roomclass_uid`,
 			`ignore_pppn`,`allow_ph`,`allow_we`,`weekendonly`,`dayofweek`,`minrooms_alreadyselected`,`maxrooms_alreadyselected`
 			FROM #__jomres_rates WHERE property_uid = '$this->property_uid' 
 			AND DATE_FORMAT(`validto`, '%Y/%m/%d') >= DATE_FORMAT('".$this->today."', '%Y/%m/%d')
@@ -676,6 +707,8 @@ class dobooking
 				'validfrom' => $t->validfrom,
 				'validto' => $t->validto,
 				'roomrateperday' => $roomrate,
+				'extra_guests_price' => $t->extra_guests_price ,
+				'modifiers' => json_decode(base64_decode($t->modifiers)) ,
 				'mindays' => $t->mindays,
 				'maxdays' => $t->maxdays,
 				'minpeople' => $t->minpeople,
@@ -809,7 +842,7 @@ class dobooking
 		$mrConfig = $this->mrConfig;
 		$this->all_tariff_types_to_tariff_id_xref = array();
 		$this->all_tariff_id_to_tariff_type_xref = array();
-		if ($mrConfig[ 'tariffmode' ] == '2') {
+		if ($mrConfig[ 'tariffmode' ] == '2' || $mrConfig[ 'tariffmode' ] == '5') {
 			$query = "SELECT tarifftype_id,tariff_id FROM #__jomcomp_tarifftype_rate_xref  WHERE property_uid = '$this->property_uid'";
 			$tariff_type_list = doSelectSql($query);
 			if (!empty($tariff_type_list)) {
@@ -1547,6 +1580,44 @@ class dobooking
 		$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_CELLPHONE' ] = $this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_CELLPHONE', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_CELLPHONE', false, false));
 		$output[ '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL' ] = $this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL', '_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL', false, false));
 
+		$output[ 'JOMRES_CHILDREN_BOOKING_FORM_LABEL' ] = $this->sanitiseOutput(jr_gettext('JOMRES_CHILDREN_BOOKING_FORM_LABEL', 'JOMRES_CHILDREN_BOOKING_FORM_LABEL', false, false));
+		$output[ 'JOMRES_GUEST_BOOKING_FORM_LABEL' ] = $this->sanitiseOutput(jr_gettext('JOMRES_GUEST_BOOKING_FORM_LABEL', 'JOMRES_GUEST_BOOKING_FORM_LABEL', false, false));
+		$output[ 'JOMRES_GUEST_BOOKING_FORM_LABELINFO' ] = $this->sanitiseOutput(jr_gettext('JOMRES_GUEST_BOOKING_FORM_LABELINFO', 'JOMRES_GUEST_BOOKING_FORM_LABELINFO', false, false));
+
+		if ($mrConfig['city_tax_value'] > 0 ) {
+			if (!isset($mrConfig[ 'city_tax_models' ])) {
+				$mrConfig[ 'city_tax_models' ] = 'single';
+			}
+
+			$city_tax_model_string = '';
+			switch ($mrConfig[ 'city_tax_models' ]) {
+				case 'single' :
+					$city_tax_model_string = jr_gettext('JOMRES_CITY_TAX_MODEL_SINGLE', 'JOMRES_CITY_TAX_MODEL_SINGLE', false);
+					break;
+				case 'pernight' :
+					$city_tax_model_string = jr_gettext('JOMRES_CITY_TAX_MODEL_PER_NIGHT', 'JOMRES_CITY_TAX_MODEL_PER_NIGHT', false) ;
+					break;
+				case 'perguest' :
+					$city_tax_model_string = jr_gettext('JOMRES_CITY_TAX_MODEL_PER_GUEST', 'JOMRES_CITY_TAX_MODEL_PER_GUEST', false) ;
+					break;
+				case 'perguestpernight' :
+					$city_tax_model_string = jr_gettext('JOMRES_CITY_TAX_MODEL_PER_GUEST_PER_NIGHT', 'JOMRES_CITY_TAX_MODEL_PER_GUEST_PER_NIGHT', false) ;
+					break;
+				case 'percentbookingtotal' :
+					$city_tax_model_string = jr_gettext('JOMRES_CITY_TAX_MODEL_PERCENTAGE_OF_BOOKING_TOTAL', 'JOMRES_CITY_TAX_MODEL_PERCENTAGE_OF_BOOKING_TOTAL', false);
+					break;
+			}
+
+			$city_tax_model_string .= " (".$mrConfig['city_tax_value'].")" ;
+			$output[ 'JOMRES_CITY_TAX_HEADING' ] = $this->sanitiseOutput(jr_gettext('JOMRES_CITY_TAX_HEADING', 'JOMRES_CITY_TAX_HEADING', false, false))." : ".$city_tax_model_string;
+		}
+
+		$output[ 'JOMRES_CLEANING_FEE_HEADING' ] = $this->sanitiseOutput(jr_gettext('JOMRES_CLEANING_FEE_HEADING', 'JOMRES_CLEANING_FEE_HEADING', false, false));
+		$output[ 'JOMRES_BOOKING_FORM_CHILDREN_AGES' ] = $this->sanitiseOutput(jr_gettext('JOMRES_BOOKING_FORM_CHILDREN_AGES', 'JOMRES_BOOKING_FORM_CHILDREN_AGES', false, false));
+		$output[ 'JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS' ] = $this->sanitiseOutput(jr_gettext('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', false, false));
+
+
+
 		return $output;
 	}
 
@@ -2051,6 +2122,38 @@ class dobooking
 		}
 
 		return $cust;
+	}
+
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	//	Extra guests
+
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * Receives the extra guest number and stores it
+	 */
+	public function setStandardGuests($value)
+	{
+		$this->setErrorLog('setExtraGuests::Starting');
+
+		$default_number_of_guests = 2;
+
+		if (!isset($this->standard_guest_numbers)) {
+			$this->standard_guest_numbers = 0;
+		}
+
+		if ( $value > $default_number_of_guests ) {
+			$this->extra_guest_numbers =  $value - $default_number_of_guests;
+		}
+
+		if ( $value <= $default_number_of_guests ) {
+			$this->standard_guest_numbers = (int)$value;
+			$this->extra_guest_numbers = 0;
+		}
+
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3629,23 +3732,35 @@ class dobooking
 
 	public function checkAllGuestsAllocatedToRooms()
 	{
+		$mrConfig = $this->mrConfig;
+
 		$this->room_allocations = array();
 		$guests = $this->getVariantsOfType('guesttype');
 
-		$this->setErrorLog('checkAllGuestsAllocatedToRooms::Starting ');
-		if (!empty($guests)) {
-			$this->setErrorLog('checkAllGuestsAllocatedToRooms:: count($guests) > 0 ');
+		if ( $mrConfig[ 'tariffmode' ] == '5' ) {
+			$totalNumberOfGuests = $this->standard_guest_numbers + $this->extra_guest_numbers;
+		}else {
 			$totalNumberOfGuests = 0;
+			$guests = $this->getVariantsOfType('guesttype');
+		}
+
+		$this->city_tax_number_of_guests = $totalNumberOfGuests;
+
+		$this->setErrorLog('checkAllGuestsAllocatedToRooms::Starting ');
+		if (!empty($guests) || $mrConfig[ 'tariffmode' ] == '5' ) {
+			$this->setErrorLog('checkAllGuestsAllocatedToRooms:: count($guests) > 0 ');
 
 			if (empty($this->requestedRoom)) {
 				$this->setErrorLog('checkAllGuestsAllocatedToRooms:: No rooms have been selected yet');
-
 				return true;
 			}
 
-			foreach ($guests as $g) {
-				$totalNumberOfGuests = $totalNumberOfGuests + $g[ 'qty' ];
+			if (!empty($guests)) {
+				foreach ($guests as $g) {
+					$totalNumberOfGuests = $totalNumberOfGuests + $g[ 'qty' ];
+				}
 			}
+
 
 			// Let's find the max_people options for each room
 			$allSelectedRoomsMaxPeople = array();
@@ -3822,12 +3937,15 @@ class dobooking
 		$ratesList=doSelectSql($query);
 		*/
 		$ratesList = array();
-		$room_class = $this->allPropertyRooms[ $room ][ 'room_classes_uid' ];
-		foreach ($this->allPropertyTariffs as $tariff) {
-			if ($tariff[ 'rates_uid' ] == $rtArray[ 1 ] && $tariff[ 'roomclass_uid' ] == $room_class) {
-				$ratesList[ ] = $tariff[ 'rates_uid' ];
+		if ( isset($this->allPropertyRooms[ $room ])) {
+			$room_class = $this->allPropertyRooms[ $room ][ 'room_classes_uid' ];
+			foreach ($this->allPropertyTariffs as $tariff) {
+				if ($tariff[ 'rates_uid' ] == $rtArray[ 1 ] && $tariff[ 'roomclass_uid' ] == $room_class) {
+					$ratesList[ ] = $tariff[ 'rates_uid' ];
+				}
 			}
 		}
+
 		if (empty($ratesList)) {
 			return false;
 		} else {
@@ -3939,16 +4057,12 @@ class dobooking
 
 			return false;
 		}
-		//var_dump($this->allBookings);exit;
-		//$this->setErrorLog("Looking for free rooms in date range: ".serialize($dateRangeArray) );
+
 		if (!empty($freeRoomsArray)) {
 			foreach ($freeRoomsArray as $roomUid) {
-				//var_dump($roomUid);
 				$roomIsFree = true;
 				foreach ($dateRangeArray as $eachdate) {
 					if (isset($this->allBookings[ $eachdate ][ $roomUid ])) {
-						//var_dump($this->allBookings[$eachdate][$roomUid]);
-						//$arrivalDate=$cycleDate;
 						$roomIsFree = false;
 
 						break;
@@ -3959,7 +4073,7 @@ class dobooking
 					$tmpArray[ ] = $roomUid;
 				}
 			}
-			//var_dump($tmpArray);exit;
+
 			if (empty($tmpArray)) {
 				$this->setErrorLog('findFreeRoomsInDateRange::No free rooms found in date range');
 			}
@@ -4148,7 +4262,7 @@ class dobooking
 						}
 						if (!isset($already_found_tariffs[ $tariff_type_id.' '.$room_uid ]) && !in_array($tariff_type_id, $filtered_out_type_type_ids)) {
 							$pass_price_check = true;
-							if ($mrConfig[ 'tariffmode' ] == '2') { // If tariffmode = 2, we need to finally scan $this->micromanage_tarifftype_to_date_map, to ensure that all dates have a price set
+							if ($mrConfig[ 'tariffmode' ] == '2' || $mrConfig[ 'tariffmode' ] == '5')  { // If tariffmode = 2, we need to finally scan $this->micromanage_tarifftype_to_date_map, to ensure that all dates have a price set
 								if (empty($this->micromanage_tarifftype_to_date_map)) {
 									$pass_price_check = false;
 								} else {
@@ -4171,7 +4285,7 @@ class dobooking
 							}
 
 							if ($pass_price_check) {
-								if ($mrConfig[ 'tariffmode' ] == '2') {
+								if ($mrConfig[ 'tariffmode' ] == '2' || $mrConfig[ 'tariffmode' ] == '5') {
 									$already_found_tariffs[ $tariff_type_id.' '.$room_uid ] = 1;
 								} // Without this there will be duplicates returned to the rooms list in the booking form
 								$roomAndTariffArray[ ] = array($room_uid, $rates_uid);
@@ -4190,7 +4304,7 @@ class dobooking
 		}
 		$this->setErrorLog('--------------------------------------------');
 
-		if (empty($roomAndTariffArray) && $mrConfig[ 'tariffmode' ] == '2') {
+		if (empty($roomAndTariffArray) && ($mrConfig[ 'tariffmode' ] == '2' || $mrConfig['tariffmode'] == '5' )) {
 			if (!empty($this->tariff_types_min_days)) {
 				$this->mininterval = 1000; // We MUST reset the minimum interval here, as it's going to be recalculated.
 				foreach ($this->tariff_types_min_days as $mindays) {
@@ -4212,7 +4326,7 @@ class dobooking
 
 		$maxdays = $tariff->maxdays;
 
-		if ($mrConfig[ 'tariffmode' ] == '2') {
+		if ($mrConfig[ 'tariffmode' ] == '2' || $mrConfig[ 'tariffmode' ] == '5') {
 			// We've been passed the tariff, we now need to find the tariff type for this tariff, then find all related tariffs
 			$tariff_type_id = $this->all_tariff_id_to_tariff_type_xref[ $tariff->rates_uid ][ 0 ];
 			$all_associated_tariff_ids = $this->all_tariff_types_to_tariff_id_xref[ $tariff_type_id ];
@@ -4268,7 +4382,7 @@ class dobooking
 		$maxdays = $tariff->maxdays;
 
 		$datesValid = false;
-		if ($mrConfig[ 'tariffmode' ] == '2') { // This is really a cursory check. Most of the time there will be/should be prices covering every day in the period in question, but if not we'll find out here
+		if ($mrConfig[ 'tariffmode' ] == '2' || $mrConfig[ 'tariffmode' ] == '5') {// This is really a cursory check. Most of the time there will be/should be prices covering every day in the period in question, but if not we'll find out here
 			$tariff_type_id = $this->all_tariff_id_to_tariff_type_xref[ $tariff->rates_uid ][ 0 ];
 			$all_associated_tariff_ids = $this->all_tariff_types_to_tariff_id_xref[ $tariff_type_id ];
 			$stayDays = $this->getStayDays();
@@ -4418,7 +4532,7 @@ class dobooking
 
 		foreach ($this->allPropertyTariffs as $tariff) {
 			$tariff_uid = $tariff[ 'rates_uid' ];
-			if ($mrConfig[ 'tariffmode' ] == '2') {
+			if ($mrConfig[ 'tariffmode' ] == '2' || $mrConfig[ 'tariffmode' ] == '5' ) {
 				$tariff_type_id = $this->all_tariff_id_to_tariff_type_xref[ $tariff_uid ][ 0 ];
 
 				// Now we can get all of the tariff uids that are associated with this tariff type
@@ -4532,6 +4646,9 @@ class dobooking
 	 */
 	public function generateRoomsList($roomAndTariffArray)
 	{
+
+		$this->available_rooms_for_selected_dates = array();
+
 		$return_output = '<div id="roombuttoncontainer2"><div id="roombutton">';
 		if ((int) $this->cfg_returnRoomsLimit > 0 && $this->cfg_booking_form_rooms_list_style == '1') {
 			$this->setErrorLog('generateRoomsList:: Limiting rooms list ');
@@ -4547,6 +4664,7 @@ class dobooking
 				$tmpArr = array();
 				foreach ($roomAndTariffArray as $element) {
 					$room_uid = $element[ 0 ];
+					$this->available_rooms_for_selected_dates[] = $room_uid;
 					$tariff_uid = $element[ 1 ];
 					$tmpArr[ $tariff_uid.'_'.$room_uid ] = array($tariff_uid, $room_uid);
 				}
@@ -4843,7 +4961,7 @@ class dobooking
 			$caption = sanitiseOverlibOutput(jr_gettext('_JOMRES_AJAXFORM_CLICKHERECAPTION_REMOVE', '_JOMRES_AJAXFORM_CLICKHERECAPTION_REMOVE', false, false));
 		}
 
-		if ($this->tariffModel == '2' && $mrConfig[ 'tariffmode' ] == '2') {
+		if ($this->tariffModel == '2' && ($mrConfig[ 'tariffmode' ] == '2' || $mrConfig['tariffmode'] == '5') ) {
 			$tariffStuff[ 'RATEPERNIGHT' ] = $this->estimate_AverageRate($roomUid, $tariffUid);
 		}
 
@@ -5212,6 +5330,7 @@ class dobooking
 		$tmpBookingHandler = jomres_getSingleton('jomres_temp_booking_handler');
 		$amend_contract = $tmpBookingHandler->getBookingFieldVal('amend_contract');
 
+		$this->setMonitoring = array();
 		// Let's see if the form is ready to be booked.
 
 		if (!empty($this->requestedRoom) && $this->email != '') {
@@ -5237,7 +5356,7 @@ class dobooking
 
 				if ($this->jrConfig[ 'useJomresMessaging' ] == '1') {
 					$this->build_tariff_to_date_map();
-					if ($mrConfig[ 'tariffmode' ] == '2') {
+					if ($mrConfig[ 'tariffmode' ] == '2' || $mrConfig[ 'tariffmode' ] == '5') {
 						foreach ($this->micromanage_tarifftype_to_date_map as $dates) {
 							$prices = array();
 							foreach ($dates as $date) {
@@ -5598,6 +5717,7 @@ class dobooking
 	 */
 	public function makeNightlyRoomCharges()
 	{
+		$mrConfig = getPropertySpecificSettings($this->property_uid);
 		if (!get_showtime('include_room_booking_functionality')) {
 			$this->room_total = 0.00;
 			$this->room_total_nodiscount = 0.00;
@@ -5609,9 +5729,11 @@ class dobooking
 		$total = 0.00;
 		$result = $this->getVariantsOfType('guesttype');
 		$this->allRoomsAreIgnorePPPN = true;
+		$extra_guest_price = 0;
 		foreach ($this->requestedRoom as $r) {
 			$rm_idArr = explode('^', $r);
 			$tariff_id = $rm_idArr[ 1 ];
+			$extra_guest_price = convert_entered_price_into_safe_float($mrConfig[ 'extra_guest_price' ]);
 			$ignore_pppn = $this->allPropertyTariffs[ $tariff_id ][ 'ignore_pppn' ];
 			if ($ignore_pppn == '0') {
 				$this->allRoomsAreIgnorePPPN = false;
@@ -5624,8 +5746,9 @@ class dobooking
 				$this->setErrorLog('makeNightlyRoomCharges::Property is configured to charge Per Person Per Night. One or more rooms are not set to Ignore PPN. All rooms will be calculated as per person per night as it is impossible for Jomres to ascertain how many people will be in each room.');
 			}
 		}
+
 		$total_nodiscount = 0;
-		if (!empty($result)) {
+		if (!empty($result)  ) {
 			foreach ($result as $r) {
 				if ($this->cfg_perPersonPerNight == '1') {
 					if ($this->allRoomsAreIgnorePPPN) {
@@ -5665,7 +5788,9 @@ class dobooking
 				$this->room_total = ($total * $this->stayDays) * count($this->requestedRoom);
 				$this->room_total_nodiscount = ($total_nodiscount * $this->stayDays) * count($this->requestedRoom);
 			}
-		} else {
+		} elseif ( $this->cfg_tariffmode == '5' && $this->cfg_perPersonPerNight == '1') {
+				$this->room_total = ($this->rate_pernight * $this->stayDays) * $this->standard_guest_numbers;
+		} else 	{
 			$this->room_total = ($this->rate_pernight * $this->stayDays) * count($this->requestedRoom);
 			$this->room_total_nodiscount = ($this->rate_pernight_nodiscount * $this->stayDays) * count($this->requestedRoom);
 		}
@@ -5723,6 +5848,76 @@ class dobooking
 			}
 			$this->addBookingNote('Coupon', $note);
 		}
+
+		$this->extra_guest_price = 0.00;
+		if ( $this->cfg_tariffmode == '5' && count($this->requestedRoom) > 0 ) {
+
+			if ($this->extra_guest_numbers > 0 ) {
+				$this->extra_guest_price = ($this->extra_guest_numbers * $extra_guest_price) * $this->stayDays;
+				$this->extra_guest_price = $this->get_nett_price( $this->extra_guest_price , $this->accommodation_tax_rate);
+				$this->room_total = $this->room_total + $this->extra_guest_price;
+
+				// Not sure about this yet, commented for now
+				/*$this->add_additiional_line_item(
+					'UNKNOWN',
+					$id = 0,
+					jr_gettext('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', false) ,
+					$this->extra_guest_price,
+					$tax_code_id = 0);*/
+			}
+
+			$modifiers = $this->get_modifiers();
+
+			$discount = 0;
+
+			if ( $this->stayDays >= 7 && $this->stayDays < 30 && isset($modifiers->modifier_7_days) && $modifiers->modifier_7_days > 0 ) {
+				if ($modifiers->modifier_is_percentage == 1 ) {
+					$rate = (int)$modifiers->modifier_7_days/100;
+					$discount = $rate * $this->room_total;
+				} else {
+					$discount = $this->room_total - $modifiers->modifier_7_days;
+				}
+
+				$new_total = $this->room_total - $discount;
+
+				$message =
+					jr_gettext('JOMRES_BOOKING_DISCOUNTED_7_DAYS_1', 'JOMRES_BOOKING_DISCOUNTED_7_DAYS_1', false).
+					output_price($this->room_total).
+					jr_gettext('JOMRES_BOOKING_DISCOUNTED_7_DAYS_2', 'JOMRES_BOOKING_DISCOUNTED_7_DAYS_2', false).
+					output_price($new_total).
+					jr_gettext('JOMRES_BOOKING_DISCOUNTED_7_DAYS_NUMBER', 'JOMRES_BOOKING_DISCOUNTED_7_DAYS_NUMBER', false);
+
+
+				$this->addBookingNote( "booking_length", $message );
+				$this->room_total = $new_total;
+			}
+
+			if ( $this->stayDays >= 30 && isset($modifiers->modifier_30_days) && $modifiers->modifier_30_days > 0 ) {
+				if ($modifiers->modifier_is_percentage == 1 ) {
+					$rate = (int)$modifiers->modifier_30_days/100;
+					$discount = $rate * $this->room_total;
+				} else {
+					$discount = $this->room_total - $modifiers->modifier_30_days;
+				}
+
+				$new_total = $this->room_total - $discount;
+
+				$message =
+					jr_gettext('JOMRES_BOOKING_DISCOUNTED_7_DAYS_1', 'JOMRES_BOOKING_DISCOUNTED_7_DAYS_1', false).
+					output_price($this->room_total).
+					jr_gettext('JOMRES_BOOKING_DISCOUNTED_7_DAYS_2', 'JOMRES_BOOKING_DISCOUNTED_7_DAYS_2', false).
+					output_price($new_total).
+					jr_gettext('JOMRES_BOOKING_DISCOUNTED_30_DAYS_NUMBER', 'JOMRES_BOOKING_DISCOUNTED_30_DAYS_NUMBER', false);
+
+				$this->addBookingNote( "booking_length", $message );
+				$this->room_total = $new_total;
+			}
+
+			if ( $discount > 0 ) {
+				$this->booking_length_discount = $message;
+			}
+		}
+
 
 		//Personal (guest specific) discount
 		if ($this->guest_specific_discount > 0) {
@@ -5821,7 +6016,11 @@ class dobooking
 		$this->setErrorLog('calcTotals:: sps '.$this->single_person_suppliment);
 		$this->setErrorLog('calcTotals:: extras '.$this->extrasvalue);
 
-		$this->billing_grandtotal = ($this->room_total + $this->extrasvalue + $this->tax + $this->single_person_suppliment);
+		$child_price = 0;
+		if ( isset($this->child_prices['total_price'])) {
+			$child_price = $this->child_prices['total_price'];
+		}
+		$this->billing_grandtotal = ($this->room_total + $this->extrasvalue + $this->tax + $this->single_person_suppliment + $this->city_tax + $this->cleaning_fee + $child_price );
 		$this->room_total_ex_tax = $this->room_total + $this->single_person_suppliment;
 		$this->room_total_inc_tax = $this->room_total + $this->single_person_suppliment + $this->tax;
 		$this->setErrorLog('calcTotals::Total: '.$this->billing_grandtotal);
@@ -6006,6 +6205,19 @@ class dobooking
 		//$this->extrasvalue = $extrasTotal;
 
 		$this->extrasvalue = number_format($extrasTotal, 2, '.', '');
+
+
+		$this->cleaning_fee = 0.00;
+		if (!isset($mrConfig[ 'cleaning_fee' ])) {
+			$mrConfig[ 'cleaning_fee' ] = 0;
+		}
+		if (count($this->requestedRoom) > 0 && $mrConfig[ 'cleaning_fee' ] > 0 ) {
+			$this->cleaning_fee = count($this->requestedRoom) * $mrConfig[ 'cleaning_fee' ];
+		} else {
+			$this->cleaning_fee = 0;
+		}
+
+
 	}
 
 	/**
@@ -6026,6 +6238,38 @@ class dobooking
 		$this->setErrorLog('calcTax:: Total tax calculated as '.$totalTax);
 
 		$this->tax = $totalTax;
+
+		$city_tax = 0;
+		$mrConfig = $this->mrConfig;
+		if ( (float)$mrConfig[ 'city_tax_value' ] > 0 && $totalBooking > 0 ) {
+
+			if (!isset($mrConfig[ 'city_tax_models' ])) {
+				$mrConfig[ 'city_tax_models' ] = 'single';
+			}
+
+			switch ($mrConfig[ 'city_tax_models' ]) {
+				case 'single' :
+					$city_tax = (float)$mrConfig[ 'city_tax_value' ];
+					break;
+				case 'pernight' :
+					$city_tax = (float)$mrConfig[ 'city_tax_value' ] * $this->stayDays ;
+					break;
+				case 'perguest' :
+					$city_tax = (float)$mrConfig[ 'city_tax_value' ] * $this->city_tax_number_of_guests ;
+					break;
+				case 'perguestpernight' :
+					$city_tax = ((float)$mrConfig[ 'city_tax_value' ]  * $this->stayDays)  * $this->city_tax_number_of_guests ;
+					break;
+				case 'percentbookingtotal' :
+					$city_tax = $totalBooking * ((float)$mrConfig[ 'city_tax_value' ] / 100);
+					break;
+			}
+
+		$this->city_tax = $city_tax;
+		}
+
+
+
 		$this->setErrorLog('calcTax:: Ended');
 	}
 
@@ -6039,10 +6283,10 @@ class dobooking
 		$totalNumberOfGuests = 0;
 
 		if (empty($this->requestedRoom)) { // No rooms selected yet
-		return;
+			return;
 		}
 		if (empty($guests)) { // Guest numbers not chosen/used
-		return;
+			return;
 		}
 		$use_propertywide_sps_setting = false;
 
@@ -6308,6 +6552,9 @@ class dobooking
 		$this->room_total_nodiscount = 0.00;
 		$this->extrasvalue = 0.00;
 		$this->tax = 0.00;
+		$this->city_tax = 0.00;
+		$this->extra_guest_price = 0;
+		$this->cleaning_fee = 0.00;
 		$this->single_person_suppliment = 0.00;
 		$this->deposit_required = 0.00;
 		$this->rate_pernight_nodiscount = 0.00;
@@ -6368,7 +6615,7 @@ class dobooking
 		// This problem appeared beause an SRP was using flat rate. Because the room/tariff combo is automatically selected the system didn't have a chance to find the correct tariff uid for the selected room.
 		$this->build_tariff_to_date_map();
 
-		if ($mrConfig[ 'tariffmode' ] == '2') { // micromanage
+		if ($mrConfig[ 'tariffmode' ] == '2' || $mrConfig[ 'tariffmode' ] == '5') {
 			$dateRangeArray = explode(',', $this->dateRangeString);
 			$first_date = $dateRangeArray[ 0 ];
 			$tmp = array();
@@ -6576,7 +6823,7 @@ class dobooking
 		$mrConfig = $this->mrConfig;
 		$tmpBookingHandler = jomres_getSingleton('jomres_temp_booking_handler');
 
-		if ($mrConfig[ 'tariffmode' ] == '2') {
+		if ($mrConfig[ 'tariffmode' ] == '2' || $mrConfig[ 'tariffmode' ] == '5') {
 			$this->setErrorLog('setAverageRate : going to te_setAverageRate');
 			$this->te_setAverageRate(); // Tariffs enhanced averages instead of the bog standard method.
 		} else {
@@ -6732,7 +6979,7 @@ class dobooking
 					$cumulative_price += $dates[ $date ][ 'price' ];
 					$cumulative_price = $cumulative_price  + $surcharge_nett;
 				}
-//var_dump($cumulative_price);exit;
+
 				$basic_room_rate = $cumulative_price / $stayDays;
 
 				if (count($datesTilBooking) <= $wisepricethreshold && $mrConfig[ 'wisepriceactive' ] == '1') {
@@ -6855,6 +7102,16 @@ class dobooking
 		}
 	}
 
+	private function get_modifiers()
+	{
+		reset($this->allPropertyTariffs);
+		$first_key = key($this->allPropertyTariffs);
+
+		return $this->allPropertyTariffs[$first_key]["modifiers"];
+
+	}
+
+
 	/**
 	 * 
 	 *
@@ -6937,6 +7194,10 @@ class dobooking
 		return self::$mktimes[ $date ];
 	}
 
+
+
+	/**
+	 *
 	// This function is designed to check with the Jomres system to see if the email address this user is trying to use can be used.
 	// Scenario :
 	// If the system is configured to create a new user when a booking is made, then naturally the first time an email address is used, a new user is created.
@@ -6944,12 +7205,8 @@ class dobooking
 	// This function will ping the handlereq task, sending the email address. handlereq will look to see if the system is configured to create new users. If it is, and the current user isn't logged in
 	// but the email address is already in use by another user, then the booking form will not enable the submit button and the current user will be prompted to either log in, or use another email address.
 
-	// If the system is not configured to create new users then a new Joomla user isn't created anyway, in which case Jomres will simply return that it's ok to use the email address
+	// If the system is not configured to create new users then a new user isn't created anyway, in which case Jomres will simply return that it's ok to use the email address
 	// Managers can re-use email addresses
-
-	/**
-	 * 
-	 *
 	 *
 	 */
 
@@ -6983,7 +7240,7 @@ class dobooking
 				}
 
 				if ($email_found) {
-					if ($thisJRUser->userIsManager) { // At this point we have a manager who is using the dropdown to select a guest's details
+					if ($thisJRUser->userIsManager && isset($_GET['field']) && $_GET['field'] == 'existingCustomers') { // At this point we have a manager who is using the dropdown to select a guest's details
 						$this->email_address_can_be_used = true;
 					} else {
 						if ($thisJRUser->userIsRegistered) {
@@ -7008,5 +7265,45 @@ class dobooking
 		unset($all_users);
 
 		return $this->email_address_can_be_used;
+	}
+
+
+	public function build_adults_dropdown()
+	{
+		jr_import('booking_engine_adults_dropdown');
+		$booking_engine_adults_dropdown = new booking_engine_adults_dropdown($this);
+		return $booking_engine_adults_dropdown->build_adults_dropdown();
+	}
+
+	public function build_children_dropdowns()
+	{
+		jr_import('booking_engine_children_dropdown');
+		$booking_engine_children_dropdown = new booking_engine_children_dropdown($this );
+		return $booking_engine_children_dropdown->build_children_dropdowns();
+	}
+
+	public function set_child_selection( $guest_index , $value)
+	{
+		$this->child_numbers[$guest_index] = $value;
+
+	}
+
+	public function build_children_selectors()
+	{
+
+		$child_dropdowns = $this->build_children_dropdowns();
+
+		$tmpl = new patTemplate();
+		$tmpl->addRows('child_dropdowns', $child_dropdowns);
+		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+		$tmpl->readTemplatesFromInput('booking_form_child_selectors.html');
+		return $tmpl->getParsedTemplate();
+	}
+
+	public function calculate_child_prices( )
+	{
+		jr_import('booking_engine_calculate_child_prices');
+		$booking_engine_calculate_child_prices = new booking_engine_calculate_child_prices($this );
+		$this->child_prices = $booking_engine_calculate_child_prices->calculate_child_prices( $this );
 	}
 }

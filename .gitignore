@@ -61,3 +61,11 @@ database/updates/9.10.0/sample.php
 libraries/packages/
 
 .idea/
+
+logs/Audit.application.log
+
+logs/DeferredTasks.application.log
+
+logs/OhoVJrkvxRBLJRCNPvqTlRClCJNJFx.html
+
+logs/

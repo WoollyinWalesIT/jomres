@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.4
+ * @version Jomres 9.23.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -19,7 +19,7 @@ if (this_cms_is_joomla()) {
     $result = true;
     if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ADMINISTRATORDIRECTORY.JRDS.'components'.JRDS.'com_jomres'.JRDS.'admin.jomres.php')) {
         if (!unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ADMINISTRATORDIRECTORY.JRDS.'components'.JRDS.'com_jomres'.JRDS.'admin.jomres.php')) {
-			$this->setMessage('Error, tried to delete '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ADMINISTRATORDIRECTORY.JRDS.'components'.JRDS.'com_jomres'.JRDS.'admin.jomres.php'.'. However, file permissions prevent this from happening, so you MUST delete this file before you can continue with the upgrade. This file is not used by Joomla 3.x+', 'danger');
+			throw new Exception('Error, tried to delete '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ADMINISTRATORDIRECTORY.JRDS.'components'.JRDS.'com_jomres'.JRDS.'admin.jomres.php'.'. However, file permissions prevent this from happening, so you MUST delete this file before you can continue with the upgrade. This file is not used by Joomla 3.x+');
 		}
     }
 }
@@ -53,8 +53,7 @@ try {
 	createExtraIndexs();
 } 
 catch (Exception $e) {
-	$this->setMessage('Error, something went wrong when running the legacy installer, Jomres may not be installed properly.', 'danger');
-	$this->setMessage($e->getMessage());
+	echo 'Error, something went wrong when running the legacy installer, Jomres may not be installed properly.';
 }
 
 /**
@@ -1610,7 +1609,7 @@ function createPfeaturesCategoriesTable()
 			";
 
 			if (!doInsertSql($query)) {
-				$this->setMessage('Error, unable to insert sample data in the #__jomres_hotel_features_categories table', 'danger');
+				throw new Exception('Error, unable to insert sample data in the #__jomres_hotel_features_categories table');
 			}
 
     }
@@ -2658,28 +2657,28 @@ function alterGuestsVatcodeCol()
     //throw new Exception ( "Editing __jomres_guests table adding vat_number/vat_number_validated columns");
     $query = "ALTER TABLE `#__jomres_guests` ADD `vat_number` CHAR (25) DEFAULT '' NOT NULL AFTER `discount` "; // Most I could find was up to possibly 15 chars. Adding 10 to be on the safe side.
     if (!doInsertSql($query, '')) {
-        throw new Exception('Error, unable to add __jomres_guests vat_number');
+        //throw new Exception('Error, unable to add __jomres_guests vat_number');
     }
     $query = "ALTER TABLE `#__jomres_guests` ADD `vat_number_validated` BOOL NOT NULL DEFAULT '0' AFTER `vat_number` ";
     if (!doInsertSql($query, '')) {
-        throw new Exception('Error, unable to add __jomres_guests vat_number_validated');
+        //throw new Exception('Error, unable to add __jomres_guests vat_number_validated');
     }
     $query = 'ALTER TABLE `#__jomres_guests` ADD `vat_number_validation_response` TEXT NULL AFTER `vat_number_validated` ';
     if (!doInsertSql($query, '')) {
-        throw new Exception('Error, unable to add __jomres_guests vat_number_validation_response');
+        //throw new Exception('Error, unable to add __jomres_guests vat_number_validation_response');
     }
 
     $query = "ALTER TABLE `#__jomres_guest_profile` ADD `vat_number` CHAR (25) DEFAULT '' NOT NULL AFTER `email` "; // Most I could find was up to possibly 15 chars. Adding 10 to be on the safe side.
     if (!doInsertSql($query, '')) {
-        throw new Exception('Error, unable to add __jomres_guest_profile vat_number');
+        //throw new Exception('Error, unable to add __jomres_guest_profile vat_number');
     }
     $query = "ALTER TABLE `#__jomres_guest_profile` ADD `vat_number_validated` BOOL NOT NULL DEFAULT '0' AFTER `vat_number` ";
     if (!doInsertSql($query, '')) {
-        throw new Exception('Error, unable to add __jomres_guest_profile vat_number_validated');
+        //throw new Exception('Error, unable to add __jomres_guest_profile vat_number_validated');
     }
     $query = 'ALTER TABLE `#__jomres_guest_profile` ADD `vat_number_validation_response` TEXT NULL AFTER `vat_number_validated` ';
     if (!doInsertSql($query, '')) {
-        throw new Exception('Error, unable to add __jomres_guest_profile vat_number_validation_response');
+        //throw new Exception('Error, unable to add __jomres_guest_profile vat_number_validation_response');
     }
 }
 /**

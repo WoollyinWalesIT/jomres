@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.4
+ * @version Jomres 9.23.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -223,7 +223,7 @@ class j06000show_property_tariffs
 					}
 
 					if ($mrConfig[ 'tariffChargesStoredWeeklyYesNo' ] == '1' && $mrConfig[ 'tariffmode' ] == '1') {
-						if ($mrConfig[ 'tariffmode' ] == 2) {
+						if ($mrConfig[ 'tariffmode' ] == '2' || $mrConfig[ 'tariffmode' ] == '5') {
 							$price_inc_vat = $price_inc_vat * 7;
 						}
 						$r[ 'ROOMRATEPERDAY' ] = output_price($price_inc_vat).' '.jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', '_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK');

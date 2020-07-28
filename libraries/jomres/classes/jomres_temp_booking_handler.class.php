@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.4
+ * @version Jomres 9.23.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -547,7 +547,7 @@ class jomres_temp_booking_handler
 				if (!file_put_contents($this->sessionfile, $data)) {
 					throw new Exception('Error: Could not save session file');
 				}
-			} elseif (  $this->ip != '0.0.0.0' || $force_session  ) {
+			} else {
 				$query = "UPDATE #__jomres_sessions SET `data` = '".$data."' WHERE `session_id` = '".$this->jomressession_db."'";
 				if (!doInsertSql($query, '')) {
 					throw new Exception('Error: Could not update session data to database');

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.4
+ * @version Jomres 9.23.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -53,7 +53,9 @@ class jrportal_rates
 		$this->rates_defaults['rate_description'] 			= '';
 		$this->rates_defaults['validfrom'] 					= date("Y/m/d");
 		$this->rates_defaults['validto'] 					= date("Y/m/d");
-		$this->rates_defaults['roomrateperday'] 			= 100.55;
+		$this->rates_defaults['roomrateperday'] 			= 100;
+		$this->rates_defaults['extra_guests_price'] 		= 0.00;
+		$this->rates_defaults['modifiers']			 		= array();
 		$this->rates_defaults['mindays'] 					= 1;
 		$this->rates_defaults['maxdays'] 					= 365;
 		$this->rates_defaults['minpeople'] 					= 1;
@@ -77,6 +79,8 @@ class jrportal_rates
 		$this->validfrom 				= $this->rates_defaults['validfrom'];
 		$this->validto					= $this->rates_defaults['validto'];
 		$this->roomrateperday 			= $this->rates_defaults['roomrateperday'];
+		$this->extra_guests_price		= $this->rates_defaults['extra_guests_price'];
+		$this->modifiers				= $this->rates_defaults['modifiers'];
 		$this->mindays 					= $this->rates_defaults['mindays'];
 		$this->maxdays 					= $this->rates_defaults['maxdays'];
 		$this->minpeople 				= $this->rates_defaults['minpeople'];
@@ -154,6 +158,8 @@ class jrportal_rates
 					`validfrom`,
 					`validto`,
 					`roomrateperday`,
+					`extra_guests_price`,
+					`modifiers`,
 					`mindays`,
 					`maxdays`, 
 					`minpeople`, 
@@ -174,33 +180,44 @@ class jrportal_rates
 					AND `property_uid` = ".(int)$this->property_uid;
 		$result = doSelectSql($query);
 
-		if (empty($result)) {
-			throw new Exception('Error: there are no tariffs saved for these rates uids, so tariffs are not configured properly. Please create tariffs again.');
+		if (empty($result)
+			&& ( get_showtime("task") != 'delete_tariff_micromanage' &&
+				get_showtime("task") != 'delete_tariff_advanced' &&
+				 get_showtime("task") != 'delete_tariff_micromanage' )
+			) {
+			throw new Exception('Tariffs are not setup properly. Please go back, delete any existing tariffs and create new ones.');
 		} else {
-			foreach ($result as $r) {
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['rates_uid'] 					= (int)$r->rates_uid;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['rate_title'] 				= $rate_title; //TODO
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['rate_description'] 			= $rate_description; //TODO
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['validfrom'] 					= $r->validfrom;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['validto'] 					= $r->validto;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['roomrateperday'] 			= $r->roomrateperday;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['mindays'] 					= (int)$r->mindays;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['maxdays'] 					= (int)$r->maxdays;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['minpeople'] 					= (int)$r->minpeople;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['maxpeople']					= (int)$r->maxpeople;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['roomclass_uid'] 				= (int)$r->roomclass_uid;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['ignore_pppn'] 				= (int)$r->ignore_pppn;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['allow_ph'] 					= (int)$r->allow_ph;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['allow_we'] 					= (int)$r->allow_we;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['weekendonly'] 				= (int)$r->weekendonly;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['validfrom_ts'] 				= $r->validfrom_ts;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['validto_ts'] 				= $r->validto_ts;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['dayofweek'] 					= (int)$r->dayofweek;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['minrooms_alreadyselected'] 	= (int)$r->minrooms_alreadyselected;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['maxrooms_alreadyselected'] 	= (int)$r->maxrooms_alreadyselected;
-				$this->rates[$this->tarifftype_id][$r->rates_uid]['property_uid'] 				= (int)$r->property_uid;
-			}
+			if (!empty($result)) {
+				foreach ($result as $r) {
+					if (!isset($r->modifiers) ) {
+						$r->modifiers = base64_encode(json_encode( [] ));
+					}
 
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['rates_uid'] 					= (int)$r->rates_uid;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['rate_title'] 				= $rate_title; //TODO
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['rate_description'] 			= $rate_description; //TODO
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['validfrom'] 					= $r->validfrom;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['validto'] 					= $r->validto;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['roomrateperday'] 			= $r->roomrateperday;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['extra_guests_price'] 		= $r->extra_guests_price;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['modifiers']			 		= json_decode(base64_decode($r->modifiers));
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['mindays'] 					= (int)$r->mindays;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['maxdays'] 					= (int)$r->maxdays;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['minpeople'] 					= (int)$r->minpeople;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['maxpeople']					= (int)$r->maxpeople;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['roomclass_uid'] 				= (int)$r->roomclass_uid;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['ignore_pppn'] 				= (int)$r->ignore_pppn;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['allow_ph'] 					= (int)$r->allow_ph;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['allow_we'] 					= (int)$r->allow_we;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['weekendonly'] 				= (int)$r->weekendonly;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['validfrom_ts'] 				= $r->validfrom_ts;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['validto_ts'] 				= $r->validto_ts;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['dayofweek'] 					= (int)$r->dayofweek;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['minrooms_alreadyselected'] 	= (int)$r->minrooms_alreadyselected;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['maxrooms_alreadyselected'] 	= (int)$r->maxrooms_alreadyselected;
+					$this->rates[$this->tarifftype_id][$r->rates_uid]['property_uid'] 				= (int)$r->property_uid;
+				}
+			}
 		return true;
 		}
 	
@@ -229,7 +246,7 @@ class jrportal_rates
 		//build rates and min days array for insertion
 		if ($this->build_new_rates()) {
 			$this->insert_new_rates();
-		
+
 			//webhook notification
 			$webhook_notification							   = new stdClass();
 			$webhook_notification->webhook_event				= 'tariffs_updated';
@@ -364,7 +381,7 @@ class jrportal_rates
 
 			$counter++;
 		}
-	
+
 	if (empty($this->new_rates))
 		return false;
 	
@@ -396,7 +413,11 @@ class jrportal_rates
 		foreach ($this->new_rates as $r) {
 			$this->validfrom_ts = str_replace("/","-",$r['start']);
 			$this->validto_ts = str_replace("/","-",$r['end']);
-			
+
+			if (!isset($this->modifiers) || $this->modifiers == '' ) {
+				$this->modifiers = array();
+			}
+
 			$query = "INSERT INTO #__jomres_rates 
 							(
 							`rate_title`,
@@ -404,6 +425,8 @@ class jrportal_rates
 							`validfrom`,
 							`validto`,
 							`roomrateperday`,
+							`extra_guests_price`,
+							`modifiers`,
 							`mindays`,
 							`maxdays`,
 							`minpeople`,
@@ -427,6 +450,8 @@ class jrportal_rates
 						'".$r['start']."',
 						'".$r['end']."',
 						".$r['value'].",
+						".$this->extra_guests_price.",
+						'".base64_encode(json_encode($this->modifiers))."',
 						".(int)$r['mindays'].",
 						".(int)$this->maxdays.",
 						".(int)$this->minpeople.",
@@ -443,7 +468,7 @@ class jrportal_rates
 						'".$this->validto_ts."',
 						".(int)$this->property_uid."
 						)";
-			
+
 			$new_rate_uid = doInsertSql($query,'');
 			
 			if (!$new_rate_uid) {
@@ -452,12 +477,13 @@ class jrportal_rates
 				$this->new_rates_uids[] = (int)$new_rate_uid;
 			}
 		}
-		
+
 		//update the tarifftype rates xref
 		if ($this->update_tarifftype_rate_xref()) {
+
 			return true;
 		}
-		
+
 		return false;
 	}
 		
@@ -536,10 +562,10 @@ class jrportal_rates
 		} else {
 			$this->rates[$this->tarifftype_id] = array();
 		}
-		
+
 		//delete all rates for this tarifftype id
 		$query = "DELETE FROM #__jomres_rates WHERE `rates_uid` IN (".jomres_implode(array_keys($this->rates[$this->tarifftype_id])).") ";
-		
+
 		if (!doInsertSql($query,'')) {
 			throw new Exception('Error: Delete rates failed.');
 		}
@@ -783,6 +809,8 @@ class jrportal_rates
 						`validfrom`,
 						`validto`,
 						`roomrateperday`,
+						`extra_guests_price`,
+						`modifiers`,
 						`mindays`,
 						`maxdays`,
 						`minpeople`,
@@ -806,6 +834,9 @@ class jrportal_rates
 						'".$this->validfrom."',
 						'".$this->validto."',
 						".$this->roomrateperday.",
+						".$this->extra_guests_price.",
+						'".base64_encode(json_encode($this->modifiers))."',
+						
 						".(int)$this->mindays.",
 						".(int)$this->maxdays.",
 						".(int)$this->minpeople.",
@@ -869,6 +900,8 @@ class jrportal_rates
 						`validfrom` = '".$this->validfrom."',
 						`validto` = '".$this->validto."',
 						`roomrateperday` = ".$this->roomrateperday.",
+						`extra_guests_price` = ".$this->extra_guests_price.",
+						`modifiers` = '".base64_encode(json_encode($this->modifiers))."',
 						`mindays` = ".(int)$this->mindays.",
 						`maxdays` = ".(int)$this->maxdays.",
 						`minpeople` = ".(int)$this->minpeople.",
@@ -893,5 +926,47 @@ class jrportal_rates
 		}
 
 		return true;
+	}
+
+	/*
+	 *
+	 * Find the rooms for this property uid, find tariffs for this property uid, return room type ids that do not yet have a tariff
+	 *
+	 *
+	 */
+	public function get_unpopulated_room_type_ids( $property_uid = 0 )
+	{
+		if ( $property_uid == 0 ) {
+			throw new Exception('Property uid not set ');
+		}
+
+		$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
+		$current_property_details->gather_data($property_uid);
+
+		$property_room_types =  $current_property_details->multi_query_result[$property_uid]['room_types'];
+		$property_room_type_ids = array_keys($property_room_types);
+
+		if (empty($property_room_type_ids)) {
+			return array();
+		}
+
+		$query = "SELECT DISTINCT `roomclass_uid` FROM #__jomres_rates WHERE property_uid = ".(int)$property_uid;
+		$tariffs = doSelectSql($query);
+
+		if (empty($tariffs)) {
+			return $property_room_type_ids;
+		}
+
+
+
+		foreach ($property_room_type_ids as $key=>$room_type_id) {
+			foreach ( $tariffs as $tariff ) {
+				if ( $tariff->roomclass_uid == $room_type_id ) {
+					unset($property_room_type_ids[$key]);
+				}
+			}
+		}
+
+		return $property_room_type_ids;
 	}
 }

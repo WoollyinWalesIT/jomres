@@ -1,0 +1,78 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<h2 class="page-header">{PAGETITLE}</h2>
+
+	<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm" class="form-horizontal">
+		<fieldset>
+			<div class="control-group">
+				<label class="control-label" for="type">{HTYPE}</label>
+
+				<div class="controls">
+					<input type="text" name="type" value="{TYPE}"/>
+
+					<p class="help-block">{HTYPE_TT_TEXT}</p>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="type">{HNOTES}</label>
+
+				<div class="controls">
+					<input type="text" name="notes" value="{NOTES}"/>
+
+					<p class="help-block">{HNOTES_TT_TEXT}</p>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="type">{HMAXIMUM}</label>
+
+				<div class="controls">
+					<input type="text" name="maximum" value="{MAXIMUM}"/>
+
+					<p class="help-block">{HMAXIMUM_TT_TEXT}</p>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="typposnege">{HPOSNEG}</label>
+
+				<div class="controls">
+					{POSNEG}
+					<p class="help-block">{HPOSNEG_TT_TEXT}</p>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="is_percentage">{HISPERCENTAGE}</label>
+
+				<div class="controls">
+					{ISPERCENTAGE}
+					<p class="help-block">{HISPERCENTAGE_TT_TEXT}</p>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="type">{HVARIANCE}</label>
+
+				<div class="controls">
+					<input type="text" name="variance" value="{VARIANCE}"/>
+
+					<p class="help-block">{HVARIANCE_T_TEXT}</p>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="is_child">{H_JOMRES_GUESTTYPES_IS_CHILD}</label>
+
+				<div class="controls">
+					{ISCHILD}
+					<p class="help-block">{HJOMRES_GUESTTYPES_IS_CHILD_T_TEXT}</p>
+				</div>
+				</div>
+			</div>
+
+			<div class="form-actions">
+				{JOMRESTOOLBAR}
+			</div>
+			<input type="hidden" name="typeid" value="{ID}"/>
+			<input type="hidden" name="task" value="savecustomertype"/>
+			<input type="hidden" name="no_html" value="1"/>
+			{CSRF_TOKEN}
+		</fieldset>
+	</form>
+</patTemplate:tmpl>

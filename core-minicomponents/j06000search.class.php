@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.4
+ * @version Jomres 9.23.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -153,7 +153,12 @@ class j06000search
 		$calledByModule = getEscaped($calledByModule);
 
 		$infoIcon = JOMRES_IMAGES_RELPATH.'information.png';
-		$output = array();
+		if ( isset($componentArgs['form_elements']) ) {
+			$output = $componentArgs['form_elements']; // Allows calling scripts to add form elements that are then handed to the template without needing to make any other changes to this script
+		} else {
+			$output = array();
+		}
+
 		$pageoutput = array();
 		$showButton = false;
 		$searchAll = jr_gettext('_JOMRES_SEARCH_ALL', '_JOMRES_SEARCH_ALL', false, false);
@@ -163,6 +168,12 @@ class j06000search
 		$sch = new jomSearch($calledByModule, $includedInModule);
 		$sch->searchAll = $searchAll;
 		$searchOptions = $sch->searchOptions;
+
+		if ( isset($componentArgs['template_file']) ) {
+			$sch->templateFile = $componentArgs['template_file']; // Send a custom filename which is stored in the theme/com_jomres/html directory
+		}
+
+
 		$h = '<input type="hidden" name="calledByModule" value="'.$sch->calledByModule.'"/><input type="hidden" name="Itemid" value="'.get_showtime('jomresItemid').'"/>';
 
 		if (this_cms_is_wordpress()) {
@@ -306,60 +317,38 @@ class j06000search
 			$sch->filter[ 'departure' ] = str_replace($unwanted, '', $sch->filter[ 'departure' ]);
 		}
 
-		if (in_array('country', $searchOptions) && $showSearchOptions) {
-			$output[ 'JOMRES_SEARCH_GEO_COUNTRYSEARCH' ] = jr_gettext('_JOMRES_SEARCH_GEO_COUNTRYSEARCH', '_JOMRES_SEARCH_GEO_COUNTRYSEARCH', false);
-		}
-		if (in_array('region', $searchOptions) && $showSearchOptions) {
-			$output[ 'JOMRES_SEARCH_GEO_REGIONSEARCH' ] = jr_gettext('_JOMRES_SEARCH_GEO_REGIONSEARCH', '_JOMRES_SEARCH_GEO_REGIONSEARCH', false);
-		}
-		if (in_array('town', $searchOptions) && $showSearchOptions) {
-			$output[ 'JOMRES_SEARCH_GEO_TOWNSEARCH' ] = jr_gettext('_JOMRES_SEARCH_GEO_TOWNSEARCH', '_JOMRES_SEARCH_GEO_TOWNSEARCH', false);
-		}
-		if (in_array('description', $searchOptions) && $showSearchOptions) {
-			$output[ 'JOMRES_SEARCH_DESCRIPTION_INFO' ] = jr_gettext('_JOMRES_SEARCH_DESCRIPTION_INFO', '_JOMRES_SEARCH_DESCRIPTION_INFO', false);
-			$output[ 'JOMRES_SEARCH_DESCRIPTION_LABEL' ] = jr_gettext('_JOMRES_SEARCH_DESCRIPTION_LABEL', '_JOMRES_SEARCH_DESCRIPTION_LABEL', false);
-		}
-		if (in_array('feature_uids', $searchOptions) && $showSearchOptions) {
-			$output[ 'JOMRES_SEARCH_FEATURE_INFO' ] = jr_gettext('_JOMRES_SEARCH_FEATURE_INFO', '_JOMRES_SEARCH_FEATURE_INFO', false);
-		}
-		if (in_array('room_type', $searchOptions) && $showSearchOptions) {
-			$output[ 'JOMRES_SEARCH_RTYPES' ] = jr_gettext('_JOMRES_SEARCH_RTYPES', '_JOMRES_SEARCH_RTYPES', false);
-		}
-		if (in_array('availability', $searchOptions) && $showSearchOptions && get_showtime('task') != 'bookaroom') {
-			$output[ 'JOMRES_SEARCH_AVL_INFO' ] = jr_gettext('_JOMRES_SEARCH_AVL_INFO', '_JOMRES_SEARCH_AVL_INFO', false);
 
-			$output[ 'HARRIVALDATE' ] = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', false);
-			$output[ 'HDEPARTUREDATE' ] = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', false);
-		}
+		$output[ 'JOMRES_SEARCH_GEO_COUNTRYSEARCH' ] = jr_gettext('_JOMRES_SEARCH_GEO_COUNTRYSEARCH', '_JOMRES_SEARCH_GEO_COUNTRYSEARCH', false);
+		$output[ 'JOMRES_SEARCH_GEO_REGIONSEARCH' ] = jr_gettext('_JOMRES_SEARCH_GEO_REGIONSEARCH', '_JOMRES_SEARCH_GEO_REGIONSEARCH', false);
+		$output[ 'JOMRES_SEARCH_GEO_TOWNSEARCH' ] = jr_gettext('_JOMRES_SEARCH_GEO_TOWNSEARCH', '_JOMRES_SEARCH_GEO_TOWNSEARCH', false);
+		$output[ 'JOMRES_SEARCH_DESCRIPTION_INFO' ] = jr_gettext('_JOMRES_SEARCH_DESCRIPTION_INFO', '_JOMRES_SEARCH_DESCRIPTION_INFO', false);
+		$output[ 'JOMRES_SEARCH_DESCRIPTION_LABEL' ] = jr_gettext('_JOMRES_SEARCH_DESCRIPTION_LABEL', '_JOMRES_SEARCH_DESCRIPTION_LABEL', false);
+		$output[ 'JOMRES_SEARCH_FEATURE_INFO' ] = jr_gettext('_JOMRES_SEARCH_FEATURE_INFO', '_JOMRES_SEARCH_FEATURE_INFO', false);
+		$output[ 'JOMRES_SEARCH_RTYPES' ] = jr_gettext('_JOMRES_SEARCH_RTYPES', '_JOMRES_SEARCH_RTYPES', false);
+		$output[ 'JOMRES_SEARCH_AVL_INFO' ] = jr_gettext('_JOMRES_SEARCH_AVL_INFO', '_JOMRES_SEARCH_AVL_INFO', false);
+		$output[ 'HARRIVALDATE' ] = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', false);
+		$output[ 'HDEPARTUREDATE' ] = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', false);
+		$output[ 'JOMRES_SEARCH_PTYPES' ] = jr_gettext('_JOMRES_SEARCH_PTYPES', '_JOMRES_SEARCH_PTYPES', false);
+		$output[ 'JOMRES_SEARCH_CATEGORY' ] = jr_gettext('_JOMRES_HCATEGORY', '_JOMRES_HCATEGORY', false);
+		$output[ 'JOMRES_SEARCH_PRICERANGES' ] = jr_gettext('_JOMRES_SEARCH_PRICERANGES', '_JOMRES_SEARCH_PRICERANGES', false);
+		$output[ 'HGUESTNUMBER' ] = jr_gettext('_JOMRES_SEARCH_GUESTNUMBER', '_JOMRES_SEARCH_GUESTNUMBER', false);
+		$output[ 'HSTARS' ] = jr_gettext('_JOMRES_SEARCH_STARS', '_JOMRES_SEARCH_STARS', false);
+		$output[ '_JRPORTAL_PROPERTIES_PROPERTYNAME' ] = jr_gettext('_JRPORTAL_PROPERTIES_PROPERTYNAME', '_JRPORTAL_PROPERTIES_PROPERTYNAME', false);
+		$output[ '_JOMRES_PROPERTY_HCATEGORIES' ] = jr_gettext('_JOMRES_PROPERTY_HCATEGORIES', '_JOMRES_PROPERTY_HCATEGORIES', false);
+		$output[ '_JOMRES_REVIEWS_RATING_2' ] = jr_gettext('_JOMRES_REVIEWS_RATING_2', '_JOMRES_REVIEWS_RATING_2', false);
+		$output[ '_JOMRES_COM_A_RESET' ] = jr_gettext('_JOMRES_COM_A_RESET', '_JOMRES_COM_A_RESET', false);
+		$output[ 'JOMRES_COM_A_ACCOMMODATES' ] = jr_gettext('JOMRES_COM_A_ACCOMMODATES', 'JOMRES_COM_A_ACCOMMODATES', false);
 
-		if (in_array('ptype', $searchOptions) && $showSearchOptions) {
-			$output[ 'JOMRES_SEARCH_PTYPES' ] = jr_gettext('_JOMRES_SEARCH_PTYPES', '_JOMRES_SEARCH_PTYPES', false);
-		}
-		
-		if (in_array('cat_id', $searchOptions) && $showSearchOptions) {
-			$output[ 'JOMRES_SEARCH_CATEGORY' ] = jr_gettext('_JOMRES_HCATEGORY', '_JOMRES_HCATEGORY', false);
-		}
-
-		if (in_array('priceranges', $searchOptions) && $showSearchOptions) {
-			$output[ 'JOMRES_SEARCH_PRICERANGES' ] = jr_gettext('_JOMRES_SEARCH_PRICERANGES', '_JOMRES_SEARCH_PRICERANGES', false);
-		}
-
-		if (in_array('guestnumber', $searchOptions) && $showSearchOptions && get_showtime('task') != 'bookaroom') {
-			$output[ 'HGUESTNUMBER' ] = jr_gettext('_JOMRES_SEARCH_GUESTNUMBER', '_JOMRES_SEARCH_GUESTNUMBER', false);
-		}
-		if (in_array('stars', $searchOptions) && $showSearchOptions && get_showtime('task') != 'bookaroom') {
-			$output[ 'HSTARS' ] = jr_gettext('_JOMRES_SEARCH_STARS', '_JOMRES_SEARCH_STARS', false);
-		}
 
 		$output[ 'SUBMITURL' ] = jomresURL(JOMRES_SITEPAGE_URL_NOSEF);
 		$output[ 'FORMNAME' ] = $jomresSearchFormname;
-		 
+
 		$output[ 'SELECTCOMBO_HIDDENDROPDOWNS_TOWN' ] = '';
 		
 		if (!$data_only) {
 			// -------------------------------------------------------------------------------------------------------------------------------------------
 
-			if (in_array('selectcombo', $searchOptions) && $showSearchOptions) {
+			if ($showSearchOptions) {
 				if (!defined('_JOMRES_SELECTCOMBO')) {
 					// define("_JOMRES_SELECTCOMBO",1);
 					jomres_cmsspecific_addheaddata("javascript",JOMRES_JS_RELPATH, 'jquery.chainedSelects.js');
@@ -404,7 +393,7 @@ class j06000search
 					}
 				}
 
-				$output[ 'SELECTCOMBO_COUNTRY' ] = jomresHTML::selectList($countryArray, 'country', 'size="1" id="search_country" class="inputbox"', 'value', 'text', '').'<br />';
+				$output[ 'SELECTCOMBO_COUNTRY' ] = jomresHTML::selectList($countryArray, 'country', 'id="search_country" class="inputbox search_dropdown"', 'value', 'text', '').'<br />';
 				$output[ 'SELECTCOMBO_HIDDENDROPDOWNS_REGION' ] = '<!-- state combobox is chained by country combobox--><select name="region" id="rregion" style="display:none"></select><br />';
 				$output[ 'SELECTCOMBO_HIDDENDROPDOWNS_TOWN' ] = '<!-- city combobox is chained by state combobox--><select name="town" id="ttown" style="display:none"></select><br />';
 				$showButton = true;
@@ -412,7 +401,7 @@ class j06000search
 		}
 
 		// -------------------------------------------------------------------------------------------------------------------------------------------
-		if (in_array('propertyname', $searchOptions) && $showSearchOptions) {
+		if ($showSearchOptions) {
 			if (!empty($sch->prep[ 'propertyname' ])) {
 				$propertyname = array();
 				if (empty($sch->filter[ 'propertyname' ])) {
@@ -425,7 +414,7 @@ class j06000search
 					foreach ($sch->prep[ 'propertyname' ] as $property) {
 						$propertyname[ ] = jomresHTML::makeOption(jomres_decode($property[ 'pn' ]), jomres_decode($property[ 'pn' ]));
 					}
-					$output[ 'propertyname' ] = jomresHTML::selectList($propertyname, 'propertyname', 'size="1" ', 'value', 'text', $selectOption);
+					$output[ 'propertyname' ] = jomresHTML::selectList($propertyname, 'propertyname', ' class="inputbox search_dropdown" ', 'value', 'text', $selectOption);
 					$showButton = true;
 				} else {
 					$r = '';
@@ -447,7 +436,7 @@ class j06000search
 		}
 
 		// -------------------------------------------------------------------------------------------------------------------------------------------
-		if (in_array('country', $searchOptions) && $showSearchOptions && !in_array('selectcombo', $searchOptions)) {
+		if ($showSearchOptions ) {
 			$countryArray = array();
 			if (!empty($sch->prep[ 'country' ])) {
 				if (empty($sch->filter[ 'country' ])) {
@@ -460,7 +449,7 @@ class j06000search
 					foreach ($sch->prep[ 'country' ] as $country) {
 						$countryArray[ ] = jomresHTML::makeOption($country[ 'countrycode' ], jomres_decode($country[ 'countryname' ]));
 					}
-					$output[ 'country' ] = jomresHTML::selectList($countryArray, 'country', 'size="1" ', 'value', 'text', $selectOption);
+					$output[ 'country' ] = jomresHTML::selectList($countryArray, 'country', ' class="inputbox search_dropdown" placeholder="'.$output[ 'JOMRES_SEARCH_GEO_COUNTRYSEARCH' ].'"' , 'value', 'text', $selectOption);
 					$showButton = true;
 				} else {
 					$r = '';
@@ -481,7 +470,7 @@ class j06000search
 		}
 
 		// -------------------------------------------------------------------------------------------------------------------------------------------
-		if (in_array('region', $searchOptions) && $showSearchOptions && !in_array('selectcombo', $searchOptions)) {
+		if ($showSearchOptions ) {
 			$regionArray = array();
 			if (!empty($sch->prep[ 'region' ])) {
 				if (empty($sch->filter[ 'region' ])) {
@@ -497,7 +486,7 @@ class j06000search
 						$region_name = find_region_name($t);
 						$regionArray[ ] = jomresHTML::makeOption($region_id, jomres_decode($region_name));
 					}
-					$output[ 'region' ] = jomresHTML::selectList($regionArray, 'region', 'size="1" ', 'value', 'text', $selectOption);
+					$output[ 'region' ] = jomresHTML::selectList($regionArray, 'region', ' class="inputbox search_dropdown" placeholder="'.$output[ 'JOMRES_SEARCH_GEO_REGIONSEARCH' ].'"', 'value', 'text', $selectOption);
 					$showButton = true;
 				} else {
 					$r = '';
@@ -515,12 +504,13 @@ class j06000search
 					}
 					$output[ 'region' ] = $r;
 				}
+
 			} else {
 				$output[ 'region' ] = 'EMPTY';
 			}
 		}
 		// -------------------------------------------------------------------------------------------------------------------------------------------
-		if (in_array('town', $searchOptions) && $showSearchOptions && !in_array('selectcombo', $searchOptions)) {
+		if ($showSearchOptions ) {
 			$townArray = array();
 
 			$ta = $sch->prep[ 'town' ];
@@ -535,7 +525,7 @@ class j06000search
 						$t = str_replace('&#39;', "'", $town[ 'town' ]); // This is important. php will not pass back, eg Sant&#39;Antimo, it will only pass back Sant, therefore we need to convert the &#39; to a ' to be shown in the url. When jomresGetParam runs it'll convert the ' back to &#39; and the search will run successfully.
 						$townArray[ ] = jomresHTML::makeOption($town[ 'town' ], jomres_decode($t));
 					}
-					$output[ 'town' ] = jomresHTML::selectList($townArray, 'town', 'size="1" ', 'value', 'text', $selectOption);
+					$output[ 'town' ] = jomresHTML::selectList($townArray, 'town', ' class="inputbox search_dropdown" placeholder="'.$output[ 'JOMRES_SEARCH_GEO_TOWNSEARCH' ].'"', 'value', 'text', $selectOption);
 					$showButton = true;
 				} else {
 					$r = '';
@@ -556,7 +546,7 @@ class j06000search
 			}
 		}
 		// -------------------------------------------------------------------------------------------------------------------------------------------
-		if (in_array('description', $searchOptions) && $showSearchOptions) {
+		if ($showSearchOptions) {
 			if (empty($sch->filter[ 'description' ])) {
 				$selectOption = $output[ 'JOMRES_SEARCH_DESCRIPTION_LABEL' ];
 			} else {
@@ -566,7 +556,7 @@ class j06000search
 			$output[ 'DESCRIPTION' ] = '<input class="inputbox" type="text" name="description" value="'.$sch->filter[ 'description' ].'"  onfocus="if (this.value ==\''.$output[ 'JOMRES_SEARCH_DESCRIPTION_LABEL' ].'\') {this.value = \'\'}" />';
 		}
 		// -------------------------------------------------------------------------------------------------------------------------------------------
-		if (in_array('feature_uids', $searchOptions) && $showSearchOptions) {
+		if ($showSearchOptions) {
 			$featureArray = array();
 			if (!empty($sch->prep[ 'features' ])) {
 				if (empty($sch->filter[ 'feature_uids' ])) {
@@ -579,7 +569,7 @@ class j06000search
 						$feature_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_ABBV'.(int) $feature[ 'id' ], jomres_decode($feature[ 'title' ]), false, false);
 						$featureArray[ ] = jomresHTML::makeOption($feature[ 'id' ], jomres_decode($feature_abbv));
 					}
-					$output[ 'feature' ] = jomresHTML::selectList($featureArray, 'feature_uids[]', 'size="1" ', 'value', 'text', $selectOption);
+					$output[ 'feature' ] = jomresHTML::selectList($featureArray, 'feature_uids[]', ' class="inputbox search_dropdown" placeholder="'.$output[ 'JOMRES_SEARCH_FEATURE_INFO' ].'"', 'value', 'text', $selectOption);
 				} else { // Show the features as javascript popup
 					$r = '';
 					$counter = 0;
@@ -610,7 +600,7 @@ class j06000search
 			$showButton = true;
 		}
 		// -------------------------------------------------------------------------------------------------------------------------------------------
-		if (in_array('room_type', $searchOptions) && $showSearchOptions) {
+		if ( $showSearchOptions) {
 			$rtypeArray = array();
 
 			if (!empty($sch->prep[ 'rtypes' ])) {
@@ -625,7 +615,7 @@ class j06000search
 						$roomClassAbbv = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int) $rtype[ 'id' ], jomres_decode($rtype[ 'title' ]), false, false);
 						$rtypeArray[ ] = jomresHTML::makeOption($rtype[ 'id' ], $roomClassAbbv);
 					}
-					$output[ 'room_type' ] = jomresHTML::selectList($rtypeArray, 'room_type', 'size="1"', 'value', 'text', $selectOption);
+					$output[ 'room_type' ] = jomresHTML::selectList($rtypeArray, 'room_type', ' class="inputbox search_dropdown" placeholder="'.$output[ 'JOMRES_SEARCH_RTYPES' ].'"', 'value', 'text', $selectOption);
 					$showButton = true;
 				} else {
 					foreach ($sch->prep[ 'rtypes' ] as $room_type) {
@@ -645,7 +635,7 @@ class j06000search
 			}
 		}
 		// -------------------------------------------------------------------------------------------------------------------------------------------
-		if (in_array('ptype', $searchOptions) && $showSearchOptions) {
+		if ($showSearchOptions) {
 			$ptypeArray = array();
 			if (!empty($sch->prep[ 'ptypes' ])) {
 				if (empty($sch->filter[ 'ptype' ])) {
@@ -659,7 +649,7 @@ class j06000search
 
 						$ptypeArray[ ] = jomresHTML::makeOption($ptype[ 'id' ], $ptypeAbbv);
 					}
-					$output[ 'ptype' ] = jomresHTML::selectList($ptypeArray, 'ptype', 'size="1" ', 'value', 'text', $selectOption);
+					$output[ 'ptype' ] = jomresHTML::selectList($ptypeArray, 'ptype', '  class="inputbox search_dropdown" placeholder="'.$output[ 'JOMRES_SEARCH_PTYPES' ].'"', 'value', 'text', $selectOption);
 					$showButton = true;
 				} else {
 					$r = '';
@@ -682,7 +672,7 @@ class j06000search
 		}
 		
 		// -------------------------------------------------------------------------------------------------------------------------------------------
-		if (in_array('cat_id', $searchOptions) && $showSearchOptions) {
+		if ($showSearchOptions) {
 			$categoriesArray = array();
 			if (!empty($sch->prep[ 'categories' ])) {
 				if (empty($sch->filter[ 'categories' ])) {
@@ -694,7 +684,7 @@ class j06000search
 				foreach ($sch->prep[ 'categories' ] as $c) {
 					$categoriesArray[ ] = jomresHTML::makeOption($c[ 'id' ], $c[ 'title' ]);
 				}
-				$output[ 'categories' ] = jomresHTML::selectList($categoriesArray, 'cat_id', 'size="1" ', 'value', 'text', $selectOption);
+				$output[ 'categories' ] = jomresHTML::selectList($categoriesArray, 'cat_id', '  class="inputbox search_dropdown" placeholder="'.$output[ '_JOMRES_PROPERTY_HCATEGORIES' ].'"', 'value', 'text', $selectOption);
 				$showButton = true;
 			} else {
 				$output[ 'categories' ] = 'EMPTY';
@@ -702,7 +692,7 @@ class j06000search
 		}
 		
 		// -------------------------------------------------------------------------------------------------------------------------------------------
-		if (in_array('priceranges', $searchOptions) && $showSearchOptions) {
+		if ($showSearchOptions) {
 			$rangeArray = array();
 			if (!empty($sch->prep[ 'priceranges' ])) {
 				if (empty($sch->filter[ 'priceranges' ])) {
@@ -713,21 +703,21 @@ class j06000search
 				foreach ($sch->prep[ 'priceranges' ] as $priceranges) {
 					$rangeArray[ ] = jomresHTML::makeOption($priceranges, $priceranges);
 				}
-				$output[ 'PRICERANGES' ] = jomresHTML::selectList($rangeArray, 'priceranges', 'size="1" ', 'value', 'text', $selectOption);
+				$output[ 'PRICERANGES' ] = jomresHTML::selectList($rangeArray, 'priceranges', '  class="inputbox search_dropdown" ', 'value', 'text', $selectOption);
 				$showButton = true;
 			}
 		}
 		// -------------------------------------------------------------------------------------------------------------------------------------------
 
-		if (in_array('availability', $searchOptions)) {
 			$output[ 'ARRIVALDATE' ] = generateDateInput('arrivalDate', $sch->prep[ 'arrival' ], 'ad', true);
 			$output[ 'DEPARTUREDATE' ] = generateDateInput('departureDate', $sch->prep[ 'departure' ], false, true, false);
 			$showButton = true;
-		}
+
 
 		// -------------------------------------------------------------------------------------------------------------------------------------------
-		if (in_array('guestnumber', $searchOptions) && $showSearchOptions) {
+		if (  $showSearchOptions) {
 			$guestnumberArray = array();
+
 			if (!empty($sch->prep[ 'guestnumber' ])) {
 				if (empty($sch->filter[ 'guestnumber' ])) {
 					$selectOption = $sch->prep[ 'guestnumber' ][ 0 ][ 'id' ];
@@ -737,7 +727,7 @@ class j06000search
 				foreach ($sch->prep[ 'guestnumber' ] as $guestnumber) {
 					$guestnumberArray[ ] = jomresHTML::makeOption($guestnumber[ 'id' ], $guestnumber[ 'guestnumber' ]);
 				}
-				$output[ 'guestnumber' ] = jomresHTML::selectList($guestnumberArray, 'guestnumber', 'size="1" ', 'value', 'text', $selectOption);
+				$output[ 'guestnumber' ] = jomresHTML::selectList($guestnumberArray, 'guestnumber', '  class="inputbox search_dropdown" ', 'value', 'text', $selectOption);
 				$showButton = true;
 			} else {
 				$output[ 'guestnumber' ] = 'EMPTY';
@@ -745,7 +735,24 @@ class j06000search
 		}
 
 		// -------------------------------------------------------------------------------------------------------------------------------------------
-		if (in_array('stars', $searchOptions) && $showSearchOptions) {
+		if (  $showSearchOptions) {
+			$sleepsArray = array();
+
+			if (!empty($sch->prep[ 'occupancy_levels' ])) {
+
+				$output[ 'highest_adults' ] = $sch->prep[ 'occupancy_levels' ]["highestOccupancyLevels"] ["highest_adults"];
+				$output[ 'highest_children' ] = $sch->prep[ 'occupancy_levels' ]["highestOccupancyLevels"] ["highest_children"];
+
+				$showButton = true;
+			} else {
+				$output[ 'highest_adults' ] = '';
+				$output[ 'highest_children' ] = '';
+			}
+		}
+
+		// -------------------------------------------------------------------------------------------------------------------------------------------
+
+		if ($showSearchOptions) {
 			$starsArray = array();
 			if (!empty($sch->prep[ 'stars' ])) {
 				if (empty($sch->filter[ 'stars' ])) {
@@ -757,7 +764,7 @@ class j06000search
 				foreach ($sch->prep[ 'stars' ] as $stars) {
 					$starsArray[ ] = jomresHTML::makeOption($stars[ 'id' ], $stars[ 'stars' ]);
 				}
-				$output[ 'stars' ] = jomresHTML::selectList($starsArray, 'stars', 'size="1" ', 'value', 'text', $selectOption);
+				$output[ 'stars' ] = jomresHTML::selectList($starsArray, 'stars', '  class="inputbox search_dropdown" ', 'value', 'text', $selectOption);
 				$showButton = true;
 			} else {
 				$output[ 'stars' ] = 'EMPTY';
@@ -832,13 +839,18 @@ class j06000search
 			if (!using_bootstrap()) {
 				$output[ 'THEBUTTON' ] = '<input type="submit" name="send" value="'.jr_gettext('_JOMRES_SEARCH_BUTTON', '_JOMRES_SEARCH_BUTTON', false).'" class="button" />';
 			} else {
-				$output[ 'THEBUTTON' ] = '<input type="submit" class="btn btn-primary" name="send" value="'.jr_gettext('_JOMRES_SEARCH_BUTTON', '_JOMRES_SEARCH_BUTTON', false).'" />';
+				if ( isset($_REQUEST['search_widget']) ) {
+					$output[ 'THEBUTTON' ] = '<button type="submit" class="btn btn-primary btn-search-form" name="send" />'.jr_gettext('_JOMRES_SEARCH_BUTTON', '_JOMRES_SEARCH_BUTTON', false).'</button>';
+				} else {
+					$output[ 'THEBUTTON' ] = '<input type="submit" class="btn btn-primary btn-search-form" name="send" value="'.jr_gettext('_JOMRES_SEARCH_BUTTON', '_JOMRES_SEARCH_BUTTON', false).'" />';
+				}
 			}
 		}
 
 		$pageoutput[ ] = $output;
 
 		if (!$data_only) {
+		//	var_dump($sch->templateFile);exit;
 			if (!$doSearch || ($calledByModule == 'mod_jomsearch_m0' && $jrConfig[ 'integratedSearch_enable' ] == '1' && !this_cms_is_joomla() && !this_cms_is_wordpress())) {
 				$stmpl = new patTemplate();
 				$stmpl->setRoot($sch->templateFilePath);

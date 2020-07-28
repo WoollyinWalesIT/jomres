@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.4
+ * @version Jomres 9.23.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -86,7 +86,7 @@ class j03379room_types
 					define('MEDIACENTRE_ROOMJS', 1);
 					echo '
 					<script>
-					jomresJquery(function () {
+					document.addEventListener(\'DOMContentLoaded\', function() {
 						jomresJquery("#resource_id_dropdown").change(function () {
 							get_existing_images(); 
 							});

@@ -1,3 +1,86 @@
+<h3>Jomres 9.23.0 28/07/2020</h3>
+
+<span class="label label-success">Feature</span> New switch added to Site Configuration > Portal Functionality tab called "Force Compatibility property configuration mode?" This option ensures that all new properties automatically use the Standard tariff editing mode, and they are unable to switch to other tariff modes. This simplifies the price configuration options available to managers. By default, all new installations of Jomres have this option set to Yes, updated installations have this set to No.
+<span class="label label-success">Feature</span> Added new Tariff Editing mode : Standard. It is based on Micromanage, but some of the more confusing elements have been removed and have added some new elements.
+<span class="label label-success">Feature</span> In Standard mode you can only create one tariff for each room type. With Standard editing guest number dropdowns are visible in the booking form by default, the old style guest types are not supported. You can add an "Extra guest price" in Property Configuration > Standard tariffs tab (todo later versions will include the ability to set extra guest prices for individual tariffs).
+<span class="label label-success">Feature</span> Standard editing mode introduces new 7 and 30 day modifier settings. They can either be flat rate or a percentage calculation that will discount bookings if they're longer than 7 and 30 days respective.
+<span class="label label-success">Feature</span> When in Standard mode many previous Property Configuration options are no longer available to property managers as they're sometimes conflicting or simply overkill and un-necessary for property managers to access.
+<span class="label label-success">Feature</span> Child rates. If a property uses Standard tariff editing mode then they are able to set Child rates. These rates are the same, regardless of the room types chosen. Manager can create their own child rantes (todo nice to have, use javascript to ensure that child age ranges don't overlap)
+ <span class="label label-success">Feature</span> Occupancy Levels. Once rooms have been added, the manager should then check that occupancy levels are valid for different room types (todo this can be improved, currently you need to save occupancy levels after adding/removing rooms, because total occupancy levels need to be recalculated however would like to automate this some more).
+
+<span class="label label-success">Feature</span> Property Configuration > Bookings tab has two new options. City tax and Cleaning fee. City tax offers a variety of models by which the tax can be calculated. Booking form template adjustments are required to capitalise on these new changes.
+<span class="label label-success">Feature</span> Added clauses that allow me to distribute a new search widget plugin with different template files
+<span class="label label-success">Feature</span> Added ability for script to hand form elements to the search script, which can then be given to the template file for rendering.
+<span class="label label-success">Feature</span> Improved error feedback for users. Red whoops screens will now include the message that was part of the thrown error, as normally these errors require inspection of the error logs to determine the issue. This approach is more helpful and it doesn't expose any vulnerabilities.
+<span class="label label-success">Feature</span> Significant changes to make Jomres compatible with Joomla 4. There are still a handful of things to figure out, and Jomres plugins still need J4 template files, but this takes us 95% of the way to be J4 ready.
+
+<span class="label label-warning">Change</span> Added func to empty package dirs first before update.
+<span class="label label-warning">Change</span> Added Connect admin panel to Core.
+<span class="label label-warning">Change</span> Added a check for BS4 when building property config tabs.
+<span class="label label-warning">Change</span> Save my account modified to create user images dirs if they don't exist.
+<span class="label label-warning">Change</span> Some modals modified to use new bs4 hide class.
+<span class="label label-warning">Change</span> Added ability to disable sending all emails. No config option available, configuration.php would need to be edited to disable them (   'send_emails' => 0, )
+<span class="label label-warning">Change</span> Switched to saving extra name instead of the definition string.
+<span class="label label-warning">Change</span> Max input vars description updated.
+<span class="label label-warning">Change</span> Updated installation process for wp to ensure that Jomres can be installed under the WP Plugins dir.
+<span class="label label-warning">Change</span> Tweaked how placeholders are set in the generate date input function.
+<span class="label label-warning">Change</span> Admin FAQ section removed as the questions are old and there are better resources available online.
+<span class="label label-warning">Change</span> Added check to see if autoload.php exists, if it doesn't force package reinstallation. On occasion, if the server was slow with the download then autoload.php not existing can be one of the best indicators that the packages weren't completely downloaded therefore if it doesn't then we need to start again.
+<span class="label label-warning">Change</span> Removed lots of clauses that check to see if X option has been enabled in integrated search. While these checks are useful to reduce the amount of work required to create the search form elements, unfortunately the clauses can create a lot of confusion when things don't appear in search forms (e.g. dropdowns for regions etc). For simplicity's sake we'll remove the checks, meaning that all of the search things will be available all of the time.
+<span class="label label-warning">Change</span> Added a new ajax script designed to respond with populated locations.
+<span class="label label-warning">Change</span> Removed option regarding if BS should be used in frontend, it hasn't been a valid option for years.
+<span class="label label-warning">Change</span> Moved hidden inputs from bottom of site config form to top because this may fix some odd intermittent behaviour seen in some places.
+<span class="label label-warning">Change</span> Moved hidden inputs from bottom of property config form to top because this may fix some odd intermittent behaviour seen in some places.
+<span class="label label-warning">Change</span> Standard and Micromanage tariff editing modes updated to work with BS4
+<span class="label label-warning">Change</span> Improved error reporting if a template file does not exist.
+<span class="label label-warning">Change</span> Added ability for search handling script to receive a custom search template file name.
+<span class="label label-warning">Change</span> Changed "number of guests" to "sleeps" in language files.
+<span class="label label-warning">Change</span> Disable gateways tab if using jomres platform
+<span class="label label-warning">Change</span> Editing mode disable in Wordpress frontend. It's stopped working and it's problematic as it's an extra layer of functionality that managers don't need. Backend editing mode works fine.
+<span class="label label-warning">Change</span> SRP Schema changed from Residence to LodgingBusiness
+<span class="label label-warning">Change</span> Added a warning to advise that users must be property managers to use the media centre. This is because the MC scripts are called by both front and backend.
+<span class="label label-warning">Change</span> Added search related functionality for constructing search forms (todo) relating to new occupancy levels.
+
+<span class="label label-important label-danger">Fix</span> Fixed a notice that can be thrown when room type images don't exist.
+<span class="label label-important label-danger">Fix</span> Fixed room type markup not being re-parsed.
+<span class="label label-important label-danger">Fix</span> Anonymise street information if settings require it (basic module output function used by some plugins).
+<span class="label label-important label-danger">Fix</span> Resolved an annoying niggle of date picker font sizes being overlarge.
+<span class="label label-important label-danger">Fix</span> Tweaked email checking functionality so that an email address can only be re-used if it's because a manager has used the select guests dropdown.
+<span class="label label-important label-danger">Fix</span> Changed how we prevent opt-ins from being stored, as was causing weird and wonderful behaviour in specific circumstances in the booking engine.
+
+
+<h3>Jomres 9.22.0 15/06/2020</h3>
+
+<span class="label label-success">Feature</span> Jomres Platform introduced. Does not impact existing users with licenses however new users who want licenses will need to Connect to the Jomres Platform.
+<span class="label label-success">Feature</span> Added Guest types and Tariff editing modes to Jomres Core. Please uninstall the plugins.
+<span class="label label-success">Feature</span> Syndication is now off by default. You can re-enable it in Site Configuration > Portal Functionality tab.
+
+<span class="label label-warning">Change</span> Tweaked syndicate query to reduce memory load when searching for distances
+<span class="label label-warning">Change</span> Added a greeting modal that encourages new users to visit the getting started page.
+<span class="label label-warning">Change</span> Updated the Jomres WP activator to detect if the WP root is writable. If not, then fail with a legible notice.
+<span class="label label-warning">Change</span> dobooking modified to fallback to a previous property uid if the main property uid isn't set for some reason.
+<span class="label label-warning">Change</span> Added output that could tell us if we can't write the encryption file. Edge case, but possible.
+<span class="label label-warning">Change</span> Removed code that creates the jomres_root.php script.
+<span class="label label-warning">Change</span> Tweaked legacy installer as parts for v old installations were incorrect.
+<span class="label label-warning">Change</span> Updated some old BS2 templates to use spans correctly.
+<span class="label label-warning">Change</span> Disabled some debug logging as it was overkill.
+<span class="label label-warning">Change</span> Modified deferred tasks to create a new DeferredTasks log to make background task links easier to find during development.
+<span class="label label-warning">Change</span> Added a check to see if a room or rooms exist for this property when in micromanage mode, otherwise a tariff can't be created for this property until one or more rooms have been added. Most of the time this will not be necessary.
+<span class="label label-warning">Change</span> Made the default tariff editing mode Micromanage.
+
+
+<span class="label label-important label-danger">Fix</span> Cpanel syndication stats moved to bottom of page.
+<span class="label label-important label-danger">Fix</span> Remote plugins dir added for api path detection.
+<span class="label label-important label-danger">Fix</span> Commented out some duplication of effort
+<span class="label label-important label-danger">Fix</span> Fixed a notice that schema can display if rooms not created yet.
+<span class="label label-important label-danger">Fix</span> Tweaked syndicate query to reduce memory load when searching for distances
+<span class="label label-important label-danger">Fix</span> Missing definitions added to language files
+<span class="label label-important label-danger">Fix</span> Fixed a warning when passing lat & long to a method.
+
+<h3>Jomres 9.21.5 23/05/2020</h3>
+
+<span class="label label-important label-danger">Fix</span> Removed code that was preventing ad-hoc settings from being saved in property config.
+
 <h3>Jomres 9.21.4 20/05/2020</h3>
 
 

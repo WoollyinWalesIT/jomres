@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.4
+ * @version Jomres 9.23.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -86,13 +86,18 @@ class j00060toptemplate
 		$output[ 'CURRENT_PROPERTY_STYLE' ] = '';
 		$output['FB_LOCALISE'] = str_replace('-', '_', get_showtime('lang'));
 
-		$editing_mode = jomres_singleton_abstract::getInstance('jomres_editing_mode');
-		$result = $editing_mode->make_editing_mode_dropdown();
-
-		if ($result) {
-			$editing_dropdown[ ][ 'EDITING_MODE_DROPDOWN' ] = $result;
-			set_showtime('menuitem_editing_mode_dropdown', $editing_dropdown[ 0 ][ 'EDITING_MODE_DROPDOWN' ]);
+		$result = '';
+		if ( !this_cms_is_wordpress() && !jomres_cmsspecific_areweinadminarea() ) {
+			$editing_mode = jomres_singleton_abstract::getInstance('jomres_editing_mode');
+			$result = $editing_mode->make_editing_mode_dropdown();
+			if ($result) {
+				$editing_dropdown[ ][ 'EDITING_MODE_DROPDOWN' ] = $result;
+				set_showtime('menuitem_editing_mode_dropdown', $editing_dropdown[ 0 ][ 'EDITING_MODE_DROPDOWN' ]);
+			}
 		}
+
+
+
 
 		if (this_cms_is_joomla() || this_cms_is_wordpress()) {
 			if ($thisJRUser->userIsManager) {

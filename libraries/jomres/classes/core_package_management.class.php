@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.0
+ * @version Jomres 9.23.0
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -136,7 +136,7 @@ class core_package_management
 	 */
 	private function unzip_downloaded_package($library , $local_archive , $destination )
 	{
-		//$this->remove_directory($destination);  // I hate this, but it's necessary. I'd much prefer to move files direct, but older obsolete files can't be left in situ
+		$this->remove_directory($destination);
 		
 		$zip = new ZipArchive;
 		if (true === $zip->open($local_archive)) {
@@ -314,9 +314,9 @@ class core_package_management
 			$this->install_packages();
 		}
 		
-		if (!is_dir($repo['local_abs_path'])) {
+		/*if (!is_dir($repo['local_abs_path'])) {
 			$this->install_packages();
-		}
+		}*/
 	}
 	
 	/**

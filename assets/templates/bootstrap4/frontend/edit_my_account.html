@@ -1,7 +1,7 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script language="javascript" type="text/javascript">
 <!--
-jomresJquery(document).ready(function () {
+document.addEventListener('DOMContentLoaded', function(){
 	jomresJquery("#guest_country").change(function(){
 		var selectedValue = jomresJquery(this).find(":selected").val();
 		clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
@@ -61,7 +61,7 @@ jomresJquery(document).ready(function () {
 
 	<div class="row">
 		<div class="col-md-6 bg-success">
-			<center><h3><i class="fa fa-users text-success" aria-hidden="true"></i></h3></center>
+			<center><h1><i class="fa fa-users center" aria-hidden="true"></i></h1></center>
 			<div class="form-group">
 				<label class="col-md-2 control-label" for="firstname"> {HFIRSTNAME} </label>
 				<div class="col-md-10">
@@ -107,7 +107,7 @@ jomresJquery(document).ready(function () {
 		
 		
 		<div class="col-md-6 bg-warning">
-			<center><h3><i class="fa fa-user-secret text-warning" aria-hidden="true"></i></h3></center>
+			<center><h1><i class="fa fa-user-secret " aria-hidden="true"></i></h1></center>
 			<div class="form-group">
 				<label class="col-md-2 control-label" for="house">{HHOUSE}</label>
 				<div class="col-md-10">
@@ -200,7 +200,7 @@ jomresJquery(document).ready(function () {
 	<div class="form-actions">
 		<div class="col-md-10 col-md-offset-2">
 			<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> {COMMON_SUBMIT}</button>
-			<a href="{JOMRES_SITEPAGE_URL}" class="btn btn-default"><i class="fa fa-times"></i> {COMMON_CANCEL}</a>
+			<a href="{JOMRES_SITEPAGE_URL}" class="btn btn-secondary"><i class="fa fa-times"></i> {COMMON_CANCEL}</a>
 		</div>
 	</div>
 	<input type="hidden" name="no_html" value="1"/>

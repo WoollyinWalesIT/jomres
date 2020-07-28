@@ -1,6 +1,6 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script type="text/javascript">
-jomresJquery(document).ready(function(){
+	document.addEventListener('DOMContentLoaded', function(){
     /* Get iframe src attribute value i.e. YouTube video url
     and store it in a variable */
 	<patTemplate:tmpl name="rows2" unusedvars="strip">
@@ -22,7 +22,7 @@ jomresJquery(document).ready(function(){
         jomresJquery("#{VIDEO_ID_SANITISED}").attr('src', url_{VIDEO_ID_SANITISED});
 		</patTemplate:tmpl>
     });
-});
+	}, false);
 </script>
 
 <a href="#helpModal" data-toggle="modal" faq-modal-title="{VIDEO_TUTORALS_TITLE}" random_identifier="helpModal" class="btn btn-primary"><i class="fa fa-youtube-play"></i> {VIDEO_TUTORALS_TITLE}</a>

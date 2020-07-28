@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.4
+ * @version Jomres 9.23.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -65,8 +65,7 @@ class j10001control_panel
 		$output = array();
 		$page_output = array();
 		
-		// Plugin manager not installed
-		$output['PLUGIN_MANAGER_CHECK'] = $MiniComponents->specificEvent('16000', 'plugin_manager_check', array('output_now' => false));
+
 		
 		//jomres warnings
 		$output['JOMRES_WARNINGS'] = $MiniComponents->specificEvent('16000', 'jomres_warnings', array('output_now' => false));

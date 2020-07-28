@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.4
+ * @version Jomres 9.23.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -46,7 +46,9 @@ class j16000showplugins
 			echo "Error : The ZipArchive class does not exist. This is needed to extract files so please ensure that PHP is built with this PHP extension installed. If you cannot do that, your hosts will be able to help.";
 			return;
 		}
-		
+
+		// Plugin manager not installed
+
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 		
@@ -133,7 +135,10 @@ class j16000showplugins
 					$output['INSTALLATION_MESSAGE'] = jr_gettext('PLUGINMANAGER_INSTALL', 'PLUGINMANAGER_INSTALL', false);
 				}
 				$output['PLUGINMANAGER_INSTALL_BUTTON'] = jr_gettext('PLUGINMANAGER_INSTALL_BUTTON', 'PLUGINMANAGER_INSTALL_BUTTON', false);
-				
+
+				$output['PLUGIN_MANAGER_CHECK'] = $MiniComponents->specificEvent('16000', 'plugin_manager_check', array('output_now' => false));
+
+
 				$pageoutput[ ] = $output;
 				$tmpl = new patTemplate();
 				$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);

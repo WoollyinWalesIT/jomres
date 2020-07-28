@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.4
+ * @version Jomres 9.23.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -71,7 +71,10 @@ class basic_room_details
 						`singleperson_suppliment`,
 						`tagline`,
 						`description`,
-						`surcharge`
+						`surcharge`,
+						`max_occupancy`,
+						`max_adults`,
+						`max_children`
 					FROM #__jomres_rooms 
 					WHERE `propertys_uid` = ' .(int) $property_uid.' 
 					ORDER BY LENGTH(room_number), room_number, room_name
@@ -95,7 +98,11 @@ class basic_room_details
 			$this->rooms[$r->room_uid]['tagline']		 			= jr_gettext('_JOMRES_CUSTOMTEXT_ROOM_TAGLINE'.$r->room_uid, stripslashes($r->tagline), false);
 			$this->rooms[$r->room_uid]['description']				= jomres_decode(jr_gettext('_JOMRES_CUSTOMTEXT_ROOM_DESCRIPTION_'.$r->room_uid, stripslashes($r->description), false));
 			$this->rooms[$r->room_uid]['surcharge']					= (float) $r->surcharge;
-			
+
+			$this->rooms[$r->room_uid]['max_occupancy']				= (float) $r->max_occupancy;
+			$this->rooms[$r->room_uid]['max_adults']				= (float) $r->max_adults;
+			$this->rooms[$r->room_uid]['max_children']				= (float) $r->max_children;
+
 			if ($this->rooms[$r->room_uid]['room_features_uid'] != '') {
 				$room_feature_uids .= $this->rooms[$r->room_uid]['room_features_uid'].',';
 			}
@@ -147,7 +154,10 @@ class basic_room_details
 						`singleperson_suppliment`,
 						`tagline`,
 						`description`,
-						`surcharge`
+						`surcharge`,
+						`max_occupancy`,
+						`max_adults`,
+						`max_children`
 					FROM #__jomres_rooms 
 					WHERE `room_uid` = ' .(int) $room_uid.' 
 					LIMIT 1
@@ -171,7 +181,10 @@ class basic_room_details
 			$this->room['tagline']					= jr_gettext('_JOMRES_CUSTOMTEXT_ROOM_TAGLINE'.$r->room_uid, stripslashes($r->tagline), false);
 			$this->room['description']				= jomres_decode(jr_gettext('_JOMRES_CUSTOMTEXT_ROOM_DESCRIPTION_'.$r->room_uid, stripslashes($r->description), false));
 			$this->room['surcharge']				= (float) $r->surcharge;
-			
+			$this->room['max_occupancy']			= (float) $r->max_occupancy;
+			$this->room['max_adults']				= (float) $r->max_adults;
+			$this->room['max_children']				= (float) $r->max_children;
+
 			$this->property_uid = $this->room['propertys_uid'];
 		}
 

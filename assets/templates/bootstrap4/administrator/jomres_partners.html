@@ -21,11 +21,11 @@
 
 	</div>
 	<script>
-	jomresJquery(document).ready(function () {
+		document.addEventListener('DOMContentLoaded', function(){
 		jomresJquery( "#{ID}" ).click(function() {
 			jomresJquery( "#d_{ID}" ).slideToggle( "slow" );
 			});
-		});
+		}, false);
 	</script>
 	
 	<button class="btn btn-info" id="{ID}">Show plugins</button>

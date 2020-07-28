@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.4
+ * @version Jomres 9.23.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -92,7 +92,7 @@ class jrportal_rooms
 			$room_features = '';
 		}
 
-		$query = 'INSERT INTO #__jomres_rooms 
+		$query = "INSERT INTO #__jomres_rooms 
 							(
 							`room_classes_uid`,
 							`propertys_uid`,
@@ -101,6 +101,7 @@ class jrportal_rooms
 							`room_number`,
 							`room_floor`,
 							`max_people`,
+							`max_adults`,
 							`singleperson_suppliment`,
 							`tagline`,
 							`description`,
@@ -108,20 +109,21 @@ class jrportal_rooms
 							)
 						VALUES 
 							(
-							' .(int) $this->room_classes_uid.',
-							' .(int) $this->propertys_uid.",
+							" .(int) $this->room_classes_uid.",
+							" .(int) $this->propertys_uid.",
 							'".jomres_implode($this->room_features_uid)."',
 							'".$this->room_name."',
 							'".$this->room_number."',
 							'".$this->room_floor."',
-							" .(int) $this->max_people.',
-							' .(float) $this->singleperson_suppliment.',
-							"' .(string) $this->tagline.'",
-							"' .(string) $this->description.'",
-							' .(float) $this->surcharge.'
-							)';
+							'".(int)$this->max_people."',
+							'".(int)$this->max_people."',
+							'" .(float) $this->singleperson_suppliment."',
+							'" .(string) $this->tagline."',
+							'" .(string) $this->description."',
+							'" .(float) $this->surcharge."'
+							)";
 		$this->room_uid = doInsertSql($query, '');
-		
+
 		if (!$this->room_uid) {
 			throw new Exception('Error: New room insert failed.');
 		}
@@ -141,7 +143,11 @@ class jrportal_rooms
 		$webhook_notification->data->property_uid			= $this->propertys_uid;
 		$webhook_notification->data->room_uid				= $this->room_uid;
 		add_webhook_notification($webhook_notification);
-		
+
+		jr_import('jomres_calculate_accommodates_value');
+		$jomres_calculate_accommodates_value = new jomres_calculate_accommodates_value( $this->propertys_uid );
+		$jomres_calculate_accommodates_value->calculate_accommodates_value();
+
 		return true;
 	}
 	
@@ -174,25 +180,26 @@ class jrportal_rooms
 			$room_features = '';
 		}
 
-		$query = 'UPDATE #__jomres_rooms 
+		$query = "UPDATE #__jomres_rooms 
 					SET 
-						`room_classes_uid`			= '.(int) $this->room_classes_uid.",
+						`room_classes_uid`			= ".(int) $this->room_classes_uid.",
 						`room_features_uid`			= '".$room_features."',
 						`room_name`					= '".$this->room_name."',
 						`room_number`				= '".$this->room_number."',
 						`room_floor`				= '".$this->room_floor."',
-						`max_people`				= " .(int) $this->max_people.',
-						`singleperson_suppliment`	= ' .(float) $this->singleperson_suppliment.' ,
-						`tagline`		 			= "' .(string) $this->tagline.'",
-						`description`				= "' .(string) $this->description.'" ,
-						`surcharge`					= ' .(float) $this->surcharge.'
-					WHERE `room_uid` = ' .(int) $this->room_uid.' 
-						AND `propertys_uid` = ' .(int) $this->propertys_uid;
+						`max_people`				= '".$this->max_people."',
+						`max_adults`				= '".$this->max_people."',
+						`singleperson_suppliment`	= " .(float) $this->singleperson_suppliment." ,
+						`tagline`		 			= '" .(string) $this->tagline."',
+						`description`				= '" .(string) $this->description."' ,
+						`surcharge`					= " .(float) $this->surcharge."
+					WHERE `room_uid` = " .(int) $this->room_uid." 
+						AND `propertys_uid` = " .(int) $this->propertys_uid;
 
 		if (!doInsertSql($query, jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_SAVE_UPDATE', '_JOMRES_COM_MR_VRCT_ROOM_SAVE_UPDATE', false))) {
 			throw new Exception('Error: Room update failed.');
 		}
-		
+
 		updateCustomText('_JOMRES_CUSTOMTEXT_ROOM_TAGLINE'.$this->room_uid, $this->tagline, true);
 		updateCustomText('_JOMRES_CUSTOMTEXT_ROOM_DESCRIPTION_'.$this->room_uid, $this->description, true);
 
@@ -208,7 +215,11 @@ class jrportal_rooms
 		$webhook_notification->data->property_uid			= $this->propertys_uid;
 		$webhook_notification->data->room_uid				= $this->room_uid;
 		add_webhook_notification($webhook_notification);
-		
+
+		jr_import('jomres_calculate_accommodates_value');
+		$jomres_calculate_accommodates_value = new jomres_calculate_accommodates_value( $this->propertys_uid );
+		$jomres_calculate_accommodates_value->calculate_accommodates_value();
+
 		return true;
 	}
 	
@@ -268,7 +279,11 @@ class jrportal_rooms
 			$webhook_notification->data->property_uid			= $this->propertys_uid;
 			$webhook_notification->data->room_uid				= $this->room_uid;
 			add_webhook_notification($webhook_notification);
-			
+
+			jr_import('jomres_calculate_accommodates_value');
+			$jomres_calculate_accommodates_value = new jomres_calculate_accommodates_value( $this->propertys_uid );
+			$jomres_calculate_accommodates_value->calculate_accommodates_value();
+
 			return true;
 		} else {
 			return false;
@@ -445,6 +460,11 @@ class jrportal_rooms
 		$webhook_notification->data->room_ids				= json_encode($newRoomUids);
 
 		add_webhook_notification($webhook_notification);
+
+		jr_import('jomres_calculate_accommodates_value');
+		$jomres_calculate_accommodates_value = new jomres_calculate_accommodates_value( $this->rooms_generator['propertys_uid'] );
+		$jomres_calculate_accommodates_value->calculate_accommodates_value();
+
 		
 		return true;
 	}

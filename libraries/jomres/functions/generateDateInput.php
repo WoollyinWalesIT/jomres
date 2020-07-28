@@ -5,7 +5,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.4
+ * @version Jomres 9.23.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -35,6 +35,8 @@ function generateDateInput($fieldName, $dateValue = '', $myID = false, $siteConf
 	$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 	$placeholder = '';
 
+	$placeholder = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', false);
+
 	if ($fieldName == 'arrivalDate' || $fieldName == 'asc_arrivalDate' || $fieldName == 'start') {
 		set_showtime('departure_date_unique_id', $uniqueID.'_XXX');
 
@@ -52,12 +54,13 @@ function generateDateInput($fieldName, $dateValue = '', $myID = false, $siteConf
 				$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] == '' &&
 				$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] == ''
 				) {
-				$placeholder = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', false);
+
 				$dateValue = '';
 			}
 		}
 
 	} elseif ($fieldName == 'departureDate' || $fieldName == 'asc_departureDate' || $fieldName == 'end') {
+		$placeholder = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', false);
 		$uniqueID = get_showtime('departure_date_unique_id');
 		if ($fieldName != 'end') {
 			if (
@@ -66,7 +69,7 @@ function generateDateInput($fieldName, $dateValue = '', $myID = false, $siteConf
 				$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ] == '' &&
 				$tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability_departure' ] == ''
 				) {
-				$placeholder = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', false);
+
 				$dateValue = '';
 			}
 		}

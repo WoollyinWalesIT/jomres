@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.4
+ * @version Jomres 9.23.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -232,6 +232,25 @@ class j06000handlereq
 				}
 				$bkg->resetRequestedRoom();
 				break;
+
+			case 'standard_guests':
+				$ajrq = 'ajrq:::extra_guests';
+				$bkg->setOkToBook(false);
+				$value = $bkg->sanitiseInput('int', $value);
+				$bkg->writeToLogfile('Starting extra guest input');
+				$retText = 'Extra added to booking';
+				$bkg->setStandardGuests($value);
+				break;
+
+			case 'child_selection':
+				$ajrq = 'ajrq:::extra_guests';
+				$bkg->setOkToBook(false);
+				$value = $bkg->sanitiseInput('int', $value);
+				$guest_index = (int)jomresGetParam($_GET, 'guest_index', 0 ) ;
+
+				$bkg->set_child_selection( $guest_index , $value);
+				break;
+
 			case 'extras':
 				$ajrq = 'ajrq:::extras';
 				$bkg->setOkToBook(false);
@@ -363,6 +382,8 @@ class j06000handlereq
 
 				break;
 			case 'heartbeat':
+				session_start();
+				session_write_close();
 				echo '&nbsp;';
 				break;
 			default:
@@ -421,6 +442,18 @@ class j06000handlereq
 					echo '; populateDiv("staydays","'.$num_period.'")';
 
 					if (get_showtime('include_room_booking_functionality')) {
+
+						if ( isset($mrConfig[ 'compatability_property_configuration' ]) &&  $mrConfig[ 'compatability_property_configuration' ] == 1 && $mrConfig[ 'allow_children' ] == '1' && $field != 'addressstring' ) {
+
+							echo '; populateDiv("child_selectors","' . $bkg->sanitise_for_eval($bkg->build_children_selectors()). '")';
+							$bkg->calculate_child_prices();
+							if ( isset($bkg->child_prices['total_price'])) {
+								echo '; populateDiv("child_price","' . output_price($bkg->child_prices['total_price']). '")';
+							}
+
+						}
+
+
 						$room_per_night = $bkg->getRoompernight();
 						$room_per_night = $bkg->calculateRoomPriceIncVat($room_per_night);
 						if ($bkg->cfg_tariffmode == '1' && $bkg->cfg_tariffChargesStoredWeeklyYesNo == '1') {
@@ -473,6 +506,11 @@ class j06000handlereq
 					}
 					echo '; populateDiv("grandtotal","'.output_price($bkg->getGrandTotal()).'")';
 
+
+					if ( $bkg->cfg_tariffmode == '5' && $bkg->extra_guest_numbers > 0 ) {
+						echo '; populateDiv("extra_guests_total","'.output_price($bkg->extra_guest_price).'")';
+					}
+
 					if (isset($bkg->room_total_inc_tax)) {
 						echo '; populateDiv("room_total_inc_tax","'.output_price($bkg->room_total_inc_tax).'")';
 					} else {
@@ -490,12 +528,26 @@ class j06000handlereq
 					}
 					if ($bkg->coupon_code != '') {
 						$discount = $bkg->coupon_discount_value;
-						/* if ($mrConfig[ 'prices_inclusive' ] == 1) {
-							$divisor = ($bkg->accommodation_tax_rate / 100) + 1;
-							$discount = $divisor * $discount;
-						} */
 						echo '; populateDiv("coupon_discount_value","'.output_price($discount).'")';
 					}
+
+					if ( isset($bkg->booking_length_discount) && $bkg->booking_length_discount != '' ) {
+						echo '; populateDiv("discount","'.$bkg->booking_length_discount.'")';
+					}
+					if ( isset($bkg->city_tax) && $bkg->city_tax > 0 && $bkg->getGrandTotal() > 0 ) {
+						echo '; populateDiv("city_tax","'.output_price($bkg->city_tax).'")';
+					} else {
+						echo '; populateDiv("city_tax","'.output_price(0.00).'")';
+					}
+
+					if ( isset($bkg->cleaning_fee) && $bkg->cleaning_fee > 0 && $bkg->getGrandTotal() > 0  ) {
+						echo '; populateDiv("cleaning_fee","'.output_price($bkg->cleaning_fee).'")';
+					} else {
+						echo '; populateDiv("cleaning_fee","'.output_price(0.00).'")';
+					}
+
+					echo '; populateDiv("extra_adults","'.output_price($bkg->extra_guest_price).'")';
+
 				} else {
 					$bkg->setErrorLog('handlereq:: Field '.$lastfield.' exempt from pricing rebuild');
 				}
@@ -529,6 +581,7 @@ class j06000handlereq
 
 				echo '; disableSubmitButton(document.ajaxform.confirmbooking); ';
 			}
+
 			if ($bkg->getErrorLog() != '' && $bkg->errorChecking()) {
 				$errorLog = $bkg->getErrorLog();
 			}

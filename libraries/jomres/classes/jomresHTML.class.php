@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.4
+ * @version Jomres 9.23.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -31,7 +31,7 @@ class jomresHTML
 		if (!defined('SELECTLISTJAVASCRIPT') && using_bootstrap() && !AJAXCALL) {
 			echo '
 			<script>
-			jomresJquery(function(jomresJquery) {
+			document.addEventListener(\'DOMContentLoaded\', function(){ 
 				jomresJquery(\'div.btn-group[data-toggle-name="*"]\').each(function(){
 					var group   = jomresJquery(this);
 					var form	= group.parents(\'form\').eq(0);
@@ -48,7 +48,7 @@ class jomresHTML
 					  }
 					});
 				  });
-				});
+				}, false);
 			</script>
 			';
 			define('SELECTLISTJAVASCRIPT', 1);
@@ -136,7 +136,7 @@ class jomresHTML
 	{
 		$attribs = str_replace(' class="inputbox" ', '', $attribs);
 		$attribs = str_replace(' class="input-medium" ', '', $attribs);
-		$attribs .= ' class="input-small"';
+		$attribs .= ' class="input-small form-control"';
 
 		$arry = array();
 		for ($i = (int) $start; $i <= (int) $end; $i += (int) $increment) {

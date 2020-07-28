@@ -5,7 +5,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.4
+ * @version Jomres 9.23.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -148,7 +148,7 @@ function dobooking($selectedProperty, $thisdate, $remus)
 	$room_type_filter = (int)jomresGetParam($_REQUEST, 'room_type_filter', 0);
 		
 	$backWasClicked = false;
-	if ($tmpBookingHandler->tmpbooking[ 'confirmationSeen' ] == true) {
+	if ( isset($tmpBookingHandler->tmpbooking[ 'confirmationSeen' ]) && $tmpBookingHandler->tmpbooking[ 'confirmationSeen' ] == true) {
 		$backWasClicked = true;
 	} elseif ($thisJRUser->userIsManager == true) {
 		$tmpBookingHandler->resetTempGuestData();
@@ -232,9 +232,6 @@ function dobooking($selectedProperty, $thisdate, $remus)
 
 		return;
 	}
-
-	// if (!get_showtime('include_room_booking_functionality'))  // Disabled for 5.5.3 as Jintour has a new option that manages this
-	// $bkg->cfg_showdepartureinput = "0";
 
 	$text = $bkg->makeOutputText();
 	$guest = $bkg->makeGuestData();
@@ -443,6 +440,9 @@ function dobooking($selectedProperty, $thisdate, $remus)
 	if (empty($guestTypes)) {
 		$output[ 'BILLING_TOTALINPARTY' ] = '';
 	}
+
+
+
 
 	$ex = $bkg->makeExtras($selectedProperty);
 	$extra_details = $ex[ 'core_extras' ];
@@ -689,7 +689,17 @@ function dobooking($selectedProperty, $thisdate, $remus)
 		}
 	}
 
-	$manager_pricing = array();
+	$output['BOOKING_FORM_CHILD_SELECTORS'] = '';
+	if ($mrConfig[ 'tariffmode' ] == '5' ) {
+		$adults_dropdown = $bkg->build_adults_dropdown();
+
+		if ( $mrConfig[ 'allow_children' ] == '1') {
+			$output['BOOKING_FORM_CHILD_SELECTORS'] = $bkg->build_children_selectors();
+		}
+	}
+
+
+$manager_pricing = array();
 	if ($thisJRUser->userIsManager) {
 		$manager_pricing[ ] = array('_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL' => jr_gettext('_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL', '_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL', false, false), '_JOMCOMP_AMEND_OVERRIDE_DEPOSIT' => jr_gettext('_JOMCOMP_AMEND_OVERRIDE_DEPOSIT', '_JOMCOMP_AMEND_OVERRIDE_DEPOSIT', false, false), '_JOMCOMP_AMEND_OVERRIDE_SAVE' => jr_gettext('_JOMCOMP_AMEND_OVERRIDE_SAVE', '_JOMCOMP_AMEND_OVERRIDE_SAVE', false, false));
 	}
@@ -747,9 +757,7 @@ function dobooking($selectedProperty, $thisdate, $remus)
 	// To show the login modal without forcing umpteen users to update their dobooking template files, we will attach the login form modal contents to the end of the current dobooking template output.
 	$login_form = $MiniComponents->specificEvent('06000', 'show_login_form' , array ('output_now' => false , 'login_reason' => jr_gettext('_JOMRES_LOGIN_REASON_EMAIL_ALREADY_USED', '_JOMRES_LOGIN_REASON_EMAIL_ALREADY_USED', false)  ) );
 	$loginoutput[0] = array ( "login_form" => $login_form );
-	
-	
-	
+
 	$tmpl = new patTemplate();
 	$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
 	$tmpl->readTemplatesFromInput('login_form_modal_wrapper.html');
@@ -776,6 +784,14 @@ function dobooking($selectedProperty, $thisdate, $remus)
 		$tmpl->addRows('customfields', $customFields);
 		$tmpl->addRows('pageoutput', $pageoutput);
 		$tmpl->addRows('guesttypes', $guestTypes);
+		if ( isset($adults_dropdown) && !empty($adults_dropdown)) {
+			$tmpl->addRows('standard_guests', $adults_dropdown);
+		}
+
+		if (isset($child_dropdowns)) {
+			$tmpl->addRows('child_dropdowns', $child_dropdowns);
+		}
+
 		$tmpl->addRows('extrasrow', $extrasHeader);
 		$tmpl->addRows('roomfeaturesrowheader', $roomfeaturesHeader);
 		$tmpl->addRows('roomfeaturesrow', $roomfeatures);

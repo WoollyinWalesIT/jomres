@@ -1,7 +1,7 @@
 <patTemplate:tmpl name="pageoutput">
 <script type="text/javascript">
 <!--
-jomresJquery(function () {
+document.addEventListener('DOMContentLoaded', function() {
 	var $content = jomresJquery('#jomres_menu_wrapper').html();
 	jomresJquery('#jomres_alternate_menu_position').html($content);
 	jomresJquery('#jomres_menu_wrapper').empty(); // making sure that the old div doesn't have the accordion applied to it.

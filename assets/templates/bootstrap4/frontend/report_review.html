@@ -1,7 +1,7 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script type="text/javascript">
 <!--
-jomresJquery(document).ready(function () {
+document.addEventListener('DOMContentLoaded', function(){
 	jomresJquery.validator.setDefaults({
 		highlight: function (input) {
 			jomresJquery(input).addClass("alert alert-error");
@@ -44,7 +44,7 @@ jomresJquery(document).ready(function () {
 	<div class="form-actions">
 		<div class="col-md-10 col-md-offset-2">
 			<button class="btn btn-primary" type="submit"><i class="fa fa-check"></i> {_JOMRES_REVIEWS_SUBMIT}</button>
-			<a href="{PROPERTY_DETAILS_URL}" class="btn btn-default"><i class="fa fa-times"></i> {COMMON_CANCEL}</a>
+			<a href="{PROPERTY_DETAILS_URL}" class="btn btn-secondary"><i class="fa fa-times"></i> {COMMON_CANCEL}</a>
 		</div>
 	</div>
 

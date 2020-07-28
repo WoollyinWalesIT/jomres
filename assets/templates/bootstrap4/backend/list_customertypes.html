@@ -1,0 +1,52 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+	<!--
+	document.addEventListener('DOMContentLoaded', function(){
+		make_datatable('list_customertypes', '{PAGETITLE}', '{LIVESITE}');
+	});
+	//-->
+</script>
+
+<h2 class="page-header">{PAGETITLE}</h2>
+
+
+<p class="lead">{_JOMRES_GUESTTYPES_INTRO}<p>
+<p>{_JOMRES_GUESTTYPES_INSTRUCTIONS}<p>
+
+<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm">
+	<div class="well">
+		{JOMRESTOOLBAR}
+	</div>
+	<table id="list_customertypes" width="100%" class="table table-striped">
+		<thead>
+		<tr>
+			<th></th>
+			<th>{HTYPE}</th>
+			<th class="hidden-phone">{HNOTES}</th>
+			<th>{HMAXIMUM}</th>
+			<th class="hidden-phone">{HISPERCENTAGE}</th>
+			<th class="hidden-phone">{HPOSNEG}</th>
+			<th class="hidden-phone">{HVARIANCE}</th>
+			<th>{HORDER}</th>
+		</tr>
+		</thead>
+		<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="type">
+			<tr>
+				<td>{ITEM_TOOLBAR}</td>
+				<td>{TYPE}</td>
+				<td class="hidden-phone">{NOTES}</td>
+				<td>{MAXIMUM}</td>
+				<td class="hidden-phone">{ISPERCENTAGE}</td>
+				<td class="hidden-phone">{POSNEG}</td>
+				<td class="hidden-phone">{VARIANCE}</td>
+				<td><input class="input-mini" type="number" style="text-align:center" name="order[{ID}]" value="{ORDER}"/></td>
+			</tr>
+		</patTemplate:tmpl>
+		</tbody>
+	</table>
+	<input type="hidden" name="task" value="newExtra"/>
+	<input type="hidden" name="option" value="com_jomres"/>
+	{CSRF_TOKEN}
+</form>
+</patTemplate:tmpl>

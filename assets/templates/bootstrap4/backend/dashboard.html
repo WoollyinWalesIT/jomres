@@ -70,7 +70,7 @@ a.fc-event, .fc-event-draggable {
 </style>
 
 <script type='text/javascript'>
-jomresJquery(document).ready(function() {
+	document.addEventListener('DOMContentLoaded', function(){
 
 	var whole_day_bookings = '{WHOLEDAY_BOOKINGS}';
 	var checkin_time = "12:00:00";
@@ -436,11 +436,11 @@ setInterval(function(){jomresJquery("#jomres_dashboard{PROPERTY_UID}").fullCalen
 /* Modal submit */
 jomresJquery("#blackBookingForm").submit(function(e) {
 	e.preventDefault();
-	jomresJquery('#blackBookingForm #ajax_animation_image').removeClass("hide");
-	jomresJquery('#blackBookingForm #modalForm').addClass("hide");
-	jomresJquery('#blackBookingForm #blackBookingSubmitButton').addClass("hide");
-	jomresJquery('#blackBookingForm #blackBookingRetryButton').addClass("hide");
-	jomresJquery('#blackBookingForm #blackBookingCloseButton').removeClass("hide").addClass("disabled");
+	jomresJquery('#blackBookingForm #ajax_animation_image').removeClass("d-none");
+	jomresJquery('#blackBookingForm #modalForm').addClass("d-none");
+	jomresJquery('#blackBookingForm #blackBookingSubmitButton').addClass("d-none");
+	jomresJquery('#blackBookingForm #blackBookingRetryButton').addClass("d-none");
+	jomresJquery('#blackBookingForm #blackBookingCloseButton').removeClass("d-none").addClass("disabled");
 	jomresJquery.ajax({
 		type: 'GET',
 		url: live_site_ajax + '&task=dashboard_insertbooking_ajax',
@@ -451,8 +451,8 @@ jomresJquery("#blackBookingForm").submit(function(e) {
 			if (new_event.insertStatus == 1)
 				{
 				insertMessage = '<p class="alert alert-success">' + new_event.insertMessage + '</p>';
-				jomresJquery('#blackBookingForm #ajax_animation_image').addClass("hide");
-				jomresJquery('#blackBookingForm #modalMessage').html(insertMessage).removeClass("hide");
+				jomresJquery('#blackBookingForm #ajax_animation_image').addClass("d-none");
+				jomresJquery('#blackBookingForm #modalMessage').html(insertMessage).removeClass("d-none");
 				jomresJquery('#blackBookingForm #blackBookingCloseButton').removeClass("disabled").html('<i class="icon-cancel"></i> {COMMON_CLOSE}');
 				/* Render the new event */
 				jomresJquery("#jomres_dashboard{PROPERTY_UID}").fullCalendar('renderEvent',
@@ -475,11 +475,11 @@ jomresJquery("#blackBookingForm").submit(function(e) {
 			else
 				{
 				insertMessage = '<p class="alert alert-danger">' + new_event.insertMessage + '</p>';
-				jomresJquery('#blackBookingForm #modalMessage').html(insertMessage).removeClass("hide");
-				jomresJquery('#blackBookingForm #modalForm').addClass("hide");
-				jomresJquery('#blackBookingForm #ajax_animation_image').addClass("hide");
-				jomresJquery('#blackBookingForm #blackBookingSubmitButton').addClass("hide");
-				jomresJquery('#blackBookingForm #blackBookingRetryButton').removeClass("hide");
+				jomresJquery('#blackBookingForm #modalMessage').html(insertMessage).removeClass("d-none");
+				jomresJquery('#blackBookingForm #modalForm').addClass("d-none");
+				jomresJquery('#blackBookingForm #ajax_animation_image').addClass("d-none");
+				jomresJquery('#blackBookingForm #blackBookingSubmitButton').addClass("d-none");
+				jomresJquery('#blackBookingForm #blackBookingRetryButton').removeClass("d-none");
 				jomresJquery('#blackBookingForm #blackBookingCloseButton').removeClass("disabled");
 				}
 			}
@@ -544,12 +544,12 @@ function reset_region_dropdown() {
 }
 
 function reset_booking_modal() {
-	jomresJquery('#blackBookingModal #modalMessage').html("").addClass("hide");
-	jomresJquery('#blackBookingForm #ajax_animation_image').addClass("hide");
-	jomresJquery('#blackBookingForm #modalForm').removeClass("hide");
-	jomresJquery('#blackBookingForm #blackBookingCloseButton').removeClass("hide").html('<i class="icon-cancel"></i> {COMMON_CANCEL}');
-	jomresJquery('#blackBookingForm #blackBookingSubmitButton').removeClass("hide");
-	jomresJquery('#blackBookingForm #blackBookingRetryButton').addClass("hide");
+	jomresJquery('#blackBookingModal #modalMessage').html("").addClass("d-none");
+	jomresJquery('#blackBookingForm #ajax_animation_image').addClass("d-none");
+	jomresJquery('#blackBookingForm #modalForm').removeClass("d-none");
+	jomresJquery('#blackBookingForm #blackBookingCloseButton').removeClass("d-none").html('<i class="icon-cancel"></i> {COMMON_CANCEL}');
+	jomresJquery('#blackBookingForm #blackBookingSubmitButton').removeClass("d-none");
+	jomresJquery('#blackBookingForm #blackBookingRetryButton').addClass("d-none");
 	return true;
 }
 
@@ -611,13 +611,13 @@ function get_email_address_not_already_in_use() {
 		<a href="{BLACK_BOOKINGS_URL}" class="btn btn-primary"><i class="icon-plus"></i> {HBLACK_BOOKINGS}</a>
 	</div>-->
 	<div class="btn-group">
-		<button class="btn btn-default" data-calendar-nav="prev"><< {PREV}</button>
-		<button class="btn btn-default" data-calendar-nav="today">{TODAY}</button>
-		<button class="btn btn-default" data-calendar-nav="next">{NEXT} >></button>
+		<button class="btn btn-secondary" data-calendar-nav="prev"><< {PREV}</button>
+		<button class="btn btn-secondary" data-calendar-nav="today">{TODAY}</button>
+		<button class="btn btn-secondary" data-calendar-nav="next">{NEXT} >></button>
 	</div>
 	<div class="btn-group">
 		<patTemplate:tmpl name="rows" unusedvars="strip">
-			<button class="btn btn-default {ACTIVE}" data-calendar-view="{VIEW}">{VIEW_NAME}</button>
+			<button class="btn btn-secondary {ACTIVE}" data-calendar-view="{VIEW}">{VIEW_NAME}</button>
 		</patTemplate:tmpl>
 	</div>
 </div>
@@ -637,26 +637,29 @@ function get_email_address_not_already_in_use() {
 
 <div>&nbsp;</div>
 <h5>{HLEGEND}</h5>
-<span class="label label-grey">{TEXT_PENDING}</span>
-<span class="label label-orange">{TEXT_ARRIVETODAY}</span>
-<span class="label label-green">{TEXT_RESIDENT}</span>
-<span class="label label-red">{TEXT_LATE}</span>
-<span class="label label-blue">{TEXT_DEPARTTODAY}</span>
-<span class="label label-purple">{TEXT_STILLHERE}</span>
-<span class="label label-teal">{TEXT_BOOKEDOUT}</span>
-<span class="label label-black">{HBLACKBOOKING}</span>
+<span class="badge badge-info">{TEXT_PENDING}</span>
+<span class="badge badge-primary">{TEXT_ARRIVETODAY}</span>
+<span class="badge badge-success">{TEXT_RESIDENT}</span>
+<span class="badge badge-danger">{TEXT_LATE}</span>
+<span class="badge badge-secondary">{TEXT_DEPARTTODAY}</span>
+<span class="badge badge-warning">{TEXT_STILLHERE}</span>
+<span class="badge badge-light">{TEXT_BOOKEDOUT}</span>
+<span class="badge badge-dark">{HBLACKBOOKING}</span>
 
 <br/>
 <br/>
 {OVERVIEW}
 
 <form action="{JOMRES_SITEPAGE_URL_AJAX}&task=dashboard_insertbooking_ajax" method="get" id="blackBookingForm" role="form">
-<div id="blackBookingModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
-	<div class="modal-dialog">
+<div id="blackBookingModal" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-				<h4 id="myModalLabel1">{HQUICK_BOOKING}</h4>
+				<h1 class="modal-title">{HQUICK_BOOKING}</h1>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+
 			</div>
 			<div class="modal-body">
 				<input type="hidden" id="start" name="start" value="" />
@@ -774,13 +777,13 @@ function get_email_address_not_already_in_use() {
 						</div>
 					</div>
 				</div>
-				<img src="{JOMRES_IMAGES_RELPATH}ajax_animation/broken_circle.gif" alt="ajax_animation_image" class="hide" id="ajax_animation_image"/>
+				<img src="{JOMRES_IMAGES_RELPATH}ajax_animation/broken_circle.gif" alt="ajax_animation_image" class="d-none" id="ajax_animation_image"/>
 				<div id="modalMessage" class="hide">
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button class="btn btn-default" id="blackBookingRetryButton"><i class="icon-refresh"></i> Retry</button>
-				<button class="btn btn-default" data-dismiss="modal" aria-hidden="true" id="blackBookingCloseButton"><i class="icon-cancel"></i> {COMMON_CANCEL}</button>
+				<button class="btn btn-secondary" id="blackBookingRetryButton"><i class="icon-refresh"></i> Retry</button>
+				<button class="btn btn-secondary" data-dismiss="modal" aria-hidden="true" id="blackBookingCloseButton"><i class="icon-cancel"></i> {COMMON_CANCEL}</button>
 				<button type="submit" class="btn btn-primary" id="blackBookingSubmitButton"><i class="icon-save"></i> {COMMON_SAVE}</button>
 			</div>
 		</div>

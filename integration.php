@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.4
+ * @version Jomres 9.23.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -154,6 +154,10 @@ define('JOMRES_NODE_MODULES_RELPATH', JOMRES_ROOT_DIRECTORY.'/libraries/packages
 require_once(JOMRES_CLASSES_ABSPATH.'core_package_management.class.php');
 
 $core_package_management = new core_package_management();
+
+if (!file_exists(JOMRES_VENDOR_ABSPATH.'autoload.php')) {
+	$core_package_management->force_packages_reinstall();
+}
 
 //includes
 require_once JOMRES_VENDOR_ABSPATH.'autoload.php';

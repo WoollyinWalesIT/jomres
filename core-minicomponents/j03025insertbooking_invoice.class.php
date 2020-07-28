@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.4
+ * @version Jomres 9.23.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -265,7 +265,7 @@ class j03025insertbooking_invoice
 					}
 
 					$line_items[] = array('tax_code_id' => $theExtras->tax_rate,
-						'name' => '_JOMRES_CUSTOMTEXT_EXTRANAME'.(string) $extraUid,
+						'name' =>  jr_gettext('_JOMRES_CUSTOMTEXT_EXTRANAME'.(string)$extraUid, '_JOMRES_CUSTOMTEXT_EXTRANAME'.(string)$extraUid , false ,false),
 						'description' => '',
 						'init_price' => $extra_price,
 						'init_qty' => $quantities,

@@ -2,7 +2,7 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script language="JavaScript" type="text/javascript">
 	<!--
-	jomresJquery(document).ready(function () {
+	document.addEventListener('DOMContentLoaded', function(){
 		jomresJquery('#page-help').each(function () {
 			var $dialog = jomresJquery('<div></div>');
 			var $link = jomresJquery(this).one('click', function () {

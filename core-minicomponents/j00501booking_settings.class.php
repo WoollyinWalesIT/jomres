@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.4
+ * @version Jomres 9.23.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -40,9 +40,13 @@ class j00501booking_settings
 		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch) {
 			$this->template_touchable = false;
-
 			return;
 		}
+
+		if ($componentArgs['is_channel_property']) {
+			return;
+		}
+
 		$configurationPanel = $componentArgs[ 'configurationPanel' ];
 
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -62,15 +66,22 @@ class j00501booking_settings
 
 		$configurationPanel->startPanel(jr_gettext('_JOMRES_STATUS_BOOKINGS', '_JOMRES_STATUS_BOOKINGS', false));
 
-		$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_VISITORSCANBOOKONLINE', '_JOMRES_COM_A_VISITORSCANBOOKONLINE', false));
-		$configurationPanel->setmiddle($lists[ 'visitorscanbookonline' ]);
-		$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_VISITORSCANBOOKONLINE_DESC', '_JOMRES_COM_A_VISITORSCANBOOKONLINE_DESC', false));
+		$configurationPanel->setleft(jr_gettext('JOMRES_POLICY_ACCEPT_CHILDREN', 'JOMRES_POLICY_ACCEPT_CHILDREN', false));
+		$configurationPanel->setmiddle($lists['allow_children']);
+		$configurationPanel->setright(jr_gettext('JOMRES_POLICY_ACCEPT_CHILDREN_DESC', 'JOMRES_POLICY_ACCEPT_CHILDREN_DESC', false));
 		$configurationPanel->insertSetting();
 
-		$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_REGISTEREDUSERSONLYBOOK', '_JOMRES_COM_A_REGISTEREDUSERSONLYBOOK', false));
-		$configurationPanel->setmiddle($lists[ 'registeredUsersOnlyCanBook' ]);
-		$configurationPanel->setright();
-		$configurationPanel->insertSetting();
+		if ( $jrConfig[ 'compatability_property_configuration' ] != 1 ) {
+			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_VISITORSCANBOOKONLINE', '_JOMRES_COM_A_VISITORSCANBOOKONLINE', false));
+			$configurationPanel->setmiddle($lists['visitorscanbookonline']);
+			$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_VISITORSCANBOOKONLINE_DESC', '_JOMRES_COM_A_VISITORSCANBOOKONLINE_DESC', false));
+			$configurationPanel->insertSetting();
+
+			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_REGISTEREDUSERSONLYBOOK', '_JOMRES_COM_A_REGISTEREDUSERSONLYBOOK', false));
+			$configurationPanel->setmiddle($lists['registeredUsersOnlyCanBook']);
+			$configurationPanel->setright();
+			$configurationPanel->insertSetting();
+		}
 
 		if (!get_showtime('is_jintour_property') && isset($MiniComponents->registeredClasses['00005']['booking_enquiries'])) {
 			$configurationPanel->setleft(jr_gettext('_JOMRES_BOOKING_INQUIRY_SETTING_TITLE', '_JOMRES_BOOKING_INQUIRY_SETTING_TITLE', false));
@@ -90,11 +101,12 @@ class j00501booking_settings
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 
-			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_MINIMUMINTERVAL_WHOLEDAY', '_JOMRES_COM_A_MINIMUMINTERVAL_WHOLEDAY', false));
-			$configurationPanel->setmiddle('<input type="text" class="inputbox" name="cfg_minimuminterval" size="5" value="'.$mrConfig['minimuminterval'].'" />');
-			$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_MINIMUMINTERVAL_DESC_WHOLEDAY', '_JOMRES_COM_A_MINIMUMINTERVAL_DESC_WHOLEDAY', false));
-			$configurationPanel->insertSetting();
-
+			if ( $jrConfig[ 'compatability_property_configuration' ] != 1 ) {
+				$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_MINIMUMINTERVAL_WHOLEDAY', '_JOMRES_COM_A_MINIMUMINTERVAL_WHOLEDAY', false));
+				$configurationPanel->setmiddle('<input type="text" class="inputbox" name="cfg_minimuminterval" size="5" value="' . $mrConfig['minimuminterval'] . '" />');
+				$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_MINIMUMINTERVAL_DESC_WHOLEDAY', '_JOMRES_COM_A_MINIMUMINTERVAL_DESC_WHOLEDAY', false));
+				$configurationPanel->insertSetting();
+			}
 			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_WHOLEDAY', '_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_WHOLEDAY', false));
 			$configurationPanel->setmiddle('<input type="number" class="inputbox form-control" name="cfg_mindaysbeforearrival" size="5" value="'.$mrConfig[ 'mindaysbeforearrival' ].'" />');
 			$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_DESC_WHOLEDAY', '_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_DESC_WHOLEDAY', false));
@@ -105,10 +117,12 @@ class j00501booking_settings
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 
-			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_MINIMUMINTERVAL', '_JOMRES_COM_A_MINIMUMINTERVAL', false));
-			$configurationPanel->setmiddle('<input type="number" class="inputbox form-control" name="cfg_minimuminterval" size="5" value="'.$mrConfig[ 'minimuminterval' ].'" />');
-			$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_MINIMUMINTERVAL_DESC', '_JOMRES_COM_A_MINIMUMINTERVAL_DESC', false));
-			$configurationPanel->insertSetting();
+			if ( $jrConfig[ 'compatability_property_configuration' ] != 1 ) {
+				$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_MINIMUMINTERVAL', '_JOMRES_COM_A_MINIMUMINTERVAL', false));
+				$configurationPanel->setmiddle('<input type="number" class="inputbox form-control" name="cfg_minimuminterval" size="5" value="' . $mrConfig['minimuminterval'] . '" />');
+				$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_MINIMUMINTERVAL_DESC', '_JOMRES_COM_A_MINIMUMINTERVAL_DESC', false));
+				$configurationPanel->insertSetting();
+			}
 
 			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING', '_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING', false));
 			$configurationPanel->setmiddle('<input type="number" class="inputbox form-control" name="cfg_mindaysbeforearrival" size="5" value="'.$mrConfig[ 'mindaysbeforearrival' ].'" />');
@@ -116,10 +130,12 @@ class j00501booking_settings
 			$configurationPanel->insertSetting();
 		}
 
-		$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPE', '_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPE', false));
-		$configurationPanel->setmiddle('<input type="number" class="inputbox form-control" name="cfg_defaultNumberOfFirstGuesttype" size="5" value="'.$mrConfig[ 'defaultNumberOfFirstGuesttype' ].'" />');
-		$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPEDESC', '_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPEDESC', false));
-		$configurationPanel->insertSetting();
+		if ( $jrConfig[ 'compatability_property_configuration' ] != 1 ) {
+			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPE', '_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPE', false));
+			$configurationPanel->setmiddle('<input type="number" class="inputbox form-control" name="cfg_defaultNumberOfFirstGuesttype" size="5" value="' . $mrConfig['defaultNumberOfFirstGuesttype'] . '" />');
+			$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPEDESC', '_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPEDESC', false));
+			$configurationPanel->insertSetting();
+		}
 
 		$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO', '_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO', false));
 		$configurationPanel->setmiddle($lists[ 'limitAdvanceBookingsYesNo' ]);
@@ -172,15 +188,17 @@ class j00501booking_settings
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 
-			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_FIXEDPERIODBOOKINGSSHORT', '_JOMRES_COM_A_FIXEDPERIODBOOKINGSSHORT', false));
-			$configurationPanel->setmiddle($lists[ 'fixedPeriodBookingsShortYesNo' ]);
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
+			if ( $jrConfig[ 'compatability_property_configuration' ] != 1 ) {
+				$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_FIXEDPERIODBOOKINGSSHORT', '_JOMRES_COM_A_FIXEDPERIODBOOKINGSSHORT', false));
+				$configurationPanel->setmiddle($lists['fixedPeriodBookingsShortYesNo']);
+				$configurationPanel->setright();
+				$configurationPanel->insertSetting();
 
-			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_FIXEDPERIOD_SHORTBREAK_DAYS', '_JOMRES_COM_A_FIXEDPERIOD_SHORTBREAK_DAYS', false));
-			$configurationPanel->setmiddle('<input type="number" class="inputbox form-control"  size="5" name="cfg_fixedPeriodBookingsShortNumberOfDays" value="'.$mrConfig[ 'fixedPeriodBookingsShortNumberOfDays' ].'" />');
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
+				$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_FIXEDPERIOD_SHORTBREAK_DAYS', '_JOMRES_COM_A_FIXEDPERIOD_SHORTBREAK_DAYS', false));
+				$configurationPanel->setmiddle('<input type="number" class="inputbox form-control"  size="5" name="cfg_fixedPeriodBookingsShortNumberOfDays" value="' . $mrConfig['fixedPeriodBookingsShortNumberOfDays'] . '" />');
+				$configurationPanel->setright();
+				$configurationPanel->insertSetting();
+			}
 
 			if ($mrConfig[ 'wholeday_booking' ] == '1') {
 				$configurationPanel->setleft(jr_gettext('_JOMRES_COM_MR_FIXEDARRIVALDATE_YESNO_WHOLEDAY', '_JOMRES_COM_MR_FIXEDARRIVALDATE_YESNO_WHOLEDAY', false));
@@ -285,6 +303,35 @@ class j00501booking_settings
 
 			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_DEPOSIT_DEPOSITROUNDUP', '_JOMRES_COM_A_DEPOSIT_DEPOSITROUNDUP', false));
 			$configurationPanel->setmiddle($lists[ 'roundupDepositYesNo' ]);
+			$configurationPanel->setright();
+			$configurationPanel->insertSetting();
+
+
+			$configurationPanel->insertHeading(jr_gettext('JOMRES_CITY_TAX_HEADING', 'JOMRES_CITY_TAX_HEADING', false));
+
+			if (!isset($mrConfig[ 'city_tax_value' ])) {
+				$mrConfig[ 'city_tax_value' ] = 0;
+			}
+
+			$configurationPanel->setleft(jr_gettext('JOMRES_CITY_TAX_VALUE', 'JOMRES_CITY_TAX_VALUE', false));
+			$configurationPanel->setmiddle('<input type="number" class="inputbox form-control"  size="5" name="cfg_city_tax_value" value="'.$mrConfig[ 'city_tax_value' ].'" />');
+			$configurationPanel->setright();
+			$configurationPanel->insertSetting();
+
+			$configurationPanel->setleft(jr_gettext('JOMRES_CITY_TAX_METHOD', 'JOMRES_CITY_TAX_METHOD', false));
+			$configurationPanel->setmiddle($componentArgs[ 'city_tax_models_dropdown' ] );
+			$configurationPanel->setright();
+			$configurationPanel->insertSetting();
+
+
+			$configurationPanel->insertHeading(jr_gettext('JOMRES_CLEANING_FEE_HEADING', 'JOMRES_CLEANING_FEE_HEADING', false));
+
+			if (!isset($mrConfig[ 'cleaning_fee' ])) {
+				$mrConfig[ 'cleaning_fee' ] = 0;
+			}
+
+			$configurationPanel->setleft(jr_gettext('JOMRES_CLEANING_FEE_VALUE', 'JOMRES_CLEANING_FEE_VALUE', false));
+			$configurationPanel->setmiddle('<input type="number" class="inputbox form-control"  size="5" name="cfg_cleaning_fee" value="'.$mrConfig[ 'cleaning_fee' ].'" />');
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 		}

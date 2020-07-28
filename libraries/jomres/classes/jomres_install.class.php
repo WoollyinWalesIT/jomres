@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.4
+ * @version Jomres 9.23.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -292,7 +292,9 @@ class jomres_install
 			
 			//run plugins installation scripts
 			//$this->installPlugins();
-			
+
+			$this->siteConfig->update_setting('compatability_property_configuration', 1 );
+
 			//update db version so we can check this on future updates or db sanity check
 			if (empty($this->messages)) {
 				$this->siteConfig->update_setting('jomres_db_version', $this->jrConfig['version']);
@@ -420,13 +422,13 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 	define('JOMRES_ROOT_DIRECTORY' , '".$dir."');
 }
 ";
-		if (!file_exists(dirname($path) . '/jomres_root.php')) {
+		/*if (!file_exists(dirname($path) . '/jomres_root.php')) {
 			@file_put_contents(dirname($path) . '/jomres_root.php', $file_contents);
 		}
 
 		if (file_exists(dirname($path) . '/jomres_root.php')) {
 			require_once(dirname($path) . '/jomres_root.php');
-		}
+		}*/
 		
 		if (!defined('JOMRES_ROOT_DIRECTORY')) {
 			define('JOMRES_ROOT_DIRECTORY', 'jomres');

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.4
+ * @version Jomres 9.23.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -42,15 +42,19 @@ class j16000plugin_manager_check
 			return;
 		}
 		
-		$ioncube_found = false; 
-		foreach ( get_loaded_extensions() as $number => $extension_name ) { 
-			if ( (strpos( strtolower($extension_name) , "ioncube" )) === false)  { 
-				// do nothing 
-			} else { 
-				$ioncube_found = true; 
-			} 
-		} 
-		
+		$ioncube_found = false;
+		if (extension_loaded('ionCube Loader') == true ) {
+			$ioncube_found = true;
+		} else {
+			foreach ( get_loaded_extensions() as $number => $extension_name ) {
+				if ( (strpos( strtolower($extension_name) , "ioncube" )) === false)  {
+					// do nothing
+				} else {
+					$ioncube_found = true;
+				}
+			}
+		}
+
 		
 		$this->retVals = '';
 
@@ -65,7 +69,7 @@ class j16000plugin_manager_check
 			$pageoutput = array();
 			
 			if ($ioncube_found) {
-				$output['INTRO'] = 'The Plugin Manager is required to install and use Jomres plugins. If you do not intend to install any plugins then do not install the manager.';
+				/*$output['INTRO'] = 'The Plugin Manager is required to install and use Jomres plugins. If you do not intend to install any plugins then do not install the manager.';
 				
 				$output['MESSAGE'] = 'The Plugin Manager is not installed, you must install it through the Plugin Manager page to use Jomres Core plugins or install third party plugins. You do not need a Jomres license to install third party plugins.';
 
@@ -73,13 +77,17 @@ class j16000plugin_manager_check
 				$tmpl = new patTemplate();
 				$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
 				$tmpl->addRows('pageoutput', $pageoutput);
-				$tmpl->readTemplatesFromInput('plugin_manager_warning.html');
-			} else {
-				$output['INTRO'] = 'The Plugin Manager is required to install and use Jomres plugins. If you do not intend to install any plugins then do not install the manager.';
-				
-				$output['MESSAGE'] = 'The Plugin Manager is not installed, however the ioncube loaders do not appear to be installed on this server. If you have a <a href="https://www.jomres.net/pricing" target="_blank">one-off license for Jomres</a>, that is not a problem, save your license key in Settings > Site Configuration, if you haven\'t done so already and go ahead and install the manager. <a href="https://www.jomres.net/manual/60-jomres-manual/intro/383-jomres-licensing-explained#one-off-licenses" target="_blank"> The unencoded version</a> of the plugin manager will be installed.<br/><br/> ';
+				$tmpl->readTemplatesFromInput('plugin_manager_warning.html');*/
 
-				$output['MESSAGE2'] = 'If you attempt to install the plugin manager without the loaders installed, you will not be able to use Jomres at all until you manually delete the files in /jomres/core-plugins/plugin_manager and delete the contents of the /jomres/temp/ directory. In many cases you can install the ioncube loaders through your cPanel php settings area, but if you can\'t or if you are in any doubt, please contact your hosting service who will be able to talk you through the process.';
+				return '';
+
+			} else {
+				$output['INTRO'] = 'Ioncube loaders are not installed on this system.';
+				
+				$output['MESSAGE'] = 'Ioncube loaders are required to be installed to download plugins or connect to the Jomres Platform. You do NOT need the plugin manager to use Jomres Core. <strong>Without plugins the Core system is still a functional booking system</strong>, but you will not be able to install any plugins.';
+
+				$output['MESSAGE2'] = 'If you attempt to install the plugin manager without the loaders installed, you will not be able to use Jomres at all until you manually delete the files in /jomres/core-plugins/plugin_manager and delete the contents of the /jomres/temp/ directory. In many cases you can install the ioncube loaders through your cPanel php settings area, but if you can\'t or if you are in any doubt, please contact your hosting service who will be able to talk you through the process. <strong>If you have an older (Essential one-off, Developer, Developer Renewal or Lifetime) license you do not need the loaders to install the plugin manager.</strong>';
+
 				$pageoutput[ ] = $output;
 				$tmpl = new patTemplate();
 				$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);

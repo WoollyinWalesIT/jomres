@@ -22,8 +22,8 @@
 				});
 			});
 		});
-	
-	jomresJquery(document).ready(function () {
+
+	document.addEventListener('DOMContentLoaded', function(){
 
 		jomresJquery('#adminForm').attr('novalidate', 'novalidate'); // Disable html5 validation
         jQuery.validator.setDefaults({
@@ -294,7 +294,7 @@
 	<div class="form-actions">
 		<div class="col-md-10 col-md-offset-2">
 			<button class="btn btn-primary" type="submit">{COMMON_SUBMIT}</button>
-			<a class="btn btn-default" href="{CANCEL_URL}">{COMMON_CANCEL}</a>
+			<a class="btn btn-secondary" href="{CANCEL_URL}">{COMMON_CANCEL}</a>
 		</div>
 	</div>
 	<input type="hidden" name="property_uid" value="{PROPERTYUID}"/>

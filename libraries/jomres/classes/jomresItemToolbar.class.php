@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.4
+ * @version Jomres 9.23.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -121,7 +121,7 @@ class jomresItemToolbar
 		if (!empty($this->secondaryItems)) {
 			if ($this->bs_version == '3') {
 				$this->toolbar .= '
-				<a class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" href="#"> <span class="caret"></span></a>
+				<a class="btn btn-sm btn-default btn-secondary dropdown-toggle" data-toggle="dropdown" href="#"> <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 				';
 			}elseif ($this->bs_version == '4') {

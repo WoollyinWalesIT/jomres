@@ -49,7 +49,7 @@
              <p>{RESOURCE_TYPE_OPTIONS} <span id="resource_id_dropdown"><input type="hidden" id="resource_id" value="" /></span></p>
         </div>
         <div class="col-md-2">
-            <a href="{DEFAULT_PREVIEW_LINK}" data-remote="false" data-toggle="modal" data-target="#previewModal" class="btn btn-default btn-lg" id="image_preview_button">
+            <a href="{DEFAULT_PREVIEW_LINK}" data-remote="false" data-toggle="modal" data-target="#previewModal" class="btn btn-secondary btn-lg" id="image_preview_button">
                 <i class="fa fa-link" aria-hidden="true"></i>
                {_JOMRES_FRONT_PREVIEW}
             </a>
@@ -86,7 +86,7 @@
 				<!-- The file input field used as target for the file upload widget -->
 				<input id="fileupload" type="file" name="files[]" multiple>
 			</span>
-			<div class="btn btn-default" id="clearbutton">
+			<div class="btn btn-secondary" id="clearbutton">
 				<i class="fa fa-minus"></i>
 				{_JOMRES_MEDIA_CENTRE_CLEAR}
 			</div>
@@ -121,7 +121,8 @@ var ajax_url = "{AJAX_URL}";
 var preview_link_{RESOURCE_TYPE} = '{PREVIEW_LINK}';
 </patTemplate:tmpl>
 
-jomresJquery(function () {
+document.addEventListener('DOMContentLoaded', function () {
+
     'use strict';
     // Change this to the location of your server-side upload handler:
     var url = ajax_url + '&task=media_centre_handler',
@@ -153,7 +154,7 @@ jomresJquery(function () {
 		dropZone: jomresJquery('#dropzone'),
         url: url,
         dataType: 'json',
-        autoUpload: false,
+        autoUpload: true,
         acceptFileTypes: /(\.|\/){ALLOWED_FILE_TYPES}$/i,
         maxFileSize: 5000000, // 5 MB
         // Enable image resizing, except for Android and Opera,
@@ -166,6 +167,9 @@ jomresJquery(function () {
         previewMaxHeight: 100,
         previewCrop: true
     }).on('fileuploadadd', function (e, data) {
+        var resource_types = jomresJquery('#resource_types');
+        var resource_id    = jomresJquery('#resource_id');
+        data.formData = {resource_type: resource_types.val() , resource_id:  resource_id.val() };
         data.context = jomresJquery('<div/>').appendTo('#files');
         jomresJquery.each(data.files, function (index, file) {
             var node = jomresJquery('<p/>')
@@ -335,8 +339,8 @@ function get_existing_images()
         jomresJquery('#image_preview_button').hide("slow");
         }
 	}
-	
-jomresJquery(document).ready(function () {
+
+document.addEventListener('DOMContentLoaded', function(){
 
   jomresJquery('[data-toggle="popover"]').popover()
 
@@ -353,13 +357,9 @@ jomresJquery(document).ready(function () {
 <!-- The template to display files available for upload -->
 <script id="template-upload" type="text/x-tmpl">
 {% for (var i=0, file; file=o.files[i]; i++) { %}
-    <tr class="template-upload fade">
+    <tr class="template-upload fade show">
         <td>
-            <span class="preview"></span>
-        </td>
-        <td>
-            <p class="name">{%=file.name%}</p>
-            {% if (file.error) { %}
+             {% if (file.error) { %}
                 <div><span class="label label-danger">Error</span> {%=file.error%}</div>
             {% } %}
         </td>
@@ -389,7 +389,7 @@ jomresJquery(document).ready(function () {
 <!-- The template to display files available for download -->
 <script id="template-download" type="text/x-tmpl">
 {% for (var i=0, file; file=o.files[i]; i++) { %}
-    <tr class="template-download fade">
+    <tr class="template-download fade show">
         <td>
             <span class="preview">
                 {% if (file.thumbnailUrl) { %}
@@ -415,7 +415,7 @@ jomresJquery(document).ready(function () {
         <td>
             {% if (file.deleteUrl) { %}
                 <button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
-                    <i class="glyphicon glyphicon-trash"></i>
+                    <i class="far fa-trash-alt"></i>
                     <span>Delete</span>
                 </button>
                 <input type="checkbox" name="delete" value="1" class="toggle">
@@ -442,7 +442,7 @@ jomresJquery(document).ready(function () {
         ...
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">{COMMON_CLOSE}</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">{COMMON_CLOSE}</button>
       </div>
     </div>
   </div>

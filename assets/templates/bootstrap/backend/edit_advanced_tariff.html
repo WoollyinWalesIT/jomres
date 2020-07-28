@@ -1,0 +1,116 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2 class="page-header">{PAGETITLE}</h2>
+<form action="{JOMRES_SITEPAGE_URL_NOSEF}"  method="post" name="adminForm" class="form-horizontal">
+<fieldset>
+	<div class="control-group">
+	<label class="control-label" for="rate_title">{HTARIFFTITLE}</label>
+		<div class="controls">
+			<input type="text" name="rate_title" value="{TARIFFTITLE}" class="input-large"></input>
+		</div> 
+	</div> 
+	<div class="control-group">
+	<label class="control-label" for="rate_description">{HTARIFFDESC}</label>
+		<div class="controls">
+			<input type="text" name="rate_description" value="{TARIFFDESC}" class="input-large"></input>
+		</div> 
+	</div> 
+	<div class="control-group">
+	<label class="control-label" for="rate_title">{HRATEPERDAY}</label>
+		<div class="controls">
+			{CURRENCY}<input type="text" name="roomrateperday" value="{RATEPERDAY}"  class="input-mini"/>
+		</div> 
+	</div> 
+	<div class="control-group">
+	<label class="control-label" for="validfrom">{HVALIDFROM}</label>
+		<div class="controls">
+			{VALIDFROM}
+		</div> 
+	</div> 
+	<div class="control-group">
+	<label class="control-label" for="validto">{HVALIDTO}</label>
+		<div class="controls">
+			{VALIDTO}
+		</div> 
+	</div> 
+	<div class="control-group">
+	<label class="control-label" for="mindays">{HMINDAYS}</label>
+		<div class="controls">
+			<input type="text" name="mindays" value="{MINDAYS}" class="input-mini"/>
+		</div> 
+	</div> 
+	<div class="control-group">
+	<label class="control-label" for="maxdays">{HMAXDAYS}</label>
+		<div class="controls">
+			<input type="text" name="maxdays" value="{MAXDAYS}" class="input-mini"/>
+		</div> 
+	</div> 
+	<div class="control-group">
+	<label class="control-label" for="minpeople">{HMINPEOPLE}</label>
+		<div class="controls">
+			<input type="text" name="minpeople" value="{MINPEOPLE}" class="input-mini"/>
+		</div> 
+	</div> 
+	<div class="control-group">
+	<label class="control-label" for="maxpeople">{HMAXPEOPLE}</label>
+		<div class="controls">
+			<input type="text" name="maxpeople" value="{MAXPEOPLE}" class="input-mini"/>
+		</div> 
+	</div> 
+	<div class="control-group">
+	<label class="control-label" for="roomClass">{HROOMTYPEDROPDOWN}</label>
+		<div class="controls">
+			{ROOMTYPEDROPDOWN}
+		</div> 
+	</div> 
+	<div class="control-group">
+	<label class="control-label" for="ignore_pppn">{HIGNOREPPPNDROPDOWN}</label>
+		<div class="controls">
+			{IGNOREPPPNDROPDOWN}
+		</div> 
+	</div> 
+	<div class="control-group">
+	<label class="control-label" for="allow_we">{HALLOWWEEKENDSDROPDOWN}</label>
+		<div class="controls">
+			{ALLOWWEEKENDSDROPDOWN}
+		</div> 
+	</div> 
+	<div class="control-group">
+	<label class="control-label" for="weekendonly">{HWEEKENDONLY}</label>
+		<div class="controls">
+			{WEEKENDONLY}
+		</div> 
+	</div> 
+	<div class="control-group">
+	<label class="control-label" for="dayofweek">{HDAYOFWEEK}</label>
+		<div class="controls">
+			{DAYOFWEEK}
+		</div> 
+	</div>
+	
+	<patTemplate:tmpl name="already_selected" type="simpleCondition" requiredVars="hminrooms">
+	<div class="control-group">
+	<label class="control-label" for="minrooms_alreadyselected">{HMINROOMS}</label>
+		<div class="controls">
+			{MINROOMS_ALREADYSELECTED}
+			<p class="help-block">{MINROOMS_DESC}</p>
+		</div> 
+	</div> 
+	<div class="control-group">
+	<label class="control-label" for="maxrooms_alreadyselected">{HMAXROOMS}</label>
+		<div class="controls">
+			{MAXROOMS_ALREADYSELECTED}
+			<p class="help-block">{MAXROOMS_DESC}</p>
+		</div> 
+	</div>
+	</patTemplate:tmpl>
+	<div class="form-actions">
+		{JOMRESTOOLBAR}
+	</div>
+</fieldset>
+<input type="hidden" name="task" value="save_tariff_advanced">
+<input type="hidden" name="rates_uid" value="{RATESUID}" />
+<input type="hidden" name="tarifftypeid" value="{TARIFFTYPEID}" />
+{CSRF_TOKEN}
+
+</form>
+</patTemplate:tmpl>

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.4
+ * @version Jomres 9.23.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -100,6 +100,12 @@ try {
 		
 		//core admin menu items
 		$MiniComponents->specificEvent('19995', 'menu', array());
+
+		if ( isset($jrConfig['platform_connected']) && $jrConfig['platform_connected'] == 1 ) {
+			if (!file_exists(JOMRES_COREPLUGINS_ABSPATH.'connect'.JRDS.'plugin_info.php') && file_exists(JOMRES_COREPLUGINS_ABSPATH.'plugin_manager'.JRDS.'plugin_info.php') ) { // Something has gone horribly wrong
+				$MiniComponents->specificEvent('16000', 'addplugin', array('plugin' => 'connect', 'autoupgrade' => true));
+			}
+		}
 	}
 
 	//00005 trigger point
@@ -153,18 +159,24 @@ try {
 		$tmpl->displayParsedTemplate();
 	}
 
-	//admins_first_run();
+	$is_first_run = false;
+	if (!AJAXCALL) {
+		$is_first_run = admins_first_run();
+	}
 
 	//task
-	if ($MiniComponents->eventSpecificlyExistsCheck('16000', get_showtime('task'))) {
-		$MiniComponents->specificEvent('16000', get_showtime('task')); // task exists, execute it
-	} else {
-		$MiniComponents->triggerEvent('10001'); //task doesn`t exist, go to cpanel frontpage
+	if (!$is_first_run) {
+		if ($MiniComponents->eventSpecificlyExistsCheck('16000', get_showtime('task'))) {
+			$MiniComponents->specificEvent('16000', get_showtime('task')); // task exists, execute it
+		} else {
+			$MiniComponents->triggerEvent('10001'); //task doesn`t exist, go to cpanel frontpage
+		}
 	}
+
 
 	//output bottom area
 	if (!AJAXCALL) {
-		$pageoutput[] = $output;
+//		$pageoutput[] = $output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
 		if (_JOMRES_DETECTED_CMS == 'joomla3') {
@@ -172,7 +184,7 @@ try {
 		} else {
 			$tmpl->readTemplatesFromInput('administrator_content_area_bottom.html');
 		}
-		$tmpl->addRows('pageoutput', $pageoutput);
+		$tmpl->addRows('pageoutput', array() );
 		$tmpl->displayParsedTemplate();
 	}
 

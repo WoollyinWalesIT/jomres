@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.4
+ * @version Jomres 9.23.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -249,9 +249,14 @@ function showSiteConfig()
 	$lists[ 'frontend_room_type_editing_allowed' ] = jomresHTML::selectList($yesno, 'cfg_frontend_room_type_editing_allowed', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'frontend_room_type_editing_allowed' ]);
 	
 	$lists[ 'frontend_room_type_editing_show_property_room_types_in_search_options' ] = jomresHTML::selectList($yesno, 'cfg_frontend_room_type_editing_show_property_room_types_in_search_options', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'frontend_room_type_editing_show_property_room_types_in_search_options' ]);
-	
-	
-	
+
+	$lists[ 'useSyndication' ] = jomresHTML::selectList($yesno, 'cfg_useSyndication', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'useSyndication' ]);
+
+	if (!isset($jrConfig[ 'compatability_property_configuration' ])) { // New installations will automatically set this to Yes, therefore if it's not set this was an updated installation and we should by default set this to No and allow the site managers to decide if they want to enable the setting
+		$jrConfig[ 'compatability_property_configuration' ] = 0;
+	}
+	$lists[ 'compatability_property_configuration' ] = jomresHTML::selectList($yesno, 'cfg_compatability_property_configuration', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'compatability_property_configuration' ]);
+
 	if (!isset($jrConfig['show_powered_by'])) {
 		$jrConfig['show_powered_by'] = '0';
 	}
@@ -370,6 +375,15 @@ function showSiteConfig()
 	ob_start(); ?>
 	<h2 class="page-header">Jomres <?php echo jr_gettext('_JOMRES_A', '_JOMRES_A', false); ?></h2>
 	<form action="<?php echo JOMRES_SITEPAGE_URL_ADMIN; ?>" method="post" name="adminForm">
+		<input type="hidden" name="cfg_useGlobalPFeatures" value="<?php echo $jrConfig[ 'useGlobalPFeatures' ]; ?>"/>
+		<input type="hidden" name="cfg_useGlobalRoomTypes" value="<?php echo $jrConfig[ 'useGlobalRoomTypes' ]; ?>"/>
+		<input type="hidden" name="cfg_dynamicMinIntervalRecalculation" value="<?php echo $jrConfig[ 'dynamicMinIntervalRecalculation' ]; ?>"/>
+		<input type="hidden" name="cfg_disableAudit" value="<?php echo $jrConfig[ 'disableAudit' ]; ?>"/>
+		<input type="hidden" name="cfg_allowedTags" value="<?php echo $jrConfig[ 'allowedTags' ]; ?>"/>
+		<input type="hidden" name="no_html" value="1"/>
+		<input type="hidden" name="task" value="save_site_settings"/>
+		<input type="hidden" name="option" value="com_jomres"/>
+		<input type="hidden" name="jomres_csrf_token" value="<?php echo csrf::setToken(); ?>"/>
 
 	<?php
 	echo $jrtb;
@@ -382,17 +396,9 @@ function showSiteConfig()
 
 	$MiniComponents->triggerEvent('10501', $componentArgs); // Generate configuration options tabs
 
-	$configurationPanel->endTabs(); ?>
+	$configurationPanel->endTabs();
 
-	<input type="hidden" name="cfg_useGlobalPFeatures" value="<?php echo $jrConfig[ 'useGlobalPFeatures' ]; ?>"/>
-	<input type="hidden" name="cfg_useGlobalRoomTypes" value="<?php echo $jrConfig[ 'useGlobalRoomTypes' ]; ?>"/>
-	<input type="hidden" name="cfg_dynamicMinIntervalRecalculation" value="<?php echo $jrConfig[ 'dynamicMinIntervalRecalculation' ]; ?>"/>
-	<input type="hidden" name="cfg_disableAudit" value="<?php echo $jrConfig[ 'disableAudit' ]; ?>"/>
-	<input type="hidden" name="cfg_allowedTags" value="<?php echo $jrConfig[ 'allowedTags' ]; ?>"/>
-	<input type="hidden" name="no_html" value="1"/>
-	<input type="hidden" name="task" value="save_site_settings"/>
-	<input type="hidden" name="option" value="com_jomres"/>
-	<input type="hidden" name="jomres_csrf_token" value="<?php echo csrf::setToken(); ?>"/>'
+	?>
 	</form>
 	<?php
 	ob_end_flush();

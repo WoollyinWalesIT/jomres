@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.11.1
+ * @version Jomres 9.23.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -65,7 +65,7 @@ class jomres_content_tabs_bootstrap4
 			$anchor = generateJomresRandomString(10);
 		$tabCookieString = '';
 		$this->panelNames[ ] = $anchor;
-		$this->paneLink[ ] = '<li class=" nav-item"><div id="tab_'.$anchor.'"></div><a href="#'.$anchor.'" class="'.$active.' nav-link" data-toggle="tab">'.$tabpage.'</a></li>
+		$this->paneLink[ ] = '<li class=" nav-item"><a href="#'.$anchor.'" class="'.$active.' nav-link" data-toggle="tab">'.$tabpage.'</a></li>
 		';
 		$this->panes[ ] = '<div class="tab-pane '.$active.'" id="'.$anchor.'"><!-- start content tab panel -->';
 	}

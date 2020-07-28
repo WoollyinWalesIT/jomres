@@ -6,7 +6,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
  * Core file
  *
  * @author Vince Wooll <sales@jomres.net>
- * @version Jomres 9.21.4
+ * @version Jomres 9.23.0
  * @package Jomres
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
@@ -57,7 +57,17 @@ class patTemplate_Reader_Jomres extends patTemplate_Reader
 					{
 					$default_root = $this->_options[ 'root' ][ '__default' ];
 					}
-				
+
+				if ( !file_exists($default_root . JRDS . $templatename)) {
+					$siteConfig		= jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+					$jrConfig		  = $siteConfig->get();
+					$post_error_message = '';
+					if ($jrConfig['development_production'] != 'development') {
+						$post_error_message = ' Please check the administrator > jomres > tools > log files area for more information. ';
+						}
+
+					throw new Exception("Error: the file ".$default_root . JRDS . $templatename. " does not exist. ".$post_error_message );
+				}
 				$content = file_get_contents( $default_root . JRDS . $templatename );
 				}
 			else

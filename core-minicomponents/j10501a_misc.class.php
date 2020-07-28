@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.4
+ * @version Jomres 9.23.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -66,7 +66,7 @@ class j10501a_misc
 				}
 			} else {
 				$support_key_message = '<p class="alert alert-danger">'.jr_gettext('_JOMRES_SUPPORTKEY_DESC_INVALID', '_JOMRES_SUPPORTKEY_DESC_INVALID', false, false).'</p>';
-				$renewal_link = '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=stripe_subscribe">Subscribe now</a>';
+				$renewal_link = '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=connect">Get Connected!</a>';
 			}
 
 			$support_key_status = '<span class="badge">Status</span> '.$jomres_check_support_key->key_status.'';
@@ -90,11 +90,6 @@ class j10501a_misc
 		$configurationPanel->setleft(jr_gettext('_JOMRES_SUPPORTKEY', '_JOMRES_SUPPORTKEY', false));
 		$configurationPanel->setmiddle('<input type="password" class="input-xlarge" name="cfg_licensekey" value="'.$jrConfig[ 'licensekey' ].'" /><br/>'.' '.$support_key_status.' '.$support_key_owner.' '.$support_key_expires.' '.$renewal_link.' '.$support_key_is_trial_license.' '.$support_key_license_name);
 		$configurationPanel->setright(jr_gettext('_JOMRES_SUPPORTKEY_DESC', '_JOMRES_SUPPORTKEY_DESC', false).' '.$support_key_message);
-		$configurationPanel->insertSetting();
-
-		$configurationPanel->setleft(jr_gettext('_JOMRES_BOOTSTRAPSWITCH_FRONTEND', '_JOMRES_BOOTSTRAPSWITCH_FRONTEND', false));
-		$configurationPanel->setmiddle($lists[ 'use_bootstrap_in_frontend' ]);
-		$configurationPanel->setright(jr_gettext('_JOMRES_BOOTSTRAPSWITCH_INFO', '_JOMRES_BOOTSTRAPSWITCH_INFO', false));
 		$configurationPanel->insertSetting();
 
 		$configurationPanel->setleft(jr_gettext('_JOMRES_BOOTSTRAP_VERSION', '_JOMRES_BOOTSTRAP_VERSION', false));

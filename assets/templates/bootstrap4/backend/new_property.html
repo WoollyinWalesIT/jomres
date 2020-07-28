@@ -33,8 +33,8 @@
 			alert("{_JOMRES_FIELDS_HIGHLIGHTED_ARE_REQUIRED}");
 		}
 	}
-	
-	jomresJquery(document).ready(function(){
+
+	document.addEventListener('DOMContentLoaded', function(){
 		jomresJquery("#new_property_country").change(function(){
 			var selectedValue = jomresJquery(this).find(":selected").val();
 			clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
@@ -101,7 +101,7 @@
 	<div class="form-actions">
 		<div class="col-md-10 col-md-offset-2">
 			<button type="button" class="btn btn-primary" onclick="validatePropertyRegistration();"><i class="fa fa-arrow-right"></i> {COMMON_NEXT}</button>
-			<a href="{JOMRES_SITEPAGE_URL}" class="btn btn-default"><i class="fa fa-times"></i> {COMMON_CANCEL}</a>
+			<a href="{JOMRES_SITEPAGE_URL}" class="btn btn-secondary"><i class="fa fa-times"></i> {COMMON_CANCEL}</a>
 		</div>
 	</div>
 	<input type="hidden" name="task" value="save_new_property"/>

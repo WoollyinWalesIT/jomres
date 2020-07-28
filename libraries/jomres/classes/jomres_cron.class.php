@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.4
+ * @version Jomres 9.23.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -230,10 +230,10 @@ class jomres_cron
 					$unlockedJobs[] = $job[ 'id' ];
 				}
 
-				$this->debug[ ] = 'Found job name '.$job[ 'job_name' ];
-				if ($jobDue) {
-					$this->debug[ ] = '<b>This job is due now.</b>';
-				}
+				//$this->debug[ ] = 'Found job name '.$job[ 'job_name' ];
+				//if ($jobDue) {
+				//	$this->debug[ ] = '<b>This job is due now.</b>';
+				//}
 			}
 			if (!empty($unlockedJobs)) {
 				$this->lockJobs($unlockedJobs);

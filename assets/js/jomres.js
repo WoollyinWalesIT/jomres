@@ -569,6 +569,30 @@ function getResponse_guesttype(typeid, value) {
 	);
 };
 
+
+function getResponse_standardguests() {
+	var form_property_uid = jomresJquery("#booking_form_property_uid").val();
+	HideRoomsList();
+	var value = jomresJquery("#standard_guests").val();
+
+	jomresJquery.get(ajaxurl + '&task=handlereq&property_uid_check=' + form_property_uid + '', { field: 'standard_guests',  'value': value },
+		function (data) {
+			showRoomsList(data);
+		}
+	);
+};
+
+function getResponse_children( id ) {
+	var form_property_uid = jomresJquery("#booking_form_property_uid").val();
+	HideRoomsList();
+	var value = document.getElementById("child_dropdown["+id+"]").selectedIndex;
+	jomresJquery.get(ajaxurl + '&task=handlereq&property_uid_check=' + form_property_uid + '', { field: 'child_selection',  'value': value , 'guest_index': id},
+		function (data) {
+			showRoomsList(data);
+		}
+	);
+};
+
 function getResponse_rooms(field, value) {
 	var form_property_uid = jomresJquery("#booking_form_property_uid").val();
 	HideRoomsList();
@@ -1164,48 +1188,102 @@ function trigger_comparison(form) {
  * jHeartbeat 0.3.0
  * (C)Alex Richards - http://www.ajtrichards.co.uk/
  */
-jomresJquery(document).ready(function () {
-	jomresJquery.jheartbeat = {
-		options: {
-			url: "heartbeat_default.asp",
-			delay: 10000,
-			div_id: "test_div"
-		},
-		beatfunction: function () {
-		},
-		timeoutobj: {
-			id: -1
-		},
-		set: function (options, onbeatfunction) {
-			if (this.timeoutobj.id > -1) {
-				clearTimeout(this.timeoutobj);
+document.addEventListener('DOMContentLoaded', function() {
+	if (typeof ajaxurl !== 'undefined' && ajaxurl != '') {
+		jomresJquery.jheartbeat = {
+			options: {
+				url: ajaxurl + "&task=handlereq&no_html=1&field=heartbeat" ,
+				delay: 10000,
+				div_id: "test_div"
+			},
+			beatfunction: function () {
+			},
+			timeoutobj: {
+				id: -1
+			},
+			set: function (options, onbeatfunction) {
+				if (this.timeoutobj.id > -1) {
+					clearTimeout(this.timeoutobj);
 				}
-			if (options) {
-				jomresJquery.extend(this.options, options);
+				if (options) {
+					jomresJquery.extend(this.options, options);
 				}
-			if (onbeatfunction) {
-				this.beatfunction = onbeatfunction;
+				if (onbeatfunction) {
+					this.beatfunction = onbeatfunction;
 				}
-			// Add the HeartBeatDIV to the page
-			jomresJquery("body").append("<div id=\"" + this.options.div_id + "\" style=\"display: none;\"></div>");
-			this.timeoutobj.id = setTimeout("jomresJquery.jheartbeat.beat();", this.options.delay);
-		},
-		beat: function () {
-			jomresJquery.ajax({
-				url: this.options.url,
-				dataType: "html",
-				type: "GET",
-				error: function (e) {
-					jomresJquery('#' + jomresJquery.jheartbeat.options.div_id).append("");
-				},
-				success: function (data) {
-					jomresJquery('#' + jomresJquery.jheartbeat.options.div_id).html(data);
+				// Add the HeartBeatDIV to the page
+				jomresJquery("body").append("<div id=\"" + this.options.div_id + "\" style=\"display: none;\"></div>");
+				this.timeoutobj.id = setTimeout("jomresJquery.jheartbeat.beat();", this.options.delay);
+			},
+			beat: function () {
+				jomresJquery.ajax({
+					url: this.options.url,
+					dataType: "html",
+					type: "GET",
+					error: function (e) {
+						jomresJquery('#' + jomresJquery.jheartbeat.options.div_id).append("");
+					},
+					success: function (data) {
+						jomresJquery('#' + jomresJquery.jheartbeat.options.div_id).html(data);
+					}
+				});
+				this.timeoutobj.id = setTimeout("jomresJquery.jheartbeat.beat();", this.options.delay);
+				this.beatfunction();
+			}
+		};
+	}
+});
+
+
+/*
+ * jHeartbeat 0.3.0
+ * (C)Alex Richards - http://www.ajtrichards.co.uk/
+ */
+jomresJquery(document).ready(function (){
+	if (typeof ajaxurl !== 'undefined' && ajaxurl != '') {
+		jomresJquery.jheartbeat = {
+			options: {
+				url: ajaxurl + "&task=handlereq&no_html=1&field=heartbeat" ,
+				delay: 10000,
+				div_id: "test_div"
+			},
+			beatfunction: function () {
+			},
+			timeoutobj: {
+				id: -1
+			},
+			set: function (options, onbeatfunction) {
+				if (this.timeoutobj.id > -1) {
+					clearTimeout(this.timeoutobj);
 				}
-			});
-			this.timeoutobj.id = setTimeout("jomresJquery.jheartbeat.beat();", this.options.delay);
-			this.beatfunction();
-		}
-	};
+				if (options) {
+					jomresJquery.extend(this.options, options);
+				}
+				if (onbeatfunction) {
+					this.beatfunction = onbeatfunction;
+				}
+				// Add the HeartBeatDIV to the page
+				jomresJquery("body").append("<div id=\"" + this.options.div_id + "\" style=\"display: none;\"></div>");
+				this.timeoutobj.id = setTimeout("jomresJquery.jheartbeat.beat();", this.options.delay);
+			},
+			beat: function () {
+				jomresJquery.ajax({
+					url: this.options.url,
+					dataType: "html",
+					type: "GET",
+					error: function (e) {
+						jomresJquery('#' + jomresJquery.jheartbeat.options.div_id).append("");
+					},
+					success: function (data) {
+						jomresJquery('#' + jomresJquery.jheartbeat.options.div_id).html(data);
+					}
+				});
+				this.timeoutobj.id = setTimeout("jomresJquery.jheartbeat.beat();", this.options.delay);
+				this.beatfunction();
+			}
+		};
+	}
+
 });
 
 function jomres_print(div) {

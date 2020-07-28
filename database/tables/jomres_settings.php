@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.4
+ * @version Jomres 9.23.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `#__jomres_settings` (
 	`uid` INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	`property_uid` INT UNSIGNED NOT NULL DEFAULT 0,
 	`akey` VARCHAR(100),
-	`value`	VARCHAR(255),
+	`value`	 TEXT NOT NULL,
 	PRIMARY KEY	(`uid`),
 	UNIQUE INDEX `jomres_settings` (`property_uid`, `akey`),
 	INDEX `property_uid` (`property_uid`)

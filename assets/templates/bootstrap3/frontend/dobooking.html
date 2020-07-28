@@ -221,14 +221,25 @@
 								</div>
 								</patTemplate:tmpl>
 							</div>
-							<patTemplate:tmpl name="guesttypes">
-							<div class="col-md-3">
-								<div class="form-group">
-									<label class="control-label" for="{FIELDNAME}">{TEXT}</label>
-									{DROPDOWN}
+							<patTemplate:tmpl name="guesttypes" type="simpleCondition" requiredVars="fieldname">
+								<div class="col-md-3">
+									<div class="form-group">
+										<label class="control-label" for="{FIELDNAME}">{TEXT}</label>
+										{DROPDOWN}
+									</div>
 								</div>
-							</div>
 							</patTemplate:tmpl>
+							<patTemplate:tmpl name="standard_guests" type="simpleCondition" requiredVars="guests_dropdown">
+								<script>document.addEventListener('DOMContentLoaded', function(){getResponse_standardguests();}, false);</script>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label class="control-label" for="extra_guests">{TEXT}</label>
+										{GUESTS_DROPDOWN}
+										<p class="help-block">{INFO}</p>
+									</div>
+								</div>
+							</patTemplate:tmpl>
+							<div id="child_selectors">{BOOKING_FORM_CHILD_SELECTORS}</div>
 						</div>
 					</div>
 				</div>
@@ -422,7 +433,7 @@
 						</div>
 					</div>
 					<div class="panel-body">
-						<p><span id="staydays"></span> {ACCOMMODATION_NIGHTS} <span id="roompernight"></span>{ACCOMMODATION_PERROOM}</p>
+						<p><span id="staydays"></span> {ACCOMMODATION_NIGHTS} <span id="roompernight"></span> {ACCOMMODATION_PERROOM}</p>
 						<p><span id="totalinparty"></span> {BILLING_TOTALINPARTY}</p>
 						<p><span id="discount" class="jomres_message">&nbsp;</span></p>
 
@@ -442,14 +453,25 @@
 								<span id="room_total_inc_tax"></span>
 							</div>
 						</div>
+
+
 						<div class="row">
 							<div class="col-xs-9">
-								{ROOM_TOTAL_ACCOM_TAX}
+								{JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS}
 							</div>
 							<div class="col-xs-3">
-								<span id="taxtotal"></span>
+								<span id="extra_adults"></span>
 							</div>
 						</div>
+						<div class="row">
+							<div class="col-xs-9">
+								{JOMRES_CHILDREN_BOOKING_FORM_LABEL}
+							</div>
+							<div class="col-xs-3">
+								<span id="child_price"></span>
+							</div>
+						</div>
+
 						<div class="row">
 							<div class="col-xs-9">
 								{EXTRAS_TOTAL}
@@ -458,23 +480,16 @@
 								<span id="extrastotal_totals_panel"></span>
 							</div>
 						</div>
-						<div class="row">
-							<div class="col-xs-9">
-								{EXTRAS_TAX}
-							</div>
-							<div class="col-xs-3">
-								<span id="extra_tax"></span>
-							</div>
-						</div>
+
 						<patTemplate:tmpl name="coupons_totals" type="simpleCondition" requiredVars="coupon_discount_value">
-						<div class="row">
-							<div class="col-xs-9">
-								{COUPON_DISCOUNT_VALUE}
+							<div class="row">
+								<div class="col-xs-9">
+									{COUPON_DISCOUNT_VALUE}
+								</div>
+								<div class="col-xs-3">
+									<span id="coupon_discount_value"></span>
+								</div>
 							</div>
-							<div class="col-xs-3">
-								<span id="coupon_discount_value"></span>
-							</div>
-						</div>
 						</patTemplate:tmpl>
 						<div class="row">
 							<div class="col-xs-9">
@@ -516,6 +531,40 @@
 								<span id="balance"></span>
 							</div>
 						</div>
+						<hr class="separator"/>
+						<div class="row">
+							<div class="col-xs-9">
+								{ROOM_TOTAL_ACCOM_TAX}
+							</div>
+							<div class="col-xs-3">
+								<span id="taxtotal"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-9">
+								{JOMRES_CITY_TAX_HEADING}
+							</div>
+							<div class="col-xs-3">
+								<span id="city_tax"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-9">
+								{JOMRES_CLEANING_FEE_HEADING}
+							</div>
+							<div class="col-xs-3">
+								<span id="cleaning_fee"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-9">
+								{EXTRAS_TAX}
+							</div>
+							<div class="col-xs-3">
+								<span id="extra_tax"></span>
+							</div>
+						</div>
+
 					</div>
 				</div>
 

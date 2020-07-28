@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.4
+ * @version Jomres 9.23.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -94,7 +94,7 @@ $mrConfig = array(
   'inputBoxOktobookBackground' => '#11ff22',
   'supplimentChargeIsPercentage' => '0',
   'returnRoomsLimit' => '1',
-  'tariffmode' => '0',
+  'tariffmode' => '5',
   'roomslistinpropertydetails' => '1',
   'verbosetariffinfo' => '0',
   'bookingform_roomlist_showroomno' => '1',
@@ -163,5 +163,6 @@ $mrConfig = array(
   'hide_local_address' => '0',
   'use_custom_invoice_numbers' => '1',
   'last_invoice_number' => '1000',
-  'custom_invoice_pattern' => '{N}'
+  'custom_invoice_pattern' => '{N}',
+  'allow_children' => '1',
 );

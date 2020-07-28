@@ -26,7 +26,7 @@ var chartData_{RANDOM_ID} = {
 	]
 }
 
-jomresJquery(document).ready(function () {
+document.addEventListener('DOMContentLoaded', function(){
 	var ctx = document.getElementById("{RANDOM_ID}").getContext("2d");
 	var jrChart = new Chart(ctx, {
 		type: '{CHART_TYPE}',
@@ -35,6 +35,6 @@ jomresJquery(document).ready(function () {
 			maintainAspectRatio: {MAINTAIN_ASPECT_RATIO}
 		}
 	});
-});
+}, false);
 </script>
 </patTemplate:tmpl>

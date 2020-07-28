@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.4
+ * @version Jomres 9.23.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -225,6 +225,15 @@ class j06000ui_availability_calendar
 
 		$url = get_booking_url($property_uid,'','&pdetails_cal=1');
 		$inline_calendar = '
+<style>
+.ui-datepicker table {
+    font-size: 0.8em;
+}
+.ui-datepicker td {
+    padding:0;
+    border: 0px !important;
+}
+</style>
 			<script>
 			' .$quarter_output.'
 			' .$half_output.'

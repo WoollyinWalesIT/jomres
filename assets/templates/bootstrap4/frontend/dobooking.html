@@ -68,7 +68,7 @@
 
 	var running_bootstrap = {BOOTSTRAP_JS_VAR};
 
-	jomresJquery(document).ready(function () {
+	document.addEventListener('DOMContentLoaded', function() {
 
 		jomresJquery('#ajaxform').attr('novalidate', 'novalidate'); // Disable html5 validation
 
@@ -165,7 +165,7 @@
 	}
 	;
 
-	jomresJquery(function(){
+	document.addEventListener('DOMContentLoaded', function() {
 		jomresJquery("#country").change(function(){
 			var selectedValue = jomresJquery(this).find(":selected").val();
 			clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
@@ -174,8 +174,8 @@
 				});
 			});
 		});
-		
-	jomresJquery(function () {
+
+	document.addEventListener('DOMContentLoaded', function() {
 		jomresJquery('[data-toggle="tooltip"]').tooltip()
 	})
 	//-->
@@ -228,7 +228,7 @@
 							</div>
 							</patTemplate:tmpl>
 						</div>
-						<patTemplate:tmpl name="guesttypes">
+						<patTemplate:tmpl name="guesttypes" type="simpleCondition" requiredVars="fieldname">
 						<div class="col-md-3">
 							<div class="form-group">
 								<label class="control-label" for="{FIELDNAME}">{TEXT}</label>
@@ -236,6 +236,17 @@
 							</div>
 						</div>
 						</patTemplate:tmpl>
+						<patTemplate:tmpl name="standard_guests" type="simpleCondition" requiredVars="guests_dropdown">
+							<script>document.addEventListener('DOMContentLoaded', function(){getResponse_standardguests();}, false);</script>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label class="control-label" for="standard_guests">{TEXT}</label>
+									{GUESTS_DROPDOWN}
+									<p class="help-block">{INFO}</p>
+								</div>
+							</div>
+						</patTemplate:tmpl>
+						<div id="child_selectors">{BOOKING_FORM_CHILD_SELECTORS}</div>
 					</div>
 				</div>
 			</div>
@@ -417,7 +428,7 @@
 						</div>
 					</div>
 					<div class="panel-footer">
-						<a class="btn btn-default" href="javascript:void(0);" onclick="getResponse('coupon',jomresJquery('#coupon').val())" >{COUPON_BUTTON}</a>
+						<a class="btn btn-secondary" href="javascript:void(0);" onclick="getResponse('coupon',jomresJquery('#coupon').val())" >{COUPON_BUTTON}</a>
 					</div>
 				</div>
 				</patTemplate:tmpl>
@@ -448,14 +459,24 @@
 								<span id="room_total_inc_tax"></span>
 							</div>
 						</div>
+
 						<div class="row">
 							<div class="col-xs-9">
-								{ROOM_TOTAL_ACCOM_TAX}
+								{JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS}
 							</div>
 							<div class="col-xs-3">
-								<span id="taxtotal"></span>
+								<span id="extra_adults"></span>
 							</div>
 						</div>
+						<div class="row">
+							<div class="col-xs-9">
+								{JOMRES_CHILDREN_BOOKING_FORM_LABEL}
+							</div>
+							<div class="col-xs-3">
+								<span id="child_price"></span>
+							</div>
+						</div>
+
 						<div class="row">
 							<div class="col-xs-9">
 								{EXTRAS_TOTAL}
@@ -464,23 +485,16 @@
 								<span id="extrastotal_totals_panel"></span>
 							</div>
 						</div>
-						<div class="row">
-							<div class="col-xs-9">
-								{EXTRAS_TAX}
-							</div>
-							<div class="col-xs-3">
-								<span id="extra_tax"></span>
-							</div>
-						</div>
+
 						<patTemplate:tmpl name="coupons_totals" type="simpleCondition" requiredVars="coupon_discount_value">
-						<div class="row">
-							<div class="col-xs-9">
-								{COUPON_DISCOUNT_VALUE}
+							<div class="row">
+								<div class="col-xs-9">
+									{COUPON_DISCOUNT_VALUE}
+								</div>
+								<div class="col-xs-3">
+									<span id="coupon_discount_value"></span>
+								</div>
 							</div>
-							<div class="col-xs-3">
-								<span id="coupon_discount_value"></span>
-							</div>
-						</div>
 						</patTemplate:tmpl>
 						<div class="row">
 							<div class="col-xs-9">
@@ -522,6 +536,39 @@
 								<span id="balance"></span>
 							</div>
 						</div>
+						<hr class="separator"/>
+						<div class="row">
+							<div class="col-xs-9">
+								{ROOM_TOTAL_ACCOM_TAX}
+							</div>
+							<div class="col-xs-3">
+								<span id="taxtotal"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-9">
+								{JOMRES_CITY_TAX_HEADING}
+							</div>
+							<div class="col-xs-3">
+								<span id="city_tax"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-9">
+								{JOMRES_CLEANING_FEE_HEADING}
+							</div>
+							<div class="col-xs-3">
+								<span id="cleaning_fee"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-9">
+								{EXTRAS_TAX}
+							</div>
+							<div class="col-xs-3">
+								<span id="extra_tax"></span>
+							</div>
+						</div>
 					</div>
 				</div>
 
@@ -543,7 +590,7 @@
 						<div id="override_response" class="jomres_message"></div>
 					</div>
 					<div class="panel-footer">
-						<a href="javascript:void(0);" onclick="getResponse_override('override',jomresJquery('#override_room_total').val()+'^'+jomresJquery('#override_deposit').val())" class="btn btn-default">{_JOMCOMP_AMEND_OVERRIDE_SAVE}</a>
+						<a href="javascript:void(0);" onclick="getResponse_override('override',jomresJquery('#override_room_total').val()+'^'+jomresJquery('#override_deposit').val())" class="btn btn-secondary">{_JOMCOMP_AMEND_OVERRIDE_SAVE}</a>
 					</div>
 				</div>
 				</patTemplate:tmpl>

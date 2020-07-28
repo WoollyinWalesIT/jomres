@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.4
+ * @version Jomres 9.23.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -275,10 +275,6 @@ class basic_property_details
 				$this->rooms_max_people = array();
 			}
 		}
-		/* else
-			{
-			throw new Exception("Property uid doesn`t exist", 2);
-			} */
 
 		$mrConfig = getPropertySpecificSettings($this->property_uid);
 
@@ -532,7 +528,7 @@ class basic_property_details
 			}
 
 			$temp_rooms = array();
-			$query = 'SELECT `room_uid`,`room_classes_uid`,`propertys_uid`,`max_people` FROM #__jomres_rooms WHERE propertys_uid IN ('.jomres_implode($property_uids).') ';
+			$query = 'SELECT `room_uid`,`room_classes_uid`,`propertys_uid`,`max_people` , `max_adults` , `max_children`   FROM #__jomres_rooms WHERE propertys_uid IN ('.jomres_implode($property_uids).') ';
 			$rooms = doSelectSql($query);
 			foreach ($rooms as $room) {
 				$this->multi_query_result[ $room->propertys_uid ][ 'rooms' ][ $room->room_uid ] = $room->room_uid;
@@ -544,6 +540,8 @@ class basic_property_details
 				
 				$this->multi_query_result[ $room->propertys_uid ][ 'rooms_by_type' ][ $room->room_classes_uid ][] = $room->room_uid;
 				$this->multi_query_result[ $room->propertys_uid ][ 'rooms_max_people' ][ $room->room_classes_uid ][$room->room_uid] = $room->max_people;
+				$this->multi_query_result[ $room->propertys_uid ][ 'rooms_max_adults' ][ $room->room_classes_uid ][$room->room_uid] = $room->max_adults;
+				$this->multi_query_result[ $room->propertys_uid ][ 'rooms_max_children' ][ $room->room_classes_uid ][$room->room_uid] = $room->max_children;
 			}
 
 			foreach ($propertyData as $d) {

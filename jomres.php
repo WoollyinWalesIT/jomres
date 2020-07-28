@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.21.4
+ * @version Jomres 9.23.0
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -144,7 +144,7 @@ try {
 	if (get_showtime('task') != 'error') {
 		$defaultProperty = (int) $thisJRUser->currentproperty;
 
-		if (!$thisJRUser->userIsManager && $thisJRUser->userIsRegistered) {
+		if (!$thisJRUser->userIsManager && $thisJRUser->userIsRegistered && !AJAXCALL && !preg_match('/bot|crawl|curl|dataprovider|search|get|spider|find|java|majesticsEO|google|yahoo|teoma|contaxe|yandex|libwww-perl|facebookexternalhit/i', $_SERVER['HTTP_USER_AGENT']) && get_showtime['task'] != 'background_process' ) {
 			
 			if (!isset($_REQUEST['jsid'])) { // Don't want to reset mos userid if jsid is set. jsid is sent back by gateways and if we set mos id to the gateway's session, we'll never be able to  associate the booking with the guest
 				$tmpBookingHandler->updateGuestField('mos_userid', $thisJRUser->id);
@@ -281,6 +281,13 @@ try {
 		$componentArgs = array();
 		$componentArgs[ 'property_uid' ] = $property_uid;
 		$MiniComponents->triggerEvent('00012', $componentArgs); // Optional other stuff to do before switch is done.
+
+		if ( isset($jrConfig['platform_connected']) && $jrConfig['platform_connected'] == 1 ) {
+			if (!file_exists(JOMRES_COREPLUGINS_ABSPATH.'connect'.JRDS.'plugin_info.php') && file_exists(JOMRES_COREPLUGINS_ABSPATH.'plugin_manager'.JRDS.'plugin_info.php') ) { // Something has gone horribly wrong
+				$MiniComponents->specificEvent('16000', 'addplugin', array('plugin' => 'connect', 'autoupgrade' => true));
+			}
+		}
+
 	}
 
 	//handle tasks
