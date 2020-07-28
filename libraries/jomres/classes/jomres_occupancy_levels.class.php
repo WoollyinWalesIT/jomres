@@ -32,28 +32,31 @@ class jomres_occupancy_levels
 	{
 		$this->property_uid = $property_uid;
 
-		$this->mrConfig = getPropertySpecificSettings( $this->property_uid );
+		if ($this->property_uid > 0) {
+			$this->mrConfig = getPropertySpecificSettings( $this->property_uid );
 
-		if ( isset($this->mrConfig['occupancy_levels']) ) {
-			$this->occupancy_levels = unserialize(base64_decode($this->mrConfig['occupancy_levels']));
-		} else {
-			$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
-			$current_property_details->gather_data ( $this->property_uid );
+			if ( isset($this->mrConfig['occupancy_levels']) ) {
+				$this->occupancy_levels = unserialize(base64_decode($this->mrConfig['occupancy_levels']));
+			} else {
+				$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
+				$current_property_details->gather_data ( $this->property_uid );
 
-			$occupancy_levels = array();
-			if (!empty($current_property_details->room_types)) {
-				foreach ($current_property_details->room_types as $room_type_id => $room_type ) {
-					$occupancy_levels [$room_type_id] = array (
-						"room_type_name"	=> $room_type['abbv'] ,
-						"room_type_id"		=> $room_type_id ,
-						"max_adults"		=> 2 ,
-						"max_children"		=> 0 ,
-						"max_occupancy"		=> 0
-					);
+				$occupancy_levels = array();
+				if (!empty($current_property_details->room_types)) {
+					foreach ($current_property_details->room_types as $room_type_id => $room_type ) {
+						$occupancy_levels [$room_type_id] = array (
+							"room_type_name"	=> $room_type['abbv'] ,
+							"room_type_id"		=> $room_type_id ,
+							"max_adults"		=> 2 ,
+							"max_children"		=> 0 ,
+							"max_occupancy"		=> 0
+						);
+					}
 				}
+				$this->occupancy_levels = $occupancy_levels;
 			}
-			$this->occupancy_levels = $occupancy_levels;
 		}
+
 	}
 
 	public function set_occupancy_level ( $id = 0 , $max_adults = 0 , $max_children = 0 , $max_occupancy = 0 )
