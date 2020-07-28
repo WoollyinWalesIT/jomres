@@ -175,11 +175,21 @@ class dobooking
 			$this->contract_total			= $bookingDeets[ 'contract_total' ];
 			$this->extrasvalue				= $bookingDeets[ 'extrasvalue' ];
 
-			$this->standard_guest_numbers	= $bookingDeets[ 'standard_guest_numbers' ];
-			$this->extra_guest_numbers		= $bookingDeets[ 'extra_guest_numbers' ];
-			$this->child_numbers			= $bookingDeets[ 'child_numbers' ];
-			$this->child_prices				= $bookingDeets[ 'child_prices' ];
+			if ( isset($bookingDeets[ 'standard_guest_numbers' ])) {
+				$this->standard_guest_numbers	= $bookingDeets[ 'standard_guest_numbers' ];
+			}
 
+			if ( isset($bookingDeets[ 'extra_guest_numbers' ])) {
+				$this->extra_guest_numbers		= $bookingDeets[ 'extra_guest_numbers' ];
+			}
+
+			if ( isset($bookingDeets[ 'child_numbers' ])) {
+				$this->child_numbers			= $bookingDeets[ 'child_numbers' ];
+			}
+
+			if ( isset($bookingDeets[ 'child_prices' ])) {
+				$this->child_prices				= $bookingDeets[ 'child_prices' ];
+			}
 
 
 			$this->extra_guest_price		= $bookingDeets[ 'extra_guest_price' ];
