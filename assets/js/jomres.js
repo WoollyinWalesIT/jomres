@@ -1191,7 +1191,7 @@ function trigger_comparison(form) {
 document.addEventListener('DOMContentLoaded', function() {
 	jomresJquery.jheartbeat = {
 		options: {
-			url: "heartbeat_default.asp",
+			url: ajaxurl + "&task=handlereq&no_html=1&field=heartbeat" ,
 			delay: 10000,
 			div_id: "test_div"
 		},
@@ -1240,7 +1240,7 @@ document.addEventListener('DOMContentLoaded', function() {
 jomresJquery(document).ready(function (){
 	jomresJquery.jheartbeat = {
 		options: {
-			url: "heartbeat_default.asp",
+			url: ajaxurl + "&task=handlereq&no_html=1&field=heartbeat" ,
 			delay: 10000,
 			div_id: "test_div"
 		},
