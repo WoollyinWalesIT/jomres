@@ -1188,7 +1188,7 @@ function trigger_comparison(form) {
  * jHeartbeat 0.3.0
  * (C)Alex Richards - http://www.ajtrichards.co.uk/
  */
-jomresJquery(document).ready(function () {
+document.addEventListener('DOMContentLoaded', function() {
 	jomresJquery.jheartbeat = {
 		options: {
 			url: "heartbeat_default.asp",
