@@ -5846,6 +5846,14 @@ class dobooking
 				$this->extra_guest_price = ($this->extra_guest_numbers * $extra_guest_price) * $this->stayDays;
 				$this->extra_guest_price = $this->get_nett_price( $this->extra_guest_price , $this->accommodation_tax_rate);
 				$this->room_total = $this->room_total + $this->extra_guest_price;
+
+				// Not sure about this yet, commented for now
+				/*$this->add_additiional_line_item(
+					'UNKNOWN',
+					$id = 0,
+					jr_gettext('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', false) ,
+					$this->extra_guest_price,
+					$tax_code_id = 0);*/
 			}
 
 			$modifiers = $this->get_modifiers();
@@ -7176,6 +7184,10 @@ class dobooking
 		return self::$mktimes[ $date ];
 	}
 
+
+
+	/**
+	 *
 	// This function is designed to check with the Jomres system to see if the email address this user is trying to use can be used.
 	// Scenario :
 	// If the system is configured to create a new user when a booking is made, then naturally the first time an email address is used, a new user is created.
@@ -7183,12 +7195,8 @@ class dobooking
 	// This function will ping the handlereq task, sending the email address. handlereq will look to see if the system is configured to create new users. If it is, and the current user isn't logged in
 	// but the email address is already in use by another user, then the booking form will not enable the submit button and the current user will be prompted to either log in, or use another email address.
 
-	// If the system is not configured to create new users then a new Joomla user isn't created anyway, in which case Jomres will simply return that it's ok to use the email address
+	// If the system is not configured to create new users then a new user isn't created anyway, in which case Jomres will simply return that it's ok to use the email address
 	// Managers can re-use email addresses
-
-	/**
-	 * 
-	 *
 	 *
 	 */
 
