@@ -84,13 +84,15 @@ class jomres_sanity_check
 
 			$this->warnings .= $this->check_property_type_published();
 
-			$this->warnings .= $this->check_child_rates();
-			$this->warnings .= $this->check_occupancy_levels();
 
 			$this->warnings .= $this->checks_guest_types_pppn();
 			if ($this->mrConfig[ 'is_real_estate_listing' ] == 0 && get_showtime('include_room_booking_functionality')) {
 				$this->warnings .= $this->checks_tariffs_exist();
 			}
+
+			$this->warnings .= $this->check_child_rates();
+			$this->warnings .= $this->check_occupancy_levels();
+
 
 			if (get_showtime('is_jintour_property')) {
 				$this->warnings .= $this->check_tours_exist();
