@@ -53,6 +53,27 @@ class j00005set_search_selections
 			return;
 		} */
 
+		//////////////////////////////////// SLEEPS /////////////////////////////////////////////////////////
+
+		if (isset($_REQUEST[ 'sleeps_adults' ])) {
+			if (is_array($_REQUEST[ 'sleeps_adults' ])) {
+				$sleeps_adults = jomresGetParam($_REQUEST, 'sleeps_adults', array());
+			} else {
+				$sleeps_adults = array(jomresGetParam($_REQUEST, 'sleeps_adults', ''));
+			}
+
+			$tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['sleeps_adults'] = $sleeps_adults;
+		}
+
+		if (isset($_REQUEST[ 'sleeps_children' ])) {
+			if (is_array($_REQUEST[ 'sleeps_children' ])) {
+				$sleeps_children = jomresGetParam($_REQUEST, 'sleeps_children', array());
+			} else {
+				$sleeps_children = array(jomresGetParam($_REQUEST, 'sleeps_children', ''));
+			}
+
+			$tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['sleeps_children'] = $sleeps_children;
+		}
 
 		//////////////////////////////////// STARS /////////////////////////////////////////////////////////
 
