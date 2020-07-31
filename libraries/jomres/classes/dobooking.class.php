@@ -7240,7 +7240,7 @@ class dobooking
 				}
 
 				if ($email_found) {
-					if ($thisJRUser->userIsManager && isset($_GET['field']) && $_GET['field'] == 'existingCustomers') { // At this point we have a manager who is using the dropdown to select a guest's details
+					if ($thisJRUser->userIsManager ) { // At this point we have a manager who is using the dropdown to select a guest's details
 						$this->email_address_can_be_used = true;
 					} else {
 						if ($thisJRUser->userIsRegistered) {
@@ -7305,5 +7305,35 @@ class dobooking
 		jr_import('booking_engine_calculate_child_prices');
 		$booking_engine_calculate_child_prices = new booking_engine_calculate_child_prices($this );
 		$this->child_prices = $booking_engine_calculate_child_prices->calculate_child_prices( $this );
+
+
+		$context = 'children_';
+		foreach ($this->child_prices as $index=>$child_set) {
+
+			if ( $index != "total_price") {
+				$price = $child_set['price'];
+				$number_of_children = $child_set['number_of_children'];
+				$age_from = $child_set['rate']['age_from'];
+				$age_to = $child_set['rate']['age_to'];
+
+				if ( $child_set['rate']['model'] == 'per_night' ) {
+					$model = jr_gettext('JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_NIGHT', 'JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_NIGHT', false);
+				} else {
+					$model = jr_gettext('JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_STAY', 'JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_STAY', false);
+				}
+				$text_children = jr_gettext('_JOMRES_SEARCH_FORM_CHILDREN', '_JOMRES_SEARCH_FORM_CHILDREN', false);
+				$text_age_from = jr_gettext('JOMRES_POLICIES_CHILDREN_CHILD_RATE_AGE_FROM', 'JOMRES_POLICIES_CHILDREN_CHILD_RATE_AGE_FROM', false);
+				$text_age_to = jr_gettext('JOMRES_POLICIES_CHILDREN_CHILD_RATE_AGE_TO', 'JOMRES_POLICIES_CHILDREN_CHILD_RATE_AGE_TO', false);
+
+				$description = $number_of_children." x ".$text_children." ".$text_age_from." ".$age_from." - ".$age_to." (".$model.")";
+				$this->add_additiional_line_item(
+					$context."_".$child_set['rate']['id'],
+					$child_set['rate']['id'],
+					$description,
+					$total_value = $price,
+					$tax_code_id =  $this->mrConfig[ 'accommodation_tax_code' ]
+				);
+			}
+		}
 	}
 }
