@@ -36,6 +36,10 @@ CREATE TABLE IF NOT EXISTS `#__jomres_rooms` (
 	`tagline` VARCHAR(255),
 	`description` TEXT,
 	`surcharge` FLOAT NOT NULL DEFAULT '0',
+	`max_adults` SMALLINT(5) UNSIGNED NOT NULL DEFAULT 2 ,
+	`max_children` SMALLINT(5) UNSIGNED NOT NULL DEFAULT 0 ,
+	`max_occupancy` SMALLINT(5) UNSIGNED NOT NULL DEFAULT 2, 
+	
 	PRIMARY KEY(`room_uid`),
 	INDEX `room_classes_uid` (`room_classes_uid`),
 	INDEX `propertys_uid` (`propertys_uid`)
