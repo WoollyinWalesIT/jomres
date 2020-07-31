@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.0
+ * @version Jomres 9.23.1
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -31,9 +31,13 @@ class booking_engine_children_dropdown
 
 	public function __construct( $bkg  )
 	{
-		$this->available_rooms	= $bkg->available_rooms_for_selected_dates;
+		if (isset($bkg->available_rooms_for_selected_dates) && !empty($bkg->available_rooms_for_selected_dates)) {
+			$this->available_rooms	= $bkg->available_rooms_for_selected_dates;
+		} else {
+			$this->available_rooms	= [];
+		}
+
 		$this->property_uid		= $bkg->property_uid;
-		$this->available_rooms	= array_unique($bkg->available_rooms_for_selected_dates);
 		$this->child_numbers	= $bkg->child_numbers;
 	}
 	

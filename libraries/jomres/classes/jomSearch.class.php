@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.0
+ * @version Jomres 9.23.1
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -806,6 +806,70 @@ class jomSearch
 	}
 
 	/**
+	 * Performs a search based on the number of adults a property can accommodate
+	 */
+	public function jomSearch_sleeps_adults()
+	{
+		$filter = (int) $this->filter[ 'sleeps_adults' ];
+
+		if ($filter == 0 ) {
+			return;
+		}
+
+		$this->makeOrs('property_uid');
+		$property_ors = $this->ors;
+
+		if (!empty($filter) && $property_ors) {
+			$result_array = array();
+			$query = "SELECT property_uid ,value FROM #__jomres_settings WHERE akey = 'accommodates_adults' AND value >= ".(int)$filter." ".$property_ors;
+			$result = doSelectSql($query);
+
+			$res = array();
+			foreach ($result as $r) {
+				$resultObj = new stdClass();
+				$resultObj->propertys_uid = $r->property_uid;
+				if (!in_array($resultObj, $res)) {
+					$res[ ] = $resultObj;
+				}
+			}
+			$this->resultBucket = $res;
+		}
+		$this->sortResult();
+	}
+
+	/**
+	 * Performs a search based on the number of children a property can accommodate
+	 */
+	public function jomSearch_sleeps_children()
+	{
+		$filter = (int) $this->filter[ 'sleeps_children' ];
+
+		if ($filter == 0 ) {
+			return;
+		}
+
+		$this->makeOrs('property_uid');
+		$property_ors = $this->ors;
+
+		if (!empty($filter) && $property_ors) {
+			$result_array = array();
+			$query = "SELECT property_uid ,value FROM #__jomres_settings WHERE akey = 'accommodates_children' AND value >= ".(int)$filter." ".$property_ors;
+			$result = doSelectSql($query);
+
+			$res = array();
+			foreach ($result as $r) {
+				$resultObj = new stdClass();
+				$resultObj->propertys_uid = $r->property_uid;
+				if (!in_array($resultObj, $res)) {
+					$res[ ] = $resultObj;
+				}
+			}
+			$this->resultBucket = $res;
+		}
+		$this->sortResult();
+	}
+
+	/**
 	 * Performs a search based on property types.
 	 */
 	public function jomSearch_stars()
@@ -1053,8 +1117,8 @@ function prepOccupancyLevels()
 	$result = array();
 	jr_import('jomres_occupancy_levels');
 	$jomres_occupancy_levels = new jomres_occupancy_levels( 0 );
-	$all_occupancy_levels = $jomres_occupancy_levels->get_all_occupancy_levels();
-	$result['highestOccupancyLevels'] = $jomres_occupancy_levels->find_highest_levels($all_occupancy_levels);
+	$all_occupancy_levels = $jomres_occupancy_levels->get_max_occupancy_levels();
+	$result['highestOccupancyLevels'] = $all_occupancy_levels ;
 
 	return $result;
 }

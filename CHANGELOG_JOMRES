@@ -1,3 +1,12 @@
+<h3>Jomres 9.23.1 31/07/2020</h3>
+
+<span class="label label-important label-danger">Fix</span> Added some new columns to rooms table on installation
+
+<span class="label label-warning">Change</span> Added search functionality to complement new Occupancy levels functionality introduced in .23
+<span class="label label-warning">Change</span> Changed the order that buttons appear
+<span class="label label-warning">Change</span> changed how the max adults number is determined
+
+
 <h3>Jomres 9.23.0 28/07/2020</h3>
 
 <span class="label label-success">Feature</span> New switch added to Site Configuration > Portal Functionality tab called "Force Compatibility property configuration mode?" This option ensures that all new properties automatically use the Standard tariff editing mode, and they are unable to switch to other tariff modes. This simplifies the price configuration options available to managers. By default, all new installations of Jomres have this option set to Yes, updated installations have this set to No.

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.0
+ * @version Jomres 9.23.1
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -298,6 +298,22 @@ class j06000search
 			}
 		}
 
+		if (!empty($_REQUEST[ 'sleeps_adults' ])) {
+			if ($_REQUEST[ 'sleeps_adults' ] == $searchAll) {
+				$sch->filter[ 'sleeps_adults' ] = '%';
+			} else {
+				$sch->filter[ 'sleeps_adults' ] = (int) jomresGetParam($_REQUEST, 'sleeps_adults', '');
+			}
+		}
+
+		if (!empty($_REQUEST[ 'sleeps_children' ])) {
+			if ($_REQUEST[ 'sleeps_children' ] == $searchAll) {
+				$sch->filter[ 'sleeps_children' ] = '%';
+			} else {
+				$sch->filter[ 'sleeps_children' ] = (int) jomresGetParam($_REQUEST, 'sleeps_children', '');
+			}
+		}
+
 		if (!empty($_REQUEST[ 'stars' ])) {
 			if ($_REQUEST[ 'stars' ] == $searchAll) {
 				$sch->filter[ 'stars' ] = '%';
@@ -338,6 +354,8 @@ class j06000search
 		$output[ '_JOMRES_REVIEWS_RATING_2' ] = jr_gettext('_JOMRES_REVIEWS_RATING_2', '_JOMRES_REVIEWS_RATING_2', false);
 		$output[ '_JOMRES_COM_A_RESET' ] = jr_gettext('_JOMRES_COM_A_RESET', '_JOMRES_COM_A_RESET', false);
 		$output[ 'JOMRES_COM_A_ACCOMMODATES' ] = jr_gettext('JOMRES_COM_A_ACCOMMODATES', 'JOMRES_COM_A_ACCOMMODATES', false);
+		$output[ '_JOMRES_SEARCH_FORM_ADULTS' ] = jr_gettext('_JOMRES_SEARCH_FORM_ADULTS', '_JOMRES_SEARCH_FORM_ADULTS', false);
+		$output[ '_JOMRES_SEARCH_FORM_CHILDREN' ] = jr_gettext('_JOMRES_SEARCH_FORM_CHILDREN', '_JOMRES_SEARCH_FORM_CHILDREN', false);
 
 
 		$output[ 'SUBMITURL' ] = jomresURL(JOMRES_SITEPAGE_URL_NOSEF);
@@ -745,9 +763,23 @@ class j06000search
 
 				$showButton = true;
 			} else {
-				$output[ 'highest_adults' ] = '';
-				$output[ 'highest_children' ] = '';
+				$output[ 'highest_adults' ] = 0;
+				$output[ 'highest_children' ] = 0;
 			}
+
+			$sleeps_adults_selected = 0;
+			if ( isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['sleeps_adults']) ) {
+				$sleeps_adults_selected = $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['sleeps_adults'];
+			}
+
+			$sleeps_children_selected = 0;
+			if ( isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['sleeps_children']) ) {
+				$sleeps_children_selected = $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['sleeps_children'];
+			}
+
+			$output[ 'sleeps_adults_dropdown' ] = jomresHTML::integerSelectList(0, $output[ 'highest_adults' ], 1, 'sleeps_adults', 'class="inputbox" size="1"', $sleeps_adults_selected );
+			$output[ 'sleeps_children_dropdown' ] = jomresHTML::integerSelectList(0, $output[ 'highest_children' ], 1, 'sleeps_children', 'class="inputbox" size="1"', $sleeps_children_selected);
+
 		}
 
 		// -------------------------------------------------------------------------------------------------------------------------------------------
@@ -811,6 +843,14 @@ class j06000search
 				if (!empty($sch->filter[ 'guestnumber' ])) {
 					$sch->jomSearch_guestnumber();
 				}
+
+				if (!empty($sch->filter[ 'sleeps_adults' ])) {
+					$sch->jomSearch_sleeps_adults();
+				}
+				if (!empty($sch->filter[ 'sleeps_children' ])) {
+					$sch->jomSearch_sleeps_children();
+				}
+
 				if (!empty($sch->filter[ 'stars' ])) {
 					$sch->jomSearch_stars();
 				}
