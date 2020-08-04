@@ -37,27 +37,44 @@ class jomSearch
 		$this->filter = array('propertyname' => '', 'country' => '', 'region' => '', 'town' => '', 'description' => '', 'feature_uids' => '', 'arrival' => '', 'departure' => '', 'ptype' => '', 'cat_id' => '', 'room_type' => '');
 		$this->makeFormName();
 
-		if (!isset($calledByModule) || empty($calledByModule)) {
-			$calledByModule = jomresGetParam($_REQUEST, 'calledByModule', 'mod_jomsearch_m0');
+		if (!isset($calledByModule) || empty($calledByModule) && isset($_REQUEST['calledByModule'])) {
+			$this->calledByModule = $calledByModule = jomresGetParam($_REQUEST, 'calledByModule', 'mod_jomsearch_m0');
+		} else {
+			$this->calledByModule = $calledByModule = 'mod_jomsearch_m0'; // Technical debt
 		}
 
-		if (strlen($calledByModule) > 0) {
+		if ( isset($_REQUEST['template_file']) && $_REQUEST['template_file'] != '' ) {
+			if (this_cms_is_wordpress()) {
+				$override_path = get_template_directory() . JRDS . 'html' . JRDS . 'com_jomres';
+			} else {
+				$app = JFactory::getApplication();
+				$joomla_templateName = $app->getTemplate('template')->template;
+				$override_path = JOMRESCONFIG_ABSOLUTE_PATH . "templates" .JRDS. $joomla_templateName .JRDS . 'html' . JRDS . 'com_jomres';
+			}
+
+			if (file_exists($override_path.JRDS.$_REQUEST['template_file'].'.html')) {
+				$this->templateFilePath = $override_path.JRDS;
+				$this->templateFile = $_REQUEST['template_file'].'.html';
+			}
+		}
+
+		if (strlen($calledByModule) > 0 && !isset($this->templateFile)) {
 			$calledByModule = getEscaped($calledByModule);
 			$this->calledByModule = $calledByModule;
 
-			if (isset($_REQUEST['search_widget']) && is_dir(JOMRES_COREPLUGINS_ABSPATH.'search_widget'.JRDS.$_REQUEST['search_widget'].JRDS.'bootstrap'.$jrConfig[ 'bootstrap_version' ]) ) {
-				$this->templateFilePath = JOMRES_COREPLUGINS_ABSPATH.'search_widget'.JRDS.$_REQUEST['search_widget'].JRDS.'bootstrap'.$jrConfig[ 'bootstrap_version' ];
+			if (isset($_REQUEST['search_widget']) && is_dir(JOMRES_COREPLUGINS_ABSPATH . 'search_widget' . JRDS . $_REQUEST['search_widget'] . JRDS . 'bootstrap' . $jrConfig['bootstrap_version'])) {
+				$this->templateFilePath = JOMRES_COREPLUGINS_ABSPATH . 'search_widget' . JRDS . $_REQUEST['search_widget'] . JRDS . 'bootstrap' . $jrConfig['bootstrap_version'];
 				$this->templateFile = 'index.html';
 			} else {
-				$this->templateFilePath = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'modules'.JRDS.$calledByModule.JRDS.$calledByModule;
-				$this->templateFile = $calledByModule.'.html';
+				$this->templateFilePath = JOMRESCONFIG_ABSOLUTE_PATH . JRDS . 'modules' . JRDS . $calledByModule . JRDS . $calledByModule;
+				$this->templateFile = $calledByModule . '.html';
 			}
 
 			if (
-				( ($calledByModule == 'mod_jomsearch_m0' && $jrConfig[ 'integratedSearch_enable' ] == '1' && this_cms_is_joomla()) ||
-				($calledByModule == 'mod_jomsearch_m0' && this_cms_is_wordpress() && $includedInModule) )
+				(($calledByModule == 'mod_jomsearch_m0' && $jrConfig['integratedSearch_enable'] == '1' && this_cms_is_joomla()) ||
+					($calledByModule == 'mod_jomsearch_m0' && this_cms_is_wordpress() && $includedInModule))
 				&& !isset($_REQUEST['search_widget'])
-				) {
+			) {
 				$this->templateFilePath = JOMRES_TEMPLATEPATH_FRONTEND;
 				$this->templateFile = 'search.html';
 
@@ -65,6 +82,7 @@ class jomSearch
 					$this->templateFile = 'search_single_property.html';
 				}
 			}
+		}
 
 			$vals = jomres_cmsspecific_getSearchModuleParameters($calledByModule);
 
@@ -172,7 +190,7 @@ class jomSearch
 			$priceranges = $vals[ 'priceranges' ];
 			$pricerange_increments = $vals[ 'pricerange_increments' ];
 			$selectcombo = $vals[ 'selectcombo' ];
-		}
+
 		$option = jomresGetParam($_REQUEST, 'option', '');
 
 		$this->featurecols = $featurecols;
@@ -510,6 +528,7 @@ class jomSearch
 		$property_ors = $this->ors;
 		if (!empty($this->filter[ 'region' ]) && $property_ors) {
 			$filter = $this->filter[ 'region' ];
+
 			if ($filter != '%') {
 				$this->filter[ 'region' ] = jomres_cmsspecific_stringURLSafe($this->filter[ 'region' ]);
 				$region_id = find_region_id($this->filter[ 'region' ]);
@@ -521,7 +540,7 @@ class jomSearch
 
 				$this->filter[ 'region' ] = str_replace('-', '%', $this->filter[ 'region' ]);
 			}
-			$query = "SELECT propertys_uid FROM #__jomres_propertys WHERE published = '1' AND property_region LIKE '".$this->filter[ 'region' ]." $property_ors ";
+			$query = "SELECT propertys_uid FROM #__jomres_propertys WHERE published = '1' AND property_region LIKE '".$this->filter[ 'region' ]."' $property_ors ";
 			$this->resultBucket = doSelectSql($query);
 		} else {
 			$this->resultBucket = array();
