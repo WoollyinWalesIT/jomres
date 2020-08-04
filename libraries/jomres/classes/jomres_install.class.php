@@ -773,7 +773,10 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 	private function deleteFiles()
 	{
 		//delete jomres dir
-		$this->filesystem->deleteDir('local://'.JOMRES_ROOT_DIRECTORY);
+		if (is_dir(JOMRES_ROOT_DIRECTORY)) {
+			$this->filesystem->deleteDir('local://'.JOMRES_ROOT_DIRECTORY);
+		}
+
 		
 		//delete jomres_root file
 		$this->filesystem->delete('local://jomres_root.php');
