@@ -37,7 +37,8 @@ if (defined('API_STARTED')) {
 require_once dirname(__FILE__).'/integration.php';
 
 //jomres framework
-if (!jomres_cmsspecific_areweinadminarea()) {
+$all_classes = get_declared_classes();
+if (!jomres_cmsspecific_areweinadminarea() || in_array('ElementorPro\Plugin' , $all_classes) ) {
 	load_jomres_environment();
 }
 
