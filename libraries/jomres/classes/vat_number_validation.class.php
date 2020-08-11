@@ -194,6 +194,8 @@ class vat_number_validation
 
 	public function vies_check($vat_number)
 	{
+		// Soap client no longer in vendor. This functionality is no longer used so it's best to just return false
+		return false;
 
 		if ($vat_number != '') {
 			$vat_number = filter_var($vat_number, FILTER_SANITIZE_SPECIAL_CHARS);
