@@ -772,7 +772,7 @@ class j06000search
 				$output[ 'highest_children' ] = 0;
 			}
 
-			$sleeps_adults_selected = 0;
+			$sleeps_adults_selected = 1;
 			if ( isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['sleeps_adults']) ) {
 				$sleeps_adults_selected = $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['sleeps_adults'];
 			}
@@ -781,6 +781,8 @@ class j06000search
 			if ( isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['sleeps_children']) ) {
 				$sleeps_children_selected = $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['sleeps_children'];
 			}
+			$output[ 'sleeps_adults_selected' ] = $sleeps_adults_selected;
+			$output[ 'sleeps_children_selected' ] = $sleeps_children_selected;
 
 			$output[ 'sleeps_adults_dropdown' ] = jomresHTML::integerSelectList(0, $output[ 'highest_adults' ], 1, 'sleeps_adults', 'class="inputbox" size="1"', $sleeps_adults_selected );
 			$output[ 'sleeps_children_dropdown' ] = jomresHTML::integerSelectList(0, $output[ 'highest_children' ], 1, 'sleeps_children', 'class="inputbox" size="1"', $sleeps_children_selected);
@@ -895,7 +897,6 @@ class j06000search
 		$pageoutput[ ] = $output;
 
 		if (!$data_only) {
-		//	var_dump($sch->templateFile);exit;
 			if (!$doSearch || ($calledByModule == 'mod_jomsearch_m0' && $jrConfig[ 'integratedSearch_enable' ] == '1' && !this_cms_is_joomla() && !this_cms_is_wordpress())) {
 				$stmpl = new patTemplate();
 				$stmpl->setRoot($sch->templateFilePath);
