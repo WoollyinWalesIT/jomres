@@ -144,7 +144,7 @@ try {
 	if (get_showtime('task') != 'error') {
 		$defaultProperty = (int) $thisJRUser->currentproperty;
 
-		if (!$thisJRUser->userIsManager && $thisJRUser->userIsRegistered && !AJAXCALL && !preg_match('/bot|crawl|curl|dataprovider|search|get|spider|find|java|majesticsEO|google|yahoo|teoma|contaxe|yandex|libwww-perl|facebookexternalhit/i', $_SERVER['HTTP_USER_AGENT']) && get_showtime['task'] != 'background_process' ) {
+		if (!$thisJRUser->userIsManager && $thisJRUser->userIsRegistered && !AJAXCALL && !preg_match('/bot|crawl|curl|dataprovider|search|get|spider|find|java|majesticsEO|google|yahoo|teoma|contaxe|yandex|libwww-perl|facebookexternalhit/i', $_SERVER['HTTP_USER_AGENT']) && get_showtime('task') != 'background_process' ) {
 			
 			if (!isset($_REQUEST['jsid'])) { // Don't want to reset mos userid if jsid is set. jsid is sent back by gateways and if we set mos id to the gateway's session, we'll never be able to  associate the booking with the guest
 				$tmpBookingHandler->updateGuestField('mos_userid', $thisJRUser->id);
@@ -156,8 +156,8 @@ try {
 					$guestData = doSelectSql($query, 2);
 
 					if ($guestData) {
-						$query = "INSERT INTO #__jomres_guest_profile (`cms_user_id`,`enc_firstname`,`enc_surname`,`enc_house`,`enc_street`,`enc_town`,`enc_county`,`enc_country`,`enc_postcode`,`enc_tel_landline`,`enc_tel_mobile`,`enc_email`) VALUES ('".(int) $thisJRUser->id."','$firstname','$surname','$house','$street','$town','$region','$country','$postcode','$landline','$mobile','$email')";
-						doInsertSql($query, '');
+						//$query = "INSERT INTO #__jomres_guest_profile (`cms_user_id`,`enc_firstname`,`enc_surname`,`enc_house`,`enc_street`,`enc_town`,`enc_county`,`enc_country`,`enc_postcode`,`enc_tel_landline`,`enc_tel_mobile`,`enc_email`) VALUES ('".(int) $thisJRUser->id."','$firstname','$surname','$house','$street','$town','$region','$country','$postcode','$landline','$mobile','$email')";
+						//doInsertSql($query, '');
 
 						$tmpBookingHandler->updateGuestField('guests_uid', $guestData[ 'id' ]);
 						$tmpBookingHandler->updateGuestField('firstname', $jomres_encryption->decrypt($guestData[ 'enc_firstname' ]));
