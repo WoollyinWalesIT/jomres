@@ -121,7 +121,7 @@ function redirect_on_administration_if_channel_property ( $property_uid , $task 
 		$query = 'SELECT `remote_data` FROM `#__jomres_channelmanagement_framework_property_uid_xref` WHERE property_uid = '.$property_uid.' LIMIT 1';
 		$data = doSelectSql($query,1);
 		if ( $data != '' && $data != false ) {
-			$decoded = unserialize($data);
+			$decoded = @unserialize($data);
 			if ($decoded != false ) {
 				if (isset($decoded->origin_management_url) && $decoded->origin_management_url != '' ) {
 					jomresRedirect($decoded->origin_management_url);
