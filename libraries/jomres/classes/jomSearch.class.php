@@ -39,8 +39,6 @@ class jomSearch
 
 		if (!isset($calledByModule) || empty($calledByModule) && isset($_REQUEST['calledByModule'])) {
 			$this->calledByModule = $calledByModule = jomresGetParam($_REQUEST, 'calledByModule', 'mod_jomsearch_m0');
-		} else {
-			$this->calledByModule = $calledByModule = 'mod_jomsearch_m0'; // Technical debt
 		}
 
 		if ( isset($_REQUEST['template_file']) && $_REQUEST['template_file'] != '' ) {
