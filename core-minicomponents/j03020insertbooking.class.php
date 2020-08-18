@@ -288,17 +288,23 @@ class j03020insertbooking
 
 					if ($cms_user_id > 0 ) {
 						if (!$thisJRUser->is_partner) {
-							// New for 4.5.9. We need now to look in the new guest profile table and see if this user already exists. If they do not, we'll take these details and add them to the profile table too, then in future the profile table's data will be used as the primary source of this guest's information, continuing to ensure that guest details are not shared between properties. No property should ever be able to access a guest's details unless that guest has already booked with that property.
-							// First, we'll look at this user's id. If it's the same as mos_userid above, then the user making the booking is a guest.
 							$new_booking_user_id = get_showtime("new_booking_user_id");
-							
-							$query = "SELECT cms_user_id FROM #__jomres_guest_profile WHERE cms_user_id = ".(int)$new_booking_user_id;
-							$already_exists = doSelectSql($query );
+							$already_exists =false;
+							if ($thisJRUser->userIsRegistered) {
+								$already_exists =true;
+								$cms_user_id = $thisJRUser->id;
+							} else {
+								$query = "SELECT cms_user_id FROM #__jomres_guest_profile WHERE cms_user_id = ".(int)$new_booking_user_id;
+								$cms_user_id = doSelectSql($query , 1 );
+								if ( $cms_user_id> 0 ) {
+									$already_exists =true;
+								}
+							}
 							
 							jr_import('jomres_encryption');
 							$jomres_encryption = new jomres_encryption();
 							
-							if (empty($already_exists)) {
+							if (!$already_exists) {
 								$query = "INSERT INTO #__jomres_guest_profile (
 									`cms_user_id`,
 									`enc_firstname`,
