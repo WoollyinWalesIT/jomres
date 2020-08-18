@@ -238,23 +238,26 @@ class jomSearch
 		}
 
 		$searchOutput = array('propertyname' => 'dropdown', 'country' => 'dropdown', 'region' => 'dropdown', 'town' => 'dropdown', 'feature_uids' => 'dropdown', 'ptype' => 'dropdown', 'cat_id' => 'dropdown', 'room_type' => 'dropdown');
-		if (!$geosearch_dropdown) {
-			$searchOutput[ 'country' ] = '';
-			$searchOutput[ 'region' ] = '';
-			$searchOutput[ 'town' ] = '';
-		}
+
+		// By default now all appropriate search options are presented as dropdowns, if you want to change that, uncomment the relevent lines here
+		//if (!$geosearch_dropdown) {
+		//	$searchOutput[ 'country' ] = '';
+		//	$searchOutput[ 'region' ] = '';
+		//	$searchOutput[ 'town' ] = '';
+		//}
 		if (!$propertyname_dropdown) {
 			$searchOutput[ 'propertyname' ] = '';
 		}
-		if (!$ptype_dropdown) {
-			$searchOutput[ 'ptype' ] = '';
-		}
-		if (!$room_type_dropdown) {
-			$searchOutput[ 'room_type' ] = '';
-		}
-		if (!$features_dropdown) {
-			$searchOutput[ 'feature_uids' ] = '';
-		}
+		//if (!$ptype_dropdown) {
+		//	$searchOutput[ 'ptype' ] = '';
+		//}
+		//if (!$room_type_dropdown) {
+			//$searchOutput[ 'room_type' ] = '';
+		//}
+		//if (!$features_dropdown) {
+			//$searchOutput[ 'feature_uids' ] = '';
+		//}
+
 
 		$this->searchOptions = $searchOptions;
 		$this->searchOutput = $searchOutput;
