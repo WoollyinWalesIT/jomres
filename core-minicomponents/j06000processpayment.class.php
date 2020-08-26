@@ -48,11 +48,14 @@ class j06000processpayment
 		$bookingdata = gettempBookingdata();
 		
 		request_log();
-		
-		if ($bookingdata[ 'ok_to_book' ] == false ) {
-			die("Naughty bot");
+
+		if (  !isset($bookingdata["cart_payment"]) || !$bookingdata["cart_payment"] ) {
+			if ($bookingdata[ 'ok_to_book' ] == false ) {
+				die("Naughty bot");
+			}
+
 		}
-		
+
 		$tag = set_booking_number();
 
 		$plugin = jomres_validate_gateway_plugin();
