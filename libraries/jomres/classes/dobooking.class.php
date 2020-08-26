@@ -191,10 +191,21 @@ class dobooking
 				$this->child_prices				= $bookingDeets[ 'child_prices' ];
 			}
 
+			$this->extra_guest_price			= 0;
+			if ( isset ($bookingDeets[ 'extra_guest_price' ]) ) {
+				$this->extra_guest_price		= $bookingDeets[ 'extra_guest_price' ];
+			}
 
-			$this->extra_guest_price		= $bookingDeets[ 'extra_guest_price' ];
-			$this->city_tax					= $bookingDeets[ 'city_tax' ];
-			$this->cleaning_fee				= $bookingDeets[ 'cleaning_fee' ];
+			$this->city_tax						= 0;
+			if ( isset ($bookingDeets[ 'city_tax' ]) ) {
+				$this->city_tax = $bookingDeets['city_tax'];
+			}
+
+			$this->cleaning_fee					= 0;
+			if ( isset($bookingDeets[ 'cleaning_fee' ])) {
+				$this->cleaning_fee				= $bookingDeets[ 'cleaning_fee' ];
+			}
+
 
 			if ($jrConfig['session_handler'] == 'database') {
 				if (is_array($bookingDeets[ 'extrasvalues_items' ]))
@@ -7012,7 +7023,7 @@ class dobooking
 		$total_number_of_guests = 0;
 
 		foreach ($this->room_allocations as $room) {
-			if ($this->cfg_perPersonPerNight == '0') {
+			if ($this->cfg_perPersonPerNight == '0' ) {
 				$total += $room[ 'price_per_night' ];
 				$total_nodiscount += $room[ 'price_per_night_nodiscount' ];
 			} else {
