@@ -5889,7 +5889,7 @@ class dobooking
 					$rate = (int)$modifiers->modifier_7_days/100;
 					$discount = $rate * $this->room_total;
 				} else {
-					$discount = $this->room_total - $modifiers->modifier_7_days;
+					$discount = $modifiers->modifier_7_days;
 				}
 
 				$new_total = $this->room_total - $discount;
@@ -5911,7 +5911,7 @@ class dobooking
 					$rate = (int)$modifiers->modifier_30_days/100;
 					$discount = $rate * $this->room_total;
 				} else {
-					$discount = $this->room_total - $modifiers->modifier_30_days;
+					$discount = $modifiers->modifier_30_days;
 				}
 
 				$new_total = $this->room_total - $discount;
