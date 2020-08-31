@@ -5744,6 +5744,9 @@ class dobooking
 		foreach ($this->requestedRoom as $r) {
 			$rm_idArr = explode('^', $r);
 			$tariff_id = $rm_idArr[ 1 ];
+			if (!isset($mrConfig[ 'extra_guest_price' ])) {
+				$mrConfig[ 'extra_guest_price' ] = 0;
+			}
 			$extra_guest_price = convert_entered_price_into_safe_float($mrConfig[ 'extra_guest_price' ]);
 			$ignore_pppn = $this->allPropertyTariffs[ $tariff_id ][ 'ignore_pppn' ];
 			if ($ignore_pppn == '0') {
