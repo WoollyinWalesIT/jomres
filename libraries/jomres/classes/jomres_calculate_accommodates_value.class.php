@@ -57,7 +57,7 @@ class jomres_calculate_accommodates_value
 
 		$current_property_details->gather_data_multi ( array( $this->property_uid ) );
 
-		$mrConfig = getPropertySpecificSettings($this->property_uid);
+		$mrConfig = getPropertySpecificSettings($this->property_uid , true );
 
 		$accommodates_adults = 0;
 		if ( isset($current_property_details->multi_query_result[$this->property_uid][ 'rooms_max_adults' ])) {

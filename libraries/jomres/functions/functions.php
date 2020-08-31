@@ -4362,14 +4362,14 @@ function getImageForProperty($imageType, $property_uid, $itemUid)
  *
  * Constructs the mrConfig data when passed a property uid.
  */
-function getPropertySpecificSettings($property_uid = null)
+function getPropertySpecificSettings($property_uid = null , $force_reload = false )
 {
 	$mrConfig = array();
 
 	$propertyConfig = jomres_singleton_abstract::getInstance('jomres_config_property_singleton');
 
 	if ($propertyConfig->property_uid == 0) {
-		$propertyConfig->init($property_uid);
+		$propertyConfig->init($property_uid , $force_reload );
 	}
 
 	if ($property_uid == null) {

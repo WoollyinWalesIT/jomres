@@ -93,9 +93,9 @@ class jomres_config_property_singleton
 	 *
 	 */
 
-	public function init($property_uid = null)
+	public function init($property_uid = null , $force_reload = false )
 	{
-		return $this->load_property_config($property_uid);
+		return $this->load_property_config($property_uid ,  $force_reload );
 	}
 	
 	/**
@@ -105,10 +105,17 @@ class jomres_config_property_singleton
 	 */
 
 	//load property config for current property uid
-	public function load_property_config($property_uid = null)
+	public function load_property_config($property_uid = null , $force_reload = false)
 	{
+
 		if (!is_null($property_uid)) {
 			$this->property_uid = (int)$property_uid;
+		}
+
+		if ($force_reload == true ) {
+			if ( isset($this->all_property_settings[$this->property_uid]) ) {
+				unset($this->all_property_settings[$this->property_uid]);
+			}
 		}
 
 		if ($this->property_uid > 0) {
