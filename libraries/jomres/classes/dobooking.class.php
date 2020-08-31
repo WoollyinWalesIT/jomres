@@ -1595,12 +1595,18 @@ class dobooking
 		$output[ 'JOMRES_GUEST_BOOKING_FORM_LABEL' ] = $this->sanitiseOutput(jr_gettext('JOMRES_GUEST_BOOKING_FORM_LABEL', 'JOMRES_GUEST_BOOKING_FORM_LABEL', false, false));
 		$output[ 'JOMRES_GUEST_BOOKING_FORM_LABELINFO' ] = $this->sanitiseOutput(jr_gettext('JOMRES_GUEST_BOOKING_FORM_LABELINFO', 'JOMRES_GUEST_BOOKING_FORM_LABELINFO', false, false));
 
+		if (!isset($mrConfig['city_tax_value'])) {
+			$mrConfig['city_tax_value'] = 0;
+		}
+
+		$city_tax_model_string = '';
+		
 		if ($mrConfig['city_tax_value'] > 0 ) {
 			if (!isset($mrConfig[ 'city_tax_models' ])) {
 				$mrConfig[ 'city_tax_models' ] = 'single';
 			}
 
-			$city_tax_model_string = '';
+
 			switch ($mrConfig[ 'city_tax_models' ]) {
 				case 'single' :
 					$city_tax_model_string = jr_gettext('JOMRES_CITY_TAX_MODEL_SINGLE', 'JOMRES_CITY_TAX_MODEL_SINGLE', false);
@@ -1620,14 +1626,12 @@ class dobooking
 			}
 
 			$city_tax_model_string .= " (".$mrConfig['city_tax_value'].")" ;
-			$output[ 'JOMRES_CITY_TAX_HEADING' ] = $this->sanitiseOutput(jr_gettext('JOMRES_CITY_TAX_HEADING', 'JOMRES_CITY_TAX_HEADING', false, false))." : ".$city_tax_model_string;
 		}
 
+		$output[ 'JOMRES_CITY_TAX_HEADING' ] = $this->sanitiseOutput(jr_gettext('JOMRES_CITY_TAX_HEADING', 'JOMRES_CITY_TAX_HEADING', false, false))." : ".$city_tax_model_string;
 		$output[ 'JOMRES_CLEANING_FEE_HEADING' ] = $this->sanitiseOutput(jr_gettext('JOMRES_CLEANING_FEE_HEADING', 'JOMRES_CLEANING_FEE_HEADING', false, false));
 		$output[ 'JOMRES_BOOKING_FORM_CHILDREN_AGES' ] = $this->sanitiseOutput(jr_gettext('JOMRES_BOOKING_FORM_CHILDREN_AGES', 'JOMRES_BOOKING_FORM_CHILDREN_AGES', false, false));
 		$output[ 'JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS' ] = $this->sanitiseOutput(jr_gettext('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', false, false));
-
-
 
 		return $output;
 	}
@@ -6255,6 +6259,11 @@ class dobooking
 
 		$city_tax = 0;
 		$mrConfig = $this->mrConfig;
+
+		if (!isset($mrConfig['city_tax_value'])) {
+			$mrConfig['city_tax_value'] = 0;
+		}
+
 		if ( (float)$mrConfig[ 'city_tax_value' ] > 0 && $totalBooking > 0 ) {
 
 			if (!isset($mrConfig[ 'city_tax_models' ])) {
@@ -6863,8 +6872,10 @@ class dobooking
 
 			$roomAndClassArray = array();
 			foreach ($rmidsArray as $rmid) {
-				$roomClassUid = $this->allPropertyRooms[ $rmid ][ 'room_classes_uid' ];
-				$roomAndClassArray[ $rmid ] = array('room_uid' => $rmid, 'room_class_uid' => $roomClassUid);
+				if ( isset($this->allPropertyRooms[ $rmid ][ 'room_classes_uid' ] )) {
+					$roomClassUid = $this->allPropertyRooms[ $rmid ][ 'room_classes_uid' ];
+					$roomAndClassArray[ $rmid ] = array('room_uid' => $rmid, 'room_class_uid' => $roomClassUid);
+				}
 			}
 
 			$this->setErrorLog('setAverageRate:: Room & Class array contains: '.serialize($roomAndClassArray));
