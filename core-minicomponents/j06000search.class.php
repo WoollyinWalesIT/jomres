@@ -772,14 +772,15 @@ class j06000search
 				$output[ 'highest_children' ] = 0;
 			}
 
-			$sleeps_adults_selected = 1;
-			if ( isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['sleeps_adults']) ) {
-				$sleeps_adults_selected = $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['sleeps_adults'];
+			$sleeps_adults_selected = 2;
+
+			if ( isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['sleeps_adults'][0]) ) {
+				$sleeps_adults_selected = $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['sleeps_adults'][0];
 			}
 
 			$sleeps_children_selected = 0;
-			if ( isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['sleeps_children']) ) {
-				$sleeps_children_selected = $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['sleeps_children'];
+			if ( isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['sleeps_children'][0]) ) {
+				$sleeps_children_selected = $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['sleeps_children'][0];
 			}
 			$output[ 'sleeps_adults_selected' ] = $sleeps_adults_selected;
 			$output[ 'sleeps_children_selected' ] = $sleeps_children_selected;
