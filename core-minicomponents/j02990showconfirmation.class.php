@@ -92,7 +92,6 @@ class j02990showconfirmation
 		$tmpBookingHandler->updateBookingField('confirmationSeen', true);
 
 		$bookingDeets = gettempBookingdata();
-		
 
 		$guestList = $tmpBookingHandler->getGuestData();
 
@@ -176,6 +175,14 @@ class j02990showconfirmation
 
 		$booking_parts[ 'EDITBOOKING' ] = jr_gettext('_JOMRES_COM_MR_EDITBOOKINGTITLE', '_JOMRES_COM_MR_EDITBOOKINGTITLE');
 		$booking_parts[ 'ARRIVAL' ] = outputDate($bookingDeets[ 'arrivalDate' ]);
+
+
+		$booking_parts[ 'JOMRES_CITY_TAX_HEADING' ] = jr_gettext('JOMRES_CITY_TAX_HEADING', 'JOMRES_CITY_TAX_HEADING');
+		$booking_parts[ 'CITY_TAX' ] = output_price($bookingDeets[ 'city_tax' ]);
+
+		$booking_parts[ 'JOMRES_CLEANING_FEE_HEADING' ] = jr_gettext('JOMRES_CLEANING_FEE_HEADING', 'JOMRES_CLEANING_FEE_HEADING');
+		$booking_parts[ 'CLEANING_FEE' ] = output_price($bookingDeets[ 'cleaning_fee' ]);
+
 
 		if ($mrConfig[ 'showdepartureinput' ] == '1') {
 			$booking_parts[ 'DEPARTURE' ] = outputDate($bookingDeets[ 'departureDate' ]);
