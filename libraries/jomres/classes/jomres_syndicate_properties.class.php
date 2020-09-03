@@ -113,7 +113,7 @@ class jomres_syndicate_properties
 			$this->get_approved_properties();
 		}
 
-		if ( !empty($this->base_lat_long ) && $this->base_property_id > 0 )  {
+		/*if ( !empty($this->base_lat_long ) && $this->base_property_id > 0 )  {
 			
 			$distances = array();
 			if ( $this->base_property_id > 0 ) {
@@ -157,7 +157,7 @@ class jomres_syndicate_properties
 			$query = "INSERT INTO #__jomres_syndication_distances  ( `property_id` , `syndication_id` , `distance` ) VALUES ".$row_str;
 			doInsertSql($query);
 			}
-		}
+		}*/
 		
 		$result = array();
 		if (isset($this->all_approved_properties[$type])) { 
