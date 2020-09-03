@@ -58,7 +58,7 @@ class booking_engine_children_dropdown
 
 		foreach ($this->available_rooms as $room_id ) {
 			if ( isset($basic_room_details->rooms[$room_id])) {
-				$total_child_slots_available_these_dates = $total_child_slots_available_these_dates + $basic_room_details->rooms[$room_id]['max_adults'];
+				$total_child_slots_available_these_dates = $total_child_slots_available_these_dates + $basic_room_details->rooms[$room_id]['max_children'];
 			}
 		}
 
