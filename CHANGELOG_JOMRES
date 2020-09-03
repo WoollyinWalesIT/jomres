@@ -1,3 +1,9 @@
+<h3>Jomres 9.23.3 03/09/2020</h3>
+
+<span class="label label-important label-danger">Fix</span> Removed a condition that was preventing some sites from updating columns in rooms table.
+<span class="label label-important label-danger">Fix</span> Added new input in create property page that allows manager to define max occupancy of the property.
+<span class="label label-important label-danger">Fix</span> Resolved an issue where max kids dropdown in booking form could be higher than occupancy levels configured.
+
 <h3>Jomres 9.23.2 03/09/2020</h3>
 
 <span class="label label-warning">Change</span> Norwegian regions adjusted
