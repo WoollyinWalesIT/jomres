@@ -21,10 +21,6 @@ defined('_JOMRES_INITCHECK') or die('');
  *
  **/
 
-$query = "SHOW COLUMNS FROM #__jomres_rooms LIKE 'max_adults'";
-$colExists = doSelectSql( $query );
-if (count($colExists) < 1)
-{
 	$query = "ALTER TABLE `#__jomres_rooms` ADD `max_adults` SMALLINT(5) UNSIGNED NOT NULL DEFAULT 2 ";
 	doInsertSql($query,"");
 
@@ -45,4 +41,3 @@ if (count($colExists) < 1)
 			doInsertSql($query);
 		}
 	}
-}
