@@ -63,6 +63,8 @@ class j06005save_new_property
 			return;
 		}
 
+		$max_occupancy = (int)jomresGetParam($_POST, 'max_occupancy', 0);
+
 		//jomres properties object
 		$jomres_properties = jomres_singleton_abstract::getInstance('jomres_properties');
 
@@ -79,6 +81,7 @@ class j06005save_new_property
 		$jomres_properties->property_site_id = jomresGetParam($_POST, 'property_site_id', '');
 		$jomres_properties->ptype_id = (int) jomresGetParam($_POST, 'propertyType', 0);
 		$jomres_properties->property_key = str_replace(',', '', jomresGetParam($_POST, 'price', ''));
+		$jomres_properties->max_occupancy = $max_occupancy;
 
 		//insert new property
 		$jomres_properties->commit_new_property();
