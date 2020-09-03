@@ -42,7 +42,7 @@ class j00006sanity_checks
 
 			return;
 		}
-		if (!defined('JOMRES_NOHTML') || JOMRES_NOHTML == 0) {
+		if (!defined('JOMRES_NOHTML') || JOMRES_NOHTML == 0 && get_showtime('task') != 'platform_connect'  ) {
 			$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
 			
