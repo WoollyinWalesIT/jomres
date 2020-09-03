@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.1
+ * @version Jomres 9.23.2
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -48,11 +48,14 @@ class j06000processpayment
 		$bookingdata = gettempBookingdata();
 		
 		request_log();
-		
-		if ($bookingdata[ 'ok_to_book' ] == false ) {
-			die("Naughty bot");
+
+		if (  !isset($bookingdata["cart_payment"]) || !$bookingdata["cart_payment"] ) {
+			if ($bookingdata[ 'ok_to_book' ] == false ) {
+				die("Naughty bot");
+			}
+
 		}
-		
+
 		$tag = set_booking_number();
 
 		$plugin = jomres_validate_gateway_plugin();

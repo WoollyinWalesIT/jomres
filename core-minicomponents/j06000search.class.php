@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.1
+ * @version Jomres 9.23.2
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -500,11 +500,16 @@ class j06000search
 				if ($searchOutput[ 'region' ] == 'dropdown') {
 					foreach ($sch->prep[ 'region' ] as $region) {
 						$t = str_replace('&#39;', "'", $region[ 'region' ]); // This is important. php will not pass back, eg Sant&#39;Antimo, it will only pass back Sant, therefore we need to convert the &#39; to a ' to be shown in the url. When jomresGetParam runs it'll convert the ' back to &#39; and the search will run successfully.
-						$region_id = find_region_id(jomres_cmsspecific_stringURLSafe($t));
+						 if ($region['region'] == $sch->searchAll)
+						 	$region_id = $sch->searchAll;
+						 else
+							$region_id = find_region_id(jomres_cmsspecific_stringURLSafe($t));
+
 						$region_name = find_region_name($t);
 						$regionArray[ ] = jomresHTML::makeOption($region_id, jomres_decode($region_name));
 					}
 					$output[ 'region' ] = jomresHTML::selectList($regionArray, 'region', ' class="inputbox search_dropdown" placeholder="'.$output[ 'JOMRES_SEARCH_GEO_REGIONSEARCH' ].'"', 'value', 'text', $selectOption);
+
 					$showButton = true;
 				} else {
 					$r = '';
@@ -767,15 +772,18 @@ class j06000search
 				$output[ 'highest_children' ] = 0;
 			}
 
-			$sleeps_adults_selected = 0;
-			if ( isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['sleeps_adults']) ) {
-				$sleeps_adults_selected = $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['sleeps_adults'];
+			$sleeps_adults_selected = 2;
+
+			if ( isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['sleeps_adults'][0]) ) {
+				$sleeps_adults_selected = $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['sleeps_adults'][0];
 			}
 
 			$sleeps_children_selected = 0;
-			if ( isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['sleeps_children']) ) {
-				$sleeps_children_selected = $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['sleeps_children'];
+			if ( isset($tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['sleeps_children'][0]) ) {
+				$sleeps_children_selected = $tmpBookingHandler->tmpsearch_data['ajax_search_composite_selections']['sleeps_children'][0];
 			}
+			$output[ 'sleeps_adults_selected' ] = $sleeps_adults_selected;
+			$output[ 'sleeps_children_selected' ] = $sleeps_children_selected;
 
 			$output[ 'sleeps_adults_dropdown' ] = jomresHTML::integerSelectList(0, $output[ 'highest_adults' ], 1, 'sleeps_adults', 'class="inputbox" size="1"', $sleeps_adults_selected );
 			$output[ 'sleeps_children_dropdown' ] = jomresHTML::integerSelectList(0, $output[ 'highest_children' ], 1, 'sleeps_children', 'class="inputbox" size="1"', $sleeps_children_selected);
@@ -890,7 +898,6 @@ class j06000search
 		$pageoutput[ ] = $output;
 
 		if (!$data_only) {
-		//	var_dump($sch->templateFile);exit;
 			if (!$doSearch || ($calledByModule == 'mod_jomsearch_m0' && $jrConfig[ 'integratedSearch_enable' ] == '1' && !this_cms_is_joomla() && !this_cms_is_wordpress())) {
 				$stmpl = new patTemplate();
 				$stmpl->setRoot($sch->templateFilePath);

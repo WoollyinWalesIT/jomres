@@ -3,7 +3,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.1
+ * @version Jomres 9.23.2
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -37,7 +37,8 @@ if (defined('API_STARTED')) {
 require_once dirname(__FILE__).'/integration.php';
 
 //jomres framework
-if (!jomres_cmsspecific_areweinadminarea()) {
+$all_classes = get_declared_classes();
+if (!jomres_cmsspecific_areweinadminarea() || in_array('ElementorPro\Plugin' , $all_classes) ) {
 	load_jomres_environment();
 }
 

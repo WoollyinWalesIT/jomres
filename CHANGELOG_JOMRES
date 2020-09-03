@@ -1,3 +1,28 @@
+<h3>Jomres 9.23.2 03/09/2020</h3>
+
+<span class="label label-warning">Change</span> Norwegian regions adjusted
+<span class="label label-warning">Change</span> Added a check for a directory before attempting to delete it
+<span class="label label-warning">Change</span> Improved how template directory html files are detected for custom template files.
+<span class="label label-warning">Change</span> Edit max people input re-added to room editing template
+<span class="label label-warning">Change</span> Vies checking disabled.
+<span class="label label-warning">Change</span> Added previously selected sleeps options to the called search template files.
+<span class="label label-warning">Change</span> Suppress a deserialization warning if it should appear. False will suffice.
+<span class="label label-warning">Change</span> Virtually all search inputs are now delivered by default as dropdowns.
+<span class="label label-warning">Change</span> Modified how existing user's who are already logged in, are found when making repeated bookings.
+<span class="label label-warning">Change</span> Refactored method that finds region id as it was a bottleneck in search forms.
+<span class="label label-warning">Change</span> Added a check to see if the cart is being used so that the naughty bot check doesn't come into play as it's redundant at this point.
+<span class="label label-warning">Change</span> Added city tax and cleaning fee to confirmation page
+<span class="label label-warning">Change</span> Changed how we determine if the Occupancy levels menu option should be shown
+<span class="label label-warning">Change</span> Added ability to force-reload mrConfig values because accommodation class needs to reload settings when saving Normal mode tariffs.
+
+<span class="label label-important label-danger">Fix</span> Tweaked framework so that if Elementor is being used to render the page, we don't throw an error.
+<span class="label label-important label-danger">Fix</span> Fixed an issue with adding column updates so that older installations can update ok
+<span class="label label-important label-danger">Fix</span> Fixed a faulty call to get_showtime function and disabled some profile saving that's unnecessary.
+<span class="label label-important label-danger">Fix</span> Removed some code that was incorrectly setting the search template file default.
+<span class="label label-important label-danger">Fix</span> Added a check to ensure that Step is set. (my_ranges function)
+<span class="label label-important label-danger">Fix</span> Fixed value of 7 & 30 day modifier discount not being set correctly when set to flat rate discount (not percentage)
+
+
 <h3>Jomres 9.23.1 31/07/2020</h3>
 
 <span class="label label-important label-danger">Fix</span> Added some new columns to rooms table on installation

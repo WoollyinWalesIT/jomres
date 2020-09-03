@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.1
+ * @version Jomres 9.23.2
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -57,7 +57,7 @@ class jomres_calculate_accommodates_value
 
 		$current_property_details->gather_data_multi ( array( $this->property_uid ) );
 
-		$mrConfig = getPropertySpecificSettings($this->property_uid);
+		$mrConfig = getPropertySpecificSettings($this->property_uid , true );
 
 		$accommodates_adults = 0;
 		if ( isset($current_property_details->multi_query_result[$this->property_uid][ 'rooms_max_adults' ])) {

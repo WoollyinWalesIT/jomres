@@ -5,7 +5,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.1
+ * @version Jomres 9.23.2
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -121,7 +121,7 @@ function redirect_on_administration_if_channel_property ( $property_uid , $task 
 		$query = 'SELECT `remote_data` FROM `#__jomres_channelmanagement_framework_property_uid_xref` WHERE property_uid = '.$property_uid.' LIMIT 1';
 		$data = doSelectSql($query,1);
 		if ( $data != '' && $data != false ) {
-			$decoded = unserialize($data);
+			$decoded = @unserialize($data);
 			if ($decoded != false ) {
 				if (isset($decoded->origin_management_url) && $decoded->origin_management_url != '' ) {
 					jomresRedirect($decoded->origin_management_url);
@@ -4362,14 +4362,14 @@ function getImageForProperty($imageType, $property_uid, $itemUid)
  *
  * Constructs the mrConfig data when passed a property uid.
  */
-function getPropertySpecificSettings($property_uid = null)
+function getPropertySpecificSettings($property_uid = null , $force_reload = false )
 {
 	$mrConfig = array();
 
 	$propertyConfig = jomres_singleton_abstract::getInstance('jomres_config_property_singleton');
 
 	if ($propertyConfig->property_uid == 0) {
-		$propertyConfig->init($property_uid);
+		$propertyConfig->init($property_uid , $force_reload );
 	}
 
 	if ($property_uid == null) {

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.1
+ * @version Jomres 9.23.2
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -194,6 +194,8 @@ class vat_number_validation
 
 	public function vies_check($vat_number)
 	{
+		// Soap client no longer in vendor. This functionality is no longer used so it's best to just return false
+		return false;
 
 		if ($vat_number != '') {
 			$vat_number = filter_var($vat_number, FILTER_SANITIZE_SPECIAL_CHARS);
