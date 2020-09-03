@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.2
+ * @version Jomres 9.23.3
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -275,6 +275,25 @@ class jomres_properties
 				}
 			}
 
+			if (isset($this->max_occupancy)) {
+				$query = 'INSERT INTO #__jomres_settings 
+								(
+								`property_uid`,
+								`akey`,
+								`value`
+								) 
+							VALUES 
+								(
+								'.(int) $this->propertys_uid.",
+								'accommodates',
+								'".$this->max_occupancy."'
+								)";
+				if (!doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS', '_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS', false))) {
+					throw new Exception('Error: is_real_estate_listing setting insert failed.');
+				}
+			} else {
+				$this->max_occupancy = 10;
+			}
 
 			if ($mrp_srp_flag == '0') {
 				$singleRoomProperty = '0';
@@ -293,7 +312,7 @@ class jomres_properties
 										(
 										'.$default_room_type.',
 										'.(int) $this->propertys_uid.',
-										10
+										'.(int)$this->max_occupancy.'
 										)';
 
 					if (!doInsertSql($query)) {
@@ -335,7 +354,6 @@ class jomres_properties
 			if (!doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS', '_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS', false))) {
 				throw new Exception('Error: is_real_estate_listing setting insert failed.');
 			}
-
 
 		$webhook_notification							  	= new stdClass();
 		$webhook_notification->webhook_event				= 'property_created';

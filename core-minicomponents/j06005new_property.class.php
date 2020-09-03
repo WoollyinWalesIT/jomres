@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.2
+ * @version Jomres 9.23.3
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -101,6 +101,9 @@ class j06005new_property
 		$output['JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_TITLE'] = jr_gettext('JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_TITLE', 'JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_TITLE', false);
 		$output['JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE1'] = jr_gettext('JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE1', 'JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE1', false);
 		$output['JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE2'] = jr_gettext('JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE2', 'JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE2', false);
+
+		$output['DROPDOWN_MAX_OCCUPANCY'] = jomresHTML::integerSelectList(1, 1000, 1, 'max_occupancy', 'class="inputbox" size="1"', 6 );
+		$output['JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY'] = jr_gettext('JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY', 'JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY', false);
 
 		$output['HPROPERTY_TYPE'] = jr_gettext('_JOMRES_FRONT_PTYPE', '_JOMRES_FRONT_PTYPE', false);
 		$output['PROPERTY_TYPE_DROPDOWN'] = $jomres_property_types->getPropertyTypeDropdown('', true);

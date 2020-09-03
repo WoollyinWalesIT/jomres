@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.2
+ * @version Jomres 9.23.3
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -58,7 +58,7 @@ class booking_engine_children_dropdown
 
 		foreach ($this->available_rooms as $room_id ) {
 			if ( isset($basic_room_details->rooms[$room_id])) {
-				$total_child_slots_available_these_dates = $total_child_slots_available_these_dates + $basic_room_details->rooms[$room_id]['max_adults'];
+				$total_child_slots_available_these_dates = $total_child_slots_available_these_dates + $basic_room_details->rooms[$room_id]['max_children'];
 			}
 		}
 
