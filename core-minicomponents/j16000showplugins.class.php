@@ -69,34 +69,17 @@ class j16000showplugins
 				}
 			}
 		}
-		
+
 		$key_validation = jomres_singleton_abstract::getInstance('jomres_check_support_key');
 		$key_validation->check_license_key(true); //only needed if we want to force a recheck
-		
+
 		$this->key_valid = $key_validation->key_valid;
-		
-		if ($key_validation->is_trial_license == '1' && !extension_loaded('IonCube Loader') && trim($key_validation->key_hash) != '' && $this->key_valid ) {
-			jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN.'&task=loader_wizard');
+
+		if (!$this->key_valid) {
+			jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN.'&task=connect');
 		}
 
-		if ($key_validation->is_trial_license == '1' && ioncube_loader_version() < 6 ) {
-			echo "Error, your Ioncube Loader version is too low. You have ".ioncube_loader_version()." installed and you need at least version 6";
-			return;
-		}
-		
-		if ($key_validation->is_trial_license == '1') {
-			if (function_exists('ioncube_loader_version')) {
-				$ioncubeVersion = ioncube_loader_version();
-				$ioncubeMajorVersion = (int) substr($ioncubeVersion, 0, strpos($ioncubeVersion, '.'));
-				$ioncubeMinorVersion = (int) substr($ioncubeVersion, strpos($ioncubeVersion, '.') + 1);
-				if ($ioncubeMajorVersion < 5 || ($ioncubeMajorVersion == 0 && $ioncubeMinorVersion < 21)) {
-					echo "<p class='alert alert-warning'>Uh oh, Ioncube loaders are installed, however they may be too old to run these scripts.</p><p>Please visit <a href='http://www.ioncube.com/loaders.php' target='_blank'>Ioncube's website</a> to download the most current versions of the loader wizard. This will walk you through installing the loaders. Alternatively, ask your hosts for help.</p>";
-					return;
-				}
-			}
-		}
-
-		if ( 
+		if (
 			(!file_exists(JOMRES_COREPLUGINS_ABSPATH.'plugin_manager'.JRDS.'plugin_info.php'))  ||
 			$force_plugin_manager_reinstallation === true
 			) { // We will need to install the plugin manager, plugin force a registry rebuild, then redirect to this page again.
@@ -106,27 +89,6 @@ class j16000showplugins
 				$output = array();
 				$output['ENCODING_MESSAGE'] = '';
 
-				if ($key_validation->is_trial_license && $this->key_valid) {
-					if (function_exists('ioncube_loader_version')) {
-						$ioncubeVersion = ioncube_loader_version();
-						$ioncubeMajorVersion = (int) substr($ioncubeVersion, 0, strpos($ioncubeVersion, '.'));
-						$ioncubeMinorVersion = (int) substr($ioncubeVersion, strpos($ioncubeVersion, '.') + 1);
-						if ($ioncubeMajorVersion < 5 || ($ioncubeMajorVersion == 0 && $ioncubeMinorVersion < 21)) {
-							$tmpl = new patTemplate();
-							$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
-							$tmpl->addRows('pageoutput', $pageoutput);
-							$tmpl->readTemplatesFromInput('plugin_manager_ioncube_wrong_version.html');
-							$output['ENCODING_MESSAGE'] = $tmpl->getParsedTemplate();
-						}
-					} else {
-						$pageoutput[ ] = array();
-						$tmpl = new patTemplate();
-						$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
-						$tmpl->addRows('pageoutput', $pageoutput);
-						$tmpl->readTemplatesFromInput('plugin_manager_no_ioncube.html');
-						$output['ENCODING_MESSAGE'] = $tmpl->getParsedTemplate();
-						}
-					}
 				
 				if ($force_plugin_manager_reinstallation == true) {
 					$output['INSTALLATION_MESSAGE'] = jr_gettext('PLUGINMANAGER_REINSTALL', 'PLUGINMANAGER_REINSTALL', false);
@@ -136,21 +98,19 @@ class j16000showplugins
 				}
 				$output['PLUGINMANAGER_INSTALL_BUTTON'] = jr_gettext('PLUGINMANAGER_INSTALL_BUTTON', 'PLUGINMANAGER_INSTALL_BUTTON', false);
 
-				$output['PLUGIN_MANAGER_CHECK'] = $MiniComponents->specificEvent('16000', 'plugin_manager_check', array('output_now' => false));
-
-
 				$pageoutput[ ] = $output;
 				$tmpl = new patTemplate();
 				$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
 				$tmpl->addRows('pageoutput', $pageoutput);
 				$tmpl->readTemplatesFromInput('plugin_manager_install.html');
 				$tmpl->displayParsedTemplate();
+
 				return;
 			} else {
 				$updateDirPath = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'updates'.JRDS.'plugin_manager'.JRDS;
 				$newfilename = $updateDirPath.'plugin_manager.vnw';
 				$destinationPath = JOMRES_COREPLUGINS_ABSPATH.JRDS.'plugin_manager';
-				
+
 				// Need to ensure that the download and plugin paths are clean, so we'll delete/recreate them each time we run.
 				if (is_dir($updateDirPath) ) {
 					$this->empty_dir($updateDirPath);
@@ -169,9 +129,6 @@ class j16000showplugins
 				$file_handle = fopen($newFile, 'wb');
 				if ($file_handle == false) {
 					$error_messsage[ 'ERROR' ] = "Couldn't create new file $newFile. Possible file permission problem?";
-					if ($autoupgrade) {
-						return false;
-					}
 				}
 
 				$v = explode('.', PHP_VERSION);
