@@ -159,13 +159,10 @@ try {
 		$tmpl->displayParsedTemplate();
 	}
 
-	$is_first_run = false;
-	if (!AJAXCALL) {
-		$is_first_run = admins_first_run();
-	}
-
 	//task
-	if (!$is_first_run) {
+	if ( $jrConfig['initial_setup_done'] == '0' && get_showtime('task') != 'save_initial_setup') {
+		$MiniComponents->specificEvent('16000','initial_setup'); // let's rock and roll
+	} else {
 		if ($MiniComponents->eventSpecificlyExistsCheck('16000', get_showtime('task'))) {
 			$MiniComponents->specificEvent('16000', get_showtime('task')); // task exists, execute it
 		} else {

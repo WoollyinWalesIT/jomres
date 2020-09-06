@@ -470,14 +470,28 @@ function saveSiteConfig($overrides = array())
 	}
 
 	//save config to file
-	if (!file_put_contents(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php',
-'<?php
+	$config_last_modified = filemtime(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php');
+
+	$result = file_put_contents(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php',
+		'<?php
 ##################################################################
 defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
 ##################################################################
 
 $jrConfig = ' .var_export($tmpConfig, true).';
-')) {
+');
+
+	// On my Ubuntu box, and on some client boxes, there's a delay in saving the config file so we will wait, then wait a bit more after the file mod time has been updated
+
+	do {
+		sleep(1); // Writing the file could take a moment
+		clearstatcache();
+		$newest_last_modified_check = filemtime(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php');
+	} while ( $newest_last_modified_check <= $config_last_modified);
+
+	sleep(2);
+
+	if (!$result) {
 		trigger_error('ERROR: '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php'.' can`t be saved. Please solve the permission problem and try again.', E_USER_ERROR);
 		exit;
 	}
