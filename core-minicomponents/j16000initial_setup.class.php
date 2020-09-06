@@ -49,12 +49,12 @@ class j16000initial_setup
 
 		if ( !isset($this->jrConfig["initial_setup_step_1_completed"]) || $this->jrConfig["initial_setup_step_1_completed"] == "0" ) {
 
-			$output['INTRO'] = 'Can we collect information about how you use Jomres?';
+			$output['INTRO'] = jr_gettext('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_TITLE', '_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_TITLE');
 
-			$output['MESSAGE'] = 'We would like to collect information about how you use Jomres. No personally identifyable information will be stored, usage will be anonymised and only used to help us to understand how people use Jomres.';
+			$output['MESSAGE'] = jr_gettext('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_MESSAGE', '_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_MESSAGE');
 
-			$output['ACCEPT'] = " Yep, that's ok ";
-			$output['DENY'] = " No, I don't agree ";
+			$output['ACCEPT'] = jr_gettext('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_ACCEPT', '_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_ACCEPT');
+			$output['DENY'] = jr_gettext('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_DENY', '_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_DENY');
 
 			$output['STEP'] = 'initial_setup_step_1';
 
@@ -69,12 +69,10 @@ class j16000initial_setup
 
 		if ( !isset($this->jrConfig["initial_setup_step_2_completed"]) || $this->jrConfig["initial_setup_step_2_completed"] == "0" ) {
 
-			$output['INTRO'] = 'Will you be taking bookings for more than one property?';
-
-			$output['MESSAGE'] = 'Jomres can be used for single or multi-property sites. If you will be taking bookings for just one property then many options will be redundant and potentially confusing. You can change this setting later in the Settings > Site Configuration > Portal functionality tab.';
-
-			$output['SINGLE'] = " Just one property ";
-			$output['MULTIPLE'] = " I will be listing more than one property ";
+			$output['INTRO'] = jr_gettext('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_TITLE', '_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_TITLE');
+			$output['MESSAGE'] = jr_gettext('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_MESSAGE', '_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_MESSAGE');
+			$output['SINGLE'] = jr_gettext('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_JUSTONE', '_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_JUSTONE');
+			$output['MULTIPLE'] = jr_gettext('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_MANY', '_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_MANY');
 
 			$output['STEP'] = 'initial_setup_step_2';
 
