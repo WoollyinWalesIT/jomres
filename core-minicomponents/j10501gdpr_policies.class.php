@@ -45,6 +45,14 @@ class j10501gdpr_policies
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 
+		if ( !isset($jrConfig[ 'admin_options_level' ]) ) {
+			$jrConfig[ 'admin_options_level' ] = 0;
+		}
+
+		if ( $jrConfig[ 'admin_options_level' ] < 1 ) {
+			return;
+		}
+
 		$configurationPanel = $componentArgs[ 'configurationPanel' ];
 
 		$this->addCountryRegionJs();

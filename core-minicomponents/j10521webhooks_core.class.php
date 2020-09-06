@@ -46,6 +46,14 @@ class j10521webhooks_core
 		$siteConfig		 = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
 		$jrConfig		   = $siteConfig->get();
 
+		if ( !isset($jrConfig[ 'admin_options_level' ]) ) {
+			$jrConfig[ 'admin_options_level' ] = 0;
+		}
+
+		if ( $jrConfig[ 'admin_options_level' ] < 2 ) {
+			return;
+		}
+
 		$configurationPanel 			= $componentArgs[ 'configurationPanel' ];
 
 		if (!isset($jrConfig[ 'webhooks_core_show' ]))

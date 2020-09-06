@@ -53,6 +53,14 @@ class j10501connect
 		$yesno[] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false));
 		$yesno[] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false));
 
+		if ( !isset($jrConfig[ 'admin_options_level' ]) ) {
+			$jrConfig[ 'admin_options_level' ] = 0;
+		}
+
+		if ( $jrConfig[ 'admin_options_level' ] < 2 ) {
+			return;
+		}
+
 		$configurationPanel=$componentArgs['configurationPanel'];
 
 		$configurationPanel->startPanel(jr_gettext('JOMRES_PLATFORM', 'JOMRES_PLATFORM', false));
