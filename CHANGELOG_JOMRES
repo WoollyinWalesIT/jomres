@@ -1,3 +1,7 @@
+<h3>Jomres 9.23.4 04/09/2020</h3>
+
+<span class="label label-warning">Change</span> Removed checks for ioncube loaders from files and removed some warnings.
+
 <h3>Jomres 9.23.3 03/09/2020</h3>
 
 <span class="label label-important label-danger">Fix</span> Removed a condition that was preventing some sites from updating columns in rooms table.
