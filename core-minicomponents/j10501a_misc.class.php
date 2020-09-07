@@ -93,6 +93,11 @@ class j10501a_misc
 		}
 		$configurationPanel->startPanel(jr_gettext('_JOMRES_A_TABS_MISC', '_JOMRES_A_TABS_MISC', false));
 
+		$configurationPanel->setleft( jr_gettext( '_JOMRES_CONFIG_LEVEL_TITLE', '_JOMRES_CONFIG_LEVEL_TITLE', false ) );
+		$configurationPanel->setmiddle( $admin_options_level_dropdown );
+		$configurationPanel->setright( jr_gettext( '_JOMRES_CONFIG_LEVEL_DESC', '_JOMRES_CONFIG_LEVEL_DESC', false ) );
+		$configurationPanel->insertSetting();
+
 		$configurationPanel->setleft(jr_gettext('_JOMRES_SUPPORTKEY', '_JOMRES_SUPPORTKEY', false));
 		$configurationPanel->setmiddle('<input type="password" class="input-xlarge" name="cfg_licensekey" value="'.$jrConfig[ 'licensekey' ].'" /><br/>'.' '.$support_key_status.' '.$support_key_owner.' '.$support_key_expires.' '.$renewal_link.' '.$support_key_is_trial_license.' '.$support_key_license_name);
 		$configurationPanel->setright(jr_gettext('_JOMRES_SUPPORTKEY_DESC', '_JOMRES_SUPPORTKEY_DESC', false).' '.$support_key_message);
@@ -101,11 +106,6 @@ class j10501a_misc
 		$configurationPanel->setleft(jr_gettext('_JOMRES_BOOTSTRAP_VERSION', '_JOMRES_BOOTSTRAP_VERSION', false));
 		$configurationPanel->setmiddle($bootstrap_ver_dropdown);
 		$configurationPanel->setright(jr_gettext('_JOMRES_BOOTSTRAP_VERSION_DESC', '_JOMRES_BOOTSTRAP_VERSION_DESC', false));
-		$configurationPanel->insertSetting();
-
-		$configurationPanel->setleft( jr_gettext( '_JOMRES_CONFIG_LEVEL_TITLE', '_JOMRES_CONFIG_LEVEL_TITLE', false ) );
-		$configurationPanel->setmiddle( $admin_options_level_dropdown );
-		$configurationPanel->setright( jr_gettext( '_JOMRES_CONFIG_LEVEL_DESC', '_JOMRES_CONFIG_LEVEL_DESC', false ) );
 		$configurationPanel->insertSetting();
 
 		if ( $jrConfig[ 'admin_options_level' ] > 1 ) {
