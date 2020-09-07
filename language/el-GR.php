@@ -2768,7 +2768,7 @@ jr_define('_JOMRES_SEARCH_FORM_CHILDREN', 'Chidren');
 
 
 jr_define('_JOMRES_CONFIG_LEVEL_TITLE', 'Admin options level');
-jr_define('_JOMRES_CONFIG_LEVEL_DESC', 'Jomres has many, many menu and configuration options that you can use when configuring your site. Chances are good that the huge majority of them, you will never need to change therefore you can choose which level to use depending on your needs. Basic level shows you just what you need when setting up a site for the first time. Common level shows you those options which are most commonly changed, and Everything...well, you can change anything you want. ');
+jr_define('_JOMRES_CONFIG_LEVEL_DESC', 'Jomres has many menu and configuration options that you can use when configuring your site. The huge majority of them you will never need to change so they are hidden by default. You can choose to show those options by setting the Admin Options level.  Basic level shows you just what you need when setting up a site for the first time. Common level shows you those options which are most commonly changed, and Everything shows you all possible settings and menus options in the administrator area.');
 jr_define('_JOMRES_CONFIG_LEVEL_BASIC', 'Basic');
 jr_define('_JOMRES_CONFIG_LEVEL_COMMON', 'Common');
 jr_define('_JOMRES_CONFIG_LEVEL_EVERYTHING', 'Everything');
