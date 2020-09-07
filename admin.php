@@ -159,6 +159,10 @@ try {
 		$tmpl->displayParsedTemplate();
 	}
 
+	if (!isset( $jrConfig['initial_setup_done'])) {
+		$jrConfig['initial_setup_done'] = 0;
+	}
+
 	//task
 	if ( $jrConfig['initial_setup_done'] == '0' && get_showtime('task') != 'save_initial_setup') {
 		$MiniComponents->specificEvent('16000','initial_setup'); // let's rock and roll
