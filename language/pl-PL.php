@@ -1962,7 +1962,7 @@ jr_define('_JOMRES_CONFIG_OPENEXCHANGERATES_KEY_WARNING', "Nie masz ustawionego 
 jr_define('_JOMRES_PERMIT_NUMBER_TITLE', 'Numer pozwolenia');
 jr_define('_JOMRES_PERMIT_NUMBER_DESCRIPTION', 'W niektórych krajach przepisy prawa wymagają na podanie numeru pozwolenia dla oferty.');
 jr_define('_JOMRES_SHORTCODES', 'Shortcodes');
-jr_define('_JOMRES_SHORTCODES_INFO_JOOMLA', 'Dodatek <strong>plg_content_jomres_asamodule_mambot</strong> musi być zainstalowany i włączony dla tej funkcjonalności. Jeśli serwis został zbudowany w oparciu o pakiet startowy Jomres to prawdopodobnie wszystko jest w porządku.');
+jr_define('_JOMRES_SHORTCODES_INFO_JOOMLA', 'Dodatek <strong>plg_content_jomres_asamodule_mambot</strong> Jomres Asamodule Mambot musi być zainstalowany i włączony dla tej funkcjonalności. Jeśli serwis został zbudowany w oparciu o pakiet startowy Jomres to prawdopodobnie wszystko jest w porządku.');
 jr_define('_JOMRES_SHORTCODES_INFO_WORDPRESS', "Dodatek <strong>'Jomres Shortcodes'</strong> musi być zainstalowany i włączony dla tej funkcjonalności. Jeśli serwis został zbudowany w oparciu o pakiet startowy Jomres to prawdopodobnie wszystko jest w porządku.");
 jr_define('SHORTCODE_TASK', 'Zadania');
 jr_define('SHORTCODE_DESCRIPTION', 'Opis');

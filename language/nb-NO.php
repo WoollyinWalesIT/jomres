@@ -1914,7 +1914,7 @@ jr_define('_JOMRES_CONFIG_OPENEXCHANGERATES_KEY_WARNING', "You do not have an <a
 jr_define('_JOMRES_PERMIT_NUMBER_TITLE', 'Tillatelsesnummer');
 jr_define('_JOMRES_PERMIT_NUMBER_DESCRIPTION', 'Enkelte land krever at du må vise tillatelsesnummer for det du leier ut. Legg det inn her hvis du har et slikt nummer.');
 jr_define('_JOMRES_SHORTCODES', 'Shortcodes');
-jr_define('_JOMRES_SHORTCODES_INFO_JOOMLA', "The <strong>plg_content_jomres_asamodule_mambot</strong> plugin MUST be installed and enabled for these shortcodes to work. This can be found in the Jomres Plugin Manager. If this site was built using one of the Quickstarts then it's probably already installed.");
+jr_define('_JOMRES_SHORTCODES_INFO_JOOMLA', "The <strong>plg_content_jomres_asamodule_mambot</strong> Jomres Asamodule Mambot plugin MUST be installed and enabled for these shortcodes to work. This can be found in the Jomres Plugin Manager. If this site was built using one of the Quickstarts then it's probably already installed.");
 jr_define('_JOMRES_SHORTCODES_INFO_WORDPRESS', "You must ensure that the <strong>'Jomres Shortcodes'</strong> plugin is enabled. This can be found in the Jomres Plugin Manager. If this site was built using one of the Quickstarts then it's probably already installed.");
 jr_define('SHORTCODE_TASK', 'Task');
 jr_define('SHORTCODE_DESCRIPTION', 'Description');
