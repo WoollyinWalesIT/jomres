@@ -43,7 +43,7 @@ class j06000cron_syndication_check_syndicate_properties
 		
 		$query = "SELECT `id` , `domain` , `api_url` ,  `last_checked` , `approved` FROM #__jomres_syndication_domains WHERE last_checked  < (NOW() - INTERVAL 1 HOUR) AND approved = 1 ";
 		$result = doSelectSql($query);
-		
+
 		$local_domain = parse_url(get_showtime('live_site'));
 		$local_hostname = $local_domain['host'];
 		
@@ -56,10 +56,10 @@ class j06000cron_syndication_check_syndicate_properties
 				$datetime1 = new DateTime($now);
 				$datetime2 = new DateTime($r->last_checked);
 				$interval = $datetime1->diff($datetime2);
-					
-				if ($interval->h > 12 ) {
+
+				if ($interval->h || $interval->d > 1 || $interval->m > 1 || $interval->y > 1 ) {
 					$checked_properties = array();
-					$query = "SELECT id , propertys_uid FROM #__jomres_syndication_properties WHERE approved = 1 AND syndication_domain_id = ".$r->id;
+					$query = "SELECT id , propertys_uid , thumbnail_location FROM #__jomres_syndication_properties WHERE approved = 1 AND syndication_domain_id = ".$r->id;
 					$local_properties = doSelectSql($query);
 					
 					if (!empty($local_properties)) { // The get syndicate properties script will handle adding any new properties, so the only thing we need to do here is remove those that aren't in the remote properties array
@@ -70,7 +70,7 @@ class j06000cron_syndication_check_syndicate_properties
 
 								$response = $client->request('GET', $r->api_url.'core/get_properties/' , ['connect_timeout' => 4 , 'verify' => false , 'http_errors' => false] );
 								
-								if ((string)$response->getStatusCode() == "404") {
+								if ((string)$response->getStatusCode() == "404" || (string)$response->getStatusCode() == "403"  || (string)$response->getStatusCode() == "0" ) {
 										$query = "UPDATE  #__jomres_syndication_domains SET 
 										`last_checked` = '".date("Y-m-d H:i:s" , strtotime("+1 year") )."' ,
 										`approved` = 0 ,
@@ -89,6 +89,7 @@ class j06000cron_syndication_check_syndicate_properties
 										foreach ($body->data->properties[0]->properties as $remote_property) {
 											if (isset($remote_property->propertys_uid)) {
 												$remote_properties[] = $remote_property->propertys_uid;
+												$remote_thumbs[] = array( "remote_property_uid" => $remote_property->propertys_uid , "remote_thumbnail" =>  $remote_property->thumbnail_location );
 											}
 										}
 
@@ -98,7 +99,13 @@ class j06000cron_syndication_check_syndicate_properties
 												doInsertSql($query);
 												logging::log_message("Deleted local property id ".(int)$r->id." for ".$domain['host']." as it no longer appears in the remote server's properties list ", 'Syndication', 'INFO');
 											} else {
-												$checked_properties[] = $local_property->id;
+												$thumbnail_exists = $this->check_thumbnail_exists($local_property->thumbnail_location);
+												if ($thumbnail_exists) {
+													$checked_properties[] = $local_property->id;
+												} else {
+													$query = "UPDATE #__jomres_syndication_properties SET `approved` = 0 , `unapproval_reason` = 'system' WHERE id = ".(int)$local_property->id;
+													doInsertSql($query);
+												}
 											}
 										}
 									}
@@ -129,6 +136,51 @@ class j06000cron_syndication_check_syndicate_properties
 		}
 	}
 
+	private function check_thumbnail_exists( $url = '' )
+	{
+		if ($url == '' ) {
+			return false;
+		}
+
+		$handle = curl_init($url);
+		curl_setopt($handle,  CURLOPT_RETURNTRANSFER, TRUE);
+		curl_setopt($handle, CURLOPT_NOBODY, true);
+		curl_setopt($handle, CURLOPT_FOLLOWLOCATION, true);
+		curl_setopt($handle,CURLOPT_TIMEOUT,5);
+
+		/* Get the thumbnail */
+		$response = curl_exec($handle);
+
+		/* Check for 404 (file not found). */
+		$httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
+
+		echo ($httpCode." ".$url."</br>");
+
+		if($httpCode == 404) {
+			return false;
+		}
+
+		if($httpCode == 403) {
+			return false;
+		}
+
+		if($httpCode == 301) {
+			return false;
+		}
+
+		if($httpCode == 0) {
+			return false;
+		}
+
+		if(curl_errno($handle) == 28 ) // Timed out
+		{
+			return false;
+		}
+
+		curl_close($handle);
+
+		return true;
+	}
 
 	public function getRetVals()
 	{
