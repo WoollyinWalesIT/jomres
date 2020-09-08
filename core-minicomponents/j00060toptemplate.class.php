@@ -70,6 +70,18 @@ class j00060toptemplate
 
 		$output = array();
 
+		if ($jrConfig[ 'development_production' ] != 'production') {
+			echo '
+				<!-- start development mode warning -->
+				<div class="isa_warning">
+                    <i class="fa fa-warning"></i>
+                    Development mode enabled
+                    <i class="fa fa-warning"></i>
+				</div>
+				';
+		}
+
+
 		$output[ 'VIDEO_TUTORIALS' ] = '';
 		if (using_bootstrap()) {
 			$jomres_video_tutorials = jomres_singleton_abstract::getInstance('jomres_video_tutorials');

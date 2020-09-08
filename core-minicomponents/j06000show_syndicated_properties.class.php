@@ -63,6 +63,14 @@ class j06000show_syndicated_properties
 		if ($jomres_check_support_key->key_valid) {
 			return;
 		}
+
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
+
+		if ($jrConfig[ 'development_production' ] != 'production') {
+			return;
+		}
+
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 
