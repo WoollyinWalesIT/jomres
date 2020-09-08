@@ -40,94 +40,141 @@ class j06000cron_syndication_check_syndicate_properties
 
 			return;
 		}
-		
-		$query = "SELECT `id` , `domain` , `api_url` ,  `last_checked` , `approved` FROM #__jomres_syndication_domains WHERE last_checked  < (NOW() - INTERVAL 1 HOUR) AND approved = 1 ";
+
+		$query = "SELECT `id` FROM #__jomres_syndication_domains WHERE  approved = 0 ";
+		$result = doSelectSql($query);
+		$disabled_domains = array();
+		if (!empty($result)) {
+			foreach ( $result as $r ) {
+				$disabled_domains[]=$r->id;
+			}
+			$query = 'SELECT id , `name` FROM #__jomres_syndication_properties WHERE syndication_domain_id IN ('.jomres_implode($disabled_domains).') AND approved = 1 ORDER BY `name` ';
+			$trash_properties = doSelectSql($query);
+			$properties_to_disable = array();
+			if (!empty($trash_properties)) {
+				foreach ($trash_properties as $t ) {
+					$properties_to_disable[]=$t->id;
+				}
+				$query = "UPDATE #__jomres_syndication_properties SET
+					`last_checked` = '".date("Y-m-d H:i:s" , strtotime("+1 year") )."' , 
+					`approved` = 0 , 
+					`unapproval_reason` = 'domain' 
+					WHERE id IN (".jomres_implode($properties_to_disable).")";
+				doInsertSql($query);
+			}
+		}
+
+		$query = "SELECT `id` , `domain` , `api_url` ,  `last_checked` , `approved` FROM #__jomres_syndication_domains WHERE  approved = 1 ORDER BY last_checked ASC";
 		$result = doSelectSql($query);
 
-		$local_domain = parse_url(get_showtime('live_site'));
-		$local_hostname = $local_domain['host'];
-		
 		$now = date("Y-m-d H:i:s");
-		
-		$existing_domains = array();
+
+		$no_more = false;
+
+		$quickstart_property_names = array (
+		"Fawlty Towers" ,
+		"Hotel Valle" ,
+		"Best West Hotel" ,
+		"Jaguar S Type" ,
+		"Aston Martin DB7" ,
+		"Some Yacht" ,
+		"Some Other Yacht" ,
+		"Some Camping Area" ,
+		"Some Other Campsite" ,
+		"Star Apartment" ,
+		"Star2 Apartment" ,
+		"Some Villa" ,
+		"Some Other Villa" ,
+		"Jaguar XJ" ,
+		"Rolls Royce Phantom" ,
+		"Mercedes S Class" ,
+		"Audi A8" ,
+		"Ferretti 212" ,
+		"Expedition Vessel" ,
+		"Grand Banks" ,
+		"Commercial Boat",
+		"London Bus Tour",
+		"Derby Sightseen"
+		);
+
+
 		if (!empty($result)) {
+
 			foreach ($result as $r) {
-				
-				$datetime1 = new DateTime($now);
-				$datetime2 = new DateTime($r->last_checked);
-				$interval = $datetime1->diff($datetime2);
 
-				if ($interval->h || $interval->d > 1 || $interval->m > 1 || $interval->y > 1 ) {
-					$checked_properties = array();
-					$query = "SELECT id , propertys_uid , thumbnail_location FROM #__jomres_syndication_properties WHERE approved = 1 AND syndication_domain_id = ".$r->id;
-					$local_properties = doSelectSql($query);
-					
-					if (!empty($local_properties)) { // The get syndicate properties script will handle adding any new properties, so the only thing we need to do here is remove those that aren't in the remote properties array
-						try {
-							$domain = parse_url($r->api_url);
-							if ( $local_hostname != $domain['host'] ) {
-								$client = new GuzzleHttp\Client();
+				if (!$no_more ) {
+					$datetime1 = new DateTime($now);
+					$datetime2 = new DateTime($r->last_checked);
+					$interval = $datetime1->diff($datetime2);
 
-								$response = $client->request('GET', $r->api_url.'core/get_properties/' , ['connect_timeout' => 4 , 'verify' => false , 'http_errors' => false] );
-								
-								if ((string)$response->getStatusCode() == "404" || (string)$response->getStatusCode() == "403"  || (string)$response->getStatusCode() == "0" ) {
-										$query = "UPDATE  #__jomres_syndication_domains SET 
+					//$timeInterval      = //the DateInterval you have;
+					$intervalInSeconds = (new DateTime())->setTimeStamp(0)->add($interval)->getTimeStamp();
+					$intervalInMinutes = abs($intervalInSeconds/60);
+
+					if ($intervalInMinutes > 60  ) {
+						$query = "SELECT id , syndication_domain_id , propertys_uid , thumbnail_location , view_property_url , `name` FROM #__jomres_syndication_properties WHERE last_checked  < (NOW() - INTERVAL 1 HOUR) AND approved = 1 AND syndication_domain_id = ".$r->id." ORDER BY last_checked LIMIT 10 ";
+						$local_properties = doSelectSql($query);
+
+						if (!empty($local_properties)) { // The get syndicate properties script will handle adding any new properties, so the only thing we need to do here is remove those that aren't in the remote properties array
+							//var_dump($local_properties);
+							try {
+								foreach ($local_properties as $local_property ) {
+									if ( in_array( trim($local_property->name) , $quickstart_property_names ) ) {
+										$query = "UPDATE #__jomres_syndication_properties SET
+											`last_checked` = '".date("Y-m-d H:i:s" , strtotime("+1 year") )."' , 
+											`approved` = 0 , 
+											`unapproval_reason` = 'quickstart' 
+										WHERE id = ".(int)$local_property->id;
+										doInsertSql($query);
+									} else {
+										$client = new GuzzleHttp\Client();
+
+										$response = $client->request('GET', $local_property->view_property_url , ['connect_timeout' => 1 , 'verify' => false , 'http_errors' => false] );
+
+										if ((string)$response->getStatusCode() == "404" || (string)$response->getStatusCode() == "0" ) {
+											$query = "UPDATE  #__jomres_syndication_properties SET 
 										`last_checked` = '".date("Y-m-d H:i:s" , strtotime("+1 year") )."' ,
 										`approved` = 0 ,
-										`unapproval_reason` = 'system'
-										WHERE id = ".(int)$r->id;
-									doInsertSql($query);
-								} else {
-									$body				= json_decode((string)$response->getBody());
-
-									if (empty($body->data->properties[0]->properties)) { // All remote properties have been removed/unpublished, we will remove all local properties
-										$query = "DELETE FROM #__jomres_syndication_properties WHERE syndication_domain_id = ".(int)$r->id;
-										doInsertSql($query);
-										logging::log_message("Deleted local properties for ".$domain['host']." as all properties appear unpublished ", 'Syndication', 'INFO');
-									} else {
-										$remote_properties = array();
-										foreach ($body->data->properties[0]->properties as $remote_property) {
-											if (isset($remote_property->propertys_uid)) {
-												$remote_properties[] = $remote_property->propertys_uid;
-												$remote_thumbs[] = array( "remote_property_uid" => $remote_property->propertys_uid , "remote_thumbnail" =>  $remote_property->thumbnail_location );
-											}
-										}
-
-										foreach ($local_properties as $local_property) {
-											if (!in_array(  $local_property->propertys_uid , $remote_properties)) {
-												$query = "DELETE FROM #__jomres_syndication_properties WHERE id = ".(int)$local_property->propertys_uid;
+										`unapproval_reason` = '404'
+										WHERE id = ".(int)$local_property->id;
+											doInsertSql($query);
+										} else {
+											$thumbnail_exists = $this->check_thumbnail_exists($local_property->thumbnail_location);
+											if (!$thumbnail_exists) {
+												$query = "UPDATE #__jomres_syndication_properties SET
+											`last_checked` = '".date("Y-m-d H:i:s" , strtotime("+1 week") )."' , 
+											`approved` = 0 , 
+											`unapproval_reason` = 'thumbnail' 
+										WHERE id = ".(int)$local_property->id;
 												doInsertSql($query);
-												logging::log_message("Deleted local property id ".(int)$r->id." for ".$domain['host']." as it no longer appears in the remote server's properties list ", 'Syndication', 'INFO');
 											} else {
-												$thumbnail_exists = $this->check_thumbnail_exists($local_property->thumbnail_location);
-												if ($thumbnail_exists) {
-													$checked_properties[] = $local_property->id;
-												} else {
-													$query = "UPDATE #__jomres_syndication_properties SET `approved` = 0 , `unapproval_reason` = 'system' WHERE id = ".(int)$local_property->id;
-													doInsertSql($query);
-												}
+												$query = "UPDATE #__jomres_syndication_properties SET `last_checked` = '".date("Y-m-d H:i:s" , strtotime("+1 week") )."' WHERE id = ".(int)$local_property->id;
+												doInsertSql($query);
 											}
 										}
 									}
+									//echo "
+									//".$query."
+									//";
 								}
-								
-								$query = "UPDATE #__jomres_syndication_properties SET `last_checked` = '".date("Y-m-d H:i:s")."' WHERE id IN (".jomres_implode($checked_properties).") ";
-								doInsertSql($query);
+
+								$no_more = true;
+								break;
 							}
-						}
-						catch (GuzzleHttp\Exception\RequestException $e) {
-							if ((int)$r->approved == 1 ) { // Oops, it's stopped responding. We'll take it offline and check it again in an hour
-								$query = "UPDATE  #__jomres_syndication_domains SET 
+							catch (GuzzleHttp\Exception\RequestException $e) {
+								if ((int)$r->approved == 1 ) { // Oops, it's stopped responding. We'll take it offline and check it again in an hour
+									$query = "UPDATE  #__jomres_syndication_domains SET 
 									`last_checked` = '".date("Y-m-d H:i:s")."',
 									`approved` = 0 ,
 									`unapproval_reason` = 'system'
 									WHERE id = ".(int)$r->id;
-								doInsertSql($query);
-							} else { // It's still not responding
-								$query = "UPDATE  #__jomres_syndication_domains SET 
+									doInsertSql($query);
+								} else { // It's still not responding
+									$query = "UPDATE  #__jomres_syndication_domains SET 
 									`last_checked` = '".date("Y-m-d H:i:s")."'
 									WHERE id = ".(int)$r->id;
-								doInsertSql($query);
+									doInsertSql($query);
+								}
 							}
 						}
 					}
@@ -146,15 +193,13 @@ class j06000cron_syndication_check_syndicate_properties
 		curl_setopt($handle,  CURLOPT_RETURNTRANSFER, TRUE);
 		curl_setopt($handle, CURLOPT_NOBODY, true);
 		curl_setopt($handle, CURLOPT_FOLLOWLOCATION, true);
-		curl_setopt($handle,CURLOPT_TIMEOUT,5);
+		curl_setopt($handle,CURLOPT_TIMEOUT,1);
 
 		/* Get the thumbnail */
 		$response = curl_exec($handle);
 
 		/* Check for 404 (file not found). */
 		$httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
-
-		echo ($httpCode." ".$url."</br>");
 
 		if($httpCode == 404) {
 			return false;

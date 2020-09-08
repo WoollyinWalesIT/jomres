@@ -39,9 +39,9 @@ class j00061y_syndicated_properties {
 			{
 			$this->template_touchable=false; return;
 			}
-		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-		if (!$thisJRUser->userIsManager && get_showtime('task') != "dobooking" ) {
-			$MiniComponents->specificEvent('06000','show_syndicated_properties', array('limit'=>6));
+
+		if ( get_showtime('task') != "dobooking" ) {
+			$MiniComponents->specificEvent('06000','show_syndicated_properties', array('limit'=>4));
 			}
 		
 		}

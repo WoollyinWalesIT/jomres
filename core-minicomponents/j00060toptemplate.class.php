@@ -46,9 +46,11 @@ class j00060toptemplate
 		if (get_showtime('topoff')) {
 			return;
 		}
-		
-		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
-		
+
+		if ( get_showtime('task') != "dobooking" ) {
+			$MiniComponents->specificEvent('06000','show_syndicated_properties', array('limit'=>4 , 'output_now' => true));
+		}
+
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 		

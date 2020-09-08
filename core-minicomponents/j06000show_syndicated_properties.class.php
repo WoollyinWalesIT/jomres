@@ -57,15 +57,17 @@ class j06000show_syndicated_properties
 		
 		$this->retVals = '';
 
+		$jomres_check_support_key = jomres_singleton_abstract::getInstance('jomres_check_support_key');
+		$jomres_check_support_key->check_license_key();
+
+		if ($jomres_check_support_key->key_valid) {
+			return;
+		}
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 
 		if (!isset($jrConfig['useSyndication'])) {
-			$jrConfig['useSyndication'] = 0;
-		}
-
-		if ( $jrConfig['useSyndication'] == 0) {
-			return;
+			$jrConfig['useSyndication'] = 1;
 		}
 
 		if (isset($componentArgs[ 'limit' ])) {
@@ -118,20 +120,21 @@ class j06000show_syndicated_properties
 		if ( !empty($random_properties)) {
 			$property_templates = array();
 			foreach ($random_properties as $property ) {
+
 				$output = array();
 				$pageoutput = array();
 				$template = array();
-				
+
 				$output['VIEW_PROPERTY_URL']	= $property->view_property_url;
 				$output['BOOKING_FORM_URL']		= $property->booking_form_url;
-				$output['NAME']					= $property->name;
+				$output['NAME']					= jr_substr($property->name, 0, 20).'&hellip;';
 				$output['LAT']					= $property->lat;
 				$output['LONG']					= $property->long;
 				$output['METADESCRIPTION']		= $property->metadescription;
 				$output['THUMBNAIL_LOCATION']	= $property->thumbnail_location;
 				$output['DATE_ADDED']			= $property->date_added;
 				$output['LAST_CHECKED']			= $property->last_checked;
-				
+
 				$pageoutput[] = $output;
 				$tmpl = new patTemplate();
 				$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
@@ -168,6 +171,30 @@ class j06000show_syndicated_properties
 		}
 
 		
+	}
+
+	private function check_thumbnail_exists( $url = '' )
+	{
+		if ($url == '' ) {
+			return false;
+		}
+
+		$handle = curl_init($url);
+		curl_setopt($handle,  CURLOPT_RETURNTRANSFER, TRUE);
+		curl_setopt($handle, CURLOPT_NOBODY, true);
+
+		/* Get the thumbnail */
+		$response = curl_exec($handle);
+
+		/* Check for 404 (file not found). */
+		$httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
+		if($httpCode == 404) {
+			return false;
+		}
+
+		curl_close($handle);
+
+		return true;
 	}
 
 	public function getRetVals()
