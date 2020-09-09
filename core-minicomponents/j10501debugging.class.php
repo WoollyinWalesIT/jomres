@@ -121,6 +121,10 @@ class j10501debugging
 			$configurationPanel->insertSetting();
 		}
 
+		$configurationPanel->setleft(jr_gettext('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_TITLE', '_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_TITLE', false));
+		$configurationPanel->setmiddle($lists[ 'collect_analytics_allowed' ]);
+		$configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_MESSAGE', '_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_MESSAGE', false));
+		$configurationPanel->insertSetting();
 		
 		//plugins can add options to this tab
 		$MiniComponents->triggerEvent('10532', $componentArgs);

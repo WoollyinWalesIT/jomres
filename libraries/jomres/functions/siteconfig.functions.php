@@ -268,6 +268,13 @@ function showSiteConfig()
 	}
 	$lists[ 'compatability_property_configuration' ] = jomresHTML::selectList($yesno, 'cfg_compatability_property_configuration', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'compatability_property_configuration' ]);
 
+	if (!isset($jrConfig[ 'collect_analytics_allowed' ])) {
+		$jrConfig[ 'collect_analytics_allowed' ] = 0;
+	}
+	$lists[ 'collect_analytics_allowed' ] = jomresHTML::selectList($yesno, 'cfg_collect_analytics_allowed', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'collect_analytics_allowed' ]);
+
+
+
 	if (!isset($jrConfig['show_powered_by'])) {
 		$jrConfig['show_powered_by'] = '0';
 	}

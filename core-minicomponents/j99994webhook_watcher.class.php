@@ -122,7 +122,7 @@ class j99994webhook_watcher
 						`webhook_event`
 					) VALUES (
 						".(int)$webhook->data->property_uid." ,
-						".$thisJRUser->id." ,
+						".(int)$thisJRUser->id." ,
 						'".serialize($channel_data)."' ,
 						'".date('Y-m-d H:i:s')."' , 
 						'".$webhook->webhook_event."' ,

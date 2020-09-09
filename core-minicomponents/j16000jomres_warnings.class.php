@@ -82,6 +82,8 @@ class j16000jomres_warnings
 			$output[ 'JOMRES_PRODUCT_INFO_HIGHLIGHT' ] = 'alert alert-info';
 		} */
 
+
+
 		//wordpress Page with [jomres:xx-XX] not created yet
 		$output[ 'JOMRES_DEFAULT_SHORTCODE_HIGHLIGHT' ] = '';
 		$output[ 'JOMRES_DEFAULT_SHORTCODE_ALERT' ] = '';
