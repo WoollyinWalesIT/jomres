@@ -82,8 +82,10 @@ class jomres_syndicate_properties
 		if (empty($this->all_properties)) {
 			$this->get_all_properties();
 		}
+
 		foreach ($this->all_properties as $property) {
-			if ($property->approved == "1" ) {
+
+			if ($property->approved == "1" && strstr($property->thumbnail_location , "https://") ) {
 				if ($property->multi_room_property == "1") {
 					$this->all_approved_properties['mrps'][$property->id] = $property;
 				}
