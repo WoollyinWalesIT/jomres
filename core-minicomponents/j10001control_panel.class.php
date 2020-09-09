@@ -64,10 +64,12 @@ class j10001control_panel
 		
 		$output = array();
 		$page_output = array();
-		
 
-		
-		//jomres warnings
+		//New property button
+		$output['NEW_PROPERTY_BUTTON'] = $MiniComponents->specificEvent('16000', 'new_property_button', array('output_now' => false));
+
+
+	//jomres warnings
 		$output['JOMRES_WARNINGS'] = $MiniComponents->specificEvent('16000', 'jomres_warnings', array('output_now' => false));
 
 		//list properties
