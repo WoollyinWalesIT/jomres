@@ -113,7 +113,7 @@ class j16000touch_templates
 		}
 		echo '<hr/>';
 
-		$MiniComponents->touch_templates();
+		//$MiniComponents->touch_templates();
 	}
 
 
