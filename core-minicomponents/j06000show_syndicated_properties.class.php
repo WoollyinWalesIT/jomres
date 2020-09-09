@@ -135,7 +135,7 @@ class j06000show_syndicated_properties
 
 				$output['VIEW_PROPERTY_URL']	= $property->view_property_url;
 				$output['BOOKING_FORM_URL']		= $property->booking_form_url;
-				$output['NAME']					= jr_substr($property->name, 0, 20).'&hellip;';
+				$output['NAME']					= jr_substr($property->name, 0, 14).'&hellip;';
 				$output['LAT']					= $property->lat;
 				$output['LONG']					= $property->long;
 				$output['METADESCRIPTION']		= $property->metadescription;
