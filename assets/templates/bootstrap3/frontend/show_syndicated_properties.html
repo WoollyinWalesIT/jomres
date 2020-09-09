@@ -1,11 +1,27 @@
 <patTemplate:tmpl name="pageoutput">
-
-	<div class="row">
+<style>
+    .row-eq-height {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display:         flex;
+    }
+</style>
+	<div class="row row-eq-height">
 		<div class="col-md-12">
-			<div class="panel panel-primary">
+			<div class="panel panel-muted">
 				<div class="panel-heading">
 					<h3 class="panel-title">
-						<i class="fa fa-sitemap" aria-hidden="true"></i> {_JOMRES_SYNDICATION_TITLE}
+						<div class="row">
+							<div class="col-md-6">
+								<i class="fa fa-sitemap" aria-hidden="true"></i> {_JOMRES_SYNDICATION_TITLE}
+							</div>
+							<div class="col-md-6 small">
+								{_JOMRES_SYNDICATION_TAGLINE}
+							</div>
+
+						</div>
+
 					</h3>
 				</div>
 				<div class="panel-body">
@@ -16,10 +32,6 @@
 							</div>
 							</patTemplate:tmpl>
 					</div>
-					
-				</div>
-				<div class="panel-footer">
-					{_JOMRES_SYNDICATION_TAGLINE}
 				</div>
 			</div>
 		</div>
