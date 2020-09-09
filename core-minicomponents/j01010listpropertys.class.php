@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.3
+ * @version Jomres 9.23.5
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -597,8 +597,8 @@ class j01010listpropertys
 						$property_deets[ 'BOOKTHIS_TEXT' ] = jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACT_AGENT', '_JOMRES_FRONT_MR_MENU_CONTACT_AGENT', false);
 					}
 
-					if (strlen($current_property_details->multi_query_result[ $propertys_uid ][ 'property_name' ]) > 24 && $layout == 'tile') {
-						$property_deets[ 'PROP_NAME' ] = jr_substr($current_property_details->multi_query_result[ $propertys_uid ][ 'property_name' ], 0, 23).'&hellip;';
+					if (strlen($current_property_details->multi_query_result[ $propertys_uid ][ 'property_name' ]) > 15 && $layout == 'tile') {
+						$property_deets[ 'PROP_NAME' ] = jr_substr($current_property_details->multi_query_result[ $propertys_uid ][ 'property_name' ], 0, 14).'&hellip;';
 					} else {
 						$property_deets[ 'PROP_NAME' ] = $current_property_details->multi_query_result[ $propertys_uid ][ 'property_name' ];
 					}

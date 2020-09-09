@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.3
+ * @version Jomres 9.23.5
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -159,13 +159,14 @@ try {
 		$tmpl->displayParsedTemplate();
 	}
 
-	$is_first_run = false;
-	if (!AJAXCALL) {
-		$is_first_run = admins_first_run();
+	if (!isset( $jrConfig['initial_setup_done'])) {
+		$jrConfig['initial_setup_done'] = 0;
 	}
 
 	//task
-	if (!$is_first_run) {
+	if ( $jrConfig['initial_setup_done'] == '0' && get_showtime('task') != 'save_initial_setup') {
+		$MiniComponents->specificEvent('16000','initial_setup'); // let's rock and roll
+	} else {
 		if ($MiniComponents->eventSpecificlyExistsCheck('16000', get_showtime('task'))) {
 			$MiniComponents->specificEvent('16000', get_showtime('task')); // task exists, execute it
 		} else {

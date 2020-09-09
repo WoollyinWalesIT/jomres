@@ -1,3 +1,24 @@
+<h3>Jomres 9.23.5 07/09/2020</h3>
+
+<span class="label label-success">Feature</span> Added initial setup functionality to determine a few basic facts for new installations.
+<span class="label label-success">Feature</span> Added new feature that allows site managers to select Basic, Common or Everything settings for viewing admin area options (simplifies interface significantly).
+<span class="label label-success">Feature</span> New Property button added to admin control panel.
+
+<span class="label label-warning">Change</span> Modified site config singleton so that we wait for confirmation that the file has been written before completing the method. Annoying, but has to be done due to key activation (among other things) not being shown appropriately.
+<span class="label label-warning">Change</span> Modified the length of the shortened property name template variable in list properties photo layout, made it much shorter.
+<span class="label label-warning">Change</span> Modified default template photo view templates so that they use the short property name variable. Leohtian has already been updated.
+<span class="label label-warning">Change</span> Syndication property checking improved to check for longer intervals between checks, and added check for thumbnail images. If image doesn't exist or hotlink protection preventing use then the property is unapproved.
+<span class="label label-warning">Change</span> Improved layout of syndicated properties;
+<span class="label label-warning">Change</span> New warning added to frontend to highlight that Jomres is  in development mode.
+<span class="label label-warning">Change</span> Language labels page now only lists labels for things like property features, room types, etc, that can be translated to other languages. Touch Template method calls are dropped because they are duplicated in the Translate Lang File strings menu option in the same place.
+<span class="label label-warning">Change</span> Added initial installation configuration to determine permission to collect analytics. Not currently collected it's nice to ask anyway.
+<span class="label label-warning">Change</span> Added new admin options level setting that allows admins to view site options at either Basic, Common or Everything levels. Simplifies admin UI, hiding options that are rarely changed. To change the level visit Site Configuration > Misc tab
+<span class="label label-warning">Change</span> Shortened the list properties PROPNAME variable so that photo view layout isn't borked.
+
+<h3>Jomres 9.23.4 04/09/2020</h3>
+
+<span class="label label-warning">Change</span> Removed checks for ioncube loaders from files and removed some warnings.
+
 <h3>Jomres 9.23.3 03/09/2020</h3>
 
 <span class="label label-important label-danger">Fix</span> Removed a condition that was preventing some sites from updating columns in rooms table.

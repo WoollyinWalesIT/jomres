@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.3
+ * @version Jomres 9.23.5
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -295,6 +295,9 @@ class jomres_install
 
 			$this->siteConfig->update_setting('compatability_property_configuration', 1 );
 
+			$this->siteConfig->update_setting('initial_setup_done', 0 );
+			$this->siteConfig->update_setting('admin_options_level', 0 );
+
 			//update db version so we can check this on future updates or db sanity check
 			if (empty($this->messages)) {
 				$this->siteConfig->update_setting('jomres_db_version', $this->jrConfig['version']);
@@ -359,7 +362,12 @@ class jomres_install
 			//run plugins installation scripts
 			//plugins should already be installed, so most probably their tables won`t need to be created again
 			//$this->installPlugins();
-			
+
+			$this->siteConfig->update_setting('initial_setup_done', 1 );
+			if (!isset($this->jrConfig['admin_options_level'])) { // The previous version of Jomres was pre-9.24 so the admin_options_level setting will not exist, we'll give full access here, but if the setting already exists we will not change it
+				$this->siteConfig->update_setting('admin_options_level', 2 );
+			}
+
 			//update db version so we can check this on future updates or sanity checks
 			if (empty($this->messages)) {
 				$this->siteConfig->update_setting('jomres_db_version', $this->jrConfig['version']);

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.3
+ * @version Jomres 9.23.5
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1947,7 +1947,7 @@ jr_define('_JOMRES_CONFIG_OPENEXCHANGERATES_KEY_WARNING', "You do not have an Op
 jr_define('_JOMRES_PERMIT_NUMBER_TITLE', 'Permit number');
 jr_define('_JOMRES_PERMIT_NUMBER_DESCRIPTION', 'Some countries legislate that you must display a permit number for your property. If you have such a number, enter it here and it will be added to the property header section.');
 jr_define('_JOMRES_SHORTCODES', 'Shortcodes');
-jr_define('_JOMRES_SHORTCODES_INFO_JOOMLA', "The <strong>plg_content_jomres_asamodule_mambot</strong> plugin MUST be installed and enabled for these shortcodes to work. This can be found in the Jomres Plugin Manager. If this site was built using one of the Quickstarts then it's probably already installed.");
+jr_define('_JOMRES_SHORTCODES_INFO_JOOMLA', "The <strong>plg_content_jomres_asamodule_mambot</strong> Jomres Asamodule Mambot plugin MUST be installed and enabled for these shortcodes to work. This can be found in the Jomres Plugin Manager. If this site was built using one of the Quickstarts then it's probably already installed.");
 jr_define('_JOMRES_SHORTCODES_INFO_WORDPRESS', "You must ensure that the <strong>'Jomres Shortcodes'</strong> plugin is enabled. This can be found in the Jomres Plugin Manager. If this site was built using one of the Quickstarts then it's probably already installed.");
 jr_define('SHORTCODE_TASK', 'Task');
 jr_define('SHORTCODE_DESCRIPTION', 'Description');
@@ -2179,6 +2179,11 @@ jr_define( 'DATATABLES_COLVIS', 'Column Visibility');
 jr_define( 'API_TOKEN_LIFETIME', 'API token lifetime');
 jr_define( 'API_TOKEN_LIFETIME_DESC', 'How long an API token remains valid for, in seconds. 86400 = 1 day, 31536000 = 1 year');
 
+jr_define( 'FIREWALL_CHECK', 'Firewall check' );
+jr_define( 'FIREWALL_CHECK_DESC', 'This is a simple check to see if this server can connect to remote services. If it cannot, that might indicate that there are firewall rules in place preventing the two machines from talking to each other. If there are, then you may need to discuss adjusting firewall rules with your webserver hosts. 404 & 403 responses can be considered ok because you are getting a response from the remote service.' );
+jr_define( 'FIREWALL_CHECK_REMOTE_SERVICE', 'Remote service' );
+jr_define( 'FIREWALL_CHECK_STATUSCODE', 'Status code' );
+jr_define( 'FIREWALL_CHECK_IP_NUMBER', 'IP Number' );
 
 jr_define( 'ENCRYPTION_TITLE', 'Encryption' );
 jr_define( 'ENCRYPTION_FILE_LOCATION', 'Encryption file location' );
@@ -2724,3 +2729,20 @@ jr_define('JOMRES_OCCUPANCY_LEVELS_INFO', 'Any time you edit a room or your prop
 
 jr_define('_JOMRES_SEARCH_FORM_ADULTS', 'Adults');
 jr_define('_JOMRES_SEARCH_FORM_CHILDREN', 'Chidren');
+
+jr_define('_JOMRES_CONFIG_LEVEL_TITLE', 'Admin options level');
+jr_define('_JOMRES_CONFIG_LEVEL_DESC', 'Jomres has many menu and configuration options that you can use when configuring your site. The huge majority of them you will never need to change so they are hidden by default. You can choose to show those options by setting the Admin Options level.  Basic level shows you just what you need when setting up a site for the first time. Common level shows you those options which are most commonly changed, and Everything shows you all possible settings and menus options in the administrator area.');
+jr_define('_JOMRES_CONFIG_LEVEL_BASIC', 'Basic');
+jr_define('_JOMRES_CONFIG_LEVEL_COMMON', 'Common');
+jr_define('_JOMRES_CONFIG_LEVEL_EVERYTHING', 'Everything');
+
+jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_TITLE', 'Can we collect information about how you use Jomres?');
+jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_MESSAGE', 'We would like to collect information about how you use Jomres. No personally identifyable information will be stored, usage will be anonymised and only used to help us to understand how people use Jomres.');
+jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_ACCEPT', ' Yep, that\'s ok ');
+jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_DENY', ' No, I don\'t agree ');
+
+jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_TITLE', 'Will you be taking bookings for more than one property?');
+jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_MESSAGE', 'Jomres can be used for single or multi-property sites. If you will be taking bookings for just one property then many options will be redundant and potentially confusing. You can change this setting later in the Settings > Site Configuration > Portal functionality tab.');
+jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_JUSTONE', ' Just one property ');
+jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_MANY', ' I will be listing more than one property ');
+

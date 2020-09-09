@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.3
+ * @version Jomres 9.23.5
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -45,6 +45,10 @@ class j10501google_maps
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 
+		if ( !isset($jrConfig[ 'admin_options_level' ]) ) {
+			$jrConfig[ 'admin_options_level' ] = 0;
+		}
+
 		$configurationPanel = $componentArgs[ 'configurationPanel' ];
 		$lists = $componentArgs[ 'lists' ];
 		$map_styles_dropdown = $componentArgs[ 'map_styles_dropdown' ];
@@ -52,7 +56,8 @@ class j10501google_maps
 		$configurationPanel->startPanel(jr_gettext('JOMRES_GOOGLE_MAPS', 'JOMRES_GOOGLE_MAPS', false));
 		
 		$configurationPanel->insertHeading(jr_gettext('JOMRES_GOOGLE_MAPS_PDETAILS', 'JOMRES_GOOGLE_MAPS_PDETAILS', false));
-		
+
+
 		$configurationPanel->setleft(jr_gettext('_JOMRES_MAP_MAPTYPE', '_JOMRES_MAP_MAPTYPE', false));
 		$configurationPanel->setmiddle($lists['map_type']);
 		$configurationPanel->setright();
@@ -62,12 +67,14 @@ class j10501google_maps
 		$configurationPanel->setmiddle($map_styles_dropdown);
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
-		
-		$configurationPanel->setleft(jr_gettext('_JOMRES_MAP_ZOOMLEVEL', '_JOMRES_MAP_ZOOMLEVEL', false));
-		$configurationPanel->setmiddle($lists['map_zoom']);
-		$configurationPanel->setright();
-		$configurationPanel->insertSetting();
-		
+
+		if ( $jrConfig[ 'admin_options_level' ] > 0 ) {
+			$configurationPanel->setleft(jr_gettext('_JOMRES_MAP_ZOOMLEVEL', '_JOMRES_MAP_ZOOMLEVEL', false));
+			$configurationPanel->setmiddle($lists['map_zoom']);
+			$configurationPanel->setright();
+			$configurationPanel->insertSetting();
+		}
+
 		$configurationPanel->setleft(jr_gettext('_JOMRES_DEFAULT_LAT_STARTPOINT', '_JOMRES_DEFAULT_LAT_STARTPOINT', false));
 		$configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_default_lat" value="'.str_replace( "&#38;#45;" , "-"  ,$jrConfig[ 'default_lat' ] ).'" />');
 		$configurationPanel->setright(jr_gettext('_JOMRES_DEFAULT_LATLONGSTARTPOINT_DESC', '_JOMRES_DEFAULT_LATLONGSTARTPOINT_DESC', false));
@@ -78,20 +85,27 @@ class j10501google_maps
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
 
-		$configurationPanel->setleft(jr_gettext('JOMRES_GOOGLE_MAPS_POIS', 'JOMRES_GOOGLE_MAPS_POIS', false));
-		$configurationPanel->setmiddle($lists[ 'gmap_pois' ]);
-		$configurationPanel->setright();
-		$configurationPanel->insertSetting();
+		if ( $jrConfig[ 'admin_options_level' ] > 0 ) {
+			$configurationPanel->setleft(jr_gettext('JOMRES_GOOGLE_MAPS_POIS', 'JOMRES_GOOGLE_MAPS_POIS', false));
+			$configurationPanel->setmiddle($lists[ 'gmap_pois' ]);
+			$configurationPanel->setright();
+			$configurationPanel->insertSetting();
+		}
 
-		$configurationPanel->setleft(jr_gettext('JOMRES_GOOGLE_MAP_OPTION_TRANSIT', 'JOMRES_GOOGLE_MAP_OPTION_TRANSIT', false));
-		$configurationPanel->setmiddle($lists[ 'gmap_layer_transit' ]);
-		$configurationPanel->setright();
-		$configurationPanel->insertSetting();
-		
-		$configurationPanel->setleft(jr_gettext('_JOMRES_MAP_HEIGHT', '_JOMRES_MAP_HEIGHT', false));
-		$configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_map_height" value="'.$jrConfig[ 'map_height' ].'" />');
-		$configurationPanel->setright();
-		$configurationPanel->insertSetting();
+		if ( $jrConfig[ 'admin_options_level' ] > 1 ) {
+			$configurationPanel->setleft(jr_gettext('JOMRES_GOOGLE_MAP_OPTION_TRANSIT', 'JOMRES_GOOGLE_MAP_OPTION_TRANSIT', false));
+			$configurationPanel->setmiddle($lists[ 'gmap_layer_transit' ]);
+			$configurationPanel->setright();
+			$configurationPanel->insertSetting();
+		}
+
+		if ( $jrConfig[ 'admin_options_level' ] > 1 ) {
+			$configurationPanel->setleft(jr_gettext('_JOMRES_MAP_HEIGHT', '_JOMRES_MAP_HEIGHT', false));
+			$configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_map_height" value="'.$jrConfig[ 'map_height' ].'" />');
+			$configurationPanel->setright();
+			$configurationPanel->insertSetting();
+		}
+
 		
 		//plugins can add options to this tab
 		$MiniComponents->triggerEvent('10525', $componentArgs);

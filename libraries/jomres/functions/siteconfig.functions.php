@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.3
+ * @version Jomres 9.23.5
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -152,6 +152,17 @@ function showSiteConfig()
 	$navbar_location[ ] = jomresHTML::makeOption('navbar-fixed-bottom', jr_gettext('_JOMRES_BOOTSTRAP_LOCATION_BOTTOM', '_JOMRES_BOOTSTRAP_LOCATION_BOTTOM', false));
 	$navbar_location_dropdown = jomresHTML::selectList($navbar_location, 'cfg_navbar_location', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'navbar_location' ]);
 
+	if (!isset($jrConfig[ 'admin_options_level' ])) {
+		$jrConfig[ 'admin_options_level' ] = 0;
+	}
+	$admin_options_level = array();
+	$admin_options_level[ ] = jomresHTML::makeOption(0, jr_gettext('_JOMRES_CONFIG_LEVEL_BASIC', '_JOMRES_CONFIG_LEVEL_BASIC', false));
+	$admin_options_level[ ] = jomresHTML::makeOption(1, jr_gettext('_JOMRES_CONFIG_LEVEL_COMMON', '_JOMRES_CONFIG_LEVEL_COMMON', false));
+	$admin_options_level[ ] = jomresHTML::makeOption(2, jr_gettext('_JOMRES_CONFIG_LEVEL_EVERYTHING', '_JOMRES_CONFIG_LEVEL_EVERYTHING', false));
+	$admin_options_level_dropdown = jomresHTML::selectList($admin_options_level, 'cfg_admin_options_level', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'admin_options_level' ]);
+
+
+
 	if (!isset($jrConfig[ 'bootstrap_version' ])) {
 		$jrConfig[ 'bootstrap_version' ] = '';
 	}
@@ -256,6 +267,13 @@ function showSiteConfig()
 		$jrConfig[ 'compatability_property_configuration' ] = 0;
 	}
 	$lists[ 'compatability_property_configuration' ] = jomresHTML::selectList($yesno, 'cfg_compatability_property_configuration', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'compatability_property_configuration' ]);
+
+	if (!isset($jrConfig[ 'collect_analytics_allowed' ])) {
+		$jrConfig[ 'collect_analytics_allowed' ] = 0;
+	}
+	$lists[ 'collect_analytics_allowed' ] = jomresHTML::selectList($yesno, 'cfg_collect_analytics_allowed', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'collect_analytics_allowed' ]);
+
+
 
 	if (!isset($jrConfig['show_powered_by'])) {
 		$jrConfig['show_powered_by'] = '0';
@@ -371,6 +389,7 @@ function showSiteConfig()
 	$componentArgs[ 'navbar_location_dropdown' ] = $navbar_location_dropdown;
 	$componentArgs[ 'bootstrap_ver_dropdown' ] = $bootstrap_ver_dropdown;
 	$componentArgs[ 'map_styles_dropdown' ] = $map_styles_dropdown;
+	$componentArgs[ 'admin_options_level_dropdown' ] = $admin_options_level_dropdown;
 
 	ob_start(); ?>
 	<h2 class="page-header">Jomres <?php echo jr_gettext('_JOMRES_A', '_JOMRES_A', false); ?></h2>
@@ -470,14 +489,28 @@ function saveSiteConfig($overrides = array())
 	}
 
 	//save config to file
-	if (!file_put_contents(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php',
-'<?php
+	$config_last_modified = filemtime(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php');
+
+	$result = file_put_contents(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php',
+		'<?php
 ##################################################################
 defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
 ##################################################################
 
 $jrConfig = ' .var_export($tmpConfig, true).';
-')) {
+');
+
+	// On my Ubuntu box, and on some client boxes, there's a delay in saving the config file so we will wait, then wait a bit more after the file mod time has been updated
+
+	do {
+		sleep(1); // Writing the file could take a moment
+		clearstatcache();
+		$newest_last_modified_check = filemtime(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php');
+	} while ( $newest_last_modified_check <= $config_last_modified);
+
+	sleep(2);
+
+	if (!$result) {
 		trigger_error('ERROR: '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php'.' can`t be saved. Please solve the permission problem and try again.', E_USER_ERROR);
 		exit;
 	}

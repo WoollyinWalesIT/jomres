@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.3
+ * @version Jomres 9.23.5
  *
  * @copyright	2005-2020 Vince Wooll
  *
@@ -52,6 +52,14 @@ class j10501connect
 		$yesno = array();
 		$yesno[] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false));
 		$yesno[] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false));
+
+		if ( !isset($jrConfig[ 'admin_options_level' ]) ) {
+			$jrConfig[ 'admin_options_level' ] = 0;
+		}
+
+		if ( $jrConfig[ 'admin_options_level' ] < 2 ) {
+			return;
+		}
 
 		$configurationPanel=$componentArgs['configurationPanel'];
 

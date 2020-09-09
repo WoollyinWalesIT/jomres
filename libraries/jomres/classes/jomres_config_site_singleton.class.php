@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.3
+ * @version Jomres 9.23.5
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -25,6 +25,16 @@ class jomres_config_site_singleton
 	public function __construct()
 	{
 		$this->config = array();
+
+
+		$this->config_last_modified = 0;
+		$this->config_file = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php';
+		if ( file_exists($this->config_file)) {
+			clearstatcache();
+			$this->config_last_modified = filemtime($this->config_file);
+
+		}
+
 		$this->init();
 	}
 	
@@ -75,16 +85,27 @@ class jomres_config_site_singleton
 		if (isset($config_to_save['version'])) {
 			unset($config_to_save['version']);
 		}
-		
-		if (!file_put_contents(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php',
-'<?php
+		$result = file_put_contents($this->config_file,
+			'<?php
 ##################################################################
 defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
 ##################################################################
 
 $jrConfig = ' .var_export($config_to_save, true).';
-')) {
-			trigger_error('ERROR: '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php'.' can`t be saved. Please solve the permission problem and try again.', E_USER_ERROR);
+');
+
+		// On my Ubuntu box, and on some client boxes, there's a delay in saving the config file so we will wait, then wait a bit more after the file mod time has been updated
+		// Might need to add a clause to not do this during api calls?
+		do {
+			sleep(1); // Writing the file could take a moment
+			clearstatcache();
+			$config_last_modified = filemtime($this->config_file);
+		} while ( $config_last_modified <= $this->config_last_modified);
+
+		sleep(2);
+
+		if (!$result) {
+			trigger_error('ERROR: '.$this->config_file.' can`t be saved. Please solve the permission problem and try again.', E_USER_ERROR);
 			exit;
 		}
 	}
@@ -104,19 +125,32 @@ $jrConfig = ' .var_export($config_to_save, true).';
 			return true;
 		}
 
-		if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php')) {
-			include JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php';
+		if (file_exists($this->config_file)) {
+			include $this->config_file;
 			if (!array_key_exists($k, $jrConfig)) {
 				$jrConfig[ $k ] = $v;
-				if (!file_put_contents(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php',
-'<?php
+
+				$result = file_put_contents($this->config_file,
+					'<?php
 ##################################################################
 defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
 ##################################################################
 
 $jrConfig = ' .var_export($jrConfig, true).';
-')) {
-					trigger_error('ERROR: '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php'.' can`t be saved. Please solve the permission problem and try again.', E_USER_ERROR);
+');
+
+				// On my Ubuntu box, and on some client boxes, there's a delay in saving the config file so we will wait, then wait a bit more after the file mod time has been updated
+				// Might need to add a clause to not do this during api calls?
+				do {
+					sleep(1); // Writing the file could take a moment
+					clearstatcache();
+					$config_last_modified = filemtime($this->config_file);
+				} while ( $config_last_modified <= $this->config_last_modified);
+
+				sleep(2);
+
+				if (!$result) {
+					trigger_error('ERROR: '.$this->config_file.' can`t be saved. Please solve the permission problem and try again.', E_USER_ERROR);
 					exit;
 				}
 
@@ -149,20 +183,32 @@ $jrConfig = ' .var_export($jrConfig, true).';
 			return true;
 		}
 
-		if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php')) {
-			include JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php';
+		if (file_exists($this->config_file)) {
+			include $this->config_file;
 
 			$jrConfig[ $k ] = $v;
 
-			if (!file_put_contents(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php',
-'<?php
+			$result = file_put_contents($this->config_file,
+				'<?php
 ##################################################################
 defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
 ##################################################################
 
 $jrConfig = ' .var_export($jrConfig, true).';
-')) {
-				trigger_error('ERROR: '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php'.' can`t be saved. Please solve the permission problem and try again.', E_USER_ERROR);
+');
+
+			// On my Ubuntu box, and on some client boxes, there's a delay in saving the config file so we will wait, then wait a bit more after the file mod time has been updated
+			// Might need to add a clause to not do this during api calls?
+			do {
+				sleep(1); // Writing the file could take a moment
+				clearstatcache();
+				$config_last_modified = filemtime($this->config_file);
+			} while ( $config_last_modified <= $this->config_last_modified);
+
+			sleep(2);
+
+			if (!$result) {
+				trigger_error('ERROR: '.$this->config_file.' can`t be saved. Please solve the permission problem and try again.', E_USER_ERROR);
 				exit;
 			}
 
@@ -200,8 +246,8 @@ $jrConfig = ' .var_export($jrConfig, true).';
 		include JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'site_config.php';
 		$tempConfigArr = $jrConfig;
 
-		if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php')) {
-			include JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php';
+		if (file_exists($this->config_file)) {
+			include $this->config_file;
 			$this->config = $jrConfig;
 
 			foreach ($tempConfigArr as $k => $v) {
