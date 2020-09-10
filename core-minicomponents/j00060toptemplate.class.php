@@ -170,7 +170,8 @@ class j00060toptemplate
 			if (!get_showtime('heavyweight_system') && $management_view && using_bootstrap()) {
 				jr_import('jomres_property_selector_dropdown');
 				$jomres_property_selector_dropdown = new jomres_property_selector_dropdown();
-				$output['PROPERTY_SELECTOR_DROPDOWN'] = $jomres_property_selector_dropdown->get_dropdown();
+				$output['PROPERTY_SELECTOR_DROPDOWN'] = $jomres_property_selector_dropdown->get_dropdown( false );
+				$output['PROPERTY_SELECTOR_DROPDOWN_TRUNCATED'] = $jomres_property_selector_dropdown->get_dropdown( true );
 				set_showtime('property_selector_dropdown', $output['PROPERTY_SELECTOR_DROPDOWN']);
 			} else {
 				$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');

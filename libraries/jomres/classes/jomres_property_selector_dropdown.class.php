@@ -28,7 +28,7 @@ class jomres_property_selector_dropdown
 	 *
 	 */
 
-	public function get_dropdown()
+	public function get_dropdown( $truncated_names = false )
 	{
 		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
@@ -36,8 +36,6 @@ class jomres_property_selector_dropdown
 		$basic_property_details->get_property_name_multi($thisJRUser->authorisedProperties);
 
 		$currentProperty = getDefaultProperty();
-		$output = array();
-		$pageoutput = array();
 
 		$curPageUrl = $this->curPageUrl();
 
@@ -50,6 +48,9 @@ class jomres_property_selector_dropdown
 
 		$options = array();
 		foreach ($properties as $key => $val) {
+			if ($truncated_names == true && strlen($val) > 31) {
+				$val = jr_substr($val, 0, 30).'&hellip;';
+			}
 			$options[] = jomresHTML::makeOption($key, $val);
 		}
 

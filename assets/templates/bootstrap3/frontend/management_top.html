@@ -35,9 +35,17 @@ jomresJquery(document).ready(function(){
 <div id="jomres_alternate_menu_position"></div>
 <!-- available if required by a plugin -->
 <div class="management-header clearfix">
-	<div class="col-md-6">
-		<h1 class="page-title" id="tour_target_property_name">{HACTIVE_PROPERTY}{PROPERTYNAME}<span>{PROPERTY_SELECTOR_DROPDOWN}</span></h1>
+	<div class="hidden-xs hidden-sm">
+		<div class="col-md-6 ">
+			<h1 class="page-title">{HACTIVE_PROPERTY}{PROPERTYNAME}<span>{PROPERTY_SELECTOR_DROPDOWN}</span></h1>
+		</div>
 	</div>
+	<div class="visible-xs visible-sm" style="margin-top:10px">
+		<div class="col-md-6 ">
+			<h1 class="page-title"><span>{PROPERTY_SELECTOR_DROPDOWN_TRUNCATED}</span></h1>
+		</div>
+	</div>
+
 	<div class="col-md-2 visible-md visible-lg" align="right">
 		<patTemplate:tmpl name="widgets_dropdown" type="simpleCondition" requiredVars="widgets_dropdown">
 		<div id="tour_target_widgets_dropdown">{WIDGETS_DROPDOWN}</div>
