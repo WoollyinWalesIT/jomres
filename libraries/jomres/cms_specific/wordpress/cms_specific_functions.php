@@ -489,6 +489,9 @@ function jomres_cmsspecific_makeSEF_URL($link)
 
 function jomres_cmsspecific_parseByBots($str)
 {
+	$str = str_replace( "&#61;", "=", $str );
+	$str = str_replace( "&#34;", '"', $str );
+	$str = str_replace( "&quot;", '"', $str );
 	return $str;
 }
 	
