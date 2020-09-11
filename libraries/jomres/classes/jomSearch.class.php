@@ -245,9 +245,9 @@ class jomSearch
 		//	$searchOutput[ 'region' ] = '';
 		//	$searchOutput[ 'town' ] = '';
 		//}
-		if (!$propertyname_dropdown) {
-			$searchOutput[ 'propertyname' ] = '';
-		}
+		//if (!$propertyname_dropdown) {
+		//	$searchOutput[ 'propertyname' ] = '';
+		//}
 		//if (!$ptype_dropdown) {
 		//	$searchOutput[ 'ptype' ] = '';
 		//}
