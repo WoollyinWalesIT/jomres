@@ -35,61 +35,63 @@ function navigate(lat, lng) {
 .property-header address {margin-bottom:5px;}
 </style>
 
-<div class="panel panel-default">
-	<div class="panel-body">
-		<div class="property-header">
-			<div class="row">
-				<div class="col-md-2 hidden-xs hidden-sm">
-					<img alt="{PROPERTY_NAME}" src="{IMAGETHUMB}" class="img-responsive"/>
-				</div>
-				<div class="col-md-10">
-					<h1 id="tour_target_property_header">{PROPERTY_NAME} <span>{STARS} {SUPERIOR}</span></h1>
-					<patTemplate:tmpl name="permit" type="simpleCondition" requiredVars="permit_number">
-						<p class="label label-info">{_JOMRES_PERMIT_NUMBER_TITLE} {PERMIT_NUMBER}</p>
-					</patTemplate:tmpl>
-					<div class="row">
-						<div class="col-md-8">
-							{STREET}, {TOWN}, {REGION} {POSTCODE}, {COUNTRY}
-								<span class="hidden-xs">
-									{HTELEPHONE}<span>{TELEPHONE}</span>,
-									{HFAX}{FAX}
-								</span>
-								<span class="visible-xs">
-									<br/>
-									<a href="tel:{TELEPHONE}" class="btn btn-success"><i class="fa fa-phone"></i>
-										{JOMRES_TAPTOCALL} {TELEPHONE}</a>
-									<a href="whatsapp://send?phone={WHATSAPP_TELEPHONE}" class="btn btn-success"><i class="fa fa-whatsapp"></i></a>
-								</span>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col">
+			<div class="property-header">
+				<div class="row">
+					<div class="col-2 d-lg-none">
+						<img alt="{PROPERTY_NAME}" src="{IMAGETHUMB}" class="img-responsive"/>
+					</div>
+					<div class="col-10">
+						<h1>{PROPERTY_NAME} <span>{STARS} {SUPERIOR}</span></h1>
+						<patTemplate:tmpl name="permit" type="simpleCondition" requiredVars="permit_number">
+							<p class="label label-info">{_JOMRES_PERMIT_NUMBER_TITLE} {PERMIT_NUMBER}</p>
+						</patTemplate:tmpl>
+						<div class="row">
+							<div class="col-md-8">
+								{STREET}, {TOWN}, {REGION} {POSTCODE}, {COUNTRY}
+									<span class="hidden-xs">
+										{HTELEPHONE}<span>{TELEPHONE}</span>,
+										{HFAX}{FAX}
+									</span>
+									<span class="visible-xs">
+										<br/>
+										<a href="tel:{TELEPHONE}" class="btn btn-success"><i class="fa fa-phone"></i>
+											{JOMRES_TAPTOCALL} {TELEPHONE}</a>
+										<a href="whatsapp://send?phone={WHATSAPP_TELEPHONE}" class="btn btn-success"><i class="fa fa-whatsapp"></i></a>
+									</span>
 
-							<div><a href="{GALLERYLINK}" target="_blank">{GALLERYDOMAIN}</a></div>
-							<div class="property-header-fb hidden-xs hidden-sm">
-								{FACEBOOK_BUTTONS}
+								<div><a href="{GALLERYLINK}" target="_blank">{GALLERYDOMAIN}</a></div>
+								<div class="property-header-fb hidden-xs hidden-sm">
+									{FACEBOOK_BUTTONS}
+								</div>
 							</div>
-						</div>
-						<div class="col-md-4 hidden-xs hidden-sm">
-							<div class="property-header-labels pull-right">
-								<span class="label {REQUIRE_APPROVAL_CLASS}">{REQUIRE_APPROVAL}</span>
-							</div>
-							<div class="property-header-labels pull-right">
-								<span class="label label-info">{PRE_TEXT} <span itemprop="priceRange">{PRICE}</span> {POST_TEXT}</span>
-								<span class="big-price big-total-price">{PRICE_CUMULATIVE} {FOR} {STAY_DAYS} {NIGHTS_TEXT}</span>
+							<div class="col-md-4 hidden-xs hidden-sm">
+								<div class="property-header-labels pull-right">
+									<span class="label {REQUIRE_APPROVAL_CLASS}">{REQUIRE_APPROVAL}</span>
+								</div>
+								<div class="property-header-labels pull-right">
+									<span class="label label-info">{PRE_TEXT} <span itemprop="priceRange">{PRICE}</span> {POST_TEXT}</span>
+									<span class="big-price big-total-price">{PRICE_CUMULATIVE} {FOR} {STAY_DAYS} {NIGHTS_TEXT}</span>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="row hidden-xs hidden-sm">
-				<div class="col-md-12">
-					<div class="property-header-buttons pull-left">
-						<a href="{DIRECT_URL}" class="btn btn-secondary"><i class="fa fa-info-circle"></i> {COMMON_VIEW}</a>
-						<patTemplate:tmpl name="bookinglink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
-						<a href="{LINK}" class="btn btn-success"><i class="fa fa-shopping-cart"></i> {TEXT}</a>
-						</patTemplate:tmpl>
-						<a href="{CONTACT_LINK}" class="btn btn-secondary"><i class="fa fa-envelope"></i> {HCONTACT}</a>
-						<a href="javascript:void(0);" id="shortlist_{PROPERTY_UID}" onclick="shortlist('{PROPERTY_UID}', '1')" class="btn btn-secondary">{SHORTLIST}</a>
-						<a href="{SHORTLIST_LINK}" class="btn btn-secondary"><i class="fa fa-heart"></i> {HSHORTLIST}</a>
-						<a href="javascript:navigate({PROPERTY_LAT},{PROPERTY_LONG});" class="btn btn-secondary"><i class="fa fa-map-marker"></i> {HMAP}</a>
-						{HOST_LINK}
+				<div class="row d-none d-lg-block">
+					<div class="col-12">
+						<div class="property-header-buttons pull-left">
+							<a href="{DIRECT_URL}" class="btn btn-secondary"><i class="fa fa-info-circle"></i> {COMMON_VIEW}</a>
+							<patTemplate:tmpl name="bookinglink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
+							<a href="{LINK}" class="btn btn-success"><i class="fa fa-shopping-cart"></i> {TEXT}</a>
+							</patTemplate:tmpl>
+							<a href="{CONTACT_LINK}" class="btn btn-secondary"><i class="fa fa-envelope"></i> {HCONTACT}</a>
+							<a href="javascript:void(0);" id="shortlist_{PROPERTY_UID}" onclick="shortlist('{PROPERTY_UID}', '1')" class="btn btn-secondary">{SHORTLIST}</a>
+							<a href="{SHORTLIST_LINK}" class="btn btn-secondary"><i class="fa fa-heart"></i> {HSHORTLIST}</a>
+							<a href="javascript:navigate({PROPERTY_LAT},{PROPERTY_LONG});" class="btn btn-secondary"><i class="fa fa-map-marker"></i> {HMAP}</a>
+							{HOST_LINK}
+						</div>
 					</div>
 				</div>
 			</div>
