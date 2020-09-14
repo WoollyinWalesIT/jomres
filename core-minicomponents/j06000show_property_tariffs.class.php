@@ -120,6 +120,9 @@ class j06000show_property_tariffs
 			$date_elements = explode('/', $today);
 			$unixTodaysDate = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ]);
 			$counter = 0;
+
+			$nowDate = date("Y/m/d");
+
 			foreach ($tariffsList as $tariff) {
 				$validfrom = $tariff->validfrom;
 				$validto = $tariff->validto;
@@ -141,6 +144,9 @@ class j06000show_property_tariffs
 					$r[ 'HMINPEEPS' ] 	= jr_gettext('_JOMRES_FRONT_TARIFFS_MINPEEPS', '_JOMRES_FRONT_TARIFFS_MINPEEPS');
 					$r[ 'HMAXPEEPS' ] 	= jr_gettext('_JOMRES_FRONT_TARIFFS_MAXPEEPS', '_JOMRES_FRONT_TARIFFS_MAXPEEPS');
 
+					$r[ '_JOMRES_FRONT_MR_MENU_BOOKAROOM' ] 	= jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKAROOM', '_JOMRES_FRONT_MR_MENU_BOOKAROOM');
+
+
 					if (isset($tariff_tarifftypes_xref[ $tariff->rates_uid ])) {
 						$r[ 'TITLE' ] = jr_gettext('_JOMRES_CUSTOMTEXT_TARIFF_TITLE_TARIFFTYPE_ID'.$tariff_tarifftypes_xref[ $tariff->rates_uid ], stripslashes($tariff->rate_title));
 					} else {
@@ -152,6 +158,14 @@ class j06000show_property_tariffs
 					$r[ 'ROOMCLASSFULLDESC' ] = $current_property_details->room_types[$tariff->roomclass_uid]['desc'];
 					$r[ 'MINPEOPLE' ] = $tariff->minpeople;
 					$r[ 'MAXPEOPLE' ] = $tariff->maxpeople;
+
+					if ( $nowDate >= $tariff->validfrom ) {
+						$url_date = $nowDate;
+					} else {
+						$url_date =  $tariff->validfrom;
+					}
+
+					$r[ 'BOOKING_FORM_LINK' ] =JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$property_uid.'&pdetails_cal=1&arrivalDate='.$url_date;
 
 					$r[ 'VALIDFROM' ] = outputDate($tariff->validfrom);
 					$r[ 'VALIDTO' ] = outputDate($tariff->validto);
@@ -259,7 +273,7 @@ class j06000show_property_tariffs
 			}
 		}
 		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
-		
+
 		if ($mrConfig[ 'verbosetariffinfo' ] == '0') {
 			$tmpl->readTemplatesFromInput('te_show_tariffs.html');
 		} else {
