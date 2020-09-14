@@ -2836,12 +2836,13 @@ class patTemplate
 				else
 					$file_output = $this->_options[ 'root' ]['__default'].JRDS.$filename;
 				}
-			
+				$file_output = '<div class="small">'.$file_output.'</div>';
 			foreach ( $this->_vars as $key=>$val)
 				{
+					$variables = '';
 				if (count($val['rows'])>0)
 					{
- 					$variables = '';
+
 					foreach ( $val['rows'][0] as $tag=>$text)
 						{
 						//if (strpos($tag,"COMMON_") === FALSE)
