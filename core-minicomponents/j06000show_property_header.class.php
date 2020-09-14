@@ -94,11 +94,11 @@ class j06000show_property_header
 
 		//stars
 		$stars = $current_property_details->stars;
-		$starslink = '<img src="'.JOMRES_IMAGES_RELPATH.'blank.png" border="0" HEIGHT="1" hspace="10" VSPACE="1" alt="blank" />';
+		$starslink = '<i class="fa fa-star" aria-hidden="true"></i> ';
 		if ($stars != '0') {
 			$starslink = '';
 			for ($i = 1; $i <= $stars; ++$i) {
-				$starslink .= '<img src="'.JOMRES_IMAGES_RELPATH.'star.png" border="0" alt="star" />';
+				$starslink .= ' <i class="fa fa-star" aria-hidden="true"></i> ';
 			}
 			$starslink .= '';
 		}
