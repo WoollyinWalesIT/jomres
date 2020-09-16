@@ -180,7 +180,7 @@ if (!class_exists('booking')) {
 				$bs3_icon = '';
 			} else {
 				$output .= 'buttonText: "",';
-				$bs3_icon = '<span class="input-group-addon" id="dp_trigger_'.$uniqueID.'"><span class="fa fa-calendar"></span></span>';
+				$bs3_icon = '<span class="input-group-addon input-group-text" id="dp_trigger_'.$uniqueID.'"><span class="fa fa-calendar"></span></span>';
 			}
 			$output .= '
 					autoSize:true,
