@@ -306,6 +306,7 @@ class j06005list_invoices_ajax
 			}
 
 			$r[] = '<span class="label '.$label_class.'">'.$p->id.'</span>';
+			$r[] = $p->invoice_number;
 
 			if ($p->tag != '') {
 				$r[] = $p->tag;
@@ -314,7 +315,7 @@ class j06005list_invoices_ajax
 			}
 
 			if ($p->property_uid != 0) {
-				$r[] = jomres_decode(getPropertyName($p->property_uid));
+				$r[] = '<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&task=dashboard&thisProperty='.$p->property_uid).'">'.jomres_decode(getPropertyName($p->property_uid)).'</a>';
 			} else {
 				$r[] = '-';
 			}
@@ -377,8 +378,7 @@ class j06005list_invoices_ajax
 			} else {
 				$r[] = '';
 			}
-			
-			$r[] = $p->invoice_number;
+
 			
 			$output['data'][] = $r;
 		}
