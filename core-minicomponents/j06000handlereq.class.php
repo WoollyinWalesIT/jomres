@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.5
+ * @version Jomres 9.23.6
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -430,12 +430,6 @@ class j06000handlereq
 
 				if (!in_array($lastfield, $doNotRebuildRoomsListOnTheseFieldsArray)) {
 					$bkg->resetTotals();
-					$bkg->setErrorLog('handlereq:: Dates passed');
-					$bkg->generateBilling();
-					$bkg->setErrorLog('handlereq::Show deposit: '.$showDeposit);
-					if ($bkg->getGuestVariantCount() > 0) {
-						echo '; populateDiv("totalinparty","'.$bkg->getTotalInParty().'")';
-					}
 
 					$staydays = $bkg->getStayDays();
 					$num_period = $bkg->get_part_of_stay_period($staydays);
@@ -450,9 +444,7 @@ class j06000handlereq
 							if ( isset($bkg->child_prices['total_price'])) {
 								echo '; populateDiv("child_price","' . output_price($bkg->child_prices['total_price']). '")';
 							}
-
 						}
-
 
 						$room_per_night = $bkg->getRoompernight();
 						$room_per_night = $bkg->calculateRoomPriceIncVat($room_per_night);
@@ -492,7 +484,16 @@ class j06000handlereq
 								$extra_tax = $extra_tax + $extax;
 							}
 						}
+
 					}
+
+					$bkg->setErrorLog('handlereq:: Dates passed');
+					$bkg->generateBilling();
+					$bkg->setErrorLog('handlereq::Show deposit: '.$showDeposit);
+					if ($bkg->getGuestVariantCount() > 0) {
+						echo '; populateDiv("totalinparty","'.$bkg->getTotalInParty().'")';
+					}
+
 					if ($jrConfig[ 'show_tax_in_totals_summary' ] == '1') {
 						if (isset($bkg->room_total_ex_tax)) {
 							echo '; populateDiv("room_total_ex_tax","'.output_price($bkg->room_total_ex_tax).'")';
