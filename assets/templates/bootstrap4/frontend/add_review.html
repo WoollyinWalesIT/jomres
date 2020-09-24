@@ -11,36 +11,11 @@
                 }
             });
 
-            jomresJquery("#reviewForm").validate({
-                rules: {
-                    review_title: "required",
-                    review_description: "required",
-                    pros: "required",
-                    cons: "required",
-                    rating_1: "required",
-                    rating_2: "required",
-                    rating_3: "required",
-                    rating_4: "required",
-                    rating_5: "required",
-                    rating_6: "required",
-                },
-                messages: {
-                    review_title: "{_JOMRES_REVIEWS_ADDREVIEW_ERROR_TITLE}",
-                    review_description: "{_JOMRES_REVIEWS_ADDREVIEW_ERROR_DESCRIPTION}",
-                    pros: "{_JOMRES_REVIEWS_ADDREVIEW_ERROR_PROS}",
-                    cons: "{_JOMRES_REVIEWS_ADDREVIEW_ERROR_CONS}",
-                    rating_1: "{_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_1}",
-                    rating_2: "{_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_2}",
-                    rating_3: "{_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_3}",
-                    rating_4: "{_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_4}",
-                    rating_5: "{_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_5}",
-                    rating_6: "{_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_6}",
-                },
-                errorLabelContainer: "#messageBox",
-                wrapper: "li",
-                submitHandler: function (form) {
-                    form.submit();
-                },
+		});
+		jomresJquery("#messageBox").hide();
+	}, false);
+	//-->
+</script>
 
             });
             jomresJquery("#messageBox").hide();

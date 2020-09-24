@@ -279,15 +279,15 @@ function get_existing_images()
 			jomresJquery('#existing_images').slideDown();
 		});
 	}
-
-document.addEventListener('DOMContentLoaded', function() {
+	
+document.addEventListener('DOMContentLoaded', function(){
 	get_resource_ids_for_resource_type(jomresJquery('#resource_types').val());
 	
 	jomresJquery('#upload_all').click(function () {
 		jomresJquery('.start').each(function () {
 			jomresJquery(this).click();
 		})
-	});
+	}, false);
 	
 	jomresJquery( "#clearbutton" ).click(function() {
 		jomresJquery("#files").slideUp();

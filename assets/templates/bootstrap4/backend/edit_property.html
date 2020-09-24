@@ -22,6 +22,8 @@
 				});
 			});
 		});
+	
+	document.addEventListener('DOMContentLoaded', function(){
 
 	document.addEventListener('DOMContentLoaded', function(){
 
@@ -41,7 +43,7 @@
                     jomresJquery(element).closest('.form-group').removeClass('has-error has-feedback').addClass('has-success has-feedback');
                 }
             }
-        });
+		}, false);
 		
 		jomresJquery('#adminForm').validate(
 				{
