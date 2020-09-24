@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.5
+ * @version Jomres 9.23.6
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -306,6 +306,7 @@ class j06005list_invoices_ajax
 			}
 
 			$r[] = '<span class="label '.$label_class.'">'.$p->id.'</span>';
+			$r[] = $p->invoice_number;
 
 			if ($p->tag != '') {
 				$r[] = $p->tag;
@@ -314,7 +315,7 @@ class j06005list_invoices_ajax
 			}
 
 			if ($p->property_uid != 0) {
-				$r[] = jomres_decode(getPropertyName($p->property_uid));
+				$r[] = '<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&task=dashboard&thisProperty='.$p->property_uid).'">'.jomres_decode(getPropertyName($p->property_uid)).'</a>';
 			} else {
 				$r[] = '-';
 			}
@@ -377,8 +378,7 @@ class j06005list_invoices_ajax
 			} else {
 				$r[] = '';
 			}
-			
-			$r[] = $p->invoice_number;
+
 			
 			$output['data'][] = $r;
 		}

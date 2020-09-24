@@ -14,13 +14,21 @@
 
 <div class="row">
 	<patTemplate:tmpl name="property_details" unusedvars="strip">
-		<div class="jomres_property_list_propertywrapper photo-view col-xs-12 col-sm-12 col-md-6 col-lg-4" id="{UID}">
-			<div class="panel {BUDGET_BORDER_CLASS} {FEATURED_LISTINGS_CLASS}">
-				<div class="panel-heading">
-					<h2 class="panel-title"><a href="{MOREINFORMATIONLINK}" title="{PROPERTY_NAME_FULL}" >{PROP_NAME}</a><span class="pull-right"><a href="javascript:void(0);" id="shortlist_{UID}" onclick="shortlist('{UID}')" class="hidden-xs" style="color:#333;">{SHORTLIST}</a></span></h2>
+		<div class="jomres_property_list_propertywrapper photo-view col-xs-12 col-sm-12 col-md-6 col-lg-4 card" id="{UID}">
+			<div class="card-body {BUDGET_BORDER_CLASS} {FEATURED_LISTINGS_CLASS}">
+				<div class="card-title">
+
+						<a href="{MOREINFORMATIONLINK}" title="{PROPERTY_NAME_FULL}" >{PROP_NAME}</a>
+						<span class="pull-right">
+							<a href="javascript:void(0);" id="shortlist_{UID}" onclick="shortlist('{UID}')" class="hidden-xs" style="color:#333;">{SHORTLIST}</a>
+						</span>
+
 				</div>
-				<div class="panel-body">
-					<span class="label label-default">{PROPERTY_TYPE}</span> <span>{STARS} {SUPERIOR}</span>
+				<div class="card-body">
+					<div class="row">
+						<span class="">{PROPERTY_TYPE}</span><div style="color:#FFD700" class="ml-auto">{STARS}</div> {SUPERIOR}
+					</div>
+
 					<p class="small"><i>{PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}</i></p>
 					{PROPERTY_IMAGE_OR_SLIDESHOW}
 					<!--<div align="center">{PRICE_PRE_TEXT}</div>-->
@@ -39,12 +47,14 @@
 					</div>
 				</div>
 				<div class="panel-footer clearfix">
-					<a href="{LINK}" class="btn btn-success pull-right"><i class="fa fa-shopping-cart"></i> {BOOKTHIS_TEXT}</a>
-					<div class="hidden-xs hidden-sm photoview-compare">
-						<label>
-							<input type="checkbox" name="compare" value="{UID}" autocomplete="off"/>
-							{_JOMRES_COMPARE}
-						</label>
+					<div class="row">
+						<a href="{LINK}" class="btn btn-success pull-right"><i class="fa fa-shopping-cart"></i> {BOOKTHIS_TEXT}</a>
+						<div class="hidden-xs hidden-sm ml-auto">
+							<label>
+								<input type="checkbox" name="compare" value="{UID}" autocomplete="off"/>
+								{_JOMRES_COMPARE}
+							</label>
+						</div>
 					</div>
 				</div>
 			</div>

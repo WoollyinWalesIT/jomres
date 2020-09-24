@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.5
+ * @version Jomres 9.23.6
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -489,6 +489,9 @@ function jomres_cmsspecific_makeSEF_URL($link)
 
 function jomres_cmsspecific_parseByBots($str)
 {
+	$str = str_replace( "&#61;", "=", $str );
+	$str = str_replace( "&#34;", '"', $str );
+	$str = str_replace( "&quot;", '"', $str );
 	return $str;
 }
 	

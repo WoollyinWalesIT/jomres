@@ -5,7 +5,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.5
+ * @version Jomres 9.23.6
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -147,7 +147,7 @@ function generateDateInput($fieldName, $dateValue = '', $myID = false, $siteConf
 		$bs3_icon = '';
 	} else {
 		$output .= 'buttonText: "",';
-		$bs3_icon = '<span class="input-group-addon" id="dp_trigger_'.$uniqueID.'"><i class="fa fa-calendar"></i></span>';
+		$bs3_icon = '<span class="input-group-addon input-group-text" id="dp_trigger_'.$uniqueID.'"><i class="fa fa-calendar"></i></span>';
 	}
 
 	$output .= '
@@ -181,7 +181,7 @@ function generateDateInput($fieldName, $dateValue = '', $myID = false, $siteConf
 
 	});';
 
-	if (using_bootstrap() && jomres_bootstrap_version() == '3') {
+	if (using_bootstrap() && jomres_bootstrap_version() >= '3') {
 		$output .= '
 		jomresJquery(function() {jomresJquery("#dp_trigger_'.$uniqueID.'").on("click", function() {jomresJquery("#'.$uniqueID.'").datepicker("show");})});
 		';

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.5
+ * @version Jomres 9.23.6
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -55,10 +55,11 @@ class j06002save_tariff_advanced
 		$jrportal_rates->weekendonly 				= (int)jomresGetParam( $_POST, 'weekendonly', $jrportal_rates->rates_defaults['weekendonly'] );
 		$jrportal_rates->minrooms_alreadyselected 	= (int)jomresGetParam( $_POST, 'minrooms_alreadyselected', $jrportal_rates->rates_defaults['minrooms_alreadyselected'] );
 		$jrportal_rates->maxrooms_alreadyselected 	= (int)jomresGetParam( $_POST, 'maxrooms_alreadyselected', $jrportal_rates->rates_defaults['maxrooms_alreadyselected'] );
-		
-		$roomrateperday 							= jomresGetParam( $_POST, 'roomrateperday', $jrportal_rates->rates_defaults['roomrateperday'] );
+
+		$roomrateperday 							= jomresGetParam( $_POST, 'roomrateperday',convert_entered_price_into_safe_float($jrportal_rates->rates_defaults['roomrateperday'] ) );
+
 		$jrportal_rates->roomrateperday 			= convert_entered_price_into_safe_float($roomrateperday);
-		
+
 		//save tariff
 		//we do this only for advanced and normal tariff editing modes, micromanage uses save_rate()
 		$jrportal_rates->save_rate_legacy();

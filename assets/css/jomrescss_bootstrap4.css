@@ -534,3 +534,22 @@ div.ui-datepicker {
 .fade.in {
 	opacity: 1
 }
+
+
+.isa_warning {
+	margin: 10px 0px;
+	padding:12px;
+	text-align: center;
+}
+
+.isa_warning {
+	color: #9F6000;
+	background-color: #FEEFB3;
+}
+
+.isa_warning i {
+	margin:10px 22px;
+	font-size:2em;
+	vertical-align:middle;
+}
+

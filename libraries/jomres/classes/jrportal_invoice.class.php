@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.5
+ * @version Jomres 9.23.6
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -188,25 +188,20 @@ class jrportal_invoice
 	private function create_pii_buyer( $alternative_data = false )
 	{
 
-		if (! $alternative_data ) { 
-			$invoice_id = $this->id;
-			
-			$query = "SELECT
-						`enc_firstname`,
-						`enc_surname`,
-						`enc_house`,
-						`enc_street`,
-						`enc_town`,
-						`enc_county`, 
-						`enc_country`, 
-						`enc_postcode`, 
-						`enc_tel_landline`,
-						`enc_tel_mobile`,
-						`enc_email`,
-						`enc_vat_number`
-					FROM `#__jomres_guest_profile` WHERE cms_user_id = ".(int) $this->cms_user_id."
-					";
-			$user_details = doSelectSql($query , 2 );
+		if (! $alternative_data ) {
+			$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+			$user_details['enc_firstname']			= $this->jomres_encryption->encrypt($tmpBookingHandler->tmpguest['firstname']);
+			$user_details['enc_surname']			= $this->jomres_encryption->encrypt($tmpBookingHandler->tmpguest['surname']);
+			$user_details['enc_house']				= $this->jomres_encryption->encrypt($tmpBookingHandler->tmpguest['house']);
+			$user_details['enc_street']				= $this->jomres_encryption->encrypt($tmpBookingHandler->tmpguest['street']);
+			$user_details['enc_town']				= $this->jomres_encryption->encrypt($tmpBookingHandler->tmpguest['town']);
+			$user_details['enc_county']				= $this->jomres_encryption->encrypt($tmpBookingHandler->tmpguest['region']);
+			$user_details['enc_country']			= $this->jomres_encryption->encrypt($tmpBookingHandler->tmpguest['country']);
+			$user_details['enc_postcode']			= $this->jomres_encryption->encrypt($tmpBookingHandler->tmpguest['postcode']);
+			$user_details['enc_tel_landline']		= $this->jomres_encryption->encrypt($tmpBookingHandler->tmpguest['tel_landline']);
+			$user_details['enc_tel_mobile']			= $this->jomres_encryption->encrypt($tmpBookingHandler->tmpguest['tel_mobile']);
+			$user_details['enc_email']				= $this->jomres_encryption->encrypt($tmpBookingHandler->tmpguest['email']);
+			$user_details['enc_vat_number']			= $this->jomres_encryption->encrypt('');
 		} else {
 			$user_details = $alternative_data;
 		}

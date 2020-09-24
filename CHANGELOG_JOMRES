@@ -1,3 +1,22 @@
+<h3>Jomres 9.23.6 24/09/2020</h3>
+
+<span class="label label-warning">Change</span> Modified a CMS specifc function so that WP shortcodes in Jomres text fields will be rendered by WP.
+<span class="label label-warning">Change</span> Added truncated property name values to the management view property name dropdown so that smaller screens render nicer-er.
+<span class="label label-warning">Change</span> Ensure that property name search options are shown as a dropdown.
+<span class="label label-warning">Change</span> Added book now button to show tariffs page
+<span class="label label-warning">Change</span> Stars images replaced with fontawesome icons.
+<span class="label label-warning">Change</span> Photos list properties and property header BS4 layout improved.
+<span class="label label-warning">Change</span> Improved BS4 booking form area layout
+<span class="label label-warning">Change</span> Changed the order that columns are shown in the list invoices page
+
+<span class="label label-warning">Change</span> Photos list properties and property header BS4 layout improved.
+<span class="label label-warning">Change</span> Resolved issue where save tariffs advanced was casting prices to integers because default prices were integers.
+<span class="label label-warning">Change</span> Changed the order that columns are shown in the list invoices page
+<span class="label label-warning">Change</span> Updated generateDate calendar functionality to be compatible with BS4. Many thanks Vasily
+<span class="label label-warning">Change</span> Changed how we determine guest details when creating buyer PII when creating invoices on booking
+<span class="label label-warning">Change</span> Modified how we set the search option All when setting region names because...reasons.
+
+
 <h3>Jomres 9.23.5 07/09/2020</h3>
 
 <span class="label label-success">Feature</span> Added initial setup functionality to determine a few basic facts for new installations.

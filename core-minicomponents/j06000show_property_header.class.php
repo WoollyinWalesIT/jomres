@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.5
+ * @version Jomres 9.23.6
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -94,11 +94,11 @@ class j06000show_property_header
 
 		//stars
 		$stars = $current_property_details->stars;
-		$starslink = '<img src="'.JOMRES_IMAGES_RELPATH.'blank.png" border="0" HEIGHT="1" hspace="10" VSPACE="1" alt="blank" />';
+		$starslink = '<i class="fa fa-star" aria-hidden="true"></i> ';
 		if ($stars != '0') {
 			$starslink = '';
 			for ($i = 1; $i <= $stars; ++$i) {
-				$starslink .= '<img src="'.JOMRES_IMAGES_RELPATH.'star.png" border="0" alt="star" />';
+				$starslink .= ' <i class="fa fa-star" aria-hidden="true"></i> ';
 			}
 			$starslink .= '';
 		}

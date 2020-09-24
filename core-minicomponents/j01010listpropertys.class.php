@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.5
+ * @version Jomres 9.23.6
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -462,11 +462,12 @@ class j01010listpropertys
 
 					//$property_deets['AVAILABILITY_CALENDAR'] = $MiniComponents->specificEvent('06000','ui_availability_calendar',array('property_uid'=>$property->propertys_uid,'output_now'=>"1",'noshowlegend'=>1) );
 
-					$starslink = '<img src="'.JOMRES_IMAGES_RELPATH.'blank.png" alt="star" border="0" height="1" hspace="10" vspace="1" />';
-					if ($property_stars != '0') {
+					$stars = $current_property_details->stars;
+					$starslink = '<i class="fa fa-star" aria-hidden="true"></i> ';
+					if ($stars != '0') {
 						$starslink = '';
-						for ($i = 1; $i <= $property_stars; ++$i) {
-							$starslink .= '<img src="'.JOMRES_IMAGES_RELPATH.'star.png" alt="star" border="0" />';
+						for ($i = 1; $i <= $stars; ++$i) {
+							$starslink .= ' <i class="fa fa-star" aria-hidden="true"></i> ';
 						}
 						$starslink .= '';
 					}

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.5
+ * @version Jomres 9.23.6
  *
  * @copyright	2005-2020 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -85,7 +85,10 @@ class jomres_sanity_check
 			$this->warnings .= $this->check_property_type_published();
 
 
-			$this->warnings .= $this->checks_guest_types_pppn();
+			if ($this->mrConfig['tariffmode'] != '5' ) {
+				$this->warnings .= $this->checks_guest_types_pppn();
+			}
+
 			if ($this->mrConfig[ 'is_real_estate_listing' ] == 0 && get_showtime('include_room_booking_functionality')) {
 				$this->warnings .= $this->checks_tariffs_exist();
 			}
@@ -548,7 +551,7 @@ class jomres_sanity_check
 					} elseif ($mrConfig['tariffmode'] == '1') {
 						$link = jomresURL(JOMRES_SITEPAGE_URL.'&task=list_tariffs_advanced');
 						$button_text = jr_gettext('_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK', '_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK', false);
-					} elseif ($mrConfig['tariffmode'] == '3') {
+					} elseif ($mrConfig['tariffmode'] == '2') {
 						$link = jomresURL(JOMRES_SITEPAGE_URL.'&task=list_tariffs_micromanage');
 						$button_text = jr_gettext('_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK', '_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK', false);
 					} else {
