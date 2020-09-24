@@ -90,7 +90,7 @@ class j06000show_property_rooms_slideshow
 				$room_uid = $room->room_uid;
 				foreach ($jomres_media_centre_images->images['rooms'][$room_uid] as $image) {
 					if ($image['large'] != $jomres_media_centre_images->multi_query_images['noimage-large']) {
-						$hash = md5_file($image['large']);
+						$hash = md5_file(JPATH_BASE.$image['large']);
 						if (!in_array($hash, $image_hashes)) {
 							$room_images[] = $image;
 							$image_hashes[] = $hash;
