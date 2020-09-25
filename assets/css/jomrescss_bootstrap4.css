@@ -384,18 +384,16 @@ div.star-rating {
 	width: 1.5em;
 	height: 1.5em;
 	font-size: 0.9em;
-	display: -ms-flexbox !important;
-	display: flex !important;
+	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
 div.jomres-calendar-day-num:hover{
-	transform: scale(2.5);
-	-webkit-transform: scale(2.5);
+	transform: scale(2.5) translateY(-0.45em);
+	-webkit-transform: scale(2.5) translateY(-0.45em);
 	transition: 0.2s ease-in-out;
 	-webkit-transition: 0.2s ease-in-out;
-	translate: 0 -1em;
 }
 
 .jomres-calendar-available{
