@@ -42,7 +42,13 @@ class j16000rest_api_connectivity_test
 			return;
 			}
 
-		$output	 = array ();
+			if ( strstr(JOMRESPATH_BASE , '/wp-content/plugins/jomres/jomres/') ) { // We are buried deep in the wp plugins dir and the API needs to be in public_html/jomres
+				echo "<p class='alert alert-danger'>Sorry, your installation of Jomres cannot currently support use of the REST API because the Jomres files are stored in ".JOMRESPATH_BASE." <br/><br/>If you want to use the REST API please move the files in this directory into the ".JOMRESCONFIG_ABSOLUTE_PATH."/jomres/ directory instead, then empty the ".JOMRESCONFIG_ABSOLUTE_PATH."/jomres/temp directory<br/><br/>Do NOT move the files in the directory above, you need the files in /plugins/jomres to remain in place, only move the files in /plugins/jomres/jomres/</p>";
+				return;
+
+			}
+
+			$output	 = array ();
 		$pageoutput = array ();
 
 		jr_import('jomres_call_api');
