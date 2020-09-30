@@ -378,9 +378,22 @@ div.star-rating {
 
 .jomres-calendar-day-num{
 	margin: 1px;
-	line-height: 22px;
-	text-align: center;
 	background-color: #FFFFFF;
+	border-radius: 50%;
+	border: 1px solid lightgray;
+	width: 1.5em;
+	height: 1.5em;
+	font-size: 0.9em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+div.jomres-calendar-day-num:hover{
+	transform: scale(2.5) translateY(-0.45em);
+	-webkit-transform: scale(2.5) translateY(-0.45em);
+	transition: 0.2s ease-in-out;
+	-webkit-transition: 0.2s ease-in-out;
 }
 
 .jomres-calendar-available{
