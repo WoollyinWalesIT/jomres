@@ -155,25 +155,27 @@ try {
 					$query = "SELECT guests_uid,enc_firstname,enc_surname,enc_house,enc_street,enc_town,enc_postcode,enc_county,enc_country,enc_tel_landline,enc_tel_mobile,enc_email,discount FROM #__jomres_guests WHERE mos_userid = '".(int) $thisJRUser->id."' LIMIT 1";
 					$guestData = doSelectSql($query, 2);
 
-					if ($guestData) {
-						//$query = "INSERT INTO #__jomres_guest_profile (`cms_user_id`,`enc_firstname`,`enc_surname`,`enc_house`,`enc_street`,`enc_town`,`enc_county`,`enc_country`,`enc_postcode`,`enc_tel_landline`,`enc_tel_mobile`,`enc_email`) VALUES ('".(int) $thisJRUser->id."','$firstname','$surname','$house','$street','$town','$region','$country','$postcode','$landline','$mobile','$email')";
-						//doInsertSql($query, '');
+					if ( isset($guestData[ 'id' ]) ) {
+						if ($guestData) {
+							//$query = "INSERT INTO #__jomres_guest_profile (`cms_user_id`,`enc_firstname`,`enc_surname`,`enc_house`,`enc_street`,`enc_town`,`enc_county`,`enc_country`,`enc_postcode`,`enc_tel_landline`,`enc_tel_mobile`,`enc_email`) VALUES ('".(int) $thisJRUser->id."','$firstname','$surname','$house','$street','$town','$region','$country','$postcode','$landline','$mobile','$email')";
+							//doInsertSql($query, '');
 
-						$tmpBookingHandler->updateGuestField('guests_uid', $guestData[ 'id' ]);
-						$tmpBookingHandler->updateGuestField('firstname', $jomres_encryption->decrypt($guestData[ 'enc_firstname' ]));
-						$tmpBookingHandler->updateGuestField('surname', $jomres_encryption->decrypt($guestData[ 'enc_surname' ]));
-						$tmpBookingHandler->updateGuestField('house', $jomres_encryption->decrypt($guestData[ 'enc_house' ]));
-						$tmpBookingHandler->updateGuestField('street', $jomres_encryption->decrypt($guestData[ 'enc_street' ]));
-						$tmpBookingHandler->updateGuestField('town', $jomres_encryption->decrypt($guestData[ 'enc_town' ]));
-						$tmpBookingHandler->updateGuestField('region', $jomres_encryption->decrypt($guestData[ 'enc_county' ]));
-						$tmpBookingHandler->updateGuestField('country', $jomres_encryption->decrypt($guestData[ 'enc_country' ]));
-						$tmpBookingHandler->updateGuestField('postcode', $jomres_encryption->decrypt($guestData[ 'enc_postcode' ]));
-						$tmpBookingHandler->updateGuestField('tel_landline', $jomres_encryption->decrypt($guestData[ 'enc_tel_landline' ]));
-						$tmpBookingHandler->updateGuestField('tel_mobile', $jomres_encryption->decrypt($guestData[ 'enc_tel_mobile' ]));
-						$tmpBookingHandler->updateGuestField('email', $jomres_encryption->decrypt($guestData[ 'enc_email' ]));
-					} else {
-						$user_details = jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id($thisJRUser->id);
-						$tmpBookingHandler->updateGuestField('email', $user_details[ $thisJRUser->id ][ 'email' ]);
+							$tmpBookingHandler->updateGuestField('guests_uid', $guestData[ 'id' ]);
+							$tmpBookingHandler->updateGuestField('firstname', $jomres_encryption->decrypt($guestData[ 'enc_firstname' ]));
+							$tmpBookingHandler->updateGuestField('surname', $jomres_encryption->decrypt($guestData[ 'enc_surname' ]));
+							$tmpBookingHandler->updateGuestField('house', $jomres_encryption->decrypt($guestData[ 'enc_house' ]));
+							$tmpBookingHandler->updateGuestField('street', $jomres_encryption->decrypt($guestData[ 'enc_street' ]));
+							$tmpBookingHandler->updateGuestField('town', $jomres_encryption->decrypt($guestData[ 'enc_town' ]));
+							$tmpBookingHandler->updateGuestField('region', $jomres_encryption->decrypt($guestData[ 'enc_county' ]));
+							$tmpBookingHandler->updateGuestField('country', $jomres_encryption->decrypt($guestData[ 'enc_country' ]));
+							$tmpBookingHandler->updateGuestField('postcode', $jomres_encryption->decrypt($guestData[ 'enc_postcode' ]));
+							$tmpBookingHandler->updateGuestField('tel_landline', $jomres_encryption->decrypt($guestData[ 'enc_tel_landline' ]));
+							$tmpBookingHandler->updateGuestField('tel_mobile', $jomres_encryption->decrypt($guestData[ 'enc_tel_mobile' ]));
+							$tmpBookingHandler->updateGuestField('email', $jomres_encryption->decrypt($guestData[ 'enc_email' ]));
+						} else {
+							$user_details = jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id($thisJRUser->id);
+							$tmpBookingHandler->updateGuestField('email', $user_details[ $thisJRUser->id ][ 'email' ]);
+						}
 					}
 				}
 			}
