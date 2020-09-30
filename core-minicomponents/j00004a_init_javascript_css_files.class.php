@@ -86,13 +86,18 @@ class j00004a_init_javascript_css_files
 		$css_files = array();
 		$javascript_files = array();
 
-		if (jomres_cmsspecific_areweinadminarea() || $jrConfig[ 'load_jquery_ui' ] == '1' && !$management_view) {
+		$datepicker_localisation_file = '';
+		if (this_cms_is_wordpress()) {
 			jomres_cmsspecific_addheaddata('css', $themePath, 'jquery-ui.min.css');
+			$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'jquery-ui-dist/', 'jquery-ui.min.js');
+			$datepicker_localisation_file = 'datepicker-'.get_showtime('datepicker_lang').'.js';
+		} elseif ( get_showtime('task') != 'showplugins' ) { // We're in Joomla frontend
+			jomres_cmsspecific_addheaddata('css', $themePath, 'jquery-ui.min.css');
+			$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'jquery-ui-dist/', 'jquery-ui.min.js');
+			$datepicker_localisation_file = 'datepicker-'.get_showtime('datepicker_lang').'.js';
 		}
 
-		if (jomres_cmsspecific_areweinadminarea() || ($jrConfig[ 'load_jquery_ui' ] == '1' && !$management_view)) {
-			$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'jquery-ui-dist/', 'jquery-ui.min.js');
-		}
+
 
 		if (jomres_cmsspecific_areweinadminarea()) {
 			if (_JOMRES_DETECTED_CMS != 'joomla4') {
@@ -113,9 +118,10 @@ class j00004a_init_javascript_css_files
 
 		$javascript_files[] = array(JOMRES_JS_RELPATH, 'jomres.js');
 
-		$datepicker_localisation_file = 'datepicker-'.get_showtime('datepicker_lang').'.js';
+		if ($datepicker_localisation_file!= '' ) { // Joomla 3.9.21 started throwing issues with buttons in plugin manager due to jquery ui / bootstrap.js call order in admin area so modified this script to not call jq ui in show_plugins task on Joomla
+			$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'jquery-ui/ui/i18n/', $datepicker_localisation_file);
+		}
 
-		$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'jquery-ui/ui/i18n/', $datepicker_localisation_file);
 
 		$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'jquery-validation/dist/', 'jquery.validate.min.js');
 
