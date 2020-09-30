@@ -110,8 +110,8 @@ class j06000mrp_calendar
 		$counter = 1;
 
 		if (!$show_just_month) {
-			$this->retVals = '';
-				<div class="row">
+			$this->retVals = '<div class="row">';
+
 
 			for ($start_month; $counter <= $months_to_show; ++$start_month) {
 				$this->retVals .= '<div class="card shadow-sm m-1" style="width: 12em;">';
@@ -123,6 +123,7 @@ class j06000mrp_calendar
 				$this->retVals .= "</div>\n";
 				++$counter;
 			}
+			$this->retVals .= '</div>';
 		} else {
 			$this->retVals .= $this->makecal($start_month, $start_year, $property_uid);
 		}
