@@ -1,15 +1,12 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<h2 class="page-header">{INTRO}</h2>
 
-<p class="lead">{MESSAGE}</p>
-
-<div class="row">
-	<div class="span6">
-		<a class="btn btn-primary btn-large" href="{JOMRES_SITEPAGE_URL_ADMIN}&task=save_initial_setup&step={STEP}&collect_analytics_allowed=1">{ACCEPT}</a>
+	<h2 class="page-header">{INTRO}</h2>
+	<p class="lead">{MESSAGE}</p>
+	<div class="row">
+		<div class="col-lg-6">	<a class="btn btn-primary btn-large" href="{JOMRES_SITEPAGE_URL_ADMIN}&task=save_initial_setup&step={STEP}&collect_analytics_allowed=1">{ACCEPT}</a>
+		</div>
+		<div class="col-lg-6">	<a class="btn btn-secondary btn-large" href="{JOMRES_SITEPAGE_URL_ADMIN}&task=save_initial_setup&step={STEP}&collect_analytics_allowed=0">{DENY}</a>
+		</div>
 	</div>
-	<div class="span6">
-		<a class="btn btn-default btn-large" href="{JOMRES_SITEPAGE_URL_ADMIN}&task=save_initial_setup&step={STEP}&collect_analytics_allowed=0">{DENY}</a>
-	</div>
-</div>
 
 </patTemplate:tmpl>

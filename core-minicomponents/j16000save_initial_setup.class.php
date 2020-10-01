@@ -58,6 +58,16 @@ class j16000save_initial_setup
 					$this->siteConfig->set_setting('is_single_property_installation', (int)$_REQUEST['is_single_property_installation'] );
 					$this->siteConfig->set_setting('initial_setup_step_2_completed', 1 );
 					break;
+				case 'initial_setup_step_3':
+					$setting = '';
+					if ( (int)$_REQUEST['bootstrap_version'] == '2' ) {
+						$setting = ''; // The first template set, back in 2011, didn't include the version although later versions do
+					} else {
+						$setting = (string)(int)$_REQUEST['bootstrap_version'];
+					}
+					$this->siteConfig->set_setting('bootstrap_version', $setting );
+					$this->siteConfig->set_setting('initial_setup_step_3_completed', 1 );
+					break;
 			}
 		}
 
