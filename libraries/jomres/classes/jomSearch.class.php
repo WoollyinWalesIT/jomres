@@ -534,7 +534,7 @@ class jomSearch
 				$this->filter[ 'region' ] = jomres_cmsspecific_stringURLSafe($this->filter[ 'region' ]);
 				$region_id = find_region_id($this->filter[ 'region' ]);
 				if (!is_null($region_id)) {
-					$this->filter[ 'region' ] .= "' OR property_region = ".(int) $region_id.'';
+					$this->filter[ 'region' ] .= "' OR property_region = '".(int) $region_id.'';
 				} else {
 					$this->filter[ 'region' ] .= "'";
 				}
@@ -542,6 +542,7 @@ class jomSearch
 				$this->filter[ 'region' ] = str_replace('-', '%', $this->filter[ 'region' ]);
 			}
 			$query = "SELECT propertys_uid FROM #__jomres_propertys WHERE published = '1' AND property_region LIKE '".$this->filter[ 'region' ]."' $property_ors ";
+
 			$this->resultBucket = doSelectSql($query);
 		} else {
 			$this->resultBucket = array();
