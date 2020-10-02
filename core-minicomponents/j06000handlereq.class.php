@@ -430,7 +430,13 @@ class j06000handlereq
 
 				if (!in_array($lastfield, $doNotRebuildRoomsListOnTheseFieldsArray)) {
 					$bkg->resetTotals();
-
+					$bkg->setErrorLog('handlereq:: Dates passed');
+					$bkg->generateBilling();
+					$bkg->setErrorLog('handlereq::Show deposit: '.$showDeposit);
+					if ($bkg->getGuestVariantCount() > 0) {
+						echo '; populateDiv("totalinparty","'.$bkg->getTotalInParty().'")';
+					}
+					
 					$staydays = $bkg->getStayDays();
 					$num_period = $bkg->get_part_of_stay_period($staydays);
 					echo '; populateDiv("staydays","'.$num_period.'")';
@@ -485,13 +491,6 @@ class j06000handlereq
 							}
 						}
 
-					}
-
-					$bkg->setErrorLog('handlereq:: Dates passed');
-					$bkg->generateBilling();
-					$bkg->setErrorLog('handlereq::Show deposit: '.$showDeposit);
-					if ($bkg->getGuestVariantCount() > 0) {
-						echo '; populateDiv("totalinparty","'.$bkg->getTotalInParty().'")';
 					}
 
 					if ($jrConfig[ 'show_tax_in_totals_summary' ] == '1') {
