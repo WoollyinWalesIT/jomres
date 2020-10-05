@@ -462,12 +462,12 @@ class j01010listpropertys
 
 					//$property_deets['AVAILABILITY_CALENDAR'] = $MiniComponents->specificEvent('06000','ui_availability_calendar',array('property_uid'=>$property->propertys_uid,'output_now'=>"1",'noshowlegend'=>1) );
 
-					$stars = $current_property_details->stars;
-					$starslink = '<i class="fa fa-star" aria-hidden="true"></i> ';
-					if ($stars != '0') {
+					$stars = $current_property_details->multi_query_result[$propertys_uid]['stars'];
+					$starslink = '';
+					if ($stars > 0) {
 						$starslink = '';
 						for ($i = 1; $i <= $stars; ++$i) {
-							$starslink .= ' <i class="fa fa-star" aria-hidden="true"></i> ';
+							$starslink .= ' <i class="fa fa-star  text-warning" aria-hidden="true"></i> ';
 						}
 						$starslink .= '';
 					}
