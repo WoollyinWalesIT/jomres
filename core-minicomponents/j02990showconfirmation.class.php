@@ -260,7 +260,7 @@ class j02990showconfirmation
 					if ($room_classes_uid != $prevroomclass) {
 						if ($prevroomclass != 0) {
 							//output previous room
-							$roomtype[ 'FULLDESC' ] = $roomadd.' x '.$fulldesc;
+							$roomtype[ 'FULLDESC' ] = $roomadd.' x '.$fulldesc.'<br>';
 							$booking_rooms[ ] = $roomtype;
 							$prevroomclass = $room_classes_uid;
 						} else {
