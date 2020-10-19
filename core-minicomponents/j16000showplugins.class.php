@@ -107,7 +107,14 @@ class j16000showplugins
 
 				return;
 			} else {
-				$updateDirPath = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'updates'.JRDS.'plugin_manager'.JRDS;
+
+				if ( substr(JOMRESCONFIG_ABSOLUTE_PATH,-1) != '/' ) {
+					$absolute_path = JOMRESCONFIG_ABSOLUTE_PATH."/";
+				}  else {
+					$absolute_path = JOMRESCONFIG_ABSOLUTE_PATH."/";
+				}
+
+				$updateDirPath = $absolute_path.JOMRES_ROOT_DIRECTORY.JRDS.'updates'.JRDS.'plugin_manager'.JRDS;
 				$newfilename = $updateDirPath.'plugin_manager.vnw';
 				$destinationPath = JOMRES_COREPLUGINS_ABSPATH.JRDS.'plugin_manager';
 
