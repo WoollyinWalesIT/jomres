@@ -48,7 +48,7 @@ class j16000touch_templates
 		$basic_subscription_package_details = jomres_singleton_abstract::getInstance('basic_subscription_package_details');
 
 		if (!empty($basic_subscription_package_details->allPackages)) {
-			echo jr_gettext('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TITLE', '_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TITLE').'<br/>';
+			echo jr_gettext('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TITLE', '_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TITLE' , false ).'<br/>';
 
 			foreach ($basic_subscription_package_details->allPackages as $package) {
 				$pack_name = jr_gettext('_JOMRES_CUSTOMTEXT_SUBSCRIPTIONPACKAGES_NAME'.$package[ 'id' ], stripslashes($package[ 'name' ]));
@@ -63,7 +63,9 @@ class j16000touch_templates
 		echo '<hr/>';
 		$query = "SELECT room_classes_uid,room_class_abbv FROM #__jomres_room_classes WHERE property_uid = '0' ";
 		$roomtypes = doSelectSql($query);
-		foreach ($roomtypes as $rType) {
+        echo jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', '_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES' , false ).'<br/>';
+
+        foreach ($roomtypes as $rType) {
 			$roomtype_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.$rType->room_classes_uid, stripslashes($rType->room_class_abbv));
 			//$roomtype_desc = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.$rType->room_classes_uid,		stripslashes($rType->room_class_full_desc) );
 			//echo '<img src="'.get_showtime('live_site').'/'.$rType->image.'" />'; // Do not re-enable this line, if you do then Jomres will not 'hold' the current language because for some reason showtime triggers the creation of a phantom session file in the root directory.
@@ -76,7 +78,9 @@ class j16000touch_templates
 		echo '<hr/>';
 		$query = "SELECT hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc FROM #__jomres_hotel_features WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
 		$propertyFeaturesList = doSelectSql($query);
-		foreach ($propertyFeaturesList as $propertyFeature) {
+        echo jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK', '_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK' , false ).'<br/>';
+
+        foreach ($propertyFeaturesList as $propertyFeature) {
 			$feature_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_ABBV'.$propertyFeature->hotel_features_uid, stripslashes($propertyFeature->hotel_feature_abbv));
 			$feature_desc = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_DESC'.$propertyFeature->hotel_features_uid, stripslashes($propertyFeature->hotel_feature_full_desc));
 
@@ -93,14 +97,34 @@ class j16000touch_templates
 		$query = 'SELECT `id`,`title` FROM #__jomres_hotel_features_categories ORDER BY title ';
 		$result = doSelectSql($query);
 		if (!empty($result)) {
-			echo jr_gettext('_JOMRES_PROPERTYFEATURES_HCATEGORIES', '_JOMRES_PROPERTYFEATURES_HCATEGORIES').'<br/>';
+
+ 			echo jr_gettext('_JOMRES_PROPERTYFEATURES_HCATEGORIES', '_JOMRES_PROPERTYFEATURES_HCATEGORIES' , false ).'<br/>';
 			foreach ($result as $r) {
 				echo jr_gettext('_JOMRES_PROPERTY_FEATURES_CATEGORY'.(int) $r->id, stripslashes($r->title));
 				echo '<br/>';
 			}
 		}
 		echo '<hr/>';
-		
+
+        $jomres_property_types = jomres_singleton_abstract::getInstance('jomres_property_types');
+        $jomres_property_types->get_all_property_types();
+
+        if (!empty($jomres_property_types->property_types)) {
+            echo jr_gettext('_JOMRES_COM_PTYPES_LIST_TITLE', '_JOMRES_COM_PTYPES_LIST_TITLE' , false ).'<br/>';
+            foreach ($jomres_property_types->property_types as $pt) {
+               // $this->all_property_types[ $pt['id'] ] = $pt['ptype_desc'];
+               // $this->all_property_type_titles[ $pt['id'] ] = $pt['ptype'];
+
+
+               // foreach ($result as $r) {
+                    echo jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPE'.(int) $pt['id'], stripslashes($pt['ptype']));
+                    echo '<br/>';
+              //  }
+
+            }
+        }
+
+
 		//property categories
 		$query = 'SELECT `id`,`title` FROM #__jomres_property_categories ORDER BY title ';
 		$result = doSelectSql($query);
