@@ -486,7 +486,7 @@ jr_define('_JOMRES_AJAXFORM_AVAILABLEROOMS', 'Доступные номера');
 jr_define('_JOMRES_AJAXFORM_SELECTEDROOMS', 'Выбранные номера');
 jr_define('_JOMRES_AJAXFORM_EARLIESTPOSSIBLEARRIVALDATE', 'Самая ранняя дата заезда');
 jr_define('_JOMRES_AJAXFORM_BILLING_ROOM', 'Тарификация за номер');
-jr_define('_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL', 'Итог тарификации за номер');
+jr_define('_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL', 'Проживание');
 jr_define('_JOMRES_AJAXFORM_BILLING_EXTRAS', 'Тарификация дополнительных услуг');
 jr_define('_JOMRES_AJAXFORM_BILLING_TAX', 'Тарификация налога');
 jr_define('_JOMRES_AJAXFORM_BILLING_DISCOUNT', 'Тарификация скидки');
