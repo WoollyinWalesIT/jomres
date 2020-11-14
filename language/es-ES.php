@@ -486,7 +486,7 @@ jr_define('_JOMRES_AJAXFORM_AVAILABLEROOMS', 'Habitaciones disponibles');
 jr_define('_JOMRES_AJAXFORM_SELECTEDROOMS', 'Habitaciones seleccionadas');
 jr_define('_JOMRES_AJAXFORM_EARLIESTPOSSIBLEARRIVALDATE', '<br>La posible fecha de llegada más cercana es: ');
 jr_define('_JOMRES_AJAXFORM_BILLING_ROOM', 'Por noche:');
-jr_define('_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL', 'Total:');
+jr_define('_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL', 'Alojamiento');
 jr_define('_JOMRES_AJAXFORM_BILLING_EXTRAS', 'Extras:');
 jr_define('_JOMRES_AJAXFORM_BILLING_TAX', 'impuestos:');
 jr_define('_JOMRES_AJAXFORM_BILLING_DISCOUNT', 'Descuentos:');
