@@ -34,6 +34,11 @@ function getSimpleCountry($selectedCountry = '')
 	
 	$selectedCountry = strtoupper($selectedCountry);
 
+	if (strlen($selectedCountry) > 3) {
+		// Neither two-letter country code (ISO 3166-1 alpha-2) nor three-letter country code ISO 3166-1 alpha-3
+		return $selectedCountry;
+	}
+
 	if (isset($jomres_countries->used_countries[$selectedCountry]['countryname'])) {
 		return $jomres_countries->used_countries[$selectedCountry]['countryname'];
 	} else { //this shouldn`t usually happen

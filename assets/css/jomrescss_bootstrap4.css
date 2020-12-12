@@ -566,3 +566,26 @@ div.ui-datepicker {
 	vertical-align:middle;
 }
 
+/* Cross-browser dropdown list */
+.select-wrapper {
+	position: relative;
+	min-width: 4em;
+}
+.select-wrapper select{
+    appearance: none;
+	-webkit-appearance: none;
+	width: 100%;
+	padding: 0 0.5em;
+}
+.select-wrapper::after {
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	content: "\f078";
+	display: inline-block;
+	color: #495057;
+	position: absolute;
+	top: 0.5em;
+	right: 0;
+	padding: 0 0.5em;
+	pointer-events: none;
+}
