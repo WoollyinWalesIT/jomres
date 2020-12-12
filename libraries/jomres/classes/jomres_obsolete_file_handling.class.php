@@ -1328,11 +1328,8 @@ class jomres_obsolete_file_handling
 		$this->add_file($this->dir_minicomponents.'j16000stripe_subscribe_validate_token.class.php');
 
 		$this->add_file($this->dir_minicomponents.'j16000faq.class.php');
-		$this->add_dir(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'language'.JRDS.'faq');
-
 		$this->add_file($this->dir_templates_bootstrap4_administrator.'faq_pane.html');
 		$this->add_file($this->dir_templates_bootstrap4_administrator.'faq_questions.html');
-
 		$this->add_file($this->dir_templates_bootstrap_administrator.'faq_pane.html');
 		$this->add_file($this->dir_templates_bootstrap_administrator.'faq_questions.html');
 
