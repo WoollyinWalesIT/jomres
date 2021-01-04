@@ -6,7 +6,7 @@
  *
  * @version Jomres 9.23.6
  *
- * @copyright	2005-2020 Vince Wooll
+ * @copyright	2005-2021 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 //German Translation since Jomres V2: Roger Perren (http://www.blueforce.ch)
