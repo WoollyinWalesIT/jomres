@@ -1,3 +1,29 @@
+<h3>Jomres 9.23.7 04/01/2021</h3>
+
+<span class="label label-warning">Change</span>
+
+Modal availability calendar. Improvement for BS4.
+Added new initial setup to ask which version of Bootstrap the template supports. A common initial installation problem is the user not configuring which version of Bootstrap Jomres should be configured to use so we will capture this information immediately after installation.
+Modified some input filtering as it's over-zealous.
+Added property types to label translations page
+Changed default step ranges from 1 to 100.
+
+
+Fix: Populate image array for slideshow
+Avoid _COMPILE_WARNING in md5_file method call due to using relative path to image file.
+Joomla 3.9.21 started throwing issues with buttons in plugin manager due to jquery ui / bootstrap.js call order in admin area so modified this script to not call jq ui in show_plugins task on Joomla
+WP in /wp content / jomres / jomres cannot run the rest api, notes added to tell admin to move contents of dir to public_html/jomres dir before attempting to use rest api
+Update jomrescss_bootstrap4.css Fix: translate transform for Chrome. Fix: display: flex for Firefox (unpredictable behaviour of "!important").
+Undid a previous change that was accidentally added to repo which borks the booking form totals numbers. Deleted a zip that should not have been added to repo.
+Fixed a query that was causing region searching to fail
+Tweaked stars in property list to ensure that correct number of stars are shown for MRPs.
+Added a line break to prevent words clumping in case of multiple room booking.
+Tweaked how a path is determined because a server would not correctly add a trailing slash.
+Re-added faq lang files that should have been edited, not deleted in the last version.
+Fixed bug that prevents generate invoice with empty seller's country field.
+Tweaked french language file to prevent apostrophe from causing problems in javascript.
+
+
 <h3>Jomres 9.23.6 24/09/2020</h3>
 
 <span class="label label-warning">Change</span> Modified a CMS specifc function so that WP shortcodes in Jomres text fields will be rendered by WP.
