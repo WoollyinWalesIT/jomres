@@ -1556,7 +1556,7 @@ function prepPriceRangeSearch($increments = 10)
 function my_range($start, $end, $step = 1)
 {
 	if ( $step == 0 ) {
-		$step = 1;
+		$step = 100;
 	}
 	$range = array();
 	for ($i = $start; $i < $end; $i += $step) {
