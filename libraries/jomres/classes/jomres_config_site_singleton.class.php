@@ -232,12 +232,7 @@ $jrConfig = ' .var_export($jrConfig, true).';
 
 	public function get_setting($setting)
 	{
-	    if (isset($this->config[ $setting ])) {
-            return $this->config[ $setting ];
-        } else {
-            throw new Exception("Configuration settting".$setting. " does not exist. " );
-        }
-
+		return $this->config[ $setting ];
 	}
 	
 	/**
