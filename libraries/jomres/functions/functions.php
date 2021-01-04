@@ -2899,6 +2899,10 @@ function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode
 							$result = $mail->addAttachment($path.$name, $name, 'base64', $type = 'application/pdf');
 						}
 						break;
+					case 'string':
+						$name = $attachment[ 'filename' ];
+						$result = $mail->addStringAttachment($attachment[ 'string' ], $attachment[ 'filename' ]);
+						break;
 					default:
 						$path = $attachment[ 'path' ];
 						$name = $attachment[ 'filename' ];

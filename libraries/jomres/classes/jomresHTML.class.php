@@ -85,7 +85,7 @@ class jomresHTML
 
 			$attribs .= ' class="input-medium form-control" ';
 
-			$output = '<select name="'.$name.'" id="'.$name.'" '.$attribs.'>';
+			$output = '<div class="select-wrapper"><select name="'.$name.'" id="'.$name.'" '.$attribs.'>';
 			
 			foreach ($arr as $k => $v) {
 				$val = $v->$key;
@@ -99,7 +99,7 @@ class jomresHTML
 				$output .= '<option value="'.$val.'" '.$selected.'>'.$txt.'</option>';
 			}
 			
-			$output .= '</select>';
+			$output .= '</select></div>';
 		} else {
 			$output = '<fieldset id="' .$name.'" class="radio btn-group">';
 			
