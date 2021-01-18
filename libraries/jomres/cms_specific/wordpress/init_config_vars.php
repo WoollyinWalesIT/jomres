@@ -45,15 +45,23 @@ $showtime->live_site = $jomresConfig_live_site;
 $showtime->offline = false;
 
 global $wpdb; //wp global
-$showtime->db = $wpdb->dbname;
-$showtime->user = $wpdb->dbuser;
+
+if ( strpos($wpdb->dbhost, ":" ) ) {
+    $bang = explode ( ":" , $wpdb->dbhost ) ;
+    $dbhost = $bang[0];
+} else {
+    $dbhost = $wpdb->dbhost;
+}
+
+$showtime->db       = $wpdb->dbname;
+$showtime->user     = $wpdb->dbuser;
 $showtime->password = $wpdb->dbpassword;
-$showtime->host = $wpdb->dbhost;
-$showtime->secret = AUTH_SALT;
+$showtime->host     = $dbhost;
+$showtime->secret   = AUTH_SALT;
 $showtime->dbprefix = $wpdb->prefix;
 
 $showtime->sitename = get_option('blogname');
-$showtime->mailer = 'mail';
+$showtime->mailer   = 'mail';
 $showtime->mailfrom = get_option('admin_email');
 $showtime->fromname = get_option('blogname');
 $showtime->smtpuser = get_option('mailserver_login');
