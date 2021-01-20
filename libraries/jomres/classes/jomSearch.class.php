@@ -541,7 +541,7 @@ class jomSearch
 
 				$this->filter[ 'region' ] = str_replace('-', '%', $this->filter[ 'region' ]);
 			}
-			$query = "SELECT propertys_uid FROM #__jomres_propertys WHERE published = '1' AND property_region LIKE '".$this->filter[ 'region' ]."' $property_ors ";
+			$query = "SELECT propertys_uid FROM #__jomres_propertys WHERE published = '1' AND property_region LIKE '".$this->filter[ 'region' ]." $property_ors ";
 
 			$this->resultBucket = doSelectSql($query);
 		} else {
