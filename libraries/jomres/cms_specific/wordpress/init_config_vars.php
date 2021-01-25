@@ -45,18 +45,10 @@ $showtime->live_site = $jomresConfig_live_site;
 $showtime->offline = false;
 
 global $wpdb; //wp global
-
-if ( strpos($wpdb->dbhost, ":" ) ) {
-    $bang = explode ( ":" , $wpdb->dbhost ) ;
-    $dbhost = $bang[0];
-} else {
-    $dbhost = $wpdb->dbhost;
-}
-
 $showtime->db       = $wpdb->dbname;
 $showtime->user     = $wpdb->dbuser;
 $showtime->password = $wpdb->dbpassword;
-$showtime->host     = $dbhost;
+$showtime->host     = $wpdb->dbhost;
 $showtime->secret   = AUTH_SALT;
 $showtime->dbprefix = $wpdb->prefix;
 
