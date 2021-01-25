@@ -99,7 +99,7 @@ class jomres_database
 				if (get_showtime('socket') == '/tmp/mysql5.sock') {
 					$this->link = mysqli_connect(get_showtime('host'), get_showtime('user'), get_showtime('password'), null, get_showtime('port'), get_showtime('socket')) or die('Could not connect '.mysqli_error($this->link));
 				} else {
-					$this->link = mysqli_connect(get_showtime('host'), get_showtime('user'), get_showtime('password')) or die('Could not connect '.mysqli_error($this->link));
+					$this->link = mysqli_connect(get_showtime('host'), get_showtime('user'), get_showtime('password'), null, get_showtime('port')) or die('Could not connect. Port '.get_showtime('port'));
 				}
 
 				mysqli_select_db($this->link, get_showtime('db')) or die('Could not select database');
