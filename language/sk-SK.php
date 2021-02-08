@@ -1614,7 +1614,7 @@ jr_define('_JOMRES_BOOTSTRAP_LOCATION_INVERSE', 'Inverted navbar (colour change)
 jr_define('_JOMRES_BOOKING_NUMBER', 'Booking number');
 jr_define('_JOMRES_HSTATUS_SHOW_GUESTS_FOR', 'Show guests for');
 jr_define('_JOMRES_BOOTSTRAP_VERSION', 'Bootstrap version');
-jr_define('_JOMRES_BOOTSTRAP_VERSION_DESC', 'Jomres includes it's own template sets, one for each supported version of Bootstrap. Joomla and Wordpress templates/themes that are based on Bootstrap will offer a specific version of Bootstrap so you need to ensure that the option you choose here is compatible with your template/theme.');
+jr_define('_JOMRES_BOOTSTRAP_VERSION_DESC', "Jomres includes it's own template sets, one for each supported version of Bootstrap. Joomla and Wordpress templates/themes that are based on Bootstrap will offer a specific version of Bootstrap so you need to ensure that the option you choose here is compatible with your template/theme.");
 jr_define('_JOMRES_HSTATUS_SHOW_GUESTS_FOR', 'Show guests for');
 jr_define('_JOMRES_HFIXED_PERIODS', 'Fixed periods');
 jr_define('_JOMRES_HDEPOSITS', 'Deposits');

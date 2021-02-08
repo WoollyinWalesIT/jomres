@@ -1580,7 +1580,7 @@ jr_define('_JOMRES_BOOTSTRAP_LOCATION_BOTTOM', 'ボタムに固定される');
 jr_define('_JOMRES_BOOTSTRAP_LOCATION_INVERSE', '二ビゲーション・ハー色を反転する');
 jr_define('_JOMRES_BOOKING_NUMBER', '予約番号');
 jr_define('_JOMRES_BOOTSTRAP_VERSION', 'Bootstrapバージョン');
-jr_define('_JOMRES_BOOTSTRAP_VERSION_DESC', 'Jomres includes it's own template sets, one for each supported version of Bootstrap. Joomla and Wordpress templates/themes that are based on Bootstrap will offer a specific version of Bootstrap so you need to ensure that the option you choose here is compatible with your template/theme.');
+jr_define('_JOMRES_BOOTSTRAP_VERSION_DESC', "Jomres includes it's own template sets, one for each supported version of Bootstrap. Joomla and Wordpress templates/themes that are based on Bootstrap will offer a specific version of Bootstrap so you need to ensure that the option you choose here is compatible with your template/theme.");
 jr_define('_JOMRES_HSTATUS_SHOW_GUESTS_FOR', '表示する顧客：');
 jr_define('_JOMRES_HFIXED_PERIODS', '定期予約');
 jr_define('_JOMRES_HDEPOSITS', '予約金');
