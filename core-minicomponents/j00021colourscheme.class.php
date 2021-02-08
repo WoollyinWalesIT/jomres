@@ -53,7 +53,7 @@ class j00021colourscheme
 			if (jomres_cmsspecific_areweinadminarea()) {
 				switch (_JOMRES_DETECTED_CMS) {
 					case 'joomla4':
-						$css_file = 'jomrescss_bootstrap4.css';
+						$css_file = 'jomrescss_bootstrap5.css';
 						break;
 					default:
 						$css_file = 'jomrescss_bootstrap.css';
@@ -70,6 +70,9 @@ class j00021colourscheme
 					case '4':
 						$css_file = 'jomrescss_bootstrap4.css';
 						break;
+                    case '5':
+                        $css_file = 'jomrescss_bootstrap5.css';
+                        break;
 					default:
 						$css_file = 'jomrescss_bootstrap.css';
 						break;

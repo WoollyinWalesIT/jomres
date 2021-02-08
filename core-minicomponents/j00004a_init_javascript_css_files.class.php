@@ -86,6 +86,14 @@ class j00004a_init_javascript_css_files
 		$css_files = array();
 		$javascript_files = array();
 
+        // We need to include jquery, because BS5 doesn't use it by default
+
+        if ( jomres_bootstrap_version() == 5) {
+            $javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'jquery/dist/', 'jquery.js');
+            $javascript_files[] = array(JOMRES_JS_RELPATH, 'no-conflict.js');
+        }
+
+
 		$datepicker_localisation_file = '';
 		if (this_cms_is_wordpress()) {
 			jomres_cmsspecific_addheaddata('css', $themePath, 'jquery-ui.min.css');
@@ -186,24 +194,26 @@ class j00004a_init_javascript_css_files
 			//}
 			$javascript_files[] = array(JOMRES_JS_RELPATH, 'jquery.bt.js');
 		} else {
-			//if ($thisJRUser->userIsManager || jomres_cmsspecific_areweinadminarea()) {
-				$tail = jomres_bootstrap_version();
-				if ($tail == '4' ) {
-					$javascript_files[] = array(JOMRES_JS_RELPATH , 'bootstrap4-editable.js');
-					$css_files[] = array(JOMRES_CSS_RELPATH , 'bootstrap4-editable.css');
-				} else {
-					if ($tail == '2' || jomres_cmsspecific_areweinadminarea()) {
-						$tail = '';
-					}
-					
-					if (_JOMRES_DETECTED_CMS == 'joomla4') {
-						$tail = '3';
-					}
-
-					$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap'.$tail.'-editable/js/', 'bootstrap-editable.min.js');
-					$css_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap'.$tail.'-editable/css/', 'bootstrap-editable.css');
-					}
-				//}
+                switch (jomres_bootstrap_version()) {
+                    case '':
+                        break;
+                    case '2':
+                        $javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap-editable/js/', 'bootstrap-editable.min.js');
+                        $css_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap-editable/css/', 'bootstrap-editable.css');
+                        break;
+                    case '3':
+                        $javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap3-editable/js/', 'bootstrap-editable.min.js');
+                        $css_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap3-editable/css/', 'bootstrap-editable.css');
+                        break;
+                    case '4':
+                        $javascript_files[] = array(JOMRES_JS_RELPATH , 'bootstrap4-editable.js');
+                        $css_files[] = array(JOMRES_CSS_RELPATH , 'bootstrap4-editable.css');
+                        break;
+                    case '5':
+                        $javascript_files[] = array(JOMRES_JS_RELPATH , 'bootstrap5-editable.js');
+                        $css_files[] = array(JOMRES_CSS_RELPATH , 'bootstrap4-editable.css');
+                        break;
+                }
 			}
 
 		if (get_showtime('task') == 'media_centre' || jomresGetParam($_REQUEST, 'task', '') == 'media_centre') {
