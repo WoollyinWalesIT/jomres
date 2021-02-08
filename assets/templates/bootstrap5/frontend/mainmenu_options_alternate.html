@@ -1,0 +1,14 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<li id="{ID_CATEGORY}" class="nav-item dropdown">
+	<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{CATEGORY}</a>
+	<div class="dropdown-menu">
+		<patTemplate:tmpl name="rows" unusedvars="strip">
+				<a  class="dropdown-item {ACTIVE} {DISABLED_CLASS}" href="{LINK}" {TARGET}>
+					<i class="fa {ICON_CLASS}" aria-hidden="true" style="font-size:18px;"></i> {MENU_NAME}
+				</a>
+		</patTemplate:tmpl>
+	</div>
+</li> 
+
+
+</patTemplate:tmpl>

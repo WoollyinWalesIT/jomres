@@ -1,0 +1,25 @@
+<patTemplate:tmpl name="pageoutput">
+  
+<patTemplate:comment>
+
+	{VIEW_PROPERTY_URL}
+	{BOOKING_FORM_URL}
+	{NAME}
+	{LAT}
+	{LONG}
+	{METADESCRIPTION}
+	{THUMBNAIL_LOCATION}
+	{DATE_ADDED}
+	{LAST_CHECKED}
+
+</patTemplate:comment>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<a href="{VIEW_PROPERTY_URL}" target="_blank">{NAME}</a>
+		</div>
+		<div class="panel-body">
+			<a href="{VIEW_PROPERTY_URL}" target="_blank"><img src="{THUMBNAIL_LOCATION}" class="thumbnail img-responsive" alt="{METADESCRIPTION}"/></a>
+		</div>
+	</div>
+	<div class="clearfix visible-xs"></div>
+</patTemplate:tmpl>

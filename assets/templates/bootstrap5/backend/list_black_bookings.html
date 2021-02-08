@@ -1,0 +1,46 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script language="JavaScript" type="text/javascript">
+	<!--
+	document.addEventListener('DOMContentLoaded', function(){
+		make_datatable('list_black_bookings', '{PAGETITLE}', '{LIVESITE}');
+	}, false);
+	//-->
+</script>
+
+<h2 class="page-header">{PAGETITLE}</h2>
+
+<div id="tour_target_list_blackbookings"></div>
+<div id="tour_target_table_tools"></div>
+
+<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm">
+	<div class="well">
+		{JOMRESTOOLBAR}
+	</div>
+	<table width="100%" id="list_black_bookings" class="table table-striped">
+		<thead>
+			<tr>
+				<th>&nbsp;</th>
+				<th>{_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT}</th>
+				<th>{HSTART}</th>
+				<th>{HRESUMEDATE}</th>
+				<th>{HREASON}</th>
+			</tr>
+		</thead>
+		<tbody>
+		<patTemplate:tmpl name="bookingsrows" unusedvars="nbsp" type="simpleCondition" requiredVars="start">
+			<tr>
+				<td width="30">{CHECKBOX}</td>
+				<td>{EDITLINK}</td>
+				<td>{START}</td>
+				<td>{RESUMEDATE}</td>
+				<td>{REASON}</td>
+			</tr>
+		</patTemplate:tmpl>
+		</tbody>
+	</table>
+	<!--<p class="alert alert-info">{NOBLACKBOOKINGS}</p>-->
+	<input type="hidden" name="task" value="delete_multiple_blackbookings"/>
+	{CSRF_TOKEN}
+</form>
+</patTemplate:tmpl>

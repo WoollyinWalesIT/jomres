@@ -1,0 +1,41 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<script src="http://maps.google.com/maps?file=api&v=2.x&key={APIKEY}" type="text/javascript"></script>
+	<script type="text/javascript">
+		//<![CDATA[
+		var Gmap = null;
+		var geocoder = null;
+		function showAddress(address) {
+			if (geocoder) {
+				geocoder.getLatLng(
+						address,
+						function (point) {
+							if (!point) {
+								//a = 1;
+							} else {
+								Gmap.setCenter(point, 13);
+								var marker = new GMarker(point);
+								Gmap.addOverlay(marker);
+							}
+						}
+				);
+			}
+		}
+		//]]>
+	</script>
+	<div id="map"></div>
+	<script>
+		document.addEventListener('DOMContentLoaded', function(){
+			if (GBrowserIsCompatible()) {
+				var WIDTH = 600;
+				var HEIGHT = 400;
+				Gmap = new GMap2(document.getElementById("map"), {size: new GSize(WIDTH, HEIGHT)});
+				Gmap.setUIToDefault();
+				Gmap.setMapType(G_HYBRID_MAP);
+				geocoder = new GClientGeocoder();
+				showAddress("{ADDRESS}");
+			}
+			;
+		}, false);
+	</script>
+</patTemplate:tmpl>

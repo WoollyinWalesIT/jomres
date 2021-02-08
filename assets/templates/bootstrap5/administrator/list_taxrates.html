@@ -1,0 +1,44 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<script type="text/javascript">
+		<!--
+		document.addEventListener('DOMContentLoaded', function(){
+			make_datatable('list_taxrates', '{PAGETITLE}', '{LIVESITE}');
+		}, false);
+		//-->
+	</script>
+	<h2 class="page-header">{PAGETITLE}</h2>
+	<div class="alert">
+		<p>{_JOMRES_TAX_RATES_IMPORT_INFO}</p>
+		<p><a href="{IMPORT_LINK}" class="btn btn-warning">{_JOMRES_TAX_RATES_IMPORT}</a></p>
+	</div>
+	<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+		{JOMRESTOOLBAR}
+		<table id="list_taxrates" width="100%" class="table table-striped">
+			<thead>
+			<tr>
+				<th></th>
+				<th class="hidden-phone">ID</th>
+				<th>{HCODE}</th>
+				<th>{HDESCRIPTION}</th>
+				<th>{HRATE}</th>
+				<th>{_JOMRES_IS_EU_COUNTRY}</th>
+			</tr>
+			</thead>
+			<tbody>
+			<patTemplate:tmpl name="rows" unusedvars="strip" type="simpleCondition" requiredVars="id">
+				<tr>
+					<td>{EDITLINK}</td>
+					<td class="hidden-phone">{ID}</td>
+					<td>{CODE}</td>
+					<td>{DESCRIPTION}</td>
+					<td>{RATE}</td>
+					<td>{IS_EU_COUNTRY}</td>
+				</tr>
+			</patTemplate:tmpl>
+			</tbody>
+		</table>
+		<input type="hidden" name="task" value="edit_taxrate"/>
+		{CSRF_TOKEN}
+	</form>
+</patTemplate:tmpl>

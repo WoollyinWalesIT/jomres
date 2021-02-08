@@ -1,0 +1,18 @@
+
+<pattemplate:tmpl name="pageoutput">
+	<p><strong>{_JOMRES_SEARCH_RTYPES}</strong>
+	</p>
+	<div class="row">
+		<pattemplate:tmpl name="room_types">
+			<div class="col-lg-3">
+				<div class="card bg-light card-body mb-3" align="center">
+					<div class="pdetails-roomtype">{ROOM_TYPE}</div>	<em><small>{ROOM_TYPE_PRICE}</small></em>
+					<div>{ROOM_TYPE_TEXT}</div>
+					<div class="reviews-big"><a href="{ROOM_TYPE_PAGE_URL}">{ROOM_TYPE_COUNTER}</a>
+					</div>
+				</div>
+			</div>
+		</pattemplate:tmpl>
+	</div>
+	<div class="clearfix"></div>
+</pattemplate:tmpl>

@@ -1,0 +1,38 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function(){
+        /* Get iframe src attribute value i.e. YouTube video url
+        and store it in a variable */
+	<patTemplate:tmpl name="rows2" unusedvars="strip">
+    var url_{VIDEO_ID_SANITISED} = jomresJquery("#{VIDEO_ID}").attr('src');
+    </patTemplate:tmpl>
+	
+    /* Assign empty url value to the iframe src attribute when
+    modal hide, which stop the video playing */
+    jomresJquery("#helpModal").on('hide.bs.modal', function(){
+		<patTemplate:tmpl name="rows3" unusedvars="strip">
+        jomresJquery("#{VIDEO_ID}").attr('src', '');
+		</patTemplate:tmpl>
+    });
+    
+    /* Assign the initially stored url back to the iframe src
+    attribute when modal is displayed again */
+    jomresJquery("#helpModal").on('show.bs.modal', function(){
+		<patTemplate:tmpl name="rows4" unusedvars="strip">
+        jomresJquery("#{VIDEO_ID}").attr('src', url_{VIDEO_ID_SANITISED});
+		</patTemplate:tmpl>
+    });
+    }, false);
+</script>
+
+<h2 class="page-header">{VIDEO_TUTORALS_TITLE}</h2>
+
+<patTemplate:tmpl name="rows1" unusedvars="strip">
+<h3>{TITLE}</h3>
+<p>{DESCRIPTION}</p>
+<iframe id="{VIDEO_ID_SANITISED}" width="100%" height="315" src="//www.youtube.com/embed/{VIDEO_ID}" frameborder="0" allowfullscreen></iframe>
+<p>&nbsp;</p>
+</patTemplate:tmpl>
+
+ 
+</patTemplate:tmpl>

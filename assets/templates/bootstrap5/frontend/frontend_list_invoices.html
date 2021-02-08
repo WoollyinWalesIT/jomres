@@ -1,0 +1,89 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script language="javascript" type="text/javascript">
+	<!--
+	document.addEventListener('DOMContentLoaded', function(){
+		make_datatable('frontend_list_invoices', '{PAGETITLE}', '{LIVESITE}', '{AJAX_URL}');
+		column_ids = new Array(2,3,6,8,9,11,12,13);
+		dataTableSetHiddenColumns('frontend_list_invoices', column_ids);
+	}, false);
+	//-->
+</script>
+<div id="tour_target_table_tools"></div>
+<h2 class="page-header">{PAGETITLE}</h2>
+
+<div class="well">
+	<a href="#list_invoices_filters" role="button" data-toggle="modal" class="btn btn-secondary" onclick="jomresJquery('#ui-datepicker-div').appendTo('#list_invoices_filters');"><i class="fa fa-filter"></i> {HFILTER}</a>
+</div>
+
+<table id="frontend_list_invoices" class="table table-striped" width="100%">
+	<thead>
+		<tr>
+			<th>{COMMON_EDIT}</th>
+			<th>Id</th>
+			<th>{_JOMRES_INVOICE_NUMBER}</th>
+			<th>{HBOOKINGNO}</th>
+			<th>{HPROPERTY_NAME}</th>
+			<th>{HFIRSTNAME}</th>
+			<th>{HSURNAME}</th>
+			<th>{_JRPORTAL_INVOICES_LINEITEMS}</th>
+			<th>{HRAISED}</th>
+			<th>{HDUE}</th>
+			<th>{HPAID}</th>
+			<th>{HGRAND_TOTAL}</th>
+			<th>{HINITTOTAL}</th>
+			<th>{HPAYNOW}</th>
+
+		</tr>
+	</thead>
+	<tbody>
+	</tbody>
+</table>
+<h5>{HLEGEND}</h5>
+<span class="label label-orange">{HPENDING}</span>
+<span class="label label-green">{HPAID}</span>
+<span class="label label-red">{HUNPAID}</span>
+<span class="label label-black">{HCANCELLED}</span>
+
+<form action="" method="post" name="filterInvoices" role="form">
+<div id="list_invoices_filters" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+				<h4 id="myModalLabel">{HFILTER}</h4>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label class="control-label" for="startDate">{HSTART}</label>
+					{START}
+				</div>
+				<div class="form-group">
+					<label class="control-label" for="endDate">{HEND}</label>
+					{END}
+				</div>
+				<div class="form-group">
+					<label class="control-label" for="invoice_type">{HINVOICE_TYPE}</label>
+					{INVOICE_TYPE}
+				</div>
+				<div class="form-group">
+					<label class="control-label" for="invoice_status">{HINVOICE_STATUS}</label>
+					{INVOICE_STATUS}
+				</div>
+				<div class="form-group">
+					<label class="control-label" for="show_all">{HSHOW_ALL}</label>
+					{SHOW_ALL}
+				</div>
+			</div>
+			<div class="modal-footer">
+				<a class="btn btn-secondary" data-dismiss="modal" aria-hidden="true">{COMMON_CLOSE}</a>
+				<input type="submit" value="{HFILTER}" class="btn btn-primary" />
+			</div>
+		</div>
+	</div>
+</div>
+<input type="hidden" name="task" value="list_invoices" />
+<input type="hidden" name="guest_id" value="{GUEST_ID}" />
+{CSRF_TOKEN}
+</form>
+</patTemplate:tmpl>

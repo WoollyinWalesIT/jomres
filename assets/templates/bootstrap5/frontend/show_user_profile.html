@@ -1,0 +1,133 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+	<div class="row">
+		<div class="col-md-2">
+			
+			<img src="{IMAGE}" alt="{FIRSTNAME} {SURNAME}" class="img-circle img-responsive">
+			<hr/>
+			{USER_STATUS_BADGE}
+			<p>{GUEST_PROFILE_MY_NAME} <strong>{FIRSTNAME} {SURNAME}</strong> {GUEST_PROFILE_I_COME_FROM} {REGION}{GUEST_PROFILE_IN} {COUNTRY}  </p>
+			<p><a href="https://www.google.co.uk/maps/place/{REGION}+{COUNTRY}" class="btn btn-secondary" target="_blank"><i class="fa fa-map" aria-hidden="true"></i></a></p>
+		</div>
+		<div class="col-md-10">
+			
+			<h4>{GUEST_PROFILE_ABOUT_ME}</h4>
+			<h5>{GUEST_PROFILE_WELCOME}</h5>
+			{ABOUT_ME}
+		</div>
+	</div>
+	<patTemplate:tmpl name="private_output" type="simpleCondition"  requiredVars="house">
+	<hr/>
+	
+
+	<div class="row">
+		<div class="col-md-12">
+			<strong><small>{GUEST_PROFILE_PRIVATE_INFORMATION}</small></strong>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<small class="text-info">{GUEST_PROFILE_PRIVATE_INFORMATION_DISCLAIMER}</small>
+		</div>
+	</div>
+	
+	<hr/>
+	
+	<div class="row">
+		<div class="col-md-4">
+			<strong><small>{HHOUSE}</small></strong>
+		</div>
+		<div class="col-md-8">
+			<small>{HOUSE}</small>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-4">
+			<strong><small>{HSTREET}</small></strong>
+		</div>
+		<div class="col-md-8">
+			<small>{STREET}</small>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-4">
+			<strong><small>{HTOWN}</small></strong>
+		</div>
+		<div class="col-md-8">
+			<small>{TOWN}</small>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-4">
+			<strong><small>{HPOSTCODE}</small></strong>
+		</div>
+		<div class="col-md-8">
+			<small>{POSTCODE}</small>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-4">
+			<strong><small>{HLANDLINE}</small></strong>
+		</div>
+		<div class="col-md-8">
+			<small>{LANDLINE}</small>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-4">
+			<strong><small>{HMOBILE}</small></strong>
+		</div>
+		<div class="col-md-8">
+			<small>{MOBILE}</small>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-4">
+			<strong><small>{HEMAIL}</small></strong>
+		</div>
+		<div class="col-md-8">
+			<small>{EMAIL}</small>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-4">
+			<strong><small>{GUEST_PROFILE_DRIVING_LICENSE}</small></strong>
+		</div>
+		<div class="col-md-8">
+			<small>{DRIVERS_LICENSE}</small>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-4">
+			<strong><small>{GUEST_PROFILE_PASSPORT_NUMBER}</small></strong>
+		</div>
+		<div class="col-md-8">
+			<small>{PASSPORT_NUMBER}</small>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-4">
+			<strong><small>{GUEST_PROFILE_IBAN}</small></strong>
+		</div>
+		<div class="col-md-8">
+			<small>{IBAN}</small>
+		</div>
+	</div>
+	</patTemplate:tmpl>
+
+	{HOST_PROPERTIES}
+	
+	{GUEST_REVIEWS}
+	
+	{HOST_REVIEWS}
+	
+</patTemplate:tmpl>

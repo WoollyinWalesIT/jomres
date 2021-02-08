@@ -1,0 +1,32 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<script type="text/javascript">
+		<!--
+		document.addEventListener('DOMContentLoaded', function(){
+			make_datatable('{TABLE_NAME}', '{PAGETITLE}', '{LIVESITE}');
+		}, false);
+		//-->
+	</script>
+	<h2 class="page-header">{PAGETITLE}</h2>
+		{JOMRESTOOLBAR}
+		<table id="{TABLE_NAME}" width="100%" class="table table-striped">
+			<thead>
+			<tr>
+				<th>{_JOMRES_ERROR_DEBUGGING_FILE}</th>
+				<th>{_JOMRES_MR_AUDIT_LISTING_DATE}</th>
+			</tr>
+			</thead>
+			<tbody>
+			<patTemplate:tmpl name="rows" unusedvars="strip">
+				<tr>
+					<td>
+						<a href="{JOMRES_SITEPAGE_URL_ADMIN}&task=view_log_file&filename={FILENAME}" target="_blank">{FILENAME}</a>
+					</td>
+					<td>
+						{CREATED}
+					</td>
+				</tr>
+			</patTemplate:tmpl>
+			</tbody>
+		</table>
+</patTemplate:tmpl>

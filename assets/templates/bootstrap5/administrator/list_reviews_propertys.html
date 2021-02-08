@@ -1,0 +1,37 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+	<!--
+	document.addEventListener('DOMContentLoaded', function(){
+		make_datatable('list_reviews_properties', '{_JOMRES_REVIEWS}', '{LIVESITE}');
+	}, false);
+	//-->
+</script>
+
+<h2 class="page-header">{_JOMRES_REVIEWS}</h2>
+
+<p>{_JOMRES_REVIEWS_ADMIN_PROPERTYLISTINFO}</p>
+
+<table id="list_reviews_properties" width="100%" class="table table-striped">
+	<thead>
+	<tr>
+		<th></th>
+		<th>{HPROPERTYNAME}</th>
+		<th class="hidden-phone">{_JOMRES_REVIEWS_ADMIN_NUMBERUNPUBLISHED}</th>
+		<th class="hidden-phone">{_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL}</th>
+		<th class="hidden-phone">{_JOMRES_REVIEWS_REPORT_REVIEW_TITLE}</th>
+	</tr>
+	</thead>
+	<tbody>
+	<patTemplate:tmpl name="rows" unusedvars="strip" type="simpleCondition" requiredVars="viewlink">
+		<tr>
+			<td>{VIEWLINK}</td>
+			<td>{PROPERTYNAME}</td>
+			<td class="hidden-phone">{NUMBERUNPUBLISHED}</td>
+			<td class="hidden-phone">{NUMBERTOTAL}</td>
+			<td class="hidden-phone">{REPORTTOTAL}</td>
+		</tr>
+	</patTemplate:tmpl>
+	</tbody>
+</table>
+</patTemplate:tmpl>

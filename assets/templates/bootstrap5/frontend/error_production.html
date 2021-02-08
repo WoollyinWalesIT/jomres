@@ -1,0 +1,37 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+	<div class="container">
+		<div class="row">
+				<div class="col">
+				</div>
+				<div class="col alert alert-danger text-center">
+					<h1> <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>{_JOMRES_ERROR} <i class="fa fa-exclamation-triangle" aria-hidden="true"></i></h1>
+				</div>
+				<div class="col">
+				</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<p class="alert alert-danger text-center">{_JOMRES_ERROR_MESSAGE}</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+			</div>
+			<div class="col">
+				<button class="btn btn-primary btn-lg hBack" type="button" style="width: 100%">{COMMON_BACK}</button>
+			</div>
+			<div class="col">
+			</div>
+		</div>
+	</div>
+
+
+	<script>
+		jomresJquery(".hBack").on("click", function(e){
+			e.preventDefault();
+			window.history.back();
+		});
+	</script>
+</patTemplate:tmpl>

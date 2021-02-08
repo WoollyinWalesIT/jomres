@@ -1,0 +1,27 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<style type="text/css">
+.jomres-membership {background-color: white;}
+.jomres-membership-highlight {-webkit-box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.75);-moz-box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.75);box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.75);}
+.membership-name {padding:10px 0;font-size:24px;color:#fff;background:#1780c3;}
+.membership-price {padding:20px 0; font-size:42px;background:#1bacef;color:#fff;line-height:1.2;}
+span.membership-price-sub {display:block;font-size:18px;}
+.membership-item {padding:10px 0;background:#f1f1f1;margin-bottom:2px;}
+.membership-action {padding:15px 0;}
+.membership-name-trial {padding:10px 0;font-size:24px;color:#333;background:#ccc;}
+.membership-price-trial {padding:20px 0; font-size:42px;background:#f5f5f5;color:#333;line-height:1.2;}
+.jomres-membership-background {background-image: url("{JOMRES_IMAGES_RELPATH}plugin_manager.png");background-repeat: no-repeat;background-size:cover;}
+span.os {display:block;font-size:10px;}
+ 
+ 
+</style>
+<div class="center">
+	<p class="alert alert-danger">Your license key isn't valid or  you haven't saved it in Site Configuration, you cannot install any plugins. First enter a valid key in Site Configuration before visiting this page.</p>
+	<a href="{JOMRES_SITEPAGE_URL_ADMIN}&task=site_settings" class="btn btn-danger">Go to Site Configuration</a>
+</div>
+
+{IONCUBE_WARNING}
+
+{SUBSCRIPTION_LICENSES}
+
+{FULL_LICENSES}
+</patTemplate:tmpl>

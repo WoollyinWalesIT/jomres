@@ -1,0 +1,36 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<!-- if you want to show min & max people and days, just uncomment the lines commented out below-->
+	<table class="table table-striped">
+		<thead>
+		<tr>
+			<th>{HTITLE}</th>
+			<th>{HROOMTYPE}</th>
+			<th class="hidden-phone">{HMINPEEPS}</th>
+			<th class="hidden-phone">{HMAXPEEPS}</th>
+			<th>{HSTARTS}</th>
+			<th>{HENDS}</th>
+			<th>&nbsp;</th>
+			<th class="hidden-phone">{HMINDAYS}</th>
+			<th class="hidden-phone">{HMAXDAYS}</th>
+			<th>&nbsp;</th>
+		</tr>
+		</thead>
+		<tbody>
+		<patTemplate:tmpl name="show_tariffs" unusedvars="strip" type="simpleCondition" requiredVars="roomrateperday">
+			<tr>
+				<td>{TITLE}</td>
+				<td>{ROOMCLASSABBV}</td>
+				<td class="hidden-phone">{MINPEOPLE}</td>
+				<td class="hidden-phone">{MAXPEOPLE}</td>
+				<td>{VALIDFROM}</td>
+				<td>{VALIDTO}</td>
+				<td><b>{ROOMRATEPERDAY}</b>{NOTWEEKENDS}</td>
+				<td class="hidden-phone">{MINDAYS}</td>
+				<td class="hidden-phone">{MAXDAYS}</td>
+				<td><a href="{BOOKING_FORM_LINK}" class="btn btn-primary">{_JOMRES_FRONT_MR_MENU_BOOKAROOM}</a> </td>
+			</tr>
+		</patTemplate:tmpl>
+		</tbody>
+	</table>
+</patTemplate:tmpl>

@@ -1,0 +1,92 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<div class="row">
+		<div class="col-md-6">
+			<strong>{HFIRSTNAME}</strong>
+		</div>
+		<div class="col-md-6">
+			{FIRSTNAME} {SURNAME}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<strong>{HHOUSE}</strong>
+		</div>
+		<div class="col-md-6">
+			{HOUSE}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<strong>{HSTREET}</strong>
+		</div>
+		<div class="col-md-6">
+			{STREET}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<strong>{HPOSTCODE}</strong>
+		</div>
+		<div class="col-md-6">
+			{POSTCODE}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<strong>{HTOWN}</strong>
+		</div>
+		<div class="col-md-6">
+			{TOWN}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<strong>{HREGION}</strong>
+		</div>
+		<div class="col-md-6">
+			{REGION}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<strong>{HCOUNTRY}</strong>
+		</div>
+		<div class="col-md-6">
+			{COUNTRY}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<strong>{HLANDLINE}</strong>
+		</div>
+		<div class="col-md-6">
+			{LANDLINE}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<strong>{HMOBILE}</strong>
+		</div>
+		<div class="col-md-6">
+			{MOBILE}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<strong>{HEMAIL}</strong>
+		</div>
+		<div class="col-md-6">
+			{EMAIL}
+		</div>
+	</div>
+	<patTemplate:tmpl name="vat_output" type="simpleCondition"  requiredVars="_jomres_com_yourbusiness_vatno">
+	<div class="row">
+		<div class="col-md-6">
+			<strong><small>{_JOMRES_COM_YOURBUSINESS_VATNO}</small></strong>
+		</div>
+		<div class="col-md-6">
+			<small>{VAT_NUMBER}</small>
+		</div>
+	</div>
+	</patTemplate:tmpl>
+</patTemplate:tmpl>

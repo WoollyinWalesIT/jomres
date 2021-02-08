@@ -1,0 +1,51 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+jomresJquery(function() {
+  var $demo, duration, remaining, tour;
+  $demo = jomresJquery("#demo");
+  duration = 5000;
+  remaining = duration;
+  tour = new Tour({
+    onStart: function() {
+      return $demo.addClass("disabled", true);
+    },
+    onEnd: function() {
+      return $demo.removeClass("disabled", true);
+    },
+    debug: false,
+  steps: [
+<patTemplate:tmpl name="rows" unusedvars="strip">
+	{
+	element: "#{ID}",
+	placement: "{POSITION}",
+	title: "{TITLE}",
+	content: "{DESCRIPTION}",
+	animation: false,
+	orphan : false
+	}{COMMA}
+</patTemplate:tmpl>
+    ]
+  });
+
+  
+  jomresJquery(document).on("click", "#product_tour_start", function(e) {
+    e.preventDefault();
+    if (jomresJquery(this).hasClass("disabled")) {
+      return;
+    }
+    tour.restart();
+    return jomresJquery(".alert").alert("close");
+  });
+});
+
+jomresJquery('#product_tour_start').click(function(e){
+	tour.init();
+    tour.start();
+
+    // it's also good practice to preventDefault on the click event
+    // to avoid the click triggering whatever is within href:
+    e.preventDefault(); 
+});
+
+
+</patTemplate:tmpl>

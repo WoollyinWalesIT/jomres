@@ -1,0 +1,20 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<patTemplate:tmpl name="discount_output" type="simpleCondition" requiredVars="discount_output">
+		<div class="alert alert-info">{DISCOUNT_OUTPUT}</div>
+	</patTemplate:tmpl>
+	<div class="row">
+		<div class="col-md-8">
+			{DESCRIPTION}
+			{ROOM_TYPES}
+			<div class="clearfix"></div>
+		</div>
+		<div class="col-md-4">
+			<div class="well">
+				{FEATURES}
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</patTemplate:tmpl>

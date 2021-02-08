@@ -1,0 +1,37 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<h2 class="page-header">{PAGETITLE}</h2>
+	<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm" class="form-horizontal">
+		{JOMRESTOOLBAR}
+		<fieldset>
+			<div class="control-group">
+				<label class="control-label" for="name">{HCODE}</label>
+				<div class="controls">
+					<input type="text" name="code" value="{CODE}" class="input-large"/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="name">{HDESCRIPTION}</label>
+				<div class="controls">
+					<input type="text" name="description" value="{DESCRIPTION}" class="input-large"/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="name">{HRATE}</label>
+				<div class="controls">
+					<input type="text" name="rate" value="{RATE}" class="input-large"/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="name">{_JOMRES_IS_EU_COUNTRY}</label>
+				<div class="controls">
+					{IS_EU_COUNTRY}
+				</div>
+			</div>
+			<input type="hidden" name="id" value="{ID}"/>
+			<input type="hidden" name="option" value="com_jomres"/>
+			<input type="hidden" name="task" value="save_taxrate"/>
+		</fieldset>
+		{CSRF_TOKEN}
+	</form>
+</patTemplate:tmpl>

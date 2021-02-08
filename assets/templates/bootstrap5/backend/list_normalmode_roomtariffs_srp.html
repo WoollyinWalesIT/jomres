@@ -1,0 +1,38 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<div id="tour_target_listtariffs_normal_srp"></div>
+<h2 class="page-header">{PAGETITLE}</h2>
+
+<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm" class="form-horizontal" role="form">
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="roomtype">{HPROPERTYTYPE}</label>
+		<div class="col-md-10">
+			<patTemplate:tmpl name="rows" unusedvars="strip">
+			<div>{ROOM_CLASS_RADIO}</div>
+			</patTemplate:tmpl>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="roomrateperday">{RATETEXT}</label>
+		<div class="col-md-10">
+			{ROOMRATEPERDAY}
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="max_people">{HMAXPEOPLE_TARIFF}</label>
+		<div class="col-md-10">
+			{MAX_PEOPLE}
+		</div>
+	</div>
+	<div class="form-actions">
+		<div class="col-md-10 col-md-offset-2">
+			{JOMRESTOOLBAR}
+		</div>
+	</div>
+	<input type="hidden" name="task" value="save_normalmode_tariffs"/>
+	<input type="hidden" name="room_uid" value="{ROOMUID}"/>
+	<input type="hidden" name="rates_uid" value="{RATESUID}"/>
+	<input type="hidden" name="tarifftypeid" value="{TARIFFTYPEID}"/>
+	{CSRF_TOKEN}
+</form>
+</patTemplate:tmpl>
