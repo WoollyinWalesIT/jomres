@@ -145,9 +145,14 @@ class j06002edit_property
 		}
 
 		//build the map
-		$componentArgs = array('property_uid' => $property_uid, 'width' => '400', 'height' => '400', 'editing_map' => true);
-		$MiniComponents->specificEvent('01050', 'x_geocoder', $componentArgs);
-		$output[ 'MAP' ] = $MiniComponents->miniComponentData[ '01050' ][ 'x_geocoder' ];
+        if ( trim($output[ 'APIKEY' ]) != '' ) {
+            $componentArgs = array('property_uid' => $property_uid, 'width' => '400', 'height' => '400', 'editing_map' => true);
+            $MiniComponents->specificEvent('01050', 'x_geocoder', $componentArgs);
+            $output[ 'MAP' ] = $MiniComponents->miniComponentData[ '01050' ][ 'x_geocoder' ];
+        } else {
+            $output[ 'MAP' ] = "<div class='alert alert-danger'>Google Map API key not stored in Site Configuration > Integration tab so cannot show map.</div>";
+        }
+
 
 		//property policies and disclaimers
 		if ($current_property_details->property_policies_disclaimers == '') {
