@@ -267,8 +267,9 @@ class j03020insertbooking
 				$webhook_notification->data->property_uid		   = $property_uid;
 				$webhook_notification->data->contract_uid		   = $amend_contractuid;
 				add_webhook_notification($webhook_notification);
-				
+				// End Amendment insertion
 			} else {
+			    // New booking insertion
 				$new_user_id = 0;
 
 				if ($jrConfig[ 'useNewusers' ] == '1') {
