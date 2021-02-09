@@ -195,7 +195,9 @@ class j06005list_invoices_ajax
 		$query = 'SET SQL_BIG_SELECTS=1';
 		doInsertSql($query);
 
-		$query = "SELECT SQL_CALC_FOUND_ROWS 
+		$query = "
+                SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
+                SELECT SQL_CALC_FOUND_ROWS 
 					a.id, 
 					a.cms_user_id, 
 					a.guest_id, 

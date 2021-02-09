@@ -293,22 +293,48 @@ class jomres_database
 
 		if (this_cms_is_wordpress() && !defined('AUTO_UPGRADE')) {
 			global $wpdb;
-
-			$this->result = $wpdb->get_results($this->query, OBJECT);
+            if (strpos($this->query,";"  ) > 0 ) { // To allow multiple queries to be run (specifically, the ajax query that grumbles about GROUP BY mode)
+                $bang = explode(";" , $this->query);
+                foreach ($bang as $query ) {
+                  $this->result = $wpdb->get_results($query, OBJECT);
+                }
+            } else {
+                $this->result = $wpdb->get_results($this->query, OBJECT);
+            }
 		} else {
 			switch ($this->dbtype) {
 				case 'mysqli':
-					$this->stmt = mysqli_query($this->link, $this->query);
+				    if (strpos($this->query,";"  ) > 0 ) { // To allow multiple queries to be run (specifically, the ajax query that grumbles about GROUP BY mode)
+				        $bang = explode(";" , $this->query);
+				        foreach ($bang as $query ) {
+                            $this->stmt = mysqli_query($this->link, $query);
+                        }
+                    } else {
+                        $this->stmt = mysqli_query($this->link, $this->query);
+                    }
+
 					break;
-				case 'mysql':
+				case 'mysql': // Should be depreciated, however will leave it in on the offchance that somebody is still using mysql
 					$this->stmt = mysql_query($this->query);
 					break;
 				case 'pdomysql':
-					try {
-						$this->stmt = $this->PDO->query($this->query, PDO::FETCH_OBJ);
-					} catch (PDOException $e) {
-						output_fatal_error($e);
-					}
+                    if (strpos($this->query,";"  ) > 0 ) { // To allow multiple queries to be run (specifically, the ajax query that grumbles about GROUP BY mode)
+                        $bang = explode(";" , $this->query);
+                        foreach ($bang as $query ) {
+                            try {
+                                $this->stmt = $this->PDO->query($query, PDO::FETCH_OBJ);
+                            } catch (PDOException $e) {
+                                output_fatal_error($e);
+                            }
+                        }
+                    } else {
+                        try {
+                            $this->stmt = $this->PDO->query($this->query, PDO::FETCH_OBJ);
+                        } catch (PDOException $e) {
+                            output_fatal_error($e);
+                        }
+                    }
+
 					break;
 				default:
 					break;
@@ -317,6 +343,7 @@ class jomres_database
 			if ($this->stmt) {
 				switch ($this->dbtype) {
 					case 'mysqli':
+
 						while ($row = mysqli_fetch_object($this->stmt)) {
 							$this->result[] = $row;
 						}

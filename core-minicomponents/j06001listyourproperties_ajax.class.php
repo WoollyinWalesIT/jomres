@@ -136,7 +136,9 @@ class j06001listyourproperties_ajax
 		$query = 'SET SQL_BIG_SELECTS=1';
 		doInsertSql($query);
 
-		$query = "SELECT SQL_CALC_FOUND_ROWS 
+		$query = "
+		    SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
+		    SELECT SQL_CALC_FOUND_ROWS 
 						a.propertys_uid, 
 						a.property_street, 
 						a.property_town, 

@@ -111,7 +111,9 @@ class j06001listguests_ajax
 		$query = 'SET SQL_BIG_SELECTS=1';
 		doInsertSql($query);
 
-		$query = 'SELECT SQL_CALC_FOUND_ROWS 
+		$query = "
+            SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
+            SELECT SQL_CALC_FOUND_ROWS 
 						a.guests_uid, 
 						a.mos_userid, 
 						a.enc_firstname, 
@@ -129,7 +131,7 @@ class j06001listguests_ajax
 						a.discount,
 						a.property_uid 
 					FROM #__jomres_guests a 
-						LEFT JOIN #__jomres_contracts b ON a.guests_uid = b.guest_uid '
+						LEFT JOIN #__jomres_contracts b ON a.guests_uid = b.guest_uid "
 					.$clause
 					.' GROUP BY a.guests_uid '
 					.$sOrder
