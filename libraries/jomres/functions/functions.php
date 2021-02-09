@@ -1078,10 +1078,10 @@ function jomres_bootstrap_version()
 	    // check to see if we are in admin area & bs version is not set. If so, it's a new installation so we'll auto configure our bs version templates to run bs4
         if ($jrConfig[ 'bootstrap_version' ] == '' ) {
 			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-			$siteConfig->update_setting('bootstrap_version', 4  );
+			$siteConfig->update_setting('bootstrap_version', 5  );
 			$siteConfig->save_config();
         }
-		$bootstrap_version = '4';
+		$bootstrap_version = '5';
 	} elseif  ( jomres_cmsspecific_areweinadminarea() && _JOMRES_DETECTED_CMS == 'joomla3' ) {
 		$bootstrap_version = '2';
 	} else { 
