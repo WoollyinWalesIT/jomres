@@ -27,7 +27,7 @@ defined('_JOMRES_INITCHECK') or die('');
 
 if (strpos(@ini_get('disable_functions'), 'set_time_limit') === false) {
 	$currTimeLimit = ini_get('max_execution_time');
-	set_time_limit($currTimeLimit); // This setting is absolutely required for systems that will use channel management functionality as deferred notifications to Beds24 can take quite a while. Ideally we'd set this to 0 however some installations, particularly Wordpress installations that may be on "budget" and or shared hosting packages might throw at minimum a warning about setting the limit to 0. We'll try instead to set it to the max execution time and hope that that's enough. It will be in 99% of cases.
+	@set_time_limit($currTimeLimit); // This setting is absolutely required for systems that will use channel management functionality as deferred notifications to Beds24 can take quite a while. Ideally we'd set this to 0 however some installations, particularly Wordpress installations that may be on "budget" and or shared hosting packages might throw at minimum a warning about setting the limit to 0. We'll try instead to set it to the max execution time and hope that that's enough. It will be in 99% of cases.
 }
 
 if (isset($_REQUEST['task']) && isset($_REQUEST['field'])) { // Booking engine heartbeat is used to keep the session alive, but doesn't do anything else. We'll kill it dead right off the bat.
