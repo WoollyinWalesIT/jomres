@@ -3422,9 +3422,6 @@ function propertyConfiguration()
 	}
 	$tariffModeDD = jomresHTML::selectList($tariffMode, 'cfg_tariffmode', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'tariffmode' ]);
 
-
-
-
 	$iconsizes = array();
 	$iconsizes[ ] = jomresHTML::makeOption('small', 'small');
 	$iconsizes[ ] = jomresHTML::makeOption('large', 'large');
@@ -3568,8 +3565,13 @@ function propertyConfiguration()
 	}
 	$lists[ 'allow_children' ] = jomresHTML::selectList($yesno, 'cfg_allow_children', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'allow_children' ]);
 
+    if (!isset($mrConfig[ 'cformat_strip_decimals' ])) {
+        $mrConfig[ 'cformat_strip_decimals' ] = 0;
+    }
+    $lists[ 'cformat_strip_decimals' ] = jomresHTML::selectList($yesno, 'cfg_cformat_strip_decimals', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'cformat_strip_decimals' ]);
 
-	$componentArgs = array();
+
+    $componentArgs = array();
 	$componentArgs[ 'mrConfig' ] = $mrConfig;
 	$componentArgs[ 'lists' ] = $lists;
 	$componentArgs[ 'weekdayDropdown' ] = $weekdayDropdown;

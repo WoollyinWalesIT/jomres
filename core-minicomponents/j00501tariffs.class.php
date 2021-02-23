@@ -100,6 +100,11 @@ class j00501tariffs
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
 
+        $configurationPanel->setleft(jr_gettext('_JOMRES_CURRENCYFORMAT_STRIP_DECIMALS', '_JOMRES_CURRENCYFORMAT_STRIP_DECIMALS', false));
+        $configurationPanel->setmiddle($lists[ 'cformat_strip_decimals' ]);
+        $configurationPanel->setright();
+        $configurationPanel->insertSetting();
+
 		if ($mrConfig[ 'is_real_estate_listing' ] == 0) {
 			if (!get_showtime('is_jintour_property')) {
 				$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_TARIFFS_MODEL', '_JOMRES_COM_A_TARIFFS_MODEL', false));
