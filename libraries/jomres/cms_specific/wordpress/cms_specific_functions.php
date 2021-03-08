@@ -503,7 +503,7 @@ function jomres_cmsspecific_parseByBots($str)
 
 function jomres_cmsspecific_stringURLSafe($str)
 {
-	return sanitize_title($str);
+	return remove_accents($str);
 }
 	
 	/**
