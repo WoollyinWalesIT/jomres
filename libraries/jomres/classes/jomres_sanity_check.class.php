@@ -423,7 +423,6 @@ class jomres_sanity_check
 			if (
 				$current_property_details->property_street == '' || 
 				$current_property_details->property_town == '' || 
-				$current_property_details->property_region == '' || 
 				$current_property_details->property_country_code == ''
 				) {
 				$message = jr_gettext('_JOMRES_ADDRESS_SANITY_CHECK', '_JOMRES_ADDRESS_SANITY_CHECK', false);
