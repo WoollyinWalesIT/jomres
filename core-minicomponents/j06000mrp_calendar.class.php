@@ -110,20 +110,28 @@ class j06000mrp_calendar
 		$counter = 1;
 
 		if (!$show_just_month) {
-			$this->retVals = '<div class="row">';
+			$this->retVals = '<div class="container-fluid">
+					<div class="row">
+					';
 
 
 			for ($start_month; $counter <= $months_to_show; ++$start_month) {
-				$this->retVals .= '<div class="card shadow-sm m-1" style="width: 12em;">';
+				$this->retVals .= '<div class="col-md-4 col-sm-6">';
 				$this->retVals .= $this->makecal($start_month, $start_year, $property_uid);
 				if ($start_month == 12) {
 					$start_year = $start_year + 1;
 					$start_month = 0;
 				}
-				$this->retVals .= "</div>\n";
+                $this->retVals .= "</div>\n";
+                if ($counter % 3 == 0 and $counter < 72) {
+                    $this->retVals .= '<div class="clearfix"></div>';
+                }
 				++$counter;
 			}
-			$this->retVals .= '</div>';
+            $this->retVals .= '
+					</div>
+				</div>
+				';
 		} else {
 			$this->retVals .= $this->makecal($start_month, $start_year, $property_uid);
 		}
