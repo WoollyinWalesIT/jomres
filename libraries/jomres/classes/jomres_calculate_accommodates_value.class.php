@@ -93,6 +93,7 @@ class jomres_calculate_accommodates_value
 		} else {
 			$query = "UPDATE #__jomres_settings SET `value` = ".($accommodates_adults + $accommodates_children)." WHERE `property_uid` = ".(int) $this->property_uid." AND `akey` = 'accommodates' ";
 		}
+        $mrConfig = getPropertySpecificSettings($this->property_uid , true );
 
 		if (!doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS', '_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS', false))) {
 			throw new Exception('Error: accommodates setting insert failed.');

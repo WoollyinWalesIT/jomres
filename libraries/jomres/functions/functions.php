@@ -4370,13 +4370,14 @@ function getImageForProperty($imageType, $property_uid, $itemUid)
  */
 function getPropertySpecificSettings($property_uid = null , $force_reload = false )
 {
-	$mrConfig = array();
 
 	$propertyConfig = jomres_singleton_abstract::getInstance('jomres_config_property_singleton');
 
 	if ($propertyConfig->property_uid == 0) {
 		$propertyConfig->init($property_uid , $force_reload );
-	}
+	} else if ($force_reload) {
+        $propertyConfig->init($property_uid , true );
+    }
 
 	if ($property_uid == null) {
 		$mrConfig = $propertyConfig->get();
