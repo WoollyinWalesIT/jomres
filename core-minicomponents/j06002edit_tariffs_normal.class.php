@@ -90,10 +90,10 @@ class j06002edit_tariffs_normal
 		//normal mode created just one rates_uid and one tarifftype_id for each room type, there can`t be more for the same room type.
 		foreach ($basic_property_details->this_property_room_classes as $k => $v) {
 			$existing_rooms[ $k ][ 'room_uids' ] = array();
-			$existing_rooms[ $k ][ 'max_people' ] = 1;
+			$existing_rooms[ $k ][ 'max_people' ] = 2;
 			$existing_tariffs[ $k ][ 'rates_uid' ] = 0;
 			$existing_tariffs[ $k ][ 'roomrateperday' ] = 0.00;
-			$existing_tariffs[ $k ][ 'maxpeople_tariff' ] = 1;
+			$existing_tariffs[ $k ][ 'maxpeople_tariff' ] = 2;
 			$existing_tariffs[ $k ][ 'tarifftype_id' ] = 0;
 			
 			if (!empty($basic_room_details->rooms)) {
