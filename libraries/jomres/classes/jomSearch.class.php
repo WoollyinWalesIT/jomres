@@ -530,11 +530,14 @@ class jomSearch
 		if (!empty($this->filter[ 'region' ]) && $property_ors) {
 			$filter = $this->filter[ 'region' ];
 
+
 			if ($filter != '%') {
 				$this->filter[ 'region' ] = jomres_cmsspecific_stringURLSafe($this->filter[ 'region' ]);
+
 				$region_id = find_region_id($this->filter[ 'region' ]);
+
 				if (!is_null($region_id)) {
-					$this->filter[ 'region' ] .= "' OR property_region = '".(int) $region_id.'';
+					$this->filter[ 'region' ] .= "' OR property_region = ".(int) $region_id;
 				} else {
 					$this->filter[ 'region' ] .= "'";
 				}
