@@ -1504,8 +1504,7 @@ jr_define('JOMRES_GOOGLE_MAP_OPTION_WEATHER_CELCIUS', 'Celsius');
 jr_define('JOMRES_GOOGLE_MAP_OPTION_WEATHER_FARENHEIT', 'Fahrenheit');
 jr_define('JOMRES_GOOGLE_MAP_OPTION_TRANSIT', 'capa de paso utilizada?');
 jr_define('JOMRES_GOOGLE_MAPS_POIS', 'Habilitar Gmap puntos de interés (incluyendo posiblemente sus competidores)?');
-jr_define('_JOMRES_META KEYWORDS', '
-Palabras clave Meta');
+jr_define('_JOMRES_METAKEYWORDS', 'Palabras clave Meta');
 jr_define('_JOMRES_SCAN_FOR_DIRECTIONS', 'Escanear este código en su teléfono para obtener direcciones para nosotros.');
 jr_define('_JOMRES_VIES_VATCHECK_INCORRECT_SYNTAX', 'El número de IVA que ha especificado no parece ser correcta. Usted debe tener algo como esto: BE805670816B01 ');
 jr_define('_JOMRES_VIES_VATCHECK_INCORRECT_COULDNOTVALIDATE', 'Número de IVA válido. Por favor, compruebe la validez de su IVA número con el número de IVA servicio de validación web Europa (VIES) ');
