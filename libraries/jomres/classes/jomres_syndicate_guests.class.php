@@ -79,6 +79,7 @@ class jomres_syndicate_guests
 		}
 		
 	$reply = new stdClass();
+	$reply->stats = new stdClass();
 	$reply->stats->bookings = jr_gettext('BOOKING_NOSHOW_UNKNOWN', 'BOOKING_NOSHOW_UNKNOWN', false);
 	$reply->stats->noshows = jr_gettext('BOOKING_NOSHOW_UNKNOWN', 'BOOKING_NOSHOW_UNKNOWN', false);
 	return $reply;
