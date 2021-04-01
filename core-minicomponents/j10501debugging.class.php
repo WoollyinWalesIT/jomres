@@ -60,6 +60,11 @@ class j10501debugging
 		$configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_DESC', '_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_DESC', false));
 		$configurationPanel->insertSetting();
 
+		$configurationPanel->setleft(jr_gettext('_JOMRES_SEND_GROUP_BY_FIX_TITLE', '_JOMRES_SEND_GROUP_BY_FIX_TITLE', false));
+		$configurationPanel->setmiddle($lists[ 'use_groupby_fix' ]);
+		$configurationPanel->setright(jr_gettext('_JOMRES_SEND_GROUP_BY_FIX_DESC', '_JOMRES_SEND_GROUP_BY_FIX_DESC', false));
+		$configurationPanel->insertSetting();
+
 		if ( $jrConfig[ 'admin_options_level' ] > 1 ) {
 			$configurationPanel->setleft(jr_gettext('_JOMRES_SEND_ERROR_EMAIL', '_JOMRES_SEND_ERROR_EMAIL', false));
 			$configurationPanel->setmiddle($lists[ 'sendErrorEmails' ]);

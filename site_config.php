@@ -216,4 +216,9 @@ $jrConfig = array(
   'force_reapproval_on_automatic_unpublish' => '0',
   'useSyndication'  => '0',
   'compatability_property_configuration'  => '0',
+  'use_groupby_fix'  => '0',
+
+
 );
+
+

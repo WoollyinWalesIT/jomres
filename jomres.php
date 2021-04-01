@@ -50,7 +50,14 @@ try {
 	//site config object
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig = $siteConfig->get();
-	
+
+
+	if ($jrConfig[ 'use_groupby_fix' ] == 1 ) {
+        define("SET_GLOBAL_STRING" , "SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
+    } else {
+        define("SET_GLOBAL_STRING" , "");
+    }
+
 	//request log
 	if ($jrConfig['development_production'] == 'development') {
 		request_log();

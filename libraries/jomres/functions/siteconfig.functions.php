@@ -372,7 +372,9 @@ function showSiteConfig()
 	$lists[ 'prioritise_sitewide_label_definitions' ] = jomresHTML::selectList($yesno, 'cfg_prioritise_sitewide_label_definitions', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'prioritise_sitewide_label_definitions' ]);
 	
 	$lists[ 'generate_random_emails' ] = jomresHTML::selectList($yesno, 'cfg_generate_random_emails', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'generate_random_emails' ]);
-	
+
+  	$lists[ 'use_groupby_fix' ] = jomresHTML::selectList($yesno, 'cfg_use_groupby_fix', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_groupby_fix' ]);
+
 	$componentArgs = array();
 	$componentArgs[ 'lists' ] = $lists;
 	$componentArgs[ 'jsInputFormatDropdownList' ] = $jsInputFormatDropdownList;
