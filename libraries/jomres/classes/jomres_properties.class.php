@@ -355,16 +355,18 @@ class jomres_properties
 				throw new Exception('Error: is_real_estate_listing setting insert failed.');
 			}
 
-		$webhook_notification							  	= new stdClass();
-		$webhook_notification->webhook_event				= 'property_created';
-		$webhook_notification->webhook_event_description	= 'Logs when a new property is created.';
-		$webhook_notification->webhook_event_plugin		 	= 'core';
-		$webhook_notification->data						 	= new stdClass();
-		$webhook_notification->data->property_uid		   	= $this->propertys_uid;
 
-		add_webhook_notification($webhook_notification);
 		}
 
+        $webhook_notification							  	= new stdClass();
+        $webhook_notification->webhook_event				= 'property_created';
+        $webhook_notification->webhook_event_description	= 'Logs when a new property is created.';
+        $webhook_notification->webhook_event_plugin		 	= 'core';
+        $webhook_notification->data						 	= new stdClass();
+        $webhook_notification->data->property_uid		   	= $this->propertys_uid;
+
+        add_webhook_notification($webhook_notification);
+        
 		//insert new manager
 		if (!$thisJRUser->userIsManager) {
 			$jomres_users = jomres_singleton_abstract::getInstance('jomres_users');
