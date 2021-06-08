@@ -43,46 +43,60 @@ class j99994webhook_watcher
 		if ( get_showtime('task') == 'background_process') {
 			return;
 		}
-		
-		$property_uid 	= (int)get_showtime("property_uid");
 
-		$manager_id 	= 0;
-		$all_webhooks 	= array();
-		
-		logging::log_message("Webhook watcher start." , 'Webhooks', 'DEBUG'  );
+        $webhook_messages = get_showtime('webhook_messages');
+        if (is_array($webhook_messages)) {
+           $webhook_messages = array_unique( $webhook_messages, SORT_REGULAR ); // Remove duplicate objects
+        }
 
-		if ($property_uid == 0 ) {
-			logging::log_message("Webhook watcher. Property uid not found. Returning. " , 'Webhooks', 'DEBUG'  );
-			return;
-		}
-	   
-		$property_manager_xref = get_showtime('property_manager_xref');
+        if ( get_showtime('task') == 'save_new_property') {
+            // We can rely on the JRUser object
+            $thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+            $thisJRUser->init_user($thisJRUser->id);
+            if ($thisJRUser->userIsManager) {
+                $manager_id 	= $thisJRUser->id;
+                $property_uid 	= end($thisJRUser->authorisedProperties);
+            } else {
+                logging::log_message("Webhook watcher. Non-registered user attempting to create property webhook event. Returning. " , 'Webhooks', 'DEBUG'  );
+                return;
+            }
+        } else {
+            $property_uid 	= (int)get_showtime("property_uid");
+            $manager_id 	= 0;
+            $all_webhooks 	= array();
 
-		if (is_null($property_manager_xref)) {
-			$property_manager_xref = build_property_manager_xref_array();
-		}
+            logging::log_message("Webhook watcher start." , 'Webhooks', 'DEBUG'  );
 
-		if (array_key_exists($property_uid,  $property_manager_xref)) {
-			$manager_id = (int)$property_manager_xref[ $property_uid ];
-		}
-		
-		if ( $manager_id == 0 ) { // The function will try to find the manager id for a property. If it cannot be found the function will return the first super property manager's id will be returned. It's a last-ditch attempt to find a manager's id for a property. In the case of Beds24 calls, if there are more than one super property manager, and if the the first super property manager isn't registered with Beds24 then bookings still will not be sent.
-			$manager_id = (int)find_manager_id_for_property_uid($property_uid);
-		}
+            if ($property_uid == 0 ) {
+                logging::log_message("Webhook watcher. Property uid not found. Returning. " , 'Webhooks', 'DEBUG'  );
+                return;
+            }
 
-		if ( $manager_id == 0 ) {
-			logging::log_message("Webhook watcher. Manager id cannot be found for property. Returning. " , 'Webhooks', 'DEBUG'  );
-			return;
-		}
-		
-		jr_import("webhooks");
+            $property_manager_xref = get_showtime('property_manager_xref');
+
+            if (is_null($property_manager_xref)) {
+                $property_manager_xref = build_property_manager_xref_array();
+            }
+
+            if (array_key_exists($property_uid,  $property_manager_xref)) {
+                $manager_id = (int)$property_manager_xref[ $property_uid ];
+            }
+
+            if ( $manager_id == 0 ) { // The function will try to find the manager id for a property. If it cannot be found the function will return the first super property manager's id will be returned. It's a last-ditch attempt to find a manager's id for a property. In the case of Beds24 calls, if there are more than one super property manager, and if the the first super property manager isn't registered with Beds24 then bookings still will not be sent.
+                $manager_id = (int)find_manager_id_for_property_uid($property_uid);
+            }
+
+
+        }
+
+        if ( $manager_id == 0 ) {
+             logging::log_message("Webhook watcher. Manager id cannot be found for property. Returning. " , 'Webhooks', 'DEBUG'  );
+             return;
+        }
+
+        jr_import("webhooks");
 		$webhooks = new webhooks($manager_id);
 		$all_webhooks = $webhooks->get_all_webhooks();
-
-		$webhook_messages = get_showtime('webhook_messages');
-		if (is_array($webhook_messages)) {
-			$webhook_messages = array_unique( $webhook_messages, SORT_REGULAR ); // Remove duplicate objects
-		}
 
 		// We need to check for property uid being set. Regardless of what happens afterwards our first task is to clear the cmf rest api cache directory for this property of any files so that subsequent rest api calls can get fresh uptodate data.
 		// Next we'll add the webhook messages to the webhook events table
@@ -94,7 +108,7 @@ class j99994webhook_watcher
 			$channel_data['channel_name'] = Flight::get('channel_name');
 			$channel_data['user_id'] = (int)Flight::get('user_id');
 		}
-		
+
 		if (!empty($all_webhooks) && !empty($webhook_messages) ) {
 			jr_import('jomres_sanity_check');
 			$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
