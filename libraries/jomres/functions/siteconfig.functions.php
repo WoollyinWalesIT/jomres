@@ -149,7 +149,8 @@ function showSiteConfig()
 	$navbar_location = array();
 	$navbar_location[ ] = jomresHTML::makeOption('component_area', jr_gettext('_JOMRES_BOOTSTRAP_LOCATION_DEFAULT', '_JOMRES_BOOTSTRAP_LOCATION_DEFAULT', false));
 	$navbar_location[ ] = jomresHTML::makeOption('navbar-fixed-top', jr_gettext('_JOMRES_BOOTSTRAP_LOCATION_TOP', '_JOMRES_BOOTSTRAP_LOCATION_TOP', false));
-	$navbar_location[ ] = jomresHTML::makeOption('navbar-fixed-bottom', jr_gettext('_JOMRES_BOOTSTRAP_LOCATION_BOTTOM', '_JOMRES_BOOTSTRAP_LOCATION_BOTTOM', false));
+	// Disabled as looks like pants in BS3
+	//$navbar_location[ ] = jomresHTML::makeOption('navbar-fixed-bottom', jr_gettext('_JOMRES_BOOTSTRAP_LOCATION_BOTTOM', '_JOMRES_BOOTSTRAP_LOCATION_BOTTOM', false));
 	$navbar_location_dropdown = jomresHTML::selectList($navbar_location, 'cfg_navbar_location', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'navbar_location' ]);
 
 	if (!isset($jrConfig[ 'admin_options_level' ])) {

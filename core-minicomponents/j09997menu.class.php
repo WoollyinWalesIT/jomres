@@ -184,7 +184,10 @@ class j09997menu
 		
 		//user feedback
 		$output['USER_FEEDBACK'] = get_showtime('user_feedback');
-		
+
+        $siteConfig = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+        $jrConfig   = $siteConfig->get();
+
 		//navbar location
 		if (!isset($jrConfig[ 'navbar_location' ])) {
 			$jrConfig[ 'navbar_location' ] = 'component_area';
