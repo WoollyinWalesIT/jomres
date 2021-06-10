@@ -88,6 +88,10 @@ class core_package_management
 	 */
 	private function install_packages()
 	{
+	    if ( _JOMRES_DETECTED_CMS == 'joomla4' ) {
+            var_dump($this->repos);exit;
+        }
+	    
 		foreach ($this->repos as $library => $repo) {
 			$this->install_package( $library , $repo);
 		}
