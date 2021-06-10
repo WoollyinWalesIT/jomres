@@ -366,7 +366,7 @@ class jomres_properties
         $webhook_notification->data->property_uid		   	= $this->propertys_uid;
 
         add_webhook_notification($webhook_notification);
-        
+
 		//insert new manager
 		if (!$thisJRUser->userIsManager) {
 			$jomres_users = jomres_singleton_abstract::getInstance('jomres_users');
