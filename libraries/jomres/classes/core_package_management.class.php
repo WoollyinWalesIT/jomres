@@ -88,6 +88,7 @@ class core_package_management
 	 */
 	private function install_packages()
 	{
+
 		foreach ($this->repos as $library => $repo) {
 			$this->install_package( $library , $repo);
 		}
@@ -104,14 +105,13 @@ class core_package_management
 	{
 		$this->download_location = JOMRES_TEMP_ABSPATH . 'package_libs' . JRDS ;
 		$local_archive = $this->download_location.'master_'.$library.'.zip';
-		
 		$remote_file_size = 0;
 		$local_file_size = -1;
 		if (is_file($local_archive)) {
 			$remote_file_size = $this->curl_get_file_size($repo['download_url']);
 			$local_file_size = filesize ($local_archive);
 		}
-		
+
 		if (!file_exists($local_archive) || $local_file_size != $remote_file_size) {
 			$this->download_package( $library , $repo['download_url'] , $local_archive );
 		}
@@ -189,6 +189,11 @@ class core_package_management
 
 	private function download_package( $library , $remote_archive , $local_archive )
 	{
+        if (strpos(@ini_get('disable_functions'), 'set_time_limit') === false) {
+            $currTimeLimit = ini_get('max_execution_time');
+            @set_time_limit($currTimeLimit); // This setting is absolutely required for systems that will use channel management functionality as deferred notifications to Beds24 can take quite a while. Ideally we'd set this to 0 however some installations, particularly Wordpress installations that may be on "budget" and or shared hosting packages might throw at minimum a warning about setting the limit to 0. We'll try instead to set it to the max execution time and hope that that's enough. It will be in 99% of cases.
+        }
+
 		$this->file_modification_flag_file = str_replace ( ".zip" , ".txt" , $local_archive );
 
 		if (file_exists($local_archive)) {
@@ -198,7 +203,7 @@ class core_package_management
 		}
 
 		$last_local_file_mtime = -1;
-		if (file_exists($this->file_modification_flag_file)) {
+		if ( file_exists($this->file_modification_flag_file) && file_exists($local_archive) ) {
 			$last_local_file_mtime = (int)file_get_contents($this->file_modification_flag_file);
 		}
 
@@ -230,8 +235,12 @@ class core_package_management
 			
 			$data = curl_exec ($ch);
 			$download_error = curl_error($ch); 
-			
+
 			curl_close ($ch);
+
+			if (strstr($download_error,"Operation timed out")) {
+                throw new Exception("Package file download timed out! ".$download_error );
+            }
 
 			$file = fopen( $local_archive , "w+" );
 
