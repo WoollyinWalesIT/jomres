@@ -196,6 +196,8 @@ class j00004a_init_javascript_css_files
 		} else {
                 switch (jomres_bootstrap_version()) {
                     case '':
+                        $javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap-editable/js/', 'bootstrap-editable.min.js');
+                        $css_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap-editable/css/', 'bootstrap-editable.css');
                         break;
                     case '2':
                         $javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap-editable/js/', 'bootstrap-editable.min.js');
