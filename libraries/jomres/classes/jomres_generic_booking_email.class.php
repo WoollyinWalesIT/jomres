@@ -286,7 +286,7 @@ class jomres_generic_booking_email
 
 			if (!file_exists(JOMRES_MPDF_ABSPATH.JRDS.$terms_pdf_name )) {
 				$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-				$pdf = $MiniComponents->specificEvent('06000', 'terms', array('property_uid' => $this->property_uid , "as_pdf" => true , $output_now => false ));
+				$pdf = $MiniComponents->specificEvent('06000', 'terms', array('property_uid' => $this->property_uid , "as_pdf" => true , "output_now" => false ));
 				file_put_contents(JOMRES_MPDF_ABSPATH.JRDS.$terms_pdf_name , $pdf );
 			}
 			
