@@ -50,6 +50,9 @@ class j06000terms
 
 			return;
 		}
+
+        $pdf_test_mode = false;
+
 		$property_uid = intval(jomresGetParam($_REQUEST, 'property_uid', 0));
 		
 		if (isset($componentArgs['as_pdf'])) {
@@ -59,7 +62,11 @@ class j06000terms
 		} else {
 			$as_pdf = false;
 		}
-		
+
+		if ($pdf_test_mode == true ) {
+		    $as_pdf = true;
+        }
+
 		if (isset($componentArgs['output_now'])) {
 			$output_now = (bool)$componentArgs['output_now'];
 		} elseif ( isset($_REQUEST['output_now']) ) {
@@ -90,8 +97,14 @@ class j06000terms
 		$tmpl = new patTemplate();
 		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
 		$tmpl->addRows('property_deets', $property_deets);
-		
-		
+
+        if ($pdf_test_mode == true ) {
+            $pdf = output_pdf($tmpl->getParsedTemplate() , $property[ 'HPOLICIESDISCLAIMERS' ] , true );
+            header("Content-type:application/pdf");
+            echo $pdf;
+            exit;
+        }
+
 		if ($as_pdf) {
 			$tmpl->readTemplatesFromInput('terms_pdf.html');
 			$pdf = output_pdf($tmpl->getParsedTemplate() , $property[ 'HPOLICIESDISCLAIMERS' ] , true ); 
