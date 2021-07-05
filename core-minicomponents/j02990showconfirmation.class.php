@@ -470,6 +470,23 @@ class j02990showconfirmation
 		}
 		$booking_parts[ 'TOTALINPARTY' ] = $bookingDeets[ 'total_in_party' ];
 
+        if ($mrConfig[ 'tariffmode' ] == '5' ) {
+            $inparty = 0;
+            if ( isset($bookingDeets[ 'standard_guest_numbers' ] ) ){
+                $inparty = $inparty + $bookingDeets[ 'standard_guest_numbers' ];
+            }
+
+            if ( isset($bookingDeets[ 'extra_guest_numbers' ] ) ){
+                $inparty = $inparty + $bookingDeets[ 'extra_guest_numbers' ];
+            }
+
+            if ( isset($bookingDeets[ 'child_numbers' ] ) ){
+                foreach (  $bookingDeets[ 'child_numbers' ] as $key=>$children ) {
+                    $inparty = $inparty + $children;
+                }
+            }
+            $booking_parts[ 'TOTALINPARTY' ] =  $inparty;
+        }
 		if ($bookingDeets[ 'single_person_suppliment' ] != 0) {
 			$booking_parts[ 'HSINGLEPERSON_COST' ] = jr_gettext('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST', '_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST');
 			$booking_parts[ 'SINGLEPERSON_COST' ] = output_price($bookingDeets[ 'single_person_suppliment' ]);
