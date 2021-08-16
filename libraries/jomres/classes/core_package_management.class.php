@@ -191,7 +191,7 @@ class core_package_management
 	{
         if (strpos(@ini_get('disable_functions'), 'set_time_limit') === false) {
             $currTimeLimit = ini_get('max_execution_time');
-            @set_time_limit($currTimeLimit); // This setting is absolutely required for systems that will use channel management functionality as deferred notifications to Beds24 can take quite a while. Ideally we'd set this to 0 however some installations, particularly Wordpress installations that may be on "budget" and or shared hosting packages might throw at minimum a warning about setting the limit to 0. We'll try instead to set it to the max execution time and hope that that's enough. It will be in 99% of cases.
+            set_time_limit($currTimeLimit);
         }
 
 		$this->file_modification_flag_file = str_replace ( ".zip" , ".txt" , $local_archive );
@@ -229,7 +229,7 @@ class core_package_management
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-			curl_setopt($ch, CURLOPT_TIMEOUT, 50);
+			curl_setopt($ch, CURLOPT_TIMEOUT, $currTimeLimit);
 			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false); 
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); 
 			
