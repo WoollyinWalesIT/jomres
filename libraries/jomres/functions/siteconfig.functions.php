@@ -411,7 +411,12 @@ function showSiteConfig()
 	<?php
 	echo $jrtb;
 
-	$configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel');
+    $bs_version = jomres_bootstrap_version();
+    if ($bs_version == '2' || $bs_version == '') {
+        $configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel');
+    } elseif ($bs_version == '5') {
+        $configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel_bootstrap5');
+    }
 
 	$componentArgs[ 'configurationPanel' ] = $configurationPanel;
 
@@ -420,7 +425,6 @@ function showSiteConfig()
 	$MiniComponents->triggerEvent('10501', $componentArgs); // Generate configuration options tabs
 
 	$configurationPanel->endTabs();
-
 	?>
 	</form>
 	<?php

@@ -20,25 +20,22 @@ defined('_JOMRES_INITCHECK') or die('');
 	 *
 	 */
 
-if (!using_bootstrap()) {
-	jr_import('jomres_content_tabs_normal');
 
-	class jomres_content_tabs extends jomres_content_tabs_normal
-	{
-	}
-} else {
-	$bs_version = jomres_bootstrap_version();
-	if ($bs_version == '2' ) {
-		jr_import('jomres_content_tabs_bootstrap');
-		class jomres_content_tabs extends jomres_content_tabs_bootstrap
-		{
-		}
+$bs_version = jomres_bootstrap_version();
+if ($bs_version == '2' ) {
+    jr_import('jomres_content_tabs_bootstrap');
+
+    class jomres_content_tabs extends jomres_content_tabs_bootstrap
+        {
+        }
+    } elseif ( $bs_version == '5' ) {
+        jr_import('jomres_content_tabs_bootstrap5');
+        class jomres_content_tabs extends jomres_content_tabs_bootstrap5
+        {
+        }
 	} else { // BS4
 		jr_import('jomres_content_tabs_bootstrap4');
 		class jomres_content_tabs extends jomres_content_tabs_bootstrap4
 		{
 		}
-
-	}
-
 }

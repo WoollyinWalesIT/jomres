@@ -3621,9 +3621,6 @@ function propertyConfiguration()
 
 	echo '<div class="well clearfix"><div class="pull-left">'.$output[ 'JOMRESTOOLBAR' ].'</div></div>';
 
-	if (!using_bootstrap()) {
-		$configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel');
-	} else {
 		$bs_version = jomres_bootstrap_version();
 		if ($bs_version == '2' || $bs_version == '') {
 			$configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel');
@@ -3631,8 +3628,9 @@ function propertyConfiguration()
 			$configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel_bootstrap3');
 		} elseif ($bs_version == '4') {
 			$configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel_bootstrap4');
-		}
-	}
+		} elseif ($bs_version == '5') {
+            $configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel_bootstrap5');
+        }
 
 	$componentArgs[ 'configurationPanel' ]  = $configurationPanel;
     $componentArgs['is_channel_property']   = is_channel_property($property_uid);
@@ -3641,8 +3639,8 @@ function propertyConfiguration()
 
 	$MiniComponents->triggerEvent('00501', $componentArgs); // Generate configuration options tabs
 
-			$configurationPanel->endTabs(); ?>
-		</form>
+	$configurationPanel->endTabs(); ?>
+	</form>
 
 	<?php
 	ob_end_flush();

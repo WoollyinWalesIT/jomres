@@ -61,7 +61,15 @@ class jomres_configpanel extends jomres_content_tabs
 					<div class="col	">' .$this->right.'</div>
 				</div>
 				';
-			} else {
+			} elseif ( jomres_bootstrap_version() == '5' ) {
+                $this->panes[ ] = '
+				<div class="row ' .$rowclass.'">
+					<div class="col">' .$this->left.'</div>
+					<div class="col">' .$this->middle.'</div>
+					<div class="col	">' .$this->right.'</div>
+				</div>
+				';
+            } else {
 				$this->panes[ ] = '
 				<div class="row-fluid ' .$rowclass.'">
 					<div class="span3">' .$this->left.'</div>
