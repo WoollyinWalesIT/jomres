@@ -61,7 +61,7 @@ class jomresItemToolbar
 		if ($submitOnClick) {
 			$item = '<a class="'.$buttonClass.' btn-sm" href="javascript:jomres_submitbutton(\''.$task.'\');" '.$otherParams.'><i class="'.$icon.'"></i> '.$title.'</a> ';
 		} else {
-			$item = '<a class="'.$buttonClass.' btn-sm nav-link" href="'.$link.'" '.$otherParams.'><i class="'.$icon.'"></i> '.$title.'</a> ';
+			$item = '<a class="'.$buttonClass.' btn-sm" href="'.$link.'" '.$otherParams.'><i class="'.$icon.'"></i> '.$title.'</a> ';
 		}
 
 		$this->items[] = $item;
