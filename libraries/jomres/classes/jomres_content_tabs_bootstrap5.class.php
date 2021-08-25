@@ -113,15 +113,7 @@ class jomres_content_tabs_bootstrap5
      */
     public function endTabs()
     {
-        echo '<div role="tablist">
-		';
-        foreach ($this->paneLink as $panelHead) {
-            echo $panelHead;
-        }
-        echo '</div>
-		';
-
-        foreach ($this->panes as $counter=>$pane) {
+    foreach ($this->panes as $counter=>$pane) {
             echo
             $pane['pane_button'].
                 '  

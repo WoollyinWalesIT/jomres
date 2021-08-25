@@ -12,12 +12,12 @@ document.addEventListener('DOMContentLoaded', function(){
 
 <div id="jomres-menu-pinned" style="display:none;">
 	<nav class="navbar navbar-expand-lg navbar-light bg-light {NAVBAR_LOCATION} {NAVBAR_INVERSE}" role="navigation">
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarJomresMainMenu" aria-controls="navbarJomresMainMenu" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-		<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+		<div class="collapse navbar-collapse justify-content-md-center" id="navbarJomresMainMenu">
 		
-			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+			<ul class="navbar-nav">
 				<patTemplate:tmpl name="menu_sections">
 					{SECTION}
 				</patTemplate:tmpl>

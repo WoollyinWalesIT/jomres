@@ -61,7 +61,9 @@ if (!using_bootstrap()) {
 		$the_toolbar_class_filename = 'jomres_toolbar_bootstrap3';
 	} elseif ($bs_version == '4') {
 		$the_toolbar_class_filename = 'jomres_toolbar_bootstrap4';
-	}
+	} elseif ($bs_version == '5') {
+        $the_toolbar_class_filename = 'jomres_toolbar_bootstrap5';
+    }
 
 	jr_import($the_toolbar_class_filename);
 	jr_import('jomresItemToolbar');
