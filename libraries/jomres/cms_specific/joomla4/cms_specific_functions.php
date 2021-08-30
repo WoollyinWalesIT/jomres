@@ -291,6 +291,10 @@ function jomres_cmsspecific_addheaddata($type, $path = '', $filename = '', $incl
 		return;
 	}
 
+    if ($filename == 'jquery.js') {
+        return;
+    }
+
     if (jomres_cmsspecific_areweinadminarea()) {
         $in_admin_area = true;
 
@@ -332,7 +336,22 @@ function jomres_cmsspecific_addheaddata($type, $path = '', $filename = '', $incl
                     $doc->addScript($data);
             }
             else {
-                $wa->registerAndUseScript($filename,  $data, [], [], []);
+                $dependency = 'keepalive';
+
+                if (  $filename == 'jquery-ui.min.js' ) {
+                    $dependency = 'jquery';
+                }
+
+                if ( $filename == 'jomres.js' || $filename == 'no-conflict.js' ) {
+                    $dependency = 'bootstrap.es5';
+                }
+                if ( strstr( $filename,  'datepicker-' )) {
+                    $dependency = 'bootstrap.es5';
+                }
+                if ( strstr( $filename,  'galleria.classic.min.js' )) {
+                    $dependency = 'galleria.min.js';
+                }
+                $wa->registerAndUseScript($filename,  $data, [], [], [$dependency]);
             }
 
 			break;
