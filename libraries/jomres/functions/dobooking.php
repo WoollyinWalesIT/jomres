@@ -734,7 +734,12 @@ $manager_pricing = array();
 			$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
 			$tmpl->readTemplatesFromInput('consent_form_wrapper.html');
 			echo $tmpl->getParsedTemplate();
-			echo "<script>jomresJquery('#consentForm').modal('show');</script>"; 
+			if ( jomres_bootstrap_version() != "5" ) {
+                echo "<script>window.onload = function() {jomresJquery('#consentForm').modal('show');}</script>";
+            } else {
+                echo "<script>window.onload = function() {var myModal = new bootstrap.Modal(document.getElementById('#consentForm') , {} );}</script>";
+            }
+
 		} else {
 			$jomres_gdpr_optin_consent->optedin = true;
 			$jomres_gdpr_optin_consent->set_user_id($thisJRUser->id);
