@@ -21,6 +21,7 @@ defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.'
 	 */
 use Joomla\CMS\Factory;
 
+
 function jomres_cmsspecific_error_logging_cms_files_to_not_backtrace()
 {
 	return array('application.php', 'mcHandler.class.php', 'site.php', 'cms.php', 'helper.php');
@@ -290,8 +291,19 @@ function jomres_cmsspecific_addheaddata($type, $path = '', $filename = '', $incl
 		return;
 	}
 
-	$app = JFactory::getApplication();
-	$doc = $app->getDocument();
+    if (jomres_cmsspecific_areweinadminarea()) {
+        $in_admin_area = true;
+
+        $app = JFactory::getApplication();
+	    $doc = $app->getDocument();
+    } else {
+        $in_admin_area = false;
+
+        $app = Factory::getApplication();
+        $app->loadDocument();
+        $wa = Factory::getApplication()->getDocument()->getWebAssetManager();
+        $wr = $wa->getRegistry();
+    }
 
 	JHtml::_('bootstrap.framework');
 
@@ -302,7 +314,7 @@ function jomres_cmsspecific_addheaddata($type, $path = '', $filename = '', $incl
 
 	if (strpos($path, 'http') === false) {
 		$data = JURI::base(true).'/'.$path.$filename.$version;
-		if (jomres_cmsspecific_areweinadminarea()) {
+		if ( $in_admin_area ) {
 			$data = str_replace('/administrator/', '/', $data);
 		}
 	} else {
@@ -312,14 +324,27 @@ function jomres_cmsspecific_addheaddata($type, $path = '', $filename = '', $incl
 	switch ($type) {
 		case 'javascript':
 			//JHTML::script( $path . $filename, false ); // If we want to include version numbers in script filenames, we can't use this. Instead we need to directly access JFactory as below
-			if ($async)
-				$doc->addScript($data,"text/javascript",false,true);
-			else
-				$doc->addScript($data);
+            if ( $in_admin_area ) {
+
+                if ($async)
+                    $doc->addScript($data, "text/javascript", false, true);
+                else
+                    $doc->addScript($data);
+            }
+            else {
+                $wa->registerAndUseScript($filename,  $data, [], [], []);
+            }
+
 			break;
 		case 'css':
 			//JHTML::stylesheet( $path . $filename, array (), false, false ); // If we want to include version numbers in script filenames, we can't use this. Instead we need to directly access JFactory as below
-			$doc->addStyleSheet($data);
+
+            if ( $in_admin_area ) {
+                $doc->addStyleSheet($data);
+            } else {
+                $wa->registerAndUseStyle($filename,  $data, [], [], []);
+            }
+
 			break;
 		default:
 

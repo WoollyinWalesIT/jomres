@@ -61,7 +61,7 @@ function load_cms_environment()
 		/** Loads the WordPress Environment */
 		require_once dirname(__FILE__).'/../wp-load.php';
 	} else {
-		die('Could not detect CMS. Exitting.');
+		die('Could not detect CMS. Exiting.');
 	}
 
 	return true;
