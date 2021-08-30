@@ -98,7 +98,7 @@ class j06000show_property_header
 		if ($stars != '0') {
 			$starslink = '';
 			for ($i = 1; $i <= $stars; ++$i) {
-				$starslink .= ' <i class="fa fa-star" aria-hidden="true"></i> ';
+				$starslink .= ' <i class="fa fa-star pe-none" aria-hidden="true"></i> ';
 			}
 			$starslink .= '';
 		}
