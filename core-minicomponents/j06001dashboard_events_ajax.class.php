@@ -100,7 +100,8 @@ class j06001dashboard_events_ajax
 		$from = date('Y/m/d', strtotime($from));
 		$to = date('Y/m/d', strtotime($to));
 
-		$query = "SELECT a.contract_uid,
+        $query = SET_GLOBAL_STRING.
+            "SELECT a.contract_uid,
 						DATE_FORMAT(a.arrival, '%Y-%m-%d') AS arrival,
 						DATE_FORMAT(a.departure, '%Y-%m-%d') AS departure,
 						a.guest_uid,
@@ -132,6 +133,7 @@ class j06001dashboard_events_ajax
 		$query .= 'GROUP BY a.contract_uid,b.room_uid ';
 
 		$contractList = doSelectSql($query);
+
 		if (!empty($contractList)) {
 			
 
