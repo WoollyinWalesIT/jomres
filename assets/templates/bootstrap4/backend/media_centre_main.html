@@ -126,10 +126,11 @@ document.addEventListener('DOMContentLoaded', function () {
     'use strict';
     // Change this to the location of your server-side upload handler:
     var url = ajax_url + '&task=media_centre_handler',
+    jQVersion3 = (jomresJquery.fn.jquery).startsWith('3.'),
         uploadButton = jomresJquery('<button/>')
             .addClass('btn btn-primary start')
-            .prop('disabled', true)
-            .text('Processing...')
+            .prop('disabled', !jQVersion3)
+            .text(jQVersion3?'{_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD}':'Processing...')
             .on('click', function () {
                 var $this = jomresJquery(this),
                     data = $this.data();
@@ -141,72 +142,72 @@ document.addEventListener('DOMContentLoaded', function () {
                         data.abort();
                     });
 
-				// Vince
-				var resource_types = jomresJquery('#resource_types');
-				var resource_id    = jomresJquery('#resource_id');
-				data.formData = {resource_type: resource_types.val() , resource_id:  resource_id.val() };
+                // Vince
+                var resource_types = jomresJquery('#resource_types');
+                var resource_id    = jomresJquery('#resource_id');
+                data.formData = {resource_type: resource_types.val() , resource_id:  resource_id.val() };
                 data.submit().always(function () {
                     $this.remove();
                 });
-				
+
             });
     jomresJquery('#fileupload').fileupload({
-		dropZone: jomresJquery('#dropzone'),
+        dropZone: jomresJquery('#dropzone'),
         url: url,
         dataType: 'json',
-        autoUpload: true,
+        autoUpload: false,
         acceptFileTypes: /(\.|\/){ALLOWED_FILE_TYPES}$/i,
         maxFileSize: 5000000, // 5 MB
         // Enable image resizing, except for Android and Opera,
         // which actually support image resizing, but fail to
         // send Blob objects via XHR requests:
         disableImageResize: false,
-		imageMaxWidth: {MAX_WIDTH}-1,
-		imageMaxHeight: {MAX_WIDTH}-1,
+        imageMaxWidth: {MAX_WIDTH}-1,
+        imageMaxHeight: {MAX_WIDTH}-1,
         previewMaxWidth: 100,
         previewMaxHeight: 100,
         previewCrop: true
     }).on('fileuploadadd', function (e, data) {
-        var resource_types = jomresJquery('#resource_types');
-        var resource_id    = jomresJquery('#resource_id');
-        data.formData = {resource_type: resource_types.val() , resource_id:  resource_id.val() };
         data.context = jomresJquery('<div/>').appendTo('#files');
         jomresJquery.each(data.files, function (index, file) {
             var node = jomresJquery('<p/>')
-                    .append(jomresJquery('<span/>').text(file.name));
-					//.css({ float: "left" })
-					//.addClass( "well well-small" );
-					 
+                .append(jomresJquery('<span/>').text(file.name));
+            //.css({ float: "left" })
+            //.addClass( "well well-small" );
+
             if (!index) {
                 node
                     .append('<br>')
                     .append(uploadButton.clone(true).data(data));
             }
-			node.addClass('alert');
+            node.addClass('alert');
             node.appendTo(data.context);
-			
+
         });
-		
-		jomresJquery('#files').show("slow");
-		
+
+        jomresJquery('#files').show("slow");
+
     }).on('fileuploadprocessalways', function (e, data) {
-        var index = data.index,
-            file = data.files[index],
-            node = jomresJquery(data.context.children()[index]);
-        if (file.preview) {
-            node
-                .prepend('<br>')
-                .prepend(file.preview);
-        }
-        if (file.error) {
-            node
-                .append('<br>')
-                .append(file.error);
-        }
-        if (index + 1 === data.files.length) {
-            data.context.find('button')
-                .text('{_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD}')
-                .prop('disabled', !!data.files.error);
+        if (!jQVersion3) {
+            var index = data.index,
+                file = data.files[index],
+                node = jomresJquery(data.context.children()[index]);
+
+            if (file.preview) {
+                node
+                    .prepend('<br>')
+                    .prepend(file.preview);
+            }
+            if (file.error) {
+                node
+                    .append('<br>')
+                    .append(file.error);
+            }
+            if (index + 1 === data.files.length) {
+                data.context.find('button')
+                    .text('{_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD}')
+                    .prop('disabled', !!data.files.error);
+            }
         }
     }).on('fileuploadprogressall', function (e, data) {
         var progress = parseInt(data.loaded / data.total * 100, 10);
@@ -215,43 +216,45 @@ document.addEventListener('DOMContentLoaded', function () {
             progress + '%'
         );
     }).on('fileuploaddone', function (e, data) {
-		jomresJquery.each(data.files, function (index, file) {
-			jomresJquery(data.context.children()[index]).attr('id', file.random_id);
-			jomresJquery('#'+file.random_id).parent().addClass('uploaded');
-			jomresJquery('#'+file.random_id).addClass('alert alert-success');
-			jomresJquery('#progress .bar').css( 'width', '0%' );
-			if (file.hasOwnProperty ('error'))
-				{
-				jomresJquery.each(data.files, function (index, file) {
-				var error = '<div class="alert alert-error">' + file.error + '</div>';
-				jomresJquery(data.context.children()[index])
-					.append('<br>')
-					.append(error);
-					});
-				}
-			else
-				{
-				/*
-				var delete_link = '<a href="javascript:void(0);" class="btn btn-danger" onclick="delete_file(\''+file.deleteUrl+'\' , \''+file.random_id+'\')">{_JOMRES_MEDIA_CENTRE_BUTTON_DELETE}</a>';
-				var view_link = '<a href="'+file.url+'" target="_blank" class="btn btn-primary">{_JOMRES_MEDIA_CENTRE_BUTTON_VIEW}</a>';
-
-				var links = view_link + " " + delete_link;
-				
-				jomresJquery(data.context.children()[index])
-					.append(links);
-				*/	
-				jomresJquery(data.context.children()[index])
-					.fadeOut("normal", function() {
-						jomresJquery(this).remove();
-						});
-				
-				get_existing_images();
-				}
-			//
-			});
-		
-    }).on('fileuploadfail', function (e, data) { // This doesn't seem to work, moved to up a few lines
         jomresJquery.each(data.files, function (index, file) {
+            jomresJquery(data.context.children()[index]).attr('id', file.random_id);
+            jomresJquery('#'+file.random_id).parent().addClass('uploaded');
+            jomresJquery('#'+file.random_id).addClass('alert alert-success');
+            jomresJquery('#progress .bar').css( 'width', '0%' );
+            if (file.hasOwnProperty ('error'))
+            {
+                jomresJquery.each(data.files, function (index, file) {
+                    var error = '<div class="alert alert-error">' + file.error + '</div>';
+                    jomresJquery(data.context.children()[index])
+                        .append('<br>')
+                        .append(error);
+                });
+            }
+            else
+            {
+                /*
+                var delete_link = '<a href="javascript:void(0);" class="btn btn-danger" onclick="delete_file(\''+file.deleteUrl+'\' , \''+file.random_id+'\')">{_JOMRES_MEDIA_CENTRE_BUTTON_DELETE}</a>';
+                var view_link = '<a href="'+file.url+'" target="_blank" class="btn btn-primary">{_JOMRES_MEDIA_CENTRE_BUTTON_VIEW}</a>';
+
+                var links = view_link + " " + delete_link;
+
+                jomresJquery(data.context.children()[index])
+                    .append(links);
+                */
+                jomresJquery(data.context.children()[index])
+                    .fadeOut("normal", function() {
+                        jomresJquery(this).remove();
+                    });
+
+                get_existing_images();
+            }
+            //
+        });
+
+    }).on('fileuploadfail', function (e, data) { // This doesn't seem to work, moved to up a few lines
+
+        jomresJquery.each(data.files, function (index, file) {
+
             var error = jomresJquery('<span/>').text(file.error);
             jomresJquery(data.context.children()[index])
                 .append('<br>')
