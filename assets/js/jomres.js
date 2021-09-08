@@ -8,6 +8,14 @@ var killScroll = false; // IMPORTANT
 var last_scrolled_id = 0;
 
 jomresJquery(document).ready(function () {
+
+	// https://jquery.com/upgrade-guide/3.5/
+	//  redefining jQuery.htmlPrefilter after loading jQuery:
+	var rxhtmlTag = /<(?!area|br|col|embed|hr|img|input|link|meta|param)(([a-z][^\/\0>\x20\t\r\n\f]*)[^>]*)\/>/gi;
+	jQuery.htmlPrefilter = function( html ) {
+		return html.replace( rxhtmlTag, "<$1></$2>" );
+	};
+
 	jomresJquery.ajaxSetup({ cache: false });
 
 	if (navigator.appName == 'Microsoft Internet Explorer') {

@@ -1,0 +1,68 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<div id="property_details">
+	<div class="row">
+		<div id="gallerywrapper" class="col-xs-12 col-sm-12 col-md-7 col-lg-8">
+			<div class="well">{SLIDESHOW}</div>
+		</div>
+		<div class="col-xs-12 col-sm-12 col-md-5 col-lg-4" id="tour_target_property_details_buttons">
+			<div class="buttonswrapper well">
+				<div class="pdetails-reviews">
+					{REVIEWS_SUMMARY}
+				</div>
+				
+				<div class="pdetails-price">{REAL_ESTATE_PROPERTY_PRICE}</div>
+				
+				<div id="tour_target_inline_calendar" class="pdetails-availability-inline" align="center">{INLINE_CALENDAR}</div>
+				
+				<patTemplate:tmpl name="bookinglink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
+					<a href="{LINK}" class="btn btn-success btn-lg btn-block"><i class="fa fa-shopping-cart"></i> {TEXT}</a>
+				</patTemplate:tmpl>
+				
+				<patTemplate:tmpl name="slideshowlink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
+					<a href="{LINK}" class="btn btn-secondary btn-block">{TEXT}</a>
+				</patTemplate:tmpl>
+				<patTemplate:tmpl name="tariffslink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
+					<a href="{LINK}" class="btn btn-secondary btn-block">{TEXT}</a>
+				</patTemplate:tmpl>
+				<patTemplate:tmpl name="roomslistlink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
+					<a href="{LINK}" class="btn btn-secondary btn-block">{TEXT}</a>
+				</patTemplate:tmpl>
+				
+				<div class="pdetails-icons">
+					<div class="row">
+						<patTemplate:tmpl name="contactuslink" type="simpleCondition" requiredVars="link" unusedvars="nbsp">
+						<div class="col-xs-4" align="center">
+							<a href="{LINK}" class="pdetails-btn-icon" title="{TEXT}"><i class="fa fa-envelope"></i></a>
+						</div>
+						</patTemplate:tmpl>
+						<div class="col-xs-4" align="center">
+							<a href="{PRINT_LINK}" target="_blank" class="pdetails-btn-icon" title="{COMMON_PRINT}"><i class="fa fa-print"></i></a>
+						</div>
+						<div class="col-xs-4" align="center">
+							{QR_CODE_DIRECTIONS}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+	<p>&nbsp;</p>
+	<div class="tabbable">
+		<ul class="nav nav-tabs">
+			<patTemplate:tmpl name="tabs_titles">
+				<li class="{ACTIVE}"><a href="#{TAB_ANCHOR}" data-toggle="tab" id="{TAB_ID}">{TAB_TITLE}</a></li>
+			</patTemplate:tmpl>
+		</ul>
+		<div class="tab-content">
+			<patTemplate:tmpl name="tabs_content">
+				<div class="tab-pane {ACTIVE}" id="{TAB_ANCHOR}">
+					{TAB_CONTENT}
+				</div>
+			</patTemplate:tmpl>
+		</div>
+	</div>
+</div>
+<div class="clearfix"></div>
+</patTemplate:tmpl>

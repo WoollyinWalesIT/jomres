@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.6
+ * @version Jomres 9.23.7
  *
- * @copyright	2005-2020 Vince Wooll
+ * @copyright	2005-2021 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -57,6 +57,16 @@ class j16000save_initial_setup
 				case 'initial_setup_step_2':
 					$this->siteConfig->set_setting('is_single_property_installation', (int)$_REQUEST['is_single_property_installation'] );
 					$this->siteConfig->set_setting('initial_setup_step_2_completed', 1 );
+					break;
+				case 'initial_setup_step_3':
+					$setting = '';
+					if ( (int)$_REQUEST['bootstrap_version'] == '2' ) {
+						$setting = ''; // The first template set, back in 2011, didn't include the version although later versions do
+					} else {
+						$setting = (string)(int)$_REQUEST['bootstrap_version'];
+					}
+					$this->siteConfig->set_setting('bootstrap_version', $setting );
+					$this->siteConfig->set_setting('initial_setup_step_3_completed', 1 );
 					break;
 			}
 		}

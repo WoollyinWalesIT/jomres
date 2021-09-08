@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.6
+ * @version Jomres 9.23.7
  *
  * @copyright	2005-2019 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -88,10 +88,6 @@ class core_package_management
 	 */
 	private function install_packages()
 	{
-	    if ( _JOMRES_DETECTED_CMS == 'joomla4' ) {
-            var_dump($this->repos);exit;
-        }
-	    
 		foreach ($this->repos as $library => $repo) {
 			$this->install_package( $library , $repo);
 		}
@@ -108,14 +104,13 @@ class core_package_management
 	{
 		$this->download_location = JOMRES_TEMP_ABSPATH . 'package_libs' . JRDS ;
 		$local_archive = $this->download_location.'master_'.$library.'.zip';
-		
 		$remote_file_size = 0;
 		$local_file_size = -1;
 		if (is_file($local_archive)) {
 			$remote_file_size = $this->curl_get_file_size($repo['download_url']);
 			$local_file_size = filesize ($local_archive);
 		}
-		
+
 		if (!file_exists($local_archive) || $local_file_size != $remote_file_size) {
 			$this->download_package( $library , $repo['download_url'] , $local_archive );
 		}
@@ -193,6 +188,11 @@ class core_package_management
 
 	private function download_package( $library , $remote_archive , $local_archive )
 	{
+        if (strpos(@ini_get('disable_functions'), 'set_time_limit') === false) {
+            $currTimeLimit = ini_get('max_execution_time');
+            set_time_limit($currTimeLimit);
+        }
+
 		$this->file_modification_flag_file = str_replace ( ".zip" , ".txt" , $local_archive );
 
 		if (file_exists($local_archive)) {
@@ -202,7 +202,7 @@ class core_package_management
 		}
 
 		$last_local_file_mtime = -1;
-		if (file_exists($this->file_modification_flag_file)) {
+		if ( file_exists($this->file_modification_flag_file) && file_exists($local_archive) ) {
 			$last_local_file_mtime = (int)file_get_contents($this->file_modification_flag_file);
 		}
 
@@ -228,14 +228,18 @@ class core_package_management
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-			curl_setopt($ch, CURLOPT_TIMEOUT, 50);
+			curl_setopt($ch, CURLOPT_TIMEOUT, $currTimeLimit);
 			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false); 
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); 
 			
 			$data = curl_exec ($ch);
 			$download_error = curl_error($ch); 
-			
+
 			curl_close ($ch);
+
+			if (strstr($download_error,"Operation timed out")) {
+                throw new Exception("Package file download timed out! ".$download_error );
+            }
 
 			$file = fopen( $local_archive , "w+" );
 

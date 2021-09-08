@@ -1,0 +1,44 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<h2 class="page-header">{PAGETITLE}</h2>
+
+<div class="well">
+	<a href="{JOMRES_SITEPAGE_URL}&task=list_black_bookings" class="btn btn-secondary"><i class="fa fa-times"></i> {COMMON_CANCEL}</a>
+	<a href="{JOMRES_SITEPAGE_URL}&task=delete_black_booking&contract_uid={CONTRACTID}" class="btn btn-danger"><i class="fa fa-trash-o"></i> {COMMON_DELETE}</a>
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+		<strong>{BBDATE}</strong>
+	</div>
+	<div class="col-md-6">
+		{BBSTART}
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-6">
+		<strong>{BBDATEENDS}</strong>
+	</div>
+	<div class="col-md-6">
+		{BBENDS}
+	</div>
+</div>
+<p>&nbsp;</p>
+<h3 class="page-header">{INFO}</h3>
+
+<table width="100%" class="table table-striped table-condensed table-bordered">
+	<tr>
+		<th>{ROOM_NUMBER}</th>
+		<th>{ROOM_NAME}</th>
+	</tr>
+	<patTemplate:tmpl name="bookingsrows" unusedvars="strip">
+	<tr>
+		<td>{ROOMNO}</td>
+		<td>{ROOMNAME}</td>
+	</tr>
+	</patTemplate:tmpl>
+</table>
+<p>&nbsp;</p>
+<p class="alert alert-info">{REASON}</p>
+</patTemplate:tmpl>

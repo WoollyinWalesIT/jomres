@@ -1,0 +1,29 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<h2 class="page-header">{JOMRES_OCCUPANCY_LEVELS_TITLE} {ROOM_TYPE_NAME}</h2>
+	<p>{JOMRES_OCCUPANCY_LEVELS_INFO}</p>
+	<table width="100%" id="list_black_bookings" class="table table-striped">
+		<thead>
+		<tr>
+			<th></th>
+			<th>{_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES}</th>
+			<th>{JOMRES_OCCUPANCY_LEVELS_MAX_ADULTS}</th>
+			<th>{JOMRES_OCCUPANCY_LEVELS_MAX_CHILDREN}</th>
+			<th>{JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY}</th>
+		</tr>
+		</thead>
+		<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+			<tr>
+				<td>{EDITLINK}</td>
+				<td>{ROOM_TYPE_NAME}</td>
+				<td>{MAX_ADULTS}</td>
+				<td>{MAX_CHILDREN}</td>
+				<td>{MAX_OCCUPANCY}</td>
+			</tr>
+		</patTemplate:tmpl>
+		</tbody>
+	</table>
+
+
+</patTemplate:tmpl>

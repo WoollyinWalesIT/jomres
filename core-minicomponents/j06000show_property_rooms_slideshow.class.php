@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.6
+ * @version Jomres 9.23.7
  *
- * @copyright	2005-2020 Vince Wooll
+ * @copyright	2005-2021 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -90,7 +90,7 @@ class j06000show_property_rooms_slideshow
 				$room_uid = $room->room_uid;
 				foreach ($jomres_media_centre_images->images['rooms'][$room_uid] as $image) {
 					if ($image['large'] != $jomres_media_centre_images->multi_query_images['noimage-large']) {
-						$hash = md5_file($image['large']);
+						$hash = md5_file(JPATH_BASE.$image['large']);
 						if (!in_array($hash, $image_hashes)) {
 							$room_images[] = $image;
 							$image_hashes[] = $hash;

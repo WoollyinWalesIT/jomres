@@ -1,0 +1,91 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<div class="well">
+	<h3 class="page-header">{HEADER}</h3>
+
+	<div class="row">
+		<div class="col-md-5">
+			<strong>{HARRIVAL}</strong>
+		</div>
+		<div class="col-md-7">
+			{ARRIVAL}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-5">
+			<strong>{HDEPARTURE}</strong>
+		</div>
+		<div class="col-md-7">
+			{DEPARTURE}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-5">
+			<strong>{HROOMTOTAL}</strong>
+		</div>
+		<div class="col-md-7">
+			{ROOMTOTAL}
+		</div>
+	</div>
+	
+	<patTemplate:tmpl name="original_rooms" type="simpleCondition" requiredVars="original_room" unusedvars="nbsp">
+	<div class="row">
+		<div class="col-md-5">
+			&nbsp;
+		</div>
+		<div class="col-md-7">
+			{ORIGINAL_ROOM}
+		</div>
+	</div>
+	</patTemplate:tmpl>
+	
+	<div class="row">
+		<div class="col-md-5">
+			<strong>{HEXTRAS}</strong>
+		</div>
+		<div class="col-md-7">
+			{EXTRAS}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-5">
+			<strong>{HTOTAL}</strong>
+		</div>
+		<div class="col-md-7">
+			{TOTAL}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-5">
+			<strong>{HDISCOUNT}</strong>
+		</div>
+		<div class="col-md-7">
+			{DISCOUNT}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-5">
+			<strong>{HTOTALINPARTY}</strong>
+		</div>
+		<div class="col-md-7">
+			{TOTALINPARTY}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-5">
+			<strong>{HTAX}</strong>
+		</div>
+		<div class="col-md-7">
+			{TAX}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-5">
+			<strong>{HDEPOSIT}{DEPOSIT_PAID}</strong>
+		</div>
+		<div class="col-md-7">
+			{DEPOSIT}
+		</div>
+	</div>
+</div>
+</patTemplate:tmpl>

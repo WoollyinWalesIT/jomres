@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.6
+ * @version Jomres 9.23.7
  *
- * @copyright	2005-2020 Vince Wooll
+ * @copyright	2005-2021 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -355,15 +355,17 @@ class jomres_properties
 				throw new Exception('Error: is_real_estate_listing setting insert failed.');
 			}
 
-		$webhook_notification							  	= new stdClass();
-		$webhook_notification->webhook_event				= 'property_created';
-		$webhook_notification->webhook_event_description	= 'Logs when a new property is created.';
-		$webhook_notification->webhook_event_plugin		 	= 'core';
-		$webhook_notification->data						 	= new stdClass();
-		$webhook_notification->data->property_uid		   	= $this->propertys_uid;
 
-		add_webhook_notification($webhook_notification);
 		}
+
+        $webhook_notification							  	= new stdClass();
+        $webhook_notification->webhook_event				= 'property_created';
+        $webhook_notification->webhook_event_description	= 'Logs when a new property is created.';
+        $webhook_notification->webhook_event_plugin		 	= 'core';
+        $webhook_notification->data						 	= new stdClass();
+        $webhook_notification->data->property_uid		   	= $this->propertys_uid;
+
+        add_webhook_notification($webhook_notification);
 
 		//insert new manager
 		if (!$thisJRUser->userIsManager) {

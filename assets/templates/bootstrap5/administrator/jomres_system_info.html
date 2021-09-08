@@ -1,0 +1,17 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<div class="card">
+	<div class="card-body">
+		<h5 class="card-title">{_ADMIN_CPANEL_SYSTEM_INFO}</h5>
+		<div class="">
+			<div class="jomres-system-info">
+				<p>{_JOMRES_VERSIONCHECK_THISJOMRESVERSION} <span class="badge badge-success  pull-right">{THIS_JOMRES_VERSION}</span><p>
+				<p>{_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION} <span class="badge badge-success {JOMRES_VERSION_LABEL_CLASS} pull-right">{LATEST_JOMRES_VERSION}</span></p>
+				<div id="version_check_warning">
+					<div class="{HIGHLIGHT}">{ALERT}{ERROR}</div>
+					<div class="{HIGHLIGHT}">{UPDATEINFO} <br/>{_JOMRES_VERSIONCHECK_VERSIONWARNING_RENEWALS}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</patTemplate:tmpl>

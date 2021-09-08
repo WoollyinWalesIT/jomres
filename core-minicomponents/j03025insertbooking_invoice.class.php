@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.6
+ * @version Jomres 9.23.7
  *
- * @copyright	2005-2020 Vince Wooll
+ * @copyright	2005-2021 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -66,23 +66,29 @@ class j03025insertbooking_invoice
 
 		jr_import('jrportal_invoice');
 
-		$arrivalDate = $tmpBookingHandler->getBookingFieldVal('arrivalDate');
-		$departureDate = $tmpBookingHandler->getBookingFieldVal('departureDate');
-		$stayDays = $tmpBookingHandler->getBookingFieldVal('stayDays');
-		$single_person_suppliment = $tmpBookingHandler->getBookingFieldVal('single_person_suppliment');
-		$deposit_required = $tmpBookingHandler->getBookingFieldVal('deposit_required');
-		$extras = $tmpBookingHandler->getBookingFieldVal('extras');
-		$extrasquantities = $tmpBookingHandler->getBookingFieldVal('extrasquantities');
-		$room_total = $tmpBookingHandler->getBookingFieldVal('room_total');
-		$room_total_nodiscount = $tmpBookingHandler->getBookingFieldVal('room_total_nodiscount');
-		$tax = $tmpBookingHandler->getBookingFieldVal('tax');
-		$discounts = $tmpBookingHandler->getBookingFieldVal('discounts');
-		$resource = $tmpBookingHandler->getBookingFieldVal('resource');
-		$property_uid = $tmpBookingHandler->getBookingFieldVal('property_uid');
-		$depositpaidsuccessfully = $tmpBookingHandler->getBookingFieldVal('depositpaidsuccessfully');
-		$total_in_party = $tmpBookingHandler->getBookingFieldVal('total_in_party');
-		
-		if ($jrConfig['session_handler'] == 'database') {
+		$arrivalDate                = $tmpBookingHandler->getBookingFieldVal('arrivalDate');
+		$departureDate              = $tmpBookingHandler->getBookingFieldVal('departureDate');
+		$stayDays                   = $tmpBookingHandler->getBookingFieldVal('stayDays');
+		$single_person_suppliment   = $tmpBookingHandler->getBookingFieldVal('single_person_suppliment');
+		$deposit_required           = $tmpBookingHandler->getBookingFieldVal('deposit_required');
+		$extras                     = $tmpBookingHandler->getBookingFieldVal('extras');
+		$extrasquantities           = $tmpBookingHandler->getBookingFieldVal('extrasquantities');
+		$room_total                 = $tmpBookingHandler->getBookingFieldVal('room_total');
+		$room_total_nodiscount      = $tmpBookingHandler->getBookingFieldVal('room_total_nodiscount');
+		$tax                        = $tmpBookingHandler->getBookingFieldVal('tax');
+		$discounts                  = $tmpBookingHandler->getBookingFieldVal('discounts');
+		$resource                   = $tmpBookingHandler->getBookingFieldVal('resource');
+		$property_uid               = $tmpBookingHandler->getBookingFieldVal('property_uid');
+		$depositpaidsuccessfully    = $tmpBookingHandler->getBookingFieldVal('depositpaidsuccessfully');
+		$total_in_party             = $tmpBookingHandler->getBookingFieldVal('total_in_party');
+
+
+        $city_tax                   = convert_entered_price_into_safe_float($tmpBookingHandler->getBookingFieldVal('city_tax'));
+        $cleaning_fee               = convert_entered_price_into_safe_float($tmpBookingHandler->getBookingFieldVal('cleaning_fee'));
+        $extra_guest_price          = (int)$tmpBookingHandler->getBookingFieldVal('extra_guest_price');
+
+
+        if ($jrConfig['session_handler'] == 'database') {
 			$extrasvalues_items = $tmpBookingHandler->getBookingFieldVal('extrasvalues_items');
 			$third_party_extras = $tmpBookingHandler->getBookingFieldVal('third_party_extras');
 			$room_allocations = $tmpBookingHandler->getBookingFieldVal('room_allocations');
@@ -274,7 +280,37 @@ class j03025insertbooking_invoice
 				}
 			}
 
-			//3rd party extras like Jintour tours
+            if (  $city_tax > 0 ) {
+                $line_items[] = array('tax_code_id' => 0,
+                    'name' =>  jr_gettext('JOMRES_CITY_TAX_VALUE', 'JOMRES_CITY_TAX_VALUE' , false ,false),
+                    'description' => '',
+                    'init_price' => $city_tax,
+                    'init_qty' => 1,
+                    'init_discount' => 0,
+                );
+            }
+
+            if (  $cleaning_fee > 0 ) {
+                $line_items[] = array('tax_code_id' => 0,
+                    'name' =>   jr_gettext('JOMRES_CLEANING_FEE_HEADING', 'JOMRES_CLEANING_FEE_HEADING' , false ,false),
+                    'description' => '',
+                    'init_price' => $cleaning_fee,
+                    'init_qty' => 1,
+                    'init_discount' => 0,
+                );
+            }
+
+            if (  $extra_guest_price > 0 ) {
+                $line_items[] = array('tax_code_id' => 0,
+                    'name' =>   jr_gettext('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE', 'JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE' , false ,false),
+                    'description' => '',
+                    'init_price' => $extra_guest_price,
+                    'init_qty' => 1,
+                    'init_discount' => 0,
+                );
+            }
+
+            //3rd party extras like Jintour tours
 			if (!empty($third_party_extras) && $third_party_extras !== false) {
 				foreach ($third_party_extras as $plugin) {
 					foreach ($plugin as $tpe) {
@@ -307,7 +343,8 @@ class j03025insertbooking_invoice
 				}
 			}
 
-			//Additional line items created by other plugins
+
+            //Additional line items created by other plugins
 			if (!empty($additional_line_items) && $additional_line_items !== false) {
 				foreach ($additional_line_items as $plugin) {
 					foreach ($plugin as $tpe) {

@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.6
+ * @version Jomres 9.23.7
  *
- * @copyright	2005-2020 Vince Wooll
+ * @copyright	2005-2021 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -267,8 +267,9 @@ class j03020insertbooking
 				$webhook_notification->data->property_uid		   = $property_uid;
 				$webhook_notification->data->contract_uid		   = $amend_contractuid;
 				add_webhook_notification($webhook_notification);
-				
+				// End Amendment insertion
 			} else {
+			    // New booking insertion
 				$new_user_id = 0;
 
 				if ($jrConfig[ 'useNewusers' ] == '1') {
@@ -319,7 +320,7 @@ class j03020insertbooking
 									`enc_tel_mobile`,
 									`enc_email`
 									) VALUES (
-									'".(int) $cms_user_id."',
+									'".(int)$new_booking_user_id."',
 									'".$jomres_encryption->encrypt($tmpBookingHandler->tmpguest['firstname'])."',
 									'".$jomres_encryption->encrypt($tmpBookingHandler->tmpguest['surname'])."',
 									'".$jomres_encryption->encrypt($tmpBookingHandler->tmpguest['house'])."',
@@ -352,7 +353,7 @@ class j03020insertbooking
 							}
 
 						}
-						set_showtime("new_booking_user_id" , $cms_user_id );
+						set_showtime("new_booking_user_id" , $new_booking_user_id );
 					} else {
 						throw new Exception('Did not receive a valid user id after attempting to create/validate a new user in the insert booking script');
 					}

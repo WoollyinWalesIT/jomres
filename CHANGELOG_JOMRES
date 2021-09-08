@@ -1,3 +1,66 @@
+<h3>Jomres 9.23.7 08/09/2021</h3>
+
+<span class="label label-warning">Change</span> Modal availability calendar. Improvement for BS4.
+<span class="label label-warning">Change</span> Added new initial setup to ask which version of Bootstrap the template supports. A common initial installation problem is the user not configuring which version of Bootstrap Jomres should be configured to use so we will capture this information immediately after installation.
+<span class="label label-warning">Change</span> Modified some input filtering as it's over-zealous.
+<span class="label label-warning">Change</span> Added property types to label translations page
+<span class="label label-warning">Change</span> Changed default step ranges from 1 to 100.
+<span class="label label-warning">Change</span> Tweaked how a query is generated for searching by region.
+<span class="label label-warning">Change</span> Added an alert to advise that google maps api key is missing when editing property.
+<span class="label label-warning">Change</span> Added basis of Bootstrap 5 template files (straight copy from BS4 right now until they can be adapted).
+<span class="label label-warning">Change</span> Added extra guests, city tax and cleaning fee to invoice generated at booking time.
+<span class="label label-warning">Change</span> Modified jomres_database class so that it can handle multiple sql queries in one go, however only the last query will produce results. This allows use to disable the strict group by setting of mysql. Not an ideal solution, but the existing queries are both complex and they work so there's no need to rewrite them.
+<span class="label label-warning">Change</span> Added Georgian Lari to available currencies for conversion.
+<span class="label label-warning">Change</span> Added ability to disable outputting of decimals in prices.
+<span class="label label-warning">Change</span> Modified the Wordpress bridge to use a different WP function to sanitise strings to be used in URLs because the previous function stripped out non-latin characters.
+<span class="label label-warning">Change</span> In Sanity check removed requirement for region because not all countries have regions.
+<span class="label label-warning">Change</span> Changed the default numbers of guests a room can accommodate, and the default number of guests in a booking.
+<span class="label label-warning">Change</span> Modified accommodates class to ensure that the mrconfig value is as uptodate as possible.
+<span class="label label-warning">Change</span> Added a change that allows site owners whether or not to enable a group by fix that can be needed on some servers that might not like some Jomres queries.
+<span class="label label-warning">Change</span> hidden-phone no longer working, replaced with hidden-xs
+<span class="label label-warning">Change</span> Modified webhook watcher so that it can catch property creation webhooks as their manager id and property uid aren't caught by the normal checks.
+<span class="label label-warning">Change</span> If we can't determine the BS version, we'll default to BS2 for adding the editable scripts.
+<span class="label label-warning">Change</span> Added a pdf test mode to the terms script.
+<span class="label label-warning">Change</span> J4, meta key config option depreciated and removed from bridging code.
+<span class="label label-warning">Change</span> Improved toolbar element to use correct markup for Bs5.
+<span class="label label-warning">Change</span> Added BS5 relevant files/changes to facilitate tabs working in admin area.
+<span class="label label-warning">Change</span> J4 Tweaked js & css handling to adopt web asset registry handling in frontend, where required.
+<span class="label label-warning">Change</span> Dobooking calendar for J4 tweaked to disallow PE interaction on font awesome icons.
+<span class="label label-warning">Change</span> J4 Added dependency settings for some js files when they're registered.
+<span class="label label-warning">Change</span> Added global string group by clause to dashboard ajax events script.
+
+<span class="label label-important label-danger">Fix</span> Fix: Populate image array for slideshow
+<span class="label label-important label-danger">Fix</span> Avoid _COMPILE_WARNING in md5_file method call due to using relative path to image file.
+<span class="label label-important label-danger">Fix</span> vvvJoomla 3.9.21 started throwing issues with buttons in plugin manager due to jquery ui / bootstrap.js call order in admin area so modified this script to not call jq ui in show_plugins task on Joomla
+<span class="label label-important label-danger">Fix</span> WP in /wp content / jomres / jomres cannot run the rest api, notes added to tell admin to move contents of dir to public_html/jomres dir before attempting to use rest api
+<span class="label label-important label-danger">Fix</span> Update jomrescss_bootstrap4.css Fix: translate transform for Chrome. Fix: display: flex for Firefox (unpredictable behaviour of "!important").
+<span class="label label-important label-danger">Fix</span> Undid a previous change that was accidentally added to repo which borks the booking form totals numbers. Deleted a zip that should not have been added to repo.
+<span class="label label-important label-danger">Fix</span> Fixed a query that was causing region searching to fail
+<span class="label label-important label-danger">Fix</span> Tweaked stars in property list to ensure that correct number of stars are shown for MRPs.
+<span class="label label-important label-danger">Fix</span> Added a line break to prevent words clumping in case of multiple room booking.
+<span class="label label-important label-danger">Fix</span> Tweaked how a path is determined because a server would not correctly add a trailing slash.
+<span class="label label-important label-danger">Fix</span> Re-added faq lang files that should have been edited, not deleted in the last version.
+<span class="label label-important label-danger">Fix</span> Fixed bug that prevents generate invoice with empty seller's country field.
+<span class="label label-important label-danger">Fix</span> Tweaked french language file to prevent apostrophe from causing problems in javascript.
+<span class="label label-important label-danger">Fix</span> Adding port to a connection to see if that helps with an  odd problem.
+<span class="label label-important label-danger">Fix</span> Suppress errors with set_time_limit functionality
+<span class="label label-important label-danger">Fix</span> Fixed MRP calendar layout problems.
+<span class="label label-important label-danger">Fix</span> Fixed a query that was failing when searching on regions.
+<span class="label label-important label-danger">Fix</span> Fixed an issue in the Spanish language file referring to _JOMRES_METAKEYWORDS. Thanks Grant.
+<span class="label label-important label-danger">Fix</span> Fixed a warning triggering in syndication class.
+<span class="label label-important label-danger">Fix</span> Tweaked a search on regions to stringsafe region names as pulled from the database before a comparison to resolve some issues with region search.
+<span class="label label-important label-danger">Fix</span> Changed where property creation webhook is triggered to fix a bug where the webhook isn't being reported.
+<span class="label label-important label-danger">Fix</span> Resolved an issue with navbar position not being applied.
+<span class="label label-important label-danger">Fix</span> Improved package handling to catch download timeouts.
+<span class="label label-important label-danger">Fix</span> Corrected a variable being sent to make pdf functionality.
+<span class="label label-important label-danger">Fix</span> Fixed an issue where terms and conditions PDFs weren't being correctly made.
+<span class="label label-important label-danger">Fix</span> Added a missing template to old BS2 template set.
+<span class="label label-important label-danger">Fix</span> Resolved some issues with the wrong CMS id being stored during the booking.
+<span class="label label-important label-danger">Fix</span> Improved Standard tariff edit mode so that correct number of guests is shown on the confirmation form.
+<span class="label label-important label-danger">Fix</span> Tweaked timeouts in package management.
+<span class="label label-important label-danger">Fix</span> Updated template files to ensure that https is used when calling gmaps to resolve issues in safari.
+<span class="label label-important label-danger">Fix</span> WP 5.x Updated template files to ensure that https is used when calling gmaps to resolve issues in safari.
+
 <h3>Jomres 9.23.6 24/09/2020</h3>
 
 <span class="label label-warning">Change</span> Modified a CMS specifc function so that WP shortcodes in Jomres text fields will be rendered by WP.
@@ -9,12 +72,12 @@
 <span class="label label-warning">Change</span> Improved BS4 booking form area layout
 <span class="label label-warning">Change</span> Changed the order that columns are shown in the list invoices page
 
-<span class="label label-warning">Change</span> Photos list properties and property header BS4 layout improved.
-<span class="label label-warning">Change</span> Resolved issue where save tariffs advanced was casting prices to integers because default prices were integers.
-<span class="label label-warning">Change</span> Changed the order that columns are shown in the list invoices page
-<span class="label label-warning">Change</span> Updated generateDate calendar functionality to be compatible with BS4. Many thanks Vasily
-<span class="label label-warning">Change</span> Changed how we determine guest details when creating buyer PII when creating invoices on booking
-<span class="label label-warning">Change</span> Modified how we set the search option All when setting region names because...reasons.
+<span class="label label-important label-danger">Fix</span> Photos list properties and property header BS4 layout improved.
+<span class="label label-important label-danger">Fix</span> Resolved issue where save tariffs advanced was casting prices to integers because default prices were integers.
+<span class="label label-important label-danger">Fix</span> Changed the order that columns are shown in the list invoices page
+<span class="label label-important label-danger">Fix</span> Updated generateDate calendar functionality to be compatible with BS4. Many thanks Vasily
+<span class="label label-important label-danger">Fix</span> Changed how we determine guest details when creating buyer PII when creating invoices on booking
+<span class="label label-important label-danger">Fix</span> Modified how we set the search option All when setting region names because...reasons.
 
 
 <h3>Jomres 9.23.5 07/09/2020</h3>
@@ -23,16 +86,16 @@
 <span class="label label-success">Feature</span> Added new feature that allows site managers to select Basic, Common or Everything settings for viewing admin area options (simplifies interface significantly).
 <span class="label label-success">Feature</span> New Property button added to admin control panel.
 
-<span class="label label-warning">Change</span> Modified site config singleton so that we wait for confirmation that the file has been written before completing the method. Annoying, but has to be done due to key activation (among other things) not being shown appropriately.
-<span class="label label-warning">Change</span> Modified the length of the shortened property name template variable in list properties photo layout, made it much shorter.
-<span class="label label-warning">Change</span> Modified default template photo view templates so that they use the short property name variable. Leohtian has already been updated.
-<span class="label label-warning">Change</span> Syndication property checking improved to check for longer intervals between checks, and added check for thumbnail images. If image doesn't exist or hotlink protection preventing use then the property is unapproved.
-<span class="label label-warning">Change</span> Improved layout of syndicated properties;
-<span class="label label-warning">Change</span> New warning added to frontend to highlight that Jomres is  in development mode.
-<span class="label label-warning">Change</span> Language labels page now only lists labels for things like property features, room types, etc, that can be translated to other languages. Touch Template method calls are dropped because they are duplicated in the Translate Lang File strings menu option in the same place.
-<span class="label label-warning">Change</span> Added initial installation configuration to determine permission to collect analytics. Not currently collected it's nice to ask anyway.
-<span class="label label-warning">Change</span> Added new admin options level setting that allows admins to view site options at either Basic, Common or Everything levels. Simplifies admin UI, hiding options that are rarely changed. To change the level visit Site Configuration > Misc tab
-<span class="label label-warning">Change</span> Shortened the list properties PROPNAME variable so that photo view layout isn't borked.
+<span class="label label-important label-danger">Fix</span>  Modified site config singleton so that we wait for confirmation that the file has been written before completing the method. Annoying, but has to be done due to key activation (among other things) not being shown appropriately.
+<span class="label label-important label-danger">Fix</span> Modified the length of the shortened property name template variable in list properties photo layout, made it much shorter.
+<span class="label label-important label-danger">Fix</span> Modified default template photo view templates so that they use the short property name variable. Leohtian has already been updated.
+<span class="label label-important label-danger">Fix</span> Syndication property checking improved to check for longer intervals between checks, and added check for thumbnail images. If image doesn't exist or hotlink protection preventing use then the property is unapproved.
+<span class="label label-important label-danger">Fix</span> Improved layout of syndicated properties;
+<span class="label label-important label-danger">Fix</span> New warning added to frontend to highlight that Jomres is  in development mode.
+<span class="label label-important label-danger">Fix</span> Language labels page now only lists labels for things like property features, room types, etc, that can be translated to other languages. Touch Template method calls are dropped because they are duplicated in the Translate Lang File strings menu option in the same place.
+<span class="label label-important label-danger">Fix</span> Added initial installation configuration to determine permission to collect analytics. Not currently collected it's nice to ask anyway.
+<span class="label label-important label-danger">Fix</span> Added new admin options level setting that allows admins to view site options at either Basic, Common or Everything levels. Simplifies admin UI, hiding options that are rarely changed. To change the level visit Site Configuration > Misc tab
+<span class="label label-important label-danger">Fix</span> Shortened the list properties PROPNAME variable so that photo view layout isn't borked.
 
 <h3>Jomres 9.23.4 04/09/2020</h3>
 

@@ -1,0 +1,58 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function(){
+	make_datatable('jomres_users', '{_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE}', '{LIVESITE}');
+}, false);
+</script>
+
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+{CSRF_TOKEN}
+</form>
+
+<h2 class="page-header">{PAGETITLE}</h2>
+
+<p>{_JOMRES_GDPR_RTBF_ANONYMISE_GUEST_INTRO}</p>
+
+<table id="jomres_users" width="100%" class="table table-striped">
+	<thead>
+	<tr>
+		<th></th>
+		<th>{HPROPERTYNAME}</th>
+		<th>{HFIRSTNAME}</th>
+		<th>{HSURNAME}</th>
+		<th>{HEMAIL}</th>
+		<th>{HHOUSE}</th>
+		<th>{HSTREET}</th>
+		<th>{HTOWN}</th>
+		<th>{HREGION}</th>
+		<th>{HPOSTCODE}</th>
+		<th>{HCOUNTRY}</th>
+		<th>{HLANDLINE}</th>
+		<th>{HMOBILE}</th>
+		<th>{HVAT}</th>
+	</tr>
+	</thead>
+	<tbody>
+	<patTemplate:tmpl name="rows" unusedvars="strip" type="simpleCondition" requiredVars="linktext">
+		<tr>
+			<td>{LINKTEXT}</td>
+			<td>{PROPERTY_NAME}</td>
+			<td>{FIRSTNAME}</td>
+			<td>{SURNAME}</td>
+			<td>{EMAIL}</td>
+			<td>{HOUSE}</label></td>
+			<td>{STREET}</td>
+			<td>{TOWN}</label></td>
+			<td>{COUNTY}</td>
+			<td>{POSTCODE}</td>
+			<td>{COUNTRY}</td>
+			<td>{TEL_LANDLINE}</label></td>
+			<td>{TEL_MOBILE}</td>
+			<td>{VAT_NUMBER}</td>
+		</tr>
+	</patTemplate:tmpl>
+	</tbody>
+</table>
+</patTemplate:tmpl>

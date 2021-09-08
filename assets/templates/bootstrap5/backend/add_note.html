@@ -1,0 +1,23 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<h2 class="page-header">{HNEWTEXT}  : {GUEST_NAME} {BOOKING_NUMBER}</h2>
+
+<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm" class="form-horizontal" role="form">
+	<div class="form-group">
+		<label class="col-md-2 control-label" for="newtext">{HNEWTEXT}</label>
+		<div class="col-md-10">
+			<textarea class="form-control" rows="5" name="newtext"></textarea>
+		</div>
+	</div>
+	<div class="form-actions">
+		<div class="col-md-10 col-md-offset-2">
+			{JOMRESTOOLBAR}
+		</div>
+	</div>
+<input type="hidden" name="contract_uid" value="{CONTRACT_UID}"/>
+<input type="hidden" name="task" value="savenote"/>
+<input type="hidden" name="no_html" value="1"/>
+{CSRF_TOKEN}
+</form>
+</patTemplate:tmpl>

@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.6
+ * @version Jomres 9.23.7
  *
- * @copyright	2005-2020 Vince Wooll
+ * @copyright	2005-2021 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -20,6 +20,7 @@ defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.'
 	 *
 	 */
 use Joomla\CMS\Factory;
+
 
 function jomres_cmsspecific_error_logging_cms_files_to_not_backtrace()
 {
@@ -290,8 +291,23 @@ function jomres_cmsspecific_addheaddata($type, $path = '', $filename = '', $incl
 		return;
 	}
 
-	$app = JFactory::getApplication();
-	$doc = $app->getDocument();
+    if ($filename == 'jquery.js') {
+        return;
+    }
+
+    if (jomres_cmsspecific_areweinadminarea()) {
+        $in_admin_area = true;
+
+        $app = JFactory::getApplication();
+	    $doc = $app->getDocument();
+    } else {
+        $in_admin_area = false;
+
+        $app = Factory::getApplication();
+        $app->loadDocument();
+        $wa = Factory::getApplication()->getDocument()->getWebAssetManager();
+        $wr = $wa->getRegistry();
+    }
 
 	JHtml::_('bootstrap.framework');
 
@@ -302,7 +318,7 @@ function jomres_cmsspecific_addheaddata($type, $path = '', $filename = '', $incl
 
 	if (strpos($path, 'http') === false) {
 		$data = JURI::base(true).'/'.$path.$filename.$version;
-		if (jomres_cmsspecific_areweinadminarea()) {
+		if ( $in_admin_area ) {
 			$data = str_replace('/administrator/', '/', $data);
 		}
 	} else {
@@ -312,14 +328,42 @@ function jomres_cmsspecific_addheaddata($type, $path = '', $filename = '', $incl
 	switch ($type) {
 		case 'javascript':
 			//JHTML::script( $path . $filename, false ); // If we want to include version numbers in script filenames, we can't use this. Instead we need to directly access JFactory as below
-			if ($async)
-				$doc->addScript($data,"text/javascript",false,true);
-			else
-				$doc->addScript($data);
+            if ( $in_admin_area ) {
+
+                if ($async)
+                    $doc->addScript($data, "text/javascript", false, true);
+                else
+                    $doc->addScript($data);
+            }
+            else {
+                $dependency = 'keepalive';
+
+                if (  $filename == 'jquery-ui.min.js' ) {
+                    $dependency = 'jquery';
+                }
+
+                if ( $filename == 'jomres.js' || $filename == 'no-conflict.js' ) {
+                    $dependency = 'bootstrap.es5';
+                }
+                if ( strstr( $filename,  'datepicker-' )) {
+                    $dependency = 'bootstrap.es5';
+                }
+                if ( strstr( $filename,  'galleria.classic.min.js' )) {
+                    $dependency = 'galleria.min.js';
+                }
+                $wa->registerAndUseScript($filename,  $data, [], [], [$dependency]);
+            }
+
 			break;
 		case 'css':
 			//JHTML::stylesheet( $path . $filename, array (), false, false ); // If we want to include version numbers in script filenames, we can't use this. Instead we need to directly access JFactory as below
-			$doc->addStyleSheet($data);
+
+            if ( $in_admin_area ) {
+                $doc->addStyleSheet($data);
+            } else {
+                $wa->registerAndUseStyle($filename,  $data, [], [], []);
+            }
+
 			break;
 		default:
 

@@ -1,0 +1,15 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<div class="card">
+	<div class="card-body">
+		<h5 class="card-title">{_JOMRES_INCOME_PAID_AMOUNTS}</h5>
+		<p>{_JOMRES_STATUS_BOOKINGS} <span class="badge badge-success  {BOOKINGS_INCOME_LABEL_CLASS} pull-right">{BOOKINGS_INCOME}</span></p>
+		<patTemplate:tmpl name="subscriptions_income" unusedvars="strip" type="simpleCondition" requiredVars="subscriptions_income">
+			<p>Subscriptions <span class="badge badge-success  {SUBSCRIPTIONS_INCOME_LABEL_CLASS} pull-right">{SUBSCRIPTIONS_INCOME}</span></p>
+		</patTemplate:tmpl>
+		<patTemplate:tmpl name="commission_income" unusedvars="strip" type="simpleCondition" requiredVars="commission_income">
+			<p>Commission <span class="badge badge-success  {COMMISSION_INCOME_LABEL_CLASS} pull-right">{COMMISSION_INCOME}</span></p>
+			</patTemplate:tmpl>
+	</div>
+</div>
+
+</patTemplate:tmpl>

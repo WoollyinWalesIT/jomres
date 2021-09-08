@@ -1,0 +1,33 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script language="javascript" type="text/javascript">
+	<!--
+	document.addEventListener('DOMContentLoaded', function(){
+		make_datatable('list_emails', '{PAGETITLE}', '{LIVESITE}');
+	}, false);
+	//-->
+</script>
+
+<h2 class="page-header">{PAGETITLE}</h2>
+
+<table class="table table-striped" id="list_emails" width="100%">
+	<thead>
+		<tr>
+			<th>{COMMON_EDIT}</th>
+			<th>{HEMAIL_TYPE}</th>
+			<th>{HEMAIL_NAME}</th>
+			<th>{HEMAIL_DESC}</th>
+		</tr>
+	</thead>
+	<tbody>
+	<patTemplate:tmpl name="rows" unusedvars="strip" type="simpleCondition" requiredVars="email_type">
+		<tr>
+			<td>{EDITLINK}</td>
+			<td>{EMAIL_TYPE}</td>
+			<td>{EMAIL_NAME}</td>
+			<td>{EMAIL_DESC}</td>
+		</tr>
+	</patTemplate:tmpl>
+	</tbody>
+</table>
+</patTemplate:tmpl>

@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.6
+ * @version Jomres 9.23.7
  *
- * @copyright	2005-2020 Vince Wooll
+ * @copyright	2005-2021 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -85,7 +85,7 @@ class jomresHTML
 
 			$attribs .= ' class="input-medium form-control" ';
 
-			$output = '<select name="'.$name.'" id="'.$name.'" '.$attribs.'>';
+			$output = '<div class="select-wrapper"><select name="'.$name.'" id="'.$name.'" '.$attribs.'>';
 			
 			foreach ($arr as $k => $v) {
 				$val = $v->$key;
@@ -99,7 +99,7 @@ class jomresHTML
 				$output .= '<option value="'.$val.'" '.$selected.'>'.$txt.'</option>';
 			}
 			
-			$output .= '</select>';
+			$output .= '</select></div>';
 		} else {
 			$output = '<fieldset id="' .$name.'" class="radio btn-group">';
 			

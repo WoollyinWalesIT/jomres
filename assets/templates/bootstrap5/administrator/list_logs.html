@@ -1,0 +1,12 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<h2 class="page-header">{PAGETITLE}</h2>
+	<table class="table table-striped" width="100%">
+		<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="logfilelink">
+			<tr>
+				<td>{LOGFILELINK}</td>
+				<td>{LOGFILELINK_NOUPDATE}</td>
+			</tr>
+		</patTemplate:tmpl>
+	</table>
+</patTemplate:tmpl>

@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.6
+ * @version Jomres 9.23.7
  *
- * @copyright	2005-2020 Vince Wooll
+ * @copyright	2005-2021 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -93,6 +93,7 @@ class jomres_calculate_accommodates_value
 		} else {
 			$query = "UPDATE #__jomres_settings SET `value` = ".($accommodates_adults + $accommodates_children)." WHERE `property_uid` = ".(int) $this->property_uid." AND `akey` = 'accommodates' ";
 		}
+        $mrConfig = getPropertySpecificSettings($this->property_uid , true );
 
 		if (!doInsertSql($query, jr_gettext('_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS', '_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS', false))) {
 			throw new Exception('Error: accommodates setting insert failed.');

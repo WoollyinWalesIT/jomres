@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.6
+ * @version Jomres 9.23.7
  *
- * @copyright	2005-2020 Vince Wooll
+ * @copyright	2005-2021 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -100,7 +100,8 @@ class j06001dashboard_events_ajax
 		$from = date('Y/m/d', strtotime($from));
 		$to = date('Y/m/d', strtotime($to));
 
-		$query = "SELECT a.contract_uid,
+        $query = SET_GLOBAL_STRING.
+            "SELECT a.contract_uid,
 						DATE_FORMAT(a.arrival, '%Y-%m-%d') AS arrival,
 						DATE_FORMAT(a.departure, '%Y-%m-%d') AS departure,
 						a.guest_uid,
@@ -132,6 +133,7 @@ class j06001dashboard_events_ajax
 		$query .= 'GROUP BY a.contract_uid,b.room_uid ';
 
 		$contractList = doSelectSql($query);
+
 		if (!empty($contractList)) {
 			
 

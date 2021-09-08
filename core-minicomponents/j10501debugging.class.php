@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.6
+ * @version Jomres 9.23.7
  *
- * @copyright	2005-2020 Vince Wooll
+ * @copyright	2005-2021 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -58,6 +58,11 @@ class j10501debugging
 		$configurationPanel->setleft(jr_gettext('_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT', '_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT', false));
 		$configurationPanel->setmiddle($production_development_dropdown);
 		$configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_DESC', '_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_DESC', false));
+		$configurationPanel->insertSetting();
+
+		$configurationPanel->setleft(jr_gettext('_JOMRES_SEND_GROUP_BY_FIX_TITLE', '_JOMRES_SEND_GROUP_BY_FIX_TITLE', false));
+		$configurationPanel->setmiddle($lists[ 'use_groupby_fix' ]);
+		$configurationPanel->setright(jr_gettext('_JOMRES_SEND_GROUP_BY_FIX_DESC', '_JOMRES_SEND_GROUP_BY_FIX_DESC', false));
 		$configurationPanel->insertSetting();
 
 		if ( $jrConfig[ 'admin_options_level' ] > 1 ) {

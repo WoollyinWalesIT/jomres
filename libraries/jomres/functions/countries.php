@@ -5,9 +5,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.6
+ * @version Jomres 9.23.7
  *
- * @copyright	2005-2020 Vince Wooll
+ * @copyright	2005-2021 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -33,6 +33,11 @@ function getSimpleCountry($selectedCountry = '')
 	$jomres_countries = jomres_singleton_abstract::getInstance('jomres_countries');
 	
 	$selectedCountry = strtoupper($selectedCountry);
+
+	if (strlen($selectedCountry) > 3) {
+		// Neither two-letter country code (ISO 3166-1 alpha-2) nor three-letter country code ISO 3166-1 alpha-3
+		return $selectedCountry;
+	}
 
 	if (isset($jomres_countries->used_countries[$selectedCountry]['countryname'])) {
 		return $jomres_countries->used_countries[$selectedCountry]['countryname'];

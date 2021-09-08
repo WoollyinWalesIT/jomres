@@ -5,9 +5,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.6
+ * @version Jomres 9.23.7
  *
- * @copyright	2005-2020 Vince Wooll
+ * @copyright	2005-2021 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -1078,10 +1078,10 @@ function jomres_bootstrap_version()
 	    // check to see if we are in admin area & bs version is not set. If so, it's a new installation so we'll auto configure our bs version templates to run bs4
         if ($jrConfig[ 'bootstrap_version' ] == '' ) {
 			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-			$siteConfig->update_setting('bootstrap_version', 4  );
+			$siteConfig->update_setting('bootstrap_version', 5  );
 			$siteConfig->save_config();
         }
-		$bootstrap_version = '4';
+		$bootstrap_version = '5';
 	} elseif  ( jomres_cmsspecific_areweinadminarea() && _JOMRES_DETECTED_CMS == 'joomla3' ) {
 		$bootstrap_version = '2';
 	} else { 
@@ -2899,6 +2899,10 @@ function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode
 							$result = $mail->addAttachment($path.$name, $name, 'base64', $type = 'application/pdf');
 						}
 						break;
+					case 'string':
+						$name = $attachment[ 'filename' ];
+						$result = $mail->addStringAttachment($attachment[ 'string' ], $attachment[ 'filename' ]);
+						break;
 					default:
 						$path = $attachment[ 'path' ];
 						$name = $attachment[ 'filename' ];
@@ -3418,9 +3422,6 @@ function propertyConfiguration()
 	}
 	$tariffModeDD = jomresHTML::selectList($tariffMode, 'cfg_tariffmode', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'tariffmode' ]);
 
-
-
-
 	$iconsizes = array();
 	$iconsizes[ ] = jomresHTML::makeOption('small', 'small');
 	$iconsizes[ ] = jomresHTML::makeOption('large', 'large');
@@ -3564,8 +3565,13 @@ function propertyConfiguration()
 	}
 	$lists[ 'allow_children' ] = jomresHTML::selectList($yesno, 'cfg_allow_children', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'allow_children' ]);
 
+    if (!isset($mrConfig[ 'cformat_strip_decimals' ])) {
+        $mrConfig[ 'cformat_strip_decimals' ] = 0;
+    }
+    $lists[ 'cformat_strip_decimals' ] = jomresHTML::selectList($yesno, 'cfg_cformat_strip_decimals', 'class="inputbox" size="1"', 'value', 'text', $mrConfig[ 'cformat_strip_decimals' ]);
 
-	$componentArgs = array();
+
+    $componentArgs = array();
 	$componentArgs[ 'mrConfig' ] = $mrConfig;
 	$componentArgs[ 'lists' ] = $lists;
 	$componentArgs[ 'weekdayDropdown' ] = $weekdayDropdown;
@@ -3615,9 +3621,6 @@ function propertyConfiguration()
 
 	echo '<div class="well clearfix"><div class="pull-left">'.$output[ 'JOMRESTOOLBAR' ].'</div></div>';
 
-	if (!using_bootstrap()) {
-		$configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel');
-	} else {
 		$bs_version = jomres_bootstrap_version();
 		if ($bs_version == '2' || $bs_version == '') {
 			$configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel');
@@ -3625,8 +3628,9 @@ function propertyConfiguration()
 			$configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel_bootstrap3');
 		} elseif ($bs_version == '4') {
 			$configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel_bootstrap4');
-		}
-	}
+		} elseif ($bs_version == '5') {
+            $configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel_bootstrap5');
+        }
 
 	$componentArgs[ 'configurationPanel' ]  = $configurationPanel;
     $componentArgs['is_channel_property']   = is_channel_property($property_uid);
@@ -3635,8 +3639,8 @@ function propertyConfiguration()
 
 	$MiniComponents->triggerEvent('00501', $componentArgs); // Generate configuration options tabs
 
-			$configurationPanel->endTabs(); ?>
-		</form>
+	$configurationPanel->endTabs(); ?>
+	</form>
 
 	<?php
 	ob_end_flush();
@@ -4364,13 +4368,14 @@ function getImageForProperty($imageType, $property_uid, $itemUid)
  */
 function getPropertySpecificSettings($property_uid = null , $force_reload = false )
 {
-	$mrConfig = array();
 
 	$propertyConfig = jomres_singleton_abstract::getInstance('jomres_config_property_singleton');
 
 	if ($propertyConfig->property_uid == 0) {
 		$propertyConfig->init($property_uid , $force_reload );
-	}
+	} else if ($force_reload) {
+        $propertyConfig->init($property_uid , true );
+    }
 
 	if ($property_uid == null) {
 		$mrConfig = $propertyConfig->get();

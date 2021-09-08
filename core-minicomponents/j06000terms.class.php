@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.6
+ * @version Jomres 9.23.7
  *
- * @copyright	2005-2020 Vince Wooll
+ * @copyright	2005-2021 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -50,8 +50,15 @@ class j06000terms
 
 			return;
 		}
-		$property_uid = intval(jomresGetParam($_REQUEST, 'property_uid', 0));
-		
+
+        $pdf_test_mode = false;
+
+        if (isset($componentArgs['property_uid'])) {
+            $property_uid = (int)$componentArgs['property_uid'];
+        } else {
+            $property_uid = intval(jomresGetParam($_REQUEST, 'property_uid', 0));
+        }
+
 		if (isset($componentArgs['as_pdf'])) {
 			$as_pdf = (bool)$componentArgs['as_pdf'];
 		} elseif ( isset($_REQUEST['as_pdf']) ) {
@@ -59,7 +66,11 @@ class j06000terms
 		} else {
 			$as_pdf = false;
 		}
-		
+
+		if ($pdf_test_mode == true ) {
+		    $as_pdf = true;
+        }
+
 		if (isset($componentArgs['output_now'])) {
 			$output_now = (bool)$componentArgs['output_now'];
 		} elseif ( isset($_REQUEST['output_now']) ) {
@@ -90,8 +101,15 @@ class j06000terms
 		$tmpl = new patTemplate();
 		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
 		$tmpl->addRows('property_deets', $property_deets);
-		
-		
+
+        if ($pdf_test_mode == true ) {
+            $tmpl->readTemplatesFromInput('terms_pdf.html');
+            $pdf = output_pdf($tmpl->getParsedTemplate() , $property[ 'HPOLICIESDISCLAIMERS' ] , true );
+            header("Content-type:application/pdf");
+            echo $pdf;
+            exit;
+        }
+
 		if ($as_pdf) {
 			$tmpl->readTemplatesFromInput('terms_pdf.html');
 			$pdf = output_pdf($tmpl->getParsedTemplate() , $property[ 'HPOLICIESDISCLAIMERS' ] , true ); 

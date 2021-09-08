@@ -1,0 +1,34 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+	<!--
+	document.addEventListener('DOMContentLoaded', function(){
+		make_datatable('list_gateways', '{TOUR_ID_TAB_GATEWAYS_TITLE}', '{LIVESITE}');
+	}, false);
+	//-->
+</script>
+	
+<h2 class="page-header">{TOUR_ID_TAB_GATEWAYS_TITLE}</h2>
+
+<p class="alert alert-info">{GATEWAYS_INSTRUCTIONS}</p>
+
+<table id="list_gateways" width="100%" class="table table-striped">
+	<thead>
+		<tr>
+			<th>{COMMON_EDIT}</th>
+			<th>{TOUR_ID_TAB_GATEWAYS_TITLE}</th>
+			<th>{_JOMRES_COM_A_GATEWAY_ENABLED}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+		<tr>
+			<td>{EDITLINK}</td>
+			<td>{GATEWAY_NAME}</td>
+			<td>{ACTIVE}</td>
+		</tr>
+		</patTemplate:tmpl>
+	</tbody>
+</table>
+
+</patTemplate:tmpl>

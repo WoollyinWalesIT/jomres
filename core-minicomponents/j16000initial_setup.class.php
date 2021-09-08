@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.6
+ * @version Jomres 9.23.7
  *
- * @copyright	2005-2020 Vince Wooll
+ * @copyright	2005-2021 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -87,7 +87,29 @@ class j16000initial_setup
 
 		}
 
+		if ( !isset($this->jrConfig["initial_setup_step_3_completed"]) || $this->jrConfig["initial_setup_step_3_completed"] == "0" ) {
 
+			$output['INTRO'] = jr_gettext('_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_TITLE', '_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_TITLE');
+			$output['MESSAGE'] = jr_gettext('_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_MESSAGE', '_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_MESSAGE');
+
+
+			$output['BS2'] = jr_gettext('_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP2', '_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP2');
+			$output['BS3'] = jr_gettext('_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP3', '_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP3');
+			$output['BS4'] = jr_gettext('_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP4', '_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP4');
+            $output['BS5'] = jr_gettext('_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP5', '_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP5');
+
+			$output['STEP'] = 'initial_setup_step_3';
+
+			$pageoutput[ ] = $output;
+
+			$tmpl = new patTemplate();
+			$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
+			$tmpl->addRows('pageoutput', $pageoutput);
+			$tmpl->readTemplatesFromInput('initial_setup_step_3.html');
+			$tmpl->displayParsedTemplate();
+			return;
+
+		}
 		// All done,
 		$this->siteConfig->update_setting('initial_setup_done', 1 );
 		$this->siteConfig->save_config();

@@ -1,0 +1,140 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<style>
+.schema-hidden-fields {
+	display: none;
+}
+</style>
+
+<!-- START SCHEMA -->
+<span  class="schema-hidden-fields" itemscope itemtype="http://schema.org/Hotel">
+		<meta itemprop="url" content="{DIRECT_URL}">
+		<meta itemprop="name" content="{PROPERTY_NAME}">
+		<meta itemprop="description" content="{SHORT_PROPERTY_DESCRIPTION}">
+		<span itemprop="priceRange">{LOWEST_PRICE} - {HIGHEST_PRICE}</span>
+		<img itemprop="image"  src="{IMAGEMEDIUM}" alt="{PROPERTY_NAME}" />
+		<span itemprop="starRating" itemscope itemtype="http://schema.org/Rating">
+			<meta itemprop="ratingValue" content="{STARS}">
+		</span>
+		<span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+			<span itemprop="streetAddress">{STREET}</span>,
+			<span itemprop="addressLocality">{TOWN}</span>, 
+			<span itemprop="addressRegion">{REGION}</span>, 
+			<span itemprop="postalCode">{POSTCODE}</span>, 
+			<span itemprop="addressCountry">{COUNTRY}</span>
+			<span itemprop="telephone">{TELEPHONE}</span>
+		</span>
+		<span itemprop="location">
+			<span itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
+				<meta itemprop="latitude" content="{PROPERTY_LAT}" />
+				<meta itemprop="longitude" content="{PROPERTY_LONG}" />
+			</span>
+		</span>
+		<patTemplate:tmpl name="room_types" unusedvars="strip">
+		<span itemprop="numberOfRooms" itemscope itemtype="http://schema.org/QuantitativeValue">
+			<span itemprop="value">{ROOM_TYPE_COUNTER}</span>
+			<span itemprop="unitText">{ROOM_TYPE_TEXT}</span>
+		</span>
+		</patTemplate:tmpl>
+
+
+		
+		<patTemplate:tmpl name="room_rows" unusedvars="strip">
+		<span itemprop="containsPlace" itemscope itemtype="http://schema.org/HotelRoom">
+
+			<span itemprop="name">{ROOMNAME}</span> 
+			<span itemprop="description">{DESCRIPTION}</span> 
+			<span itemprop="occupancy">{MAXPEOPLE}</span> 
+			<img itemprop="photo" src="{IMAGEMEDIUM}">
+			<span itemprop="BedType" src="{BED}">
+		</span>
+		</patTemplate:tmpl>
+		
+		<patTemplate:tmpl name="tariff_deets" unusedvars="strip">
+		<div itemscope itemtype="http://schema.org/HotelRoom http://schema.org/Product">
+			<span itemprop="name" >{TITLE}
+				<meta itemprop="brand" content="{PROPERTY_NAME}">
+				
+				<img itemprop="image" src="{ROOM_TYPE_IMAGE}" />
+				<meta itemprop="sku" content="{SKU}">
+				<span itemprop="description">{DESC} / {ROOMCLASSABBV} / {HMINDAYS} {MINDAYS} {HMAXDAYS} {MAXDAYS} / {HMINPEEPS} {MINPEOPLE} {HMAXPEEPS} {MAXPEOPLE} / {NOTWEEKENDS} </span>
+				<span itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+					<link itemprop="availability" href="http://schema.org/InStock" />
+					<span itemprop="eligibleDuration" itemscope itemtype="http://schema.org/QuantitativeValue">
+						<span itemprop="minValue">{MINDAYS}</span>
+						<meta itemprop="unitCode" content="DAY">
+					</span>
+					<meta itemprop="url" content="{DIRECT_URL}">
+					<meta itemprop="priceCurrency" content="{CURRENCY_CODE}">{CURRENCY_SYMBOL} <span itemprop="price">{ROOMRATEPERDAY}</span>
+					<meta itemprop="availabilityStarts" content="{RAW_VALIDFROM}">
+					<meta itemprop="availabilityEnds" content="{RAW_VALIDTO}">
+					<meta itemprop="validThrough" content="{RAW_VALIDTO}">{VALIDTO}
+					<meta itemprop="priceValidUntil" content="{RAW_VALIDTO}">
+					<meta itemprop="availability" value="http://schema.org/InStock" />
+				</span>
+				<span itemscope itemprop="aggregateRating" itemtype="http://schema.org/AggregateRating">
+					<meta itemprop="itemReviewed" value="{TITLE}" name="{TITLE}"/>
+					<meta itemprop="bestRating" content="{BESTRATING}"/>
+					<meta itemprop="worstRating" content="{WORSTRATING}"/>
+					<meta itemprop="ratingValue" content="{RATINGVALUE}"/>
+					<meta itemprop="reviewCount" content="{REVIEWCOUNT}"/>
+				</span>
+			</span> 
+			
+		</div>
+		</patTemplate:tmpl>
+		
+		<patTemplate:tmpl name="ratings" type="simpleCondition" requiredVars="property_name" unusedvars="strip">
+		<div itemscope  itemprop="aggregateRating" itemtype="http://schema.org/AggregateRating">
+			<meta itemprop="itemReviewed" value="{PROPERTY_NAME}" name="{PROPERTY_NAME}"/>
+			<meta itemprop="bestRating" content="{BESTRATING}"/>
+			<meta itemprop="worstRating" content="{WORSTRATING}"/>
+			<meta itemprop="ratingValue" content="{RATINGVALUE}"/>
+			<meta itemprop="reviewCount" content="{REVIEWCOUNT}"/>
+		</div>
+		</patTemplate:tmpl>
+		
+		<patTemplate:tmpl name="reviews" type="simpleCondition" requiredVars="itemreviewed" unusedvars="strip">
+		<span itemscope itemtype="https://schema.org/Review">
+			<span itemprop="itemReviewed" itemscope itemtype="https://schema.org/Hotel">
+				<span itemprop="name">{ITEMREVIEWED}</span>
+				<img itemprop="image"  src="{IMAGEMEDIUM}"/>
+				<span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+					<span itemprop="streetAddress">{STREET}</span>,
+					<span itemprop="addressLocality">{TOWN}</span>, 
+					<span itemprop="addressRegion">{REGION}</span>, 
+					<span itemprop="postalCode">{POSTCODE}</span>, 
+					<span itemprop="addressCountry">{COUNTRY}</span>
+				</span>
+				<span itemprop="telephone">{TELEPHONE}</span>
+				<span itemprop="priceRange">{LOWEST_PRICE} - {HIGHEST_PRICE}</span>
+			</span>
+			<span itemprop="author" itemscope itemtype="https://schema.org/Person">
+				<span itemprop="name">{AUTHOR}</span>
+			</span>
+			<span itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+				<span itemprop="ratingValue">{RATINGVALUE}</span>
+				<span itemprop="bestRating">{BESTRATING}</span>
+			</span>
+			<span itemprop="reviewBody">{REVIEWBODY}</span>
+		</span>
+		</patTemplate:tmpl>
+
+
+				
+	<patTemplate:tmpl name="slideshow_images" unusedvars="strip">
+	<span itemscope itemtype="http://schema.org/Place http://schema.org/ImageObject">
+		<img itemprop="contentUrl" value="{IMAGE}">
+	</span>
+	</patTemplate:tmpl>
+	
+	<patTemplate:tmpl name="pfeatures" unusedvars="strip">
+		<span itemprop="amenityFeature" itemscope itemtype="http://schema.org/LocationFeatureSpecification">
+			<meta itemprop="name" value="{NAME}">
+			<meta itemprop="value" content="True">
+		</span>
+	</patTemplate:tmpl>
+</span>
+
+<!-- END SCHEMA -->
+</patTemplate:tmpl>

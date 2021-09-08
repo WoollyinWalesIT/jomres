@@ -1,0 +1,44 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+	<!--
+	document.addEventListener('DOMContentLoaded', function(){
+		make_datatable('list_room_types', '{PAGETITLE}', '{LIVESITE}');
+	}, false);
+	//-->
+</script>
+<h2 class="page-header">{PAGETITLE}</h2>
+{PROPERTY_TYPE_WARNING}
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+	{JOMRESTOOLBAR}
+	<table id="list_room_types" width="100%" class="table table-striped">
+		<thead>
+		<tr>
+			<th>{COMMON_EDIT}</th>
+			<th><input type="checkbox" name="toggle" value="" onclick="jomres_checkAll({TOTALINLISTPLUSONE});"/> {COMMON_DELETE}</th>
+			<th>{HRTTITLE}</th>
+			<!--<th class="hidden-phone">{HRTDESCRIPTION}</th>-->
+			<th class="hidden-phone">{HJOMRES_A_ICON}</th>
+			<th class="hidden-phone">{HPTYPE_ASSIGNMENT}</th>
+		</tr>
+		</thead>
+		<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="strip" type="simpleCondition" requiredVars="rttitle">
+			<tr>
+				<td>{EDITLINK}</td>
+				<td>{CHECKBOX}</td>
+				<td>{RTTITLE}</td>
+				<!--<td class="hidden-phone">{RTDESCRIPTION}</td>-->
+				<td class="hidden-phone"><img src="{IMAGE}"  width="25" height="25" /></td>
+				<td class="hidden-phone">{PROPERTY_TYPES}</td>
+			</tr>
+		</patTemplate:tmpl>
+		</tbody>
+	</table>
+	<input type="hidden" name="boxchecked" value="0">
+	<input type="hidden" name="option" value="com_jomres"/>
+	<input type="hidden" name="Itemid" value="{ITEMID}"/>
+	<input type="hidden" name="task" value="editGlobalroomTypes"/>
+	{CSRF_TOKEN}
+</form>
+</patTemplate:tmpl>

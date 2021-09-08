@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.6
+ * @version Jomres 9.23.7
  *
- * @copyright	2005-2020 Vince Wooll
+ * @copyright	2005-2021 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -149,7 +149,8 @@ function showSiteConfig()
 	$navbar_location = array();
 	$navbar_location[ ] = jomresHTML::makeOption('component_area', jr_gettext('_JOMRES_BOOTSTRAP_LOCATION_DEFAULT', '_JOMRES_BOOTSTRAP_LOCATION_DEFAULT', false));
 	$navbar_location[ ] = jomresHTML::makeOption('navbar-fixed-top', jr_gettext('_JOMRES_BOOTSTRAP_LOCATION_TOP', '_JOMRES_BOOTSTRAP_LOCATION_TOP', false));
-	$navbar_location[ ] = jomresHTML::makeOption('navbar-fixed-bottom', jr_gettext('_JOMRES_BOOTSTRAP_LOCATION_BOTTOM', '_JOMRES_BOOTSTRAP_LOCATION_BOTTOM', false));
+	// Disabled as looks like pants in BS3
+	//$navbar_location[ ] = jomresHTML::makeOption('navbar-fixed-bottom', jr_gettext('_JOMRES_BOOTSTRAP_LOCATION_BOTTOM', '_JOMRES_BOOTSTRAP_LOCATION_BOTTOM', false));
 	$navbar_location_dropdown = jomresHTML::selectList($navbar_location, 'cfg_navbar_location', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'navbar_location' ]);
 
 	if (!isset($jrConfig[ 'admin_options_level' ])) {
@@ -171,6 +172,7 @@ function showSiteConfig()
 	$bootstrap_ver_opt[ ] = jomresHTML::makeOption('', 'Bootstrap 2');
 	$bootstrap_ver_opt[ ] = jomresHTML::makeOption('3', 'Bootstrap 3');
 	$bootstrap_ver_opt[ ] = jomresHTML::makeOption('4', 'Bootstrap 4');
+    $bootstrap_ver_opt[ ] = jomresHTML::makeOption('5', 'Bootstrap 5');
 	$bootstrap_ver_dropdown = jomresHTML::selectList($bootstrap_ver_opt, 'cfg_bootstrap_version', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'bootstrap_version' ], false);
 
 	$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
@@ -371,7 +373,9 @@ function showSiteConfig()
 	$lists[ 'prioritise_sitewide_label_definitions' ] = jomresHTML::selectList($yesno, 'cfg_prioritise_sitewide_label_definitions', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'prioritise_sitewide_label_definitions' ]);
 	
 	$lists[ 'generate_random_emails' ] = jomresHTML::selectList($yesno, 'cfg_generate_random_emails', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'generate_random_emails' ]);
-	
+
+  	$lists[ 'use_groupby_fix' ] = jomresHTML::selectList($yesno, 'cfg_use_groupby_fix', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'use_groupby_fix' ]);
+
 	$componentArgs = array();
 	$componentArgs[ 'lists' ] = $lists;
 	$componentArgs[ 'jsInputFormatDropdownList' ] = $jsInputFormatDropdownList;
@@ -407,7 +411,12 @@ function showSiteConfig()
 	<?php
 	echo $jrtb;
 
-	$configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel');
+    $bs_version = jomres_bootstrap_version();
+    if ($bs_version == '2' || $bs_version == '') {
+        $configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel');
+    } elseif ($bs_version == '5') {
+        $configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel_bootstrap5');
+    }
 
 	$componentArgs[ 'configurationPanel' ] = $configurationPanel;
 
@@ -416,7 +425,6 @@ function showSiteConfig()
 	$MiniComponents->triggerEvent('10501', $componentArgs); // Generate configuration options tabs
 
 	$configurationPanel->endTabs();
-
 	?>
 	</form>
 	<?php

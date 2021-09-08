@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.6
+ * @version Jomres 9.23.7
  *
- * @copyright	2005-2020 Vince Wooll
+ * @copyright	2005-2021 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -99,7 +99,7 @@ class jomres_database
 				if (get_showtime('socket') == '/tmp/mysql5.sock') {
 					$this->link = mysqli_connect(get_showtime('host'), get_showtime('user'), get_showtime('password'), null, get_showtime('port'), get_showtime('socket')) or die('Could not connect '.mysqli_error($this->link));
 				} else {
-					$this->link = mysqli_connect(get_showtime('host'), get_showtime('user'), get_showtime('password')) or die('Could not connect '.mysqli_error($this->link));
+					$this->link = mysqli_connect(get_showtime('host'), get_showtime('user'), get_showtime('password'), null, get_showtime('port')) or die('Could not connect. Port '.get_showtime('port'));
 				}
 
 				mysqli_select_db($this->link, get_showtime('db')) or die('Could not select database');
@@ -293,22 +293,48 @@ class jomres_database
 
 		if (this_cms_is_wordpress() && !defined('AUTO_UPGRADE')) {
 			global $wpdb;
-
-			$this->result = $wpdb->get_results($this->query, OBJECT);
+            if (strpos($this->query,";"  ) > 0 ) { // To allow multiple queries to be run (specifically, the ajax query that grumbles about GROUP BY mode)
+                $bang = explode(";" , $this->query);
+                foreach ($bang as $query ) {
+                  $this->result = $wpdb->get_results($query, OBJECT);
+                }
+            } else {
+                $this->result = $wpdb->get_results($this->query, OBJECT);
+            }
 		} else {
 			switch ($this->dbtype) {
 				case 'mysqli':
-					$this->stmt = mysqli_query($this->link, $this->query);
+				    if (strpos($this->query,";"  ) > 0 ) { // To allow multiple queries to be run (specifically, the ajax query that grumbles about GROUP BY mode)
+				        $bang = explode(";" , $this->query);
+				        foreach ($bang as $query ) {
+                            $this->stmt = mysqli_query($this->link, $query);
+                        }
+                    } else {
+                        $this->stmt = mysqli_query($this->link, $this->query);
+                    }
+
 					break;
-				case 'mysql':
+				case 'mysql': // Should be depreciated, however will leave it in on the offchance that somebody is still using mysql
 					$this->stmt = mysql_query($this->query);
 					break;
 				case 'pdomysql':
-					try {
-						$this->stmt = $this->PDO->query($this->query, PDO::FETCH_OBJ);
-					} catch (PDOException $e) {
-						output_fatal_error($e);
-					}
+                    if (strpos($this->query,";"  ) > 0 ) { // To allow multiple queries to be run (specifically, the ajax query that grumbles about GROUP BY mode)
+                        $bang = explode(";" , $this->query);
+                        foreach ($bang as $query ) {
+                            try {
+                                $this->stmt = $this->PDO->query($query, PDO::FETCH_OBJ);
+                            } catch (PDOException $e) {
+                                output_fatal_error($e);
+                            }
+                        }
+                    } else {
+                        try {
+                            $this->stmt = $this->PDO->query($this->query, PDO::FETCH_OBJ);
+                        } catch (PDOException $e) {
+                            output_fatal_error($e);
+                        }
+                    }
+
 					break;
 				default:
 					break;
@@ -317,6 +343,7 @@ class jomres_database
 			if ($this->stmt) {
 				switch ($this->dbtype) {
 					case 'mysqli':
+
 						while ($row = mysqli_fetch_object($this->stmt)) {
 							$this->result[] = $row;
 						}

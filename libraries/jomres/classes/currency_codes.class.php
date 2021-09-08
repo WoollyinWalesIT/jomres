@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.6
+ * @version Jomres 9.23.7
  *
- * @copyright	2005-2020 Vince Wooll
+ * @copyright	2005-2021 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -53,8 +53,7 @@ class currency_codes
 			'BND' => 'Brunei Dollar BND ', 
 			'BGN' => 'Bulgarian Lev BGN', 
 			'BIF' => 'Burundi Franc BIF ', 
-			'BTC' => 'Bitcoin', 'KHR' => 
-			'Cambodian Riel KHR ', 
+			'BTC' => 'Bitcoin', 'KHR' => 'Cambodian Riel KHR ',
 			'CAD' => 'Canadian Dollar CAD ', 
 			'CVE' => 'Cape Verde Escudo CVE ', 
 			'KYD' => 'Cayman Islands Dollar KYD ', 
@@ -79,7 +78,8 @@ class currency_codes
 			'EUR' => 'Euro EUR ', 
 			'FKP' => 'Falkland Islands Pound FKP ', 
 			'FJD' => 'Fiji Dollar FJD ', 
-			'XPF' => 'Franc Pacifique XPF ', 
+			'XPF' => 'Franc Pacifique XPF ',
+			'GEL' => 'Georgian Lari',
 			'GBP' => 'Great British Pound GBP ', 
 			'GMD' => 'Gambian Dalasi GMD ', 
 			'GHC' => 'Ghanaian Cedi GHC ', 
@@ -226,7 +226,8 @@ class currency_codes
 			'SV' => 'SVC', 
 			'ET' => 'ETB', 
 			'FK' => 'FKP', 
-			'FJ' => 'FJD', 
+			'FJ' => 'FJD',
+			'GE' => 'GEL',
 			'GB' => 'GBP', 
 			'UK' => 'GBP', 
 			'GM' => 'GMD', 
@@ -398,8 +399,9 @@ class currency_codes
 			'EEK' => array('pre' => '', 'post' => 'kr'), 
 			'ETB' => array('pre' => 'Br', 'post' => ''), 
 			'FKP' => array('pre' => '£', 'post' => ''), 
-			'FJD' => array('pre' => '$', 'post' => ''), 
-			'GMD' => array('pre' => 'D', 'post' => ''), 
+			'FJD' => array('pre' => '$', 'post' => ''),
+            'GEL' => array('pre' => '', 'post' => 'ლ'),
+            'GMD' => array('pre' => 'D', 'post' => ''),
 			'GHC' => array('pre' => '¢', 'post' => ''), 
 			'GIP' => array('pre' => '£', 'post' => ''), 
 			'GTQ' => array('pre' => 'Q', 'post' => ''), 
@@ -511,7 +513,7 @@ class currency_codes
 		if ($code != '') {
 			$this->code = strtoupper(trim($code));
 		}
-		
+
 		//input name
 		if (!$global) {
 			if ($input_name == '') {
@@ -537,7 +539,7 @@ class currency_codes
 				$options[] = jomresHTML::makeOption($k, $v);
 			}
 		}
-
+//var_dump($options);exit;
 		return jomresHTML::selectList($options, $this->input_name, 'class="inputbox" size="1"', 'value', 'text', $this->code);
 	}
 

@@ -1,0 +1,55 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script language="JavaScript" type="text/javascript">
+<!--
+document.addEventListener('DOMContentLoaded', function(){
+	make_datatable('list_advanced_tariffs','{PAGETITLE}','{LIVESITE}');
+} );
+//-->
+</script>
+
+<h2 class="page-header">{PAGETITLE}</h2>
+<div class="well">
+	{JOMRESTOOLBAR}
+</div>
+
+<table width="100%" id="list_advanced_tariffs" class="table table-striped">
+	<thead>
+		<tr>
+			<th>{HLINKTEXT}</th>
+			<th>{HROOMCLASS}</th>
+			<th>{HRATETITLE}</th>
+			<!-- <th>{HRATEDESCRIPTION}</th> -->
+			<th>{HVALIDFROM}</th>
+			<th>{HVALIDTO}</th>
+			<th>{HROOMRATEPERDAY}</th>
+			<th>{HMINDAYS}</th>
+			<th>{HMAXDAYS}</th>
+			<th>{HMINPEOPLE}</th>
+			<th>{HMAXPEOPLE}</th>
+			<!-- <th>{HIGNOREPPN}</th> -->
+			<th class="hidden-phone">{HALLOWWE}</th>
+			<th class="hidden-phone">{HWEEKENDONLY}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp" type="simpleCondition" requiredVars="mindays">
+		<tr>
+			<td>{LINKTEXT}</td>
+			<td>{ROOMCLASS}</td>
+			<td>{RATETITLE}</td>
+			<!-- <td>{RATEDESCRIPTION}</td> -->
+			<td>{VALIDFROM}</td>
+			<td>{VALIDTO}</td>
+			<td>{ROOMRATEPERDAY}</td> 
+			<td>{MINDAYS}</td>
+			<td>{MAXDAYS}</td>
+			<td>{MINPEOPLE}</td>
+			<td>{MAXPEOPLE}</td>
+			<!-- <td>{IGNOREPPN}</td> -->
+			<td class="hidden-phone">{ALLOWWE}</td> 
+			<td class="hidden-phone">{WEEKENDONLY}</td>
+		</tr>
+		</patTemplate:tmpl>
+	</tbody>
+</table>
+</patTemplate:tmpl>

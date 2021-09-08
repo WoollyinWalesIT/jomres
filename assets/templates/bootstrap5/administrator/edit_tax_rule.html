@@ -1,0 +1,45 @@
+
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<script language="javascript" type="text/javascript">
+		<!--
+		jomresJquery(function(){
+			jomresJquery("#guest_country").change(function(){
+				var selectedValue = jomresJquery(this).find(":selected").val();
+				clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
+				jomresJquery.get(live_site_ajax + clause, function (data) {
+					populateDiv("tax_rule_region",data);
+					});
+				});
+			});
+		//-->
+	</script>
+	<h2 class="page-header">{PAGETITLE}</h2>
+	<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm" class="form-horizontal">
+		{JOMRESTOOLBAR}
+		<fieldset>
+			<div class="control-group">
+				<label class="control-label" for="name">{_JRPORTAL_TAXRATES_CODE}</label>
+				<div class="controls">
+					{TAX_RATE}
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="name">{_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY}</label>
+				<div class="controls">
+					{COUNTRY}
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="name">{_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION}</label>
+				<div class="controls">
+					<div id="tax_rule_region">{REGION}</div>
+				</div>
+			</div>
+			<input type="hidden" name="id" value="{ID}"/>
+			<input type="hidden" name="option" value="com_jomres"/>
+			<input type="hidden" name="task" value="save_tax_rule"/>
+			<input type="hidden" name="no_html" value="1"/>
+		</fieldset>
+		{CSRF_TOKEN}
+	</form>
+</patTemplate:tmpl>

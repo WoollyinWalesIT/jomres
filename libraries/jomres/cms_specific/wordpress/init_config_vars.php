@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.6
+ * @version Jomres 9.23.7
  *
- * @copyright	2005-2020 Vince Wooll
+ * @copyright	2005-2021 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -45,15 +45,15 @@ $showtime->live_site = $jomresConfig_live_site;
 $showtime->offline = false;
 
 global $wpdb; //wp global
-$showtime->db = $wpdb->dbname;
-$showtime->user = $wpdb->dbuser;
+$showtime->db       = $wpdb->dbname;
+$showtime->user     = $wpdb->dbuser;
 $showtime->password = $wpdb->dbpassword;
-$showtime->host = $wpdb->dbhost;
-$showtime->secret = AUTH_SALT;
+$showtime->host     = $wpdb->dbhost;
+$showtime->secret   = AUTH_SALT;
 $showtime->dbprefix = $wpdb->prefix;
 
 $showtime->sitename = get_option('blogname');
-$showtime->mailer = 'mail';
+$showtime->mailer   = 'mail';
 $showtime->mailfrom = get_option('admin_email');
 $showtime->fromname = get_option('blogname');
 $showtime->smtpuser = get_option('mailserver_login');

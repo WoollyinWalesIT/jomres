@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.6
+ * @version Jomres 9.23.7
  *
- * @copyright	2005-2020 Vince Wooll
+ * @copyright	2005-2021 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -76,7 +76,7 @@ class j06002save_normalmode_tariffs
 			$jrportal_rates->validfrom 		= date("Y/m/d");
 			$jrportal_rates->validto 		= date("Y/m/d", strtotime('+10 years'));
 			
-			$roomrateperday 				= jomresGetParam( $_POST, 'roomrateperday', $jrportal_rates->rates_defaults['roomrateperday'] );
+			$roomrateperday 				= jomresGetParam( $_POST, 'roomrateperday', (float)$jrportal_rates->rates_defaults['roomrateperday'] );
 			$jrportal_rates->roomrateperday = convert_entered_price_into_safe_float($roomrateperday);
 			
 			//room details

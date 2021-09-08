@@ -1,0 +1,62 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<div class="panel panel-default">
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-md-12">
+				<h2>{_JOMRES_GDPR_CONSENT_FORM_INTRO}</h2>
+			</div>
+		</div>
+		<p>
+			{_JOMRES_GDPR_CONSENT_FORM_THIRD_PARTIES}
+		</p>
+		
+		<p class="alert alert-info">
+			{CONSENTED}
+		</p>
+		
+		<h3>
+			{_JOMRES_GDPR_CONSENT_FORM_CONSENT_REQUEST}
+		</h3>
+		
+
+		
+		<div class="row">
+			<div class="col-md-2">
+				<a href="{JOMRES_SITEPAGE_URL_AJAX}&task=save_gdpr_optin&optin=1&jr_redirect_url={RETURN_URL}&nofollowtmpl" class="btn btn-success btn-lg">{_JOMRES_COM_MR_YES}</a>
+			</div>
+			<div class="col-md-2">
+				<a href="{JOMRES_SITEPAGE_URL_AJAX}&task=save_gdpr_optin&optin=0&jr_redirect_url={RETURN_URL}&nofollowtmpl" class="btn btn-secondary btn-lg">{_JOMRES_COM_MR_NO}</a>
+			</div>
+		</div>
+		<hr/>
+		<a class="btn btn-primary" role="button" data-toggle="collapse" href="#moreGDPRDetails" aria-expanded="false">
+			{_JOMRES_GDPR_CONSENT_FORM_DETAIL}
+		</a>
+
+		<div class="collapse" id="moreGDPRDetails">
+			<div class="well">
+				<p>
+					{_JOMRES_GDPR_CONSENT_FORM_COOKIE}
+				</p>
+				<p>
+					{_JOMRES_GDPR_CONSENT_FORM_BASIC_INFORMATION}
+				</p>
+				<p>
+					{_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_INTRO}
+				</p>
+				<ol>
+					<li>
+						{_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_1}
+					</li>
+					<li>
+						{_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_2}
+					</li>
+					<li>
+						{_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_3}
+					</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+</div>
+</patTemplate:tmpl>

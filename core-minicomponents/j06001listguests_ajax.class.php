@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.23.6
+ * @version Jomres 9.23.7
  *
- * @copyright	2005-2020 Vince Wooll
+ * @copyright	2005-2021 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -111,7 +111,9 @@ class j06001listguests_ajax
 		$query = 'SET SQL_BIG_SELECTS=1';
 		doInsertSql($query);
 
-		$query = 'SELECT SQL_CALC_FOUND_ROWS 
+        $query = SET_GLOBAL_STRING.
+            "
+            SELECT SQL_CALC_FOUND_ROWS 
 						a.guests_uid, 
 						a.mos_userid, 
 						a.enc_firstname, 
@@ -129,7 +131,7 @@ class j06001listguests_ajax
 						a.discount,
 						a.property_uid 
 					FROM #__jomres_guests a 
-						LEFT JOIN #__jomres_contracts b ON a.guests_uid = b.guest_uid '
+						LEFT JOIN #__jomres_contracts b ON a.guests_uid = b.guest_uid "
 					.$clause
 					.' GROUP BY a.guests_uid '
 					.$sOrder
