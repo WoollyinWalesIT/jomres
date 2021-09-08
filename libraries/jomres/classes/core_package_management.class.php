@@ -88,7 +88,6 @@ class core_package_management
 	 */
 	private function install_packages()
 	{
-
 		foreach ($this->repos as $library => $repo) {
 			$this->install_package( $library , $repo);
 		}
