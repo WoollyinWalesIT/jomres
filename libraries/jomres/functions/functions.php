@@ -155,7 +155,7 @@ function get_remote_plugin_data()
 	if (file_exists(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php')) {
 		$last_modified = filemtime(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php');
 		$seconds_timediff = time() - $last_modified;
-		if ($seconds_timediff > 3600) {
+		if ( $seconds_timediff > 3600 && file_exists(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php') ) {
 			unlink(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php');
 		} else {
 			$remote_plugins_data = file_get_contents(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php');
