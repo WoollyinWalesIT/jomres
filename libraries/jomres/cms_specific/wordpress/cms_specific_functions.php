@@ -159,9 +159,11 @@ function jomres_cmsspecific_createNewUser( $email_address = '' )
 
 		$name = $guestDeets[ 'firstname' ].' '.$guestDeets[ 'surname' ];
 
+		$password = generateJomresRandomString(10);
+
 		$userdata = array(
 			'user_login' => $guestDeets[ 'email' ],
-			'user_pass' => generateJomresRandomString(10),
+			'user_pass' => $password,
 			'user_email' => $guestDeets[ 'email' ],
 			'user_nicename' => $name,
 			);
@@ -170,6 +172,20 @@ function jomres_cmsspecific_createNewUser( $email_address = '' )
 
 		//On success
 		if (!is_wp_error($id)) {
+
+            $webhook_notification							  	= new stdClass();
+            $webhook_notification->webhook_event				= 'user_created';
+            $webhook_notification->webhook_event_description	= 'Logs when a new user is created.';
+            $webhook_notification->webhook_event_plugin		 	= 'core';
+            $webhook_notification->data						 	= new stdClass();
+            $webhook_notification->data->cms_user_id		   	= $id;
+            $webhook_notification->data->name          		   	= $name;
+            $webhook_notification->data->password   		   	= $password;
+            $webhook_notification->data->username		      	= $guestDeets[ 'email' ];
+            $webhook_notification->data->email      		   	= $guestDeets[ 'email' ];
+
+            add_webhook_notification($webhook_notification);
+
 			//$thisJRUser->userIsRegistered=true; // Disabled as this setting would be incorrect during the booking phase. We want newly created users to have their details recorded by the insertGuestDeets function in insertbookings
 			$thisJRUser->id = $id;
 			$tmpBookingHandler->updateGuestField('mos_userid', $id);
