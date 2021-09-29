@@ -69,9 +69,23 @@ class j00060toptemplate
 		}
 
 		$output = array();
+        if ( class_exists('channelmanagement_framework_properties' ) ) {  // The channel management framework is installed
 
-		if ($jrConfig[ 'development_production' ] != 'production') {
-			echo '
+            $mrConfig = getPropertySpecificSettings( $defaultProperty );
+
+            if ( isset($mrConfig['allow_channel_property_local_admin']) && $mrConfig['allow_channel_property_local_admin'] != '1') {
+                echo '
+				<!-- start development mode warning -->
+				<div class="isa_warning">
+                    <i class="fa fa-info"></i>
+                   '.jr_gettext('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', '_JOMRES_CHANNEL_PROPERTY_NO_ADMIN').'
+                    <i class="fa fa-info"></i>
+				</div>
+				';
+            }
+        }
+        if ($jrConfig[ 'development_production' ] != 'production') {
+            echo '
 				<!-- start development mode warning -->
 				<div class="isa_warning">
                     <i class="fa fa-warning"></i>
@@ -79,8 +93,7 @@ class j00060toptemplate
                     <i class="fa fa-warning"></i>
 				</div>
 				';
-		}
-
+        }
 
 		$output[ 'VIDEO_TUTORIALS' ] = '';
 		if (using_bootstrap()) {
