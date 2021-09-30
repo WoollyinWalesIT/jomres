@@ -45,8 +45,8 @@ class j00001define_template_paths
 
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
-		if (!isset($jrConfig[ 'bootstrap_version' ])) {
-			$jrConfig[ 'bootstrap_version' ] = '';
+		if (!isset($jrConfig[ 'bootstrap_version' ]) || $jrConfig[ 'bootstrap_version' ] == 0) {
+			$jrConfig[ 'bootstrap_version' ] = '3';
 		}
 
 		if (!defined('JOMRES_TEMPLATEPATH_FRONTEND')) {

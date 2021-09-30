@@ -169,6 +169,7 @@ function showSiteConfig()
 	}
 
 	$bootstrap_ver_opt = array();
+    $bootstrap_ver_opt[ ] = jomresHTML::makeOption('0', 'No bootstrap in theme');
 	$bootstrap_ver_opt[ ] = jomresHTML::makeOption('', 'Bootstrap 2');
 	$bootstrap_ver_opt[ ] = jomresHTML::makeOption('3', 'Bootstrap 3');
 	$bootstrap_ver_opt[ ] = jomresHTML::makeOption('4', 'Bootstrap 4');
