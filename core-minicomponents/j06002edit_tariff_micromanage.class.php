@@ -312,16 +312,16 @@ class j06002edit_tariff_micromanage
 						$days1.='<td>&nbsp;</td>';
 							$inputs1.='
 							<td style="width:10px">
-								<small class="muted">'. $price_text.'</small><br/>
-								<small class="muted">'. $mindays_text.'</small>
+								<small class="muted" style="word-break: keep-all">'. $price_text.'</small><br/>
+								<small class="muted" style="word-break: keep-all">'. $mindays_text.'</small>
 							</td>';
                         }
                      if ($dkey == 15 ) {
 						$days2.='<td>&nbsp;</td>';
 							$inputs2.='
 							<td style="width:10px">
-								<small class="muted">'. $price_text.'</small><br/>
-								<small class="muted">'. $mindays_text.'</small>
+								<small class="muted" style="word-break: keep-all">'. $price_text.'</small><br/>
+								<small class="muted" style="word-break: keep-all">'. $mindays_text.'</small>
 							</td>';
                         }
 					if ($dkey <= 15)
