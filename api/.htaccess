@@ -5,3 +5,8 @@ RewriteRule ^(.*)$ index.php [L,QSA]
 
 RewriteCond %{HTTP:Authorization} .+
 RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+php_value max_input_vars 20000
+php_value suhosin.get.max_vars 20000
+php_value suhosin.post.max_vars 20000
+php_value suhosin.request.max_vars 20000
