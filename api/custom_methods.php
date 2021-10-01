@@ -44,7 +44,10 @@ defined('_JOMRES_INITCHECK') or die('');
 		$response->meta['code'] = $code;
 		$response->meta['site'] = $envelope_data;
 
-		$json = json_encode($response);
+        logging::log_message(' Response  '.serialize($response), 'API', 'DEBUG' , '');
+
+
+        $json = json_encode($response);
 		Flight::response()
 			->status($code)
 			->header('Content-Type', 'application/json; charset='.$charset)
