@@ -47,6 +47,8 @@ if ($jrConfig['bootstrap_version'] == 0 && AJAXCALL === false && !is_admin() ) {
     // CSS
     wp_register_style('prefix_bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
     wp_enqueue_style('prefix_bootstrap');
+    wp_register_style('prefix_bootstrap_theme', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css');
+    wp_enqueue_style('prefix_bootstrap_theme');
 
 }
 
