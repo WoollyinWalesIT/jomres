@@ -155,7 +155,7 @@ function get_remote_plugin_data()
 	if (file_exists(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php')) {
 		$last_modified = filemtime(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php');
 		$seconds_timediff = time() - $last_modified;
-		if ( $seconds_timediff > 3600 && file_exists(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php') ) {
+		if ($seconds_timediff > 3600) {
 			unlink(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php');
 		} else {
 			$remote_plugins_data = file_get_contents(JOMRES_TEMP_ABSPATH.'remote_plugins_data.php');
@@ -1084,11 +1084,18 @@ function jomres_bootstrap_version()
 		$bootstrap_version = '5';
 	} elseif  ( jomres_cmsspecific_areweinadminarea() && _JOMRES_DETECTED_CMS == 'joomla3' ) {
 		$bootstrap_version = '2';
-	} else { 
-		$bootstrap_version = $jrConfig[ 'bootstrap_version' ];
-	} 
+	} elseif ( $jrConfig[ 'bootstrap_version' ] == 0 ) { // We are in Wordpress, so we'll automatically set the BS version to 2 if in admin, or BS3 in frontend as the init config vars functionality will autoload the BS3 scripts in the frontend
+	    if ( jomres_cmsspecific_areweinadminarea()) {
+            $bootstrap_version = '2';
+        } else {
+            $bootstrap_version = '3';
+        }
 
-	return $bootstrap_version;
+	}  else {
+        $bootstrap_version = $jrConfig[ 'bootstrap_version' ];
+    }
+
+    return $bootstrap_version;
 }
 
  /**
