@@ -221,12 +221,9 @@ try {
 	if ($e->getMessage() != '' ) {
 		$response = $e->getMessage();
 		if (!PRODUCTION) {
-				echo "Exception: " . $response.'
-				';
-				echo "The exception was created in file: " . $e->getFile().'
-				';
-				echo "The exception was created on line: " . $e->getLine().'
-				';
+            $response .= "Exception: " . $response;
+            $response .= "The exception was created in file: " . $e->getFile();
+            $response .= "The exception was created on line: " . $e->getLine();
 		}
 			
 	}
