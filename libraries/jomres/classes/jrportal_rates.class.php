@@ -359,7 +359,12 @@ class jrportal_rates
 			$date = date("Y/m/d",$epoch);
 			
 			$daybefore = date("Y/m/d",strtotime("-1 day", $epoch));
-			
+
+			// Jomres core will ensure that this index is set, but a remote system might not
+			if (!isset($this->dates_mindays[$epoch])) {
+                $this->dates_mindays[$epoch] = $lastmindays;
+            }
+
 			$mindays_value = (int)$this->dates_mindays[$epoch];
 
 			if ($value != $lastvalue || $mindays_value != $lastmindays) {
