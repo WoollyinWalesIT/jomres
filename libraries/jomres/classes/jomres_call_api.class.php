@@ -226,7 +226,7 @@ class jomres_call_api
 
 		$response_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-        logging::log_message("Sending ".$method." to ".$this->server.$endpoint." returned response code ".$response_code , 'jomres_call_api', 'DEBUG' , $headerSent );
+        logging::log_message("Sending ".$method." to ".$this->server.$endpoint." returned response code ".$response_code , 'jomres_call_api', 'DEBUG' ,  serialize($result) );
         //logging::log_message("Response code : ".$response_code , 'jomres_call_api', 'DEBUG' , $headerSent );
         //logging::log_message("Response ".$result , 'jomres_call_api', 'DEBUG' , $headerSent );
        // logging::log_message("Status ".json_encode($status) , 'jomres_call_api', 'DEBUG' , $headerSent );
