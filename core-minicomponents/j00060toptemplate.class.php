@@ -95,7 +95,14 @@ class j00060toptemplate
 				';
         }
 
-		$output[ 'VIDEO_TUTORIALS' ] = '';
+        if ($jrConfig['bootstrap_version'] == '0' ) { // It's wordpress that doesn't use a bootstrap theme
+            $tmpl = new patTemplate();
+            $tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+            $tmpl->readTemplatesFromInput('wordpress_non_bootstrap_tweaks.html');
+            $output[ 'WORDPRESS_NON_BOOTSTRAP_TWEAKS' ] = $tmpl->getParsedTemplate();
+        }
+
+        $output[ 'VIDEO_TUTORIALS' ] = '';
 		if (using_bootstrap()) {
 			$jomres_video_tutorials = jomres_singleton_abstract::getInstance('jomres_video_tutorials');
 			$jomres_video_tutorials->property_uid = $defaultProperty;
