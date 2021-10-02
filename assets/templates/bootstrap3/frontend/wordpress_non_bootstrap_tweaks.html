@@ -15,6 +15,18 @@
 </patTemplate:comment>
 
 <style>
+
+	@media only screen and (min-width: 482px) {
+		:root {
+			--responsive--aligndefault-width: min(calc(100vw - 4 * var(--global--spacing-horizontal)), 1000px);
+		}
+	}
+	@media only screen and (min-width: 822px) {
+		:root {
+			--responsive--aligndefault-width: min(calc(100vw - 8 * var(--global--spacing-horizontal)), 1000px);
+		}
+	}
+
 	a:visited {
 		color: inherit;
 	}
@@ -38,6 +50,13 @@
 		padding: 1px;
 		font-size: 12px;
 	}
+
+
+	table, 	.wp-block-table {
+		width: 100%;
+		min-width: 150px;
+	}
+
 </style>
 
 </patTemplate:tmpl>
