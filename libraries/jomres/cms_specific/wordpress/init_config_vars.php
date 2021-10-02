@@ -50,6 +50,10 @@ if ($jrConfig['bootstrap_version'] == 0 && AJAXCALL === false && !is_admin() ) {
     wp_register_style('prefix_bootstrap_theme', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css');
     wp_enqueue_style('prefix_bootstrap_theme');
 
+    add_filter( 'wp_editor_settings', function($settings) {
+        $settings['media_buttons']=FALSE;
+        return $settings;
+    });
 }
 
 $showtime = jomres_getSingleton('showtime');
