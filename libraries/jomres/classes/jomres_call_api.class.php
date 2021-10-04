@@ -82,13 +82,20 @@ class jomres_call_api
 
 				if (is_null($response)) {
 					// Uh oh, could be a 403 forbidden response, let's try to json decode $token_request
-					$unhappy_response = json_decode($token_request);
+/*                    if (is_array($token_request)) {
+                        $unhappy_response = $token_request['response'];
+                    } else {
+                        $unhappy_response = json_decode($token_request);
+                    }*/
+
 
 					if ( isset($token_request['response_code']) && $token_request['response_code'] == "403" ) {
 						echo "<p class='alert alert-danger'>Error, tried to call API but received a 403 response, please visit the Admin > Jomres > Tools > Rest API test page. You may need to add \"Options +SymLinksIfOwnerMatch\" to the .conf file for this domain. If you don't have access to that file, then SymLinksIfOwnerMatch can be added to .htaccess. Also, check that htaccess.txt has been renamed to .htaccess (if running Joomla). Also check that url rewriting (RewriteEngine On) is enabled (a default copy of .htaccess would normally allow that). </p>";
-					} else {
-						var_dump($token_request);
-					}
+					} elseif (isset($token_request['response_code']) && $token_request['response_code'] == "500")  {
+                        echo "<p class='alert alert-danger'>Error, tried to call API but received a 500 response, please visit the Admin > Jomres > Tools > Rest API test page. Check that url rewriting (RewriteEngine On) is enabled (a default copy of .htaccess would normally allow that). </p>";
+                    } else {
+                        var_dump($token_request);
+                    }
 					return false;
 				}
 
