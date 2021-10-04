@@ -35,8 +35,6 @@ class jomres_config_site_singleton
 
 		}
 
-        $this->site_settings_table_exists = false;
-
 		$this->init();
 	}
 	
@@ -127,10 +125,7 @@ $jrConfig = ' .var_export($config_to_save, true).';
 			return true;
 		}
 
-		if (file_exists($this->config_file) || !$this->site_settings_table_exists ) {
-            if (!file_exists($this->config_file) ) {
-                touch($this->config_file);
-            }
+		if (file_exists($this->config_file)) {
 			include $this->config_file;
 			if (!array_key_exists($k, $jrConfig)) {
 				$jrConfig[ $k ] = $v;
@@ -188,7 +183,7 @@ $jrConfig = ' .var_export($jrConfig, true).';
 			return true;
 		}
 
-		if (file_exists($this->config_file) || !$this->site_settings_table_exists ) {
+		if (file_exists($this->config_file)) {
 			include $this->config_file;
 
 			$jrConfig[ $k ] = $v;
@@ -262,40 +257,19 @@ $jrConfig = ' .var_export($jrConfig, true).';
 			}
 		} else { //BC
 			$this->config = array();
-
+			$query = 'SELECT akey,value FROM #__jomres_site_settings';
 
 			// We need to bypass doSelectSql here because doSelectSql does $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton'); too, and that'll cause a fatal error.
 			$jomres_db = jomres_singleton_abstract::getInstance('jomres_database');
-            $jomresConfig_dbprefix = get_showtime('dbprefix');
-            $jomresConfig_db = get_showtime('db');
-
-            // Jomres probably hasn't been installed yet, does the site settings table exist yet?
-            $tablesFound = false;
-            $query = 'SHOW TABLES';
-            $jomres_db->setQuery($query);
-            $result = $jomres_db->loadObjectList();
-            $string = 'Tables_in_'.$jomresConfig_db;
-            if (!empty($result)) {
-                foreach ($result as $r) {
-                    if (strstr($r->$string, $jomresConfig_dbprefix.'jomres_site_settings')) {
-                        $this->site_settings_table_exists = true;
-                    }
-                }
-            }
-
-            if ($this->site_settings_table_exists) {
-                $query = 'SELECT akey,value FROM #__jomres_site_settings';
-                $jomres_db->setQuery($query);
-                $jomres_db->loadObjectList();
-                if (!empty($jomres_db->result)) {
-                    foreach ($jomres_db->result as $setting) {
-                        $akey = $setting->akey;
-                        $value = $setting->value;
-                        $this->config[ $akey ] = $value;
-                    }
-                }
-            }
-
+			$jomres_db->setQuery($query);
+			$jomres_db->loadObjectList();
+			if (!empty($jomres_db->result)) {
+				foreach ($jomres_db->result as $setting) {
+					$akey = $setting->akey;
+					$value = $setting->value;
+					$this->config[ $akey ] = $value;
+				}
+			}
 
 			// Now we'll check to see if any new settings have been added to the jrConfig file. If they have they'll be added to the site settings table.
 			if (empty($jomres_db->result)) {
@@ -311,11 +285,11 @@ $jrConfig = ' .var_export($jrConfig, true).';
 				if (!empty($result)) {
 					foreach ($result as $r) {
 						if (strstr($r->$string, $jomresConfig_dbprefix.'jomres_site_settings')) {
-                            $this->site_settings_table_exists = true;
+							$tablesFound = true;
 						}
 					}
 				}
-				if (!$this->site_settings_table_exists) {
+				if (!$tablesFound) {
 					// The site settings table doesn't exist yet, we'll dump out for now.
 					//return false;
 					//we`re installing Jomres for the first time
@@ -334,4 +308,3 @@ $jrConfig = ' .var_export($jrConfig, true).';
 		return true;
 	}
 }
-
