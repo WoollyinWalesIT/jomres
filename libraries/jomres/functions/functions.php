@@ -3133,7 +3133,7 @@ function updateManagerIdToPropertyXrefTable($cms_user_id = 0, $property_uids = a
  *
  * Only used if system is set to Production.
  */
-function errorHandler($errno, $errstr, $errfile, $errline, $errcontext)
+function errorHandler($errno, $errstr, $errfile, $errline, $errcontext = '')
 {
 	switch ($errno) {
 		case E_USER_WARNING:
