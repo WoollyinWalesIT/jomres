@@ -413,7 +413,7 @@ function showSiteConfig()
 	echo $jrtb;
 
     $bs_version = jomres_bootstrap_version();
-    if ($bs_version == '2' || $bs_version == '') {
+        if ($bs_version == '2' || $bs_version == '' || $bs_version == '0' || $bs_version == '3' ) {
         $configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel');
     } elseif ($bs_version == '5') {
         $configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel_bootstrap5');
