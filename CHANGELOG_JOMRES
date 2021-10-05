@@ -1,3 +1,19 @@
+<h3>Jomres 9.24.0 05/10/2021</h3>
+
+<span class="label label-success">Feature</span> Added functionality that allows Jomres to work in themes that don't provide Bootstrap libraries themselves.
+<span class="label label-success">Feature</span> Added create new user webhook notification. This webhook could be used, for example, to update a CRM with the new user's details.
+<span class="label label-success">Feature</span> Added a frontend warning if a channel property cannot be administered locally.
+
+<span class="label label-warning">Change</span> Modified how errors are handed back by api index.php
+<span class="label label-warning">Change</span> Updated jrportal rates to allow outside data to extend the dates of triffs. Jomres Core will not need it, but external systems (eg jomres2jomres) will.
+<span class="label label-warning">Change</span> Added debugging for jomres core API custom methods
+<span class="label label-warning">Change</span> Added a wordpress tweaks template file which is easy to override but shouldn't interfere with themes that use Bootstrap 3 natively. It's a bit hacky but it means that we don't need to faff up existing BS3 user's sites by changing their templates. Win-win.
+<span class="label label-warning">Change</span> Wordpress : Disable the add media button in edit content pages as images should be included via the media centre.
+
+<span class="label label-important label-danger">Fix</span> Fixed a notice when deleting temporary data.
+<span class="label label-important label-danger">Fix</span> Added some tweaks to jomres_call_api class to handle slow connections…… (i.e. my tired old laptop trying to run two instances of Jomres in one go, in development mode)
+
+
 <h3>Jomres 9.23.7 08/09/2021</h3>
 
 <span class="label label-warning">Change</span> Modal availability calendar. Improvement for BS4.

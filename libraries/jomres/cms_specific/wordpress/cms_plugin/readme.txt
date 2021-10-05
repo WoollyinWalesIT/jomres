@@ -22,7 +22,7 @@ From basic features like secure frontend property administration through to powe
 
 <blockquote>
 	<p>
-		<a href="https://www.jomres.net">Plugin website</a> | <a href="https://www.jomres.net/features-and-license-comparison/">Features</a> | <a href="https://www.jomres.net/manual/">Documentation</a> | <a href="https://www.jomres.net/pricing">Plugins and support</a>
+		<a href="https://www.jomres.net">Plugin website</a> | <a href="https://www.jomres.net/jomres-features-summary">Features</a> | <a href="https://www.jomres.net/manual/">Documentation</a> | <a href="https://www.jomres.net/pricing">Plugins and support</a>
 	</p>
 </blockquote>
 
