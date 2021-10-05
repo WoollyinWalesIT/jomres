@@ -3,7 +3,7 @@ Contributors: jomres
 Tags: Booking Engine, Booking system, Hotel Booking, Booking portal, Hotel, Villa booking, Booking, booking calendar, Channel manager, bed and breakfast, hotels,  motel, motels,  calendar, room booking, online booking software, booking engine, online reservation, online reservation system, reservation system, villa rentals, accommodation, reservation, reserve room, availability, availability calendar, booking form, booking enquiry, web booking, reservation plugin, holiday apartments, holiday rentals, apartment rentals, cottage rental, b&b, tool hire, ecommerce, shop, store, ajax, gallery, slideshow, portal, twitter, online booking system, tours, api, json, REST, rest-api, webhooks
 Donate link: https://www.jomres.net
 Requires at least: 4.3.1
-Tested up to: 5.5.1
+Tested up to: 5.8.1
 Stable tag: trunk
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -22,7 +22,7 @@ From basic features like secure frontend property administration through to powe
 
 <blockquote>
 	<p>
-		<a href="https://www.jomres.net">Plugin website</a> | <a href="https://www.jomres.net/features-and-license-comparison/">Features</a> | <a href="https://www.jomres.net/manual/">Documentation</a> | <a href="https://www.jomres.net/pricing">Plugins and support</a>
+		<a href="https://www.jomres.net">Plugin website</a> | <a href="https://www.jomres.net/jomres-features-summary">Features</a> | <a href="https://www.jomres.net/manual/">Documentation</a> | <a href="https://www.jomres.net/pricing">Plugins and support</a>
 	</p>
 </blockquote>
 
