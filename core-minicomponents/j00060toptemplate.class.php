@@ -69,9 +69,23 @@ class j00060toptemplate
 		}
 
 		$output = array();
+        if ( class_exists('channelmanagement_framework_properties' ) ) {  // The channel management framework is installed
 
-		if ($jrConfig[ 'development_production' ] != 'production') {
-			echo '
+            $mrConfig = getPropertySpecificSettings( $defaultProperty );
+
+            if ( isset($mrConfig['allow_channel_property_local_admin']) && $mrConfig['allow_channel_property_local_admin'] != '1') {
+                echo '
+				<!-- start development mode warning -->
+				<div class="isa_warning">
+                    <i class="fa fa-info"></i>
+                   '.jr_gettext('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', '_JOMRES_CHANNEL_PROPERTY_NO_ADMIN').'
+                    <i class="fa fa-info"></i>
+				</div>
+				';
+            }
+        }
+        if ($jrConfig[ 'development_production' ] != 'production') {
+            echo '
 				<!-- start development mode warning -->
 				<div class="isa_warning">
                     <i class="fa fa-warning"></i>
@@ -79,10 +93,16 @@ class j00060toptemplate
                     <i class="fa fa-warning"></i>
 				</div>
 				';
-		}
+        }
 
+        if ($jrConfig['bootstrap_version'] == '0' ) { // It's wordpress that doesn't use a bootstrap theme
+            $tmpl = new patTemplate();
+            $tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+            $tmpl->readTemplatesFromInput('wordpress_non_bootstrap_tweaks.html');
+            $output[ 'WORDPRESS_NON_BOOTSTRAP_TWEAKS' ] = $tmpl->getParsedTemplate();
+        }
 
-		$output[ 'VIDEO_TUTORIALS' ] = '';
+        $output[ 'VIDEO_TUTORIALS' ] = '';
 		if (using_bootstrap()) {
 			$jomres_video_tutorials = jomres_singleton_abstract::getInstance('jomres_video_tutorials');
 			$jomres_video_tutorials->property_uid = $defaultProperty;

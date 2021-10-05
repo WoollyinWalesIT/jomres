@@ -82,13 +82,20 @@ class jomres_call_api
 
 				if (is_null($response)) {
 					// Uh oh, could be a 403 forbidden response, let's try to json decode $token_request
-					$unhappy_response = json_decode($token_request);
+/*                    if (is_array($token_request)) {
+                        $unhappy_response = $token_request['response'];
+                    } else {
+                        $unhappy_response = json_decode($token_request);
+                    }*/
+
 
 					if ( isset($token_request['response_code']) && $token_request['response_code'] == "403" ) {
 						echo "<p class='alert alert-danger'>Error, tried to call API but received a 403 response, please visit the Admin > Jomres > Tools > Rest API test page. You may need to add \"Options +SymLinksIfOwnerMatch\" to the .conf file for this domain. If you don't have access to that file, then SymLinksIfOwnerMatch can be added to .htaccess. Also, check that htaccess.txt has been renamed to .htaccess (if running Joomla). Also check that url rewriting (RewriteEngine On) is enabled (a default copy of .htaccess would normally allow that). </p>";
-					} else {
-						var_dump($token_request);
-					}
+					} elseif (isset($token_request['response_code']) && $token_request['response_code'] == "500")  {
+                        echo "<p class='alert alert-danger'>Error, tried to call API but received a 500 response, please visit the Admin > Jomres > Tools > Rest API test page. Check that url rewriting (RewriteEngine On) is enabled (a default copy of .htaccess would normally allow that). </p>";
+                    } else {
+                        var_dump($token_request);
+                    }
 					return false;
 				}
 
@@ -154,7 +161,7 @@ class jomres_call_api
 			} elseif ($response['response_code'] == '404') {
 				return false;
 			} else {
-				throw new Exception('Call to API resulted in response code '.$response['response_code'].' and message '.$response['response']);
+				throw new Exception('Call to API '.$endpoint.' resulted in response code '.$response['response_code'].' and message '.$response['response']);
 			}
 		} else {
 			throw new Exception('Could not call API as token not setup. Is the API Core installed?');
@@ -173,7 +180,7 @@ class jomres_call_api
 		$ch = curl_init($this->server.$endpoint);
 
 		curl_setopt($ch, CURLINFO_HEADER_OUT, true);
-		curl_setopt($ch, CURLOPT_TIMEOUT, 30); //timeout after 30 seconds
+		curl_setopt($ch, CURLOPT_TIMEOUT, 60); //timeout after 30 seconds. On my laptop, which is struggling, had to up this limit to 60 seconds because 30 seconds was resulting in response code 0 (zero)
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
 		switch ($method) {
@@ -198,7 +205,8 @@ class jomres_call_api
 			if (isset($headers) && count($headers) > 0 ) {
 				$default_headers = array (
 					"Authorization: Bearer ".$this->token ,
-					"Accept: application/json"
+					"Accept: application/json",
+                    "Expect:"
 					);
 				$arr =  array_merge ( $default_headers , $headers ) ;
 
@@ -207,6 +215,7 @@ class jomres_call_api
 				curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 					'Authorization: Bearer '.$this->token,
 					'Accept: application/json',
+                    "Expect:"
 					));
 			}
 
@@ -214,13 +223,22 @@ class jomres_call_api
 
 		curl_setopt($ch,CURLOPT_VERBOSE,true);
 		curl_setopt($ch, CURLINFO_HEADER_OUT, true);
-		
-		$result = curl_exec($ch);
+        $headerSent = curl_getinfo($ch, CURLINFO_HEADER_OUT );
+
+		// jomres_call_api is used by the system to call itself and use rest api features
+        // For debugging purposes we will store sent and received responses
+
+        $result = curl_exec($ch);
 		$status = curl_getinfo($ch);
 
 		$response_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-		curl_close($ch);
+        logging::log_message("Sending ".$method." to ".$this->server.$endpoint." returned response code ".$response_code , 'jomres_call_api', 'DEBUG' ,  serialize($result) );
+        //logging::log_message("Response code : ".$response_code , 'jomres_call_api', 'DEBUG' , $headerSent );
+        //logging::log_message("Response ".$result , 'jomres_call_api', 'DEBUG' , $headerSent );
+       // logging::log_message("Status ".json_encode($status) , 'jomres_call_api', 'DEBUG' , $headerSent );
+
+        curl_close($ch);
 
 		if ($response_code == 401 ) { // The token isn't valid
 			$this->token = ''; // Wipe the token, and then initialise again

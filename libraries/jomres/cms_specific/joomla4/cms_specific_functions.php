@@ -167,6 +167,20 @@ function jomres_cmsspecific_createNewUser( $email_address = '' )
 		trigger_error('Failed insert new user '.$query, E_USER_ERROR);
 		$this->insertSuccessful = false;
 	} else {
+
+        $webhook_notification							  	= new stdClass();
+        $webhook_notification->webhook_event				= 'user_created';
+        $webhook_notification->webhook_event_description	= 'Logs when a new user is created.';
+        $webhook_notification->webhook_event_plugin		 	= 'core';
+        $webhook_notification->data						 	= new stdClass();
+        $webhook_notification->data->cms_user_id		   	= $id;
+        $webhook_notification->data->name          		   	= $name;
+        $webhook_notification->data->password   		   	= $password;
+        $webhook_notification->data->username		      	= $guestDeets[ 'email' ];
+        $webhook_notification->data->email      		   	= $guestDeets[ 'email' ];
+
+        add_webhook_notification($webhook_notification);
+
 		$query = "INSERT INTO #__user_usergroup_map  (
 			`user_id`,
 			`group_id`

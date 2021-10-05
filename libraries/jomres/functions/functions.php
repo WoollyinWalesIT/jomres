@@ -1084,11 +1084,18 @@ function jomres_bootstrap_version()
 		$bootstrap_version = '5';
 	} elseif  ( jomres_cmsspecific_areweinadminarea() && _JOMRES_DETECTED_CMS == 'joomla3' ) {
 		$bootstrap_version = '2';
-	} else { 
-		$bootstrap_version = $jrConfig[ 'bootstrap_version' ];
-	} 
+	} elseif ( $jrConfig[ 'bootstrap_version' ] == 0 ) { // We are in Wordpress, so we'll automatically set the BS version to 2 if in admin, or BS3 in frontend as the init config vars functionality will autoload the BS3 scripts in the frontend
+	    if ( jomres_cmsspecific_areweinadminarea()) {
+            $bootstrap_version = '2';
+        } else {
+            $bootstrap_version = '3';
+        }
 
-	return $bootstrap_version;
+	}  else {
+        $bootstrap_version = $jrConfig[ 'bootstrap_version' ];
+    }
+
+    return $bootstrap_version;
 }
 
  /**
@@ -3126,7 +3133,7 @@ function updateManagerIdToPropertyXrefTable($cms_user_id = 0, $property_uids = a
  *
  * Only used if system is set to Production.
  */
-function errorHandler($errno, $errstr, $errfile, $errline, $errcontext)
+function errorHandler($errno, $errstr, $errfile, $errline, $errcontext = '')
 {
 	switch ($errno) {
 		case E_USER_WARNING:

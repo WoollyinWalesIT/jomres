@@ -2822,4 +2822,6 @@ jr_define('_JOMRES_CURRENCYFORMAT_STRIP_DECIMALS', 'Strip decimals from output p
 
 jr_define('_JOMRES_SEND_GROUP_BY_FIX_TITLE', 'Apply group by fix?');
 jr_define('_JOMRES_SEND_GROUP_BY_FIX_DESC', 'Some mysql installations may have a problem with Jomres Queries in the List Properties, List guests and List invoices page. If those pages say that they are showing X of Y results but nothing appears in the list, then setting this option to Yes may fix the issue. It will not if you are on shared hosting and the hosting service does not allow your mysql user to issue the "SET GLOBAL sql_mode=" command. ');
+jr_define('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', 'This is a channel property, it cannot be administered locally, visit the channel management framework page to find the property\'s remote administration link');
+jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", " No Bootstrap in theme ");
 

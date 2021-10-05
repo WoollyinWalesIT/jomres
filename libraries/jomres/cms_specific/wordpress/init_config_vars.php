@@ -18,6 +18,9 @@ if (!defined('WPINC')) {
 	require_once JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'wp-config.php';
 }
 
+
+
+
 $jomresConfig_live_site = get_site_url('siteurl');
 if (defined('API_STARTED')) {
 	$jomresConfig_live_site = str_replace('/jomres/api', '', $jomresConfig_live_site);
@@ -31,8 +34,26 @@ if (!defined('AUTO_UPGRADE')) {
 	//get lang short code
 	//TODO: this is unreliable at this point, for example for pt-BR and pt-PT, because the language code is always pt.
 	//later in the code in cms_specific_urls.php the correct shortcode will be set
-	//Not a problem in Joomla
 	$jomresConfig_lang_shortcode = substr($jomresConfig_lang, 0, 2);
+}
+
+include(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'configuration.php');
+
+if ($jrConfig['bootstrap_version'] == 0 && AJAXCALL === false && !is_admin() ) {
+    // If theme is not bootstrap based, we can still include BS and hope that everything works (highly dependant on the theme)
+    // JS
+    wp_enqueue_script('prefix_bootstrap' , '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', array('jquery') );
+
+    // CSS
+    wp_register_style('prefix_bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
+    wp_enqueue_style('prefix_bootstrap');
+    wp_register_style('prefix_bootstrap_theme', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css');
+    wp_enqueue_style('prefix_bootstrap_theme');
+
+    add_filter( 'wp_editor_settings', function($settings) {
+        $settings['media_buttons']=FALSE;
+        return $settings;
+    });
 }
 
 $showtime = jomres_getSingleton('showtime');

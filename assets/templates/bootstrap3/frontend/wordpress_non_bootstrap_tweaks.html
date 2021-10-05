@@ -1,0 +1,67 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+<patTemplate:comment>
+	A bit of a cludge, but it works
+
+	It's now possible to run Bootstrap 3 within Wordpress default templates but it does require a few little tweaks here and there
+
+	To ensure that these tweaks don't bork sites that use themes that support Bootstrap (e.g. Leohtian), it's best to put those small tweaks here.
+
+	If you want a customised version of this file, see
+
+	http://www.jomres.net/manual/developers-guide-2/68-customising-jomres/customising-templates-layout/306-template-overrides
+
+	A customised version of this file is recommended if you intend modify it, as versions of this file in the override directories are not overwritten when Jomres is updated.
+</patTemplate:comment>
+
+<style>
+
+	@media only screen and (min-width: 482px) {
+		:root {
+			--responsive--aligndefault-width: min(calc(100vw - 4 * var(--global--spacing-horizontal)), 1000px);
+		}
+	}
+	@media only screen and (min-width: 822px) {
+		:root {
+			--responsive--aligndefault-width: min(calc(100vw - 8 * var(--global--spacing-horizontal)), 1000px);
+		}
+	}
+
+	a:visited {
+		color: inherit;
+	}
+
+	.btn-default {
+		color: #000000 !important;
+	}
+	.dataTable th  {
+		color: #0088CC;
+		word-break: keep-all;
+		font-size: 12px;
+	}
+
+	.dataTable td  {
+		word-break: keep-all;
+		font-size: 12px;
+	}
+
+	.dataTable button.dt-button, div.dt-button, a.dt-button {
+		margin: 1px;
+		padding: 1px;
+		font-size: 12px;
+	}
+
+
+	table, 	.wp-block-table {
+		width: 100%;
+		min-width: 150px;
+	}
+
+	.panel-body {
+		min-height: 450px;
+		max-height: 450px;
+		overflow-y:hidden;
+	}
+</style>
+
+</patTemplate:tmpl>
