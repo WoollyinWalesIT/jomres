@@ -50,6 +50,9 @@ class jomres_language
 		$langfile_crossref = $this->define_langfile_to_languages_array();
 		$this->datepicker_crossref = $this->define_langfile_to_datepicker_files_array();
 
+        //set lang shortcode showtime, eg: en
+        $this->shortcodes = $this->get_shortcodes();
+
 		if (!array_key_exists($jomresConfig_lang, $langfile_crossref)) {
 			$jomresConfig_lang = $this->get_shortcode_to_longcode($jomresConfig_lang);
 		}
@@ -63,8 +66,7 @@ class jomres_language
 		set_showtime('lang', $this->lang);
 		set_showtime('datepicker_lang', $this->datepicker_lang);
 
-		//set lang shortcode showtime, eg: en
-		$this->shortcodes = $this->get_shortcodes();
+
 		$key = array_search($jomresConfig_lang, $this->shortcodes);
 		set_showtime('lang_shortcode', $key);
 
