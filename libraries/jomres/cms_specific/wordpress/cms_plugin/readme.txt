@@ -1,6 +1,6 @@
-=== Jomres Booking System ===
+=== Jomres Hotel Booking Engine for WordPress ===
 Contributors: jomres
-Tags: Booking Engine, Booking system, Hotel Booking, Booking portal, Hotel, Villa booking, Booking, booking calendar, Channel manager, bed and breakfast, hotels,  motel, motels,  calendar, room booking, online booking software, booking engine, online reservation, online reservation system, reservation system, villa rentals, accommodation, reservation, reserve room, availability, availability calendar, booking form, booking enquiry, web booking, reservation plugin, holiday apartments, holiday rentals, apartment rentals, cottage rental, b&b, tool hire, ecommerce, shop, store, ajax, gallery, slideshow, portal, twitter, online booking system, tours, api, json, REST, rest-api, webhooks
+Tags: iCal, Channel Manager, Hotel Booking, Apartment booking, Booking portal, Hotel,  Booking, hotels,  motel, motels,  calendar, room booking, reservation plugin, holiday apartments, holiday rentals, apartment rentals, cottage rental, b&b, tool hire, ecommerce, tours, api, json, REST, rest-api, webhooks
 Donate link: https://www.jomres.net
 Requires at least: 4.3.1
 Tested up to: 5.8.1
@@ -12,13 +12,13 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 = The multi-property, multi-vendor, multi-language booking portal, be a part of something bigger =
 
-Mature, intelligent, secure and powerful. For 15 years Jomres has been Joomla's premier online booking engine and now it's available for WordPress 😁.
+Mature, intelligent, secure and powerful. Started in 2005 and maintained continuously for the last 16 years, Jomres is the most complete online booking engine available for WordPress.
+
+The Core system is free (install it through the WordPress plugin manager) and extend it through <a href="https://www.jomres.net/jomres-plugin-list">200 Jomres plugins</a> which can be installed through the Jomres Plugin Manager at no extra cost once you have a license.
 
 Jomres is a commission-free, responsive, Open Source multi-vendor, multi-language, multi-property online booking plugin for accommodation, rentals and tours used by thousands of businesses worldwide to manage their properties and reservations. You can create an unlimited number of booking websites, accessible to customers on any device, in any language.
 
-Don't confuse it with one of the many WordPress hotel booking themes that are commonly available. Jomres is much, much more than that. Those themes use basic, inflexible booking systems that are very limited. Jomres, instead, is a dedicated online booking plugin that I have been working on solidly for a decade and a half.
-
-From basic features like secure frontend property administration through to powerful developer tools such as it's built-in REST API and  Webhooks functionality, there's something here for everybody. Whether you looking for a booking engine for a single property site, or a complete portal, Jomres is where it's at.
+From basic features like secure frontend property administration, comprehensive and flexible [search features](http://www.jomres.net/manual/site-managers-guide-2/402-search-widgets), [iCal import and export](http://www.jomres.net/manual/property-managers-guide-2/41-your-toolbar/bookings/328-jomres-ical), through to powerful developer tools such as its built-in [REST API](http://www.jomres.net/manual/developers-guide-2/90-channel-management-framework) and  [Webhooks](http://www.jomres.net/manual/developers-guide-2/64-webhooks) functionality, there's something here for everybody. Whether you are looking for a booking engine for a single property site, or a complete portal, Jomres is where it's at.
 
 <blockquote>
 	<p>
@@ -26,17 +26,14 @@ From basic features like secure frontend property administration through to powe
 	</p>
 </blockquote>
 
+Jomres is created and maintained by me, Vince Wooll. I am not a designer or a marketer, I'm a software engineer who believes that there's still a place for the solo developer in today's internet. I think of Jomres as less a booking engine and more a toolkit, with a set of tools that my users can use to build their own unique online websites. Jomres follows that line of thinking with it's strong emphasis on giving you, the user, the [information and tools](http://www.jomres.net/manual/) you need to create something amazing.
+
 == What's new? ==
 
-= Jomres Syndication Network =
+= Bootstrap no longer required =
 
-To date Jomres properties have been displayed on other Jomres sites over 64,000,000 times. That's 64 million free adverts that you would not get with any other software.
+Jomres can now be run on non-Bootstrap themes. Woot!
 
-This free feature is designed to help you get your business off the ground quickly by sharing your properties on other Jomres based sites around the world. [Full description here](https://www.jomres.net/features/jomres-syndication-network), plus [Manual page describing the new functionality](https://www.jomres.net/manual/site-managers-guide-2/388-user-profiles). I don't monitise this feature in any way, there's nothing in it for me except to make Jomres everything you need it to be.
-
-= User profiles =
-
-[User profiles page](https://www.jomres.net/manual/site-managers-guide-2/388-user-profiles)
 
 == Demos ==
 
@@ -56,15 +53,6 @@ Essential License holders have access to the theme used in the two demos above a
 3. Click Install and activate the plugin. Note, Jomres Core is actually downloaded during activation. As Jomres is pretty big, this can take a minute or more on a slow connection. Please be patient, it's worth the wait.
 
 [Installation videos](https://www.jomres.net/download)
-
-= Post Installation recommendations =
-
-The Jomres developers are big fans of Bootstrap 3. It's a responsive CSS and Javascript framework that's easy to learn yet offers a great deal of flexibility, flexibility that you will appreciate as you customise the site for your clients or yourselves.
-
-I recommend that the first thing you do is find a Bootstrap 2 or 3 Wordpress theme that you like and install that on your site. Next, go to Jomres' Site Configuration area and set "Use Jomres Bootstrap templates in the frontend?" to Yes and set "Bootstrap version" to Bootstrap 2 or 3.
-
-If you don't have a Bootstrap 3 theme, [you can download our Leohtian theme](https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress) which is the theme used on the demos.
-
 
 
 == Frequently Asked Questions ==
@@ -100,17 +88,10 @@ If you've got a download and support license you can raise a [ticket](http://tic
 
 == Changelog ==
 
-You can not install this file through the Wordpress installer features.
-
-Instead we recommend that you visit the [Downloads](https://www.jomres.net/download) page on our site to see the options available to you.
-
 [Changelog](https://www.jomres.net/support/changelog)
-
-== Changelog link ==
-For the full Jomres changelog [please click here](https://www.jomres.net/support/changelog).
-
-
 
 
 == Credits ==
-* Many thanks to [Aladar Barthi](http://www.jomres-extras.com/) for your support of Jomres users, and [Rodrigo Rocco](http://jomres-plugins.com) for your continuing efforts in supporting Jomres users on the forum!
+* Many thanks to [Rodrigo Rocco](http://jomres-plugins.com) for your continuing support and bug finding/fixing!
+* To [Donnacha MacGloinn](https://www.wordskill.com/) for your insight and suggestions and
+* Thank you to my many users who continue to support the project as it evolves through the years.
