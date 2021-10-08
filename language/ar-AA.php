@@ -168,7 +168,7 @@ jr_define('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_POSTCODE_EXPL', 'الرمز البر
 jr_define('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_LANDLINE_EXPL', 'رقم الهاتف ');
 jr_define('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_MOBILE_EXPL', 'رقم الجوال');
 jr_define('_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE', 'لاتوجد وحدات متاحة حسب المعايير المطلوبة');
-jr_define('_JOMRES_FRONT_MR_BOOKINGMADE', '<center>شكرا لطلب الحجز معنا ونتمى لكم إقامة ممتعة<br><br> <b>الرجاء أخذ بعين الاعتبار أن هذا الحجز حجز مبدئي وسنقوم بإشعاركم فور تأكيد الحجز </center>');
+jr_define('_JOMRES_FRONT_MR_BOOKINGMADE', 'شكرا لطلب الحجز معنا ونتمى لكم إقامة ممتعة<br><br> <b>الرجاء أخذ بعين الاعتبار أن هذا الحجز حجز مبدئي وسنقوم بإشعاركم فور تأكيد الحجز');
 jr_define('_JOMRES_FRONT_MR_BOOKIN_TITLE', 'حجز في الضيف ');
 jr_define('_JOMRES_FRONT_MR_BOOKIN_GUESTBOOKEDIN', 'ضيف حجز في ');
 jr_define('_JOMRES_FRONT_MR_BOOKOUT_TITLE', 'حجز الضيف ');
