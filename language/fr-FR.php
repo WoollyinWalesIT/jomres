@@ -1334,7 +1334,7 @@ jr_define('COMMON_HOME', 'Accueil');
 jr_define('COMMON_NEW', 'Nouveau');
 jr_define('COMMON_SEND', 'Envoyer');
 jr_define('RECAPTCHA_TITLE', 'reCaptcha');
-jr_define('RECAPTCHA_INFO', 'Un captcha (reCpatcha) sert à contrôler que l\'utilisateur des formulaires est un être humain. Il est utilisé pour empêcher les administrateurs d\'être considérer comme des spammers par les robots. Pour utiliser le reCpatcha, vous devrez vous inscrire à la page d\'accueil <a href="\"http://www.google.com/recaptcha\"" target="\"_blank\"">du reCaptcha Google</a>, et définir votre nom de domaine, afin de recevoir vos clés (publique et privée). Lorsque vous avez reçu ces clés, veuillez les renseigner ci-dessous. Le service reCapcha est un service fourni par Google. Il vous sera demandé au moment de votre inscription de rentrer une CB (carte bleu) en créant aussi un compte de facturation. Pas d\'inquiétude ! Il y a un forfait d\'utilisation tellement grand que seuls les sites des grands comptes sont facturés aux nombres de connexions dépassant le forfait gratuit.');
+jr_define('RECAPTCHA_INFO', 'Un captcha (reCpatcha) sert à contrôler que l\'utilisateur des formulaires est un être humain. Il est utilisé pour empêcher les administrateurs d\'être considérer comme des spammers par les robots. Pour utiliser le reCpatcha, vous devrez vous inscrire à la page d\'accueil <a href="http://www.google.com/recaptcha\"" target="\"_blank">du reCaptcha Google</a>, et définir votre nom de domaine, afin de recevoir vos clés (publique et privée). Lorsque vous avez reçu ces clés, veuillez les renseigner ci-dessous. Le service reCapcha est un service fourni par Google. Il vous sera demandé au moment de votre inscription de rentrer une CB (carte bleu) en créant aussi un compte de facturation. Pas d\'inquiétude ! Il y a un forfait d\'utilisation tellement grand que seuls les sites des grands comptes sont facturés aux nombres de connexions dépassant le forfait gratuit.');
 jr_define('RECAPTCHA_PUBLIC_KEY', 'Clef public');
 jr_define('RECAPTCHA_PRIVATE_KEY', 'Clef privée');
 jr_define('_JOMRES_BOOKINGFORM_LOCK_TITLE', 'Expiration et verrouillage automatique de session');
@@ -1609,7 +1609,7 @@ jr_define('_JOMRES_EMAIL_TEMPLATES_TEXT', 'Textes de smails');
 jr_define('_JOMRES_EMAIL_TEMPLATES_TYPE', 'Type de mails');
 jr_define('_JOMRES_EMAIL_TEMPLATES_NAME', 'Nom des mails');
 jr_define('_JOMRES_EMAIL_TEMPLATES_DESC', 'Description des mails');
-jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS', 'Consulter cette page pour obtenir de l\'aide sur la personnalisation des mails et une liste des exports disponibles : <a href = "http://www.jomres.net/manual/property-managers-guide/48-your-toolbar/settings/254- email-templates "target =" _ blank "> Aide sur les templates de mail </a>');
+jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS', 'Consulter cette page pour obtenir de l\'aide sur la personnalisation des mails et une liste des exports disponibles : <a href = "http://www.jomres.net/manual/property-managers-guide/48-your-toolbar/settings/254- email-templates" target ="_ blank"> Aide sur les templates de mail </a>');
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME', 'Gestion des mails des nouvelles réservations');
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC', 'Mail envoyé à l\'administrateur du site lors d\'une nouvelle réservation, si Paypal globale est activé');
 jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME', 'Mail de nouvelle réservation');
@@ -1680,7 +1680,7 @@ jr_define('_JOMRES_TEST_EMAIL_RESULT_SUCCESS', 'Mail de test envoyé avec succè
 jr_define('_JOMRES_TEST_EMAIL_RESULT_FAILURE', 'Le mail de test n\'a pas été envoyé');
 jr_define('_INVOICE_TRANSACTIONS', 'Transactions');
 jr_define('_OPENEXCHANGE_API', 'Ouvri la clé API des taux de change');
-jr_define('_OPENEXCHANGE_API_DESC', 'Pour convertir les prix suivant les monnaies, vous aurez besoin d’une clé API Open Exchange Rates. Vous devez avoir une clé API pour afficher les prix correctement dans le logiciel Jomres. Toutefois, vous pouvez <a href="https://openexgergerates.org/signup/free" _target="_blank"> vous inscrire pour obtenir une clé gratuite </a> (mises à jour tous les heures, jusqu\'à 1 000 demandes/mois, pas de HTTPS, support par mail sur les fonctionnalités avancées). Le logiciel Jomres met à jour quotidiennement les taux de change. Tant que vous utilisez la clé que pour quelques sites, il est peu probable que vous dépassiez ces limites. Avant Jomres 8.3, nous utilisions une fonctionnalité deYahoo, ancienne et non documentée, mais nous avons découvert qu’elle était en contradiction avec les conditions générales de Yahoo. En conséquence, le service étant appelé à disparaître, nous avons opté pour Open Exchange Rates.');
+jr_define('_OPENEXCHANGE_API_DESC', 'Pour convertir les prix suivant les monnaies, vous aurez besoin d’une clé API Open Exchange Rates. Vous devez avoir une clé API pour afficher les prix correctement dans le logiciel Jomres. Toutefois, vous pouvez <a href="https://openexgergerates.org/signup/free" target="_blank"> vous inscrire pour obtenir une clé gratuite </a> (mises à jour tous les heures, jusqu\'à 1 000 demandes/mois, pas de HTTPS, support par mail sur les fonctionnalités avancées). Le logiciel Jomres met à jour quotidiennement les taux de change. Tant que vous utilisez la clé que pour quelques sites, il est peu probable que vous dépassiez ces limites. Avant Jomres 8.3, nous utilisions une fonctionnalité deYahoo, ancienne et non documentée, mais nous avons découvert qu’elle était en contradiction avec les conditions générales de Yahoo. En conséquence, le service étant appelé à disparaître, nous avons opté pour Open Exchange Rates.');
 jr_define('_JOMRES_COMMISSION', 'Commission');
 jr_define('_JOMRES_MEDIA_CENTRE_NOTES_CORE_EXTRAS', 'Si vous téléchargez plusieurs images pour des extras facultatifs, seule la première image sera utilisée.');
 jr_define('_JRPORTAL_INVOICES_PAYNOW', 'Payer maintenant');
@@ -1880,7 +1880,7 @@ jr_define('_JOMRES_FAQ_ADMIN_CATEGORY_PLUGINS', 'Plugins');
 jr_define('_JOMRES_FAQ_ADMIN_QUESTION_GENERAL_PLUGINS', 'A quoi sert le Plugin Manager ?');
 jr_define('_JOMRES_FAQ_ADMIN_ANSWER_GENERAL_PLUGINS', 'Le gestionnaire de plug-ins est un outil essentiel de Jomres. Il nous permet d\'obtenir la version la plus récente des plug-ins Jomres via une fonctionnalité de téléchargement et d\'installation automatique.');
 jr_define('_JOMRES_FAQ_ADMIN_QUESTION_GENERAL_PLUGINS_IONCUBE', 'Pourquoi un avertissement concernant Ioncube Loaders apparaît-il lorsque je vais sur la page Gestionnaire de plug-in ?');
-jr_define('_JOMRES_FAQ_ADMIN_ANSWER_GENERAL_PLUGINS_IONCUBE', 'Vous avez enregistré une clé de licence d\'évaluation dans la configuration du site, mais votre serveur ne propose pas le dernier Ioncube Loaders. Veuillez demander à vos hébergeur ou votre administrateur réseau d\'installer cette extension serveur, qui se trouve <a href="http://www.ioncube.com/loaders.php target="_blank""> sur cette page. </a> Si vous avez acheté une licence complète ou un abonnement et que vous avez ce message d\'erreur, vous avez peut-être oublié d\'entrer votre clé de licence dans la configuration du site.');
+jr_define('_JOMRES_FAQ_ADMIN_ANSWER_GENERAL_PLUGINS_IONCUBE', 'Vous avez enregistré une clé de licence d\'évaluation dans la configuration du site, mais votre serveur ne propose pas le dernier Ioncube Loaders. Veuillez demander à vos hébergeur ou votre administrateur réseau d\'installer cette extension serveur, qui se trouve <a href="http://www.ioncube.com/loaders.php" target="_blank"> sur cette page. </a> Si vous avez acheté une licence complète ou un abonnement et que vous avez ce message d\'erreur, vous avez peut-être oublié d\'entrer votre clé de licence dans la configuration du site.');
 jr_define('_JOMRES_FAQ_ADMIN_QUESTION_GENERAL_PLUGINS_INSTALLATION', 'Comment installer un plugin ?');
 jr_define('_JOMRES_FAQ_ADMIN_ANSWER_GENERAL_PLUGINS_INSTALLATION', 'En supposant que vous ayez un numéro de clé de licence valide enregistré dans la configuration du site, il vous suffit de cliquer sur le bouton Installer à coté du nom du plug-in dans le gestionnaire de plug-ins. Jomres installera le plug-in pour vous et vous ramènera à la page des plugins par la suite. De temps en temps, vous pourriez être amené à une page de découverte ou d\'informations, si vous utilisez Jomres dans Joomla. Cliquez simplement sur le bouton Découvrir pour installer le plug-in. <br/> <br/> ATTENTION ! N\'installez pas tous les plug-ins, ils ne fonctionnent pas tous ensemble (de par leur conception). Vous pourriez vous retrouver avec des pages vierges dans le formulaire de réservation. Au lieu de cela, identifiez les plugins dont vous avez besoin, et expérimentez-les.');
 jr_define('_JOMRES_FAQ_ADMIN_CATEGORY_SITESTRUCTURE', 'Structure du site');
@@ -1915,8 +1915,8 @@ jr_define('_JOMRES_FAQ_ADMIN_ANSWER_TOURS_GLOBALTOURS', 'Dans la zone d\'adminis
 jr_define('_JOMRES_FAQ_ADMIN_QUESTION_INTRODUCTION_FIRSTTHINGSFIRST', 'Ok, j\'ai installé Jomres, et ensuite ?');
 jr_define('_JOMRES_FAQ_ADMIN_ANSWER_INTRODUCTION_FIRSTTHINGSFIRST', 'La toute première chose que vous devez faire, maintenant que vous avez installé Jomres, est de cliquer sur Aide dans le menu de gauche, puis sur Commencer votre découverte du logiciel.');
 jr_define('_JOMRES_MANAGE_PROPERTIES', 'Gestion des établissements');
-jr_define('_JOMRES_CONFIG_IPINFODB_KEY_WARNING', 'Vous n\'avez pas de clés API pour la détection d\'IP. Cela est nécessaire pour permettre au système de détecter automatiquement la localisation de l\'utilisateur et de définir automatiquement sa devise et son pays. Veuillez <a href ="http: //www.jomres.net/manual/site-managers-guide/35-control-panel/main/site-configuration/128-site-configuration-currency-conversion-currency-codes- onglet target="_ blank""> lire notre documentation dédiée sur la création d\'une clé API de détection d\'IP </a> et la sauvegarder dans Jomres > Configuration du site > Conversion des devises.');
-jr_define('_JOMRES_CONFIG_OPENEXCHANGERATES_KEY_WARNING', 'Vous ne disposez pas de clé d\'API Open Exchange Rates. Cela est nécessaire pour permettre au système de télécharger et d\'utiliser automatiquement les taux de change. Veuillez <a href ="http: //www.jomres.net/manual/site-managers-guide/35-control-panel/main/site-configuration/128-site-configuration-currency-conversion-currency-codes-onglet target="_ blank""> voir notre documentation dédiée à la création d\'une clé API </a> et la sauvegarder dans Jomres > Configuration du site > Conversion des devises.');
+jr_define('_JOMRES_CONFIG_IPINFODB_KEY_WARNING', "Vous n'avez pas défini de <a href='http://ipinfodb.com/account.php' target='_blank'>clé API de détection IP</a>. Cela est nécessaire pour permettre au système de détecter automatiquement l'emplacement de l'utilisateur et de définir automatiquement sa devise et son pays. Veuillez <a href='http://www.jomres.net/manual/site-managers-guide/35-control-panel/main/site-configuration/128-site-configuration-currency-conversion-currency-codes-tab' target='_blank'>consultez notre page de manuel sur la façon de créer une clé API de détection IP</a> et enregistrez la clé dans Jomres > Configuration du site > Conversions de devises / Codes de devises.");
+jr_define('_JOMRES_CONFIG_OPENEXCHANGERATES_KEY_WARNING', 'Vous ne disposez pas de clé d\'API Open Exchange Rates. Cela est nécessaire pour permettre au système de télécharger et d\'utiliser automatiquement les taux de change. Veuillez <a href ="http://www.jomres.net/manual/site-managers-guide/35-control-panel/main/site-configuration/128-site-configuration-currency-conversion-currency-codes-tab" target="_ blank"> voir notre documentation dédiée à la création d\'une clé API </a> et la sauvegarder dans Jomres > Configuration du site > Conversion des devises.');
 jr_define('_JOMRES_PERMIT_NUMBER_TITLE', 'Numéro de permis');
 jr_define('_JOMRES_PERMIT_NUMBER_DESCRIPTION', 'Certains pays exigent que vous affichiez un Numéro de permis pour votre établissement. Si vous avez un tel numéro, entrez-le ici et il sera ajouté à la section en-tête de l\'établissement.');
 jr_define('_JOMRES_SHORTCODES', 'Shortcodes (Codes abrégés)');
@@ -2395,153 +2395,151 @@ jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS',"Options supplémentaires");
 jr_define('_JOMRES_MICROMANAGE_EXTRA_OPTIONS',"Ce sont des options supplémentaires qui ne sont pas couramment utilisées, mais à votre disposition. <br/> <strong> Ignorer PPPN (par personne et par nuit)</strong>. Vous pouvez avoir plusieurs tarifs différents pour le même type de chambre ; par exemple un tarif par personne et par nuit et un autre tarif.<br/><strong>Autoriser les week-ends.</strong> L'option vous donne la possibilité de créer un tarif disponible uniquement en semaine ; par exemple si vous souhaitez un tarif spécial pour la clientèle d'affaires. Dans ce cas, définissez l'option sur NON et les nuitées minimums sur 1 et les nuitées maximums au maximum sur 5. <br/><strong> Uniquement les week-ends </strong> L'option est l'inverse de l'option Autoriser les week-ends. Les jours de semaine peuvent être configuré dans vos paramètres de configuration d'établissement. Cela vous permet aussi de définir un tarif week-end unique que vous voudrez peut-être proposer pour des événements spéciaux. <br /> <strong> Arrivées en semaine.</strong> Cette option vous permet de forcer l’enregistrement uniquement certains jours de la semaine. Il est préférable de l'utiliser conjointement avec les options Configuration des établissements > Réservations > Périodes fixes. La majorité des utilisateurs voudront laisser cette option définie sur Tous. <br/> Les deux dernières options, <strong> Nombre minimum de chambres déjà sélectionnées </ strong> et <strong> Nombre maximum de chambres déjà sélectionnées </ strong> sont très spécialisées et utiles pour les établissements avec des tarifs extrêmement compliqués.<em> Sauf si vous avez un besoin spécifique, vous devez laisser ces options de côté.</em> Utilisez-les, si vous souhaitez que ce tarif ne soit proposé que si le client a déjà sélectionné X nombre de chambres dans le formulaire de réservation ; par exemple, vous pouvez avoir un tarif de base où ces options sont laissées à la valeur par défaut et un deuxième tarif où l'option de chambres minimum déjà sélectionnées est définie sur 1, alors ce second tarif sera proposé dans le formulaire de réservation une fois la chambre sélectionnée.");
 jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS_LIST_PAGE',"Vous pouvez créer plusieurs tarifs pour le même type de chambre. Ainsi, vous pouvez créer un tarif pour une période de 1 à 7 jours et un second tarif où le nombre de jours minimum est de 7, le nombre maximal de jours 14, etc. Cela vous permet de créer des schémas de tarification aussi simples ou aussi compliqués que vous le souhaitez. Il vous permet également de créer plusieurs tarifs avec différentes conditions, de sorte que vous puissiez avoir un deuxième ensemble de tarifs où le prix est inférieur pour Bed & Breakfast, et un autre ensemble de tarifs plus coûteux pour le lit + petit-déjeuner + repas du soir.");
 jr_define('_JOMRES_MICROMANAGE_USE_SELECTED_DATES',"Définir uniquement les jours du sélecteur de date ");
-
 jr_define('_JOMRES_STOP_READTHISFIRST1',"Stop!");
-jr_define('_JOMRES_STOP_READTHISFIRST2',"Thanks for installing Jomres");
-jr_define('_JOMRES_STOP_READTHISFIRST3',"Property management is performed in public facing pages, not the administrator area.");
-jr_define('_JOMRES_STOP_READTHISFIRST4',"If you are not familiar with Jomres please visit the Help section > Getting Started page.");
+jr_define('_JOMRES_STOP_READTHISFIRST2',"Merci d'avoir installé Jomres");
+jr_define('_JOMRES_STOP_READTHISFIRST3',"La gestion des propriétés est effectuée dans les pages publiques, pas dans la zone administrateur.");
+jr_define('_JOMRES_STOP_READTHISFIRST4',"Si vous n'êtes pas familier avec Jomres, veuillez visiter la section Aide > page de démarrage.");
 
 
-jr_define('_JOMRES_CONFIG_SYNDICATION_TITLE',"Join the Jomres Syndicate");
-jr_define('_JOMRES_CONFIG_SYNDICATION_DESC',"Once you have your site setup and ready to start receiving visitors, join the Jomres.net syndicate and get your properties listed on other Jomres sites.");
+jr_define('_JOMRES_CONFIG_SYNDICATION_TITLE',"Rejoignez le Syndicat Jomres");
+jr_define('_JOMRES_CONFIG_SYNDICATION_DESC',"Une fois que vous avez configuré votre site et prêt à commencer à recevoir des visiteurs, rejoignez le syndicat Jomres.net et obtenez vos propriétés répertoriées sur d'autres sites Jomres.");
 
 
 
-jr_define('_JOMRES_MICROMANAGE_CREATE_ROOM_1',"You need at least one room of one of the following types before you can create a tariff :");
-jr_define('_JOMRES_MICROMANAGE_CREATE_ROOM_2',"Go to Settings > Rooms and create a room first, once  you have done that you will be able to create a tariff for that room type.");
+jr_define('_JOMRES_MICROMANAGE_CREATE_ROOM_1',"Vous avez besoin d'au moins une chambre de l'un des types suivants avant de pouvoir créer un tarif :");
+jr_define('_JOMRES_MICROMANAGE_CREATE_ROOM_2',"Allez dans Paramètres > Chambres et créez d'abord une chambre, une fois que vous aurez fait cela, vous pourrez créer un tarif pour ce type de chambre.");
 
-jr_define('JOMRES_PLATFORM',"Jomres Platform");
+jr_define('JOMRES_PLATFORM',"Plateforme Jomres");
 
 
-jr_define('JOMRES_PLATFORM_CONNECTED',"Connected");
-jr_define('JOMRES_PLATFORM_CONNECTED_DESC',"Set this to Yes if you have already connected your Stripe account with the Jomres Platform.");
+jr_define('JOMRES_PLATFORM_CONNECTED',"Connecté");
+jr_define('JOMRES_PLATFORM_CONNECTED_DESC',"Réglez-le sur Oui si vous avez déjà connecté votre compte Stripe à la plate-forme Jomres.");
 
-jr_define('JOMRES_PLATFORM_ACCOUNT_ID',"Stripe Live Account number");
-jr_define('JOMRES_PLATFORM_ACCOUNT_ID_DESC',"This is your Stripe Account id which can be found in your Stripe Dashboard under Settings > Account information and looks like acct_xxxxxxxxx You would use this field if you have multiple Jomres installations and you want to use the same account across all sites and you have already connected to us. If you have not connected to the Jomres Platform, it's not sufficient to enter your details here. Instead, please visit the Get Connected menu option in the toolbar, under the Help section. If you want to test payments, in the Debugging tab of Site Configuration set your site from Production to Development.");
+jr_define('JOMRES_PLATFORM_ACCOUNT_ID',"numéro de compte Stripe Live");
+jr_define('JOMRES_PLATFORM_ACCOUNT_ID_DESC',"C'est l'identifiant de votre compte Stripe qui se trouve dans votre tableau de bord Stripe sous Paramètres> Informations sur le compte et ressemble à acct_xxxxxxxxx Vous utiliseriez ce champ si vous avez plusieurs installations Jomres et que vous souhaitez utiliser le même compte à travers tous les sites et vous vous êtes déjà connecté à nous. Si vous ne vous êtes pas connecté à la plate-forme Jomres, il ne suffit pas d'entrer vos coordonnées ici. Au lieu de cela, veuillez visiter l'option de menu Se connecter dans la barre d'outils, sous la section Aide. Si vous voulez pour tester les paiements, dans l'onglet Débogage de la configuration du site, définissez votre site de Production à Développement.");
 
-jr_define('JOMRES_PLATFORM_LIVE_SECRET_KEY',"Stripe live secret key");
-jr_define('JOMRES_PLATFORM_LIVE_SECRET_KEY_DESC','Go to Developers > API keys in your Stripe Dashboard to find your secret keys. These are used by the system to verify booking data returned from the payment form is valid and that deposits have been paid before saving the booking.' );
+jr_define('JOMRES_PLATFORM_LIVE_SECRET_KEY',"Stripe clé secrète en direct");
+jr_define('JOMRES_PLATFORM_LIVE_SECRET_KEY_DESC','Allez à Développeurs > Clés API dans votre tableau de bord Stripe pour trouver vos clés secrètes. Celles-ci sont utilisées par le système pour vérifier que les données de réservation renvoyées par le formulaire de paiement sont valides et que les acomptes ont été payés avant d\'enregistrer la réservation .' );
 
-jr_define('JOMRES_PLATFORM_TEST_SECRET_KEY',"Stripe test secret key");
+jr_define('JOMRES_PLATFORM_TEST_SECRET_KEY',"Clé secrète de test de bande");
 jr_define('JOMRES_PLATFORM_TEST_SECRET_KEY_DESC',' ' );
 
 
 
-jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD', 'Standard Tariff Mode');
+jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD', 'Mode Tarif Standard');
 
-jr_define('JOMRES_COM_A_ACCOMMODATES', 'Sleeps');
-jr_define('JOMRES_COM_A_ACCOMMODATES_DESC', 'How many people can this property accommodate?');
-jr_define('JOMRES_COM_A_GUESTS_IN_DAILY_PRICE', 'The number of guests in your daily price');
-jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE', 'Extra adults price ');
+jr_define('JOMRES_COM_A_ACCOMMODATES', 'Sommeil');
+jr_define('JOMRES_COM_A_ACCOMMODATES_DESC', 'Combien de personnes cette propriété peut-elle accueillir ?');
+jr_define('JOMRES_COM_A_GUESTS_IN_DAILY_PRICE', 'Le nombre d\'invités dans votre prix quotidien');
+jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE', 'Prix extra adultes ');
 
-jr_define('JOMRES_CHILDREN_BOOKING_FORM_LABEL', 'Children');
+jr_define('JOMRES_CHILDREN_BOOKING_FORM_LABEL', 'Enfants');
 
 
 
-jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_PER_PERSON_PER_NIGHT', 'Per person per night?');
+jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_PER_PERSON_PER_NIGHT', 'Par personne par nuit ?');
 jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_PER_PERSON_PER_NIGHT_DESC', '');
-jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_7DAY_MODIFIER', '7 day modifier');
-jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_7DAY_MODIFIER_DESC', 'Discount on daily rate if booking is for 7 days or more. Leave this set to zero if you do not want the discount to be applied.');
-jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_30DAY_MODIFIER', '30 day modifier');
-jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_30DAY_MODIFIER_DESC', 'Discount on daily rate if booking is for 30 days or more. Leave this set to zero if you do not want the discount to be applied.');
-jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL', 'Adults');
-jr_define('JOMRES_GUEST_BOOKING_FORM_LABELINFO', 'Price based on 2 adults');
-jr_define('JOMRES_BOOKING_DISCOUNTED_7_DAYS_1', 'Booking discounted from ');
-jr_define('JOMRES_BOOKING_DISCOUNTED_7_DAYS_2', ' to ');
-jr_define('JOMRES_BOOKING_DISCOUNTED_7_DAYS_NUMBER', ' because the booking is greater than 7 days.');
-jr_define('JOMRES_BOOKING_DISCOUNTED_30_DAYS_NUMBER', ' because the booking is greater than 30 days.');
+jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_7DAY_MODIFIER', 'Modificateur 7 jours');
+jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_7DAY_MODIFIER_DESC', 'Réduction sur le tarif journalier si la réservation est de 7 jours ou plus. Laissez ce paramètre à zéro si vous ne souhaitez pas que la réduction soit appliquée.');
+jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_30DAY_MODIFIER', 'Modificateur de 30 jours');
+jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_30DAY_MODIFIER_DESC', 'Réduction sur le tarif journalier si la réservation est de 30 jours ou plus. Laissez ce paramètre à zéro si vous ne souhaitez pas que la réduction soit appliquée.');
+jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL', 'Adultes');
+jr_define('JOMRES_GUEST_BOOKING_FORM_LABELINFO', 'Prix basé sur 2 adultes');
+jr_define('JOMRES_BOOKING_DISCOUNTED_7_DAYS_1', 'Réservation à prix réduit à partir de ');
+jr_define('JOMRES_BOOKING_DISCOUNTED_7_DAYS_2', 'à ');
+jr_define('JOMRES_BOOKING_DISCOUNTED_7_DAYS_NUMBER', 'car la réservation est supérieure à 7 jours.');
+jr_define('JOMRES_BOOKING_DISCOUNTED_30_DAYS_NUMBER', 'car la réservation est supérieure à 30 jours.');
 
 
-jr_define('JOMRES_CITY_TAX_HEADING', 'City taxes');
-jr_define('JOMRES_CITY_TAX_VALUE', 'City tax value');
-jr_define('JOMRES_CITY_TAX_METHOD', 'Tax calculation method');
+jr_define('JOMRES_CITY_TAX_HEADING', 'Taxes de séjour');
+jr_define('JOMRES_CITY_TAX_VALUE', 'Valeur de la taxe de séjour');
+jr_define('JOMRES_CITY_TAX_METHOD', 'Méthode de calcul des taxes');
 
-jr_define('JOMRES_CITY_TAX_MODEL_SINGLE', 'Single fee');
-jr_define('JOMRES_CITY_TAX_MODEL_PER_NIGHT', 'Per night');
-jr_define('JOMRES_CITY_TAX_MODEL_PER_GUEST', 'Per guest');
-jr_define('JOMRES_CITY_TAX_MODEL_PER_GUEST_PER_NIGHT', 'Per guest per night');
-jr_define('JOMRES_CITY_TAX_MODEL_PERCENTAGE_OF_BOOKING_TOTAL', 'Percentage of booking value');
+jr_define('JOMRES_CITY_TAX_MODEL_SINGLE', 'Frais unique');
+jr_define('JOMRES_CITY_TAX_MODEL_PER_NIGHT', 'Par nuit');
+jr_define('JOMRES_CITY_TAX_MODEL_PER_GUEST', 'Par invité');
+jr_define('JOMRES_CITY_TAX_MODEL_PER_GUEST_PER_NIGHT', 'Par invité par nuit');
+jr_define('JOMRES_CITY_TAX_MODEL_PERCENTAGE_OF_BOOKING_TOTAL', 'Pourcentage de la valeur de la réservation');
 
-jr_define('JOMRES_CLEANING_FEE_HEADING', 'Cleaning fee');
-jr_define('JOMRES_CLEANING_FEE_VALUE', 'Cleaning fee cost');
+jr_define('JOMRES_CLEANING_FEE_HEADING', 'Frais de ménage');
+jr_define('JOMRES_CLEANING_FEE_VALUE', 'Coût des frais de nettoyage');
 
+jr_define('JOMRES_COMPATABILITY_MODE', 'Forcer le mode de configuration de la propriété de compatibilité ?');
+jr_define('JOMRES_COMPATABILITY_MODE_DESC', "Le mode de configuration des propriétés de compatibilité force plusieurs choses à se produire. Dans les anciennes versions de Jomres, les gestionnaires immobiliers pouvaient choisir le mode d'édition tarifaire à utiliser, et divers autres paramètres (dont certains peuvent sembler déroutants) peuvent avoir L'activation de la configuration de compatibilité oblige toutes les nouvelles propriétés à utiliser uniquement le mode d'édition de tarif standard, qui modélise la fonctionnalité de configuration de la propriété booking.com en ce qui concerne la tarification, la tarification enfant, etc. .0, cette option doit être définie sur Oui, mais pour les installations plus anciennes, c'est à vous de décider si les nouvelles propriétés doivent être automatiquement définies sur le mode de compatibilité lors de leur création.");
 
-jr_define('JOMRES_COMPATABILITY_MODE', 'Force Compatability property configuration mode?');
-jr_define('JOMRES_COMPATABILITY_MODE_DESC', "Compatability property configuration mode forces several things to happen. In older versions of Jomres, property managers could choose which tariff editing mode to use, and a variety of other settings (some of which may appear confusing) may have been available to them. Enabling Compatability configuration forces all new properties to use just the Standard tariff editing mode, which models the booking.com property configuration functionality with respect to pricing, child pricing etc. It is recommended that for installations that were created after 9.22.0, this option should be set to Yes, but for older installations it's up to you to decide if new properties should be automatically set to Compatability mode when they are created.");
+jr_define('JOMRES_POLICY_ACCEPT_CHILDREN', 'Acceptez-vous les enfants de moins de 18 ans ?');
+jr_define('JOMRES_POLICY_ACCEPT_CHILDREN_DESC', "Définir cette option sur Oui si vous autorisez les enfants. Si oui, alors dans le menu Paramètres, vous aurez une option appelée Stratégies enfants où vous pouvez modifier les paramètres relatifs aux enfants.");
 
-jr_define('JOMRES_POLICY_ACCEPT_CHILDREN', 'Do you accept children under 18 years of age?');
-jr_define('JOMRES_POLICY_ACCEPT_CHILDREN_DESC', "Set this option to Yes if you allow children. If yes, then in the Settings menu you will have an option called Child Policies where you can edit children related settings.");
+jr_define('JOMRES_POLICIES_CHILDREN', 'Stratégies enfants');
 
-jr_define('JOMRES_POLICIES_CHILDREN', 'Child policies');
-
-jr_define('JOMRES_POLICIES_CHILDREN_AGES_ALLOWED', 'At what ages are children allowed?');
-
-
-jr_define('JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_NIGHT', 'Per child, per night');
-jr_define('JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_STAY', 'Per child, per stay');
-
-jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATES', 'Child rates');
-jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_NEW', 'New child rate');
-jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_EDIT', 'Edit child rate');
-jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_DESC', 'Create your free or paid child rates here. Rates will only apply when you have created occupancy levels for room types.');
-jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_AGE_FROM', 'Age from');
-jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_AGE_TO', 'Age to');
-jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_MODEL', 'per night or per stay?');
-jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_PRICE', 'Rate');
-jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_PRICE_DESC', 'If zero or not set, children of this age range will be free.');
-jr_define('JOMRES_BOOKING_FORM_CHILDREN_AGES', 'Ages at checkin');
-jr_define('JOMRES_BOOKING_FORM_CHILDREN_AGE_DD', 'Ages ');
-
-jr_define('JOMRES_OCCUPANCY_LEVELS_TITLE', 'Occupancy levels');
-jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_ADULTS', 'Maximum adults');
-jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_CHILDREN', 'Maximum children');
-jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY', 'Maximum occupancy');
-
-jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT', 'Edit occupancy level for : ');
-jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT_DESC', 'Edit occupancy levels for this room type. Do not include guests sleeping on cots (those are added by creating an Extra) ');
-jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', 'For each additional adult, how much should they be charged?');
-
-jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'Extra adults');
+jr_define('JOMRES_POLICIES_CHILDREN_AGES_ALLOWED', 'À quels âges les enfants sont-ils autorisés ?');
 
 
-jr_define('_JOMRES_SANITYCHECK_CHILD_RATES', 'You have not configured child rates yet.');
-jr_define('_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', 'Set child rate(s) now');
-jr_define('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS', 'You have configured your property to allow children but you have not set any occupancy levels for children yet.');
-jr_define('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS_BUTTON', 'Set occupancy levels');
-jr_define('JOMRES_OCCUPANCY_LEVELS_INFO', 'Any time you edit a room or your property type you should check and update the occupancy levels for your property/rooms as these affect the number of guests who can be accepted in the booking form.');
+jr_define('JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_NIGHT', 'Par enfant, par nuit');
+jr_define('JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_STAY', 'Par enfant, par séjour');
+
+jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATES', 'Tarifs enfants');
+jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_NEW', 'Nouveau tarif enfant');
+jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_EDIT', 'Modifier le tarif enfant');
+jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_DESC', 'Créez vos tarifs enfants gratuits ou payants ici. Les tarifs ne s\'appliqueront que lorsque vous aurez créé des niveaux d\'occupation pour les types de chambres.');
+jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_AGE_FROM', 'Age de');
+jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_AGE_TO', 'Âge jusqu\'à');
+jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_MODEL', 'par nuit ou par séjour ?');
+jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_PRICE', 'Taux');
+jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_PRICE_DESC', 'Si zéro ou non défini, les enfants de cette tranche d\'âge seront gratuits.');
+jr_define('JOMRES_BOOKING_FORM_CHILDREN_AGES', 'Âges à l\'enregistrement');
+jr_define('JOMRES_BOOKING_FORM_CHILDREN_AGE_DD', 'Âges ');
+
+jr_define('JOMRES_OCCUPANCY_LEVELS_TITLE', 'Niveaux d\'occupation');
+jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_ADULTS', 'Maximum d\'adultes');
+jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_CHILDREN', 'Maximum d\'enfants');
+jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY', 'Occupation maximale');
+
+jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT', 'Modifier le niveau d\'occupation pour : ');
+jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT_DESC', 'Modifier les niveaux d\'occupation pour ce type de chambre. Ne pas inclure les clients dormant sur des lits bébé (ceux-ci sont ajoutés en créant un extra) ');
+jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', 'Pour chaque adulte supplémentaire, combien doivent-ils être facturés ?');
+
+jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'Adultes supplémentaires');
 
 
-jr_define('_JOMRES_SEARCH_FORM_ADULTS', 'Adults');
-jr_define('_JOMRES_SEARCH_FORM_CHILDREN', 'Chidren');
+jr_define('_JOMRES_SANITYCHECK_CHILD_RATES', 'Vous n\'avez pas encore configuré les tarifs enfants.');
+jr_define('_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', 'Définir le(s) tarif(s) enfant(s) maintenant');
+jr_define('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS', 'Vous avez configuré votre propriété pour autoriser les enfants mais vous n\'avez pas encore défini de niveaux d\'occupation pour les enfants.');
+jr_define('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS_BUTTON', 'Définir les niveaux d\'occupation');
+jr_define('JOMRES_OCCUPANCY_LEVELS_INFO', 'Chaque fois que vous modifiez une chambre ou votre type de propriété, vous devez vérifier et mettre à jour les niveaux d\'occupation de votre propriété/chambres car ils affectent le nombre d\'invités qui peuvent être acceptés dans le formulaire de réservation.');
 
 
-jr_define('_JOMRES_CONFIG_LEVEL_TITLE', 'Admin options level');
-jr_define('_JOMRES_CONFIG_LEVEL_DESC', 'Jomres has many menu and configuration options that you can use when configuring your site. The huge majority of them you will never need to change so they are hidden by default. You can choose to show those options by setting the Admin Options level.  Basic level shows you just what you need when setting up a site for the first time. Common level shows you those options which are most commonly changed, and Everything shows you all possible settings and menus options in the administrator area.');
+jr_define('_JOMRES_SEARCH_FORM_ADULTS', 'Adultes');
+jr_define('_JOMRES_SEARCH_FORM_CHILDREN', 'Enfants');
+
+
+jr_define('_JOMRES_CONFIG_LEVEL_TITLE', 'Niveau des options d\'administration');
+jr_define('_JOMRES_CONFIG_LEVEL_DESC', 'Jomres a de nombreuses options de menu et de configuration que vous pouvez utiliser lors de la configuration de votre site. Vous n\'aurez jamais besoin de modifier la grande majorité d\'entre elles, elles sont donc masquées par défaut. Vous pouvez choisir d\'afficher ces options en définissant le niveau Options d\'administration. Le niveau de base vous montre exactement ce dont vous avez besoin lorsque vous configurez un site pour la première fois. Le niveau commun vous montre les options qui sont le plus souvent modifiées, et Tout vous montre tous les paramètres et options de menus possibles dans la zone administrateur. ');
 jr_define('_JOMRES_CONFIG_LEVEL_BASIC', 'Basic');
-jr_define('_JOMRES_CONFIG_LEVEL_COMMON', 'Common');
-jr_define('_JOMRES_CONFIG_LEVEL_EVERYTHING', 'Everything');
+jr_define('_JOMRES_CONFIG_LEVEL_COMMON', 'Commun');
+jr_define('_JOMRES_CONFIG_LEVEL_EVERYTHING', 'Tout');
 
-jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_TITLE', 'Can we collect information about how you use Jomres?');
-jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_MESSAGE', 'We would like to collect information about how you use Jomres. No personally identifyable information will be stored, usage will be anonymised and only used to help us to understand how people use Jomres.');
-jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_ACCEPT', ' Yep, that\'s ok ');
-jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_DENY', ' No, I don\'t agree ');
+jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_TITLE', 'Pouvons-nous collecter des informations sur la façon dont vous utilisez Jomres ?');
+jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_MESSAGE', 'Nous aimerions collecter des informations sur la façon dont vous utilisez Jomres. Aucune information personnellement identifiable ne sera stockée, l\'utilisation sera anonymisée et uniquement utilisée pour nous aider à comprendre comment les gens utilisent Jomres.');
+jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_ACCEPT', 'Oui, ça va ');
+jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_DENY', 'Non, je ne suis pas d\'accord');
 
-jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_TITLE', 'Will you be taking bookings for more than one property?');
-jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_MESSAGE', 'Jomres can be used for single or multi-property sites. If you will be taking bookings for just one property then many options will be redundant and potentially confusing. You can change this setting later in the Settings > Site Configuration > Portal functionality tab.');
-jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_JUSTONE', ' Just one property ');
-jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_MANY', ' I will be listing more than one property ');
+jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_TITLE', 'Prendrez-vous des réservations pour plusieurs propriétés ?');
+jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_MESSAGE', 'Jomres peut être utilisé pour des sites à une ou plusieurs propriétés. Si vous envisagez de prendre des réservations pour une seule propriété, de nombreuses options seront redondantes et potentiellement déroutantes. Vous pouvez modifier ce paramètre plus tard dans Paramètres > Site Onglet Configuration > Fonctionnalité du portail.');
+jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_JUSTONE', 'Une seule propriété');
+jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_MANY', 'Je vais lister plus d\'une propriété ');
 
 
-jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_TITLE", "Which version of the Bootstrap framework does your template/theme support?");
-jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_MESSAGE", "Each version of the Bootstrap framework requires slightly different html markup. Jomres has three sets of Bootstrap compatible template sets, one for each Bootstrap version. You must ensure that you configure it to use the appropriate template set. If you don't then output such as layout, modals and menus will not work properly. If you decide to use a template/theme later with a different Bootstrap version you can change the Bootstrap template set that Jomres should use in Admin > Jomres > Settings > Misc tab. <br/><br/>Joomla 3 is distributed with Bootstrap 2 by default, Joomla 4 will use Bootstrap 5. Jomres Leohtian template (Joomla) and theme (Wordpress) uses Bootstrap 3. Different templates/themes may be distributed with their own Bootstrap files so if you are in any doubt, please contact your template/theme's developer.");
+jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_TITLE", "Quelle version du framework Bootstrap est prise en charge par votre modèle/thème ?");
+jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_MESSAGE", "Chaque version du framework Bootstrap nécessite un balisage html légèrement différent. Jomres dispose de trois ensembles de modèles compatibles Bootstrap, un pour chaque version Bootstrap. Vous devez vous assurer de le configurer pour utiliser le jeu de modèles approprié. Si si vous décidez d'utiliser un modèle/thème plus tard avec une version différente de Bootstrap, vous pouvez modifier l'ensemble de modèles Bootstrap que Jomres doit utiliser dans Admin > Jomres > Paramètres > Onglet Divers. <br/><br/>Joomla 3 est distribué avec Bootstrap 2 par défaut, Joomla 4 utilisera Bootstrap 5. Le modèle Jomres Leohtian (Joomla) et le thème (Wordpress) utilise Bootstrap 3. Différents modèles/thèmes peuvent être distribués avec leurs propres fichiers Bootstrap, donc en cas de doute, veuillez contacter le développeur de votre modèle/thème.");
 jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP2", " Bootstrap 2 ");
 jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP3", " Bootstrap 3 ");
 jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP4", " Bootstrap 4 ");
 jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP5", " Bootstrap 5 ");
-jr_define('_JOMRES_CURRENCYFORMAT_STRIP_DECIMALS', 'Strip decimals from output prices?');
+jr_define('_JOMRES_CURRENCYFORMAT_STRIP_DECIMALS', 'Supprimer les décimales des prix de sortie ?');
 
-jr_define('_JOMRES_SEND_GROUP_BY_FIX_TITLE', 'Apply group by fix?');
-jr_define('_JOMRES_SEND_GROUP_BY_FIX_DESC', 'Some mysql installations may have a problem with Jomres Queries in the List Properties, List guests and List invoices page. If those pages say that they are showing X of Y results but nothing appears in the list, then setting this option to Yes may fix the issue. It will not if you are on shared hosting and the hosting service does not allow your mysql user to issue the "SET GLOBAL sql_mode=" command. ');
-jr_define('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', 'This is a channel property, it cannot be administered locally, visit the channel management framework page to find the property\'s remote administration link');
-jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", " No Bootstrap in theme ");
+jr_define('_JOMRES_SEND_GROUP_BY_FIX_TITLE', 'Appliquer le groupe par correctif ?');
+jr_define('_JOMRES_SEND_GROUP_BY_FIX_DESC', 'Certaines installations mysql peuvent avoir un problème avec les requêtes Jomres dans la page Propriétés de la liste, Liste des invités et Liste des factures. Si ces pages indiquent qu\'elles affichent les résultats X sur Y mais que rien n\'apparaît dans la liste, définissez cette option sur Oui peut résoudre le problème.Ce ne sera pas le cas si vous êtes sur un hébergement partagé et que le service d\'hébergement ne permet pas à votre utilisateur mysql d\'émettre la commande "SET GLOBAL sql_mode=". ');
+jr_define('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', 'Ceci est une propriété de canal, il ne peut pas être administré localement, visitez la page du cadre de gestion de canal pour trouver le lien d\'administration à distance de la propriété');
+jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", " Pas de bootstrap dans le thème ");
 
