@@ -57,8 +57,8 @@ class j16000rest_api_connectivity_test
 			$response = $jomres_call_api->send_request("GET" , "core/report/");
 			}
 		catch (Exception $e) {
-			//
-		}
+           // throw new Exception('Error: invalid response from local API, received '.$e->getMessage() );
+        }
 
 
 		$api_keys = $jomres_call_api->init_manager();
