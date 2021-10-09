@@ -46,6 +46,7 @@ class jomres_language
 		} else {
 			$jomresConfig_lang = 'en-GB';
 		}
+        // $jomresConfig_lang = "fr-FR"; // For testing language files
 
 		$langfile_crossref = $this->define_langfile_to_languages_array();
 		$this->datepicker_crossref = $this->define_langfile_to_datepicker_files_array();
