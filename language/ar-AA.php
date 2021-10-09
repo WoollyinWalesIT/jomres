@@ -595,7 +595,7 @@ jr_define('_JOMRES_SORTORDER_PROPERTYNAME', 'إسم المنشاءة');
 jr_define('_JOMRES_SORTORDER_PROPERTYREGION', 'منطقة المنشاءة');
 jr_define('_JOMRES_SORTORDER_PROPERTYTOWN', 'مدينة المنشاءة');
 jr_define('_JOMRES_SORTORDER_STARS', 'عدد النجوم');
-jr_define('_JOMRES_PATHWAY_PROPERTYDETAILS', 'Business details ');
+jr_define('_JOMRES_PATHWAY_PROPERTYDETAILS', 'تفاصيل العمل ');
 jr_define('_JOMRES_PATHWAY_BOOKINGFORM', 'نموذج الحجز');
 jr_define('_JOMRES_BOOKINGFORM_UPDATEADDRESSBUTTON', 'تحديث بينات العنوان');
 jr_define('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_RECHECKINGROOMAVIALABILITY', 'إعادة مراجعة توافر الوحدات<br/>(الوحدات المختارة سيتم اعادة ضبطها)');
@@ -2006,8 +2006,8 @@ jr_define ('_JOMRES_OVERALL_ROOMS_BOOKED', "النسبة المئوية للغر
 
 jr_define ('_JOMRES_OVERALL_ROOMS_BOOKED', "النسبة المئوية للغرف المحجوزة") ;
 jr_define ('_JOMRES_SELECT_WIDGETS' , "تحديد الأدوات") ;
-jr_define ('_JOMRES_INTERVAL', "Interval") ;
-jr_define ('_JOMRES_TIMELINE', "Timeline") ;
+jr_define ('_JOMRES_INTERVAL', "فترة") ;
+jr_define ('_JOMRES_TIMELINE', "الجدول الزمني") ;
 jr_define ('_JOMRES_CPANEL_GRID', "تخطيط المنزل للوحة التحكم") ;
 jr_define ('_JOMRES_CPANEL_GRID_DESC' , "حدد تخطيط الشبكة للصفحة الرئيسية للوحة التحكم في إدارة الممتلكات الخاصة بك.") ;
 
