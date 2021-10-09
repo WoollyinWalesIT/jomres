@@ -2607,7 +2607,7 @@ jr_define('_JOMRES_GUESTTYPES_IS_CHILD',"Ist das ein Kind-Gasttyp?");
 jr_define('_JOMRES_GUESTTYPES_IS_CHILD_DESC',"Setzen Sie dies auf Ja, wenn dieser Gasttyp als Kind-Gasttyp eingestuft wird.");
 
 jr_define('_JOMRES_GUESTTYPES_INTRO',"Wenn Sie pro Person und Nacht berechnen möchten, müssen Sie einige Gästetypen erstellen.");
-jr_define('_JOMRES_GUESTTYPES_INSTRUCTIONS',"Sie können so viele Gasttypen erstellen, wie Sie benötigen. Versuchen Sie zunächst, nur einen Gasttyp namens \"Erwachsene\" zu erstellen. Lassen Sie alle Einstellungen auf ihren Standardwerten Geben Sie Kindern unter 12 Jahren einen Rabatt von 50%, würden Sie einen neuen Gasttyp erstellen und ihn "Kinder unter 12" nennen. Setzen Sie die Option "Abweichung hinzufügen?" auf - (negativ) und setzen Sie die "Abweichung" auf 50 wenn Kinder zu einer Buchung hinzugefügt werden, werden ihnen 50% des Zimmerpreises berechnet." );
+jr_define('_JOMRES_GUESTTYPES_INSTRUCTIONS','Sie können so viele Gasttypen erstellen, wie Sie benötigen. Versuchen Sie zunächst, nur einen Gasttyp namens \"Erwachsene\" zu erstellen. Lassen Sie alle Einstellungen auf ihren Standardwerten Geben Sie Kindern unter 12 Jahren einen Rabatt von 50%, würden Sie einen neuen Gasttyp erstellen und ihn "Kinder unter 12" nennen. Setzen Sie die Option "Abweichung hinzufügen?" auf - (negativ) und setzen Sie die "Abweichung" auf 50 wenn Kinder zu einer Buchung hinzugefügt werden, werden ihnen 50% des Zimmerpreises berechnet.' );
 
 jr_define('_JOMRES_MICROMANAGE_PICKERDROPDOWN_EDITPRICES',"Preise manuell festlegen");
 jr_define('_JOMRES_MICROMANAGE_PICKERDROPDOWN_EDITMINDAYS',"Mindestnächte manuell festlegen");
