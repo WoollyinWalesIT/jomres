@@ -439,7 +439,7 @@ jr_define('_JOMRES_COM_A_BASICTEMPLATE_SHOWROOMS_TITLE', '在此链接下显示�
 jr_define('_JOMRES_COM_A_TARIFFS_MODEL_SINGLETARIFF', '同一费率价目表');
 jr_define('_JOMRES_COM_A_TARIFFS_MODEL_AVERAGES', '均价费率');
 jr_define('_JOMRES_COM_A_TARIFFS_MODEL', '选择你想使用的价目模式');
-jr_define('_JOMRES_COM_A_TARIFFS_MODEL_DESC', "您的价目计算方法有两种选择. 第一,“同一费率”方法允许您向旅客在旅居期间提供不同的价目计费，而每种计费费率在整个旅居期间是恒定不变的.如果您想在同一天提供不同价目服务这就变的很有用,比如:早餐/中餐/晚餐价格。 第二,选择 '均价费率' ,如果您想根据日期来调整您的价格和收费. 系统会自动找到在预订期间的每日所有选择使用的服务的价目情况并汇总,最后给出该期间的平均费率。");
+jr_define('_JOMRES_COM_A_TARIFFS_MODEL_DESC', "您的价目计算方法有两种选择. 第一,"同一费率"方法允许您向旅客在旅居期间提供不同的价目计费，而每种计费费率在整个旅居期间是恒定不变的.如果您想在同一天提供不同价目服务这就变的很有用,比如:早餐/中餐/晚餐价格。 第二,选择 '均价费率' ,如果您想根据日期来调整您的价格和收费. 系统会自动找到在预订期间的每日所有选择使用的服务的价目情况并汇总,最后给出该期间的平均费率。");
 // v1.4e
 jr_define('_JOMRES_COM_A_SHOWDEPARTUREINPUT', '显示离店日期输入?');
 jr_define('_JOMRES_COM_A_SHOWDEPARTUREINPUT_DESC', '设此为否表明您不想在预订表格显示离店日期输入表格. 仅当您知道您的计划是可以使用此功能, 因为离店日期通常在入住日期之后.');
@@ -2243,7 +2243,7 @@ jr_define( '_JOMRES_GDPR_DOWNLOAD_PROFILE_DATA_TEXT', 'Here is the Personally Id
 jr_define( '_JOMRES_GDPR_REDACTION_STRING', 'Anonymised' );
 
 jr_define( '_JOMRES_GDPR_MY_DATA', 'Your data' );
-jr_define( '_JOMRES_GDPR_MY_DATA_PRIVACY_NOTICE', 'By accepting these Terms of Use Agreement (this “Agreement”), you agree that:
+jr_define( '_JOMRES_GDPR_MY_DATA_PRIVACY_NOTICE', 'By accepting these Terms of Use Agreement (this "Agreement"), you agree that:
 
 <ul>
 	<li>

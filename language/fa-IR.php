@@ -204,13 +204,13 @@ jr_define('_JOMRES_COM_A_ERRORCHECKING_DESC', 'Switch this to Yes to see a log o
 jr_define('_JOMRES_FILE_DELETE', 'حذف کردن این فایل');
 jr_define('_JOMRES_FILE_DELETED', 'فایل ها حذف شدند');
 jr_define('_JOMRES_COM_MR_ROOM_DELETE', 'حذف');
-jr_define('_JOMRES_COM_MR_ROOM_UNABLETODELETE', 'قادر به حذف این اتاق نیست، با یک یا چند رزرو تداخل دارد، ابتدا رزرو های مرتبط را حذف کنید');
+jr_define('_JOMRES_COM_MR_ROOM_UNABLETODELETE', 'قادر به حذف این اتاق نیست, با یک یا چند رزرو تداخل دارد, ابتدا رزرو های مرتبط را حذف کنید');
 jr_define('_JOMRES_COM_MR_ROOM_DELETED', 'اتاق حذف شد');
 jr_define('_JOMRES_COM_MR_ROOMFEATURE_DELETE', 'حذف امکانات اتاق');
-jr_define('_JOMRES_COM_MR_ROOMFEATURE_UNABLETODELETE', 'قادر به حذف این امکان نیستید، ابتدا اتاق های مرتبط با این امکان را حذف کنید');
+jr_define('_JOMRES_COM_MR_ROOMFEATURE_UNABLETODELETE', 'قادر به حذف این امکان نیستید, ابتدا اتاق های مرتبط با این امکان را حذف کنید');
 jr_define('_JOMRES_COM_MR_ROOMFEATURE_DELETED', 'امکان اتاق حذف شد');
 jr_define('_JOMRES_COM_MR_PROPERTYFEATURE_DELETE', 'حذف امکانات ملک');
-jr_define('_JOMRES_COM_MR_PROPERTYFEATURE_UNABLETODELETE', 'قادر به حذف این امکان نیستید، ابتدا ملک های مرتبط با این امکان را حذف کنید');
+jr_define('_JOMRES_COM_MR_PROPERTYFEATURE_UNABLETODELETE', 'قادر به حذف این امکان نیستید, ابتدا ملک های مرتبط با این امکان را حذف کنید');
 jr_define('_JOMRES_COM_MR_PROPERTYFEATURE_DELETED', 'امکان ملک حذف شد');
 jr_define('_JOMRES_COM_MR_ROOMCLASS_DELETE', 'حذف نوع اتاق');
 jr_define('_JOMRES_COM_MR_ROOMCLASS_DELETED', 'نوع اتاق حذف شد');
@@ -264,7 +264,7 @@ jr_define('_JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR_KEY', 'غیر قابل رزرو');
 jr_define('_JOMRES_COM_AVLCAL_INMONTHFACE_KEY', 'آماده رزرو');
 jr_define('_JOMRES_COM_AVLCAL_PROVISIONALCOLOUR_KEY', 'رزرو های موقت');
 jr_define('_JOMRES_COM_MR_FIXEDARRIVALDATE_YESNO', 'روزهای از پیش تعیین شده برای ورود');
-jr_define('_JOMRES_COM_MR_FIXEDARRIVALDATE_YESNO_DESC', 'برای مکان هایی که تاریخ های رزرو مشخص دارند، روزهای ورودی را مشخص کنید');
+jr_define('_JOMRES_COM_MR_FIXEDARRIVALDATE_YESNO_DESC', 'برای مکان هایی که تاریخ های رزرو مشخص دارند, روزهای ورودی را مشخص کنید');
 jr_define('_JOMRES_COM_MR_FIXEDARRIVALDATE_DAY', 'روزهای مشخص برای ورود');
 jr_define('_JOMRES_FRONT_MR_FIXEDPRIOD1', 'مدت اقامت');
 jr_define('_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR', 'آیا روزهای قابل رزرو نمایش داده شود؟');
@@ -275,7 +275,7 @@ jr_define('_JOMRES_FRONT_BLACKBOOKING', 'روزهای خارج از سرویس')
 jr_define('_JOMRES_FRONT_BLACKBOOKING_NEW', 'تعریف روزهای جدید برای از سرویس خارج کردن ملک');
 jr_define('_JOMRES_FRONT_DELETEGUEST', 'حذف مهمان');
 jr_define('_JOMRES_FRONT_DELETEGUEST_GUESTDELETED', 'مهمان حذف شد');
-jr_define('_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST', 'قادر به حذف این مهمان نیستید، رزرو دیگری برای ان مهمان وجود دارد');
+jr_define('_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST', 'قادر به حذف این مهمان نیستید, رزرو دیگری برای ان مهمان وجود دارد');
 jr_define('_JOMRES_FRONT_ROOMSMOKING_EITHER', 'امکان کشیدن سیگار وجود دارد');
 jr_define('_JOMRES_COM_CALENDAROUTPUT', 'فرمت خروجی تقویم');
 jr_define('_JOMRES_COM_CALENDARINPUT', 'فرمت ورودی تقویم');
@@ -334,7 +334,7 @@ jr_define('_JOMRES_FRONT_MR_BOOKING_EXTRAS_HELP', 'موارد اضافه قاب�
 jr_define('_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS_BBSTARTS', 'تاریخ شروع زمان مسدود');
 jr_define('_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS_BBSERVICERESUMES', 'تاریخ شروع مجدد فعالیت');
 jr_define('_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS', 'زمان مسدود');
-jr_define('_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS_STAGE2_ERROR', 'مشکل در انجام رزرو، یک یا چند ملک خالی نیست');
+jr_define('_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS_STAGE2_ERROR', 'مشکل در انجام رزرو, یک یا چند ملک خالی نیست');
 jr_define('_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS_ROOMSSUBJECT', 'ملک در زمان مسدود قرار دارد');
 jr_define('_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS_NOBBOOKINGS', 'زمان مسدودی برای نمایش وجود ندارد');
 jr_define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STARS', 'تعداد ستاره ها');
@@ -345,7 +345,7 @@ jr_define('_JOMRES_COM_A_CURRENCYSYMBOL', 'علامت واحد پول');
 jr_define('_JOMRES_COM_A_CURRENCYCODE', 'کد واحد پول');
 jr_define('_JOMRES_COM_A_CLICKFORMOREINFORMATION', 'توضیحات بیشتر');
 jr_define('_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO', 'محدود سازی فاصله رزرو تا اقامت');
-jr_define('_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO_DESC', 'اگر میخواهید فاصله زمان رزرو تا امروز را محدود کنید این گزینه را انتخاب کنید، در صورت انتخاب فاصله بیشتر، تاریخ امروز به صورت پیشفرض نمایش داده میشود');
+jr_define('_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO_DESC', 'اگر میخواهید فاصله زمان رزرو تا امروز را محدود کنید این گزینه را انتخاب کنید, در صورت انتخاب فاصله بیشتر, تاریخ امروز به صورت پیشفرض نمایش داده میشود');
 jr_define('_JOMRES_COM_A_ADVANCEBOOKINGSLIMITDAYS', ':تعداد روزهایی مورد نظر برای محدود کردن رزرو تا اقامت');
 jr_define('_JOMRES_COM_FRONT_ROOMTAX', 'مالیات');
 jr_define('_JOMRES_COM_A_ROOMTAX', 'مالیات ملک');
@@ -405,7 +405,7 @@ jr_define('_JOMRES_MR_CREDITCARD_EDIT', 'ویرایش کارت بانکی');
 jr_define('_JOMRES_COM_A_EDITICON', 'ویرایش اندازه آیکن');
 jr_define('_JOMRES_COM_A_SLIDESHOWS', 'اسلاید');
 jr_define('_JOMRES_COM_A_SLIDESHOWS_SHOWSLIDESHOWLINK', 'نمایش لینک به اسلاید؟');
-jr_define('_JOMRES_COM_A_SLIDESHOWS_SHOWSLIDESHOWINLINE', 'در توضیحات ملک، اسلاید نمایش داده شود؟');
+jr_define('_JOMRES_COM_A_SLIDESHOWS_SHOWSLIDESHOWINLINE', 'در توضیحات ملک, اسلاید نمایش داده شود؟');
 jr_define('_JOMRES_FRONT_SLIDESHOW', 'اسلاید');
 jr_define('_JOMRES_COM_A_TARIFFS_SHOWTARIFFSLINK', 'نمایش لینک به تعرفه ها؟');
 jr_define('_JOMRES_COM_A_POPUPSALLOWED', 'اجازه نمایش به پاپ آپ داده شود ؟');
@@ -430,7 +430,7 @@ jr_define('_JOMRES_COM_A_BASICTEMPLATE_SHOWROOMS_TITLE', 'امکانات و در
 jr_define('_JOMRES_COM_A_TARIFFS_MODEL_SINGLETARIFF', 'تعرفه های خالص');
 jr_define('_JOMRES_COM_A_TARIFFS_MODEL_AVERAGES', 'میانگین');
 jr_define('_JOMRES_COM_A_TARIFFS_MODEL', 'مدل تعرفه دلخواه خود را انتخاب کنید');
-jr_define('_JOMRES_COM_A_TARIFFS_MODEL_DESC', 'شما 2 انتخاب برای محاسبه تعرفه دارید، نوع اول تعرفه خالص است که به صورت بها مشخص برای کل روزها محاسبه میشود. نوع دوم تعرفه میانگین است که توسط سایت بر اساس قیمت روزهای مختلف محاسبه میشود');
+jr_define('_JOMRES_COM_A_TARIFFS_MODEL_DESC', 'شما 2 انتخاب برای محاسبه تعرفه دارید, نوع اول تعرفه خالص است که به صورت بها مشخص برای کل روزها محاسبه میشود. نوع دوم تعرفه میانگین است که توسط سایت بر اساس قیمت روزهای مختلف محاسبه میشود');
 jr_define('_JOMRES_COM_A_SHOWDEPARTUREINPUT', 'گزینه وارد کردن تاریخ خروج نمایش داده شود ؟');
 jr_define('_JOMRES_COM_A_SHOWDEPARTUREINPUT_DESC', "Set this to No if you don't want to show the departure date input box. Only use this if you know what you're doing, as the departure date in bookings will always be set to the day after the arrival date.");
 jr_define('_JOMRES_COM_PROPERTYLISTDESC', 'Description limit');
@@ -456,8 +456,8 @@ jr_define('_JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT', 'محدوده جستجو'
 jr_define('_JOMRES_SHOWGOOGLECURRENCYLINKS', 'لینک تبدیل واحد پول در تعرفه نمایش داده شود؟');
 jr_define('_JOMRES_CURRENCYCONVERSIONTEXT', 'نرخ تبدیل');
 jr_define('_JOMRES_COM_ALLOWHTMLEDITOR', 'به کاربران اجازه ویرایش با نرم افزارهای ویرایش اچ تی ام ال داده شود؟');
-jr_define('_JOMRES_AJAXFORM_INSTRUCTIONS', 'برای رزرو از این فرم استفاده کنید، در پایان اگر اطلاعات وارد شده کافی بود کلید ثبت فعال میشود');
-jr_define('_JOMRES_AJAXFORM_INSTRUCTIONS_SRP', 'برای رزرو از این فرم استفاده کنید، در پایان اگر اطلاعات وارد شده کافی بود کلید ثبت فعال میشود');
+jr_define('_JOMRES_AJAXFORM_INSTRUCTIONS', 'برای رزرو از این فرم استفاده کنید, در پایان اگر اطلاعات وارد شده کافی بود کلید ثبت فعال میشود');
+jr_define('_JOMRES_AJAXFORM_INSTRUCTIONS_SRP', 'برای رزرو از این فرم استفاده کنید, در پایان اگر اطلاعات وارد شده کافی بود کلید ثبت فعال میشود');
 jr_define('_JOMRES_AJAXFORM_PARTICULARS', 'رزروهای خاص');
 jr_define('_JOMRES_AJAXFORM_PARTICULARS_DESC', 'توضیحات موارد خاص رزرو را مشخص کنید');
 jr_define('_JOMRES_AJAXFORM_AVAILABLE', 'در دسترس بودن');
@@ -467,7 +467,7 @@ jr_define('_JOMRES_AJAXFORM_EXTRAS', 'سرویس ها');
 jr_define('_JOMRES_AJAXFORM_EXTRAS_DESC', 'سرویس ها');
 jr_define('_JOMRES_COM_PERDAY', 'برای هر شب');
 jr_define('_JOMRES_AJAXFORM_ADDRESS', 'اطلاعات شما');
-jr_define('_JOMRES_AJAXFORM_ADDRESS_DESC', 'لطفا اطلاعات خود را وارد کنید، مواردی که با ستاره مشخص شده اند الزامی هستند');
+jr_define('_JOMRES_AJAXFORM_ADDRESS_DESC', 'لطفا اطلاعات خود را وارد کنید, مواردی که با ستاره مشخص شده اند الزامی هستند');
 jr_define('_JOMRES_AJAXFORM_AVAILABLEROOMS', 'ملک های در دسترس');
 jr_define('_JOMRES_AJAXFORM_SELECTEDROOMS', 'ملک های انتخاب شده');
 jr_define('_JOMRES_AJAXFORM_EARLIESTPOSSIBLEARRIVALDATE', ':نزدیکترین زمان ورود ');
@@ -482,7 +482,7 @@ jr_define('_JOMRES_AJAXFORM_CLICKHERECAPTION', 'اضافه کردن به لیس�
 jr_define('_JOMRES_AJAXFORM_CLICKHERECAPTION_REMOVE', 'حذف کردن از لیست شما');
 jr_define('_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', 'نوع مهمان');
 jr_define('_JOMRES_VARIANCES_TYPE', 'نوع');
-jr_define('_JOMRES_VARIANCES_TYPE_TT', 'نوع مهمان، کودک یا دانش آموز');
+jr_define('_JOMRES_VARIANCES_TYPE_TT', 'نوع مهمان, کودک یا دانش آموز');
 jr_define('_JOMRES_VARIANCES_NOTES', 'یادداشت');
 jr_define('_JOMRES_VARIANCES_NOTES_TT', 'یادداشت در مورد این مهمان');
 jr_define('_JOMRES_VARIANCES_MAXIMUM', 'حداکثر');
@@ -523,18 +523,18 @@ jr_define('_JOMRES_COM_AVLCAL_BLACK_KEY', 'زمان مسدود');
 jr_define('_JOMRES_COM_A_DEPOSIT_DEPOSITROUNDUP', 'رند کردن بها بیعانه');
 jr_define('_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT', 'بیعانه دریافت شود');
 jr_define('_JOMRES_COM_A_TARIFFPRICESAREWEEKLY', 'تعرفه ها به صورت هفتگی باشد');
-jr_define('_JOMRES_COM_A_TARIFFPRICESAREWEEKLY_DESC', 'شما میتوانید تعرفه را به صورت روزانه و هفتگی محاسبه کنید، در صورتی که میخواهید هفتگی محاسبه شود این گزینه را انتخاب کنید');
+jr_define('_JOMRES_COM_A_TARIFFPRICESAREWEEKLY_DESC', 'شما میتوانید تعرفه را به صورت روزانه و هفتگی محاسبه کنید, در صورتی که میخواهید هفتگی محاسبه شود این گزینه را انتخاب کنید');
 jr_define('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', 'برای هر هفته');
 jr_define('_JOMRES_COM_MR_FIXEDARRIVALDATE_RECURRING', 'محدوده مشخص برای روزهای ورود');
 jr_define('_JOMRES_COM_MR_FIXEDARRIVALDATE_RECURRING_DESC', 'When fixed arrival dates are selected, the number dates that can be shown in the dates dropdown list. Note that the list of dates will not include any dates if a booking is not possible due to prior bookings, and that the list will actually be twice as long as your selected number because it will have a similar number of historic dates (where available)');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_ARRIVALDATE_INVALID', 'روز ورود صحیح نیست');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_DEPARTUREDATE_INVALID', 'روز خروج صحیح نیست');
-jr_define('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1', 'مدت اقامت بسیار کوتاه است، لطفا حداقل این مقدار را انتخاب کنید');
+jr_define('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1', 'مدت اقامت بسیار کوتاه است, لطفا حداقل این مقدار را انتخاب کنید');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2', 'مدت اقامت شما عبارت است از');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_GUEST_TYPE_INCORRECT', 'نوع مهمان اشتباه است');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_SELECT_GUEST_NUMBERS', 'نوع و تعداد مهمانان را انتخاب کنید');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_IN_PARTY_FOR_TARIFFS', 'تعداد مهمانان از تعرفه مورد نظر بیشتر است');
-jr_define('_JOMRES_BOOKINGFORM_MONITORING_MORE_ROOMS_THAN_GUESTS', 'تعداد اتاق ها از مهمانان بیشتر است، برای حذف بر روی اتاق مورد نظر کلیک کنید');
+jr_define('_JOMRES_BOOKINGFORM_MONITORING_MORE_ROOMS_THAN_GUESTS', 'تعداد اتاق ها از مهمانان بیشتر است, برای حذف بر روی اتاق مورد نظر کلیک کنید');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_GUESTS_FOR_BEDS', 'تعداد مهمانان بیشتر از تخت های موجود است');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS', 'شما باید اتاق های بیشتری انتخاب کنید');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_SELECT_A_ROOM', 'انتخاب اتاق');
@@ -706,14 +706,14 @@ jr_define('_JRPORTAL_LISTBOOKINGS_HEADER_BOOKINGTOTAL', 'کل رزرو');
 jr_define('_JRPORTAL_LISTBOOKINGS_HEADER_DATEARCHIVED', 'بایگانی شده در تاریخ');
 jr_define('_JRPORTAL_ADD_ADHOC_ITEM_DESCRIPTION', 'مشخصات');
 jr_define('_JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER', 'You can have business type specific language files by setting the description to the name of a sub folder, e.g. "yachtbrokerage" and copying a language file to that subfolder. You can then modify that language file for this business type so resources become, for example, DVDs, etc.');
-jr_define('_JOMRES_EDITPROPERTY_CONNOTDELETE1', 'شما نمی توانید این ملک را حذف کنید چون تنها ملکیست که به آن دسترسی دارید، اما میتوانید از نوار ابزارها گزینه عدم نمایش را انتخاب کنید');
+jr_define('_JOMRES_EDITPROPERTY_CONNOTDELETE1', 'شما نمی توانید این ملک را حذف کنید چون تنها ملکیست که به آن دسترسی دارید, اما میتوانید از نوار ابزارها گزینه عدم نمایش را انتخاب کنید');
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL', 'بهای ملک');
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS', 'شب');
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_PERROOM', 'برای هر ملک');
 jr_define('_JOMRES_AJAXFORM_EXTRAS_TOTAL', 'بهای کل سرویس به همراه مالیات');
 jr_define('_JOMRES_AJAXFORM_PRICE_SUMMARY', 'کل مبلغ قابل پرداخت');
 jr_define('_JOMRES_CONFIRMATION_ALERT', 'لطفا قبل از موافقت بخوانید');
-jr_define('_JOMRES_CONFIRMATION_HEADER', 'خلاصه رزرو شما نمایش داده شده است، اگر میخواهید میتوانید آن را تغییر دهید');
+jr_define('_JOMRES_CONFIRMATION_HEADER', 'خلاصه رزرو شما نمایش داده شده است, اگر میخواهید میتوانید آن را تغییر دهید');
 jr_define('_JOMRES_CONFIRMATION_AMENDTEXT', 'اگر می خواهید در موارد فوق تغییری ایجاد کنید اینجا کلیک کنید');
 jr_define('_JOMRES_CONFIRMATION_AMEND', 'اصلاح رزرو');
 jr_define('_JOMRES_CONFIRMATION_SPECIALS', 'لطفا اگر درخواستی دارید اینجا بنویسید');
@@ -728,7 +728,7 @@ jr_define('_PN_RESULTS', 'نتایج');
 jr_define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_TITLE', 'متن پیام برای ارسال را وارد کنید');
 jr_define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL', 'تماس با هتل');
 jr_define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_SUBJECT', 'فرم تماس');
-jr_define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_THANKS', 'با تشکر از شما برای ارسال این پیام، پیام مورد نظر برای هتل و همچنین برای آدرس ایمیل شما ارسال شد. لطفا منتظر دریافت پاسخ از سوی هتل باشید');
+jr_define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_THANKS', 'با تشکر از شما برای ارسال این پیام, پیام مورد نظر برای هتل و همچنین برای آدرس ایمیل شما ارسال شد. لطفا منتظر دریافت پاسخ از سوی هتل باشید');
 jr_define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_REGARDING', 'در مورد');
 jr_define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_ENQUIRY', 'پرسش');
 jr_define('_JOMRES_BOOKINGFORM_LOOKRIGHT', 'لطفا ملک مورد نظر خود را از لیست زیر انتخاب کنید');
@@ -764,7 +764,7 @@ jr_define('_JOMRES_COM_A_LISTLIMIT_DESC', 'تعداد ملکهای نمایش د
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE', 'قابلیت جستجوی پیشرفته');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE_DESC', "The Jomres integrated search feature allows your users to search through Jomres businesses according to a set of functions. If you have already used the search features of Jomres in Joomla you will be familiar with these settings.<br/>This feature allows us to offer search handling within Jomres for those users who don't want to use Joomla search modules, or for other CMS users who's CMS doesn't have it's own Jomres search modules.<br/>Just remember that if you choose to search for something via a link (ie not a dropdown) then other search options will not be implemented, only the element that corresponds with the link that you clicked.<br/>Note that by default the layout of this integrated search isn't very pretty. That's because the template file that performs the layout has to include all possible options, some of which are incompatible.");
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE', 'آیا این قابلیت فعای شود؟');
-jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE_DESC', 'اگر این گزینه را انتخاب کنید، قابلیت جستجوی پیشرفته در تمامی لیست های جومرس فعال خواهد شد');
+jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE_DESC', 'اگر این گزینه را انتخاب کنید, قابلیت جستجوی پیشرفته در تمامی لیست های جومرس فعال خواهد شد');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_USECOLS', 'نمایش ستونی');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_USECOLS_DESC', 'جستجو به صورت ستونی نمایش داده خواهد شد (IE br put on the end of the link)');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_SELECTCOMBO', 'Search region by select combo dropdown');
@@ -862,7 +862,7 @@ jr_define('_JOMRES_AJAXFORM_COUPON_APPLYBUTTON', 'ذخیره کوپن');
 jr_define('_JOMRES_AJAXFORM_COUPON_COUPONSAVED', 'کوپن برای رزرو شما ذخیره شد');
 jr_define('_JOMRES_AJAXFORM_COUPON_COUPONNOTFOUND', 'این کد وجود ندارد');
 jr_define('_JOMRES_AJAXFORM_COUPON_DISCOUNTVALUE', 'مبلغ تخفیف');
-jr_define('_JOMRES_AJAXFORM_COUPON_BOOKINGNOTE', 'تخفیف محاسبه شده، کد کوپن/میزان تخفیف');
+jr_define('_JOMRES_AJAXFORM_COUPON_BOOKINGNOTE', 'تخفیف محاسبه شده, کد کوپن/میزان تخفیف');
 jr_define('_JOMRES_COM_CHOOSELANGUAGES', 'زبان را انتخاب کنید');
 jr_define('_JOMRES_COM_CHOOSELANGUAGES_INFO', 'امکانات مورد نظر برای نمایش در منوی زبان را مشخص کنید');
 jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN', 'منوی زبان نمایش داده شود؟');
@@ -908,7 +908,7 @@ jr_define('_JRPORTAL_HORIZROOMSLIST_ESTIMATEWARNING', 'توجه داشته با�
 jr_define('_JOMRES_COM_NEWUSER', 'Create new user on booking');
 jr_define('_JOMRES_COM_NEWUSER_DESC', 'Create new user account on unregistered user booking. (Joomla only)');
 jr_define('_JOMRES_CLICKTOREGISTER', 'برای ثبت ملک خود اینجا کلیک کنید');
-jr_define('_JRPORTAL_NEWUSER_SUBJECT', ':از رزرو شما متشکریم، اطلاعات کاربر جدید');
+jr_define('_JRPORTAL_NEWUSER_SUBJECT', ':از رزرو شما متشکریم, اطلاعات کاربر جدید');
 jr_define('_JOMRES_LATLONG_DESC', 'محل دقیق ملک خود را به وسیله نشانگر در نقشه مشخص کنید');
 jr_define('_JOMRES_CONTROLPANEL', 'پنل کنترل');
 jr_define('_JOMRES_MANAGER_SHOWINVOICE', 'نمایش فاکتور');
@@ -925,8 +925,8 @@ jr_define('_JOMRES_FRONT_BLACKBOOKING_DESC_SRP', 'Select the dates that you want
 If the business has one or more bookings for the period selected, then you will not be able to book it out until the other bookings/black bookings, have been cancelled/booked out.');
 jr_define('_JOMRES_FRONT_BLACKBOOKING_SRP_CANNOTBLACKBOOK', 'Sorry, you cannot black book this business for those dates.');
 jr_define('_JOMRES_FRONT_BLACKBOOKING_SRP_CANBLACKBOOK', 'You can blackbook this business for those dates.');
-jr_define('_JOMRES_WARNINGS_PERPERSONPERNIGHT_NOGUESTTYPES', 'ملک شما به صورت هر نفر هر شب تنظیم شده است اما شما نوع مهمان را تعریف نکرده اید، لطفا ابتدا نوع مهمان را تعریف کنید');
-jr_define('_JOMRES_WARNINGS_TARIFFS_NOTARIFFS', 'شما تعرفه ای برای ملک خود مشخص نکرده اید، رزرو بدون تعرفه امکان پذیر نیست');
+jr_define('_JOMRES_WARNINGS_PERPERSONPERNIGHT_NOGUESTTYPES', 'ملک شما به صورت هر نفر هر شب تنظیم شده است اما شما نوع مهمان را تعریف نکرده اید, لطفا ابتدا نوع مهمان را تعریف کنید');
+jr_define('_JOMRES_WARNINGS_TARIFFS_NOTARIFFS', 'شما تعرفه ای برای ملک خود مشخص نکرده اید, رزرو بدون تعرفه امکان پذیر نیست');
 jr_define('_JOMRES_EDITINGMODE_ON', 'حالت ویرایش فعال');
 jr_define('_JOMRES_EDITINGMODE_OFF', 'حالت ویرایش غیر فعال');
 jr_define('_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE', 'آیا میخواهید مبلغ بیعانه به صورت متغیر محاسبه شود؟');
@@ -966,7 +966,7 @@ jr_define('_JOMRES_REVIEWS_REVIEWBODY_SAID', ':این نظردهنده گفته 
 jr_define('_JOMRES_REVIEWS_PROS', ':نکات مثبت');
 jr_define('_JOMRES_REVIEWS_CONS', ':نکات منفی');
 jr_define('_JOMRES_REVIEWS_SUBMITTEDDATE', ':تاریخ ثبت نظر');
-jr_define('_JOMRES_REVIEWS_ALREADYREVIEWED', 'شما یک بار در این مورد نظر داده اید، متاسفانه نمیتوانید دوباره نظر دهید');
+jr_define('_JOMRES_REVIEWS_ALREADYREVIEWED', 'شما یک بار در این مورد نظر داده اید, متاسفانه نمیتوانید دوباره نظر دهید');
 jr_define('_JOMRES_REVIEWS_CANNOTREVIEW', 'متاسفانه شما اجازه ارسال نظر را ندارید');
 jr_define('_JOMRES_REVIEWS_CLICKTOSHOW', 'نمایش نظرات');
 jr_define('_JOMRES_REVIEWS_NUMBER_AGREE_WITHREVIEW', 'مهمانان با این نظر موافق بودند');
@@ -974,7 +974,7 @@ jr_define('_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW', 'مهمانان با ا�
 jr_define('_JOMRES_REVIEWS_NUMBER_AGREE_WITHREVIEW_SINGULAR', 'مهمانان با این نظر موافق بودند');
 jr_define('_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW_SINGULAR', 'مهمانان با این نظر مخالف بودند.');
 jr_define('_JOMRES_REVIEWS_THANKS_FOR_CONFIRM', 'از اینکه در این مورد نظر دادید از شما متشکریم');
-jr_define('_JOMRES_REVIEWS_ALREADY_CONFIRMED', 'شما یک بار در این مورد نظر داده اید، متاسفانه نمیتوانید دوباره نظر دهید');
+jr_define('_JOMRES_REVIEWS_ALREADY_CONFIRMED', 'شما یک بار در این مورد نظر داده اید, متاسفانه نمیتوانید دوباره نظر دهید');
 jr_define('_JOMRES_REVIEWS_COMPLETEALLFIELDS', 'مطمئن شوید که تمامی موارد را پر کرده اید');
 jr_define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_TITLE', 'لطفا خلاصه نظر خود را بار عنوان بنویسید');
 jr_define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_DESCRIPTION', 'لطفا در این قسمت نظر خود را به صورت کاملتر بنویسید');
@@ -989,13 +989,13 @@ jr_define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_6', 'از خدمات راضی 
 jr_define('_JOMRES_REVIEWS_ADDREVIEW_SUMMARY', 'خلاصه نظر شما');
 jr_define('_JOMRES_REVIEWS_ADDREVIEW_MOREDETAIL', 'تجربه شما با جزئیات بیشتر');
 jr_define('_JOMRES_REVIEWS_THANKS_FOR_REVIEW', 'از اینکه نظر خود را ثبت کردید متشکریم');
-jr_define('_JOMRES_REVIEWS_THANKS_FOR_REVIEW_MODERATED', 'از اینکه نظر خود را ثبت کردید متشکریم، نظر شما پس از بررسی منتشر میشود');
+jr_define('_JOMRES_REVIEWS_THANKS_FOR_REVIEW_MODERATED', 'از اینکه نظر خود را ثبت کردید متشکریم, نظر شما پس از بررسی منتشر میشود');
 jr_define('_JOMRES_REVIEWS_ADMIN_CONTROL', 'آیا از سیستم نظرات جومرس استفاده شود؟');
 jr_define('_JOMRES_REVIEWS_ADMIN_AUTOPUBLISH', 'آیا نظرات بدون بررسی منتشر شوند؟');
 jr_define('_JOMRES_REVIEWS_ADMIN_AUTOPUBLISH_DESC', 'اگر این را خیر قرار دهید نظرات برای انتشار نیاز به تایید خواهند داشت');
 jr_define('_JOMRES_REVIEWS_ADMIN_TESTMODE', 'نظرات به حالت آزمایشی تغییر کنند؟');
 jr_define('_JOMRES_REVIEWS_ADMIN_TESTMODE_DESC', 'در حالت معمولی مالکان و مدیران نمیتوانند نظر دهند ولی در حالت آزمایشی میتوانند');
-jr_define('_JOMRES_REVIEWS_ADMIN_PROPERTYLISTINFO', 'این لیست کل ملکها میباشد، برای مشاهده/حذف/انتشار نظرات بر روی ملک مورد نظر کلیک کنید');
+jr_define('_JOMRES_REVIEWS_ADMIN_PROPERTYLISTINFO', 'این لیست کل ملکها میباشد, برای مشاهده/حذف/انتشار نظرات بر روی ملک مورد نظر کلیک کنید');
 jr_define('_JOMRES_REVIEWS_ADMIN_NUMBERUNPUBLISHED', 'تعداد نظرات منتشر نشده');
 jr_define('_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL', 'تعداد کل نظرات');
 jr_define('_JOMRES_REVIEWS_ADMIN_PUBLISHREVIEW', 'انتشار/عدم انتشار نظر');
@@ -1006,7 +1006,7 @@ jr_define('_JOMRES_REVIEWS_REPORT_REVIEW_ERROR', 'لطفا گزارش خود ر�
 jr_define('_JOMRES_REVIEWS_REPORT_REVIEW_MOREDETAIL', 'آیا تخلفی در این نظر مشاهده میکنید؟ لطفا آنرا برایی بررسی گزارش کنید');
 jr_define('_JOMRES_REVIEWS_SUBMIT', 'ثبت');
 jr_define('_JOMRES_REVIEWS_REPORT_CREATED_BY', 'گزارش تنظیم شده توسط');
-jr_define('_JOMRES_REVIEWS_REPORT_INSTRUCTIONS', 'گزارشات توسط کاربرانی تهیه میگردند مخالف این نظر هستند..تنها راه حذف گزارش، حذف نظر به طور کامل است');
+jr_define('_JOMRES_REVIEWS_REPORT_INSTRUCTIONS', 'گزارشات توسط کاربرانی تهیه میگردند مخالف این نظر هستند..تنها راه حذف گزارش, حذف نظر به طور کامل است');
 jr_define('_JOMRES_REVIEWS_RATING', 'امتیازدهی از 1=ضعیف تا 10=خیلی عالی');
 jr_define('_JOMRES_REVIEWS_RATING_1', 'مهمان نوازی');
 jr_define('_JOMRES_REVIEWS_RATING_2', 'مکان');
@@ -1021,8 +1021,8 @@ jr_define('_JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS_DESC', 'Set this to Ye
 jr_define('_JOMRES_COM_A_TAXINCLUSIVE', 'Prices are gross?');
 jr_define('_JOMRES_COM_A_TAXINCLUSIVE_DESC', 'If the prices you enter into the system include tax, then select Yes. If they are not (i.e. Nett), select No.');
 jr_define('_JOMRES_AJAXFORM_BILLING_TAX_EXTRAS', ':مالیات بر خدمات');
-jr_define('_JOMRES_MICROMANAGE_PICKER_DAYSOFWEEK', 'گزینه روزهای هفته این امکان را به شما میدهد که برای آنروز یک نرخ تعیین کنید و پس از کلیک کردن، آن نرخ برای روزهای مشخص شده محاسبه میشود');
-jr_define('_JOMRES_MICROMANAGE_PICKER_DATERANGES', 'گزینه انتخاب تاریخ و نرخ این امکان را به شما میدهد که نرخ مورد نظر را برای بازه ای از روزها مشخص کنید، فقط کافیست روز شروع و پایان را انتخاب کنید');
+jr_define('_JOMRES_MICROMANAGE_PICKER_DAYSOFWEEK', 'گزینه روزهای هفته این امکان را به شما میدهد که برای آنروز یک نرخ تعیین کنید و پس از کلیک کردن, آن نرخ برای روزهای مشخص شده محاسبه میشود');
+jr_define('_JOMRES_MICROMANAGE_PICKER_DATERANGES', 'گزینه انتخاب تاریخ و نرخ این امکان را به شما میدهد که نرخ مورد نظر را برای بازه ای از روزها مشخص کنید, فقط کافیست روز شروع و پایان را انتخاب کنید');
 jr_define('_JOMRES_MICROMANAGE_PICKER_DATERANGES_START', 'روز شروع');
 jr_define('_JOMRES_MICROMANAGE_PICKER_DATERANGES_END', 'روز پایان');
 jr_define('_JOMRES_MICROMANAGE_PICKER_DATERANGES_RATE', 'نرخ');
@@ -1031,7 +1031,7 @@ jr_define('_JOMRES_PARTNERS_TITLE', 'همکاران');
 jr_define('_JOMRES_CALENDAR_RTL', 'اشتباه');
 jr_define('_JOMRES_ROOMALLOCATIONS_ROOM', 'اتاق');
 jr_define('_JOMRES_ROOMALLOCATIONS_GUESTS', 'مهمان ها');
-jr_define('_JOMRES_ROOMALLOCATIONS_INFORMATION', 'اتاق ها به این صورت برای مهمانان در نظر گرفته شده است، اگر میخواهید تغییر دهید لطفا با هتل تماس بگیرید، این تغییر ممکن است شامل هزینه باشد');
+jr_define('_JOMRES_ROOMALLOCATIONS_INFORMATION', 'اتاق ها به این صورت برای مهمانان در نظر گرفته شده است, اگر میخواهید تغییر دهید لطفا با هتل تماس بگیرید, این تغییر ممکن است شامل هزینه باشد');
 jr_define('_JOMRES_SANITY_CHECK_NOT_PUBLISHED', 'در نظر داشته باشید که ملک شما منتشر نشده است و فقط شما قادر با دیدن آن هستید');
 jr_define('_JOMRES_PROPERTYLIST_FILTERS_DEFAULT', 'ترتیب پیش فرض برای نتایج جستجو');
 jr_define('_JOMRES_PROPERTYLIST_FILTERS_DEFAULT_DESC', 'برای تغییر ترتیب پیش فرض این گزینه را تغییر دهید');
@@ -1073,12 +1073,12 @@ jr_define('_JOMRES_PARTNER_SHOW_TITLE', ':همکار');
 jr_define('_JOMRES_PARTNER_SHOW_SEARCHTITLE', 'جستجوی ملک');
 jr_define('_JOMRES_PARTNER_SHOW_SEARCHINSTRUCTIONS', "Enter a few characters from the business name and select a business.<br/> When you select the business you will add it to the partner's portfolio, however they will not yet enjoy any discounts, you will need to set those youself.");
 jr_define('_JOMRES_PARTNER_SHOW_CURRENTPROPERTIES', 'ملک های فعلی');
-jr_define('_JOMRES_PARTNER_SHOW_CURRENTPROPERTIES_INSTRUCTIONS', 'برای تغییر تنظیمات تخفیف همکار، روی ملک مورد نظر کلیک کنید');
+jr_define('_JOMRES_PARTNER_SHOW_CURRENTPROPERTIES_INSTRUCTIONS', 'برای تغییر تنظیمات تخفیف همکار, روی ملک مورد نظر کلیک کنید');
 jr_define('_JOMRES_SUSPENSIONS_MANAGER_SUSPENDED', 'این حساب کاربری تعلیق شده است و شما نمیتوانید ملکهای خود را مدیریت کنید');
 jr_define('_JOMRES_SUSPENSIONS_SUSPENDED_EMAIL_TITLE', 'حساب مدیر تعلیق شد');
 jr_define('_JOMRES_SUSPENSIONS_UNSUSPENDED_EMAIL_TITLE', 'حساب مدیر از حالت تعلیق خارج شد');
-jr_define('_JOMRES_SUSPENSIONS_MANAGER_SUSPENDED_EMAIL', 'در نظر داشته باشید که حساب شما تعلیق شده است، تا رفع تعلیق شما نمی توانید فعالیتی داشته باشید');
-jr_define('_JOMRES_SUSPENSIONS_MANAGER_UNSUSPENDED_EMAIL', 'در نظر داشته باشید که حساب شما مجددا فعال شده است، شما میتوانید برای ادامه فعالیت به حساب کاربری خود وارد شوید');
+jr_define('_JOMRES_SUSPENSIONS_MANAGER_SUSPENDED_EMAIL', 'در نظر داشته باشید که حساب شما تعلیق شده است, تا رفع تعلیق شما نمی توانید فعالیتی داشته باشید');
+jr_define('_JOMRES_SUSPENSIONS_MANAGER_UNSUSPENDED_EMAIL', 'در نظر داشته باشید که حساب شما مجددا فعال شده است, شما میتوانید برای ادامه فعالیت به حساب کاربری خود وارد شوید');
 jr_define('_JOMCOMP_MYUSER_REMOVE', 'حذف از علاقه مندی');
 jr_define('_JOMRES_DATA_ARCHIVE_TITLE', 'اطلاعات رزرو بایگانی شد');
 jr_define('_JOMRES_DATA_ARCHIVE_TITLE_DESC', 'The booking data archive is a raw dump of booking information captured after the confirm booking button is clicked. Hover over a date to see the raw data dump. The information is stored in the XXX__jomres_booking_data_archive table.');
@@ -1125,7 +1125,7 @@ jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_WEEKS', 'week(s) at');
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_MONTHS', 'month(s) at');
 jr_define('_JOMRES_A_GLOBAL_SEARCHOPTION_PEOPLENUMBERS', 'How should the search option for people numbers work?');
 jr_define('_JOMRES_A_GLOBAL_SEARCHOPTION_PEOPLENUMBERS_DESC', "Affects all search modules. When using the guest number search feature, should the search feature look for properties who's tariffs will support guest numbers up and equal the number chosen, exactly equal the number chosen, or the number chosen and greater?");
-jr_define('_JOMRES_PAYPAL_REDIRECTMESSAGE', 'لطفا منتظر باشید، درخواست شما در حال پردازش است...شما به درگاه پرداخت ارجاع داده میشوید');
+jr_define('_JOMRES_PAYPAL_REDIRECTMESSAGE', 'لطفا منتظر باشید, درخواست شما در حال پردازش است...شما به درگاه پرداخت ارجاع داده میشوید');
 jr_define('_JOMRES_PAYPAL_REDIRECTMESSAGE_IFNOTREDIRECTED', 'اگر پس از 20 ثانیه به صورت خودکار به درگاه پرداخت ارجاع داده نشدید');
 jr_define('_JOMRES_PAYPAL_REDIRECTMESSAGE_CLICKHERE', 'اینجا کلیک کنید');
 jr_define('_JRPORTAL_COUPONS_BOOKING_VALIDFROM', 'اعتبار رزرو از تاریخ');
@@ -1134,7 +1134,7 @@ jr_define('_JRPORTAL_COUPONS_GUESTNAME', 'نام مهمان');
 jr_define('_JRPORTAL_COUPONS_DESC_478', "Discount codes can be generated and passed onto guests as an incentive to make bookings.<br/>
 Valid from and to dates refer to the dates that a booking can be made on, whereas the Booking valid from/to dates refer to the dates that the booking must cover for the coupon to be valid. If a booking falls outside of that period then normal rates will apply to the days outside of that period.<br/>
 If you want the booking to be available to one specific guest, choose that guest's name in the dropdown to limit the coupon to that guest only.");
-jr_define('_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK', 'با کوپن تخفیف شما، این رزرو شامل تخفیف شده است از');
+jr_define('_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK', 'با کوپن تخفیف شما, این رزرو شامل تخفیف شده است از');
 jr_define('_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK_TO', 'به');
 jr_define('_JOMRES_CONFIG_JQUERY_UI_DESC', 'Set this to No to disable loading of both the Jquery UI javascript and CSS files.');
 jr_define('_JOMRES_CONFIG_JQUERY_UI_CSS', 'Load Jomres jQuery UI CSS library?');
@@ -1169,7 +1169,7 @@ jr_define('_JOMRES_DATEPERIOD_S', '');
 jr_define('_JOMRES_DATEPERIOD_AGO', 'قبل');
 jr_define('_JOMRES_DATEPERIOD_FROMNOW', 'از حالا');
 jr_define('_JOMRES_WHOLEDAY_TITLE', 'رزرو برای تمامی روزها؟');
-jr_define('_JOMRES_WHOLEDAY_DESC', 'بر اساس پیش فرض هزینه یک رزرو بر اساس هر شب اقامت محاسبه میشود، اما اگر میخواهید هزینه ها بر اساس روز محاسبه شود این گزینه را انتخاب کنید');
+jr_define('_JOMRES_WHOLEDAY_DESC', 'بر اساس پیش فرض هزینه یک رزرو بر اساس هر شب اقامت محاسبه میشود, اما اگر میخواهید هزینه ها بر اساس روز محاسبه شود این گزینه را انتخاب کنید');
 jr_define('_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', 'روزانه');
 jr_define('_JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY', 'برای هر نفر روزانه');
 jr_define('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY', 'ورود');
@@ -1277,7 +1277,7 @@ jr_define('_JOMRES_METATITLE', 'Meta title');
 jr_define('_JOMRES_METADESCRIPTION', 'Meta description');
 jr_define('_JOMRES_REGISTRATION_STEP_2_OF_2', 'Add your property : Step 2 of 2');
 jr_define('_JOMRES_CART_TITLE', 'رزروهای در حال انجام');
-jr_define('_JOMRES_CART_INFO', 'توجه داشته باشید که این رزروها ذخیره نشده اند و در صورت بستن صفحه از بین میروند، لطفا رزروهای خود را تایید کنید');
+jr_define('_JOMRES_CART_INFO', 'توجه داشته باشید که این رزروها ذخیره نشده اند و در صورت بستن صفحه از بین میروند, لطفا رزروهای خود را تایید کنید');
 jr_define('_JOMRES_CART_CONFIRM_BOOKINGS', 'تایید رزرو');
 jr_define('_JOMRES_CART_OR', 'یا');
 jr_define('_JOMRES_CART_SAVEFORLATER', 'ذخیره برای بازبینی در آینده');
@@ -1392,7 +1392,7 @@ jr_define('_JOMRES_EXPORT_DEFINITIONS', 'Export definitions');
 jr_define('_JOMRES_EXPORT_DEFINITIONS_INFO', 'This feature allows you to export translations that have been built up using the Language Translation feature. It will build up a text field with all of the data required to build a new language file, all you need to do is copy and paste this output into a new language file that you can put onto a new Jomres based server, or if you want to contribute back to the Jomres community.');
 jr_define('_JOMRES_COM_TRANSLATE_COUNTRIESREGIONS', 'Translate locales');
 jr_define('_JOMRES_COM_TRANSLATE_LANGUAGEFILES', 'Translate lang file strings');
-jr_define('_JOMRES_COM_NOTAMANAGER', 'خطا، شناسه کاربری شما دسترسی تغییر این قسمت را ندارد، فقط کاربران با دسترسی مدیر ارشد میتوانند قسمت های حساس سیستم را تغییر دهند');
+jr_define('_JOMRES_COM_NOTAMANAGER', 'خطا, شناسه کاربری شما دسترسی تغییر این قسمت را ندارد, فقط کاربران با دسترسی مدیر ارشد میتوانند قسمت های حساس سیستم را تغییر دهند');
 jr_define('_JOMRES_COM_LAYOUTS_DEFAULT', 'Property list default layout');
 jr_define('_JOMRES_STAYFORAMINIMUMOF', 'حداقل اقامت');
 jr_define('_JOMRES_NIGHTSFOR', 'شب فقط به قیمت');
@@ -1402,16 +1402,16 @@ jr_define('_JOMRES_AGENT_LISTINGS', 'لیست ملکهای نماینده');
 jr_define('_JOMRES_APPROVALS_CONFIG_TITLE', 'ملکهای جدید به صورت اتوماتیک تایید شوند؟');
 jr_define('_JOMRES_APPROVALS_CONFIG_DESC', 'If you set this option to No then you will need to manually approve new properties. Until a property has been approved it cannot be published by a Manager/Super property manager.');
 jr_define('_JOMRES_APPROVALS_MENU_NAME', 'منوی تایید ملک');
-jr_define('_JOMRES_APPROVALS_NOT_APPROVED_YET', 'این ملک هنوز تایید نشده است، پس از تایید شما میتوانید آنرا منتشر کنید');
+jr_define('_JOMRES_APPROVALS_NOT_APPROVED_YET', 'این ملک هنوز تایید نشده است, پس از تایید شما میتوانید آنرا منتشر کنید');
 jr_define('_JOMRES_APPROVALS_CANNOT_PUBLISH', 'متاسفانه ملک مورد نظر شما هنوز تایید نشده است');
 jr_define('_JOMRES_APPROVALS_ADMIN_EMAIL_SUBJECT', 'ملک جدیدی نیاز به تایید دارد');
-jr_define('_JOMRES_APPROVALS_ADMIN_EMAIL_CONTENT', 'ملک جدیدی به سیستم اضافه شده است که نیاز به تایید دارد، برای دیدن لیست ملکهای منتظر تایید اینجا کلیک کنید');
+jr_define('_JOMRES_APPROVALS_ADMIN_EMAIL_CONTENT', 'ملک جدیدی به سیستم اضافه شده است که نیاز به تایید دارد, برای دیدن لیست ملکهای منتظر تایید اینجا کلیک کنید');
 jr_define('_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT', 'ملک شما تایید شد');
-jr_define('_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT', 'به به ! ملک شما تایید شد، برای دسترسی به منوی تنظیمات اینجا کلیک کنید');
+jr_define('_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT', 'به به ! ملک شما تایید شد, برای دسترسی به منوی تنظیمات اینجا کلیک کنید');
 jr_define('_JOMRES_REGION_TRANSLATION_SWITCH_TITLE', 'نام استان ها قابل ترجمه هستند');
 jr_define('_JOMRES_REGION_TRANSLATION_SWITCH_DESC', 'بهتر است این گزینه را انتخاب نکنید چون سیستم شما برای ترجمه بسیار کند خواهد شد');
 jr_define('_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT', 'Guest booked out.');
-jr_define('_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE', 'متاسفانه ایمیل وارد شده قبلا در این سیستم استفاده شده است، لطفا قبل از رزرو به حساب کاربری خود وارد شوید');
+jr_define('_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE', 'متاسفانه ایمیل وارد شده قبلا در این سیستم استفاده شده است, لطفا قبل از رزرو به حساب کاربری خود وارد شوید');
 jr_define('JOMRES_TAPTOCALL', 'Tap to call');
 jr_define('JOMRES_NEWREVIEW_SUBJECT', 'نظر جدید برای');
 jr_define('JOMRES_NEWREVIEW_MESSAGE', 'یک نظر جدید ثبت شده است برای');
@@ -1429,7 +1429,7 @@ jr_define('JOMRES_RECAPTCHA_VISUAL_CHALLENGE', 'حالت تصویری');
 jr_define('JOMRES_RECAPTCHA_AUDIO_CHALLENGE', 'حالت صوتی');
 jr_define('JOMRES_RECAPTCHA_REFRESH_BTN', 'بارگزاری مجدد');
 jr_define('JOMRES_RECAPTCHA_HELP_BTN', 'کمک');
-jr_define('JOMRES_RECAPTCHA_INCORRECT_TRY_AGAIN', 'متاسفانه صحیح نبود، دوباره سعی کنید');
+jr_define('JOMRES_RECAPTCHA_INCORRECT_TRY_AGAIN', 'متاسفانه صحیح نبود, دوباره سعی کنید');
 jr_define('JOMRES_GOOGLE_MAPS', 'تنظیمات نقشه گوگل');
 jr_define('JOMRES_GOOGLE_MAP_OPTION_WEATHER', 'لایه آب و هوا روی نقشه نمایش داده شود؟');
 jr_define('JOMRES_GOOGLE_MAP_OPTION_WEATHER_CELCIUS', 'سلسیوس');
@@ -1443,7 +1443,7 @@ jr_define('_JOMRES_VIES_VATCHECK_INCORRECT_COULDNOTVALIDATE', 'Invalid VAT Numbe
 jr_define('_JOMRES_VIES_VATCHECK_INCORRECT_VALIDATED', 'Congratulations. We were able to validate your VAT number.');
 jr_define('_JOMRES_TAX_RULES_LIST', 'لیست قوانین مالیاتی');
 jr_define('_JOMRES_TAX_RULE', 'قانون مالیاتی');
-jr_define('_JOMRES_TAX_RULE_INFO', 'قوانین مالیاتی با توجه به کشور های مختلف متفاوت هستند، این قوانین بر اساس مکان قرارگیری ملک تایین خواهند شد');
+jr_define('_JOMRES_TAX_RULE_INFO', 'قوانین مالیاتی با توجه به کشور های مختلف متفاوت هستند, این قوانین بر اساس مکان قرارگیری ملک تایین خواهند شد');
 jr_define('_JOMRES_TAX_RATES_IMPORT', 'Import tax rates');
 jr_define('_JOMRES_TAX_RATES_IMPORT_INFO', 'We can import tax rates for the EU for you, if you wish. Note, if you use this feature then all of your existing Tax Rates will be removed.');
 jr_define('_JRPORTAL_TAX_RULE_EDIT', 'ویرایش مالیات');
@@ -1461,7 +1461,7 @@ jr_define('_JOMRES_COM_MR_EB_HTARIFF_DETAILS', 'جزئیات تعرفه');
 jr_define('_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_PRE', 'فقط');
 jr_define('_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_POST', '!باقی مانده');
 jr_define('_JOMRES_COM_MR_EB_HRESOURCE_FEATURE', 'امکانات ملک');
-jr_define('_JOMRES_COM_MR_RESOURCEFEATURE_UNABLETODELETE', 'قادر به حذف این امکان نیستید، این امکان به ملک دیگری نیز متصل است');
+jr_define('_JOMRES_COM_MR_RESOURCEFEATURE_UNABLETODELETE', 'قادر به حذف این امکان نیستید, این امکان به ملک دیگری نیز متصل است');
 jr_define('_JOMRES_MEDIA_CENTRE_TITLE', 'Media Centre');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_ADD', 'اضافه کردن تصویر');
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOM', 'تصاویر اتاق');
@@ -1470,7 +1470,7 @@ jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW', 'تصاویر برا�
 jr_define('_JOMRES_MEDIA_CENTRE_CLEAR', 'پاک کردن لیست');
 jr_define('_JOMRES_MEDIA_CENTRE_DRAGNDROP', 'Drag & Drop files here');
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_INSTRUCTIONS', 'ملکی که میخواهید برای آن تصویر ارسال کنید را انتخاب کنید');
-jr_define('_JOMRES_MEDIA_CENTRE_NOTES_CORE', 'اگر چند تصویر را به عنوان تصویر اصلی ملک ارسال کردید، فقط تصویر اول نمایش داده خواهد شد');
+jr_define('_JOMRES_MEDIA_CENTRE_NOTES_CORE', 'اگر چند تصویر را به عنوان تصویر اصلی ملک ارسال کردید, فقط تصویر اول نمایش داده خواهد شد');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_VIEW', 'نمایش تصویر');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_DELETE', 'حذف تصویر');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD', 'ارسال تصویر');
@@ -1478,9 +1478,9 @@ jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_ROOMTYPE_IMAGES', 'آیکن ها�
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY_FEATURES', 'آیکن های امکانات ملک');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_ALL', 'ارسال همه فایل ها');
 jr_define('TOUR_ID_TOUR_TARGET_MAIN_MENU_TITLE', 'به ملک خود خوش آمدید');
-jr_define('TOUR_ID_TOUR_TARGET_MAIN_MENU_CONTENT', 'به داشبورد خود خوش آمدید، این منوی اصلی است..اگر میخواهید چیزی که برای مشتری نمایش داده میشود را ببنید به قسمت املاک بروید و گزینه پیش نمایش را انتخاب کنید');
+jr_define('TOUR_ID_TOUR_TARGET_MAIN_MENU_CONTENT', 'به داشبورد خود خوش آمدید, این منوی اصلی است..اگر میخواهید چیزی که برای مشتری نمایش داده میشود را ببنید به قسمت املاک بروید و گزینه پیش نمایش را انتخاب کنید');
 jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_NAME_TITLE', 'این نام ملک شماست');
-jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_NAME_CONTENT', 'هر وقت که شما به عنوان مدیر ملک وارد میشوید یک ملک فعال دارید که نامش اینجا نمایش داده می شود، شما نمیتوانید در یک زمان روی چند ملک تغییر ایجاد کنید');
+jr_define('TOUR_ID_TOUR_TARGET_PROPERTY_NAME_CONTENT', 'هر وقت که شما به عنوان مدیر ملک وارد میشوید یک ملک فعال دارید که نامش اینجا نمایش داده می شود, شما نمیتوانید در یک زمان روی چند ملک تغییر ایجاد کنید');
 jr_define('TOUR_ID_TOUR_TARGET_TIMEZONE_DROPDOWN_TITLE', 'این منوی انتخاب محدوده زمان است');
 jr_define('TOUR_ID_TOUR_TARGET_TIMEZONE_DROPDOWN_CONTENT', "This is useful if you are in a different timezone to your server. It helps to keep your midnight and the server's midnight in sync.");
 jr_define('TOUR_ID_TOUR_TARGET_LANG_DROPDOWN_TITLE', 'انتخاب زبان');
@@ -1725,7 +1725,7 @@ jr_define('_JOMRES_STATUS_INQUIRY', 'استعلام');
 jr_define('_JOMRES_BOOKING_INQUIRY_SETTING_TITLE', 'آیا رزرو ها نیاز به تایید دارند؟');
 jr_define('_JOMRES_BOOKING_INQUIRY_SETTING_DESC', 'If set to yes, when a booking is made, it will not show up on the availability calendars (and other guests can still book those days and resource) until the property manager accepts/confirms availability for the booking. Once confirmed, booking is inserted as provisional (if doesn`t override other bookings; other guests can`t book the same dates anymore) and an email is sent to the customer to make the payment.');
 jr_define('_JOMRES_ERROR', 'خطا');
-jr_define('_JOMRES_ERROR_MESSAGE', 'متاسفانه در انجام این عملیات خطایی رخ داده، این خطا توسط ما بررسی خواهد شد');
+jr_define('_JOMRES_ERROR_MESSAGE', 'متاسفانه در انجام این عملیات خطایی رخ داده, این خطا توسط ما بررسی خواهد شد');
 jr_define('_JOMRES_ERROR_DEBUGGING_MESSAGE', 'پیغام');
 jr_define('_JOMRES_ERROR_DEBUGGING_FILE', 'فایل');
 jr_define('_JOMRES_ERROR_DEBUGGING_LINE', 'خط');
@@ -1739,15 +1739,15 @@ jr_define('_JOMRES_EMAIL_TEMPLATES_NAME', 'نام ایمیل');
 jr_define('_JOMRES_EMAIL_TEMPLATES_DESC', 'توضیحات ایمیل');
 jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS', 'Please see this page for help customizing the emails and a list of the available output: <a href="http://www.jomres.net/manual/property-managers-guide/48-your-toolbar/settings/254-email-templates" target="_blank">Email Templates Help</a>');
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME', 'ایمیل رزرو جدید برای مدیر رزرواسیون');
-jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC', 'استفاده کنید، برای هر رزرو یک ایمیل به مدیر رزرواسیون ارسال خواهد شد global paypal gateway در صورتی که از ');
+jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC', 'استفاده کنید, برای هر رزرو یک ایمیل به مدیر رزرواسیون ارسال خواهد شد global paypal gateway در صورتی که از ');
 jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME', 'ایمیل رزرو جدید برای هتل');
-jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILDESC', 'وقتی رزرو جدیدی انجام میشود، یک ایمیل برای مدیر ملک ارسال میشود');
+jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILDESC', 'وقتی رزرو جدیدی انجام میشود, یک ایمیل برای مدیر ملک ارسال میشود');
 jr_define('_JOMRES_GUEST_NEWBOOKING_EMAILNAME', 'ایمیل رزرو جدید برای مهمان');
 jr_define('_JOMRES_GUEST_NEWBOOKING_EMAILDESC', 'ایمیلی که پس از رزرو برای مهمان ارسال میشود');
 jr_define('_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILNAME', 'نامه تاییدیه برای مهمان');
 jr_define('_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILDESC', 'نامه یا ایمیلی که قابل چاپ است و به توسط مدیر ملک برای مهمان ارسال میشود');
-jr_define('_JOMRES_CAN_BE_APPROVED', 'این رزرو میتواند تایید شود، کلیه املاک مرتبط در تاریخ های مورد نظر آزاد هستند');
-jr_define('_JOMRES_CANT_BE_APPROVED', 'این رزرو نمی تواند تایید شود، یک یا تعدادی از املاک مورد نظر در آن تاریخ آزاد نیستند');
+jr_define('_JOMRES_CAN_BE_APPROVED', 'این رزرو میتواند تایید شود, کلیه املاک مرتبط در تاریخ های مورد نظر آزاد هستند');
+jr_define('_JOMRES_CANT_BE_APPROVED', 'این رزرو نمی تواند تایید شود, یک یا تعدادی از املاک مورد نظر در آن تاریخ آزاد نیستند');
 jr_define('_JOMRES_SHOW_POWEREDBY', 'آیا متن (تولید شده توسط جومرس) در پایین صفحه نمایش داده شود؟');
 jr_define('GUEST_BUDGET', 'اقتصادی');
 jr_define('GUEST_BUDGET_FEATURE_SWITCH', 'آیا از امکانات حالت اقتصادی استفاده شود؟');
@@ -1812,7 +1812,7 @@ jr_define('_OPENEXCHANGE_API_DESC', 'To convert prices between services you will
 jr_define('_JOMRES_COMMISSION', 'کمیسیون');
 jr_define('_JOMRES_MEDIA_CENTRE_NOTES_CORE_EXTRAS', 'اگر چند تصویر برای امکانات اضافه ارسال کنید فقط تصویر اول نمایش داده میشود');
 jr_define('_JRPORTAL_INVOICES_PAYNOW', 'پرداخت مبلغ فاکتور');
-jr_define('_JRPORTAL_INVOICES_PAYNOW_DESC', 'این فاکتور آماده پرداخت است، لطفا جهت مشاهده روش های پرداخت کلیک کنید');
+jr_define('_JRPORTAL_INVOICES_PAYNOW_DESC', 'این فاکتور آماده پرداخت است, لطفا جهت مشاهده روش های پرداخت کلیک کنید');
 jr_define('_JOMRES_EXTRAS_TEMPLATE', 'اینجا میتوانید لیستی از چیزهایی جالبی که هنگام اقامت در این ملک میتوانید خریداری کنید را مشاهده کنید');
 jr_define('GATEWAYS_INSTRUCTIONS', 'On this page you can configure any installed gateways. These options allow you to take payments for any Commission or Subscription invoices. Frontend settings can only be overridden by Paypal, all other gateways will need to be configured via the Property Configuration -> Gateways tab, however if a gateway appears in this list then it should be capable of processing both Booking deposit payments and invoice payments.');
 jr_define('EXTRAS_INCLUDE_IN_PROPERTYDETAILS', 'Show in property details page?');
@@ -1823,7 +1823,7 @@ jr_define('_JOMRES_PROPERTYFEATURES_HCATEGORIES', 'دسته بندی های ام
 jr_define('_JOMRES_PROPERTYFEATURES_HCATEGORIES_HEDIT', 'ویرایش دسته بندی امکانات ملک');
 jr_define('_JOMRES_HCATEGORY', 'دسته بندی');
 jr_define('_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES', 'آیا امکانات ملک به صورت دسته بندی شده نمایش داده شود؟');
-jr_define('_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES_DESC', 'اگر می خواهید امکانات ملک به صورت دسته بندی شده نمایش داده شود این گزینه را فعال کنید، این نوع نمایش فقط در صفحه توضیحات ملک وجود دارد');
+jr_define('_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES_DESC', 'اگر می خواهید امکانات ملک به صورت دسته بندی شده نمایش داده شود این گزینه را فعال کنید, این نوع نمایش فقط در صفحه توضیحات ملک وجود دارد');
 jr_define('_JOMRES_ACTION_UNDO_CHECKIN', 'Undo checkin');
 jr_define('_JOMRES_ACTION_UNDO_CHECKOUT', 'Undo checkout');
 jr_define('_JOMRES_STATUS_UNISSUED', 'Unissued');
@@ -2327,7 +2327,7 @@ jr_define( '_JOMRES_GDPR_DOWNLOAD_PROFILE_DATA_TEXT', 'Here is the Personally Id
 jr_define( '_JOMRES_GDPR_REDACTION_STRING', 'Anonymised' );
 
 jr_define( '_JOMRES_GDPR_MY_DATA', 'Your data' );
-jr_define( '_JOMRES_GDPR_MY_DATA_PRIVACY_NOTICE', 'By accepting these Terms of Use Agreement (this “Agreement”), you agree that:
+jr_define( '_JOMRES_GDPR_MY_DATA_PRIVACY_NOTICE', 'By accepting these Terms of Use Agreement (this "Agreement"), you agree that:
 
 <ul>
 	<li>

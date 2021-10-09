@@ -1046,7 +1046,7 @@ jr_define('_JOMRES_PROPERTYLIST_FILTERS_DEFAULT','Standard rekkefølge på søke
 jr_define('_JOMRES_PROPERTYLIST_FILTERS_DEFAULT_DESC','Endre denne opsjonen for å endre rekkefølgen på hvordan søkeresultatene vises.');
 jr_define('_JOMRES_PROPERTYLIST_FILTERS_SHOW','Vis nedtrekksmeny for visning av søkeresultatene');
 jr_define('_JOMRES_ROOMMSLIST_STYLE','Stil for enhetslistene');
-jr_define('_JOMRES_ROOMMSLIST_STYLE_DESC','Hvis du i bestillingsskjemaet bruker “klassisk” visning, så tilbyr du individuelle enheter til gjestene. Med visning av enhetstyper velger gjestene antall enheter av type X (f.eks 2 x dobbeltrom) i stedet');
+jr_define('_JOMRES_ROOMMSLIST_STYLE_DESC','Hvis du i bestillingsskjemaet bruker "klassisk" visning, så tilbyr du individuelle enheter til gjestene. Med visning av enhetstyper velger gjestene antall enheter av type X (f.eks 2 x dobbeltrom) i stedet');
 jr_define('_JOMRES_ROOMMSLIST_STYLE_CLASSIC','Klassisk');
 jr_define('_JOMRES_ROOMMSLIST_STYLE_ROOMTYPES','Enhetstyper');
 jr_define('_JOMRES_COM_CALENDAR_STARTDAY','Ukens startdato, Søndag eller Mandag');
@@ -2194,7 +2194,7 @@ jr_define( '_JOMRES_GDPR_DOWNLOAD_PROFILE_DATA_TEXT', 'Here is the Personally Id
 jr_define( '_JOMRES_GDPR_REDACTION_STRING', 'Anonymised' );
 
 jr_define( '_JOMRES_GDPR_MY_DATA', 'Your data' );
-jr_define( '_JOMRES_GDPR_MY_DATA_PRIVACY_NOTICE', 'By accepting these Terms of Use Agreement (this “Agreement”), you agree that:
+jr_define( '_JOMRES_GDPR_MY_DATA_PRIVACY_NOTICE', 'By accepting these Terms of Use Agreement (this "Agreement"), you agree that:
 
 <ul>
 	<li>
