@@ -13,7 +13,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
 
-
+jr_define ('_JOMRES_FAQ', 'Bieži uzdotie jautājumi');
 jr_define ('_JOMRES_FAQ_MANAGER_CATEGORY_PROPERTY', 'Rekvizīti');
 jr_define ('_JOMRES_FAQ_MANAGER_QUESTION_CREATPROPERTY', 'Kā izveidot īpašumu?');
 jr_define ('_JOMRES_FAQ_MANAGER_ANSWER_CREATPROPERTY', 'Noklikšķiniet uz Properties> New Property, lai pievienotu jaunu īpašumu.');

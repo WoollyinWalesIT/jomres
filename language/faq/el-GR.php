@@ -13,6 +13,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
 
+jr_define ('_JOMRES_FAQ', 'Συχνές ερωτήσεις');
 jr_define ('_JOMRES_FAQ_MANAGER_CATEGORY_PROPERTY', 'Properties');
 jr_define ('_JOMRES_FAQ_MANAGER_QUESTION_CREATPROPERTY', 'Πώς δημιουργώ μια ιδιότητα;');
 jr_define ('_JOMRES_FAQ_MANAGER_ANSWER_CREATPROPERTY', 'Κάντε κλικ στις Ιδιότητες> Νέα ιδιότητα για να προσθέσετε μια νέα ιδιότητα.');

@@ -13,6 +13,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
 
+jr_define ('_JOMRES_FAQ', 'Հաճախ տրվող հարցեր');
 jr_define ('_JOMRES_FAQ_MANAGER_CATEGORY_PROPERTY', 'Հատկություններ');
 jr_define ('_JOMRES_FAQ_MANAGER_QUESTION_CREATPROPERTY', 'Ինչպե՞ս կարող եմ ստեղծել սեփականություն');
 jr_define ('_JOMRES_FAQ_MANAGER_ANSWER_CREATPROPERTY', 'Նոր գույք ավելացնելու համար կտտացրեք Հատկություններ> Նոր սեփականություն');

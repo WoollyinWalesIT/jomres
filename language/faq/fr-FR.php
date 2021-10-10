@@ -12,13 +12,7 @@
 //#################################################################
 defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.');
 //#################################################################
-/**
- *
- * @package Jomres\Core\Languages
- *
- * Language files.
- *
- **/
+
 jr_define('_JOMRES_FAQ', 'FAQ (Questions Fréquemment Posées)');
 jr_define('_JOMRES_FAQ_MANAGER_CATEGORY_PROPERTY', 'Établissements');
 jr_define('_JOMRES_FAQ_MANAGER_QUESTION_CREATPROPERTY', 'Comment créer un établissement ?');

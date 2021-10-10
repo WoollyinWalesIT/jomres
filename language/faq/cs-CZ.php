@@ -13,6 +13,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
 
+jr_define ('_JOMRES_FAQ', 'Často kladené otázky');
 jr_define ('_JOMRES_FAQ_MANAGER_CATEGORY_PROPERTY', 'Vlastnosti');
 jr_define ('_JOMRES_FAQ_MANAGER_QUESTION_CREATPROPERTY', 'Jak vytvořím vlastnost?');
 jr_define ('_JOMRES_FAQ_MANAGER_ANSWER_CREATPROPERTY', 'Kliknutím na Vlastnosti> Nová vlastnost přidáte novou vlastnost.');

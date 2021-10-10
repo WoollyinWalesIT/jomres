@@ -13,7 +13,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
 
-
+jr_define ('_JOMRES_FAQ', 'Gyakran ismételt kérdések');
 jr_define ('_JOMRES_FAQ_MANAGER_CATEGORY_PROPERTY', 'Tulajdonságok');
 jr_define ('_JOMRES_FAQ_MANAGER_QUESTION_CREATPROPERTY', 'Hogyan hozhatok létre egy tulajdont?');
 jr_define ('_JOMRES_FAQ_MANAGER_ANSWER_CREATPROPERTY', 'Kattintson a Tulajdonságok> Új tulajdonság elemre egy új tulajdonság hozzáadásához.');
@@ -59,7 +59,7 @@ jr_define ('_JOMRES_FAQ_MANAGER_ANSWER_OTHERPROPERTIES', 'Nem, nem teheti. Csak 
 jr_define ('_JOMRES_FAQ_MANAGER_QUESTION_OTHERPROPERTIES_SUPER', 'Módosíthatok más tulajdonságokat ezen az oldalon?');
 jr_define ('_JOMRES_FAQ_MANAGER_ANSWER_OTHERPROPERTIES_SUPER', "Igen, megteheti, Ön egy Super Property Manager, és módosíthatja a Lista tulajdonságai oldalon látható tulajdonságokat.");
 jr_define ('_JOMRES_FAQ_MANAGER_QUESTION_GUESTTYPES', 'Melyek a vendégtípusok/Hogyan változtathatok személyenként és éjszakánként?');
-jr_define ('_JOMRES_FAQ_MANAGER_ANSWER_GUESTTYPES', "A Beállítások> Tulajdon -konfiguráció> Tarifák és valuták lapon eldöntheti, hogy személyenként és éjszakánként kell -e fizetnie. Ha személyenként és éjszakánként fizet, akkor egy vagy több vendégtípust kell létrehoznia. Létrehozhat egy egyszerű vendégtípust, ahol csak leírást ad neki (pl. Személyek), vagy létrehozhat több különböző vendégtípust, például \"Felnőttek\" és \"10 év alatti gyermekek". A gyermekek számára, ha felajánlja 50% kedvezmény, akkor az \"Is percent\" értéket Igenre, a Variance értéket pedig 50 -re állítja. A szobák alapdíjakkal rendelkeznek, ez a beállítás lehetővé teszi, hogy a szoba árát a vendég típusától függően módosítsa. ");
+jr_define ('_JOMRES_FAQ_MANAGER_ANSWER_GUESTTYPES', "A Beállítások> Tulajdon -konfiguráció> Tarifák és valuták lapon eldöntheti, hogy személyenként és éjszakánként kell -e fizetnie. Ha személyenként és éjszakánként fizet, akkor egy vagy több vendégtípust kell létrehoznia. Létrehozhat egy egyszerű vendégtípust, ahol csak leírást ad neki (pl. Személyek), vagy létrehozhat több különböző vendégtípust, például \"Felnőttek\" és \"10 év alatti gyermekek. A gyermekek számára, ha felajánlja 50% kedvezmény, akkor az \"Is percent\" értéket Igenre, a Variance értéket pedig 50 -re állítja. A szobák alapdíjakkal rendelkeznek, ez a beállítás lehetővé teszi, hogy a szoba árát a vendég típusától függően módosítsa. ");
 jr_define ('_JOMRES_FAQ_MANAGER_QUESTION_ROOMFEATURES', 'Mik a szoba jellemzői?');
 jr_define ('_JOMRES_FAQ_MANAGER_ANSWER_ROOMFEATURES', "A szoba funkciói olyanok, amelyek kiemelik a szobát. Lehet valami egyszerű, például tea- és kávéfőző, vagy olyan dolgok, amelyek valóban felemelik a szobát a többiek fölött, például\" Nézetek a bay \". Miután létrehozott egy szobafunkciót, feltölthet képeket ehhez a funkcióhoz a Médiaközpontban. Ezek a szobafunkciók megtekinthetők a szoba elérhetőségi oldalán, és ha úgy konfigurálta a tulajdonát, hogy megjelenítse a klasszikus szobák listastílusát (ahol a vendégek pontosan kiválaszthatják, hogy melyik szobát akarják lefoglalni), akkor a szobafunkciók segítségével szűrhetik a foglalási űrlapon látható szobákat. ");
 

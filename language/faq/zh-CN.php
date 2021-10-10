@@ -13,6 +13,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
 
+jr_define('_JOMRES_FAQ', '常见问题');
 jr_define('_JOMRES_FAQ_MANAGER_CATEGORY_PROPERTY', '属性');
 jr_define('_JOMRES_FAQ_MANAGER_QUESTION_CREATPROPERTY', '如何创建属性？');
 jr_define('_JOMRES_FAQ_MANAGER_ANSWER_CREATPROPERTY', '点击属性 > 新建属性添加一个新属性。');

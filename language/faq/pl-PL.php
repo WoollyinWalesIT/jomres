@@ -13,7 +13,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
 
-
+jr_define('_JOMRES_FAQ', 'Często zadawane pytania');
 jr_define('_JOMRES_FAQ_MANAGER_CATEGORY_PROPERTY', 'Właściwości');
 jr_define('_JOMRES_FAQ_MANAGER_QUESTION_CREATPROPERTY', 'Jak utworzyć właściwość?');
 jr_define('_JOMRES_FAQ_MANAGER_ANSWER_CREATPROPERTY', 'Kliknij Właściwości > Nowa właściwość, aby dodać nową właściwość.');
@@ -59,9 +59,9 @@ jr_define('_JOMRES_FAQ_MANAGER_ANSWER_OTHERPROPERTIES', 'Nie, nie możesz. Może
 jr_define('_JOMRES_FAQ_MANAGER_QUESTION_OTHERPROPERTIES_SUPER', 'Czy mogę modyfikować inne właściwości tej witryny?');
 jr_define('_JOMRES_FAQ_MANAGER_ANSWER_OTHERPROPERTIES_SUPER', "Tak, możesz, jesteś Super Property Managerem i możesz modyfikować dowolne właściwości wyświetlane na stronie Właściwości listy.");
 jr_define('_JOMRES_FAQ_MANAGER_QUESTION_GUESTTYPES', 'Jakie są typy gości/Jak zmienić na osobę na noc?');
-jr_define('_JOMRES_FAQ_MANAGER_ANSWER_GUESTTYPES', "Na karcie Ustawienia > Konfiguracja właściwości > Taryfy i waluty możesz zdecydować, czy chcesz pobierać opłatę za osobę za noc. Jeśli naliczasz opłatę za osobę za noc, musisz utworzyć jeden lub więcej typów gości. Możesz utworzyć prosty typ gościa, w którym po prostu nadasz mu opis (np. Osoby) lub możesz stworzyć kilka różnych typów gości, na przykład "Dorośli" i "Dzieci poniżej 10 roku życia". rabat w wysokości 50%, wtedy ustawiłeś "Jest procentem" na Tak, a wartość Odchylenie na 50. Pokoje mają stawki podstawowe, to ustawienie pozwala dostosować cenę pokoju w zależności od typu gościa.");
+jr_define('_JOMRES_FAQ_MANAGER_ANSWER_GUESTTYPES', "Na karcie Ustawienia > Konfiguracja właściwości > Taryfy i waluty możesz zdecydować, czy chcesz pobierać opłatę za osobę za noc. Jeśli naliczasz opłatę za osobę za noc, musisz utworzyć jeden lub więcej typów gości. Możesz utworzyć prosty typ gościa, w którym po prostu nadasz mu opis (np. Osoby) lub możesz stworzyć kilka różnych typów gości, na przykład \"Dorośli\" i \"Dzieci poniżej 10 roku życia\". rabat w wysokości 50%, wtedy ustawiłeś \"Jest procentem\" na Tak, a wartość Odchylenie na 50. Pokoje mają stawki podstawowe, to ustawienie pozwala dostosować cenę pokoju w zależności od typu gościa.");
 jr_define('_JOMRES_FAQ_MANAGER_QUESTION_ROOMFEATURES', 'Co to są funkcje pokoju?');
-jr_define('_JOMRES_FAQ_MANAGER_ANSWER_ROOMFEATURES', "Funkcje pokoju to rzeczy, które sprawiają, że pokój się wyróżnia. Może to być coś prostego, jak zestaw do parzenia kawy i herbaty, lub rzeczy, które naprawdę sprawiają, że pokój wznosi się ponad inne, takie jak 'Widoki na zatoki". Po utworzeniu funkcji pokoju możesz przesłać obrazy dla tej funkcji w Media Center. Te funkcje pokoju można wyświetlić na stronie dostępności pokoi, a po skonfigurowaniu usługi wyświetla się styl listy Pokoje klasyczne (gdzie goście mogą dokładnie wybrać pokój, który chcą zarezerwować), a następnie mogą skorzystać z funkcji pokoju, aby filtrować pokoje pokazane w formularzu rezerwacji.");
+jr_define('_JOMRES_FAQ_MANAGER_ANSWER_ROOMFEATURES', "Funkcje pokoju to rzeczy, które sprawiają, że pokój się wyróżnia. Może to być coś prostego, jak zestaw do parzenia kawy i herbaty, lub rzeczy, które naprawdę sprawiają, że pokój wznosi się ponad inne, takie jak 'Widoki na zatoki'. Po utworzeniu funkcji pokoju możesz przesłać obrazy dla tej funkcji w Media Center. Te funkcje pokoju można wyświetlić na stronie dostępności pokoi, a po skonfigurowaniu usługi wyświetla się styl listy Pokoje klasyczne (gdzie goście mogą dokładnie wybrać pokój, który chcą zarezerwować), a następnie mogą skorzystać z funkcji pokoju, aby filtrować pokoje pokazane w formularzu rezerwacji.");
 
 jr_define('_JOMRES_FAQ_ADMIN_CATEGORY_PAYMENTS', 'Płatności');
 jr_define('_JOMRES_FAQ_ADMIN_QUESTION_TROUBLESHOOTING_NOGATEWAY', "Po dokonaniu rezerwacji nie widzisz bramki płatności.");

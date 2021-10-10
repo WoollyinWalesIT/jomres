@@ -13,9 +13,9 @@
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
 
-
-jr_define ('_JOMRES_FAQ_MANAGER_CATEGORY_PROPERTY', 'Properties') ;
-jr_define ('_JOMRES_FAQ_MANAGER_QUESTION_CREATPROPERTY', 'How do I create a property؟');
+jr_define ('_JOMRES_FAQ', 'الأسئلة المتداولة');
+jr_define ('_JOMRES_FAQ_MANAGER_CATEGORY_PROPERTY', 'الخصائص') ;
+jr_define ('_JOMRES_FAQ_MANAGER_QUESTION_CREATPROPERTY', 'كيف أقوم بإنشاء عقار؟');
 jr_define ('_JOMRES_FAQ_MANAGER_ANSWER_CREATPROPERTY', 'انقر فوق خصائص> خاصية جديدة لإضافة خاصية جديدة.') ;
 jr_define ('_JOMRES_FAQ_MANAGER_QUESTION_PREVIEW', 'كيف يمكنني رؤية شكل مكان الإقامة الخاص بي للضيوف؟');
 jr_define ('_JOMRES_FAQ_MANAGER_ANSWER_PREVIEW' , 'انقر فوق خصائص> معاينة لترى كيف تبدو الممتلكات الخاصة بك للضيوف.') ;

@@ -13,6 +13,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
 
+jr_define ('_JOMRES_FAQ', 'שאלות נפוצות');
 jr_define ('_JOMRES_FAQ_MANAGER_CATEGORY_PROPERTY', 'Properties');
 jr_define ('_JOMRES_FAQ_MANAGER_QUESTION_CREATPROPERTY', 'כיצד אוכל ליצור נכס?');
 jr_define ('_JOMRES_FAQ_MANAGER_ANSWER_CREATPROPERTY', 'לחץ על נכסים> נכס חדש כדי להוסיף נכס חדש.');

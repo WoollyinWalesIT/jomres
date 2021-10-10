@@ -13,7 +13,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
 
-
+jr_define ('_JOMRES_FAQ', 'Ofte stillede spørgsmål');
 jr_define ('_JOMRES_FAQ_MANAGER_CATEGORY_PROPERTY', 'Egenskaber');
 jr_define ('_JOMRES_FAQ_MANAGER_QUESTION_CREATPROPERTY', 'Hvordan opretter jeg en ejendom?');
 jr_define ('_JOMRES_FAQ_MANAGER_ANSWER_CREATPROPERTY', 'Klik på Egenskaber> Ny ejendom for at tilføje en ny ejendom.');

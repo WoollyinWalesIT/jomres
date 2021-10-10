@@ -12,13 +12,8 @@
 //#################################################################
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
-/**
- *
- * @package Jomres\Core\Languages
- *
- * Language files.
- *
- **/
+
+jr_define('_JOMRES_FAQ', 'Frequently asked questions');
 jr_define('_JOMRES_FAQ_MANAGER_CATEGORY_PROPERTY', 'Properties');
 jr_define('_JOMRES_FAQ_MANAGER_QUESTION_CREATPROPERTY', 'How do I create a property?');
 jr_define('_JOMRES_FAQ_MANAGER_ANSWER_CREATPROPERTY', 'Click on Properties > New Property to add a new property.');

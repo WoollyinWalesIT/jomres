@@ -14,11 +14,12 @@ defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
 /**
  *
- * @package Jomres\Core\Languages
+ * Google translate absolutely destroys all of the definitions for this language, it would need every line to be individually translated.
  *
- * Language files.
  *
  **/
+
+jr_define('_JOMRES_FAQ', 'Frequently asked questions');
 jr_define('_JOMRES_FAQ_MANAGER_CATEGORY_PROPERTY', 'Properties');
 jr_define('_JOMRES_FAQ_MANAGER_QUESTION_CREATPROPERTY', 'How do I create a property?');
 jr_define('_JOMRES_FAQ_MANAGER_ANSWER_CREATPROPERTY', 'Click on Properties > New Property to add a new property.');

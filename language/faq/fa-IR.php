@@ -13,7 +13,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
 
-
+jr_define ('_JOMRES_FAQ' , 'س questionsالات متداول') ;
 jr_define ('_JOMRES_FAQ_MANAGER_CATEGORY_PROPERTY' , 'Properties') ;
 jr_define ('_JOMRES_FAQ_MANAGER_QUESTION_CREATPROPERTY' , 'چگونه یک ویژگی ایجاد کنم؟');
 jr_define ('_JOMRES_FAQ_MANAGER_ANSWER_CREATPROPERTY' , 'روی ویژگیها> ویژگی جدید کلیک کنید تا یک ویژگی جدید اضافه شود.');

@@ -13,6 +13,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
 
+jr_define('_JOMRES_FAQ', 'Sık sorulan sorular');
 jr_define ('_JOMRES_FAQ_MANAGER_CATEGORY_PROPERTY', 'Властивості');
 jr_define ('_JOMRES_FAQ_MANAGER_QUESTION_CREATPROPERTY', 'Як створити властивість?');
 jr_define ('_JOMRES_FAQ_MANAGER_ANSWER_CREATPROPERTY', 'Натисніть Властивості> Нова властивість, щоб додати нову властивість.');

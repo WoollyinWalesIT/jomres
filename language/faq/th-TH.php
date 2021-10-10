@@ -12,7 +12,7 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 ##################################################################
 
-
+jr_define('_JOMRES_FAQ', 'คำถามที่ถามบ่อย');
 jr_define('_JOMRES_FAQ_MANAGER_CATEGORY_PROPERTY', 'คุณสมบัติ');
 jr_define('_JOMRES_FAQ_MANAGER_QUESTION_CREATPROPERTY', 'ฉันจะสร้างคุณสมบัติได้อย่างไร');
 jr_define('_JOMRES_FAQ_MANAGER_ANSWER_CREATPROPERTY', 'คลิกที่คุณสมบัติ > คุณสมบัติใหม่เพื่อเพิ่มคุณสมบัติใหม่');

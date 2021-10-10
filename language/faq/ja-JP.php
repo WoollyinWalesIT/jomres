@@ -13,6 +13,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
 
+jr_define('_JOMRES_FAQ', 'よくある質問');
 jr_define('_JOMRES_FAQ_MANAGER_CATEGORY_PROPERTY', 'プロパティ');
 jr_define('_JOMRES_FAQ_MANAGER_QUESTION_CREATPROPERTY', 'プロパティを作成するにはどうすればよいですか？');
 jr_define('_JOMRES_FAQ_MANAGER_ANSWER_CREATPROPERTY', '[プロパティ]> [新しいプロパティ]をクリックして,新しいプロパティを追加します。');

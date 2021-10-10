@@ -13,7 +13,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
 
-
+jr_define('_JOMRES_FAQ', 'Domande frequenti');
 jr_define('_JOMRES_FAQ_MANAGER_CATEGORY_PROPERTY', 'Proprietà');
 jr_define('_JOMRES_FAQ_MANAGER_QUESTION_CREATPROPERTY', 'Come creo una proprietà?');
 jr_define('_JOMRES_FAQ_MANAGER_ANSWER_CREATPROPERTY', 'Clicca su Proprietà > Nuova Proprietà per aggiungere una nuova proprietà.');

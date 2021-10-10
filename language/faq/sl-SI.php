@@ -13,6 +13,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
 
+jr_define ('_JOMRES_FAQ', 'Pogosto zastavljena vprašanja');
 jr_define ('_JOMRES_FAQ_MANAGER_CATEGORY_PROPERTY', 'Lastnosti');
 jr_define ('_JOMRES_FAQ_MANAGER_QUESTION_CREATPROPERTY', 'Kako ustvarim znamko?');
 jr_define ('_JOMRES_FAQ_MANAGER_ANSWER_CREATPROPERTY', 'Kliknite Lastnosti> Nova lastnost, da dodate novo lastnost.');

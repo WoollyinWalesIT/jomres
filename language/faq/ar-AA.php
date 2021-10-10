@@ -13,7 +13,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
 
-
+jr_define ('_JOMRES_FAQ', 'الأسئلة المتداولة');
 jr_define ('_JOMRES_FAQ_MANAGER_CATEGORY_PROPERTY', 'الخصائص') ;
 jr_define ('_JOMRES_FAQ_MANAGER_QUESTION_CREATPROPERTY', 'كيف أقوم بإنشاء عقار؟');
 jr_define ('_JOMRES_FAQ_MANAGER_ANSWER_CREATPROPERTY', 'انقر فوق خصائص> خاصية جديدة لإضافة خاصية جديدة.') ;

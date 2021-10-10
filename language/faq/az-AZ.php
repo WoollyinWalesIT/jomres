@@ -13,7 +13,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
 
-
+jr_define ('_JOMRES_FAQ', 'Tez -tez verilən suallar');
 jr_define ('_JOMRES_FAQ_MANAGER_CATEGORY_PROPERTY', 'Xüsusiyyətlər');
 jr_define ('_JOMRES_FAQ_MANAGER_QUESTION_CREATPROPERTY', 'Mülkiyyəti necə yarada bilərəm?');
 jr_define ('_JOMRES_FAQ_MANAGER_ANSWER_CREATPROPERTY', 'Yeni xüsusiyyət əlavə etmək üçün Xüsusiyyətlər> Yeni Mülkiyyətə vurun');

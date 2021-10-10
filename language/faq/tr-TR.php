@@ -13,6 +13,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
 
+jr_define('_JOMRES_FAQ', 'Sık sorulan sorular');
 jr_define('_JOMRES_FAQ_MANAGER_CATEGORY_PROPERTY', 'Özellikler');
 jr_define('_JOMRES_FAQ_MANAGER_QUESTION_CREATPROPERTY', 'Nasıl mülk oluştururum?');
 jr_define('_JOMRES_FAQ_MANAGER_ANSWER_CREATPROPERTY', 'Yeni bir mülk eklemek için Özellikler > Yeni Mülk\'e tıklayın.');

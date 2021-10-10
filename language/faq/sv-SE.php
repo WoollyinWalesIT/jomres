@@ -13,7 +13,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
 
-
+jr_define ('_JOMRES_FAQ', 'Vanliga frågor');
 jr_define ('_JOMRES_FAQ_MANAGER_CATEGORY_PROPERTY', 'Properties');
 jr_define ('_JOMRES_FAQ_MANAGER_QUESTION_CREATPROPERTY', 'Hur skapar jag en egendom?');
 jr_define ('_JOMRES_FAQ_MANAGER_ANSWER_CREATPROPERTY', 'Klicka på Egenskaper> Ny egendom för att lägga till en ny egendom.');

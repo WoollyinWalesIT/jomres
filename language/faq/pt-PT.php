@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.');
 //#################################################################
 
-
+jr_define ('_JOMRES_FAQ', 'Perguntas frequentes');
 jr_define ('_JOMRES_FAQ_MANAGER_CATEGORY_PROPERTY', 'Propriedades');
 jr_define ('_JOMRES_FAQ_MANAGER_QUESTION_CREATPROPERTY', 'Como faço para criar uma propriedade?');
 jr_define ('_JOMRES_FAQ_MANAGER_ANSWER_CREATPROPERTY', 'Clique em Propriedades> Nova Propriedade para adicionar uma nova propriedade.');

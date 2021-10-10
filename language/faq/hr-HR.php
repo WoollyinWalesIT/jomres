@@ -13,7 +13,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 //#################################################################
 
-
+jr_define ('_JOMRES_FAQ', 'Često postavljana pitanja');
 jr_define ('_JOMRES_FAQ_MANAGER_CATEGORY_PROPERTY', 'Svojstva');
 jr_define ('_JOMRES_FAQ_MANAGER_QUESTION_CREATPROPERTY', 'Kako mogu stvoriti svojstvo?');
 jr_define ('_JOMRES_FAQ_MANAGER_ANSWER_CREATPROPERTY', 'Kliknite Svojstva> Novo svojstvo za dodavanje novog svojstva.');
