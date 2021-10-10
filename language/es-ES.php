@@ -2172,7 +2172,7 @@ jr_define ('_JOMRES_GDPR_MY_DATA_DOWNLOAD_TEXT', 'Puede descargar toda la PII qu
 jr_define ('_JOMRES_GDPR_MY_DATA_DOWNLOAD_BUTTON', 'Descargar ahora');
 
 jr_define ('_JOMRES_GDPR_MY_RTBF_LEAD', 'Derecho al olvido (RTBF)');
-jr_define ('_JOMRES_GDPR_MY_RTBF_INTRO', 'Creemos que debería poder <a href="https://gdpr-info.eu/art-17-gdpr/" target="_blank"> eliminar </a> su < a href = "https://gdpr-info.eu/art-4-gdpr/" target = "_ blank"> Información de identificación personal </a> si lo desea y es posible. ');
+jr_define ('_JOMRES_GDPR_MY_RTBF_INTRO', 'Creemos que debería poder <a href="https://gdpr-info.eu/art-17-gdpr/" target="_blank"> eliminar </a> su < a href = "https://gdpr-info.eu/art-4-gdpr/" target="_blank" > Información de identificación personal </a> si lo desea y es posible. ');
 jr_define ('_JOMRES_GDPR_MY_RTBF_NOTREGISjected_OPTEDIN', 'No está registrado en este sitio. Su ubicación general (país) y número de IP se almacenarán durante un máximo de 24 horas y luego se eliminarán.');
 jr_define ('_JOMRES_GDPR_MY_RTBF_NOTREGISjected_OPTEDOUT', 'No está registrado en este sitio y ha optado por no participar en la recopilación de datos. No hemos almacenado su PII.');
 
@@ -2441,7 +2441,7 @@ jr_define ('GUEST_PROFILE_USERSTATUS_GUEST', 'Invitado');
 jr_define ('GUEST_PROFILE_USERSTATUS_HOST', 'Anfitrión');
 jr_define ('GUEST_PROFILE_USERSTATUS_ADMIN', 'Admin');
 
-jr_define ('WORDPRESS_THEME_ADVICE', 'Jomres está construido en el marco Bootstrap, por lo que debe usarlo en un tema basado en Bootstrap. Recomendamos uno basado en Bootstrap 3. Si no tiene acceso a un tema, le recomendamos que use el tema de Jomres Leohtian para Wordpress que puede <a href = "https://www.jomres.net/download/free-downloads/download/5-miscelleneo-downloads/11-leohtian-for-wordpress" target = "_ blank "> descargar desde aquí. </a> ');
+jr_define ('WORDPRESS_THEME_ADVICE', 'Jomres está construido en el marco Bootstrap, por lo que debe usarlo en un tema basado en Bootstrap. Recomendamos uno basado en Bootstrap 3. Si no tiene acceso a un tema, le recomendamos que use el tema de Jomres Leohtian para Wordpress que puede <a href = "https://www.jomres.net/download/free-downloads/download/5-miscelleneo-downloads/11-leohtian-for-wordpress" target ="_blank"> descargar desde aquí. </a> ');
 
 
 jr_define ('BOOKING_NOSHOW_MENU', 'Marcar como No Show');

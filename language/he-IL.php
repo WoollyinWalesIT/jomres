@@ -1001,7 +1001,7 @@ jr_define ('_JOMRES_APIKEY_REMAKE', 'צור מפתח API חדש');
 jr_define ('_JOMRES_SINGLEPROPERTYINSTALLATION_TITLE', 'האם מדובר בהתקנת נכס יחיד?');
 jr_define ('_JOMRES_SINGLEPROPERTYINSTALLATION_DESC', 'אם אפשרות זו מוגדרת כ- כן, התצוגה הקדמית של Jomres למשתמשים שאינם מורשים מתפשטת מאוד. ברירת מחדל לשיחות Jomres מתפריט, במקום לקבל רשימת נכסים, לוקחת רק האורח לטופס ההזמנה של הנכס הראשון במערכת. מנהלי נכסים גם לא יראו את לחצן התצוגה המקדימה של פרטי הנכס או את לחצן הוסף נכס חדש. אידיאלי אם ברצונך לרשום נכס אחד בלבד ולבצע הזמנות עבורו. <br /> ');
 jr_define ('_JOMRES_AJAXFORM_BILLING_BALANCE_PAYMENT', 'יתרת תשלום');
-jr_define ('_JOMRES_WARNINGS_GLOBALEDITINGMODE', 'שים לב, אתה משתמש במצב עריכה כאשר מצב העריכה הגלובלית מופעל. זה בסדר אם אתה מבין מה המשמעות של מצב עריכה גלובלית, אולם אם לא תוכל לגרום לעצמך לבעיות. אם אינך בטוח. אם אתה צריך להשתמש ב- Jomres בדרך זו, עיין ב <a href = "http://www.jomres.net/manual/developers-guide/53-customising-jomres/editing-labels-languages/268-editing-mode "target =" _ blank "> הדף הידני של מצב העריכה </a> למידע נוסף בנושא זה. ');
+jr_define ('_JOMRES_WARNINGS_GLOBALEDITINGMODE', 'שים לב, אתה משתמש במצב עריכה כאשר מצב העריכה הגלובלית מופעל. זה בסדר אם אתה מבין מה המשמעות של מצב עריכה גלובלית, אולם אם לא תוכל לגרום לעצמך לבעיות. אם אינך בטוח. אם אתה צריך להשתמש ב- Jomres בדרך זו, עיין ב <a href = "http://www.jomres.net/manual/developers-guide/53-customising-jomres/editing-labels-languages/268-editing-mode" target ="_blank"> הדף הידני של מצב העריכה </a> למידע נוסף בנושא זה. ');
 jr_define ('_JOMRES_SUPPORTKEY', 'מפתח תמיכה');
 jr_define ('_JOMRES_SUPPORTKEY_DESC', 'מספר מפתח רישיון התמיכה שלך (ידוע גם בשם מספר הרישיון שלך). תזדקק לרישיון עדכני כדי שתוכל להוריד תוספים עבור Jomres.');
 jr_define ('_JOMRES_PERSONAL_DISCOUNT', 'הנחה אישית');
@@ -1220,7 +1220,7 @@ jr_define ('_JOMRES_CONVERSION_DISCLAIMER', 'השתמשנו כמיטב יכול�
 // 5.3.1
 jr_define ('_JOMRES_CURRENCYCONVERSION_TAB', 'המרת מטבע/קודי מטבע');
 jr_define ('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'מפתח API לזיהוי IP');
-jr_define ('_JOMRES_IP_DETECTION_API_KEY_DESC', 'כדי להגדיר אוטומטית את התפריט הנפתח של קוד המטבע Jomres יכול להשתמש בשירות חינמי בשם IPinfoDB כדי לזהות את מדינת המבקר, אולם עליך להירשם למפתח API ב <a href = "http: //ipinfodb.com/register.php "target =" _ blank "> IPinfoDB </a> תחילה. ');
+jr_define ('_JOMRES_IP_DETECTION_API_KEY_DESC', 'כדי להגדיר אוטומטית את התפריט הנפתח של קוד המטבע Jomres יכול להשתמש בשירות חינמי בשם IPinfoDB כדי לזהות את מדינת המבקר, אולם עליך להירשם למפתח API ב <a href = "http: //ipinfodb.com/register.php" target ="_blank"> IPinfoDB </a> תחילה. ');
 jr_define ('_JOMRES_DEBUGGING_TAB', 'Debugging');
 jr_define ('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'לינה ללא מס');
 jr_define ('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'מס לינה כולל');
@@ -1672,7 +1672,7 @@ jr_define ('_JOMRES_EMAIL_TEMPLATES_TEXT', 'טקסט בדוא"ל');
 jr_define ('_JOMRES_EMAIL_TEMPLATES_TYPE', 'סוג דוא"ל');
 jr_define ('_JOMRES_EMAIL_TEMPLATES_NAME', 'שם אימייל');
 jr_define ('_JOMRES_EMAIL_TEMPLATES_DESC', 'תיאור דוא"ל');
-jr_define ('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS', 'אנא עיין בדף זה לעזרה בהתאמה אישית של הודעות הדוא"ל ורשימת הפלט הזמין: <a href = "http://www.jomres.net/manual/property-managers-guide/48-your -toolbar/settings/254-email-templates "target =" _ blank "> עזרה בתבניות דוא"ל </a> ');
+jr_define ('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS', 'אנא עיין בדף זה לעזרה בהתאמה אישית של הודעות הדוא"ל ורשימת הפלט הזמין: <a href = "http://www.jomres.net/manual/property-managers-guide/48-your -toolbar/settings/254-email-templates" target ="_blank"> עזרה בתבניות דוא"ל </a> ');
 jr_define ('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME', 'Admin Site New Email מייל');
 jr_define ('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC', 'אימייל נשלח למנהל האתר בעת ביצוע הזמנה חדשה, אם השער העולמי של Paypal מופעל');
 jr_define ('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME', 'דואר אלקטרוני להזמנה של מלון חדש');
@@ -1743,7 +1743,7 @@ jr_define ('_JOMRES_TEST_EMAIL_RESULT_SUCCESS', 'דוא"ל בדיקה נשלח �
 jr_define ('_JOMRES_TEST_EMAIL_RESULT_FAILURE', 'דוא"ל הבדיקה לא נשלח');
 jr_define ('_INVOICE_TRANSACTIONS', 'עסקאות');
 jr_define ('_OPENEXCHANGE_API', 'Open API Rates Exchange Key');
-jr_define ('_OPENEXCHANGE_API_DESC', 'כדי להמיר מחירים בין שירותים תזדקק למפתח API של Exchange Exchange Rates. עליך להיות בעל מפתח API כדי להציג מחירים בצורה נכונה ב- Jomres, אולם תוכל <a href = "https://openexchangerates.org /signup/free "_target =" _ blank "> הירשם למפתח בחינם </a> (עדכונים לפי שעה, 1000 בקשות לחודש - ללא HTTPS, תמיכה בדוא"ל או תכונות מתקדמות). Jomres מוריד שערי חליפין פעם ביום, כל עוד אתה משתמש במפתח בכמה אתרים בלבד, לא סביר שתחרוג ממגבלות אלה. לפני Jomres 8.3 השתמשנו בתכונה ישנה יותר ללא תיעוד של Yahoo אולם גילינו ששימוש בתכונה זו עומד בסתירה לתנאי Yahoo תנאים. כתוצאה מכך עלינו להניח שהתכונה עשויה להיעלם בשלב כלשהו בעתיד, ומכאן השינוי לשימוש בשערי Exchange Exchange. ');
+jr_define ('_OPENEXCHANGE_API_DESC', 'כדי להמיר מחירים בין שירותים תזדקק למפתח API של Exchange Exchange Rates. עליך להיות בעל מפתח API כדי להציג מחירים בצורה נכונה ב- Jomres, אולם תוכל <a href = "https://openexchangerates.org /signup/free" target="_blank"> הירשם למפתח בחינם </a> (עדכונים לפי שעה, 1000 בקשות לחודש - ללא HTTPS, תמיכה בדוא"ל או תכונות מתקדמות). Jomres מוריד שערי חליפין פעם ביום, כל עוד אתה משתמש במפתח בכמה אתרים בלבד, לא סביר שתחרוג ממגבלות אלה. לפני Jomres 8.3 השתמשנו בתכונה ישנה יותר ללא תיעוד של Yahoo אולם גילינו ששימוש בתכונה זו עומד בסתירה לתנאי Yahoo תנאים. כתוצאה מכך עלינו להניח שהתכונה עשויה להיעלם בשלב כלשהו בעתיד, ומכאן השינוי לשימוש בשערי Exchange Exchange. ');
 jr_define ('_JOMRES_COMMISSION', 'Commission');
 jr_define ('_JOMRES_MEDIA_CENTRE_NOTES_CORE_EXTRAS', 'אם תעלה תמונות מרובות לתוספות אופציונליות בודדות, רק התמונה הראשונה תשמש.');
 jr_define ('_JOMRES_COMMISSION', 'Commission');
@@ -2175,7 +2175,7 @@ jr_define ('_JOMRES_GDPR_MY_DATA_DOWNLOAD_TEXT', 'אתה יכול להוריד �
 jr_define ('_JOMRES_GDPR_MY_DATA_DOWNLOAD_BUTTON', 'הורד עכשיו');
 
 jr_define ('_JOMRES_GDPR_MY_RTBF_LEAD', 'זכות להישכח (RTBF)');
-jr_define ('_JOMRES_GDPR_MY_RTBF_INTRO', 'אנו סבורים כי עליך <a href="https://gdpr-info.eu/art-17-gdpr/" target="_blank"> למחוק </a> את <שלך a href = "https://gdpr-info.eu/art-4-gdpr/" target = "_ blank"> מידע הניתן לזיהוי אישי </a> אם אתה רוצה ואם זה אפשרי. ');
+jr_define ('_JOMRES_GDPR_MY_RTBF_INTRO', 'אנו סבורים כי עליך <a href="https://gdpr-info.eu/art-17-gdpr/" target="_blank"> למחוק </a> את <שלך a href = "https://gdpr-info.eu/art-4-gdpr/" target="_blank"> מידע הניתן לזיהוי אישי </a> אם אתה רוצה ואם זה אפשרי. ');
 jr_define ('_JOMRES_GDPR_MY_RTBF_NOTREGISTERED_OPTEDIN', 'אינך רשום באתר זה. המיקום הכללי שלך (מדינה) ומספר ה- IP שלך יישמרו למשך 24 שעות לכל היותר ולאחר מכן יימחקו.');
 jr_define ('_JOMRES_GDPR_MY_RTBF_NOTREGISTERED_OPTEDOUT', 'אינך רשום באתר זה והסרת את איסוף הנתונים. לא שמרנו את תעודת הזהות שלך.');
 
@@ -2391,7 +2391,7 @@ jr_define ('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTIES', 'סה"כ נכסים:');
 jr_define ('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTIES_DESC', 'זהו מספר הנכסים הזמינים ב- JSN.');
 jr_define ('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS', 'סה"כ תצוגות רכוש:');
 jr_define ('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS_DESC', 'בסך הכל, כל הפעמים שאליו נקשר נכס מסוג Jomres מאתר אחר המבוסס על Jomres.');
-jr_define ('_JOMRES_SYNDICATION_STATS_BLURB', 'רשת Syndicate Jomres (JSN) היא תכונה חינמית הזמינה לכל משתמשי Jomres. מטרתה היא לספק לך פרסום חינם של הנכסים שלך באתרים אחרים המבוססים על Jomres. המטרה היא לעזור אתה מוריד את האתר מהר מהר ומציע פרסום בחינם, כך שהנכסים שלך יזוהו ואמינים כי הם מקושרים לאתרים בעלי רלוונטיות גבוהה, אשר כבר מוכרים היטב למנועי החיפוש. ראה את זה <a href = "https: //www.jomres.net/features/jomres-syndication-network "target =" _ blank "> מאמר באתר שלנו </a> ו <a href =" https://www.jomres.net/manual/developers- guide-2/387-jomres-syndication-network "target =" _ blank "> המדריך </a> למידע נוסף. ');
+jr_define ('_JOMRES_SYNDICATION_STATS_BLURB', 'רשת Syndicate Jomres (JSN) היא תכונה חינמית הזמינה לכל משתמשי Jomres. מטרתה היא לספק לך פרסום חינם של הנכסים שלך באתרים אחרים המבוססים על Jomres. המטרה היא לעזור אתה מוריד את האתר מהר מהר ומציע פרסום בחינם, כך שהנכסים שלך יזוהו ואמינים כי הם מקושרים לאתרים בעלי רלוונטיות גבוהה, אשר כבר מוכרים היטב למנועי החיפוש. ראה את זה <a href="https: //www.jomres.net/features/jomres-syndication-network" target="_blank"> מאמר באתר שלנו </a> ו <a href="https://www.jomres.net/manual/developers-guide-2/387-jomres-syndication-network" target="_blank"> המדריך </a> למידע נוסף. ');
 jr_define ('GUEST_PROFILE_INFORMATION', 'אלה נתוני פרופיל האורח שלך, שדות עם סמל זה <i class = "fa fa-users" aria-hidden = "true"> </i>
 הם גלויים לציבור, בעוד ששדות עם הסמל הזה <i class = "fa fa-user-secret" aria-hidden = "true"> </i> יכולים להיראות רק לך, למארחים ולמנהלי האתר שלך. <br/> <br/> מארחים יכולים לראות מידע פרטי רק אם כבר יצרת איתם הזמנה. <br/> <br/> המידע שלך מוצפן ומאוחסן בבטחה במסד הנתונים שלנו באמצעות הצפנת AES-256. ');
 

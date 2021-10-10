@@ -2160,7 +2160,7 @@ jr_define ('_JOMRES_GDPR_MY_DATA_DOWNLOAD_TEXT', 'Μπορείτε να κατε
 jr_define ('_JOMRES_GDPR_MY_DATA_DOWNLOAD_BUTTON', 'Λήψη τώρα');
 
 jr_define ('_JOMRES_GDPR_MY_RTBF_LEAD', 'Δικαίωμα στη λήθη (RTBF)');
-jr_define ('_JOMRES_GDPR_MY_RTBF_INTRO', 'Πιστεύουμε ότι θα πρέπει να μπορείτε να <a href="https://gdpr-info.eu/art-17-gdpr/" target="_blank"> διαγράψετε </a> το < a href = "https://gdpr-info.eu/art-4-gdpr/" target = "_ blank"> Προσωπικά αναγνωρίσιμες πληροφορίες </a> αν θέλετε και εάν είναι εφικτό. ');
+jr_define ('_JOMRES_GDPR_MY_RTBF_INTRO', 'Πιστεύουμε ότι θα πρέπει να μπορείτε να <a href="https://gdpr-info.eu/art-17-gdpr/" target="_blank"> διαγράψετε </a> το < a href = "https://gdpr-info.eu/art-4-gdpr/" target="_blank" > Προσωπικά αναγνωρίσιμες πληροφορίες </a> αν θέλετε και εάν είναι εφικτό. ');
 jr_define ('_JOMRES_GDPR_MY_RTBF_NOTREGISTERED_OPTEDIN', 'Δεν είστε εγγεγραμμένος σε αυτόν τον ιστότοπο. Η γενική τοποθεσία (χώρα) και ο αριθμός IP σας θα αποθηκευτούν για μέγιστο 24 ώρες και στη συνέχεια θα διαγραφούν.');
     jr_define ('_JOMRES_GDPR_MY_RTBF_NOTREGISTERED_OPTEDOUT', 'Δεν έχετε εγγραφεί σε αυτόν τον ιστότοπο και έχετε εξαιρεθεί από τη συλλογή δεδομένων. Δεν έχουμε αποθηκεύσει το PII σας.');
 
@@ -2428,7 +2428,7 @@ jr_define ('GUEST_PROFILE_USERSTATUS_GUEST', 'Guest');
 jr_define ('GUEST_PROFILE_USERSTATUS_HOST', 'Host');
 jr_define ('GUEST_PROFILE_USERSTATUS_ADMIN', 'Admin');
 
-jr_define ('WORDPRESS_THEME_ADVICE', 'Το Jomres είναι χτισμένο στο πλαίσιο Bootstrap, οπότε πρέπει να το χρησιμοποιήσετε σε ένα θέμα που βασίζεται στο Bootstrap. Σας προτείνουμε ένα που βασίζεται στο Bootstrap 3. Εάν δεν έχετε πρόσβαση σε ένα θέμα, σας συνιστούμε να χρησιμοποιήσετε το θέμα Jomres Leohtian για το Wordpress το οποίο μπορείτε <a href = "https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target = "_ blank "> λήψη από εδώ. </a> ');
+jr_define ('WORDPRESS_THEME_ADVICE', 'Το Jomres είναι χτισμένο στο πλαίσιο Bootstrap, οπότε πρέπει να το χρησιμοποιήσετε σε ένα θέμα που βασίζεται στο Bootstrap. Σας προτείνουμε ένα που βασίζεται στο Bootstrap 3. Εάν δεν έχετε πρόσβαση σε ένα θέμα, σας συνιστούμε να χρησιμοποιήσετε το θέμα Jomres Leohtian για το Wordpress το οποίο μπορείτε <a href = "https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target="_blank"> λήψη από εδώ. </a> ');
 
 
 jr_define ('BOOKING_NOSHOW_MENU', 'Mark as No Show');
