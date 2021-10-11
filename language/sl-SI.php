@@ -667,7 +667,7 @@ jr_define ('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', 'je znižano');
 jr_define ('_JOMCOMP_WISEPRICE_TO', 'do');
 jr_define ('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', 'Cena sobe ni znižana');
 jr_define ('JOMRES_COM_A_MAPSKEY', 'Ključ API -ja za Google zemljevide');
-jr_define ('JOMRES_COM_A_MAPSKEY_DESC', 'Ključ API-ja google maps lahko dobite na <a href = "https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key "target =" _ blank "> Google zemljevidi </a>. Ko tukaj vnesete ključ zemljevida, bo Jomres prikazal zemljevid na strani s podrobnostmi o nepremičnini. ');
+jr_define ('JOMRES_COM_A_MAPSKEY_DESC', 'Ključ API-ja google maps lahko dobite na <a href = "https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key target="_blank"> Google zemljevidi </a>. Ko tukaj vnesete ključ zemljevida, bo Jomres prikazal zemljevid na strani s podrobnostmi o nepremičnini. ');
 jr_define ('_JOMCOMP_LASTMINUTE_CPANEL', 'Last minute');
 jr_define ('_JOMCOMP_LASTMINUTE_ACTIVE', 'Aktivno?');
 jr_define ('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', 'Nastavite na Da, če želite ponuditi last minute ponudbe.');
@@ -928,7 +928,7 @@ Ko boste uspešno oddali obrazec, boste samodejno prijavljeni v svoj novi račun
 Če še niste prijavljeni v svoj račun, morate to storiti na http://www.clickatell.com/login.php <br/>
 * V zgornjem meniju izberite \"Upravljaj moje izdelke\". <br/>
 * V spustnem meniju ('Dodaj povezavo') izberite vrsto povezave API, ki jo želite uporabiti (HTTP API). <br/>
-* Izpolnite obrazec. Prepričajte se, da vnesete zaklenjeni IP (IP tega strežnika), nastavite Povratni klic na HTTP POST. Za povratni klic IP morate nastaviti ".get_showtime ('live_site')."/Index.php? Option = com_jomres & task = sms_clickatell_callback ter uporabniški ID in geslo. <br/>
+* Izpolnite obrazec. Prepričajte se, da vnesete zaklenjeni IP (IP tega strežnika), nastavite Povratni klic na HTTP POST. Za povratni klic IP morate nastaviti ".get_showtime ('live_site')."/index.php? Option = com_jomres & task = sms_clickatell_callback ter uporabniški ID in geslo. <br/>
 Če registrirate več povezav API, mora biti ime opisa, ki ga vnesete za vsako, edinstveno - ne morete imeti več API -jev z istim imenom. <br/>
 Ko boste uspešno oddali obrazec, bodo prikazani vaši podatki za preverjanje pristnosti, vključno z edinstvenim ID -jem vsake povezave (api_id). Ti podatki za preverjanje pristnosti so potrebni pri povezovanju s prehodom Clickatell za pošiljanje sporočila. <br/>
 <br/>
@@ -984,7 +984,7 @@ jr_define ('_JOMRES_APIKEY_REMAKE', 'Ustvari nov ključ API');
 jr_define ('_JOMRES_SINGLEPROPERTYINSTALLATION_TITLE', 'Je to ena sama namestitev lastnosti?');
 jr_define ('_JOMRES_SINGLEPROPERTYINSTALLATION_DESC', 'Če je ta možnost nastavljena na Da, je pogled na Jomres od spredaj do nepooblaščenih uporabnikov zelo poenostavljen. Privzeti klici Jomresa iz možnosti menija, namesto da bi dobili seznam imetja, potrebujejo le gost na obrazcu za rezervacijo prve nepremičnine v sistemu. Upravitelji nepremičnin prav tako ne bodo videli gumba za predogled podrobnosti o nepremičnini ali gumba za dodajanje nove nepremičnine. Idealno, če želite navesti samo eno nepremičnino in zanjo opraviti rezervacije. <br /> ');
 jr_define ('_JOMRES_AJAXFORM_BILLING_BALANCE_PAYMENT', 'Stanje plačila');
-jr_define ('_JOMRES_WARNINGS_GLOBALEDITINGMODE', 'Upoštevajte, da uporabljate način urejanja z omogočenim načinom globalnega urejanja. To je v redu, če razumete, kaj pomeni način globalnega urejanja, če pa tega ne storite, si lahko sami povzročite težave. Če niste prepričani če bi morali Jomres uporabljati na ta način, glejte <a href = "http://www.jomres.net/manual/developers-guide/53-customising-jomres/editing-labels-languages/268-editing-mode "target =" _ blank "> stran z ročnim načinom urejanja </a> za več informacij o tej temi. ');
+jr_define ('_JOMRES_WARNINGS_GLOBALEDITINGMODE', 'Upoštevajte, da uporabljate način urejanja z omogočenim načinom globalnega urejanja. To je v redu, če razumete, kaj pomeni način globalnega urejanja, če pa tega ne storite, si lahko sami povzročite težave. Če niste prepričani če bi morali Jomres uporabljati na ta način, glejte <a href = "http://www.jomres.net/manual/developers-guide/53-customising-jomres/editing-labels-languages/268-editing-mode target="_blank"> stran z ročnim načinom urejanja </a> za več informacij o tej temi. ');
 jr_define ('_JOMRES_SUPPORTKEY', 'Ključ podpore');
 jr_define ('_JOMRES_SUPPORTKEY_DESC', 'Številka ključa licence za podporo (znana tudi kot številka licence). Za prenos vtičnikov za Jomres boste potrebovali posodobljeno licenco.');
 jr_define ('_JOMRES_PERSONAL_DISCOUNT', 'Osebni popust');
@@ -1203,7 +1203,7 @@ jr_define ('_JOMRES_CONVERSION_DISCLAIMER', 'Po svojih najboljših močeh smo si
 // 5.3.1
 jr_define ('_JOMRES_CURRENCYCONVERSION_TAB', 'Pretvorba valut/kode valut');
 jr_define ('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'API ključ za zaznavanje IP');
-jr_define ('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Za samodejno nastavitev spustnega koda valute lahko Jomres uporabi brezplačno storitev, imenovano IPinfoDB, za odkrivanje države obiskovalca, vendar se morate registrirati za ključ API na <a href = "http: //ipinfodb.com/register.php "target =" _ blank "> IPinfoDB </a> najprej. ');
+jr_define ('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Za samodejno nastavitev spustnega koda valute lahko Jomres uporabi brezplačno storitev, imenovano IPinfoDB, za odkrivanje države obiskovalca, vendar se morate registrirati za ključ API na <a href = "http: //ipinfodb.com/register.php target="_blank"> IPinfoDB </a> najprej. ');
 jr_define ('_JOMRES_DEBUGGING_TAB', 'Odpravljanje napak');
 jr_define ('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'Nastanitev brez davka');
 jr_define ('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'Prenočišče z davkom');
@@ -1655,7 +1655,7 @@ jr_define ('_JOMRES_EMAIL_TEMPLATES_TEXT', 'Besedilo e -pošte');
 jr_define ('_JOMRES_EMAIL_TEMPLATES_TYPE', 'Vrsta e -pošte');
 jr_define ('_JOMRES_EMAIL_TEMPLATES_NAME', 'Ime e -pošte');
 jr_define ('_JOMRES_EMAIL_TEMPLATES_DESC', 'Opis e -pošte');
-jr_define ('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS', 'Prosimo, poglejte to stran za pomoč pri prilagajanju e-poštnih sporočil in seznam razpoložljivih rezultatov: <a href = "http://www.jomres.net/manual/property-managers-guide/48-your -toolbar/settings/254-email-templates "target =" _ blank "> Pomoč za predloge e-pošte </a> ');
+jr_define ('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS', 'Prosimo, poglejte to stran za pomoč pri prilagajanju e-poštnih sporočil in seznam razpoložljivih rezultatov: <a href = "http://www.jomres.net/manual/property-managers-guide/48-your -toolbar/settings/254-email-templates target="_blank"> Pomoč za predloge e-pošte </a> ');
 jr_define ('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME', 'Novi skrbnik spletnega mesta za rezervacijo');
 jr_define ('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC', 'E -poštno sporočilo, poslano administratorju spletnega mesta ob novi rezervaciji, če je omogočen globalni prehod Paypal');
 jr_define ('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME', 'E -poštni naslov za novo rezervacijo hotela');
@@ -1726,7 +1726,7 @@ jr_define ('_JOMRES_TEST_EMAIL_RESULT_SUCCESS', 'Testno sporočilo je bilo uspe�
 jr_define ('_JOMRES_TEST_EMAIL_RESULT_FAILURE', 'Testno e -poštno sporočilo ni bilo poslano');
 jr_define ('_INVOICE_TRANSACTIONS', 'Transakcije');
 jr_define ('_OPENEXCHANGE_API', 'Ključ API -ja za odprte menjalne tečaje');
-jr_define ('_OPENEXCHANGE_API_DESC', 'Za pretvorbo cen med storitvami potrebujete ključ API odprtih menjalnih tečajev. MORATE imeti ključ API za pravilno prikazovanje cen v Jomresu, lahko pa <a href = "https://openexchangerates.org /signup/free "target =" _ blank "> registrirajte se za brezplačni ključ </a> (urne posodobitve, 1000 zahtev/mesec - brez HTTPS, podpore po e -pošti ali naprednih funkcij). Jomres prenese menjalne tečaje enkrat na dan, dokler če uporabljate ključ le na peščici spletnih mest, verjetno ne boste presegli teh omejitev. Pred Jomresom 8.3 smo uporabljali starejšo funkcijo Yahooja brez dokumentov, vendar smo ugotovili, da je uporaba te funkcije v nasprotju z Yahoojevimi pogoji in Pogoji. Posledično moramo domnevati, da lahko funkcija v nekem trenutku v prihodnosti izgine, zato je spremenjena uporaba odprtih menjalnih tečajev. ');
+jr_define ('_OPENEXCHANGE_API_DESC', 'Za pretvorbo cen med storitvami potrebujete ključ API odprtih menjalnih tečajev. MORATE imeti ključ API za pravilno prikazovanje cen v Jomresu, lahko pa <a href = "https://openexchangerates.org /signup/free target="_blank"> registrirajte se za brezplačni ključ </a> (urne posodobitve, 1000 zahtev/mesec - brez HTTPS, podpore po e -pošti ali naprednih funkcij). Jomres prenese menjalne tečaje enkrat na dan, dokler če uporabljate ključ le na peščici spletnih mest, verjetno ne boste presegli teh omejitev. Pred Jomresom 8.3 smo uporabljali starejšo funkcijo Yahooja brez dokumentov, vendar smo ugotovili, da je uporaba te funkcije v nasprotju z Yahoojevimi pogoji in Pogoji. Posledično moramo domnevati, da lahko funkcija v nekem trenutku v prihodnosti izgine, zato je spremenjena uporaba odprtih menjalnih tečajev. ');
 jr_define ('_JOMRES_COMMISSION', 'Komisija');
 jr_define ('_JOMRES_MEDIA_CENTRE_NOTES_CORE_EXTRAS', 'Če naložite več slik za posamezne izbirne dodatke, bo uporabljena samo prva slika.');
 jr_define ('_JRPORTAL_INVOICES_PAYNOW', 'Plačaj zdaj');
@@ -1812,7 +1812,7 @@ jr_define ('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Vaš ključ za podporo j
 jr_define ('_JOMRES_DASHBOARD_DRAG_TRASH', 'Povlecite rezervacije na to območje, da jih prekličete');
 jr_define ('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define ('_JOMRES_LONG', 'Long (nn.nnnn)');
-jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Prepričajte se, da ste ustvarili stran WordPress, ki vsebuje kratko kodo [jomres: xx-XX] (kjer je xx-XX koda jezika vašega spletnega mesta, na primer [jomres: en-GB] ali [ jomres: sl-ZDA]) drugače ne boste mogli dostopati do Jomresa s prednje strani za upravljanje svojih nepremičnin in rezervacij. <br> Jomres je zgrajen na ogrodju Bootstrap, zato ga morate uporabljati pri temi, ki temelji na Bootstrapu. priporočam eno, ki temelji na Bootstrapu 3. Če nimate dostopa do teme, priporočamo, da uporabite temo Jomresa Leohtiana za Wordpress, ki jo lahko <a href = "https://www.jomres.net/download/free- downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress "target =" _ blank "> prenesite od tu. </a> ');
+jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Prepričajte se, da ste ustvarili stran WordPress, ki vsebuje kratko kodo [jomres: xx-XX] (kjer je xx-XX koda jezika vašega spletnega mesta, na primer [jomres: en-GB] ali [ jomres: sl-ZDA]) drugače ne boste mogli dostopati do Jomresa s prednje strani za upravljanje svojih nepremičnin in rezervacij. <br> Jomres je zgrajen na ogrodju Bootstrap, zato ga morate uporabljati pri temi, ki temelji na Bootstrapu. priporočam eno, ki temelji na Bootstrapu 3. Če nimate dostopa do teme, priporočamo, da uporabite temo Jomresa Leohtiana za Wordpress, ki jo lahko <a href = "https://www.jomres.net/download/free- downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress target="_blank"> prenesite od tu. </a> ');
 jr_define ('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', "Preden lahko ustvarite tip sobe, moramo vedeti, ali gre za nepremičnine hotelskega tipa ali za vile.");
 jr_define ('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', 'Kliknite, če želite dodati nove vrste sob');
 jr_define ('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES', 'Opozorilo, imate eno ali več vrst nepremičnin brez tipov sob. Lastnosti potrebujejo vrste sob, da lahko upravitelji nepremičnin ustvarijo tarife.');
@@ -2365,7 +2365,7 @@ jr_define ('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTIES', 'Skupne lastnosti:');
 jr_define ('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTIES_DESC', 'To je število lastnosti, ki so na voljo v JSN.');
 jr_define ('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS', 'Prikaz celotne lastnine:');
 jr_define ('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS_DESC', 'Skupaj je bila vsaka povezava znamke Jomres povezana z drugega spletnega mesta, ki temelji na Jomresu.');
-jr_define ('_JOMRES_SYNDICATION_STATS_BLURB', 'Jomres Syndicate Network (JSN) je brezplačna funkcija, ki je na voljo vsem uporabnikom Jomresa. Njen namen je brezplačno oglaševanje vaših nepremičnin na drugih spletnih mestih v Jomresu. Cilj je pomagati svoje spletno mesto hitro dvignete in ponudite brezplačno oglaševanje, tako da bodo vaše nepremičnine prepoznane in jim zaupate, saj so povezane z visoko zaupanja vrednimi, visoko ustreznimi spletnimi mesti, ki so iskalnikom že dobro znane. Glejte to <a href = "https: //www.jomres.net/features/jomres-syndication-network "target =" _ blank "> članek na naši spletni strani </a> in <a href =" https://www.jomres.net/manual/developers- guide-2/387-jomres-syndication-network "target =" _ blank "> priročnik </a> za več informacij. ');
+jr_define ('_JOMRES_SYNDICATION_STATS_BLURB', 'Jomres Syndicate Network (JSN) je brezplačna funkcija, ki je na voljo vsem uporabnikom Jomresa. Njen namen je brezplačno oglaševanje vaših nepremičnin na drugih spletnih mestih v Jomresu. Cilj je pomagati svoje spletno mesto hitro dvignete in ponudite brezplačno oglaševanje, tako da bodo vaše nepremičnine prepoznane in jim zaupate, saj so povezane z visoko zaupanja vrednimi, visoko ustreznimi spletnimi mesti, ki so iskalnikom že dobro znane. Glejte to <a href = "https: //www.jomres.net/features/jomres-syndication-network target="_blank"> članek na naši spletni strani </a> in <a href =" https://www.jomres.net/manual/developers- guide-2/387-jomres-syndication-network target="_blank"> priročnik </a> za več informacij. ');
 
 
 jr_define ('GUEST_PROFILE_INFORMATION', 'To so podatki vašega profila gosta, polja s tem simbolom <i class = "fa fa-users" aria-hidden = "true"> </i>

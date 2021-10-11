@@ -678,7 +678,7 @@ jr_define ('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', 'bolo zľavnené z');
 jr_define ('_JOMCOMP_WISEPRICE_TO', 'do');
 jr_define ('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', 'cena za izbu nie je zľavnená');
 jr_define ('JOMRES_COM_A_MAPSKEY', 'kľúč API služby Google Maps');
-jr_define ('JOMRES_COM_A_MAPSKEY_DESC', 'Kľúč rozhrania API služby Mapy Google môžete získať z <a href = "https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key "target =" _ blank "> Mapy Google </a>. Keď sem zadáte kľúč mapy, Jomres zobrazí mapu na vašej stránke s podrobnosťami o vlastníctve. ');
+jr_define ('JOMRES_COM_A_MAPSKEY_DESC', 'Kľúč rozhrania API služby Mapy Google môžete získať z <a href = "https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key target="_blank"> Mapy Google </a>. Keď sem zadáte kľúč mapy, Jomres zobrazí mapu na vašej stránke s podrobnosťami o vlastníctve. ');
 jr_define ('_JOMCOMP_LASTMINUTE_CPANEL', 'Last minute');
 jr_define ('_JOMCOMP_LASTMINUTE_ACTIVE', 'aktívny?');
 jr_define ('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', 'Nastavte túto možnosť na Áno, ak chcete ponúkať ponuky na poslednú chvíľu.');
@@ -995,7 +995,7 @@ jr_define ('_JOMRES_APIKEY_REMAKE', 'Vytvoriť nový kľúč API');
 jr_define ('_JOMRES_SINGLEPROPERTYINSTALLATION_TITLE', 'Je to inštalácia jedného majetku?');
 jr_define ('_JOMRES_SINGLEPROPERTYINSTALLATION_DESC', 'Ak je táto možnosť nastavená na Áno, potom je frontendové zobrazenie Jomres pre neautorizovaných používateľov výrazne zjednodušené. Predvolené volania pre Jomres z možnosti ponuky, namiesto toho, aby sa im poskytoval zoznam vlastností, však stačí hosť rezervačného formulára na prvú nehnuteľnosť v systéme. Správcom nehnuteľností sa tiež nezobrazí tlačidlo Náhľad podrobností nehnuteľnosti ani tlačidlo Pridať nové vlastníctvo. Ideálne, ak chcete uviesť iba jednu nehnuteľnosť a prijímať k nej rezervácie. <br /> ');
 jr_define ('_JOMRES_AJAXFORM_BILLING_BALANCE_PAYMENT', 'zostatok');
-jr_define ('_JOMRES_WARNINGS_GLOBALEDITINGMODE', 'Všimnite si, že používate režim úprav s povoleným režimom globálnych úprav. To je v poriadku, ak chápete, čo režim globálnych úprav znamená, ale ak nie, môžete si spôsobiť problémy. Ak si nie ste istí ak by ste mali používať Jomres týmto spôsobom, pozrite si <a href = "http://www.jomres.net/manual/developers-guide/53-customising-jomres/editing-labels-languages/268-editing-mode "target =" _ blank "> manuálna stránka režimu úprav </a>, kde získate ďalšie informácie o tejto téme. ');
+jr_define ('_JOMRES_WARNINGS_GLOBALEDITINGMODE', 'Všimnite si, že používate režim úprav s povoleným režimom globálnych úprav. To je v poriadku, ak chápete, čo režim globálnych úprav znamená, ale ak nie, môžete si spôsobiť problémy. Ak si nie ste istí ak by ste mali používať Jomres týmto spôsobom, pozrite si <a href = "http://www.jomres.net/manual/developers-guide/53-customising-jomres/editing-labels-languages/268-editing-mode target="_blank"> manuálna stránka režimu úprav </a>, kde získate ďalšie informácie o tejto téme. ');
 jr_define ('_JOMRES_SUPPORTKEY', 'kľúč podpory');
 jr_define ('_JOMRES_SUPPORTKEY_DESC', 'číslo vášho licenčného kľúča podpory (známe aj ako licenčné číslo). Na sťahovanie doplnkov pre Jomres budete potrebovať aktuálnu licenciu.');
 jr_define ('_JOMRES_PERSONAL_DISCOUNT', 'osobná zľava');
@@ -1214,7 +1214,7 @@ jr_define ('_JOMRES_CONVERSION_DISCLAIMER', 'Vyvinuli sme maximálne úsilie, ab
 // 5.3.1
 jr_define ('_JOMRES_CURRENCYCONVERSION_TAB', 'Konverzia meny/kódy meny');
 jr_define ('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'IP API Detection API key');
-jr_define ('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Na automatické nastavenie rozbaľovacieho kódu meny môže Jomres používať na zisťovanie krajiny návštevníka bezplatnú službu s názvom IPinfoDB, avšak pre kľúč API sa musíte zaregistrovať na <a href = "http: //ipinfodb.com/register.php "target =" _ blank "> IPinfoDB </a> ako prvý. ');
+jr_define ('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Na automatické nastavenie rozbaľovacieho kódu meny môže Jomres používať na zisťovanie krajiny návštevníka bezplatnú službu s názvom IPinfoDB, avšak pre kľúč API sa musíte zaregistrovať na <a href = "http: //ipinfodb.com/register.php target="_blank"> IPinfoDB </a> ako prvý. ');
 jr_define ('_JOMRES_DEBUGGING_TAB', 'Ladenie');
 jr_define ('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'Ubytovanie bez dane');
 jr_define ('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'Ubytovanie vrátane dane');
@@ -1666,7 +1666,7 @@ jr_define ('_JOMRES_EMAIL_TEMPLATES_TEXT', 'text v e -maile');
 jr_define ('_JOMRES_EMAIL_TEMPLATES_TYPE', 'typ e -mailu');
 jr_define ('_JOMRES_EMAIL_TEMPLATES_NAME', 'meno v e -maile');
 jr_define ('_JOMRES_EMAIL_TEMPLATES_DESC', 'Popis e -mailu');
-jr_define ('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS', 'Na tejto stránke nájdete pomoc s prispôsobením e-mailov a zoznamom dostupného výstupu: <a href = "http://www.jomres.net/manual/property-managers-guide/48-your -toolbar/settings/254-email-templates "target =" _ blank "> Pomocník pre e-mailové šablóny </a> ');
+jr_define ('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS', 'Na tejto stránke nájdete pomoc s prispôsobením e-mailov a zoznamom dostupného výstupu: <a href = "http://www.jomres.net/manual/property-managers-guide/48-your -toolbar/settings/254-email-templates target="_blank"> Pomocník pre e-mailové šablóny </a> ');
 jr_define ('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME', 'administrátor nového rezervačného e -mailu');
 jr_define ('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC', 'E -mail odoslaný správcovi stránky pri novej rezervácii, ak je povolená globálna brána Paypal');
 jr_define ('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME', 'Hotel New Booking Email');
@@ -1825,7 +1825,7 @@ jr_define ('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Váš kľúč podpory je
 jr_define ('_JOMRES_DASHBOARD_DRAG_TRASH', 'Presunutím rezervácií do tejto oblasti ich zrušíte');
 jr_define ('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define ('_JOMRES_LONG', 'Long (nn.nnnn)');
-jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Uistite sa, že ste vytvorili stránku WordPress, ktorá obsahuje krátky kód [jomres: xx-XX] (kde xx-XX je kód jazyka vašej stránky, napríklad [jomres: en-GB] alebo [ jomres: sk-sk]) inak nebudete mať prístup k Jomres z frontendu na správu vašich vlastností a rezervácií. <br> Jomres je postavený na rámci Bootstrap, takže ho musíte použiť na tému založenú na Bootstrap. My odporučiť jeden na základe Bootstrap 3. Ak k téme nemáte prístup, odporúčame vám použiť tému Jomres Leohtian pre Wordpress, ktorú môžete <a href = "https://www.jomres.net/download/free- downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress "target =" _ blank "> sťahovať odtiaľto. </a> ');
+jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Uistite sa, že ste vytvorili stránku WordPress, ktorá obsahuje krátky kód [jomres: xx-XX] (kde xx-XX je kód jazyka vašej stránky, napríklad [jomres: en-GB] alebo [ jomres: sk-sk]) inak nebudete mať prístup k Jomres z frontendu na správu vašich vlastností a rezervácií. <br> Jomres je postavený na rámci Bootstrap, takže ho musíte použiť na tému založenú na Bootstrap. My odporučiť jeden na základe Bootstrap 3. Ak k téme nemáte prístup, odporúčame vám použiť tému Jomres Leohtian pre Wordpress, ktorú môžete <a href = "https://www.jomres.net/download/free- downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress target="_blank"> sťahovať odtiaľto. </a> ');
 jr_define ('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', 'Väčšina nehnuteľností v Jomres má proces správy prenájmu. Hotely/penzióny/penzióny prenajímajú jednotlivé izby a chaty/vily/byty prenajímajú celý majetok. Toto nie je viditeľné pre správcu nehnuteľnosti, ale pre nich Aby ste mohli vytvárať tarify pre svoj majetok, musíte najskôr pridať typy izieb, ktoré sú vhodné pre daný typ nehnuteľnosti.
 Napríklad typ hotelového majetku by normálne potreboval niekoľko typov izieb (dvojlôžkové izby, jednolôžkové izby a dvojčatá), zatiaľ čo vila môže mať iba jeden typ izby, napr. 2 spálne, 5 spální.
 Pre nehnuteľnosti, ako je Tours, je možné vytvoriť typy miestností. To umožňuje zákazníkom vyhľadávať iba nehnuteľnosti, ako sú zájazdy, ale správca nehnuteľností pre tento typ vlastníctva nevytvorí tarify, takže proces správy pre nich nie je relevantný.
@@ -2380,7 +2380,7 @@ jr_define ('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTIES', 'Total Properties:');
 jr_define ('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTIES_DESC', 'Toto je počet nehnuteľností dostupných v JSN.');
 jr_define ('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS', 'Total Property displays:');
 jr_define ('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS_DESC', 'Celkovo je celý čas prepojené vlastníctvo Jomres z iného webu založeného na Jomres.');
-jr_define ('_JOMRES_SYNDICATION_STATS_BLURB', 'The Jomres Syndicate Network (JSN) je bezplatná funkcia dostupná pre všetkých používateľov Jomres. Cieľom je poskytnúť vám bezplatnú inzerciu vašich nehnuteľností na iných stránkach založených na Jomres. Cieľom je pomôcť rýchlo spustíte svoje stránky a ponúknete bezplatnú reklamu, aby boli vaše vlastníctva uznávané a dôveryhodné, pretože sú prepojené s webovými stránkami s vysokou spoľahlivosťou a vysokou relevanciou, ktoré sú už dobre známe vyhľadávačom. Pozrite si to <a href = "https: //www.jomres.net/features/jomres-syndication-network "target =" _ blank "> článok na našich webových stránkach </a> a <a href =" https://www.jomres.net/manual/developers- sprievodca-2/387-jomres-syndication-network "target =" _ blank "> manuál </a>, kde získate ďalšie informácie. ');
+jr_define ('_JOMRES_SYNDICATION_STATS_BLURB', 'The Jomres Syndicate Network (JSN) je bezplatná funkcia dostupná pre všetkých používateľov Jomres. Cieľom je poskytnúť vám bezplatnú inzerciu vašich nehnuteľností na iných stránkach založených na Jomres. Cieľom je pomôcť rýchlo spustíte svoje stránky a ponúknete bezplatnú reklamu, aby boli vaše vlastníctva uznávané a dôveryhodné, pretože sú prepojené s webovými stránkami s vysokou spoľahlivosťou a vysokou relevanciou, ktoré sú už dobre známe vyhľadávačom. Pozrite si to <a href = "https: //www.jomres.net/features/jomres-syndication-network target="_blank"> článok na našich webových stránkach </a> a <a href =" https://www.jomres.net/manual/developers- sprievodca-2/387-jomres-syndication-network target="_blank"> manuál </a>, kde získate ďalšie informácie. ');
 
 
 jr_define ('GUEST_PROFILE_INFORMATION', 'Toto sú údaje vášho profilu hosťa, polia s týmto symbolom <i class = "fa fa-users" aria-hidden = "true"> </i>

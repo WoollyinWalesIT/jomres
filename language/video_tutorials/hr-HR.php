@@ -74,7 +74,7 @@ jr_define ('_JOMRES_TUTORIAL_PROPERTY_TYPES_DESC', 'U ovom videu vidjet ćete dv
 
 
 jr_define ('_JOMRES_TUTORIAL_UPLOADING_MAP_MARKERS', 'Prijenos oznaka karata');
-jr_define ('_JOMRES_TUTORIAL_UPLOADING_MAP_MARKERS_DESC', 'Koristite Media Center za prijenos oznaka karte. <ahref="https://mapicons.mapsmarker.com/"target="_blank"> Ovdje možete pronaći veliki izvor oznaka. < /a> Postupak za prijenos značajki nekretnina, značajki soba, tipova soba i drugih je isti. ');
+jr_define ('_JOMRES_TUTORIAL_UPLOADING_MAP_MARKERS_DESC', 'Koristite Media Center za prijenos oznaka karte. <a href="https://mapicons.mapsmarker.com/  " target="_blank" Ovdje možete pronaći veliki izvor oznaka. < /a> Postupak za prijenos značajki nekretnina, značajki soba, tipova soba i drugih je isti. ');
 
 jr_define ('_JOMRES_TUTORIAL_PROPERTY_FEATURES', 'Značajke imovine');
 jr_define ('_JOMRES_TUTORIAL_PROPERTY_FEATURES_DESC', 'U ovom videu pokazat ćemo vam kako stvoriti značajke svojstava i prenijeti slike za njih.');

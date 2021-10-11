@@ -2125,7 +2125,7 @@ jr_define ('_JOMRES_GDPR_MY_DATA_DOWNLOAD_TEXT', 'Можете да изтегл
 jr_define ('_JOMRES_GDPR_MY_DATA_DOWNLOAD_BUTTON', 'Изтеглете сега');
 
 jr_define ('_JOMRES_GDPR_MY_RTBF_LEAD', 'Право да бъдеш забравен (RTBF)');
-jr_define ('_JOMRES_GDPR_MY_RTBF_INTRO', 'Вярваме, че трябва да можете да <a href="https://gdpr-info.eu/art-17-gdpr/" target="_blank"> изтриете </a> вашия < a href = "https://gdpr-info.eu/art-4-gdpr/" target = "_blank"> Информация за лична идентификация </a>, ако искате и ако е практически възможно. ');
+jr_define ('_JOMRES_GDPR_MY_RTBF_INTRO', 'Вярваме, че трябва да можете да <a href="https://gdpr-info.eu/art-17-gdpr/" target="_blank"> изтриете </a> вашия <a href = "https://gdpr-info.eu/art-4-gdpr/" target = "_blank"> Информация за лична идентификация </a>, ако искате и ако е практически възможно. ');
 jr_define ('_JOMRES_GDPR_MY_RTBF_NOTREGISTERED_OPTEDIN', 'Не сте регистрирани на този сайт. Вашето общо местоположение (държава) и IP номер ще се съхраняват за максимум 24 часа и след това ще бъдат изтрити.');
 jr_define ('_JOMRES_GDPR_MY_RTBF_NOTREGISTERED_OPTEDOUT', 'Не сте регистрирани на този сайт и сте се отказали от събирането на данни. Не сме съхранили вашата PII.');
 

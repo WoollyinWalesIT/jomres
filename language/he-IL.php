@@ -945,7 +945,7 @@ jr_define ('_JRPORTAL_SMS_CLICKATELL_INSTRUCTIONS', "
 אם אינך עדיין מחובר לחשבונך, עליך לעשות זאת בכתובת http://www.clickatell.com/login.php <br/>
 * בחר \"נהל את המוצרים שלי \" מהתפריט העליון. <br/>
 * בחר את סוג חיבור ה- API שבו ברצונך להשתמש (HTTP API) מהתפריט הנפתח ('הוסף חיבור'). <br/>
-* השלם את הטופס. וודא שאתה מזין את ה- IP הנעול (ה- IP של שרת זה), הגדר את Callback ל- HTTP POST. יהיה עליך להגדיר את חיוג ה- IP ל- ".get_showtime ('live_site')."/Index.php? Option = com_jomres & task = sms_clickatell_callback ו- userid וסיסמה. <br/>
+* השלם את הטופס. וודא שאתה מזין את ה- IP הנעול (ה- IP של שרת זה), הגדר את Callback ל- HTTP POST. יהיה עליך להגדיר את חיוג ה- IP ל- ".get_showtime ('live_site')."/index.php?option=com_jomres&task=sms_clickatell_callback ו- userid וסיסמה. <br/>
 אם אתה רושם יותר מחיבור API אחד, שם התיאור שאתה מזין עבור כל אחד חייב להיות ייחודי - לא יכולים להיות לך מספר ממשקי API עם אותו שם. <br/>
 לאחר שליחת הטופס בהצלחה יוצגו פרטי האימות שלך, כולל מזהה ה- API הייחודי של כל חיבור (api_id). פרטי אימות אלה נדרשים בעת חיבור לשער Clickatell כדי לשלוח הודעה. <br/>
 <br/>

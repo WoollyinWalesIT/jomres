@@ -936,7 +936,7 @@ Nakon uspješno predanog obrasca, automatski ćete biti prijavljeni na svoj novi
 Ako još niste prijavljeni na svoj račun, to morate učiniti na http://www.clickatell.com/login.php <br/>
 * Na gornjem izborniku odaberite \"Upravljaj mojim proizvodima \". <br/>
 * Odaberite vrstu API veze koju želite koristiti (HTTP API) s padajućeg izbornika ('Dodaj vezu'). <br/>
-* Ispunite obrazac. Provjerite jeste li unijeli zaključani IP (IP ovog poslužitelja), postavite Povratni poziv na HTTP POST. Morat ćete postaviti IP povratni poziv na ".get_showtime ('live_site')."/Index.php? Option = com_jomres & task = sms_clickatell_callback te korisnički ID i lozinku. <br/>
+* Ispunite obrazac. Provjerite jeste li unijeli zaključani IP (IP ovog poslužitelja), postavite Povratni poziv na HTTP POST. Morat ćete postaviti IP povratni poziv na ".get_showtime ('live_site')."/index.php? Option = com_jomres & task = sms_clickatell_callback te korisnički ID i lozinku. <br/>
 Ako registrirate više API veza, naziv opisa koji unosite za svaku mora biti jedinstven - ne možete imati više API -ja s istim imenom. <br/>
 Nakon uspješnog slanja obrasca, bit će prikazani vaši podaci za provjeru autentičnosti, uključujući jedinstveni API ID svake veze (api_id). Ovi detalji autentifikacije potrebni su pri povezivanju s Clickatell pristupnikom za slanje poruke. <br/>
 <br/>

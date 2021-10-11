@@ -818,7 +818,7 @@ jr_define('_JOMRES_COM_A_CRON_DESC', "Pseudocron job informatie. De pseudocronfu
 jr_define('_JOMRES_COM_A_CRON_IMMEDIATERUN', "Geïnstalleerde cron minicomponents. Als u een individuele cron-baan wilt uitvoeren, gebruik dan de onderstaande koppelingen. Merk op dat de cron-taken geen output produceren, zodat u geen informatie op de pagina ziet. In plaats daarvan, verwijzen naar de jomres logs. ");
 global $jomresConfig_secret;
 jr_define('_JOMRES_COM_A_CRON_METHOD', "Methode");
-jr_define('_JOMRES_COM_A_CRON_METHOD_DESC', "Als u geen toegang hebt tot cron-taken, stel deze in op Minicomponent, anders creëer u een cron-job en vertel het om <br /> krul -s '.JOMRES_SITEPAGE_URL_AJAX.' & Task = cronjobs & tmpl = '. ').' & no_html = 1 & secret = '. base64_encode (get_showtime (' secret ')).'> / dev / null ");
+jr_define('_JOMRES_COM_A_CRON_METHOD_DESC', "Als u geen toegang hebt tot cron-taken, stel deze in op Minicomponent, anders creëer u een cron-job en vertel het om <br /> curl -s " . JOMRES_SITEPAGE_URL_AJAX . "&task=cronjobs&tmpl=".get_showtime("tmplcomponent")."&no_html=1> /dev/null");
 jr_define('_JOMRES_COM_TEMPLATEEDITING_TITLE', "Sjabloonbewerking ");
 jr_define('_JOMRES_COM_CUSTOMFIELDS_TITLE', "Aangepaste velden ");
 jr_define('_JOMRES_COM_CUSTOMFIELDS_DESC', "Hier kunt u eenvoudige aangepaste velden definiëren die in het boekingsformulier worden weergegeven. ");
@@ -931,7 +931,7 @@ jr_define('_JOMRES_APIKEY_REMAKE', "Maak een nieuwe API-key ");
 jr_define('_JOMRES_SINGLEPROPERTYINSTALLATION_TITLE', "Is dit een éénkamer installatie? ");
 jr_define('_JOMRES_SINGLEPROPERTYINSTALLATION_DESC', "Als deze optie is ingesteld op Ja, wordt de frontend-weergave naar niet-geautoriseerde gebruikers sterk vereenvoudigd. Standaardoproepen naar het reserveringssyeteem vanuit een menu optie, in plaats van een lijst van bedrijven, brengt de gast naar het boekingsformulier voor de eerste woning in het systeem. Managers zien ook de preview-knop niet en de knop voor het toevoegen van nieuwe verhuurobjectn. Ideaal als u slechts één woning wilt en reserveringen daarvoor kunt ontvangen. <br/> ");
 jr_define('_JOMRES_AJAXFORM_BILLING_BALANCE_PAYMENT', "Betalingsbalans ");
-jr_define('_JOMRES_WARNINGS_GLOBALEDITINGMODE', 'Opmerking, u gebruikt de bewerkingsmodus met de modus Global Editing ingeschakeld. Dit is prima als u begrijpt wat de modus Global Editing betekent, maar als u dat niet weet kunt u problemen veroorzaken. Als u niet zeker bent of u Jomres op deze manier gebruikt, raadpleeg dan <a href = "http://www.jomres.net/manual/developers-guide/53-customising-jomres/editing-labels-languages/268 -meditatie-modus "target =" _blank "> de handmatige pagina van de bewerkingsmodus </a> voor meer informatie over dit onderwerp. ');
+jr_define('_JOMRES_WARNINGS_GLOBALEDITINGMODE', 'Opmerking, u gebruikt de bewerkingsmodus met de modus Global Editing ingeschakeld. Dit is prima als u begrijpt wat de modus Global Editing betekent, maar als u dat niet weet kunt u problemen veroorzaken. Als u niet zeker bent of u Jomres op deze manier gebruikt, raadpleeg dan <a href = "http://www.jomres.net/manual/developers-guide/53-customising-jomres/editing-labels-languages/268 -meditatie-modus   " target="_blank" de handmatige pagina van de bewerkingsmodus </a> voor meer informatie over dit onderwerp. ');
 jr_define('_JOMRES_SUPPORTKEY', "Support key ");
 jr_define('_JOMRES_SUPPORTKEY_DESC', "Uw nummer van de ondersteuningslicentiecode (ook bekend als uw licentienummer). U heeft een up-to-date licentie nodig om plugins voor Jomres te kunnen downloaden. ");
 jr_define('_JOMRES_PERSONAL_DISCOUNT', "Persoonlijke korting ");
@@ -1139,7 +1139,7 @@ jr_define('_JOMRES_CONVERSION_DISCLAIMER', "We hebben ons best gedaan om de mees
 // 5.3.1
 jr_define('_JOMRES_CURRENCYCONVERSION_TAB', "Valuta omzetting/valuta codes ");
 jr_define('_JOMRES_IP_DETECTION_API_KEY_TITLE', "IP-detectie API-sleutel ");
-jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Om de valuta code dropdown automatisch in te stellen, kan Jomres een gratis service genaamd IPinfoDB gebruiken om het land van de bezoeker te detecteren, maar u moet zich registreren voor een API-sleutel op <a href = "http://ipinfodb.com/register .php "target =" _blank "> IPinfoDB </a> eerst. ');
+jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Om de valuta code dropdown automatisch in te stellen, kan Jomres een gratis service genaamd IPinfoDB gebruiken om het land van de bezoeker te detecteren, maar u moet zich registreren voor een API-sleutel op <a href = "http://ipinfodb.com/register .php" target="_blank" IPinfoDB </a> eerst. ');
 jr_define('_JOMRES_DEBUGGING_TAB', "Debugging ");
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', "Accommodatie excl. BTW ");
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', "Accomodatie incl. BTW");
@@ -1561,7 +1561,7 @@ jr_define('_JOMRES_EMAIL_TEMPLATES_TEXT', "Email tekst");
 jr_define('_JOMRES_EMAIL_TEMPLATES_TYPE', "Email type");
 jr_define('_JOMRES_EMAIL_TEMPLATES_NAME', "Email naam");
 jr_define('_JOMRES_EMAIL_TEMPLATES_DESC', "E-mail beschrijving");
-jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS', 'Zie deze pagina voor hulp om de e-mailberichten aan te passen en een lijst met beschikbare uitvoeringen: <a href = "http://www.jomres.net/manual/property-managers-guide/48-your-toolbar/settings/254- email-templates "target =" _blank "> Help met e-mailsjablonen </a>');
+jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS', 'Zie deze pagina voor hulp om de e-mailberichten aan te passen en een lijst met beschikbare uitvoeringen: <a href = "http://www.jomres.net/manual/property-managers-guide/48-your-toolbar/settings/254-email-templates" target="_blank" Help met e-mailsjablonen </a>');
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME', "Site Administrator Nieuwe Boekings Email");
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC', "Email sturen naar de site admin wanneer een nieuwe boeking is gemaakt en als de globale Paypal gateway is ingeschakeld ");
 jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME', "Hotel Nieuwe Boekings Email");

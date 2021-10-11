@@ -1222,7 +1222,7 @@ jr_define ('_JOMRES_CONVERSION_DISCLAIMER', 'Temos envidado todos os esforços p
 // 5.3.1
 jr_define ('_JOMRES_CURRENCYCONVERSION_TAB', 'Conversão de moeda / códigos de moeda');
 jr_define ('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'Chave API de detecção de IP');
-jr_define ('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Para definir automaticamente a lista suspensa de código de moeda, Jomres pode usar um serviço gratuito chamado IPinfoDB para detectar o país do visitante, no entanto, você precisa se registrar para uma chave de API em <a href = "http: //ipinfodb.com/register.php "target =" _ blank "> IPinfoDB </a> primeiro. ');
+jr_define ('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Para definir automaticamente a lista suspensa de código de moeda, Jomres pode usar um serviço gratuito chamado IPinfoDB para detectar o país do visitante, no entanto, você precisa se registrar para uma chave de API em <a href = "http: //ipinfodb.com/register.php target="_blank"> IPinfoDB </a> primeiro. ');
 jr_define ('_JOMRES_DEBUGGING_TAB', 'Depuração');
 jr_define ('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'Alojamento sem impostos');
 jr_define ('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'Alojamento inc taxas');
@@ -1674,7 +1674,7 @@ jr_define ('_JOMRES_EMAIL_TEMPLATES_TEXT', 'Texto do email');
 jr_define ('_JOMRES_EMAIL_TEMPLATES_TYPE', 'Tipo de e-mail');
 jr_define ('_JOMRES_EMAIL_TEMPLATES_NAME', 'Nome do email');
 jr_define ('_JOMRES_EMAIL_TEMPLATES_DESC', 'Descrição do email');
-jr_define ('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS', 'Consulte esta página para obter ajuda na personalização dos e-mails e uma lista da saída disponível: <a href = "http://www.jomres.net/manual/property-managers-guide/48-your -toolbar / settings / 254-email-templates "target =" _ blank "> Ajuda dos Modelos de Email </a> ');
+jr_define ('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS', 'Consulte esta página para obter ajuda na personalização dos e-mails e uma lista da saída disponível: <a href = "http://www.jomres.net/manual/property-managers-guide/48-your -toolbar / settings / 254-email-templates target="_blank"> Ajuda dos Modelos de Email </a> ');
 jr_define ('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME', 'Novo Email de Reserva do Administrador do Site');
 jr_define ('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC', 'Email enviado ao administrador do site quando uma nova reserva é feita, se o gateway global do Paypal estiver habilitado');
 jr_define ('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME', 'Novo e-mail de reserva do hotel');
@@ -1831,7 +1831,7 @@ jr_define ('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Sua chave de suporte é 
 jr_define ('_JOMRES_DASHBOARD_DRAG_TRASH', 'Arraste as reservas para esta área para cancelá-las');
 jr_define ('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define ('_JOMRES_LONG', 'Long (nn.nnnn)');
-jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Certifique-se de ter criado uma página WordPress que contém o shortcode [jomres: xx-XX] (onde xx-XX é o código do idioma do seu site, por exemplo [jomres: en-GB] ou [ jomres: en-US]) caso contrário, você não será capaz de acessar Jomres pelo frontend para gerenciar suas propriedades e reservas. <br> Jomres é construído na estrutura do Bootstrap, então você deve usá-lo em um tema baseado no Bootstrap. recomende um baseado no Bootstrap 3. Se você não tiver acesso a um tema, recomendamos que você use o tema Jomres Leohtian para Wordpress, que você pode <a href = "https://www.jomres.net/download/free- downloads / download / 5-miscelleneous-downloads / 11-leohtian-for-wordpress "target =" _ blank "> download aqui. </a> ');
+jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Certifique-se de ter criado uma página WordPress que contém o shortcode [jomres: xx-XX] (onde xx-XX é o código do idioma do seu site, por exemplo [jomres: en-GB] ou [ jomres: en-US]) caso contrário, você não será capaz de acessar Jomres pelo frontend para gerenciar suas propriedades e reservas. <br> Jomres é construído na estrutura do Bootstrap, então você deve usá-lo em um tema baseado no Bootstrap. recomende um baseado no Bootstrap 3. Se você não tiver acesso a um tema, recomendamos que você use o tema Jomres Leohtian para Wordpress, que você pode <a href = "https://www.jomres.net/download/free- downloads / download / 5-miscelleneous-downloads / 11-leohtian-for-wordpress target="_blank"> download aqui. </a> ');
 jr_define ('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', "Antes de criar um tipo de quarto, precisamos saber se é para uma propriedade do tipo hotel ou villa.");
 jr_define ('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', 'Clique para adicionar novos tipos de quartos');
 jr_define ('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES', 'Atenção, você tem um ou mais tipos de propriedade sem tipos de quarto. As propriedades precisam de tipos de quarto para que os gerentes de propriedade possam criar tarifas.');
@@ -2390,7 +2390,7 @@ jr_define ('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTIES', 'Total de propriedades:
 jr_define ('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTIES_DESC', 'Este é o número de propriedades disponíveis no JSN.');
 jr_define ('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS', 'Exibições de propriedade total:');
 jr_define ('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS_DESC', 'No total, todas as vezes que uma propriedade Jomres foi vinculada a partir de outro site baseado em Jomres.');
-jr_define ('_JOMRES_SYNDICATION_STATS_BLURB', 'The Jomres Syndicate Network (JSN) é um recurso gratuito disponível para todos os usuários de Jomres. Seu objetivo é fornecer a você publicidade gratuita de suas propriedades em outros sites baseados em Jomres. O objetivo é ajudar você tira seu site do papel rapidamente, oferecendo publicidade gratuita para que suas propriedades sejam reconhecidas e confiáveis, pois estão vinculadas a sites de alta confiabilidade e relevância que já são bem conhecidos pelos mecanismos de pesquisa. Veja <a href = "https: //www.jomres.net/features/jomres-syndication-network "target =" _ blank "> artigo em nosso site </a> e <a href =" https://www.jomres.net/manual/developers- guide-2/387-jomres-syndication-network "target =" _ blank "> o manual </a> para mais informações. ');
+jr_define ('_JOMRES_SYNDICATION_STATS_BLURB', 'The Jomres Syndicate Network (JSN) é um recurso gratuito disponível para todos os usuários de Jomres. Seu objetivo é fornecer a você publicidade gratuita de suas propriedades em outros sites baseados em Jomres. O objetivo é ajudar você tira seu site do papel rapidamente, oferecendo publicidade gratuita para que suas propriedades sejam reconhecidas e confiáveis, pois estão vinculadas a sites de alta confiabilidade e relevância que já são bem conhecidos pelos mecanismos de pesquisa. Veja <a href = "https: //www.jomres.net/features/jomres-syndication-network target="_blank"> artigo em nosso site </a> e <a href =" https://www.jomres.net/manual/developers- guide-2/387-jomres-syndication-network target="_blank"> o manual </a> para mais informações. ');
 
 
 jr_define ('GUEST_PROFILE_INFORMATION', 'Estes são os dados do seu perfil de convidado, campos com este símbolo <i class = "fa fa-users" aria-hidden = "true"> </i>

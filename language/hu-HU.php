@@ -936,7 +936,7 @@ Az űrlap sikeres elküldése után automatikusan bejelentkezik új fiókjába, 
 Ha még nem jelentkezett be fiókjába, akkor ezt a http://www.clickatell.com/login.php címen kell megtenni <br/>
 * A felső menüben válassza a \"Termékeim kezelése \" lehetőséget. <br/>
 * Válassza ki a használni kívánt API -kapcsolat típusát (HTTP API) a legördülő menüből (\"Kapcsolat hozzáadása\"). <br/>
-* Töltse ki az űrlapot. Győződjön meg arról, hogy beírta a zárolt IP -t (ennek a szervernek az IP -címét), és állítsa visszahívásként a HTTP POST beállítást. Be kell állítania az IP visszahívást ".get_showtime ('live_site')." értékre. \"/Index.php?option=com_jomres&task=sms_clickatell_callback, valamint felhasználói azonosítót és jelszót. <br/>
+* Töltse ki az űrlapot. Győződjön meg arról, hogy beírta a zárolt IP -t (ennek a szervernek az IP -címét), és állítsa visszahívásként a HTTP POST beállítást. Be kell állítania az IP visszahívást ".get_showtime ('live_site')." értékre. \"/index.php?option=com_jomres&task=sms_clickatell_callback, valamint felhasználói azonosítót és jelszót. <br/>
 Ha több API -kapcsolatot regisztrál, az egyes leírásoknak egyedi nevet kell megadniuk - nem rendelkezhet több azonos nevű API -val. <br/>
 Az űrlap sikeres elküldése után megjelennek a hitelesítési adatok, beleértve az egyes kapcsolatok egyedi API -azonosítóját (api_id). Ezekre a hitelesítési adatokra van szükség, amikor üzenetet küld a Clickatell átjáróhoz. <br/>
 <br/>
@@ -1208,7 +1208,7 @@ jr_define('_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY', 'Unpublished property');
 //5.3.1
 //jr_define ('_JOMRES_CURRENCYCONVERSION_TAB', 'Valutaátváltás/pénznemkódok');
 //jr_define ('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'IP észlelési API kulcs');
-//jr_define ('_JOMRES_IP_DETECTION_API_KEY_DESC', 'A pénznemkód legördülő menüjének automatikus beállításához a Jomres képes az IPinfoDB nevű ingyenes szolgáltatás használatával felderíteni a látogató országát, azonban regisztrálnia kell egy API kulcsot a <a href = "http: //ipinfodb.com/register.php "target =" _ blank "> IPinfoDB </a> először. ');
+//jr_define ('_JOMRES_IP_DETECTION_API_KEY_DESC', 'A pénznemkód legördülő menüjének automatikus beállításához a Jomres képes az IPinfoDB nevű ingyenes szolgáltatás használatával felderíteni a látogató országát, azonban regisztrálnia kell egy API kulcsot a <a href = "http: //ipinfodb.com/register.php target="_blank"> IPinfoDB </a> először. ');
 //jr_define ('_JOMRES_DEBUGGING_TAB', 'Hibakeresés');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'Szállás adó nélkül');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'Szállás adóval ');
@@ -1660,7 +1660,7 @@ jr_define ('_JOMRES_EMAIL_TEMPLATES_TEXT', 'E -mail szövege');
 jr_define ('_JOMRES_EMAIL_TEMPLATES_TYPE', 'E -mail típus');
 jr_define ('_JOMRES_EMAIL_TEMPLATES_NAME', 'E -mail név');
 jr_define ('_JOMRES_EMAIL_TEMPLATES_DESC', 'E -mail leírás');
-jr_define ('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS', 'Ezen az oldalon talál segítséget az e-mailek személyre szabásához és a rendelkezésre álló kimenet listájához: <a href = "http://www.jomres.net/manual/property-managers-guide/48-your -toolbar/settings/254-email-templates "target =" _ blank "> E-mail sablonok súgója </a> ');
+jr_define ('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS', 'Ezen az oldalon talál segítséget az e-mailek személyre szabásához és a rendelkezésre álló kimenet listájához: <a href = "http://www.jomres.net/manual/property-managers-guide/48-your -toolbar/settings/254-email-templates target="_blank"> E-mail sablonok súgója </a> ');
 jr_define ('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME', 'Webhely adminisztrátorának új foglalási e -mailje');
 jr_define ('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC', 'E -mail elküldve a webhely adminisztrátorának új foglaláskor, ha a globális Paypal átjáró engedélyezve van');
 jr_define ('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME', 'Szálloda új foglalási e -mailje');
@@ -1819,7 +1819,7 @@ jr_define ('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'A támogatási kulcs ér
 jr_define ('_JOMRES_DASHBOARD_DRAG_TRASH', 'Húzza a foglalásokat erre a területre a törléshez');
 jr_define ('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define ('_JOMRES_LONG', 'Hosszú (nn.nnnn)');
-jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Győződjön meg róla, hogy létrehozott egy WordPress oldalt, amely tartalmazza a [jomres: xx-XX] rövid kódot (ahol xx-XX a webhely nyelvi kódja, például [jomres: en-GB] vagy [ jomres: hu-USA]) különben nem fog tudni hozzáférni a Jomres-hez a frontendről, hogy kezelje ingatlanjait és foglalásait. <br> A Jomres a Bootstrap keretrendszerre épül, ezért azt a Bootstrap-on alapuló témára kell használnia. javasoljon egyet a Bootstrap 3 alapján. Ha nem fér hozzá egy témához, akkor javasoljuk, hogy használja a Jomres Leohtian témát a Wordpresshez, amelyet <a href = "https://www.jomres.net/download/free- letöltések/letöltés/5-miscelleneous-downloads/11-leohtian-for-wordpress "target =" _ blank "> letöltés innen. </a> ');
+jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Győződjön meg róla, hogy létrehozott egy WordPress oldalt, amely tartalmazza a [jomres: xx-XX] rövid kódot (ahol xx-XX a webhely nyelvi kódja, például [jomres: en-GB] vagy [ jomres: hu-USA]) különben nem fog tudni hozzáférni a Jomres-hez a frontendről, hogy kezelje ingatlanjait és foglalásait. <br> A Jomres a Bootstrap keretrendszerre épül, ezért azt a Bootstrap-on alapuló témára kell használnia. javasoljon egyet a Bootstrap 3 alapján. Ha nem fér hozzá egy témához, akkor javasoljuk, hogy használja a Jomres Leohtian témát a Wordpresshez, amelyet <a href = "https://www.jomres.net/download/free- letöltések/letöltés/5-miscelleneous-downloads/11-leohtian-for-wordpress target="_blank"> letöltés innen. </a> ');
 jr_define ('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', 'Jomres legtöbb ingatlanának van bérbeadási folyamata. A szállodák/panziók/panziók külön szobákat bérelnek, a nyaralók/villák/apartmanok pedig az egész ingatlant. Ez az ingatlankezelő számára láthatatlan, de nekik ahhoz, hogy tarifákat hozzanak létre ingatlanukhoz, először hozzá kell adnia az ingatlan típusának megfelelő szobatípusokat.
 Például egy szállodai ingatlan típusnak általában több szobatípusra van szüksége (kétágyas szobák, egyágyas szobák és ikrek), míg a villáknak csak egy szobatípusuk lehet, pl. 2 hálószoba, 5 hálószoba.
 Lehetőség van szobatípusok létrehozására az olyan ingatlanokhoz, mint a Tours. Ez lehetővé teszi az ügyfelek számára, hogy csak olyan túrákat keressenek, mint a túrák, de az ingatlankezelő nem hoz létre tarifákat ehhez a tulajdontípushoz, így a kezelési folyamat nem releváns számukra.
@@ -2386,7 +2386,7 @@ jr_define ('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTIES', 'Összes tulajdonság:'
 jr_define ('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTIES_DESC', 'Ez a JSN -ben elérhető ingatlanok száma.');
 jr_define ('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS', 'A teljes tulajdon megjelenítése:');
 jr_define ('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS_DESC', 'Összesen minden alkalommal, amikor egy Jomres -tulajdont egy másik Jomres -alapú webhelyről linkeltek össze.');
-jr_define ('_JOMRES_SYNDICATION_STATS_BLURB', 'A Jomres Syndicate Network (JSN) egy ingyenes szolgáltatás, amely minden Jomres -felhasználó számára elérhető. Célja, hogy ingyenes hirdetést biztosítson ingatlanjairól más Jomres -alapú webhelyeken. A cél az, hogy segítsen gyorsan elindítja webhelyét, és ingyenes hirdetést kínál, hogy felismerjék és megbízhatóak legyenek az ingatlanjai, mert nagy megbízhatóságú, nagy relevanciájú webhelyekhez kapcsolódnak, amelyeket a keresőmotorok már jól ismertek. Lásd ezt <a href = "https: //www.jomres.net/features/jomres-syndication-network "target =" _ blank "> cikk a weboldalunkon </a> és <a href =" https://www.jomres.net/manual/developers- guide-2/387-jomres-syndication-network "target =" _ blank "> a kézikönyv </a> további információkért. ');
+jr_define ('_JOMRES_SYNDICATION_STATS_BLURB', 'A Jomres Syndicate Network (JSN) egy ingyenes szolgáltatás, amely minden Jomres -felhasználó számára elérhető. Célja, hogy ingyenes hirdetést biztosítson ingatlanjairól más Jomres -alapú webhelyeken. A cél az, hogy segítsen gyorsan elindítja webhelyét, és ingyenes hirdetést kínál, hogy felismerjék és megbízhatóak legyenek az ingatlanjai, mert nagy megbízhatóságú, nagy relevanciájú webhelyekhez kapcsolódnak, amelyeket a keresőmotorok már jól ismertek. Lásd ezt <a href = "https: //www.jomres.net/features/jomres-syndication-network target="_blank"> cikk a weboldalunkon </a> és <a href =" https://www.jomres.net/manual/developers- guide-2/387-jomres-syndication-network target="_blank"> a kézikönyv </a> további információkért. ');
 
 
 jr_define ('GUEST_PROFILE_INFORMATION', 'Ez a vendégprofil adatai, mezők ezzel a szimbólummal <i class = "fa fa-users" aria-hidden = "true"> </i>

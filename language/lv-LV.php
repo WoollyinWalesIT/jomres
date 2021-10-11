@@ -1180,7 +1180,7 @@ jr_define ('_JOMRES_CONVERSION_DISCLAIMER', 'Mēs esam darījuši visu iespējam
 // 5.3.1
 jr_define('_JOMRES_CURRENCYCONVERSION_TAB', 'Valūtas konvertācija/valūtu kodi');
 jr_define ('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'IP noteikšanas API atslēga');
-jr_define ('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Lai automātiski iestatītu valūtas koda nolaižamo izvēlni, Jomres var izmantot bezmaksas pakalpojumu IPinfoDB, lai noteiktu apmeklētāja valsti, tomēr jums ir jāreģistrējas API atslēgai vietnē <a href = "http: //ipinfodb.com/register.php "target =" _ blank "> IPinfoDB </a> vispirms. ');
+jr_define ('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Lai automātiski iestatītu valūtas koda nolaižamo izvēlni, Jomres var izmantot bezmaksas pakalpojumu IPinfoDB, lai noteiktu apmeklētāja valsti, tomēr jums ir jāreģistrējas API atslēgai vietnē <a href = "http: //ipinfodb.com/register.php target="_blank"> IPinfoDB </a> vispirms. ');
 jr_define ('_JOMRES_DEBUGGING_TAB', 'Atkļūdošana');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'Summa bez PVN');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'Summa ar PVN');
@@ -1632,7 +1632,7 @@ jr_define ('_JOMRES_EMAIL_TEMPLATES_TEXT', 'E -pasta teksts');
 jr_define ('_JOMRES_EMAIL_TEMPLATES_TYPE', 'E -pasta veids');
 jr_define ('_JOMRES_EMAIL_TEMPLATES_NAME', 'E -pasta nosaukums');
 jr_define ('_JOMRES_EMAIL_TEMPLATES_DESC', 'E -pasta apraksts');
-jr_define ('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS', 'Lūdzu, skatiet šo lapu, lai saņemtu palīdzību e-pastu pielāgošanā un pieejamās izejas sarakstu: <a href = "http://www.jomres.net/manual/property-managers-guide/48-your -toolbar/settings/254-email-templates "target =" _ blank "> E-pasta veidņu palīdzība </a> ');
+jr_define ('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS', 'Lūdzu, skatiet šo lapu, lai saņemtu palīdzību e-pastu pielāgošanā un pieejamās izejas sarakstu: <a href = "http://www.jomres.net/manual/property-managers-guide/48-your -toolbar/settings/254-email-templates target="_blank"> E-pasta veidņu palīdzība </a> ');
 jr_define ('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME', 'Vietnes administratora jauns rezervācijas e -pasts');
 jr_define ('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC', 'Vietnes administratoram nosūtīts e -pasts, veicot jaunu rezervāciju, ja ir iespējota globālā Paypal vārteja');
 jr_define ('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME', 'Viesnīcas jaunās rezervācijas e -pasts');
@@ -1789,7 +1789,7 @@ jr_define ('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Jūsu atbalsta atslēga 
 jr_define ('_JOMRES_DASHBOARD_DRAG_TRASH', 'Velciet rezervācijas uz šo apgabalu, lai tās atceltu');
 jr_define ('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define ('_JOMRES_LONG', 'Garš (nn.nnnn)');
-jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Lūdzu, pārliecinieties, vai esat izveidojis WordPress lapu, kurā ir īss kods [jomres: xx-XX] (kur xx-XX ir jūsu vietnes valodas kods, piemēram, [jomres: lv-GB] vai [ jomres: lv] ieteikt vienu, pamatojoties uz Bootstrap 3. Ja jums nav piekļuves motīvam, iesakām Wordpress izmantot Jomres Leohtian tēmu, kuru varat <a href = "https://www.jomres.net/download/free- downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress "target =" _ blank "> lejupielādēt no šejienes. </a> ');
+jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Lūdzu, pārliecinieties, vai esat izveidojis WordPress lapu, kurā ir īss kods [jomres: xx-XX] (kur xx-XX ir jūsu vietnes valodas kods, piemēram, [jomres: lv-GB] vai [ jomres: lv] ieteikt vienu, pamatojoties uz Bootstrap 3. Ja jums nav piekļuves motīvam, iesakām Wordpress izmantot Jomres Leohtian tēmu, kuru varat <a href = "https://www.jomres.net/download/free- downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress target="_blank"> lejupielādēt no šejienes. </a> ');
 jr_define ('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', "Pirms jūs varat izveidot telpas tipu, mums jāzina, vai tas ir viesnīcas tipa īpašums vai villa tipa īpašums.");
 jr_define ('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', 'Noklikšķiniet, lai pievienotu jaunus telpu tipus');
 jr_define ('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES', 'Brīdinājums, jums ir viens vai vairāki īpašuma tipi bez istabu tipiem. Īpašumiem ir nepieciešami telpu tipi, lai īpašumu pārvaldnieki varētu izveidot tarifus.');
@@ -2354,7 +2354,7 @@ jr_define ('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTIES', 'Kopējie rekvizīti:')
 jr_define ('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTIES_DESC', 'Šis ir JSN pieejamo īpašumu skaits.');
 jr_define ('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS', 'Kopējais īpašums parāda:');
 jr_define ('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS_DESC', 'Kopumā visas reizes, kad Jomres īpašums ir saistīts ar citu Jomres bāzētu vietni.');
-jr_define ('_JOMRES_SYNDICATION_STATS_BLURB', 'Jomres sindikāta tīkls (JSN) ir bezmaksas funkcija, kas pieejama visiem Jomres lietotājiem. Tā mērķis ir nodrošināt jums bezmaksas jūsu nekustamo īpašumu reklāmu citās Jomres balstītās vietnēs. Mērķis ir palīdzēt jūs ātri sākat savu vietni, piedāvājot bezmaksas reklāmu, lai jūsu īpašumi tiktu atpazīti un uzticami, jo tie ir saistīti ar augstu uzticamību un augstas atbilstības vietnēm, kas jau ir labi zināmas meklētājprogrammām. Skatiet šo <a href = "https: //www.jomres.net/features/jomres-syndication-network "target =" _ blank "> raksts mūsu vietnē </a> un <a href =" https://www.jomres.net/manual/developers- guide-2/387-jomres-syndication-network "target =" _ blank "> rokasgrāmata </a>, lai iegūtu vairāk informācijas. ');
+jr_define ('_JOMRES_SYNDICATION_STATS_BLURB', 'Jomres sindikāta tīkls (JSN) ir bezmaksas funkcija, kas pieejama visiem Jomres lietotājiem. Tā mērķis ir nodrošināt jums bezmaksas jūsu nekustamo īpašumu reklāmu citās Jomres balstītās vietnēs. Mērķis ir palīdzēt jūs ātri sākat savu vietni, piedāvājot bezmaksas reklāmu, lai jūsu īpašumi tiktu atpazīti un uzticami, jo tie ir saistīti ar augstu uzticamību un augstas atbilstības vietnēm, kas jau ir labi zināmas meklētājprogrammām. Skatiet šo <a href = "https: //www.jomres.net/features/jomres-syndication-network target="_blank"> raksts mūsu vietnē </a> un <a href =" https://www.jomres.net/manual/developers- guide-2/387-jomres-syndication-network target="_blank"> rokasgrāmata </a>, lai iegūtu vairāk informācijas. ');
 
 
 jr_define ('GUEST_PROFILE_INFORMATION', 'Šie ir jūsu viesu profila dati, lauki ar šo simbolu <i class = "fa fa-users" aria-hidden = "true"> </i>

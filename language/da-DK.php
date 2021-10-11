@@ -937,7 +937,7 @@ Når du har indsendt formularen, bliver du automatisk logget ind på din nye kon
 Hvis du ikke allerede er logget ind på din konto, skal du gøre det på http://www.clickatell.com/login.php <br/>
 * Vælg \"Administrer mine produkter \" i topmenuen. <br/>
 * Vælg den API -forbindelsestype, du ønsker at bruge (HTTP API) i rullemenuen ('Tilføj forbindelse'). <br/>
-* Udfyld formularen. Sørg for, at du indtaster den låste IP (denne servers IP), indstil Tilbagekald til HTTP POST. Du skal indstille IP -tilbagekald til ".get_showtime ('live_site')."/Index.php? Option = com_jomres & task = sms_clickatell_callback og et bruger -id og kodeord. <br/>
+* Udfyld formularen. Sørg for, at du indtaster den låste IP (denne servers IP), indstil Tilbagekald til HTTP POST. Du skal indstille IP -tilbagekald til ".get_showtime ('live_site')."/index.php? Option = com_jomres & task = sms_clickatell_callback og et bruger -id og kodeord. <br/>
 Hvis du registrerer mere end én API -forbindelse, skal det beskrivelsesnavn, du indtaster for hver, være unikt - du kan ikke have flere API'er med samme navn. <br/>
 Efter at du har indsendt formularen, vises dine godkendelsesoplysninger, inklusive hver forbindelses unikke API -id (api_id). Disse godkendelsesoplysninger er påkrævede, når du opretter forbindelse til Clickatell -gatewayen for at sende en besked. <br/>
 <br/>

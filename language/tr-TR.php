@@ -966,7 +966,7 @@ jr_define('_JOMRES_APIKEY_REMAKE', 'Yeni API anahtarı oluştur');
 jr_define('_JOMRES_SINGLEPROPERTYINSTALLATION_TITLE', 'Bu tek bir mülk kurulumu mu?');
 jr_define('_JOMRES_SINGLEPROPERTYINSTALLATION_DESC', 'Bu seçenek Evet olarak ayarlanırsa, yetkili olmayan kullanıcılara Jomres\'ın ön görünüşü büyük ölçüde basitleştirilir. Bir menü seçeneğinden Jomres\'a yapılan varsayılan çağrılar, işletmelerin listesi verilmek yerine, Sistemdeki ilk mülk için rezervasyon formuna konuk olan mülk yöneticileri, Emlak Ayrıntıları önizleme düğmesini veya Yeni mülk ekle düğmesini görmez. Sadece bir mülk listelemek ve mülk için rezervasyon yaptırmak istiyorsanız idealdir. />');
 jr_define('_JOMRES_AJAXFORM_BILLING_BALANCE_PAYMENT', 'Bakiye ödemeleri');
-jr_define('_JOMRES_WARNINGS_GLOBALEDITINGMODE', 'Not: Global Düzenleme modu etkinse Düzenleme Modu\'nu kullanıyorsunuz.Bu, Global Düzenleme modunun ne anlama geldiğini anlarsanız iyi olur, ancak kendinize sorun çıkarmayacağınız halde emin değilseniz Jomres\'ı bu şekilde kullanmanız gerekirse, lütfen <a href = "http://www.jomres.net/manual/developers-guide/53-customising-jomres/editing-labels-languages/268-editing-mode" adresine bakın. "Target =" _blank "> düzenleme modu el kitabı sayfasını </a> ziyaret edin.');
+jr_define('_JOMRES_WARNINGS_GLOBALEDITINGMODE', 'Not: Global Düzenleme modu etkinse Düzenleme Modu\'nu kullanıyorsunuz.Bu, Global Düzenleme modunun ne anlama geldiğini anlarsanız iyi olur, ancak kendinize sorun çıkarmayacağınız halde emin değilseniz Jomres\'ı bu şekilde kullanmanız gerekirse, lütfen <a href = "http://www.jomres.net/manual/developers-guide/53-customising-jomres/editing-labels-languages/268-editing-mode" adresine bakın.   " target="_blank" düzenleme modu el kitabı sayfasını </a> ziyaret edin.');
 jr_define('_JOMRES_SUPPORTKEY', 'Destek anahtarı');
 jr_define('_JOMRES_SUPPORTKEY_DESC', 'Destek lisans anahtar numaranız (lisans numaranız olarak da bilinir) Jomres için eklentileri indirebilmek için güncel lisansa sahip olmanız gerekir.');
 jr_define('_JOMRES_PERSONAL_DISCOUNT', 'Kişisel indirim');
@@ -1185,7 +1185,7 @@ jr_define('_JOMRES_CONVERSION_DISCLAIMER', "Elimizdeki en doğru ve zamanında d
 // 5.3.1
 jr_define('_JOMRES_CURRENCYCONVERSION_TAB', 'Para birimi dönüştürme / para birimi kodları');
 jr_define('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'IP Algılama API Anahtarı');
-jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Para birimi kodunu otomatik olarak ayarlamak için açılır menü Jomres, ziyaretçinin bulunduğu ülkeyi tespit etmek için IPinfoDB adlı ücretsiz bir hizmet kullanabilir, ancak bir API anahtarı için <a href = "http: //ipinfodb.com/register.php "target =" _blank "> IPinfoDB </a> önce. ');
+jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Para birimi kodunu otomatik olarak ayarlamak için açılır menü Jomres, ziyaretçinin bulunduğu ülkeyi tespit etmek için IPinfoDB adlı ücretsiz bir hizmet kullanabilir, ancak bir API anahtarı için <a href = "http: //ipinfodb.com/register.php   " target="_blank" IPinfoDB </a> önce. ');
 jr_define('_JOMRES_DEBUGGING_TAB', 'Hata ayıklama');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'Konaklama ücreti (vergiler hariç)');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'Konaklama ücreti (Vergiler dahil)');
@@ -1269,7 +1269,7 @@ jr_define('_JOMRES_LICENSESERVER_USERNAME_DESC', "Lisans sunucusunda bir kullan�
 jr_define('_JOMRES_VERSIONCHECK_THISJOMRESVERSION', "Bu Jomres sürümü:");
 jr_define('_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION', "Son Jomres sürümü");
 jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING', "Uyarı: Jomres'ın yeni bir sürümü mevcut, en kısa sürede yükseltmenizi önerirsiniz.");
-jr_define('_JOMRES_PRODUCT_INFORMATION', 'Jomres\'a hoş geldiniz, rezervasyon sistemini beğeneceğinizi umuyoruz.Jomres Starter, Business veya Enterprise lisansını satın almak isterseniz <a href = "http: // www. Jomres.net/prices "target =" _blank "> Sitenizi ziyaret ederek nasıl yeni sürüme geçebileceğinizi öğrenin. ');
+jr_define('_JOMRES_PRODUCT_INFORMATION', 'Jomres\'a hoş geldiniz, rezervasyon sistemini beğeneceğinizi umuyoruz.Jomres Starter, Business veya Enterprise lisansını satın almak isterseniz <a href = "http: // www. Jomres.net/prices   " target="_blank" Sitenizi ziyaret ederek nasıl yeni sürüme geçebileceğinizi öğrenin. ');
 jr_define('_JOMRES_PRODUCT_INFORMATION2', 'Bu sistem her bir senaryo için ideal, tek bir mülk için basit bir rezervasyon formu, birden fazla kullanıcıya birden fazla kullanıcıya, birden çok dilde, birden çok özelliği olan siteye kadar. "Yardım" bölümüne bakın. Ilk adımlarınız boyunca size rehberlik edecek "Başlarken" sayfası da dahil olmak üzere sola gidin. ');
 jr_define('_JOMRES_ROBBED_PORTALUI_CURRENT_PROPERTY', "Aktif özellik");
 jr_define('_JOMRES_CONFIG_ALTERNATE_SMTP_TITLE', "E-posta Ayarları");

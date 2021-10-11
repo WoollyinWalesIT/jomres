@@ -1789,7 +1789,7 @@ jr_define('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS','サポートキーは有�
 jr_define('_JOMRES_DASHBOARD_DRAG_TRASH','予約をこのエリアにドラッグしてキャンセルします');
 jr_define('_JOMRES_LAT','Lat（nn.nnnn)');
 jr_define('_JOMRES_LONG','Long（nn.nnnn)');
-jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT','[jomres：xx-XX]ショートコード（xx-XXはサイトの言語コード、たとえば[jomres：en-GB]や[ jomres：en-US])そうしないと、フロントエンドからJomresにアクセスしてプロパティと予約を管理できなくなります。<br> JomresはBootstrapフレームワークに基づいて構築されているため、Bootstrapに基づくテーマで使用する必要があります。 Bootstrap 3に基づくものをお勧めします。テーマにアクセスできない場合は、Wordpress用のJomresLeohtianテーマを使用することをお勧めします。<ahref = "https://www.jomres.net/download/free- downloads / download / 5-miscelleneous-downloads / 11-leohtian-for-wordpress "target =" _blank ">ここからダウンロード</a> ');
+jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT','[jomres：xx-XX]ショートコード（xx-XXはサイトの言語コード、たとえば[jomres：en-GB]や[ jomres：en-US])そうしないと、フロントエンドからJomresにアクセスしてプロパティと予約を管理できなくなります。<br> JomresはBootstrapフレームワークに基づいて構築されているため、Bootstrapに基づくテーマで使用する必要があります。 Bootstrap 3に基づくものをお勧めします。テーマにアクセスできない場合は、Wordpress用のJomresLeohtianテーマを使用することをお勧めします。<ahref = "https://www.jomres.net/download/free- downloads / download / 5-miscelleneous-downloads / 11-leohtian-for-wordpress   " target="_blank"ここからダウンロード</a> ');
 jr_define('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES','Jomresのほとんどの物件には賃貸管理プロセスがあります。ホテル/ B＆B /ペンションは個々の部屋を貸し出し、コテージ/ヴィラ/アパートは物件全体を貸し出します。これはプロパティマネージャーには見えませんが、彼らにとっては見えません。プロパティの料金を作成できるようにするには、最初にプロパティタイプに適した部屋タイプを追加する必要があります。
 たとえば、ホテルのプロパティタイプには通常、複数の部屋タイプ（ダブルルーム、シングルルーム、ツイン)が必要ですが、ヴィラには1つの部屋タイプしかありません。 2ベッドルーム、5ベッドルーム。
 ツアーなどのプロパティの部屋タイプを作成することができます。これにより、顧客はツアーなどのプロパティのみを検索できますが、プロパティマネージャはこのプロパティタイプの料金を作成しないため、管理プロセスはそれらに関連していません。
@@ -2351,7 +2351,7 @@ jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTIES','合計プロパティ：
 jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTIES_DESC','これはJSNで使用可能なプロパティの数です。');
 jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS','プロパティの合計表示数：');
 jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS_DESC','合計で、Jomresプロパティが別のJomresベースのサイトからリンクされているすべての時間。');
-jr_define('_JOMRES_SYNDICATION_STATS_BLURB','Jomres Syndicate Network（JSN)は、すべてのJomresユーザーが利用できる無料の機能です。その目的は、他のJomresベースのサイトでプロパティの無料広告を提供することです。あなたはあなたのサイトを早く立ち上げ、無料の広告を提供して、あなたの財産が検索エンジンにすでによく知られている信頼性と関連性の高いウェブサイトにリンクされているので、あなたの財産が認識され信頼されるようにします。これを参照してください<a href = "https： //www.jomres.net/features/jomres-syndication-network"target = "_blank">当社のウェブサイトの記事</a>および<ahref = "https://www.jomres.net/manual/developers-ガイド-2 / 387-jomres-syndication-network "target =" _ blank ">詳細については、マニュアル</a>。 ');
+jr_define('_JOMRES_SYNDICATION_STATS_BLURB','Jomres Syndicate Network（JSN)は、すべてのJomresユーザーが利用できる無料の機能です。その目的は、他のJomresベースのサイトでプロパティの無料広告を提供することです。あなたはあなたのサイトを早く立ち上げ、無料の広告を提供して、あなたの財産が検索エンジンにすでによく知られている信頼性と関連性の高いウェブサイトにリンクされているので、あなたの財産が認識され信頼されるようにします。これを参照してください<a href = "https： //www.jomres.net/features/jomres-syndication-network"target = "_blank">当社のウェブサイトの記事</a>および<ahref = "https://www.jomres.net/manual/developers-ガイド-2 / 387-jomres-syndication-network target="_blank">詳細については、マニュアル</a>。 ');
 
 
 jr_define('GUEST_PROFILE_INFORMATION','これはゲストプロファイルデータであり、この記号が付いたフィールド<i class = "fa fa-users" aria-hidden = "true"> </ i>
