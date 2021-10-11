@@ -1800,7 +1800,7 @@ jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LIST_ROOM_TYPES','[新規]�
 jr_define('_JOMRES_PROPERTYTYPE_FLAG_TOURS','ツアー');
 jr_define('_JOMRES_PROPERTYTYPE_FLAG_REALESTATE','予約なし/不動産（単純なリスト)');
 jr_define('_JOMRES_CONFIG_LOG_LOCATION','ログファイルの場所');
-jr_define('_JOMRES_CONFIG_LOG_LOCATION_DESC','Jomresは、デフォルトでシステムアクティビティを' .JOMRES_SYSTEMLOG_PATH。 .' の場所に記録します。このファイルには機密情報（APIキー、システムパス、ゲートウェイ情報、ゲスト情報)が含まれている可能性があるため、このパスを変更することを強くお勧めします。これが何を意味するのかわからない場合は、ファイルシステムを知っているので、Webホストにアドバイスを求めてください。 ');
+jr_define('_JOMRES_CONFIG_LOG_LOCATION_DESC','Jomresは、デフォルトでシステムアクティビティを' .JOMRES_SYSTEMLOG_PATH.' の場所に記録します。このファイルには機密情報（APIキー、システムパス、ゲートウェイ情報、ゲスト情報)が含まれている可能性があるため、このパスを変更することを強くお勧めします。これが何を意味するのかわからない場合は、ファイルシステムを知っているので、Webホストにアドバイスを求めてください。 ');
 jr_define('_JOMRES_CONFIG_LOG_LOCATION_WARNING','Jomresは、APIキー、システムパス、ゲートウェイ、ゲスト情報など、システムに関する詳細情報をログに記録します。これらはすべて、インターネットの他の部分には表示されないはずです。システムログパスが設定されていないため、システムログは現在「.JOMRES_SYSTEMLOG_PATH。」ディレクトリに保存されていますが、これは理想的ではありません。[サイトの構成]-> [デバッグ]にアクセスして、ファイルシステムにWebルートの外部のパスを設定してください。不明な点がある場合は、Webホストにお問い合わせください。彼らはあなたに助言することができるでしょう。」');
 jr_define('_JOMRES_CONFIG_LOG_LOCATION_RECOMMENDED','C​​MSがWebサイトのルートディレクトリにインストールされている場合、適切な場所は');
 jr_define('_JOMRES_CONFIG_GMAP_KEY_WARNING',"Googleマップキーが設定されていません。Googleマップの最近の変更により、すべての新しいサイトでGoogleマップの機能を使用するにはAPIキーが必要になります。<ahref = 'http： //www.jomres.net/manual/site-managers-guide/14-getting-started/338-google-maps-api-key'target='_blank'>APIキーの作成方法についてはマニュアルページをご覧ください< / a>そしてキーをJomresに保存します。 ");

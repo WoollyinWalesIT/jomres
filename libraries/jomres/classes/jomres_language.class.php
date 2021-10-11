@@ -46,7 +46,7 @@ class jomres_language
 		} else {
 			$jomresConfig_lang = 'en-GB';
 		}
-        // $jomresConfig_lang = "fr-FR"; // For testing language files
+
 
 		$langfile_crossref = $this->define_langfile_to_languages_array();
 		$this->datepicker_crossref = $this->define_langfile_to_datepicker_files_array();
@@ -57,7 +57,7 @@ class jomres_language
 		if (!array_key_exists($jomresConfig_lang, $langfile_crossref)) {
 			$jomresConfig_lang = $this->get_shortcode_to_longcode($jomresConfig_lang);
 		}
-
+        
 		$tmpBookingHandler->tmplang[ 'jomreslang' ] = $jomresConfig_lang;
 
 		$this->lang = $jomresConfig_lang;
@@ -66,7 +66,6 @@ class jomres_language
 		//set lang showtime, eg: en-GB
 		set_showtime('lang', $this->lang);
 		set_showtime('datepicker_lang', $this->datepicker_lang);
-
 
 		$key = array_search($jomresConfig_lang, $this->shortcodes);
 		set_showtime('lang_shortcode', $key);
@@ -90,6 +89,7 @@ class jomres_language
 	public function get_language($property_type = '')
 	{
 		//load the property type specific language file. If it doesn`t exist, do nothing, so the default language strings will be used
+
 		if ($property_type != '') {
 			if (file_exists(JOMRESPATH_BASE.JRDS.'language'.JRDS.strtolower($property_type).JRDS.$this->lang.'.php')) {
 				require_once JOMRESPATH_BASE.JRDS.'language'.JRDS.strtolower($property_type).JRDS.$this->lang.'.php';
@@ -108,8 +108,8 @@ class jomres_language
 
 			//load language context language file if no property type specific language file found above
 			if ($jrConfig[ 'language_context' ] != '') {
-				if (file_exists(JOMRESPATH_BASE.JRDS.'language'.JRDS.$jrConfig[ 'language_context' ].JRDS.$this->lang.'.php')) {
-					require_once JOMRESPATH_BASE.JRDS.'language'.JRDS.$jrConfig[ 'language_context' ].JRDS.$this->lang.'.php';
+				if (file_exists(JOMRESPATH_BASE.'language'.JRDS.$jrConfig[ 'language_context' ].JRDS.$this->lang.'.php')) {
+					require_once JOMRESPATH_BASE.'language'.JRDS.$jrConfig[ 'language_context' ].JRDS.$this->lang.'.php';
 
 					return true;
 				} elseif (file_exists(JOMRESPATH_BASE.JRDS.'language'.JRDS.$jrConfig[ 'language_context' ].JRDS.'en-GB.php')) {
@@ -120,12 +120,11 @@ class jomres_language
 			}
 
 			//if still nothing found, load the default language file
-			if (file_exists(JOMRESPATH_BASE.JRDS.'language'.JRDS.$this->lang.'.php')) {
-				require_once JOMRESPATH_BASE.JRDS.'language'.JRDS.$this->lang.'.php';
-
+			if (file_exists(JOMRESPATH_BASE.'language'.JRDS.$this->lang.'.php')) {
+				require_once JOMRESPATH_BASE.'language'.JRDS.$this->lang.'.php';
 				return true;
-			} elseif (file_exists(JOMRESPATH_BASE.JRDS.'language'.JRDS.'en-GB.php')) {
-				require_once JOMRESPATH_BASE.JRDS.'language'.JRDS.'en-GB.php';
+			} elseif (file_exists(JOMRESPATH_BASE.'language'.JRDS.'en-GB.php')) {
+				require_once JOMRESPATH_BASE.'language'.JRDS.'en-GB.php';
 
 				return true;
 			} else {

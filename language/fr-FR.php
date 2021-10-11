@@ -810,7 +810,7 @@ jr_define('_JOMRES_COM_A_CRON_TITLE', 'Définition des résultats des tâches au
 jr_define('_JOMRES_COM_A_CRON_DESC', 'Information du travail de PseudoCRON. La fonctionnalité pseudoCRON est nécessaire pour le traitement de la facturation et des commissions.');
 jr_define('_JOMRES_COM_A_CRON_IMMEDIATERUN', 'Minicomposants CRONs installés. Pour exécuter la tâche CRON, utilisez les liens ci-dessous. Remarquez que les tâches automatiques (cTâche CRON) ne génèrent aucun export de données, donc il ne s\'affichera aucune information sur la page. Référez-vous par contre à la liste de travaux ci-dessous.');
 jr_define('_JOMRES_COM_A_CRON_METHOD', 'Méthode');
-jr_define('_JOMRES_COM_A_CRON_METHOD_DESC', 'Si vous n\'avez pas accès aux tâches automatiques (CRON), définissez ceci comme minicomposant, autrement créez une tâche automatique (tâche CRON) et préparez-la pour exécution <br /> curl -s '.JOMRES_SITEPAGE_URL_AJAX.'&task=cronjobs&tmpl='.get_showtime(tmplcomponent).'&no_html=1>/dev/null');
+jr_define('_JOMRES_COM_A_CRON_METHOD_DESC', 'Si vous n\'avez pas accès aux tâches automatiques (CRON), définissez ceci comme minicomposant, autrement créez une tâche automatique (tâche CRON) et préparez-la pour exécution <br /> curl -s '.JOMRES_SITEPAGE_URL_AJAX.'&task=cronjobs&tmpl='.get_showtime('tmplcomponent').'&no_html=1>/dev/null');
 jr_define('_JOMRES_COM_A_CRON_LOGGING', 'Afficher les logs dans le navigateur');
 jr_define('_JOMRES_COM_A_CRON_LOGGING_DESC', 'Fonctionne seulement si la méthode est définie comme minicomposant.');
 jr_define('_JOMRES_COM_A_CRON_LOGGINGENABLED', 'Log activé');

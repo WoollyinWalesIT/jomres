@@ -1237,7 +1237,7 @@ jr_define ('_JOMRES_DATEPERIOD_S', 's');
 jr_define ('_JOMRES_DATEPERIOD_AGO', 'pred');
 jr_define ('_JOMRES_DATEPERIOD_FROMNOW', 'odteraz');
 jr_define ('_JOMRES_WHOLEDAY_TITLE', 'Rezervácie sú na celé dni?');
-jr_define ('_JOMRES_WHOLEDAY_DESC', 'Štandardne systém rezervuje zdroje v noci, takže rezervácia od prvého januára'. dátum ('Y', strtotime ('budúci rok')). 'do 2. januára' .date ('Y', strtotime ('next year')). 'pokrýva iba jednu noc. Ak však nastavíte túto možnosť na Áno, rezervácia bude namiesto toho zahŕňať celé dni, takže rezervácia v tieto dni bude zahŕňať obe dní a zákazníkovi budú účtované dva dni. ');
+jr_define ('_JOMRES_WHOLEDAY_DESC', 'Štandardne systém rezervuje zdroje v noci, takže rezervácia od prvého januára'. date ('Y', strtotime ('budúci rok')). 'do 2. januára' .date ('Y', strtotime ('next year')). 'pokrýva iba jednu noc. Ak však nastavíte túto možnosť na Áno, rezervácia bude namiesto toho zahŕňať celé dni, takže rezervácia v tieto dni bude zahŕňať obe dní a zákazníkovi budú účtované dva dni. ');
 jr_define ('_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', 'Za deň');
 jr_define ('_JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY', 'Na osobu za deň');
 jr_define ('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY', 'vyzdvihnutie');
