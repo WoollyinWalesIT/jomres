@@ -1762,7 +1762,7 @@ jr_define('INTEGRITY_CHECK_FILENAME', "Besturingssysteem Integrity Check ");
 jr_define('INTEGRITY_CHECK_LOCALHASH', "Lokale hash ");
 jr_define('INTEGRITY_CHECK_BUILDHASH', "Versie hash ");
 jr_define('INTEGRITY_CHECK_NOPROBLEMS', "Geweldig! Er zijn geen problemen gevonden. ");
-jr_define('_JOMRES_PROPERTYTYPE_MARKER', "Google maps marker ");
+jr_define('_JOMRES_PROPERTYTYPE_MARKER', "Google maps-markering ");
 jr_define('_JOMRES_JAVASCRIPT_READMORE', "Lees verder");
 jr_define('_JOMRES_JAVASCRIPT_READLESS', "Lees minder");
 jr_define('_JOMRES_TOURIST_TAX_TITLE', "Toeristenbelasting ");
@@ -1858,13 +1858,12 @@ jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_UPDATEINFO_KEYVALID', "Let op, na
 jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_RENEWALS', "Als u Jomres wilt bijwerken en de plugins heeft u een verlengingsvergunning nodig. Ga naar <a href='https://www.jomres.net/pricing' target='_blank'> onze site </a> voor meer informatie. In de meeste gevallen zijn deze licenties 50% van de prijs van een volledige licentie. Zorg ervoor dat u in onze winkel bent aangemeld voordat u een vernieuwing probeert te kopen. ");
 
 jr_define('_JOMRES_PAYMENT_METHOD_USED', "Betalingsmethode: ");
+jr_define('_JOMRES_PRICES', "Maak verbinding");
 
-jr_define('_JOMRES_PRICES', "Get Connected");
 
-
-jr_define('_OAUTH_TITLE', "App key management ");
-jr_define('_OAUTH_APPS', "REST API-client details ");
-jr_define('_OAUTH_IDENTIFIER', "Identifier ");
+jr_define('_OAUTH_TITLE', "App-sleutelbeheer");
+jr_define('_OAUTH_APPS', "REST API-client details");
+jr_define('_OAUTH_IDENTIFIER', "Identificatie");
 jr_define('_OAUTH_APIKEY', "Klant identificatie");
 jr_define('_OAUTH_SECRET', "Geheim");
 jr_define('_OAUTH_CREATED', "Gemaakt/Bijgewerkt App ");
@@ -1938,7 +1937,7 @@ jr_define( '_JOMRES_S3_ACTIVE_DESC', 'Experimentele feature. Als het aan staat w
 jr_define( '_JOMRES_CLOUDFRONT_DMAIN', 'CloudFront domain');
 jr_define( '_JOMRES_CLOUDFRONT_DMAIN_DESC', 'Verander je standaard Amazon S3 domain met je CloudFront domain');
 jr_define( '_JOMRES_S3_SSLTLS_DESC', 'Alleen aangeraden voor Windows and Mac OSX, als libcurl niet geboud is met Schannel of Secure Transport support (de standaard SSL libraries welke in Windows en Mac OS X zitten), dan moet je dit op nee zetten.');
-jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_WARNING', 'You`ve enabled the Amazon S3 integration, so you`ll have to copy all existing images to your S3 bucket. Images are now served to your site visitors from your Amazon S3 url, so you`ll need to copy them first to your S3 bucket, otherwise they won`t be visible to your site visitors.');
+jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_WARNING', 'Je hebt de Amazon S3-integratie ingeschakeld, dus je moet alle bestaande afbeeldingen naar je S3-bucket kopiëren. Afbeeldingen worden nu aan uw sitebezoekers weergegeven vanaf uw Amazon S3-url, dus u moet ze eerst naar uw S3-bucket kopiëren, anders zijn ze niet zichtbaar voor uw sitebezoekers.');
 jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_WARNING2', 'Wanneer je op deze knop drukt, onderbreek dan niet het proces maar wacht op een succesvolle terugmelding of foutmelding. Afhankelijk van de snelheid van de server, kan het even duren.');
 jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_ACTION', 'Kopieer bestaande afbeeldingen naar Amazon S3 bucket');
 
@@ -2099,466 +2098,494 @@ jr_define( '_JOMRES_GDPR_CONFIG_ENABLE_DESC', 'WIJ RADEN NIET AAN DAT U DE GDPR 
 jr_define( 'EMPTY_TEMP_DIR', 'temp dir leeg maken' );
 jr_define( 'EMPTY_TEMP_DIR_DONE', 'Tijdelijke bestanden verwijderd' );
 
+jr_define( 'MACHINE_TRANSLATION', 'Machine vertalingen');
+jr_define('MACHINE_TRANSLATION_DEFAULT_LANG', 'Brontaal');
+jr_define( 'MACHINE_TRANSLATION_DEFAULT_LANG_DESC', 'Het is mogelijk om machinevertalingsfunctionaliteit in te haken. Hiermee kunt u strings in één taal invoeren en kunnen vertalingen van externe services worden opgehaald. Houd er rekening mee dat niet alle vertaalservices alle talen ondersteunen. Zie die services voor meer detail.' );
 
-jr_define( 'MACHINE_TRANSLATION', 'Machine translations' );
-jr_define( 'MACHINE_TRANSLATION_DEFAULT_LANG', 'Source language' );
-jr_define( 'MACHINE_TRANSLATION_DEFAULT_LANG_DESC', 'It is possible to hook in machine translation functionality. This allows you to enter strings in one language and translations could be pulled from remote services. Be aware that not all translation services support all languages. See those services for more detail.' );
+jr_define( 'API_TOKEN_LIFETIME_DESC', 'Hoe lang blijft een API-token geldig, in seconden. 86400 = 1 dag, 31536000 = 1 jaar');
 
-jr_define( 'API_TOKEN_LIFETIME_DESC', 'How long an API token remains valid for, in seconds. 86400 = 1 day, 31536000 = 1 year');
-
-jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_EDIT', 'Room Types' );
-jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_NEW', 'New Room type' );
-jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_EDIT_LEAD', 'You can create and edit room types on this page. These room types will be specific to this property only. When setting up your property you first need some Room Types. You can use either those room typies created by the administrator, or you can add your own. Once you have one or more Room Types you can then create rooms of that Room Type. After you have rooms you can then create tariffs (prices) for those rooms because tariffs are linked to Room Types.' );
-jr_define( '_JOMRES_CONFIG_ROOM_TYPES_CREATING_TITLE', 'Managers can create room types?' );
-jr_define( '_JOMRES_CONFIG_ROOM_TYPES_CREATING_DESC', 'Use this option to configure whether or not managers can create their own room types in the frontend. We strongly recommend that you leave this option set to No when you first start using Jomres, especially if you are creating a portal because you should create all room types in the administrator area. Room types created by managers will appear in search forms, but because these room types are specific to individual properties, only one property will be shown in search results if that room type is selected durings searches. If you want so that only Super Property Managers can create room types then leave this option set to Yes and use the Access Control plugin to allow only super managers to view the "Settings > Room types" menu option. Only properties that rent out rooms in the property and use Advanced or Micromanage tariff editing modes can use this option. Villa/apartment type properties will not be able to use it.' );
-jr_define('_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_UPDATE', 'Room/property type updated');
-jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_CONFIG_TITLE', 'Show room types in search options' );
-jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_CONFIG_DESC', 'If you choose to allow property managers to create their own room types, you can choose whether or not to show those created room types in the search options where you have chosen to show room types.' );
-
-
-jr_define( '_JOMRES_QUICKBOOKING_EMAIL_ADDRESS_NOTE', "You shouldn't re-use the same email address for each booking.<br/>If you have a unique domain (eg. not a gmail email address) for your business then use the guest's telephone number as their email address. The email address would then look something like 123456@mydomain.com<br/>This will ensure that a new guest is created when you create a booking ." );
-
-jr_define( '_JOMRES_LOGIN_USERNAME', 'Email address' );
-jr_define( '_JOMRES_LOGIN_PASSWORD', 'Password' );
-jr_define( '_JOMRES_LOGIN_REASON_EMAIL_ALREADY_USED',"We are delighted that you would like to book with us again. To be able to manage all your bookings together, it is necessary that you log in so that the booking can be added to your account. This also ensures that you are authorized to use the e-mail address provided." );
-
-jr_define( '_JOMRES_LOGIN_RESET_MESSAGE', 'If you do not know your password we can send you a password reset email. Please follow the instructions in that email to reset your password.' );
-jr_define( '_JOMRES_LOGIN_RESET_BUTTON', 'Forgot your password?' );
-
-jr_define('_JOMRES_REVIEWS_ANONYMISE', 'Anonymise your name?');
-jr_define('_JOMRES_REVIEWS_ANONYMISE_DESC', 'If you choose to anonymise your name when reviewing we will use your initials instead.');
-jr_define('ANONYMOUS', 'Anon');
-
-jr_define('_JOMRES_REVIEWS_REPLY_SAID', ' said ');
-jr_define('_JOMRES_REVIEWS_REPLY_OPPORTUNITY', 'Reply to this review');
-jr_define('_JOMRES_REVIEWS_PLACEHOLDER_REPLY', 'Type your reply to this review here.');
-jr_define('_JOMRES_REVIEWS_YOUR_REPLY', 'Your reply');
-jr_define('_JOMRES_REVIEWS_REPLY_COMMENT', 'Main review');
-jr_define('_JOMRES_REVIEWS_REPLY_SAVED', 'Review reply saved');
+jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_EDIT', 'Kamertypes');
+jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_NEW', 'Nieuw kamertype');
+jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_EDIT_LEAD', 'Je kunt kamertypes maken en bewerken op deze pagina. Deze kamertypes zijn alleen specifiek voor deze accommodatie. Bij het opzetten van je accommodatie heb je eerst een aantal kamertypes nodig. Je kunt ofwel de kamertypes gebruiken die zijn gemaakt door de beheerder, of je kunt je eigen kamer toevoegen. Zodra je een of meer kamertypes hebt, kun je kamers van dat kamertype maken. Nadat je kamers hebt, kun je tarieven (prijzen) voor die kamers maken omdat tarieven zijn gekoppeld aan kamertypen .');
+jr_define( '_JOMRES_CONFIG_ROOM_TYPES_CREATING_TITLE', 'Managers kunnen kamertypes maken?');
+jr_define( '_JOMRES_CONFIG_ROOM_TYPES_CREATING_DESC', 'Gebruik deze optie om te configureren of managers hun eigen kamertypes in de frontend kunnen maken. We raden u ten zeerste aan om deze optie op Nee te laten staan ​​wanneer u Jomres voor het eerst gaat gebruiken, vooral als u een portal omdat u alle kamertypes moet aanmaken in het beheerdersgedeelte Kamertypes die door beheerders zijn aangemaakt, verschijnen in zoekformulieren, maar omdat deze kamertypes specifiek zijn voor individuele woningen, wordt er slechts één woning getoond in de zoekresultaten als dat kamertype is geselecteerd tijdens zoekopdrachten. Als u wilt dat alleen Super Property Managers kamertypes kunnen maken, laat deze optie dan op Ja staan ​​en gebruik de plug-in Toegangscontrole zodat alleen supermanagers de menuoptie "Instellingen > Kamertypes" kunnen bekijken. Alleen panden die huren kamers in de accommodatie en gebruik de geavanceerde of micromanage-tariefbewerkingsmodi, kunnen deze optie gebruiken. Villa-/appartementtype-eigenschappen kunnen deze niet gebruiken.' );
+jr_define('_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_UPDATE', 'Kamer-/eigendomstype bijgewerkt');
+jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_CONFIG_TITLE', 'Toon kamertypes in zoekopties');
+jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_CONFIG_DESC', 'Als u ervoor kiest om vastgoedbeheerders toe te staan ​​hun eigen kamertypes te creëren, kunt u ervoor kiezen om die aangemaakte kamertypes wel of niet te tonen in de zoekopties waar u gekozen hebt om kamertypes te tonen.' );
 
 
-jr_define('_JOMRES_REVIEWS_REPLY_RULES_WARNING', 'Before submitting a review reply, you must read the following. By submitting a reply you confirm that you agree to these terms and conditions.');
-jr_define('_JOMRES_REVIEWS_REPLY_RULES_GUIDELINES', 'What are our guidelines for a review reply?');
-jr_define('_JOMRES_REVIEWS_REPLY_RULES_REPORT', 'You are responding to the review of your property. You <em>must not</em> use your reply as a commercial dispute process. If you need to report a review, you must use the "Report Review" button on the listing, and not this review reply page.');
+jr_define( '_JOMRES_QUICKBOOKING_EMAIL_ADDRESS_NOTE', "Je moet niet hetzelfde e-mailadres voor elke boeking opnieuw gebruiken.<br/>Als je een uniek domein hebt (bijvoorbeeld geen Gmail-e-mailadres) voor je bedrijf, gebruik dan het telefoonnummer van de gast als hun e-mailadres. Het e-mailadres ziet er dan ongeveer uit als 123456@mijndomein.com<br/>Dit zorgt ervoor dat er een nieuwe gast wordt aangemaakt wanneer u een boeking maakt." );
 
-jr_define('_JOMRES_REVIEWS_REPLY_RULES_FIRM', 'Once you have left your reply you will not be able to edit it.');
+jr_define( '_JOMRES_LOGIN_USERNAME', 'E-mailadres');
+jr_define( '_JOMRES_LOGIN_PASSWORD', 'Wachtwoord');
+jr_define( '_JOMRES_LOGIN_REASON_EMAIL_ALREADY_USED',"We zijn verheugd dat u weer bij ons wilt boeken. Om al uw boekingen samen te kunnen beheren, is het noodzakelijk dat u inlogt zodat de boeking aan uw account kan worden toegevoegd. Dit ook zorgt ervoor dat u bevoegd bent om het opgegeven e-mailadres te gebruiken." );
 
-jr_define('_JOMRES_REVIEWS_REPLY_RULES_ALLOWED_TITLE', 'Allowed and Encouraged');
+jr_define( '_JOMRES_LOGIN_RESET_MESSAGE', 'Als u uw wachtwoord niet weet, kunnen we u een e-mail voor het opnieuw instellen van uw wachtwoord sturen. Volg de instructies in die e-mail om uw wachtwoord opnieuw in te stellen.');
+jr_define( '_JOMRES_LOGIN_RESET_BUTTON', 'Wachtwoord vergeten?');
+
+jr_define('_JOMRES_REVIEWS_ANONYMISE', 'Uw naam anonimiseren?');
+jr_define('_JOMRES_REVIEWS_ANONYMISE_DESC', 'Als je ervoor kiest om je naam te anonimiseren bij het beoordelen, zullen we in plaats daarvan je initialen gebruiken.');
+jr_define('ANONIEME', 'Anon');
+
+jr_define('_JOMRES_REVIEWS_REPLY_SAID', 'zei');
+jr_define('_JOMRES_REVIEWS_REPLY_OPPORTUNITY', 'Reageer op deze recensie');
+jr_define('_JOMRES_REVIEWS_PLACEHOLDER_REPLY', 'Typ hier uw antwoord op deze recensie.');
+jr_define('_JOMRES_REVIEWS_YOUR_REPLY', 'Uw antwoord');
+jr_define('_JOMRES_REVIEWS_REPLY_COMMENT', 'Hoofdbeoordeling');
+jr_define('_JOMRES_REVIEWS_REPLY_SAVED', 'Review antwoord opgeslagen');
+
+
+jr_define('_JOMRES_REVIEWS_REPLY_RULES_WARNING', 'Voordat u een beoordelingsantwoord indient, moet u het volgende lezen. Door een antwoord in te dienen, bevestigt u dat u akkoord gaat met deze algemene voorwaarden.');
+jr_define('_JOMRES_REVIEWS_REPLY_RULES_GUIDELINES', 'Wat zijn onze richtlijnen voor een recensie-antwoord?');
+jr_define('_JOMRES_REVIEWS_REPLY_RULES_REPORT', 'U reageert op de beoordeling van uw gelegenheid. U <em>mag uw antwoord niet</em> gebruiken als een proces voor commerciële geschillen. Als u een beoordeling wilt melden, moet u de Review"-knop op de lijst, en niet deze review-antwoordpagina.');
+
+jr_define('_JOMRES_REVIEWS_REPLY_RULES_FIRM', 'Als je je antwoord eenmaal hebt achtergelaten, kun je het niet meer bewerken.');
+
+jr_define('_JOMRES_REVIEWS_REPLY_RULES_ALLOWED_TITLE', 'Toegestaan ​​en aangemoedigd');
 jr_define('_JOMRES_REVIEWS_REPLY_RULES_ALLOWED_TEXT', '
-	<ul>
-    <li>A full response to the review.</li>
-    <li>Courtesy and Honesty.</li>
-    <li>Sensible responses to the reviewer\'s issues (remember, others may be having similar issues but did not take the opportunity to post a review).</li>
-    <li>Encourage the guest to get in contact with you directly to solve issues.
-    <li>Always remember that future guests will see your response. Make sure to be professional at all times.</li>
-	</ul>
-	');
-	
-jr_define('_JOMRES_REVIEWS_REPLY_RULES_NOTALLOWED_TITLE', 'Not allowed');
+<ul>
+    <li>Een volledige reactie op de recensie.</li>
+    <li>Hoffelijkheid en eerlijkheid.</li>
+    <li>Verstandige reacties op de problemen van de recensent (vergeet niet dat anderen soortgelijke problemen kunnen hebben, maar geen gebruik hebben gemaakt van de gelegenheid om een ​​recensie te plaatsen).</li>
+    <li>Moedig de gast aan om rechtstreeks contact met u op te nemen om problemen op te lossen.
+    <li>Onthoud altijd dat toekomstige gasten je reactie zullen zien. Zorg dat je te allen tijde professioneel bent.</li>
+</ul>
+');
+
+jr_define('_JOMRES_REVIEWS_REPLY_RULES_NOTALLOWED_TITLE', 'Niet toegestaan');
 
 jr_define('_JOMRES_REVIEWS_REPLY_RULES_NOTALLOWED_TEXT', '
-	<ul>
-    <li>Commercial disputes.</li>
-    <li>Questions to the Reviewer or Others.</li>
-    <li>Questionable Language (including cursing).</li>
-	</ul>
-	');
+<ul>
+    <li>Commerciële geschillen.</li>
+    <li>Vragen aan de beoordelaar of anderen.</li>
+    <li>Twijfelachtige taal (inclusief vloeken).</li>
+</ul>
+');
 
-jr_define('_JOMRES_COM_A_CRON_LASTRAN', 'Last ran');
-jr_define('_JOMRES_COM_A_CRON_SCHEDULE', 'Schedule');
+jr_define('_JOMRES_COM_A_CRON_LASTRAN', 'Laatst uitgevoerd');
+jr_define('_JOMRES_COM_A_CRON_SCHEDULE', 'Schema');
 
 
-jr_define('_JOMRES_INVOICE_NUMBERS', 'Invoice numbers');
+jr_define('_JOMRES_INVOICE_NUMBERS', 'Factuurnummers');
 
-jr_define('_JOMRES_USE_CUSTOM_INVOICE_NUMBERS_TITLE', 'Use custom invoice numbers?');
-jr_define('_JOMRES_USE_CUSTOM_INVOICE_NUMBERS_DESC', 'You can configure the system to use custom invoice numbers. Only new invoices will be affected.');
+jr_define('_JOMRES_USE_CUSTOM_INVOICE_NUMBERS_TITLE', 'Gebruik aangepaste factuurnummers?');
+jr_define('_JOMRES_USE_CUSTOM_INVOICE_NUMBERS_DESC', 'U kunt het systeem configureren om aangepaste factuurnummers te gebruiken. Alleen nieuwe facturen worden beïnvloed.');
 
-jr_define('_JOMRES_CUSTOM_INVOICE_NUMBERS_START_NUMBER_TITLE', 'Start number');
-jr_define('_JOMRES_CUSTOM_INVOICE_NUMBERS_START_NUMBER_DESC', 'Numbers are created consecutively. What should the first number be?');
+jr_define('_JOMRES_CUSTOM_INVOICE_NUMBERS_START_NUMBER_TITLE', 'Startnummer');
+jr_define('_JOMRES_CUSTOM_INVOICE_NUMBERS_START_NUMBER_DESC', 'Nummers worden opeenvolgend gemaakt. Wat moet het eerste nummer zijn?');
 
-jr_define('_JOMRES_CUSTOM_INVOICE_NUMBERS_PATTERN_TITLE', 'What format should the invoice number take?');
-jr_define('_JOMRES_CUSTOM_INVOICE_NUMBERS_PATTERN_DESC', 'Configure the invoice number format here. A format can look like {N}/{D} or {N}/{Y} where N is the automatically generated number, D = date in the format YYYYYMMDD (20190131) or Y = YYYY (2019). Any other alpha numeric characters not enclosed in curly braces will be left alone, so a pattern that looks like {N}/{D}-L would result in an invoice number (21) that looks something like 21/2019-L ');
+jr_define('_JOMRES_CUSTOM_INVOICE_NUMBERS_PATTERN_TITLE', 'Welk formaat moet het factuurnummer hebben?');
+jr_define('_JOMRES_CUSTOM_INVOICE_NUMBERS_PATTERN_DESC', 'Configureer hier het factuurnummerformaat. Een formaat kan eruit zien als {N}/{D} of {N}/{Y} waarbij N het automatisch gegenereerde nummer is, D = datum in het formaat JJJJJMMDD ( 20190131) of Y = YYYY (2019). Alle andere alfanumerieke tekens die niet tussen accolades staan, blijven staan, dus een patroon dat eruitziet als {N}/{D}-L zou resulteren in een factuurnummer (21) dat ziet er ongeveer uit als 21/2019-L ');
 
-jr_define('_JOMRES_SURCHARGE_TITLE', 'Surcharge');
-jr_define('_JOMRES_SURCHARGE_DESC', 'An additional charge that will be added to the room when booked (calculated per day)');
+jr_define('_JOMRES_SURCHARGE_TITLE', 'Toeslag');
+jr_define('_JOMRES_SURCHARGE_DESC', 'Een extra toeslag die bij boeking aan de kamer wordt toegevoegd (berekend per dag)');
 
 
 jr_define('_JOMRES_PDF_BUTTON', 'PDF');
 
 
-jr_define('_JOMRES_COM_LABEL_PRIORITY_TITLE', 'Prioritise site-wide labels?');
-jr_define('_JOMRES_COM_LABEL_PRIORITY_DESC', 'Custom text saved in the label editing or the translate lang file strings pages are considered "site-wide" labels. Property managers can also customise labels for each property using the label editing feature in the frontend. This allows a property manager to have different texts for his property, which is useful if the property is different to all of the other properties on the site.<br/> When the system searches for label texts, it will prioritise site-wide texts over property specific texts meaning that if a site-wide text exists for that label, the system will choose that one first. If you set this option to No, the system will prioritise property specific texts over site-wide texts.');
+jr_define('_JOMRES_COM_LABEL_PRIORITY_TITLE', 'Prioriteit geven aan labels voor de hele site?');
+jr_define('_JOMRES_COM_LABEL_PRIORITY_DESC', 'Aangepaste tekst die is opgeslagen in de labelbewerkings- of de vertaalpagina\'s met lang-bestandreeksen worden beschouwd als "site-brede" labels. Propertymanagers kunnen ook labels voor elke eigenschap aanpassen met behulp van de labelbewerkingsfunctie in de frontend. Dit maakt het mogelijk een vastgoedbeheerder om verschillende teksten voor zijn eigendom te hebben, wat handig is als het eigendom anders is dan alle andere eigendommen op de site.<br/> Wanneer het systeem zoekt naar labelteksten, geeft het voorrang aan sitebrede teksten boven eigendom specifieke teksten, wat inhoudt dat als er een site-brede tekst bestaat voor dat label, het systeem die eerst zal kiezen.Als u deze optie instelt op Nee, zal het systeem eigenschapspecifieke teksten voorrang geven boven site-brede teksten.');
 
-jr_define('_JOMRES_REFERRER', 'Referrer');
-jr_define('_JOMRES_REFERRER_SYSTEM', 'Jomres'); // This could be changed if whitelisting, so site "World's best booking site" would change this to "WBBS" or similar.
-jr_define('_JOMRES_LIBRARY_PACKAGES', 'Library Packages');
-jr_define('_JOMRES_LIBRARY_PACKAGES_DESC', 'Vendor and Node Modules are separate (free) packages for Jomres. You can re-install the packages on this page.');
-jr_define('_JOMRES_LIBRARY_PACKAGES_REFRESH', 'Re-install library packages');
+jr_define('_JOMRES_REFERRER', 'Verwijzer');
+jr_define('_JOMRES_REFERRER_SYSTEM', 'Jomres'); // Dit kan worden gewijzigd bij whitelisting, dus site "World's best booking site" zou dit veranderen in "WBBS" of iets dergelijks.
+jr_define('_JOMRES_LIBRARY_PACKAGES', 'Bibliotheekpakketten');
+jr_define('_JOMRES_LIBRARY_PACKAGES_DESC', 'Vendor en Node Modules zijn aparte (gratis) pakketten voor Jomres. U kunt de pakketten op deze pagina opnieuw installeren.');
+jr_define('_JOMRES_LIBRARY_PACKAGES_REFRESH', 'Bibliotheekpakketten opnieuw installeren');
 
-jr_define('_JOMRES_COM_PTYPES_NOT_DELETED', 'Unable to delete property type because it is still be used by some properties. You must change these properties to another property type first before attempting to delete this one. Property UIDs that prevent deletion : ');
+jr_define('_JOMRES_COM_PTYPES_NOT_DELETED', 'Kan eigenschapstype niet verwijderen omdat het nog steeds door sommige eigenschappen wordt gebruikt. U moet deze eigenschappen eerst wijzigen in een ander eigenschapstype voordat u probeert deze te verwijderen. Eigenschaps-UID\'s die verwijdering voorkomen: ');
 
-jr_define('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_HEADING', 'Random email addresses');
-jr_define('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_TITLE', 'Offer Random Emails');
-jr_define('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_DESCRIPTION', 'You can allow the system to generate random email addresses in the Quick Booking popup in the dashboard. This allows managers and receptionists to create bookings for guests that they do not have email addresses for, it is intended to work as a time saver for sites with many receptionists/managers who understand that these random emails will never be used for real communication, the purpose is to get around the fact that in Jomres all guests must have email addresses. You MUST also provide a domain in the next field.');
-jr_define('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_DOMAIN_TITLE', 'Random Emails Domain');
-jr_define('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_DOMIAN_DESCRIPTION', 'This should not be a normal email domain, such as gmail or outlook. Instead it can either be your own domain, or something else entirely, such as "mysite.emails"');
-jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_FORM', 'Upload area');
-jr_define('_LIST_USERS_LEGEND_NOROLE', 'No user role');
+jr_define('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_HEADING', 'Willekeurige e-mailadressen');
+jr_define('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_TITLE', 'Bied willekeurige e-mails aan');
+jr_define('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_DESCRIPTION', 'Je kunt toestaan ​​dat het systeem willekeurige e-mailadressen genereert in de Quick Booking-pop-up in het dashboard. Hiermee kunnen managers en receptionisten boekingen maken voor gasten waarvoor ze geen e-mailadres hebben, het is bedoeld om te werken als tijdsbesparing voor sites met veel receptionisten/managers die begrijpen dat deze willekeurige e-mails nooit voor echte communicatie zullen worden gebruikt, is het doel om het feit te omzeilen dat in Jomres alle gasten een e-mailadres moeten hebben. het volgende veld.');
+jr_define('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_DOMAIN_TITLE', 'Willekeurig e-maildomein');
+jr_define('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_DOMIAN_DESCRIPTION', 'Dit mag geen normaal e-maildomein zijn, zoals Gmail of Outlook. In plaats daarvan kan het uw eigen domein zijn, of iets heel anders, zoals "mijnsite.emails"');
+jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_FORM', 'Uploadgebied');
+jr_define('_LIST_USERS_LEGEND_NOROLE', 'Geen gebruikersrol');
 jr_define('_LIST_USERS_LEGEND_RECEPTIONIST', 'Receptionist');
 jr_define('_LIST_USERS_LEGEND_PROPERTYMANAGER', 'Property Manager');
 jr_define('_LIST_USERS_LEGEND_SUPERPROPERTYMANAGER', 'Super Property Manager');
-jr_define('_LIST_USERS_LEGEND_SUSPENDED', 'Suspended');
-jr_define('_LIST_USERS_LEGEND_DELETEDFROMCMS', 'Deleted from CMS');
+jr_define('_LIST_USERS_LEGEND_SUSPENDED', 'Opgeschort');
+jr_define('_LIST_USERS_LEGEND_DELETEDFROMCMS', 'Verwijderd uit CMS');
 
 
-jr_define('_REVIEW_JOMRES_PLEASEREVIEW', 'If you like Jomres, please consider leaving a review on one of these sites');
-jr_define('_REVIEW_JOMRES_ALREADYREVIEWED', 'I`m a nice person, i`ve already left a review');
+jr_define('_REVIEW_JOMRES_PLEASEREVIEW', 'Als je van Jomres houdt, overweeg dan om een ​​recensie achter te laten op een van deze sites');
+jr_define('_REVIEW_JOMRES_ALREADYREVIEWED', 'Ik ben een aardig persoon, ik heb al een recensie achtergelaten');
 
-jr_define('_LICENCE_PROMPT_DEAR', 'Dear ');
-jr_define('_LICENCE_EXPIRED', ', your Jomres license key has expired, so you`re missing these great features and benefits! ');
-jr_define('_LICENCE_EXPIRED_BENEFITS_1', 'Plugin updates and new plugin releases');
-jr_define('_LICENCE_EXPIRED_BENEFITS_2', 'Exclusive members only Email/Tickets support');
-jr_define('_LICENCE_EXPIRED_BENEFITS_3', 'Worry-free Jomres Core updates');
-jr_define('_LICENCE_EXPIRED_POST', 'Connect to us for trouble free payment solutions and get access to all plugins and member-only support services.');
-jr_define('_LICENCE_EXPIRED_RESTART', 'Get access to all plugins now!');
+jr_define('_LICENCE_PROMPT_DEAR', 'Beste ');
+jr_define('_LICENCE_EXPIRED', ', je Jomres-licentiesleutel is verlopen, dus je mist deze geweldige functies en voordelen! ');
+jr_define('_LICENCE_EXPIRED_BENEFITS_1', 'Plugin-updates en nieuwe plug-in-releases');
+jr_define('_LICENCE_EXPIRED_BENEFITS_2', 'Exclusieve ondersteuning voor e-mail/tickets alleen voor leden');
+jr_define('_LICENCE_EXPIRED_BENEFITS_3', 'Zorgeloos Jomres Core-updates');
+jr_define('_LICENCE_EXPIRED_POST', 'Maak verbinding met ons voor probleemloze betalingsoplossingen en krijg toegang tot alle plug-ins en ondersteuningsdiensten voor leden.');
+jr_define('_LICENCE_EXPIRED_RESTART', 'Krijg nu toegang tot alle plug-ins!');
 
-jr_define('_LICENCE_INVALID_KEY', 'Unfortunately you don`t seem to be using a valid Jomres license key, so you`re missing on these great features and benefits!');
-jr_define('_LICENCE_INVALID_BENEFITS_1', '<a href="https://www.jomres.net/jomres-plugins" target="_blank">Plugins</a> that greatly extend Jomres functionality');
-jr_define('_LICENCE_INVALID_BENEFITS_2', 'Exclusive members only Email/Tickets support');
-jr_define('_LICENCE_INVALID_BENEFITS_3', 'Worry-free Jomres Core updates');
-jr_define('_LICENCE_INVALID_POST', 'Connect to us for trouble free payment solutions and get access to all plugins and member-only support services.');
-jr_define('_LICENCE_INVALID_START', 'Get access to all plugins now!');
+jr_define('_LICENCE_INVALID_KEY', 'Helaas lijkt het erop dat u geen geldige Jomres-licentiesleutel gebruikt, dus u mist deze geweldige functies en voordelen!');
+jr_define('_LICENCE_INVALID_BENEFITS_1', '<a href="https://www.jomres.net/jomres-plugins" target="_blank">Plug-ins</a> die de functionaliteit van Jomres aanzienlijk uitbreiden');
+jr_define('_LICENCE_INVALID_BENEFITS_2', 'Exclusieve ondersteuning voor e-mail/tickets alleen voor leden');
+jr_define('_LICENCE_INVALID_BENEFITS_3', 'Zorgeloos Jomres Core-updates');
+jr_define('_LICENCE_INVALID_POST', 'Maak verbinding met ons voor probleemloze betalingsoplossingen en krijg toegang tot alle plug-ins en ondersteuningsdiensten voor leden.');
+jr_define('_LICENCE_INVALID_START', 'Krijg nu toegang tot alle plug-ins!');
 
 jr_define('_ADMIN_MENU_SECTIONS_DASHBOARD', 'Dashboard');
-jr_define('_ADMIN_MENU_SECTIONS_USERS', 'Users');
-jr_define('_ADMIN_MENU_SECTIONS_COMMISSION', 'Commission');
-jr_define('_ADMIN_MENU_SECTIONS_SUBSCRIPTIONS', 'Subscriptions');
-jr_define('_ADMIN_MENU_SECTIONS_INVOICES', 'Invoices');
-jr_define('_ADMIN_MENU_SECTIONS_PORTAL', 'Portal');
-jr_define('_ADMIN_MENU_SECTIONS_TRANSLATIONS', 'Translations');
-jr_define('_ADMIN_MENU_SECTIONS_TOOLS', 'Tools');
-jr_define('_ADMIN_MENU_SECTIONS_REPORTS', 'Reports');
-jr_define('_ADMIN_MENU_SECTIONS_SETTINGS', 'Settings');
+jr_define('_ADMIN_MENU_SECTIONS_USERS', 'Gebruikers');
+jr_define('_ADMIN_MENU_SECTIONS_COMMISSION', 'Commissie');
+jr_define('_ADMIN_MENU_SECTIONS_SUBSCRIPTIONS', 'Abonnementen');
+jr_define('_ADMIN_MENU_SECTIONS_INVOICES', 'Facturen');
+jr_define('_ADMIN_MENU_SECTIONS_PORTAL', 'Portaal');
+jr_define('_ADMIN_MENU_SECTIONS_TRANSLATIONS', 'Vertalingen');
+jr_define('_ADMIN_MENU_SECTIONS_TOOLS', 'Extra');
+jr_define('_ADMIN_MENU_SECTIONS_REPORTS', 'Rapporten');
+jr_define('_ADMIN_MENU_SECTIONS_SETTINGS', 'Instellingen');
 jr_define('_ADMIN_MENU_SECTIONS_HELP', 'Help');
 
-jr_define('_ADMIN_CPANEL_PROPERTIES_PANEL_TOTAL', 'Total properties in system');
-jr_define('_ADMIN_CPANEL_PROPERTIES_PANEL_PUBLISHED', 'Published properties');
-jr_define('_ADMIN_CPANEL_PROPERTIES_PANEL_UNPUBLISHED', 'Unpublished properties');
-jr_define('_ADMIN_CPANEL_PROPERTIES_PANEL_APPROVED', 'Approved properties');
-jr_define('_ADMIN_CPANEL_PROPERTIES_PANEL_REQUIREAPPROVAL', 'Properties requiring approval');
+jr_define('_ADMIN_CPANEL_PROPERTIES_PANEL_TOTAL', 'Totaal aantal eigenschappen in systeem');
+jr_define('_ADMIN_CPANEL_PROPERTIES_PANEL_PUBLISHED', 'Gepubliceerde eigenschappen');
+jr_define('_ADMIN_CPANEL_PROPERTIES_PANEL_UNPUBLISHED', 'Niet-gepubliceerde eigenschappen');
+jr_define('_ADMIN_CPANEL_PROPERTIES_PANEL_APPROVED', 'Goedgekeurde eigenschappen');
+jr_define('_ADMIN_CPANEL_PROPERTIES_PANEL_REQUIREAPPROVAL', 'Eigenschappen waarvoor goedkeuring vereist is');
 
-jr_define('_ADMIN_CPANEL_REVIEWS_PANEL_TOTAL_REVIEWS', 'Total reviews ');
-jr_define('_ADMIN_CPANEL_REVIEWS_PANEL_UNPUBLISHED_REVIEWS', 'Unpublished reviews ');
-jr_define('_ADMIN_CPANEL_REVIEWS_PANEL_REPORTED_REVIEWS', 'Review reports ');
+jr_define('_ADMIN_CPANEL_REVIEWS_PANEL_TOTAL_REVIEWS', 'Totaal aantal beoordelingen');
+jr_define('_ADMIN_CPANEL_REVIEWS_PANEL_UNPUBLISHED_REVIEWS', 'Niet-gepubliceerde recensies');
+jr_define('_ADMIN_CPANEL_REVIEWS_PANEL_REPORTED_REVIEWS', 'Review rapporten');
 
-jr_define('_ADMIN_CPANEL_SYSTEM_INFO', 'Jomres System Info');
+jr_define('_ADMIN_CPANEL_SYSTEM_INFO', 'Jomres systeeminfo');
 
-jr_define('_JOMRES_PROPERTYTYPE_UNPUBLISHED_SANITY_CHECK', "This property's property type is not published, it may not appear in search results. Please contact the site administrator to publish the property type, or change the property type in the Edit Property page.");
-jr_define('_JOMRES_PROPERTYTYPE_UNPUBLISHED_SANITY_CHECK_LINK', 'Update your property type');
-
-
-jr_define('_JOMRES_INCOME_PAID_AMOUNTS', 'Income (paid amounts)');
-jr_define('_JOMRES_CANNOT_DELETE_PROPERTY_FEATURE_1', 'Cannot delete the property feature "');
-jr_define('_JOMRES_CANNOT_DELETE_PROPERTY_FEATURE_2', '" because it is used by the following property(s) : ');
+jr_define('_JOMRES_PROPERTYTYPE_UNPUBLISHED_SANITY_CHECK', "Het eigenschapstype van deze eigenschap is niet gepubliceerd, het verschijnt mogelijk niet in de zoekresultaten. Neem contact op met de sitebeheerder om het eigenschapstype te publiceren, of wijzig het eigenschapstype op de pagina Eigenschap bewerken.");
+jr_define('_JOMRES_PROPERTYTYPE_UNPUBLISHED_SANITY_CHECK_LINK', 'Update uw eigendomstype');
 
 
-jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST', 'REST API test');
-jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_INFO', 'This page performs a basic test of the REST API using built-in functionality in Jomres. It calls the Jomres REST API to see if it receives a valid response.');
-jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_CALLED', 'The server called this URL to see if the response is valid : ');
-jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_RESPONSE', 'The page received this response : ');
-jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_PASSED', 'The test appeared to go as expected, you will probably not have any problem receiving REST API requests from the rest of the Internet.');
-jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_FAILED', 'The test failed, look in the Response field, if it looks like a lot of html, or you recieved a 404 message, then your server is redirecting calls to another url. This will prevent you from receiving API calls.');
+jr_define('_JOMRES_INCOME_PAID_AMOUNTS', 'Inkomen (betaalde bedragen)');
+jr_define('_JOMRES_CANNOT_DELETE_PROPERTY_FEATURE_1', 'Kan het eigenschapskenmerk niet verwijderen "');
+jr_define('_JOMRES_CANNOT_DELETE_PROPERTY_FEATURE_2', '" omdat het wordt gebruikt door de volgende eigenschap(pen): ');
 
-jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_TITLE', 'Syndication test');
-jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_INTRO', 'The Jomres App server maintains a list of all Jomres sites. This allows us to build a syndication network. This network is designed to allow our users to display properties from other sites on their own sites and is useful, particularly for new sites, to build up an SEO presence on the net. The goal is for all Jomres sites to work together, building trust in the network. There is no charge for this service.');
-jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_FAILED', 'Your site is not currently listed on the Jomres App server, which is part of the syndication network. This server will try again to add this server to the network on the next 6 page loads. If, after a few page loads, this does not change please check that the connectivity test above passes the tests. Note, localhost servers cannot be added to the network.');
-jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_PASSED', 'Congratulations, your server is listed on the Jomres App server.');
+jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST', 'REST API-test');
+jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_INFO', 'Deze pagina voert een basistest uit van de REST API met behulp van ingebouwde functionaliteit in Jomres. Het roept de Jomres REST API aan om te zien of het een geldig antwoord ontvangt.');
+jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_CALLED', 'De server heeft deze URL aangeroepen om te zien of het antwoord geldig is : ');
+jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_RESPONSE', 'De pagina heeft dit antwoord ontvangen: ');
+jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_PASSED', 'De test leek te verlopen zoals verwacht, u zult waarschijnlijk geen enkel probleem hebben met het ontvangen van REST API-verzoeken van de rest van het internet.');
+jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_FAILED', 'De test is mislukt, kijk in het veld Reactie, als het veel html lijkt, of je hebt een 404-bericht ontvangen, dan leidt je server oproepen om naar een andere url. Dit voorkomt dat je API ontvangt oproepen.');
 
-jr_define('_JOMRES_SYNDICATION_TITLE', 'Syndicated properties');
-jr_define('_JOMRES_SYNDICATION_TAGLINE', 'Here are some other properties available from our property network');
+jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_TITLE', 'Syndicatietest');
+jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_INTRO', 'De Jomres App-server houdt een lijst bij van alle Jomres-sites. Dit stelt ons in staat om een ​​syndicatienetwerk te bouwen. Dit netwerk is ontworpen om onze gebruikers in staat te stellen eigenschappen van andere sites op hun eigen sites weer te geven en is handig, met name voor nieuwe sites, om een ​​SEO-aanwezigheid op het net op te bouwen. Het doel is dat alle Jomres-sites samenwerken en vertrouwen in het netwerk opbouwen. Er zijn geen kosten verbonden aan deze service.');
+jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_FAILED', 'Uw site wordt momenteel niet vermeld op de Jomres App-server, die deel uitmaakt van het syndicatienetwerk. Deze server zal opnieuw proberen deze server aan het netwerk toe te voegen op de volgende 6 pagina\'s. Als, na een enkele pagina\'s worden geladen, dit verandert niet controleer of de bovenstaande verbindingstest de tests doorstaat. Let op, localhost-servers kunnen niet aan het netwerk worden toegevoegd.');
+jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_PASSED', 'Gefeliciteerd, uw server staat vermeld op de Jomres App-server.');
 
-
-jr_define('_JOMRES_SYNDICATION_STATS_TITLE', 'Syndication stats');
-jr_define('_JOMRES_SYNDICATION_STATS_IS_LISTED', 'Congratulations, your server is listed on the Jomres Syndication Network. Your property(s) will start appearing on other Jomres sites soon, if they are not already being shown.');
-jr_define('_JOMRES_SYNDICATION_STATS_IS_NOT_LISTED', 'You installation is not part of the Jomres Syndication Network, therefore your property(s) are not being shown on other Jomres based sites and you can\'t benefit from this free advertising.');
-jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_SERVERS', 'Active Jomres installations : ');
-jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_SERVERS_DESC', 'The total number of Jomres installations that are sharing Jomres Syndication Network properties on their sites. ');
-jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTIES', 'Total Properties : ');
-jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTIES_DESC', 'This is the number of properties available in the JSN.');
-jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS', 'Total Property displays : ');
-jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS_DESC', 'In total, all of the times a Jomres property has been linked to from another Jomres based site.');
-jr_define('_JOMRES_SYNDICATION_STATS_BLURB', 'The Jomres Syndicate Network (JSN) is a free feature available to all Jomres users. It\'s purpose is to provide you with free advertising of your properties on other Jomres based sites. The goal is to help you get your site off the ground fast, offering free advertising so that your properties are recognised and trusted because they are linked to high confidence, high relevance websites that are already well known to the search engines. See this <a href="https://www.jomres.net/features/jomres-syndication-network" target="_blank">article on our website</a> and <a href="https://www.jomres.net/manual/developers-guide-2/387-jomres-syndication-network" target="_blank">the manual</a>  for more information.');
+jr_define('_JOMRES_SYNDICATION_TITLE', 'Gesyndiceerde eigenschappen');
+jr_define('_JOMRES_SYNDICATION_TAGLINE', 'Hier zijn enkele andere woningen beschikbaar in ons vastgoednetwerk');
 
 
-jr_define('GUEST_PROFILE_INFORMATION', 'This is your guest profile data, fields with this symbol <i class="fa fa-users" aria-hidden="true"></i>
- are publicly visible, whereas fields with this symbol <i class="fa fa-user-secret" aria-hidden="true"></i> can only be seen by you, your hosts and site administrators.<br/><br/>Hosts can only see private information if you have already created a booking with them.<br/><br/>Your information is safely encrypted and stored in our database using AES-256 encryption.');
+jr_define('_JOMRES_SYNDICATION_STATS_TITLE', 'Syndicatiestatistieken');
+jr_define('_JOMRES_SYNDICATION_STATS_IS_LISTED', 'Gefeliciteerd, uw server staat vermeld op het Jomres Syndication Network. Uw eigendom(men) zullen binnenkort op andere Jomres-sites verschijnen, als ze nog niet worden getoond.');
+jr_define('_JOMRES_SYNDICATION_STATS_IS_NOT_LISTED', 'Uw installatie maakt geen deel uit van het Jomres Syndication Network, daarom worden uw eigendom(men) niet getoond op andere op Jomres gebaseerde sites en kunt u niet profiteren van deze gratis advertenties.');
+jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_SERVERS', 'Actieve Jomres-installaties: ');
+jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_SERVERS_DESC', 'Het totale aantal Jomres-installaties die Jomres Syndication Network-eigenschappen op hun sites delen. ');
+jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTIES', 'Totaal aantal eigenschappen: ');
+jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTIES_DESC', 'Dit is het aantal eigenschappen dat beschikbaar is in de JSN.');
+jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS', 'Totale eigenschapweergaven: ');
+jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS_DESC', 'In totaal zijn alle keren naar een Jomres-eigendom gelinkt vanaf een andere op Jomres gebaseerde site.');
+jr_define('_JOMRES_SYNDICATION_STATS_BLURB', 'Het Jomres Syndicate Network (JSN) is een gratis functie die beschikbaar is voor alle Jomres-gebruikers. Het doel is om u gratis reclame te bieden voor uw eigendommen op andere op Jomres gebaseerde sites. Het doel is om te helpen u krijgt uw site snel van de grond en biedt gratis advertenties zodat uw eigendommen worden herkend en vertrouwd omdat ze zijn gekoppeld aan zeer betrouwbare, zeer relevante websites die al goed bekend zijn bij de zoekmachines. Zie deze <a href="https: //www.jomres.net/features/jomres-syndication-network" target="_blank">artikel op onze website</a> en <a href="https://www.jomres.net/manual/developers- guide-2/387-jomres-syndication-network" target="_blank">de handleiding</a> voor meer informatie.');
 
-jr_define('GUEST_PROFILE_OPTIONAL', 'These fields are optional, however hosts may use the information here to determine if they feel that they can trust you, therefore it\'s better to add the information. Remember, you are asking to stay in their property, and they may turn you down if they feel you aren’t a good fit or that your bio doesn’t contain enough information.');
- 
-jr_define('GUEST_PROFILE_DRIVING_LICENSE', 'Driving license');
-jr_define('GUEST_PROFILE_PASSPORT_NUMBER', 'Passport number');
-jr_define('GUEST_PROFILE_IBAN', 'IBAN number');
-jr_define('GUEST_PROFILE_ABOUT_ME', 'About me');
-jr_define('GUEST_PROFILE_ABOUT_ME_HINTS', 'This "About me" section is publicly viewable so don\'t put in any private information. That said, do make an effort to put as much as you feel comfortable sharing such as your passions, what you do for a living, your hobbies etc. You can use Markup to give it a bit of jazz. Hosts will want to feel that they can trust you with their properties. Make sure that your picture is a real picture of you, not your dog or car (yes, guys, we\'re talking to you!).');
 
-jr_define('GUEST_PROFILE_PREFERENCES', 'Enter any special requirements you may have, such as ease of access needs here. They will not be shown on your public profile but they will be added to the booking information when you make a booking.');
+jr_define('GUEST_PROFILE_INFORMATION', 'Dit zijn uw gastprofielgegevens, velden met dit symbool <i class="fa fa-users" aria-hidden="true"></i>
+ zijn openbaar zichtbaar, terwijl velden met dit symbool <i class="fa fa-user-secret" aria-hidden="true"></i> alleen kunnen worden gezien door jou, je hosts en sitebeheerders.<br/> <br/>Hosts kunnen alleen privé-informatie zien als u al een boeking bij hen heeft gemaakt.<br/><br/>Uw informatie is veilig gecodeerd en opgeslagen in onze database met behulp van AES-256-codering.');
+jr_define('GUEST_PROFILE_OPTIONAL', 'Deze velden zijn optioneel, maar hosts kunnen de informatie hier gebruiken om te bepalen of ze denken dat ze je kunnen vertrouwen, daarom is het beter om de informatie toe te voegen. Vergeet niet dat je vraagt ​​om in hun eigendom, en ze kunnen je afwijzen als ze vinden dat je niet bij je past of dat je biografie niet genoeg informatie bevat.');
 
-jr_define('VIEW_HOST_PROFILE', 'Host\'s profile');
+jr_define('GUEST_PROFILE_DRIVING_LICENSE', 'Rijbewijs');
+jr_define('GUEST_PROFILE_PASSPORT_NUMBER', 'Paspoortnummer');
+jr_define('GUEST_PROFILE_IBAN', 'IBAN-nummer');
+jr_define('GUEST_PROFILE_ABOUT_ME', 'Over mij');
+jr_define('GUEST_PROFILE_ABOUT_ME_HINTS', 'Dit gedeelte Over mij is openbaar toegankelijk, dus vul geen privégegevens in. Doe toch je best om zoveel mogelijk te delen, zoals je passies, wat je doe voor de kost, je hobby\'s enz. Je kunt Markup gebruiken om het een beetje jazz te geven. Gastheren zullen het gevoel willen hebben dat ze je kunnen vertrouwen met hun eigendommen. Zorg ervoor dat je foto een echte foto van jou is, niet van je hond of auto (ja, jongens, we hebben het tegen jullie!).');
 
-jr_define('GUEST_PROFILE_TITLE', 'Guest profile');
-jr_define('GUEST_PROFILE_TITLE_MY', 'My profile');
+jr_define('GUEST_PROFILE_PREFERENCES', 'Voer hier eventuele speciale vereisten in, zoals gemakkelijke toegang. Ze worden niet getoond op je openbare profiel, maar ze worden toegevoegd aan de boekingsinformatie wanneer je een boeking maakt.');
 
-jr_define('GUEST_PROFILE_WELCOME', 'Hi, let me tell you a little bit about myself.');
-jr_define('GUEST_PROFILE_MY_NAME', 'My name is ');
-jr_define('GUEST_PROFILE_I_COME_FROM', ' and I come from the ');
-jr_define('GUEST_PROFILE_IN', ' region in ');
+jr_define('VIEW_HOST_PROFILE', 'Host\'s profiel');
 
-jr_define('GUEST_PROFILE_PRIVATE_INFORMATION', 'My private information');
-jr_define('GUEST_PROFILE_PRIVATE_INFORMATION_DISCLAIMER', 'We do our best to validate guest and host information however you should do your own due dilligence and decide for yourself whether or not this person is trustworthy.');
+jr_define('GUEST_PROFILE_TITLE', 'Gastprofiel');
+jr_define('GUEST_PROFILE_TITLE_MY', 'Mijn profiel');
 
-jr_define('GUEST_PROFILE_MY_PROPERTIES', 'My properties');
-jr_define('GUEST_PROFILE_MY_REVIEWS', 'My reviews');
-jr_define('GUEST_PROFILE_MY_REVIEWS_I_SAID', 'This is what I said about this property : ');
-jr_define('GUEST_PROFILE_MY_REVIEWS_I_SCORED', 'I gave this property a rating score of : ');
-jr_define('GUEST_PROFILE_MY_REVIEWS', 'My reviews');
-jr_define('GUEST_PROFILE_OF_ME', 'What other people say about me');
-jr_define('GUEST_PROFILE_OF_HOST_SAID', 'What this host said about me');
+jr_define('GUEST_PROFILE_WELCOME', 'Hallo, ik zal je wat over mezelf vertellen.');
+jr_define('GUEST_PROFILE_MY_NAME', 'Mijn naam is ');
+jr_define('GUEST_PROFILE_I_COME_FROM', ' en ik kom uit de ');
+jr_define('GUEST_PROFILE_IN', 'regio in');
 
-jr_define('GUEST_PROFILE_REVIEW_GUEST', 'Review guest');
-jr_define('GUEST_PROFILE_REVIEW_GUEST_CONTENT', 'My review of this guest ');
-jr_define('GUEST_PROFILE_REVIEW_GUEST_CONTENT_EXAMPLES', 'Here are some example guest reviews to get the ball rolling : <br/>
-	
-	<ul>
-	<li>(guests name) was a pleasure to host! They left the space clean and were quiet throughout the weekend. They had smooth communication and I look forward to having them stay with me again!</li>
-    <li>I loved having (guest name) because they were able to treat the place with respect, have a great time and enjoy the area. They were awesome with renting the space and I hope I get to host them again.</li>
-    <li>All of my house rules were respected with (guest name) and they were able to come in and go with ease. I loved having them there as they were respectful and quiet. I highly recommend them to others!</li>
-	</ul>
+jr_define('GUEST_PROFILE_PRIVATE_INFORMATION', 'Mijn privégegevens');
+jr_define('GUEST_PROFILE_PRIVATE_INFORMATION_DISCLAIMER', 'We doen ons best om de gast- en hostinformatie te valideren, maar u moet uw eigen zorgvuldigheid betrachten en voor uzelf beslissen of deze persoon betrouwbaar is of niet.');
+
+jr_define('GUEST_PROFILE_MY_PROPERTIES', 'Mijn eigendommen');
+jr_define('GUEST_PROFILE_MY_REVIEWS', 'Mijn beoordelingen');
+jr_define('GUEST_PROFILE_MY_REVIEWS_I_SAID', 'Dit is wat ik zei over deze eigenschap: ');
+jr_define('GUEST_PROFILE_MY_REVIEWS_I_SCORED', 'Ik heb deze accommodatie een beoordelingsscore gegeven van : ');
+jr_define('GUEST_PROFILE_MY_REVIEWS', 'Mijn beoordelingen');
+jr_define('GUEST_PROFILE_OF_ME', 'Wat andere mensen over mij zeggen');
+jr_define('GUEST_PROFILE_OF_HOST_SAID', 'Wat deze host over mij zei');
+
+jr_define('GUEST_PROFILE_REVIEW_GUEST', 'Beoordeel gast');
+jr_define('GUEST_PROFILE_REVIEW_GUEST_CONTENT', 'Mijn recensie van deze gast ');
+jr_define('GUEST_PROFILE_REVIEW_GUEST_CONTENT_EXAMPLES', 'Hier zijn enkele voorbeelden van gastrecensies om de bal aan het rollen te krijgen: <br/>
+
+<ul>
+<li>(naam van de gast) was een plezier om te hosten! Ze lieten de ruimte schoon achter en waren het hele weekend stil. Ze hadden een vlotte communicatie en ik kijk ernaar uit dat ze weer bij me blijven!</li>
+    <li>Ik vond het heerlijk om (gastnaam) te hebben omdat ze de plaats met respect konden behandelen, een geweldige tijd hadden en van de omgeving genoten. Ze waren geweldig met het huren van de ruimte en ik hoop dat ik ze weer mag hosten.</li>
+    <li>Al mijn huisregels werden gerespecteerd met (gastnaam) en ze konden gemakkelijk binnenkomen en vertrekken. Ik vond het heerlijk om ze daar te hebben, omdat ze respectvol en stil waren. Ik raad ze ten zeerste aan bij anderen!</li>
+</ul>
 
 ');
 
-jr_define('GUEST_PROFILE_UNKNOWN', 'Sorry, I can\'t find that user. Most likely they have not filled in their account details yet.');
+jr_define('GUEST_PROFILE_UNKNOWN', 'Sorry, ik kan die gebruiker niet vinden. Waarschijnlijk hebben ze hun accountgegevens nog niet ingevuld.');
 
-jr_define('GUEST_PROFILE_USERSTATUS_GUEST', 'Guest');
+jr_define('GUEST_PROFILE_USERSTATUS_GUEST', 'Gast');
 jr_define('GUEST_PROFILE_USERSTATUS_HOST', 'Host');
-jr_define('GUEST_PROFILE_USERSTATUS_ADMIN', 'Admin');
+jr_define('GUEST_PROFILE_USERSTATUS_ADMIN', 'Beheerder');
 
-jr_define('WORDPRESS_THEME_ADVICE', 'Jomres is built on the Bootstrap framework, so you must use it on a theme based on Bootstrap. We recommend one based on Bootstrap 3. If you do not have access to a theme then we recommend that you use the Jomres Leohtian theme for Wordpress which you can <a href="https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target="_blank">download from here.</a>');
-
-
-jr_define('BOOKING_NOSHOW_MENU', 'Mark as No Show');
-jr_define('BOOKING_NOSHOW_AUDIT_LOG', 'Booking marked as No Show');
-jr_define('BOOKING_NOSHOW_BOOKINGS', 'Bookings');
-jr_define('BOOKING_NOSHOW_NOSHOWS', 'No Shows');
-jr_define('BOOKING_NOSHOW_NETWORK_STATUS', 'JSN statistics for this user');
-
-jr_define('BOOKING_NOSHOW_INFO', 'Booking and No Show information is pulled from the Jomres Syndicate Network at booking time. It is taken from anonymised data and can be used by you to decide if this guest is a risk of not fulfilling the booking. If the system reports that the data is unknown, it is probably because this system is not recognised on the network.');
-
-jr_define('BOOKING_NOSHOW_UNKNOWN', 'Unknown');
-
-jr_define('CMF_CONFIG_TITLE', 'Channel Management Framework');
-jr_define('CMF_CONFIG_KEY', 'Channel Management Framework Key');
-jr_define('CMF_CONFIG_KEY_DESC', 'The Channel Management Framework license key. You will need to provide this key to be able to download Channel Management Framework plugins.');
-
-jr_define('_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT_UNAPPROVED', 'Your property has not been approved');
-jr_define('_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT_UNAPPROVED', "Your property as been unapproved. If you think that this was done in error please contact us. ");
-
-jr_define('_JOMRES_GUESTTYPES_IS_CHILD',"Is this a Child guest type?");
-jr_define('_JOMRES_GUESTTYPES_IS_CHILD_DESC',"Set this to Yes if this guest type would be classed as a Child guest type.");
-
-jr_define('_JOMRES_GUESTTYPES_INTRO',"If you want to charge per person per night then you will need to create some guest types.");
-jr_define('_JOMRES_GUESTTYPES_INSTRUCTIONS',"You can create as many guest types as you need, try starting out by creating just one guest type called 'Adult'. Leave all of the settings at their default values. Next, if for example you want to give children under 12 a discount of 50% you would create a new guest type, and call it 'Children under 12'. Set the 'Add variance?' option to - (negative) and set the 'Variance' to 50. This means when children are added to a booking they're charged 50% of the room cost of the room. " );
-
-jr_define('_JOMRES_MICROMANAGE_PICKERDROPDOWN_EDITPRICES',"Set prices manually");
-jr_define('_JOMRES_MICROMANAGE_PICKERDROPDOWN_EDITMINDAYS',"Set minimum nights manually");
-jr_define('_JOMRES_MICROMANAGE_PICKER_SETMINDAYS',"Set minimum nights");
-
-jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_DOW',"Set <em>price per night</em> by day of week");
-jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_INTERVAL_RATES',"Set <em>price per night</em> by date range");
-jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_INTERVAL_MINDAYS',"Set <em>minimum nights</em> by date range");
-
-jr_define('_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_RATES',"The date pickers and the rate input allow you to set one price for a given date range. Choose a start and end date, input a price, and click the Set price per night button.");
-jr_define('_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_MINDAYS',"The date pickers and the minimum nights input allow you to set one value for the minimum nights for a given date range. Choose a start and end date, input a number for the minimum nights, and click 'Set minimum nights'.");
-
-jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR_INFO',"Use this dropdown to change between setting prices for individual dates, to setting minimum nights for individual dates. You can use the <em>by day of week</em> picker, the <em>by date range</em> picker or set the prices/minimum nights by manually editing the dates.");
-jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR_INFO_SMALL_VIEWPORT',"Use this dropdown to change between setting prices for individual dates, to setting minimum nights for individual dates. You can use the <em>by date range</em> picker or set the prices/minimum nights by manually editing the dates.");
-jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR',"Set prices or minimum nights");
-
-jr_define('_JOMRES_MICROMANAGE_PICKER_BYDOW',"Set <em>minimum nights</em> by day of week");
-jr_define('_JOMRES_MICROMANAGE_PICKER_BYDOW_INFO',"The day of week fields allow you to set a minimum number of nights for a given day of week, once you click the day of week button all days of the week will be set to that min nights setting.");
+jr_define('WORDPRESS_THEME_ADVICE', 'Jomres is gebouwd op het Bootstrap-framework, dus je moet het gebruiken op een thema dat is gebaseerd op Bootstrap. We raden een thema aan dat is gebaseerd op Bootstrap 3. Als je geen toegang hebt tot een thema, raden we je aan het Jomres Leohtian-thema voor Wordpress dat u <a href="https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target="_blank ">download hier.</a>');
 
 
-jr_define('_JOMRES_MICROMANAGE_MANUALLY',"Manually set prices/minimum nights");
-jr_define('_JOMRES_MICROMANAGE_SET_PRICES',"Set prices");
-jr_define('_JOMRES_MICROMANAGE_SET_MINDAYS',"Set minimum nights");
+jr_define('BOOKING_NOSHOW_MENU', 'Markeer als No Show');
+jr_define('BOOKING_NOSHOW_AUDIT_LOG', 'Boeking gemarkeerd als No Show');
+jr_define('BOOKING_NOSHOW_BOOKINGS', 'Boekingen');
+jr_define('BOOKING_NOSHOW_NOSHOWS', 'Niet opdagen');
+jr_define('BOOKING_NOSHOW_NETWORK_STATUS', 'JSN-statistieken voor deze gebruiker');
+jr_define('BOOKING_NOSHOW_INFO', 'Boekings- en No Show-informatie wordt op het moment van boeken uit het Jomres Syndicate Network gehaald. Het is afkomstig uit geanonimiseerde gegevens en kan door u worden gebruikt om te beslissen of deze gast een risico loopt om de boeking niet na te komen. Indien het systeem meldt dat de gegevens onbekend zijn, dit komt waarschijnlijk doordat dit systeem niet wordt herkend op het netwerk.');
 
-jr_define('_JOMRES_MICROMANAGE_PRICE',"Per night");
-jr_define('_JOMRES_MICROMANAGE_MINDAYS',"Min nights");
-jr_define('_JOMRES_MICROMANAGE_MAXDAYS',"Max nights");
+jr_define('BOOKING_NOSHOW_UNKNOWN', 'Onbekend');
 
-jr_define('_JOMRES_MICROMANAGE_INTRO',"Here you can create you tariffs, which are associated with the room types that you have in your property. ");
+jr_define('CMF_CONFIG_TITLE', 'Kanaalbeheerraamwerk');
+jr_define('CMF_CONFIG_KEY', 'Kanaalbeheer Framework Key');
+jr_define('CMF_CONFIG_KEY_DESC', 'De Channel Management Framework-licentiesleutel. U moet deze sleutel opgeven om de Channel Management Framework-plug-ins te kunnen downloaden.');
 
-jr_define('_JOMRES_MICROMANAGE_BASIC_SETTINGS',"Most commonly used options");
+jr_define('_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT_UNAPPROVED', 'Uw eigendom is niet goedgekeurd');
+jr_define('_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT_UNAPPROVED', "Uw eigendom is niet goedgekeurd. Als u denkt dat dit ten onrechte is gedaan, neem dan contact met ons op. ");
 
-jr_define('_JOMRES_MICROMANAGE_MODAL_BUTTON',"Instructions");
+jr_define('_JOMRES_GUESTTYPES_IS_CHILD',"Is dit een gasttype kind?");
+jr_define('_JOMRES_GUESTTYPES_IS_CHILD_DESC',"Stel dit in op Ja als dit gasttype geclassificeerd zou worden als een Kind gasttype.");
 
-jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS',"If you want to add different prices for different numbers of guests then <em>you can create more than several tariffs for each room type</em> and have different min/max guests values in those tariffs.");
+jr_define('_JOMRES_GUESTTYPES_INTRO',"Als je per persoon per nacht wilt rekenen, moet je een aantal gasttypes aanmaken.");
+jr_define('_JOMRES_GUESTTYPES_INSTRUCTIONS',"Je kunt zoveel gasttypes maken als je nodig hebt, probeer te beginnen door slechts één gasttype aan te maken met de naam 'Adult'. Laat alle instellingen op hun standaardwaarden staan. geef kinderen onder de 12 een korting van 50% je zou een nieuw gasttype aanmaken en dat 'Kinderen onder de 12' noemen Zet de optie 'Variatie toevoegen?' op - (negatief) en zet de 'Variatie' op 50. wanneer kinderen aan een boeking worden toegevoegd, wordt 50% van de kamerprijs van de kamer in rekening gebracht. " );
 
-jr_define('_JOMRES_MICROMANAGE_INFO',"Give the tariff a name, define the maximum number of nights, and the minimum and maximum number of guests that are required in the booking form before the tariff is offered.<br/><br/> Use the date picker panel to add prices and minimum nights settings to a range of dates, or edit the inputs directly. If you don't want the tariff to be offered at all on certain dates, leave the price set to 0 ( zero ) on those dates. <br/><br/> You can have different minimum nights on different dates, so if you want longer bookings during festival/conference weeks then you can set the min nights to be higher in just those periods.<br/><br/>If you charge Per Person Per Pight (PPPN) you can enable that setting in Settings > Property Configuration > Tariffs and Currency tab, then create the guest types that you require in Settings > Guest Types.");
+jr_define('_JOMRES_MICROMANAGE_PICKERDROPDOWN_EDITPRICES',"Prijzen handmatig instellen");
+jr_define('_JOMRES_MICROMANAGE_PICKERDROPDOWN_EDITMINDAYS',"Stel het minimum aantal nachten handmatig in");
+jr_define('_JOMRES_MICROMANAGE_PICKER_SETMINDAYS',"Stel minimum nachten in");
 
-jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS',"Extra options");
+jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_DOW',"Stel <em>prijs per nacht</em> in per dag van de week");
+jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_INTERVAL_RATES',"Stel <em>prijs per nacht</em> in op datumbereik");
+jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_INTERVAL_MINDAYS',"Stel <em>minimum nachten</em> in op datumbereik");
 
-jr_define('_JOMRES_MICROMANAGE_EXTRA_OPTIONS',"These are additional options that are not so commonly used, but nevertheless available to you. <br/><strong>Ignore PPPN</strong> Means Ignore Per Person Per Night. You can have several different tariffs for the same room type, for example one of which charges per person per night, and one that does not.<br/><strong>Allow weekends</strong> The Allow Weekends option gives you the option to make a tariff that's only available during weekdays, for example if you want a special tariff for business travellers. In that case you would set the option to No and the min nights to 1 and the max nights, at most, 5.  <br/><strong>Weekends only</strong>  The Weekends only option is the converse of the Allow Weekends option. What you consider to be weekend days can be configured in your Property Configuration settings. This gives you the ability to define a weekend only rate that you might want to offer for special events.<br/><strong>Check-in Day of week</strong> This option gives you the ability to force checkin to only be on certain days of the week and is best used in conjunction with the Property Configuration > Bookings tab > Fixed periods options. The majority of users will want to leave this option set to All.<br/>The final two options, <strong>Min rooms already selected</strong> and <strong>Max rooms already selected</strong> are very specialised and useful to properties with extremely complicated tariffs. <em>Unless you have a specific need, you should leave these options alone.</em> Use them if you only want this tariff to be offered when the guest has already selected N number of rooms in the booking form, so for example you could have one basic tariff where those options are left at the default, and a second tariff where the min rooms already selected option is set to 1, then this second tariff will be offered in the booking form once a room has been selected.");
+jr_define('_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_RATES',"Met de datumkiezers en de tariefinvoer kunt u één prijs instellen voor een bepaalde periode. Kies een begin- en einddatum, voer een prijs in en klik op de knop Prijs per nacht instellen.");
+jr_define('_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_MINDAYS',"Met de datumkiezers en het minimum aantal nachten kunt u één waarde instellen voor het minimum aantal nachten voor een bepaalde periode. Kies een begin- en einddatum, voer een getal in voor het minimum aantal nachten en klik op 'Instellen minimumnachten'.");
 
-jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS_LIST_PAGE',"You can create multiple tariffs for the same room type, so you can create one tariff for min/max days of 1 - 7 and a second tariff where the min days is 7, the max days 14, and so on. This allows you create pricing schemes as simple or as complicated as you need. It also allows you to create multiple tariffs with different conditions, so you can have a second set of tariffs where the price is lower for Bed & Breakfast, and another set of more expensive tariffs for Bed, Breakfast and Evening Meal.");
+jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR_INFO',"Gebruik deze vervolgkeuzelijst om te wisselen tussen het instellen van prijzen voor individuele datums en het instellen van minimumnachten voor individuele datums. U kunt de kiezer <em>op dag van de week</em> gebruiken, de <em>op datum bereik</em> kiezen of de prijzen/minimumnachten instellen door de datums handmatig te bewerken.");
+jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR_INFO_SMALL_VIEWPORT',"Gebruik deze vervolgkeuzelijst om te wisselen tussen het instellen van prijzen voor individuele datums en het instellen van minimumnachten voor individuele datums. U kunt de kiezer <em>op datumbereik</em> gebruiken of de prijzen/minimumnachten instellen op handmatig de datums bewerken.");
+jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR',"Prijzen of minimum nachten instellen");
 
-jr_define('_JOMRES_MICROMANAGE_USE_SELECTED_DATES',"Set date picker days only");
+jr_define('_JOMRES_MICROMANAGE_PICKER_BYDOW',"Stel <em>minimum nachten</em> in op dag van de week");
+jr_define('_JOMRES_MICROMANAGE_PICKER_BYDOW_INFO',"Met de velden voor de dag van de week kunt u een minimum aantal nachten instellen voor een bepaalde dag van de week, zodra u op de knop voor de dag van de week klikt, worden alle dagen van de week ingesteld op die instelling voor het minimum aantal nachten. ");
+
+
+jr_define('_JOMRES_MICROMANAGE_MANUALLY',"Handmatig prijzen/minimum nachten instellen");
+jr_define('_JOMRES_MICROMANAGE_SET_PRICES',"Prijzen instellen");
+jr_define('_JOMRES_MICROMANAGE_SET_MINDAYS',"Stel minimum nachten in");
+
+jr_define('_JOMRES_MICROMANAGE_PRICE',"Per nacht");
+jr_define('_JOMRES_MICROMANAGE_MINDAYS',"Min nachten");
+jr_define('_JOMRES_MICROMANAGE_MAXDAYS',"Maximum aantal nachten");
+
+jr_define('_JOMRES_MICROMANAGE_INTRO',"Hier kunt u uw tarieven maken, die zijn gekoppeld aan de kamertypes die u in uw woning heeft. ");
+
+jr_define('_JOMRES_MICROMANAGE_BASIC_SETTINGS',"Meest gebruikte opties");
+
+jr_define('_JOMRES_MICROMANAGE_MODAL_BUTTON',"Instructies");
+
+jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS',"Als u verschillende prijzen voor verschillende aantallen gasten wilt toevoegen, <em>kunt u meer dan verschillende tarieven voor elk kamertype maken</em> en verschillende min/max gastenwaarden in die tarieven opnemen. ");
+jr_define('_JOMRES_MICROMANAGE_INFO',"Geef het tarief een naam, definieer het maximum aantal nachten en het minimum en maximum aantal gasten dat vereist is in het boekingsformulier voordat het tarief wordt aangeboden.<br/><br/> Gebruik het datumkiezerpaneel om prijzen en minimumnachten toe te voegen aan een reeks datums, of de invoer rechtstreeks te bewerken. Als u niet wilt dat het tarief op bepaalde data wordt aangeboden, laat u de prijs op 0 ( nul ) staan ​​op die data. <br/><br/> Je kunt verschillende minimum nachten hebben op verschillende data, dus als je langere boekingen wilt tijdens festival-/conferentieweken, dan kun je het minimum aantal nachten in juist die periodes hoger instellen.<br/ ><br/>Als u per persoon per persoon (PPPN) in rekening brengt, kunt u die instelling inschakelen in Instellingen > Eigenschapconfiguratie > tabblad Tarieven en valuta, en vervolgens de gewenste gasttypen maken in Instellingen > Gasttypen.");
+
+jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS',"Extra opties");
+
+jr_define('_JOMRES_MICROMANAGE_EXTRA_OPTIONS',"Dit zijn extra opties die niet zo vaak worden gebruikt, maar toch voor u beschikbaar zijn. <br/><strong>PPPN negeren</strong> Betekent negeren per persoon per nacht. U kunt verschillende tarieven hanteren. voor hetzelfde kamertype, waarvan er bijvoorbeeld één per persoon per nacht in rekening wordt gebracht en één die dat niet doet.<br/><strong>Laat weekends toe</strong> De optie Weekends toestaan ​​geeft u de mogelijkheid om een ​​tarief te maken dat alleen beschikbaar tijdens weekdagen, bijvoorbeeld als u een speciaal tarief voor zakenreizigers wilt.In dat geval stelt u de optie in op Nee en de min nachten op 1 en de max nachten maximaal 5. <br/><strong>Weekends alleen</strong> De optie Alleen weekenden is het tegenovergestelde van de optie Weekends toestaan. Wat u als weekenddagen beschouwt, kunt u configureren in de instellingen van uw Accommodatieconfiguratie. Dit geeft u de mogelijkheid om een ​​tarief voor alleen weekends te definiëren dat u misschien wilt aanbieding voor speciale evenementen.<br/><strong>Check-in Dag van de week </strong> Deze optie geeft je de mogelijkheid om alleen op bepaalde dagen van de week in te checken en kan het beste worden gebruikt in combinatie met de Property Configuration > Bookings tab > Fixed period options. De meeste gebruikers zullen deze optie op Alles willen laten staan.<br/>De laatste twee opties, <strong>Min kamers al geselecteerd</strong> en <strong>Maximum kamers al geselecteerd</strong> zijn zeer gespecialiseerd en nuttig voor eigendommen met extreem gecompliceerde tarieven. <em>Tenzij u een specifieke behoefte heeft, moet u deze opties met rust laten.</em> Gebruik ze als u dit tarief alleen wilt aanbieden wanneer de gast al N aantal kamers heeft geselecteerd in het boekingsformulier, dus bijvoorbeeld je zou één basistarief kunnen hebben waarbij die opties standaard worden gelaten, en een tweede tarief waarbij de min. al geselecteerde optie is ingesteld op 1, dan wordt dit tweede tarief aangeboden in het boekingsformulier zodra een kamer is geselecteerd.");
+
+jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS_LIST_PAGE',"U kunt meerdere tarieven maken voor hetzelfde kamertype, dus u kunt één tarief maken voor min/max dagen van 1 - 7 en een tweede tarief waarbij de min dagen 7 is, de max dagen 14, en enzovoort. Hiermee kunt u tariefschema's maken die zo eenvoudig of ingewikkeld zijn als u nodig heeft. U kunt ook meerdere tarieven maken met verschillende voorwaarden, zodat u een tweede set tarieven kunt hebben waarbij de prijs lager is voor Bed & Breakfast, en nog een reeks duurdere tarieven voor logies, ontbijt en avondmaaltijd.");
+
+jr_define('_JOMRES_MICROMANAGE_USE_SELECTED_DATES',"Alleen datumkiezerdagen instellen");
 
 jr_define('_JOMRES_STOP_READTHISFIRST1',"Stop!");
-jr_define('_JOMRES_STOP_READTHISFIRST2',"Thanks for installing Jomres");
-jr_define('_JOMRES_STOP_READTHISFIRST3',"Property management is performed in public facing pages, not the administrator area.");
-jr_define('_JOMRES_STOP_READTHISFIRST4',"If you are not familiar with Jomres please visit the Help section > Getting Started page.");
+jr_define('_JOMRES_STOP_READTHISFIRST2',"Bedankt voor het installeren van Jomres");
+jr_define('_JOMRES_STOP_READTHISFIRST3',"Eigenschappenbeheer wordt uitgevoerd op openbare pagina's, niet in het beheerdersgedeelte.");
+jr_define('_JOMRES_STOP_READTHISFIRST4',"Als je niet bekend bent met Jomres, bezoek dan de Help-sectie > Aan de slag-pagina.");
 
 
-jr_define('_JOMRES_CONFIG_SYNDICATION_TITLE',"Join the Jomres Syndicate");
-jr_define('_JOMRES_CONFIG_SYNDICATION_DESC',"Once you have your site setup and ready to start receiving visitors, join the Jomres.net syndicate and get your properties listed on other Jomres sites.");
-
-
-
-jr_define('_JOMRES_MICROMANAGE_CREATE_ROOM_1',"You need at least one room of one of the following types before you can create a tariff :");
-jr_define('_JOMRES_MICROMANAGE_CREATE_ROOM_2',"Go to Settings > Rooms and create a room first, once  you have done that you will be able to create a tariff for that room type.");
-
-jr_define('JOMRES_PLATFORM',"Jomres Platform");
-
-
-jr_define('JOMRES_PLATFORM_CONNECTED',"Connected");
-jr_define('JOMRES_PLATFORM_CONNECTED_DESC',"Set this to Yes if you have already connected your Stripe account with the Jomres Platform.");
-
-jr_define('JOMRES_PLATFORM_ACCOUNT_ID',"Stripe Live Account number");
-jr_define('JOMRES_PLATFORM_ACCOUNT_ID_DESC',"This is your Stripe Account id which can be found in your Stripe Dashboard under Settings > Account information and looks like acct_xxxxxxxxx You would use this field if you have multiple Jomres installations and you want to use the same account across all sites and you have already connected to us. If you have not connected to the Jomres Platform, it's not sufficient to enter your details here. Instead, please visit the Get Connected menu option in the toolbar, under the Help section. If you want to test payments, in the Debugging tab of Site Configuration set your site from Production to Development.");
-
-jr_define('JOMRES_PLATFORM_LIVE_SECRET_KEY',"Stripe live secret key");
-jr_define('JOMRES_PLATFORM_LIVE_SECRET_KEY_DESC','Go to Developers > API keys in your Stripe Dashboard to find your secret keys. These are used by the system to verify booking data returned from the payment form is valid and that deposits have been paid before saving the booking.' );
-
-jr_define('JOMRES_PLATFORM_TEST_SECRET_KEY',"Stripe test secret key");
-jr_define('JOMRES_PLATFORM_TEST_SECRET_KEY_DESC',' ' );
+jr_define('_JOMRES_CONFIG_SYNDICATION_TITLE',"Word lid van het Jomres-syndicaat");
+jr_define('_JOMRES_CONFIG_SYNDICATION_DESC',"Zodra je je site hebt ingesteld en klaar bent om bezoekers te ontvangen, sluit je aan bij het Jomres.net-syndicaat en laat je eigendommen op andere Jomres-sites worden vermeld.");
 
 
 
-jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD', 'Standard Tariff Mode');
+jr_define('_JOMRES_MICROMANAGE_CREATE_ROOM_1',"Je hebt minimaal één kamer van een van de volgende typen nodig voordat je een tarief kunt aanmaken :");
+jr_define('_JOMRES_MICROMANAGE_CREATE_ROOM_2',"Ga naar Instellingen > Kamers en maak eerst een kamer aan, als je dat hebt gedaan, kun je een tarief voor dat kamertype maken.");
 
-jr_define('JOMRES_COM_A_ACCOMMODATES', 'Sleeps');
-jr_define('JOMRES_COM_A_ACCOMMODATES_DESC', 'How many people can this property accommodate?');
-jr_define('JOMRES_COM_A_GUESTS_IN_DAILY_PRICE', 'The number of guests in your daily price');
-jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE', 'Extra adults price ');
-
-jr_define('JOMRES_CHILDREN_BOOKING_FORM_LABEL', 'Children');
+jr_define('JOMRES_PLATFORM',"Jomres-platform");
 
 
+jr_define('JOMRES_PLATFORM_CONNECTED',"Verbonden");
+jr_define('JOMRES_PLATFORM_CONNECTED_DESC',"Stel dit in op Ja als je je Stripe-account al hebt verbonden met het Jomres-platform.");
 
-jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_PER_PERSON_PER_NIGHT', 'Per person per night?');
+jr_define('JOMRES_PLATFORM_ACCOUNT_ID',"Stripe Live-accountnummer");
+jr_define('JOMRES_PLATFORM_ACCOUNT_ID_DESC',"Dit is je Stripe-account-ID die je kunt vinden in je Stripe-dashboard onder Instellingen > Accountinformatie en ziet eruit als acct_xxxxxxxxx. Je zou dit veld gebruiken als je meerdere Jomres-installaties hebt en je hetzelfde account wilt gebruiken alle sites en je hebt al verbinding met ons gemaakt. Als je nog geen verbinding hebt gemaakt met het Jomres-platform, is het niet voldoende om je gegevens hier in te voeren. Ga in plaats daarvan naar de menu-optie Get Connected in de werkbalk, onder het gedeelte Help. Als je wilt om betalingen te testen, stelt u in het tabblad Foutopsporing van Siteconfiguratie uw site in van Productie naar Ontwikkeling.");
+
+jr_define('JOMRES_PLATFORM_LIVE_SECRET_KEY',"Gestreepte live geheime sleutel");
+jr_define('JOMRES_PLATFORM_LIVE_SECRET_KEY_DESC','Ga naar Ontwikkelaars > API-sleutels in je Stripe-dashboard om je geheime sleutels te vinden. Deze worden door het systeem gebruikt om te controleren of de boekingsgegevens die via het betalingsformulier worden geretourneerd, geldig zijn en dat de aanbetalingen zijn betaald voordat de boeking wordt opgeslagen .');
+
+jr_define('JOMRES_PLATFORM_TEST_SECRET_KEY',"Stripe test geheime sleutel");
+jr_define('JOMRES_PLATFORM_TEST_SECRET_KEY_DESC',' ');
+
+
+
+jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD', 'Standaard tariefmodus');
+
+jr_define('JOMRES_COM_A_ACCOMMODATES', 'Slaapplaatsen');
+jr_define('JOMRES_COM_A_ACCOMMODATES_DESC', 'Hoeveel mensen kan deze accommodatie huisvesten?');
+jr_define('JOMRES_COM_A_GUESTS_IN_DAILY_PRICE', 'Het aantal gasten in uw dagprijs');
+jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE', 'Extra volwassenen prijs ');
+
+jr_define('JOMRES_CHILDREN_BOOKING_FORM_LABEL', 'Kinderen');
+
+
+
+jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_PER_PERSON_PER_NIGHT', 'Per persoon per nacht?');
 jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_PER_PERSON_PER_NIGHT_DESC', '');
-jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_7DAY_MODIFIER', '7 day modifier');
-jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_7DAY_MODIFIER_DESC', 'Discount on daily rate if booking is for 7 days or more. Leave this set to zero if you do not want the discount to be applied.');
-jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_30DAY_MODIFIER', '30 day modifier');
-jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_30DAY_MODIFIER_DESC', 'Discount on daily rate if booking is for 30 days or more. Leave this set to zero if you do not want the discount to be applied.');
-jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL', 'Adults');
-jr_define('JOMRES_GUEST_BOOKING_FORM_LABELINFO', 'Price based on 2 adults');
-jr_define('JOMRES_BOOKING_DISCOUNTED_7_DAYS_1', 'Booking discounted from ');
-jr_define('JOMRES_BOOKING_DISCOUNTED_7_DAYS_2', ' to ');
-jr_define('JOMRES_BOOKING_DISCOUNTED_7_DAYS_NUMBER', ' because the booking is greater than 7 days.');
-jr_define('JOMRES_BOOKING_DISCOUNTED_30_DAYS_NUMBER', ' because the booking is greater than 30 days.');
+jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_7DAY_MODIFIER', '7 dagen modifier');
+jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_7DAY_MODIFIER_DESC', 'Korting op dagtarief als boeking voor 7 dagen of langer is. Laat dit op nul staan ​​als u niet wilt dat de korting wordt toegepast.');
+jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_30DAY_MODIFIER', '30 dagen modifier');
+jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_30DAY_MODIFIER_DESC', 'Korting op dagtarief als boeking voor 30 dagen of langer is. Laat dit op nul staan ​​als u niet wilt dat de korting wordt toegepast.');
+jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL', 'Volwassenen');
+jr_define('JOMRES_GUEST_BOOKING_FORM_LABELINFO', 'Prijs gebaseerd op 2 volwassenen');
+jr_define('JOMRES_BOOKING_DISCOUNTED_7_DAYS_1', 'Boeking met korting vanaf ');
+jr_define('JOMRES_BOOKING_DISCOUNTED_7_DAYS_2', ' tot ');
+jr_define('JOMRES_BOOKING_DISCOUNTED_7_DAYS_NUMBER', ' omdat de boeking langer is dan 7 dagen.');
+jr_define('JOMRES_BOOKING_DISCOUNTED_30_DAYS_NUMBER', ' omdat de boeking langer dan 30 dagen is.');
 
 
-jr_define('JOMRES_CITY_TAX_HEADING', 'City taxes');
-jr_define('JOMRES_CITY_TAX_VALUE', 'City tax value');
-jr_define('JOMRES_CITY_TAX_METHOD', 'Tax calculation method');
+jr_define('JOMRES_CITY_TAX_HEADING', 'Stadsbelastingen');
+jr_define('JOMRES_CITY_TAX_VALUE', 'Stadsbelastingwaarde');
+jr_define('JOMRES_CITY_TAX_METHOD', 'Belastingberekeningsmethode');
 
-jr_define('JOMRES_CITY_TAX_MODEL_SINGLE', 'Single fee');
-jr_define('JOMRES_CITY_TAX_MODEL_PER_NIGHT', 'Per night');
-jr_define('JOMRES_CITY_TAX_MODEL_PER_GUEST', 'Per guest');
-jr_define('JOMRES_CITY_TAX_MODEL_PER_GUEST_PER_NIGHT', 'Per guest per night');
-jr_define('JOMRES_CITY_TAX_MODEL_PERCENTAGE_OF_BOOKING_TOTAL', 'Percentage of booking value');
+jr_define('JOMRES_CITY_TAX_MODEL_SINGLE', 'Eenmalige vergoeding');
+jr_define('JOMRES_CITY_TAX_MODEL_PER_NIGHT', 'Per nacht');
+jr_define('JOMRES_CITY_TAX_MODEL_PER_GUEST', 'Per gast');
+jr_define('JOMRES_CITY_TAX_MODEL_PER_GUEST_PER_NIGHT', 'Per gast per nacht');
+jr_define('JOMRES_CITY_TAX_MODEL_PERCENTAGE_OF_BOOKING_TOTAL', 'Percentage van boekingswaarde');
 
-jr_define('JOMRES_CLEANING_FEE_HEADING', 'Cleaning fee');
-jr_define('JOMRES_CLEANING_FEE_VALUE', 'Cleaning fee cost');
-
-
-jr_define('JOMRES_COMPATABILITY_MODE', 'Force Compatability property configuration mode?');
-jr_define('JOMRES_COMPATABILITY_MODE_DESC', "Compatability property configuration mode forces several things to happen. In older versions of Jomres, property managers could choose which tariff editing mode to use, and a variety of other settings (some of which may appear confusing) may have been available to them. Enabling Compatability configuration forces all new properties to use just the Standard tariff editing mode, which models the booking.com property configuration functionality with respect to pricing, child pricing etc. It is recommended that for installations that were created after 9.22.0, this option should be set to Yes, but for older installations it's up to you to decide if new properties should be automatically set to Compatability mode when they are created.");
-
-jr_define('JOMRES_POLICY_ACCEPT_CHILDREN', 'Do you accept children under 18 years of age?');
-jr_define('JOMRES_POLICY_ACCEPT_CHILDREN_DESC', "Set this option to Yes if you allow children. If yes, then in the Settings menu you will have an option called Child Policies where you can edit children related settings.");
-
-jr_define('JOMRES_POLICIES_CHILDREN', 'Child policies');
-
-jr_define('JOMRES_POLICIES_CHILDREN_AGES_ALLOWED', 'At what ages are children allowed?');
+jr_define('JOMRES_CLEANING_FEE_HEADING', 'Reinigingskosten');
+jr_define('JOMRES_CLEANING_FEE_VALUE', 'Schoonmaakkosten');
 
 
-jr_define('JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_NIGHT', 'Per child, per night');
-jr_define('JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_STAY', 'Per child, per stay');
+jr_define('JOMRES_COMPATABILITY_MODE', 'Configuratiemodus voor compatibiliteitseigenschappen forceren?');
+jr_define('JOMRES_COMPATABILITY_MODE_DESC', "Configuratiemodus voor compatibiliteit van eigenschappen dwingt verschillende dingen te gebeuren. In oudere versies van Jomres konden vastgoedbeheerders kiezen welke tariefbewerkingsmodus ze wilden gebruiken, en een verscheidenheid aan andere instellingen (waarvan sommige verwarrend kunnen lijken) Het inschakelen van de compatibiliteitsconfiguratie dwingt alle nieuwe eigenschappen om alleen de standaard tariefbewerkingsmodus te gebruiken, die de functionaliteit van de booking.com eigenschapconfiguratie modelleert met betrekking tot prijzen, kinderprijzen enz. Het wordt aanbevolen dat voor installaties die zijn gemaakt na 9.22 .0, deze optie moet worden ingesteld op Ja, maar voor oudere installaties is het aan jou om te beslissen of nieuwe eigenschappen automatisch moeten worden ingesteld op de compatibiliteitsmodus wanneer ze worden gemaakt.");
 
-jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATES', 'Child rates');
-jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_NEW', 'New child rate');
-jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_EDIT', 'Edit child rate');
-jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_DESC', 'Create your free or paid child rates here. Rates will only apply when you have created occupancy levels for room types.');
-jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_AGE_FROM', 'Age from');
-jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_AGE_TO', 'Age to');
-jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_MODEL', 'per night or per stay?');
-jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_PRICE', 'Rate');
-jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_PRICE_DESC', 'If zero or not set, children of this age range will be free.');
-jr_define('JOMRES_BOOKING_FORM_CHILDREN_AGES', 'Ages at checkin');
-jr_define('JOMRES_BOOKING_FORM_CHILDREN_AGE_DD', 'Ages ');
+jr_define('JOMRES_POLICY_ACCEPT_CHILDREN', 'Accepteert u kinderen onder de 18 jaar?');
+jr_define('JOMRES_POLICY_ACCEPT_CHILDREN_DESC', "Stel deze optie in op Ja als u kinderen toestaat. Zo ja, dan heeft u in het menu Instellingen een optie met de naam Kindbeleid waar u instellingen voor kinderen kunt bewerken.");
+jr_define('JOMRES_POLICIES_CHILDREN', 'Kinderbeleid');
 
-jr_define('JOMRES_OCCUPANCY_LEVELS_TITLE', 'Occupancy levels');
-jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_ADULTS', 'Maximum adults');
-jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_CHILDREN', 'Maximum children');
-jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY', 'Maximum occupancy');
-
-jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT', 'Edit occupancy level for : ');
-jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT_DESC', 'Edit occupancy levels for this room type. Do not include guests sleeping on cots (those are added by creating an Extra) ');
-jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', 'For each additional adult, how much should they be charged?');
-
-jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'Extra adults');
+jr_define('JOMRES_POLICIES_CHILDREN_AGES_ALLOWED', 'Op welke leeftijden zijn kinderen toegestaan?');
 
 
-jr_define('_JOMRES_SANITYCHECK_CHILD_RATES', 'You have not configured child rates yet.');
-jr_define('_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', 'Set child rate(s) now');
-jr_define('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS', 'You have configured your property to allow children but you have not set any occupancy levels for children yet.');
-jr_define('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS_BUTTON', 'Set occupancy levels');
-jr_define('JOMRES_OCCUPANCY_LEVELS_INFO', 'Any time you edit a room or your property type you should check and update the occupancy levels for your property/rooms as these affect the number of guests who can be accepted in the booking form.');
+jr_define('JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_NIGHT', 'Per kind, per nacht');
+jr_define('JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_STAY', 'Per kind, per verblijf');
+
+jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATES', 'Kindertarieven');
+jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_NEW', 'Nieuw kindertarief');
+jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_EDIT', 'Bewerk kindertarief');
+jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_DESC', 'Maak hier uw gratis of betaalde kindertarieven. Tarieven zijn alleen van toepassing als u bezettingsniveaus voor kamertypes heeft gemaakt.');
+jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_AGE_FROM', 'Leeftijd vanaf');
+jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_AGE_TO', 'Leeftijd tot');
+jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_MODEL', 'per nacht of per verblijf?');
+jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_PRICE', 'Tarieven');
+jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_PRICE_DESC', 'Als nul of niet is ingesteld, zijn kinderen van deze leeftijdscategorie gratis.');
+jr_define('JOMRES_BOOKING_FORM_CHILDREN_AGES', 'Leeftijd bij inchecken');
+jr_define('JOMRES_BOOKING_FORM_CHILDREN_AGE_DD', 'Leeftijden');
+
+jr_define('JOMRES_OCCUPANCY_LEVELS_TITLE', 'Bezettingsniveaus');
+jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_ADULTS', 'Maximum volwassenen');
+jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_CHILDREN', 'Maximum aantal kinderen');
+jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY', 'Maximale bezetting');
+
+jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT', 'Bezettingsniveau bewerken voor: ');
+jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT_DESC', 'Bezettingsniveaus voor dit kamertype bewerken. Geen gasten die op babybedjes slapen opnemen (deze worden toegevoegd door een Extra aan te maken) ');
+jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', 'Hoeveel moet er voor elke extra volwassene in rekening worden gebracht?');
+
+jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'Extra volwassenen');
 
 
-jr_define('_JOMRES_SEARCH_FORM_ADULTS', 'Adults');
-jr_define('_JOMRES_SEARCH_FORM_CHILDREN', 'Chidren');
+jr_define('_JOMRES_SANITYCHECK_CHILD_RATES', 'Je hebt nog geen kindertarieven geconfigureerd.');
+jr_define('_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', 'Stel nu kindertarief(en) in');
+jr_define('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS', 'U heeft uw accommodatie geconfigureerd om kinderen toe te laten, maar u heeft nog geen bezettingsniveaus voor kinderen ingesteld.');
+jr_define('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS_BUTTON', 'Bezettingsniveaus instellen');
+jr_define('JOMRES_OCCUPANCY_LEVELS_INFO', 'Elke keer dat u een kamer of uw accommodatietype bewerkt, moet u de bezettingsgraad van uw accommodatie/kamers controleren en bijwerken, aangezien deze van invloed zijn op het aantal gasten dat kan worden geaccepteerd in het boekingsformulier.');
 
 
-jr_define('_JOMRES_CONFIG_LEVEL_TITLE', 'Admin options level');
-jr_define('_JOMRES_CONFIG_LEVEL_DESC', 'Jomres has many menu and configuration options that you can use when configuring your site. The huge majority of them you will never need to change so they are hidden by default. You can choose to show those options by setting the Admin Options level.  Basic level shows you just what you need when setting up a site for the first time. Common level shows you those options which are most commonly changed, and Everything shows you all possible settings and menus options in the administrator area.');
-jr_define('_JOMRES_CONFIG_LEVEL_BASIC', 'Basic');
-jr_define('_JOMRES_CONFIG_LEVEL_COMMON', 'Common');
-jr_define('_JOMRES_CONFIG_LEVEL_EVERYTHING', 'Everything');
-
-jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_TITLE', 'Can we collect information about how you use Jomres?');
-jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_MESSAGE', 'We would like to collect information about how you use Jomres. No personally identifyable information will be stored, usage will be anonymised and only used to help us to understand how people use Jomres.');
-jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_ACCEPT', ' Yep, that\'s ok ');
-jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_DENY', ' No, I don\'t agree ');
-
-jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_TITLE', 'Will you be taking bookings for more than one property?');
-jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_MESSAGE', 'Jomres can be used for single or multi-property sites. If you will be taking bookings for just one property then many options will be redundant and potentially confusing. You can change this setting later in the Settings > Site Configuration > Portal functionality tab.');
-jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_JUSTONE', ' Just one property ');
-jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_MANY', ' I will be listing more than one property ');
+jr_define('_JOMRES_SEARCH_FORM_ADULTS', 'Volwassenen');
+jr_define('_JOMRES_SEARCH_FORM_CHILDREN', 'Kinderen');
 
 
-jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_TITLE", "Which version of the Bootstrap framework does your template/theme support?");
-jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_MESSAGE", "Each version of the Bootstrap framework requires slightly different html markup. Jomres has three sets of Bootstrap compatible template sets, one for each Bootstrap version. You must ensure that you configure it to use the appropriate template set. If you don't then output such as layout, modals and menus will not work properly. If you decide to use a template/theme later with a different Bootstrap version you can change the Bootstrap template set that Jomres should use in Admin > Jomres > Settings > Misc tab. <br/><br/>Joomla 3 is distributed with Bootstrap 2 by default, Joomla 4 will use Bootstrap 5. Jomres Leohtian template (Joomla) and theme (Wordpress) uses Bootstrap 3. Different templates/themes may be distributed with their own Bootstrap files so if you are in any doubt, please contact your template/theme's developer.");
-jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP2", " Bootstrap 2 ");
-jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP3", " Bootstrap 3 ");
-jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP4", " Bootstrap 4 ");
-jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP5", " Bootstrap 5 ");
-jr_define('_JOMRES_CURRENCYFORMAT_STRIP_DECIMALS', 'Strip decimals from output prices?');
+jr_define('_JOMRES_CONFIG_LEVEL_TITLE', 'Beheerder opties niveau');
+jr_define('_JOMRES_CONFIG_LEVEL_DESC', 'Jomres heeft veel menu- en configuratie-opties die u kunt gebruiken bij het configureren van uw site. De overgrote meerderheid daarvan hoeft u nooit te wijzigen, dus ze zijn standaard verborgen. U kunt ervoor kiezen om die opties te tonen door in te stellen het niveau Beheerdersopties Basisniveau toont u precies wat u nodig hebt wanneer u een site voor de eerste keer opzet. Algemeen niveau toont u de opties die het meest worden gewijzigd, en Alles toont u alle mogelijke instellingen en menu-opties in het beheerdersgedeelte. ');
+jr_define('_JOMRES_CONFIG_LEVEL_BASIC', 'Basis');
+jr_define('_JOMRES_CONFIG_LEVEL_COMMON', 'Algemeen');
+jr_define('_JOMRES_CONFIG_LEVEL_EVERYTHING', 'Alles');
 
-jr_define('_JOMRES_SEND_GROUP_BY_FIX_TITLE', 'Apply group by fix?');
-jr_define('_JOMRES_SEND_GROUP_BY_FIX_DESC', 'Some mysql installations may have a problem with Jomres Queries in the List Properties, List guests and List invoices page. If those pages say that they are showing X of Y results but nothing appears in the list, then setting this option to Yes may fix the issue. It will not if you are on shared hosting and the hosting service does not allow your mysql user to issue the "SET GLOBAL sql_mode=" command. ');
-jr_define('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', 'This is a channel property, it cannot be administered locally, visit the channel management framework page to find the property\'s remote administration link');
-jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", " No Bootstrap in theme ");
+jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_TITLE', 'Kunnen we informatie verzamelen over hoe u Jomres gebruikt?');
+jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_MESSAGE', 'We willen graag informatie verzamelen over hoe u Jomres gebruikt. Er wordt geen persoonlijk identificeerbare informatie opgeslagen, het gebruik wordt geanonimiseerd en wordt alleen gebruikt om ons te helpen begrijpen hoe mensen Jomres gebruiken.');
+jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_ACCEPT', ' Ja, dat is goed ');
+jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_DENY', ' Nee, ik ga niet akkoord ');
+jr_define('JOMRES_POLICIES_CHILDREN', 'Kinderbeleid');
+
+jr_define('JOMRES_POLICIES_CHILDREN_AGES_ALLOWED', 'Op welke leeftijden zijn kinderen toegestaan?');
+
+
+jr_define('JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_NIGHT', 'Per kind, per nacht');
+jr_define('JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_STAY', 'Per kind, per verblijf');
+
+jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATES', 'Kindertarieven');
+jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_NEW', 'Nieuw kindertarief');
+jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_EDIT', 'Bewerk kindertarief');
+jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_DESC', 'Maak hier uw gratis of betaalde kindertarieven. Tarieven zijn alleen van toepassing als u bezettingsniveaus voor kamertypes heeft gemaakt.');
+jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_AGE_FROM', 'Leeftijd vanaf');
+jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_AGE_TO', 'Leeftijd tot');
+jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_MODEL', 'per nacht of per verblijf?');
+jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_PRICE', 'Tarieven');
+jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_PRICE_DESC', 'Als nul of niet is ingesteld, zijn kinderen van deze leeftijdscategorie gratis.');
+jr_define('JOMRES_BOOKING_FORM_CHILDREN_AGES', 'Leeftijd bij inchecken');
+jr_define('JOMRES_BOOKING_FORM_CHILDREN_AGE_DD', 'Leeftijden');
+
+jr_define('JOMRES_OCCUPANCY_LEVELS_TITLE', 'Bezettingsniveaus');
+jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_ADULTS', 'Maximum volwassenen');
+jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_CHILDREN', 'Maximum aantal kinderen');
+jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY', 'Maximale bezetting');
+
+jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT', 'Bezettingsniveau bewerken voor: ');
+jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT_DESC', 'Bezettingsniveaus voor dit kamertype bewerken. Geen gasten die op babybedjes slapen opnemen (deze worden toegevoegd door een Extra aan te maken) ');
+jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', 'Hoeveel moet er voor elke extra volwassene in rekening worden gebracht?');
+
+jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'Extra volwassenen');
+
+
+jr_define('_JOMRES_SANITYCHECK_CHILD_RATES', 'Je hebt nog geen kindertarieven geconfigureerd.');
+jr_define('_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', 'Stel nu kindertarief(en) in');
+jr_define('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS', 'U heeft uw accommodatie geconfigureerd om kinderen toe te laten, maar u heeft nog geen bezettingsniveaus voor kinderen ingesteld.');
+jr_define('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS_BUTTON', 'Bezettingsniveaus instellen');
+jr_define('JOMRES_OCCUPANCY_LEVELS_INFO', 'Elke keer dat u een kamer of uw accommodatietype bewerkt, moet u de bezettingsgraad van uw accommodatie/kamers controleren en bijwerken, aangezien deze van invloed zijn op het aantal gasten dat kan worden geaccepteerd in het boekingsformulier.');
+
+
+jr_define('_JOMRES_SEARCH_FORM_ADULTS', 'Volwassenen');
+jr_define('_JOMRES_SEARCH_FORM_CHILDREN', 'Kinderen');
+
+
+jr_define('_JOMRES_CONFIG_LEVEL_TITLE', 'Beheerder opties niveau');
+jr_define('_JOMRES_CONFIG_LEVEL_DESC', 'Jomres heeft veel menu- en configuratie-opties die u kunt gebruiken bij het configureren van uw site. De overgrote meerderheid daarvan hoeft u nooit te wijzigen, dus ze zijn standaard verborgen. U kunt ervoor kiezen om die opties te tonen door in te stellen het niveau Beheerdersopties Basisniveau toont u precies wat u nodig hebt wanneer u een site voor de eerste keer opzet. Algemeen niveau toont u de opties die het meest worden gewijzigd, en Alles toont u alle mogelijke instellingen en menu-opties in het beheerdersgedeelte. ');
+jr_define('_JOMRES_CONFIG_LEVEL_BASIC', 'Basis');
+jr_define('_JOMRES_CONFIG_LEVEL_COMMON', 'Algemeen');
+jr_define('_JOMRES_CONFIG_LEVEL_EVERYTHING', 'Alles');
+
+jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_TITLE', 'Kunnen we informatie verzamelen over hoe u Jomres gebruikt?');
+jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_MESSAGE', 'We willen graag informatie verzamelen over hoe u Jomres gebruikt. Er wordt geen persoonlijk identificeerbare informatie opgeslagen, het gebruik wordt geanonimiseerd en wordt alleen gebruikt om ons te helpen begrijpen hoe mensen Jomres gebruiken.');
+jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_ACCEPT', ' Ja, dat is goed ');
+jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_DENY', ' Nee, ik ga niet akkoord ');
 

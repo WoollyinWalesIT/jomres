@@ -2646,15 +2646,15 @@ jr_define ('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_JUSTONE', 'Solo una propiedad')
 jr_define ('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_MANY', 'Enumeraré más de una propiedad');
 
 
-jr_define ("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_TITLE", "¿Qué versión del marco Bootstrap admite su plantilla / tema?");
-jr_define ("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_MESSAGE", "Cada versión del marco de Bootstrap requiere un marcado html ligeramente diferente. Jomres tiene tres conjuntos de conjuntos de plantillas compatibles con Bootstrap, uno para cada versión de Bootstrap. Debe asegurarse de configurarlo para usar el conjunto de plantillas apropiado. Si si no lo hace, los resultados como el diseño, los modales y los menús no funcionarán correctamente. Si decide usar una plantilla / tema más adelante con una versión diferente de Bootstrap, puede cambiar el conjunto de plantillas de Bootstrap que Jomres debe usar en Admin> Jomres> Configuración > Pestaña Misc. <br/> <br/> Joomla 3 se distribuye con Bootstrap 2 por defecto, Joomla 4 usará Bootstrap 5. La plantilla Jomres Leohtian (Joomla) y el tema (Wordpress) usan Bootstrap 3. Se pueden utilizar diferentes plantillas / temas. distribuidos con sus propios archivos Bootstrap, por lo que si tiene alguna duda, comuníquese con el desarrollador de su plantilla / tema. ");
-jr_define ("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP2", "Bootstrap 2");
-jr_define ("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP3", "Bootstrap 3");
-jr_define ("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP4", "Bootstrap 4");
-jr_define ("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP5", "Bootstrap 5");
+jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_TITLE", "¿Qué versión del marco Bootstrap admite su plantilla / tema?");
+jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_MESSAGE", "Cada versión del marco de Bootstrap requiere un marcado html ligeramente diferente. Jomres tiene tres conjuntos de conjuntos de plantillas compatibles con Bootstrap, uno para cada versión de Bootstrap. Debe asegurarse de configurarlo para usar el conjunto de plantillas apropiado. Si si no lo hace, los resultados como el diseño, los modales y los menús no funcionarán correctamente. Si decide usar una plantilla / tema más adelante con una versión diferente de Bootstrap, puede cambiar el conjunto de plantillas de Bootstrap que Jomres debe usar en Admin> Jomres> Configuración > Pestaña Misc. <br/> <br/> Joomla 3 se distribuye con Bootstrap 2 por defecto, Joomla 4 usará Bootstrap 5. La plantilla Jomres Leohtian (Joomla) y el tema (Wordpress) usan Bootstrap 3. Se pueden utilizar diferentes plantillas / temas. distribuidos con sus propios archivos Bootstrap, por lo que si tiene alguna duda, comuníquese con el desarrollador de su plantilla / tema. ");
+jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP2", "Bootstrap 2");
+jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP3", "Bootstrap 3");
+jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP4", "Bootstrap 4");
+jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP5", "Bootstrap 5");
 jr_define ('_JOMRES_CURRENCYFORMAT_STRIP_DECIMALS', '¿Eliminar decimales de los precios de producción?');
 jr_define ('_JOMRES_SEND_GROUP_BY_FIX_TITLE', '¿Aplicar grupo por arreglo?');
 jr_define ('_JOMRES_SEND_GROUP_BY_FIX_DESC', 'Algunas instalaciones de mysql pueden tener un problema con las consultas de Jomres en la página Propiedades de lista, Lista de invitados y Lista de facturas. Si esas páginas dicen que están mostrando X de Y resultados pero no aparece nada en la lista, entonces configure esta opción a Sí puede solucionar el problema. No lo hará si está en un alojamiento compartido y el servicio de alojamiento no permite que su usuario de mysql emita el comando "SET GLOBAL sql_mode =". ');
 jr_define ('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', 'Esta es una propiedad de canal, no se puede administrar localmente, visite la página del marco de gestión de canales para encontrar el enlace de administración remota de la propiedad');
-jr_define ("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "Sin Bootstrap en el tema");
+jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "Sin Bootstrap en el tema");
 

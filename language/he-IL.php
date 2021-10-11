@@ -2646,15 +2646,15 @@ jr_define ('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_JUSTONE', 'נכס אחד בלב
 jr_define ('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_MANY', 'אפרט יותר מנכס אחד');
 
 
-jr_define ("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_TITLE", "איזו גירסה של מסגרת Bootstrap תומכת בתבנית/נושא שלך?");
-jr_define ("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_MESSAGE", "כל גירסה של מסגרת Bootstrap דורשת סימון HTML שונה במקצת. ל- Jomres יש שלוש קבוצות של ערכות תבניות תואמות Bootstrap, אחת לכל גירסת Bootstrap. עליך לוודא שתגדיר אותה לשימוש בערכת התבניות המתאימה. לאחר מכן אינך פלט כגון פריסה, מודלים ותפריטים לא יפעלו כראוי. אם תחליט להשתמש בתבנית/עיצוב מאוחר יותר עם גירסת Bootstrap אחרת תוכל לשנות את ערכת התבניות Bootstrap ש- Jomres צריכה להשתמש בה ב- Admin> Jomres> הגדרות > לשונית שונות. <br/> <br/> Joomla 3 מופץ כברירת מחדל עם Bootstrap 2, Joomla 4 ישתמש ב- Bootstrap 5. תבנית Jomres Leohtian (Joomla) וערך נושא (Wordpress) משתמש ב- Bootstrap 3. תבניות/נושאים שונים עשויים להיות מופצים עם קבצי Bootstrap משלהם, כך שאם יש לך ספק, אנא צור קשר עם מפתח התבנית/ערכת הנושא שלך. ");
-jr_define ("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP2", "Bootstrap 2");
-jr_define ("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP3", "Bootstrap 3");
-jr_define ("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP4", "Bootstrap 4");
-jr_define ("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP5", "Bootstrap 5");
+jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_TITLE", "איזו גירסה של מסגרת Bootstrap תומכת בתבנית/נושא שלך?");
+jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_MESSAGE", "כל גירסה של מסגרת Bootstrap דורשת סימון HTML שונה במקצת. ל- Jomres יש שלוש קבוצות של ערכות תבניות תואמות Bootstrap, אחת לכל גירסת Bootstrap. עליך לוודא שתגדיר אותה לשימוש בערכת התבניות המתאימה. לאחר מכן אינך פלט כגון פריסה, מודלים ותפריטים לא יפעלו כראוי. אם תחליט להשתמש בתבנית/עיצוב מאוחר יותר עם גירסת Bootstrap אחרת תוכל לשנות את ערכת התבניות Bootstrap ש- Jomres צריכה להשתמש בה ב- Admin> Jomres> הגדרות > לשונית שונות. <br/> <br/> Joomla 3 מופץ כברירת מחדל עם Bootstrap 2, Joomla 4 ישתמש ב- Bootstrap 5. תבנית Jomres Leohtian (Joomla) וערך נושא (Wordpress) משתמש ב- Bootstrap 3. תבניות/נושאים שונים עשויים להיות מופצים עם קבצי Bootstrap משלהם, כך שאם יש לך ספק, אנא צור קשר עם מפתח התבנית/ערכת הנושא שלך. ");
+jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP2", "Bootstrap 2");
+jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP3", "Bootstrap 3");
+jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP4", "Bootstrap 4");
+jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP5", "Bootstrap 5");
 jr_define ('_JOMRES_CURRENCYFORMAT_STRIP_DECIMALS', 'הסרת עשרוניות ממחירי התפוקה?');
 
 jr_define ('_JOMRES_SEND_GROUP_BY_FIX_TITLE', 'החל קבוצה לפי תיקון?');
 jr_define ('_JOMRES_SEND_GROUP_BY_FIX_DESC', 'בכמה התקנות mysql עשויה להיות בעיה עם שאילתות Jomres בדף מאפייני הרשימה, רשימת אורחים וחשבוניות רשימה. אם בדפים אלה כתוב שהם מציגים X של תוצאות Y אך שום דבר לא מופיע ברשימה, אז הגדרה אפשרות זו ל- Yes עשויה לפתור את הבעיה. זה לא יקרה אם אתה משתמש באירוח משותף ושירות האחסון אינו מאפשר למשתמש mysql שלך להוציא את הפקודה "SET GLOBAL sql_mode =". ');
 jr_define ('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', 'זהו נכס ערוץ, לא ניתן לנהל אותו באופן מקומי, בקר בדף מסגרת ניהול הערוצים כדי למצוא את הקישור לניהול מרחוק של הנכס');
-jr_define ("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "אין רצועה לאתחול בנושא");
+jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "אין רצועה לאתחול בנושא");

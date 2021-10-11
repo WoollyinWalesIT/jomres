@@ -1411,7 +1411,7 @@ jr_define ('_JOMRES_INPUTFILTERING_LEVEL_DESC', "Većina podataka koji se unose 
 jr_define ('_JOMRES_INPUTFILTERING_PURIFIER_ALLOWED_TITLE', 'Dopuštene oznake za unos');
 jr_define ('_JOMRES_INPUTFILTERING_PURIFIER_ALLOWED_DESC', "Možete uređivati ​​oznake koje html pročišćivač dopušta kroz svoj sustav filtriranja. Zadana vrijednost je \" p, b, jaka, a [href], i \" (tj. Paragraf, Podebljano, Strogo, Veze i kurziv) Za više informacija o dopuštenim oznakama pročitajte dokumentaciju pročišćivača HTML -a na <a href='http://htmlpurifier.org' target='_blank'> htmlpurifier.org </a>. Iako možete promijeniti ovu postavku, savjetuje se da ga ostavite na zadano. ");
 jr_define ('_JOMRES_INPUTFILTERING_INPUTS_TITLE', 'Dopušteni ulazi');
-jr_define ( "_ JOMRES_INPUTFILTERING_INPUTS_DESC” ", "možete odrediti koji oblik ulaza će omogućiti html uređivanjem ovu opciju, bilo koji ulaz dodaje ovom popisu će biti analiziran kroz HTML pročišćavanje, umjesto da sve HTML oduzeta Zadano je: 'property_description property_checkin_times property_area_activities property_driving_directions property_airports property_othertransport property_policies_disclaimers '. Dodajte još unosa dodavanjem njihovih imena, odvojenih razmakom. ");
+jr_define ( "_JOMRES_INPUTFILTERING_INPUTS_DESC” ", "možete odrediti koji oblik ulaza će omogućiti html uređivanjem ovu opciju, bilo koji ulaz dodaje ovom popisu će biti analiziran kroz HTML pročišćavanje, umjesto da sve HTML oduzeta Zadano je: 'property_description property_checkin_times property_area_activities property_driving_directions property_airports property_othertransport property_policies_disclaimers '. Dodajte još unosa dodavanjem njihovih imena, odvojenih razmakom. ");
 jr_define ('_JOMRES_PROPERTYDETAILS_INTABS_TITLE', 'Pojedinosti o nekretninama u karticama?');
 jr_define ('_JOMRES_PROPERTYDETAILS_INTABS_DESC', 'Postavite ovu opciju za prikaz pojedinosti o svojstvima na karticama. Postavite na ne da bi se prikazivali bez kartica.');
 jr_define ('COMMON_PRINT', 'Ispis');
@@ -2652,15 +2652,15 @@ jr_define ('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_MESSAGE', 'Jomres se može kori
 jr_define ('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_JUSTONE', 'Samo jedno svojstvo');
 jr_define ('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_MANY', 'Navest ću više od jednog objekta');
 
-jr_define ("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_TITLE", "Koju verziju Bootstrap okvira podržava vaš predložak/tema?");
-jr_define ("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_MESSAGE", "Svaka verzija Bootstrap okvira zahtijeva nešto drugačije html oznake. Jomres ima tri skupa Bootstrap kompatibilnih skupova predložaka, jedan za svaku verziju Bootstrapa. Morate osigurati da ga konfigurirate za korištenje odgovarajućeg skupa predložaka. tada ne ispisujete, kao što su izgled, načini i izbornici neće raditi ispravno. Ako kasnije odlučite koristiti predložak/temu s drugom verzijom Bootstrapa, možete promijeniti skup predloška Bootstrap koji bi Jomres trebao koristiti u Admin> Jomres> Postavke > Razno. <br/> <br/> Joomla 3 prema zadanim se postavkama distribuira s Bootstrapom 2, Joomla 4 će koristiti Bootstrap 5. Predložak Jomres Leohtian (Joomla) i tema (Wordpress) koriste Bootstrap 3. Mogu biti različiti predlošci/teme distribuiraju s vlastitim Bootstrap datotekama pa se, ako ste u nedoumici, obratite programeru vašeg predloška/teme. ");
-jr_define ("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP2", "Bootstrap 2");
-jr_define ("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP3", "Bootstrap 3");
-jr_define ("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP4", "Bootstrap 4");
-jr_define ("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP5", "Bootstrap 5");
+jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_TITLE", "Koju verziju Bootstrap okvira podržava vaš predložak/tema?");
+jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_MESSAGE", "Svaka verzija Bootstrap okvira zahtijeva nešto drugačije html oznake. Jomres ima tri skupa Bootstrap kompatibilnih skupova predložaka, jedan za svaku verziju Bootstrapa. Morate osigurati da ga konfigurirate za korištenje odgovarajućeg skupa predložaka. tada ne ispisujete, kao što su izgled, načini i izbornici neće raditi ispravno. Ako kasnije odlučite koristiti predložak/temu s drugom verzijom Bootstrapa, možete promijeniti skup predloška Bootstrap koji bi Jomres trebao koristiti u Admin> Jomres> Postavke > Razno. <br/> <br/> Joomla 3 prema zadanim se postavkama distribuira s Bootstrapom 2, Joomla 4 će koristiti Bootstrap 5. Predložak Jomres Leohtian (Joomla) i tema (Wordpress) koriste Bootstrap 3. Mogu biti različiti predlošci/teme distribuiraju s vlastitim Bootstrap datotekama pa se, ako ste u nedoumici, obratite programeru vašeg predloška/teme. ");
+jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP2", "Bootstrap 2");
+jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP3", "Bootstrap 3");
+jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP4", "Bootstrap 4");
+jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP5", "Bootstrap 5");
 jr_define ('_JOMRES_CURRENCYFORMAT_STRIP_DECIMALS', 'Skinuti decimale s izlaznih cijena?');
 
 jr_define ('_JOMRES_SEND_GROUP_BY_FIX_TITLE', 'Primijeniti grupu prema popravku?');
 jr_define ('_JOMRES_SEND_GROUP_BY_FIX_DESC', 'Neke instalacije mysqla mogu imati problema s Jomres upitima na stranici Svojstva popisa, Popis gostiju i Popis faktura. Ako te stranice kažu da prikazuju rezultate X od Y, ali ništa se ne pojavljuje na popisu, tada postavite ova opcija na Da može riješiti problem. Neće se dogoditi ako ste na zajedničkom hostingu, a usluga hostinga ne dopušta vašem mysql korisniku da izda naredbu "SET GLOBAL sql_mode =". ');
 jr_define ('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', 'Ovo je svojstvo kanala, ne može se administrirati lokalno, posjetite stranicu okvira za upravljanje kanalom kako biste pronašli vezu za udaljenu administraciju svojstva');
-jr_define ("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "Bez pokretanja u temi");
+jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "Bez pokretanja u temi");

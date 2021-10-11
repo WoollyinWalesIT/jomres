@@ -2172,7 +2172,7 @@ jr_define ('_JOMRES_GDPR_MY_DATA_DOWNLOAD_TEXT', 'Letöltheti az összes általu
 jr_define ('_JOMRES_GDPR_MY_DATA_DOWNLOAD_BUTTON', 'Letöltés most');
 
 jr_define ('_JOMRES_GDPR_MY_RTBF_LEAD', 'Elfelejtett jog (RTBF)');
-jr_define ('_JOMRES_GDPR_MY_RTBF_INTRO', 'Úgy gondoljuk, hogy képesnek kell lennie <a href="https://gdpr-info.eu/art-17-gdpr/" target="_blank"> törlésére </a> a < a href = "https://gdpr-info.eu/art-4-gdpr/" target = "_ blank"> Személyazonosításra alkalmas információ </a>, ha szeretné és ha megvalósítható. ');
+jr_define ('_JOMRES_GDPR_MY_RTBF_INTRO', 'Úgy gondoljuk, hogy képesnek kell lennie <a href="https://gdpr-info.eu/art-17-gdpr/" target="_blank"> törlésére </a> a < a href = "https://gdpr-info.eu/art-4-gdpr/" target = "_blank"> Személyazonosításra alkalmas információ </a>, ha szeretné és ha megvalósítható. ');
 jr_define ('_JOMRES_GDPR_MY_RTBF_NOTREGISTERED_OPTEDIN', 'Ön nem regisztrált ezen az oldalon. Általános tartózkodási helyét (országát) és IP -számát legfeljebb 24 órán keresztül tároljuk, majd töröljük.');
 jr_define ('_JOMRES_GDPR_MY_RTBF_NOTREGISTERED_OPTEDOUT', 'Ön nem regisztrált ezen az oldalon, és leiratkozott az adatgyűjtésről. Nem tároltuk az Ön PII -jét.');
 
@@ -2440,7 +2440,7 @@ jr_define ('GUEST_PROFILE_USERSTATUS_GUEST', 'Vendég');
 jr_define ('GUEST_PROFILE_USERSTATUS_HOST', 'Host');
 jr_define ('GUEST_PROFILE_USERSTATUS_ADMIN', 'Admin');
 
-jr_define ('WORDPRESS_THEME_ADVICE', 'A Jomres a Bootstrap keretrendszerre épül, ezért azt a Bootstrap alapú témára kell használni. Javasoljuk a Bootstrap 3 alapúat. Ha nincs hozzáférése egy témához, javasoljuk, hogy használja a Jomres Leohtian téma a Wordpresshez, amelyet <a href = "https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target = "_ blank "> letöltés innen. </a> ');
+jr_define ('WORDPRESS_THEME_ADVICE', 'A Jomres a Bootstrap keretrendszerre épül, ezért azt a Bootstrap alapú témára kell használni. Javasoljuk a Bootstrap 3 alapúat. Ha nincs hozzáférése egy témához, javasoljuk, hogy használja a Jomres Leohtian téma a Wordpresshez, amelyet <a href = "https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target = "_blank "> letöltés innen. </a> ');
 
 
 jr_define ('BOOKING_NOSHOW_MENU', 'Megjelenítés megjelölése');
@@ -2642,15 +2642,15 @@ jr_define ('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_JUSTONE', 'Csak egy tulajdonsá
 jr_define ('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_MANY', 'Egynél több tulajdont fogok felsorolni');
 
 
-jr_define ("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_TITLE", "A Bootstrap keretrendszer melyik verzióját támogatja a sablon/téma?");
-jr_define ("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_MESSAGE", "A Bootstrap keretrendszer minden verziója kissé eltérő html -jelölést igényel. A Jomres három Bootstrap -kompatibilis sablonkészlettel rendelkezik, mindegyik Bootstrap -verzióhoz. Biztosítani kell, hogy konfigurálja a megfelelő sablonkészlet használatához. akkor a kimenet, például az elrendezés, a módok és a menük nem fognak megfelelően működni. Ha később úgy dönt, hogy sablont/témát használ egy másik Bootstrap verzióval, akkor módosíthatja a Jomres által használt Bootstrap sablonkészletet az Adminisztráció> Jomres> Beállítások alkalmazásban > Egyéb lap. <br/> <br/> A Joomla 3 alapértelmezés szerint a Bootstrap 2 -vel kerül forgalomba, a Joomla 4 a Bootstrap 5 -öt fogja használni. A Jomres Leohtian sablon (Joomla) és téma (Wordpress) a Bootstrap 3 -at használja. saját Bootstrap fájljaikkal terjesztik, így ha kétségei vannak, forduljon a sablon/téma fejlesztőjéhez. ");
-jr_define ("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP2", "Bootstrap 2");
-jr_define ("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP3", "Bootstrap 3");
-jr_define ("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP4", "Bootstrap 4");
-jr_define ("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP5", "Bootstrap 5");
+jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_TITLE", "A Bootstrap keretrendszer melyik verzióját támogatja a sablon/téma?");
+jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_MESSAGE", "A Bootstrap keretrendszer minden verziója kissé eltérő html -jelölést igényel. A Jomres három Bootstrap -kompatibilis sablonkészlettel rendelkezik, mindegyik Bootstrap -verzióhoz. Biztosítani kell, hogy konfigurálja a megfelelő sablonkészlet használatához. akkor a kimenet, például az elrendezés, a módok és a menük nem fognak megfelelően működni. Ha később úgy dönt, hogy sablont/témát használ egy másik Bootstrap verzióval, akkor módosíthatja a Jomres által használt Bootstrap sablonkészletet az Adminisztráció> Jomres> Beállítások alkalmazásban > Egyéb lap. <br/> <br/> A Joomla 3 alapértelmezés szerint a Bootstrap 2 -vel kerül forgalomba, a Joomla 4 a Bootstrap 5 -öt fogja használni. A Jomres Leohtian sablon (Joomla) és téma (Wordpress) a Bootstrap 3 -at használja. saját Bootstrap fájljaikkal terjesztik, így ha kétségei vannak, forduljon a sablon/téma fejlesztőjéhez. ");
+jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP2", "Bootstrap 2");
+jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP3", "Bootstrap 3");
+jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP4", "Bootstrap 4");
+jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP5", "Bootstrap 5");
 jr_define ('_JOMRES_CURRENCYFORMAT_STRIP_DECIMALS', 'Csík tizedesjegyek a kibocsátási árakból?');
 
 jr_define ('_JOMRES_SEND_GROUP_BY_FIX_TITLE', 'Alkalmazza a csoportot javítás alapján?');
 jr_define ('_JOMRES_SEND_GROUP_BY_FIX_DESC', 'Bizonyos mysql telepítéseknél probléma lehet a Jomres -lekérdezésekkel a Lista tulajdonságai, Vendégek listája és Számlák oldalon. Ha ezek az oldalak azt mondják, hogy X találatot mutatnak Y -ból, de semmi sem jelenik meg a listában, akkor ez az Igen opció megoldhatja a problémát. Nem, ha megosztott tárhelyet használ, és a tárhelyszolgáltatás nem teszi lehetővé a mysql felhasználó számára a "SET GLOBAL sql_mode =" parancs kiadását. ');
 jr_define ('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', 'Ez egy csatornatulajdon, nem adminisztrálható helyben, látogasson el a csatornakezelési keretoldalra, és keresse meg a tulajdonság távoli adminisztrációs linkjét');
-jr_define ("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "Nincs Bootstrap a témában");
+jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "Nincs Bootstrap a témában");

@@ -2137,7 +2137,7 @@ jr_define('_JOMRES_GDPR_MY_DATA_DOWNLOAD_TEXT','保存されているすべて�
 jr_define('_JOMRES_GDPR_MY_DATA_DOWNLOAD_BUTTON','今すぐダウンロード');
 
 jr_define('_JOMRES_GDPR_MY_RTBF_LEAD','忘れられる権利（RTBF)');
-jr_define('_JOMRES_GDPR_MY_RTBF_INTRO','<ahref = "https://gdpr-info.eu/art-17-gdpr/" target = "_blank">削除</a>できるはずです< a href = "https://gdpr-info.eu/art-4-gdpr/" target = "_ blank">必要に応じて、実行可能な場合は、個人を特定できる情報</a>。 ');
+jr_define('_JOMRES_GDPR_MY_RTBF_INTRO','<ahref = "https://gdpr-info.eu/art-17-gdpr/" target = "_blank">削除</a>できるはずです< a href = "https://gdpr-info.eu/art-4-gdpr/" target = "_blank">必要に応じて、実行可能な場合は、個人を特定できる情報</a>。 ');
 jr_define('_JOMRES_GDPR_MY_RTBF_NOTREGISTERED_OPTEDIN','あなたはこのサイトに登録されていません。あなたの一般的な場所（国)とIP番号は最大24時間保存され、その後削除されます。');
 jr_define('_JOMRES_GDPR_MY_RTBF_NOTREGISTERED_OPTEDOUT','このサイトに登録されておらず、データ収集をオプトアウトしています。PIIは保存されていません。');
 
@@ -2288,7 +2288,7 @@ jr_define('_LICENCE_EXPIRED_POST','トラブルのない支払いソリューシ
 jr_define('_LICENCE_EXPIRED_RESTART','今すぐすべてのプラグインにアクセスしてください！');
 
 jr_define('_LICENCE_INVALID_KEY','残念ながら、有効なJomresライセンスキーを使用していないようです。そのため、これらの優れた機能と利点が不足しています！');
-jr_define('_LICENCE_INVALID_BENEFITS_1','Jomresの機能を大幅に拡張する<ahref = "https://www.jomres.net/jomres-plugins" target = "_ blank">プラグイン</a>');
+jr_define('_LICENCE_INVALID_BENEFITS_1','Jomresの機能を大幅に拡張する<ahref = "https://www.jomres.net/jomres-plugins" target = "_blank">プラグイン</a>');
 jr_define('_LICENCE_INVALID_BENEFITS_2','排他的メンバーのみEメール/チケットサポート');
 jr_define('_LICENCE_INVALID_BENEFITS_3','心配のないJomresコアの更新');
 jr_define('_LICENCE_INVALID_POST','トラブルのない支払いソリューションのために私たちに接続し、すべてのプラグインとメンバー限定のサポートサービスにアクセスしてください。');
@@ -2351,7 +2351,7 @@ jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTIES','合計プロパティ：
 jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTIES_DESC','これはJSNで使用可能なプロパティの数です。');
 jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS','プロパティの合計表示数：');
 jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS_DESC','合計で、Jomresプロパティが別のJomresベースのサイトからリンクされているすべての時間。');
-jr_define('_JOMRES_SYNDICATION_STATS_BLURB','Jomres Syndicate Network（JSN)は、すべてのJomresユーザーが利用できる無料の機能です。その目的は、他のJomresベースのサイトでプロパティの無料広告を提供することです。あなたはあなたのサイトを早く立ち上げ、無料の広告を提供して、あなたの財産が検索エンジンにすでによく知られている信頼性と関連性の高いウェブサイトにリンクされているので、あなたの財産が認識され信頼されるようにします。これを参照してください<a href = "https： //www.jomres.net/features/jomres-syndication-network"target = "_ blank">当社のウェブサイトの記事</a>および<ahref = "https://www.jomres.net/manual/developers-ガイド-2 / 387-jomres-syndication-network "target =" _ blank ">詳細については、マニュアル</a>。 ');
+jr_define('_JOMRES_SYNDICATION_STATS_BLURB','Jomres Syndicate Network（JSN)は、すべてのJomresユーザーが利用できる無料の機能です。その目的は、他のJomresベースのサイトでプロパティの無料広告を提供することです。あなたはあなたのサイトを早く立ち上げ、無料の広告を提供して、あなたの財産が検索エンジンにすでによく知られている信頼性と関連性の高いウェブサイトにリンクされているので、あなたの財産が認識され信頼されるようにします。これを参照してください<a href = "https： //www.jomres.net/features/jomres-syndication-network"target = "_blank">当社のウェブサイトの記事</a>および<ahref = "https://www.jomres.net/manual/developers-ガイド-2 / 387-jomres-syndication-network "target =" _ blank ">詳細については、マニュアル</a>。 ');
 
 
 jr_define('GUEST_PROFILE_INFORMATION','これはゲストプロファイルデータであり、この記号が付いたフィールド<i class = "fa fa-users" aria-hidden = "true"> </ i>
@@ -2406,7 +2406,7 @@ jr_define('GUEST_PROFILE_USERSTATUS_GUEST','ゲスト');
 jr_define('GUEST_PROFILE_USERSTATUS_HOST','ホスト');
 jr_define('GUEST_PROFILE_USERSTATUS_ADMIN','Admin');
 
-jr_define('WORDPRESS_THEME_ADVICE','JomresはBootstrapフレームワークに基づいて構築されているため、Bootstrapに基づくテーマで使用する必要があります。Bootstrap3に基づくものをお勧めします。テーマにアクセスできない場合は、を使用することをお勧めします。 WordpressのJomresLeohtianテーマ<ahref = "https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target = "_ blank ">ここからダウンロードしてください。</a> ');
+jr_define('WORDPRESS_THEME_ADVICE','JomresはBootstrapフレームワークに基づいて構築されているため、Bootstrapに基づくテーマで使用する必要があります。Bootstrap3に基づくものをお勧めします。テーマにアクセスできない場合は、を使用することをお勧めします。 WordpressのJomresLeohtianテーマ<ahref = "https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target = "_blank ">ここからダウンロードしてください。</a> ');
 
 
 jr_define('BOOKING_NOSHOW_MENU','ノーショーとしてマーク');
@@ -2610,16 +2610,16 @@ jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_JUSTONE','1つのプロパティ
 jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_MANY','複数のプロパティを一覧表示します');
 
 
-jr_define("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_TITLE","テンプレート/テーマがサポートするBootstrapフレームワークのバージョンはどれですか？");
-jr_define("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_MESSAGE","ブートストラップフレームワークの各バージョンには、わずかに異なるhtmlマークアップが必要です。Jomresには、ブートストラップバージョンごとに1つずつ、3セットのブートストラップ互換テンプレートセットがあります。適切なテンプレートセットを使用するように構成する必要があります。レイアウト、モーダル、メニューなどの出力が正しく機能しません。後で別のブートストラップバージョンでテンプレート/テーマを使用する場合は、Jomresが[管理]> [Jomres]> [設定]で使用するブートストラップテンプレートセットを変更できます。 >その他のタブ<br/> <br/> Joomla3はデフォルトでBootstrap2とともに配布され、Joomla4はBootstrap5を使用します。JomresLeohtianテンプレート（Joomla)とテーマ（Wordpress)はBootstrap3を使用します。異なるテンプレート/テーマは独自のブートストラップファイルとともに配布されるため、疑問がある場合は、テンプレート/テーマの開発者に連絡してください。 ");
-jr_define("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP2","ブートストラップ2");
-jr_define("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP3","ブートストラップ3");
-jr_define("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP4","ブートストラップ4");
-jr_define("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP5","ブートストラップ5");
+jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_TITLE","テンプレート/テーマがサポートするBootstrapフレームワークのバージョンはどれですか？");
+jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_MESSAGE","ブートストラップフレームワークの各バージョンには、わずかに異なるhtmlマークアップが必要です。Jomresには、ブートストラップバージョンごとに1つずつ、3セットのブートストラップ互換テンプレートセットがあります。適切なテンプレートセットを使用するように構成する必要があります。レイアウト、モーダル、メニューなどの出力が正しく機能しません。後で別のブートストラップバージョンでテンプレート/テーマを使用する場合は、Jomresが[管理]> [Jomres]> [設定]で使用するブートストラップテンプレートセットを変更できます。 >その他のタブ<br/> <br/> Joomla3はデフォルトでBootstrap2とともに配布され、Joomla4はBootstrap5を使用します。JomresLeohtianテンプレート（Joomla)とテーマ（Wordpress)はBootstrap3を使用します。異なるテンプレート/テーマは独自のブートストラップファイルとともに配布されるため、疑問がある場合は、テンプレート/テーマの開発者に連絡してください。 ");
+jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP2","ブートストラップ2");
+jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP3","ブートストラップ3");
+jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP4","ブートストラップ4");
+jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP5","ブートストラップ5");
 jr_define('_JOMRES_CURRENCYFORMAT_STRIP_DECIMALS','出力価格から小数を削除しますか？');
 
 jr_define('_JOMRES_SEND_GROUP_BY_FIX_TITLE','group by fix？');
 jr_define('_JOMRES_SEND_GROUP_BY_FIX_DESC','一部のmysqlインストールでは、[リストのプロパティ]、[ゲストのリスト]、および[請求書のリスト]ページのJomresクエリで問題が発生する可能性があります。 [はい]を選択すると、問題が解決する場合があります。共有ホスティングを使用していて、ホスティングサービスでmysqlユーザーが "SET GLOBAL sql_mode ="コマンドを発行できない場合は修正されません。 ');
 jr_define('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN','これはチャネルプロパティです。ローカルで管理することはできません。チャネル管理フレームワークページにアクセスして、プロパティのリモート管理リンクを見つけてください');
-jr_define("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0","テーマにブートストラップがありません");
+jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0","テーマにブートストラップがありません");
 

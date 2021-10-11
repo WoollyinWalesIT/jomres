@@ -2712,12 +2712,12 @@ jr_define ('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_MESSAGE' , 'Jomres را می ت
 jr_define ('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_JUSTONE' , 'فقط یک ویژگی') ;
 jr_define ('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_MANY' , 'من بیش از یک ویژگی را لیست خواهم کرد');
 
-jr_define ("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_TITLE" , "قالب/موضوع شما از کدام نسخه از چارچوب بوت استرپ پشتیبانی می کند؟");
-jr_define ("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_MESSAGE" , "هر نسخه از چارچوب Bootstrap به نشانه گذاری html کمی متفاوت نیاز دارد. Jomres دارای سه مجموعه قالب قالب سازگار با Bootstrap است , یکی برای هر نسخه Bootstrap. شما باید اطمینان حاصل کنید که برای پیکربندی آن از الگوی مناسب استفاده کنید. در این صورت خروجی مانند طرح , مدال ها و منوها به درستی کار نمی کنند. اگر تصمیم گرفتید بعداً از یک قالب/موضوع با نسخه Bootstrap دیگر استفاده کنید , می توانید مجموعه قالب Bootstrap را که Jomres باید در Admin> Jomres> Settings استفاده کند , تغییر دهید. > برگه متفرقه. <br/> <br/> جوملا 3 به طور پیش فرض با بوت استرپ 2 توزیع می شود , جوملا 4 از بوت استرپ 5 استفاده می کند. قالب Jomres Leohtian (جوملا) و تم (Wordpress) از بوت استرپ 3 استفاده می کند. با فایلهای بوت استرپ خودشان توزیع می شوند , بنابراین اگر شک دارید , لطفاً با توسعه دهنده قالب/موضوع خود تماس بگیرید. ");
-jr_define ("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP2" , "بوت استرپ 2") ;
-jr_define ("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP3" , "بوت استرپ 3") ;
-jr_define ("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP4" , "بوت استرپ 4") ;
-jr_define ("_ JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP5" , "بوت استرپ 5") ;
+jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_TITLE" , "قالب/موضوع شما از کدام نسخه از چارچوب بوت استرپ پشتیبانی می کند؟");
+jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_MESSAGE" , "هر نسخه از چارچوب Bootstrap به نشانه گذاری html کمی متفاوت نیاز دارد. Jomres دارای سه مجموعه قالب قالب سازگار با Bootstrap است , یکی برای هر نسخه Bootstrap. شما باید اطمینان حاصل کنید که برای پیکربندی آن از الگوی مناسب استفاده کنید. در این صورت خروجی مانند طرح , مدال ها و منوها به درستی کار نمی کنند. اگر تصمیم گرفتید بعداً از یک قالب/موضوع با نسخه Bootstrap دیگر استفاده کنید , می توانید مجموعه قالب Bootstrap را که Jomres باید در Admin> Jomres> Settings استفاده کند , تغییر دهید. > برگه متفرقه. <br/> <br/> جوملا 3 به طور پیش فرض با بوت استرپ 2 توزیع می شود , جوملا 4 از بوت استرپ 5 استفاده می کند. قالب Jomres Leohtian (جوملا) و تم (Wordpress) از بوت استرپ 3 استفاده می کند. با فایلهای بوت استرپ خودشان توزیع می شوند , بنابراین اگر شک دارید , لطفاً با توسعه دهنده قالب/موضوع خود تماس بگیرید. ");
+jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP2" , "بوت استرپ 2") ;
+jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP3" , "بوت استرپ 3") ;
+jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP4" , "بوت استرپ 4") ;
+jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP5" , "بوت استرپ 5") ;
 jr_define('_JOMRES_CURRENCYFORMAT_STRIP_DECIMALS', 'اعشار را از قیمت خروجی بردارید؟');
 
 jr_define('_JOMRES_SEND_GROUP_BY_FIX_TITLE', 'با اصلاح گروه اعمال شود؟');
