@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.24.0
+ * @version Jomres 9.25.0
  *
  * @copyright	2005-2021 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -12,13 +12,7 @@
 //#################################################################
 defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.');
 //#################################################################
-/**
- *
- * @package Jomres\Core\Languages
- *
- * Language files.
- *
- **/
+
 jr_define('_JOMRES_FAQ', 'FAQ (Questions Fréquemment Posées)');
 jr_define('_JOMRES_FAQ_MANAGER_CATEGORY_PROPERTY', 'Établissements');
 jr_define('_JOMRES_FAQ_MANAGER_QUESTION_CREATPROPERTY', 'Comment créer un établissement ?');

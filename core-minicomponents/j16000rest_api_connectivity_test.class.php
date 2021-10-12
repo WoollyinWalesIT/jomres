@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.24.0
+ * @version Jomres 9.25.0
  *
  * @copyright	2005-2021 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -57,8 +57,8 @@ class j16000rest_api_connectivity_test
 			$response = $jomres_call_api->send_request("GET" , "core/report/");
 			}
 		catch (Exception $e) {
-			//
-		}
+           // throw new Exception('Error: invalid response from local API, received '.$e->getMessage() );
+        }
 
 
 		$api_keys = $jomres_call_api->init_manager();

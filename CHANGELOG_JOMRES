@@ -1,3 +1,9 @@
+<h3>Jomres 9.25.0 12/10/2021</h3>
+
+<span class="label label-success">Feature</span> All language files updated 
+
+<span class="label label-warning">Change</span> Changed default input vars settings in API .htaccess file to 3000
+
 <h3>Jomres 9.24.0 05/10/2021</h3>
 
 <span class="label label-success">Feature</span> Added functionality that allows Jomres to work in themes that don't provide Bootstrap libraries themselves.

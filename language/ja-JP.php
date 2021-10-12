@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.24.0
+ * @version Jomres 9.25.0
  *
  * @copyright	2005-2021 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -47,7 +47,7 @@ jr_define('_JOMRES_COM_MR_EDITBOOKING_TAB_PAYMENT', '支払い');
 jr_define('_JOMRES_COM_MR_EB_ARRIVALFIRSTNAME_EXPL', '名');
 jr_define('_JOMRES_COM_MR_EB_ARRIVALSURNAME_EXPL', '姓');
 jr_define('_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ', '特別な要求');
-jr_define('_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ_DISCLAIMER', '注：特別な要求は、別当チャージが発生される場合があります。');
+jr_define('_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ_DISCLAIMER', '注：特別な要求は,別当チャージが発生される場合があります。');
 jr_define('_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING', '予約をキャンセル');
 jr_define('_JOMRES_COM_MR_EB_GUEST_JOMRES_HOUSE_EXPL', '住所１');
 jr_define('_JOMRES_COM_MR_EB_GUEST_JOMRES_STREET_EXPL', '住所２');
@@ -56,7 +56,7 @@ jr_define('_JOMRES_COM_MR_EB_GUEST_JOMRES_POSTCODE_EXPL', '〒');
 jr_define('_JOMRES_COM_MR_EB_GUEST_JOMRES_LANDLINE_EXPL', '電話番号');
 jr_define('_JOMRES_COM_MR_EB_GUEST_JOMRES_MOBILE_EXPL', '携帯電話番号');
 jr_define('_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', 'Email：');
-jr_define('_JOMRES_COM_MR_EB_GUEST_CANCELLATION_ALREADYBOOKEDIN', 'お客がチェックイン済みのため、予約をキャンセルできません。');
+jr_define('_JOMRES_COM_MR_EB_GUEST_CANCELLATION_ALREADYBOOKEDIN', 'お客がチェックイン済みのため,予約をキャンセルできません。');
 jr_define('_JOMRES_COM_MR_EB_GUEST_CANCELLATION_NODEPOSIT', '予約金：未払い');
 jr_define('_JOMRES_COM_MR_EB_GUEST_CANCELLATION_BUTTON', 'キャンセルを確認する');
 jr_define('_JOMRES_COM_MR_EB_GUEST_CANCELLED', '予約がキャンセルされました');
@@ -116,7 +116,7 @@ jr_define('_JOMRES_COM_MR_VRCT_ROOMFEATURES_SAVE_INSERT', 'アメニティが追
 jr_define('_JOMRES_COM_MR_VRCT_ROOMFEATURES_SAVE_UPDATE', 'アメニティが更新されました。');
 jr_define('_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK', 'リソース・タイプ');
 jr_define('_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_ABBV', 'リソース・タイプの省略');
-jr_define('_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_DESC', 'リソース（ビジネス）タイプの説明');
+jr_define('_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_DESC', 'リソース（ビジネス)タイプの説明');
 jr_define('_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_INSERT', 'リソースタイプが追加されました。');
 jr_define('_JOMRES_COM_MR_VRCT_ROOMTYPES_LINKTEXT', 'アイテムを編集する');
 jr_define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME', 'プロパティ名');
@@ -132,8 +132,8 @@ jr_define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_WEBSITE', 'Website');
 jr_define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES', 'アメニティー');
 jr_define('_JOMRES_COM_MR_VRCT_PROPERTY_SAVE_UPDATE', 'プロパティが更新されました。');
 jr_define('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK', '特徴・自己PR');
-jr_define('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV', '特徴・自己PR（概略）');
-jr_define('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC', '特徴・自己PR（フル）');
+jr_define('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV', '特徴・自己PR（概略)');
+jr_define('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC', '特徴・自己PR（フル)');
 jr_define('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_UPDATE', 'プロパティの設備・アメニティーが更新されました。');
 jr_define('_JOMRES_COM_MR_LISTTARIFF_TITLE', '料金プラン');
 jr_define('_JOMRES_COM_MR_LISTTARIFF_RATETITLE', '料金プラン名');
@@ -169,7 +169,7 @@ jr_define('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_POSTCODE_EXPL', '〒');
 jr_define('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_LANDLINE_EXPL', '電話番号');
 jr_define('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_MOBILE_EXPL', '携帯電話番号');
 jr_define('_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE', '検索条件に当てはまるリソースが見つかりません。');
-jr_define('_JOMRES_FRONT_MR_BOOKINGMADE', 'ご予約申請いただき、誠にありがとうございます。ダッブルブッキングを防ぐため、本予約は仮予約に過ぎず、予約確認を通知するメールが届くまで予約は確定していないことに改めてご了承下さい。');
+jr_define('_JOMRES_FRONT_MR_BOOKINGMADE', 'ご予約申請いただき,誠にありがとうございます。ダッブルブッキングを防ぐため,本予約は仮予約に過ぎず,予約確認を通知するメールが届くまで予約は確定していないことに改めてご了承下さい。');
 jr_define('_JOMRES_FRONT_MR_BOOKIN_TITLE', 'チェックイン受付');
 jr_define('_JOMRES_FRONT_MR_BOOKIN_GUESTBOOKEDIN', 'チェックインが完了されました。');
 jr_define('_JOMRES_FRONT_MR_BOOKOUT_TITLE', 'チェックアウト');
@@ -177,13 +177,13 @@ jr_define('_JOMRES_COM_A_SUPPLIMENTS', '追加チャージ');
 jr_define('_JOMRES_COM_A_TARIFFS', '料金プラン・外貨');
 jr_define('_JOMRES_COM_A_JOMRES_FILE_UPLOADS', 'アプロード');
 jr_define('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON', '一人利用チャージ');
-jr_define('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_DESC', '多人部屋の一人利用に追加チャージしたい場合、「YES」に設定して下さい。');
+jr_define('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_DESC', '多人部屋の一人利用に追加チャージしたい場合,「YES」に設定して下さい。');
 jr_define('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST', '料金');
 jr_define('_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE', '予約金を％で設定しますか?');
-jr_define('_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE_DESC', '予約金が予約料金のパーセントとして設定したい場合に『YES』、円として設定したい場合には『NO』を選択して下さい。');
+jr_define('_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE_DESC', '予約金が予約料金のパーセントとして設定したい場合に『YES』,円として設定したい場合には『NO』を選択して下さい。');
 jr_define('_JOMRES_COM_A_DEPOSIT_VALUE', '予約金の設定');
 jr_define('_JOMRES_COM_A_TARIFFS_PER', '/泊/人');
-jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC', ' /泊/人 で料金の場合には『YES』、/泊/室の場合には『NO』を選択して下さい。');
+jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC', ' /泊/人 で料金の場合には『YES』,/泊/室の場合には『NO』を選択して下さい。');
 jr_define('_JOMRES_COM_A_UPLOADS_FILESIZE', 'サイズ');
 jr_define('_JOMRES_COM_A_UPLOADS_FILESIZE_DESC', 'イメージのmaxファイルサイズ　(KB)');
 jr_define('_JOMRES_FRONT_MR_BOOKED', '対象リソース');
@@ -203,17 +203,17 @@ jr_define('_JOMRES_UPLOAD_IMAGE', '写真をアプロード');
 jr_define('_JOMRES_FILE_UPLOAD', 'アイルアプロード');
 jr_define('_JOMRES_COM_A_ODDS', '雑');
 jr_define('_JOMRES_COM_A_ERRORCHECKING', 'ミニコンポーネントcalls一覧を表示する');
-jr_define('_JOMRES_COM_A_ERRORCHECKING_DESC', 'Jomresが実行した際に使われたミニコンポーネントを画面の下部に表示したい場合、「YES」に設定する。「YES」に設定するとinternal redirect機能を無効されます。どのミニコンポーネントがどのタスクを実行しているかがわかるように役に立ちます。');
+jr_define('_JOMRES_COM_A_ERRORCHECKING_DESC', 'Jomresが実行した際に使われたミニコンポーネントを画面の下部に表示したい場合,「YES」に設定する。「YES」に設定するとinternal redirect機能を無効されます。どのミニコンポーネントがどのタスクを実行しているかがわかるように役に立ちます。');
 jr_define('_JOMRES_FILE_DELETE', 'イメージ削除');
 jr_define('_JOMRES_FILE_DELETED', 'イメージが削除されました');
 jr_define('_JOMRES_COM_MR_ROOM_DELETE', '部屋削除');
-jr_define('_JOMRES_COM_MR_ROOM_UNABLETODELETE', '予約されているため、指定の部屋を削除できませんでした。予約をキャンセルしてからもう一度削除してください。');
+jr_define('_JOMRES_COM_MR_ROOM_UNABLETODELETE', '予約されているため,指定の部屋を削除できませんでした。予約をキャンセルしてからもう一度削除してください。');
 jr_define('_JOMRES_COM_MR_ROOM_DELETED', '部屋が削除されました。');
 jr_define('_JOMRES_COM_MR_ROOMFEATURE_DELETE', '部屋アメニティ削除');
-jr_define('_JOMRES_COM_MR_ROOMFEATURE_UNABLETODELETE', '部屋に適応されているため、指定のアメニティーを削除できませんでした。設定を外してからもう一度削除して下さい。');
+jr_define('_JOMRES_COM_MR_ROOMFEATURE_UNABLETODELETE', '部屋に適応されているため,指定のアメニティーを削除できませんでした。設定を外してからもう一度削除して下さい。');
 jr_define('_JOMRES_COM_MR_ROOMFEATURE_DELETED', '部屋のアメニティーが削除されました。');
 jr_define('_JOMRES_COM_MR_PROPERTYFEATURE_DELETE', '設備・プロパティ アメニティ削除');
-jr_define('_JOMRES_COM_MR_PROPERTYFEATURE_UNABLETODELETE', 'プロパティに適応されているため、指定の設備・アメニティーを削除できませんでした。設定を外してからもう一度削除して下さい。');
+jr_define('_JOMRES_COM_MR_PROPERTYFEATURE_UNABLETODELETE', 'プロパティに適応されているため,指定の設備・アメニティーを削除できませんでした。設定を外してからもう一度削除して下さい。');
 jr_define('_JOMRES_COM_MR_PROPERTYFEATURE_DELETED', 'プロパティの設備・アメニティーが削除されました。');
 jr_define('_JOMRES_COM_MR_ROOMCLASS_DELETE', '部屋・プロパティ タイプ削除');
 jr_define('_JOMRES_COM_MR_ROOMCLASS_DELETED', '部屋・プロパティ タイプが削除されました。');
@@ -231,12 +231,12 @@ jr_define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_OTHERTRANSPORT', 'その他の交
 jr_define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS', 'ポリシーと免責事項');
 jr_define('_JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS', '住所');
 jr_define('_JOMRES_COM_A_VISITORSCANBOOKONLINE', 'オンライン予約ができます。');
-jr_define('_JOMRES_COM_A_VISITORSCANBOOKONLINE_DESC', '顧客がオンラインで予約できるように、「YES」を選択して下さい。');
+jr_define('_JOMRES_COM_A_VISITORSCANBOOKONLINE_DESC', '顧客がオンラインで予約できるように,「YES」を選択して下さい。');
 jr_define('_JOMRES_COM_A_FIXEDPERIODBOOKINGS', '定期予約');
-jr_define('_JOMRES_COM_A_FIXEDPERIODBOOKINGS_DESC', '定期予約を設定したい場合には、「YES」を選択して下さい。「NO」の場合、「指定のチェックイン曜日」も「NO」に設定するケースがほとんど。');
+jr_define('_JOMRES_COM_A_FIXEDPERIODBOOKINGS_DESC', '定期予約を設定したい場合には,「YES」を選択して下さい。「NO」の場合,「指定のチェックイン曜日」も「NO」に設定するケースがほとんど。');
 jr_define('_JOMRES_COM_A_FIXEDPERIOD', '固定期間:');
 jr_define('_JOMRES_COM_A_BOOKING', '部屋予約');
-jr_define('_JOMRES_COM_A_FIXEDPERIOD_NUMBEROFPERIODS', '最大の延長回数（例：７日の予約期間×３回＝２１日）');
+jr_define('_JOMRES_COM_A_FIXEDPERIOD_NUMBEROFPERIODS', '最大の延長回数（例：７日の予約期間×３回＝２１日)');
 jr_define('_JOMRES_COM_A_SINGLEROOMPROPERTY', 'アパート・シャレー・コテージですか?');
 jr_define('_JOMRES_FRONT_MR_REVIEWBOOKING', '予約の確認');
 jr_define('_JOMRES_COM_MR_CONFIRMBOOKING', '予約の確定');
@@ -271,18 +271,18 @@ jr_define('_JOMRES_COM_MR_FIXEDARRIVALDATE_YESNO_DESC', '固定のチェック�
 jr_define('_JOMRES_COM_MR_FIXEDARRIVALDATE_DAY', '固定のチェックイン日');
 jr_define('_JOMRES_FRONT_MR_FIXEDPRIOD1', '宿泊日数');
 jr_define('_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR', '空室カレンダーをインラインで表示しますか?');
-jr_define('_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR_DESC', '空室カレンダーを表したい場合、「YES」を選択して下さい。');
+jr_define('_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR_DESC', '空室カレンダーを表したい場合,「YES」を選択して下さい。');
 jr_define('_JOMRES_FRONT_AVAILABILITY', '空室状況');
 jr_define('_JOMRES_FRONT_CALENDAR_CLICKDATES', '空室の日にクリックすると予約フォームが表示されます。');
 jr_define('_JOMRES_FRONT_BLACKBOOKING', 'ブラック予約');
 jr_define('_JOMRES_FRONT_BLACKBOOKING_NEW', 'ブラック予約の新規設定');
 jr_define('_JOMRES_FRONT_DELETEGUEST', '顧客を消却する');
 jr_define('_JOMRES_FRONT_DELETEGUEST_GUESTDELETED', '顧客が消却されました。');
-jr_define('_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST', 'この顧客は、他のホテルまたはビジネスにて予約があるため、消却できませんでした。');
+jr_define('_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST', 'この顧客は,他のホテルまたはビジネスにて予約があるため,消却できませんでした。');
 jr_define('_JOMRES_FRONT_GUEST_EMAIL_TEXT_HELLO', 'こんにちは');
 jr_define('_JOMRES_FRONT_GUEST_EMAIL_TEXT_THANKS', '予約いただき誠にありがとうございます。');
 jr_define('_JOMRES_FRONT_GUEST_EMAIL_TEXT_SUMMARY', '予約の概要は以下です。');
-jr_define('_JOMRES_FRONT_GUEST_EMAIL_TEXT_ANYQUESTIONS', '予約等についての質問があれば、気軽に連絡下さい。');
+jr_define('_JOMRES_FRONT_GUEST_EMAIL_TEXT_ANYQUESTIONS', '予約等についての質問があれば,気軽に連絡下さい。');
 jr_define('_JOMRES_FRONT_GUEST_EMAIL_TEXT_TELEPHONE', 'ホテルの電話番号はこちら：');
 jr_define('_JOMRES_FRONT_GUEST_EMAIL_TEXT_EMAIL', 'ホテルのメールアドはこちらへ：');
 jr_define('_JOMRES_FRONT_ROOMSMOKING_EITHER', 'どちらでも');
@@ -307,9 +307,9 @@ jr_define('_JOMRES_COM_MR_VIEWBOOKINGS_LATE', '未チェックイン');
 jr_define('_JOMRES_MR_AUDIT_INSERT_ROOM', 'リソースが作成されました。');
 jr_define('_JOMRES_MR_AUDIT_UPDATE_ROOM', 'リソースが更新されました。');
 jr_define('_JOMRES_MR_AUDIT_DELETE_ROOM', 'リソースが消却されました。');
-jr_define('_JOMRES_MR_AUDIT_INSERT_ROOM_FEATURE', 'リソース（部屋）のアメニティが作成されました。');
-jr_define('_JOMRES_MR_AUDIT_UPDATE_ROOM_FEATURE', 'リソース（部屋）のアメニティが更新されました。');
-jr_define('_JOMRES_MR_AUDIT_DELETE_ROOM_FEATURE', 'リソース（部屋）のアメニティが削除されました。');
+jr_define('_JOMRES_MR_AUDIT_INSERT_ROOM_FEATURE', 'リソース（部屋)のアメニティが作成されました。');
+jr_define('_JOMRES_MR_AUDIT_UPDATE_ROOM_FEATURE', 'リソース（部屋)のアメニティが更新されました。');
+jr_define('_JOMRES_MR_AUDIT_DELETE_ROOM_FEATURE', 'リソース（部屋)のアメニティが削除されました。');
 jr_define('_JOMRES_MR_AUDIT_INSERT_PROPERTY', 'プロパティが作成されました。');
 jr_define('_JOMRES_MR_AUDIT_UPDATE_PROPERTY', 'プロパティが更新されました。');
 jr_define('_JOMRES_MR_AUDIT_DELETE_PROPERTY', 'プロパティが消却されました。');
@@ -322,7 +322,7 @@ jr_define('_JOMRES_MR_AUDIT_BOOKEDGUESTIN', '顧客がチェックインされ�
 jr_define('_JOMRES_MR_AUDIT_ENTEREDDEPOSIT', '予約金が入力された。');
 jr_define('_JOMRES_MR_AUDIT_INSERT_GUEST', '顧客が新規に作成された。');
 jr_define('_JOMRES_MR_AUDIT_UPDATE_GUEST', '顧客が変更されました。');
-jr_define('_JOMRES_MR_AUDIT_BOOKED_ROOM', 'リソース（部屋）が予約されました。');
+jr_define('_JOMRES_MR_AUDIT_BOOKED_ROOM', 'リソース（部屋)が予約されました。');
 jr_define('_JOMRES_MR_AUDIT_INSERT_EXTRA', '追加オプションが作成されました。');
 jr_define('_JOMRES_MR_AUDIT_UPDATE_EXTRA', '追加オプションが変更されました。');
 jr_define('_JOMRES_MR_AUDIT_DELETE_EXTRA', '追加オプションが削除されました。');
@@ -338,13 +338,13 @@ jr_define('_JOMRES_COM_MR_EXTRA_LINKTEXT', '追加オプションの変更');
 jr_define('_JOMRES_COM_MR_EXTRA_DELETED', '追加オプションが消却されました。');
 jr_define('_JOMRES_FRONT_MR_MENU_ADMIN_EXTRAS', '追加オプション管理');
 jr_define('_JOMRES_COM_A_EXTRAS', '予約時に追加オプションを表示しますか?');
-jr_define('_JOMRES_COM_A_EXTRAS_DESC', '追加オプションを表示されたい場合には、「YES」に設定してください。');
+jr_define('_JOMRES_COM_A_EXTRAS_DESC', '追加オプションを表示されたい場合には,「YES」に設定してください。');
 jr_define('_JOMRES_FRONT_MR_BOOKING_EXTRAS_HELP', '追加オプションのHELP');
 jr_define('_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS_BBSTARTS', 'ブラック期間の開始日');
 jr_define('_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS_BBSERVICERESUMES', 'ブラック期間の終了日');
 jr_define('_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS', 'ブラック予約');
 jr_define('_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS_STAGE2_ERROR', 'エラー：選択されたリソースのいずれかが空いていませんでした。');
-jr_define('_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS_ROOMSSUBJECT', 'ブラック予約（予約不可期間）を適応されるリソース（部屋）');
+jr_define('_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS_ROOMSSUBJECT', 'ブラック予約（予約不可期間)を適応されるリソース（部屋)');
 jr_define('_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS_NOBBOOKINGS', 'ブラック予約は設定されていません');
 jr_define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STARS', '評価の星数');
 jr_define('_JOMRES_COM_A_RESET', 'Reset');
@@ -354,10 +354,10 @@ jr_define('_JOMRES_COM_A_CURRENCYSYMBOL', '通貨シンボル');
 jr_define('_JOMRES_COM_A_CURRENCYCODE', '通貨コード');
 jr_define('_JOMRES_COM_A_CLICKFORMOREINFORMATION', '詳細情報');
 jr_define('_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO', '事前予約を制限しますか？');
-jr_define('_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO_DESC', '予約をチェックインする日より何日以内に制限したい場合には、「YES」を選択し、下記のフィールドで日数を設定してください。ユーザーが設定された事前予約制限より前に予約する場合には、チェックイン日が本日に戻されます。');
+jr_define('_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO_DESC', '予約をチェックインする日より何日以内に制限したい場合には,「YES」を選択し,下記のフィールドで日数を設定してください。ユーザーが設定された事前予約制限より前に予約する場合には,チェックイン日が本日に戻されます。');
 jr_define('_JOMRES_COM_A_ADVANCEBOOKINGSLIMITDAYS', '事前予約の最大日数：');
-jr_define('_JOMRES_COM_FRONT_ROOMTAX', 'リソース（部屋）税');
-jr_define('_JOMRES_COM_A_ROOMTAX', 'リソース（部屋）税');
+jr_define('_JOMRES_COM_FRONT_ROOMTAX', 'リソース（部屋)税');
+jr_define('_JOMRES_COM_A_ROOMTAX', 'リソース（部屋)税');
 jr_define('_JOMRES_COM_A_ROOMTAX_FIXED', '固定の税額');
 jr_define('_JOMRES_COM_A_ROOMTAX_PERCENTAGE', '同税率');
 jr_define('_JOMRES_COM_A_EUROTAX', 'ユーロー税');
@@ -392,15 +392,15 @@ jr_define('_JOMRES_EXTRAS_NOEXTRAS', '追加料金なし');
 jr_define('_JOMRES_COM_CHARGING_DEPOSIT', '予約金');
 jr_define('_JOMRES_COM_CHARGING_FULLAMT', '合計');
 jr_define('_JOMRES_COM_CHARGING_CONFIG', '予約時の支払額');
-jr_define('_JOMRES_COM_CHARGING_CONFIG_DESC', '予約時には、適応される支払額を設定できます。予約時には、予約金(deposit)のみ、又は予約の全額(Full amount)を選択できます。');
+jr_define('_JOMRES_COM_CHARGING_CONFIG_DESC', '予約時には,適応される支払額を設定できます。予約時には,予約金(deposit)のみ,又は予約の全額(Full amount)を選択できます。');
 jr_define('_JOMRES_COM_MONTHSTOSHOW', 'カレンダーで表示される月数');
-jr_define('_JOMRES_COM_MONTHSTOSHOW_DESC', 'リソースの空室状況のカレンダーでは、何ヶ月を表示しますか？');
+jr_define('_JOMRES_COM_MONTHSTOSHOW_DESC', 'リソースの空室状況のカレンダーでは,何ヶ月を表示しますか？');
 jr_define('_JOMRES_COM_A_GATEWAYLIST', 'ペイメント・ゲートウエー');
 jr_define('_JOMRES_COM_A_CANCEL', 'キャンセル');
-jr_define('_JOMRES_FRONT_BLACKBOOKING_DESC', 'ブラック予約を適応する期間の開始日と終了日を選択し、「適応する」のボタンをクリックしてください。 <br/> 
+jr_define('_JOMRES_FRONT_BLACKBOOKING_DESC', 'ブラック予約を適応する期間の開始日と終了日を選択し,「適応する」のボタンをクリックしてください。 <br/> 
 <br/> 
-予約不能にされたいリソース（部屋）を選択してください。 <br>チェックマークが表示されないリソース（部屋）には、既存の予約が満了またはキャンセルされるまで、ブラック予約を設けることはできません。<br/>');
-jr_define('_JOMRES_JR_NOTLOGGEDIN', '操作されず時間切れになりましたため、ログアウトされました。ログインしてから再び実行してしてください。');
+予約不能にされたいリソース（部屋)を選択してください。 <br>チェックマークが表示されないリソース（部屋)には,既存の予約が満了またはキャンセルされるまで,ブラック予約を設けることはできません。<br/>');
+jr_define('_JOMRES_JR_NOTLOGGEDIN', '操作されず時間切れになりましたため,ログアウトされました。ログインしてから再び実行してしてください。');
 jr_define('_JOMRES_JR_BLACKBOOKING_REASON', '事由');
 jr_define('_JOMRES_COM_A_GATEWAY_USEGATEWAYS', 'ペイメント・ゲートウエーを利用しますか?');
 jr_define('_JOMRES_COM_A_GATEWAY_BOOKING_CHOOSE', '支払い方法を選択して下さい。');
@@ -419,11 +419,11 @@ jr_define('_JOMRES_FRONT_SLIDESHOW', 'スライドショー');
 jr_define('_JOMRES_COM_A_TARIFFS_SHOWTARIFFSLINK', '料金プランへのリンクを表示しますか?');
 jr_define('_JOMRES_COM_A_POPUPSALLOWED', 'ポップアプを許可しますか?');
 jr_define('_JOMRES_FRONT_IMAGEUPLOADS', 'スライドショー用の写真アプロード');
-jr_define('_JOMRES_FRONT_IMAGEUPLOADS_INFO', 'ホテルの写真をアプロードするため、このフォームを利用して下さい。<br/>同じファイル名のイメージがある場合、上書きされますのでご注意下さい。部屋、ホテルのヘッダーの写真・イメージは「ホテル管理」タブで行ってください。<br/>注意：ここでアップロードされるイメージが /jomres/uploadedimages/*business_uid* のホルダーに保存されます。ホルダーが存在しない場合には、環境設定に特定パースが設定されていない限り、新規に作成されます。');
+jr_define('_JOMRES_FRONT_IMAGEUPLOADS_INFO', 'ホテルの写真をアプロードするため,このフォームを利用して下さい。<br/>同じファイル名のイメージがある場合,上書きされますのでご注意下さい。部屋,ホテルのヘッダーの写真・イメージは「ホテル管理」タブで行ってください。<br/>注意：ここでアップロードされるイメージが /jomres/uploadedimages/*business_uid* のホルダーに保存されます。ホルダーが存在しない場合には,環境設定に特定パースが設定されていない限り,新規に作成されます。');
 jr_define('_JOMRES_A_TABS_MISC', 'その他');
 jr_define('_JOMRES_A', 'サイトの環境設定');
 jr_define('_JOMRES_A_GLOBALPFEATURES', 'グローバル事業アメニティーを利用する');
-jr_define('_JOMRES_A_GLOBALPFEATURES_INFO', '本アメニティにイメージをサインするため、まずはそのイメージを /jomres/uploadedimages/pfeatures/ ホルダーにアプロードしてください。');
+jr_define('_JOMRES_A_GLOBALPFEATURES_INFO', '本アメニティにイメージをサインするため,まずはそのイメージを /jomres/uploadedimages/pfeatures/ ホルダーにアプロードしてください。');
 jr_define('_JOMRES_A_ICON', 'アイコン');
 jr_define('_JOMRES_A_GLOBAL_SEARCHOPTION', '検索プラグインを選択してください。');
 jr_define('_JOMRES_FRONT_NORESULTS', '一致する結果がありません。');
@@ -440,34 +440,34 @@ jr_define('_JOMRES_COM_A_BASICTEMPLATE_SHOWROOMS_TITLE', 'リソースと空室�
 jr_define('_JOMRES_COM_A_TARIFFS_MODEL_SINGLETARIFF', '固定金額の料金プラン');
 jr_define('_JOMRES_COM_A_TARIFFS_MODEL_AVERAGES', '平均方式の料金プラン');
 jr_define('_JOMRES_COM_A_TARIFFS_MODEL', '料金プラン方式を選択してください。');
-jr_define('_JOMRES_COM_A_TARIFFS_MODEL_DESC', '料金プランを２方式から選択できます。「固定金額の料金プラン」方式は、顧客がいくつかの料金プラン（素泊まり、一泊二食付き等）から選択し、滞在中に毎日に同金額が発生される方式です。「平均方式」は、日により異なる料金プランを設定する場合に使用し、顧客の指定期間中の料金の平均が計算され表示されます。');
+jr_define('_JOMRES_COM_A_TARIFFS_MODEL_DESC', '料金プランを２方式から選択できます。「固定金額の料金プラン」方式は,顧客がいくつかの料金プラン（素泊まり,一泊二食付き等)から選択し,滞在中に毎日に同金額が発生される方式です。「平均方式」は,日により異なる料金プランを設定する場合に使用し,顧客の指定期間中の料金の平均が計算され表示されます。');
 jr_define('_JOMRES_COM_A_SHOWDEPARTUREINPUT', 'チェックアウトの日付入力を表示しますか？');
-jr_define('_JOMRES_COM_A_SHOWDEPARTUREINPUT_DESC', 'チェックアウトの日付入力ボックスを表示しない場合「NO」に設定してください。チェックアウト日はチェックイン日の翌日とされるので、「NO」の利用に注意ください。');
+jr_define('_JOMRES_COM_A_SHOWDEPARTUREINPUT_DESC', 'チェックアウトの日付入力ボックスを表示しない場合「NO」に設定してください。チェックアウト日はチェックイン日の翌日とされるので,「NO」の利用に注意ください。');
 jr_define('_JOMRES_COM_PROPERTYLISTDESC', '説明の長さ制限');
-jr_define('_JOMRES_COM_PROPERTYLISTDESC_DESC', '事業・プロパティの説明が表示される際、表示文字数を制限します。.');
+jr_define('_JOMRES_COM_PROPERTYLISTDESC_DESC', '事業・プロパティの説明が表示される際,表示文字数を制限します。.');
 jr_define('_JOMRES_COM_A_DATEFORMATSTYLE', 'Used date() format style?');
 jr_define('_JOMRES_COM_MR_VRCT_PUBLISH', '公開する');
 jr_define('_JOMRES_COM_MR_VRCT_UNPUBLISH', '非公開する');
 jr_define('_JOMRES_A_GLOBALROOMTYPES', 'グローバル事業タイプ・リソースタイプを利用しますか');
-jr_define('_JOMRES_A_GLOBALROOMTYPES_INFO', '本事業タイプ・リソースタイプにイメージを指定する前、事業タイプ・リソースタイプのイメージを /images/stories/jomres/rmtypes/ ホルダーにアプロードする必要がある。');
+jr_define('_JOMRES_A_GLOBALROOMTYPES_INFO', '本事業タイプ・リソースタイプにイメージを指定する前,事業タイプ・リソースタイプのイメージを /images/stories/jomres/rmtypes/ ホルダーにアプロードする必要がある。');
 jr_define('_JOMRES_COM_INPUTERROR_BACKGROUND', '入力エラー発生時のBGカラー');
 jr_define('_JOMRES_COM_CONFIGCOUNTRIES', '予約フォームでのデフォルト国');
 jr_define('_JOMRES_JAVASCRIPT_', '★は必須項目');
 jr_define('_JOMRES_COM_SELFREGISTRATION', 'ユーザーが事業を自分で登録できるようにしますか?');
-jr_define('_JOMRES_COM_SELFREGISTRATION_DESC', 'ユーザーがサイトアドミンの許可が必要なく事業を登録できるようにしたい場合、「YES」に設定してください。');
+jr_define('_JOMRES_COM_SELFREGISTRATION_DESC', 'ユーザーがサイトアドミンの許可が必要なく事業を登録できるようにしたい場合,「YES」に設定してください。');
 jr_define('_JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2', '必須項目は茶色にハイライトされています。');
 jr_define('_JOMRES_REGISTRATION_AUDIT_CREATEPROPERTY', '事業・プロパティが登録されました。');
 jr_define('_JOMRES_COM_MONTHS_STARTOFYEAR', 'カレンダーを年始から表示しますか?');
 jr_define('_JOMRES_COM_MONTHS_STARTOFYEAR_DESC', '空室状況のカレンダーは年始から表示されます。');
-jr_define('_JOMRES_NUMBEROFROOMSAVAILABLE', 'リソース（部屋）数');
+jr_define('_JOMRES_NUMBEROFROOMSAVAILABLE', 'リソース（部屋)数');
 jr_define('_JOMRES_BACKTOPROPERTYDETAILSLINK', 'プロパティ情報に戻る');
 jr_define('_JOMRES_FRONT_ROOMTYPES', 'リソース・ビジネスの種類');
 jr_define('_JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT', 'ランドム検索制限');
 jr_define('_JOMRES_SHOWGOOGLECURRENCYLINKS', '料金プラン一覧で為替換算リンクを表示しますか?');
 jr_define('_JOMRES_CURRENCYCONVERSIONTEXT', '為替レート');
 jr_define('_JOMRES_COM_ALLOWHTMLEDITOR', 'ユーザーにHTMLでも編集できるようにしますか。?');
-jr_define('_JOMRES_AJAXFORM_INSTRUCTIONS', '予約の際にこのフォームをご利用ください。チェックイン日付、泊数、人数等で検索して、空室ありのホテル・部屋から選べます。好ましいホテル・部屋をクリックすると予約に追加されます。その次、追加オプションを付け加え、住所等を入力してください。予約に必要な情報が入力したら、予約の「提出」ボタンが表示され、クリックすると提出できる。');
-jr_define('_JOMRES_AJAXFORM_INSTRUCTIONS_SRP', 'このフォームで予約してください。予約の確認・変更、追加オプションの指定、住所等の記入等、必須項目が記入された上、「提出」のボタンが表示されます。');
+jr_define('_JOMRES_AJAXFORM_INSTRUCTIONS', '予約の際にこのフォームをご利用ください。チェックイン日付,泊数,人数等で検索して,空室ありのホテル・部屋から選べます。好ましいホテル・部屋をクリックすると予約に追加されます。その次,追加オプションを付け加え,住所等を入力してください。予約に必要な情報が入力したら,予約の「提出」ボタンが表示され,クリックすると提出できる。');
+jr_define('_JOMRES_AJAXFORM_INSTRUCTIONS_SRP', 'このフォームで予約してください。予約の確認・変更,追加オプションの指定,住所等の記入等,必須項目が記入された上,「提出」のボタンが表示されます。');
 jr_define('_JOMRES_AJAXFORM_PARTICULARS', '予約の詳細');
 jr_define('_JOMRES_AJAXFORM_PARTICULARS_DESC', '予約条件を設定して下さい');
 jr_define('_JOMRES_AJAXFORM_AVAILABLE', '空室状況');
@@ -477,7 +477,7 @@ jr_define('_JOMRES_AJAXFORM_EXTRAS', 'サービス');
 jr_define('_JOMRES_AJAXFORM_EXTRAS_DESC', 'サービス');
 jr_define('_JOMRES_COM_PERDAY', '１泊に付き');
 jr_define('_JOMRES_AJAXFORM_ADDRESS', '顧客情報');
-jr_define('_JOMRES_AJAXFORM_ADDRESS_DESC', '詳細を記入してください。（★は必須項目）');
+jr_define('_JOMRES_AJAXFORM_ADDRESS_DESC', '詳細を記入してください。（★は必須項目)');
 jr_define('_JOMRES_AJAXFORM_AVAILABLEROOMS', '利用可能なリソース');
 jr_define('_JOMRES_AJAXFORM_SELECTEDROOMS', '選択したリソース');
 jr_define('_JOMRES_AJAXFORM_EARLIESTPOSSIBLEARRIVALDATE', '最初のチェックイン可能な日付：');
@@ -492,15 +492,15 @@ jr_define('_JOMRES_AJAXFORM_CLICKHERECAPTION', '追加する');
 jr_define('_JOMRES_AJAXFORM_CLICKHERECAPTION_REMOVE', '外す');
 jr_define('_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', '顧客タイプ');
 jr_define('_JOMRES_VARIANCES_TYPE', 'タイプ');
-jr_define('_JOMRES_VARIANCES_TYPE_TT', '例えば：５歳未満、学生');
+jr_define('_JOMRES_VARIANCES_TYPE_TT', '例えば：５歳未満,学生');
 jr_define('_JOMRES_VARIANCES_NOTES', '備考');
-jr_define('_JOMRES_VARIANCES_NOTES_TT', '例の客タイプについての注意書き、メモなど');
+jr_define('_JOMRES_VARIANCES_NOTES_TT', '例の客タイプについての注意書き,メモなど');
 jr_define('_JOMRES_VARIANCES_MAXIMUM', 'Max人数');
-jr_define('_JOMRES_VARIANCES_MAXIMUM_TT', '予約フォームで、予約に付き、例の客タイプの選択可能な最大人数');
+jr_define('_JOMRES_VARIANCES_MAXIMUM_TT', '予約フォームで,予約に付き,例の客タイプの選択可能な最大人数');
 jr_define('_JOMRES_VARIANCES_ISPERCENTAGE', '％？');
-jr_define('_JOMRES_VARIANCES_ISPERCENTAGE_TT', 'YESの場合、指定のプレミアム・ディスカウントは％としてベース料金に適応される（割減・割増）。「NO」の場合、￥として適応される。');
+jr_define('_JOMRES_VARIANCES_ISPERCENTAGE_TT', 'YESの場合,指定のプレミアム・ディスカウントは％としてベース料金に適応される（割減・割増)。「NO」の場合,￥として適応される。');
 jr_define('_JOMRES_VARIANCES_POSNEG', 'プレミアム？');
-jr_define('_JOMRES_VARIANCES_POSNEG_TT', '「YES」の場合、設定値はプレミアムとして適応される。「NO」の場合、設定値がディスカウントとして適応される。');
+jr_define('_JOMRES_VARIANCES_POSNEG_TT', '「YES」の場合,設定値はプレミアムとして適応される。「NO」の場合,設定値がディスカウントとして適応される。');
 jr_define('_JOMRES_VARIANCES_VARIANCE', 'プレミアム・ディスカウント');
 jr_define('_JOMRES_VARIANCES_VARIANCE_TT', 'プレミアムもしくはディスカウントの設定値');
 jr_define('_JOMRES_MR_AUDIT_REORDER_CUSTOMERTYPE', '顧客タイプの順番が変更されました。');
@@ -508,22 +508,22 @@ jr_define('_JOMRES_MR_AUDIT_DELETE_CUSTOMERTYPE', '顧客タイプが削除さ�
 jr_define('_JOMRES_MR_AUDIT_INSERT_CUSTOMERTYPE', '顧客タイプが作成されました。');
 jr_define('_JOMRES_MR_AUDIT_UPDATE_CUSTOMERTYPE', '顧客タイプを変更する');
 jr_define('_JOMRES_COM_MR_CUSTOMERTYPE_UPDATED', '顧客タイプが変更されました。');
-jr_define('_JOMRES_COM_A_SHOWROOMSLISTLINK', 'プロパティ情報のページでリソース（部屋）一覧へのリンクを表示しますか?');
+jr_define('_JOMRES_COM_A_SHOWROOMSLISTLINK', 'プロパティ情報のページでリソース（部屋)一覧へのリンクを表示しますか?');
 jr_define('_JOMRES_COM_A_SHOWONLYAVLCAL', '空室状況カレンダーのみ表示しますか?');
-jr_define('_JOMRES_COM_A_SHOWONLYAVLCAL_DESC', '事業情報ページでは、事業のヘッダーと詳細を表示せずに空室状況カレンダーのみ表示したい場合、「YES」に設定してください。シングル・リソース・プロパティ（シャレー等）を貸し切る事業のみに適している。');
+jr_define('_JOMRES_COM_A_SHOWONLYAVLCAL_DESC', '事業情報ページでは,事業のヘッダーと詳細を表示せずに空室状況カレンダーのみ表示したい場合,「YES」に設定してください。シングル・リソース・プロパティ（シャレー等)を貸し切る事業のみに適している。');
 jr_define('_JOMRES_COM_A_MINIMUMINTERVAL', 'MIN宿泊数');
-jr_define('_JOMRES_COM_A_MINIMUMINTERVAL_DESC', '予約フォームでは、チェックインとチェックアウトの間の最低の必須宿泊数を設定してください。');
+jr_define('_JOMRES_COM_A_MINIMUMINTERVAL_DESC', '予約フォームでは,チェックインとチェックアウトの間の最低の必須宿泊数を設定してください。');
 jr_define('_JOMRES_COM_A_BOOKINGFORM_SHOWROOMNO', '予約フォームでのリソース一覧で部屋番号を表示する');
 jr_define('_JOMRES_COM_A_BOOKINGFORM_SHOWROOMNAME', '予約フォームでのリソース一覧で部屋名を表示する');
 jr_define('_JOMRES_COM_A_BOOKINGFORM_SHOWTARIFFTITLE', '予約フォームでのリソース一覧で料金プランを表示する');
 jr_define('_JOMRES_ORDER', 'Order');
 jr_define('_JOMRES_REQUIREDFIELDS', '必須');
 jr_define('_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING', 'チェックイン前の日数');
-jr_define('_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_DESC', '本日（予約日）からチェックインまでの最低日数');
+jr_define('_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_DESC', '本日（予約日)からチェックインまでの最低日数');
 jr_define('_JOMRES_DTV', 'Date type variations');
 jr_define('_JOMRES_DTV_DOW', '曜日');
 jr_define('_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPE', '顧客タイプのデフォルト');
-jr_define('_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPEDESC', '「顧客タイプ」の機能を利用する場合、予約フォームで初客の顧客タイプのデフォールトを設定してください。');
+jr_define('_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPEDESC', '「顧客タイプ」の機能を利用する場合,予約フォームで初客の顧客タイプのデフォールトを設定してください。');
 jr_define('_JOMRES_COM_A_REGISTEREDUSERSONLYBOOK', 'オンライン予約を登録ユーザーに制限しますか?');
 jr_define('_JOMRES_REGISTEREDUSERSONLYBOOK', 'オンライン予約のご利用はWinterkit.jpの登録ユーザーに限られています。登録はこちらへ。');
 jr_define('_JOMRES_COM_AVLCAL_CURRENTBOOKINGFONT', '既存予約へのリンクのフォント色');
@@ -533,10 +533,10 @@ jr_define('_JOMRES_COM_AVLCAL_BLACK_KEY', 'ブラック予約');
 jr_define('_JOMRES_COM_A_DEPOSIT_DEPOSITROUNDUP', '予約金は端数を切り上げますか?');
 jr_define('_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT', '予約金を適応しますか?');
 jr_define('_JOMRES_COM_A_TARIFFPRICESAREWEEKLY', '料金プランは週別で設定しますか?');
-jr_define('_JOMRES_COM_A_TARIFFPRICESAREWEEKLY_DESC', '料金プランは、「1泊当たり」もしくは「1週間当たり」で設定できます。「1週間当たり」にしたい場合「YES」を選択してください。');
+jr_define('_JOMRES_COM_A_TARIFFPRICESAREWEEKLY_DESC', '料金プランは,「1泊当たり」もしくは「1週間当たり」で設定できます。「1週間当たり」にしたい場合「YES」を選択してください。');
 jr_define('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', '１週間に付き');
 jr_define('_JOMRES_COM_MR_FIXEDARRIVALDATE_RECURRING', '固定チェックインの間の日数：');
-jr_define('_JOMRES_COM_MR_FIXEDARRIVALDATE_RECURRING_DESC', '固定のチェックインが適応されている場合、選択リストに表示される日付の数のことです。（予約済み等により）予約は不可能な日付は表示されないことと、同数の過去の日付も含まれるため表示される日付の数は指定の日付の数より倍になることに注意ください。');
+jr_define('_JOMRES_COM_MR_FIXEDARRIVALDATE_RECURRING_DESC', '固定のチェックインが適応されている場合,選択リストに表示される日付の数のことです。（予約済み等により)予約は不可能な日付は表示されないことと,同数の過去の日付も含まれるため表示される日付の数は指定の日付の数より倍になることに注意ください。');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_ARRIVALDATE_INVALID', 'チェックイン日に誤りがあります。');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_DEPARTUREDATE_INVALID', 'チェックアウト日に誤りがあります。');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1', '指定の予約期間の日数は不足しています。最少の宿泊日数は：');
@@ -544,8 +544,8 @@ jr_define('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2', '指定された�
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_GUEST_TYPE_INCORRECT', '顧客タイプの変形に誤りがあります');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_SELECT_GUEST_NUMBERS', '顧客の人数等を選択');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_IN_PARTY_FOR_TARIFFS', '料金設定に人数が多すぎます。');
-jr_define('_JOMRES_BOOKINGFORM_MONITORING_MORE_ROOMS_THAN_GUESTS', '指定のリソース数が顧客数より多いため、入力は無効です。リソースにクリックすると削除されます。');
-jr_define('_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_GUESTS_FOR_BEDS', '指定の人数がベッド数より多いため、入力は無効です。');
+jr_define('_JOMRES_BOOKINGFORM_MONITORING_MORE_ROOMS_THAN_GUESTS', '指定のリソース数が顧客数より多いため,入力は無効です。リソースにクリックすると削除されます。');
+jr_define('_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_GUESTS_FOR_BEDS', '指定の人数がベッド数より多いため,入力は無効です。');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS', '指定のリソース数が人数に不足しています。');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_SELECT_A_ROOM', 'リソースを選択して下さい。');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_FIRSTNAME', '名を記入して下さい。');
@@ -566,22 +566,22 @@ jr_define('_JOMRES_COM_INPUTOKTOBOOK_BACKGROUND', '「予約可能」のメッ�
 jr_define('_JOMRES_COM_DUMPTEMPLATEDATA', 'テンプレート変数をダンプしますか?');
 jr_define('_JOMRES_COM_DUMPTEMPLATEDATA_DESC', 'Set this to enable a DHTML dump of template variables for each FRONTEND template file as that page is viewed. Useful if you want to see if a certain element is available to be used in a given template.');
 jr_define('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_ISPERCENTAGE', '百分率ですか？');
-jr_define('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_ISPERCENTAGE_DESC', '顧客一人分の清算では、指定数字がパーセンテージの場合には「YES」にし、固定金額の場合には「NO」に設定してください。');
+jr_define('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_ISPERCENTAGE_DESC', '顧客一人分の清算では,指定数字がパーセンテージの場合には「YES」にし,固定金額の場合には「NO」に設定してください。');
 jr_define('_JOMRES_COM_LIMITROOMSLIST', '表示リソース数の制限：');
-jr_define('_JOMRES_COM_LIMITROOMSLIST_DESC', '予約フォームで表示されるリソース（部屋）・料金プランの数を制限したい場合、その数を入力してください。「０」の場合には「制限なし」と見なされます。');
+jr_define('_JOMRES_COM_LIMITROOMSLIST_DESC', '予約フォームで表示されるリソース（部屋)・料金プランの数を制限したい場合,その数を入力してください。「０」の場合には「制限なし」と見なされます。');
 jr_define('_JOMRES_SRP_WEHAVENOVACANCIES', '満室です。');
 jr_define('_JOMRES_BOOKITNOW', '予約する');
 jr_define('_JOMRES_COM_JRCONFIG_GLOBALEDITING', '編集モードをグローバルにしますか?');
-jr_define('_JOMRES_COM_JRCONFIG_GLOBALEDITING_DESC', 'この設定に注意下さい。「YES」に設定する場合、編集モードが全ての事業、全てのプロパティ タイプ等のカスタム表現に及ばれます。');
+jr_define('_JOMRES_COM_JRCONFIG_GLOBALEDITING_DESC', 'この設定に注意下さい。「YES」に設定する場合,編集モードが全ての事業,全てのプロパティ タイプ等のカスタム表現に及ばれます。');
 jr_define('_JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO', '通貨をグローバルにしますか?');
 jr_define('_JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO_DESC', '全ての事業が統一の指定の通貨を利用させます (e.g. ￥)');
 jr_define('_JOMRES_COM_JRCONFIG_GLOBALCURRENCY', 'グローバル通貨');
 jr_define('_JOMRES_COM_JRCONFIG_ISWRAPPED', 'コンポーネントが囲まれています');
-jr_define('_JOMRES_COM_JRCONFIG_ISWRAPPED_DESC', 'モジュールやヘッダーを見えないように囲む場合には、「YES」に設定してください。');
+jr_define('_JOMRES_COM_JRCONFIG_ISWRAPPED_DESC', 'モジュールやヘッダーを見えないように囲む場合には,「YES」に設定してください。');
 jr_define('_JOMRES_COM_WEEKENDONLY', '週末のみ');
 jr_define('_JOMRES_COM_WEEKENDDAYS', '週末の曜日');
-jr_define('_JOMRES_COM_WEEKENDDAYS_DESC', '週末を定義するため、曜日を指定できます。週末に適応できる料金プランとできない料金プランは、本設定を自動的に認識され生成されるリソース一覧に反映されます。');
-jr_define('_JOMRES_EDITPROPERTY_SELECTCOUNTRY', '国を選択してから、ホテル情報を入力して下さい。');
+jr_define('_JOMRES_COM_WEEKENDDAYS_DESC', '週末を定義するため,曜日を指定できます。週末に適応できる料金プランとできない料金プランは,本設定を自動的に認識され生成されるリソース一覧に反映されます。');
+jr_define('_JOMRES_EDITPROPERTY_SELECTCOUNTRY', '国を選択してから,ホテル情報を入力して下さい。');
 jr_define('_JOMRES_EDITPROPERTY_SAVEBEFOREUPLOAD', 'ビジネス情報の変更を保存してから写真をアプロードして下さい。');
 jr_define('_JOMRES_TARIFFSFROM', '開始価格');
 jr_define('_JOMRES_SEARCH_ALL', '全て');
@@ -592,18 +592,18 @@ jr_define('_JOMRES_SEARCH_FEATURE_INFO', '施設・アメニティ検索');
 jr_define('_JOMRES_SEARCH_BUTTON', '検索');
 jr_define('_JOMRES_SEARCH_DESCRIPTION_INFO', 'キーワードを入力して検索する');
 jr_define('_JOMRES_SEARCH_DESCRIPTION_LABEL', 'キーワード：');
-jr_define('_JOMRES_SEARCH_AVL_INFO', 'チェックイン日・チェックアウト日から検索すると、予約可能なビジネスは表示されます。');
+jr_define('_JOMRES_SEARCH_AVL_INFO', 'チェックイン日・チェックアウト日から検索すると,予約可能なビジネスは表示されます。');
 jr_define('_JOMRES_SEARCH_PTYPES', '事業タイプ一覧');
 jr_define('_JOMRES_SEARCH_RTYPES', 'リソースチアプ一覧');
 jr_define('_JOMRES_SORTORDER_DEFAULT', 'デフォルト');
-jr_define('_JOMRES_SORTORDER_PROPERTYNAME', '商号（ビジネス名）');
+jr_define('_JOMRES_SORTORDER_PROPERTYNAME', '商号（ビジネス名)');
 jr_define('_JOMRES_SORTORDER_PROPERTYREGION', '都道府県');
 jr_define('_JOMRES_SORTORDER_PROPERTYTOWN', '市町村');
 jr_define('_JOMRES_SORTORDER_STARS', '星');
 jr_define('_JOMRES_PATHWAY_PROPERTYDETAILS', 'プロパティ情報');
 jr_define('_JOMRES_PATHWAY_BOOKINGFORM', '予約フォーム');
 jr_define('_JOMRES_BOOKINGFORM_UPDATEADDRESSBUTTON', '住所を更新する');
-jr_define('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_RECHECKINGROOMAVIALABILITY', '部屋の空室状況が再確認されます。<br/>（選択はリセットされます）');
+jr_define('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_RECHECKINGROOMAVIALABILITY', '部屋の空室状況が再確認されます。<br/>（選択はリセットされます)');
 jr_define('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_RECHECKINGROOMAVIALABILITY_SRP', '空室状況を再確認中');
 jr_define('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_CHANGINGEXTRA', '追加オプションを変更中');
 jr_define('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_CHANGINGROOMSELECTION', '部屋の選択を変更中');
@@ -622,22 +622,22 @@ jr_define('JOMRES_COM_A_TARIFFMODE', '料金プラン設定のモード');
 jr_define('JOMRES_COM_A_TARIFFMODE_DESC', '注意：料金プランのタイプの切り替えはデータを失う可能性があります。以下の説明に参照してください。
 <br/><br/>
 料金プランの設定環境モードは３つから選択できます。<br/>
-「簡易モード」：各リソースタイプに当たり１つの料金プランを設定し、今後１０年に有効となる環境です。<br/>
-「ミクロマネージモード」：各事業タイプの各リソースの各日（３６５日）かわる料金プランが作成できる環境です。<br/>
-「標準モード」：１リソースに当たり、複数の料金プランの選択肢を提供できる環境です。<br/>
+「簡易モード」：各リソースタイプに当たり１つの料金プランを設定し,今後１０年に有効となる環境です。<br/>
+「ミクロマネージモード」：各事業タイプの各リソースの各日（３６５日)かわる料金プランが作成できる環境です。<br/>
+「標準モード」：１リソースに当たり,複数の料金プランの選択肢を提供できる環境です。<br/>
 <br/>
 貴社のプロパティマネージメント考慮に最も効率だる料金プランの設定モードを選択できる環境です。<br/>
-「簡易モード」は、リソース（部屋）と料金プランをリソース・事業タイプに他所参照し、リソース（部屋）と料金プランをワンページで設定できるので最も分かりやすい設定環境です。<br/>
-「ミクロマネージモード」は、いくつかの料金プランの間で他所参照することにより、数多くの料金プランを作成せずに、料金をより簡単に日別に変動させる設定環境です。細かい料金プランが可能となりますが、顧客があるリソースに複数の料金プランから選ぶことができなくなります。<br/>
-「標準モード」では、リソースタイプが軸です。リソースタイプは、リソースにアサインするが、料金プランもリソースタイプにアサインするがため、複数の料金プランを一定のリソースに適応できる設定環境です。例えば、「ダッブル」というリソースタイプに「素泊まり」と「1泊２食付き」等の料金プランを関連させることができます。設定が他のモードより機能性が高いが、細やかな気配りが必要です。特にリソース⇄事業・リソースタイプと料金プラン⇄事業・リソースタイプとの関連性に、そして料金プランの有効期間に誤りがないように注意が必要です。<br/>
+「簡易モード」は,リソース（部屋)と料金プランをリソース・事業タイプに他所参照し,リソース（部屋)と料金プランをワンページで設定できるので最も分かりやすい設定環境です。<br/>
+「ミクロマネージモード」は,いくつかの料金プランの間で他所参照することにより,数多くの料金プランを作成せずに,料金をより簡単に日別に変動させる設定環境です。細かい料金プランが可能となりますが,顧客があるリソースに複数の料金プランから選ぶことができなくなります。<br/>
+「標準モード」では,リソースタイプが軸です。リソースタイプは,リソースにアサインするが,料金プランもリソースタイプにアサインするがため,複数の料金プランを一定のリソースに適応できる設定環境です。例えば,「ダッブル」というリソースタイプに「素泊まり」と「1泊２食付き」等の料金プランを関連させることができます。設定が他のモードより機能性が高いが,細やかな気配りが必要です。特にリソース⇄事業・リソースタイプと料金プラン⇄事業・リソースタイプとの関連性に,そして料金プランの有効期間に誤りがないように注意が必要です。<br/>
 <br/>
-簡易モードとミクロマネージモードが特定のリソースと料金プランの他所参照情報（関連づけ）が必要とされるため、環境設定モードを切り替える際に料金プランと他所参照データがリセットされる場合があります。<br/>
+簡易モードとミクロマネージモードが特定のリソースと料金プランの他所参照情報（関連づけ)が必要とされるため,環境設定モードを切り替える際に料金プランと他所参照データがリセットされる場合があります。<br/>
 <br/>
 簡易モード→標準モード：問題なし。既存の料金プランはそのまま残されます。<br/>
 簡易モード→ミクロマネージモード：既存の料金プランは全て削除されます。<br/>
 標準モード→簡易モード：既存の料金プランは全て削除されます。<br/>
 標準モード→ミクロマネージモード：既存の料金プランは全て削除されます。<br/>
-ミクロマネージモード→標準モード： 既存の料金プランはそのままのこされますが、料金プランの他所参照情報は削除されます。<br/>
+ミクロマネージモード→標準モード： 既存の料金プランはそのままのこされますが,料金プランの他所参照情報は削除されます。<br/>
 ミクロマネージモード→簡易：既存の料金プランとその他所参照情報は削除されます。<br/>');
 jr_define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS', 'ビジネス情報のページにリソースを表示しますか?');
 jr_define('JOMRES_PROPERTYTYPE', 'プロパティ タイプ');
@@ -658,14 +658,14 @@ jr_define('_JOMCOMP_MYUSER_VIEWFAVOURITES_NONE', 'お気に入りはありませ
 jr_define('_JOMCOMP_MYUSER_PROPERTYTYPE', '事業タイプ');
 jr_define('_JOMCOMP_WISEPRICE_TITLE', 'ダイナミック価格付け');
 jr_define('_JOMCOMP_WISEPRICE_ACTIVE', '有効');
-jr_define('_JOMCOMP_WISEPRICE_TITLE_DESC', '本プラグインは、料金を需要・供給にあわせてダイナミックに変動させる機能を付け加えます。');
-jr_define('_JOMCOMP_WISEPRICE_TITLE_DESC_FULL', '多くの事業は、予約の問い合わせ日には、当該の部屋の料金をその日の空室状況により変動させるダイナミックな料金設定を提供したいです。リソース（部屋）または事業の需要が薄い時期には、そのリソースの儒教を高めるためにその料金を自動的に引き下げします。<br/>本プラグインを有効にし設定することにより、ユーザーの検索条件（日、タイプ等）に合致する部屋の空室数により料金が自動的に計算され、表示されます。<br/>「価格変更限界の日数」というのは、チェックインまで価格変更が適応される有効日数を定義するものです。「価格変更限界の予約状況」というのは、割引が適応されるリソースの予約状況（全リソース中、予約済みの割合）の最大限を定義するものです。複数のリソースが予約される場合には、予約割合が増加しても、当初の割引率が全リソースに適応されるのでご注意ください。');
-jr_define('_JOMCOMP_WISEPRICE_THREASHOLD', '価格変動限界の日数　（予約当日とチェックインとの間の日数）');
+jr_define('_JOMCOMP_WISEPRICE_TITLE_DESC', '本プラグインは,料金を需要・供給にあわせてダイナミックに変動させる機能を付け加えます。');
+jr_define('_JOMCOMP_WISEPRICE_TITLE_DESC_FULL', '多くの事業は,予約の問い合わせ日には,当該の部屋の料金をその日の空室状況により変動させるダイナミックな料金設定を提供したいです。リソース（部屋)または事業の需要が薄い時期には,そのリソースの儒教を高めるためにその料金を自動的に引き下げします。<br/>本プラグインを有効にし設定することにより,ユーザーの検索条件（日,タイプ等)に合致する部屋の空室数により料金が自動的に計算され,表示されます。<br/>「価格変更限界の日数」というのは,チェックインまで価格変更が適応される有効日数を定義するものです。「価格変更限界の予約状況」というのは,割引が適応されるリソースの予約状況（全リソース中,予約済みの割合)の最大限を定義するものです。複数のリソースが予約される場合には,予約割合が増加しても,当初の割引率が全リソースに適応されるのでご注意ください。');
+jr_define('_JOMCOMP_WISEPRICE_THREASHOLD', '価格変動限界の日数　（予約当日とチェックインとの間の日数)');
 jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE10', '予約済みリソースが１０％以下');
 jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE25', '予約済みリソースが２５％以下');
 jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE50', '予約済みリソースが５０％以下');
 jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE75', '予約済みリソースが７５％以下');
-jr_define('_JOMCOMP_WISEPRICE_DISCOUNT', '割引率（％）');
+jr_define('_JOMCOMP_WISEPRICE_DISCOUNT', '割引率（％)');
 jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED', '割引前の価格：');
 jr_define('_JOMCOMP_WISEPRICE_TO', '割引後の価格：');
 jr_define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED', 'ダイナミック割引は適応されていません。');
@@ -675,29 +675,29 @@ jr_define('_JOMCOMP_LASTMINUTE_CPANEL', 'ギリギリ割');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE', '有効?');
 jr_define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC', 'チェックインまで間もなくぎりぎり割引を提供する場合には「YES」に設定してください。');
 jr_define('_JOMCOMP_LASTMINUTE_THREASHOLD', 'ギリギリ限界日数');
-jr_define('_JOMCOMP_LASTMINUTE_THREASHOLD_DESC', '予約がチェックインまでギリギリ限界日数以内である場合には、ギリギリ割が適応されます。');
+jr_define('_JOMCOMP_LASTMINUTE_THREASHOLD_DESC', '予約がチェックインまでギリギリ限界日数以内である場合には,ギリギリ割が適応されます。');
 jr_define('_JOMCOMP_LASTMINUTE_DISCOUNT', 'ギリギリ割引率');
 jr_define('_JOMCOMP_LASTMINUTE_DISCOUNT_DESC', '％');
 jr_define('_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION1', '割引があなたの予約に適応されました！');
 jr_define('_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION2', '宿泊料金のディスカウント：');
 jr_define('_JOMCOMP_LASTMINUTE_PROPERTYLIST_PRE', '');
 jr_define('_JOMCOMP_LASTMINUTE_PROPERTYLIST_MID', '%ギリギリ割SPー右記前の宿泊はお得！');
-jr_define('_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST', '予（節）約！');
+jr_define('_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST', '予（節)約！');
 jr_define('_JOMCOMP_LASTMINUTE_ORMORE', '%以上のギリギリ期割引SPー宿泊日を右記前に早めればお得！');
-jr_define('JOMRES_COM_A_VERBOSETARIFFINTO', '料金プラン（微調整可）');
-jr_define('JOMRES_COM_A_VERBOSETARIFFINTO_DESC', '事業情報・料金プランのポップアップに料金プランの詳細を表示する場合には、「YES」に設定してください。');
+jr_define('JOMRES_COM_A_VERBOSETARIFFINTO', '料金プラン（微調整可)');
+jr_define('JOMRES_COM_A_VERBOSETARIFFINTO_DESC', '事業情報・料金プランのポップアップに料金プランの詳細を表示する場合には,「YES」に設定してください。');
 jr_define('JOMRES_COM_A_MINIMALCONFIG', '設定環境を簡易にしますか');
 jr_define('_JOMCOMP_AMEND', '予約変更：プロパティ');
 jr_define('_JOMCOMP_AMEND_SELECTPROPERTY', '新規プロパティを選択');
 jr_define('_JOMCOMP_AMEND_HEADER', '初期契約');
-jr_define('_JOMCOMP_AMEND_DEPOSITPAID', '予約金（払い済み）');
-jr_define('_JOMCOMP_AMEND_DEPOSITDUE', '予約金（未払い）');
+jr_define('_JOMCOMP_AMEND_DEPOSITPAID', '予約金（払い済み)');
+jr_define('_JOMCOMP_AMEND_DEPOSITDUE', '予約金（未払い)');
 jr_define('_JOMCOMP_AMEND_OVERRIDE_TOTAL', '合計の指定');
 jr_define('_JOMCOMP_AMEND_OVERRIDE_DEPOSIT', '予約金の指定');
 jr_define('_JRPORTAL_CANCEL', 'キャンセル');
 jr_define('_JRPORTAL_CPANEL', 'コントロール・パネル');
 jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE', 'デフォールトのコミッション率');
-jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE_DESC', '事業・プロパティにコミッション率の設定が忘れた場合、自動的に適応されるコミッションの率を指定してください。');
+jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE_DESC', '事業・プロパティにコミッション率の設定が忘れた場合,自動的に適応されるコミッションの率を指定してください。');
 jr_define('_JRPORTAL_CPANEL_LISTCRATES', 'コミッション率一覧');
 jr_define('_JRPORTAL_CPANEL_PATETITLE', 'コミッション率');
 jr_define('_JRPORTAL_CRATE_TITLE', '名称');
@@ -707,7 +707,7 @@ jr_define('_JRPORTAL_CRATE_CURRENCYCODE', '通貨コード');
 jr_define('_JRPORTAL_CPANEL_LISTPROPERTIES', '登録プロパティ一覧');
 jr_define('_JRPORTAL_PROPERTIES_PROPERTYNAME', 'プロパティ名');
 jr_define('_JRPORTAL_PROPERTIES_PROPERTYADDRESS', '住所');
-jr_define('_JRPORTAL_PROPERTIES_LEGEND', '赤BGの事業・プロパティは、コミッション率が設定されていない。');
+jr_define('_JRPORTAL_PROPERTIES_LEGEND', '赤BGの事業・プロパティは,コミッション率が設定されていない。');
 jr_define('_JRPORTAL_STATS_PATETITLE', '統計データ');
 jr_define('_JRPORTAL_PROPERTIES_COMMISSIONRATE', 'コミッション率');
 jr_define('_JRPORTAL_CPANEL_LISTBOOKINGS', '予約一覧');
@@ -717,17 +717,17 @@ jr_define('_JRPORTAL_LISTBOOKINGS_HEADER_BOOKINGTOTAL', '予約合計');
 jr_define('_JRPORTAL_LISTBOOKINGS_HEADER_DATEARCHIVED', 'アーカイブ日');
 jr_define('_JRPORTAL_ADD_ADHOC_ITEM_DESCRIPTION', 'Description');
 jr_define('_JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER', 'You can have property type specific language files by setting the description to the name of a sub folder, e.g. "yachtbrokerage" and copying a language file to that subfolder. You can then modify that language file for this property type so rooms become, for example, DVDs, etc.');
-jr_define('_JOMRES_EDITPROPERTY_CONNOTDELETE1', '唯一の登録ビッジネスであるため、削除できません。公開しない場合には、「非公開」に変更してください。');
+jr_define('_JOMRES_EDITPROPERTY_CONNOTDELETE1', '唯一の登録ビッジネスであるため,削除できません。公開しない場合には,「非公開」に変更してください。');
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL', '宿泊料金の合計');
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS', '/泊');
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_PERROOM', '/部屋');
-jr_define('_JOMRES_AJAXFORM_EXTRAS_TOTAL', 'オプションの合計（税込）');
+jr_define('_JOMRES_AJAXFORM_EXTRAS_TOTAL', 'オプションの合計（税込)');
 jr_define('_JOMRES_AJAXFORM_PRICE_SUMMARY', '料金サマリー');
-jr_define('_JOMRES_CONFIRMATION_ALERT', '契約の制約条件を十分に理解し、それに同意します。');
-jr_define('_JOMRES_CONFIRMATION_HEADER', '予約の概要は以下です。必ず確認して下さい。<br /> 変更が必要な場合、「予約変更」のボタンをクリックして下さい。');
-jr_define('_JOMRES_CONFIRMATION_AMENDTEXT', '変更が必要な場合、ここにクリックして下さい。');
+jr_define('_JOMRES_CONFIRMATION_ALERT', '契約の制約条件を十分に理解し,それに同意します。');
+jr_define('_JOMRES_CONFIRMATION_HEADER', '予約の概要は以下です。必ず確認して下さい。<br /> 変更が必要な場合,「予約変更」のボタンをクリックして下さい。');
+jr_define('_JOMRES_CONFIRMATION_AMENDTEXT', '変更が必要な場合,ここにクリックして下さい。');
 jr_define('_JOMRES_CONFIRMATION_AMEND', '予約変更');
-jr_define('_JOMRES_CONFIRMATION_SPECIALS', '特別な要求に、以下の空欄をご利用下さい。');
+jr_define('_JOMRES_CONFIRMATION_SPECIALS', '特別な要求に,以下の空欄をご利用下さい。');
 jr_define('_JOMRES_CONFIRMATION_TERMS_PRETEXT', '上記の記載情報は正当及び事実であることを承認します。制約条件に同意します。');
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_PERPERSON', '／人／泊');
 jr_define('_PN_OF', 'of');
@@ -744,16 +744,16 @@ jr_define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_REGARDING', '用件');
 jr_define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_ENQUIRY', 'お問い合わせ');
 jr_define('_JOMRES_BOOKINGFORM_LOOKRIGHT', '以下のリストでの部屋をクリックし選択してください。');
 jr_define('_JOMRES_COM_MR_EB_ROOM_MINROOMS', 'MIN選択リソースの数');
-jr_define('_JOMRES_COM_MR_EB_ROOM_MINROOMS_DESC', '予約で「MIN選択リソースの数」が満たした場合、特定の料金プランもしくは部屋タイプが有効になる設定です。この設定により、予約がある程度の規模を超えた場合、特定の料金プラン等を提供することができます。');
+jr_define('_JOMRES_COM_MR_EB_ROOM_MINROOMS_DESC', '予約で「MIN選択リソースの数」が満たした場合,特定の料金プランもしくは部屋タイプが有効になる設定です。この設定により,予約がある程度の規模を超えた場合,特定の料金プラン等を提供することができます。');
 jr_define('_JOMRES_COM_MR_EB_ROOM_MAXROOMS', 'MAX選択リソースの数');
-jr_define('_JOMRES_COM_MR_EB_ROOM_MAXROOMS_DESC', '予約で「MAX選択リソースの数」が超えた場合、特定の料金プランもしくは部屋タイプが無効になる設定です。この設定により、予約がある程度の規模を超えた場合、特定の料金プラン等をなくすことができます。');
-jr_define('_JOMRES_COM_SPS_EDITROOM_DESC', '注：総合設定環境で固定シングル・パーソン・サプリメント（SPS）を「YES」に設定した場合、ここで設定するSPSは適応されません。ここで設定するSPSは、固定SPSの追加ではなく、代替的設定方法です。');
+jr_define('_JOMRES_COM_MR_EB_ROOM_MAXROOMS_DESC', '予約で「MAX選択リソースの数」が超えた場合,特定の料金プランもしくは部屋タイプが無効になる設定です。この設定により,予約がある程度の規模を超えた場合,特定の料金プラン等をなくすことができます。');
+jr_define('_JOMRES_COM_SPS_EDITROOM_DESC', '注：総合設定環境で固定シングル・パーソン・サプリメント（SPS)を「YES」に設定した場合,ここで設定するSPSは適応されません。ここで設定するSPSは,固定SPSの追加ではなく,代替的設定方法です。');
 jr_define('_JOMRES_AVLCAL_NOBOOKINGS', '予約なし');
 jr_define('_JOMRES_AVLCAL_QUARTER', '25％予約済み');
 jr_define('_JOMRES_AVLCAL_HALF', '50%予約済み');
 jr_define('_JOMRES_AVLCAL_THREEQUARTER', '75%予約済み');
 jr_define('_JOMRES_AVLCAL_FULLYBOOKED', '満室');
-jr_define('_JOMRES_COM_SEF_NOTINSTALLED', "（Joomla 1.5 のみ）Either she404sef is not installed, or you haven't yet copied /home/winterki/public_html/jomres/libraries/jomres/cms_specific/joomla15/other_component_files/sh404sef/com_jomres.php to /home/winterki/public_html/components/com_sh404sef/sef_ext. Once you have installed sh404sef and/or copied that file over, then you will be able to configure your sef urls from here. <br/> Note, if you are also using Joomfish v2 you may need to ensure that GZIP is switched off in Global Configuration.");
+jr_define('_JOMRES_COM_SEF_NOTINSTALLED', "（Joomla 1.5 のみ)Either she404sef is not installed, or you haven't yet copied /home/winterki/public_html/jomres/libraries/jomres/cms_specific/joomla15/other_component_files/sh404sef/com_jomres.php to /home/winterki/public_html/components/com_sh404sef/sef_ext. Once you have installed sh404sef and/or copied that file over, then you will be able to configure your sef urls from here. <br/> Note, if you are also using Joomfish v2 you may need to ensure that GZIP is switched off in Global Configuration.");
 jr_define('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERWEEK', '１週間に付き');
 jr_define('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYS', '１日に付き');
 jr_define('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERBOOKING', '１予約に付き');
@@ -763,7 +763,7 @@ jr_define('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERWEEK', '1人１週間に付
 jr_define('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSMINDAYS', '●●日に付き (min日数)');
 jr_define('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSPERROOM', '／日数　×　選定部屋数');
 jr_define('_JOMRES_REGISTRYREBUILD', 'ミニコンポーネント・レジストリを再構築');
-jr_define('_JOMRES_REGISTRYREBUILD_NOTES', 'プラグイン・マネジャーを利用する際、プラグインを追加する際、及びプラグインを削除する際にJomresのプラグインレジストリが自動的に再構築されます。ただし、例のプラグイン関連の機能を利用できない場合には、手動的に再構築できます。プラグイン・マネジャーを利用せずにミニコンポーネントをインストールした際にこの機能を利用し手動的に追加する必要があります。');
+jr_define('_JOMRES_REGISTRYREBUILD_NOTES', 'プラグイン・マネジャーを利用する際,プラグインを追加する際,及びプラグインを削除する際にJomresのプラグインレジストリが自動的に再構築されます。ただし,例のプラグイン関連の機能を利用できない場合には,手動的に再構築できます。プラグイン・マネジャーを利用せずにミニコンポーネントをインストールした際にこの機能を利用し手動的に追加する必要があります。');
 jr_define('_JOMRES_REGISTRYREBUILD_SUCCESS', 'レジストリが再構築されました。');
 jr_define('_JOMRES_REGISTRYREBUILD_FAILURE', 'ミニコンポーネントのレジストリを再構築した際にエラーが発生されました。Jomresのエラーロッグに参照して下さい。');
 jr_define('_JOMRES_SEARCH_PRICERANGES', '予算');
@@ -776,31 +776,31 @@ jr_define('_JOMRES_COM_A_LISTLIMIT_DESC', '検索結果のページでは何件�
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE', '統合検索機能');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE_DESC', '');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE', '統合検索を有効にしますか?');
-jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE_DESC', '有効する場合には、事業・プロパティ一覧を表示する全てのJomresコールは、検索オプションも表示されます。');
+jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE_DESC', '有効する場合には,事業・プロパティ一覧を表示する全てのJomresコールは,検索オプションも表示されます。');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_USECOLS', '欄を利用');
-jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_USECOLS_DESC', 'リンクとして定義した検索オプションがある場合、欄で表示されます。(IE br がリンクの尾に追加されます)');
+jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_USECOLS_DESC', 'リンクとして定義した検索オプションがある場合,欄で表示されます。(IE br がリンクの尾に追加されます)');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_SELECTCOMBO', 'コンボドロップダウン選択で地方を検索');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_SELECTCOMBO_DESC', '国・地方・市町村を検索できるドロップダウンボックスが表示されます。本機能を利用する際に以下の地方・市町村検索を利用しないことを進めます。');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYNAME', 'プロパティ名で検索');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYNAME_DESC', 'プロパティ名で検索できるインプットボックスが表示されます。');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYNAME_ASDROPDOWN', 'プロパティ名をドロップダウンとして表示しますか?');
-jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYNAME_ASDROPDOWN_DESC', 'リンクとして表にしたい場合、「NO」に設定してください。');
+jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYNAME_ASDROPDOWN_DESC', 'リンクとして表にしたい場合,「NO」に設定してください。');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_TOWNREGION', '地方・市町村で検索');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_REGION_DESC', '地方・市町村を検索できる入力が表示されます。');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_REGION_ASDROPDOWN', 'ドロップダウンとして表示しますか?');
-jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_REGION_ASDROPDOWN_DESC', 'リンクとして表にしたい場合、「NO」に設定してください。');
+jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_REGION_ASDROPDOWN_DESC', 'リンクとして表にしたい場合,「NO」に設定してください。');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYTYPE', '事業・プロパティ タイプで検索');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYTYPE_DESC', '事業またはプポティタイプを検索できる入力が表示されます。');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYTYPE_ASDROPDOWN', 'ドロップダウンとして表示しますか?');
-jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYTYPE_ASDROPDOWN_DESC', 'リンクの一覧として表にしたい場合、「NO」に設定してください。');
+jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYTYPE_ASDROPDOWN_DESC', 'リンクの一覧として表にしたい場合,「NO」に設定してください。');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_ROOMTYPE', 'リソース・部屋タイプで検索');
-jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_ROOMTYPE_DESC', 'リソース（部屋）タイプを検索できる入力が表示されます。');
+jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_ROOMTYPE_DESC', 'リソース（部屋)タイプを検索できる入力が表示されます。');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_ROOMTYPE_ASDROPDOWN', 'ドロップダウンとして表示しますか?');
-jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_ROOMTYPE_ASDROPDOWN_DESC', 'リンクの一覧として表にしたい場合、「NO」に設定してください。');
+jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_ROOMTYPE_ASDROPDOWN_DESC', 'リンクの一覧として表にしたい場合,「NO」に設定してください。');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES', 'アメニティで検索');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES_DESC', 'アメニティを検索できる入力が表示されます。');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES_ASDROPDOWN', 'ドロップダウンとして表示しますか?');
-jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES_ASDROPDOWN_DESC', 'イメージ・tooltipとチェックボクスとして表にしたい場合、「NO」に設定してください。');
+jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES_ASDROPDOWN_DESC', 'イメージ・tooltipとチェックボクスとして表にしたい場合,「NO」に設定してください。');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYDESCRIPTION', 'プロパティ説明
 で検索');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYDESCRIPTION_DESC', 'プロパティの説明を検索できる入力が表示されます。');
@@ -809,28 +809,28 @@ jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYAVAILABILITY_DESC', '空室状況で
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYPRICERANGES', '金額で検索');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYPRICERANGES_DESC', '金額で検索できる入力が表示されます。');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_RANGEINCREMENTS', '金額の増分原価');
-jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_RANGEINCREMENTS_DESC', 'Jomresは、ここで設定される金額の増分原価と登録の料金プランから妥当なリストを自動的に作成し表示します。');
-jr_define('_JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT_DESC', '事業・プロパティが選択なしで検索される場合のデフォルトは、プロパティの検索が実行されますが、その結果が（わざと）ランダムになります。本設定は、ランダムに背性される検索結果の数に制限できます。');
+jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_RANGEINCREMENTS_DESC', 'Jomresは,ここで設定される金額の増分原価と登録の料金プランから妥当なリストを自動的に作成し表示します。');
+jr_define('_JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT_DESC', '事業・プロパティが選択なしで検索される場合のデフォルトは,プロパティの検索が実行されますが,その結果が（わざと)ランダムになります。本設定は,ランダムに背性される検索結果の数に制限できます。');
 jr_define('_JOMRES_COM_A_CRON_TITLE', 'クロン・ジョブの設定とログ');
-jr_define('_JOMRES_COM_A_CRON_DESC', 'スード・コロン・ジョブ情報：本機能は、請求書とコミッションのハンドラーに必要です。');
-jr_define('_JOMRES_COM_A_CRON_IMMEDIATERUN', 'インストールされているクロンのミニコンポーネント：特定なクロン・ジョブの実行は、以下のリンクを利用ください。クロン・ジョブは出力がないので、そのページに何も表示されません。ジョッブの結果は以下のジョブのログに参照して下さい。');
+jr_define('_JOMRES_COM_A_CRON_DESC', 'スード・コロン・ジョブ情報：本機能は,請求書とコミッションのハンドラーに必要です。');
+jr_define('_JOMRES_COM_A_CRON_IMMEDIATERUN', 'インストールされているクロンのミニコンポーネント：特定なクロン・ジョブの実行は,以下のリンクを利用ください。クロン・ジョブは出力がないので,そのページに何も表示されません。ジョッブの結果は以下のジョブのログに参照して下さい。');
 jr_define('_JOMRES_COM_A_CRON_METHOD', 'メソッド');
-jr_define('_JOMRES_COM_A_CRON_METHOD_DESC', 'クロン・ジョブにアクセスがない場合には、「ミニコンポーネント」に設定して下さい。アクセスがある場合には、クロン・ジョッブを作成し実行してください。<br /> <i>curl -s '.JOMRES_SITEPAGE_URL_AJAX.'&task=cronjobs&tmpl='.get_showtime('tmplcomponent').'&no_html=1> /dev/null</i>');
+jr_define('_JOMRES_COM_A_CRON_METHOD_DESC', 'クロン・ジョブにアクセスがない場合には,「ミニコンポーネント」に設定して下さい。アクセスがある場合には,クロン・ジョッブを作成し実行してください。<br /> <i>curl -s '.JOMRES_SITEPAGE_URL_AJAX.'&task=cronjobs&tmpl='.get_showtime('tmplcomponent').'&no_html=1> /dev/null</i>');
 jr_define('_JOMRES_COM_A_CRON_LOGGING', 'ブラウザーでロッグを表示する');
 jr_define('_JOMRES_COM_A_CRON_LOGGING_DESC', 'メソドが「ミニ・コンポーネント」に設定している限り実行されます。');
 jr_define('_JOMRES_COM_A_CRON_LOGGINGENABLED', 'ログイングしますか');
-jr_define('_JOMRES_COM_A_CRON_LOGGINGENABLED_DESC', 'ログイングを有効にする場合、「YES」に設定して下さい。ログの結果が以下で出力されます。');
+jr_define('_JOMRES_COM_A_CRON_LOGGINGENABLED_DESC', 'ログイングを有効にする場合,「YES」に設定して下さい。ログの結果が以下で出力されます。');
 jr_define('_JOMRES_COM_A_CRON_VERBOSELOGS', '詳細ログイング');
 jr_define('_JOMRES_COM_A_CRON_VERBOSELOGS_DESC', 'ログイングのアウトプットが多くて細かくなります。');
 jr_define('_JOMRES_COM_TEMPLATEEDITING_TITLE', 'テンプレートの編集');
 jr_define('_JOMRES_COM_CUSTOMFIELDS_TITLE', 'カスタム・フィールド');
 jr_define('_JOMRES_COM_CUSTOMFIELDS_DESC', '予約フォームに表示されるカスタムのフィールドを定義できます。');
-jr_define('_JOMRES_COM_CUSTOMFIELDS_FIELDNAME', 'フィールド名（スペース無し）');
+jr_define('_JOMRES_COM_CUSTOMFIELDS_FIELDNAME', 'フィールド名（スペース無し)');
 jr_define('_JOMRES_COM_CUSTOMFIELDS_DEFAULTVALUE', 'デフォルト値');
 jr_define('_JOMRES_COM_CUSTOMFIELDS_DESCRIPTION', '説明');
 jr_define('_JOMRES_COM_CUSTOMFIELDS_REQUIRED', '必須状況');
 jr_define('_JOMRES_COM_MR_EXTRA_QUANTITY', '最大限の数量');
-jr_define('_JOMRES_COM_MR_EXTRA_QUANTITY_DESC', '最大限の数量が１を超える場合、選択できる追加オプションの数量が最大限の数量までの数がドロップダウンボックスで表示されます。');
+jr_define('_JOMRES_COM_MR_EXTRA_QUANTITY_DESC', '最大限の数量が１を超える場合,選択できる追加オプションの数量が最大限の数量までの数がドロップダウンボックスで表示されます。');
 jr_define('_JRPORTAL_TAXRATES_TITLE', '税レート');
 jr_define('_JRPORTAL_TAXRATES_CODE', '税コード');
 jr_define('_JRPORTAL_TAXRATES_DESCRIPTION', '税レートの説明');
@@ -863,14 +863,14 @@ jr_define('_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE', '税レート');
 jr_define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_OVERRIDE', '通常のJomresゲートウエー設定をオーバーライドしますか？');
 jr_define('_JRPORTAL_INVOICES_SHOWINVOICES', 'マイ請求書');
 jr_define('_JRPORTAL_COUPONS_TITLE', '割引・クーポン');
-jr_define('_JRPORTAL_COUPONS_DESC', '予約インセンティブを設けるため、割引コードを自動作成・通知する機能です。指定される有効期限は、宿泊日ではなく予約日に適応されます。');
+jr_define('_JRPORTAL_COUPONS_DESC', '予約インセンティブを設けるため,割引コードを自動作成・通知する機能です。指定される有効期限は,宿泊日ではなく予約日に適応されます。');
 jr_define('_JRPORTAL_COUPONS_CODE', '割引コード');
-jr_define('_JRPORTAL_COUPONS_VALIDFROM', '有効引換期間（開始）：');
+jr_define('_JRPORTAL_COUPONS_VALIDFROM', '有効引換期間（開始)：');
 jr_define('_JRPORTAL_COUPONS_VALIDTO', '有効引換期限：');
 jr_define('_JRPORTAL_COUPONS_AMOUNT', '割引');
-jr_define('_JRPORTAL_COUPONS_ISPERCENTAGE', '割引はパーセント（％）');
-jr_define('_JRPORTAL_COUPONS_ROOMONLY', 'リソース（部屋）のみ');
-jr_define('_JOMRES_AJAXFORM_COUPON_INSTRUCTIONS', '割引コードを利用する場合、記入し「割引権を保存する」をクリックして下さい。');
+jr_define('_JRPORTAL_COUPONS_ISPERCENTAGE', '割引はパーセント（％)');
+jr_define('_JRPORTAL_COUPONS_ROOMONLY', 'リソース（部屋)のみ');
+jr_define('_JOMRES_AJAXFORM_COUPON_INSTRUCTIONS', '割引コードを利用する場合,記入し「割引権を保存する」をクリックして下さい。');
 jr_define('_JOMRES_AJAXFORM_COUPON_APPLYBUTTON', '割引券を保存する');
 jr_define('_JOMRES_AJAXFORM_COUPON_COUPONSAVED', '割引が現予約に適応されました。');
 jr_define('_JOMRES_AJAXFORM_COUPON_COUPONNOTFOUND', '割引コードが見つかりません。');
@@ -890,29 +890,29 @@ jr_define('_JRPORTAL_SMS_CLICKATELL_TITLE', 'Jomres -> Clickatell SMS');
 jr_define('_JRPORTAL_SMS_CLICKATELL_USERNAME', 'Username');
 jr_define('_JRPORTAL_SMS_CLICKATELL_PASSWORD', 'Password');
 jr_define('_JRPORTAL_SMS_CLICKATELL_APIID', 'API id');
-jr_define('_JRPORTAL_SMS_CLICKATELL_NOTIFICATION_MOBILENUMBER', '在庫アプデート通知の連絡先（携帯電話番号）');
-jr_define('_JRPORTAL_SMS_CLICKATELL_NOTIFICATION_MOBILENUMBER_DESC', '「カントリーコード＋携帯電話番号」フォーマット（日本の例：+81-90-1234-5678）を使用して下さい。携帯電話番号への通知が好ましくない場合には空欄のままにしてください。');
+jr_define('_JRPORTAL_SMS_CLICKATELL_NOTIFICATION_MOBILENUMBER', '在庫アプデート通知の連絡先（携帯電話番号)');
+jr_define('_JRPORTAL_SMS_CLICKATELL_NOTIFICATION_MOBILENUMBER_DESC', '「カントリーコード＋携帯電話番号」フォーマット（日本の例：+81-90-1234-5678)を使用して下さい。携帯電話番号への通知が好ましくない場合には空欄のままにしてください。');
 jr_define('_JRPORTAL_SMS_CLICKATELL_TABTITLE', 'SMS');
-jr_define('_JRPORTAL_SMS_CLICKATELL_INSTRUCTIONS', "本ゲートウエーは、ライブなサーバーが必要であり、localhostにてテスト・利用することはできません。
+jr_define('_JRPORTAL_SMS_CLICKATELL_INSTRUCTIONS', "本ゲートウエーは,ライブなサーバーが必要であり,localhostにてテスト・利用することはできません。
 <br/>
 <br/>
-Clickatellのゲートウエーを利用する場合、まずClickatellのアカウント及び１つ以上のゲートウエー⇄アプリケーション間の登録接続（APIのsub-productのインスタンス） が必要です。各接続メソッドはsub-productと呼ばれています。アカウント セットアップの手順は以下です。<br/>
+Clickatellのゲートウエーを利用する場合,まずClickatellのアカウント及び１つ以上のゲートウエー⇄アプリケーション間の登録接続（APIのsub-productのインスタンス) が必要です。各接続メソッドはsub-productと呼ばれています。アカウント セットアップの手順は以下です。<br/>
 <br/>
 Step 1：Clickatellアカウントの登録<br/>
-（Clickatell アカウントがある場合、Step 2へ進む）<br/>
-* http://www.clickatell.com/products/sms_gateway.phpで適しているAPI subproduct (接続メソッド）( Clickatell Central (API) )<br/>
+（Clickatell アカウントがある場合,Step 2へ進む)<br/>
+* http://www.clickatell.com/products/sms_gateway.phpで適しているAPI subproduct (接続メソッド)( Clickatell Central (API) )<br/>
 * 登録のハイパーリンクをクリックする<br/>
 * 登録フォームを記入し提出する<br/>
-フォームを提出できたら、自動的にログインされ、API接続ページへ移動されます。<br/>
-Step 2：API接続（sub-product）の登録・追加する<br/>
-（必要に応じ、http://www.clickatell.com/login.phpでログインする<br/>
+フォームを提出できたら,自動的にログインされ,API接続ページへ移動されます。<br/>
+Step 2：API接続（sub-product)の登録・追加する<br/>
+（必要に応じ,http://www.clickatell.com/login.phpでログインする<br/>
 * トップメニューで'Manage my Products' を選択する<br/>
-* ドロップダウンメニュー（'Add Connection'）で好ましいAPI 接続の種類（例：HTTP API)を選択する<br/>
-* フォームを記入する。ロックされたIP（本サーバーのIP）を入力し、CallbackをHTTP POSTに設定する。IP callbackをhttp://ドメイン名/index.php?option=com_jomres&task=sms_clickatell_callbackに設定し、ユーザーid、 及びパスワードを設定する。<br/>
-API connectionを複数登録する場合には、各接続にユーニックな名称を名付ける必要があります。<br/>
-フォームを無事提出できたら、電子証明の詳細（各接続のAPI_ID）が表示されます。JomresをClickatellに接続するために必要なのでメモってください。<br/>
+* ドロップダウンメニュー（'Add Connection')で好ましいAPI 接続の種類（例：HTTP API)を選択する<br/>
+* フォームを記入する。ロックされたIP（本サーバーのIP)を入力し,CallbackをHTTP POSTに設定する。IP callbackをhttp://ドメイン名/index.php?option=com_jomres&task=sms_clickatell_callbackに設定し,ユーザーid, 及びパスワードを設定する。<br/>
+API connectionを複数登録する場合には,各接続にユーニックな名称を名付ける必要があります。<br/>
+フォームを無事提出できたら,電子証明の詳細（各接続のAPI_ID)が表示されます。JomresをClickatellに接続するために必要なのでメモってください。<br/>
 <br/>
-ユーザー名、パスワード、及びapi_idを上記の空欄に記入ください。<br/>
+ユーザー名,パスワード,及びapi_idを上記の空欄に記入ください。<br/>
 <br/>");
 jr_define('_JOMRES_COM_A_BOOKINGFORM_SHOWDISABLED', '予約フォームのリソース一覧でバリアフリー状況を表示する');
 jr_define('_JOMRES_COM_A_BOOKINGFORM_SHOWMAXPEOPLE', '予約フォームリソース一覧でMAX人数を表示する');
@@ -926,7 +926,7 @@ jr_define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_PROPERTYLIMIT', 'MAXプロパティ�
 jr_define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_SUBSCRIBE', 'サブスクライブ');
 jr_define('_JRPORTAL_SUBSCRIPTIONS_USE', 'サブスクリプションのハンドラーを利用する');
 jr_define('_JOMRES_COM_NEWUSER', '予約と新規ユーザーの同時作成');
-jr_define('_JOMRES_COM_NEWUSER_DESC', '未登録のユーザーが予約された場合、ユーザーアカウントが自動的に作成されます(Joomlaのみ)。');
+jr_define('_JOMRES_COM_NEWUSER_DESC', '未登録のユーザーが予約された場合,ユーザーアカウントが自動的に作成されます(Joomlaのみ)。');
 jr_define('_JOMRES_CLICKTOREGISTER', '事業・プロパティを登録する');
 jr_define('_JRPORTAL_NEWUSER_SUBJECT', 'Winterkitの予約システムご利用いただき誠にありがとうございます。ユーザー情報は次の通りです。');
 jr_define('_JOMRES_LATLONG_DESC', 'ピンを住所の位置にドラッグアンドドロップすると緯度・軽度が設定されます。');
@@ -936,23 +936,23 @@ jr_define('_JOMRES_MANAGER_SHOWINVOICES', '請求書一覧を表示');
 jr_define('_JOMRES_USER_LISTMYPROPERTY', '新規プロパティを登録');
 jr_define('_JOMRES_WARNINGS_DANGERWILLROBINSON', '警報：');
 jr_define('_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_NOPACKAGEID', '指定のサブスクリプション プランIDは無効です。');
-jr_define('_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_ALREADYSUBSCRIBEDTOFREEBIE', '無料サブスクリプション プランのサブスクリプションが１つに限定され、既に使用されています。');
+jr_define('_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_ALREADYSUBSCRIBEDTOFREEBIE', '無料サブスクリプション プランのサブスクリプションが１つに限定され,既に使用されています。');
 jr_define('_JOMRES_COM_YOURBUSINESS', 'プロパティ名');
 jr_define('_JOMRES_COM_YOURBUSINESS_NAME', 'プロパティ名');
 jr_define('_JOMRES_COM_YOURBUSINESS_VATNO', 'VAT番号');
 jr_define('_JOMRES_COM_YOURBUSINESSADDRESS', '住所１');
 jr_define('_JOMRES_INVOICE_NUMBER', '請求番号');
-jr_define('_JOMRES_FRONT_BLACKBOOKING_DESC_SRP', '適応されるブラック予約の開始日と満了日を選択して「適応」ボタンを押すと、空室状況は再確認されます。 <br/> 
+jr_define('_JOMRES_FRONT_BLACKBOOKING_DESC_SRP', '適応されるブラック予約の開始日と満了日を選択して「適応」ボタンを押すと,空室状況は再確認されます。 <br/> 
 <br/> 
-例のプロパティが指定の期間中に予約が入っている場合、キャンセルされるまでブラック予約を登録できません。');
-jr_define('_JOMRES_FRONT_BLACKBOOKING_SRP_CANNOTBLACKBOOK', '指定の期間に予約されているため、ブラック予約ができませんでした。');
-jr_define('_JOMRES_FRONT_BLACKBOOKING_SRP_CANBLACKBOOK', '指定の期間中、ブラック予約は可能です。');
-jr_define('_JOMRES_WARNINGS_PERPERSONPERNIGHT_NOGUESTTYPES', 'プロパティの料金設定が「●／人／泊」に設定されていますが、顧客タイプが作成・公開されていません。顧客タイプを作成・公開して下さい。');
-jr_define('_JOMRES_WARNINGS_TARIFFS_NOTARIFFS', '料金は設定されていないため、予約は不可能です。');
+例のプロパティが指定の期間中に予約が入っている場合,キャンセルされるまでブラック予約を登録できません。');
+jr_define('_JOMRES_FRONT_BLACKBOOKING_SRP_CANNOTBLACKBOOK', '指定の期間に予約されているため,ブラック予約ができませんでした。');
+jr_define('_JOMRES_FRONT_BLACKBOOKING_SRP_CANBLACKBOOK', '指定の期間中,ブラック予約は可能です。');
+jr_define('_JOMRES_WARNINGS_PERPERSONPERNIGHT_NOGUESTTYPES', 'プロパティの料金設定が「●／人／泊」に設定されていますが,顧客タイプが作成・公開されていません。顧客タイプを作成・公開して下さい。');
+jr_define('_JOMRES_WARNINGS_TARIFFS_NOTARIFFS', '料金は設定されていないため,予約は不可能です。');
 jr_define('_JOMRES_EDITINGMODE_ON', 'Editing mode on');
 jr_define('_JOMRES_EDITINGMODE_OFF', 'Editing mode off');
 jr_define('_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE', '予約金を変動型にしますか?');
-jr_define('_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE_DESC', '変動型の予約金というのは、予約日がチェックイン日より指定日数以内である場合、通常の予約金設定（予約全額の割合）は適応されず、予約全額が適応されます。本機能を利用したい場合には「YES」に設定し、その日数を指定してください。例えば、日数を６０日にした場合、予約日（２月２８）がチェックイン日（３月３１）より３０日間で６０日間以内なので、予約金が予約全額となります。');
+jr_define('_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE_DESC', '変動型の予約金というのは,予約日がチェックイン日より指定日数以内である場合,通常の予約金設定（予約全額の割合)は適応されず,予約全額が適応されます。本機能を利用したい場合には「YES」に設定し,その日数を指定してください。例えば,日数を６０日にした場合,予約日（２月２８)がチェックイン日（３月３１)より３０日間で６０日間以内なので,予約金が予約全額となります。');
 jr_define('_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_NUMBEROFDAYS', 'チェックインまでの予約金全額が適応される期間の日数');
 jr_define('_JOMRES_CONFIRMATION_EMAIL_SENT', '確認メールが送信されました。');
 jr_define('_JOMRES_FRONT_MR_MENU_CONTACT_AGENT', 'エージェントに連絡する');
@@ -960,14 +960,14 @@ jr_define('_JOMRES_INVOICE_MARKASPAID', '清算済みに変更');
 jr_define('_JOMRES_INVOICE_MARKEDASPAID', '清算済みに変更しました。');
 jr_define('_JOMRES_APIKEY_REMAKE', '新規 API キーを作成する');
 jr_define('_JOMRES_SINGLEPROPERTYINSTALLATION_TITLE', 'シングル プロパティのインストールですか?');
-jr_define('_JOMRES_SINGLEPROPERTYINSTALLATION_DESC', '「YES」に設定されている場合、Jomresのフロントエンド表示はオーサライズされていないユーザーには簡易に表示されます。それぞれのJomresメニュー アイテムによる実行されるサブルチーンは、プロパティ一覧ではなく、唯一の登録プロパティの予約フォームが直接に表示されます。プロパティの管理者は「プロパティ情報」ボタンと「プロパティの新規作成」ボタンが表示されません。１つのプロパティの表示・予約に最適です。<br/>');
+jr_define('_JOMRES_SINGLEPROPERTYINSTALLATION_DESC', '「YES」に設定されている場合,Jomresのフロントエンド表示はオーサライズされていないユーザーには簡易に表示されます。それぞれのJomresメニュー アイテムによる実行されるサブルチーンは,プロパティ一覧ではなく,唯一の登録プロパティの予約フォームが直接に表示されます。プロパティの管理者は「プロパティ情報」ボタンと「プロパティの新規作成」ボタンが表示されません。１つのプロパティの表示・予約に最適です。<br/>');
 jr_define('_JOMRES_AJAXFORM_BILLING_BALANCE_PAYMENT', '残高の支払');
-jr_define('_JOMRES_WARNINGS_GLOBALEDITINGMODE', '注意：「Global Editing mode」が「ON」のまま「Editing Mode」を利用しています。Global Editing modeの影響が十分に理解しわざと使っている場合には問題ありませんが、十分に理解していない場合、意外な挙動が生じることがあります。十分に理解していない場合、Jomresのマニュアルで「editing mode」について参照してください。');
+jr_define('_JOMRES_WARNINGS_GLOBALEDITINGMODE', '注意：「Global Editing mode」が「ON」のまま「Editing Mode」を利用しています。Global Editing modeの影響が十分に理解しわざと使っている場合には問題ありませんが,十分に理解していない場合,意外な挙動が生じることがあります。十分に理解していない場合,Jomresのマニュアルで「editing mode」について参照してください。');
 jr_define('_JOMRES_SUPPORTKEY', 'Support key');
-jr_define('_JOMRES_SUPPORTKEY_DESC', 'Jomresを購入時にもらったサポート ライセンス キー（別名：license number）です。Jomresのプラグインをダウンロードできるように、有効のキーが必要です。');
+jr_define('_JOMRES_SUPPORTKEY_DESC', 'Jomresを購入時にもらったサポート ライセンス キー（別名：license number)です。Jomresのプラグインをダウンロードできるように,有効のキーが必要です。');
 jr_define('_JOMRES_PERSONAL_DISCOUNT', 'Personal discount');
 jr_define('_JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_YESNO', '事業・プロパティ登録を1カ国に限りますか?');
-jr_define('_JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_YESNO_DESC', '「YES」に設定し国を次のフィールドで指定することにより、事業・プロパティをその国のみに制限できます。');
+jr_define('_JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_YESNO_DESC', '「YES」に設定し国を次のフィールドで指定することにより,事業・プロパティをその国のみに制限できます。');
 jr_define('_JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_COUNTRY', '事業の国：');
 jr_define('_JOMRES_JQUERYTHEME', 'Jquery テーマ');
 jr_define('_JOMRES_JQUERYTHEME_DESC', '事業・プロパティ情報に利用される jqueryの テーマを選択し手下さい。');
@@ -1005,7 +1005,7 @@ jr_define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_CONS', '顧客としての劣って�
 jr_define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_1', 'ホスピタリティを評価してください');
 jr_define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_2', '立地を評価してください');
 jr_define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_3', '清潔感を評価してください');
-jr_define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_4', '宿泊心地（ベッド、館内アメニティ等）を評価してください');
+jr_define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_4', '宿泊心地（ベッド,館内アメニティ等)を評価してください');
 jr_define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_5', '金額に見合う価値を評価してください');
 jr_define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_6', 'サービスを評価してください');
 jr_define('_JOMRES_REVIEWS_ADDREVIEW_SUMMARY', '評価サマリー');
@@ -1014,7 +1014,7 @@ jr_define('_JOMRES_REVIEWS_THANKS_FOR_REVIEW', '評価していただきあり�
 jr_define('_JOMRES_REVIEWS_THANKS_FOR_REVIEW_MODERATED', '評価していただきありがとうございます。Moderatorにレビューされましたら直ちに公開されます。');
 jr_define('_JOMRES_REVIEWS_ADMIN_CONTROL', '評価機能を利用しますか?');
 jr_define('_JOMRES_REVIEWS_ADMIN_AUTOPUBLISH', '評価を自動的に公開しますか?');
-jr_define('_JOMRES_REVIEWS_ADMIN_AUTOPUBLISH_DESC', '「NO」に設定する場合、各評価を手動的に公開する必要がある。');
+jr_define('_JOMRES_REVIEWS_ADMIN_AUTOPUBLISH_DESC', '「NO」に設定する場合,各評価を手動的に公開する必要がある。');
 jr_define('_JOMRES_REVIEWS_ADMIN_TESTMODE', '評価機能をテスト モードにしますか?');
 jr_define('_JOMRES_REVIEWS_ADMIN_TESTMODE_DESC', '通常は事業の管理者が事業・プロパティを評価しないほうが望ましい。テスト モードを「ON」にすれば管理者が自分のプロパティや競合者のプロパティ評価できるようになります。ライブのサイトにはテスト モードを「OFF」に設定すべきです。');
 jr_define('_JOMRES_REVIEWS_ADMIN_PROPERTYLISTINFO', 'プロパティ一覧でプロパティにクリックするとその全評価が表示されます。評価の公開・削除することができます。');
@@ -1028,7 +1028,7 @@ jr_define('_JOMRES_REVIEWS_REPORT_REVIEW_ERROR', '問題点をご記入くださ
 jr_define('_JOMRES_REVIEWS_REPORT_REVIEW_MOREDETAIL', '本評価に不適切・不正確な内容がありましたら通報してください。');
 jr_define('_JOMRES_REVIEWS_SUBMIT', '提出');
 jr_define('_JOMRES_REVIEWS_REPORT_CREATED_BY', '通報者：');
-jr_define('_JOMRES_REVIEWS_REPORT_INSTRUCTIONS', '通報は、ユーザーにより評価の内容を警告する機能です。評価自体を削除しない限り、通報を削除することはできません。');
+jr_define('_JOMRES_REVIEWS_REPORT_INSTRUCTIONS', '通報は,ユーザーにより評価の内容を警告する機能です。評価自体を削除しない限り,通報を削除することはできません。');
 jr_define('_JOMRES_REVIEWS_RATING', '評価 (1 = poor 10 = excellent)');
 jr_define('_JOMRES_REVIEWS_RATING_1', 'ホスピタリティー');
 jr_define('_JOMRES_REVIEWS_RATING_2', '立地');
@@ -1039,12 +1039,12 @@ jr_define('_JOMRES_REVIEWS_RATING_6', 'サービス');
 jr_define('_JOMRES_REVIEWS_REVIEWED_BY', '評価者：');
 jr_define('_JOMRES_REVIEWS_CLICKTOHIDE', '非表示');
 jr_define('_JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS', '事業・プロパティ情報のページに予約フォームを表示しますか?');
-jr_define('_JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS_DESC', '事業・プロパティ情報のページに予約フォームを表示したい場合には、「YES」に設定してください。「NO」に設定する場合、予約フォームへのリンクのみ表示されます。');
+jr_define('_JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS_DESC', '事業・プロパティ情報のページに予約フォームを表示したい場合には,「YES」に設定してください。「NO」に設定する場合,予約フォームへのリンクのみ表示されます。');
 jr_define('_JOMRES_COM_A_TAXINCLUSIVE', '指定料金は税込価格?');
 jr_define('_JOMRES_COM_A_TAXINCLUSIVE_DESC', '入力する料金が税込価格にしたい場合には「YES」に設定してください。税抜き価格を入力する場合に「NO」に設定してください。');
 jr_define('_JOMRES_AJAXFORM_BILLING_TAX_EXTRAS', '税：');
-jr_define('_JOMRES_MICROMANAGE_PICKER_DAYSOFWEEK', '曜日に合わせて料金を設定することができます。曜日のボタンをクリックすると、その曜日は設定の料金に全て変更されます。');
-jr_define('_JOMRES_MICROMANAGE_PICKER_DATERANGES', '日付と料金を合わせて設定すると、期間中に有効な料金設定を設定できる。開始日、終了日、料金を設定し、「料金設定」のボタンにクリックして下さい。');
+jr_define('_JOMRES_MICROMANAGE_PICKER_DAYSOFWEEK', '曜日に合わせて料金を設定することができます。曜日のボタンをクリックすると,その曜日は設定の料金に全て変更されます。');
+jr_define('_JOMRES_MICROMANAGE_PICKER_DATERANGES', '日付と料金を合わせて設定すると,期間中に有効な料金設定を設定できる。開始日,終了日,料金を設定し,「料金設定」のボタンにクリックして下さい。');
 jr_define('_JOMRES_MICROMANAGE_PICKER_DATERANGES_START', '開始');
 jr_define('_JOMRES_MICROMANAGE_PICKER_DATERANGES_END', '完了');
 jr_define('_JOMRES_MICROMANAGE_PICKER_DATERANGES_RATE', '料金');
@@ -1053,18 +1053,18 @@ jr_define('_JOMRES_PARTNERS_TITLE', '協力者');
 jr_define('_JOMRES_CALENDAR_RTL', 'false');
 jr_define('_JOMRES_ROOMALLOCATIONS_ROOM', '部屋');
 jr_define('_JOMRES_ROOMALLOCATIONS_GUESTS', '顧客');
-jr_define('_JOMRES_ROOMALLOCATIONS_INFORMATION', '指定の宿泊人数が部屋に以下の通りに割当されました。変更されたい場合、予約が済みましたらホテルを直接にお知らせください。割当の変更に追加料金が発生されるホテルもありますので、ご了承ください。');
-jr_define('_JOMRES_SANITY_CHECK_NOT_PUBLISHED', '本事業・プロパティは公開されていないため、Winterkitの予約サイトで表示されていません。');
+jr_define('_JOMRES_ROOMALLOCATIONS_INFORMATION', '指定の宿泊人数が部屋に以下の通りに割当されました。変更されたい場合,予約が済みましたらホテルを直接にお知らせください。割当の変更に追加料金が発生されるホテルもありますので,ご了承ください。');
+jr_define('_JOMRES_SANITY_CHECK_NOT_PUBLISHED', '本事業・プロパティは公開されていないため,Winterkitの予約サイトで表示されていません。');
 jr_define('_JOMRES_PROPERTYLIST_FILTERS_DEFAULT', 'デフォルトの検索結果順');
-jr_define('_JOMRES_PROPERTYLIST_FILTERS_DEFAULT_DESC', '検索の結果が表示される際、デフォルトの優先順位をここで設定できます。');
+jr_define('_JOMRES_PROPERTYLIST_FILTERS_DEFAULT_DESC', '検索の結果が表示される際,デフォルトの優先順位をここで設定できます。');
 jr_define('_JOMRES_PROPERTYLIST_FILTERS_SHOW', '検索結果順位のドロップダウンを表示しますか。');
 jr_define('_JOMRES_ROOMMSLIST_STYLE', '部屋一覧のスタイル');
-jr_define('_JOMRES_ROOMMSLIST_STYLE_DESC', '予約フォームのスタイルにより、顧客は「クラッシック」ビューでは個別な部屋、「リソース タイプ」ビューではリソース タイプの数（例：ダッブル部屋×２室）を選択します。');
+jr_define('_JOMRES_ROOMMSLIST_STYLE_DESC', '予約フォームのスタイルにより,顧客は「クラッシック」ビューでは個別な部屋,「リソース タイプ」ビューではリソース タイプの数（例：ダッブル部屋×２室)を選択します。');
 jr_define('_JOMRES_ROOMMSLIST_STYLE_CLASSIC', 'クラッシック');
 jr_define('_JOMRES_ROOMMSLIST_STYLE_ROOMTYPES', 'リソース タイプ');
-jr_define('_JOMRES_COM_CALENDAR_STARTDAY', 'カレンダー表示：週明けの曜日（日・月）');
+jr_define('_JOMRES_COM_CALENDAR_STARTDAY', 'カレンダー表示：週明けの曜日（日・月)');
 jr_define('_JOMRES_REVIEWS_ADMIN_GUESTSONLY', '評価を顧客に限りますか?');
-jr_define('_JOMRES_REVIEWS_ADMIN_GUESTSONLY_DESC', 'ある事業・プロパティの評価をその顧客に限る場合、「YES」に設定してください。');
+jr_define('_JOMRES_REVIEWS_ADMIN_GUESTSONLY_DESC', 'ある事業・プロパティの評価をその顧客に限る場合,「YES」に設定してください。');
 jr_define('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERROOMPERBOOKING', '部屋に付き');
 jr_define('_JOMRES_MAX_GUESTS_PER_ROOM', '部屋のMAX人数');
 jr_define('_JOMRES_MAX_GUESTS_PER_BOOKING', '予約のMAX人数：');
@@ -1083,30 +1083,30 @@ jr_define('_JRPORTAL_MONTHS_LONG_10', '１１月');
 jr_define('_JRPORTAL_MONTHS_LONG_11', '１２月');
 jr_define('JOMRES_COM_A_MINIMALCONFIG_DESC', 'Set this to Yes to reduce the number of options available to business managers in the General Configuration section. This is useful if you do not want business managers to play around with too many settings, instead you can edit jomres_config.php to define default business options.');
 jr_define('_JOMRES_AJAXFORM_EXTRAS_SELECT', '追加オプションを選択してください。');
-jr_define('_JOMRES_COM_ALLOWHTMLEDITOR_DESC', "<p>If this option is set to Yes, then managers will be able to see the html editor provided with the CMS, and enter HTML into the description. This is a potential security risk as there is a possibility that they can introduce unwanted HTML or Javascript. Additionally, if they enter poorly formatted HTML the page design could become compromised. It's better to leave this option set to No wherever possible.</p><p>If all managers are trusted users (e.g. yourself) then you can leave it set to Yes and you modify the different HTML tags that they are allowed to enter in the Input Filtering tab in Site Configuration.</p><p>If, on the other hand, you're using Jomres as a portal where you invite users to add and administer their own properties then this isn't the ideal configuration. Instead you should leave this option set to No. With it set to No managers will instead see a markdown editor that they can use to enter basic formatting which should be sufficient for the majority of users.</p>");
+jr_define('_JOMRES_COM_ALLOWHTMLEDITOR_DESC',"<p>このオプションが[はい]に設定されている場合、マネージャーはCMSに付属のhtmlエディターを表示し、説明にHTMLを入力できます。これは潜在的なセキュリティリスクです。不要なHTMLまたはJavascriptが導入される可能性があります。さらに、不適切な形式のHTMLを入力すると、ページのデザインが損なわれる可能性があります。可能な限り、このオプションを[いいえ]に設定したままにしておくことをお勧めします。</ p> <p>すべてのマネージャーが信頼できるユーザーである場合（自分など)次に、[はい]に設定したままにして、[サイトの構成]の[入力フィルタリング]タブに入力できるさまざまなHTMLタグを変更します。</ p> <p>一方、ユーザーに独自のプロパティを追加して管理するように招待するポータルとしてJomresを再使用する場合、これは理想的な構成ではありません。代わりに、このオプションを[いいえ]に設定したままにする必要があります。[いいえ]に設定すると、マネージャーにマークダウンエディターが表示されます。基本的なフォーマットを入力するために使用できます。大多数のユーザーにとって十分です。</ p> ");
 jr_define('_JOMRES_COM_MANAGEMENTVIEW_MANAGMENT', '全画面表示');
 jr_define('_JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW', 'コンテンツ枠内表示');
 jr_define('_JOMRES_PARTNER_DISCOUNT', '協力者業割');
 jr_define('_JOMRES_PARTNER_CHOOSE_SEARCHTITLE', 'ユーザ検索');
-jr_define('_JOMRES_PARTNER_CHOOSE_SEARCH_INSTRUCTIONS', 'ユーザ名の一部を入力すると、当てはまるユーザ名が検索され表示されます。<br/>ユーザ名をクリックすると協力者として追加され、次ページに移動されます。プロパティとディスカウントをそのユーザにアサインできます。');
+jr_define('_JOMRES_PARTNER_CHOOSE_SEARCH_INSTRUCTIONS', 'ユーザ名の一部を入力すると,当てはまるユーザ名が検索され表示されます。<br/>ユーザ名をクリックすると協力者として追加され,次ページに移動されます。プロパティとディスカウントをそのユーザにアサインできます。');
 jr_define('_JOMRES_PARTNER_CHOOSE_EXISTINGTITLE', '既存の協力者');
 jr_define('_JOMRES_PARTNER_CHOOSE_EXISTING_INSTRUCTIONS', '協力者をクリックすると協力者アドミンのページへ移動されます。');
 jr_define('_JOMRES_PARTNER_SHOW_TITLE', '協力者 :');
 jr_define('_JOMRES_PARTNER_SHOW_SEARCHTITLE', '企業を検索');
-jr_define('_JOMRES_PARTNER_SHOW_SEARCHINSTRUCTIONS', 'プロパティ名の一部を入力すると、当てはまるプロパティが検索され表示されます。<br/>プロパティをクリックすると、協力者のポートフォリオに追加されます。割引は設定しない限り適応されないので、必要に応じて設定してください。');
+jr_define('_JOMRES_PARTNER_SHOW_SEARCHINSTRUCTIONS', 'プロパティ名の一部を入力すると,当てはまるプロパティが検索され表示されます。<br/>プロパティをクリックすると,協力者のポートフォリオに追加されます。割引は設定しない限り適応されないので,必要に応じて設定してください。');
 jr_define('_JOMRES_PARTNER_SHOW_CURRENTPROPERTIES', '対象プロパティ');
-jr_define('_JOMRES_PARTNER_SHOW_CURRENTPROPERTIES_INSTRUCTIONS', 'パートナーの割引設定は、プロパティをクリックすると設定できます。');
+jr_define('_JOMRES_PARTNER_SHOW_CURRENTPROPERTIES_INSTRUCTIONS', 'パートナーの割引設定は,プロパティをクリックすると設定できます。');
 // 4.6
-jr_define('_JOMRES_SUSPENSIONS_MANAGER_SUSPENDED', 'このアカウントは現在一時中断されているため、プロパティの管理は不可能です。');
+jr_define('_JOMRES_SUSPENSIONS_MANAGER_SUSPENDED', 'このアカウントは現在一時中断されているため,プロパティの管理は不可能です。');
 jr_define('_JOMRES_SUSPENSIONS_SUSPENDED_EMAIL_TITLE', 'プロパティ管理者のアカウントが一時中断されました。');
 jr_define('_JOMRES_SUSPENSIONS_UNSUSPENDED_EMAIL_TITLE', 'プロパティ管理者のアカウントが復帰されました。');
-jr_define('_JOMRES_SUSPENSIONS_MANAGER_SUSPENDED_EMAIL', 'Winterkit.jpの予約システムのアカウントは、現在一時中断されているため、プロパティの管理は不可能です。復帰されるまでプロパティ管理の機能を使えません。');
-jr_define('_JOMRES_SUSPENSIONS_MANAGER_UNSUSPENDED_EMAIL', 'Winterkit.jpの予約eシステムのアカウントが復帰され、いつも通りにご利用いただけます。全てのプロパティが公開されていることを再確認していただくと幸いです。今後ともよろしくお願い致します。');
+jr_define('_JOMRES_SUSPENSIONS_MANAGER_SUSPENDED_EMAIL', 'Winterkit.jpの予約システムのアカウントは,現在一時中断されているため,プロパティの管理は不可能です。復帰されるまでプロパティ管理の機能を使えません。');
+jr_define('_JOMRES_SUSPENSIONS_MANAGER_UNSUSPENDED_EMAIL', 'Winterkit.jpの予約eシステムのアカウントが復帰され,いつも通りにご利用いただけます。全てのプロパティが公開されていることを再確認していただくと幸いです。今後ともよろしくお願い致します。');
 jr_define('_JOMCOMP_MYUSER_REMOVE', '「お気に入り」を外す');
 jr_define('_JOMRES_DATA_ARCHIVE_TITLE', '予約データのアーカイブ');
-jr_define('_JOMRES_DATA_ARCHIVE_TITLE_DESC', 'The booking data archive is a raw dump of booking information captured after the confirm booking button is clicked. Hover over a date to see the raw data dump. The information is stored in the XXX__jomres_booking_data_archive table.');
+jr_define('_JOMRES_DATA_ARCHIVE_TITLE_DESC','予約データアーカイブは、予約の確認ボタンがクリックされた後にキャプチャされた予約情報の生のダンプです。日付にカーソルを合わせると、生データのダンプが表示されます。情報はXXX__jomres_booking_data_archiveテーブルに保存されます。');
 jr_define('_JOMRES_MY_ACCOUNT_EDIT', 'アカウント編集');
-jr_define('_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS', 'To add a user as a property manager, first enter the first few characters of their username in the field above. When the correct user has been found click on that name to select it, then choose which property(s) they should be a manager of. The user <em>must already be a user in the CMS</em>');
+jr_define('_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS','ユーザーをプロパティマネージャーとして追加するには、最初にユーザー名の最初の数文字を上のフィールドに入力します。正しいユーザーが見つかったら、その名前をクリックして選択し、次にどのプロパティを選択します(s)のマネージャーである必要があります。ユーザーは<em>すでにCMSのユーザーである必要があります</ em> ');
 jr_define('_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE', '既存の管理者');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYGUESTNUMBER', '人数から探す');
 jr_define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYGUESTNUMBER_DESC', '「人数辛さがす」のロップダウンを表示する？');
@@ -1117,7 +1117,7 @@ jr_define('_JOMRES_SEARCH_STARS', '星数');
 jr_define('_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED', 'アサインされているプロパティ数');
 //4.6.1
 jr_define('_JOMRES_CONFIG_JQUERY', 'Load Jomres jQuery library?');
-jr_define('_JOMRES_CONFIG_JQUERY_DESC', 'jqueryを活かすテンプレートを利用している場合、「NO」に設定できます。This MAY resolve jquery conflict issues on some templates, but not all.');
+jr_define('_JOMRES_CONFIG_JQUERY_DESC', 'jqueryを活かすテンプレートを利用している場合,「NO」に設定できます。This MAY resolve jquery conflict issues on some templates, but not all.');
 jr_define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC', 'Enabling this option allows you to see the language switcher in the Fullscreen view in the frontend.');
 //4.7.1
 jr_define('_JOMRES_COM_THUMBNAIL_SMALL_WIDTH', '小サームネールのMAX幅員(px)');
@@ -1129,21 +1129,21 @@ jr_define('_JOMRES_TOUCHTEMPLATES', 'レベルの翻訳');
 jr_define('_JRPORTAL_INVOICES_COMMISSION_USE', 'コミッション機能を利用しますか?');
 jr_define('_JRPORTAL_INVOICES_COMMISSION_USE_DESC', '管理者の発行済コミッション請求書を表示する場合には「YES」に設定してください。');
 jr_define('_JRPORTAL_INVOICES_COMMISSION_MANAGER_TRIGGERS', '管理者による予約はコミッションが発生されますか?');
-jr_define('_JRPORTAL_INVOICES_COMMISSION_MANAGER_TRIGGERS_DESC', 'プロパティ管理者がリソースを予約する場合、その予約もコミッションを発生しコミッション請求書に追加されますか?');
+jr_define('_JRPORTAL_INVOICES_COMMISSION_MANAGER_TRIGGERS_DESC', 'プロパティ管理者がリソースを予約する場合,その予約もコミッションを発生しコミッション請求書に追加されますか?');
 jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND', '管理者のコミッション請求書が「未払い」と見なされると自動的に管理者権限を一時中断しますか?');
 jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD', '自動一時中断の限界日数');
-jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD_DESC', '管理者のコミッション請求書の支払が「未払い」と自動的に見なされ、管理者のアカウントが一時中断されるまでの日数を設定してください。');
+jr_define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD_DESC', '管理者のコミッション請求書の支払が「未払い」と自動的に見なされ,管理者のアカウントが一時中断されるまでの日数を設定してください。');
 //4.7.2
 jr_define('_JOMRES_COM_LANGUAGE_CONTEXT', '特有の言語環境');
-jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'ホテル以外の事業タイプ（例えば：レンタカー）の予約を受ける場合、特有の言語のある事業タイプにふさわしいラベル等が蓄積されている個別な言語ファイルから読み込まれ、妥当な表現が表示されます。レンタカー事業を例えば、Jomresは、まず現在使われている言語（例のため、日本語=ja-JPとします）を認識します。その次、事業のサブフォルダー /'.JOMRES_ROOT_DIRECTORY.'/languages/rentalcar で試用中の言語の言語ファイル（ja-JP）を探し、見つかった場合に利用されます。見つからない場合には、同サブホルダでのen-GBファイル（Jomresのデフォルト言語はイギリス英語）が利用されます。rentalcarのen-GBファイルも見つからない場合には、/'.JOMRES_ROOT_DIRECTORY.'/languages での使用中の言語ファイル（ja-JP）が利用されます。Note that if you create a new property type, then a copy of the current language file is made in a subdirectory under /'.JOMRES_ROOT_DIRECTORY.'/language with a name that reflects the new property type\'s description.');
+jr_define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'ホテル以外の事業タイプ（例えば：レンタカー)の予約を受ける場合,特有の言語のある事業タイプにふさわしいラベル等が蓄積されている個別な言語ファイルから読み込まれ,妥当な表現が表示されます。レンタカー事業を例えば,Jomresは,まず現在使われている言語（例のため,日本語=ja-JPとします)を認識します。その次,事業のサブフォルダー /'.JOMRES_ROOT_DIRECTORY.'/languages/rentalcar で試用中の言語の言語ファイル（ja-JP)を探し,見つかった場合に利用されます。見つからない場合には,同サブホルダでのen-GBファイル（Jomresのデフォルト言語はイギリス英語)が利用されます。rentalcarのen-GBファイルも見つからない場合には,/'.JOMRES_ROOT_DIRECTORY.'/languages での使用中の言語ファイル（ja-JP)が利用されます。Note that if you create a new property type, then a copy of the current language file is made in a subdirectory under /'.JOMRES_ROOT_DIRECTORY.'/language with a name that reflects the new property type\'s description.');
 //4.7.3
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG', 'Jomresの詳細設定環境');
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG_DESC', 'Set this option to Yes if you want to use the advanced site configuration options. If you\'re just starting with Jomres, then we advise you to leave this to No for now, as the default installation is sufficient to get you started, instead you should add Jomres to the main menu and log into the frontend as "admin" and start configuring your property(s). Please note that many of the advanced options may not be available if you don\'t have the appropriate plugin(s) installed. Users of the free, core system will not be able to take full advantage of the features that they enable.');
 jr_define('_JOMRES_CONFIG_JQUERY_UI', 'JomresのjQuery UI libraryをロードしますか?');
-jr_define('_JOMRES_SORTORDER_PRICE_DESC', '料金（降順）');
-jr_define('_JOMRES_SORTORDER_PRICE_ASC', '料金（昇順）');
+jr_define('_JOMRES_SORTORDER_PRICE_DESC', '料金（降順)');
+jr_define('_JOMRES_SORTORDER_PRICE_ASC', '料金（昇順)');
 //4.7.6
-jr_define('_JOMRES_BOOKINGFORM_PRICINGOUTPUT', '料金サマリー等での表示料金の単位をどのように表示しますか（１泊当たり・１週間当たり・１ヶ月当たり等）？');
+jr_define('_JOMRES_BOOKINGFORM_PRICINGOUTPUT', '料金サマリー等での表示料金の単位をどのように表示しますか（１泊当たり・１週間当たり・１ヶ月当たり等)？');
 jr_define('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY', '１泊当たりの料金');
 jr_define('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY', '１週間当たりの料金');
 jr_define('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY', '１ヶ月当たりの料金');
@@ -1153,43 +1153,43 @@ jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_MONTHS', 'ヶ月で');
 //4.7.7
 jr_define('_JOMRES_A_GLOBAL_SEARCHOPTION_PEOPLENUMBERS', '人数
 の検索方式を選択してください。?');
-jr_define('_JOMRES_A_GLOBAL_SEARCHOPTION_PEOPLENUMBERS_DESC', '全ての検索モジュールはこの設定に影響されます。人数が検索される際、以下の方式から選べます。<br/>「指定人数以下」（４人の検索結果：２人部屋×２、３人部屋＋1人部屋、４人部屋）<br/>「指定人数同等」（４人の検索結果：４人部屋のみ）<br/>「指定人数以上」（４人の検索結果：４人部屋、５人部屋、６人部屋等） ');
+jr_define('_JOMRES_A_GLOBAL_SEARCHOPTION_PEOPLENUMBERS_DESC', '全ての検索モジュールはこの設定に影響されます。人数が検索される際,以下の方式から選べます。<br/>「指定人数以下」（４人の検索結果：２人部屋×２,３人部屋＋1人部屋,４人部屋)<br/>「指定人数同等」（４人の検索結果：４人部屋のみ)<br/>「指定人数以上」（４人の検索結果：４人部屋,５人部屋,６人部屋等) ');
 jr_define('_JOMRES_PAYPAL_REDIRECTMESSAGE', 'ご注文の処理を行っています。 Paypalに移動するまでしばらくお待ちください。');
 jr_define('_JOMRES_PAYPAL_REDIRECTMESSAGE_IFNOTREDIRECTED', '５秒以内にpaypalへ移動されない場合...');
 jr_define('_JOMRES_PAYPAL_REDIRECTMESSAGE_CLICKHERE', 'ここをクリック');
 // 4.7.8
-jr_define('_JRPORTAL_COUPONS_BOOKING_VALIDFROM', '有効宿泊期間（チェックイン）：');
-jr_define('_JRPORTAL_COUPONS_BOOKING_VALIDTO', '有効宿泊期間（チェックアウト）：');
+jr_define('_JRPORTAL_COUPONS_BOOKING_VALIDFROM', '有効宿泊期間（チェックイン)：');
+jr_define('_JRPORTAL_COUPONS_BOOKING_VALIDTO', '有効宿泊期間（チェックアウト)：');
 jr_define('_JRPORTAL_COUPONS_GUESTNAME', '顧客名：');
-jr_define('_JRPORTAL_COUPONS_DESC_478', '予約のインセンティブとして、クーポン コードを発行し顧客に提供できます。<br/>
-クーポンの有効引き換え期間を設定する「有効引換期間（開始）」・「有効引換期限」に対して、「有効宿泊期間（チェックイン）」・「有効宿泊期間（チェックアウト）」は宿泊の有効期間を設定します。顧客が有効宿泊期間外の宿泊期間が入力された場合、割引が期間外の日々は通常価格は適応されます。<br/>
-クーポンの対象顧客を指定の顧客のみに設定したい場合、ドロップダウンでその顧客名を選択してください。');
-jr_define('_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK', 'クーポンにより、予約が ');
+jr_define('_JRPORTAL_COUPONS_DESC_478', '予約のインセンティブとして,クーポン コードを発行し顧客に提供できます。<br/>
+クーポンの有効引き換え期間を設定する「有効引換期間（開始)」・「有効引換期限」に対して,「有効宿泊期間（チェックイン)」・「有効宿泊期間（チェックアウト)」は宿泊の有効期間を設定します。顧客が有効宿泊期間外の宿泊期間が入力された場合,割引が期間外の日々は通常価格は適応されます。<br/>
+クーポンの対象顧客を指定の顧客のみに設定したい場合,ドロップダウンでその顧客名を選択してください。');
+jr_define('_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK', 'クーポンにより,予約が ');
 jr_define('_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK_TO', ' → ');
 jr_define('_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK_NINARIMASHITA', ' になりました。');
-jr_define('_JOMRES_CONFIG_JQUERY_UI_DESC', 'Jquery UI javascriptとCSSのファイルを読み込みたくない場合、「NO」に設定してください。');
+jr_define('_JOMRES_CONFIG_JQUERY_UI_DESC', 'Jquery UI javascriptとCSSのファイルを読み込みたくない場合,「NO」に設定してください。');
 jr_define('_JOMRES_CONFIG_JQUERY_UI_CSS', 'JomresのjQuery UI CSS libraryを読み込みますか?');
-jr_define('_JOMRES_CONFIG_JQUERY_UI_CSS_DESC', '「NO」に設定することにより、jquery UI CSS のファイルが無効になり、読み込まれません。');
+jr_define('_JOMRES_CONFIG_JQUERY_UI_CSS_DESC', '「NO」に設定することにより,jquery UI CSS のファイルが無効になり,読み込まれません。');
 //v5.1
 jr_define('_JOMRES_LINEITEM_TOTAL_INCLUDINGTAX', '税込金額');
 jr_define('_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY', 'プロパティが未公開された');
 // v5.2
 jr_define('_JOMRES_CONVERSION_TITLE', '通貨換算の機能を利用しますか?');
-jr_define('_JOMRES_CONVERSION_TITLE_DESC', 'Jomresのオンライン通貨換算の機能を利用する場合、ユーザに通貨換算のドロップダウンが表示され、料金がユーザに指定された通貨で表示されます。換算された料金の側に元通貨の料金も [ ]で表示されます。');
-jr_define('_JOMRES_CONVERSION_DISCLAIMER', '外国為替市場の継続変動及び購入日と取り引き登録日が異なるため、このツールで表示されるレートとそれに基づく外貨価格はあくまでも参考です。円以外の通貨で表示される価格の正確性は一切保証できず、ルールの利用に関しては一切責任を負いません。');
+jr_define('_JOMRES_CONVERSION_TITLE_DESC', 'Jomresのオンライン通貨換算の機能を利用する場合,ユーザに通貨換算のドロップダウンが表示され,料金がユーザに指定された通貨で表示されます。換算された料金の側に元通貨の料金も [ ]で表示されます。');
+jr_define('_JOMRES_CONVERSION_DISCLAIMER', '外国為替市場の継続変動及び購入日と取り引き登録日が異なるため,このツールで表示されるレートとそれに基づく外貨価格はあくまでも参考です。円以外の通貨で表示される価格の正確性は一切保証できず,ルールの利用に関しては一切責任を負いません。');
 //5.2.1
 //5.3.1
 jr_define('_JOMRES_CURRENCYCONVERSION_TAB', '通貨の換算・通貨コード');
 jr_define('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'IP認識APIキー');
-jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'JomresがIPinfoDBという無料のサービスを利用することにより、ユーザの国を認識し、通貨コードのドロップダウンを自動的に設定するできるが、APIキーが必要です。<a href="http://ipinfodb.com/register.php" target="_blank">IPinfoDB</a> で登録し入手できます。');
+jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'JomresがIPinfoDBという無料のサービスを利用することにより,ユーザの国を認識し,通貨コードのドロップダウンを自動的に設定するできるが,APIキーが必要です。<a href="http://ipinfodb.com/register.php" target="_blank">IPinfoDB</a> で登録し入手できます。');
 jr_define('_JOMRES_DEBUGGING_TAB', 'デバグ環境');
-jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', '宿泊料金（税抜）');
-jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', '宿泊料金（税込）');
+jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', '宿泊料金（税抜)');
+jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', '宿泊料金（税込)');
 jr_define('_JOMRES_AJAXFORM_BILLING_TAX_ACCOM', 'リソース税金：');
 jr_define('_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM', '予約フォームを開く');
 jr_define('_JOMRES_AJAXFORM_BUTTON_BACK_TO_PROPERTY_DETAILS', '物件情報に戻る');
 jr_define('_JOMRES_COM_MR_EXTRA_AUTO_SELECT', '自動的に選択する?');
-jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE', '残高（予約金を除き）');
+jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE', '残高（予約金を除き)');
 jr_define('_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER', '部屋のアメニティにより絞り込む');
 jr_define('_JOMRES_DATEPERIOD_LATESTBOOKING', '最新の予約');
 jr_define('_JOMRES_DATEPERIOD_SECOND', '秒');
@@ -1204,7 +1204,8 @@ jr_define('_JOMRES_DATEPERIOD_S', 's');
 jr_define('_JOMRES_DATEPERIOD_AGO', '前');
 jr_define('_JOMRES_DATEPERIOD_FROMNOW', 'これから');
 jr_define('_JOMRES_WHOLEDAY_TITLE', '日数の予約期間認識?');
-jr_define('_JOMRES_WHOLEDAY_DESC', 'デフォルト設定は、予約期間が泊数として認識されます（例えば、　１月１日 '.date('Y', strtotime('next year')).' から１月２日 '.date('Y', strtotime('next year')).' までの予約は１泊として認識されます）。「YES」に設定する場合、上記の例の予約は２日として認識され、料金が1泊ではなく２日として計算されます。'); jr_define('_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', '１人に付き');
+jr_define('_JOMRES_WHOLEDAY_DESC', 'デフォルト設定は,予約期間が泊数として認識されます（例えば,　１月１日 '.date('Y', strtotime('next year')).' から１月２日 '.date('Y', strtotime('next year')).' までの予約は１泊として認識されます)。「YES」に設定する場合,上記の例の予約は２日として認識され,料金が1泊ではなく２日として計算されます。');
+jr_define('_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY', '１人に付き');
 jr_define('_JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY', '１人１日に付き');
 jr_define('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY', 'チェックイン');
 jr_define('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE_WHOLEDAY', 'チェックアウト');
@@ -1212,25 +1213,25 @@ jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS_WHOLEDAY', '日間 × ');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_DEPARTUREDATE_INVALID_WHOLEDAY', 'チェックアウトの日付が誤っています。');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1_WHOLEDAY', '指定の予約期間が短過ぎます。チェックインとチェックアウトの間に必要な日数は：');
 jr_define('_JOMRES_COM_A_MINIMUMINTERVAL_WHOLEDAY', '滞在期間のMIN日数：');
-jr_define('_JOMRES_COM_A_MINIMUMINTERVAL_DESC_WHOLEDAY', '滞在期間のMIN日数はチェックインとチェックアウトの間に必要とされる日数です。1日の場合、チェックインとチェックアウトが同日に設定できるとのことになります。ただし、予約エンジンが、確認する指定期間に有効の料金プランによるMIN予約期間も満たさなければなりません。');
+jr_define('_JOMRES_COM_A_MINIMUMINTERVAL_DESC_WHOLEDAY', '滞在期間のMIN日数はチェックインとチェックアウトの間に必要とされる日数です。1日の場合,チェックインとチェックアウトが同日に設定できるとのことになります。ただし,予約エンジンが,確認する指定期間に有効の料金プランによるMIN予約期間も満たさなければなりません。');
 jr_define('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WHOLEDAY', '料金サマリーと概算を /日・/週・/月 にしますか ?');
 jr_define('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY_WHOLEDAY', '1日に付き');
 jr_define('_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_WHOLEDAY', 'チェックイン日までのMIN日数');
 jr_define('_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_DESC_WHOLEDAY', '予約日からチェックイン日との間のMIN日数を設定できます。');
-jr_define('_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO_DESC_WHOLEDAY', '事前予約を「YES」に設定すると、ユーザがチェックイン日より次のフィールドで設定する日数前に予約しようとする場合、チェックイン日が予約日に戻されます。');
+jr_define('_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO_DESC_WHOLEDAY', '事前予約を「YES」に設定すると,ユーザがチェックイン日より次のフィールドで設定する日数前に予約しようとする場合,チェックイン日が予約日に戻されます。');
 jr_define('_JOMRES_COM_A_SHOWDEPARTUREINPUT_WHOLEDAY', 'チェックアウト日の入力を表示しますか?');
-jr_define('_JOMRES_COM_A_SHOWDEPARTUREINPUT_DESC_WHOLEDAY', 'チェックアウト日の入力フィールドをユーザに表示したくない場合、「NO」に設定してください。デフォルトのチェックアウト日はチェックイン日の翌日に自動的に設定されるので、気をつけて変更して下さい。');
-jr_define('_JOMRES_COM_A_FIXEDPERIODBOOKINGS_DESC_WHOLEDAY', '定期予約（決まった日数）のみを受けたい場合、「YES」に設定してください。定期の予約の設定を「NO」にする場合、決まった曜日にチェックインさせたい場合を除き、固定のシェックイン曜日を「NO」に設定すべし。固定のシェックイン曜日も「YES」にすれば、空室状況カレンダーに表示されるリンクが非常に限られます。');
+jr_define('_JOMRES_COM_A_SHOWDEPARTUREINPUT_DESC_WHOLEDAY', 'チェックアウト日の入力フィールドをユーザに表示したくない場合,「NO」に設定してください。デフォルトのチェックアウト日はチェックイン日の翌日に自動的に設定されるので,気をつけて変更して下さい。');
+jr_define('_JOMRES_COM_A_FIXEDPERIODBOOKINGS_DESC_WHOLEDAY', '定期予約（決まった日数)のみを受けたい場合,「YES」に設定してください。定期の予約の設定を「NO」にする場合,決まった曜日にチェックインさせたい場合を除き,固定のシェックイン曜日を「NO」に設定すべし。固定のシェックイン曜日も「YES」にすれば,空室状況カレンダーに表示されるリンクが非常に限られます。');
 jr_define('_JOMRES_COM_MR_FIXEDARRIVALDATE_YESNO_WHOLEDAY', '固定のチェックイン曜日');
 jr_define('_JOMRES_COM_MR_FIXEDARRIVALDATE_YESNO_DESC_WHOLEDAY', '固定の予約金を提供するサイトのみに適応。固定のチェックイン曜日を設定してください。');
 jr_define('_JOMRES_COM_MR_FIXEDARRIVALDATE_DAY_WHOLEDAY', '固定のチェックイン曜日');
 jr_define('_JOMRES_COM_MR_FIXEDARRIVALDATE_RECURRING_WHOLEDAY', '固定のチェックイン期間の日数：');
-jr_define('_JOMRES_COM_MR_FIXEDARRIVALDATE_RECURRING_DESC_WHOLEDAY', '固定のチェックイン日を選択する場合、日付のドロップ ダウンボックスに表示される項目数です。空室状況により予約が不可能な日付は表示されません。Note that the list will actually be twice as long as your selected number because it will have a similar number of historic dates (where available).');
+jr_define('_JOMRES_COM_MR_FIXEDARRIVALDATE_RECURRING_DESC_WHOLEDAY', '固定のチェックイン日を選択する場合,日付のドロップ ダウンボックスに表示される項目数です。空室状況により予約が不可能な日付は表示されません。Note that the list will actually be twice as long as your selected number because it will have a similar number of historic dates (where available).');
 jr_define('_JOMRES_COM_A_TARIFFS_PER_WHOLEDAY', '／人／日');
-jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_WHOLEDAY', '料金を 1人当たり1日に付き により計算したい場合、「YES」に設定してください。「NO」に設定される場合、 １部屋当たり1日に付き により計算されます。');
-jr_define('_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE_DESC_WHOLEDAY', '変動型の予約金というのは、予約日がチェックイン日より指定日数以内である場合、通常の予約金設定（予約全額の割合）は適応されず、予約全額が適応されます。本機能を利用したい場合には「YES」に設定し、その日数を指定してください。例えば、日数を６０日にした場合、予約日（２月２８）がチェックイン日（３月３１）より３０日間で６０日間以内なので、予約金が予約全額となります。');
-jr_define('_JOMCOMP_WISEPRICE_TITLE_DESC_FULL_WHOLEDAY', '多くの事業は、予約の検索日に、当該の部屋の料金をその日の空室状況により変動させるダイナミックな料金設定を提供したいです。リソース（部屋）または事業の需要が薄い時期には、そのリソースの儒教を高めるためにその料金を自動的に引き下げします。<br/>本プラグインを有効にし設定することにより、ユーザーの検索条件（日、タイプ等）に合致する部屋の空室数により料金が自動的に計算され、表示されます。<br/>「価格変更限界の日数」というのは、チェックインまで価格変更が適応される有効日数を定義するものです。「価格変更限界の予約状況」というのは、割引が適応されるリソースの予約状況（全リソース中、予約済みの割合）の最大限を定義するものです。複数のリソースが予約される場合には、予約割合が増加しても、当初の割引率が全リソースに適応されるのでご注意ください。');
-jr_define('_JOMCOMP_WISEPRICE_THREASHOLD_WHOLEDAY', '価格変動限界の日数　（予約当日とチェックインとの間の日数）');
+jr_define('_JOMRES_COM_A_TARIFFS_PER_DESC_WHOLEDAY', '料金を 1人当たり1日に付き により計算したい場合,「YES」に設定してください。「NO」に設定される場合, １部屋当たり1日に付き により計算されます。');
+jr_define('_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE_DESC_WHOLEDAY', '変動型の予約金というのは,予約日がチェックイン日より指定日数以内である場合,通常の予約金設定（予約全額の割合)は適応されず,予約全額が適応されます。本機能を利用したい場合には「YES」に設定し,その日数を指定してください。例えば,日数を６０日にした場合,予約日（２月２８)がチェックイン日（３月３１)より３０日間で６０日間以内なので,予約金が予約全額となります。');
+jr_define('_JOMCOMP_WISEPRICE_TITLE_DESC_FULL_WHOLEDAY', '多くの事業は,予約の検索日に,当該の部屋の料金をその日の空室状況により変動させるダイナミックな料金設定を提供したいです。リソース（部屋)または事業の需要が薄い時期には,そのリソースの儒教を高めるためにその料金を自動的に引き下げします。<br/>本プラグインを有効にし設定することにより,ユーザーの検索条件（日,タイプ等)に合致する部屋の空室数により料金が自動的に計算され,表示されます。<br/>「価格変更限界の日数」というのは,チェックインまで価格変更が適応される有効日数を定義するものです。「価格変更限界の予約状況」というのは,割引が適応されるリソースの予約状況（全リソース中,予約済みの割合)の最大限を定義するものです。複数のリソースが予約される場合には,予約割合が増加しても,当初の割引率が全リソースに適応されるのでご注意ください。');
+jr_define('_JOMCOMP_WISEPRICE_THREASHOLD_WHOLEDAY', '価格変動限界の日数　（予約当日とチェックインとの間の日数)');
 jr_define('_JOMRES_COM_MR_VIEWBOOKINGS_PENDING_WHOLEDAY', '残りの本日チェックイン');
 jr_define('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY_WHOLEDAY', '本日のチェックイン');
 jr_define('_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT_WHOLEDAY', 'チェックイン済み');
@@ -1244,39 +1245,39 @@ jr_define('_JOMRES_FRONT_MR_BOOKIN_TITLE_WHOLEDAY', '予約をチェックイン
 jr_define('_JOMRES_FRONT_MR_BOOKOUT_TITLE_WHOLEDAY', '予約をチェックアウト済みにする');
 jr_define('_JOMRES_COM_INVOICE_COSTPERNIGHT_WHOLEDAY', '１日に付き：');
 jr_define('_JOMRES_COM_INVOICE_STAYNIGHTS_WHOLEDAY', '日数：');
-jr_define('_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL', 'オーバーライド：宿泊料金（合計）');
+jr_define('_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL', 'オーバーライド：宿泊料金（合計)');
 jr_define('_JOMCOMP_AMEND_OVERRIDE_SAVE', 'オーバーライドを保存する');
-jr_define('_JOMRES_BOOKINGORM_EMAIL_NEWUSER_EMAIL_LOGIN_DETAILS', '新規のユーザ登録があった際、そのユーザにログイン詳細をメールで送信しますか?');
-jr_define('_JOMRES_BOOKINGORM_EMAIL_NEWUSER_EMAIL_LOGIN_DETAILS_DESC', 'ユーザ新規作成のオプションが「YES」に設定されていて、ログインの詳細をメールされたくない場合には、この設定を「NO」に設定してくださ。新規ユーザをメーリング リストに追加する際に便利な設定です。');
+jr_define('_JOMRES_BOOKINGORM_EMAIL_NEWUSER_EMAIL_LOGIN_DETAILS', '新規のユーザ登録があった際,そのユーザにログイン詳細をメールで送信しますか?');
+jr_define('_JOMRES_BOOKINGORM_EMAIL_NEWUSER_EMAIL_LOGIN_DETAILS_DESC', 'ユーザ新規作成のオプションが「YES」に設定されていて,ログインの詳細をメールされたくない場合には,この設定を「NO」に設定してくださ。新規ユーザをメーリング リストに追加する際に便利な設定です。');
 jr_define('_JOMRES_BOOKINGORM_TAX_OUTPUT', '予約フォームの合計サマリーで税額を個別に表示しますか?');
-jr_define('_JOMRES_BOOKINGORM_TAX_OUTPUT_DESC', '予約フォームで税額を表示したくない場合には、「NO」に設定してください。');
+jr_define('_JOMRES_BOOKINGORM_TAX_OUTPUT_DESC', '予約フォームで税額を表示したくない場合には,「NO」に設定してください。');
 jr_define('_JOMRES_COM_A_ODDS_CANCELLATION_THREASHOLD', '予約キャンセルのMIN日数');
-jr_define('_JOMRES_COM_A_ODDS_CANCELLATION_THREASHOLD_DESC', 'ユーザが予約をチェックイン日より何日以内であれば、キャンセルできない期間を設けることができます。チェックイン日までキャンセルできない期間の日数をここで指定できます。');
+jr_define('_JOMRES_COM_A_ODDS_CANCELLATION_THREASHOLD_DESC', 'ユーザが予約をチェックイン日より何日以内であれば,キャンセルできない期間を設けることができます。チェックイン日までキャンセルできない期間の日数をここで指定できます。');
 jr_define('_JOMRES_EDIT_PROFILE', 'プロフィールを編集');
 jr_define('_JOMRES_PROPERTY_TYPE_ASSIGNMENT', 'アサインされたプロパティ タイプ');
 jr_define('_JOMRES_IMAGE', 'イメージ');
-jr_define('_JOMRES_CRATES_CLICKINITIAL', 'アルファベットをクリックするとその文字から始まる名称の事業・プロパティに絞り込まれます。該当のプロパティ一覧が表示されたら、コミッション レートをプロパティにアサインできます。「編集」のボタンをクリックするとその事業・プロパティの情報を見、詳細を変更できます。');
+jr_define('_JOMRES_CRATES_CLICKINITIAL', 'アルファベットをクリックするとその文字から始まる名称の事業・プロパティに絞り込まれます。該当のプロパティ一覧が表示されたら,コミッション レートをプロパティにアサインできます。「編集」のボタンをクリックするとその事業・プロパティの情報を見,詳細を変更できます。');
 jr_define('_JRPORTAL_TAX_RATE_EDIT', '税率を変更');
 jr_define('_JOMRES_COM_CUSTOMFIELDS_TITLE_EDIT', 'カスタム フィールドを編集');
 jr_define('_JOMRES_LICENSESERVER_PASSWORD', 'License server password');
 jr_define('_JOMRES_LICENSESERVER_USERNAME', 'License server username');
-jr_define('_JOMRES_LICENSESERVER_USERNAME_DESC', 'Jomresのライセンス サーバーでユーザ名とパスワードがある場合、ここで入力してください。ライセンスに含まれているプラグインをアクセスできるようになります。有効のJomres Support keyを上記に記入・保存した場合、ここでユーザ名・パスワードを記入する必要はありません。');
+jr_define('_JOMRES_LICENSESERVER_USERNAME_DESC', 'Jomresのライセンス サーバーでユーザ名とパスワードがある場合,ここで入力してください。ライセンスに含まれているプラグインをアクセスできるようになります。有効のJomres Support keyを上記に記入・保存した場合,ここでユーザ名・パスワードを記入する必要はありません。');
 jr_define('_JOMRES_VERSIONCHECK_THISJOMRESVERSION', '現在のJomresバージョン：');
 jr_define('_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION', '最新のJomres バージョン：');
 jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING', '注意：Jomresのより新しいバージョンがあります。早めに更新することを進めします。');
-jr_define('_JOMRES_PRODUCT_INFORMATION', 'Jomresへようこそ。Joomlaの最も愛されている予約システムを利用いただき、ありがとうございます。JomresのSolo、Silver、又は Goldのライセンスを購入したい場合、 <a href="http://www.jomres.net/prices" target="_blank"> Jomresの開発者サイト</a> に参照して下さい。');
-jr_define('_JOMRES_PRODUCT_INFORMATION2', '本システムは、１件の簡易予約サイトから、複数の国やある複数のプロパティを所持している複数のプロパティ管理者が複数の言語で利用できる予約サイトまで、どの予約に関するニーズがあっても、柔軟に対応できるシステムです。「Getting started」のツアからはじめ、初の事業やプロパティを登録しながら、本システムの利用が楽になれることができます。分からなくなってしまった場合には、いつでも「HELP」ボタンを押すだけで、追加説明があり、参考になります。');
+jr_define('_JOMRES_PRODUCT_INFORMATION', 'Jomresへようこそ。Joomlaの最も愛されている予約システムを利用いただき,ありがとうございます。JomresのSolo,Silver,又は Goldのライセンスを購入したい場合, <a href="http://www.jomres.net/prices" target="_blank"> Jomresの開発者サイト</a> に参照して下さい。');
+jr_define('_JOMRES_PRODUCT_INFORMATION2', '本システムは,１件の簡易予約サイトから,複数の国やある複数のプロパティを所持している複数のプロパティ管理者が複数の言語で利用できる予約サイトまで,どの予約に関するニーズがあっても,柔軟に対応できるシステムです。「Getting started」のツアからはじめ,初の事業やプロパティを登録しながら,本システムの利用が楽になれることができます。分からなくなってしまった場合には,いつでも「HELP」ボタンを押すだけで,追加説明があり,参考になります。');
 jr_define('_JOMRES_ROBBED_PORTALUI_CURRENT_PROPERTY', '対象プロパティ');
 jr_define('_JOMRES_CONFIG_ALTERNATE_SMTP_TITLE', '代替えの SMTP設定');
-jr_define('_JOMRES_CONFIG_ALTERNATE_SMTP_DESC', '代替えの SMTP設定を利用したい場合、「YES」に設定してください。PHPメールの機能をブロックするウエブ ホストがますます増えているので、Jomresが普段に使うホストCMS（Joomla等）のメール設定を、ここでオアーバーライドでき、カスタムのメール設定に変更できます。');
+jr_define('_JOMRES_CONFIG_ALTERNATE_SMTP_DESC', '代替えの SMTP設定を利用したい場合,「YES」に設定してください。PHPメールの機能をブロックするウエブ ホストがますます増えているので,Jomresが普段に使うホストCMS（Joomla等)のメール設定を,ここでオアーバーライドでき,カスタムのメール設定に変更できます。');
 jr_define('_JOMRES_CONFIG_ALTERNATE_SMTP_HOST', '代替えのホスト');
 jr_define('_JOMRES_CONFIG_ALTERNATE_SMTP_HOST_DESC', 'smtp メール サーバーに変更して下さい。');
 jr_define('_JOMRES_CONFIG_ALTERNATE_SMTP_PORT', '代替えのポート');
 jr_define('_JOMRES_CONFIG_ALTERNATE_SMTP_PORT_DESC', 'smtp ポートにに変更して下さい。');
 jr_define('_JOMRES_CONFIG_ALTERNATE_SMTP_PROTOCOL', '代替えのプロトコル');
-jr_define('_JOMRES_CONFIG_ALTERNATE_SMTP_PROTOCOL_DESC', '利用されるsmtpサーバーの設定により、空欄にする、もしくはsslまたは tlsに変更する必要があります。分からない場合、SMTP　プロバイダーに問い合わせしてください。');
+jr_define('_JOMRES_CONFIG_ALTERNATE_SMTP_PROTOCOL_DESC', '利用されるsmtpサーバーの設定により,空欄にする,もしくはsslまたは tlsに変更する必要があります。分からない場合,SMTP　プロバイダーに問い合わせしてください。');
 jr_define('_JOMRES_CONFIG_ALTERNATE_SMTP_AUTH', 'authenticationを利用しますか');
-jr_define('_JOMRES_CONFIG_ALTERNATE_SMTP_AUTH_DESC', 'SMTP サーバーに必要とされる場合、「YES」に設定してください。指定のユーザ名とパスワードが利用されます。');
+jr_define('_JOMRES_CONFIG_ALTERNATE_SMTP_AUTH_DESC', 'SMTP サーバーに必要とされる場合,「YES」に設定してください。指定のユーザ名とパスワードが利用されます。');
 jr_define('_JOMRES_CONFIG_ALTERNATE_SMTP_USERNAME', '代替えのユーザ名');
 jr_define('_JOMRES_CONFIG_ALTERNATE_SMTP_USERNAME_DESC', '');
 jr_define('_JOMRES_CONFIG_ALTERNATE_SMTP_PASSWORD', '代替えのパスワード');
@@ -1291,26 +1292,26 @@ jr_define('_JOMRES_ACCESS_CONTROL_LEVELS_MANAGER', '管理者');
 jr_define('_JOMRES_ACCESS_CONTROL_LEVELS_SUPERMANAGER', '万能の管理者');
 jr_define('_JOMRES_ACCESS_CONTROL_LEVELS_NOBODY', 'プライベート');
 jr_define('_JOMRES_ACCESS_CONTROL_TITLE', 'アクセス制限');
-jr_define('_JOMRES_ACCESS_CONTROL_DESC', 'この機能により、メーン メニューどのプラグインがどのアクセス レベルに表示されるかを設定できます。 オプションは以下です。00009 オプションは通常の登録ユーザ・パブリックに表示されます。00010 オプションはフロント・受付によく使われる機能です。00011 オプションはプロパティや料金等の初期設定・編集と設定環境に時々に使われます。');
+jr_define('_JOMRES_ACCESS_CONTROL_DESC', 'この機能により,メーン メニューどのプラグインがどのアクセス レベルに表示されるかを設定できます。 オプションは以下です。00009 オプションは通常の登録ユーザ・パブリックに表示されます。00010 オプションはフロント・受付によく使われる機能です。00011 オプションはプロパティや料金等の初期設定・編集と設定環境に時々に使われます。');
 jr_define('_JOMRES_ACCESS_CONTROL_LEVELS_RECEPTIONIST', '受付');
 jr_define('_JOMRES_ACCESS_CONTROL_CONFIG_TITLE', '詳細のアクセス制御');
-jr_define('_JOMRES_ACCESS_CONTROL_CONFIG_DESC', '「YES」に設定すると、アクセス制御の設定環境で詳細のアクセス制御が表示されます。');
-jr_define('_JOMRES_ACCESS_CONTROL_DESC_ADDENDUM', "Note, however, this these settings do not control the underlying scripts that they connect to, so for example if you set <i>00009user_option_03_search</i> to 'Manager' a user who knows Jomres can still call j06000search.class.php by entering http://www.domain.com/index.php?option=com_jomres&task=search in their browser's address bar. This is intentional, as this Menu Access control simply controls what can be seen in the Jomres Main Menu. If you need tighter controls then set the Site Config -> Full Access Control option to Yes and revisit the Menu Access Control option.");
+jr_define('_JOMRES_ACCESS_CONTROL_CONFIG_DESC', '「YES」に設定すると,アクセス制御の設定環境で詳細のアクセス制御が表示されます。');
+jr_define('_JOMRES_ACCESS_CONTROL_DESC_ADDENDUM', "ただし、これらの設定は接続先の基になるスクリプトを制御しないため、たとえば<i> 00009user_option_03_search </ i>を「Manager」に設定した場合でも、Jomresを知っているユーザーは次の方法でj06000search.class.phpを呼び出すことができます。 ブラウザのアドレスバーにhttp://www.domain.com/index.php?option=com_jomres&task=searchと入力します。 このメニューアクセスコントロールは、Jomresメインメニューに表示される内容を制御するだけなので、これは意図的なものです。 より厳密な制御が必要な場合は、[サイト構成]-> [フルアクセス制御]オプションを[はい]に設定し、[メニューアクセス制御]オプションに再度アクセスしてください。");
 jr_define('_JOMRES_ACCESS_CONTROL_TITLE_FULL', '詳細
 のアクセス制御');
-jr_define('_JOMRES_ACCESS_CONTROL_DESC_FULL', "<strong>This feature is for advanced users only. If you do not know what it is for, and don't have a specific reason to use it, please return to Site Configuration and set the Full Access Control option to No.</strong><br/>
-	This feature allows you to control who can access which minicomponents (with some exceptions that are hard coded into the system). If the access level next to a script's name is set to Default, then with the Full Access Control option set to Yes <strong>anybody</strong> can access scripts that they should not be able to access therefore if you intend to use this feature you MUST set the access control level for <strong>every</strong> Jomres minicomponent listed here. If you do not know what these minicomponents do, then we strongly advise you to not use this feature at all.<br/>
-	In Jomres access levels follow a pyramid, so Super Property Managers are greater than Managers. In short Super Manager > Manager > Receptionist > Registered > Unregistered. So, if a Registered user has access to a minicomponent, so do Receptionists,  Managers and Super Managers.<br/>
-	Note that you cannot control administrator area minicomponents. Anybody in the administrator area is considered to be a trusted user in that they should not be blocked from accessing any script (especially this one).
+jr_define('_JOMRES_ACCESS_CONTROL_DESC_FULL', "<strong>この機能は上級ユーザーのみを対象としています。目的がわからず、使用する特別な理由がない場合は、サイト構成に戻り、[フルアクセス制御]オプションを[いいえ]に設定してください。</ strong> <br/>
+この機能を使用すると、誰がどのミニコンポーネントにアクセスできるかを制御できます（システムにハードコードされている一部の例外を除く)。スクリプト名の横のアクセスレベルが[デフォルト]に設定されている場合、[フルアクセス制御]オプションを[はい]に設定すると、<strong>誰でも</ strong>アクセスできないはずのスクリプトにアクセスできるため、これを使用する場合はここにリストされている<strong>すべて</ strong>のJomresミニコンポーネントのアクセス制御レベルを設定する必要がある機能。これらのミニコンポーネントの機能がわからない場合は、この機能をまったく使用しないことを強くお勧めします。<br/>
+Jomresでは、アクセスレベルはピラミッドに従うため、スーパープロパティマネージャーはマネージャーよりも優れています。要するに、スーパーマネージャー>マネージャー>受付係>登録済み>未登録。したがって、登録ユーザーがミニコンポーネントにアクセスできる場合は、受付係、マネージャー、スーパーマネージャーもアクセスできます。<br/>
+管理者エリアのミニコンポーネントは制御できないことに注意してください。管理者領域の誰もが、スクリプト（特にこのスクリプト)へのアクセスをブロックされるべきではないという点で、信頼できるユーザーと見なされます。
 	");
-jr_define('_JOMRES_ACCESS_CONTROL_SANITYCHECK_WARNING', '警告：You have full access control enabled, however we have counted the access control settings and compared them to the number of minicomponents that should be controlled, and the two do not match up, therefore you may have some scripts that are not controlled. This could be a security issue and you are urged to resolve this at once by visiting the Access Control feature and checking that the appropriate levels have been applied.');
+jr_define('_JOMRES_ACCESS_CONTROL_SANITYCHECK_WARNING', '警告：Yフルアクセス制御が有効になっていますが、アクセス制御設定をカウントし、制御する必要のあるミニコンポーネントの数と比較しました。2つが一致しないため、制御されていないスクリプトがある可能性があります。 これはセキュリティの問題である可能性があり、アクセス制御機能にアクセスして適切なレベルが適用されていることを確認することにより、すぐにこれを解決することをお勧めします。');
 jr_define('_JOMRES_SHOWPROFILES_USERSWITHACCESS', '対象プロパティのアドミン権限を与えられたユーザ');
 jr_define('_JOMRES_DEBUGGING_YOUREMAIL', 'メールアド');
 jr_define('_JOMRES_EXTRAS_MODELS_MODEL', 'モデル');
 jr_define('_JOMRES_EXTRAS_MODELS_PARAMS', 'パラメーター');
 jr_define('_JOMRES_EXTRAS_MODELS_FORCE', 'フォース');
-jr_define('_JOMRES_METATITLE', 'Meta title');
-jr_define('_JOMRES_METADESCRIPTION', 'Meta description');
+jr_define('_JOMRES_METATITLE', 'メタタイトル');
+jr_define('_JOMRES_METADESCRIPTION', 'メタ記述');
 jr_define('_JOMRES_REGISTRATION_STEP_2_OF_2', 'プロパティの追加：Step 2 of 2');
 jr_define('_JOMRES_CART_TITLE', 'カート');
 jr_define('_JOMRES_CART_INFO', '注意：カートに入っている予約は保存されていない可能性があります。ログアウト又はタイムアウトの場合失われます。予約の完了を確認してください。');
@@ -1322,9 +1323,9 @@ jr_define('_JOMRES_CART_VIEWCART', 'カートを表示');
 jr_define('_JOMRES_PROPERTYSPECIFIC_LANGUAGESUBDIR', '言語ファイルのサブホルダー・パース');
 jr_define('_JOMRES_DEFAULT_LAT_STARTPOINT', '緯度のデフォルト設定');
 jr_define('_JOMRES_DEFAULT_LONG_STARTPOINT', '経度のデフォルト設定');
-jr_define('_JOMRES_DEFAULT_LATLONGSTARTPOINT_DESC', 'プロパティ情報の編集ページにあるGoogle地図で、初期のピン位置を緯度・軽度を設定することにより指定できます。');
+jr_define('_JOMRES_DEFAULT_LATLONGSTARTPOINT_DESC', 'プロパティ情報の編集ページにあるGoogle地図で,初期のピン位置を緯度・軽度を設定することにより指定できます。');
 jr_define('_JOMRES_SYSTEM_EMAILS', 'Jomresからのメールをどのメール アドから送信しますか?');
-jr_define('_JOMRES_SYSTEM_EMAILS_DESC', '空欄にすれば、このオプションが無効になります。Jomresは、顧客にメールする際に、ホテルのメール アドを利用します。しかし、メール サーバーが第三者のメール アドから送信することを拒否する場合もあります（つまり、オーソライズされた１つのメール アドに限られます）。拒否されている場合、全てのシステム メールの送信者欄に表示されるメール アドを入力することができます。');
+jr_define('_JOMRES_SYSTEM_EMAILS_DESC', '空欄にすれば,このオプションが無効になります。Jomresは,顧客にメールする際に,ホテルのメール アドを利用します。しかし,メール サーバーが第三者のメール アドから送信することを拒否する場合もあります（つまり,オーソライズされた１つのメール アドに限られます)。拒否されている場合,全てのシステム メールの送信者欄に表示されるメール アドを入力することができます。');
 jr_define('_JOMRES_PROPERTYLIST_LAYOUT_LIST', 'リスト ビュー');
 jr_define('_JOMRES_PROPERTYLIST_LAYOUT_TILE', '写真 ビュー');
 jr_define('_JOMRES_COMPARE', '比較');
@@ -1334,16 +1335,16 @@ jr_define('_JOMRES_ADDTOSHORTLIST', 'お気に入りに追加');
 jr_define('_JOMRES_REMOVEFROMSHORTLIST', 'お気に入りから削除');
 jr_define('_JOMRES_VIEWSHORTLIST', 'お気に入りを表示');
 jr_define('_JOMRES_COOKIEPOLICY_1', '重要：クッキーの利用方針');
-jr_define('_JOMRES_COOKIEPOLICY_2', 'ユーザーにとっての関連性や利便性を向上するため、このサイトはクッキーを利用しています。');
+jr_define('_JOMRES_COOKIEPOLICY_2', 'ユーザーにとっての関連性や利便性を向上するため,このサイトはクッキーを利用しています。');
 jr_define('_JOMRES_COOKIEPOLICY_3', '続きを読む');
-jr_define('_JOMRES_COOKIEPOLICY_4', 'EUの法律により、クッキーを利用しているか否かを明記することが義務付けられています。');
-jr_define('_JOMRES_COOKIEPOLICY_5', '検索エンジンと予約エンジンは、指定された情報、選択されたオプション等を利用するため、保存する必要があります。ブラウザーを区別するクッキーという小さなファイルをそちらのパソコンに保存する必要がある。ただし、そちらのディスクを利用し保存することを許可していただかないと、Jomresは必要な情報を保存できません。よって、本サイトのご利用は非常に限られます。');
+jr_define('_JOMRES_COOKIEPOLICY_4', 'EUの法律により,クッキーを利用しているか否かを明記することが義務付けられています。');
+jr_define('_JOMRES_COOKIEPOLICY_5', '検索エンジンと予約エンジンは,指定された情報,選択されたオプション等を利用するため,保存する必要があります。ブラウザーを区別するクッキーという小さなファイルをそちらのパソコンに保存する必要がある。ただし,そちらのディスクを利用し保存することを許可していただかないと,Jomresは必要な情報を保存できません。よって,本サイトのご利用は非常に限られます。');
 jr_define('_JOMRES_COOKIEPOLICY_6', 'クッキーの利用に同意する');
 jr_define('_JOMRES_COM_A_DEPOSIT_FIRSTNIGHTCOST', '必須の予約金を初夜の料金にしますか?');
-jr_define('_JOMRES_COM_A_DEPOSIT_FIRSTNIGHTCOST_DESC', '料金は日別（夜別）に積算されます。予約金を初日（初夜）に相当する金額に定義したい場合、「YES」に設定し、以下のオプションをスキップして進んでください。');
+jr_define('_JOMRES_COM_A_DEPOSIT_FIRSTNIGHTCOST_DESC', '料金は日別（夜別)に積算されます。予約金を初日（初夜)に相当する金額に定義したい場合,「YES」に設定し,以下のオプションをスキップして進んでください。');
 jr_define('_JOMRES_NOTHINGINSHORTLIST', 'お気に入りは指定されていません。');
 jr_define('_JOMRES_SAFEMODE', '安全モードを有効にしますか?');
-jr_define('_JOMRES_SAFEMODE_DESC', 'Jomresのプラグインを全て無効にし、コアの機能のみ利用させる「安全モード」に切り替えられます。');
+jr_define('_JOMRES_SAFEMODE_DESC', 'Jomresのプラグインを全て無効にし,コアの機能のみ利用させる「安全モード」に切り替えられます。');
 jr_define('_JOMRES_PRICE_ON_APPLICATION', 'POA');
 jr_define('COMMON_NEXT', '次＞');
 jr_define('COMMON_CANCEL', 'キャンセル');
@@ -1357,11 +1358,11 @@ jr_define('COMMON_HOME', 'ホーム');
 jr_define('COMMON_NEW', '新規');
 jr_define('COMMON_SEND', '送信');
 jr_define('RECAPTCHA_TITLE', 'reCaptcha');
-jr_define('RECAPTCHA_INFO', 'reCaptchaというのは、フォームの利用者が人間でいることを確かめる仕組みで、プロパティ管理者がローボットにスパムされないように設けています。問い合わせフォームを利用する場合、 <a href="http://www.google.com/recaptcha" target="_blank">Google reCaptcha</a> のHPに登録しドメインを設定した上、Public keyとPrivate keyを与えられます。 キーを以下のフィールドで記入して下さい。Google　reCapcha は無料のサービスです。');
+jr_define('RECAPTCHA_INFO', 'reCaptchaというのは,フォームの利用者が人間でいることを確かめる仕組みで,プロパティ管理者がローボットにスパムされないように設けています。問い合わせフォームを利用する場合, <a href="http://www.google.com/recaptcha" target="_blank">Google reCaptcha</a> のHPに登録しドメインを設定した上,Public keyとPrivate keyを与えられます。 キーを以下のフィールドで記入して下さい。Google　reCapcha は無料のサービスです。');
 jr_define('RECAPTCHA_PUBLIC_KEY', 'Public key');
 jr_define('RECAPTCHA_PRIVATE_KEY', 'Private key');
 jr_define('_JOMRES_BOOKINGFORM_LOCK_TITLE', '仮押えのタイムアウト');
-jr_define('_JOMRES_BOOKINGFORM_LOCK_DESC', 'ダッブル ブッキングの可能性をなくすため、ユーザが予約フォームに入っているリソース（部屋）場合、そのリソースが仮に押さえられ、他のユーザの検査結果に出ないようになっています。仮押えのタイムアウトは、３６００秒（つまり1時間）が経過したら解除されるように設定されているが、ここでタイムアウトの秒数を変更できます。');
+jr_define('_JOMRES_BOOKINGFORM_LOCK_DESC', 'ダッブル ブッキングの可能性をなくすため,ユーザが予約フォームに入っているリソース（部屋)場合,そのリソースが仮に押さえられ,他のユーザの検査結果に出ないようになっています。仮押えのタイムアウトは,３６００秒（つまり1時間)が経過したら解除されるように設定されているが,ここでタイムアウトの秒数を変更できます。');
 jr_define('_JOMRES_BOOTSTRAPSWITCH', 'Jomresのブートストラップ テンプレートを有効にしますか?');
 jr_define('COMMON_ACTION', '進む');
 jr_define('COMMON_VIEW', '表示');
@@ -1370,21 +1371,21 @@ jr_define('_JOMRES_INPUTFILTERING_LEVEL_WEAK', '弱');
 jr_define('_JOMRES_INPUTFILTERING_LEVEL_STRONG', '強');
 jr_define('_JOMRES_INPUTFILTERING', '入力 フィルター');
 jr_define('_JOMRES_INPUTFILTERING_LEVEL_TITLE', '入力 フィルターの強度');
-jr_define('_JOMRES_INPUTFILTERING_LEVEL_DESC', '入力されたデータは、セキュリティを高めるため、データバエースに保存する前に洗浄されます。まずHTMLタグが抜けれ、その次にPHPの変数フィルターがかけられてから記録されます。ただし、HTMLを許可する場合もあります（例えば、プロパティ情報ページのテキスト入力等）。その場合、完全洗浄ではなく、HTMLの一部を許すHTMLフィルターを選択できます。HTMLフィルターは、「弱」または「強」の２強度から選べます。データを入力する人が信頼されているユーザ（例えば、ウエブマスター、サイト アドミン）のみに限る場合意外、「強」に設定することを推薦します。「強」に設定しても、どのタグが許されるかを細かく指定できます。');
+jr_define('_JOMRES_INPUTFILTERING_LEVEL_DESC', '入力されたデータは,セキュリティを高めるため,データバエースに保存する前に洗浄されます。まずHTMLタグが抜けれ,その次にPHPの変数フィルターがかけられてから記録されます。ただし,HTMLを許可する場合もあります（例えば,プロパティ情報ページのテキスト入力等)。その場合,完全洗浄ではなく,HTMLの一部を許すHTMLフィルターを選択できます。HTMLフィルターは,「弱」または「強」の２強度から選べます。データを入力する人が信頼されているユーザ（例えば,ウエブマスター,サイト アドミン)のみに限る場合意外,「強」に設定することを推薦します。「強」に設定しても,どのタグが許されるかを細かく指定できます。');
 jr_define('_JOMRES_INPUTFILTERING_PURIFIER_ALLOWED_TITLE', '入力の許されるタグ');
-jr_define('_JOMRES_INPUTFILTERING_PURIFIER_ALLOWED_DESC', "HTMLフィルターに許されるタグを指定できます。デフォルトは p,b,strong,a[href],i (i.e. Paragraph, Bold, Strong, Links and Italics)に設定されています。タグの詳細については、<a href='http://htmlpurifier.org' target='_blank'>htmlpurifier.org</a> でHTMLフィルターのドキュメンテーションに参照してください。変更できるにもかかわらず、デフォルトのままにしておくことが推薦されます。");
+jr_define('_JOMRES_INPUTFILTERING_PURIFIER_ALLOWED_DESC', "HTMLフィルターに許されるタグを指定できます。デフォルトは p,b,strong,a[href],i (i.e. Paragraph, Bold, Strong, Links and Italics)に設定されています。タグの詳細については,<a href='http://htmlpurifier.org' target='_blank'>htmlpurifier.org</a> でHTMLフィルターのドキュメンテーションに参照してください。変更できるにもかかわらず,デフォルトのままにしておくことが推薦されます。");
 jr_define('_JOMRES_INPUTFILTERING_INPUTS_TITLE', '許される入力');
-jr_define('_JOMRES_INPUTFILTERING_INPUTS_DESC', 'HTMLが許される入力を指定できます。このリストに追加される入力は、通常のHTMLを全て抜くプロセスの代わりに、HTMLフィルターに通されます。HTMLが許されるフォームのデフォルトは：property_description property_checkin_times property_area_activities property_driving_directions property_airports property_othertransport property_policies_disclaimersになっています。 フォームの追加は、スペースで区切ってフォーム名を追加してください。');
+jr_define('_JOMRES_INPUTFILTERING_INPUTS_DESC', 'HTMLが許される入力を指定できます。このリストに追加される入力は,通常のHTMLを全て抜くプロセスの代わりに,HTMLフィルターに通されます。HTMLが許されるフォームのデフォルトは：property_description property_checkin_times property_area_activities property_driving_directions property_airports property_othertransport property_policies_disclaimersになっています。 フォームの追加は,スペースで区切ってフォーム名を追加してください。');
 jr_define('_JOMRES_PROPERTYDETAILS_INTABS_TITLE', 'プロパティ情報をタブで表示しますか?');
-jr_define('_JOMRES_PROPERTYDETAILS_INTABS_DESC', 'プロパティ情報をタブで表示する場合、「YES」に設定して下さし。');
+jr_define('_JOMRES_PROPERTYDETAILS_INTABS_DESC', 'プロパティ情報をタブで表示する場合,「YES」に設定して下さし。');
 jr_define('COMMON_PRINT', '印刷');
 jr_define('COMMON_EDIT', '編集');
 jr_define('COMMON_COPY', 'コピー');
-jr_define('_JOMRES_BOOTSTRAPSWITCH_INFO', 'Joomla 3はツイッターのBootstrapフレームワークを初期設定により利用しているため、Jomresのテンプレートはこれを利用しています。JomresをJoomla 3で利用している場合、デフォルトは「YES」に設定されます（「NO」に設定できるが、推薦できません）。JoomlaのバージョンがJoomla 3未満の場合、JomresのBootstrapテンプレートや機能性を選定できるが、デフォルトは「NO」に設定されます。');
+jr_define('_JOMRES_BOOTSTRAPSWITCH_INFO', 'Joomla 3はツイッターのBootstrapフレームワークを初期設定により利用しているため,Jomresのテンプレートはこれを利用しています。JomresをJoomla 3で利用している場合,デフォルトは「YES」に設定されます（「NO」に設定できるが,推薦できません)。JoomlaのバージョンがJoomla 3未満の場合,JomresのBootstrapテンプレートや機能性を選定できるが,デフォルトは「NO」に設定されます。');
 jr_define('_JOMRES_BOOTSTRAPSWITCH_FRONTEND', 'フロントエンドにJomresのブートストラップ テンプレートを利用しますか?');
 jr_define('_JOMRES_ALTERNATIVE_SEARCH_RESULTS', '類似の物件はいかがでしょうか');
 jr_define('_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT', '顧客の国を自動的に認識しますか?');
-jr_define('_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT_DESC', '顧客の初予約の際、国を自動的に認識します。予約フォームで固定の国を初期表示したい場合には、「NO」に設定し、次の欄で指定できます。');
+jr_define('_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT_DESC', '顧客の初予約の際,国を自動的に認識します。予約フォームで固定の国を初期表示したい場合には,「NO」に設定し,次の欄で指定できます。');
 jr_define('_JOMRES_CUSTOMCODE_SUPPORT_ABOUTJOMRES', 'Jomresについて');
 jr_define('_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP', 'HELP');
 jr_define('_JOMRES_CUSTOMCODE_SUPPORT_GETTINGSTARTED', 'はじめに');
@@ -1427,10 +1428,10 @@ jr_define('_JOMRES_EDIT_REGION_REGIONNAME', '地域名');
 jr_define('_JOMRES_COM_LISTCOUNTRIES', '国名を表示');
 jr_define('_JOMRES_COM_LISTREGIONS', '地域を表示');
 jr_define('_JOMRES_EXPORT_DEFINITIONS', '定義をエクスポート');
-jr_define('_JOMRES_EXPORT_DEFINITIONS_INFO', '翻訳機能を利用してラベル等を事業に特化したり、国語を翻訳したりした場合には、これで言語ファイルにエクスポートすることができます。アウットプットをコピーし、新規のphpの言語ファイールに張り付けた上、言語ファイルをJomresサーバーへアプロードすることができます。マニュアルに参照ください。');
+jr_define('_JOMRES_EXPORT_DEFINITIONS_INFO', '翻訳機能を利用してラベル等を事業に特化したり,国語を翻訳したりした場合には,これで言語ファイルにエクスポートすることができます。アウットプットをコピーし,新規のphpの言語ファイールに張り付けた上,言語ファイルをJomresサーバーへアプロードすることができます。マニュアルに参照ください。');
 jr_define('_JOMRES_COM_TRANSLATE_COUNTRIESREGIONS', 'ロケーションを翻訳する');
 jr_define('_JOMRES_COM_TRANSLATE_LANGUAGEFILES', '言語ファイルのストリングを翻訳する');
-jr_define('_JOMRES_COM_NOTAMANAGER', 'エラー：現在ご利用のユーザが万能の管理者ではないため、本機能をこのままでご利用できません。利用に当たり、「プロフィールを表示」の機能を使用し、「管理者」や「万能の管理者」として許可を得た上、もう一度試してみてください。');
+jr_define('_JOMRES_COM_NOTAMANAGER', 'エラー：現在ご利用のユーザが万能の管理者ではないため,本機能をこのままでご利用できません。利用に当たり,「プロフィールを表示」の機能を使用し,「管理者」や「万能の管理者」として許可を得た上,もう一度試してみてください。');
 jr_define('_JOMRES_COM_LAYOUTS_DEFAULT', 'プロパティ一覧のデフォルト表示');
 jr_define('_JOMRES_STAYFORAMINIMUMOF', 'MIN宿泊数');
 jr_define('_JOMRES_NIGHTSFOR', ' 泊当たり ');
@@ -1438,26 +1439,26 @@ jr_define('_JOMRES_AGENT', 'エージェント');
 jr_define('_JOMRES_AGENT_DETAILS', 'エージェント詳細');
 jr_define('_JOMRES_AGENT_LISTINGS', 'エージェントのリスティング');
 jr_define('_JOMRES_APPROVALS_CONFIG_TITLE', '新規プロパティの表示を自動的に許可しますか。');
-jr_define('_JOMRES_APPROVALS_CONFIG_DESC', '本オプションを「NO」に設定する場合、新規プロパティが万能管理者にyろい手動的に許可されるまで表示されません。');
+jr_define('_JOMRES_APPROVALS_CONFIG_DESC', '本オプションを「NO」に設定する場合,新規プロパティが万能管理者にyろい手動的に許可されるまで表示されません。');
 jr_define('_JOMRES_APPROVALS_MENU_NAME', '許可リスト');
 jr_define('_JOMRES_APPROVALS_NOT_APPROVED_YET', '本プロパティは許可待ちです。許可されましたら表示できるようになります。');
-jr_define('_JOMRES_APPROVALS_CANNOT_PUBLISH', '本プロパティは許可待ちのため、表示することはできません。もう少々をお待ちください。');
+jr_define('_JOMRES_APPROVALS_CANNOT_PUBLISH', '本プロパティは許可待ちのため,表示することはできません。もう少々をお待ちください。');
 jr_define('_JOMRES_APPROVALS_ADMIN_EMAIL_SUBJECT', '許可待ちの新規プロパティ');
-jr_define('_JOMRES_APPROVALS_ADMIN_EMAIL_CONTENT', '新規プロパティが登録され、あなたの許可を待っています。以下のリンクをクリックし、許可して下さい：');
+jr_define('_JOMRES_APPROVALS_ADMIN_EMAIL_CONTENT', '新規プロパティが登録され,あなたの許可を待っています。以下のリンクをクリックし,許可して下さい：');
 jr_define('_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT', '登録プロパティの許可されました。');
-jr_define('_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT', 'おめでとうございます。御社のプロパティが許可されました。以下のリンクをクリックすると、プロパティのコントロール パネルへ移動できます：');
+jr_define('_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT', 'おめでとうございます。御社のプロパティが許可されました。以下のリンクをクリックすると,プロパティのコントロール パネルへ移動できます：');
 jr_define('_JOMRES_REGION_TRANSLATION_SWITCH_TITLE', '地域名称は翻訳可能です。');
-jr_define('_JOMRES_REGION_TRANSLATION_SWITCH_DESC', '非常に早いサーバーを利用していない限り、「NO」のままにして起くことを進めします。大量の地域名称があるため、メモリーが沢山使われ、検索のスピードが非常に大幅に落ちます。');
+jr_define('_JOMRES_REGION_TRANSLATION_SWITCH_DESC', '非常に早いサーバーを利用していない限り,「NO」のままにして起くことを進めします。大量の地域名称があるため,メモリーが沢山使われ,検索のスピードが非常に大幅に落ちます。');
 jr_define('_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT', '顧客がチェックアウトされました。');
-jr_define('_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE', '入力されたメールアドレスが既に登録されています。あなたのメールアドの場合、ログインし、予約して下さい。');
+jr_define('_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE', '入力されたメールアドレスが既に登録されています。あなたのメールアドの場合,ログインし,予約して下さい。');
 jr_define('JOMRES_TAPTOCALL', '電話する');
 jr_define('JOMRES_NEWREVIEW_SUBJECT', '新規評価：');
 jr_define('JOMRES_NEWREVIEW_MESSAGE', '右記のプロパティが新規に評価されました：');
 jr_define('JOMRES_NEWREPORT_SUBJECT', '評価の新規通報');
 jr_define('JOMRES_NEWREPORT_MESSAGE', '右記のプロパティの評価が通報されました：');
 jr_define('JOMRES_SUPERIOR', '優秀');
-jr_define('JOMRES_GRANDTOTAL_EX_TAX', '合計（税抜）：');
-jr_define('JOMRES_GRANDTOTAL_INC_TAX', '合計（税込）：');
+jr_define('JOMRES_GRANDTOTAL_EX_TAX', '合計（税抜)：');
+jr_define('JOMRES_GRANDTOTAL_INC_TAX', '合計（税込)：');
 jr_define('JOMRES_GRANDTOTAL_TOTAL_TAX', '税：');
 jr_define('JOMRES_RECAPTCHA_INSTRUCTIONS_VISUAL', '表示の文字を入力してください：');
 jr_define('JOMRES_RECAPTCHA_INSTRUCTIONS_AUDIO', '再生の通りを入力してください：');
@@ -1473,35 +1474,35 @@ jr_define('JOMRES_GOOGLE_MAP_OPTION_WEATHER', '天候レヤーを利用します
 jr_define('JOMRES_GOOGLE_MAP_OPTION_WEATHER_CELCIUS', '℃');
 jr_define('JOMRES_GOOGLE_MAP_OPTION_WEATHER_FARENHEIT', '°F');
 jr_define('JOMRES_GOOGLE_MAP_OPTION_TRANSIT', '交通レヤーを利用しますか?');
-jr_define('JOMRES_GOOGLE_MAPS_POIS', 'GmapのPoints of Interest（見所）を表示しますか？(競合会社も含まれる可能性があります。）');
+jr_define('JOMRES_GOOGLE_MAPS_POIS', 'GmapのPoints of Interest（見所)を表示しますか？(競合会社も含まれる可能性があります。)');
 jr_define('_JOMRES_METAKEYWORDS', 'メータのキーワード');
-jr_define('_JOMRES_SCAN_FOR_DIRECTIONS', 'アクセス情報は、QRコードをスキャンし表示できます。');
+jr_define('_JOMRES_SCAN_FOR_DIRECTIONS', 'アクセス情報は,QRコードをスキャンし表示できます。');
 jr_define('_JOMRES_VIES_VATCHECK_INCORRECT_SYNTAX', '入力されたVAT 番号が正しくないようです。BE805670816B01というような番号です。');
 jr_define('_JOMRES_VIES_VATCHECK_INCORRECT_COULDNOTVALIDATE', '入力されたVAT番号が無効です。VAT番号の有効性をEuropa VAT Number validation webservice (VIES)に確認してください。');
-jr_define('_JOMRES_VIES_VATCHECK_INCORRECT_VALIDATED', 'VAT番号が確認できましたので、ご利用できます。');
+jr_define('_JOMRES_VIES_VATCHECK_INCORRECT_VALIDATED', 'VAT番号が確認できましたので,ご利用できます。');
 jr_define('_JOMRES_TAX_RULES_LIST', '税ルールを表示');
 jr_define('_JOMRES_TAX_RULE', '税のルール');
-jr_define('_JOMRES_TAX_RULE_INFO', '税のルールは、別国等の個別の税制度のルールを定義しています。「アカウントを編集」のページでアカウントを正しくアプデートされている登録ユーザがログインされている場合に、そのユーザの予約に適応されます。本機能は、VAT対象外の地域にいる顧客の予約をより簡単に対応できることを目標していて、所在地によりルールを作成する必要はない可能性もあります。');
+jr_define('_JOMRES_TAX_RULE_INFO', '税のルールは,別国等の個別の税制度のルールを定義しています。「アカウントを編集」のページでアカウントを正しくアプデートされている登録ユーザがログインされている場合に,そのユーザの予約に適応されます。本機能は,VAT対象外の地域にいる顧客の予約をより簡単に対応できることを目標していて,所在地によりルールを作成する必要はない可能性もあります。');
 jr_define('_JOMRES_TAX_RATES_IMPORT', '税率をインポート');
-jr_define('_JOMRES_TAX_RATES_IMPORT_INFO', 'EUの税率を自動的にインポートできます。注：インポートする場合、既存の税率情報が削除されます。');
+jr_define('_JOMRES_TAX_RATES_IMPORT_INFO', 'EUの税率を自動的にインポートできます。注：インポートする場合,既存の税率情報が削除されます。');
 jr_define('_JRPORTAL_TAX_RULE_EDIT', '税ルールを変更');
 jr_define('_JOMRES_VAT_PROPERTY_NUMBER', '本プロパティのVAT番号');
 jr_define('_JOMRES_VAT_PROPERTY_NUMBER_DESC', '本プロパティのVAT番号を入力してください。');
 jr_define('_JOMRES_VAT_PROPERTY_VAT_NUMBER_VALIDATED', 'VAT番号が確認できました。');
 jr_define('_JOMRES_VAT_PROPERTY_VAT_NUMBER_NOT_VALIDATED', 'VAT番号が確認できませんでした。');
 jr_define('_JOMRES_COM_YOURBUSINESS_INSTRUCTIONS', 'ここで入力された事業体の情報はコミッションやサブスクリップションの請求書に使用されます。');
-jr_define('_JRPORTAL_INVOICES_SUBSCRIPTION_PROFILE_ERROR_EXPL', 'アカウント情報はまだ入力されていません。本サイトにプロパティを登録するため、アカウント情報を全て入力して下さい。');
+jr_define('_JRPORTAL_INVOICES_SUBSCRIPTION_PROFILE_ERROR_EXPL', 'アカウント情報はまだ入力されていません。本サイトにプロパティを登録するため,アカウント情報を全て入力して下さい。');
 jr_define('_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT', 'プロダクション用又は開発用のサバーですか?');
-jr_define('_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_DESC', '「開発用」に設定する場合には、エラー報告が有効になります。「プロダクション用」の場合は、無効になります。実施されている場合には、「プロダクション用」に設定すべきです。');
+jr_define('_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_DESC', '「開発用」に設定する場合には,エラー報告が有効になります。「プロダクション用」の場合は,無効になります。実施されている場合には,「プロダクション用」に設定すべきです。');
 jr_define('_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_PRODUCTION', 'プロダクション用');
 jr_define('_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_DEVELOPMENT', '開発用');
 //v7.3.3
-jr_define('_JOMRES_COM_MR_EB_HROOM_DETAILS', 'リソース（部屋）情報');
+jr_define('_JOMRES_COM_MR_EB_HROOM_DETAILS', 'リソース（部屋)情報');
 jr_define('_JOMRES_COM_MR_EB_HTARIFF_DETAILS', '料金プランの詳細');
 jr_define('_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_PRE', 'たったの');
 jr_define('_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_POST', '部屋しか残っていません!');
 jr_define('_JOMRES_COM_MR_EB_HRESOURCE_FEATURE', 'リソースのアメニティ');
-jr_define('_JOMRES_COM_MR_RESOURCEFEATURE_UNABLETODELETE', '指定のリソース アメニティがプロパティに適応されているため、削除できませんでした。リソースから取り外してやり直してください。');
+jr_define('_JOMRES_COM_MR_RESOURCEFEATURE_UNABLETODELETE', '指定のリソース アメニティがプロパティに適応されているため,削除できませんでした。リソースから取り外してやり直してください。');
 // v7.4
 jr_define('_JOMRES_MEDIA_CENTRE_TITLE', 'イメージ管理');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_ADD', 'イメージを追加');
@@ -1510,8 +1511,8 @@ jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_PROPERTY', 'プロパティの代
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_SLIDESHOW', 'スライドショーのイメージ');
 jr_define('_JOMRES_MEDIA_CENTRE_CLEAR', '一覧をクリア');
 jr_define('_JOMRES_MEDIA_CENTRE_DRAGNDROP', 'ファイルをここにドラッグ・アンド・ドロップしてください。');
-jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_INSTRUCTIONS', 'アプロードの対象部屋を指定してください。個別の部屋にアプロードできれば、対象部屋を選択できるドロップダウンが表示されます。');
-jr_define('_JOMRES_MEDIA_CENTRE_NOTES_CORE', 'プロパティの代表イメージとして複数イメージがアプロードされる場合には、最初のイメージのみが表示されます。');
+jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_TYPES_INSTRUCTIONS', 'アプロードの対象部屋を指定してください。個別の部屋にアプロードできれば,対象部屋を選択できるドロップダウンが表示されます。');
+jr_define('_JOMRES_MEDIA_CENTRE_NOTES_CORE', 'プロパティの代表イメージとして複数イメージがアプロードされる場合には,最初のイメージのみが表示されます。');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_VIEW', 'イメージを表示');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_DELETE', 'イメージを削除');
 jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD', 'イメージをアプロード');
@@ -1574,7 +1575,7 @@ jr_define('_JOMRES_HOVERVIEW_CHECKINS', '今日のチェックイン');
 jr_define('_JOMRES_HOVERVIEW_CHECKOUTS', '今日のチェックアウト');
 jr_define('_JOMRES_HOVERVIEW_CURRENT_RESIDENTS', '滞在中顧客一覧');
 jr_define('_JOMRES_BOOTSTRAP_LOCATION', 'ナビゲーションバーの位置');
-jr_define('_JOMRES_BOOTSTRAP_LOCATION_DEFAULT', '初期設定 （内容の部分）');
+jr_define('_JOMRES_BOOTSTRAP_LOCATION_DEFAULT', '初期設定 （内容の部分)');
 jr_define('_JOMRES_BOOTSTRAP_LOCATION_TOP', 'トップに固定される');
 jr_define('_JOMRES_BOOTSTRAP_LOCATION_BOTTOM', 'ボタムに固定される');
 jr_define('_JOMRES_BOOTSTRAP_LOCATION_INVERSE', '二ビゲーション・ハー色を反転する');
@@ -1610,17 +1611,17 @@ jr_define('_JOMRES_MULTIPLE_RESOURCES_TYPE', 'リソースのタイプ');
 jr_define('_JOMRES_MULTIPLE_RESOURCES_MAXGUESTS', 'リソースのmax人数');
 jr_define('_JOMRES_MULTIPLE_RESOURCES_DELETE', '登録リソーズを全て削除しますか？');
 jr_define('_JOMRES_COM_ADVANCED_SITE_CONFIG_WARNING', 'Please note, you are currently viewing the administrator area with Advanced Site Config set to No. If you want to see more options please set Site Configuration -> Misc -> Advanced Site Config to Yes.');
-jr_define('DATATABLES_SINFO', '_START_ 〜 _END_ of _TOTAL_ ');
+jr_define('DATATABLES_SINFO', '_START_〜 _END_of _TOTAL_');
 jr_define('_JOMRES_BOOKING_INQUIRY_HAPPROVAL', '承諾');
 jr_define('_JOMRES_BOOKING_REJECT_INQUIRY', '問い合わせの予約を断る');
 jr_define('_JOMRES_BOOKING_APPROVE_INQUIRY', '問い合わせの予約を承諾する');
 jr_define('_JOMRES_STATUS_APPROVED', '承諾されました');
 jr_define('_JOMRES_STATUS_REJECTED', '断られました');
 jr_define('_JOMRES_STATUS_INQUIRY', '問い合わせ');
-jr_define('_JOMRES_BOOKING_INQUIRY_SETTING_TITLE', 'Bookings require approval or availability confirmation?');
-jr_define('_JOMRES_BOOKING_INQUIRY_SETTING_DESC', 'If set to yes, when a booking is made, it will not show up on the availability calendars (and other guests can still book those days and resource) until the property manager accepts/confirms availability for the booking. Once confirmed, booking is inserted as provisional (if doesn`t override other bookings; other guests can`t book the same dates anymore) and an email is sent to the customer to make the payment.');
-jr_define('_JOMRES_ERROR', 'Error');
-jr_define('_JOMRES_ERROR_MESSAGE', 'Sorry! An error occurred while trying to process this function. It has been reported for you and we will look into it.');
+jr_define('_JOMRES_BOOKING_INQUIRY_SETTING_TITLE', '予約には承認または空き状況の確認が必要ですか？');
+jr_define('_JOMRES_BOOKING_INQUIRY_SETTING_DESC', '[はい]に設定すると、予約が行われたときに、プロパティマネージャーが予約の空き状況を承認/確認するまで、空き状況カレンダーに表示されません（他のゲストはその日とリソースを予約できます)。 確認されると、予約は暫定的なものとして挿入され（他の予約を上書きしない場合、他のゲストは同じ日付を予約できなくなります)、支払いを行うために顧客に電子メールが送信されます。');
+jr_define('_JOMRES_ERROR', 'エラー');
+jr_define('_JOMRES_ERROR_MESSAGE', 'ごめん！ この関数の処理中にエラーが発生しました。 それはあなたのために報告されており、私たちはそれを調査します。');
 jr_define('_JOMRES_ERROR_DEBUGGING_MESSAGE', 'メセッジ');
 jr_define('_JOMRES_ERROR_DEBUGGING_FILE', 'ファイル');
 jr_define('_JOMRES_ERROR_DEBUGGING_LINE', 'ライン');
@@ -1632,42 +1633,42 @@ jr_define('_JOMRES_EMAIL_TEMPLATES_TEXT', 'Emailテキスト');
 jr_define('_JOMRES_EMAIL_TEMPLATES_TYPE', 'Emailタイプ');
 jr_define('_JOMRES_EMAIL_TEMPLATES_NAME', 'Email名');
 jr_define('_JOMRES_EMAIL_TEMPLATES_DESC', 'Email説明');
-jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS', 'メールのカスタム テンプレート作成は、<a href="http://www.jomres.net/manual/property-managers-guide/48-your-toolbar/settings/254-email-templates" target="_blank">Email Templates Help</a>に参照ください');
+jr_define('_JOMRES_EMAIL_TEMPLATES_INSTRUCTIONS', 'メールのカスタム テンプレート作成は,<a href="http://www.jomres.net/manual/property-managers-guide/48-your-toolbar/settings/254-email-templates" target="_blank">Email Templates Help</a>に参照ください');
 jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILNAME', 'サイト アドミンへの新規予約メール');
-jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC', 'グローバルpaypalゲートウエーが有効の場合、新規予約が入った際にサイトのアドミニストレーターへ送信されるメールです。');
+jr_define('_JOMRES_ADMIN_NEWBOOKING_EMAILDESC', 'グローバルpaypalゲートウエーが有効の場合,新規予約が入った際にサイトのアドミニストレーターへ送信されるメールです。');
 jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILNAME', 'ホテルへの新規予約メール');
 jr_define('_JOMRES_HOTEL_NEWBOOKING_EMAILDESC', '新規予約が入った際にプロパティ オーナーへ送信されるメールです。');
 jr_define('_JOMRES_GUEST_NEWBOOKING_EMAILNAME', '顧客への 新規予約のメール');
 jr_define('_JOMRES_GUEST_NEWBOOKING_EMAILDESC', '新規予約が入った際に顧客へ送信されるメールです');
 jr_define('_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILNAME', '顧客への確認通知書');
 jr_define('_JOMRES_GUEST_CONFIRMATIONLETTER_EMAILDESC', '予約の受領・確認したことを顧客に送信し通知する手紙又は電子メールです。');
-jr_define('_JOMRES_CAN_BE_APPROVED', 'This booking can be approved. All selected resources are available for the selected dates.');
+jr_define('_JOMRES_CAN_BE_APPROVED', 'この予約は承認できます。 選択したすべてのリソースは、選択した日付で利用できます。');
 jr_define('_JOMRES_CANT_BE_APPROVED', 'This booking can`t be approved because some of the resources are already booked for the selected dates. You`ll need to amend the booking first.');
 jr_define('_JOMRES_SHOW_POWEREDBY', 'Powered by Jomresのリンクをフッターで表示するか？');
 jr_define('GUEST_BUDGET', 'お得の目印');
 jr_define('GUEST_BUDGET_FEATURE_SWITCH', '「お得の目印」機能を利用しますか?');
-jr_define('GUEST_BUDGET_FEATURE_SWITCH_DESC', '注：Bootstrapを利用するサイトのみ有効! 「お得目印」はプロパティ一覧の機能で、顧客が定義する「お得」の金額に下回るプラオパティにお得の目印（ハイライト）が着きます。サイトの事情により（例えば、複数の通貨を利用する場合等）、相性が悪い場合もあります。このプラグインとFeatured Listings プラグインを同時に利用する場合、プロパティ一覧が表示される際、featured listingを囲むラッパーのclassが自動的にpanel-primaryに変更されます。');
+jr_define('GUEST_BUDGET_FEATURE_SWITCH_DESC', '注：Bootstrapを利用するサイトのみ有効! 「お得目印」はプロパティ一覧の機能で,顧客が定義する「お得」の金額に下回るプラオパティにお得の目印（ハイライト)が着きます。サイトの事情により（例えば,複数の通貨を利用する場合等),相性が悪い場合もあります。このプラグインとFeatured Listings プラグインを同時に利用する場合,プロパティ一覧が表示される際,featured listingを囲むラッパーのclassが自動的にpanel-primaryに変更されます。');
 jr_define('_JOMRES_FRONT_MR_EMAIL_TEXT_NAME', '名前：');
-jr_define('_JOMRES_LIVE_SCROLLING', 'Use Live Scrolling/Infinate Scrolling in property list?');
-jr_define('_JRPORTAL_MONTHS_SHORT_0', 'Jan');
-jr_define('_JRPORTAL_MONTHS_SHORT_1', 'Feb');
-jr_define('_JRPORTAL_MONTHS_SHORT_2', 'Mar');
-jr_define('_JRPORTAL_MONTHS_SHORT_3', 'Apr');
-jr_define('_JRPORTAL_MONTHS_SHORT_4', 'May');
-jr_define('_JRPORTAL_MONTHS_SHORT_5', 'Jun');
-jr_define('_JRPORTAL_MONTHS_SHORT_6', 'Jul');
-jr_define('_JRPORTAL_MONTHS_SHORT_7', 'Aug');
-jr_define('_JRPORTAL_MONTHS_SHORT_8', 'Sep');
-jr_define('_JRPORTAL_MONTHS_SHORT_9', 'Oct');
-jr_define('_JRPORTAL_MONTHS_SHORT_10', 'Nov');
-jr_define('_JRPORTAL_MONTHS_SHORT_11', 'Dec');
+jr_define('_JOMRES_LIVE_SCROLLING', 'プロパティリストでライブスクロール/無限スクロールを使用しますか？');
+jr_define('_JRPORTAL_MONTHS_SHORT_0','Jan');
+jr_define('_JRPORTAL_MONTHS_SHORT_1','2月');
+jr_define('_JRPORTAL_MONTHS_SHORT_2','Mar');
+jr_define('_JRPORTAL_MONTHS_SHORT_3','Apr');
+jr_define('_JRPORTAL_MONTHS_SHORT_4','5月');
+jr_define('_JRPORTAL_MONTHS_SHORT_5','Jun');
+jr_define('_JRPORTAL_MONTHS_SHORT_6','Jul');
+jr_define('_JRPORTAL_MONTHS_SHORT_7','8月');
+jr_define('_JRPORTAL_MONTHS_SHORT_8','9月');
+jr_define('_JRPORTAL_MONTHS_SHORT_9','10月');
+jr_define('_JRPORTAL_MONTHS_SHORT_10','11月');
+jr_define('_JRPORTAL_MONTHS_SHORT_11','Dec');
 jr_define('DATATABLES_SEMPTYTABLE', 'xxxxxxxxxxxxxxxxxxxxxxxxxxxx');
 jr_define('DATATABLES_SINFO', ' _TOTAL_ 件中 _START_ から _END_ まで表示');
 jr_define('DATATABLES_SINFOEMPTY', ' 0 件中 0 から 0 まで表示');
-jr_define('DATATABLES_SINFOFILTERED', '（全 _MAX_ 件より抽出）');
+jr_define('DATATABLES_SINFOFILTERED', '（全 _MAX_件より抽出)');
 jr_define('DATATABLES_SINFOPOSTFIX', '');
 jr_define('DATATABLES_SINFOTHOUSANDS', ',');
-jr_define('DATATABLES_SLENGTHMENU', '_MENU_ 件表示');
+jr_define('DATATABLES_SLENGTHMENU', '_MENU_件表示');
 jr_define('DATATABLES_SLOADINGRECORDS', 'xxxxxxxxxxxxxxxxxxxxxxxxxxxx');
 jr_define('DATATABLES_SPROCESSING', '処理中...');
 jr_define('DATATABLES_SSEARCH', '検索:');
@@ -1678,1084 +1679,947 @@ jr_define('DATATABLES_SNEXT', '次');
 jr_define('DATATABLES_SPREVIOUS', '前');
 jr_define('DATATABLES_SSORTASCENDING', 'xxxxxxxxxxxxxxxxxxxxxxxxxxxx');
 jr_define('DATATABLES_SSORTDESCENDING', 'xxxxxxxxxxxxxxxxxxxxxxxxxxxx');
-jr_define('DATATABLES_SHOWHIDE', 'Change columns');
-jr_define('_BOOKING_ONREQUEST', 'Booking on request');
-jr_define('_BOOKING_INSTANT', 'Instant booking');
-jr_define('_JOMRES_COM_FONTAWESOME', 'Include Font Awesome icon set?');
-jr_define('_JOMRES_COM_FONTAWESOME_DESC', 'Set this to Yes if your template does not include Font Awesome.');
-jr_define('_BOOKING_CALCQUOTE', 'Request booking');
-jr_define('_JOMRES_COM_CONFIRMATION_DEAR', 'Dear ');
-jr_define('_JOMRES_MULTISITES_SELECT_A_SITE', 'Select a site');
-jr_define('_JOMRES_MULTISITES_MULTISITES_LABEL', 'Site id');
-jr_define('_JOMRES_IS_EU_COUNTRY', 'EU Country?');
-jr_define('_JOMRES_HLASTCHANGED', 'Last changed');
-jr_define('_JOMRES_HOTEL_CANCELBOOKING_EMAILNAME', 'Hotel Booking Cancellation Email');
-jr_define('_JOMRES_HOTEL_CANCELBOOKING_EMAILDESC', 'Email sent to the property owner when a new booking is cancelled');
-jr_define('_JOMRES_GUEST_CANCELBOOKING_EMAILNAME', 'Guest Booking Cancellation Email');
-jr_define('_JOMRES_GUEST_CANCELBOOKING_EMAILDESC', 'Email sent to guest when a new booking is cancelled');
-jr_define('_JOMRES_TEST_EMAIL_SEND', 'Send test email');
-jr_define('_JOMRES_TEST_EMAIL_SUBJECT', 'Test email');
-jr_define('_JOMRES_TEST_EMAIL_CONTENT', 'This is a test email from your booking system.');
-jr_define('_JOMRES_TEST_EMAIL_RESULT_SUCCESS', 'Test email sent successfully');
-jr_define('_JOMRES_TEST_EMAIL_RESULT_FAILURE', 'Test email was not sent');
-jr_define('_INVOICE_TRANSACTIONS', 'Transactions');
-jr_define('_OPENEXCHANGE_API', 'Open Exchange Rates API key');
-jr_define('_OPENEXCHANGE_API_DESC', 'To convert prices between services you will need an Open Exchange Rates API key. You MUST have an API key to display prices correctly in Jomres, however you can <a href="https://openexchangerates.org/signup/free" _target="_blank">register for a free key</a> (hourly updates, 1000 requests/month - no HTTPS, email support or advanced features). Jomres downloads exchange rates once a day so as long as you use the key on only a handful of sites, you\'re unlikely to exceed these limits. Previous to Jomres 8.3 we used an older, undocumented Yahoo feature however have discovered that using this feature is in contradiction of Yahoo\'s Terms and Conditions. As a result we have to assume that the feature may disappear at some point in the future, hence the change to using Open Exchange Rates.');
-jr_define('_JOMRES_COMMISSION', 'Commission');
-jr_define('_JOMRES_MEDIA_CENTRE_NOTES_CORE_EXTRAS', 'If you upload multiple images for individual optional extras, only the first image will be used.');
-jr_define('_JOMRES_COMMISSION', 'Commission');
-jr_define('_JOMRES_MEDIA_CENTRE_NOTES_CORE_EXTRAS', 'If you upload multiple images for individual optional extras, only the first image will be used.');
-jr_define('_JRPORTAL_INVOICES_PAYNOW', 'Pay now');
-jr_define('_JRPORTAL_INVOICES_PAYNOW_DESC', 'This invoice in now due. Please click the button to select the payment method.');
-jr_define('_JOMRES_EXTRAS_TEMPLATE', "Here's a list of some of the great things you can purchase while making a booking at this property. ");
-jr_define('GATEWAYS_INSTRUCTIONS', 'On this page you can configure any installed gateways. These options allow you to take payments for any Commission or Subscription invoices. Frontend settings can only be overridden by Paypal, all other gateways will need to be configured via the Property Configuration -> Gateways tab, however if a gateway appears in this list then it should be capable of processing both Booking deposit payments and invoice payments.');
-jr_define('EXTRAS_INCLUDE_IN_PROPERTYDETAILS', 'Show in property details page?');
-jr_define('PROPERTY_DETAILS_PAGE_OPTIONS', 'Property Details page settings');
-jr_define('_JOMRES_HLIST_PROPERTIES_WARNING', 'Property management in Jomres is made only from the site frontend cpanel. On this page you`ll be able to list all properties in the system, so you can assign commission rates and approve/unapprove them (if these features are enabled). To create a new property, edit existing ones, manage bookings or any other property/bookings related tasks, you`ll have to login to the site frontend and go to the Jomres default page. There you`ll see the Jomres frontend cpanel.');
-jr_define('_MEDIA_CENTRE_RESOURCE_FEATURES_ICONS', 'Room feature icons');
-jr_define('_JOMRES_PROPERTYFEATURES_HCATEGORIES', 'Property Feature Categories');
-jr_define('_JOMRES_PROPERTYFEATURES_HCATEGORIES_HEDIT', 'Edit Property Feature Category');
-jr_define('_JOMRES_HCATEGORY', 'Category');
-jr_define('_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES', 'Show property features separated into categories?');
-jr_define('_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES_DESC', 'Set this to YES to separate the property features into categories. This option affects only the property features displayed on the property details page. All other pages will display them without splitting them into categories.');
-jr_define('_JOMRES_ACTION_UNDO_CHECKIN', 'Undo checkin');
-jr_define('_JOMRES_ACTION_UNDO_CHECKOUT', 'Undo checkout');
-jr_define('_JOMRES_STATUS_UNISSUED', 'Unissued');
-jr_define('DEFAULT_TERMS_AND_CONDITIONS', '');
-jr_define('_JOMRES_SUPPORTKEY_DESC_VALID', 'Your download and support key is valid, you will be able to download plugins via the plugin manager.');
-jr_define('_JOMRES_SUPPORTKEY_DESC_INVALID', 'Your download and support key is NOT valid, you will be NOT able to download plugins via the plugin manager.');
-jr_define('_JOMRES_SRP_RESOURCE_TYPE', 'Sub-type');
-jr_define('_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK', "You haven't yet set your property sub-type. This is where you define it as something like a 5 bedroom villa or 4 bedroom cottage and it helps guests who are searching to refine their searches.");
-jr_define('_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK_LINK', 'Give your property a sub-type');
-jr_define('_JOMRES_EMAIL_TEMPLATES_TITLE', 'Email templates');
-jr_define('_JOMRES_CONTACT_SETTINGS', 'Contact settings');
-jr_define('_JOMRES_CONTACT_SETTINGS_DESC', 'From here you can override all properties contact details (email, phone, fax) so all communication with guests will be sent to you and not to the property owners.');
-jr_define('_JOMRES_OVERRIDE_PROPERTY_CONTACT_DETAILS', 'Override listings contact details?');
-jr_define('_JOMRES_OVERRIDE_PROPERTY_CONTACT_DETAILS_DESC', "If this option is set to Yes then property email addresses and phone numbers will be replaced with the ones set in this tab. This forces all communications to be sent to your nominated email address ensuring that the guest and property owner can't bypass the booking engine and the commission charges that will result. It also means that whenever a property's description is changed the property will be set to Unapproved (if the approvals feature is enabled) and you will need to manually check the description to ensure that the managers hasn't entered telephone or email details into the text fields before approving it again.");
-jr_define('_JOMRES_EDITPROPERTY_APPROVAL_WARNING', 'Changes made to listing details require site admin verification. If you save new details, your listing will be unpublished and pending site admin approval before being visible again to site visitors. You won`t be able to receive online bookings while your listing is unpublished and pending approval.');
-jr_define('_JOMRES_BOOKING_ENQUIRY_REVIEW', 'Review booking request');
-jr_define('_JOMRES_BOOKING_ENQUIRY_CONFIRM', 'Confirm booking request');
-jr_define('_JOMRES_BOOKING_ENQUIRY_AMEND', 'Amend booking request');
-jr_define('_JOMRES_INVOICE_MARKASPENDING', 'Mark invoice as pending');
-jr_define('_JOMRES_INVOICE_MARKEDASPENDING', 'Invoice marked as pending');
-jr_define('_JOMRES_TRACKING_ENABLE', 'Send anonymous tracking data?');
-jr_define('_JOMRES_TRACKING_ENABLE_DESC', 'Select Yes to send anonymous tracking data to Jomres.net to help us understand better how you use the system.');
-jr_define('_JOMRES_PARTNERS_PLEASE_COMPLETE', 'Please ensure that your details have been completed on the Edit My Account page before attempting to make bookings on behalf of your clients.');
-jr_define('_JOMRES_PARTNERS_GUEST_ADDRESS', "Guest's contact details");
-jr_define('_JOMRES_CLEAR_GUEST_DETAILS', ' -- New Guest -- ');
-jr_define('_JOMRES_CHARTS', 'Charts');
-jr_define('_JOMRES_CHARTS_SELECT', 'Select chart...');
-jr_define('_JOMRES_CHART_BOOKINGS_DESC', 'Income by year/month');
-jr_define('_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK', "Ok, let's get started. First you need to create some rooms for this property.");
-jr_define('_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK_LINK', 'Create some rooms now');
-jr_define('_JOMRES_IMAGES_EXIST_SANITY_CHECK', 'Research has proven that properties with lots of high quality images generate more views. Upload a main image and some slideshow pictures to improve your chances of getting bookings.');
-jr_define('_JOMRES_IMAGES_EXIST_SANITY_CHECK_LINK', 'Upload an image');
-jr_define('_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK', 'Create some tariffs');
-jr_define('_JOMRES_PROPERTYTYPE_FLAG', 'What will guests book?');
-jr_define('_JOMRES_PROPERTYTYPE_FLAG_DESC', 'Is this property type a hotel type property, where you rent out rooms in the property, or a villa type property, where you rent out the whole property in one booking? ');
-jr_define('_JOMRES_PROPERTYTYPE_FLAG_HOTEL', 'Rooms in the property');
-jr_define('_JOMRES_PROPERTYTYPE_FLAG_VILLA', 'The entire property');
-jr_define('_JOMRES_PROPERTYTYPE_FLAG_BOTH', 'Both'); // This is an interim setting that gives backward compatability for existing users who won't yet have updated their property types. It won't be selectable
-jr_define('_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD', 'What will guests book?');
-jr_define('_JOMRES_ADDRESS_SANITY_CHECK', "You'll need to complete your address details so that your guests can find you when they come to stay.");
-jr_define('_JOMRES_ADDRESS_SANITY_CHECK_LINK', 'Update your address');
-jr_define('_JOMRES_FIELDS_HIGHLIGHTED_ARE_REQUIRED', 'Oops, it looks like you might have forgotten to complete all the fields.');
-jr_define('_JOMRES_CONTANT_US', 'Contact us');
-jr_define('_JOMRES_NEW_PROPERTY_WELCOME_TITLE', 'Welcome to your new online listing for ');
-jr_define('_JOMRES_NEW_PROPERTY_WELCOME_1', 'Hi, and welcome to your new property on ');
-jr_define('_JOMRES_NEW_PROPERTY_WELCOME_2', "You recently added a new property to our website, and we'd like to welcome you to the family.");
-jr_define('_JOMRES_NEW_PROPERTY_WELCOME_3', 'You can see your new dashboard ');
-jr_define('_JOMRES_NEW_PROPERTY_WELCOME_3_LINKTEXT', ' here ');
-jr_define('_JOMRES_NEW_PROPERTY_WELCOME_4', "Once you've setup your property you can see how it looks to site visitors by visiting ");
-jr_define('_JOMRES_NEW_PROPERTY_WELCOME_4_LINKTEXT', ' your front page.');
-jr_define('_JOMRES_NEW_PROPERTY_WELCOME_5', "(it's not published, so site visitors can't see it yet).");
-jr_define('_JOMRES_NEW_PROPERTY_WELCOME_6', "At the top of the page you'll see a number of messages. The buttons next to these messages will guide you to the pages you need to visit to set up your property on our site. Once you've performed each of these tasks it'll be much easier for visitors on our site to find your property and make bookings online.");
-jr_define('_JOMRES_NEW_PROPERTY_WELCOME_7', 'If you have any questions at all, please ');
-jr_define('_JOMRES_NEW_PROPERTY_WELCOME_7_LINKTEXT', 'contact us');
-jr_define('_JOMRES_NEW_PROPERTY_WELCOME_8', "and we'll be delighted to answer all your questions.");
-jr_define('_JOMRES_NEW_PROPERTY_WELCOME_BYEBYE', 'All the best, our team at ');
-jr_define('_JOMRES_JINTOUR_SANITY_CHECK', "You don't seem to have any tours to sell. Create a tour profile, then use the Generate button to create some tours.");
-jr_define('_JOMRES_JINTOUR_SANITY_CHECK_LINK', "Let's create some tours!");
-jr_define('_JOMRES_COM_A_TARIFFS_SWAP', 'Swap currency symbol location');
-jr_define('_JOMRES_COM_A_TARIFFS_SWAP_DESC', 'Use this option to move the currency symbol from behind of, to in front of the price figure, or vice versa.');
-jr_define('_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK', 'Facebook');
-jr_define('_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK_DESC', 'Enter your facebook page id, for example "jomres". Leave this blank to show nothing. Do not enter https://www.facebook.com or anything else.');
-jr_define('COMMON_DOWNLOAD', 'Download');
-jr_define('_JOMRES_WARNINGS_TARIFFS_NOTARIFFS_SRP', 'Next you will need to add some tariffs. These are your basic prices.');
-jr_define('_JOMRES_BOOTSTRAP_OFF_WARNING_TITLE', 'Bootstrap is not enabled!');
-jr_define('_JOMRES_BOOTSTRAP_OFF_WARNING', 'Warning, you do not have Bootstrap enabled in Jomres Site Configuration -> Misc tab. To provide <i>some</i> functionality Jomres is currently using it\'s old, jQuery UI based templates, however these have not been worked on in several years. All current development and improvements of Jomres templates ( layout files ) are made to it\'s Bootstrap 3 template files. To get the best out of Jomres we recommend you install a Bootstrap 3 based theme for Wordpress or Joomla. Once you have done that you can enable Jomres\' Bootstrap templates in Site Configuration.');
-jr_define('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Your support key is valid. Note that this license does not allow plugin downloads.');
-jr_define('_JOMRES_DASHBOARD_DRAG_TRASH', 'Drag bookings to this area to cancel them');
-jr_define('_JOMRES_LAT', 'Lat (nn.nnnn)');
-jr_define('_JOMRES_LONG', 'Long (nn.nnnn)');
-jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Please ensure that you`ve created a WordPress Page that contains the [jomres:xx-XX] shortcode ( where xx-XX is your site language code, for example [jomres:en-GB] or [jomres:en-US] ) otherwise you will not be able to access Jomres from the frontend to manage your properties and bookings. <br> Jomres is built on the Bootstrap framework, so you must use it on a theme based on Bootstrap. We recommend one based on Bootstrap 3. If you do not have access to a theme then we recommend that you use the Jomres Leohtian theme for Wordpress which you can <a href="https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target="_blank">download from here.</a>');
-jr_define('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', 'Most properties in Jomres have a rental management process. Hotels/B&Bs/Pensions rent out individual rooms, and cottages/villas/apartments rent out the entire property. This is invisible to the property manager, but for them to be able to create tariffs for their property you must first add room types that are appropriate for the property type.
-For example, A hotel property type would normally need several room types ( double rooms, single rooms and twins ) whereas a villa can only have one room type, e.g. 2 Bedrooms, 5 bedrooms.
-It is possible to create room types for properties like Tours. This allows customers to search for properties like tours only, but the Property manager will not create tariffs for this property type, so the Management Process is not relevant to them.
+jr_define('DATATABLES_SHOWHIDE','列の変更');
+jr_define('_BOOKING_ONREQUEST','リクエストに応じて予約');
+jr_define('_BOOKING_INSTANT','インスタント予約');
+jr_define('_JOMRES_COM_FONTAWESOME','Font Awesomeアイコンセットを含めますか？');
+jr_define('_JOMRES_COM_FONTAWESOME_DESC','テンプレートにFontAwesomeが含まれていない場合は、これをYesに設定します。');
+jr_define('_BOOKING_CALCQUOTE','予約のリクエスト');
+jr_define('_JOMRES_COM_CONFIRMATION_DEAR','Dear');
+jr_define('_JOMRES_MULTISITES_SELECT_A_SITE','サイトを選択');
+jr_define('_JOMRES_MULTISITES_MULTISITES_LABEL','サイトID');
+jr_define('_JOMRES_IS_EU_COUNTRY','EU国？');
+jr_define('_JOMRES_HLASTCHANGED','最終変更');
+jr_define('_JOMRES_HOTEL_CANCELBOOKING_EMAILNAME','ホテル予約キャンセルEメール');
+jr_define('_JOMRES_HOTEL_CANCELBOOKING_EMAILDESC','新しい予約がキャンセルされたときにプロパティの所有者に送信される電子メール');
+jr_define('_JOMRES_GUEST_CANCELBOOKING_EMAILNAME','ゲスト予約キャンセルEメール');
+jr_define('_JOMRES_GUEST_CANCELBOOKING_EMAILDESC','新しい予約がキャンセルされたときにゲストに送信されるEメール');
+jr_define('_JOMRES_TEST_EMAIL_SEND','テストメールを送信');
+jr_define('_JOMRES_TEST_EMAIL_SUBJECT','テストメール');
+jr_define('_JOMRES_TEST_EMAIL_CONTENT','これは予約システムからのテストメールです。');
+jr_define('_JOMRES_TEST_EMAIL_RESULT_SUCCESS','テストメールが正常に送信されました');
+jr_define('_JOMRES_TEST_EMAIL_RESULT_FAILURE','テストメールは送信されませんでした');
+jr_define('_INVOICE_TRANSACTIONS','トランザクション');
+jr_define('_OPENEXCHANGE_API','オープン為替レートAPIキー');
+jr_define('_OPENEXCHANGE_API_DESC','サービス間で価格を変換するには、オープン為替レートAPIキーが必要です。Jomresで価格を正しく表示するにはAPIキーが必要ですが、<a href = "https://openexchangerates.org / signup / free "_target =" _ blank ">無料キーに登録</a>（毎時更新、1000リクエスト/月-HTTPS、メールサポート、高度な機能なし)Jomresは、1日1回、為替レートをダウンロードします。ほんの一握りのサイトでキーを使用する場合、これらの制限を超える可能性はほとんどありません。Jomres8.3より前は、文書化されていない古いYahoo機能を使用していましたが、この機能の使用はYahooの利用規約に違反していることがわかりました。条件。結果として、この機能は将来のある時点で消滅する可能性があると想定する必要があります。そのため、オープン為替レートの使用に変更されます。 ');
+jr_define('_JOMRES_COMMISSION','コミッション');
+jr_define('_JOMRES_MEDIA_CENTRE_NOTES_CORE_EXTRAS','個々のオプションのエクストラ用に複数の画像をアップロードすると、最初の画像のみが使用されます。');
+jr_define('_JOMRES_COMMISSION','コミッション');
+jr_define('_JOMRES_MEDIA_CENTRE_NOTES_CORE_EXTRAS','個々のオプションのエクストラ用に複数の画像をアップロードすると、最初の画像のみが使用されます。');
+jr_define('_JRPORTAL_INVOICES_PAYNOW','今すぐ支払う');
+jr_define('_JRPORTAL_INVOICES_PAYNOW_DESC','この請求書は期限が切れています。ボタンをクリックして支払い方法を選択してください。');
+jr_define('_JOMRES_EXTRAS_TEMPLATE',"この宿泊施設で予約する際に購入できるすばらしいもののリストを以下に示します。");
+jr_define('GATEWAYS_INSTRUCTIONS','このページでは、インストールされているゲートウェイを構成できます。これらのオプションを使用すると、コミッションまたはサブスクリプションの請求書の支払いを行うことができます。フロントエンド設定はPaypalでのみ上書きでき、他のすべてのゲートウェイは,[プロパティの構成]-> [ゲートウェイ]タブ。ただし、ゲートウェイがこのリストに表示されている場合は、予約デポジットの支払いと請求書の支払いの両方を処理できる必要があります。');
+jr_define('EXTRAS_INCLUDE_IN_PROPERTYDETAILS','プロパティの詳細ページに表示しますか？');
+jr_define('PROPERTY_DETAILS_PAGE_OPTIONS','プロパティの詳細ページ設定');
+jr_define('_JOMRES_HLIST_PROPERTIES_WARNING','Jomresのプロパティ管理は、サイトのフロントエンドcpanelからのみ行われます。このページでは、システム内のすべてのプロパティを一覧表示できるため、手数料率を割り当てて承認/不承認にすることができます（これらの場合)新しいプロパティを作成したり、既存のプロパティを編集したり、予約やその他のプロパティ/予約関連のタスクを管理したりするには、サイトのフロントエンドにログインして、Jomresのデフォルトページに移動する必要があります。 Jomresフロントエンドcpanel。 ');
+jr_define('_MEDIA_CENTRE_RESOURCE_FEATURES_ICONS','部屋の機能アイコン');
+jr_define('_JOMRES_PROPERTYFEATURES_HCATEGORIES','プロパティ機能カテゴリ');
+jr_define('_JOMRES_PROPERTYFEATURES_HCATEGORIES_HEDIT','プロパティ機能カテゴリの編集');
+jr_define('_JOMRES_HCATEGORY','カテゴリ');
+jr_define('_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES','プロパティ機能をカテゴリに分けて表示しますか？');
+jr_define('_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES_DESC','プロパティ機能をカテゴリに分類するには、これをYESに設定します。このオプションは、プロパティ詳細ページに表示されるプロパティ機能にのみ影響します。他のすべてのページでは、カテゴリに分割せずに表示されます。');
+jr_define('_JOMRES_ACTION_UNDO_CHECKIN','チェックインを元に戻す');
+jr_define('_JOMRES_ACTION_UNDO_CHECKOUT','チェックアウトを元に戻す');
+jr_define('_JOMRES_STATUS_UNISSUED','未発行');
+jr_define('DEFAULT_TERMS_AND_CONDITIONS','');
+jr_define('_JOMRES_SUPPORTKEY_DESC_VALID','ダウンロードおよびサポートキーは有効です。プラグインマネージャーを介してプラグインをダウンロードできます。');
+jr_define('_JOMRES_SUPPORTKEY_DESC_INVALID','ダウンロードおよびサポートキーが無効です。プラグインマネージャーを介してプラグインをダウンロードすることはできません。');
+jr_define('_JOMRES_SRP_RESOURCE_TYPE','サブタイプ');
+jr_define('_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK',"プロパティのサブタイプはまだ設定されていません。ここで、5ベッドルームのヴィラや4ベッドルームのコテージのようなものとして定義し、検索しているゲストが検索を絞り込むのに役立ちます。") ;
+jr_define('_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK_LINK','プロパティにサブタイプを指定します');
+jr_define('_JOMRES_EMAIL_TEMPLATES_TITLE','メールテンプレート');
+jr_define('_JOMRES_CONTACT_SETTINGS','連絡先設定');
+jr_define('_JOMRES_CONTACT_SETTINGS_DESC','ここから、すべてのプロパティの連絡先の詳細（電子メール、電話、ファックス)を上書きして、ゲストとのすべての通信がプロパティの所有者ではなくあなたに送信されるようにすることができます。');
+jr_define('_JOMRES_OVERRIDE_PROPERTY_CONTACT_DETAILS','リストの連絡先の詳細を上書きしますか？');
+jr_define('_JOMRES_OVERRIDE_PROPERTY_CONTACT_DETAILS_DESC',"このオプションが[はい]に設定されている場合、プロパティのメールアドレスと電話番号はこのタブで設定されたものに置き換えられます。これにより、すべての通信が指定されたメールアドレスに送信され、ゲストとプロパティが確実になります。所有者は予約エンジンと結果として生じる手数料をバイパスすることはできません。また、プロパティの説明が変更されるたびに、プロパティは未承認に設定され（承認機能が有効になっている場合)、説明を手動で確認する必要があります。管理者が再度承認する前に、テキストフィールドに電話または電子メールの詳細を入力していないことを確認します。 ");
+jr_define('_JOMRES_EDITPROPERTY_APPROVAL_WARNING','リストの詳細に加えられた変更には、サイト管理者の確認が必要です。新しい詳細を保存すると、リストは非公開になり、サイト管理者の承認が保留されてから、サイトの訪問者に再び表示されます。オンラインで受信することはできません。あなたのリストが非公開で承認待ちの間に予約する。 ');
+jr_define('_JOMRES_BOOKING_ENQUIRY_REVIEW','予約リクエストの確認');
+jr_define('_JOMRES_BOOKING_ENQUIRY_CONFIRM','予約リクエストの確認');
+jr_define('_JOMRES_BOOKING_ENQUIRY_AMEND','予約リクエストを修正');
+jr_define('_JOMRES_INVOICE_MARKASPENDING','請求書を保留中としてマーク');
+jr_define('_JOMRES_INVOICE_MARKEDASPENDING','請求書は保留中としてマークされています');
+jr_define('_JOMRES_TRACKING_ENABLE','匿名の追跡データを送信しますか？');
+jr_define('_JOMRES_TRACKING_ENABLE_DESC','[はい]を選択して匿名の追跡データをJomres.netに送信し、システムの使用方法をよりよく理解できるようにします。');
+jr_define('_JOMRES_PARTNERS_PLEASE_COMPLETE','クライアントに代わって予約を行う前に、[マイアカウントの編集]ページで詳細が完了していることを確認してください。');
+jr_define('_JOMRES_PARTNERS_GUEST_ADDRESS',"ゲストの連絡先の詳細");
+jr_define('_JOMRES_CLEAR_GUEST_DETAILS','-新しいゲスト-');
+jr_define('_JOMRES_CHARTS','チャート');
+jr_define('_JOMRES_CHARTS_SELECT','チャートを選択...');
+jr_define('_JOMRES_CHART_BOOKINGS_DESC','年/月ごとの収入');
+jr_define('_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK',"では、始めましょう。まず、このプロパティ用にいくつかの部屋を作成する必要があります。");
+jr_define('_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK_LINK','今すぐ部屋を作成する');
+jr_define('_JOMRES_IMAGES_EXIST_SANITY_CHECK','調査により、高品質の画像がたくさんあるプロパティはより多くのビューを生成することが証明されています。予約を取得する可能性を高めるために、メイン画像といくつかのスライドショー画像をアップロードしてください。');
+jr_define('_JOMRES_IMAGES_EXIST_SANITY_CHECK_LINK','画像をアップロード');
+jr_define('_JOMRES_TARIFFS_EXIST_SANITY_CHECK_LINK','いくつかの料金を作成する');
+jr_define('_JOMRES_PROPERTYTYPE_FLAG','ゲストは何を予約しますか？');
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_DESC','このプロパティタイプは、プロパティ内の部屋を借りるホテルタイプのプロパティですか、それとも1回の予約でプロパティ全体を借りるヴィラタイプのプロパティですか？');
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_HOTEL','プロパティ内の部屋');
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_VILLA','プロパティ全体');
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_BOTH','両方'); //これは、プロパティタイプをまだ更新していない既存のユーザーに後方互換性を与える暫定的な設定です。選択できません
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD','ゲストは何を予約しますか？');
+jr_define('_JOMRES_ADDRESS_SANITY_CHECK',"ゲストが滞在するときにあなたを見つけられるように、住所の詳細を入力する必要があります。");
+jr_define('_JOMRES_ADDRESS_SANITY_CHECK_LINK','アドレスを更新');
+jr_define('_JOMRES_FIELDS_HIGHLIGHTED_ARE_REQUIRED','おっと、すべてのフィールドに入力するのを忘れたようです。');
+jr_define('_JOMRES_CONTANT_US','お問い合わせ');
+jr_define('_JOMRES_NEW_PROPERTY_WELCOME_TITLE','の新しいオンラインリストへようこそ');
+jr_define('_JOMRES_NEW_PROPERTY_WELCOME_1','こんにちは。の新しいプロパティへようこそ。');
+jr_define('_JOMRES_NEW_PROPERTY_WELCOME_2',"最近、新しいプロパティをWebサイトに追加しました。ご家族に歓迎します。");
+jr_define('_JOMRES_NEW_PROPERTY_WELCOME_3','新しいダッシュボードが表示されます');
+jr_define('_JOMRES_NEW_PROPERTY_WELCOME_3_LINKTEXT','ここ');
+jr_define('_JOMRES_NEW_PROPERTY_WELCOME_4',"プロパティを設定したら、次のサイトにアクセスすると、サイトの訪問者にどのように表示されるかを確認できます");
+jr_define('_JOMRES_NEW_PROPERTY_WELCOME_4_LINKTEXT','フロントページ。');
+jr_define('_JOMRES_NEW_PROPERTY_WELCOME_5',"（公開されていないため、サイト訪問者はまだ表示できません)");
+jr_define('_JOMRES_NEW_PROPERTY_WELCOME_6',"ページの上部にいくつかのメッセージが表示されます。これらのメッセージの横にあるボタンをクリックすると、サイトにプロパティを設定するためにアクセスする必要のあるページに移動します。これらの各タスクを実行すると、当サイトの訪問者があなたの物件を見つけてオンラインで予約するのがはるかに簡単になります。 ");
+jr_define('_JOMRES_NEW_PROPERTY_WELCOME_7','ご不明な点がございましたら、');
+jr_define('_JOMRES_NEW_PROPERTY_WELCOME_7_LINKTEXT','お問い合わせ');
+jr_define('_JOMRES_NEW_PROPERTY_WELCOME_8',"そして、すべての質問にお答えできることをうれしく思います。");
+jr_define('_JOMRES_NEW_PROPERTY_WELCOME_BYEBYE','最高です、私たちのチームは');
+jr_define('_JOMRES_JINTOUR_SANITY_CHECK',"販売するツアーがないようです。ツアープロファイルを作成し、[生成]ボタンを使用していくつかのツアーを作成します。");
+jr_define('_JOMRES_JINTOUR_SANITY_CHECK_LINK',"いくつかのツアーを作成しましょう！");
+jr_define('_JOMRES_COM_A_TARIFFS_SWAP','通貨記号の場所を交換');
+jr_define('_JOMRES_COM_A_TARIFFS_SWAP_DESC','このオプションを使用して、通貨記号を価格値の後ろから前に、またはその逆に移動します。');
+jr_define('_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK','Facebook');
+jr_define('_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK_DESC','FacebookページIDを入力します（例： "jomres"。何も表示しない場合は空白のままにします。https：//www.facebook.comなどは入力しないでください。');
+jr_define('COMMON_DOWNLOAD','ダウンロード');
+jr_define('_JOMRES_WARNINGS_TARIFFS_NOTARIFFS_SRP','次に、いくつかの料金を追加する必要があります。これらは基本価格です。');
+jr_define('_JOMRES_BOOTSTRAP_OFF_WARNING_TITLE','ブートストラップが有効になっていません！');
+jr_define('_JOMRES_BOOTSTRAP_OFF_WARNING','警告、Jomresサイト構成->その他タブでブートストラップが有効になっていません。<i>一部の</ i>機能を提供するために、Jomresは現在古いjQueryUIベースのテンプレートを使用しています。ただし、これらは数年前から取り組んでいません。Jomresテンプレート（レイアウトファイル)の現在の開発と改善はすべて、そのBootstrap 3テンプレートファイルに対して行われます。Jomresを最大限に活用するには、Bootstrap3ベースをインストールすることをお勧めします。 WordpressまたはJoomlaのテーマ。これが完了したら、サイト構成でJomres Bootstrapテンプレートを有効にできます。');
+jr_define('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS','サポートキーは有効です。このライセンスではプラグインのダウンロードが許可されていないことに注意してください。');
+jr_define('_JOMRES_DASHBOARD_DRAG_TRASH','予約をこのエリアにドラッグしてキャンセルします');
+jr_define('_JOMRES_LAT','Lat（nn.nnnn)');
+jr_define('_JOMRES_LONG','Long（nn.nnnn)');
+jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT','[jomres：xx-XX]ショートコード（xx-XXはサイトの言語コード、たとえば[jomres：en-GB]や[ jomres：en-US])そうしないと、フロントエンドからJomresにアクセスしてプロパティと予約を管理できなくなります。<br> JomresはBootstrapフレームワークに基づいて構築されているため、Bootstrapに基づくテーマで使用する必要があります。 Bootstrap 3に基づくものをお勧めします。テーマにアクセスできない場合は、Wordpress用のJomresLeohtianテーマを使用することをお勧めします。<ahref = "https://www.jomres.net/download/free- downloads / download / 5-miscelleneous-downloads / 11-leohtian-for-wordpress   " target="_blank"ここからダウンロード</a> ');
+jr_define('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES','Jomresのほとんどの物件には賃貸管理プロセスがあります。ホテル/ B＆B /ペンションは個々の部屋を貸し出し、コテージ/ヴィラ/アパートは物件全体を貸し出します。これはプロパティマネージャーには見えませんが、彼らにとっては見えません。プロパティの料金を作成できるようにするには、最初にプロパティタイプに適した部屋タイプを追加する必要があります。
+たとえば、ホテルのプロパティタイプには通常、複数の部屋タイプ（ダブルルーム、シングルルーム、ツイン)が必要ですが、ヴィラには1つの部屋タイプしかありません。 2ベッドルーム、5ベッドルーム。
+ツアーなどのプロパティの部屋タイプを作成することができます。これにより、顧客はツアーなどのプロパティのみを検索できますが、プロパティマネージャはこのプロパティタイプの料金を作成しないため、管理プロセスはそれらに関連していません。
 ');
-jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', 'Click to add new room types');
-jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES', 'Warning, you have one or more property types with no room types. Properties need room types so that property managers can create tariffs.');
-jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LIST_ROOM_TYPES', 'Use the New button to create new Room Types.');
-jr_define('_JOMRES_PROPERTYTYPE_FLAG_TOURS', 'Tours');
-jr_define('_JOMRES_PROPERTYTYPE_FLAG_REALESTATE', 'No bookings/Real estate ( simple listing )');
-jr_define('_JOMRES_CONFIG_LOG_LOCATION', 'Log file location');
-jr_define('_JOMRES_CONFIG_LOG_LOCATION_DESC', 'Jomres logs system activity by default to the '.JOMRES_SYSTEMLOG_PATH." location. As this file may contain sensitive information ( api keys, system paths, gateway information, guest information) we strongly recommend that you change this path to one above your web document root. If you don't understand what this means, please ask your web hosts for advice as they'll know your file system.");
-jr_define('_JOMRES_CONFIG_LOG_LOCATION_WARNING', 'Jomres logs detailed information about your system, including api keys, system paths, gateway and guest information, all of which should not be visible to the rest of the internet. Your System Log path is not set, so system logs are currently being saved to the '.JOMRES_SYSTEMLOG_PATH." directory, which is not ideal. Please visit Site Configuration -> Debugging and set a path in your filesystem that's outsite of the web root. If in doubt, please contact your web hosts as they will be able to advise you.");
-jr_define('_JOMRES_CONFIG_LOG_LOCATION_RECOMMENDED', 'If your CMS is installed in the root directory of your website, then a suitable location would be ');
-jr_define('_JOMRES_CONFIG_GMAP_KEY_WARNING', "You do not have a Google Maps key set. Due to recent changes in Google maps, all new sites will need an API key to be able to use Google map's features. Please <a href='http://www.jomres.net/manual/site-managers-guide/14-getting-started/338-google-maps-api-key' target='_blank'>see our manual page on how to create an API key</a> and save the key in Jomres.");
-jr_define('JOMRES_GOOGLE_MAP_STYLE', 'Google map colour scheme');
-jr_define('JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_TITLE', "Right, let's start adding your property to the website. We need to collect a little information about your property here. This will allow us to set up the bare bones of your property. Once that's done, then you'll be guided through adding rooms, prices and images.");
-jr_define('JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE1', 'The property type helps you to define how the property will be booked, for example with hotels you "sell" just one or two rooms at a time, whereas with villas you offer the entire property.');
-jr_define('JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE2', "Note that the email address doesn't need to be the same as the one you used when registering your account. This allows you to have different addresses for different properties.");
-jr_define('_JOMRES_CONFIG_MINIMUM_DEPOSIT', 'Minimum Deposit');
-jr_define('_JOMRES_CONFIG_MINIMUM_DEPOSIT_DESC', 'You can configure the minimum deposit amount to be charged. If you do, then the "Deposit required is cost of the first night?" & "Deposit required is percentage?" settings in Property Configuration cannot be configured, instead all deposit values are a percentage and must be at least the figure you define here.');
-jr_define('_JOMRES_CONFIG_MINIMUM_DEPOSIT_SETTING', 'This figure cannot be less than ');
-jr_define('_JOMRES_CONFIG_LOG_SYSLOG_HOST', 'Syslog host');
-jr_define('_JOMRES_CONFIG_LOG_SYSLOG_PORT', 'Syslog Port');
-jr_define('_JOMRES_CONFIG_LOG_SYSLOG_HOST_DESC', "If you want to send system logging messages to a syslog server, you can set the Hostname or IP ( e.g. 192.168.0.2) and port (e.g. 514) here. Note, if the site is set to 'Development' then DEBUG messages will be sent. If set to 'Production' then only INFO level and higher messages will be sent. To disable logging to the remote server, empty the host and port fields.");
-jr_define('_JOMRES_CONFIG_LOG_SYSLOG_NOTALLOWED', "PHP is not allowed to access the the 'openlog' and 'syslog' PHP functions. This is a server side setting, if you'd like Jomres to send messages to a syslog server, please consult your hosts and confirm if PHP is allowed to access these functions. Once enabled, you will be able to configure your syslog server's settings here.");
-jr_define('_JOMRES_SEND_ERROR_EMAIL', 'Send an email to site admin when an error occurs?');
-jr_define('_JOMRES_SEND_ERROR_EMAIL_DESC', "Historically issues that should be investigated have been emailed to site owners. This can be great for keeping an eye on the running of your system as it has an awful lot of moving parts and it's difficult to keep track of all of them. Unfortunately, Spiders and Bots crawling your sites ( even friendly ones ) can inadvertently trigger fatal errors and this can cause the number of messages you recieve to be overwhelming. If that's the case then set this option to No. Jomres sends logging messages to both a set of logging files and to a syslog server ( if  your specific PHP settings allow, if they don't please contact your host ). You can manually analyse the files if you are looking for something specific ( for example, if you're developing a gateway and want to use the gateway_log() function call.) but that's a lot of information to trawl through so it's better to use something like a syslog file analyser. If you're developing on linux then there are lots of tools available to you, if on Windows then a simple tool you can use is http://maxbelkov.github.io/visualsyslog/ On this page set the 'Syslog host' to '127.0.0.1' and the 'Port' to 514 to see messages logged in that tool. ");
-jr_define('_JOMRES_FAQ', 'Frequently asked questions');
-jr_define('_JOMRES_FAQ_ADMIN_CATEGORY_INTRODUCTION', 'Introduction');
-jr_define('_JOMRES_FAQ_ADMIN_QUESTION_INTRODUCTION_WHATISJOMRES', 'What is Jomres?');
-jr_define('_JOMRES_FAQ_ADMIN_ANSWER_INTRODUCTION_WHATISJOMRES', "Jomres is a hotel and villa booking system that works with the Joomla and Wordpress Content Management Systems. It's a full booking system, think 'booking.com' or 'airbnb' without the expense. It's a complete toolkit that allows you to build a unique online booking service for as many properties as you want.");
-jr_define('_JOMRES_FAQ_ADMIN_QUESTION_INTRODUCTION_USERSADD', 'Can users register on my Jomres site and add their own properties?');
-jr_define('_JOMRES_FAQ_ADMIN_ANSWER_INTRODUCTION_USERSADD', 'Yes. By default Jomres allows registered users to add their own properties to your site. You can disable this in the Site Configuration > Misc tab if you need to.');
-jr_define('_JOMRES_FAQ_ADMIN_CATEGORY_PROPERTIES', 'Properties');
-jr_define('_JOMRES_FAQ_ADMIN_QUESTION_ADDPROPERTIES', 'How do I add a new property?');
-jr_define('_JOMRES_FAQ_ADMIN_ANSWER_ADDPROPERTIES', "When Jomres is installed the administrator user is created as a Super Property Manager. Log into the frontend of your CMS (the public pages) as your administrator user and from there you can add new properties. <br/>You can create new managers in the Property Managers page if you want to add a new manager, however by default ( you can disable this ) any registered user who creates a property is automatically created as a property manager for the properties they create. For security reasons they cannot administer other manager's properties. This can be changed by elevating that user to a Super Property Manager in the Property Managers page.");
-jr_define('_JOMRES_FAQ_ADMIN_QUESTION_IMPORTPROPERTIES', 'Can I import properties from another system?');
-jr_define('_JOMRES_FAQ_ADMIN_ANSWER_IMPORTPROPERTIES', "There are a number of ways you can import properties. The Property Import plugin allows you to import properties via CSV. This allows you to import multiple properties at once, but is an administrator only feature. If the property manager has a Beds24 account then they can import any existing properties from their account there once they've linked API keys. Another way is to use the API, there is a feature to add and remove properties however this would require you to be a developer familiar with using REST APIs to use this functionality.");
-jr_define('_JOMRES_FAQ_ADMIN_QUESTION_IMPORTBOOKINGS', 'Can I import bookings from another system?');
-jr_define('_JOMRES_FAQ_ADMIN_ANSWER_IMPORTBOOKINGS', "Bookings can be imported into a property by a property manager through the iCal plugin, which offers a feature to import bookings in the property manager's menu. Also, if a property manager has a Beds24 account and their property has been linked with Beds24, then they can perform a Resend Notify action in Beds24. ");
-jr_define('_JOMRES_FAQ_ADMIN_QUESTION_EMAILTEMPLATES', 'Can I edit email templates?');
-jr_define('_JOMRES_FAQ_ADMIN_ANSWER_EMAILTEMPLATES', 'Property managers can edit email templates through their toolbar under Settings > Email Templates.');
-jr_define('_JOMRES_FAQ_ADMIN_CATEGORY_PAYMENTS', 'Payments');
-jr_define('_JOMRES_FAQ_ADMIN_QUESTION_TAKEPAYMENTS', 'How do I allow properties to take payments?');
-jr_define('_JOMRES_FAQ_ADMIN_ANSWER_TAKEPAYMENTS', 'You will need to install a payment gateway. Jomres has two payment gateways, which connect to Paypal or Stripe. It also offers a couple of Offline gateways, and you can purchase other payment gateways from our partners.');
-jr_define('_JOMRES_FAQ_ADMIN_QUESTION_WHICHGATEWAY', 'Which gateway should I use?');
-jr_define('_JOMRES_FAQ_ADMIN_ANSWER_WHICHGATEWAY', "If you want to take a percentage of a manager's deposit for your own costs, then use the Stripe gateway. If you don't, and instead intend to use the Subscription and/or commission functionality, then you'll need to use the Paypal gateway.");
-jr_define('_JOMRES_FAQ_ADMIN_QUESTION_PAYMENTACCOUNTS', 'When a guest makes a payment for a booking, who gets the money?');
-jr_define('_JOMRES_FAQ_ADMIN_ANSWER_PAYMENTACCOUNTS', "That depends on how you have set up payment gateways on your site. If you're using Paypal, you can configure it to override all frontend settings, essentially making your account the only account that receives payments. If you don't choose to do that, then each property will need to setup their payment gateway account in Settings > Gateways tab. If you're using Stripe, then once the property manager has connected their account to yours ( see the Stripe documentation in the manual for more information ) then they'll receive all funds, minus a commission fee that you can configure if you choose to do so.");
-jr_define('_JOMRES_FAQ_ADMIN_CATEGORY_TROUBLESHOOTING', 'Troubleshooting');
-jr_define('_JOMRES_FAQ_ADMIN_QUESTION_TROUBLESHOOTING_EMAIL', "Booking emails aren't being sent.");
-jr_define('_JOMRES_FAQ_ADMIN_ANSWER_TROUBLESHOOTING_EMAIL', "If you're having problems sending emails from the system, please check your host CMS's email settings. Jomres uses the Wordpress or Joomla settings for sending emails. If they're wrong, Jomres will not be able to send emails either.");
-jr_define('_JOMRES_FAQ_ADMIN_QUESTION_TROUBLESHOOTING_NOGATEWAY', "You can't see the payment gateway after making a booking.");
-jr_define('_JOMRES_FAQ_ADMIN_ANSWER_TROUBLESHOOTING_NOGATEWAY', "If you are logged in as a Property Manager, you will not see the payment gateway, because you don't pay yourself, silly. Only non-manager users will see the gateway when making bookings.");
-jr_define('_JOMRES_FAQ_ADMIN_CATEGORY_PURCHASINGJOMRES', 'Jomres License');
-jr_define('_JOMRES_FAQ_ADMIN_QUESTION_PURCHASINGJOMRES_FORCEDTOSUBSCRIBE', 'After buying X license, am I forced to purchase renewals once the license has expired?');
-jr_define('_JOMRES_FAQ_ADMIN_ANSWER_PURCHASINGJOMRES_FORCEDTOSUBSCRIBE', "No, if you've purchased a Starter, Business or Enterprise license, then you can continue using the software indefinately, it will not be magically cripped. The exception to this rule is if you purchase a subscription. Once a subscription has been cancelled you will no longer be able to use the plugins and you will need to uninstall them.");
-jr_define('_JOMRES_FAQ_ADMIN_QUESTION_PURCHASINGJOMRES_EXPIRED', 'My license has expired, can I upgrade Jomres anyway?');
-jr_define('_JOMRES_FAQ_ADMIN_ANSWER_PURCHASINGJOMRES_EXPIRED', "While you physically can, it's not recommended that you do. Once a license has expired you will no longer be able to benefit from support or download updates to plugins for your Jomres installation. This means that you should <i>not</i> upgrade your Jomres installation after the license has expired. This is because plugins regularly need to be updated to work with current versions of the system, so often your older plugins will not work on a newer version of the system. If you still want to upgrade to take advantage of new functionality, you should purchase a Renewal license, which is effectively a normal license with a 50% discount.");
-jr_define('_JOMRES_FAQ_ADMIN_QUESTION_PURCHASINGJOMRES_SOFTWARELICENSE', 'What software license is Jomres released under?');
-jr_define('_JOMRES_FAQ_ADMIN_ANSWER_PURCHASINGJOMRES_SOFTWARELICENSE', "Jomres is licensed under both the MIT and GPL licenses. Plugins downloaded by Starter, Business and Enterprise licenses are released under the same license, and are completely free and open source. Plugins downloaded for trial and subscription licenses are not released under the GPL or MIT licenses and are Ioncube encoded. This approach allows us to offer you a variety of different licenses to suit everybody's pockets.");
-jr_define('_JOMRES_FAQ_MANAGER_CATEGORY_PROPERTY', 'Properties');
-jr_define('_JOMRES_FAQ_MANAGER_QUESTION_CREATPROPERTY', 'How do I create a property?');
-jr_define('_JOMRES_FAQ_MANAGER_ANSWER_CREATPROPERTY', 'Click on Properties > New Property to add a new property.');
-jr_define('_JOMRES_FAQ_MANAGER_QUESTION_PREVIEW', 'How can I see what my property looks like to guests?');
-jr_define('_JOMRES_FAQ_MANAGER_ANSWER_PREVIEW', 'Click on Properties > Preview to see how your property looks to guests.');
-jr_define('_JOMRES_FAQ_MANAGER_QUESTION_ADDROOMS_MRP', 'How do I add rooms?');
-jr_define('_JOMRES_FAQ_MANAGER_ANSWER_ADDROOMS_MRP', "How you add rooms depends on your Tariff Editing mode. In the Normal tariff editing mode, you don't need to add rooms, as they're automatically added when you configure your prices. If you are using Micromanage or Advanced tariff editing mode, then in Settings > Rooms you can add, edit and delete rooms. You will also be able to create room features, and assign these features to those rooms. Additionally, you will be able to upload images for individual rooms using the Media Centre. When  you create rooms, you should try to ensure that they reflect your real-world rooms in your property as that will make them easier to manage.");
-jr_define('_JOMRES_FAQ_MANAGER_QUESTION_ADDPRICES', 'How do I set room prices?');
-jr_define('_JOMRES_FAQ_MANAGER_ANSWER_ADDPRICES', "This depends on your tariff editing mode. If you are using the Normal Tariff editing mode ( Property Configuration > Tariff Editing Modes tab) then you can configure the number of rooms you have, the price, the number of people each room can accommodate and the total number of people you want in each booking. This mode allows you to set room prices for the next 10 years. <br/>If you are using the Advanced or Micromanage tariff editing modes, then you are able to set room prices for every day for years to come. You can also have multiple tariffs for the same room type, for example you can have one tariff for Bed&Breakfast and another for Bed, Breakfast & Evening meal. Unless you have a specific need, we recommend that you use Micromanage all the time, Advanced will work in the same way but you need to be careful to ensure that your different tariff's start and end dates are consecutive.");
-jr_define('_JOMRES_FAQ_MANAGER_QUESTION_EXTRAS', 'How do I create optional extras?');
-jr_define('_JOMRES_FAQ_MANAGER_ANSWER_EXTRAS', "Extras can be added to bookings and are configured in Settings > Extras. These can be either optional or 'forced', in other words the guest cannot de-select them in the booking. You can offer different methods of charging for optional extras, and whether or not they're shown in your Property Details page. Because extras can be made to only show if a booking is within certain dates ( for example, for seasonal fruits ), you should make sure that you have set the Valid from and To dates. Once you have created optional extas, you can upload images for them through the Media Manager.");
-jr_define('_JOMRES_FAQ_MANAGER_QUESTION_PAYMENTS', 'How can I take payments online?');
-jr_define('_JOMRES_FAQ_MANAGER_ANSWER_PAYMENTS', "To take payments online, you need to have an account with an online payment provider, called a Gateway. To see the available gateways, go to Property Configuration > Gateways tab. Click on a gateway's name to be taken to it's configuration page.");
-jr_define('_JOMRES_FAQ_MANAGER_QUESTION_DISCOUNTS', 'Can I give discounts?');
-jr_define('_JOMRES_FAQ_MANAGER_ANSWER_DISCOUNTS', "Discounts can be given, there are a number of different ways this can be done. If you are making a booking on behalf of a customer, then you can set your own Deposit and Booking totals in the booking form, using the \"Override Accommodation Total\" and \"Override Deposit\" fields ( guests can't use this feature ). Another way to give a guest a discount is to create discount coupons, which can be configured so that they can only be used between certain dates ( Valid from/to ) or applied only when the booking falls between certain dates ( Booking valid from/to ). This discount coupons can be assigned to just one guest, or if you want you can print out the coupons. The printout includes a QR code which guests can scan into their phones that takes them to your booking form with the discount code already applies. ");
-jr_define('_JOMRES_FAQ_MANAGER_CATEGORY_BOOKINGS', 'Bookings');
-jr_define('_JOMRES_FAQ_MANAGER_QUESTION_BOOKINGS_CONTACTPAGE', 'When I click New booking, I am taken to the Contact form, why?');
-jr_define('_JOMRES_FAQ_MANAGER_ANSWER_BOOKINGS_CONTACTPAGE', 'Before you can take bookings online, you must first configure some prices (tariffs) for each room type you have in your real-world property. Once you have created some tariffs, you will be able to take bookings.');
-jr_define('_JOMRES_FAQ_MANAGER_QUESTION_BOOKINGS_BLACK', 'What are Black Bookings?');
-jr_define('_JOMRES_FAQ_MANAGER_ANSWER_BOOKINGS_BLACK', "Black bookings are bookings that have been created to take a room or rooms out of service. They're not associated with any guests and are useful, for example, if a room needs to be refurbished.");
-jr_define('_JOMRES_FAQ_MANAGER_CATEGORY_IMAGES', 'Images');
-jr_define('_JOMRES_FAQ_MANAGER_QUESTION_MEDIACENTRE_INTRO', 'How do I upload images?');
-jr_define('_JOMRES_FAQ_MANAGER_ANSWER_MEDIACENTRE_INTRO', "To upload images, you need to visit the Settings > Media Centre page. On this page you will see several panes. At the top you might see some notes, and underneath them you'll see a dropdown. This dropdown allows you to select which resource you're uploading images for. <br/> On the right is a column with Add Images, Clear List and Upload all. Click Add Images and select some images from your desktop or mobile device. When you've done that, the column will change to a list of thumbnails. From here you can upload one or more images for your resources.");
-jr_define('_JOMRES_FAQ_MANAGER_QUESTION_MEDIACENTRE_MAIN', "What is the 'Main' image?");
-jr_define('_JOMRES_FAQ_MANAGER_ANSWER_MEDIACENTRE_MAIN', 'The Main image is the one that appears in search results and in your property header ( the area at the top of pages that show something about your property ). You should choose an image that displays your property in the best possible light. To upload a main image, make sure Property Main Image is selected in the dropdown list at the top left, then upload one or more images. If you upload more than one image, then all images will be used in the search results page displaying as a small slideshow.');
-jr_define('_JOMRES_FAQ_MANAGER_QUESTION_MEDIACENTRE_RESOURCEFEATURES', 'What are room feature icons?');
-jr_define('_JOMRES_FAQ_MANAGER_ANSWER_MEDIACENTRE_RESOURCEFEATURES', "Room features can be created by users of Micromanage or Advanced tariff editing modes. These can be linked to one or more rooms, and are displayed in the booking form. Once you have created a room feature, you can upload an image for that feature by first selecting Room Features Icons in the dropdown in the Media Centre, then selecting the room feature's name from the dropdown that will appear underneath.");
-jr_define('_JOMRES_FAQ_MANAGER_QUESTION_MEDIACENTRE_ROOMS', 'How do I upload room images?');
-jr_define('_JOMRES_FAQ_MANAGER_ANSWER_MEDIACENTRE_RESOURCEFEATURES', 'Rooms can be created by users of Micromanage or Advanced tariff editing modes. Once one or more rooms have been created, you can upload multiple images for each room through the Media Centre (select the room name/number after selecting Room Images in the dropdown). These images can be seen in a slideshow by viewing the Preview page and selecting the Our Rooms tab then clicking on the Availability link.');
-jr_define('_JOMRES_FAQ_MANAGER_QUESTION_MEDIACENTRE_SLIDESHOW', 'How do I upload slideshow images?');
-jr_define('_JOMRES_FAQ_MANAGER_ANSWER_MEDIACENTRE_SLIDESHOW', 'Slideshow images are seen in the Property Details ( Preview ) page, next to the Book Now button.');
-jr_define('_JOMRES_FAQ_MANAGER_QUESTION_MEDIACENTRE_EXTRAS', 'How do I upload Extras Images?');
-jr_define('_JOMRES_FAQ_MANAGER_ANSWER_MEDIACENTRE_EXTRAS', "Similar to the rooms and room features, you need to create an Extra first. Once that's done, you can select Extras in the top dropdown. When you've done that, you need to select the name of the Extra from the dropdown list below. When the name is selected you can upload one or more images for that Extra.");
-jr_define('_JOMRES_FAQ_ADMIN_QUESTION_CURRENCIES_SETUP', 'How do I setup currency symbols?');
-jr_define('_JOMRES_FAQ_ADMIN_ANSWER_CURRENCIES_SETUP', "You don't. All currency symbols are already stored in the system, and it's up to property managers to select the currency that's right for them in the Property Configuration page.");
-jr_define('_JOMRES_FAQ_ADMIN_QUESTION_CURRENCIES', 'How do I enable multiple currencies?');
-jr_define('_JOMRES_FAQ_ADMIN_ANSWER_CURRENCIES', "Jomres has functionality to convert prices from one currency to another automatically. First you need to visit the Site Configuration > Currency Conversion tab. In there you will find links to two online services. The first service, once the API has been saved, allows Jomres to download currency conversion data once a day. The second enables IP based geolocation for users. Request a free API key from each service. With these two services combined, Jomres can detect the user's local currency, and display prices of properties in both the guest's local currency, plus the hotel's own currency. If you don't setup these API keys then Jomres will default to the Euro currency symbol. If you want you can set a global currency code. This means that property managers will not be able to select any other currencies, however potential guests will still see prices in thier own local currency unless they've used the currency switcher feature to change the currency that prices are displayed in. ");
-jr_define('_JOMRES_FAQ_MANAGER_QUESTION_LANGUAGES', 'How do I save descriptions in multiple languages?');
-jr_define('_JOMRES_FAQ_MANAGER_ANSWER_LANGUAGES', "To save descriptions in multiple languages, first visit the Settings > Property Details page. Save the description for your property there. Next, change the language that you're viewing the site in. Now go to the Settings Property Details page again, and save the details again. So, if the site is capable of showing both English and Spanish (or any other) languages, you would select English, enter the description in English then click Save. Next, change your current language to Spanish, then save the new Spanish description. This works for all inputs on that page.");
-jr_define('_JOMRES_FAQ_ADMIN_QUESTION_PROPERTIES_NUMBER', 'How many properties can I list?');
-jr_define('_JOMRES_FAQ_ADMIN_ANSWER_PROPERTIES_NUMBER', "There's no coded limit to the number of properties that you can list, the only limitation is in the physical limitation of the server itself. If it's a server with many other accounts on then resources will be limited, if, on the other hand it's a dedicated or virtual dedicated server, then you will be able to list many more properties.");
-jr_define('_JOMRES_FAQ_MANAGER_QUESTION_OTHERPROPERTIES', 'Can I modify other properties on this site?');
-jr_define('_JOMRES_FAQ_MANAGER_ANSWER_OTHERPROPERTIES', 'No, you cannot. You can only administer properties you have created or been assigned to as a property manager.');
-jr_define('_JOMRES_FAQ_MANAGER_QUESTION_OTHERPROPERTIES_SUPER', 'Can I modify other properties on this site?');
-jr_define('_JOMRES_FAQ_MANAGER_ANSWER_OTHERPROPERTIES_SUPER', "Yes you can, you're a Super Property Manager and can modify any properties shown in the List Properties page.");
-jr_define('_JOMRES_FAQ_MANAGER_QUESTION_GUESTTYPES', 'What are Guest Types/How do I change per person per night?');
-jr_define('_JOMRES_FAQ_MANAGER_ANSWER_GUESTTYPES', "In Settings > Property Configuration > Tariffs and Currencies tab, you can decided whether you want to charge per person per night. If you charge per person per night, you will need to create one or more guest types. You can create a simple guest type, where you just give them a description ( e.g. 'Persons' ), or you can create several different guest types, for example 'Adults' and 'Children under 10'. For the children, if you want to offer a discount of 50% then you'd set 'Is percentage' to Yes, and the Variance value to 50. Rooms have base rates, this setting allows you to adjust the price of the room based on the guest type.");
-jr_define('_JOMRES_FAQ_MANAGER_QUESTION_ROOMFEATURES', 'What are Room Features?');
-jr_define('_JOMRES_FAQ_MANAGER_ANSWER_ROOMFEATURES', "Room features are things that make the room stand out. They can be something simple like Tea and Coffee making facilities, or they can be things that really make the room rise above the others, like 'Views over the bay'. Once you have created a Room Feature, you can upload images for that feature in the Media Centre. These room features can be viewed on the room availability page, and if you've configured your property to show the Classic Rooms list style ( where guests can selected exactly which room they want to book ) then they can use the room features to filter ooms shown in the booking form.");
-jr_define('_JOMRES_FAQ_ADMIN_QUESTION_INTRODUCTION_PROFILES', 'Can I make a user a property manager?');
-jr_define('_JOMRES_FAQ_ADMIN_ANSWER_INTRODUCTION_PROFILES', "Yes you can, through the Property Managers page under User Management. If the user is already registered, in the input at the top of the Property Managers page type the first few characters of their username and their username will appear underneath. Click on their username and you will be taken to a page where you can configure which properties they have access to. If they're not already registered, you'll first need to use your host CMS's user management pages to add them as a user to the CMS.<br/><br/> A word of advice : If you intend to charge property managers for listing their properties on your site, either through taking commission via the Stripe gateway or subscriptions/commission functionality, we don't recommend that you add users in this way. In this instance, only super property managers should be added using this process, and when they are added you shouldn't select any properties in the list underneath. All other users should be encouraged to create properties themselves in the frontend. This will add them as property managers automatically and ensures that the correct user is billed.");
-jr_define('_JOMRES_FAQ_ADMIN_CATEGORY_PLUGINS', 'Plugins');
-jr_define('_JOMRES_FAQ_ADMIN_QUESTION_GENERAL_PLUGINS', 'What is the Plugin Manager for?');
-jr_define('_JOMRES_FAQ_ADMIN_ANSWER_GENERAL_PLUGINS', 'The Plugin Manager is a key tool in Jomres. It allows us to distribute the most up-to-date version of Jomres plugins to you through an automatic download and installation feature.');
-jr_define('_JOMRES_FAQ_ADMIN_QUESTION_GENERAL_PLUGINS_IONCUBE', 'Why do I see a warning about Ioncube Loaders when I click on the Plugin Manager page?');
-jr_define('_JOMRES_FAQ_ADMIN_ANSWER_GENERAL_PLUGINS_IONCUBE', "You have saved a Trial license key in Site Configuration, but your web server doesn't offer the latest Ioncube Loaders. Please ask your hosts to install the loaders, which can be found  <a href='http://www.ioncube.com/loaders.php' target='_blank'>on this page.</a> If you have purchased a full, non-subscription license and you think you're seeing this in error, you may have forgotten to enter your full license key in the Site Configuration page.");
-jr_define('_JOMRES_FAQ_ADMIN_QUESTION_GENERAL_PLUGINS_INSTALLATION', 'How do I install a plugin?');
-jr_define('_JOMRES_FAQ_ADMIN_ANSWER_GENERAL_PLUGINS_INSTALLATION', "Assuming that you have a valid license key number saved in Site Configuration, all you need to do is click the Install button next to the plugin name in the plugin manager. Jomres will install the plugin for you and bring you back to the plugins page afterwards. Occasionally, instead, you might be taken to a Discovery page if you're running Jomres in Joomla. Just click the Discover button to install the plugin.<br/><br/>NOTE Don't install all of the plugins, they don't all work together ( by design ). You could end up with blank pages in the booking form. Instead, identify the plugins you need and experiment with each one.");
-jr_define('_JOMRES_FAQ_ADMIN_CATEGORY_SITESTRUCTURE', 'Site Structure');
-jr_define('_JOMRES_FAQ_ADMIN_QUESTION_SITESTRUCTURE_INTRO', 'What does Site Structure mean?');
-jr_define('_JOMRES_FAQ_ADMIN_ANSWER_SITESTRUCTURE_INTRO', "Site Structure in Jomres refers to the various elements of your site that make it unique. It defines the Property types you list for ( e.g. villas or hotels ) and the room/sub types for those property types. So, if you're selling self-catering holidays, then you would be selling rentals of something like a chalet or villa. Different chalets could have different numbers of rooms, balconies etc. In the case of Hotels or B&Bs, you're selling rooms <em>in</em> the property, and they'd be double bedrooms, singles etc. To help clarify this, a default installation already has several rooms and property types created for you to help you understand. If you want to sell Tours, do not try to create a new property type without reading the section on Tours first.");
-jr_define('_JOMRES_FAQ_ADMIN_QUESTION_SITESTRUCTURE_PROPERTYTYPES', 'What are Property Types?');
-jr_define('_JOMRES_FAQ_ADMIN_ANSWER_SITESTRUCTURE_PROPERTYTYPES', 'In this system, a Property type refers to, literally, the type of property. This can be a hotel, a villa, an apartment. Property managers cannot create Property types because Property types are an item that can be searched by guests. To ensure that your search functionality stays nice and neat and tidy, only Site administrators can create property types.');
-jr_define('_JOMRES_FAQ_ADMIN_QUESTION_SITESTRUCTURE_PROPERTYFEATURES', 'What are Property Features?');
-jr_define('_JOMRES_FAQ_ADMIN_ANSWER_SITESTRUCTURE_PROPERTYFEATURES', "Property features are things that make a property unique. For example, one Property Feature could be that it's 'Close to the beach' whilst another hotel could have the feature that it's inside a national park, offers bridleways, something like that. Like Property Types, managers cannot create new features, they can only select from the ones you create. Property Features can have images assigned to them. First you need to upload feature images through the Site Strucutre > Media Centre > Property Feature Icons dropdown. Upload as many feature icons as you want, then when you create a Property Feature you can choose it's image.");
-jr_define('_JOMRES_FAQ_ADMIN_QUESTION_SITESTRUCTURE_PROPERTYFEATURECATEGORIES', 'What are Property Feature Categories?');
-jr_define('_JOMRES_FAQ_ADMIN_ANSWER_SITESTRUCTURE_PROPERTYFEATURECATEGORIES', "Property features are displayed in the Property Details page, among others. On the Property Details page, features can be displayed grouped by categories, for example 'Living Area', 'Accessibility' etc.");
-jr_define('_JOMRES_FAQ_ADMIN_QUESTION_SITESTRUCTURE_ROOMFEATURES', 'What are Room features?');
-jr_define('_JOMRES_FAQ_ADMIN_ANSWER_SITESTRUCTURE_ROOMFEATURES', "Property managers that use Micromanage or Advanced tariff editing mode are able to edit their rooms directly. They're also able to create things called Room Features which are displayed in the Room availability page for each property. If they use the Classic rooms list display in the booking form, then guests are able to use Room features to filter out rooms before selecting one or more. On the Site Structure > Room features page Site Managers are also able to create room features, and these features can be seen in all property booking forms where the property uses the Classic Rooms list. Basically, it's a Global Room feature. These Room Features can be configured to only be shown to certain property types, and images for these room features can be uploaded through the Site Structure > Media Centre page.");
-jr_define('_JOMRES_FAQ_ADMIN_QUESTION_SITESTRUCTURE_COUNTRIES', 'Why is there a page to edit countries/regions?');
-jr_define('_JOMRES_FAQ_ADMIN_ANSWER_SITESTRUCTURE_COUNTRIES', "You'd think that a list of countries was fairly immutable, but you'd be wrong. Over the years, when maintaining a list of countries, we've see many changes. As a result, we learned that it was easiest to allow Site Managers to define the countries they'd like to show on the site. This allows the die-hard Catalan to display their province as a unique country, if that's the statement they'd like to make. The same goes for other regions of the world.");
-jr_define('_JOMRES_FAQ_ADMIN_CATEGORY_LOCALISATION', 'Localisation/Translation');
-jr_define('_JOMRES_FAQ_ADMIN_QUESTION_LOCALISATION_INTRO', 'How do I translate things?');
-jr_define('_JOMRES_FAQ_ADMIN_ANSWER_LOCALISATION_INTRO', "Translation of labels/strings is done through the Languages menu options, mainly the Translate Language File/Translate Locales pages. Because the language files are very large, when you click on this page they can take a while to load. <br/><br/>Let's look at an example. Let's say that you want to translate Germany to Deutschland. First click on Translate Locales. Next check the language dropdown in the top right from English to German. Next, scroll down the page until you get to Germany. You can see it has a dotted underline. This means you can translate it. Click on the word, you will see a popup containing the word 'Germany'. Change this to 'Deutschland' and click the green tick. If your host CMS is configured to offer German language pages to site visitors, then the word 'Germany' will now be shown as 'Deutschland'. This concept applies through-out Jomres. <br/><br/>On the Property Manager pages, Property Managers might also see a Label Editing Mode dropdown at the top of their pages. When this is set to On, then they will also be able to make changes in the frontend, however those changes will only affect their currently Active property, so for example they can easily change the word Tariffs to Prices for just one property if that's what's required.");
-jr_define('_JOMRES_FAQ_ADMIN_CATEGORY_TOURS', 'Tours');
-jr_define('_JOMRES_FAQ_ADMIN_QUESTION_TOURS_INTRO', 'What are tours?');
-jr_define('_JOMRES_FAQ_ADMIN_ANSWER_TOURS_INTRO', "This may sound like a silly question, but in fact it's not. Over the years we've learned that different cultures have different perceptions of what a 'tour' is. As a result, expectations of selling tours vary wildly, so before we discuss tours, first we will define what we think of tours as. <br/> A tour is a simple journey or visit to view an attraction or monument. A stay in a hotel is not a tour, however tours can be participated in while staying at a hotel.");
-jr_define('_JOMRES_FAQ_ADMIN_QUESTION_TOURS_HOWTOSELL', 'How do I use Jomres to sell tours?');
-jr_define('_JOMRES_FAQ_ADMIN_ANSWER_TOURS_HOWTOSELL', 'To address the question of selling tours in Jomres, you will first need to install the Jintour plugin. This plugin allows you to create tours that are sold as part of vacation rentals. It also allows you to create properties that are exclusively for selling tours. Once this plugin has been installed, then property managers will be able to create Tours and Tour properties in the frontend.');
-jr_define('_JOMRES_FAQ_ADMIN_QUESTION_TOURS_WHATISJINTOUR', 'What is the Jintour plugin?');
-jr_define('_JOMRES_FAQ_ADMIN_ANSWER_TOURS_WHATISJINTOUR', 'Jintour stands for Jomres INtegrated TOURs. It allows you to create simple, limited resources that can be booked out, that are not rooms in a property. Whilst the plugin is designed to allow bookings of tours primarily, they can be used for many things, not just tours. They can be used, for example, by a ski lodge that wants to rent out skis and gear. As this equipment will have limited availability, you can use the Jintour plugin to allow guests to reserve and pay for this gear at booking time.');
-jr_define('_JOMRES_FAQ_ADMIN_QUESTION_TOURS_SAMEBOOKING', 'How do I sell tours and vacation rentals in the same booking?');
-jr_define('_JOMRES_FAQ_ADMIN_ANSWER_TOURS_SAMEBOOKING', "In this scenario, you've got a hotel, and you want to sell tours to a local attraction. Log into the frontend and go to the hotel you've created. Next, click on Settings > Tour/Activity management. On this page, follow the onscreen instructions to first create a tour profile, then generate tours. Once that's done, you'll be able to sell both tours and room bookings and optional extras alongside each other in the same booking form.");
-jr_define('_JOMRES_FAQ_ADMIN_QUESTION_TOURS_STANDALONETOURS', 'What about if I only want to sell tours?');
-jr_define('_JOMRES_FAQ_ADMIN_ANSWER_TOURS_STANDALONETOURS', "First you will need to create a new property in the frontend. When you do, ensure that you set the 'Property type' to Tour. When you've created this new property, then you will be able to create tours again through the Settings > Tour/Activity management page. You will also be able to offer optional extras as in normal properties, the only thing you won't be able to do is configure rooms, room features or tariffs as you're not selling rooms in this property.");
-jr_define('_JOMRES_FAQ_ADMIN_QUESTION_TOURS_GLOBALTOURS', 'How can I create a Tour/bookable resource that can be seen in all properties booking forms?');
-jr_define('_JOMRES_FAQ_ADMIN_ANSWER_TOURS_GLOBALTOURS', "In the administrator area of your site, visit the Portal > Functionality Tour/Activity Managenent page. The tour profile/generation process is the same as used in the frontend, however any tours generated here are seen in the frontend. One typical scenario where this may be used is if the site administrator is organising events around the country, and they want to sell hotel bookings. They would create the participating hotels in the frontend as normal, setting room prices etc, then the 'tours' in this case would actually be the attendance fee for the event itself.");
-jr_define('_JOMRES_FAQ_ADMIN_QUESTION_INTRODUCTION_FIRSTTHINGSFIRST', "Ok, I've installed Jomres, what next?");
-jr_define('_JOMRES_FAQ_ADMIN_ANSWER_INTRODUCTION_FIRSTTHINGSFIRST', "The very, very first thing you should do, now that you've installed Jomres is click Help on the menu to the left, then click Getting Started. Seriously, go away and do that now.");
-jr_define('_JOMRES_MANAGE_PROPERTIES', 'Manage Properties');
-jr_define('_JOMRES_CONFIG_IPINFODB_KEY_WARNING', "You do not have a IP Detection API Key set. This is required to allow the system to automatically detect the user's location and set their currency and country automatically. Please <a href='http://www.jomres.net/manual/site-managers-guide/35-control-panel/main/site-configuration/128-site-configuration-currency-conversion-currency-codes-tab' target='_blank'>see our manual page on how to create an IP detection API key</a> and save the key in Jomres > Site Configuration > Currency Conversions / Currency Codes.");
-jr_define('_JOMRES_CONFIG_OPENEXCHANGERATES_KEY_WARNING', "You do not have an Open Exchange Rates API Key set. This is required to allow the system to automatically download and use currency exchange rates. Please <a href='http://www.jomres.net/manual/site-managers-guide/35-control-panel/main/site-configuration/128-site-configuration-currency-conversion-currency-codes-tab' target='_blank'>see our manual page on how to create an IP detection API key</a> and save the key in Jomres > Site Configuration > Currency Conversions / Currency Codes.");
-jr_define('_JOMRES_PERMIT_NUMBER_TITLE', 'Permit number');
-jr_define('_JOMRES_PERMIT_NUMBER_DESCRIPTION', 'Some countries legislate that you must display a permit number for your property. If you have such a number, enter it here and it will be added to the property header section.');
-jr_define('_JOMRES_SHORTCODES', 'Shortcodes');
-jr_define('_JOMRES_SHORTCODES_INFO_JOOMLA', "The <strong>plg_content_jomres_asamodule_mambot</strong> Jomres Asamodule Mambot plugin MUST be installed and enabled for these shortcodes to work. This can be found in the Jomres Plugin Manager. If this site was built using one of the Quickstarts then it's probably already installed.");
-jr_define('_JOMRES_SHORTCODES_INFO_WORDPRESS', "You must ensure that the <strong>'Jomres Shortcodes'</strong> plugin is enabled. This can be found in the Jomres Plugin Manager. If this site was built using one of the Quickstarts then it's probably already installed.");
-jr_define('SHORTCODE_TASK', 'Task');
-jr_define('SHORTCODE_DESCRIPTION', 'Description');
-jr_define('SHORTCODE_ARGUMENTS', 'Arguments');
-jr_define('SHORTCODE_EXAMPLE', 'Example');
-jr_define('INTEGRITY_CHECK', 'Filesystem Integrity Check');
-jr_define('INTEGRITY_CHECK_DESC', 'This feature allows you to check that the filesystem matches that supplied in the current version of Jomres. This is useful in ensuring that all files were updated correctly after installation/upgrade. Files in Red are missing, files in Orange exist but are different from those supplied in the current build. Only fiiles that are potential problems will be listed here.');
-jr_define('INTEGRITY_CHECK_FILENAME', 'Filesystem Integrity Check');
-jr_define('INTEGRITY_CHECK_LOCALHASH', 'Local hash');
-jr_define('INTEGRITY_CHECK_BUILDHASH', 'Version hash');
-jr_define('INTEGRITY_CHECK_NOPROBLEMS', 'Awesome! No problems were found.');
-jr_define('_JOMRES_PROPERTYTYPE_MARKER', 'Google maps marker');
-jr_define('_JOMRES_JAVASCRIPT_READMORE', 'Read more');
-jr_define('_JOMRES_JAVASCRIPT_READLESS', 'Read less');
-jr_define('_JOMRES_TOURIST_TAX_TITLE', 'Tourist tax');
-jr_define('_JOMRES_TOURIST_TAX_TAXRATE', 'Tourist tax rate');
-jr_define('_JOMRES_TOURIST_TAX_TAXRATE_DESC', 'Set the tourist tax rate. The tourist tax is only calculated after the initial booking is generated, and is added to the booking confirmation page, in the extra services box.');
-jr_define('_JOMRES_TOURIST_TAX_PERCENTAGE_YESNO', 'Is percentage?');
-jr_define('_JOMRES_TOURIST_TAX_PERCENTAGE_YESNO_DESC', "Set this to Yes if the tax is a percentage or No if it's a flat fee.");
-jr_define('_JOMRES_TOURIST_TAX_WHOLEBOOKING_YESNO', 'Affects the entire booking value?');
-jr_define('_JOMRES_TOURIST_TAX_WHOLEBOOKING_YESNO_DESC', "Set this to Yes if the tax is to cover the entire value of the booking, so it is a percentage of both the accommodation plus any extras, or No if it is only calculated based only on the value of the accommodation total. If the option 'Is Percentage' above is set to No, then this option is ignored.");
-jr_define('_JOMRES_TOURIST_TAX_NOTE', 'Please be aware that a tourist tax will be added to this booking. You will be able to see the tax on the review booking page.');
-jr_define('NO_LICENSE_MESSAGE', "You have not saved a license number in Site Configuration, therefore you will not be able to download plugins. Once you have a valid license key saved then you'll be able to install any plugins that are listed as Core plugins.");
-jr_define('INVALID_LICENSE_MESSAGE', "You seem to be using a license number that's invalid or has expired. Once you have a valid license key saved then you'll be able to install any plugins that are listed as Core plugins.");
-jr_define('VALID_LICENSE_MESSAGE', "Congratulations, you're using a valid license number and can install Core plugins through the Jomres plugin manager.");
-jr_define('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_MRP', 'This page allows you to upload images for your property and the things you offer. It has one main button, and a second button that allows you to select specific resources to upload images for. So, the Main property image and the Slideshow will only show one button but if you have created any e.g. Optional Extras or Rooms, then you will see a second button where you can upload images for those specific resources.');
-jr_define('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_SRP', 'This page allows you to upload images for your property and the things you offer. It has one main button, and a second button that allows you to select specific resources to upload images for. So, the Main property image and the Slideshow will only show one button but if you have created any Optional Extras then you will see a second button where you can upload images for those specific resources.');
-jr_define('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_GENERIC', "<ol>
-  <li>First choose the image(s) you'd like to upload by clicking Add Image or using Drag and Drop. These will appear in the column on the right hand side.</li>
-  <li>Above this area, use the \"Choose the resource\" button to choose which resource you want to upload images for. You may be offered the option to choose a specific resource underneath. </li>
-  <li> Once you've chosen a resource you can then click the Upload Image button under an image to associate it with that resource. Once an image has been uploaded, it will disappear from the column on the right hand site, and appear in the left.</li>
-  <li>Use the Trash button next to existing images to remove images you no longer want to be shown.</li>
-  <li>You can change the order that files are shown in the slideshow by renaming them before uploading them, as they are displayed in pages in alphabetical order.</li>
-</ol>
+jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT','クリックして新しい部屋タイプを追加');
+jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES','警告、部屋タイプのない1つ以上のプロパティタイプがあります。プロパティマネージャーが料金表を作成できるように、プロパティには部屋タイプが必要です。');
+jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LIST_ROOM_TYPES','[新規]ボタンを使用して新しい部屋タイプを作成します。');
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_TOURS','ツアー');
+jr_define('_JOMRES_PROPERTYTYPE_FLAG_REALESTATE','予約なし/不動産（単純なリスト)');
+jr_define('_JOMRES_CONFIG_LOG_LOCATION','ログファイルの場所');
+jr_define('_JOMRES_CONFIG_LOG_LOCATION_DESC','Jomresは、デフォルトでシステムアクティビティを' .JOMRES_SYSTEMLOG_PATH.' の場所に記録します。このファイルには機密情報（APIキー、システムパス、ゲートウェイ情報、ゲスト情報)が含まれている可能性があるため、このパスを変更することを強くお勧めします。これが何を意味するのかわからない場合は、ファイルシステムを知っているので、Webホストにアドバイスを求めてください。 ');
+jr_define('_JOMRES_CONFIG_LOG_LOCATION_WARNING','Jomresは、APIキー、システムパス、ゲートウェイ、ゲスト情報など、システムに関する詳細情報をログに記録します。これらはすべて、インターネットの他の部分には表示されないはずです。システムログパスが設定されていないため、システムログは現在「.JOMRES_SYSTEMLOG_PATH。」ディレクトリに保存されていますが、これは理想的ではありません。[サイトの構成]-> [デバッグ]にアクセスして、ファイルシステムにWebルートの外部のパスを設定してください。不明な点がある場合は、Webホストにお問い合わせください。彼らはあなたに助言することができるでしょう。」');
+jr_define('_JOMRES_CONFIG_LOG_LOCATION_RECOMMENDED','C​​MSがWebサイトのルートディレクトリにインストールされている場合、適切な場所は');
+jr_define('_JOMRES_CONFIG_GMAP_KEY_WARNING',"Googleマップキーが設定されていません。Googleマップの最近の変更により、すべての新しいサイトでGoogleマップの機能を使用するにはAPIキーが必要になります。<ahref = 'http： //www.jomres.net/manual/site-managers-guide/14-getting-started/338-google-maps-api-key'target='_blank'>APIキーの作成方法についてはマニュアルページをご覧ください< / a>そしてキーをJomresに保存します。 ");
+jr_define('JOMRES_GOOGLE_MAP_STYLE','Googleマップの配色');
+jr_define('JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_TITLE',"では、ウェブサイトへのプロパティの追加を開始しましょう。ここでプロパティに関する情報を少し収集する必要があります。これにより、プロパティの基本を設定できるようになります。完了したら、部屋、価格、画像を追加するガイドが表示されます。 ");
+jr_define('JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE1','プロパティタイプは、プロパティの予約方法を定義するのに役立ちます。たとえば、ホテルでは一度に1つまたは2つの部屋だけを「販売」しますが、ヴィラではプロパティ全体を提供します。');
+jr_define('JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE2',"メールアドレスは、アカウントの登録時に使用したものと同じである必要はありません。これにより、プロパティごとに異なるアドレスを使用できます。");
+jr_define('_JOMRES_CONFIG_MINIMUM_DEPOSIT','最小デポジット');
+jr_define('_JOMRES_CONFIG_MINIMUM_DEPOSIT_DESC','保証金の最低額を設定できます。設定した場合、プロパティ設定の「必要な保証金は1泊目の費用ですか？」と「必要な保証金はパーセンテージですか？」の設定は構成できません。 、代わりに、すべての預金額はパーセンテージであり、少なくともここで定義した数値でなければなりません。 ');
+jr_define('_JOMRES_CONFIG_MINIMUM_DEPOSIT_SETTING','この数字はより小さくすることはできません。');
+jr_define('_JOMRES_CONFIG_LOG_SYSLOG_HOST','Syslogホスト');
+jr_define('_JOMRES_CONFIG_LOG_SYSLOG_PORT','Syslogポート');
+jr_define('_JOMRES_CONFIG_LOG_SYSLOG_HOST_DESC',"システムログメッセージをsyslogサーバーに送信する場合は、ここでホスト名またはIP（例：192.168.0.2)とポート（例：514)を設定できます。サイトが 'に設定されている場合は注意してください。 「開発」の場合はDEBUGメッセージが送信されます。「本番」に設定すると、INFOレベル以上のメッセージのみが送信されます。リモートサーバーへのログ記録を無効にするには、ホストフィールドとポートフィールドを空にします。 ");
+jr_define('_JOMRES_CONFIG_LOG_SYSLOG_NOTALLOWED',"PHPは 'openlog'および 'syslog' PHP関数へのアクセスを許可されていません。これはサーバー側の設定です。Jomresでsyslogサーバーにメッセージを送信する場合は、ホストに相談してください。 PHPがこれらの機能へのアクセスを許可されているかどうかを確認します。有効にすると、syslogサーバーの設定をここで構成できるようになります。 ");
+jr_define('_JOMRES_SEND_ERROR_EMAIL','エラーが発生したときにサイト管理者に電子メールを送信しますか？');
+jr_define('_JOMRES_SEND_ERROR_EMAIL_DESC',"これまで、調査が必要な問題がサイトの所有者にメールで送信されてきました。システムには非常に多くの可動部品があり、追跡が難しいため、これはシステムの実行を監視するのに最適です。残念ながら、サイトをクロールするスパイダーとボット（友好的なサイトでも)は、誤って致命的なエラーを引き起こす可能性があり、これにより、受信するメッセージの数が圧倒される可能性があります。その場合は、このオプションを[いいえ]に設定してください。Jomresはログを送信します一連のログファイルとsyslogサーバーの両方へのメッセージ（特定のPHP設定で許可されている場合、ホストに連絡しない場合)。特定のものを探している場合は、ファイルを手動で分析できます（たとえば、ゲートウェイを開発していて、gateway_log（)関数呼び出しを使用したい場合)。ただし、これはトロールする情報が多いため、syslogファイルアナライザーなどを使用することをお勧めします。Linuxで開発している場合は、利用できるツールはたくさんあります。Windowsの場合、使用できる簡単なツールはhttp://maxbelkov.github.io/visualsyslog/です。このページで「Syslogホスト」を「127.0.0.1」に設定し、「そのツールに記録されたメッセージを表示するには、514にポートします。 ");
+
+jr_define('_JOMRES_MANAGE_PROPERTIES','プロパティの管理');
+jr_define('_JOMRES_CONFIG_IPINFODB_KEY_WARNING',"IP検出APIキーが設定されていません。これは、システムがユーザーの場所を自動的に検出し、通貨と国を自動的に設定できるようにするために必要です。<a href = 'http：// www .jomres.net / manual / site-managers-guide / 35-control-panel / main / site-configuration / 128-site-configuration-currency-conversion-currency-codes-tab'target = '_blank'>マニュアルを参照IP検出APIキーを作成し、キーをJomres>サイト構成>通貨換算/通貨コードに保存する方法のページ。 ");
+jr_define('_JOMRES_CONFIG_OPENEXCHANGERATES_KEY_WARNING',"オープン為替レートAPIキーが設定されていません。これは、システムが自動的に為替レートをダウンロードして使用できるようにするために必要です。<a href = 'http：//www.jomres.net / manual / site-managers-guide / 35-control-panel / main / site-configuration / 128-site-configuration-currency-conversion-currency-codes-tab'target = '_blank'>方法については、マニュアルページを参照してください。 IP検出APIキーを作成</a>し、キーをJomres>サイト構成>通貨換算/通貨コードに保存します。 ");
+jr_define('_JOMRES_PERMIT_NUMBER_TITLE','許可番号');
+jr_define('_JOMRES_PERMIT_NUMBER_DESCRIPTION','一部の国では、プロパティの許可番号を表示する必要があると法律で定められています。そのような番号がある場合は、ここに入力すると、プロパティヘッダーセクションに追加されます。');
+jr_define('_JOMRES_SHORTCODES','ショートコード');
+jr_define('_JOMRES_SHORTCODES_INFO_JOOMLA',"<strong> plg_content_jomres_asamodule_mambot </ strong> Jomres Asamodule Mambotプラグインは、これらのショートコードが機能するようにインストールして有効にする必要があります。これは、Jomresプラグインマネージャーのいずれかを使用して構築されている場合。クイックスタートすると、おそらくすでにインストールされています。 ");
+jr_define('_JOMRES_SHORTCODES_INFO_WORDPRESS',"<strong> 'Jomres Shortcodes' </ strong>プラグインが有効になっていることを確認する必要があります。これはJomresプラグインマネージャーにあります。このサイトがクイックスタートの1つを使用して構築されている場合は、おそらくすでにインストールされています。 ");
+jr_define('SHORTCODE_TASK','タスク');
+jr_define('SHORTCODE_DESCRIPTION','説明');
+jr_define('SHORTCODE_ARGUMENTS','引数');
+jr_define('SHORTCODE_EXAMPLE','例');
+jr_define('INTEGRITY_CHECK','ファイルシステムの整合性チェック');
+jr_define('INTEGRITY_CHECK_DESC','この機能を使用すると、ファイルシステムが現在のバージョンのJomresで提供されているものと一致することを確認できます。これは、インストール/アップグレード後にすべてのファイルが正しく更新されたことを確認するのに役立ちます。オレンジは存在しますが、現在のビルドで提供されているものとは異なります。潜在的な問題であるファイルのみがここにリストされます。');
+jr_define('INTEGRITY_CHECK_FILENAME','ファイルシステムの整合性チェック');
+jr_define('INTEGRITY_CHECK_LOCALHASH','ローカルハッシュ');
+jr_define('INTEGRITY_CHECK_BUILDHASH','バージョンハッシュ');
+jr_define('INTEGRITY_CHECK_NOPROBLEMS','素晴らしい！問題は見つかりませんでした。');
+jr_define('_JOMRES_PROPERTYTYPE_MARKER','Googleマップマーカー');
+jr_define('_JOMRES_JAVASCRIPT_READMORE','続きを読む');
+jr_define('_JOMRES_JAVASCRIPT_READLESS','Read less');
+jr_define('_JOMRES_TOURIST_TAX_TITLE','観光税');
+jr_define('_JOMRES_TOURIST_TAX_TAXRATE','観光税率');
+jr_define('_JOMRES_TOURIST_TAX_TAXRATE_DESC','観光税率を設定します。観光税は最初の予約が生成された後にのみ計算され、予約確認ページの追加サービスボックスに追加されます。');
+jr_define('_JOMRES_TOURIST_TAX_PERCENTAGE_YESNO','パーセンテージですか？');
+jr_define('_JOMRES_TOURIST_TAX_PERCENTAGE_YESNO_DESC',"税金がパーセンテージの場合は[はい]に設定し、定額料金の場合は[いいえ]に設定します。");
+jr_define('_JOMRES_TOURIST_TAX_WHOLEBOOKING_YESNO','予約額全体に影響しますか？');
+jr_define('_JOMRES_TOURIST_TAX_WHOLEBOOKING_YESNO_DESC',"税金が予約の全額をカバーする場合は、これを[はい]に設定します。これは、宿泊施設と追加料金の両方のパーセンテージであり、宿泊施設の合計。上記のオプション「パーセンテージ」が「いいえ」に設定されている場合、このオプションは無視されます。 ");
+jr_define('_JOMRES_TOURIST_TAX_NOTE','この予約には観光税が追加されることに注意してください。この税はレビュー予約ページで確認できます。');
+jr_define('NO_LICENSE_MESSAGE',"サイト構成にライセンス番号を保存していないため、プラグインをダウンロードできません。有効なライセンスキーを保存すると、次のようにリストされているプラ​​グインをインストールできるようになります。コアプラグイン。 ");
+jr_define('INVALID_LICENSE_MESSAGE',"無効または期限切れのライセンス番号を使用しているようです。有効なライセンスキーを保存すると、コアプラグインとしてリストされているプラ​​グインをインストールできるようになります。");
+jr_define('VALID_LICENSE_MESSAGE',"おめでとうございます。有効なライセンス番号を使用しており、Jomresプラグインマネージャーからコアプラグインをインストールできます。");
+jr_define('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_MRP','このページでは、プロパティと提供するものの画像をアップロードできます。メインボタンが1つと、画像をアップロードする特定のリソースを選択できる2番目のボタンがあります。つまり、メインプロパティ画像とスライドショーにはボタンが1つしか表示されませんが、オプションのエクストラやルームなどを作成した場合は、それらの特定のリソースの画像をアップロードできる2番目のボタンが表示されます。');
+jr_define('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_SRP','このページでは、プロパティと提供するものの画像をアップロードできます。メインボタンが1つと、画像をアップロードする特定のリソースを選択できる2番目のボタンがあります。つまり、メインプロパティ画像とスライドショーにはボタンが1つしか表示されませんが、オプションのエクストラを作成した場合は、それらの特定のリソースの画像をアップロードできる2番目のボタンが表示されます。');
+jr_define('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_GENERIC',"<ol>
+  <li>まず、[画像の追加]をクリックするか、ドラッグアンドドロップを使用して、アップロードする画像を選択します。これらは右側の列に表示されます。</ li>
+  <li>この領域の上にある[リソースの選択]ボタンを使用して、画像をアップロードするリソースを選択します。下にある特定のリソースを選択するオプションが提供される場合があります。 </ li>
+  <li>リソースを選択したら、画像の下にある[画像をアップロード]ボタンをクリックして、そのリソースに関連付けることができます。画像がアップロードされると、右側のサイトの列から消え、左側に表示されます。</ li>
+  <li>既存の画像の横にある[ゴミ箱]ボタンを使用して、表示したくない画像を削除します。</ li>
+  <li>ファイルはアルファベット順にページに表示されるため、アップロードする前に名前を変更することで、スライドショーに表示されるファイルの順序を変更できます。</ li>
+</ ol>
  ");
-jr_define('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_PREVIEW', "Next to the Resource button, you may see a Preview button. If you click on this you will see a popup that shows you how the currently uploaded images will look in a page. This helps to give you an idea of how the images will look to your customers.");
-jr_define('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_LIMITATIONS', "There is no limit to the number of images you can upload. Images are automatically resized when they are uploaded. You can only upload JPG and PNG files.");
-jr_define('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_IMAGE_RESOLUTION_PRE', "Ideally any images you upload would be at least ");
-jr_define('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_IMAGE_RESOLUTION_POST', " pixels wide, otherwise they may look fuzzy after they've been uploaded.");
-jr_define('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_FILESIZE_PRE', "Any images you upload cannot be more than ");
-jr_define('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_FILESIZE_POST', " in size.");
-jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE', "Choose the resource you want to upload images for");
-jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_SPECIFIC', "Specific resource");
-jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_ALREADY_UPLOADED', "Images already uploaded for this resource");
-jr_define('_JOMRES_MARKDOWN_TITLE', 'Text formatting');
-jr_define('_JOMRES_MARKDOWN_DESC', 'You can enter text here using simple Markdown formatting. You don\'t need to know any HTML, just use the buttons to make the information look like you want, or format text according to these examples.');
-jr_define('_JOMRES_MARKDOWN_EMPHASIS', 'Emphasis');
-jr_define('_JOMRES_MARKDOWN_BOLD', 'bold');
-jr_define('_JOMRES_MARKDOWN_ITALICS', 'italics');
-jr_define('_JOMRES_MARKDOWN_STRIKETHROUGH', 'strikethrough');
-jr_define('_JOMRES_MARKDOWN_HEADERS', "Headers");
-jr_define('_JOMRES_MARKDOWN_BIGHEADER', 'Big header');
-jr_define('_JOMRES_MARKDOWN_MEDIUMHEADER', "Medium header");
-jr_define('_JOMRES_MARKDOWN_SMALLHEADER', 'Small header');
-jr_define('_JOMRES_MARKDOWN_TINYHEADER', 'Tiny header');
-jr_define('_JOMRES_MARKDOWN_LISTS', "Lists");
-jr_define('_JOMRES_MARKDOWN_GENERICLISTITEM', 'Generic list item');
-jr_define('_JOMRES_MARKDOWN_NUMBEREDLISTITEM', 'Numbered list item');
-jr_define('_JOMRES_MARKDOWN_LINKS', 'Links');
-jr_define('_JOMRES_MARKDOWN_LINKSTEXT', 'Text to display');
-jr_define('_JOMRES_MARKDOWN_QUOTES', 'Quotes');
-jr_define('_JOMRES_MARKDOWN_THISISAQUOTE', 'This is a quote.');
-jr_define('_JOMRES_MARKDOWN_QUOTEMULTIPLE', 'It can span multiple lines!');
-jr_define('_JOMRES_MARKDOWN_IMAGES', 'Images');
-jr_define('_JOMRES_MARKDOWN_TABLE', 'Tables');
-jr_define('_JOMRES_MARKDOWN_COLUMN', 'Column');
-jr_define('PROPERTYLIST_IMAGES_AS_SLIDESHOW', 'Show property images as slideshow in property list?');
-jr_define('PROPERTYLIST_IMAGES_AS_SLIDESHOW_DESC', 'If set to yes, a slideshow of property main images will be displayed. If set to no, then the first property main image will be displayed.');
-jr_define('EDIT_CMS_USER', 'Edit CMS user');
-jr_define('BOOKING_MADE_BY', 'Booking made by');
-jr_define('_JOMRES_ROUTER_FEATURES', 'Amenities');
-jr_define('_JOMRES_ROUTER_ROOMTYPES', 'Room Types');
-jr_define('_JOMRES_BOOKING_FORM_EXTERNAL_URL', 'External booking form URL');
-jr_define('_JOMRES_BOOKING_FORM_EXTERNAL_URL_DESC', 'Here you can set an external URL if you want to use a 3rd party website for making bookings. All jomres booking buttons will point to this URL. Leave this field blank if you want to use the Jomres booking form.');
-jr_define('_JOMRES_ROOM_TAGLINE', 'Tagline (short room description/subtitle)');
-jr_define('_JOMRES_ROOM_DESCRIPTION', 'Room Description');
-jr_define('_JOMRES_GUEST_BLACKLISTED', 'Guest blacklisted');
-jr_define('_JOMRES_GUEST_BLACKLISTED_DESC', 'If this guest is black listed then they will no longer be able to make bookings in this property.');
-jr_define('_JOMRES_SESSION_HANDLER', 'Session handler');
-jr_define('_JOMRES_SESSION_HANDLER_DESC', 'Save jomres session files to disk or to database. Recommended: database');
-jr_define('_JOMRES_MAP_HEIGHT',"Map height (px) ");
-jr_define('_JOMRES_MAP_ZOOMLEVEL',"Map zoom level ");
-jr_define('_JOMRES_MAP_MAPTYPE',"Map type ");
+jr_define('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_PREVIEW',"[リソース]ボタンの横に[プレビュー]ボタンが表示される場合があります。これをクリックすると、現在アップロードされている画像がページでどのように表示されるかを示すポップアップが表示されます。画像が顧客にどのように見えるかについてのアイデア。 ");
+jr_define('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_LIMITATIONS',"アップロードできる画像の数に制限はありません。画像はアップロード時に自動的にサイズ変更されます。アップロードできるのはJPGファイルとPNGファイルのみです。");
+jr_define('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_IMAGE_RESOLUTION_PRE',"理想的には、アップロードする画像は少なくとも");
+jr_define('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_IMAGE_RESOLUTION_POST',"ピクセル幅。そうしないと、アップロード後にぼやけて見える場合があります。");
+jr_define('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_FILESIZE_PRE',"アップロードする画像は");
+jr_define('_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_FILESIZE_POST',"サイズが");
+jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE',"画像をアップロードするリソースを選択してください");
+jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_SPECIFIC',"特定のリソース");
+jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_ALREADY_UPLOADED',"このリソース用に既にアップロードされている画像");
+jr_define('_JOMRES_MARKDOWN_TITLE','テキストフォーマット');
+jr_define('_JOMRES_MARKDOWN_DESC','単純なMarkdownフォーマットを使用してここにテキストを入力できます。HTMLを知っている必要はありません。ボタンを使用して情報を希望どおりに表示するか、これらの例に従ってテキストをフォーマットしてください。 ');
+jr_define('_JOMRES_MARKDOWN_EMPHASIS','エンファシス');
+jr_define('_JOMRES_MARKDOWN_BOLD','太字');
+jr_define('_JOMRES_MARKDOWN_ITALICS','イタリック');
+jr_define('_JOMRES_MARKDOWN_STRIKETHROUGH','取り消し線');
+jr_define('_JOMRES_MARKDOWN_HEADERS',"ヘッダー");
+jr_define('_JOMRES_MARKDOWN_BIGHEADER','ビッグヘッダー');
+jr_define('_JOMRES_MARKDOWN_MEDIUMHEADER',"中程度のヘッダー");
+jr_define('_JOMRES_MARKDOWN_SMALLHEADER','小さなヘッダー');
+jr_define('_JOMRES_MARKDOWN_TINYHEADER','小さなヘッダー');
+jr_define('_JOMRES_MARKDOWN_LISTS',"リスト");
+jr_define('_JOMRES_MARKDOWN_GENERICLISTITEM','ジェネリックリストアイテム');
+jr_define('_JOMRES_MARKDOWN_NUMBEREDLISTITEM','番号付きリストアイテム');
+jr_define('_JOMRES_MARKDOWN_LINKS','リンク');
+jr_define('_JOMRES_MARKDOWN_LINKSTEXT','表示するテキスト');
+jr_define('_JOMRES_MARKDOWN_QUOTES','引用');
+jr_define('_JOMRES_MARKDOWN_THISISAQUOTE','これは引用です。');
+jr_define('_JOMRES_MARKDOWN_QUOTEMULTIPLE','複数行にまたがることができます！');
+jr_define('_JOMRES_MARKDOWN_IMAGES','画像');
+jr_define('_JOMRES_MARKDOWN_TABLE','テーブル');
+jr_define('_JOMRES_MARKDOWN_COLUMN','列');
+jr_define('PROPERTYLIST_IMAGES_AS_SLIDESHOW','プロパティリストにスライドショーとしてプロパティ画像を表示しますか？');
+jr_define('PROPERTYLIST_IMAGES_AS_SLIDESHOW_DESC','yesに設定すると、プロパティのメイン画像のスライドショーが表示されます。noに設定すると、最初のプロパティのメイン画像が表示されます。');
+jr_define('EDIT_CMS_USER','C​​MSユーザーの編集');
+jr_define('BOOKING_MADE_BY','予約者');
+jr_define('_JOMRES_ROUTER_FEATURES','アメニティ');
+jr_define('_JOMRES_ROUTER_ROOMTYPES','ルームタイプ');
+jr_define('_JOMRES_BOOKING_FORM_EXTERNAL_URL','外部予約フォームのURL');
+jr_define('_JOMRES_BOOKING_FORM_EXTERNAL_URL_DESC','サードパーティのWebサイトを使用して予約する場合は、ここで外部URLを設定できます。すべてのjomres予約ボタンはこのURLを指します。Jomres予約フォームを使用する場合は、このフィールドを空白のままにします。 。 ');
+jr_define('_JOMRES_ROOM_TAGLINE','タグライン（短い部屋の説明/字幕)');
+jr_define('_JOMRES_ROOM_DESCRIPTION','部屋の説明');
+jr_define('_JOMRES_GUEST_BLACKLISTED','ゲストブラックリスト');
+jr_define('_JOMRES_GUEST_BLACKLISTED_DESC','このゲストがブラックリストに登録されている場合、このプロパティで予約することはできなくなります。');
+jr_define('_JOMRES_SESSION_HANDLER','セッションハンドラ');
+jr_define('_JOMRES_SESSION_HANDLER_DESC','jomresセッションファイルをディスクまたはデータベースに保存します。推奨：データベース');
+jr_define('_JOMRES_MAP_HEIGHT',"マップの高さ（px)");
+jr_define('_JOMRES_MAP_ZOOMLEVEL',"マップズームレベル");
+jr_define('_JOMRES_MAP_MAPTYPE',"マップタイプ");
 
-jr_define('_JOMRES_TEMPLATE_PACKAGES',"Template Override Manager");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_LEAD',"Template packages are plugins that can provide override templates for various core Jomres template files.");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_INFO',"This page lists any template files that can be overridden by a template package's template files. If you want to override a certain template file, click on the edit button for that file, on the next page you will be able to choose which version you want to override with. Note, these overrides take priority over both Jomres Core and any Wordpress or Joomla theme/template overrides. You can disable an override by deleting it in the List Template Overrides page.");
-jr_define('_JOMRES_TEMPLATE_PACKAGE_NAME',"Template name");
-jr_define('_JOMRES_TEMPLATE_PACKAGE_PATH',"Current path");
-jr_define('_JOMRES_TEMPLATE_PACKAGE_NOT_OVERRIDDEN',"Not overridden");
-jr_define('_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO',"You can choose which template file to override the Core template files by changing the dropdown");
-
-
-jr_define('_JOMRES_OVERALL_ROOMS_BOOKED',"Percentage Rooms Booked");
+jr_define('_JOMRES_TEMPLATE_PACKAGES',"テンプレートオーバーライドマネージャー");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_LEAD',"テンプレートパッケージは、さまざまなコアJomresテンプレートファイルのオーバーライドテンプレートを提供できるプラグインです。");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_INFO',"このページには、テンプレートパッケージのテンプレートファイルで上書きできるテンプレートファイルが一覧表示されます。特定のテンプレートファイルを上書きする場合は、そのファイルの編集ボタンをクリックしてください。次のページに移動します。オーバーライドするバージョンを選択できます。これらのオーバーライドは、Jomres CoreとWordpressまたはJoomlaのテーマ/テンプレートオーバーライドの両方よりも優先されることに注意してください。オーバーライドを無効にするには、[リストテンプレートオーバーライド]ページでオーバーライドを削除します。 ");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_NAME',"テンプレート名");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_PATH',"現在のパス");
+jr_define('_JOMRES_TEMPLATE_PACKAGE_NOT_OVERRIDDEN',"オーバーライドされません");
+jr_define('_JOMRES_TEMPLATE_PACKAGES_EDIT_INFO',"ドロップダウンを変更することで、コアテンプレートファイルを上書きするテンプレートファイルを選択できます");
 
 
-jr_define('_JOMRES_OVERALL_ROOMS_BOOKED',"Percentage Rooms Booked");
-jr_define('_JOMRES_SELECT_WIDGETS',"Select widgets");
+jr_define('_JOMRES_OVERALL_ROOMS_BOOKED',"予約された部屋の割合");
+jr_define('_JOMRES_SELECT_WIDGETS',"ウィジェットの選択");
 jr_define('_JOMRES_INTERVAL',"Interval");
-jr_define('_JOMRES_TIMELINE',"Timeline");
-jr_define('_JOMRES_CPANEL_GRID',"Control panel home layout");
-jr_define('_JOMRES_CPANEL_GRID_DESC',"Select the grid layout of your frontend property management control panel home page.");
+jr_define('_JOMRES_TIMELINE',"タイムライン");
+jr_define('_JOMRES_CPANEL_GRID',"コントロールパネルのホームレイアウト");
+jr_define('_JOMRES_CPANEL_GRID_DESC',"フロントエンドのプロパティ管理コントロールパネルのホームページのグリッドレイアウトを選択します。");
 
-jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_MARKER_IMAGES',"Google Map Markers");
-jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_TOWN_IMAGES',"Town images");
-jr_define('_JOMRES_PTYPE_CHANGE_WARNING',"Changing the property type will delete all rooms, tariffs, property settings and reset availability.");
-jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_UPDATEINFO', 'Please note, after updating you must update any Jomres Plugins that are already installed, through the Jomres plugin manager. If you have Core plugins installed, but do not have a valid Jomres license then we <em>do not</em> recommend that you update Jomres as older plugins often may not work with newer versions of Jomres. ');
-jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_UPDATEINFO_KEYVALID', 'Please note, after updating you must update any Jomres Plugins that are already installed, through the Jomres plugin manager.');
-jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_RENEWALS', "If you would like to update Jomres and it's plugins you will need a renewal license. Please visit <a href='https://www.jomres.net/pricing' target='_blank'>our site</a> for more information. In most cases these licenses are 50% of the price of a full license. Please ensure that you have logged into our shop before attempting to purchase a renewal.");
-jr_define('_JOMRES_PAYMENT_METHOD_USED',"Payment method : ");
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_MARKER_IMAGES',"Googleマップマーカー");
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_TOWN_IMAGES',"町の画像");
+jr_define('_JOMRES_PTYPE_CHANGE_WARNING',"プロパティタイプを変更すると、すべての部屋、料金、プロパティ設定が削除され、可用性がリセットされます。");
+jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_UPDATEINFO','更新後、Jomresプラグインマネージャーを使用して、既にインストールされているJomresプラグインを更新する必要があることに注意してください。Coreプラグインはインストールされているが、有効なJomresライセンスがない場合は<em>古いプラグインは新しいバージョンのJomresで動作しないことが多いため、Jomresを更新することはお勧めしません。 ');
+jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_UPDATEINFO_KEYVALID','更新後、Jomresプラグインマネージャーを使用して、既にインストールされているJomresプラグインを更新する必要があることに注意してください。');
+jr_define('_JOMRES_VERSIONCHECK_VERSIONWARNING_RENEWALS',"Jomresとそのプラグインを更新する場合は、更新ライセンスが必要です。<a href='https://www.jomres.net/pricing'target='_blank'>にアクセスしてください。詳細については、サイト</a>を参照してください。ほとんどの場合、これらのライセンスはフルライセンスの価格の50％です。更新を購入する前に、当店にログインしていることを確認してください。 ");
+jr_define('_JOMRES_PAYMENT_METHOD_USED',"支払い方法：");
 
-jr_define('_JOMRES_PRICES',"Get Connected");
+jr_define('_JOMRES_PRICES',"接続する");
 
 
-jr_define('_OAUTH_TITLE',"App key management");
-jr_define('_OAUTH_APPS',"REST API client details");
-jr_define('_OAUTH_IDENTIFIER',"Identifier");
-jr_define('_OAUTH_APIKEY',"Client ID");
+jr_define('_OAUTH_TITLE',"アプリのキー管理");
+jr_define('_OAUTH_APPS',"REST APIクライアントの詳細");
+jr_define('_OAUTH_IDENTIFIER',"識別子");
+jr_define('_OAUTH_APIKEY',"クライアントID");
 jr_define('_OAUTH_SECRET',"Secret");
-jr_define('_OAUTH_CREATED',"Created/Updated App");
-jr_define('_OAUTH_CLIENT_ID_INFO',"The Client ID and Secret are created for you. The Identifier is so that you can easily identify this key pair.");
-jr_define('_OAUTH_SCOPE_TITLE',"Permissions ( what the client can do ) ");
-jr_define('_OAUTH_SCOPE_CATEGORY_USER' , "User permissions");
-jr_define('_OAUTH_SCOPE_CATEGORY_PROPERTIES' , "Property permissions");
+jr_define('_OAUTH_CREATED',"作成/更新されたアプリ");
+jr_define('_OAUTH_CLIENT_ID_INFO',"クライアントIDとシークレットが作成されます。識別子は、このキーペアを簡単に識別できるようにするためのものです。");
+jr_define('_OAUTH_SCOPE_TITLE',"権限（クライアントが実行できること)");
+jr_define('_OAUTH_SCOPE_CATEGORY_USER',"ユーザー権限");
+jr_define('_OAUTH_SCOPE_CATEGORY_PROPERTIES',"プロパティのアクセス許可");
 
-jr_define('API_DOCUMENTATION_TITLE',"App REST API documentation");
+jr_define('API_DOCUMENTATION_TITLE',"App REST APIドキュメント");
 
-jr_define('_OAUTH_CONFIG',"API Core configuration");
+jr_define('_OAUTH_CONFIG',"APIコア構成");
 
-jr_define('_OAUTH_CONFIG_SHOW',"Show API client configuration options in Jomres main menu?");
-jr_define('_OAUTH_CONFIG_SHOW_DESC',"You may choose to not show the API client configuration options in the 'My Account' section of the Jomres mainmenu. You could instead decide that you wanted to show them on other pages using Jomres Shortcodes.");
+jr_define('_OAUTH_CONFIG_SHOW',"JomresメインメニューにAPIクライアント構成オプションを表示しますか？");
+jr_define('_OAUTH_CONFIG_SHOW_DESC',"Jomresメインメニューの[マイアカウント]セクションにAPIクライアント構成オプションを表示しないことを選択できます。代わりに、Jomresショートコードを使用して他のページに表示することを決定できます。");
 
-jr_define( '_JOMRES_SHORTCODES_06000API_CORE_DOCS', "Displays the API core documentation page. The API Core allows users to create API clients, which are then used to access the API functionality which is outlined in the API Core documentation." );
+jr_define('_JOMRES_SHORTCODES_06000API_CORE_DOCS',"APIコアのドキュメントページを表示します。APIコアを使用すると、ユーザーはAPIクライアントを作成できます。APIクライアントは、APIコアのドキュメントで概説されているAPI機能にアクセスするために使用されます。");
 
-jr_define( '_JOMRES_SHORTCODES_06005API_CORE_CLIENT_ADMIN', "Displays the API core administration page, where property managers can configure API clients. Note that this is a registered user only feature, so users must be registered and logged in before they can see this page." );
+jr_define('_JOMRES_SHORTCODES_06005API_CORE_CLIENT_ADMIN',"プロパティマネージャーがAPIクライアントを構成できるAPIコア管理ページを表示します。これは登録済みユーザー専用の機能であるため、ユーザーがこのページを表示するには、登録してログインする必要があります。");
 
-jr_define('API_METHODS_TITLE',"API Methods");
-jr_define('API_METHODS_DESCRIPTION',"This list of methods is based on your installed API feature plugins and is automatically generated. If you install or delete an API feature plugin you must visit this page to rebuild this list of API methods available on your site.");
+jr_define('API_METHODS_TITLE',"APIメソッド");
+jr_define('API_METHODS_DESCRIPTION',"このメソッドのリストは、インストールされているAPI機能プラグインに基づいており、自動的に生成されます。API機能プラグインをインストールまたは削除する場合は、このページにアクセスして、サイトで使用可能なAPIメソッドのリストを再構築する必要があります。 ");
 
-jr_define('_OAUTH_REDIRECT_URI',"Redirect URI");
-jr_define('_OAUTH_IDENTIFIER_PLACEHOLDER',"Give me a name that's meaningful to you, such as My Phone");
+jr_define('_OAUTH_REDIRECT_URI',"リダイレクトURI");
+jr_define('_OAUTH_IDENTIFIER_PLACEHOLDER',"私の電話など、あなたにとって意味のある名前を付けてください");
 
-jr_define('_OAUTH_GRANT_TYPES',"This system supports two grant types , Client Credentials and Implicit. If you are using the <em>client_credentials</em> flow then you will need both the client id and the client secret. If using <em>implicit</em> then your app would send just the client id and you would log into the system to explicitly authorise that app.");
+jr_define('_OAUTH_GRANT_TYPES',"このシステムは、クライアントクレデンシャルと暗黙の2つの付与タイプをサポートします。<em> client_credentials </ em>フローを使用している場合は、クライアントIDとクライアントシークレットの両方が必要になります。<em>を使用している場合>暗黙的</ em>の場合、アプリはクライアントIDのみを送信し、システムにログインしてそのアプリを明示的に承認します。 ");
 
-jr_define('_OAUTH_IMPLICIT_NOTES',"To use the <em>implicit</em> grant type flow, you will need to use this url to authorise your apps. When this url is called, and you have authorised the app the system will issue a token that you apps will then use to call this system's API ");
-jr_define('_OAUTH_AUTHORISATION_URL',"Authorisation URL");
+jr_define('_OAUTH_IMPLICIT_NOTES',"<em>暗黙的</ em>付与タイプフローを使用するには、このURLを使用してアプリを承認する必要があります。このURLが呼び出され、システムが発行するアプリを承認すると、アプリがこのシステムのAPIを呼び出すために使用するトークン ");
+jr_define('_OAUTH_AUTHORISATION_URL',"認証URL");
 
-jr_define( 'WEBHOOKS_CORE', 'Webhooks' );
+jr_define('WEBHOOKS_CORE','Webhooks');
 
-jr_define('_WEBHOOKS_CONFIG_SHOW',"Show Webhook configuration options in Jomres main menu?");
-jr_define('_WEBHOOKS_CONFIG_SHOW_DESC',"You may choose to not show the Webhook configuration options in the 'My Account' section of the Jomres mainmenu. You could instead decide that you wanted to show them on other pages using Jomres Shortcodes.");
+jr_define('_WEBHOOKS_CONFIG_SHOW',"JomresメインメニューにWebhook構成オプションを表示しますか？");
+jr_define('_WEBHOOKS_CONFIG_SHOW_DESC',"Jomresメインメニューの[マイアカウント]セクションにWebhook設定オプションを表示しないことを選択できます。代わりに、Jomresショートコードを使用して他のページに表示することを決定できます。");
+jr_define('WEBHOOKS_DOCUMENTATION_TITLE',"Webhookドキュメント");
 
-jr_define('WEBHOOKS_DOCUMENTATION_TITLE',"Webhooks documentation");
+jr_define('_JOMRES_SHORTCODES_06000WEBHOOKS_DOCS',"APIコアのドキュメントページを表示します。APIコアを使用すると、ユーザーはAPIクライアントを作成できます。APIクライアントは、APIコアのドキュメントで概説されているAPI機能にアクセスするために使用されます。");
 
-jr_define( '_JOMRES_SHORTCODES_06000WEBHOOKS_DOCS', "Displays the API core documentation page. The API Core allows users to create API clients, which are then used to access the API functionality which is outlined in the API Core documentation." );
+jr_define('_JOMRES_SHORTCODES_06005WEBHOOKS_CLIENT_ADMIN',"プロパティマネージャーがAPIクライアントを構成できるAPIコア管理ページを表示します。これは登録ユーザー専用の機能であるため、ユーザーがこのページを表示するには、登録してログインする必要があります。");
 
-jr_define( '_JOMRES_SHORTCODES_06005WEBHOOKS_CLIENT_ADMIN', "Displays the API core administration page, where property managers can configure API clients. Note that this is a registered user only feature, so users must be registered and logged in before they can see this page." );
+jr_define('WEBHOOKS_INTEGRATION_EDIT','統合の編集');
+jr_define('WEBHOOKS_INTEGRATION_ID','統合ID');
+jr_define('WEBHOOKS_INTEGRATION_URL','URLまたは名前');
+jr_define('WEBHOOKS_ENABLED','有効');
 
-jr_define( 'WEBHOOKS_INTEGRATION_EDIT', 'Edit Integration' );
-jr_define( 'WEBHOOKS_INTEGRATION_ID', 'Integration ID' );
-jr_define( 'WEBHOOKS_INTEGRATION_URL', 'URL or Name' );
-jr_define( 'WEBHOOKS_ENABLED', 'Enabled' );
+jr_define('WEBHOOKS_AUTH_METHOD_SELECT','認証方法/統合');
 
-jr_define( 'WEBHOOKS_AUTH_METHOD_SELECT', 'Authentication method/Integration' );
-
-jr_define( 'WEBHOOKS_MANAGER_PROPERTIES_NONE', 'Any webhooks you create will not be triggered as you are not assigned to any properties. Super property managers are not typically assigned individual properties, so you may need a new user for webhook creation.' );
-jr_define( 'WEBHOOKS_MANAGER_PROPERTIES_ASSIGNED_DESC', 'Any webhooks you create will be triggered against the following properties : ' );
-
-
-jr_define( 'PORTAL_REVIEWS_LIMIT', 'Reviews limit' );
-jr_define( 'PORTAL_REVIEWS_LIMIT_DESC', 'Use this setting to limit the number of reviews shown in the property details page.' );
-jr_define( 'PORTAL_REVIEWS_SHOW_ALL_REVIEWS', 'Show all reviews' );
-
-jr_define( 'VIDEO_TUTORIALS', 'Video Tutorials' );
-
-jr_define( '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE', 'Minimum deposit value' );
-jr_define( '_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC', "If the calculated deposit is less than this figure, then set deposit to this value instead. This figure might itself be over-ridden if it does not satisfy the site's minimum deposit setting. Leave it set to 0 to not use the setting." );
-
-jr_define( '_JOMRES_MEDIA_CENTRE_DBIMPORT_WARNING', 'To increase your site speed, we recommend importing details of the existing site and properties images to database.');
-jr_define( '_JOMRES_MEDIA_CENTRE_DBIMPORT_ACTION', 'Import existing images details to database');
-
-jr_define( '_JOMRES_S3_ACTIVE_DESC', 'Experimental feature. If enabled, images uploaded using the media centre feature will also be copied to your Amazon S3 bucket and served from your Amazon S3 bucket url. When enabling this the first time, you`ll also be promted to import existing images to your S3 bucket.');
-jr_define( '_JOMRES_CLOUDFRONT_DMAIN', 'CloudFront domain');
-jr_define( '_JOMRES_CLOUDFRONT_DMAIN_DESC', 'Replace your default Amazon S3 domain with your CloudFront domain');
-jr_define( '_JOMRES_S3_SSLTLS_DESC', 'Recommended to be enabled. For Windows and Mac OSX only, if libcurl wasn`t built with Schannel or Secure Transport support (the native SSL libraries included in Windows and Mac OS X), you should set this to No.');
-jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_WARNING', 'You`ve enabled the Amazon S3 integration, so you`ll have to copy all existing images to your S3 bucket. Images are now served to your site visitors from your Amazon S3 url, so you`ll need to copy them first to your S3 bucket, otherwise they won`t be visible to your site visitors.');
-jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_WARNING2', 'Once you click this button, please do not interrupt the process and wait for a success or error message. Depending on server speed, this may take a while to complete.');
-jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_ACTION', 'Copy existing images to Amazon S3 bucket');
+jr_define('WEBHOOKS_MANAGER_PROPERTIES_NONE','プロパティに割り当てられていないため、作成したWebhookはトリガーされません。スーパープロパティマネージャーには通常、個別のプロパティが割り当てられないため、Webhookの作成に新しいユーザーが必要になる場合があります。');
+jr_define('WEBHOOKS_MANAGER_PROPERTIES_ASSIGNED_DESC','作成したWebhookは、次のプロパティに対してトリガーされます：');
 
 
-jr_define( 'JOMRES_INCOMPLETE', 'Incomplete' );
-jr_define( 'JOMRES_WATING_APPROVAL', 'Pending approval' );
-jr_define( 'JOMRES_GOOGLE_MAPS_PDETAILS', 'Property details map' );
+jr_define('PORTAL_REVIEWS_LIMIT','レビュー制限');
+jr_define('PORTAL_REVIEWS_LIMIT_DESC','この設定を使用して、プロパティの詳細ページに表示されるレビューの数を制限します。');
+jr_define('PORTAL_REVIEWS_SHOW_ALL_REVIEWS','すべてのレビューを表示');
 
-jr_define( 'HAS_STARS_TITLE', 'Allows stars classification?');
-jr_define( '_JOMRES_MEDIA_CENTRE_DBIMPORT_FORCE', 'Force reimport image details to database');
-jr_define( '_JOMRES_MEDIA_CENTRE_S3IMPORT_FORCE', 'Force reupload images to S3 bucket');
-jr_define( '_JOMRES_UNINSTALL_TABLES', 'Delete all Jomres data when uninstalling?');
-jr_define( '_JOMRES_UNINSTALL_TABLES_DESC', 'If set to yes, Jomres will delete all it`s database tables when uninstalled. This will delete all Jomres data from db and can`t be undone.');
+jr_define('ビデオチュートリアル','ビデオチュートリアル');
 
-jr_define( 'TRANSACTION_IDS', 'Transaction id');
-jr_define( 'PAYMENT_METHOD', 'Payment method');
-jr_define( 'POA_DISPLAY_PRICE', 'POA Price');
-jr_define( 'POA_DISPLAY_PRICE_DESC', 'When properties are shown in a list, the system will attempt to find a valid price from configured tariffs based on either today\'s date, or if dates were used in a search, then based on those dates. If it cannot, then it will show POA (Price on application), meaning that the guest should contact you to get a price. If you want, you can configure a price here that will be shown instead of the POA text. This figure would be a "fallback" price to display if no other price can be determined.');
+jr_define('_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE','最低入金額');
+jr_define('_JOMRES_COM_A_MINIMUM_DEPOSIT_VALUE_DESC',"計算されたデポジットがこの数値より少ない場合は、代わりにデポジットをこの値に設定します。サイトの最小デポジット設定を満たさない場合、この数値自体が上書きされる可能性があります。0に設定したままにします。設定を使用しないでください。 ");
 
-jr_define( 'PLUGINMANAGER_INSTALL', 'You need to install the plugin manager before you can install Jomres plugins, would you like to do that now?');
-jr_define( 'PLUGINMANAGER_REINSTALL', 'You need to update the plugin manager before you can update any installed plugins, would you like to do that now?');
-jr_define( 'PLUGINMANAGER_INSTALL_BUTTON', "Let's do this!");
+jr_define('_JOMRES_MEDIA_CENTRE_DBIMPORT_WARNING','サイトの速度を上げるには、既存のサイトとプロパティの画像の詳細をデータベースにインポートすることをお勧めします。');
+jr_define('_JOMRES_MEDIA_CENTRE_DBIMPORT_ACTION','既存の画像の詳細をデータベースにインポートする');
 
-jr_define( 'INCLUDEINFILTERS', 'Include in filters?');
-jr_define( 'INCLUDEINFILTERS_DESC', 'Property feature filters in Ajax Composite Search can become very long, so you can set this option to No to prevent this feature from showing in the property feature list.');
-
-jr_define( 'REVIEW_REMINDER_PT1', "You have ");
-jr_define( 'REVIEW_REMINDER_PT2', " booking(s) that you have not left a review for yet. Please leave a review.");
-jr_define( 'BOOKINGS_AWAITING_REVIEWS', "Bookings waiting for reviews");
-jr_define( 'REVIEW_NAG', "Nag guests for reviews?");
-jr_define( 'REVIEW_NAG_DESC', "Once a guest has been booked out from a booking, the system will remind them to post a review for their booking. Set this option to No to disable this reminder.");
-
-jr_define( 'SEND_EMAIL_COPIES_TO_SITE_ADMINS_TITLE', "Send copies of the booking emails to site admins?");
-jr_define( 'SEND_EMAIL_COPIES_TO_SITE_ADMINS_DESC', "When enabled, copies of the booking emails sent to property managers will be sent to all site admins too.");
-
-jr_define( 'HIDDEN_ADDRESS_SETTING', "Hide address?");
-jr_define( 'HIDDEN_ADDRESS_SETTING_DESC', "If you set this option to Yes, then only guests who have already placed a booking on your property will be able to see the property street address. You might want to use this setting to hide the property's exact location if, for example, it is routinely left unattended.");
-jr_define( 'HIDDEN_ADDRESS_PLACEHOLDER', "HIDDEN");
-jr_define( '_JOMRES_MEDIA_CENTRE_OPTIMIZE_IMAGES', 'Optimize images on upload?');
-jr_define( '_JOMRES_MEDIA_CENTRE_OPTIMIZE_IMAGES_DESC', 'When enabled, images will be optimized for web (file size can be up to 75% smaller). Depending on the uploaded image type, your server needs to have one or more of these libraries installed by the hosting provider: optipng, pngquant, pngcrush, pngout, advpng, jpegtran, jpegoptim, gifsicle');
-jr_define( 'DATABASE_INTEGRITY_CHECK', 'Database Integrity Check');
-jr_define( 'OBSOLETE_FILES_CHECK', 'Obsolete Files Check');
-jr_define( 'DATATABLES_COLVIS', 'Column Visibility');
-
-jr_define( 'API_TOKEN_LIFETIME', 'API token lifetime');
-jr_define( 'API_TOKEN_LIFETIME_DESC', 'How long an API token remains valid for, in seconds. 86400 = 1 day, 31536000 = 1 year');
+jr_define('_JOMRES_S3_ACTIVE_DESC','実験機能。有効にすると、メディアセンター機能を使用してアップロードされた画像もAmazon S3バケットにコピーされ、Amazon S3バケットのURLから提供されます。これを初めて有効にすると、次のようになります。既存の画像をS3バケットにインポートするように促されました。 ');
+jr_define('_JOMRES_CLOUDFRONT_DMAIN','C​​loudFrontドメイン');
+jr_define('_JOMRES_CLOUDFRONT_DMAIN_DESC','デフォルトのAmazonS3ドメインをCloudFrontドメインに置き換えます');
+jr_define('_JOMRES_S3_SSLTLS_DESC','有効にすることをお勧めします。WindowsおよびMacOSXの場合のみ、libcurlがSchannelまたはSecure Transportサポート（WindowsおよびMac OS Xに含まれるネイティブSSLライブラリ)で構築されていない場合は、これを次のように設定する必要があります。番号。');
+jr_define('_JOMRES_MEDIA_CENTRE_S3IMPORT_WARNING','Amazon S3統合を有効にしたので、既存のすべての画像をS3バケットにコピーする必要があります。画像はAmazon S3 URLからサイト訪問者に提供されるようになったため、必要になります。最初にそれらをS3バケットにコピーします。そうしないと、サイトの訪問者には表示されません。');
+jr_define('_JOMRES_MEDIA_CENTRE_S3IMPORT_WARNING2','このボタンをクリックしたら、プロセスを中断せず、成功またはエラーメッセージを待ちます。サーバーの速度によっては、完了するまでに時間がかかる場合があります。');
+jr_define('_JOMRES_MEDIA_CENTRE_S3IMPORT_ACTION','既存の画像をAmazonS3バケットにコピーします');
 
 
-jr_define( 'ENCRYPTION_TITLE', 'Encryption' );
-jr_define( 'ENCRYPTION_FILE_LOCATION', 'Encryption file location' );
-jr_define( 'ENCRYPTION_FILE_LOCATION_DESC', '**Never delete the encryption file** <br/> User data is stored encrypted in tables to ensure that "data at rest" is protected securely, in accordance with GDPR recommendations. By default the encryption key is stored in the file "encryption_key.class.php" in the root of your Jomres installation (typically /public_html/jomres). You can change where the file is stored here. If you do change the location, you must MOVE the file, do not wait for Jomres to create a new version otherwise you will not be able to decode your guests\'s details.' );
+jr_define('JOMRES_INCOMPLETE','不完全');
+jr_define('JOMRES_WATING_APPROVAL','承認待ち');
+jr_define('JOMRES_GOOGLE_MAPS_PDETAILS','プロパティ詳細マップ');
 
-jr_define('_JOMRES_COM_YOURBUSINESS_DESC', 'The information you save here will be used on invoices generated for this property');
+jr_define('HAS_STARS_TITLE','星の分類を許可しますか？');
+jr_define('_JOMRES_MEDIA_CENTRE_DBIMPORT_FORCE','画像の詳細をデータベースに強制的に再インポートします');
+jr_define('_JOMRES_MEDIA_CENTRE_S3IMPORT_FORCE','画像をS3バケットに強制的に再アップロードします');
+jr_define('_JOMRES_UNINSTALL_TABLES','アンインストール時にすべてのJomresデータを削除しますか？');
+jr_define('_JOMRES_UNINSTALL_TABLES_DESC','yesに設定すると、Jomresはアンインストール時にすべてのデータベーステーブルを削除します。これにより、dbからすべてのJomresデータが削除され、元に戻すことはできません。');
+jr_define('TRANSACTION_IDS','トランザクションID');
+jr_define('PAYMENT_METHOD','支払い方法');
+jr_define('POA_DISPLAY_PRICE','POA価格');
+jr_define('POA_DISPLAY_PRICE_DESC','プロパティがリストに表示されると、システムは、今日の日付、または日付が検索で使用された場合はそれらの日付に基づいて、構成された料金から有効な価格を見つけようとします。 。できない場合は、POA（Price on application)が表示されます。つまり、ゲストは価格を取得するためにあなたに連絡する必要があります。必要に応じて、POAテキストの代わりに表示される価格をここで構成できます。この図他の価格を決定できない場合に表示する「フォールバック」価格になります。 ');
 
-jr_define( '_JOMRES_GDPR_POLICIES', 'GDPR Policies' );
-jr_define( '_JOMRES_GDPR_POLICIES_DESC', 'Here you can configure how long after a booking or invoice has been created it is removed from the system to ensure that you are compliant with the GDPR.' );
+jr_define('PLUGINMANAGER_INSTALL','Jomresプラグインをインストールする前に、プラグインマネージャーをインストールする必要があります。今すぐインストールしますか？');
+jr_define('PLUGINMANAGER_REINSTALL','インストールされているプラ​​グインを更新する前に、プラグインマネージャーを更新する必要があります。今すぐ更新しますか？');
+jr_define('PLUGINMANAGER_INSTALL_BUTTON',"これをやろう！");
 
-jr_define( '_JOMRES_GDPR_BOOKING_RETENTION', 'Booking Retention period (in days)' );
-jr_define( '_JOMRES_GDPR_BOOKING_RETENTION_DESC', 'How many days after a booking departure date should the booking be deleted? When it is deleted, both the booking and the invoice are removed. A typical retention period might be 365 days.' );
+jr_define('INCLUDEINFILTERS','フィルターに含める？');
+jr_define('INCLUDEINFILTERS_DESC','Ajax Composite Searchのプロパティ機能フィルターは非常に長くなる可能性があるため、このオプションを[いいえ]に設定して、この機能がプロパティ機能リストに表示されないようにすることができます。');
 
-jr_define( '_JOMRES_GDPR_INVOICE_RETENTION', 'Invoice retention (non-booking) period' );
-jr_define( '_JOMRES_GDPR_INVOICE_RETENTION_DESC', 'Other invoices, such as commission and subscription invoices, are not tied to bookings. As a result they will not be deleted when booking invoices and contracts are deleted. Depending on your country, and your own business practices, you will need to configure a different retention period. A typical retention period might be 3653 days, which is 10 years.' );
+jr_define('REVIEW_REMINDER_PT1',"あなたが持っている");
+jr_define('REVIEW_REMINDER_PT2',"まだレビューを残していない予約。レビューを残してください。");
+jr_define('BOOKINGS_AWAITING_REVIEWS',"レビューを待っている予約");
+jr_define('REVIEW_NAG',"レビューのためにゲストをナグしますか？");
+jr_define('REVIEW_NAG_DESC',"ゲストが予約から予約されると、システムはゲストに予約のレビューを投稿するように通知します。この通知を無効にするには、このオプションを[いいえ]に設定します。");
+
+jr_define('SEND_EMAIL_COPIES_TO_SITE_ADMINS_TITLE',"予約メールのコピーをサイト管理者に送信しますか？");
+jr_define('SEND_EMAIL_COPIES_TO_SITE_ADMINS_DESC',"有効にすると、プロパティマネージャーに送信される予約メールのコピーがすべてのサイト管理者にも送信されます。");
+
+jr_define('HIDDEN_ADDRESS_SETTING',"アドレスを非表示にしますか？");
+jr_define('HIDDEN_ADDRESS_SETTING_DESC',"このオプションを[はい]に設定すると、プロパティにすでに予約を入れているゲストのみがプロパティの番地を表示できます。この設定を使用して、プロパティの正確な場所を非表示にすることができます。たとえば、日常的に無人のままになっている場合。 ");
+jr_define('HIDDEN_ADDRESS_PLACEHOLDER',"HIDDEN");
+jr_define('_JOMRES_MEDIA_CENTRE_OPTIMIZE_IMAGES','アップロード時に画像を最適化しますか？');
+jr_define('_JOMRES_MEDIA_CENTRE_OPTIMIZE_IMAGES_DESC','有効にすると、画像はWeb用に最適化されます（ファイルサイズは最大75％小さくなります)。アップロードされた画像の種類に応じて、サーバーには、ホスティングによってこれらのライブラリが1つ以上インストールされている必要があります。プロバイダー：optipng、pngquant、pngcrush、pngout、advpng、jpegtran、jpegoptim、gifsicle ');
+jr_define('DATABASE_INTEGRITY_CHECK','データベース整合性チェック');
+jr_define('OBSOLETE_FILES_CHECK','廃止されたファイルのチェック');
+jr_define('DATATABLES_COLVIS','列の可視性');
+
+jr_define('API_TOKEN_LIFETIME','APIトークンの有効期間');
+jr_define('API_TOKEN_LIFETIME_DESC','APIトークンが有効である期間（秒単位)。86400= 1日、31536000 = 1年');
 
 
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_INTRO', 'Your data' );
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_THIRD_PARTIES', 'Some features of this website need to store information about your visit. This is used only to provide service to you, is never shared with anyone else and is deleted when no longer needed.' );
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_CONSENT_REQUEST', 'DO YOU GIVE US PERMISSION TO STORE THIS INFORMATION??' );
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_DETAIL', 'In detail' );
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_COOKIE', 'You must consent to us storing this data for you to be able to make bookings on this site. Regardless of whether or not you consent to your data being stored, we will store a cookie on your computer to tell us whether or not you have opted in. This helps us to ensure that we do not constantly ask you whether or not you want to opt in or out and it does not contain any Personally Identifiable Information (PII). If you change your mind you can visit the "App permissions" page at any time to opt in or out.' );
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_BASIC_INFORMATION', 'The information is stored for different time periods depending on the nature of your visit. So, if  you are just looking around we will store approximate geographical location (country level) information. If you perform searches, then to make search forms more user friendly we will store the last things you searched on. This information is typically stored for a maximum of 24 hours and is only used to make your visit more pleasant.' );
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_INTRO', 'When you make a booking with us, by necessity more information is stored.' );
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_1', 'The technicalites of the booking form are captured and retained for a maximum of 60 days. This is required so that On Request bookings can be turned into full bookings once a booking is approved, and for analysis by our teams in case there is an issue with a booking. If you were not logged in when you made a booking then we will email you a username and password so that you can view your booking history and exercise your Right To Be Forgotten (RTBF) if you wish to do that.' );
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_2', 'Data entered into the booking form, for example name, email address, real address is stored for a maximum of 365 days after the booking\'s departure date. This information is stored in encrypted form in our database so that only authorised people can view it. If you make a booking then by law we must store your PII whilst the booking is valid. Once the booking has completed, either because it has been cancelled or you have been checked out, then you will be able to exercise your RTBF by logging in and visiting the "Your data" page. Invoice information for completed bookings will still be securely stored in our database to ensure that we abide by relevant tax laws but you will be able to remove all other PII after the booking is completed.' );
-jr_define( '_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_3', 'When you consent to your information being stored as described above, we are legally obliged to store this consent in our database. This information will include your IP number and the content of the opt-in form. We will retain this consent notification indefinately (this is a legal requirement).' );
+jr_define('ENCRYPTION_TITLE','暗号化');
+jr_define('ENCRYPTION_FILE_LOCATION','暗号化ファイルの場所');
+jr_define('ENCRYPTION_FILE_LOCATION_DESC','**暗号化ファイルを削除しないでください** <br/> GDPRの推奨事項に従って、「保存データ」が安全に保護されるように、ユーザーデータは暗号化されてテーブルに保存されます。デフォルトでは暗号化キーJomresインストールのルートにあるファイル「encryption_key.class.php」（通常は/ public_html / jomres)に保存されます。ファイルの保存場所はここで変更できます。場所を変更する場合は、ファイルを移動する必要があります。 Jomresが新しいバージョンを作成するのを待たないでください。そうしないと、ゲストの詳細をデコードできなくなります。 ');
 
-jr_define( '_JOMRES_GDPR_CONSENT_NOT_SET', 'You have not yet told us if we can collect Personally Identifiable Information about you' );
-jr_define( '_JOMRES_GDPR_CONSENT_OPTED_IN', 'You have consented to us collecting the necessary Personally Identifiable Information to take bookings' );
-jr_define( '_JOMRES_GDPR_CONSENT_OPTED_OUT', 'You have told us to not collect Personally Identifiable Information' );
+jr_define('_JOMRES_COM_YOURBUSINESS_DESC','ここに保存した情報は、このプロパティ用に生成された請求書で使用されます');
 
-jr_define( '_JOMRES_GDPR_NOCONSENT_INTRO', 'You have not given us permission to collect your private data' );
-jr_define( '_JOMRES_GDPR_NOCONSENT_DIDNOTCONSENT', 'For you to perform certain actions on this website we have to collect Personally Identifiable Information about you, but you have not given us permission to do so.' );
-jr_define( '_JOMRES_GDPR_NOCONSENT_DIDNOTCONSENT_LINK_TEXT', 'Change your permissions' );
-jr_define( '_JOMRES_GDPR_NOCONSENT_DIDNOTCONSENT_LINK_CONTINUE', 'Continue viewing properties' );
+jr_define('_JOMRES_GDPR_POLICIES','GDPRポリシー');
+jr_define('_JOMRES_GDPR_POLICIES_DESC','ここでは、予約または請求書が作成されてからシステムから削除される期間を構成して、GDPRに準拠していることを確認できます。');
 
-jr_define( '_JOMRES_GDPR_APP_MENU_ITEM', 'App permissions' );
+jr_define('_JOMRES_GDPR_BOOKING_RETENTION','予約保持期間（日数)');
+jr_define('_JOMRES_GDPR_BOOKING_RETENTION_DESC','予約の出発日から何日後に予約を削除する必要がありますか？削除すると、予約と請求書の両方が削除されます。通常の保存期間は365日です。');
+jr_define('_JOMRES_GDPR_INVOICE_RETENTION','請求書の保持（非予約)期間');
+jr_define('_JOMRES_GDPR_INVOICE_RETENTION_DESC','コミッションやサブスクリプションの請求書など、その他の請求書は予約に関連付けられていません。その結果、予約の請求書や契約が削除されても削除されません。国や独自のビジネス慣行によっては、別の保存期間を構成する必要があります。通常の保存期間は3653日、つまり10年です。 ');
 
-jr_define( '_JOMRES_GDPR_DOWNLOAD_GUEST_DATA', 'Guest data' );
-jr_define( '_JOMRES_GDPR_DOWNLOAD_GUEST_DATA_DESC', 'These are the details that are stored for you by the various properties. Different hotels may hold different records, depending on what you entered when you made the booking.' );
-jr_define( '_JOMRES_GDPR_DOWNLOAD_GUEST_DATA_DESC_NONE', 'You do not have any data stored with any hotels in this system' );
-jr_define( '_JOMRES_GDPR_DOWNLOAD_PROFILE_DATA', 'Profile data' );
-jr_define( '_JOMRES_GDPR_DOWNLOAD_PROFILE_DATA_DESC', 'This is the main data set we hold for you, distinct from those you have shared with different properties.' );
-jr_define( '_JOMRES_GDPR_DOWNLOAD_PROFILE_DATA_DESC_NONE', 'You have not saved any profile information' );
-jr_define( '_JOMRES_GDPR_DOWNLOAD_PROFILE_DATA_TEXT', 'Here is the Personally Identifyable Information that we store on this website for you. It is constructed in JSON (JavaScript Object Notation) format which is a lightweight data-interchange format. It is easy for humans to read and write and it is easy for machines to parse and generate.' );
 
-jr_define( '_JOMRES_GDPR_REDACTION_STRING', 'Anonymised' );
+jr_define('_JOMRES_GDPR_CONSENT_FORM_INTRO','あなたのデータ');
+jr_define('_JOMRES_GDPR_CONSENT_FORM_THIRD_PARTIES','このウェブサイトの一部の機能はあなたの訪問に関する情報を保存する必要があります。これはあなたにサービスを提供するためにのみ使用され、他の人と共有されることはなく、不要になったときに削除されます。');
+jr_define('_JOMRES_GDPR_CONSENT_FORM_CONSENT_REQUEST','この情報を保存する許可を米国に与えますか??');
+jr_define('_JOMRES_GDPR_CONSENT_FORM_DETAIL','詳細');
+jr_define('_JOMRES_GDPR_CONSENT_FORM_COOKIE','このサイトで予約できるようにするには、このデータの保存に同意する必要があります。データの保存に同意するかどうかに関係なく、Cookieをコンピューターに保存して通知します。オプトインしたかどうかを確認します。これにより、オプトインまたはオプトアウトするかどうかを常に尋ねたり、個人を特定できる情報（PII)が含まれたりすることがなくなります。気が変わった場合は、いつでも[アプリのアクセス許可]ページにアクセスして、オプトインまたはオプトアウトできます。 ');
+jr_define('_JOMRES_GDPR_CONSENT_FORM_BASIC_INFORMATION','情報は、訪問の性質に応じてさまざまな期間保存されます。したがって、見回しているだけの場合は、おおよその地理的位置（国レベル)情報が保存されます。検索を実行する場合は、検索フォームをよりユーザーフレンドリーにするために、最後に検索したものを保存します。この情報は通常、最大24時間保存され、訪問をより快適にするためにのみ使用されます。');
+jr_define('_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_INTRO','私たちと一緒に予約すると、必然的に詳細情報が保存されます。');
+jr_define('_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_1','予約フォームの技術情報が取得され、最大60日間保持されます。これは、予約が承認された後、リクエストに応じて予約を完全な予約に変換し、チームが分析できるようにするために必要です。予約に問題がある場合。予約時にログインしていなかった場合は、ユーザー名とパスワードをメールで送信します。これにより、予約履歴を表示し、忘れられる権利（RTBF)を行使できます。それをしたい。 ');
+jr_define('_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_2','名前、メールアドレス、実際の住所など、予約フォームに入力されたデータは、予約の出発日から最大365日間保存されます。この情報は、暗号化された形式でデータベースに保存されます。予約を行う場合、法律により、予約が有効である間、PIIを保存する必要があります。予約がキャンセルされたか、チェックアウトされたために予約が完了すると、次のようになります。ログインして[データ]ページにアクセスすると、RTBFを実行できます。完了した予約の請求書情報は、関連する税法を確実に遵守するためにデータベースに安全に保存されますが、他のすべてのPIIを削除することはできます。予約が完了した後。 ');
+jr_define('_JOMRES_GDPR_CONSENT_FORM_BOOKINGS_3','上記のように情報を保存することに同意した場合、法的にこの同意をデータベースに保存する義務があります。この情報には、IP番号とオプトインフォームの内容が含まれます。この同意通知を無期限に保持します（これは法的要件です)。');
 
-jr_define( '_JOMRES_GDPR_MY_DATA', 'Your data' );
-jr_define( '_JOMRES_GDPR_MY_DATA_PRIVACY_NOTICE', 'By accepting these Terms of Use Agreement (this “Agreement”), you agree that:
+jr_define('_JOMRES_GDPR_CONSENT_NOT_SET','あなたは、あなたに関する個人情報を収集できるかどうかをまだお知らせしていません');
+jr_define('_JOMRES_GDPR_CONSENT_OPTED_IN','予約を行うために必要な個人情報を収集することに同意しました');
+jr_define('_JOMRES_GDPR_CONSENT_OPTED_OUT','個人を特定できる情報を収集しないように指示されました');
+
+jr_define('_JOMRES_GDPR_NOCONSENT_INTRO','個人データを収集する許可を私たちに与えていません');
+jr_define('_JOMRES_GDPR_NOCONSENT_DIDNOTCONSENT','このウェブサイトで特定のアクションを実行するには、個人を特定できる情報を収集する必要がありますが、許可されていません。');
+jr_define('_JOMRES_GDPR_NOCONSENT_DIDNOTCONSENT_LINK_TEXT','権限を変更する');
+jr_define('_JOMRES_GDPR_NOCONSENT_DIDNOTCONSENT_LINK_CONTINUE','プロパティの表示を続行');
+
+jr_define('_JOMRES_GDPR_APP_MENU_ITEM','アプリの権限');
+jr_define('_JOMRES_GDPR_DOWNLOAD_GUEST_DATA','ゲストデータ');
+jr_define('_JOMRES_GDPR_DOWNLOAD_GUEST_DATA_DESC','これらは、さまざまなプロパティによって保存される詳細です。予約時に入力した内容に応じて、ホテルごとに異なるレコードが保持される場合があります。');
+jr_define('_JOMRES_GDPR_DOWNLOAD_GUEST_DATA_DESC_NONE','このシステムのどのホテルにもデータが保存されていません');
+jr_define('_JOMRES_GDPR_DOWNLOAD_PROFILE_DATA','プロファイルデータ');
+jr_define('_JOMRES_GDPR_DOWNLOAD_PROFILE_DATA_DESC','これは、さまざまなプロパティで共有しているものとは異なり、保持するメインのデータセットです。');
+jr_define('_JOMRES_GDPR_DOWNLOAD_PROFILE_DATA_DESC_NONE','プロファイル情報を保存していません');
+jr_define('_JOMRES_GDPR_DOWNLOAD_PROFILE_DATA_TEXT','このウェブサイトに保存されている個人を特定できる情報です。軽量のデータ交換形式であるJSON（JavaScript Object Notation)形式で構築されています。人間が読みやすく、書き込むと、マシンが解析して生成するのは簡単です。 ');
+
+jr_define('_JOMRES_GDPR_REDACTION_STRING','匿名');
+
+jr_define('_JOMRES_GDPR_MY_DATA','あなたのデータ');
+jr_define('_JOMRES_GDPR_MY_DATA_PRIVACY_NOTICE','これらの利用規約（この「契約」)に同意することにより、次のことに同意したことになります。
 
 <ul>
-	<li>
-		You are authorized to book hotels through this website;
-	</li>
-	<li>
-		You are at least 18 years of age;
-	</li>
-	<li>
-		You possess the legal authority to create a binding legal obligation;
-	</li>
-	<li>
-		You will use the Site in accordance with this Agreement;
-	</li>
-	<li>
-		You will only use the Site to make legitimate reservations for yourself or for another person for whom you are legally authorised to act;
-	</li>
-	<li>
-		You will inform such other persons about this Agreement that applies to the reservations I have made on their behalf, including all rules and restrictions applicable thereto;
-	</li>
-	<li>
-		All information supplied by yourself to the Website is true, accurate, current and complete; and
-	</li>
-	<li>
-		You will safeguard your account information and will supervise and be completely responsible for any use of your account by yourself and anyone other than you.
-	</li>
-</ul>
-' );
-jr_define( '_JOMRES_GDPR_MY_DATA_LEAD', 'Security and transparency are important to us.' );
-jr_define( '_JOMRES_GDPR_MY_DATA_INTRO', 'We take our responsibilities regarding storing your data very seriously. All Personally Identifiable Information (PII) is stored encrypted in our database using industry standard algorithms to ensure that only authorised users can view this information.' );
-
-jr_define( '_JOMRES_GDPR_MY_DATA_DOWNLOAD_TEXT', 'You can download all of the PII we store for you.' );
-jr_define( '_JOMRES_GDPR_MY_DATA_DOWNLOAD_BUTTON', 'Download now' );
-
-jr_define( '_JOMRES_GDPR_MY_RTBF_LEAD', 'Right To Be Forgotten (RTBF)' );
-jr_define( '_JOMRES_GDPR_MY_RTBF_INTRO', 'We believe that you should be able to <a href="https://gdpr-info.eu/art-17-gdpr/" target="_blank">delete</a> your <a href="https://gdpr-info.eu/art-4-gdpr/" target="_blank">Personally Identifiable Information </a>if you want and if it is practicable. ' );
-jr_define( '_JOMRES_GDPR_MY_RTBF_NOTREGISTERED_OPTEDIN', 'You are not registered on this site. Your general location (country) and IP number will be stored for a maximum of 24 hours and then deleted.' );
-jr_define( '_JOMRES_GDPR_MY_RTBF_NOTREGISTERED_OPTEDOUT', 'You are not registered on this site and you have opted out of data collection. We have not stored your PII.' );
-
-jr_define( '_JOMRES_GDPR_MY_RTBF_REGISTERED_NOBOOKINGS', 'You are registered on the site and do not have any pending or active bookings. We can anonymise most information we currently hold for you. Would you like to do that? ' );
-jr_define( '_JOMRES_GDPR_MY_RTBF_REGISTERED_NOBOOKINGS_NOTE', 'Note : This does not delete your account, it simply anonymises our records so that your account cannot be associated with you as a person. By law we must continue to store your PII for invoicing purposes, however we will delete all guest records.' );
-
-jr_define( '_JOMRES_GDPR_MY_RTBF_REGISTERED_FUTUREBOOKINGS', 'You are registered on the site, however you have bookings outstanding and we cannot anonymise your data at this time. This data will be retained for a maximum of one year after the booking has been completed, then it will be deleted, if you do not choose to remove it before that time.' );
-jr_define( '_JOMRES_GDPR_MY_RTBF_REGISTERED_PROPERTYMANAGERS', 'Because you are a property manager on our site, we cannot offer you the ability to have your data deleted automatically. Instead, please contact us directly so that we can assign your property(s) to another manager. Once we have done that and removed your status as a property manager, you will be able to automatically have your data deleted.' );
-
-jr_define( '_JOMRES_GDPR_MY_RTBF_FORGET_ME', 'Forget me!' );
-jr_define( '_JOMRES_GDPR_MY_RTBF_FORGET_ME_WARNING', 'This cannot be undone!' );
-jr_define( '_JOMRES_GDPR_MY_RTBF_FORGET_ME_FORGOTTEN', 'Your data has been deleted!' );
-
-jr_define( '_JOMRES_CANNOT_BOOK_INVALID_EMAIL', 'Sorry, you cannot make a booking as your email address is invalid' );
-
-jr_define( '_JOMRES_GDPR_RTBF_ANONYMISE_GUEST_INTRO', 'This page gives you the ability to anonymise any guests who have their information stored in the system. This allows you to be compliant with the GDPR, however you cannot edit any other information on this page. To do that you have to log into the frontend as a property manager. The assumption is that a historic guest has contacted you requesting that you allow them to exercise their right to be forgotten. If they are unable to log into the frontend of the site (perhaps a user was not created for them when they booked) then you can use this area to anonymise them once you have confirmed their identity.' );
-
-jr_define( '_JOMRES_GDPR_RTBF_ANONYMISE_GUEST', 'Anonymise guest' );
-jr_define( '_JOMRES_GDPR_RTBF_UNKNOWN_PROPERTY', 'DELETED PROPERTY' );
-jr_define( '_JOMRES_GDPR_RTBF_GUEST_REDACTED', 'Guest data anonymised' );
-jr_define( '_JOMRES_GDPR_RTBF_GUEST_CANNOT_REDACT', 'Cannot anonymise' );
-
-jr_define( '_JOMRES_GDPR_CONSENT_TRIGGER_FORM', 'We need your permission to store your information before you can make a booking. CLICK HERE to give us permission.' );
-
-jr_define( '_JOMRES_GDPR_CONFIG_ENABLE', 'Enable GDPR compliant functionality?' );
-jr_define( '_JOMRES_GDPR_CONFIG_ENABLE_DESC', 'WE DO NOT RECOMMEND THAT YOU DISABLE THE GDPR COMPLIANT FUNCTIONALITY. Jomres has built-in features that helps you to ensure that the Jomres section of your site is compliant with the GDPR. If you disable this feature (and you should not if you are in the EU or you do business with citizens of the EU) then Jomres will automatically assume that every visitor to the site has given their permission to have their personal data enabled. App permission and My Data pages will not be shown and users will not be prompted to give their permission to have the data collected.' );
-
-
-jr_define( 'EMPTY_TEMP_DIR', 'Empty temp dir' );
-jr_define( 'EMPTY_TEMP_DIR_DONE', 'Temporary files deleted' );
-
-jr_define( 'MACHINE_TRANSLATION', 'Machine translations' );
-jr_define( 'MACHINE_TRANSLATION_DEFAULT_LANG', 'Source language' );
-jr_define( 'MACHINE_TRANSLATION_DEFAULT_LANG_DESC', 'It is possible to hook in machine translation functionality. This allows you to enter strings in one language and translations could be pulled from remote services. Be aware that not all translation services support all languages. See those services for more detail.' );
-
-jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_EDIT', 'Room Types' );
-jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_NEW', 'New Room type' );
-jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_EDIT_LEAD', 'You can create and edit room types on this page. These room types will be specific to this property only. When setting up your property you first need some Room Types. You can use either those room typies created by the administrator, or you can add your own. Once you have one or more Room Types you can then create rooms of that Room Type. After you have rooms you can then create tariffs (prices) for those rooms because tariffs are linked to Room Types.' );
-jr_define( '_JOMRES_CONFIG_ROOM_TYPES_CREATING_TITLE', 'Managers can create room types?' );
-jr_define( '_JOMRES_CONFIG_ROOM_TYPES_CREATING_DESC', 'Use this option to configure whether or not managers can create their own room types in the frontend. We strongly recommend that you leave this option set to No when you first start using Jomres, especially if you are creating a portal because you should create all room types in the administrator area. Room types created by managers will appear in search forms, but because these room types are specific to individual properties, only one property will be shown in search results if that room type is selected durings searches. If you want so that only Super Property Managers can create room types then leave this option set to Yes and use the Access Control plugin to allow only super managers to view the "Settings > Room types" menu option. Only properties that rent out rooms in the property and use Advanced or Micromanage tariff editing modes can use this option. Villa/apartment type properties will not be able to use it.' );
-jr_define('_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_UPDATE', 'Room/property type updated');
-jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_CONFIG_TITLE', 'Show room types in search options' );
-jr_define( '_JOMRES_PROPERTY_ROOM_TYPES_CONFIG_DESC', 'If you choose to allow property managers to create their own room types, you can choose whether or not to show those created room types in the search options where you have chosen to show room types.' );
-
-
-jr_define( '_JOMRES_QUICKBOOKING_EMAIL_ADDRESS_NOTE', "You shouldn't re-use the same email address for each booking.<br/>If you have a unique domain (eg. not a gmail email address) for your business then use the guest's telephone number as their email address. The email address would then look something like 123456@mydomain.com<br/>This will ensure that a new guest is created when you create a booking ." );
-
-jr_define( '_JOMRES_LOGIN_USERNAME', 'Email address' );
-jr_define( '_JOMRES_LOGIN_PASSWORD', 'Password' );
-jr_define( '_JOMRES_LOGIN_REASON_EMAIL_ALREADY_USED',"We are delighted that you would like to book with us again. To be able to manage all your bookings together, it is necessary that you log in so that the booking can be added to your account. This also ensures that you are authorized to use the e-mail address provided." );
-
-jr_define( '_JOMRES_LOGIN_RESET_MESSAGE', 'If you do not know your password we can send you a password reset email. Please follow the instructions in that email to reset your password.' );
-jr_define( '_JOMRES_LOGIN_RESET_BUTTON', 'Forgot your password?' );
-
-jr_define('_JOMRES_REVIEWS_ANONYMISE', 'Anonymise your name?');
-jr_define('_JOMRES_REVIEWS_ANONYMISE_DESC', 'If you choose to anonymise your name when reviewing we will use your initials instead.');
-jr_define('ANONYMOUS', 'Anon');
-
-jr_define('_JOMRES_REVIEWS_REPLY_SAID', ' said ');
-jr_define('_JOMRES_REVIEWS_REPLY_OPPORTUNITY', 'Reply to this review');
-jr_define('_JOMRES_REVIEWS_PLACEHOLDER_REPLY', 'Type your reply to this review here.');
-jr_define('_JOMRES_REVIEWS_YOUR_REPLY', 'Your reply');
-jr_define('_JOMRES_REVIEWS_REPLY_COMMENT', 'Main review');
-jr_define('_JOMRES_REVIEWS_REPLY_SAVED', 'Review reply saved');
-
-
-jr_define('_JOMRES_REVIEWS_REPLY_RULES_WARNING', 'Before submitting a review reply, you must read the following. By submitting a reply you confirm that you agree to these terms and conditions.');
-jr_define('_JOMRES_REVIEWS_REPLY_RULES_GUIDELINES', 'What are our guidelines for a review reply?');
-jr_define('_JOMRES_REVIEWS_REPLY_RULES_REPORT', 'You are responding to the review of your property. You <em>must not</em> use your reply as a commercial dispute process. If you need to report a review, you must use the "Report Review" button on the listing, and not this review reply page.');
-
-jr_define('_JOMRES_REVIEWS_REPLY_RULES_FIRM', 'Once you have left your reply you will not be able to edit it.');
-
-jr_define('_JOMRES_REVIEWS_REPLY_RULES_ALLOWED_TITLE', 'Allowed and Encouraged');
-jr_define('_JOMRES_REVIEWS_REPLY_RULES_ALLOWED_TEXT', '
-	<ul>
-    <li>A full response to the review.</li>
-    <li>Courtesy and Honesty.</li>
-    <li>Sensible responses to the reviewer\'s issues (remember, others may be having similar issues but did not take the opportunity to post a review).</li>
-    <li>Encourage the guest to get in contact with you directly to solve issues.
-    <li>Always remember that future guests will see your response. Make sure to be professional at all times.</li>
-	</ul>
-	');
-	
-jr_define('_JOMRES_REVIEWS_REPLY_RULES_NOTALLOWED_TITLE', 'Not allowed');
-
-jr_define('_JOMRES_REVIEWS_REPLY_RULES_NOTALLOWED_TEXT', '
-	<ul>
-    <li>Commercial disputes.</li>
-    <li>Questions to the Reviewer or Others.</li>
-    <li>Questionable Language (including cursing).</li>
-	</ul>
-	');
-
-jr_define('_JOMRES_COM_A_CRON_LASTRAN', 'Last ran');
-jr_define('_JOMRES_COM_A_CRON_SCHEDULE', 'Schedule');
-
-
-jr_define('_JOMRES_INVOICE_NUMBERS', 'Invoice numbers');
-
-jr_define('_JOMRES_USE_CUSTOM_INVOICE_NUMBERS_TITLE', 'Use custom invoice numbers?');
-jr_define('_JOMRES_USE_CUSTOM_INVOICE_NUMBERS_DESC', 'You can configure the system to use custom invoice numbers. Only new invoices will be affected.');
-
-jr_define('_JOMRES_CUSTOM_INVOICE_NUMBERS_START_NUMBER_TITLE', 'Start number');
-jr_define('_JOMRES_CUSTOM_INVOICE_NUMBERS_START_NUMBER_DESC', 'Numbers are created consecutively. What should the first number be?');
-
-jr_define('_JOMRES_CUSTOM_INVOICE_NUMBERS_PATTERN_TITLE', 'What format should the invoice number take?');
-jr_define('_JOMRES_CUSTOM_INVOICE_NUMBERS_PATTERN_DESC', 'Configure the invoice number format here. A format can look like {N}/{D} or {N}/{Y} where N is the automatically generated number, D = date in the format YYYYYMMDD (20190131) or Y = YYYY (2019). Any other alpha numeric characters not enclosed in curly braces will be left alone, so a pattern that looks like {N}/{D}-L would result in an invoice number (21) that looks something like 21/2019-L ');
-
-jr_define('_JOMRES_SURCHARGE_TITLE', 'Surcharge');
-jr_define('_JOMRES_SURCHARGE_DESC', 'An additional charge that will be added to the room when booked (calculated per day)');
-
-
-jr_define('_JOMRES_PDF_BUTTON', 'PDF');
-
-
-jr_define('_JOMRES_COM_LABEL_PRIORITY_TITLE', 'Prioritise site-wide labels?');
-jr_define('_JOMRES_COM_LABEL_PRIORITY_DESC', 'Custom text saved in the label editing or the translate lang file strings pages are considered "site-wide" labels. Property managers can also customise labels for each property using the label editing feature in the frontend. This allows a property manager to have different texts for his property, which is useful if the property is different to all of the other properties on the site.<br/> When the system searches for label texts, it will prioritise site-wide texts over property specific texts meaning that if a site-wide text exists for that label, the system will choose that one first. If you set this option to No, the system will prioritise property specific texts over site-wide texts.');
-
-jr_define('_JOMRES_REFERRER', 'Referrer');
-jr_define('_JOMRES_REFERRER_SYSTEM', 'Jomres'); // This could be changed if whitelisting, so site "World's best booking site" would change this to "WBBS" or similar.
-jr_define('_JOMRES_LIBRARY_PACKAGES', 'Library Packages');
-jr_define('_JOMRES_LIBRARY_PACKAGES_DESC', 'Vendor and Node Modules are separate (free) packages for Jomres. You can re-install the packages on this page.');
-jr_define('_JOMRES_LIBRARY_PACKAGES_REFRESH', 'Re-install library packages');
-
-jr_define('_JOMRES_COM_PTYPES_NOT_DELETED', 'Unable to delete property type because it is still be used by some properties. You must change these properties to another property type first before attempting to delete this one. Property UIDs that prevent deletion : ');
-jr_define('_JOMRES_COM_PTYPES_NOT_UNPUBLISHED', 'Unable to unpublish property type because it is still be used by some properties. You must change these properties to another property type first before attempting to unpublish this one. Property UIDs that prevent the change : ');
-
-jr_define('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_HEADING', 'Random email addresses');
-jr_define('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_TITLE', 'Offer Random Emails');
-jr_define('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_DESCRIPTION', 'You can allow the system to generate random email addresses in the Quick Booking popup in the dashboard. This allows managers and receptionists to create bookings for guests that they do not have email addresses for, it is intended to work as a time saver for sites with many receptionists/managers who understand that these random emails will never be used for real communication, the purpose is to get around the fact that in Jomres all guests must have email addresses. You MUST also provide a domain in the next field.');
-jr_define('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_DOMAIN_TITLE', 'Random Emails Domain');
-jr_define('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_DOMIAN_DESCRIPTION', 'This should not be a normal email domain, such as gmail or outlook. Instead it can either be your own domain, or something else entirely, such as "mysite.emails"');
-jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_FORM', 'Upload area');
-jr_define('_LIST_USERS_LEGEND_NOROLE', 'No user role');
-jr_define('_LIST_USERS_LEGEND_RECEPTIONIST', 'Receptionist');
-jr_define('_LIST_USERS_LEGEND_PROPERTYMANAGER', 'Property Manager');
-jr_define('_LIST_USERS_LEGEND_SUPERPROPERTYMANAGER', 'Super Property Manager');
-jr_define('_LIST_USERS_LEGEND_SUSPENDED', 'Suspended');
-jr_define('_LIST_USERS_LEGEND_DELETEDFROMCMS', 'Deleted from CMS');
-
-
-jr_define('_REVIEW_JOMRES_PLEASEREVIEW', 'If you like Jomres, please consider leaving a review on one of these sites');
-jr_define('_REVIEW_JOMRES_ALREADYREVIEWED', 'I`m a nice person, i`ve already left a review');
-
-jr_define('_LICENCE_PROMPT_DEAR', 'Dear ');
-jr_define('_LICENCE_EXPIRED', ', your Jomres license key has expired, so you`re missing these great features and benefits! ');
-jr_define('_LICENCE_EXPIRED_BENEFITS_1', 'Plugin updates and new plugin releases');
-jr_define('_LICENCE_EXPIRED_BENEFITS_2', 'Exclusive members only Email/Tickets support');
-jr_define('_LICENCE_EXPIRED_BENEFITS_3', 'Worry-free Jomres Core updates');
-jr_define('_LICENCE_EXPIRED_POST', 'Connect to us for trouble free payment solutions and get access to all plugins and member-only support services.');
-jr_define('_LICENCE_EXPIRED_RESTART', 'Get access to all plugins now!');
-
-jr_define('_LICENCE_INVALID_KEY', 'Unfortunately you don`t seem to be using a valid Jomres license key, so you`re missing on these great features and benefits!');
-jr_define('_LICENCE_INVALID_BENEFITS_1', '<a href="https://www.jomres.net/jomres-plugins" target="_blank">Plugins</a> that greatly extend Jomres functionality');
-jr_define('_LICENCE_INVALID_BENEFITS_2', 'Exclusive members only Email/Tickets support');
-jr_define('_LICENCE_INVALID_BENEFITS_3', 'Worry-free Jomres Core updates');
-jr_define('_LICENCE_INVALID_POST', 'Connect to us for trouble free payment solutions and get access to all plugins and member-only support services.');
-jr_define('_LICENCE_INVALID_START', 'Get access to all plugins now!');
-
-jr_define('_ADMIN_MENU_SECTIONS_DASHBOARD', 'Dashboard');
-jr_define('_ADMIN_MENU_SECTIONS_USERS', 'Users');
-jr_define('_ADMIN_MENU_SECTIONS_COMMISSION', 'Commission');
-jr_define('_ADMIN_MENU_SECTIONS_SUBSCRIPTIONS', 'Subscriptions');
-jr_define('_ADMIN_MENU_SECTIONS_INVOICES', 'Invoices');
-jr_define('_ADMIN_MENU_SECTIONS_PORTAL', 'Portal');
-jr_define('_ADMIN_MENU_SECTIONS_TRANSLATIONS', 'Translations');
-jr_define('_ADMIN_MENU_SECTIONS_TOOLS', 'Tools');
-jr_define('_ADMIN_MENU_SECTIONS_REPORTS', 'Reports');
-jr_define('_ADMIN_MENU_SECTIONS_SETTINGS', 'Settings');
-jr_define('_ADMIN_MENU_SECTIONS_HELP', 'Help');
-
-jr_define('_ADMIN_CPANEL_PROPERTIES_PANEL_TOTAL', 'Total properties in system');
-jr_define('_ADMIN_CPANEL_PROPERTIES_PANEL_PUBLISHED', 'Published properties');
-jr_define('_ADMIN_CPANEL_PROPERTIES_PANEL_UNPUBLISHED', 'Unpublished properties');
-jr_define('_ADMIN_CPANEL_PROPERTIES_PANEL_APPROVED', 'Approved properties');
-jr_define('_ADMIN_CPANEL_PROPERTIES_PANEL_REQUIREAPPROVAL', 'Properties requiring approval');
-
-jr_define('_ADMIN_CPANEL_REVIEWS_PANEL_TOTAL_REVIEWS', 'Total reviews ');
-jr_define('_ADMIN_CPANEL_REVIEWS_PANEL_UNPUBLISHED_REVIEWS', 'Unpublished reviews ');
-jr_define('_ADMIN_CPANEL_REVIEWS_PANEL_REPORTED_REVIEWS', 'Review reports ');
-
-jr_define('_ADMIN_CPANEL_SYSTEM_INFO', 'Jomres System Info');
-
-jr_define('_JOMRES_PROPERTYTYPE_UNPUBLISHED_SANITY_CHECK', "This property's property type is not published, it may not appear in search results. Please contact the site administrator to publish the property type, or change the property type in the Edit Property page.");
-jr_define('_JOMRES_PROPERTYTYPE_UNPUBLISHED_SANITY_CHECK_LINK', 'Update your property type');
-
-
-jr_define('_JOMRES_INCOME_PAID_AMOUNTS', 'Income (paid amounts)');
-jr_define('_JOMRES_CANNOT_DELETE_PROPERTY_FEATURE_1', 'Cannot delete the property feature "');
-jr_define('_JOMRES_CANNOT_DELETE_PROPERTY_FEATURE_2', '" because it is used by the following property(s) : ');
-
-
-jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST', 'REST API test');
-jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_INFO', 'This page performs a basic test of the REST API using built-in functionality in Jomres. It calls the Jomres REST API to see if it receives a valid response.');
-jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_CALLED', 'The server called this URL to see if the response is valid : ');
-jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_RESPONSE', 'The page received this response : ');
-jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_PASSED', 'The test appeared to go as expected, you will probably not have any problem receiving REST API requests from the rest of the Internet.');
-jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_FAILED', 'The test failed, look in the Response field, if it looks like a lot of html, or you recieved a 404 message, then your server is redirecting calls to another url. This will prevent you from receiving API calls.');
-
-jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_TITLE', 'Syndication test');
-jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_INTRO', 'The Jomres App server maintains a list of all Jomres sites. This allows us to build a syndication network. This network is designed to allow our users to display properties from other sites on their own sites and is useful, particularly for new sites, to build up an SEO presence on the net. The goal is for all Jomres sites to work together, building trust in the network. There is no charge for this service.');
-jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_FAILED', 'Your site is not currently listed on the Jomres App server, which is part of the syndication network. This server will try again to add this server to the network on the next 6 page loads. If, after a few page loads, this does not change please check that the connectivity test above passes the tests. Note, localhost servers cannot be added to the network.');
-jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_PASSED', 'Congratulations, your server is listed on the Jomres App server.');
-
-jr_define('_JOMRES_SYNDICATION_TITLE', 'Syndicated properties');
-jr_define('_JOMRES_SYNDICATION_TAGLINE', 'Here are some other properties available from our property network');
-
-
-jr_define('_JOMRES_SYNDICATION_STATS_TITLE', 'Syndication stats');
-jr_define('_JOMRES_SYNDICATION_STATS_IS_LISTED', 'Congratulations, your server is listed on the Jomres Syndication Network. Your property(s) will start appearing on other Jomres sites soon, if they are not already being shown.');
-jr_define('_JOMRES_SYNDICATION_STATS_IS_NOT_LISTED', 'You installation is not part of the Jomres Syndication Network, therefore your property(s) are not being shown on other Jomres based sites and you can\'t benefit from this free advertising.');
-jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_SERVERS', 'Active Jomres installations : ');
-jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_SERVERS_DESC', 'The total number of Jomres installations that are sharing Jomres Syndication Network properties on their sites. ');
-jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTIES', 'Total Properties : ');
-jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTIES_DESC', 'This is the number of properties available in the JSN.');
-jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS', 'Total Property displays : ');
-jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS_DESC', 'In total, all of the times a Jomres property has been linked to from another Jomres based site.');
-jr_define('_JOMRES_SYNDICATION_STATS_BLURB', 'The Jomres Syndicate Network (JSN) is a free feature available to all Jomres users. It\'s purpose is to provide you with free advertising of your properties on other Jomres based sites. The goal is to help you get your site off the ground fast, offering free advertising so that your properties are recognised and trusted because they are linked to high confidence, high relevance websites that are already well known to the search engines. See this <a href="https://www.jomres.net/features/jomres-syndication-network" target="_blank">article on our website</a> and <a href="https://www.jomres.net/manual/developers-guide-2/387-jomres-syndication-network" target="_blank">the manual</a>  for more information.');
-
-
-jr_define('GUEST_PROFILE_INFORMATION', 'This is your guest profile data, fields with this symbol <i class="fa fa-users" aria-hidden="true"></i>
- are publicly visible, whereas fields with this symbol <i class="fa fa-user-secret" aria-hidden="true"></i> can only be seen by you, your hosts and site administrators.<br/><br/>Hosts can only see private information if you have already created a booking with them.<br/><br/>Your information is safely encrypted and stored in our database using AES-256 encryption.');
-
-jr_define('GUEST_PROFILE_OPTIONAL', 'These fields are optional, however hosts may use the information here to determine if they feel that they can trust you, therefore it\'s better to add the information. Remember, you are asking to stay in their property, and they may turn you down if they feel you aren’t a good fit or that your bio doesn’t contain enough information.');
- 
-jr_define('GUEST_PROFILE_DRIVING_LICENSE', 'Driving license');
-jr_define('GUEST_PROFILE_PASSPORT_NUMBER', 'Passport number');
-jr_define('GUEST_PROFILE_IBAN', 'IBAN number');
-jr_define('GUEST_PROFILE_ABOUT_ME', 'About me');
-jr_define('GUEST_PROFILE_ABOUT_ME_HINTS', 'This "About me" section is publicly viewable so don\'t put in any private information. That said, do make an effort to put as much as you feel comfortable sharing such as your passions, what you do for a living, your hobbies etc. You can use Markup to give it a bit of jazz. Hosts will want to feel that they can trust you with their properties. Make sure that your picture is a real picture of you, not your dog or car (yes, guys, we\'re talking to you!).');
-
-jr_define('GUEST_PROFILE_PREFERENCES', 'Enter any special requirements you may have, such as ease of access needs here. They will not be shown on your public profile but they will be added to the booking information when you make a booking.');
-
-jr_define('VIEW_HOST_PROFILE', 'Host\'s profile');
-
-jr_define('GUEST_PROFILE_TITLE', 'Guest profile');
-jr_define('GUEST_PROFILE_TITLE_MY', 'My profile');
-
-jr_define('GUEST_PROFILE_WELCOME', 'Hi, let me tell you a little bit about myself.');
-jr_define('GUEST_PROFILE_MY_NAME', 'My name is ');
-jr_define('GUEST_PROFILE_I_COME_FROM', ' and I come from the ');
-jr_define('GUEST_PROFILE_IN', ' region in ');
-
-jr_define('GUEST_PROFILE_PRIVATE_INFORMATION', 'My private information');
-jr_define('GUEST_PROFILE_PRIVATE_INFORMATION_DISCLAIMER', 'We do our best to validate guest and host information however you should do your own due dilligence and decide for yourself whether or not this person is trustworthy.');
-
-jr_define('GUEST_PROFILE_MY_PROPERTIES', 'My properties');
-jr_define('GUEST_PROFILE_MY_REVIEWS', 'My reviews');
-jr_define('GUEST_PROFILE_MY_REVIEWS_I_SAID', 'This is what I said about this property : ');
-jr_define('GUEST_PROFILE_MY_REVIEWS_I_SCORED', 'I gave this property a rating score of : ');
-jr_define('GUEST_PROFILE_MY_REVIEWS', 'My reviews');
-jr_define('GUEST_PROFILE_OF_ME', 'What other people say about me');
-jr_define('GUEST_PROFILE_OF_HOST_SAID', 'What this host said about me');
-
-jr_define('GUEST_PROFILE_REVIEW_GUEST', 'Review guest');
-jr_define('GUEST_PROFILE_REVIEW_GUEST_CONTENT', 'My review of this guest ');
-jr_define('GUEST_PROFILE_REVIEW_GUEST_CONTENT_EXAMPLES', 'Here are some example guest reviews to get the ball rolling : <br/>
-	
-	<ul>
-	<li>(guests name) was a pleasure to host! They left the space clean and were quiet throughout the weekend. They had smooth communication and I look forward to having them stay with me again!</li>
-    <li>I loved having (guest name) because they were able to treat the place with respect, have a great time and enjoy the area. They were awesome with renting the space and I hope I get to host them again.</li>
-    <li>All of my house rules were respected with (guest name) and they were able to come in and go with ease. I loved having them there as they were respectful and quiet. I highly recommend them to others!</li>
-	</ul>
+<li>
+このウェブサイトからホテルを予約することができます。
+</ li>
+<li>
+あなたは18歳以上です。
+</ li>
+<li>
+あなたは拘束力のある法的義務を作成する法的権限を持っています。
+</ li>
+<li>
+お客様は、本契約に従ってサイトを使用するものとします。
+</ li>
+<li>
+あなたは、あなた自身またはあなたが法的に行動することを許可されている他の人のために合法的な予約をするためにのみサイトを使用します。
+</ li>
+<li>
+あなたは、私が彼らに代わって行った予約に適用される本契約について、それに適用されるすべての規則および制限を含めて、そのような他の人に通知します。
+</ li>
+<li>
+あなた自身がウェブサイトに提供するすべての情報は、真実、正確、最新かつ完全です。と
+</ li>
+<li>
+あなたはあなたのアカウント情報を保護し、あなた自身とあなた以外の誰かによるあなたのアカウントの使用を監督し、完全に責任を負います。
+</ li>
+</ ul>
+');
+jr_define('_JOMRES_GDPR_MY_DATA_LEAD','セキュリティと透明性は私たちにとって重要です。');
+jr_define('_JOMRES_GDPR_MY_DATA_INTRO','私たちはあなたのデータの保存に関する責任を非常に真剣に受け止めています。すべての個人情報（PII)は、許可されたユーザーのみがこの情報を表示できるように、業界標準のアルゴリズムを使用して暗号化されてデータベースに保存されます。');
+
+jr_define('_JOMRES_GDPR_MY_DATA_DOWNLOAD_TEXT','保存されているすべてのPIIをダウンロードできます。');
+jr_define('_JOMRES_GDPR_MY_DATA_DOWNLOAD_BUTTON','今すぐダウンロード');
+
+jr_define('_JOMRES_GDPR_MY_RTBF_LEAD','忘れられる権利（RTBF)');
+jr_define('_JOMRES_GDPR_MY_RTBF_INTRO','<ahref = "https://gdpr-info.eu/art-17-gdpr/" target = "_blank">削除</a>できるはずです< a href = "https://gdpr-info.eu/art-4-gdpr/" target = "_blank">必要に応じて、実行可能な場合は、個人を特定できる情報</a>。 ');
+jr_define('_JOMRES_GDPR_MY_RTBF_NOTREGISTERED_OPTEDIN','あなたはこのサイトに登録されていません。あなたの一般的な場所（国)とIP番号は最大24時間保存され、その後削除されます。');
+jr_define('_JOMRES_GDPR_MY_RTBF_NOTREGISTERED_OPTEDOUT','このサイトに登録されておらず、データ収集をオプトアウトしています。PIIは保存されていません。');
+
+jr_define('_JOMRES_GDPR_MY_RTBF_REGISTERED_NOBOOKINGS','あなたはサイトに登録されており、保留中またはアクティブな予約はありません。現在保持しているほとんどの情報を匿名化できます。よろしいですか？');
+jr_define('_JOMRES_GDPR_MY_RTBF_REGISTERED_NOBOOKINGS_NOTE','注：これはアカウントを削除するのではなく、単に記録を匿名化するため、アカウントを個人として関連付けることはできません。法律により、請求目的でPIIを保存し続ける必要があります。すべてのゲストレコードを削除します。 ');
+
+jr_define('_JOMRES_GDPR_MY_RTBF_REGISTERED_FUTUREBOOKINGS','あなたはサイトに登録されていますが、未処理の予約があり、現時点ではデータを匿名化できません。このデータは、予約完了後最大1年間保持されます。それ以前に削除することを選択しなかった場合は、削除されます。 ');
+jr_define('_JOMRES_GDPR_MY_RTBF_REGISTERED_PROPERTYMANAGERS','あなたは当サイトのプロパティマネージャーであるため、データを自動的に削除する機能を提供することはできません。代わりに、プロパティを別のマネージャーに割り当てることができるように、直接お問い合わせください。それが完了し、プロパティマネージャーとしてのステータスが削除されると、データを自動的に削除できるようになります。 ');
+jr_define('_JOMRES_GDPR_MY_RTBF_FORGET_ME','忘れてください！');
+jr_define('_JOMRES_GDPR_MY_RTBF_FORGET_ME_WARNING','これは元に戻せません！');
+jr_define('_JOMRES_GDPR_MY_RTBF_FORGET_ME_FORGOTTEN','データが削除されました！');
+
+jr_define('_JOMRES_CANNOT_BOOK_INVALID_EMAIL','申し訳ありませんが、メールアドレスが無効であるため予約できません');
+
+jr_define('_JOMRES_GDPR_RTBF_ANONYMISE_GUEST_INTRO','このページでは、システムに情報が保存されているゲストを匿名化できます。これにより、GDPRに準拠できますが、このページの他の情報を編集することはできません。プロパティマネージャーとしてフロントエンドにログインする必要があります。歴史的なゲストから、忘れられる権利を行使することを許可するように求められたことが想定されます。サイトのフロントエンドにログインできない場合（おそらく、彼らが予約したときにユーザーは彼らのために作成されていませんでした)そしてあなたが彼らの身元を確認したら、あなたは彼らを匿名化するためにこのエリアを使うことができます。');
+
+jr_define('_JOMRES_GDPR_RTBF_ANONYMISE_GUEST','匿名ゲスト');
+jr_define('_JOMRES_GDPR_RTBF_UNKNOWN_PROPERTY','削除されたプロパティ');
+jr_define('_JOMRES_GDPR_RTBF_GUEST_REDACTED','ゲストデータが匿名化されました');
+jr_define('_JOMRES_GDPR_RTBF_GUEST_CANNOT_REDACT','匿名化できません');
+
+jr_define('_JOMRES_GDPR_CONSENT_TRIGGER_FORM','予約する前に、情報を保存するための許可が必要です。許可を与えるには、ここをクリックしてください。');
+
+jr_define('_JOMRES_GDPR_CONFIG_ENABLE','GDPR準拠の機能を有効にしますか？');
+jr_define('_JOMRES_GDPR_CONFIG_ENABLE_DESC','GDPR準拠の機能を無効にすることはお勧めしません。Jomresには、サイトのJomresセクションがGDPRに準拠していることを確認するのに役立つ機能が組み込まれています。この機能を無効にすると（およびEU内にいる場合、またはEU市民とビジネスを行っている場合は、そうすべきではありません)、Jomresは、サイトへのすべての訪問者が個人データを有効にする許可を与えていると自動的に想定します。アプリの許可とマイデータページは有効になりません。が表示され、ユーザーはデータを収集する許可を与えるように求められません。 ');
+
+
+jr_define('EMPTY_TEMP_DIR','Empty temp dir');
+jr_define('EMPTY_TEMP_DIR_DONE','一時ファイルが削除されました');
+
+jr_define('MACHINE_TRANSLATION','機械翻訳');
+jr_define('MACHINE_TRANSLATION_DEFAULT_LANG','ソース言語');
+jr_define('MACHINE_TRANSLATION_DEFAULT_LANG_DESC','機械翻訳機能をフックすることができます。これにより、1つの言語で文字列を入力でき、リモートサービスから翻訳を取得できます。すべての翻訳サービスがすべての言語をサポートしているわけではないことに注意してください。もっと詳しく。' );
+
+jr_define('_JOMRES_PROPERTY_ROOM_TYPES_EDIT','ルームタイプ');
+jr_define('_JOMRES_PROPERTY_ROOM_TYPES_NEW','新しい部屋タイプ');
+jr_define('_JOMRES_PROPERTY_ROOM_TYPES_EDIT_LEAD','このページで部屋タイプを作成および編集できます。これらの部屋タイプはこのプロパティにのみ固有です。プロパティを設定するときは、最初にいくつかの部屋タイプが必要です。管理者、または独自の部屋タイプを追加できます。1つ以上の部屋タイプを取得したら、その部屋タイプの部屋を作成できます。部屋を作成したら、料金は部屋タイプにリンクされているため、それらの部屋の料金（価格)を作成できます。 。 ');
+jr_define('_JOMRES_CONFIG_ROOM_TYPES_CREATING_TITLE','マネージャーは部屋タイプを作成できますか？');
+jr_define('_JOMRES_CONFIG_ROOM_TYPES_CREATING_DESC','このオプションを使用して、マネージャーがフロントエンドで独自の部屋タイプを作成できるかどうかを構成します。特にJomresを作成する場合は、このオプションを[いいえ]に設定したままにしておくことを強くお勧めします。管理者エリアですべての部屋タイプを作成する必要があるため、ポータル。管理者が作成した部屋タイプは検索フォームに表示されますが、これらの部屋タイプは個々のプロパティに固有であるため、その部屋タイプを選択すると、検索結果に表示されるプロパティは1つだけになります。スーパープロパティマネージャーのみが部屋タイプを作成できるようにする場合は、このオプションを[はい]に設定したままにし、アクセスコントロールプラグインを使用して、スーパーマネージャーのみが[設定]> [部屋タイプ]メニューオプションを表示できるようにします。プロパティ内の部屋を出て、詳細またはマイクロ管理の料金編集モードを使用すると、このオプションを使用できます。ヴィラ/アパートタイプのプロパティでは使用できません。 ');
+jr_define('_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_UPDATE','部屋/プロパティタイプが更新されました');
+jr_define('_JOMRES_PROPERTY_ROOM_TYPES_CONFIG_TITLE','検索オプションに部屋のタイプを表示する');
+jr_define('_JOMRES_PROPERTY_ROOM_TYPES_CONFIG_DESC','プロパティマネージャーが独自の部屋タイプを作成できるようにする場合は、部屋タイプを表示するように選択した検索オプションで、作成した部屋タイプを表示するかどうかを選択できます。');
+
+jr_define('_JOMRES_QUICKBOOKING_EMAIL_ADDRESS_NOTE',"予約ごとに同じメールアドレスを再利用しないでください。<br/>ビジネスに一意のドメイン（Gmailのメールアドレスではないなど)がある場合は、ゲストの電話番号を使用してくださいメールアドレスとして。メールアドレスは123456@mydomain.comのようになります。<br/>これにより、予約を作成するときに新しいゲストが確実に作成されます。 ");
+
+jr_define('_JOMRES_LOGIN_USERNAME','メールアドレス');
+jr_define('_JOMRES_LOGIN_PASSWORD','パスワード');
+jr_define('_JOMRES_LOGIN_REASON_EMAIL_ALREADY_USED',"再度予約させていただきます。すべての予約をまとめて管理できるようにするには、ログインして予約をアカウントに追加する必要があります。これも提供された電子メールアドレスの使用が許可されていることを確認します。 ");
+
+jr_define('_JOMRES_LOGIN_RESET_MESSAGE','パスワードがわからない場合は、パスワードリセットメールをお送りします。そのメールの指示に従ってパスワードをリセットしてください。');
+jr_define('_JOMRES_LOGIN_RESET_BUTTON','パスワードをお忘れですか？');
+
+jr_define('_JOMRES_REVIEWS_ANONYMISE','あなたの名前を匿名化しますか？');
+jr_define('_JOMRES_REVIEWS_ANONYMISE_DESC','レビュー時に名前を匿名化することを選択した場合は、代わりにイニシャルを使用します。');
+jr_define('ANONYMOUS','Anon');
+
+jr_define('_JOMRES_REVIEWS_REPLY_SAID','言った');
+jr_define('_JOMRES_REVIEWS_REPLY_OPPORTUNITY','このレビューに返信');
+jr_define('_JOMRES_REVIEWS_PLACEHOLDER_REPLY','このレビューへの返信をここに入力してください。');
+jr_define('_JOMRES_REVIEWS_YOUR_REPLY','あなたの返信');
+jr_define('_JOMRES_REVIEWS_REPLY_COMMENT','メインレビュー');
+jr_define('_JOMRES_REVIEWS_REPLY_SAVED','レビューの返信が保存されました');
+
+
+jr_define('_JOMRES_REVIEWS_REPLY_RULES_WARNING','レビューの返信を送信する前に、以下を読む必要があります。返信を送信することにより、これらの利用規約に同意したことになります。');
+jr_define('_JOMRES_REVIEWS_REPLY_RULES_GUIDELINES','レビュー返信のガイドラインは何ですか？');
+jr_define('_JOMRES_REVIEWS_REPLY_RULES_REPORT','あなたはあなたの財産のレビューに返信しています。あなたはあなたの返信を商事紛争プロセスとして使用してはいけません</ em>。レビューを報告する必要がある場合は、「レポートこのレビュー返信ページではなく、リストの[レビュー]ボタン。 ');
+
+jr_define('_JOMRES_REVIEWS_REPLY_RULES_FIRM','返信を残すと、編集できなくなります。');
+
+jr_define('_JOMRES_REVIEWS_REPLY_RULES_ALLOWED_TITLE','許可および推奨');
+jr_define('_JOMRES_REVIEWS_REPLY_RULES_ALLOWED_TEXT','
+<ul>
+    <li>レビューへの完全な回答。</ li>
+    <li>礼儀と誠実さ。</ li>
+    <li>レビュー担当者の問題に対する適切な対応（他の人も同様の問題を抱えている可能性がありますが、レビューを投稿する機会がなかったことを忘れないでください)。</ li>
+    <li>問題を解決するためにゲストに直接連絡するように勧めます。
+    <li>将来のゲストにはあなたの回答が表示されることを常に忘れないでください。常にプロフェッショナルであることを確認してください。</ li>
+</ ul>
+');
+
+jr_define('_JOMRES_REVIEWS_REPLY_RULES_NOTALLOWED_TITLE','許可されていません');
+
+jr_define('_JOMRES_REVIEWS_REPLY_RULES_NOTALLOWED_TEXT','
+<ul>
+    <li>商事紛争。</ li>
+    <li>レビュー担当者またはその他への質問。</ li>
+    <li>疑わしい言葉（ののしりを含む)</ li>
+</ ul>
+');
+
+jr_define('_JOMRES_COM_A_CRON_LASTRAN','最終実行');
+jr_define('_JOMRES_COM_A_CRON_SCHEDULE','スケジュール');
+
+
+jr_define('_JOMRES_INVOICE_NUMBERS','請求書番号');
+
+jr_define('_JOMRES_USE_CUSTOM_INVOICE_NUMBERS_TITLE','カスタム請求書番号を使用しますか？');
+jr_define('_JOMRES_USE_CUSTOM_INVOICE_NUMBERS_DESC','カスタム請求書番号を使用するようにシステムを構成できます。新しい請求書のみが影響を受けます。');
+
+jr_define('_JOMRES_CUSTOM_INVOICE_NUMBERS_START_NUMBER_TITLE','開始番号');
+jr_define('_JOMRES_CUSTOM_INVOICE_NUMBERS_START_NUMBER_DESC','番号は連続して作成されます。最初の番号は何である必要がありますか？');
+
+jr_define('_JOMRES_CUSTOM_INVOICE_NUMBERS_PATTERN_TITLE','請求書番号はどのような形式にする必要がありますか？');
+jr_define('_JOMRES_CUSTOM_INVOICE_NUMBERS_PATTERN_DESC','ここで請求書番号の形式を構成します。形式は{N} / {D}または{N} / {Y}のようになります。ここで、Nは自動生成された番号、D = YYYYYMMDD(20190131)またはY = YYYY（2019)。中括弧で囲まれていないその他の英字はそのままになるため、{N} / {D} -Lのようなパターンは、請求書番号（21)になります。 21 / 2019-L のように見えます');
+jr_define('_JOMRES_SURCHARGE_TITLE','追加料金');
+jr_define('_JOMRES_SURCHARGE_DESC','予約時に部屋に追加される追加料金（1日あたりの計算)');
+
+
+jr_define('_JOMRES_PDF_BUTTON','PDF');
+
+
+jr_define('_JOMRES_COM_LABEL_PRIORITY_TITLE','サイト全体のラベルを優先しますか？');
+jr_define('_JOMRES_COM_LABEL_PRIORITY_DESC','ラベル編集または言語ファイル文字列の翻訳ページに保存されたカスタムテキストは、「サイト全体」のラベルと見なされます。プロパティマネージャは、フロントエンドのラベル編集機能を使用して、各プロパティのラベルをカスタマイズすることもできます。プロパティマネージャーは、プロパティに対して異なるテキストを使用できます。これは、プロパティがサイト上の他のすべてのプロパティと異なる場合に役立ちます。<br/>システムがラベルテキストを検索するとき、プロパティよりもサイト全体のテキストが優先されます。特定のテキストは、そのラベルにサイト全体のテキストが存在する場合、システムが最初にそのラベルを選択することを意味します。このオプションを[いいえ]に設定すると、システムはサイト全体のテキストよりもプロパティ固有のテキストを優先します。');
+
+jr_define('_JOMRES_REFERRER','リファラー');
+jr_define('_JOMRES_REFERRER_SYSTEM','Jomres'); //これはホワイトリストに登録されている場合は変更される可能性があるため、サイト「世界最高の予約サイト」はこれを「WBBS」などに変更します。
+jr_define('_JOMRES_LIBRARY_PACKAGES','ライブラリパッケージ');
+jr_define('_JOMRES_LIBRARY_PACKAGES_DESC','ベンダーモジュールとノードモジュールは、Jomres用の個別の（無料の)パッケージです。このページでパッケージを再インストールできます。');
+jr_define('_JOMRES_LIBRARY_PACKAGES_REFRESH','ライブラリパッケージを再インストールする');
+
+jr_define('_JOMRES_COM_PTYPES_NOT_DELETED','一部のプロパティでまだ使用されているため、プロパティタイプを削除できません。このプロパティを削除する前に、まずこれらのプロパティを別のプロパティタイプに変更する必要があります。削除を防止するプロパティUID：');
+jr_define('_JOMRES_COM_PTYPES_NOT_UNPUBLISHED','一部のプロパティでまだ使用されているため、プロパティタイプを非公開にできません。このプロパティを非公開にする前に、まずこれらのプロパティを別のプロパティタイプに変更する必要があります。変更を防ぐプロパティUID：');
+
+jr_define('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_HEADING','ランダムな電子メールアドレス');
+jr_define('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_TITLE','ランダムなメールを提供する');
+jr_define('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_DESCRIPTION','ダッシュボードの[クイック予約]ポップアップでシステムがランダムな電子メールアドレスを生成できるようにすることができます。これにより、マネージャーと受付担当者は、電子メールアドレスを持たないゲストの予約を作成できます。これらのランダムな電子メールが実際の通信に使用されることは決してないことを理解している多くの受付/管理者がいるサイトの時間節約として、目的は、Jomresではすべてのゲストが電子メールアドレスを持っている必要があるという事実を回避することです。次のフィールド。 ');
+jr_define('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_DOMAIN_TITLE','ランダムメールドメイン');
+jr_define('_JOMRES_RANDOM_EMAILS_IN_QUICKBOOKINGS_DOMIAN_DESCRIPTION','これは、GmailやOutlookなどの通常のメールドメインであってはなりません。代わりに、独自のドメインにすることも、「mysite.emails」などの別のドメインにすることもできます。');
+jr_define('_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_FORM','アップロード領域');
+jr_define('_LIST_USERS_LEGEND_NOROLE','ユーザーロールなし');
+jr_define('_LIST_USERS_LEGEND_RECEPTIONIST','受付係');
+jr_define('_LIST_USERS_LEGEND_PROPERTYMANAGER','プロパティマネージャー');
+jr_define('_LIST_USERS_LEGEND_SUPERPROPERTYMANAGER','スーパープロパティマネージャー');
+jr_define('_LIST_USERS_LEGEND_SUSPENDED','一時停止');
+jr_define('_LIST_USERS_LEGEND_DELETEDFROMCMS','C​​MSから削除');
+
+
+jr_define('_REVIEW_JOMRES_PLEASEREVIEW','Jomresが気に入った場合は、これらのサイトの1つにレビューを残すことを検討してください');
+jr_define('_REVIEW_JOMRES_ALREADYREVIEWED','私はいい人です、私はすでにレビューを残しました');
+
+jr_define('_LICENCE_PROMPT_DEAR','Dear');
+jr_define('_LICENCE_EXPIRED','、Jomresライセンスキーの有効期限が切れているため、これらの優れた機能と利点が不足しています！');
+jr_define('_LICENCE_EXPIRED_BENEFITS_1','プラグインの更新と新しいプラグインのリリース');
+jr_define('_LICENCE_EXPIRED_BENEFITS_2','排他的メンバーのみEメール/チケットサポート');
+jr_define('_LICENCE_EXPIRED_BENEFITS_3','心配のないJomresコアの更新');
+jr_define('_LICENCE_EXPIRED_POST','トラブルのない支払いソリューションのために私たちに接続し、すべてのプラグインとメンバー限定のサポートサービスにアクセスしてください。');
+jr_define('_LICENCE_EXPIRED_RESTART','今すぐすべてのプラグインにアクセスしてください！');
+
+jr_define('_LICENCE_INVALID_KEY','残念ながら、有効なJomresライセンスキーを使用していないようです。そのため、これらの優れた機能と利点が不足しています！');
+jr_define('_LICENCE_INVALID_BENEFITS_1','Jomresの機能を大幅に拡張する<ahref = "https://www.jomres.net/jomres-plugins" target = "_blank">プラグイン</a>');
+jr_define('_LICENCE_INVALID_BENEFITS_2','排他的メンバーのみEメール/チケットサポート');
+jr_define('_LICENCE_INVALID_BENEFITS_3','心配のないJomresコアの更新');
+jr_define('_LICENCE_INVALID_POST','トラブルのない支払いソリューションのために私たちに接続し、すべてのプラグインとメンバー限定のサポートサービスにアクセスしてください。');
+jr_define('_LICENCE_INVALID_START','今すぐすべてのプラグインにアクセスしてください！');
+
+jr_define('_ADMIN_MENU_SECTIONS_DASHBOARD','ダッシュボード');
+jr_define('_ADMIN_MENU_SECTIONS_USERS','ユーザー');
+jr_define('_ADMIN_MENU_SECTIONS_COMMISSION','コミッション');
+jr_define('_ADMIN_MENU_SECTIONS_SUBSCRIPTIONS','サブスクリプション');
+jr_define('_ADMIN_MENU_SECTIONS_INVOICES','請求書');
+jr_define('_ADMIN_MENU_SECTIONS_PORTAL','ポータル');
+jr_define('_ADMIN_MENU_SECTIONS_TRANSLATIONS','翻訳');
+jr_define('_ADMIN_MENU_SECTIONS_TOOLS','ツール');
+jr_define('_ADMIN_MENU_SECTIONS_REPORTS','レポート');
+jr_define('_ADMIN_MENU_SECTIONS_SETTINGS','設定');
+jr_define('_ADMIN_MENU_SECTIONS_HELP','ヘルプ');
+
+jr_define('_ADMIN_CPANEL_PROPERTIES_PANEL_TOTAL','システムの合計プロパティ');
+jr_define('_ADMIN_CPANEL_PROPERTIES_PANEL_PUBLISHED','公開されたプロパティ');
+jr_define('_ADMIN_CPANEL_PROPERTIES_PANEL_UNPUBLISHED','未公開のプロパティ');
+jr_define('_ADMIN_CPANEL_PROPERTIES_PANEL_APPROVED','承認されたプロパティ');
+jr_define('_ADMIN_CPANEL_PROPERTIES_PANEL_REQUIREAPPROVAL','承認が必要なプロパティ');
+
+jr_define('_ADMIN_CPANEL_REVIEWS_PANEL_TOTAL_REVIEWS','レビュー総数');
+jr_define('_ADMIN_CPANEL_REVIEWS_PANEL_UNPUBLISHED_REVIEWS','未公開のレビュー');
+jr_define('_ADMIN_CPANEL_REVIEWS_PANEL_REPORTED_REVIEWS','レビューレポート');
+
+jr_define('_ADMIN_CPANEL_SYSTEM_INFO','Jomresシステム情報');
+
+jr_define('_JOMRES_PROPERTYTYPE_UNPUBLISHED_SANITY_CHECK',"このプロパティのプロパティタイプは公開されていません。検索結果に表示されない場合があります。サイト管理者に連絡してプロパティタイプを公開するか、[プロパティの編集]ページでプロパティタイプを変更してください。");
+jr_define('_JOMRES_PROPERTYTYPE_UNPUBLISHED_SANITY_CHECK_LINK','プロパティタイプを更新します');
+
+
+jr_define('_JOMRES_INCOME_PAID_AMOUNTS','収入（支払額)');
+jr_define('_JOMRES_CANNOT_DELETE_PROPERTY_FEATURE_1','プロパティ機能を削除できません "');
+jr_define('_JOMRES_CANNOT_DELETE_PROPERTY_FEATURE_2','"次のプロパティで使用されるため：');
+
+
+jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST','REST APIテスト');
+jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_INFO','このページは、Jomresの組み込み機能を使用してREST APIの基本的なテストを実行します。JomresRESTAPIを呼び出して、有効な応答を受信するかどうかを確認します。');
+jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_CALLED','サーバーはこのURLを呼び出して、応答が有効かどうかを確認しました：');
+jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_RESPONSE','ページはこの応答を受信しました：');
+jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_PASSED','テストは期待どおりに行われたようで、インターネットの他の部分からのREST APIリクエストの受信に問題はないでしょう。');
+jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_FAILED','テストに失敗しました。HTMLが多いように見える場合は[応答]フィールドを確認するか、404メッセージを受信した場合、サーバーは呼び出しを別のURLにリダイレクトしています。これによりAPIを受信できなくなります。呼び出し。 ');
+
+jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_TITLE','シンジケーションテスト');
+jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_INTRO','JomresアプリサーバーはすべてのJomresサイトのリストを維持します。これにより、シンジケーションネットワークを構築できます。このネットワークは、ユーザーが自分のサイトの他のサイトのプロパティを表示できるように設計されており、便利です。特に新しいサイトの場合、ネット上にSEOプレゼンスを構築します。目標は、すべてのJomresサイトが連携して、ネットワークへの信頼を構築することです。このサービスは無料です。 ');
+jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_FAILED','サイトは現在、シンジケーションネットワークの一部であるJomresアプリサーバーにリストされていません。このサーバーは、次の6ページの読み込み時にこのサーバーをネットワークに追加しようとします。ページの読み込みが少ない場合、これは変更されません。上記の接続テストがテストに合格することを確認してください。ローカルサーバーをネットワークに追加できないことに注意してください。 ');
+jr_define('_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_PASSED','おめでとうございます。サーバーはJomresアプリサーバーにリストされています。');
+
+jr_define('_JOMRES_SYNDICATION_TITLE','シンジケートプロパティ');
+jr_define('_JOMRES_SYNDICATION_TAGLINE','プロパティネットワークから利用できる他のプロパティがいくつかあります');
+
+jr_define('_JOMRES_SYNDICATION_STATS_TITLE','シンジケーション統計');
+jr_define('_JOMRES_SYNDICATION_STATS_IS_LISTED','おめでとうございます。サーバーはJomresシンジケーションネットワークにリストされています。プロパティがまだ表示されていない場合は、すぐに他のJomresサイトに表示されるようになります。');
+jr_define('_JOMRES_SYNDICATION_STATS_IS_NOT_LISTED','インストールはJomresSyndication Networkの一部ではないため、プロパティは他のJomresベースのサイトに表示されず、この無料広告の恩恵を受けることはできません。');
+jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_SERVERS','アクティブなJomresインストール：');
+jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_SERVERS_DESC','サイトでJomresSyndication Networkプロパティを共有しているJomresインストールの総数。');
+jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTIES','合計プロパティ：');
+jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTIES_DESC','これはJSNで使用可能なプロパティの数です。');
+jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS','プロパティの合計表示数：');
+jr_define('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS_DESC','合計で、Jomresプロパティが別のJomresベースのサイトからリンクされているすべての時間。');
+jr_define('_JOMRES_SYNDICATION_STATS_BLURB','Jomres Syndicate Network（JSN)は、すべてのJomresユーザーが利用できる無料の機能です。その目的は、他のJomresベースのサイトでプロパティの無料広告を提供することです。あなたはあなたのサイトを早く立ち上げ、無料の広告を提供して、あなたの財産が検索エンジンにすでによく知られている信頼性と関連性の高いウェブサイトにリンクされているので、あなたの財産が認識され信頼されるようにします。これを参照してください<a href = "https： //www.jomres.net/features/jomres-syndication-network"target = "_blank">当社のウェブサイトの記事</a>および<ahref = "https://www.jomres.net/manual/developers-ガイド-2 / 387-jomres-syndication-network target="_blank">詳細については、マニュアル</a>。 ');
+
+
+jr_define('GUEST_PROFILE_INFORMATION','これはゲストプロファイルデータであり、この記号が付いたフィールド<i class = "fa fa-users" aria-hidden = "true"> </ i>
+ は一般公開されていますが、この記号が<i class = "fa fa-user-secret" aria-hidden = "true"> </ i>のフィールドは、あなた、ホスト、サイト管理者だけが見ることができます。<br/> <br/>ホストは、あなたがすでに予約を作成している場合にのみ個人情報を見ることができます。<br/> <br/>あなたの情報は安全に暗号化され、AES-256暗号化を使用してデータベースに保存されます。');
+
+jr_define('GUEST_PROFILE_OPTIONAL','これらのフィールドはオプションですが、ホストはここの情報を使用して、あなたを信頼できると感じているかどうかを判断できます。したがって、情報を追加することをお勧めします。財産であり、あなたが適切ではないと感じたり、あなたの略歴に十分な情報が含まれていないと彼らが感じた場合、彼らはあなたを断る可能性があります。');
+
+jr_define('GUEST_PROFILE_DRIVING_LICENSE','運転免許証');
+jr_define('GUEST_PROFILE_PASSPORT_NUMBER','パスポート番号');
+jr_define('GUEST_PROFILE_IBAN','IBAN番号');
+jr_define('GUEST_PROFILE_ABOUT_ME','自己紹介');
+jr_define('GUEST_PROFILE_ABOUT_ME_HINTS','この「自己紹介」セクションは一般公開されているため、個人情報を入力しないでください。ただし、情熱や自分が何を共有できるかなど、できるだけ多くの情報を入力するように努めてください。生活や趣味などのために行います。マークアップを使用してジャズを少し加えることができます。ホストは、自分の特性であなたを信頼できると感じたいと思うでしょう。あなたの写真があなたの犬ではなく、あなたの本当の写真であることを確認してください。または車（はい、みんな、私たちはあなたと話しているのです！) ');
+
+jr_define('GUEST_PROFILE_PREFERENCES','アクセスのしやすさなど、特別な要件をここに入力します。これらは公開プロフィールには表示されませんが、予約時に予約情報に追加されます。');
+
+jr_define('VIEW_HOST_PROFILE','ホスト\のプロファイル');
+
+jr_define('GUEST_PROFILE_TITLE','ゲストプロファイル');
+jr_define('GUEST_PROFILE_TITLE_MY','マイプロファイル');
+
+jr_define('GUEST_PROFILE_WELCOME','こんにちは、私自身について少しお話ししましょう。');
+jr_define('GUEST_PROFILE_MY_NAME','私の名前は');
+jr_define('GUEST_PROFILE_I_COME_FROM','そして私はから来ています');
+jr_define('GUEST_PROFILE_IN','region in');
+
+jr_define('GUEST_PROFILE_PRIVATE_INFORMATION','私の個人情報');
+jr_define('GUEST_PROFILE_PRIVATE_INFORMATION_DISCLAIMER','ゲストとホストの情報を検証するために最善を尽くしますが、自分でデューデリジェンスを行い、この人物が信頼できるかどうかを自分で判断する必要があります。');
+
+jr_define('GUEST_PROFILE_MY_PROPERTIES','マイプロパティ');
+jr_define('GUEST_PROFILE_MY_REVIEWS','マイレビュー');
+jr_define('GUEST_PROFILE_MY_REVIEWS_I_SAID','これは私がこのプロパティについて言ったことです：');
+jr_define('GUEST_PROFILE_MY_REVIEWS_I_SCORED','このプロパティに次の評価スコアを付けました：');
+jr_define('GUEST_PROFILE_MY_REVIEWS','マイレビュー');
+jr_define('GUEST_PROFILE_OF_ME','他の人が私について言うこと');
+jr_define('GUEST_PROFILE_OF_HOST_SAID','このホストが私について言ったこと');
+
+jr_define('GUEST_PROFILE_REVIEW_GUEST','レビューゲスト');
+jr_define('GUEST_PROFILE_REVIEW_GUEST_CONTENT','このゲストの私のレビュー');
+jr_define('GUEST_PROFILE_REVIEW_GUEST_CONTENT_EXAMPLES','ボールを転がすためのゲストレビューの例をいくつか示します：<br/>
+
+<ul>
+<li>（ゲスト名)はホストするのが楽しみでした！彼らはスペースをきれいに残し、週末を通して静かでした。彼らはスムーズなコミュニケーションを取り、また私と一緒にいてくれることを楽しみにしています！</ li>
+    <li>（ゲスト名)が大好きだったのは、彼らがその場所を敬意を持って扱い、楽しい時間を過ごし、その地域を楽しむことができたからです。彼らはスペースを借りることで素晴らしかったです、そして私は彼らを再びホストするようになることを願っています。</ li>
+    <li>私の家のルールはすべて（ゲスト名)を尊重し、簡単に出入りすることができました。彼らは礼儀正しく静かだったので、私は彼らがそこにいるのが好きでした。他の人にも強くお勧めします！</ li>
+</ ul>
 
 ');
 
-jr_define('GUEST_PROFILE_UNKNOWN', 'Sorry, I can\'t find that user. Most likely they have not filled in their account details yet.');
+jr_define('GUEST_PROFILE_UNKNOWN','申し訳ありませんが、そのユーザーが見つかりません。おそらく、アカウントの詳細をまだ入力していません。');
 
-jr_define('GUEST_PROFILE_USERSTATUS_GUEST', 'Guest');
-jr_define('GUEST_PROFILE_USERSTATUS_HOST', 'Host');
-jr_define('GUEST_PROFILE_USERSTATUS_ADMIN', 'Admin');
+jr_define('GUEST_PROFILE_USERSTATUS_GUEST','ゲスト');
+jr_define('GUEST_PROFILE_USERSTATUS_HOST','ホスト');
+jr_define('GUEST_PROFILE_USERSTATUS_ADMIN','Admin');
 
-jr_define('WORDPRESS_THEME_ADVICE', 'Jomres is built on the Bootstrap framework, so you must use it on a theme based on Bootstrap. We recommend one based on Bootstrap 3. If you do not have access to a theme then we recommend that you use the Jomres Leohtian theme for Wordpress which you can <a href="https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target="_blank">download from here.</a>');
-
-
-jr_define('BOOKING_NOSHOW_MENU', 'Mark as No Show');
-jr_define('BOOKING_NOSHOW_AUDIT_LOG', 'Booking marked as No Show');
-jr_define('BOOKING_NOSHOW_BOOKINGS', 'Bookings');
-jr_define('BOOKING_NOSHOW_NOSHOWS', 'No Shows');
-jr_define('BOOKING_NOSHOW_NETWORK_STATUS', 'JSN statistics for this user');
-
-jr_define('BOOKING_NOSHOW_INFO', 'Booking and No Show information is pulled from the Jomres Syndicate Network at booking time. It is taken from anonymised data and can be used by you to decide if this guest is a risk of not fulfilling the booking. If the system reports that the data is unknown, it is probably because this system is not recognised on the network.');
-
-jr_define('BOOKING_NOSHOW_UNKNOWN', 'Unknown');
-
-jr_define('CMF_CONFIG_TITLE', 'Channel Management Framework');
-jr_define('CMF_CONFIG_KEY', 'Channel Management Framework Key');
-jr_define('CMF_CONFIG_KEY_DESC', 'The Channel Management Framework license key. You will need to provide this key to be able to download Channel Management Framework plugins.');
-
-jr_define('_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT_UNAPPROVED', 'Your property has not been approved');
-jr_define('_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT_UNAPPROVED', "Your property as been unapproved. If you think that this was done in error please contact us. ");
-
-jr_define('_JOMRES_GUESTTYPES_IS_CHILD',"Is this a Child guest type?");
-jr_define('_JOMRES_GUESTTYPES_IS_CHILD_DESC',"Set this to Yes if this guest type would be classed as a Child guest type.");
-
-jr_define('_JOMRES_GUESTTYPES_INTRO',"If you want to charge per person per night then you will need to create some guest types.");
-jr_define('_JOMRES_GUESTTYPES_INSTRUCTIONS',"You can create as many guest types as you need, try starting out by creating just one guest type called 'Adult'. Leave all of the settings at their default values. Next, if for example you want to give children under 12 a discount of 50% you would create a new guest type, and call it 'Children under 12'. Set the 'Add variance?' option to - (negative) and set the 'Variance' to 50. This means when children are added to a booking they're charged 50% of the room cost of the room. " );
-
-jr_define('_JOMRES_MICROMANAGE_PICKERDROPDOWN_EDITPRICES',"Set prices manually");
-jr_define('_JOMRES_MICROMANAGE_PICKERDROPDOWN_EDITMINDAYS',"Set minimum nights manually");
-jr_define('_JOMRES_MICROMANAGE_PICKER_SETMINDAYS',"Set minimum nights");
-
-jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_DOW',"Set <em>price per night</em> by day of week");
-jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_INTERVAL_RATES',"Set <em>price per night</em> by date range");
-jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_INTERVAL_MINDAYS',"Set <em>minimum nights</em> by date range");
-
-jr_define('_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_RATES',"The date pickers and the rate input allow you to set one price for a given date range. Choose a start and end date, input a price, and click the Set price per night button.");
-jr_define('_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_MINDAYS',"The date pickers and the minimum nights input allow you to set one value for the minimum nights for a given date range. Choose a start and end date, input a number for the minimum nights, and click 'Set minimum nights'.");
-
-jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR_INFO',"Use this dropdown to change between setting prices for individual dates, to setting minimum nights for individual dates. You can use the <em>by day of week</em> picker, the <em>by date range</em> picker or set the prices/minimum nights by manually editing the dates.");
-jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR_INFO_SMALL_VIEWPORT',"Use this dropdown to change between setting prices for individual dates, to setting minimum nights for individual dates. You can use the <em>by date range</em> picker or set the prices/minimum nights by manually editing the dates.");
-jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR',"Set prices or minimum nights");
-
-jr_define('_JOMRES_MICROMANAGE_PICKER_BYDOW',"Set <em>minimum nights</em> by day of week");
-jr_define('_JOMRES_MICROMANAGE_PICKER_BYDOW_INFO',"The day of week fields allow you to set a minimum number of nights for a given day of week, once you click the day of week button all days of the week will be set to that min nights setting.");
+jr_define('WORDPRESS_THEME_ADVICE','JomresはBootstrapフレームワークに基づいて構築されているため、Bootstrapに基づくテーマで使用する必要があります。Bootstrap3に基づくものをお勧めします。テーマにアクセスできない場合は、を使用することをお勧めします。 WordpressのJomresLeohtianテーマ<ahref = "https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target = "_blank ">ここからダウンロードしてください。</a> ');
 
 
-jr_define('_JOMRES_MICROMANAGE_MANUALLY',"Manually set prices/minimum nights");
-jr_define('_JOMRES_MICROMANAGE_SET_PRICES',"Set prices");
-jr_define('_JOMRES_MICROMANAGE_SET_MINDAYS',"Set minimum nights");
+jr_define('BOOKING_NOSHOW_MENU','ノーショーとしてマーク');
+jr_define('BOOKING_NOSHOW_AUDIT_LOG','予約はノーショーとしてマークされています');
+jr_define('BOOKING_NOSHOW_BOOKINGS','予約');
+jr_define('BOOKING_NOSHOW_NOSHOWS','ノーショー');
+jr_define('BOOKING_NOSHOW_NETWORK_STATUS','このユーザーのJSN統計');
 
-jr_define('_JOMRES_MICROMANAGE_PRICE',"Per night");
-jr_define('_JOMRES_MICROMANAGE_MINDAYS',"Min nights");
-jr_define('_JOMRES_MICROMANAGE_MAXDAYS',"Max nights");
+jr_define('BOOKING_NOSHOW_INFO','予約および表示なしの情報は、予約時にJomres Syndicate Networkから取得されます。匿名化されたデータから取得され、このゲストが予約を履行しないリスクがあるかどうかを判断するために使用できます。システムはデータが不明であると報告します。これはおそらく、このシステムがネットワーク上で認識されていないためです。');
 
-jr_define('_JOMRES_MICROMANAGE_INTRO',"Here you can create you tariffs, which are associated with the room types that you have in your property. ");
+jr_define('BOOKING_NOSHOW_UNKNOWN','不明');
 
-jr_define('_JOMRES_MICROMANAGE_BASIC_SETTINGS',"Most commonly used options");
+jr_define('CMF_CONFIG_TITLE','チャネル管理フレームワーク');
+jr_define('CMF_CONFIG_KEY','チャネル管理フレームワークキー');
+jr_define('CMF_CONFIG_KEY_DESC','チャネル管理フレームワークのライセンスキー。チャネル管理フレームワークのプラグインをダウンロードできるようにするには、このキーを指定する必要があります。');
 
-jr_define('_JOMRES_MICROMANAGE_MODAL_BUTTON',"Instructions");
+jr_define('_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT_UNAPPROVED','プロパティは承認されていません');
+jr_define('_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT_UNAPPROVED',"あなたのプロパティは未承認です。これが誤って行われたと思われる場合は、お問い合わせください。");
 
-jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS',"If you want to add different prices for different numbers of guests then <em>you can create more than several tariffs for each room type</em> and have different min/max guests values in those tariffs.");
+jr_define('_JOMRES_GUESTTYPES_IS_CHILD',"これは子ゲストタイプですか？");
+jr_define('_JOMRES_GUESTTYPES_IS_CHILD_DESC',"このゲストタイプが子ゲストタイプとして分類される場合は、これを[はい]に設定します。");
 
-jr_define('_JOMRES_MICROMANAGE_INFO',"Give the tariff a name, define the maximum number of nights, and the minimum and maximum number of guests that are required in the booking form before the tariff is offered.<br/><br/> Use the date picker panel to add prices and minimum nights settings to a range of dates, or edit the inputs directly. If you don't want the tariff to be offered at all on certain dates, leave the price set to 0 ( zero ) on those dates. <br/><br/> You can have different minimum nights on different dates, so if you want longer bookings during festival/conference weeks then you can set the min nights to be higher in just those periods.<br/><br/>If you charge Per Person Per Pight (PPPN) you can enable that setting in Settings > Property Configuration > Tariffs and Currency tab, then create the guest types that you require in Settings > Guest Types.");
+jr_define('_JOMRES_GUESTTYPES_INTRO',"1人1泊あたりの料金を請求する場合は、いくつかのゲストタイプを作成する必要があります。");
+jr_define('_JOMRES_GUESTTYPES_INSTRUCTIONS',"必要な数のゲストタイプを作成できます。まず、「アダルト」というゲストタイプを1つだけ作成してみてください。すべての設定をデフォルト値のままにします。次に、たとえば,12歳未満の子供に50％の割引を与えると、新しいゲストタイプを作成し、「12歳未満の子供」と呼びます。「分散を追加しますか？」オプションを-（負)に設定し、「分散」を50に設定します。子供が予約に追加されると、部屋の部屋代の50％が請求されます。 ");
 
-jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS',"Extra options");
+jr_define('_JOMRES_MICROMANAGE_PICKERDROPDOWN_EDITPRICES',"価格を手動で設定");
+jr_define('_JOMRES_MICROMANAGE_PICKERDROPDOWN_EDITMINDAYS',"最低宿泊日数を手動で設定");
+jr_define('_JOMRES_MICROMANAGE_PICKER_SETMINDAYS',"最小宿泊日数を設定");
 
-jr_define('_JOMRES_MICROMANAGE_EXTRA_OPTIONS',"These are additional options that are not so commonly used, but nevertheless available to you. <br/><strong>Ignore PPPN</strong> Means Ignore Per Person Per Night. You can have several different tariffs for the same room type, for example one of which charges per person per night, and one that does not.<br/><strong>Allow weekends</strong> The Allow Weekends option gives you the option to make a tariff that's only available during weekdays, for example if you want a special tariff for business travellers. In that case you would set the option to No and the min nights to 1 and the max nights, at most, 5.  <br/><strong>Weekends only</strong>  The Weekends only option is the converse of the Allow Weekends option. What you consider to be weekend days can be configured in your Property Configuration settings. This gives you the ability to define a weekend only rate that you might want to offer for special events.<br/><strong>Check-in Day of week</strong> This option gives you the ability to force checkin to only be on certain days of the week and is best used in conjunction with the Property Configuration > Bookings tab > Fixed periods options. The majority of users will want to leave this option set to All.<br/>The final two options, <strong>Min rooms already selected</strong> and <strong>Max rooms already selected</strong> are very specialised and useful to properties with extremely complicated tariffs. <em>Unless you have a specific need, you should leave these options alone.</em> Use them if you only want this tariff to be offered when the guest has already selected N number of rooms in the booking form, so for example you could have one basic tariff where those options are left at the default, and a second tariff where the min rooms already selected option is set to 1, then this second tariff will be offered in the booking form once a room has been selected.");
+jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_DOW',"曜日ごとに<em> 1泊あたりの料金</ em>を設定");
+jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_INTERVAL_RATES',"日付範囲で<em> 1泊あたりの料金</ em>を設定");
+jr_define('_JOMRES_MICROMANAGE_PICKER_TYPE_INTERVAL_MINDAYS',"日付範囲で<em>最小宿泊日数</ em>を設定");
 
-jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS_LIST_PAGE',"You can create multiple tariffs for the same room type, so you can create one tariff for min/max days of 1 - 7 and a second tariff where the min days is 7, the max days 14, and so on. This allows you create pricing schemes as simple or as complicated as you need. It also allows you to create multiple tariffs with different conditions, so you can have a second set of tariffs where the price is lower for Bed & Breakfast, and another set of more expensive tariffs for Bed, Breakfast and Evening Meal.");
+jr_define('_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_RATES',"日付ピッカーとレート入力を使用すると、特定の日付範囲に1つの価格を設定できます。開始日と終了日を選択し、価格を入力して、[1泊あたりの価格を設定]ボタンをクリックします。");
+jr_define('_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_MINDAYS',"日付ピッカーと最小夜数の入力により、特定の日付範囲の最小夜数に1つの値を設定できます。開始日と終了日を選択し、最小夜数の数値を入力して、[設定]をクリックします。最低宿泊日数 '。 ");
 
-jr_define('_JOMRES_MICROMANAGE_USE_SELECTED_DATES',"Set date picker days only");
-jr_define( '_JOMRES_PROPERTY_HCATEGORIES', 'Property Categories' );
-jr_define( '_JOMRES_PROPERTY_HCATEGORIES_HEDIT', 'Edit Property Category' );
-jr_define('_JOMRES_STOP_READTHISFIRST1',"Stop!");
-jr_define('_JOMRES_STOP_READTHISFIRST2',"Thanks for installing Jomres");
-jr_define('_JOMRES_STOP_READTHISFIRST3',"Property management is performed in public facing pages, not the administrator area.");
-jr_define('_JOMRES_STOP_READTHISFIRST4',"If you are not familiar with Jomres please visit the Help section > Getting Started page.");
+jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR_INFO',"このドロップダウンを使用して、個々の日付の価格の設定から、個々の日付の最低宿泊日数の設定を変更します。<em>曜日別</ em>ピッカー、<em>日付別<em>を使用できます。範囲</ em>ピッカー、または手動で日付を編集して価格/最低宿泊日数を設定します。 ");
+jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR_INFO_SMALL_VIEWPORT',"このドロップダウンを使用して、個々の日付の価格の設定から、個々の日付の最小宿泊日数の設定を変更します。<em>日付範囲別</ em>ピッカーを使用するか、料金/最低宿泊日数を設定できます。手動で日付を編集します。 ");
+jr_define('_JOMRES_MICROMANAGE_PICKERS_SELECTOR',"価格または最低宿泊日数を設定");
 
-
-jr_define('_JOMRES_CONFIG_SYNDICATION_TITLE',"Join the Jomres Syndicate");
-jr_define('_JOMRES_CONFIG_SYNDICATION_DESC',"Once you have your site setup and ready to start receiving visitors, join the Jomres.net syndicate and get your properties listed on other Jomres sites.");
+jr_define('_JOMRES_MICROMANAGE_PICKER_BYDOW',"曜日ごとに<em>最小夜数</ em>を設定");
+jr_define('_JOMRES_MICROMANAGE_PICKER_BYDOW_INFO',"曜日フィールドを使用すると、特定の曜日の最小夜数を設定できます。曜日ボタンをクリックすると、すべての曜日がその最小夜数設定に設定されます。 ");
 
 
+jr_define('_JOMRES_MICROMANAGE_MANUALLY',"手動で価格を設定/最低宿泊日数");
+jr_define('_JOMRES_MICROMANAGE_SET_PRICES',"価格を設定");
+jr_define('_JOMRES_MICROMANAGE_SET_MINDAYS',"最小宿泊日数を設定");
 
-jr_define('_JOMRES_MICROMANAGE_CREATE_ROOM_1',"You need at least one room of one of the following types before you can create a tariff :");
-jr_define('_JOMRES_MICROMANAGE_CREATE_ROOM_2',"Go to Settings > Rooms and create a room first, once  you have done that you will be able to create a tariff for that room type.");
+jr_define('_JOMRES_MICROMANAGE_PRICE',"1泊あたり");
+jr_define('_JOMRES_MICROMANAGE_MINDAYS',"最小の夜");
+jr_define('_JOMRES_MICROMANAGE_MAXDAYS',"最大夜数");
+
+jr_define('_JOMRES_MICROMANAGE_INTRO',"ここでは、プロパティにある部屋のタイプに関連付けられた料金表を作成できます。");
+
+jr_define('_JOMRES_MICROMANAGE_BASIC_SETTINGS',"最も一般的に使用されるオプション");
+
+jr_define('_JOMRES_MICROMANAGE_MODAL_BUTTON',"手順");
+
+jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS',"ゲスト数ごとに異なる価格を追加する場合は、<em>部屋タイプごとに複数の料金を作成し</ em>、それらの料金に異なる最小/最大ゲスト値を設定できます。 ");
+
+jr_define('_JOMRES_MICROMANAGE_INFO',"料金表に名前を付け、最大宿泊日数、および料金表が提供される前に予約フォームで必要な最小および最大ゲスト数を定義します。<br/> <br/>使用日付ピッカーパネルを使用して、日付の範囲に価格と最低宿泊日数の設定を追加するか、入力を直接編集します。特定の日付に料金をまったく提供したくない場合は、価格を0（ゼロ)に設定したままにします。 <br/> <br/>日付ごとに最小宿泊日数を変えることができるため、フェスティバル/会議の週に予約を長くしたい場合は、それらの期間だけで最低宿泊日数を高く設定できます。<br / > <br/> Per Person Per Pight（PPPN)を請求する場合は、[設定]> [プロパティ構成]> [料金と通貨]タブでその設定を有効にしてから、[設定]> [ゲストタイプ]で必要なゲストタイプを作成できます。 ");
+
+jr_define('_JOMRES_MICROMANAGE_EXTRAOPTIONS',"追加オプション");
+jr_define('_JOMRES_MICROMANAGE_EXTRA_OPTIONS',"これらは、それほど一般的には使用されないが、それでも利用できる追加のオプションです。<br/> <strong> PPPNを無視する</ strong>は、1人1泊あたりを無視することを意味します。複数の異なる料金を設定できます。同じ部屋タイプの場合、たとえば、1人1泊あたりの料金と、料金がかからないものがあります。<br/> <strong>週末を許可する</ strong> [週末を許可する]オプションを使用すると、唯一の料金を設定できます。たとえば、ビジネス旅行者向けの特別料金が必要な場合など、平日に利用できます。その場合は、オプションを[いいえ]に設定し、最小夜を1に、最大夜を最大5に設定します。<br/> <strong>週末のみ</ strong> [週末のみ]オプションは、[週末を許可]オプションの逆です。週末と見なすものは、プロパティ構成設定で構成できます。これにより、週末のみのレートを定義できます。特別なイベントのオファー。<br/> <strong>チェックイン曜日</ strong>このオプションを使用すると、チェックインを特定の曜日にのみ強制することができ、[プロパティの構成]> [予約]タブ> [固定期間]オプションと組み合わせて使用​​するのが最適です。大多数のユーザーは、このオプションを[すべて]に設定したままにしておきます。<br/>最後の2つのオプション、<strong>最小の部屋はすでに選択されています</ strong>と<strong>最大の部屋はすでに選択されています</ strong>は非常に特殊であり、非常に複雑な料金の物件に役立ちます。 <em>特定のニーズがない限り、これらのオプションはそのままにしておく必要があります。</ em>ゲストが予約フォームですでにN個の部屋を選択している場合にのみこの料金を提供する場合は、これらのオプションを使用します。たとえば、これらのオプションがデフォルトのままである1つの基本料金と、すでに選択されている最小部屋オプションが1に設定されている2番目の料金を設定できます。この2番目の料金は、部屋が選択されると予約フォームで提供されます。」 ");
+
+jr_define('_JOMRES_MICROMANAGE_MULTIPLE_TARIFFS_LIST_PAGE',"同じ部屋タイプに対して複数の料金表を作成できるため、1〜7の最小/最大日数に対して1つの料金表を作成し、最小日数が7、最大日数が14、およびこれにより、必要に応じて単純または複雑な価格設定スキームを作成できます。また、さまざまな条件で複数の料金表を作成できるため、Bed＆Breakfastの料金が安い2番目の料金表を作成できます。ベッド、朝食、夜の食事のためのより高価な料金の別のセット。 ");
+
+jr_define('_JOMRES_MICROMANAGE_USE_SELECTED_DATES',"日付ピッカーの日のみを設定");
+jr_define('_JOMRES_PROPERTY_HCATEGORIES','プロパティカテゴリ');
+jr_define('_JOMRES_PROPERTY_HCATEGORIES_HEDIT','プロパティカテゴリの編集');
+jr_define('_JOMRES_STOP_READTHISFIRST1',"Stop！");
+jr_define('_JOMRES_STOP_READTHISFIRST2',"Jomresをインストールしていただきありがとうございます");
+jr_define('_JOMRES_STOP_READTHISFIRST3',"プロパティ管理は、管理者領域ではなく、公開されているページで実行されます。");
+jr_define('_JOMRES_STOP_READTHISFIRST4',"Jomresに慣れていない場合は、[ヘルプ]セクション> [はじめに]ページにアクセスしてください。");
+
+
+jr_define('_JOMRES_CONFIG_SYNDICATION_TITLE',"Jomresシンジケートに参加");
+jr_define('_JOMRES_CONFIG_SYNDICATION_DESC',"サイトをセットアップし、訪問者の受け入れを開始する準備ができたら、Jomres.netシンジケートに参加して、他のJomresサイトにプロパティをリストします。");
+
+
+
+jr_define('_JOMRES_MICROMANAGE_CREATE_ROOM_1',"料金表を作成するには、次のいずれかのタイプの部屋が少なくとも1つ必要です：");
+jr_define('_JOMRES_MICROMANAGE_CREATE_ROOM_2',"[設定]> [部屋]に移動し、最初に部屋を作成します。これが完了すると、その部屋タイプの料金を作成できるようになります。");
 
 jr_define('JOMRES_PLATFORM',"Jomres Platform");
 
 
-jr_define('JOMRES_PLATFORM_CONNECTED',"Connected");
-jr_define('JOMRES_PLATFORM_CONNECTED_DESC',"Set this to Yes if you have already connected your Stripe account with the Jomres Platform.");
+jr_define('JOMRES_PLATFORM_CONNECTED',"接続済み");
+jr_define('JOMRES_PLATFORM_CONNECTED_DESC',"StripeアカウントをすでにJomresプラットフォームに接続している場合は、これを[はい]に設定します。");
 
-jr_define('JOMRES_PLATFORM_ACCOUNT_ID',"Stripe Live Account number");
-jr_define('JOMRES_PLATFORM_ACCOUNT_ID_DESC',"This is your Stripe Account id which can be found in your Stripe Dashboard under Settings > Account information and looks like acct_xxxxxxxxx You would use this field if you have multiple Jomres installations and you want to use the same account across all sites and you have already connected to us. If you have not connected to the Jomres Platform, it's not sufficient to enter your details here. Instead, please visit the Get Connected menu option in the toolbar, under the Help section. If you want to test payments, in the Debugging tab of Site Configuration set your site from Production to Development.");
+jr_define('JOMRES_PLATFORM_ACCOUNT_ID',"ストライプライブアカウント番号");
+jr_define('JOMRES_PLATFORM_ACCOUNT_ID_DESC',"これは、Stripeダッシュボードの[設定]> [アカウント情報]にあるStripeアカウントIDで、acct_xxxxxxxxxのようになります。複数のJomresがインストールされていて、同じアカウントを使用する場合は、このフィールドを使用します。 Jomresプラットフォームに接続していない場合は、ここに詳細を入力するだけでは不十分です。代わりに、ツールバーの[ヘルプ]セクションにある[接続を取得]メニューオプションにアクセスしてください。支払いをテストするには、サイト構成の[デバッグ]タブで、サイトを本番環境から開発環境に設定します。 ");
+jr_define('JOMRES_PLATFORM_LIVE_SECRET_KEY',"ストライプライブ秘密鍵");
+jr_define('JOMRES_PLATFORM_LIVE_SECRET_KEY_DESC','StripeDashboardの[開発者]> [APIキー]に移動して秘密キーを検索します。これらは、支払いフォームから返された予約データが有効であり、予約を保存する前にデポジットが支払われていることを確認するためにシステムによって使用されます。 。 ');
 
-jr_define('JOMRES_PLATFORM_LIVE_SECRET_KEY',"Stripe live secret key");
-jr_define('JOMRES_PLATFORM_LIVE_SECRET_KEY_DESC','Go to Developers > API keys in your Stripe Dashboard to find your secret keys. These are used by the system to verify booking data returned from the payment form is valid and that deposits have been paid before saving the booking.' );
+jr_define('JOMRES_PLATFORM_TEST_SECRET_KEY',"ストライプテスト秘密鍵");
+jr_define('JOMRES_PLATFORM_TEST_SECRET_KEY_DESC','');
 
-jr_define('JOMRES_PLATFORM_TEST_SECRET_KEY',"Stripe test secret key");
-jr_define('JOMRES_PLATFORM_TEST_SECRET_KEY_DESC',' ' );
+jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD','標準料金モード');
 
+jr_define('JOMRES_COM_A_ACCOMMODATES','Sleeps');
+jr_define('JOMRES_COM_A_ACCOMMODATES_DESC','このプロパティは何人収容できますか？');
+jr_define('JOMRES_COM_A_GUESTS_IN_DAILY_PRICE','1日の料金に含まれるゲストの数');
+jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE','追加の大人の価格');
 
-
-jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD', 'Standard Tariff Mode');
-
-jr_define('JOMRES_COM_A_ACCOMMODATES', 'Sleeps');
-jr_define('JOMRES_COM_A_ACCOMMODATES_DESC', 'How many people can this property accommodate?');
-jr_define('JOMRES_COM_A_GUESTS_IN_DAILY_PRICE', 'The number of guests in your daily price');
-jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE', 'Extra adults price ');
-
-jr_define('JOMRES_CHILDREN_BOOKING_FORM_LABEL', 'Children');
+jr_define('JOMRES_CHILDREN_BOOKING_FORM_LABEL','子供');
 
 
 
-jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_PER_PERSON_PER_NIGHT', 'Per person per night?');
-jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_PER_PERSON_PER_NIGHT_DESC', '');
-jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_7DAY_MODIFIER', '7 day modifier');
-jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_7DAY_MODIFIER_DESC', 'Discount on daily rate if booking is for 7 days or more. Leave this set to zero if you do not want the discount to be applied.');
-jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_30DAY_MODIFIER', '30 day modifier');
-jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_30DAY_MODIFIER_DESC', 'Discount on daily rate if booking is for 30 days or more. Leave this set to zero if you do not want the discount to be applied.');
-jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL', 'Adults');
-jr_define('JOMRES_GUEST_BOOKING_FORM_LABELINFO', 'Price based on 2 adults');
-jr_define('JOMRES_BOOKING_DISCOUNTED_7_DAYS_1', 'Booking discounted from ');
-jr_define('JOMRES_BOOKING_DISCOUNTED_7_DAYS_2', ' to ');
-jr_define('JOMRES_BOOKING_DISCOUNTED_7_DAYS_NUMBER', ' because the booking is greater than 7 days.');
-jr_define('JOMRES_BOOKING_DISCOUNTED_30_DAYS_NUMBER', ' because the booking is greater than 30 days.');
+jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_PER_PERSON_PER_NIGHT','1人1泊あたり？');
+jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_PER_PERSON_PER_NIGHT_DESC','');
+jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_7DAY_MODIFIER','7日修飾子');
+jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_7DAY_MODIFIER_DESC','予約が7日以上の場合、日割りの割引。割引を適用しない場合は、これをゼロに設定したままにします。');
+jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_30DAY_MODIFIER','30日修飾子 ');
+jr_define('JOMRES_COM_A_TARIFFMODE_STANDARD_30DAY_MODIFIER_DESC','予約が30日以上の場合、日割りの割引。割引を適用しない場合は、これをゼロに設定したままにします。');
+jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL','大人');
+jr_define('JOMRES_GUEST_BOOKING_FORM_LABELINFO','大人2名に基づく価格');
+jr_define('JOMRES_BOOKING_DISCOUNTED_7_DAYS_1','予約はから割引されます');
+jr_define('JOMRES_BOOKING_DISCOUNTED_7_DAYS_2','から');
+jr_define('JOMRES_BOOKING_DISCOUNTED_7_DAYS_NUMBER','予約が7日を超えているため。');
+jr_define('JOMRES_BOOKING_DISCOUNTED_30_DAYS_NUMBER','予約が30日を超えているため。');
 
 
-jr_define('JOMRES_CITY_TAX_HEADING', 'City taxes');
-jr_define('JOMRES_CITY_TAX_VALUE', 'City tax value');
-jr_define('JOMRES_CITY_TAX_METHOD', 'Tax calculation method');
+jr_define('JOMRES_CITY_TAX_HEADING','市税');
+jr_define('JOMRES_CITY_TAX_VALUE','市税額');
+jr_define('JOMRES_CITY_TAX_METHOD','税計算方法');
 
-jr_define('JOMRES_CITY_TAX_MODEL_SINGLE', 'Single fee');
-jr_define('JOMRES_CITY_TAX_MODEL_PER_NIGHT', 'Per night');
-jr_define('JOMRES_CITY_TAX_MODEL_PER_GUEST', 'Per guest');
-jr_define('JOMRES_CITY_TAX_MODEL_PER_GUEST_PER_NIGHT', 'Per guest per night');
-jr_define('JOMRES_CITY_TAX_MODEL_PERCENTAGE_OF_BOOKING_TOTAL', 'Percentage of booking value');
+jr_define('JOMRES_CITY_TAX_MODEL_SINGLE','単一料金');
+jr_define('JOMRES_CITY_TAX_MODEL_PER_NIGHT','1泊あたり');
+jr_define('JOMRES_CITY_TAX_MODEL_PER_GUEST','ゲストごと');
+jr_define('JOMRES_CITY_TAX_MODEL_PER_GUEST_PER_NIGHT','ゲスト1人あたり1泊');
+jr_define('JOMRES_CITY_TAX_MODEL_PERCENTAGE_OF_BOOKING_TOTAL','簿価のパーセンテージ');
 
-jr_define('JOMRES_CLEANING_FEE_HEADING', 'Cleaning fee');
-jr_define('JOMRES_CLEANING_FEE_VALUE', 'Cleaning fee cost');
-
-
-jr_define('JOMRES_COMPATABILITY_MODE', 'Force Compatability property configuration mode?');
-jr_define('JOMRES_COMPATABILITY_MODE_DESC', "Compatability property configuration mode forces several things to happen. In older versions of Jomres, property managers could choose which tariff editing mode to use, and a variety of other settings (some of which may appear confusing) may have been available to them. Enabling Compatability configuration forces all new properties to use just the Standard tariff editing mode, which models the booking.com property configuration functionality with respect to pricing, child pricing etc. It is recommended that for installations that were created after 9.22.0, this option should be set to Yes, but for older installations it's up to you to decide if new properties should be automatically set to Compatability mode when they are created.");
-
-jr_define('JOMRES_POLICY_ACCEPT_CHILDREN', 'Do you accept children under 18 years of age?');
-jr_define('JOMRES_POLICY_ACCEPT_CHILDREN_DESC', "Set this option to Yes if you allow children. If yes, then in the Settings menu you will have an option called Child Policies where you can edit children related settings.");
-
-jr_define('JOMRES_POLICIES_CHILDREN', 'Child policies');
-
-jr_define('JOMRES_POLICIES_CHILDREN_AGES_ALLOWED', 'At what ages are children allowed?');
+jr_define('JOMRES_CLEANING_FEE_HEADING','クリーニング料金');
+jr_define('JOMRES_CLEANING_FEE_VALUE','クリーニング料金の費用');
 
 
-jr_define('JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_NIGHT', 'Per child, per night');
-jr_define('JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_STAY', 'Per child, per stay');
+jr_define('JOMRES_COMPATABILITY_MODE','互換性プロパティ構成モードを強制しますか？');
+jr_define('JOMRES_COMPATABILITY_MODE_DESC',"互換性プロパティ構成モードでは、いくつかのことが発生します。古いバージョンのJomresでは、プロパティマネージャーは、使用する料金編集モードを選択でき、その他のさまざまな設定（一部は混乱しているように見える場合があります)があります。互換性構成を有効にすると、すべての新しいプロパティで、価格設定、子価格設定などに関してbooking.comプロパティ構成機能をモデル化する標準料金編集モードのみが使用されます。9.22以降に作成されたインストールの場合は,.0の場合、このオプションは[はい]に設定する必要がありますが、古いインストールの場合、新しいプロパティを作成時に自動的に互換性モードに設定するかどうかを決定するのはあなた次第です。 ");
 
-jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATES', 'Child rates');
-jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_NEW', 'New child rate');
-jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_EDIT', 'Edit child rate');
-jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_DESC', 'Create your free or paid child rates here. Rates will only apply when you have created occupancy levels for room types.');
-jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_AGE_FROM', 'Age from');
-jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_AGE_TO', 'Age to');
-jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_MODEL', 'per night or per stay?');
-jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_PRICE', 'Rate');
-jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_PRICE_DESC', 'If zero or not set, children of this age range will be free.');
-jr_define('JOMRES_BOOKING_FORM_CHILDREN_AGES', 'Ages at checkin');
-jr_define('JOMRES_BOOKING_FORM_CHILDREN_AGE_DD', 'Ages ');
+jr_define('JOMRES_POLICY_ACCEPT_CHILDREN','18歳未満の子供を受け入れますか？');
+jr_define('JOMRES_POLICY_ACCEPT_CHILDREN_DESC',"子を許可する場合は、このオプションを[はい]に設定します。はいの場合、[設定]メニューに、子に関連する設定を編集できる[子ポリシー]というオプションがあります。");
 
-jr_define('JOMRES_OCCUPANCY_LEVELS_TITLE', 'Occupancy levels');
-jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_ADULTS', 'Maximum adults');
-jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_CHILDREN', 'Maximum children');
-jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY', 'Maximum occupancy');
+jr_define('JOMRES_POLICIES_CHILDREN','子ポリシー');
 
-jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT', 'Edit occupancy level for : ');
-jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT_DESC', 'Edit occupancy levels for this room type. Do not include guests sleeping on cots (those are added by creating an Extra) ');
-jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC', 'For each additional adult, how much should they be charged?');
-
-jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS', 'Extra adults');
+jr_define('JOMRES_POLICIES_CHILDREN_AGES_ALLOWED','子供は何歳で許可されますか？');
 
 
-jr_define('_JOMRES_SANITYCHECK_CHILD_RATES', 'You have not configured child rates yet.');
-jr_define('_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON', 'Set child rate(s) now');
-jr_define('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS', 'You have configured your property to allow children but you have not set any occupancy levels for children yet.');
-jr_define('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS_BUTTON', 'Set occupancy levels');
-jr_define('JOMRES_OCCUPANCY_LEVELS_INFO', 'Any time you edit a room or your property type you should check and update the occupancy levels for your property/rooms as these affect the number of guests who can be accepted in the booking form.');
+jr_define('JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_NIGHT','子供ごと、夜ごと');
+jr_define('JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_STAY','子供ごと、滞在ごと');
+
+jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATES','子レート');
+jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_NEW','新しい子レート');
+jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_EDIT','子レートの編集');
+jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_DESC','ここで無料または有料の子供料金を作成します。料金は、部屋タイプの占有レベルを作成した場合にのみ適用されます。');
+jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_AGE_FROM','年齢から');
+jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_AGE_TO','年齢から');
+jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_MODEL','1泊あたり、または1滞在あたり？');
+jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_PRICE','レート');
+jr_define('JOMRES_POLICIES_CHILDREN_CHILD_RATE_PRICE_DESC','ゼロまたは設定されていない場合、この年齢範囲の子供は無料になります。');
+jr_define('JOMRES_BOOKING_FORM_CHILDREN_AGES','チェックイン時の年齢');
+jr_define('JOMRES_BOOKING_FORM_CHILDREN_AGE_DD','年齢');
+
+jr_define('JOMRES_OCCUPANCY_LEVELS_TITLE','占有レベル');
+jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_ADULTS','最大成人');
+jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_CHILDREN','最大の子');
+jr_define('JOMRES_OCCUPANCY_LEVELS_MAX_OCCUPANCY','最大占有率');
+
+jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT','次の占有レベルを編集：');
+jr_define('JOMRES_OCCUPANCY_LEVELS_EDIT_DESC','この部屋タイプの占有レベルを編集します。ベビーベッドで寝ているゲストは含めないでください（エクストラを作成することで追加されます)');
+jr_define('JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE_DESC','追加の大人ごとに、いくら請求する必要がありますか？');
+
+jr_define('JOMRES_GUEST_BOOKING_FORM_LABEL_EXTRA_ADULTS','エクストラアダルト');
 
 
-jr_define('_JOMRES_SEARCH_FORM_ADULTS', 'Adults');
-jr_define('_JOMRES_SEARCH_FORM_CHILDREN', 'Chidren');
+jr_define('_JOMRES_SANITYCHECK_CHILD_RATES','子レートをまだ構成していません。');
+jr_define('_JOMRES_SANITYCHECK_CHILD_RATES_BUTTON','子レートを今すぐ設定');
+jr_define('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS','子を許可するようにプロパティを構成しましたが、子の占有レベルはまだ設定していません。');
+jr_define('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS_BUTTON','占有レベルの設定');
+jr_define('JOMRES_OCCUPANCY_LEVELS_INFO','部屋またはプロパティタイプを編集するときはいつでも、予約フォームで受け入れることができるゲストの数に影響するため、プロパティ/部屋の占有レベルを確認および更新する必要があります。');
 
 
-jr_define('_JOMRES_CONFIG_LEVEL_TITLE', 'Admin options level');
-jr_define('_JOMRES_CONFIG_LEVEL_DESC', 'Jomres has many menu and configuration options that you can use when configuring your site. The huge majority of them you will never need to change so they are hidden by default. You can choose to show those options by setting the Admin Options level.  Basic level shows you just what you need when setting up a site for the first time. Common level shows you those options which are most commonly changed, and Everything shows you all possible settings and menus options in the administrator area.');
-jr_define('_JOMRES_CONFIG_LEVEL_BASIC', 'Basic');
-jr_define('_JOMRES_CONFIG_LEVEL_COMMON', 'Common');
-jr_define('_JOMRES_CONFIG_LEVEL_EVERYTHING', 'Everything');
-
-jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_TITLE', 'Can we collect information about how you use Jomres?');
-jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_MESSAGE', 'We would like to collect information about how you use Jomres. No personally identifyable information will be stored, usage will be anonymised and only used to help us to understand how people use Jomres.');
-jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_ACCEPT', ' Yep, that\'s ok ');
-jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_DENY', ' No, I don\'t agree ');
-
-jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_TITLE', 'Will you be taking bookings for more than one property?');
-jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_MESSAGE', 'Jomres can be used for single or multi-property sites. If you will be taking bookings for just one property then many options will be redundant and potentially confusing. You can change this setting later in the Settings > Site Configuration > Portal functionality tab.');
-jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_JUSTONE', ' Just one property ');
-jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_MANY', ' I will be listing more than one property ');
+jr_define('_JOMRES_SEARCH_FORM_ADULTS','Adults');
+jr_define('_JOMRES_SEARCH_FORM_CHILDREN','子供');
 
 
-jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_TITLE", "Which version of the Bootstrap framework does your template/theme support?");
-jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_MESSAGE", "Each version of the Bootstrap framework requires slightly different html markup. Jomres has three sets of Bootstrap compatible template sets, one for each Bootstrap version. You must ensure that you configure it to use the appropriate template set. If you don't then output such as layout, modals and menus will not work properly. If you decide to use a template/theme later with a different Bootstrap version you can change the Bootstrap template set that Jomres should use in Admin > Jomres > Settings > Misc tab. <br/><br/>Joomla 3 is distributed with Bootstrap 2 by default, Joomla 4 will use Bootstrap 5. Jomres Leohtian template (Joomla) and theme (Wordpress) uses Bootstrap 3. Different templates/themes may be distributed with their own Bootstrap files so if you are in any doubt, please contact your template/theme's developer.");
-jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP2", " Bootstrap 2 ");
-jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP3", " Bootstrap 3 ");
-jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP4", " Bootstrap 4 ");
-jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP5", " Bootstrap 5 ");
-jr_define('_JOMRES_CURRENCYFORMAT_STRIP_DECIMALS', 'Strip decimals from output prices?');
+jr_define('_JOMRES_CONFIG_LEVEL_TITLE','管理者オプションレベル');
+jr_define('_JOMRES_CONFIG_LEVEL_DESC','Jomresには、サイトを構成するときに使用できる多くのメニューと構成オプションがあります。それらの大部分は変更する必要がないため、デフォルトで非表示になっています。管理オプションレベル。基本レベルには、サイトを初めてセットアップするときに必要なものだけが表示されます。共通レベルには、最も一般的に変更されるオプションが表示され、すべてには、管理者領域で可能なすべての設定とメニューオプションが表示されます。 ');
+jr_define('_JOMRES_CONFIG_LEVEL_BASIC','Basic');
+jr_define('_JOMRES_CONFIG_LEVEL_COMMON','C​​ommon');
+jr_define('_JOMRES_CONFIG_LEVEL_EVERYTHING','すべて');
 
-jr_define('_JOMRES_SEND_GROUP_BY_FIX_TITLE', 'Apply group by fix?');
-jr_define('_JOMRES_SEND_GROUP_BY_FIX_DESC', 'Some mysql installations may have a problem with Jomres Queries in the List Properties, List guests and List invoices page. If those pages say that they are showing X of Y results but nothing appears in the list, then setting this option to Yes may fix the issue. It will not if you are on shared hosting and the hosting service does not allow your mysql user to issue the "SET GLOBAL sql_mode=" command. ');
-jr_define('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', 'This is a channel property, it cannot be administered locally, visit the channel management framework page to find the property\'s remote administration link');
-jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", " No Bootstrap in theme ");
+jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_TITLE','Jomresの使用方法に関する情報を収集できますか？');
+jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_MESSAGE','Jomresの使用方法に関する情報を収集したいと思います。個人を特定できる情報は保存されず、使用状況は匿名化され、人々がJomresをどのように使用するかを理解するためにのみ使用されます。');
+jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_ACCEPT','うん、それは大丈夫');
+jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_DENY','いいえ、同意しません');
+
+jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_TITLE','複数のプロパティの予約を取りますか？');
+jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_MESSAGE','Jomresは、単一または複数のプロパティサイトに使用できます。1つのプロパティのみの予約を行う場合、多くのオプションが冗長になり、混乱を招く可能性があります。この設定は、後で[設定]> [サイト]で変更できます。 [構成]> [ポータル機能]タブ。 ');
+jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_JUSTONE','1つのプロパティのみ');
+jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_MANY','複数のプロパティを一覧表示します');
+
+
+jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_TITLE","テンプレート/テーマがサポートするBootstrapフレームワークのバージョンはどれですか？");
+jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_MESSAGE","ブートストラップフレームワークの各バージョンには、わずかに異なるhtmlマークアップが必要です。Jomresには、ブートストラップバージョンごとに1つずつ、3セットのブートストラップ互換テンプレートセットがあります。適切なテンプレートセットを使用するように構成する必要があります。レイアウト、モーダル、メニューなどの出力が正しく機能しません。後で別のブートストラップバージョンでテンプレート/テーマを使用する場合は、Jomresが[管理]> [Jomres]> [設定]で使用するブートストラップテンプレートセットを変更できます。 >その他のタブ<br/> <br/> Joomla3はデフォルトでBootstrap2とともに配布され、Joomla4はBootstrap5を使用します。JomresLeohtianテンプレート（Joomla)とテーマ（Wordpress)はBootstrap3を使用します。異なるテンプレート/テーマは独自のブートストラップファイルとともに配布されるため、疑問がある場合は、テンプレート/テーマの開発者に連絡してください。 ");
+jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP2","ブートストラップ2");
+jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP3","ブートストラップ3");
+jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP4","ブートストラップ4");
+jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP5","ブートストラップ5");
+jr_define('_JOMRES_CURRENCYFORMAT_STRIP_DECIMALS','出力価格から小数を削除しますか？');
+
+jr_define('_JOMRES_SEND_GROUP_BY_FIX_TITLE','group by fix？');
+jr_define('_JOMRES_SEND_GROUP_BY_FIX_DESC','一部のmysqlインストールでは、[リストのプロパティ]、[ゲストのリスト]、および[請求書のリスト]ページのJomresクエリで問題が発生する可能性があります。 [はい]を選択すると、問題が解決する場合があります。共有ホスティングを使用していて、ホスティングサービスでmysqlユーザーが "SET GLOBAL sql_mode ="コマンドを発行できない場合は修正されません。 ');
+jr_define('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN','これはチャネルプロパティです。ローカルで管理することはできません。チャネル管理フレームワークページにアクセスして、プロパティのリモート管理リンクを見つけてください');
+jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0","テーマにブートストラップがありません");
 
