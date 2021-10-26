@@ -66,7 +66,7 @@ class jomres_temp_booking_handler
 			$this->ip = '127.0.0.1';
 		}
 
-		if (!isset($_COOKIE['jomres_gdpr_consent_form_processed']) || (int)$_COOKIE['jomres_gdpr_consent_form_processed'] == 0 ){
+		if ( (!isset($_COOKIE['jomres_gdpr_consent_form_processed']) || (int)$_COOKIE['jomres_gdpr_consent_form_processed'] == 0) && !AJAXCALL  ){
 			$this->ip = '0.0.0.0';
 		}
 		
