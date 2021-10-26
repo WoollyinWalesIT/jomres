@@ -112,7 +112,15 @@ class j06000mrp_calendar
 		if (!$show_just_month) {
 			$this->retVals = '<div class="container-fluid">
 					<div class="row">
-					';
+				<div class="col-md-2 jomres-calendar-day-num jomres-calendar-available"> ' .jr_gettext('_JOMRES_COM_AVLCAL_INMONTHFACE_KEY', '_JOMRES_COM_AVLCAL_INMONTHFACE_KEY').'</div>
+					<div class="col-md-2 jomres-calendar-day-num jomres-calendar-booking-occupied-quarter ">' .jr_gettext('_JOMRES_AVLCAL_QUARTER', '_JOMRES_AVLCAL_QUARTER').'</div>
+					<div class="col-md-2 jomres-calendar-day-num jomres-calendar-booking-occupied-half ">' .jr_gettext('_JOMRES_AVLCAL_HALF', '_JOMRES_AVLCAL_HALF').'</div>
+					<div class="col-md-2 jomres-calendar-day-num jomres-calendar-booking-occupied-threequarter ">' .jr_gettext('_JOMRES_AVLCAL_THREEQUARTER', '_JOMRES_AVLCAL_THREEQUARTER').'</div>
+					<div class="col-md-2 jomres-calendar-day-num jomres-calendar-booking-occupied-completely ">' .jr_gettext('_JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR_KEY', '_JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR_KEY').'</div>
+				</div>
+				<div class="container-fluid">
+					<div class="row">
+				';
 
 
 			for ($start_month; $counter <= $months_to_show; ++$start_month) {
