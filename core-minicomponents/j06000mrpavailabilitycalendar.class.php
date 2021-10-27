@@ -112,19 +112,20 @@ class j06000mrpavailabilitycalendar
 				$this->retVals .= '<td colspan="6">'.jr_gettext('_JOMRES_FRONT_CALENDAR_CLICKDATES', '_JOMRES_FRONT_CALENDAR_CLICKDATES').'</td>';
 				$this->retVals .= '</tr>';
 			}
+
 			$this->retVals .= '
 										<tr>
-											<td bgcolor="' .$this->colour_empty.'" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>'.jr_gettext('_JOMRES_AVLCAL_NOBOOKINGS', '_JOMRES_AVLCAL_NOBOOKINGS').'</td>
-											<td bgcolor="' .$this->colour_quarter.'" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>'.jr_gettext('_JOMRES_AVLCAL_QUARTER', '_JOMRES_AVLCAL_QUARTER').'</td>
-											<td bgcolor="' .$this->colour_half.'" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>'.jr_gettext('_JOMRES_AVLCAL_HALF', '_JOMRES_AVLCAL_HALF').'</td>
-											<td bgcolor="' .$this->colour_threequarter.'" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>'.jr_gettext('_JOMRES_AVLCAL_THREEQUARTER', '_JOMRES_AVLCAL_THREEQUARTER').'</td>
-											<td bgcolor="' .$this->colour_full.'" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>'.jr_gettext('_JOMRES_AVLCAL_FULLYBOOKED', '_JOMRES_AVLCAL_FULLYBOOKED').'</td>
+											<td background-color="' .$this->colour_empty.'" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>'.jr_gettext('_JOMRES_AVLCAL_NOBOOKINGS', '_JOMRES_AVLCAL_NOBOOKINGS').'</td>
+											<td background-color="' .$this->colour_quarter.'" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>'.jr_gettext('_JOMRES_AVLCAL_QUARTER', '_JOMRES_AVLCAL_QUARTER').'</td>
+											<td background-color="' .$this->colour_half.'" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>'.jr_gettext('_JOMRES_AVLCAL_HALF', '_JOMRES_AVLCAL_HALF').'</td>
+											<td background-color="' .$this->colour_threequarter.'" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>'.jr_gettext('_JOMRES_AVLCAL_THREEQUARTER', '_JOMRES_AVLCAL_THREEQUARTER').'</td>
+											<td background-color="' .$this->colour_full.'" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>'.jr_gettext('_JOMRES_AVLCAL_FULLYBOOKED', '_JOMRES_AVLCAL_FULLYBOOKED').'</td>
 										</tr>
 									</table>
 								</td>
 							</tr>
 							<tr class="availability_calendar_calendars">
-								<td><center>
+								<td>
 									<table>
 										<tr>
 										';
@@ -151,7 +152,7 @@ class j06000mrpavailabilitycalendar
 			$this->retVals .= '
 										</tr>
 									</table>
-								</center></td>
+								</td>
 							</tr>
 						</table>
 			</div>

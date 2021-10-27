@@ -164,9 +164,9 @@ jomresJquery(function(){
 			}
 			$this->retVals .= '
 										<tr>
-											<td bgcolor="' .$mrConfig[ 'avlcal_inbgcolour' ].'" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>'.jr_gettext('_JOMRES_COM_AVLCAL_INMONTHFACE_KEY', '_JOMRES_COM_AVLCAL_INMONTHFACE_KEY').'</td>
-											<td bgcolor="' .$mrConfig[ 'avlcal_occupiedcolour' ].'" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>'.jr_gettext('_JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR_KEY', '_JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR_KEY').'</td>
-											<td bgcolor="' .$mrConfig[ 'avlcal_provisionalcolour' ].'" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>'.jr_gettext('_JOMRES_COM_AVLCAL_PROVISIONALCOLOUR_KEY', '_JOMRES_COM_AVLCAL_PROVISIONALCOLOUR_KEY').'</td>
+											<td background-color="' .$mrConfig[ 'avlcal_inbgcolour' ].'" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>'.jr_gettext('_JOMRES_COM_AVLCAL_INMONTHFACE_KEY', '_JOMRES_COM_AVLCAL_INMONTHFACE_KEY').'</td>
+											<td background-color="' .$mrConfig[ 'avlcal_occupiedcolour' ].'" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>'.jr_gettext('_JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR_KEY', '_JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR_KEY').'</td>
+											<td background-color="' .$mrConfig[ 'avlcal_provisionalcolour' ].'" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>'.jr_gettext('_JOMRES_COM_AVLCAL_PROVISIONALCOLOUR_KEY', '_JOMRES_COM_AVLCAL_PROVISIONALCOLOUR_KEY').'</td>
 										</tr>
 									</table>
 								</td>
