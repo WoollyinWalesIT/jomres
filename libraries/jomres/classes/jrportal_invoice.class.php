@@ -415,13 +415,13 @@ class jrportal_invoice
 		} else {
 			$this->lineitem['is_payment'] = 0;
 		}
-		if (!isset($line_item_data[ 'payment_method' ])) {
+		if (!isset($line_item_data[ 'payment_method' ]) || !isset($line_item_data[ 'management_url' ]) || !isset($line_item_data[ 'transaction_id' ])) {
 			$line_item_data[ 'payment_method' ] = '';
 			$line_item_data[ 'management_url' ] = '';
 			$line_item_data[ 'transaction_id' ] = '';
 		}
 			
-		
+
 		$this->lineitem['payment_method']	= $line_item_data[ 'payment_method' ];
 		$this->lineitem['management_url']	= $line_item_data[ 'management_url' ];
 		$this->lineitem['transaction_id']	= $line_item_data[ 'transaction_id' ];
