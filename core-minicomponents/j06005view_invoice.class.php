@@ -337,7 +337,9 @@ class j06005view_invoice
 			$tmpl->readTemplatesFromInput('printable_invoice.html');
 		} elseif($line_items_only) {
 			$tmpl->readTemplatesFromInput('frontend_view_invoice_lineitems.html');
-		} else {
+		} elseif ($as_pdf) {
+            $tmpl->readTemplatesFromInput('frontend_view_invoice_pdf.html');
+        } else {
 			$tmpl->readTemplatesFromInput('frontend_view_invoice.html');
 		}
 
@@ -353,7 +355,6 @@ class j06005view_invoice
 		}
 
 		if ($as_pdf) {
-			$tmpl->readTemplatesFromInput('frontend_view_invoice_pdf.html');
 			output_pdf($tmpl->getParsedTemplate() , $output[ 'HINVOICENO' ].' '.$output[ 'ID' ] );
 		}
 		
