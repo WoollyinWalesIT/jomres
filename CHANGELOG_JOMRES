@@ -1,3 +1,16 @@
+<h3>Jomres 9.25.1 01/11/2021</h3>
+
+<span class="label label-warning">Change</span> Added a check so that ajax calls don't attempt  to reset ip to 0.0.0.0 when checking consent form cookie.
+<span class="label label-warning">Change</span> Restored legend that was removed by a pull request.
+<span class="label label-warning">Change</span> Replaced some depreciated definitions.
+<span class="label label-warning">Change</span> Enable group by fix by default
+<span class="label label-warning">Change</span> Moved a function so that it triggers on all WP pages.
+
+<span class="label label-important label-danger">Fix</span> Frontend and Backend BS3 forms updated to resolve a problem with Wordpress forms not submitting (again).
+<span class="label label-important label-danger">Fix</span> Added missing template label to webhook listing script
+<span class="label label-important label-danger">Fix</span> Fixed an issue in Save plugin script where it might trigger a fatal error.
+
+
 <h3>Jomres 9.25.0 12/10/2021</h3>
 
 <span class="label label-success">Feature</span> All language files updated 

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.0
+ * @version Jomres 9.25.1
  *
  * @copyright	2005-2021 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -337,7 +337,9 @@ class j06005view_invoice
 			$tmpl->readTemplatesFromInput('printable_invoice.html');
 		} elseif($line_items_only) {
 			$tmpl->readTemplatesFromInput('frontend_view_invoice_lineitems.html');
-		} else {
+		} elseif ($as_pdf) {
+            $tmpl->readTemplatesFromInput('frontend_view_invoice_pdf.html');
+        } else {
 			$tmpl->readTemplatesFromInput('frontend_view_invoice.html');
 		}
 
@@ -353,7 +355,6 @@ class j06005view_invoice
 		}
 
 		if ($as_pdf) {
-			$tmpl->readTemplatesFromInput('frontend_view_invoice_pdf.html');
 			output_pdf($tmpl->getParsedTemplate() , $output[ 'HINVOICENO' ].' '.$output[ 'ID' ] );
 		}
 		

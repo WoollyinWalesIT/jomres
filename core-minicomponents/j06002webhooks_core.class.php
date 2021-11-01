@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.0
+ * @version Jomres 9.25.1
  *
  * @copyright	2005-2021 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -86,6 +86,7 @@ class j06002webhooks_core {
 			$pageoutput = array();
 			$output['MANAGER_PROPERTIES_MESSAGE'] = jr_gettext('WEBHOOKS_MANAGER_PROPERTIES_ASSIGNED_DESC', 'WEBHOOKS_MANAGER_PROPERTIES_ASSIGNED_DESC', false);
 			$output['_JRPORTAL_PROPERTIES_PROPERTYNAME'] = jr_gettext('_JRPORTAL_PROPERTIES_PROPERTYNAME', '_JRPORTAL_PROPERTIES_PROPERTYNAME', false);
+
 			
 			$pageoutput[]=$output;
 			$tmpl = new patTemplate();
@@ -133,6 +134,7 @@ class j06002webhooks_core {
 
 		$output['WEBHOOKS_INTEGRATION_URL']	 =jr_gettext('WEBHOOKS_INTEGRATION_URL', 'WEBHOOKS_INTEGRATION_URL', false);
 		$output['WEBHOOKS_INTEGRATION_ID']	  =jr_gettext('WEBHOOKS_INTEGRATION_ID', 'WEBHOOKS_INTEGRATION_ID', false);
+        $output['WEBHOOKS_ENABLED']	  =jr_gettext('WEBHOOKS_ENABLED', 'WEBHOOKS_ENABLED', false);
 
 		$output['MANAGER_PROPERTIES']	  = $manager_properties_template;
 		

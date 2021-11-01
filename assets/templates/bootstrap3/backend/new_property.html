@@ -26,7 +26,6 @@
 			}
 
 		if (valid) {
-			document.regForm.action = "{JOMRES_SITEPAGE_URL_NOSEF}&task=save_new_property"
 			document.regForm.submit();
 		}
 		else {
@@ -63,7 +62,7 @@
 	</li>
 </ul>
 
-<form action="{JOMRES_SITEPAGE_URL_NOSEF}&task=save_new_property" method="post" name="regForm" class="form-horizontal" role="form">
+<form method="post" name="regForm" class="form-horizontal" role="form">
 	<div class="form-group">
 		<label class="col-md-2 control-label" for="new_property_country">{HCOUNTRY}</label>
 		<div class="col-md-10">
@@ -111,10 +110,6 @@
 			<a href="{JOMRES_SITEPAGE_URL}" class="btn btn-default"><i class="fa fa-times"></i> {COMMON_CANCEL}</a>
 		</div>
 	</div>
-
-
-
-
 
 	<input type="hidden" name="task" value="save_new_property"/>
 	{CSRF_TOKEN}

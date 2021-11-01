@@ -5,7 +5,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.0
+ * @version Jomres 9.25.1
  *
  * @copyright	2005-2021 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -3595,15 +3595,12 @@ function propertyConfiguration()
 	$componentArgs[ 'booking_form_daily_weekly_monthly' ] = $booking_form_daily_weekly_monthly;
 	$componentArgs[ 'city_tax_models_dropdown' ] = $city_tax_models_dropdown;
 
-
-
-
 	ob_start();
 
 	// The following javascript is for selecting currency codes
 	?>
 
-		<form action="<?php echo JOMRES_SITEPAGE_URL_NOSEF ?>" method="post" name="adminForm">
+		<form method="post" name="adminForm">
 			<input type="hidden" name="no_html" value="1">
 			<input type="hidden" name="task" value="save_business_settings"/>
 			<input type="hidden" name="option" value="<?php echo $option; ?>"/>
