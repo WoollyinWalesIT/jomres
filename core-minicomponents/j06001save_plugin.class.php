@@ -42,7 +42,7 @@ class j06001save_plugin
 			return;
 		}
 		if (isset($_REQUEST[ 'plugin' ]) && !empty($_REQUEST[ 'plugin' ])) {
-			$plugin = jomresGetParam($_REQUEST, plugin, '');
+			$plugin = jomresGetParam($_REQUEST, 'plugin', '');
 			savePlugin($plugin);
 		}
 	}
