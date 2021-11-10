@@ -105,6 +105,7 @@ class jomres_database
 				mysqli_select_db($this->link, get_showtime('db')) or die('Could not select database');
 				mysqli_query($this->link, 'SET CHARACTER SET utf8');
 				mysqli_query($this->link, 'SET NAMES utf8');
+                mysqli_query($this->link, 'SET SESSION wait_timeout=300');
 
 				$this->error = mysqli_error($this->link);
 				break;
@@ -127,6 +128,7 @@ class jomres_database
 				}
 				$this->PDO->exec('SET CHARACTER SET utf8');
 				$this->PDO->exec('SET NAMES utf8');
+                $this->PDO->exec('SET SESSION wait_timeout=300');
 
 				$this->error = $this->PDO->errorInfo();
 				break;
