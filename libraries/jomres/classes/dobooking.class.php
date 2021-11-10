@@ -1322,7 +1322,7 @@ class dobooking
 					} else {
 						$this->forcedExtras[ ] = $ex->uid;
 						$this->setExtras($ex->uid);
-						$extra_deets[ 'INPUTBOX' ] = '<input id="extras_'.$ex->uid.'" type="checkbox" checked disabled=" " name="extras['.$ex->uid.']" value="'.$ex->uid.'" />';
+						$extra_deets[ 'INPUTBOX' ] = '<input id="extras_'.$ex->uid.'" type="checkbox" checked disabled=" " onclick="return false;" name="extras['.$ex->uid.']" value="'.$ex->uid.'" />';
 					}
 					$extra_deets[ 'FIELDNAME' ] = 'extras['.$ex->uid.']';
 
