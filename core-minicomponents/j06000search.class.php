@@ -166,6 +166,11 @@ class j06000search
 		jr_import('jomSearch');
 
 		$sch = new jomSearch($calledByModule, $includedInModule);
+        if ($sch->some_published_properties_exist === false ) {
+            echo '<div class="alert alert-danger" role="alert">Error, no published properties exist in the installation. You need at least one published property before you can use the search feature</div>';
+            return;
+        }
+
 		$sch->searchAll = $searchAll;
 		$searchOptions = $sch->searchOptions;
 
