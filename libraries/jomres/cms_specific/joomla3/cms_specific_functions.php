@@ -166,7 +166,7 @@ function jomres_cmsspecific_createNewUser( $email_address = '' )
 		}
 		
 		if (!$thisJRUser->userIsManager) {
-			$mainframe = & JFactory::getApplication('site');
+			$mainframe = JFactory::getApplication('site');
 			jimport('joomla.plugin.helper');
 			$error = $mainframe->login([
 				'username' => $guestDeets[ 'email' ],
