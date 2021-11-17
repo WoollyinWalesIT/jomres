@@ -276,7 +276,7 @@ class j03020insertbooking
 					$all_cms_users = jomres_cmsspecific_getCMSUsers();
 					
 					$cms_user_id = 0;
-					foreach ($all_cms_users as $id=>$user) {
+					foreach ($all_cms_users as $id=>$user) {  // It's possible that it's a manager making a booking, therefore we will search the existing cms users to find their cms_user_id. If found, we'll set the new_booking_user_id variable to this id
 						if ($user['email'] == $guestDetails->email ) {
 							$cms_user_id = $id;
 							set_showtime("new_booking_user_id" , $cms_user_id );
@@ -290,6 +290,11 @@ class j03020insertbooking
 					if ($cms_user_id > 0 ) {
 						if (!$thisJRUser->is_partner) {
 							$new_booking_user_id = get_showtime("new_booking_user_id");
+                            if (is_null($new_booking_user_id) && $thisJRUser->userIsRegistered == false ) { // There's been some confusion (because I'm dim) as to who the cms_user_id refers to, it can either be a manager/receptionist, or the guest themselves so this is designed to definitively decide to make the $new_booking_user_id the newly created $cms_user_id
+                                $new_booking_user_id = $cms_user_id;
+
+                            }
+
 							$already_exists =false;
 							if ($thisJRUser->userIsRegistered) {
 								$already_exists =true;
@@ -301,7 +306,6 @@ class j03020insertbooking
 									$already_exists =true;
 								}
 							}
-							
 							jr_import('jomres_encryption');
 							$jomres_encryption = new jomres_encryption();
 							
@@ -351,7 +355,7 @@ class j03020insertbooking
 									`cms_user_id` = ".(int)$new_booking_user_id;
 								doInsertSql($query, '');
 							}
-
+                            $thisJRUser->init_user( $new_booking_user_id); // Reinitialise the JR User object
 						}
 						set_showtime("new_booking_user_id" , $new_booking_user_id );
 					} else {

@@ -3759,7 +3759,7 @@ class dobooking
 			$guests = $this->getVariantsOfType('guesttype');
 		}
 
-		$this->city_tax_number_of_guests = $totalNumberOfGuests;
+
 
 		$this->setErrorLog('checkAllGuestsAllocatedToRooms::Starting ');
 		if (!empty($guests) || $mrConfig[ 'tariffmode' ] == '5' ) {
@@ -3775,7 +3775,8 @@ class dobooking
 					$totalNumberOfGuests = $totalNumberOfGuests + $g[ 'qty' ];
 				}
 			}
-
+            
+            $this->city_tax_number_of_guests = $totalNumberOfGuests;
 
 			// Let's find the max_people options for each room
 			$allSelectedRoomsMaxPeople = array();
