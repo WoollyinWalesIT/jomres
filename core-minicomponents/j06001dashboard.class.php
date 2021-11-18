@@ -115,6 +115,7 @@ class j06001dashboard
 		$output['NEW_BOOKING_URL'] = get_booking_url($property_uid);
 		$output['HBLACK_BOOKINGS'] = jr_gettext('_JOMRES_FRONT_BLACKBOOKING', '_JOMRES_FRONT_BLACKBOOKING', false);
 		$output['BLACK_BOOKINGS_URL'] = jomresUrl(JOMRES_SITEPAGE_URL.'&task=list_black_bookings');
+        $output['_JOMRES_VARIANCES_NOTES'] = jr_gettext('_JOMRES_VARIANCES_NOTES', '_JOMRES_VARIANCES_NOTES', false);
 
 		//legend
 		$output['HLEGEND'] = jr_gettext('_JOMRES_HLEGEND', '_JOMRES_HLEGEND', false);
