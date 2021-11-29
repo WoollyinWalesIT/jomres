@@ -1084,7 +1084,7 @@ function jomres_bootstrap_version()
 		$bootstrap_version = '5';
 	} elseif  ( jomres_cmsspecific_areweinadminarea() && _JOMRES_DETECTED_CMS == 'joomla3' ) {
 		$bootstrap_version = '2';
-	} elseif ( $jrConfig[ 'bootstrap_version' ] == 0 ) { // We are in Wordpress, so we'll automatically set the BS version to 2 if in admin, or BS3 in frontend as the init config vars functionality will autoload the BS3 scripts in the frontend
+	} elseif ( this_cms_is_wordpress() ) { // We are in Wordpress, so we'll automatically set the BS version to 2 if in admin, or BS3 in frontend as the init config vars functionality will autoload the BS3 scripts in the frontend
 	    if ( jomres_cmsspecific_areweinadminarea()) {
             $bootstrap_version = '2';
         } else {
