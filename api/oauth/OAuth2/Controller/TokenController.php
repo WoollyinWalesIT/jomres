@@ -206,6 +206,19 @@ class TokenController implements TokenControllerInterface
          *
          * @see http://tools.ietf.org/html/rfc6749#section-3.3
          */
+
+        /**
+         * Vince changed  29 Nov 2021
+         *
+         * Sending the expected scope via the token request is a problem as it's uncommon. I could change the UI so that it displays the available scopes for each created token, and still expect that the requested scopes be sent via the token request but I don't believe that it's necessary. Instead we'll do....
+         *
+         * Setting the Requested scope to the scope already saved in the DB should be sufficient.
+         *
+         */
+
+        $requestedScope = $grantType->getScope();
+
+        /*
         $requestedScope = $this->scopeUtil->getScopeFromRequest($request);
         $availableScope = $grantType->getScope();
 
@@ -246,7 +259,7 @@ class TokenController implements TokenControllerInterface
             }
 
             $requestedScope = $defaultScope;
-        }
+        }*/
 
         return $grantType->createAccessToken($this->accessToken, $clientId, $grantType->getUserId(), $requestedScope);
     }
