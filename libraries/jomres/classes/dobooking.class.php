@@ -2874,7 +2874,7 @@ class dobooking
 		$dateRangeArray = array();
 		$currentDay = $this->getArrivalDate();
 		$date_elements = explode('/', $currentDay);
-		$unixCurrentDate = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ]);
+		$unixCurrentDate = mktime(0, 0, 0, (int) $date_elements[ 1 ], (int) $date_elements[ 2 ], (int)$date_elements[ 0 ]);
 		for ($i = 0, $n = $stayDays; $i < $n; ++$i) {
 			$currentDay = date('Y/m/d', $unixCurrentDate);
 			$dateRangeArray[ ] = $currentDay;
@@ -7214,7 +7214,7 @@ class dobooking
 	{
 		if (!isset(self::$mktimes[ $date ])) {
 			$date_elements = explode('/', $date);
-			self::$mktimes[ $date ] = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ]);
+			self::$mktimes[ $date ] = mktime(0, 0, 0,  (int)$date_elements[ 1 ],  (int)$date_elements[ 2 ], (int) $date_elements[ 0 ]);
 		}
 
 		return self::$mktimes[ $date ];
