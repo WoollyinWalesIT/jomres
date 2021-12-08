@@ -2779,7 +2779,15 @@ function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode
 	
 	$from = str_replace( "&#64;" , "=" , $from );
 	$to = str_replace( "&#64;" , "=" , $to );
-	
+
+    $to = str_replace ("&#38;#38;#43;" , "+" , $to);
+    $to = str_replace ("&#38;#43;" , "+" , $to);
+    $to = str_replace ("&#43;" , "+" , $to);
+
+    $from = str_replace ("&#38;#38;#43;" , "+" , $from);
+    $from = str_replace ("&#38;#43;" , "+" , $from);
+    $from = str_replace ("&#43;" , "+" , $from);
+
 	logging::log_message('Sending email from '.$from.' to '.$to.' subject '.$subject, 'Mailer');
 
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
