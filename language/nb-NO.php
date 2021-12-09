@@ -2590,3 +2590,6 @@ jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "No Bootstrap in t
 
 jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'Linker til sosiale medier');
 jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Legg inn navnene på sosiale medier-kontoer her, for eksempel "jomres", ikke hele url\'en');
+
+jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Kommaseparert liste over språk organisasjonen din snakker');
+jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'Url til organisasjonens logo');

@@ -2629,3 +2629,5 @@ jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", " Temada Bootstrap 
 
 jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'Sosyal medya bağlantıları');
 jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Sosyal medya hesap adlarınızı buraya yazın, örneğin "jomres", url\'nin tamamı değil');
+jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Kuruluşunuzun konuştuğu dillerin virgülle ayrılmış listesi');
+jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'Kuruluş logonuzun URL\'si');

@@ -2729,3 +2729,6 @@ jr_define('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', 'این یک ویژگی کانا�
 
 jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'پیوندهای رسانه های اجتماعی');
 jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'نام حساب رسانه های اجتماعی خود را در اینجا قرار دهید، برای مثال "jomres"، نه کل آدرس اینترنتی را');
+
+jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'فهرست زبان هایی که سازمان شما به آنها صحبت می کند با کاما جدا شده');
+jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'آدرس نشانی سازمان شما');

@@ -2636,3 +2636,6 @@ jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "主题中没有引
 
 jr_define('JOMRES_SOCIAL_MEDIA_LINKS', '社交媒体链接');
 jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', '把你的社交媒体账户名称放在这里，例如“jomres”，而不是整个网址');
+
+jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', '贵组织使用的语言的逗号分隔列表');
+jr_define('JOMRES_ORGANISATIION_LOGO_URL', '你的组织标志的网址');

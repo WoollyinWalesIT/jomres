@@ -2654,3 +2654,6 @@ jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "Fără bootstrap 
 
 jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'Legături social media');
 jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Pune aici numele contului tău de socializare, de exemplu „jomres”, nu întreaga adresă URL');
+
+jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Lista de limbi vorbite de organizația dvs., separată prin virgulă');
+jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'Url la sigla organizației dvs.');

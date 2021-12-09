@@ -2625,3 +2625,6 @@ jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0","テーマにブー�
 
 jr_define( 'JOMRES_SOCIAL_MEDIA_LINKS', 'ソーシャルメディアリンク');
 jr_define( 'JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'ソーシャルメディアアカウント名をここに入力します。たとえば、URL全体ではなく "jomres"');
+
+jr_define( 'JOMRES_ORGANISATIION_LANGUGES_DESC', '組織が話す言語のコンマ区切りリスト');
+jr_define( 'JOMRES_ORGANISATIION_LOGO_URL', '組織のロゴへのURL');

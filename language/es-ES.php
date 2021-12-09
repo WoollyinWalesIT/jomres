@@ -2660,3 +2660,6 @@ jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "Sin Bootstrap en 
 
 jr_define ('JOMRES_SOCIAL_MEDIA_LINKS', 'Enlaces a redes sociales');
 jr_define ('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Pon los nombres de tus cuentas de redes sociales aquí, por ejemplo, "jomres", no la URL completa');
+
+jr_define ('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Lista separada por comas de los idiomas que habla su organización');
+jr_define ('JOMRES_ORGANISATIION_LOGO_URL', 'Url al logotipo de su organización');

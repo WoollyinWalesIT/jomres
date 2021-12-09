@@ -2568,3 +2568,7 @@ jr_define('_JOMRES_FAQ', 'Frequently asked questions');
 
 jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'Social media links');
 jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Put your social media account names here, for example "jomres", not the entire url');
+
+jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Comma seperated list of languages your organisation speaks');
+jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'Url to your organisation logo');
+

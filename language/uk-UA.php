@@ -2582,3 +2582,6 @@ jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "Немає зав
 
 jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'Посилання на соціальні мережі');
 jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Введіть тут імена своїх акаунтів у соціальних мережах, наприклад, "jomres", а не всю URL-адресу');
+
+jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Список мов, якими володіє ваша організація, розділений комами');
+jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'URL-адреса логотипу вашої організації');

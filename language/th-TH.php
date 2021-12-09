@@ -2604,3 +2604,5 @@ jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", " ไม่มี B
 jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'ลิงก์โซเชียลมีเดีย');
 jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'ใส่ชื่อบัญชีโซเชียลมีเดียของคุณที่นี่ เช่น "jomres" ไม่ใช่ url ทั้งหมด');
 
+jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'รายการที่คั่นด้วยจุลภาคของภาษาที่องค์กรของคุณพูด');
+jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'Url ไปยังโลโก้องค์กรของคุณ');

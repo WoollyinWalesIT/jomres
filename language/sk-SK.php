@@ -2652,3 +2652,6 @@ jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "Žiadny bootstrap
 
 jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'Odkazy na sociálne médiá');
 jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Sem vložte názvy svojich účtov sociálnych médií, napríklad "jomres", nie celú adresu URL');
+
+jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Čiarkami oddelený zoznam jazykov, ktorými vaša organizácia hovorí');
+jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'Adresa URL loga vašej organizácie');

@@ -2637,3 +2637,6 @@ jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "V temi ni zagonsk
 
 jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'Povezave do družbenih medijev');
 jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Tukaj vnesite imena svojih računov v družbenih omrežjih, na primer "jomres", ne celotnega URL-ja');
+
+jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Seznam jezikov, ločenih z vejicami, ki jih govori vaša organizacija');
+jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'URL logotipa vaše organizacije');

@@ -18,6 +18,42 @@
 	<!-- End of Google social profiles markup-->
 </patTemplate:tmpl>
 
+<patTemplate:tmpl name="organisation" unusedvars="strip">
+<!-- Google logo & contacts markup-->
+<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"url": "{LIVESITE}",
+		"logo": "{BUSINESS_LOGO}",
+		"contactPoint": [
+			{
+				"@type": "ContactPoint",
+				"telephone": "{BUSINESS_TELEPHONE}",
+				"contactType": "reservations",
+				"contactOption": [
+					""
+				],
+				"availableLanguage": [
+					{BUSINESS_LANGUAGES}
+				]
+			},
+			{
+				"@type": "ContactPoint",
+				"telephone": "{BUSINESS_TELEPHONE}",
+				"contactType": "customer service",
+				"contactOption": [
+					""
+				],
+				"availableLanguage": [
+					{BUSINESS_LANGUAGES}
+				]
+			}
+		]
+	}
+</script>
+<!-- End of Google logo & contacts markup-->
+</patTemplate:tmpl>
 
 <style>
 .schema-hidden-fields {

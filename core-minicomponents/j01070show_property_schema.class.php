@@ -400,8 +400,20 @@ class j01070show_property_schema
 			}
 		}
 
-		
-		if ($mrConfig[ 'singleRoomProperty' ] == '1') {
+
+        $organisation_details = array();
+        $organisation_details[0]['BUSINESS_NAME'] = $jrConfig['business_name'];
+        $organisation_details[0][ 'LIVESITE' ] = get_showtime('live_site');
+        $organisation_details[0]['BUSINESS_LANGUAGES'] = '';
+        $organisation_details[0]['BUSINESS_TELEPHONE'] = $jrConfig['business_telephone'];
+        $organisation_details[0]['BUSINESS_LOGO'] = $jrConfig[ 'business_logo' ];
+        if ($jrConfig[ 'business_languages' ] != '' ) {
+            $business_languages = explode ( "," , $jrConfig[ 'business_languages' ]); // We won't ask admin to add quotes around languages, instead we'll do that ourselves
+            $organisation_details[0]['BUSINESS_LANGUAGES'] = sprintf("'%s'", implode("','", $business_languages ) );;
+        }
+
+
+        if ($mrConfig[ 'singleRoomProperty' ] == '1') {
 			$template = 'schema_srp.html';
 		} else {
 			$template = 'schema_mrp.html';
@@ -426,6 +438,7 @@ class j01070show_property_schema
 		$tmpl = new patTemplate();
 
 		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+        $tmpl->addRows('organisation', $organisation_details);
 		$tmpl->addRows('pageoutput', $pageoutput);
 		$tmpl->addRows('pfeatures', $pFeatures);
 		if (!empty($room_types)) {

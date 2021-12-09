@@ -2667,3 +2667,6 @@ jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "Bez pokretanja u 
 
 jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'Veze društvenih medija');
 jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Ovdje stavite nazive računa na društvenim mrežama, na primjer "jomres", a ne cijeli url');
+
+jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Popis jezika koje vaša organizacija govori zarezima odvojenih');
+jr_define('JOMRES_ORGANISATION_LOGO_URL', 'URL logotipa vaše organizacije');

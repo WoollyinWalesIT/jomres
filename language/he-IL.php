@@ -2661,3 +2661,6 @@ jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "אין רצועה
 
 jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'קישורי מדיה חברתית');
 jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'שים כאן את שמות חשבונות המדיה החברתית שלך, למשל "jomres", לא את כל כתובת האתר');
+
+jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'רשימה מופרדת בפסיק של שפות הארגון שלך דובר');
+jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'כתובת אתר ללוגו הארגון שלך');

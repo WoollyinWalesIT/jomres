@@ -2658,3 +2658,6 @@ jr_define ("_JOMRES_CONFIG_INITAL_SETUP_STEP_3_BOOTSTRAP0" , "لا يوجد Boot
 
 jr_define ("JOMRES_SOCIAL_MEDIA_LINKS" , "روابط وسائل التواصل الاجتماعي") ;
 jr_define ('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'ضع أسماء حسابات الوسائط الاجتماعية الخاصة بك هنا ، على سبيل المثال "jomres" ، وليس عنوان url بالكامل') ;
+
+jr_define ('JOMRES_ORGANISATIION_LANGUGES_DESC', 'قائمة مفصولة بفواصل للغات التي تتحدثها مؤسستك') ;
+jr_define ("JOMRES_ORGANISATIION_LOGO_URL" ,"عنوان URL لشعار مؤسستك") ;

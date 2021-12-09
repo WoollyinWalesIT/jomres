@@ -2657,3 +2657,6 @@ jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "Nincs Bootstrap a
 
 jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'Közösségi média linkek');
 jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Írja ide közösségimédia-fiókja nevét, például "jomres", ne a teljes URL-t');
+
+jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'A szervezet által beszélt nyelvek vesszővel tagolt listája');
+jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'A szervezet logójának URL-je');

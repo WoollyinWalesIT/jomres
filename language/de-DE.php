@@ -2682,3 +2682,6 @@ jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "Kein Bootstrap im 
 
 jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'Links zu sozialen Medien');
 jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Geben Sie hier Ihre Social-Media-Kontonamen ein, zum Beispiel "jomres", nicht die gesamte URL');
+
+jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Kommagetrennte Liste der Sprachen, die Ihre Organisation spricht');
+jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'URL zu Ihrem Firmenlogo');
