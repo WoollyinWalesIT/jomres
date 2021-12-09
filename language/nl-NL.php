@@ -2589,3 +2589,5 @@ jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_MESSAGE', 'We willen graag infor
 jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_ACCEPT', ' Ja, dat is goed ');
 jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_DENY', ' Nee, ik ga niet akkoord ');
 
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'Links naar sociale media');
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Plaats hier de namen van je social media account, bijvoorbeeld "jomres", niet de hele url');

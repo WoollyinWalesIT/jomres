@@ -407,6 +407,20 @@ class j01070show_property_schema
 			$template = 'schema_mrp.html';
 		}
 
+        $social_meeja_platforms = get_sm_platforms();
+        $populated_social_media = array();
+        $social = array();
+        foreach ( $social_meeja_platforms as $key => $val ) {
+            if (isset($jrConfig[$key]) && $jrConfig[$key] != '') {
+                $populated_social_media[]['URL'] = $val['url'].$jrConfig[$key];
+            }
+        }
+        if (!empty( $populated_social_media)) {
+            $social_profile = array();
+            $social_profile[ 'SITENAME' ] = get_showtime('sitename');
+            $social_profile[ 'LIVESITE' ] = get_showtime('live_site');
+            $social[] =  $social_profile;
+        }
 
 		$pageoutput[ ] = $output;
 		$tmpl = new patTemplate();
@@ -436,6 +450,11 @@ class j01070show_property_schema
 		if (!empty($reviews)) {
 			$tmpl->addRows('reviews', $reviews);
 		}
+
+        if (!empty($social)) {
+            $tmpl->addRows('social_profiles',$social);
+            $tmpl->addRows('social_profile_urls', $populated_social_media);
+        }
 
 		$tmpl->readTemplatesFromInput($template);
 		$tmpl->displayParsedTemplate();

@@ -2727,3 +2727,5 @@ jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", " بدون بوت �
 
 jr_define('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', 'این یک ویژگی کانال است ، نمی توان آن را به صورت محلی اداره کرد ، از صفحه چارچوب مدیریت کانال دیدن کنید تا پیوند مدیریت از راه دور ویژگی را پیدا کنید');
 
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'پیوندهای رسانه های اجتماعی');
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'نام حساب رسانه های اجتماعی خود را در اینجا قرار دهید، برای مثال "jomres"، نه کل آدرس اینترنتی را');

@@ -2623,3 +2623,5 @@ jr_define('_JOMRES_SEND_GROUP_BY_FIX_DESC','一部のmysqlインストールで�
 jr_define('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN','これはチャネルプロパティです。ローカルで管理することはできません。チャネル管理フレームワークページにアクセスして、プロパティのリモート管理リンクを見つけてください');
 jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0","テーマにブートストラップがありません");
 
+jr_define( 'JOMRES_SOCIAL_MEDIA_LINKS', 'ソーシャルメディアリンク');
+jr_define( 'JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'ソーシャルメディアアカウント名をここに入力します。たとえば、URL全体ではなく "jomres"');

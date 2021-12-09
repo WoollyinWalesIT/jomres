@@ -1,5 +1,23 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 
+<patTemplate:tmpl name="social_profiles" type="simpleCondition" requiredVars="livesite">
+	<!-- Google social profiles markup-->
+	<script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "Organization",
+			"url": "{LIVESITE}",
+			"name": "{SITENAME}",
+			"sameAs": [
+				<patTemplate:tmpl name="social_profile_urls" unusedvars="strip">
+				"{URL}",
+				</patTemplate:tmpl>
+			]
+		}
+	</script>
+	<!-- End of Google social profiles markup-->
+</patTemplate:tmpl>
+
 <style>
 .schema-hidden-fields {
 	display: none;

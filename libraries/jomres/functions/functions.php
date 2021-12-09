@@ -17,6 +17,25 @@ defined('_JOMRES_INITCHECK') or die('');
 
 
 /**
+ *
+ * Return an array of social media platforms with relevant data
+ *
+ */
+function get_sm_platforms() {
+    $social_meeja_platforms = array(
+        'social_media_facebook'     => ['name' => 'Facebook' , 'url' => 'https://www.facebook.com/' , 'notes' => ''],
+        'social_media_instagram'    => ['name' => 'Instagram' , 'url' => 'https://www.instagram.com/' , 'notes' => ''],
+        'social_media_pintrest'     => ['name' =>'Pintrest' , 'url' => 'https://www.pinterest.com/' , 'notes' => ''],
+        'social_media_linkedin'     => ['name' => 'LinkedIn', 'url' => 'https://www.linkedin.com/in/' , 'notes' => ''],
+        'social_media_twitter'      => ['name' => 'Twitter' , 'url' => 'https://twitter.com/' , 'notes' => ''],
+        'social_media_tiktok'       => ['name' =>'Tiktok' , 'url' => 'https://www.tiktok.com/@' , 'notes' => ''],
+        'social_media_whatsapp'     => ['name' => 'Whatsapp' , 'url' => 'https://wa.me/' , 'notes' => ' Correct : 4412345678 Wrong +4412345678'],
+        'social_media_youtube'      => ['name' => 'Youtube' , 'url' => 'https://www.youtube.com/c/' , 'notes' => '']
+      );
+    return  $social_meeja_platforms;
+}
+
+/**
 *
 * Is this a channel managed property?
 *

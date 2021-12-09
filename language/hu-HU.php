@@ -2654,3 +2654,6 @@ jr_define ('_JOMRES_SEND_GROUP_BY_FIX_TITLE', 'Alkalmazza a csoportot javítás 
 jr_define ('_JOMRES_SEND_GROUP_BY_FIX_DESC', 'Bizonyos mysql telepítéseknél probléma lehet a Jomres -lekérdezésekkel a Lista tulajdonságai, Vendégek listája és Számlák oldalon. Ha ezek az oldalak azt mondják, hogy X találatot mutatnak Y -ból, de semmi sem jelenik meg a listában, akkor ez az Igen opció megoldhatja a problémát. Nem, ha megosztott tárhelyet használ, és a tárhelyszolgáltatás nem teszi lehetővé a mysql felhasználó számára a "SET GLOBAL sql_mode =" parancs kiadását. ');
 jr_define ('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', 'Ez egy csatornatulajdon, nem adminisztrálható helyben, látogasson el a csatornakezelési keretoldalra, és keresse meg a tulajdonság távoli adminisztrációs linkjét');
 jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "Nincs Bootstrap a témában");
+
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'Közösségi média linkek');
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Írja ide közösségimédia-fiókja nevét, például "jomres", ne a teljes URL-t');

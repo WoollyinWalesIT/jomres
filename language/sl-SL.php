@@ -2634,3 +2634,6 @@ jr_define ('_JOMRES_SEND_GROUP_BY_FIX_TITLE', 'Uporabi skupino po popravku?');
 jr_define ('_JOMRES_SEND_GROUP_BY_FIX_DESC', 'Nekatere namestitve mysql imajo lahko težave z Jomres poizvedbami na strani Lastnosti seznama, Seznam gostov in Seznam računov ta možnost na Da lahko odpravi težavo. Ne bo, če uporabljate gostovanje v skupni rabi in storitev gostovanja ne dovoljuje, da vaš uporabnik mysql izda ukaz "SET GLOBAL sql_mode =". ');
 jr_define ('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', 'To je lastnost kanala, ki je ni mogoče upravljati lokalno, obiščite stran okvirja za upravljanje kanalov in poiščite povezavo za oddaljeno upravljanje lastnosti');
 jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "V temi ni zagonskega pasu");
+
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'Povezave do družbenih medijev');
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Tukaj vnesite imena svojih računov v družbenih omrežjih, na primer "jomres", ne celotnega URL-ja');
