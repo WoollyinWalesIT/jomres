@@ -40,32 +40,6 @@
 		<div class="clearfix"></div>
 		<p>&#xA0;</p>
 
-		<nav>
-			<div class="nav nav-tabs" id="nav-tab" role="tablist">
-				<a class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Home</a>
-				<a class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</a>
-				<a class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a>
-			</div>
-		</nav>
-		<div class="tab-content" id="nav-tabContent">
-			<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-				<p>clicked home</p>
-				<p>clicked home</p>
-				<p>clicked home</p>
-			</div>
-			<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-				<p>clicked profile</p>
-				<p>clicked profile</p>
-				<p>clicked profile</p>
-			</div>
-			<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-				<p>clicked contact</p>
-				<p>clicked contact</p>
-				<p>clicked contact</p>
-			</div>
-		</div>
-
-
 		<div class="card">
 			<div class="card-header">
 				<h2 class="card-title">{TABCONTENT_01_MAIN_DETAILS_TITLE}</h2>
@@ -78,8 +52,7 @@
 			</div>
 			<div class="card-body">{TABCONTENT_01_MORE_INFO_CONTENT}</div>
 		</div>
-		<pattemplate:tmpl name="extras_output" type="simpleCondition" requiredvars="tabcontent_06_extras_content"
-		                  unusedvars="nbsp">
+		<pattemplate:tmpl name="extras_output" type="simpleCondition" requiredvars="tabcontent_06_extras_content" unusedvars="nbsp">
 			<div class="card">
 				<div class="card-header">
 					<h2 class="card-title">{TABCONTENT_06_EXTRAS_TITLE}</h2>
@@ -87,8 +60,7 @@
 				<div class="card-body">{TABCONTENT_06_EXTRAS_CONTENT}</div>
 			</div>
 		</pattemplate:tmpl>
-		<pattemplate:tmpl name="map_output" type="simpleCondition" requiredvars="tabcontent_02_map_title"
-		                  unusedvars="nbsp">
+		<pattemplate:tmpl name="map_output" type="simpleCondition" requiredvars="tabcontent_02_map_title" unusedvars="nbsp">
 			<div class="card">
 				<div class="card-header">
 					<h2 class="card-title">{TABCONTENT_02_MAP_TITLE}</h2>
@@ -107,7 +79,8 @@
 		<div class="tabbable">
 			<ul class="nav nav-tabs">
 				<pattemplate:tmpl name="tabs_titles">
-					<li class="{ACTIVE}"><a href="#{TAB_ANCHOR}" data-bs-toggle="tab" id="{TAB_ID}">{TAB_TITLE}</a>
+					<li class="nav-item {ACTIVE}">
+						<a href="#{TAB_ANCHOR}" class="nav-link" data-bs-toggle="tab" id="{TAB_ID}">{TAB_TITLE}</a>
 					</li>
 				</pattemplate:tmpl>
 			</ul>
