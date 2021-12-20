@@ -88,7 +88,7 @@ function navigate(lat, lng) {
 						<a href="{CONTACT_LINK}" class="btn btn-default"><i class="fa fa-envelope"></i> {HCONTACT}</a>
 						<a href="javascript:void(0);" id="shortlist_{PROPERTY_UID}" onclick="shortlist('{PROPERTY_UID}', '1')" class="btn btn-default">{SHORTLIST}</a>
 						<a href="{SHORTLIST_LINK}" class="btn btn-default"><i class="fa fa-heart"></i> {HSHORTLIST}</a>
-						<a href="javascript:navigate({PROPERTY_LAT},{PROPERTY_LONG});" class="btn btn-default"><i class="fa fa-map-marker"></i> {HMAP}</a>
+						<a href="http://maps.google.com/maps?q=loc:{PROPERTY_LAT},{PROPERTY_LONG}&navigate=yes" class="btn btn-secondary" target="_blank"><i class="fa fa-map-marker"></i> {HMAP}</a>{HOST_LINK}</div>
 						{HOST_LINK}
 					</div>
 				</div>

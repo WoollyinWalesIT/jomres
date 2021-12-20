@@ -67,11 +67,9 @@
 								<pattemplate:tmpl
 										name="bookinglink" type="simpleCondition" requiredvars="link" unusedvars="nbsp">	<a href="{LINK}" class="btn btn-success"><i class="fa fa-shopping-cart"></i> {TEXT}</a>
 								</pattemplate:tmpl>	<a href="{CONTACT_LINK}" class="btn btn-secondary"><i class="fa fa-envelope"></i> {HCONTACT}</a>
-								<a
-										href="javascript:void(0);" id="shortlist_{PROPERTY_UID}" onclick="shortlist(&apos;{PROPERTY_UID}&apos;, &apos;1&apos;)"
+								<a href="javascript:void(0);" id="shortlist_{PROPERTY_UID}" onclick="shortlist(&apos;{PROPERTY_UID}&apos;, &apos;1&apos;)"
 										class="btn btn-secondary">{SHORTLIST}</a>	<a href="{SHORTLIST_LINK}" class="btn btn-secondary"><i class="fa fa-heart"></i> {HSHORTLIST}</a>
-								<a
-										href="javascript:navigate({PROPERTY_LAT},{PROPERTY_LONG});" class="btn btn-secondary"><i class="fa fa-map-marker"></i> {HMAP}</a>{HOST_LINK}</div>
+								<a href="http://maps.google.com/maps?q=loc:{PROPERTY_LAT},{PROPERTY_LONG}&navigate=yes" class="btn btn-secondary" target="_blank"><i class="fa fa-map-marker"></i> {HMAP}</a>{HOST_LINK}</div>
 						</div>
 					</div>
 				</div>
