@@ -165,7 +165,7 @@ function jomres_cmsspecific_createNewUser( $email_address = '' )
 	$id = doInsertSql($query);
 	if (!$id) {
 		trigger_error('Failed insert new user '.$query, E_USER_ERROR);
-		$this->insertSuccessful = false;
+		$insertSuccessful = false;
 	} else {
 
         $webhook_notification							  	= new stdClass();
