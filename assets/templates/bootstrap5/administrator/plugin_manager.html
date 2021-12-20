@@ -99,10 +99,10 @@
 		</patTemplate:tmpl>
         
 		<patTemplate:tmpl name="bronze_users" type="simpleCondition" requiredVars="license_server_username">
-		<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#shopping_cart">
+		<button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-target="#shopping_cart">
 			Plugin Shop cart
 		</button>
-		<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#shop_information">
+		<button type="button" class="btn btn-info btn-lg" data-bs-toggle="modal" data-target="#shop_information">
 			Plugin Shop T&C
 		</button>
 		
@@ -298,11 +298,11 @@
 
 	<div class="tabbable">
 		<ul class="nav nav-tabs">
-			<li class="active"><a href="#coreplugins" data-toggle="tab">Core plugins</a></li>
-			<li><a href="#apiplugins" data-toggle="tab">Core API plugins</a></li>
-			<li><a href="#webhooksplugins" data-toggle="tab">Webhooks plugins</a></li>
-			<li><a href="#3rdpplugins" data-toggle="tab">Third party plugins</a></li>
-			<li><a href="#install3rdpplugin" data-toggle="tab">Install third party plugin</a></li>
+			<li class="active"><a href="#coreplugins" data-bs-toggle="tab">Core plugins</a></li>
+			<li><a href="#apiplugins" data-bs-toggle="tab">Core API plugins</a></li>
+			<li><a href="#webhooksplugins" data-bs-toggle="tab">Webhooks plugins</a></li>
+			<li><a href="#3rdpplugins" data-bs-toggle="tab">Third party plugins</a></li>
+			<li><a href="#install3rdpplugin" data-bs-toggle="tab">Install third party plugin</a></li>
 		</ul>
 		<div class="tab-content">
 			<div class="tab-pane active" id="coreplugins">
@@ -319,7 +319,7 @@
 						<td class="{ROWCLASS}"><a name="{PLUGIN_NAME}"></a>{STRONG1}{READABLE_NAME}{STRONG2}</td>
 						<!--<td><a href="#" class="thumbnail"><img src="{IMAGE}" alt=""></a></td>-->
 						<td>
-							<button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal_trigger_{PLUGIN_NAME}">{ENCODED_ICON} More info</button>
+							<button type="button" class="btn btn-info" data-bs-toggle="modal" data-target="#modal_trigger_{PLUGIN_NAME}">{ENCODED_ICON} More info</button>
 						</td>
 						<td>{INSTALL} {LATERVERSION}</td>
 						<td>{UNINSTALL}</td>
@@ -351,7 +351,7 @@
 							</div>
 							<p class="text-info">{PLUGIN_DESC}</p>
 							<p class="{HIGHLIGHT_CLASS}">{HIGHLIGHT}</p>
-							<button type="button" class="btn" data-toggle="collapse" data-target="#collapse_{PLUGIN_NAME}">
+							<button type="button" class="btn" data-bs-toggle="collapse" data-target="#collapse_{PLUGIN_NAME}">
 								Changelog
 							</button>
 							<div id="collapse_{PLUGIN_NAME}" class="collapse">
@@ -383,7 +383,7 @@
 						<td class="{ROWCLASS}"><a name="{PLUGIN_NAME}"></a>{STRONG1}{READABLE_NAME}{STRONG2}</td>
 						<!--<td><a href="#" class="thumbnail"><img src="{IMAGE}" alt=""></a></td>-->
 						<td>
-							<button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal_trigger_{PLUGIN_NAME}">{ENCODED_ICON} More info</button>
+							<button type="button" class="btn btn-info" data-bs-toggle="modal" data-target="#modal_trigger_{PLUGIN_NAME}">{ENCODED_ICON} More info</button>
 						</td>
 						<td>{INSTALL} {LATERVERSION}</td>
 						<td>{UNINSTALL}</td>
@@ -415,7 +415,7 @@
 							</div>
 							<p>{PLUGIN_DESC}</p>
 							<p class="{HIGHLIGHT_CLASS}">{HIGHLIGHT}</p>
-							<button type="button" class="btn" data-toggle="collapse" data-target="#collapse_{PLUGIN_NAME}">
+							<button type="button" class="btn" data-bs-toggle="collapse" data-target="#collapse_{PLUGIN_NAME}">
 								Changelog
 							</button>
 							<div id="collapse_{PLUGIN_NAME}" class="collapse">
@@ -447,7 +447,7 @@
 						<td class="{ROWCLASS}"><a name="{PLUGIN_NAME}"></a>{STRONG1}{READABLE_NAME}{STRONG2}</td>
 						<!--<td><a href="#" class="thumbnail"><img src="{IMAGE}" alt=""></a></td>-->
 						<td>
-							<button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal_trigger_{PLUGIN_NAME}">{ENCODED_ICON} More info</button>
+							<button type="button" class="btn btn-info" data-bs-toggle="modal" data-target="#modal_trigger_{PLUGIN_NAME}">{ENCODED_ICON} More info</button>
 						</td>
 						<td>{INSTALL} {LATERVERSION}</td>
 						<td>{UNINSTALL}</td>
@@ -479,7 +479,7 @@
 							</div>
 							<p>{PLUGIN_DESC}</p>
 							<p class="{HIGHLIGHT_CLASS}">{HIGHLIGHT}</p>
-							<button type="button" class="btn" data-toggle="collapse" data-target="#collapse_{PLUGIN_NAME}">
+							<button type="button" class="btn" data-bs-toggle="collapse" data-target="#collapse_{PLUGIN_NAME}">
 								Changelog
 							</button>
 							<div id="collapse_{PLUGIN_NAME}" class="collapse">

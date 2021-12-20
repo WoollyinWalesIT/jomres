@@ -39,6 +39,33 @@
 		</div>
 		<div class="clearfix"></div>
 		<p>&#xA0;</p>
+
+		<nav>
+			<div class="nav nav-tabs" id="nav-tab" role="tablist">
+				<a class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Home</a>
+				<a class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</a>
+				<a class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a>
+			</div>
+		</nav>
+		<div class="tab-content" id="nav-tabContent">
+			<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+				<p>clicked home</p>
+				<p>clicked home</p>
+				<p>clicked home</p>
+			</div>
+			<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+				<p>clicked profile</p>
+				<p>clicked profile</p>
+				<p>clicked profile</p>
+			</div>
+			<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+				<p>clicked contact</p>
+				<p>clicked contact</p>
+				<p>clicked contact</p>
+			</div>
+		</div>
+
+
 		<div class="card">
 			<div class="card-header">
 				<h2 class="card-title">{TABCONTENT_01_MAIN_DETAILS_TITLE}</h2>
@@ -80,7 +107,7 @@
 		<div class="tabbable">
 			<ul class="nav nav-tabs">
 				<pattemplate:tmpl name="tabs_titles">
-					<li class="{ACTIVE}"><a href="#{TAB_ANCHOR}" data-toggle="tab" id="{TAB_ID}">{TAB_TITLE}</a>
+					<li class="{ACTIVE}"><a href="#{TAB_ANCHOR}" data-bs-toggle="tab" id="{TAB_ID}">{TAB_TITLE}</a>
 					</li>
 				</pattemplate:tmpl>
 			</ul>
@@ -149,6 +176,8 @@
 
 	-->
 	</pattemplate:comment>
+
+
 	<pattemplate:comment>More stuff that can be used on this page {BOOKING_FORM} // Yes, that booking
 		form. show_booking_form_in_property_details setting from Site Config needs
 		to be set to Yes for the form to show. {HFEATURES} {HRTYPES} {LIVE_SITE}

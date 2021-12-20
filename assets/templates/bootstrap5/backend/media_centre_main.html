@@ -49,16 +49,16 @@
              <p>{RESOURCE_TYPE_OPTIONS} <span id="resource_id_dropdown"><input type="hidden" id="resource_id" value="" /></span></p>
         </div>
         <div class="col-md-2">
-            <a href="{DEFAULT_PREVIEW_LINK}" data-remote="false" data-toggle="modal" data-target="#previewModal" class="btn btn-secondary btn-lg" id="image_preview_button">
+            <a href="{DEFAULT_PREVIEW_LINK}" data-remote="false" data-bs-toggle="modal" data-target="#previewModal" class="btn btn-secondary btn-lg" id="image_preview_button">
                 <i class="fa fa-link" aria-hidden="true"></i>
                {_JOMRES_FRONT_PREVIEW}
             </a>
-            <button type="button" class="btn btn-info" data-toggle="popover" data-placement="left" title="{_JOMRES_FRONT_PREVIEW}" data-trigger="focus" data-content="{_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_PREVIEW}"><i class="fa fa-info" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-info" data-bs-toggle="popover" data-placement="left" title="{_JOMRES_FRONT_PREVIEW}" data-trigger="focus" data-content="{_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_PREVIEW}"><i class="fa fa-info" aria-hidden="true"></i></button>
         </div>
     </div>
 	<div class="panel-footer">
         <patTemplate:tmpl name="notes" unusedvars="strip" type="simpleCondition" requiredVars="note">
-            <button type="button" class="btn btn-info" data-toggle="popover" title="" data-trigger="focus" data-content='{NOTE}'><i class="fa fa-info" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-info" data-bs-toggle="popover" title="" data-trigger="focus" data-content='{NOTE}'><i class="fa fa-info" aria-hidden="true"></i></button>
         </patTemplate:tmpl>
     </div>
 </div>
@@ -95,7 +95,7 @@
 				{_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD_ALL}
 			</span>
             
-             <button type="button" class="btn btn-info" data-toggle="popover" data-placement="left" title="{_JOMRES_COM_A_UPLOADS_FILESIZE}" data-trigger="focus" data-content="{_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_FILESIZE_PRE}{MAX_UPLOAD_SIZE}{_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_FILESIZE_POST} {_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_LIMITATIONS} {_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_IMAGE_RESOLUTION_PRE}{WIDTH_PIXELS} {_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_IMAGE_RESOLUTION_POST}"><i class="fa fa-info" aria-hidden="true"></i></button>
+             <button type="button" class="btn btn-info" data-bs-toggle="popover" data-placement="left" title="{_JOMRES_COM_A_UPLOADS_FILESIZE}" data-trigger="focus" data-content="{_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_FILESIZE_PRE}{MAX_UPLOAD_SIZE}{_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_FILESIZE_POST} {_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_LIMITATIONS} {_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_IMAGE_RESOLUTION_PRE}{WIDTH_PIXELS} {_JOMRES_MEDIA_CENTRE_INSTRUCTIONS_IMAGE_RESOLUTION_POST}"><i class="fa fa-info" aria-hidden="true"></i></button>
 			<!--<button type="button" class="btn btn-danger delete">
 				<i class="icon-trash"></i>
 				<span>Delete</span>
@@ -347,7 +347,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
 document.addEventListener('DOMContentLoaded', function(){
 
-  jomresJquery('[data-toggle="popover"]').popover()
+  jomresJquery('[data-bs-toggle="popover"]').popover()
 
 	get_resource_ids_for_resource_type(jomresJquery('#resource_types').val());
     
