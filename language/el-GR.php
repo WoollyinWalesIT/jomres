@@ -2661,3 +2661,8 @@ jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "Δεν υπάρχ
 jr_define('_BOOKING_INSTANT', 'Άμεση κράτηση');
 jr_define('_BOOKING_ONREQUEST', 'Κράτηση κατόπιν αιτήματος');
 
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'Σύνδεσμοι μέσων κοινωνικής δικτύωσης');
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Βάλτε τα ονόματα των λογαριασμών σας στα μέσα κοινωνικής δικτύωσης εδώ, για παράδειγμα "jomres", όχι ολόκληρο το url');
+
+jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Λίστα γλωσσών διαχωρισμένων με κόμματα που μιλά ο οργανισμός σας');
+jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'Διεύθυνση URL στο λογότυπο του οργανισμού σας');

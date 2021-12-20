@@ -2588,3 +2588,8 @@ jr_define ('_JOMRES_SEND_GROUP_BY_FIX_DESC', 'Noen mysql -installasjoner kan ha 
 jr_define ('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', 'Dette er en kanaleiendom, den kan ikke administreres lokalt. Gå til rammesiden for kanaladministrasjon for å finne egenskapens lenke for ekstern administrasjon');
 jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "No Bootstrap in theme");
 
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'Linker til sosiale medier');
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Legg inn navnene på sosiale medier-kontoer her, for eksempel "jomres", ikke hele url\'en');
+
+jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Kommaseparert liste over språk organisasjonen din snakker');
+jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'Url til organisasjonens logo');

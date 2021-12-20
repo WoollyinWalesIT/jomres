@@ -2680,3 +2680,8 @@ jr_define('_JOMRES_SEND_GROUP_BY_FIX_DESC', 'Einige MySQL-Installationen haben m
 jr_define('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', 'Dies ist eine Channel-Eigenschaft, sie kann nicht lokal verwaltet werden. Besuchen Sie die Channel-Management-Framework-Seite, um den Link zur Remote-Verwaltung der Eigenschaft zu finden');
 jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "Kein Bootstrap im Theme");
 
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'Links zu sozialen Medien');
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Geben Sie hier Ihre Social-Media-Kontonamen ein, zum Beispiel "jomres", nicht die gesamte URL');
+
+jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Kommagetrennte Liste der Sprachen, die Ihre Organisation spricht');
+jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'URL zu Ihrem Firmenlogo');

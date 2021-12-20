@@ -2651,3 +2651,9 @@ jr_define ('_JOMRES_SEND_GROUP_BY_FIX_TITLE', 'Aplicați grupul prin corecție?'
 jr_define ("_JOMRES_SEND_GROUP_BY_FIX_DESC", "Unele instalații mysql pot avea o problemă cu interogările Jomres în lista Proprietăți listă, Listează invitați și Listează facturi. Dacă acele pagini spun că afișează rezultatele X din Y, dar nu apare nimic în listă, atunci setarea această opțiune pentru Da poate rezolva problema. Nu va fi dacă vă aflați în găzduire partajată și serviciul de găzduire nu permite utilizatorului dvs. mysql să emită comanda SET GLOBAL sql_mode = ");
 jr_define ('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', 'Aceasta este o proprietate de canal, nu poate fi administrată local, vizitați pagina de cadru de gestionare a canalului pentru a găsi legătura de administrare la distanță a proprietății');
 jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "Fără bootstrap în temă");
+
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'Legături social media');
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Pune aici numele contului tău de socializare, de exemplu „jomres”, nu întreaga adresă URL');
+
+jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Lista de limbi vorbite de organizația dvs., separată prin virgulă');
+jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'Url la sigla organizației dvs.');

@@ -2626,3 +2626,8 @@ jr_define ('_JOMRES_SEND_GROUP_BY_FIX_DESC', 'Dažām mysql instalācijām var b
 jr_define ('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', 'Šis ir kanāla īpašums, to nevar administrēt lokāli, apmeklējiet kanālu pārvaldības ietvara lapu, lai atrastu īpašuma attālās administrācijas saiti');
 jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "No Bootstrap in theme");
 
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'Sociālo mediju saites');
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Ievietojiet šeit savu sociālo mediju kontu nosaukumus, piemēram, "jomres", nevis visu url');
+
+jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Komatatdalīts to valodu saraksts, kurās runā jūsu organizācija');
+jr_define('JOMRES_ORGANISATIION_LOGO_URL', "Jūsu organizācijas logotipa URL");

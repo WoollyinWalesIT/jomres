@@ -2596,3 +2596,8 @@ jr_define ('_JOMRES_SEND_GROUP_BY_FIX_TITLE', 'Použít skupinu opravou?');
 jr_define ('_JOMRES_SEND_GROUP_BY_FIX_DESC', 'Některé instalace mysql mohou mít problém s dotazy Jomres na stránce Seznam vlastností, Seznam hostů a Seznam faktur. Pokud tyto stránky uvádějí, že zobrazují X výsledků Y, ale v seznamu se nic nezobrazuje, tato volba na Ano může problém vyřešit. Nebude, pokud jste na sdíleném hostingu a hostitelská služba neumožňuje vašemu uživateli mysql vydat příkaz "SET GLOBAL sql_mode =". ');
 jr_define ('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', 'Toto je vlastnost kanálu, kterou nelze spravovat lokálně, přejděte na stránku rámce správy kanálu, kde najdete odkaz na vzdálenou správu služby');
 jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "Žádný bootstrap v motivu");
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'Odkazy na sociální sítě');
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Sem vložte názvy účtů sociálních sítí, například "jomres", ne celou adresu URL');
+
+jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Čárkami oddělený seznam jazyků, kterými vaše organizace mluví');
+jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'Adresa URL loga vaší organizace');

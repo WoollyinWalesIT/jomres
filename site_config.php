@@ -217,8 +217,8 @@ $jrConfig = array(
   'useSyndication'  => '0',
   'compatability_property_configuration'  => '0',
   'use_groupby_fix'  => '1',
-
-
+  'business_languages' => 'English,French,German,Spanish',
+  'business_logo' => '',
 );
 
 

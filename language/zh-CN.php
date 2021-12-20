@@ -2633,3 +2633,9 @@ jr_define('_JOMRES_SEND_GROUP_BY_FIX_DESC', '某些 mysql 安装可能在 List P
 jr_define('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', '这是频道属性，不能本地管理，请访问频道管理框架页面找到该属性的远程管理链接');
 
 jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "主题中没有引导程序");
+
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS', '社交媒体链接');
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', '把你的社交媒体账户名称放在这里，例如“jomres”，而不是整个网址');
+
+jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', '贵组织使用的语言的逗号分隔列表');
+jr_define('JOMRES_ORGANISATIION_LOGO_URL', '你的组织标志的网址');

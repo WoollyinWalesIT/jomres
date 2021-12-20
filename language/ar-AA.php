@@ -2656,3 +2656,8 @@ jr_define('_JOMRES_SEND_GROUP_BY_FIX_DESC', 'قد تواجه بعض عمليات
 jr_define ('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', 'هذه خاصية قناة , لا يمكن إدارتها محليًا , قم بزيارة صفحة إطار عمل إدارة القناة للعثور على ارتباط الإدارة عن بعد للخاصية') ;
 jr_define ("_JOMRES_CONFIG_INITAL_SETUP_STEP_3_BOOTSTRAP0" , "لا يوجد Bootstrap في السمة") ;
 
+jr_define ("JOMRES_SOCIAL_MEDIA_LINKS" , "روابط وسائل التواصل الاجتماعي") ;
+jr_define ('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'ضع أسماء حسابات الوسائط الاجتماعية الخاصة بك هنا ، على سبيل المثال "jomres" ، وليس عنوان url بالكامل') ;
+
+jr_define ('JOMRES_ORGANISATIION_LANGUGES_DESC', 'قائمة مفصولة بفواصل للغات التي تتحدثها مؤسستك') ;
+jr_define ("JOMRES_ORGANISATIION_LOGO_URL" ,"عنوان URL لشعار مؤسستك") ;

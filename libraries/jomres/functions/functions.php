@@ -17,6 +17,25 @@ defined('_JOMRES_INITCHECK') or die('');
 
 
 /**
+ *
+ * Return an array of social media platforms with relevant data
+ *
+ */
+function get_sm_platforms() {
+    $social_meeja_platforms = array(
+        'social_media_facebook'     => ['name' => 'Facebook' , 'url' => 'https://www.facebook.com/' , 'notes' => ''],
+        'social_media_instagram'    => ['name' => 'Instagram' , 'url' => 'https://www.instagram.com/' , 'notes' => ''],
+        'social_media_pintrest'     => ['name' =>'Pintrest' , 'url' => 'https://www.pinterest.com/' , 'notes' => ''],
+        'social_media_linkedin'     => ['name' => 'LinkedIn', 'url' => 'https://www.linkedin.com/in/' , 'notes' => ''],
+        'social_media_twitter'      => ['name' => 'Twitter' , 'url' => 'https://twitter.com/' , 'notes' => ''],
+        'social_media_tiktok'       => ['name' =>'Tiktok' , 'url' => 'https://www.tiktok.com/@' , 'notes' => ''],
+        'social_media_whatsapp'     => ['name' => 'Whatsapp' , 'url' => 'https://wa.me/' , 'notes' => ' Correct : 4412345678 Wrong +4412345678'],
+        'social_media_youtube'      => ['name' => 'Youtube' , 'url' => 'https://www.youtube.com/c/' , 'notes' => '']
+      );
+    return  $social_meeja_platforms;
+}
+
+/**
 *
 * Is this a channel managed property?
 *
@@ -1084,7 +1103,7 @@ function jomres_bootstrap_version()
 		$bootstrap_version = '5';
 	} elseif  ( jomres_cmsspecific_areweinadminarea() && _JOMRES_DETECTED_CMS == 'joomla3' ) {
 		$bootstrap_version = '2';
-	} elseif ( $jrConfig[ 'bootstrap_version' ] == 0 ) { // We are in Wordpress, so we'll automatically set the BS version to 2 if in admin, or BS3 in frontend as the init config vars functionality will autoload the BS3 scripts in the frontend
+	} elseif ( this_cms_is_wordpress() ) { // We are in Wordpress, so we'll automatically set the BS version to 2 if in admin, or BS3 in frontend as the init config vars functionality will autoload the BS3 scripts in the frontend
 	    if ( jomres_cmsspecific_areweinadminarea()) {
             $bootstrap_version = '2';
         } else {
@@ -2779,7 +2798,15 @@ function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode
 	
 	$from = str_replace( "&#64;" , "=" , $from );
 	$to = str_replace( "&#64;" , "=" , $to );
-	
+
+    $to = str_replace ("&#38;#38;#43;" , "+" , $to);
+    $to = str_replace ("&#38;#43;" , "+" , $to);
+    $to = str_replace ("&#43;" , "+" , $to);
+
+    $from = str_replace ("&#38;#38;#43;" , "+" , $from);
+    $from = str_replace ("&#38;#43;" , "+" , $from);
+    $from = str_replace ("&#43;" , "+" , $from);
+
 	logging::log_message('Sending email from '.$from.' to '.$to.' subject '.$subject, 'Mailer');
 
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');

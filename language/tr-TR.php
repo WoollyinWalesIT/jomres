@@ -2626,3 +2626,8 @@ jr_define('_JOMRES_SEND_GROUP_BY_FIX_DESC', 'Bazı mysql kurulumları Liste Öze
 jr_define('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', 'Bu bir kanal özelliğidir, yerel olarak yönetilemez, özelliğin uzaktan yönetim bağlantısını bulmak için kanal yönetim çerçevesi sayfasını ziyaret edin');
 
 jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", " Temada Bootstrap yok ");
+
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'Sosyal medya bağlantıları');
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Sosyal medya hesap adlarınızı buraya yazın, örneğin "jomres", url\'nin tamamı değil');
+jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Kuruluşunuzun konuştuğu dillerin virgülle ayrılmış listesi');
+jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'Kuruluş logonuzun URL\'si');

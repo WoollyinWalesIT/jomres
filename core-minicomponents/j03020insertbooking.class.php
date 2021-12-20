@@ -602,9 +602,12 @@ class j03020insertbooking
 						$newtext = strip_tags($tmpBookingHandler->getBookingFieldVal('wisepricediscount'));
 					}
 
-					$dt = date('Y-m-d H:i:s');
-					$query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('".(int) $contract_uid."','".RemoveXSS($newtext)."','$dt','".(int) $property_uid."')";
-					doInsertSql($query, '');
+                    if ( trim($newtext) != '' ) {
+                        $dt = date('Y-m-d H:i:s');
+                        $query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('".(int) $contract_uid."','".RemoveXSS($newtext)."','$dt','".(int) $property_uid."')";
+                        doInsertSql($query, '');
+                    }
+
 
 					if (empty($contract_uid)) {
 						trigger_error('Failed to insert booking when inserting to contracts table ', E_USER_ERROR);
@@ -747,11 +750,15 @@ class j03020insertbooking
 
 			if (!$secret_key_payment && $amend_contractuid == 0) {
 				$bookingNotes = $tempBookingData->booking_notes;
-				foreach ($bookingNotes as $k => $v) {
-					$note = ' '.strip_tags($k).' '.strip_tags($v).'<br/>';
-					$query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('".(int) $contract_uid."','".$note."','$dt','".(int) $property_uid."')";
-					doInsertSql($query, '');
-				}
+                if (!empty($bookingNotes)) {
+                    foreach ($bookingNotes as $k => $v) {
+                        $note = ' '.strip_tags($k).' '.strip_tags($v).'<br/>';
+                        if ( trim(strip_tags($v)) != '' ) {
+                            $query = "INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('".(int) $contract_uid."','".$note."','$dt','".(int) $property_uid."')";
+                            doInsertSql($query, '');
+                        }
+                    }
+                }
 			}
 
 			if (isset($tmpBookingHandler->tmpbooking[ 'gateway' ])) {
