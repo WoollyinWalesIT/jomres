@@ -71,7 +71,7 @@ class j00001define_template_paths
 			} elseif (_JOMRES_DETECTED_CMS == 'joomla3' || this_cms_is_wordpress() ) {
 				define('JOMRES_TEMPLATEPATH_ADMINISTRATOR', JOMRESPATH_BASE.JRDS.'assets'.JRDS.'templates'.JRDS.'bootstrap'.JRDS.'administrator');
 			} else {
-				define('JOMRES_TEMPLATEPATH_ADMINISTRATOR', JOMRESPATH_BASE.JRDS.'assets'.JRDS.'templates'.JRDS.'bootstrap4'.JRDS.'administrator');
+				define('JOMRES_TEMPLATEPATH_ADMINISTRATOR', JOMRESPATH_BASE.JRDS.'assets'.JRDS.'templates'.JRDS.'bootstrap'.$jrConfig[ 'bootstrap_version' ].JRDS.'administrator');
 			}
 		}
 	}
