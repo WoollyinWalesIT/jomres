@@ -47,10 +47,6 @@ class j00060toptemplate
 			return;
 		}
 
-		if ( get_showtime('task') != "dobooking" ) {
-			$MiniComponents->specificEvent('06000','show_syndicated_properties', array('limit'=>4 , 'output_now' => true));
-		}
-
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 		
