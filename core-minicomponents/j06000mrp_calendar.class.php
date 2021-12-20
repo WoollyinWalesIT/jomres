@@ -110,7 +110,8 @@ class j06000mrp_calendar
 		$counter = 1;
 
 		if (!$show_just_month) {
-			$this->retVals = '<div class="container-fluid">
+            if (get_showtime('task') != 'dobooking') {
+                $this->retVals = '<div class="container-fluid">
 					<div class="row">
 				<div class="col-md-2 jomres-calendar-day-num jomres-calendar-available"> ' .jr_gettext('_JOMRES_COM_AVLCAL_INMONTHFACE_KEY', '_JOMRES_COM_AVLCAL_INMONTHFACE_KEY').'</div>
 					<div class="col-md-2 jomres-calendar-day-num jomres-calendar-booking-occupied-quarter ">' .jr_gettext('_JOMRES_AVLCAL_QUARTER', '_JOMRES_AVLCAL_QUARTER').'</div>
@@ -120,6 +121,13 @@ class j06000mrp_calendar
 				</div>
 					<div class="row">
 				';
+            } else {
+                $this->retVals = '
+                	<div class="container-fluid">
+					    <div class="row">
+                ';
+            }
+
 
 
 			for ($start_month; $counter <= $months_to_show; ++$start_month) {

@@ -120,6 +120,7 @@ class j06000srp_calendar
 		$counter = 1;
 
 		if (!$show_just_month) {
+            if (get_showtime('task') != 'dobooking') {
 			$this->retVals = '
 				<div class="row">
 					<div class="col-md-3 jomres-calendar-day-num jomres-calendar-available"> ' .jr_gettext('_JOMRES_COM_AVLCAL_INMONTHFACE_KEY', '_JOMRES_COM_AVLCAL_INMONTHFACE_KEY').'</div>
@@ -128,6 +129,12 @@ class j06000srp_calendar
 				<div class="container-fluid">
 					<div class="row">
 					';
+            } else {
+                $this->retVals = '
+                <div class="container-fluid">
+				    <div class="row">
+                ';
+            }
 
 			for ($start_month; $counter <= $months_to_show; ++$start_month) {
 				$this->retVals .= '<div class="col-md-4 col-sm-6">';
