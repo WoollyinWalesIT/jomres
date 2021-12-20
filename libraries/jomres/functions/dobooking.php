@@ -737,7 +737,7 @@ $manager_pricing = array();
 			if ( jomres_bootstrap_version() != "5" ) {
                 echo "<script>window.onload = function() {jomresJquery('#consentForm').modal('show');}</script>";
             } else {
-                echo "<script>window.onload = function() {var myModal = new bootstrap.Modal(document.getElementById('#consentForm') , {} );}</script>";
+                echo "<script>window.onload = function() {var myModal = new bootstrap.Modal(document.getElementById('consentForm') , {} );}</script>";
             }
 
 		} else {
