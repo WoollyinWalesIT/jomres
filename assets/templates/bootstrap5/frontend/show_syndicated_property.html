@@ -13,13 +13,12 @@
 	{LAST_CHECKED}
 
 </patTemplate:comment>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<a href="{VIEW_PROPERTY_URL}" target="_blank">{NAME}</a>
-		</div>
-		<div class="panel-body">
-			<a href="{VIEW_PROPERTY_URL}" target="_blank"><img src="{THUMBNAIL_LOCATION}" class="thumbnail img-responsive" alt="{METADESCRIPTION}"/></a>
+	<div class="card border-light mb-3" style="max-width: 18rem;">
+		<a href="{VIEW_PROPERTY_URL}" target="_blank"><img src="{THUMBNAIL_LOCATION}" class="card-img-top ratio ratio-1x1" alt="{METADESCRIPTION}"/></a>
+		<div class="card-body">
+			<p class="card-text">
+				<a href="{VIEW_PROPERTY_URL}" class="card-link" target="_blank">{NAME}</a>
+			</p>
 		</div>
 	</div>
-	<div class="clearfix visible-xs"></div>
 </patTemplate:tmpl>
