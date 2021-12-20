@@ -526,7 +526,7 @@ fieldset[disabled] .btn-videos.active {
 }
 
 div.ui-datepicker {
-  font-size: 140%;
+  font-size: 100% !important;
 }
 
 .search_dropdown {
@@ -569,10 +569,6 @@ div.ui-datepicker {
 	min-width: 4em;
 }
 .select-wrapper select{
-    appearance: none;
-	-webkit-appearance: none;
-	width: 100%;
-	padding: 0 0.5em;
 }
 .select-wrapper::after {
 	font-family: "Font Awesome 5 Free";

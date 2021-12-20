@@ -360,7 +360,7 @@ class j06000show_property_header
 				$output[ 'REQUIRE_APPROVAL_CLASS' ] = 'label-warning';
 			} else {
 				$output[ 'REQUIRE_APPROVAL' ] = jr_gettext('_BOOKING_INSTANT', '_BOOKING_INSTANT', false);
-				$output[ 'REQUIRE_APPROVAL_CLASS' ] = 'label-success';
+				$output[ 'REQUIRE_APPROVAL_CLASS' ] = 'label-success badge bg-success';
 			}
 		}
 
