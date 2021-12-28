@@ -1,6 +1,5 @@
 <pattemplate:tmpl name="pageoutput" unusedvars="strip">
-	<script language="JavaScript" type="text/javascript">
-        <!--
+	<script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function(){
             jomresJquery.validator.setDefaults({
                 highlight: function (input) {
@@ -10,17 +9,9 @@
                     jomresJquery(input).removeClass("ui-state-highlight");
                 }
             });
-
-		});
-		jomresJquery("#messageBox").hide();
-	}, false);
-	//-->
-</script>
-
-            });
             jomresJquery("#messageBox").hide();
         }, false);
-        //-->
+
 	</script>
 
 	<div id="messageBox" class="alert alert-block"></div>

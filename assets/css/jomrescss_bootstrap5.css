@@ -380,18 +380,11 @@ div.star-rating {
 	margin: 1px;
 	background-color: #FFFFFF;
 	border: 1px solid lightgray;
-	height: 1.5em;
-	font-size: 0.9em;
 	align-items: center;
 	justify-content: center;
 }
 
-div.jomres-calendar-day-num:hover{
-	transform: scale(2.5) translateY(-0.45em);
-	-webkit-transform: scale(2.5) translateY(-0.45em);
-	transition: 0.2s ease-in-out;
-	-webkit-transition: 0.2s ease-in-out;
-}
+
 
 .jomres-calendar-available{
 	background-color:#FFFFFF;
