@@ -121,7 +121,7 @@ class j07310watcher_authmethod_process_app_server
 	logging::log_message("Completed Watcher's run." , 'AppServerWebhooks', 'DEBUG' , '' );
 	}
 	
-	private function send_notification_to_app_server(  $context = '' , $endpoint = '' , $data )
+	private function send_notification_to_app_server(  $context = '' , $endpoint = '' , $data = '' )
 	{
 	try {
 		$client = new GuzzleHttp\Client();
