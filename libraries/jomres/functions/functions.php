@@ -18,6 +18,19 @@ defined('_JOMRES_INITCHECK') or die('');
 
 /**
  *
+ * Restores an encoded email address that might have the + symbol in
+ *
+ *
+ */
+
+function restore_task_specific_email_address($address) {
+    $cleaned_address = str_replace ("&#38;#38;#43;" , "+" ,$address);
+    $cleaned_address2 = str_replace ("&#38;#43;" , "+" , $cleaned_address);
+    return str_replace ("&#43;" , "+" , $cleaned_address2);
+}
+
+/**
+ *
  * Return an array of social media platforms with relevant data
  *
  */
