@@ -3571,7 +3571,7 @@ class dobooking
 
 		$guest_deets[ 'TEL' ] = $guest_tel_landline;
 		$guest_deets[ 'MOBILE' ] = $guest_tel_mobile;
-		$guest_deets[ 'EMAIL' ] = $guest_email;
+		$guest_deets[ 'EMAIL' ] = restore_task_specific_email_address($guest_email);
 		if (isset($guest_specific_discount)) {
 			$guest_deets[ 'DISCOUNT' ] = $guest_specific_discount;
 		} else {
