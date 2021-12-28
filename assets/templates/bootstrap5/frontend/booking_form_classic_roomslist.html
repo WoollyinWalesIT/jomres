@@ -3,10 +3,8 @@
 	                  requiredvars="roomtype">
 		<div class="card bg-light card-body mb-3 card bg-faded p-1 mb-3all">
 			<div class="row">
-				<div class="col-lg-2">	<a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-bs-toggle="modal"
-				                             class="thumbnail"><img src="{ROOM_IMAGE}" alt="room image" class="img-fluid"></a>
-					<a
-							href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-bs-toggle="modal"
+				<div class="col-lg-2">	<a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-bs-toggle="modal" class="thumbnail"><img src="{ROOM_IMAGE}" alt="room image" class="img-fluid"></a>
+					<a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-bs-toggle="modal"
 							class="thumbnail">
 						<img src="{ROOM_TYPE_IMAGE}" alt="room type image" class="img-fluid">
 					</a>
@@ -18,8 +16,7 @@
 					<p>{HEADER_MAXPEOPLE}: {MAXPEOPLE_INROOM}
 						<br>{HTITLE}: {TITLE}
 						<br>{HDESC}: {DESC}
-						<br>	<a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-bs-toggle="modal"
-						           class="hidden-phone hidden-tablet">{HMOREINFO}...</a>
+						<br>	<a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-bs-toggle="modal" class="hidden-phone hidden-tablet">{HMOREINFO}...</a>
 					</p>
 				</div>
 				<div class="col-lg-3">
@@ -40,8 +37,8 @@
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
 						<h4 id="myModalLabel{ROOMUID}_{TARIFFUID}">{ROOMTYPE} - {ROOMNAME} {ROOMNUMBER}</h4>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
 						<div class="row">
@@ -88,10 +85,10 @@
 						</div>
 						<p>{DESCRIPTION}</p>
 					</div>
-					<div class="modal-footer">	<a class="btn btn-secondary" data-dismiss="modal" aria-hidden="true">{COMMON_CLOSE}</a>
+					<div class="modal-footer">	<a class="btn btn-secondary" data-bs-toggle="modal" aria-hidden="true">{COMMON_CLOSE}</a>
 						<a
 								href="javascript:void(0);" onclick="getResponse_rooms(&apos;requestedRoom&apos;,&apos;{ROOMTARIFFOUTPUTID}&apos; );"
-								class="btn {BUTTON_CLASS}" title="{CAPTION}" data-dismiss="modal" aria-hidden="true"><i class="{ICON} icon-white"></i> {CAPTION}</a>
+								class="btn {BUTTON_CLASS}" title="{CAPTION}" data-bs-toggle="modal" aria-hidden="true"><i class="{ICON} icon-white"></i> {CAPTION}</a>
 					</div>
 				</div>
 			</div>
