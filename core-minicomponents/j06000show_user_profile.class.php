@@ -174,7 +174,7 @@ class j06000show_user_profile
 			$private_output[0][ 'POSTCODE' ] = $jrportal_guest_profile->postcode;
 			$private_output[0][ 'LANDLINE' ] = $jrportal_guest_profile->tel_landline;
 			$private_output[0][ 'MOBILE' ] = $jrportal_guest_profile->tel_mobile;
-			$private_output[0][ 'EMAIL' ] = $jrportal_guest_profile->email;
+			$private_output[0][ 'EMAIL' ] = restore_task_specific_email_address($jrportal_guest_profile->email);
 			$private_output[0][ 'DRIVERS_LICENSE' ]	= $jrportal_guest_profile->drivers_license;
 			$private_output[0][ 'PASSPORT_NUMBER' ]	= $jrportal_guest_profile->passport_number;
 			$private_output[0][ 'IBAN' ]				= $jrportal_guest_profile->iban;

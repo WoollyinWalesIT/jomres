@@ -173,7 +173,7 @@ class j06001dashboard_events_ajax
 
 				foreach ($guestsList as $g) {
 					$guests[$g->guests_uid] = ucfirst(jomres_decode($jomres_encryption->decrypt($g->enc_firstname))).' '.ucfirst(jomres_decode($jomres_encryption->decrypt($g->enc_surname)));
-					$guest_contacts[$g->guests_uid] = array ("telephone" => jomres_decode($jomres_encryption->decrypt($g->enc_tel_landline)) , "email" => jomres_decode($jomres_encryption->decrypt($g->enc_email)) );
+					$guest_contacts[$g->guests_uid] = array ("telephone" => jomres_decode($jomres_encryption->decrypt($g->enc_tel_landline)) , "email" => restore_task_specific_email_address(jomres_decode($jomres_encryption->decrypt($g->enc_email))) );
 				}
 			}
 

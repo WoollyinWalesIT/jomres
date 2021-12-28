@@ -383,7 +383,7 @@ class j06001edit_booking
 		$output[ '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL' ] = jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL', '_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL');
 
 		$output[ 'EMAIL_LINK' ] = 'mailto:'
-								.$current_contract_details->contract[$contract_uid]['guestdeets']['email']
+								.restore_task_specific_email_address($current_contract_details->contract[$contract_uid]['guestdeets']['email'])
 								.'?subject='.jr_gettext('_JOMRES_BOOKING_NUMBER', '_JOMRES_BOOKING_NUMBER', false)
 								.' '
 								.$current_contract_details->contract[$contract_uid]['contractdeets']['tag']
@@ -398,7 +398,7 @@ class j06001edit_booking
 								.' '
 								.$current_contract_details->contract[$contract_uid]['contractdeets']['tag'];
 
-		$output[ 'EMAIL_ADDRESS' ] = $current_contract_details->contract[$contract_uid]['guestdeets']['email'];
+		$output[ 'EMAIL_ADDRESS' ] = restore_task_specific_email_address($current_contract_details->contract[$contract_uid]['guestdeets']['email']);
 		$output[ 'GUEST_IMAGE' ] = $current_contract_details->contract[$contract_uid]['guestdeets']['image'];
 		
 	

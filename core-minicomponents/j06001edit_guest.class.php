@@ -64,7 +64,7 @@ class j06001edit_guest
 			$output[ 'POSTCODE' ] = $jrportal_guests->postcode;
 			$output[ 'LANDLINE' ] = $jrportal_guests->tel_landline;
 			$output[ 'MOBILE' ] = $jrportal_guests->tel_mobile;
-			$output[ 'EMAIL' ] = $jrportal_guests->email;
+			$output[ 'EMAIL' ] = restore_task_specific_email_address($jrportal_guests->email);
 			$output[ 'VAT_NUMBER' ] = $jrportal_guests->vat_number;
 
 			$yesno = array();
