@@ -51,14 +51,7 @@ class j06000logout
 			$error = $app->logout();
 			// Check if the log out succeeded.
 			if (!($error instanceof Exception)) {
-				// Get the return url from the request and validate that it is internal.
-				$return = JRequest::getVar('return', '', 'method', 'base64');
-				$return = base64_decode($return);
-				if (!JURI::isInternal($return)) {
-					$return = '';
-				}
-
-				// Redirect the user.
+ 				// Redirect the user.
 				$app->redirect(JRoute::_(get_showtime('live_site').'/index.php?option=com_jomres', false));
 			} else {
 				$app->redirect(JRoute::_('index.php?option=com_users&view=login', false));
