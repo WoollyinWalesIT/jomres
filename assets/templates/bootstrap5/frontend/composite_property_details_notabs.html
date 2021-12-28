@@ -9,47 +9,60 @@
 		}
 	</style>
 
-	<div id="property_details">
+	<div id="property_details" style="margin-top: 5px">
+		<div class="row alert alert-secondary">
+			<div class="pdetails-reviews ">{REVIEWS_SUMMARY} </div>
+		</div>
 		<div class="row">
-			<div id="gallerywrapper" class="col-12 col-md-12 col-lg-7 col-xl-8">
+			<div id="" class="col-12 col-md-12 col-lg-12 col-xl-12">
 				<div class="card bg-light card-body mb-3">{SLIDESHOW}</div>
 			</div>
-			<div class="col-12 col-md-12 col-lg-5 col-xl-4" id="tour_target_property_details_buttons">
-				<div class="buttonswrapper well">
-					<div class="pdetails-reviews">{REVIEWS_SUMMARY}</div>
-					<div class="pdetails-price">{REAL_ESTATE_PROPERTY_PRICE}</div>
-					<div id="tour_target_inline_calendar"
-					     class="pdetails-availability-inline" align="center">{INLINE_CALENDAR}</div>
-					<pattemplate:tmpl name="bookinglink" type="simpleCondition"
-					                  requiredvars="link" unusedvars="nbsp">	<a href="{LINK}" class="btn btn-success btn-lg btn-block"><i class="fa fa-shopping-cart"></i> {TEXT}</a>
-					</pattemplate:tmpl>
-					<pattemplate:tmpl name="slideshowlink" type="simpleCondition" requiredvars="link"
-					                  unusedvars="nbsp">	<a href="{LINK}" class="btn btn-secondary btn-block">{TEXT}</a>
-					</pattemplate:tmpl>
-					<pattemplate:tmpl name="tariffslink" type="simpleCondition" requiredvars="link"
-					                  unusedvars="nbsp">	<a href="{LINK}" class="btn btn-secondary btn-block">{TEXT}</a>
-					</pattemplate:tmpl>
-					<pattemplate:tmpl name="roomslistlink" type="simpleCondition" requiredvars="link"
-					                  unusedvars="nbsp">	<a href="{LINK}" class="btn btn-secondary btn-block">{TEXT}</a>
-					</pattemplate:tmpl>
-					<div class="pdetails-icons">
-						<div class="row">
-							<pattemplate:tmpl name="contactuslink" type="simpleCondition" requiredvars="link"
-							                  unusedvars="nbsp">
-								<div class="col-4" align="center">	<a href="{LINK}" class="pdetails-btn-icon" title="{TEXT}"><i class="fa fa-envelope"></i></a>
-								</div>
-							</pattemplate:tmpl>
-							<div class="col-4" align="center">	<a href="{PRINT_LINK}" target="_blank" class="pdetails-btn-icon" title="{COMMON_PRINT}"><i class="fa fa-print"></i></a>
+		</div>
+		<pattemplate:comment>
+		<div class="row">
+			<div class="col-12 col-md-12 col-lg-12 col-xl-12" id="tour_target_property_details_buttons">
+				<div class="well">
+						<div class="row align-items-start">
+							<div class="col-4">
+								{INLINE_CALENDAR}
 							</div>
-							<div class="col-4" align="center">{QR_CODE_DIRECTIONS}</div>
+							<div class="col-8">
+								<div class="pdetails-price">{REAL_ESTATE_PROPERTY_PRICE}</div>
+								<pattemplate:tmpl name="bookinglink" type="simpleCondition" requiredvars="link" unusedvars="nbsp">
+									<a href="{LINK}" class="btn btn-primary btn-lg btn-block"><i class="fa fa-shopping-cart"></i> {TEXT}</a>
+								</pattemplate:tmpl>
+								<pattemplate:tmpl name="slideshowlink" type="simpleCondition" requiredvars="link"  unusedvars="nbsp">
+									<a href="{LINK}" class="btn btn-secondary btn-block">{TEXT}</a>
+								</pattemplate:tmpl>
+								<pattemplate:tmpl name="tariffslink" type="simpleCondition" requiredvars="link" unusedvars="nbsp">
+									<a href="{LINK}" class="btn btn-secondary btn-block">{TEXT}</a>
+								</pattemplate:tmpl>
+								<pattemplate:tmpl name="roomslistlink" type="simpleCondition" requiredvars="link"  unusedvars="nbsp">
+									<a href="{LINK}" class="btn btn-secondary btn-block">{TEXT}</a>
+								</pattemplate:tmpl>
+								<div class="pdetails-icons ">
+									<div class="row">
+										<pattemplate:tmpl name="contactuslink" type="simpleCondition" requiredvars="link" unusedvars="nbsp">
+											<div class="col-4" align="center">
+												<a href="{LINK}" class="pdetails-btn-icon" title="{TEXT}"><i class="fa fa-envelope"></i></a>
+											</div>
+										</pattemplate:tmpl>
+										<div class="col-4">
+											<a href="{PRINT_LINK}" target="_blank" class="pdetails-btn-icon" title="{COMMON_PRINT}"><i class="fa fa-print"></i></a>
+										</div>
+										<div class="col-4">
+											{QR_CODE_DIRECTIONS}
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
-					</div>
 				</div>
 			</div>
 		</div>
 		<div class="clearfix"></div>
 		<p>&#xA0;</p>
-
+		</pattemplate:comment>
 		<div class="card">
 			<div class="card-header">
 				<h2 class="card-title">{TABCONTENT_01_MAIN_DETAILS_TITLE}</h2>
