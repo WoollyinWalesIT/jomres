@@ -52,8 +52,14 @@ class jomres_content_tabs_bootstrap5
      */
     public function startTabs()
     {
+        if (jomres_cmsspecific_areweinadminarea()) {
+            $orientation = 'horizontal';
+        } else {
+            $orientation = 'vertical';
+        }
+
         echo '
-            <joomla-tab id="myTab" orientation="horizontal" recall="" breakpoint="768" view="tabs"><!-- start tabs panel -->';
+            <joomla-tab id="myTab" orientation="'. $orientation.'" recall="" breakpoint="768" view="tabs"><!-- start tabs panel -->';
     }
 
     /**
