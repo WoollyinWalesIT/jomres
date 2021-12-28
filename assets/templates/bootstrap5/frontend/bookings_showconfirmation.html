@@ -298,7 +298,7 @@
 <div id="agreealert" class="alert alert-warning">
 	<input name="agreecheck" type="checkbox" onchange="agreeAlert();"/>
 	<span> {TERMSPRETEXT}&nbsp;
-		<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-target="#terms_modal">
+		<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#terms_modal">
 			{TERMS_NO_POPUP}
 		</button>
 
@@ -322,8 +322,9 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">{TERMS}</h4>
+		  <h4 class="modal-title">{TERMS}</h4>
+		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
       </div>
       <div class="modal-body">
         {TERMS_MODAL_CONTENTS}
