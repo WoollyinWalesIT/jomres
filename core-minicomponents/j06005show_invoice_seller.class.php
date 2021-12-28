@@ -74,7 +74,7 @@ class j06005show_invoice_seller
 		$output[ 'POSTCODE' ] = $sellerData['postcode'];
 		$output[ 'LANDLINE' ] = $sellerData['tel_landline'];
 		$output[ 'MOBILE' ] = $sellerData['tel_mobile'];
-		$output[ 'EMAIL' ] = $sellerData['email'];
+		$output[ 'EMAIL' ] = restore_task_specific_email_address($sellerData['email']);
 		$vat_output[0][ 'VAT_NUMBER' ] = $sellerData['vat_number'];
 
 		$output[ 'TITLE' ] = jr_gettext('_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST', '_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST');
