@@ -276,8 +276,8 @@ class j06002edit_tariff_micromanage
 			$p["DOW"] = $dia['text'];
 			
 			$p["INPUT"] = '
-				<input class="'.$dia['class'].'_rates  form-control input-small tariff_multi_input form-control"  type="number" step="any" min="0" name="'.$dia['class'].'_rates" value="'.$jrportal_rates->rates_defaults['roomrateperday'].'" />
-				<input class="'.$dia['class'].'_mindays form-control input-small mindays_multi_input form-control" type="number" step="any" min="0"  name="'.$dia['class'].'_mindays" value="'.$jrportal_rates->rates_defaults['mindays'].'"  style="display:none"/>
+				<input class="'.$dia['class'].'_rates  form-control input-small tariff_multi_input form-control"  type="number" step="any" min="0" name="'.$dia['class'].'_rates" value="'.$jrportal_rates->rates_defaults['roomrateperday'].'" style="padding:initial;"/>
+				<input class="'.$dia['class'].'_mindays form-control input-small mindays_multi_input form-control" type="number" step="any" min="0"  name="'.$dia['class'].'_mindays" value="'.$jrportal_rates->rates_defaults['mindays'].'"  style="display:none;padding:initial;"/>
 				';
 
 			$prefills[] = $p;
