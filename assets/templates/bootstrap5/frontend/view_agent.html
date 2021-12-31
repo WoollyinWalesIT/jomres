@@ -1,17 +1,22 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 
 <div class="card">
+	<div class="card-title">
+		<h3>{FIRSTNAME} {SURNAME}</h3>
+	</div>
 	<div class="card-text">
-		<div class="col-sm-9">
-			<h3>{FIRSTNAME} {SURNAME}</h3>
-			<p>{HOUSE} {STREET}, {TOWN}, {POSTCODE}, {REGION}, {COUNTRY}</p>
-			<p>{HLANDLINE} {LANDLINE}</p>
-			<p>{HMOBILE} {MOBILE}</p>
-			<p>{HEMAIL} {EMAIL}</p>
+		<div class="row">
+			<div class="col-9">
+				<p>{HOUSE} {STREET}, {TOWN}, {POSTCODE}, {REGION}, {COUNTRY}</p>
+				<p>{HLANDLINE} {LANDLINE}</p>
+				<p>{HMOBILE} {MOBILE}</p>
+				<p>{HEMAIL} {EMAIL}</p>
+			</div>
+			<div class="col-3">
+				<img src="{IMAGE}" class="img-responsive" width="100%"/>
+			</div>
 		</div>
-		<div class="col-sm-3 hidden-xs">
-			<img src="{IMAGE}" class="img-responsive" width="100%"/>
-		</div>
+
 	</div>
 </div>
 
