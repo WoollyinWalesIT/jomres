@@ -13,12 +13,14 @@
 </patTemplate:comment>
 
 <patTemplate:tmpl name="property_details" unusedvars="strip">
-	<div class="jomres_property_list_propertywrapper" id="{UID}">
+	<div class="jomres_property_list_propertywrapper shadow p-3 mb-5 bg-body rounded  bg-secondary" id="{UID}">
 		<div class="card {BUDGET_BORDER_CLASS} {FEATURED_LISTINGS_CLASS}">
 			<div class="card-body">
 				<div class="row">
-					<div class="col-10">
-						<h2 class="card-title"><a href="{MOREINFORMATIONLINK}" title="{PROPERTY_NAME_FULL}" >{PROPERTYNAME}</a></h2>
+					<div class="col-10 card-header">
+						<h2>
+							<a href="{MOREINFORMATIONLINK}" title="{PROPERTY_NAME_FULL}" class="btn btn-outline-primary btn-lg">{PROPERTYNAME}</a>
+						</h2>
 					</div>
 					<div class="col-2">
 						<div class="hidden-xs hidden-sm plist-compare" align="right">
@@ -32,11 +34,12 @@
 			</div>
 			<div class="card-text">
 				<div class="row">
-					<div class="col-md-3">
+					<div class="col-md-3 ">
 						{PROPERTY_IMAGE_OR_SLIDESHOW}
 					</div>
 					<div class="col-6">
-						<span class="label label-default">{PROPERTY_TYPE}</span> <span>{STARS} {SUPERIOR}</span> <span class="label label-info">{_JOMRES_REVIEWS_AVERAGE_RATING} {AVERAGE_RATING}</span>
+						<span class="text-secondary">{PROPERTY_TYPE}</span> <span>{STARS} {SUPERIOR}</span>
+						<span class="text-primary">{_JOMRES_REVIEWS_AVERAGE_RATING} {AVERAGE_RATING}</span>
 						<p class="small"><i>{PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}</i></p>
 						<div>{PROPERTYDESC}</div>
 						<div class="jomres_message">{LASTMINUTE}</div>
@@ -46,7 +49,7 @@
 						{REVIEWS_SNIPPET}
 					</div>-->
 					<div class="col-3">
-						<div class="align-center">
+						<div class="align-middle mx-auto">
 							<div class="badge bg-info">
 								{PRICE_PRE_TEXT}
 								{PRICE_PRICE}
@@ -87,7 +90,7 @@
 			<div class="card-footer">
 				<a href="{LINK}" class="btn btn-success pull-right"><i class="fa fa-shopping-cart"></i> {BOOKTHIS_TEXT}</a>
 				<a href="{MOREINFORMATIONLINK}" class="btn btn-info"><i class="fa fa-info"></i> {MOREINFORMATION}</a>
-				<a href="javascript:void(0);" onclick="quick_info({UID});" class="btn btn-secondary hidden-xs hidden-sm">
+				<a href="javascript:void(0);" onclick="quick_info({UID});" role="button" class="btn btn-secondary hidden-xs hidden-sm">
 					<i class="fa fa-info"></i> {_JOMRES_QUICK_INFO}
 				</a>
 				<a href="#property_reviews{UID}" ajax_task="show_property_reviews" data-bs-toggle="modal" random_identifier="{UID}" property_name="{PROPERTYNAME}" property_uid="{UID}" class="btn btn-secondary hidden-xs hidden-sm"><i class="fa fa-thumbs-o-up"></i> {_JOMRES_REVIEWS_CLICKTOSHOW}</a>

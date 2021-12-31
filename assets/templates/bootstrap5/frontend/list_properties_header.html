@@ -27,9 +27,9 @@
 		<patTemplate:tmpl name="compare" type="simpleCondition" requiredVars="_jomres_compare">
 		<div class="col-2 d-none d-md-block">
 			{COMPARELINK}
-			<div class="btn-group">
-				<a href="javascript:void(0);" onclick="return trigger_comparison(this);" class="btn btn-secondary"><i class="fa fa-angle-left"></i> <i class="fa fa-angle-right"></i> {_JOMRES_COMPARE}</a>
-			</div>
+			<a href="javascript:void(0);" onclick="return trigger_comparison(this);" class="btn btn-secondary">
+				<i class="fa fa-angle-left"></i> <i class="fa fa-angle-right"></i> {_JOMRES_COMPARE}
+			</a>
 			<form action=""><input type="hidden" id="comparison_ids" name="ids" value=""/></form>
 		</div>
 		</patTemplate:tmpl>
