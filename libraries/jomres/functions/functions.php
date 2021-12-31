@@ -1618,8 +1618,16 @@ function make_agent_link($property_id = 0)
 	$manager_id = $property_manager_xref[ $property_id ];
 
 	$output[ 'IMAGE' ] = JOMRES_IMAGES_RELPATH.'noimage.gif';
-	if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.'userimages'.JRDS.'userimage_'.(int) $manager_id.'_thumbnail.jpg')) {
-		$output[ 'IMAGE' ] = JOMRES_IMAGELOCATION_RELPATH.'userimages/userimage_'.(int) $manager_id.'_thumbnail.jpg';
+
+    $image_filename = '';
+    $contents = get_directory_contents(JOMRES_IMAGELOCATION_ABSPATH.'userimages'.JRDS.(int) $manager_id);
+    foreach ($contents as $file ) {
+        if ($file != '.' && $file != '..' && $file != 'medium' && $file != 'thumbnail' ) {
+            $image_filename = $file;
+        }
+    }
+	if ( $image_filename != '' && file_exists(JOMRES_IMAGELOCATION_ABSPATH.'userimages'.JRDS.(int) $manager_id.JRDS.'thumbnail'.JRDS.$image_filename)) {
+		$output[ 'IMAGE' ] = JOMRES_IMAGELOCATION_RELPATH.'userimages/'.(int) $manager_id.'/thumbnail/'.$image_filename;
 	}
 
 	$output[ 'URL' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=view_agent&id='.$manager_id);
