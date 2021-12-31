@@ -15,10 +15,10 @@
 <patTemplate:tmpl name="property_details" unusedvars="strip">
 	<div class="jomres_property_list_propertywrapper" id="{UID}">
 		<div class="panel {BUDGET_BORDER_CLASS} {FEATURED_LISTINGS_CLASS}">
-			<div class="panel-heading">
+			<div class="card-body">
 				<div class="row">
 					<div class="col-md-10">
-						<h2 class="panel-title"><a href="{MOREINFORMATIONLINK}" title="{PROPERTY_NAME_FULL}" >{PROPERTYNAME}</a></h2> 
+						<h2 class="card-title"><a href="{MOREINFORMATIONLINK}" title="{PROPERTY_NAME_FULL}" >{PROPERTYNAME}</a></h2>
 					</div>
 					<div class="col-md-2">
 						<div class="hidden-xs hidden-sm plist-compare" align="right">
@@ -30,7 +30,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="panel-body">
+			<div class="card-text">
 				<div class="row">
 					<div class="col-md-3">
 						{PROPERTY_IMAGE_OR_SLIDESHOW}
@@ -80,7 +80,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="panel-footer">
+			<div class="card-footer">
 				<a href="{LINK}" class="btn btn-success pull-right"><i class="fa fa-shopping-cart"></i> {BOOKTHIS_TEXT}</a>
 				<a href="{MOREINFORMATIONLINK}" class="btn btn-info"><i class="fa fa-info"></i> {MOREINFORMATION}</a>
 				<a href="javascript:void(0);" onclick="quick_info({UID});" class="btn btn-secondary hidden-xs hidden-sm"><i class="fa fa-info"></i> {_JOMRES_QUICK_INFO}</a>

@@ -6,7 +6,7 @@
 
 <patTemplate:comment>
 <div class="row">
-	<div class="col-md-12">
+	<div class="col-12">
 		{PAGING}
 	</div>
 </div>
@@ -17,28 +17,25 @@
 		<div class="jomres_property_list_propertywrapper photo-view col-xs-12 col-sm-12 col-md-6 col-lg-4 card" id="{UID}">
 			<div class="card-body {BUDGET_BORDER_CLASS} {FEATURED_LISTINGS_CLASS}">
 				<div class="card-title">
-
 						<a href="{MOREINFORMATIONLINK}" title="{PROPERTY_NAME_FULL}" >{PROP_NAME}</a>
 						<span class="pull-right">
 							<a href="javascript:void(0);" id="shortlist_{UID}" onclick="shortlist('{UID}')" class="hidden-xs" style="color:#333;">{SHORTLIST}</a>
 						</span>
-
 				</div>
 				<div class="card-body">
 					<div class="row">
-						<span class="">{PROPERTY_TYPE}</span><div style="color:#FFD700" class="ml-auto">{STARS}</div> {SUPERIOR}
+						<span class="">{PROPERTY_TYPE}</span><div style="color:#FFD700" class="ml-auto">{STARS}{SUPERIOR}</div>
 					</div>
-
 					<p class="small"><i>{PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}</i></p>
 					{PROPERTY_IMAGE_OR_SLIDESHOW}
 					<!--<div align="center">{PRICE_PRE_TEXT}</div>-->
 					<div class="well">
 						<div class="row" align="center">
-							<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+							<div class="col-6">
 								<span class="big-price">{PRICE_PRICE}</span>
 								{PRICE_POST_TEXT}
 							</div>
-							<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+							<div class="col-6">
 								<span class="big-price">{PRICE_CUMULATIVE}</span>
 								{FOR} {STAY_DAYS} {NIGHTS_TEXT}
 								{DISCOUNT_OVERLAY}
@@ -46,7 +43,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="panel-footer clearfix">
+				<div class="card-footer clearfix">
 					<div class="row">
 						<a href="{LINK}" class="btn btn-success pull-right"><i class="fa fa-shopping-cart"></i> {BOOKTHIS_TEXT}</a>
 						<div class="hidden-xs hidden-sm ml-auto">
