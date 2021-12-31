@@ -75,7 +75,7 @@ class j06000media_centre
 				if (isset($type['name']) && $type['name'] != '') {
 					$resource_type_options[ ] = jomresHTML::makeOption($type['resource_type'], $type['name']);
 					if (isset($type['notes'])) {
-						$notes[] = array('NOTE' => $type['notes']);
+						$notes[] = array('NOTE' => str_replace( '"' , '&#34;' , $type['notes']));
 					}
 				if (isset( $type['preview_link'])) {
 					$preview_links[] = array('RESOURCE_TYPE' => $type['resource_type'] , 'PREVIEW_LINK' => $type['preview_link']);
