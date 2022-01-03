@@ -1,11 +1,11 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 
 <patTemplate:tmpl name="rows">
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<div class="panel-title">{ROOMTYPE} - {ROOMNAME} {ROOMNUMBER}</div>
+<div class="card">
+	<div class="card-body">
+		<div class="card-title">{ROOMTYPE} - {ROOMNAME} {ROOMNUMBER}</div>
 	</div>
-	<div class="panel-body">
+	<div class="card-text">
 		<div class="row">
 			<div class="col-sm-3">
 				 <a href="#" data-bs-toggle="modal" data-target="#modal_{RANDOM_IDENTIFIER}"><img src="{IMAGETHUMB}" class="img-responsive" alt="{ROOMNUMBER}" /></a>
