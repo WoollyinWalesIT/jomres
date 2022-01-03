@@ -17,9 +17,9 @@
 		<folder>router</folder>	
 		<filename>jomres.php</filename>
 		<filename>router.php</filename>
-		<filename>router.php</filename>
-		<filename>base.php</filename>
-		<filename>index.html</filename>
+		<filename>router/router.php</filename>
+		<filename>router/base.php</filename>
+		<filename>router/index.html</filename>
 	</files>
 
 	<administration>
