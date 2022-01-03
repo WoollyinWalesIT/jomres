@@ -1,5 +1,8 @@
 <?php
 // No direct access to this file
+
+// Joomla 4
+
 defined('_JEXEC') or die('');
 
 use Joomla\Archive\Archive;
