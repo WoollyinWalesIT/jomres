@@ -67,6 +67,10 @@ class j06000show_syndicated_properties
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 
+        if (!isset($jrConfig[ 'development_production' ])) {
+            return;
+        }
+
 		if ($jrConfig[ 'development_production' ] != 'production') {
 			return;
 		}
