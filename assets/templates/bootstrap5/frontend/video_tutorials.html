@@ -25,15 +25,15 @@
 	}, false);
 </script>
 
-<a href="#helpModal" data-toggle="modal" faq-modal-title="{VIDEO_TUTORALS_TITLE}" random_identifier="helpModal" class="btn btn-videos"><i class="fa fa-youtube-play"></i> {VIDEO_TUTORALS_TITLE}</a>
+<a href="#helpModal" data-bs-toggle="modal" faq-modal-title="{VIDEO_TUTORALS_TITLE}" random_identifier="helpModal" class="btn btn-videos"><i class="fa fa-youtube-play"></i> {VIDEO_TUTORALS_TITLE}</a>
 
 
 <div class="modal fade" id="helpModal">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">x</button>
 				<h4 class="modal-title">{VIDEO_TUTORALS_TITLE}</h4>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
 				<patTemplate:tmpl name="rows1" unusedvars="strip">

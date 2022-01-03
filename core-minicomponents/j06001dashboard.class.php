@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 9.25.2
  *
  * @copyright	2005-2021 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -105,7 +105,7 @@ class j06001dashboard
 		//buttons
 		$output['NEXT'] = jr_gettext('COMMON_NEXT', 'COMMON_NEXT', false);
 		$output['PREV'] = jr_gettext('COMMON_PREV', 'COMMON_PREV', false);
-		$output['TODAY'] = jr_gettext('_JOMRES_DASHBOARD_TODAY', '_JOMRES_DASHBOARD_TODAY', false);
+		$output['TODAY'] = str_replace( "'" , "&#39;" , jr_gettext('_JOMRES_DASHBOARD_TODAY', '_JOMRES_DASHBOARD_TODAY', false));
 		$output['MONTH'] = jr_gettext('_JOMRES_DASHBOARD_MONTH', '_JOMRES_DASHBOARD_MONTH', false);
 		$output['WEEK'] = jr_gettext('_JOMRES_DASHBOARD_WEEK', '_JOMRES_DASHBOARD_WEEK', false);
 		$output['TWOWEEKS'] = jr_gettext('_JOMRES_HTWO_WEEKS', '_JOMRES_HTWO_WEEKS', false);

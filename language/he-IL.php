@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 9.25.2
  *
  * @copyright	2005-2021 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2658,3 +2658,9 @@ jr_define ('_JOMRES_SEND_GROUP_BY_FIX_TITLE', 'החל קבוצה לפי תיקו
 jr_define ('_JOMRES_SEND_GROUP_BY_FIX_DESC', 'בכמה התקנות mysql עשויה להיות בעיה עם שאילתות Jomres בדף מאפייני הרשימה, רשימת אורחים וחשבוניות רשימה. אם בדפים אלה כתוב שהם מציגים X של תוצאות Y אך שום דבר לא מופיע ברשימה, אז הגדרה אפשרות זו ל- Yes עשויה לפתור את הבעיה. זה לא יקרה אם אתה משתמש באירוח משותף ושירות האחסון אינו מאפשר למשתמש mysql שלך להוציא את הפקודה "SET GLOBAL sql_mode =". ');
 jr_define ('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', 'זהו נכס ערוץ, לא ניתן לנהל אותו באופן מקומי, בקר בדף מסגרת ניהול הערוצים כדי למצוא את הקישור לניהול מרחוק של הנכס');
 jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "אין רצועה לאתחול בנושא");
+
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'קישורי מדיה חברתית');
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'שים כאן את שמות חשבונות המדיה החברתית שלך, למשל "jomres", לא את כל כתובת האתר');
+
+jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'רשימה מופרדת בפסיק של שפות הארגון שלך דובר');
+jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'כתובת אתר ללוגו הארגון שלך');

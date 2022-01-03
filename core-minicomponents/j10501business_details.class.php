@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 9.25.2
  *
  * @copyright	2005-2021 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -106,7 +106,24 @@ class j10501business_details
 		$configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_business_email" value="'.jomres_decode($jrConfig[ 'business_email' ]).'" />');
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
-		
+
+        if (!isset($jrConfig[ 'business_languages' ])) {
+            $jrConfig[ 'business_languages' ] = '';
+        }
+        $configurationPanel->setleft(jr_gettext('_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES', '_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES', false));
+        $configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_business_languages" value="'.jomres_decode($jrConfig[ 'business_languages' ]).'" />');
+        $configurationPanel->setright(jr_gettext('JOMRES_ORGANISATIION_LANGUGES_DESC', 'JOMRES_ORGANISATIION_LANGUGES_DESC', false));
+        $configurationPanel->insertSetting();
+
+        if (!isset($jrConfig[ 'business_logo' ])) {
+            $jrConfig[ 'business_logo' ] = '';
+        }
+        $configurationPanel->setleft(jr_gettext('JOMRES_ORGANISATIION_LOGO_URL', 'JOMRES_ORGANISATIION_LOGO_URL', false));
+        $configurationPanel->setmiddle('<input type="text" class="input-large" name="cfg_business_logo" value="'.jomres_decode($jrConfig[ 'business_logo' ]).'" />');
+        $configurationPanel->setright();
+        $configurationPanel->insertSetting();
+
+
 		//plugins can add options to this tab
 		$MiniComponents->triggerEvent('10523', $componentArgs);
 

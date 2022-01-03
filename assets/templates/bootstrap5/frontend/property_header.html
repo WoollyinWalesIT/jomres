@@ -35,27 +35,33 @@
 								<p class="badge badge-info">{_JOMRES_PERMIT_NUMBER_TITLE} {PERMIT_NUMBER}</p>
 							</pattemplate:tmpl>
 							<div class="row">
-								<div class="col-lg-8">{STREET}, {TOWN}, {REGION} {POSTCODE}, {COUNTRY}	<span class="hidden-xsd-none d-sm-block">
-
+								<div class="col-lg-8">{STREET}, {TOWN}, {REGION} {POSTCODE}, {COUNTRY}
+									<span class="hidden-xsd-none d-sm-block">
 										{HTELEPHONE}<span>{TELEPHONE}</span>, {HFAX}{FAX}</span>
-									<span
-											class="d-block d-sm-none">
-                                        <br>	<a href="tel:{TELEPHONE}" class="btn btn-success"><i class="fa fa-phone"></i>
-
-											{JOMRES_TAPTOCALL} {TELEPHONE}</a>
-	<a href="whatsapp://send?phone={WHATSAPP_TELEPHONE}"
-	   class="btn btn-success"><i class="fa fa-whatsapp"></i></a>
+									<span class="d-block d-sm-none">
+                                        <br>
+											<a href="tel:{TELEPHONE}" class="btn btn-success"><i class="fa fa-phone"></i>
+												{JOMRES_TAPTOCALL} {TELEPHONE}
+											</a>
+											<a href="whatsapp://send?phone={WHATSAPP_TELEPHONE}" class="btn btn-success"><i class="fa fa-whatsapp"></i></a>
                                         </span>
-									<div><a href="{GALLERYLINK}" target="_blank">{GALLERYDOMAIN}</a>
+									<div>
+										<a href="{GALLERYLINK}" target="_blank">{GALLERYDOMAIN}</a>
 									</div>
 									<div class="property-header-fb d-none d-md-block">{FACEBOOK_BUTTONS}</div>
 								</div>
 								<div class="col-lg-4 d-none d-md-block">
 									<div class="property-header-labels float-right">	<span class="label {REQUIRE_APPROVAL_CLASS}">{REQUIRE_APPROVAL}</span>
 									</div>
-									<div class="property-header-labels float-right">	<span class="badge badge-info">{PRE_TEXT} <span itemprop="priceRange">{PRICE}</span> {POST_TEXT}</span>
-										<span
-												class="big-price big-total-price">{PRICE_CUMULATIVE} {FOR} {STAY_DAYS} {NIGHTS_TEXT}</span>
+									<div class="property-header-labels float-right">
+										<span class="badge bg-info">
+											{PRE_TEXT}
+											<span itemprop="priceRange">
+												{PRICE}
+											</span>
+											{POST_TEXT}
+										</span>
+										<span class="badge bg-dark">{PRICE_CUMULATIVE} {FOR} {STAY_DAYS} {NIGHTS_TEXT}</span>
 									</div>
 								</div>
 							</div>
@@ -63,15 +69,16 @@
 					</div>
 					<div class="row d-none d-lg-block">
 						<div class="col-12">
-							<div class="property-header-buttons float-left">	<a href="{DIRECT_URL}" class="btn btn-secondary"><i class="fa fa-info-circle"></i> {COMMON_VIEW}</a>
-								<pattemplate:tmpl
-										name="bookinglink" type="simpleCondition" requiredvars="link" unusedvars="nbsp">	<a href="{LINK}" class="btn btn-success"><i class="fa fa-shopping-cart"></i> {TEXT}</a>
-								</pattemplate:tmpl>	<a href="{CONTACT_LINK}" class="btn btn-secondary"><i class="fa fa-envelope"></i> {HCONTACT}</a>
-								<a
-										href="javascript:void(0);" id="shortlist_{PROPERTY_UID}" onclick="shortlist(&apos;{PROPERTY_UID}&apos;, &apos;1&apos;)"
-										class="btn btn-secondary">{SHORTLIST}</a>	<a href="{SHORTLIST_LINK}" class="btn btn-secondary"><i class="fa fa-heart"></i> {HSHORTLIST}</a>
-								<a
-										href="javascript:navigate({PROPERTY_LAT},{PROPERTY_LONG});" class="btn btn-secondary"><i class="fa fa-map-marker"></i> {HMAP}</a>{HOST_LINK}</div>
+							<div class="property-header-buttons float-left">
+								<pattemplate:tmpl name="bookinglink" type="simpleCondition" requiredvars="link" unusedvars="nbsp">
+									<a href="{LINK}" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> {TEXT}</a>
+								</pattemplate:tmpl>
+									<a href="{DIRECT_URL}" class="btn btn-secondary btn-sm"><i class="fa fa-info-circle"></i> {COMMON_VIEW}</a>
+									<a href="{CONTACT_LINK}" class="btn btn-secondary btn-sm"><i class="fa fa-envelope"></i> {HCONTACT}</a>
+									<a href="javascript:void(0);" id="shortlist_{PROPERTY_UID}" onclick="shortlist(&apos;{PROPERTY_UID}&apos;, &apos;1&apos;)" class="btn btn-secondary btn-sm">{SHORTLIST}</a>
+									<a href="{SHORTLIST_LINK}" class="btn btn-secondary btn-sm"><i class="fa fa-heart"></i> {HSHORTLIST}</a>
+									<a href="http://maps.google.com/maps?q=loc:{PROPERTY_LAT},{PROPERTY_LONG}&navigate=yes" class="btn btn-secondary btn-sm" target="_blank"><i class="fa fa-map-marker"></i> {HMAP}</a>{HOST_LINK}</div>
+
 						</div>
 					</div>
 				</div>

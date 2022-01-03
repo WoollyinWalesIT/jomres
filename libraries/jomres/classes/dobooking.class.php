@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 9.25.2
  *
  * @copyright	2005-2021 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2874,7 +2874,7 @@ class dobooking
 		$dateRangeArray = array();
 		$currentDay = $this->getArrivalDate();
 		$date_elements = explode('/', $currentDay);
-		$unixCurrentDate = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ]);
+		$unixCurrentDate = mktime(0, 0, 0, (int) $date_elements[ 1 ], (int) $date_elements[ 2 ], (int)$date_elements[ 0 ]);
 		for ($i = 0, $n = $stayDays; $i < $n; ++$i) {
 			$currentDay = date('Y/m/d', $unixCurrentDate);
 			$dateRangeArray[ ] = $currentDay;
@@ -3571,7 +3571,7 @@ class dobooking
 
 		$guest_deets[ 'TEL' ] = $guest_tel_landline;
 		$guest_deets[ 'MOBILE' ] = $guest_tel_mobile;
-		$guest_deets[ 'EMAIL' ] = $guest_email;
+		$guest_deets[ 'EMAIL' ] = restore_task_specific_email_address($guest_email);
 		if (isset($guest_specific_discount)) {
 			$guest_deets[ 'DISCOUNT' ] = $guest_specific_discount;
 		} else {
@@ -7214,7 +7214,7 @@ class dobooking
 	{
 		if (!isset(self::$mktimes[ $date ])) {
 			$date_elements = explode('/', $date);
-			self::$mktimes[ $date ] = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ]);
+			self::$mktimes[ $date ] = mktime(0, 0, 0,  (int)$date_elements[ 1 ],  (int)$date_elements[ 2 ], (int) $date_elements[ 0 ]);
 		}
 
 		return self::$mktimes[ $date ];

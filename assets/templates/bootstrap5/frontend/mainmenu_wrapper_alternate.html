@@ -11,11 +11,11 @@ document.addEventListener('DOMContentLoaded', function(){
 </script>
 
 <div id="jomres-menu-pinned" style="display:none;">
-	<nav class="navbar navbar-expand-lg navbar-light bg-light {NAVBAR_LOCATION} {NAVBAR_INVERSE}" role="navigation">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark {NAVBAR_LOCATION} {NAVBAR_INVERSE}" role="navigation">
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarJomresMainMenu" aria-controls="navbarJomresMainMenu" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-		<div class="collapse navbar-collapse justify-content-md-center" id="navbarJomresMainMenu">
+		<div class="collapse navbar-collapse" id="navbarJomresMainMenu">
 		
 			<ul class="navbar-nav">
 				<patTemplate:tmpl name="menu_sections">
@@ -23,8 +23,8 @@ document.addEventListener('DOMContentLoaded', function(){
 				</patTemplate:tmpl>
 			</ul>
 		</div>
-		
 	</nav>
 {USER_FEEDBACK}
 </div>
+
 </patTemplate:tmpl>

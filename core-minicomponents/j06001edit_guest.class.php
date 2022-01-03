@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 9.25.2
  *
  * @copyright	2005-2021 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -64,7 +64,7 @@ class j06001edit_guest
 			$output[ 'POSTCODE' ] = $jrportal_guests->postcode;
 			$output[ 'LANDLINE' ] = $jrportal_guests->tel_landline;
 			$output[ 'MOBILE' ] = $jrportal_guests->tel_mobile;
-			$output[ 'EMAIL' ] = $jrportal_guests->email;
+			$output[ 'EMAIL' ] = restore_task_specific_email_address($jrportal_guests->email);
 			$output[ 'VAT_NUMBER' ] = $jrportal_guests->vat_number;
 
 			$yesno = array();

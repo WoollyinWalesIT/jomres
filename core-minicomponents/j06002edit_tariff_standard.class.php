@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 9.25.2
  *
  * @copyright	2005-2021 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -281,8 +281,8 @@ class j06002edit_tariff_standard
 			$p["DOW"] = $dia['text'];
 			
 			$p["INPUT"] = '
-				<input class="'.$dia['class'].'_rates  form-control input-small tariff_multi_input"  type="number" step="any" min="0" name="'.$dia['class'].'_rates" value="'.$jrportal_rates->rates_defaults['roomrateperday'].'" />
-				<input class="'.$dia['class'].'_mindays form-control input-small mindays_multi_input" type="number" step="any" min="0"  name="'.$dia['class'].'_mindays" value="'.$jrportal_rates->rates_defaults['mindays'].'"  style="display:none"/>
+				<input class="'.$dia['class'].'_rates  form-control input-small tariff_multi_input"  type="number" step="any" min="0" name="'.$dia['class'].'_rates" value="'.$jrportal_rates->rates_defaults['roomrateperday'].'" style="padding:initial;"/>
+				<input class="'.$dia['class'].'_mindays form-control input-small mindays_multi_input" type="number" step="any" min="0"  name="'.$dia['class'].'_mindays" value="'.$jrportal_rates->rates_defaults['mindays'].'"  style="padding:initial;display:none"/>
 			';
 
 			$prefills[] = $p;

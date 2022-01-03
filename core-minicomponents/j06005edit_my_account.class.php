@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 9.25.2
  *
  * @copyright	2005-2021 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -70,7 +70,7 @@ class j06005edit_my_account
 		$output[ 'POSTCODE' ] = '';
 		$output[ 'LANDLINE' ] = '';
 		$output[ 'MOBILE' ] = '';
-		$output[ 'EMAIL' ] = $user_details[ $thisJRUser->id ][ 'email' ];
+		$output[ 'EMAIL' ] = restore_task_specific_email_address($user_details[ $thisJRUser->id ][ 'email' ]);
 		$output[ 'IMAGE' ] = JOMRES_IMAGES_RELPATH.'noimage.gif';
 
 		if (isset($componentArgs['return_url']) && $componentArgs['return_url'] != '') {
@@ -105,7 +105,7 @@ class j06005edit_my_account
 				$output[ 'LANDLINE' ]			= $thisJRUser->tel_landline;
 				$output[ 'MOBILE' ]				= $thisJRUser->tel_mobile;
 				$output[ 'FAX' ]				= $thisJRUser->tel_fax;
-				$output[ 'EMAIL' ]				= $thisJRUser->email;
+				$output[ 'EMAIL' ]				= restore_task_specific_email_address($thisJRUser->email);
 
 				$output[ 'DRIVERS_LICENSE' ]	= $thisJRUser->drivers_license;
 				$output[ 'PASSPORT_NUMBER' ]	= $thisJRUser->passport_number;

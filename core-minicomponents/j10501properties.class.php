@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 9.25.2
  *
  * @copyright	2005-2021 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -107,6 +107,23 @@ class j10501properties
 			$configurationPanel->setright(jr_gettext('_JOMRES_PROPERTYDETAILS_INTABS_DESC', '_JOMRES_PROPERTYDETAILS_INTABS_DESC', false));
 			$configurationPanel->insertSetting();
 		}
+
+        $configurationPanel->insertHeading(jr_gettext('JOMRES_SOCIAL_MEDIA_LINKS', 'JOMRES_SOCIAL_MEDIA_LINKS', false));
+
+
+        $configurationPanel->setleft(jr_gettext('_JOMRES_OVERRIDE_PROPERTY_CONTACT_DETAILS', '_JOMRES_OVERRIDE_PROPERTY_CONTACT_DETAILS', false));
+        $configurationPanel->insertDescription(jr_gettext('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'JOMRES_SOCIAL_MEDIA_LINKS_INFO', false));
+
+        $social_meeja_platforms = get_sm_platforms();
+        foreach ( $social_meeja_platforms as $key => $val ) {
+            if (!isset($jrConfig[$key])) {
+                $jrConfig[$key] = '';
+            }
+            $configurationPanel->setleft($val['name']);
+            $configurationPanel->setmiddle($val['url'].'<input type="text" class="input-large" name="cfg_'.$key.'" value="'.$jrConfig[ $key ].'" />');
+            $configurationPanel->setright($val['notes']);
+            $configurationPanel->insertSetting();
+        }
 
 		if ( $jrConfig[ 'admin_options_level' ] > 0 ) {
 			$configurationPanel->insertHeading(jr_gettext('_JOMRES_CONTACT_SETTINGS', '_JOMRES_CONTACT_SETTINGS', false));

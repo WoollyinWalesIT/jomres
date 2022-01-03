@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 9.25.2
  *
  * @copyright	2005-2021 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2649,3 +2649,9 @@ jr_define ('_JOMRES_SEND_GROUP_BY_FIX_TITLE', 'Použiť skupinu podľa opravy?')
 jr_define ('_JOMRES_SEND_GROUP_BY_FIX_DESC', 'Niektoré inštalácie mysql môžu mať problém s dopytmi Jomres na stránke Vlastnosti zoznamu, Zoznam hostí a Zoznam faktúr. Ak tieto stránky uvádzajú, že zobrazujú X výsledkov Y, ale v zozname sa nič nezobrazuje, potom nastavte táto možnosť na Áno môže problém vyriešiť. Nebude, ak ste na zdieľanom hostingu a hostingová služba neumožňuje vášmu používateľovi mysql vydať príkaz SET GLOBAL sql_mode = ');
 jr_define ('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', 'Toto je vlastnosť kanála, ktorú nemožno spravovať lokálne, odkaz na vzdialenú správu vlastníctva nájdete na stránke rámca správy kanálov');
 jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "Žiadny bootstrap v téme");
+
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'Odkazy na sociálne médiá');
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Sem vložte názvy svojich účtov sociálnych médií, napríklad "jomres", nie celú adresu URL');
+
+jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Čiarkami oddelený zoznam jazykov, ktorými vaša organizácia hovorí');
+jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'Adresa URL loga vašej organizácie');

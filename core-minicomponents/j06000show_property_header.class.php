@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 9.25.2
  *
  * @copyright	2005-2021 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -360,7 +360,7 @@ class j06000show_property_header
 				$output[ 'REQUIRE_APPROVAL_CLASS' ] = 'label-warning';
 			} else {
 				$output[ 'REQUIRE_APPROVAL' ] = jr_gettext('_BOOKING_INSTANT', '_BOOKING_INSTANT', false);
-				$output[ 'REQUIRE_APPROVAL_CLASS' ] = 'label-success';
+				$output[ 'REQUIRE_APPROVAL_CLASS' ] = 'label-success badge bg-success';
 			}
 		}
 

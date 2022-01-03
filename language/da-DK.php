@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 9.25.2
  *
  * @copyright	2005-2021 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2653,3 +2653,8 @@ jr_define ('_JOMRES_SEND_GROUP_BY_FIX_DESC', 'Nogle mysql -installationer kan ha
 jr_define ('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', 'Dette er en kanalejendom, den kan ikke administreres lokalt. Besøg rammesiden for kanalstyring for at finde ejendommens fjernadministrationslink');
 jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "Ingen bootstrap i tema");
 
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'Links til sociale medier');
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Skriv dine kontonavne på sociale medier her, for eksempel "jomres", ikke hele url\'en');
+
+jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Kommasepareret liste over sprog din organisation taler');
+jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'Webadresse til din organisations logo');

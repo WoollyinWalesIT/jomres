@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 9.25.2
  *
  * @copyright	2005-2021 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -20,7 +20,7 @@ defined('_JOMRES_INITCHECK') or die('Direct Access to this file is not allowed.'
 	 *
 	 */
 use Joomla\CMS\Factory;
-
+use Joomla\CMS\User\UserFactoryInterface;
 
 function jomres_cmsspecific_error_logging_cms_files_to_not_backtrace()
 {
@@ -130,6 +130,8 @@ function jomres_cmsspecific_createNewUser( $email_address = '' )
 
 	$guestDeets = $tmpBookingHandler->getGuestData();
 
+    $guest_email = restore_task_specific_email_address( $guestDeets[ 'email' ]);
+
 	//If the email address already exists in the system, we'll not bother carrying on, just return this user's "mos_id"
 	$query = "SELECT `id` FROM #__users WHERE `email` = '".$guestDeets[ 'email' ]."' LIMIT 1";
 	$existing = doSelectSql($query, 1);
@@ -140,8 +142,8 @@ function jomres_cmsspecific_createNewUser( $email_address = '' )
 	$usertype = 'Registered';
 	$block = '0';
 
-	$password = Joomla\CMS\User\UserHelper::genRandomPassword();
-	$encryptedPassword = Joomla\CMS\User\UserHelper::getCryptedPassword($password);
+	$clear_password = JUserHelper::genRandomPassword(20);
+	$encryptedPassword = JUserHelper::hashPassword($clear_password);
 
 	$query = "INSERT INTO #__users (
 		`name`,
@@ -154,8 +156,8 @@ function jomres_cmsspecific_createNewUser( $email_address = '' )
 		`params`
 		) VALUES (
 		'" .$name."',
-		'" .$guestDeets[ 'email' ]."',
-		'" .$guestDeets[ 'email' ]."',
+		'" .$guest_email."',
+		'" .$guest_email."',
 		'" .$encryptedPassword."',
 		'" .date('Y-m-d H:i:s')."',
 		'" .date('Y-m-d H:i:s')."',
@@ -163,9 +165,10 @@ function jomres_cmsspecific_createNewUser( $email_address = '' )
 		'{}'
 		) ";
 	$id = doInsertSql($query);
+
 	if (!$id) {
 		trigger_error('Failed insert new user '.$query, E_USER_ERROR);
-		$this->insertSuccessful = false;
+		$insertSuccessful = false;
 	} else {
 
         $webhook_notification							  	= new stdClass();
@@ -175,9 +178,9 @@ function jomres_cmsspecific_createNewUser( $email_address = '' )
         $webhook_notification->data						 	= new stdClass();
         $webhook_notification->data->cms_user_id		   	= $id;
         $webhook_notification->data->name          		   	= $name;
-        $webhook_notification->data->password   		   	= $password;
-        $webhook_notification->data->username		      	= $guestDeets[ 'email' ];
-        $webhook_notification->data->email      		   	= $guestDeets[ 'email' ];
+        $webhook_notification->data->password   		   	= $clear_password;
+        $webhook_notification->data->username		      	= $guest_email;
+        $webhook_notification->data->email      		   	= $guest_email;
 
         add_webhook_notification($webhook_notification);
 
@@ -198,26 +201,39 @@ function jomres_cmsspecific_createNewUser( $email_address = '' )
 
 		$text = jr_gettext('_JRPORTAL_NEWUSER_DEAR', '_JRPORTAL_NEWUSER_DEAR', false).' '.stripslashes($guestDeets[ 'firstname' ]).' '.stripslashes($guestDeets[ 'surname' ]).'<br />';
 		$text .= jr_gettext('_JRPORTAL_NEWUSER_THANKYOU', '_JRPORTAL_NEWUSER_THANKYOU', false).'<br />';
-		$text .= jr_gettext('_JRPORTAL_NEWUSER_USERNAME', '_JRPORTAL_NEWUSER_USERNAME', false).' '.$guestDeets[ 'email' ].'<br />';
-		$text .= jr_gettext('_JRPORTAL_NEWUSER_PASSWORD', '_JRPORTAL_NEWUSER_PASSWORD', false).' '.$password.'<br />';
+		$text .= jr_gettext('_JRPORTAL_NEWUSER_USERNAME', '_JRPORTAL_NEWUSER_USERNAME', false).' '.$guest_email.'<br />';
+		$text .= jr_gettext('_JRPORTAL_NEWUSER_PASSWORD', '_JRPORTAL_NEWUSER_PASSWORD', false).' '.$clear_password.'<br />';
 		$text .= jr_gettext('_JRPORTAL_NEWUSER_LOG_IN', '_JRPORTAL_NEWUSER_LOG_IN', false).' '.get_showtime('live_site').'<br />';
 
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 		if ($jrConfig[ 'useNewusers_sendemail' ] == '1') {
-			if (!jomresMailer(get_showtime('mailfrom'), get_showtime('fromname'), $guestDeets[ 'email' ], $subject, $text, $mode = 1)) {
-				error_logging('Failure in sending registration email to guest. Target address: '.$hotelemail.' Subject'.$subject);
+			if (!jomresMailer(get_showtime('mailfrom'), get_showtime('fromname'),$guest_email, $subject, $text, 1)) {
+				error_logging('Failure in sending registration email to guest. Target address: '.get_showtime('mailfrom').' Subject'.$subject);
 			}
 		}
 
 		if (!$thisJRUser->userIsManager) {
-			$mainframe = & JFactory::getApplication('site');
-			jimport('joomla.plugin.helper');
-			$error = $mainframe->login([
-				'username' => $guestDeets[ 'email' ],
-				'password' => $password,
-			]);
-			$user = JFactory::getUser();
+            //JLoader::import('joomla.user.authentication');
+            //$credentials = array('username' => $guest_email, 'password' => $password);
+            //$app = JFactory::getApplication();
+            //$options = array('remember' => true);
+            //$authenticate = JAuthentication::getInstance();
+            // $result = $authenticate->authenticate($credentials, $options);
+
+            $result_login = JFactory::getApplication()->login(
+                [
+                    'username' => $guest_email,
+                    'password' => $clear_password
+                ],
+                [
+                    'remember' => true,
+                    'silent'   => true
+                ]
+            );
+            $container = \Joomla\CMS\Factory::getContainer();
+            $userFactory = $container->get(UserFactoryInterface::class);
+            $user = $userFactory->loadUserById($id);
 		}
 	}
 

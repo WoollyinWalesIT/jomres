@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 9.25.2
  *
  * @copyright	2005-2021 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2634,3 +2634,8 @@ jr_define ('_JOMRES_SEND_GROUP_BY_FIX_DESC', 'Algunas instalaciones de mysql pue
 jr_define ('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', 'Esta es una propiedad de canal, no se puede administrar localmente, visite la página del marco de gestión de canales para encontrar el enlace de administración remota de la propiedad');
 jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "Sin Bootstrap en el tema");
 
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'Sosial media keçidləri');
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Sosial media hesab adlarınızı bura qoyun, məsələn, bütün url deyil, "jomres"');
+
+jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Təşkilatınızın danışdığı dillərin vergüllə ayrılmış siyahısı');
+jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'Təşkilat loqosunun URL');

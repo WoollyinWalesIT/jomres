@@ -1,5 +1,58 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<patTemplate:tmpl name="social_profiles" type="simpleCondition" requiredVars="livesite">
+		<!-- Google social profiles markup-->
+		<script type="application/ld+json">
+			{
+				"@context": "http://schema.org",
+				"@type": "Organization",
+				"url": "{LIVESITE}",
+				"name": "{SITENAME}",
+				"sameAs": [
+					<patTemplate:tmpl name="social_profile_urls" unusedvars="strip">
+					"{URL}",
+					</patTemplate:tmpl>
+				]
+			}
+		</script>
+		<!-- End of Google social profiles markup-->
+	</patTemplate:tmpl>
 
+	<patTemplate:tmpl name="organisation" unusedvars="strip">
+		<!-- Google logo & contacts markup-->
+		<script type="application/ld+json">
+			{
+				"@context": "http://schema.org",
+				"@type": "Organization",
+				"url": "{LIVESITE}",
+				"logo": "{BUSINESS_LOGO}",
+				"contactPoint": [
+					{
+						"@type": "ContactPoint",
+						"telephone": "{BUSINESS_TELEPHONE}",
+						"contactType": "reservations",
+						"contactOption": [
+							""
+						],
+						"availableLanguage": [
+							{BUSINESS_LANGUAGES}
+						]
+					},
+					{
+						"@type": "ContactPoint",
+						"telephone": "{BUSINESS_TELEPHONE}",
+						"contactType": "customer service",
+						"contactOption": [
+							""
+						],
+						"availableLanguage": [
+							{BUSINESS_LANGUAGES}
+						]
+					}
+				]
+			}
+		</script>
+		<!-- End of Google logo & contacts markup-->
+	</patTemplate:tmpl>
 <style>
 .schema-hidden-fields {
 	display: none;

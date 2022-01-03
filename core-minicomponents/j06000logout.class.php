@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 9.25.2
  *
  * @copyright	2005-2021 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -51,14 +51,7 @@ class j06000logout
 			$error = $app->logout();
 			// Check if the log out succeeded.
 			if (!($error instanceof Exception)) {
-				// Get the return url from the request and validate that it is internal.
-				$return = JRequest::getVar('return', '', 'method', 'base64');
-				$return = base64_decode($return);
-				if (!JURI::isInternal($return)) {
-					$return = '';
-				}
-
-				// Redirect the user.
+ 				// Redirect the user.
 				$app->redirect(JRoute::_(get_showtime('live_site').'/index.php?option=com_jomres', false));
 			} else {
 				$app->redirect(JRoute::_('index.php?option=com_users&view=login', false));

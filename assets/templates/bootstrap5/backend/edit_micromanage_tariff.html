@@ -193,7 +193,7 @@ jomresJquery(function() {
         }
     });
 
-  jomresJquery('[data-toggle="popover"]').popover();
+  jomresJquery('[data-bs-toggle="popover"]').popover();
   
   jomresJquery(".setdate").on("click",function(){
   	var date = jomresJquery(this).children().data('date'),
@@ -255,7 +255,7 @@ var isfrom = true;
 <div class="alert alert-info">
 	{_JOMRES_MICROMANAGE_INTRO}
 	<!-- Button trigger modal -->
-	<button type="button" class="btn btn-info" data-toggle="modal" data-target="#instructionsModal">
+	<button type="button" class="btn btn-info" data-bs-toggle="modal" data-target="#instructionsModal">
 		<i class="fa fa-info"></i> {_JOMRES_MICROMANAGE_MODAL_BUTTON}
 	</button>
 </div>
@@ -307,7 +307,7 @@ var isfrom = true;
 	</div>
 </div>
 
-<a class="btn btn-secondary" role="button" data-toggle="collapse" href="#extraOptions" aria-expanded="false" aria-controls="extraOptions">
+<a class="btn btn-secondary" role="button" data-bs-toggle="collapse" href="#extraOptions" aria-expanded="false" aria-controls="extraOptions">
   {_JOMRES_MICROMANAGE_EXTRAOPTIONS}
 </a>
 
@@ -358,7 +358,7 @@ var isfrom = true;
     <div class="row">
         <div class="col-md-2">
             <h4 class="page-header">{_JOMRES_MICROMANAGE_PICKERS_SELECTOR}
-                <button type="button" class="btn btn-info" data-toggle="popover" title="" data-placement="bottom" data-trigger="focus" data-content='{_JOMRES_MICROMANAGE_PICKERS_SELECTOR_INFO_SMALL_VIEWPORT}'><i class="fa fa-info" aria-hidden="true"></i></button>
+                <button type="button" class="btn btn-info" data-bs-toggle="popover" title="" data-placement="bottom" data-trigger="focus" data-content='{_JOMRES_MICROMANAGE_PICKERS_SELECTOR_INFO_SMALL_VIEWPORT}'><i class="fa fa-info" aria-hidden="true"></i></button>
             </h4>
 
             <select class="interval_price_selector  form-control" autocomplete="off">
@@ -368,11 +368,11 @@ var isfrom = true;
         </div>
         <div class="col-md-8 ranges_setters text-info">
             <h4 class="page-header tariff_multi_input">{_JOMRES_MICROMANAGE_PICKER_TYPE_INTERVAL_RATES}
-                <button type="button" class="btn btn-info" data-toggle="popover" title="" data-placement="bottom" data-trigger="focus" data-content='{_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_RATES}'><i class="fa fa-info" aria-hidden="true"></i></button>
+                <button type="button" class="btn btn-info" data-bs-toggle="popover" title="" data-placement="bottom" data-trigger="focus" data-content='{_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_RATES}'><i class="fa fa-info" aria-hidden="true"></i></button>
             </h4>
 
             <h4 class="page-header mindays_multi_input" style="display:none">{_JOMRES_MICROMANAGE_PICKER_TYPE_INTERVAL_MINDAYS}
-                <button type="button" class="btn btn-info" data-toggle="popover" title="" data-placement="bottom" data-trigger="focus" data-content='{_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_MINDAYS}'><i class="fa fa-info" aria-hidden="true"></i></button>
+                <button type="button" class="btn btn-info" data-bs-toggle="popover" title="" data-placement="bottom" data-trigger="focus" data-content='{_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_MINDAYS}'><i class="fa fa-info" aria-hidden="true"></i></button>
             </h4>
 
             <div class="col-md-6">
@@ -461,7 +461,7 @@ var isfrom = true;
     <div class="row">
         <div class="col-md-2">
             <h4 class="page-header">{_JOMRES_MICROMANAGE_PICKERS_SELECTOR}
-                <span class="label label-info" data-container="body" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="{_JOMRES_MICROMANAGE_PICKERS_SELECTOR_INFO}"><i class="fa fa-info"></i> </span>
+                <span class="label label-info" data-container="body" data-bs-toggle="popover" data-placement="top" data-trigger="hover" data-content="{_JOMRES_MICROMANAGE_PICKERS_SELECTOR_INFO}"><i class="fa fa-info"></i> </span>
             </h4>
 
             <select class="interval_price_selector form-control" autocomplete="off">
@@ -471,11 +471,11 @@ var isfrom = true;
         </div>
         <div class="col-md-4  ranges_setters text-info">
             <h4 class="page-header tariff_multi_input">{_JOMRES_MICROMANAGE_PICKER_TYPE_DOW}
-                <span class="label label-info" data-container="body" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="{PICKER_DAYSOFWEEK}"><i class="fa fa-info"></i></span>
+                <span class="label label-info" data-container="body" data-bs-toggle="popover" data-placement="top" data-trigger="hover" data-content="{PICKER_DAYSOFWEEK}"><i class="fa fa-info"></i></span>
             </h4>
 
             <h4 class="page-header mindays_multi_input" style="display:none">{_JOMRES_MICROMANAGE_PICKER_BYDOW}
-                 <span class="label label-info" data-container="body" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="{_JOMRES_MICROMANAGE_PICKER_BYDOW_INFO}"><i class="fa fa-info"></i></span>
+                 <span class="label label-info" data-container="body" data-bs-toggle="popover" data-placement="top" data-trigger="hover" data-content="{_JOMRES_MICROMANAGE_PICKER_BYDOW_INFO}"><i class="fa fa-info"></i></span>
             </h4>
             <div class="container-fluid">
                 <div class="row">
@@ -491,11 +491,11 @@ var isfrom = true;
         </div>
         <div class="col-md-3  ranges_setters text-info">
             <h4 class="page-header tariff_multi_input">{_JOMRES_MICROMANAGE_PICKER_TYPE_INTERVAL_RATES}
-                <span class="label label-info" data-container="body" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="{_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_RATES}"><i class="fa fa-info"></i></span>
+                <span class="label label-info" data-container="body" data-bs-toggle="popover" data-placement="top" data-trigger="hover" data-content="{_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_RATES}"><i class="fa fa-info"></i></span>
             </h4>
 
             <h4 class="page-header mindays_multi_input" style="display:none">{_JOMRES_MICROMANAGE_PICKER_TYPE_INTERVAL_MINDAYS}
-                <span class="label label-info" data-container="body" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="{_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_MINDAYS}"><i class="fa fa-info"></i></span>
+                <span class="label label-info" data-container="body" data-bs-toggle="popover" data-placement="top" data-trigger="hover" data-content="{_JOMRES_MICROMANAGE_PICKER_INSTRUCTIONS_MINDAYS}"><i class="fa fa-info"></i></span>
             </h4>
                <div class="container-fluid">
                    <div class="row">
@@ -552,7 +552,7 @@ var isfrom = true;
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" data-bs-toggle="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="instructionsModalLabel">{_JOMRES_MICROMANAGE_MODAL_BUTTON}</h4>
       </div>
       <div class="modal-body">
@@ -563,7 +563,7 @@ var isfrom = true;
         <p>{_JOMRES_MICROMANAGE_EXTRA_OPTIONS}</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">{COMMON_CLOSE}</button>
+        <button type="button" class="btn btn-secondary" data-bs-toggle="modal">{COMMON_CLOSE}</button>
       </div>
     </div>
   </div>

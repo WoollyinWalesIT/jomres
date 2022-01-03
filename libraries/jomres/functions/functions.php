@@ -5,7 +5,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 9.25.2
  *
  * @copyright	2005-2021 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -15,6 +15,38 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
+
+/**
+ *
+ * Restores an encoded email address that might have the + symbol in
+ *
+ *
+ */
+
+function restore_task_specific_email_address($address) {
+    $cleaned_address = str_replace ("&#38;#38;#43;" , "+" ,$address);
+    $cleaned_address2 = str_replace ("&#38;#43;" , "+" , $cleaned_address);
+    return str_replace ("&#43;" , "+" , $cleaned_address2);
+}
+
+/**
+ *
+ * Return an array of social media platforms with relevant data
+ *
+ */
+function get_sm_platforms() {
+    $social_meeja_platforms = array(
+        'social_media_facebook'     => ['name' => 'Facebook' , 'url' => 'https://www.facebook.com/' , 'notes' => ''],
+        'social_media_instagram'    => ['name' => 'Instagram' , 'url' => 'https://www.instagram.com/' , 'notes' => ''],
+        'social_media_pintrest'     => ['name' =>'Pintrest' , 'url' => 'https://www.pinterest.com/' , 'notes' => ''],
+        'social_media_linkedin'     => ['name' => 'LinkedIn', 'url' => 'https://www.linkedin.com/in/' , 'notes' => ''],
+        'social_media_twitter'      => ['name' => 'Twitter' , 'url' => 'https://twitter.com/' , 'notes' => ''],
+        'social_media_tiktok'       => ['name' =>'Tiktok' , 'url' => 'https://www.tiktok.com/@' , 'notes' => ''],
+        'social_media_whatsapp'     => ['name' => 'Whatsapp' , 'url' => 'https://wa.me/' , 'notes' => ' Correct : 4412345678 Wrong +4412345678'],
+        'social_media_youtube'      => ['name' => 'Youtube' , 'url' => 'https://www.youtube.com/c/' , 'notes' => '']
+      );
+    return  $social_meeja_platforms;
+}
 
 /**
 *
@@ -2779,7 +2811,15 @@ function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode
 	
 	$from = str_replace( "&#64;" , "=" , $from );
 	$to = str_replace( "&#64;" , "=" , $to );
-	
+
+    $to = str_replace ("&#38;#38;#43;" , "+" , $to);
+    $to = str_replace ("&#38;#43;" , "+" , $to);
+    $to = str_replace ("&#43;" , "+" , $to);
+
+    $from = str_replace ("&#38;#38;#43;" , "+" , $from);
+    $from = str_replace ("&#38;#43;" , "+" , $from);
+    $from = str_replace ("&#43;" , "+" , $from);
+
 	logging::log_message('Sending email from '.$from.' to '.$to.' subject '.$subject, 'Mailer');
 
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
