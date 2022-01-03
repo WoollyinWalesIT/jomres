@@ -761,9 +761,9 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 		$result = doSelectSql($query);
 
 		foreach ($result as $r) {
-			$query = 'DROP TABLE IF EXISTS '.$r->table_name;
+			$query = 'DROP TABLE IF EXISTS '.$r->TABLE_NAME;
 			if (!doInsertSql($query, '')) {
-				$this->setMessage( 'Error, unable to drop table '.$r->table_name);
+				$this->setMessage( 'Error, unable to drop table '.$r->TABLE_NAME);
 			}
 		}
 
@@ -787,7 +787,10 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 
 		
 		//delete jomres_root file
-		$this->filesystem->delete('local://jomres_root.php');
+        if ($this->filesystem->exists('local://jomres_root.php') ) {
+            $this->filesystem->delete('local://jomres_root.php');
+        }
+
 		
 		return true;
 	}

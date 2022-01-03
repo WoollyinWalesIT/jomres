@@ -94,6 +94,10 @@ class logging
 		
         $log_file = str_replace(' ', '_', $channel).'.application.log';
 
+        if (!isset($jrConfig[ 'development_production' ])) { // Probably installing
+            return;
+        }
+
         if ($jrConfig[ 'development_production' ] == 'production' && $level == 'DEBUG') { // In Production, we don't want to see DEBUG level stuff.
             return;
         }

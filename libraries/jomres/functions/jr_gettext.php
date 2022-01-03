@@ -109,7 +109,7 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
 		$br = '<br />';
 	}
 
-	if ($jrConfig[ 'prioritise_sitewide_label_definitions' ] == "1") {
+	if ( isset($jrConfig[ 'prioritise_sitewide_label_definitions' ]) && $jrConfig[ 'prioritise_sitewide_label_definitions' ] == "1") {
 		if (isset($customTextObj->global_custom_text[$jomres_language_definitions->ptype][$theConstant])) {
 			$theText = $customTextObj->global_custom_text[$jomres_language_definitions->ptype][$theConstant];
 		} elseif (isset($customTextObj->global_custom_text['0'][$theConstant])) {

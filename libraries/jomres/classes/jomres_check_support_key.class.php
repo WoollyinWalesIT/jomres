@@ -91,6 +91,10 @@ class jomres_check_support_key
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 
+        if (!isset($jrConfig['licensekey'])) { // Probably installing
+            return;
+        }
+
 		if ( $key == '' )
 			$str = 'key='.$jrConfig['licensekey'];
 		else
