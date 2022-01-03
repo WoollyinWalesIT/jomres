@@ -99,12 +99,17 @@ $jrConfig = ' .var_export($config_to_save, true).';
 		// On my Ubuntu box, and on some client boxes, there's a delay in saving the config file so we will wait, then wait a bit more after the file mod time has been updated
 		// Might need to add a clause to not do this during api calls?
 		do {
-			sleep(1); // Writing the file could take a moment
+            if (!defined('AUTO_UPGRADE')) {
+                sleep(1); // Writing the file could take a moment
+            }
+
 			clearstatcache();
 			$config_last_modified = filemtime($this->config_file);
 		} while ( $config_last_modified <= $this->config_last_modified);
 
-		sleep(2);
+        if (!defined('AUTO_UPGRADE')) {
+            sleep(2);
+        }
 
 		if (!$result) {
 			trigger_error('ERROR: '.$this->config_file.' can`t be saved. Please solve the permission problem and try again.', E_USER_ERROR);
@@ -127,13 +132,17 @@ $jrConfig = ' .var_export($config_to_save, true).';
 			return true;
 		}
 
+        if ($k == '' ) {
+            return;
+        }
+
 		if (file_exists($this->config_file) || !$this->site_settings_table_exists ) {
             if (!file_exists($this->config_file) ) {
                 touch($this->config_file);
             }
 			include $this->config_file;
-			if (!array_key_exists($k, $jrConfig)) {
-				$jrConfig[ $k ] = $v;
+			if (!array_key_exists($k, $this->config)) {
+                $this->config[ $k ] = $v;
 
 				$result = file_put_contents($this->config_file,
 					'<?php
@@ -141,18 +150,23 @@ $jrConfig = ' .var_export($config_to_save, true).';
 defined( \'_JOMRES_INITCHECK\' ) or die( \'\' );
 ##################################################################
 
-$jrConfig = ' .var_export($jrConfig, true).';
+$jrConfig = ' .var_export($this->config, true).';
 ');
 
 				// On my Ubuntu box, and on some client boxes, there's a delay in saving the config file so we will wait, then wait a bit more after the file mod time has been updated
 				// Might need to add a clause to not do this during api calls?
 				do {
-					sleep(1); // Writing the file could take a moment
+                    if (!defined('AUTO_UPGRADE')) {
+                        sleep(1); // Writing the file could take a moment
+                    }
+
 					clearstatcache();
 					$config_last_modified = filemtime($this->config_file);
 				} while ( $config_last_modified <= $this->config_last_modified);
 
-				sleep(2);
+                if (!defined('AUTO_UPGRADE')) {
+                    sleep(2);
+                }
 
 				if (!$result) {
 					trigger_error('ERROR: '.$this->config_file.' can`t be saved. Please solve the permission problem and try again.', E_USER_ERROR);
@@ -188,6 +202,10 @@ $jrConfig = ' .var_export($jrConfig, true).';
 			return true;
 		}
 
+        if ($k == '' ) {
+            return;
+        }
+
 		if (file_exists($this->config_file) || !$this->site_settings_table_exists ) {
 			include $this->config_file;
 
@@ -205,12 +223,17 @@ $jrConfig = ' .var_export($jrConfig, true).';
 			// On my Ubuntu box, and on some client boxes, there's a delay in saving the config file so we will wait, then wait a bit more after the file mod time has been updated
 			// Might need to add a clause to not do this during api calls?
 			do {
-				sleep(1); // Writing the file could take a moment
+                if (!defined('AUTO_UPGRADE')) {
+                    sleep(1); // Writing the file could take a moment
+                }
+
 				clearstatcache();
 				$config_last_modified = filemtime($this->config_file);
 			} while ( $config_last_modified <= $this->config_last_modified);
 
-			sleep(2);
+            if (!defined('AUTO_UPGRADE')) {
+                sleep(2);
+            }
 
 			if (!$result) {
 				trigger_error('ERROR: '.$this->config_file.' can`t be saved. Please solve the permission problem and try again.', E_USER_ERROR);
