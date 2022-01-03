@@ -1,7 +1,5 @@
-
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<script language="JavaScript" type="text/javascript">
-	<!--
+<script type="text/javascript">
 			document.addEventListener('DOMContentLoaded', function(){
 		make_datatable('admin_listproperties', '{PAGETITLE}', '{LIVESITE}', '{AJAX_URL}');
 		column_ids = new Array(1,3,4,5,6,7,9,11,12,13,14);
@@ -31,7 +29,7 @@
 	</div>
 	<div class="card-text">
 		<div class="alert alert-warning">{WARNING}</div>
-		<table width="100%" id="admin_listproperties" class="table table-striped">
+		<table id="admin_listproperties" class="table table-striped">
 			<thead>
 				<tr>
 					<th>{HSTATUS}</th>
