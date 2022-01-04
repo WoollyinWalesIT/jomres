@@ -107,13 +107,11 @@ class jomresHTML
 				$val = $v->$key;
 				$txt = $v->$text;
 				
-				//$output .= '<button type="button" value="'.$k.'" class="btn" data-toggle="button">'.$txt.'</button>';
-				
 				$checked = '';
 				 if ($val == $default) {
 					$checked = 'checked="checked" ';
 				}
-				
+
 				$output .= '
 				<input type="radio" id="' .$name.$val.'" name="'.$name.'" '.$checked.' value="'.$val.'"/>
 				<label for="' .$name.$val.'" id="'.$name.$val.'_id" >'.$txt.'</label>

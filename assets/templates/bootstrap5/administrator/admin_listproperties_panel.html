@@ -35,6 +35,7 @@
 					<th>{HSTATUS}</th>
 					<th>{HPROPERTYUID}</th>
 					<th>{HPROPERTYNAME}</th>
+					<th>{HAPPROVED}</th>
 					<th>{HPROPERTY_STREET}</th>
 					<th>{HPROPERTY_TOWN}</th>
 					<th>{HPROPERTY_REGION}</th>
@@ -47,7 +48,7 @@
 					<th>{HPROPERTY_SUPERIOR}</th>
 					<th>{HPROPERTY_LAT}</th>
 					<th>{HPROPERTY_LONG}</th>
-					<th>{HAPPROVED}</th>
+
 					<th>{HLASTCHANGED}</th>
 					<th>{HCRATE}</th>
 				</tr>
@@ -57,8 +58,8 @@
 		</table>
 
 		<h5>{HLEGEND}</h5>
-		<span class="label label-red">{HNOTCOMPLETED}</span>
-		<span class="label label-orange">{HWAITINGAPPROVAL}</span>
+		<span class="badge bg-danger">{HNOTCOMPLETED}</span>
+		<span class="badge bg-warning text-dark">{HWAITINGAPPROVAL}</span>
 	</div>
 </div>
 </patTemplate:tmpl>

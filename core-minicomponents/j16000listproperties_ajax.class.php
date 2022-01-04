@@ -226,17 +226,31 @@ class j16000listproperties_ajax
 			//end properties toolbar
 
 			$r[] = $p->propertys_uid;
-			
+
+            if ( jomres_bootstrap_version() == 5) {
+                $text_highlight_danger = "badge bg-danger";
+                $text_highlight_warning = "badge bg-warning text-dark";
+            } else {
+                $text_highlight_danger = "label label-orange";
+                $text_highlight_warning = "label label-red";
+            }
+
 			if ($p->completed == 1) {
 				if ($p->approved == 1) {
 					$r[] = jomres_decode($p->property_name);
 				} else {
-					$r[] = '<span class="label label-orange">'.jomres_decode($p->property_name).'</span>';
+					$r[] = '<span class="'.$text_highlight_warning.'">'.jomres_decode($p->property_name).'</span>';
 				}
 			} else {
-				$r[] = '<span class="label label-red">'.jomres_decode($p->property_name).'</span>';
+				$r[] = '<span class="'.$text_highlight_danger.'">'.jomres_decode($p->property_name).'</span>';
 			}
-			
+
+            //approval dropdown
+            $options = array();
+            $options[] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false));
+            $options[] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false));
+            $r[] = jomresHTML::selectList($options, 'approved', ' size="1" onchange="setApproval(\''.$p->propertys_uid.'\', this.value );"', 'value', 'text', $p->approved, false);
+
 			$r[] = jomres_decode($p->property_street);
 			$r[] = jomres_decode($p->property_town);
 			$r[] = jomres_decode(find_region_name($p->property_region));
@@ -261,11 +275,7 @@ class j16000listproperties_ajax
 			$r[] = $p->lat;
 			$r[] = $p->long;
 
-			//approval dropdown
-			$options = array();
-			$options[] = jomresHTML::makeOption('0', jr_gettext('_JOMRES_COM_MR_NO', '_JOMRES_COM_MR_NO', false));
-			$options[] = jomresHTML::makeOption('1', jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES', false));
-			$r[] = jomresHTML::selectList($options, 'approved', ' size="1" onchange="setApproval(\''.$p->propertys_uid.'\', this.value );"', 'value', 'text', $p->approved, false);
+
 
 			$r[] = $p->last_changed;
 
