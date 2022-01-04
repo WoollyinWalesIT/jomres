@@ -2639,3 +2639,17 @@ jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Sosial media hesab adlarınızı bu
 
 jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Təşkilatınızın danışdığı dillərin vergüllə ayrılmış siyahısı');
 jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'Təşkilat loqosunun URL');
+
+jr_define('JOMRES_UPDATE_MESSAGE_TITLE', 'Jomres yeniləndi');
+jr_define('JOMRES_UPDATE_MESSAGE_MESSAGE', 'Jomres-in yeni versiyası əlçatandır. Siz Jomres-dən istifadə etməyə davam etməzdən əvvəl yeniləməlisiniz, çünki yeniləmələr funksionallığı yaxşılaşdırır və quraşdırmanızın təhlükəsiz qalmasını təmin edir.');
+jr_define('JOMRES_UPDATE_MESSAGE_LINK', 'Jomres-i indi yeniləyin');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_TITLE', 'Plugin yeniləmələri');
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE1', 'Plugin menecerində plaginlərin yeni versiyaları mövcuddur. Siz Jomres-dən istifadə etməyə davam etməzdən əvvəl bütün plaginləri yeniləməlisiniz, çünki yeniləmələr funksionallığı yaxşılaşdırır və quraşdırmanızın təhlükəsiz qalmasını təmin edir.');
+jr_define('PLUGIN_UPDATE_MESSAGE_NUMBER', 'Yenilənəcək plaginlər');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'Lisenziyanız artıq etibarlı deyilsə, siz vebsaytımızdan yeni lisenziya açarı əldə edə bilərsiniz.');
+
+jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Pluginləri yeniləyin');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Yeni açar əldə et');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Yeni açarı yadda saxla');

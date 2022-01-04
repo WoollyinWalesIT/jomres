@@ -2654,3 +2654,17 @@ jr_define ('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Укажите здесь имен
 
 jr_define ('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Разделенный запятыми список языков, на которых говорит ваша организация');
 jr_define ('JOMRES_ORGANISATIION_LOGO_URL', 'URL-адрес логотипа вашей организации');
+
+jr_define ('JOMRES_UPDATE_MESSAGE_TITLE', 'Jomres обновлен');
+jr_define ('JOMRES_UPDATE_MESSAGE_MESSAGE', 'Доступна новая версия Jomres. Перед продолжением использования Jomres необходимо выполнить обновление, поскольку обновления улучшают функциональность и гарантируют безопасность установки.');
+jr_define ('JOMRES_UPDATE_MESSAGE_LINK', 'Обновить Jomres сейчас');
+
+jr_define ('PLUGIN_UPDATE_MESSAGE_TITLE', 'Обновления плагина');
+jr_define ('PLUGIN_UPDATE_MESSAGE_MESSAGE1', 'В диспетчере плагинов доступны новые версии плагинов. Вы должны обновить все плагины, прежде чем вы сможете продолжить использование Jomres, поскольку обновления улучшают функциональность и гарантируют, что ваша установка останется безопасной.');
+jr_define ('PLUGIN_UPDATE_MESSAGE_NUMBER', 'Плагины для обновления');
+
+jr_define ('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'Если ваша лицензия больше не действительна, вы можете получить новый лицензионный ключ на нашем веб-сайте.');
+
+jr_define ('PLUGIN_UPDATE_MESSAGE1_LINK', 'Обновить плагины');
+jr_define ('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Получить новый ключ');
+jr_define ('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Сохранить новый ключ');

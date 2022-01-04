@@ -2664,3 +2664,17 @@ jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'שים כאן את שמות חשב�
 
 jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'רשימה מופרדת בפסיק של שפות הארגון שלך דובר');
 jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'כתובת אתר ללוגו הארגון שלך');
+
+jr_define('JOMRES_UPDATE_MESSAGE_TITLE', 'Jomres עודכן');
+jr_define('JOMRES_UPDATE_MESSAGE_MESSAGE', 'יש גרסה חדשה של Jomres זמינה. עליך לעדכן לפני שתוכל להמשיך להשתמש ב-Jomres שכן עדכונים משפרים את הפונקציונליות ומבטיחים שההתקנה שלך תישאר מאובטחת.');
+jr_define('JOMRES_UPDATE_MESSAGE_LINK', 'עדכן את גומרס עכשיו');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_TITLE', 'עדכוני פלאגין');
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE1', 'ישנן גרסאות חדשות של תוספים זמינות במנהל הפלאגינים. עליך לעדכן את כל התוספים לפני שתוכל להמשיך להשתמש ב-Jomres שכן עדכונים משפרים את הפונקציונליות ומבטיחים שההתקנה שלך תישאר מאובטחת.');
+jr_define('PLUGIN_UPDATE_MESSAGE_NUMBER', 'תוספים לעדכון');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'אם הרישיון שלך אינו תקף עוד, אתה יכול לקבל מפתח רישיון חדש מהאתר שלנו.');
+
+jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'עדכון תוספים');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'קבל מפתח חדש');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'שמור מפתח חדש');

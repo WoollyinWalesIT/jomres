@@ -2660,3 +2660,17 @@ jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Írja ide közösségimédia-fiókj
 
 jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'A szervezet által beszélt nyelvek vesszővel tagolt listája');
 jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'A szervezet logójának URL-je');
+
+jr_define('JOMRES_UPDATE_MESSAGE_TITLE', 'Jomres frissítve');
+jr_define('JOMRES_UPDATE_MESSAGE_MESSAGE', 'A Jomres új verziója érhető el. Frissítenie kell, mielőtt tovább használhatná a Jomrest, mivel a frissítések javítják a funkcionalitást és biztosítják a telepítés biztonságát.');
+jr_define('JOMRES_UPDATE_MESSAGE_LINK', 'Jomres frissítése most');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_TITLE', 'Bővítményfrissítések');
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE1', 'A beépülő modulok új verziói érhetők el a beépülő modulkezelőben. Frissítenie kell az összes beépülő modult, mielőtt folytatni tudná a Jomres használatát, mivel a frissítések javítják a funkcionalitást és biztosítják a telepítés biztonságát.');
+jr_define('PLUGIN_UPDATE_MESSAGE_NUMBER', 'Frissítendő beépülő modulok');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'Ha a licence már nem érvényes, szerezhet be egy új licenckulcsot weboldalunkról.');
+
+jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Bővítmények frissítése');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Új kulcs beszerzése');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Új kulcs mentése');
