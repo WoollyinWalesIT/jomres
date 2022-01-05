@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 10.0.0
  *
- * @copyright	2005-2021 Vince Wooll
+ * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 ##################################################################
@@ -3307,3 +3307,22 @@ jr_define ('_JOMRES_SEND_GROUP_BY_FIX_DESC', 'Որոշ mysql կայանքներ 
 jr_define ('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', 'Սա ալիքի սեփականությունն է, այն չի կարող կառավարվել տեղական մակարդակում, այցելեք ալիքի կառավարման շրջանակի էջ `սեփականության հեռակա կառավարման հղումը գտնելու համար');
 jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "Թեմայի մեջ Bootstrap չկա");
 
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'Սոցիալական լրատվամիջոցների հղումներ');
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Այստեղ դրեք ձեր սոցիալական մեդիայի հաշիվների անունները, օրինակ՝ «jomres», ոչ թե ամբողջ url-ը');
+
+jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Ստորակետերով առանձնացված լեզուների ցանկ, որոնց խոսում է ձեր կազմակերպությունը');
+jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'Ձեր կազմակերպության պատկերանշանի հասցեն');
+
+jr_define('JOMRES_UPDATE_MESSAGE_TITLE', 'Jomres-ը թարմացվել է');
+jr_define('JOMRES_UPDATE_MESSAGE_MESSAGE', 'Jomres-ի նոր տարբերակ կա: Դուք պետք է թարմացնեք, որպեսզի կարողանաք շարունակել օգտագործել Jomres-ը, քանի որ թարմացումները բարելավում են ֆունկցիոնալությունը և համոզվեք, որ ձեր տեղադրումն ապահով է:');
+jr_define('JOMRES_UPDATE_MESSAGE_LINK', 'Թարմացնել Jomres-ը հիմա');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_TITLE', 'Plugin-ի թարմացումներ');
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE1', 'Plugin-ի կառավարիչում հասանելի են փլագինների նոր տարբերակներ: Դուք պետք է թարմացնեք բոլոր փլագինները, որպեսզի կարողանաք շարունակել օգտագործել Jomres-ը, քանի որ թարմացումները բարելավում են ֆունկցիոնալությունը և համոզվեք, որ ձեր տեղադրումն ապահով մնա:');
+jr_define('PLUGIN_UPDATE_MESSAGE_NUMBER', 'Մոդուլներ թարմացման համար');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'Եթե ձեր լիցենզիան այլևս վավեր չէ, կարող եք ստանալ նոր լիցենզիայի բանալի մեր կայքից:');
+
+jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Թարմացնել պլագինները');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Ստանալ նոր բանալի');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Պահպանել նոր բանալին');

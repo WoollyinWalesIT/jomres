@@ -1,14 +1,17 @@
 
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<div class="btn-group">
-	<button class="btn btn-secondary"><i class="fa fa-usd"></i> {BUDGET} {FIGURE}</button>
-	<button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
-		<span class="caret"></span>
-	</button>
-	<ul class="dropdown-menu">
-		<patTemplate:tmpl name="rows" type="simpleCondition" requiredVars="title">
-			<li><a href="javascript:void(0);" {ONCLICK}>{TITLE}</a></li>
-		</patTemplate:tmpl>
-	</ul>
-</div>
+	<div class="dropdown">
+		<button class="btn btn-secondary dropdown-toggle" type="button" id="budgetDropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
+			<i class="fa fa-usd"></i> {BUDGET} {FIGURE}
+		</button>
+		<ul class="dropdown-menu" aria-labelledby="budgetDropdownMenu">
+			<patTemplate:tmpl name="rows" type="simpleCondition" requiredVars="title">
+				<li>
+					<a href="javascript:void(0);" {ONCLICK} class="dropdown-item">
+						{TITLE}
+					</a>
+				</li>
+			</patTemplate:tmpl>
+		</ul>
+	</div>
 </patTemplate:tmpl>

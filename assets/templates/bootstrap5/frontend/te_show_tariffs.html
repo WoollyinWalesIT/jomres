@@ -1,19 +1,20 @@
 
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 	<!-- if you want to show min & max people and days, just uncomment the lines commented out below-->
-	<table class="table table-striped">
+
+	<table class="table table-striped table-hover table-sm">
 		<thead>
 		<tr>
-			<th>{HTITLE}</th>
-			<th>{HROOMTYPE}</th>
-			<th class="hidden-phone">{HMINPEEPS}</th>
-			<th class="hidden-phone">{HMAXPEEPS}</th>
-			<th>{HSTARTS}</th>
-			<th>{HENDS}</th>
-			<th>&nbsp;</th>
-			<th class="hidden-phone">{HMINDAYS}</th>
-			<th class="hidden-phone">{HMAXDAYS}</th>
-			<th>&nbsp;</th>
+			<th scope="col">{HTITLE}</th>
+			<th scope="col">{HROOMTYPE}</th>
+			<th class="hidden-phone" scope="col">{HMINPEEPS}</th>
+			<th class="hidden-phone" scope="col">{HMAXPEEPS}</th>
+			<th scope="col">{HSTARTS}</th>
+			<th scope="col">{HENDS}</th>
+			<th scope="col">&nbsp;</th>
+			<th class="hidden-phone" scope="col">{HMINDAYS}</th>
+			<th class="hidden-phone" scope="col">{HMAXDAYS}</th>
+			<th scope="col">&nbsp;</th>
 		</tr>
 		</thead>
 		<tbody>

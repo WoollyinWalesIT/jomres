@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 10.0.0
  *
- * @copyright	2005-2021 Vince Wooll
+ * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -217,7 +217,7 @@ class j06001listguests_ajax
 			$country		= $this->jomres_encryption->decrypt($g->enc_country);
 			$tel_landline	= $this->jomres_encryption->decrypt($g->enc_tel_landline);
 			$tel_mobile		= $this->jomres_encryption->decrypt($g->enc_tel_mobile);
-			$email			= $this->jomres_encryption->decrypt($g->enc_email);
+			$email			= restore_task_specific_email_address($this->jomres_encryption->decrypt($g->enc_email));
 			$vat_number		= $this->jomres_encryption->decrypt($g->enc_vat_number);
 			
 			$found = true;

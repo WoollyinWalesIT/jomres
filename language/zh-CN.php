@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 10.0.0
  *
- * @copyright	2005-2021 Vince Wooll
+ * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 //#################################################################
@@ -2633,3 +2633,23 @@ jr_define('_JOMRES_SEND_GROUP_BY_FIX_DESC', '某些 mysql 安装可能在 List P
 jr_define('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', '这是频道属性，不能本地管理，请访问频道管理框架页面找到该属性的远程管理链接');
 
 jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "主题中没有引导程序");
+
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS', '社交媒体链接');
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', '把你的社交媒体账户名称放在这里，例如“jomres”，而不是整个网址');
+
+jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', '贵组织使用的语言的逗号分隔列表');
+jr_define('JOMRES_ORGANISATIION_LOGO_URL', '你的组织标志的网址');
+
+jr_define('JOMRES_UPDATE_MESSAGE_TITLE', 'Jomres 更新');
+jr_define('JOMRES_UPDATE_MESSAGE_MESSAGE', 'Jomres 有新版本可用。您必须更新才能继续使用 Jomres，因为更新可以改进功能并确保您的安装保持安全。');
+jr_define('JOMRES_UPDATE_MESSAGE_LINK', '现在更新 Jomres');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_TITLE', '插件更新');
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE1', '插件管理器中有新版本的插件可用。您必须先更新所有插件，然后才能继续使用 Jomres，因为更新可以改进功能并确保您的安装保持安全。');
+jr_define('PLUGIN_UPDATE_MESSAGE_NUMBER', '插件更新');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', '如果您的许可证不再有效，您可以从我们的网站获取新的许可证密钥。');
+
+jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', '更新插件');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', '获取新密钥');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', '保存新密钥');

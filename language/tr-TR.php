@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 10.0.0
  *
- * @copyright	2005-2021 Vince Wooll
+ * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 //#################################################################
@@ -2626,3 +2626,22 @@ jr_define('_JOMRES_SEND_GROUP_BY_FIX_DESC', 'Bazı mysql kurulumları Liste Öze
 jr_define('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', 'Bu bir kanal özelliğidir, yerel olarak yönetilemez, özelliğin uzaktan yönetim bağlantısını bulmak için kanal yönetim çerçevesi sayfasını ziyaret edin');
 
 jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", " Temada Bootstrap yok ");
+
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'Sosyal medya bağlantıları');
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Sosyal medya hesap adlarınızı buraya yazın, örneğin "jomres", url\'nin tamamı değil');
+jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Kuruluşunuzun konuştuğu dillerin virgülle ayrılmış listesi');
+jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'Kuruluş logonuzun URL\'si');
+
+jr_define('JOMRES_UPDATE_MESSAGE_TITLE', 'Jomres güncellendi');
+jr_define('JOMRES_UPDATE_MESSAGE_MESSAGE', 'Jomres\'in yeni bir sürümü mevcut. Güncellemeler işlevselliği geliştirdiğinden ve kurulumunuzun güvenli kalmasını sağladığından Jomres\'i kullanmaya devam etmeden önce güncelleme yapmalısınız.');
+jr_define('JOMRES_UPDATE_MESSAGE_LINK', 'Jomres\'i şimdi güncelleyin');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_TITLE', 'Eklenti güncellemeleri');
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE1', 'Eklenti yöneticisinde mevcut eklentilerin yeni sürümleri var. Güncellemeler işlevselliği geliştirdiğinden ve kurulumunuzun güvenli kalmasını sağladığından Jomres\'i kullanmaya devam etmeden önce tüm eklentileri güncellemelisiniz.');
+jr_define('PLUGIN_UPDATE_MESSAGE_NUMBER', 'Güncellenecek eklentiler');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'Lisansınız artık geçerli değilse, web sitemizden yeni bir lisans anahtarı alabilirsiniz.');
+
+jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Eklentileri güncelleyin');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Yeni anahtar al');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Yeni anahtarı kaydet');

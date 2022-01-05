@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 10.0.0
  *
- * @copyright	2005-2021 Vince Wooll
+ * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -121,7 +121,7 @@ class j07310watcher_authmethod_process_app_server
 	logging::log_message("Completed Watcher's run." , 'AppServerWebhooks', 'DEBUG' , '' );
 	}
 	
-	private function send_notification_to_app_server(  $context = '' , $endpoint = '' , $data )
+	private function send_notification_to_app_server(  $context = '' , $endpoint = '' , $data = '' )
 	{
 	try {
 		$client = new GuzzleHttp\Client();

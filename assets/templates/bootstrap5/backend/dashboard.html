@@ -656,7 +656,7 @@ function get_email_address_not_already_in_use() {
 		<div class="modal-content">
 			<div class="modal-header">
 				<h1 class="modal-title">{HQUICK_BOOKING}</h1>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<button type="button" class="close" data-bs-toggle="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 
@@ -771,6 +771,14 @@ function get_email_address_not_already_in_use() {
 					</div>
 					<div class="row">
 						<div class="col-md-12">
+							<div class="form-group">
+								<label for="booking_note">{_JOMRES_VARIANCES_NOTES}</label>
+								<textarea class="form-control" id="booking_note" name="booking_note" rows="3" placeholder="{_JOMRES_VARIANCES_NOTES}"></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
 							<div>
 								<P class="alert alert-info">{_JOMRES_QUICKBOOKING_EMAIL_ADDRESS_NOTE}</p>
 							</div>
@@ -783,7 +791,7 @@ function get_email_address_not_already_in_use() {
 			</div>
 			<div class="modal-footer">
 				<button class="btn btn-secondary" id="blackBookingRetryButton"><i class="icon-refresh"></i> Retry</button>
-				<button class="btn btn-secondary" data-dismiss="modal" aria-hidden="true" id="blackBookingCloseButton"><i class="icon-cancel"></i> {COMMON_CANCEL}</button>
+				<button class="btn btn-secondary" data-bs-toggle="modal" aria-hidden="true" id="blackBookingCloseButton"><i class="icon-cancel"></i> {COMMON_CANCEL}</button>
 				<button type="submit" class="btn btn-primary" id="blackBookingSubmitButton"><i class="icon-save"></i> {COMMON_SAVE}</button>
 			</div>
 		</div>

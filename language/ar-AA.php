@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 10.0.0
  *
- * @copyright	2005-2021 Vince Wooll
+ * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 //#################################################################
@@ -2656,3 +2656,22 @@ jr_define('_JOMRES_SEND_GROUP_BY_FIX_DESC', 'قد تواجه بعض عمليات
 jr_define ('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', 'هذه خاصية قناة , لا يمكن إدارتها محليًا , قم بزيارة صفحة إطار عمل إدارة القناة للعثور على ارتباط الإدارة عن بعد للخاصية') ;
 jr_define ("_JOMRES_CONFIG_INITAL_SETUP_STEP_3_BOOTSTRAP0" , "لا يوجد Bootstrap في السمة") ;
 
+jr_define ("JOMRES_SOCIAL_MEDIA_LINKS" , "روابط وسائل التواصل الاجتماعي") ;
+jr_define ('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'ضع أسماء حسابات الوسائط الاجتماعية الخاصة بك هنا , على سبيل المثال "jomres" , وليس عنوان url بالكامل') ;
+
+jr_define ('JOMRES_ORGANISATIION_LANGUGES_DESC', 'قائمة مفصولة بفواصل للغات التي تتحدثها مؤسستك') ;
+jr_define ("JOMRES_ORGANISATIION_LOGO_URL" ,"عنوان URL لشعار مؤسستك") ;
+
+jr_define ('JOMRES_UPDATE_MESSAGE_TITLE', 'تم تحديث Jomres') ;
+jr_define ('JOMRES_UPDATE_MESSAGE_MESSAGE' , 'هناك إصدار جديد متاح من Jomres. يجب عليك التحديث قبل أن تتمكن من الاستمرار في استخدام Jomres حيث تعمل التحديثات على تحسين الوظائف والتأكد من أن التثبيت الخاص بك يظل آمنًا.') ;
+jr_define ('JOMRES_UPDATE_MESSAGE_LINK', 'تحديث Jomres الآن') ;
+
+jr_define ('PLUGIN_UPDATE_MESSAGE_TITLE', 'تحديثات البرنامج المساعد') ;
+jr_define ('PLUGIN_UPDATE_MESSAGE_MESSAGE1' , 'هناك إصدارات جديدة من المكونات الإضافية متوفرة في مدير المكونات الإضافية. يجب عليك تحديث جميع المكونات الإضافية قبل أن تتمكن من الاستمرار في استخدام Jomres حيث تعمل التحديثات على تحسين الوظائف والتأكد من أن التثبيت يظل آمنًا.') ;
+jr_define ('PLUGIN_UPDATE_MESSAGE_NUMBER', 'المكونات الإضافية للتحديث') ;
+
+jr_define ("PLUGIN_UPDATE_MESSAGE_MESSAGE2" , "إذا لم يعد ترخيصك صالحًا , يمكنك الحصول على مفتاح ترخيص جديد من موقعنا على الويب.") ;
+
+jr_define ('PLUGIN_UPDATE_MESSAGE1_LINK', 'تحديث المكونات الإضافية') ;
+jr_define ('PLUGIN_UPDATE_MESSAGE2_LINK1', 'الحصول على مفتاح جديد') ;
+jr_define ('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Save new key');

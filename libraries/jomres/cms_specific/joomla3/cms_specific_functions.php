@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 10.0.0
  *
- * @copyright	2005-2021 Vince Wooll
+ * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 	
@@ -166,7 +166,7 @@ function jomres_cmsspecific_createNewUser( $email_address = '' )
 		}
 		
 		if (!$thisJRUser->userIsManager) {
-			$mainframe = & JFactory::getApplication('site');
+			$mainframe = JFactory::getApplication('site');
 			jimport('joomla.plugin.helper');
 			$error = $mainframe->login([
 				'username' => $guestDeets[ 'email' ],

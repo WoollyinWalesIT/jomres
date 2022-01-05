@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 10.0.0
  *
- * @copyright	2005-2021 Vince Wooll
+ * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 //#################################################################
@@ -2626,3 +2626,21 @@ jr_define ('_JOMRES_SEND_GROUP_BY_FIX_DESC', 'Dažām mysql instalācijām var b
 jr_define ('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', 'Šis ir kanāla īpašums, to nevar administrēt lokāli, apmeklējiet kanālu pārvaldības ietvara lapu, lai atrastu īpašuma attālās administrācijas saiti');
 jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "No Bootstrap in theme");
 
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'Sociālo mediju saites');
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Ievietojiet šeit savu sociālo mediju kontu nosaukumus, piemēram, "jomres", nevis visu url');
+
+jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Komatatdalīts to valodu saraksts, kurās runā jūsu organizācija');
+jr_define('JOMRES_ORGANISATIION_LOGO_URL', "Jūsu organizācijas logotipa URL");
+jr_define('JOMRES_UPDATE_MESSAGE_TITLE', 'Jomres atjaunināts');
+jr_define('JOMRES_UPDATE_MESSAGE_MESSAGE', 'Ir pieejama jauna Jomres versija. Jums ir jāatjaunina, lai varētu turpināt lietot Jomres, jo atjauninājumi uzlabo funkcionalitāti un nodrošina, ka instalācija ir droša.');
+jr_define('JOMRES_UPDATE_MESSAGE_LINK', 'Atjaunināt Jomres tūlīt');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_TITLE', 'Spraudņa atjauninājumi');
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE1', 'Spraudņu pārvaldniekā ir pieejamas jaunas spraudņu versijas. Lai turpinātu lietot Jomres, jums ir jāatjaunina visi spraudņi, jo atjauninājumi uzlabo funkcionalitāti un nodrošina instalācijas drošību.');
+jr_define('PLUGIN_UPDATE_MESSAGE_NUMBER', 'Atjaunināmie spraudņi');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'Ja jūsu licence vairs nav derīga, varat iegūt jaunu licences atslēgu mūsu vietnē.');
+
+jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Atjaunināt spraudņus');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Iegūt jaunu atslēgu');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Saglabāt jauno atslēgu');

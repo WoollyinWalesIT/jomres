@@ -38,11 +38,11 @@
 <form action="" method="post" name="bookingForm" role="form" onsubmit="send.disabled = true; return true;">
 <div class="row">
 	<div class="col-md-6">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h2 class="panel-title">{AJAXFORM_PARTICULARS}</h2>
+		<div class="card">
+			<div class="card-body">
+				<h2 class="card-title">{AJAXFORM_PARTICULARS}</h2>
 			</div>
-			<div class="panel-body">
+			<div class="card-text">
 				<div class="row">
 					<div class="col-md-6">
 						<strong>{HARRIVAL}</strong>
@@ -120,11 +120,11 @@
 		</div>
 	</div>
 	<div class="col-md-6">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h2 class="panel-title">{AJAXFORM_ADDRESS}</h2>
+		<div class="card">
+			<div class="card-body">
+				<h2 class="card-title">{AJAXFORM_ADDRESS}</h2>
 			</div>
-			<div class="panel-body">
+			<div class="card-text">
 				<div class="row">
 					<div class="col-md-12">
 						<strong>{FIRSTNAME} {SURNAME}</strong>
@@ -169,11 +169,11 @@
 	</div>
 </div>
 
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h2 class="panel-title">{PRICE_SUMMARY}</h2>
+<div class="card">
+	<div class="card-body">
+		<h2 class="card-title">{PRICE_SUMMARY}</h2>
 	</div>
-	<div class="panel-body">
+	<div class="card-text">
 		<div class="row">
 			<div class="col-md-12">
 				{DISCOUNT}
@@ -266,22 +266,22 @@
 	</div>
 </div>
 
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h2 class="panel-title">{BOOKINGSPECIALREQ}</h2>
+<div class="card">
+	<div class="card-body">
+		<h2 class="card-title">{BOOKINGSPECIALREQ}</h2>
 	</div>
-	<div class="panel-body">
+	<div class="card-text">
 		<p>{SPECIALS} {DISCLAIMER}</p>
 		<textarea class="col-md-12" name="specialReqs" rows="2">{SPECIALREQS}</textarea>
 	</div>
 </div>
 
 <patTemplate:tmpl name="gateway_output" type="simpleCondition" requiredVars="gatewaychoiceintro">
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h2 class="panel-title">{GATEWAYCHOICEINTRO}</h2>
+<div class="card">
+	<div class="card-body">
+		<h2 class="card-title">{GATEWAYCHOICEINTRO}</h2>
 	</div>
-	<div class="panel-body">
+	<div class="card-text">
 		<div class="row">
 			<patTemplate:tmpl name="gateways">
 			<div class="col-xs-6 col-sm-4 col-md-3 col-lg-3" align="center">
@@ -298,7 +298,7 @@
 <div id="agreealert" class="alert alert-warning">
 	<input name="agreecheck" type="checkbox" onchange="agreeAlert();"/>
 	<span> {TERMSPRETEXT}&nbsp;
-		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#terms_modal">
+		<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#terms_modal">
 			{TERMS_NO_POPUP}
 		</button>
 
@@ -322,14 +322,15 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">{TERMS}</h4>
+		  <h4 class="modal-title">{TERMS}</h4>
+		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
       </div>
       <div class="modal-body">
         {TERMS_MODAL_CONTENTS}
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">{COMMON_CLOSE}</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{COMMON_CLOSE}</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

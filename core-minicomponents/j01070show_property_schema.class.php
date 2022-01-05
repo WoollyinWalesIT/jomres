@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 10.0.0
  *
- * @copyright	2005-2021 Vince Wooll
+ * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -400,18 +400,45 @@ class j01070show_property_schema
 			}
 		}
 
-		
-		if ($mrConfig[ 'singleRoomProperty' ] == '1') {
+
+        $organisation_details = array();
+        $organisation_details[0]['BUSINESS_NAME'] = $jrConfig['business_name'];
+        $organisation_details[0][ 'LIVESITE' ] = get_showtime('live_site');
+        $organisation_details[0]['BUSINESS_LANGUAGES'] = '';
+        $organisation_details[0]['BUSINESS_TELEPHONE'] = $jrConfig['business_telephone'];
+        $organisation_details[0]['BUSINESS_LOGO'] = $jrConfig[ 'business_logo' ];
+        if ($jrConfig[ 'business_languages' ] != '' ) {
+            $business_languages = explode ( "," , $jrConfig[ 'business_languages' ]); // We won't ask admin to add quotes around languages, instead we'll do that ourselves
+            $organisation_details[0]['BUSINESS_LANGUAGES'] = sprintf("'%s'", implode("','", $business_languages ) );;
+        }
+
+
+        if ($mrConfig[ 'singleRoomProperty' ] == '1') {
 			$template = 'schema_srp.html';
 		} else {
 			$template = 'schema_mrp.html';
 		}
 
+        $social_meeja_platforms = get_sm_platforms();
+        $populated_social_media = array();
+        $social = array();
+        foreach ( $social_meeja_platforms as $key => $val ) {
+            if (isset($jrConfig[$key]) && $jrConfig[$key] != '') {
+                $populated_social_media[]['URL'] = $val['url'].$jrConfig[$key];
+            }
+        }
+        if (!empty( $populated_social_media)) {
+            $social_profile = array();
+            $social_profile[ 'SITENAME' ] = get_showtime('sitename');
+            $social_profile[ 'LIVESITE' ] = get_showtime('live_site');
+            $social[] =  $social_profile;
+        }
 
 		$pageoutput[ ] = $output;
 		$tmpl = new patTemplate();
 
 		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+        $tmpl->addRows('organisation', $organisation_details);
 		$tmpl->addRows('pageoutput', $pageoutput);
 		$tmpl->addRows('pfeatures', $pFeatures);
 		if (!empty($room_types)) {
@@ -436,6 +463,11 @@ class j01070show_property_schema
 		if (!empty($reviews)) {
 			$tmpl->addRows('reviews', $reviews);
 		}
+
+        if (!empty($social)) {
+            $tmpl->addRows('social_profiles',$social);
+            $tmpl->addRows('social_profile_urls', $populated_social_media);
+        }
 
 		$tmpl->readTemplatesFromInput($template);
 		$tmpl->displayParsedTemplate();

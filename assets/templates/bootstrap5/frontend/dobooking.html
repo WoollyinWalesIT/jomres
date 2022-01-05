@@ -16,14 +16,7 @@
 		margin-top: 2px;
 	}
 	
-.modal.modal-wide .modal-dialog 
-	{
-	width: 70%;
-	}
-.modal-wide .modal-body 
-	{
-	overflow-y: auto;
-	}
+
 </style>
 <script type="text/javascript">
 	<!--
@@ -176,7 +169,7 @@
 		});
 
 	document.addEventListener('DOMContentLoaded', function() {
-		jomresJquery('[data-toggle="tooltip"]').tooltip()
+		jomresJquery('[data-bs-toggle="tooltip"]').tooltip()
 	})
 	//-->
 </script>
@@ -214,7 +207,7 @@
 											<div class="form-group">
 												<label class="col-form-label" for="departureDate">{_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY}</label>
 												<div class="input-group">
-													<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#availability_calendar_model">{_JOMRES_COM_A_AVLCAL}</button>
+													<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#availability_calendar_model">{_JOMRES_COM_A_AVLCAL}</button>
 												</div>
 											</div>
 										</div>
@@ -516,12 +509,12 @@
 			<input type="hidden" id="booking_form_property_uid" name="property_uid"
 			       value="{PROPERTYUID}">{CSRF_TOKEN}</form>
 	</div>
-	<div id="availability_calendar_model" class="modal modal-wide fade" tabindex="-1" role="dialog">
-		<div class="modal-dialog">
+	<div id="availability_calendar_model" class="modal fade modal-dialog-scrollable" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-xl">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title">{_JOMRES_COM_A_AVLCAL}</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body text-center" style="font-size: 0.8rem;">
 					<!-- Occupancy level legend -->
@@ -583,7 +576,7 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" data-dismiss="modal">{COMMON_CLOSE}</button>
+					<button type="button" class="btn btn-primary" data-bs-toggle="modal">{COMMON_CLOSE}</button>
 				</div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->

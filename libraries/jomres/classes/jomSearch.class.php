@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 10.0.0
  *
- * @copyright	2005-2021 Vince Wooll
+ * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -34,6 +34,7 @@ class jomSearch
 		$jrConfig = $siteConfig->get();
 		$this->formname = '';
 		$this->searchAll = $searchAll;
+        $this->some_published_properties_exist = true;
 		$this->filter = array('propertyname' => '', 'country' => '', 'region' => '', 'town' => '', 'description' => '', 'feature_uids' => '', 'arrival' => '', 'departure' => '', 'ptype' => '', 'cat_id' => '', 'room_type' => '');
 		$this->makeFormName();
 
@@ -272,6 +273,10 @@ class jomSearch
 			$basic_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
 
 			$all_published_properties = get_showtime('published_properties_in_system');
+            if (empty($all_published_properties)) {
+                $this->some_published_properties_exist = false;
+                return;
+            }
 
 			if (!$all_published_properties) {
 				$query = 'SELECT propertys_uid,published FROM #__jomres_propertys';

@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 10.0.0
  *
- * @copyright	2005-2021 Vince Wooll
+ * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 //#################################################################
@@ -2634,3 +2634,22 @@ jr_define ('_JOMRES_SEND_GROUP_BY_FIX_DESC', 'Algunas instalaciones de mysql pue
 jr_define ('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', 'Esta es una propiedad de canal, no se puede administrar localmente, visite la página del marco de gestión de canales para encontrar el enlace de administración remota de la propiedad');
 jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "Sin Bootstrap en el tema");
 
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'Sosial media keçidləri');
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Sosial media hesab adlarınızı bura qoyun, məsələn, bütün url deyil, "jomres"');
+
+jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Təşkilatınızın danışdığı dillərin vergüllə ayrılmış siyahısı');
+jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'Təşkilat loqosunun URL');
+
+jr_define('JOMRES_UPDATE_MESSAGE_TITLE', 'Jomres yeniləndi');
+jr_define('JOMRES_UPDATE_MESSAGE_MESSAGE', 'Jomres-in yeni versiyası əlçatandır. Siz Jomres-dən istifadə etməyə davam etməzdən əvvəl yeniləməlisiniz, çünki yeniləmələr funksionallığı yaxşılaşdırır və quraşdırmanızın təhlükəsiz qalmasını təmin edir.');
+jr_define('JOMRES_UPDATE_MESSAGE_LINK', 'Jomres-i indi yeniləyin');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_TITLE', 'Plugin yeniləmələri');
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE1', 'Plugin menecerində plaginlərin yeni versiyaları mövcuddur. Siz Jomres-dən istifadə etməyə davam etməzdən əvvəl bütün plaginləri yeniləməlisiniz, çünki yeniləmələr funksionallığı yaxşılaşdırır və quraşdırmanızın təhlükəsiz qalmasını təmin edir.');
+jr_define('PLUGIN_UPDATE_MESSAGE_NUMBER', 'Yenilənəcək plaginlər');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'Lisenziyanız artıq etibarlı deyilsə, siz vebsaytımızdan yeni lisenziya açarı əldə edə bilərsiniz.');
+
+jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Pluginləri yeniləyin');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Yeni açar əldə et');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Yeni açarı yadda saxla');

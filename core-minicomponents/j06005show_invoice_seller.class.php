@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 10.0.0
  *
- * @copyright	2005-2021 Vince Wooll
+ * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -74,7 +74,7 @@ class j06005show_invoice_seller
 		$output[ 'POSTCODE' ] = $sellerData['postcode'];
 		$output[ 'LANDLINE' ] = $sellerData['tel_landline'];
 		$output[ 'MOBILE' ] = $sellerData['tel_mobile'];
-		$output[ 'EMAIL' ] = $sellerData['email'];
+		$output[ 'EMAIL' ] = restore_task_specific_email_address($sellerData['email']);
 		$vat_output[0][ 'VAT_NUMBER' ] = $sellerData['vat_number'];
 
 		$output[ 'TITLE' ] = jr_gettext('_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST', '_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST');

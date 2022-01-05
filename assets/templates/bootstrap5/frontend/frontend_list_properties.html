@@ -15,7 +15,7 @@
 	<patTemplate:tmpl name="rows" unusedvars="strip" type="simpleCondition" requiredVars="new_property_url">
 	<a href="{NEW_PROPERTY_URL}" class="btn btn-primary"><i class="fa fa-plus"></i> {HNEW_PROPERTY}</a>
 	</patTemplate:tmpl>
-	<a href="#list_properties_filters" role="button" data-toggle="modal" class="btn btn-secondary"><i class="fa fa-filter"></i> {HFILTER}</a>
+	<a href="#list_properties_filters" role="button" data-bs-toggle="modal" class="btn btn-secondary"><i class="fa fa-filter"></i> {HFILTER}</a>
 </div>
 <patTemplate:tmpl name="subs" unusedvars="strip" type="simpleCondition" requiredVars="subscription_status">
 <p class="alert">{SUBSCRIPTION_STATUS}</p>
@@ -56,8 +56,8 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
 				<h4 id="myModalLabel">{HFILTER}</h4>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
@@ -74,7 +74,7 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<a class="btn btn-secondary" data-dismiss="modal" aria-hidden="true">{COMMON_CLOSE}</a>
+				<a class="btn btn-secondary" data-bs-toggle="modal" aria-hidden="true">{COMMON_CLOSE}</a>
 				<input type="submit" value="{HFILTER}" class="btn btn-primary" />
 			</div>
 		</div>

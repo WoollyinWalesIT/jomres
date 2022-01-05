@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 10.0.0
  *
- * @copyright	2005-2021 Vince Wooll
+ * @copyright	2005-2022 Vince Wooll
  * Translated to pt-PT by Mario Oliveira, Camara de Lobos, Madeira Island, Portugal, 17Set2010 - www.marioliveira.net - Updated 21Jun2011 for ver 5.1
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
@@ -2661,3 +2661,22 @@ jr_define ('_JOMRES_SEND_GROUP_BY_FIX_DESC', 'Algumas instalações do mysql pod
 jr_define ('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', 'Esta é uma propriedade do canal, não pode ser administrada localmente, visite a página da estrutura de gerenciamento do canal para localizar o link de administração remota da propriedade');
 jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "Sem Bootstrap no tema");
 
+jr_define ('JOMRES_SOCIAL_MEDIA_LINKS', 'Links de mídia social');
+jr_define ('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Coloque os nomes de suas contas de mídia social aqui, por exemplo "jomres", não a url inteira');
+
+jr_define ('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Lista separada por vírgulas dos idiomas que sua organização fala');
+jr_define ('JOMRES_ORGANISATIION_LOGO_URL', 'Url para o logotipo da sua organização');
+
+jr_define ('JOMRES_UPDATE_MESSAGE_TITLE', 'Jomres atualizado');
+jr_define ('JOMRES_UPDATE_MESSAGE_MESSAGE', 'Há uma nova versão do Jomres disponível. Você deve atualizar antes de continuar a usar o Jomres, pois as atualizações melhoram a funcionalidade e garantem que sua instalação permaneça segura.');
+jr_define ('JOMRES_UPDATE_MESSAGE_LINK', 'Atualizar Jomres agora');
+
+jr_define ('PLUGIN_UPDATE_MESSAGE_TITLE', 'Atualizações de plugins');
+jr_define ('PLUGIN_UPDATE_MESSAGE_MESSAGE1', 'Existem novas versões de plug-ins disponíveis no gerenciador de plug-ins. Você deve atualizar todos os plug-ins antes de continuar a usar Jomres, pois as atualizações melhoram a funcionalidade e garantem que sua instalação permaneça segura.');
+jr_define ('PLUGIN_UPDATE_MESSAGE_NUMBER', 'Plugins para atualizar');
+
+jr_define ('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'Se sua licença não for mais válida, você pode obter uma nova chave de licença em nosso site.');
+
+jr_define ('PLUGIN_UPDATE_MESSAGE1_LINK', 'Atualizar plugins');
+jr_define ('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Obter nova chave');
+jr_define ('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Salvar nova chave');

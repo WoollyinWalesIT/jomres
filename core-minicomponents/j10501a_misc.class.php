@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 10.0.0
  *
- * @copyright	2005-2021 Vince Wooll
+ * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -75,10 +75,10 @@ class j10501a_misc
 				$renewal_link = '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=connect">Get Connected!</a>';
 			}
 
-			$support_key_status = '<span class="badge">Status</span> '.$jomres_check_support_key->key_status.'';
-			$support_key_owner = '<span class="badge">Owner</span> '.$jomres_check_support_key->owner.'<br/>';
-			$support_key_expires = '<span class="badge">Expires</span> '.$jomres_check_support_key->expires.'';
-			$support_key_license_name = '<span class="badge">License name</span> '.$jomres_check_support_key->license_name.'';
+			$support_key_status = '<span class="badge bg-primary">Status</span> '.$jomres_check_support_key->key_status.'';
+			$support_key_owner = '<span class="badge bg-primary">Owner</span> '.$jomres_check_support_key->owner.'<br/>';
+			$support_key_expires = '<span class="badge bg-primary">Expires</span> '.$jomres_check_support_key->expires.'';
+			$support_key_license_name = '<span class="badge bg-primary">License name</span> '.$jomres_check_support_key->license_name.'';
 
 			if ($jomres_check_support_key->is_trial_license == '1') {
 				$support_key_is_trial_license = '<span class="badge badge-warning">Trial license</span> ';

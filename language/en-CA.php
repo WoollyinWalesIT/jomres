@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 10.0.0
  *
- * @copyright	2005-2021 Vince Wooll
+ * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 //#################################################################
@@ -2653,3 +2653,20 @@ jr_define('_JOMRES_SEND_GROUP_BY_FIX_DESC', 'Some mysql installations may have a
 jr_define('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', 'This is a channel property, it cannot be administered locally, visit the channel management framework page to find the property\'s remote administration link');
 jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", " No Bootstrap in theme ");
 
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'Social media links');
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Put your social media account names here, for example "jomres", not the entire url');
+
+jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Comma seperated list of languages your organisation speaks');
+jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'Url to your organisation logo');
+
+jr_define('JOMRES_UPDATE_MESSAGE_LINK', 'Update Jomres now');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_TITLE', 'Plugin updates');
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE1', 'There are new versions of plugins available in the plugin manager. You must update all plugins before you can continue to use Jomres as updates improve functionality and ensure that your installation remains secure.');
+jr_define('PLUGIN_UPDATE_MESSAGE_NUMBER', 'Plugins to update');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'If your license is no longer valid, you can get a new license key from our website.');
+
+jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Update plugins');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Get new key');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Save new key');

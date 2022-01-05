@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 10.0.0
  *
- * @copyright	2005-2021 Vince Wooll
+ * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -52,8 +52,14 @@ class jomres_content_tabs_bootstrap5
      */
     public function startTabs()
     {
+        if (jomres_cmsspecific_areweinadminarea()) {
+            $orientation = 'horizontal';
+        } else {
+            $orientation = 'vertical';
+        }
+
         echo '
-            <joomla-tab id="myTab" orientation="horizontal" recall="" breakpoint="768" view="tabs"><!-- start tabs panel -->';
+            <joomla-tab id="myTab" orientation="'. $orientation.'" recall="" breakpoint="768" view="tabs"><!-- start tabs panel -->';
     }
 
     /**

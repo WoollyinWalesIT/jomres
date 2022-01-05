@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 10.0.0
  *
- * @copyright	2005-2021 Vince Wooll
+ * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 //#################################################################
@@ -2661,3 +2661,22 @@ jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "Δεν υπάρχ
 jr_define('_BOOKING_INSTANT', 'Άμεση κράτηση');
 jr_define('_BOOKING_ONREQUEST', 'Κράτηση κατόπιν αιτήματος');
 
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'Σύνδεσμοι μέσων κοινωνικής δικτύωσης');
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Βάλτε τα ονόματα των λογαριασμών σας στα μέσα κοινωνικής δικτύωσης εδώ, για παράδειγμα "jomres", όχι ολόκληρο το url');
+
+jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Λίστα γλωσσών διαχωρισμένων με κόμματα που μιλά ο οργανισμός σας');
+jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'Διεύθυνση URL στο λογότυπο του οργανισμού σας');
+
+jr_define('JOMRES_UPDATE_MESSAGE_TITLE', 'Jomres ενημερώθηκε');
+jr_define('JOMRES_UPDATE_MESSAGE_MESSAGE', 'Υπάρχει διαθέσιμη μια νέα έκδοση του Jomres. Πρέπει να ενημερώσετε για να συνεχίσετε να χρησιμοποιείτε το Jomres καθώς οι ενημερώσεις βελτιώνουν τη λειτουργικότητα και διασφαλίζουν ότι η εγκατάστασή σας παραμένει ασφαλής.');
+jr_define('JOMRES_UPDATE_MESSAGE_LINK', 'Ενημέρωση Jomres τώρα');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_TITLE', 'Ενημερώσεις προσθηκών');
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE1', 'Υπάρχουν νέες εκδόσεις προσθηκών διαθέσιμες στη διαχείριση προσθηκών. Πρέπει να ενημερώσετε όλες τις προσθήκες για να συνεχίσετε να χρησιμοποιείτε το Jomres καθώς οι ενημερώσεις βελτιώνουν τη λειτουργικότητα και διασφαλίζουν ότι η εγκατάστασή σας παραμένει ασφαλής.');
+jr_define('PLUGIN_UPDATE_MESSAGE_NUMBER', 'Προσθήκες για ενημέρωση');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'Εάν η άδειά σας δεν είναι πλέον έγκυρη, μπορείτε να λάβετε ένα νέο κλειδί άδειας χρήσης από τον ιστότοπό μας.');
+
+jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Ενημέρωση προσθηκών');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Λήψη νέου κλειδιού');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Αποθήκευση νέου κλειδιού');

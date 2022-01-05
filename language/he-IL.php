@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 10.0.0
  *
- * @copyright	2005-2021 Vince Wooll
+ * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 //#################################################################
@@ -2658,3 +2658,23 @@ jr_define ('_JOMRES_SEND_GROUP_BY_FIX_TITLE', 'החל קבוצה לפי תיקו
 jr_define ('_JOMRES_SEND_GROUP_BY_FIX_DESC', 'בכמה התקנות mysql עשויה להיות בעיה עם שאילתות Jomres בדף מאפייני הרשימה, רשימת אורחים וחשבוניות רשימה. אם בדפים אלה כתוב שהם מציגים X של תוצאות Y אך שום דבר לא מופיע ברשימה, אז הגדרה אפשרות זו ל- Yes עשויה לפתור את הבעיה. זה לא יקרה אם אתה משתמש באירוח משותף ושירות האחסון אינו מאפשר למשתמש mysql שלך להוציא את הפקודה "SET GLOBAL sql_mode =". ');
 jr_define ('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', 'זהו נכס ערוץ, לא ניתן לנהל אותו באופן מקומי, בקר בדף מסגרת ניהול הערוצים כדי למצוא את הקישור לניהול מרחוק של הנכס');
 jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "אין רצועה לאתחול בנושא");
+
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'קישורי מדיה חברתית');
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'שים כאן את שמות חשבונות המדיה החברתית שלך, למשל "jomres", לא את כל כתובת האתר');
+
+jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'רשימה מופרדת בפסיק של שפות הארגון שלך דובר');
+jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'כתובת אתר ללוגו הארגון שלך');
+
+jr_define('JOMRES_UPDATE_MESSAGE_TITLE', 'Jomres עודכן');
+jr_define('JOMRES_UPDATE_MESSAGE_MESSAGE', 'יש גרסה חדשה של Jomres זמינה. עליך לעדכן לפני שתוכל להמשיך להשתמש ב-Jomres שכן עדכונים משפרים את הפונקציונליות ומבטיחים שההתקנה שלך תישאר מאובטחת.');
+jr_define('JOMRES_UPDATE_MESSAGE_LINK', 'עדכן את גומרס עכשיו');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_TITLE', 'עדכוני פלאגין');
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE1', 'ישנן גרסאות חדשות של תוספים זמינות במנהל הפלאגינים. עליך לעדכן את כל התוספים לפני שתוכל להמשיך להשתמש ב-Jomres שכן עדכונים משפרים את הפונקציונליות ומבטיחים שההתקנה שלך תישאר מאובטחת.');
+jr_define('PLUGIN_UPDATE_MESSAGE_NUMBER', 'תוספים לעדכון');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'אם הרישיון שלך אינו תקף עוד, אתה יכול לקבל מפתח רישיון חדש מהאתר שלנו.');
+
+jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'עדכון תוספים');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'קבל מפתח חדש');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'שמור מפתח חדש');

@@ -1,5 +1,13 @@
-
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+	<patTemplate:comment>
+		I don't like adding css to html but ultimately this was the most reliable way of getting the jquery ui calendar to resize properly in composite property details in J4/BS5
+	</patTemplate:comment>
+	<style>
+		.ui-datepicker{
+			font-size: 100% !important;
+		}
+	</style>
 <div id="property_details">
 	<div class="row">
 		<div id="gallerywrapper" class="col-xs-12 col-sm-12 col-md-7 col-lg-8">
@@ -52,7 +60,7 @@
 	<div class="tabbable">
 		<ul class="nav nav-tabs">
 			<patTemplate:tmpl name="tabs_titles">
-				<li class="{ACTIVE}"><a href="#{TAB_ANCHOR}" data-toggle="tab" id="{TAB_ID}">{TAB_TITLE}</a></li>
+				<li class="nav-item {ACTIVE}"><a href="#{TAB_ANCHOR}"  class="nav-link" data-bs-toggle="tab" id="{TAB_ID}">{TAB_TITLE}</a></li>
 			</patTemplate:tmpl>
 		</ul>
 		<div class="tab-content">

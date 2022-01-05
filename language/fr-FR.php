@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 10.0.0
  *
- * @copyright	2005-2021 Vince Wooll
+ * @copyright	2005-2022 Vince Wooll
  * Translation to fr-FR by Stéphane Bernard, Valtari NumAgency, France - last update : 19/11/2019 - https://www.valtari.fr
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
@@ -2421,3 +2421,22 @@ jr_define('_JOMRES_SEND_GROUP_BY_FIX_DESC', 'Certaines installations mysql peuve
 jr_define('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', 'Ceci est une propriété de canal, il ne peut pas être administré localement, visitez la page du cadre de gestion de canal pour trouver le lien d\'administration à distance de la propriété');
 jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", " Pas de bootstrap dans le thème ");
 
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'Liens vers les réseaux sociaux');
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Mettez les noms de vos comptes de réseaux sociaux ici, par exemple "jomres", pas l\'url entière');
+
+jr_define('JOMRES_ORGANISATION_LANGUGES_DESC', 'Liste séparée par des virgules des langues parlées par votre organisation');
+jr_define('JOMRES_ORGANISATION_LOGO_URL', 'Url vers le logo de votre organisation');
+
+jr_define('JOMRES_UPDATE_MESSAGE_TITLE', 'Jomres mis à jour');
+jr_define('JOMRES_UPDATE_MESSAGE_MESSAGE', 'Une nouvelle version de Jomres est disponible. Vous devez mettre à jour avant de pouvoir continuer à utiliser Jomres car les mises à jour améliorent les fonctionnalités et garantissent que votre installation reste sécurisée.');
+jr_define('JOMRES_UPDATE_MESSAGE_LINK', 'Mettre à jour Jomres maintenant');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_TITLE', 'Mises à jour du plugin');
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE1', 'De nouvelles versions de plugins sont disponibles dans le gestionnaire de plugins. Vous devez mettre à jour tous les plugins avant de pouvoir continuer à utiliser Jomres car les mises à jour améliorent les fonctionnalités et garantissent que votre installation reste sécurisée.');
+jr_define('PLUGIN_UPDATE_MESSAGE_NUMBER', 'Plugins à mettre à jour');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'Si votre licence n\'est plus valide, vous pouvez obtenir une nouvelle clé de licence sur notre site Web.');
+
+jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Mettre à jour les plugins');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Obtenir une nouvelle clé');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Enregistrer la nouvelle clé');

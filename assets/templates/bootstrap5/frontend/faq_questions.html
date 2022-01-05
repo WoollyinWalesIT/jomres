@@ -2,10 +2,10 @@
 <patTemplate:tmpl name="pageoutput">
 	<h3>{CATEGORY}</h3>
 	<patTemplate:tmpl name="rows">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h4 class="panel-title">
-					<a data-toggle="collapse" data-parent="#FAQaccordion" data-toggle="collapse" href="#collapse{COUNTER}">
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title">
+					<a data-bs-toggle="collapse" data-parent="#FAQaccordion" data-bs-toggle="collapse" href="#collapse{COUNTER}">
 						{QUESTION}
 						<span class="pull-right">
 							<i class="fa fa-angle-double-down" aria-hidden="true"></i>
@@ -14,7 +14,7 @@
 				</h4>
 			</div>
 			<div id="collapse{COUNTER}" class="panel-collapse collapse">
-				<div class="panel-body">
+				<div class="card-text">
 					{ANSWER}
 				</div>
 			</div>

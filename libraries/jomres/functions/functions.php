@@ -5,9 +5,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 10.0.0
  *
- * @copyright	2005-2021 Vince Wooll
+ * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -15,6 +15,38 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
+
+/**
+ *
+ * Restores an encoded email address that might have the + symbol in
+ *
+ *
+ */
+
+function restore_task_specific_email_address($address) {
+    $cleaned_address = str_replace ("&#38;#38;#43;" , "+" ,$address);
+    $cleaned_address2 = str_replace ("&#38;#43;" , "+" , $cleaned_address);
+    return str_replace ("&#43;" , "+" , $cleaned_address2);
+}
+
+/**
+ *
+ * Return an array of social media platforms with relevant data
+ *
+ */
+function get_sm_platforms() {
+    $social_meeja_platforms = array(
+        'social_media_facebook'     => ['name' => 'Facebook' , 'url' => 'https://www.facebook.com/' , 'notes' => ''],
+        'social_media_instagram'    => ['name' => 'Instagram' , 'url' => 'https://www.instagram.com/' , 'notes' => ''],
+        'social_media_pintrest'     => ['name' =>'Pintrest' , 'url' => 'https://www.pinterest.com/' , 'notes' => ''],
+        'social_media_linkedin'     => ['name' => 'LinkedIn', 'url' => 'https://www.linkedin.com/in/' , 'notes' => ''],
+        'social_media_twitter'      => ['name' => 'Twitter' , 'url' => 'https://twitter.com/' , 'notes' => ''],
+        'social_media_tiktok'       => ['name' =>'Tiktok' , 'url' => 'https://www.tiktok.com/@' , 'notes' => ''],
+        'social_media_whatsapp'     => ['name' => 'Whatsapp' , 'url' => 'https://wa.me/' , 'notes' => ' Correct : 4412345678 Wrong +4412345678'],
+        'social_media_youtube'      => ['name' => 'Youtube' , 'url' => 'https://www.youtube.com/c/' , 'notes' => '']
+      );
+    return  $social_meeja_platforms;
+}
 
 /**
 *
@@ -1084,7 +1116,7 @@ function jomres_bootstrap_version()
 		$bootstrap_version = '5';
 	} elseif  ( jomres_cmsspecific_areweinadminarea() && _JOMRES_DETECTED_CMS == 'joomla3' ) {
 		$bootstrap_version = '2';
-	} elseif ( $jrConfig[ 'bootstrap_version' ] == 0 ) { // We are in Wordpress, so we'll automatically set the BS version to 2 if in admin, or BS3 in frontend as the init config vars functionality will autoload the BS3 scripts in the frontend
+	} elseif ( this_cms_is_wordpress() ) { // We are in Wordpress, so we'll automatically set the BS version to 2 if in admin, or BS3 in frontend as the init config vars functionality will autoload the BS3 scripts in the frontend
 	    if ( jomres_cmsspecific_areweinadminarea()) {
             $bootstrap_version = '2';
         } else {
@@ -1586,8 +1618,16 @@ function make_agent_link($property_id = 0)
 	$manager_id = $property_manager_xref[ $property_id ];
 
 	$output[ 'IMAGE' ] = JOMRES_IMAGES_RELPATH.'noimage.gif';
-	if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.'userimages'.JRDS.'userimage_'.(int) $manager_id.'_thumbnail.jpg')) {
-		$output[ 'IMAGE' ] = JOMRES_IMAGELOCATION_RELPATH.'userimages/userimage_'.(int) $manager_id.'_thumbnail.jpg';
+
+    $image_filename = '';
+    $contents = get_directory_contents(JOMRES_IMAGELOCATION_ABSPATH.'userimages'.JRDS.(int) $manager_id);
+    foreach ($contents as $file ) {
+        if ($file != '.' && $file != '..' && $file != 'medium' && $file != 'thumbnail' ) {
+            $image_filename = $file;
+        }
+    }
+	if ( $image_filename != '' && file_exists(JOMRES_IMAGELOCATION_ABSPATH.'userimages'.JRDS.(int) $manager_id.JRDS.'thumbnail'.JRDS.$image_filename)) {
+		$output[ 'IMAGE' ] = JOMRES_IMAGELOCATION_RELPATH.'userimages/'.(int) $manager_id.'/thumbnail/'.$image_filename;
 	}
 
 	$output[ 'URL' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=view_agent&id='.$manager_id);
@@ -2581,10 +2621,13 @@ function dropPlugin($pluginName)
 			define('JOMRES_INSTALLER', 1);
 			include $pluginPath.JRDS.'plugin_uninstall.php';
 		}
-		emptyDir($pluginPath);
-		if (rmdir($pluginPath)) {
-			return true;
-		}
+        if (is_dir($pluginPath)) {
+            emptyDir($pluginPath);
+            if (rmdir($pluginPath)) {
+                return true;
+            }
+        }
+
 	}
 
 	return false;
@@ -2779,7 +2822,15 @@ function jomresMailer($from, $jomresConfig_sitename, $to, $subject, $body, $mode
 	
 	$from = str_replace( "&#64;" , "=" , $from );
 	$to = str_replace( "&#64;" , "=" , $to );
-	
+
+    $to = str_replace ("&#38;#38;#43;" , "+" , $to);
+    $to = str_replace ("&#38;#43;" , "+" , $to);
+    $to = str_replace ("&#43;" , "+" , $to);
+
+    $from = str_replace ("&#38;#38;#43;" , "+" , $from);
+    $from = str_replace ("&#38;#43;" , "+" , $from);
+    $from = str_replace ("&#43;" , "+" , $from);
+
 	logging::log_message('Sending email from '.$from.' to '.$to.' subject '.$subject, 'Mailer');
 
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');

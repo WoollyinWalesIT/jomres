@@ -3,9 +3,9 @@
  * Core file
  *
  * @author Vince Wooll <sales@jomres.net>
- * @version Jomres 9.25.1
+ * * @version Jomres 10.0.0
  * @package Jomres
- * @copyright	2005-2021 Vince Wooll
+ * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
  **/
 ##################################################################
@@ -2601,3 +2601,22 @@ jr_define('_JOMRES_SEND_GROUP_BY_FIX_DESC', 'การติดตั้ง mysq
 jr_define('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', 'นี่คือคุณสมบัติของช่อง ไม่สามารถจัดการภายในเครื่องได้ ไปที่หน้ากรอบงานการจัดการช่องเพื่อค้นหาลิงก์การดูแลระบบระยะไกลของคุณสมบัติ');
 
 jr_define("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", " ไม่มี Bootstrap ในธีม ");
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'ลิงก์โซเชียลมีเดีย');
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'ใส่ชื่อบัญชีโซเชียลมีเดียของคุณที่นี่ เช่น "jomres" ไม่ใช่ url ทั้งหมด');
+
+jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'รายการที่คั่นด้วยจุลภาคของภาษาที่องค์กรของคุณพูด');
+jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'Url ไปยังโลโก้องค์กรของคุณ');
+
+jr_define('JOMRES_UPDATE_MESSAGE_TITLE', 'อัปเดต Jomres');
+jr_define('JOMRES_UPDATE_MESSAGE_MESSAGE', 'มี Jomres เวอร์ชันใหม่ให้บริการ คุณต้องอัปเดตก่อนจึงจะสามารถใช้ Jomres ต่อไปได้ เนื่องจากการอัปเดตจะปรับปรุงฟังก์ชันการทำงาน และตรวจสอบให้แน่ใจว่าการติดตั้งของคุณยังคงปลอดภัย');
+jr_define('JOMRES_UPDATE_MESSAGE_LINK', 'อัปเดต Jomres ทันที');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_TITLE', 'การอัปเดตปลั๊กอิน');
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE1', 'มีปลั๊กอินเวอร์ชันใหม่อยู่ในตัวจัดการปลั๊กอิน คุณต้องอัปเดตปลั๊กอินทั้งหมดก่อนจึงจะสามารถใช้ Jomres ต่อไปได้ เนื่องจากการอัปเดตจะปรับปรุงฟังก์ชันการทำงาน และตรวจสอบให้แน่ใจว่าการติดตั้งของคุณยังคงปลอดภัย');
+jr_define('PLUGIN_UPDATE_MESSAGE_NUMBER', 'Plugins to update');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'หากใบอนุญาตของคุณใช้ไม่ได้อีกต่อไป คุณสามารถรับรหัสใบอนุญาตใหม่ได้จากเว็บไซต์ของเรา');
+
+jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'อัปเดตปลั๊กอิน');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'รับรหัสใหม่');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'บันทึกคีย์ใหม่');

@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 10.0.0
  *
- * @copyright	2005-2021 Vince Wooll
+ * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 ##################################################################
@@ -2589,3 +2589,22 @@ jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_MESSAGE', 'We willen graag infor
 jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_ACCEPT', ' Ja, dat is goed ');
 jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_1_DENY', ' Nee, ik ga niet akkoord ');
 
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'Links naar sociale media');
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Plaats hier de namen van je social media account, bijvoorbeeld "jomres", niet de hele url');
+
+jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Door komma\'s gescheiden lijst van talen die uw organisatie spreekt');
+jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'Url naar het logo van uw organisatie');
+
+jr_define('JOMRES_UPDATE_MESSAGE_TITLE', 'Jomres bijgewerkt');
+jr_define('JOMRES_UPDATE_MESSAGE_MESSAGE', 'Er is een nieuwe versie van Jomres beschikbaar. U moet updaten voordat u Jomres kunt blijven gebruiken, aangezien updates de functionaliteit verbeteren en ervoor zorgen dat uw installatie veilig blijft.');
+jr_define('JOMRES_UPDATE_MESSAGE_LINK', 'Update Jomres nu');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_TITLE', 'Plugin-updates');
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE1', 'Er zijn nieuwe versies van plug-ins beschikbaar in de plug-inmanager. U moet alle plug-ins bijwerken voordat u Jomres kunt blijven gebruiken, aangezien updates de functionaliteit verbeteren en ervoor zorgen dat uw installatie veilig blijft.');
+jr_define('PLUGIN_UPDATE_MESSAGE_NUMBER', 'Plug-ins om bij te werken');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'Als uw licentie niet langer geldig is, kunt u een nieuwe licentiesleutel van onze website krijgen.');
+
+jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Update plug-ins');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Nieuwe sleutel ophalen');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Nieuwe sleutel opslaan');

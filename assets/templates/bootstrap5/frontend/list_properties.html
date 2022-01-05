@@ -6,21 +6,23 @@
 
 <patTemplate:comment>
 <div class="row">
-	<div class="col-md-12">
+	<div class="col-12">
 		{PAGING}
 	</div>
 </div>
 </patTemplate:comment>
 
 <patTemplate:tmpl name="property_details" unusedvars="strip">
-	<div class="jomres_property_list_propertywrapper" id="{UID}">
-		<div class="panel {BUDGET_BORDER_CLASS} {FEATURED_LISTINGS_CLASS}">
-			<div class="panel-heading">
+	<div class="jomres_property_list_propertywrapper shadow p-3 mb-5 bg-body rounded  bg-secondary" id="{UID}">
+		<div class="card {BUDGET_BORDER_CLASS} {FEATURED_LISTINGS_CLASS}">
+			<div class="card-body">
 				<div class="row">
-					<div class="col-md-10">
-						<h2 class="panel-title"><a href="{MOREINFORMATIONLINK}" title="{PROPERTY_NAME_FULL}" >{PROPERTYNAME}</a></h2> 
+					<div class="col-10 card-header">
+						<h2>
+							<a href="{MOREINFORMATIONLINK}" title="{PROPERTY_NAME_FULL}" class="btn btn-outline-primary btn-lg">{PROPERTYNAME}</a>
+						</h2>
 					</div>
-					<div class="col-md-2">
+					<div class="col-2">
 						<div class="hidden-xs hidden-sm plist-compare" align="right">
 							<label>
 								<input type="checkbox" name="compare" value="{UID}" autocomplete="off"/>
@@ -30,13 +32,14 @@
 					</div>
 				</div>
 			</div>
-			<div class="panel-body">
+			<div class="card-text">
 				<div class="row">
-					<div class="col-md-3">
+					<div class="col-md-3 ">
 						{PROPERTY_IMAGE_OR_SLIDESHOW}
 					</div>
-					<div class="col-md-6">
-						<span class="label label-default">{PROPERTY_TYPE}</span> <span>{STARS} {SUPERIOR}</span> <span class="label label-info">{_JOMRES_REVIEWS_AVERAGE_RATING} {AVERAGE_RATING}</span>
+					<div class="col-6">
+						<span class="text-secondary">{PROPERTY_TYPE}</span> <span>{STARS} {SUPERIOR}</span>
+						<span class="text-primary">{_JOMRES_REVIEWS_AVERAGE_RATING} {AVERAGE_RATING}</span>
 						<p class="small"><i>{PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}</i></p>
 						<div>{PROPERTYDESC}</div>
 						<div class="jomres_message">{LASTMINUTE}</div>
@@ -45,25 +48,29 @@
 					<!--<div class="col-md-3">
 						{REVIEWS_SNIPPET}
 					</div>-->
-					<div class="col-md-3">
-						<div class="well align-center">
-							{PRICE_PRE_TEXT}
-							<span class="big-price">{PRICE_PRICE}</span>
-							{PRICE_POST_TEXT}
-							<span class="big-price">{PRICE_CUMULATIVE}</span>
-							{FOR} {STAY_DAYS} {NIGHTS_TEXT}
+					<div class="col-3">
+						<div class="align-middle mx-auto">
+							<div class="badge bg-info">
+								{PRICE_PRE_TEXT}
+								{PRICE_PRICE}
+								{PRICE_POST_TEXT}
+							</div>
+							<div class="badge bg-dark">
+								{PRICE_CUMULATIVE}
+								{FOR} {STAY_DAYS} {NIGHTS_TEXT}
+							</div>
 						</div>
 					</div>
 				</div>
 
-				<div id="effect{UID}" class="hide">
+				<div id="effect{UID}" class="hidden">
 					<p>&nbsp;</p>
 					<div class="row">
-						<div class="col-md-2 ">
+						<div class="col-2 ">
 							<div><strong>{_JOMRES_AGENT}</strong></div>
 							<div>{AGENT_LINK}</div>
 						</div>
-						<div class="col-md-5 ">
+						<div class="col-5 ">
 							<div><strong>{_JOMRES_FRONT_ROOMTYPES}</strong></div>
 							<div>{ROOMTYPES}</div>
 							<div style="clear:both;"></div>
@@ -71,7 +78,7 @@
 							<div>{FEATURELIST}</div>
 							<div style="clear:both;"></div>
 						</div>
-						<div class="col-md-5 ">
+						<div class="col-5 ">
 							{CUSTOM_PROPERTY_FIELDS_DATA_SNIPPET}
 							<div class="clearfix"></div>
 							<div>&nbsp;</div>
@@ -80,11 +87,13 @@
 					</div>
 				</div>
 			</div>
-			<div class="panel-footer">
+			<div class="card-footer">
 				<a href="{LINK}" class="btn btn-success pull-right"><i class="fa fa-shopping-cart"></i> {BOOKTHIS_TEXT}</a>
 				<a href="{MOREINFORMATIONLINK}" class="btn btn-info"><i class="fa fa-info"></i> {MOREINFORMATION}</a>
-				<a href="javascript:void(0);" onclick="quick_info({UID});" class="btn btn-secondary hidden-xs hidden-sm"><i class="fa fa-info"></i> {_JOMRES_QUICK_INFO}</a>
-				<a href="#property_reviews{UID}" ajax_task="show_property_reviews" data-toggle="modal" random_identifier="{UID}" property_name="{PROPERTYNAME}" property_uid="{UID}" class="btn btn-secondary hidden-xs hidden-sm"><i class="fa fa-thumbs-o-up"></i> {_JOMRES_REVIEWS_CLICKTOSHOW}</a>
+				<a href="javascript:void(0);" onclick="quick_info({UID});" role="button" class="btn btn-secondary hidden-xs hidden-sm">
+					<i class="fa fa-info"></i> {_JOMRES_QUICK_INFO}
+				</a>
+				<a href="#property_reviews{UID}" ajax_task="show_property_reviews" data-bs-toggle="modal" random_identifier="{UID}" property_name="{PROPERTYNAME}" property_uid="{UID}" class="btn btn-secondary hidden-xs hidden-sm"><i class="fa fa-thumbs-o-up"></i> {_JOMRES_REVIEWS_CLICKTOSHOW}</a>
 				<a href="javascript:void(0);" id="shortlist_{UID}" onclick="shortlist('{UID}')" class="btn btn-secondary hidden-xs hidden-sm">{SHORTLIST}</a>
 			</div>
 		</div>
@@ -101,7 +110,7 @@
 <div id = "livescrolling_results" ></div>
 
 <div class="row">
-	<div class="col-md-12">
+	<div class="col-12">
 		{PAGING}
 	</div>
 </div>

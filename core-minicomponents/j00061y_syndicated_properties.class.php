@@ -4,9 +4,9 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * @version Jomres 9.25.1
+ * * @version Jomres 10.0.0
  *
- * @copyright	2005-2021 Vince Wooll
+ * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 // ################################################################
@@ -40,7 +40,7 @@ class j00061y_syndicated_properties {
 			$this->template_touchable=false; return;
 			}
 
-		if ( get_showtime('task') != "dobooking" ) {
+		if ( get_showtime('task') != "dobooking" && get_showtime('task') != 'confirmbooking' ) {
 			$MiniComponents->specificEvent('06000','show_syndicated_properties', array('limit'=>4));
 			}
 		
