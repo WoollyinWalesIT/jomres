@@ -6,7 +6,7 @@
  *
  * * @version Jomres 9.25.2
  *
- * @copyright	2005-2021 Vince Wooll
+ * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 //#################################################################
@@ -2689,3 +2689,17 @@ jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Inserisci qui i nomi dei tuoi accou
 
 jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Elenco separato da virgole delle lingue parlate dalla tua organizzazione');
 jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'Url al logo della tua organizzazione');
+
+jr_define('JOMRES_UPDATE_MESSAGE_TITLE', 'Jomres aggiornato');
+jr_define('JOMRES_UPDATE_MESSAGE_MESSAGE', 'C\'è una nuova versione di Jomres disponibile. Devi aggiornare prima di poter continuare a usare Jomres poiché gli aggiornamenti migliorano la funzionalità e assicurano che la tua installazione rimanga sicura.');
+jr_define('JOMRES_UPDATE_MESSAGE_LINK', 'Aggiorna Jomres adesso');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_TITLE', 'Aggiornamenti plugin');
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE1', 'Ci sono nuove versioni di plugin disponibili nel gestore plugin. Devi aggiornare tutti i plugin prima di poter continuare a usare Jomres poiché gli aggiornamenti migliorano la funzionalità e assicurano che la tua installazione rimanga sicura.');
+jr_define('PLUGIN_UPDATE_MESSAGE_NUMBER', 'Plugin da aggiornare');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'Se la tua licenza non è più valida, puoi ottenere una nuova chiave di licenza dal nostro sito.');
+
+jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Aggiorna plugin');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Ottieni nuova chiave');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Salva nuova chiave');

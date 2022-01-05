@@ -7,7 +7,7 @@
  *
  * * @version Jomres 9.25.2
  *
- * @copyright	2005-2021 Vince Wooll
+ * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -1618,8 +1618,16 @@ function make_agent_link($property_id = 0)
 	$manager_id = $property_manager_xref[ $property_id ];
 
 	$output[ 'IMAGE' ] = JOMRES_IMAGES_RELPATH.'noimage.gif';
-	if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.'userimages'.JRDS.'userimage_'.(int) $manager_id.'_thumbnail.jpg')) {
-		$output[ 'IMAGE' ] = JOMRES_IMAGELOCATION_RELPATH.'userimages/userimage_'.(int) $manager_id.'_thumbnail.jpg';
+
+    $image_filename = '';
+    $contents = get_directory_contents(JOMRES_IMAGELOCATION_ABSPATH.'userimages'.JRDS.(int) $manager_id);
+    foreach ($contents as $file ) {
+        if ($file != '.' && $file != '..' && $file != 'medium' && $file != 'thumbnail' ) {
+            $image_filename = $file;
+        }
+    }
+	if ( $image_filename != '' && file_exists(JOMRES_IMAGELOCATION_ABSPATH.'userimages'.JRDS.(int) $manager_id.JRDS.'thumbnail'.JRDS.$image_filename)) {
+		$output[ 'IMAGE' ] = JOMRES_IMAGELOCATION_RELPATH.'userimages/'.(int) $manager_id.'/thumbnail/'.$image_filename;
 	}
 
 	$output[ 'URL' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=view_agent&id='.$manager_id);
@@ -2613,10 +2621,13 @@ function dropPlugin($pluginName)
 			define('JOMRES_INSTALLER', 1);
 			include $pluginPath.JRDS.'plugin_uninstall.php';
 		}
-		emptyDir($pluginPath);
-		if (rmdir($pluginPath)) {
-			return true;
-		}
+        if (is_dir($pluginPath)) {
+            emptyDir($pluginPath);
+            if (rmdir($pluginPath)) {
+                return true;
+            }
+        }
+
 	}
 
 	return false;

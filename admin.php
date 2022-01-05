@@ -6,7 +6,7 @@
  *
  * * @version Jomres 9.25.2
  *
- * @copyright	2005-2021 Vince Wooll
+ * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -101,11 +101,6 @@ try {
 		//core admin menu items
 		$MiniComponents->specificEvent('19995', 'menu', array());
 
-		if ( isset($jrConfig['platform_connected']) && $jrConfig['platform_connected'] == 1 ) {
-			if (!file_exists(JOMRES_COREPLUGINS_ABSPATH.'connect'.JRDS.'plugin_info.php') && file_exists(JOMRES_COREPLUGINS_ABSPATH.'plugin_manager'.JRDS.'plugin_info.php') ) { // Something has gone horribly wrong
-				$MiniComponents->specificEvent('16000', 'addplugin', array('plugin' => 'connect', 'autoupgrade' => true));
-			}
-		}
 	}
 
 	//00005 trigger point
@@ -162,6 +157,27 @@ try {
 	if (!isset( $jrConfig['initial_setup_done'])) {
 		$jrConfig['initial_setup_done'] = 0;
 	}
+
+    if (
+        get_showtime('task') != 'save_site_settings' &&
+        get_showtime('task') != 'site_settings' &&
+        get_showtime('task') != 'showplugins' &&
+        get_showtime('task') != 'addplugin' &&
+        get_showtime('task') != 'removeplugin' &&
+        get_showtime('task') != 'updates'
+    ) {
+        //jomres version update check
+        $output['VERSION_UPDATE_AVAILABLE'] = $MiniComponents->specificEvent('16000', 'jomres_update_check', array('output_now' => true));
+        if ( $output['VERSION_UPDATE_AVAILABLE'] != false ) {
+            return;
+        }
+        //jomres plugin update check
+        $output['PLUGIN_UPDATES_AVAILABLE'] = $MiniComponents->specificEvent('16000', 'jomres_plugin_update_check', array('output_now' => true));
+        if ( $output['PLUGIN_UPDATES_AVAILABLE'] != false ) {
+            return;
+        }
+    }
+
 
 	//task
 	if ( $jrConfig['initial_setup_done'] == '0' && get_showtime('task') != 'save_initial_setup') {

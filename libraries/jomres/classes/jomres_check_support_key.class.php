@@ -6,7 +6,7 @@
  *
  * * @version Jomres 9.25.2
  *
- * @copyright	2005-2021 Vince Wooll
+ * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -90,6 +90,10 @@ class jomres_check_support_key
 		
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
+
+        if (!isset($jrConfig['licensekey'])) { // Probably installing
+            return;
+        }
 
 		if ( $key == '' )
 			$str = 'key='.$jrConfig['licensekey'];

@@ -6,7 +6,7 @@
  *
  * * @version Jomres 9.25.2
  *
- * @copyright	2005-2021 Vince Wooll
+ * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -107,13 +107,11 @@ class jomresHTML
 				$val = $v->$key;
 				$txt = $v->$text;
 				
-				//$output .= '<button type="button" value="'.$k.'" class="btn" data-toggle="button">'.$txt.'</button>';
-				
 				$checked = '';
 				 if ($val == $default) {
 					$checked = 'checked="checked" ';
 				}
-				
+
 				$output .= '
 				<input type="radio" id="' .$name.$val.'" name="'.$name.'" '.$checked.' value="'.$val.'"/>
 				<label for="' .$name.$val.'" id="'.$name.$val.'_id" >'.$txt.'</label>

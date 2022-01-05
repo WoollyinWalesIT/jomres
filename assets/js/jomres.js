@@ -378,7 +378,7 @@ function quick_info(uid) {
 	var selectedEffect = "slide";
 	var options = {};
 	jomresJquery("#effect" + uid).toggle(selectedEffect, options, 500);
-	jomresJquery("#effect" + uid).removeClass('hide');
+	jomresJquery("#effect" + uid).removeClass('hidden');
 	return false;
 };
 

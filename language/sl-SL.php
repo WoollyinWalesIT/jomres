@@ -6,7 +6,7 @@
  *
  * * @version Jomres 9.25.2
  *
- * @copyright	2005-2021 Vince Wooll
+ * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 //#################################################################
@@ -2640,3 +2640,17 @@ jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Tukaj vnesite imena svojih računov
 
 jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Seznam jezikov, ločenih z vejicami, ki jih govori vaša organizacija');
 jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'URL logotipa vaše organizacije');
+
+jr_define('JOMRES_UPDATE_MESSAGE_TITLE', 'Jomres posodobljen');
+jr_define('JOMRES_UPDATE_MESSAGE_MESSAGE', 'Na voljo je nova različica Jomresa. Preden lahko nadaljujete z uporabo Jomresa, morate posodobiti, saj posodobitve izboljšujejo funkcionalnost in zagotavljajo, da vaša namestitev ostane varna.');
+jr_define('JOMRES_UPDATE_MESSAGE_LINK', 'Posodobi Jomres zdaj');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_TITLE', 'Posodobitve vtičnika');
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE1', 'V upravitelju vtičnikov so na voljo nove različice vtičnikov. Preden lahko nadaljujete z uporabo Jomresa, morate posodobiti vse vtičnike, saj posodobitve izboljšujejo funkcionalnost in zagotavljajo, da vaša namestitev ostane varna.');
+jr_define('PLUGIN_UPDATE_MESSAGE_NUMBER', 'Vtičniki za posodobitev');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'Če vaša licenca ni več veljavna, lahko dobite nov licenčni ključ na našem spletnem mestu.');
+
+jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Posodobi vtičnike');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Pridobi nov ključ');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Shrani nov ključ');

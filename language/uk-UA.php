@@ -6,7 +6,7 @@
  *
  * * @version Jomres 9.25.2
  *
- * @copyright	2005-2021 Vince Wooll
+ * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 //#################################################################
@@ -2585,3 +2585,17 @@ jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Введіть тут імена с
 
 jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Список мов, якими володіє ваша організація, розділений комами');
 jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'URL-адреса логотипу вашої організації');
+
+jr_define('JOMRES_UPDATE_MESSAGE_TITLE', 'Jomres оновлено');
+jr_define('JOMRES_UPDATE_MESSAGE_MESSAGE', 'Доступна нова версія Jomres. Ви повинні оновити, перш ніж ви зможете продовжувати використовувати Jomres, оскільки оновлення покращують функціональність і гарантують, що ваше встановлення залишається безпечним.');
+jr_define('JOMRES_UPDATE_MESSAGE_LINK', 'Оновити Jomres зараз');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_TITLE', 'Оновлення плагіна');
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE1', 'У диспетчері плагінів доступні нові версії плагінів. Ви повинні оновити всі плагіни, перш ніж ви зможете продовжувати використовувати Jomres, оскільки оновлення покращують функціональність і гарантують, що ваше встановлення залишається безпечним.');
+jr_define('PLUGIN_UPDATE_MESSAGE_NUMBER', 'Плагіни для оновлення');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'Якщо ваша ліцензія більше не дійсна, ви можете отримати новий ліцензійний ключ на нашому веб-сайті.');
+
+jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Оновити плагіни');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Отримати новий ключ');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Зберегти новий ключ');

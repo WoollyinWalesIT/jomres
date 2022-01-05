@@ -6,7 +6,7 @@
  *
  * * @version Jomres 9.25.2
  *
- * @copyright	2005-2021 Vince Wooll
+ * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -66,6 +66,10 @@ class j06000show_syndicated_properties
 
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
+
+        if (!isset($jrConfig[ 'development_production' ])) {
+            return;
+        }
 
 		if ($jrConfig[ 'development_production' ] != 'production') {
 			return;

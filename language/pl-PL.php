@@ -6,7 +6,7 @@
  *
  * * @version Jomres 9.25.2
  *
- * @copyright	2005-2021 Vince Wooll
+ * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
 * @Polska adaptacja Patryk Doering - http://www.rekinet.pl - kontakt@rekinet.pl
 * @Aktualizacja wersji językowej z 07-10-2016r.
@@ -2647,3 +2647,17 @@ jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'Linki do mediów społecznościowych');
 jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Umieść tutaj swoje nazwy kont w mediach społecznościowych, na przykład "jomres", a nie cały adres URL');
 jr_define('JOMRES_ORGANISATION_LANGUGES_DESC', 'Oddzielona przecinkami lista języków, którymi posługuje się Twoja organizacja');
 jr_define('JOMRES_ORGANISATION_LOGO_URL', 'Url do logo Twojej organizacji');
+
+jr_define('JOMRES_UPDATE_MESSAGE_TITLE', 'Jomres zaktualizowany');
+jr_define('JOMRES_UPDATE_MESSAGE_MESSAGE', 'Dostępna jest nowa wersja Jomresa. Aby móc dalej używać Jomresa, musisz go zaktualizować, ponieważ aktualizacje poprawiają funkcjonalność i zapewniają bezpieczeństwo instalacji.');
+jr_define('JOMRES_UPDATE_MESSAGE_LINK', 'Zaktualizuj Jomres teraz');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_TITLE', 'Aktualizacje wtyczek');
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE1', 'W menedżerze wtyczek dostępne są nowe wersje wtyczek. Musisz zaktualizować wszystkie wtyczki, zanim będziesz mógł nadal używać Jomres, ponieważ aktualizacje poprawiają funkcjonalność i zapewniają bezpieczeństwo instalacji.');
+jr_define('PLUGIN_UPDATE_MESSAGE_NUMBER', 'Wtyczki do aktualizacji');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'Jeśli Twoja licencja nie jest już ważna, możesz uzyskać nowy klucz licencyjny z naszej strony internetowej.');
+
+jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Aktualizuj wtyczki');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Pobierz nowy klucz');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Zapisz nowy klucz');

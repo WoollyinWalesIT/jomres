@@ -7,7 +7,7 @@
  *
  * * @version Jomres 9.25.2
  *
- * @copyright	2005-2021 Vince Wooll
+ * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 use Monolog\Logger;
@@ -93,6 +93,10 @@ class logging
 		}
 		
         $log_file = str_replace(' ', '_', $channel).'.application.log';
+
+        if (!isset($jrConfig[ 'development_production' ])) { // Probably installing
+            return;
+        }
 
         if ($jrConfig[ 'development_production' ] == 'production' && $level == 'DEBUG') { // In Production, we don't want to see DEBUG level stuff.
             return;

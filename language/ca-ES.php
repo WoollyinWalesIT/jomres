@@ -6,7 +6,7 @@
  *
  * * @version Jomres 9.25.2
  *
- * @copyright	2005-2021 Vince Wooll
+ * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 //#################################################################
@@ -2650,3 +2650,17 @@ jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Poseu aquí els noms dels vostres c
 
 jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Llista separada per comes d\'idiomes que parla la vostra organització');
 jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'Url del logotip de la vostra organització');
+
+jr_define('JOMRES_UPDATE_MESSAGE_TITLE', 'Jomres actualitzat');
+jr_define('JOMRES_UPDATE_MESSAGE_MESSAGE', 'Hi ha una nova versió de Jomres disponible. Heu d\'actualitzar abans de poder continuar utilitzant Jomres, ja que les actualitzacions milloren la funcionalitat i assegureu-vos que la vostra instal·lació romangui segura.');
+jr_define('JOMRES_UPDATE_MESSAGE_LINK', 'Actualitza Jomres ara');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_TITLE', 'Actualitzacions del connector');
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE1', 'Hi ha noves versions de connectors disponibles al gestor de connectors. Heu d\'actualitzar tots els connectors abans de poder continuar utilitzant Jomres, ja que les actualitzacions milloren la funcionalitat i assegureu-vos que la vostra instal·lació es mantingui segura.');
+jr_define('PLUGIN_UPDATE_MESSAGE_NUMBER', 'Connectors per actualitzar');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'Si la vostra llicència ja no és vàlida, podeu obtenir una nova clau de llicència des del nostre lloc web.');
+
+jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Actualitza els connectors');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Obtén una clau nova');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Desa la clau nova');

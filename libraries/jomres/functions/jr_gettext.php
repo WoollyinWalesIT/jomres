@@ -6,7 +6,7 @@
  *
  * * @version Jomres 9.25.2
  *
- * @copyright	2005-2021 Vince Wooll
+ * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
  **/
 
@@ -109,7 +109,7 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
 		$br = '<br />';
 	}
 
-	if ($jrConfig[ 'prioritise_sitewide_label_definitions' ] == "1") {
+	if ( isset($jrConfig[ 'prioritise_sitewide_label_definitions' ]) && $jrConfig[ 'prioritise_sitewide_label_definitions' ] == "1") {
 		if (isset($customTextObj->global_custom_text[$jomres_language_definitions->ptype][$theConstant])) {
 			$theText = $customTextObj->global_custom_text[$jomres_language_definitions->ptype][$theConstant];
 		} elseif (isset($customTextObj->global_custom_text['0'][$theConstant])) {

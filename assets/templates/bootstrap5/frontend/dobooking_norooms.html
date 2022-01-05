@@ -173,11 +173,11 @@
 
 	<div id="arrivalcontainer">
 		<div id="tour_target_booking_particulars"></div>
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<div class="panel-title">{AJAXFORM_PARTICULARS}</div>
+		<div class="card">
+			<div class="card-body">
+				<div class="card-title">{AJAXFORM_PARTICULARS}</div>
 			</div>
-			<div class="panel-body">
+			<div class="card-text">
 				<p>{AJAXFORM_PARTICULARS_DESC}</p>
 		
 				<div class="col-md-6">
@@ -207,11 +207,11 @@
 	<div id="tour_target_booking_extras"></div>
 	<patTemplate:tmpl name="extrasrow" type="simpleCondition" requiredVars="extras_header">
 	<div id="extrascontainer">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<div class="panel-title">{EXTRAS_HEADER}</div>
+		<div class="card">
+			<div class="card-body">
+				<div class="card-title">{EXTRAS_HEADER}</div>
 			</div>
-			<div class="panel-body">
+			<div class="card-text">
 				<patTemplate:tmpl name="third_party_extras" type="simpleCondition" requiredVars="third_party_extra">
 					{THIRD_PARTY_EXTRA}
 				</patTemplate:tmpl>
@@ -229,11 +229,11 @@
 		<div class="col-md-7">
 			<div id="tour_target_booking_existing_guests"></div>
 			<div id="tour_target_booking_required"></div>
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<div class="panel-title">{AJAXFORM_ADDRESS}</div>
+			<div class="card">
+				<div class="card-body">
+					<div class="card-title">{AJAXFORM_ADDRESS}</div>
 				</div>
-				<div class="panel-body">
+				<div class="card-text">
 					<div class="form-group">
 						<label class="control-label" for="existingCustomers"></label>
 						{GUESTDROPDOWN}
@@ -306,11 +306,11 @@
 		
 		<div class="col-md-5" id="totalsWrapper">
 			<div id="totals">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<div class="panel-title">{PRICE_SUMMARY}</div>
+				<div class="card">
+					<div class="card-body">
+						<div class="card-title">{PRICE_SUMMARY}</div>
 					</div>
-					<div class="panel-body">
+					<div class="card-text">
 						<div class="row">
 							<div class="col-xs-9">
 								{EXTRAS_TOTAL}
@@ -374,13 +374,13 @@
 				
 				<patTemplate:tmpl name="coupons" type="simpleCondition" requiredVars="coupon_title">
 				<div id="tour_target_booking_coupons"></div>
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<div class="panel-title">
+				<div class="card">
+					<div class="card-body">
+						<div class="card-title">
 							{COUPON_TITLE}
 						</div>
 					</div>
-					<div class="panel-body">
+					<div class="card-text">
 						<p>{COUPON_INSTRUCTIONS}</p>
 						<div class="form-group">
 							<!--<label class="control-label" for="coupon">{COUPON_TITLE}</label>-->
@@ -388,7 +388,7 @@
 							<div id="coupon_response" class="jomres_message help-block"></div>
 						</div>
 					</div>
-					<div class="panel-footer">
+					<div class="card-footer">
 						<a class="btn btn-secondary" href="javascript:void(0);" onclick="getResponse('coupon',jomresJquery('#coupon').val())" >{COUPON_BUTTON}</a>
 					</div>
 				</div>
@@ -396,8 +396,8 @@
 				
 				<patTemplate:tmpl name="manager_pricing" type="simpleCondition" requiredVars="_jomcomp_amend_override_accommodation_total">
 				<div id="tour_target_booking_overrides"></div>
-				<div class="panel panel-default">
-					<div class="panel-body">
+				<div class="card">
+					<div class="card-text">
 						<div class="col-md-12">
 							<div class="form-group">
 								<label class="control-label" for="override_room_total">{_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL}</label>
@@ -412,7 +412,7 @@
 						</div>
 						<div id="override_response" class="jomres_message"></div>
 					</div>
-					<div class="panel-footer">
+					<div class="card-footer">
 						<a href="javascript:void(0);" onclick="getResponse_override('override',jomresJquery('#override_room_total').val()+'^'+jomresJquery('#override_deposit').val())" class="btn btn-secondary">{_JOMCOMP_AMEND_OVERRIDE_SAVE}</a>
 					</div>
 				</div>
