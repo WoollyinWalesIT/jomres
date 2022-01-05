@@ -2631,3 +2631,16 @@ jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Ievietojiet šeit savu sociālo med
 
 jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Komatatdalīts to valodu saraksts, kurās runā jūsu organizācija');
 jr_define('JOMRES_ORGANISATIION_LOGO_URL', "Jūsu organizācijas logotipa URL");
+jr_define('JOMRES_UPDATE_MESSAGE_TITLE', 'Jomres atjaunināts');
+jr_define('JOMRES_UPDATE_MESSAGE_MESSAGE', 'Ir pieejama jauna Jomres versija. Jums ir jāatjaunina, lai varētu turpināt lietot Jomres, jo atjauninājumi uzlabo funkcionalitāti un nodrošina, ka instalācija ir droša.');
+jr_define('JOMRES_UPDATE_MESSAGE_LINK', 'Atjaunināt Jomres tūlīt');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_TITLE', 'Spraudņa atjauninājumi');
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE1', 'Spraudņu pārvaldniekā ir pieejamas jaunas spraudņu versijas. Lai turpinātu lietot Jomres, jums ir jāatjaunina visi spraudņi, jo atjauninājumi uzlabo funkcionalitāti un nodrošina instalācijas drošību.');
+jr_define('PLUGIN_UPDATE_MESSAGE_NUMBER', 'Atjaunināmie spraudņi');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'Ja jūsu licence vairs nav derīga, varat iegūt jaunu licences atslēgu mūsu vietnē.');
+
+jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Atjaunināt spraudņus');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Iegūt jaunu atslēgu');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Saglabāt jauno atslēgu');

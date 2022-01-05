@@ -3312,3 +3312,17 @@ jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Այստեղ դրեք ձեր սոց
 
 jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Ստորակետերով առանձնացված լեզուների ցանկ, որոնց խոսում է ձեր կազմակերպությունը');
 jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'Ձեր կազմակերպության պատկերանշանի հասցեն');
+
+jr_define('JOMRES_UPDATE_MESSAGE_TITLE', 'Jomres-ը թարմացվել է');
+jr_define('JOMRES_UPDATE_MESSAGE_MESSAGE', 'Jomres-ի նոր տարբերակ կա: Դուք պետք է թարմացնեք, որպեսզի կարողանաք շարունակել օգտագործել Jomres-ը, քանի որ թարմացումները բարելավում են ֆունկցիոնալությունը և համոզվեք, որ ձեր տեղադրումն ապահով է:');
+jr_define('JOMRES_UPDATE_MESSAGE_LINK', 'Թարմացնել Jomres-ը հիմա');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_TITLE', 'Plugin-ի թարմացումներ');
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE1', 'Plugin-ի կառավարիչում հասանելի են փլագինների նոր տարբերակներ: Դուք պետք է թարմացնեք բոլոր փլագինները, որպեսզի կարողանաք շարունակել օգտագործել Jomres-ը, քանի որ թարմացումները բարելավում են ֆունկցիոնալությունը և համոզվեք, որ ձեր տեղադրումն ապահով մնա:');
+jr_define('PLUGIN_UPDATE_MESSAGE_NUMBER', 'Մոդուլներ թարմացման համար');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'Եթե ձեր լիցենզիան այլևս վավեր չէ, կարող եք ստանալ նոր լիցենզիայի բանալի մեր կայքից:');
+
+jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Թարմացնել պլագինները');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Ստանալ նոր բանալի');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Պահպանել նոր բանալին');

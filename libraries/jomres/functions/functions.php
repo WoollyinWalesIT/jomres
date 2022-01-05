@@ -2621,10 +2621,13 @@ function dropPlugin($pluginName)
 			define('JOMRES_INSTALLER', 1);
 			include $pluginPath.JRDS.'plugin_uninstall.php';
 		}
-		emptyDir($pluginPath);
-		if (rmdir($pluginPath)) {
-			return true;
-		}
+        if (is_dir($pluginPath)) {
+            emptyDir($pluginPath);
+            if (rmdir($pluginPath)) {
+                return true;
+            }
+        }
+
 	}
 
 	return false;

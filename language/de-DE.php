@@ -2685,3 +2685,17 @@ jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Geben Sie hier Ihre Social-Media-Ko
 
 jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Kommagetrennte Liste der Sprachen, die Ihre Organisation spricht');
 jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'URL zu Ihrem Firmenlogo');
+
+jr_define('JOMRES_UPDATE_MESSAGE_TITLE', 'Jomres aktualisiert');
+jr_define('JOMRES_UPDATE_MESSAGE_MESSAGE', 'Es ist eine neue Version von Jomres verfügbar. Sie müssen ein Update durchführen, bevor Sie Jomres weiter verwenden können, da Updates die Funktionalität verbessern und sicherstellen, dass Ihre Installation sicher bleibt.');
+jr_define('JOMRES_UPDATE_MESSAGE_LINK', 'Jomres jetzt aktualisieren');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_TITLE', 'Plugin-Updates');
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE1', 'Es sind neue Versionen von Plugins im Plugin-Manager verfügbar. Sie müssen alle Plugins aktualisieren, bevor Sie Jomres weiterhin verwenden können, da Updates die Funktionalität verbessern und sicherstellen, dass Ihre Installation sicher bleibt.');
+jr_define('PLUGIN_UPDATE_MESSAGE_NUMBER', 'Zu aktualisierende Plugins');
+
+jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'Wenn Ihre Lizenz nicht mehr gültig ist, können Sie einen neuen Lizenzschlüssel von unserer Website beziehen.');
+
+jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Plugins aktualisieren');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Neuen Schlüssel holen');
+jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Neuen Schlüssel speichern');

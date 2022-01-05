@@ -61,7 +61,7 @@ class jomresItemToolbar
 		if ($submitOnClick) {
 			$item = '<a class="'.$buttonClass.' btn-sm" href="javascript:jomres_submitbutton(\''.$task.'\');" '.$otherParams.'><i class="'.$icon.'"></i> '.$title.'</a> ';
 		} else {
-			$item = '<a class="'.$buttonClass.' btn-sm" href="'.$link.'" '.$otherParams.'><i class="'.$icon.'"></i> '.$title.'</a> ';
+			$item = '<a class="'.$buttonClass.' btn-sm" href="'.$link.'" style="text-decoration:none;"><i class="'.$icon.'"></i> '.$title.'</a> ';
 		}
 
 		$this->items[] = $item;
@@ -106,7 +106,7 @@ class jomresItemToolbar
 			$this->toolbar = '
 						<div id="jomres-item-toolbar" class="btn-group">
 			';
-		} else { // Bootstrap 4
+		} else { // Bootstrap 5
 			$this->toolbar = '
 						<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			';
@@ -124,9 +124,9 @@ class jomresItemToolbar
 				<a class="btn btn-sm btn-default btn-secondary dropdown-toggle" data-toggle="dropdown" href="#"> <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 				';
-			}elseif ($this->bs_version == '4') {
+			}elseif ($this->bs_version == '5') {
 				$this->toolbar .= '
-				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"> <span class="caret"></span></a>
+				<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"> <span class="caret"></span></a>
 				';
 			} else {
 				$this->toolbar .= '<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">'.jr_gettext('COMMON_MORE', 'COMMON_MORE', false).' <span class="caret"></span></a><ul class="dropdown-menu">
@@ -134,14 +134,14 @@ class jomresItemToolbar
 			}
 			
 			
-			if ( $this->bs_version == '4' ) {
+			if ( $this->bs_version == '5' ) {
 				$this->toolbar .= '<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 				';
 			}
 
 			 
 			foreach ($this->secondaryItems as $secondaryItem) {
-				if ( $this->bs_version == '4' ) {
+				if ( $this->bs_version == '5' ) {
 					$this->toolbar .= $secondaryItem.'
 					';
 				}
@@ -152,7 +152,7 @@ class jomresItemToolbar
 					
 			}
 			
-			if ( $this->bs_version == '4' ) {
+			if ( $this->bs_version == '5' ) {
 				$this->toolbar .= '</div>
 				';
 			} else {
@@ -164,7 +164,7 @@ class jomresItemToolbar
 		if ($this->bs_version == '3' || $this->bs_version == '2' ) {
 			$this->toolbar .= '</div>
 			';
-		} else { // Bootstrap 4
+		} else { // Bootstrap 5
 			$this->toolbar .= '</nav>
 			';
 		}
