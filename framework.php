@@ -13,6 +13,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
+use Joomla\CMS\Factory;
 /**
 *
 * Sets up the Jomres framework.
@@ -51,11 +52,17 @@ function load_cms_environment()
 {
 	if (file_exists(dirname(__FILE__).'/../configuration.php')) {
 		define('JPATH_BASE', dirname(__FILE__).'/../');
-		require_once JPATH_BASE.'includes/defines.php';
-		require_once JPATH_BASE.'includes/framework.php';
+        require_once JPATH_BASE.'includes/defines.php';
+        require_once JPATH_BASE.'includes/framework.php';
+        if (file_exists(JPATH_BASE.DIRECTORY_SEPARATOR.'libraries'.DIRECTORY_SEPARATOR.'src'.DIRECTORY_SEPARATOR.'Version.php')) { // Joomla 4
 
-		/* Create the Application */
-		$app = JFactory::getApplication('site');
+            $container = \Joomla\CMS\Factory::getContainer();
+            $container->alias(\Joomla\Session\SessionInterface::class, 'session.web.site');
+            $app      = $container->get(\Joomla\CMS\Application\SiteApplication::class);
+        } else { // Joomla 3
+            /* Create the Application */
+            $app = JFactory::getApplication('site');
+        }
 	} elseif (!defined('WPINC') && file_exists(dirname(__FILE__).'/../wp-load.php')) {
 		define('WP_USE_THEMES', false);
 		/** Loads the WordPress Environment */
