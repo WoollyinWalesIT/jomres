@@ -3,7 +3,7 @@ Contributors: jomres
 Tags: iCal, Channel Manager, Hotel Booking, Apartment booking, Booking portal, Hotel,  Booking, hotels,  motel, motels,  calendar, room booking, reservation plugin, holiday apartments, holiday rentals, apartment rentals, cottage rental, b&b, tool hire, ecommerce, tours, api, json, REST, rest-api, webhooks
 Donate link: https://www.jomres.net
 Requires at least: 4.3.1
-Tested up to: 5.8.1
+Tested up to: 5.8.2
 Stable tag: trunk
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html

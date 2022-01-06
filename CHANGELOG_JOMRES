@@ -1,3 +1,31 @@
+<h3>Jomres 10.0 05/01/2022</h3>
+
+<span class="label label-success">Feature</span> Fully working in Joomla 4
+
+<span class="label label-success">Feature</span> Added ability to add booking notes in dashboard timeline popup.
+<span class="label label-success">Feature</span> Disabled necessity to send the required scopes as part of the token request.
+<span class="label label-success">Feature</span> Added ability to use gmail task specific email addresses https://support.google.com/a/users/answer/9308648?hl=en
+<span class="label label-success">Feature</span> Added social media ld-json markup to site config and schema output templates
+<span class="label label-success">Feature</span> Organisation schema details added, Russian translations improved.
+
+<span class="label label-warning">Change</span> Added session wait timeout to db initialisation to prevent longer jobs from throwing a wobbly in mysql.
+<span class="label label-warning">Change</span> Added some javascript to extras checkbox to stop it from responding to clicks. (aesthetic only, system would not allow a change when the extra is forced, this just prevents the possibility of somebody being given the impression that the change has taken place because they have been playing with js in the page or have an odd browser)
+<span class="label label-warning">Change</span> Added code so that in the unlikely event that there are no published properties, a search plugin doesn't throw an error and instead it will return with a meaningful message.
+<span class="label label-warning">Change</span> Change how we detect bootstrap version in admin area of wp
+<span class="label label-warning">Change</span> Jomres Platform config panel element deleted as it's not in use.
+<span class="label label-warning">Change</span> Added database update that converts a column into an integer (guest discounts)
+<span class="label label-warning">Change</span> Make inputs use initial css so that template don't introduce padding that makes the inputs unusable. (Standard and Micromanage tariff editing modes)
+<span class="label label-warning">Change</span> Modify installer to make installation faster
+
+
+<span class="label label-important label-danger">Fix</span> French lang file for datatables creates a javascript error. We can't modify the library so we'll instead str replace the apostrophe in Jomres instead.
+<span class="label label-important label-danger">Fix</span> Fixed an issue where city tax wasn't always showing correctly.
+<span class="label label-important label-danger">Fix</span> Fixed an issue with restored legend that was breaking tabs.
+<span class="label label-important label-danger">Fix</span> Fixed an issue created by the last tweak to (insert booking script) where profile information wasn't being properly updated when a new user is added.
+<span class="label label-important label-danger">Fix</span> BS5 Resolved an issue in schema template valid markup (according to big G) nevertheless breaks output and displays nothing afterward.
+<span class="label label-important label-danger">Fix</span> Finally tracked down where that dastardly empty booking note was coming from.
+
+
 <h3>Jomres 9.25.1 01/11/2021</h3>
 
 <span class="label label-warning">Change</span> Added a check so that ajax calls don't attempt  to reset ip to 0.0.0.0 when checking consent form cookie.
