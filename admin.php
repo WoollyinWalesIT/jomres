@@ -45,8 +45,12 @@ try {
 	$jomres_properties = jomres_singleton_abstract::getInstance('jomres_properties');
 	$jomres_properties->get_all_properties();
 
+    //trigger 07090 event (see README/md)
+    $MiniComponents->triggerEvent('07090');
+
 	//language object - load default language file for context
 	$jomres_language = jomres_singleton_abstract::getInstance('jomres_language');
+    $jomres_language->init();
 	$jomres_language->get_language();
 
 	//custom text object
@@ -158,26 +162,27 @@ try {
 		$jrConfig['initial_setup_done'] = 0;
 	}
 
-    if (
-        get_showtime('task') != 'save_site_settings' &&
-        get_showtime('task') != 'site_settings' &&
-        get_showtime('task') != 'showplugins' &&
-        get_showtime('task') != 'addplugin' &&
-        get_showtime('task') != 'removeplugin' &&
-        get_showtime('task') != 'updates'
-    ) {
-        //jomres version update check
-        $output['VERSION_UPDATE_AVAILABLE'] = $MiniComponents->specificEvent('16000', 'jomres_update_check', array('output_now' => true));
-        if ( $output['VERSION_UPDATE_AVAILABLE'] != false ) {
-            return;
-        }
-        //jomres plugin update check
-        $output['PLUGIN_UPDATES_AVAILABLE'] = $MiniComponents->specificEvent('16000', 'jomres_plugin_update_check', array('output_now' => true));
-        if ( $output['PLUGIN_UPDATES_AVAILABLE'] != false ) {
-            return;
+    if ($jrConfig['development_production'] != 'development') {
+        if (
+            get_showtime('task') != 'save_site_settings' &&
+            get_showtime('task') != 'site_settings' &&
+            get_showtime('task') != 'showplugins' &&
+            get_showtime('task') != 'addplugin' &&
+            get_showtime('task') != 'removeplugin' &&
+            get_showtime('task') != 'updates'
+        ) {
+            //jomres version update check
+            $output['VERSION_UPDATE_AVAILABLE'] = $MiniComponents->specificEvent('16000', 'jomres_update_check', array('output_now' => true));
+            if ($output['VERSION_UPDATE_AVAILABLE'] != false) {
+                return;
+            }
+            //jomres plugin update check
+            $output['PLUGIN_UPDATES_AVAILABLE'] = $MiniComponents->specificEvent('16000', 'jomres_plugin_update_check', array('output_now' => true));
+            if ($output['PLUGIN_UPDATES_AVAILABLE'] != false) {
+                return;
+            }
         }
     }
-
 
 	//task
 	if ( $jrConfig['initial_setup_done'] == '0' && get_showtime('task') != 'save_initial_setup') {

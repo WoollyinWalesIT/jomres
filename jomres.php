@@ -69,6 +69,7 @@ try {
 
 	//language object - load default language file for context
 	$jomres_language = jomres_singleton_abstract::getInstance('jomres_language');
+    $jomres_language->init();
 	$jomres_language->get_language();
 
 	//custom text object - load all custom text
