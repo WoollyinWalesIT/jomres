@@ -1,3 +1,7 @@
+<h3>Jomres 10.1.1 07/01/2022</h3>
+
+<span class="label label-important label-danger">Fix</span> Fixed an issue where jQuery might not be initialised by Joomla 4. 
+
 <h3>Jomres 10.1 06/01/2022</h3>
 
 <span class="label label-success">Feature</span> Added functionality that allows us to have language plugins that are CMS agnostic

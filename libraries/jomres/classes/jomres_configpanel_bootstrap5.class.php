@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- * * @version Jomres 10.1.0
+* * @version Jomres 10.1.1
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -60,7 +60,7 @@ class jomres_configpanel_bootstrap5 extends jomres_content_tabs_bootstrap5
      */
     public function insertHeading($text = '', $type = 'h3')
     {
-        $this->content .= '<div class="row"><div class="col-12"><'.$type.'>'.$text.'</'.$type.'></div></div>';
+        $this->content .= '<div class="row"><div class="col-12"><'.$type.'>'.$text.'</'.$type.'><hr/></div></div>';
     }
 
     /**
@@ -85,5 +85,8 @@ class jomres_configpanel_bootstrap5 extends jomres_content_tabs_bootstrap5
     public function setright($val = '&nbsp;')
     {
         $this->right = $val;
+        if (trim($val) != '' && $val != '&nbsp;' ) {
+            $this->right .= '<hr/>';
+        }
     }
 }

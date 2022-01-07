@@ -16,7 +16,7 @@
  * Plugin Name:	   Jomres
  * Plugin URI:		https://www.jomres.net
  * Description:	   The complete online booking and property management solution for WordPress.
- * Version:		   10.1.0
+ * Version:		   10.1.1
  * Author:			Vince Wooll <support@jomres.net>
  * Author URI:		https://www.jomres.net
  * License:		   GPL-2.0+
