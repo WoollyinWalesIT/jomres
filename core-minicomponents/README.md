@@ -70,6 +70,7 @@ Jomres includes Access Control functionality, however we find that a more simpli
 07060 Used for building manager FAQs.  
 07070 Used for building administrator area FAQs.  
 07080 Used for building guest FAQs. Whilst the code to support these in place, currently there are no guest level FAQs.
+07090 Used for calling language file definition scripts before 00001 is triggered
 
 07300 Used to tell Webhook functionality that a given webhook exists, and some language strings and parameters  
 07310 Webhook trigger processing scripts. When a Webhook is called, these are the scripts that will actually authenticate with the remote site and pass the information of the action performed on this server. For tasks that *have* to be carried out now
