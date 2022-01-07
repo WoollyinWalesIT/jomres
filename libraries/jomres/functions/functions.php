@@ -1621,11 +1621,14 @@ function make_agent_link($property_id = 0)
 
     $image_filename = '';
     $contents = get_directory_contents(JOMRES_IMAGELOCATION_ABSPATH.'userimages'.JRDS.(int) $manager_id);
-    foreach ($contents as $file ) {
-        if ($file != '.' && $file != '..' && $file != 'medium' && $file != 'thumbnail' ) {
-            $image_filename = $file;
+    if ($contents !== false ) {
+        foreach ($contents as $file ) {
+            if ($file != '.' && $file != '..' && $file != 'medium' && $file != 'thumbnail' ) {
+                $image_filename = $file;
+            }
         }
     }
+
 	if ( $image_filename != '' && file_exists(JOMRES_IMAGELOCATION_ABSPATH.'userimages'.JRDS.(int) $manager_id.JRDS.'thumbnail'.JRDS.$image_filename)) {
 		$output[ 'IMAGE' ] = JOMRES_IMAGELOCATION_RELPATH.'userimages/'.(int) $manager_id.'/thumbnail/'.$image_filename;
 	}
