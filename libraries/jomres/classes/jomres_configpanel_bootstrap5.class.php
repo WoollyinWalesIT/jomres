@@ -60,7 +60,7 @@ class jomres_configpanel_bootstrap5 extends jomres_content_tabs_bootstrap5
      */
     public function insertHeading($text = '', $type = 'h3')
     {
-        $this->content .= '<div class="row"><div class="col-12"><'.$type.'>'.$text.'</'.$type.'></div></div>';
+        $this->content .= '<div class="row"><div class="col-12"><'.$type.'>'.$text.'</'.$type.'><hr/></div></div>';
     }
 
     /**
@@ -85,5 +85,8 @@ class jomres_configpanel_bootstrap5 extends jomres_content_tabs_bootstrap5
     public function setright($val = '&nbsp;')
     {
         $this->right = $val;
+        if (trim($val) != '' && $val != '&nbsp;' ) {
+            $this->right .= '<hr/>';
+        }
     }
 }
