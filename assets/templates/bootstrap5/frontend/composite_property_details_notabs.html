@@ -7,12 +7,29 @@
 		.ui-datepicker{
 			font-size: 100% !important;
 		}
+
+		.offcanvas-start {
+			width : 800px;
+		}
 	</style>
 
 	<div id="property_details" style="margin-top: 5px">
 		<div class="row alert alert-secondary">
 			<div class="pdetails-reviews ">{REVIEWS_SUMMARY} </div>
 		</div>
+
+		<!-- Inline level -->
+		<span class="d-inline-block text-truncate" style="max-width: 800px;">
+  			{DESCRIPTION}
+		</span>
+		<div class="row">
+			<div class="col-12 d-flex justify-content-center mb-3 mt-3">
+				<button class="btn btn-info  btn-lg" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDetails" aria-controls="offcanvasExample">
+					{TABCONTENT_01_MAIN_DETAILS_TITLE}
+				</button>
+			</div>
+		</div>
+
 		<div class="row">
 			<div id="" class="col-12 col-md-12 col-lg-12 col-xl-12">
 				<div class="card bg-light card-body mb-3">{SLIDESHOW}</div>
@@ -63,115 +80,125 @@
 		<div class="clearfix"></div>
 		<p>&#xA0;</p>
 		</pattemplate:comment>
-		<div class="card">
-			<div class="card-header">
-				<h2 class="card-title">{TABCONTENT_01_MAIN_DETAILS_TITLE}</h2>
+
+
+		<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasDetails" aria-labelledby="offcanvasPropertyDetails">
+			<div class="offcanvas-header">
+				<h5 class="offcanvas-title" id="offcanvasPropertyDetails">{TABCONTENT_01_MAIN_DETAILS_TITLE}</h5>
+				<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 			</div>
-			<div class="card-body">{TABCONTENT_01_MAIN_DETAILS_CONTENT}</div>
-		</div>
-		<div class="card">
-			<div class="card-header">
-				<h2 class="card-title">{TABCONTENT_01_MORE_INFO_TITLE}</h2>
-			</div>
-			<div class="card-body">{TABCONTENT_01_MORE_INFO_CONTENT}</div>
-		</div>
-		<pattemplate:tmpl name="extras_output" type="simpleCondition" requiredvars="tabcontent_06_extras_content" unusedvars="nbsp">
-			<div class="card">
-				<div class="card-header">
-					<h2 class="card-title">{TABCONTENT_06_EXTRAS_TITLE}</h2>
+			<div class="offcanvas-body">
+				<div class="card">
+					<div class="card-body">{TABCONTENT_01_MAIN_DETAILS_CONTENT}</div>
 				</div>
-				<div class="card-body">{TABCONTENT_06_EXTRAS_CONTENT}</div>
-			</div>
-		</pattemplate:tmpl>
-		<pattemplate:tmpl name="map_output" type="simpleCondition" requiredvars="tabcontent_02_map_title" unusedvars="nbsp">
-			<div class="card">
-				<div class="card-header">
-					<h2 class="card-title">{TABCONTENT_02_MAP_TITLE}</h2>
+				<div class="card">
+					<div class="card-header">
+						<h2 class="card-title">{TABCONTENT_01_MORE_INFO_TITLE}</h2>
+					</div>
+					<div class="card-body">{TABCONTENT_01_MORE_INFO_CONTENT}</div>
 				</div>
-				<div class="card-body">{TABCONTENT_02_MAP_CONTENT}</div>
-			</div>
-		</pattemplate:tmpl>
-		<div class="card">
-			<div class="card-header">
-				<h2 class="card-title">{TABCONTENT_03_REVIEWS_TITLE}</h2>
-			</div>
-			<div class="card-body">{TABCONTENT_03_REVIEWS_CONTENT}</div>
-		</div>
-		<h2>{TABCONTENT_02_BOOKINGFORM_TITLE}</h2>
-		{TABCONTENT_02_BOOKINGFORM_CONTENT}
-		<div class="tabbable">
-			<ul class="nav nav-tabs">
-				<pattemplate:tmpl name="tabs_titles">
-					<li class="nav-item {ACTIVE}">
-						<a href="#{TAB_ANCHOR}" class="nav-link" data-bs-toggle="tab" id="{TAB_ID}">{TAB_TITLE}</a>
-					</li>
+				<pattemplate:tmpl name="extras_output" type="simpleCondition" requiredvars="tabcontent_06_extras_content" unusedvars="nbsp">
+					<div class="card">
+						<div class="card-header">
+							<h2 class="card-title">{TABCONTENT_06_EXTRAS_TITLE}</h2>
+						</div>
+						<div class="card-body">{TABCONTENT_06_EXTRAS_CONTENT}</div>
+					</div>
 				</pattemplate:tmpl>
-			</ul>
-			<div class="tab-content">
-				<pattemplate:tmpl name="tabs_content">
-					<div class="tab-pane {ACTIVE}" id="{TAB_ANCHOR}">{TAB_CONTENT}</div>
+				<pattemplate:tmpl name="map_output" type="simpleCondition" requiredvars="tabcontent_02_map_title" unusedvars="nbsp">
+					<div class="card">
+						<div class="card-header">
+							<h2 class="card-title">{TABCONTENT_02_MAP_TITLE}</h2>
+						</div>
+						<div class="card-body">{TABCONTENT_02_MAP_CONTENT}</div>
+					</div>
 				</pattemplate:tmpl>
-			</div>
-		</div>
-	</div>
-	<pattemplate:comment>See below for more output that potentially can be used in this page</pattemplate:comment>
-	<pattemplate:comment>
-		<div class="navbar navbar-fixed-bottom navbar-expand-md">
-			<div class="btn-toolbar">
-				<div class="btn-group">	<a href="{COMMON_THIS_PAGE_URL}#{COMMON_HOME|urlencode}" class="btn btn-info">{COMMON_HOME}</a>
-					<a
-							href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_01_MAIN_DETAILS_TABTITLE|urlencode}"
-							class="btn btn-info">{TABCONTENT_01_MAIN_DETAILS_TABTITLE}</a>	<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_01_MORE_INFO_TABTITLE|urlencode}"
-					                                                                             class="btn btn-info">{TABCONTENT_01_MORE_INFO_TABTITLE}</a>
-					<!-- <a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_02_BOOKINGFORM_TABTITLE|urlencode}"
-					class="btn btn-info">{TABCONTENT_02_BOOKINGFORM_TABTITLE}</a> -->	<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_02_MAP_TABTITLE|urlencode}"
-					                                                                            class="btn btn-info">{TABCONTENT_02_MAP_TABTITLE}</a>
-					<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_03_CONTACT_TABTITLE|urlencode}"
-					   class="btn btn-info">{TABCONTENT_03_CONTACT_TABTITLE}</a>
-					<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_03_REVIEWS_TABTITLE|urlencode}"
-					   class="btn btn-info">{TABCONTENT_03_REVIEWS_TABTITLE}</a>
-					<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_05_TARIFFS_TABTITLE|urlencode}"
-					   class="btn btn-info">{TABCONTENT_05_TARIFFS_TABTITLE}</a>
-					<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_04_ROOMSLIST_TABTITLE|urlencode}"
-					   class="btn btn-info">{TABCONTENT_04_ROOMSLIST_TABTITLE}</a>
-					<!--<a href="{COMMON_THIS_PAGE_URL}#{XDISQUS_TABTITLE|urlencode}"
-					class="btn btn-info">{XDISQUS_TABTITLE}</a>-->
+				<div class="card">
+					<div class="card-header">
+						<h2 class="card-title">{TABCONTENT_03_REVIEWS_TITLE}</h2>
+					</div>
+					<div class="card-body">{TABCONTENT_03_REVIEWS_CONTENT}</div>
+				</div>
+				<h2>{TABCONTENT_02_BOOKINGFORM_TITLE}</h2>
+				{TABCONTENT_02_BOOKINGFORM_CONTENT}
+				<div class="tabbable">
+					<ul class="nav nav-tabs">
+						<pattemplate:tmpl name="tabs_titles">
+							<li class="nav-item {ACTIVE}">
+								<a href="#{TAB_ANCHOR}" class="nav-link" data-bs-toggle="tab" id="{TAB_ID}">{TAB_TITLE}</a>
+							</li>
+						</pattemplate:tmpl>
+					</ul>
+					<div class="tab-content">
+						<pattemplate:tmpl name="tabs_content">
+							<div class="tab-pane {ACTIVE}" id="{TAB_ANCHOR}">{TAB_CONTENT}</div>
+						</pattemplate:tmpl>
+					</div>
 				</div>
 			</div>
+			<pattemplate:comment>See below for more output that potentially can be used in this page</pattemplate:comment>
+			<pattemplate:comment>
+				<div class="navbar navbar-fixed-bottom navbar-expand-md">
+					<div class="btn-toolbar">
+						<div class="btn-group">	<a href="{COMMON_THIS_PAGE_URL}#{COMMON_HOME|urlencode}" class="btn btn-info">{COMMON_HOME}</a>
+							<a
+									href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_01_MAIN_DETAILS_TABTITLE|urlencode}"
+									class="btn btn-info">{TABCONTENT_01_MAIN_DETAILS_TABTITLE}</a>	<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_01_MORE_INFO_TABTITLE|urlencode}"
+																										 class="btn btn-info">{TABCONTENT_01_MORE_INFO_TABTITLE}</a>
+							<!-- <a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_02_BOOKINGFORM_TABTITLE|urlencode}"
+                            class="btn btn-info">{TABCONTENT_02_BOOKINGFORM_TABTITLE}</a> -->	<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_02_MAP_TABTITLE|urlencode}"
+																							class="btn btn-info">{TABCONTENT_02_MAP_TABTITLE}</a>
+							<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_03_CONTACT_TABTITLE|urlencode}"
+							   class="btn btn-info">{TABCONTENT_03_CONTACT_TABTITLE}</a>
+							<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_03_REVIEWS_TABTITLE|urlencode}"
+							   class="btn btn-info">{TABCONTENT_03_REVIEWS_TABTITLE}</a>
+							<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_05_TARIFFS_TABTITLE|urlencode}"
+							   class="btn btn-info">{TABCONTENT_05_TARIFFS_TABTITLE}</a>
+							<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_04_ROOMSLIST_TABTITLE|urlencode}"
+							   class="btn btn-info">{TABCONTENT_04_ROOMSLIST_TABTITLE}</a>
+							<!--<a href="{COMMON_THIS_PAGE_URL}#{XDISQUS_TABTITLE|urlencode}"
+                            class="btn btn-info">{XDISQUS_TABTITLE}</a>-->
+						</div>
+					</div>
+				</div>
+				<h2><a name="{TABCONTENT_01_MAIN_DETAILS_TABTITLE|urlencode}" class="text-info">{TABCONTENT_01_MAIN_DETAILS_TABTITLE}</a>
+
+				</h2>
+				<div class="card bg-light card-body mb-3">{TABCONTENT_01_MAIN_DETAILS_TAB_CONTENT}</div>
+				<h2><a name="{TABCONTENT_01_MORE_INFO_TABTITLE|urlencode}">{TABCONTENT_01_MORE_INFO_TABTITLE}</a></h2>
+				<div class="card bg-light card-body mb-3">{TABCONTENT_01_MORE_INFO_TAB_CONTENT}</div>
+				<pattemplate:comment>// Assumes that the option to show the booking form in the property details
+					is set to Yes</pattemplate:comment>
+				<h2><a name="{TABCONTENT_02_BOOKINGFORM_TABTITLE|urlencode}">{TABCONTENT_02_BOOKINGFORM_TABTITLE}</a></h2>
+				<div class="card bg-light card-body mb-3">{TABCONTENT_02_BOOKINGFORM_TAB_CONTENT}</div>
+				<h2><a name="{TABCONTENT_02_MAP_TABTITLE|urlencode}">{TABCONTENT_02_MAP_TABTITLE}</a></h2>
+				<div class="card bg-light card-body mb-3">{TABCONTENT_02_MAP_TAB_CONTENT}</div>
+				<pattemplate:comment>// Assumes that contact form in tabs plugin is installed</pattemplate:comment>
+				<h2><a name="{TABCONTENT_03_CONTACT_TABTITLE|urlencode}">{TABCONTENT_03_CONTACT_TABTITLE}</a></h2>
+				<div class="card bg-light card-body mb-3">{TABCONTENT_03_CONTACT_TAB_CONTENT}</div>
+				<h2><a name="{TABCONTENT_03_REVIEWS_TABTITLE|urlencode}">{TABCONTENT_03_REVIEWS_TABTITLE}</a></h2>
+				<div class="card bg-light card-body mb-3">{TABCONTENT_03_REVIEWS_TAB_CONTENT}</div>
+				<h2><a name="{TABCONTENT_05_TARIFFS_TABTITLE|urlencode}">{TABCONTENT_05_TARIFFS_TABTITLE}</a></h2>
+				<div class="card bg-light card-body mb-3">{TABCONTENT_05_TARIFFS_TAB_CONTENT}</div>
+				<h2><a name="{TABCONTENT_04_ROOMSLIST_TABTITLE|urlencode}">{TABCONTENT_04_ROOMSLIST_TABTITLE}</a></h2>
+				<div class="card bg-light card-body mb-3">{TABCONTENT_04_ROOMSLIST_TAB_CONTENT}</div>
+				<!-- <patTemplate:comment>// Assumes that Comments Tab Disqus plugin is installed</patTemplate:comment>
+
+            <h2><a name="{XDISQUS_TABTITLE|urlencode}">{XDISQUS_TABTITLE}</a></h2>
+
+            <div class="card bg-light card-body mb-3">
+
+                {XDISQUS_TAB_CONTENT}
+
+            </div>
+
+            -->
+			</pattemplate:comment>
+			</div>
 		</div>
-		<h2><a name="{TABCONTENT_01_MAIN_DETAILS_TABTITLE|urlencode}" class="text-info">{TABCONTENT_01_MAIN_DETAILS_TABTITLE}</a>
 
-		</h2>
-		<div class="card bg-light card-body mb-3">{TABCONTENT_01_MAIN_DETAILS_TAB_CONTENT}</div>
-		<h2><a name="{TABCONTENT_01_MORE_INFO_TABTITLE|urlencode}">{TABCONTENT_01_MORE_INFO_TABTITLE}</a></h2>
-		<div class="card bg-light card-body mb-3">{TABCONTENT_01_MORE_INFO_TAB_CONTENT}</div>
-		<pattemplate:comment>// Assumes that the option to show the booking form in the property details
-			is set to Yes</pattemplate:comment>
-		<h2><a name="{TABCONTENT_02_BOOKINGFORM_TABTITLE|urlencode}">{TABCONTENT_02_BOOKINGFORM_TABTITLE}</a></h2>
-		<div class="card bg-light card-body mb-3">{TABCONTENT_02_BOOKINGFORM_TAB_CONTENT}</div>
-		<h2><a name="{TABCONTENT_02_MAP_TABTITLE|urlencode}">{TABCONTENT_02_MAP_TABTITLE}</a></h2>
-		<div class="card bg-light card-body mb-3">{TABCONTENT_02_MAP_TAB_CONTENT}</div>
-		<pattemplate:comment>// Assumes that contact form in tabs plugin is installed</pattemplate:comment>
-		<h2><a name="{TABCONTENT_03_CONTACT_TABTITLE|urlencode}">{TABCONTENT_03_CONTACT_TABTITLE}</a></h2>
-		<div class="card bg-light card-body mb-3">{TABCONTENT_03_CONTACT_TAB_CONTENT}</div>
-		<h2><a name="{TABCONTENT_03_REVIEWS_TABTITLE|urlencode}">{TABCONTENT_03_REVIEWS_TABTITLE}</a></h2>
-		<div class="card bg-light card-body mb-3">{TABCONTENT_03_REVIEWS_TAB_CONTENT}</div>
-		<h2><a name="{TABCONTENT_05_TARIFFS_TABTITLE|urlencode}">{TABCONTENT_05_TARIFFS_TABTITLE}</a></h2>
-		<div class="card bg-light card-body mb-3">{TABCONTENT_05_TARIFFS_TAB_CONTENT}</div>
-		<h2><a name="{TABCONTENT_04_ROOMSLIST_TABTITLE|urlencode}">{TABCONTENT_04_ROOMSLIST_TABTITLE}</a></h2>
-		<div class="card bg-light card-body mb-3">{TABCONTENT_04_ROOMSLIST_TAB_CONTENT}</div>
-		<!-- <patTemplate:comment>// Assumes that Comments Tab Disqus plugin is installed</patTemplate:comment>
 
-	<h2><a name="{XDISQUS_TABTITLE|urlencode}">{XDISQUS_TABTITLE}</a></h2>
 
-	<div class="card bg-light card-body mb-3">
-
-		{XDISQUS_TAB_CONTENT}
-
-	</div>
-
-	-->
-	</pattemplate:comment>
 
 
 	<pattemplate:comment>More stuff that can be used on this page {BOOKING_FORM} // Yes, that booking

@@ -356,6 +356,8 @@ class j06000viewproperty
 			$tmpl->addRows('tabs_content', $tab_contents);
 		}
 
+        $output['DESCRIPTION'] = $current_property_details->property_description;
+
 		//all output is built by now, so let`s display the page
 		$pageoutput[] = $output;
 
