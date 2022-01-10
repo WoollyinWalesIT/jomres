@@ -80,7 +80,7 @@ class jomresItemToolbar
 		$title = str_replace("'", "\'", $title);
 		$title = str_replace('&#39;', "\'", $title);
 		
-		if ( $this->bs_version == '4' ) {
+		if ( $this->bs_version == '5' ) {
 			$item = '<a class="dropdown-item" href="'.$link.'"><i class="'.$icon.'"></i> '.$title.'</a> ';
 		} else {
 			$item = '<a tabindex="-1" href="'.$link.'"><i class="'.$icon.'"></i> '.$title.'</a> ';
