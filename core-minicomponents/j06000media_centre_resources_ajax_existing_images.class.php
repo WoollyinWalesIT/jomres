@@ -49,11 +49,11 @@ class j06000media_centre_resources_ajax_existing_images
 
 		$resource_type = jomresGetParam($_REQUEST, 'resource_type', '');
 		$resource_id = jomresGetParam($_REQUEST, 'resource_id', '0');
-		
+
 		//if resource type is empty, return
 		if ($resource_type == '')
 			return;
-		
+
 		//get_existing_images_trigger
 		if (jomres_cmsspecific_areweinadminarea()) {
 			$images = $MiniComponents->specificEvent('11040', $resource_type);
@@ -70,6 +70,7 @@ class j06000media_centre_resources_ajax_existing_images
 		$image_result = '';
 		if (!empty($images)) {
 			foreach ($images as $image) {
+
 				if ( isset( $image['small'] ) ) {
 					$image_name = basename($image['small']);
 
@@ -103,6 +104,7 @@ class j06000media_centre_resources_ajax_existing_images
 					} else {
 						$tmpl->setRoot(JOMRES_TEMPLATEPATH_BACKEND);
 					}
+
 					$tmpl->readTemplatesFromInput('media_centre_image_list.html');
 					$tmpl->addRows('pageoutput', $pageoutput);
 					$image_result .= $tmpl->getParsedTemplate();					

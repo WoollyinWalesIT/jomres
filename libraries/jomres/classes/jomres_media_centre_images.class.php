@@ -133,6 +133,9 @@ class jomres_media_centre_images
 		//extras images
 		$this->images['extras'] = array();
 
+        //property type images
+        $this->images['property_type'] = array();
+
 		//populate the images array
 		foreach ($this->multi_query_images[$property_id] as $k => $v) {
 			$this->images[ $k ] = $v;
@@ -357,7 +360,7 @@ class jomres_media_centre_images
 		if ($type == '') {
 			return false;
 		}
-		
+
 		// check if we already have images for this $type
 		if (isset($this->site_images[$type])) {
 			return true;
@@ -369,7 +372,7 @@ class jomres_media_centre_images
 			$MiniComponents = jomres_getSingleton('mcHandler');
 			$MiniComponents->triggerEvent('11010');
 			$resource_types = $MiniComponents->miniComponentData['11010'];
-			
+
 			if (empty($resource_types))
 				return false;
 
@@ -385,7 +388,6 @@ class jomres_media_centre_images
 
 			if ($resource_types[$type]['resource_id_required']) {
 				$dir_contents = scandir_getdirectories($base_path);
-
 				foreach ($dir_contents as $resouce_id) {
 					$resource_images = scandir_getfiles($base_path.$resouce_id.JRDS);
 
