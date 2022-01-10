@@ -171,11 +171,6 @@ try {
             get_showtime('task') != 'removeplugin' &&
             get_showtime('task') != 'updates'
         ) {
-            //jomres version update check
-            $output['VERSION_UPDATE_AVAILABLE'] = $MiniComponents->specificEvent('16000', 'jomres_update_check', array('output_now' => true));
-            if ($output['VERSION_UPDATE_AVAILABLE'] != false) {
-                return;
-            }
             //jomres plugin update check
             $output['PLUGIN_UPDATES_AVAILABLE'] = $MiniComponents->specificEvent('16000', 'jomres_plugin_update_check', array('output_now' => true));
             if ($output['PLUGIN_UPDATES_AVAILABLE'] != false) {

@@ -123,6 +123,11 @@ class j07310watcher_authmethod_process_app_server
 	
 	private function send_notification_to_app_server(  $context = '' , $endpoint = '' , $data = '' )
 	{
+
+    if ($data == '' ) {
+        return false;
+    }
+        
 	try {
 		$client = new GuzzleHttp\Client();
 		
