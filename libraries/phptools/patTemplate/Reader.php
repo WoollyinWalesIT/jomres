@@ -772,7 +772,8 @@ class patTemplate_Reader extends patTemplate_Module
 		 */
 		if ( isset( $this->_templates[ $name ] ) || $this->_tmpl->exists( $name ) )
 			{
-			patErrorManager::raiseNotice( PATTEMPLATE_READER_NOTICE_TEMPLATE_EXISTS, $this->_createErrorMessage( "Template $name already exists" ), $name );
+                $error_manager = new patErrorManager();
+                $error_manager->raiseNotice( PATTEMPLATE_READER_NOTICE_TEMPLATE_EXISTS, $this->_createErrorMessage( "Template $name already exists" ), $name );
 			}
 
 		/**

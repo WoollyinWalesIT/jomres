@@ -149,7 +149,7 @@ class patError
 	 */
 	function patError( $level, $code, $msg, $info = null )
 		{
-		static $raise = array ( 'raise', 'raiseerror', 'raisewarning', 'raisenotice' );
+		$raise = array ( 'raise', 'raiseerror', 'raisewarning', 'raisenotice' );
 
 		$this->level   = $level;
 		$this->code    = $code;
