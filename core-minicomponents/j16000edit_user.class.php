@@ -57,7 +57,12 @@ class j16000edit_user
 			$username				= $jomres_users->username;
 			$disabled 				= 'disabled="disabled"';
 			$new_api_key_link 		= '<a href="' . JOMRES_SITEPAGE_URL_ADMIN . '&task=generate_user_api_key&cms_user_id=' . $cms_user_id . '" class="btn btn-default">' . jr_gettext( "_JOMRES_APIKEY_REMAKE", '_JOMRES_APIKEY_REMAKE', false ) . '</a>';
-			$cms_user_profile_link	= '<a href="' . jomres_cmsspecific_getCmsUserProfileLink($jomres_users->id) . '" class="btn btn-default" target="_blank">' . jr_gettext( "EDIT_CMS_USER", 'EDIT_CMS_USER', false ) . '</a>';
+            $cms_user_profile_link	= '<a href="' . jomres_cmsspecific_getCmsUserProfileLink($jomres_users->id) . '" class="btn btn-default" target="_blank">' . jr_gettext( "EDIT_CMS_USER", 'EDIT_CMS_USER', false ) . '</a>';
+                if ( jomres_bootstrap_version() == 5) {
+                    $new_api_key_link 		= '<a href="' . JOMRES_SITEPAGE_URL_ADMIN . '&task=generate_user_api_key&cms_user_id=' . $cms_user_id . '" class="btn btn-outline-secondary">' . jr_gettext( "_JOMRES_APIKEY_REMAKE", '_JOMRES_APIKEY_REMAKE', false ) . '</a>';
+                    $cms_user_profile_link	= '<a href="' . jomres_cmsspecific_getCmsUserProfileLink($cms_user_id) . '" class="btn btn-outline-secondary" target="_blank">' . jr_gettext( "EDIT_CMS_USER", 'EDIT_CMS_USER', false ) . '</a>';
+
+                }
 			}
 		else
 			{

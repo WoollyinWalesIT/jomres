@@ -800,8 +800,7 @@ function jomres_cmsspecific_getCmsUserProfileLink($cms_user_id = 0) {
         return '#';
     }
 
-    $url = JURI::base().'index.php?option=com_users&view=user&layout=edit&id='.$cms_user_id;
-
+    $url = JURI::base().'index.php?option=com_users&task=user.edit&id='.$cms_user_id;
     return $url;
 }
 
