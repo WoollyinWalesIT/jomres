@@ -80,7 +80,7 @@ class currency_codes
 			'FJD' => 'Fiji Dollar FJD ', 
 			'XPF' => 'Franc Pacifique XPF ',
 			'GEL' => 'Georgian Lari',
-			'GBP' => 'Great British Pound GBP ', 
+			'GBP' => 'Pound Sterling GBP ',
 			'GMD' => 'Gambian Dalasi GMD ', 
 			'GHC' => 'Ghanaian Cedi GHC ', 
 			'GIP' => 'Gibraltar Pound GIP ', 
