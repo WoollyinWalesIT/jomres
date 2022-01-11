@@ -2674,4 +2674,5 @@ jr_define ("PLUGIN_UPDATE_MESSAGE_MESSAGE2" , "إذا لم يعد ترخيصك �
 
 jr_define ('PLUGIN_UPDATE_MESSAGE1_LINK', 'تحديث المكونات الإضافية') ;
 jr_define ('PLUGIN_UPDATE_MESSAGE2_LINK1', 'الحصول على مفتاح جديد') ;
-jr_define ('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Save new key');
+jr_define ('PLUGIN_UPDATE_MESSAGE2_LINK2', 'حفظ المفتاح الجديد');
+
