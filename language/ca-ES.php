@@ -2664,3 +2664,5 @@ jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'Si la vostra llicència ja no és v
 jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Actualitza els connectors');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Obtén una clau nova');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Desa la clau nova');
+
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Imatges de tipus de propietat");

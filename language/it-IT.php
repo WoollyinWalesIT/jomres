@@ -2703,3 +2703,5 @@ jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'Se la tua licenza non è più valid
 jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Aggiorna plugin');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Ottieni nuova chiave');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Salva nuova chiave');
+
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Immagini di tipo proprietà");

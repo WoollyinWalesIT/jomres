@@ -2684,3 +2684,5 @@ jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'Ako vaša licenca više nije važe�
 jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Ažuriraj dodatke');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Nabavi novi ključ');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Spremi novi ključ');
+
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Slike vrste svojstva");

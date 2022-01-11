@@ -2669,3 +2669,5 @@ jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'Ak vaša licencia už nie je platn�
 jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Aktualizovať doplnky');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Získať nový kľúč');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Uložiť nový kľúč');
+
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Obrázky typu nehnuteľnosti");

@@ -2702,3 +2702,5 @@ jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'Wenn Ihre Lizenz nicht mehr gültig
 jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Plugins aktualisieren');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Neuen Schlüssel holen');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Neuen Schlüssel speichern');
+
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Eigenschaftstypbilder");

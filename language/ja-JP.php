@@ -2642,3 +2642,5 @@ jr_define( 'PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'ライセンスが無効になっ�
 jr_define( 'PLUGIN_UPDATE_MESSAGE1_LINK', 'プラグインの更新');
 jr_define( 'PLUGIN_UPDATE_MESSAGE2_LINK1', '新しいキーを取得');
 jr_define( 'PLUGIN_UPDATE_MESSAGE2_LINK2', '新しいキーを保存');
+
+jr_define( '_ JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES', "プロパティタイプの画像");

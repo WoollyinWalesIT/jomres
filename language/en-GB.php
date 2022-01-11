@@ -2586,3 +2586,4 @@ jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Update plugins');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Get new key');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Save new key');
 
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Property type images");

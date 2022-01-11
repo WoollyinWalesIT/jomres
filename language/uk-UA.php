@@ -2599,3 +2599,5 @@ jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'Якщо ваша ліцензія 
 jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Оновити плагіни');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Отримати новий ключ');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Зберегти новий ключ');
+
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Зображення типів властивостей");

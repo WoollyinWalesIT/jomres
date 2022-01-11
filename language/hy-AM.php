@@ -3326,3 +3326,5 @@ jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'Եթե ձեր լիցենզիան ա
 jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Թարմացնել պլագինները');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Ստանալ նոր բանալի');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Պահպանել նոր բանալին');
+
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Հատկության տեսակի պատկերներ");

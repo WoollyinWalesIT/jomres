@@ -2676,3 +2676,4 @@ jr_define ('PLUGIN_UPDATE_MESSAGE1_LINK', 'تحديث المكونات الإض�
 jr_define ('PLUGIN_UPDATE_MESSAGE2_LINK1', 'الحصول على مفتاح جديد') ;
 jr_define ('PLUGIN_UPDATE_MESSAGE2_LINK2', 'حفظ المفتاح الجديد');
 
+jr_define ('_ JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES', "صور نوع الخاصية") ;

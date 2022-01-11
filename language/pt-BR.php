@@ -2680,3 +2680,5 @@ jr_define ('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'Se sua licença não for mais vál
 jr_define ('PLUGIN_UPDATE_MESSAGE1_LINK', 'Atualizar plugins');
 jr_define ('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Obter nova chave');
 jr_define ('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Salvar nova chave');
+
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Imagens de tipo de propriedade");

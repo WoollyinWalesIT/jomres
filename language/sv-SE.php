@@ -2643,3 +2643,5 @@ jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'Om din licens inte längre är gilt
 jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Uppdatera plugins');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Hämta ny nyckel');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Spara ny nyckel');
+
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Egenskapstypbilder");

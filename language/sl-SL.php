@@ -2654,3 +2654,5 @@ jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'Če vaša licenca ni več veljavna,
 jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Posodobi vtičnike');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Pridobi nov ključ');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Shrani nov ključ');
+
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Slike vrste lastnosti");

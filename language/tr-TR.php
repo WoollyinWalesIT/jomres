@@ -2645,3 +2645,5 @@ jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'Lisansınız artık geçerli değil
 jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Eklentileri güncelleyin');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Yeni anahtar al');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Yeni anahtarı kaydet');
+
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Mülk tipi resimler");

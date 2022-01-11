@@ -2680,3 +2680,4 @@ jr_define ('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Guardar nueva clave');
 jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS',"Mostrar filtros");
 jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS',"Ocultar filtros");
 
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Imágenes de tipo de propiedad");

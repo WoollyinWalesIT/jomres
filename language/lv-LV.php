@@ -2644,3 +2644,5 @@ jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'Ja jūsu licence vairs nav derīga,
 jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Atjaunināt spraudņus');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Iegūt jaunu atslēgu');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Saglabāt jauno atslēgu');
+
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Īpašuma tipa attēli");

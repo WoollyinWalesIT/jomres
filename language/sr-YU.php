@@ -2673,3 +2673,5 @@ jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Put your social media account names
 jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Comma seperated list of languages your organisation speaks');
 jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'Url to your organisation logo');
 
+
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Property type images");

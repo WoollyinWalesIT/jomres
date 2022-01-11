@@ -2680,3 +2680,5 @@ jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'Εάν η άδειά σας δεν 
 jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Ενημέρωση προσθηκών');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Λήψη νέου κλειδιού');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Αποθήκευση νέου κλειδιού');
+
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Εικόνες τύπου ιδιότητας");

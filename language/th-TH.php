@@ -2620,3 +2620,5 @@ jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'หากใบอนุญาต�
 jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'อัปเดตปลั๊กอิน');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'รับรหัสใหม่');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'บันทึกคีย์ใหม่');
+
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"รูปภาพประเภทพร็อพเพอร์ตี้");

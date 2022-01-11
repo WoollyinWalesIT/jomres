@@ -2653,3 +2653,5 @@ jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', '如果您的许可证不再有效�
 jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', '更新插件');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', '获取新密钥');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', '保存新密钥');
+
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"属性类型图像");

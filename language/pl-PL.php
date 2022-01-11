@@ -2661,3 +2661,5 @@ jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'Jeśli Twoja licencja nie jest już
 jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Aktualizuj wtyczki');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Pobierz nowy klucz');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Zapisz nowy klucz');
+
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Obrazy typu właściwości");

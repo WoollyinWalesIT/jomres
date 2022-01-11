@@ -2746,3 +2746,5 @@ jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'اگر مجوز شما دیگر م�
 jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'به روز رسانی پلاگین ها');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'دریافت کلید جدید');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'ذخیره کلید جدید');
+
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"تصاویر نوع ویژگی");
