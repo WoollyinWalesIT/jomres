@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.1
+* * @version Jomres 10.1.2
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2680,3 +2680,5 @@ jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'Εάν η άδειά σας δεν 
 jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Ενημέρωση προσθηκών');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Λήψη νέου κλειδιού');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Αποθήκευση νέου κλειδιού');
+
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Εικόνες τύπου ιδιότητας");

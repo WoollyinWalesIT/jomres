@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.1
+* * @version Jomres 10.1.2
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2661,3 +2661,5 @@ jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'Jeśli Twoja licencja nie jest już
 jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Aktualizuj wtyczki');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Pobierz nowy klucz');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Zapisz nowy klucz');
+
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Obrazy typu właściwości");

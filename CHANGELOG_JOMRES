@@ -1,3 +1,15 @@
+
+<span class="label label-success">Feature</span> Added ability to upload property type images (at last!)
+<span class="label label-success">Feature</span> Modified composite property details. Now details are in offcanvas sidebar. Declutters the main property page.
+
+<span class="label label-warning">Change</span> Updated edit manager page to improve markup and link to cms user edit page
+<span class="label label-warning">Change</span> Tweaked secondaryItem to make BS5 button.
+<span class="label label-warning">Change</span> Renamed GBP to Sterling because the old name was annoying me.
+
+<span class="label label-important label-danger">Fix</span> Disabled forced version check in admin area because it doesn't work well on WP.
+<span class="label label-important label-danger">Fix</span> Fix php8 error in patTemplate reader script
+<span class="label label-important label-danger">Fix</span> Added some missing definitions to spanish language file
+
 <h3>Jomres 10.1.1 07/01/2022</h3>
 
 <span class="label label-important label-danger">Fix</span> Fixed an issue where jQuery might not be initialised by Joomla 4. 

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.1
+* * @version Jomres 10.1.2
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -355,6 +355,8 @@ class j06000viewproperty
 			$tmpl->addRows('tabs_titles', $tab_titles);
 			$tmpl->addRows('tabs_content', $tab_contents);
 		}
+
+        $output['DESCRIPTION'] = $current_property_details->property_description;
 
 		//all output is built by now, so let`s display the page
 		$pageoutput[] = $output;

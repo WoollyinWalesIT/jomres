@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.1
+* * @version Jomres 10.1.2
  *
  * @copyright	2005-2022 Vince Wooll
  * Translation to fr-FR by Stéphane Bernard, Valtari NumAgency, France - last update : 19/11/2019 - https://www.valtari.fr
@@ -2440,3 +2440,5 @@ jr_define('PLUGIN_UPDATE_MESSAGE_MESSAGE2', 'Si votre licence n\'est plus valide
 jr_define('PLUGIN_UPDATE_MESSAGE1_LINK', 'Mettre à jour les plugins');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Obtenir une nouvelle clé');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Enregistrer la nouvelle clé');
+
+jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Images de type de propriété");
