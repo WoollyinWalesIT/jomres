@@ -57,7 +57,12 @@ class j16000translate_lang_file_strings
 		$jomres_property_types = jomres_singleton_abstract::getInstance('jomres_property_types');
 		
 		$jomres_language_definitions = jomres_singleton_abstract::getInstance('jomres_language_definitions');
-		
+
+        $jomres_language = jomres_singleton_abstract::getInstance('jomres_language');
+        $jomres_language->get_language('faq');
+        $jomres_language->get_language('shotcodes');
+        $jomres_language->get_language('video_tutorials');
+
 		$javascript = 'onchange="switch_language_context(this.value);"';
 
 		echo '<h2 class="page-header">'.jr_gettext('_JOMRES_TOUCHTEMPLATES', '_JOMRES_TOUCHTEMPLATES', false).' - '.get_showtime('lang').'</h2>';
