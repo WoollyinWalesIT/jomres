@@ -1113,7 +1113,16 @@ function jomres_bootstrap_version()
 			$siteConfig->update_setting('bootstrap_version', 5  );
 			$siteConfig->save_config();
         }
+
+        // It's a site updated from BS3
+        if ($jrConfig[ 'bootstrap_version' ] == '3' ) {
+            $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+            $siteConfig->update_setting('bootstrap_version', 5  );
+            $siteConfig->save_config();
+        }
+
 		$bootstrap_version = '5';
+
 	} elseif  ( jomres_cmsspecific_areweinadminarea() && _JOMRES_DETECTED_CMS == 'joomla3' ) {
 		$bootstrap_version = '2';
 	} elseif ( this_cms_is_wordpress() ) { // We are in Wordpress, so we'll automatically set the BS version to 2 if in admin, or BS3 in frontend as the init config vars functionality will autoload the BS3 scripts in the frontend
