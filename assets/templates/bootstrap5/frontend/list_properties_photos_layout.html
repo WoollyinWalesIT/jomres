@@ -12,9 +12,10 @@
 </div>
 </patTemplate:comment>
 
-<div class="row">
+	<div class="card-group">
 	<patTemplate:tmpl name="property_details" unusedvars="strip">
-		<div class="jomres_property_list_propertywrapper photo-view col-xs-12 col-sm-12 col-md-6 col-lg-4 card" id="{UID}">
+
+		<div class=" photo-view col-12 card" id="{UID}">
 			<div class="card-body {BUDGET_BORDER_CLASS} {FEATURED_LISTINGS_CLASS}">
 				<div class="card-title">
 						<a href="{MOREINFORMATIONLINK}" title="{PROPERTY_NAME_FULL}" >{PROP_NAME}</a>
@@ -78,17 +79,19 @@
 					<div class="{LASTBOOKING_STYLE}">{LASTBOOKED}</div>
 				</div>
 			</div>
+
 		</patTemplate:comment>
 	
-	<script>
-		document.addEventListener('DOMContentLoaded', function(){
-		 jomresJquery('#module_{RANDOM_IDENTIFIER}_popup', '#property_reviews{UID}').appendTo("body");
-		});
-	</script>
-	<div class="modal fade" id="module_{RANDOM_IDENTIFIER}_popup"></div><!-- /.modal info -->
-	<div class="modal fade" id="property_reviews{UID}"></div><!-- /.modal reviews -->
+		<script>
+			document.addEventListener('DOMContentLoaded', function(){
+			 jomresJquery('#module_{RANDOM_IDENTIFIER}_popup', '#property_reviews{UID}').appendTo("body");
+			});
+		</script>
+		<div class="modal fade" id="module_{RANDOM_IDENTIFIER}_popup"></div><!-- /.modal info -->
+		<div class="modal fade" id="property_reviews{UID}"></div><!-- /.modal reviews -->
+
 	</patTemplate:tmpl>
-</div>
+	</div>
 
 <div id = "livescrolling_results" ></div>
 

@@ -1,0 +1,122 @@
+<patTemplate:tmpl name="pageoutput">
+
+	<style>
+		/* Bootstrap's shadow doesn't go all around (that I could figure out, and I want the sidebar to pop a bit more than the BS shadows allow */
+
+		.shadow-all-sides
+		{
+			border: solid .75px #EAEAEA;
+			box-shadow:  0 0 10px  rgba(0,0,0,0.4);
+			-moz-box-shadow: 0 0 10px  rgba(0,0,0,0.4);
+			-webkit-box-shadow: 0 0 10px  rgba(0,0,0,0.4);
+			-o-box-shadow: 0 0 10px  rgba(0,0,0,0.4);
+		}
+	</style>
+<div  id="jomres_property_details_sidebar" class="border  border-info rounded-3 bg-success">
+	<pattemplate:comment>
+	<div class="col shadow-all-sides p-2 m-3 bg-body ">
+		<div class="row">
+			<div class="col-9">
+				<h1>{PROPERTY_NAME}</h1>
+			</div>
+			<div class="col-3">
+				<span class="badge bg-warning">
+					{STARS} <i class="fas fa-star"></i>
+				</span>
+			</div>
+		</div>
+		<p class="fw-lighter">{PROPERTY_REGION}, {PROPERTY_COUNTRY}</p>
+	</div>
+	</pattemplate:comment>
+
+	<div class="col shadow-all-sides p-2 m-3 bg-body rounded">
+		<h4>{JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA}</h4>
+		<p class="lead">{JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD}</p>
+
+		<p>
+			<pattemplate:tmpl name="social_media_facebook" type="simpleCondition" requiredvars="social_media_facebook">
+				<a href="{URL}{SOCIAL_MEDIA_FACEBOOK}" target="_blank"><i class="fab fa-facebook-square fa-lg" title="{NAME}"></i></a>
+			</pattemplate:tmpl>
+			<pattemplate:tmpl name="social_media_instagram" type="simpleCondition" requiredvars="social_media_instagram">
+				<a href="{URL}{SOCIAL_MEDIA_INSTAGRAM}" target="_blank"><i class="fab fa-instagram fa-lg" title="{NAME}"></i></a>
+			</pattemplate:tmpl>
+			<pattemplate:tmpl name="social_media_pintrest" type="simpleCondition" requiredvars="social_media_pintrest">
+				<a href="{URL}{SOCIAL_MEDIA_PINTREST}" target="_blank"><i class="fab fa-pinterest-square fa-lg" title="{NAME}"></i></a>
+			</pattemplate:tmpl>
+			<pattemplate:tmpl name="social_media_linkedin" type="simpleCondition" requiredvars="social_media_linkedin">
+				<a href="{URL}{SOCIAL_MEDIA_LINKEDIN}" target="_blank"><i class="fab fa-linkedin fa-lg" title="{NAME}"></i></a>
+			</pattemplate:tmpl>
+			<pattemplate:tmpl name="social_media_twitter" type="simpleCondition" requiredvars="social_media_twitter">
+				<a href="{URL}{SOCIAL_MEDIA_TWITTER}" target="_blank"><i class="fab fa-twitter-square fa-lg" title="{NAME}"></i></a>
+			</pattemplate:tmpl>
+			<pattemplate:tmpl name="social_media_tiktok" type="simpleCondition" requiredvars="social_media_tiktok">
+				<a href="{URL}{SOCIAL_MEDIA_TIKTOK}" target="_blank"><i class="fab fa-tiktok fa-lg" title="{NAME}"></i></a>
+			</pattemplate:tmpl>
+			<pattemplate:tmpl name="social_media_whatsapp" type="simpleCondition" requiredvars="social_media_whatsapp">
+				<a href="{URL}{SOCIAL_MEDIA_WHATSAPP}" target="_blank"><i class="fab fa-whatsapp-square fa-lg" title="{NAME}"></i></a>
+			</pattemplate:tmpl>
+			<pattemplate:tmpl name="social_media_youtube" type="simpleCondition" requiredvars="social_media_youtube">
+				<a href="{URL}{SOCIAL_MEDIA_YOUTUBE}" target="_blank"><i class="fab fa-youtube-square fa-lg" title="{NAME}"></i></a>
+			</pattemplate:tmpl>
+		</p>
+	</div>
+
+	<div class="col shadow-all-sides p-2 m-3 rounded text-white bg-secondary">
+		<h5>
+			{JOMRES_SITE_SIDEBAR_WHY_TITLE}
+		</h5>
+		<p class="lead">
+			{JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE}
+		</p>
+		<ul class="list-unstyled">
+			<li>{JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1}</li>
+			<li>{JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2}</li>
+		</ul>
+
+		<h5>
+			{JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE}
+		</h5>
+		<ul class="list-unstyled">
+			<li>{NUMBER_OF_PROPERTIES_IN_SYSTEM}{JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS}</li>
+			<li>{NUMBER_OF_REVIEWS_IN_SYSTEM}{JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS}</li>
+		</ul>
+	</div>
+
+	<div class="col shadow-all-sides p-2 m-3 bg-body rounded">
+		<h4>
+			{JOMRES_SITE_SIDEBAR_HELP_TITLE}
+		</h4>
+		<p>
+			{JOMRES_SITE_SIDEBAR_HELP_BLURB}
+		</p>
+	</div>
+
+
+
+
+
+	<div class="col shadow-all-sides p-2 m-3 bg-body rounded ">
+		<h4>
+			{JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE}
+		</h4>
+		<p class="lead">
+			{JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT}
+		</p>
+
+		<p>{JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT}</p>
+		<p class="fw-bolder">{BUSINESS_TELEPHONE}</p>
+	</div>
+
+	<div class="col shadow-all-sides p-2 m-3 bg-body rounded">
+		{CONTACT_FORM}
+	</div>
+
+	<div class="col shadow-all-sides p-2 m-3 bg-body rounded">
+		<h4>{BUSINESS_NAME}</h4>
+		VAT: {BUSINESS_VAT_NUMBER}
+		<p class="fst-italic">{BUSINESS_ADDRESS}, {BUSINESS_STREET}, {BUSINESS_TOWN}, {BUSINESS_REGION},{BUSINESS_POSTCODE}, {BUSINESS_COUNTRY} </p>
+		<p class="fw-normal text-capitalize">{_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES} : {BUSINESS_LANGUAGES}</p>
+	</div>
+</div>
+
+</patTemplate:tmpl>

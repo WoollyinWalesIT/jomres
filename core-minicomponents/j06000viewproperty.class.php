@@ -58,8 +58,15 @@ class j06000viewproperty
 			return;
 		}
 
+        if ( jomres_bootstrap_version() == 5) {
+            jomres_cmsspecific_addheaddata('css', JOMRES_CSS_RELPATH, 'b5vtabs.min.css');
+        }
+
 		$customTextObj = jomres_singleton_abstract::getInstance('custom_text');
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+
+		jr_import('jomres_markdown');
+		$jomres_markdown = new jomres_markdown();
 
 		$mrConfig = getPropertySpecificSettings($property_uid);
 		if ($mrConfig['showOnlyAvailabilityCalendar'] == '1') {
@@ -186,16 +193,6 @@ class j06000viewproperty
 				$mrConfig[ 'galleryLink' ]);
 			$gallerylink[ ] = $link;
 		}
-		
-		/* if (!empty($mappinglink)) {
-			$link = array();
-
-			if (filter_var($mappinglink, FILTER_VALIDATE_URL) === true) {
-				$link[ 'LINK' ] = jomresURL($mappinglink);
-				$link [ 'TEXT' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK', false, false);
-				$mappinglink[ ] = $link;
-			}
-		} */
 
 		//booking link
 		if ($mrConfig[ 'visitorscanbookonline' ] == '1' && $jrConfig[ 'show_booking_form_in_property_details' ] != '1' && $mrConfig[ 'is_real_estate_listing' ] == 0) {
@@ -279,17 +276,16 @@ class j06000viewproperty
 			unset($MiniComponents->miniComponentData[ '00035' ] ['tabcontent_04_availability_calendar']);
 		}
  
-		//set content/tabs that will be displayed inline
-		$standalone_elements = array();
-		if ($jrConfig[ 'property_details_in_tabs' ] == '0' && !isset($_REQUEST[ 'jr_printable' ])) {
-			$standalone_elements = array(
-				'TABCONTENT_01_MAIN_DETAILS',
-				'TABCONTENT_01_MORE_INFO',
-				'TABCONTENT_02_BOOKINGFORM',
-				'TABCONTENT_03_REVIEWS',
-				'TABCONTENT_06_EXTRAS',
+			$standalone_elements = array();
+			if ($jrConfig['property_details_in_tabs'] == '0' && !isset($_REQUEST['jr_printable'])) {
+				$standalone_elements = array(
+					'TABCONTENT_01_MAIN_DETAILS',
+					'TABCONTENT_01_MORE_INFO',
+					'TABCONTENT_02_BOOKINGFORM',
+					'TABCONTENT_03_REVIEWS',
+					'TABCONTENT_06_EXTRAS',
 				);
-		}
+			}
 
 		if (trim($jrConfig['google_maps_api_key']) != '') {
 			$standalone_elements[] = 'TABCONTENT_02_MAP';
@@ -299,15 +295,69 @@ class j06000viewproperty
 		$tmpl = new patTemplate();
 		
 		$output['BOOKING_FORM'] = $MiniComponents->miniComponentData[ '00035' ]['tabcontent_02_bookingform'];
-		
-		if (!empty($MiniComponents->miniComponentData[ '00035' ])) {
+
+		//property features
+		$output[ 'HFEATURES' ]	= jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES', false);
+		$output['FEATURES']		= $MiniComponents->specificEvent('06000', 'show_property_features', array('output_now' => false, 'property_uid' => $property_uid , 'show_feature_categories' => true));
+
+		//room types
+		$output[ '_JOMRES_SEARCH_RTYPES' ] = jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', '_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', false);
+		if ($mrConfig[ 'is_real_estate_listing' ] == 0) {
+			$output['ROOM_TYPES'] = $MiniComponents->specificEvent('06000', 'show_property_room_types', array('output_now' => false, 'property_uid' => $property_uid));
+		} else {
+			$output['ROOM_TYPES'] = '';
+		}
+
+		$output[ 'HPOLICIESDISCLAIMERS' ]	= jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS');
+
+		$output['TOWN']		= $current_property_details->property_town;
+		$output['REGION']	= $current_property_details->property_region;
+		$output['COUNTRY']	= $current_property_details->property_country;
+
+		$output[ '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL' ]		= jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL', '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL');
+		$output['TABCONTENT_03_CONTACT_TAB_CONTENT']	= $MiniComponents->specificEvent('06000', 'contactowner' , ['property_uid' => $property_uid , 'noshownow' => true ]);
+
+		$output[ 'HCHECKINTIMES' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_CHECKINTIMES', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_CHECKINTIMES');
+		$output[ 'HAREAACTIVITIES' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AREAACTIVITIES', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AREAACTIVITIES');
+		$output[ 'HDRIVINGDIRECTIONS' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_DRIVINGDIRECTIONS', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_DRIVINGDIRECTIONS');
+		$output[ 'HAIRPORTS' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AIRPORTS', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AIRPORTS');
+		$output[ 'HOTHERTRANSPORT' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_OTHERTRANSPORT', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_OTHERTRANSPORT');
+		$output[ '_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY' ] = jr_gettext('_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY', '_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY');
+		$output[ '_JOMRES_COM_MR_QUICKRES_STEP2_TITLE' ] = jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP2_TITLE', '_JOMRES_COM_MR_QUICKRES_STEP2_TITLE');
+		$output[ '_JOMRES_FRONT_TARIFFS' ] = jr_gettext('_JOMRES_FRONT_TARIFFS', '_JOMRES_FRONT_TARIFFS');
+		$output[ '_JOMRES_COM_MR_EXTRA_TITLE' ] = jr_gettext('_JOMRES_COM_MR_EXTRA_TITLE', '_JOMRES_COM_MR_EXTRA_TITLE');
+
+		$output[ '_JOMRES_REVIEWS' ] = jr_gettext('_JOMRES_REVIEWS', '_JOMRES_REVIEWS');
+		$output[ '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION');
+
+
+
+
+		$output[ 'CHECKINTIMES' ] = jomres_cmsspecific_parseByBots($jomres_markdown->get_markdown($current_property_details->property_checkin_times));
+		$output[ 'AREAACTIVITIES' ] = jomres_cmsspecific_parseByBots($jomres_markdown->get_markdown($current_property_details->property_area_activities));
+		$output[ 'DRIVINGDIRECTIONS' ] = jomres_cmsspecific_parseByBots($jomres_markdown->get_markdown($current_property_details->property_driving_directions));
+		$output[ 'AIRPORTS' ] = jomres_cmsspecific_parseByBots($jomres_markdown->get_markdown($current_property_details->property_airports));
+		$output[ 'OTHERTRANSPORT' ] = jomres_cmsspecific_parseByBots($jomres_markdown->get_markdown($current_property_details->property_othertransport));
+
+		if ( jomres_bootstrap_version() == '5' ) {
+			unset($MiniComponents->miniComponentData['00035']['tabcontent_01_main_details']);
+			unset($MiniComponents->miniComponentData['00035']['tabcontent_01_more_info']);
+			unset($MiniComponents->miniComponentData['00035']['tabcontent_02_bookingform']);
+			unset($MiniComponents->miniComponentData['00035']['tabcontent_03_reviews']);
+			unset($MiniComponents->miniComponentData['00035']['tabcontent_04_availability_calendar']);
+			unset($MiniComponents->miniComponentData['00035']['tabcontent_04_roomslist']);
+			unset($MiniComponents->miniComponentData['00035']['tabcontent_05_tariffs']);
+			unset($MiniComponents->miniComponentData['00035']['tabcontent_06_extras']);
+		}
+
+		if (!empty($MiniComponents->miniComponentData['00035'])) {
 			$tab_titles = array();
 			$tab_contents = array();
 			$tab_active = false;
-			foreach ($MiniComponents->miniComponentData[ '00035' ] as $key => $tabs) {
+			foreach ($MiniComponents->miniComponentData['00035'] as $key => $tabs) {
 				if ($tabs != '') {
 					if (!in_array(strtoupper($key), $standalone_elements)) {
-						if ($tabs[ 'TAB_ANCHOR' ] != '' && $tabs[ 'TAB_TITLE' ] != '' && $tabs[ 'TAB_CONTENT' ] != '') {
+						if ($tabs['TAB_ANCHOR'] != '' && $tabs['TAB_TITLE'] != '' && $tabs['TAB_CONTENT'] != '') {
 							if (!$tab_active) {
 								$tab_class = 'active';
 								$tab_active = true;
@@ -315,48 +365,49 @@ class j06000viewproperty
 								$tab_class = '';
 							}
 
-							$content = $tabs[ 'TAB_CONTENT' ];
-							$title = $tabs[ 'TAB_TITLE' ];
-
-							if (isset($tabs[ 'TAB_ID' ])) {
-								$tab_id = $tabs[ 'TAB_ID' ];
+							$content = $tabs['TAB_CONTENT'];
+							$title = $tabs['TAB_TITLE'];
+							if (isset($tabs['TAB_ID'])) {
+								$tab_id = $tabs['TAB_ID'];
 							} else {
-								$tab_id = $tabs[ 'TAB_TITLE' ];
+								$tab_id = $tabs['TAB_TITLE'];
 							}
 
-							$tab_titles[ ] = array('TAB_ANCHOR' => $tabs[ 'TAB_ANCHOR' ], 'TAB_TITLE' => $title, 'ACTIVE' => $tab_class, 'TAB_ID' => $tab_id);
-							$tab_contents[ ] = array('TAB_CONTENT' => $content, 'TAB_TITLE' => $title, 'TAB_ANCHOR' => $tabs[ 'TAB_ANCHOR' ], 'ACTIVE' => $tab_class);
-							$output[ strtoupper($key.'_tabtitle') ] = $title;
-							$output[ strtoupper($key.'_tab_content') ] = $content;
+							$tab_titles[] = array('TAB_ANCHOR' => $tabs['TAB_ANCHOR'], 'TAB_TITLE' => $title, 'ACTIVE' => $tab_class, 'TAB_ID' => $tab_id);
+							$tab_contents[] = array('TAB_CONTENT' => $content, 'TAB_TITLE' => $title, 'TAB_ANCHOR' => $tabs['TAB_ANCHOR'], 'ACTIVE' => $tab_class);
+							$output[strtoupper($key . '_tabtitle')] = $title;
+							$output[strtoupper($key . '_tab_content')] = $content;
 						}
 					} else {
-						if (trim($jrConfig['google_maps_api_key']) != '' && strtoupper($key) == 'TABCONTENT_02_MAP' ) {
+						if (trim($jrConfig['google_maps_api_key']) != '' && strtoupper($key) == 'TABCONTENT_02_MAP') {
 							$map_output = array();
-							$map_output [0][ strtoupper($key).'_CONTENT' ] = $tabs[ 'TAB_CONTENT' ];
-							$map_output [0][ strtoupper($key).'_TITLE' ] = $tabs[ 'TAB_TITLE' ];
-							$map_output [0][ strtoupper($key).'_ANCHOR' ] = $tabs[ 'TAB_ANCHOR' ];
-
+							$map_output [0][strtoupper($key) . '_CONTENT'] = $tabs['TAB_CONTENT'];
+							$map_output [0][strtoupper($key) . '_TITLE'] = $tabs['TAB_TITLE'];
+							$map_output [0][strtoupper($key) . '_ANCHOR'] = $tabs['TAB_ANCHOR'];
 							$tmpl->addRows('map_output', $map_output);
 						}
 						if (strtoupper($key) == 'TABCONTENT_06_EXTRAS') {
-							$extras_output [0][ strtoupper($key).'_CONTENT' ] = $tabs[ 'TAB_CONTENT' ];
-							$extras_output [0][ strtoupper($key).'_TITLE' ] = $tabs[ 'TAB_TITLE' ];
-							$extras_output [0][ strtoupper($key).'_ANCHOR' ] = $tabs[ 'TAB_ANCHOR' ];
-
+							$extras_output [0][strtoupper($key) . '_CONTENT'] = $tabs['TAB_CONTENT'];
+							$extras_output [0][strtoupper($key) . '_TITLE'] = $tabs['TAB_TITLE'];
+							$extras_output [0][strtoupper($key) . '_ANCHOR'] = $tabs['TAB_ANCHOR'];
 							$tmpl->addRows('extras_output', $extras_output);
 						} else {
-							$output [ strtoupper($key).'_CONTENT' ] = $tabs[ 'TAB_CONTENT' ];
-							$output [ strtoupper($key).'_TITLE' ] = $tabs[ 'TAB_TITLE' ];
-							$output [ strtoupper($key).'_ANCHOR' ] = $tabs[ 'TAB_ANCHOR' ];
+							$output [strtoupper($key) . '_CONTENT'] = $tabs['TAB_CONTENT'];
+							$output [strtoupper($key) . '_TITLE'] = $tabs['TAB_TITLE'];
+							$output [strtoupper($key) . '_ANCHOR'] = $tabs['TAB_ANCHOR'];
 						}
 					}
 				}
 			}
 			$tmpl->addRows('tabs_titles', $tab_titles);
 			$tmpl->addRows('tabs_content', $tab_contents);
+
 		}
 
         $output['DESCRIPTION'] = $current_property_details->property_description;
+
+        $output['SIDEBAR'] = $MiniComponents->specificEvent('06000', 'show_site_sidebar', array('output_now' => false, 'property_uid' => $property_uid, 'property_details_object' => $current_property_details ));
+
 
 		//all output is built by now, so let`s display the page
 		$pageoutput[] = $output;
