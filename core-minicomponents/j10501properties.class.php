@@ -117,7 +117,12 @@ class j10501properties
         $social_meeja_platforms = get_sm_platforms();
         foreach ( $social_meeja_platforms as $key => $val ) {
             if (!isset($jrConfig[$key])) {
-                $jrConfig[$key] = '';
+				if ($key == 'social_media_whatsapp') {
+					$jrConfig[$key] = '359884339947';
+				} else {
+					$jrConfig[$key] = 'jomres';
+				}
+
             }
             $configurationPanel->setleft($val['name']);
             $configurationPanel->setmiddle($val['url'].'<input type="text" class="input-large" name="cfg_'.$key.'" value="'.$jrConfig[ $key ].'" />');
