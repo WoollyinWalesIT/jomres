@@ -2,6 +2,9 @@
 <script type="text/javascript">
 document.addEventListener('DOMContentLoaded', function(){
 	jomresJquery("#guest_country").change(function(){
+		populateDiv("property_region" , '<div class="spinner-border text-info" role="status">\n' +
+				'  <span class="visually-hidden">Loading...</span>\n' +
+				'</div>');
 		var selectedValue = jomresJquery(this).find(":selected").val();
 		clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
 		jomresJquery.get(live_site_ajax + clause, function (data) {
