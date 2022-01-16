@@ -160,6 +160,9 @@
 
 	document.addEventListener('DOMContentLoaded', function() {
 		jomresJquery("#country").change(function(){
+			populateDiv("guest_region_div" , '<div class="spinner-border text-info" role="status">\n' +
+					'  <span class="visually-hidden">Loading...</span>\n' +
+					'</div>');
 			var selectedValue = jomresJquery(this).find(":selected").val();
 			clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
 			jomresJquery.get(live_site_ajax + clause, function (data) {

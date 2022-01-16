@@ -36,7 +36,7 @@
 
 	document.addEventListener('DOMContentLoaded', function(){
 		jomresJquery("#new_property_country").change(function(){
-			populateDiv("property_region" , '<div class="spinner-border text-info" role="status">\n' +
+			populateDiv("region_dropdown" , '<div class="spinner-border text-info" role="status">\n' +
 					'  <span class="visually-hidden">Loading...</span>\n' +
 					'</div>');
 			var selectedValue = jomresJquery(this).find(":selected").val();

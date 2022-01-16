@@ -155,7 +155,7 @@
 
 	jomresJquery(function(){
 		jomresJquery("#country").change(function(){
-			populateDiv("property_region" , '<div class="spinner-border text-info" role="status">\n' +
+			populateDiv("guest_region_div" , '<div class="spinner-border text-info" role="status">\n' +
 					'  <span class="visually-hidden">Loading...</span>\n' +
 					'</div>');
 			var selectedValue = jomresJquery(this).find(":selected").val();

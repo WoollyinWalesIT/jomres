@@ -3,6 +3,9 @@
 	<script language="javascript" type="text/javascript">
 		<!--
 		jomresJquery(function(){
+			populateDiv("tax_rule_region" , '<div class="spinner-border text-info" role="status">\n' +
+					'  <span class="visually-hidden">Loading...</span>\n' +
+					'</div>');
 			jomresJquery("#guest_country").change(function(){
 				var selectedValue = jomresJquery(this).find(":selected").val();
 				clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
