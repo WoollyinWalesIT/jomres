@@ -68,8 +68,6 @@ class j00501propertydetailsoptions
 			$configurationPanel->insertSetting();
 
 			if ($mrConfig['is_real_estate_listing'] == 0) {
-
-
 				$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_SHOWONLYAVLCAL', '_JOMRES_COM_A_SHOWONLYAVLCAL', false));
 				$configurationPanel->setmiddle($lists['showOnlyAvailabilityCalendar']);
 				$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_SHOWONLYAVLCAL_DESC', '_JOMRES_COM_A_SHOWONLYAVLCAL_DESC', false));
@@ -88,6 +86,7 @@ class j00501propertydetailsoptions
 				}
 			}
 
+			/*
 			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_SLIDESHOWS_SHOWSLIDESHOWINLINE', '_JOMRES_COM_A_SLIDESHOWS_SHOWSLIDESHOWINLINE', false));
 			$configurationPanel->setmiddle($lists['showSlideshowInline']);
 			$configurationPanel->setright();
@@ -131,6 +130,7 @@ class j00501propertydetailsoptions
 				$configurationPanel->setright(jr_gettext('JOMRES_COM_A_VERBOSETARIFFINTO_DESC', 'JOMRES_COM_A_VERBOSETARIFFINTO_DESC', false));
 				$configurationPanel->insertSetting();
 			}
+			*/
 
 			if (!isset($mrConfig['galleryLink'])) {
 				$mrConfig['galleryLink'] = '';
@@ -141,10 +141,12 @@ class j00501propertydetailsoptions
 			$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_GALLERYLINK_DESC', '_JOMRES_COM_A_GALLERYLINK_DESC', false));
 			$configurationPanel->insertSetting();
 
+			/*
 			$configurationPanel->setleft(jr_gettext('_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES', '_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES', false));
 			$configurationPanel->setmiddle($lists['showPfeaturesCategories']);
 			$configurationPanel->setright(jr_gettext('_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES_DESC', '_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES_DESC', false));
 			$configurationPanel->insertSetting();
+			*/
 
 			$configurationPanel->endPanel();
 		}
