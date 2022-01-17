@@ -59,7 +59,28 @@ class j09995menu
 
 		$viewproperty_url = get_property_details_url($property_uid);
 		$dobooking_url = get_booking_url($property_uid);
-		
+
+		// There are some differences between J3 & J4 and the font awesome icons
+		$font_awesome_envelope = 'fa-envelope-o';
+		$font_awesome_picture = 'fa-picture-o';
+		$font_awesome_dashboard = 'fa-dashboard';
+		$font_awesome_logout = 'fa-sign-out';
+		$font_awesome_delete = 'fa-trash-o';
+		$font_awesome_tariffs = 'fa-usd';
+		$font_awesome_edit = 'fa-pencil-square-o';
+		$font_awesome_childpolicies = 'fa-users';
+
+		if (jomres_bootstrap_version() == '5' ) {
+			$font_awesome_envelope = 'fa-envelope';
+			$font_awesome_picture = 'fa-images';
+			$font_awesome_dashboard = 'fa-tachometer-alt';
+			$font_awesome_logout = 'sign-out-alt';
+			$font_awesome_delete = 'fa-trash';
+			$font_awesome_tariffs = 'fa-dollar-sign';
+			$font_awesome_edit = 'fa-edit';
+			$font_awesome_childpolicies = 'fa-child';
+		}
+
 		//define the core sections
 		$jomres_menu->add_section(1, jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME', '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME', false));
 		$jomres_menu->add_section(10, jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT', '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT', false));
@@ -75,7 +96,7 @@ class j09995menu
 		//define the core  menu items
 		//dashboard section menus
 		if ($thisJRUser->accesslevel >= 50) {
-			$jomres_menu->add_item(1, jr_gettext('_JRPORTAL_CPANEL', '_JRPORTAL_CPANEL', false), 'cpanel', 'fa-dashboard');
+			$jomres_menu->add_item(1, jr_gettext('_JRPORTAL_CPANEL', '_JRPORTAL_CPANEL', false), 'cpanel', $font_awesome_dashboard);
 			
 			if ($mrConfig[ 'is_real_estate_listing' ] != '1') {
 				$jomres_menu->add_item(1, jr_gettext('_JOMRES_TIMELINE', '_JOMRES_TIMELINE', false), 'dashboard', 'fa-calendar');
@@ -107,7 +128,7 @@ class j09995menu
 		}
 		
 		if ($thisJRUser->accesslevel >= 1) {
-			$jomres_menu->add_item(10, jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGOUT', '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGOUT', false), 'logout', 'fa-sign-out');
+			$jomres_menu->add_item(10, jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGOUT', '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGOUT', false), 'logout', $font_awesome_logout);
 		}
 		
 		if (!isset($jrConfig[ 'api_core_show' ]))
@@ -154,7 +175,7 @@ class j09995menu
 		}
 		
 		if ($thisJRUser->accesslevel > 50 && get_showtime('numberOfPropertiesInSystem') > 1 && isset($thisJRUser->authorisedProperties[1]) ) {
-			$jomres_menu->add_item(20, jr_gettext('_JOMRES_COM_MR_PROPERTY_DELETE', '_JOMRES_COM_MR_PROPERTY_DELETE', false), 'delete_property', 'fa-trash-o');
+			$jomres_menu->add_item(20, jr_gettext('_JOMRES_COM_MR_PROPERTY_DELETE', '_JOMRES_COM_MR_PROPERTY_DELETE', false), 'delete_property', $font_awesome_delete);
 		}
 		
 		//booking section menus
@@ -190,7 +211,7 @@ class j09995menu
 
 		//settings section menus
 		if ($thisJRUser->accesslevel > 50) {
-			$jomres_menu->add_item(80, jr_gettext('_JOMRES_PATHWAY_PROPERTYDETAILS', '_JOMRES_PATHWAY_PROPERTYDETAILS', false), 'edit_property', 'fa-pencil-square-o');
+			$jomres_menu->add_item(80, jr_gettext('_JOMRES_PATHWAY_PROPERTYDETAILS', '_JOMRES_PATHWAY_PROPERTYDETAILS', false), 'edit_property', $font_awesome_edit);
 			$jomres_menu->add_item(80, jr_gettext('_JOMRES_COM_MR_GENERALCONFIGDESC', '_JOMRES_COM_MR_GENERALCONFIGDESC', false), 'business_settings', 'fa-cogs');
 
 			if ($mrConfig[ 'is_real_estate_listing' ] != '1' && $mrConfig['tariffmode'] != '0' && !get_showtime('is_jintour_property')) {
@@ -198,10 +219,10 @@ class j09995menu
 			}
 			
 			if ($mrConfig[ 'is_real_estate_listing' ] != '1' && $mrConfig['tariffmode'] == '0' && !get_showtime('is_jintour_property')) {
-				$jomres_menu->add_item(80, jr_gettext('_JOMRES_COM_MR_LISTTARIFF_TITLE', '_JOMRES_COM_MR_LISTTARIFF_TITLE', false).' &amp; '.jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOM', '_JOMRES_COM_MR_VRCT_TAB_ROOM', false), 'edit_tariffs_normal', 'fa-usd');
+				$jomres_menu->add_item(80, jr_gettext('_JOMRES_COM_MR_LISTTARIFF_TITLE', '_JOMRES_COM_MR_LISTTARIFF_TITLE', false).' &amp; '.jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOM', '_JOMRES_COM_MR_VRCT_TAB_ROOM', false), 'edit_tariffs_normal', $font_awesome_tariffs);
 			}
 
-			$jomres_menu->add_item(80, jr_gettext('_JOMRES_MEDIA_CENTRE_TITLE', '_JOMRES_MEDIA_CENTRE_TITLE', false), 'media_centre', 'fa-picture-o');
+			$jomres_menu->add_item(80, jr_gettext('_JOMRES_MEDIA_CENTRE_TITLE', '_JOMRES_MEDIA_CENTRE_TITLE', false), 'media_centre', $font_awesome_picture);
 
 
 			if ($mrConfig[ 'is_real_estate_listing' ] != '1') {
@@ -210,11 +231,11 @@ class j09995menu
 					$jomres_menu->add_item(80, jr_gettext('_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', '_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES', false), 'listcustomertypes', 'fa-users');
 				} else {
 					$jomres_menu->add_item(80, jr_gettext('JOMRES_OCCUPANCY_LEVELS_TITLE', 'JOMRES_OCCUPANCY_LEVELS_TITLE', false), 'list_occupancy_levels', 'fa-users');
-					$jomres_menu->add_item(80, jr_gettext('JOMRES_POLICIES_CHILDREN', 'JOMRES_POLICIES_CHILDREN', false), 'child_policies', 'fa-users');
+					$jomres_menu->add_item(80, jr_gettext('JOMRES_POLICIES_CHILDREN', 'JOMRES_POLICIES_CHILDREN', false), 'child_policies', $font_awesome_childpolicies);
 					}
 
 
-				$jomres_menu->add_item(80, jr_gettext('_JOMRES_EMAIL_TEMPLATES_TITLE', '_JOMRES_EMAIL_TEMPLATES_TITLE', false), 'list_emails', 'fa-envelope-o');
+				$jomres_menu->add_item(80, jr_gettext('_JOMRES_EMAIL_TEMPLATES_TITLE', '_JOMRES_EMAIL_TEMPLATES_TITLE', false), 'list_emails', $font_awesome_envelope);
 			}
 			if ( 
 				$mrConfig[ 'is_real_estate_listing' ] != '1' && 
