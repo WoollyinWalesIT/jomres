@@ -1,6 +1,5 @@
-
 <patTemplate:tmpl name="pageoutput">
-<style type="text/css">
+<style>
 	label.valid {
 		width: 24px;
 		height: 24px;
@@ -17,7 +16,6 @@
 	}
 </style>
 <script type="text/javascript">
-	<!--
 	{BOOKEDDATES}
 	var isSRP = true;
 	/*var x*/
@@ -165,7 +163,6 @@
 				});
 			});
 		});
-	//-->
 </script>
 
 {OPENBOOKINGOFRM_BUTTON} {BUTTON_BACK_TO_PROPERTY_DETAILS}
@@ -182,23 +179,22 @@
 			</div>
 			<div class="card-text">
 				<p>{AJAXFORM_PARTICULARS_DESC}</p>
-		
-				<div class="col-md-6">
+				<div class="col-lg-4">
 					<div class="form-group">
-						<label class="control-label" for="arrivalDate">{HARRIVALDATE}</label>
+						<label class="col-form-label" for="arrivalDate">{HARRIVALDATE}</label>
 						<div class="input-group">{ARRIVALDATE}</div>
 					</div>
 				</div>
-				<div class="col-md-6">
+				<div class="col-lg-4">
 					<div class="form-group">
-						<label class="control-label" for="departureDate">{HDEPARTUREDATE}</label>
+						<label class="col-form-label" for="departureDate">{HDEPARTUREDATE}</label>
 						<div class="input-group">{DEPARTUREDATE}</div>
 					</div>
 				</div>
 				<patTemplate:tmpl name="guesttypes">
 				<div class="col-md-3">
 					<div class="form-group">
-						<label class="control-label" for="{FIELDNAME}">{TEXT}</label>
+						<label class="col-form-label" for="{FIELDNAME}">{TEXT}</label>
 						{DROPDOWN}
 					</div>
 				</div>
