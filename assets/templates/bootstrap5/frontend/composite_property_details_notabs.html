@@ -98,6 +98,22 @@
 							</li>
 							<pattemplate:comment>TAB TITLE END</pattemplate:comment>
 
+							<pattemplate:comment>TAB TITLE FEATURES START</pattemplate:comment>
+							<li class="nav-item" role="presentation">
+								<div
+										id="features-left-tab"
+										class="nav-link tab-clickable"
+										role="tab"
+										data-bs-toggle="tab"
+										data-bs-target="#features-left"
+										aria-controls="features-left"
+										aria-selected="true"
+								>
+									{HFEATURES}
+								</div>
+							</li>
+							<pattemplate:comment>TAB TITLE END</pattemplate:comment>
+
 							<pattemplate:comment>TAB TITLE REVIEWS START</pattemplate:comment>
 							<li class="nav-item" role="presentation">
 								<div
@@ -290,22 +306,6 @@
 							</li>
 							<pattemplate:comment>TAB TITLE END</pattemplate:comment>
 
-							<pattemplate:comment>TAB TITLE FEATURES START</pattemplate:comment>
-							<li class="nav-item" role="presentation">
-								<div
-										id="features-left-tab"
-										class="nav-link tab-clickable"
-										role="tab"
-										data-bs-toggle="tab"
-										data-bs-target="#features-left"
-										aria-controls="features-left"
-										aria-selected="true"
-								>
-									{HFEATURES}
-								</div>
-							</li>
-							<pattemplate:comment>TAB TITLE END</pattemplate:comment>
-
 							<pattemplate:comment>TAB TITLE EXTRAS START</pattemplate:comment>
 							<li class="nav-item" role="presentation">
 								<div
@@ -356,6 +356,39 @@
 										<h1>{_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION}</h1>
 										<section>
 											{jomres_script show_property_description PROPERTY_UID=N}
+										</section>
+									</article>
+								</div>
+								<pattemplate:comment>TAB CONTENT END</pattemplate:comment>
+
+								<pattemplate:comment>TAB CONTENT FEATURES START</pattemplate:comment>
+								<div
+										id="features-left"
+										class="tab-pane fade show accordion-item"
+										role="tabpanel"
+								>
+									<div class="accordion-header" role="tab">
+										<button
+												class="accordion-button collapsed"
+												type="button"
+												role="button"
+												data-bs-toggle="collapse"
+												data-bs-target="#features-left-article"
+												aria-expanded="true"
+												aria-controls="features-left-article"
+										>
+											{HFEATURES}
+										</button>
+									</div>
+									<article
+											id="features-left-article"
+											class="accordion-body accordion-collapse collapse"
+											data-bs-parent="#accordion-left-tabs"
+											aria-labelledby="features-left-tab"
+									>
+										<h1>{HFEATURES}</h1>
+										<section>
+											{jomres_script show_property_features PROPERTY_UID={UID}}
 										</section>
 									</article>
 								</div>
@@ -753,39 +786,6 @@
 										<h1>{HCHECKINTIMES}</h1>
 										<section>
 											{CHECKINTIMES}
-										</section>
-									</article>
-								</div>
-								<pattemplate:comment>TAB CONTENT END</pattemplate:comment>
-
-								<pattemplate:comment>TAB CONTENT FEATURES START</pattemplate:comment>
-								<div
-										id="features-left"
-										class="tab-pane fade show accordion-item"
-										role="tabpanel"
-								>
-									<div class="accordion-header" role="tab">
-										<button
-												class="accordion-button collapsed"
-												type="button"
-												role="button"
-												data-bs-toggle="collapse"
-												data-bs-target="#features-left-article"
-												aria-expanded="true"
-												aria-controls="features-left-article"
-										>
-											{HFEATURES}
-										</button>
-									</div>
-									<article
-											id="features-left-article"
-											class="accordion-body accordion-collapse collapse"
-											data-bs-parent="#accordion-left-tabs"
-											aria-labelledby="features-left-tab"
-									>
-										<h1>{HFEATURES}</h1>
-										<section>
-											{jomres_script show_property_features PROPERTY_UID={UID}}
 										</section>
 									</article>
 								</div>
