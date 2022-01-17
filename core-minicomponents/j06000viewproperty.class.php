@@ -59,7 +59,7 @@ class j06000viewproperty
 		}
 
         if ( jomres_bootstrap_version() == 5) {
-            jomres_cmsspecific_addheaddata('css', JOMRES_CSS_RELPATH, 'b5vtabs.min.css');
+            jomres_cmsspecific_addheaddata('css', JOMRES_CSS_RELPATH, 'b5vtabs.css');
         }
 
 		$customTextObj = jomres_singleton_abstract::getInstance('custom_text');
@@ -301,13 +301,20 @@ class j06000viewproperty
 		$output['FEATURES']		= $MiniComponents->specificEvent('06000', 'show_property_features', array('output_now' => false, 'property_uid' => $property_uid , 'show_feature_categories' => true));
 
 		//room types
-		$output[ '_JOMRES_SEARCH_RTYPES' ] = jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', '_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', false);
-		if ($mrConfig[ 'is_real_estate_listing' ] == 0) {
-			$output['ROOM_TYPES'] = $MiniComponents->specificEvent('06000', 'show_property_room_types', array('output_now' => false, 'property_uid' => $property_uid));
+		if ($mrConfig[ 'is_real_estate_listing' ] == 0 && $mrConfig[ 'singleRoomProperty' ] == '0') {
+			$room_type_output[ '_JOMRES_SEARCH_RTYPES' ] = jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', '_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', false);
+			$room_type_output['ROOM_TYPES'] = $MiniComponents->specificEvent('06000', 'show_property_room_types', array('output_now' => false, 'property_uid' => $property_uid));
 		} else {
-			$output['ROOM_TYPES'] = '';
+			$room_type_output['ROOM_TYPES'] = array();
 		}
 
+		if ($mrConfig[ 'is_real_estate_listing' ] == 0 && $mrConfig[ 'singleRoomProperty' ] == '0') {
+			$rooms_output = array(
+				0 => ['_JOMRES_COM_MR_QUICKRES_STEP2_TITLE' => jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP2_TITLE', '_JOMRES_COM_MR_QUICKRES_STEP2_TITLE')]
+			);
+		} else {
+			$rooms_output = array();
+		}
 		$output[ 'HPOLICIESDISCLAIMERS' ]	= jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS');
 
 		$output['TOWN']		= $current_property_details->property_town;
@@ -323,15 +330,12 @@ class j06000viewproperty
 		$output[ 'HAIRPORTS' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AIRPORTS', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AIRPORTS');
 		$output[ 'HOTHERTRANSPORT' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_OTHERTRANSPORT', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_OTHERTRANSPORT');
 		$output[ '_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY' ] = jr_gettext('_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY', '_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY');
-		$output[ '_JOMRES_COM_MR_QUICKRES_STEP2_TITLE' ] = jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP2_TITLE', '_JOMRES_COM_MR_QUICKRES_STEP2_TITLE');
+
 		$output[ '_JOMRES_FRONT_TARIFFS' ] = jr_gettext('_JOMRES_FRONT_TARIFFS', '_JOMRES_FRONT_TARIFFS');
 		$output[ '_JOMRES_COM_MR_EXTRA_TITLE' ] = jr_gettext('_JOMRES_COM_MR_EXTRA_TITLE', '_JOMRES_COM_MR_EXTRA_TITLE');
 
 		$output[ '_JOMRES_REVIEWS' ] = jr_gettext('_JOMRES_REVIEWS', '_JOMRES_REVIEWS');
 		$output[ '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION');
-
-
-
 
 		$output[ 'CHECKINTIMES' ] = jomres_cmsspecific_parseByBots($jomres_markdown->get_markdown($current_property_details->property_checkin_times));
 		$output[ 'AREAACTIVITIES' ] = jomres_cmsspecific_parseByBots($jomres_markdown->get_markdown($current_property_details->property_area_activities));
@@ -350,6 +354,7 @@ class j06000viewproperty
 			unset($MiniComponents->miniComponentData['00035']['tabcontent_06_extras']);
 		}
 
+		// Unfortunately, in J4 this is still required
 		if (!empty($MiniComponents->miniComponentData['00035'])) {
 			$tab_titles = array();
 			$tab_contents = array();
@@ -414,6 +419,12 @@ class j06000viewproperty
 
 		$tmpl->addRows('pageoutput', $pageoutput);
 		$tmpl->addRows('bookinglink', $bookinglink);
+
+		$tmpl->addRows('room_type_output', $room_type_output);
+		$tmpl->addRows('room_type_output_content', $room_type_output);
+
+		$tmpl->addRows('rooms_output', $rooms_output);
+		$tmpl->addRows('rooms_output_content', $rooms_output);
 
 		if ($mrConfig[ 'showSlideshowLink' ] == 1) {
 			$tmpl->addRows('slideshowlink', $slideshowlink);
