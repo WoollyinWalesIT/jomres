@@ -394,10 +394,12 @@ function jomres_cmsspecific_addheaddata($type, $path = '', $filename = '', $incl
         case 'css':
             //JHTML::stylesheet( $path . $filename, array (), false, false ); // If we want to include version numbers in script filenames, we can't use this. Instead we need to directly access JFactory as below
 
+			$dependency = 'template.active';
+
             if ( $in_admin_area ) {
                 $doc->addStyleSheet($data);
             } else {
-                $wa->registerAndUseStyle($filename,  $data, [], [], []);
+                $wa->registerAndUseStyle($filename,  $data, [], [], [$dependency]);
             }
 
             break;
