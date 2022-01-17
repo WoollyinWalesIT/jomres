@@ -1076,17 +1076,29 @@ function simple_template_output($path = '', $template = '', $one_string = '')
  */
 function calc_rating_progressbar_colour($percentage)
 {
+    if (jomres_bootstrap_version() == '5' ) {
+        $success    = 'bg-success';
+        $info       = 'bg-info';
+        $warning    = 'bg-warning';
+		$danger     = 'bg-danger';
+    } else {
+		$success    = 'progress-bar-success';
+		$info       = 'progress-bar-info';
+		$warning    = 'progress-bar-warning';
+		$danger     = 'progress-bar-danger';
+    }
+
 	if ($percentage >= 60) {
-		$colour = 'progress-bar-success';
+		$colour = $success;
 	}
 	if ($percentage < 60 && $percentage >= 50) {
-		$colour = 'progress-bar-info';
+		$colour = $info;
 	}
 	if ($percentage < 50 && $percentage >= 30) {
-		$colour = 'progress-bar-warning';
+		$colour = $warning;
 	}
 	if ($percentage < 30) {
-		$colour = 'progress-bar-danger';
+		$colour = $danger;
 	}
 
 	return $colour;
