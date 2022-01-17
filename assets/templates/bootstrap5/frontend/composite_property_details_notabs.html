@@ -17,15 +17,9 @@
 			</div>
 
 			<div class="row">
-				<div id="" class="col-9 col-md-9 col-lg-9 col-xl-9">
+				<div id="" class="col-sm-12">
 					<div class="card bg-light card-body mb-3">{SLIDESHOW}</div>
 				</div>
-				<div class="col-3 col-md-3 col-lg-3 col-xl-3">
-					{TABCONTENT_02_MAP_TITLE}
-					<a href="https://www.google.com/maps/place/{TOWN}/{REGION}/{COUNTRY}" target="_blank">{TABCONTENT_02_MAP_CONTENT}</a>
-					<div class="pdetails-price">{REAL_ESTATE_PROPERTY_PRICE}</div>
-				</div>
-
 			</div>
 
 			<pattemplate:comment>
@@ -75,8 +69,26 @@
 
 			<!-- Caption -->
 			<!-- The "vtabs" class establishes a scope -->
+			<!-- Bit of a pickle. I'd like to use Joomla-tab styles, but would also like to use BS5 in Wordpress sometime in the future, so for now we can't have JT -->
 
-			<div class=" vtabs">
+			<style>
+
+				/*Pesky underline*/
+				.nav.nav-tabs .nav-link.active::after {
+					bottom: 0;
+					height: 0px;
+					content: "";
+					background-color: #448344;
+				}
+
+				.nav.nav-tabs .nav-link.active {
+					background-color: #448344;
+					color: white;
+				}
+
+			</style>
+
+			<div class="vtabs">
 				<div class="row">
 					<!-- Tabs -->
 					<div class="col-md-3">
@@ -195,6 +207,8 @@
 							<pattemplate:comment>TAB TITLE END</pattemplate:comment>
 
 							<pattemplate:comment>TAB TITLE OURROOMS START</pattemplate:comment>
+							<pattemplate:tmpl name="rooms_output" type="simpleCondition" requiredvars="_jomres_com_mr_quickres_step2_title" unusedvars="nbsp">
+
 							<li class="nav-item" role="presentation">
 								<div
 										id="ourrooms-left-tab"
@@ -208,22 +222,25 @@
 									{_JOMRES_COM_MR_QUICKRES_STEP2_TITLE}
 								</div>
 							</li>
+							</pattemplate:tmpl>
 							<pattemplate:comment>TAB TITLE END</pattemplate:comment>
 
 							<pattemplate:comment>TAB TITLE ROOM TYPES START</pattemplate:comment>
-							<li class="nav-item" role="presentation">
-								<div
-										id="rooms-left-tab"
-										class="nav-link tab-clickable"
-										role="tab"
-										data-bs-toggle="tab"
-										data-bs-target="#rooms-left"
-										aria-controls="rooms-left"
-										aria-selected="true"
-								>
-									{_JOMRES_SEARCH_RTYPES}
-								</div>
-							</li>
+							<pattemplate:tmpl name="room_type_output" type="simpleCondition" requiredvars="_jomres_search_rtypes" unusedvars="nbsp">
+								<li class="nav-item" role="presentation">
+									<div
+											id="rooms-left-tab"
+											class="nav-link tab-clickable"
+											role="tab"
+											data-bs-toggle="tab"
+											data-bs-target="#rooms-left"
+											aria-controls="rooms-left"
+											aria-selected="true"
+									>
+										{_JOMRES_SEARCH_RTYPES}
+									</div>
+								</li>
+							</pattemplate:tmpl>
 							<pattemplate:comment>TAB TITLE END</pattemplate:comment>
 
 							<pattemplate:comment>TAB TITLE OTHERTRANSPORT START</pattemplate:comment>
@@ -560,6 +577,7 @@
 								<pattemplate:comment>TAB CONTENT END</pattemplate:comment>
 
 								<pattemplate:comment>TAB CONTENT OURROOMS START</pattemplate:comment>
+								<pattemplate:tmpl name="rooms_output_content" type="simpleCondition" requiredvars="_jomres_com_mr_quickres_step2_title" unusedvars="nbsp">
 								<div
 										id="ourrooms-left"
 										class="tab-pane fade show accordion-item"
@@ -591,9 +609,11 @@
 										</section>
 									</article>
 								</div>
+								</pattemplate:tmpl>
 								<pattemplate:comment>TAB CONTENT END</pattemplate:comment>
 
 								<pattemplate:comment>TAB CONTENT ROOM TYPES START</pattemplate:comment>
+								<pattemplate:tmpl name="room_type_output_content" type="simpleCondition" requiredvars="_jomres_search_rtypes" unusedvars="nbsp">
 								<div
 										id="rooms-left"
 										class="tab-pane fade show accordion-item"
@@ -624,6 +644,7 @@
 										</section>
 									</article>
 								</div>
+								</pattemplate:tmpl>
 								<pattemplate:comment>TAB CONTENT END</pattemplate:comment>
 
 								<pattemplate:comment>TAB CONTENT OTHERTRANSPORT START</pattemplate:comment>
@@ -828,7 +849,13 @@
 					</div>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<a href="https://www.google.com/maps/place/{TOWN}/{REGION}/{COUNTRY}" target="_blank">{TABCONTENT_02_MAP_CONTENT}</a>
+					<div class="pdetails-price">{REAL_ESTATE_PROPERTY_PRICE}</div>
+				</div>
 
+			</div>
 			<patTemplate:tmpl name="tabs_titles">
 				{TAB_TITLE}
 			</patTemplate:tmpl>
