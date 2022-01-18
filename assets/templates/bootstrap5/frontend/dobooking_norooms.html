@@ -172,33 +172,27 @@
 	<!--<p>{AJAXFORM_INSTRUCTIONS}</p>-->
 
 	<div id="arrivalcontainer">
-		<div id="tour_target_booking_particulars"></div>
 		<div class="card">
 			<div class="card-body">
 				<div class="card-title">{AJAXFORM_PARTICULARS}</div>
 			</div>
 			<div class="card-text">
 				<p>{AJAXFORM_PARTICULARS_DESC}</p>
-				<div class="col-lg-4">
-					<div class="form-group">
-						<label class="col-form-label" for="arrivalDate">{HARRIVALDATE}</label>
-						<div class="input-group">{ARRIVALDATE}</div>
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="form-group">
+							<label class="col-form-label" for="arrivalDate">{HARRIVALDATE}</label>
+							<div class="input-group">{ARRIVALDATE}</div>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="form-group">
+							<label class="col-form-label" for="departureDate">{HDEPARTUREDATE}</label>
+							<div class="input-group">{DEPARTUREDATE}</div>
+						</div>
 					</div>
 				</div>
-				<div class="col-lg-4">
-					<div class="form-group">
-						<label class="col-form-label" for="departureDate">{HDEPARTUREDATE}</label>
-						<div class="input-group">{DEPARTUREDATE}</div>
-					</div>
-				</div>
-				<patTemplate:tmpl name="guesttypes">
-				<div class="col-md-3">
-					<div class="form-group">
-						<label class="col-form-label" for="{FIELDNAME}">{TEXT}</label>
-						{DROPDOWN}
-					</div>
-				</div>
-				</patTemplate:tmpl>
+
 			</div>
 		</div>
 	</div>
