@@ -724,10 +724,10 @@ class j01010listpropertys
 					}
 					// End hiding property address
 					
-					$property_deets[ 'PROP_TOWN' ] = '<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&town='.jomres_decode($current_property_details->multi_query_result[ $propertys_uid ][ 'property_town' ])).'">'.jomres_decode($current_property_details->multi_query_result[ $propertys_uid ][ 'property_town' ]).'</a>';
+					$property_deets[ 'PROP_TOWN' ] = '<a style="text-decoration:none;" href="'.jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&town='.jomres_decode($current_property_details->multi_query_result[ $propertys_uid ][ 'property_town' ])).'">'.jomres_decode($current_property_details->multi_query_result[ $propertys_uid ][ 'property_town' ]).'</a>';
 					$property_deets[ 'PROP_POSTCODE' ] = stripslashes($current_property_details->multi_query_result[ $propertys_uid ][ 'property_postcode' ]);
-					$property_deets[ 'PROP_REGION' ] = '<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&region='.$current_property_details->multi_query_result[ $propertys_uid ][ 'property_region_id' ]).'">'.jomres_decode($current_property_details->multi_query_result[ $propertys_uid ][ 'property_region' ]).'</a>';
-					$property_deets[ 'PROP_COUNTRY' ] = '<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&country='.jomres_decode($current_property_details->multi_query_result[ $propertys_uid ][ 'property_country_code' ])).'">'.jomres_decode($current_property_details->multi_query_result[ $propertys_uid ][ 'property_country' ]).'</a>';
+					$property_deets[ 'PROP_REGION' ] = '<a style="text-decoration:none;" href="'.jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&region='.$current_property_details->multi_query_result[ $propertys_uid ][ 'property_region_id' ]).'">'.jomres_decode($current_property_details->multi_query_result[ $propertys_uid ][ 'property_region' ]).'</a>';
+					$property_deets[ 'PROP_COUNTRY' ] = '<a style="text-decoration:none;" href="'.jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&country='.jomres_decode($current_property_details->multi_query_result[ $propertys_uid ][ 'property_country_code' ])).'">'.jomres_decode($current_property_details->multi_query_result[ $propertys_uid ][ 'property_country' ]).'</a>';
 
 					$property_deets[ 'LIVESITE' ] = get_showtime('live_site');
 					$property_deets[ 'UID' ] = $propertys_uid;

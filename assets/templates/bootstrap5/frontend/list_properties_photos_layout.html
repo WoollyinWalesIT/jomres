@@ -16,10 +16,11 @@
 	<div class="row">
 		<div class="card-group">
 			<patTemplate:tmpl name="property_details" unusedvars="&nbsp;">
-				<div class="col-3 p-2">
-					<div class=" photo-view col-12 card" id="{UID}">
+				<div class="col-3 p-2  d-flex align-items-stretch">
+					<div class="photo-view col-12 card h-100" id="{UID}">
+						<div class="card-img">{PROPERTY_IMAGE_OR_SLIDESHOW}</div>
 						<div class="card-body {BUDGET_BORDER_CLASS} {FEATURED_LISTINGS_CLASS}">
-							<div class="card-img">{PROPERTY_IMAGE_OR_SLIDESHOW}</div>
+
 							<div class="card-title">
 								<h3>
 									<a href="{MOREINFORMATIONLINK}" title="{PROPERTY_NAME_FULL}" itemprop="name" style="text-decoration: none;">{PROP_NAME}</a>
@@ -28,7 +29,7 @@
 									</span>
 								</h3>
 							</div>
-							<div class="card-body">
+
 								<div class="row">
 									<div class="col-6">
 										{PROPERTY_TYPE}
@@ -37,7 +38,7 @@
 										<div style="color:#FFD700" class="ml-auto">{STARS}{SUPERIOR}</div>
 									</div>
 								</div>
-								<p class="small"><em>{PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}</em></p>
+								<i class="fas fa-search-location"></i> {PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}</em>
 
 								<!--<div align="center">{PRICE_PRE_TEXT}</div>-->
 								<div class="well">
@@ -53,7 +54,7 @@
 										</div>
 									</div>
 								</div>
-							</div>
+
 							<span class="d-inline-block text-truncate" style="max-width: 250px;">
 								{PROPERTYDESC}
 							</span>
