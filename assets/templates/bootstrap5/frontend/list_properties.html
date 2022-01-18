@@ -18,12 +18,12 @@
 			<div class="card-body">
 				<div class="row">
 					<div class="col-10 card-header">
-						<h2>
-							<a href="{MOREINFORMATIONLINK}" title="{PROPERTY_NAME_FULL}" class="btn btn-outline-primary btn-lg">{PROPERTYNAME}</a>
-						</h2>
+						<h3>
+							<a href="{MOREINFORMATIONLINK}" title="{PROPERTY_NAME_FULL}" itemprop="name" style="text-decoration: none;">{PROP_NAME}</a>
+						</h3>
 					</div>
 					<div class="col-2">
-						<div class="hidden-xs hidden-sm plist-compare" align="right">
+						<div class="hidden-xs hidden-sm plist-compare">
 							<label>
 								<input type="checkbox" name="compare" value="{UID}" autocomplete="off"/>
 								{_JOMRES_COMPARE}
@@ -38,16 +38,26 @@
 						{PROPERTY_IMAGE_OR_SLIDESHOW}
 					</div>
 					<div class="col-6">
-						<span class="text-secondary">{PROPERTY_TYPE}</span> <span>{STARS} {SUPERIOR}</span>
-						<span class="text-primary">{_JOMRES_REVIEWS_AVERAGE_RATING} {AVERAGE_RATING}</span>
+
+						<div class="row">
+							<div class="col-3">
+								<span class="text-secondary">{PROPERTY_TYPE}</span><span>{STARS} {SUPERIOR}</span>
+							</div>
+							<div class="col-3">
+								&nbsp;
+							</div>
+							<div class="col-6">
+								{REVIEWS_SECTION}
+							</div>
+						</div>
+
+
 						<p class="small"><i>{PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}</i></p>
 						<div>{PROPERTYDESC}</div>
 						<div class="jomres_message">{LASTMINUTE}</div>
 						<div class="row">{GATEWAYS}</div>
 					</div>
-					<!--<div class="col-md-3">
-						{REVIEWS_SNIPPET}
-					</div>-->
+
 					<div class="col-3">
 						<div class="align-middle mx-auto">
 							<div class="badge bg-info">
@@ -93,7 +103,7 @@
 				<a href="javascript:void(0);" onclick="quick_info({UID});" role="button" class="btn btn-secondary hidden-xs hidden-sm">
 					<i class="fa fa-info"></i> {_JOMRES_QUICK_INFO}
 				</a>
-				<a href="#property_reviews{UID}" ajax_task="show_property_reviews" data-bs-toggle="modal" random_identifier="{UID}" property_name="{PROPERTYNAME}" property_uid="{UID}" class="btn btn-secondary hidden-xs hidden-sm"><i class="fa fa-thumbs-o-up"></i> {_JOMRES_REVIEWS_CLICKTOSHOW}</a>
+				{REVIEWS_BUTTON}
 				<a href="javascript:void(0);" id="shortlist_{UID}" onclick="shortlist('{UID}')" class="btn btn-secondary hidden-xs hidden-sm">{SHORTLIST}</a>
 			</div>
 		</div>
@@ -104,7 +114,15 @@
 		});
 	</script>
 	<div class="modal fade" id="module_{RANDOM_IDENTIFIER}_popup"></div><!-- /.modal info -->
-	<div class="modal fade" id="property_reviews{UID}"></div><!-- /.modal reviews -->
+	<div class="offcanvas offcanvas-start" style="width: 65%; " tabindex="-1" id="reviewsOffCanvas{UID}" aria-labelledby="offcanvasReviewsLabel">
+		<div class="offcanvas-header">
+			<h5 class="offcanvas-title" id="offcanvasExampleLabel">{_JOMRES_REVIEWS}</h5>
+			<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+		</div>
+		<div class="offcanvas-body">
+			{jomres_script show_property_reviews PROPERTY_UID={UID}}
+		</div>
+	</div>
 </patTemplate:tmpl>
 
 <div id = "livescrolling_results" ></div>

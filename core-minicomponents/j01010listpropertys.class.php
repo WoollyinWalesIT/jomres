@@ -227,6 +227,8 @@ class j01010listpropertys
 				$header_output[ 'CLICKTOHIDE' ] = jr_gettext('_JOMRES_REVIEWS_CLICKTOHIDE', '_JOMRES_REVIEWS_CLICKTOHIDE', false);
 				$header_output[ 'CLICKTOSHOW' ] = jr_gettext('_JOMRES_REVIEWS_CLICKTOSHOW', '_JOMRES_REVIEWS_CLICKTOSHOW', false);
 
+
+
 				$compare = array();
 				$shortlist = array();
 				if ((defined('JOMRES_NOHTML') && JOMRES_NOHTML == 0) || get_showtime('task') == 'ajax_search_filter') {
@@ -407,16 +409,106 @@ class j01010listpropertys
 						$Reviews->property_uid = $propertys_uid;
 						$itemRating = $Reviews->showRating($propertys_uid);
 
-						$property_deets[ 'AVERAGE_RATING' ] = number_format($itemRating[ 'avg_rating' ], 1, '.', '');
-						$property_deets[ 'NUMBER_OF_REVIEWS' ] = $itemRating[ 'counter' ];
+						$property_deets['AVERAGE_RATING'] = number_format($itemRating['avg_rating'], 1, '.', '');
+						$property_deets['NUMBER_OF_REVIEWS'] = $itemRating['counter'];
 
-						$property_deets[ '_JOMRES_REVIEWS_AVERAGE_RATING' ] = jr_gettext('_JOMRES_REVIEWS_AVERAGE_RATING', '_JOMRES_REVIEWS_AVERAGE_RATING', false);
-						$property_deets[ '_JOMRES_REVIEWS_TOTAL_VOTES' ] = jr_gettext('_JOMRES_REVIEWS_TOTAL_VOTES', '_JOMRES_REVIEWS_TOTAL_VOTES', false);
-						$property_deets[ '_JOMRES_REVIEWS' ] = jr_gettext('_JOMRES_REVIEWS', '_JOMRES_REVIEWS', false);
-						$property_deets[ '_JOMRES_REVIEWS_CLICKTOSHOW' ] = jr_gettext('_JOMRES_REVIEWS_CLICKTOSHOW', '_JOMRES_REVIEWS_CLICKTOSHOW', false);
-						$property_deets[ 'COLON' ] = ' : ';
-						$property_deets[ 'HYPHEN' ] = ' - ';
+						$property_deets['_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL'] = jr_gettext('_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL', '_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL', false);
 
+						$property_deets['_JOMRES_REVIEWS'] = jr_gettext('_JOMRES_REVIEWS', '_JOMRES_REVIEWS', false);
+						$property_deets['_JOMRES_REVIEWS_AVERAGE_RATING'] = jr_gettext('_JOMRES_REVIEWS_AVERAGE_RATING', '_JOMRES_REVIEWS_AVERAGE_RATING', false);
+						$property_deets['_JOMRES_REVIEWS_TOTAL_VOTES'] = jr_gettext('_JOMRES_REVIEWS_TOTAL_VOTES', '_JOMRES_REVIEWS_TOTAL_VOTES', false);
+						$property_deets['_JOMRES_REVIEWS'] = jr_gettext('_JOMRES_REVIEWS', '_JOMRES_REVIEWS', false);
+
+						$property_deets['COLON'] = ' : ';
+						$property_deets['HYPHEN'] = ' - ';
+						$property_deets['RATING_TEXT_COLOUR'] = 'text-muted';
+
+
+						$rob = array();
+						$reviews_output_button = array();
+						$no_reviews_output_button = array();
+
+						if ( jomres_bootstrap_version() == '5' ) {
+							if ((int)$property_deets['NUMBER_OF_REVIEWS'] > 0) {   // For Joomla 4 BS5 template sets
+								$rob['RATING_TEXT_COLOUR'] = 'text-success';
+								$rob['AVERAGE_RATING'] = number_format($itemRating['avg_rating'], 1, '.', '');
+
+								$rob['RATING_SCORE_TEXT'] = '';
+								if ($rob['AVERAGE_RATING'] > 9.5 ) {
+									$rob['RATING_SCORE_TEXT'] = jomres_badge(
+										jr_gettext('JOMRES_REVIEW_SCORE_10', 'JOMRES_REVIEW_SCORE_10', false),
+										'success'
+										);
+								}
+								if ($rob['AVERAGE_RATING'] < 9.5 && $property_deets['AVERAGE_RATING'] >= 9) {
+									$rob['RATING_SCORE_TEXT'] = jomres_badge(
+										jr_gettext('JOMRES_REVIEW_SCORE_9', 'JOMRES_REVIEW_SCORE_9', false),
+										'success'
+									);
+								}
+								if ($rob['AVERAGE_RATING'] < 9 && $property_deets['AVERAGE_RATING'] >= 8) {
+									$rob['RATING_SCORE_TEXT'] = jomres_badge(
+										jr_gettext('JOMRES_REVIEW_SCORE_8', 'JOMRES_REVIEW_SCORE_8', false),
+										'success'
+									);
+								}
+								if ($rob['AVERAGE_RATING'] < 8 && $property_deets['AVERAGE_RATING'] >= 7) {
+									$rob['RATING_SCORE_TEXT'] = jomres_badge(
+										jr_gettext('JOMRES_REVIEW_SCORE_7', 'JOMRES_REVIEW_SCORE_7', false),
+										'success'
+									);
+								}
+								if ($rob['AVERAGE_RATING'] < 7 && $property_deets['AVERAGE_RATING'] > 5) {
+									$rob['RATING_TEXT_COLOUR'] = 'text-success';
+									$rob['RATING_SCORE_TEXT'] = jomres_badge(
+										jr_gettext('JOMRES_REVIEW_SCORE_6', 'JOMRES_REVIEW_SCORE_6', false),
+										'success'
+									);
+								}
+								if ($rob['AVERAGE_RATING'] <= 5) {
+									$rob['RATING_TEXT_COLOUR'] = 'text-warning';
+									$rob['RATING_SCORE_TEXT'] = '';
+								}
+
+
+								$rob['UID'] = $propertys_uid;
+								$rob['AVERAGE_RATING'] = $property_deets['AVERAGE_RATING'];
+								$rob['NUMBER_OF_REVIEWS'] = $itemRating['counter'];
+								$rob['_JOMRES_REVIEWS_CLICKTOSHOW'] = jr_gettext('_JOMRES_REVIEWS_CLICKTOSHOW', '_JOMRES_REVIEWS_CLICKTOSHOW', false);
+								$rob['_JOMRES_REVIEWS_AVERAGE_RATING'] = jr_gettext('_JOMRES_REVIEWS_AVERAGE_RATING', '_JOMRES_REVIEWS_AVERAGE_RATING', false);
+								$rob['_JOMRES_REVIEWS_TOTAL_VOTES'] = jr_gettext('_JOMRES_REVIEWS_TOTAL_VOTES', '_JOMRES_REVIEWS_TOTAL_VOTES', false);
+								$rob['_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL'] = jr_gettext('_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL', '_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL', false);
+
+								$reviews_output_button[] = $rob;
+
+								$tmpl = new patTemplate();
+								$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+								$tmpl->readTemplatesFromInput('list_properties_reviews_section.html');
+								$tmpl->addRows('reviews_output', $reviews_output_button);
+								$property_deets['REVIEWS_SECTION'] = $tmpl->getParsedTemplate();
+
+								$tmpl = new patTemplate();
+								$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+								$tmpl->readTemplatesFromInput('list_properties_reviews_button.html');
+								$tmpl->addRows('reviews_button', $reviews_output_button);
+								$property_deets['REVIEWS_BUTTON'] = $tmpl->getParsedTemplate();
+
+							} else { // There aren't any reviews, we'll show a "these guys are new" badge instead
+								$new_listing_blub = jr_gettext('JOMRES_REVIEWS_NONE_NEW', 'JOMRES_REVIEWS_NONE_NEW', false);
+								$no_reviews_output_button = [0 => [
+									'JOMRES_REVIEWS_NONE_NEW' =>
+										jomres_badge(	$new_listing_blub , 'warning')
+								]];
+								$tmpl = new patTemplate();
+								$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+								$tmpl->readTemplatesFromInput('list_properties_reviews_section_no_reviews.html');
+								$tmpl->addRows('reviews_button', $no_reviews_output_button);
+								$property_deets['REVIEWS_SECTION'] = $tmpl->getParsedTemplate();
+							}
+						}
+
+
+						// Older code that'll be left in situ for now til Joomla 3 is no more.
 						// Property review information needs to be in it's own array so that a patTemplate condition can be used to decide if reviews are shown or no.
 						// To allow BC with older templates we'll copy the review info from the old property deets array to a new property_reviews array.
 						if ((int) $property_deets[ 'NUMBER_OF_REVIEWS' ] > 0) {
@@ -462,6 +554,7 @@ class j01010listpropertys
 						$property_deets[ 'HYPHEN' ] = '';
 						$property_deets[ 'REVIEWS' ] = '';
 						$property_deets [ 'REVIEWS_SNIPPET' ] = '';
+						$property_deets[ 'RATING_TEXT_COLOUR' ] = 'text-muted';
 					}
 
 					//$property_deets['AVAILABILITY_CALENDAR'] = $MiniComponents->specificEvent('06000','ui_availability_calendar',array('property_uid'=>$property->propertys_uid,'output_now'=>"1",'noshowlegend'=>1) );
@@ -720,7 +813,7 @@ class j01010listpropertys
 						$property_deets[ 'MAP' ] = $MiniComponents->miniComponentData[ '01050' ][ 'x_geocoder' ];
 					}
 
-					$property_deets[ 'PROPERTY_TYPE' ] = $current_property_details->multi_query_result[ $propertys_uid ]['property_type_title'];
+					$property_deets[ 'PROPERTY_TYPE' ] = jomres_badge($current_property_details->multi_query_result[ $propertys_uid ]['property_type_title'] , 'info' );
 					$property_deets[ 'PROPERTY_TYPE_SEARCH_URL' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=search&ptype='.$current_property_details->multi_query_result[ $propertys_uid ]['ptype_id']);
 
 					$property_deets[ 'AGENT_LINK' ] = make_agent_link($propertys_uid);
