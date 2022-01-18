@@ -300,14 +300,19 @@ class j06000viewproperty
 		$output['FEATURES']		= $MiniComponents->specificEvent('06000', 'show_property_features', array('output_now' => false, 'property_uid' => $property_uid , 'show_feature_categories' => true));
 
 		//room types
-		if ($mrConfig[ 'is_real_estate_listing' ] == 0 && $mrConfig[ 'singleRoomProperty' ] == '0') {
-			$room_type_output[ '_JOMRES_SEARCH_RTYPES' ] = jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', '_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', false);
-			$room_type_output['ROOM_TYPES'] = $MiniComponents->specificEvent('06000', 'show_property_room_types', array('output_now' => false, 'property_uid' => $property_uid));
+		if ($mrConfig[ 'is_real_estate_listing' ] == 0 && $mrConfig[ 'singleRoomProperty' ] == '0' && !get_showtime('is_jintour_property')) {
+			$room_type_output = [ 0 => [
+				'_JOMRES_SEARCH_RTYPES'  =>
+					jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', '_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', false),
+				'ROOM_TYPES' =>
+					$MiniComponents->specificEvent('06000', 'show_property_room_types', array('output_now' => false, 'property_uid' => $property_uid))
+			]];
+
 		} else {
-			$room_type_output['ROOM_TYPES'] = array();
+			$room_type_output = array();
 		}
 
-		if ($mrConfig[ 'is_real_estate_listing' ] == 0 && $mrConfig[ 'singleRoomProperty' ] == '0') {
+		if ($mrConfig[ 'is_real_estate_listing' ] == 0 && $mrConfig[ 'singleRoomProperty' ] == '0' && !get_showtime('is_jintour_property')) {
 			$rooms_output = array(
 				0 => ['_JOMRES_COM_MR_QUICKRES_STEP2_TITLE' => jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP2_TITLE', '_JOMRES_COM_MR_QUICKRES_STEP2_TITLE')]
 			);
