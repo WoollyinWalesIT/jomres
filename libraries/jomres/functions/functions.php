@@ -16,6 +16,28 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 
+	/**
+	 *
+     * A quick function for outputting BS5 badges. If the file doesn't exist we'll just return the text
+     *
+	 */
+
+    function jomres_badge($text = '' , $badge_style = 'secondary')
+	{
+        $badge_file = JOMRES_TEMPLATEPATH_FRONTEND.JRDS.'badge_'.$badge_style.'.html';
+        if (!file_exists()) {
+            return $text;
+        }
+
+		$pageoutput = array(array('TEXT' => $text ));
+		$tmpl = new patTemplate();
+		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+		$tmpl->readTemplatesFromInput('badge_'.$badge_style.'.html');
+		$tmpl->addRows('pageoutput', $pageoutput);
+		return $tmpl->getParsedTemplate();
+        
+    }
+
 /**
  *
  * Restores an encoded email address that might have the + symbol in
