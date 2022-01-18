@@ -38,7 +38,7 @@ class j01010listpropertys
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch) {
-			$this->template_touchable = true;
+			$this->template_touchable = false;
 
 			return;
 		}
@@ -294,6 +294,10 @@ class j01010listpropertys
 				$guest_budget = $budget->get_budget();
 			}
 
+			$current_jintour_properties = get_showtime('jintour_properties');
+			if ($current_jintour_properties == false ) {
+				$current_jintour_properties = array();
+			}
 			if (!empty($propertysToShow)) {
 				$property_details = array();
 
@@ -788,7 +792,13 @@ class j01010listpropertys
 							}
 						}
 					}
-				
+
+					$result['PRICE_PRE_TEXT'] = '';
+					if ( in_array ( $propertys_uid , $current_jintour_properties)   ) {
+						$property_deets[ 'PRICE_PRE_TEXT' ] = jr_gettext('_JOMRES_TARIFFSFROM', '_JOMRES_TARIFFSFROM', false);
+						$property_deets[ 'PRICE_POST_TEXT' ] = jr_gettext('_JOMRES_BOOKINGFORM_PERPERSON', '_JOMRES_BOOKINGFORM_PERPERSON', false);
+					}
+
 					$property_details[ ] = $property_deets;
 				}
 				
@@ -823,39 +833,6 @@ class j01010listpropertys
 				set_showtime('property_uid', $original_property_uid);
 				set_showtime('property_type', $original_property_type);
 			}
-		}
-	}
-
-	public function touch_template_language()
-	{
-		$output = array();
-
-		$output[ ] = jr_gettext('_JOMRES_COM_A_CLICKFORMOREINFORMATION', '_JOMRES_COM_A_CLICKFORMOREINFORMATION');
-		$output[ ] = jr_gettext('_JOMRES_FRONT_NORESULTS', '_JOMRES_FRONT_NORESULTS');
-		$output[ ] = jr_gettext('_PN_PREVIOUS', '_PN_PREVIOUS');
-		$output[ ] = jr_gettext('_PN_NEXT', '_PN_NEXT');
-		$output[ ] = jr_gettext('_JOMRES_DATEPERIOD_SECOND', '_JOMRES_DATEPERIOD_SECOND');
-		$output[ ] = jr_gettext('_JOMRES_DATEPERIOD_MINUTE', '_JOMRES_DATEPERIOD_MINUTE');
-		$output[ ] = jr_gettext('_JOMRES_DATEPERIOD_DAY', '_JOMRES_DATEPERIOD_DAY');
-		$output[ ] = jr_gettext('_JOMRES_DATEPERIOD_HOUR', '_JOMRES_DATEPERIOD_HOUR');
-		$output[ ] = jr_gettext('_JOMRES_DATEPERIOD_WEEK', '_JOMRES_DATEPERIOD_WEEK');
-		$output[ ] = jr_gettext('_JOMRES_DATEPERIOD_MONTH', '_JOMRES_DATEPERIOD_MONTH');
-		$output[ ] = jr_gettext('_JOMRES_DATEPERIOD_YEAR', '_JOMRES_DATEPERIOD_YEAR');
-		$output[ ] = jr_gettext('_JOMRES_DATEPERIOD_DECADE', '_JOMRES_DATEPERIOD_DECADE');
-		$output[ ] = jr_gettext('_JOMRES_DATEPERIOD_S', '_JOMRES_DATEPERIOD_S');
-		$output[ ] = jr_gettext('_JOMRES_DATEPERIOD_AGO', '_JOMRES_DATEPERIOD_AGO');
-		$output[ ] = jr_gettext('_JOMRES_DATEPERIOD_FROMNOW', '_JOMRES_DATEPERIOD_FROMNOW');
-		$output[ ] = jr_gettext('_JOMRES_DATEPERIOD_LATESTBOOKING', '_JOMRES_DATEPERIOD_LATESTBOOKING');
-		$output[ ] = jr_gettext('_JOMRES_QUICK_INFO', '_JOMRES_QUICK_INFO');
-		$output[ ] = jr_gettext('_JOMRES_COMPARE', '_JOMRES_COMPARE');
-
-		$output[ ] = jr_gettext('_JOMRES_ADDTOSHORTLIST', '_JOMRES_ADDTOSHORTLIST');
-		$output[ ] = jr_gettext('_JOMRES_REMOVEFROMSHORTLIST', '_JOMRES_REMOVEFROMSHORTLIST');
-		$output[ ] = jr_gettext('_JOMRES_VIEWSHORTLIST', '_JOMRES_VIEWSHORTLIST');
-
-		foreach ($output as $o) {
-			echo $o;
-			echo '<br/>';
 		}
 	}
 
