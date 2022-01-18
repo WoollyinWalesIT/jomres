@@ -25,7 +25,7 @@ defined('_JOMRES_INITCHECK') or die('');
     function jomres_badge($text = '' , $badge_style = 'secondary')
 	{
         $badge_file = JOMRES_TEMPLATEPATH_FRONTEND.JRDS.'badge_'.$badge_style.'.html';
-        if (!file_exists()) {
+        if (!file_exists( $badge_file)) {
             return $text;
         }
 
@@ -35,7 +35,7 @@ defined('_JOMRES_INITCHECK') or die('');
 		$tmpl->readTemplatesFromInput('badge_'.$badge_style.'.html');
 		$tmpl->addRows('pageoutput', $pageoutput);
 		return $tmpl->getParsedTemplate();
-        
+
     }
 
 /**
