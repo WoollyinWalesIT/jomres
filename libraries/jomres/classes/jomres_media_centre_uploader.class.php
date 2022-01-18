@@ -859,6 +859,10 @@ class UploadHandler
 		if (!function_exists('exif_read_data')) {
 			return false;
 		}
+
+
+		$this-> image_fix_orientation( $src_img , $file_path );
+		
 		$exif = @exif_read_data($file_path);
 		if ($exif === false) {
 			return false;
@@ -1890,5 +1894,25 @@ class UploadHandler
 	protected function basename($filepath, $suffix = null) {
 		$splited = preg_split('/\//', rtrim ($filepath, '/ '));
 		return substr(basename('X'.$splited[count($splited)-1], $suffix), 1);
+	}
+
+	protected function image_fix_orientation(&$image, $filename) {
+		$exif = exif_read_data($filename);
+
+		if (!empty($exif['Orientation'])) {
+			switch ($exif['Orientation']) {
+				case 3:
+					$image = imagerotate($image, 180, 0);
+					break;
+
+				case 6:
+					$image = imagerotate($image, 90, 0);
+					break;
+
+				case 8:
+					$image = imagerotate($image, -90, 0);
+					break;
+			}
+		}
 	}
 }
