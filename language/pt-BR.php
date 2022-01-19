@@ -2682,3 +2682,32 @@ jr_define ('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Obter nova chave');
 jr_define ('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Salvar nova chave');
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Imagens de tipo de propriedade");
+
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"Precisa de ajuda para reservar?");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"Ligue para nossa equipe de atendimento ao cliente no número abaixo para falar com um de nossos representantes que o ajudará com todas as suas necessidades de férias.");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"Por que reservar conosco?");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"Oferecemos as melhores tarifas de reserva");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"Temos as propriedades com os melhores preços atualmente no mercado.");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"Sem taxas de reserva. Economize dinheiro!");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"Grande seleção de propriedades");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," propriedades");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS'," comentários de hóspedes");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"Estamos Sempre Aqui");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"Ligue ou envie um email, a qualquer momento");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"Obtenha suporte 24 horas antes, durante e depois de sua viagem");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"Mídia social");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"Encontre-nos nas redes sociais");
+
+	jr_define('JOMRES_REVIEW_SCORE_TOP_1', "Excelente");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_2', "Excepcional");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_3', "Fabuloso");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_4', "Excelente");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_5', "Fantástico");
+
+	jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD', "Muito bom");
+	jr_define('JOMRES_REVIEW_SCORE_GOOD', "Bom");
+
+	jr_define('JOMRES_REVIEWS_NONE_NEW', "Nova listagem");
+	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Descontado");

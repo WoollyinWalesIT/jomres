@@ -2601,3 +2601,32 @@ jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Отримати новий ключ'
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Зберегти новий ключ');
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Зображення типів властивостей");
+
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"Потрібна допомога з бронюванням?");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"Зателефонуйте нашій службі обслуговування клієнтів за номером нижче, щоб поговорити з одним із наших представників, який допоможе вам з усіма вашими потребами у відпустці.");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"Чому бронювати у нас?");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"Ми пропонуємо найкращі ціни на бронювання");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"На даний момент у нас найкращі ціни на нерухомість.");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"Без плати за бронювання. Економте гроші!");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"Великий вибір властивостей");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," властивості");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS'," відгуки гостей");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"Ми завжди тут");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"Зателефонуйте нам або напишіть нам у будь-який час");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"Отримайте цілодобову підтримку до, під час і після поїздки");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"Соціальні мережі");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"Знайди нас у соціальних мережах");
+
+	jr_define('JOMRES_REVIEW_SCORE_TOP_1', "Видатно");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_2', "Винятково");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_3', "Чудово");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_4', "Чудово");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_5', "Фантастичний");
+
+	jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD', "Дуже добре");
+	jr_define('JOMRES_REVIEW_SCORE_GOOD', "Добре");
+
+	jr_define('JOMRES_REVIEWS_NONE_NEW', "Новий список");
+	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Знижка");

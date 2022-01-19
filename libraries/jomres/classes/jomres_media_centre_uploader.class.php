@@ -860,9 +860,6 @@ class UploadHandler
 			return false;
 		}
 
-
-		$this-> image_fix_orientation( $src_img , $file_path );
-		
 		$exif = @exif_read_data($file_path);
 		if ($exif === false) {
 			return false;
@@ -1407,7 +1404,7 @@ class UploadHandler
 		}
 		if (count($failed_versions)) {
 			$file->error = $this->get_error_message('image_resize')
-					.' ('.implode($failed_versions, ', ').')';
+					.' ('.implode(', ', $failed_versions ).')';
 		}
 		// Free memory:
 		$this->destroy_image_object($file_path);

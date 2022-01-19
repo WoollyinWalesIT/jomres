@@ -2631,3 +2631,32 @@ jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Вземете нов ключ');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Запазване на нов ключ');
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Изображения от тип собственост");
+
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"Имате нужда от помощ за резервация?");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"Обадете се на нашия екип за обслужване на клиенти на номера по-долу, за да говорите с един от нашите представители, който ще ви помогне с всички ваши нужди за почивка.");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"Защо да резервирате при нас?");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"Ние предлагаме най-добрите цени за резервации");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"Имаме имоти с най-добра цена в момента на пазара.");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"Без такси за резервация. Спестете пари!");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"Страхотен избор от имоти");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," свойства");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS'," отзиви от гости");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"Винаги сме тук");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"Обадете се или ни изпратете имейл по всяко време");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"Получете 24-часова поддръжка преди, по време и след вашето пътуване");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"Социални медии");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"Намерете ни в социалните медии");
+
+	jr_define('JOMRES_REVIEW_SCORE_TOP_1', "Изключително");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_2', "Изключително");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_3', "Страхотно");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_4', "Превъзходно");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_5', "Фантастично");
+
+	jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD', "Много добре");
+	jr_define('JOMRES_REVIEW_SCORE_GOOD', "Добре");
+
+	jr_define('JOMRES_REVIEWS_NONE_NEW', "Нова обява");
+	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Отстъпка");

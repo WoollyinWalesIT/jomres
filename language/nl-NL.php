@@ -2610,3 +2610,32 @@ jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Nieuwe sleutel ophalen');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Nieuwe sleutel opslaan');
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Eigenschap type afbeeldingen");
+
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"Hulp nodig bij het boeken?");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"Bel onze klantenservice op het onderstaande nummer om met een van onze vertegenwoordigers te spreken die u zullen helpen met al uw vakantiebehoeften.");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"Waarom bij ons boeken?");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"Wij bieden de beste boekingstarieven");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"We hebben de best geprijsde woningen die momenteel op de markt zijn.");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"Geen boekingskosten. Bespaar geld!");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"Grote selectie van eigenschappen");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," eigenschappen");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS'," gastbeoordelingen");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"We zijn er altijd");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"Bel of mail ons op elk moment");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"Ontvang 24 uur per dag ondersteuning voor, tijdens en na uw reis");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"Sociale media");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"Vind ons op sociale media");
+
+	jr_define('JOMRES_REVIEW_SCORE_TOP_1', "Uitstekend");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_2', "Uitzonderlijk");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_3', "Fantastisch");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_4', "Fantastisch");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_5', "Fantastisch");
+
+	jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD', "Zeer goed");
+	jr_define('JOMRES_REVIEW_SCORE_GOOD', "Goed");
+
+	jr_define('JOMRES_REVIEWS_NONE_NEW', "Nieuwe aanbieding");
+	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Korting");

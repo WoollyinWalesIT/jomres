@@ -2748,3 +2748,32 @@ jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'دریافت کلید جدید');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'ذخیره کلید جدید');
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"تصاویر نوع ویژگی");
+
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"برای رزرو به کمک نیاز دارید؟");
+jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"با تیم خدمات مشتری ما با شماره زیر تماس بگیرید تا با یکی از نمایندگان ما صحبت کنید که به شما در رفع تمام نیازهای تعطیلات کمک می کند.");
+
+jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"چرا با ما رزرو کنید؟");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"ما بهترین نرخ های رزرو را ارائه می دهیم");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"ما دارای بهترین قیمت در حال حاضر در بازار هستیم.");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"بدون هزینه رزرو. صرفه جویی در هزینه!");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"انتخاب عالی از خواص");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," خواص");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS'," نظرات مهمان");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"ما همیشه اینجا هستیم");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"در هر زمان با ما تماس بگیرید یا ایمیل بزنید");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"دریافت پشتیبانی 24 ساعته قبل، در طول و بعد از سفر");
+
+jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"رسانه های اجتماعی");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"ما را در رسانه های اجتماعی بیابید");
+
+jr_define('JOMRES_REVIEW_SCORE_TOP_1', "ممتاز");
+jr_define('JOMRES_REVIEW_SCORE_TOP_2', "Exceptional");
+jr_define('JOMRES_REVIEW_SCORE_TOP_3', "عالی");
+jr_define('JOMRES_REVIEW_SCORE_TOP_4', "عالی");
+jr_define('JOMRES_REVIEW_SCORE_TOP_5', "عالی");
+
+jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD', "بسیار خوب");
+jr_define('JOMRES_REVIEW_SCORE_GOOD', "خوب");
+
+jr_define('JOMRES_REVIEWS_NONE_NEW', "فهرست جدید");
+jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "تخفیف");

@@ -2673,3 +2673,32 @@ jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Save new key');
 
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Property type images");
+
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"Need help booking?");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"Call our customer services team on the number below to speak to one of our representatives who will help you with all of your holiday needs.");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"Why book with us?");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"We offer the best booking rates");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"We have the best priced properties currently on the market.");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"No booking fees. Save money!");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"Great selection of properties");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," properties");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS'," guest reviews");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"We’re Always Here");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"Call or email us, anytime");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"Get 24-hour support before, during, and after your trip");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"Social media");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"Find us on social media");
+
+	jr_define('JOMRES_REVIEW_SCORE_TOP_1',	"Outstanding");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_2',	"Exceptional");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_3',	"Fabulous");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_4',	"Superb");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_5',	"Fantastic");
+
+	jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD',	"Very good");
+	jr_define('JOMRES_REVIEW_SCORE_GOOD',	"Good");
+
+	jr_define('JOMRES_REVIEWS_NONE_NEW', "New listing");
+	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Discounted");

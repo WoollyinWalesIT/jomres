@@ -2644,3 +2644,32 @@ jr_define( 'PLUGIN_UPDATE_MESSAGE2_LINK1', '新しいキーを取得');
 jr_define( 'PLUGIN_UPDATE_MESSAGE2_LINK2', '新しいキーを保存');
 
 jr_define( '_ JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES', "プロパティタイプの画像");
+
+jr_define( 'JOMRES_SITE_SIDEBAR_HELP_TITLE',"予約のヘルプが必要ですか？");
+jr_define( 'JOMRES_SITE_SIDEBAR_HELP_BLURB',"以下の番号のカスタマーサービスチームに電話して、休日のすべてのニーズに対応する担当者の1人に相談してください。");
+
+jr_define( 'JOMRES_SITE_SIDEBAR_WHY_TITLE',"なぜ私たちと一緒に予約するのですか？");
+jr_define( 'JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"最高の予約料金を提供します");
+jr_define( 'JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"現在市場で最も価格の高い物件があります。");
+jr_define( 'JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"予約手数料なし。お金を節約！");
+jr_define( 'JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"優れたプロパティの選択");
+jr_define( 'JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS',"プロパティ");
+jr_define( 'JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS',"ゲストレビュー");
+jr_define( 'JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"私たちは常にここにいます");
+jr_define( 'JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"いつでも電話またはメールでお問い合わせください");
+jr_define( 'JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"旅行前、旅行中、旅行後に24時間サポートを受ける");
+
+jr_define( 'JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"ソーシャルメディア");
+jr_define( 'JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"ソーシャルメディアで私たちを見つけてください");
+
+jr_define( 'JOMRES_REVIEW_SCORE_TOP_1',"優れた");
+jr_define( 'JOMRES_REVIEW_SCORE_TOP_2',"例外的");
+jr_define( 'JOMRES_REVIEW_SCORE_TOP_3',"すばらしい");
+jr_define( 'JOMRES_REVIEW_SCORE_TOP_4',"すばらしい");
+jr_define( 'JOMRES_REVIEW_SCORE_TOP_5',"ファンタスティック");
+
+jr_define( 'JOMRES_REVIEW_SCORE_VERY_GOOD',"とても良い");
+jr_define( 'JOMRES_REVIEW_SCORE_GOOD',"Good");
+
+jr_define( 'JOMRES_REVIEWS_NONE_NEW',"新しいリスト");
+jr_define( 'JOMRES_RIBBON_TEXT_DISCOUNTED',"割引");

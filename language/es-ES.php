@@ -2681,3 +2681,32 @@ jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_SHOWFILTERS',"Mostrar filtros");
 jr_define('_JOMRES_AJAX_SEARCH_COMPOSITE_HIDEFILTERS',"Ocultar filtros");
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Imágenes de tipo de propiedad");
+
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"¿Necesita ayuda para reservar?");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"Llame a nuestro equipo de atención al cliente al número que aparece a continuación para hablar con uno de nuestros representantes que lo ayudará con todas sus necesidades navideñas.");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"¿Por qué reservar con nosotros?");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"Ofrecemos las mejores tarifas de reserva");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"Tenemos las propiedades con los mejores precios actualmente en el mercado.");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"Sin gastos de reserva. ¡Ahorra dinero!");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"Gran selección de propiedades");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," propiedades");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS'," reseñas de invitados");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"Siempre estamos aquí");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"Llámenos o envíenos un correo electrónico, en cualquier momento");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"Obtenga soporte las 24 horas antes, durante y después de su viaje");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"Redes sociales");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"Encuéntrenos en las redes sociales");
+
+	jr_define('JOMRES_REVIEW_SCORE_TOP_1', "Sobresaliente");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_2', "Excepcional");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_3', "Fabuloso");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_4', "Excelente");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_5', "Fantástico");
+
+	jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD', "Muy bien");
+	jr_define('JOMRES_REVIEW_SCORE_GOOD', "Bien");
+
+	jr_define('JOMRES_REVIEWS_NONE_NEW', "Nueva lista");
+	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Con descuento");

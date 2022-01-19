@@ -2666,3 +2666,32 @@ jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Obtén una clau nova');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Desa la clau nova');
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Imatges de tipus de propietat");
+
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"Necessites ajuda per reservar?");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"Truqueu al nostre equip d'atenció al client al número següent per parlar amb un dels nostres representants que us ajudarà amb totes les vostres necessitats de vacances.");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"Per què reservar amb nosaltres?");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"Oferim les millors tarifes de reserva");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"Tenim les propietats de millor preu actualment del mercat.");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"Sense comissions de reserva. Estalvieu diners!");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"Gran selecció de propietats");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," propietats");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS'," comentaris dels clients");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"Sempre estem aquí");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"Truca'ns o envia'ns un correu electrònic, en qualsevol moment");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"Obtenir assistència les 24 hores abans, durant i després del viatge");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"Xarxes socials");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"Troba'ns a les xarxes socials");
+
+	jr_define('JOMRES_REVIEW_SCORE_TOP_1', "Excel·lent");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_2', "Excepcional");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_3', "Fabulós");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_4', "Excel·lent");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_5', "Fantàstic");
+
+	jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD', "Molt bé");
+	jr_define('JOMRES_REVIEW_SCORE_GOOD', "Bo");
+
+	jr_define('JOMRES_REVIEWS_NONE_NEW', "Nova llista");
+	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Descomptat");

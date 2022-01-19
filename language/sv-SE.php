@@ -2645,3 +2645,32 @@ jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Hämta ny nyckel');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Spara ny nyckel');
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Egenskapstypbilder");
+
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"Behöver du hjälp att boka?");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"Ring vår kundtjänst på numret nedan för att prata med en av våra representanter som hjälper dig med alla dina semesterbehov.");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"Varför boka hos oss?");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"Vi erbjuder de bästa bokningspriserna");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"Vi har de mest prisvärda fastigheterna på marknaden för närvarande.");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"Inga bokningsavgifter. Spara pengar!");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"Bra urval av egenskaper");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," egenskaper");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS'," gästrecensioner");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"Vi är alltid här");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"Ring eller maila oss när som helst");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"Få 24-timmars support före, under och efter din resa");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"Sociala medier");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"Hitta oss på sociala medier");
+
+	jr_define('JOMRES_REVIEW_SCORE_TOP_1', "Utestående");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_2', "Exceptionell");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_3', "Fantastiskt");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_4', "Superbt");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_5', "Fantastiskt");
+
+	jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD', "Mycket bra");
+	jr_define('JOMRES_REVIEW_SCORE_GOOD', "Bra");
+
+	jr_define('JOMRES_REVIEWS_NONE_NEW', "Ny notering");
+	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Rabatterade");

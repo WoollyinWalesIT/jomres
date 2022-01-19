@@ -2617,3 +2617,32 @@ jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Získat nový klíč');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Uložit nový klíč');
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Obrázky typu vlastnosti");
+
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"Potřebujete pomoc s rezervací?");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"Zavolejte našemu týmu zákaznických služeb na níže uvedené číslo a promluvte si s jedním z našich zástupců, který vám pomůže se všemi potřebami na dovolené.");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"Proč rezervovat u nás?");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"Nabízíme nejlepší ceny za rezervace");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"Máme aktuálně nejvýhodnější nemovitosti na trhu.");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"Žádné rezervační poplatky. Ušetřete peníze!");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"Skvělý výběr vlastností");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," vlastnosti");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS', "recenze hostů");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"Vždy jsme tady");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"Zavolejte nebo napište nám, kdykoli");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"Získejte 24hodinovou podporu před, během a po vaší cestě");
+
+jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"Sociální média");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"Najděte nás na sociálních sítích");
+
+jr_define('JOMRES_REVIEW_SCORE_TOP_1', "Vynikající");
+jr_define('JOMRES_REVIEW_SCORE_TOP_2', "Výjimečné");
+jr_define('JOMRES_REVIEW_SCORE_TOP_3', "Úžasné");
+jr_define('JOMRES_REVIEW_SCORE_TOP_4', "Skvělé");
+jr_define('JOMRES_REVIEW_SCORE_TOP_5', "Fantastické");
+
+jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD', "Velmi dobře");
+jr_define('JOMRES_REVIEW_SCORE_GOOD', "Dobré");
+
+jr_define('JOMRES_REVIEWS_NONE_NEW', "Nový výpis");
+jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Sleva");

@@ -2663,3 +2663,32 @@ jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Pobierz nowy klucz');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Zapisz nowy klucz');
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Obrazy typu właściwości");
+
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"Potrzebujesz pomocy przy rezerwacji?");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"Zadzwoń do naszego zespołu obsługi klienta pod poniższy numer, aby porozmawiać z jednym z naszych przedstawicieli, który pomoże Ci we wszystkich Twoich potrzebach wakacyjnych.");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"Dlaczego rezerwować u nas?");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"Oferujemy najlepsze ceny rezerwacji");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"Mamy obecnie najlepsze ceny na rynku.");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"Brak opłat za rezerwację. Oszczędź pieniądze!");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"Duży wybór właściwości");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," właściwości");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS'," opinie gości");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"Zawsze tu jesteśmy");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"Zadzwoń lub napisz do nas w dowolnym momencie");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"Uzyskaj całodobowe wsparcie przed, w trakcie i po podróży");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"Media społecznościowe");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"Znajdź nas w mediach społecznościowych");
+
+	jr_define('JOMRES_REVIEW_SCORE_TOP_1', "Znakomity");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_2', "Wyjątkowy");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_3', "Wspaniały");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_4', "Znakomity");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_5', "Fantastycznie");
+
+	jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD', "Bardzo dobrze");
+	jr_define('JOMRES_REVIEW_SCORE_GOOD', "Dobry");
+
+	jr_define('JOMRES_REVIEWS_NONE_NEW', "Nowa lista");
+	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Zniżka");

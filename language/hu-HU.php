@@ -2676,3 +2676,32 @@ jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Új kulcs beszerzése');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Új kulcs mentése');
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Tulajdon típusú képek");
+
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"Segítségre van szüksége a foglaláshoz?");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"Hívja ügyfélszolgálatunk csapatát az alábbi telefonszámon, és beszéljen egyik képviselőnkkel, aki segíteni fog az összes nyaralási igényében.");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"Miért érdemes nálunk foglalni?");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"A legjobb foglalási árakat kínáljuk");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"Nálunk vannak jelenleg a legjobb árú ingatlanok a piacon.");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"Nincs foglalási díj. Pénzt takaríthat meg!");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"Tulajdonságok nagy választéka");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," tulajdonságok");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS'," vendégértékelések");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"Mindig itt vagyunk");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"Hívjon vagy küldjön e-mailt, bármikor");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"24 órás támogatás az utazás előtt, alatt és után");
+
+jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"Közösségi média");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"Keressen meg minket a közösségi médiában");
+
+jr_define('JOMRES_REVIEW_SCORE_TOP_1', "Kiváló");
+jr_define('JOMRES_REVIEW_SCORE_TOP_2', "Kivételes");
+jr_define('JOMRES_REVIEW_SCORE_TOP_3', "Csodálatos");
+jr_define('JOMRES_REVIEW_SCORE_TOP_4', "Kiváló");
+jr_define('JOMRES_REVIEW_SCORE_TOP_5', "Fantasztikus");
+
+jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD', "Nagyon jó");
+jr_define('JOMRES_REVIEW_SCORE_GOOD', "Jó");
+
+jr_define('JOMRES_REVIEWS_NONE_NEW', "Új lista");
+jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Kedvezményes");

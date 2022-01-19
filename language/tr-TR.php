@@ -2647,3 +2647,32 @@ jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Yeni anahtar al');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Yeni anahtarı kaydet');
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Mülk tipi resimler");
+
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"Rezervasyon için yardıma mı ihtiyacınız var?");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"Tatil ihtiyaçlarınız için size yardımcı olacak temsilcilerimizden biriyle görüşmek için aşağıdaki numaradan müşteri hizmetleri ekibimizi arayın.");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"Neden bizimle rezervasyon yaptırın?");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"En iyi rezervasyon fiyatlarını sunuyoruz");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"Şu anda piyasadaki en iyi fiyatlı mülklere sahibiz.");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"Rezervasyon ücreti yok. Tasarruf edin!");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"Mükemmel mülk seçimi");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," özellikler");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS'," misafir değerlendirmeleri");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"Her Zaman Buradayız");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT', "Her zaman bizi arayın veya e-posta gönderin");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"Seyahatiniz öncesinde, sırasında ve sonrasında 24 saat destek alın");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"Sosyal medya");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"Bizi sosyal medyada bulun");
+
+	jr_define('JOMRES_REVIEW_SCORE_TOP_1', "Üstün");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_2', "Olağanüstü");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_3', "Muhteşem");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_4', "Süper");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_5', "Harika");
+
+	jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD', "Çok iyi");
+	jr_define('JOMRES_REVIEW_SCORE_GOOD', "İyi");
+
+	jr_define('JOMRES_REVIEWS_NONE_NEW', "Yeni Liste");
+	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "İndirimli");
