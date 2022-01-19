@@ -45,6 +45,8 @@ class j01010listpropertys
 		
 		$MiniComponents->triggerEvent('01008', $componentArgs); // optional
 
+		jr_import('jomres_ribbon_generator');
+
 		$data_only 					= jomresGetParam($_REQUEST, 'dataonly', false);
 		$propertylist_layout 		= jomresGetParam($_REQUEST, 'propertylist_layout', '');
 		$this->jr_page 					= (int)jomresGetParam($_REQUEST, 'jr_page', 0);
@@ -359,6 +361,8 @@ class j01010listpropertys
 
 					$mrConfig = getPropertySpecificSettings($propertys_uid);
 
+					$jomres_ribbon_generator = new jomres_ribbon_generator( $propertys_uid );
+
 					$property_deets['GATEWAYS'] = '';
 					$payment_methods = $jomres_property_payment_methods->get_property_gateways($propertys_uid);
 
@@ -429,47 +433,26 @@ class j01010listpropertys
 						$no_reviews_output_button = array();
 
 						if ( jomres_bootstrap_version() == '5' ) {
+
 							if ((int)$property_deets['NUMBER_OF_REVIEWS'] > 0) {   // For Joomla 4 BS5 template sets
+
+								$jomres_ribbon_generator->set_review_score( $itemRating['avg_rating'] , $itemRating["rating_ribbon_text"] );
+
 								$rob['RATING_TEXT_COLOUR'] = 'text-success';
 								$rob['AVERAGE_RATING'] = number_format($itemRating['avg_rating'], 1, '.', '');
 
 								$rob['RATING_SCORE_TEXT'] = '';
-								if ($rob['AVERAGE_RATING'] > 9.5 ) {
+								if ($rob['AVERAGE_RATING'] > 5 ) {
 									$rob['RATING_SCORE_TEXT'] = jomres_badge(
-										jr_gettext('JOMRES_REVIEW_SCORE_10', 'JOMRES_REVIEW_SCORE_10', false),
+										$itemRating["rating_ribbon_text"],
 										'success'
 										);
 								}
-								if ($rob['AVERAGE_RATING'] < 9.5 && $property_deets['AVERAGE_RATING'] >= 9) {
-									$rob['RATING_SCORE_TEXT'] = jomres_badge(
-										jr_gettext('JOMRES_REVIEW_SCORE_9', 'JOMRES_REVIEW_SCORE_9', false),
-										'success'
-									);
-								}
-								if ($rob['AVERAGE_RATING'] < 9 && $property_deets['AVERAGE_RATING'] >= 8) {
-									$rob['RATING_SCORE_TEXT'] = jomres_badge(
-										jr_gettext('JOMRES_REVIEW_SCORE_8', 'JOMRES_REVIEW_SCORE_8', false),
-										'success'
-									);
-								}
-								if ($rob['AVERAGE_RATING'] < 8 && $property_deets['AVERAGE_RATING'] >= 7) {
-									$rob['RATING_SCORE_TEXT'] = jomres_badge(
-										jr_gettext('JOMRES_REVIEW_SCORE_7', 'JOMRES_REVIEW_SCORE_7', false),
-										'success'
-									);
-								}
-								if ($rob['AVERAGE_RATING'] < 7 && $property_deets['AVERAGE_RATING'] > 5) {
-									$rob['RATING_TEXT_COLOUR'] = 'text-success';
-									$rob['RATING_SCORE_TEXT'] = jomres_badge(
-										jr_gettext('JOMRES_REVIEW_SCORE_6', 'JOMRES_REVIEW_SCORE_6', false),
-										'success'
-									);
-								}
+
 								if ($rob['AVERAGE_RATING'] <= 5) {
 									$rob['RATING_TEXT_COLOUR'] = 'text-warning';
 									$rob['RATING_SCORE_TEXT'] = '';
 								}
-
 
 								$rob['UID'] = $propertys_uid;
 								$rob['AVERAGE_RATING'] = $property_deets['AVERAGE_RATING'];
@@ -892,6 +875,7 @@ class j01010listpropertys
 						$property_deets[ 'PRICE_POST_TEXT' ] = jr_gettext('_JOMRES_BOOKINGFORM_PERPERSON', '_JOMRES_BOOKINGFORM_PERPERSON', false);
 					}
 
+					$property_deets['RIBBON'] = $jomres_ribbon_generator->generate_html();
 					$property_details[ ] = $property_deets;
 				}
 				
@@ -908,6 +892,7 @@ class j01010listpropertys
 					$tmpl->readTemplatesFromInput('list_properties_header.html');
 					$output[ 'HEADER' ] = $tmpl->getParsedTemplate();
 				}
+
 
 				$pageoutput[ ] = $output;
 				$tmpl = new patTemplate();

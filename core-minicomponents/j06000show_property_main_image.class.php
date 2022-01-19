@@ -102,6 +102,9 @@ class j06000show_property_main_image
 		}
 
 		$output['IMAGE']	=  $jomres_media_centre_images->images['property'][0][0]['medium'];
+		$output['SMALL']	=  $jomres_media_centre_images->images['property'][0][0]['small'];
+		$output['MEDIUM']	=  $jomres_media_centre_images->images['property'][0][0]['medium'];
+		$output['LARGE']	=  $jomres_media_centre_images->images['property'][0][0]['large'];
 		$output['URL']		=  get_property_details_url($property_uid);
 
 		$pageoutput = array();

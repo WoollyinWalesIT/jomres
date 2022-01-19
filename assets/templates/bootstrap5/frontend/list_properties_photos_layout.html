@@ -12,13 +12,67 @@
 </div>
 </patTemplate:comment>
 
+	<style>
+		.text-overlay-photolayout {
+			position: absolute;
+			top: 30px;
+			left: 16px;
+		}
+
+		.card-img-photolayout {
+			width: 100%;
+			height: 100%;
+			background-color: black; /* fallback color */
+			background-position: center;
+			background-size: cover;
+			opacity:1;
+			filter: sepia(100%);
+		}
+
+		.ribbon {
+			position: absolute !important;
+			right:0 !important;
+			top:0 !important;
+			z-index: 10 !important;
+			overflow: hidden !important;
+			width: 90px !important;
+			height: 90px !important;
+			text-align: right !important;}
+		.ribbon span 	{
+			background:#EEA2A2;
+			font-size: 12px !important;
+			font-weight: bold !important;
+			text-transform: uppercase !important;
+			text-align: center !important;
+			line-height: 24px !important;
+			transform: rotate(45deg) !important;
+			-webkit-transform: rotate(45deg) !important;
+			width: 170px !important;
+			display: block !important;
+			position: absolute !important;
+			top: 25px !important;
+			right: -49px !important;}
+	</style>
 
 	<div class="row">
 		<div class="card-group">
 			<patTemplate:tmpl name="property_details" unusedvars="&nbsp;">
-				<div class="col-3 p-2  d-flex align-items-stretch">
-					<div class="photo-view col-12 card h-100" id="{UID}">
-						<div class="card-img">{PROPERTY_IMAGE_OR_SLIDESHOW}</div>
+				<div class="col-sm-4 p-2  d-flex align-items-stretch">
+					<div class="card photo-view col-12 h-100" id="{UID}">
+						{RIBBON}{PROPERTY_IMAGE_OR_SLIDESHOW}
+
+							<div class="row text-overlay-photolayout" style="width:200%">
+								<div class="col-4">
+									<div class="bg-info text-white rounded-3 p-2">
+										{PRICE_PRE_TEXT} {PRICE_PRICE}
+										{PRICE_POST_TEXT}
+									</div>
+									<div class="col-8">
+
+									</div>
+								</div>
+							</div>
+
 						<div class="card-body {BUDGET_BORDER_CLASS} {FEATURED_LISTINGS_CLASS}">
 
 							<div class="card-title">
@@ -27,46 +81,39 @@
 									<span class="pull-right">
 										<a href="javascript:void(0);" id="shortlist_{UID}" onclick="shortlist('{UID}')" class="hidden-xs" style="color:#333;">{SHORTLIST}</a>
 									</span>
+
 								</h3>
 							</div>
 
-								<div class="row">
-									<div class="col-6">
-										{PROPERTY_TYPE}
-									</div>
-									<div class="col-6">
-										<div style="color:#FFD700" class="ml-auto">{STARS}{SUPERIOR}</div>
-									</div>
+							<div class="row">
+								<div class="col-6">
+									{PROPERTY_TYPE}
 								</div>
-								<i class="fas fa-search-location"></i> {PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}</em>
-
-								<!--<div align="center">{PRICE_PRE_TEXT}</div>-->
-								<div class="well">
-									<div class="row" >
-										<div class="col-6">
-											<span class="big-price">{PRICE_PRE_TEXT} {PRICE_PRICE}</span>
-											{PRICE_POST_TEXT}
-										</div>
-										<div class="col-6">
-											<span class="big-price">{PRICE_CUMULATIVE}</span>
-											{FOR} {STAY_DAYS} {NIGHTS_TEXT}
-											<patTemplate:comment>{DISCOUNT_OVERLAY}</patTemplate:comment>
-										</div>
-									</div>
+								<div class="col-6">
+									<div style="color:#FFD700" class="ml-auto">{STARS}{SUPERIOR}</div>
 								</div>
+							</div>
+							<i class="fas fa-search-location"></i> {PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}</em>
+							<div class="hidden-xs hidden-sm ml-auto">
+								<label>
+									<input type="checkbox" name="compare" value="{UID}" autocomplete="off"/>
+									{_JOMRES_COMPARE}
+								</label>
+							</div>
+							<patTemplate:comment>
+							<div class="row" >
+								<div class="col-3">
+									<span class="big-price">{PRICE_CUMULATIVE}</span>
+									{FOR} {STAY_DAYS} {NIGHTS_TEXT}
 
-							<span class="d-inline-block text-truncate" style="max-width: 250px;">
-								{PROPERTYDESC}
-							</span>
+								</div>
+							</div>
+							</patTemplate:comment>
+							<patTemplate:comment>{DISCOUNT_OVERLAY}</patTemplate:comment>
+
 							<div class="card-footer clearfix">
 								<div class="row">
 									<a href="{LINK}" class="btn btn-success pull-right"><i class="fa fa-shopping-cart"></i> {BOOKTHIS_TEXT}</a>
-									<div class="hidden-xs hidden-sm ml-auto">
-										<label>
-											<input type="checkbox" name="compare" value="{UID}" autocomplete="off"/>
-											{_JOMRES_COMPARE}
-										</label>
-									</div>
 								</div>
 							</div>
 						</div>
