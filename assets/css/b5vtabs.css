@@ -1,0 +1,237 @@
+.left-tabs.sideways-tabs,
+.right-tabs.sideways-tabs {
+    margin-top: 5rem;
+    border: none;
+    position: relative;
+    margin-bottom: 0;
+}
+.left-tabs.nav-tabs,
+.left-tabs.sideways-tabs,
+.right-tabs.nav-tabs,
+.right-tabs.sideways-tabs {
+    height: 100%;
+    flex-direction: column;
+}
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 0.5rem;
+}
+.vtabs .tab-clickable {
+    cursor: pointer;
+}
+.left-tabs.nav-tabs {
+    border-right: 1px solid #dee2e6;
+    border-bottom: none;
+}
+.left-tabs .nav-link {
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    margin-right: -1px;
+    text-align: left;
+}
+.left-tabs .nav-link:hover {
+    border-right: 1px solid transparent;
+}
+.left-tabs .nav-link.active {
+    border-top: 1px solid #dee2e6;
+    border-right: 1px solid transparent;
+    border-bottom: 1px solid #dee2e6;
+    border-left: 1px solid #dee2e6;
+}
+.right-tabs.nav-tabs {
+    border-left: 1px solid #dee2e6;
+    border-bottom: none;
+}
+.right-tabs .nav-link {
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    margin-left: -1px;
+    text-align: right;
+}
+.right-tabs .nav-link:hover {
+    border-left: 1px solid transparent;
+}
+.right-tabs .nav-link.active {
+    border-top: 1px solid #dee2e6;
+    border-right: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+    border-left: 1px solid transparent;
+}
+.left-tabs.sideways-tabs {
+    border-right: none;
+    left: -3.2rem;
+}
+.sideways-tabs.left-tabs .nav-item {
+    transform: rotate(-90deg);
+    height: 1rem;
+    margin-bottom: calc(8rem - 1rem);
+}
+.sideways-tabs.left-tabs .nav-link {
+    width: 8rem;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0.25rem;
+    border-bottom: 1px solid #dee2e6;
+}
+.sideways-tabs.left-tabs .nav-link:hover {
+    border-right: 1px solid #e9ecef;
+}
+.sideways-tabs.left-tabs .nav-link.active {
+    border-top: 1px solid #dee2e6;
+    border-right: 1px solid #dee2e6;
+    border-bottom: 1px solid transparent;
+    border-left: 1px solid #dee2e6;
+}
+.right-tabs.sideways-tabs {
+    border-left: none;
+    right: 3.2rem;
+}
+.sideways-tabs.right-tabs .nav-item {
+    transform: rotate(90deg);
+    height: 1rem;
+    margin-bottom: calc(8rem - 1rem);
+}
+.sideways-tabs.right-tabs .nav-link {
+    width: 8rem;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0.25rem;
+    border-bottom: 1px solid #dee2e6;
+}
+.sideways-tabs.right-tabs .nav-link:hover {
+    border-left: 1px solid #e9ecef;
+}
+.sideways-tabs.right-tabs .nav-link.active {
+    border-top: 1px solid #dee2e6;
+    border-right: 1px solid #dee2e6;
+    border-bottom: 1px solid transparent;
+    border-left: 1px solid #dee2e6;
+}
+.vtabs .accordion-header {
+    display: none;
+}
+@media (max-width: 767px) {
+    .left-tabs.nav-tabs {
+        flex-direction: row;
+        border-right: none;
+        border-left: none;
+        min-width: 100%;
+        border-bottom: 1px solid #dee2e6;
+        left: auto;
+        margin-top: auto;
+    }
+    .left-tabs .nav-link {
+        width: 8rem;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        border-top-right-radius: 0.25rem;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0.25rem;
+        margin-right: 0;
+        margin-bottom: -1px;
+    }
+    .left-tabs .nav-link.nav-link:hover {
+        border-right-color: #dee2e6;
+        border-bottom-color: transparent;
+    }
+    .left-tabs .nav-link.active {
+        border-top-color: #dee2e6;
+        border-right-color: #dee2e6;
+        border-bottom-color: transparent;
+        border-left-color: #dee2e6;
+    }
+    .sideways-tabs.left-tabs .nav-item,
+    .sideways-tabs.right-tabs .nav-item {
+        transform: none;
+        height: auto;
+        width: auto;
+        margin-bottom: 0;
+    }
+    .right-tabs.nav-tabs {
+        flex-direction: row;
+        border-right: none;
+        border-left: none;
+        min-width: 100%;
+        border-top: 1px solid #dee2e6;
+        right: auto;
+        margin-top: auto;
+    }
+    .right-tabs .nav-link,
+    .sideways-tabs.right-tabs .nav-link {
+        width: 8rem;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0.25rem;
+        border-bottom-left-radius: 0.25rem;
+        border-top-left-radius: 0;
+        margin-left: 0;
+        margin-top: -1px;
+        border-bottom-color: transparent;
+    }
+    .right-tabs .nav-link:hover {
+        border-top-color: transparent;
+        border-left-color: #dee2e6;
+        border-bottom-color: #e9ecef;
+    }
+    .right-tabs .nav-link.active,
+    .sideways-tabs.right-tabs .nav-link.active {
+        border-top-color: transparent;
+        border-right-color: #dee2e6;
+        border-bottom-color: #dee2e6;
+        border-left-color: #dee2e6;
+    }
+}
+@media (max-width: 428px) {
+    .left-tabs.nav-tabs {
+        display: none;
+    }
+    .right-tabs.nav-tabs {
+        display: none;
+    }
+    .vtabs .tab-content > .tab-pane {
+        display: block !important;
+        opacity: 1;
+    }
+    .vtabs .accordion-header {
+        display: block;
+    }
+    .vtabs button.accordion-button:focus {
+        border: none;
+        outline: 0;
+        box-shadow: none;
+    }
+}
+@media (min-width: 429px) {
+    .vtabs .accordion-item {
+        border: none;
+    }
+    .vtabs .accordion-body.collapse {
+        display: block;
+    }
+}
+.tab-content {
+    padding: 1rem;
+}
+/*# sourceMappingURL=b5vtabs.min.css.map */
