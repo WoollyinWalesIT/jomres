@@ -2680,3 +2680,32 @@ jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'קבל מפתח חדש');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'שמור מפתח חדש');
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"תמונות מסוג נכס");
+
+jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"צריך עזרה בהזמנה?");
+jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"התקשר לצוות שירות הלקוחות שלנו בטלפון למטה כדי לדבר עם אחד הנציגים שלנו שיעזור לך בכל צרכי החג שלך.");
+
+jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"למה להזמין אצלנו?");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"אנו מציעים את תעריפי ההזמנה הטובים ביותר");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"יש לנו את הנכסים במחיר הטוב ביותר בשוק.");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"ללא עמלות הזמנה. חסוך כסף!");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"מבחר גדול של מאפיינים");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," מאפיינים");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS'," ביקורות אורחים");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"אנחנו תמיד כאן");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"התקשר או שלח לנו דוא\"ל, בכל עת");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"קבל תמיכה 24 שעות לפני, במהלך ואחרי הטיול שלך");
+
+jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"מדיה חברתית");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"מצא אותנו במדיה החברתית");
+
+jr_define('JOMRES_REVIEW_SCORE_TOP_1', "יוצא מן הכלל");
+jr_define('JOMRES_REVIEW_SCORE_TOP_2', "חריג");
+jr_define('JOMRES_REVIEW_SCORE_TOP_3', "מעולה");
+jr_define('JOMRES_REVIEW_SCORE_TOP_4', "מעולה");
+jr_define('JOMRES_REVIEW_SCORE_TOP_5', "פנטסטי");
+
+jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD', "טוב מאוד");
+jr_define('JOMRES_REVIEW_SCORE_GOOD', "טוב");
+
+jr_define('JOMRES_REVIEWS_NONE_NEW', "רישום חדש");
+jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "בהנחה");

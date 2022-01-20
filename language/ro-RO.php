@@ -2653,7 +2653,7 @@ jr_define ('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', 'Aceasta este o proprietate de c
 jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "Fără bootstrap în temă");
 
 jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'Legături social media');
-jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Pune aici numele contului tău de socializare, de exemplu „jomres”, nu întreaga adresă URL');
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Pune aici numele contului tău de socializare, de exemplu "jomres", nu întreaga adresă URL');
 
 jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Lista de limbi vorbite de organizația dvs., separată prin virgulă');
 jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'Url la sigla organizației dvs.');
@@ -2673,3 +2673,32 @@ jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Obţine cheie nouă');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Salvează cheia nouă');
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Imagini de tip de proprietate");
+
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"Aveți nevoie de ajutor pentru rezervare?");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"Apelați echipa noastră de servicii pentru clienți la numărul de mai jos pentru a vorbi cu unul dintre reprezentanții noștri care vă va ajuta cu toate nevoile dvs. de vacanță.");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"De ce să rezervați cu noi?");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"Oferim cele mai bune tarife de rezervare");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"Avem cele mai bune proprietăți la prețuri pe piață în prezent.");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"Fără taxe de rezervare. Economisiți bani!");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"O mare selecție de proprietăți");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," proprietăți");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS'," recenzii oaspeților");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"Suntem mereu aici");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"Apelați-ne sau trimiteți-ne un e-mail, oricând");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"Obțineți asistență 24 de ore înainte, în timpul și după călătoria dvs.");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"Resele sociale");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"Găsiți-ne pe rețelele sociale");
+
+	jr_define('JOMRES_REVIEW_SCORE_TOP_1', "Remarcabil");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_2', "Excepțional");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_3', "Fabulous");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_4', "Superb");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_5', "Fantastic");
+
+	jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD', "Foarte bine");
+	jr_define('JOMRES_REVIEW_SCORE_GOOD', "Bine");
+
+	jr_define('JOMRES_REVIEWS_NONE_NEW', "Înregistrare nouă");
+jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Reducere");

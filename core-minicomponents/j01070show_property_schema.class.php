@@ -67,6 +67,10 @@ class j01070show_property_schema
 			$output_now = true;
 		}
 
+		if ( get_showtime('is_jintour_property') ) { // Schema not yet supported on Jintour properties
+			return;
+		}
+
 		$mrConfig = getPropertySpecificSettings($property_uid);
 
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');

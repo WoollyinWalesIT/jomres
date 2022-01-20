@@ -2609,3 +2609,32 @@ jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Få ny nøkkel');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Lagre ny nøkkel');
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Egenskapstype bilder");
+
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"Trenger du hjelp til å bestille?");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"Ring vårt kundeserviceteam på nummeret nedenfor for å snakke med en av våre representanter som vil hjelpe deg med alle dine feriebehov.");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"Hvorfor bestille hos oss?");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"Vi tilbyr de beste bookingprisene");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"Vi har de best prisede eiendommene på markedet for øyeblikket.");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"Ingen bestillingsgebyrer. Spar penger!");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"Flott utvalg av egenskaper");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," egenskaper");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS'," gjesteanmeldelser");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"Vi er alltid her");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"Ring eller send e-post til oss, når som helst");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"Få 24-timers støtte før, under og etter turen");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"Sosiale medier");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"Finn oss på sosiale medier");
+
+	jr_define('JOMRES_REVIEW_SCORE_TOP_1', "Enestående");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_2', "Eksepsjonell");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_3', "Fantastisk");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_4', "Superb");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_5', "Fantastisk");
+
+	jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD', "Veldig bra");
+	jr_define('JOMRES_REVIEW_SCORE_GOOD', "Bra");
+
+	jr_define('JOMRES_REVIEWS_NONE_NEW', "Ny oppføring");
+	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Rabattert");

@@ -97,6 +97,10 @@ if (isset($_REQUEST[ 'jomreslang' ])) {
 	}
 }
 
+if (isset($_REQUEST['lang'])) {
+    $lang = jomresGetParam($_REQUEST, 'lang', '');
+}
+
 //jomres specific urls
 define('JOMRES_SITEPAGE_URL_NOSEF', get_showtime('live_site').'/index.php?option=com_jomres&Itemid='.$jomresItemid.'&lang='.$lang.$tmpl.$lang_param);
 define('JOMRES_SITEPAGE_URL_AJAX', get_showtime('live_site').'/'.'index.php?option=com_jomres&no_html=1&jrajax=1&Itemid='.$jomresItemid.'&lang='.$lang.$tmpl.$lang_param);

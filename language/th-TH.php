@@ -2622,3 +2622,32 @@ jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'รับรหัสใหม่');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'บันทึกคีย์ใหม่');
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"รูปภาพประเภทพร็อพเพอร์ตี้");
+
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"ต้องการความช่วยเหลือในการจองหรือไม่");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"โทรติดต่อทีมบริการลูกค้าของเราที่หมายเลขด้านล่างเพื่อพูดคุยกับตัวแทนของเราซึ่งจะช่วยคุณในความต้องการวันหยุดทั้งหมดของคุณ");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"ทำไมต้องจองกับเรา");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"เราเสนออัตราการจองที่ดีที่สุด");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"เรามีที่พักราคาดีที่สุดในตลาดขณะนี้");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"ไม่มีค่าธรรมเนียมการจอง ประหยัดเงิน!");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"พร็อพเพอร์ตี้ที่มีให้เลือกมากมาย");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," คุณสมบัติ");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS'," บทวิจารณ์ของแขก");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"เราอยู่ที่นี่เสมอ");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"โทรหรือส่งอีเมลถึงเราได้ตลอดเวลา");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"รับการสนับสนุนตลอด 24 ชั่วโมงก่อน ระหว่าง และหลังการเดินทางของคุณ");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"โซเชียลมีเดีย");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"หาเราบนโซเชียลมีเดีย");
+
+	jr_define('JOMRES_REVIEW_SCORE_TOP_1', "โดดเด่น");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_2', "ยอดเยี่ยม");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_3', "เยี่ยม");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_4', "ยอดเยี่ยม");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_5', "ยอดเยี่ยม");
+
+	jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD', "ดีมาก");
+	jr_define('JOMRES_REVIEW_SCORE_GOOD', "ดี");
+
+	jr_define('JOMRES_REVIEWS_NONE_NEW', "รายการใหม่");
+	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "ลดราคา");

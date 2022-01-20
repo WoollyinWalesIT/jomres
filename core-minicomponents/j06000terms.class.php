@@ -116,7 +116,7 @@ class j06000terms
 			$this->retVals = $pdf;
 		} else {
 			$tmpl->readTemplatesFromInput('terms.html');
-			if (!isset($componentArgs['return_template'])) {
+			if (!isset($componentArgs['output_now']) || $componentArgs['output_now'] == true ) {
 				$tmpl->displayParsedTemplate();
 			} else {
 				$this->retVals = $tmpl->getParsedTemplate();

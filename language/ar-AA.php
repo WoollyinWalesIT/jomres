@@ -2677,3 +2677,32 @@ jr_define ('PLUGIN_UPDATE_MESSAGE2_LINK1', 'الحصول على مفتاح جد�
 jr_define ('PLUGIN_UPDATE_MESSAGE2_LINK2', 'حفظ المفتاح الجديد');
 
 jr_define ('_ JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES', "صور نوع الخاصية") ;
+
+	jr_define ('JOMRES_SITE_SIDEBAR_HELP_TITLE',"هل تحتاج إلى مساعدة في الحجز؟");
+jr_define ('JOMRES_SITE_SIDEBAR_HELP_BLURB',"اتصل بفريق خدمة العملاء على الرقم أدناه للتحدث إلى أحد ممثلينا الذين سيساعدك في جميع احتياجات عطلتك.");
+
+jr_define ('JOMRES_SITE_SIDEBAR_WHY_TITLE',"ما مزايا الحجز لدينا؟");
+jr_define ('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"نحن نقدم أفضل أسعار الحجز");
+jr_define ('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"لدينا أفضل العقارات المعروضة حاليًا في السوق.");
+jr_define ('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"بدون رسوم حجز. وفر المال!");
+jr_define ('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"مجموعة رائعة من الخصائص");
+jr_define ('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS',"الخصائص");
+jr_define ('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS',"تقييمات الضيوف");
+jr_define ('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"نحن دائمًا هنا");
+jr_define ('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"اتصل بنا أو راسلنا عبر البريد الإلكتروني,في أي وقت");
+jr_define ('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"احصل على دعم على مدار 24 ساعة قبل رحلتك وأثناءها وبعدها");
+
+jr_define ('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"وسائل التواصل الاجتماعي");
+jr_define ('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"اعثر علينا على وسائل التواصل الاجتماعي");
+
+jr_define ('JOMRES_REVIEW_SCORE_TOP_1',"رائع");
+jr_define ('JOMRES_REVIEW_SCORE_TOP_2',"استثنائي");
+jr_define ('JOMRES_REVIEW_SCORE_TOP_3',"رائع");
+jr_define ('JOMRES_REVIEW_SCORE_TOP_4',"رائع");
+jr_define ('JOMRES_REVIEW_SCORE_TOP_5',"رائع");
+
+jr_define ('JOMRES_REVIEW_SCORE_VERY_GOOD',"جيد جدًا");
+jr_define ('JOMRES_REVIEW_SCORE_GOOD',"جيد");
+
+jr_define ('JOMRES_REVIEWS_NONE_NEW',"قائمة جديدة");
+jr_define ('JOMRES_RIBBON_TEXT_DISCOUNTED',"مخفضة");

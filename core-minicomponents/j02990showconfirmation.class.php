@@ -663,7 +663,7 @@ class j02990showconfirmation
 			$booking_room_specific_info[ ] = $booking_room_specific;
 		}
 
-		$booking_parts['TERMS_MODAL_CONTENTS'] = $MiniComponents->specificEvent('06000', 'terms', array('return_template' => true));
+		$booking_parts['TERMS_MODAL_CONTENTS'] = $MiniComponents->specificEvent('06000', 'terms', array('output_now' => false));
 
 		$booking_particulars[ ] = $booking_parts;
 		$tmpl = new patTemplate();

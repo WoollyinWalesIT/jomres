@@ -1,37 +1,31 @@
-
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-	<!-- if you want to show min & max people and days, just uncomment the lines commented out below-->
 
-	<table class="table table-striped table-hover table-sm">
-		<thead>
-		<tr>
-			<th scope="col">{HTITLE}</th>
-			<th scope="col">{HROOMTYPE}</th>
-			<th class="hidden-phone" scope="col">{HMINPEEPS}</th>
-			<th class="hidden-phone" scope="col">{HMAXPEEPS}</th>
-			<th scope="col">{HSTARTS}</th>
-			<th scope="col">{HENDS}</th>
-			<th scope="col">&nbsp;</th>
-			<th class="hidden-phone" scope="col">{HMINDAYS}</th>
-			<th class="hidden-phone" scope="col">{HMAXDAYS}</th>
-			<th scope="col">&nbsp;</th>
-		</tr>
-		</thead>
-		<tbody>
-		<patTemplate:tmpl name="show_tariffs" unusedvars="strip" type="simpleCondition" requiredVars="roomrateperday">
-			<tr>
-				<td>{TITLE}</td>
-				<td>{ROOMCLASSABBV}</td>
-				<td class="hidden-phone">{MINPEOPLE}</td>
-				<td class="hidden-phone">{MAXPEOPLE}</td>
-				<td>{VALIDFROM}</td>
-				<td>{VALIDTO}</td>
-				<td><b>{ROOMRATEPERDAY}</b>{NOTWEEKENDS}</td>
-				<td class="hidden-phone">{MINDAYS}</td>
-				<td class="hidden-phone">{MAXDAYS}</td>
-				<td><a href="{BOOKING_FORM_LINK}" class="btn btn-primary">{_JOMRES_FRONT_MR_MENU_BOOKAROOM}</a> </td>
-			</tr>
-		</patTemplate:tmpl>
-		</tbody>
-	</table>
+	<div class="row">
+		<div class="col-sm-2 d-none d-md-block">{HTITLE}</div>
+		<div class="col-sm-2 d-none .d-md-block">{HROOMTYPE}</div>
+		<pattemplate:comment><div class="col-sm-2 d-none d-md-block">{HMINPEEPS}</div></pattemplate:comment>
+		<pattemplate:comment><div class="col-sm-2 d-none d-md-block">{HMAXPEEPS}</div></pattemplate:comment>
+		<div class="col-sm-2 d-none .d-md-block">{HSTARTS}</div>
+		<div class="col-sm-2 d-none .d-md-block">{HENDS}</div>
+		<div class="col-sm-2 d-none .d-md-block"></div>
+		<pattemplate:comment><div class="col-sm-2 d-none d-md-block">{HMINDAYS}</div></pattemplate:comment>
+		<pattemplate:comment><div class="col-sm-2 d-none d-md-block">{HMAXDAYS}</div></pattemplate:comment>
+		<div class="col-sm-2 d-none .d-md-block"></div>
+	</div>
+
+	<patTemplate:tmpl name="show_tariffs" unusedvars="strip" type="simpleCondition" requiredVars="roomrateperday">
+		<div class="row">
+			<div class="col-sm-2 d-none d-md-block">{TITLE}</div>
+			<div class="col-sm-2">{ROOMCLASSABBV}</div>
+			<pattemplate:comment><div class="col-sm-2 d-none d-md-block">{MINPEOPLE}</div></pattemplate:comment>
+			<pattemplate:comment><div class="col-sm-2 d-none d-md-block">{MAXPEOPLE}</div></pattemplate:comment>
+			<div class="col-sm-2">{VALIDFROM}</div>
+			<div class="col-sm-2">{VALIDTO}</div>
+			<div class="col-sm-2 "><strong>{ROOMRATEPERDAY}</b>{NOTWEEKENDS}</strong></div>
+			<pattemplate:comment><div class="col-sm-2 d-none d-md-block">{MINDAYS}</div></pattemplate:comment>
+			<pattemplate:comment><div class="col-sm-2 d-none d-md-block">{MAXDAYS}</div></pattemplate:comment>
+			<div class="col-sm-2"><a href="{BOOKING_FORM_LINK}" class="btn btn-primary">{_JOMRES_FRONT_MR_MENU_BOOKAROOM}</a></div>
+		</div>
+	</patTemplate:tmpl>
+
 </patTemplate:tmpl>

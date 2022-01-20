@@ -94,6 +94,10 @@ class j06000contactowner
 				$property_uid = (int)jomresGetParam($_POST, 'property_uid', 0);
 			}
 
+			if (isset($componentArgs[ 'property_uid' ])) {
+				$property_uid = intval($componentArgs[ 'property_uid' ]);
+			}
+
 			if ($property_uid > 0) {
 				set_showtime('last_viewed_property_uid', $property_uid);
 				if (!user_can_view_this_property($property_uid)) {

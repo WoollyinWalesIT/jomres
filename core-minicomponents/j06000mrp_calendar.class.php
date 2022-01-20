@@ -109,15 +109,19 @@ class j06000mrp_calendar
 
 		$counter = 1;
 
+		$daynum_class = 'jomres-calendar-day-num';
+		if (jomres_bootstrap_version() == '5' ) {
+			$daynum_class = '';
+		}
+
 		if (!$show_just_month) {
             if (get_showtime('task') != 'dobooking') {
-                $this->retVals = '<div class="container-fluid">
+                $this->retVals = '<div class="">
 					<div class="row">
-				<div class="col-md-2 jomres-calendar-day-num jomres-calendar-available"> ' .jr_gettext('_JOMRES_COM_AVLCAL_INMONTHFACE_KEY', '_JOMRES_COM_AVLCAL_INMONTHFACE_KEY').'</div>
-					<div class="col-md-2 jomres-calendar-day-num jomres-calendar-booking-occupied-quarter ">' .jr_gettext('_JOMRES_AVLCAL_QUARTER', '_JOMRES_AVLCAL_QUARTER').'</div>
-					<div class="col-md-2 jomres-calendar-day-num jomres-calendar-booking-occupied-half ">' .jr_gettext('_JOMRES_AVLCAL_HALF', '_JOMRES_AVLCAL_HALF').'</div>
-					<div class="col-md-2 jomres-calendar-day-num jomres-calendar-booking-occupied-threequarter ">' .jr_gettext('_JOMRES_AVLCAL_THREEQUARTER', '_JOMRES_AVLCAL_THREEQUARTER').'</div>
-					<div class="col-md-2 jomres-calendar-day-num jomres-calendar-booking-occupied-completely ">' .jr_gettext('_JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR_KEY', '_JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR_KEY').'</div>
+					<div class="col-sm-3 ".$daynum_class." jomres-calendar-booking-occupied-quarter ">' .jr_gettext('_JOMRES_AVLCAL_QUARTER', '_JOMRES_AVLCAL_QUARTER').'</div>
+					<div class="col-sm-3 ".$daynum_class." jomres-calendar-booking-occupied-half ">' .jr_gettext('_JOMRES_AVLCAL_HALF', '_JOMRES_AVLCAL_HALF').'</div>
+					<div class="col-sm-3 ".$daynum_class." jomres-calendar-booking-occupied-threequarter ">' .jr_gettext('_JOMRES_AVLCAL_THREEQUARTER', '_JOMRES_AVLCAL_THREEQUARTER').'</div>
+					<div class="col-sm-3 ".$daynum_class." jomres-calendar-booking-occupied-completely ">' .jr_gettext('_JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR_KEY', '_JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR_KEY').'</div>
 				</div>
 					<div class="row">
 				';

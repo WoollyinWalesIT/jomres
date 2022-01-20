@@ -8,8 +8,14 @@
 		<h3 class="page-header">{TAGLINE}</h3>
 		<p><strong>{HEADER_MAXPEOPLE}:</strong> {MAXPEOPLE}</p>
 		<p><strong>{HEADER_ROOMFLOOR}:</strong> {ROOMFLOOR}</p>
-		<p>&nbsp;</p>
-        <p>{ROOM_FEATURES}</p>
+
+		<div class="row">
+			<patTemplate:tmpl name="room_features_rows" type="simpleCondition" requiredVars="feature_card">
+				<div class="col-md-3">
+					{FEATURE_CARD}
+				</div>
+			</patTemplate:tmpl>
+		</div>
 	</div>
 </div>
 

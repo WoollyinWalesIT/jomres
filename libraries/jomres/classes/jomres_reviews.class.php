@@ -490,6 +490,7 @@ class jomres_reviews
 				$arr[ $res->item_id ][ 'avg_rating' ] = $res->avg_rating;
 				$arr[ $res->item_id ][ 'counter' ] = $res->counter;
 				$arr[ $res->item_id ][ 'sumrating' ] = $res->sumrating;
+				$arr[ $res->item_id ][ 'rating_ribbon_text' ] = $this->generate_review_rating_text($res->avg_rating);
 			}
 		}
 		foreach ($property_uids as $property_uid) {
@@ -777,7 +778,31 @@ class jomres_reviews
 		return $result;
 	}
 	
-	
+	private function generate_review_rating_text( $average_rating = 0)
+	{
+		if ( $average_rating > 9.8 ) {
+			return jr_gettext('JOMRES_REVIEW_SCORE_TOP_1', 'JOMRES_REVIEW_SCORE_TOP_1', false);
+		}
+		if ( $average_rating > 9.5 ) {
+			return jr_gettext('JOMRES_REVIEW_SCORE_TOP_2', 'JOMRES_REVIEW_SCORE_TOP_2', false);
+		}
+		if ( $average_rating > 9.0 ) {
+			return jr_gettext('JOMRES_REVIEW_SCORE_TOP_3', 'JOMRES_REVIEW_SCORE_TOP_3', false);
+		}
+		if ( $average_rating > 8.5 ) {
+			return jr_gettext('JOMRES_REVIEW_SCORE_TOP_4', 'JOMRES_REVIEW_SCORE_TOP_4', false);
+		}
+		if ( $average_rating > 8.0 ) {
+			return jr_gettext('JOMRES_REVIEW_SCORE_TOP_5', 'JOMRES_REVIEW_SCORE_TOP_5', false);
+		}
+		if ( $average_rating > 7 ) {
+			return jr_gettext('JOMRES_REVIEW_SCORE_VERY_GOOD', 'JOMRES_REVIEW_SCORE_VERY_GOOD', false);
+		}
+		if ( $average_rating > 6 ) {
+			return jr_gettext('JOMRES_REVIEW_SCORE_GOOD', 'JOMRES_REVIEW_SCORE_GOOD', false);
+		}
+	}
+
 	// public function get_highest_rated_and_ratings($limit)
 	// {
 	// $query = "SELECT * FROM #__jomres_reviews_ratings ORDER BY item_id";

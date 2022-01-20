@@ -12,83 +12,148 @@
 </div>
 </patTemplate:comment>
 
-<div class="row">
-	<patTemplate:tmpl name="property_details" unusedvars="strip">
-		<div class="jomres_property_list_propertywrapper photo-view col-xs-12 col-sm-12 col-md-6 col-lg-4 card" id="{UID}">
-			<div class="card-body {BUDGET_BORDER_CLASS} {FEATURED_LISTINGS_CLASS}">
-				<div class="card-title">
-						<a href="{MOREINFORMATIONLINK}" title="{PROPERTY_NAME_FULL}" >{PROP_NAME}</a>
-						<span class="pull-right">
-							<a href="javascript:void(0);" id="shortlist_{UID}" onclick="shortlist('{UID}')" class="hidden-xs" style="color:#333;">{SHORTLIST}</a>
-						</span>
-				</div>
-				<div class="card-body">
-					<div class="row">
-						<span class="">{PROPERTY_TYPE}</span><div style="color:#FFD700" class="ml-auto">{STARS}{SUPERIOR}</div>
-					</div>
-					<p class="small"><i>{PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}</i></p>
-					{PROPERTY_IMAGE_OR_SLIDESHOW}
-					<!--<div align="center">{PRICE_PRE_TEXT}</div>-->
-					<div class="well">
-						<div class="row" align="center">
-							<div class="col-6">
-								<span class="big-price">{PRICE_PRICE}</span>
-								{PRICE_POST_TEXT}
+	<style>
+		.text-overlay-photolayout {
+			position: absolute;
+			top: 30px;
+			left: 16px;
+		}
+
+		.card-img-photolayout {
+			width: 100%;
+			height: 100%;
+			background-color: black; /* fallback color */
+			background-position: center;
+			background-size: cover;
+			opacity:1;
+			filter: sepia(100%);
+		}
+
+		.ribbon {
+			position: absolute !important;
+			right:0 !important;
+			top:0 !important;
+			z-index: 10 !important;
+			overflow: hidden !important;
+			width: 90px !important;
+			height: 90px !important;
+			text-align: right !important;}
+		.ribbon span 	{
+			background:#EEA2A2;
+			font-size: 12px !important;
+			font-weight: bold !important;
+			text-transform: uppercase !important;
+			text-align: center !important;
+			line-height: 24px !important;
+			transform: rotate(45deg) !important;
+			-webkit-transform: rotate(45deg) !important;
+			width: 170px !important;
+			display: block !important;
+			position: absolute !important;
+			top: 25px !important;
+			right: -49px !important;}
+	</style>
+
+	<div class="row">
+		<div class="card-group">
+			<patTemplate:tmpl name="property_details" unusedvars="&nbsp;">
+				<div class="col-sm-4 p-2  d-flex align-items-stretch">
+					<div class="card photo-view col-12 h-100" id="{UID}">
+						{RIBBON}{PROPERTY_IMAGE_OR_SLIDESHOW}
+
+							<div class="row text-overlay-photolayout" style="width:200%">
+								<div class="col-4">
+									<div class="bg-info text-white rounded-3 p-2">
+										{PRICE_PRE_TEXT} {PRICE_PRICE}
+										{PRICE_POST_TEXT}
+									</div>
+									<div class="col-8">
+
+									</div>
+								</div>
 							</div>
-							<div class="col-6">
-								<span class="big-price">{PRICE_CUMULATIVE}</span>
-								{FOR} {STAY_DAYS} {NIGHTS_TEXT}
-								{DISCOUNT_OVERLAY}
+
+						<div class="card-body {BUDGET_BORDER_CLASS} {FEATURED_LISTINGS_CLASS}">
+
+							<div class="card-title">
+								<h3>
+									<a href="{MOREINFORMATIONLINK}" title="{PROPERTY_NAME_FULL}" itemprop="name" style="text-decoration: none;">{PROP_NAME}</a>
+									<span class="pull-right">
+										<a href="javascript:void(0);" id="shortlist_{UID}" onclick="shortlist('{UID}')" class="hidden-xs" style="color:#333;">{SHORTLIST}</a>
+									</span>
+
+								</h3>
+							</div>
+
+							<div class="row">
+								<div class="col-6">
+									{PROPERTY_TYPE}
+								</div>
+								<div class="col-6">
+									<div style="color:#FFD700" class="ml-auto">{STARS}{SUPERIOR}</div>
+								</div>
+							</div>
+							<i class="fas fa-search-location"></i> {PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}</em>
+							<div class="hidden-xs hidden-sm ml-auto">
+								<label>
+									<input type="checkbox" name="compare" value="{UID}" autocomplete="off"/>
+									{_JOMRES_COMPARE}
+								</label>
+							</div>
+							<patTemplate:comment>
+							<div class="row" >
+								<div class="col-3">
+									<span class="big-price">{PRICE_CUMULATIVE}</span>
+									{FOR} {STAY_DAYS} {NIGHTS_TEXT}
+
+								</div>
+							</div>
+							</patTemplate:comment>
+							<patTemplate:comment>{DISCOUNT_OVERLAY}</patTemplate:comment>
+
+							<div class="card-footer clearfix">
+								<div class="row">
+									<a href="{LINK}" class="btn btn-success pull-right"><i class="fa fa-shopping-cart"></i> {BOOKTHIS_TEXT}</a>
+								</div>
 							</div>
 						</div>
 					</div>
+
+					<patTemplate:comment>
+						<div id="effect{UID}" class="quick-info ui-helper-hidden">
+
+
+								<div><strong>{_JOMRES_FRONT_ROOMTYPES}</strong></div>
+								<div>{ROOMTYPES}</div>
+								<div style="clear:both;"></div>
+								<div><strong>{_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES}</strong></div>
+								<div>{FEATURELIST}</div>
+								<div style="clear:both;"></div>
+								<div>&nbsp;</div>
+								<div><strong>{_JOMRES_REVIEWS}</strong></div>
+								<div><strong>{_JOMRES_REVIEWS_TOTAL_VOTES}</strong> {NUMBER_OF_REVIEWS}</div>
+								<div><strong>{_JOMRES_REVIEWS_AVERAGE_RATING}</strong>{AVERAGE_RATING}</div>
+								<a href="#property_reviews{UID}" ajax_task="show_property_reviews" data-bs-toggle="modal" random_identifier="{UID}" property_name="{PROPERTYNAME}" property_uid="{UID}">{_JOMRES_REVIEWS_CLICKTOSHOW}</a>
+
+								<div>&nbsp;</div>
+								<div class="{LASTBOOKING_STYLE}">{LASTBOOKED}</div>
+							</div>
+
+
+					</patTemplate:comment>
+
+					<script>
+						document.addEventListener('DOMContentLoaded', function(){
+						 jomresJquery('#module_{RANDOM_IDENTIFIER}_popup', '#property_reviews{UID}').appendTo("body");
+						});
+					</script>
+					<div class="modal fade" id="module_{RANDOM_IDENTIFIER}_popup"></div><!-- /.modal info -->
+					<div class="modal fade" id="property_reviews{UID}"></div><!-- /.modal reviews -->
 				</div>
-				<div class="card-footer clearfix">
-					<div class="row">
-						<a href="{LINK}" class="btn btn-success pull-right"><i class="fa fa-shopping-cart"></i> {BOOKTHIS_TEXT}</a>
-						<div class="hidden-xs hidden-sm ml-auto">
-							<label>
-								<input type="checkbox" name="compare" value="{UID}" autocomplete="off"/>
-								{_JOMRES_COMPARE}
-							</label>
-						</div>
-					</div>
-				</div>
-			</div>
+			</patTemplate:tmpl>
+
 		</div>
-	
-		<patTemplate:comment>
-			<div id="effect{UID}" class="quick-info ui-helper-hidden">
-				<div class="ui-widget-content ui-corner-all">
-					<div class="property-desc">{PROPERTYDESC}</div>
-					<div class="jomres_message property-desc">{LASTMINUTE}</div>
-					<div><strong>{_JOMRES_FRONT_ROOMTYPES}</strong></div>
-					<div>{ROOMTYPES}</div>
-					<div style="clear:both;"></div>
-					<div><strong>{_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES}</strong></div>
-					<div>{FEATURELIST}</div>
-					<div style="clear:both;"></div>
-					<div>&nbsp;</div>
-					<div><strong>{_JOMRES_REVIEWS}</strong></div>
-					<div><strong>{_JOMRES_REVIEWS_TOTAL_VOTES}</strong> {NUMBER_OF_REVIEWS}</div>
-					<div><strong>{_JOMRES_REVIEWS_AVERAGE_RATING}</strong>{AVERAGE_RATING}</div>
-					<a href="#property_reviews{UID}" ajax_task="show_property_reviews" data-bs-toggle="modal" random_identifier="{UID}" property_name="{PROPERTYNAME}" property_uid="{UID}">{_JOMRES_REVIEWS_CLICKTOSHOW}</a>
-	
-					<div>&nbsp;</div>
-					<div class="{LASTBOOKING_STYLE}">{LASTBOOKED}</div>
-				</div>
-			</div>
-		</patTemplate:comment>
-	
-	<script>
-		document.addEventListener('DOMContentLoaded', function(){
-		 jomresJquery('#module_{RANDOM_IDENTIFIER}_popup', '#property_reviews{UID}').appendTo("body");
-		});
-	</script>
-	<div class="modal fade" id="module_{RANDOM_IDENTIFIER}_popup"></div><!-- /.modal info -->
-	<div class="modal fade" id="property_reviews{UID}"></div><!-- /.modal reviews -->
-	</patTemplate:tmpl>
-</div>
+	</div>
 
 <div id = "livescrolling_results" ></div>
 

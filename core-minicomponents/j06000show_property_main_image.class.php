@@ -78,7 +78,6 @@ class j06000show_property_main_image
 		$jrConfig = $siteConfig->get();
 
 		$output = array();
-		$imagesArray = array();
 
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
 		$jomres_media_centre_images->get_images($property_uid, array('property'));
@@ -101,6 +100,12 @@ class j06000show_property_main_image
 		} else {
 			$output[ 'SLIDESHOW' ] = '<a href="'.get_property_details_url($property_uid).'"><img src="'.$jomres_media_centre_images->images['property'][0][0]['medium'].'" class="responsive img-responsive" alt="property image"/></a>';
 		}
+
+		$output['IMAGE']	=  $jomres_media_centre_images->images['property'][0][0]['medium'];
+		$output['SMALL']	=  $jomres_media_centre_images->images['property'][0][0]['small'];
+		$output['MEDIUM']	=  $jomres_media_centre_images->images['property'][0][0]['medium'];
+		$output['LARGE']	=  $jomres_media_centre_images->images['property'][0][0]['large'];
+		$output['URL']		=  get_property_details_url($property_uid);
 
 		$pageoutput = array();
 		$pageoutput[] = $output;

@@ -2682,3 +2682,32 @@ jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Λήψη νέου κλειδιού');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Αποθήκευση νέου κλειδιού');
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Εικόνες τύπου ιδιότητας");
+
+jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"Χρειάζεστε βοήθεια για την κράτηση;");
+jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"Καλέστε την ομάδα εξυπηρέτησης πελατών μας στον παρακάτω αριθμό για να μιλήσετε με έναν από τους εκπροσώπους μας που θα σας βοηθήσει με όλες τις ανάγκες των διακοπών σας.");
+
+jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"Γιατί να κάνετε κράτηση μαζί μας;");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"Προσφέρουμε τις καλύτερες τιμές κράτησης");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"Έχουμε τα ακίνητα με τις καλύτερες τιμές αυτήν τη στιγμή στην αγορά.");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"Δεν υπάρχουν χρεώσεις κράτησης. Εξοικονομήστε χρήματα!");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"Μεγάλη επιλογή ιδιοτήτων");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," ιδιότητες");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS'," κριτικές επισκεπτών");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"Είμαστε πάντα εδώ");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"Καλέστε ή στείλτε μας email ανά πάσα στιγμή");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"Λάβετε 24ωρη υποστήριξη πριν, κατά τη διάρκεια και μετά το ταξίδι σας");
+
+jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"Μέσα κοινωνικής δικτύωσης");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"Βρείτε μας στα μέσα κοινωνικής δικτύωσης");
+
+jr_define('JOMRES_REVIEW_SCORE_TOP_1', "Εξαιρετικό");
+jr_define('JOMRES_REVIEW_SCORE_TOP_2', "Εξαιρετικό");
+jr_define('JOMRES_REVIEW_SCORE_TOP_3', "Υπέροχο");
+jr_define('JOMRES_REVIEW_SCORE_TOP_4', "Εξαιρετικό");
+jr_define('JOMRES_REVIEW_SCORE_TOP_5', "Φανταστικό");
+
+jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD', "Πολύ καλό");
+jr_define('JOMRES_REVIEW_SCORE_GOOD', "Καλό");
+
+jr_define('JOMRES_REVIEWS_NONE_NEW', "Νέα καταχώριση");
+jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Με έκπτωση");

@@ -3,6 +3,9 @@
 <!--
 jomresJquery(function(){
 	jomresJquery("#guest_country").change(function(){
+		populateDiv("guest_region_div" , '<div class="spinner-border text-info" role="status">\n' +
+				'  <span class="visually-hidden">Loading...</span>\n' +
+				'</div>');
 		var selectedValue = jomresJquery(this).find(":selected").val();
 		clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
 		jomresJquery.get(live_site_ajax + clause, function (data) {
@@ -114,7 +117,7 @@ jomresJquery(function(){
 		</div>
 	</div>
     
-	<div class="form-actions">
+	<div class="form-actions fixed-bottom bg-light text-center pt-1 border-top border-success">
 		<div class="col-md-10 col-md-offset-2">
 			{JOMRESTOOLBAR}
 		</div>

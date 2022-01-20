@@ -2673,3 +2673,31 @@ jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Få ny nøgle');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Gem ny nøgle');
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Ejendomstype billeder");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"Har du brug for hjælp til at booke?");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"Ring til vores kundeserviceteam på nedenstående nummer for at tale med en af ​​vores repræsentanter, som vil hjælpe dig med alle dine feriebehov.");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"Hvorfor booke hos os?");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"Vi tilbyder de bedste bookingpriser");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"Vi har de bedst prissatte ejendomme på markedet i øjeblikket.");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"Ingen reservationsgebyrer. Spar penge!");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"Stort udvalg af egenskaber");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," egenskaber");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS'," gæsteanmeldelser");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"Vi er altid her");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"Ring eller e-mail os, når som helst");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"Få 24-timers support før, under og efter din rejse");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"Sociale medier");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"Find os på sociale medier");
+
+	jr_define('JOMRES_REVIEW_SCORE_TOP_1', "Udestående");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_2', "Exceptionel");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_3', "Fantastisk");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_4', "Superb");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_5', "Fantastisk");
+
+	jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD', "Meget god");
+	jr_define('JOMRES_REVIEW_SCORE_GOOD', "Godt");
+
+	jr_define('JOMRES_REVIEWS_NONE_NEW', "Ny liste");
+	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Rabatteret");

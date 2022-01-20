@@ -23,7 +23,9 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\User\UserFactoryInterface;
 use Joomla\CMS\HTML\HTMLHelper;
 
-HTMLHelper::_('jquery.framework');
+/*if (!defined('API_STARTED')) {
+    HTMLHelper::_('jquery.framework');
+}*/
 
 function jomres_cmsspecific_error_logging_cms_files_to_not_backtrace()
 {
@@ -260,23 +262,13 @@ function jomres_cmsspecific_getRegistrationURL()
  */
 
 function jomres_cmsspecific_getTextEditor($name, $content, $hiddenField, $width, $height, $col, $row)
-{
-    $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-    $jrConfig = $siteConfig->get();
+	{
 
-    //  More trouble than it is worth atm, if somebody enters something that creates a javascript error the editor crashes and burns
-    $jrConfig[ 'use_jomres_own_editor' ] = '0';
-
-    if ($jrConfig[ 'use_jomres_own_editor' ] == '1') {
-        $MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-        $ret = $MiniComponents->specificEvent('06005', 'editor', array('name' => $name, 'content' => $content, 'height' => $height));
-    } else {
-        $editor = Joomla\CMS\Editor\Editor::getInstance();
-        $ret = $editor->display($name, $content, $width, $height, $col, $row, false);
-    }
+		$editor = Joomla\CMS\Editor\Editor::getInstance();
+		$ret = $editor->display($name, $content, $width, $height, $col, $row, true, null, null, null , ["readmore","pagebreak"]);
 
     return $ret;
-}
+	}
 
 /**
  *
@@ -392,10 +384,12 @@ function jomres_cmsspecific_addheaddata($type, $path = '', $filename = '', $incl
         case 'css':
             //JHTML::stylesheet( $path . $filename, array (), false, false ); // If we want to include version numbers in script filenames, we can't use this. Instead we need to directly access JFactory as below
 
+			$dependency = 'template.active';
+
             if ( $in_admin_area ) {
                 $doc->addStyleSheet($data);
             } else {
-                $wa->registerAndUseStyle($filename,  $data, [], [], []);
+                $wa->registerAndUseStyle($filename,  $data, [], [], [$dependency]);
             }
 
             break;

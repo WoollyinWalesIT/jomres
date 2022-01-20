@@ -859,6 +859,7 @@ class UploadHandler
 		if (!function_exists('exif_read_data')) {
 			return false;
 		}
+
 		$exif = @exif_read_data($file_path);
 		if ($exif === false) {
 			return false;
@@ -1403,7 +1404,7 @@ class UploadHandler
 		}
 		if (count($failed_versions)) {
 			$file->error = $this->get_error_message('image_resize')
-					.' ('.implode($failed_versions, ', ').')';
+					.' ('.implode(', ', $failed_versions ).')';
 		}
 		// Free memory:
 		$this->destroy_image_object($file_path);
@@ -1890,5 +1891,25 @@ class UploadHandler
 	protected function basename($filepath, $suffix = null) {
 		$splited = preg_split('/\//', rtrim ($filepath, '/ '));
 		return substr(basename('X'.$splited[count($splited)-1], $suffix), 1);
+	}
+
+	protected function image_fix_orientation(&$image, $filename) {
+		$exif = exif_read_data($filename);
+
+		if (!empty($exif['Orientation'])) {
+			switch ($exif['Orientation']) {
+				case 3:
+					$image = imagerotate($image, 180, 0);
+					break;
+
+				case 6:
+					$image = imagerotate($image, 90, 0);
+					break;
+
+				case 8:
+					$image = imagerotate($image, -90, 0);
+					break;
+			}
+		}
 	}
 }

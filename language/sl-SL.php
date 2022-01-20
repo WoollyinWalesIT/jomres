@@ -2656,3 +2656,32 @@ jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Pridobi nov ključ');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Shrani nov ključ');
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Slike vrste lastnosti");
+
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"Potrebujete pomoč pri rezervaciji?");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"Pokličite našo ekipo za pomoč strankam na spodnjo številko, da se pogovorite z enim od naših predstavnikov, ki vam bo pomagal pri vseh vaših prazničnih potrebah.");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"Zakaj rezervirati pri nas?");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"Nudimo najboljše cene rezervacij");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"Trenutno imamo nepremičnine po najboljših cenah na trgu.");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"Brez provizij za rezervacijo. Prihranite denar!");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"Velik izbor lastnosti");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," lastnosti");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS'," ocene gostov");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"Vedno smo tukaj");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"Pokličite ali nam pišite kadarkoli");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"Pridobite 24-urno podporo pred, med in po potovanju");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"Družabni mediji");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"Poišči nas na družbenih medijih");
+
+	jr_define('JOMRES_REVIEW_SCORE_TOP_1', "Izjemno");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_2', "Izjemno");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_3', "Čudovito");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_4', "Odlično");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_5', "Fantastično");
+
+	jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD', "Zelo dobro");
+	jr_define('JOMRES_REVIEW_SCORE_GOOD', "Dobro");
+
+	jr_define('JOMRES_REVIEWS_NONE_NEW', "Nov seznam");
+	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Popust");

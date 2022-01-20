@@ -38,12 +38,14 @@ class j01010listpropertys
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch) {
-			$this->template_touchable = true;
+			$this->template_touchable = false;
 
 			return;
 		}
 		
 		$MiniComponents->triggerEvent('01008', $componentArgs); // optional
+
+		jr_import('jomres_ribbon_generator');
 
 		$data_only 					= jomresGetParam($_REQUEST, 'dataonly', false);
 		$propertylist_layout 		= jomresGetParam($_REQUEST, 'propertylist_layout', '');
@@ -227,6 +229,8 @@ class j01010listpropertys
 				$header_output[ 'CLICKTOHIDE' ] = jr_gettext('_JOMRES_REVIEWS_CLICKTOHIDE', '_JOMRES_REVIEWS_CLICKTOHIDE', false);
 				$header_output[ 'CLICKTOSHOW' ] = jr_gettext('_JOMRES_REVIEWS_CLICKTOSHOW', '_JOMRES_REVIEWS_CLICKTOSHOW', false);
 
+
+
 				$compare = array();
 				$shortlist = array();
 				if ((defined('JOMRES_NOHTML') && JOMRES_NOHTML == 0) || get_showtime('task') == 'ajax_search_filter') {
@@ -294,6 +298,10 @@ class j01010listpropertys
 				$guest_budget = $budget->get_budget();
 			}
 
+			$current_jintour_properties = get_showtime('jintour_properties');
+			if ($current_jintour_properties == false ) {
+				$current_jintour_properties = array();
+			}
 			if (!empty($propertysToShow)) {
 				$property_details = array();
 
@@ -353,6 +361,8 @@ class j01010listpropertys
 
 					$mrConfig = getPropertySpecificSettings($propertys_uid);
 
+					$jomres_ribbon_generator = new jomres_ribbon_generator( $propertys_uid );
+
 					$property_deets['GATEWAYS'] = '';
 					$payment_methods = $jomres_property_payment_methods->get_property_gateways($propertys_uid);
 
@@ -403,16 +413,85 @@ class j01010listpropertys
 						$Reviews->property_uid = $propertys_uid;
 						$itemRating = $Reviews->showRating($propertys_uid);
 
-						$property_deets[ 'AVERAGE_RATING' ] = number_format($itemRating[ 'avg_rating' ], 1, '.', '');
-						$property_deets[ 'NUMBER_OF_REVIEWS' ] = $itemRating[ 'counter' ];
+						$property_deets['AVERAGE_RATING'] = number_format($itemRating['avg_rating'], 1, '.', '');
+						$property_deets['NUMBER_OF_REVIEWS'] = $itemRating['counter'];
 
-						$property_deets[ '_JOMRES_REVIEWS_AVERAGE_RATING' ] = jr_gettext('_JOMRES_REVIEWS_AVERAGE_RATING', '_JOMRES_REVIEWS_AVERAGE_RATING', false);
-						$property_deets[ '_JOMRES_REVIEWS_TOTAL_VOTES' ] = jr_gettext('_JOMRES_REVIEWS_TOTAL_VOTES', '_JOMRES_REVIEWS_TOTAL_VOTES', false);
-						$property_deets[ '_JOMRES_REVIEWS' ] = jr_gettext('_JOMRES_REVIEWS', '_JOMRES_REVIEWS', false);
-						$property_deets[ '_JOMRES_REVIEWS_CLICKTOSHOW' ] = jr_gettext('_JOMRES_REVIEWS_CLICKTOSHOW', '_JOMRES_REVIEWS_CLICKTOSHOW', false);
-						$property_deets[ 'COLON' ] = ' : ';
-						$property_deets[ 'HYPHEN' ] = ' - ';
+						$property_deets['_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL'] = jr_gettext('_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL', '_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL', false);
 
+						$property_deets['_JOMRES_REVIEWS'] = jr_gettext('_JOMRES_REVIEWS', '_JOMRES_REVIEWS', false);
+						$property_deets['_JOMRES_REVIEWS_AVERAGE_RATING'] = jr_gettext('_JOMRES_REVIEWS_AVERAGE_RATING', '_JOMRES_REVIEWS_AVERAGE_RATING', false);
+						$property_deets['_JOMRES_REVIEWS_TOTAL_VOTES'] = jr_gettext('_JOMRES_REVIEWS_TOTAL_VOTES', '_JOMRES_REVIEWS_TOTAL_VOTES', false);
+						$property_deets['_JOMRES_REVIEWS'] = jr_gettext('_JOMRES_REVIEWS', '_JOMRES_REVIEWS', false);
+
+						$property_deets['COLON'] = ' : ';
+						$property_deets['HYPHEN'] = ' - ';
+						$property_deets['RATING_TEXT_COLOUR'] = 'text-muted';
+
+
+						$rob = array();
+						$reviews_output_button = array();
+						$no_reviews_output_button = array();
+
+						if ( jomres_bootstrap_version() == '5' ) {
+
+							if ((int)$property_deets['NUMBER_OF_REVIEWS'] > 0) {   // For Joomla 4 BS5 template sets
+
+								$jomres_ribbon_generator->set_review_score( $itemRating['avg_rating'] , $itemRating["rating_ribbon_text"] );
+
+								$rob['RATING_TEXT_COLOUR'] = 'text-success';
+								$rob['AVERAGE_RATING'] = number_format($itemRating['avg_rating'], 1, '.', '');
+
+								$rob['RATING_SCORE_TEXT'] = '';
+								if ($rob['AVERAGE_RATING'] > 5 ) {
+									$rob['RATING_SCORE_TEXT'] = jomres_badge(
+										$itemRating["rating_ribbon_text"],
+										'success'
+										);
+								}
+
+								if ($rob['AVERAGE_RATING'] <= 5) {
+									$rob['RATING_TEXT_COLOUR'] = 'text-warning';
+									$rob['RATING_SCORE_TEXT'] = '';
+								}
+
+								$rob['UID'] = $propertys_uid;
+								$rob['AVERAGE_RATING'] = $property_deets['AVERAGE_RATING'];
+								$rob['NUMBER_OF_REVIEWS'] = $itemRating['counter'];
+								$rob['_JOMRES_REVIEWS_CLICKTOSHOW'] = jr_gettext('_JOMRES_REVIEWS_CLICKTOSHOW', '_JOMRES_REVIEWS_CLICKTOSHOW', false);
+								$rob['_JOMRES_REVIEWS_AVERAGE_RATING'] = jr_gettext('_JOMRES_REVIEWS_AVERAGE_RATING', '_JOMRES_REVIEWS_AVERAGE_RATING', false);
+								$rob['_JOMRES_REVIEWS_TOTAL_VOTES'] = jr_gettext('_JOMRES_REVIEWS_TOTAL_VOTES', '_JOMRES_REVIEWS_TOTAL_VOTES', false);
+								$rob['_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL'] = jr_gettext('_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL', '_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL', false);
+
+								$reviews_output_button[] = $rob;
+
+								$tmpl = new patTemplate();
+								$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+								$tmpl->readTemplatesFromInput('list_properties_reviews_section.html');
+								$tmpl->addRows('reviews_output', $reviews_output_button);
+								$property_deets['REVIEWS_SECTION'] = $tmpl->getParsedTemplate();
+
+								$tmpl = new patTemplate();
+								$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+								$tmpl->readTemplatesFromInput('list_properties_reviews_button.html');
+								$tmpl->addRows('reviews_button', $reviews_output_button);
+								$property_deets['REVIEWS_BUTTON'] = $tmpl->getParsedTemplate();
+
+							} else { // There aren't any reviews, we'll show a "these guys are new" badge instead
+								$new_listing_blub = jr_gettext('JOMRES_REVIEWS_NONE_NEW', 'JOMRES_REVIEWS_NONE_NEW', false);
+								$no_reviews_output_button = [0 => [
+									'JOMRES_REVIEWS_NONE_NEW' =>
+										jomres_badge(	$new_listing_blub , 'warning')
+								]];
+								$tmpl = new patTemplate();
+								$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+								$tmpl->readTemplatesFromInput('list_properties_reviews_section_no_reviews.html');
+								$tmpl->addRows('reviews_button', $no_reviews_output_button);
+								$property_deets['REVIEWS_SECTION'] = $tmpl->getParsedTemplate();
+							}
+						}
+
+
+						// Older code that'll be left in situ for now til Joomla 3 is no more.
 						// Property review information needs to be in it's own array so that a patTemplate condition can be used to decide if reviews are shown or no.
 						// To allow BC with older templates we'll copy the review info from the old property deets array to a new property_reviews array.
 						if ((int) $property_deets[ 'NUMBER_OF_REVIEWS' ] > 0) {
@@ -458,6 +537,7 @@ class j01010listpropertys
 						$property_deets[ 'HYPHEN' ] = '';
 						$property_deets[ 'REVIEWS' ] = '';
 						$property_deets [ 'REVIEWS_SNIPPET' ] = '';
+						$property_deets[ 'RATING_TEXT_COLOUR' ] = 'text-muted';
 					}
 
 					//$property_deets['AVAILABILITY_CALENDAR'] = $MiniComponents->specificEvent('06000','ui_availability_calendar',array('property_uid'=>$property->propertys_uid,'output_now'=>"1",'noshowlegend'=>1) );
@@ -627,10 +707,10 @@ class j01010listpropertys
 					}
 					// End hiding property address
 					
-					$property_deets[ 'PROP_TOWN' ] = '<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&town='.jomres_decode($current_property_details->multi_query_result[ $propertys_uid ][ 'property_town' ])).'">'.jomres_decode($current_property_details->multi_query_result[ $propertys_uid ][ 'property_town' ]).'</a>';
+					$property_deets[ 'PROP_TOWN' ] = '<a style="text-decoration:none;" href="'.jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&town='.jomres_decode($current_property_details->multi_query_result[ $propertys_uid ][ 'property_town' ])).'">'.jomres_decode($current_property_details->multi_query_result[ $propertys_uid ][ 'property_town' ]).'</a>';
 					$property_deets[ 'PROP_POSTCODE' ] = stripslashes($current_property_details->multi_query_result[ $propertys_uid ][ 'property_postcode' ]);
-					$property_deets[ 'PROP_REGION' ] = '<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&region='.$current_property_details->multi_query_result[ $propertys_uid ][ 'property_region_id' ]).'">'.jomres_decode($current_property_details->multi_query_result[ $propertys_uid ][ 'property_region' ]).'</a>';
-					$property_deets[ 'PROP_COUNTRY' ] = '<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&country='.jomres_decode($current_property_details->multi_query_result[ $propertys_uid ][ 'property_country_code' ])).'">'.jomres_decode($current_property_details->multi_query_result[ $propertys_uid ][ 'property_country' ]).'</a>';
+					$property_deets[ 'PROP_REGION' ] = '<a style="text-decoration:none;" href="'.jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&region='.$current_property_details->multi_query_result[ $propertys_uid ][ 'property_region_id' ]).'">'.jomres_decode($current_property_details->multi_query_result[ $propertys_uid ][ 'property_region' ]).'</a>';
+					$property_deets[ 'PROP_COUNTRY' ] = '<a style="text-decoration:none;" href="'.jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&country='.jomres_decode($current_property_details->multi_query_result[ $propertys_uid ][ 'property_country_code' ])).'">'.jomres_decode($current_property_details->multi_query_result[ $propertys_uid ][ 'property_country' ]).'</a>';
 
 					$property_deets[ 'LIVESITE' ] = get_showtime('live_site');
 					$property_deets[ 'UID' ] = $propertys_uid;
@@ -716,7 +796,7 @@ class j01010listpropertys
 						$property_deets[ 'MAP' ] = $MiniComponents->miniComponentData[ '01050' ][ 'x_geocoder' ];
 					}
 
-					$property_deets[ 'PROPERTY_TYPE' ] = $current_property_details->multi_query_result[ $propertys_uid ]['property_type_title'];
+					$property_deets[ 'PROPERTY_TYPE' ] = jomres_badge($current_property_details->multi_query_result[ $propertys_uid ]['property_type_title'] , 'info' );
 					$property_deets[ 'PROPERTY_TYPE_SEARCH_URL' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=search&ptype='.$current_property_details->multi_query_result[ $propertys_uid ]['ptype_id']);
 
 					$property_deets[ 'AGENT_LINK' ] = make_agent_link($propertys_uid);
@@ -788,7 +868,14 @@ class j01010listpropertys
 							}
 						}
 					}
-				
+
+					$result['PRICE_PRE_TEXT'] = '';
+					if ( in_array ( $propertys_uid , $current_jintour_properties)   ) {
+						$property_deets[ 'PRICE_PRE_TEXT' ] = jr_gettext('_JOMRES_TARIFFSFROM', '_JOMRES_TARIFFSFROM', false);
+						$property_deets[ 'PRICE_POST_TEXT' ] = jr_gettext('_JOMRES_BOOKINGFORM_PERPERSON', '_JOMRES_BOOKINGFORM_PERPERSON', false);
+					}
+
+					$property_deets['RIBBON'] = $jomres_ribbon_generator->generate_html();
 					$property_details[ ] = $property_deets;
 				}
 				
@@ -805,6 +892,7 @@ class j01010listpropertys
 					$tmpl->readTemplatesFromInput('list_properties_header.html');
 					$output[ 'HEADER' ] = $tmpl->getParsedTemplate();
 				}
+
 
 				$pageoutput[ ] = $output;
 				$tmpl = new patTemplate();
@@ -823,39 +911,6 @@ class j01010listpropertys
 				set_showtime('property_uid', $original_property_uid);
 				set_showtime('property_type', $original_property_type);
 			}
-		}
-	}
-
-	public function touch_template_language()
-	{
-		$output = array();
-
-		$output[ ] = jr_gettext('_JOMRES_COM_A_CLICKFORMOREINFORMATION', '_JOMRES_COM_A_CLICKFORMOREINFORMATION');
-		$output[ ] = jr_gettext('_JOMRES_FRONT_NORESULTS', '_JOMRES_FRONT_NORESULTS');
-		$output[ ] = jr_gettext('_PN_PREVIOUS', '_PN_PREVIOUS');
-		$output[ ] = jr_gettext('_PN_NEXT', '_PN_NEXT');
-		$output[ ] = jr_gettext('_JOMRES_DATEPERIOD_SECOND', '_JOMRES_DATEPERIOD_SECOND');
-		$output[ ] = jr_gettext('_JOMRES_DATEPERIOD_MINUTE', '_JOMRES_DATEPERIOD_MINUTE');
-		$output[ ] = jr_gettext('_JOMRES_DATEPERIOD_DAY', '_JOMRES_DATEPERIOD_DAY');
-		$output[ ] = jr_gettext('_JOMRES_DATEPERIOD_HOUR', '_JOMRES_DATEPERIOD_HOUR');
-		$output[ ] = jr_gettext('_JOMRES_DATEPERIOD_WEEK', '_JOMRES_DATEPERIOD_WEEK');
-		$output[ ] = jr_gettext('_JOMRES_DATEPERIOD_MONTH', '_JOMRES_DATEPERIOD_MONTH');
-		$output[ ] = jr_gettext('_JOMRES_DATEPERIOD_YEAR', '_JOMRES_DATEPERIOD_YEAR');
-		$output[ ] = jr_gettext('_JOMRES_DATEPERIOD_DECADE', '_JOMRES_DATEPERIOD_DECADE');
-		$output[ ] = jr_gettext('_JOMRES_DATEPERIOD_S', '_JOMRES_DATEPERIOD_S');
-		$output[ ] = jr_gettext('_JOMRES_DATEPERIOD_AGO', '_JOMRES_DATEPERIOD_AGO');
-		$output[ ] = jr_gettext('_JOMRES_DATEPERIOD_FROMNOW', '_JOMRES_DATEPERIOD_FROMNOW');
-		$output[ ] = jr_gettext('_JOMRES_DATEPERIOD_LATESTBOOKING', '_JOMRES_DATEPERIOD_LATESTBOOKING');
-		$output[ ] = jr_gettext('_JOMRES_QUICK_INFO', '_JOMRES_QUICK_INFO');
-		$output[ ] = jr_gettext('_JOMRES_COMPARE', '_JOMRES_COMPARE');
-
-		$output[ ] = jr_gettext('_JOMRES_ADDTOSHORTLIST', '_JOMRES_ADDTOSHORTLIST');
-		$output[ ] = jr_gettext('_JOMRES_REMOVEFROMSHORTLIST', '_JOMRES_REMOVEFROMSHORTLIST');
-		$output[ ] = jr_gettext('_JOMRES_VIEWSHORTLIST', '_JOMRES_VIEWSHORTLIST');
-
-		foreach ($output as $o) {
-			echo $o;
-			echo '<br/>';
 		}
 	}
 

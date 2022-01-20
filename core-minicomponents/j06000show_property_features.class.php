@@ -130,7 +130,24 @@ class j06000show_property_features
 
 					foreach ($v as $f) {
 						$url = jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&feature_uids='.$f['feature_uid']);
-						$pFeature[ 'FEATURE' ] = jomres_makeTooltip($f[ 'abbv' ], $f[ 'abbv' ], $f[ 'desc' ], JOMRES_IMAGELOCATION_RELPATH.'pfeatures/'.$f[ 'image' ], '', 'property_feature', array() , $url);
+						if (jomres_bootstrap_version() == '5' ) {
+							$p = [ 0 => [
+								'IMAGE' 				=> JOMRES_IMAGELOCATION_RELPATH.'pfeatures/'.$f[ 'image' ] ,
+								'FEATURE_DESCRIPTION'	=> $f[ 'abbv' ],
+								'URL'					=> $url,
+								'TOOLTIP'				=> $pFeature[ 'FEATURE' ] = jomres_makeTooltip($f[ 'abbv' ], $f[ 'abbv' ], $f[ 'desc' ], JOMRES_IMAGELOCATION_RELPATH.'pfeatures/'.$f[ 'image' ], '', 'property_feature', array() , $url)
+							]];
+
+							$tmpl = new patTemplate();
+							$tmpl->addRows('pageoutput', $p);
+							$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+							$tmpl->readTemplatesFromInput('show_property_feature.html');
+							$pFeature[ 'FEATURE' ] = $tmpl->getParsedTemplate();
+
+						} else {
+							$pFeature[ 'FEATURE' ] = jomres_makeTooltip($f[ 'abbv' ], $f[ 'abbv' ], $f[ 'desc' ], JOMRES_IMAGELOCATION_RELPATH.'pfeatures/'.$f[ 'image' ], '', 'property_feature', array() , $url);
+						}
+
 						$pFeatures[] = $pFeature;
 					}
 
