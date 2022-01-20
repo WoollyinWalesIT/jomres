@@ -101,13 +101,6 @@ class j10501properties
 			$configurationPanel->insertSetting();
 		}
 
-		if ( $jrConfig[ 'admin_options_level' ] > 1 ) {
-			$configurationPanel->setleft(jr_gettext('_JOMRES_PROPERTYDETAILS_INTABS_TITLE', '_JOMRES_PROPERTYDETAILS_INTABS_TITLE', false));
-			$configurationPanel->setmiddle($lists[ 'property_details_in_tabs' ]);
-			$configurationPanel->setright(jr_gettext('_JOMRES_PROPERTYDETAILS_INTABS_DESC', '_JOMRES_PROPERTYDETAILS_INTABS_DESC', false));
-			$configurationPanel->insertSetting();
-		}
-
         $configurationPanel->insertHeading(jr_gettext('JOMRES_SOCIAL_MEDIA_LINKS', 'JOMRES_SOCIAL_MEDIA_LINKS', false));
 
 
