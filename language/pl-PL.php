@@ -1194,7 +1194,7 @@ jr_define('_JOMRES_CONVERSION_TITLE_DESC', 'Użyj funkcji konwersji online Jomre
 jr_define('_JOMRES_CONVERSION_DISCLAIMER', 'Użyliśmy wszelkich starań, aby otrzymać najbardziej dokładne i aktualne kursy walut. Internetowa funkcja konwersji walut to usługa świadczona wyłącznie w celach informacyjnych i nie ma na celu dostarczenie dokładnych danych liczbowych. W związku z tym nie możemy zagwarantować dokładności kursów walut.');
 jr_define('_JOMRES_CURRENCYCONVERSION_TAB', 'Waluta');
 jr_define('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'IP Wykrywanie API Key');
-jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Aby automatycznie ustawić kod waluty na liście rozwijanej Jomres jest w stanie wykorzystać bezpłatną usługę o nazwie IPinfoDB, która pozwala wykryć kraj gośća. Musisz jednak zarejestrować się na stronie <a href="http://ipinfodb.com/register.php" target="_blank">IPinfoDB</a> i zdobyć klucz API.');
+jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Aby automatycznie ustawić kod waluty na liście rozwijanej Jomres jest w stanie wykorzystać bezpłatną usługę o nazwie IPinfoDB, która pozwala wykryć kraj gośća. Musisz jednak zarejestrować się na stronie <a href="https://www.ipinfodb.com/login" target="_blank">IPinfoDB</a> i zdobyć klucz API.');
 jr_define('_JOMRES_DEBUGGING_TAB', 'Debugowanie');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'Kwota netto');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'Kwota brutto');

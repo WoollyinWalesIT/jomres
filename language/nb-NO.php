@@ -1164,7 +1164,7 @@ jr_define('_JOMRES_CONVERSION_DISCLAIMER',"Vi har gjort det vi kan for å få de
 // 5.3.1
 jr_define('_JOMRES_CURRENCYCONVERSION_TAB','Valutakonvertering/valutakoder');
 jr_define('_JOMRES_IP_DETECTION_API_KEY_TITLE','IP-deteksjon API-nøkkel');
-jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC','For å automatisk sette valutakode i nedtrekksmenyen kan systemet bruke en gratis tjeneste kalt IPinfoDB for å finne gjestens land. For å bruke må du registrere en API-nøkkel hos <a href="http://ipinfodb.com/register.php" target="_blank">IPinfoDB</a> først.');
+jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC','For å automatisk sette valutakode i nedtrekksmenyen kan systemet bruke en gratis tjeneste kalt IPinfoDB for å finne gjestens land. For å bruke må du registrere en API-nøkkel hos <a href="https://www.ipinfodb.com/login" target="_blank">IPinfoDB</a> først.');
 jr_define('_JOMRES_DEBUGGING_TAB','Debugging');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX','Leiesum ekskl mva');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX','Leiesum inkl mva');

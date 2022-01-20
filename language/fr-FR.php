@@ -1163,7 +1163,7 @@ jr_define('_JOMRES_CONVERSION_DISCLAIMER', 'La fonctionnalité de conversion de 
 // 5.3.1
 jr_define('_JOMRES_CURRENCYCONVERSION_TAB', 'Codes de devises');
 jr_define('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'Détection de l\'IP API Key');
-jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Pour définir automatiquement le code de la monnaie dans la liste déroulante ; Le logiciel est en mesure d\'utiliser un service gratuit appelé IPinfoDB pour détecter les pays des visiteurs, mais vous devez vous inscrire et obtenir une clé API à <a href="http://ipinfodb.com/register.php" target="_blank">IPinfoDB</a>.');
+jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Pour définir automatiquement le code de la monnaie dans la liste déroulante ; Le logiciel est en mesure d\'utiliser un service gratuit appelé IPinfoDB pour détecter les pays des visiteurs, mais vous devez vous inscrire et obtenir une clé API à <a href="https://www.ipinfodb.com/login" target="_blank">IPinfoDB</a>.');
 jr_define('_JOMRES_DEBUGGING_TAB', 'Débogage');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'Location HT');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'Location TTC');

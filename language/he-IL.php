@@ -1220,7 +1220,7 @@ jr_define ('_JOMRES_CONVERSION_DISCLAIMER', 'השתמשנו כמיטב יכול�
 // 5.3.1
 jr_define ('_JOMRES_CURRENCYCONVERSION_TAB', 'המרת מטבע/קודי מטבע');
 jr_define ('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'מפתח API לזיהוי IP');
-jr_define ('_JOMRES_IP_DETECTION_API_KEY_DESC', 'כדי להגדיר אוטומטית את התפריט הנפתח של קוד המטבע Jomres יכול להשתמש בשירות חינמי בשם IPinfoDB כדי לזהות את מדינת המבקר, אולם עליך להירשם למפתח API ב <a href = "http: //ipinfodb.com/register.php" target ="_blank"> IPinfoDB </a> תחילה. ');
+jr_define ('_JOMRES_IP_DETECTION_API_KEY_DESC', 'כדי להגדיר אוטומטית את התפריט הנפתח של קוד המטבע Jomres יכול להשתמש בשירות חינמי בשם IPinfoDB כדי לזהות את מדינת המבקר, אולם עליך להירשם למפתח API ב <a href = "https://www.ipinfodb.com/login" target ="_blank"> IPinfoDB </a> תחילה. ');
 jr_define ('_JOMRES_DEBUGGING_TAB', 'Debugging');
 jr_define ('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'לינה ללא מס');
 jr_define ('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'מס לינה כולל');

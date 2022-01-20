@@ -1212,7 +1212,7 @@ jr_define('_JOMRES_CONVERSION_DISCLAIMER', '我们已尽最大努力获得最准
 // 5.3.1
 jr_define('_JOMRES_CURRENCYCONVERSION_TAB', '货币转换/货币代码');
 jr_define('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'IP 检测 API 密钥');
-jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', '要自动设置货币代码下拉菜单 Jomres 能够使用名为 IPinfoDB 的免费服务来检测访问者的国家/地区，但是您需要在 <a href="http: //ipinfodb.com/register.php" target="_blank">IPinfoDB</a> 首先。');
+jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', '要自动设置货币代码下拉菜单 Jomres 能够使用名为 IPinfoDB 的免费服务来检测访问者的国家/地区，但是您需要在 <a href="https://www.ipinfodb.com/login" target="_blank">IPinfoDB</a> 首先。');
 jr_define('_JOMRES_DEBUGGING_TAB', '调试');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', '住宿不含税');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', '住宿含税');

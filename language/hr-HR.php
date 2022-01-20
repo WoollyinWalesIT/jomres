@@ -1211,7 +1211,7 @@ jr_define ('_JOMRES_CONVERSION_DISCLAIMER', 'Uložili smo sve napore u postizanj
 // 5.3.1
 jr_define ('_JOMRES_CURRENCYCONVERSION_TAB', 'Konverzija valute/kodovi valuta');
 jr_define ('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'API ključ za otkrivanje IP -a');
-jr_define ('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Za automatsko postavljanje padajućeg koda valute Jomres može koristiti besplatnu uslugu pod nazivom IPinfoDB za otkrivanje zemlje posjetitelja, međutim morate se registrirati za API ključ na <a href = "http://ipinfodb.com/register.php" target ="_blank"> IPinfoDB </a> prvo. ');
+jr_define ('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Za automatsko postavljanje padajućeg koda valute Jomres može koristiti besplatnu uslugu pod nazivom IPinfoDB za otkrivanje zemlje posjetitelja, međutim morate se registrirati za API ključ na <a href = "https://www.ipinfodb.com/login" target ="_blank"> IPinfoDB </a> prvo. ');
 jr_define ('_JOMRES_DEBUGGING_TAB', 'Otklanjanje pogrešaka');
 jr_define ('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'Smještaj bez poreza');
 jr_define ('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'Smještaj sa porezom');

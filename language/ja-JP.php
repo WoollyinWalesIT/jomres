@@ -1181,7 +1181,7 @@ jr_define('_JOMRES_CONVERSION_DISCLAIMER', '外国為替市場の継続変動及
 //5.3.1
 jr_define('_JOMRES_CURRENCYCONVERSION_TAB', '通貨の換算・通貨コード');
 jr_define('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'IP認識APIキー');
-jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'JomresがIPinfoDBという無料のサービスを利用することにより,ユーザの国を認識し,通貨コードのドロップダウンを自動的に設定するできるが,APIキーが必要です。<a href="http://ipinfodb.com/register.php" target="_blank">IPinfoDB</a> で登録し入手できます。');
+jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'JomresがIPinfoDBという無料のサービスを利用することにより,ユーザの国を認識し,通貨コードのドロップダウンを自動的に設定するできるが,APIキーが必要です。<a href="https://www.ipinfodb.com/login" target="_blank">IPinfoDB</a> で登録し入手できます。');
 jr_define('_JOMRES_DEBUGGING_TAB', 'デバグ環境');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', '宿泊料金(税抜)');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', '宿泊料金(税込)');

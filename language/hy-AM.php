@@ -1466,7 +1466,7 @@ jr_define( '_JOMRES_HISTORIC_GUESTS_NOSHOW', "Ընթացիկ հյուրեր մի
 // 5.3.1
 jr_define( '_JOMRES_CURRENCYCONVERSION_TAB', 'Արժույթի փոխարկման / արժութային ծածկագիրը' );
 jr_define( '_JOMRES_IP_DETECTION_API_KEY_TITLE', 'IP հայտնաբերում API բանալի' );
-jr_define( '_JOMRES_IP_DETECTION_API_KEY_DESC', 'Արտարժույթի կոդի ինքնակարգավորման համար Jomresի սահող պատուհանը կարող է օգտագործել անվճար IPinfoDB համակարգը, որպեսզի հայտնաբերի հյուրընկալվածների երկիրը, սակայն API բանալին ստանալու համար ձեզ անհրաժեշտ կլինի գրանցվել<a href="http://ipinfodb.com/register.php" target="_blank">IPinfoDB</a> առաջին հերթին:' );
+jr_define( '_JOMRES_IP_DETECTION_API_KEY_DESC', 'Արտարժույթի կոդի ինքնակարգավորման համար Jomresի սահող պատուհանը կարող է օգտագործել անվճար IPinfoDB համակարգը, որպեսզի հայտնաբերի հյուրընկալվածների երկիրը, սակայն API բանալին ստանալու համար ձեզ անհրաժեշտ կլինի գրանցվել<a href="https://www.ipinfodb.com/login" target="_blank">IPinfoDB</a> առաջին հերթին:' );
 jr_define( '_JOMRES_DEBUGGING_TAB', 'կարգաբերում' );
 jr_define( '_JOMRES_BOOKINGORM_TOTALSPANEL_LOCATION', ' Գտնվելու վայրի վահանակի կազմում ' );
 jr_define( '_JOMRES_BOOKINGORM_TOTALSPANEL_LOCATION_DESC', ' Ամրագրման ձևում վերջնահաշվարկների վահանակին անհրաժեշտ է տարբեր պարամետրեր կախված կաղապարից:օրինակ Jomres Joomla 712 կարգավորման կաղապարը լավ աշխատում է, սակայն Milkyway  նշանակության circa 1500ը առավել նպատակահարմար է, առավել ևս երբ դուք չունեք սահող պատուհանի մոդել` օգնող հարմարություններով : Շատ հավանական է , որ դուք էքսպերեմենտներ կանեք օգտագործելով տարբեր հարմարություններ, որպեսզի գտնեք ինչ-որ բան, որ լավ կաշխատի ընտրված կաղապարում: ' );
