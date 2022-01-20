@@ -9,7 +9,8 @@
 	<authorUrl>https://www.jomres.net</authorUrl>
 	<version>10.1.2</version>
 	<description>Jomres - Complete Online Booking and Property Management Solution</description>
-	
+
+
 	<scriptfile>script.php</scriptfile>
 	
 	<files folder="site">
