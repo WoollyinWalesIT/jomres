@@ -23,9 +23,9 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\User\UserFactoryInterface;
 use Joomla\CMS\HTML\HTMLHelper;
 
-if (!defined('API_STARTED')) {
+/*if (!defined('API_STARTED')) {
     HTMLHelper::_('jquery.framework');
-}
+}*/
 
 function jomres_cmsspecific_error_logging_cms_files_to_not_backtrace()
 {
