@@ -1333,6 +1333,12 @@ class jomres_obsolete_file_handling
 		$this->add_file($this->dir_templates_bootstrap_administrator.'faq_pane.html');
 		$this->add_file($this->dir_templates_bootstrap_administrator.'faq_questions.html');
 
+		$this->add_file($this->dir_minicomponents.'j00004a_init_javascript_css_files.class.php');
+
+		$this->add_file($this->dir_minicomponents.'j10501connect.class.php');
+		$this->add_file($this->dir_minicomponents.'j16000connect.class.php');
+		$this->add_file($this->dir_minicomponents.'j16000connected.class.php');
+		$this->add_file($this->dir_minicomponents.'j16000connect_status.class.php');
 	}
 	
 	/**
