@@ -57,11 +57,6 @@ class j00501propertydetailsoptions
 		if ( $jrConfig[ 'compatability_property_configuration' ] != 1 ) {
 			$configurationPanel->startPanel(jr_gettext('PROPERTY_DETAILS_PAGE_OPTIONS', 'PROPERTY_DETAILS_PAGE_OPTIONS', false));
 
-			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK', '_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK', false));
-			$configurationPanel->setmiddle('<input text="text" class="inputbox" size="5" name="cfg_facebook_page" value="' . $mrConfig['facebook_page'] . '"/>');
-			$configurationPanel->setright(jr_gettext('_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK_DESC', '_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK_DESC', false));
-			$configurationPanel->insertSetting();
-
 			$configurationPanel->setleft(jr_gettext('HIDDEN_ADDRESS_SETTING', 'HIDDEN_ADDRESS_SETTING', false));
 			$configurationPanel->setmiddle($lists['hide_local_address']);
 			$configurationPanel->setright(jr_gettext('HIDDEN_ADDRESS_SETTING_DESC', 'HIDDEN_ADDRESS_SETTING_DESC', false));
