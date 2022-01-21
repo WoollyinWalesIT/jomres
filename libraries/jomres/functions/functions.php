@@ -1808,6 +1808,10 @@ function add_gmaps_source()
 			$apikey = '&key='.$jrConfig[ 'google_maps_api_key' ];
 		}
 
+		if ($apikey == '' ) {
+			return;
+		}
+
 		jomres_cmsspecific_addheaddata('javascript', 'https://maps.googleapis.com/maps/api/js?v=3&language='.$shortcode.$apikey, '&foo=bar', $includeVersion = false, $async = true);
 	}
 }
