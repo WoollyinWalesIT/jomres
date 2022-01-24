@@ -1188,7 +1188,7 @@ jr_define('_JOMRES_CONVERSION_DISCLAIMER', 'Vi har gjort vårt bästa för att f
 // 5.3.1
 jr_define('_JOMRES_CURRENCYCONVERSION_TAB', 'valutaomvandling/valutakoder');
 jr_define('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'API-nyckel för IP-detektering');
-jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'För att automatiskt välja standardvalutakod i rullgardinslistan kan Jomres använda en gratis tjänst som kallas IPinfoDB för att spåra besökarens land, men du måste registrera dig för att få en API nyckel hos <a href="http://ipinfodb.com/register.php" target="_blank">IPinfoDB</a> först.');
+jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'För att automatiskt välja standardvalutakod i rullgardinslistan kan Jomres använda en gratis tjänst som kallas IPinfoDB för att spåra besökarens land, men du måste registrera dig för att få en API nyckel hos <a href="https://www.ipinfodb.com/login" target="_blank">IPinfoDB</a> först.');
 jr_define('_JOMRES_DEBUGGING_TAB', 'Felsökning');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'Boende exkl. moms');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'Boende inkl. moms');

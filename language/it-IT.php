@@ -1225,7 +1225,7 @@ jr_define('_JOMRES_CONVERSION_DISCLAIMER', "Abbiamo usato i nostri migliori sfor
 // 5.3.1
 jr_define('_JOMRES_CURRENCYCONVERSION_TAB', 'conversione di valuta / codici di valuta');
 jr_define('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'IP rilevamento API Key');
-jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Per impostare automaticamente il codice valuta discesa Jomres è in grado di utilizzare un servizio gratuito chiamato IPinfoDB per rilevare il paeses visitatore , tuttavia è necessario registrarsi per una chiave API a <a href="http://ipinfodb.com/register.php" target="_blank">IPinfoDB</a> first.');
+jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Per impostare automaticamente il codice valuta discesa Jomres è in grado di utilizzare un servizio gratuito chiamato IPinfoDB per rilevare il paeses visitatore , tuttavia è necessario registrarsi per una chiave API a <a href="https://www.ipinfodb.com/login" target="_blank">IPinfoDB</a> first.');
 jr_define('_JOMRES_DEBUGGING_TAB', 'eliminare errori');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'Soggiorno tasse escluse');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'Soggiorno tasse incluse');

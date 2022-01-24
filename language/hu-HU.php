@@ -29,14 +29,12 @@ jr_define('_JOMRES_COM_MR_NEWTARIFF', 'Új');
 jr_define('_JOMRES_COM_MR_NEWPROPERTY', 'Új szálláshely');
 jr_define('_JOMRES_COM_MR_NEWGUEST', 'Új vendég');
 jr_define('_JOMRES_COM_MR_SAVE', 'Mentés');
-// View bookings
 jr_define('_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME', 'Név');
 jr_define('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', 'Érkezés');
 jr_define('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', 'Távozás');
 jr_define('_JOMRES_COM_MR_ASSIGNUSER_USERNAME', 'Felhasználó Név');
 jr_define('_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL', 'Belépési szint');
 jr_define('_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE', 'Felhasználó által módosított');
-// Edit bookings
 jr_define('_JOMRES_COM_MR_EDITBOOKING_ADMIN_TITLE', 'Minden foglalás');
 jr_define('_JOMRES_COM_MR_EDITBOOKINGTITLE', 'Foglalások szerkesztése');
 jr_define('_JOMRES_COM_MR_EDITBOOKING_TAB_ARRIVAL', 'Érk/Táv');
@@ -79,11 +77,9 @@ jr_define('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_REF', 'Előleg referenciaszáma');
 jr_define('_JOMRES_COM_MR_EB_PAYM_BOOKINGNUMBER', 'On-line szállásfoglalás');
 jr_define('_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED', 'Előleg');
 jr_define('_JOMRES_COM_MR_EB_PAYM_DEPOSITSAVEMESSAGE', 'Előleg mentve');
-// Edit Language
 jr_define('_JOMRES_COM_MR_QUICKRES_STEP2_TITLE', 'Szobáink');
 jr_define('_JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME', 'Szálláshely');
 jr_define('_JOMRES_COM_MR_QUICKRES_STEP2_ROOMTYPE', 'Szobatípus');
-// Display guest form
 jr_define('_JOMRES_COM_MR_DISPGUEST_EDITDETAILS', 'Vendég adatainak szerkesztése');
 jr_define('_JOMRES_COM_MR_DISPGUEST_FIRSTNAME', 'Családnév');
 jr_define('_JOMRES_COM_MR_DISPGUEST_SURNAME', 'Keresztnév');
@@ -97,7 +93,6 @@ jr_define('_JOMRES_COM_MR_DISPGUEST_FAX', 'Faxszám');
 jr_define('_JOMRES_COM_MR_QUICKRES_STEP4_TITLE', 'Kérjük, válasszon');
 jr_define('_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS', 'Eltöltendő napok száma');
 jr_define('_JOMRES_COM_MR_QUICKRES_STEP4_TOTALINVOICE', 'Összesen');
-// Rooms tab
 jr_define('_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE', 'A szobák és a szálláshely beállításainak megtekintése');
 jr_define('_JOMRES_COM_MR_VRCT_TAB_ROOM', 'Szobák');
 jr_define('_JOMRES_COM_MR_VRCT_TAB_ROOMFEATURES', 'Szoba jellemzői');
@@ -175,7 +170,6 @@ jr_define('_JOMRES_FRONT_MR_BOOKINGMADE', 'Köszönjük, hogy igénybe vette sz�
 jr_define('_JOMRES_FRONT_MR_BOOKIN_TITLE', 'Előzetes foglalás ');
 jr_define('_JOMRES_FRONT_MR_BOOKIN_GUESTBOOKEDIN', 'Bejövő foglalás ');
 jr_define('_JOMRES_FRONT_MR_BOOKOUT_TITLE', 'Foglalás eldobása ');
-// Config panel
 jr_define('_JOMRES_COM_A_SUPPLIMENTS', 'Kiegészítők');
 jr_define('_JOMRES_COM_A_TARIFFS', 'Díjszabás és árfolyam');
 jr_define('_JOMRES_COM_A_JOMRES_FILE_UPLOADS', 'Fájl feltöltése');
@@ -395,7 +389,6 @@ jr_define('_JOMRES_COM_CHARGING_CONFIG', 'A foglalásra fizetendő összeg');
 jr_define('_JOMRES_COM_CHARGING_CONFIG_DESC', 'Hsználja ezt az opciót, hogy eldönthesse, hogy mi van megadóztatva a szállásfoglalás alatt. Válassza ki az előleget, ha az előleg adóköteles vagy az egész összeget, ha a teljes összeg adóköteles.');
 jr_define('_JOMRES_COM_MONTHSTOSHOW', 'Megjelenítendő hónap');
 jr_define('_JOMRES_COM_MONTHSTOSHOW_DESC', 'A szoba foglalhatóságánál, hány hónap legyen megjelenítve?');
-// V1.4
 jr_define('_JOMRES_COM_A_GATEWAYLIST', 'On-line  fizetés');
 jr_define('_JOMRES_COM_A_CANCEL', 'Kilépés');
 jr_define('_JOMRES_FRONT_BLACKBOOKING_DESC', 'Kérjük, válassza ki a szobá(ka)t, amelyeket ki akar vonni a szolgáltatás alól, és az azzal kapcsolatos dátumokat. <br>Ha egy szoba nincs megjelölve, akkor nem  vehető fel rá hamis foglalás (fenntartás), amíg a tényleges szállásfoglalások nincsenek teljesítve vagy visszamondva.<br/> Ha kiválasztotta a megfelelő adatokat, akkor kattintson a kék "Alkalmaz" gombra, hogy a szoba foglalhatóságát újra leellenőrizhesse. ');
@@ -428,7 +421,6 @@ jr_define('_JOMRES_FRONT_NORESULTS', '<b>A keresés nem hozott eredményt. Kérj
 jr_define('_JOMRES_AREYOUSURE', 'Biztos ezt akarja tenni?');
 jr_define('_JOMRES_FRONT_MR_MENU_BOOKAROOM', 'Foglaljon most!');
 jr_define('_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY', 'Foglaljon most!');
-//v1.4c
 jr_define('_JOMRES_COM_A_TARIFFS_SHOWTARIFFSINLINE', 'Árak megjelenítése szalagban?');
 jr_define('_JOMRES_COM_A_BASICTEMPLATE_SHOWADDRESS', 'Elérhetőségek');
 jr_define('_JOMRES_COM_A_BASICTEMPLATE_SHOWDETAILS', 'Részletes bemutatás');
@@ -440,13 +432,10 @@ jr_define('_JOMRES_COM_A_TARIFFS_MODEL_SINGLETARIFF', 'Átalánydíjak');
 jr_define('_JOMRES_COM_A_TARIFFS_MODEL_AVERAGES', 'Átlagok');
 jr_define('_JOMRES_COM_A_TARIFFS_MODEL', 'Válasszon árkialakítási modellt');
 jr_define('_JOMRES_COM_A_TARIFFS_MODEL_DESC', "Kétféle árképzés közül választhat. Az első 'átalányár' eljárás lehetővé teszi számos ár megadását a vendégnek és az ár a foglalás teljes időtartamára megegyezik, minden nap azonos. Ez akkor praktikus, ha ugyanarra a dátumra különböző árakat is meg akar adni, pl. szoba reggelivel vagy félpanziós ár... Válassza az 'átlagár' kalkulációt, ha szezonális árakat akar használni, napokra lebontva. A rendszer megtalálja a foglalás napjaihoz rendelt árakat, összegzi, és kiszámítja a foglalás idejére eső átlagárat. ");
-// v1.4e
 jr_define('_JOMRES_COM_A_SHOWDEPARTUREINPUT', 'Megjelenjen a távozás dátumának megadása mező?');
 jr_define('_JOMRES_COM_A_SHOWDEPARTUREINPUT_DESC', 'Állítsa Nem-re, ha nem akarja megjeleníteni a távozás dátuma mezőt. Gondolja át a beállítást, mivel a távozás dátuma a foglalásban mindig az érkezést követő nap lesz. ');
-// v1.4f
 jr_define('_JOMRES_COM_PROPERTYLISTDESC', 'Leírás korlátozása');
 jr_define('_JOMRES_COM_PROPERTYLISTDESC_DESC', 'Ez a beállítás korlátozza a szállások listájában megjelenítendő karakterek számát ha a szálláshely leírásából kilépve.');
-// v1.4g+
 jr_define('_JOMRES_COM_A_DATEFORMATSTYLE', 'Dátum formátum() ?');
 jr_define('_JOMRES_COM_MR_VRCT_PUBLISH', 'Készre jelentés');
 jr_define('_JOMRES_COM_MR_VRCT_UNPUBLISH', 'Készrejelentés visszavonása');
@@ -459,7 +448,6 @@ jr_define('_JOMRES_COM_SELFREGISTRATION', 'Regisztrálhatja a felhasználó a sz
 jr_define('_JOMRES_COM_SELFREGISTRATION_DESC', 'Állítsa Igen-re ha engedélyezni akarja a felhasználók számára a szálláshelyek rögzítését adminisztrátori beavatkozás nélkül.');
 jr_define('_JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2', 'A megjelölt mezők kitöltése kötelező.');
 jr_define('_JOMRES_REGISTRATION_AUDIT_CREATEPROPERTY', 'Szálláshely létrehozása');
-// v1.4i
 jr_define('_JOMRES_COM_MONTHS_STARTOFYEAR', 'Naptár megjelenítése az év elejétől?');
 jr_define('_JOMRES_COM_MONTHS_STARTOFYEAR_DESC', 'A foglaltsági naptár ez év első napjától kezdődik.');
 jr_define('_JOMRES_NUMBEROFROOMSAVAILABLE', 'Szabad szobák');
@@ -469,7 +457,6 @@ jr_define('_JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT', 'Véletlen keresés limit
 jr_define('_JOMRES_SHOWGOOGLECURRENCYLINKS', 'Google árfolyamlink megjelenítése az árlistában?');
 jr_define('_JOMRES_CURRENCYCONVERSIONTEXT', 'Váltsa át :');
 jr_define('_JOMRES_COM_ALLOWHTMLEDITOR', 'Html szerkesztő használata engedélyezett a felhasználónak?');
-// v2
 jr_define('_JOMRES_AJAXFORM_INSTRUCTIONS', 'Ezt az űrlapot használhatja a szállásfoglaláshoz. Állítsa a kurzort az "i" képek fölé további információért a témáról. Módosítsa foglalása adatait, mint az érkezés és távozás dátuma, vendégek száma, azután válasszon a szabad szobák közül igényeinek megfelelőt. Kattintson bármely szabad szobára, hogy hozzáadja foglalásához. Ha elkészült extrákat is adhat foglalásához, majd rögzítse a címét. Ha elegendő adatot megadott megjelenik a jóváhagyás gomb, és befejezheti a foglalást.');
 jr_define('_JOMRES_AJAXFORM_INSTRUCTIONS_SRP', 'Ezt az űrlapot használhatja a szállásfoglaláshoz. Állítsa a kurzort az "i" képek fölé további információért a témáról. Módosítsa foglalása adatait, mint az érkezés és távozás dátuma, vendégek száma. Ha elkészült extrákat is adhat foglalásához, majd rögzítse a címét. Ha elegendő adatot megadott megjelenik a jóváhagyás gomb, és befejezheti a foglalást.');
 jr_define('_JOMRES_AJAXFORM_PARTICULARS', 'A szállásfoglalás részletei');
@@ -571,14 +558,10 @@ jr_define('_JOMRES_COM_DUMPTEMPLATEDATA', 'Sablon változóinak betöltése?');
 jr_define('_JOMRES_COM_DUMPTEMPLATEDATA_DESC', 'Állítsa be ezt, hogy engedélyezze a sablon változóinak DHTML betöltését minden FRONTEND sablonfile esetén az oldal megtekintésekor. Hasznos, ha azt akarod látni, hogy bizonyos elemek elérhetően használhatóak a beállított sablonban.');
 jr_define('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_ISPERCENTAGE', 'Százalékosan megjelenítve');
 jr_define('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_ISPERCENTAGE_DESC', 'Állítsa Igenre, hogyha az egyfős szállásfoglalás számításánál százalék szerepel. Hogyha nem, akkor a megadott fix összeg lesz alkalmazva.');
-//v2rc2
 jr_define('_JOMRES_COM_LIMITROOMSLIST', 'Szabad szobák/díjszabás limit');
 jr_define('_JOMRES_COM_LIMITROOMSLIST_DESC', 'Használja ezt a lehetőséget a szállásfoglalási űrlapon szereplő szabad szobák és díjszabások korlátozására. Állítsa nullára, ha nem akarja ezt a korlátozást engedélyezni. ');
 jr_define('_JOMRES_SRP_WEHAVENOVACANCIES', 'Ez alkalommal nincs szabad hely!');
-// Introduced in v2.5
 jr_define('_JOMRES_ANY', 'Mindegy');
-// Introduced in v2.5
-// v2.6
 jr_define('_JOMRES_BOOKITNOW', 'Ezt lefoglalom!');
 jr_define('_JOMRES_COM_JRCONFIG_GLOBALEDITING', 'Tömeges módosítás funkció?');
 jr_define('_JOMRES_COM_JRCONFIG_GLOBALEDITING_DESC', 'Legyen óvatos ezzel a funkcióval. Ha Igen-re állítja, a változás a  rendszer ÖSSZES szálláshelyének szövegét módosítja.');
@@ -619,7 +602,6 @@ jr_define('_JOMRES_CURRENCYFORMAT', 'Valuta formátum');
 jr_define('JOMRES_COM_A_SEARCHOPTIONSTAB', 'Search options');
 jr_define('JOMRES_COM_A_AVAILABLELOGS', 'Log files');
 jr_define('JOMRES_COM_A_MESSAGE', 'Message');
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Jomres 2.6.3
 jr_define('JOMRES_COM_A_TARIFFMODE_NORMAL', 'Normál');
 jr_define('JOMRES_COM_A_TARIFFMODE_ADVANCED', 'Fejlett');
 jr_define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES', 'Micromanage');
@@ -699,7 +681,6 @@ jr_define('_JOMCOMP_AMEND_DEPOSITPAID', 'Deposit Paid');
 jr_define('_JOMCOMP_AMEND_DEPOSITDUE', 'Deposit Not Paid');
 jr_define('_JOMCOMP_AMEND_OVERRIDE_TOTAL', 'Override Total');
 jr_define('_JOMCOMP_AMEND_OVERRIDE_DEPOSIT', 'Foglaló felülírása');
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Jomres 2.7.5
 jr_define('_JRPORTAL_CANCEL', 'Cancel');
 jr_define('_JRPORTAL_CPANEL', 'Control Panel');
 jr_define('_JRPORTAL_CONFIG_DEFAULT_CRATE', 'Default Commission rate');
@@ -724,8 +705,6 @@ jr_define('_JRPORTAL_LISTBOOKINGS_HEADER_DATEARCHIVED', 'Date archived');
 jr_define('_JRPORTAL_ADD_ADHOC_ITEM_DESCRIPTION', 'Leírás');
 jr_define('_JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER', 'You can have property type specific language files by setting the description to the name of a sub folder, e.g. "yachtbrokerage" and copying a language file to that subfolder. You can then modify that language file for this property type so rooms become, for example, DVDs, etc.');
 jr_define('_JOMRES_EDITPROPERTY_CONNOTDELETE1', 'You cannot delete this property as it is the only property that you have access to. If you want to disable it, please use the un-publish feature in your toolbar. ');
-// Jomres v3.0.6
-// Jomres v3.1
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL', 'Szállás végösszege');
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS', 'éjszakák a');
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_PERROOM', 'szobánként ');
@@ -738,9 +717,6 @@ jr_define('_JOMRES_CONFIRMATION_AMEND', 'Foglalás módosítása');
 jr_define('_JOMRES_CONFIRMATION_SPECIALS', 'Kérjük írja ide a különleges kéréseit, kérdéseit amit a szállásadóhoz szeretne intézni.');
 jr_define('_JOMRES_CONFIRMATION_TERMS_PRETEXT', 'Megerősítem, hogy egyetértek a következőkben foglaltakkal: ');
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_PERPERSON', 'per person per night ');
-// Jomres 3.1.10
-// Jomres 3.1.11
-// Jomres 3.1.13
 if (!defined('_PN_OF')) {
     jr_define('_PN_OF', 'nak');
 }
@@ -901,9 +877,6 @@ jr_define ('_JOMRES_AJAXFORM_COUPON_BOOKINGNOTE', 'Kedvezményes foglalás. Kupo
 jr_define ('_JOMRES_COM_CHOOSELANGUAGES', 'Nyelvek kiválasztása');
 jr_define ('_JOMRES_COM_CHOOSELANGUAGES_INFO', 'Válassza ki a nyelvi beállításokat a nyelvváltó legördülő menüben.');
 jr_define ('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN', 'Megjeleníti a nyelvválasztó legördülő menüt?');
-/*
-* @figyelmen kívül hagyni
-*/
 jr_define ('_JRPORTAL_NEWUSER_DEAR', 'Kedves');
 jr_define ('_JRPORTAL_NEWUSER_THANKYOU', 'Köszönjük, hogy regisztrált');
 jr_define ('_JRPORTAL_NEWUSER_USERNAME', 'A felhasználóneve:');
@@ -911,7 +884,6 @@ jr_define ('_JRPORTAL_NEWUSER_PASSWORD', 'A jelszava:');
 jr_define ('_JRPORTAL_NEWUSER_LOG_IN', 'Kérjük, jelentkezzen be a foglalások megtekintéséhez');
 jr_define ('_JOMRES_MR_AUDIT_UPDATE_COUPON', 'Kupon mentve');
 jr_define ('_JOMRES_MR_AUDIT_DELETE_COUPON', 'Kupon törölve');
-// Még nem használt
 jr_define ('_JRPORTAL_SMS_CLICKATELL_TITLE', 'Jomres -> Clickatell SMS');
 jr_define ('_JRPORTAL_SMS_CLICKATELL_USERNAME', 'Felhasználónév');
 jr_define ('_JRPORTAL_SMS_CLICKATELL_PASSWORD', 'Jelszó');
@@ -960,7 +932,6 @@ jr_define('_JOMRES_CLICKTOREGISTER', 'Click here to register your property');
 jr_define('_JRPORTAL_NEWUSER_SUBJECT', 'New user details ');
 jr_define('_JOMRES_LATLONG_DESC', 'Használja az egeret a térkép mozgatásához, és húzza oda a mutatót a szállás helyére.');
 jr_define('_JOMRES_CONTROLPANEL', 'Kezelőpanel');
-// Jomres v4.2
 jr_define('_JOMRES_MANAGER_SHOWINVOICE', 'Számla');
 jr_define('_JOMRES_MANAGER_SHOWINVOICES', 'Számlák');
 jr_define('_JOMRES_USER_LISTMYPROPERTY', 'Szálláshelyem regisztrációja');
@@ -1085,7 +1056,6 @@ jr_define('_JOMRES_ROOMALLOCATIONS_ROOM', 'Szoba ');
 jr_define('_JOMRES_ROOMALLOCATIONS_GUESTS', 'vendég(ek). ');
 jr_define ('_JOMRES_ROOMALLOCATIONS_INFORMATION', 'Így rendeljük hozzá vendégszámaikat a szobájukhoz. Ha módosítani szeretné ezt az elosztást, a foglalás után fel kell vennie a kapcsolatot a szállodával. A megbízások megváltoztatása esetén további díjak merülhetnek fel. ');
 jr_define('_JOMRES_SANITY_CHECK_NOT_PUBLISHED', 'Még nem publikálta a szállást, így a vendégek nem, csak ön láthatja azt.');
-// 4.5.5
 jr_define ('_JOMRES_PROPERTYLIST_FILTERS_DEFAULT', 'Alapértelmezett keresési eredmény sorrend');
 jr_define ('_JOMRES_PROPERTYLIST_FILTERS_DEFAULT_DESC', 'Változtassa meg ezt a beállítást a keresési eredmények alapértelmezett megjelenítési sorrendjének megváltoztatásához.');
 jr_define ('_JOMRES_PROPERTYLIST_FILTERS_SHOW', 'Keresési eredmények sorrendjének megjelenítése');
@@ -1165,7 +1135,6 @@ jr_define ('_JRPORTAL_INVOICES_COMMISSION_MANAGER_TRIGGERS_DESC', 'Ha a menedzse
 jr_define ('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND', 'Automatikusan felfüggeszti a kezelőket, ahol a számlák függőben vannak megjelölve?');
 jr_define ('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD', 'Threashold automatikus felfüggesztése');
 jr_define ('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD_DESC', 'Ez a háromszoros nap azoknak a napoknak a száma, ameddig a menedzsernek számlát kell fizetnie, mielőtt felfüggesztik, és ingatlanjait közzéteszik.');
-//4.7.2
 jr_define ('_JOMRES_COM_LANGUAGE_CONTEXT', 'Nyelvi kontextus');
 jr_define ('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', 'Ezzel az opcióval módosíthatja a webhely nyelvi kontextusát. Ez a funkció lehetővé teszi a Jomres számára, hogy az aktuális fókuszának megfelelő címkéket használjon, tehát ha a hangsúly Yachtközvetítőként működik, akkor a kontextus módosítása engedélyezze a Jomres számára, hogy más nyelvű fájlból származó címkéket mutasson be. Ha például a kontextust "Yacht Brokerage" értékre állítja, akkor a Jomres először megtalálja az aktuális nyelvet, majd a /'.JOMRES_ROOT_DIRECTORY.'/languages ​​könyvtárban keres egy alkönyvtárat "yachtbrokerage". Ha a fájl létezik az aktuális nyelvhez, akkor ezt a fájlt fogja használni. Ha nem, akkor a Jomres angol nyelvű fájlt keres ugyanabban a könyvtárban. Ha ez nem található, a Jomres a nyelvfájl a jelenleg kiválasztott nyelvhez a /'.JOMRES_ROOT_DIRECTORY.'/languages ​​könyvtárban. ');
 
@@ -1174,7 +1143,6 @@ jr_define ('_JOMRES_COM_ADVANCED_SITE_CONFIG_DESC', 'Állítsa ezt az opciót Ig
 jr_define ('_JOMRES_CONFIG_JQUERY_UI', 'Betölti a Jomres jQuery UI könyvtárat?');
 jr_define ('_JOMRES_SORTORDER_PRICE_DESC', 'Ár (legmagasabb első)');
 jr_define ('_JOMRES_SORTORDER_PRICE_ASC', 'Ár (először a legalacsonyabb)');
-// 4.7.6
 jr_define('_JOMRES_BOOKINGFORM_PRICINGOUTPUT', 'Az ár összefoglalás és becslés éjszakánként, hetenként vagy hónaponként legyen számolva?');
 jr_define('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY', 'Éjszakánként');
 jr_define('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY', 'Hetenként');
@@ -1182,34 +1150,32 @@ jr_define('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY', 'Hónaponként');
 jr_define('_JOMRES_BOOKINGFORM_PERPERSON', 'Vendégenként');
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_WEEKS', 'week(s) at ');
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_MONTHS', 'month(s) at ');
-// 4.7.7jr_define ('_JOMRES_A_GLOBAL_SEARCHOPTION_PEOPLENUMBERS', 'Hogyan működik a személyek keresési opciója ? ');
-//jr_define ('_JOMRES_A_GLOBAL_SEARCHOPTION_PEOPLENUMBERS_DESC', 'Minden keresési modult érint . A vendégszám keresési funkció használatakor, ha a keresési szolgáltatás olyan ingatlanokat keres, akik tarifái támogatják a vendégszámot, és megegyeznek a választott számmal, pontosan megegyeznek a választott számmal, vagy a választott és nagyobb szám ? ');
+jr_define ('_JOMRES_A_GLOBAL_SEARCHOPTION_PEOPLENUMBERS', 'Hogyan működik a személyek keresési opciója ? ');
+jr_define ('_JOMRES_A_GLOBAL_SEARCHOPTION_PEOPLENUMBERS_DESC', 'Minden keresési modult érint . A vendégszám keresési funkció használatakor, ha a keresési szolgáltatás olyan ingatlanokat keres, akik tarifái támogatják a vendégszámot, és megegyeznek a választott számmal, pontosan megegyeznek a választott számmal, vagy a választott és nagyobb szám ? ');
 jr_define('_JOMRES_PAYPAL_REDIRECTMESSAGE', 'Kérem várjon, a rendelése feldolgozás alatt van. Nemsokára át lesz irányítva a PayPal fizetéskezelő oldalra.');
 jr_define('_JOMRES_PAYPAL_REDIRECTMESSAGE_IFNOTREDIRECTED', 'Ha nem kerül automatikusan átirányításra 5 másodpercen benül...');
 jr_define('_JOMRES_PAYPAL_REDIRECTMESSAGE_CLICKHERE', 'Kattintson ide');
-// 4.7.8jr_define ('_JRPORTAL_COUPONS_BOOKING_VALIDFROM', 'A foglalás érvényes:');
-//jr_define ('_JRPORTAL_COUPONS_BOOKING_VALIDTO', 'A foglalás érvényes');
-//jr_define ('_JRPORTAL_COUPONS_GUESTNAME', 'Vendég neve');
-//jr_define ('_JRPORTAL_COUPONS_DESC_478', "Kedvezménykódok generálhatók és továbbadhatók a vendégeknek a foglalás ösztönzésére. <br/>
-//Érvényes dátum és dátum azokra a dátumokra vonatkozik, amelyeken a foglalás végrehajtható, míg a dátumtól kezdve érvényes foglalás azokra a dátumokra vonatkozik, amelyeket a foglalásnak le kell fednie, hogy a kupon érvényes legyen. Ha a foglalás ezen az időszakon kívül esik, akkor az időszakon kívüli napokra a normál árak érvényesek. <br/>
-//Ha azt szeretné, hogy a foglalás csak egy bizonyos vendég számára legyen elérhető, válassza ki a vendég nevét a legördülő menüből, hogy a kupont csak erre a vendégre korlátozza. ");
-//jr_define ('_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK', 'A kuponnal ezt a foglalást kedvezményes áron');
-//jr_define ('_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK_TO', 'to');
-//jr_define ('_JOMRES_CONFIG_JQUERY_UI_DESC', 'Állítsa ezt Nem értékre a Jquery UI javascript és CSS fájlok betöltésének letiltásához . ');
-//jr_define ('_JOMRES_CONFIG_JQUERY_UI_CSS', 'Betölti a Jomres jQuery UI CSS könyvtárat ? ');
-//jr_define ('_JOMRES_CONFIG_JQUERY_UI_CSS_DESC', 'Állítsa ezt Nem értékre, ha csak a jquery felhasználói felület CSS fájlját szeretné letiltani . ');
-//v5.1
+
+jr_define ('_JRPORTAL_COUPONS_BOOKING_VALIDFROM', 'A foglalás érvényes:');
+jr_define ('_JRPORTAL_COUPONS_BOOKING_VALIDTO', 'A foglalás érvényes');
+jr_define ('_JRPORTAL_COUPONS_GUESTNAME', 'Vendég neve');
+jr_define ('_JRPORTAL_COUPONS_DESC_478', "Kedvezménykódok generálhatók és továbbadhatók a vendégeknek a foglalás ösztönzésére. <br/>
+Érvényes dátum és dátum azokra a dátumokra vonatkozik, amelyeken a foglalás végrehajtható, míg a dátumtól kezdve érvényes foglalás azokra a dátumokra vonatkozik, amelyeket a foglalásnak le kell fednie, hogy a kupon érvényes legyen. Ha a foglalás ezen az időszakon kívül esik, akkor az időszakon kívüli napokra a normál árak érvényesek. <br/>
+Ha azt szeretné, hogy a foglalás csak egy bizonyos vendég számára legyen elérhető, válassza ki a vendég nevét a legördülő menüből, hogy a kupont csak erre a vendégre korlátozza. ");
+jr_define ('_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK', 'A kuponnal ezt a foglalást kedvezményes áron');
+jr_define ('_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK_TO', 'to');
+jr_define ('_JOMRES_CONFIG_JQUERY_UI_DESC', 'Állítsa ezt Nem értékre a Jquery UI javascript és CSS fájlok betöltésének letiltásához . ');
+jr_define ('_JOMRES_CONFIG_JQUERY_UI_CSS', 'Betölti a Jomres jQuery UI CSS könyvtárat ? ');
+jr_define ('_JOMRES_CONFIG_JQUERY_UI_CSS_DESC', 'Állítsa ezt Nem értékre, ha csak a jquery felhasználói felület CSS fájlját szeretné letiltani . ');
 jr_define('_JOMRES_LINEITEM_TOTAL_INCLUDINGTAX', 'Végösszeg adóval');
 jr_define('_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY', 'Unpublished property');
-// v5.2jr_define ('_JOMRES_CONVERSION_TITLE', 'Konverziós funkció használata');
-//jr_define ('_JOMRES_CONVERSION_TITLE_DESC', "Használja a Jomres online konverziós funkciót. Ez egy konverziós legördülő menüt kínál a frontend felhasználóknak, ahol kiválaszthatják azt a pénznemet, amelyben látni akarják az árakat. ár, amelyet zárójelben az ingatlan "natív" ára követ. ");
-//jr_define ('_JOMRES_CONVERSION_DISCLAIMER', 'Minden tőlünk telhetőt megtettünk annak érdekében, hogy a lehető legpontosabb és időszerű árfolyamokat kapjuk . Online valutaátváltási szolgáltatásunk csak tájékoztatási célú szolgáltatás, és nem pontos számadatokat szolgál .) nem garantáljuk az árfolyamok pontosságát . E funkció használatával úgy kell tekinteni, hogy beleegyezett abba, hogy az árfolyamátváltási funkcióra való bármilyen támaszkodás vagy annak használata kizárólag a saját felelősségére történik . ");
-//5.2.1
-//5.3.1
-//jr_define ('_JOMRES_CURRENCYCONVERSION_TAB', 'Valutaátváltás/pénznemkódok');
-//jr_define ('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'IP észlelési API kulcs');
-//jr_define ('_JOMRES_IP_DETECTION_API_KEY_DESC', 'A pénznemkód legördülő menüjének automatikus beállításához a Jomres képes az IPinfoDB nevű ingyenes szolgáltatás használatával felderíteni a látogató országát, azonban regisztrálnia kell egy API kulcsot a <a href = "http: //ipinfodb.com/register.php target="_blank"> IPinfoDB </a> először. ');
-//jr_define ('_JOMRES_DEBUGGING_TAB', 'Hibakeresés');
+jr_define ('_JOMRES_CONVERSION_TITLE', 'Konverziós funkció használata');
+jr_define ('_JOMRES_CONVERSION_TITLE_DESC', "Használja a Jomres online konverziós funkciót. Ez egy konverziós legördülő menüt kínál a frontend felhasználóknak, ahol kiválaszthatják azt a pénznemet, amelyben látni akarják az árakat. ár, amelyet zárójelben az ingatlan \"natív\" ára követ. ");
+jr_define ('_JOMRES_CONVERSION_DISCLAIMER', "Minden tőlünk telhetőt megtettünk annak érdekében, hogy a lehető legpontosabb és időszerű árfolyamokat kapjuk . Online valutaátváltási szolgáltatásunk csak tájékoztatási célú szolgáltatás, és nem pontos számadatokat szolgál .) nem garantáljuk az árfolyamok pontosságát . E funkció használatával úgy kell tekinteni, hogy beleegyezett abba, hogy az árfolyamátváltási funkcióra való bármilyen támaszkodás vagy annak használata kizárólag a saját felelősségére történik . ");
+jr_define ("_JOMRES_CURRENCYCONVERSION_TAB", 'Valutaátváltás/pénznemkódok');
+jr_define ('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'IP észlelési API kulcs');
+jr_define ('_JOMRES_IP_DETECTION_API_KEY_DESC', 'A pénznemkód legördülő menüjének automatikus beállításához a Jomres képes az IPinfoDB nevű ingyenes szolgáltatás használatával felderíteni a látogató országát, azonban regisztrálnia kell egy API kulcsot a <a href = "https://www.ipinfodb.com/login" target="_blank"> IPinfoDB </a> először. ');
+jr_define ('_JOMRES_DEBUGGING_TAB', 'Hibakeresés');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'Szállás adó nélkül');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'Szállás adóval ');
 jr_define('_JOMRES_AJAXFORM_BILLING_TAX_ACCOM', 'Rooms tax:');
@@ -1522,7 +1488,6 @@ jr_define ('_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT', 'Termelés vagy fejlesztés?
 jr_define ('_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_DESC', 'Ha ezt az opciót Fejlesztésre állítja, akkor engedélyezzük a hibajelentést, ellenkező esetben, ha a Termelés beállítása ki lesz kapcsolva. Ha ez egy élő szerver, javasoljuk, hogy ezt az opciót állítsa "termelési" értékre.' );
 jr_define ('_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_PRODUCTION', 'Gyártás');
 jr_define ('_JOMRES_CONFIG_PRODUCTION_DEVELOPMENT_SETTING_DEVELOPMENT', 'Fejlesztés');
-//v7.3.3
 jr_define ('_JOMRES_COM_MR_EB_HROOM_DETAILS', 'Erőforrás részletei');
 jr_define ('_JOMRES_COM_MR_EB_HTARIFF_DETAILS', 'Tarifa részletek');
 jr_define ('_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_PRE', 'Csak');
@@ -1786,7 +1751,7 @@ jr_define ('_JOMRES_PROPERTYTYPE_FLAG', 'Mit fognak foglalni a vendégek?');
 jr_define ('_JOMRES_PROPERTYTYPE_FLAG_DESC', 'Ez az ingatlan egy szállodai típusú ingatlan, ahol szobákat bérel az ingatlanban, vagy egy villa típusú ingatlan, ahol az egész ingatlant egy foglalással bérbe adja?');
 jr_define ('_JOMRES_PROPERTYTYPE_FLAG_HOTEL', 'Szobák az ingatlanban');
 jr_define ('_JOMRES_PROPERTYTYPE_FLAG_VILLA', 'Az egész ingatlan');
-jr_define ('_JOMRES_PROPERTYTYPE_FLAG_BOTH', 'Mindkettő'); // Ez egy ideiglenes beállítás, amely visszafelé kompatibilitást biztosít azoknak a meglévő felhasználóknak, akik még nem frissítették a tulajdonságtípusukat. Nem lesz választható
+jr_define ('_JOMRES_PROPERTYTYPE_FLAG_BOTH', 'Mindkettő');
 jr_define ('_JOMRES_PROPERTYTYPE_FLAG_BOTH_COLHEAD', 'Mit fognak foglalni a vendégek?');
 jr_define ('_JOMRES_ADDRESS_SANITY_CHECK', "Be kell töltenie a címadatait, hogy a vendégek megtalálhassák Önt, ha maradni akarnak.");
 jr_define ('_JOMRES_ADDRESS_SANITY_CHECK_LINK', 'Frissítse a címét');
@@ -1833,7 +1798,7 @@ jr_define ('_JOMRES_CONFIG_LOG_LOCATION', 'Naplófájl helye');
 jr_define ('_JOMRES_CONFIG_LOG_LOCATION_DESC', 'A Jomres alapértelmezés szerint naplózza a rendszer tevékenységét a' .JOMRES_SYSTEMLOG_PATH. "helyre. Mivel ez a fájl bizalmas információkat (api kulcsokat, rendszer elérési útjait, átjáró adatait, vendéginformációkat) tartalmazhat, javasoljuk, hogy módosítsa ezt az elérési utat a webdokumentum gyökere feletti egérhez. Ha nem érti, mit jelent ez, kérjük, kérjen tanácsot az internetes házigazdától, mert ők ismerik a fájlrendszerét. ");
 jr_define ('_JOMRES_CONFIG_LOG_LOCATION_WARNING', 'Jomres naplózza a rendszer részletes adatait, beleértve az API -kulcsokat, a rendszer elérési útjait, az átjárót és a vendéginformációkat, amelyeknek nem szabad látniuk az internet többi része számára. A rendszernapló elérési útja nincs beállítva, ezért a rendszernaplókat jelenleg a ".JOMRES_SYSTEMLOG_PATH." könyvtárba menti a rendszer, amely nem ideális. Látogassa meg a Webhelykonfiguráció -> Hibakeresés oldalt, és állítsa be a fájlrendszerben a webes gyökéren kívüli elérési utat. mivel tanácsot tudnak adni. ');
 jr_define ('_JOMRES_CONFIG_LOG_LOCATION_RECOMMENDED', 'Ha a CMS telepítve van a webhely gyökérkönyvtárába, akkor megfelelő hely lenne');
-jr_define ('_JOMRES_CONFIG_GMAP_KEY_WARNING', "Nem rendelkezik Google Térkép kulcskészlettel. A Google Térkép legutóbbi változásai miatt minden új webhelynek szüksége lesz egy API kulcsra a Google térkép funkcióinak használatához. Kérjük, <a href = 'http: //www.jomres.net/manual/site-managers-guide/14-getting-started/338-google-maps-api-key 'target =' _ blank '> tekintse meg kézikönyvünket az API-kulcs létrehozásáról < /a> és mentse a kulcsot a Jomres -ban. ");
+jr_define ('_JOMRES_CONFIG_GMAP_KEY_WARNING', "Nem rendelkezik Google Térkép kulcskészlettel. A Google Térkép legutóbbi változásai miatt minden új webhelynek szüksége lesz egy API kulcsra a Google térkép funkcióinak használatához. Kérjük, <a href = 'http://www.jomres.net/manual/site-managers-guide/14-getting-started/338-google-maps-api-key' target ='_blank'> tekintse meg kézikönyvünket az API-kulcs létrehozásáról < /a> és mentse a kulcsot a Jomres -ban.</a> ");
 jr_define ('JOMRES_GOOGLE_MAP_STYLE', 'Google térkép színséma');
 jr_define ('JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_TITLE', "Rendben, kezdjük hozzá a tulajdont a webhelyhez. Itt össze kell gyűjtenünk egy kis információt az ingatlanáról. Ez lehetővé teszi számunkra, hogy beállítsuk az ingatlan csupasz csontjait. Ha ez megtörtént, akkor Szobák, árak és képek hozzáadása során vezetnek.");
 jr_define ('JOMRES_PROPERTY_REGISTRATION_INSTRUCTIONS_NOTE1', 'Az ingatlan típusa segít meghatározni, hogyan fogják lefoglalni az ingatlant, például olyan szállodákban, ahol egyszerre csak egy vagy két szobát "értékesít", míg a villákban a teljes ingatlant kínálja.');
@@ -1849,8 +1814,8 @@ jr_define ('_JOMRES_SEND_ERROR_EMAIL', 'E -mail küldése a rendszergazdának hi
 jr_define ('_JOMRES_SEND_ERROR_EMAIL_DESC', "A korábban megvizsgálandó problémákat e -mailben elküldtük a webhelytulajdonosoknak. Ez kiválóan alkalmas arra, hogy figyelemmel kísérje a rendszer működését, mivel rettentő sok mozgó alkatrésze van, és nehéz nyomon követni Sajnos a webhelyeit feltérképező pókok és robotok (még barátságosak is) véletlenül végzetes hibákat okozhatnak, és emiatt a beérkező üzenetek száma elsöprő lehet. Ha ez a helyzet, akkor állítsa ezt a lehetőséget Nem értékre. üzeneteket egy naplózási fájlkészlethez és egy rendszernapló -kiszolgálóhoz (ha az adott PHP -beállítások lehetővé teszik, ha nem, kérjük, lépjen kapcsolatba a házigazdával). Manuálisan elemezheti a fájlokat, ha valami konkrétat keres (pl. egy átjárót fejlesztesz, és szeretnéd használni a gateway_log () függvényhívást.), de ez sok információ, amin keresztül kell vonulnod, ezért jobb valami syslog fájl -elemzőt használni. Ha Linuxon fejlesztesz, akkor rengeteg eszköz áll az Ön rendelkezésére, ha Windows rendszeren, akkor egy egyszerű eszköz a http://maxbelkov.github.io/visualsyslog/ Ezen az oldalon állítsa a 'Syslog host' értékét '127.0.0.1' és a ' Port '514 -re az eszközbe bejelentkezett üzenetek megtekintéséhez. ");
 
 jr_define ('_JOMRES_MANAGE_PROPERTIES', 'Tulajdonságok kezelése');
-jr_define ('_JOMRES_CONFIG_IPINFODB_KEY_WARNING', "Nem rendelkezik IP -észlelési API -kulcskészlettel. Ez szükséges ahhoz, hogy a rendszer automatikusan észlelhesse a felhasználó tartózkodási helyét, és automatikusan beállítsa pénznemét és országát. <a href = 'http: // www .jomres.net/manual/site-manager-guide/35-control-panel/main/site-configuration/128-site-configuration-currency-conversion-currency -odes-tab 'target =' _ blank '> lásd a kézikönyvet oldal arról, hogyan hozhat létre IP -észlelési API -kulcsot </a>, és mentse a kulcsot a Jomres> Webhelykonfiguráció> Valutaátváltások / Valutakódok mappába. ");
-jr_define ('_JOMRES_CONFIG_OPENEXCHANGERATES_KEY_WARNING', "Nincs Open Exchange Rates API kulcskészlete. Ez szükséges ahhoz, hogy a rendszer automatikusan letöltse és használja a devizaárfolyamokat. Kérjük, <a href = 'http: //www.jomres.net /manual/site-manager-guide/35-control-panel/main/site-configuration/128-site-configuration-currency-conversion-currency -odes-tab 'target =' _ blank '> tekintse meg kézikönyvünket arról, hogyan hozzon létre egy IP -észlelési API -kulcsot </a>, és mentse a kulcsot a Jomres> Webhelykonfiguráció> Valutaátváltások / Valutakódok mappába. ");
+jr_define ('_JOMRES_CONFIG_IPINFODB_KEY_WARNING', "Nem rendelkezik IP -észlelési API -kulcskészlettel. Ez szükséges ahhoz, hogy a rendszer automatikusan észlelhesse a felhasználó tartózkodási helyét, és automatikusan beállítsa pénznemét és országát. <a href = 'http://www.jomres.net/manual/site-manager-guide/35-control-panel/main/site-configuration/128-site-configuration-currency-conversion-currency-codes-tab' target ='_blank'> lásd a kézikönyvet oldal arról, hogyan hozhat létre IP -észlelési API -kulcsot </a>, és mentse a kulcsot a Jomres> Webhelykonfiguráció> Valutaátváltások / Valutakódok mappába. ");
+jr_define ('_JOMRES_CONFIG_OPENEXCHANGERATES_KEY_WARNING', "Nincs Open Exchange Rates API kulcskészlete. Ez szükséges ahhoz, hogy a rendszer automatikusan letöltse és használja a devizaárfolyamokat. Kérjük, <a href = 'http://www.jomres.net /manual/site-manager-guide/35-control-panel/main/site-configuration/128-site-configuration-currency-conversion-currency-codes-tab 'target='_blank'> tekintse meg kézikönyvünket arról, hogyan hozzon létre egy IP -észlelési API -kulcsot </a>, és mentse a kulcsot a Jomres> Webhelykonfiguráció> Valutaátváltások / Valutakódok mappába. ");
 jr_define ('_JOMRES_PERMIT_NUMBER_TITLE', 'Engedély száma');
 jr_define ('_JOMRES_PERMIT_NUMBER_DESCRIPTION', 'Egyes országokban a törvények előírják, hogy meg kell jelenítenie az ingatlan engedélyszámát. Ha rendelkezik ilyen számmal, írja be ide, és hozzáadódik a tulajdon fejléc részéhez.');
 jr_define ('_JOMRES_SHORTCODES', 'Rövid kódok');
@@ -2172,7 +2137,7 @@ jr_define ('_JOMRES_GDPR_MY_DATA_DOWNLOAD_TEXT', 'Letöltheti az összes általu
 jr_define ('_JOMRES_GDPR_MY_DATA_DOWNLOAD_BUTTON', 'Letöltés most');
 
 jr_define ('_JOMRES_GDPR_MY_RTBF_LEAD', 'Elfelejtett jog (RTBF)');
-jr_define ('_JOMRES_GDPR_MY_RTBF_INTRO', 'Úgy gondoljuk, hogy képesnek kell lennie <a href="https://gdpr-info.eu/art-17-gdpr/" target="_blank"> törlésére </a> a < a href = "https://gdpr-info.eu/art-4-gdpr/" target = "_blank"> Személyazonosításra alkalmas információ </a>, ha szeretné és ha megvalósítható. ');
+jr_define ('_JOMRES_GDPR_MY_RTBF_INTRO', 'Úgy gondoljuk, hogy képesnek kell lennie <a href="https://gdpr-info.eu/art-17-gdpr/" target="_blank"> törlésére </a> a <a href = "https://gdpr-info.eu/art-4-gdpr/" target = "_blank"> Személyazonosításra alkalmas információ </a>, ha szeretné és ha megvalósítható. ');
 jr_define ('_JOMRES_GDPR_MY_RTBF_NOTREGISTERED_OPTEDIN', 'Ön nem regisztrált ezen az oldalon. Általános tartózkodási helyét (országát) és IP -számát legfeljebb 24 órán keresztül tároljuk, majd töröljük.');
 jr_define ('_JOMRES_GDPR_MY_RTBF_NOTREGISTERED_OPTEDOUT', 'Ön nem regisztrált ezen az oldalon, és leiratkozott az adatgyűjtésről. Nem tároltuk az Ön PII -jét.');
 
@@ -2288,7 +2253,7 @@ jr_define ('_JOMRES_COM_LABEL_PRIORITY_TITLE', 'Prioritizálja az egész webhely
 jr_define ('_JOMRES_COM_LABEL_PRIORITY_DESC', 'A címkeszerkesztésben elmentett egyéni szöveg vagy a lang fájl karakterláncok fordítása oldalak "webhelyszintű" címkéknek minősülnek. Az ingatlankezelők személyre szabhatják a címkéket minden tulajdonhoz a címke szerkesztő funkciójával a kezelőfelületen. Ez lehetővé teszi egy ingatlankezelőnek, hogy különböző szövegekkel rendelkezzen a tulajdonához, ami hasznos, ha a tulajdonság eltér a webhely összes többi tulajdonságától. <br/> Amikor a rendszer címkeszövegeket keres, akkor az egész webhelyre kiterjedő szövegeket részesíti előnyben a tulajdonságokkal szemben specifikus szövegek, amelyek azt jelentik, hogy ha létezik az adott címkére egy webhelyre kiterjedő szöveg, akkor a rendszer először ezt választja. Ha ezt a lehetőséget Nem értékre állítja, akkor a rendszer a tulajdonságokra jellemző szövegeket részesíti előnyben az egész webhelyre kiterjedő szövegekkel szemben. ');
 
 jr_define ('_JOMRES_REFERRER', 'Ajánló');
-jr_define ('_JOMRES_REFERRER_SYSTEM', 'Jomres'); // Ez megváltoztatható, ha engedélyezőlistára kerül, így a "Világ legjobb foglalási webhelye" webhely "WBBS" -re vagy hasonlóra módosítaná.
+jr_define ('_JOMRES_REFERRER_SYSTEM', 'Jomres');
 jr_define ('_JOMRES_LIBRARY_PACKAGES', 'Könyvtári csomagok');
 jr_define ('_JOMRES_LIBRARY_PACKAGES_DESC', 'A szállító és a csomópont modulok külön (ingyenes) csomagok a Jomres számára. A csomagokat ezen az oldalon újratelepítheti.');
 jr_define ('_JOMRES_LIBRARY_PACKAGES_REFRESH', 'Könyvtári csomagok újratelepítése');
@@ -2386,7 +2351,7 @@ jr_define ('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTIES', 'Összes tulajdonság:'
 jr_define ('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTIES_DESC', 'Ez a JSN -ben elérhető ingatlanok száma.');
 jr_define ('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS', 'A teljes tulajdon megjelenítése:');
 jr_define ('_JOMRES_SYNDICATION_STATS_TOTAL_PROPERTY_DISPLAYS_DESC', 'Összesen minden alkalommal, amikor egy Jomres -tulajdont egy másik Jomres -alapú webhelyről linkeltek össze.');
-jr_define ('_JOMRES_SYNDICATION_STATS_BLURB', 'A Jomres Syndicate Network (JSN) egy ingyenes szolgáltatás, amely minden Jomres -felhasználó számára elérhető. Célja, hogy ingyenes hirdetést biztosítson ingatlanjairól más Jomres -alapú webhelyeken. A cél az, hogy segítsen gyorsan elindítja webhelyét, és ingyenes hirdetést kínál, hogy felismerjék és megbízhatóak legyenek az ingatlanjai, mert nagy megbízhatóságú, nagy relevanciájú webhelyekhez kapcsolódnak, amelyeket a keresőmotorok már jól ismertek. Lásd ezt <a href = "https: //www.jomres.net/features/jomres-syndication-network target="_blank"> cikk a weboldalunkon </a> és <a href =" https://www.jomres.net/manual/developers- guide-2/387-jomres-syndication-network target="_blank"> a kézikönyv </a> további információkért. ');
+jr_define ('_JOMRES_SYNDICATION_STATS_BLURB', 'A Jomres Syndicate Network (JSN) egy ingyenes szolgáltatás, amely minden Jomres -felhasználó számára elérhető. Célja, hogy ingyenes hirdetést biztosítson ingatlanjairól más Jomres -alapú webhelyeken. A cél az, hogy segítsen gyorsan elindítja webhelyét, és ingyenes hirdetést kínál, hogy felismerjék és megbízhatóak legyenek az ingatlanjai, mert nagy megbízhatóságú, nagy relevanciájú webhelyekhez kapcsolódnak, amelyeket a keresőmotorok már jól ismertek. Lásd ezt <a href = "https://www.jomres.net/features/jomres-syndication-network" target="_blank"> cikk a weboldalunkon </a> és <a href =" https://www.jomres.net/manual/developers- guide-2/387-jomres-syndication-network" target="_blank"> a kézikönyv </a> további információkért. ');
 
 
 jr_define ('GUEST_PROFILE_INFORMATION', 'Ez a vendégprofil adatai, mezők ezzel a szimbólummal <i class = "fa fa-users" aria-hidden = "true"> </i>
@@ -2440,7 +2405,7 @@ jr_define ('GUEST_PROFILE_USERSTATUS_GUEST', 'Vendég');
 jr_define ('GUEST_PROFILE_USERSTATUS_HOST', 'Host');
 jr_define ('GUEST_PROFILE_USERSTATUS_ADMIN', 'Admin');
 
-jr_define ('WORDPRESS_THEME_ADVICE', 'A Jomres a Bootstrap keretrendszerre épül, ezért azt a Bootstrap alapú témára kell használni. Javasoljuk a Bootstrap 3 alapúat. Ha nincs hozzáférése egy témához, javasoljuk, hogy használja a Jomres Leohtian téma a Wordpresshez, amelyet <a href = "https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target = "_blank "> letöltés innen. </a> ');
+jr_define ('WORDPRESS_THEME_ADVICE', 'A Jomres a Bootstrap keretrendszerre épül, ezért azt a Bootstrap alapú témára kell használni. Javasoljuk a Bootstrap 3 alapúat. Ha nincs hozzáférése egy témához, javasoljuk, hogy használja a Jomres Leohtian téma a Wordpresshez, amelyet <a href = "https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target = "_blank"> letöltés innen. </a> ');
 
 
 jr_define ('BOOKING_NOSHOW_MENU', 'Megjelenítés megjelölése');

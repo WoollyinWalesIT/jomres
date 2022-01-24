@@ -1180,7 +1180,7 @@ jr_define ('_JOMRES_CONVERSION_DISCLAIMER', 'Mēs esam darījuši visu iespējam
 // 5.3.1
 jr_define('_JOMRES_CURRENCYCONVERSION_TAB', 'Valūtas konvertācija/valūtu kodi');
 jr_define ('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'IP noteikšanas API atslēga');
-jr_define ('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Lai automātiski iestatītu valūtas koda nolaižamo izvēlni, Jomres var izmantot bezmaksas pakalpojumu IPinfoDB, lai noteiktu apmeklētāja valsti, tomēr jums ir jāreģistrējas API atslēgai vietnē <a href = "http: //ipinfodb.com/register.php target="_blank"> IPinfoDB </a> vispirms. ');
+jr_define ('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Lai automātiski iestatītu valūtas koda nolaižamo izvēlni, Jomres var izmantot bezmaksas pakalpojumu IPinfoDB, lai noteiktu apmeklētāja valsti, tomēr jums ir jāreģistrējas API atslēgai vietnē <a href = "https://www.ipinfodb.com/login" target="_blank"> IPinfoDB </a> vispirms. ');
 jr_define ('_JOMRES_DEBUGGING_TAB', 'Atkļūdošana');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'Summa bez PVN');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'Summa ar PVN');

@@ -23,9 +23,6 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\User\UserFactoryInterface;
 use Joomla\CMS\HTML\HTMLHelper;
 
-/*if (!defined('API_STARTED')) {
-    HTMLHelper::_('jquery.framework');
-}*/
 
 function jomres_cmsspecific_error_logging_cms_files_to_not_backtrace()
 {
@@ -320,6 +317,11 @@ function jomres_cmsspecific_addheaddata($type, $path = '', $filename = '', $incl
         return;
     }
 
+	if (!defined('API_STARTED') && jomres_cmsspecific_areweinadminarea() ) {
+		HTMLHelper::_('jquery.framework');
+		JHtml::_('bootstrap.framework');
+	}
+
     if (jomres_cmsspecific_areweinadminarea()) {
         $in_admin_area = true;
 
@@ -334,7 +336,7 @@ function jomres_cmsspecific_addheaddata($type, $path = '', $filename = '', $incl
         $wr = $wa->getRegistry();
     }
 
-    JHtml::_('bootstrap.framework');
+
 
     $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
     $jrConfig = $siteConfig->get();

@@ -1192,7 +1192,7 @@ jr_define('_JOMRES_CONVERSION_DISCLAIMER', 'وقد استخدمنا بذل قص�
 jr_define('_JOMRES_CURRENCYCONVERSION_TAB', 'نتيجة تحويل عملة / عملة رموز');
 jr_define('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'IP Detection API Key');
 jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'لتعيين القائمة المنسدلة لرمز العملة تلقائيًا , يمكن لـ Jomres استخدام خدمة مجانية تسمى IPinfoDB لاكتشاف بلد الزائر , ومع ذلك تحتاج إلى التسجيل للحصول على مفتاح API أولاً
-<a href="http://ipinfodb.com/register.php" target="_blank">IPinfoDB</a>');
+<a href="https://www.ipinfodb.com/login" target="_blank">IPinfoDB</a>');
 jr_define('_JOMRES_DEBUGGING_TAB', 'تصحيح الاخطاء');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'الاقامة بدون الضرائب');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'الإقامة شاملة الضرائب');

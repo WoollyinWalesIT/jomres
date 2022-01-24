@@ -1203,7 +1203,7 @@ jr_define ('_JOMRES_CONVERSION_DISCLAIMER', 'Po svojih najboljših močeh smo si
 // 5.3.1
 jr_define ('_JOMRES_CURRENCYCONVERSION_TAB', 'Pretvorba valut/kode valut');
 jr_define ('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'API ključ za zaznavanje IP');
-jr_define ('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Za samodejno nastavitev spustnega koda valute lahko Jomres uporabi brezplačno storitev, imenovano IPinfoDB, za odkrivanje države obiskovalca, vendar se morate registrirati za ključ API na <a href = "http: //ipinfodb.com/register.php target="_blank"> IPinfoDB </a> najprej. ');
+jr_define ('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Za samodejno nastavitev spustnega koda valute lahko Jomres uporabi brezplačno storitev, imenovano IPinfoDB, za odkrivanje države obiskovalca, vendar se morate registrirati za ključ API na <a href = "https://www.ipinfodb.com/login" target="_blank"> IPinfoDB </a> najprej. ');
 jr_define ('_JOMRES_DEBUGGING_TAB', 'Odpravljanje napak');
 jr_define ('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'Nastanitev brez davka');
 jr_define ('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'Prenočišče z davkom');

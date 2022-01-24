@@ -1212,7 +1212,7 @@ jr_define('_JOMRES_CONVERSION_DISCLAIMER', "Hem posat els nostres millors esfor�
 // 5.3.1
 jr_define('_JOMRES_CURRENCYCONVERSION_TAB', 'Conversió de moneda/codi de moneda');
 jr_define('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'Detecció de IP, clau API');
-jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', "Per a fixar automàticament en el desplegable de canvi de moneda, Jomres utilitza un servri gratuït anomenar IpinfoBB per a detectar el país del visitant, no obstant haurà d'obtenir primer una clau API en: <a href='http://ipinfodb.com/register.php' target='_blank'>IPinfoDB</a>.");
+jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', "Per a fixar automàticament en el desplegable de canvi de moneda, Jomres utilitza un servri gratuït anomenar IpinfoBB per a detectar el país del visitant, no obstant haurà d'obtenir primer una clau API en: <a href='https://www.ipinfodb.com/login' target='_blank'>IPinfoDB</a>.");
 jr_define('_JOMRES_DEBUGGING_TAB', 'Depuració');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'Allotjament iva excluït ');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'Allotjament iva incluït');

@@ -1217,7 +1217,7 @@ jr_define('_JOMRES_CONVERSION_DISCLAIMER', 'We have used our best efforts to obt
 // 5.3.1
 jr_define('_JOMRES_CURRENCYCONVERSION_TAB', 'Currency conversion/currency codes');
 jr_define('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'IP Detection API Key');
-jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'To automatically set the currency code dropdown Jomres is able to use a free service called IPinfoDB to detect the visitor\'s country, however you need to register for an API key at <a href="http://ipinfodb.com/register.php" target="_blank">IPinfoDB</a> first.');
+jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'To automatically set the currency code dropdown Jomres is able to use a free service called IPinfoDB to detect the visitor\'s country, however you need to register for an API key at <a href="https://www.ipinfodb.com/login" target="_blank">IPinfoDB</a> first.');
 jr_define('_JOMRES_DEBUGGING_TAB', 'Debugging');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'Accomodation ex tax');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'Accomodation inc tax');
