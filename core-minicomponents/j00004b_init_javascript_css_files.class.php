@@ -42,7 +42,7 @@ class j00004b_init_javascript_css_files
 
 			return;
 		}
-		
+
 		if (AJAXCALL) {
 			return true;
 		}
@@ -50,13 +50,13 @@ class j00004b_init_javascript_css_files
 		if (defined('JOMRES_NOHTML') && JOMRES_NOHTML == 1) {
 			return true;
 		}
-		
+
 		if (!defined('JOMRES_JSCALLED')) {
 			define('JOMRES_JSCALLED', 1);
 		} else {
 			return true;
 		}
-		
+
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 		
@@ -182,42 +182,29 @@ class j00004b_init_javascript_css_files
 			}
 		}
 
-		if (!using_bootstrap()) {
-			$javascript_files[] = array(JOMRES_JS_RELPATH, 'jquery.ui.potato.menu.js');
-			$css_files[] = array(JOMRES_CSS_RELPATH, 'jquery.ui.potato.menu.css');
+        switch (jomres_bootstrap_version()) {
+			case '':
+				$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap-editable/js/', 'bootstrap-editable.min.js');
+				$css_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap-editable/css/', 'bootstrap-editable.css');
+				break;
+			case '2':
+				$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap-editable/js/', 'bootstrap-editable.min.js');
+				$css_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap-editable/css/', 'bootstrap-editable.css');
+				break;
+			case '3':
+				$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap3-editable/js/', 'bootstrap-editable.min.js');
+				$css_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap3-editable/css/', 'bootstrap-editable.css');
+				break;
+			case '4':
+				$javascript_files[] = array(JOMRES_JS_RELPATH , 'bootstrap4-editable.js');
+				$css_files[] = array(JOMRES_CSS_RELPATH , 'bootstrap4-editable.css');
+				break;
+			case '5':
+				$javascript_files[] = array(JOMRES_JS_RELPATH , 'bootstrap5-editable.js');
+				$css_files[] = array(JOMRES_CSS_RELPATH , 'bootstrap4-editable.css');
+				break;
 		}
 
-		if (!using_bootstrap()) {
-			//if ($thisJRUser->userIsManager || jomres_cmsspecific_areweinadminarea()) {
-				$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/jqueryui-editable/js/', 'jqueryui-editable.min.js');
-				$css_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/jqueryui-editable/css/', 'jqueryui-editable.css');
-			//}
-			$javascript_files[] = array(JOMRES_JS_RELPATH, 'jquery.bt.js');
-		} else {
-                switch (jomres_bootstrap_version()) {
-                    case '':
-                        $javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap-editable/js/', 'bootstrap-editable.min.js');
-                        $css_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap-editable/css/', 'bootstrap-editable.css');
-                        break;
-                    case '2':
-                        $javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap-editable/js/', 'bootstrap-editable.min.js');
-                        $css_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap-editable/css/', 'bootstrap-editable.css');
-                        break;
-                    case '3':
-                        $javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap3-editable/js/', 'bootstrap-editable.min.js');
-                        $css_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap3-editable/css/', 'bootstrap-editable.css');
-                        break;
-                    case '4':
-                        $javascript_files[] = array(JOMRES_JS_RELPATH , 'bootstrap4-editable.js');
-                        $css_files[] = array(JOMRES_CSS_RELPATH , 'bootstrap4-editable.css');
-                        break;
-                    case '5':
-
-                        $javascript_files[] = array(JOMRES_JS_RELPATH , 'bootstrap5-editable.js');
-                        $css_files[] = array(JOMRES_CSS_RELPATH , 'bootstrap4-editable.css');
-                        break;
-                }
-			}
 
 		if (get_showtime('task') == 'media_centre' || jomresGetParam($_REQUEST, 'task', '') == 'media_centre') {
 			$css_files[] = array(JOMRES_NODE_MODULES_RELPATH.'blueimp-file-upload/css/',  'jquery.fileupload.css');
