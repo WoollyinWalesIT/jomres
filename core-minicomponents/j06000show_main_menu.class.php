@@ -48,10 +48,11 @@ class j06000show_main_menu
 		}
 		
 	   set_showtime('menu_location_div_id' , 'main_menu_location');
-	   
+
 	   echo '<div id="main_menu_location"></div>';
-	   echo $MiniComponents->triggerEvent('99995');
-		
+	   $MiniComponents->triggerEvent('09995');
+	   echo $MiniComponents->specificEvent('09997', 'menu', array());
+
 	}
 
 
