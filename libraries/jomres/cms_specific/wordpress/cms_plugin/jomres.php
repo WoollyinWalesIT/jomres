@@ -34,7 +34,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Jomres plugin version.
  */
 if ( ! defined( 'JOMRES_WP_PLUGIN_VERSION' ) ) {
-	define( 'JOMRES_WP_PLUGIN_VERSION', '9.23.6' );
+	define( 'JOMRES_WP_PLUGIN_VERSION', '10.1.3' );
 }
 
 /**
