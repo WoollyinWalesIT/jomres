@@ -113,7 +113,7 @@ jomresJquery(function () {
                 data.submit().always(function () {
                     $this.remove();
                 });
-				
+
             });
     jomresJquery('#fileupload').fileupload({
 		dropZone: jomresJquery('#dropzone'),
@@ -138,7 +138,7 @@ jomresJquery(function () {
                     .append(jomresJquery('<span/>').text(file.name));
 					//.css({ float: "left" })
 					//.addClass( "well well-small" );
-					 
+
             if (!index) {
                 node
                     .append('<br>')
@@ -146,11 +146,11 @@ jomresJquery(function () {
             }
 			node.addClass('alert');
             node.appendTo(data.context);
-			
+
         });
-		
+
 		jomresJquery('#files').show("slow");
-		
+
     }).on('fileuploadprocessalways', function (e, data) {
         var index = data.index,
             file = data.files[index],
@@ -197,15 +197,15 @@ jomresJquery(function () {
 				var view_link = '<a href="'+file.url+'" target="_blank" class="btn btn-primary">{_JOMRES_MEDIA_CENTRE_BUTTON_VIEW}</a>';
 
 				var links = view_link + " " + delete_link;
-				
+
 				jomresJquery(data.context.children()[index])
 					.append(links);
-				
+
 				get_existing_images();
 				}
 			//
 			});
-		
+
     }).on('fileuploadfail', function (e, data) { // This doesn't seem to work, moved to up a few lines
         jomresJquery.each(data.files, function (index, file) {
             var error = jomresJquery('<span/>').text(file.error);
@@ -215,7 +215,7 @@ jomresJquery(function () {
         });
     }).prop('disabled', !jomresJquery.support.fileInput)
         .parent().addClass(jomresJquery.support.fileInput ? undefined : 'disabled');
-	
+
 });
 
 function get_resource_ids_for_resource_type(resource_type)
@@ -235,7 +235,7 @@ function get_resource_ids_for_resource_type(resource_type)
 		get_existing_images();
 		});
 	}
-	
+
 jomresJquery( "#clearbutton" ).click(function() {
 	jomresJquery("#files").slideUp();
 	jomresJquery('#files').html('');
@@ -243,7 +243,7 @@ jomresJquery( "#clearbutton" ).click(function() {
 
 function hide_uploaded()
 	{
-	jomresJquery("#files").children().each(function(n, i) 
+	jomresJquery("#files").children().each(function(n, i)
 		{
 		if ( jomresJquery(this).hasClass('uploaded') )
 			{
@@ -252,10 +252,10 @@ function hide_uploaded()
 			}
 		});
 	}
-	
+
 function delete_file(url , id )
 	{
-	jomresJquery.get(url,function (data) 
+	jomresJquery.get(url,function (data)
 		{
 		if (data != '')
 			{
@@ -271,7 +271,7 @@ jomresJquery('#upload_all').click(function () {
 		jomresJquery(this).click();
 		})
 	});
-	
+
 function get_existing_images()
 	{
 	jomresJquery('#existing_images').slideUp();
@@ -286,7 +286,7 @@ function get_existing_images()
 			jomresJquery('#existing_images').slideDown();
 		});
 	}
-	
+
 jomresJquery(document).ready(function () {
 	get_resource_ids_for_resource_type(jomresJquery('#resource_types').val());
 	});
