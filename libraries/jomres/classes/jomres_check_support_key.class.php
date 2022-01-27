@@ -130,7 +130,10 @@ class jomres_check_support_key
 			if ($buffer != '') {
 				$license_data = json_decode($buffer);
 
-				if ($license_data->license_valid === true) {
+				if ( !is_object($license_data)){
+					$license_data = new stdClass();
+				}
+				if ( isset($license_data->license_valid ) && $license_data->license_valid === true) {
 					$license_data->license_valid = '1';
 				} else {
 					$license_data->license_valid = '0';
