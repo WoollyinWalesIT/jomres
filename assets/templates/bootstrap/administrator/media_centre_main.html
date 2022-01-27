@@ -88,207 +88,245 @@
 </div>
 
 <script type="text/javascript">
-var ajax_url = "{AJAX_URL}";
+	var ajax_url = "{AJAX_URL}";
+	<patTemplate:tmpl name="preview_links" unusedvars="strip" type="simpleCondition" requiredVars="resource_type">
+		var preview_link_{RESOURCE_TYPE} = '{PREVIEW_LINK}';
+	</patTemplate:tmpl>
 
-jomresJquery(function () {
-    'use strict';
-    // Change this to the location of your server-side upload handler:
-    var url = ajax_url + '&task=media_centre_handler',
-        uploadButton = jomresJquery('<button/>')
-            .addClass('btn btn-primary start')
-            .prop('disabled', true)
-            .text('Processing...')
-            .on('click', function () {
-                var $this = jomresJquery(this),
-                    data = $this.data();
-                $this
-                    .off('click')
-                    .text('Abort')
-                    .on('click', function () {
-                        $this.remove();
-                        data.abort();
-                    });
+	jomresJquery(function () {
+		'use strict';
+		// Change this to the location of your server-side upload handler:
+		var url = ajax_url + '&task=media_centre_handler',
+				jQVersion3 = (jomresJquery.fn.jquery).startsWith('3.'),
+				uploadButton = jomresJquery('<button/>')
+						.addClass('btn btn-primary start')
+						.prop('disabled', !jQVersion3)
+						.text(jQVersion3?'{_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD}':'Processing...')
+						.on('click', function () {
+							var $this = jomresJquery(this),
+									data = $this.data();
+							$this
+									.off('click')
+									.text('Abort')
+									.on('click', function () {
+										$this.remove();
+										data.abort();
+									});
 
-				// Vince
-				var resource_types = jomresJquery('#resource_types');
-				var resource_id    = jomresJquery('#resource_id');
-				data.formData = {resource_type: resource_types.val() , resource_id:  resource_id.val() };
-                data.submit().always(function () {
-                    $this.remove();
-                });
-				
-            });
-    jomresJquery('#fileupload').fileupload({
-		dropZone: jomresJquery('#dropzone'),
-        url: url,
-        dataType: 'json',
-        autoUpload: false,
-        acceptFileTypes: /(\.|\/){ALLOWED_FILE_TYPES}$/i,
-        maxFileSize: 5000000, // 5 MB
-        // Enable image resizing, except for Android and Opera,
-        // which actually support image resizing, but fail to
-        // send Blob objects via XHR requests:
-        disableImageResize: false,
-		imageMaxWidth: {MAX_WIDTH}-1,
-		imageMaxHeight: {MAX_WIDTH}-1,
-        previewMaxWidth: 100,
-        previewMaxHeight: 100,
-        previewCrop: true
-    }).on('fileuploadadd', function (e, data) {
-        data.context = jomresJquery('<div/>').appendTo('#files');
-        jomresJquery.each(data.files, function (index, file) {
-            var node = jomresJquery('<p/>')
-                    .append(jomresJquery('<span/>').text(file.name));
-					//.css({ float: "left" })
-					//.addClass( "well well-small" );
-					 
-            if (!index) {
-                node
-                    .append('<br>')
-                    .append(uploadButton.clone(true).data(data));
-            }
-			node.addClass('alert');
-            node.appendTo(data.context);
-			
-        });
-		
-		jomresJquery('#files').show("slow");
-		
-    }).on('fileuploadprocessalways', function (e, data) {
-        var index = data.index,
-            file = data.files[index],
-            node = jomresJquery(data.context.children()[index]);
-        if (file.preview) {
-            node
-                .prepend('<br>')
-                .prepend(file.preview);
-        }
-        if (file.error) {
-            node
-                .append('<br>')
-                .append(file.error);
-        }
-        if (index + 1 === data.files.length) {
-            data.context.find('button')
-                .text('{_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD}')
-                .prop('disabled', !!data.files.error);
-        }
-    }).on('fileuploadprogressall', function (e, data) {
-        var progress = parseInt(data.loaded / data.total * 100, 10);
-        jomresJquery('#progress .bar').css(
-            'width',
-            progress + '%'
-        );
-    }).on('fileuploaddone', function (e, data) {
-		jomresJquery.each(data.files, function (index, file) {
-			jomresJquery(data.context.children()[index]).attr('id', file.random_id);
-			jomresJquery('#'+file.random_id).parent().addClass('uploaded');
-			jomresJquery('#'+file.random_id).addClass('alert alert-success');
-			jomresJquery('#progress .bar').css( 'width', '0%' );
-			
-			if (file.hasOwnProperty ('error')) {
-				jomresJquery.each(data.files, function (index, file) {
-				var error = '<div class="alert alert-error alert-danger">' + file.error + '</div>';
-				jomresJquery(data.context.children()[index])
-					.append('<br>')
-					.append(error);
+							// Vince
+							var resource_types = jomresJquery('#resource_types');
+							var resource_id    = jomresJquery('#resource_id');
+							data.formData = {resource_type: resource_types.val() , resource_id:  resource_id.val() };
+							data.submit().always(function () {
+								$this.remove();
+							});
+
+						});
+		jomresJquery('#fileupload').fileupload({
+			dropZone: jomresJquery('#dropzone'),
+			url: url,
+			dataType: 'json',
+			autoUpload: false,
+			acceptFileTypes: /(\.|\/){ALLOWED_FILE_TYPES}$/i,
+			maxFileSize: 5000000, // 5 MB
+			// Enable image resizing, except for Android and Opera,
+			// which actually support image resizing, but fail to
+			// send Blob objects via XHR requests:
+			disableImageResize: false,
+			imageMaxWidth: {MAX_WIDTH}-1,
+			imageMaxHeight: {MAX_WIDTH}-1,
+			previewMaxWidth: 100,
+			previewMaxHeight: 100,
+			previewCrop: true
+		}).on('fileuploadadd', function (e, data) {
+			data.context = jomresJquery('<div/>').appendTo('#files');
+			jomresJquery.each(data.files, function (index, file) {
+				var node = jomresJquery('<p/>')
+						.append(jomresJquery('<span/>').text(file.name));
+				//.css({ float: "left" })
+				//.addClass( "well well-small" );
+
+				if (!index) {
+					node
+							.append('<br>')
+							.append(uploadButton.clone(true).data(data));
+				}
+				node.addClass('alert');
+				node.appendTo(data.context);
+
+			});
+
+			jomresJquery('#files').show("slow");
+
+		}).on('fileuploadprocessalways', function (e, data) {
+			if (!jQVersion3) {
+				var index = data.index,
+						file = data.files[index],
+						node = jomresJquery(data.context.children()[index]);
+
+				if (file.preview) {
+					node
+							.prepend('<br>')
+							.prepend(file.preview);
+				}
+				if (file.error) {
+					node
+							.append('<br>')
+							.append(file.error);
+				}
+				if (index + 1 === data.files.length) {
+					data.context.find('button')
+							.text('{_JOMRES_MEDIA_CENTRE_BUTTON_UPLOAD}')
+							.prop('disabled', !!data.files.error);
+				}
+			}
+		}).on('fileuploadprogressall', function (e, data) {
+			var progress = parseInt(data.loaded / data.total * 100, 10);
+			jomresJquery('#progress .bar').css(
+					'width',
+					progress + '%'
+			);
+		}).on('fileuploaddone', function (e, data) {
+			jomresJquery.each(data.files, function (index, file) {
+				jomresJquery(data.context.children()[index]).attr('id', file.random_id);
+				jomresJquery('#'+file.random_id).parent().addClass('uploaded');
+				jomresJquery('#'+file.random_id).addClass('alert alert-success');
+				jomresJquery('#progress .bar').css( 'width', '0%' );
+				if (file.hasOwnProperty ('error'))
+				{
+					jomresJquery.each(data.files, function (index, file) {
+						var error = '<div class="alert alert-error">' + file.error + '</div>';
+						jomresJquery(data.context.children()[index])
+								.append('<br>')
+								.append(error);
 					});
-			} else {
-				var delete_link = '<a href="javascript:void(0);" class="btn btn-danger" onclick="delete_file(\''+file.deleteUrl+'\' , \''+file.random_id+'\')">{_JOMRES_MEDIA_CENTRE_BUTTON_DELETE}</a>';
-				var view_link = '<a href="'+file.url+'" target="_blank" class="btn btn-primary">{_JOMRES_MEDIA_CENTRE_BUTTON_VIEW}</a>';
+				}
+				else
+				{
+					/*
+                    var delete_link = '<a href="javascript:void(0);" class="btn btn-danger" onclick="delete_file(\''+file.deleteUrl+'\' , \''+file.random_id+'\')">{_JOMRES_MEDIA_CENTRE_BUTTON_DELETE}</a>';
+                    var view_link = '<a href="'+file.url+'" target="_blank" class="btn btn-primary">{_JOMRES_MEDIA_CENTRE_BUTTON_VIEW}</a>';
 
-				var links = view_link + " " + delete_link;
-				
+                    var links = view_link + " " + delete_link;
+
+                    jomresJquery(data.context.children()[index])
+                        .append(links);
+                    */
+					jomresJquery(data.context.children()[index])
+							.fadeOut("normal", function() {
+								jomresJquery(this).remove();
+							});
+
+					get_existing_images();
+				}
+				//
+			});
+
+		}).on('fileuploadfail', function (e, data) { // This doesn't seem to work, moved to up a few lines
+
+			jomresJquery.each(data.files, function (index, file) {
+
+				var error = jomresJquery('<span/>').text(file.error);
 				jomresJquery(data.context.children()[index])
-					.append(links);
-				
-				get_existing_images();
+						.append('<br>')
+						.append(error);
+			});
+
+		}).prop('disabled', !jomresJquery.support.fileInput)
+				.parent().addClass(jomresJquery.support.fileInput ? undefined : 'disabled');
+
+	});
+
+	function get_resource_ids_for_resource_type(resource_type)
+	{
+		hide_uploaded();
+		jomresJquery('#existing_images').fadeOut();
+		jomresJquery.get(ajax_url + '&task=media_centre_resources_ajax&resource_type=' + resource_type,
+				function (data) {
+					if (data != '')
+					{
+						populateDiv ( 'resource_id_dropdown' , data );
+					}
+					else
+					{
+						populateDiv ( 'resource_id_dropdown' , '<input type="hidden" id="resource_id" value="" />' );
+					}
+					get_existing_images();
+				});
+	}
+
+	jomresJquery( "#clearbutton" ).click(function() {
+		jomresJquery("#files").fadeOut();
+		jomresJquery('#files').html('');
+	});
+
+	function hide_uploaded()
+	{
+		jomresJquery("#files").children().each(function(n, i)
+		{
+			if ( jomresJquery(this).hasClass('uploaded') )
+			{
+				jomresJquery(this).fadeOut();
+				jomresJquery(this).html('');
 			}
 		});
-		
-    }).on('fileuploadfail', function (e, data) {
-        jomresJquery.each(data.files, function (index) {
-            var error = jomresJquery('<span class="text-danger"/>').text('File upload failed.');
-            jomresJquery(data.context.children()[index])
-                .append('<br>')
-                .append(error);
-        });
-    }).prop('disabled', !jomresJquery.support.fileInput)
-        .parent().addClass(jomresJquery.support.fileInput ? undefined : 'disabled');
-});
+	}
 
-function get_resource_ids_for_resource_type(resource_type)
+	function delete_file(url , id )
 	{
-	hide_uploaded();
-	jomresJquery('#existing_images').slideUp();
-	jomresJquery.get(ajax_url + '&task=media_centre_resources_ajax&resource_type=' + resource_type,
-		function (data) {
+		jomresJquery.get(url,function (data)
+		{
 			if (data != '')
-				{
-				populateDiv ( 'resource_id_dropdown' , data );
-				}
-			else
-				{
-				populateDiv ( 'resource_id_dropdown' , '<input type="hidden" id="resource_id" value="" />' );
-				}
-		get_existing_images();
+			{
+				get_existing_images();
+				jomresJquery("#"+id).fadeOut();
+				jomresJquery("#"+id).html('');
+			}
 		});
 	}
 
-function hide_uploaded()
-	{
-	jomresJquery("#files").children().each(function(n, i) 
-		{
-		if ( jomresJquery(this).hasClass('uploaded') )
-			{
-			jomresJquery(this).slideUp();
-			jomresJquery(this).html('');
-			}
-		});
-	}
-	
-function delete_file(url, id)
-	{
-	jomresJquery.get(url,function (data) 
-		{
-		if (data != '')
-			{
-			get_existing_images();
-			jomresJquery("#"+id).slideUp();
-			jomresJquery("#"+id).html('');
-			}
-		});
-	}
-	
-function get_existing_images()
-	{
-	jomresJquery('#existing_images').slideUp();
-	var resource_type = jomresJquery('#resource_types').val();
-	var resource_id = jomresJquery('#resource_id').val();
-	if (resource_id == '') {
-		resource_id=0;
-		}
-	jomresJquery.get(ajax_url + '&task=media_centre_resources_ajax_existing_images&resource_type=' + resource_type+'&resource_id='+resource_id,
-		function (data) {
-			populateDiv ( 'existing_images' , data );
-			jomresJquery('#existing_images').slideDown();
-		});
-	}
-	
-jomresJquery(document).ready(function () {
-	get_resource_ids_for_resource_type(jomresJquery('#resource_types').val());
-	
 	jomresJquery('#upload_all').click(function () {
 		jomresJquery('.start').each(function () {
 			jomresJquery(this).click();
 		})
 	});
-	
-	jomresJquery( "#clearbutton" ).click(function() {
-		jomresJquery("#files").slideUp();
-		jomresJquery('#files').html('');
+
+	function get_existing_images()
+	{
+		jomresJquery('#existing_images').fadeOut();
+		var resource_type = jomresJquery('#resource_types').val();
+		var resource_id = jomresJquery('#resource_id').val();
+		if (resource_id == '') {
+			resource_id=0;
+		}
+		jomresJquery.get(ajax_url + '&task=media_centre_resources_ajax_existing_images&resource_type=' + resource_type+'&resource_id='+resource_id,
+				function (data) {
+					populateDiv ( 'existing_images' , data );
+					jomresJquery('#existing_images').fadeIn();
+				});
+		var link = window['preview_link_'+resource_type];
+		if( typeof link !== 'undefined' ) {
+			jomresJquery('#image_preview_button').show("slow");
+			jomresJquery('#preview_modal_body').html('<i class="fa fa-spinner fa-spin fa-5x" aria-hidden="true"></i> ');
+			jomresJquery("#image_preview_button").attr("href", link);
+		}
+		else {
+			jomresJquery('#image_preview_button').hide("slow");
+		}
+	}
+
+	jomresJquery(document).ready(function () {
+
+		jomresJquery('[data-toggle="popover"]').popover()
+
+		get_resource_ids_for_resource_type(jomresJquery('#resource_types').val());
+
+		// Fill modal with content from link href
+		jomresJquery("#previewModal").on("show.bs.modal", function(e) {
+			var link = jomresJquery(e.relatedTarget);
+			jomresJquery(this).find(".modal-body").load(link.attr("href"));
+		});
 	});
-});
 </script>
 
 </patTemplate:tmpl>

@@ -35,7 +35,7 @@ try {
 	//site config object
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig = $siteConfig->get();
-	
+
 	//request log
 	if ($jrConfig['development_production'] == 'development') {
 		request_log();
