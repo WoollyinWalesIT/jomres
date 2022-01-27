@@ -75,10 +75,6 @@ class j16000showplugins
 
 		$this->key_valid = $key_validation->key_valid;
 
-		if (!$this->key_valid) {
-			jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN.'&task=connect');
-		}
-
 		if (
 			(!file_exists(JOMRES_COREPLUGINS_ABSPATH.'plugin_manager'.JRDS.'plugin_info.php'))  ||
 			$force_plugin_manager_reinstallation === true
