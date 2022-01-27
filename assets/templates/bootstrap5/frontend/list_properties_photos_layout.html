@@ -54,22 +54,22 @@
 			right: -49px !important;}
 	</style>
 
+
 	<div class="row">
-		<div class="card-group">
 			<patTemplate:tmpl name="property_details" unusedvars="&nbsp;">
 				<div class="col-sm-4 p-2  d-flex align-items-stretch">
-					<div class="card photo-view col-12 h-100" id="{UID}">
+					<div class="card photo-view h-100" id="{UID}">
 						{RIBBON}{PROPERTY_IMAGE_OR_SLIDESHOW}
 
 							<div class="row text-overlay-photolayout" style="width:200%">
-								<div class="col-4">
+								<div class="col-sm-4">
 									<div class="bg-info text-white rounded-3 p-2">
 										{PRICE_PRE_TEXT} {PRICE_PRICE}
 										{PRICE_POST_TEXT}
 									</div>
-									<div class="col-8">
-
-									</div>
+								</div>
+								<div class="col-sm-8">
+									&nbsp;
 								</div>
 							</div>
 
@@ -85,11 +85,12 @@
 								</h3>
 							</div>
 
+
 							<div class="row">
-								<div class="col-6">
+								<div class="col-sm-6">
 									{PROPERTY_TYPE}
 								</div>
-								<div class="col-6">
+								<div class="col-sm-6">
 									<div style="color:#FFD700" class="ml-auto">{STARS}{SUPERIOR}</div>
 								</div>
 							</div>
@@ -105,15 +106,16 @@
 								<div class="col-3">
 									<span class="big-price">{PRICE_CUMULATIVE}</span>
 									{FOR} {STAY_DAYS} {NIGHTS_TEXT}
-
 								</div>
 							</div>
 							</patTemplate:comment>
 							<patTemplate:comment>{DISCOUNT_OVERLAY}</patTemplate:comment>
 
-							<div class="card-footer clearfix">
+							<div class="card-footer clearfix container">
 								<div class="row">
-									<a href="{LINK}" class="btn btn-success pull-right"><i class="fa fa-shopping-cart"></i> {BOOKTHIS_TEXT}</a>
+									<div class="col-md-12">
+										<a href="{LINK}" class="btn btn-success pull-right"><i class="fa fa-shopping-cart"></i> {BOOKTHIS_TEXT}</a>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -121,8 +123,6 @@
 
 					<patTemplate:comment>
 						<div id="effect{UID}" class="quick-info ui-helper-hidden">
-
-
 								<div><strong>{_JOMRES_FRONT_ROOMTYPES}</strong></div>
 								<div>{ROOMTYPES}</div>
 								<div style="clear:both;"></div>
@@ -147,15 +147,18 @@
 						 jomresJquery('#module_{RANDOM_IDENTIFIER}_popup', '#property_reviews{UID}').appendTo("body");
 						});
 					</script>
-					<div class="modal fade" id="module_{RANDOM_IDENTIFIER}_popup"></div><!-- /.modal info -->
-					<div class="modal fade" id="property_reviews{UID}"></div><!-- /.modal reviews -->
+					<div class="modal fade" tabindex="-1" role="dialog" id="module_{RANDOM_IDENTIFIER}_popup"></div><!-- /.modal info -->
+					<div class="modal fade" tabindex="-1" role="dialog" id="property_reviews{UID}"></div><!-- /.modal reviews -->
 				</div>
 			</patTemplate:tmpl>
-
-		</div>
 	</div>
 
-<div id = "livescrolling_results" ></div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<div id = "livescrolling_results" ></div>
+		</div>
+	</div>
 
 <div class="row">
 	<div class="col-md-12">
@@ -163,5 +166,5 @@
 	</div>
 </div>
 
-<patTemplate:comment>{HEADER}</patTemplate:comment>
+	<patTemplate:comment>{HEADER}</patTemplate:comment>
 </patTemplate:tmpl>

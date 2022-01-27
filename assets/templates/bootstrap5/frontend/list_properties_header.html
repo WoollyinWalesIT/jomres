@@ -1,11 +1,11 @@
 
 <patTemplate:tmpl name="header_pageoutput" unusedvars="strip">
-<div class="jomres-propertylist-toolbar well">
+<div class="jomres-propertylist-toolbar">
 	<div class="row">
-		<div class="col-3">
+		<div class="col-sm-3">
 			{ORDER_DROPDOWN}
 		</div>
-		<div class="col-2 d-none d-md-block">
+		<div class="col-sm-2 d-none d-md-block">
 			<div class="dropdown">
 				<button class="btn btn-secondary dropdown-toggle" type="button" id="viewDropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
 					{COMMON_VIEW}
@@ -19,13 +19,13 @@
 		</div>
 		
 		<patTemplate:tmpl name="budget_output" type="simpleCondition" requiredVars="budget_dropdown">
-		<div class="col-2 d-none d-md-block">
+		<div class="col-sm-2 d-none d-md-block">
 			{BUDGET_DROPDOWN}
 		</div>
 		</patTemplate:tmpl>
 		
 		<patTemplate:tmpl name="compare" type="simpleCondition" requiredVars="_jomres_compare">
-		<div class="col-2 d-none d-md-block">
+		<div class="col-sm-2 d-none d-md-block">
 			{COMPARELINK}
 			<a href="javascript:void(0);" onclick="return trigger_comparison(this);" class="btn btn-secondary">
 				<i class="fa fa-angle-left"></i> <i class="fa fa-angle-right"></i> {_JOMRES_COMPARE}
@@ -35,7 +35,7 @@
 		</patTemplate:tmpl>
 		
 		<patTemplate:tmpl name="shortlist" type="simpleCondition" requiredVars="_jomres_viewshortlist">
-		<div class="col-3 d-none d-md-block">
+		<div class="col-sm-3 d-none d-md-block">
 			<div class="btn-group pull-right">
 				<a href="{SHORTLISTLINK}" class="btn btn-secondary"><i class="fa fa-heart"></i> {_JOMRES_VIEWSHORTLIST}</a>
 			</div>
@@ -43,5 +43,4 @@
 		</patTemplate:tmpl>
 	</div>
 </div>
-<div class="clearfix"></div>
 </patTemplate:tmpl>

@@ -1,9 +1,6 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<!-- Load Facebook SDK for JavaScript -->
-<div id="fb-root"></div>
+
 <script type="text/javascript">
-
-
 document.addEventListener('DOMContentLoaded', function(){
 	jomresJquery('#FAQModal').appendTo("body");
 });
@@ -12,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function(){
 <div id="jomres_alternate_menu_position" style="margin-bottom:5px;"></div>
 
 <!-- available if required by a plugin -->
-<div id="jomres_content_area" class="jr_property_{PROPERTY_UID}">
+<div id="jomres_content_area" class="container jr_property_{PROPERTY_UID}">
 	<noscript>
 		<blockquote>
 			<p><b>You do not have JavaScript enabled.</b><br/>
@@ -36,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function(){
 				{EDITING_MODE_DROPDOWN}
 			</div>
 		</patTemplate:tmpl>
-		<div class="col-md-6 pull-right">
+		<div class="col-md-6">
 			<div class="float-right">
 				{MANAGEMENT_VIEW_DROPDOWN}
 				{VIDEO_TUTORIALS}
