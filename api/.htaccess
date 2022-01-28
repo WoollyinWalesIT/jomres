@@ -6,14 +6,9 @@ RewriteRule ^(.*)$ index.php [L,QSA]
 RewriteCond %{HTTP:Authorization} .+
 RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
-# Default values
-# Will probably be sufficient for most requirements, however for Jomres2Jomres sites, see the example below
-php_value max_input_vars 3000
-php_value suhosin.get.max_vars 3000
-php_value suhosin.post.max_vars 3000
-php_value suhosin.request.max_vars 3000
 
 # If you are going to use Jomres2jomres you will need to transfer tariff information. Unfortunately this requires moving large-ish sets of data depending on the number of years those tariffs span, in which case you will need to allow much larger input field sets. For example, a 10 year set of tariffs could include up to 7,000+ input vars. You might get away with allowing 10000 input vars here, but 20000 would be safe.
+# most servers will not allow all of these settings to work, exactly what's right for you, you will have to discover through trial and error.
 # php_value max_input_vars 20000
 # php_value suhosin.get.max_vars 20000
 # php_value suhosin.post.max_vars 20000
