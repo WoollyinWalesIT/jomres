@@ -334,6 +334,7 @@ function jomres_cmsspecific_addheaddata($type, $path = '', $filename = '', $incl
         $app->loadDocument();
         $wa = Factory::getApplication()->getDocument()->getWebAssetManager();
         $wr = $wa->getRegistry();
+		HTMLHelper::_('bootstrap.framework');
     }
 
 
