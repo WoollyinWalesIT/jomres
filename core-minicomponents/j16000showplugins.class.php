@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.2
+* * @version Jomres 10.1.3
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -74,10 +74,6 @@ class j16000showplugins
 		$key_validation->check_license_key(true); //only needed if we want to force a recheck
 
 		$this->key_valid = $key_validation->key_valid;
-
-		if (!$this->key_valid) {
-			jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN.'&task=connect');
-		}
 
 		if (
 			(!file_exists(JOMRES_COREPLUGINS_ABSPATH.'plugin_manager'.JRDS.'plugin_info.php'))  ||

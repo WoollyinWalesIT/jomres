@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.2
+* * @version Jomres 10.1.3
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1189,7 +1189,7 @@ jr_define('_JOMRES_CONVERSION_DISCLAIMER', 'We have used our best efforts to obt
 // 5.3.1
 jr_define('_JOMRES_CURRENCYCONVERSION_TAB', 'Currency conversion/currency codes');
 jr_define('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'IP Detection API Key');
-jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'To automatically set the currency code dropdown Jomres is able to use a free service called IPinfoDB to detect the visitor\'s country, however you need to register for an API key at <a href="http://ipinfodb.com/register.php" target="_blank">IPinfoDB</a> first.');
+jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'To automatically set the currency code dropdown Jomres is able to use a free service called IPinfoDB to detect the visitor\'s country, however you need to register for an API key at <a href="https://www.ipinfodb.com/login" target="_blank">IPinfoDB</a> first.');
 jr_define('_JOMRES_DEBUGGING_TAB', 'Debugging');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'Accomodation ex tax');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'Accomodation inc tax');
@@ -2655,3 +2655,32 @@ jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Yeni açar əldə et');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Yeni açarı yadda saxla');
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Əmlak tipli şəkillər");
+
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"Rezervasiya üçün köməyə ehtiyacınız varmı?");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"Bütün bayram ehtiyaclarınızda sizə kömək edəcək nümayəndələrimizdən biri ilə danışmaq üçün aşağıdakı nömrə ilə müştəri xidmətləri komandamıza zəng edin.");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"Niyə bizimlə bron edin?");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"Ən yaxşı rezervasiya tariflərini təklif edirik");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"Hazırda bazarda ən yaxşı qiymətə malik mülklərimiz var.");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"Rezervasiya haqqı yoxdur. Pulunuza qənaət edin!");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"Xüsusiyyətlərin böyük seçimi");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," xüsusiyyətlər");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS',"qonaq rəyləri");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"Biz Həmişə Buradayıq");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"İstənilən vaxt bizə zəng edin və ya e-poçtla göndərin");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"Səfərdən əvvəl, səfər zamanı və səfərdən sonra 24 saatlıq dəstək alın");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"Sosial media");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"Bizi sosial mediada tapın");
+
+	jr_define('JOMRES_REVIEW_SCORE_TOP_1', "Görkəmli");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_2', "Müstəsna");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_3', "Möhtəşəm");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_4', "Əla");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_5', "Fantastik");
+
+	jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD', "Çox yaxşı");
+	jr_define('JOMRES_REVIEW_SCORE_GOOD', "Yaxşı");
+
+	jr_define('JOMRES_REVIEWS_NONE_NEW', "Yeni siyahı");
+	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Endirimli");

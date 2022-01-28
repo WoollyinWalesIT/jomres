@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.2
+* * @version Jomres 10.1.3
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1213,7 +1213,7 @@ jr_define('_JOMRES_CONVERSION_DISCLAIMER', 'Мы приложили все на�
 // 5.3.1
 jr_define('_JOMRES_CURRENCYCONVERSION_TAB', 'Конверсионные / коды валют');
 jr_define('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'IP Detection API Key');
-jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Чтобы автоматически установливать код валюты, Jomres способен использовать бесплатный сервис под названием IPinfoDB определяет страну посетителя, однако вы должны зарегистрироваться на сайте http://ipinfodb.com/ для получения ключа API  <a href="http://ipinfodb.com/register.php" target="_blank">IPinfoDB</a> IPinfoDB.');
+jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Чтобы автоматически установливать код валюты, Jomres способен использовать бесплатный сервис под названием IPinfoDB определяет страну посетителя, однако вы должны зарегистрироваться на сайте http://ipinfodb.com/ для получения ключа API  <a href="https://www.ipinfodb.com/login" target="_blank">IPinfoDB</a> IPinfoDB.');
 jr_define('_JOMRES_DEBUGGING_TAB', 'Отладка');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'Accomodation ex tax');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'Всего включая налог');
@@ -2670,3 +2670,32 @@ jr_define ('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Получить новый ключ
 jr_define ('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Сохранить новый ключ');
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Изображения свойств");
+
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"Нужна помощь в бронировании?");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"Позвоните в нашу службу поддержки клиентов по указанному ниже номеру, чтобы поговорить с одним из наших представителей, который поможет вам со всеми вашими праздничными потребностями.");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"Почему бронировать у нас?");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"Мы предлагаем лучшие цены на бронирование");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"На данный момент у нас самые выгодные цены на рынке.");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"Без комиссии за бронирование. Экономьте деньги!");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"Отличный выбор свойств");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LORGEST_NUMBER_HOTELS',"Свойства");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS'," отзывы гостей");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"Мы всегда здесь");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"Позвоните или напишите нам в любое время");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"Получите круглосуточную поддержку до, во время и после поездки");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"Социальные сети");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"Найдите нас в социальных сетях");
+
+	jr_define('JOMRES_REVIEW_SCORE_TOP_1', "Отлично");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_2', "Исключительно");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_3', "Потрясающе");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_4', "Отлично");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_5', "Отлично");
+
+	jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD', "Очень хорошо");
+	jr_define('JOMRES_REVIEW_SCORE_GOOD', "Хорошо");
+
+	jr_define('JOMRES_REVIEWS_NONE_NEW', "Новое объявление");
+	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Со скидкой");

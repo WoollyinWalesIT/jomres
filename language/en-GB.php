@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.2
+* * @version Jomres 10.1.3
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -986,7 +986,7 @@ jr_define('_JOMRES_REVIEWS_ADMIN_TESTMODE', 'Set reviews to test mode?');
 jr_define('_JOMRES_REVIEWS_ADMIN_TESTMODE_DESC', 'Normally property managers cannot review businesses. With test mode enabled, they can. Naturally this is not ideal in a production environment.');
 jr_define('_JOMRES_REVIEWS_ADMIN_PROPERTYLISTINFO', 'This is a list of all businesses. To see a business\'s reviews, click on that business. From there you will be able to publish or delete a review.');
 jr_define('_JOMRES_REVIEWS_ADMIN_NUMBERUNPUBLISHED', 'Number of unpublished reviews');
-jr_define('_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL', 'Total number of reviews');
+jr_define('_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL', 'Number of reviews');
 jr_define('_JOMRES_REVIEWS_ADMIN_PUBLISHREVIEW', 'Publish/Unpublish review');
 jr_define('_JOMRES_REVIEWS_ADMIN_DELETEREVEIEW', 'Delete review');
 jr_define('_JOMRES_REVIEWS_REPORT_REVIEW', 'Report review');
@@ -1137,7 +1137,7 @@ jr_define('_JOMRES_CONVERSION_DISCLAIMER', 'We have used our best efforts to obt
 // 5.3.1
 jr_define('_JOMRES_CURRENCYCONVERSION_TAB', 'Currency conversion/currency codes');
 jr_define('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'IP Detection API Key');
-jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'To automatically set the currency code dropdown Jomres is able to use a free service called IPinfoDB to detect the visitor\'s country, however you need to register for an API key at <a href="http://ipinfodb.com/register.php" target="_blank">IPinfoDB</a> first.');
+jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'To automatically set the currency code dropdown Jomres is able to use a free service called IPinfoDB to detect the visitor\'s country, however you need to register for an API key at <a href="https://www.ipinfodb.com/login" target="_blank">IPinfoDB</a> first.');
 jr_define('_JOMRES_DEBUGGING_TAB', 'Debugging');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'Accommodation ex tax');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'Accommodation inc tax');
@@ -1295,8 +1295,8 @@ jr_define('COMMON_NEW', 'New');
 jr_define('COMMON_SEND', 'Send');
 jr_define('RECAPTCHA_TITLE', 'reCaptcha');
 jr_define('RECAPTCHA_INFO', 'Captcha is used to ensure that the client using web forms is a human being, and is used to prevent Property Managers from being "spammed" by robots on the internet. To use the Contact Us form in Jomres you will need to register at <a href="http://www.google.com/recaptcha" target="_blank">the Google reCaptcha</a> home page and set your domain to receive your public and private keys. When you have received those keys, please enter them below. The reCapcha service is a free service provided by Google.');
-jr_define('RECAPTCHA_PUBLIC_KEY', 'Public key');
-jr_define('RECAPTCHA_PRIVATE_KEY', 'Private key');
+jr_define('RECAPTCHA_PUBLIC_KEY', 'Site key');
+jr_define('RECAPTCHA_PRIVATE_KEY', 'Secret key');
 jr_define('_JOMRES_BOOKINGFORM_LOCK_TITLE', 'Lockfile timeout');
 jr_define('_JOMRES_BOOKINGFORM_LOCK_DESC', 'To prevent the danger of guests double booking rooms Jomres uses a lockfile to prevent a room from being added to the available rooms list in the booking form if somebody else has already added the room to theirs for the same dates. By default this lock will time out in 3600 seconds, or one hour. You can change the time it takes to expire this lock by changing this figure.');
 jr_define('_JOMRES_BOOTSTRAPSWITCH', "Enable Jomres' Bootstrap templates and functionality?");
@@ -2587,3 +2587,44 @@ jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Get new key');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Save new key');
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Property type images");
+
+jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"Need help booking?");
+jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"Call our customer services team on the number below to speak to one of our representatives who will help you with all of your holiday needs.");
+
+jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"Why book with us?");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"We offer the best booking rates");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"We have the best priced properties currently on the market.");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"No booking fees. Save money!");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"Great selection of properties");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," properties");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS'," guest reviews");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"We’re Always Here");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"Call or email us, anytime");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"Get 24-hour support before, during, and after your trip");
+
+jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"Social media");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"Find us on social media");
+
+jr_define('JOMRES_REVIEW_SCORE_TOP_1',	"Outstanding");
+jr_define('JOMRES_REVIEW_SCORE_TOP_2',	"Exceptional");
+jr_define('JOMRES_REVIEW_SCORE_TOP_3',	"Fabulous");
+jr_define('JOMRES_REVIEW_SCORE_TOP_4',	"Superb");
+jr_define('JOMRES_REVIEW_SCORE_TOP_5',	"Fantastic");
+
+jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD',	"Very good");
+jr_define('JOMRES_REVIEW_SCORE_GOOD',	"Good");
+
+jr_define('JOMRES_REVIEWS_NONE_NEW', "New listing");
+jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Discounted");
+
+
+
+
+
+
+
+
+
+
+
+

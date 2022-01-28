@@ -2,6 +2,9 @@
 <script type="text/javascript">
 document.addEventListener('DOMContentLoaded', function(){
 	jomresJquery("#guest_country").change(function(){
+		populateDiv("guest_region_div" , '<div class="spinner-border text-info" role="status">\n' +
+				'  <span class="visually-hidden">Loading...</span>\n' +
+				'</div>');
 		var selectedValue = jomresJquery(this).find(":selected").val();
 		clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
 		jomresJquery.get(live_site_ajax + clause, function (data) {
@@ -195,7 +198,7 @@ document.addEventListener('DOMContentLoaded', function(){
 		</div>
 	</div>
 	
-	<div class="form-actions">
+	<div class="form-actions fixed-bottom bg-light text-center pt-1 border-top border-success">
 		<div class="col-md-10 col-md-offset-2">
 			<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> {COMMON_SUBMIT}</button>
 			<a href="{JOMRES_SITEPAGE_URL}" class="btn btn-secondary"><i class="fa fa-times"></i> {COMMON_CANCEL}</a>

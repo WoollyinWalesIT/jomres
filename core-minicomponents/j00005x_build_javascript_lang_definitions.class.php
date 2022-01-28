@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.2
+* * @version Jomres 10.1.3
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -70,17 +70,7 @@ class j00005x_build_javascript_lang_definitions
 			var module_pop_ajax_url = "'.JOMRES_SITEPAGE_URL_AJAX.'&task=module_popup&nofollowtmpl=1&id=";
 			';
 
-		$template_dir = find_plugin_template_directory();
-		if (jomres_cmsspecific_areweinadminarea() && $template_dir != 'jquery_ui') {
-			if (_JOMRES_DETECTED_CMS != 'joomla4') {
-				$template_dir = 'bootstrap';
-			} else {
-				$template_dir = 'bootstrap4';
-			}
-		}
-
 		$misc_url_defs .= '
-			var jomres_template_version = "'.$template_dir.'";
 			var property_reviews_ajax_url = "'.JOMRES_SITEPAGE_URL_AJAX.'&task=show_property_reviews&nofollowtmpl=1&property_uid=";
 			
 			var JOMRES_ROOT_DIRECTORY = "' .JOMRES_ROOT_DIRECTORY.'";

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.2
+* * @version Jomres 10.1.3
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1181,7 +1181,7 @@ jr_define('_JOMRES_CONVERSION_DISCLAIMER', '外国為替市場の継続変動及
 //5.3.1
 jr_define('_JOMRES_CURRENCYCONVERSION_TAB', '通貨の換算・通貨コード');
 jr_define('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'IP認識APIキー');
-jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'JomresがIPinfoDBという無料のサービスを利用することにより,ユーザの国を認識し,通貨コードのドロップダウンを自動的に設定するできるが,APIキーが必要です。<a href="http://ipinfodb.com/register.php" target="_blank">IPinfoDB</a> で登録し入手できます。');
+jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'JomresがIPinfoDBという無料のサービスを利用することにより,ユーザの国を認識し,通貨コードのドロップダウンを自動的に設定するできるが,APIキーが必要です。<a href="https://www.ipinfodb.com/login" target="_blank">IPinfoDB</a> で登録し入手できます。');
 jr_define('_JOMRES_DEBUGGING_TAB', 'デバグ環境');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', '宿泊料金(税抜)');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', '宿泊料金(税込)');
@@ -2644,3 +2644,32 @@ jr_define( 'PLUGIN_UPDATE_MESSAGE2_LINK1', '新しいキーを取得');
 jr_define( 'PLUGIN_UPDATE_MESSAGE2_LINK2', '新しいキーを保存');
 
 jr_define( '_ JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES', "プロパティタイプの画像");
+
+jr_define( 'JOMRES_SITE_SIDEBAR_HELP_TITLE',"予約のヘルプが必要ですか？");
+jr_define( 'JOMRES_SITE_SIDEBAR_HELP_BLURB',"以下の番号のカスタマーサービスチームに電話して、休日のすべてのニーズに対応する担当者の1人に相談してください。");
+
+jr_define( 'JOMRES_SITE_SIDEBAR_WHY_TITLE',"なぜ私たちと一緒に予約するのですか？");
+jr_define( 'JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"最高の予約料金を提供します");
+jr_define( 'JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"現在市場で最も価格の高い物件があります。");
+jr_define( 'JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"予約手数料なし。お金を節約！");
+jr_define( 'JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"優れたプロパティの選択");
+jr_define( 'JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS',"プロパティ");
+jr_define( 'JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS',"ゲストレビュー");
+jr_define( 'JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"私たちは常にここにいます");
+jr_define( 'JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"いつでも電話またはメールでお問い合わせください");
+jr_define( 'JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"旅行前、旅行中、旅行後に24時間サポートを受ける");
+
+jr_define( 'JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"ソーシャルメディア");
+jr_define( 'JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"ソーシャルメディアで私たちを見つけてください");
+
+jr_define( 'JOMRES_REVIEW_SCORE_TOP_1',"優れた");
+jr_define( 'JOMRES_REVIEW_SCORE_TOP_2',"例外的");
+jr_define( 'JOMRES_REVIEW_SCORE_TOP_3',"すばらしい");
+jr_define( 'JOMRES_REVIEW_SCORE_TOP_4',"すばらしい");
+jr_define( 'JOMRES_REVIEW_SCORE_TOP_5',"ファンタスティック");
+
+jr_define( 'JOMRES_REVIEW_SCORE_VERY_GOOD',"とても良い");
+jr_define( 'JOMRES_REVIEW_SCORE_GOOD',"Good");
+
+jr_define( 'JOMRES_REVIEWS_NONE_NEW',"新しいリスト");
+jr_define( 'JOMRES_RIBBON_TEXT_DISCOUNTED',"割引");

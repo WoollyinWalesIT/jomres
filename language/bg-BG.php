@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.2
+* * @version Jomres 10.1.3
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1167,7 +1167,7 @@ jr_define('_JOMRES_CONVERSION_DISCLAIMER', 'We have used our best efforts to obt
 // 5.3.1
 jr_define('_JOMRES_CURRENCYCONVERSION_TAB', 'Currency conversion/currency codes');
 jr_define('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'IP Detection API Key');
-jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'To automatically set the currency code dropdown Jomres is able to use a free service called IPinfoDB to detect the visitor\'s country, however you need to register for an API key at <a href="http://ipinfodb.com/register.php" target="_blank">IPinfoDB</a> first.');
+jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'To automatically set the currency code dropdown Jomres is able to use a free service called IPinfoDB to detect the visitor\'s country, however you need to register for an API key at <a href="https://www.ipinfodb.com/login" target="_blank">IPinfoDB</a> first.');
 jr_define ('_JOMRES_DEBUGGING_TAB', 'Отстраняване на грешки');
 jr_define ('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'Настаняване без данък');
 jr_define ('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'Настаняване с данък');
@@ -2631,3 +2631,32 @@ jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Вземете нов ключ');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Запазване на нов ключ');
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Изображения от тип собственост");
+
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"Имате нужда от помощ за резервация?");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"Обадете се на нашия екип за обслужване на клиенти на номера по-долу, за да говорите с един от нашите представители, който ще ви помогне с всички ваши нужди за почивка.");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"Защо да резервирате при нас?");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"Ние предлагаме най-добрите цени за резервации");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"Имаме имоти с най-добра цена в момента на пазара.");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"Без такси за резервация. Спестете пари!");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"Страхотен избор от имоти");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," свойства");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS'," отзиви от гости");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"Винаги сме тук");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"Обадете се или ни изпратете имейл по всяко време");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"Получете 24-часова поддръжка преди, по време и след вашето пътуване");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"Социални медии");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"Намерете ни в социалните медии");
+
+	jr_define('JOMRES_REVIEW_SCORE_TOP_1', "Изключително");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_2', "Изключително");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_3', "Страхотно");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_4', "Превъзходно");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_5', "Фантастично");
+
+	jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD', "Много добре");
+	jr_define('JOMRES_REVIEW_SCORE_GOOD', "Добре");
+
+	jr_define('JOMRES_REVIEWS_NONE_NEW', "Нова обява");
+	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Отстъпка");

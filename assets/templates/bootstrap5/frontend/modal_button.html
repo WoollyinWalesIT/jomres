@@ -3,13 +3,26 @@
 	<a
 	data-bs-toggle="modal"
 	random_identifier="{RANDOM_IDENTIFIER}" 
-	data-target='#{RANDOM_IDENTIFIER}' 
+	data-bs-target='#{RANDOM_IDENTIFIER}'
 	href="{JOMRES_SITEPAGE_URL_AJAX}&modal_wrap=1&task={TASK}{EXTRA}&modal_title={MODAL_TITLE}" 
 	>
 		<button class="btn {BUTTON_COLOUR}">{TEXT}</button>
 	</a>
-	
-	<div class="modal fade" id="{RANDOM_IDENTIFIER}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		
+
+	<!-- Modal -->
+	<div class="modal fade" id="{RANDOM_IDENTIFIER}" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					{REVIEWS_SNIPPET}
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{COMMON_CLOSE}</button>
+				</div>
+			</div>
+		</div>
 	</div>
 </patTemplate:tmpl>

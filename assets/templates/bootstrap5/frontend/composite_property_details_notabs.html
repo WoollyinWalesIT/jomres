@@ -7,213 +7,872 @@
 		.ui-datepicker{
 			font-size: 100% !important;
 		}
-
-		.offcanvas-start {
-			width : 800px;
-		}
 	</style>
 
-	<div id="property_details" style="margin-top: 5px">
-		<div class="row alert alert-secondary">
-			<div class="pdetails-reviews ">{REVIEWS_SUMMARY} </div>
-		</div>
-
-		<!-- Inline level -->
-		<span class="d-inline-block text-truncate" style="max-width: 800px;">
-  			{DESCRIPTION}
-		</span>
-		<div class="row">
-			<div class="col-12 d-flex justify-content-center mb-3 mt-3">
-				<button class="btn btn-info  btn-lg" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDetails" aria-controls="offcanvasExample">
-					{TABCONTENT_01_MAIN_DETAILS_TITLE}
-				</button>
-			</div>
-		</div>
-
-		<div class="row">
-			<div id="" class="col-12 col-md-12 col-lg-12 col-xl-12">
-				<div class="card bg-light card-body mb-3">{SLIDESHOW}</div>
-			</div>
-		</div>
-		<pattemplate:comment>
-		<div class="row">
-			<div class="col-12 col-md-12 col-lg-12 col-xl-12" id="tour_target_property_details_buttons">
-				<div class="well">
-						<div class="row align-items-start">
-							<div class="col-4">
-								{INLINE_CALENDAR}
+<div class="row">
+	<div class="col-sm-12">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-9">
+					<div id="property_details" class="container" style="margin-top: 5px">
+						<div class="row alert alert-secondary">
+							<div class="col-sm-12 pdetails-reviews ">{REVIEWS_SUMMARY} </div>
+						</div>
+						<div class="row">
+							<div id="" class="col-sm-12">
+								<div class="card bg-light card-body mb-3">{SLIDESHOW}</div>
 							</div>
-							<div class="col-8">
-								<div class="pdetails-price">{REAL_ESTATE_PROPERTY_PRICE}</div>
-								<pattemplate:tmpl name="bookinglink" type="simpleCondition" requiredvars="link" unusedvars="nbsp">
-									<a href="{LINK}" class="btn btn-primary btn-lg btn-block"><i class="fa fa-shopping-cart"></i> {TEXT}</a>
-								</pattemplate:tmpl>
-								<pattemplate:tmpl name="slideshowlink" type="simpleCondition" requiredvars="link"  unusedvars="nbsp">
-									<a href="{LINK}" class="btn btn-secondary btn-block">{TEXT}</a>
-								</pattemplate:tmpl>
-								<pattemplate:tmpl name="tariffslink" type="simpleCondition" requiredvars="link" unusedvars="nbsp">
-									<a href="{LINK}" class="btn btn-secondary btn-block">{TEXT}</a>
-								</pattemplate:tmpl>
-								<pattemplate:tmpl name="roomslistlink" type="simpleCondition" requiredvars="link"  unusedvars="nbsp">
-									<a href="{LINK}" class="btn btn-secondary btn-block">{TEXT}</a>
-								</pattemplate:tmpl>
-								<div class="pdetails-icons ">
-									<div class="row">
-										<pattemplate:tmpl name="contactuslink" type="simpleCondition" requiredvars="link" unusedvars="nbsp">
-											<div class="col-4" align="center">
-												<a href="{LINK}" class="pdetails-btn-icon" title="{TEXT}"><i class="fa fa-envelope"></i></a>
+						</div>
+
+						<pattemplate:comment>
+						<div class="row">
+							<div class="col-12 col-md-12 col-lg-12 col-xl-12" id="tour_target_property_details_buttons">
+								<div class="container">
+										<div class="row align-items-start">
+											<div class="col-sm-4">
+												{INLINE_CALENDAR}
 											</div>
-										</pattemplate:tmpl>
-										<div class="col-4">
-											<a href="{PRINT_LINK}" target="_blank" class="pdetails-btn-icon" title="{COMMON_PRINT}"><i class="fa fa-print"></i></a>
+											<div class="col-sm-8">
+												<pattemplate:tmpl name="bookinglink" type="simpleCondition" requiredvars="link" unusedvars="nbsp">
+													<a href="{LINK}" class="btn btn-primary btn-lg btn-block"><i class="fa fa-shopping-cart"></i> {TEXT}</a>
+												</pattemplate:tmpl>
+												<pattemplate:tmpl name="slideshowlink" type="simpleCondition" requiredvars="link"  unusedvars="nbsp">
+													<a href="{LINK}" class="btn btn-secondary btn-block">{TEXT}</a>
+												</pattemplate:tmpl>
+												<pattemplate:tmpl name="tariffslink" type="simpleCondition" requiredvars="link" unusedvars="nbsp">
+													<a href="{LINK}" class="btn btn-secondary btn-block">{TEXT}</a>
+												</pattemplate:tmpl>
+												<pattemplate:tmpl name="roomslistlink" type="simpleCondition" requiredvars="link"  unusedvars="nbsp">
+													<a href="{LINK}" class="btn btn-secondary btn-block">{TEXT}</a>
+												</pattemplate:tmpl>
+												<div class="pdetails-icons ">
+													<div class="row">
+														<pattemplate:tmpl name="contactuslink" type="simpleCondition" requiredvars="link" unusedvars="nbsp">
+															<div class="col-4">
+																<a href="{LINK}" class="pdetails-btn-icon" title="{TEXT}"><i class="fa fa-envelope"></i></a>
+															</div>
+														</pattemplate:tmpl>
+														<div class="col-4">
+															<a href="{PRINT_LINK}" target="_blank" class="pdetails-btn-icon" title="{COMMON_PRINT}"><i class="fa fa-print"></i></a>
+														</div>
+														<div class="col-4">
+															{QR_CODE_DIRECTIONS}
+														</div>
+													</div>
+												</div>
+											</div>
 										</div>
-										<div class="col-4">
-											{QR_CODE_DIRECTIONS}
+								</div>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+						<p>&#xA0;</p>
+						</pattemplate:comment>
+
+						<!-- Caption -->
+						<!-- The "vtabs" class establishes a scope -->
+						<!-- Bit of a pickle. I'd like to use Joomla-tab styles, but would also like to use BS5 in Wordpress sometime in the future, so for now we can't have JT -->
+
+						<style>
+
+							/*Pesky underline*/
+							.nav.nav-tabs .nav-link.active::after {
+								bottom: 0;
+								height: 0px;
+								content: "";
+								background-color: #448344;
+							}
+
+							.nav.nav-tabs .nav-link.active {
+								background-color: #448344;
+								color: white;
+							}
+
+						</style>
+
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="vtabs container">
+									<div class="row">
+										<!-- Tabs -->
+										<div class="col-md-3">
+											<ul class="nav nav-tabs left-tabs" role="tablist">
+
+												<pattemplate:comment>TAB TITLE MAIN START</pattemplate:comment>
+												<li class="nav-item" role="presentation">
+													<div
+															id="main-details-left-tab"
+															class="nav-link tab-clickable active"
+															role="tab"
+															data-bs-toggle="tab"
+															data-bs-target="#main-details-left"
+															aria-controls="main-details-left"
+															aria-selected="true"
+													>
+														{_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION}
+													</div>
+												</li>
+												<pattemplate:comment>TAB TITLE END</pattemplate:comment>
+
+												<pattemplate:comment>TAB TITLE FEATURES START</pattemplate:comment>
+												<li class="nav-item" role="presentation">
+													<div
+															id="features-left-tab"
+															class="nav-link tab-clickable"
+															role="tab"
+															data-bs-toggle="tab"
+															data-bs-target="#features-left"
+															aria-controls="features-left"
+															aria-selected="true"
+													>
+														{HFEATURES}
+													</div>
+												</li>
+												<pattemplate:comment>TAB TITLE END</pattemplate:comment>
+
+												<pattemplate:comment>TAB TITLE REVIEWS START</pattemplate:comment>
+												<li class="nav-item" role="presentation">
+													<div
+															id="reviews-left-tab"
+															class="nav-link tab-clickable"
+															role="tab"
+															data-bs-toggle="tab"
+															data-bs-target="#reviews-left"
+															aria-controls="reviews-left"
+															aria-selected="true"
+													>
+														{_JOMRES_REVIEWS}
+													</div>
+												</li>
+												<pattemplate:comment>TAB TITLE END</pattemplate:comment>
+
+												<pattemplate:comment>TAB TITLE CALENDAR START</pattemplate:comment>
+												<pattemplate:tmpl name="availability_output" type="simpleCondition" requiredvars="_jomres_front_mr_submitbutton_checkavailability" unusedvars="nbsp">
+												<li class="nav-item" role="presentation">
+													<div
+															id="calendar-left-tab"
+															class="nav-link tab-clickable"
+															role="tab"
+															data-bs-toggle="tab"
+															data-bs-target="#calendar-left"
+															aria-controls="calendar-left"
+															aria-selected="true"
+													>
+														{_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY}
+													</div>
+												</li>
+												</pattemplate:tmpl>
+												<pattemplate:comment>TAB TITLE END</pattemplate:comment>
+
+												<pattemplate:comment>TAB TITLE TERMS START</pattemplate:comment>
+												<li class="nav-item" role="presentation">
+													<div
+															id="terms-left-tab"
+															class="nav-link tab-clickable"
+															role="tab"
+															data-bs-toggle="tab"
+															data-bs-target="#terms-left"
+															aria-controls="terms-left"
+															aria-selected="true"
+													>
+														{HPOLICIESDISCLAIMERS}
+													</div>
+												</li>
+												<pattemplate:comment>TAB TITLE END</pattemplate:comment>
+
+												<pattemplate:comment>TAB TITLE CONTACT START</pattemplate:comment>
+												<li class="nav-item" role="presentation">
+													<div
+															id="contact-left-tab"
+															class="nav-link tab-clickable"
+															role="tab"
+															data-bs-toggle="tab"
+															data-bs-target="#contact-left"
+															aria-controls="contact-left"
+															aria-selected="true"
+													>
+														{_JOMRES_FRONT_MR_MENU_CONTACTHOTEL}
+													</div>
+												</li>
+												<pattemplate:comment>TAB TITLE END</pattemplate:comment>
+
+												<pattemplate:comment>TAB TITLE TARIFFS START</pattemplate:comment>
+												<pattemplate:tmpl name="tariffs_output" type="simpleCondition" requiredvars="_jomres_front_tariffs" unusedvars="nbsp">
+												<li class="nav-item" role="presentation">
+													<div
+															id="tariffs-left-tab"
+															class="nav-link tab-clickable"
+															role="tab"
+															data-bs-toggle="tab"
+															data-bs-target="#tariffs-left"
+															aria-controls="tariffs-left"
+															aria-selected="true"
+													>
+														{_JOMRES_FRONT_TARIFFS}
+													</div>
+												</li>
+												</pattemplate:tmpl>
+												<pattemplate:comment>TAB TITLE END</pattemplate:comment>
+
+												<pattemplate:comment>TAB TITLE OURROOMS START</pattemplate:comment>
+												<pattemplate:tmpl name="rooms_output" type="simpleCondition" requiredvars="_jomres_com_mr_quickres_step2_title" unusedvars="nbsp">
+
+												<li class="nav-item" role="presentation">
+													<div
+															id="ourrooms-left-tab"
+															class="nav-link tab-clickable"
+															role="tab"
+															data-bs-toggle="tab"
+															data-bs-target="#ourrooms-left"
+															aria-controls="ourrooms-left"
+															aria-selected="true"
+													>
+														{_JOMRES_COM_MR_QUICKRES_STEP2_TITLE}
+													</div>
+												</li>
+												</pattemplate:tmpl>
+												<pattemplate:comment>TAB TITLE END</pattemplate:comment>
+
+												<pattemplate:comment>TAB TITLE ROOM TYPES START</pattemplate:comment>
+												<pattemplate:tmpl name="room_type_output" type="simpleCondition" requiredvars="_jomres_search_rtypes" unusedvars="nbsp">
+													<li class="nav-item" role="presentation">
+														<div
+																id="rooms-left-tab"
+																class="nav-link tab-clickable"
+																role="tab"
+																data-bs-toggle="tab"
+																data-bs-target="#rooms-left"
+																aria-controls="rooms-left"
+																aria-selected="true"
+														>
+															{_JOMRES_SEARCH_RTYPES}
+														</div>
+													</li>
+												</pattemplate:tmpl>
+												<pattemplate:comment>TAB TITLE END</pattemplate:comment>
+
+												<pattemplate:comment>TAB TITLE OTHERTRANSPORT START</pattemplate:comment>
+												<li class="nav-item" role="presentation">
+													<div
+															id="othertransport-left-tab"
+															class="nav-link tab-clickable"
+															role="tab"
+															data-bs-toggle="tab"
+															data-bs-target="#othertransport-left"
+															aria-controls="othertransport-left"
+															aria-selected="true"
+													>
+														{HOTHERTRANSPORT}
+													</div>
+												</li>
+												<pattemplate:comment>TAB TITLE END</pattemplate:comment>
+
+												<pattemplate:comment>TAB TITLE AIRPORTS START</pattemplate:comment>
+												<li class="nav-item" role="presentation">
+													<div
+															id="airports-left-tab"
+															class="nav-link tab-clickable"
+															role="tab"
+															data-bs-toggle="tab"
+															data-bs-target="#airports-left"
+															aria-controls="airports-left"
+															aria-selected="true"
+													>
+														{HAIRPORTS}
+													</div>
+												</li>
+												<pattemplate:comment>TAB TITLE END</pattemplate:comment>
+
+												<pattemplate:comment>TAB TITLE DRIVINGDIRECTIONS START</pattemplate:comment>
+												<li class="nav-item" role="presentation">
+													<div
+															id="drivingdirections-left-tab"
+															class="nav-link tab-clickable"
+															role="tab"
+															data-bs-toggle="tab"
+															data-bs-target="#drivingdirections-left"
+															aria-controls="drivingdirections-left"
+															aria-selected="true"
+													>
+														{HDRIVINGDIRECTIONS}
+													</div>
+												</li>
+												<pattemplate:comment>TAB TITLE END</pattemplate:comment>
+
+												<pattemplate:comment>TAB TITLE AREAACTIVITIES START</pattemplate:comment>
+												<li class="nav-item" role="presentation">
+													<div
+															id="areaactivities-left-tab"
+															class="nav-link tab-clickable"
+															role="tab"
+															data-bs-toggle="tab"
+															data-bs-target="#areaactivities-left"
+															aria-controls="areaactivities-left"
+															aria-selected="true"
+													>
+														{HAREAACTIVITIES}
+													</div>
+												</li>
+												<pattemplate:comment>TAB TITLE END</pattemplate:comment>
+
+												<pattemplate:comment>TAB TITLE CHECKINTIMES START</pattemplate:comment>
+												<li class="nav-item" role="presentation">
+													<div
+															id="checkintimes-left-tab"
+															class="nav-link tab-clickable"
+															role="tab"
+															data-bs-toggle="tab"
+															data-bs-target="#checkintimes-left"
+															aria-controls="checkintimes-left"
+															aria-selected="true"
+													>
+														{HCHECKINTIMES}
+													</div>
+												</li>
+												<pattemplate:comment>TAB TITLE END</pattemplate:comment>
+
+												<pattemplate:comment>TAB TITLE EXTRAS START</pattemplate:comment>
+												<li class="nav-item" role="presentation">
+													<div
+															id="extras-left-tab"
+															class="nav-link tab-clickable"
+															role="tab"
+															data-bs-toggle="tab"
+															data-bs-target="#extras-left"
+															aria-controls="extras-left"
+															aria-selected="true"
+													>
+														{_JOMRES_COM_MR_EXTRA_TITLE}
+													</div>
+												</li>
+												<pattemplate:comment>TAB TITLE END</pattemplate:comment>
+											</ul>
+										</div>
+
+										<!-- Tab contents -->
+										<div class="col-md-9">
+											<div class="">
+												<div id="accordion-left-tabs" class="tab-content accordion">
+													<pattemplate:comment>TAB CONTENT MAIN START</pattemplate:comment>
+													<div
+															id="main-details-left"
+															class="tab-pane fade show active accordion-item"
+															role="tabpanel"
+													>
+														<div class="accordion-header" role="tab">
+															<button
+																	class="accordion-button collapsed"
+																	type="button"
+																	role="button"
+																	data-bs-toggle="collapse"
+																	data-bs-target="#main-details-left-article"
+																	aria-expanded="true"
+																	aria-controls="main-details-left-article"
+															>
+																{_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION}
+															</button>
+														</div>
+														<article
+																id="main-details-left-article"
+																class="accordion-body accordion-collapse collapse"
+																data-bs-parent="#accordion-left-tabs"
+																aria-labelledby="main-details-left-tab"
+														>
+															<section>
+																{jomres_script show_property_description PROPERTY_UID=N}
+															</section>
+														</article>
+													</div>
+													<pattemplate:comment>TAB CONTENT END</pattemplate:comment>
+
+													<pattemplate:comment>TAB CONTENT FEATURES START</pattemplate:comment>
+													<div
+															id="features-left"
+															class="tab-pane fade show accordion-item"
+															role="tabpanel"
+													>
+														<div class="accordion-header" role="tab">
+															<button
+																	class="accordion-button collapsed"
+																	type="button"
+																	role="button"
+																	data-bs-toggle="collapse"
+																	data-bs-target="#features-left-article"
+																	aria-expanded="true"
+																	aria-controls="features-left-article"
+															>
+																{HFEATURES}
+															</button>
+														</div>
+														<article
+																id="features-left-article"
+																class="accordion-body accordion-collapse collapse"
+																data-bs-parent="#accordion-left-tabs"
+																aria-labelledby="features-left-tab"
+														>
+															<section>
+																{jomres_script show_property_features PROPERTY_UID={UID}}
+															</section>
+														</article>
+													</div>
+													<pattemplate:comment>TAB CONTENT END</pattemplate:comment>
+
+													<pattemplate:comment>TAB CONTENT REVIEWS START</pattemplate:comment>
+													<div
+															id="reviews-left"
+															class="tab-pane fade show accordion-item"
+															role="tabpanel"
+													>
+														<div class="accordion-header" role="tab">
+															<button
+																	class="accordion-button collapsed"
+																	type="button"
+																	role="button"
+																	data-bs-toggle="collapse"
+																	data-bs-target="#reviews-left-article"
+																	aria-expanded="true"
+																	aria-controls="reviews-left-article"
+															>
+																{_JOMRES_REVIEWS}
+															</button>
+														</div>
+														<article
+																id="reviews-left-article"
+																class="accordion-body accordion-collapse collapse"
+																data-bs-parent="#accordion-left-tabs"
+																aria-labelledby="reviews-left-tab"
+														>
+															<section>
+																{jomres_script show_property_reviews PROPERTY_UID=N &reviews_limit=10}
+															</section>
+														</article>
+													</div>
+													<pattemplate:comment>TAB CONTENT END</pattemplate:comment>
+
+													<pattemplate:comment>TAB CONTENT CALENDAR START</pattemplate:comment>
+													<pattemplate:tmpl name="availability_output_content" type="simpleCondition" requiredvars="_jomres_front_mr_submitbutton_checkavailability" unusedvars="nbsp">
+													<div
+															id="calendar-left"
+															class="tab-pane fade show accordion-item"
+															role="tabpanel"
+													>
+														<div class="accordion-header" role="tab">
+															<button
+																	class="accordion-button collapsed"
+																	type="button"
+																	role="button"
+																	data-bs-toggle="collapse"
+																	data-bs-target="#calendar-left-article"
+																	aria-expanded="true"
+																	aria-controls="calendar-left-article"
+															>
+																{_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY}
+															</button>
+														</div>
+														<article
+																id="calendar-left-article"
+																class="accordion-body accordion-collapse collapse"
+																data-bs-parent="#accordion-left-tabs"
+																aria-labelledby="calendar-left-tab"
+														>
+															<section>
+																{jomres_script show_property_calendar PROPERTY_UID=N}
+															</section>
+														</article>
+													</div>
+													</pattemplate:tmpl>
+													<pattemplate:comment>TAB CONTENT END</pattemplate:comment>
+
+													<pattemplate:comment>TAB CONTENT TERMS START</pattemplate:comment>
+													<div
+															id="terms-left"
+															class="tab-pane fade show accordion-item"
+															role="tabpanel"
+													>
+														<div class="accordion-header" role="tab">
+															<button
+																	class="accordion-button collapsed"
+																	type="button"
+																	role="button"
+																	data-bs-toggle="collapse"
+																	data-bs-target="#terms-left-article"
+																	aria-expanded="true"
+																	aria-controls="terms-left-article"
+															>
+																{HPOLICIESDISCLAIMERS}
+															</button>
+														</div>
+														<article
+																id="terms-left-article"
+																class="accordion-body accordion-collapse collapse"
+																data-bs-parent="#accordion-left-tabs"
+																aria-labelledby="terms-left-tab"
+														>
+															<section>
+																{jomres_script terms PROPERTY_UID=N}
+															</section>
+														</article>
+													</div>
+													<pattemplate:comment>TAB CONTENT END</pattemplate:comment>
+
+													<pattemplate:comment>TAB CONTENT CONTACT START</pattemplate:comment>
+													<div
+															id="contact-left"
+															class="tab-pane fade show accordion-item"
+															role="tabpanel"
+													>
+														<div class="accordion-header" role="tab">
+															<button
+																	class="accordion-button collapsed"
+																	type="button"
+																	role="button"
+																	data-bs-toggle="collapse"
+																	data-bs-target="#contact-left-article"
+																	aria-expanded="true"
+																	aria-controls="contact-left-article"
+															>
+																{_JOMRES_FRONT_MR_MENU_CONTACTHOTEL}
+															</button>
+														</div>
+														<article
+																id="contact-left-article"
+																class="accordion-body accordion-collapse collapse"
+																data-bs-parent="#accordion-left-tabs"
+																aria-labelledby="contact-left-tab"
+														>
+															<section>
+																{TABCONTENT_03_CONTACT_TAB_CONTENT}
+															</section>
+														</article>
+													</div>
+													<pattemplate:comment>TAB CONTENT END</pattemplate:comment>
+
+													<pattemplate:comment>TAB CONTENT TARIFFS START</pattemplate:comment>
+													<pattemplate:tmpl name="tariffs_output_content" type="simpleCondition" requiredvars="_jomres_front_tariffs" unusedvars="nbsp">
+													<div
+															id="tariffs-left"
+															class="tab-pane fade show accordion-item"
+															role="tabpanel"
+													>
+														<div class="accordion-header" role="tab">
+															<button
+																	class="accordion-button collapsed"
+																	type="button"
+																	role="button"
+																	data-bs-toggle="collapse"
+																	data-bs-target="#tariffs-left-article"
+																	aria-expanded="true"
+																	aria-controls="tariffs-left-article"
+															>
+																{_JOMRES_FRONT_TARIFFS}
+															</button>
+														</div>
+														<article
+																id="tariffs-left-article"
+																class="accordion-body accordion-collapse collapse"
+																data-bs-parent="#accordion-left-tabs"
+																aria-labelledby="tariffs-left-tab"
+														>
+															<section>
+																{jomres_script show_property_tariffs PROPERTY_UID=N}
+
+															</section>
+														</article>
+													</div>
+													</pattemplate:tmpl>
+													<pattemplate:comment>TAB CONTENT END</pattemplate:comment>
+
+													<pattemplate:comment>TAB CONTENT OURROOMS START</pattemplate:comment>
+													<pattemplate:tmpl name="rooms_output_content" type="simpleCondition" requiredvars="_jomres_com_mr_quickres_step2_title" unusedvars="nbsp">
+													<div
+															id="ourrooms-left"
+															class="tab-pane fade show accordion-item"
+															role="tabpanel"
+													>
+														<div class="accordion-header" role="tab">
+															<button
+																	class="accordion-button collapsed"
+																	type="button"
+																	role="button"
+																	data-bs-toggle="collapse"
+																	data-bs-target="#ourrooms-left-article"
+																	aria-expanded="true"
+																	aria-controls="ourrooms-left-article"
+															>
+																{_JOMRES_COM_MR_QUICKRES_STEP2_TITLE}
+															</button>
+														</div>
+														<article
+																id="ourrooms-left-article"
+																class="accordion-body accordion-collapse collapse"
+																data-bs-parent="#accordion-left-tabs"
+																aria-labelledby="ourrooms-left-tab"
+														>
+															<section>
+																{jomres_script show_property_rooms PROPERTY_UID=N}
+
+															</section>
+														</article>
+													</div>
+													</pattemplate:tmpl>
+													<pattemplate:comment>TAB CONTENT END</pattemplate:comment>
+
+													<pattemplate:comment>TAB CONTENT ROOM TYPES START</pattemplate:comment>
+													<pattemplate:tmpl name="room_type_output_content" type="simpleCondition" requiredvars="_jomres_search_rtypes" unusedvars="nbsp">
+													<div
+															id="rooms-left"
+															class="tab-pane fade show accordion-item"
+															role="tabpanel"
+													>
+														<div class="accordion-header" role="tab">
+															<button
+																	class="accordion-button collapsed"
+																	type="button"
+																	role="button"
+																	data-bs-toggle="collapse"
+																	data-bs-target="#rooms-left-article"
+																	aria-expanded="true"
+																	aria-controls="rooms-left-article"
+															>
+																{_JOMRES_SEARCH_RTYPES}
+															</button>
+														</div>
+														<article
+																id="rooms-left-article"
+																class="accordion-body accordion-collapse collapse"
+																data-bs-parent="#accordion-left-tabs"
+																aria-labelledby="rooms-left-tab"
+														>
+															<section>
+																{ROOM_TYPES}
+															</section>
+														</article>
+													</div>
+													</pattemplate:tmpl>
+													<pattemplate:comment>TAB CONTENT END</pattemplate:comment>
+
+													<pattemplate:comment>TAB CONTENT OTHERTRANSPORT START</pattemplate:comment>
+													<div
+															id="othertransport-left"
+															class="tab-pane fade show accordion-item"
+															role="tabpanel"
+													>
+														<div class="accordion-header" role="tab">
+															<button
+																	class="accordion-button collapsed"
+																	type="button"
+																	role="button"
+																	data-bs-toggle="collapse"
+																	data-bs-target="#othertransport-left-article"
+																	aria-expanded="true"
+																	aria-controls="othertransport-left-article"
+															>
+																{HOTHERTRANSPORT}
+															</button>
+														</div>
+														<article
+																id="othertransport-left-article"
+																class="accordion-body accordion-collapse collapse"
+																data-bs-parent="#accordion-left-tabs"
+																aria-labelledby="othertransport-left-tab"
+														>
+															<section>
+																{OTHERTRANSPORT}
+															</section>
+														</article>
+													</div>
+													<pattemplate:comment>TAB CONTENT END</pattemplate:comment>
+
+													<pattemplate:comment>TAB CONTENT AIRPORTS START</pattemplate:comment>
+													<div
+															id="airports-left"
+															class="tab-pane fade show accordion-item"
+															role="tabpanel"
+													>
+														<div class="accordion-header" role="tab">
+															<button
+																	class="accordion-button collapsed"
+																	type="button"
+																	role="button"
+																	data-bs-toggle="collapse"
+																	data-bs-target="#airports-left-article"
+																	aria-expanded="true"
+																	aria-controls="airports-left-article"
+															>
+																{HAIRPORTS}
+															</button>
+														</div>
+														<article
+																id="airports-left-article"
+																class="accordion-body accordion-collapse collapse"
+																data-bs-parent="#accordion-left-tabs"
+																aria-labelledby="airports-left-tab"
+														>
+															<section>
+																{AIRPORTS}
+															</section>
+														</article>
+													</div>
+													<pattemplate:comment>TAB CONTENT END</pattemplate:comment>
+
+													<pattemplate:comment>TAB CONTENT DRIVINGDIRECTIONS START</pattemplate:comment>
+													<div
+															id="drivingdirections-left"
+															class="tab-pane fade show accordion-item"
+															role="tabpanel"
+													>
+														<div class="accordion-header" role="tab">
+															<button
+																	class="accordion-button collapsed"
+																	type="button"
+																	role="button"
+																	data-bs-toggle="collapse"
+																	data-bs-target="#drivingdirections-left-article"
+																	aria-expanded="true"
+																	aria-controls="drivingdirections-left-article"
+															>
+																{HDRIVINGDIRECTIONS}
+															</button>
+														</div>
+														<article
+																id="drivingdirections-left-article"
+																class="accordion-body accordion-collapse collapse"
+																data-bs-parent="#accordion-left-tabs"
+																aria-labelledby="drivingdirections-left-tab"
+														>
+															<section>
+																{DRIVINGDIRECTIONS}
+															</section>
+														</article>
+													</div>
+													<pattemplate:comment>TAB CONTENT END</pattemplate:comment>
+
+													<pattemplate:comment>TAB CONTENT AREAACTIVITIES START</pattemplate:comment>
+													<div
+															id="areaactivities-left"
+															class="tab-pane fade show accordion-item"
+															role="tabpanel"
+													>
+														<div class="accordion-header" role="tab">
+															<button
+																	class="accordion-button collapsed"
+																	type="button"
+																	role="button"
+																	data-bs-toggle="collapse"
+																	data-bs-target="#areaactivities-left-article"
+																	aria-expanded="true"
+																	aria-controls="areaactivities-left-article"
+															>
+																{HAREAACTIVITIES}
+															</button>
+														</div>
+														<article
+																id="areaactivities-left-article"
+																class="accordion-body accordion-collapse collapse"
+																data-bs-parent="#accordion-left-tabs"
+																aria-labelledby="areaactivities-left-tab"
+														>
+															<section>
+																{AREAACTIVITIES}
+															</section>
+														</article>
+													</div>
+													<pattemplate:comment>TAB CONTENT END</pattemplate:comment>
+
+													<pattemplate:comment>TAB CONTENT CHECKINTIMES START</pattemplate:comment>
+													<div
+															id="checkintimes-left"
+															class="tab-pane fade show accordion-item"
+															role="tabpanel"
+													>
+														<div class="accordion-header" role="tab">
+															<button
+																	class="accordion-button collapsed"
+																	type="button"
+																	role="button"
+																	data-bs-toggle="collapse"
+																	data-bs-target="#checkintimes-left-article"
+																	aria-expanded="true"
+																	aria-controls="checkintimes-left-article"
+															>
+																{HCHECKINTIMES}
+															</button>
+														</div>
+														<article
+																id="checkintimes-left-article"
+																class="accordion-body accordion-collapse collapse"
+																data-bs-parent="#accordion-left-tabs"
+																aria-labelledby="checkintimes-left-tab"
+														>
+															<section>
+																{CHECKINTIMES}
+															</section>
+														</article>
+													</div>
+													<pattemplate:comment>TAB CONTENT END</pattemplate:comment>
+
+													<pattemplate:comment>TAB CONTENT EXTRAS START</pattemplate:comment>
+													<div
+															id="extras-left"
+															class="tab-pane fade show accordion-item"
+															role="tabpanel"
+													>
+														<div class="accordion-header" role="tab">
+															<button
+																	class="accordion-button collapsed"
+																	type="button"
+																	role="button"
+																	data-bs-toggle="collapse"
+																	data-bs-target="#extras-left-article"
+																	aria-expanded="true"
+																	aria-controls="extras-left-article"
+															>
+																{_JOMRES_COM_MR_EXTRA_TITLE}
+															</button>
+														</div>
+														<article
+																id="extras-left-article"
+																class="accordion-body accordion-collapse collapse"
+																data-bs-parent="#accordion-left-tabs"
+																aria-labelledby="extras-left-tab"
+														>
+															<section>
+																{jomres_script show_property_extras PROPERTY_UID=N}
+															</section>
+														</article>
+													</div>
+													<pattemplate:comment>TAB CONTENT END</pattemplate:comment>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
+						<div class="row">
+							<div class="col-sm-12">
+
+											<a href="https://www.google.com/maps/place/{TOWN}/{REGION}/{COUNTRY}" target="_blank">{TABCONTENT_02_MAP_CONTENT}</a>
+											<div class="pdetails-price">{REAL_ESTATE_PROPERTY_PRICE}</div>
+
+							</div>
+						</div>
+						<patTemplate:tmpl name="tabs_titles">
+							{TAB_TITLE}
+						</patTemplate:tmpl>
+
+						<patTemplate:tmpl name="tabs_content">
+							{TAB_CONTENT}
+						</patTemplate:tmpl>
+
+					</div>
+				</div>
+
+				<div class="col-sm-3">
+					{SIDEBAR}
 				</div>
 			</div>
 		</div>
-		<div class="clearfix"></div>
-		<p>&#xA0;</p>
-		</pattemplate:comment>
-
-
-		<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasDetails" aria-labelledby="offcanvasPropertyDetails">
-			<div class="offcanvas-header">
-				<h5 class="offcanvas-title" id="offcanvasPropertyDetails">{TABCONTENT_01_MAIN_DETAILS_TITLE}</h5>
-				<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-			</div>
-			<div class="offcanvas-body">
-				<div class="card">
-					<div class="card-body">{TABCONTENT_01_MAIN_DETAILS_CONTENT}</div>
-				</div>
-				<div class="card">
-					<div class="card-header">
-						<h2 class="card-title">{TABCONTENT_01_MORE_INFO_TITLE}</h2>
-					</div>
-					<div class="card-body">{TABCONTENT_01_MORE_INFO_CONTENT}</div>
-				</div>
-				<pattemplate:tmpl name="extras_output" type="simpleCondition" requiredvars="tabcontent_06_extras_content" unusedvars="nbsp">
-					<div class="card">
-						<div class="card-header">
-							<h2 class="card-title">{TABCONTENT_06_EXTRAS_TITLE}</h2>
-						</div>
-						<div class="card-body">{TABCONTENT_06_EXTRAS_CONTENT}</div>
-					</div>
-				</pattemplate:tmpl>
-				<pattemplate:tmpl name="map_output" type="simpleCondition" requiredvars="tabcontent_02_map_title" unusedvars="nbsp">
-					<div class="card">
-						<div class="card-header">
-							<h2 class="card-title">{TABCONTENT_02_MAP_TITLE}</h2>
-						</div>
-						<div class="card-body">{TABCONTENT_02_MAP_CONTENT}</div>
-					</div>
-				</pattemplate:tmpl>
-				<div class="card">
-					<div class="card-header">
-						<h2 class="card-title">{TABCONTENT_03_REVIEWS_TITLE}</h2>
-					</div>
-					<div class="card-body">{TABCONTENT_03_REVIEWS_CONTENT}</div>
-				</div>
-				<h2>{TABCONTENT_02_BOOKINGFORM_TITLE}</h2>
-				{TABCONTENT_02_BOOKINGFORM_CONTENT}
-				<div class="tabbable">
-					<ul class="nav nav-tabs">
-						<pattemplate:tmpl name="tabs_titles">
-							<li class="nav-item {ACTIVE}">
-								<a href="#{TAB_ANCHOR}" class="nav-link" data-bs-toggle="tab" id="{TAB_ID}">{TAB_TITLE}</a>
-							</li>
-						</pattemplate:tmpl>
-					</ul>
-					<div class="tab-content">
-						<pattemplate:tmpl name="tabs_content">
-							<div class="tab-pane {ACTIVE}" id="{TAB_ANCHOR}">{TAB_CONTENT}</div>
-						</pattemplate:tmpl>
-					</div>
-				</div>
-			</div>
-			<pattemplate:comment>See below for more output that potentially can be used in this page</pattemplate:comment>
-			<pattemplate:comment>
-				<div class="navbar navbar-fixed-bottom navbar-expand-md">
-					<div class="btn-toolbar">
-						<div class="btn-group">	<a href="{COMMON_THIS_PAGE_URL}#{COMMON_HOME|urlencode}" class="btn btn-info">{COMMON_HOME}</a>
-							<a
-									href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_01_MAIN_DETAILS_TABTITLE|urlencode}"
-									class="btn btn-info">{TABCONTENT_01_MAIN_DETAILS_TABTITLE}</a>	<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_01_MORE_INFO_TABTITLE|urlencode}"
-																										 class="btn btn-info">{TABCONTENT_01_MORE_INFO_TABTITLE}</a>
-							<!-- <a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_02_BOOKINGFORM_TABTITLE|urlencode}"
-                            class="btn btn-info">{TABCONTENT_02_BOOKINGFORM_TABTITLE}</a> -->	<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_02_MAP_TABTITLE|urlencode}"
-																							class="btn btn-info">{TABCONTENT_02_MAP_TABTITLE}</a>
-							<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_03_CONTACT_TABTITLE|urlencode}"
-							   class="btn btn-info">{TABCONTENT_03_CONTACT_TABTITLE}</a>
-							<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_03_REVIEWS_TABTITLE|urlencode}"
-							   class="btn btn-info">{TABCONTENT_03_REVIEWS_TABTITLE}</a>
-							<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_05_TARIFFS_TABTITLE|urlencode}"
-							   class="btn btn-info">{TABCONTENT_05_TARIFFS_TABTITLE}</a>
-							<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_04_ROOMSLIST_TABTITLE|urlencode}"
-							   class="btn btn-info">{TABCONTENT_04_ROOMSLIST_TABTITLE}</a>
-							<!--<a href="{COMMON_THIS_PAGE_URL}#{XDISQUS_TABTITLE|urlencode}"
-                            class="btn btn-info">{XDISQUS_TABTITLE}</a>-->
-						</div>
-					</div>
-				</div>
-				<h2><a name="{TABCONTENT_01_MAIN_DETAILS_TABTITLE|urlencode}" class="text-info">{TABCONTENT_01_MAIN_DETAILS_TABTITLE}</a>
-
-				</h2>
-				<div class="card bg-light card-body mb-3">{TABCONTENT_01_MAIN_DETAILS_TAB_CONTENT}</div>
-				<h2><a name="{TABCONTENT_01_MORE_INFO_TABTITLE|urlencode}">{TABCONTENT_01_MORE_INFO_TABTITLE}</a></h2>
-				<div class="card bg-light card-body mb-3">{TABCONTENT_01_MORE_INFO_TAB_CONTENT}</div>
-				<pattemplate:comment>// Assumes that the option to show the booking form in the property details
-					is set to Yes</pattemplate:comment>
-				<h2><a name="{TABCONTENT_02_BOOKINGFORM_TABTITLE|urlencode}">{TABCONTENT_02_BOOKINGFORM_TABTITLE}</a></h2>
-				<div class="card bg-light card-body mb-3">{TABCONTENT_02_BOOKINGFORM_TAB_CONTENT}</div>
-				<h2><a name="{TABCONTENT_02_MAP_TABTITLE|urlencode}">{TABCONTENT_02_MAP_TABTITLE}</a></h2>
-				<div class="card bg-light card-body mb-3">{TABCONTENT_02_MAP_TAB_CONTENT}</div>
-				<pattemplate:comment>// Assumes that contact form in tabs plugin is installed</pattemplate:comment>
-				<h2><a name="{TABCONTENT_03_CONTACT_TABTITLE|urlencode}">{TABCONTENT_03_CONTACT_TABTITLE}</a></h2>
-				<div class="card bg-light card-body mb-3">{TABCONTENT_03_CONTACT_TAB_CONTENT}</div>
-				<h2><a name="{TABCONTENT_03_REVIEWS_TABTITLE|urlencode}">{TABCONTENT_03_REVIEWS_TABTITLE}</a></h2>
-				<div class="card bg-light card-body mb-3">{TABCONTENT_03_REVIEWS_TAB_CONTENT}</div>
-				<h2><a name="{TABCONTENT_05_TARIFFS_TABTITLE|urlencode}">{TABCONTENT_05_TARIFFS_TABTITLE}</a></h2>
-				<div class="card bg-light card-body mb-3">{TABCONTENT_05_TARIFFS_TAB_CONTENT}</div>
-				<h2><a name="{TABCONTENT_04_ROOMSLIST_TABTITLE|urlencode}">{TABCONTENT_04_ROOMSLIST_TABTITLE}</a></h2>
-				<div class="card bg-light card-body mb-3">{TABCONTENT_04_ROOMSLIST_TAB_CONTENT}</div>
-				<!-- <patTemplate:comment>// Assumes that Comments Tab Disqus plugin is installed</patTemplate:comment>
-
-            <h2><a name="{XDISQUS_TABTITLE|urlencode}">{XDISQUS_TABTITLE}</a></h2>
-
-            <div class="card bg-light card-body mb-3">
-
-                {XDISQUS_TAB_CONTENT}
-
-            </div>
-
-            -->
-			</pattemplate:comment>
-			</div>
-		</div>
-
-
-
-
-
-	<pattemplate:comment>More stuff that can be used on this page {BOOKING_FORM} // Yes, that booking
-		form. show_booking_form_in_property_details setting from Site Config needs
-		to be set to Yes for the form to show. {HFEATURES} {HRTYPES} {LIVE_SITE}
-		{HPROPERTYNAME} {HSTREET} {HTOWN} {HREGION} {HCOUNTRY} {HPOSTCODE} {HTELEPHONE}
-		{HFAX} {HMAPPINGLINK} {HDESCRIPTION} {HCHECKINTIMES} {HAREAACTIVITIES}
-		{HDRIVINGDIRECTIONS} {HAIRPORTS} {HOTHERTRANSPORT} {HPOLICIESDISCLAIMERS}
-		{TITLE_PROPERTYDETAILS} {TITLE_PROPERTYDETAILS_ANCHOR} {TITLE_MOREINFO}
-		{TITLE_MOREINFO_ANCHOR} {TITLE_AVAILABILITYCALENDAR} {TITLE_ROOMSLIST}
-		{TITLE_SLIDESHOW} {TITLE_MAP} {TITLE_TARIFF} {COM_A_BASICTEMPLATE_SHOWADDRESS}
-		{COM_A_BASICTEMPLATE_SHOWDETAILS} {COM_A_BASICTEMPLATE_SHOWADDRESS_TITLE}
-		{COM_A_BASICTEMPLATE_SHOWDETAILS_TITLE} {POSTCODE} {TELEPHONE} {FAX} {STREET}
-		{TOWN} {REGION} {COUNTRY} {DESCRIPTION} {CHECKINTIMES} {AREAACTIVITIES}
-		{DRIVINGDIRECTIONS} {AIRPORTS} {OTHERTRANSPORT} {POLICIESDISCLAIMERS} {PRINT_ICON}
-		{PRINT_LINK} {SLIDESHOW} {ARROW} {INLINE_CALENDAR_ARROW_OPENINGDIV} {INLINE_CALENDAR}
-		{INLINE_CALENDAR_ARROW_CLOSINGDIV}</pattemplate:comment>
+	</div>
+</div>
 </pattemplate:tmpl>

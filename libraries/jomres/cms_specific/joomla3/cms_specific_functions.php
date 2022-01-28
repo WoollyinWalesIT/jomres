@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.2
+* * @version Jomres 10.1.3
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -120,7 +120,7 @@ function jomres_cmsspecific_createNewUser( $email_address = '' )
 	$id = doInsertSql($query);
 	if (!$id) {
 		trigger_error('Failed insert new user '.$query, E_USER_ERROR);
-		$this->insertSuccessful = false;
+		$insertSuccessful = false;
 	} else {
 
         $webhook_notification							  	= new stdClass();

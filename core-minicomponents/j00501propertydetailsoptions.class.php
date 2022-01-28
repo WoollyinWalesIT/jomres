@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.2
+* * @version Jomres 10.1.3
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -57,19 +57,12 @@ class j00501propertydetailsoptions
 		if ( $jrConfig[ 'compatability_property_configuration' ] != 1 ) {
 			$configurationPanel->startPanel(jr_gettext('PROPERTY_DETAILS_PAGE_OPTIONS', 'PROPERTY_DETAILS_PAGE_OPTIONS', false));
 
-			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK', '_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK', false));
-			$configurationPanel->setmiddle('<input text="text" class="inputbox" size="5" name="cfg_facebook_page" value="' . $mrConfig['facebook_page'] . '"/>');
-			$configurationPanel->setright(jr_gettext('_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK_DESC', '_JOMRES_COM_MR_GENERALCONFIGDESC_FACEBOOK_DESC', false));
-			$configurationPanel->insertSetting();
-
 			$configurationPanel->setleft(jr_gettext('HIDDEN_ADDRESS_SETTING', 'HIDDEN_ADDRESS_SETTING', false));
 			$configurationPanel->setmiddle($lists['hide_local_address']);
 			$configurationPanel->setright(jr_gettext('HIDDEN_ADDRESS_SETTING_DESC', 'HIDDEN_ADDRESS_SETTING_DESC', false));
 			$configurationPanel->insertSetting();
 
 			if ($mrConfig['is_real_estate_listing'] == 0) {
-
-
 				$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_SHOWONLYAVLCAL', '_JOMRES_COM_A_SHOWONLYAVLCAL', false));
 				$configurationPanel->setmiddle($lists['showOnlyAvailabilityCalendar']);
 				$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_SHOWONLYAVLCAL_DESC', '_JOMRES_COM_A_SHOWONLYAVLCAL_DESC', false));
@@ -88,6 +81,7 @@ class j00501propertydetailsoptions
 				}
 			}
 
+			/*
 			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_SLIDESHOWS_SHOWSLIDESHOWINLINE', '_JOMRES_COM_A_SLIDESHOWS_SHOWSLIDESHOWINLINE', false));
 			$configurationPanel->setmiddle($lists['showSlideshowInline']);
 			$configurationPanel->setright();
@@ -131,6 +125,7 @@ class j00501propertydetailsoptions
 				$configurationPanel->setright(jr_gettext('JOMRES_COM_A_VERBOSETARIFFINTO_DESC', 'JOMRES_COM_A_VERBOSETARIFFINTO_DESC', false));
 				$configurationPanel->insertSetting();
 			}
+			*/
 
 			if (!isset($mrConfig['galleryLink'])) {
 				$mrConfig['galleryLink'] = '';
@@ -141,10 +136,12 @@ class j00501propertydetailsoptions
 			$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_GALLERYLINK_DESC', '_JOMRES_COM_A_GALLERYLINK_DESC', false));
 			$configurationPanel->insertSetting();
 
+			/*
 			$configurationPanel->setleft(jr_gettext('_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES', '_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES', false));
 			$configurationPanel->setmiddle($lists['showPfeaturesCategories']);
 			$configurationPanel->setright(jr_gettext('_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES_DESC', '_JOMRES_PROPERTYFEATURES_HSHOW_CATEGORIES_DESC', false));
 			$configurationPanel->insertSetting();
+			*/
 
 			$configurationPanel->endPanel();
 		}

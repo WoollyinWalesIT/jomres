@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.2
+* * @version Jomres 10.1.3
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1333,6 +1333,12 @@ class jomres_obsolete_file_handling
 		$this->add_file($this->dir_templates_bootstrap_administrator.'faq_pane.html');
 		$this->add_file($this->dir_templates_bootstrap_administrator.'faq_questions.html');
 
+		$this->add_file($this->dir_minicomponents.'j00004a_init_javascript_css_files.class.php');
+
+		$this->add_file($this->dir_minicomponents.'j10501connect.class.php');
+		$this->add_file($this->dir_minicomponents.'j16000connect.class.php');
+		$this->add_file($this->dir_minicomponents.'j16000connected.class.php');
+		$this->add_file($this->dir_minicomponents.'j16000connect_status.class.php');
 	}
 	
 	/**

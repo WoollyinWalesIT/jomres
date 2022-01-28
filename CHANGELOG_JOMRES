@@ -1,3 +1,51 @@
+<h3>Jomres 10.1.3 28/01/2022</h3>
+
+Reworked property composite notabs (default property details template).
+New sidebar with contact details for the platform, and property blurb are now in new vertical tabs. These tab contents are hard coded into the template, which makes it much easier to customise.
+
+Loadsa changes to ensure that the BS5 markup is up to scratch (never ending job, I suspect).
+Modified how javascript is loaded to ensure that the jomres bootstrap version variable is set early
+Make the recaptcha check smaller so that it fits in the sidebar
+Allow for no task to be set in router
+renamed recaptcha setting text in admin integrations tab
+J4 call jquery js files if in admin area only
+Removed facebook from property details settings and top.html as it's an unnecessary overhead.
+Improved update UI info
+Updated admin area bootstrap 3  media centre to work with jquery 3
+Make sure that other language files are added to Translate lang file strings page
+Tweaked how lang shortcode is added to J4 live site definition
+Unsticky Jomres main menu (J4) as it doesn't play nice with multiselect dropdowns
+Added code to check if the site has been updated from a BS3 installation and if so, automatically set Jomres BS version to 5.
+Spinner added to indicate new regions list loading
+Markup of main menu improved
+Added ability to send property uid to contact owner. Primarly to allow us to send property uid zero, which then directs emails to the email address stored in site config my business settings.
+Added some defaults for new social media settings
+Contact owner markup tweaked (J4)
+Submit buttons when editing resources made fixed to bottom of viewport
+Cancel button on contact owner page removed because it's not needed when included in other templates.(J4)
+Updated markup of fontawesome icons for FA2 versus FA5
+Modified mrp calendar so that the legend lays out nicer in J4
+Revamped the show room and show rooms layout for J4.
+Show property features and show property reviews markup improved.
+Commented out some property details options that are no longer catered for in any meaningful way.
+Added template theming for jquery notify so that the close button doesn't get shown (J4)
+Show tariffs template updated to use rows instead of tables.
+Added conditions to viewproperty so that rooms and room types aren't shown in SRPs.
+Booking form markup improved for BS5
+Tweak cms specific editor function (editor doesn't however appear to be working) (J4)
+Added some conditions to prevent output in view property when it's not relevant (tariffs on jintour, for example).
+List properties and List Properties by photos templates updated for J4/BS5
+Added a new badge function for generating badges.
+Price output in photo layout moved so it overlays image.
+New ribbon generator class added, calculates blurb to be added to a ribbon that overlays property lists, to output a comment based on the review ratings or, absent them, then text that says if the property offers a discount.
+Removed option to switch to tabbed version of property details template. It's old and not supported in J4. It's initial purpose was to allow switching between different templates but the J4 version of property details no tabs uses better functionality, including use of jomres_script so this one is redundant now.
+Don't include google map source url if api key not set
+
+Fixed an issue with updating Wordpress.
+Fixed an issue in REST API on J4.
+Fixed an issue with schema throwing errors on jintour properties
+
+<h3>Jomres 10.1.2 11/01/2022</h3>
 
 <span class="label label-success">Feature</span> Added ability to upload property type images (at last!)
 <span class="label label-success">Feature</span> Modified composite property details. Now details are in offcanvas sidebar. Declutters the main property page.

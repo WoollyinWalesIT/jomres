@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.2
+* * @version Jomres 10.1.3
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1188,7 +1188,7 @@ jr_define('_JOMRES_CONVERSION_DISCLAIMER', 'Vi har gjort vårt bästa för att f
 // 5.3.1
 jr_define('_JOMRES_CURRENCYCONVERSION_TAB', 'valutaomvandling/valutakoder');
 jr_define('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'API-nyckel för IP-detektering');
-jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'För att automatiskt välja standardvalutakod i rullgardinslistan kan Jomres använda en gratis tjänst som kallas IPinfoDB för att spåra besökarens land, men du måste registrera dig för att få en API nyckel hos <a href="http://ipinfodb.com/register.php" target="_blank">IPinfoDB</a> först.');
+jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'För att automatiskt välja standardvalutakod i rullgardinslistan kan Jomres använda en gratis tjänst som kallas IPinfoDB för att spåra besökarens land, men du måste registrera dig för att få en API nyckel hos <a href="https://www.ipinfodb.com/login" target="_blank">IPinfoDB</a> först.');
 jr_define('_JOMRES_DEBUGGING_TAB', 'Felsökning');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'Boende exkl. moms');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'Boende inkl. moms');
@@ -2645,3 +2645,32 @@ jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Hämta ny nyckel');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Spara ny nyckel');
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Egenskapstypbilder");
+
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"Behöver du hjälp att boka?");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"Ring vår kundtjänst på numret nedan för att prata med en av våra representanter som hjälper dig med alla dina semesterbehov.");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"Varför boka hos oss?");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"Vi erbjuder de bästa bokningspriserna");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"Vi har de mest prisvärda fastigheterna på marknaden för närvarande.");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"Inga bokningsavgifter. Spara pengar!");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"Bra urval av egenskaper");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," egenskaper");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS'," gästrecensioner");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"Vi är alltid här");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"Ring eller maila oss när som helst");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"Få 24-timmars support före, under och efter din resa");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"Sociala medier");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"Hitta oss på sociala medier");
+
+	jr_define('JOMRES_REVIEW_SCORE_TOP_1', "Utestående");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_2', "Exceptionell");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_3', "Fantastiskt");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_4', "Superbt");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_5', "Fantastiskt");
+
+	jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD', "Mycket bra");
+	jr_define('JOMRES_REVIEW_SCORE_GOOD', "Bra");
+
+	jr_define('JOMRES_REVIEWS_NONE_NEW', "Ny notering");
+	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Rabatterade");

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.2
+* * @version Jomres 10.1.3
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -48,10 +48,11 @@ class j06000show_main_menu
 		}
 		
 	   set_showtime('menu_location_div_id' , 'main_menu_location');
-	   
+
 	   echo '<div id="main_menu_location"></div>';
-	   echo $MiniComponents->triggerEvent('99995');
-		
+	   $MiniComponents->triggerEvent('09995');
+	   echo $MiniComponents->specificEvent('09997', 'menu', array());
+
 	}
 
 

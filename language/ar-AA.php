@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.2
+* * @version Jomres 10.1.3
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1192,7 +1192,7 @@ jr_define('_JOMRES_CONVERSION_DISCLAIMER', 'وقد استخدمنا بذل قص�
 jr_define('_JOMRES_CURRENCYCONVERSION_TAB', 'نتيجة تحويل عملة / عملة رموز');
 jr_define('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'IP Detection API Key');
 jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'لتعيين القائمة المنسدلة لرمز العملة تلقائيًا , يمكن لـ Jomres استخدام خدمة مجانية تسمى IPinfoDB لاكتشاف بلد الزائر , ومع ذلك تحتاج إلى التسجيل للحصول على مفتاح API أولاً
-<a href="http://ipinfodb.com/register.php" target="_blank">IPinfoDB</a>');
+<a href="https://www.ipinfodb.com/login" target="_blank">IPinfoDB</a>');
 jr_define('_JOMRES_DEBUGGING_TAB', 'تصحيح الاخطاء');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'الاقامة بدون الضرائب');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'الإقامة شاملة الضرائب');
@@ -2677,3 +2677,32 @@ jr_define ('PLUGIN_UPDATE_MESSAGE2_LINK1', 'الحصول على مفتاح جد�
 jr_define ('PLUGIN_UPDATE_MESSAGE2_LINK2', 'حفظ المفتاح الجديد');
 
 jr_define ('_ JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES', "صور نوع الخاصية") ;
+
+	jr_define ('JOMRES_SITE_SIDEBAR_HELP_TITLE',"هل تحتاج إلى مساعدة في الحجز؟");
+jr_define ('JOMRES_SITE_SIDEBAR_HELP_BLURB',"اتصل بفريق خدمة العملاء على الرقم أدناه للتحدث إلى أحد ممثلينا الذين سيساعدك في جميع احتياجات عطلتك.");
+
+jr_define ('JOMRES_SITE_SIDEBAR_WHY_TITLE',"ما مزايا الحجز لدينا؟");
+jr_define ('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"نحن نقدم أفضل أسعار الحجز");
+jr_define ('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"لدينا أفضل العقارات المعروضة حاليًا في السوق.");
+jr_define ('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"بدون رسوم حجز. وفر المال!");
+jr_define ('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"مجموعة رائعة من الخصائص");
+jr_define ('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS',"الخصائص");
+jr_define ('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS',"تقييمات الضيوف");
+jr_define ('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"نحن دائمًا هنا");
+jr_define ('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"اتصل بنا أو راسلنا عبر البريد الإلكتروني,في أي وقت");
+jr_define ('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"احصل على دعم على مدار 24 ساعة قبل رحلتك وأثناءها وبعدها");
+
+jr_define ('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"وسائل التواصل الاجتماعي");
+jr_define ('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"اعثر علينا على وسائل التواصل الاجتماعي");
+
+jr_define ('JOMRES_REVIEW_SCORE_TOP_1',"رائع");
+jr_define ('JOMRES_REVIEW_SCORE_TOP_2',"استثنائي");
+jr_define ('JOMRES_REVIEW_SCORE_TOP_3',"رائع");
+jr_define ('JOMRES_REVIEW_SCORE_TOP_4',"رائع");
+jr_define ('JOMRES_REVIEW_SCORE_TOP_5',"رائع");
+
+jr_define ('JOMRES_REVIEW_SCORE_VERY_GOOD',"جيد جدًا");
+jr_define ('JOMRES_REVIEW_SCORE_GOOD',"جيد");
+
+jr_define ('JOMRES_REVIEWS_NONE_NEW',"قائمة جديدة");
+jr_define ('JOMRES_RIBBON_TEXT_DISCOUNTED',"مخفضة");

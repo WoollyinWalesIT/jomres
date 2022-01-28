@@ -1,6 +1,6 @@
 
 <patTemplate:tmpl name="pageoutput">
-<style type="text/css">
+<style>
 	label.valid {
 		width: 24px;
 		height: 24px;
@@ -17,7 +17,6 @@
 	}
 </style>
 <script type="text/javascript">
-	<!--
 	{BOOKEDDATES}
 	var isSRP = true;
 	/*var x*/
@@ -155,6 +154,9 @@
 
 	jomresJquery(function(){
 		jomresJquery("#country").change(function(){
+			populateDiv("guest_region_div" , '<div class="spinner-border text-info" role="status">\n' +
+					'  <span class="visually-hidden">Loading...</span>\n' +
+					'</div>');
 			var selectedValue = jomresJquery(this).find(":selected").val();
 			clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
 			jomresJquery.get(live_site_ajax + clause, function (data) {
@@ -162,7 +164,6 @@
 				});
 			});
 		});
-	//-->
 </script>
 
 {OPENBOOKINGOFRM_BUTTON} {BUTTON_BACK_TO_PROPERTY_DETAILS}
@@ -179,17 +180,29 @@
 					</div>
 					<div class="card-body">
 						<p>{AJAXFORM_PARTICULARS_DESC}</p>
-						<div class="col-lg-6">
-							<div class="form-group">
-								<label class="col-form-label" for="arrivalDate">{HARRIVALDATE}</label>
-								<div class="input-group">{ARRIVALDATE}</div>
+						<div class="row">
+							<div class="col-lg-4">
+								<div class="form-group">
+									<label class="col-form-label" for="arrivalDate">{HARRIVALDATE}</label>
+									<div class="input-group">{ARRIVALDATE}</div>
+								</div>
 							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="form-group">
-								<label class="col-form-label" for="departureDate">{HDEPARTUREDATE}</label>
-								<div class="input-group">{DEPARTUREDATE}</div>
+							<div class="col-lg-4">
+								<div class="form-group">
+									<label class="col-form-label" for="departureDate">{HDEPARTUREDATE}</label>
+									<div class="input-group">{DEPARTUREDATE}</div>
+								</div>
 							</div>
+							<pattemplate:tmpl name="calendar_modal" type="simpleCondition" requiredvars="_jomres_com_a_avlcal">
+								<div class="col-lg-4">
+									<div class="form-group">
+										<label class="col-form-label" for="departureDate">{_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY}</label>
+										<div class="input-group">
+											<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#availability_calendar_model">{_JOMRES_COM_A_AVLCAL}</button>
+										</div>
+									</div>
+								</div>
+							</pattemplate:tmpl>
 						</div>
 						<pattemplate:tmpl name="guesttypes" type="simpleCondition" requiredvars="fieldname">
 							<div class="col-lg-3">
@@ -448,6 +461,22 @@
 			<input type="hidden" id="booking_form_property_uid" name="property_uid"
 			       value="{PROPERTYUID}">{CSRF_TOKEN}</form>
 	</div>
-<div style="clear:both;">&nbsp;</div>
+
+	<div class="modal fade modal-dialog-scrollable"  id="availability_calendar_model" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-xl">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">{_JOMRES_COM_A_AVLCAL}</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					{BOOKING_FORM_CALENDAR}
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-bs-toggle="modal">{COMMON_CLOSE}</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
 
 </patTemplate:tmpl>

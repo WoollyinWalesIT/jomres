@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.2
+* * @version Jomres 10.1.3
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -57,7 +57,12 @@ class j16000translate_lang_file_strings
 		$jomres_property_types = jomres_singleton_abstract::getInstance('jomres_property_types');
 		
 		$jomres_language_definitions = jomres_singleton_abstract::getInstance('jomres_language_definitions');
-		
+
+        $jomres_language = jomres_singleton_abstract::getInstance('jomres_language');
+        $jomres_language->get_language('faq');
+        $jomres_language->get_language('shotcodes');
+        $jomres_language->get_language('video_tutorials');
+
 		$javascript = 'onchange="switch_language_context(this.value);"';
 
 		echo '<h2 class="page-header">'.jr_gettext('_JOMRES_TOUCHTEMPLATES', '_JOMRES_TOUCHTEMPLATES', false).' - '.get_showtime('lang').'</h2>';

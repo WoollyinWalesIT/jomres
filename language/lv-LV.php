@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.2
+* * @version Jomres 10.1.3
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1180,7 +1180,7 @@ jr_define ('_JOMRES_CONVERSION_DISCLAIMER', 'Mēs esam darījuši visu iespējam
 // 5.3.1
 jr_define('_JOMRES_CURRENCYCONVERSION_TAB', 'Valūtas konvertācija/valūtu kodi');
 jr_define ('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'IP noteikšanas API atslēga');
-jr_define ('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Lai automātiski iestatītu valūtas koda nolaižamo izvēlni, Jomres var izmantot bezmaksas pakalpojumu IPinfoDB, lai noteiktu apmeklētāja valsti, tomēr jums ir jāreģistrējas API atslēgai vietnē <a href = "http: //ipinfodb.com/register.php target="_blank"> IPinfoDB </a> vispirms. ');
+jr_define ('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Lai automātiski iestatītu valūtas koda nolaižamo izvēlni, Jomres var izmantot bezmaksas pakalpojumu IPinfoDB, lai noteiktu apmeklētāja valsti, tomēr jums ir jāreģistrējas API atslēgai vietnē <a href = "https://www.ipinfodb.com/login" target="_blank"> IPinfoDB </a> vispirms. ');
 jr_define ('_JOMRES_DEBUGGING_TAB', 'Atkļūdošana');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'Summa bez PVN');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'Summa ar PVN');
@@ -2646,3 +2646,32 @@ jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Iegūt jaunu atslēgu');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Saglabāt jauno atslēgu');
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Īpašuma tipa attēli");
+
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"Vai nepieciešama palīdzība rezervēšanai?");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"Zvaniet mūsu klientu apkalpošanas komandai uz tālāk norādīto numuru, lai runātu ar kādu no mūsu pārstāvjiem, kas palīdzēs ar visām jūsu brīvdienu vajadzībām.");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"Kāpēc rezervēt pie mums?");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"Mēs piedāvājam vislabākās rezervācijas cenas");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"Mums ir tirgū šobrīd pieejamie īpašumi par labāko cenu.");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"Bez rezervācijas maksas. Ietaupiet naudu!");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"Lieliska rekvizītu izvēle");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," rekvizīti");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS'," viesu atsauksmes");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"Mēs vienmēr esam šeit");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"Zvaniet vai rakstiet mums jebkurā laikā");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"Saņemiet 24 stundu atbalstu pirms ceļojuma, brauciena laikā un pēc tā");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"Sociālie mediji");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"Atrodiet mūs sociālajos medijos");
+
+	jr_define('JOMRES_REVIEW_SCORE_TOP_1', "Izcils");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_2', "Izņēmuma kārtā");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_3', "Pasakains");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_4', "Lielisks");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_5', "Fantastiski");
+
+	jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD', "Ļoti labi");
+	jr_define('JOMRES_REVIEW_SCORE_GOOD', "Labi");
+
+	jr_define('JOMRES_REVIEWS_NONE_NEW', "Jauns saraksts");
+	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Atlaide");

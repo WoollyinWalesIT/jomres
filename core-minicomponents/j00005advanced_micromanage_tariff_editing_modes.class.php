@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.2
+* * @version Jomres 10.1.3
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -60,9 +60,16 @@ class j00005advanced_micromanage_tariff_editing_modes
 						break;
 					}
 
+					// There are some differences between J3 & J4 and the font awesome icons
+					$font_awesome_tariffs = 'fa-usd';
+
+					if (jomres_bootstrap_version() == '5' ) {
+						$font_awesome_tariffs = 'fa-dollar-sign';
+					}
+
 				if ($thisJRUser->accesslevel >= 70) 
 					{
-					$jomres_menu->add_item(80, jr_gettext('_JOMRES_COM_MR_LISTTARIFF_TITLE', '_JOMRES_COM_MR_LISTTARIFF_TITLE', false), $task, 'fa-usd');
+					$jomres_menu->add_item(80, jr_gettext('_JOMRES_COM_MR_LISTTARIFF_TITLE', '_JOMRES_COM_MR_LISTTARIFF_TITLE', false), $task, $font_awesome_tariffs);
 					}
 				}
 			

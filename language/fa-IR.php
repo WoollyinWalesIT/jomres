@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.2
+* * @version Jomres 10.1.3
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1146,7 +1146,7 @@ jr_define ('_JOMRES_CONVERSION_TITLE_DESC' , "از قابلیت تبدیل آن�
 jr_define ('_JOMRES_CONVERSION_DISCLAIMER' , 'ما تمام تلاش خود را برای بدست آوردن دقیق ترین و به موقع ترین نرخ ارز که می توانیم به کار گرفته ایم. ویژگی تبدیل ارز آنلاین ما خدماتی است که فقط برای اهداف اطلاعاتی ارائه شده است و ارایه ارقام دقیق در نظر گرفته نشده است. بر این اساس , ما صحت نرخ ارز را تضمین نمی کنیم. با استفاده از این ویژگی , تصور می شود که شما موافقت کرده اید که هرگونه اتکا یا استفاده از ویژگی تبدیل نرخ بطور کامل با مسئولیت خود شما خواهد بود. ');
 jr_define('_JOMRES_CURRENCYCONVERSION_TAB', 'تبدیل واحد پول/کد واحد پول');
 jr_define ('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'IP Detection API Key');
-jr_define ('_JOMRES_IP_DETECTION_API_KEY_DESC' , "برای تنظیم خودکار کد کشویی Jomres قادر است از یک سرویس رایگان به نام IPinfoDB برای تشخیص کشور بازدیدکنندگان استفاده کند , اما ابتدا باید برای کلید API در IPinfoDB ثبت نام کنید.");
+jr_define ('_JOMRES_IP_DETECTION_API_KEY_DESC' , "برای تنظیم خودکار کد کشویی Jomres قادر است از یک سرویس رایگان به نام IPinfoDB برای تشخیص کشور بازدیدکنندگان استفاده کند , اما ابتدا باید برای کلید API در https://www.ipinfodb.com/login ثبت نام کنید.");
 jr_define ('_JOMRES_DEBUGGING_TAB' , 'اشکال زدایی') ;
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'هزینه ها بدون مالیات');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'هزینه ها به همراه مالیات');
@@ -2748,3 +2748,32 @@ jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'دریافت کلید جدید');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'ذخیره کلید جدید');
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"تصاویر نوع ویژگی");
+
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"برای رزرو به کمک نیاز دارید؟");
+jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"با تیم خدمات مشتری ما با شماره زیر تماس بگیرید تا با یکی از نمایندگان ما صحبت کنید که به شما در رفع تمام نیازهای تعطیلات کمک می کند.");
+
+jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"چرا با ما رزرو کنید؟");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"ما بهترین نرخ های رزرو را ارائه می دهیم");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"ما دارای بهترین قیمت در حال حاضر در بازار هستیم.");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"بدون هزینه رزرو. صرفه جویی در هزینه!");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"انتخاب عالی از خواص");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," خواص");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS'," نظرات مهمان");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"ما همیشه اینجا هستیم");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"در هر زمان با ما تماس بگیرید یا ایمیل بزنید");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"دریافت پشتیبانی 24 ساعته قبل، در طول و بعد از سفر");
+
+jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"رسانه های اجتماعی");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"ما را در رسانه های اجتماعی بیابید");
+
+jr_define('JOMRES_REVIEW_SCORE_TOP_1', "ممتاز");
+jr_define('JOMRES_REVIEW_SCORE_TOP_2', "Exceptional");
+jr_define('JOMRES_REVIEW_SCORE_TOP_3', "عالی");
+jr_define('JOMRES_REVIEW_SCORE_TOP_4', "عالی");
+jr_define('JOMRES_REVIEW_SCORE_TOP_5', "عالی");
+
+jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD', "بسیار خوب");
+jr_define('JOMRES_REVIEW_SCORE_GOOD', "خوب");
+
+jr_define('JOMRES_REVIEWS_NONE_NEW', "فهرست جدید");
+jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "تخفیف");

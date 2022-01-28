@@ -495,6 +495,9 @@ var d1 = jomresJquery.Deferred();
 
 jomresJquery(function(){
 	jomresJquery("#guest_country").change(function(){
+		populateDiv("guest_region_div" , '<div class="spinner-border text-info" role="status">\n' +
+				'  <span class="visually-hidden">Loading...</span>\n' +
+				'</div>');
 		var selectedValue = jomresJquery(this).find(":selected").val();
 		clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
 		d1 = jomresJquery.get(live_site_ajax + clause, function (data) {
@@ -535,6 +538,9 @@ jomresJquery("#blackBookingForm").appendTo("body");
 });
 
 function reset_region_dropdown() {
+	populateDiv("guest_region_div" , '<div class="spinner-border text-info" role="status">\n' +
+			'  <span class="visually-hidden">Loading...</span>\n' +
+			'</div>');
 	var selectedCountry = jomresJquery('#blackBookingForm #guest_country').find(":selected").val();
 	clause = "&task=get_region_dropdown_for_country_code&country="+selectedCountry;
 	jomresJquery.get(live_site_ajax + clause, function (data) {

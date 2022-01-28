@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.2
+* * @version Jomres 10.1.3
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -663,7 +663,7 @@ class j02990showconfirmation
 			$booking_room_specific_info[ ] = $booking_room_specific;
 		}
 
-		$booking_parts['TERMS_MODAL_CONTENTS'] = $MiniComponents->specificEvent('06000', 'terms', array('return_template' => true));
+		$booking_parts['TERMS_MODAL_CONTENTS'] = $MiniComponents->specificEvent('06000', 'terms', array('output_now' => false));
 
 		$booking_particulars[ ] = $booking_parts;
 		$tmpl = new patTemplate();

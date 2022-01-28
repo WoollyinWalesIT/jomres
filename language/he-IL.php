@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.2
+* * @version Jomres 10.1.3
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1220,7 +1220,7 @@ jr_define ('_JOMRES_CONVERSION_DISCLAIMER', 'השתמשנו כמיטב יכול�
 // 5.3.1
 jr_define ('_JOMRES_CURRENCYCONVERSION_TAB', 'המרת מטבע/קודי מטבע');
 jr_define ('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'מפתח API לזיהוי IP');
-jr_define ('_JOMRES_IP_DETECTION_API_KEY_DESC', 'כדי להגדיר אוטומטית את התפריט הנפתח של קוד המטבע Jomres יכול להשתמש בשירות חינמי בשם IPinfoDB כדי לזהות את מדינת המבקר, אולם עליך להירשם למפתח API ב <a href = "http: //ipinfodb.com/register.php" target ="_blank"> IPinfoDB </a> תחילה. ');
+jr_define ('_JOMRES_IP_DETECTION_API_KEY_DESC', 'כדי להגדיר אוטומטית את התפריט הנפתח של קוד המטבע Jomres יכול להשתמש בשירות חינמי בשם IPinfoDB כדי לזהות את מדינת המבקר, אולם עליך להירשם למפתח API ב <a href = "https://www.ipinfodb.com/login" target ="_blank"> IPinfoDB </a> תחילה. ');
 jr_define ('_JOMRES_DEBUGGING_TAB', 'Debugging');
 jr_define ('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'לינה ללא מס');
 jr_define ('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'מס לינה כולל');
@@ -2680,3 +2680,32 @@ jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'קבל מפתח חדש');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'שמור מפתח חדש');
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"תמונות מסוג נכס");
+
+jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"צריך עזרה בהזמנה?");
+jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"התקשר לצוות שירות הלקוחות שלנו בטלפון למטה כדי לדבר עם אחד הנציגים שלנו שיעזור לך בכל צרכי החג שלך.");
+
+jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"למה להזמין אצלנו?");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"אנו מציעים את תעריפי ההזמנה הטובים ביותר");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"יש לנו את הנכסים במחיר הטוב ביותר בשוק.");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"ללא עמלות הזמנה. חסוך כסף!");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"מבחר גדול של מאפיינים");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," מאפיינים");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS'," ביקורות אורחים");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"אנחנו תמיד כאן");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"התקשר או שלח לנו דוא\"ל, בכל עת");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"קבל תמיכה 24 שעות לפני, במהלך ואחרי הטיול שלך");
+
+jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"מדיה חברתית");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"מצא אותנו במדיה החברתית");
+
+jr_define('JOMRES_REVIEW_SCORE_TOP_1', "יוצא מן הכלל");
+jr_define('JOMRES_REVIEW_SCORE_TOP_2', "חריג");
+jr_define('JOMRES_REVIEW_SCORE_TOP_3', "מעולה");
+jr_define('JOMRES_REVIEW_SCORE_TOP_4', "מעולה");
+jr_define('JOMRES_REVIEW_SCORE_TOP_5', "פנטסטי");
+
+jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD', "טוב מאוד");
+jr_define('JOMRES_REVIEW_SCORE_GOOD', "טוב");
+
+jr_define('JOMRES_REVIEWS_NONE_NEW', "רישום חדש");
+jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "בהנחה");

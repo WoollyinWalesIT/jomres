@@ -1,4 +1,3 @@
-
 <patTemplate:tmpl name="pageoutput">
 <style type="text/css">
 	label.valid {
@@ -19,7 +18,6 @@
 
 </style>
 <script type="text/javascript">
-	<!--
 	{BOOKEDDATES}
 	var isSRP = false;
 	/*var x*/
@@ -160,6 +158,9 @@
 
 	document.addEventListener('DOMContentLoaded', function() {
 		jomresJquery("#country").change(function(){
+			populateDiv("guest_region_div" , '<div class="spinner-border text-info" role="status">\n' +
+					'  <span class="visually-hidden">Loading...</span>\n' +
+					'</div>');
 			var selectedValue = jomresJquery(this).find(":selected").val();
 			clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
 			jomresJquery.get(live_site_ajax + clause, function (data) {
@@ -171,7 +172,6 @@
 	document.addEventListener('DOMContentLoaded', function() {
 		jomresJquery('[data-bs-toggle="tooltip"]').tooltip()
 	})
-	//-->
 </script>
 
 {OPENBOOKINGOFRM_BUTTON} {BUTTON_BACK_TO_PROPERTY_DETAILS}

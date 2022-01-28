@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.2
+* * @version Jomres 10.1.3
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -126,11 +126,15 @@ class j06000show_property_room_types
 							array(),
 							$url
 							);
+
+
+					$room_type[ '_JOMRES_TARIFFSFROM' ] = jr_gettext('_JOMRES_TARIFFSFROM', '_JOMRES_TARIFFSFROM', false);
+					$room_type[ 'ROOM_TYPE_IMAGE' ] = $images[0]['large'];
 					$room_type[ 'ROOM_TYPE_TEXT' ] = $basic_property_details->this_property_room_classes[$key]['abbv'];
 					$room_type[ 'ROOM_TYPE_COUNTER' ] = count($basic_property_details->rooms_by_type[$key]);
 					$room_type[ 'ROOM_TYPE_PAGE_URL' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=show_property_room_type&property_uid='.$property_uid.'&room_classes_uid='.$key);
-					
-					$room_type[ 'ROOM_TYPE_PRICE' ] = ' ??? ';
+
+					$room_type[ 'ROOM_TYPE_PRICE' ] = jr_gettext('_JOMRES_PRICE_ON_APPLICATION', '_JOMRES_PRICE_ON_APPLICATION', false);;
 					
 					if (isset($this->roomTypePriceRanges[$key])) {
 						$room_type[ 'ROOM_TYPE_PRICE' ] = $this->roomTypePriceRanges[$key];

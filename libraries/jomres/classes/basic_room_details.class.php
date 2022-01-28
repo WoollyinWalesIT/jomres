@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.2
+* * @version Jomres 10.1.3
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -244,6 +244,10 @@ class basic_room_details
 				}
 				
 				$this->all_room_features[ $r->room_features_uid ][ 'image' ] = $feature_image;
+
+				$this->all_room_features[ $r->room_features_uid ][ 'small' ] =$jomres_media_centre_images->images['room_features'][ $r->room_features_uid ][0]['small'];
+				$this->all_room_features[ $r->room_features_uid ][ 'medium' ] =$jomres_media_centre_images->images['room_features'][ $r->room_features_uid ][0]['medium'];
+				$this->all_room_features[ $r->room_features_uid ][ 'large' ] =$jomres_media_centre_images->images['room_features'][ $r->room_features_uid ][0]['large'];
 
 				$this->all_room_features[ $r->room_features_uid ][ 'tooltip' ] = jomres_makeTooltip(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION'.(int) $r->room_features_uid, stripslashes($r->feature_description), false, false), jr_gettext('_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION'.(int) $r->room_features_uid, stripslashes($r->feature_description), false, false), '', $feature_image, '', 'property_feature', array());
 			}

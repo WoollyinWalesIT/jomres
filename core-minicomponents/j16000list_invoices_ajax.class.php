@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.2
+* * @version Jomres 10.1.3
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -221,21 +221,23 @@ class j16000list_invoices_ajax
 					break;
 				}
 
-			if (!using_bootstrap()) {
-				$jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
-				$jrtb = $jrtbar->startTable();
-				$jrtb .= $jrtbar->toolbarItem('edit', jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=view_invoice'.'&id='.$p->id), jr_gettext('COMMON_VIEW', 'COMMON_VIEW', false));
-				$r[] = $jrtb .= $jrtbar->endTable();
-			} else {
-				$toolbar = jomres_singleton_abstract::getInstance('jomresItemToolbar');
-				$toolbar->newToolbar();
-				$toolbar->addItem('fa fa-pencil-square-o', 'btn btn-info', '', jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=view_invoice&id='.$p->id), jr_gettext('COMMON_VIEW', 'COMMON_VIEW', false));
-				if ($p->status != 1 && $p->raised_date > '1970-01-01 00:00:01') {
-					$toolbar->addSecondaryItem('fa fa-usd', '', '', jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=mark_invoice_paid&id='.$p->id), jr_gettext('_JOMRES_INVOICE_MARKASPAID', '_JOMRES_INVOICE_MARKASPAID', false));
-				}
-				//$toolbar->addSecondaryItem( 'fa fa-print', '', '', jomresURL( JOMRES_SITEPAGE_URL_ADMIN . '&task=view_invoice&popup=1&id=' . $p->id . '&tmpl='.get_showtime("tmplcomponent")), jr_gettext( 'COMMON_PRINT', COMMON_PRINT, false ) );
-				$r[] = $toolbar->getToolbar();
+			// There are some differences between J3 & J4 and the font awesome icons
+			$font_awesome_tariffs = 'fa-usd';
+			$font_awesome_edit = 'fa-pencil-square-o';
+
+			if (jomres_bootstrap_version() == '5' ) {
+				$font_awesome_tariffs = 'fa-dollar-sign';
+				$font_awesome_edit = 'fa-edit';
 			}
+
+			$toolbar = jomres_singleton_abstract::getInstance('jomresItemToolbar');
+			$toolbar->newToolbar();
+			$toolbar->addItem($font_awesome_edit, 'btn btn-info', '', jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=view_invoice&id='.$p->id), jr_gettext('COMMON_VIEW', 'COMMON_VIEW', false));
+			if ($p->status != 1 && $p->raised_date > '1970-01-01 00:00:01') {
+				$toolbar->addSecondaryItem($font_awesome_tariffs, '', '', jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=mark_invoice_paid&id='.$p->id), jr_gettext('_JOMRES_INVOICE_MARKASPAID', '_JOMRES_INVOICE_MARKASPAID', false));
+			}
+			$r[] = $toolbar->getToolbar();
+
 
 			$r[] = '<span class="label '.$label_class.'">'.$p->id.'</span>';
 

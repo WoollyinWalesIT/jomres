@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.2
+* * @version Jomres 10.1.3
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1212,7 +1212,7 @@ jr_define('_JOMRES_CONVERSION_DISCLAIMER', '我们已尽最大努力获得最准
 // 5.3.1
 jr_define('_JOMRES_CURRENCYCONVERSION_TAB', '货币转换/货币代码');
 jr_define('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'IP 检测 API 密钥');
-jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', '要自动设置货币代码下拉菜单 Jomres 能够使用名为 IPinfoDB 的免费服务来检测访问者的国家/地区，但是您需要在 <a href="http: //ipinfodb.com/register.php" target="_blank">IPinfoDB</a> 首先。');
+jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', '要自动设置货币代码下拉菜单 Jomres 能够使用名为 IPinfoDB 的免费服务来检测访问者的国家/地区，但是您需要在 <a href="https://www.ipinfodb.com/login" target="_blank">IPinfoDB</a> 首先。');
 jr_define('_JOMRES_DEBUGGING_TAB', '调试');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', '住宿不含税');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', '住宿含税');
@@ -2655,3 +2655,31 @@ jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', '获取新密钥');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', '保存新密钥');
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"属性类型图像");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"需要帮助预订？");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"请拨打我们的客服电话，与我们的一位代表交谈，他们将帮助您满足您的所有假期需求。");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"为什么要和我们一起预订？");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"我们提供最优惠的预订价格");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"我们拥有目前市场上价格最优惠的房产。");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"无预订费。省钱！");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"精选属性");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS',"属性");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS',"客人评论");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"我们一直在这里");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"随时给我们打电话或发电子邮件");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"在旅行之前、期间和之后获得 24 小时支持");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"社交媒体");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"在社交媒体上找到我们");
+
+	jr_define('JOMRES_REVIEW_SCORE_TOP_1', "优秀");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_2', "异常");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_3', "很棒");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_4', "精湛");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_5', "太棒了");
+
+	jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD', "很好");
+	jr_define('JOMRES_REVIEW_SCORE_GOOD', "好");
+
+	jr_define('JOMRES_REVIEWS_NONE_NEW', "新上市");
+	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "打折");

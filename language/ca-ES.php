@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.2
+* * @version Jomres 10.1.3
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1212,7 +1212,7 @@ jr_define('_JOMRES_CONVERSION_DISCLAIMER', "Hem posat els nostres millors esfor�
 // 5.3.1
 jr_define('_JOMRES_CURRENCYCONVERSION_TAB', 'Conversió de moneda/codi de moneda');
 jr_define('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'Detecció de IP, clau API');
-jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', "Per a fixar automàticament en el desplegable de canvi de moneda, Jomres utilitza un servri gratuït anomenar IpinfoBB per a detectar el país del visitant, no obstant haurà d'obtenir primer una clau API en: <a href='http://ipinfodb.com/register.php' target='_blank'>IPinfoDB</a>.");
+jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', "Per a fixar automàticament en el desplegable de canvi de moneda, Jomres utilitza un servri gratuït anomenar IpinfoBB per a detectar el país del visitant, no obstant haurà d'obtenir primer una clau API en: <a href='https://www.ipinfodb.com/login' target='_blank'>IPinfoDB</a>.");
 jr_define('_JOMRES_DEBUGGING_TAB', 'Depuració');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'Allotjament iva excluït ');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'Allotjament iva incluït');
@@ -2666,3 +2666,32 @@ jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Obtén una clau nova');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Desa la clau nova');
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Imatges de tipus de propietat");
+
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"Necessites ajuda per reservar?");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"Truqueu al nostre equip d'atenció al client al número següent per parlar amb un dels nostres representants que us ajudarà amb totes les vostres necessitats de vacances.");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"Per què reservar amb nosaltres?");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"Oferim les millors tarifes de reserva");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"Tenim les propietats de millor preu actualment del mercat.");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"Sense comissions de reserva. Estalvieu diners!");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"Gran selecció de propietats");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," propietats");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS'," comentaris dels clients");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"Sempre estem aquí");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"Truca'ns o envia'ns un correu electrònic, en qualsevol moment");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"Obtenir assistència les 24 hores abans, durant i després del viatge");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"Xarxes socials");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"Troba'ns a les xarxes socials");
+
+	jr_define('JOMRES_REVIEW_SCORE_TOP_1', "Excel·lent");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_2', "Excepcional");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_3', "Fabulós");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_4', "Excel·lent");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_5', "Fantàstic");
+
+	jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD', "Molt bé");
+	jr_define('JOMRES_REVIEW_SCORE_GOOD', "Bo");
+
+	jr_define('JOMRES_REVIEWS_NONE_NEW', "Nova llista");
+	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Descomptat");

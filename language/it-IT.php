@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.2
+* * @version Jomres 10.1.3
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1225,7 +1225,7 @@ jr_define('_JOMRES_CONVERSION_DISCLAIMER', "Abbiamo usato i nostri migliori sfor
 // 5.3.1
 jr_define('_JOMRES_CURRENCYCONVERSION_TAB', 'conversione di valuta / codici di valuta');
 jr_define('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'IP rilevamento API Key');
-jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Per impostare automaticamente il codice valuta discesa Jomres è in grado di utilizzare un servizio gratuito chiamato IPinfoDB per rilevare il paeses visitatore , tuttavia è necessario registrarsi per una chiave API a <a href="http://ipinfodb.com/register.php" target="_blank">IPinfoDB</a> first.');
+jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Per impostare automaticamente il codice valuta discesa Jomres è in grado di utilizzare un servizio gratuito chiamato IPinfoDB per rilevare il paeses visitatore , tuttavia è necessario registrarsi per una chiave API a <a href="https://www.ipinfodb.com/login" target="_blank">IPinfoDB</a> first.');
 jr_define('_JOMRES_DEBUGGING_TAB', 'eliminare errori');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'Soggiorno tasse escluse');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'Soggiorno tasse incluse');
@@ -2705,3 +2705,32 @@ jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Ottieni nuova chiave');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Salva nuova chiave');
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Immagini di tipo proprietà");
+
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"Hai bisogno di aiuto per prenotare?");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"Chiama il nostro servizio clienti al numero qui sotto per parlare con uno dei nostri rappresentanti che ti aiuterà con tutte le tue esigenze di vacanza.");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"Perché prenotare con noi?");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"Offriamo le migliori tariffe di prenotazione");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"Abbiamo le proprietà con il miglior prezzo attualmente sul mercato.");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"Nessun costo di prenotazione. Risparmia denaro!");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"Ottima selezione di proprietà");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," proprietà");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS'," recensioni degli ospiti");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"Siamo sempre qui");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"Chiamaci o inviaci un'e-mail, in qualsiasi momento");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"Ottieni supporto 24 ore prima, durante e dopo il tuo viaggio");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"Social media");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"Trovaci sui social media");
+
+	jr_define('JOMRES_REVIEW_SCORE_TOP_1', "Eccezionale");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_2', "Eccezionale");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_3', "Favoloso");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_4', "Superbo");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_5', "Fantastico");
+
+	jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD', "Molto bene");
+	jr_define('JOMRES_REVIEW_SCORE_GOOD', "Buono");
+
+	jr_define('JOMRES_REVIEWS_NONE_NEW', "Nuovo elenco");
+	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Scontato");

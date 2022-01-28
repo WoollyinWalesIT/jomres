@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.2
+* * @version Jomres 10.1.3
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1211,7 +1211,7 @@ jr_define ('_JOMRES_CONVERSION_DISCLAIMER', 'Uložili smo sve napore u postizanj
 // 5.3.1
 jr_define ('_JOMRES_CURRENCYCONVERSION_TAB', 'Konverzija valute/kodovi valuta');
 jr_define ('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'API ključ za otkrivanje IP -a');
-jr_define ('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Za automatsko postavljanje padajućeg koda valute Jomres može koristiti besplatnu uslugu pod nazivom IPinfoDB za otkrivanje zemlje posjetitelja, međutim morate se registrirati za API ključ na <a href = "http://ipinfodb.com/register.php" target ="_blank"> IPinfoDB </a> prvo. ');
+jr_define ('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Za automatsko postavljanje padajućeg koda valute Jomres može koristiti besplatnu uslugu pod nazivom IPinfoDB za otkrivanje zemlje posjetitelja, međutim morate se registrirati za API ključ na <a href = "https://www.ipinfodb.com/login" target ="_blank"> IPinfoDB </a> prvo. ');
 jr_define ('_JOMRES_DEBUGGING_TAB', 'Otklanjanje pogrešaka');
 jr_define ('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'Smještaj bez poreza');
 jr_define ('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'Smještaj sa porezom');
@@ -2686,3 +2686,32 @@ jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Nabavi novi ključ');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Spremi novi ključ');
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Slike vrste svojstva");
+
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"Trebate pomoć pri rezervaciji?");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"Nazovite naš tim za korisničku podršku na broj ispod kako biste razgovarali s jednim od naših predstavnika koji će vam pomoći oko svih vaših potreba za odmor.");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"Zašto rezervirati kod nas?");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"Nudimo najbolje cijene rezervacija");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"Imamo nekretnine po najpovoljnijim cijenama trenutno na tržištu.");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"Bez naknada za rezervaciju. Uštedite!");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"Veliki izbor nekretnina");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," svojstva");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS'," recenzije gostiju");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"Uvijek smo tu");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"Nazovite nas ili nas e-poštom, bilo kada");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"Dobijte 24-satnu podršku prije, tijekom i nakon putovanja");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"Društveni mediji");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"Pronađite nas na društvenim mrežama");
+
+	jr_define('JOMRES_REVIEW_SCORE_TOP_1', "Izvanredan");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_2', "Izuzetno");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_3', "Nevjerojatno");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_4', "Izvrsno");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_5', "Fantastično");
+
+	jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD', "Vrlo dobro");
+	jr_define('JOMRES_REVIEW_SCORE_GOOD', "Dobro");
+
+	jr_define('JOMRES_REVIEWS_NONE_NEW', "Novi unos");
+	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Sniženo");

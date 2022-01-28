@@ -15,6 +15,9 @@
 	<!--
 	jomresJquery(function(){
 		jomresJquery("#country").change(function(){
+			populateDiv("property_region" , '<div class="spinner-border text-info" role="status">\n' +
+					'  <span class="visually-hidden">Loading...</span>\n' +
+					'</div>');
 			var selectedValue = jomresJquery(this).find(":selected").val();
 			clause = "&task=get_region_dropdown_for_country_code&country="+selectedValue;
 			jomresJquery.get(live_site_ajax + clause, function (data) {
@@ -22,8 +25,6 @@
 				});
 			});
 		});
-	
-	document.addEventListener('DOMContentLoaded', function(){
 
 	document.addEventListener('DOMContentLoaded', function(){
 
@@ -293,7 +294,8 @@
 		</div>
 	</div>
 	</patTemplate:tmpl>
-	<div class="form-actions">
+
+	<div class="form-actions fixed-bottom bg-light text-center pt-1 border-top border-success">
 		<div class="col-md-10 col-md-offset-2">
 			<button class="btn btn-primary" type="submit">{COMMON_SUBMIT}</button>
 			<a class="btn btn-secondary" href="{CANCEL_URL}">{COMMON_CANCEL}</a>

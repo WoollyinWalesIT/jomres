@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.2
+* * @version Jomres 10.1.3
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1184,7 +1184,7 @@ jr_define ('_JOMRES_CONVERSION_DISCLAIMER', 'Vyvinuli jsme maximální úsilí k
 // 5.3.1
 jr_define ('_JOMRES_CURRENCYCONVERSION_TAB', 'Převody měn/kódy měn');
 jr_define ('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'IP Detection API Key');
-jr_define ('_JOMRES_IP_DETECTION_API_KEY_DESC', 'K automatickému nastavení rozevíracího seznamu měnových kódů může Jomres používat k detekci země návštěvníka bezplatnou službu s názvem IPinfoDB, nicméně pro klíč API se musíte zaregistrovat na <a href = " http://ipinfodb.com/register.php" target ="_blank"> IPinfoDB </a> jako první. ');
+jr_define ('_JOMRES_IP_DETECTION_API_KEY_DESC', 'K automatickému nastavení rozevíracího seznamu měnových kódů může Jomres používat k detekci země návštěvníka bezplatnou službu s názvem IPinfoDB, nicméně pro klíč API se musíte zaregistrovat na <a href = " https://www.ipinfodb.com/login" target ="_blank"> IPinfoDB </a> jako první. ');
 jr_define ('_JOMRES_DEBUGGING_TAB', 'Ladění');
 jr_define ('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'ubytování bez daně');
 jr_define ('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'ubytování včetně daně');
@@ -2617,3 +2617,32 @@ jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Získat nový klíč');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Uložit nový klíč');
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Obrázky typu vlastnosti");
+
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"Potřebujete pomoc s rezervací?");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"Zavolejte našemu týmu zákaznických služeb na níže uvedené číslo a promluvte si s jedním z našich zástupců, který vám pomůže se všemi potřebami na dovolené.");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"Proč rezervovat u nás?");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"Nabízíme nejlepší ceny za rezervace");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"Máme aktuálně nejvýhodnější nemovitosti na trhu.");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"Žádné rezervační poplatky. Ušetřete peníze!");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"Skvělý výběr vlastností");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," vlastnosti");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS', "recenze hostů");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"Vždy jsme tady");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"Zavolejte nebo napište nám, kdykoli");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"Získejte 24hodinovou podporu před, během a po vaší cestě");
+
+jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"Sociální média");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"Najděte nás na sociálních sítích");
+
+jr_define('JOMRES_REVIEW_SCORE_TOP_1', "Vynikající");
+jr_define('JOMRES_REVIEW_SCORE_TOP_2', "Výjimečné");
+jr_define('JOMRES_REVIEW_SCORE_TOP_3', "Úžasné");
+jr_define('JOMRES_REVIEW_SCORE_TOP_4', "Skvělé");
+jr_define('JOMRES_REVIEW_SCORE_TOP_5', "Fantastické");
+
+jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD', "Velmi dobře");
+jr_define('JOMRES_REVIEW_SCORE_GOOD', "Dobré");
+
+jr_define('JOMRES_REVIEWS_NONE_NEW', "Nový výpis");
+jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Sleva");

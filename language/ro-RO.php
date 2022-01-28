@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.2
+* * @version Jomres 10.1.3
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1215,7 +1215,7 @@ jr_define ("_JOMRES_CONVERSION_DISCLAIMER", "Am depus toate eforturile pentru a 
 // 5.3.1
 jr_define ('_JOMRES_CURRENCYCONVERSION_TAB', 'Conversie valutară / coduri valutare');
 jr_define ('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'IP Detection IP Key');
-jr_define ('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Pentru a seta automat meniul derulant al codului valutar Jomres poate utiliza un serviciu gratuit numit IPinfoDB pentru a detecta țara vizitatorului, totuși trebuie să vă înregistrați pentru o cheie API la <a href = "http: //ipinfodb.com/register.php target="_blank"> IPinfoDB </a> mai întâi. ');
+jr_define ('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Pentru a seta automat meniul derulant al codului valutar Jomres poate utiliza un serviciu gratuit numit IPinfoDB pentru a detecta țara vizitatorului, totuși trebuie să vă înregistrați pentru o cheie API la <a href = "https://www.ipinfodb.com/login" target="_blank"> IPinfoDB </a> mai întâi. ');
 jr_define ('_JOMRES_DEBUGGING_TAB', 'Depanare');
 jr_define ('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'Cazare fără taxe');
 jr_define ('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'Cazare inc taxă');
@@ -2653,7 +2653,7 @@ jr_define ('_JOMRES_CHANNEL_PROPERTY_NO_ADMIN', 'Aceasta este o proprietate de c
 jr_define ("_JOMRES_CONFIG_INITITAL_SETUP_STEP_3_BOOTSTRAP0", "Fără bootstrap în temă");
 
 jr_define('JOMRES_SOCIAL_MEDIA_LINKS', 'Legături social media');
-jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Pune aici numele contului tău de socializare, de exemplu „jomres”, nu întreaga adresă URL');
+jr_define('JOMRES_SOCIAL_MEDIA_LINKS_INFO', 'Pune aici numele contului tău de socializare, de exemplu "jomres", nu întreaga adresă URL');
 
 jr_define('JOMRES_ORGANISATIION_LANGUGES_DESC', 'Lista de limbi vorbite de organizația dvs., separată prin virgulă');
 jr_define('JOMRES_ORGANISATIION_LOGO_URL', 'Url la sigla organizației dvs.');
@@ -2673,3 +2673,32 @@ jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Obţine cheie nouă');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Salvează cheia nouă');
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Imagini de tip de proprietate");
+
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"Aveți nevoie de ajutor pentru rezervare?");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"Apelați echipa noastră de servicii pentru clienți la numărul de mai jos pentru a vorbi cu unul dintre reprezentanții noștri care vă va ajuta cu toate nevoile dvs. de vacanță.");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"De ce să rezervați cu noi?");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"Oferim cele mai bune tarife de rezervare");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"Avem cele mai bune proprietăți la prețuri pe piață în prezent.");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"Fără taxe de rezervare. Economisiți bani!");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"O mare selecție de proprietăți");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," proprietăți");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS'," recenzii oaspeților");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"Suntem mereu aici");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"Apelați-ne sau trimiteți-ne un e-mail, oricând");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"Obțineți asistență 24 de ore înainte, în timpul și după călătoria dvs.");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"Resele sociale");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"Găsiți-ne pe rețelele sociale");
+
+	jr_define('JOMRES_REVIEW_SCORE_TOP_1', "Remarcabil");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_2', "Excepțional");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_3', "Fabulous");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_4', "Superb");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_5', "Fantastic");
+
+	jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD', "Foarte bine");
+	jr_define('JOMRES_REVIEW_SCORE_GOOD', "Bine");
+
+	jr_define('JOMRES_REVIEWS_NONE_NEW', "Înregistrare nouă");
+jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Reducere");

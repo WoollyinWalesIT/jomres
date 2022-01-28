@@ -5,7 +5,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.2
+* * @version Jomres 10.1.3
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -15,6 +15,28 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
+
+	/**
+	 *
+     * A quick function for outputting BS5 badges. If the file doesn't exist we'll just return the text
+     *
+	 */
+
+    function jomres_badge($text = '' , $badge_style = 'secondary')
+	{
+        $badge_file = JOMRES_TEMPLATEPATH_FRONTEND.JRDS.'badge_'.$badge_style.'.html';
+        if (!file_exists( $badge_file)) {
+            return $text;
+        }
+
+		$pageoutput = array(array('TEXT' => $text ));
+		$tmpl = new patTemplate();
+		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+		$tmpl->readTemplatesFromInput('badge_'.$badge_style.'.html');
+		$tmpl->addRows('pageoutput', $pageoutput);
+		return $tmpl->getParsedTemplate();
+
+    }
 
 /**
  *
@@ -1076,17 +1098,29 @@ function simple_template_output($path = '', $template = '', $one_string = '')
  */
 function calc_rating_progressbar_colour($percentage)
 {
+    if (jomres_bootstrap_version() == '5' ) {
+        $success    = 'bg-success';
+        $info       = 'bg-info';
+        $warning    = 'bg-warning';
+		$danger     = 'bg-danger';
+    } else {
+		$success    = 'progress-bar-success';
+		$info       = 'progress-bar-info';
+		$warning    = 'progress-bar-warning';
+		$danger     = 'progress-bar-danger';
+    }
+
 	if ($percentage >= 60) {
-		$colour = 'progress-bar-success';
+		$colour = $success;
 	}
 	if ($percentage < 60 && $percentage >= 50) {
-		$colour = 'progress-bar-info';
+		$colour = $info;
 	}
 	if ($percentage < 50 && $percentage >= 30) {
-		$colour = 'progress-bar-warning';
+		$colour = $warning;
 	}
 	if ($percentage < 30) {
-		$colour = 'progress-bar-danger';
+		$colour = $danger;
 	}
 
 	return $colour;
@@ -1113,7 +1147,16 @@ function jomres_bootstrap_version()
 			$siteConfig->update_setting('bootstrap_version', 5  );
 			$siteConfig->save_config();
         }
+
+        // It's a site updated from BS3
+        if ($jrConfig[ 'bootstrap_version' ] == '3' ) {
+            $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+            $siteConfig->update_setting('bootstrap_version', 5  );
+            $siteConfig->save_config();
+        }
+
 		$bootstrap_version = '5';
+
 	} elseif  ( jomres_cmsspecific_areweinadminarea() && _JOMRES_DETECTED_CMS == 'joomla3' ) {
 		$bootstrap_version = '2';
 	} elseif ( this_cms_is_wordpress() ) { // We are in Wordpress, so we'll automatically set the BS version to 2 if in admin, or BS3 in frontend as the init config vars functionality will autoload the BS3 scripts in the frontend
@@ -1764,6 +1807,11 @@ function add_gmaps_source()
 		if ($jrConfig[ 'google_maps_api_key' ] != '') {
 			$apikey = '&key='.$jrConfig[ 'google_maps_api_key' ];
 		}
+
+		if ($apikey == '' ) {
+			return;
+		}
+
 
 		jomres_cmsspecific_addheaddata('javascript', 'https://maps.googleapis.com/maps/api/js?v=3&language='.$shortcode.$apikey, '&foo=bar', $includeVersion = false, $async = true);
 	}

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.2
+* * @version Jomres 10.1.3
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1250,7 +1250,7 @@ jr_define('_JOMRES_CONVERSION_DISCLAIMER', 'Wir haben unsere besten Bem&uuml;hun
 // 5.3.1
 jr_define('_JOMRES_CURRENCYCONVERSION_TAB', 'W&auml;hrungsumrechnung/W&auml;hrungscodes');
 jr_define('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'IP Erkennung API Key');
-jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Um automatisch den W&auml;hrungscode Drop-Down-Set Jomres der Lage ist, einen kostenlosen Service zu nutzen IPinfoDB rief der Besuchers Land zu erfassen, jedoch m&uuml;ssen Sie f&uuml;r einen API-Schl&uuml;ssel zu registrieren unter <a href = "http://ipinfodb.com/register .php   " target="_blank" IPinfoDB </a> zuerst.');
+jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Um automatisch den W&auml;hrungscode Drop-Down-Set Jomres der Lage ist, einen kostenlosen Service zu nutzen IPinfoDB rief der Besuchers Land zu erfassen, jedoch m&uuml;ssen Sie f&uuml;r einen API-Schl&uuml;ssel zu registrieren unter <a href = "https://www.ipinfodb.com/login" target="_blank" IPinfoDB </a> zuerst.');
 jr_define('_JOMRES_DEBUGGING_TAB', 'Fehlerbeseitigung');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'Unterkunft exkl. Steuern');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'Unterkunft inkl. Steuern');
@@ -2704,3 +2704,31 @@ jr_define('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Neuen Schlüssel holen');
 jr_define('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Neuen Schlüssel speichern');
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Eigenschaftstypbilder");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"Benötigen Sie Hilfe bei der Buchung?");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"Rufen Sie unser Kundendienstteam unter der untenstehenden Nummer an, um mit einem unserer Vertreter zu sprechen, der Ihnen bei all Ihren Urlaubsbedürfnissen helfen wird.");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"Warum bei uns buchen?");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"Wir bieten die besten Buchungspreise");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"Wir haben die derzeit günstigsten Immobilien auf dem Markt.");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"Keine Buchungsgebühren. Sparen Sie Geld!");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"Große Auswahl an Eigenschaften");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," Eigenschaften");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS'," Gästebewertungen");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"Wir sind immer da");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"Rufen Sie uns jederzeit an oder senden Sie uns eine E-Mail");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"Holen Sie sich 24-Stunden-Support vor, während und nach Ihrer Reise");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"Soziale Medien");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"Finden Sie uns in den sozialen Medien");
+
+	jr_define('JOMRES_REVIEW_SCORE_TOP_1', "Ausgezeichnet");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_2', "Außergewöhnlich");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_3', "Fabelhaft");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_4', "Hervorragend");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_5', "Fantastisch");
+
+	jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD', "Sehr gut");
+	jr_define('JOMRES_REVIEW_SCORE_GOOD', "Gut");
+
+	jr_define('JOMRES_REVIEWS_NONE_NEW', "Neuer Eintrag");
+	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Rabatt");

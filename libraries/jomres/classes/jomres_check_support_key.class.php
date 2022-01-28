@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.2
+* * @version Jomres 10.1.3
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -130,7 +130,10 @@ class jomres_check_support_key
 			if ($buffer != '') {
 				$license_data = json_decode($buffer);
 
-				if ($license_data->license_valid === true) {
+				if ( !is_object($license_data)){
+					$license_data = new stdClass();
+				}
+				if ( isset($license_data->license_valid ) && $license_data->license_valid === true) {
 					$license_data->license_valid = '1';
 				} else {
 					$license_data->license_valid = '0';

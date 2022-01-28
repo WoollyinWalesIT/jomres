@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.2
+* * @version Jomres 10.1.3
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1212,7 +1212,7 @@ jr_define('_JOMRES_CONVERSION_DISCLAIMER', 'Hemos puesto nuestros mejores esfuer
 // 5.3.1
 jr_define('_JOMRES_CURRENCYCONVERSION_TAB', 'Conversión de moneda/código de moneda');
 jr_define('_JOMRES_IP_DETECTION_API_KEY_TITLE', 'Detección de IP, clave API');
-jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Para fijar automáticamente en el desplegable de cambio de moneda, Jomres usa un servicio gratuito llamado IpinfoBB para detectar el país del visitante, no obstante debera obtener primero una clave API en: <a href="http://ipinfodb.com/register.php" target="_blank">IPinfoDB</a>.');
+jr_define('_JOMRES_IP_DETECTION_API_KEY_DESC', 'Para fijar automáticamente en el desplegable de cambio de moneda, Jomres usa un servicio gratuito llamado IpinfoBB para detectar el país del visitante, no obstante debera obtener primero una clave API en: <a href="https://www.ipinfodb.com/login" target="_blank">IPinfoDB</a>.');
 jr_define('_JOMRES_DEBUGGING_TAB', 'Depuración');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX', 'Alojamiento iva excluido ');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX', 'Alojamiento iva incluido');
@@ -2684,3 +2684,31 @@ jr_define ('PLUGIN_UPDATE_MESSAGE2_LINK1', 'Obtener nueva clave');
 jr_define ('PLUGIN_UPDATE_MESSAGE2_LINK2', 'Guardar nueva clave');
 
 jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Imágenes de tipo de propiedad");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_TITLE',"¿Necesita ayuda para reservar?");
+	jr_define('JOMRES_SITE_SIDEBAR_HELP_BLURB',"Llame a nuestro equipo de atención al cliente al número que aparece a continuación para hablar con uno de nuestros representantes que lo ayudará con todas sus necesidades navideñas.");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_TITLE',"¿Por qué reservar con nosotros?");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"Ofrecemos las mejores tarifas de reserva");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1',"Tenemos las propiedades con los mejores precios actualmente en el mercado.");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2',"Sin gastos de reserva. ¡Ahorra dinero!");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE',"Gran selección de propiedades");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," propiedades");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS'," reseñas de invitados");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"Siempre estamos aquí");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"Llámenos o envíenos un correo electrónico, en cualquier momento");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"Obtenga soporte las 24 horas antes, durante y después de su viaje");
+
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"Redes sociales");
+	jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"Encuéntrenos en las redes sociales");
+
+	jr_define('JOMRES_REVIEW_SCORE_TOP_1', "Sobresaliente");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_2', "Excepcional");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_3', "Fabuloso");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_4', "Excelente");
+	jr_define('JOMRES_REVIEW_SCORE_TOP_5', "Fantástico");
+
+	jr_define('JOMRES_REVIEW_SCORE_VERY_GOOD', "Muy bien");
+	jr_define('JOMRES_REVIEW_SCORE_GOOD', "Bien");
+
+	jr_define('JOMRES_REVIEWS_NONE_NEW', "Nueva lista");
+	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Con descuento");
