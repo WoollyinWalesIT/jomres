@@ -372,6 +372,7 @@ class j06000search
 			// -------------------------------------------------------------------------------------------------------------------------------------------
 
 			if ($showSearchOptions) {
+
 				if (!defined('_JOMRES_SELECTCOMBO')) {
 					// define("_JOMRES_SELECTCOMBO",1);
 					jomres_cmsspecific_addheaddata("javascript",JOMRES_JS_RELPATH, 'jquery.chainedSelects.js');
@@ -885,6 +886,10 @@ class j06000search
 				}
 				if (!empty($sch->filter[ 'arrival' ])) {
 					$sch->jomSearch_availability();
+				}
+
+				if (isset($_REQUEST['autocomplete_value'])) {
+					$sch->jomSearch_autocomplete();
 				}
 			}
 		}

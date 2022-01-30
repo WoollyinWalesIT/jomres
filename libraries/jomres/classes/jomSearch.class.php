@@ -1107,6 +1107,57 @@ class jomSearch
 	}
 
 	/**
+	 * Performs a search bon data handed from autocomplete input
+	 *
+	 * The value could be a country code, a region name, or a town name
+	 *
+	 */
+	public function jomSearch_autocomplete()
+	{
+		$this->makeOrs();
+		$property_ors = $this->ors;
+
+
+
+		$autocomplete_value = jomresGetParam($_REQUEST, 'autocomplete_value', '');
+
+		$jomres_countries = jomres_singleton_abstract::getInstance('jomres_countries');
+		$jomres_countries->get_all_countries();
+
+		if ( isset ($jomres_countries->countries[$autocomplete_value] )) {
+			$query = "SELECT propertys_uid FROM #__jomres_propertys WHERE published = '1' AND property_country = '$autocomplete_value' $property_ors ";
+			$this->resultBucket = doSelectSql($query);
+		} else {
+			$jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
+			$jomres_regions->get_all_regions();
+
+			$found = false;
+			foreach ($jomres_regions->regions as $region ) {
+				if ($region['regionname'] == $autocomplete_value) {
+					$region_id = find_region_id($autocomplete_value);
+					$query = "SELECT propertys_uid FROM #__jomres_propertys WHERE published = '1' AND property_region = '".$region_id."' $property_ors ";
+					$found = true;
+					$this->resultBucket = doSelectSql($query);
+				}
+			}
+
+			if (!$found ) {
+				$query = "SELECT a.propertys_uid  
+										FROM #__jomres_propertys a
+										LEFT JOIN #__jomres_custom_text b ON (
+																			a.propertys_uid = b.property_uid 
+																			AND b.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_TOWN' 
+																			)
+										WHERE a.published = 1  
+											AND ( a.property_town LIKE '".$autocomplete_value."' OR b.customtext LIKE '".$autocomplete_value."') 
+											$property_ors ";
+				$this->resultBucket = doSelectSql($query);
+			}
+		}
+		$this->sortResult();
+	}
+
+	/**
 	 * Constructs a set of ORs to be used in queries based on the last array of property uids in the propertys_uid array.
 	 */
 	public function makeOrs($column = 'propertys_uid')
