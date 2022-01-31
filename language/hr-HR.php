@@ -2715,3 +2715,8 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Slike vrst
 
 	jr_define('JOMRES_REVIEWS_NONE_NEW', "Novi unos");
 	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Sniženo");
+
+	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Kamo želite ići?');
+	jr_define( 'DATA_SOURCES_TITLE', "Osvježi izvore podataka");
+	jr_define( 'DATA_SOURCES_TITLE_INFO', "Izvori podataka osvježeni. Izvore podataka koriste polja za samodovršavanje u widgetu za pretraživanje i obično se ažuriraju automatski, međutim ova stranica prisiljava da se podaci ažuriraju ručno ako je potrebno." );
+

@@ -2638,3 +2638,7 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Egenskapst
 
 	jr_define('JOMRES_REVIEWS_NONE_NEW', "Ny oppføring");
 	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Rabattert");
+
+	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Hvor vil du?');
+	jr_define( 'DATA_SOURCES_TITLE', "Oppdater datakilder" );
+	jr_define( 'DATA_SOURCES_TITLE_INFO', "Datakilder oppdateres. Datakilder brukes av inndatafelt for autofullføring i søkewidgeten og de oppdateres vanligvis automatisk, men denne siden tvinger dataene til å bli oppdatert manuelt hvis nødvendig." );

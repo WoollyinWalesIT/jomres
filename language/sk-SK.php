@@ -2700,4 +2700,7 @@ jr_define('JOMRES_REVIEW_SCORE_GOOD', "Dobré");
 
 jr_define('JOMRES_REVIEWS_NONE_NEW', "Nový záznam");
 jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Zľavnené");
-	
+
+	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Kam chceš ísť?');
+	jr_define( 'DATA_SOURCES_TITLE', "Obnoviť zdroje údajov" );
+	jr_define( 'DATA_SOURCES_TITLE_INFO', "Dátové zdroje obnovené. Dátové zdroje sú využívané automatickým dopĺňaním vstupných polí vo vyhľadávacom widgete a zvyčajne sa aktualizujú automaticky, avšak táto stránka si vyžaduje, aby sa údaje aktualizovali manuálne, ak je to potrebné." );

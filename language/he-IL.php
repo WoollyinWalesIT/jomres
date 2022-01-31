@@ -2709,3 +2709,9 @@ jr_define('JOMRES_REVIEW_SCORE_GOOD', "טוב");
 
 jr_define('JOMRES_REVIEWS_NONE_NEW', "רישום חדש");
 jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "בהנחה");
+
+jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'לאן אתה רוצה ללכת?');
+jr_define( 'DATA_SOURCES_TITLE', "רענן מקורות נתונים" );
+jr_define( 'DATA_SOURCES_TITLE_INFO', "מקורות נתונים רעננים. מקורות נתונים משמשים בשדות קלט של השלמה אוטומטית בווידג'ט החיפוש והם בדרך כלל מתעדכנים אוטומטית, אולם דף זה מאלץ את עדכון הנתונים באופן ידני במידת הצורך." );
+
+

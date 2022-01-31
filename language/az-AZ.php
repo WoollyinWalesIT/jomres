@@ -2684,3 +2684,6 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Əmlak tip
 
 	jr_define('JOMRES_REVIEWS_NONE_NEW', "Yeni siyahı");
 	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Endirimli");
+	jr_define('_JOMRES_SEARCH_FORM_HERE_GO_GO', 'Hara getmək istəyirsən?');
+	jr_define( 'DATA_SOURCES_TITLE', "Məlumat mənbələrini təzələyin" );
+	jr_define( 'DATA_SOURCES_TITLE_INFO', "Məlumat mənbələri yeniləndi. Məlumat mənbələri axtarış vidcetində avtomatik tamamlama daxiletmə sahələri tərəfindən istifadə olunur və onlar adətən avtomatik olaraq yenilənir, lakin bu səhifə tələb olunarsa verilənləri əl ilə yeniləməyə məcbur edir." );

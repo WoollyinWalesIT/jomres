@@ -2683,3 +2683,7 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"属性类�
 
 	jr_define('JOMRES_REVIEWS_NONE_NEW', "新上市");
 	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "打折");
+
+	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', '你想去哪里？');
+	jr_define('DATA_SOURCES_TITLE', "刷新数据源");
+	jr_define( 'DATA_SOURCES_TITLE_INFO', "数据源已刷新。数据源由搜索小部件中的自动完成输入字段使用，它们通常会自动更新，但是如果需要，此页面会强制手动更新数据。" );

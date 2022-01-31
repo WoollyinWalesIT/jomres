@@ -2639,3 +2639,8 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Eigenschap
 
 	jr_define('JOMRES_REVIEWS_NONE_NEW', "Nieuwe aanbieding");
 	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Korting");
+
+	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Waar wil je heen?');
+	jr_define('DATA_SOURCES_TITLE', "Gegevensbronnen vernieuwen");
+	jr_define( 'DATA_SOURCES_TITLE_INFO', "Gegevensbronnen vernieuwd. Gegevensbronnen worden gebruikt door invoervelden voor automatisch aanvullen in de zoekwidget en worden meestal automatisch bijgewerkt, maar deze pagina dwingt de gegevens indien nodig handmatig te updaten." );
+

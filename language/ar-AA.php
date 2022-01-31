@@ -2706,3 +2706,8 @@ jr_define ('JOMRES_REVIEW_SCORE_GOOD',"جيد");
 
 jr_define ('JOMRES_REVIEWS_NONE_NEW',"قائمة جديدة");
 jr_define ('JOMRES_RIBBON_TEXT_DISCOUNTED',"مخفضة");
+
+jr_define ('_ JOMRES_SEARCH_FORM_WHERE_TO_GO', 'أين تريد أن تذهب؟');
+jr_define ('DATA_SOURCES_TITLE', "تحديث مصادر البيانات") ;
+jr_define ('DATA_SOURCES_TITLE_INFO', "تم تحديث مصادر البيانات. تُستخدم مصادر البيانات بواسطة حقول إدخال الإكمال التلقائي في أداة البحث وعادةً ما يتم تحديثها تلقائيًا , ولكن هذه الصفحة تفرض تحديث البيانات يدويًا إذا لزم الأمر.") ;
+

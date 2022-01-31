@@ -2685,3 +2685,7 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Slike vrst
 
 	jr_define('JOMRES_REVIEWS_NONE_NEW', "Nov seznam");
 	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Popust");
+
+	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Kam želite iti?');
+	jr_define( 'DATA_SOURCES_TITLE', "Osveži vire podatkov");
+	jr_define( 'DATA_SOURCES_TITLE_INFO', "Viri podatkov so osveženi. Vire podatkov uporabljajo samodokončana vnosna polja v iskalnem pripomočku in se običajno posodabljajo samodejno, vendar ta stran prisili, da se podatki posodobijo ročno, če je potrebno." );

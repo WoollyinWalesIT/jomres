@@ -2673,3 +2673,7 @@ jr_define( 'JOMRES_REVIEW_SCORE_GOOD',"Good");
 
 jr_define( 'JOMRES_REVIEWS_NONE_NEW',"新しいリスト");
 jr_define( 'JOMRES_RIBBON_TEXT_DISCOUNTED',"割引");
+
+jr_define( '_ JOMRES_SEARCH_FORM_WHERE_TO_GO', 'どこに行きたいですか？');
+jr_define( 'DATA_SOURCES_TITLE', "データソースを更新");
+jr_define( 'DATA_SOURCES_TITLE_INFO', "データソースが更新されました。データソースは検索ウィジェットのオートコンプリート入力フィールドで使用され、通常は自動的に更新されますが、このページでは、必要に応じてデータを手動で更新する必要があります。");

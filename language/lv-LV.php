@@ -2675,3 +2675,8 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Īpašuma 
 
 	jr_define('JOMRES_REVIEWS_NONE_NEW', "Jauns saraksts");
 	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Atlaide");
+
+	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Kur tu vēlies doties?');
+	jr_define('DATA_SOURCES_TITLE', "Atsvaidzināt datu avotus");
+	jr_define( 'DATA_SOURCES_TITLE_INFO', "Datu avoti ir atsvaidzināti. Datu avotus izmanto automātiskās pabeigšanas ievades lauki meklēšanas logrīkā, un tie parasti tiek atjaunināti automātiski, tomēr šī lapa piespiež datus atjaunināt manuāli, ja nepieciešams." );
+

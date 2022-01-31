@@ -2630,3 +2630,7 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Зобра
 
 	jr_define('JOMRES_REVIEWS_NONE_NEW', "Новий список");
 	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Знижка");
+
+	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Куди ви хочете піти?');
+	jr_define( 'DATA_SOURCES_TITLE', "Оновити джерела даних");
+	jr_define( 'DATA_SOURCES_TITLE_INFO', "Джерела даних оновлено. Джерела даних використовуються для автозаповнення полів введення в віджеті пошуку, і зазвичай вони оновлюються автоматично, однак ця сторінка змушує оновлювати дані вручну, якщо потрібно." );

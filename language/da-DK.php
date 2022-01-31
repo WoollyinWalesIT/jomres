@@ -2701,3 +2701,7 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Ejendomsty
 
 	jr_define('JOMRES_REVIEWS_NONE_NEW', "Ny liste");
 	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Rabatteret");
+
+	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Hvor vil du hen?');
+	jr_define( 'DATA_SOURCES_TITLE', "Opdater datakilder" );
+	jr_define( 'DATA_SOURCES_TITLE_INFO', "Datakilder opdateret. Datakilder bruges af autofuldførelsesindtastningsfelter i søgewidgetten og de opdateres normalt automatisk, men denne side tvinger dataene til at blive opdateret manuelt, hvis det kræves." );

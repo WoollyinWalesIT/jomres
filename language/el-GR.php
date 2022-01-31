@@ -2711,3 +2711,9 @@ jr_define('JOMRES_REVIEW_SCORE_GOOD', "Καλό");
 
 jr_define('JOMRES_REVIEWS_NONE_NEW', "Νέα καταχώριση");
 jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Με έκπτωση");
+
+jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Πού θέλετε να πάτε;');
+jr_define( 'DATA_SOURCES_TITLE', "Ανανέωση πηγών δεδομένων" );
+jr_define( 'DATA_SOURCES_TITLE_INFO', "Οι πηγές δεδομένων ανανεώθηκαν. Οι πηγές δεδομένων χρησιμοποιούνται από πεδία εισαγωγής αυτόματης συμπλήρωσης στο γραφικό στοιχείο αναζήτησης και συνήθως ενημερώνονται αυτόματα, ωστόσο αυτή η σελίδα αναγκάζει τα δεδομένα να ενημερώνονται χειροκίνητα, εάν απαιτείται." );
+
+

@@ -2704,3 +2704,9 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Property t
 
 	jr_define('JOMRES_REVIEWS_NONE_NEW', "New listing");
 	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Discounted");
+
+
+	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Where do you want to go?');
+	jr_define( 'DATA_SOURCES_TITLE', "Refresh data sources" );
+	jr_define( 'DATA_SOURCES_TITLE_INFO', "Data sources refreshed. Data sources are used by autocomplete input fields in the search widget and they are usually updated automatically, however this page forces the data to be updated manually if required." );
+

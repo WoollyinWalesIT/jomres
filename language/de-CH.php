@@ -2732,3 +2732,7 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Eigenschaf
 
 	jr_define('JOMRES_REVIEWS_NONE_NEW', "Neuer Eintrag");
 	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Rabatt");
+
+	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Wohin möchtest du gehen?');
+	jr_define( 'DATA_SOURCES_TITLE', "Datenquellen aktualisieren" );
+	jr_define( 'DATA_SOURCES_TITLE_INFO', "Datenquellen aktualisiert. Datenquellen werden von Autocomplete-Eingabefeldern im Such-Widget verwendet und normalerweise automatisch aktualisiert, jedoch erzwingt diese Seite, dass die Daten bei Bedarf manuell aktualisiert werden." );

@@ -2734,3 +2734,7 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Immagini d
 
 	jr_define('JOMRES_REVIEWS_NONE_NEW', "Nuovo elenco");
 	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Scontato");
+
+	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Dove vuoi andare?');
+	jr_define( 'DATA_SOURCES_TITLE', "Aggiorna sorgenti dati" );
+	jr_define( 'DATA_SOURCES_TITLE_INFO', "Sorgenti dati aggiornate. Le origini dati vengono utilizzate dai campi di inserimento del completamento automatico nel widget di ricerca e di solito vengono aggiornate automaticamente, tuttavia questa pagina forza l'aggiornamento manuale dei dati, se necessario." );

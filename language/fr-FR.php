@@ -2471,3 +2471,7 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Images de 
 
 	jr_define('JOMRES_REVIEWS_NONE_NEW', "Nouvelle liste");
 	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Remise");
+
+	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Où voulez-vous aller ?');
+	jr_define( 'DATA_SOURCES_TITLE', "Actualiser les sources de données" );
+	jr_define( 'DATA_SOURCES_TITLE_INFO', "Les sources de données sont actualisées. Les sources de données sont utilisées par les champs d'entrée de saisie semi-automatique dans le widget de recherche et elles sont généralement mises à jour automatiquement, mais cette page force la mise à jour manuelle des données si nécessaire." );

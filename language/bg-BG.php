@@ -2660,3 +2660,8 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Изобр
 
 	jr_define('JOMRES_REVIEWS_NONE_NEW', "Нова обява");
 	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Отстъпка");
+
+	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Къде искате да отидете?');
+	jr_define('DATA_SOURCES_TITLE', "Опресняване на източниците на данни");
+	jr_define( 'DATA_SOURCES_TITLE_INFO', "Източниците на данни са обновени. Източниците на данни се използват от автоматично попълване на полета за въвеждане в приспособлението за търсене и обикновено се актуализират автоматично, но тази страница принуждава данните да се актуализират ръчно, ако е необходимо." );
+

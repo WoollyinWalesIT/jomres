@@ -2674,3 +2674,7 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Egenskapst
 
 	jr_define('JOMRES_REVIEWS_NONE_NEW', "Ny notering");
 	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Rabatterade");
+
+	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Vart vill du åka?');
+	jr_define( 'DATA_SOURCES_TITLE', "Uppdatera datakällor" );
+	jr_define( 'DATA_SOURCES_TITLE_INFO', "Datakällor uppdaterade. Datakällor används av inmatningsfält för autokomplettering i sökwidgeten och de uppdateras vanligtvis automatiskt, men den här sidan tvingar data att uppdateras manuellt om det behövs." );

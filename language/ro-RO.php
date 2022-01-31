@@ -2702,3 +2702,7 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Imagini de
 
 	jr_define('JOMRES_REVIEWS_NONE_NEW', "Înregistrare nouă");
 jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Reducere");
+
+	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Unde vrei să mergi?');
+	jr_define( 'DATA_SOURCES_TITLE', "Actualizează sursele de date");
+	jr_define( 'DATA_SOURCES_TITLE_INFO', "Sursele de date s-au reîmprospătat. Sursele de date sunt utilizate de câmpurile de introducere de completare automată din widgetul de căutare și sunt de obicei actualizate automat, totuși această pagină forțează actualizarea manuală a datelor dacă este necesar." );

@@ -2699,3 +2699,7 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Изобр
 
 	jr_define('JOMRES_REVIEWS_NONE_NEW', "Новое объявление");
 	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Со скидкой");
+
+	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Куда вы хотите пойти?');
+	jr_define('DATA_SOURCES_TITLE', "Обновить источники данных");
+	jr_define('DATA_SOURCES_TITLE_INFO', "Источники данных обновлены. Источники данных используются автозаполнением полей ввода в виджете поиска, и они обычно обновляются автоматически, однако эта страница принудительно обновляет данные вручную, если это необходимо." );

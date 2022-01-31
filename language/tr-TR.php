@@ -2676,3 +2676,7 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Mülk tipi
 
 	jr_define('JOMRES_REVIEWS_NONE_NEW', "Yeni Liste");
 	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "İndirimli");
+
+	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Nereye gitmek istiyorsunuz?');
+	jr_define('DATA_SOURCES_TITLE', "Veri kaynaklarını yenile");
+	jr_define( 'DATA_SOURCES_TITLE_INFO', "Veri kaynakları yenilendi. Veri kaynakları, arama widget'ındaki otomatik tamamlama giriş alanları tarafından kullanılır ve genellikle otomatik olarak güncellenir, ancak bu sayfa gerektiğinde verileri manuel olarak güncellemeye zorlar." );

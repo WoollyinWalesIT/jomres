@@ -2767,7 +2767,7 @@ jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"رسانه های اجتماع
 jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"ما را در رسانه های اجتماعی بیابید");
 
 jr_define('JOMRES_REVIEW_SCORE_TOP_1', "ممتاز");
-jr_define('JOMRES_REVIEW_SCORE_TOP_2', "Exceptional");
+jr_define('JOMRES_REVIEW_SCORE_TOP_2', "استثنایی");
 jr_define('JOMRES_REVIEW_SCORE_TOP_3', "عالی");
 jr_define('JOMRES_REVIEW_SCORE_TOP_4', "عالی");
 jr_define('JOMRES_REVIEW_SCORE_TOP_5', "عالی");
@@ -2777,3 +2777,8 @@ jr_define('JOMRES_REVIEW_SCORE_GOOD', "خوب");
 
 jr_define('JOMRES_REVIEWS_NONE_NEW', "فهرست جدید");
 jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "تخفیف");
+
+jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'کجا می خواهید بروید؟');
+jr_define( 'DATA_SOURCES_TITLE', "منابع داده را به روز کنید" );
+jr_define( 'DATA_SOURCES_TITLE_INFO', "منابع داده به روز شدند. منابع داده توسط فیلدهای ورودی تکمیل خودکار در ویجت جستجو استفاده می شود و معمولاً به طور خودکار به روز می شوند، اما این صفحه داده ها را مجبور می کند در صورت نیاز به صورت دستی به روز شوند." );
+

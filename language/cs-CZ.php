@@ -2646,3 +2646,8 @@ jr_define('JOMRES_REVIEW_SCORE_GOOD', "Dobré");
 
 jr_define('JOMRES_REVIEWS_NONE_NEW', "Nový výpis");
 jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Sleva");
+
+	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Kam chcete jít?');
+	jr_define( 'DATA_SOURCES_TITLE', "Obnovit zdroje dat" );
+	jr_define( 'DATA_SOURCES_TITLE_INFO', "Datové zdroje byly obnoveny. Zdroje dat jsou používány automatickým doplňováním vstupních polí ve vyhledávacím widgetu a obvykle se aktualizují automaticky, nicméně tato stránka vyžaduje, aby byla data v případě potřeby aktualizována ručně." );
+

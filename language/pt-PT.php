@@ -2711,3 +2711,7 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Imagens de
 
 	jr_define('JOMRES_REVIEWS_NONE_NEW', "Nova listagem");
 	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Descontado");
+
+	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Onde você quer ir?');
+	jr_define( 'DATA_SOURCES_TITLE', "Atualizar fontes de dados" );
+	jr_define( 'DATA_SOURCES_TITLE_INFO', "Fontes de dados atualizadas. As fontes de dados são usadas por campos de entrada de preenchimento automático no widget de pesquisa e geralmente são atualizados automaticamente, porém esta página força os dados a serem atualizados manualmente se necessário." );

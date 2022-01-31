@@ -2670,3 +2670,7 @@ jr_define('JOMRES_REVIEW_SCORE_GOOD', "Jó");
 
 jr_define('JOMRES_REVIEWS_NONE_NEW', "Új lista");
 jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Kedvezményes");
+
+	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Hova akarsz menni?');
+	jr_define( 'DATA_SOURCES_TITLE', "Adatforrások frissítése" );
+	jr_define( 'DATA_SOURCES_TITLE_INFO', "Az adatforrások frissítve. Az adatforrásokat a kereső widget automatikus kitöltési beviteli mezői használják, és általában automatikusan frissülnek, azonban ez az oldal szükség esetén manuálisan frissíti az adatokat." );
