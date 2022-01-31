@@ -124,7 +124,7 @@ class j09995menu
 		
 		if ($thisJRUser->accesslevel == 0) {
 			$jomres_menu->add_item(10, 'Register', 'cms_user_register', 'fa-user-plus');
-			$jomres_menu->add_item(10, jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN', '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN', false), 'cms_user_login', 'fa-sign-in');
+			$jomres_menu->add_item(10, jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN', '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN', false), 'cms_user_login', 'fa-sign-in-alt');
 		}
 		
 		if ($thisJRUser->accesslevel >= 1) {
