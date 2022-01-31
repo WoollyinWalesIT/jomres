@@ -1121,6 +1121,11 @@ class jomSearch
 
 		$autocomplete_value = jomresGetParam($_REQUEST, 'autocomplete_value', '');
 
+		// The field was empty, there's nothing to do
+		if ($autocomplete_value == '' ) {
+			return;
+		}
+
 		$jomres_countries = jomres_singleton_abstract::getInstance('jomres_countries');
 		$jomres_countries->get_all_countries();
 
