@@ -82,14 +82,14 @@
 }
 
 .row-even, .row-odd {
-    border-bottom: 1px solid #ddd;
-    padding: 5px;
+	border-bottom: 1px solid #ddd;
+	padding: 5px;
 }
 .row-odd {
-    background-color: transparent;
+	background-color: transparent;
 }
 .row-even {
-    background-color: #f9f9f9;
+	background-color: #f9f9f9;
 }
 
 /* Availability Calendar */
@@ -165,29 +165,29 @@ fieldset.radio.btn-group {
 
 
 .price-tag {
-    background: url("../images/price-tag.png") no-repeat scroll left top rgba(0, 0, 0, 0);
-    height: 41px;
-    padding: 2px 15px 8px 30px;
-    position: absolute;
-    right: 0;
-    text-align: right;
-    top: 10px;
-    width: auto;
+	background: url("../images/price-tag.png") no-repeat scroll left top rgba(0, 0, 0, 0);
+	height: 41px;
+	padding: 2px 15px 8px 30px;
+	position: absolute;
+	right: 0;
+	text-align: right;
+	top: 10px;
+	width: auto;
 }
 .price-tag small {
-    color: #fff;
-    font-size: 11px;
+	color: #fff;
+	font-size: 11px;
 }
 .price-tag small a {
-    color: #fff;
+	color: #fff;
 }
 .price-tag small a:hover {
-    color: #fff;
-    text-decoration: underline;
+	color: #fff;
+	text-decoration: underline;
 }
 .price-tag h4 {
-    color: #fff;
-    font-size: 18px;
+	color: #fff;
+	font-size: 18px;
 }
 
 /*Datepicker overrides*/
@@ -388,8 +388,8 @@ div.star-rating {
 
 .jomres-calendar-available{
 	background-color:#FFFFFF;
-	}
-	
+}
+
 .jomres-calendar-booking-start {
 	background: -moz-linear-gradient(-45deg,  #FFFFFF 0%, #FFFFFF 50%, #FF433F 50%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#FFFFFF), color-stop(50%,#FFFFFF), color-stop(50%,#FF433F)); /* Chrome,Safari4+ */
@@ -472,54 +472,54 @@ div.star-rating {
 }
 
 
-.btn-videos { 
-  color: #004D15; 
-  background-color: #2AFA00; 
-  border-color: #10BA00; 
-} 
- 
-.btn-videos:hover, 
-.btn-videos:focus, 
-.btn-videos:active, 
-.btn-videos.active, 
-.open .dropdown-toggle.btn-videos { 
-  color: #004D15; 
-  background-color: #10BA00; 
-  border-color: #10BA00; 
-} 
- 
-.btn-videos:active, 
-.btn-videos.active, 
-.open .dropdown-toggle.btn-videos { 
-  background-image: none; 
-} 
- 
-.btn-videos.disabled, 
-.btn-videos[disabled], 
-fieldset[disabled] .btn-videos, 
-.btn-videos.disabled:hover, 
-.btn-videos[disabled]:hover, 
-fieldset[disabled] .btn-videos:hover, 
-.btn-videos.disabled:focus, 
-.btn-videos[disabled]:focus, 
-fieldset[disabled] .btn-videos:focus, 
-.btn-videos.disabled:active, 
-.btn-videos[disabled]:active, 
-fieldset[disabled] .btn-videos:active, 
-.btn-videos.disabled.active, 
-.btn-videos[disabled].active, 
-fieldset[disabled] .btn-videos.active { 
-  background-color: #2AFA00; 
-  border-color: #10BA00; 
-} 
- 
-.btn-videos .badge { 
-  color: #2AFA00; 
-  background-color: #004D15; 
+.btn-videos {
+	color: #004D15;
+	background-color: #2AFA00;
+	border-color: #10BA00;
+}
+
+.btn-videos:hover,
+.btn-videos:focus,
+.btn-videos:active,
+.btn-videos.active,
+.open .dropdown-toggle.btn-videos {
+	color: #004D15;
+	background-color: #10BA00;
+	border-color: #10BA00;
+}
+
+.btn-videos:active,
+.btn-videos.active,
+.open .dropdown-toggle.btn-videos {
+	background-image: none;
+}
+
+.btn-videos.disabled,
+.btn-videos[disabled],
+fieldset[disabled] .btn-videos,
+.btn-videos.disabled:hover,
+.btn-videos[disabled]:hover,
+fieldset[disabled] .btn-videos:hover,
+.btn-videos.disabled:focus,
+.btn-videos[disabled]:focus,
+fieldset[disabled] .btn-videos:focus,
+.btn-videos.disabled:active,
+.btn-videos[disabled]:active,
+fieldset[disabled] .btn-videos:active,
+.btn-videos.disabled.active,
+.btn-videos[disabled].active,
+fieldset[disabled] .btn-videos.active {
+	background-color: #2AFA00;
+	border-color: #10BA00;
+}
+
+.btn-videos .badge {
+	color: #2AFA00;
+	background-color: #004D15;
 }
 
 div.ui-datepicker {
-  font-size: 100% !important;
+	font-size: 100% !important;
 }
 
 .search_dropdown {
@@ -555,24 +555,3 @@ div.ui-datepicker {
 	font-size:2em;
 	vertical-align:middle;
 }
-
-/* Cross-browser dropdown list */
-.select-wrapper {
-	position: relative;
-	min-width: 4em;
-}
-.select-wrapper select{
-}
-.select-wrapper::after {
-	font-family: "Font Awesome 5 Free";
-	font-weight: 900;
-	content: "\f078";
-	display: inline-block;
-	color: #495057;
-	position: absolute;
-	top: 0.5em;
-	right: 0;
-	padding: 0 0.5em;
-	pointer-events: none;
-}
-
