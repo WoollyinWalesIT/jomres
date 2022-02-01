@@ -71,6 +71,8 @@ class j06005oauth_edit_client
 		$output['_OAUTH_GRANT_TYPES']	= jr_gettext('_OAUTH_GRANT_TYPES', '_OAUTH_GRANT_TYPES', false);
 		$output['_OAUTH_IMPLICIT_NOTES']	= jr_gettext('_OAUTH_IMPLICIT_NOTES', '_OAUTH_IMPLICIT_NOTES', false);
 		$output['_OAUTH_AUTHORISATION_URL']	= jr_gettext('_OAUTH_AUTHORISATION_URL', '_OAUTH_AUTHORISATION_URL', false);
+		$output['_OAUTH_TOKEN_REQUEST_URI']	= jr_gettext('_OAUTH_TOKEN_REQUEST_URI', '_OAUTH_TOKEN_REQUEST_URI', false);
+
 
 		$query = "SELECT client_id , client_secret , scope , identifier , redirect_uri FROM #__jomres_oauth_clients WHERE client_id = '".$client_id."' AND user_id = ".(int)$thisJRUser->userid . ' LIMIT 1 ';
 		$result = doSelectSql($query);
@@ -104,6 +106,8 @@ class j06005oauth_edit_client
 			}
 		
 		$output['AUTHORIZE_URL'] = JOMRES_SITEPAGE_URL_AJAX.'&task=oauth_isauthorised&response_type=token&client_id='.$output['CLIENT_ID'].'&redirect_uri='. $output['REDIRECT_URI'];
+
+		$output['TOKEN_REQUEST_URL'] = get_showtime( 'live_site' ).'/jomres/api/';
 		
 		$rows=array();
 		foreach ($scopes_class->default_scopes as $category => $category_scopes)

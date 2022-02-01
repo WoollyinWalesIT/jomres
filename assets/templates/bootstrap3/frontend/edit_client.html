@@ -10,7 +10,7 @@
 <div class="form-group">
 	<label class="col-md-2 control-label" for="identifier">{_OAUTH_IDENTIFIER}</label>
 	<div class="col-md-10">
-		<input id="client_id" name="identifier" type="text" value="{IDENTIFIER}" class="required form-control" placeholder="{_OAUTH_IDENTIFIER_PLACEHOLDER}"/>
+		<input id="identifier" name="identifier" type="text" value="{IDENTIFIER}" class="required form-control" placeholder="{_OAUTH_IDENTIFIER_PLACEHOLDER}"/>
 	</div>
 </div>
 
@@ -26,15 +26,12 @@
 		<input id="client_secret" name="client_secret" type="text" value="{CLIENT_SECRET}" class="required form-control" readonly/>
 	</div>
 </div>
+	
+<h3>{_OAUTH_AUTHORISATION_URL}</h3>
 
-<div class="form-group">
-	<label class="col-md-2 control-label" for="redirect_uri">{_OAUTH_REDIRECT_URI}</label>
-	<div class="col-md-10">
-		<input id="redirect_uri" name="redirect_uri" type="text" value="{REDIRECT_URI}" class="required form-control" />
-	</div>
-</div>
+<p>{_OAUTH_TOKEN_REQUEST_URI}</p>
+<textarea class="form-control" rows="1" id="nothing_again" readonly>{TOKEN_REQUEST_URL}</textarea>
 
-<h2>{_OAUTH_AUTHORISATION_URL}</h2>
 <p>{_OAUTH_IMPLICIT_NOTES}</p>
 
 <textarea class="form-control" rows="2" id="nothing" readonly>{AUTHORIZE_URL}</textarea>

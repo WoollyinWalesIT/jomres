@@ -10,7 +10,7 @@
 <div class="form-group">
 	<label class="col-md-2 control-label" for="identifier">{_OAUTH_IDENTIFIER}</label>
 	<div class="col-md-10">
-		<input id="client_id" name="identifier" type="text" value="{IDENTIFIER}" class="required form-control" placeholder="{_OAUTH_IDENTIFIER_PLACEHOLDER}"/>
+		<input id="identifier" name="identifier" type="text" value="{IDENTIFIER}" class="required form-control" placeholder="{_OAUTH_IDENTIFIER_PLACEHOLDER}"/>
 	</div>
 </div>
 
@@ -27,17 +27,15 @@
 	</div>
 </div>
 
-<div class="form-group fixed-bottom bg-light text-center pt-1 border-top border-success">
-	<label class="col-md-2 control-label" for="redirect_uri">{_OAUTH_REDIRECT_URI}</label>
-	<div class="col-md-10">
-		<input id="redirect_uri" name="redirect_uri" type="text" value="{REDIRECT_URI}" class="required form-control" />
-	</div>
-</div>
+<h3>{_OAUTH_AUTHORISATION_URL}</h3>
 
-<h2>{_OAUTH_AUTHORISATION_URL}</h2>
+<p>{_OAUTH_TOKEN_REQUEST_URI}</p>
+<textarea class="form-control" rows="1" id="nothing_again" readonly>{TOKEN_REQUEST_URL}</textarea>
+
 <p>{_OAUTH_IMPLICIT_NOTES}</p>
 
-<textarea class="form-control" rows="2" id="nothing" readonly>{AUTHORIZE_URL}</textarea>
+
+<textarea class="form-control" rows="" id="nothing" readonly>{AUTHORIZE_URL}</textarea>
 
 
 <h3 class="page-header">{_OAUTH_SCOPE_TITLE}</h3>
@@ -46,14 +44,16 @@
 {SCOPES}
 </patTemplate:tmpl>
 
-	<div class="form-actions">
+
+	<div class="form-actions fixed-bottom bg-light text-center pt-1 border-top border-success">
 		<div class="col-md-10 col-md-offset-2">
 			{JOMRESTOOLBAR}
 		</div>
 	</div>
-	
+
 <input type="hidden" name="task" value="save_client" />
 <input type="hidden" name="nohtml" value="1" />
 {CSRF_TOKEN}
 </form>
+
 </patTemplate:tmpl>
