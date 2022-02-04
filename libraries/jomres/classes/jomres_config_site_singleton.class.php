@@ -260,7 +260,11 @@ $jrConfig = ' .var_export($jrConfig, true).';
 
 	public function get_setting($setting)
 	{
-		return $this->config[ $setting ];
+		if (isset($this->config[ $setting ])) {
+			return $this->config[ $setting ];
+		} else {
+			return null;
+		}
 	}
 	
 	/**
