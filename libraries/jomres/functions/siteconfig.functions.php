@@ -172,7 +172,6 @@ function showSiteConfig()
     $bootstrap_ver_opt[ ] = jomresHTML::makeOption('0', 'No bootstrap in theme');
 	$bootstrap_ver_opt[ ] = jomresHTML::makeOption('', 'Bootstrap 2');
 	$bootstrap_ver_opt[ ] = jomresHTML::makeOption('3', 'Bootstrap 3');
-	$bootstrap_ver_opt[ ] = jomresHTML::makeOption('4', 'Bootstrap 4');
     $bootstrap_ver_opt[ ] = jomresHTML::makeOption('5', 'Bootstrap 5');
 	$bootstrap_ver_dropdown = jomresHTML::selectList($bootstrap_ver_opt, 'cfg_bootstrap_version', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'bootstrap_version' ], false);
 
