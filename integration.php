@@ -117,7 +117,9 @@ if (!defined('AJAXCALL')) {
 * define jomres paths
 *
 */
-define('JOMRESCONFIG_ABSOLUTE_PATH', substr(JOMRESPATH_BASE, 0, strlen(JOMRESPATH_BASE) - strlen(JOMRES_ROOT_DIRECTORY.JRDS)));
+$path = rtrim(substr(JOMRESPATH_BASE, 0, strlen(JOMRESPATH_BASE) - strlen(JOMRES_ROOT_DIRECTORY.JRDS)), '/') . '/';
+define('JOMRESCONFIG_ABSOLUTE_PATH', $path);
+
 
 //app
 define('JOMRES_APP_ABSPATH', JOMRESPATH_BASE.'core-minicomponents'.JRDS);
