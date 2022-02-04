@@ -146,6 +146,7 @@ class j09997menu
 			if (!empty($rows)) {
 				$output[ 'CATEGORY' ] = jr_ucwords($jomres_menu->sections[$section_id]['title']);
 				$output[ 'ID_CATEGORY' ] = 'cpanel-category-'.$section_id;
+				$output[ 'RANDOM_ID' ] = generateJomresRandomString(10);
 
 				$pageoutput[ ] = $output;
 				$tmpl = new patTemplate();
