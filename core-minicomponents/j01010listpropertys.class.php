@@ -93,7 +93,7 @@ class j01010listpropertys
 
 		$layout_rows = array();
 		$all_layouts = array();
-		if (((defined('JOMRES_NOHTML') && JOMRES_NOHTML == 0) || get_showtime('task') == 'ajax_search_filter') && count($property_list_layouts) > 1) {
+		if (((defined('JOMRES_NOHTML') && JOMRES_NOHTML == 0) || get_showtime('task') == 'ajax_search_filter' || get_showtime('task') == 'search' ) && count($property_list_layouts) > 1) {
 			foreach ($property_list_layouts as $key => $layouts) {
 				$all_layouts[ ] = $key;
 				$r = array();
