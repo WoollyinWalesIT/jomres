@@ -16,6 +16,18 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 
+	function output_ribbon_styling()
+	{
+		if ( jomres_bootstrap_version() == 5 && !defined('RIBBON_STYLING_DONE')) {
+			define('RIBBON_STYLING_DONE',1);
+			$tmpl = new patTemplate();
+			$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+			$tmpl->readTemplatesFromInput('ribbon_styling.html');
+			echo $tmpl->getParsedTemplate();
+		}
+	}
+
+
 	/**
 	 *
      * A quick function for outputting BS5 badges. If the file doesn't exist we'll just return the text
