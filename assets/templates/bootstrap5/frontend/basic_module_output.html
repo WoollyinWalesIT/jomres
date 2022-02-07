@@ -1,18 +1,27 @@
 
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-
 	{JOMRES_POPUPURL_GLOBALVAR}
 
 	<div class="card">
 		<div class="card-body">
-			<h5 class="card-title text-truncate">{PROPERTY_NAME}<p>{STARSIMAGES}&nbsp;{SUPERIOR}</p></h5>
+			<h5 class="card-title container-fluid">
+				<div class="row">
+					<div class="col-md-6">
+						{PROPERTY_NAME}<p>{STARSIMAGES}&nbsp;{SUPERIOR}</p>
+					</div>
+					<div class="col-md-6 float-end">
+						{REVIEWS_BUTTON}
+					</div>
+				</div>
+
+			</h5>
 			<div class="card-text">
 				<patTemplate:comment>
 					<div id="module_{RANDOM_IDENTIFIER}">
 						<a href="#module_{RANDOM_IDENTIFIER}_popup" data-bs-toggle="modal" random_identifier="{RANDOM_IDENTIFIER}" property_name="{PROPERTY_NAME}" property_uid="{PROPERTY_UID}"><img src="{IMAGEMEDIUM}" alt="{PROPERTY_NAME}" class="ngm-image img-responsive" /></a>
 					</div>
 				</patTemplate:comment>
-				<a href="{MOREINFORMATIONLINK}"><img src="{IMAGELARGE}" alt="{PROPERTY_NAME}" class="ngm-image img-responsive" /></a>
+				<a href="{MOREINFORMATIONLINK}"><img src="{IMAGELARGE}" alt="{PROPERTY_NAME}" class="ngm-image img-responsive" />{RIBBON}</a>
 				<p>
 					{PRICE_PRE_TEXT} <strong>{PRICE_PRICE}</strong>{PRICE_POST_TEXT}
 				</p>
@@ -22,6 +31,7 @@
 			</div>
 			<div class="card-footer" align="center">
 				<a href="{MOREINFORMATIONLINK}" class="btn btn-info" title="{PROPERTY_NAME}">{MOREINFORMATION}</a>
+
 			</div>
 		</div>
 	</div>
@@ -32,6 +42,15 @@
 	</script>
 
 	<div class="modal fade" id="module_{RANDOM_IDENTIFIER}_popup"></div>
+	<div class="offcanvas offcanvas-start" style="width: 65%; " tabindex="-1" id="reviewsOffCanvas{UID}" aria-labelledby="offcanvasReviewsLabel">
+		<div class="offcanvas-header">
+			<h5 class="offcanvas-title" id="offcanvasExampleLabel">{_JOMRES_REVIEWS}</h5>
+			<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+		</div>
+		<div class="offcanvas-body">
+			{jomres_script show_property_reviews PROPERTY_UID={UID}}
+		</div>
+	</div>
 </patTemplate:tmpl>
 
 <patTemplate:comment>

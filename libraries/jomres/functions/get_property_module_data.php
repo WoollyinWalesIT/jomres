@@ -4,7 +4,7 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-* * @version Jomres 10.1.3
+	 * * @version Jomres 10.1.2
 	 *
 	 * @copyright	2005-2022 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -25,7 +25,19 @@
 		// for testing
 		//$property_uid_array = array(1,12,43,14);
 		//add_gmaps_source();
+
+		output_ribbon_styling();
+
 		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
+
+		if ($jrConfig[ 'use_reviews' ] == '1') {
+			jr_import('jomres_reviews');
+			$Reviews = new jomres_reviews();
+			$Reviews->getRatingsMulti($property_uid_array);
+		}
+
 
 		$return_data = array();
 		$animationDelay = 0;
@@ -39,9 +51,90 @@
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
 		$jomres_media_centre_images->get_images_multi($property_uid_array, array('property'));
 
+		jr_import('jomres_ribbon_generator');
+
+
 		foreach ($property_uid_array as $property_uid) {
 			if ($property_uid > 0) {
 				$property_data = $current_property_details->multi_query_result[ $property_uid ];
+
+				$Reviews->property_uid = $property_uid;
+				$itemRating = $Reviews->showRating($property_uid);
+				$property_data['AVERAGE_RATING'] = number_format($itemRating['avg_rating'], 1, '.', '');
+				$property_data['NUMBER_OF_REVIEWS'] = $itemRating['counter'];
+
+				$property_data['_JOMRES_REVIEWS'] = jr_gettext('_JOMRES_REVIEWS', '_JOMRES_REVIEWS', false);
+				$property_data['_JOMRES_REVIEWS_AVERAGE_RATING'] = jr_gettext('_JOMRES_REVIEWS_AVERAGE_RATING', '_JOMRES_REVIEWS_AVERAGE_RATING', false);
+				$property_data['_JOMRES_REVIEWS_TOTAL_VOTES'] = jr_gettext('_JOMRES_REVIEWS_TOTAL_VOTES', '_JOMRES_REVIEWS_TOTAL_VOTES', false);
+				$property_data['_JOMRES_REVIEWS'] = jr_gettext('_JOMRES_REVIEWS', '_JOMRES_REVIEWS', false);
+				$property_data['COLON'] = ' : ';
+				$property_data['HYPHEN'] = ' - ';
+				$property_data['RATING_TEXT_COLOUR'] = 'text-muted';
+
+				$rob = array();
+				$reviews_output_button = array();
+				$no_reviews_output_button = array();
+
+				$jomres_ribbon_generator = new jomres_ribbon_generator( $property_uid );
+
+				if ( jomres_bootstrap_version() == '5' ) {
+
+					if ((int)$property_data['NUMBER_OF_REVIEWS'] > 0) {   // For Joomla 4 BS5 template sets
+						$jomres_ribbon_generator->set_review_score( $itemRating['avg_rating'] , $itemRating["rating_ribbon_text"] );
+
+						$rob['RATING_TEXT_COLOUR'] = 'text-success';
+						$rob['AVERAGE_RATING'] = number_format($itemRating['avg_rating'], 1, '.', '');
+
+						$rob['RATING_SCORE_TEXT'] = '';
+						if ($rob['AVERAGE_RATING'] > 5 ) {
+							$rob['RATING_SCORE_TEXT'] = jomres_badge(
+								$itemRating["rating_ribbon_text"],
+								'success'
+							);
+						}
+
+						if ($rob['AVERAGE_RATING'] <= 5) {
+							$rob['RATING_TEXT_COLOUR'] = 'text-warning';
+							$rob['RATING_SCORE_TEXT'] = '';
+						}
+
+						$rob['UID'] = $property_uid;
+						$rob['AVERAGE_RATING'] = $property_data['AVERAGE_RATING'];
+						$rob['NUMBER_OF_REVIEWS'] = $itemRating['counter'];
+						$rob['_JOMRES_REVIEWS_CLICKTOSHOW'] = jr_gettext('_JOMRES_REVIEWS_CLICKTOSHOW', '_JOMRES_REVIEWS_CLICKTOSHOW', false);
+						$rob['_JOMRES_REVIEWS_AVERAGE_RATING'] = jr_gettext('_JOMRES_REVIEWS_AVERAGE_RATING', '_JOMRES_REVIEWS_AVERAGE_RATING', false);
+						$rob['_JOMRES_REVIEWS_TOTAL_VOTES'] = jr_gettext('_JOMRES_REVIEWS_TOTAL_VOTES', '_JOMRES_REVIEWS_TOTAL_VOTES', false);
+						$rob['_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL'] = jr_gettext('_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL', '_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL', false);
+
+						$reviews_output_button[] = $rob;
+
+						$tmpl = new patTemplate();
+						$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+						$tmpl->readTemplatesFromInput('list_properties_reviews_section.html');
+						$tmpl->addRows('reviews_output', $reviews_output_button);
+						$property_data['REVIEWS_SECTION'] = $tmpl->getParsedTemplate();
+
+						$tmpl = new patTemplate();
+						$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+						$tmpl->readTemplatesFromInput('module_data_reviews_button.html');
+						$tmpl->addRows('reviews_button', $reviews_output_button);
+						$property_data['REVIEWS_BUTTON'] = $tmpl->getParsedTemplate();
+
+					} else { // There aren't any reviews, we'll show a "these guys are new" badge instead
+						$new_listing_blub = jr_gettext('JOMRES_REVIEWS_NONE_NEW', 'JOMRES_REVIEWS_NONE_NEW', false);
+						$no_reviews_output_button = [0 => [
+							'JOMRES_REVIEWS_NONE_NEW' =>
+								jomres_badge(	$new_listing_blub , 'warning')
+						]];
+						$tmpl = new patTemplate();
+						$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+						$tmpl->readTemplatesFromInput('list_properties_reviews_section_no_reviews.html');
+						$tmpl->addRows('reviews_button', $no_reviews_output_button);
+						$property_data['REVIEWS_SECTION'] = $tmpl->getParsedTemplate();
+					}
+				}
+
+				$property_data['RIBBON'] = $jomres_ribbon_generator->generate_html();
 
 				$mrConfig = getPropertySpecificSettings($property_uid);
 
@@ -57,6 +150,7 @@
 
 				$jomres_media_centre_images->get_images($property_uid, array('property'));
 
+				$property_data['UID'] = $property_uid;
 				$property_data[ 'THUMBNAIL' ] = $jomres_media_centre_images->images ['property'][0][0]['small'];
 
 				$property_data[ 'IMAGELARGE' ] = $jomres_media_centre_images->images ['property'][0][0]['large'];
