@@ -1,12 +1,6 @@
 
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 	<style>
-		.text-overlay-photolayout {
-			position: absolute;
-			top: 30px;
-			left: 16px;
-		}
-
 		.card-img-photolayout {
 			width: 100%;
 			height: 100%;
@@ -15,6 +9,24 @@
 			background-size: cover;
 			opacity:1;
 			filter: sepia(100%);
+		}
+
+		.card-img-top-lg {
+			max-height: 600px;
+			min-height: 600px;
+			object-fit: cover;
+		}
+
+		.card-img-top-md {
+			max-height: 300px;
+			min-height: 300px;
+			object-fit: cover;
+		}
+
+		.card-img-top-sm {
+			max-height: 100px;
+			min-height: 100px;
+			object-fit: cover;
 		}
 
 		.ribbon {
@@ -40,6 +52,23 @@
 			position: absolute !important;
 			top: 25px !important;
 			right: -49px !important;}
+
+		.image-container {
+			position: relative;
+			text-align: center;
+			color: white;
+		}
+		.bottom-left {
+			position: absolute;
+			bottom: 8px;
+			left: 16px;
+		}
+
+		.bottom-right {
+			position: absolute;
+			bottom: 8px;
+			right: 16px;
+		}
 	</style>
 
 </patTemplate:tmpl>
