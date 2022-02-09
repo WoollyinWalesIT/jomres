@@ -63,6 +63,10 @@ class jomres_obsolete_file_handling
 		$this->dir_templates_bootstrap4_backend = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'templates'.JRDS.'bootstrap4'.JRDS.'backend'.JRDS;
 		$this->dir_templates_bootstrap4_administrator = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'templates'.JRDS.'bootstrap4'.JRDS.'administrator'.JRDS;
 
+		$this->dir_templates_bootstrap5_frontend = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'templates'.JRDS.'bootstrap5'.JRDS.'frontend'.JRDS;
+		$this->dir_templates_bootstrap5_backend = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'templates'.JRDS.'bootstrap5'.JRDS.'backend'.JRDS;
+		$this->dir_templates_bootstrap5_administrator = JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'templates'.JRDS.'bootstrap5'.JRDS.'administrator'.JRDS;
+
 		$this->dir_images = JOMRES_IMAGES_ABSPATH;
 		$this->dir_images_large = JOMRES_IMAGES_ABSPATH.'jomresimages'.JRDS.'large'.JRDS;
 		$this->dir_images_small = JOMRES_IMAGES_ABSPATH.'jomresimages'.JRDS.'small'.JRDS;
@@ -1339,6 +1343,8 @@ class jomres_obsolete_file_handling
 		$this->add_file($this->dir_minicomponents.'j16000connect.class.php');
 		$this->add_file($this->dir_minicomponents.'j16000connected.class.php');
 		$this->add_file($this->dir_minicomponents.'j16000connect_status.class.php');
+
+		$this->add_file($this->dir_templates_bootstrap5_frontend.'composite_property_details_notabs.html');
 	}
 	
 	/**

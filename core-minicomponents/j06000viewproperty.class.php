@@ -473,11 +473,16 @@ class j06000viewproperty
 		if (isset($_REQUEST[ 'jr_printable' ])) {
 			$tmpl->readTemplatesFromInput('composite_property_details_printable.html');
 		} else {
-			if ($jrConfig[ 'property_details_in_tabs' ] == '1') {
-				$tmpl->readTemplatesFromInput('composite_property_details.html');
+			if (jomres_bootstrap_version() == '5' ) {
+				$tmpl->readTemplatesFromInput('property_details.html');
 			} else {
-				$tmpl->readTemplatesFromInput('composite_property_details_notabs.html');
+				if ($jrConfig[ 'property_details_in_tabs' ] == '1') {
+					$tmpl->readTemplatesFromInput('composite_property_details.html');
+				} else {
+					$tmpl->readTemplatesFromInput('composite_property_details_notabs.html');
+				}
 			}
+
 		}
 
 		$tmpl->displayParsedTemplate();
