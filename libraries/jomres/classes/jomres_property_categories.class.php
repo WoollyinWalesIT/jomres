@@ -137,6 +137,8 @@ class jomres_property_categories
 		
 		if ( doInsertSql( $query, false ) )
 			{
+			updateCustomText('_JOMRES_PROPERTY_CATEGORY'.(int)$this->id, $this->title, true);
+	       		updateCustomText('_JOMRES_PROPERTY_CATEGORY_DESC'.(int)$this->id, $this->description, true);
 			return true;
 			}
 		else
@@ -169,6 +171,8 @@ class jomres_property_categories
 		
 		if ( doInsertSql( $query, false ) )
 			{
+			updateCustomText('_JOMRES_PROPERTY_CATEGORY'.(int)$this->id, $this->title, true);
+	       		updateCustomText('_JOMRES_PROPERTY_CATEGORY_DESC'.(int)$this->id, $this->description, true);
 			return true;
 			}
 		else
@@ -205,6 +209,8 @@ class jomres_property_categories
 		
 		if ( doInsertSql( $query, false ) )
 			{
+			updateCustomText('_JOMRES_PROPERTY_CATEGORY'.(int)$this->id, '', true);
+	        	updateCustomText('_JOMRES_PROPERTY_CATEGORY_DESC'.(int)$this->id, '', true);
 			return true;
 			}
 		else
