@@ -375,6 +375,12 @@ try {
 	} else {
 		ob_end_flush();
 	}
+	$debugging_modals = get_showtime('patTemplate_debugging_modals');
+	if (!empty($debugging_modals)) {
+		foreach ($debugging_modals as $button_modal) {
+			echo $button_modal.'<br/>';
+		}
+	}
 } catch (Exception $e) {
 	$MiniComponents->triggerEvent('99994');
 		
