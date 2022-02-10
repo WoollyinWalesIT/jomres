@@ -133,7 +133,20 @@ class j06000viewproperty
 		$output = array();
 		$pageoutput = array();
 
-
+		$output["PROPERTY_NAME"]			= $current_property_details->multi_query_result[$property_uid]['property_name'];
+		$output["PROPERTY_STREET"]			= $current_property_details->multi_query_result[$property_uid]['property_street'];
+		$output["PROPERTY_TOWN"]			= $current_property_details->multi_query_result[$property_uid]['property_town'];
+		$output["PROPERTY_POSTCODE"]		= $current_property_details->multi_query_result[$property_uid]['property_postcode'];
+		$output["PROPERTY_REGION"]			= $current_property_details->multi_query_result[$property_uid]['property_region'];
+		$output["PROPERTY_REGION_ID"]		= $current_property_details->multi_query_result[$property_uid]['property_region_id'];
+		$output["PROPERTY_COUNTRY"]			= $current_property_details->multi_query_result[$property_uid]['property_country'];
+		$output["PROPERTY_COUNTRY_CODE"]	= $current_property_details->multi_query_result[$property_uid]['property_country_code'];
+		$output["PROPERTY_TEL"]				= $current_property_details->multi_query_result[$property_uid]['property_tel'];
+		$output["PROPERTY_FAX"]				= $current_property_details->multi_query_result[$property_uid]['property_fax'];
+		$output["PROPERTY_EMAIL"]			= $current_property_details->multi_query_result[$property_uid]['property_email'];
+		$output["PROPERTY_TYPE"]			= $current_property_details->multi_query_result[$property_uid]['property_type'];
+		$output["PTYPE_ID"]					= $current_property_details->multi_query_result[$property_uid]['ptype_id'];
+		$output["PROPERTY_TYPE_TITLE"]		= $current_property_details->multi_query_result[$property_uid]['property_type_title'];
 
 		//property slideshow
 		if ($mrConfig[ 'showSlideshowInline' ] == '1') {
@@ -442,7 +455,8 @@ class j06000viewproperty
 
 		}
 
-        $output['DESCRIPTION'] = $current_property_details->property_description;
+        $output['DESCRIPTION'] = jomres_cmsspecific_parseByBots($jomres_markdown->get_markdown($current_property_details->property_description));
+
 
         $output['SIDEBAR'] = $MiniComponents->specificEvent('06000', 'show_site_sidebar', array('output_now' => false, 'property_uid' => $property_uid, 'property_details_object' => $current_property_details ));
 
