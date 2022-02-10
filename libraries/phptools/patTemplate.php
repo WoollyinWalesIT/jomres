@@ -837,6 +837,11 @@ class patTemplate
 		
 		$common_strings[ 'CSRF_TOKEN' ] = '<input type="hidden" name="jomres_csrf_token" value="' . csrf::setToken() . '"/>' ;
 
+		if (function_exists('jr_gettext')){
+			$common_strings[ '_JOMRES_MENU_SHOW' ] = jr_gettext('_JOMRES_MENU_SHOW', '_JOMRES_MENU_SHOW', false);
+			$common_strings[ '_JOMRES_MENU_HIDE' ] = jr_gettext('_JOMRES_MENU_HIDE', '_JOMRES_MENU_HIDE', false);
+			}
+
 
 		return $common_strings;
 		}
