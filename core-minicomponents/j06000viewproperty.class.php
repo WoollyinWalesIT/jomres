@@ -37,6 +37,23 @@ class j06000viewproperty
 		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch) {
 			$this->template_touchable = false;
+				$this->shortcode_data = array(
+						'task' => 'viewproperty',
+						'info' => '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS',
+						'arguments' =>
+							array(
+								0 => array(
+									'argument' => 'property_uid',
+									'arg_info' => '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID',
+									'arg_example' => '5',
+								),
+								1 => array(
+									'argument' => 'view_property_template',
+									'arg_info' => '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME',
+									'arg_example' => 'property_details_lux',
+								),
+							)
+						);
 			return;
 		}
 
@@ -473,10 +490,19 @@ class j06000viewproperty
 		if (isset($_REQUEST[ 'jr_printable' ])) {
 			$tmpl->readTemplatesFromInput('composite_property_details_printable.html');
 		} else {
-			if ($jrConfig[ 'property_details_in_tabs' ] == '1') {
-				$tmpl->readTemplatesFromInput('composite_property_details.html');
+			if (jomres_bootstrap_version() == '5' ) {
+				if (isset($_REQUEST['view_property_template']) && $_REQUEST['view_property_template'] != '') {
+					$tmpl->readTemplatesFromInput($_REQUEST['view_property_template'].'.html');
+				} else {
+					$tmpl->readTemplatesFromInput('property_details.html');
+				}
+
 			} else {
-				$tmpl->readTemplatesFromInput('composite_property_details_notabs.html');
+				if ($jrConfig[ 'property_details_in_tabs' ] == '1') {
+					$tmpl->readTemplatesFromInput('composite_property_details.html');
+				} else {
+					$tmpl->readTemplatesFromInput('composite_property_details_notabs.html');
+				}
 			}
 		}
 
