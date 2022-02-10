@@ -1,137 +1,137 @@
 
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-	{JOMRES_POPUPURL_GLOBALVAR}
+{JOMRES_POPUPURL_GLOBALVAR}
 
-	{HEADER}
+{HEADER}
 
-	<patTemplate:comment>
-		<div class="row">
-			<div class="col-12">
-				{PAGING}
-			</div>
-		</div>
-	</patTemplate:comment>
+<patTemplate:comment>
+<div class="row">
+	<div class="col-12">
+		{PAGING}
+	</div>
+</div>
+</patTemplate:comment>
 
-	<patTemplate:tmpl name="property_details" unusedvars="strip">
-		<div class="jomres_property_list_propertywrapper shadow p-3 mb-5 bg-body rounded  bg-secondary" id="{UID}">
-			<div class="card {BUDGET_BORDER_CLASS} {FEATURED_LISTINGS_CLASS}">
-				<div class="card-body">
-					<div class="row">
-						<div class="col-10 card-header">
-							<h3>
-								<a href="{MOREINFORMATIONLINK}" title="{PROPERTY_NAME_FULL}" itemprop="name" style="text-decoration: none;">{PROP_NAME}</a>
-							</h3>
-						</div>
-						<div class="col-2">
-							<div class="hidden-xs hidden-sm plist-compare">
-								<label>
-									<input type="checkbox" name="compare" value="{UID}" autocomplete="off"/>
-									{_JOMRES_COMPARE}
-								</label>
-							</div>
+<patTemplate:tmpl name="property_details" unusedvars="strip">
+	<div class="jomres_property_list_propertywrapper shadow p-3 mb-5 bg-body rounded  bg-secondary" id="{UID}">
+		<div class="card {BUDGET_BORDER_CLASS} {FEATURED_LISTINGS_CLASS}">
+			<div class="card-body">
+				<div class="row">
+					<div class="col-10 card-header">
+						<h3>
+							<a href="{MOREINFORMATIONLINK}" title="{PROPERTY_NAME_FULL}" itemprop="name" style="text-decoration: none;">{PROP_NAME}</a>
+						</h3>
+					</div>
+					<div class="col-2">
+						<div class="hidden-xs hidden-sm plist-compare">
+							<label>
+								<input type="checkbox" name="compare" value="{UID}" autocomplete="off"/>
+								{_JOMRES_COMPARE}
+							</label>
 						</div>
 					</div>
 				</div>
-				<div class="card-text">
-					<div class="row">
-						<div class="col-md-3 ">
-							{RIBBON}{PROPERTY_IMAGE_OR_SLIDESHOW}
-						</div>
-						<div class="col-6">
-
-							<div class="row">
-								<div class="col-3">
-									<span class="text-secondary">{PROPERTY_TYPE}</span><span>{STARS} {SUPERIOR}</span>
-								</div>
-								<div class="col-3">
-									&nbsp;
-								</div>
-								<div class="col-6">
-									{REVIEWS_SECTION}
-								</div>
-							</div>
-
-
-							<p class="small"><i>{PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}</i></p>
-							<div>{PROPERTYDESC}</div>
-							<div class="jomres_message">{LASTMINUTE}</div>
-							<div class="row">{GATEWAYS}</div>
-						</div>
-
-						<div class="col-3">
-							<div class="align-middle mx-auto">
-								<div class="badge bg-info">
-									{PRICE_PRE_TEXT}
-									{PRICE_PRICE}
-									{PRICE_POST_TEXT}
-								</div>
-								<div class="badge bg-dark">
-									{PRICE_CUMULATIVE}
-									{FOR} {STAY_DAYS} {NIGHTS_TEXT}
-								</div>
-							</div>
-						</div>
+			</div>
+			<div class="card-text">
+				<div class="row">
+					<div class="col-md-3 ">
+						{RIBBON}{PROPERTY_IMAGE_OR_SLIDESHOW}
 					</div>
+					<div class="col-6">
 
-					<div id="effect{UID}" class="hidden">
-						<p>&nbsp;</p>
 						<div class="row">
-							<div class="col-2 ">
-								<div><strong>{_JOMRES_AGENT}</strong></div>
-								<div>{AGENT_LINK}</div>
+							<div class="col-3">
+								<span class="text-secondary">{PROPERTY_TYPE}</span><span>{STARS} {SUPERIOR}</span>
 							</div>
-							<div class="col-5 ">
-								<div><strong>{_JOMRES_FRONT_ROOMTYPES}</strong></div>
-								<div>{ROOMTYPES}</div>
-								<div style="clear:both;"></div>
-								<div><strong>{_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES}</strong></div>
-								<div>{FEATURELIST}</div>
-								<div style="clear:both;"></div>
+							<div class="col-3">
+								&nbsp;
 							</div>
-							<div class="col-5 ">
-								{CUSTOM_PROPERTY_FIELDS_DATA_SNIPPET}
-								<div class="clearfix"></div>
-								<div>&nbsp;</div>
-								<div class="{LASTBOOKING_STYLE}">{LASTBOOKED}</div>
+							<div class="col-6">
+								{REVIEWS_SECTION}
+							</div>
+						</div>
+
+
+						<p class="small"><i>{PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}</i></p>
+						<div>{PROPERTYDESC}</div>
+						<div class="jomres_message">{LASTMINUTE}</div>
+						<div class="row">{GATEWAYS}</div>
+					</div>
+
+					<div class="col-3">
+						<div class="align-middle mx-auto">
+							<div class="badge bg-info">
+								{PRICE_PRE_TEXT}
+								{PRICE_PRICE}
+								{PRICE_POST_TEXT}
+							</div>
+							<div class="badge bg-dark">
+								{PRICE_CUMULATIVE}
+								{FOR} {STAY_DAYS} {NIGHTS_TEXT}
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="card-footer">
-					<a href="{LINK}" class="btn btn-success pull-right"><i class="fa fa-shopping-cart"></i> {BOOKTHIS_TEXT}</a>
-					<a href="{MOREINFORMATIONLINK}" class="btn btn-info"><i class="fa fa-info"></i> {MOREINFORMATION}</a>
-					<a href="javascript:void(0);" onclick="quick_info({UID});" role="button" class="btn btn-secondary hidden-xs hidden-sm">
-						<i class="fa fa-info"></i> {_JOMRES_QUICK_INFO}
-					</a>
-					{REVIEWS_BUTTON}
-					<a href="javascript:void(0);" id="shortlist_{UID}" onclick="shortlist('{UID}')" class="btn btn-secondary hidden-xs hidden-sm">{SHORTLIST}</a>
+
+				<div id="effect{UID}" class="hidden">
+					<p>&nbsp;</p>
+					<div class="row">
+						<div class="col-2 ">
+							<div><strong>{_JOMRES_AGENT}</strong></div>
+							<div>{AGENT_LINK}</div>
+						</div>
+						<div class="col-5 ">
+							<div><strong>{_JOMRES_FRONT_ROOMTYPES}</strong></div>
+							<div>{ROOMTYPES}</div>
+							<div style="clear:both;"></div>
+							<div><strong>{_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES}</strong></div>
+							<div>{FEATURELIST}</div>
+							<div style="clear:both;"></div>
+						</div>
+						<div class="col-5 ">
+							{CUSTOM_PROPERTY_FIELDS_DATA_SNIPPET}
+							<div class="clearfix"></div>
+							<div>&nbsp;</div>
+							<div class="{LASTBOOKING_STYLE}">{LASTBOOKED}</div>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
-		<script>
-			document.addEventListener('DOMContentLoaded', function(){
-				jomresJquery('#module_{RANDOM_IDENTIFIER}_popup', '#property_reviews{UID}').appendTo("body");
-			});
-		</script>
-		<div class="modal fade" id="module_{RANDOM_IDENTIFIER}_popup"></div><!-- /.modal info -->
-		<div class="offcanvas offcanvas-start" style="width: 65%; " tabindex="-1" id="reviewsOffCanvas{UID}" aria-labelledby="offcanvasReviewsLabel">
-			<div class="offcanvas-header">
-				<h5 class="offcanvas-title" id="offcanvasExampleLabel">{_JOMRES_REVIEWS}</h5>
-				<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+			<div class="card-footer">
+				<a href="{LINK}" class="btn btn-success pull-right"><i class="fa fa-shopping-cart"></i> {BOOKTHIS_TEXT}</a>
+				<a href="{MOREINFORMATIONLINK}" class="btn btn-info"><i class="fa fa-info"></i> {MOREINFORMATION}</a>
+				<a href="javascript:void(0);" onclick="quick_info({UID});" role="button" class="btn btn-secondary hidden-xs hidden-sm">
+					<i class="fa fa-info"></i> {_JOMRES_QUICK_INFO}
+				</a>
+				{REVIEWS_BUTTON}
+				<a href="javascript:void(0);" id="shortlist_{UID}" onclick="shortlist('{UID}')" class="btn btn-secondary hidden-xs hidden-sm">{SHORTLIST}</a>
 			</div>
-			<div class="offcanvas-body">
-				{jomres_script show_property_reviews PROPERTY_UID={UID}}
-			</div>
-		</div>
-	</patTemplate:tmpl>
-
-	<div id = "livescrolling_results" ></div>
-
-	<div class="row">
-		<div class="col-12">
-			{PAGING}
 		</div>
 	</div>
+	<script>
+		document.addEventListener('DOMContentLoaded', function(){
+		 jomresJquery('#module_{RANDOM_IDENTIFIER}_popup', '#property_reviews{UID}').appendTo("body");
+		});
+	</script>
+	<div class="modal fade" id="module_{RANDOM_IDENTIFIER}_popup"></div><!-- /.modal info -->
+	<div class="offcanvas offcanvas-start" style="width: 65%; " tabindex="-1" id="reviewsOffCanvas{UID}" aria-labelledby="offcanvasReviewsLabel">
+		<div class="offcanvas-header">
+			<h5 class="offcanvas-title" id="offcanvasExampleLabel">{_JOMRES_REVIEWS}</h5>
+			<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+		</div>
+		<div class="offcanvas-body">
+			{jomres_script show_property_reviews PROPERTY_UID={UID}}
+		</div>
+	</div>
+</patTemplate:tmpl>
 
-	<patTemplate:comment>{HEADER}</patTemplate:comment>
+<div id = "livescrolling_results" ></div>
+
+<div class="row">
+	<div class="col-12">
+		{PAGING}
+	</div>
+</div>
+
+<patTemplate:comment>{HEADER}</patTemplate:comment>
 </patTemplate:tmpl>

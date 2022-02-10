@@ -18,10 +18,13 @@
 					</div>
 				</patTemplate:comment>
 				<div class="image-container ">
-					<a href="{MOREINFORMATIONLINK}"><img src="{IMAGELARGE}" alt="{PROPERTY_NAME}" class="card-img-top" /></a>
+					<a href="{MOREINFORMATIONLINK}">
+						<img src="{IMAGELARGE}" alt="{PROPERTY_NAME}" class="card-img-top" />
+
+					</a>
 					{RIBBON}
 					<div class="bottom-left bg-secondary text-white">{PRICE_PRE_TEXT} <strong>{PRICE_PRICE}</strong>{PRICE_POST_TEXT}</div>
-					<div class="bottom-right">{REVIEWS_BUTTON}</div>
+					<div class="bottom-right d-none d-sm-block">{REVIEWS_BUTTON}</div>
 				</div>
 				<hr/>
 				<div class="text-truncate">{PROPERTY_DESCRIPTION}</div>

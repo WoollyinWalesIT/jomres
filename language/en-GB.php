@@ -2623,6 +2623,7 @@ jr_define( 'DATA_SOURCES_TITLE', "Refresh data sources" );
 jr_define( 'DATA_SOURCES_TITLE_INFO', "Data sources refreshed. Data sources are used by autocomplete input fields in the search widget and they are usually updated automatically, however this page forces the data to be updated manually if required." );
 
 
+jr_define('_OAUTH_TOKEN_REQUEST_URI', "To send a token request, send the request to this url");
 
 
 
