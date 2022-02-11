@@ -92,6 +92,28 @@ class j06000show_property_reviews_summary
 		$output[ '_JOMRES_REVIEWS_AVERAGE_RATING' ] = jr_gettext('_JOMRES_REVIEWS_AVERAGE_RATING', '_JOMRES_REVIEWS_AVERAGE_RATING', false, false);
 		$output[ '_JOMRES_REVIEWS_TOTAL_VOTES' ] = jr_gettext('_JOMRES_REVIEWS_TOTAL_VOTES', '_JOMRES_REVIEWS_TOTAL_VOTES', false, false);
 
+		$rating_text = $Reviews->generate_review_rating_text($output[ 'AVERAGE_RATING' ]) ;
+
+		$output['RATING_TEXT_COLOUR'] = 'text-success';
+		$output['RATING_SCORE_TEXT'] = jomres_badge(
+			$rating_text,
+			'success'
+		);
+		if ($output['AVERAGE_RATING'] > 5 && $output['AVERAGE_RATING'] < 7  ) {
+			$output['RATING_TEXT_COLOUR'] = 'text-warning';
+			$output['RATING_SCORE_TEXT'] = jomres_badge(
+				$rating_text,
+				'warning'
+			);
+		}
+
+		if ($output['AVERAGE_RATING'] <= 5) {
+			$rob['RATING_TEXT_COLOUR'] = 'text-danger';
+			$output['RATING_SCORE_TEXT'] = jomres_badge(
+				$rating_text,
+				'danger'
+			);
+		}
 		$pageoutput[] = $output;
 
 		$tmpl = new patTemplate();
