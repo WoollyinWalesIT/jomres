@@ -778,7 +778,7 @@ class jomres_reviews
 		return $result;
 	}
 	
-	private function generate_review_rating_text( $average_rating = 0)
+	public function generate_review_rating_text( $average_rating = 0)
 	{
 		if ( $average_rating > 9.8 ) {
 			return jr_gettext('JOMRES_REVIEW_SCORE_TOP_1', 'JOMRES_REVIEW_SCORE_TOP_1', false);
