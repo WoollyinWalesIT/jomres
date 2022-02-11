@@ -109,7 +109,7 @@ class j06000show_property_features
 			} else { //display by categories
 				//first we split the features in arrays for each category
 				$propertyFeatures = array();
-				$features_template = '';
+				$features_template = array();
 
 				foreach ($basic_property_details->features as $feature_id=>$f) {
 					$f['feature_uid']=$feature_id;
@@ -157,8 +157,14 @@ class j06000show_property_features
 					$tmpl->addRows('pageoutput', $pageoutput);
 					$tmpl->addRows('pfeatures', $pFeatures);
 					$tmpl->readTemplatesFromInput('show_property_features.html');
-					$features_template .= $tmpl->getParsedTemplate();
+					$features_template[] = array ( 'FEATURES_CATEGORY' => $tmpl->getParsedTemplate() ) ;
 				}
+
+				$tmpl = new patTemplate();
+				$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+				$tmpl->addRows('features_template', $features_template);
+				$tmpl->readTemplatesFromInput('show_property_features_wrapper.html');
+				$features_template = $tmpl->getParsedTemplate();
 
 				if ($output_now) {
 					echo $features_template;
