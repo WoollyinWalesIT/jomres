@@ -2625,7 +2625,7 @@ class patTemplate
 	 */
 	function getParsedTemplate( $name = null, $applyFilters = false )
 		{
-			$this->get_debugging_output();
+		$this->get_debugging_output();
 		if ( count ($this->current_template_files) > 0)
 			{
 			$current_template_files = '';
@@ -2878,12 +2878,13 @@ Template row index <strong>'.$key.' </strong>
   </div>
 </div>
 ';
+			unset($this->rows_samples);
+			$debugging_modals = get_showtime('patTemplate_debugging_modals');
+			$debugging_modals[] = $debugging_output;
+			set_showtime('patTemplate_debugging_modals' , $debugging_modals);
 		}
 
-		unset($this->rows_samples);
-		$debugging_modals = get_showtime('patTemplate_debugging_modals');
-		$debugging_modals[] = $debugging_output;
-		set_showtime('patTemplate_debugging_modals' , $debugging_modals);
+
 		return $debugging_output;
 	}
 	/**
