@@ -114,6 +114,9 @@ class j06000show_property_reviews_summary
 				'danger'
 			);
 		}
+
+		$output['SHOW_PROPERTY_REVIEWS_URL'] = jomresURL(JOMRES_SITEPAGE_URL.'&task=show_property_reviews&property_uid='.$property_uid);
+
 		$pageoutput[] = $output;
 
 		$tmpl = new patTemplate();
