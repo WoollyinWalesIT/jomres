@@ -130,6 +130,8 @@ class j06000viewproperty
 		//show property header
 		property_header($property_uid);
 
+		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
+
 		$output = array();
 		$pageoutput = array();
 
@@ -457,6 +459,29 @@ class j06000viewproperty
 
         $output['DESCRIPTION'] = jomres_cmsspecific_parseByBots($jomres_markdown->get_markdown($current_property_details->property_description));
 
+		// Doesn't make the slideshow functionality redundant, just makes the images available to the property details template if it's wanted.
+		$jomres_media_centre_images->get_images($property_uid, array('slideshow'));
+		$slideshow_imagesArray = $jomres_media_centre_images->images ['slideshow'] [0];
+		$counter =0;
+
+		$slideshow_images = [];
+		foreach ($slideshow_imagesArray as $images) {
+			$active = '';
+			if ($counter == 0) {
+				$active = 'active';
+			}
+			$slideshow_images[] = [
+				'ACTIVE'				=> $active,
+				'RANDOM_IDENTIFIER'		=> generateJomresRandomString(10),
+				'COUNTER'				=> $counter,
+				'SMALL_IMAGE'			=> $images ['small'],
+				'MEDIUM_IMAGE'			=> $images ['medium'],
+				'LARGE_IMAGE'			=> $images ['large'],
+				'PROPERTY_NAME'			=> $output ["PROPERTY_NAME"] , // just in case we need captions
+				'PROPERTY_DESCRIPTION'	=> $output ['DESCRIPTION'] ,
+			];
+			$counter++;
+		}
 
         $output['SIDEBAR'] = $MiniComponents->specificEvent('06000', 'show_site_sidebar', array('output_now' => false, 'property_uid' => $property_uid, 'property_details_object' => $current_property_details ));
 
@@ -478,6 +503,11 @@ class j06000viewproperty
 
 		$tmpl->addRows('availability_output', $availability_output);
 		$tmpl->addRows('availability_output_content', $availability_output);
+
+		if (!empty($slideshow_imagesArray)){
+			$tmpl->addRows('slideshow_images', $slideshow_images);
+			$tmpl->addRows('slideshow_images2', $slideshow_images); // Quite often slideshows need two sets of identical information
+		}
 
 		if ($mrConfig[ 'showSlideshowLink' ] == 1) {
 			$tmpl->addRows('slideshowlink', $slideshowlink);
