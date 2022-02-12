@@ -81,6 +81,9 @@ class j06000viewproperty
 		$customTextObj = jomres_singleton_abstract::getInstance('custom_text');
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 
+		jr_import('jomres_property_categories');
+		$jomres_property_categories = new jomres_property_categories();
+
 		jr_import('jomres_markdown');
 		$jomres_markdown = new jomres_markdown();
 
@@ -149,6 +152,19 @@ class j06000viewproperty
 		$output["PROPERTY_TYPE"]			= $current_property_details->multi_query_result[$property_uid]['property_type'];
 		$output["PTYPE_ID"]					= $current_property_details->multi_query_result[$property_uid]['ptype_id'];
 		$output["PROPERTY_TYPE_TITLE"]		= $current_property_details->multi_query_result[$property_uid]['property_type_title'];
+		$output["PROPERTY_LATITUDE"]		= $current_property_details->multi_query_result[$property_uid]['lat'];
+		$output["PROPERTY_LONGITUDE"]		= $current_property_details->multi_query_result[$property_uid]['long'];
+
+		$output["PROPERTY_CATEGORY"]		=$jomres_property_categories->get_property_category(  $current_property_details->multi_query_result[$property_uid]['cat_id'] );
+		$output["PROPERTY_CATEGORY_ID"]		= $current_property_details->multi_query_result[$property_uid]['cat_id'];
+
+
+
+
+		$output["GOOGLE_MAPS_API_KEY"]		= '';
+		if ($jrConfig[ 'google_maps_api_key' ] != '') {
+			$output["GOOGLE_MAPS_API_KEY"]		= $jrConfig[ 'google_maps_api_key' ];
+		}
 
 		//property slideshow
 		if ($mrConfig[ 'showSlideshowInline' ] == '1') {
@@ -364,14 +380,20 @@ class j06000viewproperty
 			$availability_output = array();
 		}
 
-		$output[ 'HPOLICIESDISCLAIMERS' ]	= jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS');
+
+		$output['HPOLICIESDISCLAIMERS']	= jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS');
+		$output['HAVAILABILITY']		= jr_gettext('_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY', '_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY');
+		$output['HROOMS']				= jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP2_TITLE', '_JOMRES_COM_MR_QUICKRES_STEP2_TITLE', false, false);
+		$output['HROOM_TYPES']		= jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', '_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES');
+		$output['HTARIFFS']		= jr_gettext('_JOMRES_FRONT_TARIFFS', '_JOMRES_FRONT_TARIFFS');
+
 
 		$output['TOWN']		= $current_property_details->property_town;
 		$output['REGION']	= $current_property_details->property_region;
 		$output['COUNTRY']	= $current_property_details->property_country;
 
 		$output[ '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL' ]		= jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL', '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL');
-		$output['TABCONTENT_03_CONTACT_TAB_CONTENT']	= $MiniComponents->specificEvent('06000', 'contactowner' , ['property_uid' => $property_uid , 'noshownow' => true ]);
+		$output['TABCONTENT_03_CONTACT_TAB_CONTENT']	= $MiniComponents->specificEvent('06000', 'contactowner' , ['property_uid' => $property_uid , 'noshownow' => true , 'no_title' => true ]);
 
 		$output[ 'HCHECKINTIMES' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_CHECKINTIMES', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_CHECKINTIMES');
 		$output[ 'HAREAACTIVITIES' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AREAACTIVITIES', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AREAACTIVITIES');
