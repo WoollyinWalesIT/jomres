@@ -207,6 +207,7 @@ class j09995menu
 		//misc section menus
 		if ($thisJRUser->accesslevel >= 50) {
 			$jomres_menu->add_item(70, jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_SEARCH', '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_SEARCH', false), 'search', 'fa-search');
+			$jomres_menu->add_item(70, 'Typography', 'typography', 'fas fa-paint-brush');
 		}
 
 		//settings section menus
