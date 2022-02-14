@@ -1,122 +1,387 @@
 <patTemplate:tmpl name="pageoutput">
 
-	<style>
-		/* Bootstrap's shadow doesn't go all around (that I could figure out, and I want the sidebar to pop a bit more than the BS shadows allow */
-
-		.shadow-all-sides
-		{
-			border: solid .75px #EAEAEA;
-			box-shadow:  0 0 10px  rgba(0,0,0,0.4);
-			-moz-box-shadow: 0 0 10px  rgba(0,0,0,0.4);
-			-webkit-box-shadow: 0 0 10px  rgba(0,0,0,0.4);
-			-o-box-shadow: 0 0 10px  rgba(0,0,0,0.4);
-		}
-	</style>
-<div  id="jomres_property_details_sidebar" class="border  border-info rounded-1 bg-success">
-	<pattemplate:comment>
-	<div class="col shadow-all-sides p-1 m-2 bg-body ">
-		<div class="row">
-			<div class="col-9">
-				<h1>{PROPERTY_NAME}</h1>
-			</div>
-			<div class="col-3">
-				<span class="badge bg-warning">
-					{STARS} <i class="fas fa-star"></i>
-				</span>
+	<p>Buttons <button class="btn btn-primary" type="button">Primary</button> <button class="btn btn-secondary" type="button">Secondary</button> <button class="btn btn-success" type="button">Success</button> <button class="btn btn-danger" type="button">Danger</button> <button class="btn btn-warning" type="button">Warning</button> <button class="btn btn-info" type="button">Info</button> <button class="btn btn-light" type="button">Light</button> <button class="btn btn-dark" type="button">Dark</button> <button class="btn btn-link" type="button">Link</button></p>
+	<hr />
+	<p><button class="btn btn-outline-primary" type="button">Primary</button> <button class="btn btn-outline-secondary" type="button">Secondary</button> <button class="btn btn-outline-success" type="button">Success</button> <button class="btn btn-outline-danger" type="button">Danger</button> <button class="btn btn-outline-warning" type="button">Warning</button> <button class="btn btn-outline-info" type="button">Info</button> <button class="btn btn-outline-light" type="button">Light</button> <button class="btn btn-outline-dark" type="button">Dark</button></p>
+	<hr />
+	<div class="row">
+		<div class="col">
+			<p><button class="btn btn-primary btn-lg" type="button">Large button</button> <button class="btn btn-secondary btn-lg" type="button">Large button</button> <button class="btn btn-primary btn-sm" type="button">Small button</button> <button class="btn btn-secondary btn-sm" type="button">Small button</button></p>
+			<div class="btn-group" role="group" aria-label="Basic example"><button class="btn btn-secondary" type="button">Left</button> <button class="btn btn-secondary" type="button">Middle</button> <button class="btn btn-secondary" type="button">Right</button></div>
+			<p><button class="btn" disabled="disabled" type="button">Disabled state</button></p>
+		</div>
+		<div class="col"><button class="btn btn-primary btn-lg btn-block" type="button">Block level button</button> <button class="btn btn-secondary btn-lg btn-block" type="button">Block level button</button></div>
+	</div>
+	<div class="row mt-5">
+		<div class="col">Headings
+			<h1>h1. Bootstrap heading</h1>
+			<h2>h2. Bootstrap heading</h2>
+			<h3>h3. Bootstrap heading</h3>
+			<h4>h4. Bootstrap heading</h4>
+			<h5>h5. Bootstrap heading</h5>
+			<h6>h6. Bootstrap heading</h6>
+		</div>
+		<div class="col">Inline text elements
+			<p>You can use the mark tag to <mark>highlight</mark> text.</p>
+			<p><del>This line of text is meant to be treated as deleted text.</del></p>
+			<p><s>This line of text is meant to be treated as no longer accurate.</s></p>
+			<p><ins>This line of text is meant to be treated as an addition to the document.</ins></p>
+			<p><u>This line of text will render as underlined</u></p>
+			<p><small>This line of text is meant to be treated as fine print.</small></p>
+			<p><strong>This line rendered as bold text.</strong></p>
+			<p><em>This line rendered as italicized text.</em></p>
+		</div>
+	</div>
+	<hr />
+	<p>Blockquotes</p>
+	<blockquote class="blockquote">
+		<p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+		<footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer></blockquote>
+	<blockquote class="blockquote text-center">
+		<p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+		<footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer></blockquote>
+	<blockquote class="blockquote text-right">
+		<p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+		<footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer></blockquote>
+	<div class="row mt-5">
+		<div class="col">Background color
+			<div class="p-3 mb-2 bg-primary text-white">.bg-primary</div>
+			<div class="p-3 mb-2 bg-secondary text-white">.bg-secondary</div>
+			<div class="p-3 mb-2 bg-success text-white">.bg-success</div>
+			<div class="p-3 mb-2 bg-danger text-white">.bg-danger</div>
+			<div class="p-3 mb-2 bg-warning text-dark">.bg-warning</div>
+			<div class="p-3 mb-2 bg-info text-white">.bg-info</div>
+			<div class="p-3 mb-2 bg-light text-dark">.bg-light</div>
+			<div class="p-3 mb-2 bg-dark text-white">.bg-dark</div>
+			<div class="p-3 mb-2 bg-white text-dark">.bg-white</div>
+			Badge <span class="badge badge-primary">Primary</span> <span class="badge badge-secondary">Secondary</span> <span class="badge badge-success">Success</span> <span class="badge badge-danger">Danger</span> <span class="badge badge-warning">Warning</span> <span class="badge badge-info">Info</span> <span class="badge badge-light">Light</span> <span class="badge badge-dark">Dark</span></div>
+		<div class="col">Text color
+			<p class="text-primary">.text-primary</p>
+			<p class="text-secondary">.text-secondary</p>
+			<p class="text-success">.text-success</p>
+			<p class="text-danger">.text-danger</p>
+			<p class="text-warning">.text-warning</p>
+			<p class="text-info">.text-info</p>
+			<p class="text-light bg-dark">.text-light</p>
+			<p class="text-dark">.text-dark</p>
+			<p class="text-muted">.text-muted</p>
+			<p class="text-white bg-dark">.text-white</p>
+			Breadcrumb<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="#">Home</a></li>
+					<li class="breadcrumb-item"><a href="#">Library</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Data</li>
+				</ol>
+			</nav>Pagination<nav aria-label="Page navigation example">
+				<ul class="pagination">
+					<li class="page-item"><a class="page-link" href="#">Previous</a></li>
+					<li class="page-item"><a class="page-link" href="#">1</a></li>
+					<li class="page-item"><a class="page-link" href="#">2</a></li>
+					<li class="page-item"><a class="page-link" href="#">3</a></li>
+					<li class="page-item"><a class="page-link" href="#">Next</a></li>
+				</ul>
+			</nav>Modal <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModal">Launch demo modal</button>
+			<div id="exampleModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 id="exampleModalLabel" class="modal-title">Modal title</h5>
+							<button class="close" type="button" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button></div>
+						<div class="modal-body">Woohoo, you're reading this text in a modal!</div>
+						<div class="modal-footer"><button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button> <button class="btn btn-primary" type="button">Save changes</button></div>
+					</div>
+				</div>
 			</div>
 		</div>
-		<p class="fw-lighter">{PROPERTY_REGION}, {PROPERTY_COUNTRY}</p>
+		<div class="col">Alerts
+			<div class="alert alert-primary" role="alert">This is a primary alert with <a class="alert-link" href="#">an example link</a>.</div>
+			<div class="alert alert-secondary" role="alert">This is a secondary alert with <a class="alert-link" href="#">an example link</a>.</div>
+			<div class="alert alert-success" role="alert">This is a success alert with <a class="alert-link" href="#">an example link</a>.</div>
+			<div class="alert alert-danger" role="alert">This is a danger alert with <a class="alert-link" href="#">an example link</a>.</div>
+			<div class="alert alert-warning" role="alert">This is a warning alert with <a class="alert-link" href="#">an example link</a>.</div>
+			<div class="alert alert-info" role="alert">This is a info alert with <a class="alert-link" href="#">an example link</a>.</div>
+			<div class="alert alert-light" role="alert">This is a light alert with <a class="alert-link" href="#">an example link</a>.</div>
+			<div class="alert alert-dark" role="alert">This is a dark alert with <a class="alert-link" href="#">an example link</a>.</div>
+			Progress
+			<div class="progress">
+				<div class="progress-bar bg-success" style="width: 25%;" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+			</div>
+			<div class="progress">
+				<div class="progress-bar bg-info" style="width: 50%;" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+			</div>
+			<div class="progress">
+				<div class="progress-bar bg-warning" style="width: 75%;" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
+			</div>
+			<div class="progress">
+				<div class="progress-bar bg-danger" style="width: 100%;" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
+			</div>
+		</div>
 	</div>
-	</pattemplate:comment>
-
-	<div class="col shadow-all-sides p-1 m-2 bg-body rounded-1">
-		<h4>{JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA}</h4>
-		<p class="lead">{JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD}</p>
-
-		<p>
-			<pattemplate:tmpl name="social_media_facebook" type="simpleCondition" requiredvars="social_media_facebook">
-				<a href="{URL}{SOCIAL_MEDIA_FACEBOOK}" target="_blank"><i class="fab fa-facebook-square fa-lg" title="{NAME}"></i></a>
-			</pattemplate:tmpl>
-			<pattemplate:tmpl name="social_media_instagram" type="simpleCondition" requiredvars="social_media_instagram">
-				<a href="{URL}{SOCIAL_MEDIA_INSTAGRAM}" target="_blank"><i class="fab fa-instagram fa-lg" title="{NAME}"></i></a>
-			</pattemplate:tmpl>
-			<pattemplate:tmpl name="social_media_pintrest" type="simpleCondition" requiredvars="social_media_pintrest">
-				<a href="{URL}{SOCIAL_MEDIA_PINTREST}" target="_blank"><i class="fab fa-pinterest-square fa-lg" title="{NAME}"></i></a>
-			</pattemplate:tmpl>
-			<pattemplate:tmpl name="social_media_linkedin" type="simpleCondition" requiredvars="social_media_linkedin">
-				<a href="{URL}{SOCIAL_MEDIA_LINKEDIN}" target="_blank"><i class="fab fa-linkedin fa-lg" title="{NAME}"></i></a>
-			</pattemplate:tmpl>
-			<pattemplate:tmpl name="social_media_twitter" type="simpleCondition" requiredvars="social_media_twitter">
-				<a href="{URL}{SOCIAL_MEDIA_TWITTER}" target="_blank"><i class="fab fa-twitter-square fa-lg" title="{NAME}"></i></a>
-			</pattemplate:tmpl>
-			<pattemplate:tmpl name="social_media_tiktok" type="simpleCondition" requiredvars="social_media_tiktok">
-				<a href="{URL}{SOCIAL_MEDIA_TIKTOK}" target="_blank"><i class="fab fa-tiktok fa-lg" title="{NAME}"></i></a>
-			</pattemplate:tmpl>
-			<pattemplate:tmpl name="social_media_whatsapp" type="simpleCondition" requiredvars="social_media_whatsapp">
-				<a href="{URL}{SOCIAL_MEDIA_WHATSAPP}" target="_blank"><i class="fab fa-whatsapp-square fa-lg" title="{NAME}"></i></a>
-			</pattemplate:tmpl>
-			<pattemplate:tmpl name="social_media_youtube" type="simpleCondition" requiredvars="social_media_youtube">
-				<a href="{URL}{SOCIAL_MEDIA_YOUTUBE}" target="_blank"><i class="fab fa-youtube-square fa-lg" title="{NAME}"></i></a>
-			</pattemplate:tmpl>
-		</p>
+	<div class="row mt-5">
+		<div class="col">Navs
+			<ul class="nav">
+				<li class="nav-item"><a class="nav-link active" href="#">Active</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+				<li class="nav-item"><a class="nav-link disabled" href="#">Disabled</a></li>
+			</ul>
+			<ul class="nav nav-tabs">
+				<li class="nav-item"><a class="nav-link active" href="#">Active</a></li>
+				<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" role="button" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+					<div class="dropdown-menu"><a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
+						<div class="dropdown-divider"> </div>
+						<a class="dropdown-item" href="#">Separated link</a></div>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+				<li class="nav-item"><a class="nav-link disabled" href="#">Disabled</a></li>
+			</ul>
+		</div>
+		<div class="col">
+			<ul id="pills-tab" class="nav nav-pills mb-3" role="tablist">
+				<li class="nav-item"><a id="pills-home-tab" class="nav-link active" role="tab" href="#pills-home" data-toggle="pill" aria-controls="pills-home" aria-selected="true">Home</a></li>
+				<li class="nav-item"><a id="pills-profile-tab" class="nav-link" role="tab" href="#pills-profile" data-toggle="pill" aria-controls="pills-profile" aria-selected="false">Profile</a></li>
+				<li class="nav-item"><a id="pills-contact-tab" class="nav-link" role="tab" href="#pills-contact" data-toggle="pill" aria-controls="pills-contact" aria-selected="false">Contact</a></li>
+			</ul>
+			<div id="pills-tabContent" class="tab-content">
+				<div id="pills-home" class="tab-pane fade show active" role="tabpanel" aria-labelledby="pills-home-tab">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+				<div id="pills-profile" class="tab-pane fade" role="tabpanel" aria-labelledby="pills-profile-tab">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</div>
+				<div id="pills-contact" class="tab-pane fade" role="tabpanel" aria-labelledby="pills-contact-tab">When an unknown printer took a galley of type and scrambled it to make a type specimen book.</div>
+			</div>
+		</div>
+		<div class="col">
+			<ul id="myTab" class="nav nav-tabs mb-3" role="tablist">
+				<li class="nav-item"><a id="home-tab" class="nav-link active" role="tab" href="#home" data-toggle="tab" aria-controls="home" aria-selected="true">Home</a></li>
+				<li class="nav-item"><a id="profile-tab" class="nav-link" role="tab" href="#profile" data-toggle="tab" aria-controls="profile" aria-selected="false">Profile</a></li>
+				<li class="nav-item"><a id="contact-tab" class="nav-link" role="tab" href="#contact" data-toggle="tab" aria-controls="contact" aria-selected="false">Contact</a></li>
+			</ul>
+			<div id="myTabContent" class="tab-content">
+				<div id="home" class="tab-pane fade show active" role="tabpanel" aria-labelledby="home-tab">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+				<div id="profile" class="tab-pane fade" role="tabpanel" aria-labelledby="profile-tab">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</div>
+				<div id="contact" class="tab-pane fade" role="tabpanel" aria-labelledby="contact-tab">When an unknown printer took a galley of type and scrambled it to make a type specimen book.</div>
+			</div>
+		</div>
 	</div>
-
-	<div class="col shadow-all-sides p-1 m-2 rounded-1 text-white bg-secondary">
-		<h5>
-			{JOMRES_SITE_SIDEBAR_WHY_TITLE}
-		</h5>
-		<p class="lead">
-			{JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE}
-		</p>
-		<ul class="list-unstyled">
-			<li>{JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB1}</li>
-			<li>{JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_BLURB2}</li>
-		</ul>
-
-		<h5>
-			{JOMRES_SITE_SIDEBAR_WHY_LARGEST_TITLE}
-		</h5>
-		<ul class="list-unstyled">
-			<li>{NUMBER_OF_PROPERTIES_IN_SYSTEM}{JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS}</li>
-			<li>{NUMBER_OF_REVIEWS_IN_SYSTEM}{JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS}</li>
-		</ul>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light mt-3"><a class="navbar-brand" href="#">Navbar</a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> </button>
+		<div id="navbarSupportedContent" class="collapse navbar-collapse">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a></li>
+				<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+				<li class="nav-item dropdown"><a id="navbarDropdown" class="nav-link dropdown-toggle" role="button" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown"><a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a>
+						<div class="dropdown-divider"> </div>
+						<a class="dropdown-item" href="#">Something else here</a></div>
+				</li>
+				<li class="nav-item"><a class="nav-link disabled" href="#">Disabled</a></li>
+			</ul>
+			<form class="form-inline my-2 my-lg-0"><input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" /> <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button></form></div>
+	</nav>
+	<div class="row mt-5">
+		<div class="col-3">Forms
+			<div class="input-group input-group-sm mb-3">
+				<div class="input-group-prepend"><span id="inputGroup-sizing-sm" class="input-group-text">Small</span></div>
+				<input class="form-control" type="text" aria-label="Small" aria-describedby="inputGroup-sizing-sm" /></div>
+			<div class="input-group mb-3">
+				<div class="input-group-prepend"><span id="inputGroup-sizing-default" class="input-group-text">Default</span></div>
+				<input class="form-control" type="text" aria-label="Default" aria-describedby="inputGroup-sizing-default" /></div>
+			<div class="input-group input-group-lg">
+				<div class="input-group-prepend"><span id="inputGroup-sizing-lg" class="input-group-text">Large</span></div>
+				<input class="form-control" type="text" aria-label="Large" aria-describedby="inputGroup-sizing-sm" /></div>
+			<select class="form-control form-control-lg mt-3">
+				<option>Large select</option>
+			</select><select class="form-control">
+				<option>Default select</option>
+			</select><select class="form-control form-control-sm">
+				<option>Small select</option>
+			</select></div>
+		<div class="col-3">
+			<div class="form-check"><input id="defaultCheck1" class="form-check-input" type="checkbox" value="" /> <label class="form-check-label" for="defaultCheck1">Default checkbox</label></div>
+			<div class="form-check"><input id="defaultCheck2" class="form-check-input" disabled="disabled" type="checkbox" value="" /> <label class="form-check-label" for="defaultCheck2">Disabled checkbox</label></div>
+			<div class="form-check mt-3"><input id="exampleRadios1" class="form-check-input" checked="checked" name="exampleRadios" type="radio" value="option1" /> <label class="form-check-label" for="exampleRadios1">Default radio</label></div>
+			<div class="form-check disabled"><input id="exampleRadios3" class="form-check-input" disabled="disabled" name="exampleRadios" type="radio" value="option3" /> <label class="form-check-label" for="exampleRadios3">Disabled radio</label></div>
+			<div class="form-check form-check-inline mt-3"><input id="inlineCheckbox1" class="form-check-input" type="checkbox" value="option1" /> <label class="form-check-label" for="inlineCheckbox1">1</label></div>
+			<div class="form-check form-check-inline"><input id="inlineCheckbox2" class="form-check-input" type="checkbox" value="option2" /> <label class="form-check-label" for="inlineCheckbox2">2</label></div>
+			<div class="form-check form-check-inline"><input id="inlineCheckbox3" class="form-check-input" disabled="disabled" type="checkbox" value="option3" /> <label class="form-check-label" for="inlineCheckbox3">3 (disabled)</label></div>
+			<br />
+			<div class="form-check form-check-inline"><input id="inlineRadio1" class="form-check-input" style="display: inline-block;" name="inlineRadioOptions" type="radio" value="option1" /> <label class="form-check-label" for="inlineRadio1">1</label></div>
+			<div class="form-check form-check-inline"><input id="inlineRadio2" class="form-check-input" style="display: inline-block;" name="inlineRadioOptions" type="radio" value="option2" /> <label class="form-check-label" for="inlineRadio2">2</label></div>
+			<div class="form-check form-check-inline"><input id="inlineRadio3" class="form-check-input" style="display: inline-block;" disabled="disabled" name="inlineRadioOptions" type="radio" value="option3" /> <label class="form-check-label" for="inlineRadio3">3 (disabled)</label></div>
+			<form>
+				<div class="form-group mt-3"><label for="exampleFormControlFile1">Example file input</label> <input id="exampleFormControlFile1" class="form-control-file" type="file" /></div>
+			</form><input class="form-control mt-3" readonly="readonly" type="text" placeholder="Readonly input here…" /></div>
+		<div class="col-6">
+			<div class="input-group mb-3">
+				<div class="input-group-prepend"><span id="basic-addon1" class="input-group-text">@</span></div>
+				<input class="form-control" type="text" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" /></div>
+			<div class="input-group mb-3"><input class="form-control" type="text" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2" />
+				<div class="input-group-append"><span id="basic-addon2" class="input-group-text">@example.com</span></div>
+			</div>
+			<label for="basic-url">Your vanity URL</label>
+			<div class="input-group mb-3">
+				<div class="input-group-prepend"><span id="basic-addon3" class="input-group-text">https://example.com/users/</span></div>
+				<input id="basic-url" class="form-control" type="text" aria-describedby="basic-addon3" /></div>
+			<div class="input-group mb-3">
+				<div class="input-group-prepend"><span class="input-group-text">$</span></div>
+				<input class="form-control" type="text" aria-label="Amount (to the nearest dollar)" />
+				<div class="input-group-append"><span class="input-group-text">.00</span></div>
+			</div>
+			<div class="input-group">
+				<div class="input-group-prepend"><span class="input-group-text">With textarea</span></div>
+				<textarea class="form-control" aria-label="With textarea"></textarea></div>
+		</div>
 	</div>
-
-	<div class="col shadow-all-sides p-1 m-2 bg-body rounded-1">
-		<h4>
-			{JOMRES_SITE_SIDEBAR_HELP_TITLE}
-		</h4>
-		<p>
-			{JOMRES_SITE_SIDEBAR_HELP_BLURB}
-		</p>
+	<div class="row mt-5">
+		<div class="col">List group
+			<div class="list-group"><a class="list-group-item list-group-item-action active" href="#">Cras justo odio</a> <a class="list-group-item list-group-item-action" href="#">Dapibus ac facilisis in</a> <a class="list-group-item list-group-item-action" href="#">Morbi leo risus</a> <a class="list-group-item list-group-item-action" href="#">Porta ac consectetur ac</a> <a class="list-group-item list-group-item-action disabled" href="#">Vestibulum at eros</a></div>
+			<ul class="list-group mt-2">
+				<li class="list-group-item d-flex justify-content-between align-items-center">Cras justo odio <span class="badge badge-primary badge-pill">14</span></li>
+				<li class="list-group-item d-flex justify-content-between align-items-center">Dapibus ac facilisis in <span class="badge badge-primary badge-pill">2</span></li>
+				<li class="list-group-item d-flex justify-content-between align-items-center">Morbi leo risus <span class="badge badge-primary badge-pill">1</span></li>
+			</ul>
+		</div>
+		<div class="col">
+			<div class="list-group"><a class="list-group-item list-group-item-action" href="#">Dapibus ac facilisis in</a> <a class="list-group-item list-group-item-action list-group-item-primary" href="#">This is a primary list group item</a> <a class="list-group-item list-group-item-action list-group-item-secondary" href="#">This is a secondary list group item</a> <a class="list-group-item list-group-item-action list-group-item-success" href="#">This is a success list group item</a> <a class="list-group-item list-group-item-action list-group-item-danger" href="#">This is a danger list group item</a> <a class="list-group-item list-group-item-action list-group-item-warning" href="#">This is a warning list group item</a> <a class="list-group-item list-group-item-action list-group-item-info" href="#">This is a info list group item</a> <a class="list-group-item list-group-item-action list-group-item-light" href="#">This is a light list group item</a> <a class="list-group-item list-group-item-action list-group-item-dark" href="#">This is a dark list group item</a></div>
+		</div>
+		<div class="col">
+			<div class="row">
+				<div class="col-5">
+					<div id="list-tab" class="list-group" role="tablist"><a id="list-home-list" class="list-group-item list-group-item-action active" role="tab" href="#list-home" data-toggle="list" aria-controls="home">Home</a> <a id="list-profile-list" class="list-group-item list-group-item-action" role="tab" href="#list-profile" data-toggle="list" aria-controls="profile">Profile</a> <a id="list-messages-list" class="list-group-item list-group-item-action" role="tab" href="#list-messages" data-toggle="list" aria-controls="messages">Messages</a> <a id="list-settings-list" class="list-group-item list-group-item-action" role="tab" href="#list-settings" data-toggle="list" aria-controls="settings">Settings</a></div>
+				</div>
+				<div class="col-7">
+					<div id="nav-tabContent" class="tab-content">
+						<div id="list-home" class="tab-pane fade show active" role="tabpanel" aria-labelledby="list-home-list">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</div>
+						<div id="list-profile" class="tab-pane fade" role="tabpanel" aria-labelledby="list-profile-list">It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+						<div id="list-messages" class="tab-pane fade" role="tabpanel" aria-labelledby="list-messages-list">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</div>
+						<div id="list-settings" class="tab-pane fade" role="tabpanel" aria-labelledby="list-settings-list">It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-
-
-
-
-
-	<div class="col shadow-all-sides p-1 m-2 bg-body rounded-1 ">
-		<h4>
-			{JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE}
-		</h4>
-		<p class="lead">
-			{JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT}
-		</p>
-
-		<p>{JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT}</p>
-		<p class="fw-bolder">{BUSINESS_TELEPHONE}</p>
+	<div class="row mt-5">
+		<div class="col">Tables
+			<table class="table table-hover">
+				<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">First</th>
+					<th scope="col">Last</th>
+					<th scope="col">Handle</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<th scope="row">1</th>
+					<td>Mark</td>
+					<td>Otto</td>
+					<td>@mdo</td>
+				</tr>
+				<tr>
+					<th scope="row">2</th>
+					<td>Jacob</td>
+					<td>Thornton</td>
+					<td>@fat</td>
+				</tr>
+				<tr>
+					<th scope="row">3</th>
+					<td colspan="2">Larry the Bird</td>
+					<td>@twitter</td>
+				</tr>
+				</tbody>
+			</table>
+			<table class="table table-hover table-dark">
+				<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">First</th>
+					<th scope="col">Last</th>
+					<th scope="col">Handle</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<th scope="row">1</th>
+					<td>Mark</td>
+					<td>Otto</td>
+					<td>@mdo</td>
+				</tr>
+				<tr>
+					<th scope="row">2</th>
+					<td>Jacob</td>
+					<td>Thornton</td>
+					<td>@fat</td>
+				</tr>
+				<tr>
+					<th scope="row">3</th>
+					<td colspan="2">Larry the Bird</td>
+					<td>@twitter</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col">
+			<table class="table table-hover">
+				<thead>
+				<tr>
+					<th scope="col">Class</th>
+					<th scope="col">Heading</th>
+					<th scope="col">Heading</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr class="table-active">
+					<th scope="row">Active</th>
+					<td>Cell</td>
+					<td>Cell</td>
+				</tr>
+				<tr>
+					<th scope="row">Default</th>
+					<td>Cell</td>
+					<td>Cell</td>
+				</tr>
+				<tr class="table-primary">
+					<th scope="row">Primary</th>
+					<td>Cell</td>
+					<td>Cell</td>
+				</tr>
+				<tr class="table-secondary">
+					<th scope="row">Secondary</th>
+					<td>Cell</td>
+					<td>Cell</td>
+				</tr>
+				<tr class="table-success">
+					<th scope="row">Success</th>
+					<td>Cell</td>
+					<td>Cell</td>
+				</tr>
+				<tr class="table-danger">
+					<th scope="row">Danger</th>
+					<td>Cell</td>
+					<td>Cell</td>
+				</tr>
+				<tr class="table-warning">
+					<th scope="row">Warning</th>
+					<td>Cell</td>
+					<td>Cell</td>
+				</tr>
+				<tr class="table-info">
+					<th scope="row">Info</th>
+					<td>Cell</td>
+					<td>Cell</td>
+				</tr>
+				<tr class="table-light">
+					<th scope="row">Light</th>
+					<td>Cell</td>
+					<td>Cell</td>
+				</tr>
+				<tr class="table-dark">
+					<th scope="row">Dark</th>
+					<td>Cell</td>
+					<td>Cell</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+		<div> </div>
 	</div>
-
-	<div class="col shadow-all-sides p-1 m-2 bg-body rounded-1">
-		{CONTACT_FORM}
-	</div>
-
-	<div class="col shadow-all-sides p-1 m-2 bg-body rounded-1">
-		<h4>{BUSINESS_NAME}</h4>
-		VAT: {BUSINESS_VAT_NUMBER}
-		<p class="fst-italic">{BUSINESS_ADDRESS}, {BUSINESS_STREET}, {BUSINESS_TOWN}, {BUSINESS_REGION},{BUSINESS_POSTCODE}, {BUSINESS_COUNTRY} </p>
-		<p class="fw-normal text-capitalize">{_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES} : {BUSINESS_LANGUAGES}</p>
-	</div>
-</div>
 
 </patTemplate:tmpl>
