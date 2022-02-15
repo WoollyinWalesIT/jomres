@@ -15,19 +15,12 @@
 			<patTemplate:tmpl name="property_details" unusedvars="&nbsp;">
 				<div class="col-sm-4 p-2  d-flex align-items-stretch">
 					<div class="card card-img-top-lg" id="{UID}">
-						{RIBBON}{PROPERTY_IMAGE_OR_SLIDESHOW}
 
-							<div class="row text-overlay-photolayout" style="width:200%">
-								<div class="col-sm-4">
-									<div class="bg-info text-white rounded-3 p-2">
-										{PRICE_PRE_TEXT} {PRICE_PRICE}
-										{PRICE_POST_TEXT}
-									</div>
-								</div>
-								<div class="col-sm-8">
-									&nbsp;
-								</div>
-							</div>
+
+						<div class="image-container ">
+							{RIBBON}{PROPERTY_IMAGE_OR_SLIDESHOW}
+							<div class="bottom-left bg-info text-white rounded-3 p-2">{PRICE_PRE_TEXT} <strong>{PRICE_PRICE}</strong>{PRICE_POST_TEXT}</div>
+						</div>
 
 						<div class="card-body {BUDGET_BORDER_CLASS} {FEATURED_LISTINGS_CLASS}">
 
