@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.3
+* @version Jomres 10.2.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2700,4 +2700,12 @@ jr_define('JOMRES_REVIEW_SCORE_GOOD', "Dobré");
 
 jr_define('JOMRES_REVIEWS_NONE_NEW', "Nový záznam");
 jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Zľavnené");
-	
+
+	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Kam chceš ísť?');
+	jr_define( 'DATA_SOURCES_TITLE', "Obnoviť zdroje údajov" );
+	jr_define( 'DATA_SOURCES_TITLE_INFO', "Dátové zdroje obnovené. Dátové zdroje sú využívané automatickým dopĺňaním vstupných polí vo vyhľadávacom widgete a zvyčajne sa aktualizujú automaticky, avšak táto stránka si vyžaduje, aby sa údaje aktualizovali manuálne, ak je to potrebné." );
+
+	jr_define('_OAUTH_TOKEN_REQUEST_URI', "Ak chcete odoslať požiadavku na token, pošlite požiadavku na túto adresu URL");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Skript vlastností hlavného zobrazenia");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Uid vlastnosti vlastnosti, ktorá sa má zobraziť");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Predvolená šablóna je property_details.html, pomocou tohto argumentu môžete definovať inú šablónu podrobností vlastnosti, ktorá sa má zobraziť.");

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.3
+* @version Jomres 10.2.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2695,3 +2695,12 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Imatges de
 
 	jr_define('JOMRES_REVIEWS_NONE_NEW', "Nova llista");
 	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Descomptat");
+
+	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'On vols anar?');
+	jr_define('DATA_SOURCES_TITLE', "Actualitza les fonts de dades");
+	jr_define( 'DATA_SOURCES_TITLE_INFO', "Fonts de dades actualitzades. Les fonts de dades s'utilitzen pels camps d'entrada d'emplenament automàtic del widget de cerca i normalment s'actualitzen automàticament, però aquesta pàgina obliga a actualitzar les dades manualment si és necessari." );
+
+	jr_define('_OAUTH_TOKEN_REQUEST_URI', "Per enviar una sol·licitud de testimoni, envieu la sol·licitud a aquesta URL");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "L'script de propietat de la vista principal");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "L'ID de la propietat que s'ha de veure");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "La plantilla predeterminada és property_details.html, amb aquest argument podeu definir una plantilla de detalls de propietat diferent per mostrar.");

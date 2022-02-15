@@ -3,7 +3,7 @@
  * Core file
  *
  * @author Vince Wooll <sales@jomres.net>
-* * @version Jomres 10.1.3
+* @version Jomres 10.2.0
  * @package Jomres
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
@@ -2651,3 +2651,12 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"รูป�
 
 	jr_define('JOMRES_REVIEWS_NONE_NEW', "รายการใหม่");
 	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "ลดราคา");
+
+	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'คุณอยากไปที่ไหน');
+	jr_define( 'DATA_SOURCES_TITLE', "รีเฟรชแหล่งข้อมูล" );
+	jr_define( 'DATA_SOURCES_TITLE_INFO', "แหล่งข้อมูลถูกรีเฟรช แหล่งข้อมูลถูกใช้โดยช่องป้อนข้อมูลอัตโนมัติในวิดเจ็ตการค้นหา และมักจะได้รับการอัปเดตโดยอัตโนมัติ อย่างไรก็ตาม หน้านี้บังคับให้อัปเดตข้อมูลด้วยตนเองหากต้องการ" );
+
+	jr_define('_OAUTH_TOKEN_REQUEST_URI', "หากต้องการส่งคำขอโทเค็น ให้ส่งคำขอไปที่ url นี้");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "สคริปต์คุณสมบัติมุมมองหลัก");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "uid คุณสมบัติของทรัพย์สินที่จะดู");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "เทมเพลตเริ่มต้นคือ property_details.html ด้วยอาร์กิวเมนต์นี้ คุณสามารถกำหนดเทมเพลตรายละเอียดคุณสมบัติอื่นที่จะแสดงได้");

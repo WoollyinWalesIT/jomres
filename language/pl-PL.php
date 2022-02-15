@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.3
+* @version Jomres 10.2.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2692,3 +2692,12 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Obrazy typ
 
 	jr_define('JOMRES_REVIEWS_NONE_NEW', "Nowa lista");
 	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Zniżka");
+
+	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Gdzie chcesz się udać?');
+	jr_define( 'DATA_SOURCES_TITLE', "Odśwież źródła danych" );
+	jr_define( 'DATA_SOURCES_TITLE_INFO', "Źródła danych są odświeżone. Źródła danych są używane przez pola autouzupełniania w widżecie wyszukiwania i zwykle są aktualizowane automatycznie, jednak ta strona wymusza ręczną aktualizację danych, jeśli jest to wymagane." );
+
+	jr_define('_OAUTH_TOKEN_REQUEST_URI', "Aby wysłać żądanie tokena, wyślij żądanie na ten adres URL");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Skrypt właściwości widoku głównego");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Uid właściwości przeglądanej właściwości");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Domyślny szablon to property_details.html, za pomocą tego argumentu możesz zdefiniować inny szablon szczegółów właściwości do wyświetlenia.");

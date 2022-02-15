@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.3
+* @version Jomres 10.2.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -91,6 +91,31 @@ class j06000show_property_reviews_summary
 		$output[ 'NUMBER_OF_REVIEWS' ] = $itemRating[ 'counter' ];
 		$output[ '_JOMRES_REVIEWS_AVERAGE_RATING' ] = jr_gettext('_JOMRES_REVIEWS_AVERAGE_RATING', '_JOMRES_REVIEWS_AVERAGE_RATING', false, false);
 		$output[ '_JOMRES_REVIEWS_TOTAL_VOTES' ] = jr_gettext('_JOMRES_REVIEWS_TOTAL_VOTES', '_JOMRES_REVIEWS_TOTAL_VOTES', false, false);
+
+		$rating_text = $Reviews->generate_review_rating_text($output[ 'AVERAGE_RATING' ]) ;
+
+		$output['RATING_TEXT_COLOUR'] = 'text-success';
+		$output['RATING_SCORE_TEXT'] = jomres_badge(
+			$rating_text,
+			'success'
+		);
+		if ($output['AVERAGE_RATING'] > 5 && $output['AVERAGE_RATING'] < 7  ) {
+			$output['RATING_TEXT_COLOUR'] = 'text-warning';
+			$output['RATING_SCORE_TEXT'] = jomres_badge(
+				$rating_text,
+				'warning'
+			);
+		}
+
+		if ($output['AVERAGE_RATING'] <= 5) {
+			$rob['RATING_TEXT_COLOUR'] = 'text-danger';
+			$output['RATING_SCORE_TEXT'] = jomres_badge(
+				$rating_text,
+				'danger'
+			);
+		}
+
+		$output['SHOW_PROPERTY_REVIEWS_URL'] = jomresURL(JOMRES_SITEPAGE_URL.'&task=show_property_reviews&property_uid='.$property_uid);
 
 		$pageoutput[] = $output;
 

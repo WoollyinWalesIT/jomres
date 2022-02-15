@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.3
+* @version Jomres 10.2.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -374,6 +374,12 @@ try {
 		ob_end_clean();
 	} else {
 		ob_end_flush();
+	}
+	$debugging_modals = get_showtime('patTemplate_debugging_modals');
+	if (!empty($debugging_modals)) {
+		foreach ($debugging_modals as $button_modal) {
+			echo $button_modal.'<br/>';
+		}
 	}
 } catch (Exception $e) {
 	$MiniComponents->triggerEvent('99994');

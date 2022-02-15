@@ -3,7 +3,7 @@
  * Core file
  *
  * @author Vince Wooll <sales@jomres.net>
-* * @version Jomres 10.1.3
+* @version Jomres 10.2.0
  * @package Jomres
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
@@ -137,6 +137,8 @@ class jomres_property_categories
 		
 		if ( doInsertSql( $query, false ) )
 			{
+			updateCustomText('_JOMRES_PROPERTY_CATEGORY'.(int)$this->id, $this->title, true, 0);
+	       		updateCustomText('_JOMRES_PROPERTY_CATEGORY_DESC'.(int)$this->id, $this->description, true, 0);
 			return true;
 			}
 		else
@@ -169,6 +171,8 @@ class jomres_property_categories
 		
 		if ( doInsertSql( $query, false ) )
 			{
+			updateCustomText('_JOMRES_PROPERTY_CATEGORY'.(int)$this->id, $this->title, true, 0);
+	       		updateCustomText('_JOMRES_PROPERTY_CATEGORY_DESC'.(int)$this->id, $this->description, true, 0);
 			return true;
 			}
 		else
@@ -205,6 +209,8 @@ class jomres_property_categories
 		
 		if ( doInsertSql( $query, false ) )
 			{
+			updateCustomText('_JOMRES_PROPERTY_CATEGORY'.(int)$this->id, '', true, 0);
+	        	updateCustomText('_JOMRES_PROPERTY_CATEGORY_DESC'.(int)$this->id, '', true, 0);
 			return true;
 			}
 		else

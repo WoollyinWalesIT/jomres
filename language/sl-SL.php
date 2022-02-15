@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.3
+* @version Jomres 10.2.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2685,3 +2685,12 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Slike vrst
 
 	jr_define('JOMRES_REVIEWS_NONE_NEW', "Nov seznam");
 	jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Popust");
+
+	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Kam želite iti?');
+	jr_define( 'DATA_SOURCES_TITLE', "Osveži vire podatkov");
+	jr_define( 'DATA_SOURCES_TITLE_INFO', "Viri podatkov so osveženi. Vire podatkov uporabljajo samodokončana vnosna polja v iskalnem pripomočku in se običajno posodabljajo samodejno, vendar ta stran prisili, da se podatki posodobijo ročno, če je potrebno." );
+
+	jr_define('_OAUTH_TOKEN_REQUEST_URI', "Če želite poslati zahtevo za žeton, pošljite zahtevo na ta url");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Skript lastnosti glavnega pogleda");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Uid lastnosti lastnosti, ki si jo je treba ogledati");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Privzeta predloga je property_details.html, s tem argumentom lahko definirate drugo predlogo podrobnosti lastnosti, ki jo želite prikazati.");

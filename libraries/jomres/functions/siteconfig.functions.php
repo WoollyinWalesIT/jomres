@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.3
+* @version Jomres 10.2.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -172,7 +172,6 @@ function showSiteConfig()
     $bootstrap_ver_opt[ ] = jomresHTML::makeOption('0', 'No bootstrap in theme');
 	$bootstrap_ver_opt[ ] = jomresHTML::makeOption('', 'Bootstrap 2');
 	$bootstrap_ver_opt[ ] = jomresHTML::makeOption('3', 'Bootstrap 3');
-	$bootstrap_ver_opt[ ] = jomresHTML::makeOption('4', 'Bootstrap 4');
     $bootstrap_ver_opt[ ] = jomresHTML::makeOption('5', 'Bootstrap 5');
 	$bootstrap_ver_dropdown = jomresHTML::selectList($bootstrap_ver_opt, 'cfg_bootstrap_version', 'class="inputbox" size="1"', 'value', 'text', $jrConfig[ 'bootstrap_version' ], false);
 

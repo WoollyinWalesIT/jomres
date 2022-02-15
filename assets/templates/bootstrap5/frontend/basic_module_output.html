@@ -1,39 +1,56 @@
 
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-
-{JOMRES_POPUPURL_GLOBALVAR}
-
-<div title="{PROPERTY_NAME}" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-	<div class="card">
+	{JOMRES_POPUPURL_GLOBALVAR}
+	<div class="card shadow mb-3">
 		<div class="card-body">
-			<h3 class="card-title">{PROPERTY_NAME}</h3>
-		</div>
-		<div class="card-text">
-			<p>{STARSIMAGES}&nbsp;{SUPERIOR}</p>
-			<patTemplate:comment>
-			<div id="module_{RANDOM_IDENTIFIER}">
-				<a href="#module_{RANDOM_IDENTIFIER}_popup" data-bs-toggle="modal" random_identifier="{RANDOM_IDENTIFIER}" property_name="{PROPERTY_NAME}" property_uid="{PROPERTY_UID}"><img src="{IMAGEMEDIUM}" alt="{PROPERTY_NAME}" class="ngm-image img-responsive" /></a>
+			<h5 class="card-title container-fluid">
+				<div class="row">
+					<div class="col-md-8">
+						{PROPERTY_NAME}<p>{STARSIMAGES}&nbsp;{SUPERIOR}</p>
+					</div>
+				</div>
+
+			</h5>
+			<div class="card-text">
+				<patTemplate:comment>
+					<div id="module_{RANDOM_IDENTIFIER}">
+						<a href="#module_{RANDOM_IDENTIFIER}_popup" data-bs-toggle="modal" random_identifier="{RANDOM_IDENTIFIER}" property_name="{PROPERTY_NAME}" property_uid="{PROPERTY_UID}"><img src="{IMAGEMEDIUM}" alt="{PROPERTY_NAME}" class="ngm-image img-responsive" /></a>
+					</div>
+				</patTemplate:comment>
+				<div class="image-container ">
+					<a href="{MOREINFORMATIONLINK}">
+						<img src="{IMAGEMEDIUM}" alt="{PROPERTY_NAME}" class="card-img-top" />
+					</a>
+					{RIBBON}
+					<div class="bottom-left bg-info text-white rounded-3 p-2">{PRICE_PRE_TEXT} <strong>{PRICE_PRICE}</strong>{PRICE_POST_TEXT}</div>
+					<div class="bottom-right d-none d-sm-block">{REVIEWS_BUTTON}</div>
+				</div>
+
+				<hr/>
+				<div class="text-truncate">{PROPERTY_DESCRIPTION}</div>
 			</div>
-			</patTemplate:comment>
-			<a href="{MOREINFORMATIONLINK}"><img src="{IMAGEMEDIUM}" alt="{PROPERTY_NAME}" class="ngm-image img-responsive" /></a>
-			<p align="center">
-				{PRICE_PRE_TEXT}
-				<span class="big-price">{PRICE_PRICE}</span>
-				{PRICE_POST_TEXT}
-			</p>
-		</div>
-		<div class="card-footer" align="center">
-			<a href="{MOREINFORMATIONLINK}" class="btn btn-info" title="{PROPERTY_NAME}">{MOREINFORMATION}</a>
+			<div class="card-footer" align="center">
+				<a href="{MOREINFORMATIONLINK}" class="btn btn-info" title="{PROPERTY_NAME}">{MOREINFORMATION}</a>
+
+			</div>
 		</div>
 	</div>
 	<script>
 		document.addEventListener('DOMContentLoaded', function(){
-		jomresJquery('#module_{RANDOM_IDENTIFIER}_popup').appendTo("body");
-	});
+			jomresJquery('#module_{RANDOM_IDENTIFIER}_popup').appendTo("body");
+		});
 	</script>
 
 	<div class="modal fade" id="module_{RANDOM_IDENTIFIER}_popup"></div>
-</div>
+	<div class="offcanvas offcanvas-start" style="width: 65%; " tabindex="-1" id="reviewsOffCanvas{RANDOM_IDENTIFIER}" aria-labelledby="offcanvasReviewsLabel">
+		<div class="offcanvas-header">
+			<h5 class="offcanvas-title" id="offcanvasExampleLabel">{_JOMRES_REVIEWS}</h5>
+			<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+		</div>
+		<div class="offcanvas-body">
+			{jomres_script show_property_reviews PROPERTY_UID={UID}}
+		</div>
+	</div>
 </patTemplate:tmpl>
 
 <patTemplate:comment>

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.3
+* @version Jomres 10.2.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -19,14 +19,14 @@ defined('_JOMRES_INITCHECK') or die('');
  **/
  
 $jrConfig = array(
-  'version' => '10.1.3',
+  'version' => '10.2.0',
   'defaultCrate' => '1',
   'property_list_limit' => '9',
   'useGlobalCurrency' => '1',
   'globalCurrencyCode' => 'EUR',
   'google_maps_api_key' => '',
   'editingModeAffectsAllProperties' => '0',
-  'allowHTMLeditor' => '1',
+  'allowHTMLeditor' => '0',
   'selfRegistrationAllowed' => '1',
   'cal_input' => '%d/%m/%Y',
   'errorChecking' => '0',
@@ -130,7 +130,7 @@ $jrConfig = array(
   'safe_mode' => '0',
   'use_jomres_own_editor' => '0',
   'room_lock_timeout' => '3600',
-  'input_filtering' => 'strong',
+  'input_filtering' => 'weak', // When html editor is disabled then Jomres will switch to it's own markup editor, not the CMS's and the markup parser then needs this setting to be set to weak so that markup is displayed properly.
   'html_purifier_allowed_tags' => 'p[class],b,strong,a[href],i,em,img[src],ul,li,h1[class],table[width],table[border],tr,td,th,br',
   'inputs_allowing_html' => 'property_description property_checkin_times property_area_activities property_driving_directions property_airports property_othertransport property_policies_disclaimers email_text description room_description room_class_desc',
   'property_details_in_tabs' => '0',
