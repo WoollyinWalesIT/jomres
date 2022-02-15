@@ -178,11 +178,28 @@
 					$layout_template = 'list_properties.html';
 				}
 
-				if (!isset($property_list_layouts[ $layout ][ 'path' ])) {
-					$layout_path_to_template = JOMRES_TEMPLATEPATH_FRONTEND;
-				} else {
-					$layout_path_to_template = $property_list_layouts[ $layout ][ 'path' ];
+				if (jomres_bootstrap_version() == '5' ) {
+					if (function_exists('get_available_property_list_templates')) {
+						$available_list_templates = get_available_property_list_templates();
+						$available_photo_templates =get_available_property_photo_templates();
+
+						if (isset($_REQUEST['list_properties_template']) && $_REQUEST['list_properties_template'] != '') {
+							if ( array_key_exists( $_REQUEST['list_properties_template'] , $available_list_templates) ||
+								array_key_exists( $_REQUEST['list_properties_template'] ,$available_photo_templates ) ) {
+									$layout_template = $_REQUEST['list_properties_template'].'.html';
+							}
+						}
+					}
 				}
+
+				if (!isset($layout_path_to_template)) {
+					if (!isset($property_list_layouts[ $layout ][ 'path' ])) {
+						$layout_path_to_template = JOMRES_TEMPLATEPATH_FRONTEND;
+					} else {
+						$layout_path_to_template = $property_list_layouts[ $layout ][ 'path' ];
+					}
+				}
+
 
 				if ($live_scrolling_enabled) {
 					jomres_cmsspecific_addheaddata('javascript', JOMRES_JS_RELPATH, 'jquery.livequery.js');
