@@ -2648,10 +2648,10 @@ class patTemplate
 			return $result;
 			}
 
-		if ( $applyFilters === false )
+/*		if ( $applyFilters === false )
 			{
 			return $this->output_template_name_details( $this->_templates[ $name ][ 'result' ], $files );
-			}
+			}*/
 
 		$result = $this->_templates[ $name ][ 'result' ] ;
 		
