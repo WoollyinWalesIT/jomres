@@ -1,4 +1,4 @@
-<h3>Jomres 10.2.0 14/02/2022</h3>
+<h3>Jomres 10.2.0 15/02/2022</h3>
 
 <span class="label label-success">Feature</span> Added new Data Sources feature where country/region/town names are cached and updated on property change. This produces lower query overhead. The data is produced as a json file in the temporary/data_sources directory and primarily expected to be used by autocomplete input from the search widgets. In future it should be used to populate search inputs instead of running queries.
 <span class="label label-success">Feature</span> Added new argument that can be used to call different template files when showing property details. Property details template renamed from composite_property_details_notabs.html to property_details.html and composite_property_details.html removed.
