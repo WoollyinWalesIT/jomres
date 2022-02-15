@@ -32,12 +32,9 @@
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 
-		if ($jrConfig[ 'use_reviews' ] == '1') {
-			jr_import('jomres_reviews');
-			$Reviews = new jomres_reviews();
-			$Reviews->getRatingsMulti($property_uid_array);
-		}
-
+		jr_import('jomres_reviews');
+		$Reviews = new jomres_reviews();
+		$Reviews->getRatingsMulti($property_uid_array);
 
 		$return_data = array();
 		$animationDelay = 0;
