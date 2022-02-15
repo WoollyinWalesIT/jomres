@@ -2696,3 +2696,8 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Obrazy typ
 	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Gdzie chcesz się udać?');
 	jr_define( 'DATA_SOURCES_TITLE', "Odśwież źródła danych" );
 	jr_define( 'DATA_SOURCES_TITLE_INFO', "Źródła danych są odświeżone. Źródła danych są używane przez pola autouzupełniania w widżecie wyszukiwania i zwykle są aktualizowane automatycznie, jednak ta strona wymusza ręczną aktualizację danych, jeśli jest to wymagane." );
+
+	jr_define('_OAUTH_TOKEN_REQUEST_URI', "Aby wysłać żądanie tokena, wyślij żądanie na ten adres URL");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Skrypt właściwości widoku głównego");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Uid właściwości przeglądanej właściwości");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Domyślny szablon to property_details.html, za pomocą tego argumentu możesz zdefiniować inny szablon szczegółów właściwości do wyświetlenia.");

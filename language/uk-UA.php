@@ -2634,3 +2634,8 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Зобра
 	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Куди ви хочете піти?');
 	jr_define( 'DATA_SOURCES_TITLE', "Оновити джерела даних");
 	jr_define( 'DATA_SOURCES_TITLE_INFO', "Джерела даних оновлено. Джерела даних використовуються для автозаповнення полів введення в віджеті пошуку, і зазвичай вони оновлюються автоматично, однак ця сторінка змушує оновлювати дані вручну, якщо потрібно." );
+
+	jr_define('_OAUTH_TOKEN_REQUEST_URI', "Щоб надіслати запит на маркер, надішліть запит на цю URL-адресу");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Сценарій властивостей головного перегляду");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Ідентифікатор властивості властивості, яку потрібно переглянути");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Шаблон за замовчуванням — property_details.html, за допомогою цього аргументу ви можете визначити інший шаблон інформації про властивість для показу.");

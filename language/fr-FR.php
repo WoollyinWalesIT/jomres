@@ -2475,3 +2475,8 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Images de 
 	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Où voulez-vous aller ?');
 	jr_define( 'DATA_SOURCES_TITLE', "Actualiser les sources de données" );
 	jr_define( 'DATA_SOURCES_TITLE_INFO', "Les sources de données sont actualisées. Les sources de données sont utilisées par les champs d'entrée de saisie semi-automatique dans le widget de recherche et elles sont généralement mises à jour automatiquement, mais cette page force la mise à jour manuelle des données si nécessaire." );
+
+	jr_define('_OAUTH_TOKEN_REQUEST_URI', "Pour envoyer une demande de jeton, envoyez la demande à cette url");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Le script de propriété de la vue principale");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "L'uid de la propriété à afficher");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Le modèle par défaut est property_details.html, avec cet argument vous pouvez définir un autre modèle de détails de propriété à afficher.");

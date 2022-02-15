@@ -2703,3 +2703,8 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Изобр
 	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Куда вы хотите пойти?');
 	jr_define('DATA_SOURCES_TITLE', "Обновить источники данных");
 	jr_define('DATA_SOURCES_TITLE_INFO', "Источники данных обновлены. Источники данных используются автозаполнением полей ввода в виджете поиска, и они обычно обновляются автоматически, однако эта страница принудительно обновляет данные вручную, если это необходимо." );
+
+	jr_define('_OAUTH_TOKEN_REQUEST_URI', "Чтобы отправить запрос токена, отправьте запрос на этот URL-адрес");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Скрипт свойств основного вида");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Uid свойства для просмотра");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Шаблон по умолчанию — property_details.html, с этим аргументом вы можете определить другой шаблон сведений о свойстве для отображения.");

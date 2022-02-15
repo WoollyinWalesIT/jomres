@@ -2706,3 +2706,8 @@ jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Reducere");
 	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Unde vrei să mergi?');
 	jr_define( 'DATA_SOURCES_TITLE', "Actualizează sursele de date");
 	jr_define( 'DATA_SOURCES_TITLE_INFO', "Sursele de date s-au reîmprospătat. Sursele de date sunt utilizate de câmpurile de introducere de completare automată din widgetul de căutare și sunt de obicei actualizate automat, totuși această pagină forțează actualizarea manuală a datelor dacă este necesar." );
+
+	jr_define('_OAUTH_TOKEN_REQUEST_URI', "Pentru a trimite o cerere de simbol, trimiteți cererea la această adresă URL");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Scriptul de proprietate a vizualizării principale");
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Uid-ul proprietății de vizualizat");
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Șablonul implicit este property_details.html, cu acest argument puteți defini un alt șablon pentru detalii de proprietate de afișat.");

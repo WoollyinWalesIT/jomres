@@ -2678,3 +2678,8 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Egenskapst
 	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Vart vill du åka?');
 	jr_define( 'DATA_SOURCES_TITLE', "Uppdatera datakällor" );
 	jr_define( 'DATA_SOURCES_TITLE_INFO', "Datakällor uppdaterade. Datakällor används av inmatningsfält för autokomplettering i sökwidgeten och de uppdateras vanligtvis automatiskt, men den här sidan tvingar data att uppdateras manuellt om det behövs." );
+
+	jr_define('_OAUTH_TOKEN_REQUEST_URI', "För att skicka en token-förfrågan, skicka förfrågan till denna url");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Manuset för huvudvyns egenskap");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Egenskaps-uid för egenskapen som ska visas");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Standardmallen är property_details.html, med detta argument kan du definiera en annan mall för egendomsdetaljer att visa.");

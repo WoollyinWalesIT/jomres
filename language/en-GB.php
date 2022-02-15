@@ -946,7 +946,7 @@ jr_define('_JOMRES_REVIEWS_NOREVIEWS', 'There are no reviews for this property y
 jr_define('_JOMRES_REVIEWS_NOREVIEWS_BETHEFIRST', 'Would you like to be the first to review this business?');
 jr_define('_JOMRES_REVIEWS_IAGREE', 'I agree with this review');
 jr_define('_JOMRES_REVIEWS_IDISAGREE', 'I disagree with this review');
-jr_define('_JOMRES_REVIEWS_AVERAGE_RATING', 'Average Rating: ');
+jr_define('_JOMRES_REVIEWS_AVERAGE_RATING', 'Rating: ');
 jr_define('_JOMRES_REVIEWS_TOTAL_VOTES', 'Total Votes:');
 jr_define('_JOMRES_REVIEWS_ADD_REVIEW', 'Add a new review');
 jr_define('_JOMRES_REVIEWS_ADD_REVIEW_NOTLOGGEDIN', 'You need to be logged in to post a review.');
@@ -2624,12 +2624,9 @@ jr_define( 'DATA_SOURCES_TITLE_INFO', "Data sources refreshed. Data sources are 
 
 
 jr_define('_OAUTH_TOKEN_REQUEST_URI', "To send a token request, send the request to this url");
-
-
-
-
-
-
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "The main view property script");
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "The property uid of the property to be viewed");
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "The default template is property_details.html, with this argument you can define a different property details template to show.");
 
 
 

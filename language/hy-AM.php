@@ -3361,3 +3361,8 @@ jr_define ('JOMRES_RIBBON_TEXT_DISCOUNTED', "Զեղչված");
 jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Որտե՞ղ ես ուզում գնալ');
 jr_define('DATA_SOURCES_TITLE', "Թարմացնել տվյալների աղբյուրները");
 jr_define('DATA_SOURCES_TITLE_INFO', "Տվյալների աղբյուրները թարմացվել են: Տվյալների աղբյուրներն օգտագործվում են որոնման վիդջեթի ավտոմատ լրացման մուտքագրման դաշտերով և դրանք սովորաբար ինքնաբերաբար թարմացվում են, սակայն այս էջը ստիպում է, որ տվյալները ձեռքով թարմացվեն, եթե անհրաժեշտ է:" );
+
+	jr_define('_OAUTH_TOKEN_REQUEST_URI', "Token հարցում ուղարկելու համար հարցումն ուղարկիր այս url-ին");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Հիմնական դիտման հատկության սկրիպտը");
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Դիտվող գույքի սեփականության uid");
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Լռակյաց ձևանմուշը property_details.html է, այս արգումենտով կարող եք սահմանել այլ սեփականության մանրամասների ձևանմուշ՝ ցուցադրելու համար");

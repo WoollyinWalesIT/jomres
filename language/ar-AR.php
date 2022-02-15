@@ -2716,3 +2716,9 @@ jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Con descuento");
 jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', '¿A dónde quieres ir?');
 jr_define('DATA_SOURCES_TITLE', "Actualizar fuentes de datos");
 jr_define( 'DATA_SOURCES_TITLE_INFO', "Fuentes de datos actualizadas. Las fuentes de datos son utilizadas por los campos de entrada de autocompletar en el widget de búsqueda y generalmente se actualizan automáticamente, sin embargo, esta página obliga a que los datos se actualicen manualmente si es necesario");
+
+	jr_define('_OAUTH_TOKEN_REQUEST_URI', "Para enviar una solicitud de token, envíe la solicitud a esta URL");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "El script de propiedad de la vista principal");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "El uid de propiedad de la propiedad que se va a ver");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "La plantilla predeterminada es property_details.html, con este argumento puede definir una plantilla de detalles de propiedad diferente para mostrar.");
+

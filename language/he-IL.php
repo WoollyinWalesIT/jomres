@@ -2715,3 +2715,8 @@ jr_define( 'DATA_SOURCES_TITLE', "רענן מקורות נתונים" );
 jr_define( 'DATA_SOURCES_TITLE_INFO', "מקורות נתונים רעננים. מקורות נתונים משמשים בשדות קלט של השלמה אוטומטית בווידג'ט החיפוש והם בדרך כלל מתעדכנים אוטומטית, אולם דף זה מאלץ את עדכון הנתונים באופן ידני במידת הצורך." );
 
 
+	jr_define('_OAUTH_TOKEN_REQUEST_URI', "כדי לשלוח בקשה אסימון, שלח את הבקשה לכתובת האתר הזו");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "סקריפט מאפיין התצוגה הראשי");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "ה-uid של הנכס שיש לראות");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "תבנית ברירת המחדל היא property_details.html, עם ארגומנט זה אתה יכול להגדיר תבנית פרטי נכס שונה להצגה.");
+

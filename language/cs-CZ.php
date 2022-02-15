@@ -2651,3 +2651,7 @@ jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Sleva");
 	jr_define( 'DATA_SOURCES_TITLE', "Obnovit zdroje dat" );
 	jr_define( 'DATA_SOURCES_TITLE_INFO', "Datové zdroje byly obnoveny. Zdroje dat jsou používány automatickým doplňováním vstupních polí ve vyhledávacím widgetu a obvykle se aktualizují automaticky, nicméně tato stránka vyžaduje, aby byla data v případě potřeby aktualizována ručně." );
 
+	jr_define('_OAUTH_TOKEN_REQUEST_URI', "Chcete-li odeslat požadavek na token, odešlete požadavek na tuto adresu URL");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Skript vlastností hlavního zobrazení");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Uid vlastnosti prohlížené vlastnosti");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Výchozí šablona je property_details.html, pomocí tohoto argumentu můžete definovat jinou šablonu podrobností vlastnosti, která se má zobrazit.");

@@ -2720,3 +2720,7 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Slike vrst
 	jr_define( 'DATA_SOURCES_TITLE', "Osvježi izvore podataka");
 	jr_define( 'DATA_SOURCES_TITLE_INFO', "Izvori podataka osvježeni. Izvore podataka koriste polja za samodovršavanje u widgetu za pretraživanje i obično se ažuriraju automatski, međutim ova stranica prisiljava da se podaci ažuriraju ručno ako je potrebno." );
 
+	jr_define('_OAUTH_TOKEN_REQUEST_URI', "Da biste poslali zahtjev za tokenom, pošaljite zahtjev na ovaj url");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Skripta svojstva glavnog pogleda");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Uid svojstva svojstva koje treba pogledati");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Zadani predložak je property_details.html, s ovim argumentom možete definirati drugi predložak pojedinosti svojstva za prikaz.");

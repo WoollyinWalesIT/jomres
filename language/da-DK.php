@@ -2705,3 +2705,9 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Ejendomsty
 	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Hvor vil du hen?');
 	jr_define( 'DATA_SOURCES_TITLE', "Opdater datakilder" );
 	jr_define( 'DATA_SOURCES_TITLE_INFO', "Datakilder opdateret. Datakilder bruges af autofuldførelsesindtastningsfelter i søgewidgetten og de opdateres normalt automatisk, men denne side tvinger dataene til at blive opdateret manuelt, hvis det kræves." );
+
+	jr_define('_OAUTH_TOKEN_REQUEST_URI', "For at sende en token-anmodning, send anmodningen til denne url");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Hovedvisningens egenskabsscript");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Ejendoms-uid for den ejendom, der skal ses");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Standardskabelonen er property_details.html, med dette argument kan du definere en anden egenskabsdetaljersskabelon, der skal vises.");
+

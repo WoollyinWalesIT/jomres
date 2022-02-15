@@ -2704,3 +2704,8 @@ jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Zľavnené");
 	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Kam chceš ísť?');
 	jr_define( 'DATA_SOURCES_TITLE', "Obnoviť zdroje údajov" );
 	jr_define( 'DATA_SOURCES_TITLE_INFO', "Dátové zdroje obnovené. Dátové zdroje sú využívané automatickým dopĺňaním vstupných polí vo vyhľadávacom widgete a zvyčajne sa aktualizujú automaticky, avšak táto stránka si vyžaduje, aby sa údaje aktualizovali manuálne, ak je to potrebné." );
+
+	jr_define('_OAUTH_TOKEN_REQUEST_URI', "Ak chcete odoslať požiadavku na token, pošlite požiadavku na túto adresu URL");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Skript vlastností hlavného zobrazenia");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Uid vlastnosti vlastnosti, ktorá sa má zobraziť");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Predvolená šablóna je property_details.html, pomocou tohto argumentu môžete definovať inú šablónu podrobností vlastnosti, ktorá sa má zobraziť.");

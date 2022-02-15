@@ -2665,3 +2665,8 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Изобр
 	jr_define('DATA_SOURCES_TITLE', "Опресняване на източниците на данни");
 	jr_define( 'DATA_SOURCES_TITLE_INFO', "Източниците на данни са обновени. Източниците на данни се използват от автоматично попълване на полета за въвеждане в приспособлението за търсене и обикновено се актуализират автоматично, но тази страница принуждава данните да се актуализират ръчно, ако е необходимо." );
 
+
+	jr_define('_OAUTH_TOKEN_REQUEST_URI', "За да изпратите заявка за токен, изпратете заявката до този url");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Скрипт за свойство на основния изглед");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Идентификационният номер на свойството на свойството, което трябва да се види");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Шаблонът по подразбиране е property_details.html, с този аргумент можете да дефинирате различен шаблон с подробности за свойството, който да се показва.");

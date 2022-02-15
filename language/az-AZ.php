@@ -2687,3 +2687,8 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Əmlak tip
 	jr_define('_JOMRES_SEARCH_FORM_HERE_GO_GO', 'Hara getmək istəyirsən?');
 	jr_define( 'DATA_SOURCES_TITLE', "Məlumat mənbələrini təzələyin" );
 	jr_define( 'DATA_SOURCES_TITLE_INFO', "Məlumat mənbələri yeniləndi. Məlumat mənbələri axtarış vidcetində avtomatik tamamlama daxiletmə sahələri tərəfindən istifadə olunur və onlar adətən avtomatik olaraq yenilənir, lakin bu səhifə tələb olunarsa verilənləri əl ilə yeniləməyə məcbur edir." );
+
+	jr_define('_OAUTH_TOKEN_REQUEST_URI', "Token sorğusu göndərmək üçün sorğunu bu URL-yə göndərin");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Əsas görünüş xassəsinin skripti");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Baxılacaq əmlakın id-si");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Defolt şablon property_details.html-dir, bu arqumentlə siz göstərmək üçün başqa mülk təfərrüatları şablonu təyin edə bilərsiniz.");

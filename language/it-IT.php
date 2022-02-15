@@ -2738,3 +2738,8 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Immagini d
 	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Dove vuoi andare?');
 	jr_define( 'DATA_SOURCES_TITLE', "Aggiorna sorgenti dati" );
 	jr_define( 'DATA_SOURCES_TITLE_INFO', "Sorgenti dati aggiornate. Le origini dati vengono utilizzate dai campi di inserimento del completamento automatico nel widget di ricerca e di solito vengono aggiornate automaticamente, tuttavia questa pagina forza l'aggiornamento manuale dei dati, se necessario." );
+
+	jr_define('_OAUTH_TOKEN_REQUEST_URI', "Per inviare una richiesta di token, invia la richiesta a questo URL");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Lo script delle proprietà della vista principale");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Uid della proprietà della proprietà da visualizzare");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Il template predefinito è property_details.html, con questo argomento puoi definire un diverso template dei dettagli della proprietà da mostrare.");

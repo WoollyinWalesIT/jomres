@@ -2736,3 +2736,8 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Eigenschaf
 	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Wohin möchtest du gehen?');
 	jr_define( 'DATA_SOURCES_TITLE', "Datenquellen aktualisieren" );
 	jr_define( 'DATA_SOURCES_TITLE_INFO', "Datenquellen aktualisiert. Datenquellen werden von Autocomplete-Eingabefeldern im Such-Widget verwendet und normalerweise automatisch aktualisiert, jedoch erzwingt diese Seite, dass die Daten bei Bedarf manuell aktualisiert werden." );
+
+	jr_define('_OAUTH_TOKEN_REQUEST_URI', "Um eine Token-Anfrage zu senden, senden Sie die Anfrage an diese URL");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Das Eigenschaftenskript der Hauptansicht");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Die Eigenschafts-UID der anzuzeigenden Eigenschaft");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Die Standardvorlage ist property_details.html, mit diesem Argument können Sie eine andere anzuzeigende Eigenschaftsdetails-Vorlage definieren.");
