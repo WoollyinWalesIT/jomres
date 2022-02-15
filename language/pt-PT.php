@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.3
+* @version Jomres 10.2.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Translated to pt-PT by Mario Oliveira, Camara de Lobos, Madeira Island, Portugal, 17Set2010 - www.marioliveira.net - Updated 21Jun2011 for ver 5.1
@@ -2715,3 +2715,8 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Imagens de
 	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Onde você quer ir?');
 	jr_define( 'DATA_SOURCES_TITLE', "Atualizar fontes de dados" );
 	jr_define( 'DATA_SOURCES_TITLE_INFO', "Fontes de dados atualizadas. As fontes de dados são usadas por campos de entrada de preenchimento automático no widget de pesquisa e geralmente são atualizados automaticamente, porém esta página força os dados a serem atualizados manualmente se necessário." );
+
+	jr_define('_OAUTH_TOKEN_REQUEST_URI', "Para enviar uma solicitação de token, envie a solicitação para esta url");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "O script de propriedade da visualização principal");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "O uid da propriedade a ser visualizada");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "O template padrão é property_details.html, com este argumento você pode definir um template de detalhes de propriedade diferente para mostrar.");

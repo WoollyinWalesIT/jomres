@@ -4,7 +4,7 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-	 * * @version Jomres 10.1.2
+	 * @version Jomres 10.2.0
 	 *
 	 * @copyright	2005-2022 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -263,7 +263,7 @@
 					if (date('m', $currdate) == $stmonth) {
 						$this->retVals .= '<div class="jomres-calendar-day-num '.$class.'">';
 						if ($link != '') {
-							$this->retVals .= '<a style="color: black  !important; '.$fontweight.'" href="'.$link.'" rel="nofollow">'.date('j', $currdate).'</a>';
+							$this->retVals .= '<a style="color: black  !important; text-decoration:none; '.$fontweight.'" href="'.$link.'" rel="nofollow">'.date('j', $currdate).'</a>';
 						} else {
 							$this->retVals .= date('j', $currdate);
 						}

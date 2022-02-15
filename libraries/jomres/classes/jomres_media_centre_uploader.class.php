@@ -196,7 +196,7 @@ class UploadHandler
 					// dimensions and e.g. create square thumbnails:
 					'auto_orient' => true,
 					// 'crop' => true,
-					'jpeg_quality' => 70,
+					'jpeg_quality' => 99,
 					// 'no_cache' => true, (there's a caching option, but this remembers thumbnail sizes from a previous action!)
 					'strip' => true, //(this strips EXIF tags, such as geolocation)
 					'max_width' => 80, // either specify width, or set to 0. Then width is automatically adjusted - keeping aspect ratio to a specified max_height.
@@ -933,7 +933,7 @@ class UploadHandler
 				$src_func = 'imagecreatefromjpeg';
 				$write_func = 'imagejpeg';
 				$image_quality = isset($options['jpeg_quality']) ?
-					$options['jpeg_quality'] : 75;
+					$options['jpeg_quality'] : 99;
 				break;
 			case 'gif':
 				$src_func = 'imagecreatefromgif';

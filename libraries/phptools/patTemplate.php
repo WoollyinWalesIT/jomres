@@ -230,6 +230,7 @@ class patTemplate
 		$this->setType( $type );
 		$this->applyInputFilter( 'ShortModifiers' );
 		$this->current_template_files = array ();
+		$this->rows_samples  = array ();
 		}
 
 	/**
@@ -287,6 +288,7 @@ class patTemplate
 	 */
 	function setRoot( $root, $reader = '__default' )
 		{
+		$this->rows_samples['root_dir'] =  $root;
 		$this->_options[ 'root' ][ $reader ] = $root;
 		}
 
@@ -763,6 +765,10 @@ class patTemplate
 	 */
 	function addRows( $template, $rows, $prefix = '' )
 		{
+			if ( isset($rows[0])) {
+				$this->rows_samples[$template]=$rows[0];
+			}
+
 		$common = $this->add_common_jomres_strings();
 		if ( !empty($rows))
 			{
@@ -800,6 +806,7 @@ class patTemplate
 				$this->_vars[ $template ][ 'rows' ][ $i ][ $prefix . $varname ] = $value;
 				}
 			}
+
 		}
 
 	// Vince Added to add some commonly used elements to all templates
@@ -836,6 +843,11 @@ class patTemplate
 		$common_strings[ 'COMMON_LANG_SHORT' ] = substr( get_showtime("lang"), 0, 2 );
 		
 		$common_strings[ 'CSRF_TOKEN' ] = '<input type="hidden" name="jomres_csrf_token" value="' . csrf::setToken() . '"/>' ;
+
+		if (function_exists('jr_gettext')){
+			$common_strings[ '_JOMRES_MENU_SHOW' ] = jr_gettext('_JOMRES_MENU_SHOW', '_JOMRES_MENU_SHOW', false);
+			$common_strings[ '_JOMRES_MENU_HIDE' ] = jr_gettext('_JOMRES_MENU_HIDE', '_JOMRES_MENU_HIDE', false);
+			}
 
 
 		return $common_strings;
@@ -1157,6 +1169,8 @@ class patTemplate
 	 */
 	function readTemplatesFromInput( $input, $reader = 'Jomres', $options = null, $parseInto = null )
 		{
+		$this->rows_samples['patTemplate_file'] = $input;
+
 		if (is_array($this->current_template_files))
 			{
 			if (!in_array($input,$this->current_template_files))
@@ -2611,6 +2625,7 @@ class patTemplate
 	 */
 	function getParsedTemplate( $name = null, $applyFilters = false )
 		{
+		$this->get_debugging_output();
 		if ( count ($this->current_template_files) > 0)
 			{
 			$current_template_files = '';
@@ -2633,10 +2648,10 @@ class patTemplate
 			return $result;
 			}
 
-		if ( $applyFilters === false )
+/*		if ( $applyFilters === false )
 			{
 			return $this->output_template_name_details( $this->_templates[ $name ][ 'result' ], $files );
-			}
+			}*/
 
 		$result = $this->_templates[ $name ][ 'result' ] ;
 		
@@ -2647,6 +2662,10 @@ class patTemplate
 			}
 
 		$result = $this->output_template_name_details( $result , $files );
+
+
+
+
 
 		/*
 		How to use
@@ -2782,14 +2801,92 @@ class patTemplate
 				$result = str_replace($m,$contents,$result);
 			}
 		} */
-		
-		
+
+
 		if ( isset( $this->json_output ) ) 
 			return json_encode( $this->json_output );
 		else
 			return $result;
 		}
 
+	private function get_debugging_output()
+	{
+		$debugging_output = '';
+		$siteConfig   = jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig     = $siteConfig->get();
+		if ($jrConfig['dumpTemplate'] == "1" && jomres_bootstrap_version() == '5' && !jomres_cmsspecific_areweinadminarea() ) {
+			$unique_id = generateJomresRandomString(10);
+			$this->rows_samples['COMMON'] = $this->add_common_jomres_strings();
+			$debugging = '';
+			$debugging .= 'Debugging output for template file <strong>'.$this->rows_samples["patTemplate_file"].'</strong>
+Path : <strong>'.$this->rows_samples['root_dir'].'</strong>		
+';
+			foreach ($this->rows_samples as $key=>$vals) {
+				if ( $key != 'root_dir' && $key != 'patTemplate_file' ) {
+					$fontsize = '';
+					if ( $key == 'COMMON') {
+						$fontsize = 'font-size: x-small';
+					}
+
+					$debugging .= '<div style="'.$fontsize.'"> <!-- fontsize div -->
+------------------------------------------------------------------------------
+Template row index <strong>'.$key.' </strong>
+';
+
+					if ( is_array($vals) ) {
+						foreach ($vals as $k=>$v) {
+							if ($k != 'RADIO_BUTTON_JAVASCRIPT') {
+								if ( !isset($v) || $v == null ) {
+									$v = '<em>{EMPTY}</em>';
+								}
+								$debugging .= 'Key <strong>'.$k.'</strong> '.$v.'
+';
+							}
+
+						}
+						$debugging .= '</div> <!-- end fontsize div -->';
+					} elseif ( is_string($vals)) {
+						$debugging .= $vals.'
+</div> <!-- end fontsize div -->';
+					}
+				}
+			}
+
+
+			$debugging .= '';
+
+			$debugging_output = '<!-- Button trigger modal -->
+<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#'.$unique_id.'">
+			See '.$this->rows_samples["patTemplate_file"].' contents
+		</button>
+
+<!-- Modal -->
+<div class="modal fade" id="'.$unique_id.'" tabindex="-1" aria-labelledby="'.$unique_id.'Label" aria-hidden="true">
+  <div class="modal-dialog modal-xl" style="width: 750px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="'.$unique_id.'Label">Template debugging info</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        '.nl2br($debugging).'
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+';
+			unset($this->rows_samples);
+			$debugging_modals = get_showtime('patTemplate_debugging_modals');
+			$debugging_modals[] = $debugging_output;
+			set_showtime('patTemplate_debugging_modals' , $debugging_modals);
+		}
+
+
+		return $debugging_output;
+	}
 	/**
 	* Vince added to provide funky output
 	**/

@@ -4,7 +4,7 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-	 * * @version Jomres 10.1.3
+	 * @version Jomres 10.2.0
 	 *
 	 * @copyright	2005-2022 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -109,6 +109,11 @@
 					}
 				}
 
+				$no_title = false;
+				if (isset($componentArgs[ 'no_title' ])) {
+					$no_title = (bool)$componentArgs[ 'no_title' ];
+				}
+
 				$output = array();
 
 				if ($property_uid > 0) {
@@ -122,6 +127,9 @@
 					$output[ 'PAGETITLE' ] = jr_gettext('_JOMRES_CONTANT_US', '_JOMRES_CONTANT_US');
 				}
 
+				if ($no_title) {
+					$output[ 'PAGETITLE' ] = '';
+				}
 				$output[ 'SUBJECT' ] = jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_TITLE', '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_TITLE').' '.$target;
 				$output[ 'ENQUIRY' ] = jomresGetParam($_REQUEST, 'enquiry', jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_YOUR_ENQUIRY', '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_YOUR_ENQUIRY', false));
 

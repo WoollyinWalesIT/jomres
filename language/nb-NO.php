@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.3
+* @version Jomres 10.2.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2642,3 +2642,8 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Egenskapst
 	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Hvor vil du?');
 	jr_define( 'DATA_SOURCES_TITLE', "Oppdater datakilder" );
 	jr_define( 'DATA_SOURCES_TITLE_INFO', "Datakilder oppdateres. Datakilder brukes av inndatafelt for autofullføring i søkewidgeten og de oppdateres vanligvis automatisk, men denne siden tvinger dataene til å bli oppdatert manuelt hvis nødvendig." );
+
+	jr_define('_OAUTH_TOKEN_REQUEST_URI', "For å sende en token-forespørsel, send forespørselen til denne url-en");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Hovedvisningsegenskapsskriptet");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Egenskaps-uid for eiendommen som skal vises");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Standardmalen er property_details.html, med dette argumentet kan du definere en annen mal for egenskapsdetaljer som skal vises.");

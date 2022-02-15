@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.3
+* @version Jomres 10.2.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2674,3 +2674,8 @@ jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Kedvezményes");
 	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Hova akarsz menni?');
 	jr_define( 'DATA_SOURCES_TITLE', "Adatforrások frissítése" );
 	jr_define( 'DATA_SOURCES_TITLE_INFO', "Az adatforrások frissítve. Az adatforrásokat a kereső widget automatikus kitöltési beviteli mezői használják, és általában automatikusan frissülnek, azonban ez az oldal szükség esetén manuálisan frissíti az adatokat." );
+
+	jr_define('_OAUTH_TOKEN_REQUEST_URI', "Token kérés küldéséhez küldje el a kérést erre az URL-re");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "A fő nézet tulajdonság szkriptje");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "A megtekintendő tulajdonság tulajdonságazonosítója");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Az alapértelmezett sablon a property_details.html, ezzel az argumentummal megadhat egy másik megjelenítendő tulajdonságrészlet-sablont.");

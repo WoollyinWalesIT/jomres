@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.3
+* @version Jomres 10.2.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2644,3 +2644,7 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Eigenschap
 	jr_define('DATA_SOURCES_TITLE', "Gegevensbronnen vernieuwen");
 	jr_define( 'DATA_SOURCES_TITLE_INFO', "Gegevensbronnen vernieuwd. Gegevensbronnen worden gebruikt door invoervelden voor automatisch aanvullen in de zoekwidget en worden meestal automatisch bijgewerkt, maar deze pagina dwingt de gegevens indien nodig handmatig te updaten." );
 
+	jr_define('_OAUTH_TOKEN_REQUEST_URI', "Om een tokenverzoek te verzenden, stuurt u het verzoek naar deze url");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Het script voor de hoofdweergave-eigenschappen");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "De eigenschap uid van de te bekijken eigenschap");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Het standaardsjabloon is property_details.html, met dit argument kunt u een ander sjabloon voor eigenschapsdetails definiëren om te tonen.");

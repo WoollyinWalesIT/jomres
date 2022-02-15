@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.3
+* @version Jomres 10.2.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2651,3 +2651,7 @@ jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Sleva");
 	jr_define( 'DATA_SOURCES_TITLE', "Obnovit zdroje dat" );
 	jr_define( 'DATA_SOURCES_TITLE_INFO', "Datové zdroje byly obnoveny. Zdroje dat jsou používány automatickým doplňováním vstupních polí ve vyhledávacím widgetu a obvykle se aktualizují automaticky, nicméně tato stránka vyžaduje, aby byla data v případě potřeby aktualizována ručně." );
 
+	jr_define('_OAUTH_TOKEN_REQUEST_URI', "Chcete-li odeslat požadavek na token, odešlete požadavek na tuto adresu URL");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Skript vlastností hlavního zobrazení");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Uid vlastnosti prohlížené vlastnosti");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Výchozí šablona je property_details.html, pomocí tohoto argumentu můžete definovat jinou šablonu podrobností vlastnosti, která se má zobrazit.");

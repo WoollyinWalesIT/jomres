@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.3
+* @version Jomres 10.2.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -37,6 +37,23 @@ class j06000viewproperty
 		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch) {
 			$this->template_touchable = false;
+				$this->shortcode_data = array(
+						'task' => 'viewproperty',
+						'info' => '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS',
+						'arguments' =>
+							array(
+								0 => array(
+									'argument' => 'property_uid',
+									'arg_info' => '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID',
+									'arg_example' => '5',
+								),
+								1 => array(
+									'argument' => 'view_property_template',
+									'arg_info' => '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME',
+									'arg_example' => 'property_details_lux',
+								),
+							)
+						);
 			return;
 		}
 
@@ -63,6 +80,9 @@ class j06000viewproperty
 
 		$customTextObj = jomres_singleton_abstract::getInstance('custom_text');
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+
+		jr_import('jomres_property_categories');
+		$jomres_property_categories = new jomres_property_categories();
 
 		jr_import('jomres_markdown');
 		$jomres_markdown = new jomres_markdown();
@@ -113,10 +133,38 @@ class j06000viewproperty
 		//show property header
 		property_header($property_uid);
 
+		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
+
 		$output = array();
 		$pageoutput = array();
 
+		$output["PROPERTY_NAME"]			= $current_property_details->multi_query_result[$property_uid]['property_name'];
+		$output["PROPERTY_STREET"]			= $current_property_details->multi_query_result[$property_uid]['property_street'];
+		$output["PROPERTY_TOWN"]			= $current_property_details->multi_query_result[$property_uid]['property_town'];
+		$output["PROPERTY_POSTCODE"]		= $current_property_details->multi_query_result[$property_uid]['property_postcode'];
+		$output["PROPERTY_REGION"]			= $current_property_details->multi_query_result[$property_uid]['property_region'];
+		$output["PROPERTY_REGION_ID"]		= $current_property_details->multi_query_result[$property_uid]['property_region_id'];
+		$output["PROPERTY_COUNTRY"]			= $current_property_details->multi_query_result[$property_uid]['property_country'];
+		$output["PROPERTY_COUNTRY_CODE"]	= $current_property_details->multi_query_result[$property_uid]['property_country_code'];
+		$output["PROPERTY_TEL"]				= $current_property_details->multi_query_result[$property_uid]['property_tel'];
+		$output["PROPERTY_FAX"]				= $current_property_details->multi_query_result[$property_uid]['property_fax'];
+		$output["PROPERTY_EMAIL"]			= $current_property_details->multi_query_result[$property_uid]['property_email'];
+		$output["PROPERTY_TYPE"]			= $current_property_details->multi_query_result[$property_uid]['property_type'];
+		$output["PTYPE_ID"]					= $current_property_details->multi_query_result[$property_uid]['ptype_id'];
+		$output["PROPERTY_TYPE_TITLE"]		= $current_property_details->multi_query_result[$property_uid]['property_type_title'];
+		$output["PROPERTY_LATITUDE"]		= $current_property_details->multi_query_result[$property_uid]['lat'];
+		$output["PROPERTY_LONGITUDE"]		= $current_property_details->multi_query_result[$property_uid]['long'];
 
+		$output["PROPERTY_CATEGORY"]		=$jomres_property_categories->get_property_category(  $current_property_details->multi_query_result[$property_uid]['cat_id'] );
+		$output["PROPERTY_CATEGORY_ID"]		= $current_property_details->multi_query_result[$property_uid]['cat_id'];
+
+
+
+
+		$output["GOOGLE_MAPS_API_KEY"]		= '';
+		if ($jrConfig[ 'google_maps_api_key' ] != '') {
+			$output["GOOGLE_MAPS_API_KEY"]		= $jrConfig[ 'google_maps_api_key' ];
+		}
 
 		//property slideshow
 		if ($mrConfig[ 'showSlideshowInline' ] == '1') {
@@ -332,14 +380,20 @@ class j06000viewproperty
 			$availability_output = array();
 		}
 
-		$output[ 'HPOLICIESDISCLAIMERS' ]	= jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS');
+
+		$output['HPOLICIESDISCLAIMERS']	= jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS');
+		$output['HAVAILABILITY']		= jr_gettext('_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY', '_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY');
+		$output['HROOMS']				= jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP2_TITLE', '_JOMRES_COM_MR_QUICKRES_STEP2_TITLE', false, false);
+		$output['HROOM_TYPES']		= jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES', '_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES');
+		$output['HTARIFFS']		= jr_gettext('_JOMRES_FRONT_TARIFFS', '_JOMRES_FRONT_TARIFFS');
+
 
 		$output['TOWN']		= $current_property_details->property_town;
 		$output['REGION']	= $current_property_details->property_region;
 		$output['COUNTRY']	= $current_property_details->property_country;
 
 		$output[ '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL' ]		= jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL', '_JOMRES_FRONT_MR_MENU_CONTACTHOTEL');
-		$output['TABCONTENT_03_CONTACT_TAB_CONTENT']	= $MiniComponents->specificEvent('06000', 'contactowner' , ['property_uid' => $property_uid , 'noshownow' => true ]);
+		$output['TABCONTENT_03_CONTACT_TAB_CONTENT']	= $MiniComponents->specificEvent('06000', 'contactowner' , ['property_uid' => $property_uid , 'noshownow' => true , 'no_title' => true ]);
 
 		$output[ 'HCHECKINTIMES' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_CHECKINTIMES', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_CHECKINTIMES');
 		$output[ 'HAREAACTIVITIES' ] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AREAACTIVITIES', '_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AREAACTIVITIES');
@@ -425,7 +479,31 @@ class j06000viewproperty
 
 		}
 
-        $output['DESCRIPTION'] = $current_property_details->property_description;
+        $output['DESCRIPTION'] = jomres_cmsspecific_parseByBots($jomres_markdown->get_markdown($current_property_details->property_description));
+
+		// Doesn't make the slideshow functionality redundant, just makes the images available to the property details template if it's wanted.
+		$jomres_media_centre_images->get_images($property_uid, array('slideshow'));
+		$slideshow_imagesArray = $jomres_media_centre_images->images ['slideshow'] [0];
+		$counter =0;
+
+		$slideshow_images = [];
+		foreach ($slideshow_imagesArray as $images) {
+			$active = '';
+			if ($counter == 0) {
+				$active = 'active';
+			}
+			$slideshow_images[] = [
+				'ACTIVE'				=> $active,
+				'RANDOM_IDENTIFIER'		=> generateJomresRandomString(10),
+				'COUNTER'				=> $counter,
+				'SMALL_IMAGE'			=> $images ['small'],
+				'MEDIUM_IMAGE'			=> $images ['medium'],
+				'LARGE_IMAGE'			=> $images ['large'],
+				'PROPERTY_NAME'			=> $output ["PROPERTY_NAME"] , // just in case we need captions
+				'PROPERTY_DESCRIPTION'	=> $output ['DESCRIPTION'] ,
+			];
+			$counter++;
+		}
 
         $output['SIDEBAR'] = $MiniComponents->specificEvent('06000', 'show_site_sidebar', array('output_now' => false, 'property_uid' => $property_uid, 'property_details_object' => $current_property_details ));
 
@@ -447,6 +525,11 @@ class j06000viewproperty
 
 		$tmpl->addRows('availability_output', $availability_output);
 		$tmpl->addRows('availability_output_content', $availability_output);
+
+		if (!empty($slideshow_imagesArray)){
+			$tmpl->addRows('slideshow_images', $slideshow_images);
+			$tmpl->addRows('slideshow_images2', $slideshow_images); // Quite often slideshows need two sets of identical information
+		}
 
 		if ($mrConfig[ 'showSlideshowLink' ] == 1) {
 			$tmpl->addRows('slideshowlink', $slideshowlink);
@@ -474,7 +557,16 @@ class j06000viewproperty
 			$tmpl->readTemplatesFromInput('composite_property_details_printable.html');
 		} else {
 			if (jomres_bootstrap_version() == '5' ) {
+<<<<<<< HEAD
 				$tmpl->readTemplatesFromInput('property_details.html');
+=======
+				if (isset($_REQUEST['view_property_template']) && $_REQUEST['view_property_template'] != '') {
+					$tmpl->readTemplatesFromInput($_REQUEST['view_property_template'].'.html');
+				} else {
+					$tmpl->readTemplatesFromInput('property_details.html');
+				}
+
+>>>>>>> nightly
 			} else {
 				if ($jrConfig[ 'property_details_in_tabs' ] == '1') {
 					$tmpl->readTemplatesFromInput('composite_property_details.html');

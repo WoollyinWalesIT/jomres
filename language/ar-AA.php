@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.3
+* @version Jomres 10.2.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2676,7 +2676,7 @@ jr_define ('PLUGIN_UPDATE_MESSAGE1_LINK', 'تحديث المكونات الإض�
 jr_define ('PLUGIN_UPDATE_MESSAGE2_LINK1', 'الحصول على مفتاح جديد') ;
 jr_define ('PLUGIN_UPDATE_MESSAGE2_LINK2', 'حفظ المفتاح الجديد');
 
-jr_define ('_ JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES', "صور نوع الخاصية") ;
+jr_define ('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES', "صور نوع الخاصية") ;
 
 	jr_define ('JOMRES_SITE_SIDEBAR_HELP_TITLE',"هل تحتاج إلى مساعدة في الحجز؟");
 jr_define ('JOMRES_SITE_SIDEBAR_HELP_BLURB',"اتصل بفريق خدمة العملاء على الرقم أدناه للتحدث إلى أحد ممثلينا الذين سيساعدك في جميع احتياجات عطلتك.");
@@ -2707,7 +2707,11 @@ jr_define ('JOMRES_REVIEW_SCORE_GOOD',"جيد");
 jr_define ('JOMRES_REVIEWS_NONE_NEW',"قائمة جديدة");
 jr_define ('JOMRES_RIBBON_TEXT_DISCOUNTED',"مخفضة");
 
-jr_define ('_ JOMRES_SEARCH_FORM_WHERE_TO_GO', 'أين تريد أن تذهب؟');
+jr_define ('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'أين تريد أن تذهب؟');
 jr_define ('DATA_SOURCES_TITLE', "تحديث مصادر البيانات") ;
 jr_define ('DATA_SOURCES_TITLE_INFO', "تم تحديث مصادر البيانات. تُستخدم مصادر البيانات بواسطة حقول إدخال الإكمال التلقائي في أداة البحث وعادةً ما يتم تحديثها تلقائيًا , ولكن هذه الصفحة تفرض تحديث البيانات يدويًا إذا لزم الأمر.") ;
 
+	jr_define ('_ OAUTH_TOKEN_REQUEST_URI', "لإرسال طلب رمز , أرسل الطلب إلى عنوان url هذا") ;
+jr_define ('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "سكربت خاصية العرض الرئيسي") ;
+jr_define ('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID' , "معرّف الخاصية للخاصية التي سيتم عرضها") ;
+jr_define ('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME' , "القالب الافتراضي هو property_details.html , باستخدام هذه الوسيطة يمكنك تحديد قالب تفاصيل خاصية مختلف لعرضه.") ;

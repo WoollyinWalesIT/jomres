@@ -1,3 +1,32 @@
+<h3>Jomres 10.2.0 15/02/2022</h3>
+
+<span class="label label-success">Feature</span> Added new Data Sources feature where country/region/town names are cached and updated on property change. This produces lower query overhead. The data is produced as a json file in the temporary/data_sources directory and primarily expected to be used by autocomplete input from the search widgets. In future it should be used to populate search inputs instead of running queries.
+<span class="label label-success">Feature</span> Added new argument that can be used to call different template files when showing property details. Property details template renamed from composite_property_details_notabs.html to property_details.html and composite_property_details.html removed.
+<span class="label label-success">Feature</span> Added show_property_reviews_stars script and template files
+
+<span class="label label-warning">Change</span> Improved .htaccess files in /jomres and /jomres/api
+<span class="label label-warning">Change</span> Updated notes in edit app key page to clarify token request url
+<span class="label label-warning">Change</span> Improved the REST API error outputs in case the server's stripping the Bearer from the headers.
+<span class="label label-warning">Change</span> Removed sepia filter from list properties page.
+<span class="label label-warning">Change</span> Updated paging for Bootstrap 5, in property search results.
+<span class="label label-warning">Change</span> Updated Basic module data for BS5 as it's getting more use in the new property grid plugin.
+<span class="label label-warning">Change</span> Remove Bootstrap 4 from site config options
+<span class="label label-warning">Change</span> Added markdown decoding to terms and conditions script
+<span class="label label-warning">Change</span> Updated BS5 simple property list template to use basic module output
+<span class="label label-warning">Change</span> Added functionality to include ribbon styling dynamically (can't use style sheets because inheritance makes a mess)
+<span class="label label-warning">Change</span> Added show/hide to common template strings
+<span class="label label-warning">Change</span> Modify image uploader to maximise the image quality produced
+<span class="label label-warning">Change</span> Added new arrays to viewproperty which are available to using templates if required, to create different slideshows.
+<span class="label label-warning">Change</span> Added link to show property reviews to reviews summary page
+<span class="label label-warning">Change</span> Added property feature wrapper template to allow features to amble across the page.
+<span class="label label-warning">Change</span> Added ability to disable title in contact owner programatically
+
+
+<span class="label label-important label-danger">Fix</span> Check to see if a setting is set before attempting to return it (resolving a notice)
+<span class="label label-important label-danger">Fix</span> Tweak jomres config absolute path to ensure that there's always a trailing /
+<span class="label label-important label-danger">Fix</span> Fixed issue in mrp calendar where legend wouldn't show properly
+
+
 <h3>Jomres 10.1.3 28/01/2022</h3>
 
 <span class="label label-success">Feature</span> Reworked property composite notabs (default property details template).

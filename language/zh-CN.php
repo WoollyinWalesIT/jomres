@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.3
+* @version Jomres 10.2.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2687,3 +2687,8 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"属性类�
 	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', '你想去哪里？');
 	jr_define('DATA_SOURCES_TITLE', "刷新数据源");
 	jr_define( 'DATA_SOURCES_TITLE_INFO', "数据源已刷新。数据源由搜索小部件中的自动完成输入字段使用，它们通常会自动更新，但是如果需要，此页面会强制手动更新数据。" );
+
+	jr_define('_OAUTH_TOKEN_REQUEST_URI', "要发送令牌请求，请将请求发送到此 url");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "主视图属性脚本");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "要查看的属性的属性uid");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "默认模板是property_details.html，使用这个参数你可以定义一个不同的属性细节模板来显示。");

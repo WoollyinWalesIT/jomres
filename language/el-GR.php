@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.3
+* @version Jomres 10.2.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2715,5 +2715,11 @@ jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Με έκπτωση");
 jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Πού θέλετε να πάτε;');
 jr_define( 'DATA_SOURCES_TITLE', "Ανανέωση πηγών δεδομένων" );
 jr_define( 'DATA_SOURCES_TITLE_INFO', "Οι πηγές δεδομένων ανανεώθηκαν. Οι πηγές δεδομένων χρησιμοποιούνται από πεδία εισαγωγής αυτόματης συμπλήρωσης στο γραφικό στοιχείο αναζήτησης και συνήθως ενημερώνονται αυτόματα, ωστόσο αυτή η σελίδα αναγκάζει τα δεδομένα να ενημερώνονται χειροκίνητα, εάν απαιτείται." );
+
+	jr_define('_OAUTH_TOKEN_REQUEST_URI', "Για να στείλετε ένα αίτημα διακριτικού, στείλτε το αίτημα σε αυτήν τη διεύθυνση url");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Το σενάριο ιδιοτήτων κύριας προβολής");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Το uid ιδιοκτησίας της ιδιότητας προς προβολή");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Το προεπιλεγμένο πρότυπο είναι property_details.html, με αυτό το όρισμα μπορείτε να ορίσετε ένα διαφορετικό πρότυπο λεπτομερειών ιδιοκτησίας για εμφάνιση.");
+
 
 

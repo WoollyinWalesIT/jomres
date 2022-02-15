@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.3
+* @version Jomres 10.2.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -207,6 +207,7 @@ class j09995menu
 		//misc section menus
 		if ($thisJRUser->accesslevel >= 50) {
 			$jomres_menu->add_item(70, jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_SEARCH', '_JOMRES_CUSTOMCODE_JOMRESMAINMENU_SEARCH', false), 'search', 'fa-search');
+			$jomres_menu->add_item(70, 'Typography', 'typography', 'fas fa-paint-brush');
 		}
 
 		//settings section menus

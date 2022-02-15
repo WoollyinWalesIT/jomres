@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.3
+* @version Jomres 10.2.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -778,7 +778,7 @@ class jomres_reviews
 		return $result;
 	}
 	
-	private function generate_review_rating_text( $average_rating = 0)
+	public function generate_review_rating_text( $average_rating = 0)
 	{
 		if ( $average_rating > 9.8 ) {
 			return jr_gettext('JOMRES_REVIEW_SCORE_TOP_1', 'JOMRES_REVIEW_SCORE_TOP_1', false);

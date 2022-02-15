@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.3
+* @version Jomres 10.2.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2761,7 +2761,7 @@ jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS'," خواص");
 jr_define('JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS'," نظرات مهمان");
 jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"ما همیشه اینجا هستیم");
 jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"در هر زمان با ما تماس بگیرید یا ایمیل بزنید");
-jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"دریافت پشتیبانی 24 ساعته قبل، در طول و بعد از سفر");
+jr_define('JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"دریافت پشتیبانی 24 ساعته قبل, در طول و بعد از سفر");
 
 jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"رسانه های اجتماعی");
 jr_define('JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"ما را در رسانه های اجتماعی بیابید");
@@ -2780,5 +2780,9 @@ jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "تخفیف");
 
 jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'کجا می خواهید بروید؟');
 jr_define( 'DATA_SOURCES_TITLE', "منابع داده را به روز کنید" );
-jr_define( 'DATA_SOURCES_TITLE_INFO', "منابع داده به روز شدند. منابع داده توسط فیلدهای ورودی تکمیل خودکار در ویجت جستجو استفاده می شود و معمولاً به طور خودکار به روز می شوند، اما این صفحه داده ها را مجبور می کند در صورت نیاز به صورت دستی به روز شوند." );
+jr_define( 'DATA_SOURCES_TITLE_INFO', "منابع داده به روز شدند. منابع داده توسط فیلدهای ورودی تکمیل خودکار در ویجت جستجو استفاده می شود و معمولاً به طور خودکار به روز می شوند, اما این صفحه داده ها را مجبور می کند در صورت نیاز به صورت دستی به روز شوند." );
 
+jr_define('_OAUTH_TOKEN_REQUEST_URI', "برای ارسال درخواست رمز, درخواست را به این آدرس اینترنتی ارسال کنید");
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "اسکریپت ویژگی نمای اصلی");
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Uid ویژگی دارایی که باید مشاهده شود");
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "الگوی پیش‌فرض milk_details.html است, با این آرگومان می‌توانید یک الگوی جزئیات ویژگی متفاوت برای نمایش تعریف کنید.");

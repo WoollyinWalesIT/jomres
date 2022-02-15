@@ -4,7 +4,7 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-	 * * @version Jomres 10.1.2
+	 * @version Jomres 10.2.0
 	 *
 	 * @copyright	2005-2022 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -58,6 +58,8 @@
 			if ($property_uid > 0) {
 				$property_data = $current_property_details->multi_query_result[ $property_uid ];
 
+				$property_data[ 'RANDOM_IDENTIFIER' ] = generateJomresRandomString(10);
+
 				$Reviews->property_uid = $property_uid;
 				$itemRating = $Reviews->showRating($property_uid);
 				$property_data['AVERAGE_RATING'] = number_format($itemRating['avg_rating'], 1, '.', '');
@@ -99,6 +101,7 @@
 						}
 
 						$rob['UID'] = $property_uid;
+						$rob['RANDOM_IDENTIFIER'] = $property_data[ 'RANDOM_IDENTIFIER' ];
 						$rob['AVERAGE_RATING'] = $property_data['AVERAGE_RATING'];
 						$rob['NUMBER_OF_REVIEWS'] = $itemRating['counter'];
 						$rob['_JOMRES_REVIEWS_CLICKTOSHOW'] = jr_gettext('_JOMRES_REVIEWS_CLICKTOSHOW', '_JOMRES_REVIEWS_CLICKTOSHOW', false);
@@ -164,7 +167,7 @@
 				$property_data[ 'PRICE_POST_TEXT' ] = $jomres_property_list_prices->lowest_prices[$property_uid][ 'POST_TEXT' ];
 
 				$property_data[ 'PROPERTY_UID' ] = $property_uid;
-				$property_data[ 'RANDOM_IDENTIFIER' ] = generateJomresRandomString(10);
+
 
 				$property_data[ 'LIVE_SITE' ] = get_showtime('live_site');
 				$property_data[ 'MOREINFORMATION' ] = jr_gettext('_JOMRES_COM_A_CLICKFORMOREINFORMATION', '_JOMRES_COM_A_CLICKFORMOREINFORMATION', $editable = false, true);

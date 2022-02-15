@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.3
+* @version Jomres 10.2.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2680,3 +2680,8 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Mülk tipi
 	jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'Nereye gitmek istiyorsunuz?');
 	jr_define('DATA_SOURCES_TITLE', "Veri kaynaklarını yenile");
 	jr_define( 'DATA_SOURCES_TITLE_INFO', "Veri kaynakları yenilendi. Veri kaynakları, arama widget'ındaki otomatik tamamlama giriş alanları tarafından kullanılır ve genellikle otomatik olarak güncellenir, ancak bu sayfa gerektiğinde verileri manuel olarak güncellemeye zorlar." );
+
+	jr_define('_OAUTH_TOKEN_REQUEST_URI', "Token isteği göndermek için isteği bu url'ye gönderin");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Ana görünüm özelliği komut dosyası");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Görüntülenecek mülkün uid'i");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Varsayılan şablon property_details.html'dir, bu argümanla gösterilecek farklı bir özellik detayları şablonu tanımlayabilirsiniz.");

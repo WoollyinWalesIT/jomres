@@ -4,7 +4,7 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-	 * * @version Jomres 10.1.2
+	 * @version Jomres 10.2.0
 	 *
 	 * @copyright	2005-2022 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -24,7 +24,12 @@
 				$data[$lang] = [];
 			}
 
-			$query = "SELECT  `constant` , `customtext` , `language` FROM #__jomres_custom_text WHERE `constant` LIKE '_JOMRES_CUSTOMTEXT_PROPERTY_TOWN_%'";
+			$query = "SELECT  `constant` , `customtext` , `language`
+		FROM  #__jomres_custom_text
+		RIGHT JOIN #__jomres_propertys
+		ON #__jomres_custom_text.property_uid = #__jomres_propertys.propertys_uid
+		WHERE #__jomres_propertys.published = 1 AND 
+		#__jomres_custom_text.constant LIKE '_JOMRES_CUSTOMTEXT_PROPERTY_TOWN_%'";
 			$custom_town_names_result = doSelectSql($query);
 
 			$custom_town_names = array();

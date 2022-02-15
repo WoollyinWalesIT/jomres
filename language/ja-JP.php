@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.3
+* @version Jomres 10.2.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2643,10 +2643,10 @@ jr_define( 'PLUGIN_UPDATE_MESSAGE1_LINK', 'プラグインの更新');
 jr_define( 'PLUGIN_UPDATE_MESSAGE2_LINK1', '新しいキーを取得');
 jr_define( 'PLUGIN_UPDATE_MESSAGE2_LINK2', '新しいキーを保存');
 
-jr_define( '_ JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES', "プロパティタイプの画像");
+jr_define( '_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES', "プロパティタイプの画像");
 
 jr_define( 'JOMRES_SITE_SIDEBAR_HELP_TITLE',"予約のヘルプが必要ですか？");
-jr_define( 'JOMRES_SITE_SIDEBAR_HELP_BLURB',"以下の番号のカスタマーサービスチームに電話して、休日のすべてのニーズに対応する担当者の1人に相談してください。");
+jr_define( 'JOMRES_SITE_SIDEBAR_HELP_BLURB',"以下の番号のカスタマーサービスチームに電話して,休日のすべてのニーズに対応する担当者の1人に相談してください。");
 
 jr_define( 'JOMRES_SITE_SIDEBAR_WHY_TITLE',"なぜ私たちと一緒に予約するのですか？");
 jr_define( 'JOMRES_SITE_SIDEBAR_WHY_BEST_RATES_TITLE',"最高の予約料金を提供します");
@@ -2657,7 +2657,7 @@ jr_define( 'JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_HOTELS',"プロパティ");
 jr_define( 'JOMRES_SITE_SIDEBAR_WHY_LARGEST_NUMBER_REVIEWS',"ゲストレビュー");
 jr_define( 'JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_TITLE',"私たちは常にここにいます");
 jr_define( 'JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_CONTACT',"いつでも電話またはメールでお問い合わせください");
-jr_define( 'JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"旅行前、旅行中、旅行後に24時間サポートを受ける");
+jr_define( 'JOMRES_SITE_SIDEBAR_WHY_AVAILABLE_SUPPORT',"旅行前,旅行中,旅行後に24時間サポートを受ける");
 
 jr_define( 'JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA',"ソーシャルメディア");
 jr_define( 'JOMRES_SITE_SIDEBAR_WHY_SOCIAL_MEDIA_LEAD',"ソーシャルメディアで私たちを見つけてください");
@@ -2674,6 +2674,11 @@ jr_define( 'JOMRES_REVIEW_SCORE_GOOD',"Good");
 jr_define( 'JOMRES_REVIEWS_NONE_NEW',"新しいリスト");
 jr_define( 'JOMRES_RIBBON_TEXT_DISCOUNTED',"割引");
 
-jr_define( '_ JOMRES_SEARCH_FORM_WHERE_TO_GO', 'どこに行きたいですか？');
+jr_define( '_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'どこに行きたいですか？');
 jr_define( 'DATA_SOURCES_TITLE', "データソースを更新");
-jr_define( 'DATA_SOURCES_TITLE_INFO', "データソースが更新されました。データソースは検索ウィジェットのオートコンプリート入力フィールドで使用され、通常は自動的に更新されますが、このページでは、必要に応じてデータを手動で更新する必要があります。");
+jr_define( 'DATA_SOURCES_TITLE_INFO', "データソースが更新されました。データソースは検索ウィジェットのオートコンプリート入力フィールドで使用され,通常は自動的に更新されますが,このページでは,必要に応じてデータを手動で更新する必要があります。");
+
+	jr_define( '_ OAUTH_TOKEN_REQUEST_URI', "トークンリクエストを送信するには,このURLにリクエストを送信してください");
+jr_define( '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "メインビュープロパティスクリプト");
+jr_define( '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "表示するプロパティのプロパティuid");
+jr_define( '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "デフォルトのテンプレートはproperty_details.htmlです。この引数を使用すると,表示する別のプロパティ詳細テンプレートを定義できます。");

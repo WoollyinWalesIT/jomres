@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* * @version Jomres 10.1.3
+* @version Jomres 10.2.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2714,4 +2714,9 @@ jr_define('_JOMRES_SEARCH_FORM_WHERE_TO_GO', 'לאן אתה רוצה ללכת?')
 jr_define( 'DATA_SOURCES_TITLE', "רענן מקורות נתונים" );
 jr_define( 'DATA_SOURCES_TITLE_INFO', "מקורות נתונים רעננים. מקורות נתונים משמשים בשדות קלט של השלמה אוטומטית בווידג'ט החיפוש והם בדרך כלל מתעדכנים אוטומטית, אולם דף זה מאלץ את עדכון הנתונים באופן ידני במידת הצורך." );
 
+
+	jr_define('_OAUTH_TOKEN_REQUEST_URI', "כדי לשלוח בקשה אסימון, שלח את הבקשה לכתובת האתר הזו");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "סקריפט מאפיין התצוגה הראשי");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "ה-uid של הנכס שיש לראות");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "תבנית ברירת המחדל היא property_details.html, עם ארגומנט זה אתה יכול להגדיר תבנית פרטי נכס שונה להצגה.");
 
