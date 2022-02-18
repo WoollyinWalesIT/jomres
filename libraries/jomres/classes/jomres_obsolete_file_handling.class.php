@@ -1339,6 +1339,11 @@ class jomres_obsolete_file_handling
 		$this->add_file($this->dir_minicomponents.'j16000connect.class.php');
 		$this->add_file($this->dir_minicomponents.'j16000connected.class.php');
 		$this->add_file($this->dir_minicomponents.'j16000connect_status.class.php');
+
+		$this->add_dir($this->dir_templates_bootstrap4_frontend);
+		$this->add_dir($this->dir_templates_bootstrap4_backend);
+		$this->add_dir($this->dir_templates_bootstrap4_administrator);
+
 	}
 	
 	/**
