@@ -2655,3 +2655,6 @@ jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Sleva");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Skript vlastností hlavního zobrazení");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Uid vlastnosti prohlížené vlastnosti");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Výchozí šablona je property_details.html, pomocí tohoto argumentu můžete definovat jinou šablonu podrobností vlastnosti, která se má zobrazit.");
+
+	jr_define('JOMRES_UPDATES_TITLE', 'Aktualizace Jomres');
+	jr_define('JOMRES_UPDATES_INFO', "Tato stránka vám může stáhnout a nainstalovat nejnovější verzi Jomres. Využívá svou vlastní funkcionalitu a ne funkce hostitelského CMS, takže pokud dojde k problému během aktualizace hostitelského CMS, můžete tuto stránku použít k vynutit reinstalaci nejnovější verze Jomres.");

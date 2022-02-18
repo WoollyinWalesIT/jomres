@@ -2724,3 +2724,6 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Slike vrst
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Skripta svojstva glavnog pogleda");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Uid svojstva svojstva koje treba pogledati");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Zadani predložak je property_details.html, s ovim argumentom možete definirati drugi predložak pojedinosti svojstva za prikaz.");
+
+	jr_define('JOMRES_UPDATES_TITLE', 'Jomres ažuriranja');
+	jr_define('JOMRES_UPDATES_INFO', "Ova stranica može preuzeti i instalirati najnoviju verziju Jomresa za vas. Ona koristi vlastitu funkcionalnost, a ne funkcionalnost CMS-a domaćina, stoga ako dođe do problema tijekom ažuriranja CMS-a hosta možete koristiti ovu stranicu za prisiliti ponovnu instalaciju najnovije verzije Jomresa.");

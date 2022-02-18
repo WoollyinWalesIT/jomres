@@ -2692,3 +2692,6 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"属性类�
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "主视图属性脚本");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "要查看的属性的属性uid");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "默认模板是property_details.html，使用这个参数你可以定义一个不同的属性细节模板来显示。");
+
+	jr_define('JOMRES_UPDATES_TITLE', 'Jomres 更新');
+	jr_define('JOMRES_UPDATES_INFO', "此页面可以为您下载和安装最新版本的 Jomres。它使用自己的功能，而不是主机 CMS 的功能，因此如果在主机 CMS 更新期间出现问题，您可以使用此页面来 强制重新安装最新版本的 Jomres。");

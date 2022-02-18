@@ -2685,3 +2685,6 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Mülk tipi
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Ana görünüm özelliği komut dosyası");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Görüntülenecek mülkün uid'i");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Varsayılan şablon property_details.html'dir, bu argümanla gösterilecek farklı bir özellik detayları şablonu tanımlayabilirsiniz.");
+
+	jr_define('JOMRES_UPDATES_TITLE', 'Jomres Güncellemeleri');
+	jr_define('JOMRES_UPDATES_INFO', "Bu sayfa sizin için Jomres'in en son sürümünü indirebilir ve kurabilir. Ana bilgisayar CMS'sinin değil, kendi işlevselliğini kullanır, bu nedenle ana bilgisayar CMS'sinin güncellemesi sırasında bir sorun oluşursa, bu sayfayı aşağıdakileri yapmak için kullanabilirsiniz: Jomres'in en son sürümünün yeniden yüklenmesini zorlayın.");

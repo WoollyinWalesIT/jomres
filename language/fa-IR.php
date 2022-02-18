@@ -2786,3 +2786,7 @@ jr_define('_OAUTH_TOKEN_REQUEST_URI', "برای ارسال درخواست رمز
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "اسکریپت ویژگی نمای اصلی");
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Uid ویژگی دارایی که باید مشاهده شود");
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "الگوی پیش‌فرض milk_details.html است, با این آرگومان می‌توانید یک الگوی جزئیات ویژگی متفاوت برای نمایش تعریف کنید.");
+
+jr_define('JOMRES_UPDATES_TITLE', 'Jomres Updates');
+jr_define('JOMRES_UPDATES_INFO', "این صفحه می تواند جدیدترین نسخه Jomres را برای شما دانلود و نصب کند. از عملکرد خود استفاده می کند و نه از CMS میزبان، بنابراین اگر مشکلی در حین به روز رسانی CMS میزبان رخ داد، می توانید از این صفحه برای مجبور به نصب مجدد جدیدترین نسخه Jomres شوید.");
+

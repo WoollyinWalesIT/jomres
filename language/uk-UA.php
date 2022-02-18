@@ -2639,3 +2639,6 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Зобра
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Сценарій властивостей головного перегляду");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Ідентифікатор властивості властивості, яку потрібно переглянути");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Шаблон за замовчуванням — property_details.html, за допомогою цього аргументу ви можете визначити інший шаблон інформації про властивість для показу.");
+
+	jr_define('JOMRES_UPDATES_TITLE', 'Оновлення Jomres');
+	jr_define('JOMRES_UPDATES_INFO', "Ця сторінка може завантажити та встановити найновішу версію Jomres для вас. Вона використовує власні функції, а не функції хоста CMS, тому, якщо під час оновлення хоста CMS виникне проблема, ви можете використовувати цю сторінку для примусово переінсталювати найновішу версію Jomres.");

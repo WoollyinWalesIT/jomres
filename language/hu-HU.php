@@ -2679,3 +2679,6 @@ jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Kedvezményes");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "A fő nézet tulajdonság szkriptje");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "A megtekintendő tulajdonság tulajdonságazonosítója");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Az alapértelmezett sablon a property_details.html, ezzel az argumentummal megadhat egy másik megjelenítendő tulajdonságrészlet-sablont.");
+
+	jr_define('JOMRES_UPDATES_TITLE', 'Jomres frissítések');
+	jr_define('JOMRES_UPDATES_INFO', "Ez az oldal letöltheti és telepítheti a Jomres legfrissebb verzióját az Ön számára. Saját funkcióit használja, nem a gazdagép CMS-ét, ezért ha probléma lép fel a gazdagép CMS frissítése során, ezt az oldalt használhatja kényszeríteni kell a Jomres legújabb verziójának újratelepítését.");

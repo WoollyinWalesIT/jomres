@@ -2647,3 +2647,5 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Egenskapst
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Hovedvisningsegenskapsskriptet");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Egenskaps-uid for eiendommen som skal vises");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Standardmalen er property_details.html, med dette argumentet kan du definere en annen mal for egenskapsdetaljer som skal vises.");
+	jr_define('JOMRES_UPDATES_TITLE', 'Jomres-oppdateringer');
+	jr_define('JOMRES_UPDATES_INFO', "Denne siden kan laste ned og installere den nyeste versjonen av Jomres for deg. Den bruker sin egen funksjonalitet og ikke den til verts-CMS-en, så hvis det oppstår et problem under oppdateringen av vert-CMS-en kan du bruke denne siden til å tvinge frem en reinstallering av den nyeste versjonen av Jomres.");
