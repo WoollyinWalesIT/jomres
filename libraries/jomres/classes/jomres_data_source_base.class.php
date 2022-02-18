@@ -69,10 +69,10 @@ class jomres_data_source_base
 	public function save_data_source()
 	{
 		if ( !isset($this->data) || empty($this->data) ) {
-			throw new Exception('Error, $this->data not set ' );
+			return false;
 		}
 		if ( is_null($this->type)) {
-			throw new Exception('Error, $this->type not set ' );
+			return false;
 		}
 
 		$contents = json_encode($this->data);
