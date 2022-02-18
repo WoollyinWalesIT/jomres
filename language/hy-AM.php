@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* @version Jomres 10.2.0
+ * @version Jomres 10.2.1
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -3366,3 +3366,6 @@ jr_define('DATA_SOURCES_TITLE_INFO', "Տվյալների աղբյուրները 
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Հիմնական դիտման հատկության սկրիպտը");
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Դիտվող գույքի սեփականության uid");
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Լռակյաց ձևանմուշը property_details.html է, այս արգումենտով կարող եք սահմանել այլ սեփականության մանրամասների ձևանմուշ՝ ցուցադրելու համար");
+
+	jr_define('JOMRES_UPDATES_TITLE', 'Jomres-ի թարմացումներ');
+	jr_define('JOMRES_UPDATES_INFO', "Այս էջը կարող է ներբեռնել և տեղադրել Jomres-ի ամենավերջին տարբերակը ձեզ համար: Այն օգտագործում է իր ֆունկցիոնալությունը, այլ ոչ թե հյուրընկալող CMS-ի, հետևաբար, եթե խնդիր առաջանա հյուրընկալողի CMS-ի թարմացման ժամանակ, կարող եք օգտագործել այս էջը՝ ստիպել վերատեղադրել Jomres-ի ամենավերջին տարբերակը։");

@@ -3,7 +3,7 @@
  * Core file
  *
  * @author Vince Wooll <sales@jomres.net>
-* @version Jomres 10.2.0
+ * @version Jomres 10.2.1
  * @package Jomres
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
@@ -2660,3 +2660,6 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"รูป�
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "สคริปต์คุณสมบัติมุมมองหลัก");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "uid คุณสมบัติของทรัพย์สินที่จะดู");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "เทมเพลตเริ่มต้นคือ property_details.html ด้วยอาร์กิวเมนต์นี้ คุณสามารถกำหนดเทมเพลตรายละเอียดคุณสมบัติอื่นที่จะแสดงได้");
+
+	jr_define('JOMRES_UPDATES_TITLE', 'การอัปเดต Jomres');
+	jr_define('JOMRES_UPDATES_INFO', "หน้านี้สามารถดาวน์โหลดและติดตั้ง Jomres เวอร์ชันล่าสุดให้คุณได้ โดยจะใช้ฟังก์ชันของตัวเองไม่ใช่ของ CMS ของโฮสต์ ดังนั้นหากเกิดปัญหาขึ้นระหว่างการอัปเดต CMS ของโฮสต์ คุณสามารถใช้เพจนี้เพื่อ บังคับให้ติดตั้ง Jomres เวอร์ชันล่าสุดอีกครั้ง");

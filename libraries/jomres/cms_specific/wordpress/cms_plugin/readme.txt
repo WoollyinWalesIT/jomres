@@ -12,7 +12,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 = The multi-property, multi-vendor, multi-language booking portal, be a part of something bigger =
 
-Mature, intelligent, secure and powerful. Started in 2005 and maintained continuously for the last 16 years, Jomres is the most complete online booking engine available for WordPress.
+Mature, intelligent, secure and powerful. Started in 2005 and maintained continuously for the last 17 years, Jomres is the most complete online booking engine available for WordPress.
 
 The Core system is free (install it through the WordPress plugin manager) and extend it through <a href="https://www.jomres.net/jomres-plugin-list">200 Jomres plugins</a> which can be installed through the Jomres Plugin Manager at no extra cost once you have a license.
 
@@ -68,7 +68,7 @@ Yup, the [manual](https://www.jomres.net/manual/) is available to all users. It'
 
 = Where can I get support? =
 
-If you've got a download and support license you can raise a [ticket](http://tickets.jomres.net), and you can also join the [Community Forum](https://www.jomres.net/forum) and ask your questions there.
+If you've got a download and support license you can raise a [ticket](http://tickets.jomres.net).
 
 
 

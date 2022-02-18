@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* @version Jomres 10.2.0
+ * @version Jomres 10.2.1
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2720,3 +2720,5 @@ jr_define( 'DATA_SOURCES_TITLE_INFO', "מקורות נתונים רעננים. �
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "ה-uid של הנכס שיש לראות");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "תבנית ברירת המחדל היא property_details.html, עם ארגומנט זה אתה יכול להגדיר תבנית פרטי נכס שונה להצגה.");
 
+	jr_define('JOMRES_UPDATES_TITLE', 'עדכוני גומרס');
+jr_define('JOMRES_UPDATES_INFO', "דף זה יכול להוריד ולהתקין עבורך את הגרסה העדכנית ביותר של Jomres. הוא משתמש בפונקציונליות שלו ולא בזו של ה-CMS המארח, לכן אם מתרחשת בעיה במהלך העדכון של ה-CMS המארח, תוכל להשתמש בדף זה כדי לכפות התקנה מחדש של הגרסה העדכנית ביותר של Jomres.");

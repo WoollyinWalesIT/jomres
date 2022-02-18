@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* @version Jomres 10.2.0
+ * @version Jomres 10.2.1
  *
  * @copyright	2005-2022 Vince Wooll
  * Translated to pt-PT by Mario Oliveira, Camara de Lobos, Madeira Island, Portugal, 17Set2010 - www.marioliveira.net - Updated 21Jun2011 for ver 5.1
@@ -2720,3 +2720,6 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Imagens de
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "O script de propriedade da visualização principal");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "O uid da propriedade a ser visualizada");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "O template padrão é property_details.html, com este argumento você pode definir um template de detalhes de propriedade diferente para mostrar.");
+
+	jr_define('JOMRES_UPDATES_TITLE', 'Jomres Updates');
+	jr_define('JOMRES_UPDATES_INFO', "Esta página pode baixar e instalar a versão mais recente do Jomres para você. Ela usa sua própria funcionalidade e não a do host CMS, portanto, se ocorrer um problema durante a atualização do host CMS, você pode usar esta página para forçar uma reinstalação da versão mais recente do Jomres.");

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* @version Jomres 10.2.0
+ * @version Jomres 10.2.1
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2709,3 +2709,6 @@ jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Zľavnené");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Skript vlastností hlavného zobrazenia");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Uid vlastnosti vlastnosti, ktorá sa má zobraziť");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Predvolená šablóna je property_details.html, pomocou tohto argumentu môžete definovať inú šablónu podrobností vlastnosti, ktorá sa má zobraziť.");
+
+	jr_define('JOMRES_UPDATES_TITLE', 'Aktualizácie Jomres');
+	jr_define('JOMRES_UPDATES_INFO', "Táto stránka vám môže stiahnuť a nainštalovať najnovšiu verziu Jomres. Používa svoje vlastné funkcie a nie funkcie hostiteľského CMS, takže ak sa vyskytne problém počas aktualizácie hostiteľského CMS, môžete túto stránku použiť na vynútiť preinštalovanie najnovšej verzie Jomres.");
