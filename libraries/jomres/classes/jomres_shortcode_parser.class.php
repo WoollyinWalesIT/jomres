@@ -77,7 +77,12 @@ class jomres_shortcode_parser
 							$event = 'j'.$eventPoint.$eventName;
 
 							if (!class_exists($event)) {
-								include_once $eventDetails[ 'filepath' ].$filename;
+								if (file_exists($eventDetails[ 'filepath' ].$filename)){
+									include_once $eventDetails[ 'filepath' ].$filename;
+								} else {
+									throw new Exception('Error, the file '. $eventDetails[ 'filepath' ].$filename.' does not exist when trying to construct shortcodes');
+								}
+
 							}
 
 							$e = new $event($eventArgs);
