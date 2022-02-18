@@ -281,7 +281,7 @@ $jrConfig = ' .var_export($jrConfig, true).';
 		if (file_exists($this->config_file)) {
 			include $this->config_file;
 			$this->config = $jrConfig;
-
+			$this->config['version'] = $tempConfigArr['version'];
 			foreach ($tempConfigArr as $k => $v) {
 				if (!array_key_exists($k, $this->config)) {
 					$this->insert_new_setting($k, $v);

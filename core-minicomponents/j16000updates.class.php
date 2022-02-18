@@ -39,7 +39,7 @@
 			$this->updateServer = 'http://updates.jomres4.net';
 			$this->updateFolder = JOMRESPATH_BASE.JRDS.'updates';
 
-			$this->test_download = true;
+			$this->test_download = false;
 
 			if (!class_exists('ZipArchive')) {
 				echo 'Error, ZipArchive not available on this server. Please ask your hosts to rebuild PHP with --enable-zip';
