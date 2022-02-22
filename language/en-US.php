@@ -1938,7 +1938,7 @@ jr_define('_JOMRES_PAYMENT_METHOD_USED',"Payment method : ");
 jr_define('_JOMRES_PRICES',"Get Connected");
 
 
-jr_define('_OAUTH_TITLE',"App key management");
+jr_define('_OAUTH_TITLE',"API key management");
 jr_define('_OAUTH_APPS',"REST API client details");
 jr_define('_OAUTH_IDENTIFIER',"Identifier");
 jr_define('_OAUTH_APIKEY',"Client ID");
@@ -1949,7 +1949,7 @@ jr_define('_OAUTH_SCOPE_TITLE',"Permissions ( what the client can do ) ");
 jr_define('_OAUTH_SCOPE_CATEGORY_USER' , "User permissions");
 jr_define('_OAUTH_SCOPE_CATEGORY_PROPERTIES' , "Property permissions");
 
-jr_define('API_DOCUMENTATION_TITLE',"App REST API documentation");
+jr_define('API_DOCUMENTATION_TITLE',"REST API documentation");
 
 jr_define('_OAUTH_CONFIG',"API Core configuration");
 
