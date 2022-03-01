@@ -1789,7 +1789,7 @@ jr_define ('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Jūsu atbalsta atslēga 
 jr_define ('_JOMRES_DASHBOARD_DRAG_TRASH', 'Velciet rezervācijas uz šo apgabalu, lai tās atceltu');
 jr_define ('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define ('_JOMRES_LONG', 'Garš (nn.nnnn)');
-jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Lūdzu, pārliecinieties, vai esat izveidojis WordPress lapu, kurā ir īss kods [jomres: xx-XX] (kur xx-XX ir jūsu vietnes valodas kods, piemēram, [jomres: lv-GB] vai [ jomres: lv] ieteikt vienu, pamatojoties uz Bootstrap 3. Ja jums nav piekļuves motīvam, iesakām Wordpress izmantot Jomres Leohtian tēmu, kuru varat <a href = "https://www.jomres.net/download/free- downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress target="_blank"> lejupielādēt no šejienes. </a> ');
+jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Lūdzu, pārliecinieties, vai esat izveidojis WordPress lapu, kurā ir īsais kods [jomres:xx-XX] (kur xx-XX ir jūsu vietnes valodas kods, piemēram, [jomres:en-GB] vai [jomres:en-US]). pretējā gadījumā jūs nevarēsit piekļūt Jomres no priekšgala, lai pārvaldītu savus īpašumus un rezervācijas.');
 jr_define ('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', "Pirms jūs varat izveidot telpas tipu, mums jāzina, vai tas ir viesnīcas tipa īpašums vai villa tipa īpašums.");
 jr_define ('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', 'Noklikšķiniet, lai pievienotu jaunus telpu tipus');
 jr_define ('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES', 'Brīdinājums, jums ir viens vai vairāki īpašuma tipi bez istabu tipiem. Īpašumiem ir nepieciešami telpu tipi, lai īpašumu pārvaldnieki varētu izveidot tarifus.');

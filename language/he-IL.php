@@ -1831,7 +1831,7 @@ jr_define ('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'מפתח התמיכה ש
 jr_define ('_JOMRES_DASHBOARD_DRAG_TRASH', 'גרור הזמנות לאזור זה כדי לבטל אותן');
 jr_define ('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define ('_JOMRES_LONG', 'Long (nn.nnnn)');
-jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'אנא ודא שיצרת דף וורדפרס המכיל את קוד הקיצור [jomres: xx-XX] (כאשר xx-XX הוא קוד שפת האתר שלך, למשל [jomres: en-GB] או [ jomres: en-US]) אחרת לא תוכל לגשת ל- Jomres מהחזית כדי לנהל את הנכסים וההזמנות שלך. <br> Jomres בנוי על מסגרת Bootstrap, לכן עליך להשתמש בה בנושא המבוסס על Bootstrap. אנו ממליץ על אחד המבוסס על Bootstrap 3. אם אין לך גישה לנושא, אנו ממליצים לך להשתמש בעיצוב Jomres Leohtian עבור Wordpress שתוכל <a href = "https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target="_blank"> הורד מכאן. </a> ');
+jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'אנא ודא שיצרת דף וורדפרס המכיל את קוד הקיצור [jomres: xx-XX] (כאשר xx-XX הוא קוד שפת האתר שלך, למשל [jomres: en-GB] או [ jomres: en-US]) אחרת לא תוכל לגשת ל- Jomres מהחזית כדי לנהל את הנכסים וההזמנות שלך. ');
 jr_define ('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', 'לרוב הנכסים בג ומרס יש תהליך ניהול השכרה. מלונות/צימרים/פנסיונים משכירים חדרים בודדים, ובקתות/וילות/דירות משכירות את כל הנכס. זה אינו נראה למנהל הנכס, אך מבחינתם. כדי ליצור תעריפים על הנכס שלהם עליך להוסיף תחילה סוגי חדרים המתאימים לסוג הנכס.
 לדוגמה, סוג נכס במלון בדרך כלל יזדקק למספר סוגי חדרים (חדרים זוגיים, חדרי יחיד ותאומים) ואילו בוילה יכול להיות רק סוג חדר אחד, למשל. 2 חדרי שינה, 5 חדרי שינה.
 אפשר ליצור סוגי חדרים לנכסים כמו טיולים. זה מאפשר ללקוחות לחפש נכסים כמו סיורים בלבד, אך מנהל הנכס לא ייצור תעריפים עבור סוג נכס זה, ולכן תהליך הניהול אינו רלוונטי עבורם.

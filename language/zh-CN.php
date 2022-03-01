@@ -1821,7 +1821,7 @@ jr_define('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', '您的支持密钥有效�
 jr_define('_JOMRES_DASHBOARD_DRAG_TRASH', '将预订拖到该区域取消');
 jr_define('_JOMRES_LAT', '纬度(nn.nnnn)');
 jr_define('_JOMRES_LONG', 'Long (nn.nnnn)');
-jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', '请确保您已经创建了一个包含 [jomres:xx-XX] 短代码的 WordPress 页面（其中 xx-XX 是您的站点语言代码，例如 [jomres:en-GB] 或 [ jomres:en-US] ) 否则您将无法从前端访问 Jomres 来管理您的属性和预订。<br> Jomres 建立在 Bootstrap 框架之上，因此您必须在基于 Bootstrap 的主题上使用它。我们推荐一个基于 Bootstrap 3 的主题。如果您无法访问主题，那么我们建议您为 Wordpress 使用 Jomres Leohtian 主题，您可以 <a href="https://www.jomres.net/download/free- downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target="_blank">从这里下载。</a>');
+jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', '请确保您已经创建了一个包含 [jomres:xx-XX] 短代码的 WordPress 页面（其中 xx-XX 是您的站点语言代码，例如 [jomres:en-GB] 或 [ jomres:en-US] ) 否则您将无法从前端访问 Jomres 来管理您的属性和预订。');
 jr_define('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', "在创建房间类型之前，我们需要知道它是用于酒店类型的属性还是别墅类型的属性。");
 jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', '点击添加新房间类型');
 jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES', '警告，您有一种或多种没有房型的房产类型。房产需要房型，以便物业经理可以创建关税。');

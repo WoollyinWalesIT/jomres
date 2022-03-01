@@ -1768,7 +1768,7 @@ jr_define( '_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'รหัสสนับ
 jr_define( '_JOMRES_DASHBOARD_DRAG_TRASH', 'ลากการจองไปยังพื้นที่นี้เพื่อยกเลิก' );
 jr_define( '_JOMRES_LAT', 'Lat (nn.nnnn)' );
 jr_define( '_JOMRES_LONG', 'ยาว (nn.nnnn)' );
-jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'โปรดตรวจสอบให้แน่ใจว่าคุณได้สร้างเพจ WordPress ที่มีรหัสย่อ [jomres:xx-XX] ( โดยที่ xx-XX คือรหัสภาษาของไซต์ของคุณ เช่น [jomres:en-GB] หรือ [ jomres:en-US] ) มิฉะนั้น คุณจะไม่สามารถเข้าถึง Jomres จากส่วนหน้าเพื่อจัดการคุณสมบัติและการจองของคุณ <br> Jomres สร้างขึ้นจากเฟรมเวิร์ก Bootstrap ดังนั้นคุณต้องใช้ธีมตาม Bootstrap เรา แนะนำหนึ่งตาม Bootstrap 3 หากคุณไม่มีสิทธิ์เข้าถึงธีม เราขอแนะนำให้คุณใช้ธีม Jomres Lehtian สำหรับ Wordpress ซึ่งคุณสามารถ <a href="https://www.jomres.net/download/free- downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target="_blank">ดาวน์โหลดจากที่นี่</a>');
+jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'โปรดตรวจสอบให้แน่ใจว่าคุณได้สร้างเพจ WordPress ที่มีรหัสย่อ [jomres:xx-XX] ( โดยที่ xx-XX คือรหัสภาษาของไซต์ของคุณ เช่น [jomres:en-GB] หรือ [ jomres:en-US] ) มิฉะนั้น คุณจะไม่สามารถเข้าถึง Jomres จากส่วนหน้าเพื่อจัดการคุณสมบัติและการจองของคุณ');
 jr_define( '_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', "ก่อนที่คุณจะสร้างประเภทห้องได้ เราจำเป็นต้องรู้ว่าเป็นประเภทโรงแรมหรือวิลล่า");
 jr_define( '_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', 'คลิกเพื่อเพิ่มประเภทห้องใหม่' );
 jr_define( "_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES", "คำเตือน คุณมีประเภทที่พักตั้งแต่หนึ่งประเภทขึ้นไปที่ไม่มีประเภทห้อง คุณสมบัติต้องการประเภทห้องเพื่อให้ผู้จัดการที่พักสามารถสร้างอัตราภาษีได้" );
