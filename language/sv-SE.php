@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* @version Jomres 10.2.0
+ *  @version Jomres 10.2.2
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1796,7 +1796,7 @@ jr_define('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Din supportnyckel är gil
 jr_define('_JOMRES_DASHBOARD_DRAG_TRASH', 'Dra bokningar till detta område för att avbryta dem');
 jr_define('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define('_JOMRES_LONG', 'Lång (nn.nnnn)');
-jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Se till att du har skapat en WordPress-sida som innehåller kortkoden [jomres:xx-XX] (där xx-XX är din webbplatsspråkkod, till exempel [jomres:en-GB] eller [ jomres:en-US] ) annars kommer du inte att kunna komma åt Jomres från frontend för att hantera dina fastigheter och bokningar. <br> Jomres är byggt på Bootstrap-ramverket, så du måste använda det på ett tema baserat på Bootstrap. Vi rekommenderar en baserad på Bootstrap 3. Om du inte har tillgång till ett tema rekommenderar vi att du använder Jomres Leohtian-temat för Wordpress som du kan <a href="https://www.jomres.net/download/free- downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target="_blank">ladda ner härifrån.</a>');
+jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Se till att du har skapat en WordPress-sida som innehåller kortkoden [jomres:xx-XX] (där xx-XX är din webbplatsspråkkod, till exempel [jomres:en-GB] eller [ jomres:en-US] ) annars kommer du inte att kunna komma åt Jomres från frontend för att hantera dina fastigheter och bokningar.');
 jr_define('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', "Innan du kan skapa en rumstyp måste vi veta om det är för en fastighet av hotelltyp eller en villatyp.");
 jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', 'Klicka för att lägga till nya rumstyper');
 jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES', 'Varning, du har en eller flera fastighetstyper utan rumstyper. Fastigheter behöver rumstyper så att fastighetsförvaltare kan skapa tariffer.');
@@ -2683,3 +2683,6 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Egenskapst
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Manuset för huvudvyns egenskap");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Egenskaps-uid för egenskapen som ska visas");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Standardmallen är property_details.html, med detta argument kan du definiera en annan mall för egendomsdetaljer att visa.");
+
+	jr_define('JOMRES_UPDATES_TITLE', 'Jomres-uppdateringar');
+	jr_define('JOMRES_UPDATES_INFO', "Den här sidan kan ladda ner och installera den senaste versionen av Jomres åt dig. Den använder sin egen funktionalitet och inte den hos värd-CMS, så om ett problem uppstår under värd-CMS:s uppdatering kan du använda den här sidan för att tvinga fram en ominstallation av den senaste versionen av Jomres.");

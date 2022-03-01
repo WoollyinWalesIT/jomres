@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* @version Jomres 10.2.0
+ *  @version Jomres 10.2.2
  *
  * @copyright	2005-2022 Vince Wooll
  * Translation to fr-FR by Stéphane Bernard, Valtari NumAgency, France - 03/07/2019 - https://www.valtari.fr

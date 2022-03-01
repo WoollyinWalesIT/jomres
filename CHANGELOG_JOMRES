@@ -1,3 +1,19 @@
+<h3>Jomres 10.2.2 18/02/2022</h3>
+
+<span class="label label-important label-danger">Fix</span> Resolved an issue with Jomres being unable to report the correct version of itself.
+
+<h3>Jomres 10.2.1 18/02/2022</h3>
+
+<span class="label label-success">Feature</span> Re-worked older functionality that will download Jomres updates using own functionality. Some installations are not updating correctly, for whatever reasons. In the event that we suspect that Jomres hasn't installed, we can use this new (old) buttonn under Admin > Jomres > Dashboard to force a reinstallation of Jomres.
+
+<span class="label label-warning">Change</span> Improved markdown handling so that carriage returns saved as html entity 10 are reconstituted as carriage returns. Jomres markdown handling needs those carriage returns so that it can properly parse the content.
+<span class="label label-warning">Change</span> Don't invite plugin manager installation if key isn't valid.
+<span class="label label-warning">Change</span> Simplified the update plugin message as some are mis-interpreting it to mean that their license isnt valid.
+<span class="label label-warning">Change</span> Updated the shortcode parser to report what file it's trying to include when it throws an error.
+
+<span class="label label-important label-danger">Fix</span> Updated new data source functionality to resolve how issues are reported on new installations when building data sources for the first time.
+
+
 <h3>Jomres 10.2.0 15/02/2022</h3>
 
 <span class="label label-success">Feature</span> Added new Data Sources feature where country/region/town names are cached and updated on property change. This produces lower query overhead. The data is produced as a json file in the temporary/data_sources directory and primarily expected to be used by autocomplete input from the search widgets. In future it should be used to populate search inputs instead of running queries.

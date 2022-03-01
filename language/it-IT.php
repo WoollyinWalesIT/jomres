@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* @version Jomres 10.2.0
+ *  @version Jomres 10.2.2
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1846,7 +1846,7 @@ jr_define('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'La tua chiave di supporto
 jr_define('_JOMRES_DASHBOARD_DRAG_TRASH', 'Trascina le prenotazioni in quest\'area per cancellarle');
 jr_define('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define('_JOMRES_LONG', 'Lungo (nn.nnnn)');
-jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Assicurati di aver creato una pagina WordPress che contenga lo shortcode [jomres:xx-XX] (dove xx-XX è il codice della lingua del tuo sito, ad esempio [jomres:en-GB] o [ jomres:en-US] ) altrimenti non sarai in grado di accedere a Jomres dal frontend per gestire le tue proprietà e le tue prenotazioni.<br> Jomres è costruito sul framework Bootstrap, quindi devi usarlo su un tema basato su Bootstrap. consigliarne uno basato su Bootstrap 3. Se non si ha accesso a un tema, si consiglia di utilizzare il tema Jomres Leohtian per Wordpress che è possibile <a href="https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target="_blank">scarica da qui.</a>');
+jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Assicurati di aver creato una pagina WordPress che contenga lo shortcode [jomres:xx-XX] (dove xx-XX è il codice della lingua del tuo sito, ad esempio [jomres:en-GB] o [ jomres:en-US] ) altrimenti non sarai in grado di accedere a Jomres dal frontend per gestire le tue proprietà e le tue prenotazioni.');
 jr_define('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', 'La maggior parte delle proprietà a Jomres ha un processo di gestione degli affitti. Hotel/B&B/Pensioni affittano singole stanze e cottage/ville/appartamenti affittano l\'intera proprietà. Questo è invisibile al gestore della proprietà, ma per loro per poter creare le tariffe per la propria struttura è necessario prima aggiungere tipologie di camere adeguate alla tipologia di struttura.
 Ad esempio, un tipo di struttura alberghiera normalmente necessita di diversi tipi di camera (camere doppie, singole e doppie) mentre una villa può avere solo un tipo di camera, ad es. 2 camere da letto, 5 camere da letto.
 È possibile creare tipologie di camere per strutture come Tours. Ciò consente ai clienti di cercare solo proprietà come i tour, ma il gestore della proprietà non creerà tariffe per questo tipo di proprietà, quindi il processo di gestione non è rilevante per loro.
@@ -2743,3 +2743,6 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Immagini d
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Lo script delle proprietà della vista principale");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Uid della proprietà della proprietà da visualizzare");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Il template predefinito è property_details.html, con questo argomento puoi definire un diverso template dei dettagli della proprietà da mostrare.");
+
+	jr_define('JOMRES_UPDATES_TITLE', 'Aggiornamenti Jomres');
+	jr_define('JOMRES_UPDATES_INFO', "Questa pagina può scaricare e installare la versione più recente di Jomres per te. Utilizza le proprie funzionalità e non quella del CMS host quindi se si verifica un problema durante l'aggiornamento del CMS host puoi usare questa pagina per forzare una reinstallazione della versione più recente di Jomres.");

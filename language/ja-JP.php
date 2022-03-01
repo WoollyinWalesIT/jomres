@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* @version Jomres 10.2.0
+ *  @version Jomres 10.2.2
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1789,7 +1789,7 @@ jr_define('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS','サポートキーは有�
 jr_define('_JOMRES_DASHBOARD_DRAG_TRASH','予約をこのエリアにドラッグしてキャンセルします');
 jr_define('_JOMRES_LAT','Lat(nn.nnnn)');
 jr_define('_JOMRES_LONG','Long(nn.nnnn)');
-jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT','[jomres：xx-XX]ショートコード(xx-XXはサイトの言語コード,たとえば[jomres：en-GB]や[ jomres：en-US])そうしないと,フロントエンドからJomresにアクセスしてプロパティと予約を管理できなくなります。<br> JomresはBootstrapフレームワークに基づいて構築されているため,Bootstrapに基づくテーマで使用する必要があります。 Bootstrap 3に基づくものをお勧めします。テーマにアクセスできない場合は,Wordpress用のJomresLeohtianテーマを使用することをお勧めします。<ahref = "https://www.jomres.net/download/free- downloads / download / 5-miscelleneous-downloads / 11-leohtian-for-wordpress   " target="_blank"ここからダウンロード</a> ');
+jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT','[jomres：xx-XX]ショートコード(xx-XXはサイトの言語コード,たとえば[jomres：en-GB]や[ jomres：en-US])そうしないと,フロントエンドからJomresにアクセスしてプロパティと予約を管理できなくなります。');
 jr_define('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES','Jomresのほとんどの物件には賃貸管理プロセスがあります。ホテル/ B＆B /ペンションは個々の部屋を貸し出し,コテージ/ヴィラ/アパートは物件全体を貸し出します。これはプロパティマネージャーには見えませんが,彼らにとっては見えません。プロパティの料金を作成できるようにするには,最初にプロパティタイプに適した部屋タイプを追加する必要があります。
 たとえば,ホテルのプロパティタイプには通常,複数の部屋タイプ(ダブルルーム,シングルルーム,ツイン)が必要ですが,ヴィラには1つの部屋タイプしかありません。 2ベッドルーム,5ベッドルーム。
 ツアーなどのプロパティの部屋タイプを作成することができます。これにより,顧客はツアーなどのプロパティのみを検索できますが,プロパティマネージャはこのプロパティタイプの料金を作成しないため,管理プロセスはそれらに関連していません。
@@ -2682,3 +2682,6 @@ jr_define( 'DATA_SOURCES_TITLE_INFO', "データソースが更新されまし�
 jr_define( '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "メインビュープロパティスクリプト");
 jr_define( '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "表示するプロパティのプロパティuid");
 jr_define( '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "デフォルトのテンプレートはproperty_details.htmlです。この引数を使用すると,表示する別のプロパティ詳細テンプレートを定義できます。");
+
+jr_define( 'JOMRES_UPDATES_TITLE', 'Jomres Updates');
+jr_define( 'JOMRES_UPDATES_INFO', "このページでは、最新バージョンのJomresをダウンロードしてインストールできます。ホストCMSの機能ではなく、独自の機能を使用するため、ホストCMSの更新中に問題が発生した場合は、このページを使用して Jomresの最新バージョンの再インストールを強制します。 ");

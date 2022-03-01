@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* @version Jomres 10.2.0
+ *  @version Jomres 10.2.2
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1784,7 +1784,7 @@ jr_define ('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'A támogatási kulcs ér
 jr_define ('_JOMRES_DASHBOARD_DRAG_TRASH', 'Húzza a foglalásokat erre a területre a törléshez');
 jr_define ('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define ('_JOMRES_LONG', 'Hosszú (nn.nnnn)');
-jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Győződjön meg róla, hogy létrehozott egy WordPress oldalt, amely tartalmazza a [jomres: xx-XX] rövid kódot (ahol xx-XX a webhely nyelvi kódja, például [jomres: en-GB] vagy [ jomres: hu-USA]) különben nem fog tudni hozzáférni a Jomres-hez a frontendről, hogy kezelje ingatlanjait és foglalásait. <br> A Jomres a Bootstrap keretrendszerre épül, ezért azt a Bootstrap-on alapuló témára kell használnia. javasoljon egyet a Bootstrap 3 alapján. Ha nem fér hozzá egy témához, akkor javasoljuk, hogy használja a Jomres Leohtian témát a Wordpresshez, amelyet <a href = "https://www.jomres.net/download/free- letöltések/letöltés/5-miscelleneous-downloads/11-leohtian-for-wordpress target="_blank"> letöltés innen. </a> ');
+jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Győződjön meg róla, hogy létrehozott egy WordPress oldalt, amely tartalmazza a [jomres: xx-XX] rövid kódot (ahol xx-XX a webhely nyelvi kódja, például [jomres: en-GB] vagy [ jomres: hu-USA]) különben nem fog tudni hozzáférni a Jomres-hez a frontendről, hogy kezelje ingatlanjait és foglalásait.');
 jr_define ('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', 'Jomres legtöbb ingatlanának van bérbeadási folyamata. A szállodák/panziók/panziók külön szobákat bérelnek, a nyaralók/villák/apartmanok pedig az egész ingatlant. Ez az ingatlankezelő számára láthatatlan, de nekik ahhoz, hogy tarifákat hozzanak létre ingatlanukhoz, először hozzá kell adnia az ingatlan típusának megfelelő szobatípusokat.
 Például egy szállodai ingatlan típusnak általában több szobatípusra van szüksége (kétágyas szobák, egyágyas szobák és ikrek), míg a villáknak csak egy szobatípusuk lehet, pl. 2 hálószoba, 5 hálószoba.
 Lehetőség van szobatípusok létrehozására az olyan ingatlanokhoz, mint a Tours. Ez lehetővé teszi az ügyfelek számára, hogy csak olyan túrákat keressenek, mint a túrák, de az ingatlankezelő nem hoz létre tarifákat ehhez a tulajdontípushoz, így a kezelési folyamat nem releváns számukra.
@@ -2679,3 +2679,6 @@ jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Kedvezményes");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "A fő nézet tulajdonság szkriptje");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "A megtekintendő tulajdonság tulajdonságazonosítója");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Az alapértelmezett sablon a property_details.html, ezzel az argumentummal megadhat egy másik megjelenítendő tulajdonságrészlet-sablont.");
+
+	jr_define('JOMRES_UPDATES_TITLE', 'Jomres frissítések');
+	jr_define('JOMRES_UPDATES_INFO', "Ez az oldal letöltheti és telepítheti a Jomres legfrissebb verzióját az Ön számára. Saját funkcióit használja, nem a gazdagép CMS-ét, ezért ha probléma lép fel a gazdagép CMS frissítése során, ezt az oldalt használhatja kényszeríteni kell a Jomres legújabb verziójának újratelepítését.");

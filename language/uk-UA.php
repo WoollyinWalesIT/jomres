@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* @version Jomres 10.2.0
+ *  @version Jomres 10.2.2
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1755,7 +1755,7 @@ jr_define ('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Ваш ключ підт
 jr_define ('_JOMRES_DASHBOARD_DRAG_TRASH', 'Перетягніть бронювання в цю область, щоб скасувати їх');
 jr_define ('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define ('_JOMRES_LONG', 'Long (nn.nnnn)');
-jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Будь ласка, переконайтеся, що ви створили сторінку WordPress, яка містить короткий код [jomres: xx-XX] (де xx-XX-це код мови вашого сайту, наприклад [jomres: en-GB] або [ jomres: en-US]) інакше ви не зможете отримати доступ до Джомреса з інтерфейсу для управління вашими властивостями та бронюваннями. <br> Jomres побудований на основі Bootstrap, тому ви повинні використовувати його для теми на основі Bootstrap. рекомендую одну на основі Bootstrap 3. Якщо у вас немає доступу до теми, то ми рекомендуємо використовувати тему Джомреса Леотіана для Wordpress, яку можна <a href = "https://www.jomres.net/download/free- downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress target="_blank"> завантажити звідси. </a> ');
+jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Будь ласка, переконайтеся, що ви створили сторінку WordPress, яка містить короткий код [jomres: xx-XX] (де xx-XX-це код мови вашого сайту, наприклад [jomres: en-GB] або [ jomres: en-US]) інакше ви не зможете отримати доступ до Джомреса з інтерфейсу для управління вашими властивостями та бронюваннями.');
 jr_define ('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', "Перш ніж ви зможете створити тип номера, нам потрібно дізнатися, чи це готель типу нерухомості або власності типу вілли.");
 jr_define ('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', 'Натисніть, щоб додати нові типи кімнат');
 jr_define ('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES', 'Попередження, у вас є один або кілька типів власності без типів кімнат. Властивості потребують типів кімнат, щоб менеджери власності могли створювати тарифи.');
@@ -2639,3 +2639,6 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Зобра
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Сценарій властивостей головного перегляду");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Ідентифікатор властивості властивості, яку потрібно переглянути");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Шаблон за замовчуванням — property_details.html, за допомогою цього аргументу ви можете визначити інший шаблон інформації про властивість для показу.");
+
+	jr_define('JOMRES_UPDATES_TITLE', 'Оновлення Jomres');
+	jr_define('JOMRES_UPDATES_INFO', "Ця сторінка може завантажити та встановити найновішу версію Jomres для вас. Вона використовує власні функції, а не функції хоста CMS, тому, якщо під час оновлення хоста CMS виникне проблема, ви можете використовувати цю сторінку для примусово переінсталювати найновішу версію Jomres.");

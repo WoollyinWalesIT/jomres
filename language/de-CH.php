@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* @version Jomres 10.2.0
+ *  @version Jomres 10.2.2
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1859,7 +1859,7 @@ jr_define('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Ihre Unterst&uuml;tzung S
 jr_define('_JOMRES_DASHBOARD_DRAG_TRASH', 'Ziehen Buchungen in diesem Bereich, sie zu stornieren');
 jr_define('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define('_JOMRES_LONG', 'Long (nn.nnnn)');
-jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Please ensure that you`ve created a WordPress Page that contains the [jomres:xx-XX] shortcode ( where xx-XX is your site language code, for example [jomres:en-GB] or [jomres:en-US] ) otherwise you will not be able to access Jomres from the frontend to manage your properties and bookings. <br> Jomres is built on the Bootstrap framework, so you must use it on a theme based on Bootstrap. We recommend one based on Bootstrap 3. If you do not have access to a theme then we recommend that you use the Jomres Leohtian theme for Wordpress which you can <a href="https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target="_blank">download from here.</a>');
+jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Please ensure that you`ve created a WordPress Page that contains the [jomres:xx-XX] shortcode ( where xx-XX is your site language code, for example [jomres:en-GB] or [jomres:en-US] ) otherwise you will not be able to access Jomres from the frontend to manage your properties and bookings.');
 jr_define('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', 'Bevor Sie einen Raumtyp erstellen,wir m&uuml;ssen wissen, ob es f&uuml;r einen Hoteltyp Eigenschaft ist, oder eine Villa Typ Eigentum.');
 jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', 'Klicken Sie, um neue Raumtypen hinzuf&uuml;gen');
 jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES', 'Achtung, Sie haben eine oder mehrere Immobilienarten ohne Zimmertypen. Eigenschaften m&uuml;ssen Zimmertypen, so dass Immobilienverwalter Tarife erstellen.');
@@ -2741,3 +2741,6 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Eigenschaf
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Das Eigenschaftenskript der Hauptansicht");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Die Eigenschafts-UID der anzuzeigenden Eigenschaft");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Die Standardvorlage ist property_details.html, mit diesem Argument können Sie eine andere anzuzeigende Eigenschaftsdetails-Vorlage definieren.");
+
+	jr_define('JOMRES_UPDATES_TITLE', 'Jomres-Updates');
+	jr_define('JOMRES_UPDATES_INFO', "Diese Seite kann die neueste Version von Jomres für Sie herunterladen und installieren. Sie verwendet ihre eigene Funktionalität und nicht die des Host-CMS, daher können Sie diese Seite verwenden, wenn während der Aktualisierung des Host-CMS ein Problem auftritt Erzwingen Sie eine Neuinstallation der neuesten Version von Jomres.");

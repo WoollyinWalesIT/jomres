@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* @version Jomres 10.2.0
+ *  @version Jomres 10.2.2
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1826,7 +1826,7 @@ jr_define('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Your support key is valid
 jr_define('_JOMRES_DASHBOARD_DRAG_TRASH', 'Drag bookings to this area to cancel them');
 jr_define('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define('_JOMRES_LONG', 'Long (nn.nnnn)');
-jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Please ensure that you`ve created a WordPress Page that contains the [jomres:xx-XX] shortcode ( where xx-XX is your site language code, for example [jomres:en-GB] or [jomres:en-US] ) otherwise you will not be able to access Jomres from the frontend to manage your properties and bookings. <br> Jomres is built on the Bootstrap framework, so you must use it on a theme based on Bootstrap. We recommend one based on Bootstrap 3. If you do not have access to a theme then we recommend that you use the Jomres Leohtian theme for Wordpress which you can <a href="https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target="_blank">download from here.</a>');
+jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Please ensure that you`ve created a WordPress Page that contains the [jomres:xx-XX] shortcode ( where xx-XX is your site language code, for example [jomres:en-GB] or [jomres:en-US] ) otherwise you will not be able to access Jomres from the frontend to manage your properties and bookings. ');
 jr_define('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', "Before you can create a room type, we need to know if it's for a hotel type property, or a villa type property.");
 jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', 'Click to add new room types');
 jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES', 'Warning, you have one or more property types with no room types. Properties need room types so that property managers can create tariffs.');
@@ -1971,7 +1971,7 @@ jr_define('_JOMRES_PAYMENT_METHOD_USED',"Payment method : ");
 jr_define('_JOMRES_PRICES',"Get Connected");
 
 
-jr_define('_OAUTH_TITLE',"App key management");
+jr_define('_OAUTH_TITLE',"API key management");
 jr_define('_OAUTH_APPS',"REST API client details");
 jr_define('_OAUTH_IDENTIFIER',"Identifier");
 jr_define('_OAUTH_APIKEY',"Client ID");
@@ -1982,7 +1982,7 @@ jr_define('_OAUTH_SCOPE_TITLE',"Permissions ( what the client can do ) ");
 jr_define('_OAUTH_SCOPE_CATEGORY_USER' , "User permissions");
 jr_define('_OAUTH_SCOPE_CATEGORY_PROPERTIES' , "Property permissions");
 
-jr_define('API_DOCUMENTATION_TITLE',"App REST API documentation");
+jr_define('API_DOCUMENTATION_TITLE',"REST API documentation");
 
 jr_define('_OAUTH_CONFIG',"API Core configuration");
 
@@ -2715,3 +2715,9 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Property t
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "The main view property script");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "The property uid of the property to be viewed");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "The default template is property_details.html, with this argument you can define a different property details template to show.");
+
+	jr_define('JOMRES_UPDATES_TITLE', 'Jomres Updates');
+	jr_define('JOMRES_UPDATES_INFO', "This page can download and install the most recent version of Jomres for you. It uses it's own functionality and not that of the host CMS therefore if a problem occurs during the host CMS's update you can use this page to force a reinstallation of the most recent version of Jomres.");
+
+
+

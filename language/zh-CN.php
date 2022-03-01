@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* @version Jomres 10.2.0
+ *  @version Jomres 10.2.2
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1821,7 +1821,7 @@ jr_define('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', '您的支持密钥有效�
 jr_define('_JOMRES_DASHBOARD_DRAG_TRASH', '将预订拖到该区域取消');
 jr_define('_JOMRES_LAT', '纬度(nn.nnnn)');
 jr_define('_JOMRES_LONG', 'Long (nn.nnnn)');
-jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', '请确保您已经创建了一个包含 [jomres:xx-XX] 短代码的 WordPress 页面（其中 xx-XX 是您的站点语言代码，例如 [jomres:en-GB] 或 [ jomres:en-US] ) 否则您将无法从前端访问 Jomres 来管理您的属性和预订。<br> Jomres 建立在 Bootstrap 框架之上，因此您必须在基于 Bootstrap 的主题上使用它。我们推荐一个基于 Bootstrap 3 的主题。如果您无法访问主题，那么我们建议您为 Wordpress 使用 Jomres Leohtian 主题，您可以 <a href="https://www.jomres.net/download/free- downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target="_blank">从这里下载。</a>');
+jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', '请确保您已经创建了一个包含 [jomres:xx-XX] 短代码的 WordPress 页面（其中 xx-XX 是您的站点语言代码，例如 [jomres:en-GB] 或 [ jomres:en-US] ) 否则您将无法从前端访问 Jomres 来管理您的属性和预订。');
 jr_define('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', "在创建房间类型之前，我们需要知道它是用于酒店类型的属性还是别墅类型的属性。");
 jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', '点击添加新房间类型');
 jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES', '警告，您有一种或多种没有房型的房产类型。房产需要房型，以便物业经理可以创建关税。');
@@ -2692,3 +2692,6 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"属性类�
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "主视图属性脚本");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "要查看的属性的属性uid");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "默认模板是property_details.html，使用这个参数你可以定义一个不同的属性细节模板来显示。");
+
+	jr_define('JOMRES_UPDATES_TITLE', 'Jomres 更新');
+	jr_define('JOMRES_UPDATES_INFO', "此页面可以为您下载和安装最新版本的 Jomres。它使用自己的功能，而不是主机 CMS 的功能，因此如果在主机 CMS 更新期间出现问题，您可以使用此页面来 强制重新安装最新版本的 Jomres。");

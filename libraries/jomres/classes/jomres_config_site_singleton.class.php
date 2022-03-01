@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* @version Jomres 10.2.0
+ *  @version Jomres 10.2.2
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -281,7 +281,7 @@ $jrConfig = ' .var_export($jrConfig, true).';
 		if (file_exists($this->config_file)) {
 			include $this->config_file;
 			$this->config = $jrConfig;
-
+			$this->config['version'] = $tempConfigArr['version'];
 			foreach ($tempConfigArr as $k => $v) {
 				if (!array_key_exists($k, $this->config)) {
 					$this->insert_new_setting($k, $v);

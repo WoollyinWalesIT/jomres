@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* @version Jomres 10.2.0
+ *  @version Jomres 10.2.2
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1829,7 +1829,7 @@ jr_define ('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Vaš ključ za podršku 
 jr_define ('_JOMRES_DASHBOARD_DRAG_TRASH', 'Povucite rezervacije u ovo područje da biste ih otkazali');
 jr_define ('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define ('_JOMRES_LONG', 'Long (nn.nnnn)');
-jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Molimo provjerite jeste li stvorili WordPress stranicu koja sadrži kratki kôd [jomres: xx-XX] (gdje je xx-XX kôd jezika vaše web stranice, na primjer [jomres: en-GB] ili [ jomres: hr-US]) inače nećete moći pristupiti Jomresu sa sučelja za upravljanje svojim nekretninama i rezervacijama. <br> Jomres je izgrađen na okviru Bootstrap, pa ga morate koristiti na temi temeljenoj na Bootstrapu. preporučite jednu temeljenu na Bootstrapu 3. Ako nemate pristup temi, preporučujemo da koristite temu Jomresa Leohtiana za Wordpress koju možete <a href = "https://www.jomres.net/download/free- downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target ="_blank"> preuzmite odavde. </a> ');
+jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Molimo provjerite jeste li stvorili WordPress stranicu koja sadrži kratki kôd [jomres: xx-XX] (gdje je xx-XX kôd jezika vaše web stranice, na primjer [jomres: en-GB] ili [ jomres: hr-US]) inače nećete moći pristupiti Jomresu sa sučelja za upravljanje svojim nekretninama i rezervacijama. ');
 jr_define ('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', 'Većina nekretnina u Jomresu ima proces upravljanja najmom. Hoteli/pansioni/pansioni iznajmljuju pojedinačne sobe, a vikendice/vile/apartmani iznajmljuju cijelu nekretninu. To je za upravitelja nevidljivo, ali za njih da biste mogli stvoriti tarife za njihovu nekretninu, najprije morate dodati vrste soba koje odgovaraju tipu nekretnine.
 Na primjer, za hotelsku nekretninu obično je potrebno nekoliko tipova soba (dvokrevetne sobe, jednokrevetne sobe i blizanci), dok vila može imati samo jedan tip sobe, npr. 2 spavaće sobe, 5 spavaćih soba.
 Moguće je stvoriti tipove soba za nekretnine poput Toursa. To omogućuje korisnicima da pretražuju nekretnine kao što su samo obilasci, ali Upravitelj nekretnina neće stvarati tarife za ovu vrstu nekretnine, tako da proces upravljanja za njih nije relevantan.
@@ -2724,3 +2724,6 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Slike vrst
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Skripta svojstva glavnog pogleda");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Uid svojstva svojstva koje treba pogledati");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Zadani predložak je property_details.html, s ovim argumentom možete definirati drugi predložak pojedinosti svojstva za prikaz.");
+
+	jr_define('JOMRES_UPDATES_TITLE', 'Jomres ažuriranja');
+	jr_define('JOMRES_UPDATES_INFO', "Ova stranica može preuzeti i instalirati najnoviju verziju Jomresa za vas. Ona koristi vlastitu funkcionalnost, a ne funkcionalnost CMS-a domaćina, stoga ako dođe do problema tijekom ažuriranja CMS-a hosta možete koristiti ovu stranicu za prisiliti ponovnu instalaciju najnovije verzije Jomresa.");

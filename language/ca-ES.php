@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* @version Jomres 10.2.0
+ *  @version Jomres 10.2.2
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1821,7 +1821,7 @@ jr_define ('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'La vostra clau d\'assist
 jr_define ('_JOMRES_DASHBOARD_DRAG_TRASH', 'Arrossegueu les reserves a aquesta àrea per cancel·lar-les');
 jr_define ('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define ('_JOMRES_LONG', 'Long (nn.nnnn)');
-jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Assegureu-vos que heu creat una pàgina de WordPress que contingui el codi curt [jomres: xx-XX] (on xx-XX és el codi d\'idioma del lloc, per exemple [jomres: en-GB] o [ jomres: ca-US]) en cas contrari, no podreu accedir a Jomres des del frontend per gestionar les vostres propietats i reserves. <br> Jomres està basat en el marc Bootstrap, de manera que l’heu d’utilitzar en un tema basat en Bootstrap. recomanem un basat en Bootstrap 3. Si no teniu accés a un tema, us recomanem que utilitzeu el tema Jomres Leohtian per a Wordpress, que podeu <a href = "https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress " target ="_blank"> download from here. </a> ');
+jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Assegureu-vos que heu creat una pàgina de WordPress que contingui el codi curt [jomres: xx-XX] (on xx-XX és el codi d\'idioma del lloc, per exemple [jomres: en-GB] o [ jomres: ca-US]) en cas contrari, no podreu accedir a Jomres des del frontend per gestionar les vostres propietats i reserves.');
 jr_define ('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', "Abans de poder crear un tipus d'habitació, hem de saber si es tracta d'una propietat tipus hotel o d'una propietat tipus vila.");
 jr_define ('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', 'Feu clic per afegir nous tipus d\'habitació');
 jr_define ('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES', 'Atenció, teniu un o més tipus de propietat sense tipus d\'habitació. Les propietats necessiten tipus d\'habitacions perquè els administradors de propietats puguin crear tarifes.');
@@ -2704,3 +2704,6 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Imatges de
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "L'script de propietat de la vista principal");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "L'ID de la propietat que s'ha de veure");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "La plantilla predeterminada és property_details.html, amb aquest argument podeu definir una plantilla de detalls de propietat diferent per mostrar.");
+
+	jr_define('JOMRES_UPDATES_TITLE', 'Actualitzacions de Jomres');
+	jr_define('JOMRES_UPDATES_INFO', "Aquesta pàgina pot descarregar i instal·lar la versió més recent de Jomres per a vostè. Utilitza la seva pròpia funcionalitat i no la del CMS amfitrió, per tant, si es produeix un problema durant l'actualització del CMS amfitrió, podeu utilitzar aquesta pàgina per forçar una reinstal·lació de la versió més recent de Jomres.");

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* @version Jomres 10.2.0
+ *  @version Jomres 10.2.2
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1825,7 +1825,7 @@ jr_define ('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Váš kľúč podpory je
 jr_define ('_JOMRES_DASHBOARD_DRAG_TRASH', 'Presunutím rezervácií do tejto oblasti ich zrušíte');
 jr_define ('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define ('_JOMRES_LONG', 'Long (nn.nnnn)');
-jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Uistite sa, že ste vytvorili stránku WordPress, ktorá obsahuje krátky kód [jomres: xx-XX] (kde xx-XX je kód jazyka vašej stránky, napríklad [jomres: en-GB] alebo [ jomres: sk-sk]) inak nebudete mať prístup k Jomres z frontendu na správu vašich vlastností a rezervácií. <br> Jomres je postavený na rámci Bootstrap, takže ho musíte použiť na tému založenú na Bootstrap. My odporučiť jeden na základe Bootstrap 3. Ak k téme nemáte prístup, odporúčame vám použiť tému Jomres Leohtian pre Wordpress, ktorú môžete <a href = "https://www.jomres.net/download/free- downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress target="_blank"> sťahovať odtiaľto. </a> ');
+jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Uistite sa, že ste vytvorili stránku WordPress, ktorá obsahuje krátky kód [jomres: xx-XX] (kde xx-XX je kód jazyka vašej stránky, napríklad [jomres: en-GB] alebo [ jomres: sk-sk]) inak nebudete mať prístup k Jomres z frontendu na správu vašich vlastností a rezervácií.');
 jr_define ('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', 'Väčšina nehnuteľností v Jomres má proces správy prenájmu. Hotely/penzióny/penzióny prenajímajú jednotlivé izby a chaty/vily/byty prenajímajú celý majetok. Toto nie je viditeľné pre správcu nehnuteľnosti, ale pre nich Aby ste mohli vytvárať tarify pre svoj majetok, musíte najskôr pridať typy izieb, ktoré sú vhodné pre daný typ nehnuteľnosti.
 Napríklad typ hotelového majetku by normálne potreboval niekoľko typov izieb (dvojlôžkové izby, jednolôžkové izby a dvojčatá), zatiaľ čo vila môže mať iba jeden typ izby, napr. 2 spálne, 5 spální.
 Pre nehnuteľnosti, ako je Tours, je možné vytvoriť typy miestností. To umožňuje zákazníkom vyhľadávať iba nehnuteľnosti, ako sú zájazdy, ale správca nehnuteľností pre tento typ vlastníctva nevytvorí tarify, takže proces správy pre nich nie je relevantný.
@@ -2709,3 +2709,6 @@ jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Zľavnené");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Skript vlastností hlavného zobrazenia");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Uid vlastnosti vlastnosti, ktorá sa má zobraziť");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Predvolená šablóna je property_details.html, pomocou tohto argumentu môžete definovať inú šablónu podrobností vlastnosti, ktorá sa má zobraziť.");
+
+	jr_define('JOMRES_UPDATES_TITLE', 'Aktualizácie Jomres');
+	jr_define('JOMRES_UPDATES_INFO', "Táto stránka vám môže stiahnuť a nainštalovať najnovšiu verziu Jomres. Používa svoje vlastné funkcie a nie funkcie hostiteľského CMS, takže ak sa vyskytne problém počas aktualizácie hostiteľského CMS, môžete túto stránku použiť na vynútiť preinštalovanie najnovšej verzie Jomres.");

@@ -4,7 +4,7 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-	 * @version Jomres 10.2.0
+	  *  @version Jomres 10.2.2
 	 *
 	 * @copyright	2005-2022 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -32,12 +32,9 @@
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 
-		if ($jrConfig[ 'use_reviews' ] == '1') {
-			jr_import('jomres_reviews');
-			$Reviews = new jomres_reviews();
-			$Reviews->getRatingsMulti($property_uid_array);
-		}
-
+		jr_import('jomres_reviews');
+		$Reviews = new jomres_reviews();
+		$Reviews->getRatingsMulti($property_uid_array);
 
 		$return_data = array();
 		$animationDelay = 0;

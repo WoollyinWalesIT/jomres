@@ -5,7 +5,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* @version Jomres 10.2.0
+ *  @version Jomres 10.2.2
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1825,7 +1825,7 @@ function add_gmaps_source()
 		}
 
 
-		jomres_cmsspecific_addheaddata('javascript', 'https://maps.googleapis.com/maps/api/js?v=3&language='.$shortcode.$apikey, '&v=weekly&channel=2', $includeVersion = false, $async = true);
+		jomres_cmsspecific_addheaddata('javascript', 'https://maps.googleapis.com/maps/api/js?v=3.20&language='.$shortcode.$apikey, '&v=weekly&channel=2', $includeVersion = false, $async = true);
 	}
 }
 

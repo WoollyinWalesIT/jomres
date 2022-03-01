@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* @version Jomres 10.2.0
+ *  @version Jomres 10.2.2
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1812,7 +1812,7 @@ jr_define ('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Vaš ključ za podporo j
 jr_define ('_JOMRES_DASHBOARD_DRAG_TRASH', 'Povlecite rezervacije na to območje, da jih prekličete');
 jr_define ('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define ('_JOMRES_LONG', 'Long (nn.nnnn)');
-jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Prepričajte se, da ste ustvarili stran WordPress, ki vsebuje kratko kodo [jomres: xx-XX] (kjer je xx-XX koda jezika vašega spletnega mesta, na primer [jomres: en-GB] ali [ jomres: sl-ZDA]) drugače ne boste mogli dostopati do Jomresa s prednje strani za upravljanje svojih nepremičnin in rezervacij. <br> Jomres je zgrajen na ogrodju Bootstrap, zato ga morate uporabljati pri temi, ki temelji na Bootstrapu. priporočam eno, ki temelji na Bootstrapu 3. Če nimate dostopa do teme, priporočamo, da uporabite temo Jomresa Leohtiana za Wordpress, ki jo lahko <a href = "https://www.jomres.net/download/free- downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress target="_blank"> prenesite od tu. </a> ');
+jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Prepričajte se, da ste ustvarili stran WordPress, ki vsebuje kratko kodo [jomres: xx-XX] (kjer je xx-XX koda jezika vašega spletnega mesta, na primer [jomres: en-GB] ali [ jomres: sl-ZDA]) drugače ne boste mogli dostopati do Jomresa s prednje strani za upravljanje svojih nepremičnin in rezervacij. ');
 jr_define ('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', "Preden lahko ustvarite tip sobe, moramo vedeti, ali gre za nepremičnine hotelskega tipa ali za vile.");
 jr_define ('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', 'Kliknite, če želite dodati nove vrste sob');
 jr_define ('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES', 'Opozorilo, imate eno ali več vrst nepremičnin brez tipov sob. Lastnosti potrebujejo vrste sob, da lahko upravitelji nepremičnin ustvarijo tarife.');
@@ -2694,3 +2694,6 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Slike vrst
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Skript lastnosti glavnega pogleda");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Uid lastnosti lastnosti, ki si jo je treba ogledati");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Privzeta predloga je property_details.html, s tem argumentom lahko definirate drugo predlogo podrobnosti lastnosti, ki jo želite prikazati.");
+
+	jr_define('JOMRES_UPDATES_TITLE', 'Jomresove posodobitve');
+	jr_define('JOMRES_UPDATES_INFO', "Ta stran lahko namesto vas prenese in namesti najnovejšo različico Jomresa. Uporablja lastno funkcionalnost in ne gostiteljskega CMS-ja, zato, če pride do težave med posodobitvijo gostiteljskega CMS-ja, lahko uporabite to stran za prisilite ponovno namestitev najnovejše različice Jomresa.");

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* @version Jomres 10.2.0
+ *  @version Jomres 10.2.2
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1824,7 +1824,7 @@ jr_define ('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Cheia dvs. de asistenț�
 jr_define ('_JOMRES_DASHBOARD_DRAG_TRASH', 'Trageți rezervările în această zonă pentru a le anula');
 jr_define ('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define ('_JOMRES_LONG', 'Long (nn.nnnn)');
-jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Vă rugăm să vă asigurați că ați creat o pagină WordPress care conține codul scurt [jomres: xx-XX] (unde xx-XX este codul limbii site-ului dvs., de exemplu [jomres: en-GB] sau [ jomres: en-US]) altfel nu veți putea accesa Jomres din frontend pentru a vă gestiona proprietățile și rezervările. <br> Jomres este construit pe cadrul Bootstrap, deci trebuie să îl utilizați pe o temă bazată pe Bootstrap. recomandă una bazată pe Bootstrap 3. Dacă nu aveți acces la o temă, vă recomandăm să utilizați tema Jomres Leohtian pentru Wordpress pe care o puteți <a href = "https://www.jomres.net/download/free- downloads / download / 5-miscelleneous-downloads / 11-leohtian-for-wordpress target="_blank"> download from here. </a> ');
+jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Vă rugăm să vă asigurați că ați creat o pagină WordPress care conține codul scurt [jomres: xx-XX] (unde xx-XX este codul limbii site-ului dvs., de exemplu [jomres: en-GB] sau [ jomres: en-US]) altfel nu veți putea accesa Jomres din frontend pentru a vă gestiona proprietățile și rezervările.');
 jr_define ('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', "Înainte de a putea crea un tip de cameră, trebuie să știm dacă este pentru o proprietate de tip hotel sau pentru o proprietate de tip vilă.");
 jr_define ('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', 'Faceți clic pentru a adăuga noi tipuri de camere');
 jr_define ('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES', 'Atenție, aveți unul sau mai multe tipuri de proprietăți fără tipuri de cameră. Proprietățile au nevoie de tipuri de camere, astfel încât administratorii de proprietăți să poată crea tarife.');
@@ -2711,3 +2711,6 @@ jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Reducere");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Scriptul de proprietate a vizualizării principale");
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Uid-ul proprietății de vizualizat");
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Șablonul implicit este property_details.html, cu acest argument puteți defini un alt șablon pentru detalii de proprietate de afișat.");
+
+	jr_define('JOMRES_UPDATES_TITLE', 'Actualizări Jomres');
+	jr_define('JOMRES_UPDATES_INFO', "Această pagină poate descărca și instala cea mai recentă versiune de Jomres pentru dvs.. Folosește propria sa funcționalitate și nu pe cea a CMS-ului gazdă, prin urmare, dacă apare o problemă în timpul actualizării CMS-ului gazdă, puteți utiliza această pagină pentru forțați o reinstalare a celei mai recente versiuni de Jomres.");

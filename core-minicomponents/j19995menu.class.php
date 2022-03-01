@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* @version Jomres 10.2.0
+ *  @version Jomres 10.2.2
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -74,7 +74,7 @@ class j19995menu
 		//dashboard section menus
 		$jomres_menu->add_admin_item(1, jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_HOME', '_JOMRES_FRONT_MR_MENU_ADMIN_HOME', false), '', 'fa-tachometer');
 		$jomres_menu->add_admin_item(1, jr_gettext('_JOMRES_CUSTOMCODE_PLUGINMANAGER', '_JOMRES_CUSTOMCODE_PLUGINMANAGER', false), 'showplugins', 'fa-cloud-download');
-		//$jomres_menu->add_admin_item(1, jr_gettext('_JOMRES_CUSTOMCODE_UPGRADES', '_JOMRES_CUSTOMCODE_UPGRADES', false), 'updates', 'fa-cloud-download');
+		$jomres_menu->add_admin_item(1, jr_gettext('_JOMRES_CUSTOMCODE_UPGRADES', '_JOMRES_CUSTOMCODE_UPGRADES', false), 'updates', 'fa-cloud-download');
 		
 		//users section menus
 		$jomres_menu->add_admin_item(10, jr_gettext('_JOMRES_COM_MR_SHOWPROFILES', '_JOMRES_COM_MR_SHOWPROFILES', false), 'list_users', 'fa-user');

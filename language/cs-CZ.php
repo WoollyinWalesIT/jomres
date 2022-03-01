@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* @version Jomres 10.2.0
+ *  @version Jomres 10.2.2
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1792,7 +1792,7 @@ jr_define ('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Váš klíč podpory je 
 jr_define ('_JOMRES_DASHBOARD_DRAG_TRASH', 'Přetažením rezervací do této oblasti je zrušíte');
 jr_define ('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define ('_JOMRES_LONG', 'Long (nn.nnnn)');
-jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Ujistěte se, že jste vytvořili stránku WordPress, která obsahuje krátký kód [jomres: xx-XX] (kde xx-XX je kód jazyka vašeho webu, například [jomres: en-GB] nebo [ jomres: en-US]) jinak nebudete mít přístup k Jomres z frontendu pro správu vašich vlastností a rezervací. <br> Jomres je postaven na rámci Bootstrap, takže ho musíte použít na motivu založeném na Bootstrapu. doporučujeme jeden na základě Bootstrap 3. Pokud nemáte přístup k tématu, doporučujeme vám použít téma Jomres Leohtian pro Wordpress, které můžete <a href = "https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target ="_blank"> stahovat odsud. </a> ');
+jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Ujistěte se, že jste vytvořili stránku WordPress, která obsahuje krátký kód [jomres: xx-XX] (kde xx-XX je kód jazyka vašeho webu, například [jomres: en-GB] nebo [ jomres: en-US]) jinak nebudete mít přístup k Jomres z frontendu pro správu vašich vlastností a rezervací.');
 jr_define ('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', "Než budete moci vytvořit typ pokoje, musíme vědět, jestli jde o nemovitost typu hotel nebo nemovitost vily.");
 jr_define ('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', 'Kliknutím přidáte nové typy pokojů');
 jr_define ('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES', 'Varování, máte jeden nebo více typů nemovitostí bez typů pokojů. Vlastnosti potřebují typy pokojů, aby mohli správci nemovitostí vytvářet tarify.');
@@ -2655,3 +2655,6 @@ jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Sleva");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Skript vlastností hlavního zobrazení");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Uid vlastnosti prohlížené vlastnosti");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Výchozí šablona je property_details.html, pomocí tohoto argumentu můžete definovat jinou šablonu podrobností vlastnosti, která se má zobrazit.");
+
+	jr_define('JOMRES_UPDATES_TITLE', 'Aktualizace Jomres');
+	jr_define('JOMRES_UPDATES_INFO', "Tato stránka vám může stáhnout a nainstalovat nejnovější verzi Jomres. Využívá svou vlastní funkcionalitu a ne funkce hostitelského CMS, takže pokud dojde k problému během aktualizace hostitelského CMS, můžete tuto stránku použít k vynutit reinstalaci nejnovější verze Jomres.");

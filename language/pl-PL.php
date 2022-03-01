@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* @version Jomres 10.2.0
+ *  @version Jomres 10.2.2
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1808,7 +1808,7 @@ jr_define('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Klucz wsparcia jest ważn
 jr_define('_JOMRES_DASHBOARD_DRAG_TRASH', 'Przeciągnij rezerwację by ją odwołać');
 jr_define('_JOMRES_LAT', 'Szerokość (nn.nnnn)');
 jr_define('_JOMRES_LONG', 'Długość (nn.nnnn)');
-jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Please ensure that you`ve created a WordPress Page that contains the [jomres:xx-XX] shortcode ( where xx-XX is your site language code, for example [jomres:en-GB] or [jomres:en-US] ) otherwise you will not be able to access Jomres from the frontend to manage your properties and bookings. <br> Jomres is built on the Bootstrap framework, so you must use it on a theme based on Bootstrap. We recommend one based on Bootstrap 3. If you do not have access to a theme then we recommend that you use the Jomres Leohtian theme for Wordpress which you can <a href="https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target="_blank">download from here.</a>');
+jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Please ensure that you`ve created a WordPress Page that contains the [jomres:xx-XX] shortcode ( where xx-XX is your site language code, for example [jomres:en-GB] or [jomres:en-US] ) otherwise you will not be able to access Jomres from the frontend to manage your properties and bookings.');
 jr_define('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', 'Większość nieruchomości w Jomres posiada możliwość wypożyczania jako proces zarządzania. Hotele/pensjonaty umożliwiają wynajęcie np. pokoju jako jednej z dostępnych wielu opcji. Domy/mieszkania to oferty gdzie wynajmuje się całość danej oferty (cały dom lub całe mieszkanie). Nie jest to rzecz widoczna na pierwszy rzut oka dla sprzedawcy. Jednak by sprzedawca miał możliwość stworzenia cenników dla swojej oferty należy stworzyć odpowiednie dla danego typu oferty przedmioty rezerwacji.<br />Np. w hotelu dostępne będą pokoje w kilku wariantach (pokoje dwuosobowe, pokoje jednoosobowe i trzyosobowe), natomiast dom będzie posiadał tylko jeden typ przedmiotu rezerwacji np. 2 sypialnie, 5 sypialni.<br />Możliwe jest tworzenie przedmiotów rezerwacji jako np. wycieczki. Dzięki temu klienci mogą zapoznać się z ich szczegółami. Jednak sprzedawca nie będzie musiał stworzyć cenników w sposób jaki robi się to w przypadku np. hoteli, nie będzie dostępny specyficzny sposób zarządzania ofertą.');
 jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', 'Kliknij i dodaj nowy przedmiot rezerwacji');
 jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES', 'Uwaga, masz jeden lub więcej typów ofert bez przypisanych przedmiotów rezerwacji. Konieczne jest powiązanie typów ofert z przedmiotami rezerwacji, aby sprzedawcy mogli utworzyć dla nich cenniki.');
@@ -2701,3 +2701,6 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Obrazy typ
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Skrypt właściwości widoku głównego");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Uid właściwości przeglądanej właściwości");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Domyślny szablon to property_details.html, za pomocą tego argumentu możesz zdefiniować inny szablon szczegółów właściwości do wyświetlenia.");
+
+	jr_define('JOMRES_UPDATES_TITLE', 'Aktualizacje Jomres');
+	jr_define('JOMRES_UPDATES_INFO', "Ta strona może pobrać i zainstalować dla Ciebie najnowszą wersję Jomres. Wykorzystuje ona swoją własną funkcjonalność, a nie hosta CMS, dlatego jeśli wystąpi problem podczas aktualizacji hosta CMS, możesz użyć tej strony do wymusić ponowną instalację najnowszej wersji Jomres.");

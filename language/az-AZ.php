@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* @version Jomres 10.2.0
+ *  @version Jomres 10.2.2
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1800,7 +1800,7 @@ jr_define('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Su clave de soporte es v�
 jr_define('_JOMRES_DASHBOARD_DRAG_TRASH', 'Arrastre reservas a esta área de cancelarlos');
 jr_define('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define('_JOMRES_LONG', 'Long (nn.nnnn)');
-jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Please ensure that you`ve created a WordPress Page that contains the [jomres:xx-XX] shortcode ( where xx-XX is your site language code, for example [jomres:en-GB] or [jomres:en-US] ) otherwise you will not be able to access Jomres from the frontend to manage your properties and bookings. <br> Jomres is built on the Bootstrap framework, so you must use it on a theme based on Bootstrap. We recommend one based on Bootstrap 3. If you do not have access to a theme then we recommend that you use the Jomres Leohtian theme for Wordpress which you can <a href="https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target="_blank">download from here.</a>');
+jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Please ensure that you`ve created a WordPress Page that contains the [jomres:xx-XX] shortcode ( where xx-XX is your site language code, for example [jomres:en-GB] or [jomres:en-US] ) otherwise you will not be able to access Jomres from the frontend to manage your properties and bookings.');
 jr_define('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', 'Antes de crear un tipo de habitación, lo que necesitamos saber si se trata de una propiedad tipo, o un tipo bien chalet.');
 jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', 'Haga clic para añadir nuevos tipos de habitación');
 jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES', 'Advertencia, que tiene uno o más tipos de propiedad que no tienen tipos de habitación. Propiedades necesitan tipos de habitaciones para que los administradores de propiedades pueden crear tarifas.');
@@ -2692,3 +2692,7 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Əmlak tip
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS', "Əsas görünüş xassəsinin skripti");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Baxılacaq əmlakın id-si");
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Defolt şablon property_details.html-dir, bu arqumentlə siz göstərmək üçün başqa mülk təfərrüatları şablonu təyin edə bilərsiniz.");
+
+	jr_define('JOMRES_UPDATES_TITLE', 'Jomres Yeniləmələri');
+	jr_define('JOMRES_UPDATES_INFO', "Bu səhifə sizin üçün Jomres-in ən son versiyasını yükləyə və quraşdıra bilər. O, host CMS-nin funksiyasından deyil, öz funksionallığından istifadə edir, ona görə də host CMS-nin yeniləməsi zamanı problem yaranarsa, bu səhifədən istifadə edə bilərsiniz. Jomres-in ən son versiyasını yenidən quraşdırmağa məcbur edin.");
+

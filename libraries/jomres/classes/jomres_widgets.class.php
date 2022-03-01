@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
-* @version Jomres 10.2.0
+ *  @version Jomres 10.2.2
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -172,10 +172,13 @@ class jomres_widgets
 		
 		//build dropdown
 		$checked_options_js = array();
-
+		$data_toggle='data-toggle';
+		if (jomres_bootstrap_version() == '5') {
+			$data_toggle='data-bs-toggle';
+		}
 		$widgets_dropdown = '
 		<div class="button-group">
-			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog"></span> '.jr_gettext('_JOMRES_SELECT_WIDGETS', '_JOMRES_SELECT_WIDGETS', false).' <span class="caret"></span></button>
+			<button type="button" class="btn btn-default dropdown-toggle" '.$data_toggle.'="dropdown"><span class="fa fa-cog"></span> '.jr_gettext('_JOMRES_SELECT_WIDGETS', '_JOMRES_SELECT_WIDGETS', false).' <span class="caret"></span></button>
 			<ul id="jr_widgets_dropdown" class="dropdown-menu">
 			';
 		
@@ -188,7 +191,7 @@ class jomres_widgets
 			}
 			
 			$widgets_dropdown .= '
-				<li><a href="#" data-value="'.$widget.'" tabIndex="-1"><input type="checkbox" '.$checked.'/> '.$w['title'].'</a></li>
+				<li><a href="#" class="dropdown-item" data-value="'.$widget.'" tabIndex="-1"><input type="checkbox" '.$checked.'/> '.$w['title'].'</a></li>
 				';
 		}
 		
