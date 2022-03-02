@@ -2684,4 +2684,21 @@ jr_define( '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "�
 jr_define( '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "デフォルトのテンプレートはproperty_details.htmlです。この引数を使用すると,表示する別のプロパティ詳細テンプレートを定義できます。");
 
 jr_define( 'JOMRES_UPDATES_TITLE', 'Jomres Updates');
-jr_define( 'JOMRES_UPDATES_INFO', "このページでは、最新バージョンのJomresをダウンロードしてインストールできます。ホストCMSの機能ではなく、独自の機能を使用するため、ホストCMSの更新中に問題が発生した場合は、このページを使用して Jomresの最新バージョンの再インストールを強制します。 ");
+jr_define( 'JOMRES_UPDATES_INFO', "このページでは,最新バージョンのJomresをダウンロードしてインストールできます。ホストCMSの機能ではなく,独自の機能を使用するため,ホストCMSの更新中に問題が発生した場合は,このページを使用して Jomresの最新バージョンの再インストールを強制します。 ");
+
+	jr_define( 'JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'プロパティマネージャーはフロントエンドの編集モードを使用して各プロパティの文字列をカスタマイズできますが,これはWordPressパーマリンク設定がプレーン(http://www.domain.com/？p=123)これを行うと,フロントエンドユーザーは,部屋の名前やその他のラベルなど,一意のプロパティに固有の文字列をカスタマイズできるようになります。 ');
+
+	jr_define( 'JOMRES_EDITING_MODE_HELP_TITLE', 'ラベル編集モード');
+jr_define( 'JOMRES_EDITING_MODE_HELP_LEAD', 'この機能は,アイテムのラベルを通常は異なる言語に変更するために使用されます。');
+jr_define( 'JOMRES_EDITING_MODE_HELP_INFO_1', '編集モードでは,個々のプロパティに固有のラベルの名前を変更できます。編集モードを使用してラベルの名前を変更すると,変更はそのプロパティリストにのみ表示されます。 「価格」という単語と「料金」という単語を使用します。すべてのラベルを変更できるわけではありません。たとえば,部屋のタイプ名はサイト全体のラベルであるため,変更することはできませんが,通常は個々のプロパティに固有のものです。変更可能。');
+jr_define( 'JOMRES_EDITING_MODE_HELP_INFO_2', 'サイトが複数の言語をサポートしている場合,1つの言語を使用しながら,個々のプロパティに固有のアイテムを作成できます。アクティブな言語を変更すると,編集モードを使用してそのラベルの名前を変更できます。現在の言語で適切な翻訳を入力します。アクティブな言語を変更し続けて,サイトがサポートする各言語のそのラベルに適した翻訳を入力できます。');
+jr_define( 'JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'ラベル編集モードスイッチ');
+jr_define( 'JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'このスクリーンショットでは,編集モードスイッチが表示されています。編集モードはオフで,ラベルは通常どおり表示されます：');
+jr_define( 'JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'ラベル編集モードが有効');
+jr_define( 'JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'このスクリーンショットでは,編集モードでは,名前を変更できるラベルが強調表示されていることがわかります。');
+jr_define( 'JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', '変更するアイテムを選択してください');
+jr_define( 'JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'ラベルを選択すると,ポップアップが表示されます：');
+jr_define( 'JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'ラベルを変更する');
+jr_define( 'JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', '小さなフォームを使用してラベルを変更します。チェックマークをクリックして終了するか,Xをクリックして編集をキャンセルします：');
+jr_define( 'JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'ラベルが変更されました');
+jr_define( 'JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', '変更を保存すると,ページのラベルが更新されます。編集モードを無効にできます：');

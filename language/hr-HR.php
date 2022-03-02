@@ -2727,3 +2727,20 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Slike vrst
 
 	jr_define('JOMRES_UPDATES_TITLE', 'Jomres ažuriranja');
 	jr_define('JOMRES_UPDATES_INFO', "Ova stranica može preuzeti i instalirati najnoviju verziju Jomresa za vas. Ona koristi vlastitu funkcionalnost, a ne funkcionalnost CMS-a domaćina, stoga ako dođe do problema tijekom ažuriranja CMS-a hosta možete koristiti ovu stranicu za prisiliti ponovnu instalaciju najnovije verzije Jomresa.");
+
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'Upravitelji nekretninama mogu koristiti način uređivanja u prednjem dijelu za prilagodbu nizova za svako svojstvo, međutim ovo može funkcionirati samo ako je vaša postavka stalne veze u WordPressu postavljena na Plain (http://www.domain.com/?p=123). Nakon što to učinite, korisnici će moći prilagoditi nizove, kao što su nazivi prostorija i druge oznake, koje su specifične za jedinstvena svojstva. ');
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', 'Način uređivanja oznaka');
+	jr_define('JOMRES_EDITING_MODE_HELP_LEAD', 'Ova značajka se koristi za promjenu oznaka stavki, obično na različite jezike.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', 'Način uređivanja omogućuje vam da preimenujete oznake koje su jedinstvene za pojedinačna svojstva. Kada koristite način uređivanja za preimenovanje oznake, promjena će se pojaviti samo na tom popisu svojstava. Na primjer, na jednom svojstvu koje biste možda željeli koristiti riječ "Cijene", a na drugoj riječ "Cijene". Ne mogu se mijenjati sve oznake, na primjer nazivi vrsta soba su oznake za cijelu web-lokaciju, tako da se ne mogu mijenjati, ali obično sve što je jedinstveno za pojedinačnu nekretninu može se promijeniti.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', 'Ako web-mjesto podržava više jezika, dok koristite jedan jezik, možete stvoriti stavku koja je jedinstvena za pojedinačna svojstva. Kada zatim promijenite svoj aktivni jezik, možete koristiti način uređivanja za preimenovanje te oznake, unos prikladnog prijevoda na trenutnom jeziku. Možete nastaviti mijenjati aktivni jezik da biste unijeli prikladan prijevod za tu oznaku za svaki jezik koji stranica podržava.');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'Prekidač načina za uređivanje oznaka');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'Na ovoj snimci zaslona vidimo prekidač načina uređivanja. Način uređivanja je ISKLJUČEN i oznake se pojavljuju kao normalno: ');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'Omogućen način za uređivanje oznaka');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'Na ovoj snimci zaslona vidimo da su oznake koje možete preimenovati označene, dok ste u načinu za uređivanje:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', 'Odaberite stavku koju želite promijeniti');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'Kada je oznaka odabrana, pojavljuje se skočni prozor:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'Promijeni oznaku');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Upotrijebite mali obrazac za promjenu oznake. Kliknite kvačicu za završetak ili kliknite X za odustajanje od uređivanja:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Oznaka promijenjena');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Nakon što spremite promjenu, oznaka se ažurira na stranici. Sada možete onemogućiti način uređivanja:');

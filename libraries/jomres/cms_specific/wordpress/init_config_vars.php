@@ -56,6 +56,8 @@ add_filter( 'wp_editor_settings', function($settings) {
     return $settings;
 });
 
+define('JOMRES_PERMALINK_STRUCTURE' , get_option( 'permalink_structure' ) );
+
 $showtime = jomres_getSingleton('showtime');
 
 $showtime->error_reporting = 0;

@@ -2723,3 +2723,20 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Imagens de
 
 	jr_define('JOMRES_UPDATES_TITLE', 'Jomres Updates');
 	jr_define('JOMRES_UPDATES_INFO', "Esta página pode baixar e instalar a versão mais recente do Jomres para você. Ela usa sua própria funcionalidade e não a do host CMS, portanto, se ocorrer um problema durante a atualização do host CMS, você pode usar esta página para forçar uma reinstalação da versão mais recente do Jomres.");
+
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'Gerentes de propriedade podem usar o modo de edição no frontend para personalizar strings para cada propriedade, porém isso só pode funcionar se a configuração do seu link permanente do WordPress estiver definida como Simples (http://www.domain.com/?p=123). Depois de fazer isso, os usuários frontend poderão personalizar strings, como nomes de salas e outros rótulos, específicos para propriedades exclusivas. ');
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', 'Modo de edição de etiquetas');
+	jr_define('JOMRES_EDITING_MODE_HELP_LEAD', 'Este recurso é usado para alterar os rótulos dos itens, geralmente em diferentes idiomas.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', 'O modo de edição permite renomear marcadores que são exclusivos de propriedades individuais. Quando você usa o modo de edição para renomear um marcador, a alteração só aparecerá nessa listagem de propriedade. Por exemplo, em uma propriedade que você deseja para usar a palavra "Preços" e em outra a palavra "Tarifas". Nem todos os rótulos podem ser alterados, por exemplo, os nomes dos tipos de quarto são rótulos para todo o site, portanto, não podem ser alterados, mas geralmente qualquer coisa que seja exclusiva de uma propriedade individual pode ser mudado.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', 'Se o site suporta vários idiomas, ao usar um idioma, você pode criar um item exclusivo para uma propriedade individual. Quando você alterar seu idioma ativo, poderá usar o modo de edição para renomear esse rótulo, inserindo uma tradução adequada no idioma atual. Você pode continuar alterando o idioma ativo para inserir uma tradução adequada para esse rótulo para cada idioma suportado pelo site.');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'Alternar modo de edição de rótulo');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'Nesta captura de tela vemos a mudança do modo de edição. O modo de edição está DESLIGADO e os rótulos aparecem normalmente: ');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'Modo de edição de etiqueta habilitado');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'Nesta captura de tela vemos que, no modo de edição, os rótulos que você pode renomear são destacados:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', 'Selecione o item a ser alterado');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'Quando um rótulo é selecionado aparece um pop-up:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'Alterar o rótulo');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Use o pequeno formulário para alterar o rótulo. Clique no Tick para finalizar, ou clique no X para cancelar a edição:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Rótulo alterado');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Depois de salvar a alteração, o rótulo é atualizado na página. Você pode desativar o modo de edição agora:');

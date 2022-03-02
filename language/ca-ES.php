@@ -2707,3 +2707,20 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Imatges de
 
 	jr_define('JOMRES_UPDATES_TITLE', 'Actualitzacions de Jomres');
 	jr_define('JOMRES_UPDATES_INFO', "Aquesta pàgina pot descarregar i instal·lar la versió més recent de Jomres per a vostè. Utilitza la seva pròpia funcionalitat i no la del CMS amfitrió, per tant, si es produeix un problema durant l'actualització del CMS amfitrió, podeu utilitzar aquesta pàgina per forçar una reinstal·lació de la versió més recent de Jomres.");
+
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'Els administradors de propietats poden utilitzar el mode d\'edició a la interfície per personalitzar les cadenes per a cada propietat, però això només pot funcionar si la configuració de l\'enllaç permanent de WordPress està configurada en Plain (http://www.domain.com/?p=123). Un cop hàgiu fet això, els usuaris d\'interfície podran personalitzar les cadenes, com ara els noms de les sales i altres etiquetes, que són específiques de propietats úniques. ');
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', 'Mode d\'edició d\'etiquetes');
+jr_define('JOMRES_EDITING_MODE_HELP_LEAD', 'Aquesta característica s\'utilitza per canviar les etiquetes d\'elements, normalment a diferents idiomes.');
+jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', 'El mode d\'edició us permet canviar el nom d\'etiquetes que són úniques per a propietats individuals. Quan feu servir el mode d\'edició per canviar el nom d\'una etiqueta, el canvi només apareixerà a la llista de propietats. Per exemple, en una propietat que vulgueu utilitzar la paraula "Preus" i en una altra la paraula "Preus". No totes les etiquetes es poden canviar, per exemple, els noms dels tipus d\'habitació són etiquetes de tot el lloc, de manera que no es poden canviar, però normalment qualsevol cosa que sigui exclusiva d\'una propietat individual. es pot canviar.');
+jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', 'Si el lloc admet diversos idiomes, mentre utilitzeu un idioma, podeu crear un element únic per a una propietat individual. Quan canvieu l\'idioma actiu, podeu utilitzar el mode d\'edició per canviar el nom d\'aquesta etiqueta, introduint una traducció adequada a l\'idioma actual. Podeu continuar canviant l\'idioma actiu per introduir una traducció adequada per a aquesta etiqueta per a cada idioma que admet el lloc.');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'Canvi de mode d\'edició d\'etiquetes');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'En aquesta captura de pantalla veiem l\'interruptor del mode d\'edició. El mode d\'edició està DESACTIVAT i les etiquetes apareixen com a normal: ');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'Mode d\'edició d\'etiquetes habilitat');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'En aquesta captura de pantalla veiem que, mentre esteu en mode d\'edició, les etiquetes que podeu canviar de nom es destaquen:');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', 'Seleccioneu l\'element a canviar');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'Quan es selecciona una etiqueta apareix una finestra emergent:');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'Canvia l\'etiqueta');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Utilitzeu el formulari petit per canviar l\'etiqueta. Feu clic a la marca per acabar, o feu clic a la X per cancel·lar l\'edició:');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Etiqueta canviada');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Un cop hagis desat el canvi, l\'etiqueta s\'actualitzarà a la pàgina. Ara pots desactivar el mode d\'edició:');

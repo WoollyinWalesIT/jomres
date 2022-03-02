@@ -117,6 +117,16 @@ class j00060toptemplate
 		$output['FB_LOCALISE'] = str_replace('-', '_', get_showtime('lang'));
 
 		$result = '';
+
+		if ( this_cms_is_wordpress() && defined('JOMRES_PERMALINK_STRUCTURE') && JOMRES_PERMALINK_STRUCTURE == '' ) {
+			$editing_mode = jomres_singleton_abstract::getInstance('jomres_editing_mode');
+			$result = $editing_mode->make_editing_mode_dropdown();
+			if ($result) {
+				$editing_dropdown[ ][ 'EDITING_MODE_DROPDOWN' ] = $result;
+				set_showtime('menuitem_editing_mode_dropdown', $editing_dropdown[ 0 ][ 'EDITING_MODE_DROPDOWN' ]);
+			}
+		}
+
 		if ( !this_cms_is_wordpress() && !jomres_cmsspecific_areweinadminarea() ) {
 			$editing_mode = jomres_singleton_abstract::getInstance('jomres_editing_mode');
 			$result = $editing_mode->make_editing_mode_dropdown();
@@ -192,7 +202,7 @@ class j00060toptemplate
 			} else {
 				$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
 				$current_property_details->gather_data($defaultProperty);
-				$output[ 'PROPERTYNAME' ] = $current_property_details->property_name;
+				$output[ 'PROPERTYNAME' ] = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_NAME_'.$defaultProperty , $current_property_details->property_name);
 			}
 		} else {
 			$output[ 'CURRENT_PROPERTY_STYLE' ] = 'display:none;';

@@ -2649,3 +2649,20 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Egenskapst
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Standardmalen er property_details.html, med dette argumentet kan du definere en annen mal for egenskapsdetaljer som skal vises.");
 	jr_define('JOMRES_UPDATES_TITLE', 'Jomres-oppdateringer');
 	jr_define('JOMRES_UPDATES_INFO', "Denne siden kan laste ned og installere den nyeste versjonen av Jomres for deg. Den bruker sin egen funksjonalitet og ikke den til verts-CMS-en, så hvis det oppstår et problem under oppdateringen av vert-CMS-en kan du bruke denne siden til å tvinge frem en reinstallering av den nyeste versjonen av Jomres.");
+
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'Egenskapsforvaltere kan bruke redigeringsmodusen i frontend for å tilpasse strenger for hver eiendom, men dette kan bare fungere hvis WordPress Permalink-innstillingen er satt til Vanlig (http://www.domain.com/?p=123). Når du har gjort det, vil grensesnittbrukere kunne tilpasse strenger, som romnavn og andre etiketter, som er spesifikke for unike egenskaper. ');
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', 'Etikettredigeringsmodus');
+	jr_define('JOMRES_EDITING_MODE_HELP_LEAD', 'Denne funksjonen brukes til å endre vareetiketter, vanligvis til forskjellige språk.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', 'Redigeringsmodus lar deg gi nytt navn til etiketter som er unike for individuelle eiendommer. Når du bruker redigeringsmodus for å gi nytt navn til en etikett, vil endringen bare vises på den eiendomsoppføringen. For eksempel på én eiendom du kanskje vil ønske å bruke ordet "Priser" og på en annen ordet "Rates". Ikke alle etiketter kan endres, for eksempel er romtypenavn etiketter for hele nettstedet, så de kan ikke endres, men vanligvis alt som er unikt for en individuell eiendom kan endres.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', 'Hvis nettstedet støtter flere språk, mens du bruker ett språk, kan du opprette et element som er unikt for en individuell egenskap. Når du deretter endrer ditt aktive språk, kan du bruke redigeringsmodusen til å gi nytt navn til den etiketten, legge inn en passende oversettelse på gjeldende språk. Du kan fortsette å endre det aktive språket for å angi en passende oversettelse for den etiketten for hvert språk nettstedet støtter.');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'Etikettredigeringsmodusbryter');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'I dette skjermbildet ser vi redigeringsmodusbryteren. Redigeringsmodusen er AV og etikettene vises som normalt: ');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'Etikettredigeringsmodus aktivert');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'I dette skjermbildet ser vi at når du er i redigeringsmodus, er etikettene du kan gi nytt navn uthevet:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', 'Velg elementet som skal endres');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'Når en etikett er valgt vises en popup:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'Endre etiketten');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Bruk det lille skjemaet for å endre etiketten. Klikk haken for å fullføre, eller klikk X for å avbryte redigeringen:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Etikett endret');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Når du har lagret endringen, blir etiketten oppdatert på siden. Du kan deaktivere redigeringsmodus nå:');

@@ -105,7 +105,13 @@
 				}
 			}
 
+			$output[ 'JOMRES_EDITING_MODE_PERMALINK_HIGHLIGHT' ] = '';
+			$output[ 'JOMRES_EDITING_MODE_PERMALINK_ALERT' ] = '';
+			if (this_cms_is_wordpress() && JOMRES_PERMALINK_STRUCTURE != '' ) {
+				$output[ 'JOMRES_EDITING_MODE_PERMALINK_HIGHLIGHT' ] = 'alert alert-info';
+				$output[ 'JOMRES_EDITING_MODE_PERMALINK_ALERT' ] = jr_gettext('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', false);
 
+			}
 
 
 			// Google maps api key warning

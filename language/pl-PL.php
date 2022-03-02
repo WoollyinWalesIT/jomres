@@ -2704,3 +2704,20 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Obrazy typ
 
 	jr_define('JOMRES_UPDATES_TITLE', 'Aktualizacje Jomres');
 	jr_define('JOMRES_UPDATES_INFO', "Ta strona może pobrać i zainstalować dla Ciebie najnowszą wersję Jomres. Wykorzystuje ona swoją własną funkcjonalność, a nie hosta CMS, dlatego jeśli wystąpi problem podczas aktualizacji hosta CMS, możesz użyć tej strony do wymusić ponowną instalację najnowszej wersji Jomres.");
+
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'Zarządcy usług mogą korzystać z trybu edycji w interfejsie użytkownika, aby dostosować ciągi dla każdej właściwości, jednak może to działać tylko wtedy, gdy ustawienie WordPress Permalink jest ustawione na Zwykły (http://www.domain.com/?p=123). Gdy to zrobisz, użytkownicy frontendu będą mogli dostosować ciągi, takie jak nazwy pokoi i inne etykiety, które są specyficzne dla unikalnych właściwości. ');
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', 'Tryb edycji etykiet');
+	jr_define('JOMRES_EDITING_MODE_HELP_LEAD', 'Ta funkcja służy do zmiany etykiet pozycji, zwykle na różne języki.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', 'Tryb edycji umożliwia zmianę nazw etykiet, które są unikalne dla poszczególnych właściwości. Gdy używasz trybu edycji do zmiany nazwy etykiety, zmiana pojawi się tylko na tej liście właściwości. Na przykład w jednej właściwości, którą chcesz użyć słowa „Ceny”, a po drugie słowa „Ceny”. Nie wszystkie etykiety można zmienić, na przykład nazwy typów pokoi są etykietami obejmującymi całą witrynę, więc nie można ich zmienić, ale zwykle wszystko, co jest unikalne dla danej usługi może być zmienione.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', 'Jeśli witryna obsługuje wiele języków, używając jednego języka, możesz utworzyć element, który jest unikalny dla pojedynczej właściwości. Po zmianie aktywnego języka możesz użyć trybu edycji, aby zmienić nazwę tej etykiety, wprowadzenie odpowiedniego tłumaczenia w bieżącym języku. Możesz kontynuować zmianę aktywnego języka, aby wprowadzić odpowiednie tłumaczenie dla tej etykiety dla każdego języka obsługiwanego przez witrynę.');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'Przełącznik trybu edycji etykiet');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'Na tym zrzucie ekranu widzimy przełącznik trybu edycji. Tryb edycji jest WYŁĄCZONY, a etykiety wyglądają normalnie: ');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'Tryb edycji etykiet włączony');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'Na tym zrzucie ekranu widzimy, że w trybie edycji etykiety, których nazwy możesz zmienić, są podświetlone:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', 'Wybierz element do zmiany');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'Po wybraniu etykiety pojawia się wyskakujące okienko:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'Zmień etykietę');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Użyj małego formularza, aby zmienić etykietę. Kliknij Znacznik, aby zakończyć, lub X, aby anulować edycję:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Zmieniono etykietę');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Po zapisaniu zmiany etykieta zostanie zaktualizowana na stronie. Możesz teraz wyłączyć tryb edycji:');

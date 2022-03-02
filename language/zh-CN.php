@@ -2695,3 +2695,20 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"属性类�
 
 	jr_define('JOMRES_UPDATES_TITLE', 'Jomres 更新');
 	jr_define('JOMRES_UPDATES_INFO', "此页面可以为您下载和安装最新版本的 Jomres。它使用自己的功能，而不是主机 CMS 的功能，因此如果在主机 CMS 更新期间出现问题，您可以使用此页面来 强制重新安装最新版本的 Jomres。");
+
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', '物业管理员可以使用前端的编辑模式来自定义每个属性的字符串，但是这只有在您的 WordPress 永久链接设置设置为普通 (http://www.domain.com/?p=123). 完成后，前端用户将能够自定义特定于唯一属性的字符串，例如房间名称和其他标签。');
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', '标签编辑模式');
+	jr_define('JOMRES_EDITING_MODE_HELP_LEAD', '此功能用于更改项目标签，通常为不同的语言。');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', '编辑模式允许您重命名单个属性所独有的标签。当您使用编辑模式重命名标签时，更改只会出现在该属性列表中。例如，在您可能想要的一个属性上使用“价格”一词，在另一个词上使用“价格”。并非所有标签都可以更改，例如房间类型名称是站点范围的标签，因此它们不能更改，但通常是单个属性所独有的任何标签可以更改。');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', '如果网站支持多种语言，则在使用一种语言时，您可以创建对单个属性唯一的项目。当您更改活动语言时，您可以使用编辑模式重命名该标签，输入当前语言的合适翻译。您可以继续更改活动语言，为站点支持的每种语言的该标签输入合适的翻译。');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', '标签编辑模式切换');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', '在这个截图中，我们看到了编辑模式开关。编辑模式是关闭的，标签正常显示：');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', '标签编辑模式启用');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', '在这个截图中我们看到，在编辑模式下，你可以重命名的标签被突出显示：');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', '选择要更改的项目');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', '选择标签时会出现一个弹出窗口：');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', '更改标签');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', '使用小表格更改标签。点击打勾完成，或点击X取消编辑：');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', '标签改变');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', '保存更改后，页面中的标签会更新。您现在可以禁用编辑模式：');

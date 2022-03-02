@@ -2721,3 +2721,20 @@ jr_define( 'DATA_SOURCES_TITLE_INFO', "Fuentes de datos actualizadas. Las fuente
 
 	jr_define('JOMRES_UPDATES_TITLE', 'Actualizaciones de Jomres');
 	jr_define('JOMRES_UPDATES_INFO', "Esta página puede descargar e instalar la versión más reciente de Jomres por usted. Utiliza su propia funcionalidad y no la del CMS host, por lo tanto, si ocurre un problema durante la actualización del CMS host, puede usar esta página para forzar una reinstalación de la versión más reciente de Jomres.");
+
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'Los administradores de propiedades pueden usar el modo de edición en la interfaz para personalizar cadenas para cada propiedad, sin embargo, esto solo puede funcionar si su configuración de enlace permanente de WordPress está configurada en Normal (http://www.domain.com/? p = 123). Una vez que haya hecho eso, los usuarios de la interfaz podrán personalizar cadenas, como nombres de habitaciones y otras etiquetas, que son específicas de propiedades únicas. ');
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', 'Modo de edición de etiquetas');
+	jr_define('JOMRES_EDITING_MODE_HELP_LEAD', 'Esta función se usa para cambiar las etiquetas de los elementos, generalmente a diferentes idiomas.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', 'El modo de edición le permite cambiar el nombre de etiquetas que son exclusivas de propiedades individuales. Cuando usa el modo de edición para cambiar el nombre de una etiqueta, el cambio solo aparecerá en la lista de esa propiedad. Por ejemplo, en una propiedad que desee para usar la palabra "Precios" y en otro la palabra "Tarifas". No todas las etiquetas se pueden cambiar, por ejemplo, los nombres de tipo de habitación son etiquetas para todo el sitio, por lo que no se pueden cambiar, pero generalmente cualquier cosa que sea única para una propiedad individual puede ser cambiado.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', 'Si el sitio admite varios idiomas, al usar un idioma puede crear un elemento que sea único para una propiedad individual. Cuando cambie su idioma activo, puede usar el modo de edición para cambiar el nombre de esa etiqueta, ingresando una traducción adecuada en el idioma actual. Puede continuar cambiando el idioma activo para ingresar una traducción adecuada para esa etiqueta para cada idioma que admita el sitio.');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'Cambio de modo de edición de etiquetas');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'En esta captura de pantalla vemos el interruptor del modo de edición. El modo de edición está APAGADO y las etiquetas aparecen normalmente: ');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'Modo de edición de etiquetas habilitado');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'En esta captura de pantalla vemos que, en el modo de edición, se resaltan las etiquetas que puede cambiar de nombre:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', 'Seleccione el elemento a cambiar');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'Cuando se selecciona una etiqueta, aparece una ventana emergente:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'Cambiar la etiqueta');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Use el pequeño formulario para cambiar la etiqueta. Haga clic en la marca para terminar, o haga clic en la X para cancelar la edición:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Etiqueta cambiada');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Una vez que haya guardado el cambio, la etiqueta se actualizará en la página. Puede desactivar el modo de edición ahora:');

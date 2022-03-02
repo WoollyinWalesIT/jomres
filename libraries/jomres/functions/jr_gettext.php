@@ -157,7 +157,7 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
 			}
 		}
 
-		if ( this_cms_is_wordpress() && !jomres_cmsspecific_areweinadminarea() ) {
+		if ( this_cms_is_wordpress() && !jomres_cmsspecific_areweinadminarea() && defined('JOMRES_PERMALINK_STRUCTURE') && JOMRES_PERMALINK_STRUCTURE != '' ) {
 			$okToEdit = false;
 		}
 
@@ -180,7 +180,19 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
 					}
 
 					$theText = '<a href="#" id="'.$theConstant.'" data-type="text" data-pk="'.$theConstant.'" data-url="'.$url.'" data-original-title="'.htmlspecialchars($theText).'">'.htmlspecialchars($theText).'</a>
-					<script>document.addEventListener(\'DOMContentLoaded\', function(){jomresJquery(\'#' .$theConstant.'\').editable();}, false);</script>';
+					<script>document.addEventListener(\'DOMContentLoaded\', function(){jomresJquery(\'#' .$theConstant.'\').editable(
+					   {
+						params: function(params) {
+                           val = params.value;
+							//originally params contain pk, name and value
+							var params = {};
+							params.value = val;
+							params.pk = "'.$theConstant.'";
+							
+							return params;
+							}
+						}
+					);}, false);</script>';
 				} else {
 					//do nothing
 				}

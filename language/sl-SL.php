@@ -2697,3 +2697,20 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Slike vrst
 
 	jr_define('JOMRES_UPDATES_TITLE', 'Jomresove posodobitve');
 	jr_define('JOMRES_UPDATES_INFO', "Ta stran lahko namesto vas prenese in namesti najnovejšo različico Jomresa. Uporablja lastno funkcionalnost in ne gostiteljskega CMS-ja, zato, če pride do težave med posodobitvijo gostiteljskega CMS-ja, lahko uporabite to stran za prisilite ponovno namestitev najnovejše različice Jomresa.");
+
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'Upravitelji lastnine lahko uporabljajo način urejanja v frontendu za prilagajanje nizov za vsako lastnost, vendar to lahko deluje samo, če je vaša nastavitev stalne povezave WordPress nastavljena na navaden (http://www.domain.com/?p=123). Ko to storite, bodo uporabniki vmesnika lahko prilagodili nize, kot so imena prostorov in druge oznake, ki so značilne za edinstvene lastnosti. ');
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', 'Način urejanja nalepk');
+	jr_define('JOMRES_EDITING_MODE_HELP_LEAD', 'Ta funkcija se uporablja za spreminjanje oznak elementov, običajno v različne jezike.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', 'Način za urejanje vam omogoča preimenovanje oznak, ki so edinstvene za posamezne lastnosti. Ko uporabite način za urejanje za preimenovanje oznake, bo sprememba prikazana samo na tem seznamu lastnosti. Na primer, na eni lastnosti, ki bi jo morda želeli uporabite besedo "Cene" in na drugi besedo "Cene". Vseh oznak ni mogoče spremeniti, na primer imena vrst sob so oznake za celotno spletno mesto, zato jih ni mogoče spremeniti, običajno pa vse, kar je edinstveno za posamezno lastnino se lahko spremeni.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', 'Če spletno mesto podpira več jezikov, lahko med uporabo enega jezika ustvarite element, ki je edinstven za posamezno lastnost. Ko nato spremenite svoj aktivni jezik, lahko uporabite način urejanja za preimenovanje te oznake, vnos ustreznega prevoda v trenutnem jeziku. Lahko nadaljujete s spreminjanjem aktivnega jezika, da vnesete ustrezen prevod za to oznako za vsak jezik, ki ga spletno mesto podpira.');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'Stikalo načina za urejanje nalepk');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'Na tem posnetku zaslona vidimo stikalo za način urejanja. Način urejanja je IZKLOPLJEN in oznake so videti kot običajno: ');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'Način urejanja nalepk je omogočen');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'Na tem posnetku zaslona vidimo, da so oznake, ki jih lahko preimenujete, označene v načinu za urejanje:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', 'Izberite element, ki ga želite spremeniti');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'Ko je oznaka izbrana, se prikaže pojavno okno:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'Spremeni oznako');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Uporabite obrazec za spremembo oznake. Kliknite kljukico za dokončanje ali kliknite X, da prekličete urejanje:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Oznaka spremenjena');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Ko shranite spremembo, se oznaka na strani posodobi. Zdaj lahko onemogočite način urejanja:');

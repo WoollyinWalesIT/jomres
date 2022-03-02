@@ -2658,3 +2658,20 @@ jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Sleva");
 
 	jr_define('JOMRES_UPDATES_TITLE', 'Aktualizace Jomres');
 	jr_define('JOMRES_UPDATES_INFO', "Tato stránka vám může stáhnout a nainstalovat nejnovější verzi Jomres. Využívá svou vlastní funkcionalitu a ne funkce hostitelského CMS, takže pokud dojde k problému během aktualizace hostitelského CMS, můžete tuto stránku použít k vynutit reinstalaci nejnovější verze Jomres.");
+
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'Správci vlastností mohou použít režim úprav na frontendu k přizpůsobení řetězců pro každou vlastnost, ale toto může fungovat pouze v případě, že je vaše nastavení WordPress Permalink nastaveno na Plain (http://www.domain.com/?p=123). Jakmile to uděláte, uživatelé frontendu budou moci přizpůsobit řetězce, jako jsou názvy místností a další štítky, které jsou specifické pro jedinečné vlastnosti. ');
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', 'Režim úprav štítků');
+	jr_define('JOMRES_EDITING_MODE_HELP_LEAD', 'Tato funkce se používá ke změně štítků položek, obvykle do různých jazyků.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', 'Režim úprav vám umožňuje přejmenovat štítky, které jsou jedinečné pro jednotlivé vlastnosti. Když k přejmenování štítku použijete režim úprav, změna se projeví pouze v tomto seznamu vlastností. Například na jedné vlastnosti, kterou můžete chtít použít slovo „Ceny“ a na jiném slovo „Ceny“. Ne všechny štítky lze změnit, například názvy typů pokojů jsou štítky pro celý web, takže je nelze změnit, ale obvykle cokoli, co je jedinečné pro konkrétní nemovitost může být změněno.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', 'Pokud stránka podporuje více jazyků, při použití jednoho jazyka můžete vytvořit položku, která je jedinečná pro jednotlivou vlastnost. Když poté změníte svůj aktivní jazyk, můžete tento štítek přejmenovat pomocí režimu úprav, zadáním vhodného překladu v aktuálním jazyce. Můžete pokračovat ve změně aktivního jazyka a zadat vhodný překlad pro tento štítek pro každý jazyk, který stránka podporuje.');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'Přepínač režimu úprav štítků');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'Na tomto snímku obrazovky vidíme přepínač režimu úprav. Režim úprav je VYPNUTÝ a popisky se zobrazují jako normálně: ');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'Režim úprav štítků povolen');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'Na tomto snímku obrazovky vidíme, že v režimu úprav jsou štítky, které můžete přejmenovat, zvýrazněny:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', 'Vyberte položku, kterou chcete změnit');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'Když je vybrán štítek, objeví se vyskakovací okno:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'Změnit štítek');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Použijte malý formulář pro změnu štítku. Klikněte na zaškrtnutí pro dokončení nebo klikněte na X pro zrušení úprav:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Štítek změněn');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Jakmile uložíte změnu, štítek se aktualizuje na stránce. Nyní můžete deaktivovat režim úprav:');

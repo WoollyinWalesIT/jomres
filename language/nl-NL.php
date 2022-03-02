@@ -2651,3 +2651,20 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Eigenschap
 
 	jr_define('JOMRES_UPDATES_TITLE', 'Jomres-updates');
 	jr_define('JOMRES_UPDATES_INFO', "Deze pagina kan de meest recente versie van Jomres voor u downloaden en installeren. Het gebruikt zijn eigen functionaliteit en niet die van de host-CMS. Als er dus een probleem optreedt tijdens de update van de host-CMS, kunt u deze pagina gebruiken om forceer een herinstallatie van de meest recente versie van Jomres.");
+
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'Propertymanagers kunnen de bewerkingsmodus in de frontend gebruiken om strings voor elke eigenschap aan te passen, maar dit kan alleen werken als je WordPress Permalink-instelling is ingesteld op Gewoon (http://www.domain.com/?p=123) Als je dat hebt gedaan, kunnen frontend-gebruikers strings aanpassen, zoals kamernamen en andere labels, die specifiek zijn voor unieke eigenschappen. ');
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', 'Labelbewerkingsmodus');
+	jr_define('JOMRES_EDITING_MODE_HELP_LEAD', 'Deze functie wordt gebruikt om itemlabels te wijzigen, meestal in verschillende talen.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', 'Bewerkingsmodus stelt u in staat om labels te hernoemen die uniek zijn voor individuele eigenschappen. Wanneer u de bewerkingsmodus gebruikt om een ​​label te hernoemen, wordt de wijziging alleen weergegeven op die eigendomsvermelding. Bijvoorbeeld, op één eigenschap die u misschien wilt om het woord "Prijzen" en op een ander het woord "Tarieven" te gebruiken. Niet alle labels kunnen worden gewijzigd, bijvoorbeeld de namen van kamertypes zijn voor de hele site, dus ze kunnen niet worden gewijzigd, maar meestal alles wat uniek is voor een individuele woning Kan veranderd worden.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', 'Als de site meerdere talen ondersteunt, kunt u, terwijl u één taal gebruikt, een item maken dat uniek is voor een individuele eigenschap. Wanneer u vervolgens uw actieve taal wijzigt, kunt u de bewerkingsmodus gebruiken om dat label te hernoemen, een geschikte vertaling in de huidige taal invoeren. U kunt doorgaan met het wijzigen van de actieve taal om een ​​geschikte vertaling voor dat label in te voeren voor elke taal die de site ondersteunt.');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'Labelbewerkingsmodusschakelaar');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'In deze schermafbeelding zien we de bewerkingsmodusschakelaar. De bewerkingsmodus is UIT en de labels worden normaal weergegeven: ');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'Labelbewerkingsmodus ingeschakeld');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'In deze schermafbeelding zien we dat in de bewerkingsmodus de labels die u kunt hernoemen gemarkeerd zijn:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', 'Selecteer het item dat u wilt wijzigen');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'Als een label is geselecteerd, verschijnt er een pop-up:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'Wijzig het label');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Gebruik het kleine formulier om het label te wijzigen. Klik op het vinkje om te voltooien, of klik op de X om het bewerken te annuleren:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Label gewijzigd');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Zodra u de wijziging heeft opgeslagen, wordt het label op de pagina bijgewerkt. U kunt de bewerkingsmodus nu uitschakelen:');

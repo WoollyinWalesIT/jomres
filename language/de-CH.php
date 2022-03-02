@@ -2744,3 +2744,20 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Eigenschaf
 
 	jr_define('JOMRES_UPDATES_TITLE', 'Jomres-Updates');
 	jr_define('JOMRES_UPDATES_INFO', "Diese Seite kann die neueste Version von Jomres für Sie herunterladen und installieren. Sie verwendet ihre eigene Funktionalität und nicht die des Host-CMS, daher können Sie diese Seite verwenden, wenn während der Aktualisierung des Host-CMS ein Problem auftritt Erzwingen Sie eine Neuinstallation der neuesten Version von Jomres.");
+
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'Unterkunftsverwalter können den Bearbeitungsmodus im Frontend verwenden, um Zeichenfolgen für jede Eigenschaft anzupassen, dies funktioniert jedoch nur, wenn Ihre WordPress-Permalink-Einstellung auf Einfach (http://www.domain.com/?p=123).Sobald Sie dies getan haben, können Frontend-Benutzer Zeichenfolgen wie Raumnamen und andere Bezeichnungen anpassen, die für eindeutige Eigenschaften spezifisch sind. ');
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', 'Label-Bearbeitungsmodus');
+	jr_define('JOMRES_EDITING_MODE_HELP_LEAD', 'Diese Funktion wird verwendet, um Artikelbezeichnungen zu ändern, normalerweise in verschiedene Sprachen.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', 'Der Bearbeitungsmodus ermöglicht es Ihnen, Labels umzubenennen, die für einzelne Eigenschaften eindeutig sind. Wenn Sie den Bearbeitungsmodus verwenden, um ein Label umzubenennen, wird die Änderung nur auf dieser Eigenschaftsliste angezeigt. Zum Beispiel auf einer gewünschten Eigenschaft um das Wort „Preise" und auf einem anderen das Wort „Preise" zu verwenden. Nicht alle Beschriftungen können geändert werden, beispielsweise sind Zimmertypnamen standortweite Beschriftungen, sodass sie nicht geändert werden können, aber normalerweise alles, was für eine einzelne Unterkunft einzigartig ist kann gewechselt werden.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', 'Wenn die Website mehrere Sprachen unterstützt, können Sie bei Verwendung einer Sprache ein Element erstellen, das für eine einzelne Eigenschaft eindeutig ist. Wenn Sie dann Ihre aktive Sprache ändern, können Sie den Bearbeitungsmodus verwenden, um dieses Etikett umzubenennen, Eingeben einer geeigneten Übersetzung in der aktuellen Sprache. Sie können die aktive Sprache weiter ändern, um eine geeignete Übersetzung für dieses Label für jede Sprache, die die Website unterstützt, einzugeben.');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'Wechsel für den Etikettenbearbeitungsmodus');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'In diesem Screenshot sehen wir den Schalter für den Bearbeitungsmodus. Der Bearbeitungsmodus ist AUS und die Beschriftungen erscheinen normal: ');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'Label-Bearbeitungsmodus aktiviert');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'In diesem Screenshot sehen wir, dass im Bearbeitungsmodus die Etiketten, die Sie umbenennen können, hervorgehoben sind:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', 'Wählen Sie das zu ändernde Element');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'Wenn ein Etikett ausgewählt wird, erscheint ein Popup:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'Etikett ändern');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Verwenden Sie das kleine Formular, um die Bezeichnung zu ändern. Klicken Sie auf das Häkchen, um den Vorgang abzuschließen, oder klicken Sie auf das X, um die Bearbeitung abzubrechen:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Label geändert');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Sobald Sie die Änderung gespeichert haben, wird das Label auf der Seite aktualisiert. Sie können den Bearbeitungsmodus jetzt deaktivieren:');

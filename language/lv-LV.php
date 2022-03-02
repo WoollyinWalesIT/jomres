@@ -2687,3 +2687,20 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Īpašuma 
 
 	jr_define('JOMRES_UPDATES_TITLE', 'Jomres atjauninājumi');
 	jr_define('JOMRES_UPDATES_INFO', "Šī lapa var lejupielādēt un instalēt jaunāko Jomres versiju jūsu vietā. Tā izmanto savu funkcionalitāti, nevis resursdatora SPS, tādēļ, ja resursdatora CMS atjaunināšanas laikā rodas problēma, varat izmantot šo lapu, lai piespiest atkārtoti instalēt jaunāko Jomres versiju.");
+
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'Īpašumu pārvaldnieki var izmantot rediģēšanas režīmu priekšgalā, lai pielāgotu virknes katram īpašumam, taču tas var darboties tikai tad, ja jūsu WordPress Permalink iestatījums ir iestatīts uz Plain (http://www.domain.com/?p=123). Kad tas būs izdarīts, priekšgala lietotāji varēs pielāgot virknes, piemēram, telpu nosaukumus un citas iezīmes, kas ir raksturīgas unikāliem rekvizītiem. ');
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', 'Etiķetes rediģēšanas režīms');
+	jr_define('JOMRES_EDITING_MODE_HELP_LEAD', 'Šo līdzekli izmanto, lai mainītu vienumu etiķetes, parasti dažādās valodās.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', 'Rediģēšanas režīms ļauj pārdēvēt iezīmes, kas ir unikālas atsevišķiem īpašumiem. Ja izmantojat rediģēšanas režīmu, lai pārdēvētu etiķeti, izmaiņas būs redzamas tikai šajā rekvizītu sarakstā. Piemēram, vienā rekvizītā, ko vēlaties izmantot vārdu "Cenas" un uz cita vārdu "Cenas". Ne visas etiķetes var mainīt, piemēram, telpu tipu nosaukumi ir visas vietnes etiķetes, tāpēc tos nevar mainīt, bet parasti viss, kas ir unikāls atsevišķam īpašumam var mainīt.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', 'Ja vietne atbalsta vairākas valodas, izmantojot vienu valodu, varat izveidot vienumu, kas ir unikāls atsevišķam īpašumam. Pēc tam mainot aktīvo valodu, varat izmantot rediģēšanas režīmu, lai pārdēvētu šo iezīmi, ievadot piemērotu tulkojumu pašreizējā valodā. Varat turpināt mainīt aktīvo valodu, lai ievadītu atbilstošu tulkojumu šai etiķetei katrai valodai, ko vietne atbalsta.');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'Etiķetes rediģēšanas režīma slēdzis');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'Šajā ekrānuzņēmumā redzams rediģēšanas režīma slēdzis. Rediģēšanas režīms ir IZSLĒGTS un etiķetes parādās kā parasti: ');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'Iespējots etiķetes rediģēšanas režīms');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'Šajā ekrānuzņēmumā redzams, ka rediģēšanas režīmā etiķetes, kuras varat pārdēvēt, ir izceltas:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', 'Atlasiet maināmo vienumu');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'Kad ir atlasīta etiķete, tiek parādīts uznirstošais logs:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'Mainīt etiķeti');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Izmantojiet mazo veidlapu, lai mainītu etiķeti. Noklikšķiniet uz Atzīmes, lai pabeigtu, vai noklikšķiniet uz X, lai atceltu rediģēšanu:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Etiķete mainīta');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Kad izmaiņas ir saglabātas, etiķete lapā tiek atjaunināta. Rediģēšanas režīmu varat atspējot tūlīt:');

@@ -2746,3 +2746,20 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Immagini d
 
 	jr_define('JOMRES_UPDATES_TITLE', 'Aggiornamenti Jomres');
 	jr_define('JOMRES_UPDATES_INFO', "Questa pagina può scaricare e installare la versione più recente di Jomres per te. Utilizza le proprie funzionalità e non quella del CMS host quindi se si verifica un problema durante l'aggiornamento del CMS host puoi usare questa pagina per forzare una reinstallazione della versione più recente di Jomres.");
+
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'I gestori di proprietà possono utilizzare la modalità di modifica nel frontend per personalizzare le stringhe per ogni proprietà, tuttavia questo può funzionare solo se l\'impostazione Permalink di WordPress è impostata su Plain (http://www.domain.com/?p=123). Una volta fatto ciò, gli utenti del frontend potranno personalizzare le stringhe, come i nomi delle stanze e altre etichette, che sono specifiche delle proprietà univoche. ');
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', 'Modalità di modifica delle etichette');
+	jr_define('JOMRES_EDITING_MODE_HELP_LEAD', 'Questa funzione è usata per cambiare le etichette degli oggetti, di solito in lingue diverse.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', 'La modalità di modifica ti consente di rinominare le etichette che sono univoche per le singole proprietà. Quando usi la modalità di modifica per rinominare un\'etichetta, la modifica apparirà solo su quell\'elenco di proprietà. Ad esempio, su una proprietà che potresti desiderare utilizzare la parola "Prezzi" e in un\'altra la parola "Tariffe". Non tutte le etichette possono essere modificate, ad esempio i nomi dei tipi di camera sono etichette a livello di sito, quindi non possono essere modificate, ma di solito tutto ciò che è unico per una singola proprietà può essere cambiato.');
+jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', 'Se il sito supporta più lingue, mentre usi una lingua puoi creare un elemento unico per una singola proprietà. Quando poi cambi la tua lingua attiva, puoi usare la modalità di modifica per rinominare quell\'etichetta, inserendo una traduzione adeguata nella lingua corrente. Puoi continuare a cambiare la lingua attiva per inserire una traduzione adatta per quell\'etichetta per ciascuna lingua supportata dal sito.');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'Cambia modalità modifica etichette');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'In questa schermata vediamo l\'interruttore della modalità di modifica. La modalità di modifica è disattivata e le etichette appaiono normalmente: ');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'Modalità di modifica delle etichette abilitata');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'In questa schermata vediamo che, mentre sei in modalità Modifica, le etichette che puoi rinominare sono evidenziate:');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', 'Seleziona l\'elemento da modificare');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'Quando viene selezionata un\'etichetta appare un popup:');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'Cambia l\'etichetta');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Usa il piccolo modulo per cambiare l\'etichetta. Clicca il segno di spunta per finire, o clicca la X per annullare la modifica:');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Etichetta cambiata');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Una volta salvata la modifica, l\'etichetta viene aggiornata nella pagina. Ora puoi disabilitare la modalità di modifica:');

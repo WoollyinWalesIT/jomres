@@ -2714,3 +2714,20 @@ jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Ș
 
 	jr_define('JOMRES_UPDATES_TITLE', 'Actualizări Jomres');
 	jr_define('JOMRES_UPDATES_INFO', "Această pagină poate descărca și instala cea mai recentă versiune de Jomres pentru dvs.. Folosește propria sa funcționalitate și nu pe cea a CMS-ului gazdă, prin urmare, dacă apare o problemă în timpul actualizării CMS-ului gazdă, puteți utiliza această pagină pentru forțați o reinstalare a celei mai recente versiuni de Jomres.");
+
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'Administratorii de proprietăți pot folosi modul de editare din frontend pentru a personaliza șirurile pentru fiecare proprietate, totuși acest lucru poate funcționa numai dacă setarea dvs. de permalink WordPress este setată la Simplu (http://www.domain.com/?) p=123). După ce ați făcut acest lucru, utilizatorii de front-end vor putea personaliza șiruri, cum ar fi numele camerelor și alte etichete, care sunt specifice proprietăților unice. ');
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', 'Mod editare etichete');
+	jr_define('JOMRES_EDITING_MODE_HELP_LEAD', 'Această caracteristică este folosită pentru a schimba etichetele articolelor, de obicei în diferite limbi.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', 'Modul de editare vă permite să redenumiți etichetele care sunt unice pentru proprietăți individuale. Când utilizați modul Editare pentru a redenumi o etichetă, modificarea va apărea numai pe lista proprietăților respective. De exemplu, pe o proprietate pe care ați putea-o dori pentru a folosi cuvântul „Prețuri” și pe altul cuvântul „Prețuri”. Nu toate etichetele pot fi schimbate, de exemplu, numele tipurilor de cameră sunt etichete la nivelul întregului site, deci nu pot fi schimbate, dar de obicei orice este unic pentru o proprietate individuală poate fi schimbat.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', 'Dacă site-ul acceptă mai multe limbi, în timp ce utilizați o singură limbă, puteți crea un articol care este unic pentru o proprietate individuală. Atunci când vă schimbați limba activă, puteți utiliza modul de editare pentru a redenumi eticheta respectivă, introducerea unei traduceri adecvate în limba curentă. Puteți continua să schimbați limba activă pentru a introduce o traducere adecvată pentru acea etichetă pentru fiecare limbă pe care o acceptă site-ul.');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'Comutator mod editare etichete');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'În această captură de ecran vedem comutatorul modului de editare. Modul de editare este OFF și etichetele apar ca în mod normal: ');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'Modul de editare etichetă activat');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'În această captură de ecran vedem că, în modul Editare, etichetele pe care le poți redenumi sunt evidențiate:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', 'Selectaţi elementul de modificat');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'Când este selectată o etichetă apare o fereastră pop-up:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'Schimbați eticheta');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Folosiți formularul mic pentru a schimba eticheta. Faceți clic pe Bifă pentru a finaliza sau faceți clic pe X pentru a anula editarea:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Etichetă schimbată');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Odată ce ați salvat modificarea, atunci eticheta este actualizată în pagină. Puteți dezactiva modul de editare acum:');
