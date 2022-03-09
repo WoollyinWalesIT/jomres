@@ -70,10 +70,6 @@ class j06000processpayment
 			doInsertSql($query, '');
 		}
 
-		if ( isset($jrConfig['platform_connected']) && $jrConfig['platform_connected'] == 1 ) {
-			$MiniComponents->specificEvent('00605', 'connected', array('bookingdata' => $bookingdata, 'property_uid' => $property_uid));
-			return;
-		}
 		$MiniComponents->triggerEvent('00599', array('bookingdata' => $tmpBookingHandler->tmpbooking)); // Optional
 
 		// We'll let bookings of 0 value passed the gateway plugin handling as some users offer 100% discounts via coupons
