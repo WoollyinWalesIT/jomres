@@ -14,6 +14,8 @@ defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Version;
+
 /**
 *
 * Sets up the Jomres framework.
@@ -54,12 +56,16 @@ function load_cms_environment()
 		define('JPATH_BASE', dirname(__FILE__).'/../');
         require_once JPATH_BASE.'includes/defines.php';
         require_once JPATH_BASE.'includes/framework.php';
-        if (file_exists(JPATH_BASE.DIRECTORY_SEPARATOR.'libraries'.DIRECTORY_SEPARATOR.'src'.DIRECTORY_SEPARATOR.'Version.php')) { // Joomla 4
-
-            $container = \Joomla\CMS\Factory::getContainer();
-            $container->alias(\Joomla\Session\SessionInterface::class, 'session.web.site');
-            $app      = $container->get(\Joomla\CMS\Application\SiteApplication::class);
-        } else { // Joomla 3
+		if (file_exists(JPATH_BASE.DIRECTORY_SEPARATOR.'libraries'.DIRECTORY_SEPARATOR.'src'.DIRECTORY_SEPARATOR.'Version.php')) { // Joomla 4
+			$version = new Version();
+			if($version->MAJOR_VERSION == 4) {
+				$container = \Joomla\CMS\Factory::getContainer();
+				$container->alias(\Joomla\Session\SessionInterface::class, 'session.web.site');
+				$app      = $container->get(\Joomla\CMS\Application\SiteApplication::class);
+			} else { // Joomla 3.10+
+				$app = JFactory::getApplication('site');
+			}
+        } else { // Joomla 3 < 3.10
             /* Create the Application */
             $app = JFactory::getApplication('site');
         }
