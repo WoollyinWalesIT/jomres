@@ -146,6 +146,24 @@
 												</li>
 												<pattemplate:comment>TAB TITLE END</pattemplate:comment>
 
+												<pattemplate:comment>TAB TITLE WEATHER START</pattemplate:comment>
+												<pattemplate:tmpl name="weather_output" type="simpleCondition" requiredvars="title" unusedvars="nbsp">
+													<li class="nav-item" role="presentation">
+														<div
+																id="weather-left-tab"
+																class="nav-link tab-clickable"
+																role="tab"
+																data-bs-toggle="tab"
+																data-bs-target="#weather-left"
+																aria-controls="weather-left"
+																aria-selected="true"
+														>
+															{TITLE}
+														</div>
+													</li>
+												</pattemplate:tmpl>
+												<pattemplate:comment>TAB TITLE END</pattemplate:comment>
+
 												<pattemplate:comment>TAB TITLE CALENDAR START</pattemplate:comment>
 												<pattemplate:tmpl name="availability_output" type="simpleCondition" requiredvars="_jomres_front_mr_submitbutton_checkavailability" unusedvars="nbsp">
 												<li class="nav-item" role="presentation">
@@ -448,6 +466,40 @@
 														</article>
 													</div>
 													<pattemplate:comment>TAB CONTENT END</pattemplate:comment>
+
+													<pattemplate:comment>TAB CONTENT WEATHER START</pattemplate:comment>
+													<pattemplate:tmpl name="weather_output_content" type="simpleCondition" requiredvars="title" unusedvars="nbsp">
+														<div
+																id="weather-left"
+																class="tab-pane fade show accordion-item"
+																role="tabpanel"
+														>
+															<div class="accordion-header" role="tab">
+																<button
+																		class="accordion-button collapsed"
+																		type="button"
+																		role="button"
+																		data-bs-toggle="collapse"
+																		data-bs-target="#weather-left-article"
+																		aria-expanded="true"
+																		aria-controls="weather-left-article"
+																>
+																	{TITLE}
+																</button>
+															</div>
+															<article
+																	id="weather-left-article"
+																	class="accordion-body accordion-collapse collapse"
+																	data-bs-parent="#accordion-left-tabs"
+																	aria-labelledby="weather-left-tab"
+															>
+																<section>
+																	{jomres_script show_property_weather PROPERTY_UID=N}
+																</section>
+															</article>
+														</div>
+													</pattemplate:tmpl>
+													<pattemplate:comment>TAB CONTENT WEATHER END</pattemplate:comment>
 
 													<pattemplate:comment>TAB CONTENT CALENDAR START</pattemplate:comment>
 													<pattemplate:tmpl name="availability_output_content" type="simpleCondition" requiredvars="_jomres_front_mr_submitbutton_checkavailability" unusedvars="nbsp">

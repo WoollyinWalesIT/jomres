@@ -422,6 +422,12 @@
 				unset($MiniComponents->miniComponentData['00035']['tabcontent_04_roomslist']);
 				unset($MiniComponents->miniComponentData['00035']['tabcontent_05_tariffs']);
 				unset($MiniComponents->miniComponentData['00035']['tabcontent_06_extras']);
+
+				if (isset($MiniComponents->miniComponentData['00035']["tabcontent_07_weather"])) {
+					// Because we will use the shortcode {jomres_script show_property_weather PROPERTY_UID=N} in the template there's no need to include the tab's contents. We'll use TITLE to tell the template that the content exists, and that's it.
+					$weather_output = array ( 0 => [ 'TITLE' => jr_gettext('_CURRENT_WEATHER','_CURRENT_WEATHER')] );
+					unset($MiniComponents->miniComponentData['00035']["tabcontent_07_weather"]);
+				}
 			}
 
 			// Unfortunately, in J4 this is still required
@@ -511,8 +517,15 @@
 			//all output is built by now, so let`s display the page
 			$pageoutput[] = $output;
 
+
+
 			$tmpl->addRows('pageoutput', $pageoutput);
 			$tmpl->addRows('bookinglink', $bookinglink);
+
+			if (isset($weather_output)) {
+				$tmpl->addRows('weather_output', $weather_output);
+				$tmpl->addRows('weather_output_content',$weather_output);
+			}
 
 			$tmpl->addRows('room_type_output', $room_type_output);
 			$tmpl->addRows('room_type_output_content', $room_type_output);
