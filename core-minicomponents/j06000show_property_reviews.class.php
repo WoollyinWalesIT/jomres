@@ -191,6 +191,32 @@ class j06000show_property_reviews
 
 			foreach ($itemReviews[ 'fields' ] as $review) {
 				$r = array();
+
+				$rating_text = $Reviews->generate_review_rating_text($review[ 'rating' ]) ;
+
+				$r['RATING_TEXT_COLOUR'] = 'text-success';
+				$r['RATING_SCORE_TEXT'] = jomres_badge(
+					$rating_text,
+					'success'
+				);
+
+				if ($review[ 'rating' ] > 5 &&$review[ 'rating' ] < 7  ) {
+					$r['RATING_TEXT_COLOUR'] = 'text-warning';
+					$r['RATING_SCORE_TEXT'] = jomres_badge(
+						$rating_text,
+						'warning'
+					);
+				}
+
+				if ($review[ 'rating' ] <= 5) {
+					$r['RATING_TEXT_COLOUR'] = 'text-danger';
+					$r['RATING_SCORE_TEXT'] = jomres_badge(
+						$rating_text,
+						'danger'
+					);
+				}
+
+
 				$r[ '_JOMRES_REVIEWS_IAGREE' ] = jr_gettext('_JOMRES_REVIEWS_IAGREE', '_JOMRES_REVIEWS_IAGREE', false, false);
 				$r[ '_JOMRES_REVIEWS_IDISAGREE' ] = jr_gettext('_JOMRES_REVIEWS_IDISAGREE', '_JOMRES_REVIEWS_IDISAGREE', false, false);
 				$r[ '_JOMRES_REVIEWS_PROS' ] = jr_gettext('_JOMRES_REVIEWS_PROS', '_JOMRES_REVIEWS_PROS', false, false);
