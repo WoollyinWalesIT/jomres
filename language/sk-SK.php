@@ -1825,7 +1825,7 @@ jr_define ('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Váš kľúč podpory je
 jr_define ('_JOMRES_DASHBOARD_DRAG_TRASH', 'Presunutím rezervácií do tejto oblasti ich zrušíte');
 jr_define ('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define ('_JOMRES_LONG', 'Long (nn.nnnn)');
-jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Uistite sa, že ste vytvorili stránku WordPress, ktorá obsahuje krátky kód [jomres: xx-XX] (kde xx-XX je kód jazyka vašej stránky, napríklad [jomres: en-GB] alebo [ jomres: sk-sk]) inak nebudete mať prístup k Jomres z frontendu na správu vašich vlastností a rezervácií. <br> Jomres je postavený na rámci Bootstrap, takže ho musíte použiť na tému založenú na Bootstrap. My odporučiť jeden na základe Bootstrap 3. Ak k téme nemáte prístup, odporúčame vám použiť tému Jomres Leohtian pre Wordpress, ktorú môžete <a href = "https://www.jomres.net/download/free- downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress target="_blank"> sťahovať odtiaľto. </a> ');
+jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Uistite sa, že ste vytvorili stránku WordPress, ktorá obsahuje krátky kód [jomres: xx-XX] (kde xx-XX je kód jazyka vašej stránky, napríklad [jomres: en-GB] alebo [ jomres: sk-sk]) inak nebudete mať prístup k Jomres z frontendu na správu vašich vlastností a rezervácií.');
 jr_define ('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', 'Väčšina nehnuteľností v Jomres má proces správy prenájmu. Hotely/penzióny/penzióny prenajímajú jednotlivé izby a chaty/vily/byty prenajímajú celý majetok. Toto nie je viditeľné pre správcu nehnuteľnosti, ale pre nich Aby ste mohli vytvárať tarify pre svoj majetok, musíte najskôr pridať typy izieb, ktoré sú vhodné pre daný typ nehnuteľnosti.
 Napríklad typ hotelového majetku by normálne potreboval niekoľko typov izieb (dvojlôžkové izby, jednolôžkové izby a dvojčatá), zatiaľ čo vila môže mať iba jeden typ izby, napr. 2 spálne, 5 spální.
 Pre nehnuteľnosti, ako je Tours, je možné vytvoriť typy miestností. To umožňuje zákazníkom vyhľadávať iba nehnuteľnosti, ako sú zájazdy, ale správca nehnuteľností pre tento typ vlastníctva nevytvorí tarify, takže proces správy pre nich nie je relevantný.
@@ -2712,3 +2712,20 @@ jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Zľavnené");
 
 	jr_define('JOMRES_UPDATES_TITLE', 'Aktualizácie Jomres');
 	jr_define('JOMRES_UPDATES_INFO', "Táto stránka vám môže stiahnuť a nainštalovať najnovšiu verziu Jomres. Používa svoje vlastné funkcie a nie funkcie hostiteľského CMS, takže ak sa vyskytne problém počas aktualizácie hostiteľského CMS, môžete túto stránku použiť na vynútiť preinštalovanie najnovšej verzie Jomres.");
+
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'Správcovia vlastníctva môžu použiť režim úprav v rozhraní na prispôsobenie reťazcov pre každú vlastnosť, toto však môže fungovať iba vtedy, ak je nastavenie trvalého odkazu WordPress nastavené na možnosť Plain (http://www.domain.com/?p=123). Keď to urobíte, používatelia frontendu budú môcť prispôsobiť reťazce, ako sú názvy miestností a iné štítky, ktoré sú špecifické pre jedinečné vlastnosti. ');
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', 'Režim úpravy štítkov');
+	jr_define('JOMRES_EDITING_MODE_HELP_LEAD', 'Táto funkcia sa používa na zmenu štítkov položiek, zvyčajne do rôznych jazykov.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', 'Režim úprav vám umožňuje premenovať štítky, ktoré sú jedinečné pre jednotlivé vlastnosti. Keď na premenovanie štítka použijete režim úprav, zmena sa prejaví iba v zozname týchto vlastností. Napríklad na jednej nehnuteľnosti, ktorú by ste mohli chcieť použiť slovo „Ceny“ a na inom slovo „Ceny“. Nie všetky štítky sa dajú zmeniť, napríklad názvy typov izieb sú štítky na celom webe, takže ich nemožno zmeniť, ale zvyčajne čokoľvek, čo je jedinečné pre konkrétnu nehnuteľnosť možno zmeniť.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', 'Ak stránka podporuje viacero jazykov, pri použití jedného jazyka môžete vytvoriť položku, ktorá je jedinečná pre jednotlivé vlastnosti. Keď potom zmeníte aktívny jazyk, môžete použiť režim úprav na premenovanie tohto štítku, zadaním vhodného prekladu v aktuálnom jazyku. Môžete pokračovať v zmene aktívneho jazyka a zadať vhodný preklad pre daný štítok pre každý jazyk, ktorý stránka podporuje.');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'Prepínač režimu úpravy štítkov');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'Na tejto snímke obrazovky vidíme prepínač režimu úprav. Režim úprav je VYPNUTÝ a štítky sa zobrazujú ako normálne: ');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'Režim úpravy štítkov povolený');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'Na tejto snímke obrazovky vidíme, že v režime úprav sú označenia, ktoré môžete premenovať, zvýraznené:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', 'Vyberte položku, ktorú chcete zmeniť');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'Keď je vybratý štítok, zobrazí sa kontextové okno:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'Zmeniť označenie');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Na zmenu štítku použite malý formulár. Kliknite na začiarknutie pre ukončenie, alebo kliknite na X pre zrušenie úpravy:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Štítok zmenený');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Po uložení zmien sa štítok aktualizuje na stránke. Teraz môžete vypnúť režim úprav:');

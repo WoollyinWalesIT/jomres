@@ -1800,7 +1800,7 @@ jr_define('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Su clave de soporte es v�
 jr_define('_JOMRES_DASHBOARD_DRAG_TRASH', 'Arrastre reservas a esta área de cancelarlos');
 jr_define('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define('_JOMRES_LONG', 'Long (nn.nnnn)');
-jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Please ensure that you`ve created a WordPress Page that contains the [jomres:xx-XX] shortcode ( where xx-XX is your site language code, for example [jomres:en-GB] or [jomres:en-US] ) otherwise you will not be able to access Jomres from the frontend to manage your properties and bookings. <br> Jomres is built on the Bootstrap framework, so you must use it on a theme based on Bootstrap. We recommend one based on Bootstrap 3. If you do not have access to a theme then we recommend that you use the Jomres Leohtian theme for Wordpress which you can <a href="https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target="_blank">download from here.</a>');
+jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Please ensure that you`ve created a WordPress Page that contains the [jomres:xx-XX] shortcode ( where xx-XX is your site language code, for example [jomres:en-GB] or [jomres:en-US] ) otherwise you will not be able to access Jomres from the frontend to manage your properties and bookings.');
 jr_define('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', 'Antes de crear un tipo de habitación, lo que necesitamos saber si se trata de una propiedad tipo, o un tipo bien chalet.');
 jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', 'Haga clic para añadir nuevos tipos de habitación');
 jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES', 'Advertencia, que tiene uno o más tipos de propiedad que no tienen tipos de habitación. Propiedades necesitan tipos de habitaciones para que los administradores de propiedades pueden crear tarifas.');
@@ -2696,3 +2696,20 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Əmlak tip
 	jr_define('JOMRES_UPDATES_TITLE', 'Jomres Yeniləmələri');
 	jr_define('JOMRES_UPDATES_INFO', "Bu səhifə sizin üçün Jomres-in ən son versiyasını yükləyə və quraşdıra bilər. O, host CMS-nin funksiyasından deyil, öz funksionallığından istifadə edir, ona görə də host CMS-nin yeniləməsi zamanı problem yaranarsa, bu səhifədən istifadə edə bilərsiniz. Jomres-in ən son versiyasını yenidən quraşdırmağa məcbur edin.");
 
+
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'Əmlak menecerləri hər bir əmlak üçün sətirləri fərdiləşdirmək üçün ön hissədəki redaktə rejimindən istifadə edə bilər, lakin bu, yalnız WordPress Daimi keçid parametriniz Düz (http://www.domain.com/?p=123) olaraq təyin edildikdə işləyə bilər. Bunu etdikdən sonra frontend istifadəçiləri unikal xüsusiyyətlərə xas olan otaq adları və digər etiketlər kimi sətirləri fərdiləşdirə biləcəklər.');
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', 'Etiketin redaktəsi rejimi');
+	jr_define('JOMRES_EDITING_MODE_HELP_LEAD', 'Bu xüsusiyyət element etiketlərini, adətən, müxtəlif dillərə dəyişmək üçün istifadə olunur.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', 'Redaktə rejimi sizə fərdi xüsusiyyətlərə xas olan etiketlərin adını dəyişməyə imkan verir. Siz etiketin adını dəyişmək üçün Redaktə rejimindən istifadə etdiyiniz zaman dəyişiklik yalnız həmin mülkiyyət siyahısında görünəcək. Məsələn, istəyə biləcəyiniz bir mülkdə "Qiymətlər" sözünü və digərində "Qiymətlər" sözünü istifadə etmək. Bütün etiketləri dəyişdirmək mümkün deyil, məsələn, otaq tipli adlar sayt miqyasında olan etiketlərdir, ona görə də onlar dəyişdirilə bilməz, lakin adətən fərdi mülkiyyətə xas olan hər hansı bir şey. dəyişdirilə bilər.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', 'Əgər sayt birdən çox dili dəstəkləyirsə, bir dildən istifadə edərkən siz fərdi xüsusiyyət üçün unikal element yarada bilərsiniz. Sonra aktiv dilinizi dəyişdikdə, həmin etiketin adını dəyişmək üçün redaktə rejimindən istifadə edə bilərsiniz, cari dildə uyğun tərcümənin daxil edilməsi. Saytın dəstəklədiyi hər bir dil üçün həmin etiket üçün uyğun tərcümə daxil etmək üçün aktiv dili dəyişməyə davam edə bilərsiniz.');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'Etiketin redaktə rejiminə keçid');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'Bu skrinşotda biz Redaktə rejimi keçidini görürük. Redaktə rejimi OFF-dadır və etiketlər normal görünür: ');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'Etiketin redaktəsi rejimi aktivdir');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'Bu ekran görüntüsündə görürük ki, Redaktə rejimində adlarını dəyişdirə biləcəyiniz etiketlər vurğulanır:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', 'Dəyişdiriləcək elementi seçin');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'Etiket seçildikdə pop-up görünür:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'Etiketi dəyişdirin');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Etiketi dəyişmək üçün kiçik formadan istifadə edin. Bitirmək üçün işarəni vurun və ya redaktəni ləğv etmək üçün X üzərinə klikləyin:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Etiket dəyişdirildi');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Dəyişikliyi saxladıqdan sonra etiket səhifədə yenilənir. İndi redaktə rejimini söndürə bilərsiniz:');

@@ -1757,7 +1757,7 @@ jr_define ('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Støttenøkkelen din er 
 jr_define ('_JOMRES_DASHBOARD_DRAG_TRASH', 'Dra bestillinger til dette feltet for å kansellere dem');
 jr_define ('_JOMRES_LAT', 'Breddegrad (nn.nnnn)');
 jr_define ('_JOMRES_LONG', 'Lengdegrad (nn.nnnn)');
-jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Vennligst sørg for at du har opprettet en WordPress-side som inneholder [jomres: xx-XX] kortkoden (hvor xx-XX er nettstedets språkkode, for eksempel [jomres: en-GB] eller [ jomres: en-US]) ellers vil du ikke ha tilgang til Jomres fra frontend for å administrere eiendommer og bestillinger. <br> Jomres er bygget på Bootstrap-rammeverket, så du må bruke det på et tema basert på Bootstrap. Vi anbefaler en basert på Bootstrap 3. Hvis du ikke har tilgang til et tema, anbefaler vi at du bruker Jomres Leohtian-temaet for Wordpress som du kan <a href = "https://www.jomres.net/download/free- downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress target="_blank"> last ned herfra. </a> ');
+jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Vennligst sørg for at du har opprettet en WordPress-side som inneholder [jomres: xx-XX] kortkoden (hvor xx-XX er nettstedets språkkode, for eksempel [jomres: en-GB] eller [ jomres: en-US]) ellers vil du ikke ha tilgang til Jomres fra frontend for å administrere eiendommer og bestillinger.');
 jr_define ('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', "Før du kan opprette en romtype, må vi vite om det er for en hotelltype eiendom eller en villa type eiendom.");
 jr_define ('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', 'Klikk for å legge til nye romtyper');
 jr_define ("_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES", "Advarsel, du har en eller flere eiendomstyper uten romtyper. Egenskaper trenger romtyper slik at eiendomsforvaltere kan opprette tariffer.");
@@ -2649,3 +2649,20 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Egenskapst
 	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Standardmalen er property_details.html, med dette argumentet kan du definere en annen mal for egenskapsdetaljer som skal vises.");
 	jr_define('JOMRES_UPDATES_TITLE', 'Jomres-oppdateringer');
 	jr_define('JOMRES_UPDATES_INFO', "Denne siden kan laste ned og installere den nyeste versjonen av Jomres for deg. Den bruker sin egen funksjonalitet og ikke den til verts-CMS-en, så hvis det oppstår et problem under oppdateringen av vert-CMS-en kan du bruke denne siden til å tvinge frem en reinstallering av den nyeste versjonen av Jomres.");
+
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'Egenskapsforvaltere kan bruke redigeringsmodusen i frontend for å tilpasse strenger for hver eiendom, men dette kan bare fungere hvis WordPress Permalink-innstillingen er satt til Vanlig (http://www.domain.com/?p=123). Når du har gjort det, vil grensesnittbrukere kunne tilpasse strenger, som romnavn og andre etiketter, som er spesifikke for unike egenskaper. ');
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', 'Etikettredigeringsmodus');
+	jr_define('JOMRES_EDITING_MODE_HELP_LEAD', 'Denne funksjonen brukes til å endre vareetiketter, vanligvis til forskjellige språk.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', 'Redigeringsmodus lar deg gi nytt navn til etiketter som er unike for individuelle eiendommer. Når du bruker redigeringsmodus for å gi nytt navn til en etikett, vil endringen bare vises på den eiendomsoppføringen. For eksempel på én eiendom du kanskje vil ønske å bruke ordet "Priser" og på en annen ordet "Rates". Ikke alle etiketter kan endres, for eksempel er romtypenavn etiketter for hele nettstedet, så de kan ikke endres, men vanligvis alt som er unikt for en individuell eiendom kan endres.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', 'Hvis nettstedet støtter flere språk, mens du bruker ett språk, kan du opprette et element som er unikt for en individuell egenskap. Når du deretter endrer ditt aktive språk, kan du bruke redigeringsmodusen til å gi nytt navn til den etiketten, legge inn en passende oversettelse på gjeldende språk. Du kan fortsette å endre det aktive språket for å angi en passende oversettelse for den etiketten for hvert språk nettstedet støtter.');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'Etikettredigeringsmodusbryter');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'I dette skjermbildet ser vi redigeringsmodusbryteren. Redigeringsmodusen er AV og etikettene vises som normalt: ');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'Etikettredigeringsmodus aktivert');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'I dette skjermbildet ser vi at når du er i redigeringsmodus, er etikettene du kan gi nytt navn uthevet:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', 'Velg elementet som skal endres');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'Når en etikett er valgt vises en popup:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'Endre etiketten');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Bruk det lille skjemaet for å endre etiketten. Klikk haken for å fullføre, eller klikk X for å avbryte redigeringen:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Etikett endret');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Når du har lagret endringen, blir etiketten oppdatert på siden. Du kan deaktivere redigeringsmodus nå:');

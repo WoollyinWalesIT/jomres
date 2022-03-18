@@ -190,7 +190,7 @@ function generateDateInput($fieldName, $dateValue = '', $myID = false, $siteConf
 	$output .= '
 	</script>
 	<div class="input-group">
-		<input type="text" readonly="readonly" style="cursor:pointer; background-color: #FFFFFF; position: relative; z-index: 1044;" ' .$size.' name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" placeholder="'.$placeholder.'" class="'.$input_class.' form-control" />'.$bs3_icon.'
+		<input type="text" readonly="readonly" style="cursor:pointer; background-color: #FFFFFF; position: relative;" ' .$size.' name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" placeholder="'.$placeholder.'" class="'.$input_class.' form-control" />'.$bs3_icon.'
 	</div>';
 
 	$pageoutput[ ] = array('INPUT' => $output);

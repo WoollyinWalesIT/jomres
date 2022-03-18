@@ -1784,7 +1784,7 @@ jr_define ('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'A támogatási kulcs ér
 jr_define ('_JOMRES_DASHBOARD_DRAG_TRASH', 'Húzza a foglalásokat erre a területre a törléshez');
 jr_define ('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define ('_JOMRES_LONG', 'Hosszú (nn.nnnn)');
-jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Győződjön meg róla, hogy létrehozott egy WordPress oldalt, amely tartalmazza a [jomres: xx-XX] rövid kódot (ahol xx-XX a webhely nyelvi kódja, például [jomres: en-GB] vagy [ jomres: hu-USA]) különben nem fog tudni hozzáférni a Jomres-hez a frontendről, hogy kezelje ingatlanjait és foglalásait. <br> A Jomres a Bootstrap keretrendszerre épül, ezért azt a Bootstrap-on alapuló témára kell használnia. javasoljon egyet a Bootstrap 3 alapján. Ha nem fér hozzá egy témához, akkor javasoljuk, hogy használja a Jomres Leohtian témát a Wordpresshez, amelyet <a href = "https://www.jomres.net/download/free- letöltések/letöltés/5-miscelleneous-downloads/11-leohtian-for-wordpress target="_blank"> letöltés innen. </a> ');
+jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Győződjön meg róla, hogy létrehozott egy WordPress oldalt, amely tartalmazza a [jomres: xx-XX] rövid kódot (ahol xx-XX a webhely nyelvi kódja, például [jomres: en-GB] vagy [ jomres: hu-USA]) különben nem fog tudni hozzáférni a Jomres-hez a frontendről, hogy kezelje ingatlanjait és foglalásait.');
 jr_define ('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', 'Jomres legtöbb ingatlanának van bérbeadási folyamata. A szállodák/panziók/panziók külön szobákat bérelnek, a nyaralók/villák/apartmanok pedig az egész ingatlant. Ez az ingatlankezelő számára láthatatlan, de nekik ahhoz, hogy tarifákat hozzanak létre ingatlanukhoz, először hozzá kell adnia az ingatlan típusának megfelelő szobatípusokat.
 Például egy szállodai ingatlan típusnak általában több szobatípusra van szüksége (kétágyas szobák, egyágyas szobák és ikrek), míg a villáknak csak egy szobatípusuk lehet, pl. 2 hálószoba, 5 hálószoba.
 Lehetőség van szobatípusok létrehozására az olyan ingatlanokhoz, mint a Tours. Ez lehetővé teszi az ügyfelek számára, hogy csak olyan túrákat keressenek, mint a túrák, de az ingatlankezelő nem hoz létre tarifákat ehhez a tulajdontípushoz, így a kezelési folyamat nem releváns számukra.
@@ -2682,3 +2682,20 @@ jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Kedvezményes");
 
 	jr_define('JOMRES_UPDATES_TITLE', 'Jomres frissítések');
 	jr_define('JOMRES_UPDATES_INFO', "Ez az oldal letöltheti és telepítheti a Jomres legfrissebb verzióját az Ön számára. Saját funkcióit használja, nem a gazdagép CMS-ét, ezért ha probléma lép fel a gazdagép CMS frissítése során, ezt az oldalt használhatja kényszeríteni kell a Jomres legújabb verziójának újratelepítését.");
+
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'A tulajdonkezelők használhatják a szerkesztési módot a frontendben az egyes tulajdonságokhoz tartozó karakterláncok testreszabásához, ez azonban csak akkor működik, ha a WordPress Permalink beállítása Sima (http://www.domain.com/?p=123). Ha ezt megtette, a frontend felhasználók személyre szabhatják az egyedi tulajdonságokra jellemző karakterláncokat, például helyiségneveket és egyéb címkéket. ');
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', 'Címkeszerkesztési mód');
+	jr_define('JOMRES_EDITING_MODE_HELP_LEAD', 'Ez a funkció az elemcímkék megváltoztatására szolgál, általában különböző nyelvekre.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', 'A szerkesztési mód lehetővé teszi az egyedi tulajdonságokra jellemző címkék átnevezését. Ha a Szerkesztés módot használja egy címke átnevezéséhez, a változás csak az adott tulajdonságlistán jelenik meg. Például egy tulajdonságon, amelyet érdemes lehet az „Árak” szót, a másikon pedig az „Árak” szót használjuk. Nem minden címkét lehet megváltoztatni, például a szobatípusnevek az egész webhelyre kiterjedő címkék, így nem módosíthatók, de általában bármi, ami egyedi ingatlanra jellemző. megváltoztatható.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', 'Ha a webhely több nyelvet is támogat, egy nyelv használata közben létrehozhat egy egyedi tulajdonsághoz tartozó elemet. Ha ezután megváltoztatja az aktív nyelvet, a szerkesztési mód segítségével átnevezheti a címkét, megfelelő fordítás beírása az aktuális nyelven. Folytathatja az aktív nyelv módosítását, hogy a webhely által támogatott minden nyelvhez megfelelő fordítást adjon meg az adott címkéhez.');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'Címkeszerkesztési mód kapcsoló');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'Ezen a képernyőképen a Szerkesztési mód kapcsolót látjuk. A szerkesztési mód KI van kapcsolva, és a címkék a szokásos módon jelennek meg: ');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'Címkeszerkesztési mód engedélyezve');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'Ebben a képernyőképen azt látjuk, hogy szerkesztés módban az átnevezhető címkék kiemelve vannak:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', 'Válassza ki a módosítani kívánt elemet');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'Ha egy címkét kiválasztunk, egy előugró ablak jelenik meg:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'Címke módosítása');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Használja a kis űrlapot a címke megváltoztatásához. Kattintson a pipára a befejezéshez, vagy kattintson az X-re a szerkesztés megszakításához:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Címke módosítva');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Miután elmentette a változtatást, a címke frissül az oldalon. A szerkesztési módot most letilthatja:');

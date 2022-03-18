@@ -257,18 +257,18 @@ class j06001listyourproperties_ajax
 			//end properties toolbar
 
 			$r[] = $p->propertys_uid;
-			
+			$property_name = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_NAME_'.$p->propertys_uid , $p->property_name , false);
 			if ($p->propertys_uid == $defaultProperty) {
-				$r[] = '<span class="label label-blue">'.jomres_decode($p->property_name).'</span>';
+				$r[] = '<span class="label label-blue">'.jomres_decode($property_name).'</span>';
 			} else {
 				if ($p->completed == 1) {
 					if ($p->approved == 1) {
 						$r[] = jomres_decode($p->property_name);
 					} else {
-						$r[] = '<span class="label label-orange">'.jomres_decode($p->property_name).'</span>';
+						$r[] = '<span class="label label-orange">'.jomres_decode($property_name).'</span>';
 					}
 				} else {
-					$r[] = '<span class="label label-red">'.jomres_decode($p->property_name).'</span>';
+					$r[] = '<span class="label label-red">'.jomres_decode($property_name).'</span>';
 				}
 			}
 

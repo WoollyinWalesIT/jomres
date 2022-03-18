@@ -1793,7 +1793,7 @@ jr_define('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Destek anahtarınız geç
 jr_define('_JOMRES_DASHBOARD_DRAG_TRASH', 'İptal etmek için rezervasyonları bu bölgeye sürükleyin');
 jr_define('_JOMRES_LAT', 'Enlem (nn.nnnn)');
 jr_define('_JOMRES_LONG', 'Boylam (nn.nnnn)');
-jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Lütfen [jomres:xx-XX] kısa kodunu içeren bir WordPress Sayfası oluşturduğunuzdan emin olun (burada xx-XX sitenizin dil kodunuzdur, örneğin [jomres:en-GB] veya [jomres:en-US] ) aksi takdirde mülklerinizi ve rezervasyonlarınızı yönetmek için Jomres\'e ön uçtan erişemezsiniz. <br> Jomres, Bootstrap çerçevesi üzerine inşa edilmiştir, bu yüzden onu Bootstrap tabanlı bir tema üzerinde kullanmalısınız. Bootstrap 3\'e dayalı bir tane öneriyoruz. Bir temaya erişiminiz yoksa, Wordpress için Jomres Leohtian temasını kullanmanızı öneririz, bu temayı <a href="https://www.jomres.net/download/free yapabilirsiniz. -downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target="_blank">buradan indirin.</a>');
+jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Lütfen [jomres:xx-XX] kısa kodunu içeren bir WordPress Sayfası oluşturduğunuzdan emin olun (burada xx-XX sitenizin dil kodunuzdur, örneğin [jomres:en-GB] veya [jomres:en-US] ) aksi takdirde mülklerinizi ve rezervasyonlarınızı yönetmek için Jomres\'e ön uçtan erişemezsiniz. ');
 jr_define('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', "Bir oda türü oluşturmadan önce, bunun bir otel türü mülkü olup olmadığını veya bir villa türü mülkü olup olmadığını bilmemiz gerekir.");
 jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', 'Yeni oda tipleri eklemek için tıklayın');
 jr_define("_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES", "Uyarı, oda türlerine sahip olmayan bir veya daha fazla mülk türeviniz. Mülk yöneticilerinin tarifeleri oluşturabilmesi için mülklerin oda tiplerine ihtiyacı var.");
@@ -2688,3 +2688,20 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Mülk tipi
 
 	jr_define('JOMRES_UPDATES_TITLE', 'Jomres Güncellemeleri');
 	jr_define('JOMRES_UPDATES_INFO', "Bu sayfa sizin için Jomres'in en son sürümünü indirebilir ve kurabilir. Ana bilgisayar CMS'sinin değil, kendi işlevselliğini kullanır, bu nedenle ana bilgisayar CMS'sinin güncellemesi sırasında bir sorun oluşursa, bu sayfayı aşağıdakileri yapmak için kullanabilirsiniz: Jomres'in en son sürümünün yeniden yüklenmesini zorlayın.");
+
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'Mülk yöneticileri, her bir özellik için dizeleri özelleştirmek için ön uçtaki düzenleme modunu kullanabilir, ancak bu yalnızca WordPress Kalıcı Bağlantı ayarınız Düz (http://www.domain.com/?p=123).Bunu yaptığınızda, ön uç kullanıcılar, benzersiz özelliklere özel olan oda adları ve diğer etiketler gibi dizeleri özelleştirebilecekler.');
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', 'Etiket düzenleme modu');
+	jr_define('JOMRES_EDITING_MODE_HELP_LEAD', 'Bu özellik, öğe etiketlerini genellikle farklı dillere değiştirmek için kullanılır.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', 'Düzenleme modu, tek tek mülklere özgü etiketleri yeniden adlandırmanıza olanak tanır. Bir etiketi yeniden adlandırmak için Düzenleme modunu kullandığınızda, değişiklik yalnızca o mülk listesinde görünür. Örneğin, isteyebilirsiniz bir mülk üzerinde "Fiyatlar" kelimesini ve diğerinde "Fiyatlar" kelimesini kullanmak için. Tüm etiketler değiştirilemez, örneğin oda tipi adları site çapında etiketlerdir, bu nedenle değiştirilemezler, ancak genellikle tek bir mülke özgü olan herhangi bir şey değiştirilebilir.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', 'Site birden fazla dili destekliyorsa, tek bir dil kullanırken tek bir mülke özgü bir öğe oluşturabilirsiniz. Daha sonra etkin dilinizi değiştirdiğinizde, o etiketi yeniden adlandırmak için düzenleme modunu kullanabilirsiniz, geçerli dilde uygun bir çeviri girme.Sitenin desteklediği her dil için o etikete uygun bir çeviri girmek için aktif dili değiştirmeye devam edebilirsiniz.');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'Etiket düzenleme modu anahtarı');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'Bu ekran görüntüsünde Düzenleme modu geçişini görüyoruz. Düzenleme modu KAPALI ve etiketler normal görünüyor: ');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'Etiket düzenleme modu etkinleştirildi');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'Bu ekran görüntüsünde, Düzenleme modundayken yeniden adlandırabileceğiniz etiketlerin vurgulandığını görüyoruz:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', 'Değiştirilecek öğeyi seçin');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'Bir etiket seçildiğinde bir açılır pencere belirir:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'Etiketi değiştir');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Etiketi değiştirmek için küçük formu kullanın. Bitirmek için Onay\'a tıklayın veya düzenlemeyi iptal etmek için X\'e tıklayın:');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Etiket değiştirildi');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Değişikliği kaydettikten sonra etiket sayfada güncellenir. Düzenleme modunu şimdi devre dışı bırakabilirsiniz:');

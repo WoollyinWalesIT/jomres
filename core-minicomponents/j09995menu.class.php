@@ -256,6 +256,7 @@ class j09995menu
 		if ($thisJRUser->accesslevel >= 50) { //FAQ works for guests too, but since it doesn`t have any content by default, we`ll just hide the menu for guests
 			$jomres_menu->add_item(90, jr_gettext('_JOMRES_FAQ', '_JOMRES_FAQ', false), 'faq', 'fa-question');
 			$jomres_menu->add_item(90, jr_gettext('VIDEO_TUTORIALS', 'VIDEO_TUTORIALS', false), 'videos', 'fa-youtube-play');
+			$jomres_menu->add_item(90, jr_gettext('JOMRES_EDITING_MODE_HELP_TITLE', 'JOMRES_EDITING_MODE_HELP_TITLE', false), 'editingmode', 'fal fa-edit');
 		}
 	}
 

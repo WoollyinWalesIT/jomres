@@ -1889,7 +1889,7 @@ jr_define ('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS' , 'کلید پشتیبان
 jr_define ('_JOMRES_DASHBOARD_DRAG_TRASH' , 'رزروها را برای لغو آنها به این منطقه بکشید') ;
 jr_define ('_JOMRES_LAT' , 'Lat (nn.nnnn ') ;
 jr_define ('_JOMRES_LONG' , 'Long (nn.nnnn)') ;
-jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT' , 'لطفاً اطمینان حاصل کنید که یک صفحه وردپرس ایجاد کرده اید که حاوی کد کوتاه [jomres: xx-XX] (جایی که xx-XX کد زبان سایت شما است , برای مثال [jomres: en-GB] یا [ jomres: fa-US]) در غیر این صورت برای مدیریت املاک و رزروهای خود نمی توانید از پیش رو به Jomres دسترسی داشته باشید. <br> Jomres بر اساس چارچوب Bootstrap ساخته شده است , بنابراین باید از آن بر روی یک موضوع بر اساس Bootstrap استفاده کنید. ما اگر به موضوعی دسترسی ندارید , توصیه می کنیم از تم Jomres Leohtian برای Wordpress استفاده کنید که می توانید <a href = "https://www.jomres.net/download/free- downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target="_blank" > از اینجا بارگیری کنید. </a> ');
+jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT' , 'لطفاً اطمینان حاصل کنید که یک صفحه وردپرس ایجاد کرده اید که حاوی کد کوتاه [jomres: xx-XX] (جایی که xx-XX کد زبان سایت شما است , برای مثال [jomres: en-GB] یا [ jomres: fa-US]) در غیر این صورت برای مدیریت املاک و رزروهای خود نمی توانید از پیش رو به Jomres دسترسی داشته باشید.');
 jr_define ('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES' , "قبل از اینکه بتوانید نوع اتاق را ایجاد کنید , باید بدانیم که مربوط به ملک از نوع هتل است یا ویژگی ویلا.");
 jr_define ('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT' , 'برای افزودن انواع اتاق جدید کلیک کنید') ;
 jr_define ('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES' , 'اخطار , شما یک یا چند نوع دارایی بدون نوع اتاق دارید. خواص به انواع اتاق نیاز دارند تا مدیران املاک بتوانند تعرفه ایجاد کنند.');
@@ -2788,5 +2788,23 @@ jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "Uid
 jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "الگوی پیش‌فرض milk_details.html است, با این آرگومان می‌توانید یک الگوی جزئیات ویژگی متفاوت برای نمایش تعریف کنید.");
 
 jr_define('JOMRES_UPDATES_TITLE', 'Jomres Updates');
-jr_define('JOMRES_UPDATES_INFO', "این صفحه می تواند جدیدترین نسخه Jomres را برای شما دانلود و نصب کند. از عملکرد خود استفاده می کند و نه از CMS میزبان، بنابراین اگر مشکلی در حین به روز رسانی CMS میزبان رخ داد، می توانید از این صفحه برای مجبور به نصب مجدد جدیدترین نسخه Jomres شوید.");
+jr_define('JOMRES_UPDATES_INFO', "این صفحه می تواند جدیدترین نسخه Jomres را برای شما دانلود و نصب کند. از عملکرد خود استفاده می کند و نه از CMS میزبان, بنابراین اگر مشکلی در حین به روز رسانی CMS میزبان رخ داد, می توانید از این صفحه برای مجبور به نصب مجدد جدیدترین نسخه Jomres شوید.");
 
+
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'مدیران دارایی می توانند از حالت ویرایش در قسمت جلویی برای سفارشی کردن رشته ها برای هر ویژگی استفاده کنند, با این حال این تنها در صورتی می تواند کار کند که تنظیمات پیوند دائمی وردپرس شما روی Plain تنظیم شده باشد (http://www.domain.com/?p=123) هنگامی که این کار را انجام دادید, کاربران frontend می‌توانند رشته‌هایی مانند نام اتاق و سایر برچسب‌ها را که مختص ویژگی‌های منحصر به فرد هستند, سفارشی کنند.');
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', 'حالت ویرایش برچسب');
+jr_define('JOMRES_EDITING_MODE_HELP_LEAD', 'این ویژگی برای تغییر برچسب‌های آیتم‌ها, معمولاً به زبان‌های مختلف استفاده می‌شود.');
+jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', 'حالت ویرایش به شما امکان می‌دهد تا برچسب‌هایی را که منحصر به ویژگی‌های فردی هستند تغییر نام دهید. وقتی از حالت ویرایش برای تغییر نام یک برچسب استفاده می‌کنید, تغییر فقط در آن فهرست ویژگی ظاهر می‌شود. برای مثال, در یک ویژگی که ممکن است بخواهید برای استفاده از کلمه "قیمت ها" و روی دیگری از کلمه "نرخ ها". همه برچسب ها را نمی توان تغییر داد, به عنوان مثال, نام های نوع اتاق برچسب های سراسر سایت هستند, بنابراین نمی توان آنها را تغییر داد, اما معمولا هر چیزی که منحصر به یک دارایی است. میتونه تغییر داده بشه.');
+jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', 'اگر سایت از چندین زبان پشتیبانی می کند, در حالی که از یک زبان استفاده می کنید, می توانید یک مورد منحصر به فرد برای یک ویژگی خاص ایجاد کنید. وقتی زبان فعال خود را تغییر دادید, می توانید از حالت ویرایش برای تغییر نام آن برچسب استفاده کنید. وارد کردن یک ترجمه مناسب به زبان فعلی. می توانید به تغییر زبان فعال ادامه دهید تا برای هر زبانی که سایت پشتیبانی می کند, ترجمه مناسب برای آن برچسب وارد کنید.');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'سوئیچ حالت ویرایش برچسب');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'در این اسکرین شات سوئیچ حالت ویرایش را می بینیم. حالت ویرایش خاموش است و برچسب ها به صورت عادی ظاهر می شوند: ');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'حالت ویرایش برچسب فعال است');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'در این اسکرین شات می بینیم که در حالت ویرایش, برچسب هایی که می توانید تغییر نام دهید برجسته می شوند:');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', 'مورد تغییر را انتخاب کنید');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'هنگامی که یک برچسب انتخاب می شود یک پنجره بازشو ظاهر می شود:');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'تغییر برچسب');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'از فرم کوچک برای تغییر برچسب استفاده کنید. برای اتمام روی علامت کلیک کنید, یا برای لغو ویرایش روی X کلیک کنید:');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'برچسب تغییر کرد');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'بعد از اینکه تغییر را ذخیره کردید, برچسب در صفحه به روز می شود. اکنون می توانید حالت ویرایش را غیرفعال کنید:');
+	

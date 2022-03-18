@@ -1791,7 +1791,7 @@ jr_define('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Your support key is valid
 jr_define('_JOMRES_DASHBOARD_DRAG_TRASH', 'Drag bookings to this area to cancel them');
 jr_define('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define('_JOMRES_LONG', 'Long (nn.nnnn)');
-jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Please ensure that you`ve created a WordPress Page that contains the [jomres:xx-XX] shortcode ( where xx-XX is your site language code, for example [jomres:en-GB] or [jomres:en-US] ) otherwise you will not be able to access Jomres from the frontend to manage your properties and bookings. <br> Jomres is built on the Bootstrap framework, so you must use it on a theme based on Bootstrap. We recommend one based on Bootstrap 3. If you do not have access to a theme then we recommend that you use the Jomres Leohtian theme for Wordpress which you can <a href="https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target="_blank">download from here.</a>');
+jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Please ensure that you`ve created a WordPress Page that contains the [jomres:xx-XX] shortcode ( where xx-XX is your site language code, for example [jomres:en-GB] or [jomres:en-US] ) otherwise you will not be able to access Jomres from the frontend to manage your properties and bookings.');
 jr_define('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', "Before you can create a room type, we need to know if it's for a hotel type property, or a villa type property.");
 jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', 'Click to add new room types');
 jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES', 'Warning, you have one or more property types with no room types. Properties need room types so that property managers can create tariffs.');
@@ -1938,7 +1938,7 @@ jr_define('_JOMRES_PAYMENT_METHOD_USED',"Payment method : ");
 jr_define('_JOMRES_PRICES',"Get Connected");
 
 
-jr_define('_OAUTH_TITLE',"App key management");
+jr_define('_OAUTH_TITLE',"API key management");
 jr_define('_OAUTH_APPS',"REST API client details");
 jr_define('_OAUTH_IDENTIFIER',"Identifier");
 jr_define('_OAUTH_APIKEY',"Client ID");
@@ -1949,7 +1949,7 @@ jr_define('_OAUTH_SCOPE_TITLE',"Permissions ( what the client can do ) ");
 jr_define('_OAUTH_SCOPE_CATEGORY_USER' , "User permissions");
 jr_define('_OAUTH_SCOPE_CATEGORY_PROPERTIES' , "Property permissions");
 
-jr_define('API_DOCUMENTATION_TITLE',"App REST API documentation");
+jr_define('API_DOCUMENTATION_TITLE',"REST API documentation");
 
 jr_define('_OAUTH_CONFIG',"API Core configuration");
 
@@ -2704,5 +2704,25 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Property t
 	jr_define('JOMRES_UPDATES_TITLE', 'Jomres Updates');
 	jr_define('JOMRES_UPDATES_INFO', "This page can download and install the most recent version of Jomres for you. It uses it's own functionality and not that of the host CMS therefore if a problem occurs during the host CMS's update you can use this page to force a reinstallation of the most recent version of Jomres.");
 
+
+
+
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'Property managers can use the editing mode in the frontend to customise strings for each property, however this can only work if your WordPress Permalink setting is set to Plain (http://www.domain.com/?p=123). Once  you have done that frontend users will be able to customise strings, such as room names and other labels, that are specific to unique properties. ');
+
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', 'Label editing mode');
+	jr_define('JOMRES_EDITING_MODE_HELP_LEAD', 'This feature is used to change item labels, usually into different languages.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', 'Editing mode allows you to rename labels that are unique to individual properties. When you use Editing mode to rename a label, the change will only appear on that property listing. For example, on one property you might want to use the word "Prices" and on another the word "Rates". Not all labels can be changed, for example room type names are site-wide labels, so they cannot be changed, but usually anything that is unique to an individual property can be changed.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', 'If the site supports multiple languages, while using one language you can create an item that is unique to an individual property. When you then change your active language, you can use the editing mode to rename that label, entering a suitable translation in the current language. You can continue changing the active language to enter a suitable translation for that label for each language the site supports.');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'Label editing mode switch');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'In this screenshot we see the Editing mode switch. The Editing mode is OFF and the labels appear as normal: ');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'Label editing mode enabled');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'In this screenshot we see that, while in Editing mode, the labels you can rename are highlighted:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', 'Select the item to change');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'When a label is selected a popup appears:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'Change the label');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Use the little form to change the label. Click the Tick to finish, or click the X to cancel editing:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Label changed');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Once you have saved the change then the label is updated in the page. You can disable editing mode now:');
 
 

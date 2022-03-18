@@ -1831,7 +1831,7 @@ jr_define ('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'מפתח התמיכה ש
 jr_define ('_JOMRES_DASHBOARD_DRAG_TRASH', 'גרור הזמנות לאזור זה כדי לבטל אותן');
 jr_define ('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define ('_JOMRES_LONG', 'Long (nn.nnnn)');
-jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'אנא ודא שיצרת דף וורדפרס המכיל את קוד הקיצור [jomres: xx-XX] (כאשר xx-XX הוא קוד שפת האתר שלך, למשל [jomres: en-GB] או [ jomres: en-US]) אחרת לא תוכל לגשת ל- Jomres מהחזית כדי לנהל את הנכסים וההזמנות שלך. <br> Jomres בנוי על מסגרת Bootstrap, לכן עליך להשתמש בה בנושא המבוסס על Bootstrap. אנו ממליץ על אחד המבוסס על Bootstrap 3. אם אין לך גישה לנושא, אנו ממליצים לך להשתמש בעיצוב Jomres Leohtian עבור Wordpress שתוכל <a href = "https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target="_blank"> הורד מכאן. </a> ');
+jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'אנא ודא שיצרת דף וורדפרס המכיל את קוד הקיצור [jomres: xx-XX] (כאשר xx-XX הוא קוד שפת האתר שלך, למשל [jomres: en-GB] או [ jomres: en-US]) אחרת לא תוכל לגשת ל- Jomres מהחזית כדי לנהל את הנכסים וההזמנות שלך. ');
 jr_define ('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', 'לרוב הנכסים בג ומרס יש תהליך ניהול השכרה. מלונות/צימרים/פנסיונים משכירים חדרים בודדים, ובקתות/וילות/דירות משכירות את כל הנכס. זה אינו נראה למנהל הנכס, אך מבחינתם. כדי ליצור תעריפים על הנכס שלהם עליך להוסיף תחילה סוגי חדרים המתאימים לסוג הנכס.
 לדוגמה, סוג נכס במלון בדרך כלל יזדקק למספר סוגי חדרים (חדרים זוגיים, חדרי יחיד ותאומים) ואילו בוילה יכול להיות רק סוג חדר אחד, למשל. 2 חדרי שינה, 5 חדרי שינה.
 אפשר ליצור סוגי חדרים לנכסים כמו טיולים. זה מאפשר ללקוחות לחפש נכסים כמו סיורים בלבד, אך מנהל הנכס לא ייצור תעריפים עבור סוג נכס זה, ולכן תהליך הניהול אינו רלוונטי עבורם.
@@ -2722,3 +2722,20 @@ jr_define( 'DATA_SOURCES_TITLE_INFO', "מקורות נתונים רעננים. �
 
 	jr_define('JOMRES_UPDATES_TITLE', 'עדכוני גומרס');
 jr_define('JOMRES_UPDATES_INFO', "דף זה יכול להוריד ולהתקין עבורך את הגרסה העדכנית ביותר של Jomres. הוא משתמש בפונקציונליות שלו ולא בזו של ה-CMS המארח, לכן אם מתרחשת בעיה במהלך העדכון של ה-CMS המארח, תוכל להשתמש בדף זה כדי לכפות התקנה מחדש של הגרסה העדכנית ביותר של Jomres.");
+
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'מנהלי נכסים יכולים להשתמש במצב העריכה ב-frontend כדי להתאים אישית מחרוזות עבור כל מאפיין, אולם זה יכול לעבוד רק אם הגדרת הקישור הקבוע של WordPress שלך מוגדרת כרגיל (http://www.domain.com/?p=123). לאחר שתעשה זאת, משתמשי ממשק קצה יוכלו להתאים אישית מחרוזות, כגון שמות חדרים ותוויות אחרות, הספציפיות למאפיינים ייחודיים. ');
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', 'מצב עריכת תווית');
+	jr_define('JOMRES_EDITING_MODE_HELP_LEAD', 'תכונה זו משמשת לשינוי תוויות פריטים, בדרך כלל לשפות שונות.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', 'מצב עריכה מאפשר לך לשנות שם של תוויות שייחודיות לנכסים בודדים. כאשר אתה משתמש במצב עריכה כדי לשנות שם של תווית, השינוי יופיע רק ברישום הנכס הזה. לדוגמה, בנכס אחד שאולי תרצה להשתמש במילה "מחירים" ובמילה אחרת במילה "תעריפים". לא ניתן לשנות את כל התוויות, למשל שמות סוגי החדרים הם תוויות כלל-אתר, כך שלא ניתן לשנות אותן, אלא בדרך כלל כל דבר שייחודי לנכס בודד ניתן להחלפה.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', 'אם האתר תומך במספר שפות, תוך שימוש בשפה אחת אתה יכול ליצור פריט שהוא ייחודי למאפיין בודד. לאחר מכן אתה משנה את השפה הפעילה שלך, אתה יכול להשתמש במצב העריכה כדי לשנות את שם התווית, הזנת תרגום מתאים בשפה הנוכחית. ניתן להמשיך ולשנות את השפה הפעילה כדי להזין תרגום מתאים לתווית זו עבור כל שפה שבה האתר תומך.');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'מתג מצב עריכת תווית');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'בצילום מסך זה אנו רואים את מתג מצב העריכה. מצב העריכה כבוי והתוויות מופיעות כרגיל: ');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'מצב עריכת תוויות מופעל');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'בצילום מסך זה אנו רואים שבמצב עריכה, התוויות שניתן לשנות את שמותיהם מסומנות:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', 'בחר את הפריט לשינוי');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'כאשר נבחרת תווית מופיע חלון קופץ:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'שנה את התווית');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'השתמש בטופס הקטן כדי לשנות את התווית. לחץ על הסימון כדי לסיים, או לחץ על ה-X כדי לבטל את העריכה:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'התווית השתנתה');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'לאחר ששמרת את השינוי אז התווית מתעדכנת בדף. אתה יכול לבטל את מצב העריכה עכשיו:');
