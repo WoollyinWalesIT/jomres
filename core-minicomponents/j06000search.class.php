@@ -753,7 +753,11 @@
 			// -------------------------------------------------------------------------------------------------------------------------------------------
 
 			$output[ 'ARRIVALDATE' ] = generateDateInput('arrivalDate', $sch->prep[ 'arrival' ], 'ad', true);
+			$output[ 'ARRIVALDATE_LABEL_ID'] = get_showtime('date_input_label_id');
 			$output[ 'DEPARTUREDATE' ] = generateDateInput('departureDate', $sch->prep[ 'departure' ], false, true, false);
+			$output[ 'DEPARTUREDATE_LABEL_ID'] = get_showtime('departure_date_unique_id');
+
+
 			$showButton = true;
 
 

@@ -32,6 +32,8 @@ function generateDateInput($fieldName, $dateValue = '', $myID = false, $siteConf
 
 	$uniqueID = generateJomresRandomString(15);
 
+	set_showtime('date_input_label_id' , $uniqueID);
+
 	$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 	$placeholder = '';
 
