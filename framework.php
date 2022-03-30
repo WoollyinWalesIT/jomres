@@ -58,7 +58,11 @@ function load_cms_environment()
         require_once JPATH_BASE.'includes/framework.php';
 		if (file_exists(JPATH_BASE.DIRECTORY_SEPARATOR.'libraries'.DIRECTORY_SEPARATOR.'src'.DIRECTORY_SEPARATOR.'Version.php')) { // Joomla 4
 			$version = new Version();
-			if($version->MAJOR_VERSION == 4) {
+			$JoomlaVersion = $version->getShortVersion(); // I couldn't get reflection to work here for some reason so we'll do it the old fashioned way
+			$bang = explode(".",$JoomlaVersion);
+			$MajorVersion = (int)$bang[0];
+			
+			if($MajorVersion == 4) {
 				$container = \Joomla\CMS\Factory::getContainer();
 				$container->alias(\Joomla\Session\SessionInterface::class, 'session.web.site');
 				$app      = $container->get(\Joomla\CMS\Application\SiteApplication::class);
