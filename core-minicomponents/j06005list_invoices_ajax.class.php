@@ -46,7 +46,13 @@ class j06005list_invoices_ajax
 		$jomres_encryption = new jomres_encryption();
 		
 		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-		$defaultProperty = getDefaultProperty();
+		if ($thisJRUser->userIsManager) {
+			$defaultProperty = getDefaultProperty();
+		} else {
+			$defaultProperty = 0;
+		}
+
+		set_showtime('property_uid',$defaultProperty);
 		$mrConfig = getPropertySpecificSettings($defaultProperty);
 
 		$startDate = jomresGetParam($_GET, 'startDate', '');
@@ -259,6 +265,8 @@ class j06005list_invoices_ajax
 			'data' => array(),
 		);
 
+		$customTextObj = jomres_singleton_abstract::getInstance('custom_text');
+
 		foreach ($jomresInvoicesList as $p) {
 			$r = array();
 
@@ -266,7 +274,10 @@ class j06005list_invoices_ajax
 			if ($show_all == 1 && ((int) $p->property_uid != (int) $defaultProperty)) {
 				$thisProperty = '&thisProperty='.$p->property_uid;
 			}
-
+			if ($thisJRUser->userIsManager == false) {
+				$customTextObj->get_custom_text_for_property($p->property_uid);
+				set_showtime('property_uid',$p->property_uid);
+			}
 			switch ($p->status) {
 					case 0:
 						$label_class = 'label-red';
