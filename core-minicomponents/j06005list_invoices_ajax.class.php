@@ -278,21 +278,36 @@ class j06005list_invoices_ajax
 				$customTextObj->get_custom_text_for_property($p->property_uid);
 				set_showtime('property_uid',$p->property_uid);
 			}
+
+			if (jomres_bootstrap_version() == '5') {
+				$label_red = 'badge bg-danger';
+				$lable_green = 'badge bg-success';
+				$label_black = 'badge bg-dark';
+				$label_orange = 'badge bg-warning text-light';
+				$label_muted = 'badge bg-light text-dark';
+			} else {
+				$label_red = 'label-red';
+				$lable_green = 'label-green';
+				$label_black = 'label-black';
+				$label_orange = 'label-orange';
+				$label_muted = 'label-grey';
+			}
+
 			switch ($p->status) {
 					case 0:
-						$label_class = 'label-red';
+						$label_class = $label_red;
 						break;
 					case 1:
-						$label_class = 'label-green';
+						$label_class = $lable_green;
 						break;
 					case 2:
-						$label_class = 'label-black';
+						$label_class = $label_black;
 						break;
 					case 3:
-						$label_class = 'label-orange';
+						$label_class = $label_orange;
 						break;
 					default:
-						$label_class = 'label-grey';
+						$label_class = $label_muted;
 						break;
 					}
 
