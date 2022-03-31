@@ -3827,7 +3827,7 @@ function propertyConfiguration()
  *
  * Takes settings from the configuration and saves (most of them) to the jomres_settings table.
  */
-function savePropertyConfiguration()
+function savePropertyConfiguration( $property_uid = 0 )
 {
 	$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
 	$MiniComponents->triggerEvent('00502', array()); // This trigger allows plugins to check saves, for example to prevent future changes to a setting once it's been made.
@@ -3835,7 +3835,10 @@ function savePropertyConfiguration()
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig = $siteConfig->get();
 
-	$property_uid = (int)getDefaultProperty();
+    if ($property_uid == 0) {
+		$property_uid = (int)getDefaultProperty();
+	}
+
 	
 	if ($property_uid == 0) {
 		return false;
