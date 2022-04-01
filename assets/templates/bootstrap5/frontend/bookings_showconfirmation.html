@@ -37,122 +37,231 @@
 
 <form action="" method="post" name="bookingForm" role="form" onsubmit="send.disabled = true; return true;">
 <div class="row">
-	<div class="col-md-6">
-		<div class="card">
+	<div class="col-md-4">
+		<div class="card h-100">
 			<div class="card-body">
-				<h2 class="card-title">{AJAXFORM_PARTICULARS}</h2>
-			</div>
-			<div class="card-text">
-				<div class="row">
-					<div class="col-md-6">
-						<strong>{HARRIVAL}</strong>
-					</div>
-					<div class="col-md-6">
-						{ARRIVAL}
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6">
-						<strong>{HDEPARTURE}</strong>
-					</div>
-					<div class="col-md-6">
-						{DEPARTURE}
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6">
-						<strong>{HDAYSSTAYING}</strong>
-					</div>
-					<div class="col-md-6">
-						{DAYSSTAYING}
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6">
-						<strong>{HTOTALINPARTY}</strong>
-					</div>
-					<div class="col-md-6">
-						{TOTALINPARTY}
-					</div>
-				</div>
-				<patTemplate:tmpl name="mrp_room_details" type="simpleCondition" requiredVars="hroomsbooked">
-				<div class="row">
-					<div class="col-md-6">
-						<strong>{PROPERTYNAME} - {HROOMSBOOKED} - {NUMROOMS}</strong>
-					</div>
-					<div class="col-md-6">
-						<patTemplate:tmpl name="booking_rooms">
-							{FULLDESC}
-						</patTemplate:tmpl>
-					</div>
-				</div>
-				</patTemplate:tmpl>
-				
-				<patTemplate:tmpl name="room_info">
+				<h2 class="card-title">{AJAXFORM_ADDRESS}</h2>
+				<div class="card-text">
 					<div class="row">
-						<div class="col-md-6">
-							<strong>{HROOM_NAME}</strong>
-						</div>
-						<div class="col-md-6">
-							{ROOM_NAME}
+						<div class="col-md-12">
+							<strong>{FIRSTNAME} {SURNAME}</strong>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-6">
-							<strong>{HROOM_NUMBER}</strong>
-						</div>
-						<div class="col-md-6">
-							{ROOM_NUMBER}
+						<div class="col-md-12">
+							{HOUSENO} {STREET}
 						</div>
 					</div>
-				</patTemplate:tmpl>
-				<patTemplate:tmpl name="customfields" type="simpleCondition" requiredVars="description">
 					<div class="row">
-						<div class="col-md-6">
-							{DESCRIPTION}
-						</div>
-						<div class="col-md-6 align-right">
-							{VALUE}
+						<div class="col-md-12">
+							{TOWN}, {COUNTY}, {POSTCODE}
 						</div>
 					</div>
-				</patTemplate:tmpl>
+					<div class="row">
+						<div class="col-md-12">
+							{COUNTRY}
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 ">
+							<small><strong>{HTEL}:</strong></small> {LANDLINE}
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<small><strong>{HMOBILE}:</strong></small> {MOBILE}
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-	<div class="col-md-6">
-		<div class="card">
+	<div class="col-md-4">
+		<div class="card h-100">
 			<div class="card-body">
-				<h2 class="card-title">{AJAXFORM_ADDRESS}</h2>
+				<h2 class="card-title">{AJAXFORM_PARTICULARS}</h2>
+				<div class="card-text">
+					<div class="row">
+						<div class="col-md-6 small">
+							<strong>{HARRIVAL}</strong>
+						</div>
+						<div class="col-md-6">
+							{ARRIVAL}
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 small">
+							<strong>{HDEPARTURE}</strong>
+						</div>
+						<div class="col-md-6">
+							{DEPARTURE}
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 small">
+							<strong>{HDAYSSTAYING}</strong>
+						</div>
+						<div class="col-md-6">
+							{DAYSSTAYING}
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 small">
+							<strong>{HTOTALINPARTY}</strong>
+						</div>
+						<div class="col-md-6">
+							{TOTALINPARTY}
+						</div>
+					</div>
+					<br/>
+					<patTemplate:tmpl name="mrp_room_details" type="simpleCondition" requiredVars="hroomsbooked">
+					<div class="row">
+						<div class="col-md-6">
+							<strong>{PROPERTYNAME}</strong>
+						</div>
+						<div class="col-md-6">
+
+						</div>
+					</div>
+					<br/>
+					<div class="row">
+						<div class="col-md-6 small">
+							<strong>{HROOMSBOOKED} - {NUMROOMS}</strong>
+						</div>
+						<div class="col-md-6">
+							<patTemplate:tmpl name="booking_rooms">
+								{FULLDESC}
+							</patTemplate:tmpl>
+						</div>
+					</div>
+					</patTemplate:tmpl>
+
+					<patTemplate:tmpl name="room_info">
+						<div class="row">
+							<div class="col-md-6  small">
+								<strong>{HROOM_NAME}</strong>
+							</div>
+							<div class="col-md-6">
+								{ROOM_NAME}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6 small">
+								<strong>{HROOM_NUMBER}</strong>
+							</div>
+							<div class="col-md-6">
+								{ROOM_NUMBER}
+							</div>
+						</div>
+					</patTemplate:tmpl>
+					<patTemplate:tmpl name="customfields" type="simpleCondition" requiredVars="description">
+						<div class="row">
+							<div class="col-md-6">
+								{DESCRIPTION}
+							</div>
+							<div class="col-md-6 align-right">
+								{VALUE}
+							</div>
+						</div>
+					</patTemplate:tmpl>
+				</div>
 			</div>
-			<div class="card-text">
-				<div class="row">
-					<div class="col-md-12">
-						<strong>{FIRSTNAME} {SURNAME}</strong>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="card h-100">
+			<div class="card-body">
+				<h2 class="card-title">{PRICE_SUMMARY}</h2>
+				<div class="card-text">
+					<div class="row">
+						<div class="col-md-12">
+							{DISCOUNT}
+						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						{HOUSENO} {STREET}
+					<div class="row">
+						<div class="col-md-6 small">
+							<strong>{HSINGLEPERSON_COST}</strong>
+						</div>
+						<div class="col-md-6 align-right">
+							{SINGLEPERSON_COST}
+						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						{TOWN}, {COUNTY}, {POSTCODE}
+					<div class="row">
+						<div class="col-md-6 small">
+							<strong>{JOMRES_CITY_TAX_HEADING}</strong>
+						</div>
+						<div class="col-md-6 align-right">
+							{CITY_TAX}
+						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						{COUNTRY}
+					<div class="row">
+						<div class="col-md-6 small">
+							<strong>{JOMRES_CLEANING_FEE_HEADING}</strong>
+						</div>
+						<div class="col-md-6 align-right">
+							{CLEANING_FEE}
+						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						{HTEL}: {LANDLINE}
+					<div class="row">
+						<div class="col-md-6 small">
+							<strong>{ACCOMMODATION_TOTAL}</strong>
+						</div>
+						<div class="col-md-6 align-right">
+							{ROOMTOTAL}
+						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						{HMOBILE}: {MOBILE}
+					<patTemplate:tmpl name="booking_extratext" type="simpleCondition" requiredVars="ajaxform_extras">
+						<patTemplate:tmpl name="booking_extras" type="simpleCondition" requiredVars="name">
+							<div class="row">
+								<div class="col-md-6 small">
+									<strong>{NAME}</strong>
+								</div>
+								<div class="col-md-6 align-right">
+									{PRICE}
+								</div>
+							</div>
+						</patTemplate:tmpl>
+						<div class="row">
+							<div class="col-md-6 small">
+								<strong>{HEXTRASTOTAL}</strong>
+							</div>
+							<div class="col-md-6 align-right">
+								{EXTRASTOTAL}
+							</div>
+						</div>
+					</patTemplate:tmpl>
+					<div class="row">
+						<div class="col-md-6 small">
+							<strong>{HCOUPON_DISCOUNTVALUE}</strong>
+						</div>
+						<div class="col-md-6 align-right">
+							{COUPON_DISCOUNT_VALUE}
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 small">
+							{HTAX}
+						</div>
+						<div class="col-md-6 align-right">
+							{TAX}
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 small">
+							<strong>{HDEPOSIT}</strong>
+						</div>
+						<div class="col-md-6 align-right">
+							{DEPOSIT}
+						</div>
+					</div>
+					<br/>
+					<div class="row">
+						<div class="col-md-6 text-uppercase  small">
+							<strong>{HGRANDTOTAL}</strong>
+						</div>
+						<div class="col-md-6 align-right ">
+							<strong><mark>{TOTAL}</mark></strong>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -160,8 +269,7 @@
 	</div>
 </div>
 
-<!--{ALLOCATION}-->
-<div class="row">
+<div class="row mt-5">
 	<div class="col-md-12" align="center">
 		<p>{AMENDTEXT}</p>
 		<a href="{BOOKINGFORMURL}"  class="btn btn-secondary">{AMEND}</a>
@@ -169,152 +277,65 @@
 	</div>
 </div>
 
-<div class="card">
-	<div class="card-body">
-		<h2 class="card-title">{PRICE_SUMMARY}</h2>
+<div class="row">
+	<div class="col-md-6">
+		<div class="card h-100">
+			<div class="card-body">
+				<h2 class="card-title">{BOOKINGSPECIALREQ}</h2>
+				<div class="card-text">
+					<p>{SPECIALS} {DISCLAIMER}</p>
+					<textarea class="col-md-12" name="specialReqs" rows="2">{SPECIALREQS}</textarea>
+				</div>
+			</div>
+		</div>
 	</div>
-	<div class="card-text">
-		<div class="row">
-			<div class="col-md-12">
-				{DISCOUNT}
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				{HSINGLEPERSON_COST}
-			</div>
-			<div class="col-md-6 align-right">
-				{SINGLEPERSON_COST}
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				{JOMRES_CITY_TAX_HEADING}
-			</div>
-			<div class="col-md-6 align-right">
-				{CITY_TAX}
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				{JOMRES_CLEANING_FEE_HEADING}
-			</div>
-			<div class="col-md-6 align-right">
-				{CLEANING_FEE}
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				{ACCOMMODATION_TOTAL}
-			</div>
-			<div class="col-md-6 align-right">
-				{ROOMTOTAL}
-			</div>
-		</div>
-		<patTemplate:tmpl name="booking_extratext" type="simpleCondition" requiredVars="ajaxform_extras">
-			<patTemplate:tmpl name="booking_extras" type="simpleCondition" requiredVars="name">
-				<div class="row">
-					<div class="col-md-6">
-						{NAME}
-					</div>
-					<div class="col-md-6 align-right">
-						{PRICE}
+	<div class="col-md-6 h-100">
+		<patTemplate:tmpl name="gateway_output" type="simpleCondition" requiredVars="gatewaychoiceintro">
+		<div class="card">
+			<div class="card-body">
+				<h2 class="card-title">{GATEWAYCHOICEINTRO}</h2>
+				<div class="card-text">
+					<div class="row pb-5">
+						<patTemplate:tmpl name="gateways">
+						<div class="col-sm-2">
+							{GWINPUT}
+						</div>
+						<div class="col-sm-10">
+							{GWIMAGE}
+						</div>
+
+						</patTemplate:tmpl>
 					</div>
 				</div>
-			</patTemplate:tmpl>
-			<div class="row">
-				<div class="col-md-6">
-					{HEXTRASTOTAL}
-				</div>
-				<div class="col-md-6 align-right">
-					{EXTRASTOTAL}
-				</div>
-			</div>
-		</patTemplate:tmpl>
-		<div class="row">
-			<div class="col-md-6">
-				{HCOUPON_DISCOUNTVALUE}
-			</div>
-			<div class="col-md-6 align-right">
-				{COUPON_DISCOUNT_VALUE}
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-6">
-				{HTAX}
-			</div>
-			<div class="col-md-6 align-right">
-				{TAX}
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<strong>{HGRANDTOTAL}</strong>
-			</div>
-			<div class="col-md-6 align-right">
-				<strong>{TOTAL}</strong>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				{HDEPOSIT}
-			</div>
-			<div class="col-md-6 align-right">
-				{DEPOSIT}
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="card">
-	<div class="card-body">
-		<h2 class="card-title">{BOOKINGSPECIALREQ}</h2>
-	</div>
-	<div class="card-text">
-		<p>{SPECIALS} {DISCLAIMER}</p>
-		<textarea class="col-md-12" name="specialReqs" rows="2">{SPECIALREQS}</textarea>
-	</div>
-</div>
-
-<patTemplate:tmpl name="gateway_output" type="simpleCondition" requiredVars="gatewaychoiceintro">
-<div class="card">
-	<div class="card-body">
-		<h2 class="card-title">{GATEWAYCHOICEINTRO}</h2>
-	</div>
-	<div class="card-text">
-		<div class="row pb-5">
-			<patTemplate:tmpl name="gateways">
-			<div class="col-sm-2">
-				{GWINPUT}
-			</div>
-			<div class="col-sm-10">
-				{GWIMAGE}
-			</div>
-
-			</patTemplate:tmpl>
-		</div>
-	</div>
-</div>
-</patTemplate:tmpl>
-
-
-<div id="agreealert" class="alert alert-warning">
-	<input name="agreecheck" type="checkbox" onchange="agreeAlert();"/>
-	<span> {TERMSPRETEXT}&nbsp;
-		<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#terms_modal">
-			{TERMS_NO_POPUP}
-		</button>
-
-	</span>
-</div>
-<div class="form-actions">
-	<div class="col-md-4 col-md-push-4" align="center">
-		<input type="submit" id="send" name="send" value="{THEBUTTON}" class="btn btn-success btn-lg btn-block" onclick="return confirmation_validate(false);" disabled="disabled"/>
-		<patTemplate:tmpl name="cartoutput" type="simpleCondition" requiredVars="_jomres_saveforlater"> {_JOMRES_CART_OR}
-			<input class="btn btn-secondary btn-lg btn-block" type="submit" id="cart" name="cart" value="{_JOMRES_SAVEFORLATER}" onclick="return confirmation_validate(true);" disabled="disabled"/>
 		</patTemplate:tmpl>
 	</div>
 </div>
+
+<div class="row">
+	<div class="col-md-9 h-100">
+		<div id="agreealert" class="alert alert-warning">
+			<input name="agreecheck" type="checkbox" onchange="agreeAlert();"/>
+			<span> {TERMSPRETEXT}&nbsp;
+				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#terms_modal">
+					{TERMS_NO_POPUP}
+				</button>
+			</span>
+		</div>
+	</div>
+	<div class="col-md-3 h-100">
+		<div class="form-actions alert alert-success text-center">
+
+				<input type="submit" id="send" name="send" value="{THEBUTTON}" class="btn btn-success btn-lg btn-block" onclick="return confirmation_validate(false);" disabled="disabled"/>
+				<patTemplate:tmpl name="cartoutput" type="simpleCondition" requiredVars="_jomres_saveforlater"> {_JOMRES_CART_OR}
+					<input class="btn btn-secondary btn-lg btn-block" type="submit" id="cart" name="cart" value="{_JOMRES_SAVEFORLATER}" onclick="return confirmation_validate(true);" disabled="disabled"/>
+				</patTemplate:tmpl>
+			
+		</div>
+	</div>
+</div>
+
 
 <input type="hidden" name="task" id="jomres_task" value="" />
 {CSRF_TOKEN}
