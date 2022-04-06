@@ -19,47 +19,47 @@ defined('_JOMRES_INITCHECK') or die('');
  * Language files.
  *
  **/
-jr_define('VIDEO_TUTORALS_TITLE', 'Video Tutorials');
+jr_define('VIDEO_TUTORALS_TITLE', 'Video uputstva');
 
-jr_define('_JOMRES_TUTORIAL_CPANEL', 'Control Panel');
-jr_define('_JOMRES_TUTORIAL_CPANEL_DESC', 'This tutorial shows you how to use the Property Management control panel.');
+jr_define('_JOMRES_TUTORIAL_CPANEL', 'Kontrolna tabla');
+jr_define('_JOMRES_TUTORIAL_CPANEL_DESC', 'Ovaj video vam pokazuje kako da koristite kontrolnu tablu za upravljanje objektom.');
 
 jr_define('_JOMRES_TUTORIAL_TIMELINE', 'Timeline');
-jr_define('_JOMRES_TUTORIAL_TIMELINE_DESC', 'How to use the timeline calendar. In this video we create a new guest by entering their details in the popup, existing guests can be re-used by selecting their name from the dropdown in the popup.');
+jr_define('_JOMRES_TUTORIAL_TIMELINE_DESC', 'Kako se koristiti Timeline kalendar. U ovom videu kreiramo novog gosta unosom njihovih detalja u iskačući prozor, postojeći gosti se mogu ponovo koristiti izborom njihovog imena iz padajućeg menija u iskačućem prozoru.');
 
-jr_define('_JOMRES_TUTORIAL_LISTPROPERTIES', 'List Properties');
-jr_define('_JOMRES_TUTORIAL_LISTPROPERTIES_DESC', 'How to use the List Properties page to view extra information, change columns, and search for specific properties.');
+jr_define('_JOMRES_TUTORIAL_LISTPROPERTIES', 'Lista Objekata');
+jr_define('_JOMRES_TUTORIAL_LISTPROPERTIES_DESC', 'Kako da koristite stranicu Lista Objekata da biste videli dodatne informacije, promenili kolone i pretražili određene objekte.');
 
-jr_define('_JOMRES_TUTORIAL_EDIT_PROPERTY_MRP', 'Edit your property details');
-jr_define('_JOMRES_TUTORIAL_EDIT_PROPERTY_MRP_DESC', 'Editing your property details, including dragging on the map to set your location.');
+jr_define('_JOMRES_TUTORIAL_EDIT_PROPERTY_MRP', 'Izmenite detalje svog objekta');
+jr_define('_JOMRES_TUTORIAL_EDIT_PROPERTY_MRP_DESC', 'Uređivanje detalja vaše imovine, uključujući prevlačenje na mapi da biste postavili svoju lokaciju.');
 
-jr_define('_JOMRES_TUTORIAL_CHANGE_TARIFF_EDITING_MODE', 'Change tariff editing mode');
-jr_define('_JOMRES_TUTORIAL_CHANGE_TARIFF_EDITING_MODE_DESC', 'Your tariff editing mode determines the method you can use to set prices for your property. You do this through the Property Configuration page.');
+jr_define('_JOMRES_TUTORIAL_CHANGE_TARIFF_EDITING_MODE', 'Promenite režim za uređivanje tarifa');
+jr_define('_JOMRES_TUTORIAL_CHANGE_TARIFF_EDITING_MODE_DESC', 'Vaš režim za uređivanje tarifa određuje metod koji možete koristiti za postavljanje cena za svoju nekretninu. To radite preko stranice Opšte Konfiguracije.');
 
 
 jr_define('_JOMRES_TUTORIAL_NORMAL_TARIFF_EDITING_MODE_MRP', 'Normal tariff editing mode for hotels, pensions, B&Bs');
 jr_define('_JOMRES_TUTORIAL_NORMAL_TARIFF_EDITING_MODE_MRP_DESC', 'Normal tariff editing mode is a simple tariff editing feature that allows you to select the number of rooms in a property, the price of the room, the number of guests each room can accommodate and the maximum number of guests in a party. When saved these prices are then valid for the next 10 years.');
 
-jr_define('_JOMRES_TUTORIAL_NORMAL_TARIFF_EDITING_MODE_SRP', 'Normal Tariff Editing for villas and apartments');
-jr_define('_JOMRES_TUTORIAL_NORMAL_TARIFF_EDITING_MODE_SRP_DESC', 'Normal tariff editing mode is a simple tariff editing feature that allows you to select the property sub type, the price of the property per night and and the maximum number of guests in a party. When saved these prices are then valid for the next 10 years.');
+jr_define('_JOMRES_TUTORIAL_NORMAL_TARIFF_EDITING_MODE_SRP', 'Normalni režim uređivanja tarifa za vile i apartmane');
+jr_define('_JOMRES_TUTORIAL_NORMAL_TARIFF_EDITING_MODE_SRP_DESC', 'Normalni režim za uređivanje tarifa je jednostavna funkcija za uređivanje tarifa koja vam omogućava da izaberete podtip nekretnine, cenu smeštaja po noćenju i maksimalan broj gostiju u objektu. Kada se sačuvaju, ove cene važe narednih 10 godina.');
 
 jr_define('_JOMRES_TUTORIAL_MICROMANAGE_TARIFF_EDITING_MODE_MRP', 'Micromanage tariff editing mode (recommended)');
 jr_define('_JOMRES_TUTORIAL_MICROMANAGE_TARIFF_EDITING_MODE_MRP_DESC', 'Micromanage tariff editing mode allows you to configure both the price, and the minimum number of days that a stay can be valid for, for every day of the year. It is a powerful tool that gives you complete control over pricing. In this example we will show you how to create multiple price sets for the same room type, set different prices for different periods and different prices for specific days of the week within a period. ');
 
-jr_define('_JOMRES_TUTORIAL_MICROMANAGE_TARIFF_EDITING_MODE_SRP', 'Micromanage tariff editing mode for villas/apartments (recommended)');
-jr_define('_JOMRES_TUTORIAL_MICROMANAGE_TARIFF_EDITING_MODE_SRP_DESC', 'Micromanage tariff editing mode allows you to configure both the price, and the minimum number of days that a stay can be valid for, for every day of the year. It is a powerful tool that gives you complete control over pricing. In this example we will show you how to create multiple price sets. We will set different prices for different periods and different prices for specific days of the week within a period. Once that is done we will create multiple tariffs for the same property, but with different guest numbers allowing us to precisely control prices for every scenario.');
+jr_define('_JOMRES_TUTORIAL_MICROMANAGE_TARIFF_EDITING_MODE_SRP', 'Micro režim za uređivanje tarifa za vile/apartman (preporučujemo)');
+jr_define('_JOMRES_TUTORIAL_MICROMANAGE_TARIFF_EDITING_MODE_SRP_DESC', 'Režim za uređivanje Micro tarifa vam omogućava da konfigurišete i cenu, i minimalni broj dana za koji boravak može da važi, za svaki dan u godini. To je moćan alat koji vam daje potpunu kontrolu nad cenama. U ovom primeru ćemo vam pokazati kako da kreirate više skupova cena. Postavićemo različite cene za različite periode i različite cene za određene dane u nedelji u okviru perioda. Kada to bude urađeno, kreiraćemo više tarifa za istu nekretninu, ali sa različitim brojevima gostiju što nam omogućava da precizno kontrolišemo cene za svaki scenario.');
 
 jr_define('_JOMRES_TUTORIAL_MICROMANAGE_TARIFF_EDITING_MODE_MORE_GUESTS_MRP', 'Different tariffs for different guest numbers');
 jr_define('_JOMRES_TUTORIAL_MICROMANAGE_TARIFF_EDITING_MODE_MORE_GUESTS_MRP_DESC', 'You can create multiple tariffs for the same room type, so if you want different prices for different numbers of guests, you can do that.');
 
-jr_define('_JOMRES_TUTORIAL_MICROMANAGE_GUEST_TYPES', 'Per person per night - Guest types');
-jr_define('_JOMRES_TUTORIAL_MICROMANAGE_GUEST_TYPES_DESC', 'To charge per person per night you will need to create guest types. Different guest types can have variances off the base price of a room, so children of different ages can have varying discounts based on their ages. You do not need to charge per person per night to use Guest Types, you can also use them if you charge a flat rate but still want to capture the number of guests, or because you want to limit the number of guests in a booking.');
+jr_define('_JOMRES_TUTORIAL_MICROMANAGE_GUEST_TYPES', 'Po osobi po noći - Vrste i tipovi gostiju');
+jr_define('_JOMRES_TUTORIAL_MICROMANAGE_GUEST_TYPES_DESC', 'Da biste naplaćivali po osobi po noći, moraćete da kreirate tipove gostiju. Različiti tipovi gostiju mogu imati odstupanja od osnovne cene sobe, tako da deca različitog uzrasta mogu imati različite popuste u zavisnosti od uzrasta. Ne morate da naplaćujete po osobi po noći da biste koristili tipove gostiju, možete ih koristiti i ako naplaćujete paušalnu cenu, ali i dalje želite da zabeležite broj gostiju ili zato što želite da ograničite broj gostiju u rezervaciji.');
 
-jr_define('_JOMRES_TUTORIAL_MEDIA_CENTRE_MRP', 'Media centre - Image uploading');
+jr_define('_JOMRES_TUTORIAL_MEDIA_CENTRE_MRP', 'Medija Centar - Dodavanje slika');
 jr_define('_JOMRES_TUTORIAL_MEDIA_CENTRE_MRP_DESC', 'All images are uploaded through the media centre. In this video we will upload the Main property image, some slideshow images, a small selection of images to be shown in the search results page, and images for one of the rooms.');
 
-jr_define('_JOMRES_TUTORIAL_MEDIA_CENTRE_SRP', 'Media centre - Image uploading');
-jr_define('_JOMRES_TUTORIAL_MEDIA_CENTRE_SRP_DESC', 'All images are uploaded through the media centre. In this video we will upload the Main property image, a small selection of images to be shown in the search results page, and some slideshow images.');
+jr_define('_JOMRES_TUTORIAL_MEDIA_CENTRE_SRP', 'Medija Centar - Dodavanje slika');
+jr_define('_JOMRES_TUTORIAL_MEDIA_CENTRE_SRP_DESC', 'Sve slike se postavljaju preko medija centra. U ovom videu ćemo otpremiti Glavnu sliku objekta, mali izbor slika koje će biti prikazane na stranici rezultata pretrage i neke slike za projekciju slajdova (Slideshow).');
 
 jr_define('_JOMRES_TUTORIAL_ADMIN_CPANEL', 'Administrator Control Panel');
 jr_define('_JOMRES_TUTORIAL_ADMIN_CPANEL_DESC', 'This is your default landing page in the administrator area. You can see a summary of various site statistics and see which properties exist in the system, which are complete and which have been completed and are awaiting review before approval. Once a property has been approved, then it can be published by the property manager.');

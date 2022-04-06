@@ -52,8 +52,8 @@ class currency_codes
 			'BRL' => 'Brazilian Real BRL ', 
 			'BND' => 'Brunei Dollar BND ', 
 			'BGN' => 'Bulgarian Lev BGN', 
-			'BIF' => 'Burundi Franc BIF ', 
-			'BTC' => 'Bitcoin', 'KHR' => 'Cambodian Riel KHR ',
+			'BIF' => 'Burundi Franc BIF ',
+			'KHR' => 'Cambodian Riel KHR ',
 			'CAD' => 'Canadian Dollar CAD ', 
 			'CVE' => 'Cape Verde Escudo CVE ', 
 			'KYD' => 'Cayman Islands Dollar KYD ', 
@@ -175,7 +175,28 @@ class currency_codes
 			'VEF' => 'Venezuelan Bolivar VEF ', 
 			'VND' => 'Vietnamese Don VND g', 
 			'ZMK' => 'Zambian Kwacha ZMK ', 
-			'ZWD' => 'Zimbabwe Dollar ZWD '
+			'ZWD' => 'Zimbabwe Dollar ZWD ',
+
+			// Crypto
+			'BTC' => 'Bitcoin',
+			'BTS' => 'BitShares ',
+			'DASH' => 'Dash ',
+			'DOGE' => 'DogeCoin ',
+			'EAC' => 'EarthCoin ',
+			'EMC' => 'Emercoin ',
+			'ETH' => 'Ethereum ',
+			'FCT' => 'Factom ',
+			'FTC' => 'Feathercoin ',
+			'LTC' => 'LiteCoin ',
+			'NMC' => 'Namecoin ',
+			'NVC' => 'NovaCoin ',
+			'NXT' => 'Nxt ',
+			'PPC' => 'Peercoin ',
+			'STR' => 'Stellar ',
+			'VTC' => 'VertCoin ',
+			'XMR' => 'Monero ',
+			'XPM' => 'Primecoin ',
+			'XRP' => 'Ripple '
 			);
 
 		$this->country_codes_to_currency_codes = array(
@@ -497,7 +518,29 @@ class currency_codes
 			'ZMK' => array('pre' => 'ZK', 'post' => ''), 
 			'ZWD' => array('pre' => '$', 'post' => ''), 
 			'ZWD' => array('pre' => 'Lei', 'post' => ''), 
-			'XPF' => array('pre' => '', 'post' => 'F')
+			'XPF' => array('pre' => '', 'post' => 'F'),
+
+			// Crypto
+			'BTC' => array('pre' => '', 'post' => 'BTC'),
+			'BTS' => array('pre' => '', 'post' => 'BTS'),
+			'DASH' => array('pre' => '', 'post' => 'DASH'),
+			'DOGE' => array('pre' => '', 'post' => 'DOGE'),
+			'EAC' => array('pre' => '', 'post' => 'EAC'),
+			'EMC' => array('pre' => '', 'post' => 'EMC'),
+			'ETH' => array('pre' => '', 'post' => 'ETH'),
+			'FCT' => array('pre' => '', 'post' => 'FCT'),
+			'FTC' => array('pre' => '', 'post' => 'FTC'),
+			'LTC' => array('pre' => '', 'post' => 'LTC'),
+			'NMC' => array('pre' => '', 'post' => 'NMC'),
+			'NVC' => array('pre' => '', 'post' => 'NVC'),
+			'NXT' => array('pre' => '', 'post' => 'NXT'),
+			'PPC' => array('pre' => '', 'post' => 'PPC'),
+			'STR' => array('pre' => '', 'post' => 'STR'),
+			'VTC' => array('pre' => '', 'post' => 'VTC'),
+			'XMR' => array('pre' => '', 'post' => 'XMR'),
+			'XPM' => array('pre' => '', 'post' => 'XPM'),
+			'XRP' => array('pre' => '', 'post' => 'XRP')
+
 			);
 	}
 

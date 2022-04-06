@@ -137,6 +137,31 @@ class j16000touch_templates
 		}
 		echo '<hr/>';
 
+
+		if ( isset($MiniComponents->registeredClasses["00005"]["custom_property_fields"])) {
+			jr_import('jomres_custom_property_field_handler');
+
+			if (class_exists('jomres_custom_property_field_handler')) {
+				$custom_fields = new jomres_custom_property_field_handler();
+				$jomres_property_types = jomres_singleton_abstract::getInstance('jomres_property_types');
+				$jomres_property_types->get_all_property_types();
+				echo jr_gettext('_JOMRES_CUSTOM_PROPERTY_FIELDS_TITLE', '_JOMRES_CUSTOM_PROPERTY_FIELDS_TITLE' , false ).'<br/>';
+				$shown_fields = array();
+				foreach ($jomres_property_types->property_types as $p) {
+					$fields = $custom_fields->getAllCustomFields($p->id);
+					if (!is_null($fields) && !empty($fields) ) {
+						foreach ($fields as $t) {
+							if (!in_array( $t['uid'],$shown_fields)){
+								echo jr_gettext("CUSTOM_PROPERTY_FIELD_TITLE_".$t['fieldname'], $t['description'] );
+								$shown_fields[] = $t['uid'];
+							}
+						}
+					}
+				}
+
+			}
+		}
+
 		//$MiniComponents->touch_templates();
 	}
 

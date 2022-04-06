@@ -117,6 +117,10 @@ class j06005view_invoice
 			}
 		}
 		//end security checks. If everything is fine so far, let`s move forward.
+
+
+		set_showtime('property_uid',$invoice->property_uid);	// Allows jr_gettext to find property specific strings. Mainly to ensure that extras are translated
+
 		if ($invoice->invoice[$invoice_id]['subscription'] != "1" && $invoice->invoice[$invoice_id]['is_commission'] != "1") {
 			//get the contract details
 			//We won`t use the basic contract details here since it gets too much data for what we need

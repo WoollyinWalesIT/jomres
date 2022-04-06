@@ -46,7 +46,7 @@ class jomres_currency_exchange_rates
 		$this->rates = array();
 
 		$this->base_uri = 'http://openexchangerates.org/api/';
-		$this->query_string = 'latest.json?app_id='.$this->app_id;
+		$this->query_string = 'latest.json?show_alternative=true&app_id='.$this->app_id;
 
 		$this->exchange_rate_classfile = JOMRES_TEMP_ABSPATH.'exchangerates_'.$this->base_code.'.php';
 

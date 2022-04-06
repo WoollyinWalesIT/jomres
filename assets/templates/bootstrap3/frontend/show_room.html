@@ -1,6 +1,15 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <h2 class="page-header">{ROOMTYPE} - {ROOMNAME} {ROOMNUMBER}</h2>
 <div class="row">
+	<div class="row">
+		<div class="col-md-6">
+			<p class="text-success text-uppercase fs-4">{PRICE_PRE_TEXT} {PRICE_PRICE} {PRICE_POST_TEXT}</p>
+		</div>
+		<div class="col-md-6">
+			<a href="{BOOKING_LINK}" class="btn btn-primary btn-large">{BOOKING_BUTTON_TEXT}</a>
+		</div>
+	</div>
+
 	<div class="col-md-6">
 		<div class="well">{SLIDESHOW}</div>
 	</div>

@@ -2668,3 +2668,10 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Eigenschap
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Gebruik het kleine formulier om het label te wijzigen. Klik op het vinkje om te voltooien, of klik op de X om het bewerken te annuleren:');
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Label gewijzigd');
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Zodra u de wijziging heeft opgeslagen, wordt het label op de pagina bijgewerkt. U kunt de bewerkingsmodus nu uitschakelen:');
+
+	jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_TITLE', 'Neemt u boekingen aan voor meer dan één accommodatie?');
+	jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_MESSAGE', 'Jomres kan worden gebruikt voor sites met één of meerdere woningen. Als u boekingen voor slechts één accommodatie aanneemt, zijn veel opties overbodig en mogelijk verwarrend. U kunt deze instelling later wijzigen in Instellingen > Site Configuratie > tabblad Portalfunctionaliteit.');
+	jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_JUSTONE', ' Slechts één eigenschap ');
+	jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_MANY', 'Ik zal meer dan één woning aanbieden');
+
+	

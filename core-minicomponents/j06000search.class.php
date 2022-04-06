@@ -753,7 +753,11 @@
 			// -------------------------------------------------------------------------------------------------------------------------------------------
 
 			$output[ 'ARRIVALDATE' ] = generateDateInput('arrivalDate', $sch->prep[ 'arrival' ], 'ad', true);
+			$output[ 'ARRIVALDATE_LABEL_ID'] = get_showtime('date_input_label_id');
 			$output[ 'DEPARTUREDATE' ] = generateDateInput('departureDate', $sch->prep[ 'departure' ], false, true, false);
+			$output[ 'DEPARTUREDATE_LABEL_ID'] = get_showtime('departure_date_unique_id');
+
+
 			$showButton = true;
 
 
@@ -980,7 +984,7 @@
 		/**
 		 * Must be included in every mini-component.
 		#
-		 * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
+		 * Returns any settings that the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
 		 */
 
 		public function getRetVals()

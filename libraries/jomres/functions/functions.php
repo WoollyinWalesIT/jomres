@@ -15,6 +15,63 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
+    /*
+     *
+     * Pass the property uid and room type id, we'll hand back an array that can be used to output prices of a specific room.
+     *
+     * Because there can be more than one tariff for a property we will use index 0 of the queries results. This means that the resultant price _might not_ be perfectly right, but it's good enough for our purposes.
+     *
+     */
+function get_room_price_by_room_type_id( $room_type_id = 0 , $property_uid = 0 ) {
+
+	if ( $room_type_id == 0) {
+		throw new Exception('Room type id not set');
+	}
+
+	if ( $property_uid == 0 ) {
+		throw new Exception('Property uid not set');
+	}
+
+    $output = array();
+
+	$output[ 'PRICE_PRE_TEXT' ]  = '';
+	$output[ 'PRICE_PRICE' ]	 = '';
+	$output[ 'PRICE_POST_TEXT' ] = '';
+
+	$searchDate = date('Y/m/d');
+	$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+	if (isset($_REQUEST[ 'arrivalDate' ]) && $_REQUEST[ 'arrivalDate' ] != '') {
+		$arrivalDate = jomresGetParam($_REQUEST, 'arrivalDate', '');
+		if (isset($_REQUEST[ 'pdetails_cal' ])) {
+			$arrivalDate = JSCalmakeInputDates($arrivalDate);
+		}
+		$searchDate = JSCalConvertInputDates($arrivalDate);
+	} elseif (isset($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ]) && trim($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ]) != '') {
+		$searchDate = $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ];
+	}
+
+	$query = 'SELECT property_uid, roomrateperday FROM #__jomres_rates WHERE property_uid = '.(int) $property_uid." AND DATE_FORMAT('".$searchDate."', '%Y/%m/%d') BETWEEN DATE_FORMAT(`validfrom`, '%Y/%m/%d') AND DATE_FORMAT(`validto`, '%Y/%m/%d') AND roomrateperday > '0' AND roomclass_uid = ".$room_type_id."";
+	$tariffList = doSelectSql($query);
+	if (!empty($tariffList)) {
+		// We just need the pre and post price output strings
+		$price_output				= get_property_price_for_display_in_lists( $property_uid );
+
+		$pricesFromArray = [];
+		foreach ($tariffList as $t) {
+			if (!isset($pricesFromArray[ $t->property_uid ])) {
+				$pricesFromArray[ ] = $t->roomrateperday;
+			} elseif (isset($pricesFromArray[ $t->property_uid ]) && $pricesFromArray[ $t->property_uid ] > $t->roomrateperday) {
+				$pricesFromArray[  ] = $t->roomrateperday;
+			}
+		}
+
+		$output[ 'PRICE_PRE_TEXT' ]  = $price_output[ 'PRE_TEXT' ];
+		$output[ 'PRICE_PRICE' ]	 = output_price($pricesFromArray[0]);
+		$output[ 'PRICE_POST_TEXT' ] = $price_output[ 'POST_TEXT' ];
+	}
+    return $output;
+}
+
 
 	function output_ribbon_styling()
 	{
@@ -3770,7 +3827,7 @@ function propertyConfiguration()
  *
  * Takes settings from the configuration and saves (most of them) to the jomres_settings table.
  */
-function savePropertyConfiguration()
+function savePropertyConfiguration( $property_uid = 0 )
 {
 	$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
 	$MiniComponents->triggerEvent('00502', array()); // This trigger allows plugins to check saves, for example to prevent future changes to a setting once it's been made.
@@ -3778,7 +3835,10 @@ function savePropertyConfiguration()
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig = $siteConfig->get();
 
-	$property_uid = (int)getDefaultProperty();
+    if ($property_uid == 0) {
+		$property_uid = (int)getDefaultProperty();
+	}
+
 	
 	if ($property_uid == 0) {
 		return false;
