@@ -672,7 +672,7 @@
 			if (!empty($roomFeatures)) {
 				foreach ($roomFeatures as $f) {
 					$this->all_room_features[ $f->room_features_uid ][ 'room_features_uid' ] = (int) $f->room_features_uid;
-					$this->all_room_features[ $f->room_features_uid ][ 'feature_description' ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION'.(int) $f->room_features_uid, stripslashes($f->feature_description));
+					$this->all_room_features[ $f->room_features_uid ][ 'feature_description' ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION'.(int) $f->room_features_uid, stripslashes($f->feature_description),false);
 					$this->all_room_features[ $f->room_features_uid ][ 'image' ] = $f->image;
 
 					if ($f->ptype_xref != '') {

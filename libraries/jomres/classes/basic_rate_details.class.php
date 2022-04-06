@@ -142,12 +142,12 @@ class basic_rate_details
 		
 		foreach ($result as $r) {
 			if (!is_null($r->tarifftype_id) ) {
-				$tariff_title_string = jr_gettext('_JOMRES_CUSTOMTEXT_TARIFF_TITLE_TARIFFTYPE_ID'.$r->tarifftype_id, stripslashes($r->name));
+				$tariff_title_string = jr_gettext('_JOMRES_CUSTOMTEXT_TARIFF_TITLE_TARIFFTYPE_ID'.$r->tarifftype_id, stripslashes($r->name) , false );
 			}
 			else {
-				$tariff_title_string = jr_gettext('_JOMRES_CUSTOMTEXT_TARIFF_TITLE_ID'.$r->rates_uid, stripslashes($r->rate_title));
+				$tariff_title_string = jr_gettext('_JOMRES_CUSTOMTEXT_TARIFF_TITLE_ID'.$r->rates_uid, stripslashes($r->rate_title), false );
 			}
-			
+
 			$this->multi_query_rates[(int)$r->property_uid][(int)$r->roomclass_uid][(int)$r->tarifftype_id][(int)$r->rates_uid] = array(
 				'rates_uid' => (int)$r->rates_uid,
 				'rate_title' => $tariff_title_string,
