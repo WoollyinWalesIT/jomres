@@ -209,10 +209,6 @@ class jomres_video_tutorials
 			$videos_array['TOUR']['listyourproperties'][] = $arr;
 			$videos_array['REALESTATE']['listyourproperties'][] = $arr;
 			
-			$arr = array ("title" => "_JOMRES_TUTORIAL_CHANGE_TARIFF_EDITING_MODE" , "description" => "_JOMRES_TUTORIAL_CHANGE_TARIFF_EDITING_MODE_DESC" , "video_id" => "FQ3ARmrtz2g" );
-			$videos_array['SRP']['business_settings'][] = $arr; 
-			$videos_array['MRP']['business_settings'][] = $arr;
-			
 			$arr = array ("title" => "_JOMRES_TUTORIAL_NORMAL_TARIFF_EDITING_MODE_MRP" , "description" => "_JOMRES_TUTORIAL_NORMAL_TARIFF_EDITING_MODE_MRP_DESC" , "video_id" => "l2WlWJ6CkWo" );
 			$videos_array['MRP']['edit_tariffs_normal'][] = $arr;
 			$videos_array['MRP']['business_settings'][] = $arr;

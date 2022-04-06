@@ -157,11 +157,11 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
 			}
 		}
 
-		if ( this_cms_is_wordpress() && !jomres_cmsspecific_areweinadminarea() && defined('JOMRES_PERMALINK_STRUCTURE') && JOMRES_PERMALINK_STRUCTURE != '' ) {
-			$okToEdit = false;
+		if ( get_showtime('task') == 'translating' && $okToEdit == true ) {
+			$editing = true;
 		}
 
-		if ($thisJRUser->userIsManager && ($editing || ($jrConfig[ 'editingModeAffectsAllProperties' ] == '1' && $thisJRUser->superPropertyManager)) && $okToEdit && $thisJRUser->accesslevel > 50) {
+		if ($thisJRUser->userIsManager && ($editing || ($jrConfig[ 'editingModeAffectsAllProperties' ] == '1')) && $okToEdit && $thisJRUser->accesslevel > 50) {
 			if (strlen(trim($theText)) == 0 || strtolower(trim($theText)) == '<span></span>' || strtolower(trim($theText)) == '<span> </span>' || strtolower(trim($theText)) == '<span>  </span>') {
 				$theText = '';
 			}
@@ -179,20 +179,38 @@ function jr_gettext($theConstant, $theValue, $okToEdit = true, $isLink = false)
 						$url = JOMRES_SITEPAGE_URL_AJAX.'&task=editinplace';
 					}
 
-					$theText = '<a href="#" id="'.$theConstant.'" data-type="text" data-pk="'.$theConstant.'" data-url="'.$url.'" data-original-title="'.htmlspecialchars($theText).'">'.htmlspecialchars($theText).'</a>
-					<script>document.addEventListener(\'DOMContentLoaded\', function(){jomresJquery(\'#' .$theConstant.'\').editable(
+					$lang_var_check ='';
+					if (!defined('JOMRES_TARGET_LANG_CHECK_SHOWN')){
+						$lang_var_check = '
+						if (typeof jomres_target_language === "undefined"){
+							var jomres_target_language = "'.get_showtime('lang').'";
+							}';
+						define('JOMRES_TARGET_LANG_CHECK_SHOWN',1);
+					}
+					$data_type = 'text';
+					if ( strlen($theText) > 50 ) {
+						$data_type = 'textarea';
+					}
+					$theText = '
+					
+					<a href="#" id="'.$theConstant.'" data-type="'.$data_type.'" data-pk="'.$theConstant.'" data-url="'.$url.'" data-original-title="'.htmlspecialchars($theText).'">'.htmlspecialchars($theText).'</a>
+					<script>	
+					'.$lang_var_check.'			
+					document.addEventListener(\'DOMContentLoaded\', function(){jomresJquery(\'#' .$theConstant.'\').editable(
 					   {
+					   inputclass: "x-editable-textarea",
 						params: function(params) {
                            val = params.value;
 							//originally params contain pk, name and value
 							var params = {};
 							params.value = val;
 							params.pk = "'.$theConstant.'";
-							
+							params.jomres_target_language = jomres_target_language;
 							return params;
 							}
 						}
-					);}, false);</script>';
+					);}, false);
+					</script>';
 				} else {
 					//do nothing
 				}

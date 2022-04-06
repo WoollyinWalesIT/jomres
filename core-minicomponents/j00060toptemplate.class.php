@@ -108,7 +108,6 @@ class j00060toptemplate
 		$output[ 'PROPERTYNAME' ] = '';
 		$output[ 'HACTIVE_PROPERTY' ] = '';
 		$output[ 'MANAGEMENT_VIEW_DROPDOWN' ] = '';
-		$output[ 'EDITING_MODE_DROPDOWN' ] = '';
 		$output[ 'TIMEZONE_DROPDOWN' ] = '';
 		$output[ 'TIMEZONEBLURB' ] = '';
 		$output[ 'PROPERTY_SELECTOR_DROPDOWN' ] = '';
@@ -118,30 +117,9 @@ class j00060toptemplate
 
 		$result = '';
 
-		if ( this_cms_is_wordpress() && defined('JOMRES_PERMALINK_STRUCTURE') && JOMRES_PERMALINK_STRUCTURE == '' ) {
-			$editing_mode = jomres_singleton_abstract::getInstance('jomres_editing_mode');
-			$result = $editing_mode->make_editing_mode_dropdown();
-			if ($result) {
-				$editing_dropdown[ ][ 'EDITING_MODE_DROPDOWN' ] = $result;
-				set_showtime('menuitem_editing_mode_dropdown', $editing_dropdown[ 0 ][ 'EDITING_MODE_DROPDOWN' ]);
-			}
-		}
-
-		if ( !this_cms_is_wordpress() && !jomres_cmsspecific_areweinadminarea() ) {
-			$editing_mode = jomres_singleton_abstract::getInstance('jomres_editing_mode');
-			$result = $editing_mode->make_editing_mode_dropdown();
-			if ($result) {
-				$editing_dropdown[ ][ 'EDITING_MODE_DROPDOWN' ] = $result;
-				set_showtime('menuitem_editing_mode_dropdown', $editing_dropdown[ 0 ][ 'EDITING_MODE_DROPDOWN' ]);
-			}
-		}
-
-
-
-
 		if (this_cms_is_joomla() || this_cms_is_wordpress()) {
 			if ($thisJRUser->userIsManager) {
-				$output[ 'HACTIVE_PROPERTY' ] = jr_gettext('_JOMRES_HSTATUS_CURRENT', '_JOMRES_HSTATUS_CURRENT').': ';
+				$output[ 'HACTIVE_PROPERTY' ] = jr_gettext('_JOMRES_HSTATUS_CURRENT', '_JOMRES_HSTATUS_CURRENT',false).': ';
 
 				set_showtime('menuitem_propertyname', $output[ 'PROPERTYNAME' ]);
 
@@ -180,17 +158,11 @@ class j00060toptemplate
 		$output[ 'NEXT' ] = jr_gettext('_PN_NEXT', '_PN_NEXT', false, false);
 		$output[ 'PREVIOUS' ] = jr_gettext('_PN_PREVIOUS', '_PN_PREVIOUS', false, false);
 
-		$output[ 'BACKLINK' ] = '<a href="javascript:history.go(-1)">'.jr_gettext('_JOMRES_COM_MR_BACK', '_JOMRES_COM_MR_BACK').'</a>';
+		$output[ 'BACKLINK' ] = '<a href="javascript:history.go(-1)">'.jr_gettext('_JOMRES_COM_MR_BACK', '_JOMRES_COM_MR_BACK' , false).'</a>';
 		$output[ 'LIVESITE' ] = get_showtime('live_site');
 		$output[ 'DATEPICKERLANG' ] = get_showtime('datepicker_lang');
 		$output[ 'PROPERTY_UID' ] = $defaultProperty;
 
-		$lang_dropdown = array();
-		if ($jrConfig[ 'showLangDropdown' ] == '1')
-			{
-			$lang_dropdown[ ][ 'LANGDROPDOWN' ] = $jomreslang->get_languageselection_dropdown();
-			set_showtime( "menuitem_langdropdown", $lang_dropdown[ 0 ][ 'LANGDROPDOWN' ] );
-			}
 
 		if ($thisJRUser->userIsManager) {
 			if (!get_showtime('heavyweight_system') && $management_view && using_bootstrap()) {
@@ -202,7 +174,7 @@ class j00060toptemplate
 			} else {
 				$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
 				$current_property_details->gather_data($defaultProperty);
-				$output[ 'PROPERTYNAME' ] = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_NAME_'.$defaultProperty , $current_property_details->property_name);
+				$output[ 'PROPERTYNAME' ] = jr_gettext( '_JOMRES_CUSTOMTEXT_PROPERTY_NAME_'.$defaultProperty , $current_property_details->property_name , false);
 			}
 		} else {
 			$output[ 'CURRENT_PROPERTY_STYLE' ] = 'display:none;';
@@ -239,11 +211,7 @@ class j00060toptemplate
 		}
 		$tmpl->addRows('pageoutput', $pageoutput);
 		//$tmpl->addRows( 'timezone_dropdown', $timezone_dropdown );
-		$tmpl->addRows( 'lang_dropdown', $lang_dropdown );
 		$tmpl->addRows( 'widgets_dropdown', $widgets_dropdown );
-		if ($result) {
-			$tmpl->addRows('editing_dropdown', $editing_dropdown);
-		}
 		$tmpl->displayParsedTemplate();
 		$pageoutput = array();
 		$output = array();
@@ -252,9 +220,9 @@ class j00060toptemplate
 	public function touch_template_language()
 	{
 		$output = array();
-		$output[ ] = jr_gettext('_PN_NEXT', '_PN_NEXT');
-		$output[ ] = jr_gettext('_PN_PREVIOUS', '_PN_PREVIOUS');
-		$output[ ] = jr_gettext('_JOMRES_CONVERSION_DISCLAIMER', '_JOMRES_CONVERSION_DISCLAIMER');
+		$output[ ] = jr_gettext('_PN_NEXT', '_PN_NEXT',false);
+		$output[ ] = jr_gettext('_PN_PREVIOUS', '_PN_PREVIOUS',false);
+		$output[ ] = jr_gettext('_JOMRES_CONVERSION_DISCLAIMER', '_JOMRES_CONVERSION_DISCLAIMER',false);
 
 		foreach ($output as $o) {
 			echo $o;

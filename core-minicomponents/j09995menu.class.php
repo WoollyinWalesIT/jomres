@@ -69,6 +69,7 @@ class j09995menu
 		$font_awesome_tariffs = 'fa-usd';
 		$font_awesome_edit = 'fa-pencil-square-o';
 		$font_awesome_childpolicies = 'fa-users';
+		$font_awesome_language = 'fa-language';
 
 		if (jomres_bootstrap_version() == '5' ) {
 			$font_awesome_envelope = 'fa-envelope';
@@ -79,6 +80,7 @@ class j09995menu
 			$font_awesome_tariffs = 'fa-dollar-sign';
 			$font_awesome_edit = 'fa-edit';
 			$font_awesome_childpolicies = 'fa-child';
+			$font_awesome_language = 'fas fa-language';
 		}
 
 		//define the core sections
@@ -215,6 +217,8 @@ class j09995menu
 			$jomres_menu->add_item(80, jr_gettext('_JOMRES_PATHWAY_PROPERTYDETAILS', '_JOMRES_PATHWAY_PROPERTYDETAILS', false), 'edit_property', $font_awesome_edit);
 			$jomres_menu->add_item(80, jr_gettext('_JOMRES_COM_MR_GENERALCONFIGDESC', '_JOMRES_COM_MR_GENERALCONFIGDESC', false), 'business_settings', 'fa-cogs');
 
+			$jomres_menu->add_item(80, jr_gettext('JOMRES_TRANSLATIONS_TITLE', 'JOMRES_TRANSLATIONS_TITLE', false), 'translating', $font_awesome_language);
+
 			$jomres_menu->add_item(80, jr_gettext('_JOMRES_MEDIA_CENTRE_TITLE', '_JOMRES_MEDIA_CENTRE_TITLE', false), 'media_centre', $font_awesome_picture);
 
 			if ($mrConfig[ 'is_real_estate_listing' ] != '1' && $mrConfig['tariffmode'] != '0' && !get_showtime('is_jintour_property')) {
@@ -224,9 +228,6 @@ class j09995menu
 			if ($mrConfig[ 'is_real_estate_listing' ] != '1' && $mrConfig['tariffmode'] == '0' && !get_showtime('is_jintour_property')) {
 				$jomres_menu->add_item(80, jr_gettext('_JOMRES_COM_MR_LISTTARIFF_TITLE', '_JOMRES_COM_MR_LISTTARIFF_TITLE', false).' &amp; '.jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOM', '_JOMRES_COM_MR_VRCT_TAB_ROOM', false), 'edit_tariffs_normal', $font_awesome_tariffs);
 			}
-
-
-
 
 			if ($mrConfig[ 'is_real_estate_listing' ] != '1') {
 
@@ -256,7 +257,6 @@ class j09995menu
 		if ($thisJRUser->accesslevel >= 50) { //FAQ works for guests too, but since it doesn`t have any content by default, we`ll just hide the menu for guests
 			$jomres_menu->add_item(90, jr_gettext('_JOMRES_FAQ', '_JOMRES_FAQ', false), 'faq', 'fa-question');
 			$jomres_menu->add_item(90, jr_gettext('VIDEO_TUTORIALS', 'VIDEO_TUTORIALS', false), 'videos', 'fa-youtube-play');
-			$jomres_menu->add_item(90, jr_gettext('JOMRES_EDITING_MODE_HELP_TITLE', 'JOMRES_EDITING_MODE_HELP_TITLE', false), 'editingmode', 'fal fa-edit');
 		}
 	}
 

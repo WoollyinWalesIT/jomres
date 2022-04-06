@@ -71,19 +71,6 @@
 			// Test for ZipArchive
 			$output[ 'ZIPARCHIVE_CHECK' ] = ziparchive_test();
 
-
-			//license key not entered warning
-			/* $output[ 'JOMRES_PRODUCT_INFORMATION' ] = '';
-			$output[ 'JOMRES_PRODUCT_INFORMATION2' ] = '';
-			$output[ 'JOMRES_PRODUCT_INFO_HIGHLIGHT' ] = '';
-			if (trim($jrConfig['licensekey']) == '') {
-				$output[ 'JOMRES_PRODUCT_INFORMATION' ] = jr_gettext('_JOMRES_PRODUCT_INFORMATION', '_JOMRES_PRODUCT_INFORMATION', false);
-				$output[ 'JOMRES_PRODUCT_INFORMATION2' ] = jr_gettext('_JOMRES_PRODUCT_INFORMATION2', '_JOMRES_PRODUCT_INFORMATION2', false);
-				$output[ 'JOMRES_PRODUCT_INFO_HIGHLIGHT' ] = 'alert alert-info';
-			} */
-
-
-
 			//wordpress Page with [jomres:xx-XX] not created yet
 			$output[ 'JOMRES_DEFAULT_SHORTCODE_HIGHLIGHT' ] = '';
 			$output[ 'JOMRES_DEFAULT_SHORTCODE_ALERT' ] = '';
@@ -105,38 +92,8 @@
 				}
 			}
 
-			$output[ 'JOMRES_EDITING_MODE_PERMALINK_HIGHLIGHT' ] = '';
-			$output[ 'JOMRES_EDITING_MODE_PERMALINK_ALERT' ] = '';
-			if (this_cms_is_wordpress() && JOMRES_PERMALINK_STRUCTURE != '' ) {
-				$output[ 'JOMRES_EDITING_MODE_PERMALINK_HIGHLIGHT' ] = 'alert alert-info';
-				$output[ 'JOMRES_EDITING_MODE_PERMALINK_ALERT' ] = jr_gettext('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', false);
-
-			}
-
-
 			// Google maps api key warning
 			$output['GMAPS_KEY_WARNING'] = gmaps_apikey_check();
-
-			//ipinfodb api key
-			//$output['IPINFODB_KEY_WARNING'] = ipinfodb_apikey_check();
-
-			//open exchange rates api key
-			//$output['OPENEXCHANGERATES_KEY_WARNING'] = openexchangerates_apikey_check();
-
-			// Logfile location warning
-			//$output['LOGFILE_LOCATION_WARNING'] = logs_path_check();
-
-			//review text
-			/* if (this_cms_is_wordpress()) {
-				$output['REVIEW_SITE_URL'] = 'https://wordpress.org/support/view/plugin-reviews/jomres';
-				$output['REVIEW_SITE_TEXT'] = 'Wordpress Plugins site';
-			} else {
-				$output['REVIEW_SITE_URL'] = 'http://extensions.joomla.org/extensions/extension/vertical-markets/booking-a-reservations/jomres';
-				$output['REVIEW_SITE_TEXT'] = 'Joomla! Extensions Directory';
-			}
-
-			$output['CAPTERRA_REVIEW_SITE_URL'] = 'http://www.capterra.com/reservations-software/reviews/134469/Jomres/Woollyinwales%20IT/new';
-			$output['CAPTERRA_REVIEW_SITE_TEXT'] = 'Capterra'; */
 
 			// Property type checks //
 			// We have a situation where a property type needs to be cross-referenced with room types, this check will ascertain if any property types are missing room types

@@ -57,7 +57,13 @@ class j06002editinplace
 
 		$theConstant = filter_var($_POST[ 'pk' ], FILTER_SANITIZE_SPECIAL_CHARS);
 
-		$result = updateCustomText($theConstant, $customText, true, $property_uid);
+		$jomres_target_language = get_showtime('lang');
+		if (isset($_POST[ 'jomres_target_language' ])) {
+			$jomres_target_language = jomresGetParam($_POST, 'jomres_target_language', '');
+		}
+		$theConstant = filter_var($_POST[ 'pk' ], FILTER_SANITIZE_SPECIAL_CHARS);
+
+		$result = updateCustomText($theConstant, $customText, true, $property_uid , 0 , $jomres_target_language);
 		//$result = false;
 		if ($result) {
 			header('Status: 200');

@@ -4953,11 +4953,11 @@ function this_cms_is_joomla()
  *
  * Used by editing mode and label translation functionality to update custom text tables
  */
-function updateCustomText($theConstant, $theValue, $audit = true, $property_uid = null, $language_context = '0')
+function updateCustomText($theConstant, $theValue, $audit = true, $property_uid = null, $language_context = '0' , $target_language = '')
 {
 	$custom_text = jomres_singleton_abstract::getInstance('custom_text');
 
-	return $custom_text->updateCustomText($theConstant, $theValue, $audit, $property_uid, $language_context);
+	return $custom_text->updateCustomText($theConstant, $theValue, $audit, $property_uid, $language_context , $target_language);
 }
 
 /**
