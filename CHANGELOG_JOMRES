@@ -1,3 +1,40 @@
+<h3>Jomres 103 06/04/2022</h3>
+
+<span class="label label-success">Feature</span> Added new Property Manager feature : Translating where all items that can be translated are done from one page. This removes the old Editing mode and the feature is available to all managers, not just super property managers.
+
+<span class="label label-warning">Change</span> Bootstrap 4 templates added to obsolete files list
+<span class="label label-warning">Change</span> Removed zindex from date inputs, causes it's own set of problems.
+<span class="label label-warning">Change</span> Added icon to main menu so that it is more visible when collapsed.
+<span class="label label-warning">Change</span> Don't need to throw an error when the shortcode parser can't find the class.
+<span class="label label-warning">Change</span> Tweaked the main menu a little.
+<span class="label label-warning">Change</span> Modified some language strings to make them more logical.
+<span class="label label-warning">Change</span> J4 Tweaked how a uri is discovered.
+<span class="label label-warning">Change</span> Updated warnings to accurately reflect the current state of play vis a vis bootstrap (i.e. removed the message that says it's needed in the theme).
+<span class="label label-warning">Change</span> Removed old Platform related code.
+<span class="label label-warning">Change</span> Added some quotes to a template file. (show property features)
+<span class="label label-warning">Change</span> Serbian language files updated
+<span class="label label-warning">Change</span> Weather code added to Jomres Core (plugin still required but now weather does not appear in a tab in property details).
+<span class="label label-warning">Change</span> Show property reviews updated to include rating text colours and text.
+<span class="label label-warning">Change</span> Added price details and booking form link to output array for the show room template(s).
+<span class="label label-warning">Change</span> Added prices to show property rooms script, plus booking link. Tweaked markup of BS3 and BS5 templates.
+<span class="label label-warning">Change</span> Fixed a typo in comments that was bugging me.
+<span class="label label-warning">Change</span> Tweaked gateway section markup in booking confirmation page.
+<span class="label label-warning">Change</span> Added ability to have more types of logos for gateways.
+<span class="label label-warning">Change</span> Added cryptocurrencies to exchange rate handling. These are the crypocurrencies offered by openexchangerates
+<span class="label label-warning">Change</span> Added label ids for arrival departure dates for WCAG accessibility magic.
+<span class="label label-warning">Change</span> Improved list invoices labels/badges/legend.
+<span class="label label-warning">Change</span> Added custom property fields to translatable items in Label editing page.
+<span class="label label-warning">Change</span> Reworked the BS5 booking confirmation, a change is as good as a rest.
+<span class="label label-warning">Change</span> Joomla install script updated to use exceptions now that JError does not exist.
+<span class="label label-warning">Change</span> Installer now uses exceptions as Joomla installer handles errors differently.
+
+<span class="label label-important label-danger">Fix</span> Fixed an issue with widget selector in manager dashboard not working.
+<span class="label label-important label-danger">Fix</span> Missing language strings added to dutch lang file
+<span class="label label-important label-danger">Fix</span> Resolved a bug where extra names would not show correctly on guest views of list invoices & view invoice.
+<span class="label label-important label-danger">Fix</span> Found (and fixed) a problem w API in J4 because of recent J changes.
+<span class="label label-important label-danger">Fix</span> Resolved an issue where some invoice numbers would not increment correctly.
+<span class="label label-important label-danger">Fix</span> Resolved an issue where the wrong currency code would be stored against an invoice.
+
 <h3>Jomres 10.2.2 18/02/2022</h3>
 
 <span class="label label-important label-danger">Fix</span> Resolved an issue with Jomres being unable to report the correct version of itself.
