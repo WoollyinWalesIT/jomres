@@ -2713,3 +2713,8 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Əmlak tip
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Etiketi dəyişmək üçün kiçik formadan istifadə edin. Bitirmək üçün işarəni vurun və ya redaktəni ləğv etmək üçün X üzərinə klikləyin:');
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Etiket dəyişdirildi');
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Dəyişikliyi saxladıqdan sonra etiket səhifədə yenilənir. İndi redaktə rejimini söndürə bilərsiniz:');
+
+	jr_define('JOMRES_TRANSLATIONS_TITLE', 'Tərcümələr');
+	jr_define('JOMRES_TRANSLATIONS_LEAD', 'Bu səhifədə siz etiketləri bir dildən digər dilə tərcümə edə bilərsiniz. Səhifəni ziyarət etdiyiniz zaman siz artıq yaratdığınız sətirləri və hazırda istifadə etdiyiniz dildə onların dəyərini görəcəksiniz. Üst hissədə hədəf dildə, sonra tərcümə etmək istədiyiniz etiketlər üçün etiketin üzərinə klikləyin və pop-up sizə yeni tərcümənizi daxil etməyə imkan verəcək. Daha uzun mətn sətirləri üçün başqa mənbədən mətnə yapışdıra bilərsiniz. Unutmayın ki, istənilən HTML silinəcək. .<br/>
+Siz hədəf dili təyin edilmiş cari dilinizə buraxa və onların fərdi səhifələrinə daxil olmaq əvəzinə buradakı elementlərin adını dəyişmək üçün bu səhifədən istifadə edə bilərsiniz.');
+	jr_define('JOMRES_TARGET_LANGUAGE', 'Hədəf dil');

@@ -2501,3 +2501,8 @@ jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'Changer le libellé');
 jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Utilisez le petit formulaire pour changer le libellé. Cliquez sur la coche pour terminer, ou cliquez sur le X pour annuler l\'édition :');
 jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Étiquette modifiée');
 jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Une fois que vous avez enregistré la modification, l\'étiquette est mise à jour dans la page. Vous pouvez désactiver le mode d\'édition maintenant :');
+
+	jr_define('JOMRES_TRANSLATIONS_TITLE', 'Traductions');
+	jr_define('JOMRES_TRANSLATIONS_LEAD', 'Sur cette page, vous pouvez traduire des étiquettes d\'une langue à une autre. Lorsque vous visitez la page, vous verrez les chaînes que vous avez déjà créées et leur valeur dans la langue que vous utilisez actuellement. En haut, définissez le langue cible, puis pour les étiquettes que vous souhaitez traduire, cliquez sur l\'étiquette et une fenêtre contextuelle vous permettra d\'entrer votre nouvelle traduction. Pour les lignes de texte plus longues, vous pouvez coller le texte d\'une autre source. N\'oubliez pas que tout code HTML sera supprimé .<br/>
+Vous pouvez laisser la langue cible définie sur votre langue actuelle et utiliser cette page pour renommer les éléments ici, au lieu de visiter leurs pages individuelles.');
+jr_define('JOMRES_TARGET_LANGUAGE', 'Langue cible');

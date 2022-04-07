@@ -2730,3 +2730,8 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Ejendomsty
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Brug den lille formular til at ændre etiketten. Klik på fluebenet for at afslutte, eller klik på X\'et for at annullere redigeringen:');
 jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Etiket ændret');
 jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Når du har gemt ændringen, opdateres etiketten på siden. Du kan deaktivere redigeringstilstand nu:');
+
+	jr_define('JOMRES_TRANSLATIONS_TITLE', 'Oversættelser');
+	jr_define('JOMRES_TRANSLATIONS_LEAD', 'På denne side kan du oversætte etiketter fra et sprog til et andet. Når du besøger siden vil du se strenge, som du allerede har oprettet, og deres værdi på det sprog, du bruger i øjeblikket. Øverst indstilles målsprog, og klik derefter på etiketten for de etiketter, du vil oversætte, og en pop op vil lade dig indtaste din nye oversættelse. For længere tekstlinjer kan du indsætte teksten fra en anden kilde. Husk, at al HTML vil blive fjernet .<br/>
+Du kan lade målsproget være indstillet til dit nuværende sprog og bruge denne side til at omdøbe elementer her, i stedet for at besøge deres individuelle sider.');
+	jr_define('JOMRES_TARGET_LANGUAGE', 'Målsprog');

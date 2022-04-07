@@ -2739,3 +2739,9 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Property t
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Label changed');
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Once you have saved the change then the label is updated in the page. You can disable editing mode now:');
 
+
+	jr_define('JOMRES_TRANSLATIONS_TITLE', 'Translations');
+	jr_define('JOMRES_TRANSLATIONS_LEAD', 'On this page you can translate labels from one language to another. When you visit the page you will see strings that you have already created and their value in whatever language you are currently using. At the top set the target language, then for the labels you want to translate, click on the label and a popup will let you enter your new translation. For longer lines of text you can paste in the text from another source. Remember that any HTML will be stripped out.<br/>
+You can leave the target language set to your current language and use this page to rename items here, instead of visiting their individual pages.');
+	jr_define('JOMRES_TARGET_LANGUAGE', 'Target language');
+

@@ -2721,3 +2721,8 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Obrazy typ
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Użyj małego formularza, aby zmienić etykietę. Kliknij Znacznik, aby zakończyć, lub X, aby anulować edycję:');
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Zmieniono etykietę');
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Po zapisaniu zmiany etykieta zostanie zaktualizowana na stronie. Możesz teraz wyłączyć tryb edycji:');
+
+	jr_define('JOMRES_TRANSLATIONS_TITLE', 'Tłumaczenia');
+	jr_define('JOMRES_TRANSLATIONS_LEAD', 'Na tej stronie możesz tłumaczyć etykiety z jednego języka na inny. Gdy odwiedzasz stronę, zobaczysz ciągi, które już utworzyłeś i ich wartość w dowolnym języku, którego aktualnie używasz. Na górze ustaw język docelowy, a następnie w przypadku etykiet, które chcesz przetłumaczyć, kliknij etykietę, a wyskakujące okienko umożliwi wprowadzenie nowego tłumaczenia. W przypadku dłuższych wierszy tekstu możesz wkleić tekst z innego źródła. Pamiętaj, że wszelki kod HTML zostanie usunięty .<br/>
+Możesz pozostawić język docelowy ustawiony na swój bieżący język i użyć tej strony do zmiany nazw elementów tutaj, zamiast odwiedzania ich poszczególnych stron.');
+	jr_define('JOMRES_TARGET_LANGUAGE', 'Język docelowy');

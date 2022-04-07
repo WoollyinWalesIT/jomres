@@ -2738,3 +2738,8 @@ jr_define( 'DATA_SOURCES_TITLE_INFO', "Fuentes de datos actualizadas. Las fuente
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Use el pequeño formulario para cambiar la etiqueta. Haga clic en la marca para terminar, o haga clic en la X para cancelar la edición:');
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Etiqueta cambiada');
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Una vez que haya guardado el cambio, la etiqueta se actualizará en la página. Puede desactivar el modo de edición ahora:');
+
+	jr_define('JOMRES_TRANSLATIONS_TITLE', 'Traducciones');
+	jr_define('JOMRES_TRANSLATIONS_LEAD', 'En esta página puede traducir etiquetas de un idioma a otro. Cuando visite la página, verá cadenas que ya ha creado y su valor en cualquier idioma que esté usando actualmente. En la parte superior, configure el idioma de destino, luego, para las etiquetas que desea traducir, haga clic en la etiqueta y una ventana emergente le permitirá ingresar su nueva traducción. Para líneas de texto más largas, puede pegar el texto de otra fuente. Recuerde que cualquier HTML será eliminado .<br/>
+Puede dejar el idioma de destino establecido en su idioma actual y usar esta página para cambiar el nombre de los elementos aquí, en lugar de visitar sus páginas individuales.');
+	jr_define('JOMRES_TARGET_LANGUAGE', 'Idioma de destino');

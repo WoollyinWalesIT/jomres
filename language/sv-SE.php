@@ -2703,3 +2703,8 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Egenskapst
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Använd det lilla formuläret för att ändra etiketten. Klicka på bocken för att avsluta, eller klicka på X för att avbryta redigeringen:');
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Etikett ändrad');
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'När du har sparat ändringen uppdateras etiketten på sidan. Du kan inaktivera redigeringsläget nu:');
+
+	jr_define('JOMRES_TRANSLATIONS_TITLE', 'Översättningar');
+	jr_define('JOMRES_TRANSLATIONS_LEAD', 'På den här sidan kan du översätta etiketter från ett språk till ett annat. När du besöker sidan kommer du att se strängar som du redan har skapat och deras värde på vilket språk du för närvarande använder. Överst ställer du in målspråk, klicka sedan på etiketten för etiketterna du vill översätta och en popup låter dig ange din nya översättning. För längre textrader kan du klistra in texten från en annan källa. Kom ihåg att all HTML tas bort .<br/>
+Du kan lämna målspråket inställt på ditt nuvarande språk och använda denna sida för att byta namn på objekt här, istället för att besöka deras individuella sidor.');
+	jr_define('JOMRES_TARGET_LANGUAGE', 'Målspråk');

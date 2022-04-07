@@ -2763,3 +2763,7 @@ jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'Cambia l\'etichetta');
 jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Usa il piccolo modulo per cambiare l\'etichetta. Clicca il segno di spunta per finire, o clicca la X per annullare la modifica:');
 jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Etichetta cambiata');
 jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Una volta salvata la modifica, l\'etichetta viene aggiornata nella pagina. Ora puoi disabilitare la modalità di modifica:');
+	jr_define('JOMRES_TRANSLATIONS_TITLE', 'Traduzioni');
+	jr_define('JOMRES_TRANSLATIONS_LEAD', 'In questa pagina puoi tradurre le etichette da una lingua all\'altra. Quando visiti la pagina vedrai le stringhe che hai già creato e il loro valore in qualunque lingua tu stia attualmente usando. In alto imposta il lingua di destinazione, quindi per le etichette che desideri tradurre, fai clic sull\'etichetta e un popup ti consentirà di inserire la tua nuova traduzione. Per righe di testo più lunghe puoi incollare il testo da un\'altra fonte. Ricorda che qualsiasi HTML verrà eliminato .<br/>
+Puoi lasciare la lingua di destinazione impostata sulla tua lingua corrente e utilizzare questa pagina per rinominare gli elementi qui, invece di visitare le loro singole pagine.');
+jr_define('JOMRES_TARGET_LANGUAGE', 'Lingua di destinazione');

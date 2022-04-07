@@ -2758,3 +2758,8 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Eigenschaf
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Verwenden Sie das kleine Formular, um die Bezeichnung zu ändern. Klicken Sie auf das Häkchen, um den Vorgang abzuschließen, oder klicken Sie auf das X, um die Bearbeitung abzubrechen:');
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Label geändert');
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Sobald Sie die Änderung gespeichert haben, wird das Label auf der Seite aktualisiert. Sie können den Bearbeitungsmodus jetzt deaktivieren:');
+
+	jr_define('JOMRES_TRANSLATIONS_TITLE', 'Übersetzungen');
+	jr_define('JOMRES_TRANSLATIONS_LEAD', 'Auf dieser Seite können Sie Labels von einer Sprache in eine andere übersetzen. Wenn Sie die Seite besuchen, sehen Sie Zeichenfolgen, die Sie bereits erstellt haben, und ihren Wert in der Sprache, die Sie gerade verwenden. Legen Sie oben die Zielsprache, dann klicken Sie für die Labels, die Sie übersetzen möchten, auf das Label und ein Popup-Fenster lässt Sie Ihre neue Übersetzung eingeben. Für längere Textzeilen können Sie den Text aus einer anderen Quelle einfügen. Denken Sie daran, dass jeglicher HTML-Code entfernt wird .<br/>
+Sie können die Zielsprache auf Ihrer aktuellen Sprache belassen und diese Seite verwenden, um Elemente hier umzubenennen, anstatt ihre einzelnen Seiten zu besuchen.');
+	jr_define('JOMRES_TARGET_LANGUAGE', 'Zielsprache');

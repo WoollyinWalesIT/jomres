@@ -2675,3 +2675,8 @@ jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Sleva");
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Použijte malý formulář pro změnu štítku. Klikněte na zaškrtnutí pro dokončení nebo klikněte na X pro zrušení úprav:');
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Štítek změněn');
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Jakmile uložíte změnu, štítek se aktualizuje na stránce. Nyní můžete deaktivovat režim úprav:');
+
+	jr_define('JOMRES_TRANSLATIONS_TITLE', 'Překlady');
+	jr_define('JOMRES_TRANSLATIONS_LEAD', 'Na této stránce můžete překládat štítky z jednoho jazyka do druhého. Když stránku navštívíte, uvidíte řetězce, které jste již vytvořili, a jejich hodnotu v jakémkoli jazyce, který právě používáte. V horní části nastavte cílového jazyka, pak u štítků, které chcete přeložit, klikněte na štítek a vyskakovací okno vám umožní zadat nový překlad. Pro delší řádky textu můžete vložit text z jiného zdroje. Nezapomeňte, že veškerý kód HTML bude odstraněn .<br/>
+Můžete ponechat cílový jazyk nastavený na váš aktuální jazyk a použít tuto stránku k přejmenování položek zde, místo abyste navštěvovali jejich jednotlivé stránky.');
+	jr_define('JOMRES_TARGET_LANGUAGE', 'Cílový jazyk');

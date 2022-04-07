@@ -2674,4 +2674,7 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Eigenschap
 	jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_JUSTONE', ' Slechts één eigenschap ');
 	jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_MANY', 'Ik zal meer dan één woning aanbieden');
 
-	
+	jr_define('JOMRES_TRANSLATIONS_TITLE', 'Vertalingen');
+	jr_define('JOMRES_TRANSLATIONS_LEAD', 'Op deze pagina kunt u labels van de ene taal naar de andere vertalen. Wanneer u de pagina bezoekt, ziet u strings die u al hebt gemaakt en hun waarde in de taal die u momenteel gebruikt. Stel bovenaan de doeltaal, klik dan voor de labels die u wilt vertalen op het label en een pop-up laat u uw nieuwe vertaling invoeren. Voor langere tekstregels kunt u de tekst uit een andere bron plakken. Houd er rekening mee dat HTML wordt verwijderd .<br/>
+U kunt de doeltaal op uw huidige taal laten staan en deze pagina gebruiken om items hier te hernoemen, in plaats van hun individuele pagina\'s te bezoeken.');
+jr_define('JOMRES_TARGET_LANGUAGE', 'Doeltaal');

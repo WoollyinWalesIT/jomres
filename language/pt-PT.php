@@ -2740,3 +2740,8 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Imagens de
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Use o pequeno formulário para alterar o rótulo. Clique no Tick para finalizar, ou clique no X para cancelar a edição:');
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Rótulo alterado');
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Depois de salvar a alteração, o rótulo é atualizado na página. Você pode desativar o modo de edição agora:');
+
+	jr_define('JOMRES_TRANSLATIONS_TITLE', 'Traduções');
+	jr_define('JOMRES_TRANSLATIONS_LEAD', 'Nesta página você pode traduzir etiquetas de um idioma para outro. Ao visitar a página você verá strings que você já criou e seu valor em qualquer idioma que você esteja usando. idioma de destino e, em seguida, para os rótulos que deseja traduzir, clique no rótulo e um pop-up permitirá que você insira sua nova tradução. Para linhas de texto mais longas, você pode colar o texto de outra fonte. Lembre-se de que qualquer HTML será removido .<br/>
+Você pode deixar o idioma de destino definido para seu idioma atual e usar esta página para renomear itens aqui, em vez de visitar suas páginas individuais.');
+	jr_define('JOMRES_TARGET_LANGUAGE', 'Idioma de destino');

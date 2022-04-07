@@ -2714,3 +2714,8 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Slike vrst
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Uporabite obrazec za spremembo oznake. Kliknite kljukico za dokončanje ali kliknite X, da prekličete urejanje:');
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Oznaka spremenjena');
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Ko shranite spremembo, se oznaka na strani posodobi. Zdaj lahko onemogočite način urejanja:');
+
+	jr_define('JOMRES_TRANSLATIONS_TITLE', 'Prevodi');
+	jr_define('JOMRES_TRANSLATIONS_LEAD', 'Na tej strani lahko prevajate oznake iz enega jezika v drugega. Ko obiščete stran, boste videli nize, ki ste jih že ustvarili, in njihovo vrednost v katerem koli jeziku, ki ga trenutno uporabljate. Na vrhu nastavite ciljni jezik, nato za oznake, ki jih želite prevesti, kliknite oznako in pojavno okno vam bo omogočilo vnos novega prevoda. Za daljše vrstice besedila lahko prilepite besedilo iz drugega vira. Ne pozabite, da bo vsak HTML odstranjen .<br/>
+Ciljni jezik lahko pustite nastavljen na vaš trenutni jezik in uporabite to stran za preimenovanje elementov tukaj, namesto da obiščete njihove posamezne strani.');
+	jr_define('JOMRES_TARGET_LANGUAGE', 'Ciljni jezik');

@@ -2724,3 +2724,8 @@ jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'Canvia l\'etiqueta');
 jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Utilitzeu el formulari petit per canviar l\'etiqueta. Feu clic a la marca per acabar, o feu clic a la X per cancel·lar l\'edició:');
 jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Etiqueta canviada');
 jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Un cop hagis desat el canvi, l\'etiqueta s\'actualitzarà a la pàgina. Ara pots desactivar el mode d\'edició:');
+
+	jr_define('JOMRES_TRANSLATIONS_TITLE', 'Traducció');
+	jr_define('JOMRES_TRANSLATIONS_LEAD', 'En aquesta pàgina podeu traduir etiquetes d\'un idioma a un altre. Quan visiteu la pàgina veureu les cadenes que ja heu creat i el seu valor en qualsevol idioma que feu servir actualment. A la part superior, establiu el L\'idioma de destinació, a continuació, per a les etiquetes que voleu traduir, feu clic a l\'etiqueta i una finestra emergent us permetrà introduir la vostra nova traducció. Per a línies de text més llargues, podeu enganxar el text d\'una altra font. Recordeu que qualsevol HTML s\'eliminarà. .<br/>
+Podeu deixar l\'idioma d\'arribada configurat en el vostre idioma actual i utilitzar aquesta pàgina per canviar el nom dels elements aquí, en lloc de visitar les seves pàgines individuals.');
+jr_define('JOMRES_TARGET_LANGUAGE', 'Idioma objectiu');

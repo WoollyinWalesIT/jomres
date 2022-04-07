@@ -2731,3 +2731,8 @@ jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Ș
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Folosiți formularul mic pentru a schimba eticheta. Faceți clic pe Bifă pentru a finaliza sau faceți clic pe X pentru a anula editarea:');
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Etichetă schimbată');
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Odată ce ați salvat modificarea, atunci eticheta este actualizată în pagină. Puteți dezactiva modul de editare acum:');
+
+	jr_define('JOMRES_TRANSLATIONS_TITLE', 'Traduceri');
+	jr_define('JOMRES_TRANSLATIONS_LEAD', 'Pe această pagină puteți traduce etichete dintr-o limbă în alta. Când vizitați pagina, veți vedea șirurile pe care le-ați creat deja și valoarea lor în orice limbă pe care o utilizați în prezent. În partea de sus setați limba țintă, apoi pentru etichetele pe care doriți să le traduceți, faceți clic pe etichetă și o fereastră pop-up vă va permite să introduceți noua traducere. Pentru rânduri mai lungi de text puteți lipi textul din altă sursă. Amintiți-vă că orice HTML va fi eliminat. .<br/>
+Puteți lăsa limba țintă setată la limba dvs. curentă și puteți utiliza această pagină pentru a redenumi articolele aici, în loc să le vizitați paginile individuale.');
+	jr_define('JOMRES_TARGET_LANGUAGE', 'Limba ţintă');

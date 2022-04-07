@@ -2704,3 +2704,8 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Īpašuma 
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Izmantojiet mazo veidlapu, lai mainītu etiķeti. Noklikšķiniet uz Atzīmes, lai pabeigtu, vai noklikšķiniet uz X, lai atceltu rediģēšanu:');
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Etiķete mainīta');
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Kad izmaiņas ir saglabātas, etiķete lapā tiek atjaunināta. Rediģēšanas režīmu varat atspējot tūlīt:');
+
+	jr_define('JOMRES_TRANSLATIONS_TITLE', 'Tulkojumi');
+	jr_define('JOMRES_TRANSLATIONS_LEAD', 'Šajā lapā varat tulkot etiķetes no vienas valodas citā. Apmeklējot lapu, jūs redzēsit jau izveidotās virknes un to vērtību jebkurā valodā, kuru pašlaik lietojat. Augšpusē iestatiet mērķvaloda, pēc tam uz etiķetēm, kuras vēlaties tulkot, noklikšķiniet uz etiķetes, un uznirstošais logs ļaus ievadīt jauno tulkojumu. Garākas teksta rindiņas varat ielīmēt tekstā no cita avota. Atcerieties, ka jebkurš HTML tiks noņemts .<br/>
+Varat atstāt mērķa valodu iestatītu uz savu pašreizējo valodu un izmantot šo lapu, lai šeit pārdēvētu vienumus, tā vietā, lai apmeklētu to atsevišķas lapas.');
+	jr_define('JOMRES_TARGET_LANGUAGE', 'Mērķa valoda');

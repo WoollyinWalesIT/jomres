@@ -2705,3 +2705,8 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Mülk tipi
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Etiketi değiştirmek için küçük formu kullanın. Bitirmek için Onay\'a tıklayın veya düzenlemeyi iptal etmek için X\'e tıklayın:');
 jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Etiket değiştirildi');
 jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Değişikliği kaydettikten sonra etiket sayfada güncellenir. Düzenleme modunu şimdi devre dışı bırakabilirsiniz:');
+
+	jr_define('JOMRES_TRANSLATIONS_TITLE', 'Çeviriler');
+	jr_define('JOMRES_TRANSLATIONS_LEAD', 'Bu sayfada etiketleri bir dilden diğerine çevirebilirsiniz. Sayfayı ziyaret ettiğinizde daha önce oluşturduğunuz dizeleri ve şu anda kullanmakta olduğunuz dilde bunların değerini göreceksiniz. En üstte hedef dili seçin, ardından çevirmek istediğiniz etiketler için etiketi tıklayın ve bir açılır pencere yeni çevirinizi girmenize izin verecektir. Daha uzun metin satırları için başka bir kaynaktan metne yapıştırabilirsiniz. Herhangi bir HTML\'nin çıkarılacağını unutmayın. .<br/>
+Hedef dili mevcut dilinize ayarlı bırakabilir ve bu sayfayı, öğeleri tek tek sayfalarını ziyaret etmek yerine yeniden adlandırmak için kullanabilirsiniz.');
+jr_define('JOMRES_TARGET_LANGUAGE', 'Hedef dil');

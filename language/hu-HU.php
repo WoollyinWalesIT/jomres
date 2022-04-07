@@ -2699,3 +2699,8 @@ jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Kedvezményes");
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Használja a kis űrlapot a címke megváltoztatásához. Kattintson a pipára a befejezéshez, vagy kattintson az X-re a szerkesztés megszakításához:');
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Címke módosítva');
 	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Miután elmentette a változtatást, a címke frissül az oldalon. A szerkesztési módot most letilthatja:');
+
+	jr_define('JOMRES_TRANSLATIONS_TITLE', 'Fordítások');
+	jr_define('JOMRES_TRANSLATIONS_LEAD', 'Ezen az oldalon lefordíthatja a címkéket egyik nyelvről a másikra. Amikor felkeresi az oldalt, látni fogja a már létrehozott karakterláncokat és azok értékét az éppen használt nyelven. A tetején állítsa be a célnyelven, majd a lefordítani kívánt címkéknél kattintson a címkére, és egy felugró ablakban beírhatja az új fordítást. Hosszabb sorok esetén beillesztheti a szöveget egy másik forrásból. Ne feledje, hogy minden HTML kikerül .<br/>
+Meghagyhatja a célnyelvet az aktuális nyelven, és ezen az oldalon átnevezheti az itt található elemeket, ahelyett, hogy meglátogatná az egyes oldalakat.');
+	jr_define('JOMRES_TARGET_LANGUAGE', 'Célnyelv');

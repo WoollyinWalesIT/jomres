@@ -2702,3 +2702,8 @@ jr_define( 'JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'ラベルを変更する')
 jr_define( 'JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', '小さなフォームを使用してラベルを変更します。チェックマークをクリックして終了するか,Xをクリックして編集をキャンセルします：');
 jr_define( 'JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'ラベルが変更されました');
 jr_define( 'JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', '変更を保存すると,ページのラベルが更新されます。編集モードを無効にできます：');
+
+jr_define('JOMRES_TRANSLATIONS_TITLE','翻訳');
+jr_define('JOMRES_TRANSLATIONS_LEAD','このページでは、ラベルをある言語から別の言語に翻訳できます。このページにアクセスすると、作成済みの文字列と、現在使用している言語での値が表示されます。 ターゲット言語、次に翻訳するラベルについて、ラベルをクリックすると、ポップアップで新しい翻訳を入力できます。長いテキスト行の場合は、別のソースからのテキストを貼り付けることができます。HTMLはすべて削除されることに注意してください。 。<br/>
+個々のページにアクセスする代わりに、ターゲット言語を現在の言語に設定したままにして、このページを使用してここでアイテムの名前を変更できます。');
+jr_define('JOMRES_TARGET_LANGUAGE','ターゲット言語');
