@@ -1232,7 +1232,11 @@ function jomres_bootstrap_version()
 	    if ( jomres_cmsspecific_areweinadminarea()) {
             $bootstrap_version = '2';
         } else {
-            $bootstrap_version = '3';
+            if ($jrConfig[ 'bootstrap_version' ] == '5') {
+				$bootstrap_version = '5';
+			} else {
+				$bootstrap_version = '3';
+			}
         }
 
 	}  else {
