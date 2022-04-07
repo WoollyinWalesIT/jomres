@@ -41,9 +41,12 @@ class jomres_content_tabs_bootstrap5
         $this->randomString = '';
         $this->useCookies = false;
 
-        Factory::getDocument()->getWebAssetManager()
-            ->useStyle('webcomponent.joomla-tab')
-            ->useScript('webcomponent.joomla-tab');
+		if (this_cms_is_joomla()== true){
+			Factory::getDocument()->getWebAssetManager()
+				->useStyle('webcomponent.joomla-tab')
+				->useScript('webcomponent.joomla-tab');
+		}
+
 
     }
 
