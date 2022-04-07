@@ -36,8 +36,9 @@ class jomres_data_source_base
 		$this->file_name = 'data_source_'.$source_type.'.json';
 
 		$this->cms_languages = $this->get_installed_cms_languages();
-
-
+		if (empty($this->cms_languages) && this_cms_is_wordpress() ) {
+			$this->cms_languages[] = "en-US";
+		}
 	}
 
 	// Get the languages installed on the host CMS
