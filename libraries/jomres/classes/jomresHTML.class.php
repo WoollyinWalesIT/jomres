@@ -83,7 +83,7 @@ class jomresHTML
 			$attribs = str_replace('class="inputbox"', '', $attribs);
 			$attribs = str_replace('class="input-medium"', '', $attribs);
 
-			$attribs .= ' class="input-medium form-control  form-select" ';
+			$attribs .= ' class="input-medium form-control form-select" ';
 
 			$output = '<div class="select-wrapper"><select name="'.$name.'" id="'.$name.'" '.$attribs.'>';
 			
@@ -134,7 +134,7 @@ class jomresHTML
 	{
 		$attribs = str_replace(' class="inputbox" ', '', $attribs);
 		$attribs = str_replace(' class="input-medium" ', '', $attribs);
-		$attribs .= ' class="input-small form-control"';
+		$attribs .= ' class="input-small form-control form-select"';
 
 		$arry = array();
 		for ($i = (int) $start; $i <= (int) $end; $i += (int) $increment) {

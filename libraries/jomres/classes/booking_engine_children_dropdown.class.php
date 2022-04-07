@@ -94,7 +94,7 @@ class booking_engine_children_dropdown
 
 					$slots_remaining = $slots_remaining - $selected;
 
-					$guests_dropdown = jomresHTML::integerSelectList(0, $remaining_slots_not_selected + $selected, 1, 'child_dropdown['.$id.']', 'size="1" class="input-mini"  autocomplete="off" onchange="getResponse_children('.$id.');"', $selected, '%02d', $use_bootstrap_radios = false);
+					$guests_dropdown = jomresHTML::integerSelectList(0, $remaining_slots_not_selected + $selected, 1, 'child_dropdown['.$id.']', 'size="1" class="input-mini form-select"  autocomplete="off" onchange="getResponse_children('.$id.');"', $selected, '%02d', $use_bootstrap_radios = false);
 
 					if ( $rate['model'] == 'per_stay') {
 						$price_text = output_price($rate['price'])." ".jr_gettext('JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_STAY', 'JOMRES_POLICIES_CHILDREN_CHARGE_MODEL_PER_STAY');
