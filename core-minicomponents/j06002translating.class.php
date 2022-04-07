@@ -64,6 +64,7 @@ class j06002translating
 						$rows = array();
 
 						$output['SECTION'] = $section_title;
+						$last_subtitle = '';
 						foreach ($contents as $subtitle => $elements){
 							if (!empty($elements)) {
 								foreach ($elements as $content) {
