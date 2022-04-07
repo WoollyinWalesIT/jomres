@@ -101,7 +101,7 @@
 </patTemplate:tmpl>
 
 
-<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" id="adminForm" name="adminForm" class="form-horizontal" role="form">
+<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" id="adminForm" name="adminForm" class="form-horizontal" role="form" autocomplete="off">
 	<div class="row">
 		<div class="col-md-6">
 			<div class="form-group">
@@ -118,7 +118,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-md-2 control-label" for="property_name">{HNAME}</label><div id="tour_target_registration_2_name_address"></div>
+				<label class="col-md-2 control-label" for="property_name">{HNAME}</label>
 				<div class="col-md-10">
 					<input id="property_name" name="property_name" type="text" value="{PROPERTY_NAME}" class="form-control " placeholder="{COMMON_PLACEHOLDER_PROPERTYNAME}"/>
 				</div>
@@ -182,7 +182,7 @@
 			</div>
 			<patTemplate:tmpl name="stars" type="simpleCondition" requiredVars="hstars">
 			<div class="form-group">
-				<label class="col-md-2 control-label" for="stars">{HSTARS}</label><div id="tour_target_registration_2_stars"></div>
+				<label class="col-md-2 control-label" for="stars">{HSTARS}</label>
 				<div class="col-md-10">
 					{STARSDROPDOWN}
 				</div>
@@ -209,97 +209,110 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-md-2 control-label" for="firstname">{LATLONG_DESC}</label><div id="tour_target_registration_2_latlong"></div>
+		<label class="col-md-2 control-label" for="firstname">{LATLONG_DESC}</label>
 		<div class="col-md-10">
 			{MAP}
 		</div>
 	</div>
-	<div class="form-group">
-		<label class="col-md-2 control-label" for="pid">{HFEATURES}</label><div id="tour_target_registration_2_features"></div>
-		<div class="col-md-10">
-			<patTemplate:tmpl name="globalPfeatures">
-			<div style="float:left;">
-				<input type="checkbox" name="pid[]" value="{PID}" style="float:left;" {ISCHECKED}> {FEATURE}
-			</div>
-			</patTemplate:tmpl>
-		</div>
-	</div>
-	<div class="clearfix"></div>
-    {MARKDOWN_BUTTON}
-	<div class="form-group">
-		<label class="col-md-2 control-label" for="property_description">{HPROPDESCRIPTION}</label><div id="tour_target_registration_2_description"></div>
-		<div class="col-md-10">
-			{PROPERTY_DESCRIPTION}
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-md-2 control-label" for="property_checkin_times">{HCHECKINTIMES}</label>
-		<div class="col-md-10">
-			{PROPERTY_CHECKIN_TIMES}
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-md-2 control-label" for="property_area_activities">{HAREAACTIVITIES}</label>
-		<div class="col-md-10">
-			{PROPERTY_AREA_ACTIVITIES}
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-md-2 control-label" for="property_driving_directions">{HDRIVINGDIRECTIONS}</label>
-		<div class="col-md-10">
-			{PROPERTY_DRIVING_DIRECTIONS}
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-md-2 control-label" for="property_airports">{HAIRPORTS}</label>
-		<div class="col-md-10">
-			{PROPERTY_AIRPORTS}
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-md-2 control-label" for="property_othertransport">{HOTHERTRANSPORT}</label>
-		<div class="col-md-10">
-			{PROPERTY_OTHERTRANSPORT}
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-md-2 control-label" for="property_policies_disclaimers">{HPOLICIESDISCLAIMERS}</label><div id="tour_target_registration_2_policies"></div>
-		<div class="col-md-10">
-			{PROPERTY_POLICIES_DISCLAIMERS}
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-md-2 control-label" for="metatitle">{_JOMRES_METATITLE}</label>
-		<div class="col-md-10">
-			<input type="text" name="metatitle" value="{METATITLE}" class="form-control" placeholder="{_JOMRES_METATITLE}"/>
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-md-2 control-label" for="metadescription">{_JOMRES_METADESCRIPTION}</label>
-		<div class="col-md-10">
-			<input type="text" name="metadescription" value="{METADESCRIPTION}" class="form-control" placeholder="{_JOMRES_METADESCRIPTION}"/>
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-md-2 control-label" for="metakeywords">{_JOMRES_METAKEYWORDS}</label>
-		<div class="col-md-10">
-			<input type="text" name="metakeywords" value="{METAKEYWORDS}" class="form-control" placeholder="{_JOMRES_METAKEYWORDS}"/>
-		</div>
-	</div>
-	<patTemplate:tmpl name="multi" type="simpleCondition" requiredVars="multisites_select">
-	<div class="form-group">
-		<label class="col-md-2 control-label" for="property_site_id">{LABEL}</label>
-		<div class="col-md-10">
-			{MULTISITES_SELECT}
-		</div>
-	</div>
-	</patTemplate:tmpl>
 
-	<div class="form-actions fixed-bottom bg-light text-center pt-1 border-top border-success">
-		<div class="col-md-10 col-md-offset-2">
-			<button class="btn btn-primary" type="submit">{COMMON_SUBMIT}</button>
-			<a class="btn btn-secondary" href="{CANCEL_URL}">{COMMON_CANCEL}</a>
+	<h2>
+		{HFEATURES}
+	</h2>
+	<div class="row">
+		<patTemplate:tmpl name="globalPfeatures">
+		<div class="col-sm-2">
+			<div class="form-check">
+				<input class="form-check-input" type="checkbox" value="{PID}" id="{PID}" name="pid[]" {ISCHECKED} aria-label="{FEATURE_NAME}">
+				<label class="form-check-label" for="{PID}">
+					{FEATURE_NAME}
+				</label>
+			</div>
 		</div>
+		</patTemplate:tmpl>
+	</div>
+	
+	<div class="clearfix"></div>
+	<div class="row mt-5">
+		<div class="col-sm-6">
+			{MARKDOWN_BUTTON}
+		</div>
+
+		<div class="form-group mt-5">
+			<label class="col-md-2 control-label" for="property_description">{HPROPDESCRIPTION}</label>
+			<div class="col-md-10">
+				{PROPERTY_DESCRIPTION}
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label" for="property_checkin_times">{HCHECKINTIMES}</label>
+			<div class="col-md-10">
+				{PROPERTY_CHECKIN_TIMES}
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label" for="property_area_activities">{HAREAACTIVITIES}</label>
+			<div class="col-md-10">
+				{PROPERTY_AREA_ACTIVITIES}
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label" for="property_driving_directions">{HDRIVINGDIRECTIONS}</label>
+			<div class="col-md-10">
+				{PROPERTY_DRIVING_DIRECTIONS}
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label" for="property_airports">{HAIRPORTS}</label>
+			<div class="col-md-10">
+				{PROPERTY_AIRPORTS}
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label" for="property_othertransport">{HOTHERTRANSPORT}</label>
+			<div class="col-md-10">
+				{PROPERTY_OTHERTRANSPORT}
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label" for="property_policies_disclaimers">{HPOLICIESDISCLAIMERS}</label>
+			<div class="col-md-10">
+				{PROPERTY_POLICIES_DISCLAIMERS}
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label" for="metatitle">{_JOMRES_METATITLE}</label>
+			<div class="col-md-10">
+				<input type="text" name="metatitle" value="{METATITLE}" class="form-control" placeholder="{_JOMRES_METATITLE}"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label" for="metadescription">{_JOMRES_METADESCRIPTION}</label>
+			<div class="col-md-10">
+				<input type="text" name="metadescription" value="{METADESCRIPTION}" class="form-control" placeholder="{_JOMRES_METADESCRIPTION}"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label" for="metakeywords">{_JOMRES_METAKEYWORDS}</label>
+			<div class="col-md-10">
+				<input type="text" name="metakeywords" value="{METAKEYWORDS}" class="form-control" placeholder="{_JOMRES_METAKEYWORDS}"/>
+			</div>
+		</div>
+		<patTemplate:tmpl name="multi" type="simpleCondition" requiredVars="multisites_select">
+		<div class="form-group">
+			<label class="col-md-2 control-label" for="property_site_id">{LABEL}</label>
+			<div class="col-md-10">
+				{MULTISITES_SELECT}
+			</div>
+		</div>
+		</patTemplate:tmpl>
+
+		<div class="form-actions fixed-bottom bg-light text-center pt-1 border-top border-success">
+			<div class="col-md-10 col-md-offset-2">
+				<button class="btn btn-primary" type="submit">{COMMON_SUBMIT}</button>
+				<a class="btn btn-secondary" href="{CANCEL_URL}">{COMMON_CANCEL}</a>
+			</div>
+		</div>
+
 	</div>
 	<input type="hidden" name="property_uid" value="{PROPERTYUID}"/>
 	<input type="hidden" name="task" value="save_property"/>

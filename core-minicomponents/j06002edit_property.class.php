@@ -232,6 +232,8 @@ class j06002edit_property
 
 				$r[ 'FEATURE' ] = jomres_makeTooltip($v['abbv'], $v['abbv'], $v['desc'], JOMRES_IMAGELOCATION_RELPATH.'pfeatures/'.$v['image'], '', 'property_feature', array());
 
+				$r['FEATURE_NAME'] = $v['abbv'];
+
 				$r[ 'BR' ] = '';
 				if ($counter == 8) {
 					$r[ 'BR' ] = '<br />';
