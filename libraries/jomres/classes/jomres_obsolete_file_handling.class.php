@@ -1303,11 +1303,6 @@
 			$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'send.jpg');
 			$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'send.png');
 			$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'Services.png');
-			$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'sort_asc.png');
-			$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'sort_asc_disabled.png');
-			$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'sort_both.png');
-			$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'sort_desc.png');
-			$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'sort_desc_disabled.png');
 			$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'stillhere.gif');
 			$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'Support_IT.png');
 			$this->add_file(JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_ROOT_DIRECTORY.JRDS.'assets'.JRDS.'images'.JRDS.'SymbolInformation.png');
