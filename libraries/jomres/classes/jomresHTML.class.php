@@ -83,7 +83,7 @@ class jomresHTML
 			$attribs = str_replace('class="inputbox"', '', $attribs);
 			$attribs = str_replace('class="input-medium"', '', $attribs);
 
-			$attribs .= ' class="input-medium form-control" ';
+			$attribs .= ' class="input-medium form-control  form-select" ';
 
 			$output = '<div class="select-wrapper"><select name="'.$name.'" id="'.$name.'" '.$attribs.'>';
 			
