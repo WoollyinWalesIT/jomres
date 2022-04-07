@@ -42,7 +42,12 @@
 			if (!empty($custom_town_names)) {
 				foreach ($custom_town_names as $language => $towns) {
 					foreach ( $towns as $town ) {
-						if (!in_array($town , $data[$language] )) {
+						if (is_array($data[$language])) {
+							if (!in_array($town , $data[$language] )) {
+								$data[$language][] = $town;
+							}
+						} else {
+							$data[$language] = [];
 							$data[$language][] = $town;
 						}
 					}
