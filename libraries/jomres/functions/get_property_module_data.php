@@ -50,6 +50,8 @@
 
 		jr_import('jomres_ribbon_generator');
 
+		jr_import('jomres_markdown');
+		$jomres_markdown = new jomres_markdown();
 
 		foreach ($property_uid_array as $property_uid) {
 			if ($property_uid > 0) {
@@ -157,7 +159,7 @@
 				$property_data[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images ['property'][0][0]['medium'];
 				$property_data[ 'IMAGETHUMB' ] = $jomres_media_centre_images->images ['property'][0][0]['small'];
 
-				$property_data[ 'PROPERTY_DESCRIPTION' ] = $current_property_details->property_description;
+				$property_data[ 'PROPERTY_DESCRIPTION' ] = ($jomres_markdown->get_markdown($current_property_details->property_description));
 
 				$property_data[ 'PRICE_PRE_TEXT' ] = $jomres_property_list_prices->lowest_prices[$property_uid][ 'PRE_TEXT' ];
 				$property_data[ 'PRICE_PRICE' ] = $jomres_property_list_prices->lowest_prices[$property_uid][ 'PRICE' ];
