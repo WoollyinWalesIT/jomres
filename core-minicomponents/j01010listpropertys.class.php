@@ -43,6 +43,9 @@
 				return;
 			}
 
+			jr_import('jomres_markdown');
+			$jomres_markdown = new jomres_markdown();
+
 			output_ribbon_styling();
 
 			$MiniComponents->triggerEvent('01008', $componentArgs); // optional
@@ -398,7 +401,7 @@
 						$featureList = array();
 						$ptown = stripslashes($current_property_details->multi_query_result[ $propertys_uid ]['property_town']);
 						$property_stars = $current_property_details->multi_query_result[ $propertys_uid ]['stars'];
-						$propertyDesc = strip_tags(jomres_decode(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION', $current_property_details->multi_query_result[ $propertys_uid ]['property_description'], false)));
+						$propertyDesc = $jomres_markdown->get_markdown(strip_tags(jomres_decode(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION_'.$propertys_uid, $current_property_details->multi_query_result[ $propertys_uid ]['property_description'], false))));
 
 						if (in_array($propertys_uid, $tmpBookingHandler->tmpsearch_data[ 'featured_properties' ])) {
 							if (!isset($jrConfig[ 'featured_listings_emphasis' ]) || $jrConfig[ 'featured_listings_emphasis' ] == '') {
