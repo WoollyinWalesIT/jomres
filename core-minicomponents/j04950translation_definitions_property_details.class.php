@@ -100,6 +100,24 @@ class j04950translation_definitions_property_details
 			'translate_label' => true
 			];
 
+		$definitions[$section_name][$subtitle][] = [
+			'definition' => jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE_'.$property_uid, $basic_property_details->multi_query_result[$property_uid]["metatitle"] ),
+			'label' => '_JOMRES_METATITLE',
+			'translate_label' => true
+		];
+
+		$definitions[$section_name][$subtitle][] = [
+			'definition' => jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION_'.$property_uid, $basic_property_details->multi_query_result[$property_uid]["metadescription"] ),
+			'label' => '_JOMRES_METADESCRIPTION',
+			'translate_label' => true
+		];
+		;
+		$definitions[$section_name][$subtitle][] = [
+			'definition' =>  jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_METAKEYWORDS_'.$property_uid, $basic_property_details->multi_query_result[$property_uid]["metakeywords"] ),
+			'label' => '_JOMRES_METAKEYWORDS',
+			'translate_label' => true
+		];
+
 
 		$this->retVals = $definitions;
 
