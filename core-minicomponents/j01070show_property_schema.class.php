@@ -71,6 +71,9 @@ class j01070show_property_schema
 			return;
 		}
 
+		jr_import('jomres_markdown');
+		$jomres_markdown = new jomres_markdown();
+
 		$mrConfig = getPropertySpecificSettings($property_uid);
 
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
@@ -157,8 +160,7 @@ class j01070show_property_schema
 			$output["HIGHEST_PRICE"] = max($this->roomTypePriceRanges);
 		}
 
-		
-		$short_property_description = jomres_decode(jr_substr(strip_tags($current_property_details->property_description), 0, 200)).'...';
+		$short_property_description = jomres_decode(jr_substr(strip_tags($jomres_markdown->get_markdown($current_property_details->property_description)), 0, 200)).'...';
 
 		//property details
 		$output[ 'STARS' ] = $current_property_details->stars;
