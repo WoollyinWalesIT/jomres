@@ -131,6 +131,7 @@ class j06002translating
 		$output['JOMRES_TARGET_LANGUAGE'] = jr_gettext('JOMRES_TARGET_LANGUAGE','JOMRES_TARGET_LANGUAGE',false);
 		$output['CURRENT_LANGUAGE'] = get_showtime('lang');
 
+		$output[ 'MARKDOWN_BUTTON' ] = $MiniComponents->specificEvent('06000', 'show_markdown_modal', array('output_now' => false));
 
 		$pageoutput[] = $output;
 		$tmpl = new patTemplate();
