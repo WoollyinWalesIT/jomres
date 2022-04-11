@@ -74,6 +74,8 @@ class j06000show_property_header
 		} else {
 			$output_now = true;
 		}
+		jr_import('jomres_markdown');
+		$jomres_markdown = new jomres_markdown();
 
 		$mrConfig = getPropertySpecificSettings($property_uid);
 
@@ -144,7 +146,7 @@ class j06000show_property_header
 		}
 
 		//Facebook meta data
-		$short_property_description = jomres_decode(jr_substr(strip_tags($current_property_details->property_description), 0, 200)).'...';
+		$short_property_description = jomres_decode(jr_substr(strip_tags($jomres_markdown->get_markdown($current_property_details->property_description)), 0, 200)).'...';
 		jomres_cmsspecific_addcustomtag('<meta property="og:url" content="'.get_property_details_url($property_uid, 'nosef').'&skip_consent_form=1" />');
 		jomres_cmsspecific_addcustomtag('<meta property="og:type" content="article" />');
 		jomres_cmsspecific_addcustomtag('<meta property="og:title" content="'.jomres_decode($current_property_details->property_name).'" />');
