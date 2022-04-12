@@ -671,7 +671,7 @@ class jomres_sanity_check
 					if ($this->mrConfig['tariffmode'] == 0) {
 						$link = jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_tariffs_normal');
 					} else {
-						$link = jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_resource');
+						$link = jomresURL(JOMRES_SITEPAGE_URL.'&task=list_resources');
 					}
 					$button_text = jr_gettext('_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK_LINK', '_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK_LINK', false);
 
