@@ -566,14 +566,8 @@
 						//$property_deets['AVAILABILITY_CALENDAR'] = $MiniComponents->specificEvent('06000','ui_availability_calendar',array('property_uid'=>$property->propertys_uid,'output_now'=>"1",'noshowlegend'=>1) );
 
 						$stars = $current_property_details->multi_query_result[$propertys_uid]['stars'];
-						$starslink = '';
-						if ($stars > 0) {
-							$starslink = '';
-							for ($i = 1; $i <= $stars; ++$i) {
-								$starslink .= ' <i class="fa fa-star  text-warning" aria-hidden="true"></i> ';
-							}
-							$starslink .= '';
-						}
+
+						$starslink = $MiniComponents->specificEvent('06000', 'show_property_stars', array('property_uid' => $propertys_uid , 'output_now' => false ));
 
 						$property_deets[ 'SUPERIOR' ] = '';
 						if ($current_property_details->multi_query_result[ $propertys_uid ]['superior'] == 1) {

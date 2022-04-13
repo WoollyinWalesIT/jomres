@@ -94,16 +94,7 @@ class j06000show_property_header
 			return;
 		}
 
-		//stars
-		$stars = $current_property_details->stars;
-		$starslink = '<i class="fa fa-star" aria-hidden="true"></i> ';
-		if ($stars != '0') {
-			$starslink = '';
-			for ($i = 1; $i <= $stars; ++$i) {
-				$starslink .= ' <i class="fa fa-star pe-none" aria-hidden="true"></i> ';
-			}
-			$starslink .= '';
-		}
+		$starslink = $MiniComponents->specificEvent('06000', 'show_property_stars', array('property_uid' => $property_uid , 'output_now' => false ));
 
 		if ($current_property_details->superior == 1) {
 			$output[ 'SUPERIOR' ] = '<img src="'.JOMRES_IMAGES_RELPATH.'superior.png" alt="superior" border="0" />';

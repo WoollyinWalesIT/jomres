@@ -172,10 +172,8 @@
 				$property_data[ 'MOREINFORMATION' ] = jr_gettext('_JOMRES_COM_A_CLICKFORMOREINFORMATION', '_JOMRES_COM_A_CLICKFORMOREINFORMATION', $editable = false, true);
 				$property_data[ 'QUICKINFORMATION' ] = jr_gettext('_JOMRES_QUICK_INFO', '_JOMRES_QUICK_INFO', $editable = false, true);
 				$property_data[ 'MOREINFORMATIONLINK' ] = get_property_details_url($property_uid);
-				$property_data[ 'STARSIMAGES' ] = '';
-				for ($i = 1; $i <= $property_data[ 'stars' ]; ++$i) {
-					$property_data[ 'STARSIMAGES' ] .= '<img src="'.JOMRES_IMAGES_RELPATH.'star.png" alt="star" border="0" />';
-				}
+
+				$property_data[ 'STARSIMAGES' ] = $MiniComponents->specificEvent('06000', 'show_property_stars', array('property_uid' => $property_uid , 'output_now' => false ));
 
 				$property_data[ 'SUPERIOR' ] = '';
 				if ($property_data[ 'superior' ] == 1) {
