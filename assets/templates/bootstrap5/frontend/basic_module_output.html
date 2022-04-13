@@ -2,37 +2,59 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 	{JOMRES_POPUPURL_GLOBALVAR}
 	<div class="card shadow mb-3">
-		<div class="card-body">
-			<h5 class="card-title container-fluid">
-				<div class="row">
-					<div class="col-md-8">
-						{PROPERTY_NAME}<p>{STARSIMAGES}&nbsp;{SUPERIOR}</p>
-					</div>
-				</div>
-
-			</h5>
+		<div class="image-container ">
+			<a href="{MOREINFORMATIONLINK}" class="stretched-link">
+				<img src="{IMAGEMEDIUM}" alt="{PROPERTY_NAME}" class="card-img-top" />
+			</a>
+			{RIBBON}
+			<div class="top-left d-none d-sm-block bg-secondary bg-opacity-25 text-white rounded-1 p-1">{PROPERTY_TYPE_TITLE}</div>
+			<div class="bottom-left bg-info  bg-opacity-25 text-white rounded-3 p-1"><strong>{PRICE_PRICE}</strong></div>
+			<div class="bottom-right d-none d-sm-block">{REVIEWS_BUTTON}</div>
+		</div>
+		<div class="card-body margin-0">
 			<div class="card-text">
 				<patTemplate:comment>
 					<div id="module_{RANDOM_IDENTIFIER}">
 						<a href="#module_{RANDOM_IDENTIFIER}_popup" data-bs-toggle="modal" random_identifier="{RANDOM_IDENTIFIER}" property_name="{PROPERTY_NAME}" property_uid="{PROPERTY_UID}"><img src="{IMAGEMEDIUM}" alt="{PROPERTY_NAME}" class="ngm-image img-responsive" /></a>
 					</div>
 				</patTemplate:comment>
-				<div class="image-container ">
-					<a href="{MOREINFORMATIONLINK}">
-						<img src="{IMAGEMEDIUM}" alt="{PROPERTY_NAME}" class="card-img-top" />
-					</a>
-					{RIBBON}
-					<div class="bottom-left bg-info text-white rounded-3 p-2">{PRICE_PRE_TEXT} <strong>{PRICE_PRICE}</strong>{PRICE_POST_TEXT}</div>
-					<div class="bottom-right d-none d-sm-block">{REVIEWS_BUTTON}</div>
-				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<strong>{PROPERTY_NAME}</strong> {STARSIMAGES}&nbsp;{SUPERIOR}
+					</div>
+					<div class="row">
+						<div class="col-md-12 fs-6 fw-lighter text-truncate">
+							<div class="row">
+								<div class="col-md-1">
+									<i class="fas fa-map-marker"></i>
+								</div>
+								<div class="col-md-11 text-start">
+									{PROPERTY_TOWN}, {PROPERTY_REGION}, {PROPERTY_COUNTRY}
+								</div>
+							</div>
 
-				<hr/>
-				<div class="text-truncate">{PROPERTY_DESCRIPTION}</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 fs-6 fw-lighter text-truncate">
+							<div class="row">
+								<div class="col-md-1">
+									<i class="fas fa-house"></i>
+								</div>
+								<div class="col-md-11 text-start">
+									{PROPERTY_CATEGORY}
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
 			</div>
+			<patTemplate:comment>
 			<div class="card-footer" align="center">
 				<a href="{MOREINFORMATIONLINK}" class="btn btn-info" title="{PROPERTY_NAME}">{MOREINFORMATION}</a>
-
 			</div>
+			</patTemplate:comment>
 		</div>
 	</div>
 	<script>
@@ -55,6 +77,8 @@
 
 <patTemplate:comment>
 	These are included in the template in case you wish to use them.
+	{PROPERTY_TYPE_TITLE}
+	{PROPERTY_CATEGORY}
 	{PROPERTY_STREET}
 	{PROPERTY_TOWN}
 	{PROPERTY_POSTCODE}
@@ -74,4 +98,5 @@
 	{PROPERTY_AIRPORTS}
 	{PROPERTY_OTHERTRANSPORT}
 	{PROPERTY_POLICIES_DISCLAIMERS}
+
 </patTemplate:comment>

@@ -32,6 +32,9 @@
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 
+		jr_import('jomres_property_categories');
+		$jomres_property_categories = new jomres_property_categories();
+
 		jr_import('jomres_reviews');
 		$Reviews = new jomres_reviews();
 		$Reviews->getRatingsMulti($property_uid_array);
@@ -179,6 +182,13 @@
 				if ($property_data[ 'superior' ] == 1) {
 					$property_data[ 'SUPERIOR' ] = '<img src="'.JOMRES_IMAGES_RELPATH.'superior.png" alt="superior" border="0" />';
 				}
+				if ($property_data['cat_id'] > 0 ) {
+					$jomres_property_categories->get_property_category($property_data['cat_id'] );
+					$property_data["PROPERTY_CATEGORY"]		= $jomres_property_categories->title;
+				} else {
+					$property_data["PROPERTY_CATEGORY"]		= '&nbsp;';
+				}
+
 
 				//animations
 				$property_data[ 'ANIMATION_DELAY' ] = $animationDelay;
