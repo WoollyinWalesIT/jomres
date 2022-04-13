@@ -246,3 +246,8 @@ jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES' , 'لیستی ا
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_LIMIT' , 'تعداد ویژگی های سندیکایی برای نمایش') ;
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP' , 'نمایش MRP (هتل/تختخواب و صبحانه) یا SRP (کلبه/آپارتمان/ویلا). پیش فرض از ملک فعلی تعیین می شود , اگر برای انتخاب نوع خاص , این مقدار را برای srps 0 یا mrps 1 قرار دهید. ');
 
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS', "ستاره های یک ویژگی را نشان می دهد. اگر ویژگی MRP باشد، این ها در پیکربندی ویژگی تنظیم شده اند.");
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_PROPERTY_UID', 'شناسه دارایی.');
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'اختیاری. اگر شناسه ویژگی تنظیم نشده باشد، می توانید به جای آن یک عدد ارسال کنید.');
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'اختیاری. مسیر الگوی جایگزین. نمی توان از طریق url عبور کرد. باید مطلق باشد.');
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'اختیاری. نام الگوی جایگزین.');

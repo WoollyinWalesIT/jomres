@@ -295,3 +295,9 @@ jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES', 'Показва
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_LIMIT', 'Броят на синдикираните имоти за показване');
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'Дали да се показват MRP (хотели/нощувки със закуски) или SRP (вили/апартаменти/вили). По подразбиране се определя от текущата собственост, тогава това е i, показано. За да изберете конкретен тип, задайте тази стойност на 0 за srbs или 1 за mrps. ');
 
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS', "Показва звездите на даден имот. Те се задават в Конфигурация на свойство, ако имотът е MRP.");
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_PROPERTY_UID', 'Идент. № на свойството.');
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'По избор. Ако идентификаторът на свойството не е зададен, можете вместо това да подадете число.');
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'По избор. Алтернативен път към шаблона. Не може да се предава чрез url. Трябва да е абсолютен.');
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'По избор. Алтернативно име на шаблон.');
+

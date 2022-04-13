@@ -246,3 +246,8 @@ jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES', 'Показує
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_LIMIT', 'Кількість об\'єднаних властивостей для показу');
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'Чи показувати MRP (готелі/готелі типу "ліжко та сніданок") або SRP (котеджі/апартаменти/вілли). За замовчуванням визначається з поточної нерухомості, то показано. Щоб вибрати конкретний тип, встановіть це значення на 0 для сербської мови або 1 для mrps. ');
 
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS', "Показує зірочки властивості. Вони встановлюються в Конфігурації властивостей, якщо властивість є MRP.");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_PROPERTY_UID', 'Ідентифікатор властивості.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Необов\'язково. Якщо ідентифікатор властивості не встановлено, замість цього можна передати число.');
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Необов\'язково. Альтернативний шлях до шаблону. Не можна передати через URL-адресу. Має бути абсолютним.');
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Необов\'язково. Альтернативна назва шаблону.');

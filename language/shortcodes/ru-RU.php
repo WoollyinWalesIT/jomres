@@ -245,4 +245,9 @@ jr_define ('_JOMRES_SHORTCODES_06001DASHBOARD', 'Панель управлени
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES', 'Показывает список объединенных свойств');
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_LIMIT', 'Количество синдицированных свойств для отображения');
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'Показывать ли MRP (отели / кровать и завтрак) или SRP (коттеджи / апартаменты / виллы). По умолчанию MRP определяется из текущего свойства, то если uid свойства недоступен, показано. Чтобы выбрать конкретный тип, установите это значение на 0 для srps или 1 для mrps. ');
-    
+
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS', "Показывает звездочки свойства. Они устанавливаются в конфигурации свойства, если свойство является MRP.");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_PROPERTY_UID', 'Идентификатор свойства.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Необязательно. Если идентификатор свойства не задан, вместо него можно передать число.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Необязательно. Альтернативный путь к шаблону. Не может быть передан через URL. Должен быть абсолютным.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Необязательно. Альтернативное имя шаблона.');

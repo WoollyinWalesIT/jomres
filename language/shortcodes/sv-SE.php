@@ -245,3 +245,9 @@ jr_define ('_JOMRES_SHORTCODES_06001DASHBOARD', 'Dashboard');
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES', 'Visar en lista över syndikerade egenskaper');
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_LIMIT', 'Antalet syndikerade egenskaper som ska visas');
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'Huruvida MRP -hotell (hotell/bed & breakfast) eller SRP (stugor/lägenheter/villor) ska visas. Standard är bestämt från den aktuella fastighetens egendom, då är ej tillgängligt för att välja en specifik typ, ställ in detta värde på 0 för srps eller 1 för mrps. ');
+
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS', "Visar en egenskaps stjärnor. Dessa ställs in i egenskapskonfigurationen, om egenskapen är en MRP.");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_PROPERTY_UID', 'Id för egenskapen.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Valfritt. Om egenskaps-id inte är angivet kan du skicka ett nummer istället.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Valfritt. Alternativ mallsökväg. Kan inte skickas via url. Måste vara absolut.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Valfritt. Alternativt mallnamn.');

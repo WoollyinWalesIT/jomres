@@ -245,4 +245,9 @@ jr_define ('_JOMRES_SHORTCODES_06001DASHBOARD', 'לוח מחוונים');
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES', 'מציג רשימה של נכסים מסונכרנים');
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_LIMIT', 'מספר הנכסים המסונכרנים להצגה');
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'אם להציג MRP (מלונות/לינה וארוחת בוקר) או SRPs (קוטג ים/דירות/וילות). ברירת המחדל נקבעת אם הנכס הנוכחי, אז אם הנכס הוא, הנכס אינו קיים, מוצג. כדי לבחור סוג ספציפי, הגדר ערך זה ל- 0 עבור srps או 1 עבור mrps. ');
-    
+
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS', "מראה כוכבים של נכס. אלה מוגדרים בתצורת נכס, אם הנכס הוא MRP.");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_PROPERTY_UID', 'מזהה הנכס.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'אופציונלי. אם מזהה המאפיין לא מוגדר, אתה יכול להעביר מספר במקום זאת.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'אופציונלי. נתיב תבנית חלופי. לא ניתן להעביר דרך כתובת אתר. חייב להיות מוחלט.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'אופציונלי. שם תבנית חלופי.');

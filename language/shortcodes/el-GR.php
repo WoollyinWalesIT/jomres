@@ -242,3 +242,8 @@ jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES', 'Εμφανίζ
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_LIMIT', 'Ο αριθμός των κοινοποιημένων ιδιοτήτων προς εμφάνιση');
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'Αν θα εμφανίζονται MRP (ξενοδοχεία/ξενώνες) ή SRP (εξοχικές κατοικίες/διαμερίσματα/βίλες). Η προεπιλογή προσδιορίζεται από την τρέχουσα ιδιοκτησία, αν η Για να επιλέξετε έναν συγκεκριμένο τύπο, ορίστε αυτήν την τιμή σε 0 για srps ή 1 για mrps. ');
 
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS', "Δείχνει τα αστέρια μιας ιδιότητας. Αυτά ορίζονται στη Διαμόρφωση ιδιοτήτων, εάν η ιδιότητα είναι MRP.");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_PROPERTY_UID', 'Αναγνωριστικό της ιδιότητας.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Προαιρετικό. Εάν το αναγνωριστικό ιδιότητας δεν έχει οριστεί, μπορείτε να περάσετε έναν αριθμό.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Προαιρετικό. Εναλλακτική διαδρομή προτύπου. Δεν μπορεί να περάσει μέσω url. Πρέπει να είναι απόλυτη.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Προαιρετικό. Εναλλακτικό όνομα προτύπου.');

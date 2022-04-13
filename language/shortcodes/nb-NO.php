@@ -245,3 +245,8 @@ jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES', 'Viser en liste
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_LIMIT', 'Antall syndikerte eiendommer som skal vises');
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'Om MRP (hoteller/bed & breakfast) eller SRP (hytter/leiligheter/villaer) skal vises. Standard er bestemt fra gjeldende eiendom \' s eiendom u, er ikke eiendommen u, er eiendommen u, eiendommen er ikke for å velge en bestemt type, sett denne verdien til 0 for srps eller 1 for mrps. ');
 
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS', "Viser en eiendoms stjerner. Disse er satt i egenskapskonfigurasjon, hvis eiendommen er en MRP.");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_PROPERTY_UID', 'ID for eiendommen.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Valgfritt. Hvis egenskaps-IDen ikke er angitt, kan du sende et nummer i stedet.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Valgfritt. Alternativ malbane. Kan ikke sendes via url. Må være absolutt.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Valgfritt. Alternativt malnavn.');

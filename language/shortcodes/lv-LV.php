@@ -247,3 +247,8 @@ jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_LIMIT', 'Par�
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'Parādīt MRP (viesnīcas/gultasvietas un brokastis) vai SRP (kotedžas/dzīvokļi/villas). Noklusējuma vērtība tiek noteikta pēc pašreizējā īpašuma, ja šis īpašums nav. Lai izvēlētos konkrētu veidu, iestatiet šo vērtību 0 uz srps vai 1 uz mrps. ');
 
 
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS', "Rāda īpašuma zvaigznes. Tās ir iestatītas Īpašuma konfigurācijā, ja īpašums ir MRP.");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_PROPERTY_UID', 'Īpašuma ID');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Neobligāti. Ja īpašuma ID nav iestatīts, tā vietā varat nodot numuru.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Neobligāti. Alternatīvas veidnes ceļš. Nevar nodot caur url. Jābūt absolūtam.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Neobligāti. Alternatīvas veidnes nosaukums.');

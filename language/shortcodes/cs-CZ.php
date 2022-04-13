@@ -246,3 +246,8 @@ jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES', 'Zobrazuje sezn
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_LIMIT', 'počet syndikovaných vlastností k zobrazení');
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'Zda zobrazit MRP (hotely/penziony a snídaně) nebo SRP (chaty/apartmány/vily). Výchozí hodnota je určena z aktuálního majetku, pak je zobrazeno. Chcete -li vybrat konkrétní typ, nastavte tuto hodnotu na 0 pro srps nebo 1 pro mrps. ');
 
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS', "Zobrazuje hvězdičky nemovitosti. Ty se nastavují v Konfigurace vlastnosti, pokud je nemovitost MRP.");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_PROPERTY_UID', 'ID nemovitosti.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Volitelné. Pokud není nastaveno ID vlastnosti, můžete místo toho předat číslo.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Volitelné. Alternativní cesta šablony. Nelze předat přes adresu URL. Musí být absolutní.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Volitelné. Alternativní název šablony.');
