@@ -186,7 +186,7 @@
 					$jomres_property_categories->get_property_category($property_data['cat_id'] );
 					$property_data["PROPERTY_CATEGORY"]		= $jomres_property_categories->title;
 				} else {
-					$property_data["PROPERTY_CATEGORY"]		= '&nbsp;';
+					$property_data["PROPERTY_CATEGORY"]		= 'Uncategorized';
 				}
 
 
