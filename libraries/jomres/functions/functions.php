@@ -203,7 +203,7 @@ function is_channel_safe_task ($task)
 	$mrConfig = getPropertySpecificSettings( get_showtime("property_uid"));
 
 	if ( !isset($mrConfig['allow_channel_property_local_admin']) ) {
-		$mrConfig['allow_channel_property_local_admin'] = 0;
+		return true;
     }
 
 	if ( (bool)$mrConfig['allow_channel_property_local_admin'] == true ) {
