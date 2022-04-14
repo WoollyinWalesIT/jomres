@@ -37,7 +37,7 @@ class j06000show_property_room_type
 		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch) {
 			$this->template_touchable = false;
-			$this->shortcode_data = array(
+/*			$this->shortcode_data = array(
 				'task' => 'show_property_room_type',
 				'info' => '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_ROOM_TYPE',
 				'arguments' => array(0 => array(
@@ -51,7 +51,7 @@ class j06000show_property_room_type
 						'arg_example' => '3',
 						)
 					),
-				);
+				);*/
 
 			return;
 		}
