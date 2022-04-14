@@ -62,6 +62,8 @@ class j06000show_property_room
 			return;
 		}
 
+		output_ribbon_styling();
+
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
 		$basic_room_details = jomres_singleton_abstract::getInstance('basic_room_details');
 
