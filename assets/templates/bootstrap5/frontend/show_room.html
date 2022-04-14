@@ -9,27 +9,26 @@
 	</div>
 </div>
 <div class="row">
-	<div class="col-md-6">
+	<div class="col-md-12">
 		<div class="well">{SLIDESHOW}</div>
 	</div>
-	<div class="col-md-6">
+</div>
+<div class="row pt-2">
+	<div class="col-md-12">
 		<h3 class="page-header">{TAGLINE}</h3>
 		<p><strong>{HEADER_MAXPEOPLE}:</strong> {MAXPEOPLE}</p>
 		<p><strong>{HEADER_ROOMFLOOR}:</strong> {ROOMFLOOR}</p>
 		<p>{DESCRIPTION}</p>
-
 	</div>
 </div>
 
-
-
-	<div class="row">
-		<patTemplate:tmpl name="room_features_rows" type="simpleCondition" requiredVars="feature_card">
-			<div class="col-md-3">
-				{FEATURE_CARD}
-			</div>
-		</patTemplate:tmpl>
-	</div>
+<div class="row pt-2">
+	<patTemplate:tmpl name="room_features_rows" type="simpleCondition" requiredVars="feature_card">
+		<div class="col-md-3 p-1">
+			{FEATURE_CARD}
+		</div>
+	</patTemplate:tmpl>
+</div>
 
 <div class="clearfix"></div>
 <div>&nbsp;</div>
