@@ -707,6 +707,9 @@ class jomres_reviews
 		$replies = array();
 		if (!empty($result)) {
 			foreach ($result as $reply) {
+				$rply = str_replace('&#38;#39;' , "'" , $reply->reply);
+				$rply = str_replace('&#39;' , "'" , $rply);
+				$reply->reply = $rply;
 				$replies[ $reply->rating_id ] = $reply;
 			}
 		}
