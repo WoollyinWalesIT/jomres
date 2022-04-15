@@ -13,10 +13,8 @@
 </patTemplate:comment>
 	<div class="row">
 			<patTemplate:tmpl name="property_details" unusedvars="&nbsp;">
-				<div class="col-sm-4 p-2  d-flex align-items-stretch">
-					<div class="card card-img-top-lg" id="{UID}">
-
-
+				<div class="col-sm-4 p-2">
+					<div class="card" id="{UID}">
 						<div class="image-container ">
 							{RIBBON}{PROPERTY_IMAGE_OR_SLIDESHOW}
 							<div class="bottom-left bg-info text-white rounded-3 p-2">{PRICE_PRE_TEXT} <strong>{PRICE_PRICE}</strong>{PRICE_POST_TEXT}</div>
@@ -63,7 +61,7 @@
 							<div class="card-footer clearfix container">
 								<div class="row">
 									<div class="col-md-12">
-										<a href="{LINK}" class="btn btn-success pull-right"><i class="fa fa-shopping-cart"></i> {BOOKTHIS_TEXT}</a>
+										<a href="{LINK}" class="btn btn-primary pull-right"><i class="fa fa-shopping-cart"></i> {BOOKTHIS_TEXT}</a>
 									</div>
 								</div>
 							</div>
