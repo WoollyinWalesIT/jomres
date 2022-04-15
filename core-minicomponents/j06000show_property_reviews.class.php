@@ -82,6 +82,8 @@ class j06000show_property_reviews
 			return;
 		}
 
+		$this->property_uid = $property_uid;
+
 		if (!user_can_view_this_property($property_uid)) {
 			return;
 		}
@@ -151,7 +153,6 @@ class j06000show_property_reviews
 		}
 		
 		$replies = $Reviews->get_review_replies_for_review_ids($review_ids);
-
 		$output[ 'AJAXURL' ] = JOMRES_SITEPAGE_URL_AJAX;
 
 		$thumb_up = JOMRES_IMAGES_RELPATH.'thumb_up.png';
@@ -435,7 +436,7 @@ class j06000show_property_reviews
 		$output = array();
 		
 		$output['_JOMRES_REVIEWS_REPLY_OPPORTUNITY'] = jr_gettext('_JOMRES_REVIEWS_REPLY_OPPORTUNITY', '_JOMRES_REVIEWS_REPLY_OPPORTUNITY');
-		$output['_JOMRES_REVIEWS_REPLY_OPPORTUNITY_LINK'] = jomresURL(JOMRES_SITEPAGE_URL.'&task=add_review_reply&rating_id='.$rating_id);
+		$output['_JOMRES_REVIEWS_REPLY_OPPORTUNITY_LINK'] = jomresURL(JOMRES_SITEPAGE_URL.'&task=add_review_reply&thisProperty='.$this->property_uid.'&rating_id='.$rating_id);
 		
 		$pageoutput[ ] = $output;
 		$tmpl = new patTemplate();
