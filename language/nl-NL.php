@@ -2125,7 +2125,7 @@ jr_define( '_JOMRES_LOGIN_RESET_BUTTON', 'Wachtwoord vergeten?');
 
 jr_define('_JOMRES_REVIEWS_ANONYMISE', 'Uw naam anonimiseren?');
 jr_define('_JOMRES_REVIEWS_ANONYMISE_DESC', 'Als je ervoor kiest om je naam te anonimiseren bij het beoordelen, zullen we in plaats daarvan je initialen gebruiken.');
-jr_define('ANONIEME', 'Anon');
+jr_define('ANONYMOUS', 'Anon');
 
 jr_define('_JOMRES_REVIEWS_REPLY_SAID', 'zei');
 jr_define('_JOMRES_REVIEWS_REPLY_OPPORTUNITY', 'Reageer op deze recensie');

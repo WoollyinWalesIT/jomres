@@ -2222,7 +2222,7 @@ jr_define ('_JOMRES_LOGIN_RESET_BUTTON', 'Heu oblidat la vostra contrasenya?');
 
 jr_define ('_JOMRES_REVIEWS_ANONYMISE', 'Anonimitzeu el vostre nom?');
 jr_define ('_JOMRES_REVIEWS_ANONYMISE_DESC', 'Si decidiu anonimitzar el vostre nom en revisar-los, farem servir les vostres inicials.');
-jr_define ('ANONNIM', 'Anon');
+jr_define ('ANONYMOUS', 'Anon');
 
 jr_define ('_JOMRES_REVIEWS_REPLY_SAID', 'dit');
 jr_define ('_JOMRES_REVIEWS_REPLY_OPPORTUNITY', 'Respon a aquesta revisió');

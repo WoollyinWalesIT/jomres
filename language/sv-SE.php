@@ -2196,7 +2196,7 @@ jr_define( '_JOMRES_LOGIN_RESET_BUTTON', 'Har du glömt ditt lösenord?' );
 
 jr_define('_JOMRES_REVIEWS_ANONYMISE', 'Anonymisera ditt namn?');
 jr_define('_JOMRES_REVIEWS_ANONYMISE_DESC', 'Om du väljer att anonymisera ditt namn när du granskar kommer vi att använda dina initialer istället.');
-jr_define('ANONYM', 'Anon');
+jr_define('ANONYMOUS', 'Anon');
 
 jr_define('_JOMRES_REVIEWS_REPLY_SAID', ' sa ');
 jr_define('_JOMRES_REVIEWS_REPLY_OPPORTUNITY', 'Svara på denna recension');

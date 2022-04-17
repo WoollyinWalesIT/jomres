@@ -2174,7 +2174,7 @@ jr_define ('_JOMRES_LOGIN_RESET_BUTTON', 'Zapomněli jste heslo?');
 
 jr_define ('_JOMRES_REVIEWS_ANONYMISE', 'Anonymizovat vaše jméno?');
 jr_define ('_JOMRES_REVIEWS_ANONYMISE_DESC', 'Pokud se při kontrole rozhodnete anonymizovat své jméno, použijeme místo toho vaše iniciály.');
-jr_define ('ANONYMNÍ', 'Anon');
+jr_define ('ANONYMOUS', 'Anon');
 
 jr_define ('_JOMRES_REVIEWS_REPLY_SAID', 'řekl');
 jr_define ('_JOMRES_REVIEWS_REPLY_OPPORTUNITY', 'Odpovědět na tuto recenzi');

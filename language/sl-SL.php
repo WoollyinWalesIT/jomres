@@ -2207,7 +2207,7 @@ jr_define ('_JOMRES_LOGIN_RESET_BUTTON', 'Ste pozabili geslo?');
 
 jr_define ('_JOMRES_REVIEWS_ANONYMISE', 'Anonimizirajte svoje ime?');
 jr_define ('_JOMRES_REVIEWS_ANONYMISE_DESC', 'Če se odločite anonimiti svoje ime pri pregledu, bomo namesto tega uporabili vaše začetnice.');
-jr_define ('ANONIMNO', 'Anon');
+jr_define ('ANONYMOUS', 'Anon');
 
 jr_define ('_JOMRES_REVIEWS_REPLY_SAID', 'rečeno');
 jr_define ('_JOMRES_REVIEWS_REPLY_OPPORTUNITY', 'Odgovori na to mnenje');

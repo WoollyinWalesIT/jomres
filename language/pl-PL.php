@@ -2212,7 +2212,7 @@ jr_define( '_JOMRES_LOGIN_RESET_BUTTON', 'Nie pamiętasz hasła?' );
 
 jr_define('_JOMRES_REVIEWS_ANONYMISE', 'Zanonimizować swoje imię i nazwisko?');
 jr_define('_JOMRES_REVIEWS_ANONYMISE_DESC', 'Jeśli zdecydujesz się zanonimizować swoje imię i nazwisko podczas sprawdzania, zamiast tego użyjemy Twoich inicjałów.');
-jr_define('ANONIMOWY', 'Anon');
+jr_define('ANONYMOUS', 'Anon');
 
 jr_define('_JOMRES_REVIEWS_REPLY_SAID', 'powiedział ');
 jr_define('_JOMRES_REVIEWS_REPLY_OPPORTUNITY', 'Odpowiedz na tę recenzję');

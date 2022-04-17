@@ -2252,7 +2252,7 @@ jr_define( '_JOMRES_LOGIN_RESET_MESSAGE', 'Wenn Sie Ihr Passwort nicht zur Hand 
 jr_define( '_JOMRES_LOGIN_RESET_BUTTON', 'Passwort vergessen?' );
 jr_define('_JOMRES_REVIEWS_ANONYMISE', 'Namen anonymisieren?');
 jr_define('_JOMRES_REVIEWS_ANONYMISE_DESC', 'Wenn Sie Ihren Namen bei der Überprüfung anonymisieren möchten, verwenden wir stattdessen Ihre Initialen.');
-jr_define('ANONYM', 'Anon');
+jr_define('ANONYMOUS', 'Anon');
 
 jr_define('_JOMRES_REVIEWS_REPLY_SAID', ' sagte ');
 jr_define('_JOMRES_REVIEWS_REPLY_OPPORTUNITY', 'Auf diese Bewertung antworten');
