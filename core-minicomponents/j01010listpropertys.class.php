@@ -59,6 +59,12 @@
 			$arrivalDate 				= jomresGetParam($_REQUEST, 'arrivalDate', '');
 			$departureDate 				= jomresGetParam($_REQUEST, 'departureDate', '');
 
+			if (!AJAXCALL) {
+				$show_property_list_header = true;
+			} else {
+				$show_property_list_header = false;
+			}
+
 			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 			$jrConfig = $siteConfig->get();
 
@@ -92,6 +98,7 @@
 
 			$MiniComponents->triggerEvent('01004');
 			$property_list_layouts = get_showtime('property_list_layouts');
+
 			if (count($property_list_layouts) == 1) {
 				$default_layout = array_keys($property_list_layouts);
 				$tmpBookingHandler->tmpsearch_data[ 'current_property_list_layout' ] = $default_layout[ 0 ];
@@ -133,11 +140,6 @@
 				$propertys_uids = array();
 			}
 
-			/* if (!@session_start()) {
-				@ini_set('session.save_handler', 'files');
-				session_start();
-			} */
-
 			if ( ($propertylist_layout != '' || $this->jr_page > 0 || $return_to_search_results) && isset($tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ] ) ) {
 				$propertys_uids = $tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ];
 			}
@@ -145,6 +147,7 @@
 			if (empty($propertys_uids)) {
 				return;
 			}
+
 
 			if (!AJAXCALL || get_showtime('task') == 'ajax_search_filter') {
 				$propertys_uids = $MiniComponents->triggerEvent('01009', array('propertys_uids' => $propertys_uids)); // Pre list properties parser. Allows us to to filter property lists if required
@@ -185,11 +188,16 @@
 					if (function_exists('get_available_property_list_templates')) {
 						$available_list_templates = get_available_property_list_templates();
 						$available_photo_templates =get_available_property_photo_templates();
-
-						if (isset($_REQUEST['list_properties_template']) && $_REQUEST['list_properties_template'] != '') {
-							if ( array_key_exists( $_REQUEST['list_properties_template'] , $available_list_templates) ||
-								array_key_exists( $_REQUEST['list_properties_template'] ,$available_photo_templates ) ) {
-									$layout_template = $_REQUEST['list_properties_template'].'.html';
+						$lpt = $_REQUEST['list_properties_template'];
+						if (isset($lpt) && $lpt != '') {
+							if ( array_key_exists( $lpt , $available_list_templates) ||
+								array_key_exists( $lpt ,$available_photo_templates ) ) {
+									$layout_template = $lpt.'.html';
+							}
+							if ( array_key_exists( $lpt , $available_list_templates) ) {
+								$show_property_list_header = $available_list_templates[$lpt]['show_property_list_header'];
+							} else {
+								$show_property_list_header = $available_photo_templates[$lpt]['show_property_list_header'];
 							}
 						}
 					}
@@ -896,7 +904,7 @@
 						$property_details[ ] = $property_deets;
 					}
 
-					if (!AJAXCALL || get_showtime('task') == 'ajax_search_filter') {
+					if ((!AJAXCALL || get_showtime('task') == 'ajax_search_filter') && $show_property_list_header == true ) {
 						$header_pageoutput[ ] = $header_output;
 						$tmpl = new patTemplate();
 						$tmpl->addRows('header_pageoutput', $header_pageoutput);
