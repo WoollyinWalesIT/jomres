@@ -247,11 +247,11 @@ function dobooking($selectedProperty, $thisdate, $remus)
 	$guestTypes = $bkg->makeCustomerTypes($selectedProperty);
 
 	$output[ 'UPDATEADDRESSBUTTON' ] = $bkg->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_UPDATEADDRESSBUTTON', '_JOMRES_BOOKINGFORM_UPDATEADDRESSBUTTON', false, false));
-	if ($mrConfig[ 'singleRoomProperty' ] == '1') {
+/*	if ($mrConfig[ 'singleRoomProperty' ] == '1') {
 		$output[ 'BLOCKUI_RECHECKINGROOMAVAILABILITY' ] = $bkg->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_RECHECKINGROOMAVIALABILITY_SRP', '_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_RECHECKINGROOMAVIALABILITY_SRP', false, false));
 	} else {
 		$output[ 'BLOCKUI_RECHECKINGROOMAVAILABILITY' ] = $bkg->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_RECHECKINGROOMAVIALABILITY', '_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_RECHECKINGROOMAVIALABILITY', false, false));
-	}
+	}*/
 
 	$output[ 'BOOKING_FORM_CALENDAR' ] = get_showtime('booking_form_calendar');
 	$output[ '_JOMRES_COM_A_AVLCAL' ] = $bkg->sanitiseOutput(jr_gettext('_JOMRES_COM_A_AVLCAL', '_JOMRES_COM_A_AVLCAL', false, false));
@@ -270,10 +270,10 @@ function dobooking($selectedProperty, $thisdate, $remus)
 		);
 	}
 	 
-	$output[ 'BLOCKUI_CHANGINGEXTRA' ] = $bkg->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_CHANGINGEXTRA', '_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_CHANGINGEXTRA', false, false));
+/*	$output[ 'BLOCKUI_CHANGINGEXTRA' ] = $bkg->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_CHANGINGEXTRA', '_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_CHANGINGEXTRA', false, false));
 	$output[ 'BLOCKUI_CHANGINGROOMSELECTION' ] = $bkg->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_CHANGINGROOMSELECTION', '_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_CHANGINGROOMSELECTION', false, false));
 	$output[ 'BLOCKUI_UPDATINGADDRESS' ] = $bkg->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_UPDATINGADDRESS', '_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_UPDATINGADDRESS', false, false));
-	$output[ 'BLOCKUI_ADDRESSINPUTERROR' ] = $bkg->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_ADDRESSINPUTERROR', '_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_ADDRESSINPUTERROR', false, false));
+	$output[ 'BLOCKUI_ADDRESSINPUTERROR' ] = $bkg->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_ADDRESSINPUTERROR', '_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_ADDRESSINPUTERROR', false, false));*/
 	$output[ 'NOROOMSSELECTEDYETMESSAGE' ] = $bkg->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET', '_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET', false, false));
 
 	if ($thisJRUser->userIsManager) {
@@ -747,7 +747,7 @@ $manager_pricing = array();
 		}
 	}
 	
-	if ($jrConfig[ 'enable_gdpr_compliant_fucntionality' ] == "1") {
+/*	if ($jrConfig[ 'enable_gdpr_compliant_fucntionality' ] == "1") {
 		jomres_cmsspecific_addheaddata('javascript', JOMRES_NODE_MODULES_RELPATH.'blockui-npm/', 'jquery.blockUI.js');
 		if ( !isset($_COOKIE['jomres_gdpr_consent_form_processed']) || !$_COOKIE['jomres_gdpr_consent_form_processed'] == "1" ) {
 			echo '<script>
@@ -757,7 +757,7 @@ $manager_pricing = array();
 			</script>
 		';
 		}
-	}
+	}*/
 
 	// To show the login modal without forcing umpteen users to update their dobooking template files, we will attach the login form modal contents to the end of the current dobooking template output.
 	$login_form = $MiniComponents->specificEvent('06000', 'show_login_form' , array ('output_now' => false , 'login_reason' => jr_gettext('_JOMRES_LOGIN_REASON_EMAIL_ALREADY_USED', '_JOMRES_LOGIN_REASON_EMAIL_ALREADY_USED', false)  ) );
