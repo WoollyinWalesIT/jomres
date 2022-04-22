@@ -1257,9 +1257,9 @@ function jomres_bootstrap_version()
  
 function find_plugin_template_directory()
 {
-	$template_dir = 'jquery_ui';
+	$template_dir = 'bootstrap';
 
-	if (jomres_cmsspecific_areweinadminarea()) {
+	if (jomres_cmsspecific_areweinadminarea()  && _JOMRES_DETECTED_CMS != 'joomla4' ) {
 		$template_dir = 'bootstrap';
 	} elseif (using_bootstrap()) {
 		$template_dir = 'bootstrap';
