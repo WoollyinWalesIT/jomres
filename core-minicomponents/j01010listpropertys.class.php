@@ -806,9 +806,8 @@
 
 						add_gmaps_source(); // Needs to be included, regardless of the settings below because the module popup will not work without it.
 
-						$showmaps = false;
 						$layout = $tmpBookingHandler->tmpsearch_data[ 'current_property_list_layout' ];
-						if (get_showtime('layout_showmaps') != null || $layout == 'listwithmaps') {
+
 							if (get_showtime('layout_mapwidth') == null) {
 								$mapwidth = '119';
 								$mapheight = '95';
@@ -819,7 +818,7 @@
 							$args = array('property_uid' => $propertys_uid, 'width' => $mapwidth, 'height' => $mapheight, 'disable_ui' => true);
 							$MiniComponents->specificEvent('01050', 'x_geocoder', $args);
 							$property_deets[ 'MAP' ] = $MiniComponents->miniComponentData[ '01050' ][ 'x_geocoder' ];
-						}
+
 
 						$property_deets[ 'PROPERTY_TYPE' ] = jomres_badge($current_property_details->multi_query_result[ $propertys_uid ]['property_type_title'] , 'info' );
 						$property_deets[ 'PROPERTY_TYPE_SEARCH_URL' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=search&ptype='.$current_property_details->multi_query_result[ $propertys_uid ]['ptype_id']);

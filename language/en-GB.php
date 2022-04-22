@@ -527,7 +527,7 @@ jr_define('_JOMRES_COM_A_TARIFFPRICESAREWEEKLY_DESC', 'You have the option of st
 jr_define('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', 'per week');
 jr_define('_JOMRES_COM_MR_FIXEDARRIVALDATE_RECURRING', 'Fixed arrival dates recurr: ');
 jr_define('_JOMRES_COM_MR_FIXEDARRIVALDATE_RECURRING_DESC', 'When fixed arrival dates are selected, the number dates that can be shown in the dates dropdown list. Note that the list of dates will not include any dates if a booking is not possible due to prior bookings, and that the list will actually be twice as long as your selected number because it will have a similar number of historic dates (where available) ');
-jr_define('_JOMRES_BOOKINGFORM_MONITORING_ARRIVALDATE_INVALID', 'Arrival date incorrect');
+jr_define('_JOMRES_BOOKINGFORM_MONITORING_ARRIVALDATE_INVALID', 'Choose a date for your booking');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_DEPARTUREDATE_INVALID', 'Departure date incorrect');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1', 'The booking is too short. There needs to be at least this many days between arrival and departure dates:');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2', 'Your interval is');
