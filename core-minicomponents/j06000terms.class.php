@@ -87,7 +87,7 @@
 			$query = "SELECT property_policies_disclaimers FROM #__jomres_propertys WHERE propertys_uid = '".$property_uid."' LIMIT 1";
 			$property_policiesdisclaimers = doSelectSql($query, 1);
 
-			$property_policiesdisclaimers = jomres_cmsspecific_parseByBots($jomres_markdown->get_markdown($property_policiesdisclaimers));
+			$property_policiesdisclaimers = jomres_cmsspecific_parseByBots($jomres_markdown->get_markdown(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS_'.$property_uid, $property_policiesdisclaimers, false, false)));
 
 			$property = array();
 			$property[ 'LIVESITE' ] = get_showtime('live_site');
