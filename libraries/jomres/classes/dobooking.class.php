@@ -2541,7 +2541,7 @@ class dobooking
 			}
 		}
 		$datesListArray = $this->calcPeriods($arrivalDate);
-		$fixedPeriodDropdown = '<select class="input-medium" name="arrivalDate" onchange="getResponse_particulars(\'arrival_period\',this.value)";>';
+		$fixedPeriodDropdown = '<select class="input-medium form-select" name="arrivalDate" onchange="getResponse_particulars(\'arrival_period\',this.value)";>';
 		$counter = 0;
 		//$selectedDateisNthDate=1;
 		$selectedDate = $arrivalDate;
