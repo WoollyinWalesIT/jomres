@@ -86,7 +86,7 @@ class jomresHTML
 			$attribs = str_replace('class="input-medium form-control"', '', $attribs);
 			$attribs = str_replace('class="input-small form-control"', '', $attribs);
 
-			$attribs .= ' class="inputbox" ';
+			$attribs .= ' class="inputbox form-select" ';
 
 			$output = '<div class="select-wrapper"><select name="'.$name.'" id="'.$name.'" '.$attribs.'>';
 
@@ -102,7 +102,7 @@ class jomresHTML
 				$output .= '<option value="'.$val.'" '.$selected.'>'.$txt.'</option>';
 			}
 
-			$output .= '</select><label class="hidden" for="'.$name.'">'.$name.'</label></div>';
+			$output .= '</select></div>';
 		} else {
 			$output = '<fieldset id="' .$name.'" class="radio btn-group">';
 
