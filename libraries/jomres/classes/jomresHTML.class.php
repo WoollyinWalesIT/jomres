@@ -19,9 +19,9 @@ defined('_JOMRES_INITCHECK') or die('');
  * Utility class for all HTML drawing classes.
  */
 class jomresHTML
-{	
+{
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -31,14 +31,14 @@ class jomresHTML
 		if (!defined('SELECTLISTJAVASCRIPT') && using_bootstrap() && !AJAXCALL) {
 			echo '
 			<script>
-			document.addEventListener(\'DOMContentLoaded\', function(){ 
+			document.addEventListener(\'DOMContentLoaded\', function(){
 				jomresJquery(\'div.btn-group[data-toggle-name="*"]\').each(function(){
 					var group   = jomresJquery(this);
 					var form	= group.parents(\'form\').eq(0);
 					var name	= group.attr(\'data-toggle-name\');
 					var hidden  = jomresJquery(\'input[name="\' + name + \'"]\', form);
 					jomresJquery(\'button\', group).each(function(){
-						
+
 						var button = jomresJquery(this);
 						button.live(\'click\', function(){
 							hidden.val(jomresJquery(this).val());
@@ -63,9 +63,9 @@ class jomresHTML
 
 		return $obj;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
@@ -76,37 +76,40 @@ class jomresHTML
 		if (!$use_bootstrap_radios) {
 			$not_for_these_dropdowns[ ] = $name;
 		}
-		
-		$n = count($arr);
-		
-		if (!using_bootstrap() || $n != 2 || in_array($name, $not_for_these_dropdowns) || get_showtime('task') == 'handlereq') {
-			$attribs = str_replace('class="inputbox"', '', $attribs);
-			$attribs = str_replace('class="input-medium"', '', $attribs);
 
-			$attribs .= ' class="input-medium form-control form-select" ';
+		$n = count($arr);
+
+		if (!using_bootstrap() || $n != 2 || in_array($name, $not_for_these_dropdowns) || get_showtime('task') == 'handlereq') {
+			$attribs = str_replace('class="input-mini"', '', $attribs);
+			$attribs = str_replace('class="input-medium"', '', $attribs);
+			$attribs = str_replace('class="inputbox"', '', $attribs);
+			$attribs = str_replace('class="input-medium form-control"', '', $attribs);
+			$attribs = str_replace('class="input-small form-control"', '', $attribs);
+
+			$attribs .= ' class="inputbox" ';
 
 			$output = '<div class="select-wrapper"><select name="'.$name.'" id="'.$name.'" '.$attribs.'>';
-			
+
 			foreach ($arr as $k => $v) {
 				$val = $v->$key;
 				$txt = $v->$text;
-				
+
 				$selected = '';
 				if ($val == $default) {
 					$selected .= ' selected="selected" ';
 				}
-				
+
 				$output .= '<option value="'.$val.'" '.$selected.'>'.$txt.'</option>';
 			}
-			
-			$output .= '</select></div>';
+
+			$output .= '</select><label class="hidden" for="'.$name.'">'.$name.'</label></div>';
 		} else {
 			$output = '<fieldset id="' .$name.'" class="radio btn-group">';
-			
+
 			foreach ($arr as $k => $v) {
 				$val = $v->$key;
 				$txt = $v->$text;
-				
+
 				$checked = '';
 				 if ($val == $default) {
 					$checked = 'checked="checked" ';
@@ -117,15 +120,15 @@ class jomresHTML
 				<label for="' .$name.$val.'" id="'.$name.$val.'_id" >'.$txt.'</label>
 				';
 			}
-			
+
 			$output .= '</fieldset>';
 		}
 
 		return $output;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 *
 	 *
 	 */
