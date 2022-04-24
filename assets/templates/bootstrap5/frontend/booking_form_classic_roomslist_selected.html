@@ -1,40 +1,43 @@
 <pattemplate:tmpl name="pageoutput" unusedvars="strip">
-	<pattemplate:tmpl name="rows" unusedvars="strip" type="simpleCondition" requiredvars="roomtype">
+	<pattemplate:tmpl name="rows" unusedvars="strip" type="simpleCondition"
+					  requiredvars="roomtype">
 		<div class="card bg-light card-body mb-3 card bg-faded p-1 mb-3all">
 			<div class="row">
-				<div class="col-lg-2">	<a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-bs-toggle="modal"
-				                             class="thumbnail"><img src="{ROOM_IMAGE}" alt="room image" class="img-fluid"></a>
-					<a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-bs-toggle="modal"
-							class="thumbnail">
-						<img src="{ROOM_TYPE_IMAGE}" alt="room type image" class="img-fluid">
-					</a>
+				<div class="col-lg-4">	<a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-bs-toggle="modal"><img src="{ROOM_IMAGE_LARGE}" alt="room image" class="img-fluid"></a>
 				</div>
 				<div class="col-lg-4">
 					<h4 class=""><a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-bs-toggle="modal">{ROOMTYPE}</a></h4>
-					<p><b>{TAGLINE}</b>
-					</p>
-					<p>{HEADER_MAXPEOPLE}: {MAXPEOPLE_INROOM}
-						<br>{HTITLE}: {TITLE}
-						<br>{HDESC}: {DESC}
-						<br>	<a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-bs-toggle="modal"  class="hidden-phone hidden-tablet">{HMOREINFO}...</a>
-					</p>
+					<strong>{TAGLINE}</strong>
+					<div class="row">
+						<div class="col-6">
+							<em>{HEADER_MAXPEOPLE}</em>
+						</div>
+						<div class="col-6">
+							{MAXPEOPLE_INROOM}
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-6">
+							<a href="#roomdetails{ROOMUID}_{TARIFFUID}" role="button" data-bs-toggle="modal" class="hidden-phone hidden-tablet">{HMOREINFO}...</a>
+						</div>
+						<div class="col-6">
+
+						</div>
+					</div>
 				</div>
-				<div class="col-lg-3">
+				<div class="col-lg-2">
 					<p><span class="big-price">{FORMATTED_PRICE}</span>{HRATEPERNIGHT}</p>
 				</div>
-				<div class="col-lg-3" align="right">
+				<div class="col-lg-2 text-center">
 					<div id="{ROOMTARIFFOUTPUTID}"><a href="javascript:void(0);" onclick="getResponse_rooms(&apos;requestedRoom&apos;,&apos;{ROOMTARIFFOUTPUTID}&apos; );"
 					                                  class="btn {BUTTON_CLASS}"><i class="fa fa-times"></i> </a>
 					</div>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-lg-12">{FEATURES}</div>
-			</div>
 		</div>
 		<div id="roomdetails{ROOMUID}_{TARIFFUID}" class="modal fade" tabindex="-1"
-		     role="dialog" aria-labelledby="myModalLabel{ROOMUID}_{TARIFFUID}" aria-hidden="true">
-			<div class="modal-dialog" role="document">
+			 role="dialog" aria-labelledby="myModalLabel{ROOMUID}_{TARIFFUID}" aria-hidden="true">
+			<div class="modal-dialog modal-xl" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
 						<h4 id="myModalLabel{ROOMUID}_{TARIFFUID}">{ROOMTYPE} - {ROOMNAME} {ROOMNUMBER}</h4>
@@ -43,46 +46,138 @@
 					<div class="modal-body">
 						<div class="row">
 							<div class="col-lg-5">
-								<div class="thumbnail">
-									<img src="{ROOM_IMAGE_MEDIUM}" alt="room image" class="img-fluid">
+								<div class="row">
+									<div class="col-lg-12" >
+										<img src="{ROOM_IMAGE_LARGE}" alt="room image" class="img-fluid">
+									</div>
+								</div>
+								<div class="row ">
+									<div class="col-lg-12 text-center" >
+										<div class="mb-3 alert alert-info">
+											<p>{HRATEPERNIGHT} <strong>{FORMATTED_PRICE}</strong>
+											</p>
+										</div>
+									</div>
 								</div>
 							</div>
 							<div class="col-lg-7">
 								<h4 class="page-header">{HROOM_DETAILS}</h4>
 								<p><b>{TAGLINE}</b>
-								</p>
-								<p>
-									<!--<img src="{ROOM_TYPE_IMAGE}" alt="room type image"/>
-									<br />--> {HEADER_ROOMTYPE}: {ROOMTYPE}
-									<br>{HEADER_ROOMNAME}: {ROOMNAME}
-									<br>{HEADER_ROOMNUMBER}: {ROOMNUMBER}
-									<br>{HEADER_MAXPEOPLE}: {MAXPEOPLE_INROOM}
-									<br>{HEADER_ROOMFLOOR}: {ROOMFLOOR}
-									<br>{HEADER_FEATURES}:
-									<br>{FEATURES}</p>
+								<div class="row">
+									<div class="col-6">
+										<div class="row">
+											<div class="col-sm-6">
+												<em>{HEADER_ROOMTYPE}</em>
+											</div>
+											<div class="col-sm-6">
+												{ROOMTYPE}
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-6">
+												<em>{HEADER_ROOMNAME}</em>
+											</div>
+											<div class="col-sm-6">
+												{ROOMNAME}
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-6">
+												<em>{HEADER_ROOMNUMBER}</em>
+											</div>
+											<div class="col-sm-6">
+												{ROOMNUMBER}
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-6">
+												<em>{HEADER_MAXPEOPLE}</em>
+											</div>
+											<div class="col-sm-6">
+												{MAXPEOPLE_INROOM}
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-6">
+												<em>{HEADER_ROOMFLOOR}</em>
+											</div>
+											<div class="col-sm-6">
+												{ROOMFLOOR}
+											</div>
+										</div>
+									</div>
+									<div class="col-6">
+										<h4 class="page-header">{HTARIFF_DETAILS}</h4>
+										<div class="row">
+											<div class="col-sm-6">
+												<em>{HTITLE}</em>
+											</div>
+											<div class="col-sm-6">
+												{TITLE}
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-6">
+												<em>{HSTARTS}</em>
+											</div>
+											<div class="col-sm-6">
+												{VALIDFROM}
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-6">
+												<em>{HENDS}</em>
+											</div>
+											<div class="col-sm-6">
+												{VALIDTO}
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-6">
+												<em>{HMINDAYS}</em>
+											</div>
+											<div class="col-sm-6">
+												{MINDAYS}
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-6">
+												<em>{HMAXDAYS}</em>
+											</div>
+											<div class="col-sm-6">
+												{MAXDAYS}
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-6">
+												<em>{HMINPEEPS}</em>
+											</div>
+											<div class="col-sm-6">
+												{MINPEOPLE}
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-6">
+												<em>{HMAXPEEPS}</em>
+											</div>
+											<div class="col-sm-6">
+												{MAXPEOPLE}
+											</div>
+										</div>
+									</div>
+								</div>
+								<hr/>
+								<div class="row">
+									<div class="col-sm-3">
+										<em>{HEADER_FEATURES}</em>
+									</div>
+									<div class="col-sm-9">
+										{FEATURE_DESCRIPTIONS}
+									</div>
+								</div>
 							</div>
 						</div>
-						<div class="row">
-							<div class="col-lg-5" align="center">
-								<div class="card bg-light card-body mb-3">
-									<p>{HRATEPERNIGHT}<span class="big-price">{FORMATTED_PRICE}</span>
-									</p>
-								</div>
-								<div class="thumbnail">
-									<img src="{ROOM_TYPE_IMAGE}" alt="room type image" class="img-fluid">
-								</div>
-							</div>
-							<div class="col-lg-7">
-								<h4 class="page-header">{HTARIFF_DETAILS}</h4>
-								<p>{HTITLE}: {TITLE}
-									<br>{HSTARTS}: {VALIDFROM}
-									<br>{HENDS}: {VALIDTO}
-									<br>{HMINDAYS}: {MINDAYS}
-									<br>{HMAXDAYS}: {MAXDAYS}
-									<br>{HMINPEEPS}: {MINPEOPLE}
-									<br>{HMAXPEEPS}: {MAXPEOPLE}</p>
-							</div>
-						</div>
+
 						<p>{DESCRIPTION}</p>
 					</div>
 					<div class="modal-footer">	<a class="btn btn-secondary" data-bs-toggle="modal" aria-hidden="true">{COMMON_CLOSE}</a>

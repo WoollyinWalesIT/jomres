@@ -669,7 +669,7 @@ class dobooking
 					'surcharge' => $r['surcharge'],
 					'small_room_image' => $room_images [ $r['room_uid'] ] [0] ['small'],
 					'medium_room_image' => $room_images [ $r['room_uid'] ] [0] ['medium'],
-
+					'large_room_image' => $room_images [ $r['room_uid'] ] [0] ['large'],
 					);
 
 				$this->allPropertyRoomUids[ ] = $r['room_uid'];
@@ -4996,6 +4996,7 @@ class dobooking
 
 		$roomStuff[ 'ROOM_IMAGE' ] = $this->allPropertyRooms [ $roomUid ] [ 'small_room_image' ];
 		$roomStuff[ 'ROOM_IMAGE_MEDIUM' ] = $this->allPropertyRooms [ $roomUid ] [ 'medium_room_image' ];
+		$roomStuff[ 'ROOM_IMAGE_LARGE' ] = $this->allPropertyRooms [ $roomUid ] [ 'large_room_image' ];
 
 		$roomStuff[ 'TAGLINE' ] = $this->allPropertyRooms [ $roomUid ] [ 'tagline' ];
 		$roomStuff[ 'DESCRIPTION' ] = $this->allPropertyRooms [ $roomUid ] [ 'description' ];
@@ -5074,19 +5075,22 @@ class dobooking
 
 		$roomRow = array();
 		$roomRow[ 'FEATURES' ] = '';
-
+		$roomRow[ 'FEATURE_DESCRIPTIONS' ] = '';
 		$roomFeatureUidsArray = explode(',', $room_features_uid);
 		if ($roomFeatureUidsArray) {
 			$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
 			$jomres_media_centre_images->get_images($this->property_uid, array('room_features'));
 
-			$roomFeatureDescriptions = '';
 			foreach ($roomFeatureUidsArray as $f) {
 				if (isset($basic_room_details->all_room_features[ $f ]['tooltip'])) {
 					$roomRow[ 'FEATURES' ] .=
 						$basic_room_details->all_room_features[ $f ]['tooltip'];
+					$roomRow[ 'FEATURE_DESCRIPTIONS' ] .=
+						$basic_room_details->all_room_features[ $f ]['feature_description'].", ";
 				}
 			}
+			$fd = $roomRow[ 'FEATURE_DESCRIPTIONS' ];
+			$roomRow[ 'FEATURE_DESCRIPTIONS' ] = substr( $fd , 0, strlen($fd) - 2);
 		} else {
 			$roomRow[ 'FEATURES' ] = '';
 		}

@@ -685,6 +685,7 @@ function dobooking($selectedProperty, $thisdate, $remus)
 			$rf[ 'INPUTBOX' ] = $feature[ 'INPUTBOX' ];
 			$rf[ 'DESCRIPTION' ] = $feature[ 'DESCRIPTION' ];
 			$rf[ 'IMAGE' ] = $basic_room_details->all_room_features[  $feature['ID'] ][ 'tooltip' ];
+			$rf[ 'IMAGE_RELATIVE' ] = $basic_room_details->all_room_features[  $feature['ID'] ][ 'small' ];
 			$roomfeatures[ ] = $rf;
 		}
 	}

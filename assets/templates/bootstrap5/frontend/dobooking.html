@@ -185,7 +185,7 @@
 					<div id="arrivalcontainer">
 						<div class="card">
 							<div class="card-header">
-								<div class="card-title">{AJAXFORM_PARTICULARS}</div>
+								<div class="card-title"><strong>{AJAXFORM_PARTICULARS}</strong></div>
 							</div>
 							<div class="card-body">
 								<p>{AJAXFORM_PARTICULARS_DESC}</p>
@@ -236,22 +236,25 @@
 							name="classic_rooms_list" type="simpleCondition" requiredvars="ajaxform_available_desc">
 						<div class="card">
 							<div class="card-header">
-								<div class="card-title">{AJAXFORM_AVAILABLE_DESC}</div>
+								<div class="card-title"><strong>{AJAXFORM_AVAILABLE_DESC}</strong></div>
 							</div>
 							<div class="card-body">
 								<p>{LOOKRIGHT}</p>
 								<p class="alert alert-warning">{ESTIMATEWARNING}</p>
 								<pattemplate:tmpl name="roomfeaturesrowheader" type="simpleCondition"
 								                  requiredvars="_jomres_bookingorm_roomfeature_filter">
-									<h5 class="page-header">{_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER}</h5>
+									<h6>{_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER}</h6>
+
 								</pattemplate:tmpl>
-								<pattemplate:tmpl name="roomfeaturesrow" type="simpleCondition" requiredvars="inputbox">
-									<div class="col-lg-3">
-										<div class="form-group">
-											<label class="col-form-label">{INPUTBOX} {IMAGE} {DESCRIPTION}</label>
+								<div class="row">
+									<pattemplate:tmpl name="roomfeaturesrow" type="simpleCondition" requiredvars="inputbox">
+										<div class="col-2">
+											<div class="form-group">
+												<label class="col-form-label">{INPUTBOX} <img src="{IMAGE_RELATIVE}" class="img-fluid card-img-top" style="max-height: 100px" /> {DESCRIPTION}</label>
+											</div>
 										</div>
-									</div>
-								</pattemplate:tmpl>
+									</pattemplate:tmpl>
+								</div>
 								<div class="clearfix"></div>
 								<div>
 									<div id="availRooms">{AVAILABLEROOMS}</div>
@@ -276,7 +279,7 @@
 						<div id="extrascontainer">
 							<div class="card">
 								<div class="card-header">
-									<div class="card-title">{EXTRAS_HEADER}</div>
+									<div class="card-title"><strong>{EXTRAS_HEADER}</strong></div>
 								</div>
 								<div class="card-body">
 									<pattemplate:tmpl name="third_party_extras" type="simpleCondition" requiredvars="third_party_extra">{THIRD_PARTY_EXTRA}</pattemplate:tmpl>
@@ -291,7 +294,7 @@
 						<div class="col-lg-12">
 							<div class="card">
 								<div class="card-header">
-									<div class="card-title">{AJAXFORM_ADDRESS}</div>
+									<div class="card-title"><strong>{AJAXFORM_ADDRESS}</strong></div>
 								</div>
 								<div class="card-body">
 									<div class="form-group">
