@@ -4886,10 +4886,15 @@ class dobooking
 			$r[ 'ROOM_TYPE_IMAGE' ] = $routput[ 'room_type_images' ][0]['large']; // Have to choose large here because thumbnails for admin uploaded room types may not exist
 
 			$r[ 'RATE_TEXT' ] = $routput[ 'room_price_inc_tax' ];
-
-			$r[ 'NUMBER_OF_ROOMS' ] = $routput[ 'number_of_rooms' ];
-			$r[ 'NUMBER_OF_ROOMS_PRE' ] = jr_gettext('_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_PRE', '_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_PRE', false, false);
-			$r[ 'NUMBER_OF_ROOMS_POST' ] = jr_gettext('_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_POST', '_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_POST', false, false);
+			if ($routput[ 'number_of_rooms' ]<4){
+				$r[ 'NUMBER_OF_ROOMS' ] = $routput[ 'number_of_rooms' ];
+				$r[ 'NUMBER_OF_ROOMS_PRE' ] = jr_gettext('_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_PRE', '_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_PRE', false, false);
+				$r[ 'NUMBER_OF_ROOMS_POST' ] = jr_gettext('_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_POST', '_JOMRES_COM_MR_EB_HNUMBER_OF_ROOMS_POST', false, false);
+			} else {
+				$r[ 'NUMBER_OF_ROOMS' ] = "";
+				$r[ 'NUMBER_OF_ROOMS_PRE' ] = "";
+				$r[ 'NUMBER_OF_ROOMS_POST' ] = "";
+			}
 			
 			$rows[ ] = $r;
 		}
