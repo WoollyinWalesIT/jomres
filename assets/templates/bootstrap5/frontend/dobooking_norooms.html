@@ -388,7 +388,6 @@
 				</patTemplate:tmpl>
 				
 				<patTemplate:tmpl name="manager_pricing" type="simpleCondition" requiredVars="_jomcomp_amend_override_accommodation_total">
-				<div id="tour_target_booking_overrides"></div>
 				<div class="card">
 					<div class="card-text">
 						<div class="col-md-12">
@@ -410,15 +409,13 @@
 					</div>
 				</div>
 				</patTemplate:tmpl>
-				
-			</div>
-		</div>
-	</div>
-
-	<div class="form-actions" id="bookingform_footer">
-		<div id="submitbutton">
-			<div class="col-md-4 col-md-push-4">
-				<input type="submit" name="confirmbooking" value="{SUBMIT}" class="btn btn-lg btn-block btn-success"/>
+				<div id="bookingform_footer">
+					<div id="submitbutton">
+						<div class="text-center p-5 alert alert-success">
+							<input type="submit" name="confirmbooking" value="{SUBMIT}" class="btn btn-lg btn-block btn-success">
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
