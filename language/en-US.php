@@ -69,7 +69,7 @@ jr_define('_JOMRES_COM_MR_EB_ROOM_DISABLED', 'Disabled access available?');
 jr_define('_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE', 'Max people');
 jr_define('_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV', 'Room/property type');
 jr_define('_JOMRES_COM_MR_EB_ROOM_CLASS_DESC', 'Room/property type description');
-jr_define('_JOMRES_COM_MR_EB_ROOM_FEATURES_LIST', 'Room features list');
+jr_define('_JOMRES_COM_MR_EB_ROOM_FEATURES_LIST', 'Room features');
 jr_define('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID', 'Deposit paid');
 jr_define('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE', 'Enter deposit');
 jr_define('_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL', 'Total to pay');
