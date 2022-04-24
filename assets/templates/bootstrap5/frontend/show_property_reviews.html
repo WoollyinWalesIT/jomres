@@ -33,6 +33,7 @@
                 }
             });
         }
+
         //-->
 	</script>
 
@@ -161,19 +162,19 @@
 			<div class="col-sm-9">
 				<small><cite title="{USERNAME}">{_JOMRES_REVIEWS_REVIEWBODY_SAID}</cite></small>
 				<blockquote class="blockquote">
-					<p itemprop="description">
+					<p itemprop="description" class="readmore-wrapper">
 						{REVIEW_DESCRIPTION}
 					</p>
 				</blockquote>
 				<small>{_JOMRES_REVIEWS_PROS}</small>
 				<blockquote class="blockquote">
-					<p>
+					<p class="readmore-wrapper">
 						{PROS}
 					</p>
 				</blockquote>
 				<small>{_JOMRES_REVIEWS_CONS}</small>
 				<blockquote class="blockquote">
-					<p>
+					<p class="readmore-wrapper">
 						{CONS}
 					</p>
 				</blockquote>
@@ -204,4 +205,5 @@
 
 
 	<div>{_JOMRES_REVIEWS_ADD_REVIEW}</div>
+
 </patTemplate:tmpl>

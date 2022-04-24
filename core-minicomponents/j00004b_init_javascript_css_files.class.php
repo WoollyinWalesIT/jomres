@@ -141,6 +141,8 @@ class j00004b_init_javascript_css_files
 
 		$javascript_files[] = array(JOMRES_JS_RELPATH, 'jquery.sticky.js');
 
+		$javascript_files[] = array(JOMRES_JS_RELPATH, 'jquery.expander.min.js');
+
 		if (!isset($jrConfig[ 'load_font_awesome' ])) {
 			$jrConfig[ 'load_font_awesome' ] = '0';
 		}
