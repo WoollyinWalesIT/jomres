@@ -189,7 +189,7 @@ function generateDateInput($fieldName, $dateValue = '', $myID = false, $siteConf
 		';
 	}
 
-	$z_index = '';
+	$z_index = '0';
 	$calendar_z_index = get_showtime('calendar_z_index' );
 	if (isset($calendar_z_index)  && $calendar_z_index != '' ) {
 		$z_index = 'z-index: '.$calendar_z_index.';';
