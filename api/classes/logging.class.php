@@ -122,7 +122,7 @@ class logging
 
 
 		$now = DateTime::createFromFormat('U.u', microtime(true));
-        $formatter = new LineFormatter($now->format("m-d-Y H:i:s.u")." ~~ %channel%.%level_name%: ~~ %message% ~~ %context% ~~ %extra% ::::: \n");
+		$formatter = new LineFormatter($now->format("Y-m-d H:i:s")." ~~ %channel%.%level_name%: ~~ %message% ~~ %context% ~~ %extra% ::::: \n");
 
         $stream_handler = new StreamHandler($jrConfig['log_path'].$log_file, Logger::DEBUG);
         $stream_handler->setFormatter($formatter);
