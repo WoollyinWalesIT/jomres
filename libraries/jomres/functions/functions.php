@@ -1201,50 +1201,48 @@ function calc_rating_progressbar_colour($percentage)
  *
  * Determine the version of Bootstrap framework that is being used.
  */
-function jomres_bootstrap_version()
-{
-	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-	$jrConfig = $siteConfig->get();
-	if (!isset($jrConfig[ 'bootstrap_version' ])) {
-		$jrConfig[ 'bootstrap_version' ] = '';
-	}
 
-	if  ( jomres_cmsspecific_areweinadminarea() && _JOMRES_DETECTED_CMS == 'joomla4' ) {
-	    // check to see if we are in admin area & bs version is not set. If so, it's a new installation so we'll auto configure our bs version templates to run bs4
-        if ($jrConfig[ 'bootstrap_version' ] == '' ) {
-			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-			$siteConfig->update_setting('bootstrap_version', 5  );
-			$siteConfig->save_config();
-        }
+	function jomres_bootstrap_version()
+	{
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
+		if (!isset($jrConfig[ 'bootstrap_version' ])) {
+			$jrConfig[ 'bootstrap_version' ] = '';
+		}
 
-        // It's a site updated from BS3
-        if ($jrConfig[ 'bootstrap_version' ] == '3' ) {
-            $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-            $siteConfig->update_setting('bootstrap_version', 5  );
-            $siteConfig->save_config();
-        }
+		if  ( jomres_cmsspecific_areweinadminarea() && _JOMRES_DETECTED_CMS == 'joomla4' ) {
+			// check to see if we are in admin area & bs version is not set. If so, it's a new installation so we'll auto configure our bs version templates to run bs4
+			if ($jrConfig[ 'bootstrap_version' ] == '' ) {
+				$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+				$siteConfig->update_setting('bootstrap_version', 5  );
+				$siteConfig->save_config();
+			}
 
-		$bootstrap_version = '5';
+			// It's a site updated from BS3
+			if ($jrConfig[ 'bootstrap_version' ] == '3' ) {
+				$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+				$siteConfig->update_setting('bootstrap_version', 5  );
+				$siteConfig->save_config();
+			}
 
-	} elseif  ( jomres_cmsspecific_areweinadminarea() && _JOMRES_DETECTED_CMS == 'joomla3' ) {
-		$bootstrap_version = '2';
-	} elseif ( this_cms_is_wordpress() ) { // We are in Wordpress, so we'll automatically set the BS version to 2 if in admin, or BS3 in frontend as the init config vars functionality will autoload the BS3 scripts in the frontend
-	    if ( jomres_cmsspecific_areweinadminarea()) {
-            $bootstrap_version = '2';
-        } else {
-            if ($jrConfig[ 'bootstrap_version' ] == '5') {
-				$bootstrap_version = '5';
+			$bootstrap_version = '5';
+
+		} elseif  ( jomres_cmsspecific_areweinadminarea() && _JOMRES_DETECTED_CMS == 'joomla3' ) {
+			$bootstrap_version = '2';
+		} elseif ( this_cms_is_wordpress() ) { // We are in Wordpress, so we'll automatically set the BS version to 2 if in admin, or BS3 in frontend as the init config vars functionality will autoload the BS3 scripts in the frontend
+			if ( jomres_cmsspecific_areweinadminarea()) {
+				$bootstrap_version = '2';
+			} elseif ($jrConfig[ 'bootstrap_version' ] != '') {
+				$bootstrap_version = (int)$jrConfig[ 'bootstrap_version' ];
 			} else {
 				$bootstrap_version = '3';
 			}
-        }
+		}  else {
+			$bootstrap_version = $jrConfig[ 'bootstrap_version' ];
+		}
 
-	}  else {
-        $bootstrap_version = $jrConfig[ 'bootstrap_version' ];
-    }
-
-    return $bootstrap_version;
-}
+		return $bootstrap_version;
+	}
 
  /**
   *
