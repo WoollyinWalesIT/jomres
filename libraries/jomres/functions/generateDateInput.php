@@ -189,10 +189,16 @@ function generateDateInput($fieldName, $dateValue = '', $myID = false, $siteConf
 		';
 	}
 
+	$z_index = '';
+	$calendar_z_index = get_showtime('calendar_z_index' );
+	if (isset($calendar_z_index)  && $calendar_z_index != '' ) {
+		$z_index = 'z-index: '.$calendar_z_index.';';
+	}
+
 	$output .= '
 	</script>
 	<div class="input-group">
-		<input type="text" readonly="readonly" style="cursor:pointer; background-color: #FFFFFF; position: relative;" ' .$size.' name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" placeholder="'.$placeholder.'" class="'.$input_class.' form-control" />'.$bs3_icon.'
+		<input type="text" readonly="readonly" style="cursor:pointer; background-color: #FFFFFF; position: relative;'.$z_index.'" ' .$size.' name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" placeholder="'.$placeholder.'" class="'.$input_class.' form-control" />'.$bs3_icon.'
 	</div>';
 
 	$pageoutput[ ] = array('INPUT' => $output);
