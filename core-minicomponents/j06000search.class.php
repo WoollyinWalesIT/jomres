@@ -36,7 +36,7 @@
 		{
 			$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
 			if ($MiniComponents->template_touch) {
-				$this->template_touchable = true;
+				$this->template_touchable = false;
 				$this->shortcode_data = array(
 					'task' => 'search',
 					'info' => '_JOMRES_SHORTCODES_06000SEARCH',
@@ -923,20 +923,24 @@
 				}
 			}
 
+			$output_now = true;
 			if ( isset($componentArgs['templateFilePath']) && $componentArgs['templateFilePath'] != '' && isset($componentArgs['templateFile']) && $componentArgs['templateFile'] != '' ) {
 				$sch->templateFilePath = $componentArgs['templateFilePath'];
 				$sch->templateFile = $componentArgs['templateFile'];
+				$output_now = false;
 			}
-			
-			$pageoutput[ ] = $output;
 
-			if (!$data_only) {
-				if (!$doSearch || ($calledByModule == 'mod_jomsearch_m0' && $jrConfig[ 'integratedSearch_enable' ] == '1' && !this_cms_is_joomla() && !this_cms_is_wordpress())) {
-					$stmpl = new patTemplate();
-					$stmpl->setRoot($sch->templateFilePath);
-					$stmpl->readTemplatesFromInput($sch->templateFile);
-					$stmpl->addRows('search', $pageoutput);
-					$stmpl->displayParsedTemplate();
+			if (!$doSearch || ($calledByModule == 'mod_jomsearch_m0' && $jrConfig[ 'integratedSearch_enable' ] == '1')) {
+				$stmpl = new patTemplate();
+				$stmpl->setRoot($sch->templateFilePath);
+				$stmpl->readTemplatesFromInput($sch->templateFile);
+				$stmpl->addRows('search', $pageoutput);
+				$this->retVals = $stmpl->getParsedTemplate();
+
+				if ( $output_now ) {
+					echo $this->retVals;
+				} else {
+					return $this->retVals;
 				}
 			}
 			if ($doSearch && !isset($_REQUEST[ 'srchOnly' ])) {
@@ -945,46 +949,6 @@
 			unset($sch);
 		}
 
-		public function touch_template_language()
-		{
-			$output = array();
-
-			$output[ ] = jr_gettext('_JOMRES_SEARCH_BUTTON', '_JOMRES_SEARCH_BUTTON');
-			$output[ ] = jr_gettext('_JOMRES_FRONT_MR_SEARCH_HERE', '_JOMRES_FRONT_MR_SEARCH_HERE');
-			$output[ ] = jr_gettext('_JOMRES_SEARCH_ALL', '_JOMRES_SEARCH_ALL');
-
-			$output[ ] = jr_gettext('_JOMRES_SEARCH_GEO_COUNTRYSEARCH', '_JOMRES_SEARCH_GEO_COUNTRYSEARCH');
-			$output[ ] = jr_gettext('_JOMRES_SEARCH_GEO_REGIONSEARCH', '_JOMRES_SEARCH_GEO_REGIONSEARCH');
-			$output[ ] = jr_gettext('_JOMRES_SEARCH_GEO_TOWNSEARCH', '_JOMRES_SEARCH_GEO_TOWNSEARCH');
-			$output[ ] = jr_gettext('_JOMRES_SEARCH_DESCRIPTION_INFO', '_JOMRES_SEARCH_DESCRIPTION_INFO');
-			$output[ ] = jr_gettext('_JOMRES_SEARCH_DESCRIPTION_LABEL', '_JOMRES_SEARCH_DESCRIPTION_LABEL');
-			$output[ ] = jr_gettext('_JOMRES_SEARCH_FEATURE_INFO', '_JOMRES_SEARCH_FEATURE_INFO');
-			$output[ ] = jr_gettext('_JOMRES_SEARCH_RTYPES', '_JOMRES_SEARCH_RTYPES');
-			$output[ ] = jr_gettext('_JOMRES_SEARCH_AVL_INFO', '_JOMRES_SEARCH_AVL_INFO');
-			$output[ ] = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL');
-			$output[ ] = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE');
-			$output[ ] = jr_gettext('_JOMRES_SEARCH_GUESTNUMBER', '_JOMRES_SEARCH_GUESTNUMBER');
-			$output[ ] = jr_gettext('_JOMRES_SEARCH_STARS', '_JOMRES_SEARCH_STARS');
-			$output[ ] = jr_gettext('_JOMRES_SEARCH_PRICERANGES', '_JOMRES_SEARCH_PRICERANGES');
-
-			$output[ ] = jr_gettext('_JOMRES_SEARCH_PTYPES', '_JOMRES_SEARCH_PTYPES');
-
-			$query = "SELECT room_classes_uid, room_class_abbv, room_class_full_desc,image FROM #__jomres_room_classes WHERE property_uid = '0' ORDER BY room_class_abbv ";
-			$roomTypeList = doSelectSql($query);
-			foreach ($roomTypeList as $rtype) {
-				$output[ ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMCLASS_DESCRIPTION'.$rtype->room_classes_uid, jomres_decode($rtype->room_class_abbv));
-			}
-
-			$query = "SELECT id, ptype FROM #__jomres_ptypes WHERE published = '1' ORDER BY `order` ASC";
-			$ptypeList = doSelectSql($query);
-			foreach ($ptypeList as $ptype) {
-				$output[ ] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPE'.$ptype->id, jomres_decode($ptype->ptype));
-			}
-			foreach ($output as $o) {
-				echo $o;
-				echo '<br/>';
-			}
-		}
 
 		/**
 		 * Must be included in every mini-component.
