@@ -379,58 +379,6 @@
 				}
 
 				// -------------------------------------------------------------------------------------------------------------------------------------------
-
-				if ($showSearchOptions) {
-
-					if (!defined('_JOMRES_SELECTCOMBO')) {
-						// define("_JOMRES_SELECTCOMBO",1);
-						jomres_cmsspecific_addheaddata("javascript",JOMRES_JS_RELPATH, 'jquery.chainedSelects.js');
-
-						echo '
-							<script language="JavaScript" type="text/javascript">
-							jomresJquery(function()
-							{
-								jomresJquery(\'#country\').chainSelect(\'#rregion\',\'' .JOMRES_SITEPAGE_URL_AJAX.'&task=selectcombo&filter=country\',
-								{ 
-									before:function (target) //before request hide the target combobox and display the loading message
-									{ 
-										jomresJquery("#loading").css("display","block");
-										jomresJquery(target).css("display","none");
-									},
-									after:function (target) //after request show the target combobox and hide the loading message
-									{ 
-										jomresJquery("#loading").css("display","none");
-										jomresJquery(target).css("display","inline");
-									}
-								});
-								jomresJquery(\'#rregion\').chainSelect(\'#ttown\',\'' .JOMRES_SITEPAGE_URL_AJAX.'&task=selectcombo&filter=region\',
-								{ 
-									before:function (target) 
-									{ 
-										jomresJquery("#loading").css("display","block");
-										jomresJquery(target).css("display","none");
-									},
-									after:function (target) 
-									{ 
-										jomresJquery("#loading").css("display","none");
-										jomresJquery(target).css("display","inline");
-									}
-								});
-							});
-							</script>
-							';
-					}
-					foreach ($sch->prep[ 'country' ] as $country) {
-						if (trim(jomres_decode($country[ 'countryname' ])) != '') {
-							$countryArray[ ] = jomresHTML::makeOption($country[ 'countrycode' ], jomres_decode($country[ 'countryname' ]));
-						}
-					}
-
-					$output[ 'SELECTCOMBO_COUNTRY' ] = jomresHTML::selectList($countryArray, 'country', 'id="search_country" class="inputbox search_dropdown"', 'value', 'text', '').'<br />';
-					$output[ 'SELECTCOMBO_HIDDENDROPDOWNS_REGION' ] = '<!-- state combobox is chained by country combobox--><select name="region" id="rregion" style="display:none"></select><br />';
-					$output[ 'SELECTCOMBO_HIDDENDROPDOWNS_TOWN' ] = '<!-- city combobox is chained by state combobox--><select name="town" id="ttown" style="display:none"></select><br />';
-					$showButton = true;
-				}
 			}
 
 			// -------------------------------------------------------------------------------------------------------------------------------------------
@@ -757,9 +705,7 @@
 			$output[ 'DEPARTUREDATE' ] = generateDateInput('departureDate', $sch->prep[ 'departure' ], false, true, false);
 			$output[ 'DEPARTUREDATE_LABEL_ID'] = get_showtime('departure_date_unique_id');
 
-
 			$showButton = true;
-
 
 			// -------------------------------------------------------------------------------------------------------------------------------------------
 			if (  $showSearchOptions) {
@@ -930,14 +876,15 @@
 				$output_now = false;
 			}
 
-			if (!$doSearch || ($calledByModule == 'mod_jomsearch_m0' && $jrConfig[ 'integratedSearch_enable' ] == '1')) {
+			if (!$doSearch ) {
+				$pageoutput = array($output);
 				$stmpl = new patTemplate();
 				$stmpl->setRoot($sch->templateFilePath);
 				$stmpl->readTemplatesFromInput($sch->templateFile);
 				$stmpl->addRows('search', $pageoutput);
 				$this->retVals = $stmpl->getParsedTemplate();
 
-				if ( $output_now ) {
+				if ($output_now) {
 					echo $this->retVals;
 				} else {
 					return $this->retVals;
@@ -958,6 +905,6 @@
 
 		public function getRetVals()
 		{
-			return null;
+			return $this->retVals;
 		}
 	}

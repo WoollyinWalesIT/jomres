@@ -143,6 +143,13 @@ class j00004b_init_javascript_css_files
 
 		$javascript_files[] = array(JOMRES_JS_RELPATH, 'jquery.expander.min.js');
 
+		$autocomplete_js = 'autocomplete.js';
+		if ( jomres_bootstrap_version() == '3' ) {
+			$autocomplete_js = 'autocomplete-backport-bs3.js';
+		}
+
+		jomres_cmsspecific_addheaddata('javascript', JOMRES_JS_RELPATH, $autocomplete_js);
+
 		if (!isset($jrConfig[ 'load_font_awesome' ])) {
 			$jrConfig[ 'load_font_awesome' ] = '0';
 		}
