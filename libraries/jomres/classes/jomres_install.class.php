@@ -174,7 +174,7 @@ class jomres_install
 
 			//file version is lower than the db version, this is an error, so do nothing and better ask for support
 			//TODO: maybe just update and be done with it? the code is here, just replace actions
-			if (isset($_REQUEST['task']) && $_REQUEST['task'] == 'update') { // This class wasn't built to handle the updater script, so we'll just go ahead and update as Aladar suggested
+			if (isset($_REQUEST['task']) && $_REQUEST['task'] == 'updates') { // This class wasn't built to handle the updater script, so we'll just go ahead and update as Aladar suggested
 				$this->action = 'update';
 			} else {
 				if (version_compare($this->jrConfig['version'], $this->jrConfig['jomres_db_version'], '<')) {
