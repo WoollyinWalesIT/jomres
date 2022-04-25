@@ -174,26 +174,30 @@ class jomres_install
 
 			//file version is lower than the db version, this is an error, so do nothing and better ask for support
 			//TODO: maybe just update and be done with it? the code is here, just replace actions
-			if (version_compare($this->jrConfig['version'], $this->jrConfig['jomres_db_version'], '<')) {
-				if ($this->jomresTablesAndDataExist()) {
-					//jomres tables exist, perform update
-					$this->action = 'donothing';
-				} else {
-					//unusual case when files exist but db tables are not
-					$this->action = 'donothing';
+			if (isset($_REQUEST['task']) && $_REQUEST['task'] == 'update') { // This class wasn't built to handle the updater script, so we'll just go ahead and update as Aladar suggested
+				$this->action = 'update';
+			} else {
+				if (version_compare($this->jrConfig['version'], $this->jrConfig['jomres_db_version'], '<')) {
+					if ($this->jomresTablesAndDataExist()) {
+						//jomres tables exist, perform update
+						$this->action = 'donothing';
+					} else {
+						//unusual case when files exist but db tables are not
+						$this->action = 'donothing';
+					}
+
+					throw new Exception('Error, your Jomres plugin version is lower than the Jomres database version, are you sure you`re not downgrading?');
 				}
 
-				throw new Exception('Error, your Jomres plugin version is lower than the Jomres database version, are you sure you`re not downgrading?');
-			}
-
-			//if versions match just run update routines again
-			if (version_compare($this->jrConfig['version'], $this->jrConfig['jomres_db_version'], '=')) {
-				if ($this->jomresTablesAndDataExist()) {
-					//jomres tables exist, perform update
-					$this->action = 'update';
-				} else {
-					//unusual case when files exist but db tables are not
-					$this->action = 'install';
+				//if versions match just run update routines again
+				if (version_compare($this->jrConfig['version'], $this->jrConfig['jomres_db_version'], '=')) {
+					if ($this->jomresTablesAndDataExist()) {
+						//jomres tables exist, perform update
+						$this->action = 'update';
+					} else {
+						//unusual case when files exist but db tables are not
+						$this->action = 'install';
+					}
 				}
 			}
 		}

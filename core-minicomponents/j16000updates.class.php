@@ -4,7 +4,7 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-	  *  @version Jomres 10.3.0
+	 *  @version Jomres 10.2.2
 	 *
 	 * @copyright	2005-2022 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -38,7 +38,8 @@
 			$jrConfig = $siteConfig->get();
 			$this->updateServer = 'http://updates.jomres4.net';
 			$this->updateFolder = JOMRESPATH_BASE.JRDS.'updates';
-
+			$this->nightly_url = 'http://updates.jomres4.net/nightly/';
+			$this->development_production = $jrConfig['development_production'];
 			$this->test_download = false;
 
 			if (!class_exists('ZipArchive')) {
@@ -112,6 +113,11 @@
 		{
 			$latest_version = get_latest_jomres_version();
 			$remote_archive = $this->updateServer.'/jomres/'.$latest_version.'/ioncube';
+
+			if ($this->development_production == 'development') {
+				$remote_archive = $this->nightly_url;
+			}
+
 			$this->get_online_file($remote_archive , $local_archive );
 
 			if (!file_exists($local_archive)) {
