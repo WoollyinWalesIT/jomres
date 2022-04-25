@@ -923,6 +923,11 @@
 				}
 			}
 
+			if ( isset($componentArgs['templateFilePath']) && $componentArgs['templateFilePath'] != '' && isset($componentArgs['templateFile']) && $componentArgs['templateFile'] != '' ) {
+				$sch->templateFilePath = $componentArgs['templateFilePath'];
+				$sch->templateFile = $componentArgs['templateFile'];
+			}
+			
 			$pageoutput[ ] = $output;
 
 			if (!$data_only) {
