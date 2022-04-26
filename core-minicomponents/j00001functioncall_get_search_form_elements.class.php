@@ -21,7 +21,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	 * 
 	 */
 
-class j00001functioncall_get_autocomplete_form
+class j00001functioncall_get_search_form_elements
 {	
 	/**
 	 *
@@ -42,7 +42,8 @@ class j00001functioncall_get_autocomplete_form
 
 			return;
 		}
-		require_once JOMRES_FUNCTIONS_ABSPATH.'get_autocomplete_form.php';
+		require_once JOMRES_FUNCTIONS_ABSPATH.'get_search_form_element_autocomplete.php';
+		require_once JOMRES_FUNCTIONS_ABSPATH.'get_search_form_element_stars.php';
 	}
 
 	public function getRetVals()

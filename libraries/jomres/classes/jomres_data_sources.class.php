@@ -59,7 +59,7 @@ class jomres_data_sources
 		$sources[] = 'regions';
 		$sources[] = 'towns';
 		$sources[] = 'keywords';
-
+		$sources[] = 'stars';
 		return $sources;
 
 	}
@@ -81,10 +81,12 @@ class jomres_data_sources
 		}
 
 		$requested_file = $this->data_cache_directory.'data_source_'.$type.'.json';
+
 		if (!file_exists($requested_file)) {
 			return array();
 		}
 		$contents = (array)json_decode(file_get_contents($requested_file));
+
 		if (!isset($contents[$language])) {
 			return array();
 		}

@@ -14,7 +14,7 @@
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
-function get_autocomplete_form()
+function get_search_form_element_autocomplete()
 {
 	jr_import('jomres_data_sources');
 	$jomres_data_sources = new jomres_data_sources();
@@ -39,7 +39,7 @@ function get_autocomplete_form()
 	$tmpl->addRows('pageoutput', $pageoutput);
 	$tmpl->addRows('place_names', $place_names);
 
-	$tmpl->readTemplatesFromInput('autocomplete.html');
+	$tmpl->readTemplatesFromInput('search_form_element_autocomplete.html');
 
 	return $tmpl->getParsedTemplate();
 }
