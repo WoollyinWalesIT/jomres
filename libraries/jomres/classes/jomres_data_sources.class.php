@@ -60,6 +60,8 @@ class jomres_data_sources
 		$sources[] = 'towns';
 		$sources[] = 'keywords';
 		$sources[] = 'stars';
+		$sources[] = 'guestnumbers';
+		$sources[] = 'priceranges';
 		return $sources;
 
 	}
