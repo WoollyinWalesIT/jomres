@@ -46,7 +46,7 @@ function get_search_form_element_stars()
 
 	$output['LABEL'] =jr_gettext('_JOMRES_COM_A_INTEGRATEDSEARCH_BYTARS','_JOMRES_COM_A_INTEGRATEDSEARCH_BYTARS',false,false);
 
-	$pageoutput[ ] = array();
+	$pageoutput[ ] = $output;
 	$tmpl = new patTemplate();
 	$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 	$tmpl->addRows('pageoutput', $pageoutput);
