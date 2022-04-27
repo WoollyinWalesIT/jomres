@@ -558,14 +558,14 @@ class j02990showconfirmation
 		$gateways = array();
 		
 		if ((int)$mrConfig['requireApproval'] == 0 || $secret_key_payment) {
-			if (!$thisJRUser->userIsManager) {
+			if (!$thisJRUser->userIsManager || $jrConfig[ 'development_production' ] != 'production' ) { // If we are in Production mode, managers cannot pay themselves, but we will allow it in Development
 				$gateway_output = array();
 				$gwo = array();
 
 				jr_import("gateway_plugin_settings");
 				$plugin_settings = new gateway_plugin_settings();
 				$plugin_settings->get_settings_for_property_uid( $property_uid );
-				
+
 				if (!empty($plugin_settings->gateway_settings) ) {
 					$counter = 1;
 					foreach ($plugin_settings->gateway_settings as $gateway_name => $gateway) {

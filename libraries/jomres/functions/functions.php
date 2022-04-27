@@ -2187,10 +2187,14 @@ function jomres_validate_gateway_plugin()
 {
 	$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
 	$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-	if ($thisJRUser->userIsManager) {
+
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+	$jrConfig = $siteConfig->get();
+
+	if ($thisJRUser->userIsManager  && $jrConfig[ 'development_production' ] == 'production' ) {
 		return 'NA';
 		}
-	
+
 	$installed_gateway_plugins = array();
 	foreach ($MiniComponents->registeredClasses['00509'] as $eventName => $e ) {
 		$installed_gateway_plugins[] = $eventName;
