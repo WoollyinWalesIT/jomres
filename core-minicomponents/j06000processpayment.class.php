@@ -58,7 +58,12 @@ class j06000processpayment
 
 		$tag = set_booking_number();
 
-		$plugin = jomres_validate_gateway_plugin();
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+		$siteConfig		= jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig		  = $siteConfig->get();
+		if ($thisJRUser->userIsManager && $jrConfig['development_production'] != 'development') {
+			$plugin = jomres_validate_gateway_plugin();
+		}
 
 		$query = "SELECT `id` FROM #__jomres_booking_data_archive WHERE `tag` = '".$tag."'";
 		$result = doSelectSql($query);
