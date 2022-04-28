@@ -86,6 +86,9 @@ class j06002edit_tariff_micromanage
 				$output['TARIFFTYPENAME'] = $r['rate_title'];
 				$output['TARIFFTYPEDESC'] = $r['rate_description'];
 				$output['MINDAYS'] = $r['mindays'];
+				if ($r['maxdays'] == 0) { // If this is zero, and nobody has noticed, then you can't take bookings. We'll fall back to the default
+					$r['maxdays'] = $jrportal_rates->rates_defaults['maxdays'];
+				}
 				$output['MAXDAYS'] = $r['maxdays'];
 				$output['MINPEOPLE'] = $r['minpeople'];
 				$output['MAXPEOPLE'] = $r['maxpeople'];
@@ -118,7 +121,7 @@ class j06002edit_tariff_micromanage
 			}
 			
 		$output['MINDAYS_DROPDOWN'] = jomresHTML::integerSelectList( 0,$jrportal_rates->rates_defaults['maxdays'],1, 'mindays','', $output['MINDAYS']);
-		$output['MAXDAYS_DROPDOWN'] = jomresHTML::integerSelectList( 0,$jrportal_rates->rates_defaults['maxdays'],1, 'maxdays','', $output['MAXDAYS']);
+		$output['MAXDAYS_DROPDOWN'] = jomresHTML::integerSelectList( 1,$jrportal_rates->rates_defaults['maxdays'],1, 'maxdays','', $output['MAXDAYS']);
 		$output['MINPEOPLE_DROPDOWN'] = jomresHTML::integerSelectList( 0,$jrportal_rates->rates_defaults['maxpeople'],1, 'minpeople','', $output['MINPEOPLE']);
 		$output['MAXPEOPLE_DROPDOWN'] = jomresHTML::integerSelectList( 0,$jrportal_rates->rates_defaults['maxpeople'],1, 'maxpeople','', $output['MAXPEOPLE']);
 		
