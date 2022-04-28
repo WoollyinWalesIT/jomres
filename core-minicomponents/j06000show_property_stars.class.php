@@ -112,16 +112,20 @@ class j06000show_property_stars
 		}
 
 
-		if ($alt_stars_number ==0) {
-			if ($property_uid == 0) {
-				return;
+		if (get_showtime('task') != 'ajax_search') {
+			if ($alt_stars_number ==0 ) {
+				if ($property_uid == 0) {
+					return;
+				} else {
+					$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
+					$current_property_details->gather_data_multi([$property_uid]);
+					$number_of_stars = $current_property_details->multi_query_result[ $property_uid ]['stars'];
+				}
 			} else {
-				$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
-				$current_property_details->gather_data_multi([$property_uid]);
-				$number_of_stars = $current_property_details->multi_query_result[ $property_uid ]['stars'];
+				$number_of_stars = $alt_stars_number;
 			}
 		} else {
-			$number_of_stars = $alt_stars_number;
+			$number_of_stars = $componentArgs[ 'alt_stars_number' ];
 		}
 
 		$stars = [];
