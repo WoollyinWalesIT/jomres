@@ -2152,8 +2152,6 @@ class dobooking
 	 */
 	public function setStandardGuests($value)
 	{
-		$this->setErrorLog('setExtraGuests::Starting');
-
 		$default_number_of_guests = 2;
 
 		if (!isset($this->standard_guest_numbers)) {
@@ -2164,11 +2162,7 @@ class dobooking
 			$this->extra_guest_numbers =  $value - $default_number_of_guests;
 		}
 
-		if ( $value <= $default_number_of_guests ) {
-			$this->standard_guest_numbers = (int)$value;
-			$this->extra_guest_numbers = 0;
-		}
-
+		$this->standard_guest_numbers = (int)$value;
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -50,7 +50,7 @@ class j02990showconfirmation
 		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 		
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
-		
+
 		$paypal_settings = jomres_singleton_abstract::getInstance('jrportal_paypal_settings');
 		$paypal_settings->get_paypal_settings();
 
@@ -107,6 +107,42 @@ class j02990showconfirmation
 
 		$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
 		$current_property_details->gather_data($property_uid);
+
+		// Adult and child fields may be populated if the manager uses Standard tariff editing mode.
+		// If they are not populated, we'll look for Variances instead (old style guest types). If those are populated, we will update the booking engine's temp booking data with adult and child numbers.
+
+		$adults = (int)$tmpBookingHandler->tmpbooking['standard_guest_numbers'] + $tmpBookingHandler->tmpbooking['extra_guest_numbers'];
+		$children = 0;
+		if (!empty($tmpBookingHandler->tmpbooking['child_numbers'])) {
+			foreach ($tmpBookingHandler->tmpbooking['child_numbers'] as $child_type) {
+				$children = $children + (int)$child_type;
+			}
+		}
+
+		if ($adults == 0 && $children == 0) {
+			$basic_guest_type_details = jomres_singleton_abstract::getInstance('basic_guest_type_details');
+			$basic_guest_type_details->get_all_guest_types($property_uid);
+
+
+			if ($tmpBookingHandler->tmpbooking['variancetypes'] != '' && $tmpBookingHandler->tmpbooking['varianceuids'] != '') { // Let's make sure some variances actually exist
+				$bang_guest_type_ids = explode(",", $tmpBookingHandler->tmpbooking['varianceuids']);
+				$bang_guest_type_quantities = explode(",", $tmpBookingHandler->tmpbooking['varianceqty']);
+				foreach ($bang_guest_type_ids as $key => $guest_type_id) {
+					if (array_key_exists($guest_type_id, $basic_guest_type_details->guest_types)) {
+						$quantity = $bang_guest_type_quantities[$key];
+						if ($basic_guest_type_details->guest_types[$guest_type_id]['is_child'] == '1') {
+							$children = $children + $quantity;
+						} else {
+							$adults = $adults + $quantity;
+						}
+					}
+				}
+				$tmpBookingHandler->tmpbooking['standard_guest_numbers']	= $adults;
+				$tmpBookingHandler->tmpbooking['extra_guest_numbers']		= 0;
+				$tmpBookingHandler->tmpbooking['child_numbers'][0]			=  $children;
+			}
+		}
+
 
 		if ($amend_contract) {
 			$amend_contractuid = $tmpBookingHandler->getBookingFieldVal('amend_contractuid');
@@ -718,6 +754,10 @@ class j02990showconfirmation
 		$componentArgs = array('booking_parts' => $booking_parts);
 		// Trigger point. Not currently used, but available if somebody wants a trigger point after the confirm booking phase
 		$MiniComponents->triggerEvent('03010', $componentArgs);
+
+		$tmpBookingHandler->close_jomres_session();  // This ensures that the new guest numbers, if they have been added, are saved to the session.
+
+
 	}
 
 
