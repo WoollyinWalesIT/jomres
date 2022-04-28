@@ -256,7 +256,7 @@ class j06000show_property_reviews
 				$r[ 'RATING' ] = $review[ 'rating' ];
 				$r[ 'RATING_STARS' ] = '';
 				for ($i = 1; $i <= $review[ 'rating' ]; ++$i) {
-					$r[ 'RATING_STARS' ] .= '<i class="fa fa-star" aria-hidden="true"></i> ';
+					$r[ 'RATING_STARS' ] .= simple_template_output(JOMRES_TEMPLATEPATH_FRONTEND, $template = 'review_star_icon.html', '');
 				}
 
 				$r[ 'REPORT_REVIEWLINK' ] = '';
