@@ -1150,6 +1150,9 @@ function make_modal_button($text, $task, $extra, $title, $button_colour = 'btn-d
  */
 function simple_template_output($path = '', $template = '', $one_string = '')
 {
+    if (!file_exists($path.JRDS.$template)) { // This allows for backward compatibility
+        return '';
+	}
 	$pageoutput = array(array('TITLE' => $one_string));
 	$tmpl = new patTemplate();
 	$tmpl->setRoot($path);
