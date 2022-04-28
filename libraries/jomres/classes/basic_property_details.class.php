@@ -197,6 +197,9 @@
 
 		public function gather_data($property_uid = 0)
 		{
+			if (!isset($this->multi_query_result)) {
+				$this->multi_query_result = array();
+			}
 			if ($property_uid == $this->property_uid) { // No need to re-gather the info
 				return true;
 			}
