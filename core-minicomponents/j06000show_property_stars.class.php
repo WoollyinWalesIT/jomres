@@ -117,7 +117,7 @@ class j06000show_property_stars
 				return;
 			} else {
 				$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
-				$current_property_details->gather_data($property_uid);
+				$current_property_details->gather_data_multi([$property_uid]);
 				$number_of_stars = $current_property_details->multi_query_result[ $property_uid ]['stars'];
 			}
 		} else {
