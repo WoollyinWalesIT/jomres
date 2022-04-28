@@ -1103,7 +1103,7 @@ jr_define('_JOMRES_PARTNER_CHOOSE_EXISTING_INSTRUCTIONS', 'Choose a partner to b
 jr_define('_JOMRES_PARTNER_SHOW_TITLE', 'Partner :');
 jr_define('_JOMRES_PARTNER_SHOW_SEARCHTITLE', 'Search for a business');
 jr_define('_JOMRES_PARTNER_SHOW_SEARCHINSTRUCTIONS', "Enter a few characters from the property name and select a business.<br/> When you select the property you will add it to the partner's portfolio, however they will not yet enjoy any discounts, you will need to set those youself.");
-jr_define('_JOMRES_PARTNER_SHOW_CURRENTPROPERTIES', 'Current businesses');
+jr_define('_JOMRES_PARTNER_SHOW_CURRENTPROPERTIES', 'Current properties');
 jr_define('_JOMRES_PARTNER_SHOW_CURRENTPROPERTIES_INSTRUCTIONS', "Click on a property to edit the partner's discount settings for that business.");
 // 4.6
 jr_define('_JOMRES_SUSPENSIONS_MANAGER_SUSPENDED', 'This account has been suspended, it is not currently possible to administer your propert(ies) using this account.');

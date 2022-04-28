@@ -1569,7 +1569,7 @@ jr_define('_JOMRES_HSTATUS_PUBLISHING', 'Publishing status');
 jr_define('_JOMRES_HSTATUS_INVOICE', 'Invoice status');
 jr_define('_JOMRES_HSTATUS_INVOICE_TYPE', 'Invoice type');
 jr_define('_JOMRES_HSTATUS_APPROVED', 'Approved');
-jr_define('_JOMRES_HSTATUS_CURRENT', 'Current business');
+jr_define('_JOMRES_HSTATUS_CURRENT', 'Current property');
 jr_define('_JOMRES_HSTATUS_SHOW_BOOKINGS_FOR', 'Show bookings for');
 jr_define('_JOMRES_HSTATUS_SHOW_INVOICES_FOR', 'Show invoices for');
 jr_define('_JOMRES_STATUS_ANY', 'Any');

@@ -63,6 +63,8 @@ class j06000processpayment
 		$jrConfig		  = $siteConfig->get();
 		if ($thisJRUser->userIsManager && $jrConfig['development_production'] != 'development') {
 			$plugin = jomres_validate_gateway_plugin();
+		} else {
+			$plugin = "NA";
 		}
 
 		$query = "SELECT `id` FROM #__jomres_booking_data_archive WHERE `tag` = '".$tag."'";
