@@ -184,7 +184,7 @@
 					$layout_template = 'list_properties.html';
 				}
 
-				if (jomres_bootstrap_version() == '5' ) {
+				if (jomres_bootstrap_version() == '5' && isset( $_REQUEST['list_properties_template']) ) {
 					if (function_exists('get_available_property_list_templates')) {
 						$available_list_templates = get_available_property_list_templates();
 						$available_photo_templates =get_available_property_photo_templates();
