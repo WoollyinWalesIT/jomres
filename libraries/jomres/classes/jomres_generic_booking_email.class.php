@@ -94,6 +94,12 @@ class jomres_generic_booking_email
 			}
 		}
 
+		// Numbers of adults and children
+		$this->data[$contract_uid]['LABEL_ADULTS']		= jr_gettext('_JOMRES_SEARCH_FORM_ADULTS', '_JOMRES_SEARCH_FORM_ADULTS' , false );
+		$this->data[$contract_uid]['LABEL_CHILDREN']	= jr_gettext('_JOMRES_SEARCH_FORM_CHILDREN', '_JOMRES_SEARCH_FORM_CHILDREN' , false );
+		$this->data[$contract_uid]['NUMBER_ADULTS'] = $current_contract_details->contract[$contract_uid]['contractdeets']['adults'];
+		$this->data[$contract_uid]['NUMBER_CHILDREN'] = $current_contract_details->contract[$contract_uid]['contractdeets']['children'];
+
 		//guest details
 		$this->data[$contract_uid]['FIRSTNAME'] = $current_contract_details->contract[$contract_uid]['guestdeets']['firstname'];
 		$this->data[$contract_uid]['SURNAME'] = $current_contract_details->contract[$contract_uid]['guestdeets']['surname'];

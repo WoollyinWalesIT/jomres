@@ -556,6 +556,11 @@ class j06001edit_booking
 		$output['HROOM_TOTAL'] = jr_gettext('_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL', '_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL');
 		$output['ROOM_TOTAL'] = output_price($current_contract_details->contract[$contract_uid]['contractdeets']['room_total']);
 
+		$output['_JOMRES_SEARCH_FORM_ADULTS'] = jr_gettext('_JOMRES_SEARCH_FORM_ADULTS', '_JOMRES_SEARCH_FORM_ADULTS');
+		$output['ADULTS'] = $current_contract_details->contract[$contract_uid]['contractdeets']['adults'];
+		$output['_JOMRES_SEARCH_FORM_CHILDREN'] = jr_gettext('_JOMRES_SEARCH_FORM_CHILDREN', '_JOMRES_SEARCH_FORM_CHILDREN');
+		$output['CHILDREN'] = $current_contract_details->contract[$contract_uid]['contractdeets']['children'];
+
 		if ((int) $current_contract_details->contract[$contract_uid]['contractdeets']['deposit_paid'] == 1) {
 			$depositPaid = jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES');
 		} else {

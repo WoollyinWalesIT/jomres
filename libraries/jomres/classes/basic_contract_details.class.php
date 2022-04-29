@@ -83,6 +83,8 @@ class basic_contract_details
 						a.room_total,
 						a.discount,
 						a.currency_code,
+						a.adults,
+						a.children,
 						a.cancelled,
 						a.cancelled_timestamp,
 						a.cancelled_reason,
@@ -153,6 +155,8 @@ class basic_contract_details
 			$this->contract[$contract_uid]['contractdeets']['room_total'] = $contract->room_total;
 			$this->contract[$contract_uid]['contractdeets']['discount'] = $contract->discount;
 			$this->contract[$contract_uid]['contractdeets']['currency_code'] = $contract->currency_code;
+			$this->contract[$contract_uid]['contractdeets']['adults'] = $contract->adults;
+			$this->contract[$contract_uid]['contractdeets']['children'] = $contract->children;
 			$this->contract[$contract_uid]['contractdeets']['cancelled'] = $contract->cancelled;
 			$this->contract[$contract_uid]['contractdeets']['cancelled_timestamp'] = $contract->cancelled_timestamp;
 			$this->contract[$contract_uid]['contractdeets']['cancelled_reason'] = $contract->cancelled_reason;

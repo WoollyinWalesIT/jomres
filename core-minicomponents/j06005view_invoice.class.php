@@ -135,7 +135,13 @@ class j06005view_invoice
 			$contractData = array ('approved' => 1);
 		}
 
+		$current_contract_details = jomres_singleton_abstract::getInstance('basic_contract_details');
+		$current_contract_details->gather_data($invoice->contract_id, $invoice->property_uid);
 
+		$output['_JOMRES_SEARCH_FORM_ADULTS'] = jr_gettext('_JOMRES_SEARCH_FORM_ADULTS', '_JOMRES_SEARCH_FORM_ADULTS');
+		$output['ADULTS'] = $current_contract_details->contract[$invoice->contract_id]['contractdeets']['adults'];
+		$output['_JOMRES_SEARCH_FORM_CHILDREN'] = jr_gettext('_JOMRES_SEARCH_FORM_CHILDREN', '_JOMRES_SEARCH_FORM_CHILDREN');
+		$output['CHILDREN'] = $current_contract_details->contract[$invoice->contract_id]['contractdeets']['children'];
 
 		$output[ 'BUSINESS_DETAILS_TEMPLATE' ]	= $MiniComponents->specificEvent('06005', 'show_invoice_seller', array('invoice_id' => $invoice_id));
 		$output[ 'CLIENT_DETAILS_TEMPLATE' ]	= $MiniComponents->specificEvent('06005', 'show_invoice_buyer', array('invoice_id' => $invoice_id)); 
@@ -337,7 +343,7 @@ class j06005view_invoice
 		$tmpl = new patTemplate();
 		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
 
-		if ($popup == 1) {
+		if ($popup == 1 && !$as_pdf ) {
 			$tmpl->readTemplatesFromInput('printable_invoice.html');
 		} elseif($line_items_only) {
 			$tmpl->readTemplatesFromInput('frontend_view_invoice_lineitems.html');
