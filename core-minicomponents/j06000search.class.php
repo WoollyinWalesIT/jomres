@@ -105,6 +105,7 @@
 				);
 				return;
 			}
+			$this->retVals = '';
 			$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 			$jrConfig = $siteConfig->get();
