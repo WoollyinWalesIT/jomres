@@ -112,13 +112,6 @@ class j10501debugging
 			$configurationPanel->insertSetting();
 		}
 
-		if ( $jrConfig[ 'admin_options_level' ] > 1 ) {
-			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_ERRORCHECKING', '_JOMRES_COM_A_ERRORCHECKING', false));
-			$configurationPanel->setmiddle($lists[ 'errorChecking' ]);
-			$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_ERRORCHECKING_DESC', '_JOMRES_COM_A_ERRORCHECKING_DESC', false));
-			$configurationPanel->insertSetting();
-		}
-
 		if ( $jrConfig[ 'admin_options_level' ] > 0 ) {
 			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_DUMPTEMPLATEDATA', '_JOMRES_COM_DUMPTEMPLATEDATA', false));
 			$configurationPanel->setmiddle($lists[ 'dumpTemplate' ]);
