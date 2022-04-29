@@ -3810,10 +3810,13 @@ function propertyConfiguration()
 			$configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel');
 		} elseif ($bs_version == '3') {
 			$configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel_bootstrap3');
-		} elseif ($bs_version == '4') {
-			$configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel_bootstrap4');
 		} elseif ($bs_version == '5') {
-            $configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel_bootstrap5');
+			if (this_cms_is_wordpress()) {
+                jr_import('jomres_content_tabs_bootstrap5_wordpress');
+				$configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel_bootstrap5_wordpress');
+			} else {
+				$configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel_bootstrap5');
+			}
         }
 
 	$componentArgs[ 'configurationPanel' ]  = $configurationPanel;
