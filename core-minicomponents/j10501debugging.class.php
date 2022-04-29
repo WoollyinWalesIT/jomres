@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -109,13 +109,6 @@ class j10501debugging
 			$configurationPanel->setleft(jr_gettext('_JOMRES_SAFEMODE', '_JOMRES_SAFEMODE', false));
 			$configurationPanel->setmiddle($lists[ 'safe_mode' ]);
 			$configurationPanel->setright(jr_gettext('_JOMRES_SAFEMODE_DESC', '_JOMRES_SAFEMODE_DESC', false));
-			$configurationPanel->insertSetting();
-		}
-
-		if ( $jrConfig[ 'admin_options_level' ] > 1 ) {
-			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_ERRORCHECKING', '_JOMRES_COM_A_ERRORCHECKING', false));
-			$configurationPanel->setmiddle($lists[ 'errorChecking' ]);
-			$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_ERRORCHECKING_DESC', '_JOMRES_COM_A_ERRORCHECKING_DESC', false));
 			$configurationPanel->insertSetting();
 		}
 

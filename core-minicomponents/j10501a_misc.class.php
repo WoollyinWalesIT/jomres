@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -122,12 +122,12 @@ class j10501a_misc
 			$configurationPanel->insertSetting();
 		}
 
-		if ( $jrConfig[ 'admin_options_level' ] > 1 ) {
+/*		if ( $jrConfig[ 'admin_options_level' ] > 1 ) {
 			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_LANGUAGE_CONTEXT', '_JOMRES_COM_LANGUAGE_CONTEXT', false));
 			$configurationPanel->setmiddle($language_context_dropdown);
 			$configurationPanel->setright(jr_gettext('_JOMRES_COM_LANGUAGE_CONTEXT_DESC', '_JOMRES_COM_LANGUAGE_CONTEXT_DESC', false));
 			$configurationPanel->insertSetting();
-		}
+		}*/
 
 		if ( $jrConfig[ 'admin_options_level' ] > 1 ) {
 			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_LABEL_PRIORITY_TITLE', '_JOMRES_COM_LABEL_PRIORITY_TITLE', false));

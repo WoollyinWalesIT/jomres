@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -260,7 +260,7 @@ class j06001edit_booking
 			$output = array();
 			$pageoutput = array();
 
-			$output['NETWORK_STATS'] = $MiniComponents->specificEvent('06001', 'show_network_stats_for_contract', array('output_now' => false , 'contract_uid' => $contract_uid , 'property_uid' => $defaultProperty ));
+			//$output['NETWORK_STATS'] = $MiniComponents->specificEvent('06001', 'show_network_stats_for_contract', array('output_now' => false , 'contract_uid' => $contract_uid , 'property_uid' => $defaultProperty ));
 			
 			$output[ '_JOMRES_BOOKING_NUMBER' ] = jr_gettext('_JOMRES_BOOKING_NUMBER', '_JOMRES_BOOKING_NUMBER', $editable = true, $isLink = false);
 
@@ -556,6 +556,11 @@ class j06001edit_booking
 		$output['HROOM_TOTAL'] = jr_gettext('_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL', '_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL');
 		$output['ROOM_TOTAL'] = output_price($current_contract_details->contract[$contract_uid]['contractdeets']['room_total']);
 
+		$output['_JOMRES_SEARCH_FORM_ADULTS'] = jr_gettext('_JOMRES_SEARCH_FORM_ADULTS', '_JOMRES_SEARCH_FORM_ADULTS');
+		$output['ADULTS'] = $current_contract_details->contract[$contract_uid]['contractdeets']['adults'];
+		$output['_JOMRES_SEARCH_FORM_CHILDREN'] = jr_gettext('_JOMRES_SEARCH_FORM_CHILDREN', '_JOMRES_SEARCH_FORM_CHILDREN');
+		$output['CHILDREN'] = $current_contract_details->contract[$contract_uid]['contractdeets']['children'];
+
 		if ((int) $current_contract_details->contract[$contract_uid]['contractdeets']['deposit_paid'] == 1) {
 			$depositPaid = jr_gettext('_JOMRES_COM_MR_YES', '_JOMRES_COM_MR_YES');
 		} else {
@@ -625,6 +630,7 @@ class j06001edit_booking
 		//generate the tabs
 		jr_import('jomres_content_tabs');
 		$contentPanel = new jomres_content_tabs();
+
 		$contentPanel->startTabs();
 		$contentPanel->startPanel(jr_gettext('_JOMRES_COM_MR_EDITBOOKING_TAB_ARRIVAL', '_JOMRES_COM_MR_EDITBOOKING_TAB_ARRIVAL', false));
 		$contentPanel->setcontent($arrdep_template);
@@ -713,7 +719,7 @@ class j06001edit_booking
 /**
  * Must be included in every mini-component.
  #
- * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
+ * Returns any settings that the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
  */
 
 	public function getRetVals()

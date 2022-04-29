@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -245,3 +245,8 @@ jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_LIMIT', 'Göst
 jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'MRP\'lerin (oteller/oda & kahvaltılar) veya SRP\'lerin (yazlıklar/apartmanlar/villalar) gösterilip gösterilmeyeceği. Varsayılan, mevcut mülkün mülkünün uid\'inden belirlenir, o zaman MRP\'ler mevcut değilse belirli bir tür seçmek için, bu değeri srp için 0 veya mrp için 1 olarak ayarlayın.');
 
 
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS', "Bir mülkün yıldızlarını gösterir. Bunlar, mülk bir MRP ise, Mülk Konfigürasyonunda ayarlanır.");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_PROPERTY_UID', 'Mülkün kimliği.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Opsiyonel. Özellik kimliği ayarlanmadıysa, bunun yerine bir sayı iletebilirsiniz.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Opsiyonel. Alternatif şablon yolu. URL ile geçilemez. Mutlak olmalıdır.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Opsiyonel. Alternatif şablon adı.');

@@ -4,7 +4,7 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-	  *  @version Jomres 10.2.2
+	  *  @version Jomres 10.3.0
 	 *
 	 * @copyright	2005-2022 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -87,7 +87,7 @@
 			$query = "SELECT property_policies_disclaimers FROM #__jomres_propertys WHERE propertys_uid = '".$property_uid."' LIMIT 1";
 			$property_policiesdisclaimers = doSelectSql($query, 1);
 
-			$property_policiesdisclaimers = jomres_cmsspecific_parseByBots($jomres_markdown->get_markdown($property_policiesdisclaimers));
+			$property_policiesdisclaimers = jomres_cmsspecific_parseByBots($jomres_markdown->get_markdown(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS_'.$property_uid, $property_policiesdisclaimers, false, false)));
 
 			$property = array();
 			$property[ 'LIVESITE' ] = get_showtime('live_site');
@@ -132,7 +132,7 @@
 		/**
 		 * Must be included in every mini-component.
 		#
-		 * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
+		 * Returns any settings that the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
 		 */
 
 		public function getRetVals()

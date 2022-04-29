@@ -33,6 +33,7 @@
                 }
             });
         }
+
         //-->
 	</script>
 
@@ -43,13 +44,13 @@
 		</div>
 	</div>
 
-	<h2>
+	<h4>
 		<span >{PROPERTY_NAME}</span><!-- hotel name -->
 		{_JOMRES_REVIEWS_AVERAGE_RATING}
 		<span >{AVERAGE_RATING}</span>
 		{_JOMRES_REVIEWS_TOTAL_VOTES}
 		<span>{NUMBER_OF_REVIEWS}</span><!-- number of reviews -->
-	</h2>
+	</h4>
 
 
 	<patTemplate:tmpl name="rows" unusedvars="strip" type="simpleCondition" requiredVars="review_title">
@@ -57,14 +58,14 @@
 		<div class="page-header">
 			<div class="row">
 				<div class="col-sm-12">
-					<h3>
-						{REVIEW_TITLE} <span>{RATING_STARS}</span>
-					</h3>
+					<h5>
+						{REVIEW_TITLE} <span class="{RATING_TEXT_COLOUR}">{RATING_STARS}</span>{RATING_SCORE_TEXT}
+					</h5>
 				</div>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-sm-2 border-end">
+			<div class="col-sm-4 border-end">
 				<div class="row small">
 					<div class="col-sm-12">
 						{_JOMRES_REVIEWS_REVIEWED_BY}
@@ -86,87 +87,94 @@
 					<div class="col-sm-12">
 						{RATING_DATE}
 					</div>
-
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						Id: {RATING_ID}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						&nbsp;
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-5 text-muted small text-break border-bottom">{_JOMRES_REVIEWS_RATING_1}</div>
+					<div class="col-sm-7">
+						<div class="progress progress-striped">
+							<div class="progress-bar {RATING_1_PROGRESSBAR_COLOUR}" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: {RATING_1_PERCENTAGE}%">{RATING_1}
+								<span class="sr-only">{RATING_1_PERCENTAGE}%</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-5 text-muted small text-break border-bottom">{_JOMRES_REVIEWS_RATING_2}</div>
+					<div class="col-sm-7">
+						<div class="progress progress-striped">
+							<div class="progress-bar {RATING_2_PROGRESSBAR_COLOUR}" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: {RATING_2_PERCENTAGE}%">{RATING_2}
+								<span class="sr-only">{RATING_2_PERCENTAGE}%</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-5 text-muted small text-break border-bottom">{_JOMRES_REVIEWS_RATING_3}</div>
+					<div class="col-sm-7">
+						<div class="progress progress-striped">
+							<div class="progress-bar {RATING_3_PROGRESSBAR_COLOUR}" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: {RATING_3_PERCENTAGE}%">{RATING_3}
+								<span class="sr-only">{RATING_3_PERCENTAGE}%</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-5 text-muted small text-break border-bottom">{_JOMRES_REVIEWS_RATING_4}</div>
+					<div class="col-sm-7">
+						<div class="progress progress-striped">
+							<div class="progress-bar {RATING_4_PROGRESSBAR_COLOUR}" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: {RATING_4_PERCENTAGE}%">{RATING_4}
+								<span class="sr-only">{RATING_4_PERCENTAGE}%</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-5 text-muted small text-break border-bottom">{_JOMRES_REVIEWS_RATING_5}</div>
+					<div class="col-sm-7">
+						<div class="progress progress-striped">
+							<div class="progress-bar {RATING_5_PROGRESSBAR_COLOUR}" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: {RATING_5_PERCENTAGE}%">{RATING_5}
+								<span class="sr-only">{RATING_5_PERCENTAGE}%</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-5 text-muted small text-break border-bottom">{_JOMRES_REVIEWS_RATING_6}</div>
+					<div class="col-sm-7">
+						<div class="progress progress-striped">
+							<div class="progress-bar {RATING_6_PROGRESSBAR_COLOUR}" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: {RATING_6_PERCENTAGE}%">{RATING_6}
+								<span class="sr-only">{RATING_6_PERCENTAGE}%</span>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-			<div class="col-sm-5  border-end">
-					<div class="row">
-						<div class="col-sm-5 text-muted small">{_JOMRES_REVIEWS_RATING_1}</div>
-						<div class="col-sm-7">
-							<div class="progress progress-striped">
-								<div class="progress-bar {RATING_1_PROGRESSBAR_COLOUR}" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: {RATING_1_PERCENTAGE}%">{RATING_1}
-									<span class="sr-only">{RATING_1_PERCENTAGE}%</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-5 text-muted small">{_JOMRES_REVIEWS_RATING_2}</div>
-						<div class="col-sm-7">
-							<div class="progress progress-striped">
-								<div class="progress-bar {RATING_2_PROGRESSBAR_COLOUR}" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: {RATING_2_PERCENTAGE}%">{RATING_2}
-									<span class="sr-only">{RATING_2_PERCENTAGE}%</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-5 text-muted small">{_JOMRES_REVIEWS_RATING_3}</div>
-						<div class="col-sm-7">
-							<div class="progress progress-striped">
-								<div class="progress-bar {RATING_3_PROGRESSBAR_COLOUR}" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: {RATING_3_PERCENTAGE}%">{RATING_3}
-									<span class="sr-only">{RATING_3_PERCENTAGE}%</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-5 text-muted small">{_JOMRES_REVIEWS_RATING_4}</div>
-						<div class="col-sm-7">
-							<div class="progress progress-striped">
-								<div class="progress-bar {RATING_4_PROGRESSBAR_COLOUR}" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: {RATING_4_PERCENTAGE}%">{RATING_4}
-									<span class="sr-only">{RATING_4_PERCENTAGE}%</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-5 text-muted small">{_JOMRES_REVIEWS_RATING_5}</div>
-						<div class="col-sm-7">
-							<div class="progress progress-striped">
-								<div class="progress-bar {RATING_5_PROGRESSBAR_COLOUR}" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: {RATING_5_PERCENTAGE}%">{RATING_5}
-									<span class="sr-only">{RATING_5_PERCENTAGE}%</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-5 text-muted small">{_JOMRES_REVIEWS_RATING_6}</div>
-						<div class="col-sm-7">
-							<div class="progress progress-striped">
-								<div class="progress-bar {RATING_6_PROGRESSBAR_COLOUR}" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: {RATING_6_PERCENTAGE}%">{RATING_6}
-									<span class="sr-only">{RATING_6_PERCENTAGE}%</span>
-								</div>
-							</div>
-						</div>
-					</div>
-			</div>
-			<div class="col-sm-5">
+			<div class="col-sm-8">
 				<small><cite title="{USERNAME}">{_JOMRES_REVIEWS_REVIEWBODY_SAID}</cite></small>
 				<blockquote class="blockquote">
-					<p itemprop="description">
+					<p itemprop="description" class="readmore-wrapper">
 						{REVIEW_DESCRIPTION}
 					</p>
 				</blockquote>
 				<small>{_JOMRES_REVIEWS_PROS}</small>
 				<blockquote class="blockquote">
-					<p>
+					<p class="readmore-wrapper">
 						{PROS}
 					</p>
 				</blockquote>
 				<small>{_JOMRES_REVIEWS_CONS}</small>
 				<blockquote class="blockquote">
-					<p>
+					<p class="readmore-wrapper">
 						{CONS}
 					</p>
 				</blockquote>
@@ -197,4 +205,5 @@
 
 
 	<div>{_JOMRES_REVIEWS_ADD_REVIEW}</div>
+
 </patTemplate:tmpl>

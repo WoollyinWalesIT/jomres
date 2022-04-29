@@ -5,7 +5,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -14,6 +14,63 @@
 // ################################################################
 defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
+
+    /*
+     *
+     * Pass the property uid and room type id, we'll hand back an array that can be used to output prices of a specific room.
+     *
+     * Because there can be more than one tariff for a property we will use index 0 of the queries results. This means that the resultant price _might not_ be perfectly right, but it's good enough for our purposes.
+     *
+     */
+function get_room_price_by_room_type_id( $room_type_id = 0 , $property_uid = 0 ) {
+
+	if ( $room_type_id == 0) {
+		throw new Exception('Room type id not set');
+	}
+
+	if ( $property_uid == 0 ) {
+		throw new Exception('Property uid not set');
+	}
+
+    $output = array();
+
+	$output[ 'PRICE_PRE_TEXT' ]  = '';
+	$output[ 'PRICE_PRICE' ]	 = '';
+	$output[ 'PRICE_POST_TEXT' ] = '';
+
+	$searchDate = date('Y/m/d');
+	$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+	if (isset($_REQUEST[ 'arrivalDate' ]) && $_REQUEST[ 'arrivalDate' ] != '') {
+		$arrivalDate = jomresGetParam($_REQUEST, 'arrivalDate', '');
+		if (isset($_REQUEST[ 'pdetails_cal' ])) {
+			$arrivalDate = JSCalmakeInputDates($arrivalDate);
+		}
+		$searchDate = JSCalConvertInputDates($arrivalDate);
+	} elseif (isset($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ]) && trim($tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ]) != '') {
+		$searchDate = $tmpBookingHandler->tmpsearch_data[ 'jomsearch_availability' ];
+	}
+
+	$query = 'SELECT property_uid, roomrateperday FROM #__jomres_rates WHERE property_uid = '.(int) $property_uid." AND DATE_FORMAT('".$searchDate."', '%Y/%m/%d') BETWEEN DATE_FORMAT(`validfrom`, '%Y/%m/%d') AND DATE_FORMAT(`validto`, '%Y/%m/%d') AND roomrateperday > '0' AND roomclass_uid = ".$room_type_id."";
+	$tariffList = doSelectSql($query);
+	if (!empty($tariffList)) {
+		// We just need the pre and post price output strings
+		$price_output				= get_property_price_for_display_in_lists( $property_uid );
+
+		$pricesFromArray = [];
+		foreach ($tariffList as $t) {
+			if (!isset($pricesFromArray[ $t->property_uid ])) {
+				$pricesFromArray[ ] = $t->roomrateperday;
+			} elseif (isset($pricesFromArray[ $t->property_uid ]) && $pricesFromArray[ $t->property_uid ] > $t->roomrateperday) {
+				$pricesFromArray[  ] = $t->roomrateperday;
+			}
+		}
+
+		$output[ 'PRICE_PRE_TEXT' ]  = $price_output[ 'PRE_TEXT' ];
+		$output[ 'PRICE_PRICE' ]	 = output_price($pricesFromArray[0]);
+		$output[ 'PRICE_POST_TEXT' ] = $price_output[ 'POST_TEXT' ];
+	}
+    return $output;
+}
 
 
 	function output_ribbon_styling()
@@ -146,7 +203,7 @@ function is_channel_safe_task ($task)
 	$mrConfig = getPropertySpecificSettings( get_showtime("property_uid"));
 
 	if ( !isset($mrConfig['allow_channel_property_local_admin']) ) {
-		$mrConfig['allow_channel_property_local_admin'] = 0;
+		return true;
     }
 
 	if ( (bool)$mrConfig['allow_channel_property_local_admin'] == true ) {
@@ -1093,6 +1150,9 @@ function make_modal_button($text, $task, $extra, $title, $button_colour = 'btn-d
  */
 function simple_template_output($path = '', $template = '', $one_string = '')
 {
+    if (!file_exists($path.JRDS.$template)) { // This allows for backward compatibility
+        return '';
+	}
 	$pageoutput = array(array('TITLE' => $one_string));
 	$tmpl = new patTemplate();
 	$tmpl->setRoot($path);
@@ -1144,46 +1204,48 @@ function calc_rating_progressbar_colour($percentage)
  *
  * Determine the version of Bootstrap framework that is being used.
  */
-function jomres_bootstrap_version()
-{
-	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-	$jrConfig = $siteConfig->get();
-	if (!isset($jrConfig[ 'bootstrap_version' ])) {
-		$jrConfig[ 'bootstrap_version' ] = '';
+
+	function jomres_bootstrap_version()
+	{
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
+		if (!isset($jrConfig[ 'bootstrap_version' ])) {
+			$jrConfig[ 'bootstrap_version' ] = '';
+		}
+
+		if  ( jomres_cmsspecific_areweinadminarea() && _JOMRES_DETECTED_CMS == 'joomla4' ) {
+			// check to see if we are in admin area & bs version is not set. If so, it's a new installation so we'll auto configure our bs version templates to run bs4
+			if ($jrConfig[ 'bootstrap_version' ] == '' ) {
+				$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+				$siteConfig->update_setting('bootstrap_version', 5  );
+				$siteConfig->save_config();
+			}
+
+			// It's a site updated from BS3
+			if ($jrConfig[ 'bootstrap_version' ] == '3' ) {
+				$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+				$siteConfig->update_setting('bootstrap_version', 5  );
+				$siteConfig->save_config();
+			}
+
+			$bootstrap_version = '5';
+
+		} elseif  ( jomres_cmsspecific_areweinadminarea() && _JOMRES_DETECTED_CMS == 'joomla3' ) {
+			$bootstrap_version = '2';
+		} elseif ( this_cms_is_wordpress() ) { // We are in Wordpress, so we'll automatically set the BS version to 2 if in admin, or BS3 in frontend as the init config vars functionality will autoload the BS3 scripts in the frontend
+			if ( jomres_cmsspecific_areweinadminarea()) {
+				$bootstrap_version = '2';
+			} elseif ($jrConfig[ 'bootstrap_version' ] != '') {
+				$bootstrap_version = (int)$jrConfig[ 'bootstrap_version' ];
+			} else {
+				$bootstrap_version = '3';
+			}
+		}  else {
+			$bootstrap_version = $jrConfig[ 'bootstrap_version' ];
+		}
+
+		return $bootstrap_version;
 	}
-
-	if  ( jomres_cmsspecific_areweinadminarea() && _JOMRES_DETECTED_CMS == 'joomla4' ) {
-	    // check to see if we are in admin area & bs version is not set. If so, it's a new installation so we'll auto configure our bs version templates to run bs4
-        if ($jrConfig[ 'bootstrap_version' ] == '' ) {
-			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-			$siteConfig->update_setting('bootstrap_version', 5  );
-			$siteConfig->save_config();
-        }
-
-        // It's a site updated from BS3
-        if ($jrConfig[ 'bootstrap_version' ] == '3' ) {
-            $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-            $siteConfig->update_setting('bootstrap_version', 5  );
-            $siteConfig->save_config();
-        }
-
-		$bootstrap_version = '5';
-
-	} elseif  ( jomres_cmsspecific_areweinadminarea() && _JOMRES_DETECTED_CMS == 'joomla3' ) {
-		$bootstrap_version = '2';
-	} elseif ( this_cms_is_wordpress() ) { // We are in Wordpress, so we'll automatically set the BS version to 2 if in admin, or BS3 in frontend as the init config vars functionality will autoload the BS3 scripts in the frontend
-	    if ( jomres_cmsspecific_areweinadminarea()) {
-            $bootstrap_version = '2';
-        } else {
-            $bootstrap_version = '3';
-        }
-
-	}  else {
-        $bootstrap_version = $jrConfig[ 'bootstrap_version' ];
-    }
-
-    return $bootstrap_version;
-}
 
  /**
   *
@@ -1196,9 +1258,9 @@ function jomres_bootstrap_version()
  
 function find_plugin_template_directory()
 {
-	$template_dir = 'jquery_ui';
+	$template_dir = 'bootstrap';
 
-	if (jomres_cmsspecific_areweinadminarea()) {
+	if (jomres_cmsspecific_areweinadminarea()  && _JOMRES_DETECTED_CMS != 'joomla4' ) {
 		$template_dir = 'bootstrap';
 	} elseif (using_bootstrap()) {
 		$template_dir = 'bootstrap';
@@ -1825,7 +1887,7 @@ function add_gmaps_source()
 		}
 
 
-		jomres_cmsspecific_addheaddata('javascript', 'https://maps.googleapis.com/maps/api/js?v=3&language='.$shortcode.$apikey, '&v=weekly&channel=2', $includeVersion = false, $async = true);
+		jomres_cmsspecific_addheaddata('javascript', 'https://maps.googleapis.com/maps/api/js?v=3.20&language='.$shortcode.$apikey, '&v=weekly&channel=2', $includeVersion = false, $async = true);
 	}
 }
 
@@ -2128,10 +2190,14 @@ function jomres_validate_gateway_plugin()
 {
 	$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
 	$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-	if ($thisJRUser->userIsManager) {
+
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+	$jrConfig = $siteConfig->get();
+
+	if ($thisJRUser->userIsManager  && $jrConfig[ 'development_production' ] == 'production' ) {
 		return 'NA';
 		}
-	
+
 	$installed_gateway_plugins = array();
 	foreach ($MiniComponents->registeredClasses['00509'] as $eventName => $e ) {
 		$installed_gateway_plugins[] = $eventName;
@@ -3744,10 +3810,13 @@ function propertyConfiguration()
 			$configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel');
 		} elseif ($bs_version == '3') {
 			$configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel_bootstrap3');
-		} elseif ($bs_version == '4') {
-			$configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel_bootstrap4');
 		} elseif ($bs_version == '5') {
-            $configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel_bootstrap5');
+			if (this_cms_is_wordpress()) {
+                jr_import('jomres_content_tabs_bootstrap5_wordpress');
+				$configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel_bootstrap5_wordpress');
+			} else {
+				$configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel_bootstrap5');
+			}
         }
 
 	$componentArgs[ 'configurationPanel' ]  = $configurationPanel;
@@ -3770,7 +3839,7 @@ function propertyConfiguration()
  *
  * Takes settings from the configuration and saves (most of them) to the jomres_settings table.
  */
-function savePropertyConfiguration()
+function savePropertyConfiguration( $property_uid = 0 )
 {
 	$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
 	$MiniComponents->triggerEvent('00502', array()); // This trigger allows plugins to check saves, for example to prevent future changes to a setting once it's been made.
@@ -3778,7 +3847,10 @@ function savePropertyConfiguration()
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig = $siteConfig->get();
 
-	$property_uid = (int)getDefaultProperty();
+    if ($property_uid == 0) {
+		$property_uid = (int)getDefaultProperty();
+	}
+
 	
 	if ($property_uid == 0) {
 		return false;
@@ -4953,11 +5025,11 @@ function this_cms_is_joomla()
  *
  * Used by editing mode and label translation functionality to update custom text tables
  */
-function updateCustomText($theConstant, $theValue, $audit = true, $property_uid = null, $language_context = '0')
+function updateCustomText($theConstant, $theValue, $audit = true, $property_uid = null, $language_context = '0' , $target_language = '')
 {
 	$custom_text = jomres_singleton_abstract::getInstance('custom_text');
 
-	return $custom_text->updateCustomText($theConstant, $theValue, $audit, $property_uid, $language_context);
+	return $custom_text->updateCustomText($theConstant, $theValue, $audit, $property_uid, $language_context , $target_language);
 }
 
 /**

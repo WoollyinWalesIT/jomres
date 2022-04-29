@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -74,6 +74,8 @@ class j06000show_property_header
 		} else {
 			$output_now = true;
 		}
+		jr_import('jomres_markdown');
+		$jomres_markdown = new jomres_markdown();
 
 		$mrConfig = getPropertySpecificSettings($property_uid);
 
@@ -92,16 +94,7 @@ class j06000show_property_header
 			return;
 		}
 
-		//stars
-		$stars = $current_property_details->stars;
-		$starslink = '<i class="fa fa-star" aria-hidden="true"></i> ';
-		if ($stars != '0') {
-			$starslink = '';
-			for ($i = 1; $i <= $stars; ++$i) {
-				$starslink .= ' <i class="fa fa-star pe-none" aria-hidden="true"></i> ';
-			}
-			$starslink .= '';
-		}
+		$starslink = $MiniComponents->specificEvent('06000', 'show_property_stars', array('property_uid' => $property_uid , 'output_now' => false ));
 
 		if ($current_property_details->superior == 1) {
 			$output[ 'SUPERIOR' ] = '<img src="'.JOMRES_IMAGES_RELPATH.'superior.png" alt="superior" border="0" />';
@@ -144,7 +137,7 @@ class j06000show_property_header
 		}
 
 		//Facebook meta data
-		$short_property_description = jomres_decode(jr_substr(strip_tags($current_property_details->property_description), 0, 200)).'...';
+		$short_property_description = jomres_decode(jr_substr(strip_tags($jomres_markdown->get_markdown($current_property_details->property_description)), 0, 200)).'...';
 		jomres_cmsspecific_addcustomtag('<meta property="og:url" content="'.get_property_details_url($property_uid, 'nosef').'&skip_consent_form=1" />');
 		jomres_cmsspecific_addcustomtag('<meta property="og:type" content="article" />');
 		jomres_cmsspecific_addcustomtag('<meta property="og:title" content="'.jomres_decode($current_property_details->property_name).'" />');

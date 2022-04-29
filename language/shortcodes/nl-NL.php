@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -246,3 +246,8 @@ jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_LIMIT', 'Het a
 jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'Of MRP\'s (hotels/bed & breakfasts) of SRP\'s (cottages/appartementen/villa\'s) moeten worden weergegeven. Standaard wordt bepaald op basis van de uid van de huidige eigendom, als die niet beschikbaar is, dan is Om een ​​specifiek type te kiezen, stelt u deze waarde in op 0 voor srps, of 1 voor mrps.');
 
 
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS', "Toont de sterren van een eigenschap. Deze worden ingesteld in Eigenschapconfiguratie, als de eigenschap een MRP is.");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_PROPERTY_UID', 'ID van de eigenschap.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Optioneel. Als de property-ID niet is ingesteld, kunt u in plaats daarvan een nummer doorgeven.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Optioneel. Alternatief sjabloonpad. Kan niet worden doorgegeven via url. Moet absoluut zijn.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Optioneel. Alternatieve sjabloonnaam.');

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Translated to pt-PT by Mario Oliveira, Camara de Lobos, Madeira Island, Portugal, 17Set2010 - www.marioliveira.net - Updated 21Jun2011 for ver 5.1
@@ -1831,7 +1831,7 @@ jr_define ('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Sua chave de suporte é 
 jr_define ('_JOMRES_DASHBOARD_DRAG_TRASH', 'Arraste as reservas para esta área para cancelá-las');
 jr_define ('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define ('_JOMRES_LONG', 'Long (nn.nnnn)');
-jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Certifique-se de ter criado uma página WordPress que contém o shortcode [jomres: xx-XX] (onde xx-XX é o código do idioma do seu site, por exemplo [jomres: en-GB] ou [ jomres: en-US]) caso contrário, você não será capaz de acessar Jomres pelo frontend para gerenciar suas propriedades e reservas. <br> Jomres é construído na estrutura do Bootstrap, então você deve usá-lo em um tema baseado no Bootstrap. recomende um baseado no Bootstrap 3. Se você não tiver acesso a um tema, recomendamos que você use o tema Jomres Leohtian para Wordpress, que você pode <a href = "https://www.jomres.net/download/free- downloads / download / 5-miscelleneous-downloads / 11-leohtian-for-wordpress target="_blank"> download aqui. </a> ');
+jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Certifique-se de ter criado uma página WordPress que contém o shortcode [jomres: xx-XX] (onde xx-XX é o código do idioma do seu site, por exemplo [jomres: en-GB] ou [ jomres: en-US]) caso contrário, você não será capaz de acessar Jomres pelo frontend para gerenciar suas propriedades e reservas.');
 jr_define ('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', "Antes de criar um tipo de quarto, precisamos saber se é para uma propriedade do tipo hotel ou villa.");
 jr_define ('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', 'Clique para adicionar novos tipos de quartos');
 jr_define ('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES', 'Atenção, você tem um ou mais tipos de propriedade sem tipos de quarto. As propriedades precisam de tipos de quarto para que os gerentes de propriedade possam criar tarifas.');
@@ -2723,3 +2723,25 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Imagens de
 
 	jr_define('JOMRES_UPDATES_TITLE', 'Jomres Updates');
 	jr_define('JOMRES_UPDATES_INFO', "Esta página pode baixar e instalar a versão mais recente do Jomres para você. Ela usa sua própria funcionalidade e não a do host CMS, portanto, se ocorrer um problema durante a atualização do host CMS, você pode usar esta página para forçar uma reinstalação da versão mais recente do Jomres.");
+
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'Gerentes de propriedade podem usar o modo de edição no frontend para personalizar strings para cada propriedade, porém isso só pode funcionar se a configuração do seu link permanente do WordPress estiver definida como Simples (http://www.domain.com/?p=123). Depois de fazer isso, os usuários frontend poderão personalizar strings, como nomes de salas e outros rótulos, específicos para propriedades exclusivas. ');
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', 'Modo de edição de etiquetas');
+	jr_define('JOMRES_EDITING_MODE_HELP_LEAD', 'Este recurso é usado para alterar os rótulos dos itens, geralmente em diferentes idiomas.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', 'O modo de edição permite renomear marcadores que são exclusivos de propriedades individuais. Quando você usa o modo de edição para renomear um marcador, a alteração só aparecerá nessa listagem de propriedade. Por exemplo, em uma propriedade que você deseja para usar a palavra "Preços" e em outra a palavra "Tarifas". Nem todos os rótulos podem ser alterados, por exemplo, os nomes dos tipos de quarto são rótulos para todo o site, portanto, não podem ser alterados, mas geralmente qualquer coisa que seja exclusiva de uma propriedade individual pode ser mudado.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', 'Se o site suporta vários idiomas, ao usar um idioma, você pode criar um item exclusivo para uma propriedade individual. Quando você alterar seu idioma ativo, poderá usar o modo de edição para renomear esse rótulo, inserindo uma tradução adequada no idioma atual. Você pode continuar alterando o idioma ativo para inserir uma tradução adequada para esse rótulo para cada idioma suportado pelo site.');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'Alternar modo de edição de rótulo');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'Nesta captura de tela vemos a mudança do modo de edição. O modo de edição está DESLIGADO e os rótulos aparecem normalmente: ');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'Modo de edição de etiqueta habilitado');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'Nesta captura de tela vemos que, no modo de edição, os rótulos que você pode renomear são destacados:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', 'Selecione o item a ser alterado');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'Quando um rótulo é selecionado aparece um pop-up:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'Alterar o rótulo');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Use o pequeno formulário para alterar o rótulo. Clique no Tick para finalizar, ou clique no X para cancelar a edição:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Rótulo alterado');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Depois de salvar a alteração, o rótulo é atualizado na página. Você pode desativar o modo de edição agora:');
+
+	jr_define('JOMRES_TRANSLATIONS_TITLE', 'Traduções');
+	jr_define('JOMRES_TRANSLATIONS_LEAD', 'Nesta página você pode traduzir etiquetas de um idioma para outro. Ao visitar a página você verá strings que você já criou e seu valor em qualquer idioma que você esteja usando. idioma de destino e, em seguida, para os rótulos que deseja traduzir, clique no rótulo e um pop-up permitirá que você insira sua nova tradução. Para linhas de texto mais longas, você pode colar o texto de outra fonte. Lembre-se de que qualquer HTML será removido .<br/>
+Você pode deixar o idioma de destino definido para seu idioma atual e usar esta página para renomear itens aqui, em vez de visitar suas páginas individuais.');
+	jr_define('JOMRES_TARGET_LANGUAGE', 'Idioma de destino');

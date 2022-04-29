@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -138,6 +138,17 @@ class j00004b_init_javascript_css_files
 		$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'jquery.tipsy/src/', 'jquery.tipsy.js');
 		
 		$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'bootstrap-notify/', 'bootstrap-notify.min.js');
+
+		$javascript_files[] = array(JOMRES_JS_RELPATH, 'jquery.sticky.js');
+
+		$javascript_files[] = array(JOMRES_JS_RELPATH, 'jquery.expander.min.js');
+
+		$autocomplete_js = 'autocomplete.js';
+		if ( jomres_bootstrap_version() == '3' ) {
+			$autocomplete_js = 'autocomplete-backport-bs3.js';
+		}
+
+		jomres_cmsspecific_addheaddata('javascript', JOMRES_JS_RELPATH, $autocomplete_js);
 
 		if (!isset($jrConfig[ 'load_font_awesome' ])) {
 			$jrConfig[ 'load_font_awesome' ] = '0';

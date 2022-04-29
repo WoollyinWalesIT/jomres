@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -99,6 +99,14 @@ class j03020insertbooking
 				$amend_contractuid = 0;
 			}
 
+			$adults = (int)$tmpBookingHandler->tmpbooking['standard_guest_numbers'] + $tmpBookingHandler->tmpbooking['extra_guest_numbers'];
+			$children = 0;
+			if (!empty($tmpBookingHandler->tmpbooking['child_numbers'])) {
+				foreach ($tmpBookingHandler->tmpbooking['child_numbers'] as $child_type) {
+					$children = $children + (int)$child_type;
+				}
+			}
+
 			if ($amend_contract && $amend_contractuid != 0 && $thisJRUser->userIsManager) {
 
 				//Booking amendment code
@@ -182,6 +190,8 @@ class j03020insertbooking
 					`tax`						= '$tax',
 					`room_total`				= '$room_total',
 					`currency_code` 			= '$ccode',
+					`adults`					= $adults,
+					`children`					= $children,
 					`discount_details` 			= '".serialize($tempBookingData->discounts)."',
 					`approved`		 			= '1'
 					WHERE contract_uid = '$amend_contractuid'";
@@ -543,14 +553,16 @@ class j03020insertbooking
 						`room_total`, 
 						`discount`, 
 						`currency_code`, 
+                        `adults` ,
+						`children` ,
 						`discount_details`, 
-						`username`, 
-						`coupon_id`, 
-						`channel_manager_booking`, 
-						`approved`, 
-						`booking_data_archive_id`, 
-						`secret_key`, 
-						`booking_language`, 
+						`username`,
+						`coupon_id`,
+						`channel_manager_booking`,
+						`approved`,
+						`booking_data_archive_id`,
+						`secret_key`,
+						`booking_language`,
 						`referrer`
 						)
 					VALUES (
@@ -578,6 +590,8 @@ class j03020insertbooking
 						".(float) $room_total.",
 						".(float) $discount.",
 						'$ccode',
+						".$adults.",
+						".$children.",
 						'".$discount_details."',
 						'".$bookersUsername."',
 						".(int) $coupon_id.",

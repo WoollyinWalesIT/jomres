@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -805,7 +805,7 @@ class jrportal_invoice
 		
 		if ($mrConfig['use_custom_invoice_numbers'] == "0" || $this->property_uid == 0 ) {
 			$query = "SELECT MAX(id) FROM #__jomresportal_invoices";
-			$this->invoice_number = doSelectSql($query, 1);
+			$this->invoice_number = doSelectSql($query, 1)+1;
 		} else {
 			if (isset($mrConfig['last_invoice_number'])) {
 				$last_invoice_number	= (int)$mrConfig['last_invoice_number'];
@@ -819,14 +819,14 @@ class jrportal_invoice
 			
 			if ($this->property_uid > 0) {
 				$_POST[ 'cfg_last_invoice_number' ] = $new_invoice_seq;
-				savePropertyConfiguration();
+				savePropertyConfiguration( $this->property_uid );
 			}
 
 			$pattern = $mrConfig['custom_invoice_pattern'];
 			
 			$pattern = str_replace( "{N}" , $new_invoice_seq ,		$pattern );
-			$pattern = str_replace( "{D}" , date("Y") ,				$pattern );
-			$pattern = str_replace( "{Y}" , date("Ymd") ,			$pattern );
+			$pattern = str_replace( "{D}" , date("Y") ,		$pattern );
+			$pattern = str_replace( "{Y}" , date("Ymd") ,		$pattern );
 			
 			$this->invoice_number = $pattern;
 		}

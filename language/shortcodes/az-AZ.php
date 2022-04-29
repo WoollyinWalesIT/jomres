@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -245,4 +245,9 @@ jr_define ('_JOMRES_SHORTCODES_06001DASHBOARD', 'Tablosuna');
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES', 'Sindikasiya edilmiş xüsusiyyətlərin siyahısını göstərir');
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_LIMIT', 'Göstəriləcək sindikat xüsusiyyətlərinin sayı');
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'MRP -lərin (otellər/yataq otaqları) və ya SRP -lərin (kotteclər/mənzillər/villalar) göstərilib göstərilməməsi. Varsayılan mövcud MR -nin mülkiyyətidirsə, MR -ə aid deyilsə Xüsusi bir növ seçmək üçün bu dəyəri srps üçün 0 və ya mrps üçün 1 olaraq təyin edin. ');
-    
+
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS', "Əmlakın ulduzlarını göstərir. Əgər əmlak MRP-dirsə, bunlar Mülk Konfiqurasiyasında təyin olunub.");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_PROPERTY_UID', 'Əmlakın İD-si.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'İstəyə bağlıdır. Əgər mülkiyyət id-si təyin edilməyibsə, onun yerinə nömrə ötürə bilərsiniz.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Könüllüdür. Alternativ şablon yolu. Url vasitəsilə ötürülə bilməz. Mütləq olmalıdır.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'İstəyə görə. Alternativ şablon adı.');

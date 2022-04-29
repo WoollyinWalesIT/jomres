@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -18,10 +18,10 @@ jr_define('_JOMRES_SHORTCODES_06001CPANEL', 'これはプロパティcpanelの�
 jr_define('_JOMRES_SHORTCODES_06001TAPECHART', 'これは,リアルタイムの予約,空室状況,および占有率の概要を一目で提供するプロパティテープチャートです。');
 
 jr_define('_JOMRES_SHORTCODES_06000COMPARE', 'このスクリプトを使用すると,ユーザーは最大3つのプロパティまでの複数のプロパティを相互に比較できます。');
-jr_define('_JOMRES_SHORTCODES_06000COMPARE_ARG_PROPERTY_UIDS', 'プロパティuidのコンマ区切りリスト（例：12,8,7');
+jr_define('_JOMRES_SHORTCODES_06000COMPARE_ARG_PROPERTY_UIDS', 'プロパティuidのコンマ区切りリスト(例：12,8,7');
 
 jr_define('_JOMRES_SHORTCODES_06000CONTACTOWNER', '連絡先所有者フォームを作成します。');
-jr_define('_JOMRES_SHORTCODES_06000CONTACTOWNER_ARG_PROPERTY_UID', '連絡先のプロパティのプロパティuidを渡します。代わりにサイト管理者に連絡するために0（ゼロ)を渡します。');
+jr_define('_JOMRES_SHORTCODES_06000CONTACTOWNER_ARG_PROPERTY_UID', '連絡先のプロパティのプロパティuidを渡します。代わりにサイト管理者に連絡するために0(ゼロ)を渡します。');
 
 jr_define('_JOMRES_SHORTCODES_06000SHOW_HOTEL_DETAILS', "プロパティ構成のプロパティマネージャーの[会社の詳細]フィールドから詳細を取得する[会社情報]ページを表示します。このタブの詳細は通常,通信に使用され,マネージャーはホテル/アパートの住所とビジネス目的の別の住所。 ");
 jr_define('_JOMRES_SHORTCODES_06000SHOW_HOTEL_DETAILS_ARG_PROPERTY_UID', 'プロパティのID。');
@@ -89,7 +89,7 @@ jr_define('_JOMRES_SHORTCODES_06000UI_AVAILABILITY_CALENDAR_ARG_PROPERTY_UID', '
 jr_define('_JOMRES_SHORTCODES_06000UI_AVAILABILITY_CALENDAR_ARG_NOSHOWLEGEND', '凡例を表示しないようにするには,これを1に設定します。');
 
 jr_define('_JOMRES_SHORTCODES_06000SEARCH', "検索結果を表示します。これは,検索パラメーターを追加することで拡張できます。検索条件が制限されすぎるため,すべてのパラメーターを同時に使用することはお勧めしません。代わりに,国や星の数で検索するなど,1つまたは2つのパラメータに制限する必要があります。 ");
-jr_define('_JOMRES_SHORTCODES_06000SEARCH_ARG_COUNTRY', 'ISO Alpha-2コード（GBやDEなど)を使用して国で検索します。');
+jr_define('_JOMRES_SHORTCODES_06000SEARCH_ARG_COUNTRY', 'ISO Alpha-2コード(GBやDEなど)を使用して国で検索します。');
 jr_define('_JOMRES_SHORTCODES_06000SEARCH_ARG_REGION', "地域で検索。地域はデータベースに保存されるため,地域IDを使用する必要があります。[管理者]> [Jomres]> [サイト構造]> [地域の一覧表示]に移動し,[編集]リンクにカーソルを合わせると,地域のID番号が表示されます。 。 ");
 jr_define('_JOMRES_SHORTCODES_06000SEARCH_ARG_TOWN', '検索する町のフルネーム。');
 jr_define('_JOMRES_SHORTCODES_06000SEARCH_ARG_FEATURE_UIDS', '特定の機能を持つプロパティを検索します。機能IDは,[管理者]> [Jomres]> [サイト構造]> [プロパティ機能]にあります。');
@@ -102,9 +102,9 @@ jr_define('_JOMRES_SHORTCODES_06000SEARCH_ARG_ARRIVALDATE', '到着日で検索�
 jr_define('_JOMRES_SHORTCODES_06000SEARCH_ARG_DEPARTUREDATE', '出発日で検索します。arrivalDateパラメーターと組み合わせる必要があります。');
 jr_define('_JOMRES_SHORTCODES_06000SEARCH_ARG_CATEGORY', 'プロパティカテゴリで検索します。');
 
-jr_define('_JOMRES_SHORTCODES_06000VIEW_AGENT', "エージェントのページを表示します。プロパティuid,またはエージェントのID自体（わかっている場合)のいずれかを渡すことができます。");
+jr_define('_JOMRES_SHORTCODES_06000VIEW_AGENT', "エージェントのページを表示します。プロパティuid,またはエージェントのID自体(わかっている場合)のいずれかを渡すことができます。");
 jr_define('_JOMRES_SHORTCODES_06000VIEW_AGENT_ARG_PROPERTY_UID', "プロパティuid,これはプロパティのエージェントを表示します。");
-jr_define('_JOMRES_SHORTCODES_06000VIEW_AGENT_ARG_ID', "マネージャーのデータベースID（わかっている場合)");
+jr_define('_JOMRES_SHORTCODES_06000VIEW_AGENT_ARG_ID', "マネージャーのデータベースID(わかっている場合)");
 
 jr_define('_JOMRES_SHORTCODES_06000ASAMODULE_POPULAR', 'モジュールまたはウィジェットの位置で通常使用される一般的なプロパティを表示します。');
 jr_define('_JOMRES_SHORTCODES_06000ASAMODULE_POPULAR_ARG_ASAMODULE_POPULAR_LISTLIMIT', '表示できるプロパティの最大数。');
@@ -195,14 +195,14 @@ jr_define('_JOMRES_ROUTER_ROOMTYPES', 'ルームタイプ');
 jr_define('_JOMRES_BOOKING_FORM_EXTERNAL_URL', '外部予約フォームのURL');
 jr_define('_JOMRES_BOOKING_FORM_EXTERNAL_URL_DESC', 'サードパーティのWebサイトを使用して予約する場合は,ここで外部URLを設定できます。すべてのjomres予約ボタンはこのURLを指します。Jomres予約フォームを使用する場合は,このフィールドを空白のままにします。 。 ');
 
-jr_define('_JOMRES_ROOM_TAGLINE', 'タグライン（短い部屋の説明/字幕)');
+jr_define('_JOMRES_ROOM_TAGLINE', 'タグライン(短い部屋の説明/字幕)');
 jr_define('_JOMRES_ROOM_DESCRIPTION', '部屋の説明');
 
 jr_define('_JOMRES_GUEST_BLACKLISTED', 'ゲストブラックリスト');
 jr_define('_JOMRES_GUEST_BLACKLISTED_DESC', 'このゲストがブラックリストに登録されている場合,このプロパティで予約することはできなくなります。');
 jr_define('_JOMRES_SESSION_HANDLER', 'セッションハンドラ');
 jr_define('_JOMRES_SESSION_HANDLER_DESC', 'jomresセッションファイルをディスクまたはデータベースに保存します。推奨：データベース');
-jr_define('_JOMRES_MAP_HEIGHT', "マップの高さ（px)");
+jr_define('_JOMRES_MAP_HEIGHT', "マップの高さ(px)");
 jr_define('_JOMRES_MAP_ZOOMLEVEL', "マップズームレベル");
 jr_define('_JOMRES_MAP_MAPTYPE', "マップタイプ");
 
@@ -243,5 +243,10 @@ jr_define('_JOMRES_SHORTCODES_06001DASHBOARD', 'ダッシュボード');
 
 jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES', 'シンジケートされたプロパティのリストを表示します');
 jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_LIMIT', '表示するシンジケートプロパティの数');
-jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'MRP（ホテル/ベッド＆ブレックファースト)またはSRP（コテージ/アパート/ヴィラ)を表示するかどうか。デフォルトは,現在のプロパティのプロパティuidから決定されます（使用できない場合)。特定のタイプを選択するには,この値をsrpsの場合は0に,mrpsの場合は1に設定します。');
+jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'MRP(ホテル/ベッド＆ブレックファースト)またはSRP(コテージ/アパート/ヴィラ)を表示するかどうか。デフォルトは,現在のプロパティのプロパティuidから決定されます(使用できない場合)。特定のタイプを選択するには,この値をsrpsの場合は0に,mrpsの場合は1に設定します。');
 
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS', "プロパティのスターを表示します。プロパティがMRPの場合,これらはプロパティ構成で設定されます。");
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_PROPERTY_UID','プロパティのID。');
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER','オプション。プロパティIDが設定されていない場合は,代わりに数値を渡すことができます。');
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH','オプション。代替テンプレートパス。URL経由で渡すことはできません。絶対でなければなりません。');
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME','オプション。代替テンプレート名。');

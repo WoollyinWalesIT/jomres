@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -79,19 +79,13 @@ class jomres_shortcode_parser
 							if (!class_exists($event)) {
 								if (file_exists($eventDetails[ 'filepath' ].$filename)){
 									include_once $eventDetails[ 'filepath' ].$filename;
-								} else {
-									throw new Exception('Error, the file '. $eventDetails[ 'filepath' ].$filename.' does not exist when trying to construct shortcodes');
+									$e = new $event($eventArgs);
+									if (isset($e->shortcode_data)) {
+										$this->shortcodes[$eventPoint][] = $e->shortcode_data;
+									}
+									unset($e);
 								}
-
 							}
-
-							$e = new $event($eventArgs);
-
-							if (isset($e->shortcode_data)) {
-								$this->shortcodes[$eventPoint][] = $e->shortcode_data;
-							}
-
-							unset($e);
 						}
 					}
 				}

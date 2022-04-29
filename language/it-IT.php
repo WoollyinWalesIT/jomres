@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1846,7 +1846,7 @@ jr_define('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'La tua chiave di supporto
 jr_define('_JOMRES_DASHBOARD_DRAG_TRASH', 'Trascina le prenotazioni in quest\'area per cancellarle');
 jr_define('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define('_JOMRES_LONG', 'Lungo (nn.nnnn)');
-jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Assicurati di aver creato una pagina WordPress che contenga lo shortcode [jomres:xx-XX] (dove xx-XX è il codice della lingua del tuo sito, ad esempio [jomres:en-GB] o [ jomres:en-US] ) altrimenti non sarai in grado di accedere a Jomres dal frontend per gestire le tue proprietà e le tue prenotazioni.<br> Jomres è costruito sul framework Bootstrap, quindi devi usarlo su un tema basato su Bootstrap. consigliarne uno basato su Bootstrap 3. Se non si ha accesso a un tema, si consiglia di utilizzare il tema Jomres Leohtian per Wordpress che è possibile <a href="https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target="_blank">scarica da qui.</a>');
+jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Assicurati di aver creato una pagina WordPress che contenga lo shortcode [jomres:xx-XX] (dove xx-XX è il codice della lingua del tuo sito, ad esempio [jomres:en-GB] o [ jomres:en-US] ) altrimenti non sarai in grado di accedere a Jomres dal frontend per gestire le tue proprietà e le tue prenotazioni.');
 jr_define('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', 'La maggior parte delle proprietà a Jomres ha un processo di gestione degli affitti. Hotel/B&B/Pensioni affittano singole stanze e cottage/ville/appartamenti affittano l\'intera proprietà. Questo è invisibile al gestore della proprietà, ma per loro per poter creare le tariffe per la propria struttura è necessario prima aggiungere tipologie di camere adeguate alla tipologia di struttura.
 Ad esempio, un tipo di struttura alberghiera normalmente necessita di diversi tipi di camera (camere doppie, singole e doppie) mentre una villa può avere solo un tipo di camera, ad es. 2 camere da letto, 5 camere da letto.
 È possibile creare tipologie di camere per strutture come Tours. Ciò consente ai clienti di cercare solo proprietà come i tour, ma il gestore della proprietà non creerà tariffe per questo tipo di proprietà, quindi il processo di gestione non è rilevante per loro.
@@ -2746,3 +2746,24 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Immagini d
 
 	jr_define('JOMRES_UPDATES_TITLE', 'Aggiornamenti Jomres');
 	jr_define('JOMRES_UPDATES_INFO', "Questa pagina può scaricare e installare la versione più recente di Jomres per te. Utilizza le proprie funzionalità e non quella del CMS host quindi se si verifica un problema durante l'aggiornamento del CMS host puoi usare questa pagina per forzare una reinstallazione della versione più recente di Jomres.");
+
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'I gestori di proprietà possono utilizzare la modalità di modifica nel frontend per personalizzare le stringhe per ogni proprietà, tuttavia questo può funzionare solo se l\'impostazione Permalink di WordPress è impostata su Plain (http://www.domain.com/?p=123). Una volta fatto ciò, gli utenti del frontend potranno personalizzare le stringhe, come i nomi delle stanze e altre etichette, che sono specifiche delle proprietà univoche. ');
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', 'Modalità di modifica delle etichette');
+	jr_define('JOMRES_EDITING_MODE_HELP_LEAD', 'Questa funzione è usata per cambiare le etichette degli oggetti, di solito in lingue diverse.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', 'La modalità di modifica ti consente di rinominare le etichette che sono univoche per le singole proprietà. Quando usi la modalità di modifica per rinominare un\'etichetta, la modifica apparirà solo su quell\'elenco di proprietà. Ad esempio, su una proprietà che potresti desiderare utilizzare la parola "Prezzi" e in un\'altra la parola "Tariffe". Non tutte le etichette possono essere modificate, ad esempio i nomi dei tipi di camera sono etichette a livello di sito, quindi non possono essere modificate, ma di solito tutto ciò che è unico per una singola proprietà può essere cambiato.');
+jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', 'Se il sito supporta più lingue, mentre usi una lingua puoi creare un elemento unico per una singola proprietà. Quando poi cambi la tua lingua attiva, puoi usare la modalità di modifica per rinominare quell\'etichetta, inserendo una traduzione adeguata nella lingua corrente. Puoi continuare a cambiare la lingua attiva per inserire una traduzione adatta per quell\'etichetta per ciascuna lingua supportata dal sito.');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'Cambia modalità modifica etichette');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'In questa schermata vediamo l\'interruttore della modalità di modifica. La modalità di modifica è disattivata e le etichette appaiono normalmente: ');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'Modalità di modifica delle etichette abilitata');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'In questa schermata vediamo che, mentre sei in modalità Modifica, le etichette che puoi rinominare sono evidenziate:');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', 'Seleziona l\'elemento da modificare');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'Quando viene selezionata un\'etichetta appare un popup:');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'Cambia l\'etichetta');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Usa il piccolo modulo per cambiare l\'etichetta. Clicca il segno di spunta per finire, o clicca la X per annullare la modifica:');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Etichetta cambiata');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Una volta salvata la modifica, l\'etichetta viene aggiornata nella pagina. Ora puoi disabilitare la modalità di modifica:');
+	jr_define('JOMRES_TRANSLATIONS_TITLE', 'Traduzioni');
+	jr_define('JOMRES_TRANSLATIONS_LEAD', 'In questa pagina puoi tradurre le etichette da una lingua all\'altra. Quando visiti la pagina vedrai le stringhe che hai già creato e il loro valore in qualunque lingua tu stia attualmente usando. In alto imposta il lingua di destinazione, quindi per le etichette che desideri tradurre, fai clic sull\'etichetta e un popup ti consentirà di inserire la tua nuova traduzione. Per righe di testo più lunghe puoi incollare il testo da un\'altra fonte. Ricorda che qualsiasi HTML verrà eliminato .<br/>
+Puoi lasciare la lingua di destinazione impostata sulla tua lingua corrente e utilizzare questa pagina per rinominare gli elementi qui, invece di visitare le loro singole pagine.');
+jr_define('JOMRES_TARGET_LANGUAGE', 'Lingua di destinazione');

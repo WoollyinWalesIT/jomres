@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1859,7 +1859,7 @@ jr_define('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Ihre Unterst&uuml;tzung S
 jr_define('_JOMRES_DASHBOARD_DRAG_TRASH', 'Ziehen Buchungen in diesem Bereich, sie zu stornieren');
 jr_define('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define('_JOMRES_LONG', 'Long (nn.nnnn)');
-jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Please ensure that you`ve created a WordPress Page that contains the [jomres:xx-XX] shortcode ( where xx-XX is your site language code, for example [jomres:en-GB] or [jomres:en-US] ) otherwise you will not be able to access Jomres from the frontend to manage your properties and bookings. <br> Jomres is built on the Bootstrap framework, so you must use it on a theme based on Bootstrap. We recommend one based on Bootstrap 3. If you do not have access to a theme then we recommend that you use the Jomres Leohtian theme for Wordpress which you can <a href="https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target="_blank">download from here.</a>');
+jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Please ensure that you`ve created a WordPress Page that contains the [jomres:xx-XX] shortcode ( where xx-XX is your site language code, for example [jomres:en-GB] or [jomres:en-US] ) otherwise you will not be able to access Jomres from the frontend to manage your properties and bookings.');
 jr_define('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', 'Bevor Sie einen Raumtyp erstellen,wir m&uuml;ssen wissen, ob es f&uuml;r einen Hoteltyp Eigenschaft ist, oder eine Villa Typ Eigentum.');
 jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', 'Klicken Sie, um neue Raumtypen hinzuf&uuml;gen');
 jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES', 'Achtung, Sie haben eine oder mehrere Immobilienarten ohne Zimmertypen. Eigenschaften m&uuml;ssen Zimmertypen, so dass Immobilienverwalter Tarife erstellen.');
@@ -2255,7 +2255,7 @@ jr_define( '_JOMRES_LOGIN_RESET_MESSAGE', 'Wenn Sie Ihr Passwort nicht zur Hand 
 jr_define( '_JOMRES_LOGIN_RESET_BUTTON', 'Passwort vergessen?' );
 jr_define('_JOMRES_REVIEWS_ANONYMISE', 'Namen anonymisieren?');
 jr_define('_JOMRES_REVIEWS_ANONYMISE_DESC', 'Wenn Sie Ihren Namen bei der Überprüfung anonymisieren möchten, verwenden wir stattdessen Ihre Initialen.');
-jr_define('ANONYM', 'Anon');
+jr_define('ANONYMOUS', 'Anon');
 
 jr_define('_JOMRES_REVIEWS_REPLY_SAID', ' sagte ');
 jr_define('_JOMRES_REVIEWS_REPLY_OPPORTUNITY', 'Auf diese Bewertung antworten');
@@ -2744,3 +2744,25 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Eigenschaf
 
 	jr_define('JOMRES_UPDATES_TITLE', 'Jomres-Updates');
 	jr_define('JOMRES_UPDATES_INFO', "Diese Seite kann die neueste Version von Jomres für Sie herunterladen und installieren. Sie verwendet ihre eigene Funktionalität und nicht die des Host-CMS, daher können Sie diese Seite verwenden, wenn während der Aktualisierung des Host-CMS ein Problem auftritt Erzwingen Sie eine Neuinstallation der neuesten Version von Jomres.");
+
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'Unterkunftsverwalter können den Bearbeitungsmodus im Frontend verwenden, um Zeichenfolgen für jede Eigenschaft anzupassen, dies funktioniert jedoch nur, wenn Ihre WordPress-Permalink-Einstellung auf Einfach (http://www.domain.com/?p=123).Sobald Sie dies getan haben, können Frontend-Benutzer Zeichenfolgen wie Raumnamen und andere Bezeichnungen anpassen, die für eindeutige Eigenschaften spezifisch sind. ');
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', 'Label-Bearbeitungsmodus');
+	jr_define('JOMRES_EDITING_MODE_HELP_LEAD', 'Diese Funktion wird verwendet, um Artikelbezeichnungen zu ändern, normalerweise in verschiedene Sprachen.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', 'Der Bearbeitungsmodus ermöglicht es Ihnen, Labels umzubenennen, die für einzelne Eigenschaften eindeutig sind. Wenn Sie den Bearbeitungsmodus verwenden, um ein Label umzubenennen, wird die Änderung nur auf dieser Eigenschaftsliste angezeigt. Zum Beispiel auf einer gewünschten Eigenschaft um das Wort „Preise" und auf einem anderen das Wort „Preise" zu verwenden. Nicht alle Beschriftungen können geändert werden, beispielsweise sind Zimmertypnamen standortweite Beschriftungen, sodass sie nicht geändert werden können, aber normalerweise alles, was für eine einzelne Unterkunft einzigartig ist kann gewechselt werden.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', 'Wenn die Website mehrere Sprachen unterstützt, können Sie bei Verwendung einer Sprache ein Element erstellen, das für eine einzelne Eigenschaft eindeutig ist. Wenn Sie dann Ihre aktive Sprache ändern, können Sie den Bearbeitungsmodus verwenden, um dieses Etikett umzubenennen, Eingeben einer geeigneten Übersetzung in der aktuellen Sprache. Sie können die aktive Sprache weiter ändern, um eine geeignete Übersetzung für dieses Label für jede Sprache, die die Website unterstützt, einzugeben.');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'Wechsel für den Etikettenbearbeitungsmodus');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'In diesem Screenshot sehen wir den Schalter für den Bearbeitungsmodus. Der Bearbeitungsmodus ist AUS und die Beschriftungen erscheinen normal: ');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'Label-Bearbeitungsmodus aktiviert');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'In diesem Screenshot sehen wir, dass im Bearbeitungsmodus die Etiketten, die Sie umbenennen können, hervorgehoben sind:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', 'Wählen Sie das zu ändernde Element');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'Wenn ein Etikett ausgewählt wird, erscheint ein Popup:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'Etikett ändern');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Verwenden Sie das kleine Formular, um die Bezeichnung zu ändern. Klicken Sie auf das Häkchen, um den Vorgang abzuschließen, oder klicken Sie auf das X, um die Bearbeitung abzubrechen:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Label geändert');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Sobald Sie die Änderung gespeichert haben, wird das Label auf der Seite aktualisiert. Sie können den Bearbeitungsmodus jetzt deaktivieren:');
+
+	jr_define('JOMRES_TRANSLATIONS_TITLE', 'Übersetzungen');
+	jr_define('JOMRES_TRANSLATIONS_LEAD', 'Auf dieser Seite können Sie Labels von einer Sprache in eine andere übersetzen. Wenn Sie die Seite besuchen, sehen Sie Zeichenfolgen, die Sie bereits erstellt haben, und ihren Wert in der Sprache, die Sie gerade verwenden. Legen Sie oben die Zielsprache, dann klicken Sie für die Labels, die Sie übersetzen möchten, auf das Label und ein Popup-Fenster lässt Sie Ihre neue Übersetzung eingeben. Für längere Textzeilen können Sie den Text aus einer anderen Quelle einfügen. Denken Sie daran, dass jeglicher HTML-Code entfernt wird .<br/>
+Sie können die Zielsprache auf Ihrer aktuellen Sprache belassen und diese Seite verwenden, um Elemente hier umzubenennen, anstatt ihre einzelnen Seiten zu besuchen.');
+	jr_define('JOMRES_TARGET_LANGUAGE', 'Zielsprache');

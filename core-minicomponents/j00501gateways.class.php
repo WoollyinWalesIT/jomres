@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -58,10 +58,6 @@ class j00501gateways
 			return;
 			}
 
-		if ($MiniComponents->eventSpecificlyExistsCheck('06000', "connected")) { // No point in showing the gateway options as we are using Jomres Platform
-			return;
-		}
-
 		$lists = $componentArgs[ 'lists' ];
 
 			$configurationPanel->startPanel(jr_gettext('_JOMRES_COM_A_GATEWAYLIST', '_JOMRES_COM_A_GATEWAYLIST', false));
@@ -100,7 +96,7 @@ class j00501gateways
 /**
  * Must be included in every mini-component.
  #
- * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
+ * Returns any settings that the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
  */
 
 	public function getRetVals()

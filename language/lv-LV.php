@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1789,7 +1789,7 @@ jr_define ('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Jūsu atbalsta atslēga 
 jr_define ('_JOMRES_DASHBOARD_DRAG_TRASH', 'Velciet rezervācijas uz šo apgabalu, lai tās atceltu');
 jr_define ('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define ('_JOMRES_LONG', 'Garš (nn.nnnn)');
-jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Lūdzu, pārliecinieties, vai esat izveidojis WordPress lapu, kurā ir īss kods [jomres: xx-XX] (kur xx-XX ir jūsu vietnes valodas kods, piemēram, [jomres: lv-GB] vai [ jomres: lv] ieteikt vienu, pamatojoties uz Bootstrap 3. Ja jums nav piekļuves motīvam, iesakām Wordpress izmantot Jomres Leohtian tēmu, kuru varat <a href = "https://www.jomres.net/download/free- downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress target="_blank"> lejupielādēt no šejienes. </a> ');
+jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Lūdzu, pārliecinieties, vai esat izveidojis WordPress lapu, kurā ir īsais kods [jomres:xx-XX] (kur xx-XX ir jūsu vietnes valodas kods, piemēram, [jomres:en-GB] vai [jomres:en-US]). pretējā gadījumā jūs nevarēsit piekļūt Jomres no priekšgala, lai pārvaldītu savus īpašumus un rezervācijas.');
 jr_define ('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', "Pirms jūs varat izveidot telpas tipu, mums jāzina, vai tas ir viesnīcas tipa īpašums vai villa tipa īpašums.");
 jr_define ('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', 'Noklikšķiniet, lai pievienotu jaunus telpu tipus');
 jr_define ('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES', 'Brīdinājums, jums ir viens vai vairāki īpašuma tipi bez istabu tipiem. Īpašumiem ir nepieciešami telpu tipi, lai īpašumu pārvaldnieki varētu izveidot tarifus.');
@@ -2687,3 +2687,25 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Īpašuma 
 
 	jr_define('JOMRES_UPDATES_TITLE', 'Jomres atjauninājumi');
 	jr_define('JOMRES_UPDATES_INFO', "Šī lapa var lejupielādēt un instalēt jaunāko Jomres versiju jūsu vietā. Tā izmanto savu funkcionalitāti, nevis resursdatora SPS, tādēļ, ja resursdatora CMS atjaunināšanas laikā rodas problēma, varat izmantot šo lapu, lai piespiest atkārtoti instalēt jaunāko Jomres versiju.");
+
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'Īpašumu pārvaldnieki var izmantot rediģēšanas režīmu priekšgalā, lai pielāgotu virknes katram īpašumam, taču tas var darboties tikai tad, ja jūsu WordPress Permalink iestatījums ir iestatīts uz Plain (http://www.domain.com/?p=123). Kad tas būs izdarīts, priekšgala lietotāji varēs pielāgot virknes, piemēram, telpu nosaukumus un citas iezīmes, kas ir raksturīgas unikāliem rekvizītiem. ');
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', 'Etiķetes rediģēšanas režīms');
+	jr_define('JOMRES_EDITING_MODE_HELP_LEAD', 'Šo līdzekli izmanto, lai mainītu vienumu etiķetes, parasti dažādās valodās.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', 'Rediģēšanas režīms ļauj pārdēvēt iezīmes, kas ir unikālas atsevišķiem īpašumiem. Ja izmantojat rediģēšanas režīmu, lai pārdēvētu etiķeti, izmaiņas būs redzamas tikai šajā rekvizītu sarakstā. Piemēram, vienā rekvizītā, ko vēlaties izmantot vārdu "Cenas" un uz cita vārdu "Cenas". Ne visas etiķetes var mainīt, piemēram, telpu tipu nosaukumi ir visas vietnes etiķetes, tāpēc tos nevar mainīt, bet parasti viss, kas ir unikāls atsevišķam īpašumam var mainīt.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', 'Ja vietne atbalsta vairākas valodas, izmantojot vienu valodu, varat izveidot vienumu, kas ir unikāls atsevišķam īpašumam. Pēc tam mainot aktīvo valodu, varat izmantot rediģēšanas režīmu, lai pārdēvētu šo iezīmi, ievadot piemērotu tulkojumu pašreizējā valodā. Varat turpināt mainīt aktīvo valodu, lai ievadītu atbilstošu tulkojumu šai etiķetei katrai valodai, ko vietne atbalsta.');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'Etiķetes rediģēšanas režīma slēdzis');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'Šajā ekrānuzņēmumā redzams rediģēšanas režīma slēdzis. Rediģēšanas režīms ir IZSLĒGTS un etiķetes parādās kā parasti: ');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'Iespējots etiķetes rediģēšanas režīms');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'Šajā ekrānuzņēmumā redzams, ka rediģēšanas režīmā etiķetes, kuras varat pārdēvēt, ir izceltas:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', 'Atlasiet maināmo vienumu');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'Kad ir atlasīta etiķete, tiek parādīts uznirstošais logs:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'Mainīt etiķeti');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Izmantojiet mazo veidlapu, lai mainītu etiķeti. Noklikšķiniet uz Atzīmes, lai pabeigtu, vai noklikšķiniet uz X, lai atceltu rediģēšanu:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Etiķete mainīta');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Kad izmaiņas ir saglabātas, etiķete lapā tiek atjaunināta. Rediģēšanas režīmu varat atspējot tūlīt:');
+
+	jr_define('JOMRES_TRANSLATIONS_TITLE', 'Tulkojumi');
+	jr_define('JOMRES_TRANSLATIONS_LEAD', 'Šajā lapā varat tulkot etiķetes no vienas valodas citā. Apmeklējot lapu, jūs redzēsit jau izveidotās virknes un to vērtību jebkurā valodā, kuru pašlaik lietojat. Augšpusē iestatiet mērķvaloda, pēc tam uz etiķetēm, kuras vēlaties tulkot, noklikšķiniet uz etiķetes, un uznirstošais logs ļaus ievadīt jauno tulkojumu. Garākas teksta rindiņas varat ielīmēt tekstā no cita avota. Atcerieties, ka jebkurš HTML tiks noņemts .<br/>
+Varat atstāt mērķa valodu iestatītu uz savu pašreizējo valodu un izmantot šo lapu, lai šeit pārdēvētu vienumus, tā vietā, lai apmeklētu to atsevišķas lapas.');
+	jr_define('JOMRES_TARGET_LANGUAGE', 'Mērķa valoda');

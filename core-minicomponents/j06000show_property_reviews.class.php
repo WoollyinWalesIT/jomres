@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -82,6 +82,8 @@ class j06000show_property_reviews
 			return;
 		}
 
+		$this->property_uid = $property_uid;
+
 		if (!user_can_view_this_property($property_uid)) {
 			return;
 		}
@@ -151,7 +153,6 @@ class j06000show_property_reviews
 		}
 		
 		$replies = $Reviews->get_review_replies_for_review_ids($review_ids);
-
 		$output[ 'AJAXURL' ] = JOMRES_SITEPAGE_URL_AJAX;
 
 		$thumb_up = JOMRES_IMAGES_RELPATH.'thumb_up.png';
@@ -191,6 +192,32 @@ class j06000show_property_reviews
 
 			foreach ($itemReviews[ 'fields' ] as $review) {
 				$r = array();
+
+				$rating_text = $Reviews->generate_review_rating_text($review[ 'rating' ]) ;
+
+				$r['RATING_TEXT_COLOUR'] = 'text-success';
+				$r['RATING_SCORE_TEXT'] = jomres_badge(
+					$rating_text,
+					'success'
+				);
+
+				if ($review[ 'rating' ] > 5 &&$review[ 'rating' ] < 7  ) {
+					$r['RATING_TEXT_COLOUR'] = 'text-warning';
+					$r['RATING_SCORE_TEXT'] = jomres_badge(
+						$rating_text,
+						'warning'
+					);
+				}
+
+				if ($review[ 'rating' ] <= 5) {
+					$r['RATING_TEXT_COLOUR'] = 'text-danger';
+					$r['RATING_SCORE_TEXT'] = jomres_badge(
+						$rating_text,
+						'danger'
+					);
+				}
+
+
 				$r[ '_JOMRES_REVIEWS_IAGREE' ] = jr_gettext('_JOMRES_REVIEWS_IAGREE', '_JOMRES_REVIEWS_IAGREE', false, false);
 				$r[ '_JOMRES_REVIEWS_IDISAGREE' ] = jr_gettext('_JOMRES_REVIEWS_IDISAGREE', '_JOMRES_REVIEWS_IDISAGREE', false, false);
 				$r[ '_JOMRES_REVIEWS_PROS' ] = jr_gettext('_JOMRES_REVIEWS_PROS', '_JOMRES_REVIEWS_PROS', false, false);
@@ -229,7 +256,7 @@ class j06000show_property_reviews
 				$r[ 'RATING' ] = $review[ 'rating' ];
 				$r[ 'RATING_STARS' ] = '';
 				for ($i = 1; $i <= $review[ 'rating' ]; ++$i) {
-					$r[ 'RATING_STARS' ] .= '<i class="fa fa-star" aria-hidden="true"></i> ';
+					$r[ 'RATING_STARS' ] .= simple_template_output(JOMRES_TEMPLATEPATH_FRONTEND, $template = 'review_star_icon.html', '');
 				}
 
 				$r[ 'REPORT_REVIEWLINK' ] = '';
@@ -409,7 +436,7 @@ class j06000show_property_reviews
 		$output = array();
 		
 		$output['_JOMRES_REVIEWS_REPLY_OPPORTUNITY'] = jr_gettext('_JOMRES_REVIEWS_REPLY_OPPORTUNITY', '_JOMRES_REVIEWS_REPLY_OPPORTUNITY');
-		$output['_JOMRES_REVIEWS_REPLY_OPPORTUNITY_LINK'] = jomresURL(JOMRES_SITEPAGE_URL.'&task=add_review_reply&rating_id='.$rating_id);
+		$output['_JOMRES_REVIEWS_REPLY_OPPORTUNITY_LINK'] = jomresURL(JOMRES_SITEPAGE_URL.'&task=add_review_reply&thisProperty='.$this->property_uid.'&rating_id='.$rating_id);
 		
 		$pageoutput[ ] = $output;
 		$tmpl = new patTemplate();

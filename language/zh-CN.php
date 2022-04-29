@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1821,7 +1821,7 @@ jr_define('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', '您的支持密钥有效�
 jr_define('_JOMRES_DASHBOARD_DRAG_TRASH', '将预订拖到该区域取消');
 jr_define('_JOMRES_LAT', '纬度(nn.nnnn)');
 jr_define('_JOMRES_LONG', 'Long (nn.nnnn)');
-jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', '请确保您已经创建了一个包含 [jomres:xx-XX] 短代码的 WordPress 页面（其中 xx-XX 是您的站点语言代码，例如 [jomres:en-GB] 或 [ jomres:en-US] ) 否则您将无法从前端访问 Jomres 来管理您的属性和预订。<br> Jomres 建立在 Bootstrap 框架之上，因此您必须在基于 Bootstrap 的主题上使用它。我们推荐一个基于 Bootstrap 3 的主题。如果您无法访问主题，那么我们建议您为 Wordpress 使用 Jomres Leohtian 主题，您可以 <a href="https://www.jomres.net/download/free- downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target="_blank">从这里下载。</a>');
+jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', '请确保您已经创建了一个包含 [jomres:xx-XX] 短代码的 WordPress 页面（其中 xx-XX 是您的站点语言代码，例如 [jomres:en-GB] 或 [ jomres:en-US] ) 否则您将无法从前端访问 Jomres 来管理您的属性和预订。');
 jr_define('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', "在创建房间类型之前，我们需要知道它是用于酒店类型的属性还是别墅类型的属性。");
 jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', '点击添加新房间类型');
 jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES', '警告，您有一种或多种没有房型的房产类型。房产需要房型，以便物业经理可以创建关税。');
@@ -2695,3 +2695,25 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"属性类�
 
 	jr_define('JOMRES_UPDATES_TITLE', 'Jomres 更新');
 	jr_define('JOMRES_UPDATES_INFO', "此页面可以为您下载和安装最新版本的 Jomres。它使用自己的功能，而不是主机 CMS 的功能，因此如果在主机 CMS 更新期间出现问题，您可以使用此页面来 强制重新安装最新版本的 Jomres。");
+
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', '物业管理员可以使用前端的编辑模式来自定义每个属性的字符串，但是这只有在您的 WordPress 永久链接设置设置为普通 (http://www.domain.com/?p=123). 完成后，前端用户将能够自定义特定于唯一属性的字符串，例如房间名称和其他标签。');
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', '标签编辑模式');
+	jr_define('JOMRES_EDITING_MODE_HELP_LEAD', '此功能用于更改项目标签，通常为不同的语言。');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', '编辑模式允许您重命名单个属性所独有的标签。当您使用编辑模式重命名标签时，更改只会出现在该属性列表中。例如，在您可能想要的一个属性上使用“价格”一词，在另一个词上使用“价格”。并非所有标签都可以更改，例如房间类型名称是站点范围的标签，因此它们不能更改，但通常是单个属性所独有的任何标签可以更改。');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', '如果网站支持多种语言，则在使用一种语言时，您可以创建对单个属性唯一的项目。当您更改活动语言时，您可以使用编辑模式重命名该标签，输入当前语言的合适翻译。您可以继续更改活动语言，为站点支持的每种语言的该标签输入合适的翻译。');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', '标签编辑模式切换');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', '在这个截图中，我们看到了编辑模式开关。编辑模式是关闭的，标签正常显示：');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', '标签编辑模式启用');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', '在这个截图中我们看到，在编辑模式下，你可以重命名的标签被突出显示：');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', '选择要更改的项目');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', '选择标签时会出现一个弹出窗口：');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', '更改标签');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', '使用小表格更改标签。点击打勾完成，或点击X取消编辑：');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', '标签改变');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', '保存更改后，页面中的标签会更新。您现在可以禁用编辑模式：');
+
+	jr_define('JOMRES_TRANSLATIONS_TITLE', '翻译');
+	jr_define('JOMRES_TRANSLATIONS_LEAD', '在此页面上，您可以将标签从一种语言翻译成另一种语言。当您访问该页面时，您将看到您已经创建的字符串及其值，无论您当前使用什么语言。在顶部设置 目标语言，然后对于您要翻译的标签，单击标签，弹出窗口将让您输入新的翻译。对于较长的文本行，您可以粘贴来自其他来源的文本。请记住，任何 HTML 都将被删除 .<br/>
+您可以将目标语言设置为您当前的语言并使用此页面在此处重命名项目，而不是访问它们的各个页面。');
+jr_define('JOMRES_TARGET_LANGUAGE', '目标语言');

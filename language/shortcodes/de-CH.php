@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -246,3 +246,8 @@ jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES', 'Zeigt eine List
 jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_LIMIT', 'Die Anzahl der anzuzeigenden syndizierten Eigenschaften');
 jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'Ob MRPs (Hotels/Bed & Breakfasts) oder SRPs (Cottages/Apartments/Villen) angezeigt werden sollen. Standard wird aus der aktuellen Unterkunfts-Uid bestimmt, dann wenn MRPs nicht verfügbar sind Um einen bestimmten Typ auszuwählen, setzen Sie diesen Wert auf 0 für srps oder 1 für mrps.');
 
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS', "Zeigt die Sterne einer Unterkunft an. Diese werden in der Unterkunftskonfiguration festgelegt, wenn es sich bei der Unterkunft um eine MRP handelt.");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_PROPERTY_UID', 'ID der Eigenschaft.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Optional. Wenn die Eigenschafts-ID nicht gesetzt ist, können Sie stattdessen eine Nummer übergeben.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Optional. Alternativer Vorlagenpfad. Kann nicht per URL übergeben werden. Muss absolut sein.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Optional. Alternativer Vorlagenname.');

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -92,7 +92,13 @@ class j06002edit_tariff_standard
 				$output['TARIFFTYPENAME'] = $r['rate_title'];
 				$output['TARIFFTYPEDESC'] = $r['rate_description'];
 				$output['MINDAYS'] = $r['mindays'];
+
+				if ($r['maxdays'] == 0) { // If this is zero, and nobody has noticed, then you can't take bookings. We'll fall back to the default
+					$r['maxdays'] = $jrportal_rates->rates_defaults['maxdays'];
+				}
+
 				$output['MAXDAYS'] = $r['maxdays'];
+
 				$output['EXTRA_GUESTS_PRICE'] = $r['extra_guests_price'];
 
 				$roomclassid = $r['roomclass_uid'];
@@ -125,7 +131,6 @@ class j06002edit_tariff_standard
 
 		$output['MINDAYS_DROPDOWN'] = jomresHTML::integerSelectList( 0,$jrportal_rates->rates_defaults['maxdays'],1, 'mindays','', $output['MINDAYS']);
 		$output['MAXDAYS_DROPDOWN'] = jomresHTML::integerSelectList( 0,$jrportal_rates->rates_defaults['maxdays'],1, 'maxdays','', $output['MAXDAYS']);
-
 		$output['7DAY_MODIFIER_DROPDOWN'] = jomresHTML::integerSelectList( 0,100,1, 'modifier_7_days','', $modifier_7_days);
 		$output['30DAY_MODIFIER_DROPDOWN'] = jomresHTML::integerSelectList( 0,100,1, 'modifier_30_days','', $modifier_30_days);
 

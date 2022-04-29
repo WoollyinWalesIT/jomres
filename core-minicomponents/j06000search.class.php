@@ -4,7 +4,7 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-	  *  @version Jomres 10.2.2
+	  *  @version Jomres 10.3.0
 	 *
 	 * @copyright	2005-2022 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -36,7 +36,7 @@
 		{
 			$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
 			if ($MiniComponents->template_touch) {
-				$this->template_touchable = true;
+				$this->template_touchable = false;
 				$this->shortcode_data = array(
 					'task' => 'search',
 					'info' => '_JOMRES_SHORTCODES_06000SEARCH',
@@ -105,6 +105,7 @@
 				);
 				return;
 			}
+			$this->retVals = '';
 			$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 			$jrConfig = $siteConfig->get();
@@ -379,58 +380,6 @@
 				}
 
 				// -------------------------------------------------------------------------------------------------------------------------------------------
-
-				if ($showSearchOptions) {
-
-					if (!defined('_JOMRES_SELECTCOMBO')) {
-						// define("_JOMRES_SELECTCOMBO",1);
-						jomres_cmsspecific_addheaddata("javascript",JOMRES_JS_RELPATH, 'jquery.chainedSelects.js');
-
-						echo '
-							<script language="JavaScript" type="text/javascript">
-							jomresJquery(function()
-							{
-								jomresJquery(\'#country\').chainSelect(\'#rregion\',\'' .JOMRES_SITEPAGE_URL_AJAX.'&task=selectcombo&filter=country\',
-								{ 
-									before:function (target) //before request hide the target combobox and display the loading message
-									{ 
-										jomresJquery("#loading").css("display","block");
-										jomresJquery(target).css("display","none");
-									},
-									after:function (target) //after request show the target combobox and hide the loading message
-									{ 
-										jomresJquery("#loading").css("display","none");
-										jomresJquery(target).css("display","inline");
-									}
-								});
-								jomresJquery(\'#rregion\').chainSelect(\'#ttown\',\'' .JOMRES_SITEPAGE_URL_AJAX.'&task=selectcombo&filter=region\',
-								{ 
-									before:function (target) 
-									{ 
-										jomresJquery("#loading").css("display","block");
-										jomresJquery(target).css("display","none");
-									},
-									after:function (target) 
-									{ 
-										jomresJquery("#loading").css("display","none");
-										jomresJquery(target).css("display","inline");
-									}
-								});
-							});
-							</script>
-							';
-					}
-					foreach ($sch->prep[ 'country' ] as $country) {
-						if (trim(jomres_decode($country[ 'countryname' ])) != '') {
-							$countryArray[ ] = jomresHTML::makeOption($country[ 'countrycode' ], jomres_decode($country[ 'countryname' ]));
-						}
-					}
-
-					$output[ 'SELECTCOMBO_COUNTRY' ] = jomresHTML::selectList($countryArray, 'country', 'id="search_country" class="inputbox search_dropdown"', 'value', 'text', '').'<br />';
-					$output[ 'SELECTCOMBO_HIDDENDROPDOWNS_REGION' ] = '<!-- state combobox is chained by country combobox--><select name="region" id="rregion" style="display:none"></select><br />';
-					$output[ 'SELECTCOMBO_HIDDENDROPDOWNS_TOWN' ] = '<!-- city combobox is chained by state combobox--><select name="town" id="ttown" style="display:none"></select><br />';
-					$showButton = true;
-				}
 			}
 
 			// -------------------------------------------------------------------------------------------------------------------------------------------
@@ -753,9 +702,11 @@
 			// -------------------------------------------------------------------------------------------------------------------------------------------
 
 			$output[ 'ARRIVALDATE' ] = generateDateInput('arrivalDate', $sch->prep[ 'arrival' ], 'ad', true);
+			$output[ 'ARRIVALDATE_LABEL_ID'] = get_showtime('date_input_label_id');
 			$output[ 'DEPARTUREDATE' ] = generateDateInput('departureDate', $sch->prep[ 'departure' ], false, true, false);
-			$showButton = true;
+			$output[ 'DEPARTUREDATE_LABEL_ID'] = get_showtime('departure_date_unique_id');
 
+			$showButton = true;
 
 			// -------------------------------------------------------------------------------------------------------------------------------------------
 			if (  $showSearchOptions) {
@@ -829,10 +780,17 @@
 				} else {
 					$output[ 'stars' ] = 'EMPTY';
 				}
+				
 			}
 
 			// -------------------------------------------------------------------------------------------------------------------------------------------
 			// -------------------------------------------------------------------------------------------------------------------------------------------
+
+			$output[ 'AUTOCOMPLETE' ] = get_search_form_element_autocomplete();
+
+			// -------------------------------------------------------------------------------------------------------------------------------------------
+			// -------------------------------------------------------------------------------------------------------------------------------------------
+
 
 			if ($doSearch) {
 				$numberOfPropertiesInSystem = get_showtime('numberOfPropertiesInSystem');
@@ -898,10 +856,6 @@
 					if (!empty($sch->filter[ 'arrival' ])) {
 						$sch->jomSearch_availability();
 					}
-
-					if (isset($_REQUEST['autocomplete_value'])) {
-						$sch->jomSearch_autocomplete();
-					}
 				}
 			}
 			if ($showButton == true) {
@@ -919,15 +873,25 @@
 				}
 			}
 
-			$pageoutput[ ] = $output;
+			$output_now = true;
+			if ( isset($componentArgs['templateFilePath']) && $componentArgs['templateFilePath'] != '' && isset($componentArgs['templateFile']) && $componentArgs['templateFile'] != '' ) {
+				$sch->templateFilePath = $componentArgs['templateFilePath'];
+				$sch->templateFile = $componentArgs['templateFile'];
+				$output_now = false;
+			}
 
-			if (!$data_only) {
-				if (!$doSearch || ($calledByModule == 'mod_jomsearch_m0' && $jrConfig[ 'integratedSearch_enable' ] == '1' && !this_cms_is_joomla() && !this_cms_is_wordpress())) {
-					$stmpl = new patTemplate();
-					$stmpl->setRoot($sch->templateFilePath);
-					$stmpl->readTemplatesFromInput($sch->templateFile);
-					$stmpl->addRows('search', $pageoutput);
-					$stmpl->displayParsedTemplate();
+			if (!$doSearch ) {
+				$pageoutput = array($output);
+				$stmpl = new patTemplate();
+				$stmpl->setRoot($sch->templateFilePath);
+				$stmpl->readTemplatesFromInput($sch->templateFile);
+				$stmpl->addRows('search', $pageoutput);
+				$this->retVals = $stmpl->getParsedTemplate();
+
+				if ($output_now) {
+					echo $this->retVals;
+				} else {
+					return $this->retVals;
 				}
 			}
 			if ($doSearch && !isset($_REQUEST[ 'srchOnly' ])) {
@@ -936,55 +900,15 @@
 			unset($sch);
 		}
 
-		public function touch_template_language()
-		{
-			$output = array();
-
-			$output[ ] = jr_gettext('_JOMRES_SEARCH_BUTTON', '_JOMRES_SEARCH_BUTTON');
-			$output[ ] = jr_gettext('_JOMRES_FRONT_MR_SEARCH_HERE', '_JOMRES_FRONT_MR_SEARCH_HERE');
-			$output[ ] = jr_gettext('_JOMRES_SEARCH_ALL', '_JOMRES_SEARCH_ALL');
-
-			$output[ ] = jr_gettext('_JOMRES_SEARCH_GEO_COUNTRYSEARCH', '_JOMRES_SEARCH_GEO_COUNTRYSEARCH');
-			$output[ ] = jr_gettext('_JOMRES_SEARCH_GEO_REGIONSEARCH', '_JOMRES_SEARCH_GEO_REGIONSEARCH');
-			$output[ ] = jr_gettext('_JOMRES_SEARCH_GEO_TOWNSEARCH', '_JOMRES_SEARCH_GEO_TOWNSEARCH');
-			$output[ ] = jr_gettext('_JOMRES_SEARCH_DESCRIPTION_INFO', '_JOMRES_SEARCH_DESCRIPTION_INFO');
-			$output[ ] = jr_gettext('_JOMRES_SEARCH_DESCRIPTION_LABEL', '_JOMRES_SEARCH_DESCRIPTION_LABEL');
-			$output[ ] = jr_gettext('_JOMRES_SEARCH_FEATURE_INFO', '_JOMRES_SEARCH_FEATURE_INFO');
-			$output[ ] = jr_gettext('_JOMRES_SEARCH_RTYPES', '_JOMRES_SEARCH_RTYPES');
-			$output[ ] = jr_gettext('_JOMRES_SEARCH_AVL_INFO', '_JOMRES_SEARCH_AVL_INFO');
-			$output[ ] = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL', '_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL');
-			$output[ ] = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE', '_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE');
-			$output[ ] = jr_gettext('_JOMRES_SEARCH_GUESTNUMBER', '_JOMRES_SEARCH_GUESTNUMBER');
-			$output[ ] = jr_gettext('_JOMRES_SEARCH_STARS', '_JOMRES_SEARCH_STARS');
-			$output[ ] = jr_gettext('_JOMRES_SEARCH_PRICERANGES', '_JOMRES_SEARCH_PRICERANGES');
-
-			$output[ ] = jr_gettext('_JOMRES_SEARCH_PTYPES', '_JOMRES_SEARCH_PTYPES');
-
-			$query = "SELECT room_classes_uid, room_class_abbv, room_class_full_desc,image FROM #__jomres_room_classes WHERE property_uid = '0' ORDER BY room_class_abbv ";
-			$roomTypeList = doSelectSql($query);
-			foreach ($roomTypeList as $rtype) {
-				$output[ ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMCLASS_DESCRIPTION'.$rtype->room_classes_uid, jomres_decode($rtype->room_class_abbv));
-			}
-
-			$query = "SELECT id, ptype FROM #__jomres_ptypes WHERE published = '1' ORDER BY `order` ASC";
-			$ptypeList = doSelectSql($query);
-			foreach ($ptypeList as $ptype) {
-				$output[ ] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPE'.$ptype->id, jomres_decode($ptype->ptype));
-			}
-			foreach ($output as $o) {
-				echo $o;
-				echo '<br/>';
-			}
-		}
 
 		/**
 		 * Must be included in every mini-component.
 		#
-		 * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
+		 * Returns any settings that the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
 		 */
 
 		public function getRetVals()
 		{
-			return null;
+			return $this->retVals;
 		}
 	}

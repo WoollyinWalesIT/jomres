@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -17,11 +17,11 @@ defined('_JOMRES_INITCHECK') or die('');
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
+	 * Includes the generateDateInput.php function script. Identified as a function that is regularly modified by users, it is delivered in this format so that  you don't need to be a coder to create your own version of this function. 
 	 * 
 	 */
 
-
-class j16000connect_status
+class j00001functioncall_get_search_form_elements
 {	
 	/**
 	 *
@@ -33,45 +33,18 @@ class j16000connect_status
 	 * 
 	 */
 	 
-	public function __construct($componentArgs)
+	public function __construct()
 	{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch) {
 			$this->template_touchable = false;
 
 			return;
 		}
-
-		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-		$jrConfig = $siteConfig->get();
-
-		if ( $jrConfig['connection_account_id'] != '' && $jrConfig['platform_connected'] == '1'  ) {
-			try {
-				$base_uri = 'https://license-server.jomres.net/shop/connect/status.php';
-				$client = new GuzzleHttp\Client([
-					'base_uri' => $base_uri
-				]);
-
-				$query_string = '?account_id=' . $jrConfig['connection_account_id'];
-
-				$buffer = $client->request('GET', $query_string)->getBody()->getContents();
-			}
-			catch (Exception $e) {
-				die();
-			}
-
-			$result = json_decode($buffer);
-
-			if (isset($result->success) && $result->success == true ) {
-				echo "Thank you, you have connected to the Jomres Platform";
-			}
-
-		}
-
-
-
+		require_once JOMRES_FUNCTIONS_ABSPATH.'get_search_form_element_autocomplete.php';
+		require_once JOMRES_FUNCTIONS_ABSPATH.'get_search_form_element_stars.php';
 	}
-
 
 	public function getRetVals()
 	{

@@ -240,78 +240,84 @@
 			</pattemplate:tmpl>
 			<div class="row" id="bookingform_address">
 				<div class="col-lg-7">
-					<div id="tour_target_booking_existing_guests"></div>
-					<div id="tour_target_booking_required"></div>
 					<div class="card">
 						<div class="card-header">
 							<div class="card-title">{AJAXFORM_ADDRESS}</div>
 						</div>
 						<div class="card-body">
 							<div class="form-group">
-								<label class="col-form-label" for="existingCustomers"></label>{GUESTDROPDOWN}</div>
-							<div class="form-group {BOOTSTRAP_FIRSTNAME_WARNING}">
-								<label class="col-form-label" for="firstname">{HFIRSTNAME}</label>
-								<input type="text" name="firstname" id="firstname"
-								       value="{FIRSTNAME}" class="form-control" placeholder="{COMMON_PLACEHOLDER_FIRSTNAME}">
+								<label class="col-form-label" for="existingCustomers"></label>{GUESTDROPDOWN}
 							</div>
-							<div class="form-group {BOOTSTRAP_SURNAME_WARNING}">
-								<label class="col-form-label" for="surname">{HSURNAME}</label>
-								<input type="text" name="surname" id="surname" value="{SURNAME}"
-								       class="form-control" placeholder="{COMMON_PLACEHOLDER_SURNAME}">
-							</div>
-							<div class="form-group  {BOOTSTRAP_HOUSENO_WARNING}">
-								<label class="col-form-label" for="house">{HHOUSENO}</label>
-								<input type="text" name="house" id="house" value="{HOUSENO}"
-								       class="form-control" placeholder="{COMMON_PLACEHOLDER_HOUSENUMBER}">
-							</div>
-							<div class="form-group {BOOTSTRAP_STREET_WARNING}">
-								<label class="col-form-label" for="street">{HSTREET}</label>
-								<input type="text" name="street" id="street" value="{STREET}"
-								       class="form-control" placeholder="{COMMON_PLACEHOLDER_STREET}">
-							</div>
-							<div class="form-group {BOOTSTRAP_TOWN_WARNING}">
-								<label class="col-form-label" for="town">{HTOWN}</label>
-								<input type="text" name="town" id="town" value="{TOWN}"
-								       class="form-control" placeholder="{COMMON_PLACEHOLDER_TOWN}">
-							</div>
-							<div class="form-group {BOOTSTRAP_POSTCODE_WARNING}">
-								<label class="col-form-label" for="postcode">{HPOSTCODE}</label>
-								<input type="text" name="postcode" id="postcode" value="{POSTCODE}"
-								       class="form-control" placeholder="{COMMON_PLACEHOLDER_POSTCODE}">
-							</div>
-							<div class="form-group {BOOTSTRAP_COUNTRY_WARNING}">
-								<label class="col-form-label" for="country">{HCOUNTRY}</label>{COUNTRY}</div>
-							<div class="form-group {BOOTSTRAP_REGION_WARNING}">
-								<label class="col-form-label" for="region">{HREGION}</label>
-								<div id="guest_region_div">{REGION_DROPDOWN}</div>
-							</div>
-							<div class="form-group {BOOTSTRAP_LANDLINE_WARNING}">
-								<label class="col-form-label" for="tel_landline">{HTEL}</label>
-								<input type="tel" name="tel_landline" id="tel_landline"
-								       value="{TEL}" class="form-control" placeholder="{COMMON_PLACEHOLDER_LANDLINE}">
-							</div>
-							<div class="form-group {BOOTSTRAP_CELLMOBILE_WARNING}">
-								<label class="col-form-label" for="tel_mobile">{HMOBILE}</label>
-								<input type="tel" name="tel_mobile" id="tel_mobile" value="{MOBILE}"
-								       class="form-control" placeholder="{COMMON_PLACEHOLDER_MOBILE}">
-							</div>
-							<div class="form-group {BOOTSTRAP_EMAIL_WARNING}">
-								<label class="col-form-label" for="eemail">{HEMAIL}</label>
-								<input type="email" name="eemail" id="eemail" value="{EMAIL}"
-								       class="form-control" {email_input_disabled}="">
-							</div>
-							<pattemplate:tmpl name="customfields" type="simpleCondition" requiredvars="fieldname">
-								<div class="form-group {WARNING}">
-									<label class="col-form-label" for="{FIELDNAME}">{DESCRIPTION}</label>
-									<input type="text" name="{FIELDNAME}" id="{FIELDNAME}"
-									       value="{DEFAULT_VALUE}" class="form-control" placeholder="{XXXXXXX}">
+							<div class="row">
+								<div class="col-sm-6">
+
+									<div class="form-group {BOOTSTRAP_FIRSTNAME_WARNING}">
+										<label class="col-form-label" for="firstname">{HFIRSTNAME}</label>
+										<input type="text" name="firstname" id="firstname"
+											   value="{FIRSTNAME}" class="form-control" placeholder="{COMMON_PLACEHOLDER_FIRSTNAME}">
+									</div>
+									<div class="form-group {BOOTSTRAP_SURNAME_WARNING}">
+										<label class="col-form-label" for="surname">{HSURNAME}</label>
+										<input type="text" name="surname" id="surname" value="{SURNAME}"
+											   class="form-control" placeholder="{COMMON_PLACEHOLDER_SURNAME}">
+									</div>
+									<div class="form-group  {BOOTSTRAP_HOUSENO_WARNING}">
+										<label class="col-form-label" for="house">{HHOUSENO}</label>
+										<input type="text" name="house" id="house" value="{HOUSENO}"
+											   class="form-control" placeholder="{COMMON_PLACEHOLDER_HOUSENUMBER}">
+									</div>
+									<div class="form-group {BOOTSTRAP_STREET_WARNING}">
+										<label class="col-form-label" for="street">{HSTREET}</label>
+										<input type="text" name="street" id="street" value="{STREET}"
+											   class="form-control" placeholder="{COMMON_PLACEHOLDER_STREET}">
+									</div>
+									<div class="form-group {BOOTSTRAP_TOWN_WARNING}">
+										<label class="col-form-label" for="town">{HTOWN}</label>
+										<input type="text" name="town" id="town" value="{TOWN}"
+											   class="form-control" placeholder="{COMMON_PLACEHOLDER_TOWN}">
+									</div>
+									<div class="form-group {BOOTSTRAP_POSTCODE_WARNING}">
+										<label class="col-form-label" for="postcode">{HPOSTCODE}</label>
+										<input type="text" name="postcode" id="postcode" value="{POSTCODE}"
+											   class="form-control" placeholder="{COMMON_PLACEHOLDER_POSTCODE}">
+									</div>
 								</div>
-							</pattemplate:tmpl>
+								<div class="col-sm-6">
+									<div class="form-group {BOOTSTRAP_COUNTRY_WARNING}">
+										<label class="col-form-label" for="country">{HCOUNTRY}</label>{COUNTRY}</div>
+									<div class="form-group {BOOTSTRAP_REGION_WARNING}">
+										<label class="col-form-label" for="region">{HREGION}</label>
+										<div id="guest_region_div">{REGION_DROPDOWN}</div>
+									</div>
+									<div class="form-group {BOOTSTRAP_LANDLINE_WARNING}">
+										<label class="col-form-label" for="tel_landline">{HTEL}</label>
+										<input type="tel" name="tel_landline" id="tel_landline"
+											   value="{TEL}" class="form-control" placeholder="{COMMON_PLACEHOLDER_LANDLINE}">
+									</div>
+									<div class="form-group {BOOTSTRAP_CELLMOBILE_WARNING}">
+										<label class="col-form-label" for="tel_mobile">{HMOBILE}</label>
+										<input type="tel" name="tel_mobile" id="tel_mobile" value="{MOBILE}"
+											   class="form-control" placeholder="{COMMON_PLACEHOLDER_MOBILE}">
+									</div>
+									<div class="form-group {BOOTSTRAP_EMAIL_WARNING}">
+										<label class="col-form-label" for="eemail">{HEMAIL}</label>
+										<input type="email" name="eemail" id="eemail" value="{EMAIL}"
+											   class="form-control" {email_input_disabled}="">
+									</div>
+									<pattemplate:tmpl name="customfields" type="simpleCondition" requiredvars="fieldname">
+										<div class="form-group {WARNING}">
+											<label class="col-form-label" for="{FIELDNAME}">{DESCRIPTION}</label>
+											<input type="text" name="{FIELDNAME}" id="{FIELDNAME}"
+												   value="{DEFAULT_VALUE}" class="form-control" placeholder="{XXXXXXX}">
+										</div>
+									</pattemplate:tmpl>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-5" id="totalsWrapper">
-					<div id="totals">
+					<div id="totals" class="sticky">
 						<div class="card">
 							<div class="card-header">
 								<div class="card-title">{PRICE_SUMMARY}</div>
@@ -448,13 +454,13 @@
 								</div>
 							</div>
 						</pattemplate:tmpl>
-					</div>
-				</div>
-			</div>
-			<div class="form-actions" id="bookingform_footer">
-				<div id="submitbutton">
-					<div class="col-lg-4 order-md-2">
-						<input type="submit" name="confirmbooking" value="{SUBMIT}" class="btn btn-lg btn-block btn-success">
+						<div id="bookingform_footer">
+							<div id="submitbutton">
+								<div class="text-center p-5 alert alert-success">
+									<input type="submit" name="confirmbooking" value="{SUBMIT}" class="btn btn-lg btn-block btn-success">
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

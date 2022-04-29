@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -69,6 +69,7 @@ class j09995menu
 		$font_awesome_tariffs = 'fa-usd';
 		$font_awesome_edit = 'fa-pencil-square-o';
 		$font_awesome_childpolicies = 'fa-users';
+		$font_awesome_language = 'fa-language';
 
 		if (jomres_bootstrap_version() == '5' ) {
 			$font_awesome_envelope = 'fa-envelope';
@@ -79,6 +80,7 @@ class j09995menu
 			$font_awesome_tariffs = 'fa-dollar-sign';
 			$font_awesome_edit = 'fa-edit';
 			$font_awesome_childpolicies = 'fa-child';
+			$font_awesome_language = 'fas fa-language';
 		}
 
 		//define the core sections
@@ -215,6 +217,8 @@ class j09995menu
 			$jomres_menu->add_item(80, jr_gettext('_JOMRES_PATHWAY_PROPERTYDETAILS', '_JOMRES_PATHWAY_PROPERTYDETAILS', false), 'edit_property', $font_awesome_edit);
 			$jomres_menu->add_item(80, jr_gettext('_JOMRES_COM_MR_GENERALCONFIGDESC', '_JOMRES_COM_MR_GENERALCONFIGDESC', false), 'business_settings', 'fa-cogs');
 
+			$jomres_menu->add_item(80, jr_gettext('JOMRES_TRANSLATIONS_TITLE', 'JOMRES_TRANSLATIONS_TITLE', false), 'translating', $font_awesome_language);
+
 			$jomres_menu->add_item(80, jr_gettext('_JOMRES_MEDIA_CENTRE_TITLE', '_JOMRES_MEDIA_CENTRE_TITLE', false), 'media_centre', $font_awesome_picture);
 
 			if ($mrConfig[ 'is_real_estate_listing' ] != '1' && $mrConfig['tariffmode'] != '0' && !get_showtime('is_jintour_property')) {
@@ -224,9 +228,6 @@ class j09995menu
 			if ($mrConfig[ 'is_real_estate_listing' ] != '1' && $mrConfig['tariffmode'] == '0' && !get_showtime('is_jintour_property')) {
 				$jomres_menu->add_item(80, jr_gettext('_JOMRES_COM_MR_LISTTARIFF_TITLE', '_JOMRES_COM_MR_LISTTARIFF_TITLE', false).' &amp; '.jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOM', '_JOMRES_COM_MR_VRCT_TAB_ROOM', false), 'edit_tariffs_normal', $font_awesome_tariffs);
 			}
-
-
-
 
 			if ($mrConfig[ 'is_real_estate_listing' ] != '1') {
 

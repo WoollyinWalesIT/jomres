@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -46,7 +46,13 @@ class j06005list_invoices_ajax
 		$jomres_encryption = new jomres_encryption();
 		
 		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
-		$defaultProperty = getDefaultProperty();
+		if ($thisJRUser->userIsManager) {
+			$defaultProperty = getDefaultProperty();
+		} else {
+			$defaultProperty = 0;
+		}
+
+		set_showtime('property_uid',$defaultProperty);
 		$mrConfig = getPropertySpecificSettings($defaultProperty);
 
 		$startDate = jomresGetParam($_GET, 'startDate', '');
@@ -259,6 +265,8 @@ class j06005list_invoices_ajax
 			'data' => array(),
 		);
 
+		$customTextObj = jomres_singleton_abstract::getInstance('custom_text');
+
 		foreach ($jomresInvoicesList as $p) {
 			$r = array();
 
@@ -266,22 +274,40 @@ class j06005list_invoices_ajax
 			if ($show_all == 1 && ((int) $p->property_uid != (int) $defaultProperty)) {
 				$thisProperty = '&thisProperty='.$p->property_uid;
 			}
+			if ($thisJRUser->userIsManager == false) {
+				$customTextObj->get_custom_text_for_property($p->property_uid);
+				set_showtime('property_uid',$p->property_uid);
+			}
+
+			if (jomres_bootstrap_version() == '5') {
+				$label_red = 'badge bg-danger';
+				$lable_green = 'badge bg-success';
+				$label_black = 'badge bg-dark';
+				$label_orange = 'badge bg-warning text-light';
+				$label_muted = 'badge bg-light text-dark';
+			} else {
+				$label_red = 'label-red';
+				$lable_green = 'label-green';
+				$label_black = 'label-black';
+				$label_orange = 'label-orange';
+				$label_muted = 'label-grey';
+			}
 
 			switch ($p->status) {
 					case 0:
-						$label_class = 'label-red';
+						$label_class = $label_red;
 						break;
 					case 1:
-						$label_class = 'label-green';
+						$label_class = $lable_green;
 						break;
 					case 2:
-						$label_class = 'label-black';
+						$label_class = $label_black;
 						break;
 					case 3:
-						$label_class = 'label-orange';
+						$label_class = $label_orange;
 						break;
 					default:
-						$label_class = 'label-grey';
+						$label_class = $label_muted;
 						break;
 					}
 

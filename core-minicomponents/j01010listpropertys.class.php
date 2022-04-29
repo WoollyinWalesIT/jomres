@@ -4,7 +4,7 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
 	 *
 	 * @copyright	2005-2022 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -43,6 +43,9 @@
 				return;
 			}
 
+			jr_import('jomres_markdown');
+			$jomres_markdown = new jomres_markdown();
+
 			output_ribbon_styling();
 
 			$MiniComponents->triggerEvent('01008', $componentArgs); // optional
@@ -55,6 +58,12 @@
 			$return_to_search_results 	= jomresGetParam($_REQUEST, 'return_to_search_results', false);
 			$arrivalDate 				= jomresGetParam($_REQUEST, 'arrivalDate', '');
 			$departureDate 				= jomresGetParam($_REQUEST, 'departureDate', '');
+
+			if (!AJAXCALL) {
+				$show_property_list_header = true;
+			} else {
+				$show_property_list_header = false;
+			}
 
 			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 			$jrConfig = $siteConfig->get();
@@ -89,6 +98,7 @@
 
 			$MiniComponents->triggerEvent('01004');
 			$property_list_layouts = get_showtime('property_list_layouts');
+
 			if (count($property_list_layouts) == 1) {
 				$default_layout = array_keys($property_list_layouts);
 				$tmpBookingHandler->tmpsearch_data[ 'current_property_list_layout' ] = $default_layout[ 0 ];
@@ -130,11 +140,6 @@
 				$propertys_uids = array();
 			}
 
-			/* if (!@session_start()) {
-				@ini_set('session.save_handler', 'files');
-				session_start();
-			} */
-
 			if ( ($propertylist_layout != '' || $this->jr_page > 0 || $return_to_search_results) && isset($tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ] ) ) {
 				$propertys_uids = $tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ];
 			}
@@ -142,6 +147,7 @@
 			if (empty($propertys_uids)) {
 				return;
 			}
+
 
 			if (!AJAXCALL || get_showtime('task') == 'ajax_search_filter') {
 				$propertys_uids = $MiniComponents->triggerEvent('01009', array('propertys_uids' => $propertys_uids)); // Pre list properties parser. Allows us to to filter property lists if required
@@ -178,15 +184,20 @@
 					$layout_template = 'list_properties.html';
 				}
 
-				if (jomres_bootstrap_version() == '5' ) {
+				if (jomres_bootstrap_version() == '5' && isset( $_REQUEST['list_properties_template']) ) {
 					if (function_exists('get_available_property_list_templates')) {
 						$available_list_templates = get_available_property_list_templates();
 						$available_photo_templates =get_available_property_photo_templates();
-
-						if (isset($_REQUEST['list_properties_template']) && $_REQUEST['list_properties_template'] != '') {
-							if ( array_key_exists( $_REQUEST['list_properties_template'] , $available_list_templates) ||
-								array_key_exists( $_REQUEST['list_properties_template'] ,$available_photo_templates ) ) {
-									$layout_template = $_REQUEST['list_properties_template'].'.html';
+						$lpt = $_REQUEST['list_properties_template'];
+						if (isset($lpt) && $lpt != '') {
+							if ( array_key_exists( $lpt , $available_list_templates) ||
+								array_key_exists( $lpt ,$available_photo_templates ) ) {
+									$layout_template = $lpt.'.html';
+							}
+							if ( array_key_exists( $lpt , $available_list_templates) ) {
+								$show_property_list_header = $available_list_templates[$lpt]['show_property_list_header'];
+							} else {
+								$show_property_list_header = $available_photo_templates[$lpt]['show_property_list_header'];
 							}
 						}
 					}
@@ -398,7 +409,7 @@
 						$featureList = array();
 						$ptown = stripslashes($current_property_details->multi_query_result[ $propertys_uid ]['property_town']);
 						$property_stars = $current_property_details->multi_query_result[ $propertys_uid ]['stars'];
-						$propertyDesc = strip_tags(jomres_decode(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION', $current_property_details->multi_query_result[ $propertys_uid ]['property_description'], false)));
+						$propertyDesc = $jomres_markdown->get_markdown(strip_tags(jomres_decode(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION_'.$propertys_uid, $current_property_details->multi_query_result[ $propertys_uid ]['property_description'], false))));
 
 						if (in_array($propertys_uid, $tmpBookingHandler->tmpsearch_data[ 'featured_properties' ])) {
 							if (!isset($jrConfig[ 'featured_listings_emphasis' ]) || $jrConfig[ 'featured_listings_emphasis' ] == '') {
@@ -563,14 +574,8 @@
 						//$property_deets['AVAILABILITY_CALENDAR'] = $MiniComponents->specificEvent('06000','ui_availability_calendar',array('property_uid'=>$property->propertys_uid,'output_now'=>"1",'noshowlegend'=>1) );
 
 						$stars = $current_property_details->multi_query_result[$propertys_uid]['stars'];
-						$starslink = '';
-						if ($stars > 0) {
-							$starslink = '';
-							for ($i = 1; $i <= $stars; ++$i) {
-								$starslink .= ' <i class="fa fa-star  text-warning" aria-hidden="true"></i> ';
-							}
-							$starslink .= '';
-						}
+
+						$starslink = $MiniComponents->specificEvent('06000', 'show_property_stars', array('property_uid' => $propertys_uid , 'output_now' => false ));
 
 						$property_deets[ 'SUPERIOR' ] = '';
 						if ($current_property_details->multi_query_result[ $propertys_uid ]['superior'] == 1) {
@@ -801,9 +806,8 @@
 
 						add_gmaps_source(); // Needs to be included, regardless of the settings below because the module popup will not work without it.
 
-						$showmaps = false;
 						$layout = $tmpBookingHandler->tmpsearch_data[ 'current_property_list_layout' ];
-						if (get_showtime('layout_showmaps') != null || $layout == 'listwithmaps') {
+
 							if (get_showtime('layout_mapwidth') == null) {
 								$mapwidth = '119';
 								$mapheight = '95';
@@ -814,7 +818,7 @@
 							$args = array('property_uid' => $propertys_uid, 'width' => $mapwidth, 'height' => $mapheight, 'disable_ui' => true);
 							$MiniComponents->specificEvent('01050', 'x_geocoder', $args);
 							$property_deets[ 'MAP' ] = $MiniComponents->miniComponentData[ '01050' ][ 'x_geocoder' ];
-						}
+
 
 						$property_deets[ 'PROPERTY_TYPE' ] = jomres_badge($current_property_details->multi_query_result[ $propertys_uid ]['property_type_title'] , 'info' );
 						$property_deets[ 'PROPERTY_TYPE_SEARCH_URL' ] = jomresURL(JOMRES_SITEPAGE_URL.'&task=search&ptype='.$current_property_details->multi_query_result[ $propertys_uid ]['ptype_id']);
@@ -899,7 +903,7 @@
 						$property_details[ ] = $property_deets;
 					}
 
-					if (!AJAXCALL || get_showtime('task') == 'ajax_search_filter') {
+					if ((!AJAXCALL || get_showtime('task') == 'ajax_search_filter') && $show_property_list_header == true ) {
 						$header_pageoutput[ ] = $header_output;
 						$tmpl = new patTemplate();
 						$tmpl->addRows('header_pageoutput', $header_pageoutput);
@@ -1065,7 +1069,7 @@
 		/**
 		 * Must be included in every mini-component.
 		#
-		 * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
+		 * Returns any settings that the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
 		 */
 
 		public function getRetVals()

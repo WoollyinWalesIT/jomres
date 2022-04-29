@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1812,7 +1812,7 @@ jr_define ('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Vaš ključ za podporo j
 jr_define ('_JOMRES_DASHBOARD_DRAG_TRASH', 'Povlecite rezervacije na to območje, da jih prekličete');
 jr_define ('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define ('_JOMRES_LONG', 'Long (nn.nnnn)');
-jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Prepričajte se, da ste ustvarili stran WordPress, ki vsebuje kratko kodo [jomres: xx-XX] (kjer je xx-XX koda jezika vašega spletnega mesta, na primer [jomres: en-GB] ali [ jomres: sl-ZDA]) drugače ne boste mogli dostopati do Jomresa s prednje strani za upravljanje svojih nepremičnin in rezervacij. <br> Jomres je zgrajen na ogrodju Bootstrap, zato ga morate uporabljati pri temi, ki temelji na Bootstrapu. priporočam eno, ki temelji na Bootstrapu 3. Če nimate dostopa do teme, priporočamo, da uporabite temo Jomresa Leohtiana za Wordpress, ki jo lahko <a href = "https://www.jomres.net/download/free- downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress target="_blank"> prenesite od tu. </a> ');
+jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Prepričajte se, da ste ustvarili stran WordPress, ki vsebuje kratko kodo [jomres: xx-XX] (kjer je xx-XX koda jezika vašega spletnega mesta, na primer [jomres: en-GB] ali [ jomres: sl-ZDA]) drugače ne boste mogli dostopati do Jomresa s prednje strani za upravljanje svojih nepremičnin in rezervacij. ');
 jr_define ('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', "Preden lahko ustvarite tip sobe, moramo vedeti, ali gre za nepremičnine hotelskega tipa ali za vile.");
 jr_define ('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', 'Kliknite, če želite dodati nove vrste sob');
 jr_define ('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES', 'Opozorilo, imate eno ali več vrst nepremičnin brez tipov sob. Lastnosti potrebujejo vrste sob, da lahko upravitelji nepremičnin ustvarijo tarife.');
@@ -2207,7 +2207,7 @@ jr_define ('_JOMRES_LOGIN_RESET_BUTTON', 'Ste pozabili geslo?');
 
 jr_define ('_JOMRES_REVIEWS_ANONYMISE', 'Anonimizirajte svoje ime?');
 jr_define ('_JOMRES_REVIEWS_ANONYMISE_DESC', 'Če se odločite anonimiti svoje ime pri pregledu, bomo namesto tega uporabili vaše začetnice.');
-jr_define ('ANONIMNO', 'Anon');
+jr_define ('ANONYMOUS', 'Anon');
 
 jr_define ('_JOMRES_REVIEWS_REPLY_SAID', 'rečeno');
 jr_define ('_JOMRES_REVIEWS_REPLY_OPPORTUNITY', 'Odgovori na to mnenje');
@@ -2697,3 +2697,25 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Slike vrst
 
 	jr_define('JOMRES_UPDATES_TITLE', 'Jomresove posodobitve');
 	jr_define('JOMRES_UPDATES_INFO', "Ta stran lahko namesto vas prenese in namesti najnovejšo različico Jomresa. Uporablja lastno funkcionalnost in ne gostiteljskega CMS-ja, zato, če pride do težave med posodobitvijo gostiteljskega CMS-ja, lahko uporabite to stran za prisilite ponovno namestitev najnovejše različice Jomresa.");
+
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'Upravitelji lastnine lahko uporabljajo način urejanja v frontendu za prilagajanje nizov za vsako lastnost, vendar to lahko deluje samo, če je vaša nastavitev stalne povezave WordPress nastavljena na navaden (http://www.domain.com/?p=123). Ko to storite, bodo uporabniki vmesnika lahko prilagodili nize, kot so imena prostorov in druge oznake, ki so značilne za edinstvene lastnosti. ');
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', 'Način urejanja nalepk');
+	jr_define('JOMRES_EDITING_MODE_HELP_LEAD', 'Ta funkcija se uporablja za spreminjanje oznak elementov, običajno v različne jezike.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', 'Način za urejanje vam omogoča preimenovanje oznak, ki so edinstvene za posamezne lastnosti. Ko uporabite način za urejanje za preimenovanje oznake, bo sprememba prikazana samo na tem seznamu lastnosti. Na primer, na eni lastnosti, ki bi jo morda želeli uporabite besedo "Cene" in na drugi besedo "Cene". Vseh oznak ni mogoče spremeniti, na primer imena vrst sob so oznake za celotno spletno mesto, zato jih ni mogoče spremeniti, običajno pa vse, kar je edinstveno za posamezno lastnino se lahko spremeni.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', 'Če spletno mesto podpira več jezikov, lahko med uporabo enega jezika ustvarite element, ki je edinstven za posamezno lastnost. Ko nato spremenite svoj aktivni jezik, lahko uporabite način urejanja za preimenovanje te oznake, vnos ustreznega prevoda v trenutnem jeziku. Lahko nadaljujete s spreminjanjem aktivnega jezika, da vnesete ustrezen prevod za to oznako za vsak jezik, ki ga spletno mesto podpira.');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'Stikalo načina za urejanje nalepk');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'Na tem posnetku zaslona vidimo stikalo za način urejanja. Način urejanja je IZKLOPLJEN in oznake so videti kot običajno: ');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'Način urejanja nalepk je omogočen');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'Na tem posnetku zaslona vidimo, da so oznake, ki jih lahko preimenujete, označene v načinu za urejanje:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', 'Izberite element, ki ga želite spremeniti');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'Ko je oznaka izbrana, se prikaže pojavno okno:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'Spremeni oznako');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Uporabite obrazec za spremembo oznake. Kliknite kljukico za dokončanje ali kliknite X, da prekličete urejanje:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Oznaka spremenjena');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Ko shranite spremembo, se oznaka na strani posodobi. Zdaj lahko onemogočite način urejanja:');
+
+	jr_define('JOMRES_TRANSLATIONS_TITLE', 'Prevodi');
+	jr_define('JOMRES_TRANSLATIONS_LEAD', 'Na tej strani lahko prevajate oznake iz enega jezika v drugega. Ko obiščete stran, boste videli nize, ki ste jih že ustvarili, in njihovo vrednost v katerem koli jeziku, ki ga trenutno uporabljate. Na vrhu nastavite ciljni jezik, nato za oznake, ki jih želite prevesti, kliknite oznako in pojavno okno vam bo omogočilo vnos novega prevoda. Za daljše vrstice besedila lahko prilepite besedilo iz drugega vira. Ne pozabite, da bo vsak HTML odstranjen .<br/>
+Ciljni jezik lahko pustite nastavljen na vaš trenutni jezik in uporabite to stran za preimenovanje elementov tukaj, namesto da obiščete njihove posamezne strani.');
+	jr_define('JOMRES_TARGET_LANGUAGE', 'Ciljni jezik');

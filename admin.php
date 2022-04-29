@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -162,6 +162,17 @@ try {
 		$jrConfig['initial_setup_done'] = 0;
 	}
 
+	//task
+	if ( $jrConfig['initial_setup_done'] == '0' && get_showtime('task') != 'save_initial_setup') {
+		$MiniComponents->specificEvent('16000','initial_setup'); // let's rock and roll
+	} else {
+		if ($MiniComponents->eventSpecificlyExistsCheck('16000', get_showtime('task'))) {
+			$MiniComponents->specificEvent('16000', get_showtime('task')); // task exists, execute it
+		} else {
+			$MiniComponents->triggerEvent('10001'); //task doesn`t exist, go to cpanel frontpage
+		}
+	}
+
     if ($jrConfig['development_production'] != 'development') {
         if (
             get_showtime('task') != 'save_site_settings' &&
@@ -179,16 +190,7 @@ try {
         }
     }
 
-	//task
-	if ( $jrConfig['initial_setup_done'] == '0' && get_showtime('task') != 'save_initial_setup') {
-		$MiniComponents->specificEvent('16000','initial_setup'); // let's rock and roll
-	} else {
-		if ($MiniComponents->eventSpecificlyExistsCheck('16000', get_showtime('task'))) {
-			$MiniComponents->specificEvent('16000', get_showtime('task')); // task exists, execute it
-		} else {
-			$MiniComponents->triggerEvent('10001'); //task doesn`t exist, go to cpanel frontpage
-		}
-	}
+
 
 
 	//output bottom area

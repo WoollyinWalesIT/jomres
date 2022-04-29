@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -59,7 +59,9 @@ class jomres_data_sources
 		$sources[] = 'regions';
 		$sources[] = 'towns';
 		$sources[] = 'keywords';
-
+		$sources[] = 'stars';
+		$sources[] = 'guestnumbers';
+		$sources[] = 'priceranges';
 		return $sources;
 
 	}
@@ -81,10 +83,12 @@ class jomres_data_sources
 		}
 
 		$requested_file = $this->data_cache_directory.'data_source_'.$type.'.json';
+
 		if (!file_exists($requested_file)) {
 			return array();
 		}
 		$contents = (array)json_decode(file_get_contents($requested_file));
+
 		if (!isset($contents[$language])) {
 			return array();
 		}

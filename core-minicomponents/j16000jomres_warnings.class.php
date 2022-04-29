@@ -1,164 +1,127 @@
 <?php
-/**
- * Core file.
- *
- * @author Vince Wooll <sales@jomres.net>
- *
- *  @version Jomres 10.2.2
- *
- * @copyright	2005-2022 Vince Wooll
- * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
- **/
+	/**
+	 * Core file.
+	 *
+	 * @author Vince Wooll <sales@jomres.net>
+	 *
+	 *  @version Jomres 10.3.0
+	 *
+	 * @copyright	2005-2022 Vince Wooll
+	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
+	 **/
 
 // ################################################################
-defined('_JOMRES_INITCHECK') or die('');
+	defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
-	
+
 	/**
 	 * @package Jomres\Core\Minicomponents
 	 *
-	 * 
+	 *
 	 */
 
-class j16000jomres_warnings
-{	
-	/**
-	 *
-	 * Constructor
-	 * 
-	 * Main functionality of the Minicomponent 
-	 *
-	 * 
-	 * 
-	 */
-	 
-	public function __construct($componentArgs)
+	class j16000jomres_warnings
 	{
-		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
-		if ($MiniComponents->template_touch) {
-			$this->template_touchable = false;
+		/**
+		 *
+		 * Constructor
+		 *
+		 * Main functionality of the Minicomponent
+		 *
+		 *
+		 *
+		 */
 
-			return;
-		}
-		
-		$this->retVals = '';
+		public function __construct($componentArgs)
+		{
+			// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+			$MiniComponents = jomres_singleton_abstract::getInstance('mcHandler');
+			if ($MiniComponents->template_touch) {
+				$this->template_touchable = false;
 
-		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-		$jrConfig = $siteConfig->get();
+				return;
+			}
 
-		if (isset($componentArgs[ 'output_now' ])) {
-			$output_now = $componentArgs[ 'output_now' ];
-		} else {
-			$output_now = true;
-		}
+			$this->retVals = '';
 
-		$output = array();
-		$pageoutput = array();
+			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+			$jrConfig = $siteConfig->get();
 
-		// Show a warning if development mode enabled
-		$output[ 'DEVELOPMENT_MODE' ] = development_mode_test();
+			if (isset($componentArgs[ 'output_now' ])) {
+				$output_now = $componentArgs[ 'output_now' ];
+			} else {
+				$output_now = true;
+			}
 
-		// Show a warning if safe mode enabled
-		$output[ 'SAFE_MODE' ] = safe_mode_test();
-		
-		//max input vars set to 1000 warning only if micromanage is enabled
-		$output[ 'MAX_INPUT_VARS_CHECK' ] = max_input_vars_test();
+			$output = array();
+			$pageoutput = array();
 
-		//max get vars set to 512 or less warning for datatables
-		$output[ 'SUHOSIN_GET_MAX_VARS_CHECK' ] = suhosin_get_max_vars_test();
+			// Show a warning if development mode enabled
+			$output[ 'DEVELOPMENT_MODE' ] = development_mode_test();
 
-		// Test for ZipArchive
-		$output[ 'ZIPARCHIVE_CHECK' ] = ziparchive_test();
-		
-		
-		//license key not entered warning
-		/* $output[ 'JOMRES_PRODUCT_INFORMATION' ] = '';
-		$output[ 'JOMRES_PRODUCT_INFORMATION2' ] = '';
-		$output[ 'JOMRES_PRODUCT_INFO_HIGHLIGHT' ] = '';
-		if (trim($jrConfig['licensekey']) == '') {
-			$output[ 'JOMRES_PRODUCT_INFORMATION' ] = jr_gettext('_JOMRES_PRODUCT_INFORMATION', '_JOMRES_PRODUCT_INFORMATION', false);
-			$output[ 'JOMRES_PRODUCT_INFORMATION2' ] = jr_gettext('_JOMRES_PRODUCT_INFORMATION2', '_JOMRES_PRODUCT_INFORMATION2', false);
-			$output[ 'JOMRES_PRODUCT_INFO_HIGHLIGHT' ] = 'alert alert-info';
-		} */
+			// Show a warning if safe mode enabled
+			$output[ 'SAFE_MODE' ] = safe_mode_test();
 
+			//max input vars set to 1000 warning only if micromanage is enabled
+			$output[ 'MAX_INPUT_VARS_CHECK' ] = max_input_vars_test();
 
+			//max get vars set to 512 or less warning for datatables
+			$output[ 'SUHOSIN_GET_MAX_VARS_CHECK' ] = suhosin_get_max_vars_test();
 
-		//wordpress Page with [jomres:xx-XX] not created yet
-		$output[ 'JOMRES_DEFAULT_SHORTCODE_HIGHLIGHT' ] = '';
-		$output[ 'JOMRES_DEFAULT_SHORTCODE_ALERT' ] = '';
-		if (this_cms_is_wordpress() ) {
-			$output[ 'JOMRES_DEFAULT_SHORTCODE_HIGHLIGHT' ] = (using_bootstrap() ? 'alert alert-info' : 'ui-state-error');
-			$output[ 'JOMRES_DEFAULT_SHORTCODE_ALERT' ] = jr_gettext('WORDPRESS_THEME_ADVICE', 'WORDPRESS_THEME_ADVICE', false);
+			// Test for ZipArchive
+			$output[ 'ZIPARCHIVE_CHECK' ] = ziparchive_test();
 
-			$query = "SELECT post_content , post_status FROM #__posts WHERE post_status != 'trash' ";
-			$all_posts = doSelectSql($query);
-			$found = false;
-			foreach ($all_posts as $post) {
-				if ( strstr( $post->post_content  , "[jomres:" ) ) {
-					$found = true;
+			//wordpress Page with [jomres:xx-XX] not created yet
+			$output[ 'JOMRES_DEFAULT_SHORTCODE_HIGHLIGHT' ] = '';
+			$output[ 'JOMRES_DEFAULT_SHORTCODE_ALERT' ] = '';
+			if (this_cms_is_wordpress() ) {
+				//$output[ 'JOMRES_DEFAULT_SHORTCODE_HIGHLIGHT' ] = (using_bootstrap() ? 'alert alert-info' : 'ui-state-error');
+				//$output[ 'JOMRES_DEFAULT_SHORTCODE_ALERT' ] = jr_gettext('WORDPRESS_THEME_ADVICE', 'WORDPRESS_THEME_ADVICE', false);
+
+				$query = "SELECT post_content , post_status FROM #__posts WHERE post_status != 'trash' ";
+				$all_posts = doSelectSql($query);
+				$found = false;
+				foreach ($all_posts as $post) {
+					if ( strstr( $post->post_content  , "[jomres:" ) ) {
+						$found = true;
+					}
+				}
+				if (!$found) {
+					$output[ 'JOMRES_DEFAULT_SHORTCODE_HIGHLIGHT' ] = (using_bootstrap() ? 'alert alert-danger' : 'ui-state-error');
+					$output[ 'JOMRES_DEFAULT_SHORTCODE_ALERT' ] = jr_gettext('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'JOMRES_DEFAULT_SHORTCODE_ALERT', false);
 				}
 			}
-			if (!$found) {
-				$output[ 'JOMRES_DEFAULT_SHORTCODE_HIGHLIGHT' ] = (using_bootstrap() ? 'alert alert-danger' : 'ui-state-error');
-				$output[ 'JOMRES_DEFAULT_SHORTCODE_ALERT' ] = jr_gettext('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'JOMRES_DEFAULT_SHORTCODE_ALERT', false);
+
+			// Google maps api key warning
+			$output['GMAPS_KEY_WARNING'] = gmaps_apikey_check();
+
+			// Property type checks //
+			// We have a situation where a property type needs to be cross-referenced with room types, this check will ascertain if any property types are missing room types
+			$jomres_property_types = jomres_singleton_abstract::getInstance('jomres_property_types');
+			$jomres_property_types->get_all_property_types();
+
+			$output['PROPERTY_TYPE_WARNING'] = $jomres_property_types->get_property_types_with_no_room_types_assigned($show_link_to_room_types = true);
+
+			$output['MEDIA_CENTRE_DB_IMAGES_IMPORT_WARNING'] = db_images_import_check();
+
+			$output['MEDIA_CENTRE_S3_IMAGES_IMPORT_WARNING'] = s3_images_import_check();
+
+			$pageoutput[ ] = $output;
+			$tmpl = new patTemplate();
+			$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
+			$tmpl->addRows('pageoutput', $pageoutput);
+			$tmpl->readTemplatesFromInput('jomres_warnings.html');
+
+			if ($output_now) {
+				$tmpl->displayParsedTemplate();
+			} else {
+				$this->retVals = $tmpl->getParsedTemplate();
 			}
 		}
-		
-		
-		
-		
-		// Google maps api key warning
-		$output['GMAPS_KEY_WARNING'] = gmaps_apikey_check();
 
-		//ipinfodb api key
-		//$output['IPINFODB_KEY_WARNING'] = ipinfodb_apikey_check();
 
-		//open exchange rates api key
-		//$output['OPENEXCHANGERATES_KEY_WARNING'] = openexchangerates_apikey_check();
-
-		// Logfile location warning
-		//$output['LOGFILE_LOCATION_WARNING'] = logs_path_check();
-		
-		//review text
-		/* if (this_cms_is_wordpress()) {
-			$output['REVIEW_SITE_URL'] = 'https://wordpress.org/support/view/plugin-reviews/jomres';
-			$output['REVIEW_SITE_TEXT'] = 'Wordpress Plugins site';
-		} else {
-			$output['REVIEW_SITE_URL'] = 'http://extensions.joomla.org/extensions/extension/vertical-markets/booking-a-reservations/jomres';
-			$output['REVIEW_SITE_TEXT'] = 'Joomla! Extensions Directory';
-		}
-
-		$output['CAPTERRA_REVIEW_SITE_URL'] = 'http://www.capterra.com/reservations-software/reviews/134469/Jomres/Woollyinwales%20IT/new';
-		$output['CAPTERRA_REVIEW_SITE_TEXT'] = 'Capterra'; */
-
-		// Property type checks //
-		// We have a situation where a property type needs to be cross-referenced with room types, this check will ascertain if any property types are missing room types
-		$jomres_property_types = jomres_singleton_abstract::getInstance('jomres_property_types');
-		$jomres_property_types->get_all_property_types();
-
-		$output['PROPERTY_TYPE_WARNING'] = $jomres_property_types->get_property_types_with_no_room_types_assigned($show_link_to_room_types = true);
-		
-		$output['MEDIA_CENTRE_DB_IMAGES_IMPORT_WARNING'] = db_images_import_check();
-		
-		$output['MEDIA_CENTRE_S3_IMAGES_IMPORT_WARNING'] = s3_images_import_check();
-
-		$pageoutput[ ] = $output;
-		$tmpl = new patTemplate();
-		$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
-		$tmpl->addRows('pageoutput', $pageoutput);
-		$tmpl->readTemplatesFromInput('jomres_warnings.html');
-
-		if ($output_now) {
-			$tmpl->displayParsedTemplate();
-		} else {
-			$this->retVals = $tmpl->getParsedTemplate();
+		public function getRetVals()
+		{
+			return $this->retVals;
 		}
 	}
-
-
-	public function getRetVals()
-	{
-		return $this->retVals;
-	}
-}

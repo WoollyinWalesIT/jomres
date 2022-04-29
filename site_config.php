@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -19,7 +19,7 @@ defined('_JOMRES_INITCHECK') or die('');
  **/
  
 $jrConfig = array(
-  'version' => '10.2.2',
+  'version' => '10.3.0',
   'defaultCrate' => '1',
   'property_list_limit' => '9',
   'useGlobalCurrency' => '1',
@@ -67,16 +67,16 @@ $jrConfig = array(
   'useJomresMessaging' => '1',
   'useSubscriptions' => '0',
   'useNewusers' => '0',
-  'business_name' => 'BLANK',
-  'business_vat_number' => 'BLANK',
-  'business_address' => 'BLANK',
-  'business_street' => 'BLANK',
-  'business_town' => 'BLANK',
+  'business_name' => 'XX Edit me in Site Configuration - Your company details XX',
+  'business_vat_number' => 'XX Edit me in Site Configuration - Your company details XX',
+  'business_address' => 'XX Edit me in Site Configuration - Your company details XX',
+  'business_street' => 'XX Edit me in Site Configuration - Your company details XX',
+  'business_town' => 'XX Edit me in Site Configuration - Your company details XX',
   'business_region' => '1061',
   'business_country' => 'GB',
-  'business_postcode' => 'BLANK',
-  'business_telephone' => 'BLANK',
-  'business_email' => 'BLANK',
+  'business_postcode' => 'XX Edit me in Site Configuration - Your company details XX',
+  'business_telephone' => 'XX Edit me in Site Configuration - Your company details XX',
+  'business_email' => 'XX Edit me in Site Configuration - Your company details XX',
   'contact_owner_emails_to_alternative' => '0',
   'contact_owner_emails_to_alternative_email' => '',
   'is_single_property_installation' => '0',

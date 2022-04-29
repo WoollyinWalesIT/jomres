@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -246,3 +246,8 @@ jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES', 'Prikazuje popi
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_LIMIT', 'Broj sindiciranih svojstava za prikaz');
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'Hoće li se prikazati MRP -ovi (hoteli/noćenja s doručkom) ili SRP -ovi (vikendice/apartmani/vile). Zadano je određeno ako je to vlasništvo, to je vlasništvo, prikazano. Za odabir određene vrste postavite ovu vrijednost na 0 za srpsku ili 1 za mrps. ');
 
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS', "Pokazuje zvjezdice svojstva. One su postavljene u Konfiguraciji svojstva, ako je svojstvo MRP.");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_PROPERTY_UID', 'ID svojstva.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Neobavezno. Ako ID svojstva nije postavljen, umjesto toga možete proslijediti broj.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Izborno. Alternativni put predloška. Ne može se proslijediti putem url-a. Mora biti apsolutan.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Neobavezno. Alternativni naziv predloška.');

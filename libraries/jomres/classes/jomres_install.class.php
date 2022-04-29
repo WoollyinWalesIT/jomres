@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -50,9 +50,7 @@ class jomres_install
 	{
 		//first let`s check the php version
 		if (version_compare(phpversion(), '5.6', '<')) {
-			$this->setMessage('Oops, it looks like you`re running a version of PHP lower than 5.6. Jomres requires at least PHP 5.6 and will not run on earlier versions', 'danger');
-
-			return false;
+			throw new Exception('Oops, it looks like you`re running a version of PHP lower than 5.6. Jomres requires at least PHP 5.6 and will not run on earlier versions');
 		}
 
 		if (!defined('AUTO_UPGRADE')) {
@@ -176,28 +174,30 @@ class jomres_install
 
 			//file version is lower than the db version, this is an error, so do nothing and better ask for support
 			//TODO: maybe just update and be done with it? the code is here, just replace actions
-			if (version_compare($this->jrConfig['version'], $this->jrConfig['jomres_db_version'], '<')) {
-				if ($this->jomresTablesAndDataExist()) {
-					//jomres tables exist, perform update
-					$this->action = 'donothing';
-				} else {
-					//unusual case when files exist but db tables are not
-					$this->action = 'donothing';
-				}
-				
-				$this->setMessage('Error, your Jomres plugin version is lower than the Jomres database version, are you sure you`re not downgrading?', 'danger');
-				
-				return false;
-			}
+			if (isset($_REQUEST['task']) && $_REQUEST['task'] == 'updates') { // This class wasn't built to handle the updater script, so we'll just go ahead and update as Aladar suggested
+				$this->action = 'update';
+			} else {
+				if (version_compare($this->jrConfig['version'], $this->jrConfig['jomres_db_version'], '<')) {
+					if ($this->jomresTablesAndDataExist()) {
+						//jomres tables exist, perform update
+						$this->action = 'donothing';
+					} else {
+						//unusual case when files exist but db tables are not
+						$this->action = 'donothing';
+					}
 
-			//if versions match just run update routines again
-			if (version_compare($this->jrConfig['version'], $this->jrConfig['jomres_db_version'], '=')) {
-				if ($this->jomresTablesAndDataExist()) {
-					//jomres tables exist, perform update
-					$this->action = 'update';
-				} else {
-					//unusual case when files exist but db tables are not
-					$this->action = 'install';
+					throw new Exception('Error, your Jomres plugin version is lower than the Jomres database version, are you sure you`re not downgrading?');
+				}
+
+				//if versions match just run update routines again
+				if (version_compare($this->jrConfig['version'], $this->jrConfig['jomres_db_version'], '=')) {
+					if ($this->jomresTablesAndDataExist()) {
+						//jomres tables exist, perform update
+						$this->action = 'update';
+					} else {
+						//unusual case when files exist but db tables are not
+						$this->action = 'install';
+					}
 				}
 			}
 		}
@@ -304,9 +304,7 @@ class jomres_install
 			}
 		}
 		catch (Exception $e) {
-			$this->setMessage($e->getMessage(), 'danger');
-			
-			return false;
+			throw new Exception($e->getMessage());
 		}
 	}
 	
@@ -374,9 +372,7 @@ class jomres_install
 			}
 		} 
 		catch (Exception $e) {
-			$this->setMessage($e->getMessage(), 'danger');
-			
-			return false;
+			throw new Exception($e->getMessage());
 		}
 	}
 	
@@ -404,9 +400,7 @@ class jomres_install
 			return true;
 		} 
 		catch (Exception $e) {
-			$this->setMessage($e->getMessage(), 'danger');
-			
-			return false;
+			throw new Exception($e->getMessage());
 		}
 	}
 	
@@ -458,49 +452,49 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 		//sessions dir
 		if (!is_dir(JOMRES_SESSIONS_ABSPATH)) {
 			if (!@mkdir(JOMRES_SESSIONS_ABSPATH)) {
-				$this->setMessage('Error, unable to make folder '.JOMRES_SESSIONS_ABSPATH." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server.", 'danger');
+				throw new Exception('Error, unable to make folder '.JOMRES_SESSIONS_ABSPATH." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server.");
 			}
 		}
 
 		//temp dir
 		if (!is_dir(JOMRES_TEMP_ABSPATH)) {
 			if (!@mkdir(JOMRES_TEMP_ABSPATH)) {
-				$this->setMessage('Error, unable to make folder '.JOMRES_TEMP_ABSPATH." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server.", 'danger');
+				throw new Exception('Error, unable to make folder '.JOMRES_TEMP_ABSPATH." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server.");
 			}
 		}
 
 		//cache dir
 		if (!is_dir(JOMRES_CACHE_ABSPATH)) {
 			if (!@mkdir(JOMRES_CACHE_ABSPATH)) {
-				$this->setMessage('Error, unable to make folder '.JOMRES_CACHE_ABSPATH." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server.", 'danger');
+				throw new Exception('Error, unable to make folder '.JOMRES_CACHE_ABSPATH." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server.");
 			}
 		}
 
 		//updates dir
 		if (!is_dir(JOMRES_UPDATES_ABSPATH)) {
 			if (!@mkdir(JOMRES_UPDATES_ABSPATH)) {
-				$this->setMessage('Error, unable to make folder '.JOMRES_UPDATES_ABSPATH." automatically therefore cannot install plugins. Please create the folder manually and ensure that it's writable by the web server.", 'danger');
+				throw new Exception('Error, unable to make folder '.JOMRES_UPDATES_ABSPATH." automatically therefore cannot install plugins. Please create the folder manually and ensure that it's writable by the web server.");
 			}
 		}
 		
 		//core plugins dir
 		if (!is_dir(JOMRES_COREPLUGINS_ABSPATH)) {
 			if (!@mkdir(JOMRES_COREPLUGINS_ABSPATH)) {
-				$this->setMessage('Error, unable to make folder '.'core-plugins'.JOMRES_COREPLUGINS_ABSPATH." automatically therefore cannot install plugins. Please create the folder manually and ensure that it's writable by the web server.", 'danger');
+				throw new Exception('Error, unable to make folder '.'core-plugins'.JOMRES_COREPLUGINS_ABSPATH." automatically therefore cannot install plugins. Please create the folder manually and ensure that it's writable by the web server.");
 			}
 		}
 
 		//remote_plugins dir
 		if (!is_dir(JOMRES_REMOTEPLUGINS_ABSPATH)) {
 			if (!@mkdir(JOMRES_REMOTEPLUGINS_ABSPATH)) {
-				$this->setMessage('Error, unable to make folder '.'remote_plugins'.JOMRES_REMOTEPLUGINS_ABSPATH." automatically therefore cannot install plugins. Please create the folder manually and ensure that it's writable by the web server.", 'danger');
+				throw new Exception('Error, unable to make folder '.'remote_plugins'.JOMRES_REMOTEPLUGINS_ABSPATH." automatically therefore cannot install plugins. Please create the folder manually and ensure that it's writable by the web server.");
 			}
 		}
 
 		//uploadedimages dir
 		if (!is_dir(JOMRES_IMAGELOCATION_ABSPATH)) {
 			if (!@mkdir(JOMRES_IMAGELOCATION_ABSPATH)) {
-				$this->setMessage('Error, unable to make folder '.JOMRES_IMAGELOCATION_ABSPATH." automatically therefore cannot upload images. Please create the folder manually and ensure that it's writable by the web server.", 'danger');
+				throw new Exception('Error, unable to make folder '.JOMRES_IMAGELOCATION_ABSPATH." automatically therefore cannot upload images. Please create the folder manually and ensure that it's writable by the web server.");
 			}
 		}
 
@@ -523,8 +517,7 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 			}
 		}
 		catch (Exception $e) {
-			$this->setMessage('Error, unable to create default db tables.', 'danger');
-			$this->setMessage($e->getMessage(), 'danger');
+			throw new Exception('Error, unable to create default db tables. '.$e->getMessage());
 		}
 	}
 	
@@ -544,8 +537,8 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 			}
 		}
 		catch (Exception $e) {
-			$this->setMessage('Error, unable to seed default content.', 'danger');
-			$this->setMessage($e->getMessage(), 'danger');
+			throw new Exception('Error, unable to seed default content. '.$e->getMessage() );
+
 		}
 	}
 	
@@ -571,8 +564,7 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 			}
 		}
 		catch (Exception $e) {
-			$this->setMessage('Error, unable to run core plugins installation scripts.', 'danger');
-			$this->setMessage($e->getMessage(), 'danger');
+			throw new Exception('Error, unable to run core plugins installation scripts. '.$e->getMessage() );
 		}
 		
 		//search all core-plugins and run their installation scripts
@@ -584,8 +576,7 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 			}
 		}
 		catch (Exception $e) {
-			$this->setMessage('Error, unable to run remote plugins installation scripts.', 'danger');
-			$this->setMessage($e->getMessage(), 'danger');
+			throw new Exception('Error, unable to run remote plugins installation scripts. '.$e->getMessage());
 		}
 	}
 	
@@ -610,8 +601,7 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 			}
 		} 
 		catch (Exception $e) {
-			$this->setMessage('Error, unable to run updates.', 'danger');
-			$this->setMessage($e->getMessage(), 'danger');
+			throw new Exception($e->getMessage());
 		}
 	}
 	
@@ -631,8 +621,7 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 			}
 		}
 		catch (Exception $e) {
-			$this->setMessage('Error, unable to run legacy updates.', 'danger');
-			$this->setMessage($e->getMessage(), 'danger');
+			throw new Exception($e->getMessage());
 		}
 	}
 	
@@ -648,41 +637,41 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 	{
 		//copy property feature icons
 		if (!$this->performCopy(JOMRES_ROOT_DIRECTORY.'/assets/images/icons/pfeatures/', JOMRES_ROOT_DIRECTORY.'/uploadedimages/pfeatures/')) {
-			$this->setMessage('Error, unable to copy property feature icons', 'danger');
+			throw new Exception('Error, unable to copy property feature icons');
 		}
 		
 		if (!$this->performCopy(JOMRES_ROOT_DIRECTORY.'/assets/images/icons/pfeatures/', JOMRES_ROOT_DIRECTORY.'/uploadedimages/pfeatures/medium/')) {
-			$this->setMessage('Error, unable to copy property feature medium icons', 'danger');
+			throw new Exception('Error, unable to copy property feature medium icons');
 		}
 		
 		if (!$this->performCopy(JOMRES_ROOT_DIRECTORY.'/assets/images/icons/pfeatures/', JOMRES_ROOT_DIRECTORY.'/uploadedimages/pfeatures/thumbnail/')) {
-			$this->setMessage('Error, unable to copy property feature thumbnail icons', 'danger');
+			throw new Exception('Error, unable to copy property feature thumbnail icons');
 		}
 		
 		//copy room type icons
 		if (!$this->performCopy(JOMRES_ROOT_DIRECTORY.'/assets/images/icons/rmtypes/', JOMRES_ROOT_DIRECTORY.'/uploadedimages/rmtypes/')) {
-			$this->setMessage('Error, unable to room type icons', 'danger');
+			throw new Exception('Error, unable to copy room type icons');
 		}
 		
 		if (!$this->performCopy(JOMRES_ROOT_DIRECTORY.'/assets/images/icons/rmtypes/', JOMRES_ROOT_DIRECTORY.'/uploadedimages/rmtypes/medium/')) {
-			$this->setMessage('Error, unable to room type medium icons', 'danger');
+			throw new Exception('Error, unable to copy medium room type medium icons');
 		}
 		
 		if (!$this->performCopy(JOMRES_ROOT_DIRECTORY.'/assets/images/icons/rmtypes/', JOMRES_ROOT_DIRECTORY.'/uploadedimages/rmtypes/thumbnail/')) {
-			$this->setMessage('Error, unable to room type thumbnail icons', 'danger');
+			throw new Exception('Error, unable to copy small room type medium icons');
 		}
 		
 		//copy markers
 		if (!$this->performCopy(JOMRES_ROOT_DIRECTORY.'/assets/images/markers/', JOMRES_ROOT_DIRECTORY.'/uploadedimages/markers/')) {
-			$this->setMessage('Error, unable to copy marker icons', 'danger');
+			throw new Exception('Error, unable to copy marker icons');
 		}
 		
 		if (!$this->performCopy(JOMRES_ROOT_DIRECTORY.'/assets/images/markers/', JOMRES_ROOT_DIRECTORY.'/uploadedimages/markers/medium/')) {
-			$this->setMessage('Error, unable to copy marker medium icons', 'danger');
+			throw new Exception('Error, unable to copy marker medium icons');
 		}
 		
 		if (!$this->performCopy(JOMRES_ROOT_DIRECTORY.'/assets/images/markers/', JOMRES_ROOT_DIRECTORY.'/uploadedimages/markers/thumbnail/')) {
-			$this->setMessage('Error, unable to copy marker thumbnail icons', 'danger');
+			throw new Exception('Error, unable to copy marker thumbnail icons');
 		}
 	}
 	
@@ -710,9 +699,7 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 					}
 				}
 				catch (Exception $e) {
-					$this->setMessage('Error, unable to copy ' . 'local://'.$fileNode['path'] . ' to ' . 'local://'.$target.$fileNode['basename'], 'danger');
-					
-					return false;
+					throw new Exception('Error, unable to copy ' . 'local://'.$fileNode['path'] . ' to ' . 'local://'.$target.$fileNode['basename']);
 				}
 			}
 		}
@@ -763,7 +750,7 @@ if (!defined('JOMRES_ROOT_DIRECTORY')) {
 		foreach ($result as $r) {
 			$query = 'DROP TABLE IF EXISTS '.$r->TABLE_NAME;
 			if (!doInsertSql($query, '')) {
-				$this->setMessage( 'Error, unable to drop table '.$r->TABLE_NAME);
+				throw new Exception('Error, unable to drop table '.$r->TABLE_NAME);
 			}
 		}
 

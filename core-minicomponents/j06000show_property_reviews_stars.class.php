@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -92,10 +92,11 @@ class j06000show_property_reviews_stars
 
 		$output[ 'RATING_STARS' ] = '';
 		for ($i = 1; $i <= floor($output[ 'AVERAGE_RATING' ]); ++$i) {
-			$output[ 'RATING_STARS' ] .= '<i class="fa fa-star" aria-hidden="true"></i> ';
+			$output[ 'RATING_STARS' ] .= simple_template_output(JOMRES_TEMPLATEPATH_FRONTEND, $template = 'review_star_icon.html', '');
 		}
 
-		$output[ 'ONE_STAR' ] = '<i class="fa fa-star" aria-hidden="true"></i> ';
+		$output[ 'ONE_STAR' ] = simple_template_output(JOMRES_TEMPLATEPATH_FRONTEND, $template = 'review_star_icon.html', '');;
+
 
 		$output['RATING_TEXT_COLOUR'] = 'text-success';
 		if ( $output[ 'AVERAGE_RATING' ] >= 5 && $output[ 'AVERAGE_RATING' ] < 7 ) {

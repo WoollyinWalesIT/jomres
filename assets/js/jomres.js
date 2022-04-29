@@ -1301,3 +1301,21 @@ function jomres_print(div) {
 	jomresJquery('body').css('visibility','visible');
 }
 
+document.addEventListener('DOMContentLoaded', function(){
+	jomresJquery(function(){
+		jomresJquery('.readmore-wrapper').expander({
+			expandText: jomres_javascript_readmore,
+			userCollapseText: jomres_javascript_readless,
+			slicePoint: 200,
+			showWordCount: false,
+			wordCountText: ' ({{count}} words)',
+			preserveWords: true,
+			expandEffect: 'fadeIn',
+			expandSpeed: 800,
+			collapseEffect: 'slideUp',
+			collapseSpeed: 400,
+			moreLinkClass: 'link-secondary',
+			lessLinkClass: 'link-secondary',
+		});
+	});
+});

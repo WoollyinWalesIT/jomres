@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Translation to fr-FR by Stéphane Bernard, Valtari NumAgency, France - 03/07/2019 - https://www.valtari.fr
@@ -240,3 +240,9 @@ jr_define('_JOMRES_SHORTCODES_06001DASHBOARD', 'Tableau de bord général');
 jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES', 'Shows a list of syndicated properties');
 jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_LIMIT', 'The number of syndicated properties to show');
 jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'Whether to show MRPs (hotels/bed & breakfasts) or SRPs (cottages/apartments/villas). Default is determinded from the current property\'s property uid, if that is not available, then MRPs are shown. To choose a specific type, set this value to 0 for srps, or 1 for mrps.');
+
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS', "Affiche les étoiles d'une propriété. Celles-ci sont définies dans la configuration de la propriété, si la propriété est un MRP.");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_PROPERTY_UID', 'ID de la propriété.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Facultatif. Si l\'ID de la propriété n\'est pas défini, vous pouvez passer un numéro à la place.');
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Facultatif. Autre chemin d\'accès au modèle. Ne peut pas être transmis via l\'URL. Doit être absolu.');
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Facultatif. Nom de modèle alternatif.');

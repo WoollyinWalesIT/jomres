@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -54,9 +54,9 @@ class j16000showplugins
 		
 		$force_plugin_manager_reinstallation = false;
 
-		if (isset($MiniComponents->registeredClasses['16000']['showplugins']['real_filepath'])) { // admin.php has found that the installed version of the plugin manager is 1.8 or less, and has forced us to run the Core plugin manager script, not the plugin version.
-			if (file_exists($MiniComponents->registeredClasses['16000']['showplugins']['real_filepath']."plugin_info.php") ) {
-				require_once($MiniComponents->registeredClasses['16000']['showplugins']['real_filepath']."plugin_info.php");
+		if (isset($MiniComponents->registeredClasses['16000']['showplugins']['filepath'])) { // admin.php has found that the installed version of the plugin manager is 1.8 or less, and has forced us to run the Core plugin manager script, not the plugin version.
+			if (file_exists($MiniComponents->registeredClasses['16000']['showplugins']['filepath']."plugin_info.php") ) {
+				require_once($MiniComponents->registeredClasses['16000']['showplugins']['filepath']."plugin_info.php");
 				$plugin_info_plugin_manager = new plugin_info_plugin_manager();
 				$bang = explode("." , $plugin_info_plugin_manager->data['version'] );
 				if ( $bang [0] <= 3 ) {
@@ -65,6 +65,8 @@ class j16000showplugins
 					}
 				}
 			}
+		} else {
+			$force_plugin_manager_reinstallation = true;
 		}
 
 		$key_validation = jomres_singleton_abstract::getInstance('jomres_check_support_key');

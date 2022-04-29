@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -93,6 +93,12 @@ class jomres_generic_booking_email
 				$this->data[$contract_uid]['TARIFFS'] .= $rd[ 'rate_title' ].'; ';
 			}
 		}
+
+		// Numbers of adults and children
+		$this->data[$contract_uid]['LABEL_ADULTS']		= jr_gettext('_JOMRES_SEARCH_FORM_ADULTS', '_JOMRES_SEARCH_FORM_ADULTS' , false );
+		$this->data[$contract_uid]['LABEL_CHILDREN']	= jr_gettext('_JOMRES_SEARCH_FORM_CHILDREN', '_JOMRES_SEARCH_FORM_CHILDREN' , false );
+		$this->data[$contract_uid]['NUMBER_ADULTS'] = $current_contract_details->contract[$contract_uid]['contractdeets']['adults'];
+		$this->data[$contract_uid]['NUMBER_CHILDREN'] = $current_contract_details->contract[$contract_uid]['contractdeets']['children'];
 
 		//guest details
 		$this->data[$contract_uid]['FIRSTNAME'] = $current_contract_details->contract[$contract_uid]['guestdeets']['firstname'];

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1829,7 +1829,7 @@ jr_define ('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Vaš ključ za podršku 
 jr_define ('_JOMRES_DASHBOARD_DRAG_TRASH', 'Povucite rezervacije u ovo područje da biste ih otkazali');
 jr_define ('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define ('_JOMRES_LONG', 'Long (nn.nnnn)');
-jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Molimo provjerite jeste li stvorili WordPress stranicu koja sadrži kratki kôd [jomres: xx-XX] (gdje je xx-XX kôd jezika vaše web stranice, na primjer [jomres: en-GB] ili [ jomres: hr-US]) inače nećete moći pristupiti Jomresu sa sučelja za upravljanje svojim nekretninama i rezervacijama. <br> Jomres je izgrađen na okviru Bootstrap, pa ga morate koristiti na temi temeljenoj na Bootstrapu. preporučite jednu temeljenu na Bootstrapu 3. Ako nemate pristup temi, preporučujemo da koristite temu Jomresa Leohtiana za Wordpress koju možete <a href = "https://www.jomres.net/download/free- downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target ="_blank"> preuzmite odavde. </a> ');
+jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Molimo provjerite jeste li stvorili WordPress stranicu koja sadrži kratki kôd [jomres: xx-XX] (gdje je xx-XX kôd jezika vaše web stranice, na primjer [jomres: en-GB] ili [ jomres: hr-US]) inače nećete moći pristupiti Jomresu sa sučelja za upravljanje svojim nekretninama i rezervacijama. ');
 jr_define ('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', 'Većina nekretnina u Jomresu ima proces upravljanja najmom. Hoteli/pansioni/pansioni iznajmljuju pojedinačne sobe, a vikendice/vile/apartmani iznajmljuju cijelu nekretninu. To je za upravitelja nevidljivo, ali za njih da biste mogli stvoriti tarife za njihovu nekretninu, najprije morate dodati vrste soba koje odgovaraju tipu nekretnine.
 Na primjer, za hotelsku nekretninu obično je potrebno nekoliko tipova soba (dvokrevetne sobe, jednokrevetne sobe i blizanci), dok vila može imati samo jedan tip sobe, npr. 2 spavaće sobe, 5 spavaćih soba.
 Moguće je stvoriti tipove soba za nekretnine poput Toursa. To omogućuje korisnicima da pretražuju nekretnine kao što su samo obilasci, ali Upravitelj nekretnina neće stvarati tarife za ovu vrstu nekretnine, tako da proces upravljanja za njih nije relevantan.
@@ -2236,7 +2236,7 @@ jr_define ('_JOMRES_LOGIN_RESET_BUTTON', 'Zaboravili ste lozinku?');
 
 jr_define ('_JOMRES_REVIEWS_ANONYMISE', 'Anonimizirati svoje ime?');
 jr_define ('_JOMRES_REVIEWS_ANONYMISE_DESC', 'Ako odlučite anonimizirati svoje ime prilikom pregleda, umjesto toga ćemo koristiti vaše inicijale.');
-jr_define ('ANONIMNO', 'Anon');
+jr_define ('ANONYMOUS', 'Anon');
 
 jr_define ('_JOMRES_REVIEWS_REPLY_SAID', 'rekao');
 jr_define ('_JOMRES_REVIEWS_REPLY_OPPORTUNITY', 'Odgovori na ovu recenziju');
@@ -2727,3 +2727,25 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Slike vrst
 
 	jr_define('JOMRES_UPDATES_TITLE', 'Jomres ažuriranja');
 	jr_define('JOMRES_UPDATES_INFO', "Ova stranica može preuzeti i instalirati najnoviju verziju Jomresa za vas. Ona koristi vlastitu funkcionalnost, a ne funkcionalnost CMS-a domaćina, stoga ako dođe do problema tijekom ažuriranja CMS-a hosta možete koristiti ovu stranicu za prisiliti ponovnu instalaciju najnovije verzije Jomresa.");
+
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'Upravitelji nekretninama mogu koristiti način uređivanja u prednjem dijelu za prilagodbu nizova za svako svojstvo, međutim ovo može funkcionirati samo ako je vaša postavka stalne veze u WordPressu postavljena na Plain (http://www.domain.com/?p=123). Nakon što to učinite, korisnici će moći prilagoditi nizove, kao što su nazivi prostorija i druge oznake, koje su specifične za jedinstvena svojstva. ');
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', 'Način uređivanja oznaka');
+	jr_define('JOMRES_EDITING_MODE_HELP_LEAD', 'Ova značajka se koristi za promjenu oznaka stavki, obično na različite jezike.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', 'Način uređivanja omogućuje vam da preimenujete oznake koje su jedinstvene za pojedinačna svojstva. Kada koristite način uređivanja za preimenovanje oznake, promjena će se pojaviti samo na tom popisu svojstava. Na primjer, na jednom svojstvu koje biste možda željeli koristiti riječ "Cijene", a na drugoj riječ "Cijene". Ne mogu se mijenjati sve oznake, na primjer nazivi vrsta soba su oznake za cijelu web-lokaciju, tako da se ne mogu mijenjati, ali obično sve što je jedinstveno za pojedinačnu nekretninu može se promijeniti.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', 'Ako web-mjesto podržava više jezika, dok koristite jedan jezik, možete stvoriti stavku koja je jedinstvena za pojedinačna svojstva. Kada zatim promijenite svoj aktivni jezik, možete koristiti način uređivanja za preimenovanje te oznake, unos prikladnog prijevoda na trenutnom jeziku. Možete nastaviti mijenjati aktivni jezik da biste unijeli prikladan prijevod za tu oznaku za svaki jezik koji stranica podržava.');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'Prekidač načina za uređivanje oznaka');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'Na ovoj snimci zaslona vidimo prekidač načina uređivanja. Način uređivanja je ISKLJUČEN i oznake se pojavljuju kao normalno: ');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'Omogućen način za uređivanje oznaka');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'Na ovoj snimci zaslona vidimo da su oznake koje možete preimenovati označene, dok ste u načinu za uređivanje:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', 'Odaberite stavku koju želite promijeniti');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'Kada je oznaka odabrana, pojavljuje se skočni prozor:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'Promijeni oznaku');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Upotrijebite mali obrazac za promjenu oznake. Kliknite kvačicu za završetak ili kliknite X za odustajanje od uređivanja:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Oznaka promijenjena');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Nakon što spremite promjenu, oznaka se ažurira na stranici. Sada možete onemogućiti način uređivanja:');
+
+	jr_define('JOMRES_TRANSLATIONS_TITLE', 'Prijevodi');
+	jr_define('JOMRES_TRANSLATIONS_LEAD', 'Na ovoj stranici možete prevesti oznake s jednog jezika na drugi. Kada posjetite stranicu vidjet ćete nizove koje ste već kreirali i njihovu vrijednost na jeziku koji trenutno koristite. Na vrhu postavite ciljni jezik, zatim za oznake koje želite prevesti, kliknite na oznaku i skočni prozor će vam omogućiti da unesete svoj novi prijevod. Za duže retke teksta možete zalijepiti tekst iz drugog izvora. Imajte na umu da će svaki HTML biti uklonjen .<br/>
+Možete ostaviti ciljni jezik postavljen na vaš trenutni jezik i koristiti ovu stranicu za preimenovanje stavki ovdje, umjesto da posjećujete njihove pojedinačne stranice.');
+	jr_define('JOMRES_TARGET_LANGUAGE', 'Ciljni jezik');

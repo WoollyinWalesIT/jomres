@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -50,7 +50,7 @@ class j02990showconfirmation
 		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 		
 		$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
-		
+
 		$paypal_settings = jomres_singleton_abstract::getInstance('jrportal_paypal_settings');
 		$paypal_settings->get_paypal_settings();
 
@@ -107,6 +107,42 @@ class j02990showconfirmation
 
 		$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
 		$current_property_details->gather_data($property_uid);
+
+		// Adult and child fields may be populated if the manager uses Standard tariff editing mode.
+		// If they are not populated, we'll look for Variances instead (old style guest types). If those are populated, we will update the booking engine's temp booking data with adult and child numbers.
+
+		$adults = (int)$tmpBookingHandler->tmpbooking['standard_guest_numbers'] + $tmpBookingHandler->tmpbooking['extra_guest_numbers'];
+		$children = 0;
+		if (!empty($tmpBookingHandler->tmpbooking['child_numbers'])) {
+			foreach ($tmpBookingHandler->tmpbooking['child_numbers'] as $child_type) {
+				$children = $children + (int)$child_type;
+			}
+		}
+
+		if ($adults == 0 && $children == 0) {
+			$basic_guest_type_details = jomres_singleton_abstract::getInstance('basic_guest_type_details');
+			$basic_guest_type_details->get_all_guest_types($property_uid);
+
+
+			if ($tmpBookingHandler->tmpbooking['variancetypes'] != '' && $tmpBookingHandler->tmpbooking['varianceuids'] != '') { // Let's make sure some variances actually exist
+				$bang_guest_type_ids = explode(",", $tmpBookingHandler->tmpbooking['varianceuids']);
+				$bang_guest_type_quantities = explode(",", $tmpBookingHandler->tmpbooking['varianceqty']);
+				foreach ($bang_guest_type_ids as $key => $guest_type_id) {
+					if (array_key_exists($guest_type_id, $basic_guest_type_details->guest_types)) {
+						$quantity = $bang_guest_type_quantities[$key];
+						if ($basic_guest_type_details->guest_types[$guest_type_id]['is_child'] == '1') {
+							$children = $children + $quantity;
+						} else {
+							$adults = $adults + $quantity;
+						}
+					}
+				}
+				$tmpBookingHandler->tmpbooking['standard_guest_numbers']	= $adults;
+				$tmpBookingHandler->tmpbooking['extra_guest_numbers']		= 0;
+				$tmpBookingHandler->tmpbooking['child_numbers'][0]			=  $children;
+			}
+		}
+
 
 		if ($amend_contract) {
 			$amend_contractuid = $tmpBookingHandler->getBookingFieldVal('amend_contractuid');
@@ -558,14 +594,14 @@ class j02990showconfirmation
 		$gateways = array();
 		
 		if ((int)$mrConfig['requireApproval'] == 0 || $secret_key_payment) {
-			if (!$thisJRUser->userIsManager) {
+			if (!$thisJRUser->userIsManager || $jrConfig[ 'development_production' ] != 'production' ) { // If we are in Production mode, managers cannot pay themselves, but we will allow it in Development
 				$gateway_output = array();
 				$gwo = array();
 
 				jr_import("gateway_plugin_settings");
 				$plugin_settings = new gateway_plugin_settings();
 				$plugin_settings->get_settings_for_property_uid( $property_uid );
-				
+
 				if (!empty($plugin_settings->gateway_settings) ) {
 					$counter = 1;
 					foreach ($plugin_settings->gateway_settings as $gateway_name => $gateway) {
@@ -580,24 +616,37 @@ class j02990showconfirmation
 								}
 							$result = $MiniComponents->specificEvent('03108', $gateway_name, null);
 
-							if (count($result) > 1) {
+							if ($result !== false ) {
+								if (count($result) > 1) {
 									$gw[ 'GWNAME' ] = $result[ 'gatewayname' ];
 									$tmpgatewaydir = $result[ 'filepath' ];
 								} else {
 									$gw[ 'GWNAME' ] = $gateway_name;
 									$tmpgatewaydir = $result;
-									}
+								}
 								$gw[ 'GWNAME_INTERNAL' ] = $gateway_name;
 								$gw[ 'GWINPUT' ] = '<input type="radio" id="'.$gateway_name.'" name="plugin" value="'.$gateway_name.'" '.$checked.' /> '.$gw[ 'GWNAME' ];
 								$gatewaydir = str_replace(JOMRESCONFIG_ABSOLUTE_PATH, get_showtime('live_site').'/', $tmpgatewaydir);
 								$gatewaydir = str_replace('\\', '/', $gatewaydir);
-								$gw[ 'GWIMAGE' ] = '<img src="'.$gatewaydir.'j00510'.$gateway_name.'.gif" border="0">';
+
+								if (file_exists( $result[ 'filepath' ].'j00510'.$gateway_name.'.gif' )) {
+									$gw[ 'GWIMAGE' ] = '<img src="'.$gatewaydir.'j00510'.$gateway_name.'.gif" border="0"  width="200" alt="'.$gateway_name.' logo" >';
+								} elseif (file_exists( $result[ 'filepath' ].'j00510'.$gateway_name.'.png')) {
+									$gw[ 'GWIMAGE' ] = '<img src="'.$gatewaydir.'j00510'.$gateway_name.'.png" border="0"  width="200" alt="'.$gateway_name.' logo">';
+								} elseif (file_exists( $result[ 'filepath' ].'j00510'.$gateway_name.'.jpg' )) {
+									$gw[ 'GWIMAGE' ] = '<img src="'.$gatewaydir.'j00510'.$gateway_name.'.jpg" border="0"  width="200" alt="'.$gateway_name.' logo">';
+								} else {
+									$gw[ 'GWIMAGE' ] = '<img src="'.JOMRES_IMAGES_RELPATH.'noimage.gif" border="0"  width="200" alt="No logo found">';
+								}
+
 
 								if (isset($MiniComponents->registeredClasses['00509'][$gateway_name])) { // Let's check that the site manager hasn't uninstalled the plugin. If count == 0, then they have, we don't want to attempt to show this gateway
 									$gateways[ ] = $gw;
-									}
+								}
 								++$counter;
 							}
+							}
+
 						}
 					}
 
@@ -705,6 +754,10 @@ class j02990showconfirmation
 		$componentArgs = array('booking_parts' => $booking_parts);
 		// Trigger point. Not currently used, but available if somebody wants a trigger point after the confirm booking phase
 		$MiniComponents->triggerEvent('03010', $componentArgs);
+
+		$tmpBookingHandler->close_jomres_session();  // This ensures that the new guest numbers, if they have been added, are saved to the session.
+
+
 	}
 
 

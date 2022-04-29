@@ -67,6 +67,11 @@ a.fc-event, .fc-event-draggable {
 .blockUI h1 {
 	font-size:16px;
 }
+
+.modal-lg {
+	max-width: 80%;
+}
+
 </style>
 
 <script type='text/javascript'>
@@ -658,13 +663,11 @@ function get_email_address_not_already_in_use() {
 
 <form action="{JOMRES_SITEPAGE_URL_AJAX}&task=dashboard_insertbooking_ajax" method="get" id="blackBookingForm" role="form">
 <div id="blackBookingModal" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
-	<div class="modal-dialog" role="document">
+	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h1 class="modal-title">{HQUICK_BOOKING}</h1>
-				<button type="button" class="close" data-bs-toggle="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
 			</div>
 			<div class="modal-body">

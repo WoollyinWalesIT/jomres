@@ -59,9 +59,7 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 			$http = Joomla\CMS\Http\HttpFactory::getHttp();
 		}
 		catch (Exception $e) {
-			JError::raiseWarning(null, 'Jomres requires minimum Joomla version 3.8 to run. Please update Joomla first.');
-
-			return false;
+			throw new \Exception( 'Jomres requires minimum Joomla version 3.8 to run. Please update Joomla first.', 500);
 		}
 		
 		//check disk space
@@ -107,9 +105,7 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 		//was the package downloaded?
 		if (!$archivename)
 		{
-			JError::raiseWarning(null, 'Something went wrong downloading Jomres. Quitting');
-
-			return false;
+			throw new \Exception( 'Something went wrong downloading Jomres. Quitting', 500);
 		}
 		
 		//clean the archive name
@@ -132,9 +128,7 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 		} 
 		catch (Exception $e)
 		{
-			JError::raiseWarning(null, 'Something went wrong when trying to create dir ' . $extraction_path);
-
-			return false;
+			throw new \Exception( 'Something went wrong when trying to create dir ' . $extraction_path, 500);
 		}
 		
 		//create /jomres dir
@@ -144,8 +138,7 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 		} 
 		catch (Exception $e)
 		{
-			JError::raiseWarning(null, 'Something went wrong when trying to create dir ' . $jomres_path . '. Using FTP, create the directory manually then re-run the installer, many times this will solve the problem.');
-
+			throw new \Exception( 'Something went wrong when trying to create dir ' . $jomres_path . '. Using FTP, create the directory manually then re-run the installer, many times this will solve the problem.', 500);
 			return false;
 		}
 
@@ -158,16 +151,13 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 		}
 		catch (Exception $e)
 		{
-			JError::raiseWarning(null, 'Something went wrong when trying to unzip the archive.');
+			throw new \Exception( 'Something went wrong when trying to unzip the archive.', 500);
 
-			return false;
 		}
 
 		if (!$extract)
 		{
-			JError::raiseWarning(null, 'Something went wrong when unzipping the archive.');
-
-			return false;
+			throw new \Exception(  'Something went wrong when unzipping the archive.', 500);
 		}
 		
 		//move the extracted files to /jomres dir
@@ -177,9 +167,7 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 		} 
 		catch (Exception $e)
 		{
-			JError::raiseWarning(null, 'Something went wrong when trying to move the extracted Jomres files.');
-
-			return false;
+			throw new \Exception(  'Something went wrong when trying to move the extracted Jomres files.', 500);
 		}
 		
 		//cleanup the extracted files
@@ -189,9 +177,7 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 		}
 		catch (Exception $e)
 		{
-			JError::raiseWarning(null, 'Something went wrong when trying to cleanup jomres tmp files.');
-
-			return false;
+			throw new \Exception(  'Something went wrong when trying to cleanup jomres tmp files.', 500);
 		}
 	}
 	 	
@@ -216,6 +202,10 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 			}
 		}
 
+		if (!file_exists(JPATH_ROOT . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY . '/libraries/jomres/classes/jomres_install.class.php')) {
+			throw new \Exception("Jomres installer class does not exist. It is possible that the Jomres.zip file downloaded during the installation process was not unzipped properly. One possible cause is that this hosting account has run out of disk space.", 500);
+		}
+
 		try {
 			require_once JPATH_ROOT . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY . '/libraries/jomres/classes/jomres_install.class.php';
 
@@ -224,13 +214,11 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 			$messages = $jomres_install->getMessages();
 
 			foreach ($messages as $m) {
-				JError::raiseWarning(null, $m);
+				throw new \Exception($m, 500);
 			}
 		}
 		catch (Exception $e) {
-			JError::raiseWarning(null, 'Something went wrong when running the Jomres installation script.');
-
-			return false;
+			throw new \Exception('Something went wrong when running the Jomres installation script.', 500);
 		}
 	}
  	
@@ -255,6 +243,10 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 			}
 		}
 
+		if (!file_exists(JPATH_ROOT . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY . '/libraries/jomres/classes/jomres_install.class.php')) {
+			throw new \Exception("Jomres installer class does not exist. It is possible that the Jomres.zip file downloaded during the installation process was not unzipped properly. One possible cause is that this hosting account has run out of disk space.", 500);
+		}
+
 		try {
 			require_once JPATH_ROOT . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY . '/libraries/jomres/classes/jomres_install.class.php';
 
@@ -263,13 +255,11 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 			$messages = $jomres_install->getMessages();
 
 			foreach ($messages as $m) {
-				JError::raiseWarning(null, $m);
+				throw new \Exception($m, 500);
 			}
 		}
 		catch (Exception $e) {
-			JError::raiseWarning(null, 'Something went wrong when running the Jomres installation script.');
-
-			return false;
+			throw new \Exception('Something went wrong when updating', 500);
 		}
 	}
  	
@@ -294,6 +284,10 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 			}
 		}
 
+		if (!file_exists(JPATH_ROOT . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY . '/libraries/jomres/classes/jomres_install.class.php')) {
+			throw new \Exception("Jomres installer class does not exist. It is possible that Jomres has already been partially uninstalled. If so, you will need to finish the uninstallation manually by removing the com_jomres directories in both the /administrator/components and /components directories", 500);
+		}
+
 		try {
 			require_once JPATH_ROOT . DIRECTORY_SEPARATOR . JOMRES_ROOT_DIRECTORY . '/libraries/jomres/classes/jomres_install.class.php';
 
@@ -302,13 +296,11 @@ class com_jomresInstallerScript //http://joomla.stackexchange.com/questions/5687
 			$messages = $jomres_install->getMessages();
 
 			foreach ($messages as $m) {
-				JError::raiseWarning(null, $m);
+				throw new \Exception($m, 500);
 			}
 		}
 		catch (Exception $e) {
-			JError::raiseWarning(null, 'Something went wrong when running the Jomres installation script.');
-
-			return false;
+			throw new \Exception('Something went wrong when uninstalling', 500);
 		}
 	}
  	

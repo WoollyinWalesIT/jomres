@@ -6,7 +6,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
  * Core file
  *
  * @author Vince Wooll <sales@jomres.net>
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  * @package Jomres
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
@@ -120,7 +120,7 @@ class patTemplate_Reader_Jomres extends patTemplate_Reader
 			}
 		elseif (this_cms_is_wordpress())
 			{
-			$override_path = get_template_directory() . JRDS . 'html' . JRDS . 'com_jomres';
+			$override_path = get_theme_file_path() . JRDS . 'html' . JRDS . 'com_jomres';
 
 			//ptype specific override_path
 			if ( $ptype_id > 0 )
@@ -138,9 +138,10 @@ class patTemplate_Reader_Jomres extends patTemplate_Reader
 					$override_path = get_template_directory() . JRDS . 'html' . JRDS . $name;
 				} */
 			}
-			
+
 		if ($override_path != '' && is_dir($override_path))
 			{
+
 			if (is_file( $override_path . JRDS . $jomres_template_name ) )
 				{
 				set_showtime('override_path_'.$jomres_template_name, $override_path);

@@ -381,7 +381,7 @@ class patTemplate
 				$this->setTags( '{', '}' );
 				break;
 			default:
-				return patErrorManager::raiseWarning( PATTEMPLATE_WARNING_UNKNOWN_TYPE, "Unknown type '$type'. Please use 'html' or 'tex'." );
+				throw new Exception("PatTemplate Error : Unknown type '$type'. Please use 'html' or 'tex'." );
 		}
 		return true;
 		}
@@ -466,7 +466,7 @@ class patTemplate
 		$template = strtolower( $template );
 		if ( !isset( $this->_templates[ $template ] ) )
 			{
-			return patErrorManager::raiseWarning( PATTEMPLATE_WARNING_NO_TEMPLATE, "Template '$template' does not exist." );
+				throw new Exception("PatTemplate Error : Template '$template' does not exist." );
 			}
 
 		$attribute                                                   = strtolower( $attribute );
@@ -490,14 +490,14 @@ class patTemplate
 		{
 		if ( !is_array( $attributes ) )
 			{
-			return patErrorManager::raiseError( PATTEMPLATE_ERROR_EXPECTED_ARRAY, 'patTemplate::setAttributes: Expected array as second parameter, ' . gettype( $attributes ) . ' given' );
+				throw new Exception('PatTemplate Error : patTemplate::setAttributes: Expected array as second parameter, ' . gettype( $attributes ) . ' given' );
 			}
 
 		$template   = strtolower( $template );
 		$attributes = array_change_key_case( $attributes );
 		if ( !isset( $this->_templates[ $template ] ) )
 			{
-			return patErrorManager::raiseWarning( PATTEMPLATE_WARNING_NO_TEMPLATE, "Template '$template' does not exist." );
+				throw new Exception("PatTemplate Error : Template '$template' does not exist." );
 			}
 
 		$this->_templates[ $template ][ 'attributes' ] = array_merge( $this->_templates[ $template ][ 'attributes' ], $attributes );
@@ -517,7 +517,7 @@ class patTemplate
 		$template = strtolower( $template );
 		if ( !isset( $this->_templates[ $template ] ) )
 			{
-			return patErrorManager::raiseWarning( PATTEMPLATE_WARNING_NO_TEMPLATE, "Template '$template' does not exist." );
+				throw new Exception("PatTemplate Error : Template '$template' does not exist." );
 			}
 
 		return $this->_templates[ $template ][ 'attributes' ];
@@ -540,7 +540,7 @@ class patTemplate
 		$attribute = strtolower( $attribute );
 		if ( !isset( $this->_templates[ $template ] ) )
 			{
-			return patErrorManager::raiseWarning( PATTEMPLATE_WARNING_NO_TEMPLATE, "Template '$template' does not exist." );
+				throw new Exception("PatTemplate Error : Template '$template' does not exist." );
 			}
 
 		return $this->_templates[ $template ][ 'attributes' ][ $attribute ];
@@ -563,7 +563,7 @@ class patTemplate
 
 		if ( !isset( $this->_templates[ $template ] ) )
 			{
-			return patErrorManager::raiseWarning( PATTEMPLATE_WARNING_NO_TEMPLATE, "Template '$template' does not exist." );
+				throw new Exception("PatTemplate Error : Template '$template' does not exist." );
 			}
 		$this->_templates[ $template ][ 'attributes' ][ $attribute ] = '';;
 
@@ -1111,7 +1111,7 @@ class patTemplate
 		$template = strtolower( $template );
 		if ( !$this->exists( $template ) )
 			{
-			return patErrorManager::raiseWarning( PATTEMPLATE_WARNING_NO_TEMPLATE, 'The selected template does not exist' );
+				throw new Exception('PatTemplate Error : PatTemplate Error : The selected template does not exist' );
 			}
 		$this->_templates[ $template ][ 'attributes' ][ 'outputfilter' ] = & $filter;
 
@@ -1179,7 +1179,7 @@ class patTemplate
 		//echo $input."<br>";
 		if ( (string) $input === '' )
 			{
-			return patErrorManager::raiseError( PATTEMPLATE_ERROR_NO_INPUT, 'No input to read has been passed.' );
+			throw new Exception('PatTemplate Error : No input to read has been passed.');
 			}
 
 		if ( is_array( $options ) )
@@ -1483,7 +1483,7 @@ class patTemplate
 		$template = strtolower( $template );
 		if ( !isset( $this->_templates[ $template ] ) )
 			{
-			return patErrorManager::raiseWarning( PATTEMPLATE_WARNING_NO_TEMPLATE, "Template '$template' does not exist." );
+			throw new Exception("PatTemplate Error : Template '$template' does not exist.");
 			}
 
 		if ( $this->_templates[ $template ][ 'loaded' ] === true ) return true;
@@ -1536,7 +1536,7 @@ class patTemplate
 			$file = sprintf( '%s/Module.php', $this->getIncludePath() );
 			if ( !@include_once $file )
 				{
-				return patErrorManager::raiseError( PATTEMPLATE_ERROR_BASECLASS_NOT_FOUND, 'Could not load module base class.' );
+				throw new Exception('PatTemplate Error : Could not load module base class.');
 				}
 			}
 
@@ -1547,7 +1547,7 @@ class patTemplate
 			$baseFile = sprintf( '%s/%s.php', $this->getIncludePath(), $moduleType );
 			if ( !@include_once $baseFile )
 				{
-				return patErrorManager::raiseError( PATTEMPLATE_ERROR_BASECLASS_NOT_FOUND, "Could not load base class for $moduleType ($baseFile)." );
+					throw new Exception("PatTemplate Error : Could not load base class for $moduleType ($baseFile).");
 				}
 			}
 
@@ -1579,13 +1579,13 @@ class patTemplate
 
 			if ( !$found )
 				{
-				return patErrorManager::raiseError( PATTEMPLATE_ERROR_MODULE_NOT_FOUND, "Could not load module $moduleClass ($moduleFile)." );
+					throw new Exception("PatTemplate Error : Could not load module $moduleClass ($moduleFile)." );
 				}
 			}
 
 		if ( !class_exists( $moduleClass ) )
 			{
-			return patErrorManager::raiseError( PATTEMPLATE_ERROR_MODULE_NOT_FOUND, "Module file $moduleFile does not contain class $moduleClass." );
+				throw new Exception("PatTemplate Error : Module file $moduleFile does not contain class $moduleClass." );
 			}
 
 		$this->_modules[ $moduleType ][ $sig ] = new $moduleClass;
@@ -1682,11 +1682,11 @@ class patTemplate
 						}
 					}
 
-				return patErrorManager::raiseWarning( PATTEMPLATE_WARNING_NO_TEMPLATE, "Path to template is not set. <br/>Related to " . $this->_options[ 'root' ][ '__default' ] . " <br/>Backtrace of Jomres files <br/>" . $files );
+				throw new Exception("PatTemplate Error : Path to template is not set. <br/>Related to " . $this->_options[ 'root' ][ '__default' ] . " <br/>Backtrace of Jomres files <br/>" . $files );
 				}
 			else
 				{
-				return patErrorManager::raiseWarning( PATTEMPLATE_WARNING_NO_TEMPLATE, "Template '" . $template . "' does not exist in : " . $this->_root . "." );
+					throw new Exception("PatTemplate Error : Template '" . $template . "' does not exist in : " . $this->_root . "." );
 				}
 			}
 
@@ -2164,7 +2164,7 @@ class patTemplate
 			$depTemplate = $this->_templates[ $template ][ 'currentDependencies' ][ $i ];
 			if ( $depTemplate == $template )
 				{
-				return patErrorManager::raiseError( PATTEMPLATE_ERROR_RECURSION, 'You have an error in your template "' . $template . '", which leads to recursion' );
+					throw new Exception('PatTemplate Error : You have an error in your template "' . $template . '", which leads to recursion' );
 				}
 			$this->parseTemplate( $depTemplate, 'w', $disableAutoClear );
 			$var                                     = $this->_startTag . 'TMPL:' . strtoupper( $depTemplate ) . $this->_endTag;
@@ -2489,7 +2489,7 @@ class patTemplate
 					}
 				else
 					{
-					patErrorManager::raiseWarning( PATTEMPLATE_WARNING_NO_TEMPLATE, 'Template \'' . $scopeTemplate . '\' does not exist, referenced in varscope attribute of template \'' . $template . '\'' );
+						throw new Exception('PatTemplate Error : Template \'' . $scopeTemplate . '\' does not exist, referenced in varscope attribute of template \'' . $template . '\'' );
 					}
 				}
 			}
@@ -3045,7 +3045,7 @@ Template row index <strong>'.$key.' </strong>
 		$name = strtolower( $name );
 		if ( !isset( $this->_templates[ $name ] ) )
 			{
-			return patErrorManager::raiseWarning( PATTEMPLATE_WARNING_NO_TEMPLATE, "Template '$name' cannot be cleared, it does not exist." );
+				throw new Exception("PatTemplate Error : Template '$name' cannot be cleared, it does not exist." );
 			}
 
 		$this->_templates[ $name ][ 'parsed' ]    = false;
@@ -3112,7 +3112,7 @@ Template row index <strong>'.$key.' </strong>
 		$key  = array_search( $name, $this->_templateList );
 		if ( $key === false )
 			{
-			return patErrorManager::raiseWarning( PATTEMPLATE_WARNING_NO_TEMPLATE, "Template '$name' does not exist." );
+				throw new Exception("PatTemplate Error : Template '$name' does not exist." );
 			}
 
 		unset( $this->_templateList[ $key ] );

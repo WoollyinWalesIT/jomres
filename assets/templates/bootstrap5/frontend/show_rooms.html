@@ -3,35 +3,40 @@
 <div class="row gy-5">
 <patTemplate:tmpl name="rows">
 
-	<div class="col-sm-4">
+	<div class="col-sm-12">
 		<div class="card">
 			<a href="#" data-bs-toggle="modal" data-bs-target="#modal_{RANDOM_IDENTIFIER}"><img src="{IMAGEMEDIUM}" style="width: 100%; height: 15vw; object-fit: cover;" class="card-img-top" alt="{ROOMNUMBER}" /></a>
-			<div class="card-body">
-				<div class="card-title">{ROOMTYPE} - {ROOMNAME} {ROOMNUMBER}</div>
+			<div class="card-header">
+				<div class="card-title"><h3 class="text-truncate">{ROOMTYPE} - {ROOMNAME} {ROOMNUMBER}</h3></div>
 			</div>
-			<div class="card-text">
-				<p><b>{TAGLINE}</b></p>
-				<div class="row">
-					<div class="col-sm-12">
-
-						<div class="row">
-							<div class="col-sm-5">
-								<div><span class="text-muted">{HEADER_MAXPEOPLE}:</span> {MAXPEOPLE}</div>
-								<div><span class="text-muted">{HEADER_ROOMFLOOR}:</span> {ROOMFLOOR}</div>
-							</div>
+			<div class="card-body">
+				<div class="card-text text-truncate">
+					<p><b>{TAGLINE}</b></p>
+					<div class="row d-none">
+						<div class="col-sm-12">
+							<div class="row">
+								<div class="col-sm-5">
+									<div><span class="text-muted">{HEADER_MAXPEOPLE}:</span> {MAXPEOPLE}</div>
+									<div><span class="text-muted">{HEADER_ROOMFLOOR}:</span> {ROOMFLOOR}</div>
+								</div>
 								<div class="col-sm-7">
-								<a href="{AVLCALLINK}" class="btn btn-secondary"><i class="fa fa-calendar"></i> {AVLCALTITLE}</a>
+									<a href="{AVLCALLINK}" class="btn btn-secondary"><i class="fa fa-calendar"></i> {AVLCALTITLE}</a>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-12">
-						{ROOM_FEATURES}
+					<div class="row">
+						<div class="col-sm-5 text-align-left">
+							<p class="text-success ">{PRICE_PRE_TEXT} {PRICE_PRICE}</p>
+						</div>
+						<div class="col-sm-7  text-align-left">
+							<a href="{BOOKING_LINK}" class="btn btn-primary">{BOOKING_BUTTON_TEXT}</a>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+
 	</div>
 
 <div class="modal fade" id="modal_{RANDOM_IDENTIFIER}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
@@ -42,7 +47,7 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-				<img src="{IMAGELARGE}" class="img-responsive" alt="{ROOMNUMBER}" />
+				<img src="{IMAGELARGE}" class="img-fluid" alt="{ROOMNUMBER}" />
 			</div>
 		</div>
 	</div>

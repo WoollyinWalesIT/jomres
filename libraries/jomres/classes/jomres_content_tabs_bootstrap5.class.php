@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -41,9 +41,12 @@ class jomres_content_tabs_bootstrap5
         $this->randomString = '';
         $this->useCookies = false;
 
-        Factory::getDocument()->getWebAssetManager()
-            ->useStyle('webcomponent.joomla-tab')
-            ->useScript('webcomponent.joomla-tab');
+		if (this_cms_is_joomla()== true){
+			Factory::getDocument()->getWebAssetManager()
+				->useStyle('webcomponent.joomla-tab')
+				->useScript('webcomponent.joomla-tab');
+		}
+
 
     }
 

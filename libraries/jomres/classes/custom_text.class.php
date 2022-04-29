@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -34,6 +34,17 @@ class custom_text
 		$this->global_custom_text = false;
 		$this->properties_custom_text = false;
 
+		$jomres_language = jomres_singleton_abstract::getInstance('jomres_language');
+		$this->all_languages  = $jomres_language->define_langfile_to_languages_array();
+
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig = $siteConfig->get();
+		$selected_languages = array();
+		if ($jrConfig['selected_languages'] != '') {
+			$selected_languages = explode(',',$jrConfig['selected_languages']);
+		}
+		$this->selected_languages = $selected_languages;
+
 		//get the global custom text
 		$this->gather_data(array(0));
 	}
@@ -53,6 +64,7 @@ class custom_text
 		$this->lang = $lang;
 		$this->global_custom_text = false;
 		$this->properties_custom_text = false;
+
 
 		//get the global custom text
 		$this->gather_data(array(0));
@@ -136,8 +148,14 @@ class custom_text
 	 *
 	 */
 
-	function updateCustomText($theConstant, $theValue, $audit = true, $property_uid = null, $language_context = '0')
+	function updateCustomText($theConstant, $theValue, $audit = true, $property_uid = null, $language_context = '0' , $target_language = '' )
 	{
+
+		// A fallback. If the language requested isn't in the all_languages array we'll fall back to whatever showtime says we are working in. This allows us to have the new Translating functionality in the frontend, and we can continue to support older translation methods that didn't send the current language
+		if ($target_language == '' || !array_key_exists($target_language , $this->all_languages )) {
+			$target_language = get_showtime('lang');
+		}
+
 		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 		
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -177,15 +195,15 @@ class custom_text
 		$query = "SELECT `customtext` FROM #__jomres_custom_text 
 						WHERE `constant` = '".$theConstant."' 
 						AND `property_uid` = ".(int) $property_uid." 
-						AND `language` = '".get_showtime('lang')."' 
+						AND `language` = '".$target_language."' 
 						AND `language_context` = '".$language_context."'";
 		$result = doSelectSql($query);
-		
+
 		if (strlen($theValue) == 0 || $theValue == "" ) {
 			$query = "DELETE FROM #__jomres_custom_text 
 							WHERE `constant` = '".$theConstant."' 
 							AND `property_uid` = ".(int) $property_uid." 
-							AND `language` = '".get_showtime('lang')."' 
+							AND `language` = '".$target_language."' 
 							AND `language_context` = '".$language_context."'";
 		} else {
 			if (empty($result)) {
@@ -201,7 +219,7 @@ class custom_text
 									'".$theConstant."',
 									'".$theValue."',
 									".(int)$property_uid.",
-									'".get_showtime('lang')."', 
+									'".$target_language."', 
 									'".$language_context."'
 									)";
 			} else {
@@ -209,7 +227,7 @@ class custom_text
 								SET `customtext`='".$theValue."' 
 								WHERE `constant` = '".$theConstant."' 
 								AND `property_uid` = ".(int)$property_uid." 
-								AND `language` = '".get_showtime('lang')."' 
+								AND `language` = '".$target_language."' 
 								AND `language_context` = '".$language_context."'";
 			}
 		}

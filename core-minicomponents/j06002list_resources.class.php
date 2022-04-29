@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -83,30 +83,15 @@ class j06002list_resources
 
 			$r[ 'ROOM_UID' ] = $room['room_uid'];
 
-			if (!using_bootstrap()) {
-				$jrtbar = jomres_singleton_abstract::getInstance('jomres_toolbar');
-				$jrtb = $jrtbar->startTable();
-				$jrtb .= $jrtbar->toolbarItem('edit', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_resource&roomUid='.$room['room_uid']), '');
-				if ($mrConfig[ 'singleRoomProperty' ] == '1' && $number_of_rooms < 1) {
-					$jrtb .= $jrtbar->toolbarItem('copy', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_resource&roomUid='.$room['room_uid'].'&clone=1'), '');
-					$jrtb .= $jrtbar->toolbarItem('delete', jomresURL(JOMRES_SITEPAGE_URL.'&task=delete_resource&roomUid='.$room['room_uid']), '');
-				} elseif ($mrConfig[ 'singleRoomProperty' ] == '0') {
-					$jrtb .= $jrtbar->toolbarItem('copy', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_resource&roomUid='.$room['room_uid'].'&clone=1'), '');
-					$jrtb .= $jrtbar->toolbarItem('delete', jomresURL(JOMRES_SITEPAGE_URL.'&task=delete_resource&roomUid='.$room['room_uid']), '');
-				}
-				$jrtb .= $jrtbar->endTable();
-				$r[ 'BUTTONS' ] = $jrtb;
-			} else {
-				$toolbar->newToolbar();
-				$toolbar->addItem('icon-edit', 'btn btn-info', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_resource'.'&roomUid='.$room['room_uid']), jr_gettext('COMMON_EDIT', 'COMMON_EDIT', false));
-				if (($mrConfig[ 'singleRoomProperty' ] == '1' && $number_of_rooms < 1) || $mrConfig[ 'singleRoomProperty' ] == '0') {
-					$toolbar->addSecondaryItem('icon-copy', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_resource'.'&roomUid='.$room['room_uid'].'&clone=1'), jr_gettext('_JOMRES_COM_MR_LISTTARIFF_LINKTEXTCLONE', '_JOMRES_COM_MR_LISTTARIFF_LINKTEXTCLONE', false));
-				}
-				if ($mrConfig[ 'singleRoomProperty' ] == '0') {
-					$toolbar->addSecondaryItem('icon-trash', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=delete_resource'.'&roomUid='.$room['room_uid']), jr_gettext('COMMON_DELETE', 'COMMON_DELETE', false));
-				}
-				$r['BUTTONS'] = $toolbar->getToolbar();
+			$toolbar->newToolbar();
+			$toolbar->addItem('icon-edit', 'btn btn-info', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_resource'.'&roomUid='.$room['room_uid']), jr_gettext('COMMON_EDIT', 'COMMON_EDIT', false));
+			if (($mrConfig[ 'singleRoomProperty' ] == '1' && $number_of_rooms < 1) || $mrConfig[ 'singleRoomProperty' ] == '0') {
+				$toolbar->addSecondaryItem('icon-copy', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_resource'.'&roomUid='.$room['room_uid'].'&clone=1'), jr_gettext('_JOMRES_COM_MR_LISTTARIFF_LINKTEXTCLONE', '_JOMRES_COM_MR_LISTTARIFF_LINKTEXTCLONE', false));
 			}
+			if ($mrConfig[ 'singleRoomProperty' ] == '0') {
+				$toolbar->addSecondaryItem('icon-trash', '', '', jomresURL(JOMRES_SITEPAGE_URL.'&task=delete_resource'.'&roomUid='.$room['room_uid']), jr_gettext('COMMON_DELETE', 'COMMON_DELETE', false));
+			}
+			$r['BUTTONS'] = $toolbar->getToolbar();
 
 			if ((int) $room['room_classes_uid'] > 0 && isset($current_property_details->room_types[ $room['room_classes_uid'] ]['abbv'])) {
 				$r[ 'ROOM_TYPE' ] = $current_property_details->room_types[ $room['room_classes_uid'] ]['abbv'];

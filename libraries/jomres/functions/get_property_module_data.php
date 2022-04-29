@@ -4,7 +4,7 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-	  *  @version Jomres 10.2.2
+	  *  @version Jomres 10.3.0
 	 *
 	 * @copyright	2005-2022 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -32,6 +32,9 @@
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 
+		jr_import('jomres_property_categories');
+		$jomres_property_categories = new jomres_property_categories();
+
 		jr_import('jomres_reviews');
 		$Reviews = new jomres_reviews();
 		$Reviews->getRatingsMulti($property_uid_array);
@@ -50,6 +53,8 @@
 
 		jr_import('jomres_ribbon_generator');
 
+		jr_import('jomres_markdown');
+		$jomres_markdown = new jomres_markdown();
 
 		foreach ($property_uid_array as $property_uid) {
 			if ($property_uid > 0) {
@@ -157,7 +162,7 @@
 				$property_data[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images ['property'][0][0]['medium'];
 				$property_data[ 'IMAGETHUMB' ] = $jomres_media_centre_images->images ['property'][0][0]['small'];
 
-				$property_data[ 'PROPERTY_DESCRIPTION' ] = $current_property_details->property_description;
+				$property_data[ 'PROPERTY_DESCRIPTION' ] = ($jomres_markdown->get_markdown($current_property_details->property_description));
 
 				$property_data[ 'PRICE_PRE_TEXT' ] = $jomres_property_list_prices->lowest_prices[$property_uid][ 'PRE_TEXT' ];
 				$property_data[ 'PRICE_PRICE' ] = $jomres_property_list_prices->lowest_prices[$property_uid][ 'PRICE' ];
@@ -170,15 +175,20 @@
 				$property_data[ 'MOREINFORMATION' ] = jr_gettext('_JOMRES_COM_A_CLICKFORMOREINFORMATION', '_JOMRES_COM_A_CLICKFORMOREINFORMATION', $editable = false, true);
 				$property_data[ 'QUICKINFORMATION' ] = jr_gettext('_JOMRES_QUICK_INFO', '_JOMRES_QUICK_INFO', $editable = false, true);
 				$property_data[ 'MOREINFORMATIONLINK' ] = get_property_details_url($property_uid);
-				$property_data[ 'STARSIMAGES' ] = '';
-				for ($i = 1; $i <= $property_data[ 'stars' ]; ++$i) {
-					$property_data[ 'STARSIMAGES' ] .= '<img src="'.JOMRES_IMAGES_RELPATH.'star.png" alt="star" border="0" />';
-				}
+
+				$property_data[ 'STARSIMAGES' ] = $MiniComponents->specificEvent('06000', 'show_property_stars', array('property_uid' => $property_uid , 'output_now' => false ));
 
 				$property_data[ 'SUPERIOR' ] = '';
 				if ($property_data[ 'superior' ] == 1) {
 					$property_data[ 'SUPERIOR' ] = '<img src="'.JOMRES_IMAGES_RELPATH.'superior.png" alt="superior" border="0" />';
 				}
+				if ($property_data['cat_id'] > 0 ) {
+					$jomres_property_categories->get_property_category($property_data['cat_id'] );
+					$property_data["PROPERTY_CATEGORY"]		= $jomres_property_categories->title;
+				} else {
+					$property_data["PROPERTY_CATEGORY"]		= 'Uncategorized';
+				}
+
 
 				//animations
 				$property_data[ 'ANIMATION_DELAY' ] = $animationDelay;

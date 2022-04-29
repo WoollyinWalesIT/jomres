@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -58,7 +58,14 @@ class j06000processpayment
 
 		$tag = set_booking_number();
 
-		$plugin = jomres_validate_gateway_plugin();
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+		$siteConfig		= jomres_singleton_abstract::getInstance( 'jomres_config_site_singleton' );
+		$jrConfig		  = $siteConfig->get();
+		if ($thisJRUser->userIsManager && $jrConfig['development_production'] != 'development') {
+			$plugin = jomres_validate_gateway_plugin();
+		} else {
+			$plugin = "NA";
+		}
 
 		$query = "SELECT `id` FROM #__jomres_booking_data_archive WHERE `tag` = '".$tag."'";
 		$result = doSelectSql($query);
@@ -70,10 +77,6 @@ class j06000processpayment
 			doInsertSql($query, '');
 		}
 
-		if ( isset($jrConfig['platform_connected']) && $jrConfig['platform_connected'] == 1 ) {
-			$MiniComponents->specificEvent('00605', 'connected', array('bookingdata' => $bookingdata, 'property_uid' => $property_uid));
-			return;
-		}
 		$MiniComponents->triggerEvent('00599', array('bookingdata' => $tmpBookingHandler->tmpbooking)); // Optional
 
 		// We'll let bookings of 0 value passed the gateway plugin handling as some users offer 100% discounts via coupons

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1792,7 +1792,7 @@ jr_define ('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Váš klíč podpory je 
 jr_define ('_JOMRES_DASHBOARD_DRAG_TRASH', 'Přetažením rezervací do této oblasti je zrušíte');
 jr_define ('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define ('_JOMRES_LONG', 'Long (nn.nnnn)');
-jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Ujistěte se, že jste vytvořili stránku WordPress, která obsahuje krátký kód [jomres: xx-XX] (kde xx-XX je kód jazyka vašeho webu, například [jomres: en-GB] nebo [ jomres: en-US]) jinak nebudete mít přístup k Jomres z frontendu pro správu vašich vlastností a rezervací. <br> Jomres je postaven na rámci Bootstrap, takže ho musíte použít na motivu založeném na Bootstrapu. doporučujeme jeden na základě Bootstrap 3. Pokud nemáte přístup k tématu, doporučujeme vám použít téma Jomres Leohtian pro Wordpress, které můžete <a href = "https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target ="_blank"> stahovat odsud. </a> ');
+jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Ujistěte se, že jste vytvořili stránku WordPress, která obsahuje krátký kód [jomres: xx-XX] (kde xx-XX je kód jazyka vašeho webu, například [jomres: en-GB] nebo [ jomres: en-US]) jinak nebudete mít přístup k Jomres z frontendu pro správu vašich vlastností a rezervací.');
 jr_define ('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', "Než budete moci vytvořit typ pokoje, musíme vědět, jestli jde o nemovitost typu hotel nebo nemovitost vily.");
 jr_define ('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', 'Kliknutím přidáte nové typy pokojů');
 jr_define ('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES', 'Varování, máte jeden nebo více typů nemovitostí bez typů pokojů. Vlastnosti potřebují typy pokojů, aby mohli správci nemovitostí vytvářet tarify.');
@@ -2174,7 +2174,7 @@ jr_define ('_JOMRES_LOGIN_RESET_BUTTON', 'Zapomněli jste heslo?');
 
 jr_define ('_JOMRES_REVIEWS_ANONYMISE', 'Anonymizovat vaše jméno?');
 jr_define ('_JOMRES_REVIEWS_ANONYMISE_DESC', 'Pokud se při kontrole rozhodnete anonymizovat své jméno, použijeme místo toho vaše iniciály.');
-jr_define ('ANONYMNÍ', 'Anon');
+jr_define ('ANONYMOUS', 'Anon');
 
 jr_define ('_JOMRES_REVIEWS_REPLY_SAID', 'řekl');
 jr_define ('_JOMRES_REVIEWS_REPLY_OPPORTUNITY', 'Odpovědět na tuto recenzi');
@@ -2658,3 +2658,25 @@ jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Sleva");
 
 	jr_define('JOMRES_UPDATES_TITLE', 'Aktualizace Jomres');
 	jr_define('JOMRES_UPDATES_INFO', "Tato stránka vám může stáhnout a nainstalovat nejnovější verzi Jomres. Využívá svou vlastní funkcionalitu a ne funkce hostitelského CMS, takže pokud dojde k problému během aktualizace hostitelského CMS, můžete tuto stránku použít k vynutit reinstalaci nejnovější verze Jomres.");
+
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'Správci vlastností mohou použít režim úprav na frontendu k přizpůsobení řetězců pro každou vlastnost, ale toto může fungovat pouze v případě, že je vaše nastavení WordPress Permalink nastaveno na Plain (http://www.domain.com/?p=123). Jakmile to uděláte, uživatelé frontendu budou moci přizpůsobit řetězce, jako jsou názvy místností a další štítky, které jsou specifické pro jedinečné vlastnosti. ');
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', 'Režim úprav štítků');
+	jr_define('JOMRES_EDITING_MODE_HELP_LEAD', 'Tato funkce se používá ke změně štítků položek, obvykle do různých jazyků.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', 'Režim úprav vám umožňuje přejmenovat štítky, které jsou jedinečné pro jednotlivé vlastnosti. Když k přejmenování štítku použijete režim úprav, změna se projeví pouze v tomto seznamu vlastností. Například na jedné vlastnosti, kterou můžete chtít použít slovo „Ceny“ a na jiném slovo „Ceny“. Ne všechny štítky lze změnit, například názvy typů pokojů jsou štítky pro celý web, takže je nelze změnit, ale obvykle cokoli, co je jedinečné pro konkrétní nemovitost může být změněno.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', 'Pokud stránka podporuje více jazyků, při použití jednoho jazyka můžete vytvořit položku, která je jedinečná pro jednotlivou vlastnost. Když poté změníte svůj aktivní jazyk, můžete tento štítek přejmenovat pomocí režimu úprav, zadáním vhodného překladu v aktuálním jazyce. Můžete pokračovat ve změně aktivního jazyka a zadat vhodný překlad pro tento štítek pro každý jazyk, který stránka podporuje.');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'Přepínač režimu úprav štítků');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'Na tomto snímku obrazovky vidíme přepínač režimu úprav. Režim úprav je VYPNUTÝ a popisky se zobrazují jako normálně: ');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'Režim úprav štítků povolen');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'Na tomto snímku obrazovky vidíme, že v režimu úprav jsou štítky, které můžete přejmenovat, zvýrazněny:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', 'Vyberte položku, kterou chcete změnit');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'Když je vybrán štítek, objeví se vyskakovací okno:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'Změnit štítek');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Použijte malý formulář pro změnu štítku. Klikněte na zaškrtnutí pro dokončení nebo klikněte na X pro zrušení úprav:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Štítek změněn');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Jakmile uložíte změnu, štítek se aktualizuje na stránce. Nyní můžete deaktivovat režim úprav:');
+
+	jr_define('JOMRES_TRANSLATIONS_TITLE', 'Překlady');
+	jr_define('JOMRES_TRANSLATIONS_LEAD', 'Na této stránce můžete překládat štítky z jednoho jazyka do druhého. Když stránku navštívíte, uvidíte řetězce, které jste již vytvořili, a jejich hodnotu v jakémkoli jazyce, který právě používáte. V horní části nastavte cílového jazyka, pak u štítků, které chcete přeložit, klikněte na štítek a vyskakovací okno vám umožní zadat nový překlad. Pro delší řádky textu můžete vložit text z jiného zdroje. Nezapomeňte, že veškerý kód HTML bude odstraněn .<br/>
+Můžete ponechat cílový jazyk nastavený na váš aktuální jazyk a použít tuto stránku k přejmenování položek zde, místo abyste navštěvovali jejich jednotlivé stránky.');
+	jr_define('JOMRES_TARGET_LANGUAGE', 'Cílový jazyk');

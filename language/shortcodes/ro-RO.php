@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -176,4 +176,9 @@ jr_define ('_JOMRES_SHORTCODES_06001DASHBOARD', 'Dashboard');
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES', 'Afișează o listă de proprietăți sindicate');
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_LIMIT', 'Numărul de proprietăți sindicate de afișat');
 jr_define ("_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP", "Dacă se afișează MRP-uri (hoteluri / pensiuni) sau SRPs (cabane / apartamente / vile). afișat. Pentru a alege un anumit tip, setați această valoare la 0 pentru srps sau 1 pentru mrps. ");
-    
+
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS', "Afișează stelele unei proprietăți. Acestea sunt setate în Configurarea proprietății, dacă proprietatea este un MRP.");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_PROPERTY_UID', 'ID-ul proprietăţii.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Opțional. Dacă id-ul proprietății nu este setat, puteți transmite un număr.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Opțional. Cale alternativă a șablonului. Nu poate fi transmisă prin adresa URL. Trebuie să fie absolută.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Opțional. Nume șablon alternativ.');

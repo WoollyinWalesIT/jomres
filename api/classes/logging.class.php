@@ -5,7 +5,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -122,7 +122,7 @@ class logging
 
 
 		$now = DateTime::createFromFormat('U.u', microtime(true));
-        $formatter = new LineFormatter($now->format("m-d-Y H:i:s.u")." ~~ %channel%.%level_name%: ~~ %message% ~~ %context% ~~ %extra% ::::: \n");
+		$formatter = new LineFormatter($now->format("Y-m-d H:i:s")." ~~ %channel%.%level_name%: ~~ %message% ~~ %context% ~~ %extra% ::::: \n");
 
         $stream_handler = new StreamHandler($jrConfig['log_path'].$log_file, Logger::DEBUG);
         $stream_handler->setFormatter($formatter);

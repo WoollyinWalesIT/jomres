@@ -4,7 +4,7 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
 	 *
 	 * @copyright	2005-2022 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -197,6 +197,9 @@
 
 		public function gather_data($property_uid = 0)
 		{
+			if (!isset($this->multi_query_result)) {
+				$this->multi_query_result = array();
+			}
 			if ($property_uid == $this->property_uid) { // No need to re-gather the info
 				return true;
 			}
@@ -672,7 +675,7 @@
 			if (!empty($roomFeatures)) {
 				foreach ($roomFeatures as $f) {
 					$this->all_room_features[ $f->room_features_uid ][ 'room_features_uid' ] = (int) $f->room_features_uid;
-					$this->all_room_features[ $f->room_features_uid ][ 'feature_description' ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION'.(int) $f->room_features_uid, stripslashes($f->feature_description));
+					$this->all_room_features[ $f->room_features_uid ][ 'feature_description' ] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION'.(int) $f->room_features_uid, stripslashes($f->feature_description),false);
 					$this->all_room_features[ $f->room_features_uid ][ 'image' ] = $f->image;
 
 					if ($f->ptype_xref != '') {

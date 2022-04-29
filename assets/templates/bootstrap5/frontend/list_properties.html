@@ -50,8 +50,6 @@
 								{REVIEWS_SECTION}
 							</div>
 						</div>
-
-
 						<p class="small"><i>{PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}</i></p>
 						<div>{PROPERTYDESC}</div>
 						<div class="jomres_message">{LASTMINUTE}</div>
@@ -70,10 +68,15 @@
 								{FOR} {STAY_DAYS} {NIGHTS_TEXT}
 							</div>
 						</div>
+						<div class="row p-3">
+							<div class="col-sm-12">
+								{MAP}
+							</div>
+						</div>
 					</div>
 				</div>
 
-				<div id="effect{UID}" class="hidden">
+				<div id="effect{UID}" style="display: none">
 					<p>&nbsp;</p>
 					<div class="row">
 						<div class="col-2 ">
@@ -98,7 +101,7 @@
 				</div>
 			</div>
 			<div class="card-footer">
-				<a href="{LINK}" class="btn btn-success pull-right"><i class="fa fa-shopping-cart"></i> {BOOKTHIS_TEXT}</a>
+				<a href="{LINK}" class="btn btn-primary pull-right"><i class="fa fa-shopping-cart"></i> {BOOKTHIS_TEXT}</a>
 				<a href="{MOREINFORMATIONLINK}" class="btn btn-info"><i class="fa fa-info"></i> {MOREINFORMATION}</a>
 				<a href="javascript:void(0);" onclick="quick_info({UID});" role="button" class="btn btn-secondary hidden-xs hidden-sm">
 					<i class="fa fa-info"></i> {_JOMRES_QUICK_INFO}

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -98,7 +98,7 @@ class j06000show_property_main_image
 			$result = $MiniComponents->specificEvent('01060', 'slideshow', $slideshowArgs);
 			$output[ 'SLIDESHOW' ] = $result['slideshow'];
 		} else {
-			$output[ 'SLIDESHOW' ] = '<a href="'.get_property_details_url($property_uid).'"><img src="'.$jomres_media_centre_images->images['property'][0][0]['medium'].'" class="responsive img-responsive" alt="property image"/></a>';
+			$output[ 'SLIDESHOW' ] = '<a href="'.get_property_details_url($property_uid).'"><img src="'.$jomres_media_centre_images->images['property'][0][0]['medium'].'" class="card-img-top responsive img-responsive" alt="property image"/></a>';
 		}
 
 		$output['IMAGE']	=  $jomres_media_centre_images->images['property'][0][0]['medium'];

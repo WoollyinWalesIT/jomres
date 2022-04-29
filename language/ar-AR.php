@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1569,7 +1569,7 @@ jr_define('_JOMRES_HSTATUS_PUBLISHING', 'Publishing status');
 jr_define('_JOMRES_HSTATUS_INVOICE', 'Invoice status');
 jr_define('_JOMRES_HSTATUS_INVOICE_TYPE', 'Invoice type');
 jr_define('_JOMRES_HSTATUS_APPROVED', 'Approved');
-jr_define('_JOMRES_HSTATUS_CURRENT', 'Current business');
+jr_define('_JOMRES_HSTATUS_CURRENT', 'Current property');
 jr_define('_JOMRES_HSTATUS_SHOW_BOOKINGS_FOR', 'Show bookings for');
 jr_define('_JOMRES_HSTATUS_SHOW_INVOICES_FOR', 'Show invoices for');
 jr_define('_JOMRES_STATUS_ANY', 'Any');
@@ -1820,7 +1820,7 @@ jr_define('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Your support key is valid
 jr_define('_JOMRES_DASHBOARD_DRAG_TRASH', 'Drag bookings to this area to cancel them');
 jr_define('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define('_JOMRES_LONG', 'Long (nn.nnnn)');
-jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Please ensure that you`ve created a WordPress Page that contains the [jomres:xx-XX] shortcode ( where xx-XX is your site language code, for example [jomres:en-GB] or [jomres:en-US] ) otherwise you will not be able to access Jomres from the frontend to manage your properties and bookings. <br> Jomres is built on the Bootstrap framework, so you must use it on a theme based on Bootstrap. We recommend one based on Bootstrap 3. If you do not have access to a theme then we recommend that you use the Jomres Leohtian theme for Wordpress which you can <a href="https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target="_blank">download from here.</a>');
+jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Please ensure that you`ve created a WordPress Page that contains the [jomres:xx-XX] shortcode ( where xx-XX is your site language code, for example [jomres:en-GB] or [jomres:en-US] ) otherwise you will not be able to access Jomres from the frontend to manage your properties and bookings. ');
 jr_define('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', "Before you can create a room type, we need to know if it's for a hotel type property, or a villa type property.");
 jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', 'Click to add new room types');
 jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES', 'Warning, you have one or more property types with no room types. Properties need room types so that property managers can create tariffs.');
@@ -1898,7 +1898,7 @@ jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE', "Choose the resource you want to uplo
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_SPECIFIC', "Specific resource");
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_ALREADY_UPLOADED', "Images already uploaded for this resource");
 jr_define('_JOMRES_MARKDOWN_TITLE', 'Text formatting');
-jr_define('_JOMRES_MARKDOWN_DESC', 'You can enter text here using simple Markdown formatting. You don\'t need to know any HTML, just use the buttons to make the information look like you want, or format text according to these examples.');
+jr_define('_JOMRES_MARKDOWN_DESC', 'You can enter text here using simple Markdown formatting. You don\'t need to know any HTML, just format text according to these examples.');
 jr_define('_JOMRES_MARKDOWN_EMPHASIS', 'Emphasis');
 jr_define('_JOMRES_MARKDOWN_BOLD', 'bold');
 jr_define('_JOMRES_MARKDOWN_ITALICS', 'italics');
@@ -1967,7 +1967,7 @@ jr_define('_JOMRES_PAYMENT_METHOD_USED',"Payment method : ");
 jr_define('_JOMRES_PRICES',"Get Connected");
 
 
-jr_define('_OAUTH_TITLE',"App key management");
+jr_define('_OAUTH_TITLE',"API key management");
 jr_define('_OAUTH_APPS',"REST API client details");
 jr_define('_OAUTH_IDENTIFIER',"Identifier");
 jr_define('_OAUTH_APIKEY',"Client ID");
@@ -1978,7 +1978,7 @@ jr_define('_OAUTH_SCOPE_TITLE',"Permissions ( what the client can do ) ");
 jr_define('_OAUTH_SCOPE_CATEGORY_USER' , "User permissions");
 jr_define('_OAUTH_SCOPE_CATEGORY_PROPERTIES' , "Property permissions");
 
-jr_define('API_DOCUMENTATION_TITLE',"App REST API documentation");
+jr_define('API_DOCUMENTATION_TITLE',"REST API documentation");
 
 jr_define('_OAUTH_CONFIG',"API Core configuration");
 
@@ -2724,3 +2724,25 @@ jr_define( 'DATA_SOURCES_TITLE_INFO', "Fuentes de datos actualizadas. Las fuente
 
 	jr_define('JOMRES_UPDATES_TITLE', 'Actualizaciones de Jomres');
 	jr_define('JOMRES_UPDATES_INFO', "Esta página puede descargar e instalar la versión más reciente de Jomres por usted. Utiliza su propia funcionalidad y no la del CMS host, por lo tanto, si ocurre un problema durante la actualización del CMS host, puede usar esta página para forzar una reinstalación de la versión más reciente de Jomres.");
+
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'Los administradores de propiedades pueden usar el modo de edición en la interfaz para personalizar cadenas para cada propiedad, sin embargo, esto solo puede funcionar si su configuración de enlace permanente de WordPress está configurada en Normal (http://www.domain.com/? p = 123). Una vez que haya hecho eso, los usuarios de la interfaz podrán personalizar cadenas, como nombres de habitaciones y otras etiquetas, que son específicas de propiedades únicas. ');
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', 'Modo de edición de etiquetas');
+	jr_define('JOMRES_EDITING_MODE_HELP_LEAD', 'Esta función se usa para cambiar las etiquetas de los elementos, generalmente a diferentes idiomas.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', 'El modo de edición le permite cambiar el nombre de etiquetas que son exclusivas de propiedades individuales. Cuando usa el modo de edición para cambiar el nombre de una etiqueta, el cambio solo aparecerá en la lista de esa propiedad. Por ejemplo, en una propiedad que desee para usar la palabra "Precios" y en otro la palabra "Tarifas". No todas las etiquetas se pueden cambiar, por ejemplo, los nombres de tipo de habitación son etiquetas para todo el sitio, por lo que no se pueden cambiar, pero generalmente cualquier cosa que sea única para una propiedad individual puede ser cambiado.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', 'Si el sitio admite varios idiomas, al usar un idioma puede crear un elemento que sea único para una propiedad individual. Cuando cambie su idioma activo, puede usar el modo de edición para cambiar el nombre de esa etiqueta, ingresando una traducción adecuada en el idioma actual. Puede continuar cambiando el idioma activo para ingresar una traducción adecuada para esa etiqueta para cada idioma que admita el sitio.');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'Cambio de modo de edición de etiquetas');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'En esta captura de pantalla vemos el interruptor del modo de edición. El modo de edición está APAGADO y las etiquetas aparecen normalmente: ');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'Modo de edición de etiquetas habilitado');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'En esta captura de pantalla vemos que, en el modo de edición, se resaltan las etiquetas que puede cambiar de nombre:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', 'Seleccione el elemento a cambiar');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'Cuando se selecciona una etiqueta, aparece una ventana emergente:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'Cambiar la etiqueta');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Use el pequeño formulario para cambiar la etiqueta. Haga clic en la marca para terminar, o haga clic en la X para cancelar la edición:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Etiqueta cambiada');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Una vez que haya guardado el cambio, la etiqueta se actualizará en la página. Puede desactivar el modo de edición ahora:');
+
+	jr_define('JOMRES_TRANSLATIONS_TITLE', 'Traducciones');
+	jr_define('JOMRES_TRANSLATIONS_LEAD', 'En esta página puede traducir etiquetas de un idioma a otro. Cuando visite la página, verá cadenas que ya ha creado y su valor en cualquier idioma que esté usando actualmente. En la parte superior, configure el idioma de destino, luego, para las etiquetas que desea traducir, haga clic en la etiqueta y una ventana emergente le permitirá ingresar su nueva traducción. Para líneas de texto más largas, puede pegar el texto de otra fuente. Recuerde que cualquier HTML será eliminado .<br/>
+Puede dejar el idioma de destino establecido en su idioma actual y usar esta página para cambiar el nombre de los elementos aquí, en lugar de visitar sus páginas individuales.');
+	jr_define('JOMRES_TARGET_LANGUAGE', 'Idioma de destino');

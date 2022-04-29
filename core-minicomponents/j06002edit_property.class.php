@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -231,6 +231,8 @@ class j06002edit_property
 				}
 
 				$r[ 'FEATURE' ] = jomres_makeTooltip($v['abbv'], $v['abbv'], $v['desc'], JOMRES_IMAGELOCATION_RELPATH.'pfeatures/'.$v['image'], '', 'property_feature', array());
+
+				$r['FEATURE_NAME'] = $v['abbv'];
 
 				$r[ 'BR' ] = '';
 				if ($counter == 8) {

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -203,3 +203,10 @@ jr_define ('_JOMRES_SHORTCODES_06001DASHBOARD', 'Dashboard');
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES', 'Mostra una llista de propietats sindicades');
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_LIMIT', 'El nombre de propietats sindicades a mostrar');
 jr_define ("_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP", "Si es mostren MRP (hotels / allotjament i esmorzar) o SRPs (cases rurals / apartaments / xalets). El valor per defecte es determina a partir de la propietat actual de la propietat actual, si hi ha Per triar un tipus específic, establiu aquest valor a 0 per a srps o 1 per a mrps. ");
+
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS', "Mostra les estrelles d'una propietat. S'estableixen a la configuració de la propietat, si la propietat és un MRP.");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_PROPERTY_UID', 'ID de la propietat.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Opcional. Si l\'identificador de propietat no està definit, podeu passar un número.');
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Opcional. Camí alternatiu de la plantilla. No es pot passar per URL. Ha de ser absolut.');
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Opcional. Nom alternatiu de la plantilla.');
+

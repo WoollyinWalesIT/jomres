@@ -4,7 +4,7 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-	  *  @version Jomres 10.2.2
+	  *  @version Jomres 10.3.0
 	 *
 	 * @copyright	2005-2022 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -42,7 +42,12 @@
 			if (!empty($custom_town_names)) {
 				foreach ($custom_town_names as $language => $towns) {
 					foreach ( $towns as $town ) {
-						if (!in_array($town , $data[$language] )) {
+						if (is_array($data[$language])) {
+							if (!in_array($town , $data[$language] )) {
+								$data[$language][] = $town;
+							}
+						} else {
+							$data[$language] = [];
 							$data[$language][] = $town;
 						}
 					}

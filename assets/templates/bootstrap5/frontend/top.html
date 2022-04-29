@@ -3,6 +3,7 @@
 <script type="text/javascript">
 document.addEventListener('DOMContentLoaded', function(){
 	jomresJquery('#FAQModal').appendTo("body");
+	jomresJquery(".sticky").sticky({topSpacing:0});
 });
 </script>
 
@@ -24,13 +25,8 @@ document.addEventListener('DOMContentLoaded', function(){
 
 	<div class="row">
 		<patTemplate:tmpl name="widgets_dropdown" type="simpleCondition" requiredVars="widgets_dropdown">
-			<div class="col-md-2">
+			<div class="col-md-6">
 				{WIDGETS_DROPDOWN}
-			</div>
-		</patTemplate:tmpl>
-		<patTemplate:tmpl name="editing_dropdown" type="simpleCondition" requiredVars="editing_mode_dropdown">
-			<div class="col-md-4" id="tour_target_editing_mode_dropdown">
-				{EDITING_MODE_DROPDOWN}
 			</div>
 		</patTemplate:tmpl>
 		<div class="col-md-6">

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -245,4 +245,9 @@ jr_define('_JOMRES_SHORTCODES_06001DASHBOARD', 'Pulpit');
 jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES', 'Pokazuje listę syndykowanych właściwości');
 jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_LIMIT', 'Liczba syndykowanych właściwości do wyświetlenia');
 jr_define('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'Czy pokazywać MRP (hotele/bed & breakfast) lub SRP (domki/apartamenty/wille). Wartość domyślna jest określana na podstawie identyfikatora właściwości bieżącej nieruchomości, a jeśli tak nie jest, MRP Aby wybrać określony typ, ustaw tę wartość na 0 dla srps lub 1 dla srps.');
-    
+
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS', "Pokazuje gwiazdki właściwości. Są one ustawiane w Konfiguracji właściwości, jeśli właściwość jest MRP.");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_PROPERTY_UID', 'ID obiektu.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Opcjonalnie. Jeśli identyfikator właściwości nie jest ustawiony, możesz zamiast tego podać numer.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Opcjonalne. Alternatywna ścieżka szablonu. Nie można przekazać przez adres URL. Musi być bezwzględna.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Opcjonalnie. Alternatywna nazwa szablonu.');

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1718,7 +1718,7 @@ jr_define('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', "Uw ondersteuningscode is 
 jr_define('_JOMRES_DASHBOARD_DRAG_TRASH', "Sleep boekingen naar dit gebied om ze te annuleren ");
 jr_define('_JOMRES_LAT', "Lat (nn.nnnn) ");
 jr_define('_JOMRES_LONG', "Long (nn.nnnn) ");
-jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Please ensure that you`ve created a WordPress Page that contains the [jomres:xx-XX] shortcode ( where xx-XX is your site language code, for example [jomres:en-GB] or [jomres:en-US] ) otherwise you will not be able to access Jomres from the frontend to manage your properties and bookings. <br> Jomres is built on the Bootstrap framework, so you must use it on a theme based on Bootstrap. We recommend one based on Bootstrap 3. If you do not have access to a theme then we recommend that you use the Jomres Leohtian theme for Wordpress which you can <a href="https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target="_blank">download from here.</a>');
+jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Please ensure that you`ve created a WordPress Page that contains the [jomres:xx-XX] shortcode ( where xx-XX is your site language code, for example [jomres:en-GB] or [jomres:en-US] ) otherwise you will not be able to access Jomres from the frontend to manage your properties and bookings.');
 jr_define('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', "Voordat u een kamertype kunt maken, moeten we weten of het voor een hoteltype of een villatype is. ");
 jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', "Klik om nieuwe kamertypes toe te voegen ");
 jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES', "Waarschuwing, u hebt een of meerdere soorten verhuurobjecttypen zonder kamertypen. Verhuurobjecten hebben kamertypes nodig, zodat verhuurobjectmanagers tarieven kunnen opstellen. ");
@@ -2125,7 +2125,7 @@ jr_define( '_JOMRES_LOGIN_RESET_BUTTON', 'Wachtwoord vergeten?');
 
 jr_define('_JOMRES_REVIEWS_ANONYMISE', 'Uw naam anonimiseren?');
 jr_define('_JOMRES_REVIEWS_ANONYMISE_DESC', 'Als je ervoor kiest om je naam te anonimiseren bij het beoordelen, zullen we in plaats daarvan je initialen gebruiken.');
-jr_define('ANONIEME', 'Anon');
+jr_define('ANONYMOUS', 'Anon');
 
 jr_define('_JOMRES_REVIEWS_REPLY_SAID', 'zei');
 jr_define('_JOMRES_REVIEWS_REPLY_OPPORTUNITY', 'Reageer op deze recensie');
@@ -2651,3 +2651,30 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Eigenschap
 
 	jr_define('JOMRES_UPDATES_TITLE', 'Jomres-updates');
 	jr_define('JOMRES_UPDATES_INFO', "Deze pagina kan de meest recente versie van Jomres voor u downloaden en installeren. Het gebruikt zijn eigen functionaliteit en niet die van de host-CMS. Als er dus een probleem optreedt tijdens de update van de host-CMS, kunt u deze pagina gebruiken om forceer een herinstallatie van de meest recente versie van Jomres.");
+
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'Propertymanagers kunnen de bewerkingsmodus in de frontend gebruiken om strings voor elke eigenschap aan te passen, maar dit kan alleen werken als je WordPress Permalink-instelling is ingesteld op Gewoon (http://www.domain.com/?p=123) Als je dat hebt gedaan, kunnen frontend-gebruikers strings aanpassen, zoals kamernamen en andere labels, die specifiek zijn voor unieke eigenschappen. ');
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', 'Labelbewerkingsmodus');
+	jr_define('JOMRES_EDITING_MODE_HELP_LEAD', 'Deze functie wordt gebruikt om itemlabels te wijzigen, meestal in verschillende talen.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', 'Bewerkingsmodus stelt u in staat om labels te hernoemen die uniek zijn voor individuele eigenschappen. Wanneer u de bewerkingsmodus gebruikt om een ​​label te hernoemen, wordt de wijziging alleen weergegeven op die eigendomsvermelding. Bijvoorbeeld, op één eigenschap die u misschien wilt om het woord "Prijzen" en op een ander het woord "Tarieven" te gebruiken. Niet alle labels kunnen worden gewijzigd, bijvoorbeeld de namen van kamertypes zijn voor de hele site, dus ze kunnen niet worden gewijzigd, maar meestal alles wat uniek is voor een individuele woning Kan veranderd worden.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', 'Als de site meerdere talen ondersteunt, kunt u, terwijl u één taal gebruikt, een item maken dat uniek is voor een individuele eigenschap. Wanneer u vervolgens uw actieve taal wijzigt, kunt u de bewerkingsmodus gebruiken om dat label te hernoemen, een geschikte vertaling in de huidige taal invoeren. U kunt doorgaan met het wijzigen van de actieve taal om een ​​geschikte vertaling voor dat label in te voeren voor elke taal die de site ondersteunt.');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'Labelbewerkingsmodusschakelaar');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'In deze schermafbeelding zien we de bewerkingsmodusschakelaar. De bewerkingsmodus is UIT en de labels worden normaal weergegeven: ');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'Labelbewerkingsmodus ingeschakeld');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'In deze schermafbeelding zien we dat in de bewerkingsmodus de labels die u kunt hernoemen gemarkeerd zijn:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', 'Selecteer het item dat u wilt wijzigen');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'Als een label is geselecteerd, verschijnt er een pop-up:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'Wijzig het label');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Gebruik het kleine formulier om het label te wijzigen. Klik op het vinkje om te voltooien, of klik op de X om het bewerken te annuleren:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Label gewijzigd');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Zodra u de wijziging heeft opgeslagen, wordt het label op de pagina bijgewerkt. U kunt de bewerkingsmodus nu uitschakelen:');
+
+	jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_TITLE', 'Neemt u boekingen aan voor meer dan één accommodatie?');
+	jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_MESSAGE', 'Jomres kan worden gebruikt voor sites met één of meerdere woningen. Als u boekingen voor slechts één accommodatie aanneemt, zijn veel opties overbodig en mogelijk verwarrend. U kunt deze instelling later wijzigen in Instellingen > Site Configuratie > tabblad Portalfunctionaliteit.');
+	jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_JUSTONE', ' Slechts één eigenschap ');
+	jr_define('_JOMRES_CONFIG_INITITAL_SETUP_STEP_2_MANY', 'Ik zal meer dan één woning aanbieden');
+
+	jr_define('JOMRES_TRANSLATIONS_TITLE', 'Vertalingen');
+	jr_define('JOMRES_TRANSLATIONS_LEAD', 'Op deze pagina kunt u labels van de ene taal naar de andere vertalen. Wanneer u de pagina bezoekt, ziet u strings die u al hebt gemaakt en hun waarde in de taal die u momenteel gebruikt. Stel bovenaan de doeltaal, klik dan voor de labels die u wilt vertalen op het label en een pop-up laat u uw nieuwe vertaling invoeren. Voor langere tekstregels kunt u de tekst uit een andere bron plakken. Houd er rekening mee dat HTML wordt verwijderd .<br/>
+U kunt de doeltaal op uw huidige taal laten staan en deze pagina gebruiken om items hier te hernoemen, in plaats van hun individuele pagina\'s te bezoeken.');
+jr_define('JOMRES_TARGET_LANGUAGE', 'Doeltaal');

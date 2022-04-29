@@ -5,7 +5,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -31,6 +31,8 @@ function generateDateInput($fieldName, $dateValue = '', $myID = false, $siteConf
 	// departureDate is so that it can set it's date when this one changes
 
 	$uniqueID = generateJomresRandomString(15);
+
+	set_showtime('date_input_label_id' , $uniqueID);
 
 	$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 	$placeholder = '';
@@ -187,10 +189,16 @@ function generateDateInput($fieldName, $dateValue = '', $myID = false, $siteConf
 		';
 	}
 
+	$z_index = '0';
+	$calendar_z_index = get_showtime('calendar_z_index' );
+	if (isset($calendar_z_index)  && $calendar_z_index != '' ) {
+		$z_index = 'z-index: '.$calendar_z_index.';';
+	}
+
 	$output .= '
 	</script>
 	<div class="input-group">
-		<input type="text" readonly="readonly" style="cursor:pointer; background-color: #FFFFFF; position: relative; z-index: 1044;" ' .$size.' name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" placeholder="'.$placeholder.'" class="'.$input_class.' form-control" />'.$bs3_icon.'
+		<input type="text" readonly="readonly" style="cursor:pointer; background-color: #FFFFFF; position: relative;'.$z_index.'" ' .$size.' name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" placeholder="'.$placeholder.'" class="'.$input_class.' form-control" />'.$bs3_icon.'
 	</div>';
 
 	$pageoutput[ ] = array('INPUT' => $output);

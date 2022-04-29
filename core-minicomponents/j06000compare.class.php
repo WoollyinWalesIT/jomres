@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -171,10 +171,7 @@ class j06000compare
 					$r[ 'FEATURES' ] = $t->getParsedTemplate();
 				}
 
-				$r[ 'STARSIMAGES' ] = '';
-				for ($i = 1; $i <= $property[ 'stars' ]; ++$i) {
-					$r[ 'STARSIMAGES' ] .= '<img src="'.JOMRES_IMAGES_RELPATH.'star.png" alt="star" border="0" />';
-				}
+				$r[ 'STARSIMAGES' ] = $MiniComponents->specificEvent('06000', 'show_property_stars', array('property_uid' => $property_uid , 'output_now' => false ));
 
 				$r[ 'LIVE_SITE' ] = get_showtime('live_site');
 				$r[ 'MOREINFORMATIONLINK' ] = get_property_details_url($property_uid);

@@ -1,0 +1,22 @@
+<patTemplate:tmpl name="page_output">
+	<input autocomplete="off" type="text" id="autocomplete_field" name="autocomplete_field" class="form-control  "/>
+	<input type="hidden" name="autocomplete_value" id="autocomplete_value" value=""/>
+	<script>
+		var datasrc = [
+			<patTemplate:tmpl name="place_names">
+			{label: '{LABEL}', value: '{VALUE}'},
+			</patTemplate:tmpl>
+		]
+
+		document.addEventListener("DOMContentLoaded", function() {
+			const ac = new Autocomplete(document.getElementById('autocomplete_field'), {
+				data: datasrc,
+				treshold: 1,
+				maximumItems: 8,
+				onSelectItem: ({label, value}) => {
+					document.getElementById("autocomplete_value").value = value;
+				}
+			});
+		});
+	</script>
+</patTemplate:tmpl>

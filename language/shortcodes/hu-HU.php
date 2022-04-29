@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -246,3 +246,8 @@ jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_LIMIT', 'A me
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'Az MRP -k (szállodák/panziók) vagy az SRP -k (nyaralók/apartmanok/villák) megjelenítése. Az alapértelmezett érték az aktuális ingatlanból származik, ha az MR -tulajdonság nem. Egy adott típus kiválasztásához állítsa ezt az értéket 0 értékre srps vagy 1 értékre mrps esetén. ');
 
 
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS', "Egy tulajdonság csillagait mutatja. Ezek a Tulajdonság konfigurációjában vannak beállítva, ha a tulajdonság MRP.");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_PROPERTY_UID', 'tulajdon azonosítója');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Opcionális. Ha a tulajdonságazonosító nincs beállítva, átadhat helyette egy számot.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Opcionális. Alternatív sablon elérési út. Nem adható át url-en keresztül. Abszolútnak kell lennie.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Opcionális. Alternatív sablonnév.');

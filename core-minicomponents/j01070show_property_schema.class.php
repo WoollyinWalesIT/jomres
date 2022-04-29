@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -70,6 +70,9 @@ class j01070show_property_schema
 		if ( get_showtime('is_jintour_property') ) { // Schema not yet supported on Jintour properties
 			return;
 		}
+
+		jr_import('jomres_markdown');
+		$jomres_markdown = new jomres_markdown();
 
 		$mrConfig = getPropertySpecificSettings($property_uid);
 
@@ -157,8 +160,7 @@ class j01070show_property_schema
 			$output["HIGHEST_PRICE"] = max($this->roomTypePriceRanges);
 		}
 
-		
-		$short_property_description = jomres_decode(jr_substr(strip_tags($current_property_details->property_description), 0, 200)).'...';
+		$short_property_description = jomres_decode(jr_substr(strip_tags($jomres_markdown->get_markdown($current_property_details->property_description)), 0, 200)).'...';
 
 		//property details
 		$output[ 'STARS' ] = $current_property_details->stars;

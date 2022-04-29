@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -149,8 +149,16 @@ class encryption_key
 		{
 		// An attack! Either the wrong key was loaded, or the ciphertext has
 		// changed since it was created -- either corrupted in the database or
-		// intentionally modified 
-		throw new Exception('Unable to decrypt data ');
+		// intentionally modified
+		if ( jomres_cmsspecific_areweinadminarea()) { // We can continue to allow Jomres to operate in admin area, but we must output a big fat warning
+			if (!AJAXCALL) {
+				echo '<p class="alert alert-danger">Error : unable to decrypt data. Has the encryption file been deleted/moved?</p>';
+			}
+
+		} else {
+			throw new Exception('Unable to decrypt data ');
+		}
+
 		}
 	}
 	

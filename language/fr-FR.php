@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Translation to fr-FR by Stéphane Bernard, Valtari NumAgency, France - last update : 19/11/2019 - https://www.valtari.fr
@@ -2485,3 +2485,24 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Images de 
 	jr_define('JOMRES_UPDATES_INFO', "Cette page peut télécharger et installer la version la plus récente de Jomres pour vous. Elle utilise ses propres fonctionnalités et non celles du CMS hôte. Par conséquent, si un problème survient lors de la mise à jour du CMS hôte, vous pouvez utiliser cette page pour forcer une réinstallation de la version la plus récente de Jomres.");
 
 
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'Les gestionnaires de propriétés peuvent utiliser le mode d\'édition dans le frontend pour personnaliser les chaînes pour chaque propriété, mais cela ne peut fonctionner que si votre paramètre WordPress Permalink est défini sur Plain (http://www.domain.com/?p=123). Une fois que vous avez fait cela, les utilisateurs frontaux pourront personnaliser des chaînes, telles que des noms de pièces et d\'autres étiquettes, qui sont spécifiques à des propriétés uniques. ');
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', 'Mode d\'édition des étiquettes');
+jr_define('JOMRES_EDITING_MODE_HELP_LEAD', 'Cette fonctionnalité est utilisée pour modifier les étiquettes des éléments, généralement dans différentes langues.');
+jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', 'Le mode d\'édition vous permet de renommer les étiquettes qui sont uniques à des propriétés individuelles. Lorsque vous utilisez le mode d\'édition pour renommer une étiquette, la modification n\'apparaîtra que sur cette liste de propriétés. Par exemple, sur une propriété, vous voudrez peut-être pour utiliser le mot "Prix" et sur un autre le mot "Tarifs". Toutes les étiquettes ne peuvent pas être modifiées, par exemple, les noms de type de chambre sont des étiquettes à l\'échelle du site, ils ne peuvent donc pas être modifiés, mais généralement tout ce qui est unique à une propriété individuelle peut être changé.');
+jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', 'Si le site prend en charge plusieurs langues, tout en utilisant une langue, vous pouvez créer un élément unique pour une propriété individuelle. Lorsque vous modifiez ensuite votre langue active, vous pouvez utiliser le mode d\'édition pour renommer cette étiquette, entrer une traduction appropriée dans la langue actuelle. Vous pouvez continuer à changer la langue active pour entrer une traduction appropriée pour cette étiquette pour chaque langue prise en charge par le site.');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'Changement de mode d\'édition d\'étiquette');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'Dans cette capture d\'écran, nous voyons le changement de mode d\'édition. Le mode d\'édition est désactivé et les étiquettes apparaissent normalement : ');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'Mode d\'édition d\'étiquette activé');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'Dans cette capture \'écran, nous voyons qu\'en mode Édition, les libellés que vous pouvez renommer sont mis en surbrillance :');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', 'Sélectionnez l\'élément à modifier');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'Lorsqu\'un libellé est sélectionné, une fenêtre contextuelle apparaît :');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'Changer le libellé');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Utilisez le petit formulaire pour changer le libellé. Cliquez sur la coche pour terminer, ou cliquez sur le X pour annuler l\'édition :');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Étiquette modifiée');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Une fois que vous avez enregistré la modification, l\'étiquette est mise à jour dans la page. Vous pouvez désactiver le mode d\'édition maintenant :');
+
+	jr_define('JOMRES_TRANSLATIONS_TITLE', 'Traductions');
+	jr_define('JOMRES_TRANSLATIONS_LEAD', 'Sur cette page, vous pouvez traduire des étiquettes d\'une langue à une autre. Lorsque vous visitez la page, vous verrez les chaînes que vous avez déjà créées et leur valeur dans la langue que vous utilisez actuellement. En haut, définissez le langue cible, puis pour les étiquettes que vous souhaitez traduire, cliquez sur l\'étiquette et une fenêtre contextuelle vous permettra d\'entrer votre nouvelle traduction. Pour les lignes de texte plus longues, vous pouvez coller le texte d\'une autre source. N\'oubliez pas que tout code HTML sera supprimé .<br/>
+Vous pouvez laisser la langue cible définie sur votre langue actuelle et utiliser cette page pour renommer les éléments ici, au lieu de visiter leurs pages individuelles.');
+jr_define('JOMRES_TARGET_LANGUAGE', 'Langue cible');

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1808,7 +1808,7 @@ jr_define('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Klucz wsparcia jest ważn
 jr_define('_JOMRES_DASHBOARD_DRAG_TRASH', 'Przeciągnij rezerwację by ją odwołać');
 jr_define('_JOMRES_LAT', 'Szerokość (nn.nnnn)');
 jr_define('_JOMRES_LONG', 'Długość (nn.nnnn)');
-jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Please ensure that you`ve created a WordPress Page that contains the [jomres:xx-XX] shortcode ( where xx-XX is your site language code, for example [jomres:en-GB] or [jomres:en-US] ) otherwise you will not be able to access Jomres from the frontend to manage your properties and bookings. <br> Jomres is built on the Bootstrap framework, so you must use it on a theme based on Bootstrap. We recommend one based on Bootstrap 3. If you do not have access to a theme then we recommend that you use the Jomres Leohtian theme for Wordpress which you can <a href="https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target="_blank">download from here.</a>');
+jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Please ensure that you`ve created a WordPress Page that contains the [jomres:xx-XX] shortcode ( where xx-XX is your site language code, for example [jomres:en-GB] or [jomres:en-US] ) otherwise you will not be able to access Jomres from the frontend to manage your properties and bookings.');
 jr_define('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', 'Większość nieruchomości w Jomres posiada możliwość wypożyczania jako proces zarządzania. Hotele/pensjonaty umożliwiają wynajęcie np. pokoju jako jednej z dostępnych wielu opcji. Domy/mieszkania to oferty gdzie wynajmuje się całość danej oferty (cały dom lub całe mieszkanie). Nie jest to rzecz widoczna na pierwszy rzut oka dla sprzedawcy. Jednak by sprzedawca miał możliwość stworzenia cenników dla swojej oferty należy stworzyć odpowiednie dla danego typu oferty przedmioty rezerwacji.<br />Np. w hotelu dostępne będą pokoje w kilku wariantach (pokoje dwuosobowe, pokoje jednoosobowe i trzyosobowe), natomiast dom będzie posiadał tylko jeden typ przedmiotu rezerwacji np. 2 sypialnie, 5 sypialni.<br />Możliwe jest tworzenie przedmiotów rezerwacji jako np. wycieczki. Dzięki temu klienci mogą zapoznać się z ich szczegółami. Jednak sprzedawca nie będzie musiał stworzyć cenników w sposób jaki robi się to w przypadku np. hoteli, nie będzie dostępny specyficzny sposób zarządzania ofertą.');
 jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', 'Kliknij i dodaj nowy przedmiot rezerwacji');
 jr_define('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES', 'Uwaga, masz jeden lub więcej typów ofert bez przypisanych przedmiotów rezerwacji. Konieczne jest powiązanie typów ofert z przedmiotami rezerwacji, aby sprzedawcy mogli utworzyć dla nich cenniki.');
@@ -2212,7 +2212,7 @@ jr_define( '_JOMRES_LOGIN_RESET_BUTTON', 'Nie pamiętasz hasła?' );
 
 jr_define('_JOMRES_REVIEWS_ANONYMISE', 'Zanonimizować swoje imię i nazwisko?');
 jr_define('_JOMRES_REVIEWS_ANONYMISE_DESC', 'Jeśli zdecydujesz się zanonimizować swoje imię i nazwisko podczas sprawdzania, zamiast tego użyjemy Twoich inicjałów.');
-jr_define('ANONIMOWY', 'Anon');
+jr_define('ANONYMOUS', 'Anon');
 
 jr_define('_JOMRES_REVIEWS_REPLY_SAID', 'powiedział ');
 jr_define('_JOMRES_REVIEWS_REPLY_OPPORTUNITY', 'Odpowiedz na tę recenzję');
@@ -2704,3 +2704,25 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Obrazy typ
 
 	jr_define('JOMRES_UPDATES_TITLE', 'Aktualizacje Jomres');
 	jr_define('JOMRES_UPDATES_INFO', "Ta strona może pobrać i zainstalować dla Ciebie najnowszą wersję Jomres. Wykorzystuje ona swoją własną funkcjonalność, a nie hosta CMS, dlatego jeśli wystąpi problem podczas aktualizacji hosta CMS, możesz użyć tej strony do wymusić ponowną instalację najnowszej wersji Jomres.");
+
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'Zarządcy usług mogą korzystać z trybu edycji w interfejsie użytkownika, aby dostosować ciągi dla każdej właściwości, jednak może to działać tylko wtedy, gdy ustawienie WordPress Permalink jest ustawione na Zwykły (http://www.domain.com/?p=123). Gdy to zrobisz, użytkownicy frontendu będą mogli dostosować ciągi, takie jak nazwy pokoi i inne etykiety, które są specyficzne dla unikalnych właściwości. ');
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', 'Tryb edycji etykiet');
+	jr_define('JOMRES_EDITING_MODE_HELP_LEAD', 'Ta funkcja służy do zmiany etykiet pozycji, zwykle na różne języki.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', 'Tryb edycji umożliwia zmianę nazw etykiet, które są unikalne dla poszczególnych właściwości. Gdy używasz trybu edycji do zmiany nazwy etykiety, zmiana pojawi się tylko na tej liście właściwości. Na przykład w jednej właściwości, którą chcesz użyć słowa „Ceny”, a po drugie słowa „Ceny”. Nie wszystkie etykiety można zmienić, na przykład nazwy typów pokoi są etykietami obejmującymi całą witrynę, więc nie można ich zmienić, ale zwykle wszystko, co jest unikalne dla danej usługi może być zmienione.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', 'Jeśli witryna obsługuje wiele języków, używając jednego języka, możesz utworzyć element, który jest unikalny dla pojedynczej właściwości. Po zmianie aktywnego języka możesz użyć trybu edycji, aby zmienić nazwę tej etykiety, wprowadzenie odpowiedniego tłumaczenia w bieżącym języku. Możesz kontynuować zmianę aktywnego języka, aby wprowadzić odpowiednie tłumaczenie dla tej etykiety dla każdego języka obsługiwanego przez witrynę.');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'Przełącznik trybu edycji etykiet');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'Na tym zrzucie ekranu widzimy przełącznik trybu edycji. Tryb edycji jest WYŁĄCZONY, a etykiety wyglądają normalnie: ');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'Tryb edycji etykiet włączony');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'Na tym zrzucie ekranu widzimy, że w trybie edycji etykiety, których nazwy możesz zmienić, są podświetlone:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', 'Wybierz element do zmiany');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'Po wybraniu etykiety pojawia się wyskakujące okienko:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'Zmień etykietę');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Użyj małego formularza, aby zmienić etykietę. Kliknij Znacznik, aby zakończyć, lub X, aby anulować edycję:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Zmieniono etykietę');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Po zapisaniu zmiany etykieta zostanie zaktualizowana na stronie. Możesz teraz wyłączyć tryb edycji:');
+
+	jr_define('JOMRES_TRANSLATIONS_TITLE', 'Tłumaczenia');
+	jr_define('JOMRES_TRANSLATIONS_LEAD', 'Na tej stronie możesz tłumaczyć etykiety z jednego języka na inny. Gdy odwiedzasz stronę, zobaczysz ciągi, które już utworzyłeś i ich wartość w dowolnym języku, którego aktualnie używasz. Na górze ustaw język docelowy, a następnie w przypadku etykiet, które chcesz przetłumaczyć, kliknij etykietę, a wyskakujące okienko umożliwi wprowadzenie nowego tłumaczenia. W przypadku dłuższych wierszy tekstu możesz wkleić tekst z innego źródła. Pamiętaj, że wszelki kod HTML zostanie usunięty .<br/>
+Możesz pozostawić język docelowy ustawiony na swój bieżący język i użyć tej strony do zmiany nazw elementów tutaj, zamiast odwiedzania ich poszczególnych stron.');
+	jr_define('JOMRES_TARGET_LANGUAGE', 'Język docelowy');

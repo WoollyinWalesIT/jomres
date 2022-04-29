@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1789,7 +1789,7 @@ jr_define('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS','サポートキーは有�
 jr_define('_JOMRES_DASHBOARD_DRAG_TRASH','予約をこのエリアにドラッグしてキャンセルします');
 jr_define('_JOMRES_LAT','Lat(nn.nnnn)');
 jr_define('_JOMRES_LONG','Long(nn.nnnn)');
-jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT','[jomres：xx-XX]ショートコード(xx-XXはサイトの言語コード,たとえば[jomres：en-GB]や[ jomres：en-US])そうしないと,フロントエンドからJomresにアクセスしてプロパティと予約を管理できなくなります。<br> JomresはBootstrapフレームワークに基づいて構築されているため,Bootstrapに基づくテーマで使用する必要があります。 Bootstrap 3に基づくものをお勧めします。テーマにアクセスできない場合は,Wordpress用のJomresLeohtianテーマを使用することをお勧めします。<ahref = "https://www.jomres.net/download/free- downloads / download / 5-miscelleneous-downloads / 11-leohtian-for-wordpress   " target="_blank"ここからダウンロード</a> ');
+jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT','[jomres：xx-XX]ショートコード(xx-XXはサイトの言語コード,たとえば[jomres：en-GB]や[ jomres：en-US])そうしないと,フロントエンドからJomresにアクセスしてプロパティと予約を管理できなくなります。');
 jr_define('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES','Jomresのほとんどの物件には賃貸管理プロセスがあります。ホテル/ B＆B /ペンションは個々の部屋を貸し出し,コテージ/ヴィラ/アパートは物件全体を貸し出します。これはプロパティマネージャーには見えませんが,彼らにとっては見えません。プロパティの料金を作成できるようにするには,最初にプロパティタイプに適した部屋タイプを追加する必要があります。
 たとえば,ホテルのプロパティタイプには通常,複数の部屋タイプ(ダブルルーム,シングルルーム,ツイン)が必要ですが,ヴィラには1つの部屋タイプしかありません。 2ベッドルーム,5ベッドルーム。
 ツアーなどのプロパティの部屋タイプを作成することができます。これにより,顧客はツアーなどのプロパティのみを検索できますが,プロパティマネージャはこのプロパティタイプの料金を作成しないため,管理プロセスはそれらに関連していません。
@@ -2684,4 +2684,26 @@ jr_define( '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_PROPERTY_UID', "�
 jr_define( '_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "デフォルトのテンプレートはproperty_details.htmlです。この引数を使用すると,表示する別のプロパティ詳細テンプレートを定義できます。");
 
 jr_define( 'JOMRES_UPDATES_TITLE', 'Jomres Updates');
-jr_define( 'JOMRES_UPDATES_INFO', "このページでは、最新バージョンのJomresをダウンロードしてインストールできます。ホストCMSの機能ではなく、独自の機能を使用するため、ホストCMSの更新中に問題が発生した場合は、このページを使用して Jomresの最新バージョンの再インストールを強制します。 ");
+jr_define( 'JOMRES_UPDATES_INFO', "このページでは,最新バージョンのJomresをダウンロードしてインストールできます。ホストCMSの機能ではなく,独自の機能を使用するため,ホストCMSの更新中に問題が発生した場合は,このページを使用して Jomresの最新バージョンの再インストールを強制します。 ");
+
+	jr_define( 'JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'プロパティマネージャーはフロントエンドの編集モードを使用して各プロパティの文字列をカスタマイズできますが,これはWordPressパーマリンク設定がプレーン(http://www.domain.com/？p=123)これを行うと,フロントエンドユーザーは,部屋の名前やその他のラベルなど,一意のプロパティに固有の文字列をカスタマイズできるようになります。 ');
+
+	jr_define( 'JOMRES_EDITING_MODE_HELP_TITLE', 'ラベル編集モード');
+jr_define( 'JOMRES_EDITING_MODE_HELP_LEAD', 'この機能は,アイテムのラベルを通常は異なる言語に変更するために使用されます。');
+jr_define( 'JOMRES_EDITING_MODE_HELP_INFO_1', '編集モードでは,個々のプロパティに固有のラベルの名前を変更できます。編集モードを使用してラベルの名前を変更すると,変更はそのプロパティリストにのみ表示されます。 「価格」という単語と「料金」という単語を使用します。すべてのラベルを変更できるわけではありません。たとえば,部屋のタイプ名はサイト全体のラベルであるため,変更することはできませんが,通常は個々のプロパティに固有のものです。変更可能。');
+jr_define( 'JOMRES_EDITING_MODE_HELP_INFO_2', 'サイトが複数の言語をサポートしている場合,1つの言語を使用しながら,個々のプロパティに固有のアイテムを作成できます。アクティブな言語を変更すると,編集モードを使用してそのラベルの名前を変更できます。現在の言語で適切な翻訳を入力します。アクティブな言語を変更し続けて,サイトがサポートする各言語のそのラベルに適した翻訳を入力できます。');
+jr_define( 'JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'ラベル編集モードスイッチ');
+jr_define( 'JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'このスクリーンショットでは,編集モードスイッチが表示されています。編集モードはオフで,ラベルは通常どおり表示されます：');
+jr_define( 'JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'ラベル編集モードが有効');
+jr_define( 'JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'このスクリーンショットでは,編集モードでは,名前を変更できるラベルが強調表示されていることがわかります。');
+jr_define( 'JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', '変更するアイテムを選択してください');
+jr_define( 'JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'ラベルを選択すると,ポップアップが表示されます：');
+jr_define( 'JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'ラベルを変更する');
+jr_define( 'JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', '小さなフォームを使用してラベルを変更します。チェックマークをクリックして終了するか,Xをクリックして編集をキャンセルします：');
+jr_define( 'JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'ラベルが変更されました');
+jr_define( 'JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', '変更を保存すると,ページのラベルが更新されます。編集モードを無効にできます：');
+
+jr_define('JOMRES_TRANSLATIONS_TITLE','翻訳');
+jr_define('JOMRES_TRANSLATIONS_LEAD','このページでは、ラベルをある言語から別の言語に翻訳できます。このページにアクセスすると、作成済みの文字列と、現在使用している言語での値が表示されます。 ターゲット言語、次に翻訳するラベルについて、ラベルをクリックすると、ポップアップで新しい翻訳を入力できます。長いテキスト行の場合は、別のソースからのテキストを貼り付けることができます。HTMLはすべて削除されることに注意してください。 。<br/>
+個々のページにアクセスする代わりに、ターゲット言語を現在の言語に設定したままにして、このページを使用してここでアイテムの名前を変更できます。');
+jr_define('JOMRES_TARGET_LANGUAGE','ターゲット言語');

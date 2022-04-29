@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -96,6 +96,8 @@ class j06000show_property_rooms
 		$basic_room_details = jomres_singleton_abstract::getInstance('basic_room_details');
 		$basic_room_details->get_all_rooms($property_uid);
 
+		$mrConfig = getPropertySpecificSettings($property_uid);
+
 		$output = array();
 
 		if (!empty($basic_room_details->rooms)) {
@@ -152,7 +154,17 @@ class j06000show_property_rooms
 					$r[ 'TAGLINE' ] = $room['tagline'];
 					$r[ 'DESCRIPTION' ] = $jomres_markdown->get_markdown($room['description']);
 
-				
+					$room_price_output = get_room_price_by_room_type_id( $room['room_classes_uid'] , $property_uid );
+					$r[ 'PRICE_PRICE' ]	 = $room_price_output[ 'PRICE_PRICE' ];
+					$r[ 'PRICE_PRE_TEXT' ]  = $room_price_output[ 'PRICE_PRE_TEXT' ];
+					$r[ 'PRICE_POST_TEXT' ] = $room_price_output[ 'PRICE_POST_TEXT' ];
+
+					$r[ 'BOOKING_LINK' ] = get_booking_url($property_uid);
+					if ($mrConfig[ 'requireApproval' ] == '1') {
+						$r[ 'BOOKING_BUTTON_TEXT' ] = jr_gettext('_BOOKING_CALCQUOTE', '_BOOKING_CALCQUOTE', false);
+					} else {
+						$r[ 'BOOKING_BUTTON_TEXT' ] = jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKAROOM', '_JOMRES_FRONT_MR_MENU_BOOKAROOM', false);
+					}
 					$rows[ ] = $r;
 				}
 				

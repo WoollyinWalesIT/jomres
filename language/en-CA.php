@@ -1,10 +1,10 @@
-<?php
+4<?php
 /**
  * Core file.
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -69,7 +69,7 @@ jr_define('_JOMRES_COM_MR_EB_ROOM_DISABLED', 'Disabled access available?');
 jr_define('_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE', 'Max people');
 jr_define('_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV', 'Room/property type');
 jr_define('_JOMRES_COM_MR_EB_ROOM_CLASS_DESC', 'Room/property type description');
-jr_define('_JOMRES_COM_MR_EB_ROOM_FEATURES_LIST', 'Room features list');
+jr_define('_JOMRES_COM_MR_EB_ROOM_FEATURES_LIST', 'Room features');
 jr_define('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID', 'Deposit paid');
 jr_define('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE', 'Enter deposit');
 jr_define('_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL', 'Total to pay');
@@ -530,7 +530,7 @@ jr_define('_JOMRES_COM_A_TARIFFPRICESAREWEEKLY_DESC', 'You have the option of st
 jr_define('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK', 'per week');
 jr_define('_JOMRES_COM_MR_FIXEDARRIVALDATE_RECURRING', 'Fixed arrival dates recurr: ');
 jr_define('_JOMRES_COM_MR_FIXEDARRIVALDATE_RECURRING_DESC', 'When fixed arrival dates are selected, the number dates that can be shown in the dates dropdown list. Note that the list of dates will not include any dates if a booking is not possible due to prior bookings, and that the list will actually be twice as long as your selected number because it will have a similar number of historic dates (where available) ');
-jr_define('_JOMRES_BOOKINGFORM_MONITORING_ARRIVALDATE_INVALID', 'Arrival date incorrect');
+jr_define('_JOMRES_BOOKINGFORM_MONITORING_ARRIVALDATE_INVALID', 'Choose a date for your booking');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_DEPARTUREDATE_INVALID', 'Departure date incorrect');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1', 'The booking is too short. There needs to be at least this many days between arrival and departure dates:');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2', 'Your interval is');
@@ -1102,7 +1102,7 @@ jr_define('_JOMRES_PARTNER_CHOOSE_EXISTING_INSTRUCTIONS', 'Choose a partner to b
 jr_define('_JOMRES_PARTNER_SHOW_TITLE', 'Partner :');
 jr_define('_JOMRES_PARTNER_SHOW_SEARCHTITLE', 'Search for a business');
 jr_define('_JOMRES_PARTNER_SHOW_SEARCHINSTRUCTIONS', "Enter a few characters from the property name and select a business.<br/> When you select the property you will add it to the partner's portfolio, however they will not yet enjoy any discounts, you will need to set those youself.");
-jr_define('_JOMRES_PARTNER_SHOW_CURRENTPROPERTIES', 'Current businesses');
+jr_define('_JOMRES_PARTNER_SHOW_CURRENTPROPERTIES', 'Current properties');
 jr_define('_JOMRES_PARTNER_SHOW_CURRENTPROPERTIES_INSTRUCTIONS', "Click on a property to edit the partner's discount settings for that business.");
 // 4.6
 jr_define('_JOMRES_SUSPENSIONS_MANAGER_SUSPENDED', 'This account has been suspended, it is not currently possible to administer your propert(ies) using this account.');
@@ -1545,7 +1545,7 @@ jr_define('_JOMRES_HSTATUS_PUBLISHING', 'Publishing status');
 jr_define('_JOMRES_HSTATUS_INVOICE', 'Invoice status');
 jr_define('_JOMRES_HSTATUS_INVOICE_TYPE', 'Invoice type');
 jr_define('_JOMRES_HSTATUS_APPROVED', 'Approved');
-jr_define('_JOMRES_HSTATUS_CURRENT', 'Current business');
+jr_define('_JOMRES_HSTATUS_CURRENT', 'Current property');
 jr_define('_JOMRES_HSTATUS_SHOW_BOOKINGS_FOR', 'Show bookings for');
 jr_define('_JOMRES_HSTATUS_SHOW_INVOICES_FOR', 'Show invoices for');
 jr_define('_JOMRES_STATUS_ANY', 'Any');
@@ -1798,7 +1798,7 @@ jr_define('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Your support key is valid
 jr_define('_JOMRES_DASHBOARD_DRAG_TRASH', 'Drag bookings to this area to cancel them');
 jr_define('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define('_JOMRES_LONG', 'Long (nn.nnnn)');
-jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Please ensure that you`ve created a WordPress Page that contains the [jomres:xx-XX] shortcode ( where xx-XX is your site language code, for example [jomres:en-GB] or [jomres:en-US] ) otherwise you will not be able to access Jomres from the frontend to manage your properties and bookings. <br> Jomres is built on the Bootstrap framework, so you must use it on a theme based on Bootstrap. We recommend one based on Bootstrap 3. If you do not have access to a theme then we recommend that you use the Jomres Leohtian theme for Wordpress which you can <a href="https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target="_blank">download from here.</a>');
+jr_define('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Please ensure that you`ve created a WordPress Page that contains the [jomres:xx-XX] shortcode ( where xx-XX is your site language code, for example [jomres:en-GB] or [jomres:en-US] ) otherwise you will not be able to access Jomres from the frontend to manage your properties and bookings.');
 jr_define('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', 'Most properties in Jomres have a rental management process. Hotels/B&Bs/Pensions rent out individual rooms, and cottages/villas/apartments rent out the entire property. This is invisible to the property manager, but for them to be able to create tariffs for their property you must first add room types that are appropriate for the property type.
 For example, A hotel property type would normally need several room types ( double rooms, single rooms and twins ) whereas a villa can only have one room type, e.g. 2 Bedrooms, 5 bedrooms.
 It is possible to create room types for properties like Tours. This allows customers to search for properties like tours only, but the Property manager will not create tariffs for this property type, so the Management Process is not relevant to them.
@@ -1879,7 +1879,7 @@ jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE', "Choose the resource you want to uplo
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_SPECIFIC', "Specific resource");
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_ALREADY_UPLOADED', "Images already uploaded for this resource");
 jr_define('_JOMRES_MARKDOWN_TITLE', 'Text formatting');
-jr_define('_JOMRES_MARKDOWN_DESC', 'You can enter text here using simple Markdown formatting. You don\'t need to know any HTML, just use the buttons to make the information look like you want, or format text according to these examples.');
+jr_define('_JOMRES_MARKDOWN_DESC', 'You can enter text here using simple Markdown formatting. You don\'t need to know any HTML, just format text according to these examples.');
 jr_define('_JOMRES_MARKDOWN_EMPHASIS', 'Emphasis');
 jr_define('_JOMRES_MARKDOWN_BOLD', 'bold');
 jr_define('_JOMRES_MARKDOWN_ITALICS', 'italics');
@@ -1948,7 +1948,7 @@ jr_define('_JOMRES_PAYMENT_METHOD_USED',"Payment method : ");
 jr_define('_JOMRES_PRICES',"Get Connected");
 
 
-jr_define('_OAUTH_TITLE',"App key management");
+jr_define('_OAUTH_TITLE',"API key management");
 jr_define('_OAUTH_APPS',"REST API client details");
 jr_define('_OAUTH_IDENTIFIER',"Identifier");
 jr_define('_OAUTH_APIKEY',"Client ID");
@@ -1959,7 +1959,7 @@ jr_define('_OAUTH_SCOPE_TITLE',"Permissions ( what the client can do ) ");
 jr_define('_OAUTH_SCOPE_CATEGORY_USER' , "User permissions");
 jr_define('_OAUTH_SCOPE_CATEGORY_PROPERTIES' , "Property permissions");
 
-jr_define('API_DOCUMENTATION_TITLE',"App REST API documentation");
+jr_define('API_DOCUMENTATION_TITLE',"REST API documentation");
 
 jr_define('_OAUTH_CONFIG',"API Core configuration");
 
@@ -2719,4 +2719,29 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Property t
 	jr_define('JOMRES_UPDATES_INFO', "This page can download and install the most recent version of Jomres for you. It uses it's own functionality and not that of the host CMS therefore if a problem occurs during the host CMS's update you can use this page to force a reinstallation of the most recent version of Jomres.");
 
 
+
+
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'Property managers can use the editing mode in the frontend to customise strings for each property, however this can only work if your WordPress Permalink setting is set to Plain (http://www.domain.com/?p=123). Once  you have done that frontend users will be able to customise strings, such as room names and other labels, that are specific to unique properties. ');
+
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', 'Label editing mode');
+	jr_define('JOMRES_EDITING_MODE_HELP_LEAD', 'This feature is used to change item labels, usually into different languages.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', 'Editing mode allows you to rename labels that are unique to individual properties. When you use Editing mode to rename a label, the change will only appear on that property listing. For example, on one property you might want to use the word "Prices" and on another the word "Rates". Not all labels can be changed, for example room type names are site-wide labels, so they cannot be changed, but usually anything that is unique to an individual property can be changed.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', 'If the site supports multiple languages, while using one language you can create an item that is unique to an individual property. When you then change your active language, you can use the editing mode to rename that label, entering a suitable translation in the current language. You can continue changing the active language to enter a suitable translation for that label for each language the site supports.');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'Label editing mode switch');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'In this screenshot we see the Editing mode switch. The Editing mode is OFF and the labels appear as normal: ');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'Label editing mode enabled');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'In this screenshot we see that, while in Editing mode, the labels you can rename are highlighted:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', 'Select the item to change');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'When a label is selected a popup appears:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'Change the label');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Use the little form to change the label. Click the Tick to finish, or click the X to cancel editing:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Label changed');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Once you have saved the change then the label is updated in the page. You can disable editing mode now:');
+
+
+	jr_define('JOMRES_TRANSLATIONS_TITLE', 'Translations');
+	jr_define('JOMRES_TRANSLATIONS_LEAD', 'On this page you can translate labels from one language to another. When you visit the page you will see strings that you have already created and their value in whatever language you are currently using. At the top set the target language, then for the labels you want to translate, click on the label and a popup will let you enter your new translation. For longer lines of text you can paste in the text from another source. Remember that any HTML will be stripped out.<br/>
+You can leave the target language set to your current language and use this page to rename items here, instead of visiting their individual pages.');
+	jr_define('JOMRES_TARGET_LANGUAGE', 'Target language');
 

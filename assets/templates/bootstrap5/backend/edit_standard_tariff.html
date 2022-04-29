@@ -254,7 +254,7 @@ var isfrom = true;
 <h2 class="page-header">{_JOMRES_COM_MR_LISTTARIFF_LINKTEXT}</h2>
 
 
-<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm" class="form-horizontal" role="form">
+<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm" class="form-horizontal" role="form" autocomplete="off">
 {ROOMTYPE_HIDDEN}
 <input type="hidden" name="tarifftypeid" value="{TARIFFTYPEID}" />
 <input type="hidden" name="task" value="save_tariff_standard" />
@@ -282,7 +282,7 @@ var isfrom = true;
     <div class="form-group">
         <label class="col-2 control-label" for="extra_guests_price">{JOMRES_COM_A_DAILY_EXTRA_GUEST_PRICE}</label>
         <div class="col-10">
-            <input class="inputbox" type="text" name="extra_guests_price" value="{EXTRA_GUESTS_PRICE}" />
+            <input class="form-control" type="text" name="extra_guests_price" value="{EXTRA_GUESTS_PRICE}" />
         </div>
     </div>
 

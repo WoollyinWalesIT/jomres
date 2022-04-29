@@ -1,0 +1,14 @@
+<patTemplate:tmpl name="pageoutput">
+	<label class="control-label" for="stars">{LABEL}</label>
+	<div class="input-group">
+		<div class="select-wrapper">
+			<select name="stars" id="stars" class="form-select">
+				<patTemplate:tmpl name="stars">
+					<option value="{VALUE}">{STARS} {NUMBER_OF_PROPERTIES} {PROPERTIES}</option>
+				</patTemplate:tmpl>
+			</select>
+		</div>
+	</div>
+
+
+</patTemplate:tmpl>

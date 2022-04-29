@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1824,7 +1824,7 @@ jr_define ('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Cheia dvs. de asistenț�
 jr_define ('_JOMRES_DASHBOARD_DRAG_TRASH', 'Trageți rezervările în această zonă pentru a le anula');
 jr_define ('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define ('_JOMRES_LONG', 'Long (nn.nnnn)');
-jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Vă rugăm să vă asigurați că ați creat o pagină WordPress care conține codul scurt [jomres: xx-XX] (unde xx-XX este codul limbii site-ului dvs., de exemplu [jomres: en-GB] sau [ jomres: en-US]) altfel nu veți putea accesa Jomres din frontend pentru a vă gestiona proprietățile și rezervările. <br> Jomres este construit pe cadrul Bootstrap, deci trebuie să îl utilizați pe o temă bazată pe Bootstrap. recomandă una bazată pe Bootstrap 3. Dacă nu aveți acces la o temă, vă recomandăm să utilizați tema Jomres Leohtian pentru Wordpress pe care o puteți <a href = "https://www.jomres.net/download/free- downloads / download / 5-miscelleneous-downloads / 11-leohtian-for-wordpress target="_blank"> download from here. </a> ');
+jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Vă rugăm să vă asigurați că ați creat o pagină WordPress care conține codul scurt [jomres: xx-XX] (unde xx-XX este codul limbii site-ului dvs., de exemplu [jomres: en-GB] sau [ jomres: en-US]) altfel nu veți putea accesa Jomres din frontend pentru a vă gestiona proprietățile și rezervările.');
 jr_define ('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', "Înainte de a putea crea un tip de cameră, trebuie să știm dacă este pentru o proprietate de tip hotel sau pentru o proprietate de tip vilă.");
 jr_define ('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', 'Faceți clic pentru a adăuga noi tipuri de camere');
 jr_define ('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES', 'Atenție, aveți unul sau mai multe tipuri de proprietăți fără tipuri de cameră. Proprietățile au nevoie de tipuri de camere, astfel încât administratorii de proprietăți să poată crea tarife.');
@@ -2714,3 +2714,25 @@ jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Ș
 
 	jr_define('JOMRES_UPDATES_TITLE', 'Actualizări Jomres');
 	jr_define('JOMRES_UPDATES_INFO', "Această pagină poate descărca și instala cea mai recentă versiune de Jomres pentru dvs.. Folosește propria sa funcționalitate și nu pe cea a CMS-ului gazdă, prin urmare, dacă apare o problemă în timpul actualizării CMS-ului gazdă, puteți utiliza această pagină pentru forțați o reinstalare a celei mai recente versiuni de Jomres.");
+
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'Administratorii de proprietăți pot folosi modul de editare din frontend pentru a personaliza șirurile pentru fiecare proprietate, totuși acest lucru poate funcționa numai dacă setarea dvs. de permalink WordPress este setată la Simplu (http://www.domain.com/?) p=123). După ce ați făcut acest lucru, utilizatorii de front-end vor putea personaliza șiruri, cum ar fi numele camerelor și alte etichete, care sunt specifice proprietăților unice. ');
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', 'Mod editare etichete');
+	jr_define('JOMRES_EDITING_MODE_HELP_LEAD', 'Această caracteristică este folosită pentru a schimba etichetele articolelor, de obicei în diferite limbi.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', 'Modul de editare vă permite să redenumiți etichetele care sunt unice pentru proprietăți individuale. Când utilizați modul Editare pentru a redenumi o etichetă, modificarea va apărea numai pe lista proprietăților respective. De exemplu, pe o proprietate pe care ați putea-o dori pentru a folosi cuvântul „Prețuri” și pe altul cuvântul „Prețuri”. Nu toate etichetele pot fi schimbate, de exemplu, numele tipurilor de cameră sunt etichete la nivelul întregului site, deci nu pot fi schimbate, dar de obicei orice este unic pentru o proprietate individuală poate fi schimbat.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', 'Dacă site-ul acceptă mai multe limbi, în timp ce utilizați o singură limbă, puteți crea un articol care este unic pentru o proprietate individuală. Atunci când vă schimbați limba activă, puteți utiliza modul de editare pentru a redenumi eticheta respectivă, introducerea unei traduceri adecvate în limba curentă. Puteți continua să schimbați limba activă pentru a introduce o traducere adecvată pentru acea etichetă pentru fiecare limbă pe care o acceptă site-ul.');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'Comutator mod editare etichete');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'În această captură de ecran vedem comutatorul modului de editare. Modul de editare este OFF și etichetele apar ca în mod normal: ');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'Modul de editare etichetă activat');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'În această captură de ecran vedem că, în modul Editare, etichetele pe care le poți redenumi sunt evidențiate:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', 'Selectaţi elementul de modificat');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'Când este selectată o etichetă apare o fereastră pop-up:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'Schimbați eticheta');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Folosiți formularul mic pentru a schimba eticheta. Faceți clic pe Bifă pentru a finaliza sau faceți clic pe X pentru a anula editarea:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Etichetă schimbată');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Odată ce ați salvat modificarea, atunci eticheta este actualizată în pagină. Puteți dezactiva modul de editare acum:');
+
+	jr_define('JOMRES_TRANSLATIONS_TITLE', 'Traduceri');
+	jr_define('JOMRES_TRANSLATIONS_LEAD', 'Pe această pagină puteți traduce etichete dintr-o limbă în alta. Când vizitați pagina, veți vedea șirurile pe care le-ați creat deja și valoarea lor în orice limbă pe care o utilizați în prezent. În partea de sus setați limba țintă, apoi pentru etichetele pe care doriți să le traduceți, faceți clic pe etichetă și o fereastră pop-up vă va permite să introduceți noua traducere. Pentru rânduri mai lungi de text puteți lipi textul din altă sursă. Amintiți-vă că orice HTML va fi eliminat. .<br/>
+Puteți lăsa limba țintă setată la limba dvs. curentă și puteți utiliza această pagină pentru a redenumi articolele aici, în loc să le vizitați paginile individuale.');
+	jr_define('JOMRES_TARGET_LANGUAGE', 'Limba ţintă');

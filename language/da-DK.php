@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -1821,7 +1821,7 @@ jr_define ('_JOMRES_SUPPORTKEY_DESC_VALID_NO_PLUGINS', 'Din supportnøgle er gyl
 jr_define ('_JOMRES_DASHBOARD_DRAG_TRASH', 'Træk bookinger til dette område for at annullere dem');
 jr_define ('_JOMRES_LAT', 'Lat (nn.nnnn)');
 jr_define ('_JOMRES_LONG', 'Long (nn.nnnn)');
-jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Sørg for, at du har oprettet en WordPress-side, der indeholder [jomres: xx-XX] -kode (hvor xx-XX er dit webstedets sprogkode, f.eks. [jomres: da-GB] eller [ jomres: da-US]) ellers har du ikke adgang til Jomres fra frontend for at administrere dine ejendomme og bookinger. <br> Jomres er bygget på Bootstrap-rammerne, så du skal bruge det på et tema baseret på Bootstrap. Vi anbefaler en baseret på Bootstrap 3. Hvis du ikke har adgang til et tema, anbefaler vi, at du bruger Jomres Leohtian-temaet til Wordpress, som du kan <a href = "https://www.jomres.net/download/free-downloads/download/5-miscelleneous-downloads/11-leohtian-for-wordpress" target="_blank"> download herfra. </a> ');
+jr_define ('_JOMRES_DEFAULT_SHORTCODE_ALERT', 'Sørg for, at du har oprettet en WordPress-side, der indeholder [jomres: xx-XX] -kode (hvor xx-XX er dit webstedets sprogkode, f.eks. [jomres: da-GB] eller [ jomres: da-US]) ellers har du ikke adgang til Jomres fra frontend for at administrere dine ejendomme og bookinger.');
 jr_define ('_JOMRES_PROPERTY_MANAGEMENT_PROCESS_ROOM_TYPES', "Inden du kan oprette en værelsestype, skal vi vide, om det er til en ejendom af en hoteltype eller en ejendom af en villa.");
 jr_define ('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES_LINK_TEXT', 'Klik for at tilføje nye værelsestyper');
 jr_define ('_JOMRES_PROPERTY_TYPES_WITHOUT_ROOM_TYPES', 'Advarsel, du har en eller flere ejendomstyper uden rumtyper. Egenskaber har brug for rumtyper, så ejendomsadministratorer kan oprette takster.');
@@ -2713,3 +2713,25 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Ejendomsty
 
 	jr_define('JOMRES_UPDATES_TITLE', 'Jomres-opdateringer');
 	jr_define('JOMRES_UPDATES_INFO', "Denne side kan downloade og installere den seneste version af Jomres for dig. Den bruger sin egen funktionalitet og ikke værts-CMS'ens, så hvis der opstår et problem under værts-CMS'ets opdatering, kan du bruge denne side til at fremtvinge en geninstallation af den seneste version af Jomres.");
+
+	jr_define('JOMRES_WORDPRESS_PERMALINK_EDITING_MODE_INFO', 'Ejendomsadministratorer kan bruge redigeringstilstanden i frontend til at tilpasse strenge for hver egenskab, men dette kan kun fungere, hvis din WordPress Permalink-indstilling er sat til Plain (http://www.domain.com/?p=123). Når du har gjort det, vil frontend-brugere være i stand til at tilpasse strenge, såsom rumnavne og andre etiketter, der er specifikke for unikke egenskaber. ');
+
+	jr_define('JOMRES_EDITING_MODE_HELP_TITLE', 'Etiketredigeringstilstand');
+	jr_define('JOMRES_EDITING_MODE_HELP_LEAD', 'Denne funktion bruges til at ændre emneetiketter, normalt til forskellige sprog.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_1', 'Redigeringstilstand giver dig mulighed for at omdøbe etiketter, der er unikke for individuelle ejendomme. Når du bruger redigeringstilstand til at omdøbe en etiket, vil ændringen kun vises på den pågældende ejendomsliste. For eksempel på én ejendom, du måske ønsker at bruge ordet "Priser" og på et andet ordet "Rates". Ikke alle etiketter kan ændres, f.eks. er værelsestypenavne etiketter for hele webstedet, så de kan ikke ændres, men normalt alt, der er unikt for en individuel ejendom kan ændres.');
+	jr_define('JOMRES_EDITING_MODE_HELP_INFO_2', 'Hvis webstedet understøtter flere sprog, mens du bruger ét sprog, kan du oprette et element, der er unikt for en individuel ejendom. Når du derefter ændrer dit aktive sprog, kan du bruge redigeringstilstanden til at omdøbe denne etiket, indtastning af en passende oversættelse på det aktuelle sprog. Du kan fortsætte med at ændre det aktive sprog for at indtaste en passende oversættelse for den etiket for hvert sprog, som webstedet understøtter.');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TITLE', 'Skift til etiketredigeringstilstand');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_1_TEXT', 'På dette skærmbillede ser vi skift af redigeringstilstand. Redigeringstilstanden er FRA, og etiketterne vises som normalt: ');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TITLE', 'Etiketredigeringstilstand aktiveret');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_2_TEXT', 'På dette skærmbillede ser vi, at i redigeringstilstand er de etiketter, du kan omdøbe, fremhævet:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TITLE', 'Vælg det element, der skal ændres');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_3_TEXT', 'Når en etiket er valgt, vises en popup:');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TITLE', 'Skift etiketten');
+	jr_define('JOMRES_EDITING_MODE_HELP_STEPS_4_TEXT', 'Brug den lille formular til at ændre etiketten. Klik på fluebenet for at afslutte, eller klik på X\'et for at annullere redigeringen:');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TITLE', 'Etiket ændret');
+jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Når du har gemt ændringen, opdateres etiketten på siden. Du kan deaktivere redigeringstilstand nu:');
+
+	jr_define('JOMRES_TRANSLATIONS_TITLE', 'Oversættelser');
+	jr_define('JOMRES_TRANSLATIONS_LEAD', 'På denne side kan du oversætte etiketter fra et sprog til et andet. Når du besøger siden vil du se strenge, som du allerede har oprettet, og deres værdi på det sprog, du bruger i øjeblikket. Øverst indstilles målsprog, og klik derefter på etiketten for de etiketter, du vil oversætte, og en pop op vil lade dig indtaste din nye oversættelse. For længere tekstlinjer kan du indsætte teksten fra en anden kilde. Husk, at al HTML vil blive fjernet .<br/>
+Du kan lade målsproget være indstillet til dit nuværende sprog og bruge denne side til at omdøbe elementer her, i stedet for at besøge deres individuelle sider.');
+	jr_define('JOMRES_TARGET_LANGUAGE', 'Målsprog');

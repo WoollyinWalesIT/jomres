@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -245,3 +245,9 @@ jr_define ('_JOMRES_SHORTCODES_06001DASHBOARD', 'Dashboard') ;
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES' , 'إظهار قائمة بالخصائص المرخصة') ;
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_LIMIT', 'عدد الخصائص المرخصة المراد إظهارها') ;
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP' , 'ما إذا كان سيتم إظهار MRPs (فنادق / سرير وفطور) أو SRPs (منازل ريفية / شقق / فيلات). يتم تحديد الإعداد الافتراضي من الممتلكات الحالية غير متاحة , إذا لم يكن MRPs متاحًا , إذا معروض. لاختيار نوع معين , اضبط هذه القيمة على 0 لـ srps أو 1 لـ mrps. ');
+
+jr_define ('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS' , "إظهار نجوم الخاصية. تم تعيينها في تكوين الخاصية ، إذا كانت الخاصية MRP.") ;
+jr_define ('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_PROPERTY_UID' , 'معرف الخاصية.') ;
+jr_define ('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER' , 'اختياري. إذا لم يتم تعيين معرف الخاصية ، يمكنك تمرير رقم بدلاً من ذلك.') ;
+jr_define ('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'اختياري. مسار القالب البديل. لا يمكن تمريره عبر عنوان url. يجب أن يكون مطلقًا.') ;
+jr_define ('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME' , "اختياري. اسم نموذج بديل.") ;

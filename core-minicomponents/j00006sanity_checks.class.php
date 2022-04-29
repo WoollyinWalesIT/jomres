@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -42,7 +42,7 @@ class j00006sanity_checks
 
 			return;
 		}
-		if (!defined('JOMRES_NOHTML') || JOMRES_NOHTML == 0 && get_showtime('task') != 'platform_connect'  ) {
+		if (!defined('JOMRES_NOHTML') || JOMRES_NOHTML == 0 ) {
 			$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 
 			
@@ -78,7 +78,7 @@ class j00006sanity_checks
 /**
  * Must be included in every mini-component.
  #
- * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
+ * Returns any settings that the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
  */
 
 	public function getRetVals()

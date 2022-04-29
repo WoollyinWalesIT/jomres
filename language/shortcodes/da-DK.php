@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -245,4 +245,9 @@ jr_define ('_JOMRES_SHORTCODES_06001DASHBOARD', 'Dashboard');
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES', 'Viser en liste over syndikerede egenskaber');
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_LIMIT', 'Antallet af syndikerede egenskaber, der skal vises');
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'Om MRP\'er (hoteller/bed & breakfasts) eller SRP\'er (hytter/lejligheder/villaer) skal vises. Standard er bestemt fra den aktuelle ejendoms ejendom vist. Hvis du vil vælge en bestemt type, skal du indstille denne værdi til 0 for srps eller 1 for mrps. ');
-    
+
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS', "Viser en ejendoms stjerner. Disse er indstillet i Ejendomskonfiguration, hvis ejendommen er en MRP.");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_PROPERTY_UID', 'Ejendommens ID.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Valgfrit. Hvis egenskabs-id\'et ikke er angivet, kan du videregive et nummer i stedet.');
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Valgfrit. Alternativ skabelonsti. Kan ikke sendes via url. Skal være absolut.');
+jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Valgfrit. Alternativt skabelonnavn.');

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -671,7 +671,7 @@ class jomres_sanity_check
 					if ($this->mrConfig['tariffmode'] == 0) {
 						$link = jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_tariffs_normal');
 					} else {
-						$link = jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_resource');
+						$link = jomresURL(JOMRES_SITEPAGE_URL.'&task=list_resources');
 					}
 					$button_text = jr_gettext('_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK_LINK', '_JOMRES_MRP_ROOMS_EXIST_SANITY_CHECK_LINK', false);
 

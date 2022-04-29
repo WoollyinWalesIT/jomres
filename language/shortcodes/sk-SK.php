@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.2.2
+ *  @version Jomres 10.3.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -246,3 +246,8 @@ jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES', 'Zobrazí zozna
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_LIMIT', 'počet publikovaných vlastností na zobrazenie');
 jr_define ('_JOMRES_SHORTCODES_06001SHOW_SYNDICATED_PROPERTIES_ARG_MRPSRP', 'Či sa majú zobrazovať MRP (hotely/nocľah s raňajkami) alebo SRP (chaty/apartmány/vily). Predvolená hodnota je určená zo súčasného majetku, ak je k dispozícii Ak chcete vybrať konkrétny typ, nastavte túto hodnotu na 0 pre srps alebo 1 pre mrps. ');
 
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS', "Zobrazuje hviezdičky nehnuteľnosti. Tie sa nastavujú v Konfigurácii nehnuteľnosti, ak je nehnuteľnosť MRP.");
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_PROPERTY_UID', 'ID nehnuteľnosti.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_STARS_NUMBER', 'Voliteľné. Ak nie je nastavené ID vlastnosti, môžete namiesto toho zadať číslo.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_PATH', 'Voliteľné. Alternatívna cesta šablóny. Nemôže byť odovzdaná cez adresu URL. Musí byť absolútna.');
+	jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_STARS_SUMMARY_ARG_ALT_TEMPLATE_NAME', 'Voliteľné. Alternatívny názov šablóny.');

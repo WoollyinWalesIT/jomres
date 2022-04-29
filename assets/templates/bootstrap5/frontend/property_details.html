@@ -146,6 +146,24 @@
 												</li>
 												<pattemplate:comment>TAB TITLE END</pattemplate:comment>
 
+												<pattemplate:comment>TAB TITLE WEATHER START</pattemplate:comment>
+												<pattemplate:tmpl name="weather_output" type="simpleCondition" requiredvars="title" unusedvars="nbsp">
+													<li class="nav-item" role="presentation">
+														<div
+																id="weather-left-tab"
+																class="nav-link tab-clickable"
+																role="tab"
+																data-bs-toggle="tab"
+																data-bs-target="#weather-left"
+																aria-controls="weather-left"
+																aria-selected="true"
+														>
+															{TITLE}
+														</div>
+													</li>
+												</pattemplate:tmpl>
+												<pattemplate:comment>TAB TITLE END</pattemplate:comment>
+
 												<pattemplate:comment>TAB TITLE CALENDAR START</pattemplate:comment>
 												<pattemplate:tmpl name="availability_output" type="simpleCondition" requiredvars="_jomres_front_mr_submitbutton_checkavailability" unusedvars="nbsp">
 												<li class="nav-item" role="presentation">
@@ -234,6 +252,7 @@
 												<pattemplate:comment>TAB TITLE END</pattemplate:comment>
 
 												<pattemplate:comment>TAB TITLE ROOM TYPES START</pattemplate:comment>
+												<pattemplate:comment>
 												<pattemplate:tmpl name="room_type_output" type="simpleCondition" requiredvars="_jomres_search_rtypes" unusedvars="nbsp">
 													<li class="nav-item" role="presentation">
 														<div
@@ -249,86 +268,7 @@
 														</div>
 													</li>
 												</pattemplate:tmpl>
-												<pattemplate:comment>TAB TITLE END</pattemplate:comment>
-
-												<pattemplate:comment>TAB TITLE OTHERTRANSPORT START</pattemplate:comment>
-												<li class="nav-item" role="presentation">
-													<div
-															id="othertransport-left-tab"
-															class="nav-link tab-clickable"
-															role="tab"
-															data-bs-toggle="tab"
-															data-bs-target="#othertransport-left"
-															aria-controls="othertransport-left"
-															aria-selected="true"
-													>
-														{HOTHERTRANSPORT}
-													</div>
-												</li>
-												<pattemplate:comment>TAB TITLE END</pattemplate:comment>
-
-												<pattemplate:comment>TAB TITLE AIRPORTS START</pattemplate:comment>
-												<li class="nav-item" role="presentation">
-													<div
-															id="airports-left-tab"
-															class="nav-link tab-clickable"
-															role="tab"
-															data-bs-toggle="tab"
-															data-bs-target="#airports-left"
-															aria-controls="airports-left"
-															aria-selected="true"
-													>
-														{HAIRPORTS}
-													</div>
-												</li>
-												<pattemplate:comment>TAB TITLE END</pattemplate:comment>
-
-												<pattemplate:comment>TAB TITLE DRIVINGDIRECTIONS START</pattemplate:comment>
-												<li class="nav-item" role="presentation">
-													<div
-															id="drivingdirections-left-tab"
-															class="nav-link tab-clickable"
-															role="tab"
-															data-bs-toggle="tab"
-															data-bs-target="#drivingdirections-left"
-															aria-controls="drivingdirections-left"
-															aria-selected="true"
-													>
-														{HDRIVINGDIRECTIONS}
-													</div>
-												</li>
-												<pattemplate:comment>TAB TITLE END</pattemplate:comment>
-
-												<pattemplate:comment>TAB TITLE AREAACTIVITIES START</pattemplate:comment>
-												<li class="nav-item" role="presentation">
-													<div
-															id="areaactivities-left-tab"
-															class="nav-link tab-clickable"
-															role="tab"
-															data-bs-toggle="tab"
-															data-bs-target="#areaactivities-left"
-															aria-controls="areaactivities-left"
-															aria-selected="true"
-													>
-														{HAREAACTIVITIES}
-													</div>
-												</li>
-												<pattemplate:comment>TAB TITLE END</pattemplate:comment>
-
-												<pattemplate:comment>TAB TITLE CHECKINTIMES START</pattemplate:comment>
-												<li class="nav-item" role="presentation">
-													<div
-															id="checkintimes-left-tab"
-															class="nav-link tab-clickable"
-															role="tab"
-															data-bs-toggle="tab"
-															data-bs-target="#checkintimes-left"
-															aria-controls="checkintimes-left"
-															aria-selected="true"
-													>
-														{HCHECKINTIMES}
-													</div>
-												</li>
+												</pattemplate:comment>
 												<pattemplate:comment>TAB TITLE END</pattemplate:comment>
 
 												<pattemplate:comment>TAB TITLE EXTRAS START</pattemplate:comment>
@@ -380,6 +320,27 @@
 														>
 															<section>
 																{jomres_script show_property_description PROPERTY_UID=N}
+
+																<strong>{HCHECKINTIMES}</strong>
+																<div class="readmore-wrapper">
+																	{CHECKINTIMES}
+																</div>
+																<strong>{HAREAACTIVITIES}</strong>
+																<div class="readmore-wrapper">
+																	{AREAACTIVITIES}
+																</div>
+																<strong>{HDRIVINGDIRECTIONS}</strong>
+																<div class="readmore-wrapper">
+																	{DRIVINGDIRECTIONS}
+																</div>
+																<strong>{HAIRPORTS}</strong>
+																<div class="readmore-wrapper">
+																	{AIRPORTS}
+																</div>
+																<strong>{HOTHERTRANSPORT}</strong>
+																<div class="readmore-wrapper">
+																	{OTHERTRANSPORT}
+																</div>
 															</section>
 														</article>
 													</div>
@@ -448,6 +409,40 @@
 														</article>
 													</div>
 													<pattemplate:comment>TAB CONTENT END</pattemplate:comment>
+
+													<pattemplate:comment>TAB CONTENT WEATHER START</pattemplate:comment>
+													<pattemplate:tmpl name="weather_output_content" type="simpleCondition" requiredvars="title" unusedvars="nbsp">
+														<div
+																id="weather-left"
+																class="tab-pane fade show accordion-item"
+																role="tabpanel"
+														>
+															<div class="accordion-header" role="tab">
+																<button
+																		class="accordion-button collapsed"
+																		type="button"
+																		role="button"
+																		data-bs-toggle="collapse"
+																		data-bs-target="#weather-left-article"
+																		aria-expanded="true"
+																		aria-controls="weather-left-article"
+																>
+																	{TITLE}
+																</button>
+															</div>
+															<article
+																	id="weather-left-article"
+																	class="accordion-body accordion-collapse collapse"
+																	data-bs-parent="#accordion-left-tabs"
+																	aria-labelledby="weather-left-tab"
+															>
+																<section>
+																	{jomres_script show_property_weather PROPERTY_UID=N}
+																</section>
+															</article>
+														</div>
+													</pattemplate:tmpl>
+													<pattemplate:comment>TAB CONTENT WEATHER END</pattemplate:comment>
 
 													<pattemplate:comment>TAB CONTENT CALENDAR START</pattemplate:comment>
 													<pattemplate:tmpl name="availability_output_content" type="simpleCondition" requiredvars="_jomres_front_mr_submitbutton_checkavailability" unusedvars="nbsp">
@@ -618,6 +613,7 @@
 													<pattemplate:comment>TAB CONTENT END</pattemplate:comment>
 
 													<pattemplate:comment>TAB CONTENT ROOM TYPES START</pattemplate:comment>
+													<pattemplate:comment>
 													<pattemplate:tmpl name="room_type_output_content" type="simpleCondition" requiredvars="_jomres_search_rtypes" unusedvars="nbsp">
 													<div
 															id="rooms-left"
@@ -649,166 +645,7 @@
 														</article>
 													</div>
 													</pattemplate:tmpl>
-													<pattemplate:comment>TAB CONTENT END</pattemplate:comment>
-
-													<pattemplate:comment>TAB CONTENT OTHERTRANSPORT START</pattemplate:comment>
-													<div
-															id="othertransport-left"
-															class="tab-pane fade show accordion-item"
-															role="tabpanel"
-													>
-														<div class="accordion-header" role="tab">
-															<button
-																	class="accordion-button collapsed"
-																	type="button"
-																	role="button"
-																	data-bs-toggle="collapse"
-																	data-bs-target="#othertransport-left-article"
-																	aria-expanded="true"
-																	aria-controls="othertransport-left-article"
-															>
-																{HOTHERTRANSPORT}
-															</button>
-														</div>
-														<article
-																id="othertransport-left-article"
-																class="accordion-body accordion-collapse collapse"
-																data-bs-parent="#accordion-left-tabs"
-																aria-labelledby="othertransport-left-tab"
-														>
-															<section>
-																{OTHERTRANSPORT}
-															</section>
-														</article>
-													</div>
-													<pattemplate:comment>TAB CONTENT END</pattemplate:comment>
-
-													<pattemplate:comment>TAB CONTENT AIRPORTS START</pattemplate:comment>
-													<div
-															id="airports-left"
-															class="tab-pane fade show accordion-item"
-															role="tabpanel"
-													>
-														<div class="accordion-header" role="tab">
-															<button
-																	class="accordion-button collapsed"
-																	type="button"
-																	role="button"
-																	data-bs-toggle="collapse"
-																	data-bs-target="#airports-left-article"
-																	aria-expanded="true"
-																	aria-controls="airports-left-article"
-															>
-																{HAIRPORTS}
-															</button>
-														</div>
-														<article
-																id="airports-left-article"
-																class="accordion-body accordion-collapse collapse"
-																data-bs-parent="#accordion-left-tabs"
-																aria-labelledby="airports-left-tab"
-														>
-															<section>
-																{AIRPORTS}
-															</section>
-														</article>
-													</div>
-													<pattemplate:comment>TAB CONTENT END</pattemplate:comment>
-
-													<pattemplate:comment>TAB CONTENT DRIVINGDIRECTIONS START</pattemplate:comment>
-													<div
-															id="drivingdirections-left"
-															class="tab-pane fade show accordion-item"
-															role="tabpanel"
-													>
-														<div class="accordion-header" role="tab">
-															<button
-																	class="accordion-button collapsed"
-																	type="button"
-																	role="button"
-																	data-bs-toggle="collapse"
-																	data-bs-target="#drivingdirections-left-article"
-																	aria-expanded="true"
-																	aria-controls="drivingdirections-left-article"
-															>
-																{HDRIVINGDIRECTIONS}
-															</button>
-														</div>
-														<article
-																id="drivingdirections-left-article"
-																class="accordion-body accordion-collapse collapse"
-																data-bs-parent="#accordion-left-tabs"
-																aria-labelledby="drivingdirections-left-tab"
-														>
-															<section>
-																{DRIVINGDIRECTIONS}
-															</section>
-														</article>
-													</div>
-													<pattemplate:comment>TAB CONTENT END</pattemplate:comment>
-
-													<pattemplate:comment>TAB CONTENT AREAACTIVITIES START</pattemplate:comment>
-													<div
-															id="areaactivities-left"
-															class="tab-pane fade show accordion-item"
-															role="tabpanel"
-													>
-														<div class="accordion-header" role="tab">
-															<button
-																	class="accordion-button collapsed"
-																	type="button"
-																	role="button"
-																	data-bs-toggle="collapse"
-																	data-bs-target="#areaactivities-left-article"
-																	aria-expanded="true"
-																	aria-controls="areaactivities-left-article"
-															>
-																{HAREAACTIVITIES}
-															</button>
-														</div>
-														<article
-																id="areaactivities-left-article"
-																class="accordion-body accordion-collapse collapse"
-																data-bs-parent="#accordion-left-tabs"
-																aria-labelledby="areaactivities-left-tab"
-														>
-															<section>
-																{AREAACTIVITIES}
-															</section>
-														</article>
-													</div>
-													<pattemplate:comment>TAB CONTENT END</pattemplate:comment>
-
-													<pattemplate:comment>TAB CONTENT CHECKINTIMES START</pattemplate:comment>
-													<div
-															id="checkintimes-left"
-															class="tab-pane fade show accordion-item"
-															role="tabpanel"
-													>
-														<div class="accordion-header" role="tab">
-															<button
-																	class="accordion-button collapsed"
-																	type="button"
-																	role="button"
-																	data-bs-toggle="collapse"
-																	data-bs-target="#checkintimes-left-article"
-																	aria-expanded="true"
-																	aria-controls="checkintimes-left-article"
-															>
-																{HCHECKINTIMES}
-															</button>
-														</div>
-														<article
-																id="checkintimes-left-article"
-																class="accordion-body accordion-collapse collapse"
-																data-bs-parent="#accordion-left-tabs"
-																aria-labelledby="checkintimes-left-tab"
-														>
-															<section>
-																{CHECKINTIMES}
-															</section>
-														</article>
-													</div>
+													</pattemplate:comment>
 													<pattemplate:comment>TAB CONTENT END</pattemplate:comment>
 
 													<pattemplate:comment>TAB CONTENT EXTRAS START</pattemplate:comment>
