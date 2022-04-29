@@ -1,7 +1,8 @@
-<h3>Jomres 103 06/04/2022</h3>
+<h3>Jomres 10.3 29/04/2022</h3>
 
 <span class="label label-success">Feature</span> Added new Property Manager feature : Translating where all items that can be translated are done from one page. This removes the old Editing mode and the feature is available to all managers, not just super property managers.
 <span class="label label-success">Feature</span> Added new functionality to change how property stars are generated. Gets rid of older images and can be used in a variety of different ways. See shortcodes documentation in Tools  > Shortcodes
+<span class="label label-success">Feature</span> Added new functionality to change how review "stars" (now a checkmark) are generated. Gets rid of older images and can be used in a variety of different ways.
 
 <span class="label label-warning">Change</span> Bootstrap 4 templates added to obsolete files list
 <span class="label label-warning">Change</span> Removed zindex from date inputs, causes it's own set of problems.
@@ -59,6 +60,34 @@
 <span class="label label-warning">Change</span> Show rooms optimised for smaller viewports, particularly within tabs.
 <span class="label label-warning">Change</span> Rejigged show property reviews to make better use of space.
 <span class="label label-warning">Change</span> Tweaked some wording for the booking form.
+<span class="label label-warning">Change</span> Tweaked how a function discovers the plugin template path in admin area.
+<span class="label label-warning">Change</span> Make sure that the terms and conditions are handed off to the show property terms template in the relevant language.
+<span class="label label-warning">Change</span> Add a class to dobooking to make fixed period dropdown pretty.
+<span class="label label-warning">Change</span> SRP booking form address layout updated to take up less space.
+<span class="label label-warning">Change</span> Address layouts in BS5 improved in booking form templates.
+<span class="label label-warning">Change</span> Minor wording updated from Room features list to Room features
+<span class="label label-warning">Change</span> Rooms list in Classic rooms list of booking form in BS5 received some love.
+<span class="label label-warning">Change</span> Made totals column sticky in booking forms. (BS5)
+<span class="label label-warning">Change</span> Moved Review Booking button to go at bottom of Totals (BS5)
+<span class="label label-warning">Change</span> Added a new javascript library that allows us to add read-more links in various places. Currently used in property reviews page.
+<span class="label label-warning">Change</span> Moved some property description items into one tab (added readmore too)
+<span class="label label-warning">Change</span> Tweaked how we find the BS version in WP.
+<span class="label label-warning">Change</span> Modify updater to update to Nightly if site config set to Development mode.
+<span class="label label-warning">Change</span> Modified search minicomponent so that it can accept template file path and template file name through componentArgs. This allows other scripts to have their own template search forms without needing any more magical jiggery pokery.
+<span class="label label-warning">Change</span> Gave generateDateInput function the ability to accept a z-index setting via the showtime variable.
+<span class="label label-warning">Change</span> Removed old chained select code, and moved autocomplete code from search_widget plugin into Core
+<span class="label label-warning">Change</span> Added stars data source,
+<span class="label label-warning">Change</span> added function to get search form element (not currently used, but will be in the future)
+<span class="label label-warning">Change</span> Added guest number and price ranges data sources.
+<span class="label label-warning">Change</span> If the site is set to Development mode then we will allow property managers to access payment gateways and pay themselves. Makes testing/development simpler.
+<span class="label label-warning">Change</span> Removed an obsolete setting from site config misc tab re language context.
+<span class="label label-warning">Change</span> Disabled autocomplete in edit tariffs forms because the browser's default settings can create some weird and hard to track down behaviour.
+<span class="label label-warning">Change</span> Don't bother checking the gateway is valid if we're a manager and dev mode enabled.
+<span class="label label-warning">Change</span> Markup for show property reviews improved for smaller viewports.
+<span class="label label-warning">Change</span> Made sure Jomres uses new reviews icon template throughout, and renamed template file to be more obvious.
+<span class="label label-warning">Change</span> Update to ensure that adult and child numbers are stored to the contracts table.
+<span class="label label-warning">Change</span> Added Adult and Child numbers in booking to emails and page output
+<span class="label label-warning">Change</span> Updated tabs handling in edit booking to work in BS5 & WP
 
 <span class="label label-important label-danger">Fix</span> Fixed an issue with widget selector in manager dashboard not working.
 <span class="label label-important label-danger">Fix</span> Missing language strings added to dutch lang file
@@ -70,6 +99,8 @@
 <span class="label label-important label-danger">Fix</span> Make sure we are pulling the correct "constant" from the property details object
 <span class="label label-important label-danger">Fix</span> Found some places where a definition had been translated by big G in error.
 <span class="label label-important label-danger">Fix</span> Allow admin area to continue to run if the encryption file has been deleted.
+<span class="label label-important label-danger">Fix</span> Change how dates are stored in logging to see if that gets rid of an intermittent error report wrt format on bool.
+<span class="label label-important label-danger">Fix</span> Added a check to ensure the multi_query_result is set if it isn't already to kill a subtle notice.
 
 
 <h3>Jomres 10.2.2 18/02/2022</h3>
