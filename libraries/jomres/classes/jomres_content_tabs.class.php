@@ -29,10 +29,18 @@ if ($bs_version == '2' ) {
         {
         }
     } elseif ( $bs_version == '5' ) {
-        jr_import('jomres_content_tabs_bootstrap5');
-        class jomres_content_tabs extends jomres_content_tabs_bootstrap5
-        {
-        }
+		if (this_cms_is_wordpress()) {
+			jr_import('jomres_content_tabs_bootstrap5_wordpress');
+			class jomres_content_tabs extends jomres_content_tabs_bootstrap5_wordpress
+			{
+			}
+		} else {
+			jr_import('jomres_content_tabs_bootstrap5');
+			class jomres_content_tabs extends jomres_content_tabs_bootstrap5
+			{
+			}
+		}
+
 	} else { // BS4
 		jr_import('jomres_content_tabs_bootstrap4');
 		class jomres_content_tabs extends jomres_content_tabs_bootstrap4

@@ -260,7 +260,7 @@ class j06001edit_booking
 			$output = array();
 			$pageoutput = array();
 
-			$output['NETWORK_STATS'] = $MiniComponents->specificEvent('06001', 'show_network_stats_for_contract', array('output_now' => false , 'contract_uid' => $contract_uid , 'property_uid' => $defaultProperty ));
+			//$output['NETWORK_STATS'] = $MiniComponents->specificEvent('06001', 'show_network_stats_for_contract', array('output_now' => false , 'contract_uid' => $contract_uid , 'property_uid' => $defaultProperty ));
 			
 			$output[ '_JOMRES_BOOKING_NUMBER' ] = jr_gettext('_JOMRES_BOOKING_NUMBER', '_JOMRES_BOOKING_NUMBER', $editable = true, $isLink = false);
 
@@ -630,6 +630,7 @@ class j06001edit_booking
 		//generate the tabs
 		jr_import('jomres_content_tabs');
 		$contentPanel = new jomres_content_tabs();
+
 		$contentPanel->startTabs();
 		$contentPanel->startPanel(jr_gettext('_JOMRES_COM_MR_EDITBOOKING_TAB_ARRIVAL', '_JOMRES_COM_MR_EDITBOOKING_TAB_ARRIVAL', false));
 		$contentPanel->setcontent($arrdep_template);
