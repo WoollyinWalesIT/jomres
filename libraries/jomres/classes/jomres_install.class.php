@@ -113,7 +113,7 @@ class jomres_install
 		if (!$this->checkJomresVersion()) {
 			return false;
 		}
-
+var_dump($this->action);exit;
 		//it`s showtime
 		switch ($this->action) {
 			case 'install':
