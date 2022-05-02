@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.3.0
+ *  @version Jomres 10.3.1
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -50,7 +50,7 @@ class jomres_install
 	{
 		//first let`s check the php version
 		if (version_compare(phpversion(), '5.6', '<')) {
-			throw new Exception('Oops, it looks like you`re running a version of PHP lower than 5.6. Jomres requires at least PHP 5.6 and will not run on earlier versions');
+			throw new Exception('Oops, it looks like you`re running a version of PHP lower than 5.6. Jomres requires at least PHP 7.4 and will not run on earlier versions');
 		}
 
 		if (!defined('AUTO_UPGRADE')) {

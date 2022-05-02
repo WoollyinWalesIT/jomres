@@ -32,7 +32,9 @@ if ( ! defined( '_JOMRES_INITCHECK' ) ) {
 if ( file_exists( ABSPATH . 'jomres_root.php' ) ) {
 	require_once ABSPATH . 'jomres_root.php';
 } else {
-	define ( 'JOMRES_ROOT_DIRECTORY', 'jomres' );
+	if (!defined('JOMRES_ROOT_DIRECTORY')) {
+		define ( 'JOMRES_ROOT_DIRECTORY', 'jomres' );
+	}
 }
 
 // Important: Check if the file is the one

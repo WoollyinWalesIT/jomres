@@ -1,3 +1,7 @@
+<h3>Jomres 10.3.1 02/05/2022</h3>
+
+<span class="label label-important label-danger">Fix</span> Resolved (I hope) an issue where Jomres incorrectly detected the root location of Jomres and would re-install itself to the wrong directory instead of just updating as expected.
+
 <h3>Jomres 10.3 29/04/2022</h3>
 
 <span class="label label-success">Feature</span> Added new Property Manager feature : Translating where all items that can be translated are done from one page. This removes the old Editing mode and the feature is available to all managers, not just super property managers.
