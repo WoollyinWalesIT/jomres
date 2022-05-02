@@ -50,7 +50,7 @@ class jomres_install
 	{
 		//first let`s check the php version
 		if (version_compare(phpversion(), '5.6', '<')) {
-			throw new Exception('Oops, it looks like you`re running a version of PHP lower than 5.6. Jomres requires at least PHP 5.6 and will not run on earlier versions');
+			throw new Exception('Oops, it looks like you`re running a version of PHP lower than 5.6. Jomres requires at least PHP 7.4 and will not run on earlier versions');
 		}
 
 		if (!defined('AUTO_UPGRADE')) {
@@ -113,7 +113,7 @@ class jomres_install
 		if (!$this->checkJomresVersion()) {
 			return false;
 		}
-var_dump($this->action);exit;
+
 		//it`s showtime
 		switch ($this->action) {
 			case 'install':

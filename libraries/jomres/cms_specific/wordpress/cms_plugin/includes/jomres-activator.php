@@ -28,9 +28,9 @@ class Jomres_Activator {
 	 * @since	9.9.19
 	 */
 	public static function activate() {
-		if ( version_compare( PHP_VERSION, '7.1', '<' ) )
+		if ( version_compare( PHP_VERSION, '7.4', '<' ) )
 		{
-			exit( sprintf( 'Jomres requires PHP 7.1 or higher. You’re still on %s.', PHP_VERSION ) );
+			exit( sprintf( 'Jomres requires PHP 7.4 or higher. You’re still on %s.', PHP_VERSION ) );
 		}
 
 		if ( !is_dir(ABSPATH.'jomres') ) {
