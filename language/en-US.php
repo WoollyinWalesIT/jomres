@@ -1871,7 +1871,7 @@ jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE', "Choose the resource you want to uplo
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_SPECIFIC', "Specific resource");
 jr_define('_JOMRES_MEDIA_CENTRE_RESOURCE_ALREADY_UPLOADED', "Images already uploaded for this resource");
 jr_define('_JOMRES_MARKDOWN_TITLE', 'Text formatting');
-jr_define('_JOMRES_MARKDOWN_DESC', 'You can enter text here using simple Markdown formatting. You don\'t need to know any HTML, just use the buttons to make the information look like you want, or format text according to these examples.');
+jr_define('_JOMRES_MARKDOWN_DESC', 'You can enter text here using simple Markdown formatting. You don\'t need to know any HTML, just format text according to these examples.');
 jr_define('_JOMRES_MARKDOWN_EMPHASIS', 'Emphasis');
 jr_define('_JOMRES_MARKDOWN_BOLD', 'bold');
 jr_define('_JOMRES_MARKDOWN_ITALICS', 'italics');
