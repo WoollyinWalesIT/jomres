@@ -618,7 +618,7 @@ class jomres_sanity_check
 			//if (get_showtime('task') != 'edit_resource') {
 				$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
 				$current_property_details->gather_data($this->property_uid);
-				if (!isset($current_property_details->rooms)) {
+				if (!isset($current_property_details->rooms) || empty($current_property_details->rooms)) {
 					$message = jr_gettext('_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK', '_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK', false);
 					$link = jomresURL(JOMRES_SITEPAGE_URL.'&task=edit_resource');
 					$button_text = jr_gettext('_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK_LINK', '_JOMRES_SRP_RESOURCE_TYPE_SANITY_CHECK_LINK', false);

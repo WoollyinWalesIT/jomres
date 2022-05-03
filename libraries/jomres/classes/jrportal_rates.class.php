@@ -948,8 +948,15 @@ class jrportal_rates
 		$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
 		$current_property_details->gather_data($property_uid);
 
-		$property_room_types =  $current_property_details->multi_query_result[$property_uid]['room_types'];
-		$property_room_type_ids = array_keys($property_room_types);
+		$property_room_type_ids = [];
+		if (isset($current_property_details->multi_query_result[$property_uid]['room_types'])) {
+			$property_room_types =  $current_property_details->multi_query_result[$property_uid]['room_types'];
+			$property_room_type_ids = array_keys($property_room_types);
+		} else {
+			echo "<div class='alert alert-danger'>Error, this property doesn't have any available room types. It's possible that you are trying to edit prices before defining the property's sub type. Visit the Rooms page first.</div>";
+			return;
+		}
+
 
 		if (empty($property_room_type_ids)) {
 			return array();
