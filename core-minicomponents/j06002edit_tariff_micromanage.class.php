@@ -286,8 +286,11 @@ class j06002edit_tariff_micromanage
 			$prefills[] = $p;
 			}
 
+		$old_calendar_z_index =  get_showtime('calendar_z_index' );
+		set_showtime('calendar_z_index' , 10);
 		$output['PICKER_FROM'] = generateDateInput("picker_from","");
-		$output['PICKER_TO'] = generateDateInput("picker_to","");
+		$output['PICKER_TO'] = generateDateInput("picker_to",date('Y/m/d', strtotime('+3 years')));
+			set_showtime('calendar_z_index' , $old_calendar_z_index);
 		$output['PICKER_FROM_SMALL_VIEWPORT'] = generateDateInput("picker_from_smallviewport","" );
 		$output['PICKER_TO_SMALL_VIEWPORT'] = generateDateInput("picker_to_smallviewport","" );
 		$output['DATE_FORMAT'] = $jrConfig['cal_input'];
