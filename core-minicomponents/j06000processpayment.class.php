@@ -63,8 +63,8 @@ class j06000processpayment
 		$jrConfig		  = $siteConfig->get();
 		if ($thisJRUser->userIsManager && $jrConfig['development_production'] != 'development') {
 			$plugin = jomres_validate_gateway_plugin();
-		} else {
-			$plugin = "NA";
+		} else { // Site is set to Development mode and we are allowing the manager to make payments. There's no need to validate the gateway
+			$plugin = jomresGetParam($_REQUEST, 'plugin', '');
 		}
 
 		$query = "SELECT `id` FROM #__jomres_booking_data_archive WHERE `tag` = '".$tag."'";
