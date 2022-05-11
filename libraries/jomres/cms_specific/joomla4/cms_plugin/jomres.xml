@@ -2,7 +2,7 @@
 <extension version="3.0" type="component" method="upgrade">
 	<name>com_jomres</name>
 	<author>Vince Wooll</author>
-	<creationDate>January 2022</creationDate>
+	<creationDate>April 2022</creationDate>
 	<copyright>Copyright (C) 2005-2022 Vince Wooll. All rights reserved.</copyright>
 	<license>GPL2 and MIT</license>
 	<authorEmail>sales@jomres.net</authorEmail>
