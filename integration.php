@@ -222,47 +222,46 @@ if (!isset($jrConfig['log_path']) || $jrConfig['log_path'] == '') {
 
 define('JOMRES_SYSTEMLOG_PATH', fix_path($jrConfig['log_path']));
 
-/**
-*
-* define core images paths
-*
-*/
-$uri = parse_url(get_showtime('live_site'));
-$path = '';
+	/**
+	 *
+	 * define core images paths
+	 *
+	 */
+	if (!defined('JOMRES_API_CMS_ROOT')) {
+		$uri = parse_url(get_showtime('live_site'));
+		$path = '';
 
-if (isset($uri['path'])) {
-	$path = $uri['path'];
-}
+		if (isset($uri['path'])) {
+			$path = $uri['path'];
+		}
+	} else {
+		$path = get_showtime('live_site');
+	}
 
-define('JOMRES_IMAGES_ABSPATH', JOMRES_ASSETS_ABSPATH.'images'.JRDS);
-define('JOMRES_IMAGES_RELPATH', $path.'/'.JOMRES_ROOT_DIRECTORY.'/assets/images/');
+	define('JOMRES_IMAGES_ABSPATH', JOMRES_ASSETS_ABSPATH.'images'.JRDS);
+	define('JOMRES_IMAGES_RELPATH', $path.'/'.JOMRES_ROOT_DIRECTORY.'/assets/images/');
 
-/**
-*
-* define uploaded images paths
-*
-*/
-if (!defined('JOMRES_IMAGELOCATION_ABSPATH')) {
-	define('JOMRES_IMAGELOCATION_ABSPATH', JOMRESPATH_BASE.'uploadedimages'.JRDS);
+	/**
+	 *
+	 * define uploaded images paths
+	 *
+	 */
+	if (!defined('JOMRES_IMAGELOCATION_ABSPATH')) {
+		define('JOMRES_IMAGELOCATION_ABSPATH', JOMRESPATH_BASE.'uploadedimages'.JRDS);
 
-    if ( isset($jrConfig['amazon_s3_active'])) {
-        if ($jrConfig['amazon_s3_active'] != '1' || $jrConfig['amazon_s3_bucket'] == '') {
-            if (!defined('JOMRES_API_CMS_ROOT')) {
-                define('JOMRES_IMAGELOCATION_RELPATH', $path.'/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/');
-            } else {
-                define('JOMRES_IMAGELOCATION_RELPATH', get_showtime('livesite').'/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/');
-            }
-        } else {
-            if ($jrConfig['amazon_cloudfront_domain'] != '') {
-                $amazon_url = 'https://'.$jrConfig['amazon_cloudfront_domain'];
-            } else {
-                $amazon_url = 'https://'.$jrConfig['amazon_s3_bucket'].'.s3.amazonaws.com';
-            }
-            define('JOMRES_IMAGELOCATION_RELPATH', $amazon_url.'/uploadedimages/');
-        }
-    }
-}
-
+		if ( isset($jrConfig['amazon_s3_active'])) {
+			if ($jrConfig['amazon_s3_active'] != '1' || $jrConfig['amazon_s3_bucket'] == '') {
+				define('JOMRES_IMAGELOCATION_RELPATH', $path.'/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/');
+			} else {
+				if ($jrConfig['amazon_cloudfront_domain'] != '') {
+					$amazon_url = 'https://'.$jrConfig['amazon_cloudfront_domain'];
+				} else {
+					$amazon_url = 'https://'.$jrConfig['amazon_s3_bucket'].'.s3.amazonaws.com';
+				}
+				define('JOMRES_IMAGELOCATION_RELPATH', $amazon_url.'/uploadedimages/');
+			}
+		}
+	}
 
 /**
 *
