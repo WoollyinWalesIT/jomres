@@ -44,7 +44,7 @@ class jomres_language
 
 		$jomresConfig_lang = jomres_cmsspecific_getcmslang();
 
-        /*if (isset($_POST['jomreslang'])) {
+        if (isset($_POST['jomreslang'])) {
             $jomresConfig_lang = (string)RemoveXSS(jomresGetParam($_POST, 'jomreslang', ''));
         } elseif (isset($_GET['jomreslang'])) {
             $jomresConfig_lang = (string)RemoveXSS(jomresGetParam($_GET, 'jomreslang', ''));
@@ -56,7 +56,7 @@ class jomres_language
             $jomresConfig_lang = (string) RemoveXSS(jomres_cmsspecific_getcmslang());
         } else {
             $jomresConfig_lang = 'en-GB';
-        }*/
+        }
 
         $langfile_crossref = $this->define_langfile_to_languages_array();
         $this->datepicker_crossref = $this->define_langfile_to_datepicker_files_array();
