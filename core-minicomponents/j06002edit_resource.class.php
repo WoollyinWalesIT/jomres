@@ -72,7 +72,9 @@ class j06002edit_resource
 			$room_number				= '';
 			$room_floor					= '';
 			$room_classes_uid			= false;
-			$max_people					= '10';
+			$max_people					= '2';
+			$max_adults					= '2';
+			$max_children				= '0';
 			$singleperson_suppliment	= 0;
 			$room_tagline	 			= '';
 			$room_description			= '';
@@ -86,6 +88,8 @@ class j06002edit_resource
 				$room_number				= $basic_room_details->room['room_number'];
 				$room_floor					= $basic_room_details->room['room_floor'];
 				$max_people					= $basic_room_details->room['max_people'];
+				$max_adults					= $basic_room_details->room['max_adults'];
+				$max_children				= $basic_room_details->room['max_children'];
 				$singleperson_suppliment	= $basic_room_details->room['singleperson_suppliment'];
 				$room_tagline	 			= $basic_room_details->room['tagline'];
 				$room_description			= $basic_room_details->room['description'];
@@ -131,7 +135,9 @@ class j06002edit_resource
 				}
 			}
 
-			$output[ 'MAXPEOPLE_DROPDOWN' ] = jomresHTML::integerSelectList(1, $max_max_people, 1, 'max_people', '', $max_people);
+			//$output[ 'MAXPEOPLE_DROPDOWN' ] = jomresHTML::integerSelectList(1, $max_max_people, 1, 'max_people', '', $max_people);
+			$output[ 'MAXADULTS_DROPDOWN' ] = jomresHTML::integerSelectList(1, $max_max_people, 1, 'max_adults', '', $max_adults);
+			$output[ 'MAXCHILDREN_DROPDOWN' ] = jomresHTML::integerSelectList(0, $max_max_people, 1, 'max_children', '', $max_children);
 
 			$output[ 'ROOMNAME' ]				= $room_name;
 			$output[ 'ROOMNUMBER' ]				= $room_number;
@@ -157,6 +163,8 @@ class j06002edit_resource
 			$output[ 'HROOM_DESCRIPTION' ] = jr_gettext('_JOMRES_ROOM_DESCRIPTION', '_JOMRES_ROOM_DESCRIPTION', false);
 			$output[ '_JOMRES_SURCHARGE_TITLE' ] = jr_gettext('_JOMRES_SURCHARGE_TITLE', '_JOMRES_SURCHARGE_TITLE', false);
 			$output[ '_JOMRES_SURCHARGE_DESC' ] = jr_gettext('_JOMRES_SURCHARGE_DESC', '_JOMRES_SURCHARGE_DESC', false);
+			$output[ 'JOMRES_OCCUPANCY_LEVELS_MAX_ADULTS' ]		= jr_gettext('JOMRES_OCCUPANCY_LEVELS_MAX_ADULTS', 'JOMRES_OCCUPANCY_LEVELS_MAX_ADULTS', false);
+			$output[ 'JOMRES_OCCUPANCY_LEVELS_MAX_CHILDREN' ]	= jr_gettext('JOMRES_OCCUPANCY_LEVELS_MAX_CHILDREN', 'JOMRES_OCCUPANCY_LEVELS_MAX_CHILDREN', false);
 
 			if ($jrConfig[ 'allowHTMLeditor' ] == '1') {
 				$width = '95%';

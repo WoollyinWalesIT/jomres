@@ -162,6 +162,7 @@ class basic_room_details
 					WHERE `room_uid` = ' .(int) $room_uid.' 
 					LIMIT 1
 					';
+
 		$result = doSelectSql($query);
 
 		if (empty($result)) {
