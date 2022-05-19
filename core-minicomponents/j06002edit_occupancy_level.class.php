@@ -58,6 +58,13 @@ class j06002edit_occupancy_level
 		jr_import('jomres_occupancy_levels');
 		$jomres_occupancy_levels = new jomres_occupancy_levels($property_uid);
 
+
+
+		if ($mrConfig['accommodates'] ==0) { // The occupancy levels haven't been properly set yet, let's do that now
+			$first_key=array_key_first($jomres_occupancy_levels->occupancy_levels);
+			$mrConfig['accommodates'] = $jomres_occupancy_levels->occupancy_levels[$first_key]['max_adults'];
+		}
+
 		$output[ 'PAGE_TITLE' ] = jr_gettext('JOMRES_OCCUPANCY_LEVELS_EDIT', 'JOMRES_OCCUPANCY_LEVELS_EDIT', false);
 
 		$output['ROOM_TYPE_NAME'] = $jomres_occupancy_levels->occupancy_levels[$id]['room_type_name'];
