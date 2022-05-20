@@ -2547,7 +2547,7 @@ jr_define ('JOMRES_OCCUPANCY_LEVELS_INFO', 'Кожного разу, коли в
 
 
 jr_define ('_JOMRES_SEARCH_FORM_ADULTS', 'Дорослі');
-jr_define ('_JOMRES_SEARCH_FORM_CHILDREN', 'Chidren');
+jr_define ('_JOMRES_SEARCH_FORM_CHILDREN', 'Children');
 
 
 jr_define ('_JOMRES_CONFIG_LEVEL_TITLE', 'Рівень параметрів адміністратора');

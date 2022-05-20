@@ -2603,7 +2603,7 @@ jr_define ('JOMRES_OCCUPANCY_LEVELS_INFO', 'Vsakič, ko uredite sobo ali vrsto v
 
 
 jr_define ('_JOMRES_SEARCH_FORM_ADULTS', 'Odrasli');
-jr_define ('_JOMRES_SEARCH_FORM_CHILDREN', 'Chidren');
+jr_define ('_JOMRES_SEARCH_FORM_CHILDREN', 'Children');
 
 jr_define ('_JOMRES_CONFIG_LEVEL_TITLE', 'Raven možnosti skrbnika');
 jr_define ('_JOMRES_CONFIG_LEVEL_DESC', 'Jomres ima veliko možnosti menija in konfiguracije, ki jih lahko uporabite pri konfiguriranju svojega spletnega mesta. Ogromno večino vam jih nikoli ne bo treba spremeniti, zato so privzeto skrite. Izberete lahko, da te možnosti prikažete tako, da nastavite raven skrbniških možnosti. Osnovna raven vam pokaže, kaj potrebujete pri prvi nastavitvi spletnega mesta. Skupna raven prikazuje tiste možnosti, ki se najpogosteje spreminjajo, vse pa vse možne nastavitve in možnosti menijev na skrbniškem področju. ');

@@ -2551,7 +2551,7 @@ jr_define ('JOMRES_OCCUPANCY_LEVELS_INFO', 'Hver gang du redigerer et rom eller 
 
 
 jr_define ('_JOMRES_SEARCH_FORM_ADULTS', 'Voksne');
-jr_define ('_JOMRES_SEARCH_FORM_CHILDREN', 'Chidren');
+jr_define ('_JOMRES_SEARCH_FORM_CHILDREN', 'Children');
 
 
 jr_define ('_JOMRES_CONFIG_LEVEL_TITLE', 'Admin options level');

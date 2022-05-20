@@ -2620,7 +2620,7 @@ jr_define('JOMRES_OCCUPANCY_LEVELS_INFO', 'Any time you edit a room or your prop
 
 
 jr_define('_JOMRES_SEARCH_FORM_ADULTS', 'Adults');
-jr_define('_JOMRES_SEARCH_FORM_CHILDREN', 'Chidren');
+jr_define('_JOMRES_SEARCH_FORM_CHILDREN', 'Children');
 
 
 jr_define('_JOMRES_CONFIG_LEVEL_TITLE', 'Admin options level');
