@@ -206,6 +206,9 @@ try {
 		$token['user_id'] = '999999999';
 	}
 
+	if (!PRODUCTION) {
+		Flight::set('flight.handle_errors', false);
+	}
 	Flight::set('user_id', $token['user_id']);
 	Flight::set('scopes', explode(',', $token['scope']));
 	Flight::set('dbprefix', JOMRES_API_DB_DB_PREFIX);
