@@ -459,7 +459,7 @@ jr_define('_JOMRES_COM_ALLOWHTMLEDITOR', 'Allow users to edit using html editors
 jr_define('_JOMRES_AJAXFORM_INSTRUCTIONS', 'Use this form to place your booking. Modify your booking particulars like arrival and departure dates & guest numbers, then select the resource(s) you require from the list of those available. Click any available rooms to add them to your booking. When done, you can add any optional extras you may require and provide your address details. When the form has enough information it will then give you a submit button so that you can confirm your booking.');
 jr_define('_JOMRES_AJAXFORM_INSTRUCTIONS_SRP', 'Use this form to place your booking. Modify your booking particulars like arrival and departure dates & guest numbers. When done, you can add any optional extras you may require and provide your address details. When the form has enough information it will then give you a submit button so that you can confirm your booking.');
 jr_define('_JOMRES_AJAXFORM_PARTICULARS', 'Booking particulars');
-jr_define('_JOMRES_AJAXFORM_PARTICULARS_DESC', 'Select the details of your booking requirements');
+jr_define('_JOMRES_AJAXFORM_PARTICULARS_DESC', 'When do you want to go?');
 jr_define('_JOMRES_AJAXFORM_AVAILABLE', 'Availability ');
 jr_define('_JOMRES_AJAXFORM_AVAILABLE_DESC', 'Select the rooms that you require');
 jr_define('_JOMRES_AJAXFORM_AVAILABLE_DESC_SRP', 'Look here to see if the property is available at this time.');
