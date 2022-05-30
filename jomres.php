@@ -113,6 +113,22 @@ try {
 	$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 	$tmpBookingHandler->initBookingSession();
 
+	if (isset( $tmpBookingHandler->tmpbooking['arrivalDate']) ) {
+		$arrivalDate = $tmpBookingHandler->tmpbooking['arrivalDate'];
+		$test = explode( "-" , $arrivalDate );
+		if (count($test) ==3) { // It's an api booking, the date needs to be converted from YYYY-MM-DD to YYYY/MM/DD format so that existing functionality can work with the booking's dates
+			$tmpBookingHandler->tmpbooking['arrivalDate'] = str_replace("-" , '/' , $arrivalDate );
+		}
+	}
+
+	if (isset( $tmpBookingHandler->tmpbooking['departureDate']) ) {
+		$departureDate = $tmpBookingHandler->tmpbooking['departureDate'];
+		$test = explode( "-" , $departureDate );
+		if (count($test) ==3) { // It's an api booking, the date needs to be converted from YYYY-MM-DD to YYYY/MM/DD format so that existing functionality can work with the booking's dates
+			$tmpBookingHandler->tmpbooking['departureDate'] = str_replace("-" , '/' , $departureDate );
+		}
+	}
+
 	$jomressession = $tmpBookingHandler->getJomressession();
 	set_showtime('jomressession', $jomressession);
 
