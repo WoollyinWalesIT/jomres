@@ -765,6 +765,7 @@ class j03020insertbooking
 			if (!$secret_key_payment && $amend_contractuid == 0) {
 				$bookingNotes = $tempBookingData->booking_notes;
                 if (!empty($bookingNotes)) {
+					$dt = date('Y-m-d H:i:s');
                     foreach ($bookingNotes as $k => $v) {
                         $note = ' '.strip_tags($k).' '.strip_tags($v).'<br/>';
                         if ( trim(strip_tags($v)) != '' ) {
