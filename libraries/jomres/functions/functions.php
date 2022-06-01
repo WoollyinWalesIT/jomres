@@ -4321,6 +4321,11 @@ function JSCalConvertInputDates($inputDate, $siteCal = false)
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig = $siteConfig->get();
 
+	$test = explode( "-" , $inputDate );
+	if (count($test) ==3) { // It's an api date, the date needs to be converted from YYYY-MM-DD to YYYY/MM/DD format so that existing functionality can work with the booking's dates
+		$inputDate = str_replace("-" , '/' , $inputDate );
+	}
+
 	$dateFormat = $jrConfig[ 'cal_input' ];
 	switch ($dateFormat) {
 		case '%d/%m/%Y':
