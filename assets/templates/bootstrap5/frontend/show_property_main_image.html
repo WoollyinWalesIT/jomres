@@ -1,6 +1,7 @@
 
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<div class="wrapper">
-    <a href="{URL}"><img src="{MEDIUM}" class="img-fluid w-100 card-img-top card-img card-img-photolayout"  alt="{IMAGE}"></a>
-</div>
+    <div class="wrapper">
+        <a href="{URL}"><img src="{LARGE}" loading="lazy" class="img-fluid w-100 card-img-photolayout d-block d-sm-block d-md-block d-lg-none d-xl-none d-xxl-none"  alt="{IMAGE}"></a>
+        <a href="{URL}"><img src="{LARGE}" loading="lazy" class="img-fluid w-100 card-img-top card-img-photolayout d-none d-sm-none d-md-none d-lg-block d-xl-block d-xxl-block d-xxl-block"  alt="{IMAGE}"></a>
+    </div>
 </patTemplate:tmpl>
