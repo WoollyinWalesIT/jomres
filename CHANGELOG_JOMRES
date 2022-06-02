@@ -1,3 +1,33 @@
+<h3>Jomres 10.4.0 02/06/2022</h3>
+
+<span class="label label-success">Feature</span>  Platinum Jubilee edition
+
+<span class="label label-warning">Change</span> Updated a sanity check to ensure that a property creation step isn't missed.
+<span class="label label-warning">Change</span> Allow edit tariff scripts to set zindex of the calendar.
+<span class="label label-warning">Change</span> When managers are making a development test booking we will allow forms to send the plugin (gateway) without forcing validation of the gateway.
+<span class="label label-warning">Change</span> css tweaks to fullscreen wrapper as pre and code don't need to be styled and they interfere with something else I want to do.
+<span class="label label-warning">Change</span> Modified how relative paths for images are determined depending on whether or not it's an API call.
+<span class="label label-warning">Change</span> I was wrong, we do still need to check language change values in the admin area. Undid a change from 10.3
+<span class="label label-warning">Change</span> Updated room handling to add max adults/max children to individual rooms.
+<span class="label label-warning">Change</span> Automagically set occupancy levels if not already done
+<span class="label label-warning">Change</span> Simplified max occupancy level dropdowns.
+<span class="label label-warning">Change</span> Tweaked internal api handler so that it can return something meaningful when required.
+<span class="label label-warning">Change</span> Prevent Flight from handling errors if site set to Development, because without it debugging API is a bit of a pain.
+<span class="label label-warning">Change</span> Changed wording of a language string to bring it up to date with how we are using that label definition.
+<span class="label label-warning">Change</span> Fix new stars not showing properly in BS3
+<span class="label label-warning">Change</span> Set a time stamp variable. May have already been set but it'll do no harm to set it again here. Resolves a notice.
+<span class="label label-warning">Change</span> Resolve a notice trigger during the booking form's bootstrapping.
+<span class="label label-warning">Change</span> Added code to check and transcode new style api date formatting to old style for Jomres use.
+<span class="label label-warning">Change</span> Added checks for API arrival and depature dates and convert as required so that we don't store dates in the wrong format, as they can bubble up as notice errors.
+<span class="label label-warning">Change</span> Added a variety of tweaks to improve photo layout (in particular) (BS5).
+<span class="label label-warning">Change</span> Added functionality to prevent crawlers from population the sessions table.
+<span class="label label-warning">Change</span> Modified user agent used by asynchronous task trigger to make it clearer who it is and why it's session is ignored in the temp booking handler class.
+<span class="label label-warning">Change</span> Updated how the temp booking handler discovers the session id, allowing the session id to be passed through headers as well as the url, or being pulled from the CMS.
+
+
+<span class="label label-important label-danger">Fix</span> Tweaked a search query to fix regions not return results when we're searching via All from a form. Thanks Rod.
+
+
 <h3>Jomres 10.3.1 02/05/2022</h3>
 
 <span class="label label-important label-danger">Fix</span> Resolved (I hope) an issue where Jomres incorrectly detected the root location of Jomres and would re-install itself to the wrong directory instead of just updating as expected.
