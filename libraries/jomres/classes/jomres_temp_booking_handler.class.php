@@ -298,11 +298,25 @@
 
 		public function initBookingSession($jomressession = '')
 		{
-			if (isset($_REQUEST[ 'jsid' ])) { // jsid is passed by gateway services sending response codes
+			// Allow the session to be discovered through headers, if available. Without this calling the booking form via a shortcode can result in the booking details being reset between initial triggering of the api call, loading of the framework, then re-initialising through an API call to the NBE Common plugin. Should resolve issues where you absolutely *know* a booking session something has been saved, and then on the next pass it's gone again, resulting in some serious headscratching.
+			$all_headers = getallheaders();
+			if (!empty($all_headers)) {
+				foreach ($all_headers as $key => $val ) {
+					$new_index = strtoupper($key);
+					unset($all_headers[$key]);
+					$all_headers[$new_index] = $val;
+				}
+			}
+
+			if (isset($all_headers['X-JOMRES-BOOKING-SESSION-ID'])) {
+				$jomressession = filter_var($all_headers['X-JOMRES-BOOKING-SESSION-ID'], FILTER_SANITIZE_SPECIAL_CHARS);
+			}
+
+			if (isset($_REQUEST['jsid']) && $jomressession == '') { // jsid is passed by gateway services sending response codes
 				$session_id = jomresGetParam($_REQUEST, 'jsid', '');
 			} elseif (strlen($jomressession) > 0) {
 				$session_id = $jomressession;
-			} else {
+			} else { // If the first two options don't result in the session id, we'll ask the CMS what it's session id is
 				$session_id = jomres_cmsspecific_getsessionid();
 			}
 
