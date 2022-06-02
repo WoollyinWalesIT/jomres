@@ -39,7 +39,7 @@
 			$this->is_crawler = $CrawlerDetect->isCrawler();
 
 			// Jomres asynchronous tasks for triggering scheduled tasks so we will also mark it as a bot to prevent it's session from being stored
-			if (isset($_SERVER['HTTP_USER_AGENT']) && $_SERVER['HTTP_USER_AGENT'] == 'Jomres') {
+			if (isset($_SERVER['HTTP_USER_AGENT']) && $_SERVER['HTTP_USER_AGENT'] == 'Jomres Asynchronous task trigger') {
 				$this->is_crawler = true;
 			}
 
