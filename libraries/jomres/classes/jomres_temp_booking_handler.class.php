@@ -525,21 +525,11 @@
 				);
 
 				$data = json_encode($data, JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE);
-
-
-
-				$force_session = false;
-				if ( defined("FORCE_JOMRES_SESSION") && FORCE_JOMRES_SESSION == true ) {
-					$force_session = true;
+				
+				$query = "INSERT INTO #__jomres_sessions (`session_id`, `data` ) VALUES ('".$this->jomressession_db."', '".$data."' )";
+				if (!doInsertSql($query, '')) {
+					throw new Exception('Error: Could not save session data');
 				}
-
-				if ( $this->ip != '0.0.0.0' || $force_session ) {
-					$query = "INSERT INTO #__jomres_sessions (`session_id`, `data` ) VALUES ('".$this->jomressession_db."', '".$data."' )";
-					if (!doInsertSql($query, '')) {
-						throw new Exception('Error: Could not save session data');
-					}
-				}
-
 			}
 		}
 
