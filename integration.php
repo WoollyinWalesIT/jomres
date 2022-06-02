@@ -16,9 +16,9 @@ defined('_JOMRES_INITCHECK') or die('');
 
 /**
 *
-* Does a lot of file inclusion, creation of constants etc. 
+* Does a lot of file inclusion, creation of constants etc.
 *
-* 
+*
 */
 
 
@@ -202,6 +202,14 @@ if (!class_exists('patErrorManager')) {
 	require_once JOMRES_LIBRARIES_ABSPATH.'phptools'.JRDS.'patErrorManager.php';
 }
 
+// The purpose here is to prevent Jomres temp booking handler from storing sessions in the db, there's no point.
+// We are ok with crawlers visiting, after all we want our data to be indexed, but the session data will never be used, so let's not store it if we think it's a crawler
+include_once(JOMRES_LIBRARIES_ABSPATH.'Crawler-Detect-master/src/CrawlerDetect.php');
+include_once(JOMRES_LIBRARIES_ABSPATH.'Crawler-Detect-master/src/Fixtures/AbstractProvider.php');
+include_once(JOMRES_LIBRARIES_ABSPATH.'Crawler-Detect-master/src/Fixtures/Crawlers.php');
+include_once(JOMRES_LIBRARIES_ABSPATH.'Crawler-Detect-master/src/Fixtures/Exclusions.php');
+include_once(JOMRES_LIBRARIES_ABSPATH.'Crawler-Detect-master/src/Fixtures/Headers.php');
+
 /**
 *
 * The API includes the logger class. As the API doesn't always include the framework ( for performance ) to use the logger within Jomres itself, we'll need to make the distinction here
@@ -303,13 +311,13 @@ $jomresHTML = jomres_singleton_abstract::getInstance('jomresHTML');
 require_once JOMRES_LIBRARIES_ABSPATH.JRDS.'crsfhandler'.JRDS.'csrfhandler.lib.php';
 
 // Currently disabled. Gateways POST payment information, and because gateways use different sessions (i.e. different sessions than the guest or manager's browser session) there's no reliable way to validate CSRF tokens yet
-// 
+//
 
 /* if (!empty($_POST)) {
 	$token = isset($_POST['jomres_csrf_token']) ? $_POST['jomres_csrf_token'] : '';
 	$valid = !empty($token) && $isValid = csrf::checkToken($token);
 	if (!$valid) {
-		// log then die 
+		// log then die
 		logging::log_message('CSRF token failed to validate ', 'Core', 'WARNING');
 		die("Could not validate token");
 	}
