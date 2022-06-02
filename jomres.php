@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.3.1
+ *  @version Jomres 10.4.0 (Platty Joobs edition)
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -112,6 +112,22 @@ try {
 	//temp booking handler object, init jomres session
 	$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 	$tmpBookingHandler->initBookingSession();
+
+	if (isset( $tmpBookingHandler->tmpbooking['arrivalDate']) ) {
+		$arrivalDate = $tmpBookingHandler->tmpbooking['arrivalDate'];
+		$test = explode( "-" , $arrivalDate );
+		if (count($test) ==3) { // It's an api booking, the date needs to be converted from YYYY-MM-DD to YYYY/MM/DD format so that existing functionality can work with the booking's dates
+			$tmpBookingHandler->tmpbooking['arrivalDate'] = str_replace("-" , '/' , $arrivalDate );
+		}
+	}
+
+	if (isset( $tmpBookingHandler->tmpbooking['departureDate']) ) {
+		$departureDate = $tmpBookingHandler->tmpbooking['departureDate'];
+		$test = explode( "-" , $departureDate );
+		if (count($test) ==3) { // It's an api booking, the date needs to be converted from YYYY-MM-DD to YYYY/MM/DD format so that existing functionality can work with the booking's dates
+			$tmpBookingHandler->tmpbooking['departureDate'] = str_replace("-" , '/' , $departureDate );
+		}
+	}
 
 	$jomressession = $tmpBookingHandler->getJomressession();
 	set_showtime('jomressession', $jomressession);

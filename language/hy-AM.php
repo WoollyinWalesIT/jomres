@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.3.1
+ *  @version Jomres 10.4.0 (Platty Joobs edition)
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -3274,7 +3274,7 @@ jr_define ('JOMRES_OCCUPANCY_LEVELS_INFO', 'timeանկացած սենյակ կա
 
 
 jr_define ('_JOMRES_SEARCH_FORM_ADULTS', 'Մեծահասակներ');
-jr_define ('_JOMRES_SEARCH_FORM_CHILDREN', 'Chidren');
+jr_define ('_JOMRES_SEARCH_FORM_CHILDREN', 'Children');
 
 
 jr_define ('_JOMRES_CONFIG_LEVEL_TITLE', 'Ադմինիստրատորի ընտրանքների մակարդակ');

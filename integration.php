@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.3.1
+ *  @version Jomres 10.4.0 (Platty Joobs edition)
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -16,9 +16,9 @@ defined('_JOMRES_INITCHECK') or die('');
 
 /**
 *
-* Does a lot of file inclusion, creation of constants etc. 
+* Does a lot of file inclusion, creation of constants etc.
 *
-* 
+*
 */
 
 
@@ -202,6 +202,14 @@ if (!class_exists('patErrorManager')) {
 	require_once JOMRES_LIBRARIES_ABSPATH.'phptools'.JRDS.'patErrorManager.php';
 }
 
+// The purpose here is to prevent Jomres temp booking handler from storing sessions in the db, there's no point.
+// We are ok with crawlers visiting, after all we want our data to be indexed, but the session data will never be used, so let's not store it if we think it's a crawler
+include_once(JOMRES_LIBRARIES_ABSPATH.'Crawler-Detect-master/src/CrawlerDetect.php');
+include_once(JOMRES_LIBRARIES_ABSPATH.'Crawler-Detect-master/src/Fixtures/AbstractProvider.php');
+include_once(JOMRES_LIBRARIES_ABSPATH.'Crawler-Detect-master/src/Fixtures/Crawlers.php');
+include_once(JOMRES_LIBRARIES_ABSPATH.'Crawler-Detect-master/src/Fixtures/Exclusions.php');
+include_once(JOMRES_LIBRARIES_ABSPATH.'Crawler-Detect-master/src/Fixtures/Headers.php');
+
 /**
 *
 * The API includes the logger class. As the API doesn't always include the framework ( for performance ) to use the logger within Jomres itself, we'll need to make the distinction here
@@ -222,47 +230,46 @@ if (!isset($jrConfig['log_path']) || $jrConfig['log_path'] == '') {
 
 define('JOMRES_SYSTEMLOG_PATH', fix_path($jrConfig['log_path']));
 
-/**
-*
-* define core images paths
-*
-*/
-$uri = parse_url(get_showtime('live_site'));
-$path = '';
+	/**
+	 *
+	 * define core images paths
+	 *
+	 */
+	if (!defined('JOMRES_API_CMS_ROOT')) {
+		$uri = parse_url(get_showtime('live_site'));
+		$path = '';
 
-if (isset($uri['path'])) {
-	$path = $uri['path'];
-}
+		if (isset($uri['path'])) {
+			$path = $uri['path'];
+		}
+	} else {
+		$path = get_showtime('live_site');
+	}
 
-define('JOMRES_IMAGES_ABSPATH', JOMRES_ASSETS_ABSPATH.'images'.JRDS);
-define('JOMRES_IMAGES_RELPATH', $path.'/'.JOMRES_ROOT_DIRECTORY.'/assets/images/');
+	define('JOMRES_IMAGES_ABSPATH', JOMRES_ASSETS_ABSPATH.'images'.JRDS);
+	define('JOMRES_IMAGES_RELPATH', $path.'/'.JOMRES_ROOT_DIRECTORY.'/assets/images/');
 
-/**
-*
-* define uploaded images paths
-*
-*/
-if (!defined('JOMRES_IMAGELOCATION_ABSPATH')) {
-	define('JOMRES_IMAGELOCATION_ABSPATH', JOMRESPATH_BASE.'uploadedimages'.JRDS);
+	/**
+	 *
+	 * define uploaded images paths
+	 *
+	 */
+	if (!defined('JOMRES_IMAGELOCATION_ABSPATH')) {
+		define('JOMRES_IMAGELOCATION_ABSPATH', JOMRESPATH_BASE.'uploadedimages'.JRDS);
 
-    if ( isset($jrConfig['amazon_s3_active'])) {
-        if ($jrConfig['amazon_s3_active'] != '1' || $jrConfig['amazon_s3_bucket'] == '') {
-            if (!defined('JOMRES_API_CMS_ROOT')) {
-                define('JOMRES_IMAGELOCATION_RELPATH', $path.'/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/');
-            } else {
-                define('JOMRES_IMAGELOCATION_RELPATH', get_showtime('livesite').'/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/');
-            }
-        } else {
-            if ($jrConfig['amazon_cloudfront_domain'] != '') {
-                $amazon_url = 'https://'.$jrConfig['amazon_cloudfront_domain'];
-            } else {
-                $amazon_url = 'https://'.$jrConfig['amazon_s3_bucket'].'.s3.amazonaws.com';
-            }
-            define('JOMRES_IMAGELOCATION_RELPATH', $amazon_url.'/uploadedimages/');
-        }
-    }
-}
-
+		if ( isset($jrConfig['amazon_s3_active'])) {
+			if ($jrConfig['amazon_s3_active'] != '1' || $jrConfig['amazon_s3_bucket'] == '') {
+				define('JOMRES_IMAGELOCATION_RELPATH', $path.'/'.JOMRES_ROOT_DIRECTORY.'/uploadedimages/');
+			} else {
+				if ($jrConfig['amazon_cloudfront_domain'] != '') {
+					$amazon_url = 'https://'.$jrConfig['amazon_cloudfront_domain'];
+				} else {
+					$amazon_url = 'https://'.$jrConfig['amazon_s3_bucket'].'.s3.amazonaws.com';
+				}
+				define('JOMRES_IMAGELOCATION_RELPATH', $amazon_url.'/uploadedimages/');
+			}
+		}
+	}
 
 /**
 *
@@ -304,13 +311,13 @@ $jomresHTML = jomres_singleton_abstract::getInstance('jomresHTML');
 require_once JOMRES_LIBRARIES_ABSPATH.JRDS.'crsfhandler'.JRDS.'csrfhandler.lib.php';
 
 // Currently disabled. Gateways POST payment information, and because gateways use different sessions (i.e. different sessions than the guest or manager's browser session) there's no reliable way to validate CSRF tokens yet
-// 
+//
 
 /* if (!empty($_POST)) {
 	$token = isset($_POST['jomres_csrf_token']) ? $_POST['jomres_csrf_token'] : '';
 	$valid = !empty($token) && $isValid = csrf::checkToken($token);
 	if (!$valid) {
-		// log then die 
+		// log then die
 		logging::log_message('CSRF token failed to validate ', 'Core', 'WARNING');
 		die("Could not validate token");
 	}

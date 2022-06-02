@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.3.1
+ *  @version Jomres 10.4.0 (Platty Joobs edition)
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -765,6 +765,7 @@ class j03020insertbooking
 			if (!$secret_key_payment && $amend_contractuid == 0) {
 				$bookingNotes = $tempBookingData->booking_notes;
                 if (!empty($bookingNotes)) {
+					$dt = date('Y-m-d H:i:s');
                     foreach ($bookingNotes as $k => $v) {
                         $note = ' '.strip_tags($k).' '.strip_tags($v).'<br/>';
                         if ( trim(strip_tags($v)) != '' ) {

@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.3.1
+ *  @version Jomres 10.4.0 (Platty Joobs edition)
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -2621,7 +2621,7 @@ jr_define ('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS_BUTTON', 'Indstil belægningsni
 jr_define ('JOMRES_OCCUPANCY_LEVELS_INFO', 'Hver gang du redigerer et værelse eller din ejendomstype, bør du kontrollere og opdatere belægningsniveauerne for din ejendom/værelser, da disse påvirker antallet af gæster, der kan accepteres i reservationsformularen.');
 
 jr_define ('_JOMRES_SEARCH_FORM_ADULTS', 'Voksne');
-jr_define ('_JOMRES_SEARCH_FORM_CHILDREN', 'Chidren');
+jr_define ('_JOMRES_SEARCH_FORM_CHILDREN', 'Children');
 
 
 jr_define ('_JOMRES_CONFIG_LEVEL_TITLE', 'Admin option level');

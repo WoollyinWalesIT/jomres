@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.3.1
+ *  @version Jomres 10.4.0 (Platty Joobs edition)
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -462,7 +462,7 @@ jr_define('_JOMRES_COM_ALLOWHTMLEDITOR', 'Allow users to edit using html editors
 jr_define('_JOMRES_AJAXFORM_INSTRUCTIONS', 'Use this form to place your booking. Modify your booking particulars like arrival and departure dates & guest numbers, then select the resource(s) you require from the list of those available. Click any available rooms to add them to your booking. When done, you can add any optional extras you may require and provide your address details. When the form has enough information it will then give you a submit button so that you can confirm your booking.');
 jr_define('_JOMRES_AJAXFORM_INSTRUCTIONS_SRP', 'Use this form to place your booking. Modify your booking particulars like arrival and departure dates & guest numbers. When done, you can add any optional extras you may require and provide your address details. When the form has enough information it will then give you a submit button so that you can confirm your booking.');
 jr_define('_JOMRES_AJAXFORM_PARTICULARS', 'Booking particulars');
-jr_define('_JOMRES_AJAXFORM_PARTICULARS_DESC', 'Select the details of your booking requirements');
+jr_define('_JOMRES_AJAXFORM_PARTICULARS_DESC', 'When do you want to go?');
 jr_define('_JOMRES_AJAXFORM_AVAILABLE', 'Availability ');
 jr_define('_JOMRES_AJAXFORM_AVAILABLE_DESC', 'Select the rooms that you require');
 jr_define('_JOMRES_AJAXFORM_AVAILABLE_DESC_SRP', 'Look here to see if the property is available at this time.');
@@ -2606,7 +2606,7 @@ jr_define('_JOMRES_SANITYCHECK_OCCUPANCY_LEVELS_BUTTON', 'Set occupancy levels')
 jr_define('JOMRES_OCCUPANCY_LEVELS_INFO', 'Any time you edit a room or your property type you should check and update the occupancy levels for your property/rooms as these affect the number of guests who can be accepted in the booking form.');
 
 jr_define('_JOMRES_SEARCH_FORM_ADULTS', 'Adults');
-jr_define('_JOMRES_SEARCH_FORM_CHILDREN', 'Chidren');
+jr_define('_JOMRES_SEARCH_FORM_CHILDREN', 'Children');
 
 jr_define('_JOMRES_CONFIG_LEVEL_TITLE', 'Admin options level');
 jr_define('_JOMRES_CONFIG_LEVEL_DESC', 'Jomres has many menu and configuration options that you can use when configuring your site. The huge majority of them you will never need to change so they are hidden by default. You can choose to show those options by setting the Admin Options level.  Basic level shows you just what you need when setting up a site for the first time. Common level shows you those options which are most commonly changed, and Everything shows you all possible settings and menus options in the administrator area.');
