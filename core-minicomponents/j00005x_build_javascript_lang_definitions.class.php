@@ -53,9 +53,12 @@ class j00005x_build_javascript_lang_definitions
 		$javascript_files = array();
 
 		$live_scrolling_enabled = 'true';
-		if ($jrConfig['live_scrolling_enabled'] == '0' || jomres_cmsspecific_areweinadminarea()) {
-			$live_scrolling_enabled = 'false';
+		if (!jomres_cmsspecific_areweinadminarea()) {
+			if ($jrConfig['live_scrolling_enabled'] == '0' ) {
+				$live_scrolling_enabled = 'false';
+			}
 		}
+
 
 		if (jomres_cmsspecific_areweinadminarea()) {
 			$jomres_sitepage_url_ajax = JOMRES_SITEPAGE_URL_ADMIN_AJAX;
