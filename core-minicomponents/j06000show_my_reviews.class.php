@@ -97,7 +97,7 @@ class j06000show_my_reviews
 					if (isset($images[$review->item_id]["property"][0][0]["small"])) {
 						$r['IMAGE'] =$images[$review->item_id]["property"][0][0]["small"];
 					} else {
-						$r['IMAGE'] = $images["noimage-small"];
+						$r['IMAGE'] = $jomres_media_centre_images->multi_query_images['noimage-small'];
 					}
 
 					$r[ 'GUEST_PROFILE_MY_REVIEWS_I_SAID' ] = jr_gettext('GUEST_PROFILE_MY_REVIEWS_I_SAID', 'GUEST_PROFILE_MY_REVIEWS_I_SAID', false, false);
