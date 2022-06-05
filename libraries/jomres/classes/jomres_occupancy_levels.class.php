@@ -35,13 +35,25 @@ class jomres_occupancy_levels
 		if ($this->property_uid > 0) {
 			$this->mrConfig = getPropertySpecificSettings( $this->property_uid );
 
+			$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
+			$current_property_details->gather_data ( $this->property_uid );
+
+			$occupancy_levels = array();
 			if ( isset($this->mrConfig['occupancy_levels']) ) {
 				$this->occupancy_levels = unserialize(base64_decode($this->mrConfig['occupancy_levels']));
+				// We'll look for new room types that don't have occupancy levels added (maybe they were added after levels were first created
+				foreach ( $current_property_details->room_types as $room_type_id => $room_type) {
+					if (!array_key_exists( $room_type_id , $this->occupancy_levels) ) {
+						$this->occupancy_levels [$room_type_id] = array (
+							"room_type_name"	=> $room_type['abbv'] ,
+							"room_type_id"		=> $room_type_id ,
+							"max_adults"		=> 2 ,
+							"max_children"		=> 0 ,
+							"max_occupancy"		=> 0
+						);
+					}
+				}
 			} else {
-				$current_property_details = jomres_singleton_abstract::getInstance('basic_property_details');
-				$current_property_details->gather_data ( $this->property_uid );
-
-				$occupancy_levels = array();
 				if (!empty($current_property_details->room_types)) {
 					foreach ($current_property_details->room_types as $room_type_id => $room_type ) {
 						$occupancy_levels [$room_type_id] = array (
