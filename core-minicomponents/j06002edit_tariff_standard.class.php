@@ -33,7 +33,12 @@ class j06002edit_tariff_standard
 		$jrConfig = $siteConfig->get();
 		
 		$defaultProperty = getDefaultProperty();
-		
+
+		jr_import('jrportal_rates');
+		$jrportal_rates = new jrportal_rates();
+		$jrportal_rates->property_uid = $defaultProperty;
+		$room_types_with_no_tariff = $jrportal_rates->get_unpopulated_room_type_ids($defaultProperty);
+
 		$mrConfig = getPropertySpecificSettings();
 		
 		if ($mrConfig['tariffmode'] != '5' || $mrConfig[ 'is_real_estate_listing' ] == '1' || get_showtime('is_jintour_property'))
@@ -176,13 +181,24 @@ class j06002edit_tariff_standard
 
 			//build the room types dropdown
 			$options = array();
-			foreach ($basic_property_details->this_property_room_classes as $k => $v)
-				{
-				if (in_array($k, $currentPropertyRoomClasses))
-					{
-					$options[] = jomresHTML::makeOption($k, $v['abbv']);
+
+			// It's a new tariff, we can show room types that don't yet have a tariff attached
+			if ( $tarifftype_id == 0 ) {
+					foreach ($basic_property_details->this_property_room_classes as $k => $v) {
+						if (in_array($k, $currentPropertyRoomClasses) && in_array( $k , $room_types_with_no_tariff)  )  {
+							$options[] = jomresHTML::makeOption($k, $v['abbv']);
+						}
+					}
+				} else {
+					foreach ($basic_property_details->this_property_room_classes as $k => $v) {
+						if (in_array($k, $currentPropertyRoomClasses) )  {
+							$options[] = jomresHTML::makeOption($k, $v['abbv']);
+						}
 					}
 				}
+
+
+
 			
 			$output['ROOMTYPEDROPDOWN'] = jomresHTML::selectList($options, 'roomClass', 'class="inputbox" size="1"', 'value', 'text', $roomclassid , false);
 			}
