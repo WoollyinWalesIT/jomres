@@ -62,7 +62,7 @@ defined('_JOMRES_INITCHECK') or die('');
 	 *
 	 */
 
-	Flight::map('halt', function ($code = 204, $message = '' , $charset = 'utf-8' ) {
+	Flight::map('halt', function ($code = 204, $message = '' , $charset = 'utf-8' , $lines = array() ) {
 
 		$envelope_data = Flight::response_envelope_data();
 		
@@ -74,7 +74,7 @@ defined('_JOMRES_INITCHECK') or die('');
 		$response->code = $code;
 		$response->meta['site'] = $envelope_data;
 		$response->error_message = $message;
-
+		$response->lines = $lines;
 		$json = json_encode($response);
 		Flight::response()
 			->status($code)
