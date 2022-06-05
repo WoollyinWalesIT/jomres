@@ -66,7 +66,7 @@ defined('_JOMRES_INITCHECK') or die('');
 
 		$envelope_data = Flight::response_envelope_data();
 		
-		$code = 200;
+		$code = 400;
 		$log = ' Halted run '.$code.' with message '.$message;
 		logging::log_message($log, 'API', 'DEBUG');
 
