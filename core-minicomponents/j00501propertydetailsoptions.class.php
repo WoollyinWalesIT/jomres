@@ -62,24 +62,24 @@ class j00501propertydetailsoptions
 			$configurationPanel->setright(jr_gettext('HIDDEN_ADDRESS_SETTING_DESC', 'HIDDEN_ADDRESS_SETTING_DESC', false));
 			$configurationPanel->insertSetting();
 
-			if ($mrConfig['is_real_estate_listing'] == 0) {
-				$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_SHOWONLYAVLCAL', '_JOMRES_COM_A_SHOWONLYAVLCAL', false));
-				$configurationPanel->setmiddle($lists['showOnlyAvailabilityCalendar']);
-				$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_SHOWONLYAVLCAL_DESC', '_JOMRES_COM_A_SHOWONLYAVLCAL_DESC', false));
-				$configurationPanel->insertSetting();
+			/*			if ($mrConfig['is_real_estate_listing'] == 0) {
+							$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_SHOWONLYAVLCAL', '_JOMRES_COM_A_SHOWONLYAVLCAL', false));
+							$configurationPanel->setmiddle($lists['showOnlyAvailabilityCalendar']);
+							$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_SHOWONLYAVLCAL_DESC', '_JOMRES_COM_A_SHOWONLYAVLCAL_DESC', false));
+							$configurationPanel->inserttting();
 
-				if ($mrConfig['showOnlyAvailabilityCalendar'] == '1') {
-					$configurationPanel->setleft(jr_gettext('_JOMRES_COM_MONTHSTOSHOW', '_JOMRES_COM_MONTHSTOSHOW', false));
-					$configurationPanel->setmiddle('<input type="number" class="inputbox" size="5" name="cfg_CalendarMonthsToShow" value="' . $mrConfig['CalendarMonthsToShow'] . '"/>');
-					$configurationPanel->setright(jr_gettext('_JOMRES_COM_MONTHSTOSHOW_DESC', '_JOMRES_COM_MONTHSTOSHOW_DESC', false));
-					$configurationPanel->insertSetting();
+			/*				if ($mrConfig['showOnlyAvailabilityCalendar'] == '1') {
+								$configurationPanel->setleft(jr_gettext('_JOMRES_COM_MONTHSTOSHOW', '_JOMRES_COM_MONTHSTOSHOW', false));
+								$configurationPanel->setmiddle('<input type="number" class="inputbox" size="5" name="cfg_CalendarMonthsToShow" value="' . $mrConfig['CalendarMonthsToShow'] . '"/>');
+								$configurationPanel->setright(jr_gettext('_JOMRES_COM_MONTHSTOSHOW_DESC', '_JOMRES_COM_MONTHSTOSHOW_DESC', false));
+								$configurationPanel->insertSetting();
 
-					$configurationPanel->setleft(jr_gettext('_JOMRES_COM_MONTHS_STARTOFYEAR', '_JOMRES_COM_MONTHS_STARTOFYEAR', false));
-					$configurationPanel->setmiddle($lists['calstartfrombeginningofyear']);
-					$configurationPanel->setright(jr_gettext('_JOMRES_COM_MONTHS_STARTOFYEAR_DESC', '_JOMRES_COM_MONTHS_STARTOFYEAR_DESC', false));
-					$configurationPanel->insertSetting();
-				}
-			}
+								$configurationPanel->setleft(jr_gettext('_JOMRES_COM_MONTHS_STARTOFYEAR', '_JOMRES_COM_MONTHS_STARTOFYEAR', false));
+								$configurationPanel->setmiddle($lists['calstartfrombeginningofyear']);
+								$configurationPanel->setright(jr_gettext('_JOMRES_COM_MONTHS_STARTOFYEAR_DESC', '_JOMRES_COM_MONTHS_STARTOFYEAR_DESC', false));
+								$configurationPanel->insertSetting();
+							}
+						}*/
 
 			/*
 			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_SLIDESHOWS_SHOWSLIDESHOWINLINE', '_JOMRES_COM_A_SLIDESHOWS_SHOWSLIDESHOWINLINE', false));
