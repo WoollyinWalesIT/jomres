@@ -1345,6 +1345,8 @@
 			$this->add_dir($this->dir_templates_bootstrap4_backend);
 			$this->add_dir($this->dir_templates_bootstrap4_administrator);
 
+			$this->add_file($this->dir_minicomponents.'j00501tourist_tax.class.php');
+			$this->add_file($this->dir_minicomponents.'j02990add_tourist_tax.class.php');
 		}
 
 		/**
