@@ -184,8 +184,10 @@ class j06000handlereq
 				$value = $bkg->JSCalConvertInputDates($value);
 				$value = $bkg->sanitiseInput('date', $value);
 
-				$arr_dep_date = $bkg->JSCalConvertInputDates($_GET[ 'arr_dep_date' ]);
-				$arr_dep_date = $bkg->sanitiseInput('date', $arr_dep_date);
+				if (isset($_GET[ 'arr_dep_date' ])){
+					$arr_dep_date = $bkg->JSCalConvertInputDates($_GET[ 'arr_dep_date' ]);
+					$arr_dep_date = $bkg->sanitiseInput('date', $arr_dep_date);
+				}
 
 				if (isset($value)) {
 					$bkg->setArrivalDate($value);
