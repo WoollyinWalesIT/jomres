@@ -7,7 +7,7 @@
 				<img src="{IMAGEMEDIUM}" alt="{PROPERTY_NAME}" class="card-img-top" />
 			</a>
 			{RIBBON}
-			<div class="top-left d-none d-sm-block bg-secondary bg-opacity-25 text-white rounded-1 p-1">{PROPERTY_TYPE_TITLE}</div>
+			<div class="top-left d-none d-sm-block bg-secondary bg-opacity-25 text-white rounded-1 p-1">{PROPERTY_TYPE_TITLE} {STARSIMAGES}</div>
 			<div class="bottom-left bg-info  bg-opacity-25 text-white rounded-3 p-1"><strong>{PRICE_PRICE}</strong></div>
 		</div>
 		<div class="card-body margin-0">
@@ -19,7 +19,7 @@
 				</patTemplate:comment>
 				<div class="row">
 					<div class="col-md-12">
-						<strong>{PROPERTY_NAME}</strong> {STARSIMAGES}&nbsp;{SUPERIOR}
+						<h4><a href="{MOREINFORMATIONLINK}" class="stretched-link">{PROPERTY_NAME}</a></h4>
 					</div>
 					<div class="col-sm-9">
 						<div class="row">
@@ -39,18 +39,18 @@
 				</div>
 			</div>
 			<patTemplate:comment>
-			<div class="card-footer" align="center">
-				<a href="{MOREINFORMATIONLINK}" class="btn btn-info" title="{PROPERTY_NAME}">{MOREINFORMATION}</a>
-			</div>
+				<div class="card-footer" align="center">
+					<a href="{MOREINFORMATIONLINK}" class="btn btn-info" title="{PROPERTY_NAME}">{MOREINFORMATION}</a>
+				</div>
 			</patTemplate:comment>
 		</div>
 	</div>
 	<script>
-		document.addEventListener('DOMContentLoaded', function(){
-			jomresJquery('#module_{RANDOM_IDENTIFIER}_popup').appendTo("body");
-		});
+        document.addEventListener('DOMContentLoaded', function(){
+            jomresJquery('#module_{RANDOM_IDENTIFIER}_popup').appendTo("body");
+        });
 	</script>
-
+	
 	<div class="modal fade" id="module_{RANDOM_IDENTIFIER}_popup"></div>
 	<div class="offcanvas offcanvas-start" style="width: 65%; " tabindex="-1" id="reviewsOffCanvas{RANDOM_IDENTIFIER}" aria-labelledby="offcanvasReviewsLabel">
 		<div class="offcanvas-header">
