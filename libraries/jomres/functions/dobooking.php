@@ -523,7 +523,13 @@ function dobooking($selectedProperty, $thisdate, $remus)
 			$load[ 'ONLOAD' ] = $tmpsrptrigger;
 			$toload[ ] = $load;
 		} else {
-			$load[ 'ONLOAD' ] = "jomresJquery.get(ajaxurl+'&task=handlereq&firstrun=1&property_uid_check=".(int) $selectedProperty."',{ field : 'arrivalDate', value: '".$bkg->JSCalmakeInputDates($bkg->arrivalDate)."', field : 'departureDate', value: '".$bkg->JSCalmakeInputDates($bkg->departureDate)."' },function(data){showRoomsList(data); show_log('');});";
+			$load[ 'ONLOAD' ] = "jomresJquery.get(ajaxurl+'&task=handlereq&firstrun=1&property_uid_check=".(int)$selectedProperty."&field=arrivalDate&value=".$bkg->JSCalmakeInputDates($bkg->arrivalDate)."',{},function(data)
+			{ 
+			jomresJquery.get(ajaxurl+'&task=handlereq&property_uid_check=".(int)$selectedProperty."&field=departureDate&value=".$bkg->JSCalmakeInputDates($bkg->departureDate)."' , {} , function(){}); 
+			getResponse_standardguests();
+			showRoomsList(data); 
+			show_log('');
+			});";
 			$toload[ ] = $load;
 		}
 	}
