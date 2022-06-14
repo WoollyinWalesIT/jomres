@@ -3814,7 +3814,6 @@
 						}
 						$this->room_allocations[ $rm_id ][ 'number_allocated' ] = $this->room_allocations[ $rm_id ][ 'number_allocated' ] + $val;
 					}
-
 					$this->setErrorLog('checkAllGuestsAllocatedToRooms:: $this->room_allocations > 0 '.serialize($this->room_allocations));
 
 					return true;
@@ -7040,11 +7039,11 @@
 			$total_number_of_guests = 0;
 
 			foreach ($this->room_allocations as $room) {
+				$total_number_of_guests += $room[ 'number_allocated' ];
 				if ($this->cfg_perPersonPerNight == '0' ) {
 					$total += $room[ 'price_per_night' ];
 					$total_nodiscount += $room[ 'price_per_night_nodiscount' ];
 				} else {
-					$total_number_of_guests += $room[ 'number_allocated' ];
 					$total += ($room[ 'price_per_night' ] * $room[ 'number_allocated' ]);
 					$total_nodiscount += ($room[ 'price_per_night_nodiscount' ] * $room[ 'number_allocated' ]);
 				}
@@ -7059,7 +7058,6 @@
 					$this->rate_pernight_nodiscount = $total_nodiscount / count($this->room_allocations);
 				}
 			}
-
 
 			$this->setErrorLog('te_setAverageRate::Setting average rate '.$this->rate_pernight);
 			$this->setErrorLog('te_setAverageRate:: Ended');
@@ -7217,6 +7215,9 @@
 
 		public function getMkTime($date)
 		{
+			if ($date =='') {
+				return false;
+			}
 			if (!isset(self::$mktimes[ $date ])) {
 				$date_elements = explode('/', $date);
 				self::$mktimes[ $date ] = mktime(0, 0, 0,  (int)$date_elements[ 1 ],  (int)$date_elements[ 2 ], (int) $date_elements[ 0 ]);
