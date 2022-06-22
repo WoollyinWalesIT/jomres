@@ -15,6 +15,107 @@
 	defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
+	 /*
+	 *
+	 * The goal here is to provide a function that will take a shortcode and produce output. It's effectively the same as the do_shortcode function in WP so that I can include Jomres shortcodes in Joomla template files. There are other ways it can be done, but by allowing shortcodes exactly as they're entered in content/shortcode documentation we can save the designer/integrator from needing to learn another syntax. It also means I can modify the jomres shortcodes plugin to use this function, at a later time, so that we don't have duplication of effort
+	 *
+	 */
+
+	function run_jomres_shortcode( $shortcode_string = '' )
+	{
+		if ( $shortcode_string == '' ) {
+			return '';
+		}
+
+		$regex = '/{jomres\s*.*?}/i';
+
+		// find all instances of mambot and put in $matches
+		preg_match_all( $regex, $shortcode_string, $matches );
+
+		if (count($matches)>0)
+		{
+			foreach ($matches[0] as $m)
+			{
+				ob_start();
+
+				$match = str_replace(array("{","}"),"",$m);
+
+				$match = str_replace("&amp;","&",$match);
+				$bang = explode (" ",$match);
+
+				$our_task = $bang[1];
+
+				$arguments = '';
+				if (isset($bang[2]))
+					$arguments = $bang[2];
+
+				if ($arguments!='')
+				{
+					$args_array = explode("&",$arguments);
+					foreach ($args_array as $arg)
+					{
+						$vals = explode ("=",$arg);
+						if(array_key_exists(1,$vals))
+						{
+							$vals[1] = str_replace("+","-",$vals[1]);
+							$_REQUEST[$vals[0]]=$vals[1];
+							$_GET[$vals[0]]=$vals[1];
+						}
+					}
+				}
+
+				if (!defined('_JOMRES_INITCHECK'))
+					define('_JOMRES_INITCHECK', 1 );
+
+				if (!defined('JOMRES_ROOT_DIRECTORY'))
+				{
+					if (file_exists(JPATH_ROOT.'jomres_root.php'))
+						require_once (JPATH_ROOT.'jomres_root.php');
+					else
+						define ( 'JOMRES_ROOT_DIRECTORY' , "jomres" ) ;
+				}
+
+				if (file_exists(JPATH_ROOT. DIRECTORY_SEPARATOR .JOMRES_ROOT_DIRECTORY. DIRECTORY_SEPARATOR .'core-plugins'. DIRECTORY_SEPARATOR .'alternative_init'. DIRECTORY_SEPARATOR .'alt_init.php'))
+				{
+					require_once(JPATH_ROOT. DIRECTORY_SEPARATOR .JOMRES_ROOT_DIRECTORY. DIRECTORY_SEPARATOR .'core-plugins'. DIRECTORY_SEPARATOR .'alternative_init'. DIRECTORY_SEPARATOR .'alt_init.php');
+				}
+				else {
+					return;
+				}
+
+				$MiniComponents = jomres_getSingleton('mcHandler');
+				set_showtime('task',$our_task);
+
+				$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+
+				if ($MiniComponents->eventSpecificlyExistsCheck('06000', get_showtime('task'))) {
+					$MiniComponents->specificEvent('06000', get_showtime('task'));
+				} elseif ($MiniComponents->eventSpecificlyExistsCheck('06001', get_showtime('task')) && $thisJRUser->userIsManager) { // Receptionist and manager tasks
+					if (get_showtime('task') == 'cpanel') {
+						$MiniComponents->specificEvent('06001', get_showtime('task'));
+					} else {
+						$MiniComponents->specificEvent('06001', get_showtime('task'));
+					}
+				} elseif ($MiniComponents->eventSpecificlyExistsCheck('06002', get_showtime('task')) && $thisJRUser->userIsManager && $thisJRUser->accesslevel >= 70) { // Manager only tasks (higher than receptionist)
+					$MiniComponents->specificEvent('06002', get_showtime('task'));
+				} elseif ($MiniComponents->eventSpecificlyExistsCheck('06005', get_showtime('task')) && $thisJRUser->userIsRegistered) { // Registered only user tasks
+					$MiniComponents->specificEvent('06005', get_showtime('task'));
+				} else {
+					return;
+				}
+
+				$contents = ob_get_contents();
+
+				$text = str_replace($m,$contents, $shortcode_string);
+				unset($contents);
+
+				ob_end_clean();
+				return $text;
+			}
+		}
+	}
+
+
 	/*
      *
      * Pass the property uid and room type id, we'll hand back an array that can be used to output prices of a specific room.
