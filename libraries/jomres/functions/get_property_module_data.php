@@ -78,6 +78,8 @@
 			}
 		}
 
+		$featured = jr_gettext('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED', '_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED', false);
+
 		foreach ($property_uid_array as $property_uid) {
 			if ($property_uid > 0) {
 				$property_data = $current_property_details->multi_query_result[ $property_uid ];
@@ -183,6 +185,9 @@
 					}
 				}
 
+				if ( $property_data['featured'] == true ) {
+					$jomres_ribbon_generator->set_review_score( 10 , $featured );
+				}
 				$property_data['RIBBON'] = $jomres_ribbon_generator->generate_html();
 
 				$mrConfig = getPropertySpecificSettings($property_uid);
