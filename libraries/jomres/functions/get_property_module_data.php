@@ -56,11 +56,55 @@
 		jr_import('jomres_markdown');
 		$jomres_markdown = new jomres_markdown();
 
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+		$shortlist_items = array();
+
+		if (isset($tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ])) {
+			$shortlist_items = $tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ];
+		}
+
+		$shortlist_items = array();
+		if ($thisJRUser->userIsRegistered) {
+			$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+			$query = "SELECT `property_uid` FROM #__jomcomp_mufavourites WHERE `my_id` = '".(int) $thisJRUser->id."'";
+			$propys = doSelectSql($query);
+			if (!empty($propys)) {
+				foreach ($propys as $p) {
+					if (!in_array($p->property_uid, $shortlist_items)) {
+						$shortlist_items[] = (int) $p->property_uid;
+					}
+				}
+				$tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ] = $shortlist_items;
+			}
+		}
+
 		foreach ($property_uid_array as $property_uid) {
 			if ($property_uid > 0) {
 				$property_data = $current_property_details->multi_query_result[ $property_uid ];
 
 				$property_data[ 'RANDOM_IDENTIFIER' ] = generateJomresRandomString(10);
+
+				if (!in_array($property_uid, $shortlist_items)) {
+					$shortlist_output = array();
+					$shortlist_pageoutput = array();
+					$shortlist_output['TEXT'] = jr_gettext('_JOMRES_ADDTOSHORTLIST', '_JOMRES_ADDTOSHORTLIST', false);
+					$shortlist_pageoutput[ ] = $shortlist_output;
+					$tmpl = new patTemplate();
+					$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+					$tmpl->readTemplatesFromInput('shortlist_removed.html');
+					$tmpl->addRows('pageoutput', $shortlist_pageoutput);
+					$property_data[ 'SHORTLIST' ] = $tmpl->getParsedTemplate();
+				} else {
+					$shortlist_output = array();
+					$shortlist_pageoutput = array();
+					$shortlist_output['TEXT'] = jr_gettext('_JOMRES_REMOVEFROMSHORTLIST', '_JOMRES_REMOVEFROMSHORTLIST', false);
+					$shortlist_pageoutput[ ] = $shortlist_output;
+					$tmpl = new patTemplate();
+					$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+					$tmpl->readTemplatesFromInput('shortlilst_added.html');
+					$tmpl->addRows('pageoutput', $shortlist_pageoutput);
+					$property_data[ 'SHORTLIST' ] = $tmpl->getParsedTemplate();
+				}
 
 				$Reviews->property_uid = $property_uid;
 				$itemRating = $Reviews->showRating($property_uid);
