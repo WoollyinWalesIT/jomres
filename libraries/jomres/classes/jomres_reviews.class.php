@@ -478,6 +478,10 @@ class jomres_reviews
 
 	public function getRatingsMulti($property_uids)
 	{
+		if (empty($property_uids)) {
+			return;
+		}
+
 		if (!isset($this->multi_query_result)) {
 			$this->multi_query_result = array();
 		}
