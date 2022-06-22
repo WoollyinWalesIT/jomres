@@ -1,14 +1,14 @@
 
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 	{JOMRES_POPUPURL_GLOBALVAR}
-	<div class="card shadow mb-3">
+	<div class="card shadow mb-3 {PTYPE_ID}" data-category="{PTYPE_ID}">
 		<div class="image-container ">
 			<a href="{MOREINFORMATIONLINK}">
 				<img src="{IMAGEMEDIUM}" alt="{PROPERTY_NAME}" class="card-img-top" />
 			</a>
 			{RIBBON}
 			<div class="top-left d-none d-sm-block bg-secondary bg-opacity-25 text-white rounded-1 p-1">{PROPERTY_TYPE_TITLE} {STARSIMAGES}</div>
-			<div class="bottom-left bg-info  bg-opacity-25 text-white rounded-3 p-1"><strong>{PRICE_PRICE}</strong></div>
+			<div class="bottom-left bg-info  bg-opacity-25 text-white rounded-3 p-1"><strong><span class="price">{PRICE_PRICE}</span></strong></div>
 			<a href="javascript:void(0);" id="shortlist_{UID}" onclick="shortlist('{UID}')" class="d-none d-sm-block bg-secondary bg-opacity-25  bottom-right">{SHORTLIST}</a>
 		
 		</div>
@@ -21,12 +21,12 @@
 				</patTemplate:comment>
 				<div class="row">
 					<div class="col-md-12">
-						<h4><a href="{MOREINFORMATIONLINK}" class="text-decoration-none">{PROPERTY_NAME}</a></h4>
+						<h4><a href="{MOREINFORMATIONLINK}" class="text-decoration-none name">{PROPERTY_NAME}</a></h4>
 					</div>
 					<div class="col-sm-9">
 						<div class="row">
 							<div class="col-sm-12 fs-6 fw-lighter text-truncate">
-								<i class="fas fa-map-marker"></i> <a href="{TOWN_SEARCH_LINK}" class="text-decoration-none">{PROPERTY_TOWN}</a>, <a href="{REGION_SEARCH_LINK}"  class="text-decoration-none">{PROPERTY_REGION}</a>, <a href="{COUNTRY_SEARCH_LINK}"  class="text-decoration-none">{PROPERTY_COUNTRY}</a>
+								<i class="fas fa-map-marker"></i> <span class="town"><a href="{TOWN_SEARCH_LINK}" class="text-decoration-none">{PROPERTY_TOWN}</a></span>, <span class="region"><a href="{REGION_SEARCH_LINK}"  class="text-decoration-none">{PROPERTY_REGION}</a></span>, <span class="country"><a href="{COUNTRY_SEARCH_LINK}"  class="text-decoration-none">{PROPERTY_COUNTRY}</a></span>
 							</div>
 						</div>
 						<div class="row">
