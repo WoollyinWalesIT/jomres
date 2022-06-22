@@ -140,14 +140,16 @@
 				$propertys_uids = array();
 			}
 
-			if ( ( $this->jr_page > 0 || $return_to_search_results) && isset($tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ] ) ) {
-				$propertys_uids = $tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ];
+			if (!isset($componentArgs[ 'propertys_uid' ])) {
+				if ( ($propertylist_layout != '' || $this->jr_page > 0 || $return_to_search_results) && isset($tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ] ) ) {
+					$propertys_uids = $tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ];
+				}
 			}
+
 
 			if (empty($propertys_uids)) {
 				return;
 			}
-
 
 			if (!AJAXCALL || get_showtime('task') == 'ajax_search_filter') {
 				$propertys_uids = $MiniComponents->triggerEvent('01009', array('propertys_uids' => $propertys_uids)); // Pre list properties parser. Allows us to to filter property lists if required
@@ -187,6 +189,7 @@
 				if (jomres_bootstrap_version() == '5' && isset( $_REQUEST['list_properties_template']) ) {
 					if (function_exists('get_available_property_list_templates')) {
 						$available_list_templates = get_available_property_list_templates();
+
 						$available_photo_templates =get_available_property_photo_templates();
 						$lpt = $_REQUEST['list_properties_template'];
 						if (isset($lpt) && $lpt != '') {
