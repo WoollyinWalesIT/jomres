@@ -3,7 +3,7 @@
 	{JOMRES_POPUPURL_GLOBALVAR}
 	<div class="card shadow mb-3">
 		<div class="image-container ">
-			<a href="{MOREINFORMATIONLINK}" class="stretched-link">
+			<a href="{MOREINFORMATIONLINK}">
 				<img src="{IMAGEMEDIUM}" alt="{PROPERTY_NAME}" class="card-img-top" />
 			</a>
 			{RIBBON}
@@ -19,12 +19,12 @@
 				</patTemplate:comment>
 				<div class="row">
 					<div class="col-md-12">
-						<h4><a href="{MOREINFORMATIONLINK}" class="stretched-link">{PROPERTY_NAME}</a></h4>
+						<h4><a href="{MOREINFORMATIONLINK}" class="text-decoration-none">{PROPERTY_NAME}</a></h4>
 					</div>
 					<div class="col-sm-9">
 						<div class="row">
 							<div class="col-sm-12 fs-6 fw-lighter text-truncate">
-								<i class="fas fa-map-marker"></i> {PROPERTY_TOWN}, {PROPERTY_REGION}, {PROPERTY_COUNTRY}
+								<i class="fas fa-map-marker"></i> <a href="{TOWN_SEARCH_LINK}" class="text-decoration-none">{PROPERTY_TOWN}</a>, <a href="{REGION_SEARCH_LINK}"  class="text-decoration-none">{PROPERTY_REGION}</a>, <a href="{COUNTRY_SEARCH_LINK}"  class="text-decoration-none">{PROPERTY_COUNTRY}</a>
 							</div>
 						</div>
 						<div class="row">

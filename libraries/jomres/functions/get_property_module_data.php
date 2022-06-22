@@ -178,6 +178,12 @@
 
 				$property_data[ 'STARSIMAGES' ] = $MiniComponents->specificEvent('06000', 'show_property_stars', array('property_uid' => $property_uid , 'output_now' => false ));
 
+
+				$property_data[ 'TOWN_SEARCH_LINK' ] = jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&town='.jomres_decode($current_property_details->multi_query_result[ $property_uid ][ 'property_town' ]));
+				$property_data[ 'REGION_SEARCH_LINK' ] = jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&region='.$current_property_details->multi_query_result[ $property_uid ][ 'property_region_id' ]);
+				$property_data[ 'COUNTRY_SEARCH_LINK' ] = jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&country='.jomres_decode($current_property_details->multi_query_result[ $property_uid ][ 'property_country_code' ]));
+
+
 				$property_data[ 'SUPERIOR' ] = '';
 				if ($property_data[ 'superior' ] == 1) {
 					$property_data[ 'SUPERIOR' ] = '<img src="'.JOMRES_IMAGES_RELPATH.'superior.png" alt="superior" border="0" />';
