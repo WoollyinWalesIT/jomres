@@ -94,12 +94,15 @@
 
 				if (jomres_cmsspecific_areweinadminarea())
 				{
-					$override_path = JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ADMINISTRATORDIRECTORY . JRDS . "templates" .JRDS. $joomla_templateName .JRDS . 'html' . JRDS . 'com_jomres';
+					$path_to_template = JOMRESCONFIG_ABSOLUTE_PATH . JOMRES_ADMINISTRATORDIRECTORY . JRDS . "templates" .JRDS. $joomla_templateName ;
+
 				}
 				else
 				{
-					$override_path = JOMRESCONFIG_ABSOLUTE_PATH . "templates" .JRDS. $joomla_templateName .JRDS . 'html' . JRDS . 'com_jomres';
+					$path_to_template = JOMRESCONFIG_ABSOLUTE_PATH . "templates" .JRDS. $joomla_templateName ;
 				}
+
+				$override_path = $path_to_template .JRDS . 'html' . JRDS . 'com_jomres';
 
 				//ptype specific override_path
 				if ( $ptype_id > 0 )
@@ -119,7 +122,8 @@
 				}
 			}
 			elseif (this_cms_is_wordpress()) {
-				$override_path = get_theme_file_path() . JRDS . 'html' . JRDS . 'com_jomres';
+				$path_to_template =  get_theme_file_path();
+				$override_path = $path_to_template . JRDS . 'html' . JRDS . 'com_jomres';
 
 				//ptype specific override_path
 				if ( $ptype_id > 0 ) {
@@ -128,8 +132,8 @@
 				}
 			}
 
-			if ( get_showtime('task') != '' && file_exists( get_theme_file_path() . JRDS . 'html' . JRDS . get_showtime('task'). JRDS . $jomres_template_name ) )  {
-				$override_path = get_theme_file_path() . JRDS . 'html' . JRDS . get_showtime('task');
+			if ( get_showtime('task') != '' && file_exists( $path_to_template . JRDS . 'html' . JRDS . get_showtime('task'). JRDS . $jomres_template_name ) )  {
+				$override_path = $path_to_template. JRDS . 'html' . JRDS . get_showtime('task');
 			}
 
 			if ($override_path != '' && is_dir($override_path))
