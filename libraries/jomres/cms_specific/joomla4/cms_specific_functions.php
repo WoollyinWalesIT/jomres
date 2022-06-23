@@ -603,7 +603,7 @@ function jomres_cmsspecific_getCMSUsers($cms_user_id = 0)
 
 function jomres_cmsspecific_makeSEF_URL($link)
 {
-	if ( strstr($link,'&Itemid=0')  ) {
+	if (  !jomres_cmsspecific_areweinadminarea() &&  strstr($link,'&Itemid=0')  ) {
 		throw new \Exception( "Error. Jomres has detected that Itemid in the url is set to 0 (zero). The most likely cause is that you have not added a link to Jomres in your main menu. Joomla will throw an uncaught error without it. Add Jomres to your main menu before attempting to use Jomres again.", 500);
 	}
     jimport('joomla.application.helper');
