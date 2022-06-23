@@ -4,7 +4,7 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-	  *  @version Jomres 10.4.0 (Platty Joobs edition)
+	 *  @version Jomres 10.4.0 (Platty Joobs edition)
 	 *
 	 * @copyright	2005-2022 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -50,6 +50,15 @@
 
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
 		$jomres_media_centre_images->get_images_multi($property_uid_array, array('property'));
+
+
+		if ($alt_template_name == '' && isset($_REQUEST['alt_template_name']) && $_REQUEST['alt_template_name'] != '' ) {
+			$temp_template = jomresGetParam($_REQUEST, 'alt_template_name', '');
+			if ( file_exists(get_override_directory().JRDS.$temp_template.'.html')){
+				$alt_template_name = $temp_template.'.html';
+				$alt_template_path = get_override_directory();
+			}
+		}
 
 		jr_import('jomres_ribbon_generator');
 
