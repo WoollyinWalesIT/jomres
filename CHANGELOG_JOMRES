@@ -29,6 +29,9 @@
 <span class="label label-warning">Change</span> Classes added to the BS5 basic module output template. This allows the Isotope properties plugin to use this feature instead of having to produce it's own output. Promotes a consistent look and feel across all property module outputs.
 <span class="label label-warning">Change</span> Change the log out Jomres main menu item. Joomla's fontawesome library doesn't have a log out icon that I can find, for some weird reason, and because the Quickstarts are being delivered with more complete fontawesome libraries this change now makes sense.
 <span class="label label-warning">Change</span> Add a function to determine the template override directory.
+<span class="label label-warning">Change</span> Add the ability for WP users to have a custom login url function called custom_jomres_wordpress_login_link function. Closes #441
+<span class="label label-warning">Change</span> Change guests discount col from 3,2 to 4,2
+<span class="label label-warning">Change</span> Room rate per day changed to 11,7
 
 <span class="label label-important label-danger">Fix</span> Change how we figure out whether or not live scrolling should be enabled to fix some intermittent misbehaviour.
 <span class="label label-important label-danger">Fix</span> Tweak the gateway plugin settings class to not throw an error if a gateway has been removed but it's settings remain in situ.
