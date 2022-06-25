@@ -96,6 +96,9 @@ function jomres_cmsspecific_getlogout_task()
 
 function jomres_cmsspecific_getlogin_task()
 {
+	if (function_exists('custom_jomres_wordpress_login_link')) {
+		return custom_jomres_wordpress_login_link();
+	} 
 	return 'wp-login.php?action=login';
 }
 	
