@@ -1,3 +1,40 @@
+<h3>Jomres 10.5.0 25/06/2022</h3>
+
+<span class="label label-success">Feature</span>  New run jomres shortcode function added. Allows us to run Jomres shortcodes in php scripts (e.g. index.php of the template)
+<span class="label label-success">Feature</span>  Added ability to patTemplate reader to discover the current task's potential sub directories for parent and child themes based on the name of the task.
+<span class="label label-success">Feature</span>  Added shortlist/favourite functionality to module output
+<span class="label label-success">Feature</span>  Allow Featured properties to have their Ribbon set to Featured instead of showing the review score.
+<span class="label label-success">Feature</span>  Allow shortcodes to send alt_template_name to the get property module data function so that the theme/template directory can have override templates in different shortcodes, which will look something like {jomres asamodule_random &asamodule_random_listlimit=3&alt_template_name=basic_module_output_circular}
+<span class="label label-success">Feature</span>  Added new feedback request to Jomres Cpanel
+
+<span class="label label-warning">Change</span> Removed checks for the IP when saving the session, now that we're checking for crawlers instead of checking for local calls, when saving sessions.
+<span class="label label-warning">Change</span> Get rid of map output from list properties as the maps don't render when live scrolling.
+<span class="label label-warning">Change</span> Modified list properties gateways output to adjust to the fact that we're now allowing png and jpg images for gateways, as well as gifs (Come on Vince, it's 2022)
+<span class="label label-warning">Change</span> Changed default Halt (error stop) in API from 200 to 400.
+<span class="label label-warning">Change</span> Tweaked API error handling to make it able to accept lines of error messages, makes the system triggering the Halt error responsible for what to show (Production v Development modes)
+<span class="label label-warning">Change</span> Occupancy level functionality updated to allow for newly added rooms.
+<span class="label label-warning">Change</span> Update edit tariffs standard to only show room type options with room types that don't yet have tariffs when creating a new tariff set.
+<span class="label label-warning">Change</span> Removed min and max guest numbers from list tariffs standard as it's a nonsense for this tariff type. That information is now gleaned from the max occupancy levels.
+<span class="label label-warning">Change</span> Removed old tourist tax code as it has A been superseded and B it interferes with NBE functionality
+<span class="label label-warning">Change</span> Removed some settings if the property uses Standard tariff editing mode.
+<span class="label label-warning">Change</span> Modified dobooking function to ensure that arrival and departure dates are fired off to the server on page load. Previously relied on just one of those elements and it's starting to creak in it's old age.
+<span class="label label-warning">Change</span> Changed how number of guests allocated to a room is discovered in old booking engine.
+<span class="label label-warning">Change</span> Remove margins to prevent menu options from closing when you don't want them to.
+<span class="label label-warning">Change</span> Make sure that show property tariffs page uses the get_booking_url function.
+<span class="label label-warning">Change</span> Change basic module output wrapper so that cols wrap where approriate.
+<span class="label label-warning">Change</span> Updated input filtering to use newer J functionality and to change how we detect if an element is set in a request (SEF related) so that we can use J functionality if forced.
+<span class="label label-warning">Change</span> Basic module output tweaked to provide search links for town/region/country
+<span class="label label-warning">Change</span> Update property star font
+<span class="label label-warning">Change</span> Add "featured" status to basic property details class.
+<span class="label label-warning">Change</span> Classes added to the BS5 basic module output template. This allows the Isotope properties plugin to use this feature instead of having to produce it's own output. Promotes a consistent look and feel across all property module outputs.
+<span class="label label-warning">Change</span> Change the log out Jomres main menu item. Joomla's fontawesome library doesn't have a log out icon that I can find, for some weird reason, and because the Quickstarts are being delivered with more complete fontawesome libraries this change now makes sense.
+<span class="label label-warning">Change</span> Add a function to determine the template override directory.
+
+<span class="label label-important label-danger">Fix</span> Change how we figure out whether or not live scrolling should be enabled to fix some intermittent misbehaviour.
+<span class="label label-important label-danger">Fix</span> Tweak the gateway plugin settings class to not throw an error if a gateway has been removed but it's settings remain in situ.
+<span class="label label-important label-danger">Fix</span> Tweak list properties so that it doesn't use a parameter in error.
+<span class="label label-important label-danger">Fix</span> Added a check in a J specific function to check to see if Itemid is 0. If it is Joomla will throw an uncaught error so we will catch that and advise admin to add Jomres to the main menu.
+
 <h3>Jomres 10.4.0 02/06/2022</h3>
 
 <span class="label label-success">Feature</span>  Platinum Jubilee edition
