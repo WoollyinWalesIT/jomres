@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `#__jomres_guests` (
 	`contracts_contract_uid` INT UNSIGNED NOT NULL DEFAULT 0,
 	`mos_userid` INT UNSIGNED NOT NULL DEFAULT 0,
 	`property_uid` INT UNSIGNED NOT NULL DEFAULT 0,
-	`discount` DOUBLE(3,2) NOT NULL DEFAULT 0,
+	`discount` DOUBLE(4,2) NOT NULL DEFAULT 0,
 	`vat_number_validated` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
 	`vat_number_validation_response` TEXT,
 	`partner_id` INT UNSIGNED NOT NULL DEFAULT 0,
