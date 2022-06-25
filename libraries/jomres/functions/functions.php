@@ -62,6 +62,9 @@
 		{
 			foreach ($matches[0] as $m)
 			{
+				$old_REQUEST = $_REQUEST;
+				$old_GET = $_GET;
+
 				ob_start();
 
 				$match = str_replace(array("{","}"),"",$m);
@@ -136,6 +139,10 @@
 				unset($contents);
 
 				ob_end_clean();
+
+				$_REQUEST = $old_REQUEST;
+				$_GET = $old_GET;
+
 				return $text;
 			}
 		}
