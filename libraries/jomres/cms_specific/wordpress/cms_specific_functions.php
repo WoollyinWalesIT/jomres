@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.4.0 (Platty Joobs edition)
+ *  @version Jomres 10.5.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -96,6 +96,9 @@ function jomres_cmsspecific_getlogout_task()
 
 function jomres_cmsspecific_getlogin_task()
 {
+	if (function_exists('custom_jomres_wordpress_login_link')) {
+		return custom_jomres_wordpress_login_link();
+	} 
 	return 'wp-login.php?action=login';
 }
 	

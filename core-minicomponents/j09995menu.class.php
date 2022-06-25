@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.4.0 (Platty Joobs edition)
+ *  @version Jomres 10.5.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -75,7 +75,7 @@ class j09995menu
 			$font_awesome_envelope = 'fa-envelope';
 			$font_awesome_picture = 'fa-images';
 			$font_awesome_dashboard = 'fa-tachometer-alt';
-			$font_awesome_logout = 'sign-out-alt';
+			$font_awesome_logout = 'fas fa-sign-out';
 			$font_awesome_delete = 'fa-trash';
 			$font_awesome_tariffs = 'fa-dollar-sign';
 			$font_awesome_edit = 'fa-edit';

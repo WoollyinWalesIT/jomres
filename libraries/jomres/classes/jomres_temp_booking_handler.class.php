@@ -4,7 +4,7 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-	 *  @version Jomres 10.4.0 (Platty Joobs edition)
+	 *  @version Jomres 10.5.0
 	 *
 	 * @copyright	2005-2022 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -525,21 +525,11 @@
 				);
 
 				$data = json_encode($data, JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE);
-
-
-
-				$force_session = false;
-				if ( defined("FORCE_JOMRES_SESSION") && FORCE_JOMRES_SESSION == true ) {
-					$force_session = true;
+				
+				$query = "INSERT INTO #__jomres_sessions (`session_id`, `data` ) VALUES ('".$this->jomressession_db."', '".$data."' )";
+				if (!doInsertSql($query, '')) {
+					throw new Exception('Error: Could not save session data');
 				}
-
-				if ( $this->ip != '0.0.0.0' || $force_session ) {
-					$query = "INSERT INTO #__jomres_sessions (`session_id`, `data` ) VALUES ('".$this->jomressession_db."', '".$data."' )";
-					if (!doInsertSql($query, '')) {
-						throw new Exception('Error: Could not save session data');
-					}
-				}
-
 			}
 		}
 

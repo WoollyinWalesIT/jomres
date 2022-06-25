@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.4.0 (Platty Joobs edition)
+ *  @version Jomres 10.5.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `#__jomres_guests` (
 	`contracts_contract_uid` INT UNSIGNED NOT NULL DEFAULT 0,
 	`mos_userid` INT UNSIGNED NOT NULL DEFAULT 0,
 	`property_uid` INT UNSIGNED NOT NULL DEFAULT 0,
-	`discount` DOUBLE(3,2) NOT NULL DEFAULT 0,
+	`discount` DOUBLE(4,2) NOT NULL DEFAULT 0,
 	`vat_number_validated` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
 	`vat_number_validation_response` TEXT,
 	`partner_id` INT UNSIGNED NOT NULL DEFAULT 0,

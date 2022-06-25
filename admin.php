@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.4.0 (Platty Joobs edition)
+ *  @version Jomres 10.5.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -137,13 +137,13 @@ try {
 		//bootstrap
 		$output[ 'USING_BOOTSTRAP' ] = 'true';
 
-		if ($jrConfig['use_bootstrap_in_frontend'] == '0') {
-			$output['BOOTSTRAP_WARNING'] = $MiniComponents->specificEvent('16000', 'show_bootstrap_warning', array('output_now' => false));
-		}
-		
+
 		// Review message
 		$output['REVIEW_REQUEST'] = $MiniComponents->specificEvent('16000', 'show_reviews_message', array('output_now' => false));
-		
+
+		// Feedback message
+		$output['FEEDBACK_REQUEST'] = $MiniComponents->specificEvent('16000', 'show_feedback_message', array('output_now' => false));
+
 		//output top area
 		$pageoutput[ ] = $output;
 		$tmpl = new patTemplate();

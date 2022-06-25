@@ -4,7 +4,7 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-	  *  @version Jomres 10.4.0 (Platty Joobs edition)
+	 *  @version Jomres 10.5.0
 	 *
 	 * @copyright	2005-2022 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -51,16 +51,71 @@
 		$jomres_media_centre_images = jomres_singleton_abstract::getInstance('jomres_media_centre_images');
 		$jomres_media_centre_images->get_images_multi($property_uid_array, array('property'));
 
+
+		if ($alt_template_name == '' && isset($_REQUEST['alt_template_name']) && $_REQUEST['alt_template_name'] != '' ) {
+			$temp_template = jomresGetParam($_REQUEST, 'alt_template_name', '');
+			if ( file_exists(get_override_directory().JRDS.$temp_template.'.html')){
+				$alt_template_name = $temp_template.'.html';
+				$alt_template_path = get_override_directory();
+			}
+		}
+
 		jr_import('jomres_ribbon_generator');
 
 		jr_import('jomres_markdown');
 		$jomres_markdown = new jomres_markdown();
+
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+		$shortlist_items = array();
+
+		if (isset($tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ])) {
+			$shortlist_items = $tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ];
+		}
+
+		$shortlist_items = array();
+		if ($thisJRUser->userIsRegistered) {
+			$tmpBookingHandler = jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+			$query = "SELECT `property_uid` FROM #__jomcomp_mufavourites WHERE `my_id` = '".(int) $thisJRUser->id."'";
+			$propys = doSelectSql($query);
+			if (!empty($propys)) {
+				foreach ($propys as $p) {
+					if (!in_array($p->property_uid, $shortlist_items)) {
+						$shortlist_items[] = (int) $p->property_uid;
+					}
+				}
+				$tmpBookingHandler->tmpsearch_data[ 'shortlist_items' ] = $shortlist_items;
+			}
+		}
+
+		$featured = jr_gettext('_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED', '_JRPORTAL_FEATUREDLISTINGS_WORD_FEATURED', false);
 
 		foreach ($property_uid_array as $property_uid) {
 			if ($property_uid > 0) {
 				$property_data = $current_property_details->multi_query_result[ $property_uid ];
 
 				$property_data[ 'RANDOM_IDENTIFIER' ] = generateJomresRandomString(10);
+
+				if (!in_array($property_uid, $shortlist_items)) {
+					$shortlist_output = array();
+					$shortlist_pageoutput = array();
+					$shortlist_output['TEXT'] = jr_gettext('_JOMRES_ADDTOSHORTLIST', '_JOMRES_ADDTOSHORTLIST', false);
+					$shortlist_pageoutput[ ] = $shortlist_output;
+					$tmpl = new patTemplate();
+					$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+					$tmpl->readTemplatesFromInput('shortlist_removed.html');
+					$tmpl->addRows('pageoutput', $shortlist_pageoutput);
+					$property_data[ 'SHORTLIST' ] = $tmpl->getParsedTemplate();
+				} else {
+					$shortlist_output = array();
+					$shortlist_pageoutput = array();
+					$shortlist_output['TEXT'] = jr_gettext('_JOMRES_REMOVEFROMSHORTLIST', '_JOMRES_REMOVEFROMSHORTLIST', false);
+					$shortlist_pageoutput[ ] = $shortlist_output;
+					$tmpl = new patTemplate();
+					$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
+					$tmpl->readTemplatesFromInput('shortlilst_added.html');
+					$tmpl->addRows('pageoutput', $shortlist_pageoutput);
+					$property_data[ 'SHORTLIST' ] = $tmpl->getParsedTemplate();
+				}
 
 				$Reviews->property_uid = $property_uid;
 				$itemRating = $Reviews->showRating($property_uid);
@@ -139,6 +194,9 @@
 					}
 				}
 
+				if ( $property_data['featured'] == true ) {
+					$jomres_ribbon_generator->set_review_score( 10 , $featured );
+				}
 				$property_data['RIBBON'] = $jomres_ribbon_generator->generate_html();
 
 				$mrConfig = getPropertySpecificSettings($property_uid);
@@ -177,6 +235,12 @@
 				$property_data[ 'MOREINFORMATIONLINK' ] = get_property_details_url($property_uid);
 
 				$property_data[ 'STARSIMAGES' ] = $MiniComponents->specificEvent('06000', 'show_property_stars', array('property_uid' => $property_uid , 'output_now' => false ));
+
+
+				$property_data[ 'TOWN_SEARCH_LINK' ] = jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&town='.jomres_decode($current_property_details->multi_query_result[ $property_uid ][ 'property_town' ]));
+				$property_data[ 'REGION_SEARCH_LINK' ] = jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&region='.$current_property_details->multi_query_result[ $property_uid ][ 'property_region_id' ]);
+				$property_data[ 'COUNTRY_SEARCH_LINK' ] = jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&country='.jomres_decode($current_property_details->multi_query_result[ $property_uid ][ 'property_country_code' ]));
+
 
 				$property_data[ 'SUPERIOR' ] = '';
 				if ($property_data[ 'superior' ] == 1) {

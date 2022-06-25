@@ -6,7 +6,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.4.0 (Platty Joobs edition)
+ *  @version Jomres 10.5.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly.
@@ -62,11 +62,11 @@ defined('_JOMRES_INITCHECK') or die('');
 	 *
 	 */
 
-	Flight::map('halt', function ($code = 204, $message = '' , $charset = 'utf-8' ) {
+	Flight::map('halt', function ($code = 204, $message = '' , $charset = 'utf-8' , $lines = array() ) {
 
 		$envelope_data = Flight::response_envelope_data();
 		
-		$code = 200;
+		$code = 400;
 		$log = ' Halted run '.$code.' with message '.$message;
 		logging::log_message($log, 'API', 'DEBUG');
 
@@ -74,7 +74,7 @@ defined('_JOMRES_INITCHECK') or die('');
 		$response->code = $code;
 		$response->meta['site'] = $envelope_data;
 		$response->error_message = $message;
-
+		$response->lines = $lines;
 		$json = json_encode($response);
 		Flight::response()
 			->status($code)

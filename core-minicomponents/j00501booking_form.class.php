@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.4.0 (Platty Joobs edition)
+ *  @version Jomres 10.5.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -66,54 +66,57 @@ class j00501booking_form
 
 		$configurationPanel->startPanel(jr_gettext('_JOMRES_HBOOKING_FORM', '_JOMRES_HBOOKING_FORM', false));
 
-		if ( $jrConfig[ 'compatability_property_configuration' ] != 1 ) {
-			$configurationPanel->setleft(jr_gettext('_JOMRES_BOOKING_FORM_EXTERNAL_URL', '_JOMRES_BOOKING_FORM_EXTERNAL_URL', false));
-			$configurationPanel->setmiddle('<input type="url" class="inputbox form-control"  size="50" name="cfg_externalBookingFormUrl" value="' . $mrConfig['externalBookingFormUrl'] . '" />');
-			$configurationPanel->setright(jr_gettext('_JOMRES_BOOKING_FORM_EXTERNAL_URL_DESC', '_JOMRES_BOOKING_FORM_EXTERNAL_URL_DESC', false));
-			$configurationPanel->insertSetting();
+		if ($mrConfig['tariffmode'] != '5'){
+			if ( $jrConfig[ 'compatability_property_configuration' ] != 1 ) {
+				$configurationPanel->setleft(jr_gettext('_JOMRES_BOOKING_FORM_EXTERNAL_URL', '_JOMRES_BOOKING_FORM_EXTERNAL_URL', false));
+				$configurationPanel->setmiddle('<input type="url" class="inputbox form-control"  size="50" name="cfg_externalBookingFormUrl" value="' . $mrConfig['externalBookingFormUrl'] . '" />');
+				$configurationPanel->setright(jr_gettext('_JOMRES_BOOKING_FORM_EXTERNAL_URL_DESC', '_JOMRES_BOOKING_FORM_EXTERNAL_URL_DESC', false));
+				$configurationPanel->insertSetting();
+			}
 		}
 
-		if ($mrConfig[ 'singleRoomProperty' ] != '1') {
-			$configurationPanel->setleft(jr_gettext('_JOMRES_ROOMMSLIST_STYLE', '_JOMRES_ROOMMSLIST_STYLE', false));
-			$configurationPanel->setmiddle($booking_form_rooms_list_style);
-			$configurationPanel->setright(jr_gettext('_JOMRES_ROOMMSLIST_STYLE_DESC', '_JOMRES_ROOMMSLIST_STYLE_DESC', false));
-			$configurationPanel->insertSetting();
+		if ($mrConfig['tariffmode'] != '5'){
+			if ($mrConfig[ 'singleRoomProperty' ] != '1') {
+				$configurationPanel->setleft(jr_gettext('_JOMRES_ROOMMSLIST_STYLE', '_JOMRES_ROOMMSLIST_STYLE', false));
+				$configurationPanel->setmiddle($booking_form_rooms_list_style);
+				$configurationPanel->setright(jr_gettext('_JOMRES_ROOMMSLIST_STYLE_DESC', '_JOMRES_ROOMMSLIST_STYLE_DESC', false));
+				$configurationPanel->insertSetting();
 
-			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_LIMITROOMSLIST', '_JOMRES_COM_LIMITROOMSLIST', false));
-			$configurationPanel->setmiddle('<input type="number" class="inputbox form-control" size="5" name="cfg_returnRoomsLimit" value="'.$mrConfig[ 'returnRoomsLimit' ].'">');
-			$configurationPanel->setright(jr_gettext('_JOMRES_COM_LIMITROOMSLIST_DESC', '_JOMRES_COM_LIMITROOMSLIST_DESC', false));
-			$configurationPanel->insertSetting();
-		}
+				$configurationPanel->setleft(jr_gettext('_JOMRES_COM_LIMITROOMSLIST', '_JOMRES_COM_LIMITROOMSLIST', false));
+				$configurationPanel->setmiddle('<input type="number" class="inputbox form-control" size="5" name="cfg_returnRoomsLimit" value="'.$mrConfig[ 'returnRoomsLimit' ].'">');
+				$configurationPanel->setright(jr_gettext('_JOMRES_COM_LIMITROOMSLIST_DESC', '_JOMRES_COM_LIMITROOMSLIST_DESC', false));
+				$configurationPanel->insertSetting();
+			}
 
-		if ( $jrConfig[ 'compatability_property_configuration' ] != 1 ) {
 			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT', '_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT', false));
 			$configurationPanel->setmiddle($lists['auto_detect_country_for_booking_form']);
 			$configurationPanel->setright(jr_gettext('_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT_DESC', '_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT_DESC', false));
 			$configurationPanel->insertSetting();
+
+			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_CONFIGCOUNTRIES', '_JOMRES_COM_CONFIGCOUNTRIES', false));
+			$configurationPanel->setmiddle(configCountries());
+			$configurationPanel->setright();
+			$configurationPanel->insertSetting();
+
+			if (!get_showtime('is_jintour_property')) {
+				$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_EXTRAS', '_JOMRES_COM_A_EXTRAS', false));
+				$configurationPanel->setmiddle($lists[ 'showExtras' ]);
+				$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_EXTRAS_DESC', '_JOMRES_COM_A_EXTRAS_DESC', false));
+				$configurationPanel->insertSetting();
+			}
 		}
-
-		$configurationPanel->setleft(jr_gettext('_JOMRES_COM_CONFIGCOUNTRIES', '_JOMRES_COM_CONFIGCOUNTRIES', false));
-		$configurationPanel->setmiddle(configCountries());
-		$configurationPanel->setright();
-		$configurationPanel->insertSetting();
-
-		if (!get_showtime('is_jintour_property')) {
-			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_EXTRAS', '_JOMRES_COM_A_EXTRAS', false));
-			$configurationPanel->setmiddle($lists[ 'showExtras' ]);
-			$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_EXTRAS_DESC', '_JOMRES_COM_A_EXTRAS_DESC', false));
-			$configurationPanel->insertSetting();
-		}
-
-		if ($mrConfig[ 'wholeday_booking' ] == '1') {
-			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_SHOWDEPARTUREINPUT_WHOLEDAY', '_JOMRES_COM_A_SHOWDEPARTUREINPUT_WHOLEDAY', false));
-			$configurationPanel->setmiddle($lists[ 'showdepartureinput' ]);
-			$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_SHOWDEPARTUREINPUT_DESC_WHOLEDAY', '_JOMRES_COM_A_SHOWDEPARTUREINPUT_DESC_WHOLEDAY', false));
-			$configurationPanel->insertSetting();
-		} else {
-			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_SHOWDEPARTUREINPUT', '_JOMRES_COM_A_SHOWDEPARTUREINPUT', false));
-			$configurationPanel->setmiddle($lists[ 'showdepartureinput' ]);
-			$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_SHOWDEPARTUREINPUT_DESC', '_JOMRES_COM_A_SHOWDEPARTUREINPUT_DESC', false));
-			$configurationPanel->insertSetting();
+		if ($mrConfig['tariffmode'] != '5'){
+			if ($mrConfig[ 'wholeday_booking' ] == '1') {
+				$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_SHOWDEPARTUREINPUT_WHOLEDAY', '_JOMRES_COM_A_SHOWDEPARTUREINPUT_WHOLEDAY', false));
+				$configurationPanel->setmiddle($lists[ 'showdepartureinput' ]);
+				$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_SHOWDEPARTUREINPUT_DESC_WHOLEDAY', '_JOMRES_COM_A_SHOWDEPARTUREINPUT_DESC_WHOLEDAY', false));
+				$configurationPanel->insertSetting();
+			} else {
+				$configurationPanel->setleft(jr_gettext('_JOMRES_COM_A_SHOWDEPARTUREINPUT', '_JOMRES_COM_A_SHOWDEPARTUREINPUT', false));
+				$configurationPanel->setmiddle($lists[ 'showdepartureinput' ]);
+				$configurationPanel->setright(jr_gettext('_JOMRES_COM_A_SHOWDEPARTUREINPUT_DESC', '_JOMRES_COM_A_SHOWDEPARTUREINPUT_DESC', false));
+				$configurationPanel->insertSetting();
+			}
 		}
 
 		if ( $jrConfig[ 'compatability_property_configuration' ] != 1 ) {

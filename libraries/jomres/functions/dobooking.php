@@ -5,7 +5,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.4.0 (Platty Joobs edition)
+ *  @version Jomres 10.5.0
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -523,7 +523,13 @@ function dobooking($selectedProperty, $thisdate, $remus)
 			$load[ 'ONLOAD' ] = $tmpsrptrigger;
 			$toload[ ] = $load;
 		} else {
-			$load[ 'ONLOAD' ] = "jomresJquery.get(ajaxurl+'&task=handlereq&firstrun=1&property_uid_check=".(int) $selectedProperty."',{ field : 'arrivalDate', value: '".$bkg->JSCalmakeInputDates($bkg->arrivalDate)."', field : 'departureDate', value: '".$bkg->JSCalmakeInputDates($bkg->departureDate)."' },function(data){showRoomsList(data); show_log('');});";
+			$load[ 'ONLOAD' ] = "jomresJquery.get(ajaxurl+'&task=handlereq&firstrun=1&property_uid_check=".(int)$selectedProperty."&field=arrivalDate&value=".$bkg->JSCalmakeInputDates($bkg->arrivalDate)."',{},function(data)
+			{ 
+			jomresJquery.get(ajaxurl+'&task=handlereq&property_uid_check=".(int)$selectedProperty."&field=departureDate&value=".$bkg->JSCalmakeInputDates($bkg->departureDate)."' , {} , function(){}); 
+			getResponse_standardguests();
+			showRoomsList(data); 
+			show_log('');
+			});";
 			$toload[ ] = $load;
 		}
 	}

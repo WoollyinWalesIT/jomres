@@ -4,7 +4,7 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
- *  @version Jomres 10.4.0 (Platty Joobs edition)
+ *  @version Jomres 10.5.0
 	 *
 	 * @copyright	2005-2022 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -41,6 +41,12 @@
 			$this->multi_query_result = array();
 			$this->property_names = array();
 			$this->property_uid = 0;
+			$this->featured_properties = array();
+
+			$MiniComponents =jomres_getSingleton('mcHandler');
+			if ( $MiniComponents->eventSpecificlyExistsCheck('00005',"featured_listings") ) {
+				$this->get_featured_properties();
+			}
 
 			$this->get_all_room_types();
 			$this->get_all_property_types();
@@ -84,6 +90,24 @@
 					throw new Exception("Setting doesn't exist ".$setting, 2);
 				} else {
 					return null;
+				}
+			}
+		}
+
+		/*
+		 *
+		 * Find featured properties
+		 *
+		 */
+
+		private function get_featured_properties()
+		{
+			$query = "SELECT `property_uid` FROM #__jomresportal_featured_properties";
+			$result = doSelectSQL($query);
+
+			if ( !empty($result) ) {
+				foreach ($result as $r) {
+					$this->featured_properties[] = (int)$r->property_uid;
 				}
 			}
 		}
@@ -260,6 +284,11 @@
 				$this->permit_number = $this->multi_query_result[ $this->property_uid ][ 'permit_number' ];
 				$this->completed  = $this->multi_query_result[ $this->property_uid ][ 'completed' ];
 				$this->cat_id  = $this->multi_query_result[ $this->property_uid ][ 'cat_id' ];
+
+				$this->featured = false;
+				if ( in_array ( $this->property_uid , $this->featured_properties ) ) {
+					$this->featured = true;
+				}
 
 				$this->accommodation_tax_rate = $this->multi_query_result[ $this->property_uid ][ 'accommodation_tax_rate' ];
 
@@ -527,6 +556,11 @@
 					$this->multi_query_result[ $data->propertys_uid ][ 'permit_number' ] = (string) $data->permit_number;
 					$this->multi_query_result[ $data->propertys_uid ][ 'completed' ] = (int)$data->completed;
 					$this->multi_query_result[ $data->propertys_uid ][ 'cat_id' ] = (int)$data->cat_id;
+
+					$this->multi_query_result[ $data->propertys_uid ][ 'featured' ] = false;
+					if ( in_array ( $data->propertys_uid , $this->featured_properties ) ) {
+						$this->multi_query_result[ $data->propertys_uid ][ 'featured' ] = true;
+					}
 
 					$this->property_names[$data->propertys_uid] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME_'.$data->propertys_uid, $data->property_name, $editable, false);
 				}

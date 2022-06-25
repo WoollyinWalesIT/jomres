@@ -4,7 +4,7 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
- *  @version Jomres 10.4.0 (Platty Joobs edition)
+	 *  @version Jomres 10.5.0
 	 *
 	 * @copyright	2005-2022 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -140,14 +140,16 @@
 				$propertys_uids = array();
 			}
 
-			if ( ($propertylist_layout != '' || $this->jr_page > 0 || $return_to_search_results) && isset($tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ] ) ) {
-				$propertys_uids = $tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ];
+			if (!isset($componentArgs[ 'propertys_uid' ])) {
+				if ( ($propertylist_layout != '' || $this->jr_page > 0 || $return_to_search_results) && isset($tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ] ) ) {
+					$propertys_uids = $tmpBookingHandler->tmpsearch_data[ 'ajax_list_search_results' ];
+				}
 			}
+
 
 			if (empty($propertys_uids)) {
 				return;
 			}
-
 
 			if (!AJAXCALL || get_showtime('task') == 'ajax_search_filter') {
 				$propertys_uids = $MiniComponents->triggerEvent('01009', array('propertys_uids' => $propertys_uids)); // Pre list properties parser. Allows us to to filter property lists if required
@@ -187,12 +189,13 @@
 				if (jomres_bootstrap_version() == '5' && isset( $_REQUEST['list_properties_template']) ) {
 					if (function_exists('get_available_property_list_templates')) {
 						$available_list_templates = get_available_property_list_templates();
+
 						$available_photo_templates =get_available_property_photo_templates();
 						$lpt = $_REQUEST['list_properties_template'];
 						if (isset($lpt) && $lpt != '') {
 							if ( array_key_exists( $lpt , $available_list_templates) ||
 								array_key_exists( $lpt ,$available_photo_templates ) ) {
-									$layout_template = $lpt.'.html';
+								$layout_template = $lpt.'.html';
 							}
 							if ( array_key_exists( $lpt , $available_list_templates) ) {
 								$show_property_list_header = $available_list_templates[$lpt]['show_property_list_header'];
@@ -808,16 +811,16 @@
 
 						$layout = $tmpBookingHandler->tmpsearch_data[ 'current_property_list_layout' ];
 
-							if (get_showtime('layout_mapwidth') == null) {
-								$mapwidth = '119';
-								$mapheight = '95';
-							} else {
-								$mapwidth = get_showtime('layout_mapwidth');
-								$mapheight = get_showtime('layout_mapheight');
-							}
-							$args = array('property_uid' => $propertys_uid, 'width' => $mapwidth, 'height' => $mapheight, 'disable_ui' => true);
-							$MiniComponents->specificEvent('01050', 'x_geocoder', $args);
-							$property_deets[ 'MAP' ] = $MiniComponents->miniComponentData[ '01050' ][ 'x_geocoder' ];
+						if (get_showtime('layout_mapwidth') == null) {
+							$mapwidth = '119';
+							$mapheight = '95';
+						} else {
+							$mapwidth = get_showtime('layout_mapwidth');
+							$mapheight = get_showtime('layout_mapheight');
+						}
+						$args = array('property_uid' => $propertys_uid, 'width' => $mapwidth, 'height' => $mapheight, 'disable_ui' => true);
+						$MiniComponents->specificEvent('01050', 'x_geocoder', $args);
+						$property_deets[ 'MAP' ] = $MiniComponents->miniComponentData[ '01050' ][ 'x_geocoder' ];
 
 
 						$property_deets[ 'PROPERTY_TYPE' ] = jomres_badge($current_property_details->multi_query_result[ $propertys_uid ]['property_type_title'] , 'info' );
