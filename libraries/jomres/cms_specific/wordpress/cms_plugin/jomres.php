@@ -34,7 +34,7 @@
 	 * Jomres plugin version.
 	 */
 	if ( ! defined( 'JOMRES_WP_PLUGIN_VERSION' ) ) {
-		define( 'JOMRES_WP_PLUGIN_VERSION', '10.4.0' );
+		define( 'JOMRES_WP_PLUGIN_VERSION', '10.5.0' );
 	}
 
 	/**
