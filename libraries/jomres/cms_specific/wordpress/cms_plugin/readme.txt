@@ -37,11 +37,9 @@ Jomres can now be run on non-Bootstrap themes. Woot!
 
 == Demos ==
 
-[See the Single Hotel Demo here](http://wordpress-hotel.jomres.net/)
-
 [See the Portal Demo here - a variety of bookable items, multiple owners](http://wordpress-portal.jomres.net/)
 
-Essential License holders have access to the theme used in the two demos above and special "QuickStart" zip files that enable you to deploy a full installation of WordPress with everything already set up to exactly match either the Single Hotel Demo or the Portal Demos. You can be up-and-running, with a fully-featured booking website that looks terrific, within minutes.
+Essential License holders can download the "QuickStart" zip file that enables you to deploy a full installation of WordPress with everything already set up to exactly match the Demo. You can be up-and-running, with a fully-featured booking website that looks terrific, within minutes.
 
 
 == Installation ==
@@ -70,7 +68,7 @@ Yup, the [manual](https://www.jomres.net/manual/) is available to all users. It'
 
 If you've got a download and support license you can raise a [ticket](http://tickets.jomres.net).
 
-
+If you want to report or bug, or send a feature request, you can reach us on [jomres.canny.io](https://jomres.canny.io/).
 
 == Screenshots ==
 
