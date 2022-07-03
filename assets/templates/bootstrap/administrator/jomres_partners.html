@@ -15,26 +15,11 @@
 			<strong>{INTRO}</strong>
 		</div>
 		<div class="span2">
-			<img src="{JOMRES_IMAGES_RELPATH}partners/{IMAGE}" />
-		</div>
-
-
-	</div>
-	<script>
-	jomresJquery(document).ready(function () {
-		jomresJquery( "#{ID}" ).click(function() {
-			jomresJquery( "#d_{ID}" ).slideToggle( "slow" );
-			});
-		});
-	</script>
-	
-	<button class="btn btn-info" id="{ID}">Show plugins</button>
-	<div class="row-fluid" id="d_{ID}" style="display:none">
-		<div class="span12">
-			{PLUGINS}
+			<img src="{IMAGE}" />
 		</div>
 	</div>
-	<hr>
 	</patTemplate:tmpl>
+	<p class="alert alert-info">If you want to be added to this list you can <a href="https://github.com/WoollyinWalesIT/partners/blob/master/partners.json" target="_blank"> create a pull request here</a> with your data added to this file.</p>
 
+	
 </patTemplate:tmpl>

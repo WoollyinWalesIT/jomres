@@ -46,59 +46,25 @@ class j16000partners
 		$output['TITLE'] = 'Our Partners';
 		$output['INTRO'] = 'Here you can find a list of our partners. These are businesses who also offer plugins for Jomres, extra to those already available in the Jomres Plugin Manager.';
 
-		$partners ['jomres_plugins'] = array(
-			'name' => 'Jomres Plugins',
-			'intro' => 'Rodrigo is very active in the Jomres.net forums, many users have benefited from his helpfulness and skills over the years. He produces his own plugins for Jomres, but his main focus is custom coding for individual projects.',
-			'plugin_list_url' => 'http://www.jomres-plugins.com/jomrespluginsmanifest/jomres-plugins.com.php',
-			'image' => 'jomres-plugins.com.png',
-			'link' => 'http://www.jomres-plugins.com',
-			);
 
-		$partners ['osdcs'] = array(
-			'name' => 'OSDCS',
-			'intro' => 'Robert and Vince go back almost to the beginning of Joomla, and OSDCS now have 46 gateways plugins for Jomres.',
-			'plugin_list_url' => 'http://www.joomla-payment-gateways.osdcs.com/osdcs.com.php',
-			'image' => 'osdcs.com.png',
-			'link' => 'http://www.joomla-payment-gateways.osdcs.com/index.php?option=com_digistore&controller=digistoreProducts&task=list&cid=2&Itemid=5',
-			);
+		$client = new GuzzleHttp\Client([
+			'base_uri' => 'https://raw.githubusercontent.com/WoollyinWalesIT/partners/master/partners.json'
+		]);
+
+		$response = $client->request('GET', '' )->getBody()->getContents();
+		$p = json_decode($response);
 
 		$partner_data = array();
-		
-		$client = new GuzzleHttp\Client();
 
-		foreach ($partners as $key => $p) {
-			$url = $p['plugin_list_url'];
+		foreach ( $p->partners as $partner) {
+			$r = array();
 
-			logging::log_message('Starting guzzle call to '.$url, 'Guzzle', 'DEBUG');
-			
-			try {
-				$response = $client->request('GET', $url)->getBody()->getContents();
-			}
-			catch (Exception $e){
-				//do nothing, move on
-			}
+			$r['NAME'] = $partner->name;
+			$r['LINK'] = $partner->link;
+			$r['INTRO'] = $partner->intro;
+			$r['IMAGE'] = $partner->image;
 
-			$partner_plugins = json_decode($response, true);
-
-			if (!empty($partner_plugins)) {
-				$partner_data[$key] = $p;
-				$partner_data[$key]['id'] = $key;
-				foreach ($partner_plugins as $plugin) {
-					$partner_data[$key]['plugins'][] = array(
-						'name' => jomres_sanitise_string($plugin['name']),
-						'image' => jomres_sanitise_string($plugin['image']),
-						'description' => nl2br(jomres_sanitise_string($plugin['description'])),
-						'purchase_url' => jomres_sanitise_string($plugin['purchase_url']),
-						'demo' => jomres_sanitise_string($plugin['demo']),
-						);
-				}
-
-				$tmpl = new patTemplate();
-				$tmpl->setRoot(JOMRES_TEMPLATEPATH_ADMINISTRATOR);
-				$tmpl->readTemplatesFromInput('jomres_partners_plugins.html');
-				$tmpl->addRows('sub_pageoutput', $partner_data[$key]['plugins']);
-				$partner_data[$key]['plugins'] = $tmpl->getParsedTemplate();
-			}
+			$partner_data[] = $r;
 		}
 
 		$pageoutput = array();
