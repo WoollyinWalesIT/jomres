@@ -65,8 +65,11 @@ defined('_JOMRES_INITCHECK') or die('');
 	Flight::map('halt', function ($code = 204, $message = '' , $charset = 'utf-8' , $lines = array() ) {
 
 		$envelope_data = Flight::response_envelope_data();
-		
-		$code = 400;
+
+		if ($code != 404) {
+			$code = 400;
+		}
+
 		$log = ' Halted run '.$code.' with message '.$message;
 		logging::log_message($log, 'API', 'DEBUG');
 
