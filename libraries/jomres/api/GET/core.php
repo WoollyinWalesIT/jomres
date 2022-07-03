@@ -106,7 +106,7 @@ Flight::route('GET /core/get_properties', function()
 							"lat"					=> $property['lat'],
 							"long"					=> $property['long'],
 							"metadescription"		=> $property['metadescription'],
-							"thumbnail_location"	=> $livesite.$thumbnail
+							"thumbnail_location"	=> $thumbnail
 						); 
 					}
 				}
