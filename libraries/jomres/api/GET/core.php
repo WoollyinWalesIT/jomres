@@ -37,8 +37,8 @@ Flight::route('GET /core/report', function()
 	$jomres_properties->get_all_properties();
 
   	$data[] = array ( 
-		"api_url"				=> urlencode(get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/api/'),
-		"jomres_url" 			=> urlencode(JOMRES_SITEPAGE_URL_NOSEF),
+		"api_url"				=> get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/api/',
+		"jomres_url" 			=> JOMRES_SITEPAGE_URL_NOSEF,
 		"property_count"		=> count($jomres_properties->all_property_uids['all_propertys'])
 	);
 
@@ -115,8 +115,8 @@ Flight::route('GET /core/get_properties', function()
 	}
 
 	$data[] = array ( 
-		"api_url"				=> urlencode(get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/api/'),
-		"jomres_url" 			=> urlencode(JOMRES_SITEPAGE_URL_NOSEF),
+		"api_url"				=> get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/api/',
+		"jomres_url" 			=> JOMRES_SITEPAGE_URL_NOSEF,
 		"properties"			=> $all_published_propertys
 	);
 
