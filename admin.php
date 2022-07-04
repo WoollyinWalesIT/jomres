@@ -99,8 +99,6 @@ try {
 		//add javascript to head
 		$MiniComponents->triggerEvent('00004');
 
-		$MiniComponents->specificEvent('16000', 'jomres_patreon_nag');
-		
 		//core frontend menu items
 		$MiniComponents->specificEvent('09995', 'menu', array()); //Rod really needs them
 		
