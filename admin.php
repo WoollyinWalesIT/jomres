@@ -98,6 +98,8 @@ try {
 	if (!AJAXCALL) {
 		//add javascript to head
 		$MiniComponents->triggerEvent('00004');
+
+		$MiniComponents->specificEvent('16000', 'jomres_patreon_nag');
 		
 		//core frontend menu items
 		$MiniComponents->specificEvent('09995', 'menu', array()); //Rod really needs them
@@ -143,6 +145,8 @@ try {
 
 		// Feedback message
 		$output['FEEDBACK_REQUEST'] = $MiniComponents->specificEvent('16000', 'show_feedback_message', array('output_now' => false));
+
+		$output['NAG'] = $MiniComponents->specificEvent('16000', 'jomres_patreon_nag');
 
 		//output top area
 		$pageoutput[ ] = $output;
