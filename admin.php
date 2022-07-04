@@ -146,8 +146,6 @@ try {
 		// Feedback message
 		$output['FEEDBACK_REQUEST'] = $MiniComponents->specificEvent('16000', 'show_feedback_message', array('output_now' => false));
 
-		$output['NAG'] = $MiniComponents->specificEvent('16000', 'jomres_patreon_nag');
-
 		//output top area
 		$pageoutput[ ] = $output;
 		$tmpl = new patTemplate();
