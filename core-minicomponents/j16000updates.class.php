@@ -51,9 +51,6 @@
 				throw new Exception("Can't create update folder $this->updateFolder");
 			}
 
-			$key_validation = jomres_singleton_abstract::getInstance('jomres_check_support_key');
-			$this->key_valid = $key_validation->key_valid;
-
 			$local_archive = $this->updateFolder.'/jomres.zip';
 
 			$out = fopen($local_archive, 'wb');
