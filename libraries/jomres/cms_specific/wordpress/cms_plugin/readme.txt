@@ -3,18 +3,16 @@ Contributors: jomres
 Tags: iCal, Channel Manager, Hotel Booking, Apartment booking, Booking portal, Hotel,  Booking, hotels,  motel, motels,  calendar, room booking, reservation plugin, holiday apartments, holiday rentals, apartment rentals, cottage rental, b&b, tool hire, ecommerce, tours, api, json, REST, rest-api, webhooks
 Donate link: https://www.jomres.net
 Requires at least: 4.3.1
-Tested up to: 5.9
+Tested up to: 6.0
 Stable tag: trunk
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-= The multi-property, multi-vendor, multi-language booking portal, be a part of something bigger =
+= The multi-property, multi-vendor, multi-language booking portal =
 
 Mature, intelligent, secure and powerful. Started in 2005 and maintained continuously for the last 17 years, Jomres is the most complete online booking engine available for WordPress.
-
-The Core system is free (install it through the WordPress plugin manager) and extend it through <a href="https://www.jomres.net/jomres-plugin-list">200 Jomres plugins</a> which can be installed through the Jomres Plugin Manager at no extra cost once you have a license.
 
 Jomres is a commission-free, responsive, Open Source multi-vendor, multi-language, multi-property online booking plugin for accommodation, rentals and tours used by thousands of businesses worldwide to manage their properties and reservations. You can create an unlimited number of booking websites, accessible to customers on any device, in any language.
 
@@ -22,7 +20,7 @@ From basic features like secure frontend property administration, comprehensive 
 
 <blockquote>
 	<p>
-		<a href="https://www.jomres.net">Plugin website</a> | <a href="https://www.jomres.net/jomres-features-summary">Features</a> | <a href="https://www.jomres.net/manual/">Documentation</a> | <a href="https://www.jomres.net/pricing">Plugins and support</a>
+		<a href="https://www.jomres.net">Plugin website</a> | <a href="https://www.jomres.net/jomres-features-summary">Features</a> | <a href="https://www.jomres.net/manual/">Documentation</a>
 	</p>
 </blockquote>
 
@@ -37,12 +35,9 @@ Jomres can now be run on non-Bootstrap themes. Woot!
 
 == Demos ==
 
-[See the Single Hotel Demo here](http://wordpress-hotel.jomres.net/)
-
 [See the Portal Demo here - a variety of bookable items, multiple owners](http://wordpress-portal.jomres.net/)
 
-Essential License holders have access to the theme used in the two demos above and special "QuickStart" zip files that enable you to deploy a full installation of WordPress with everything already set up to exactly match either the Single Hotel Demo or the Portal Demos. You can be up-and-running, with a fully-featured booking website that looks terrific, within minutes.
-
+License holders can download the "QuickStart" zip file that enables you to deploy a full installation of WordPress with everything already set up to exactly match the Demo. You can be up-and-running, with a fully-featured booking website that looks terrific, within minutes.
 
 == Installation ==
 
@@ -59,7 +54,7 @@ Essential License holders have access to the theme used in the two demos above a
 
 = Is Jomres free? =
 
-Yes. Jomres follows the [Open Core](https://en.wikipedia.org/wiki/Open_core) business model for Open Source projects. The Jomres Core itself is free to download and install. To help pay the bills some features of the system are delivered as plugins in the Jomres Plugin Manager, to download those you will need a license key saved in your Jomres installation's Site Configuration page.
+Yes.
 
 = Is there a manual? =
 
@@ -68,9 +63,9 @@ Yup, the [manual](https://www.jomres.net/manual/) is available to all users. It'
 
 = Where can I get support? =
 
-If you've got a download and support license you can raise a [ticket](http://tickets.jomres.net).
+If you've got a support license you can raise a [ticket](http://tickets.jomres.net).
 
-
+If you want to report or bug, or send a feature request, you can reach us on [jomres.canny.io](https://jomres.canny.io/).
 
 == Screenshots ==
 

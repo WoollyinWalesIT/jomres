@@ -1,3 +1,11 @@
+<h3>Jomres 10.5.1 05/07/2022</h3>
+
+<span class="label label-warning">Change</span> Figured out how to allow browsers to respond to preflight CORS option messages from browsers and respond in a suitable manner.
+<span class="label label-warning">Change</span> Improved partners page adding a link to gh which partners can update with their own data.
+<span class="label label-warning">Change</span> Improved core api get properties endpoint to adapt to new image path handling
+<span class="label label-warning">Change</span> Allow api to respond with 404 if necessary
+<span class="label label-warning">Change</span> Added new reminder to plugin manager.
+
 <h3>Jomres 10.5.0 25/06/2022</h3>
 
 <span class="label label-success">Feature</span>  New run jomres shortcode function added. Allows us to run Jomres shortcodes in php scripts (e.g. index.php of the template)

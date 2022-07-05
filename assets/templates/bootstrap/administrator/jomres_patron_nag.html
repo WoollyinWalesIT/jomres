@@ -1,0 +1,35 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function(){
+            jomresJquery('#patreonModal').modal('show')
+        }, false);
+	</script>
+	
+	<div id="patreonModal" class="modal hide fade"  id="patreonModalCenter" tabindex="-1" role="dialog" aria-labelledby="patreonModalCenterTitle" aria-hidden="true" style="display: none;"  >
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="patreonModalLongTitle">Please support me on Patreon!</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p class="lead">You can become a patron from as little as 5&#8364; a month.</p>
+					<p>Hey, I'm really glad you like Jomres, it warms the cockles of my heart to know that people like you are benefitting from the many hours I have put into it.</p>
+					<p>&nbsp;</p>
+					<p>It would help me out a lot if you could consider becoming a Patreon supporter. Without supporters I can't keep the project going.</p>
+					
+					<p>&nbsp;</p>
+					<p>What's in it for you? As well as giving you peace of mind that you are contributing to keeping Open Source code free as in beer, you'll be able to ask me support questions. Also, I'll send you a plugin that stops this nag from showing.🥰 </p>
+					<p>&nbsp;</p>
+					<p>Higher priced tiers give you the chance to vote for new features, and to tell me what you want me to focus my efforts on. The squeaky wheel really does get the oil.</p>
+				</div>
+				<div class="modal-footer">
+					<a href="#" class="btn" data-dismiss="modal" aria-label="Close">Maybe later</a>
+					<a href="https://www.patreon.com/jomres/membership" class="btn btn-primary" target="_blank">Show me how I can help</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</patTemplate:tmpl>

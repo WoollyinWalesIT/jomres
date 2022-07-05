@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.0
+ *  @version Jomres 10.5.1
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -37,8 +37,8 @@ Flight::route('GET /core/report', function()
 	$jomres_properties->get_all_properties();
 
   	$data[] = array ( 
-		"api_url"				=> urlencode(get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/api/'),
-		"jomres_url" 			=> urlencode(JOMRES_SITEPAGE_URL_NOSEF),
+		"api_url"				=> get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/api/',
+		"jomres_url" 			=> JOMRES_SITEPAGE_URL_NOSEF,
 		"property_count"		=> count($jomres_properties->all_property_uids['all_propertys'])
 	);
 
@@ -106,7 +106,7 @@ Flight::route('GET /core/get_properties', function()
 							"lat"					=> $property['lat'],
 							"long"					=> $property['long'],
 							"metadescription"		=> $property['metadescription'],
-							"thumbnail_location"	=> $livesite.$thumbnail
+							"thumbnail_location"	=> $thumbnail
 						); 
 					}
 				}
@@ -115,8 +115,8 @@ Flight::route('GET /core/get_properties', function()
 	}
 
 	$data[] = array ( 
-		"api_url"				=> urlencode(get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/api/'),
-		"jomres_url" 			=> urlencode(JOMRES_SITEPAGE_URL_NOSEF),
+		"api_url"				=> get_showtime('live_site').'/'.JOMRES_ROOT_DIRECTORY.'/api/',
+		"jomres_url" 			=> JOMRES_SITEPAGE_URL_NOSEF,
 		"properties"			=> $all_published_propertys
 	);
 

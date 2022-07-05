@@ -8,7 +8,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.0 
+ *  @version Jomres 10.5.1
  *
  * @copyright	2005-2022 Vince Wooll
  *
@@ -32,6 +32,7 @@ if (isset($_SERVER['HTTP_ORIGIN'])) {
 	header('Access-Control-Max-Age: 86400');
 }
 
+// It's a preflight message from a browser, checking that CORS is ok, so we'll respond with Yup, and end. Continuing will result in a 400 request which the browser will interpret as an oopsie, the ajax request isn't allowed.
 if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 	if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD'])) {
 		header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
@@ -39,6 +40,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 	if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS'])) {
 		header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
 	}
+	header("HTTP/1.1 200 OK");
+	die();
 }
 			
 date_default_timezone_set('UTC');
