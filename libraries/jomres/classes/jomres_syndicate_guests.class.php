@@ -43,6 +43,15 @@ class jomres_syndicate_guests
 
 	public function get_booking_stats_for_guest( $email ) {
 		$response = '';
+
+		$reply = new stdClass();
+		$reply->stats = new stdClass();
+		$reply->stats->bookings = jr_gettext('BOOKING_NOSHOW_UNKNOWN', 'BOOKING_NOSHOW_UNKNOWN', false);
+		$reply->stats->noshows = jr_gettext('BOOKING_NOSHOW_UNKNOWN', 'BOOKING_NOSHOW_UNKNOWN', false);
+		return $reply;
+
+
+		// Not currently used
 		$jomres_check_support_key = jomres_singleton_abstract::getInstance('jomres_check_support_key');
 		$jomres_check_support_key->check_license_key();
 		
