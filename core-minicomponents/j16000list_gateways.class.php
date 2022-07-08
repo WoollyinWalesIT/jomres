@@ -107,7 +107,7 @@ class j16000list_gateways
 			$tmpl->addRows('rows', $rows);
 			$tmpl->displayParsedTemplate();
 		} else {
-			echo 'No gateways installed';
+			echo '<p class="alert alert-warning"> No administrator area gateways installed. Most payment gateways are configured by property managers in their <a href="'.JOMRES_SITEPAGE_URL.'&task=business_settings" target="_blank">Property Configuration page</a>, therefore they will not show up on this page. Only gateways that have specific administrator area settings will appear here.</p>';
 		}
 	}
 
