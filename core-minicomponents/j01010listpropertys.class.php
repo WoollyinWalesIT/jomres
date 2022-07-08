@@ -4,7 +4,7 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-	 *  @version Jomres 10.5.1
+	 *  @version Jomres 10.5.2
 	 *
 	 * @copyright	2005-2022 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -197,9 +197,9 @@
 								array_key_exists( $lpt ,$available_photo_templates ) ) {
 								$layout_template = $lpt.'.html';
 							}
-							if ( array_key_exists( $lpt , $available_list_templates) ) {
+							if ( array_key_exists( $lpt , $available_list_templates) && isset($available_list_templates[$lpt]['show_property_list_header']) ) {
 								$show_property_list_header = $available_list_templates[$lpt]['show_property_list_header'];
-							} else {
+							} elseif (isset($available_photo_templates[$lpt]['show_property_list_header'])) {
 								$show_property_list_header = $available_photo_templates[$lpt]['show_property_list_header'];
 							}
 						}

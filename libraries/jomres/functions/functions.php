@@ -5,7 +5,7 @@
 	 *
 	 * @author Vince Wooll <sales@jomres.net>
 	 *
-	 *  @version Jomres 10.5.1
+	 *  @version Jomres 10.5.2
 	 *
 	 * @copyright	2005-2022 Vince Wooll
 	 * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -3940,9 +3940,10 @@ $classes = ' .var_export($classes, true).';
 				echo '<div class="well clearfix"><div class="pull-left">'.$output[ 'JOMRESTOOLBAR' ].'</div></div>';
 
 				$bs_version = jomres_bootstrap_version();
+
 				if ($bs_version == '2' || $bs_version == '') {
 					$configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel');
-				} elseif ($bs_version == '3') {
+				} elseif ($bs_version == '3' || $bs_version == 0 ) {
 					$configurationPanel = jomres_singleton_abstract::getInstance('jomres_configpanel_bootstrap3');
 				} elseif ($bs_version == '5') {
 					if (this_cms_is_wordpress()) {

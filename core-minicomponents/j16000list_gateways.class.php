@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.1
+ *  @version Jomres 10.5.2
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -107,7 +107,7 @@ class j16000list_gateways
 			$tmpl->addRows('rows', $rows);
 			$tmpl->displayParsedTemplate();
 		} else {
-			echo 'No gateways installed';
+			echo '<p class="alert alert-warning"> No administrator area gateways installed. Most payment gateways are configured by property managers in their <a href="'.JOMRES_SITEPAGE_URL.'&task=business_settings" target="_blank">Property Configuration page</a>, therefore they will not show up on this page. Only gateways that have specific administrator area settings will appear here.</p>';
 		}
 	}
 

@@ -271,6 +271,12 @@
 		 * @access   public
 		 */
 		public function add_jomres_js_css() {
+			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+			$jrConfig = $siteConfig->get();
+			$arr = array('jquery' , 'bootstrap');
+			if ( $jrConfig["bootstrap_version"] == 0 ) {
+				$arr = array('jquery');
+			}
 
 			if ( ! empty( $this->js )) {
 				foreach ( $this->js as $js_filename => $js ) {
@@ -281,10 +287,12 @@
 							wp_register_script( $js_filename, $js['0'], array('jquery' ), $js['1'], true );
 						}
 					} else {
+
+
 						if ( strpos( $js['0'], 'jomres.js' ) ) {
-							wp_register_script( $js_filename, $js['0'], array('jquery' , 'bootstrap'), $js['1'], false );
+							wp_register_script( $js_filename, $js['0'], $arr, $js['1'], false );
 						} else {
-							wp_register_script( $js_filename, $js['0'], array('jquery' , 'bootstrap'), $js['1'], false );
+							wp_register_script( $js_filename, $js['0'], $arr, $js['1'], false );
 						}
 					}
 

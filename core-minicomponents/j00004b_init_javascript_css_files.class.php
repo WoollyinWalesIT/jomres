@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.1
+ *  @version Jomres 10.5.2
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -194,14 +194,12 @@ class j00004b_init_javascript_css_files
 		}
 
         switch (jomres_bootstrap_version()) {
-			case '':
-				$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap-editable/js/', 'bootstrap-editable.min.js');
-				$css_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap-editable/css/', 'bootstrap-editable.css');
-				break;
 			case '2':
 				$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap-editable/js/', 'bootstrap-editable.min.js');
 				$css_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap-editable/css/', 'bootstrap-editable.css');
 				break;
+			case '':
+			case '0':
 			case '3':
 				$javascript_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap3-editable/js/', 'bootstrap-editable.min.js');
 				$css_files[] = array(JOMRES_NODE_MODULES_RELPATH.'x-editable/dist/bootstrap3-editable/css/', 'bootstrap-editable.css');

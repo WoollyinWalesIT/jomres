@@ -5,7 +5,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.1
+ *  @version Jomres 10.5.2
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -200,6 +200,8 @@ function dobooking($selectedProperty, $thisdate, $remus)
 
 	$MiniComponents->triggerEvent('00102'); // First-form generation
 	$bkg = $MiniComponents->triggerEvent('05000'); // Create the booking object
+
+	$bkg->setStandardGuests(2);
 
 
 
