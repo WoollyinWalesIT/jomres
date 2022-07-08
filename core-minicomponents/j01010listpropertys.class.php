@@ -197,9 +197,9 @@
 								array_key_exists( $lpt ,$available_photo_templates ) ) {
 								$layout_template = $lpt.'.html';
 							}
-							if ( array_key_exists( $lpt , $available_list_templates) ) {
+							if ( array_key_exists( $lpt , $available_list_templates) && isset($available_list_templates[$lpt]['show_property_list_header']) ) {
 								$show_property_list_header = $available_list_templates[$lpt]['show_property_list_header'];
-							} else {
+							} elseif (isset($available_photo_templates[$lpt]['show_property_list_header'])) {
 								$show_property_list_header = $available_photo_templates[$lpt]['show_property_list_header'];
 							}
 						}
