@@ -201,6 +201,8 @@ function dobooking($selectedProperty, $thisdate, $remus)
 	$MiniComponents->triggerEvent('00102'); // First-form generation
 	$bkg = $MiniComponents->triggerEvent('05000'); // Create the booking object
 
+	$bkg->setStandardGuests(2);
+
 
 
 	if (get_showtime('include_room_booking_functionality')) {

@@ -2155,7 +2155,7 @@
 			$default_number_of_guests = 2;
 
 			if (!isset($this->standard_guest_numbers)) {
-				$this->standard_guest_numbers = 0;
+				$this->standard_guest_numbers = 2;
 			}
 
 			if ( $value > $default_number_of_guests ) {
@@ -3767,6 +3767,8 @@
 					foreach ($guests as $g) {
 						$totalNumberOfGuests = $totalNumberOfGuests + $g[ 'qty' ];
 					}
+				} else {
+					$totalNumberOfGuests = $this->standard_guest_numbers;
 				}
 
 				$this->city_tax_number_of_guests = $totalNumberOfGuests;
