@@ -40,7 +40,8 @@ class j06000cron_syndication_get_syndicate_properties
 			return;
 		}
 
-		
+		return;
+
 		$query = "SELECT `id` , `domain` , `api_url` , `last_checked` , `approved` FROM #__jomres_syndication_domains WHERE approved = 1";
 		$result = doSelectSql($query);
 

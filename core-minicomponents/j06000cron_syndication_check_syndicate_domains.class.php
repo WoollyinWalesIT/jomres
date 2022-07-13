@@ -40,10 +40,12 @@ class j06000cron_syndication_check_syndicate_domains
 
 			return;
 		}
-		
+
+		return;
+
 		$query = "SELECT id , domain , api_url , approved , last_checked FROM #__jomres_syndication_domains WHERE last_checked  < (NOW() - INTERVAL 1 HOUR) LIMIT 20  ";
 		$result = doSelectSql($query);
-//var_dump($result);
+
 		$existing_domains = array();
 		if (!empty($result)) {
 			foreach ($result as $r) {

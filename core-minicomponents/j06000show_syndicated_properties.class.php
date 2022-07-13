@@ -57,6 +57,8 @@ class j06000show_syndicated_properties
 		
 		$this->retVals = '';
 
+		return;
+
 		$jomres_check_support_key = jomres_singleton_abstract::getInstance('jomres_check_support_key');
 		$jomres_check_support_key->check_license_key();
 

@@ -49,7 +49,9 @@ class j00005register_site
 		) {
 			return;
 		}
-	
+
+	return;
+
 	// reports the server's existence to the Jomres app server
 	
 	$app_server = "https://app.jomres.net/jomres/api/register_site/";

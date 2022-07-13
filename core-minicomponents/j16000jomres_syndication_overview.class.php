@@ -44,6 +44,8 @@ class j16000jomres_syndication_overview
 		
 		$this->retVals = '';
 
+		return;
+
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 		

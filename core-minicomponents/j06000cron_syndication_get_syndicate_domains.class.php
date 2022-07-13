@@ -40,7 +40,9 @@ class j06000cron_syndication_get_syndicate_domains
 
 			return;
 		}
-		
+
+		return;
+
 		$query = "SELECT id , domain FROM #__jomres_syndication_domains ";
 		$result = doSelectSql($query);
 		

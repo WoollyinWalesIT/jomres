@@ -106,7 +106,7 @@ class j10001control_panel
 		}
 
 		//bookings chart
-		$output['SYNDICATION_NETWORK'] = $MiniComponents->specificEvent('16000', 'jomres_syndication_overview', array('output_now' => false, 'height'=> 300));
+		//$output['SYNDICATION_NETWORK'] = $MiniComponents->specificEvent('16000', 'jomres_syndication_overview', array('output_now' => false, 'height'=> 300));
 		
 		
 		$pageoutput[ ] = $output;

@@ -40,6 +40,8 @@ class j00061y_syndicated_properties {
 			$this->template_touchable=false; return;
 			}
 
+		return;
+
 		if ( get_showtime('task') != "dobooking" && get_showtime('task') != 'confirmbooking' ) {
 			$MiniComponents->specificEvent('06000','show_syndicated_properties', array('limit'=>4));
 			}
