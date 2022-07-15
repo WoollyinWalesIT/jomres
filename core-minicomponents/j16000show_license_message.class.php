@@ -44,6 +44,8 @@ class j16000show_license_message
 		
 		$this->retVals = '';
 
+		return;
+
 		if (isset($componentArgs[ 'output_now' ])) {
 			$output_now = $componentArgs[ 'output_now' ];
 		} else {
