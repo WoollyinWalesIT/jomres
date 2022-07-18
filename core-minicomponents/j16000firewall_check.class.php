@@ -54,8 +54,6 @@ class j16000firewall_check
 			'http://plugins.jomres4.net/',
 			'http://updates.jomres4.net/',
 			'https://maps-api-ssl.google.com/',
-			'http://tinyurl.com',
-			'http://api.clickatell.com/',
 			'https://api.openweathermap.org',
 			'https://openexchangerates.org/api/latest.json'
 		);
