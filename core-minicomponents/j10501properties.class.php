@@ -66,12 +66,12 @@ class j10501properties
 			$configurationPanel->insertSetting();
 		}
 
-		if ( $jrConfig[ 'admin_options_level' ] > 0 ) {
+/*		if ( $jrConfig[ 'admin_options_level' ] > 0 ) {
 			$configurationPanel->setleft(jr_gettext('_JOMRES_CONFIG_SYNDICATION_TITLE', '_JOMRES_CONFIG_SYNDICATION_TITLE', false));
 			$configurationPanel->setmiddle($lists[ 'useSyndication' ]);
 			$configurationPanel->setright(jr_gettext('_JOMRES_CONFIG_SYNDICATION_DESC', '_JOMRES_CONFIG_SYNDICATION_DESC', false));
 			$configurationPanel->insertSetting();
-		}
+		}*/
 
 		if ( $jrConfig[ 'admin_options_level' ] > 0 ) {
 			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_SELFREGISTRATION', '_JOMRES_COM_SELFREGISTRATION', false));
