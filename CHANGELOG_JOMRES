@@ -1,3 +1,14 @@
+<h3>Jomres 10.5.3 03/08/2022</h3>
+
+<span class="label label-warning">Change</span> Croatian lang file updated with some new defs. Thanks Amir.
+<span class="label label-warning">Change</span> Syndication functionality temp disabled within Jomres installations. It's a good idea, and this work has taught me several lessons so I'll revisit it again the future but for now I'm going to switch it off until I can find a better way of doing things.
+<span class="label label-warning">Change</span> Removed some Help options from the main menu that will soon be redundant.
+<span class="label label-warning">Change</span> Updated the firewall check page to bring it in line with the current version of Jomres.
+<span class="label label-warning">Change</span> Disable syndication switch in site config
+<span class="label label-warning">Change</span> Changed the point that the new user id is discovered when creating bookings
+<span class="label label-warning">Change</span> Modified map area in property details to make the output play nice with the driving directions plugin
+<span class="label label-warning">Change</span> Allow Standard tariff editing mode to use Classic rooms list in the booking form.
+
 <h3>Jomres 10.5.2 08/07/2022</h3>
 
 <span class="label label-important label-danger">Fix</span> Fixed an issue in the old booking engine that was affecting booking SRPs
