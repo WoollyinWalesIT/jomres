@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.2
+ *  @version Jomres 10.5.3
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -298,8 +298,8 @@ class j03020insertbooking
 					}
 
 					if ($cms_user_id > 0 ) {
+						$new_booking_user_id = get_showtime("new_booking_user_id");
 						if (!$thisJRUser->is_partner) {
-							$new_booking_user_id = get_showtime("new_booking_user_id");
                             if (is_null($new_booking_user_id) && $thisJRUser->userIsRegistered == false ) { // There's been some confusion (because I'm dim) as to who the cms_user_id refers to, it can either be a manager/receptionist, or the guest themselves so this is designed to definitively decide to make the $new_booking_user_id the newly created $cms_user_id
                                 $new_booking_user_id = $cms_user_id;
 

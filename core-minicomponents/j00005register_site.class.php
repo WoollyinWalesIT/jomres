@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.2
+ *  @version Jomres 10.5.3
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -49,7 +49,9 @@ class j00005register_site
 		) {
 			return;
 		}
-	
+
+	return;
+
 	// reports the server's existence to the Jomres app server
 	
 	$app_server = "https://app.jomres.net/jomres/api/register_site/";

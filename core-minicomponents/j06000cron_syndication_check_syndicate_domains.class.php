@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.2
+ *  @version Jomres 10.5.3
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -40,10 +40,12 @@ class j06000cron_syndication_check_syndicate_domains
 
 			return;
 		}
-		
+
+		return;
+
 		$query = "SELECT id , domain , api_url , approved , last_checked FROM #__jomres_syndication_domains WHERE last_checked  < (NOW() - INTERVAL 1 HOUR) LIMIT 20  ";
 		$result = doSelectSql($query);
-//var_dump($result);
+
 		$existing_domains = array();
 		if (!empty($result)) {
 			foreach ($result as $r) {

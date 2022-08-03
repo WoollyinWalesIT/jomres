@@ -4,7 +4,7 @@
  *
  * @author Vince Wooll <sales@jomres.net>
  *
- *  @version Jomres 10.5.2
+ *  @version Jomres 10.5.3
  *
  * @copyright	2005-2022 Vince Wooll
  * Jomres (tm) PHP, CSS & Javascript files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly
@@ -75,7 +75,7 @@ class j00501booking_form
 			}
 		}
 
-		if ($mrConfig['tariffmode'] != '5'){
+
 			if ($mrConfig[ 'singleRoomProperty' ] != '1') {
 				$configurationPanel->setleft(jr_gettext('_JOMRES_ROOMMSLIST_STYLE', '_JOMRES_ROOMMSLIST_STYLE', false));
 				$configurationPanel->setmiddle($booking_form_rooms_list_style);
@@ -88,6 +88,7 @@ class j00501booking_form
 				$configurationPanel->insertSetting();
 			}
 
+		if ($mrConfig['tariffmode'] != '5'){
 			$configurationPanel->setleft(jr_gettext('_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT', '_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT', false));
 			$configurationPanel->setmiddle($lists['auto_detect_country_for_booking_form']);
 			$configurationPanel->setright(jr_gettext('_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT_DESC', '_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT_DESC', false));
