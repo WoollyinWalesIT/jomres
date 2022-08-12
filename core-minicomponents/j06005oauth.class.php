@@ -119,7 +119,7 @@ class j06005oauth
 		$output['_OAUTH_SCOPE_TITLE']	= jr_gettext('_OAUTH_SCOPE_TITLE', '_OAUTH_SCOPE_TITLE', false);
 		
 		
-		$query = "SELECT client_id,scope,identifier FROM #__jomres_oauth_clients WHERE user_id = ".(int)$thisJRUser->userid;
+		$query = "SELECT client_id,scope,identifier FROM #__jomres_oauth_clients WHERE user_id = ".(int)$thisJRUser->id;
 		$result = doSelectSql($query);
 
 		if (count($result)>0)

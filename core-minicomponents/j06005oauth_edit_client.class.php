@@ -74,7 +74,7 @@ class j06005oauth_edit_client
 		$output['_OAUTH_TOKEN_REQUEST_URI']	= jr_gettext('_OAUTH_TOKEN_REQUEST_URI', '_OAUTH_TOKEN_REQUEST_URI', false);
 
 
-		$query = "SELECT client_id , client_secret , scope , identifier , redirect_uri FROM #__jomres_oauth_clients WHERE client_id = '".$client_id."' AND user_id = ".(int)$thisJRUser->userid . ' LIMIT 1 ';
+		$query = "SELECT client_id , client_secret , scope , identifier , redirect_uri FROM #__jomres_oauth_clients WHERE client_id = '".$client_id."' AND user_id = ".(int)$thisJRUser->id . ' LIMIT 1 ';
 		$result = doSelectSql($query);
 		
 		$client_scopes = array();

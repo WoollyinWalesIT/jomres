@@ -85,8 +85,7 @@ class j06005save_client
 			if ($client_id == "" || $client_secret == "")
 				jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=oauth_edit_client&client_id=".$client_id ), "" );
 
-			$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
-			$query = "SELECT client_id FROM #__jomres_oauth_clients WHERE client_id = '".$client_id."' AND user_id = ".(int)$thisJRUser->userid . ' LIMIT 1 ';
+			$query = "SELECT client_id FROM #__jomres_oauth_clients WHERE client_id = '".$client_id."' AND user_id = ".(int)$thisJRUser->id . ' LIMIT 1 ';
 			$result = doSelectSql($query);
 
 			if (count($result)==0)
@@ -94,11 +93,11 @@ class j06005save_client
 				$query = "INSERT INTO #__jomres_oauth_clients 
 					(`client_id`,`client_secret`,`redirect_uri`,`grant_types`,`scope`,`user_id` , `identifier` ) 
 					VALUES 
-					('".$client_id."','".$client_secret."','".$redirect_uri."',null,'".$requested_scopes."',".(int)$thisJRUser->userid." , '".$identifier."' )";
+					('".$client_id."','".$client_secret."','".$redirect_uri."',null,'".$requested_scopes."',".(int)$thisJRUser->id." , '".$identifier."' )";
 				}
 			else
 				{
-				$query = "UPDATE #__jomres_oauth_clients SET `client_secret`='".$client_secret."',`redirect_uri`='".$redirect_uri."',`grant_types`=null,`scope`='".$requested_scopes."',`identifier`='".$identifier."' WHERE user_id =".(int)$thisJRUser->userid." AND client_id ='".$client_id."'";
+				$query = "UPDATE #__jomres_oauth_clients SET `client_secret`='".$client_secret."',`redirect_uri`='".$redirect_uri."',`grant_types`=null,`scope`='".$requested_scopes."',`identifier`='".$identifier."' WHERE user_id =".(int)$thisJRUser->id." AND client_id ='".$client_id."'";
 				}
 
 			if ( !doInsertSql( $query, jr_gettext( '_OAUTH_CREATED', '_OAUTH_CREATED', false ) ) ) trigger_error( "Unable to update oauth client details, mysql db failure", E_USER_ERROR );

@@ -47,18 +47,18 @@ class j06005delete_client
 			jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=oauth" ), "" );
 
 		$thisJRUser = jomres_singleton_abstract::getInstance( 'jr_user' );
-		$query = "SELECT client_id FROM #__jomres_oauth_clients WHERE client_id = '".$client_id."' AND `user_id` = ".(int)$thisJRUser->userid . ' ';
+		$query = "SELECT client_id FROM #__jomres_oauth_clients WHERE client_id = '".$client_id."' AND `user_id` = ".(int)$thisJRUser->id . ' ';
 		$result = doSelectSql($query);
 
 		if (count($result)==1)
 			{
 			$query = "DELETE FROM #__jomres_oauth_clients 
-				WHERE `client_id`= '".$client_id."' AND `user_id` = ".(int)$thisJRUser->userid."";
+				WHERE `client_id`= '".$client_id."' AND `user_id` = ".(int)$thisJRUser->id."";
 
 			doInsertSql( $query );
 			
 			$query = "DELETE FROM #__jomres_oauth_access_tokens
-				WHERE `client_id`= '".$client_id."' AND `user_id` = ".(int)$thisJRUser->userid."";
+				WHERE `client_id`= '".$client_id."' AND `user_id` = ".(int)$thisJRUser->id."";
 
 			doInsertSql( $query );
 			
