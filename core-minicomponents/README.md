@@ -78,6 +78,13 @@ Jomres includes Access Control functionality, however we find that a more simpli
 07310 Webhook trigger processing scripts. When a Webhook is called, these are the scripts that will actually authenticate with the remote site and pass the information of the action performed on this server. For tasks that *have* to be carried out now
 07320 Webhook tasks that can be deferred slightly. The huge majority of webhook tasks should be of this number because these tasks are deferred, meaning that they are run in an independent process that does not run the risk of slowing down the site user's experience.
 
+08000 Reserved for REST API functionality
+
+08100 Parsers for Jomres Messaging System, allows for parsing of messages before they're saved. Performed before encryption. A 08100 script would need to import subject and message_body by doing  get_showtime('jms_message_subject') or get_showtime('jms_message_message_body') and after parsing set the same by doing set_showtime('jms_message_subject' , $parsed_result ); or set_showtime('jms_message_message_body' , $parsed_result );
+
+08200 Parsers for Jomres Messaging System, allows for parsing of messages before they're returned to the calling script. Performed after decryption. Same showtime variables and processes as used in the 08100 parsing method.
+
+
 09995 Creates the core menu items  
 09997 Builds the frontend control panel menu
 

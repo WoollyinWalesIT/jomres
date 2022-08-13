@@ -217,7 +217,7 @@ class jr_user
 				$this->passport_number					= $this->jomres_encryption->decrypt($r->enc_passport_number);
 				$this->iban								= $this->jomres_encryption->decrypt($r->enc_iban);
 				$this->about_me							= $this->jomres_encryption->decrypt($r->enc_about_me);
-				$this->preferences							= $this->jomres_encryption->decrypt($r->enc_preferences);
+				$this->preferences						= $this->jomres_encryption->decrypt($r->enc_preferences);
 				 
 				
 				if (!empty($r->params)) {
