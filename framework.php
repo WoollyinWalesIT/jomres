@@ -159,11 +159,12 @@ function load_jomres_environment()
 	* jomres cron object
 	*
 	*/
-	$cron = jomres_singleton_abstract::getInstance('jomres_cron');
-	if ($cron->method == 'Minicomponent' && !AJAXCALL) {
-		$cron->triggerJobs();
+	if (!defined('API_STARTED')) {
+		$cron = jomres_singleton_abstract::getInstance('jomres_cron');
+		if ($cron->method == 'Minicomponent' && !AJAXCALL) {
+			$cron->triggerJobs();
+		}
 	}
-
 
 	/**
 	*
