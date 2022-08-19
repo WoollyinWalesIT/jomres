@@ -4477,18 +4477,22 @@ $classes = ' .var_export($classes, true).';
 				$unixDate = mktime(0, 0, 0, $date_elements[ 0 ], $date_elements[ 1 ], $date_elements[ 2 ]);
 				break;
 			case '%d-%m-%Y':
+				$inputDate = str_replace("/" , "-" , $inputDate);
 				$date_elements = explode('-', $inputDate);
 				$unixDate = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 0 ], $date_elements[ 2 ]);
 				break;
 			case '%Y-%m-%d':
+				$inputDate = str_replace("/" , "-" , $inputDate);
 				$date_elements = explode('-', $inputDate);
 				$unixDate = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 2 ], $date_elements[ 0 ]);
 				break;
 			case '%m-%d-%Y':
+				$inputDate = str_replace("/" , "-" , $inputDate);
 				$date_elements = explode('-', $inputDate);
 				$unixDate = mktime(0, 0, 0, $date_elements[ 0 ], $date_elements[ 1 ], $date_elements[ 2 ]);
 				break;
 			case '%d.%m.%Y':
+				$inputDate = str_replace("/" , "." , $inputDate);
 				$date_elements = explode('.', $inputDate);
 				$unixDate = mktime(0, 0, 0, $date_elements[ 1 ], $date_elements[ 0 ], $date_elements[ 2 ]);
 				break;
