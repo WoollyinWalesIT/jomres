@@ -80,9 +80,15 @@ Jomres includes Access Control functionality, however we find that a more simpli
 
 08000 Reserved for REST API functionality
 
+
+
 08100 Parsers for Jomres Messaging System, allows for parsing of messages before they're saved. Performed before encryption. A 08100 script would need to import subject and message_body by doing  get_showtime('jms_message_subject') or get_showtime('jms_message_message_body') and after parsing set the same by doing set_showtime('jms_message_subject' , $parsed_result ); or set_showtime('jms_message_message_body' , $parsed_result );
 
 08200 Parsers for Jomres Messaging System, allows for parsing of messages before they're returned to the calling script. Performed after decryption. Same showtime variables and processes as used in the 08100 parsing method.
+
+08300 Parsers for Jomres Messaging System, allows for parsing of messages before they're returned to the calling script. Parsed before saving group name.
+
+08400 Parsers for Jomres Messaging System, allows for parsing of messages before they're returned to the calling script. Parsed before returning group name.
 
 
 09995 Creates the core menu items  
