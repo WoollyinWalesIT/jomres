@@ -24,10 +24,10 @@
 
 	class jomres_call_api
 	{
-		private $token;
+		public $token;
 		public $server;
 
-		public function __construct( $user_id = 'system' )
+		public function __construct( $user_id = 'system' , $token = '')
 		{
 			$this->siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 			$this->jrConfig = $this->siteConfig->get();
@@ -37,13 +37,15 @@
 				$this->user->accesslevel = 101;
 				$this->user->username = 'system';
 				$this->user->userid = 999999999;
+				$this->system_token = $this->siteConfig->get_setting('system_token');
 			} else {
 				$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+				$this->user = new stdClass();
 				$this->user->accesslevel = $thisJRUser->accesslevel;
 				$this->user->username = $thisJRUser->username;
 				$this->user->userid = $thisJRUser->id;
+				$this->system_token = $token;
 			}
-			$this->system_token = $this->siteConfig->get_setting('system_token');
 
 			if (!isset($this->system_token)) {
 				$this->token = '';
