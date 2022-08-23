@@ -303,7 +303,7 @@ class j01070show_property_schema
 
 					$r[ 'IMAGEMEDIUM' ] = JOMRES_IMAGES_RELPATH.'noimage.gif';
 
-					if (isset($jomres_media_centre_images->images['rooms']) && $jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['large'] != '') {
+					if (isset($jomres_media_centre_images->images['rooms']) && isset($jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['large']) && $jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['large'] != '') {
 						$r[ 'IMAGEMEDIUM' ] = $jomres_media_centre_images->images['rooms'][$room['room_uid']][0]['medium'];
 					}
 
