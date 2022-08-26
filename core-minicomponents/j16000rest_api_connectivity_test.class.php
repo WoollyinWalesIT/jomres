@@ -89,7 +89,7 @@ class j16000rest_api_connectivity_test
 			$output[ 'STATUS' ]				= "danger";
 		}
 		
-		$client = new GuzzleHttp\Client();
+/*		$client = new GuzzleHttp\Client();
 
 		$response = $client->request('POST', "https://app.jomres.net/jomres/api/get_sites/confirm/", [
 			'form_params' => [
@@ -109,7 +109,7 @@ class j16000rest_api_connectivity_test
 			$output[ 'SYNDICATION_STATUS' ]				= "danger";
 			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 			$siteConfig->update_setting('appServerRegister',0);
-		}
+		}*/
 		
 		
 		$output[ '_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_TITLE' ] = jr_gettext('_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_TITLE', '_JOMRES_REST_API_CONNECTIVITY_TEST_SYNDICATION_NETWORK_CONFIRMATION_TITLE', false);
