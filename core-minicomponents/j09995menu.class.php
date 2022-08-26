@@ -45,7 +45,12 @@ class j09995menu
 		if (AJAXCALL) {
 			return;
 		}
-		
+
+		$menuoff = get_showtime('menuoff');
+		if ($menuoff === true ) {
+			return;
+		}
+
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig = $siteConfig->get();
 		
