@@ -52,6 +52,11 @@ class j00061a_poweredby
 			$jrConfig['show_powered_by'] = '0';
 		}
 
+		$menuoff = get_showtime('menuoff');
+		if ($menuoff === true ) {
+			return;
+		}
+
 		if ($jrConfig[ 'show_powered_by' ] == '1') {
 			$tmpl = new patTemplate();
 			$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
