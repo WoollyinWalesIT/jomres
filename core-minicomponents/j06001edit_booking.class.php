@@ -268,6 +268,16 @@ class j06001edit_booking
 			$output[ 'GUEST_FIRSTNAME' ] = $current_contract_details->contract[$contract_uid]['guestdeets']['firstname'];
 			$output[ 'GUEST_SURNAME' ] = $current_contract_details->contract[$contract_uid]['guestdeets']['surname'];
 
+			$MiniComponents->triggerEvent('03500');
+			$edit_booking_buttons = get_showtime('edit_booking_buttons');
+
+			$new_buttons = array();
+			if (!empty($edit_booking_buttons)) {
+				foreach ($edit_booking_buttons as $button) {
+					$new_buttons[] = array ( 'button' => $button );
+				}
+			}
+
 			$output[ 'TOOLBAR' ] = $jrtb;
 
 			$pageoutput[] = $output;
@@ -278,6 +288,11 @@ class j06001edit_booking
 			$tmpl->addRows('pageoutput', $pageoutput);
 			$tmpl->addRows('approval_message', $approval_message);
 			$tmpl->addRows('noshow_status', $noshow);
+
+			if (!empty($new_buttons)){
+				$tmpl->addRows('new_buttons', $new_buttons);
+			}
+
 			echo $tmpl->getParsedTemplate();
 		}
 

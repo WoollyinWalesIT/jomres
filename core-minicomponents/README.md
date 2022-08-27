@@ -45,13 +45,17 @@ The next trigger numbers are used when building the property list/search results
 03100 Sends emails to managers, guests and admin to update each on the new booking.  
 03150 Various email scripts.
 
+
 03200 Triggers 07005 & 07010  
+
 07005 Optional minicomponent trigger, eg for system cleanups or other pre-booking activity  
 07010 Allows us to run post insertion functionality for importing into foreign systems. Currently used for inserting commission line items
 
 03379 These scripts are used by the media centre to configure media uploading options.  
 03381 Media centre uses these to determine individual ids for uploading of resource specific images.  
 03383 Media centre uses these to determine images that already exist for specific resources.
+
+03500 Triggers scripts that can be used to add buttons to the reservation details/edit booking page
 
 04901 This trigger is used when a new property is created, typically for sending welcome emails
 
