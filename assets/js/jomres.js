@@ -41,14 +41,17 @@ jomresJquery(document).ready(function () {
 	  
 });
 
-function jomresCopyToClipboard( input_id ) {
+jomresJquery('.copy_to_clipboard').on("click",function(e){
+	e.preventDefault();
+});
+
+function jomresCopyToClipboard(input_id) {
+
 	var copyText = document.getElementById(input_id);
 	copyText.select();
-	copyText.setSelectionRange(0, 99999); /* For mobile devices */
-	navigator.clipboard.writeText(copyText.value);
-	alert(copyText.value);
-	return false;
+	document.execCommand("copy");
 }
+
 
 
 function Block_Error() {
