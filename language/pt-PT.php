@@ -2745,3 +2745,8 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Imagens de
 	jr_define('JOMRES_TRANSLATIONS_LEAD', 'Nesta página você pode traduzir etiquetas de um idioma para outro. Ao visitar a página você verá strings que você já criou e seu valor em qualquer idioma que você esteja usando. idioma de destino e, em seguida, para os rótulos que deseja traduzir, clique no rótulo e um pop-up permitirá que você insira sua nova tradução. Para linhas de texto mais longas, você pode colar o texto de outra fonte. Lembre-se de que qualquer HTML será removido .<br/>
 Você pode deixar o idioma de destino definido para seu idioma atual e usar esta página para renomear itens aqui, em vez de visitar suas páginas individuais.');
 	jr_define('JOMRES_TARGET_LANGUAGE', 'Idioma de destino');
+
+	jr_define('API_CLIENTS_INFO', 'Clientes de API são pares de chave secreta/ID do cliente que permitem que sistemas remotos usem recursos de API que você concede a eles permissão para usar. Nesta página, você pode criar quantos pares de chaves cliente/secreta precisar, cada um com qualquer combinação de permissões que você precisar.');
+	jr_define('CLIENT_TOKEN', 'Token de Acesso');
+	jr_define('CLIENT_TOKEN_INFO', "Tokens de acesso podem ser solicitados usando o ID e o Segredo do Cliente. Alguns Clientes já podem ter um token de acesso criado para ele, nesse caso você pode usar este token de acesso. Se você acredita que o token pode ter sido comprometido, ou apenas deseja alterá-lo, você pode expirar os tokens do cliente. Todos os tokens associados ao par cliente/segredo serão expirados.");
+	jr_define('DELETE_TOKEN', 'Expirar Tokens');

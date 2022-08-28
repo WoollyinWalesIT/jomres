@@ -2678,3 +2678,8 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Eigenschap
 	jr_define('JOMRES_TRANSLATIONS_LEAD', 'Op deze pagina kunt u labels van de ene taal naar de andere vertalen. Wanneer u de pagina bezoekt, ziet u strings die u al hebt gemaakt en hun waarde in de taal die u momenteel gebruikt. Stel bovenaan de doeltaal, klik dan voor de labels die u wilt vertalen op het label en een pop-up laat u uw nieuwe vertaling invoeren. Voor langere tekstregels kunt u de tekst uit een andere bron plakken. Houd er rekening mee dat HTML wordt verwijderd .<br/>
 U kunt de doeltaal op uw huidige taal laten staan en deze pagina gebruiken om items hier te hernoemen, in plaats van hun individuele pagina\'s te bezoeken.');
 jr_define('JOMRES_TARGET_LANGUAGE', 'Doeltaal');
+
+	jr_define('API_CLIENTS_INFO', 'API-clients zijn client-ID/geheime sleutelparen waarmee externe systemen API-functies kunnen gebruiken die u hen toestemming geeft om te gebruiken. Op deze pagina kunt u zoveel client-/geheime sleutelparen maken als u nodig hebt, elk met elke combinatie van machtigingen die u nodig heeft.');
+	jr_define('CLIENT_TOKEN', 'Toegangstoken');
+	jr_define('CLIENT_TOKEN_INFO', "Toegangstokens kunnen worden aangevraagd met behulp van de Client-ID en Secret. Sommige Clients hebben mogelijk al een toegangstoken ervoor gemaakt, in welk geval u deze toegangstoken kunt gebruiken. Als u denkt dat de token mogelijk is gecompromitteerd, of als u het gewoon wilt wijzigen, kunt u de tokens van de client laten verlopen. Alle tokens die zijn gekoppeld aan het client/geheim-paar zullen verlopen zijn.");
+	jr_define('DELETE_TOKEN', 'Verlopen tokens');

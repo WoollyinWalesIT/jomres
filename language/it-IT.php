@@ -2767,3 +2767,8 @@ jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Una volta salvata la modific
 	jr_define('JOMRES_TRANSLATIONS_LEAD', 'In questa pagina puoi tradurre le etichette da una lingua all\'altra. Quando visiti la pagina vedrai le stringhe che hai già creato e il loro valore in qualunque lingua tu stia attualmente usando. In alto imposta il lingua di destinazione, quindi per le etichette che desideri tradurre, fai clic sull\'etichetta e un popup ti consentirà di inserire la tua nuova traduzione. Per righe di testo più lunghe puoi incollare il testo da un\'altra fonte. Ricorda che qualsiasi HTML verrà eliminato .<br/>
 Puoi lasciare la lingua di destinazione impostata sulla tua lingua corrente e utilizzare questa pagina per rinominare gli elementi qui, invece di visitare le loro singole pagine.');
 jr_define('JOMRES_TARGET_LANGUAGE', 'Lingua di destinazione');
+
+	jr_define('API_CLIENTS_INFO', 'I client API sono coppie di chiavi client/segrete che consentono ai sistemi remoti di utilizzare le funzioni API per le quali hai concesso loro i permessi per l\'uso. In questa pagina puoi creare tutte le coppie di chiavi client/segrete di cui hai bisogno, ciascuna con qualsiasi combinazione di autorizzazioni di cui hai bisogno.');
+jr_define('CLIENT_TOKEN', 'Token di accesso');
+jr_define('CLIENT_TOKEN_INFO', "I token di accesso possono essere richiesti utilizzando l'ID client e il segreto. Alcuni client potrebbero avere già creato un token di accesso, nel qual caso puoi utilizzare questo token di accesso. Se ritieni che il token possa essere stato compromesso, o vuoi semplicemente cambiarlo, puoi far scadere i token del client. Tutti i token associati alla coppia client/segreto saranno scaduti.");
+jr_define('DELETE_TOKEN', 'Token scaduti');

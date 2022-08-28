@@ -2704,3 +2704,8 @@ jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Kedvezményes");
 	jr_define('JOMRES_TRANSLATIONS_LEAD', 'Ezen az oldalon lefordíthatja a címkéket egyik nyelvről a másikra. Amikor felkeresi az oldalt, látni fogja a már létrehozott karakterláncokat és azok értékét az éppen használt nyelven. A tetején állítsa be a célnyelven, majd a lefordítani kívánt címkéknél kattintson a címkére, és egy felugró ablakban beírhatja az új fordítást. Hosszabb sorok esetén beillesztheti a szöveget egy másik forrásból. Ne feledje, hogy minden HTML kikerül .<br/>
 Meghagyhatja a célnyelvet az aktuális nyelven, és ezen az oldalon átnevezheti az itt található elemeket, ahelyett, hogy meglátogatná az egyes oldalakat.');
 	jr_define('JOMRES_TARGET_LANGUAGE', 'Célnyelv');
+
+	jr_define('API_CLIENTS_INFO', 'API-kliensek kliensazonosító/titkos kulcspárok, amelyek lehetővé teszik a távoli rendszerek számára olyan API-funkciók használatát, amelyek használatára engedélyt ad nekik. Ezen az oldalon tetszőleges számú kliens/titkos kulcspárt hozhat létre. a szükséges engedélyek bármilyen kombinációja.');
+	jr_define('CLIENT_TOKEN', 'Hozzáférési token');
+	jr_define('CLIENT_TOKEN_INFO', "Hozzáférési token kérhető a kliens azonosítóval és titkos kóddal. Előfordulhat, hogy egyes kliensek már rendelkeztek hozzá létrehozott hozzáférési tokennel, ebben az esetben használhatja ezt a hozzáférési tokent. Ha úgy gondolja, hogy a token kompromittálódott, vagy csak módosítani szeretné, lejárathatja a kliens tokenjeit. Az ügyfél/titkos párhoz tartozó összes token lejár.");
+	jr_define('DELETE_TOKEN', 'Tokenek lejárta');

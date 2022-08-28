@@ -20,7 +20,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 	 * 
 	 */
 
-class j06005delete_client
+class j06005expire_tokens
 	{	
 	/**
 	 *
@@ -52,17 +52,13 @@ class j06005delete_client
 
 		if (count($result)==1)
 			{
-			$query = "DELETE FROM #__jomres_oauth_clients 
+			$expires = date('Y-m-d H:i:s', strtotime('now') );
+			$query = "UPDATE #__jomres_oauth_access_tokens SET `expires` = '".$expires."'
 				WHERE `client_id`= '".$client_id."' AND `user_id` = ".(int)$thisJRUser->id."";
 			doInsertSql( $query );
-			
-			$query = "DELETE FROM #__jomres_oauth_access_tokens
-				WHERE `client_id`= '".$client_id."' AND `user_id` = ".(int)$thisJRUser->id."";
-			doInsertSql( $query );
-			
 			}
 
-		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=oauth" ), "" ); 
+		jomresRedirect( jomresURL( JOMRES_SITEPAGE_URL . "&task=oauth_edit_client&client_id=".$client_id ), "" );
 		}
 
 	/**

@@ -2726,3 +2726,8 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Obrazy typ
 	jr_define('JOMRES_TRANSLATIONS_LEAD', 'Na tej stronie możesz tłumaczyć etykiety z jednego języka na inny. Gdy odwiedzasz stronę, zobaczysz ciągi, które już utworzyłeś i ich wartość w dowolnym języku, którego aktualnie używasz. Na górze ustaw język docelowy, a następnie w przypadku etykiet, które chcesz przetłumaczyć, kliknij etykietę, a wyskakujące okienko umożliwi wprowadzenie nowego tłumaczenia. W przypadku dłuższych wierszy tekstu możesz wkleić tekst z innego źródła. Pamiętaj, że wszelki kod HTML zostanie usunięty .<br/>
 Możesz pozostawić język docelowy ustawiony na swój bieżący język i użyć tej strony do zmiany nazw elementów tutaj, zamiast odwiedzania ich poszczególnych stron.');
 	jr_define('JOMRES_TARGET_LANGUAGE', 'Język docelowy');
+
+	jr_define('API_CLIENTS_INFO', 'Klienci API to pary kluczy Client/Secret, które pozwalają zdalnym systemom na korzystanie z funkcji API, na których używanie im przyznasz uprawnienia. Na tej stronie możesz utworzyć tyle par kluczy Client/Secret, ile potrzebujesz, każda z dowolna kombinacja wymaganych uprawnień.');
+	jr_define('CLIENT_TOKEN', 'Token dostępu');
+	jr_define('CLIENT_TOKEN_INFO', "Tokeny dostępu można zażądać przy użyciu identyfikatora klienta i klucza tajnego. Niektórzy klienci mogą już mieć utworzony dla niego token dostępu, w takim przypadku możesz użyć tego tokena dostępu. Jeśli uważasz, że token mógł zostać zagrożone lub po prostu chcesz to zmienić, możesz wygasnąć tokeny klienta. Wszystkie tokeny powiązane z parą klient/klucz tajny wygasną.");
+	jr_define('DELETE_TOKEN', 'Wygasa tokeny');

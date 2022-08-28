@@ -5,7 +5,7 @@
 
 <p>{_OAUTH_GRANT_TYPES}</p>
 
-<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm" class="form-horizontal" role="form">
+<form action="{JOMRES_SITEPAGE_URL_NOSEF}" method="post" name="adminForm" class="form-horizontal g-3" role="form">
 
 <div class="form-group">
 	<label class="col-md-2 control-label" for="identifier">{_OAUTH_IDENTIFIER}</label>
@@ -17,28 +17,62 @@
 <div class="form-group">
 	<label class="col-md-2 control-label" for="client_id">{_OAUTH_APIKEY}</label>
 	<div class="col-md-10">
-		<input id="client_id" name="client_id" type="text" value="{CLIENT_ID}" class="required form-control" readonly />
+		<div class="input-group">
+			<input id="client_id" name="client_id" type="text" value="{CLIENT_ID}" class="required form-control" readonly />
+			{jomres_script copy_button copy_button_id=client_id}
+		</div>
 	</div>
 </div>
 <div class="form-group">
 	<label class="col-md-2 control-label" for="client_secret">{_OAUTH_SECRET}</label>
 	<div class="col-md-10">
-		<input id="client_secret" name="client_secret" type="text" value="{CLIENT_SECRET}" class="required form-control" readonly/>
+		<div class="input-group">
+			<input id="client_secret" name="client_secret" type="text" value="{CLIENT_SECRET}" class="required form-control" readonly/>
+			{jomres_script copy_button copy_button_id=client_secret}
+		</div>
 	</div>
 </div>
 
+<div class="form-group">
+	<label class="col-md-2 control-label" for="token">{CLIENT_TOKEN}</label>
+	<div class="col-md-10">
+		<div class="input-group">
+			<input id="token" name="token" type="text" value="{TOKEN}" class="form-control" readonly />
+			{jomres_script copy_button copy_button_id=token}
+		</div>
+		<div class="form-text">
+			{CLIENT_TOKEN_INFO}
+		</div>
+	</div>
+</div>
+
+
+
 <h3>{_OAUTH_AUTHORISATION_URL}</h3>
+	
+<div class="form-group">
+	<label class="col-md-2 control-label" for="nothing_again">{_OAUTH_TOKEN_REQUEST_URI}</label>
+	<div class="col-md-10">
+		<div class="input-group">
+		<input id="nothing_again" name="nothing_again" type="text" value="{TOKEN_REQUEST_URL}" class="form-control" readonly />
+		{jomres_script copy_button copy_button_id=nothing_again}
+	</div>
+</div>
 
-<p>{_OAUTH_TOKEN_REQUEST_URI}</p>
-<textarea class="form-control" rows="1" id="nothing_again" readonly>{TOKEN_REQUEST_URL}</textarea>
+<div class="form-group">
+	<label class="col-md-2 control-label" for="nothing"></label>
+	<div class="col-md-10">
+		<div class="input-group ">
+			<input id="nothing" name="nothing" type="text" value="{AUTHORIZE_URL}" class="form-control" readonly />
+			{jomres_script copy_button copy_button_id=nothing}
+		</div>
+		<div class="form-text">
+			{_OAUTH_IMPLICIT_NOTES}
+		</div>
+	</div>
+</div>
 
-<p>{_OAUTH_IMPLICIT_NOTES}</p>
-
-
-<textarea class="form-control" rows="" id="nothing" readonly>{AUTHORIZE_URL}</textarea>
-
-
-<h3 class="page-header">{_OAUTH_SCOPE_TITLE}</h3>
+<h3 class="pt-3">{_OAUTH_SCOPE_TITLE}</h3>
 
 <patTemplate:tmpl name="rows" unusedvars="strip">
 {SCOPES}

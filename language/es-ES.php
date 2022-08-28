@@ -2743,3 +2743,8 @@ jr_define( 'DATA_SOURCES_TITLE_INFO', "Fuentes de datos actualizadas. Las fuente
 	jr_define('JOMRES_TRANSLATIONS_LEAD', 'En esta página puede traducir etiquetas de un idioma a otro. Cuando visite la página, verá cadenas que ya ha creado y su valor en cualquier idioma que esté usando actualmente. En la parte superior, configure el idioma de destino, luego, para las etiquetas que desea traducir, haga clic en la etiqueta y una ventana emergente le permitirá ingresar su nueva traducción. Para líneas de texto más largas, puede pegar el texto de otra fuente. Recuerde que cualquier HTML será eliminado .<br/>
 Puede dejar el idioma de destino establecido en su idioma actual y usar esta página para cambiar el nombre de los elementos aquí, en lugar de visitar sus páginas individuales.');
 	jr_define('JOMRES_TARGET_LANGUAGE', 'Idioma de destino');
+
+	jr_define('API_CLIENTS_INFO', 'Los clientes de API son pares de claves de ID de cliente/secretas que permiten que los sistemas remotos usen funciones de API que usted les da permiso para usar. En esta página puede crear tantos pares de claves de cliente/secretas como necesite, cada uno con cualquier combinación de permisos que necesite.');
+	jr_define('CLIENT_TOKEN', 'Token de acceso');
+	jr_define('CLIENT_TOKEN_INFO', "Los tokens de acceso se pueden solicitar utilizando el ID y el secreto del Cliente. Es posible que algunos Clientes ya tengan un token de acceso creado para ellos, en cuyo caso puede usar este token de acceso. Si cree que el token puede haber sido comprometido, o simplemente desea cambiarlo, puede caducar los tokens del cliente. Todos los tokens asociados con el par cliente/secreto caducarán.");
+	jr_define('DELETE_TOKEN', 'Caducar tokens');

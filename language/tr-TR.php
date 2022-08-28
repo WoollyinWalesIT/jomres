@@ -2710,3 +2710,8 @@ jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Değişikliği kaydettikten 
 	jr_define('JOMRES_TRANSLATIONS_LEAD', 'Bu sayfada etiketleri bir dilden diğerine çevirebilirsiniz. Sayfayı ziyaret ettiğinizde daha önce oluşturduğunuz dizeleri ve şu anda kullanmakta olduğunuz dilde bunların değerini göreceksiniz. En üstte hedef dili seçin, ardından çevirmek istediğiniz etiketler için etiketi tıklayın ve bir açılır pencere yeni çevirinizi girmenize izin verecektir. Daha uzun metin satırları için başka bir kaynaktan metne yapıştırabilirsiniz. Herhangi bir HTML\'nin çıkarılacağını unutmayın. .<br/>
 Hedef dili mevcut dilinize ayarlı bırakabilir ve bu sayfayı, öğeleri tek tek sayfalarını ziyaret etmek yerine yeniden adlandırmak için kullanabilirsiniz.');
 jr_define('JOMRES_TARGET_LANGUAGE', 'Hedef dil');
+
+	jr_define('API_CLIENTS_INFO', 'API İstemcileri, uzak sistemlerin, onlara kullanma izni verdiğiniz API özelliklerini kullanmasına izin veren İstemci Kimliği/Gizli anahtar çiftleridir. Bu sayfada, istediğiniz kadar İstemci/Gizli anahtar çifti oluşturabilirsiniz. ihtiyacınız olan herhangi bir izin kombinasyonu.');
+	jr_define('CLIENT_TOKEN', 'Erişim Simgesi');
+	jr_define('CLIENT_TOKEN_INFO', "Erişim belirteçleri İstemci Kimliği ve Sır kullanılarak talep edilebilir. Bazı İstemcilerin bunun için zaten bir erişim belirteci oluşturulmuş olabilir, bu durumda bu erişim belirtecini kullanabilirsiniz. veya sadece değiştirmek istiyorsanız, müşterinin belirteçlerinin süresi dolabilir. İstemci/gizli çifti ile ilişkili tüm belirteçlerin süresi dolacaktır.");
+	jr_define('DELETE_TOKEN', 'Sona Erme Belirteçleri');

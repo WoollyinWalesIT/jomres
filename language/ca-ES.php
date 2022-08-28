@@ -2729,3 +2729,8 @@ jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Un cop hagis desat el canvi,
 	jr_define('JOMRES_TRANSLATIONS_LEAD', 'En aquesta pàgina podeu traduir etiquetes d\'un idioma a un altre. Quan visiteu la pàgina veureu les cadenes que ja heu creat i el seu valor en qualsevol idioma que feu servir actualment. A la part superior, establiu el L\'idioma de destinació, a continuació, per a les etiquetes que voleu traduir, feu clic a l\'etiqueta i una finestra emergent us permetrà introduir la vostra nova traducció. Per a línies de text més llargues, podeu enganxar el text d\'una altra font. Recordeu que qualsevol HTML s\'eliminarà. .<br/>
 Podeu deixar l\'idioma d\'arribada configurat en el vostre idioma actual i utilitzar aquesta pàgina per canviar el nom dels elements aquí, en lloc de visitar les seves pàgines individuals.');
 jr_define('JOMRES_TARGET_LANGUAGE', 'Idioma objectiu');
+
+jr_define('API_CLIENTS_INFO', 'Els clients API són parells de claus secretes/ID de client que permeten als sistemes remots utilitzar funcions de l\'API que els doneu permís per utilitzar. En aquesta pàgina podeu crear tantes parelles de claus client/secretes com necessiteu, cadascuna amb qualsevol combinació de permisos que necessiteu.');
+jr_define('CLIENT_TOKEN', 'Fitxa d\'accés');
+jr_define('CLIENT_TOKEN_INFO', "Els testimonis d'accés es poden sol·licitar mitjançant l'identificador i el secret del client. És possible que alguns clients ja tinguin creat un testimoni d'accés, en aquest cas podeu utilitzar aquest testimoni d'accés. Si creieu que el testimoni pot haver estat compromesa, o simplement voleu canviar-la, podeu caducar les fitxes del client. Tots els testimonis associats al parell client/secret caducaran.");
+jr_define('DELETE_TOKEN', 'Fitxas de caducitat');

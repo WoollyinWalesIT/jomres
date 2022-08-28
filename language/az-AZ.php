@@ -2718,3 +2718,8 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Əmlak tip
 	jr_define('JOMRES_TRANSLATIONS_LEAD', 'Bu səhifədə siz etiketləri bir dildən digər dilə tərcümə edə bilərsiniz. Səhifəni ziyarət etdiyiniz zaman siz artıq yaratdığınız sətirləri və hazırda istifadə etdiyiniz dildə onların dəyərini görəcəksiniz. Üst hissədə hədəf dildə, sonra tərcümə etmək istədiyiniz etiketlər üçün etiketin üzərinə klikləyin və pop-up sizə yeni tərcümənizi daxil etməyə imkan verəcək. Daha uzun mətn sətirləri üçün başqa mənbədən mətnə yapışdıra bilərsiniz. Unutmayın ki, istənilən HTML silinəcək. .<br/>
 Siz hədəf dili təyin edilmiş cari dilinizə buraxa və onların fərdi səhifələrinə daxil olmaq əvəzinə buradakı elementlərin adını dəyişmək üçün bu səhifədən istifadə edə bilərsiniz.');
 	jr_define('JOMRES_TARGET_LANGUAGE', 'Hədəf dil');
+
+	jr_define('API_CLIENTS_INFO', 'API Müştəriləri uzaq sistemlərə onlara istifadə etmək icazəsi verdiyiniz API xüsusiyyətlərindən istifadə etməyə imkan verən Müştəri İD/Gizli açar cütləridir. Bu səhifədə siz ehtiyac duyduğunuz qədər Müştəri/Gizli düymə cütləri yarada bilərsiniz. tələb etdiyiniz icazələrin istənilən kombinasiyası.');
+	jr_define('CLIENT_TOKEN', 'Giriş Token');
+	jr_define('CLIENT_TOKEN_INFO', "Giriş nişanları Müştəri ID-si və Sirri ilə tələb oluna bilər. Bəzi Müştərilərin artıq onun üçün yaradılmış giriş nişanı ola bilər, bu halda siz bu giriş nişanından istifadə edə bilərsiniz. Əgər işarənin istifadə olunduğuna inanırsınızsa güzəştə gedərsə və ya sadəcə onu dəyişmək istəsəniz, müştərinin tokenlərinin müddətini başa vura bilərsiniz. Müştəri/gizli cütlüklə əlaqəli bütün tokenlərin vaxtı bitəcək.");
+	jr_define('DELETE_TOKEN', 'Müddəti bitən Tokenlər');

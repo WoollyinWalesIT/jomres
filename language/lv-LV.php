@@ -2709,3 +2709,8 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Īpašuma 
 	jr_define('JOMRES_TRANSLATIONS_LEAD', 'Šajā lapā varat tulkot etiķetes no vienas valodas citā. Apmeklējot lapu, jūs redzēsit jau izveidotās virknes un to vērtību jebkurā valodā, kuru pašlaik lietojat. Augšpusē iestatiet mērķvaloda, pēc tam uz etiķetēm, kuras vēlaties tulkot, noklikšķiniet uz etiķetes, un uznirstošais logs ļaus ievadīt jauno tulkojumu. Garākas teksta rindiņas varat ielīmēt tekstā no cita avota. Atcerieties, ka jebkurš HTML tiks noņemts .<br/>
 Varat atstāt mērķa valodu iestatītu uz savu pašreizējo valodu un izmantot šo lapu, lai šeit pārdēvētu vienumus, tā vietā, lai apmeklētu to atsevišķas lapas.');
 	jr_define('JOMRES_TARGET_LANGUAGE', 'Mērķa valoda');
+
+	jr_define('API_CLIENTS_INFO', 'API klienti ir klienta ID/slepeno atslēgu pāri, kas ļauj attālām sistēmām izmantot API līdzekļus, kuru izmantošanai jūs piešķirat atļaujas. Šajā lapā varat izveidot tik daudz klienta/slepeno atslēgu pāru, cik nepieciešams, katrs ar jebkura jums nepieciešamo atļauju kombinācija.');
+	jr_define('CLIENT_TOKEN', 'Piekļuves pilnvara');
+	jr_define('CLIENT_TOKEN_INFO', "Piekļuves pilnvaras var pieprasīt, izmantojot klienta ID un noslēpumu. Dažiem klientiem jau var būt izveidots piekļuves marķieris, un tādā gadījumā varat izmantot šo piekļuves pilnvaru. Ja uzskatāt, ka marķieris varētu būt kompromitēts, vai arī vēlaties to vienkārši mainīt, varat beigt klienta marķieru derīguma termiņu. Visi ar klientu/slepeno pāri saistītie marķieri tiks beigušies.");
+	jr_define('DELETE_TOKEN', 'Tiek izbeigties');

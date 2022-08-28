@@ -2740,3 +2740,8 @@ jr_define ('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT' , 'بمجرد حفظ التغ
 jr_define ('JOMRES_TRANSLATIONS_LEAD', 'في هذه الصفحة يمكنك ترجمة التسميات من لغة إلى أخرى. عندما تزور الصفحة سترى السلاسل التي قمت بإنشائها بالفعل وقيمتها بأي لغة تستخدمها حاليًا. في الجزء العلوي ، قم بتعيين اللغة الهدف ، فبالنسبة للتسميات التي تريد ترجمتها ، انقر فوق التسمية وستتيح لك نافذة منبثقة إدخال ترجمتك الجديدة. للحصول على سطور أطول من النص ، يمكنك لصق النص من مصدر آخر. تذكر أنه سيتم إزالة أي HTML . <br/>
 يمكنك ترك اللغة الهدف مضبوطة على لغتك الحالية واستخدام هذه الصفحة لإعادة تسمية العناصر هنا ، بدلاً من زيارة صفحاتهم الفردية. ') ;
 jr_define ('JOMRES_TARGET_LANGUAGE', 'اللغة الهدف') ;
+
+jr_define('API_CLIENTS_INFO', 'API Clients are Client ID/Secret key pairs that allow remote systems to use API features that you give them permissions to use. On this page you can create as many Client/Secret keypairs as you need, each with any combination of permissions that you require.');
+jr_define('CLIENT_TOKEN', 'Access Token');
+jr_define('CLIENT_TOKEN_INFO', "Access tokens can be requested using the Client ID and Secret. Some Clients may already have an access token created for it, in which case you can use this access token. If you believe that the token may have been compromised, or you just want to change it, you can expire the client's tokens. All tokens associated with the client/secret pair will be expired.");
+jr_define('DELETE_TOKEN', 'Expire Tokens');

@@ -73,10 +73,23 @@ class j06005oauth_edit_client
 		$output['_OAUTH_AUTHORISATION_URL']	= jr_gettext('_OAUTH_AUTHORISATION_URL', '_OAUTH_AUTHORISATION_URL', false);
 		$output['_OAUTH_TOKEN_REQUEST_URI']	= jr_gettext('_OAUTH_TOKEN_REQUEST_URI', '_OAUTH_TOKEN_REQUEST_URI', false);
 
+		$output['CLIENT_TOKEN']	= jr_gettext('CLIENT_TOKEN', 'CLIENT_TOKEN', false);
+		$output['CLIENT_TOKEN_INFO']	= jr_gettext('CLIENT_TOKEN_INFO', 'CLIENT_TOKEN_INFO', false);
+
+		$output['TOKEN'] = '';
+		if ($client_id != '') {
+			$rightnow = date('Y-m-d H:i:s', strtotime('now') );
+			$query = "SELECT access_token FROM #__jomres_oauth_access_tokens  WHERE 
+            	`client_id` = '".$client_id."' AND 
+            	`user_id` = ".(int)$thisJRUser->id." AND
+            	`expires` >  '".$rightnow."' ORDER BY `expires` DESC LIMIT 1 ";
+
+			$output['TOKEN'] = doSelectSql($query , 1 );
+		}
 
 		$query = "SELECT client_id , client_secret , scope , identifier , redirect_uri FROM #__jomres_oauth_clients WHERE client_id = '".$client_id."' AND user_id = ".(int)$thisJRUser->id . ' LIMIT 1 ';
 		$result = doSelectSql($query);
-		
+
 		$client_scopes = array();
 		if (count($result)>0)
 			{
@@ -104,7 +117,7 @@ class j06005oauth_edit_client
 			$output['CLIENT_SECRET'] =createNewAPIKey();
 			$output['REDIRECT_URI'] =get_showtime( 'live_site' )."/".JOMRES_ROOT_DIRECTORY."/api/";
 			}
-		
+
 		$output['AUTHORIZE_URL'] = JOMRES_SITEPAGE_URL_AJAX.'&task=oauth_isauthorised&response_type=token&client_id='.$output['CLIENT_ID'].'&redirect_uri='. $output['REDIRECT_URI'];
 
 		$output['TOKEN_REQUEST_URL'] = get_showtime( 'live_site' ).'/jomres/api/';
@@ -150,8 +163,11 @@ class j06005oauth_edit_client
 		$jrtb   = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem( 'cancel', jomresURL( JOMRES_SITEPAGE_URL . "&task=oauth" ), '' );
 		$jrtb .= $jrtbar->toolbarItem( 'save', '', '', true, 'save_client' );
-		if ( $client_id != '' ) 
+		if ( $client_id != '' ) {
 			$jrtb .= $jrtbar->toolbarItem( 'delete', jomresURL( JOMRES_SITEPAGE_URL . "&task=delete_client&client_id=".$client_id."&no_html=1" ), '' );
+			$jrtb .= $jrtbar->toolbarItem( 'delete', jomresURL( JOMRES_SITEPAGE_URL . "&task=expire_tokens&client_id=".$client_id."&no_html=1" ), jr_gettext('DELETE_TOKEN', 'DELETE_TOKEN', false) );
+		}
+
 		$jrtb .= $jrtbar->endTable();
 		$output[ 'JOMRESTOOLBAR' ] = $jrtb;
 		

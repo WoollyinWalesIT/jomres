@@ -2736,3 +2736,8 @@ jr_define('_JOMRES_SHORTCODES_06000SHOW_PROPERTY_DETAILS_ARG_TEMPLATE_NAME', "Ș
 	jr_define('JOMRES_TRANSLATIONS_LEAD', 'Pe această pagină puteți traduce etichete dintr-o limbă în alta. Când vizitați pagina, veți vedea șirurile pe care le-ați creat deja și valoarea lor în orice limbă pe care o utilizați în prezent. În partea de sus setați limba țintă, apoi pentru etichetele pe care doriți să le traduceți, faceți clic pe etichetă și o fereastră pop-up vă va permite să introduceți noua traducere. Pentru rânduri mai lungi de text puteți lipi textul din altă sursă. Amintiți-vă că orice HTML va fi eliminat. .<br/>
 Puteți lăsa limba țintă setată la limba dvs. curentă și puteți utiliza această pagină pentru a redenumi articolele aici, în loc să le vizitați paginile individuale.');
 	jr_define('JOMRES_TARGET_LANGUAGE', 'Limba ţintă');
+
+	jr_define('API_CLIENTS_INFO', 'Clienții API sunt perechi ID client/chei secrete care permit sistemelor la distanță să utilizeze caracteristici API pe care le acordați permisiunea de a le utiliza. Pe această pagină puteți crea câte perechi de chei Client/Secrete aveți nevoie, fiecare cu orice combinație de permisiuni de care aveți nevoie.');
+	jr_define('CLIENT_TOKEN', 'Access Token');
+	jr_define('CLIENT_TOKEN_INFO', "Jetonele de acces pot fi solicitate folosind ID-ul clientului și Secretul. Este posibil ca unii clienți să aibă deja un jeton de acces creat pentru acesta, caz în care puteți utiliza acest jeton de acces. Dacă credeți că jetonul ar fi fost compromis, sau vrei doar să-l schimbi, poți expira jetoanele clientului. Toate jetoanele asociate cu perechea client/secretă vor fi expirate.");
+	jr_define('DELETE_TOKEN', 'Expirare Tokens');

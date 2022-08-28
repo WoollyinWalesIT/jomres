@@ -2734,3 +2734,10 @@ jr_define('JOMRES_RIBBON_TEXT_DISCOUNTED', "Zľavnené");
 	jr_define('JOMRES_TRANSLATIONS_LEAD', 'Na tejto stránke môžete prekladať štítky z jedného jazyka do druhého. Keď navštívite stránku, uvidíte reťazce, ktoré ste už vytvorili, a ich hodnotu v akomkoľvek jazyku, ktorý práve používate. V hornej časti nastavte cieľový jazyk, potom pre štítky, ktoré chcete preložiť, kliknite na štítok a vyskakovacie okno vám umožní zadať nový preklad. V prípade dlhších riadkov textu môžete vložiť text z iného zdroja. Nezabudnite, že akýkoľvek kód HTML bude odstránený .<br/>
 Môžete ponechať cieľový jazyk nastavený na váš aktuálny jazyk a použiť túto stránku na premenovanie položiek tu, namiesto toho, aby ste navštevovali ich jednotlivé stránky.');
 	jr_define('JOMRES_TARGET_LANGUAGE', 'Cieľový jazyk');
+
+	jr_define('API_CLIENTS_INFO', 'Klienti API sú páry kľúčov ID klienta/tajné, ktoré umožňujú vzdialeným systémom používať funkcie rozhrania API, na používanie ktorých im dáte oprávnenia. Na tejto stránke môžete vytvoriť toľko párov kľúčov klient/tajné, koľko potrebujete, každý s akúkoľvek kombináciu povolení, ktoré požadujete.');
+	jr_define('CLIENT_TOKEN', 'Prístupový token');
+	jr_define('CLIENT_TOKEN_INFO', "Prístupové tokeny je možné vyžiadať pomocou ID klienta a tajomstva. Niektorí klienti už môžu mať preň vytvorený prístupový token, v takom prípade môžete použiť tento prístupový token. Ak sa domnievate, že token mohol byť skompromitované, alebo to len chcete zmeniť, môžete ukončiť platnosť klientskych tokenov. Platnosť všetkých tokenov spojených s párom klient/tajný vyprší.");
+	jr_define('DELETE_TOKEN', 'Vypršanie platnosti tokenov');
+
+

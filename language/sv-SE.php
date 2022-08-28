@@ -2708,3 +2708,8 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Egenskapst
 	jr_define('JOMRES_TRANSLATIONS_LEAD', 'På den här sidan kan du översätta etiketter från ett språk till ett annat. När du besöker sidan kommer du att se strängar som du redan har skapat och deras värde på vilket språk du för närvarande använder. Överst ställer du in målspråk, klicka sedan på etiketten för etiketterna du vill översätta och en popup låter dig ange din nya översättning. För längre textrader kan du klistra in texten från en annan källa. Kom ihåg att all HTML tas bort .<br/>
 Du kan lämna målspråket inställt på ditt nuvarande språk och använda denna sida för att byta namn på objekt här, istället för att besöka deras individuella sidor.');
 	jr_define('JOMRES_TARGET_LANGUAGE', 'Målspråk');
+
+	jr_define('API_CLIENTS_INFO', 'API-klienter är klient-ID/hemliga nyckelpar som tillåter fjärrsystem att använda API-funktioner som du ger dem behörighet att använda. På den här sidan kan du skapa så många klient-/hemliga nyckelpar som du behöver, var och en med valfri kombination av behörigheter som du behöver.');
+	jr_define('CLIENT_TOKEN', 'Åtkomsttoken');
+	jr_define('CLIENT_TOKEN_INFO', "Åtkomsttoken kan begäras med hjälp av klient-ID och hemlighet. Vissa klienter kanske redan har skapat en åtkomsttoken för den, i vilket fall du kan använda denna åtkomsttoken. Om du tror att token kan ha varit äventyras, eller om du bara vill ändra det, kan du förfalla klientens tokens. Alla tokens associerade med klienten/hemliga paret kommer att förfalla.");
+	jr_define('DELETE_TOKEN', 'Expirate tokens');

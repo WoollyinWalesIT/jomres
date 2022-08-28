@@ -2749,3 +2749,8 @@ Sve informacije koje sami dostavite web stranici su istinite, točne, aktualne i
 	jr_define('JOMRES_TRANSLATIONS_LEAD', 'Na ovoj stranici možete prevesti oznake s jednog jezika na drugi. Kada posjetite stranicu vidjet ćete nizove koje ste već kreirali i njihovu vrijednost na jeziku koji trenutno koristite. Na vrhu postavite ciljni jezik, zatim za oznake koje želite prevesti, kliknite na oznaku i skočni prozor će vam omogućiti da unesete svoj novi prijevod. Za duže retke teksta možete zalijepiti tekst iz drugog izvora. Imajte na umu da će svaki HTML biti uklonjen .<br/>
 Možete ostaviti ciljni jezik postavljen na vaš trenutni jezik i koristiti ovu stranicu za preimenovanje stavki ovdje, umjesto da posjećujete njihove pojedinačne stranice.');
 	jr_define('JOMRES_TARGET_LANGUAGE', 'Ciljni jezik');
+
+	jr_define('API_CLIENTS_INFO', 'API klijenti su parovi ključeva ID klijenta/tajni koji omogućuju udaljenim sustavima korištenje značajki API-ja za koje im date dopuštenja za korištenje. Na ovoj stranici možete stvoriti onoliko parova ključeva klijent/tajni koliko vam je potrebno, svaki s bilo koja kombinacija dopuštenja koja vam je potrebna.');
+	jr_define('CLIENT_TOKEN', 'Pristupni token');
+	jr_define('CLIENT_TOKEN_INFO', "Pristupni tokeni mogu se zatražiti pomoću ID-a klijenta i tajne. Neki klijenti možda već imaju kreiran pristupni token, u kojem slučaju možete koristiti ovaj pristupni token. Ako vjerujete da je token možda kompromitirano ili ga samo želite promijeniti, možete isteći klijentovim tokenima. Svi tokeni povezani s parom klijent/tajna bit će istekli.");
+	jr_define('DELETE_TOKEN', 'Tokeni isteka');

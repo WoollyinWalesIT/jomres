@@ -2735,3 +2735,8 @@ jr_define('JOMRES_EDITING_MODE_HELP_STEPS_5_TEXT', 'Når du har gemt ændringen,
 	jr_define('JOMRES_TRANSLATIONS_LEAD', 'På denne side kan du oversætte etiketter fra et sprog til et andet. Når du besøger siden vil du se strenge, som du allerede har oprettet, og deres værdi på det sprog, du bruger i øjeblikket. Øverst indstilles målsprog, og klik derefter på etiketten for de etiketter, du vil oversætte, og en pop op vil lade dig indtaste din nye oversættelse. For længere tekstlinjer kan du indsætte teksten fra en anden kilde. Husk, at al HTML vil blive fjernet .<br/>
 Du kan lade målsproget være indstillet til dit nuværende sprog og bruge denne side til at omdøbe elementer her, i stedet for at besøge deres individuelle sider.');
 	jr_define('JOMRES_TARGET_LANGUAGE', 'Målsprog');
+
+	jr_define('API_CLIENTS_INFO', 'API-klienter er klient-id/hemmelige nøglepar, der tillader fjernsystemer at bruge API-funktioner, som du giver dem tilladelse til at bruge. På denne side kan du oprette så mange klient/hemmelige nøglepar, som du har brug for, hver med enhver kombination af tilladelser, som du har brug for.');
+	jr_define('CLIENT_TOKEN', 'Adgangstoken');
+	jr_define('CLIENT_TOKEN_INFO', "Adgangstokens kan anmodes om ved hjælp af klient-id'et og hemmeligheden. Nogle klienter har muligvis allerede oprettet et adgangstoken til det, i hvilket tilfælde du kan bruge dette adgangstoken. Hvis du mener, at tokenet kan have været kompromitteret, eller du bare vil ændre det, kan du udløbe klientens tokens. Alle tokens forbundet med klienten/hemmelige parret vil blive udløbet.");
+	jr_define('DELETE_TOKEN', 'Udløbs-tokens');

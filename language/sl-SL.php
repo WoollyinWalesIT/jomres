@@ -2719,3 +2719,8 @@ jr_define('_JOMRES_MEDIA_CENTRE_UPLOAD_CONTEXT_PROPERTY_TYPE_IMAGES',"Slike vrst
 	jr_define('JOMRES_TRANSLATIONS_LEAD', 'Na tej strani lahko prevajate oznake iz enega jezika v drugega. Ko obiščete stran, boste videli nize, ki ste jih že ustvarili, in njihovo vrednost v katerem koli jeziku, ki ga trenutno uporabljate. Na vrhu nastavite ciljni jezik, nato za oznake, ki jih želite prevesti, kliknite oznako in pojavno okno vam bo omogočilo vnos novega prevoda. Za daljše vrstice besedila lahko prilepite besedilo iz drugega vira. Ne pozabite, da bo vsak HTML odstranjen .<br/>
 Ciljni jezik lahko pustite nastavljen na vaš trenutni jezik in uporabite to stran za preimenovanje elementov tukaj, namesto da obiščete njihove posamezne strani.');
 	jr_define('JOMRES_TARGET_LANGUAGE', 'Ciljni jezik');
+
+	jr_define('API_CLIENTS_INFO', 'API odjemalci so pari odjemalcev/skrivnih ključev, ki oddaljenim sistemom omogočajo uporabo funkcij API, za katere jim daste dovoljenja za uporabo. Na tej strani lahko ustvarite poljubno število odjemalcev/skrivnih parov ključev, vsakega z poljubna kombinacija dovoljenj, ki jih potrebujete.');
+	jr_define('CLIENT_TOKEN', 'Žeton za dostop');
+	jr_define('CLIENT_TOKEN_INFO', "Žetone za dostop lahko zahtevate z uporabo ID-ja odjemalca in skrivnosti. Nekateri odjemalci imajo morda že ustvarjen žeton za dostop, v tem primeru lahko uporabite ta žeton za dostop. Če menite, da je žeton morda bil ogrožen ali pa ga želite samo spremeniti, lahko potečete žetoni odjemalca. Vsi žetoni, povezani s parom odjemalec/skrivnost, bodo potekli.");
+	jr_define('DELETE_TOKEN', 'Potečeni žetoni');
