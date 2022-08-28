@@ -81,6 +81,10 @@
 				$property_uid = (int)jomresGetParam($_REQUEST, 'property_uid', 0);
 				$selectedProperty = (int)jomresGetParam($_REQUEST, 'selectedProperty', 0);
 
+				if (isset($componentArgs['property_uid'])) {
+					$property_uid = $componentArgs['property_uid'];
+				}
+
 				if ($property_uid == 0) {
 					if (isset($componentArgs[ 'property_uid' ])) {
 						$property_uid = intval($componentArgs[ 'property_uid' ]);
