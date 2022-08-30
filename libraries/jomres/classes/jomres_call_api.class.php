@@ -108,7 +108,9 @@
 						throw new Exception($response->error_description);
 					}
 				}  else {
-					throw new Exception("OAuth plugin not installed. At one time it was a separate plugin but now it is in Jomres Core. Is this a very old installation of Jomres?");
+					if (!isset($client_secret) || trim($client_secret) != '') {
+						throw new Exception("Client Secret not offered");
+					}
 				}
 			}
 		}
