@@ -399,7 +399,10 @@ try {
 	}
 } catch (Exception $e) {
 	$MiniComponents->triggerEvent('99994');
-		
+
+	if (!isset($no_html)) {
+		$no_html = 0;
+	}
 	//generate the cpanel menu
 	if (!AJAXCALL && $no_html == 0 && !isset($_REQUEST[ 'popup' ])) {
 		echo $MiniComponents->specificEvent('09997', 'menu', array());
