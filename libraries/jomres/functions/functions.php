@@ -15,6 +15,45 @@
 	defined('_JOMRES_INITCHECK') or die('');
 // ################################################################
 
+
+use Joomla\CMS\Helper\ModuleHelper;
+
+	/*
+	 * This allows us to call a module in a Jomres template file using the pattern {module id=N} where N is the module id, and return a rendered Joomla module
+	 *
+	 */
+
+	function jomres_parse_modules($contents)
+	{
+		if (!this_cms_is_joomla()) {
+			return;
+		}
+
+		$regex = '/{module\s(.*?)}/i';
+
+		preg_match_all($regex, $contents, $matches, PREG_SET_ORDER);
+
+		// No matches, skip this
+		if ($matches)
+		{
+			$app = JFactory::getApplication();
+			$document = $app->getDocument();
+			foreach ($matches as $match)
+			{
+				$matcheslist = explode(',', $match[1]);
+				$replace_pattern = "{module ".$match[1]."}";
+				$bang = explode( "=" , $matcheslist[0]) ;
+				if ($bang[0] == 'id') {
+					$renderer = $document->loadRenderer('module');
+					$mod  = ModuleHelper::getModuleById( $bang[1] );
+					$module_contents = $renderer->render($mod, [] );
+					$contents = str_replace($replace_pattern , $module_contents, $contents );
+				}
+			}
+		}
+		return $contents;
+	}
+
 /*
  * Return the path to the template override directory
  *

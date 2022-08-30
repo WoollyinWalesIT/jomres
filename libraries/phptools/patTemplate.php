@@ -2806,7 +2806,7 @@ class patTemplate
 		if ( isset( $this->json_output ) ) 
 			return json_encode( $this->json_output );
 		else
-			return $result;
+			return  jomres_parse_modules($result);
 		}
 
 	private function get_debugging_output()
