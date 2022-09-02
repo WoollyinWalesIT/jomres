@@ -1,3 +1,26 @@
+<h3>Jomres 10.5.3 02/09/2022</h3>
+
+<span class="label label-success">Feature</span> Added the ability for the Jomres template parser to call code that introduces Joomla modules into Jomres template files.
+<span class="label label-success">Feature</span> Added a new feature to copy API keys to clipboard.
+
+<span class="label label-warning">Change</span> Two new currency codes added for Venezuelan Bolivar, including the black market currency code (really? Wow.)
+<span class="label label-warning">Change</span> Changed how old style language files are detected and used, so that new lang definitions are automatically parsed in despite them not being in the older language files.
+<span class="label label-warning">Change</span> Changed how Oauth clients are stored in the database. This means that, for non-manager users, they will need to create new clients and request new tokens.
+<span class="label label-warning">Change</span> Allow us to set a token when calling self API on behalf of a user
+<span class="label label-warning">Change</span> Updated the Edit API Client page. Show a valid token if available. Include the ability to remove (disable, not delete) old tokens.
+<span class="label label-warning">Change</span> README.md Added minicomponent trigger notes for new Jomres Messaging System that allow for parsing of messages by plugins.
+<span class="label label-warning">Change</span> Run watcher scripts during error responses, as well as successful api responses
+<span class="label label-warning">Change</span> Don't trigger cron tasks during api calls, might shave off 50ms here and there, but it's all worth it.
+<span class="label label-warning">Change</span> Str replace / in javascript date input if necessary
+<span class="label label-warning">Change</span> Don't output hidden menu items if menuoff is set .
+<span class="label label-warning">Change</span> Don't show powered by if the menu is off in the url
+<span class="label label-warning">Change</span> Removed references to syndication in rest api test.
+<span class="label label-warning">Change</span> Added new functionality whereby new buttons can be added to the edit booking/reservation details page.
+<span class="label label-warning">Change</span> Modified contact owner to ensure that component args is used.
+<span class="label label-warning">Change</span> Improved BS5 admin cpanel layout.
+<span class="label label-warning">Change</span> Tweaked how an error is reported to keep it up-to-date with the current system.
+
+
 <h3>Jomres 10.5.3 03/08/2022</h3>
 
 <span class="label label-warning">Change</span> Croatian lang file updated with some new defs. Thanks Amir.
