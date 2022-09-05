@@ -28,11 +28,15 @@ use Joomla\CMS\Helper\ModuleHelper;
 		$regex = '/{module\s(.*?)}/i';
 
 		preg_match_all($regex, $contents, $matches, PREG_SET_ORDER);
-
 		if ($matches)
 		{
 			if (!this_cms_is_joomla()) {
-				
+				foreach ($matches[0] as $match) {
+					$new_match = str_replace( "{module id=" , "" , $matches[0] );
+					$new_match = str_replace( "]}" , "]" , $new_match );
+					$shortcode_contents = do_shortcode(trim($new_match[0]));
+					$contents = str_replace($matches[0][0] , $shortcode_contents, $contents );
+				}
 			} else {
 				$app = JFactory::getApplication();
 				$document = $app->getDocument();
