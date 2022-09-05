@@ -23,7 +23,9 @@
 								<div class="card bg-light card-body mb-3">{SLIDESHOW}</div>
 							</div>
 						</div>
-
+						
+						{TABCONTENT_03_CONTACT_TAB_CONTENT}
+						
 						<pattemplate:comment>
 						<div class="row">
 							<div class="col-12 col-md-12 col-lg-12 col-xl-12" id="tour_target_property_details_buttons">
@@ -197,23 +199,7 @@
 													</div>
 												</li>
 												<pattemplate:comment>TAB TITLE END</pattemplate:comment>
-
-												<pattemplate:comment>TAB TITLE CONTACT START</pattemplate:comment>
-												<li class="nav-item" role="presentation">
-													<div
-															id="contact-left-tab"
-															class="nav-link tab-clickable"
-															role="tab"
-															data-bs-toggle="tab"
-															data-bs-target="#contact-left"
-															aria-controls="contact-left"
-															aria-selected="true"
-													>
-														{_JOMRES_FRONT_MR_MENU_CONTACTHOTEL}
-													</div>
-												</li>
-												<pattemplate:comment>TAB TITLE END</pattemplate:comment>
-
+												
 												<pattemplate:comment>TAB TITLE TARIFFS START</pattemplate:comment>
 												<pattemplate:tmpl name="tariffs_output" type="simpleCondition" requiredvars="_jomres_front_tariffs" unusedvars="nbsp">
 												<li class="nav-item" role="presentation">
@@ -509,39 +495,7 @@
 														</article>
 													</div>
 													<pattemplate:comment>TAB CONTENT END</pattemplate:comment>
-
-													<pattemplate:comment>TAB CONTENT CONTACT START</pattemplate:comment>
-													<div
-															id="contact-left"
-															class="tab-pane fade show accordion-item"
-															role="tabpanel"
-													>
-														<div class="accordion-header" role="tab">
-															<button
-																	class="accordion-button collapsed"
-																	type="button"
-																	role="button"
-																	data-bs-toggle="collapse"
-																	data-bs-target="#contact-left-article"
-																	aria-expanded="true"
-																	aria-controls="contact-left-article"
-															>
-																{_JOMRES_FRONT_MR_MENU_CONTACTHOTEL}
-															</button>
-														</div>
-														<article
-																id="contact-left-article"
-																class="accordion-body accordion-collapse collapse"
-																data-bs-parent="#accordion-left-tabs"
-																aria-labelledby="contact-left-tab"
-														>
-															<section>
-																{TABCONTENT_03_CONTACT_TAB_CONTENT}
-															</section>
-														</article>
-													</div>
-													<pattemplate:comment>TAB CONTENT END</pattemplate:comment>
-
+													
 													<pattemplate:comment>TAB CONTENT TARIFFS START</pattemplate:comment>
 													<pattemplate:tmpl name="tariffs_output_content" type="simpleCondition" requiredvars="_jomres_front_tariffs" unusedvars="nbsp">
 													<div
